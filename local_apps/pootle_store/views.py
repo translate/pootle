@@ -567,43 +567,44 @@ def get_view_units_for(request, pootle_path, uid, limit=0):
     profile = get_profile(request.user)
     json = {}
 
-    if not check_profile_permission(profile, 'view', pootle_path):
+    try:
+        store = Store.objects.select_related('translation_project', 'parent').get(pootle_path=pootle_path)
+        if not check_profile_permission(profile, 'view', store.parent):
+            json["success"] = False
+            json["msg"] = _("You do not have rights to access translation mode.")
+        else:
+            try:
+                units_qs = store.units
+                current_unit = units_qs.get(id=uid, store__pootle_path=pootle_path)
+
+                if not limit:
+                    limit = (profile.get_unit_rows() - 1) / 2
+                # TODO: Once we allow filtering, unit.store.units has to be a qs
+                # containing the set of filtered units.
+                profile = get_profile(request.user)
+                unit_rows = profile.get_unit_rows()
+                preceding = current_unit.store.units.filter(index__lt=current_unit.index).count()
+                page = preceding / unit_rows + 1
+                pager = paginate(request, current_unit.store.units, items=unit_rows, page=page)
+                # XXX: Could we compare the current pager with the previous pager
+                # in order to not blindly return useless data?
+                json["pager"] = _build_pager_dict(pager)
+
+                translation_project = store.translation_project
+                json["store"] = _build_store_metadata(translation_project)
+                before, after = _filter_view_units(units_qs, current_unit.index, limit)
+                json["units"] = {}
+                json["units"]["before"] = _build_units_list(before)
+                json["units"]["after"] = _build_units_list(after)
+                json["success"] = True
+            except Unit.DoesNotExist:
+                json["success"] = False
+                json["msg"] = _("Unit %(uid)s does not exist on %(path)s." %
+                                {'uid': uid, 'path': pootle_path})
+    except Store.DoesNotExist:
         json["success"] = False
-        json["msg"] = _("You do not have rights to access translation mode.")
-    else:
-        if not limit:
-            limit = (profile.get_unit_rows() - 1) / 2
-        try:
-            store = Store.objects.select_related('translation_project', 'parent').get(pootle_path=pootle_path)
-            units_qs = store.units
-            current_unit = units_qs.get(id=uid, store__pootle_path=pootle_path)
-
-            # TODO: Once we allow filtering, unit.store.units has to be a qs
-            # containing the set of filtered units.
-            profile = get_profile(request.user)
-            unit_rows = profile.get_unit_rows()
-            preceding = current_unit.store.units.filter(index__lt=current_unit.index).count()
-            page = preceding / unit_rows + 1
-            pager = paginate(request, current_unit.store.units, items=unit_rows, page=page)
-            # XXX: Could we compare the current pager with the previous pager
-            # in order to not blindly return useless data?
-            json["pager"] = _build_pager_dict(pager)
-
-            translation_project = store.translation_project
-            json["store"] = _build_store_metadata(translation_project)
-            before, after = _filter_view_units(units_qs, current_unit.index, limit)
-            json["units"] = {}
-            json["units"]["before"] = _build_units_list(before)
-            json["units"]["after"] = _build_units_list(after)
-            json["success"] = True
-        except Unit.DoesNotExist:
-            json["success"] = False
-            json["msg"] = _("Unit %(uid)s does not exist on %(path)s." %
-                            {'uid': uid, 'path': pootle_path})
-        except Store.DoesNotExist:
-            json["success"] = False
-            json["msg"] = _("Store %(path)s does not exist." %
-                            {'path': pootle_path})
+        json["msg"] = _("Store %(path)s does not exist." %
+                        {'path': pootle_path})
 
     response = simplejson.dumps(json)
     return HttpResponse(response, mimetype="application/json")
@@ -624,6 +625,7 @@ def get_edit_unit(request, pootle_path, uid):
     form_class = unit_form_factory(language, len(unit.source.strings))
     form = form_class(instance=unit)
     store = unit.store
+    directory = store.parent
     profile = get_profile(request.user)
     alt_src_langs = get_alt_src_langs(request, profile, translation_project)
     project = translation_project.project
@@ -634,9 +636,9 @@ def get_edit_unit(request, pootle_path, uid):
                      'user': request.user,
                      'language': language,
                      'source_language': translation_project.project.source_language,
-                     'cantranslate': check_permission("translate", request),
-                     'cansuggest': check_permission("suggest", request),
-                     'canreview': check_permission("review", request),
+                     'cantranslate': check_profile_permission(profile, "translate", directory),
+                     'cansuggest': check_profile_permission(profile, "suggest", directory),
+                     'canreview': check_profile_permission(profile, "review", directory),
                      'altsrcs': find_altsrcs(unit, alt_src_langs, store=store, project=project),
                      'suggestions': get_sugg_list(unit)}
 
@@ -652,18 +654,25 @@ def process_submit(request, pootle_path, uid, type):
     This object also contains success status that indicates if the submission
     has been succesfully saved or not.
     """
+    #
+    # TODO: Adapt captcha middleware to be able to understand xhr requests.
+    #       Otherwise non-admin users will have trouble when trying to submit
+    #       translations or suggestions.
+    #
     json = {}
-    cantranslate = check_permission("translate", request)
-    cansuggest = check_permission("suggest", request)
-    if type == 'submission' and not cantranslate or \
-       type == 'suggestion' and not cansuggest:
-        json["success"] = False
-        json["msg"] = _("You do not have rights to access translation mode.")
-    else:
-        if pootle_path[0] != '/':
-            pootle_path = '/' + pootle_path
-        try:
-            unit = Unit.objects.get(id=uid, store__pootle_path=pootle_path)
+    if pootle_path[0] != '/':
+        pootle_path = '/' + pootle_path
+
+    try:
+        unit = Unit.objects.get(id=uid, store__pootle_path=pootle_path)
+        directory = unit.store.parent
+        cantranslate = check_profile_permission(profile, "translate", directory)
+        cansuggest = check_profile_permission(profile, "suggest", directory)
+        if type == 'submission' and not cantranslate or \
+           type == 'suggestion' and not cansuggest:
+            json["success"] = False
+            json["msg"] = _("You do not have rights to access translation mode.")
+        else:
             translation_project = unit.store.translation_project
             language = translation_project.language
             form_class = unit_form_factory(language, len(unit.source.strings))
@@ -721,10 +730,10 @@ def process_submit(request, pootle_path, uid, type):
                 # Form failed
                 json["success"] = False
                 json["msg"] = _("Failed to process submit.")
-        except Unit.DoesNotExist:
-            json["success"] = False
-            json["msg"] = _("Unit %(uid)s does not exist on %(path)s." %
-                            {'uid': uid, 'path': pootle_path})
+    except Unit.DoesNotExist:
+        json["success"] = False
+        json["msg"] = _("Unit %(uid)s does not exist on %(path)s." %
+                        {'uid': uid, 'path': pootle_path})
 
     response = simplejson.dumps(json)
     return HttpResponse(response, mimetype="application/json")
@@ -777,8 +786,9 @@ def accept_suggestion(request, uid, suggid):
         unit = Unit.objects.get(id=uid)
         directory = unit.store.parent
         translation_project = unit.store.translation_project
+        profile = get_profile(request.user)
 
-        if not check_profile_permission(get_profile(request.user), 'review', directory):
+        if not check_profile_permission(profile, 'review', directory):
             json["success"] = False
             json["msg"] = _("You do not have rights to access review mode.")
         else:
@@ -803,12 +813,12 @@ def accept_suggestion(request, uid, suggid):
                                                                     suggester=sugg.user,
                                                                     state='pending',
                                                                     unit=unit.id)
-                    suggstat.reviewer = get_profile(request.user)
+                    suggstat.reviewer = profile
                     suggstat.state = 'accepted'
                     suggstat.save()
 
                     sub = Submission(translation_project=translation_project,
-                                     submitter=get_profile(request.user),
+                                     submitter=profile,
                                      from_suggestion=suggstat)
                     sub.save()
     except Unit.DoesNotExist:
