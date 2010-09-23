@@ -71,6 +71,9 @@
     });
   };
 
+  /*
+   * Displays error messages returned in XHR requests
+   */
   pootle.editor.error = function(msg) {
     if (msg) {
       $("#xhr-activity").hide();
@@ -120,6 +123,8 @@
    * Sets the edit view for unit 'uid'
    */
   pootle.editor.display_edit_unit = function(store, uid) {
+    // TODO: Try to add stripe classes on the fly, not at a separate
+    // time after rendering
     var uids = pootle.editor.get_view_units_for(store, uid);
     if (uids.success) {
       // FIXME: This only works for visible units:
