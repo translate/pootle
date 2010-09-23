@@ -71,6 +71,13 @@
     });
   };
 
+  pootle.editor.error = function(msg) {
+    if (msg) {
+      $("#xhr-activity").hide();
+      $("#xhr-error span").text(msg).parent().show();
+    }
+  };
+
   /*
    * Sets the view units before and after unit 'uid'
    */
@@ -101,10 +108,7 @@
             return_uids.after.push(this.id);
           });
         } else {
-          if (data.msg) {
-            $("#xhr-activity").hide();
-            $("#xhr-error span").text(data.msg).parent().show();
-          }
+          pootle.editor.error(data.msg);
         }
         return_uids.success = data.success;
       }
@@ -222,9 +226,7 @@
         if (data.success) {
           pootle.editor.display_next_unit(store, data);
         } else {
-          // TODO: provide a proper error message and not an alert
-          alert("Something went wrong");
-          return false;
+          pootle.editor.error(data.msg);
         }
       }
     });
