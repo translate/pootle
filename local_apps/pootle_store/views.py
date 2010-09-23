@@ -823,13 +823,13 @@ def accept_suggestion(request, uid, suggid):
 @ajax_required
 def reject_qualitycheck(request, uid, checkid):
     json = {}
-    if not check_profile_permission(get_profile(request.user), 'review', directory):
-        json["success"] = False
-        json["msg"] = _("You do not have rights to access review mode.")
-    else:
-        try:
-            unit = Unit.objects.get(id=uid)
-            directory = unit.store.parent
+    try:
+        unit = Unit.objects.get(id=uid)
+        directory = unit.store.parent
+        if not check_profile_permission(get_profile(request.user), 'review', directory):
+            json["success"] = False
+            json["msg"] = _("You do not have rights to access review mode.")
+        else:
             json["udbid"] = uid
             json["checkid"] = checkid
             if request.POST.get('reject'):
@@ -845,10 +845,10 @@ def reject_qualitycheck(request, uid, checkid):
                     json['success'] = False
                     json["msg"] = _("Check %(checkid)s does not exist." %
                                     {'checkid': checkid})
-        except Unit.DoesNotExist:
-            json['success'] = False
-            json["msg"] = _("Unit %(uid)s does not exist." %
-                            {'uid': uid})
+    except Unit.DoesNotExist:
+        json['success'] = False
+        json["msg"] = _("Unit %(uid)s does not exist." %
+                        {'uid': uid})
 
     response = simplejson.dumps(json)
     return HttpResponse(response, mimetype="application/json")
