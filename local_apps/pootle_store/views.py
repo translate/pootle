@@ -578,7 +578,7 @@ def get_view_unit(request, pootle_path, uid):
             json["success"] = True
         except Unit.DoesNotExist:
             json["success"] = False
-            json["msg"] = _("Unit %(uid)s does not exist on %(path).",
+            json["msg"] = _("Unit %(uid)s does not exist on %(path)s." %
                             {'uid': uid, 'path': pootle_path})
 
     response = simplejson.dumps(json)
@@ -632,11 +632,11 @@ def get_view_units_for(request, pootle_path, uid, limit=0):
             json["success"] = True
         except Unit.DoesNotExist:
             json["success"] = False
-            json["msg"] = _("Unit %(uid)s does not exist on %(path).",
+            json["msg"] = _("Unit %(uid)s does not exist on %(path)s." %
                             {'uid': uid, 'path': pootle_path})
         except Store.DoesNotExist:
             json["success"] = False
-            json["msg"] = _("Store %(path) does not exist.",
+            json["msg"] = _("Store %(path)s does not exist." %
                             {'path': pootle_path})
 
     response = simplejson.dumps(json)
@@ -757,7 +757,7 @@ def process_submit(request, pootle_path, uid, type):
                 json["msg"] = _("Failed to process submit.")
         except Unit.DoesNotExist:
             json["success"] = False
-            json["msg"] = _("Unit %(uid)s does not exist on %(path).",
+            json["msg"] = _("Unit %(uid)s does not exist on %(path)s." %
                             {'uid': uid, 'path': pootle_path})
 
     response = simplejson.dumps(json)
@@ -798,7 +798,7 @@ def reject_suggestion(request, uid, suggid):
                     suggstat.save()
     except Unit.DoesNotExist:
         json["success"] = False
-        json["msg"] = _("Unit %(uid)s does not exist.",
+        json["msg"] = _("Unit %(uid)s does not exist." %
                         {'uid': uid})
 
     response = simplejson.dumps(json)
@@ -847,7 +847,7 @@ def accept_suggestion(request, uid, suggid):
                     sub.save()
     except Unit.DoesNotExist:
         json["success"] = False
-        json["msg"] = _("Unit %(uid)s does not exist.",
+        json["msg"] = _("Unit %(uid)s does not exist." %
                         {'uid': uid})
 
     response = simplejson.dumps(json)
@@ -877,11 +877,11 @@ def reject_qualitycheck(request, uid, checkid):
                 except ObjectDoesNotExist:
                     check = None
                     json['success'] = False
-                    json["msg"] = _("Check %(checkid)s does not exist.",
+                    json["msg"] = _("Check %(checkid)s does not exist." %
                                     {'checkid': checkid})
         except Unit.DoesNotExist:
             json['success'] = False
-            json["msg"] = _("Unit %(uid)s does not exist.",
+            json["msg"] = _("Unit %(uid)s does not exist." %
                             {'uid': uid})
 
     response = simplejson.dumps(json)
