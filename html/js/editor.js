@@ -112,7 +112,10 @@
     return return_uids;
   };
 
-  pootle.editor.display_unit_views_for = function(store, uid) {
+  /*
+   * Sets the edit view for unit 'uid'
+   */
+  pootle.editor.display_edit_unit = function(store, uid) {
     var uids = pootle.editor.get_view_units_for(store, uid);
     if (uids.success) {
       // FIXME: This only works for visible units:
@@ -139,13 +142,6 @@
         $("#unit_view").tmpl({store: pootle.editor.store_info, unit: unit}).appendTo(_where);
       }
     }
-  };
-
-  /*
-   * Sets the edit view for unit 'uid'
-   */
-  pootle.editor.display_edit_unit = function(store, uid) {
-    pootle.editor.display_unit_views_for(store, uid);
   };
 
   /*
