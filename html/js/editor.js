@@ -72,41 +72,6 @@
   };
 
   /*
-   * Sets the view unit for unit 'uid'
-   * XXX: Really used? *
-   */
-  pootle.editor.get_view_unit = function(store, uid, async) {
-    var async = async == undefined ? false : async;
-    if (pootle.editor.units[uid] == undefined) {
-      var view_url = l(store + '/view/' + uid);
-      $.ajax({
-        url: view_url,
-        dataType: 'json',
-        async: async,
-        success: function(data) {
-          if (data.success) {
-            pootle.editor.units[uid] = data.unit;
-          } else {
-            // TODO: provide a proper error message and not an alert
-            alert("Something went wrong");
-            return false;
-          }
-        }
-      });
-    }
-  };
-
-  /* XXX: Really used? */
-  pootle.editor.display_unit_view = function(store, uid) {
-    pootle.editor.get_view_unit(store, uid);
-    var unit = pootle.editor.units[uid];
-    var where = $("tr#row" + uid);
-    where.removeClass("translate-translation-row");
-    where.children().fadeOut("slow").remove();
-    $("#unit_view").tmpl(unit).appendTo(where);
-  };
-
-  /*
    * Sets the view units before and after unit 'uid'
    */
   pootle.editor.get_view_units_for = function(store, uid, async, limit) {

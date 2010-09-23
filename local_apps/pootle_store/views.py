@@ -551,40 +551,6 @@ def _build_pager_dict(pager):
            }
 
 @ajax_required
-def get_view_unit(request, pootle_path, uid):
-    """
-    @return: An object in JSON notation that contains the source and target
-    texts for unit C{uid}.
-
-    This object also contains more information used for rendering the view
-    unit, such as the source/target language codes, direction of the text, ...
-    Success status that indicates if the unit has been succesfully
-    retrieved or not is returned as well.
-    """
-    if pootle_path[0] != '/':
-        pootle_path = '/' + pootle_path
-    json = {}
-    profile = get_profile(request.user)
-
-    if not check_profile_permission(profile, 'view', pootle_path):
-        json["success"] = False
-        json["msg"] = _("You do not have rights to access translation mode.")
-    else:
-        try:
-            unit = Unit.objects.get(id=uid, store__pootle_path=pootle_path)
-            translation_project = unit.store.translation_project
-            json["store"] = _build_store_metadata(translation_project)
-            json["unit"] = _build_units_list([unit])[0]
-            json["success"] = True
-        except Unit.DoesNotExist:
-            json["success"] = False
-            json["msg"] = _("Unit %(uid)s does not exist on %(path)s." %
-                            {'uid': uid, 'path': pootle_path})
-
-    response = simplejson.dumps(json)
-    return HttpResponse(response, mimetype="application/json")
-
-@ajax_required
 def get_view_units_for(request, pootle_path, uid, limit=0):
     """
     @return: An object in JSON notation that contains the source and target
