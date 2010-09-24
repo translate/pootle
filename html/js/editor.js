@@ -119,6 +119,20 @@
     return return_uids;
   };
 
+  pootle.editor.build_rows = function(uids) {
+    var rows = "";
+    for (var i=uids.length-1; i>=0; i--) {
+      var _this = uids[i].id || uids[i];
+      var unit = pootle.editor.units[_this];
+      var viewunit = $('<tbody><tr id="row' + _this + '"></tr></tbody>');
+      var row = $('tr', viewunit);
+      $("#unit_view").tmpl({store: pootle.editor.store_info,
+                            unit: unit}).appendTo(row);
+      rows += viewunit.html();
+    }
+    return rows;
+  };
+
   /*
    * Sets the edit view for unit 'uid'
    */
@@ -127,30 +141,23 @@
     // time after rendering
     var uids = pootle.editor.get_view_units_for(store, uid);
     if (uids.success) {
-      // FIXME: This only works for visible units:
-      // -- what happens if we want to load a unit which is out of context?
-      var where = $("tr#row" + uid);
-      // Remove previous and next rows
-      where.prevAll("tr[id]").fadeOut("slow").remove();
-      where.nextAll("tr[id]").fadeOut("slow").remove();
-      // Add rows with the newly retrieved data
-      for (var i=uids.before.length-1; i>=0; i--) {
-        var _this = uids.before[i];
-        var unit = pootle.editor.units[_this];
-        var _where = $("<tr></tr>").attr("id", "row" + _this);
-        _where.insertBefore(where)
-        $("#unit_view").tmpl({store: pootle.editor.store_info, unit: unit}).appendTo(_where);
-      }
-      // FIXME: load view units and editor all at the same time
-      pootle.editor.load_edit_unit(store, uid);
-      for (var i=uids.after.length-1; i>=0; i--) {
-        var _this = uids.after[i];
-        var unit = pootle.editor.units[_this];
-        var _where = $("<tr></tr>").attr("id", "row" + _this);
-        _where.insertAfter(where)
-        $("#unit_view").tmpl({store: pootle.editor.store_info, unit: unit}).appendTo(_where);
-      }
+      var newtbody = pootle.editor.build_rows(uids.before) +
+                     pootle.editor.get_edit_unit(store, uid) +
+                     pootle.editor.build_rows(uids.after);
+      pootle.editor.redraw(newtbody);
     }
+  };
+
+  /*
+   * Redraws the translate table rows
+   */
+  pootle.editor.redraw = function(newtbody) {
+    var ttable = $("table.translate-table");
+    var where = $("tbody", ttable);
+    var oldrows = $("tr", where);
+    oldrows.remove();
+    where.append(newtbody);
+    $(ttable).trigger("pootle.editor.ready");
   };
 
   /*
@@ -167,15 +174,20 @@
   /*
    * Loads the edit unit uid.
    */
-  pootle.editor.load_edit_unit = function(store, uid) {
+  pootle.editor.get_edit_unit = function(store, uid) {
     var edit_url = l(store + '/edit/' + uid);
-    var edit_where = $("tr#row" + uid);
-    edit_where.children().remove();
-    edit_where.addClass("translate-translation-row");
-    edit_where.load(edit_url, function() {
-      $("table.translate-table").trigger("pootle.editor.ready");
+    var editor = '<tr id="row' + uid + '" class="translate-translation-row">';
+    var widget = '';
+    $.ajax({
+      url: edit_url,
+      async: false,
+      success: function(data) {
+        widget = data;
+      },
     });
+    editor += widget + '</tr>';
     $("#active_uid").text(uid);
+    return editor;
   };
 
   /*
@@ -183,30 +195,12 @@
    */
   pootle.editor.display_next_unit = function(store, data) {
     pootle.editor.update_pager(data.pager);
-    var prev_where = $("tr#row" + data.prev_unit.id);
-    // Only remove first unit in the table if it's not the editing widget
-    var first_in_table = $("table.translate-table tr[id]").first();
-    if (prev_where.get(0) != first_in_table.get(0)) {
-      // FIXME: We don't have to do this until the edit unit
-      // is on the center
-      $(first_in_table).remove();
-    }
-    // Previous unit
-    var prev_where = $("tr#row" + data.prev_unit.id);
-    prev_where.removeClass("translate-translation-row");
-    prev_where.children().fadeOut("slow").remove();
-    $("#unit_view").tmpl({store: data.store, unit: data.prev_unit}).appendTo(prev_where);
-    // Last unit
-    if (data.last_unit) {
-      var last_in_table = $("table.translate-table tr[id]").last();
-      var last_where = $("<tr></tr>").attr("id", "row" + data.last_unit.id);
-      last_where.insertAfter(last_in_table)
-      $("#unit_view").tmpl({store: data.store, unit: data.last_unit}).appendTo(last_where);
-    }
-    // Editing unit
+    var newtbody = pootle.editor.build_rows(data.units.before);
     if (data.new_uid) {
-      pootle.editor.load_edit_unit(store, data.new_uid);
+      newtbody += pootle.editor.get_edit_unit(store, data.new_uid);
     }
+    newtbody += pootle.editor.build_rows(data.units.after);
+    pootle.editor.redraw(newtbody);
   };
 
   /*
@@ -229,6 +223,16 @@
       async: false,
       success: function(data) {
         if (data.success) {
+          // Update client data
+          if (pootle.editor.store_info == null) {
+            pootle.editor.store_info = data.store;
+          }
+          $.each(data.units.before, function() {
+            pootle.editor.units[this.id] = this;
+          });
+          $.each(data.units.after, function() {
+            pootle.editor.units[this.id] = this;
+          });
           pootle.editor.display_next_unit(store, data);
         } else {
           pootle.editor.error(data.msg);

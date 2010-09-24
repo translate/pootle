@@ -666,6 +666,7 @@ def process_submit(request, pootle_path, uid, type):
     try:
         unit = Unit.objects.get(id=uid, store__pootle_path=pootle_path)
         directory = unit.store.parent
+        profile = get_profile(request.user)
         cantranslate = check_profile_permission(profile, "translate", directory)
         cansuggest = check_profile_permission(profile, "suggest", directory)
         if type == 'submission' and not cantranslate or \
@@ -698,7 +699,6 @@ def process_submit(request, pootle_path, uid, type):
                                                                  state='pending', unit=unit.id)
                 # TODO: Once we allow filtering, unit.store.units has to be a qs
                 # containing the set of filtered units.
-                profile = get_profile(request.user)
                 unit_rows = profile.get_unit_rows()
                 preceding = unit.store.units.filter(index__lt=unit.index).count()
                 page = preceding / unit_rows + 1
@@ -708,8 +708,6 @@ def process_submit(request, pootle_path, uid, type):
                 json["pager"] = _build_pager_dict(pager)
 
                 json["store"] = _build_store_metadata(translation_project)
-                prev_unit = unit
-                json["prev_unit"] = _build_units_list([prev_unit])[0]
                 try:
                     # FIXME: This will only work with consecuent units,
                     # so this won't work with filtered units
@@ -717,14 +715,16 @@ def process_submit(request, pootle_path, uid, type):
                     new_unit = unit.store.units.get(index=new_index)
                     json["new_uid"] = new_unit.id
                 except Unit.DoesNotExist:
+                    # End of set: let's assume the new unit is the last we had
+                    new_unit = unit
                     json["new_uid"] = None
-                try:
-                    units_after = (unit_rows - 1) / 2
-                    last_index = unit.index + units_after + 1
-                    last_unit = unit.store.units.get(index=last_index)
-                    json["last_unit"] = _build_units_list([last_unit])[0]
-                except Unit.DoesNotExist:
-                    json["last_unit"] = None
+                limit = (unit_rows - 1) / 2
+                # FIXME: Adapt units_qs once filtering is effective
+                units_qs = unit.store.units
+                before, after = _filter_view_units(units_qs, new_unit.index, limit)
+                json["units"] = {}
+                json["units"]["before"] = _build_units_list(before)
+                json["units"]["after"] = _build_units_list(after)
                 json["success"] = True
             else:
                 # Form failed
