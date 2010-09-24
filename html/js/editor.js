@@ -18,6 +18,26 @@
       $(this).text(stext);
     });
 
+    /* Bind event handlers */
+    $("table.translate-table").live("pootle.editor.ready", pootle.editor.ready);
+    $("a[id^=editlink]").live("click", pootle.editor.goto_unit);
+    $("input.submit, input.suggest").live("click", pootle.editor.process_submit);
+    $("input.previous, input.next").live("click", pootle.editor.goto_prevnext);
+
+    /* Bind hotkeys */
+    shortcut.add('ctrl+return', function() {
+      $("input.submit").trigger("click");
+    });
+    shortcut.add('ctrl+shift+return', function() {
+      $("input.suggest").trigger("click");
+    });
+    shortcut.add('ctrl+up', function() {
+      $("input.previous").trigger("click");
+    });
+    shortcut.add('ctrl+down', function() {
+      $("input.next").trigger("click");
+    });
+
     /*
      * XHR activity indicator
      */
@@ -272,26 +292,6 @@
       $.history.load(newhash);
     }
   };
-
-  /* Bind event handlers */
-  $("table.translate-table").live("pootle.editor.ready", pootle.editor.ready);
-  $("a[id^=editlink]").live("click", pootle.editor.goto_unit);
-  $("input.submit, input.suggest").live("click", pootle.editor.process_submit);
-  $("input.previous, input.next").live("click", pootle.editor.goto_prevnext);
-
-  /* Bind hotkeys */
-  shortcut.add('ctrl+return', function() {
-    $("input.submit").trigger("click");
-  });
-  shortcut.add('ctrl+shift+return', function() {
-    $("input.suggest").trigger("click");
-  });
-  shortcut.add('ctrl+up', function() {
-    $("input.previous").trigger("click");
-  });
-  shortcut.add('ctrl+down', function() {
-    $("input.next").trigger("click");
-  });
 
 })(jQuery);
 
