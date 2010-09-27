@@ -141,7 +141,7 @@
 
   pootle.editor.build_rows = function(uids) {
     var rows = "";
-    for (var i=uids.length-1; i>=0; i--) {
+    for (var i=0; i<uids.length; i++) {
       var _this = uids[i].id || uids[i];
       var unit = pootle.editor.units[_this];
       var viewunit = $('<tbody><tr id="row' + _this + '"></tr></tbody>');
