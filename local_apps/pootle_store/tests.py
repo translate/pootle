@@ -1,9 +1,14 @@
 import time
 
+from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
+from django.utils import simplejson
+
 from translate.storage import factory
 from translate.storage import statsdb
 
 from pootle.tests import PootleTestCase
+from pootle_profile.models import get_profile
 from pootle_store.models import Store
 
 class UnitTests(PootleTestCase):
@@ -121,3 +126,78 @@ class StoreTests(PootleTestCase):
         self.assertEqual(dbstats['translated'], filestats['translated'])
         self.assertEqual(dbstats['translatedsourcewords'], filestats['translatedsourcewords'])
         self.assertEqual(dbstats['translatedtargetwords'], filestats['translatedtargetwords'])
+
+class XHRTestCase(PootleTestCase):
+    """
+    Base class for testing the XHR views.
+    """
+    def setUp(self):
+        # FIXME: We should test on a bigger dataset (with a fixture maybe)
+        super(XHRTestCase, self).setUp()
+        self.store = Store.objects.get(pootle_path="/af/tutorial/pootle.po")
+        self.unit = self.store.units[0]
+        self.uid = self.unit.id
+        self.bad_uid = 69696969
+        self.path = self.store.pootle_path
+        self.bad_path = "/foo/bar/baz.po"
+
+class XHRTestAnonymous(XHRTestCase):
+    """
+    Tests the XHR views as an anonymous user.
+    """
+    def setUp(self):
+        super(XHRTestAnonymous, self).setUp()
+        self.user = User.objects.get(username='nobody')
+        self.profile = get_profile(self.user)
+
+    #
+    # Tests for the get_view_units_for() view.
+    #
+
+    def test_get_view_units_for_bad_request(self):
+        """Not an AJAX request, should return HTTP 400."""
+        r = self.client.get("%(pootle_path)s/view/for/%(uid)s" %\
+                            {'pootle_path': self.path,
+                             'uid': self.uid})
+        self.assertEqual(r.status_code, 400)
+
+    def test_get_view_units_for_response_ok(self):
+        """AJAX request, should return HTTP 200."""
+        r = self.client.get("%(pootle_path)s/view/for/%(uid)s" %\
+                            {'pootle_path': self.path,
+                             'uid': self.uid},
+                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(r.status_code, 200)
+
+    def test_get_view_units_for_bad_store(self):
+        """Checks for store correctness when passing an invalid path."""
+        r = self.client.get("%(pootle_path)s/view/for/%(uid)s" %\
+                            {'pootle_path': self.bad_path,
+                             'uid': self.uid},
+                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(r.status_code, 200)
+        j = simplejson.loads(r.content)
+        self.assertFalse(j['success'])
+
+    def test_get_view_units_for_bad_unit(self):
+        """Checks for unit correctness when passing an invalid uid."""
+        r = self.client.get("%(pootle_path)s/view/for/%(uid)s" %\
+                            {'pootle_path': self.path,
+                             'uid': self.bad_uid},
+                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(r.status_code, 200)
+        j = simplejson.loads(r.content)
+        self.assertFalse(j['success'])
+
+    def test_get_view_units_for_good_response(self):
+        """Checks for unit and returned data correctness."""
+        r = self.client.get("%(pootle_path)s/view/for/%(uid)s" %\
+                            {'pootle_path': self.path,
+                             'uid': self.uid},
+                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(r.status_code, 200)
+        j = simplejson.loads(r.content)
+        self.assertTrue(j['success'])
+        units_count = len(j['units']['before']) + len(j['units']['after'])
+        unit_rows = self.profile.get_unit_rows()
+        self.assertTrue(units_count < (unit_rows - 1))
