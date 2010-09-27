@@ -489,7 +489,7 @@ def _filter_view_units(units_qs, current_index, limit):
     after = units_qs.filter(index__gt=current_index)[:limit]
     # FIXME: As a quick workaround with ordering we just return
     # a reverse of the list
-    return before.reverse(), after
+    return reversed(before), after
 
 def _build_units_list(units):
     """
