@@ -191,6 +191,7 @@ class XHRTestCase(PootleTestCase):
         self.assertTrue(j['success'])
         units_count = len(j['units']['before']) + len(j['units']['after'])
         unit_rows = self.profile.get_unit_rows()
+        # XXX: Review this
         self.assertTrue(units_count < (unit_rows - 1))
 
 class XHRTestAnonymous(XHRTestCase):
