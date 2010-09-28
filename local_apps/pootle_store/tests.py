@@ -141,15 +141,6 @@ class XHRTestCase(PootleTestCase):
         self.path = self.store.pootle_path
         self.bad_path = "/foo/bar/baz.po"
 
-class XHRTestAnonymous(XHRTestCase):
-    """
-    Tests the XHR views as an anonymous user.
-    """
-    def setUp(self):
-        super(XHRTestAnonymous, self).setUp()
-        self.user = User.objects.get(username='nobody')
-        self.profile = get_profile(self.user)
-
     #
     # Tests for the get_view_units_for() view.
     #
@@ -201,3 +192,32 @@ class XHRTestAnonymous(XHRTestCase):
         units_count = len(j['units']['before']) + len(j['units']['after'])
         unit_rows = self.profile.get_unit_rows()
         self.assertTrue(units_count < (unit_rows - 1))
+
+class XHRTestAnonymous(XHRTestCase):
+    """
+    Tests the XHR views as an anonymous user.
+    """
+    def setUp(self):
+        super(XHRTestAnonymous, self).setUp()
+        self.user = User.objects.get(username='nobody')
+        self.profile = get_profile(self.user)
+
+class XHRTestNobody(XHRTestCase):
+    """
+    Tests the XHR views as a non-privileged user.
+    """
+    def setUp(self):
+        super(XHRTestNobody, self).setUp()
+        self.user = User.objects.get(username='nonpriv')
+        self.profile = get_profile(self.user)
+        self.client.login(username='nonpriv', password='nonpriv')
+
+class XHRTestAdmin(XHRTestCase):
+    """
+    Tests the XHR views as admin user.
+    """
+    def setUp(self):
+        super(XHRTestAdmin, self).setUp()
+        self.user = User.objects.get(username='admin')
+        self.profile = get_profile(self.user)
+        self.client.login(username='admin', password='admin')
