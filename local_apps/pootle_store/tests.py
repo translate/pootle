@@ -127,6 +127,7 @@ class StoreTests(PootleTestCase):
         self.assertEqual(dbstats['translatedsourcewords'], filestats['translatedsourcewords'])
         self.assertEqual(dbstats['translatedtargetwords'], filestats['translatedtargetwords'])
 
+
 class XHRTestCase(PootleTestCase):
     """
     Base class for testing the XHR views.
@@ -144,7 +145,6 @@ class XHRTestCase(PootleTestCase):
     #
     # Tests for the get_view_units_for() view.
     #
-
     def test_get_view_units_for_bad_request(self):
         """Not an AJAX request, should return HTTP 400."""
         r = self.client.get("%(pootle_path)s/view/for/%(uid)s" %\
@@ -197,7 +197,6 @@ class XHRTestCase(PootleTestCase):
     #
     # Tests for the get_edit_unit() view.
     #
-
     def test_get_edit_unit_bad_request(self):
         """Not an AJAX request, should return HTTP 400."""
         r = self.client.get("%(pootle_path)s/edit/%(uid)s" %\
@@ -246,6 +245,7 @@ class XHRTestCase(PootleTestCase):
         self.assertEqual(r.status_code, 200)
         self.assertTemplateUsed(r, 'unit/edit.html')
 
+
 class XHRTestAnonymous(XHRTestCase):
     """
     Tests the XHR views as an anonymous user.
@@ -254,6 +254,7 @@ class XHRTestAnonymous(XHRTestCase):
         super(XHRTestAnonymous, self).setUp()
         self.user = User.objects.get(username='nobody')
         self.profile = get_profile(self.user)
+
 
 class XHRTestNobody(XHRTestCase):
     """
@@ -264,6 +265,7 @@ class XHRTestNobody(XHRTestCase):
         self.user = User.objects.get(username='nonpriv')
         self.profile = get_profile(self.user)
         self.client.login(username='nonpriv', password='nonpriv')
+
 
 class XHRTestAdmin(XHRTestCase):
     """
