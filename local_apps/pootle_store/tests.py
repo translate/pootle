@@ -194,6 +194,58 @@ class XHRTestCase(PootleTestCase):
         # XXX: Review this
         self.assertTrue(units_count < (unit_rows - 1))
 
+    #
+    # Tests for the get_edit_unit() view.
+    #
+
+    def test_get_edit_unit_bad_request(self):
+        """Not an AJAX request, should return HTTP 400."""
+        r = self.client.get("%(pootle_path)s/edit/%(uid)s" %\
+                            {'pootle_path': self.path,
+                             'uid': self.uid})
+        self.assertEqual(r.status_code, 400)
+
+    def test_get_edit_unit_response_ok(self):
+        """AJAX request, should return HTTP 200."""
+        r = self.client.get("%(pootle_path)s/edit/%(uid)s" %\
+                            {'pootle_path': self.path,
+                             'uid': self.uid},
+                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(r.status_code, 200)
+
+    def test_get_edit_unit_bad_store(self):
+        """Checks for store correctness when passing an invalid path."""
+        r = self.client.get("%(pootle_path)s/edit/%(uid)s" %\
+                            {'pootle_path': self.bad_path,
+                             'uid': self.uid},
+                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(r.status_code, 404)
+
+    def test_get_edit_unit_bad_unit(self):
+        """Checks for unit correctness when passing an invalid uid."""
+        r = self.client.get("%(pootle_path)s/edit/%(uid)s" %\
+                            {'pootle_path': self.path,
+                             'uid': self.bad_uid},
+                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(r.status_code, 404)
+
+    def test_get_edit_unit_bad_store_unit(self):
+        """Checks for store/unit correctness when passing an invalid path/uid."""
+        r = self.client.get("%(pootle_path)s/edit/%(uid)s" %\
+                            {'pootle_path': self.bad_path,
+                             'uid': self.bad_uid},
+                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(r.status_code, 404)
+
+    def test_get_edit_unit_bad_good_template(self):
+        """Checks for returned template correctness."""
+        r = self.client.get("%(pootle_path)s/edit/%(uid)s" %\
+                            {'pootle_path': self.path,
+                             'uid': self.uid},
+                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(r.status_code, 200)
+        self.assertTemplateUsed(r, 'unit/edit.html')
+
 class XHRTestAnonymous(XHRTestCase):
     """
     Tests the XHR views as an anonymous user.
