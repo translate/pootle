@@ -4,13 +4,14 @@
   if (!window.pootle) { window.pootle = {}; }
   if (!pootle.editor) { pootle.editor = {}; }
 
-  pootle.editor.units = {};
-  pootle.editor.store = $("div#store").text();
-
   /*
    * Initializes the editor
    */
   pootle.editor.init = function() {
+
+      pootle.editor.units = {};
+      pootle.editor.store = $("div#store").text();
+
     /* Ugly hack to avoid JS templates from being interpreted by Django. */
     $("script[type=text/x-jquery-template]").each(function() {
       var stext = $(this).text();
@@ -59,6 +60,11 @@
         break;
       }
     }, {'unescape': true});
+
+    /* Retrieve metadata used for this query */
+    $.getJSON(l(pootle.editor.store + "/meta"), function(data) {
+      pootle.editor.meta = data.meta
+    });
 
     /* Check first when loading the page */
     $.history.check();
@@ -118,9 +124,6 @@
         if (data.success) {
           // XXX: is this the right place for updating the pager?
           pootle.editor.update_pager(data.pager);
-          if (pootle.editor.store_info == null) {
-            pootle.editor.store_info = data.store;
-          }
           $.each(data.units.before, function() {
             pootle.editor.units[this.id] = this;
             return_uids.before.push(this.id);
@@ -145,7 +148,7 @@
       var unit = pootle.editor.units[_this];
       var viewunit = $('<tbody><tr id="row' + _this + '"></tr></tbody>');
       var row = $('tr', viewunit);
-      $("#unit_view").tmpl({store: pootle.editor.store_info,
+      $("#unit_view").tmpl({meta: pootle.editor.meta,
                             unit: unit}).appendTo(row);
       rows += viewunit.html();
     }
@@ -242,9 +245,6 @@
       success: function(data) {
         if (data.success) {
           // Update client data
-          if (pootle.editor.store_info == null) {
-            pootle.editor.store_info = data.store;
-          }
           $.each(data.units.before, function() {
             pootle.editor.units[this.id] = this;
           });

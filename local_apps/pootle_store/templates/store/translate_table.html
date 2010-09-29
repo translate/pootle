@@ -8,23 +8,23 @@
     <img src="{{ 'images/pencil.png'|m }}" />
   </a>
 </td>
-<td dir="${store.source_dir}" class="translate-original" rowspan="1" colspan="1">
+<td dir="${meta.source_dir}" class="translate-original" rowspan="1" colspan="1">
   <div class="translate-original translate-view" id="orig${unit.id}">
     [[each(i, source) unit.source]]
     [[if source.title]]
-    <span class="translation-text-headers" lang="${store.source_lang}">${ source.title }</span>
+    <span class="translation-text-headers" lang="${meta.source_lang}">${ source.title }</span>
     [[/if]]
-    <div lang="${store.source_lang}" dir="${store.source_dir}" class="translation-text">[[html source.text]]</div>
+    <div lang="${meta.source_lang}" dir="${meta.source_dir}" class="translation-text">[[html source.text]]</div>
     [[/each]]
   </div>
 </td>
-<td dir="${store.target_dir}" class="translate-translation" rowspan="1" colspan="1">
-  <div dir="${store.target_dir}" class="translate-translation translate-view" id="trans${unit.id}">
+<td dir="${meta.target_dir}" class="translate-translation" rowspan="1" colspan="1">
+  <div dir="${meta.target_dir}" class="translate-translation translate-view" id="trans${unit.id}">
     [[each(i, target) unit.target]]
     [[if target.title]]
-    <span class="translation-text-headers" lang="${store.target_lang}">${ target.title }</span>
+    <span class="translation-text-headers" lang="${meta.target_lang}">${ target.title }</span>
     [[/if]]
-    <div lang="${store.target_lang}" class="translation-text" dir="${store.target_dir}">[[html target.text]]</div>
+    <div lang="${meta.target_lang}" class="translation-text" dir="${meta.target_dir}">[[html target.text]]</div>
     [[/each]]
   </div>
 </td>

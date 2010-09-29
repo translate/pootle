@@ -518,19 +518,6 @@ def _build_units_list(units):
                              'target': target_unit})
     return return_units
 
-def _build_store_metadata(tp):
-    """
-    Given a translation project C{tp}, retrieves all the metadata needed
-    to feed a unit with the information regarding the current store.
-
-    @return: A dictionary containing source/target language codes, and
-    source/target language directions.
-    """
-    return {"source_lang": tp.project.source_language.code,
-            "source_dir": tp.project.source_language.get_direction(),
-            "target_lang": tp.language.code,
-            "target_dir": tp.language.get_direction()}
-
 def _build_pager_dict(pager):
     """
     Given a pager object C{pager}, retrieves all the information needed
@@ -551,6 +538,41 @@ def _build_pager_dict(pager):
             "start": start,
             "end": end,
            }
+
+@ajax_required
+def get_tp_metadata(request, pootle_path):
+    """
+    @return: An object in JSON notation that contains the metadata information
+    about the current translation project: source/target language codes, and
+    the direction of the text.
+
+    Success status that indicates if the information has been succesfully
+    retrieved or not is returned as well.
+    """
+    if pootle_path[0] != '/':
+        pootle_path = '/' + pootle_path
+    profile = get_profile(request.user)
+    json = {}
+
+    try:
+        store = Store.objects.select_related('translation_project', 'parent').get(pootle_path=pootle_path)
+        if not check_profile_permission(profile, 'view', store.parent):
+            json["success"] = False
+            json["msg"] = _("You do not have rights to access translation mode.")
+        else:
+            tp = store.translation_project
+            json["meta"] = {"source_lang": tp.project.source_language.code,
+                            "source_dir": tp.project.source_language.get_direction(),
+                            "target_lang": tp.language.code,
+                            "target_dir": tp.language.get_direction()}
+            json["success"] = True
+    except Store.DoesNotExist:
+        json["success"] = False
+        json["msg"] = _("Store %(path)s does not exist." %
+                        {'path': pootle_path})
+
+    response = simplejson.dumps(json)
+    return HttpResponse(response, mimetype="application/json")
 
 @ajax_required
 def get_view_units_for(request, pootle_path, uid, limit=0):
@@ -593,7 +615,6 @@ def get_view_units_for(request, pootle_path, uid, limit=0):
                 json["pager"] = _build_pager_dict(pager)
 
                 translation_project = store.translation_project
-                json["store"] = _build_store_metadata(translation_project)
                 before, after = _filter_view_units(units_qs, current_unit.index, limit)
                 json["units"] = {}
                 json["units"]["before"] = _build_units_list(before)
@@ -709,7 +730,6 @@ def process_submit(request, pootle_path, uid, type):
                 # in order to not blindly return useless data?
                 json["pager"] = _build_pager_dict(pager)
 
-                json["store"] = _build_store_metadata(translation_project)
                 try:
                     # FIXME: This will only work with consecuent units,
                     # so this won't work with filtered units

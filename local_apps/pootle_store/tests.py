@@ -143,6 +143,41 @@ class XHRTestCase(PootleTestCase):
         self.bad_path = "/foo/bar/baz.po"
 
     #
+    # Tests for the get_tp_metadata() view.
+    #
+    def test_get_tp_metadata_bad_request(self):
+        """Not an AJAX request, should return HTTP 400."""
+        r = self.client.get("%(pootle_path)s/meta" %\
+                            {'pootle_path': self.path})
+        self.assertEqual(r.status_code, 400)
+
+    def test_get_tp_metadata_response_ok(self):
+        """AJAX request, should return HTTP 200."""
+        r = self.client.get("%(pootle_path)s/meta" %\
+                            {'pootle_path': self.path},
+                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(r.status_code, 200)
+
+    def test_get_tp_metadata_bad_store(self):
+        """Checks for store correctness when passing an invalid path."""
+        r = self.client.get("%(pootle_path)s/meta" %\
+                            {'pootle_path': self.bad_path},
+                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(r.status_code, 200)
+        j = simplejson.loads(r.content)
+        self.assertFalse(j['success'])
+
+    def test_get_tp_metadata_good_response(self):
+        """Checks for unit and returned data correctness."""
+        r = self.client.get("%(pootle_path)s/meta" %\
+                            {'pootle_path': self.path},
+                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(r.status_code, 200)
+        j = simplejson.loads(r.content)
+        self.assertTrue(j['success'])
+        self.assertTrue(len(j['meta']) == 4)
+
+    #
     # Tests for the get_view_units_for() view.
     #
     def test_get_view_units_for_bad_request(self):
