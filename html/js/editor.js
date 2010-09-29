@@ -5,7 +5,7 @@
   if (!pootle.editor) { pootle.editor = {}; }
 
   pootle.editor.units = {};
-  pootle.editor.store_info = null;
+  pootle.editor.store = $("div#store").text();
 
   /*
    * Initializes the editor
@@ -54,9 +54,8 @@
       var parts = hash.split("/");
       switch (parts[0]) {
         case "unit":
-          var store = $("div#store").text();
           var uid = parseInt(parts[1]);
-         pootle.editor.display_edit_unit(store, uid);
+          pootle.editor.display_edit_unit(pootle.editor.store, uid);
         break;
       }
     }, {'unescape': true});
@@ -228,11 +227,10 @@
    */
   pootle.editor.process_submit = function(e) {
     e.preventDefault();
-    var store = $("div#store").text();
     var uid = $("#active_uid").text();
     var type_map = {submit: "submission", suggest: "suggestion"};
     var type = type_map[$(e.target).attr("class")];
-    var submit_url = l(store + '/process/' + uid + '/' + type);
+    var submit_url = l(pootle.editor.store + '/process/' + uid + '/' + type);
     // Serialize data to be sent
     var post_data = $("form#translate").serialize();
     $.ajax({
