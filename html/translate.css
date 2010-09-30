@@ -436,7 +436,7 @@ html[dir="rtl"] div.check
     min-width: 110px;
 }
 
-.translate-buttons-block[dir="rtl"] input[type"submit"]
+.translate-buttons-block[dir="rtl"] input[type="submit"]
 {
     padding: 2px 23px 2px 5px;
     background-position: 95% center;
