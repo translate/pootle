@@ -30,7 +30,7 @@ from django.conf import settings
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.template import loader, RequestContext
 from django.utils.translation import to_locale, ugettext as _
 from django.utils.translation.trans_real import parse_accept_lang_header
 from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
@@ -477,19 +477,35 @@ def translate(request, pootle_path):
 # Views used with XMLHttpRequest requests.
 #
 
-def _filter_view_units(units_qs, current_index, limit):
+def _filter_view_units(units_qs, current_page, limit):
     """
-    Returns limit units before and after unit C{uid}.
+    Returns C{limit} units that are contained within page C{current_page}.
     """
     #TODO: For now this filters in a simple manner, but we should
     # allow more complex filtering
-    before = units_qs.filter(index__lt=current_index).order_by('-index')[:limit]
-    if len(before) < limit:
-        limit = limit + (limit - len(before))
-    after = units_qs.filter(index__gt=current_index)[:limit]
-    # FIXME: As a quick workaround with ordering we just return
-    # a reverse of the list
-    return reversed(before), after
+    start_index = limit * (current_page - 1)
+    end_index = start_index + limit
+    filtered = units_qs.filter(index__range=(start_index, end_index))
+    return _build_units_list(filtered)
+
+def _get_prevnext_unit_ids(unit):
+    """
+    Gets the previous and next unit ids of C{unit} based on index.
+
+    @return: previous and next units. If previous or next is missing,
+    None will be returned.
+    """
+    # XXX: Review indexes when accepting filtering
+    path = unit.store.pootle_path
+    try:
+        prev = Unit.objects.get(store__pootle_path=path, index=unit.index - 1).id
+    except Unit.DoesNotExist:
+        prev = None
+    try:
+        next = Unit.objects.get(store__pootle_path=path, index=unit.index + 1).id
+    except Unit.DoesNotExist:
+        next = None
+    return prev, next
 
 def _build_units_list(units):
     """
@@ -513,7 +529,10 @@ def _build_units_list(units):
             if title:
                 unit_dict["title"] = title
             target_unit.append(unit_dict)
+        prev, next = _get_prevnext_unit_ids(unit)
         return_units.append({'id': unit.id,
+                             'prev': prev,
+                             'next': next,
                              'source': source_unit,
                              'target': target_unit})
     return return_units
@@ -532,6 +551,7 @@ def _build_pager_dict(pager):
             "pp_number": pager.previous_page_number(),
             "number": pager.number,
             "num_pages": pager.paginator.num_pages,
+            "per_page": pager.paginator.per_page,
             "pages": [i for i in range(start, end+1)],
             "has_next": pager.has_next(),
             "np_number": pager.next_page_number(),
@@ -575,7 +595,49 @@ def get_tp_metadata(request, pootle_path):
     return HttpResponse(response, mimetype="application/json")
 
 @ajax_required
-def get_view_units_for(request, pootle_path, uid, limit=0):
+def get_pager(request, pootle_path, uid):
+    """
+    @return: An object in JSON notation that contains the necessary information
+    to build a pger.
+
+    Success status that indicates if the information has been succesfully
+    retrieved or not is returned as well.
+    """
+    if pootle_path[0] != '/':
+        pootle_path = '/' + pootle_path
+    profile = get_profile(request.user)
+    json = {}
+
+    try:
+        store = Store.objects.select_related('translation_project', 'parent').get(pootle_path=pootle_path)
+        if not check_profile_permission(profile, 'view', store.parent):
+            json["success"] = False
+            json["msg"] = _("You do not have rights to access translation mode.")
+        else:
+            # FIXME: Adapt units_qs once we allow filtering
+            units_qs = store.units
+            unit_rows = profile.get_unit_rows()
+            try:
+                current_unit = units_qs.get(id=uid, store__pootle_path=pootle_path)
+                preceding = units_qs.filter(index__lt=current_unit.index).count()
+                page = preceding / unit_rows + 1
+                pager = paginate(request, units_qs, items=unit_rows, page=page)
+                json["pager"] = _build_pager_dict(pager)
+                json["success"] = True
+            except Unit.DoesNotExist:
+                json["success"] = False
+                json["msg"] = _("Unit %(uid)s does not exist on %(path)s." %
+                                {'uid': uid, 'path': pootle_path})
+    except Store.DoesNotExist:
+        json["success"] = False
+        json["msg"] = _("Store %(path)s does not exist." %
+                        {'path': pootle_path})
+
+    response = simplejson.dumps(json)
+    return HttpResponse(response, mimetype="application/json")
+
+@ajax_required
+def get_view_units(request, pootle_path, limit=0):
     """
     @return: An object in JSON notation that contains the source and target
     texts for units that will be displayed before and after unit C{uid}.
@@ -590,6 +652,7 @@ def get_view_units_for(request, pootle_path, uid, limit=0):
         pootle_path = '/' + pootle_path
     profile = get_profile(request.user)
     json = {}
+    page = 'page' in request.GET and request.GET['page'] or 1
 
     try:
         store = Store.objects.select_related('translation_project', 'parent').get(pootle_path=pootle_path)
@@ -598,27 +661,11 @@ def get_view_units_for(request, pootle_path, uid, limit=0):
             json["msg"] = _("You do not have rights to access translation mode.")
         else:
             try:
-                units_qs = store.units
-                current_unit = units_qs.get(id=uid, store__pootle_path=pootle_path)
-
                 if not limit:
-                    limit = (profile.get_unit_rows() - 1) / 2
-                # TODO: Once we allow filtering, unit.store.units has to be a qs
-                # containing the set of filtered units.
-                profile = get_profile(request.user)
-                unit_rows = profile.get_unit_rows()
-                preceding = current_unit.store.units.filter(index__lt=current_unit.index).count()
-                page = preceding / unit_rows + 1
-                pager = paginate(request, current_unit.store.units, items=unit_rows, page=page)
-                # XXX: Could we compare the current pager with the previous pager
-                # in order to not blindly return useless data?
-                json["pager"] = _build_pager_dict(pager)
-
-                translation_project = store.translation_project
-                before, after = _filter_view_units(units_qs, current_unit.index, limit)
-                json["units"] = {}
-                json["units"]["before"] = _build_units_list(before)
-                json["units"]["after"] = _build_units_list(after)
+                    limit = profile.get_unit_rows()
+                # FIXME: Adapt units_qs once we allow filtering
+                units_qs = store.units
+                json["units"] = _filter_view_units(units_qs, int(page), int(limit))
                 json["success"] = True
             except Unit.DoesNotExist:
                 json["success"] = False
@@ -642,6 +689,7 @@ def get_edit_unit(request, pootle_path, uid):
     """
     if pootle_path[0] != '/':
         pootle_path = '/' + pootle_path
+
     unit = get_object_or_404(Unit, id=uid, store__pootle_path=pootle_path)
     translation_project = unit.store.translation_project
     language = translation_project.language
@@ -665,8 +713,23 @@ def get_edit_unit(request, pootle_path, uid):
                      'altsrcs': find_altsrcs(unit, alt_src_langs, store=store, project=project),
                      'suggestions': get_sugg_list(unit)}
 
-    return render_to_response('unit/edit.html', template_vars,
-                              context_instance=RequestContext(request))
+    t = loader.get_template('unit/edit.html')
+    c = RequestContext(request, template_vars)
+    json = {'success': True,
+            'editor': t.render(c)}
+
+    current_page = 'page' in request.GET and request.GET['page'] or 1
+    # FIXME: Adapt units_qs once we allow filtering
+    units_qs = unit.store.units
+    unit_rows = profile.get_unit_rows()
+    preceding = units_qs.filter(index__lt=unit.index).count()
+    page = preceding / unit_rows + 1
+    if page != current_page:
+        pager = paginate(request, units_qs, items=unit_rows, page=page)
+        json["pager"] = _build_pager_dict(pager)
+
+    response = simplejson.dumps(json)
+    return HttpResponse(response, mimetype="application/json")
 
 @ajax_required
 def process_submit(request, pootle_path, uid, type):
