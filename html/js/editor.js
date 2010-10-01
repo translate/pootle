@@ -53,9 +53,16 @@
     });
 
     /* Retrieve metadata used for this query */
-    var meta_url = l(pootle.editor.store + "/meta");
-    $.getJSON(meta_url, function(data) {
-      pootle.editor.meta = data.meta;
+    var meta_url = l(pootle.editor.store + "/meta/" + pootle.editor.active_uid);
+    $.ajax({
+      url: meta_url,
+      async: false,
+      dataType: 'json',
+      success: function(data) {
+        pootle.editor.meta = data.meta;
+        pootle.editor.pager = data.pager;
+        pootle.editor.current_page = data.pager.number;
+      },
     });
 
     /* History support */
@@ -72,13 +79,8 @@
     /* Check first when loading the page */
     $.history.check();
 
-    /* Retrieve pager information */
-    var pager_url = l(pootle.editor.store + "/pager/" + pootle.editor.active_uid);
-    $.getJSON(pager_url, function(data) {
-      pootle.editor.pager = data.pager;
-      pootle.editor.current_page = data.pager.number;
-      pootle.editor.get_view_units(pootle.editor.store);
-    });
+    /* Retrieve view units for the current page */
+    pootle.editor.get_view_units(pootle.editor.store);
 
   };
 
@@ -142,7 +144,6 @@
               pootle.editor.units[this.id] = this;
               pootle.editor.pages_got[page].push(this.id);
             });
-            console.log("Loaded units for page " + page);
           } else {
             pootle.editor.error(data.msg);
           }

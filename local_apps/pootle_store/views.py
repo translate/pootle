@@ -560,11 +560,11 @@ def _build_pager_dict(pager):
            }
 
 @ajax_required
-def get_tp_metadata(request, pootle_path):
+def get_tp_metadata(request, pootle_path, uid):
     """
     @return: An object in JSON notation that contains the metadata information
-    about the current translation project: source/target language codes, and
-    the direction of the text.
+    about the current translation project: source/target language codes,
+    the direction of the text and also a initial pager.
 
     Success status that indicates if the information has been succesfully
     retrieved or not is returned as well.
@@ -580,49 +580,20 @@ def get_tp_metadata(request, pootle_path):
             json["success"] = False
             json["msg"] = _("You do not have rights to access translation mode.")
         else:
-            tp = store.translation_project
-            json["meta"] = {"source_lang": tp.project.source_language.code,
-                            "source_dir": tp.project.source_language.get_direction(),
-                            "target_lang": tp.language.code,
-                            "target_dir": tp.language.get_direction()}
-            json["success"] = True
-    except Store.DoesNotExist:
-        json["success"] = False
-        json["msg"] = _("Store %(path)s does not exist." %
-                        {'path': pootle_path})
-
-    response = simplejson.dumps(json)
-    return HttpResponse(response, mimetype="application/json")
-
-@ajax_required
-def get_pager(request, pootle_path, uid):
-    """
-    @return: An object in JSON notation that contains the necessary information
-    to build a pger.
-
-    Success status that indicates if the information has been succesfully
-    retrieved or not is returned as well.
-    """
-    if pootle_path[0] != '/':
-        pootle_path = '/' + pootle_path
-    profile = get_profile(request.user)
-    json = {}
-
-    try:
-        store = Store.objects.select_related('translation_project', 'parent').get(pootle_path=pootle_path)
-        if not check_profile_permission(profile, 'view', store.parent):
-            json["success"] = False
-            json["msg"] = _("You do not have rights to access translation mode.")
-        else:
-            # FIXME: Adapt units_qs once we allow filtering
             units_qs = store.units
             unit_rows = profile.get_unit_rows()
+
             try:
                 current_unit = units_qs.get(id=uid, store__pootle_path=pootle_path)
                 preceding = units_qs.filter(index__lt=current_unit.index).count()
                 page = preceding / unit_rows + 1
                 pager = paginate(request, units_qs, items=unit_rows, page=page)
                 json["pager"] = _build_pager_dict(pager)
+                tp = store.translation_project
+                json["meta"] = {"source_lang": tp.project.source_language.code,
+                                "source_dir": tp.project.source_language.get_direction(),
+                                "target_lang": tp.language.code,
+                                "target_dir": tp.language.get_direction()}
                 json["success"] = True
             except Unit.DoesNotExist:
                 json["success"] = False
