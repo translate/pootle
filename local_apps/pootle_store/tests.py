@@ -147,57 +147,22 @@ class XHRTestCase(PootleTestCase):
     #
     def test_get_tp_metadata_bad_request(self):
         """Not an AJAX request, should return HTTP 400."""
-        r = self.client.get("%(pootle_path)s/meta" %\
-                            {'pootle_path': self.path})
-        self.assertEqual(r.status_code, 400)
-
-    def test_get_tp_metadata_response_ok(self):
-        """AJAX request, should return HTTP 200."""
-        r = self.client.get("%(pootle_path)s/meta" %\
-                            {'pootle_path': self.path},
-                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-        self.assertEqual(r.status_code, 200)
-
-    def test_get_tp_metadata_bad_store(self):
-        """Checks for store correctness when passing an invalid path."""
-        r = self.client.get("%(pootle_path)s/meta" %\
-                            {'pootle_path': self.bad_path},
-                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-        self.assertEqual(r.status_code, 200)
-        j = simplejson.loads(r.content)
-        self.assertFalse(j['success'])
-
-    def test_get_tp_metadata_good_response(self):
-        """Checks for unit and returned data correctness."""
-        r = self.client.get("%(pootle_path)s/meta" %\
-                            {'pootle_path': self.path},
-                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-        self.assertEqual(r.status_code, 200)
-        j = simplejson.loads(r.content)
-        self.assertTrue(j['success'])
-        self.assertTrue(len(j['meta']) == 4)
-
-    #
-    # Tests for the get_view_units_for() view.
-    #
-    def test_get_view_units_for_bad_request(self):
-        """Not an AJAX request, should return HTTP 400."""
-        r = self.client.get("%(pootle_path)s/view/for/%(uid)s" %\
+        r = self.client.get("%(pootle_path)s/meta/%(uid)s" %\
                             {'pootle_path': self.path,
                              'uid': self.uid})
         self.assertEqual(r.status_code, 400)
 
-    def test_get_view_units_for_response_ok(self):
+    def test_get_tp_metadata_response_ok(self):
         """AJAX request, should return HTTP 200."""
-        r = self.client.get("%(pootle_path)s/view/for/%(uid)s" %\
+        r = self.client.get("%(pootle_path)s/meta/%(uid)s" %\
                             {'pootle_path': self.path,
                              'uid': self.uid},
                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(r.status_code, 200)
 
-    def test_get_view_units_for_bad_store(self):
+    def test_get_tp_metadata_bad_store(self):
         """Checks for store correctness when passing an invalid path."""
-        r = self.client.get("%(pootle_path)s/view/for/%(uid)s" %\
+        r = self.client.get("%(pootle_path)s/meta/%(uid)s" %\
                             {'pootle_path': self.bad_path,
                              'uid': self.uid},
                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
@@ -205,9 +170,9 @@ class XHRTestCase(PootleTestCase):
         j = simplejson.loads(r.content)
         self.assertFalse(j['success'])
 
-    def test_get_view_units_for_bad_unit(self):
-        """Checks for unit correctness when passing an invalid uid."""
-        r = self.client.get("%(pootle_path)s/view/for/%(uid)s" %\
+    def test_get_tp_metadata_bad_unit(self):
+        """Checks for store correctness when passing an invalid path."""
+        r = self.client.get("%(pootle_path)s/meta/%(uid)s" %\
                             {'pootle_path': self.path,
                              'uid': self.bad_uid},
                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
@@ -215,19 +180,63 @@ class XHRTestCase(PootleTestCase):
         j = simplejson.loads(r.content)
         self.assertFalse(j['success'])
 
-    def test_get_view_units_for_good_response(self):
-        """Checks for unit and returned data correctness."""
-        r = self.client.get("%(pootle_path)s/view/for/%(uid)s" %\
+    def test_get_tp_metadata_bad_store_unit(self):
+        """Checks for store/unit correctness when passing an invalid path/uid."""
+        r = self.client.get("%(pootle_path)s/meta/%(uid)s" %\
+                            {'pootle_path': self.bad_path,
+                             'uid': self.bad_uid},
+                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(r.status_code, 200)
+        j = simplejson.loads(r.content)
+        self.assertFalse(j['success'])
+
+    def test_get_tp_metadata_good_response(self):
+        """Checks for returned data correctness."""
+        r = self.client.get("%(pootle_path)s/meta/%(uid)s" %\
                             {'pootle_path': self.path,
                              'uid': self.uid},
                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(r.status_code, 200)
         j = simplejson.loads(r.content)
         self.assertTrue(j['success'])
-        units_count = len(j['units']['before']) + len(j['units']['after'])
+        self.assertTrue(len(j['meta']) == 4)
+        self.assertTrue(len(j['pager']) == 10)
+
+    #
+    # Tests for the get_view_units() view.
+    #
+    def test_get_view_units_bad_request(self):
+        """Not an AJAX request, should return HTTP 400."""
+        r = self.client.get("%(pootle_path)s/view" %\
+                            {'pootle_path': self.path})
+        self.assertEqual(r.status_code, 400)
+
+    def test_get_view_units_response_ok(self):
+        """AJAX request, should return HTTP 200."""
+        r = self.client.get("%(pootle_path)s/view" %\
+                            {'pootle_path': self.path},
+                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(r.status_code, 200)
+
+    def test_get_view_units_bad_store(self):
+        """Checks for store correctness when passing an invalid path."""
+        r = self.client.get("%(pootle_path)s/view" %\
+                            {'pootle_path': self.bad_path},
+                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(r.status_code, 200)
+        j = simplejson.loads(r.content)
+        self.assertFalse(j['success'])
+
+    def test_get_view_units_good_response(self):
+        """Checks for unit and returned data correctness."""
+        r = self.client.get("%(pootle_path)s/view" %\
+                            {'pootle_path': self.path},
+                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(r.status_code, 200)
+        j = simplejson.loads(r.content)
+        self.assertTrue(j['success'])
         unit_rows = self.profile.get_unit_rows()
-        # XXX: Review this
-        self.assertTrue(units_count < (unit_rows - 1))
+        self.assertTrue(len(j['units']) <= unit_rows)
 
     #
     # Tests for the get_edit_unit() view.
@@ -271,8 +280,8 @@ class XHRTestCase(PootleTestCase):
                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(r.status_code, 404)
 
-    def test_get_edit_unit_bad_good_template(self):
-        """Checks for returned template correctness."""
+    def test_get_edit_unit_good_response(self):
+        """Checks for returned data correctness."""
         r = self.client.get("%(pootle_path)s/edit/%(uid)s" %\
                             {'pootle_path': self.path,
                              'uid': self.uid},
