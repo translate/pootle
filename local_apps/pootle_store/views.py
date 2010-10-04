@@ -656,7 +656,9 @@ def get_edit_unit(request, pootle_path, uid):
     Given a store path C{pootle_path} and unit id C{uid}, gathers all the
     necessary information to build the editing widget.
 
-    @return: A templatised editing widget ready to be inserted.
+    @return: A templatised editing widget is returned within the C{editor}
+    variable and paging information is also returned if the page number has
+    changed.
     """
     if pootle_path[0] != '/':
         pootle_path = '/' + pootle_path
