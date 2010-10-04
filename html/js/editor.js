@@ -260,18 +260,6 @@
   };
 
   /*
-   * Displays the next edit unit
-   */
-  pootle.editor.display_next_unit = function(store, data) {
-    var newtbody = pootle.editor.build_rows(data.units.before);
-    if (data.new_uid) {
-      newtbody += pootle.editor.get_edit_unit(store, data.new_uid);
-    }
-    newtbody += pootle.editor.build_rows(data.units.after);
-    pootle.editor.redraw(newtbody);
-  };
-
-  /*
    * Pushes submissions or suggestions and moves to the next unit
    */
   pootle.editor.process_submit = function(e) {
@@ -282,6 +270,7 @@
     var submit_url = l(pootle.editor.store + '/process/' + uid + '/' + type);
     // Serialize data to be sent
     var post_data = $("form#translate").serialize();
+    post_data += "&page=" + pootle.editor.current_page;
     $.ajax({
       url: submit_url,
       type: 'POST',
@@ -290,14 +279,10 @@
       async: false,
       success: function(data) {
         if (data.success) {
-          // Update client data
-          $.each(data.units.before, function() {
-            pootle.editor.units[this.id] = this;
-          });
-          $.each(data.units.after, function() {
-            pootle.editor.units[this.id] = this;
-          });
-          pootle.editor.display_next_unit(store, data);
+          // TODO: Update client data
+          // pootle.editor.units[uid] = ;
+          var newhash = "unit/" + parseInt(data.new_uid);
+          $.history.load(newhash);
         } else {
           pootle.editor.error(data.msg);
         }

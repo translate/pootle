@@ -754,15 +754,15 @@ def process_submit(request, pootle_path, uid, type):
                             SuggestionStat.objects.get_or_create(translation_project=translation_project,
                                                                  suggester=get_profile(request.user),
                                                                  state='pending', unit=unit.id)
-                # TODO: Once we allow filtering, unit.store.units has to be a qs
-                # containing the set of filtered units.
+                current_page = 'page' in request.POST and request.POST['page'] or 1
+                # FIXME: Adapt units_qs once we allow filtering
+                units_qs = unit.store.units
                 unit_rows = profile.get_unit_rows()
-                preceding = unit.store.units.filter(index__lt=unit.index).count()
+                preceding = units_qs.filter(index__lt=unit.index).count()
                 page = preceding / unit_rows + 1
-                pager = paginate(request, unit.store.units, items=unit_rows, page=page)
-                # XXX: Could we compare the current pager with the previous pager
-                # in order to not blindly return useless data?
-                json["pager"] = _build_pager_dict(pager)
+                if page != current_page:
+                    pager = paginate(request, units_qs, items=unit_rows, page=page)
+                    json["pager"] = _build_pager_dict(pager)
 
                 try:
                     # FIXME: This will only work with consecuent units,
@@ -774,13 +774,6 @@ def process_submit(request, pootle_path, uid, type):
                     # End of set: let's assume the new unit is the last we had
                     new_unit = unit
                     json["new_uid"] = None
-                limit = (unit_rows - 1) / 2
-                # FIXME: Adapt units_qs once filtering is effective
-                units_qs = unit.store.units
-                before, after = _filter_view_units(units_qs, new_unit.index, limit)
-                json["units"] = {}
-                json["units"]["before"] = _build_units_list(before)
-                json["units"]["after"] = _build_units_list(after)
                 json["success"] = True
             else:
                 # Form failed
