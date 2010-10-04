@@ -280,7 +280,9 @@
       success: function(data) {
         if (data.success) {
           // TODO: Update client data
-          // pootle.editor.units[uid] = ;
+          $("textarea[id^=id_target_f_]").each(function(i) {
+            pootle.editor.units[uid].target[i].text = $(this).val();
+          });
           var newhash = "unit/" + parseInt(data.new_uid);
           $.history.load(newhash);
         } else {
