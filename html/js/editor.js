@@ -279,7 +279,7 @@
       async: false,
       success: function(data) {
         if (data.success) {
-          // TODO: Update client data
+          // TODO: Ensure this is done when accepting suggestions too
           $("textarea[id^=id_target_f_]").each(function(i) {
             pootle.editor.units[uid].target[i].text = $(this).val();
           });
