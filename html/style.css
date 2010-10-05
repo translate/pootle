@@ -479,6 +479,53 @@ html[dir="rtl"] #nav-main ul li
  * MESSAGES
  */
 
+.xhr-message
+{
+    position: fixed;
+    height: 2em;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index: 9000;
+    font-size: 85%;
+    text-align: center;
+}
+
+.xhr-message span
+{
+    -moz-border-radius: 0 0 0.75em 0.75em;
+    -webkit-border-radius: 0 0 0.75em 0.75em;
+    border-radius: 0 0 0.75em 0.75em;
+    border: 1px solid #ccc;
+    color: #0489B7;
+    line-height: 2em;
+    padding: 0.5em 1em 0.5em 36px;
+}
+
+html[dir="rtl"] #xhr-activity span,
+html[dir="rtl"] #xhr-error span
+{
+    background-position: 85% center;
+    padding: 0.5em 36px 0.5em 1em;
+}
+
+#xhr-activity span,
+#xhr-error span
+{
+    background-position: 1em center;
+}
+
+#xhr-activity span
+{
+    background: url("images/activity.gif") 1em center no-repeat #fff;
+}
+
+#xhr-error span
+{
+    background: url("images/error.png") 1em center no-repeat #fff;
+}
+
 #site-message
 {
     background-color: #ffe;

@@ -48,12 +48,6 @@
 <div id="innernav" class="navbar">
   <div class="item-statistics small" lang="{{ LANGUAGE_CODE }}">
     {{ store|stat_summary }}
-    <div id="xhr-activity" style="display:none">
-      <img src="{{ 'images/activity.gif'|m }}" /> <span>{% trans "Loading..." %}</span>
-    </div>
-    <div id="xhr-error" style="display:none">
-      <img src="{{ 'images/error.png'|m }}" /> <span> </span>
-    </div>
   </div>
 </div><!--innernav-->
 {% endblock innernav %}

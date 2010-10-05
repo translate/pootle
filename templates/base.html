@@ -76,6 +76,12 @@
             </div><!-- header -->
 
             <div id="body">
+                <div id="xhr-activity" class="xhr-message hide">
+                  <span>{% trans "Loading..." %}</span>
+                </div>
+                <div id="xhr-error" class="xhr-message hide">
+                  <span> </span>
+                </div>
                 {% if message or error_message or messages %}
                 <div id="site-message" lang="{{ LANGUAGE_CODE }}">
                     {% block message %}
