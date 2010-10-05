@@ -71,10 +71,6 @@
         break;
       }
     }, {'unescape': true});
-
-    /* Check first when loading the page */
-    $.history.check();
-
   };
 
   /*
@@ -126,7 +122,7 @@
         pootle.editor.meta = data.meta;
         pootle.editor.pager = data.pager;
         pootle.editor.current_page = data.pager.number;
-        pootle.editor.check_pages();
+        pootle.editor.check_pages(false);
       },
     });
   };
@@ -199,7 +195,7 @@
   pootle.editor.display_edit_unit = function(store, uid) {
     // TODO: Try to add stripe classes on the fly, not at a separate
     // time after rendering
-    pootle.editor.check_pages();
+    pootle.editor.check_pages(true);
     var uids = pootle.editor.get_uids_before_after(uid);
     var newtbody = pootle.editor.build_rows(uids.before) +
                    pootle.editor.get_edit_unit(store, uid) +
@@ -222,9 +218,9 @@
   /*
    * Checks if the editor needs to retrieve more view unit pages
    */
-  pootle.editor.check_pages = function() {
+  pootle.editor.check_pages = function(async) {
     var current = pootle.editor.current_page;
-    var candidates = [current - 1, current, current + 1];
+    var candidates = [current, current + 1, current - 1];
     var pages = [];
 
     for (var i=0; i<candidates.length; i++) {
@@ -235,7 +231,7 @@
       }
     }
     for (var i=0; i<pages.length; i++) {
-      pootle.editor.get_view_units(pootle.editor.store, false, pages[i]);
+      pootle.editor.get_view_units(pootle.editor.store, async, pages[i]);
     }
   };
 
