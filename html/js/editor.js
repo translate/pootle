@@ -53,17 +53,7 @@
     });
 
     /* Retrieve metadata used for this query */
-    var meta_url = l(pootle.editor.store + "/meta/" + pootle.editor.active_uid);
-    $.ajax({
-      url: meta_url,
-      async: false,
-      dataType: 'json',
-      success: function(data) {
-        pootle.editor.meta = data.meta;
-        pootle.editor.pager = data.pager;
-        pootle.editor.current_page = data.pager.number;
-      },
-    });
+    pootle.editor.get_meta();
 
     /* History support */
     $.history.init(function(hash) {
@@ -71,6 +61,12 @@
       switch (parts[0]) {
         case "unit":
           var uid = parseInt(parts[1]);
+          pootle.editor.active_uid = uid;
+          // Take care when we want to access a unit directly from a permalink
+          if (pootle.editor.active_uid != uid
+              && pootle.editor.units[uid] == undefined) {
+            pootle.editor.get_meta();
+          }
           pootle.editor.display_edit_unit(pootle.editor.store, uid);
         break;
       }
@@ -78,9 +74,6 @@
 
     /* Check first when loading the page */
     $.history.check();
-
-    /* Retrieve view units for the current page */
-    pootle.editor.get_view_units(pootle.editor.store);
 
   };
 
@@ -121,35 +114,50 @@
   };
 
   /*
+   * Retrieves the metadata used for this query
+   */
+  pootle.editor.get_meta = function() {
+    var meta_url = l(pootle.editor.store + "/meta/" + pootle.editor.active_uid);
+    $.ajax({
+      url: meta_url,
+      async: false,
+      dataType: 'json',
+      success: function(data) {
+        pootle.editor.meta = data.meta;
+        pootle.editor.pager = data.pager;
+        pootle.editor.current_page = data.pager.number;
+        pootle.editor.check_pages();
+      },
+    });
+  };
+
+  /*
    * Gets the view units that refer to current_page
    */
   pootle.editor.get_view_units = function(store, async, page, limit) {
-    // Only fetch more units if we haven't reached the max num. of pages
-    if (pootle.editor.current_page < pootle.editor.pager.num_pages) {
-      var async = async == undefined ? false : async;
-      var page = page == undefined ? pootle.editor.current_page : page;
-      var limit = limit == undefined ? 0 : limit;
-      var url_str = store + '/view';
-      url_str = limit ? url_str + '/limit/' + limit : url_str;
-      var view_for_url = l(url_str);
-      $.ajax({
-        url: view_for_url,
-        data: {'page': page},
-        dataType: 'json',
-        async: async,
-        success: function(data) {
-          if (data.success) {
-            pootle.editor.pages_got[page] = [];
-            $.each(data.units, function() {
-              pootle.editor.units[this.id] = this;
-              pootle.editor.pages_got[page].push(this.id);
-            });
-          } else {
-            pootle.editor.error(data.msg);
-          }
+    var async = async == undefined ? false : async;
+    var page = page == undefined ? pootle.editor.current_page : page;
+    var limit = limit == undefined ? 0 : limit;
+    var url_str = store + '/view';
+    url_str = limit ? url_str + '/limit/' + limit : url_str;
+    var view_for_url = l(url_str);
+    $.ajax({
+      url: view_for_url,
+      data: {'page': page},
+      dataType: 'json',
+      async: async,
+      success: function(data) {
+        if (data.success) {
+          pootle.editor.pages_got[page] = [];
+          $.each(data.units, function() {
+            pootle.editor.units[this.id] = this;
+            pootle.editor.pages_got[page].push(this.id);
+          });
+        } else {
+          pootle.editor.error(data.msg);
         }
-      });
-    }
+      }
+    });
   };
 
   pootle.editor.build_rows = function(uids) {
@@ -172,12 +180,12 @@
     var current = pootle.editor.units[uid];
     var pu = current, nu = current;
     for (var i=0; i<limit; i++) {
-      if (pu.prev) {
-        pu = pootle.editor.units[pu.prev];
+      if (pu.prev != undefined) {
+        var pu = pootle.editor.units[pu.prev];
         uids.before.push(pu.id);
       }
-      if (nu.next) {
-        nu = pootle.editor.units[nu.next];
+      if (nu.next != undefined) {
+        var nu = pootle.editor.units[nu.next];
         uids.after.push(nu.id);
       }
     }
@@ -191,6 +199,7 @@
   pootle.editor.display_edit_unit = function(store, uid) {
     // TODO: Try to add stripe classes on the fly, not at a separate
     // time after rendering
+    pootle.editor.check_pages();
     var uids = pootle.editor.get_uids_before_after(uid);
     var newtbody = pootle.editor.build_rows(uids.before) +
                    pootle.editor.get_edit_unit(store, uid) +
@@ -211,6 +220,26 @@
   };
 
   /*
+   * Checks if the editor needs to retrieve more view unit pages
+   */
+  pootle.editor.check_pages = function() {
+    var current = pootle.editor.current_page;
+    var candidates = [current - 1, current, current + 1];
+    var pages = [];
+
+    for (var i=0; i<candidates.length; i++) {
+      if (candidates[i] <= pootle.editor.pager.num_pages &&
+          candidates[i] > 0 &&
+          !(candidates[i] in pootle.editor.pages_got)) {
+        pages.push(candidates[i]);
+      }
+    }
+    for (var i=0; i<pages.length; i++) {
+      pootle.editor.get_view_units(pootle.editor.store, false, pages[i]);
+    }
+  };
+
+  /*
    * Updates the pager
    */
   pootle.editor.update_pager = function(pager) {
@@ -221,18 +250,8 @@
       var newpager = $("#pager").tmpl({pager: pager}).get(0);
       $("div.translation-nav").children().remove();
       $("div.translation-nav").append(newpager);
-      /* Retrieve current page if still not in the client
-       * (may happen when trying to get a specific unit for the first time)
-       */
-      if (!(pootle.editor.current_page in pootle.editor.pages_got)) {
-        pootle.editor.get_view_units(pootle.editor.store, false, pootle.editor.current_page);
-      }
     }
-    // Retrieve another page if necessary
-    // FIXME: determine if 'another page' is a previous or next page
-    if (!(pootle.editor.current_page + 1 in pootle.editor.pages_got)) {
-      pootle.editor.get_view_units(pootle.editor.store, false, pootle.editor.current_page + 1);
-    }
+    pootle.editor.check_pages();
   };
 
   /*
