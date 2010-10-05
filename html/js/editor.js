@@ -120,7 +120,7 @@
       dataType: 'json',
       success: function(data) {
         pootle.editor.meta = data.meta;
-        pootle.editor.pager = data.pager;
+        pootle.editor.update_pager(data.pager);
         pootle.editor.current_page = data.pager.number;
         pootle.editor.check_pages(false);
       },
