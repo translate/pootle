@@ -61,10 +61,10 @@
       switch (parts[0]) {
         case "unit":
           var uid = parseInt(parts[1]);
-          pootle.editor.active_uid = uid;
           // Take care when we want to access a unit directly from a permalink
           if (pootle.editor.active_uid != uid
               && pootle.editor.units[uid] == undefined) {
+            pootle.editor.active_uid = uid;
             pootle.editor.get_meta();
           }
           pootle.editor.display_edit_unit(pootle.editor.store, uid);
@@ -251,7 +251,6 @@
       $("div.translation-nav").children().remove();
       $("div.translation-nav").append(newpager);
     }
-    pootle.editor.check_pages();
   };
 
   /*
