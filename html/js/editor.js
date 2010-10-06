@@ -276,14 +276,20 @@
   /*
    * Pushes submissions or suggestions and moves to the next unit
    */
-  pootle.editor.process_submit = function(e) {
+  pootle.editor.process_submit = function(e, type_class) {
     e.preventDefault();
+    if (type_class == undefined) {
+      type_class = $(e.target).attr("class");
+      form_id = "translate";
+    } else {
+      form_id = "captcha";
+    }
     var uid = pootle.editor.active_uid;
     var type_map = {submit: "submission", suggest: "suggestion"};
-    var type = type_map[$(e.target).attr("class")];
+    var type = type_map[type_class];
     var submit_url = l(pootle.editor.store + '/process/' + uid + '/' + type);
     // Serialize data to be sent
-    var post_data = $("form#translate").serialize();
+    var post_data = $("form#" + form_id).serialize();
     post_data += "&page=" + pootle.editor.current_page;
     $.ajax({
       url: submit_url,
@@ -292,15 +298,19 @@
       dataType: 'json',
       async: false,
       success: function(data) {
-        if (data.success) {
-          // TODO: Ensure this is done when accepting suggestions too
-          $("textarea[id^=id_target_f_]").each(function(i) {
-            pootle.editor.units[uid].target[i].text = $(this).val();
-          });
-          var newhash = "unit/" + parseInt(data.new_uid);
-          $.history.load(newhash);
+        if (data.captcha) {
+          $.fancybox(data.captcha);
         } else {
-          pootle.editor.error(data.msg);
+          if (data.success) {
+            // TODO: Ensure this is done when accepting suggestions too
+            $("textarea[id^=id_target_f_]").each(function(i) {
+              pootle.editor.units[uid].target[i].text = $(this).val();
+            });
+            var newhash = "unit/" + parseInt(data.new_uid);
+            $.history.load(newhash);
+          } else {
+            pootle.editor.error(data.msg);
+          }
         }
       }
     });

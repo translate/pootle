@@ -14,6 +14,7 @@
 {% block css %}
 {{ block.super }}
 <link rel="stylesheet" type="text/css" href='{{ "translate.css"|m }}' />
+<link rel="stylesheet" type="text/css" href='{{ "jquery.fancybox.css"|m }}' />
 {% endblock css %}
 
 {% block extra_head %}
@@ -93,4 +94,5 @@
     {% endifequal %}
   {% endfor %}
 {% endif %}
+<script src='{{ "js/jquery/jquery.fancybox.min.js"|m }}' type="text/javascript"></script>
 {% endblock scripts_extra %}

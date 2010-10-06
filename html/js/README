@@ -77,6 +77,14 @@ Directory contents
 
       http://www.jquery-plugin.buss.hk/my-plugins/jquery-caret-plugin
 
+    - jquery.fancybox.min.js :
+      Fancybox plugin for jQuery that adds the ability to display overlay
+      boxes with all sorts of content: images, HTML, AJAX data, ...
+
+      Using version 1.3.1, minified.
+
+      http://fancybox.net/
+
     - jquery.fieldselection.js :
       jQuery plugin to retrieve or replace text selections within
       textareas.
