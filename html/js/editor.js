@@ -302,10 +302,12 @@
           $.fancybox(data.captcha);
         } else {
           if (data.success) {
-            // TODO: Ensure this is done when accepting suggestions too
-            $("textarea[id^=id_target_f_]").each(function(i) {
-              pootle.editor.units[uid].target[i].text = $(this).val();
-            });
+            if (type == 'submission') {
+              // TODO: Ensure this is done when accepting suggestions too
+              $("textarea[id^=id_target_f_]").each(function(i) {
+                pootle.editor.units[uid].target[i].text = $(this).val();
+              });
+            }
             var newhash = "unit/" + parseInt(data.new_uid);
             $.history.load(newhash);
           } else {
