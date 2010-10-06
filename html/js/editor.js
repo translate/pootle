@@ -300,6 +300,7 @@
       success: function(data) {
         if (data.captcha) {
           $.fancybox(data.captcha);
+          $("input#id_captcha_answer").focus();
         } else {
           if (data.success) {
             if (type == 'submission') {
