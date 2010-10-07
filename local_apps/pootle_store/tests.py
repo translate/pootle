@@ -1,4 +1,5 @@
 import time
+import types
 
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
@@ -141,6 +142,13 @@ class XHRTestCase(PootleTestCase):
         self.bad_uid = 69696969
         self.path = self.store.pootle_path
         self.bad_path = "/foo/bar/baz.po"
+        self.post_data = {'id': self.uid,
+                          'index': 1,
+                          'path': self.path,
+                          'pootle_path': self.path,
+                          'store': self.path,
+                          'source_f_0': 'fish',
+                          'target_f_0': 'arraina'}
 
     #
     # Tests for the get_tp_metadata() view.
@@ -289,6 +297,97 @@ class XHRTestCase(PootleTestCase):
         self.assertEqual(r.status_code, 200)
         self.assertTemplateUsed(r, 'unit/edit.html')
 
+    #
+    # Tests for the process_submit() view.
+    #
+    def test_process_submit_bad_request(self):
+        """Not an AJAX request, should return HTTP 400."""
+        for m in ("submission", "suggestion"):
+            r = self.client.get("%(pootle_path)s/process/%(uid)s/%(method)s" %\
+                                {'pootle_path': self.path,
+                                 'uid': self.uid,
+                                 'method': m})
+            self.assertEqual(r.status_code, 400)
+
+    def test_process_submit_response_ok(self):
+        """AJAX request, should return HTTP 200."""
+        for m in ("submission", "suggestion"):
+            r = self.client.post("%(pootle_path)s/process/%(uid)s/%(method)s" %\
+                                {'pootle_path': self.path,
+                                 'uid': self.uid,
+                                 'method': m},
+                                self.post_data,
+                                HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+            self.assertEqual(r.status_code, 200)
+
+    def test_process_submit_bad_store(self):
+        """Checks for store correctness when passing an invalid path."""
+        for m in ("submission", "suggestion"):
+            r = self.client.post("%(pootle_path)s/process/%(uid)s/%(method)s" %\
+                                {'pootle_path': self.bad_path,
+                                 'uid': self.uid,
+                                 'method': m},
+                                self.post_data,
+                                HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+            self.assertEqual(r.status_code, 200)
+            j = simplejson.loads(r.content)
+            self.assertFalse(j['success'])
+
+    def test_process_submit_bad_unit(self):
+        """Checks for unit correctness when passing an invalid uid."""
+        for m in ("submission", "suggestion"):
+            r = self.client.post("%(pootle_path)s/process/%(uid)s/%(method)s" %\
+                                {'pootle_path': self.path,
+                                 'uid': self.bad_uid,
+                                 'method': m},
+                                self.post_data,
+                                HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+            self.assertEqual(r.status_code, 200)
+            j = simplejson.loads(r.content)
+            self.assertFalse(j['success'])
+
+    def test_process_submit_bad_store_unit(self):
+        """Checks for store/unit correctness when passing an invalid path/uid."""
+        for m in ("submission", "suggestion"):
+            r = self.client.post("%(pootle_path)s/process/%(uid)s/%(method)s" %\
+                                {'pootle_path': self.bad_path,
+                                 'uid': self.bad_uid,
+                                 'method': m},
+                                self.post_data,
+                                HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+            self.assertEqual(r.status_code, 200)
+            j = simplejson.loads(r.content)
+            self.assertFalse(j['success'])
+
+    def test_process_submit_bad_form(self):
+        """Checks for form correctness when bad POST data is passed."""
+        form_data = self.post_data
+        del(form_data['index'])
+        for m in ("submission", "suggestion"):
+            r = self.client.post("%(pootle_path)s/process/%(uid)s/%(method)s" %\
+                                {'pootle_path': self.path,
+                                 'uid': self.uid,
+                                 'method': m},
+                                form_data,
+                                HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+            self.assertEqual(r.status_code, 200)
+            j = simplejson.loads(r.content)
+            self.assertFalse(j['success'])
+
+    def test_process_submit_good_response(self):
+        """Checks for returned data correctness."""
+        for m in ("submission", "suggestion"):
+            r = self.client.post("%(pootle_path)s/process/%(uid)s/%(method)s" %\
+                                {'pootle_path': self.path,
+                                 'uid': self.uid,
+                                 'method': m},
+                                self.post_data,
+                                HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+            self.assertEqual(r.status_code, 200)
+            j = simplejson.loads(r.content)
+            self.assertTrue(j['success'])
+            self.assertTrue(type(j['new_uid']) == types.IntType)
+
 
 class XHRTestAnonymous(XHRTestCase):
     """
@@ -298,6 +397,77 @@ class XHRTestAnonymous(XHRTestCase):
         super(XHRTestAnonymous, self).setUp()
         self.user = User.objects.get(username='nobody')
         self.profile = get_profile(self.user)
+
+    #
+    # Overriden tests for process_submit()
+    # As we are anonymous users, we will always get a captcha
+    #
+    def test_process_submit_bad_store(self):
+        """Checks for store correctness when passing an invalid path."""
+        for m in ("submission", "suggestion"):
+            r = self.client.post("%(pootle_path)s/process/%(uid)s/%(method)s" %\
+                                {'pootle_path': self.bad_path,
+                                 'uid': self.uid,
+                                 'method': m},
+                                self.post_data,
+                                HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+            self.assertEqual(r.status_code, 200)
+            j = simplejson.loads(r.content)
+            self.assertTrue('captcha' in j.keys())
+
+    def test_process_submit_bad_unit(self):
+        """Checks for unit correctness when passing an invalid uid."""
+        for m in ("submission", "suggestion"):
+            r = self.client.post("%(pootle_path)s/process/%(uid)s/%(method)s" %\
+                                {'pootle_path': self.path,
+                                 'uid': self.bad_uid,
+                                 'method': m},
+                                self.post_data,
+                                HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+            self.assertEqual(r.status_code, 200)
+            j = simplejson.loads(r.content)
+            self.assertTrue('captcha' in j.keys())
+
+    def test_process_submit_bad_store_unit(self):
+        """Checks for store/unit correctness when passing an invalid path/uid."""
+        for m in ("submission", "suggestion"):
+            r = self.client.post("%(pootle_path)s/process/%(uid)s/%(method)s" %\
+                                {'pootle_path': self.bad_path,
+                                 'uid': self.bad_uid,
+                                 'method': m},
+                                self.post_data,
+                                HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+            self.assertEqual(r.status_code, 200)
+            j = simplejson.loads(r.content)
+            self.assertTrue('captcha' in j.keys())
+
+    def test_process_submit_bad_form(self):
+        """Checks for form correctness when bad POST data is passed."""
+        form_data = self.post_data
+        del(form_data['index'])
+        for m in ("submission", "suggestion"):
+            r = self.client.post("%(pootle_path)s/process/%(uid)s/%(method)s" %\
+                                {'pootle_path': self.path,
+                                 'uid': self.uid,
+                                 'method': m},
+                                form_data,
+                                HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+            self.assertEqual(r.status_code, 200)
+            j = simplejson.loads(r.content)
+            self.assertTrue('captcha' in j.keys())
+
+    def test_process_submit_good_response(self):
+        """Checks for returned data correctness."""
+        for m in ("submission", "suggestion"):
+            r = self.client.post("%(pootle_path)s/process/%(uid)s/%(method)s" %\
+                                {'pootle_path': self.path,
+                                 'uid': self.uid,
+                                 'method': m},
+                                self.post_data,
+                                HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+            self.assertEqual(r.status_code, 200)
+            j = simplejson.loads(r.content)
+            self.assertTrue('captcha' in j.keys())
 
 
 class XHRTestNobody(XHRTestCase):
