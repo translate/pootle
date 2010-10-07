@@ -6,19 +6,5 @@
 {% endblock %}
 
 {% block content %}
-<div class="general-message" lang="{{ LANGUAGE_CODE }}">
-  <form method="post" action="">
-    {% for field, value in post_data.iteritems %}
-      {% ifnotequal field "captcha" %}<input type="hidden" name="{{ field|escape }}" value="{{ value|escape }}" />{% endifnotequal %}
-    {% endfor %}
-    <h2>{% trans "Are You Human?" %}</h2>
-    <p>{% trans "To protect the server against attacks we have to verify that submissions are made by human users." %}</p>
-    <p>{% trans "Please answer this question:" %}</p>
-    <p class="common-buttons-block captcha">
-      {{ form.knotty_question|safe }}
-      {{ form }}
-      <input type="submit" class="accept" value="{% trans 'Confirm' %}" />
-    </p>
-  </form>
-</div>
+{% include "captcha-xhr.html" %}
 {% endblock content %}
