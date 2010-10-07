@@ -899,7 +899,7 @@ class Store(models.Model, base.TranslationStore):
 
     def findunits(self, source):
         if hasattr(self, "sourceindex"):
-            return super(Store, self).findunit(source)
+            return super(Store, self).findunits(source)
 
         # find using hash instead of index
         source_hash = md5_f(source.encode("utf-8")).hexdigest()
