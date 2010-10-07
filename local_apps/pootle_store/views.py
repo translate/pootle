@@ -713,11 +713,6 @@ def process_submit(request, pootle_path, uid, type):
     This object also contains success status that indicates if the submission
     has been succesfully saved or not.
     """
-    #
-    # TODO: Adapt captcha middleware to be able to understand xhr requests.
-    #       Otherwise non-admin users will have trouble when trying to submit
-    #       translations or suggestions.
-    #
     json = {}
     if pootle_path[0] != '/':
         pootle_path = '/' + pootle_path
