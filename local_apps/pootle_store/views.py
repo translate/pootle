@@ -776,6 +776,10 @@ def process_submit(request, pootle_path, uid, type):
                 # Form failed
                 json["success"] = False
                 json["msg"] = _("Failed to process submit.")
+    except Store.DoesNotExist:
+        json["success"] = False
+        json["msg"] = _("Store %(path)s does not exist." %
+                        {'path': pootle_path})
     except Unit.DoesNotExist:
         json["success"] = False
         json["msg"] = _("Unit %(uid)s does not exist on %(path)s." %
