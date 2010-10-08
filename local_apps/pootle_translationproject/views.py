@@ -498,10 +498,12 @@ def upload_file(request, directory, django_file, overwrite, store=None):
     # pretranslate uploads?
     suggestions = overwrite == 'merge'
     notranslate = overwrite == 'suggest'
+    allownewstrings = overwrite == 'overwrite' and store.file == ''
+
     #allownewstrings = check_permission('overwrite', request) or check_permission('administrate', request) or check_permission('commit', request)
     #obsoletemissing = allownewstrings and overwrite == 'merge'
     store.mergefile(newstore, get_profile(request.user), suggestions=suggestions, notranslate=notranslate,
-                    allownewstrings=False, obsoletemissing=False)
+                    allownewstrings=allownewstrings, obsoletemissing=allownewstrings)
 
 class UpdateHandler(view_handler.Handler):
     actions = [('do_update', _('Update all from version control'))]
