@@ -461,8 +461,13 @@ def upload_file(request, directory, django_file, overwrite, store=None):
         django_file.mode = 1
 
     if store and store.file:
+        # uploading to an existing file
         pootle_path = store.pootle_path
         upload_path = store.real_path
+    elif store:
+        # uploading to a virtual store
+        pootle_path = store.pootle_path
+        upload_path = get_upload_path(translation_project, relative_root_dir, store.name)
     else:
         local_filename = get_local_filename(translation_project, django_file.name)
         pootle_path = directory.pootle_path + local_filename
