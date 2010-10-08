@@ -51,6 +51,9 @@ def create_termunit(term, unit, targets, locations, sourcenotes, transnotes, fil
         termunit.addnote("(poterminology) %s (%d)\n" % (filename, count), 'translator')
     return termunit
 
+def get_terminology_filename(translation_project):
+    return 'pootle-terminology.' + translation_project.project.localfiletype
+
 @commit_on_success
 @get_translation_project
 @util.has_permission('administrate')
@@ -63,18 +66,19 @@ def extract(request, translation_project):
         'directory': translation_project.directory,
 
         }
-
+    terminology_filename = get_terminology_filename(translation_project)
     if request.method == 'POST' and request.POST['extract']:
         extractor = TerminologyExtractor(accelchars=translation_project.checker.config.accelmarkers,
                                          sourcelanguage=str(translation_project.project.source_language.code))
         for store in translation_project.stores.iterator():
-            if store.name == 'pootle-terminology.po':
+            if store.name.startswith('pootle-terminology.'):
                 continue
             extractor.processunits(store.units, store.pootle_path)
         terms = extractor.extract_terms(create_termunit=create_termunit)
         termunits = extractor.filter_terms(terms, nonstopmin=2)
-        store, created = Store.objects.get_or_create(parent=translation_project.directory, translation_project=translation_project,
-                                                     name="pootle-terminology.po")
+        store, created = Store.objects.get_or_create(parent=translation_project.directory,
+                                                     translation_project=translation_project,
+                                                     name=terminology_filename)
         # lock file
         oldstate = store.state
         store.state = LOCKED
@@ -118,7 +122,8 @@ def manage(request, translation_project):
         'submitname': 'changeterminology',
         }
     try:
-        term_store = Store.objects.get(pootle_path=translation_project.pootle_path + 'pootle-terminology.po')
+        terminology_filename = get_terminology_filename(translation_project)
+        term_store = Store.objects.get(pootle_path=translation_project.pootle_path + terminology_filename)
         template_vars['store'] = term_store
 
         #HACKISH: Django won't allow excluding form fields already defined in parent class, manually extra fields.
