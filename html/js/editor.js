@@ -475,7 +475,6 @@
     var url = l('/suggestion/reject/') + uid + '/' + suggid;
     $.post(url, {'reject': 1},
            function(rdata) {
-             $("#response").remove();
              element.fadeOut(500);
            }, "json");
     return false;
@@ -489,7 +488,6 @@
     var url = l('/suggestion/accept/') + uid + '/' + suggid;
     $.post(url, {'accept': 1},
            function(rdata) {
-             $("#response").remove();
              $.each(rdata.newtargets, function(i, target) {
                $("textarea#id_target_f_" + i).val(target).focus();
              });
