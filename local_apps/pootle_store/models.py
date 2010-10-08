@@ -977,7 +977,8 @@ class Store(models.Model, base.TranslationStore):
     def mergefile(self, newfile, profile, allownewstrings, suggestions, notranslate, obsoletemissing):
         """make sure each msgid is unique ; merge comments etc from
         duplicates into original"""
-
+        if not newfile.units:
+                return
         monolingual = is_monolingual(type(newfile))
         if self.state == LOCKED:
             # file currently being updated
