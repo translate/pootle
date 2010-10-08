@@ -587,10 +587,11 @@ class TranslationProject(models.Model):
 
     def gettermmatcher(self):
         """returns the terminology matcher"""
+        terminology_stores = Store.objects.none()
+        mtime = None
         if self.is_terminology_project:
             terminology_stores = self.stores.all()
             mtime = self.get_mtime()
-
         else:
             # Get global terminology first
             try:
@@ -598,8 +599,8 @@ class TranslationProject(models.Model):
                 mtime = termproject.get_mtime()
                 terminology_stores = termproject.stores.all()
             except TranslationProject.DoesNotExist:
-                mtime = None
-                terminology_stores = Store.objects.none()
+                pass
+
             local_terminology = self.stores.filter(name__startswith='pootle-terminology')
             for store in local_terminology.iterator():
                 mtime = max(mtime, store.get_mtime())
