@@ -512,7 +512,6 @@
     var url = l('/qualitycheck/reject/') + uid + '/' + checkid;
     $.post(url, {'reject': 1},
            function(rdata) {
-             $("#response").remove();
              element.fadeOut(500);
            }, "json");
     return false;
