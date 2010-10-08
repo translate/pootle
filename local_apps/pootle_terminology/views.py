@@ -52,6 +52,11 @@ def create_termunit(term, unit, targets, locations, sourcenotes, transnotes, fil
     return termunit
 
 def get_terminology_filename(translation_project):
+    try:
+        # see if a terminology store already exists
+        return translation_project.stores.filter(name__startswith='pootle-terminology.').values_list('name', flat=True)[0]
+    except IndexError:
+        pass
     if translation_project.project.is_monolingual():
         # terminology is a virtual store, so extension is not really important
         # but to avoid confusion we will not use monolingual extensions
