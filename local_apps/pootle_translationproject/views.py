@@ -434,7 +434,7 @@ def overwrite_file(request, relative_root_dir, django_file, upload_path):
         # uploaded file into it.
         store = Store.objects.get(file=upload_path)
         #FIXME: maybe there is a faster way to do this?
-        store.mergefile(newstore, get_profile(request.user), allownewstrings=True, suggestions=False, notranslate=False, obsoletemissing=False)
+        store.update(update_structure=True, update_translation=True, conservative=False, store=newstore)
 
 def upload_file(request, directory, django_file, overwrite, store=None):
     translation_project = request.translation_project
