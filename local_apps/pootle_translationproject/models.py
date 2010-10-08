@@ -588,28 +588,27 @@ class TranslationProject(models.Model):
     def gettermmatcher(self):
         """returns the terminology matcher"""
         if self.is_terminology_project:
-            if self.non_db_state.termmatcher is None:
-                self.require_units()
+            terminology_stores = self.stores.all()
+            mtime = self.get_mtime()
 
-            newmtime = self.get_mtime()
-            if newmtime != self.non_db_state.termmatchermtime:
-                self.non_db_state.termmatcher = match.terminologymatcher(self.stores.iterator())
-                self.non_db_state.termmatchermtime = newmtime
         else:
+            # Get global terminology first
             try:
-                termfilename = "pootle-terminology." + self.project.localfiletype
-                store = self.stores.get(name=termfilename)
-                newmtime = store.get_mtime()
-                if newmtime != self.non_db_state.termmatchermtime:
-                    self.non_db_state.termmatcher = match.terminologymatcher(store)
-                    self.non_db_state.termmatchermtime = newmtime
-            except Store.DoesNotExist:
-                try:
-                    termproject = TranslationProject.objects.get(language=self.language_id, project__code='terminology')
-                    self.non_db_state.termmatcher = termproject.gettermmatcher()
-                    self.non_db_state.termmatchermtime = termproject.non_db_state.termmatchermtime
-                except TranslationProject.DoesNotExist:
-                    pass
+                termproject = TranslationProject.objects.get(language=self.language_id, project__code='terminology')
+                mtime = termproject.get_mtime()
+                terminology_stores = termproject.stores.all()
+            except TranslationProject.DoesNotExist:
+                mtime = None
+                terminology_stores = Store.objects.none()
+            local_terminology = self.stores.filter(name__startswith='pootle-terminology')
+            for store in local_terminology.iterator():
+                mtime = max(mtime, store.get_mtime())
+            terminilogy_stores = terminology_stores | local_terminology
+        if mtime is None:
+            return
+        if mtime != self.non_db_state.termmatchermtime:
+            self.non_db_state.termmatcher = match.terminologymatcher(terminilogy_stores.iterator())
+            self.non_db_state.termmatchermtime = mtime
         return self.non_db_state.termmatcher
 
     ##############################################################################################
