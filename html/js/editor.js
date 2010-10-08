@@ -317,6 +317,28 @@
         uids.after.push(nu.id);
       }
     }
+    if (uids.before.length < limit) {
+      // Add (limit - lenght) units to uids.before
+      how_much = limit - uids.before.length;
+      var nu = pootle.editor.units[uids.after[uids.after.length-1]];
+      for (var i=0; i<how_much; i++) {
+        if (nu.next != undefined) {
+          var nu = pootle.editor.units[nu.next];
+          uids.after.push(nu.id);
+        }
+      }
+    }
+    if (uids.after.length < limit) {
+      // Add (limit - lenght) units to uids.after
+      how_much = limit - uids.after.length;
+      var pu = pootle.editor.units[uids.before[uids.before.length-1]];
+      for (var i=0; i<how_much; i++) {
+        if (pu.next != undefined) {
+          var pu = pootle.editor.units[pu.prev];
+          uids.before.push(pu.id);
+        }
+      }
+    }
     uids.before.reverse();
     return uids;
   };
