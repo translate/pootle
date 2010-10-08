@@ -27,11 +27,10 @@
 <script src='{{ "js/jquery/jquery.scrollTo.min.js"|m }}' type="text/javascript"></script>
 <script src='{{ "js/editor.js"|m }}' type="text/javascript"></script>
 <script type="text/javascript">
-  $(document).ready (function() {
-     var maxheight = $(window).height() * 0.3;
-     $('textarea.expanding').TextAreaExpander('10', maxheight);
-     $.scrollTo('td.translate-full', {offset: {top:-100}});
-  });
+$(document).ready (function() {
+  pootle.editor.init();
+  $("table.translate-table").trigger("pootle.editor.ready");
+});
 </script>
 {% endblock extra_head %}
 

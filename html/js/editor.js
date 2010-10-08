@@ -580,7 +580,3 @@
   };
 
 })(jQuery);
-
-$(document).ready(function() {
-  pootle.editor.init();
-});
