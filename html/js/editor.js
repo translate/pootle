@@ -475,7 +475,12 @@
     var url = l('/suggestion/reject/') + uid + '/' + suggid;
     $.post(url, {'reject': 1},
            function(rdata) {
-             element.fadeOut(500);
+             element.fadeOut(200, function() {
+               $(this).remove();
+               if (!$("div#translate-suggestion-container div.translate-suggestion").length) {
+                 $("input.next").trigger("click");
+               }
+             });
            }, "json");
     return false;
   };
@@ -496,9 +501,14 @@
                  $("#suggdiff-" + suggid + "-" + i).html(target);
                });
              });
-             element.fadeOut(500);
              $("textarea[id^=id_target_f_]").each(function(i) {
                pootle.editor.units[uid].target[i].text = $(this).val();
+             });
+             element.fadeOut(200, function() {
+               $(this).remove();
+               if (!$("div#translate-suggestion-container div.translate-suggestion").length) {
+                 $("input.next").trigger("click");
+               }
              });
            }, "json");
     return false;
@@ -512,7 +522,9 @@
     var url = l('/qualitycheck/reject/') + uid + '/' + checkid;
     $.post(url, {'reject': 1},
            function(rdata) {
-             element.fadeOut(500);
+             element.fadeOut(200, function() {
+               $(this).remove();
+             });
            }, "json");
     return false;
   };
