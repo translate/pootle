@@ -21,11 +21,91 @@
       $(this).text(stext);
     });
 
+    /* Set initial focus on page load */
+    pootle.editor.focused = $(".translate-original-focus textarea").get(0);
+    if (pootle.editor.focused != null) {
+        pootle.editor.focused.focus();
+    }
+
+    /* Update focus when appropriate */
+    $(".focusthis").live("focus", function(e) {
+      pootle.editor.focused = e.target;
+    });
+
+    /* Write TM results into the currently focused element */
+    // TODO: refactor write TM and writespecial within a single function
+    $(".writetm").live("click", function() {
+      var tmtext = $(".tm-translation", this).text();
+      var element = $(pootle.editor.focused);
+      var start = element.caret().start + tmtext.length;
+      element.val(element.caret().replace(tmtext));
+      element.caret(start, start);
+    });
+
+    /* Write special chars, tags and escapes into the currently focused element */
+    $(".writespecial, .translate-full .translation-highlight-escape, .translate-full .translation-highlight-html").live("click", function() {
+      var specialtext = $(this).text();
+      var element = $(pootle.editor.focused);
+      var start = element.caret().start + specialtext.length;
+      element.val(element.caret().replace(specialtext));
+      element.caret(start, start);
+    });
+
+    /* Copy original translation */
+    $("a.copyoriginal").live("click", function() {
+      var sources = $(".translation-text", $(this).parent().parent().parent());
+      var clean_sources = [];
+      $.each(sources, function(i) {
+        clean_sources[i] = $(this).text()
+                                  .replace("\n", "\\n\n", "g")
+                                  .replace("\t", "\\t", "g");
+      });
+
+      var targets = $("[id^=id_target_f_]");
+      if (targets.length) {
+        var max = clean_sources.length - 1;
+        for (var i=0; i<targets.length; i++) {
+          var newval = clean_sources[i] || clean_sources[max];
+          $(targets.get(i)).val(newval);
+        }
+        $(targets).get(0).focus();
+        pootle.editor.goFuzzy();
+      }
+    });
+
+    /* Fuzzy / unfuzzy */
+    pootle.editor.keepstate = false;
+    $("textarea.translation").live("keyup blur", function() {
+      if (!pootle.editor.keepstate && $(this).attr("defaultValue") != $(this).val()) {
+        pootle.editor.ungoFuzzy();
+      }
+    });
+
+    $("input.fuzzycheck").live("click", function() {
+      if (pootle.editor.isFuzzy()) {
+        pootle.editor.doFuzzyArea();
+      } else {
+        pootle.editor.undoFuzzyArea();
+      }
+    });
+
+    /* Collapsing */
+    $(".collapse").live("click", function(event) {
+      event.preventDefault();
+      $(this).siblings(".collapsethis").slideToggle("fast");
+      if ($("textarea", $(this).next("div.collapsethis")).length) {
+        $("textarea", $(this).next("div.collapsethis")).focus();
+      }
+    });
+
     /* Bind event handlers */
     $("table.translate-table").live("pootle.editor.ready", pootle.editor.ready);
     $("a[id^=editlink]").live("click", pootle.editor.goto_unit);
     $("input.submit, input.suggest").live("click", pootle.editor.process_submit);
     $("input.previous, input.next").live("click", pootle.editor.goto_prevnext);
+    $("#translate-suggestion-container .rejectsugg").live("click", pootle.editor.reject_suggestion);
+    $("#translate-suggestion-container .acceptsugg").live("click", pootle.editor.accept_suggestion);
+    $("#translate-checks-block .rejectcheck").live("click", pootle.editor.reject_check);
 
     /* Bind hotkeys */
     shortcut.add('ctrl+return', function() {
@@ -41,9 +121,7 @@
       $("input.next").trigger("click");
     });
 
-    /*
-     * XHR activity indicator
-     */
+    /* XHR activity indicator */
     $(document).ajaxStart(function() {
       $("#xhr-error").hide();
       $("#xhr-activity").show();
@@ -100,6 +178,57 @@
   };
 
   /*
+   * Fuzzying / unfuzzying functions
+   */
+  pootle.editor.doFuzzyArea = function() {
+    $("tr.translate-translation-row").addClass("translate-translation-fuzzy");
+  };
+
+  pootle.editor.undoFuzzyArea = function() {
+    $("tr.translate-translation-row").removeClass("translate-translation-fuzzy");
+  };
+
+  pootle.editor.doFuzzyBox = function() {
+    var checkbox = $("input.fuzzycheck");
+    if (!pootle.editor.isFuzzy()) {
+      checkbox.attr("checked", "checked");
+    }
+  };
+
+  pootle.editor.undoFuzzyBox = function() {
+    var checkbox = $("input.fuzzycheck");
+    if (pootle.editor.isFuzzy()) {
+      checkbox.removeAttr("checked");
+    }
+  };
+
+  pootle.editor.goFuzzy = function() {
+    if (!pootle.editor.isFuzzy()) {
+      pootle.editor.keepstate = true;
+      pootle.editor.doFuzzyArea();
+      pootle.editor.doFuzzyBox();
+    }
+  };
+
+  pootle.editor.ungoFuzzy = function() {
+    if (pootle.editor.isFuzzy()) {
+      pootle.editor.keepstate = true;
+      pootle.editor.undoFuzzyArea();
+      pootle.editor.undoFuzzyBox();
+    }
+  };
+
+  pootle.editor.isFuzzy = function() {
+    var checkbox = $("input.fuzzycheck");
+    var checked = checkbox.attr("checked");
+    if (checked == undefined || checked == false) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  /*
    * Displays error messages returned in XHR requests
    */
   pootle.editor.error = function(msg) {
@@ -109,9 +238,12 @@
     }
   };
 
+
   /*
-   * Retrieves the metadata used for this query
+   * Unit navigation, display, submission
    */
+
+  /* Retrieves the metadata used for this query */
   pootle.editor.get_meta = function() {
     var meta_url = l(pootle.editor.store + "/meta/" + pootle.editor.active_uid);
     $.ajax({
@@ -127,9 +259,7 @@
     });
   };
 
-  /*
-   * Gets the view units that refer to current_page
-   */
+  /* Gets the view units that refer to current_page */
   pootle.editor.get_view_units = function(store, async, page, limit) {
     var async = async == undefined ? false : async;
     var page = page == undefined ? pootle.editor.current_page : page;
@@ -156,6 +286,7 @@
     });
   };
 
+  /* Builds view rows for units represented by 'uids' */
   pootle.editor.build_rows = function(uids) {
     var rows = "";
     for (var i=0; i<uids.length; i++) {
@@ -170,6 +301,7 @@
     return rows;
   };
 
+  /* Gets uids that should be displayed before/after 'uid' */
   pootle.editor.get_uids_before_after = function(uid) {
     var uids = {before: [], after: []};
     var limit = (pootle.editor.pager.per_page - 1) / 2;
@@ -189,9 +321,7 @@
     return uids;
   };
 
-  /*
-   * Sets the edit view for unit 'uid'
-   */
+  /* Sets the edit view for unit 'uid' */
   pootle.editor.display_edit_unit = function(store, uid) {
     // TODO: Try to add stripe classes on the fly, not at a separate
     // time after rendering
@@ -203,9 +333,7 @@
     pootle.editor.redraw(newtbody);
   };
 
-  /*
-   * Redraws the translate table rows
-   */
+  /* Redraws the translate table rows */
   pootle.editor.redraw = function(newtbody) {
     var ttable = $("table.translate-table");
     var where = $("tbody", ttable);
@@ -215,9 +343,7 @@
     $(ttable).trigger("pootle.editor.ready");
   };
 
-  /*
-   * Checks if the editor needs to retrieve more view unit pages
-   */
+  /* Checks if the editor needs to retrieve more view unit pages */
   pootle.editor.check_pages = function(async) {
     var current = pootle.editor.current_page;
     var candidates = [current, current + 1, current - 1];
@@ -235,9 +361,7 @@
     }
   };
 
-  /*
-   * Updates the pager
-   */
+  /* Updates the pager */
   pootle.editor.update_pager = function(pager) {
     pootle.editor.pager = pager;
     // If page number has changed, redraw pager
@@ -249,9 +373,7 @@
     }
   };
 
-  /*
-   * Loads the edit unit uid.
-   */
+  /* Loads the edit unit 'uid' */
   pootle.editor.get_edit_unit = function(store, uid) {
     var edit_url = l(store + '/edit/' + uid);
     var editor = '<tr id="row' + uid + '" class="translate-translation-row">';
@@ -273,9 +395,7 @@
     return editor;
   };
 
-  /*
-   * Pushes submissions or suggestions and moves to the next unit
-   */
+  /* Pushes submissions or suggestions and moves to the next unit */
   pootle.editor.process_submit = function(e, type_class) {
     e.preventDefault();
     if (type_class == undefined) {
@@ -320,9 +440,7 @@
     return false;
   };
 
-  /*
-   * Loads the editor with the next unit
-   */
+  /* Loads the editor with the next unit */
   pootle.editor.goto_prevnext = function(e) {
     e.preventDefault();
     var current = pootle.editor.units[pootle.editor.active_uid];
@@ -334,9 +452,7 @@
     }
   };
 
-  /*
-   * Loads the editor with a specific unit
-   */
+  /* Loads the editor with a specific unit */
   pootle.editor.goto_unit = function(e) {
     e.preventDefault();
     var m = $(this).attr("id").match(/editlink([0-9]+)/);
@@ -345,6 +461,122 @@
       var newhash = "unit/" + parseInt(uid);
       $.history.load(newhash);
     }
+  };
+
+
+  /*
+   * Suggestions handling
+   */
+
+  /* Rejects a suggestion */
+  pootle.editor.reject_suggestion = function() {
+    var element = $(this).parent().parent();
+    var uid = $('.translate-container input#id_id').val();
+    var suggid = $(this).siblings("input.suggid").val();
+    var url = l('/suggestion/reject/') + uid + '/' + suggid;
+    $.post(url, {'reject': 1},
+           function(rdata) {
+             $("#response").remove();
+             element.fadeOut(500);
+           }, "json");
+    return false;
+  };
+
+  /* Accepts a suggestion */
+  pootle.editor.accept_suggestion = function() {
+    var element = $(this).parent().parent();
+    var uid = $('.translate-container input#id_id').val();
+    var suggid = $(this).siblings("input.suggid").val();
+    var url = l('/suggestion/accept/') + uid + '/' + suggid;
+    $.post(url, {'accept': 1},
+           function(rdata) {
+             $("#response").remove();
+             $.each(rdata.newtargets, function(i, target) {
+               $("textarea#id_target_f_" + i).val(target).focus();
+             });
+             $.each(rdata.newdiffs, function(suggid, sugg) {
+               $.each(sugg, function(i, target) {
+                 $("#suggdiff-" + suggid + "-" + i).html(target);
+               });
+             });
+             element.fadeOut(500);
+           }, "json");
+    return false;
+  };
+
+  /* Rejects a quality check marking it as false positive */
+  pootle.editor.reject_check = function() {
+    var element = $(this).parent();
+    var checkid = $(this).siblings("input.checkid").val();
+    var uid = $('.translate-container input#id_id').val();
+    var url = l('/qualitycheck/reject/') + uid + '/' + checkid;
+    $.post(url, {'reject': 1},
+           function(rdata) {
+             $("#response").remove();
+             element.fadeOut(500);
+           }, "json");
+    return false;
+  };
+
+
+  /*
+   * Machine Translation
+   */
+  pootle.editor.isSupportedSource = function(pairs, source) {
+    for (var i in pairs) {
+      if (source == pairs[i].source) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  pootle.editor.isSupportedTarget = function(pairs, target) {
+    for (var i in pairs) {
+      if (target == pairs[i].target) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  pootle.editor.isSupportedPair = function(pairs, source, target) {
+    for (var i in pairs) {
+      if (source == pairs[i].source &&
+          target == pairs[i].target) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  pootle.editor.addMTButton = function(element, aclass, imgfn, tooltip) {
+      var a = document.createElement("a");
+      a.setAttribute("class", "translate-mt " + aclass);
+      var img = document.createElement("img");
+      img.setAttribute("src", imgfn);
+      img.setAttribute("title", tooltip);
+      a.appendChild(img);
+      element.prepend(a);
+  };
+
+  pootle.editor.normalize_code = function(locale) {
+      var clean = locale.replace('_', '-')
+      var atIndex = locale.indexOf("@");
+      if (atIndex != -1) {
+        clean = clean.slice(0, atIndex);
+      }
+      return clean;
+  };
+
+  pootle.editor.collectArguments = function(substring) {
+    if (substring == '%%') {
+      return '%%';
+    }
+    argument_subs[pos] = substring;
+    substitute_string = "__" + pos + "__";
+    pos = pos + 1;
+    return substitute_string;
   };
 
 })(jQuery);
