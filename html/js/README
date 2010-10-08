@@ -23,6 +23,11 @@ Directory contents
 
     http://homepage.ntlworld.com/bobosola
 
+  - editor.js :
+    Code that sets up the editor and handles all the actions involved there.
+    This includes unit navigation, submission, suggestions' handling, copying
+    functions, fuzzy/unfuzzy, and several other helper stuff.
+
   - json2.min.js :
     JavaScript library for encoding/decoding data to/from JSON format.
 
@@ -41,19 +46,6 @@ Directory contents
     tablesorter (http://tablesorter.com/docs/).
 
     http://www.kryogenix.org/code/browser/sorttable/
-
-  - translatepage.js :
-    This handles several actions performed in the translate page. Including:
-
-    1. Automatically unchecks the fuzzy mark when an edit is detected in a fuzzy
-    entry. Used in the translate page.
-    A new implementation would be better:
-    http://bugs.locamotion.org/show_bug.cgi?id=473
-
-    2. Handles suggestions doing XMLHttpRequest calls using jQuery and
-    sending/receiving data in JSON format.
-
-    3. Includes several functions for handling actions in the translate page.
 
   - shortcut.js :
     Small library to ease adding keyboard shortcuts.
