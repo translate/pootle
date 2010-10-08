@@ -771,7 +771,7 @@ class Store(models.Model, base.TranslationStore):
         """sync file with translations from db"""
         key = "%s:sync" % self.pootle_path
         last_sync = cache.get(key)
-        if last_sync and last_sync == self.get_mtime():
+        if conservative and last_sync and last_sync == self.get_mtime():
             return
 
         if not self.file:
