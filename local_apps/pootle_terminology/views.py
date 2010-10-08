@@ -52,6 +52,10 @@ def create_termunit(term, unit, targets, locations, sourcenotes, transnotes, fil
     return termunit
 
 def get_terminology_filename(translation_project):
+    if translation_project.project.is_monolingual():
+        # terminology is a virtual store, so extension is not really important
+        # but to avoid confusion we will not use monolingual extensions
+        return 'pootle-terminology.po'
     return 'pootle-terminology.' + translation_project.project.localfiletype
 
 @commit_on_success
