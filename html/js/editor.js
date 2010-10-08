@@ -23,9 +23,6 @@
 
     /* Set initial focus on page load */
     pootle.editor.focused = $(".translate-original-focus textarea").get(0);
-    if (pootle.editor.focused != null) {
-        pootle.editor.focused.focus();
-    }
 
     /* Update focus when appropriate */
     $(".focusthis").live("focus", function(e) {
@@ -158,7 +155,7 @@
     pootle.editor.make_zebra("table.translate-table tr[id]");
     var maxheight = $(window).height() * 0.3;
     $('textarea.expanding').TextAreaExpander('10', maxheight);
-    $(".focusthis").focus();
+    $(".focusthis").get(0).focus();
   }
 
   /*
