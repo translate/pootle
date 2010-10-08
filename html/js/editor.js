@@ -306,36 +306,27 @@
     var uids = {before: [], after: []};
     var limit = (pootle.editor.pager.per_page - 1) / 2;
     var current = pootle.editor.units[uid];
-    var pu = current, nu = current;
-    for (var i=0; i<limit; i++) {
-      if (pu.prev != undefined) {
-        var pu = pootle.editor.units[pu.prev];
-        uids.before.push(pu.id);
-      }
-      if (nu.next != undefined) {
-        var nu = pootle.editor.units[nu.next];
-        uids.after.push(nu.id);
-      }
-    }
-    if (uids.before.length < limit) {
-      // Add (limit - lenght) units to uids.before
-      how_much = limit - uids.before.length;
-      var nu = pootle.editor.units[uids.after[uids.after.length-1]];
-      for (var i=0; i<how_much; i++) {
-        if (nu.next != undefined) {
-          var nu = pootle.editor.units[nu.next];
-          uids.after.push(nu.id);
+    var prevnext = {prev: "before", next: "after"};
+    for (m in prevnext) {
+      var tu = current;
+      for (var i=0; i<limit; i++) {
+        if (tu[m] != undefined) {
+          var tu = pootle.editor.units[tu[m]];
+          uids[prevnext[m]].push(tu.id);
         }
       }
     }
-    if (uids.after.length < limit) {
-      // Add (limit - lenght) units to uids.after
-      how_much = limit - uids.after.length;
-      var pu = pootle.editor.units[uids.before[uids.before.length-1]];
-      for (var i=0; i<how_much; i++) {
-        if (pu.next != undefined) {
-          var pu = pootle.editor.units[pu.prev];
-          uids.before.push(pu.id);
+    var prevnextl = {prev: "after", next: "before"};
+    for (m in prevnext) {
+      if (uids[prevnextl[m]].length < limit) {
+        // Add (limit - lenght) units to uids[prevnext[m]]
+        var how_much = limit - uids[prevnextl[m]].length;
+        var tu = pootle.editor.units[uids[prevnext[m]][uids[prevnext[m]].length-1]];
+        for (var i=0; i<how_much; i++) {
+          if (tu[m] != undefined) {
+            var tu = pootle.editor.units[tu[m]];
+            uids[prevnext[m]].push(tu.id);
+          }
         }
       }
     }
