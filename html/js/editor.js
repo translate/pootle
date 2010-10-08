@@ -424,7 +424,6 @@
         } else {
           if (data.success) {
             if (type == 'submission') {
-              // TODO: Ensure this is done when accepting suggestions too
               $("textarea[id^=id_target_f_]").each(function(i) {
                 pootle.editor.units[uid].target[i].text = $(this).val();
               });
@@ -500,6 +499,9 @@
                });
              });
              element.fadeOut(500);
+             $("textarea[id^=id_target_f_]").each(function(i) {
+               pootle.editor.units[uid].target[i].text = $(this).val();
+             });
            }, "json");
     return false;
   };
