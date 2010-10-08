@@ -460,11 +460,11 @@ def upload_file(request, directory, django_file, overwrite, store=None):
     if getattr(django_file, 'mode', None) is None:
         django_file.mode = 1
 
-    local_filename = get_local_filename(translation_project, django_file.name)
     if store and store.file:
         pootle_path = store.pootle_path
         upload_path = store.real_path
     else:
+        local_filename = get_local_filename(translation_project, django_file.name)
         pootle_path = directory.pootle_path + local_filename
         # The full filesystem path to 'local_filename'
         upload_path    = get_upload_path(translation_project, relative_root_dir, local_filename)
