@@ -96,11 +96,6 @@ Directory contents
 
       http://github.com/tkyk/jquery-history-plugin/
 
-    - jquery.scrollTo.min.js :
-      Scrolls the viewport to the selected element.
-
-      http://flesler.blogspot.com/2007/10/jqueryscrollto.html
-
     - jquery.textarea-expander.js :
       jQuery plugin used in the translate page textareas.
 
