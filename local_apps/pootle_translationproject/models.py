@@ -604,11 +604,11 @@ class TranslationProject(models.Model):
             local_terminology = self.stores.filter(name__startswith='pootle-terminology')
             for store in local_terminology.iterator():
                 mtime = max(mtime, store.get_mtime())
-            terminilogy_stores = terminology_stores | local_terminology
+            terminology_stores = terminology_stores | local_terminology
         if mtime is None:
             return
         if mtime != self.non_db_state.termmatchermtime:
-            self.non_db_state.termmatcher = match.terminologymatcher(terminilogy_stores.iterator())
+            self.non_db_state.termmatcher = match.terminologymatcher(terminology_stores.iterator())
             self.non_db_state.termmatchermtime = mtime
         return self.non_db_state.termmatcher
 
