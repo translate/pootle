@@ -327,9 +327,9 @@ class Unit(models.Model, base.TranslationUnit):
                 self.source = unit.source
                 changed = True
             if self.target != unit.target:
-                wordcount = self.target_wordcount
+                notempty = filter(None, self.target_f.strings)
                 self.target = unit.target
-                if not (wordcount == count_words(self.target_f.strings) == 0):
+                if filter(None, self.target_f.strings) or notempty:
                     #FIXME: we need to do this cause we discard nplurals for empty plurals
                     changed = True
         notes = unit.getnotes(origin="developer")
