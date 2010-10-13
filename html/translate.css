@@ -2,6 +2,29 @@
  * TRANSLATE PAGE
  */
 
+/* MAIN TOOLBAR */
+
+div#toolbar
+{
+    background-color: rgba(30, 66, 98, 0.75);
+    color: #fff;
+    font-size: 85%;
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 9999;
+}
+
+div#toolbar div
+{
+    padding: 12px 0;
+    margin: 0 auto;
+}
+
+/* TRANSLATE TABLE */
+
 table.translate-table
 {
     width: 100%;

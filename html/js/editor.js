@@ -103,6 +103,7 @@
     $("#translate-suggestion-container .rejectsugg").live("click", pootle.editor.reject_suggestion);
     $("#translate-suggestion-container .acceptsugg").live("click", pootle.editor.accept_suggestion);
     $("#translate-checks-block .rejectcheck").live("click", pootle.editor.reject_check);
+    $("select#filter-status").live("change", pootle.editor.filter_status);
 
     /* Bind hotkeys */
     shortcut.add('ctrl+return', function() {
@@ -470,6 +471,15 @@
       var newhash = "unit/" + parseInt(uid);
       $.history.load(newhash);
     }
+  };
+
+
+  /*
+   * Units filtering
+   */
+  pootle.editor.filter_status = function() {
+    var newhash = "filter/" + $("option:selected", this).val();
+    $.history.load(newhash);
   };
 
 

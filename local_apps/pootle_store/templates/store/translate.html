@@ -75,6 +75,20 @@ $(document).ready (function() {
 </form>
 {% endblock %}
 
+{% block extra_content %}
+<div id="toolbar">
+  <div class="toolbar-item">
+    <select id="filter-status" name="filter-status">
+      <option selected="selected" value="all">{% trans "All" %}</option>
+      <option value="incomplete">{% trans "Incomplete" %}</option>
+      <option value="untranslated">{% trans "Untranslated" %}</option>
+      <option value="fuzzy">{% trans "Fuzzy" %}</option>
+      <option value="suggestions">{% trans "Suggestions" %}</option>
+    </select>
+  </div>
+</div>
+{% endblock %}
+
 {% block scripts_extra %}
 {{ block.super }}
 <script src='{{ "js/json2.min.js"|m }}' type="text/javascript"></script>
