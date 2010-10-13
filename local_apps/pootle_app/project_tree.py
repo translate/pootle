@@ -35,7 +35,7 @@ def language_match_filename(language_code, path_name):
 
 def direct_language_match_filename(language_code, path_name):
     name, ext = os.path.splitext(os.path.basename(path_name))
-    return language_code == name
+    return (language_code == name or name.endswith('-'+language_code) or name.endswith('_'+language_code))
 
 def match_template_filename(project, path_name):
     """test if path_name might point at a template file for given
@@ -46,7 +46,9 @@ def match_template_filename(project, path_name):
         if ext != os.path.extsep + project.localfiletype:
             # template extension is distinct, surely file is a template
             return True
-        elif not langdata.langcode_re.match(name):
+        elif not langdata.langcode_re.match(name) and \
+             not langdata.langcode_re.match(name.split('-')[-1]) and\
+             not langdata.langcode_re.match(name.split('_')[-1]):
             # file name can't possibly match any language, assume it is a template
             return True
     return False
@@ -174,8 +176,9 @@ def translation_project_should_exist(language, project):
             # find files with the language name in the project dir
             for dirpath, dirnames, filenames in os.walk(project.get_real_path()):
                 for filename in filenames:
+                    name = os.path.splitext(filename)[0]
                     if project.file_belongs_to_project(filename, match_templates=False) and \
-                           os.path.splitext(filename)[0] == language.code:
+                           (name == language.code or name.endswith('-'+language.code) or name.endswith('_'+language.code)):
                         return True
     else:
         # find directory with the language name in the project dir
@@ -246,17 +249,30 @@ def convert_template(translation_project, template_store, target_pootle_path, ta
 
 
 def get_translated_name_gnu(translation_project, store):
+    """given a template store and a translation_project return target filename"""
+    #FIXME: we should also detect if prefix is already in use across
+    # whole project not just current translation project
+    suffix = translation_project.language.code + os.extsep + translation_project.project.localfiletype
+    use_prefix = store.parent.child_stores.count() > 1 or \
+                 translation_project.stores.exclude(name=suffix).exclude(file="").count()
+
     pootle_path_parts = store.pootle_path.split('/')
     pootle_path_parts[1] = translation_project.language.code
     if store.file:
         path_parts = store.file.path.split(os.sep)
-        name = translation_project.language.code + os.extsep + translation_project.project.localfiletype
+        if use_prefix:
+            #FIXME: what about dashes
+            prefix = os.path.splitext(store.name)[0] + '_'
+        else:
+            prefix = ""
+        name = prefix + suffix
         path_parts[-1] =  name
         pootle_path_parts[-1] = name
     else:
         path_parts = store.parent.get_real_path().split(os.sep)
         path_parts.append(store.name)
     return '/'.join(pootle_path_parts), os.sep.join(path_parts)
+
 
 def get_translated_name(translation_project, store):
     name, ext = os.path.splitext(store.name)
