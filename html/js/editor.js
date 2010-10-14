@@ -328,7 +328,7 @@
     var limit = (this.pager.per_page - 1) / 2;
     var current = this.units[uid];
     var prevnext = {prev: "before", next: "after"};
-    for (m in prevnext) {
+    for (var m in prevnext) {
       var tu = current;
       for (var i=0; i<limit; i++) {
         if (tu[m] != undefined) {
@@ -338,7 +338,7 @@
       }
     }
     var prevnextl = {prev: "after", next: "before"};
-    for (m in prevnext) {
+    for (var m in prevnext) {
       if (uids[prevnextl[m]].length < limit) {
         // Add (limit - lenght) units to uids[prevnext[m]]
         var how_much = limit - uids[prevnextl[m]].length;
