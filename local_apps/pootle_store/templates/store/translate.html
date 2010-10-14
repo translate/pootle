@@ -30,11 +30,11 @@ $(document).ready (function() {
   var options = {};
   {% if request.is_secure %}options.secure = true;{% endif %}
   {% if cansuggest or cantranslate %}
-  var mt_backends = [];
+  var mt = [];
     {% for backend, apikey in MT_BACKENDS %}
-    mt_backends.push({name: "{{ backend|lower }}", key: "{{ apikey }}"});
+    mt.push({name: "{{ backend|lower }}", key: "{{ apikey }}"});
     {% endfor %}
-    options.mt_backends = mt_backends;
+    options.mt = mt;
   {% endif %}
   PTL.editor.init(options);
   $("table.translate-table").trigger("PTL.editor.ready");

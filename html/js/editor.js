@@ -11,7 +11,7 @@
     /* Default settings */
     this.settings = {
       secure: false,
-      mt_backends: []
+      mt: []
     };
     /* Merge given options with default settings */
     if (options) {
@@ -138,6 +138,15 @@
       $("#xhr-activity").hide();
     });
 
+    /* Load MT backends */
+    $.each(this.settings.mt, function() {
+      var backend = this.name;
+      $.getScript(m('js/mt/' + backend + '.js'), function() {
+        PTL.editor.mt[backend].init();
+        $("table.translate-table").live("mt_ready", PTL.editor.mt[backend].ready);
+      });
+    });
+
     /* Retrieve metadata used for this query */
     this.get_meta();
 
@@ -170,6 +179,7 @@
     var maxheight = $(window).height() * 0.3;
     $('textarea.expanding').TextAreaExpander('10', maxheight);
     $(".focusthis").get(0).focus();
+    $("table.translate-table").trigger("mt_ready");
   },
 
   /*
@@ -623,6 +633,6 @@
     return substitute_string;
   },
 
-  }
+  };
 
 })(jQuery);

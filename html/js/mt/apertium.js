@@ -1,37 +1,56 @@
-/*
- * Apertium Service
- */
+(function($) {
+  window.PTL.editor.mt = window.PTL.editor.mt || {};
 
-$(document).ready(function() {
-  var target_lang = PTL.editor.normalize_code($("#id_target_f_0").attr("lang"));
+  PTL.editor.mt.apertium = {
 
-  var cookie_name = "apertium_pairs";
-  var cookie_options = {path: '/', expires: 15};
-  var pairs = $.cookie(cookie_name);
-  if (!pairs) {
-    pairs = apertium.getSupportedLanguagePairs();
-    pairs = $.map(pairs, function(obj, i) {
-      return {source: obj.source, target: obj.target};
-    });
-    var cookie_data = JSON.stringify(pairs);
-    $.cookie(cookie_name, cookie_data, cookie_options);
-  } else {
-    pairs = $.parseJSON(pairs);
-  }
+    url: "http://api.apertium.org/JSLibrary.js",
+    cookie_name: "apertium_pairs",
+    cookie_options: {path: '/', expires: 15},
 
-  if (PTL.editor.isSupportedTarget(pairs, target_lang)) {
-    var sources = $("div.placeholder").prev(".translation-text");
-    $(sources).each(function() {
-      var source = PTL.editor.normalize_code($(this).attr("lang"));
-      if (PTL.editor.isSupportedPair(pairs, source, target_lang)) {
-        PTL.editor.addMTButton($(this).parent().siblings().children(".translate-toolbar"),
-                             "apertium",
-                             m("images/apertium.png"),
-                             "Apertium");
+    init: function(apikey) {
+      var _this = PTL.editor.mt.apertium;
+      /* Load Apertium library */
+      _this.url = apikey == undefined ? _this.url : _this.url + '?key=' + apikey;
+      $.getScript(_this.url, function() {
+        /* Init variables */
+        var _this = PTL.editor.mt.apertium;
+        _this.target_lang = PTL.editor.normalize_code($("#id_target_f_0").attr("lang"));
+
+        _this.pairs = $.cookie(_this.cookie_name);
+        if (!_this.pairs) {
+          var pairs = apertium.getSupportedLanguagePairs();
+          _this.pairs = $.map(pairs, function(obj, i) {
+            return {source: obj.source, target: obj.target};
+          });
+          var cookie_data = JSON.stringify(_this.pairs);
+          $.cookie(_this.cookie_name, cookie_data, _this.cookie_options);
+        } else {
+          _this.pairs = $.parseJSON(_this.pairs);
+        }
+
+        /* Bind event handler */
+        $(".apertium").live("click", _this.translate);
+      });
+
+    },
+
+    ready: function() {
+      var _this = PTL.editor.mt.apertium;
+      if (PTL.editor.isSupportedTarget(_this.pairs, _this.target_lang)) {
+        var sources = $("div.placeholder").prev(".translation-text");
+        $(sources).each(function() {
+          var source = PTL.editor.normalize_code($(this).attr("lang"));
+          if (PTL.editor.isSupportedPair(_this.pairs, source, _this.target_lang)) {
+            PTL.editor.addMTButton($(this).parent().siblings().children(".translate-toolbar"),
+                                   "apertium",
+                                   m("images/apertium.png"),
+                                   "Apertium");
+          }
+        });
       }
-    });
+    },
 
-    $(".apertium").click(function() {
+    translate: function() {
       var areas = $("[id^=id_target_f_]");
       var sources = $(this).parent().parent().siblings().children(".translation-text");
       var lang_from = PTL.editor.normalize_code(sources.eq(0).attr("lang"));
@@ -67,7 +86,6 @@ $(document).ready(function() {
       });
       PTL.editor.goFuzzy();
       return false;
-    });
-  }
-
-});
+    }
+  };
+})(jQuery);
