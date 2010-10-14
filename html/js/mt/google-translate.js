@@ -4,7 +4,7 @@
 google.load("language", "1");
 
 google.setOnLoadCallback(function() {
-  var target_lang = pootle.editor.normalize_code($("#id_target_f_0").attr("lang"));
+  var target_lang = PTL.editor.normalize_code($("#id_target_f_0").attr("lang"));
 
   var cookie_name = "google_pairs";
   var cookie_options = {path: '/', expires: 15};
@@ -23,12 +23,12 @@ google.setOnLoadCallback(function() {
     pairs = $.parseJSON(pairs);
   }
 
-  if (pootle.editor.isSupportedTarget(pairs, target_lang)) {
+  if (PTL.editor.isSupportedTarget(pairs, target_lang)) {
     var sources = $("div.placeholder").prev(".translation-text");
     $(sources).each(function() {
-      var source = pootle.editor.normalize_code($(this).attr("lang"));
-      if (pootle.editor.isSupportedSource(pairs, source)) {
-        pootle.editor.addMTButton($(this).parent().siblings().children(".translate-toolbar"),
+      var source = PTL.editor.normalize_code($(this).attr("lang"));
+      if (PTL.editor.isSupportedSource(pairs, source)) {
+        PTL.editor.addMTButton($(this).parent().siblings().children(".translate-toolbar"),
                              "googletranslate",
                              m("images/google-translate.png"),
                              "Google Translate");
@@ -38,8 +38,8 @@ google.setOnLoadCallback(function() {
     $(".googletranslate").click(function() {
       var areas = $("[id^=id_target_f_]");
       var sources = $(this).parent().parent().siblings().children(".translation-text");
-      var lang_from = pootle.editor.normalize_code(sources.eq(0).attr("lang"));
-      var lang_to = pootle.editor.normalize_code(areas.eq(0).attr("lang"));
+      var lang_from = PTL.editor.normalize_code(sources.eq(0).attr("lang"));
+      var lang_to = PTL.editor.normalize_code(areas.eq(0).attr("lang"));
 
       // The printf regex based on http://phpjs.org/functions/sprintf:522
       var c_printf_pattern = /%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuidfegEG])/g;
@@ -50,9 +50,9 @@ google.setOnLoadCallback(function() {
 
       $(sources).each(function(j) {
         var source_text = $(this).text();
-        source_text = source_text.replace(c_printf_pattern, pootle.editor.collectArguments);
-        source_text = source_text.replace(csharp_string_format_pattern, pootle.editor.collectArguments);
-        source_text = source_text.replace(percent_number_pattern, pootle.editor.collectArguments);
+        source_text = source_text.replace(c_printf_pattern, PTL.editor.collectArguments);
+        source_text = source_text.replace(csharp_string_format_pattern, PTL.editor.collectArguments);
+        source_text = source_text.replace(percent_number_pattern, PTL.editor.collectArguments);
 
         var content = new Object()
         content.text = source_text;
@@ -69,7 +69,7 @@ google.setOnLoadCallback(function() {
           }
         });
       });
-      pootle.editor.goFuzzy();
+      PTL.editor.goFuzzy();
       return false;
     });
 
