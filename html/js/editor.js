@@ -145,6 +145,9 @@
           }
           pootle.editor.display_edit_unit(pootle.editor.store, uid);
         break;
+        case "filter":
+          pootle.editor.filtering_by = parts[1];
+        break;
       }
     }, {'unescape': true});
   };
