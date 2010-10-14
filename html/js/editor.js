@@ -6,8 +6,19 @@
   /*
    * Initializes the editor
    */
-  init: function() {
+  init: function(options) {
 
+    /* Default settings */
+    this.settings = {
+      secure: false,
+      mt_backends: []
+    };
+    /* Merge given options with default settings */
+    if (options) {
+      $.extend(this.settings, options);
+    }
+
+    /* Initialize variables */
     this.units = {};
     this.store = $("div#store").text();
     this.active_uid = $("#active_uid").text();

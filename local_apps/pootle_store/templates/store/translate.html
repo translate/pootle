@@ -27,7 +27,16 @@
 <script src='{{ "js/editor.js"|m }}' type="text/javascript"></script>
 <script type="text/javascript">
 $(document).ready (function() {
-  PTL.editor.init();
+  var options = {};
+  {% if request.is_secure %}options.secure = true;{% endif %}
+  {% if cansuggest or cantranslate %}
+  var mt_backends = [];
+    {% for backend, apikey in MT_BACKENDS %}
+    mt_backends.push({name: "{{ backend|lower }}", key: "{{ apikey }}"});
+    {% endfor %}
+    options.mt_backends = mt_backends;
+  {% endif %}
+  PTL.editor.init(options);
   $("table.translate-table").trigger("PTL.editor.ready");
 });
 </script>
@@ -95,18 +104,6 @@ $(document).ready (function() {
 <script src='{{ "js/jquery/jquery.cookie.js"|m }}' type="text/javascript"></script>
 <script src='{{ "js/jquery/jquery.fieldselection.js"|m }}' type="text/javascript"></script>
 <script src='{{ "js/jquery/jquery.caret.js"|m }}' type="text/javascript"></script>
-{% if cansuggest or cantranslate %}
-  {% for backend, apikey in MT_BACKENDS %}
-    {% ifequal backend 'GOOGLE_TRANSLATE' %}
-      <script src="{% if request.is_secure %}https://{% else %}http://{% endif %}www.google.com/jsapi" type="text/javascript"></script>
-      <script src='{{ "js/mt/google-translate.js"|m }}' type="text/javascript"></script>
-    {% endifequal %}
-    {% ifequal backend 'APERTIUM' %}
-      <script src="http://api.apertium.org/JSLibrary.js{% if apikey %}?key={{ apikey }}{% endif %}" type="text/javascript"></script>
-      <script src='{{ "js/mt/apertium.js"|m }}' type="text/javascript"></script>
-    {% endifequal %}
-  {% endfor %}
-{% endif %}
 {% if not user.is_authenticated %}
 <script src='{{ "js/jquery/jquery.fancybox.min.js"|m }}' type="text/javascript"></script>
 {% endif %}
