@@ -37,7 +37,7 @@ $(document).ready (function() {
     options.mt = mt;
   {% endif %}
   PTL.editor.init(options);
-  $("table.translate-table").trigger("PTL.editor.ready");
+  $("table.translate-table").trigger("editor_ready");
 });
 </script>
 {% endblock extra_head %}

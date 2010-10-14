@@ -106,7 +106,7 @@
     });
 
     /* Bind event handlers */
-    $("table.translate-table").live("PTL.editor.ready", PTL.editor.ready);
+    $("table.translate-table").live("editor_ready", PTL.editor.ready);
     $("a[id^=editlink]").live("click", PTL.editor.goto_unit);
     $("input.submit, input.suggest").live("click", PTL.editor.process_submit);
     $("input.previous, input.next").live("click", PTL.editor.goto_prevnext);
@@ -374,7 +374,7 @@
     var oldrows = $("tr", where);
     oldrows.remove();
     where.append(newtbody);
-    $(ttable).trigger("PTL.editor.ready");
+    $(ttable).trigger("editor_ready");
   },
 
   /* Checks if the editor needs to retrieve more view unit pages */
