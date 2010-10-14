@@ -267,7 +267,10 @@ def get_translated_name_gnu(translation_project, store):
         path_parts = store.file.path.split(os.sep)
         if use_prefix:
             #FIXME: what about dashes
-            prefix = os.path.splitext(store.name)[0] + '_'
+            if store.translation_project.language.code == 'templates':
+                prefix = os.path.splitext(store.name)[0] + '_'
+            else:
+                prefix = os.path.splitext(store.name)[0][:-len(store.translation_project.language.code)]
         else:
             prefix = ""
         name = prefix + suffix
