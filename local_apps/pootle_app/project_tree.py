@@ -250,11 +250,16 @@ def convert_template(translation_project, template_store, target_pootle_path, ta
 
 def get_translated_name_gnu(translation_project, store):
     """given a template store and a translation_project return target filename"""
-    #FIXME: we should also detect if prefix is already in use across
-    # whole project not just current translation project
     suffix = translation_project.language.code + os.extsep + translation_project.project.localfiletype
     use_prefix = store.parent.child_stores.count() > 1 or \
                  translation_project.stores.exclude(name=suffix).exclude(file="").count()
+    if not use_prefix:
+        # let's make sure
+        for tp in translation_project.project.translationproject_set.exclude(language__code='templates').iterator():
+            temp_suffix = tp.language.code + os.extsep + translation_project.project.localfiletype
+            if translation_project.stores.exclude(name=temp_suffix).exclude(file="").count():
+                use_prefix = True
+                break
 
     pootle_path_parts = store.pootle_path.split('/')
     pootle_path_parts[1] = translation_project.language.code
