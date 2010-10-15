@@ -22,6 +22,7 @@
     this.units = {};
     this.store = $("div#store").text();
     this.active_uid = $("#active_uid").text();
+    this.current_page = 1;
     this.pages_got = {};
     this.keepstate = false;
 
