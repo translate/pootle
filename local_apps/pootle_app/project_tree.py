@@ -29,26 +29,24 @@ from pootle_store.util import absolute_real_path, relative_real_path
 from pootle_store.filetypes import factory_classes
 from pootle_app.models.directory  import Directory
 
-def language_match_filename(language_code, path_name):
-    name, ext = os.path.splitext(os.path.basename(path_name))
+def language_match_filename(language_code, filename):
+    name, ext = os.path.splitext(os.path.basename(filename))
     return langdata.languagematch(language_code, name)
 
 def direct_language_match_filename(language_code, path_name):
     name, ext = os.path.splitext(os.path.basename(path_name))
     return (language_code == name or name.endswith('-'+language_code) or name.endswith('_'+language_code))
 
-def match_template_filename(project, path_name):
+def match_template_filename(project, filename):
     """test if path_name might point at a template file for given
     project"""
-    name, ext = os.path.splitext(os.path.basename(path_name))
+    name, ext = os.path.splitext(os.path.basename(filename))
     #FIXME: is the test for matching extension redundant?
     if ext == os.path.extsep + project.get_template_filtetype():
         if ext != os.path.extsep + project.localfiletype:
             # template extension is distinct, surely file is a template
             return True
-        elif not langdata.langcode_re.match(name) and \
-             not langdata.langcode_re.match(name.split('-')[-1]) and\
-             not langdata.langcode_re.match(name.split('_')[-1]):
+        elif not find_lang_postfix(filename):
             # file name can't possibly match any language, assume it is a template
             return True
     return False
@@ -150,6 +148,19 @@ def add_files(translation_project, ignored_files, ext, real_dir, db_dir, file_fi
         fs_subdir = os.path.join(real_dir, db_subdir.name)
         add_files(translation_project, ignored_files, ext, fs_subdir, db_subdir, file_filter)
 
+def find_lang_postfix(filename):
+    name = os.path.splitext(filename)[0]
+    if langdata.langcode_re.match(name):
+        return name
+    suffix = name.split('-')[-1]
+    if langdata.langcode_re.match(suffix):
+        return suffix
+
+    parts = name.split('_')
+    for i in xrange(1, len(parts)):
+        suffix = '_'.join(parts[len(parts)-i:])
+        if langdata.langcode_re.match(suffix):
+            return suffix
 
 def translation_project_should_exist(language, project):
     """tests if there are translation files corresponding to given
