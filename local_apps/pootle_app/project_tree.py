@@ -221,8 +221,10 @@ def convert_template(translation_project, template_store, target_pootle_path, ta
     try:
         store = Store.objects.get(pootle_path=target_pootle_path)
         if monolingual and store.state < PARSED:
+            #HACKISH: exploiting update from templates to parse monolingual files
             store.update(store=template_file)
             store.update(update_translation=True)
+            return
         if not store.file or monolingual:
             original_file = store
         else:
