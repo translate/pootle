@@ -117,7 +117,7 @@
             areas.eq(j).val($("<div />").html(translation).text());
             areas.eq(j).focus();
           } else {
-            alert("Google Translate Error: " + r.responseDetails);
+            PTL.editor.error("Google Translate Error: " + r.responseDetails);
           }
         });
       });
