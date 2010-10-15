@@ -4,7 +4,7 @@
  * Dual licensed under the MIT or GPL Version 2 licenses.
  */
 (function( jQuery, undefined ){
-	var oldManip = jQuery.fn.domManip, tmplItmAtt = "_tmplitem", htmlExpr = /^[^<]*(<[\w\W]+>)[^>]*$/,
+	var oldManip = jQuery.fn.domManip, tmplItmAtt = "_tmplitem", htmlExpr = /^[^<]*(<[\w\W]+>)[^>]*$|\{\{\! /,
 		newTmplItems = {}, wrappedItems = {}, appendToTmplItems, topTmplItem = { key: 0, data: {} }, itemKey = 0, cloneIndex = 0, stack = [];
 
 	function newTmplItem( options, parentItem, fn, data ) {
@@ -46,7 +46,7 @@
 		replaceAll: "replaceWith"
 	}, function( name, original ) {
 		jQuery.fn[ name ] = function( selector ) {
-			var ret = [], insert = jQuery( selector ),
+			var ret = [], insert = jQuery( selector ), elems, i, l, tmplItems,
 				parent = this.length === 1 && this[0].parentNode;
 
 			appendToTmplItems = newTmplItems || {};
@@ -54,16 +54,16 @@
 				insert[ original ]( this[0] );
 				ret = this;
 			} else {
-				for ( var i = 0, l = insert.length; i < l; i++ ) {
+				for ( i = 0, l = insert.length; i < l; i++ ) {
 					cloneIndex = i;
-					var elems = (i > 0 ? this.clone(true) : this).get();
+					elems = (i > 0 ? this.clone(true) : this).get();
 					jQuery.fn[ original ].apply( jQuery(insert[i]), elems );
 					ret = ret.concat( elems );
 				}
 				cloneIndex = 0;
 				ret = this.pushStack( ret, name, insert.selector );
 			}
-			var tmplItems = appendToTmplItems;
+			tmplItems = appendToTmplItems;
 			appendToTmplItems = null;
 			jQuery.tmpl.complete( tmplItems );
 			return ret;
@@ -92,7 +92,7 @@
 			// it should be doing .call() instead of .apply(). See #6227
 			if ( args[0] && args[0].nodeType ) {
 				var dmArgs = jQuery.makeArray( arguments ), argsLength = args.length, i = 0, tmplItem;
-				while ( i < argsLength && !(tmplItem = jQuery.data( args[i++], "tmplItem" ))) {};
+				while ( i < argsLength && !(tmplItem = jQuery.data( args[i++], "tmplItem" ))) {}
 				if ( argsLength > 1 ) {
 					dmArgs[0] = [jQuery.makeArray( args )];
 				}
@@ -100,7 +100,7 @@
 					dmArgs[2] = function( fragClone ) {
 						// Handler called by oldManip when rendered template has been inserted into DOM.
 						jQuery.tmpl.afterManip( this, fragClone, callback );
-					}
+					};
 				}
 				oldManip.apply( this, dmArgs );
 			} else {
@@ -149,7 +149,6 @@
 					return dataItem ? newTmplItem( options, parentItem, tmpl, dataItem ) : null;
 				}) :
 				[ newTmplItem( options, parentItem, tmpl, data ) ];
-
 			return topLevel ? jQuery( build( parentItem, null, ret ) ) : ret;
 		},
 
@@ -190,10 +189,10 @@
 				return typeof name === "string" ? (jQuery.template[name] = tmpl) : tmpl;
 			}
 			// Return named compiled template
-			return typeof name !== "string" ? jQuery.template( null, name ): 
+			return name ? (typeof name !== "string" ? jQuery.template( null, name ): 
 				(jQuery.template[name] || 
 					// If not in map, treat as a selector. (If integrated with core, use quickExpr.exec) 
-					jQuery.template( null, htmlExpr.test( name ) ? name : jQuery( name ))); 
+					jQuery.template( null, htmlExpr.test( name ) ? name : jQuery( name )))) : null; 
 		},
 
 		encode: function( text ) {
@@ -226,14 +225,21 @@
 				close: "}"
 			},
 			"else": {
-				open: "}else{"
+				_default: { $1: "true" },
+				open: "}else if(($notnull_1) && $1a){"
 			},
 			"html": {
+				// Unecoded expression evaluation. 
 				open: "if($notnull_1){_.push($1a);}"
 			},
 			"=": {
+				// Encoded expression evaluation. Abbreviated form is ${}.
 				_default: { $1: "$data" },
 				open: "if($notnull_1){_.push($.encode($1a));}"
+			},
+			"!": {
+				// Comment tag. Skipped by parser
+				open: ""
 			}
 		},
 
@@ -315,14 +321,18 @@
 			jQuery.trim(markup)
 				.replace( /([\\'])/g, "\\$1" )
 				.replace( /[\r\t\n]/g, " " )
-				.replace( /\${([^}]*)}/g, "{{= $1}}" )
-				.replace( /{{(\/?)(\w+|.)(?:\(((?:.(?!}}))*?)?\))?(?:\s+(.*?)?)?(\((.*?)\))?\s*}}/g,
+				.replace( /\$\{([^\}]*)\}/g, "{{= $1}}" )
+				.replace( /\{\{(\/?)(\w+|.)(?:\(((?:[^\}]|\}(?!\}))*?)?\))?(?:\s+(.*?)?)?(\(((?:[^\}]|\}(?!\}))*?)\))?\s*\}\}/g,
 				function( all, slash, type, fnargs, target, parens, args ) {
 					var tag = jQuery.tmpl.tag[ type ], def, expr, exprAutoFnDetect;
 					if ( !tag ) {
 						throw "Template command not found: " + type;
 					}
 					def = tag._default || [];
+					if ( parens && !/\w$/.test(target)) {
+						target += parens;
+						parens = "";
+					}
 					if ( target ) {
 						target = unescape( target ); 
 						args = args ? ("," + unescape( args ) + ")") : (parens ? ")" : "");
@@ -331,12 +341,12 @@
 						expr = parens ? (target.indexOf(".") > -1 ? target + parens : ("(" + target + ").call($item" + args)) : target;
 						exprAutoFnDetect = parens ? expr : "(typeof(" + target + ")==='function'?(" + target + ").call($item):(" + target + "))";
 					} else {
-						expr = def["$1"] || "null";
+						exprAutoFnDetect = expr = def.$1 || "null";
 					}
 					fnargs = unescape( fnargs );
 					return "');" + 
 						tag[ slash ? "close" : "open" ]
-							.split( "$notnull_1" ).join( "typeof(" + target + ")!=='undefined' && (" + target + ")!=null" )
+							.split( "$notnull_1" ).join( target ? "typeof(" + target + ")!=='undefined' && (" + target + ")!=null" : "true" )
 							.split( "$1a" ).join( exprAutoFnDetect )
 							.split( "$1" ).join( expr )
 							.split( "$2" ).join( fnargs ?
@@ -344,7 +354,7 @@
 									params = params ? ("," + params + ")") : (parens ? ")" : "");
 									return params ? ("(" + name + ").call($item" + params) : all;
 								})
-								: (def["$2"]||"")
+								: (def.$2||"")
 							) +
 						"_.push('";
 				}) +
@@ -370,13 +380,13 @@
 
 	// Store template items in jQuery.data(), ensuring a unique tmplItem data data structure for each rendered template instance.
 	function storeTmplItems( content ) {
-		var keySuffix = "_" + cloneIndex, elem, elems, newClonedItems = {};
-		for ( var i = 0, l = content.length; i < l; i++ ) {
+		var keySuffix = "_" + cloneIndex, elem, elems, newClonedItems = {}, i, l, m;
+		for ( i = 0, l = content.length; i < l; i++ ) {
 			if ( (elem = content[i]).nodeType !== 1 ) {
 				continue;
 			}
 			elems = elem.getElementsByTagName("*");
-			for ( var m = elems.length - 1; m >= 0; m-- ) {
+			for ( m = elems.length - 1; m >= 0; m-- ) {
 				processItemKey( elems[m] );
 			}
 			processItemKey( elem );
@@ -384,12 +394,13 @@
 		function processItemKey( el ) {
 			var pntKey, pntNode = el, pntItem, tmplItem, key;
 			// Ensure that each rendered template inserted into the DOM has its own template item,
-			if ( key = el.getAttribute( tmplItmAtt )) {
-				while ((pntNode = pntNode.parentNode).nodeType === 1 && !(pntKey = pntNode.getAttribute( tmplItmAtt ))) { }
+			if ( (key = el.getAttribute( tmplItmAtt ))) {
+				while ( pntNode.parentNode && (pntNode = pntNode.parentNode).nodeType === 1 && !(pntKey = pntNode.getAttribute( tmplItmAtt ))) { }
 				if ( pntKey !== key ) {
 					// The next ancestor with a _tmplitem expando is on a different key than this one.
 					// So this is a top-level element within this template item
-					pntNode = pntNode.nodeType === 11 ? 0 : (pntNode.getAttribute( tmplItmAtt ) || 0);
+					// Set pntNode to the key of the parentNode, or to 0 if pntNode.parentNode is null, or pntNode is a fragment.
+					pntNode = pntNode.parentNode ? (pntNode.nodeType === 11 ? 0 : (pntNode.getAttribute( tmplItmAtt ) || 0)) : 0;
 					if ( !(tmplItem = newTmplItems[key]) ) {
 						// The item is for wrapped content, and was copied from the temporary parent wrappedItem.
 						tmplItem = wrappedItems[key];
@@ -412,8 +423,9 @@
 			}
 			if ( tmplItem ) {
 				pntItem = tmplItem;
-				// Find the template item of the parent element
-				while ( pntItem && pntItem.key != pntNode ) {
+				// Find the template item of the parent element. 
+				// (Using !=, not !==, since pntItem.key is number, and pntNode may be a string)
+				while ( pntItem && pntItem.key != pntNode ) { 
 					// Add this element as a top-level node for this rendered template item, as well as for any
 					// ancestor items between this item and the item of its parent element
 					pntItem.nodes.push( el );
@@ -427,8 +439,8 @@
 			}
 			function cloneTmplItem( key ) {
 				key = key + keySuffix;
-				tmplItem = newClonedItems[key]
-				= (newClonedItems[key] || newTmplItem( tmplItem, newTmplItems[tmplItem.parent.key + keySuffix] || tmplItem.parent, null, true ));
+				tmplItem = newClonedItems[key] = 
+					(newClonedItems[key] || newTmplItem( tmplItem, newTmplItems[tmplItem.parent.key + keySuffix] || tmplItem.parent, null, true ));
 			}
 		}
 	}
@@ -439,7 +451,6 @@
 		if ( !content ) {
 			return stack.pop();
 		}
-		var l = stack.length;
 		stack.push({ _: content, tmpl: tmpl, item:this, data: data, options: options });
 	}
 
