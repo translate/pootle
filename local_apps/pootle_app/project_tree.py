@@ -257,7 +257,7 @@ def get_translated_name_gnu(translation_project, store):
         # let's make sure
         for tp in translation_project.project.translationproject_set.exclude(language__code='templates').iterator():
             temp_suffix = tp.language.code + os.extsep + translation_project.project.localfiletype
-            if translation_project.stores.exclude(name=temp_suffix).exclude(file="").count():
+            if tp.stores.exclude(name=temp_suffix).exclude(file="").count():
                 use_prefix = True
                 break
 
