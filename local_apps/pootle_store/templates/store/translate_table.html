@@ -2,7 +2,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 <!-- JS templates: move from here when possible -->
-<script id="unit_view" type="text/x-jquery-template">
+<script id="view_unit" type="text/x-jquery-template">
 <td class="translation-action">
   <a title="{% trans 'Edit translation' %}" id="editlink${unit.id}" href="?unit=${unit.id}">
     <img src="{{ 'images/pencil.png'|m }}" />

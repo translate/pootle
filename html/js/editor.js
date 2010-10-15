@@ -32,6 +32,10 @@
       $(this).text(stext);
     });
 
+    /* Compile templates */
+    this.tmpl = {pager: $("#pager").template(),
+                 vunit: $("#view_unit").template()}
+
     /* Set initial focus on page load */
     this.focused = $(".translate-original-focus textarea").get(0);
 
@@ -318,11 +322,10 @@
     for (var i=0; i<uids.length; i++) {
       var _this = uids[i].id || uids[i];
       var unit = this.units[_this];
-      var viewunit = $('<tbody><tr id="row' + _this + '"></tr></tbody>');
-      var row = $('tr', viewunit);
-      $("#unit_view").tmpl({meta: this.meta,
-                            unit: unit}).appendTo(row);
-      rows += viewunit.html();
+      rows += '<tr id="row' + _this + '">';
+      rows += this.tmpl.vunit($, {data: {meta: this.meta,
+                                         unit: unit}}).join("");
+      rows += '</tr>';
     }
     return rows;
   },
@@ -406,9 +409,8 @@
     // If page number has changed, redraw pager
     if (this.current_page != pager.number) {
       this.current_page = pager.number;
-      var newpager = $("#pager").tmpl({pager: pager}).get(0);
-      $("div.translation-nav").children().remove();
-      $("div.translation-nav").append(newpager);
+      var newpager = this.tmpl.pager($, {data: {pager: pager}}).join("");
+      $("div.translation-nav").children().replaceWith(newpager);
     }
   },
 
