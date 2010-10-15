@@ -31,7 +31,6 @@
         /* Bind event handler */
         $(".apertium").live("click", _this.translate);
       });
-
     },
 
     ready: function() {

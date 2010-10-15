@@ -141,9 +141,14 @@
     /* Load MT backends */
     $.each(this.settings.mt, function() {
       var backend = this.name;
-      $.getScript(m('js/mt/' + backend + '.js'), function() {
-        PTL.editor.mt[backend].init();
-        $("table.translate-table").live("mt_ready", PTL.editor.mt[backend].ready);
+      $.ajax({
+        url: m('js/mt/' + backend + '.js'),
+        async: false,
+        dataType: 'script',
+        success: function() {
+          $("table.translate-table").live("mt_ready", PTL.editor.mt[backend].ready);
+          PTL.editor.mt[backend].init();
+        }
       });
     });
 
