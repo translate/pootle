@@ -172,24 +172,15 @@ def translation_project_should_exist(language, project):
             # language is template look for template files
             for dirpath, dirnames, filenames in os.walk(project.get_real_path()):
                 for filename in filenames:
-                    if filename.endswith(os.path.extsep + project.get_template_filtetype()):
-                        if project.get_template_filtetype() != project.localfiletype:
-                            # templates and translation files have a
-                            # different extension, easy to detect
-                            # templates
-                            return True
-                        elif not langdata.langcode_re.match(os.path.splitext(filename)[0]):
-                            # can't tell templates by their extension,
-                            # assume any translation file that can't
-                            # be a language name is a template
+                    if project.file_belongs_to_project(filename, match_templates=True) and \
+                           match_template_filename(project, filename):
                             return True
         else:
             # find files with the language name in the project dir
             for dirpath, dirnames, filenames in os.walk(project.get_real_path()):
                 for filename in filenames:
-                    name = os.path.splitext(filename)[0]
                     if project.file_belongs_to_project(filename, match_templates=False) and \
-                           (name == language.code or name.endswith('-'+language.code) or name.endswith('_'+language.code)):
+                           direct_language_match_filename(language.code, filename):
                         return True
     else:
         # find directory with the language name in the project dir
