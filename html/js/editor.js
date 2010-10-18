@@ -286,7 +286,7 @@
         PTL.editor.meta = data.meta;
         PTL.editor.update_pager(data.pager);
         PTL.editor.current_page = data.pager.number;
-        PTL.editor.check_pages(false);
+        PTL.editor.fetch_pages(false);
       },
     });
   },
@@ -369,7 +369,7 @@
   display_edit_unit: function(store, uid) {
     // TODO: Try to add stripe classes on the fly, not at a separate
     // time after rendering
-    this.check_pages(true);
+    this.fetch_pages(true);
     var uids = this.get_uids_before_after(uid);
     var newtbody = this.build_rows(uids.before) +
                    this.get_edit_unit(store, uid) +
@@ -387,8 +387,8 @@
     $(ttable).trigger("editor_ready");
   },
 
-  /* Checks if the editor needs to retrieve more view unit pages */
-  check_pages: function(async) {
+  /* Fetches more view unit pages in case they're needed */
+  fetch_pages: function(async) {
     var current = this.current_page;
     var candidates = [current, current + 1, current - 1];
     var pages = [];
