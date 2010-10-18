@@ -580,6 +580,7 @@ def get_tp_metadata(request, pootle_path, uid):
             json["success"] = False
             json["msg"] = _("You do not have rights to access translation mode.")
         else:
+            # TODO: Adapt units_qs once we allow filtering.
             units_qs = store.units
             unit_rows = profile.get_unit_rows()
 
