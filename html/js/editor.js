@@ -158,7 +158,7 @@
     });
 
     /* Retrieve metadata used for this query */
-    this.get_meta();
+    this.get_meta(true);
 
     /* History support */
     $.history.init(function(hash) {
@@ -170,7 +170,7 @@
           if (PTL.editor.active_uid != uid
               && PTL.editor.units[uid] == undefined) {
             PTL.editor.active_uid = uid;
-            PTL.editor.get_meta();
+            PTL.editor.get_meta(true);
           }
           PTL.editor.display_edit_unit(PTL.editor.store, uid);
         break;
@@ -275,8 +275,9 @@
    */
 
   /* Retrieves the metadata used for this query */
-  get_meta: function() {
-    var meta_url = l(this.store + "/meta/" + this.active_uid);
+  get_meta: function(with_uid) {
+    var append = with_uid ? this.active_uid : "";
+    var meta_url = l(this.store + "/meta/" + append);
     $.ajax({
       url: meta_url,
       async: false,
