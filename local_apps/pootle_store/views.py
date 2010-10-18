@@ -560,7 +560,7 @@ def _build_pager_dict(pager):
            }
 
 @ajax_required
-def get_tp_metadata(request, pootle_path, uid):
+def get_tp_metadata(request, pootle_path, uid=None):
     """
     @return: An object in JSON notation that contains the metadata information
     about the current translation project: source/target language codes,
@@ -585,7 +585,10 @@ def get_tp_metadata(request, pootle_path, uid):
             unit_rows = profile.get_unit_rows()
 
             try:
-                current_unit = units_qs.get(id=uid, store__pootle_path=pootle_path)
+                if uid is None:
+                    current_unit = units_qs[0]
+                else:
+                    current_unit = units_qs.get(id=uid, store__pootle_path=pootle_path)
                 preceding = units_qs.filter(index__lt=current_unit.index).count()
                 page = preceding / unit_rows + 1
                 pager = paginate(request, units_qs, items=unit_rows, page=page)
