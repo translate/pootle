@@ -169,10 +169,11 @@
             PTL.editor.active_uid = uid;
             PTL.editor.get_meta(true);
           }
-          PTL.editor.display_edit_unit(PTL.editor.store, uid);
+          PTL.editor.display_edit_unit(uid);
         break;
         case "filter":
           PTL.editor.filtering_by = parts[1];
+          PTL.editor.get_meta(false);
         break;
       }
     }, {'unescape': true});
@@ -292,11 +293,11 @@
   },
 
   /* Gets the view units that refer to current_page */
-  get_view_units: function(store, async, page, limit) {
+  get_view_units: function(async, page, limit) {
     var async = async == undefined ? false : async;
     var page = page == undefined ? this.current_page : page;
     var limit = limit == undefined ? 0 : limit;
-    var url_str = store + '/view';
+    var url_str = this.store + '/view';
     url_str = limit ? url_str + '/limit/' + limit : url_str;
     var view_for_url = l(url_str);
     $.ajax({
@@ -366,13 +367,13 @@
   },
 
   /* Sets the edit view for unit 'uid' */
-  display_edit_unit: function(store, uid) {
+  display_edit_unit: function(uid) {
     // TODO: Try to add stripe classes on the fly, not at a separate
     // time after rendering
     this.fetch_pages(true);
     var uids = this.get_uids_before_after(uid);
     var newtbody = this.build_rows(uids.before) +
-                   this.get_edit_unit(store, uid) +
+                   this.get_edit_unit(uid) +
                    this.build_rows(uids.after);
     this.redraw(newtbody);
   },
@@ -401,7 +402,7 @@
       }
     }
     for (var i=0; i<pages.length; i++) {
-      this.get_view_units(this.store, async, pages[i]);
+      this.get_view_units(async, pages[i]);
     }
   },
 
@@ -417,8 +418,8 @@
   },
 
   /* Loads the edit unit 'uid' */
-  get_edit_unit: function(store, uid) {
-    var edit_url = l(store + '/edit/' + uid);
+  get_edit_unit: function(uid) {
+    var edit_url = l(this.store + '/edit/' + uid);
     var editor = '<tr id="row' + uid + '" class="translate-translation-row">';
     var widget = '';
     $.ajax({
