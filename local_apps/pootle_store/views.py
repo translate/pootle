@@ -607,16 +607,20 @@ def get_tp_metadata(request, pootle_path, uid=None):
 
             try:
                 if uid is None:
-                    # FIXME: handle the situation when the current queryset
-                    # is empty
-                    current_unit = units_qs[0]
+                    try:
+                        current_unit = units_qs[0]
+                        json["uid"] = units_qs[0].id
+                    except IndexError:
+                        current_unit = None
                 else:
                     current_unit = units_qs.get(id=uid, store__pootle_path=pootle_path)
-                # FIXME: This doesn't play nicely with filtering
-                preceding = units_qs.filter(index__lt=current_unit.index).count()
-                page = preceding / unit_rows + 1
-                pager = paginate(request, units_qs, items=unit_rows, page=page)
-                json["pager"] = _build_pager_dict(pager)
+                # FIXME: This doesn't play nicely with filtering since it
+                # relies on unit indexes. These should be per-query indexes.
+                if current_unit is not None:
+                    preceding = units_qs.filter(index__lt=current_unit.index).count()
+                    page = preceding / unit_rows + 1
+                    pager = paginate(request, units_qs, items=unit_rows, page=page)
+                    json["pager"] = _build_pager_dict(pager)
                 tp = store.translation_project
                 json["meta"] = {"source_lang": tp.project.source_language.code,
                                 "source_dir": tp.project.source_language.get_direction(),

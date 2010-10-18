@@ -175,6 +175,7 @@
         case "filter":
           PTL.editor.filter = parts[1];
           PTL.editor.get_meta(false);
+          PTL.editor.display_edit_unit(PTL.editor.active_uid);
         break;
       }
     }, {'unescape': true});
@@ -287,9 +288,16 @@
       dataType: 'json',
       success: function(data) {
         PTL.editor.meta = data.meta;
-        PTL.editor.update_pager(data.pager);
-        PTL.editor.current_page = data.pager.number;
-        PTL.editor.fetch_pages(false);
+        // TODO: If there's no pager information, that means ther are no
+        // units in this query so we should display a message accordingly.
+        if (data.pager) {
+            PTL.editor.update_pager(data.pager);
+            PTL.editor.current_page = data.pager.number;
+            PTL.editor.fetch_pages(false);
+            if (data.uid) {
+              PTL.editor.active_uid = data.uid;
+            }
+        }
       },
     });
   },
