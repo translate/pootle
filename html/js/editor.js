@@ -157,9 +157,6 @@
       });
     });
 
-    /* Retrieve metadata used for this query */
-    this.get_meta(true);
-
     /* History support */
     $.history.init(function(hash) {
       var parts = hash.split("/");
@@ -179,6 +176,9 @@
         break;
       }
     }, {'unescape': true});
+
+    /* Retrieve metadata used for this query */
+    this.get_meta(true);
   },
 
   /*
