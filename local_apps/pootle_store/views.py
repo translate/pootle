@@ -495,7 +495,7 @@ def _get_prevnext_unit_ids(unit):
     @return: previous and next units. If previous or next is missing,
     None will be returned.
     """
-    # XXX: Review indexes when accepting filtering
+    # TODO: Review indexes when accepting filtering
     path = unit.store.pootle_path
     try:
         prev = Unit.objects.get(store__pootle_path=path, index=unit.index - 1).id
@@ -635,7 +635,7 @@ def get_view_units(request, pootle_path, limit=0):
             try:
                 if not limit:
                     limit = profile.get_unit_rows()
-                # FIXME: Adapt units_qs once we allow filtering
+                # TODO: Adapt units_qs once we allow filtering
                 units_qs = store.units
                 json["units"] = _filter_view_units(units_qs, int(page), int(limit))
                 json["success"] = True
@@ -693,7 +693,7 @@ def get_edit_unit(request, pootle_path, uid):
             'editor': t.render(c)}
 
     current_page = 'page' in request.GET and request.GET['page'] or 1
-    # FIXME: Adapt units_qs once we allow filtering
+    # TODO: Adapt units_qs once we allow filtering
     units_qs = unit.store.units
     unit_rows = profile.get_unit_rows()
     preceding = units_qs.filter(index__lt=unit.index).count()
@@ -753,7 +753,7 @@ def process_submit(request, pootle_path, uid, type):
                                                                  suggester=get_profile(request.user),
                                                                  state='pending', unit=unit.id)
                 current_page = 'page' in request.POST and request.POST['page'] or 1
-                # FIXME: Adapt units_qs once we allow filtering
+                # TODO: Adapt units_qs once we allow filtering
                 units_qs = unit.store.units
                 unit_rows = profile.get_unit_rows()
                 preceding = units_qs.filter(index__lt=unit.index).count()
@@ -763,7 +763,7 @@ def process_submit(request, pootle_path, uid, type):
                     json["pager"] = _build_pager_dict(pager)
 
                 try:
-                    # FIXME: This will only work with consecuent units,
+                    # TODO: This will only work with consecuent units,
                     # so this won't work with filtered units
                     new_index = unit.index + 1
                     new_unit = unit.store.units.get(index=new_index)
