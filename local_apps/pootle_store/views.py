@@ -502,33 +502,37 @@ def _filter_view_units(units_qs, current_page, limit):
     """
     Returns C{limit} units that are contained within page C{current_page}.
     """
-    #TODO: For now this filters in a simple manner, but we should
-    # allow more complex filtering
     start_index = limit * (current_page - 1)
     end_index = start_index + limit
-    filtered = units_qs.filter(index__range=(start_index, end_index))
-    return _build_units_list(filtered)
+    filtered = units_qs[start_index:end_index]
+    return _build_units_list(units_qs, filtered)
 
-def _get_prevnext_unit_ids(unit):
+def _get_prevnext_unit_ids(qs, unit):
     """
     Gets the previous and next unit ids of C{unit} based on index.
 
     @return: previous and next units. If previous or next is missing,
     None will be returned.
     """
-    # TODO: Review indexes when accepting filtering
     path = unit.store.pootle_path
+    current_index = _get_index_in_qs(qs, unit)
+    prev_index = current_index is not None and current_index - 1 or -1
+    next_index = current_index is not None and current_index + 1 or -1
     try:
-        prev = Unit.objects.get(store__pootle_path=path, index=unit.index - 1).id
-    except Unit.DoesNotExist:
+        prev = qs[prev_index].id
+    except IndexError:
+        prev = None
+    except AssertionError:
         prev = None
     try:
-        next = Unit.objects.get(store__pootle_path=path, index=unit.index + 1).id
-    except Unit.DoesNotExist:
+        next = qs[next_index].id
+    except IndexError:
+        next = None
+    except AssertionError:
         next = None
     return prev, next
 
-def _build_units_list(units):
+def _build_units_list(qs, units):
     """
     Given a list/queryset of units, builds a list with the unit data
     contained in a dictionary ready to be returned as JSON.
@@ -550,7 +554,7 @@ def _build_units_list(units):
             if title:
                 unit_dict["title"] = title
             target_unit.append(unit_dict)
-        prev, next = _get_prevnext_unit_ids(unit)
+        prev, next = _get_prevnext_unit_ids(qs, unit)
         return_units.append({'id': unit.id,
                              'prev': prev,
                              'next': next,
@@ -579,6 +583,21 @@ def _build_pager_dict(pager):
             "start": start,
             "end": end,
            }
+
+def _get_index_in_qs(qs, unit):
+    """
+    Given a queryset C{qs}, returns the position (index) of the unit C{unit}
+    within that queryset.
+
+    @return: Integer value representing the position of the unit C{unit}.
+    If no unit is found then None is returned.
+    """
+    i = 0
+    for u in qs:
+        if u == unit:
+            return i
+        i = i + 1
+    return None
 
 @ajax_required
 def get_tp_metadata(request, pootle_path, uid=None):
@@ -614,10 +633,9 @@ def get_tp_metadata(request, pootle_path, uid=None):
                         current_unit = None
                 else:
                     current_unit = units_qs.get(id=uid, store__pootle_path=pootle_path)
-                # FIXME: This doesn't play nicely with filtering since it
-                # relies on unit indexes. These should be per-query indexes.
                 if current_unit is not None:
-                    preceding = units_qs.filter(index__lt=current_unit.index).count()
+                    current_index = _get_index_in_qs(units_qs, current_unit)
+                    preceding = len(units_qs[:current_index])
                     page = preceding / unit_rows + 1
                     pager = paginate(request, units_qs, items=unit_rows, page=page)
                     json["pager"] = _build_pager_dict(pager)
@@ -666,8 +684,8 @@ def get_view_units(request, pootle_path, limit=0):
             try:
                 if not limit:
                     limit = profile.get_unit_rows()
-                # TODO: Adapt units_qs once we allow filtering
-                units_qs = store.units
+                filter = request.GET.get('filter', DEFAULT_FILTER)
+                units_qs = _filter_queryset(store.units, filter)
                 json["units"] = _filter_view_units(units_qs, int(page), int(limit))
                 json["success"] = True
             except Unit.DoesNotExist:
@@ -724,14 +742,18 @@ def get_edit_unit(request, pootle_path, uid):
             'editor': t.render(c)}
 
     current_page = 'page' in request.GET and request.GET['page'] or 1
-    # TODO: Adapt units_qs once we allow filtering
-    units_qs = unit.store.units
+
+    filter = request.GET.get('filter', DEFAULT_FILTER)
+    units_qs = _filter_queryset(unit.store.units, filter)
     unit_rows = profile.get_unit_rows()
-    preceding = units_qs.filter(index__lt=unit.index).count()
-    page = preceding / unit_rows + 1
-    if page != current_page:
-        pager = paginate(request, units_qs, items=unit_rows, page=page)
-        json["pager"] = _build_pager_dict(pager)
+    current_unit = unit
+    if current_unit is not None:
+        current_index = _get_index_in_qs(units_qs, current_unit)
+        preceding = len(units_qs[:current_index])
+        page = preceding / unit_rows + 1
+        if page != current_page:
+            pager = paginate(request, units_qs, items=unit_rows, page=page)
+            json["pager"] = _build_pager_dict(pager)
 
     response = simplejson.dumps(json)
     return HttpResponse(response, mimetype="application/json")

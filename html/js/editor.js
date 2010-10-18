@@ -23,6 +23,7 @@
     this.store = $("div#store").text();
     this.active_uid = $("#active_uid").text();
     this.current_page = 1;
+    this.current_current_num_pages = $("#num_pages").text();
     this.pages_got = {};
     this.filter = "all";
     this.keepstate = false;
@@ -174,6 +175,8 @@
         break;
         case "filter":
           PTL.editor.filter = parts[1];
+          PTL.editor.pages_got = {};
+          PTL.editor.units = {};
           PTL.editor.get_meta(false);
           PTL.editor.display_edit_unit(PTL.editor.active_uid);
         break;
@@ -293,6 +296,7 @@
         if (data.pager) {
             PTL.editor.update_pager(data.pager);
             PTL.editor.current_page = data.pager.number;
+            PTL.editor.current_num_pages = data.pager.num_pages;
             PTL.editor.fetch_pages(false);
             if (data.uid) {
               PTL.editor.active_uid = data.uid;
@@ -312,7 +316,7 @@
     var view_for_url = l(url_str);
     $.ajax({
       url: view_for_url,
-      data: {'page': page},
+      data: {page: page, filter: PTL.editor.filter},
       dataType: 'json',
       async: async,
       success: function(data) {
@@ -360,10 +364,11 @@
     }
     var prevnextl = {prev: "after", next: "before"};
     for (var m in prevnext) {
-      if (uids[prevnextl[m]].length < limit) {
+      var length = uids[prevnextl[m]].length;
+      if (length != 0 && length < limit) {
         // Add (limit - lenght) units to uids[prevnext[m]]
-        var how_much = limit - uids[prevnextl[m]].length;
-        var tu = this.units[uids[prevnext[m]][uids[prevnext[m]].length-1]];
+        var how_much = limit - length;
+        var tu = this.units[uids[prevnext[m]][length-1]];
         for (var i=0; i<how_much; i++) {
           if (tu[m] != undefined) {
             var tu = this.units[tu[m]];
@@ -419,9 +424,11 @@
   /* Updates the pager */
   update_pager: function(pager) {
     this.pager = pager;
-    // If page number has changed, redraw pager
-    if (this.current_page != pager.number) {
+    // If page number or num_pages has changed, redraw pager
+    if (this.current_page != pager.number
+        || this.current_num_pages != pager.num_pages) {
       this.current_page = pager.number;
+      this.current_num_pages = pager.num_pages;
       var newpager = this.tmpl.pager($, {data: {pager: pager}}).join("");
       $("div.translation-nav").children().replaceWith(newpager);
     }
@@ -435,7 +442,7 @@
     $.ajax({
       url: edit_url,
       async: false,
-      data: {page: PTL.editor.current_page},
+      data: {page: PTL.editor.current_page, filter: PTL.editor.filter},
       dataType: 'json',
       success: function(data) {
         widget = data['editor'];
