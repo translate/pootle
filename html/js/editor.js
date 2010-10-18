@@ -24,6 +24,7 @@
     this.active_uid = $("#active_uid").text();
     this.current_page = 1;
     this.pages_got = {};
+    this.filter = "all";
     this.keepstate = false;
 
     /* Ugly hack to avoid JS templates from being interpreted by Django. */
@@ -172,7 +173,7 @@
           PTL.editor.display_edit_unit(uid);
         break;
         case "filter":
-          PTL.editor.filtering_by = parts[1];
+          PTL.editor.filter = parts[1];
           PTL.editor.get_meta(false);
         break;
       }
@@ -282,6 +283,7 @@
     $.ajax({
       url: meta_url,
       async: false,
+      data: {filter: PTL.editor.filter},
       dataType: 'json',
       success: function(data) {
         PTL.editor.meta = data.meta;

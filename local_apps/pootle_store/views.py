@@ -52,6 +52,9 @@ from pootle_store.forms import unit_form_factory, highlight_whitespace
 from pootle_store.templatetags.store_tags import fancy_highlight, find_altsrcs, get_sugg_list, highlight_diffs, pluralize_source, pluralize_target
 from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED, absolute_real_path, ajax_required
 
+# DEFAULT FILTERING
+DEFAULT_FILTER = 'all'
+
 def export_as_xliff(request, pootle_path):
     """export given file to xliff for offline translation"""
     if pootle_path[0] != '/':
@@ -477,6 +480,24 @@ def translate(request, pootle_path):
 # Views used with XMLHttpRequest requests.
 #
 
+def _filter_queryset(qs, filter_by):
+    """
+    Filters the given C{qs} unit queryset by the criterion specified
+    in the C{filter_by} parameter.
+
+    @return: A filtered queryset.
+    """
+    # TODO: Add more filtering options
+    if filter_by == "all":
+        filtered = qs
+    elif filter_by == "incomplete":
+        filtered = qs.filter(state=FUZZY) | qs.filter(state=UNTRANSLATED)
+    elif filter_by == "untranslated":
+        filtered = qs.filter(state=UNTRANSLATED)
+    elif filter_by == "fuzzy":
+        filtered = qs.filter(state=FUZZY)
+    return filtered
+
 def _filter_view_units(units_qs, current_page, limit):
     """
     Returns C{limit} units that are contained within page C{current_page}.
@@ -580,15 +601,18 @@ def get_tp_metadata(request, pootle_path, uid=None):
             json["success"] = False
             json["msg"] = _("You do not have rights to access translation mode.")
         else:
-            # TODO: Adapt units_qs once we allow filtering.
-            units_qs = store.units
+            filter = request.GET.get('filter', DEFAULT_FILTER)
+            units_qs = _filter_queryset(store.units, filter)
             unit_rows = profile.get_unit_rows()
 
             try:
                 if uid is None:
+                    # FIXME: handle the situation when the current queryset
+                    # is empty
                     current_unit = units_qs[0]
                 else:
                     current_unit = units_qs.get(id=uid, store__pootle_path=pootle_path)
+                # FIXME: This doesn't play nicely with filtering
                 preceding = units_qs.filter(index__lt=current_unit.index).count()
                 page = preceding / unit_rows + 1
                 pager = paginate(request, units_qs, items=unit_rows, page=page)
