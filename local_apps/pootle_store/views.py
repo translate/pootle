@@ -673,7 +673,7 @@ def get_view_units(request, pootle_path, limit=0):
         pootle_path = '/' + pootle_path
     profile = get_profile(request.user)
     json = {}
-    page = 'page' in request.GET and request.GET['page'] or 1
+    page = request.GET.get('page', 1)
 
     try:
         store = Store.objects.select_related('translation_project', 'parent').get(pootle_path=pootle_path)
@@ -741,8 +741,7 @@ def get_edit_unit(request, pootle_path, uid):
     json = {'success': True,
             'editor': t.render(c)}
 
-    current_page = 'page' in request.GET and request.GET['page'] or 1
-
+    current_page = request.GET.get('page', 1)
     filter = request.GET.get('filter', DEFAULT_FILTER)
     units_qs = _filter_queryset(unit.store.units, filter)
     unit_rows = profile.get_unit_rows()
@@ -805,7 +804,7 @@ def process_submit(request, pootle_path, uid, type):
                             SuggestionStat.objects.get_or_create(translation_project=translation_project,
                                                                  suggester=get_profile(request.user),
                                                                  state='pending', unit=unit.id)
-                current_page = 'page' in request.POST and request.POST['page'] or 1
+                current_page = request.POST.get('page', 1)
                 # TODO: Adapt units_qs once we allow filtering
                 units_qs = unit.store.units
                 unit_rows = profile.get_unit_rows()
