@@ -364,11 +364,10 @@
     }
     var prevnextl = {prev: "after", next: "before"};
     for (var m in prevnext) {
-      var length = uids[prevnextl[m]].length;
-      if (length != 0 && length < limit) {
-        // Add (limit - lenght) units to uids[prevnext[m]]
-        var how_much = limit - length;
-        var tu = this.units[uids[prevnext[m]][length-1]];
+      if (uids[prevnextl[m]].length < limit) {
+        // Add (limit - length) units to uids[prevnext[m]]
+        var how_much = limit - uids[prevnextl[m]].length;
+        var tu = this.units[uids[prevnext[m]][uids[prevnext[m]].length-1]];
         for (var i=0; i<how_much; i++) {
           if (tu[m] != undefined) {
             var tu = this.units[tu[m]];
