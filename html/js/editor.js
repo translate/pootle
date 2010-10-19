@@ -470,7 +470,7 @@
     var submit_url = l(PTL.editor.store + '/process/' + uid + '/' + type);
     // Serialize data to be sent
     var post_data = $("form#" + form_id).serialize();
-    post_data += "&page=" + this.current_page;
+    post_data += "&page=" + PTL.editor.current_page + "&filter=" + PTL.editor.filter;
     $.ajax({
       url: submit_url,
       type: 'POST',

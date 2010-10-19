@@ -804,27 +804,27 @@ def process_submit(request, pootle_path, uid, type):
                             SuggestionStat.objects.get_or_create(translation_project=translation_project,
                                                                  suggester=get_profile(request.user),
                                                                  state='pending', unit=unit.id)
-                current_page = request.POST.get('page', 1)
-                # TODO: Adapt units_qs once we allow filtering
-                units_qs = unit.store.units
-                unit_rows = profile.get_unit_rows()
-                preceding = units_qs.filter(index__lt=unit.index).count()
-                page = preceding / unit_rows + 1
-                if page != current_page:
-                    pager = paginate(request, units_qs, items=unit_rows, page=page)
-                    json["pager"] = _build_pager_dict(pager)
 
-                try:
-                    # TODO: This will only work with consecuent units,
-                    # so this won't work with filtered units
-                    new_index = unit.index + 1
-                    new_unit = unit.store.units.get(index=new_index)
-                    json["new_uid"] = new_unit.id
-                except Unit.DoesNotExist:
-                    # End of set: let's assume the new unit is the last we had
-                    new_unit = unit
-                    json["new_uid"] = None
-                json["success"] = True
+                current_page = request.POST.get('page', 1)
+                filter = request.POST.get('filter', DEFAULT_FILTER)
+                units_qs = _filter_queryset(unit.store.units, filter)
+                unit_rows = profile.get_unit_rows()
+                current_unit = unit
+                if current_unit is not None:
+                    current_index = _get_index_in_qs(units_qs, current_unit)
+                    preceding = len(units_qs[:current_index])
+                    page = preceding / unit_rows + 1
+                    if page != current_page:
+                        pager = paginate(request, units_qs, items=unit_rows, page=page)
+                        json["pager"] = _build_pager_dict(pager)
+                    try:
+                        new_index = current_index + 1
+                        json["new_uid"] = units_qs[new_index].id
+                    except IndexError:
+                        # End of set: let's assume the new unit is the last we had
+                        new_unit = unit
+                        json["new_uid"] = None
+                    json["success"] = True
             else:
                 # Form failed
                 json["success"] = False
