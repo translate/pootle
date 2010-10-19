@@ -488,9 +488,8 @@ def _filter_queryset(qs, filter_by):
     @return: A filtered queryset.
     """
     # TODO: Add more filtering options
-    if filter_by == "all":
-        filtered = qs
-    elif filter_by == "incomplete":
+    filtered = qs
+    if filter_by == "incomplete":
         filtered = qs.filter(state=FUZZY) | qs.filter(state=UNTRANSLATED)
     elif filter_by == "untranslated":
         filtered = qs.filter(state=UNTRANSLATED)
