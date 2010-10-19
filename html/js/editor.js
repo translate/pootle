@@ -488,8 +488,11 @@
                 PTL.editor.units[uid].target[i].text = $(this).val();
               });
             }
-            var newhash = "unit/" + parseInt(data.new_uid);
-            $.history.load(newhash);
+            var new_uid = parseInt(data.new_uid);
+            if (new_uid) {
+              var newhash = "unit/" + new_uid;
+              $.history.load(newhash);
+            }
           } else {
             PTL.editor.error(data.msg);
           }
