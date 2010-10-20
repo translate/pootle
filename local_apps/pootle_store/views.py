@@ -495,6 +495,8 @@ def _filter_queryset(qs, filter_by):
         filtered = qs.filter(state=UNTRANSLATED)
     elif filter_by == "fuzzy":
         filtered = qs.filter(state=FUZZY)
+    elif filter_by == "suggestions":
+        filtered = qs.exclude(suggestion=None)
     return filtered
 
 def _filter_view_units(units_qs, current_page, limit):
