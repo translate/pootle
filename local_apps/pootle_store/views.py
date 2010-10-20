@@ -590,14 +590,8 @@ def _get_index_in_qs(qs, unit):
     within that queryset.
 
     @return: Integer value representing the position of the unit C{unit}.
-    If no unit is found then None is returned.
     """
-    i = 0
-    for u in qs:
-        if u == unit:
-            return i
-        i = i + 1
-    return None
+    return qs.filter(index__lt=unit.index).count()
 
 @ajax_required
 def get_tp_metadata(request, pootle_path, uid=None):
