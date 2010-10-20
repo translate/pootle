@@ -538,7 +538,7 @@ def _build_units_list(qs, units):
     having plural forms, a title for the plural form is also provided.
     """
     return_units = []
-    for unit in units:
+    for unit in units.iterator():
         source_unit = []
         target_unit = []
         for i, source, title in pluralize_source(unit):
