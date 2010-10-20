@@ -513,21 +513,20 @@ def _get_prevnext_unit_ids(qs, unit):
     @return: previous and next units. If previous or next is missing,
     None will be returned.
     """
-    path = unit.store.pootle_path
     current_index = _get_index_in_qs(qs, unit)
-    prev_index = current_index is not None and current_index - 1 or -1
-    next_index = current_index is not None and current_index + 1 or -1
+    prev_index = len(qs)
+    next_index = len(qs)
+    if current_index is not None:
+        if current_index > 0:
+            prev_index = current_index - 1
+        next_index = current_index + 1
     try:
         prev = qs[prev_index].id
     except IndexError:
         prev = None
-    except AssertionError:
-        prev = None
     try:
         next = qs[next_index].id
     except IndexError:
-        next = None
-    except AssertionError:
         next = None
     return prev, next
 
