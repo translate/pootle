@@ -58,7 +58,7 @@ def dictsum(x, y):
 
 
 def paginate(request, queryset, items=30, page=None):
-    paginator = Paginator(queryset, items, orphans=items/2)
+    paginator = Paginator(queryset, items)
 
     if not page:
         try:
