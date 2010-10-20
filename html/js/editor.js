@@ -1,6 +1,15 @@
 (function($) {
   window.PTL = window.PTL || {};
 
+  // XXX: Know of a better place for this?
+  Object.size = function(obj) {
+    var size = 0, key;
+    for (key in obj) {
+      if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+  };
+
   PTL.editor = {
 
   /*
@@ -362,16 +371,18 @@
         }
       }
     }
-    var prevnextl = {prev: "after", next: "before"};
-    for (var m in prevnext) {
-      if (uids[prevnextl[m]].length < limit) {
-        // Add (limit - length) units to uids[prevnext[m]]
-        var how_much = limit - uids[prevnextl[m]].length;
-        var tu = this.units[uids[prevnext[m]][uids[prevnext[m]].length-1]];
-        for (var i=0; i<how_much; i++) {
-          if (tu[m] != undefined) {
-            var tu = this.units[tu[m]];
-            uids[prevnext[m]].push(tu.id);
+    if (Object.size(this.units) > limit) {
+      var prevnextl = {prev: "after", next: "before"};
+      for (var m in prevnext) {
+        if (uids[prevnextl[m]].length < limit) {
+          // Add (limit - length) units to uids[prevnext[m]]
+          var how_much = limit - uids[prevnextl[m]].length;
+          var tu = this.units[uids[prevnext[m]][uids[prevnext[m]].length-1]];
+          for (var i=0; i<how_much; i++) {
+            if (tu[m] != undefined) {
+              var tu = this.units[tu[m]];
+              uids[prevnext[m]].push(tu.id);
+            }
           }
         }
       }
