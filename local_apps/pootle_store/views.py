@@ -513,8 +513,8 @@ def _get_prevnext_unit_ids(qs, unit):
     None will be returned.
     """
     current_index = _get_index_in_qs(qs, unit)
-    prev_index = len(qs)
-    next_index = len(qs)
+    prev_index = qs.count()
+    next_index = prev_index
     if current_index is not None:
         if current_index > 0:
             prev_index = current_index - 1
