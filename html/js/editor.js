@@ -55,12 +55,8 @@
       PTL.editor.focused = e.target;
     });
 
-    /* Write TM results into the currently focused element */
-    // TODO: refactor write TM and writespecial within a single function
-    $(".writetm").live("click", this.copy_text);
-
-    /* Write special chars, tags and escapes into the currently focused element */
-    $(".writespecial, .translate-full .translation-highlight-escape, .translate-full .translation-highlight-html").live("click", this.copy_text);
+    /* Write TM results, special chars... into the currently focused element */
+    $(".writetm, .writespecial, .translate-full .translation-highlight-escape, .translate-full .translation-highlight-html").live("click", this.copy_text);
 
     /* Copy original translation */
     $("a.copyoriginal").live("click", function() {
