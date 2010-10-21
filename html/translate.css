@@ -8,7 +8,6 @@ div#toolbar
 {
     background-color: rgba(30, 66, 98, 0.75);
     color: #fff;
-    font-size: 85%;
     text-align: center;
     width: 100%;
     position: fixed;
@@ -33,12 +32,17 @@ table.translate-table
 
 table.translate-table td
 {
-    vertical-align: top;
+    vertical-align: middle;
 }
 
 td.translation-action
 {
     min-height: 1.5em;
+    height: 0px;
+    text-align: center;
+    width: 100%;
+    padding: 0.5em;
+    font-size: 110%;
 }
 
 td.translation-action img
@@ -63,22 +67,31 @@ table[dir="rtl"] td.translate-original
     padding-left: 5px;
 }
 
+tr.translate-translation-row
+{
+    background-color: #f1f7f8;
+}
+
 .translate-view .translation-text
 {
-    padding: 1px 0;
-    line-height: 1.3;
+    padding: 0.5em;
 }
 
 .translation-text
 {
     max-width: 100%;
-    min-height: 1.5em;
     overflow: auto;
+    font-size: 115%;
+}
+
+div.sources {
+    margin-top: 2em;
 }
 
 div.sources .translation-text
 {
-    padding: 1px;
+    padding: 0.5em 0;
+    border-top: 1px dotted #ccc;
 }
 
 div.translate-plural .translation-text
@@ -88,8 +101,8 @@ div.translate-plural .translation-text
 
 .translation-text-headers
 {
-    font-weight: bolder;
-    color: #006699;
+    color: #999;
+    font-size: 85%;
     position: relative;
 }
 
@@ -142,26 +155,16 @@ div.source-language > div.translation-text-headers
     min-height: 18px;
 }
 
-.translate-focus div.translate-original,
 div.language-name
 {
-    border: 1px solid black;
-    background-color: #ebebeb;
-    color: inherit;
-}
-
-div.language-name
-{
-    border-bottom: 1px solid #ebebeb;
+    border-top: 1px dotted #ccc;
+    border-left: 1px dotted #ccc;
+    border-right: 1px dotted #ccc;
+    border-bottom: 1px solid #f1f7f8;
     padding: 1px 5px 0px;
     display: inline-block;
     position: absolute;
     bottom: -1px;
-}
-
-div.translation-text-headers[dir="rtl"] div.language-name
-{
-    margin-right: -2px;
 }
 
 .translate-focus div.translate-original,
@@ -169,17 +172,9 @@ div.translation-text-headers[dir="rtl"] div.language-name
     color: #000;
 }
 
-div.alternative div.translate-original,
-div.alternative div.language-name
+div.alternative
 {
-    border: 1px solid #ccc;
-    background-color: #ddd;
-    color: inherit;
-}
-
-div.alternative div.language-name
-{
-    border-bottom: 1px solid #ddd;
+    color: #777;
 }
 
 div.translate-original
@@ -199,7 +194,8 @@ table td.translate-original
 .translate-context,
 .translator-comments
 {
-    margin-bottom: 0.1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .translate-locations,
@@ -207,9 +203,11 @@ table td.translate-original
 .translate-context
 {
     overflow: auto;
-    padding: 5px 5px 5px 22px;
+    font-size: 85%;
+    color: #666;
 }
 
+/* SHOULD WE KEEP THESE?*/
 .translate-locations,
 .translate-context
 {
@@ -217,33 +215,25 @@ table td.translate-original
     font-size: 75%;
 }
 
-.translate-locations
-{
-    background: transparent url('images/script_code.png') no-repeat 3px center;
-    border: 1px solid #ddd;
-}
-
-.developer-comments
-{
-    background: #ffe url('images/information.png') no-repeat 3px center;
-    border: 1px solid #fc9;
-}
-
-.translate-context
-{
-    background: #eee url('images/context.png') no-repeat 3px center;
-    border: 1px solid #fff;
-}
-
 div.translator-comments
 {
     text-align: center;
+}
+
+div.translator-comments label
+{
+    display: block;
+    color: #999;
 }
 
 div.translator-comments textarea
 {
     vertical-align: top;
     min-height: 1em;
+    min-width: 100%; /* this won't work in IE I guess */
+    color: #666;
+    font-size: 90%;
+    line-height: 1.2em;
 }
 
 .terminology div.translator-comments
@@ -260,8 +250,8 @@ div.translator-comments textarea
 
 td.translate-focus
 {
-    border-top: 2px solid #000;
-    border-bottom: 2px solid #000;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
     padding-top: .5em;
     padding-bottom: .5em;
     vertical-align: top;
@@ -271,23 +261,20 @@ td.translate-full div.translate-original,
 td.translate-full textarea.translation
 {
     width: 100%;
-    min-height: 21px;
-    padding: 1px 0 !important;
-    margin: 0 auto 5px;
+    margin: 0 auto 1em;
 }
 
 /* TM */
 
 .sidebar
 {
-    padding-bottom: 10px;
+    padding: 10px 20px;
 }
 
 .sidetitle
 {
-    letter-spacing: .1em;
-    padding-bottom: .2em;
-    text-align: center;
+    padding-bottom: 1em;
+    color: #999;
 }
 
 #tm
@@ -297,11 +284,12 @@ td.translate-full textarea.translation
 
 .tm-unit
 {
-    margin: 5px 0px 5px 0px;
-    padding: 0px 2px 0px 0px;
+    margin: 0 0.5em 0.5em 0;
+    padding: 0.3em 0.6em;
     background-color: #fff;
-    position: relative;
+    border: 1px dotted #999;
     cursor: pointer;
+    float: left;
 }
 
 tr.odd .tm-unit
@@ -312,6 +300,7 @@ tr.odd .tm-unit
 .tm-original
 {
     font-weight: bolder;
+    padding-right: 0.4em;
 }
 
 .tm-translation
@@ -340,6 +329,11 @@ div.translator-comments + #translate-suggestion-container
 {
     position: relative;
     margin-bottom: 0.5em;
+}
+
+.translate-suggestion-block > strong
+{
+    color: #999;
 }
 
 .translate-suggestion-block .rejectsugg img
@@ -372,7 +366,10 @@ div.translator-comments + #translate-suggestion-container
 
 .translate-suggestion
 {
-    background-color: #ddd;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 0.5em;
+    color: #777;
 }
 
 /* CHECKS */
@@ -380,7 +377,7 @@ div.translator-comments + #translate-suggestion-container
 div.check
 {
     margin: 1em;
-    float: right
+    float: right;
 }
 
 html[dir="rtl"] div.check
@@ -395,17 +392,32 @@ html[dir="rtl"] div.check
 
 #translate-checks-block
 {
-    margin: 0 5px;
+    margin: 0 1em;
+}
+
+#translate-checks-block .sidetitle
+{
+    color: #900;
 }
 
 #translate-checks-block li
 {
-    display: inline;
+    display: inline-block;
+    margin-right: 0.5em;
+    margin-bottom: 0.8em;
+    border: 1px dotted #900;
+    padding: 0px 4px;
+}
+
+li.check > a {
+    cursor: help;
 }
 
 #translate-checks-block .rejectcheck img
 {
-    vertical-align: middle;
+    vertical-align: top;
+    margin-top: 2px;
+    margin-bottom: 2px;
     cursor: pointer;
 }
 
@@ -413,20 +425,15 @@ html[dir="rtl"] div.check
 
 .translate-buttons-block
 {
-    left: 101%;
+    left: 102%;
     position: absolute;
-    margin: 0 5px;
+    margin: 0 10px;
 }
 
 .translate-buttons-block[dir="rtl"]
 {
     left: auto;
-    right: 101%;
-}
-
-.translate-buttons-block input
-{
-    margin-bottom: 0.3em;
+    right: 102%;
 }
 
 .translate-buttons-block input[type="submit"]
@@ -435,26 +442,38 @@ html[dir="rtl"] div.check
     -moz-border-radius: 5px 5px 5px 5px;
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
-    background-position: 5px 50%;
+    background-position: 10px 50%;
     border: 1px solid #ccc;
-    padding: 2px 5px 2px 23px;
+    padding: 5px 10px 5px 33px;
     min-width: 110px;
+    margin-bottom: 1em;
 }
 
 .translate-buttons-block[dir="rtl"] input[type="submit"]
 {
-    padding: 2px 23px 2px 5px;
-    background-position: 95% center;
+    padding: 5px 33px 5px 10px;
+    background-position: 90% center;
 }
 
-.translate-buttons-block .submit
+.translate-buttons-block input.submit,
+.translate-buttons-block input.suggest
+{
+    color: #000;
+    background-color: inherit;
+}
+
+.translate-buttons-block input.submit
 {
     background-image: url('images/good.png');
+    background-color: #dfd;
+    border-color: #3c3;
 }
 
-.translate-buttons-block .suggest
+.translate-buttons-block input.suggest
 {
     background-image: url('images/suggest.png');
+    background-color: #ffd;
+    border-color: #cc3;
 }
 
 .translate-buttons-block input[type="submit"]:hover,
@@ -471,13 +490,7 @@ div#prevnext .next
     border: none;
     color: #0489b7;
     padding: 0 2em;
-    background-color: #F7F7F5;
-}
-
-tr.odd div#prevnext .previous,
-tr.odd div#prevnext .next
-{
-    background-color: #fff;
+    background-color: transparent;
 }
 
 div#prevnext .previous,
@@ -555,7 +568,6 @@ div#prevnext[dir="rtl"] .next:focus
 
 .translate-fuzzy-block label
 {
-    padding: 0 0.5em;
     vertical-align: middle;
 }
 
@@ -566,13 +578,9 @@ input.fuzzycheck
 
 .translate-specialchars-block
 {
-    line-height: 150%;
-    float: left;
-}
-
-div#prevnext[dir="rtl"] + .translate-specialchars-block
-{
-    float: right;
+    line-height: 100%;
+    text-align: center;
+    padding-bottom: 0.5em;
 }
 
 .translate-toolbar
@@ -596,6 +604,13 @@ a.writespecial,
 .translate-full .translation-highlight-html
 {
     cursor: pointer;
+}
+
+a.writespecial
+{
+    border: 1px dotted #999;
+    padding: 0 0.5em;
+    color: #666;
 }
 
 /* DIFF */
@@ -652,18 +667,10 @@ td.translate-full div.translate-translation:lang(zh)
     margin-bottom: 35px;
 }
 
-tr.translate-translation-fuzzy td.translate-translation[dir="ltr"]
+tr.translate-translation-fuzzy td.translate-translation,
+.translate-translation-fuzzy textarea.translation
 {
-    color: #666;
-    border-left: 4px solid #aaa;
-    padding-left: 3px;
-}
-
-tr.translate-translation-fuzzy td.translate-translation[dir="rtl"]
-{
-    color: #666666;
-    border-right: 4px solid #aaa;
-    padding-right: 3px;
+    color: #999;
 }
 
 tr.translate-translation-fuzzy td.translate-focus
@@ -671,16 +678,10 @@ tr.translate-translation-fuzzy td.translate-focus
     border-color: #aaa;
 }
 
-.translate-translation-fuzzy textarea.translation
-{
-    color: black;
-    border-left: 6px groove gray;
-    padding-left: 3px;
-}
-
 textarea.translation
 {
     resize: vertical;
+    font-size: 115%;
 }
 
 /* TERMINOLOGY MANAGEMENT */
