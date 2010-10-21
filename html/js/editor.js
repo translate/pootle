@@ -32,7 +32,6 @@
     this.store = $("div#pootle_path").text();
     this.active_uid = $("#active_uid").text();
     this.current_page = 1;
-    this.current_current_num_pages = $("#num_pages").text();
     this.pages_got = {};
     this.filter = "all";
     this.keepstate = false;
