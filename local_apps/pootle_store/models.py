@@ -357,7 +357,7 @@ class Unit(models.Model, base.TranslationUnit):
                 self.resurrect()
             changed = True
         if self.unitid != unit.getid():
-            self.unitid = unit.getid()
+            self.unitid = unicode(unit.getid())
             self.unitid_hash = md5_f(self.unitid.encode("utf-8")).hexdigest()
             changed = True
         if hasattr(unit, 'getalttrans'):
