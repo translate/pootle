@@ -36,7 +36,7 @@ $(document).ready(function() {
         $(".slide").unbind('click', slide_table);
       },
       error: function () {
-        $(".slide").bind('click', $.pootle.slide_table);
+        $(".slide").bind('click', slide_table);
       },
       success: function(data) {
         var newstats = '';
