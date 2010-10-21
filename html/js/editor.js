@@ -395,11 +395,16 @@
     // TODO: Try to add stripe classes on the fly, not at a separate
     // time after rendering
     this.fetch_pages(true);
-    var uids = this.get_uids_before_after(uid);
-    var newtbody = this.build_rows(uids.before) +
-                   this.get_edit_unit(uid) +
-                   this.build_rows(uids.after);
-    this.redraw(newtbody);
+    if (Object.size(this.units) > 0) {
+      var uids = this.get_uids_before_after(uid);
+      var newtbody = this.build_rows(uids.before) +
+                     this.get_edit_unit(uid) +
+                     this.build_rows(uids.after);
+      this.redraw(newtbody);
+    } else {
+      // TODO: i18n
+      this.error("No results.");
+    }
   },
 
   /* Redraws the translate table rows */
