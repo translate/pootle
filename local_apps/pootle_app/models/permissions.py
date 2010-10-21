@@ -84,13 +84,13 @@ def check_profile_permission(profile, permission_codename, directory):
     if profile.user.is_superuser:
         return True
     permissions = get_matching_permissions(profile, directory)
-    return permission_codename in permissions
+    return "administrate" in permissions or permission_codename in permissions
 
 def check_permission(permission_codename, request):
     """it checks if current user has the permission the perform C{permission_codename}"""
     if request.user.is_superuser:
         return True
-    return permission_codename in request.permissions
+    return "administrate" in request.permissions or permission_codename in request.permissions
 
 class PermissionSetManager(RelatedManager):
     def get_by_natural_key(self, username, pootle_path):
