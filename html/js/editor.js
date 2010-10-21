@@ -57,22 +57,10 @@
 
     /* Write TM results into the currently focused element */
     // TODO: refactor write TM and writespecial within a single function
-    $(".writetm").live("click", function() {
-      var tmtext = $(".tm-translation", this).text();
-      var element = $(PTL.editor.focused);
-      var start = element.caret().start + tmtext.length;
-      element.val(element.caret().replace(tmtext));
-      element.caret(start, start);
-    });
+    $(".writetm").live("click", this.copy_text);
 
     /* Write special chars, tags and escapes into the currently focused element */
-    $(".writespecial, .translate-full .translation-highlight-escape, .translate-full .translation-highlight-html").live("click", function() {
-      var specialtext = $(this).text();
-      var element = $(PTL.editor.focused);
-      var start = element.caret().start + specialtext.length;
-      element.val(element.caret().replace(specialtext));
-      element.caret(start, start);
-    });
+    $(".writespecial, .translate-full .translation-highlight-escape, .translate-full .translation-highlight-html").live("click", this.copy_text);
 
     /* Copy original translation */
     $("a.copyoriginal").live("click", function() {
@@ -220,6 +208,21 @@
       $(this).removeClass(cls)
       even = !even;
     });
+  },
+
+  /*
+   * Copies text into the focused textarea
+   */
+  copy_text: function(e) {
+    if ($(".tm-translation", this).length) {
+      var text = $(".tm-translation", this).text();
+    } else {
+      var text = $(this).text();
+    }
+    var element = $(PTL.editor.focused);
+    var start = element.caret().start + text.length;
+    element.val(element.caret().replace(text));
+    element.caret(start, start);
   },
 
   /*
