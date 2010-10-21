@@ -17,12 +17,11 @@ body
     color: #000;
     width: 100%;
 
-    font-family: sans-serif;
-    font-size: 13px;
+    font-family: Segoe UI, Arial, sans-serif;
+    font-size: 14px;
     font-style: normal;
     font-variant: normal;
     font-weight: normal;
-    line-height: 1.231;
 }
 
 a,
@@ -80,7 +79,6 @@ pre
 
 th
 {
-    font-family: Georgia, serif;
     font-size: 110%;
     padding: 0 0 7px 0;
     background-color: inherit;
@@ -90,16 +88,14 @@ th
 td
 {
     padding: 5px 0;
-    font-size: 85%;
 }
 
 h1, h2, h3, h4, h5, h6
 {
-    font-family: Georgia, serif;
     font-weight: normal;
     font-size: 100%;
     background-color: inherit;
-    color: #4b4740;
+    color: #333;
 }
 
 h1
@@ -299,69 +295,43 @@ html[dir="rtl"] #nav-access
  * HEADER
  */
 
-#header
-{
-    background: #1e4262 url(images/header-background.png) top left repeat;
-    color: #000;
-}
-
 #header h1
 {
-    width: 100%;
     margin: 0;
-    padding: 5px 0 0 0;
+    padding: 0;
 }
 
 #header h1 a
 {
-    background: url(images/logo.png) left 50% no-repeat;
-    padding: 0;
+    background: url(images/logo-link.png) left 50% no-repeat;
+    padding: 25px 0;
     padding-left: 60px;
-    margin: 0 14px;
-    font-family: Arial, sans-serif;
-    font-size: 150%;
+    float: left;
+    margin: 0 30px 0 20px;
+    font-weight: bold;
 }
 
 html[dir="rtl"] #header h1 a
 {
+    background: url(images/logo-link.png) right 50% no-repeat;
     padding-left: 0;
     padding-right: 60px;
-    background: url(images/logo.png) right 50% no-repeat;
-}
-
-#header h1 a:link,
-#header h1 a:visited
-{ 
-    color: #fff; 
-}
-
-#header h1 a:active
-{
-    text-decoration: none;
-}
-
-#header h1 a:hover
-{
-    text-decoration: none;
-}
-
-#nav-main
-{
-    width: 100%;
-    background: transparent url(images/header-background-bottom.png) bottom left repeat-x;
-    height: 1.6em;
+    margin: 0px 20px 0 30px;
+    float: right;
 }
 
 #nav-main ul
 {
-    float: right;
-    margin-right: 5px;
+    margin: 5px 5px 0 5px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
 }
 
 html[dir="rtl"] #nav-main ul
 {
-    float: left;
-    margin-left: 5px;
+    right: auto;
+    left: 0px;
 }
 
 #nav-main ul li
@@ -376,24 +346,11 @@ html[dir="rtl"] #nav-main ul li
 
 #nav-main ul li a
 {
-    padding: 0 15px 0.5em 15px;
+    padding: 0 10px;
     display: block;
     font-weight: bold;
     font-size: 95%;
 }
-
-#nav-main ul li a:link,
-#nav-main ul li a:visited
-{
-    text-decoration: none;
-    color: #fff;
-}
-
-#nav-main ul li a:hover
-{
-    color: #86d0e8;
-}
-
 
 /*
  * MENUBAR
@@ -435,8 +392,9 @@ html[dir="rtl"] #nav-main ul li
     color: #898378;
     clear: both;
     font-size: 90%;
-    height: 40px;
+    height: 65px;
     padding: 35px 0 0 0;
+    margin-top: 2em;
 }
 
 #footer-contents
@@ -584,15 +542,6 @@ ul.errorlist
     padding: 10px 25px;
 }
 
-/* TITLES */
-
-h1.title,
-h2.title,
-h3.title
-{
-    padding: 0.2em 0 !important;
-}
-
 
 /*
  * PAGE BODY
@@ -602,7 +551,7 @@ h3.title
 {
     margin: 0;
     padding: 5px 0px;
-    background: #fff url(images/page-bg.jpg) top left repeat-x;
+    background: #fff url(images/page-bg-light.jpg) top left repeat-x;
 }
 
 #body:after
@@ -617,9 +566,10 @@ h3.title
 
 .intro
 {
-    margin: 0.5em 1em;
-    margin-right: 25%;
-    margin-bottom: 1.5em;
+    clear: both;
+    margin: 0 1em;
+    padding-top: 2em;
+    padding-bottom: 1em;
     line-height: 1.3em;
 }
 
@@ -687,10 +637,9 @@ html[dir="rtl"] .module.first
 .module .hd h2, 
 .module-primary .hd h2
 {
-    margin: 0;
-    margin-left: 0.5em;
-    color: #afaba3;
-    border-bottom: 2px solid #afaba3;
+    margin: 1em 0.5em 0;
+    color: #999;
+    border-bottom: 1px solid #eee;
 }
 
 html[dir="rtl"] .module .hd h2,
@@ -715,9 +664,8 @@ html[dir="rtl"] .module-primary .hd h2
 .module .bd h2, 
 .module-primary .bd h2
 {
-    font-size: 165%;
-    color: #4b4742;
-    margin-bottom: 10px;
+    color: #999;
+    margin-bottom: 0.5em;
 }
 
 .module .bd h3, 
@@ -895,12 +843,14 @@ div#submenu-tabs a
     color: #4b4740;
     display: block;
     float: left;
-    font-size: 90%;
     height: 24px;
     line-height: 22px;
     margin: 8px 4px 0;
     padding: 0 11px;
     text-decoration: none;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
 }
 
 html[dir="rtl"] div#submenu-tabs a
@@ -916,19 +866,19 @@ div#submenu-tabs a:hover
     border-width: 1px;
     line-height: 20px;
     margin-top: 9px;
+    color: #666 !important;
 }
 
 div#submenu-tabs a.admintab:hover
 {
-    background-color: #d54e21 !important;
-    border-bottom-color: #d54e21 !important;
-    color: #fff;
+    background-color: #f60 !important;
+    border-bottom-color: #f60 !important;
+    color: #fff !important;
 }
 
 div#submenu-tabs a:visited
 {
-    background-color: inherit;
-    color: #4b4740;
+    color: #888;
 }
 
 body.dashboard div#submenu-tabs a.dashboard,
@@ -959,7 +909,6 @@ body.tpadminfiles div#submenu-tabs a.tpadminfiles
     border-style: solid;
     border-width: 1px;
     color: black;
-    font-size: 120%;
     height: 30px;
     line-height: 28px;
     margin-top: 3px;
@@ -975,6 +924,7 @@ div.settings-container
 {
     display: block;
     margin: 0 auto 2em;
+    margin: 1em;
 }
 
 div.centered
@@ -984,7 +934,8 @@ div.centered
 
 .settings-container h2
 {
-    margin-bottom: 0.7em;
+    color: #999;
+    margin: 1em 0 0.5em;
 }
 
 .settings-container p
@@ -1063,17 +1014,19 @@ div#settings
     -moz-border-radius: 5px 5px 5px 5px;
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
-    background-position: 5px 50%;
+    background-position: 10px 50%;
     background-repeat: no-repeat;
     border: 1px solid #ccc;
-    padding: 2px 5px 2px 23px;
+    padding: 5px 10px 5px 33px;
     min-height: 16px;
+    min-width: 110px;
+    margin-bottom: 1em;
 }
 
 html[dir="rtl"] .common-buttons-block input[type="submit"]
 {
-    padding: 2px 23px 2px 5px;
-    background-position: 95% center;
+    padding: 5px 33px 5px 10px;
+    background-position: 90% center;
 }
 
 .common-buttons-block input[type="submit"]:hover,
@@ -1146,6 +1099,22 @@ div.newsitem-sep
     margin: 1.5em 0 2em;
 }
 
+#translationsummarylegend div {
+    font-size: 75%;
+    color: #888;
+    font-style: italic;
+}
+
+html[dir="ltr"] #translationsummarylegend div {
+  float: left;
+  margin-right: 2em;
+}
+
+html[dir="rtl"] #translationsummarylegend div {
+  float: right;
+  margin-left: 2em;
+}
+
 #translationsummarylegend div img
 {
     vertical-align: middle;
@@ -1170,26 +1139,26 @@ div.latestnews p.subscribe
 {
     background-image: url('images/feed.png');
     background-repeat: no-repeat;
-    line-height: 3;
+    margin-top: 1em;
     /* ltr */
-    background-position: right center;
-    text-align: right;
-    padding-right: 2em;
+    background-position: left center;
+    padding-left: 2em;
 }
 
 html[dir="rtl"] div.latestnews p.subscribe
 {
     /* undo ltr */
-    padding-right: 0;
+    padding-left: 0;
     /* rtl */
-    background-position: left center;
-    text-align: left;
-    padding-left: 2em;
+    background-position: right center;
+    text-align: right;
+    padding-right: 2em;
 }
 
 div.topcontributors
 {
-    margin-top: 1em;
+    margin-top: 0;
+    padding-top: 3em;
     margin-bottom: 2em;
 }
 
@@ -1200,14 +1169,15 @@ table.topcontributors
 
 table.topcontributors th
 {
-    font-size: 120%;
-    padding: 0 1em;
+    color: #999;
+    font-size: 85%;
+    padding: 0 10px 7px 10px;
 }
 
 table.topcontributors td
 {
     font-size: inherit;
-    padding: 0 1em;
+    padding: 5px 10px;
 }
 
 td.stats-number
@@ -1228,11 +1198,18 @@ html[dir="rtl"] select#id_ui_lang option
     text-align: right !important;
 }
 
+div#innernav {
+  margin: 1.5em 1em 0;
+}
+
+div#actionlinks {
+  margin-bottom: 1.5em;
+}
+
 div.item-statistics
 {
     background-color: inherit;
     color: #4B4740;
-    font-family: Georgia, serif;
     font-size: 1.5em;
 }
 
@@ -1300,7 +1277,7 @@ div.translated
     top: 2px;
     height: 100%;
     background: #448844;
-    background: url('images/green-bar.png');
+    background: url('images/bar-translated.png');
     background-repeat: repeat-x;
     color: black;
 }
@@ -1311,7 +1288,7 @@ div.goodchange
     top: 2px;
     height: 100%;
     background: #55DD55;
-    background: url('images/cyan-bar.png');
+    background: url('images/bar-goodchange.png');
     background-repeat: repeat-x;
     color: black;
 }
@@ -1322,7 +1299,7 @@ div.fuzzy
     top: 2px;
     height: 100%;
     background: #4444AA;
-    background: url('images/purple-bar.png');
+    background: url('images/bar-fuzzy.png');
     background-repeat: repeat-x;
     color: black;
 }
@@ -1333,7 +1310,7 @@ div.untranslated
     height: 100%;
     top: 2px;
     background: #FF4444;
-    background: url('images/red-bar.png');
+    background: url('images/bar-untranslated.png');
     background-repeat: repeat-x;
     color: black;
 }
@@ -1353,6 +1330,13 @@ div.graph[dir="rtl"] div.translated
 table.sortable th
 {
     cursor: pointer;
+    color: #999;
+    font-size: 85%;
+}
+
+table.sortable th.sorttable_sorted,
+table.sortable th.sorttable_sorted_reverse {
+    color: #000;
 }
 
 .sortkey
@@ -1369,7 +1353,6 @@ div.translation-nav
 
 ul.pager
 {
-    font-size: 85%;
     margin: 10px;
     padding: 5px;
 }
@@ -1400,8 +1383,8 @@ ul.pager li a:hover
 ul.pager li span.current-link,
 ul.pager li a
 {
-    margin: 0.1em;
-    padding: 0.2em 0.5em;
+    margin: 0.2em;
+    padding: 0.2em 0.7em;
 }
 
 ul.pager li a.nth-link,
@@ -1430,29 +1413,31 @@ ul.pager li span.current-link
 
 div#breadcrumbs
 {
-    float: right;
-    margin-right: 5em;
+    float: left;
+    margin-top: 23px;
 }
 
 html[dir="rtl"] div#breadcrumbs
 {
-    float: left;
-    margin-right: 0;
-    margin-left: 5em;
+    float: right;
+    margin-left: 0;
+    margin-right: 3em;
 }
 
 /* SEARCH */
 
 div#search
 {
-    float: right;
-    padding: 10px 10px 0;
-    position: relative;
+    /* this should better be fixed in html template */
+    position: absolute;
+    right: 2em;
+    top: 143px;
 }
 
 div#search[dir="rtl"]
 {
-    float: left;
+    right: auto;
+    left: 2em;
 }
 
 div#search input[type=text]
@@ -1470,7 +1455,6 @@ div#search .advancedlink
     padding: 0;
     border: 0;
     margin: 0 0 0 -5px;
-    top: -2px;
     position: relative;
     cursor: pointer;
 }
