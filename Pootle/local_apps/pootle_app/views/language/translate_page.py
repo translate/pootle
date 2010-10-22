@@ -28,7 +28,7 @@ from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.utils.html import urlize
+from django.utils.html import urlize, escape
 from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext
 
@@ -73,7 +73,7 @@ def add_file_links(request, store):
             checknames = \
             ["<a href='http://translate.sourceforge.net/wiki/toolkit/pofilter_tests#%(checkname)s' \
             title='%(checkname)s' target='_blank'>%(checkname)s</a>" % \
-            {"checkname": matchname.replace("check-", "", 1)} for matchname in state.match_names]
+            {"checkname": escape(matchname.replace("check-", "", 1))} for matchname in state.match_names]
             # TODO: put the following parameter in quotes, since it will be foreign in all target languages
             # l10n: the parameter is the name of one of the quality checks, like "fuzzy"
             template_vars["checking_text"] = _("checking %s", ", ".join(checknames))
