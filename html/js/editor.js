@@ -169,27 +169,10 @@
    * Stuff to be done when the editor is ready
    */
   ready: function() {
-    PTL.editor.make_zebra("table.translate-table tr[id]");
     var maxheight = $(window).height() * 0.3;
     $('textarea.expanding').TextAreaExpander('10', maxheight);
     $(".focusthis").get(0).focus();
     $("table.translate-table").trigger("mt_ready");
-  },
-
-  /*
-   * Makes zebra stripes
-   * XXX: move this over pootle.util ?
-   */
-  make_zebra: function(selector) {
-    /* Customisation for zebra tags */
-    var cls = "even";
-    var even = true;
-    $(selector).each(function() {
-      $(this).addClass(cls)
-      cls = even ? "odd" : "even";
-      $(this).removeClass(cls)
-      even = !even;
-    });
   },
 
   /*
@@ -350,14 +333,18 @@
 
   /* Builds view rows for units represented by 'uids' */
   build_rows: function(uids) {
+    var cls = "even";
+    var even = true;
     var rows = "";
     for (var i=0; i<uids.length; i++) {
       var _this = uids[i].id || uids[i];
       var unit = this.units[_this];
-      rows += '<tr id="row' + _this + '">';
+      rows += '<tr id="row' + _this + '" class="' + cls + '">';
       rows += this.tmpl.vunit($, {data: {meta: this.meta,
                                          unit: unit}}).join("");
       rows += '</tr>';
+      cls = even ? "odd" : "even";
+      even = !even;
     }
     return rows;
   },
@@ -399,8 +386,6 @@
 
   /* Sets the edit view for unit 'uid' */
   display_edit_unit: function(uid) {
-    // TODO: Try to add stripe classes on the fly, not at a separate
-    // time after rendering
     this.fetch_pages(true);
     if (Object.size(this.units) > 0) {
       var uids = this.get_uids_before_after(uid);
