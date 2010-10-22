@@ -1451,7 +1451,7 @@ div#search input[type=text]
     border: 1px solid #76b0bf;
     height: 16px;
     width: 145px;
-    padding: 1px;
+    font-size: 10pt;
 }
 
 div#search .advancedlink
@@ -1461,8 +1461,8 @@ div#search .advancedlink
     padding: 0;
     border: 0;
     margin: 0 0 0 -5px;
-    position: relative;
     cursor: pointer;
+    vertical-align: top; /* IE alignment fix */
 }
 
 div#search[dir="rtl"] .advancedlink

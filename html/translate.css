@@ -6,7 +6,8 @@
 
 div#toolbar
 {
-    background-color: rgba(30, 66, 98, 0.75);
+    background-color: rgba(19, 112, 146, 0.75);
+    filter:progid:DXImageTransform.Microsoft.gradient (startColorstr=#bf137092, endColorstr=#bf137092);
     color: #fff;
     text-align: center;
     width: 100%;
@@ -161,6 +162,10 @@ div.language-name
     border-left: 1px dotted #ccc;
     border-right: 1px dotted #ccc;
     border-bottom: 1px solid #f1f7f8;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+
     padding: 1px 5px 0px;
     display: inline-block;
     position: absolute;
@@ -273,8 +278,9 @@ td.translate-full textarea.translation
 
 .sidetitle
 {
-    padding-bottom: 1em;
+    padding-bottom: 0.5em;
     color: #999;
+    font-size: 85%;
 }
 
 #tm
@@ -286,15 +292,14 @@ td.translate-full textarea.translation
 {
     margin: 0 0.5em 0.5em 0;
     padding: 0.3em 0.6em;
-    background-color: #fff;
     border: 1px dotted #999;
     cursor: pointer;
     float: left;
+    font-size: 90%;
 }
 
-tr.odd .tm-unit
-{
-    background-color:  #F7F7F5;
+.tm-unit:hover {
+    background-color: #fff;
 }
 
 .tm-original
@@ -578,7 +583,6 @@ input.fuzzycheck
 
 .translate-specialchars-block
 {
-    line-height: 100%;
     text-align: center;
     padding-bottom: 0.5em;
 }
@@ -609,8 +613,17 @@ a.writespecial,
 a.writespecial
 {
     border: 1px dotted #999;
-    padding: 0 0.5em;
+    padding: 0 0.2em;
+    min-width: 1.3em;
+    margin: 2px 0;
     color: #666;
+    display: inline-block;
+}
+
+a.writespecial:hover
+{
+    background-color: #fff;
+    text-decoration: none;
 }
 
 /* DIFF */
