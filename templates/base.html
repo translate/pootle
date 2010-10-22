@@ -27,6 +27,8 @@
         <link rel="shortcut icon" href="{{ "favicon.ico"|m }}" />
         {% endblock favicon %}
         {% block js %}
+        <script type="text/javascript" src="{{ "js/jquery/jquery.min.js"|m }}"></script>
+        <script type="text/javascript" src="{{ "js/jquery/jquery.tipsy.js"|m }}"></script>
         <script type="text/javascript">
           function l(path) {
             var basepath = "{{ settings.SCRIPT_NAME  }}";
@@ -38,8 +40,10 @@
           function m(path) {
             return l("{{ MEDIA_URL }}" + path);
           }
+        $(document).ready(function() {
+            $("[title]").tipsy({gravity: $.fn.tipsy.autoNS, html: true});
+        });
         </script>
-        <script type="text/javascript" src="{{ "js/jquery/jquery.min.js"|m }}"></script>
         {% endblock js %}
         {% block extra_head %}<!-- extra scripts and links -->{% endblock %}
     </head>
