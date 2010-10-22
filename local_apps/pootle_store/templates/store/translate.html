@@ -85,8 +85,8 @@ $(document).ready (function() {
 
 {% block extra_content %}
 <div id="toolbar">
-  <div class="toolbar-item">
-    <select id="filter-status" name="filter-status">
+  <div id="filter-status" class="toolbar-item">
+    <select name="filter-status">
       <option selected="selected" value="all">{% trans "All" %}</option>
       <option value="incomplete">{% trans "Incomplete" %}</option>
       <option value="untranslated">{% trans "Untranslated" %}</option>

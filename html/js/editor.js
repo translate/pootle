@@ -98,7 +98,7 @@
     $("#translate-checks-block .rejectcheck").live("click", PTL.editor.reject_check);
 
     /* Filtering */
-    $("select#filter-status").live("change", PTL.editor.filter_status);
+    $("div#filter-status select").live("change", PTL.editor.filter_status);
 
     /* Bind hotkeys */
     shortcut.add('ctrl+return', function() {
@@ -552,8 +552,20 @@
    * Units filtering
    */
   filter_status: function() {
-    var newhash = "filter/" + $("option:selected", this).val();
-    $.history.load(newhash);
+    var filter_by = $("option:selected", this).val();
+    if (filter_by == "checks") {
+      // Add new dropdown
+      var dropdown = '<div id="filter-checks" class="toolbar-item">';
+      dropdown += '<select name="filter-checks">';
+      dropdown += '<option value="test">Test check</option>';
+      // TODO: populate failing checks for this query
+      dropdown += '</select></div>';
+      $("div#filter-status").first().after(dropdown);
+    } else {
+      $("div#filter-checks").remove();
+      var newhash = "filter/" + filter_by;
+      $.history.load(newhash);
+    }
   },
 
 
