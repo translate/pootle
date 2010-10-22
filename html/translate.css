@@ -36,7 +36,7 @@ table.translate-table td
     vertical-align: middle;
 }
 
-td.translation-action
+/*td.translation-action
 {
     min-height: 1.5em;
     height: 0px;
@@ -50,27 +50,36 @@ td.translation-action img
 {
     display: block;
     margin: 0 auto;
-}
+}*/
 
 th.translate-original,
 th.translate-translation
 {
-    width: 49%;
+    width: 50%;
 }
 
-th.translate-edit
+/*th.translate-edit
 {
     width: 2%;
-}
+}*/
 
 table[dir="rtl"] td.translate-original
 {
     padding-left: 5px;
 }
 
-tr.translate-translation-row
+tr.edit-row
 {
     background-color: #f1f7f8;
+}
+
+tr.view-row:hover
+{
+    background-color: #f1f7f8;
+    background-image: url('images/pencil.png');
+    background-repeat: no-repeat;
+    background-position: 49% center;
+    cursor: pointer;
 }
 
 .translation-text

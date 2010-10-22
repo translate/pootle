@@ -90,7 +90,7 @@
 
     /* Editor navigation/submission */
     $("table.translate-table").live("editor_ready", PTL.editor.ready);
-    $("a[id^=editlink]").live("click", PTL.editor.goto_unit);
+    $("tr.view-row").live("click", PTL.editor.goto_unit);
     $("input.submit, input.suggest").live("click", PTL.editor.process_submit);
     $("input.previous, input.next").live("click", PTL.editor.goto_prevnext);
     $("#translate-suggestion-container .rejectsugg").live("click", PTL.editor.reject_suggestion);
@@ -218,11 +218,11 @@
    * Fuzzying / unfuzzying functions
    */
   doFuzzyArea: function() {
-    $("tr.translate-translation-row").addClass("translate-translation-fuzzy");
+    $("tr.edit-row").addClass("translate-translation-fuzzy");
   },
 
   undoFuzzyArea: function() {
-    $("tr.translate-translation-row").removeClass("translate-translation-fuzzy");
+    $("tr.edit-row").removeClass("translate-translation-fuzzy");
   },
 
   doFuzzyBox: function() {
@@ -339,7 +339,7 @@
     for (var i=0; i<uids.length; i++) {
       var _this = uids[i].id || uids[i];
       var unit = this.units[_this];
-      rows += '<tr id="row' + _this + '" class="' + cls + '">';
+      rows += '<tr id="row' + _this + '" class="view-row ' + cls + '">';
       rows += this.tmpl.vunit($, {data: {meta: this.meta,
                                          unit: unit}}).join("");
       rows += '</tr>';
@@ -443,7 +443,7 @@
   /* Loads the edit unit 'uid' */
   get_edit_unit: function(uid) {
     var edit_url = l(this.store + '/edit/' + uid);
-    var editor = '<tr id="row' + uid + '" class="translate-translation-row">';
+    var editor = '<tr id="row' + uid + '" class="edit-row">';
     var widget = '';
     $.ajax({
       url: edit_url,
@@ -524,7 +524,7 @@
   /* Loads the editor with a specific unit */
   goto_unit: function(e) {
     e.preventDefault();
-    var m = $(this).attr("id").match(/editlink([0-9]+)/);
+    var m = $(this).attr("id").match(/row([0-9]+)/);
     if (m) {
       var uid = m[1];
       var newhash = "unit/" + parseInt(uid);

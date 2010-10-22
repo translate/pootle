@@ -3,11 +3,6 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 <!-- JS templates: move from here when possible -->
 <script id="view_unit" type="text/x-jquery-template">
-<td class="translation-action">
-  <a title="{% trans 'Edit translation' %}" id="editlink${unit.id}" href="?unit=${unit.id}">
-    <img src="{{ 'images/pencil.png'|m }}" />
-  </a>
-</td>
 <td dir="${meta.source_dir}" class="translate-original" rowspan="1" colspan="1">
   <div class="translate-original translate-view" id="orig${unit.id}">
     [[each(i, source) unit.source]]
@@ -64,21 +59,13 @@
     <table cellpadding="0" cellspacing="0" class="translate-table" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
       <thead>
         <tr lang="{{ LANGUAGE_CODE }}">
-          <th colspan="1" rowspan="1" class="translate-table-title translate-edit"></th>
           <th colspan="1" rowspan="1" class="translate-table-title translate-original"></th>
           <th colspan="1" rowspan="1" class="translate-table-title translate-translation"></th>
         </tr>
       </thead>
       <tbody>
         {% for unit in units %}
-        <tr id="row{{ unit.id }}" class="{% cycle 'even' 'odd' %}{% ifequal unit form.instance %} translate-translation-row{% endifequal %}{% if unit.isfuzzy %} translate-translation-fuzzy{% endif %}"{% ifequal unit form.instance %} colspan="2"{% endifequal %}>
-          {% ifnotequal unit form.instance %}
-          <td class="translation-action">
-            <a href="?unit={{ unit.id }}" id="editlink{{ unit.id }}" title="{% trans 'Edit translation' %}">
-            <img src="{{ 'images/pencil.png'|m }}" />
-            </a>
-          </td>
-          {% endifnotequal %}
+        <tr id="row{{ unit.id }}" class="{% ifequal unit form.instance %}edit-row{% else %}view-row {% cycle 'even' 'odd' %}{% endifequal %}{% if unit.isfuzzy %} translate-translation-fuzzy{% endif %}"{% ifequal unit form.instance %} colspan="2"{% endifequal %}>
           {% ifequal unit form.instance %}
             {% cache settings.CACHE_TIMEOUT unit_edit unit.id unit.mtime cantranslate cansuggest canreview alt_src_codes profile.id LANGUAGE_CODE %}
             {% render_unit_edit form %}
