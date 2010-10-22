@@ -59,26 +59,7 @@
     $(".writetm, .writespecial, .translate-full .translation-highlight-escape, .translate-full .translation-highlight-html").live("click", this.copy_text);
 
     /* Copy original translation */
-    $("a.copyoriginal").live("click", function() {
-      var sources = $(".translation-text", $(this).parent().parent().parent());
-      var clean_sources = [];
-      $.each(sources, function(i) {
-        clean_sources[i] = $(this).text()
-                                  .replace("\n", "\\n\n", "g")
-                                  .replace("\t", "\\t", "g");
-      });
-
-      var targets = $("[id^=id_target_f_]");
-      if (targets.length) {
-        var max = clean_sources.length - 1;
-        for (var i=0; i<targets.length; i++) {
-          var newval = clean_sources[i] || clean_sources[max];
-          $(targets.get(i)).val(newval);
-        }
-        $(targets).get(0).focus();
-        PTL.editor.goFuzzy();
-      }
-    });
+    $("a.copyoriginal").live("click", this.copy_original);
 
     /* Fuzzy / unfuzzy */
     $("textarea.translation").live("keyup blur", function() {
@@ -219,6 +200,30 @@
     var start = element.caret().start + text.length;
     element.val(element.caret().replace(text));
     element.caret(start, start);
+  },
+
+  /*
+   * Copies source text(s) into the target textarea(s)
+   */
+  copy_original: function() {
+    var sources = $(".translation-text", $(this).parent().parent().parent());
+    var clean_sources = [];
+    $.each(sources, function(i) {
+      clean_sources[i] = $(this).text()
+                                .replace("\n", "\\n\n", "g")
+                                .replace("\t", "\\t", "g");
+    });
+
+    var targets = $("[id^=id_target_f_]");
+    if (targets.length) {
+      var max = clean_sources.length - 1;
+      for (var i=0; i<targets.length; i++) {
+        var newval = clean_sources[i] || clean_sources[max];
+        $(targets.get(i)).val(newval);
+      }
+      $(targets).get(0).focus();
+      this.goFuzzy();
+    }
   },
 
   /*
