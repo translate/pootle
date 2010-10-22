@@ -428,7 +428,7 @@ def translate_page(request, units_queryset, store=None):
 
     # links for quality check documentation
     checks = []
-    for check in request.GET.getlist('matchnames'):
+    for check in request.GET.get('matchnames', '').split(','):
         safe_check = escape(check)
         link = '<a href="http://translate.sourceforge.net/wiki/toolkit/pofilter_tests#%s" target="_blank">%s</a>' % (safe_check, safe_check)
         checks.append(_('checking %s', link))
