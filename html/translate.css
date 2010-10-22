@@ -36,32 +36,11 @@ table.translate-table td
     vertical-align: middle;
 }
 
-/*td.translation-action
-{
-    min-height: 1.5em;
-    height: 0px;
-    text-align: center;
-    width: 100%;
-    padding: 0.5em;
-    font-size: 110%;
-}
-
-td.translation-action img
-{
-    display: block;
-    margin: 0 auto;
-}*/
-
 th.translate-original,
 th.translate-translation
 {
     width: 50%;
 }
-
-/*th.translate-edit
-{
-    width: 2%;
-}*/
 
 table[dir="rtl"] td.translate-original
 {
