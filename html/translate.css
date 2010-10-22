@@ -72,11 +72,6 @@ tr.translate-translation-row
     background-color: #f1f7f8;
 }
 
-.translate-view .translation-text
-{
-    padding: 0.5em;
-}
-
 .translation-text
 {
     max-width: 100%;
@@ -91,12 +86,11 @@ div.sources {
 div.sources .translation-text
 {
     padding: 0.5em 0;
-    border-top: 1px dotted #ccc;
 }
 
 div.translate-plural .translation-text
 {
-    padding: 1px;
+    padding: 0;
 }
 
 .translation-text-headers
@@ -106,10 +100,16 @@ div.translate-plural .translation-text
     position: relative;
 }
 
+.sources .translation-text-headers {
+    border-bottom: 1px dotted #ccc;
+}
+
 div.translate-plural .translation-text-headers
 {
     font-weight: normal;
-    padding: 0px 5px;
+    margin-top: 10px;
+    margin-bottom: -2px;
+    border-bottom: 0;
 }
 
 .translation-space
