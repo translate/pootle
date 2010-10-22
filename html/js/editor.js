@@ -50,6 +50,33 @@
     /* Set initial focus on page load */
     this.focused = $(".translate-original-focus textarea").get(0);
 
+    /*
+     * Bind event handlers
+     */
+
+    /* Fuzzy / unfuzzy */
+    $("textarea.translation").live("keyup blur", function() {
+      if (!PTL.editor.keepstate && $(this).attr("defaultValue") != $(this).val()) {
+        PTL.editor.ungoFuzzy();
+      }
+    });
+    $("input.fuzzycheck").live("click", function() {
+      if (PTL.editor.isFuzzy()) {
+        PTL.editor.doFuzzyArea();
+      } else {
+        PTL.editor.undoFuzzyArea();
+      }
+    });
+
+    /* Collapsing */
+    $(".collapse").live("click", function(e) {
+      e.preventDefault();
+      $(this).siblings(".collapsethis").slideToggle("fast");
+      if ($("textarea", $(this).next("div.collapsethis")).length) {
+        $("textarea", $(this).next("div.collapsethis")).focus();
+      }
+    });
+
     /* Update focus when appropriate */
     $(".focusthis").live("focus", function(e) {
       PTL.editor.focused = e.target;
@@ -61,31 +88,7 @@
     /* Copy original translation */
     $("a.copyoriginal").live("click", this.copy_original);
 
-    /* Fuzzy / unfuzzy */
-    $("textarea.translation").live("keyup blur", function() {
-      if (!PTL.editor.keepstate && $(this).attr("defaultValue") != $(this).val()) {
-        PTL.editor.ungoFuzzy();
-      }
-    });
-
-    $("input.fuzzycheck").live("click", function() {
-      if (PTL.editor.isFuzzy()) {
-        PTL.editor.doFuzzyArea();
-      } else {
-        PTL.editor.undoFuzzyArea();
-      }
-    });
-
-    /* Collapsing */
-    $(".collapse").live("click", function(event) {
-      event.preventDefault();
-      $(this).siblings(".collapsethis").slideToggle("fast");
-      if ($("textarea", $(this).next("div.collapsethis")).length) {
-        $("textarea", $(this).next("div.collapsethis")).focus();
-      }
-    });
-
-    /* Bind event handlers */
+    /* Editor navigation/submission */
     $("table.translate-table").live("editor_ready", PTL.editor.ready);
     $("a[id^=editlink]").live("click", PTL.editor.goto_unit);
     $("input.submit, input.suggest").live("click", PTL.editor.process_submit);
@@ -93,6 +96,8 @@
     $("#translate-suggestion-container .rejectsugg").live("click", PTL.editor.reject_suggestion);
     $("#translate-suggestion-container .acceptsugg").live("click", PTL.editor.accept_suggestion);
     $("#translate-checks-block .rejectcheck").live("click", PTL.editor.reject_check);
+
+    /* Filtering */
     $("select#filter-status").live("change", PTL.editor.filter_status);
 
     /* Bind hotkeys */
