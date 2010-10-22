@@ -36,6 +36,7 @@ from django.utils.translation.trans_real import parse_accept_lang_header
 from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from django.core.cache import cache
 from django.utils import simplejson
+from django.utils.html import escape
 from django.views.decorators.cache import never_cache
 
 from pootle_misc.baseurl import redirect
@@ -428,7 +429,8 @@ def translate_page(request, units_queryset, store=None):
     # links for quality check documentation
     checks = []
     for check in request.GET.getlist('matchnames'):
-        link = '<a href="http://translate.sourceforge.net/wiki/toolkit/pofilter_tests#%s" target="_blank">%s</a>' % (check, check)
+        safe_check = escape(check)
+        link = '<a href="http://translate.sourceforge.net/wiki/toolkit/pofilter_tests#%s" target="_blank">%s</a>' % (safe_check, safe_check)
         checks.append(_('checking %s', link))
 
     # precalculate alternative source languages
