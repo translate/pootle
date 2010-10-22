@@ -14,6 +14,11 @@
         <meta content="text/html; charset=utf-8" http-equiv="content-type" />
         <meta name="description" content="{{ settings.DESCRIPTION|striptags }}" />
         <meta name="keywords" content="{{ keywords|join:", " }}" />
+
+        <meta name="application-name" content="{{ settings.TITLE }}" />
+        <link rel="icon" href="{{ "images/app-32x32.png"|m }}" sizes="32x32" />
+        <link rel="icon" href="{{ "images/app-64x64.png"|m }}" sizes="64x64" />
+
         {% endblock meta %}
         {% block css %}
         <link rel="stylesheet" type="text/css" href='{{ "style.css"|m }}' />
