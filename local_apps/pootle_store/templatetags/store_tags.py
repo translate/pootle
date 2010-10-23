@@ -18,7 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from difflib import SequenceMatcher
 from django.utils.safestring import mark_safe
 
 from django import template
@@ -60,7 +59,34 @@ def call_highlight(old, new):
     else:
         return highlight_diffs(old, new)
 
-def highlight_diffs(old, new):
+def _google_highlight_diffs(old, new):
+    """Highlights the differences between old and new."""
+
+    textdiff = u"" # to store the final result
+    removed = u"" # the removed text that we might still want to add
+    diff = differencer.diff_main(old, new)
+    differencer.diff_cleanupSemantic(diff)
+    for op, text in diff:
+        if op == 0: # equality
+            if removed:
+                textdiff += '<span class="translate-diff-delete">%s</span>' % fancy_escape(removed)
+                removed = u""
+            textdiff += fancy_escape(text)
+        elif op == 1: # insertion
+            if removed:
+                # this is part of a substitution, not a plain insertion. We
+                # will format this differently.
+                textdiff += '<span class="translate-diff-replace">%s</span>' % fancy_escape(text)
+                removed = u""
+            else:
+                textdiff += '<span class="translate-diff-insert">%s</span>' % fancy_escape(text)
+        elif op == -1: # deletion
+            removed = text
+    if removed:
+        textdiff += '<span class="translate-diff-delete">%s</span>' % fancy_escape(removed)
+    return mark_safe(textdiff)
+
+def _difflib_highlight_diffs(old, new):
     """Highlights the differences between old and new. The differences
     are highlighted such that they show what would be required to
     transform old into new.
@@ -79,6 +105,14 @@ def highlight_diffs(old, new):
             #textdiff += "<span>%s</span>" % fance_escape(a[i1:i2])}
             textdiff += '<span class="translate-diff-replace">%s</span>' % fancy_escape(new[j1:j2])
     return mark_safe(textdiff)
+
+try:
+    from translate.misc.diff_match_patch import diff_match_patch
+    differencer = diff_match_patch()
+    highlight_diffs = _google_highlight_diffs
+except ImportError, e:
+    from difflib import SequenceMatcher
+    highlight_diffs = _difflib_highlight_diffs
 
 def get_sugg_list(unit):
     """get suggested translations for given unit with the localized
