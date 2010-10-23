@@ -210,7 +210,7 @@
         $(targets.get(i)).val(newval);
       }
       $(targets).get(0).focus();
-      this.goFuzzy();
+      PTL.editor.goFuzzy();
     }
   },
 
