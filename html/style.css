@@ -1451,7 +1451,6 @@ div#search input[type=text]
     border: 1px solid #76b0bf;
     height: 16px;
     width: 145px;
-    font-size: 10pt;
 }
 
 div#search .advancedlink
@@ -1506,7 +1505,7 @@ label.inputHint
 .togglesearch
 {
     cursor: pointer;
-    vertical-align: text-top;
+    vertical-align: top;
 }
 
 /* Fix for Opera + RTL */

@@ -378,18 +378,27 @@ div.translator-comments + #translate-suggestion-container
 
 div.check
 {
-    margin: 1em;
-    float: right;
+    position: absolute;
+    right: 230px;
+    top: 143px;
+
 }
 
 html[dir="rtl"] div.check
 {
-    float: left;
+    right: auto;
+    left: 230px;
+}
+
+div.check a
+{
+    cursor: help;
 }
 
 .checkinfo
 {
     vertical-align: top;
+    margin-top: 3px;
 }
 
 #translate-checks-block
