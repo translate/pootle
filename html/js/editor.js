@@ -435,8 +435,13 @@
         || this.current_num_pages != pager.num_pages) {
       this.current_page = pager.number;
       this.current_num_pages = pager.num_pages;
-      var newpager = this.tmpl.pager($, {data: {pager: pager}}).join("");
-      $("div.translation-nav").children().replaceWith(newpager);
+      var where = $("div.translation-nav");
+      var newpager = "";
+      if (this.current_num_pages > 1) {
+        newpager = this.tmpl.pager($, {data: {pager: pager}}).join("");
+      }
+      where.children().remove();
+      where.append(newpager);
     }
   },
 
