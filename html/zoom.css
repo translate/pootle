@@ -36,22 +36,29 @@ html[dir="rtl"] #zoom {
 
 /* size overrides for different soom levels */
 
+body.zoom-out-2 #content .documentation,
+body.zoom-out-2 #content table.sortable,
 body.zoom-out-2 table.translate-table,
 body.zoom-out-2 table.stats {
     font-size: 90%;
 }
 
+body.zoom-out-1 #content .documentation,
+body.zoom-out-1 #content table.sortable,
 body.zoom-out-1 table.translate-table,
 body.zoom-out-1 table.stats {
     font-size: 95%;
 }
 
-/* default font size is 0.8125em == 13px */
-
+body.zoom-in-1 #content .documentation,
+body.zoom-in-1 #content table.sortable,
 body.zoom-in-1 table.translate-table,
 body.zoom-in-1 table.stats {
     font-size: 115%;
 }
+
+body.zoom-in-2 #content .documentation,
+body.zoom-in-2 #content table.sortable,
 body.zoom-in-2 table.translate-table,
 body.zoom-in-2 table.stats {
     font-size: 130%;
