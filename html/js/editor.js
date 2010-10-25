@@ -215,6 +215,21 @@
   },
 
   /*
+   * Gets selected text
+   */
+  get_selected_text: function() {
+    var t = '';
+    if (window.getSelection) {
+      t = window.getSelection();
+    } else if (document.getSelection) {
+      t = document.getSelection();
+    } else if (document.selection) {
+      t = document.selection.createRange().text;
+    }
+    return t;
+  },
+
+  /*
    * Fuzzying / unfuzzying functions
    */
   doFuzzyArea: function() {
@@ -529,6 +544,9 @@
   /* Loads the editor with a specific unit */
   goto_unit: function(e) {
     e.preventDefault();
+    if (PTL.editor.get_selected_text() != "") {
+      return;
+    }
     var m = $(this).attr("id").match(/row([0-9]+)/);
     if (m) {
       var uid = m[1];
