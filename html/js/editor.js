@@ -559,14 +559,35 @@
   /*
    * Units filtering
    */
+
+  /* Gets the failing check options for the current query */
+  get_check_options: function(uid) {
+    var checks_url = l(this.store + '/checks/');
+    var opts = '';
+    $.ajax({
+      url: checks_url,
+      async: false,
+      dataType: 'json',
+      success: function(data) {
+        if (data.success) {
+          $.each(data.checks, function() {
+            opts += '<option value="' + this.name + '">' + this.text + '</option>';
+          });
+        } else {
+          PTL.editor.error(data.msg);
+        }
+      },
+    });
+    return opts;
+  },
+
+  /* Loads units based on filtering */
   filter_status: function() {
     var filter_by = $("option:selected", this).val();
     if (filter_by == "checks") {
-      // Add new dropdown
       var dropdown = '<div id="filter-checks" class="toolbar-item">';
       dropdown += '<select name="filter-checks">';
-      dropdown += '<option value="test">Test check</option>';
-      // TODO: populate failing checks for this query
+      dropdown += PTL.editor.get_check_options();
       dropdown += '</select></div>';
       $("div#filter-status").first().after(dropdown);
     } else {

@@ -32,6 +32,7 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response
 from django.template import loader, RequestContext
 from django.utils.translation import to_locale, ugettext as _
+from django.utils.translation import ungettext
 from django.utils.translation.trans_real import parse_accept_lang_header
 from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from django.core.cache import cache
@@ -746,6 +747,57 @@ def get_edit_unit(request, pootle_path, uid):
         if page != current_page:
             pager = paginate(request, units_qs, items=unit_rows, page=page)
             json["pager"] = _build_pager_dict(pager)
+
+    response = simplejson.dumps(json)
+    return HttpResponse(response, mimetype="application/json")
+
+@ajax_required
+def get_failing_checks(request, pootle_path):
+    """
+    Gets a list of failing checks for the current query.
+
+    @return: JSON string representing action status and depending on success,
+    returns an error message or a list containing the the name and number of
+    failing checks.
+    """
+    pass
+    if pootle_path[0] != '/':
+        pootle_path = '/' + pootle_path
+    profile = get_profile(request.user)
+    json = {}
+
+    try:
+        store = Store.objects.select_related('translation_project', 'parent').get(pootle_path=pootle_path)
+        if not check_profile_permission(profile, 'view', store.parent):
+            json["success"] = False
+            json["msg"] = _("You do not have rights to access translation mode.")
+        else:
+            # Borrowed from pootle_app.views.language.item_dict.getcheckdetails
+            checkopts = []
+            try:
+                property_stats = store.getcompletestats()
+                quick_stats = store.getquickstats()
+                total = quick_stats['total']
+                keys = property_stats.keys()
+                keys.sort()
+                for checkname in keys:
+                    checkcount = property_stats[checkname]
+                    if total and checkcount:
+                        stats = ungettext('%(checkname)s (%(checks)d)',
+                                          '%(checkname)s (%(checks)d)', checkcount,
+                                          {"checks": checkcount, "checkname": checkname})
+                        checkopt = {'name': checkname,
+                                    'text': stats}
+                        checkopts.append(checkopt)
+                json["checks"] = checkopts
+                json["success"] = True
+            except IOError:
+                json["success"] = False
+                json["msg"] = _("Input/Output error.")
+    except Store.DoesNotExist:
+        json["success"] = False
+        json["msg"] = _("Store %(path)s does not exist." %
+                        {'path': pootle_path})
 
     response = simplejson.dumps(json)
     return HttpResponse(response, mimetype="application/json")
