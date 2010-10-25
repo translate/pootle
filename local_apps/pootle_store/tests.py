@@ -298,6 +298,32 @@ class XHRTestCase(PootleTestCase):
         self.assertTemplateUsed(r, 'unit/edit.html')
 
     #
+    # Tests for the get_failing_checks() view.
+    #
+    def test_get_failing_checks_bad_request(self):
+        """Not an AJAX request, should return HTTP 400."""
+        r = self.client.get("%(pootle_path)s/checks/" %\
+                            {'pootle_path': self.path})
+        self.assertEqual(r.status_code, 400)
+
+    def test_get_failing_checks_response_ok(self):
+        """AJAX request, should return HTTP 200."""
+        r = self.client.get("%(pootle_path)s/checks/" %\
+                            {'pootle_path': self.path},
+                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(r.status_code, 200)
+
+    def test_get_failing_checks_bad_store(self):
+        """Checks for store correctness when passing an invalid path."""
+        r = self.client.get("%(pootle_path)s/checks/" %\
+                            {'pootle_path': self.bad_path},
+                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(r.status_code, 200)
+        j = simplejson.loads(r.content)
+        self.assertFalse(j['success'])
+
+
+    #
     # Tests for the process_submit() view.
     #
     def test_process_submit_bad_request(self):
