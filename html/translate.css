@@ -205,16 +205,8 @@ table[dir="rtl"] td.translate-translation
 .translate-context
 {
     overflow: auto;
-    font-size: 85%;
+    font-size: 90%;
     color: #666;
-}
-
-/* SHOULD WE KEEP THESE?*/
-.translate-locations,
-.translate-context
-{
-    font-family: monospace;
-    font-size: 75%;
 }
 
 div.translator-comments
