@@ -290,6 +290,7 @@ html[dir="rtl"] #nav-access
     margin: 0 1em;
 }
 
+#precontent,
 #content {
     clear: both;
 }
@@ -572,7 +573,6 @@ ul.errorlist
 
 .intro
 {
-    clear: both;
     margin: 0 1em;
     padding-top: 2em;
     padding-bottom: 1em;
