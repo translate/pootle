@@ -22,6 +22,7 @@
         {% endblock meta %}
         {% block css %}
         <link rel="stylesheet" type="text/css" href='{{ "style.css"|m }}' />
+        <link rel="stylesheet" type="text/css" href='{{ "zoom.css"|m }}' />
         {% endblock css %}
         {% block favicon %}
         <link rel="shortcut icon" href="{{ "favicon.ico"|m }}" />
@@ -29,6 +30,9 @@
         {% block js %}
         <script type="text/javascript" src="{{ "js/jquery/jquery.min.js"|m }}"></script>
         <script type="text/javascript" src="{{ "js/jquery/jquery.tipsy.js"|m }}"></script>
+        <script type="text/javascript" src="{{ "js/jquery/jquery.cookie.js"|m }}"></script>
+        <script type="text/javascript" src="{{ "js/shortcut.js"|m }}"></script>
+        <script type="text/javascript" src="{{ "js/zoom.js"|m }}"></script>
         <script type="text/javascript">
           function l(path) {
             var basepath = "{{ settings.SCRIPT_NAME  }}";
@@ -41,6 +45,7 @@
             return l("{{ MEDIA_URL }}" + path);
           }
         $(document).ready(function() {
+            initZoom();
             $("[title]").tipsy({gravity: $.fn.tipsy.autoNSedge, html: true});
         });
         </script>
@@ -79,6 +84,9 @@
                         </ul>
                         {% endblock menu %}
                     </div>
+                </div>
+                <div id="zoom">
+                    <a id="zoom-out" title="Zoom out" href="javascript:zoom(-1)">&ndash;</a><a id="zoom-reset" title="Reset zoom" href="javascript:zoom(0)">T</a><a id="zoom-in" title="Zoom in" href="javascript:zoom(1)">+</a>
                 </div>
                 {% block header_extra %}{% endblock %}
                 {% endblock header %}
