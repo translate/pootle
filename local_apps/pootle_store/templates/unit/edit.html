@@ -53,7 +53,7 @@
       {% if unit.developer_comment or unit.locations %}
       <div class="comments">
         {% if unit.developer_comment %}
-        <div class="developer-comments" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}"{% if unit.locations %}title="{{ unit.locations }}"{% endif %}>{{ unit.developer_comment|linebreaks }}</div>
+        <div class="developer-comments" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}"{% if unit.locations %}title="{{ unit.locations }}"{% endif %}>{{ unit.developer_comment|urlize|linebreaks }}</div>
         {% endif %}
         {% if unit.locations and not unit.developer_comment %}
         <div class="translate-locations" lang="en" dir="ltr" title="{{ unit.locations }}">{{ unit.locations|truncatewords:3 }}</div>
