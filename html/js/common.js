@@ -1,15 +1,11 @@
 /*
-
-Zoom-related variables and handler functions
-
-*/
+ * Zoom-related variables and handler functions
+ */
 
 // global variable that stores current zoom level
-
 var pageZoom = 0;
 
 // converts pageZoom value to an appropriate class name string
-
 function zoomClassName() {
   if (pageZoom < 0) {
     return "zoom-out-" + (pageZoom * -1);
@@ -21,7 +17,6 @@ function zoomClassName() {
 }
 
 // initializes zoom and sets up related shortcuts on document load
-
 function initZoom() {
   pageZoom = $.cookie('pageZoom');
 
@@ -41,7 +36,6 @@ function initZoom() {
 }
 
 // changes zoom and updates class name of a document body
-
 function zoom(v) {
   var oldClassName = zoomClassName();
 
@@ -61,13 +55,10 @@ function zoom(v) {
 }
 
 /*
-
-Search control helper
-
-*/
+ * Search control helper
+ */
 
 $(document).ready(function($) {
-
   /* Search input text */
   var focused = { color: "#000" }
   var unfocused = { color: "#aaa" }
@@ -97,16 +88,11 @@ $(document).ready(function($) {
 
   /* Dropdown toggling */
   $("a.advancedlink").click(function(event) {
-	  event.preventDefault();
-	  $("div.advancedsearch").slideToggle();
-      }).toggle(
-		function() {
-		    $("img.togglesearch").toggle();
-		},
-		function() {
-		    $("img.togglesearch").toggle();
-		}
-       );
-
-});
-
+    event.preventDefault();
+    $("div.advancedsearch").slideToggle();
+  }).toggle(function() {
+    $("img.togglesearch").toggle();
+  }, function() {
+    $("img.togglesearch").toggle();
+  });
+})(jQuery);
