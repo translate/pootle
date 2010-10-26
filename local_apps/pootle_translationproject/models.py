@@ -249,7 +249,7 @@ class TranslationProject(models.Model):
                 continue
             convert_template(self, store, new_pootle_path, new_path, monolingual)
         self.scan_files()
-        self.update(conservative=False)
+        #self.update(conservative=False)
 
         if pootle_path is None:
             newstats = self.getquickstats()
