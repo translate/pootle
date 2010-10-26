@@ -137,24 +137,27 @@ class Project(models.Model):
                match_templates and filename.endswith(os.path.extsep + self.get_template_filtetype())
 
     def _detect_treestyle(self):
-        dirlisting = os.walk(self.get_real_path())
-        dirpath, dirnames, filenames = dirlisting.next()
+        try:
+            dirlisting = os.walk(self.get_real_path())
+            dirpath, dirnames, filenames = dirlisting.next()
 
-        if not dirnames:
-            # no subdirectories
-            if filter(self.file_belongs_to_project, filenames):
-                # translation files found, assume gnu
-                return "gnu"
-        else:
-            # there are subdirectories
-            if filter(lambda dirname: dirname == 'templates' or langcode_re.match(dirname), dirnames):
-                # found language dirs assume nongnu
-                return "nongnu"
+            if not dirnames:
+                # no subdirectories
+                if filter(self.file_belongs_to_project, filenames):
+                    # translation files found, assume gnu
+                    return "gnu"
             else:
-                # no language subdirs found, look for any translation file
-                for dirpath, dirnames, filenames in os.walk(self.get_real_path()):
-                    if filter(self.file_belongs_to_project, filenames):
-                        return "gnu"
+                # there are subdirectories
+                if filter(lambda dirname: dirname == 'templates' or langcode_re.match(dirname), dirnames):
+                    # found language dirs assume nongnu
+                    return "nongnu"
+                else:
+                    # no language subdirs found, look for any translation file
+                    for dirpath, dirnames, filenames in os.walk(self.get_real_path()):
+                        if filter(self.file_belongs_to_project, filenames):
+                            return "gnu"
+        except:
+            pass
         # unsure
         return None
 
@@ -165,7 +168,6 @@ class Project(models.Model):
 
         we are biased towards nongnu because it makes managing project
         from the web easier"""
-
         if self.treestyle != "auto":
             return self.treestyle
         else:
