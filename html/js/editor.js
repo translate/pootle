@@ -602,8 +602,10 @@
   /* Loads units based on checks filtering */
   filter_checks: function() {
     var filter_by = $("option:selected", this).val();
-    var newhash = "filter/checks/" + filter_by;
-    $.history.load(newhash);
+    if (filter_by != "none") {
+      var newhash = "filter/checks/" + filter_by;
+      $.history.load(newhash);
+    }
   },
 
   /* Loads units based on filtering */
@@ -612,6 +614,7 @@
     if (filter_by == "checks") {
       var dropdown = '<div id="filter-checks" class="toolbar-item">';
       dropdown += '<select name="filter-checks">';
+      dropdown += '<option selected="selected" value="none">------</option>';
       dropdown += PTL.editor.get_check_options();
       dropdown += '</select></div>';
       $("div#filter-status").first().after(dropdown);
