@@ -634,7 +634,7 @@ def get_tp_metadata(request, pootle_path, uid=None):
                     current_unit = units_qs.get(id=uid, store__pootle_path=pootle_path)
                 if current_unit is not None:
                     current_index = _get_index_in_qs(units_qs, current_unit)
-                    preceding = len(units_qs[:current_index])
+                    preceding = units_qs[:current_index].count()
                     page = preceding / unit_rows + 1
                     pager = paginate(request, units_qs, items=unit_rows, page=page)
                     json["pager"] = _build_pager_dict(pager)
@@ -745,7 +745,7 @@ def get_edit_unit(request, pootle_path, uid):
     current_unit = unit
     if current_unit is not None:
         current_index = _get_index_in_qs(units_qs, current_unit)
-        preceding = len(units_qs[:current_index])
+        preceding = units_qs[:current_index].count()
         page = preceding / unit_rows + 1
         if page != current_page:
             pager = paginate(request, units_qs, items=unit_rows, page=page)
@@ -859,7 +859,7 @@ def process_submit(request, pootle_path, uid, type):
                 current_unit = unit
                 if current_unit is not None:
                     current_index = _get_index_in_qs(units_qs, current_unit)
-                    preceding = len(units_qs[:current_index])
+                    preceding = units_qs[:current_index].count()
                     page = preceding / unit_rows + 1
                     if page != current_page:
                         pager = paginate(request, units_qs, items=unit_rows, page=page)
