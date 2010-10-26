@@ -20,7 +20,6 @@
 {% endblock css %}
 
 {% block extra_head %}
-<script src='{{ "js/shortcut.js"|m }}' type="text/javascript"></script>
 <script src='{{ "js/jquery/jquery.history.js"|m }}' type="text/javascript"></script>
 <script src='{{ "js/jquery/jquery.tmpl.js"|m }}' type="text/javascript"></script>
 <script src='{{ "js/jquery/jquery.textarea-expander.js"|m }}' type="text/javascript"></script>
@@ -101,7 +100,6 @@ $(document).ready (function() {
 {% block scripts_extra %}
 {{ block.super }}
 <script src='{{ "js/json2.min.js"|m }}' type="text/javascript"></script>
-<script src='{{ "js/jquery/jquery.cookie.js"|m }}' type="text/javascript"></script>
 <script src='{{ "js/jquery/jquery.fieldselection.js"|m }}' type="text/javascript"></script>
 <script src='{{ "js/jquery/jquery.caret.js"|m }}' type="text/javascript"></script>
 {% if not user.is_authenticated %}
