@@ -739,7 +739,7 @@ def get_edit_unit(request, pootle_path, uid):
     json = {'success': True,
             'editor': t.render(c)}
 
-    current_page = request.GET.get('page', 1)
+    current_page = int(request.GET.get('page', 1))
     units_qs = _filter_queryset(request.GET, unit.store.units)
     unit_rows = profile.get_unit_rows()
     current_unit = unit
@@ -853,7 +853,7 @@ def process_submit(request, pootle_path, uid, type):
                                                                  suggester=get_profile(request.user),
                                                                  state='pending', unit=unit.id)
 
-                current_page = request.POST.get('page', 1)
+                current_page = int(request.POST.get('page', 1))
                 units_qs = _filter_queryset(request.POST, unit.store.units)
                 unit_rows = profile.get_unit_rows()
                 current_unit = unit
