@@ -184,9 +184,12 @@ def translation_project_should_exist(language, project):
                         return True
     else:
         # find directory with the language name in the project dir
-        dirpath, dirnames, filename = os.walk(project.get_real_path()).next()
-        if language.code in dirnames:
-            return True
+        try:
+            dirpath, dirnames, filename = os.walk(project.get_real_path()).next()
+            if language.code in dirnames:
+                return True
+        except StopIteration:
+            pass
 
     return False
 
