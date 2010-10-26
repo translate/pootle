@@ -25,13 +25,13 @@ class PootleTestCase(TestCase):
     """Base TestCase class, set's up a pootle environment with a
     couple of test files and projects"""
 
-
     def _setup_test_podir(self):
         self.testpodir = tempfile.mkdtemp()
         settings.PODIRECTORY = self.testpodir
         fs.location = self.testpodir
         TranslationProject._non_db_state_cache.clear()
 
+    def _setup_test_files(self):
         gnu = os.path.join(self.testpodir, "terminology")
         os.mkdir(gnu)
         potfile = file(os.path.join(gnu, "terminology.pot"), 'w')
@@ -88,7 +88,7 @@ msgstr[1] ""
 
     def setUp(self):
         self._setup_test_podir()
-
+        self._setup_test_files()
         #FIXME: replace initdb with a fixture
         call_command('initdb')
 
