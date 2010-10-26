@@ -54,8 +54,6 @@ from pootle_store.forms import unit_form_factory, highlight_whitespace
 from pootle_store.templatetags.store_tags import fancy_highlight, find_altsrcs, get_sugg_list, highlight_diffs, pluralize_source, pluralize_target
 from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED, absolute_real_path, ajax_required
 
-# DEFAULT FILTERING
-DEFAULT_FILTER = 'all'
 
 def export_as_xliff(request, pootle_path):
     """export given file to xliff for offline translation"""
@@ -480,23 +478,31 @@ def translate(request, pootle_path):
 # Views used with XMLHttpRequest requests.
 #
 
-def _filter_queryset(qs, filter_by):
+def _filter_queryset(qdict, qs):
     """
     Filters the given C{qs} unit queryset by the criterion specified
-    in the C{filter_by} parameter.
+    in the C{qdict} POST/GET parameters.
 
     @return: A filtered queryset.
     """
-    # TODO: Add more filtering options
     filtered = qs
-    if filter_by == "incomplete":
-        filtered = qs.filter(state=FUZZY) | qs.filter(state=UNTRANSLATED)
-    elif filter_by == "untranslated":
-        filtered = qs.filter(state=UNTRANSLATED)
-    elif filter_by == "fuzzy":
-        filtered = qs.filter(state=FUZZY)
-    elif filter_by == "suggestions":
-        filtered = qs.exclude(suggestion=None)
+    if 'filter' in qdict and 'checks' not in qdict:
+        filter_by = qdict['filter']
+        if filter_by == "incomplete":
+            filtered = qs.filter(state=FUZZY) | qs.filter(state=UNTRANSLATED)
+        elif filter_by == "untranslated":
+            filtered = qs.filter(state=UNTRANSLATED)
+        elif filter_by == "fuzzy":
+            filtered = qs.filter(state=FUZZY)
+        elif filter_by == "suggestions":
+            filtered = qs.exclude(suggestion=None)
+
+    if 'checks' in qdict:
+        checks = qdict['checks'].split(',')
+        if checks:
+            filtered = qs.filter(qualitycheck__false_positive=False,
+                                 qualitycheck__name__in=checks)
+
     return filtered
 
 def _filter_view_units(units_qs, current_page, limit):
@@ -614,8 +620,7 @@ def get_tp_metadata(request, pootle_path, uid=None):
             json["success"] = False
             json["msg"] = _("You do not have rights to access translation mode.")
         else:
-            filter = request.GET.get('filter', DEFAULT_FILTER)
-            units_qs = _filter_queryset(store.units, filter)
+            units_qs = _filter_queryset(request.GET, store.units)
             unit_rows = profile.get_unit_rows()
 
             try:
@@ -678,8 +683,7 @@ def get_view_units(request, pootle_path, limit=0):
             try:
                 if not limit:
                     limit = profile.get_unit_rows()
-                filter = request.GET.get('filter', DEFAULT_FILTER)
-                units_qs = _filter_queryset(store.units, filter)
+                units_qs = _filter_queryset(request.GET, store.units)
                 json["units"] = _filter_view_units(units_qs, int(page), int(limit))
                 json["success"] = True
             except Unit.DoesNotExist:
@@ -736,8 +740,7 @@ def get_edit_unit(request, pootle_path, uid):
             'editor': t.render(c)}
 
     current_page = request.GET.get('page', 1)
-    filter = request.GET.get('filter', DEFAULT_FILTER)
-    units_qs = _filter_queryset(unit.store.units, filter)
+    units_qs = _filter_queryset(request.GET, unit.store.units)
     unit_rows = profile.get_unit_rows()
     current_unit = unit
     if current_unit is not None:
@@ -851,8 +854,7 @@ def process_submit(request, pootle_path, uid, type):
                                                                  state='pending', unit=unit.id)
 
                 current_page = request.POST.get('page', 1)
-                filter = request.POST.get('filter', DEFAULT_FILTER)
-                units_qs = _filter_queryset(unit.store.units, filter)
+                units_qs = _filter_queryset(request.POST, unit.store.units)
                 unit_rows = profile.get_unit_rows()
                 current_unit = unit
                 if current_unit is not None:

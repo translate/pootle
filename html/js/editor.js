@@ -34,6 +34,7 @@
     this.current_page = 1;
     this.pages_got = {};
     this.filter = "all";
+    this.checks = [];
     this.keepstate = false;
 
     /* Ugly hack to avoid JS templates from being interpreted by Django. */
@@ -99,6 +100,7 @@
 
     /* Filtering */
     $("div#filter-status select").live("change", PTL.editor.filter_status);
+    $("div#filter-checks select").live("change", PTL.editor.filter_checks);
 
     /* Bind hotkeys */
     shortcut.add('ctrl+return', function() {
@@ -152,6 +154,7 @@
           PTL.editor.display_edit_unit(uid);
         break;
         case "filter":
+          PTL.editor.checks = parts[1] == "checks" ? parts[2].split(',') : [];
           PTL.editor.filter = parts[1];
           PTL.editor.pages_got = {};
           PTL.editor.units = {};
@@ -299,10 +302,14 @@
   get_meta: function(with_uid) {
     var append = with_uid ? this.active_uid : "";
     var meta_url = l(this.store + "/meta/" + append);
+    var req_data = {filter: this.filter};
+    if (this.checks.length) {
+      req_data.checks = this.checks.join(",");
+    }
     $.ajax({
       url: meta_url,
       async: false,
-      data: {filter: PTL.editor.filter},
+      data: req_data,
       dataType: 'json',
       success: function(data) {
         PTL.editor.meta = data.meta;
@@ -327,9 +334,13 @@
     var url_str = this.store + '/view';
     url_str = limit ? url_str + '/limit/' + limit : url_str;
     var view_for_url = l(url_str);
+    var req_data = {page: page, filter: this.filter};
+    if (this.checks.length) {
+      req_data.checks = this.checks.join(",");
+    }
     $.ajax({
       url: view_for_url,
-      data: {page: page, filter: PTL.editor.filter},
+      data: req_data,
       dataType: 'json',
       async: async,
       success: function(data) {
@@ -463,12 +474,16 @@
   /* Loads the edit unit 'uid' */
   get_edit_unit: function(uid) {
     var edit_url = l(this.store + '/edit/' + uid);
+    var req_data = {page: this.current_page, filter: this.filter};
+    if (this.checks.length) {
+      req_data.checks = this.checks.join(",");
+    }
     var editor = '<tr id="row' + uid + '" class="edit-row">';
     var widget = '';
     $.ajax({
       url: edit_url,
       async: false,
-      data: {page: PTL.editor.current_page, filter: PTL.editor.filter},
+      data: req_data,
       dataType: 'json',
       success: function(data) {
         widget = data['editor'];
@@ -496,12 +511,15 @@
     var type = type_map[type_class];
     var submit_url = l(PTL.editor.store + '/process/' + uid + '/' + type);
     // Serialize data to be sent
-    var post_data = $("form#" + form_id).serialize();
-    post_data += "&page=" + PTL.editor.current_page + "&filter=" + PTL.editor.filter;
+    var req_data = $("form#" + form_id).serialize();
+    req_data += "&page=" + PTL.editor.current_page + "&filter=" + PTL.editor.filter;
+    if (PTL.editor.checks.length) {
+      req_data += "&checks=" + PTL.editor.checks.join(",");
+    }
     $.ajax({
       url: submit_url,
       type: 'POST',
-      data: post_data,
+      data: req_data,
       dataType: 'json',
       async: false,
       success: function(data) {
@@ -579,6 +597,13 @@
       },
     });
     return opts;
+  },
+
+  /* Loads units based on checks filtering */
+  filter_checks: function() {
+    var filter_by = $("option:selected", this).val();
+    var newhash = "filter/checks/" + filter_by;
+    $.history.load(newhash);
   },
 
   /* Loads units based on filtering */
