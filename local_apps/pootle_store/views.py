@@ -740,7 +740,8 @@ def get_edit_unit(request, pootle_path, uid):
             'editor': t.render(c)}
 
     current_page = int(request.GET.get('page', 1))
-    units_qs = _filter_queryset(request.GET, unit.store.units)
+    all_units = unit.store.units
+    units_qs = _filter_queryset(request.GET, all_units)
     unit_rows = profile.get_unit_rows()
     current_unit = unit
     if current_unit is not None:
@@ -854,7 +855,8 @@ def process_submit(request, pootle_path, uid, type):
                                                                  state='pending', unit=unit.id)
 
                 current_page = int(request.POST.get('page', 1))
-                units_qs = _filter_queryset(request.POST, unit.store.units)
+                all_units = unit.store.units
+                units_qs = _filter_queryset(request.POST, all_units)
                 unit_rows = profile.get_unit_rows()
                 current_unit = unit
                 if current_unit is not None:
