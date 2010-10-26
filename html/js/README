@@ -33,8 +33,10 @@ Directory contents
 
     http://www.json.org/js.html
 
-  - search.js :
-    Code to handle the advanced search dropdown. May be merged with other code
+  - common.js :
+    Common code that is included in every page. This includes:
+    - Code to handle the page zoom feature.
+    - Code to handle the advanced search dropdown. May be merged with other code
     in the translate page.
 
   - sorttable.js :

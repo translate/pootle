@@ -358,6 +358,46 @@ html[dir="rtl"] #nav-main ul li
 }
 
 /*
+ * ZOOM CONTROL
+ */
+
+#zoom {
+    padding: 12px;
+    position: absolute;
+    right: 0px;
+    top: 25px;
+    font-size: 12px;
+    font-weight: bold;
+
+    filter:alpha(opacity=40);
+    -moz-opacity: 0.4;
+    -khtml-opacity: 0.4;
+    opacity: 0.4;
+}
+
+html[dir="rtl"] #zoom {
+    right: auto;
+    left: 0px;
+}
+
+#zoom a {
+    padding: 0 2px;
+    border: 1px dotted transparent;
+}
+
+#zoom:hover {
+    filter:alpha(opacity=100);
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    opacity: 1;
+}
+
+#zoom a:hover {
+    border: 1px dotted #0489b7;
+    text-decoration: none;
+}
+
+/*
  * MENUBAR
  */
 
@@ -1734,3 +1774,36 @@ h2:lang(zh) a
     .tipsy-se .tipsy-arrow { bottom: 0; right: 10px; background-position: bottom left; }
   .tipsy-e .tipsy-arrow { top: 50%; margin-top: -4px; right: 0; width: 5px; height: 9px; background-position: top right; }
   .tipsy-w .tipsy-arrow { top: 50%; margin-top: -4px; left: 0; width: 5px; height: 9px; }
+
+
+/*
+ * Size overrides for different zoom levels
+ */
+
+body.zoom-out-2 #content .documentation,
+body.zoom-out-2 #content table.sortable,
+body.zoom-out-2 table.translate-table,
+body.zoom-out-2 table.stats {
+    font-size: 90%;
+}
+
+body.zoom-out-1 #content .documentation,
+body.zoom-out-1 #content table.sortable,
+body.zoom-out-1 table.translate-table,
+body.zoom-out-1 table.stats {
+    font-size: 95%;
+}
+
+body.zoom-in-1 #content .documentation,
+body.zoom-in-1 #content table.sortable,
+body.zoom-in-1 table.translate-table,
+body.zoom-in-1 table.stats {
+    font-size: 115%;
+}
+
+body.zoom-in-2 #content .documentation,
+body.zoom-in-2 #content table.sortable,
+body.zoom-in-2 table.translate-table,
+body.zoom-in-2 table.stats {
+    font-size: 130%;
+}
