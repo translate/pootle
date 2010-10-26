@@ -505,12 +505,12 @@ def _filter_queryset(qdict, qs):
 
     return filtered
 
-def _filter_view_units(units_qs, current_page, limit):
+def _filter_view_units(units_qs, current_page, per_page):
     """
-    Returns C{limit} units that are contained within page C{current_page}.
+    Returns C{per_page} units that are contained within page C{current_page}.
     """
-    start_index = limit * (current_page - 1)
-    end_index = start_index + limit
+    start_index = per_page * (current_page - 1)
+    end_index = start_index + per_page
     filtered = units_qs[start_index:end_index]
     return _build_units_list(units_qs, filtered)
 
