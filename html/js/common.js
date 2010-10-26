@@ -95,4 +95,4 @@ $(document).ready(function($) {
   }, function() {
     $("img.togglesearch").toggle();
   });
-})(jQuery);
+});
