@@ -464,6 +464,8 @@ class Unit(models.Model, base.TranslationUnit):
             self.state = UNTRANSLATED
 
     def istranslated(self):
+        if self._target_updated and not self.isfuzzy():
+            return bool(filter(None, self.target_f.strings))
         return self.state >= TRANSLATED
 
     @classmethod
