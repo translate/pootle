@@ -375,6 +375,23 @@
     return rows;
   },
 
+  /* Builds context rows for units passed as 'units' */
+  build_ctxt_rows: function(units) {
+    var cls = "even";
+    var even = true;
+    var rows = "";
+    for (var i=0; i<units.length; i++) {
+      var unit = units[i];
+      rows += '<tr id="ctxt' + unit.id + '" class="context-row ' + cls + '">';
+      rows += this.tmpl.vunit($, {data: {meta: this.meta,
+                                         unit: unit}}).join("");
+      rows += '</tr>';
+      cls = even ? "odd" : "even";
+      even = !even;
+    }
+    return rows;
+  },
+
   /* Gets uids that should be displayed before/after 'uid' */
   get_uids_before_after: function(uid) {
     var uids = {before: [], after: []};
@@ -478,8 +495,8 @@
     if (this.checks.length) {
       req_data.checks = this.checks.join(",");
     }
-    var editor = '<tr id="row' + uid + '" class="edit-row">';
     var widget = '';
+    var ctxt = {before: [], after: []};
     $.ajax({
       url: edit_url,
       async: false,
@@ -490,9 +507,16 @@
         if (data.pager) {
           PTL.editor.update_pager(data.pager);
         }
+        if (data.ctxt) {
+          ctxt.before = data.ctxt.before;
+          ctxt.after = data.ctxt.after;
+        }
       },
     });
-    editor += widget + '</tr>';
+    var editor = this.build_ctxt_rows(ctxt.before) +
+                 '<tr id="row' + uid + '" class="edit-row">' +
+                  widget + '</tr>' +
+                  this.build_ctxt_rows(ctxt.before);
     this.active_uid = uid;
     return editor;
   },

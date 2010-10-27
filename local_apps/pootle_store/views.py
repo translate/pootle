@@ -514,6 +514,15 @@ def _filter_view_units(units_qs, current_page, per_page):
     filtered = units_qs[start_index:end_index]
     return _build_units_list(units_qs, filtered)
 
+def _filter_ctxt_units(units_qs, edit_index, limit):
+    """
+    Returns C{limit}*2 units that are before and after C{index}.
+    """
+    before = units_qs.filter(index__lt=edit_index)[:limit]
+    after = units_qs.filter(index__gt=edit_index)[:limit]
+    return {'before': _build_units_list(units_qs, before),
+            'after': _build_units_list(units_qs, after)}
+
 def _get_prevnext_unit_ids(qs, unit):
     """
     Gets the previous and next unit ids of C{unit} based on index.
@@ -751,6 +760,10 @@ def get_edit_unit(request, pootle_path, uid):
         if page != current_page:
             pager = paginate(request, units_qs, items=unit_rows, page=page)
             json["pager"] = _build_pager_dict(pager)
+        # Return context rows if filtering is applied
+        if 'filter' in request.GET and request.GET.get('filter', 'all') != 'all':
+            edit_index = _get_index_in_qs(all_units, current_unit)
+            json["ctxt"] = _filter_ctxt_units(all_units, edit_index, 2)
 
     response = simplejson.dumps(json)
     return HttpResponse(response, mimetype="application/json")
