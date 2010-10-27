@@ -915,6 +915,7 @@ class Store(models.Model, base.TranslationStore):
                         return self.__iter__()
                 self._units = FakeQuerySet()
             self._units.append(newunit)
+        return newunit
 
     def findunits(self, source):
         if hasattr(self, "sourceindex"):
