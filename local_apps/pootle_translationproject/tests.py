@@ -41,15 +41,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Pootle Tests\n"
 
-#: fish.c
+#: fish.c:1
 msgid "Exact"
 msgstr ""
 
-#: test.c
+#: test.c:1
 msgid "Fuzzy"
 msgstr ""
 
-#: fish.c
+#: fish.c:2
 msgid "%d new"
 msgid_plural "%d news"
 msgstr[0] ""
@@ -65,15 +65,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Pootle Tests\n"
 
-#: fish.c
+#: fish.c:1
 msgid "Exact"
 msgstr "Belzabt"
 
-#: test.c
+#: test.c:1
 msgid "fuzzy"
 msgstr "ta2riban"
 
-#: fish.c
+#: fish.c:2
 msgid "obsolete"
 msgstr "2adim"
 '''
