@@ -41,6 +41,10 @@ th.translate-translation
     width: 50%;
 }
 
+tr.context-row {
+    background-color: #e5f3f8;
+}
+
 tr.edit-row
 {
     background-color: #f1f7f8;
