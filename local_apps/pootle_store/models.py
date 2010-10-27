@@ -750,6 +750,9 @@ class Store(models.Model, base.TranslationStore):
         self.state = LOCKED
         self.save()
         try:
+            if fuzzy:
+                matcher = self.get_matcher()
+
             monolingual = is_monolingual(type(store))
             self.require_dbid_index(update=True)
             old_ids = set(self.dbid_index.keys())
@@ -760,11 +763,16 @@ class Store(models.Model, base.TranslationStore):
                 for unit in self.findid_bulk(obsolete_dbids):
                     if not unit.istranslated() or not conservative:
                         #FIXME: make obselete instead?
-                        unit.delete()
+                        unit.makeobsolete()
+                        unit.save()
 
                 new_units = (store.findid(uid) for uid in new_ids - old_ids)
                 for unit in new_units:
-                    self.addunit(unit, unit.index)
+                    newunit = self.addunit(unit, unit.index)
+                    if fuzzy and not filter(None, newunit.target.strings):
+                        match_unit = newunit.fuzzy_translate(matcher)
+                        if match_unit:
+                            newunit.save()
 
             if update_translation:
                 shared_dbids = [self.dbid_index.get(uid) for uid in old_ids & new_ids]
@@ -777,6 +785,10 @@ class Store(models.Model, base.TranslationStore):
                     if update_structure and unit.index != newunit.index:
                         unit.index = newunit.index
                         changed = True
+                    if fuzzy and not filter(None, unit.target.strings):
+                        match_unit = unit.fuzzy_translate(matcher)
+                        if match_unit:
+                            changed = True
                     if changed:
                         unit.save()
         finally:
