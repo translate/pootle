@@ -172,11 +172,16 @@ msgstr "2adim"
         unit = store.findid('%d new')
         self.assertFalse(unit.istranslated())
 
-        #obsolete_count = store.unit_set.filter(state=OBSOLETE).count()
-        #self.assertEqual(obsolete_count, 1)
-        #unit = store.unit_set.filter(state=OBSOLETE)[0]
-        #self.assertEqual(unit.source, u'obsolete')
-        #self.assertEqual(unit.target, u'2adim')
+        obsolete_count = store.unit_set.filter(state=OBSOLETE).count()
+        self.assertEqual(obsolete_count, 1)
+        unit = store.unit_set.get(state=OBSOLETE, unitid='obsolete')
+        self.assertEqual(unit.source, u'obsolete')
+        self.assertEqual(unit.target, u'2adim')
+        #for unit in store.file.store.units:
+        #    if unit.isobsolete():
+        #        unit.resurrect()
+        #        self.assertEqual(unit.source, u'obsolete')
+        #        self.assertEqual(unit.target, u'2adim')
 
 class PrefixGnuTests(GnuTests):
     """tests for Gnu style with prefix projects"""
