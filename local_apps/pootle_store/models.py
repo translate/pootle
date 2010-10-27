@@ -439,7 +439,7 @@ class Unit(models.Model, base.TranslationUnit):
         if value:
             self.state = FUZZY
         elif self.state <= FUZZY:
-            if count_words(self.target_f.strings):
+            if filter(None, self.target_f.strings):
                 self.state = TRANSLATED
             else:
                 self.state = UNTRANSLATED
@@ -458,7 +458,7 @@ class Unit(models.Model, base.TranslationUnit):
         if self.state > OBSOLETE:
             return
 
-        if count_words(self.target_f.strings):
+        if filter(None, self.target_f.strings):
             self.state = TRANSLATED
         else:
             self.state = UNTRANSLATED
