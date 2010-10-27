@@ -548,6 +548,20 @@ a.writespecial,
     cursor: pointer;
 }
 
+a.copyoriginal {
+    filter:alpha(opacity=50);
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+}
+
+.original:hover a.copyoriginal {
+    filter:alpha(opacity=100);
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    opacity: 1;
+}
+
 a.writespecial
 {
     border: 1px dotted #999;
