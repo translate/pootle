@@ -90,17 +90,17 @@
     $("a.copyoriginal").live("click", this.copy_original);
 
     /* Editor navigation/submission */
-    $("table.translate-table").live("editor_ready", PTL.editor.ready);
-    $("tr.view-row").live("click", PTL.editor.goto_unit);
-    $("input.submit, input.suggest").live("click", PTL.editor.process_submit);
-    $("input.previous, input.next").live("click", PTL.editor.goto_prevnext);
-    $("#translate-suggestion-container .rejectsugg").live("click", PTL.editor.reject_suggestion);
-    $("#translate-suggestion-container .acceptsugg").live("click", PTL.editor.accept_suggestion);
-    $("#translate-checks-block .rejectcheck").live("click", PTL.editor.reject_check);
+    $("table.translate-table").live("editor_ready", this.ready);
+    $("tr.view-row").live("click", this.goto_unit);
+    $("input.submit, input.suggest").live("click", this.process_submit);
+    $("input.previous, input.next").live("click", this.goto_prevnext);
+    $("#translate-suggestion-container .rejectsugg").live("click", this.reject_suggestion);
+    $("#translate-suggestion-container .acceptsugg").live("click", this.accept_suggestion);
+    $("#translate-checks-block .rejectcheck").live("click", this.reject_check);
 
     /* Filtering */
-    $("div#filter-status select").live("change", PTL.editor.filter_status);
-    $("div#filter-checks select").live("change", PTL.editor.filter_checks);
+    $("div#filter-status select").live("change", this.filter_status);
+    $("div#filter-checks select").live("change", this.filter_checks);
 
     /* Bind hotkeys */
     shortcut.add('ctrl+return', function() {
