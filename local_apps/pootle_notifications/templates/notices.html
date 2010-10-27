@@ -65,7 +65,7 @@ approach for this.
 {% endblock %}
 
 {% block content %}
-<div c__lass="settings-container centered" lang="{{ LANGUAGE_CODE }}">
+<div id="innernav" lang="{{ LANGUAGE_CODE }}">
     {% if form %}
         <h2>{{ title }}</h2>
         <div class="form news">
@@ -78,19 +78,20 @@ approach for this.
             </p>
         </form>
         </div>
+    {% else %}
+        <h2>{% trans "Latest News" %} {{ name }}</h2>
     {% endif %}
 
-        <!--<h2>{% trans "Latest News" %} {{ name }}</h2>-->
     <div class="news-feed{% if form %}-with-form{% endif %}">
-    {% if notices %}
-        {% for notice in notices %}
-            <div class="datetime"><small>{{ notice.get_date }}</small></div>
-            <div class="newsitem">{{ notice.message|safe|linebreaks|clean }}</div>
-            <div class="newsitem-sep"></div>
-        {% endfor %}
-    {% else %}
-        <p>{% trans "No news yet." %}</p>
-    {% endif %}
+        {% if notices %}
+            {% for notice in notices %}
+                <div class="datetime"><small>{{ notice.get_date }}</small></div>
+                <div class="newsitem">{{ notice.message|safe|linebreaks|clean }}</div>
+                <div class="newsitem-sep"></div>
+            {% endfor %}
+        {% else %}
+            <p>{% trans "No news yet." %}</p>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
