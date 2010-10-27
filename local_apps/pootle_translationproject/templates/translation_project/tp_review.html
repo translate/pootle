@@ -20,7 +20,6 @@
         {% if item.isdir or item.isfile %}
         <div class="item {% cycle 'even' 'odd' %}">
         {% include "language/item_block.html" %}
-        {% include "language/item_stats.html" %}
         </div>
         {% endif %}
     </div>

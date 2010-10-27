@@ -14,12 +14,18 @@
     </div>
     {% endif %}
 
+    <h2>
+    {{ item.stats.summary|safe }}
+    </h2>
+
     {% if item.actions %}
     <div id="actionlinks" class="item-description">
         {% for link in item.actions %}
-        <a href="{{ link.href|l }}" title="{{ link.title }}">{{ link.text }}</a>{% if not forloop.last %} | {% endif %}
+        <a href="{{ link.href|l }}" title="{{ link.title }}">{{ link.text }}</a>
         {% endfor %}
     </div>
     {% endif %}
+
+    {% include "language/item_stats.html" %}
 </div>
 <!-- /itemblock -->

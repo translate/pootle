@@ -22,7 +22,9 @@
     {{ description|safe|linebreaks|clean }}
 </div>
 
-<div class="item-statistics" lang="{{ LANGUAGE_CODE }}">{{ project.stats }}</div>
+<div id="innernav" class="item-statistics">
+  <h2 lang="{{ LANGUAGE_CODE }}">{{ project.stats }}</h2>
+</div>
 
 <div class="module-primary" lang="{{ LANGUAGE_CODE }}">
     <div class="bd">

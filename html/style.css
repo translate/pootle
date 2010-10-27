@@ -357,6 +357,12 @@ html[dir="rtl"] #nav-main ul li
     font-size: 95%;
 }
 
+#nav-main a.admin
+{
+    color: #c30;
+}
+
+
 /*
  * ZOOM CONTROL
  */
@@ -539,6 +545,14 @@ html[dir="rtl"] #xhr-error span
     border: 1px solid #c00;
     padding: 0.5em 1em;
     */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e5f3f8', endColorstr='#cde7f1');
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffd), to(#ffa));
+    background: -moz-linear-gradient(top,  #e5f3f8,  #cde7f1);
+}
+
+#site-message p.info
+{
+    margin: 0.3em 0;
 }
 
 #site-message .success
@@ -613,8 +627,6 @@ ul.errorlist
 .intro
 {
     margin: 0 1em;
-    padding-top: 2em;
-    padding-bottom: 1em;
     line-height: 1.3em;
 }
 
@@ -647,7 +659,7 @@ tr.even,
 td.even, 
 li.even
 {
-    background: #f7f7f5;
+    background: #f7f7f7;
 }
 
 /* MODULES */
@@ -957,11 +969,9 @@ div#submenu-tabs a:hover
     color: #666 !important;
 }
 
-div#submenu-tabs a.admintab:hover
+div#submenu-tabs a.admintab
 {
-    background-color: #f60 !important;
-    border-bottom-color: #f60 !important;
-    color: #fff !important;
+    color: #c30 !important;
 }
 
 div#submenu-tabs a:visited
@@ -1193,19 +1203,74 @@ html[dir="rtl"] select#id_ui_lang option
     text-align: right !important;
 }
 
-div#innernav {
-  margin: 1.5em 1em 0;
+div#innernav
+{
+    margin: 1.5em 1em 0;
 }
 
-div#actionlinks {
-  margin-bottom: 1.5em;
+div#actionlinks
+{
+    margin-top: 0.5em;
+}
+
+div#actionlinks a
+{
+    padding: 0.1em 0.5em;
+    border: 1px solid #ccc;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #eee;
+    color: #666;
+    margin-right: 0.5em;
+}
+
+html[dir="rtl"] div#actionlinks a
+{
+    margin-right: 0;
+    margin-left: 0.5em;
+}
+
+div#actionlinks a:hover
+{
+    background-color: #fff;
+    color: #333;
+    text-decoration: none;
+}
+
+.item div#actionlinks
+{
+    font-size: 85%;
+    padding-bottom: 0.2em;
+}
+
+.item div#actionlinks a
+{
+}
+
+.item
+{
+    background-color: #F7F7F7;
+    padding: 1em;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+
+.item .title
+{
+    font-weight: bold;
+}
+
+.item h2
+{
+    font-size: 100%;
 }
 
 div.item-statistics
 {
-    background-color: inherit;
-    color: #4B4740;
-    font-size: 1.5em;
+    margin-top: 1em;
 }
 
 div.item-statistics dl
@@ -1421,8 +1486,8 @@ div#search
 {
     /* this should better be fixed in html template */
     position: absolute;
-    right: 2em;
-    top: 133px;
+    right: 1em;
+    top: 85px;
 }
 
 div#search[dir="rtl"]

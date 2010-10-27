@@ -2,30 +2,28 @@
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 {% if upload %}
-<div id="upload" class="module first clear" lang="{{ LANGUAGE_CODE }}">
-    <div class="bd">
-        <h2>{{ upload.form.title }}</h2>
-        <form action="" method="post" class="upload" id="uploadform" name="uploadform" enctype="multipart/form-data">
-          {{ form.non_field_errors }}
-          {% for field in upload.form %}
-          <p {% if field.help_text %}title="{{ field.help_text }}"{% endif %}>
-            {{ field.errors }}
-            {{ field.label_tag }} {{ field }}
-          </p>
-          {% endfor %}
-          <p class="buttons">
-              {{ upload.render_submits }}
-          </p>
-        </form>
-    </div>
+<div id="upload" class="form" lang="{{ LANGUAGE_CODE }}">
+    <h2>{{ upload.form.title }}</h2>
+    <form action="" method="post" class="upload" id="uploadform" name="uploadform" enctype="multipart/form-data">
+      {{ form.non_field_errors }}
+      {% for field in upload.form %}
+      <p {% if field.help_text %}title="{{ field.help_text }}"{% endif %}>
+        {{ field.errors }}
+        {{ field.label_tag }} {{ field }}
+      </p>
+      {% endfor %}
+      <p class="buttons">
+          {{ upload.render_submits }}
+      </p>
+    </form>
 </div>
 {% endif %}
 {% if update %}
-<div id="update" class="module first clear" lang="{{ LANGUAGE_CODE }}">
-    <div class="bd">
-        <form action="" method="post" class="vcs-update" name="updateform" enctype="multipart/form-data">
-        {{ update.as_p }}
-        </form>
-    </div>
+<div id="update" class="form" lang="{{ LANGUAGE_CODE }}">
+    <h2>{% trans "Update from Version Control" %}</h2>
+    <p>{% trans "Use this option to update all the files in this area from the version control." %}</p>
+    <form action="" method="post" class="vcs-update" name="updateform" enctype="multipart/form-data">
+    {{ update.as_p }}
+    </form>
 </div>
 {% endif %}

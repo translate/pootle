@@ -8,20 +8,61 @@ div#toolbar
 {
     background-color: #e5f3f8;
     border-top: 1px solid #ccc;
-    text-align: center;
+    text-align: left;
     width: 100%;
     height: 50px;
     position: fixed;
     left: 0;
     bottom: 0;
-    z-index: 9000;
-    text-align: center;
+    /*top: 85px;*/
+    z-index: 1000;
+    box-shadow: 0px 0px 0px #ccc;
+    -moz-box-shadow: 0px 0px 20px #ccc;
+    -webkit-box-shadow: 0px 0px 20px #ccc;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e5f3f8', endColorstr='#cde7f1');
+    background: -webkit-gradient(linear, left top, left bottom, from(#e5f3f8), to(#cde7f1));
+    background: -moz-linear-gradient(top,  #e5f3f8,  #cde7f1);
 }
 
 div#toolbar > div
 {
     display: inline-block;
-    padding: 1em;
+    padding: 1em 0.5em;
+}
+
+div#toolbar > div > div
+{
+    display: inline-block;
+}
+
+#prevnext
+{
+    position: absolute;
+    right: 0px;
+}
+
+#prevnext #item-navigation
+{
+    font-size: 120%;
+    margin: 0 0.5em;
+}
+
+#prevnext #item-number
+{
+    margin: 0; padding: 0;
+    text-align: center;
+    b--order: 0;
+    b--ackground-color: inherit;    
+}
+
+#prevnext:hover #item-number
+{
+    b--ackground-color: #fff;
+}
+
+#prevnext #items-count
+{
+    f--ont-weight: bold;
 }
 
 /* SPECIAL FOOTER */
@@ -387,20 +428,6 @@ div.translator-comments + #translate-suggestion-container
 }
 
 /* CHECKS */
-
-div.check
-{
-    position: absolute;
-    right: 230px;
-    top: 133px;
-
-}
-
-html[dir="rtl"] div.check
-{
-    right: auto;
-    left: 230px;
-}
 
 div.check a
 {

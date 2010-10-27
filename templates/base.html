@@ -72,7 +72,7 @@
                             <li class="menubaritem"><a href='{{ "/"|l }}'>{% trans "Home" %}</a></li>
                             <li class="menubaritem"><a href='{{ "/docs/index.html"|l }}'>{% trans "Help" %}</a></li>
                             {% if user.is_superuser %}
-                            <li class="menubaritem"><a href='{{ "/admin/"|l }}'>{% trans "Admin" %}</a></li>
+                            <li class="menubaritem"><a class="admin" href='{{ "/admin/"|l }}'>{% trans "Admin" %}</a></li>
                             {% endif %}
                             {% if user.is_authenticated %}
                             <li class="menubaritem"><a href='{% filter l %}/accounts/{{ user.username }}/{% endfilter %} '>{% trans "My Account" %}</a></li>
@@ -101,20 +101,6 @@
                 <div id="xhr-error" class="xhr-message hide">
                   <span> </span>
                 </div>
-                {% if message or error_message or messages %}
-                <div id="site-message" lang="{{ LANGUAGE_CODE }}">
-                    {% block message %}
-                    <div class="info">{{ message }}</div>
-                    <div class="error">{{ error_message }}</div>
-                        {% for msg in messages %}
-                        <p class="info">
-                        {{ msg }}
-                        </p>
-                        {% endfor %}
-                    {% endblock message %}
-                </div><!--site-message-->
-                {% endif %}
-
                 <div id="nav-secondary" lang="{{ LANGUAGE_CODE }}">
                   {% block nav-secondary %}
                       {% block search %}{% endblock %}
@@ -136,6 +122,20 @@
                 </div><!-- postcontent -->
                 {% block extra_content %}{% endblock %}
             </div> <!--body-->
+
+            {% if message or error_message or messages %}
+            <div id="site-message" class="form" lang="{{ LANGUAGE_CODE }}">
+                {% block message %}
+                <div class="info">{{ message }}</div>
+                <div class="error">{{ error_message }}</div>
+                    {% for msg in messages %}
+                    <p class="info">
+                    {{ msg }}
+                    </p>
+                    {% endfor %}
+                {% endblock message %}
+            </div><!--site-message-->
+            {% endif %}
 
             {% block footer %}
             <div id="footer" lang="{{ LANGUAGE_CODE }}">

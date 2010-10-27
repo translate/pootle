@@ -54,24 +54,14 @@ $(document).ready (function() {
 {% block innernav %}
 <!--! Navigation bar -->
 <div id="innernav" class="navbar">
-  <div class="item-statistics small" lang="{{ LANGUAGE_CODE }}">
-    {{ store|stat_summary }}
+  <div class="item-statistics" lang="{{ LANGUAGE_CODE }}">
+    <!--{{ store|stat_summary }}-->
   </div>
 </div><!--innernav-->
 {% endblock innernav %}
 
 {% block precontent %}
 {{ block.super }}
-{% if checks %}
-<div class="check">
-  {% for check in checks %}
-  <p>
-    <img src='{{ "images/help.png"|m }}' class="checkinfo" />
-    {{ check|safe }}
-  </p>
-  {% endfor %}
-</div>
-{% endif %}
 {% endblock precontent %}
 
 {% block content %}
@@ -85,10 +75,41 @@ $(document).ready (function() {
 {% block extra_content %}
 <div id="toolbar">
 
-  <div class="translation-nav">
-    {{ pager|render_pager }}
+  {% if checks %}
+  <!--
+  <div class="check">
+    {% for check in checks %}
+    <p>
+      <img src='{{ "images/help.png"|m }}' class="checkinfo" />
+      {{ check|safe }}
+    </p>
+    {% endfor %}
+  </div>
+  -->
+  {% endif %}
+
+  <div class="label">Search:</div>
+  <div id="__search" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+    <form action="{{ search_action }}" method="get" id="searchform">
+      <label class="inputHint" for="id_search">{% trans "Search" %}</label>{{ search_form.search }}
+      <!--
+      <a class="advancedlink">
+        {% if LANGUAGE_BIDI %}
+        <img src='{{ "images/sarrow_down_rtl.png"|m }}' alt="{{ advanced_search_title }}" title="{{ advanced_search_title }}" class="togglesearch" />
+        <img src='{{ "images/sarrow_up_rtl.png"|m }}' alt="{{ advanced_search_title }}" title="{{ advanced_search_title }}" class="togglesearch" style="display: none;"/>
+        {% else %}
+        <img src='{{ "images/sarrow_down.png"|m }}' alt="{{ advanced_search_title }}" title="{{ advanced_search_title }}" class="togglesearch" />
+        <img src='{{ "images/sarrow_up.png"|m }}' alt="{{ advanced_search_title }}" title="{{ advanced_search_title }}" class="togglesearch" style="display: none;"/>
+        {% endif %}
+      </a>
+      -->
+      <div class="advancedsearch">
+        {{ search_form.sfields }}
+      </div>
+    </form>
   </div>
 
+  <div class="label">Filter by:</div>
   <div id="filter-status" class="toolbar-item">
     <select name="filter-status">
       <option selected="selected" value="all">{% trans "All" %}</option>
@@ -99,10 +120,18 @@ $(document).ready (function() {
       <option value="checks">{% trans "Checks" %}</option>
     </select>
   </div>
+
   <div id="prevnext" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-    <input type="submit" class="previous" name="back" tabindex="9" accesskey="b" value="{% trans 'Previous' %}" title="{% trans 'Go to the previous unit' %}" />
-    <input type="submit" class="next" name="skip" tabindex="14" accesskey="k" value="{% trans 'Next' %}" title="{% trans 'Go to the next unit' %}" />
+    <input type="submit" class="previous" name="back" accesskey="b" value="{% trans 'Previous' %}" title="{% trans 'Go to the previous unit' %}" />
+    <span id="item-navigation"><input id="item-number" type="text" value="1" size="1" /> / <span id="items-count">10</span></span>
+    <input type="submit" class="next" name="skip" accesskey="k" value="{% trans 'Next' %}" title="{% trans 'Go to the next unit' %}" />
   </div>
+
+  <!--
+  <div class="translation-nav">
+    {{ pager|render_pager }}
+  </div>
+  -->
 </div>
 {% endblock %}
 
