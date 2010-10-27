@@ -33,6 +33,7 @@ from django.db.transaction import commit_on_success
 
 from translate.storage import base, statsdb, po, poheader
 from translate.misc.hash import md5_f
+from translate.search import match
 
 from pootle.__version__ import sver as pootle_version
 
@@ -483,6 +484,15 @@ class Unit(models.Model, base.TranslationUnit):
     def delalttrans(self, alternative):
         alternative.delete()
 
+    def fuzzy_translate(self, matcher):
+        candidates = matcher.matches(self.source)
+        if candidates:
+            match_unit = candidates[0]
+            changed = self.merge(match_unit, authoritative=True)
+            if changed:
+                return match_unit
+
+
     def merge(self, unit, overwrite=False, comments=True, authoritative=False):
         changed = False
         if comments:
@@ -669,6 +679,13 @@ class Store(models.Model, base.TranslationStore):
             units = self.units.filter(id__in=ids[i:i+chunks])
             for unit in units.iterator():
                 yield unit
+
+    def get_matcher(self):
+        """builds a TM matcher from current translations and obsolete units"""
+        #FIXME: should we cache this?
+        matcher = match.matcher(self, max_candidates=1, usefuzzy=True)
+        matcher.extendtm(self.unit_set.filter(state=OBSOLETE))
+        return matcher
 
     @commit_on_success
     def update(self, update_structure=False, update_translation=False, conservative=True, store=None):
