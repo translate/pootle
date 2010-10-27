@@ -6,9 +6,8 @@
 
 div#toolbar
 {
-    background-color: rgba(19, 112, 146, 0.75);
-    filter:progid:DXImageTransform.Microsoft.gradient (startColorstr=#bf137092, endColorstr=#bf137092);
-    color: #fff;
+    background-color: #e5f3f8;
+    border-top: 1px solid #ccc;
     text-align: center;
     width: 100%;
     position: fixed;
@@ -488,105 +487,6 @@ li.check > a {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eedd88', endColorstr='#ffffee');
     background: -webkit-gradient(linear, left top, left bottom, from(#ed8), to(#ffe));
     background: -moz-linear-gradient(top,  #ed8,  #ffe);
-}
-
-/*
-.translate-buttons-block input.submit
-{
-    background-image: url('images/good.png');
-    background-color: #dfd;
-    border-color: #3c3;
-}
-
-.translate-buttons-block input.suggest
-{
-    background-image: url('images/suggest.png');
-    background-color: #ffd;
-    border-color: #cc3;
-}
-*/
-
-.translate-buttons-block input[type="submit"]:hover,
-.translate-buttons-block input[type="submit"]:active,
-.translate-buttons-block input[type="submit"]:focus
-{
-    border-color: #999;
-    border-style: solid;
-}
-
-div#prevnext .previous,
-div#prevnext .next
-{
-    border: none;
-    color: #0489b7;
-    padding: 0 2em;
-    background-color: transparent;
-}
-
-div#prevnext .previous,
-div#prevnext .next
-{
-    background-repeat: no-repeat;
-    cursor: pointer;
-    min-height: 16px;
-}
-
-div#prevnext .previous
-{
-    background-image: url('images/prev.png');
-    background-position: left;
-    float: left;
-}
-
-div#prevnext[dir="rtl"] .previous
-{
-    background-image: url('images/next.png');
-    background-position: 95% center;
-    float: right;
-}
-
-div#prevnext .previous:hover,
-div#prevnext .previous:active,
-div#prevnext .previous:focus
-{
-    background-image: url('images/prev2.png');
-    text-decoration: underline;
-}
-
-div#prevnext[dir="rtl"] .previous:hover,
-div#prevnext[dir="rtl"] .previous:active,
-div#prevnext[dir="rtl"] .previous:focus
-{
-    background-image: url('images/next2.png');
-}
-
-div#prevnext .next
-{
-    background-image: url('images/next.png');
-    background-position: 95% center;
-    float: right;
-}
-
-div#prevnext[dir="rtl"] .next
-{
-    background-image: url('images/prev.png');
-    background-position: left;
-    float: left;
-}
-
-div#prevnext .next:hover,
-div#prevnext .next:active,
-div#prevnext .next:focus
-{
-    background-image: url('images/next2.png');
-    text-decoration: underline;
-}
-
-div#prevnext[dir="rtl"] .next:hover,
-div#prevnext[dir="rtl"] .next:active,
-div#prevnext[dir="rtl"] .next:focus
-{
-    background-image: url('images/prev2.png');
 }
 
 .translate-fuzzy-block
