@@ -759,7 +759,8 @@ div#update p,
     margin-bottom: 0.5em;
 }
 
-.form p
+.form p,
+.form div.p 
 {
     margin-top: 1em;
 }
@@ -848,6 +849,11 @@ html[dir="rtl"] .form .buttons
 {
     margin-left: 1em;
     vertical-align: bottom;
+}
+
+.form .captcha ul.errorlist {
+    float: right;
+    line-height: 2em;
 }
 
 

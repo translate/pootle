@@ -15,10 +15,10 @@
     <h2>{% trans "Are You Human?" %}</h2>
     <p>{% trans "To protect the server against attacks we have to verify that submissions are made by human users." %}</p>
     <p>{% trans "Please answer this question:" %}</p>
-    <p class="buttons captcha">
+    <div class="p buttons captcha">
       <span class="question">{{ form.knotty_question|safe }} =</span>
       {{ form }}
       <input type="submit" class="accept" value="{% trans 'Confirm' %}" />
-    </p>
+    </div>
   </form>
 </div>
