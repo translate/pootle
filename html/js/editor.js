@@ -775,7 +775,7 @@
     substitute_string = "__" + pos + "__";
     pos = pos + 1;
     return substitute_string;
-  },
+  }
 
   };
 
