@@ -490,21 +490,21 @@ html[dir="rtl"] #zoom {
 {
     position: fixed;
     height: 2em;
-    top: 0;
+    bottom: 50px;
     left: 0;
     right: 0;
     margin: 0 auto;
-    z-index: 9000;
+    z-index: 9999;
     text-align: center;
 }
 
 .xhr-message span
 {
-    -moz-border-radius: 0 0 0.75em 0.75em;
-    -webkit-border-radius: 0 0 0.75em 0.75em;
-    border-radius: 0 0 0.75em 0.75em;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
     border: 1px solid #ccc;
-    color: #0489B7;
+    border-bottom: 0px;
     line-height: 2em;
     padding: 0.5em 1em 0.5em 36px;
 }
@@ -524,12 +524,12 @@ html[dir="rtl"] #xhr-error span
 
 #xhr-activity span
 {
-    background: url("images/activity.gif") 1em center no-repeat #fff;
+    background: url("images/activity.gif") 1em center no-repeat #e5f3f8;
 }
 
 #xhr-error span
 {
-    background: url("images/error.png") 1em center no-repeat #fff;
+    background: url("images/error.png") 1em center no-repeat #e5f3f8;
 }
 
 #site-message
@@ -786,7 +786,7 @@ html[dir="rtl"] .form .buttons
     text-align: left;
 }
 
-.buttons input[type="submit"]
+input[type="submit"]
 {
     border: 0;
     padding: 5px 10px;
@@ -804,13 +804,13 @@ html[dir="rtl"] .form .buttons
     color: #000;
 }
 
-.buttons input[type="submit"]:hover {
+input[type="submit"]:hover {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dddddd');
     background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));
     background: -moz-linear-gradient(top,  #fff,  #ddd);
 }
 
-.buttons input[type="submit"]:active
+input[type="submit"]:active
 {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cccccc', endColorstr='#ffffff');
     background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#fff));
@@ -1343,13 +1343,9 @@ table.sortable th.sorttable_sorted_reverse {
 
 div.translation-nav
 {
-    margin-bottom: 1.3em;
-}
-
-ul.pager
-{
-    margin: 10px;
-    padding: 5px;
+    position: absolute;
+    top: 5px;
+    right: 0px;
 }
 
 ul.pager li

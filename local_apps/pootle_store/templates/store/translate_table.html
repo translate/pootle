@@ -1,4 +1,4 @@
-{% load i18n render_pager baseurl store_tags cache %}
+{% load i18n baseurl store_tags cache %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 <!-- JS templates: move from here when possible -->
@@ -50,9 +50,6 @@
   [[/if]]
 </ul>
 </script>
-<div class="translation-nav">
-  {{ pager|render_pager }}
-</div>
 <div class="translate-form">
     <div id="pootle_path" class="hide">{{ store.pootle_path }}</div>
     <div id="active_uid" class="hide">{{ form.instance.id }}</div>
@@ -79,7 +76,4 @@
         {% endfor %}
       </tbody>
     </table>
-</div>
-<div class="translation-nav">
-{{ pager|render_pager }}
 </div>

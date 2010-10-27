@@ -1,5 +1,5 @@
 {% extends "tp_base_extended.html" %}
-{% load i18n baseurl store_tags translation_project_tags cache %}
+{% load i18n render_pager baseurl store_tags translation_project_tags cache %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
@@ -84,10 +84,11 @@ $(document).ready (function() {
 
 {% block extra_content %}
 <div id="toolbar">
-        <div id="prevnext" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-          <input type="submit" class="previous" name="back" tabindex="9" accesskey="b" value="{% trans 'Previous' %}" title="{% trans 'Go to the previous unit' %}" />
-          <input type="submit" class="next" name="skip" tabindex="14" accesskey="k" value="{% trans 'Next' %}" title="{% trans 'Go to the next unit' %}" />
-        </div>
+
+  <div class="translation-nav">
+    {{ pager|render_pager }}
+  </div>
+
   <div id="filter-status" class="toolbar-item">
     <select name="filter-status">
       <option selected="selected" value="all">{% trans "All" %}</option>
@@ -97,6 +98,10 @@ $(document).ready (function() {
       <option value="suggestions">{% trans "Suggestions" %}</option>
       <option value="checks">{% trans "Checks" %}</option>
     </select>
+  </div>
+  <div id="prevnext" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+    <input type="submit" class="previous" name="back" tabindex="9" accesskey="b" value="{% trans 'Previous' %}" title="{% trans 'Go to the previous unit' %}" />
+    <input type="submit" class="next" name="skip" tabindex="14" accesskey="k" value="{% trans 'Next' %}" title="{% trans 'Go to the next unit' %}" />
   </div>
 </div>
 {% endblock %}
