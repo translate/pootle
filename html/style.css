@@ -799,6 +799,7 @@ html[dir="rtl"] .form .buttons
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#cccccc');
     background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc));
     background: -moz-linear-gradient(top,  #fff,  #ccc);
+    color: #000;
 }
 
 .buttons input[type="submit"]:hover {
