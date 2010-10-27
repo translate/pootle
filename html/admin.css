@@ -58,6 +58,13 @@ html[dir="rtl"] div#depchecks ul li.error
     background-position: right top;
 }
 
+/* ADMIN GENERAL SETTINGS */
+
+textarea#id_DESCRIPTION
+{
+    width: 100%;
+}
+
 /* ADMIN RSS NEWS FEED */
 
 #rss-alerts div.bd div.centered
@@ -82,54 +89,7 @@ html[dir="rtl"] td.pootle_path
 
 /* ADMIN BUTTONS */
 
-.admin-buttons-block
-{
-    margin-bottom: 1em;
-}
-
 .admin-buttons-block input
 {
-    margin-bottom: 0.3em;
-}
-
-.admin-buttons-block input[type="submit"]
-{
-    cursor: pointer;
-    -moz-border-radius: 5px 5px 5px 5px;
-    -webkit-border-radius: 5px 5px 5px 5px;
-    border-radius: 5px 5px 5px 5px;
-    background-position: 5px 50%;
-    background-repeat: no-repeat;
-    border: 1px solid #ccc;
-    padding: 2px 5px 2px 23px;
-    min-height: 16px;
-}
-
-html[dir="rtl"] .admin-buttons-block input[type="submit"]
-{
-    padding: 2px 23px 2px 5px;
-    background-position: 95% center;
-}
-
-.admin-buttons-block .update
-{
-    background-image: url('images/page_refresh.png');
-}
-
-.admin-buttons-block .rescan
-{
-    background-image: url('images/arrow_refresh.png');
-}
-
-.admin-buttons-block .save
-{
-    background-image: url('images/database_save.png');
-}
-
-.admin-buttons-block input[type="submit"]:hover,
-.admin-buttons-block input[type="submit"]:active,
-.admin-buttons-block input[type="submit"]:focus
-{
-    border-color: #999;
-    border-style: solid;
+    margin-bottom: 1em;
 }

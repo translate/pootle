@@ -969,7 +969,8 @@ div#submenu-tabs a:hover
     color: #666 !important;
 }
 
-div#submenu-tabs a.admintab
+div#submenu-tabs a.admintab,
+div#submenu-tabs.admin a
 {
     color: #c30 !important;
 }
@@ -1025,11 +1026,6 @@ div.settings-container
     margin: 1em;
 }
 
-div.centered
-{
-    width: 95%;
-}
-
 .settings-container h2
 {
     color: #999;
@@ -1039,13 +1035,6 @@ div.centered
 .settings-container p
 {
     margin-bottom: 1em;
-}
-
-.settings-container form label,
-.settings-container form input,
-.settings-container form select
-{
-    font-size: 85%;
 }
 
 .settings-container input,
