@@ -94,7 +94,6 @@ h1, h2, h3, h4, h5, h6
 {
     font-weight: normal;
     font-size: 100%;
-    b--ackground-color: inherit;
     color: #333;
 }
 
@@ -142,7 +141,6 @@ p, blockquote
 input, textarea
 {
     margin: 0;
-    p--adding: 1px;
 }
 
 table
@@ -838,6 +836,24 @@ input[type="submit"]:active
 
 
 /*
+ * NEWS FORM
+ */
+
+.news-feed,
+.news-feed-with-form {
+  margin-top: 2em;
+}
+
+.news-feed-with-form {
+  margin-left: 38em;
+}
+
+.news {
+  margin: 2em 0;
+  float: left;
+}
+
+/*
  * CAPTCHA FORM
  */
 
@@ -970,7 +986,8 @@ div#submenu-tabs a:hover
 }
 
 div#submenu-tabs a.admintab,
-div#submenu-tabs.admin a
+div#submenu-tabs.admin a,
+div#submenu-tabs a .admin
 {
     color: #c30 !important;
 }

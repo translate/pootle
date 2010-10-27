@@ -5,7 +5,7 @@
 <div id="submenu" lang="{{ LANGUAGE_CODE }}">
     <div id="submenu-tabs">
         <a href='{{ "."|l }}' class="languageoverview" title="{% trans 'Language main page' %}">{% trans "Overview" %}</a>
-        <a href='{{ "notices"|l }}' class="languagenews" title="{% trans 'Language news' %}">{% trans "News" %}</a>
+        <a href='{{ "notices"|l }}' class="languagenews" title="{% trans 'Language news' %}">{% trans "News" %}{% if user.is_superuser or request.permissions.administrate %} <span class="admin">+</span>{%endif%}</a>
         {% if user.is_superuser or request.permissions.administrate %}
         <a href='{{ "admin.html"|l }}' class="languageadmin admintab" title="{% trans 'Administrate your language permissions' %}">{% trans "Permissions" %}</a>
         {% endif %}

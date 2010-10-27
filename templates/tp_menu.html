@@ -5,7 +5,7 @@
 <div id="submenu" lang="{{ LANGUAGE_CODE }}">
     <div id="submenu-tabs">
         <a href='{{ directory.pootle_path|l }}' class="tpoverview" title="{% trans 'Translation project main page' %}">{% trans "Overview" %}</a>
-        <a href='{{ directory.pootle_path|l }}notices' class="tpnews" title="{% trans 'Translation project news' %}">{% trans "News" %}</a>
+        <a href='{{ directory.pootle_path|l }}notices' class="tpnews" title="{% trans 'Translation project news' %}">{% trans "News" %}{% if user.is_superuser or request.permissions.administrate %} <span class="admin">+</span>{%endif%}</a>
         <a href='{{ directory.pootle_path|l }}edit.html' class="tptranslate" title="{% trans 'Translate this project' %}">{% trans "Translate" %}</a>
         <a href='{{ directory.pootle_path|l }}review.html' class="tpreview" title="{% trans 'Quality checks and review suggestions' %}">{% trans "Review" %}</a>
         {% if user.is_superuser or request.permissions.administrate %}
