@@ -322,7 +322,7 @@
               PTL.editor.active_uid = data.uid;
             }
         }
-      },
+      }
     });
   },
 
@@ -511,7 +511,7 @@
           ctxt.before = data.ctxt.before;
           ctxt.after = data.ctxt.after;
         }
-      },
+      }
     });
     var editor = this.build_ctxt_rows(ctxt.before) +
                  '<tr id="row' + uid + '" class="edit-row">' +
@@ -618,7 +618,7 @@
         } else {
           PTL.editor.error(data.msg);
         }
-      },
+      }
     });
     return opts;
   },
