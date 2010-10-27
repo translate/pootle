@@ -159,7 +159,7 @@ msgstr "2adim"
         self.assertEqual(dbunit_count, 3)
 
         stunit_count = len(store.file.store.units)
-        self.assertEqual(stunit_count, 5)
+        self.assertEqual(stunit_count, 6)
 
         unit = store.findid('Exact')
         self.assertEqual(unit.target, u'Belzabt')
