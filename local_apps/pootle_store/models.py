@@ -665,8 +665,7 @@ class Store(models.Model, base.TranslationStore):
                    self.translation_project.project.get_template_translationproject():
                 self.translation_project.update_from_templates(pootle_path=self.pootle_path)
             else:
-                self.update(update_structure=True, update_translation=True, conservative=False)
-
+                self.parse()
 
     def require_dbid_index(self, update=False):
         """build a quick mapping index between unit ids and database ids"""
@@ -688,8 +687,7 @@ class Store(models.Model, base.TranslationStore):
         return matcher
 
     @commit_on_success
-    def update(self, update_structure=False, update_translation=False, conservative=True, store=None):
-        """update db with units from file"""
+    def parse(self, store=None):
         if self.state == LOCKED:
             # file currently being updated
             #FIXME: shall we idle wait for lock to be released first? what about stale locks?
@@ -726,6 +724,25 @@ class Store(models.Model, base.TranslationStore):
             self.save()
             cache.set(key, self.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
             return
+
+    @commit_on_success
+    def update(self, update_structure=False, update_translation=False, conservative=True, store=None, fuzzy=False):
+        """update db with units from file"""
+        if self.state == LOCKED:
+            # file currently being updated
+            #FIXME: shall we idle wait for lock to be released first? what about stale locks?
+            logging.info(u"attempted to update %s while locked", self.pootle_path)
+            return
+        elif self.state < PARSED:
+            # file has not been parsed before
+            logging.debug(u"attempted to update unparsed file %s", self.pootle_path)
+            self.parse(store=store)
+            return
+
+        if store is None:
+            store = self.file.store
+
+        key = "%s:sync" % self.pootle_path
 
         # lock store
         logging.debug(u"Updating %s", self.pootle_path)
