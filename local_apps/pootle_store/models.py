@@ -946,18 +946,22 @@ class Store(models.Model, base.TranslationStore):
             self._units.append(newunit)
         return newunit
 
-    def findunits(self, source):
-        if hasattr(self, "sourceindex"):
+    def findunits(self, source, obsolete=False):
+        if not obsolete and hasattr(self, "sourceindex"):
             return super(Store, self).findunits(source)
 
         # find using hash instead of index
         source_hash = md5_f(source.encode("utf-8")).hexdigest()
-        units = self.units.filter(source_hash=source_hash)
+        units = self.unit_set.filter(source_hash=source_hash)
+        if obsolete:
+            units.filter(state=OBSOLETE)
+        else:
+            units.filter(state__gt=OBSOLETE)
         if units.count():
             return units
 
-    def findunit(self, source):
-        units = self.findunits(source)
+    def findunit(self, source, obsolete=False):
+        units = self.findunits(source, obsolete)
         if units:
             return units[0]
 
