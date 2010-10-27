@@ -24,6 +24,15 @@ div#toolbar > div
     padding: 1em;
 }
 
+/* SPECIAL FOOTER */
+
+#translate-footer
+{
+    border-top: 1px solid #ccc;
+    margin: 0 1em;
+    margin-bottom: 50px; /* this should be equlal or the height of the #toolbar */
+}
+
 /* TRANSLATE TABLE */
 
 table.translate-table

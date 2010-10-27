@@ -137,8 +137,8 @@
                 {% block extra_content %}{% endblock %}
             </div> <!--body-->
 
+            {% block footer %}
             <div id="footer" lang="{{ LANGUAGE_CODE }}">
-                {% block footer %}
                 <ul class="nav">
                     <li><a href='{{ "/docs/index.html"|l }}'>{% trans "Help" %}</a></li>
                     {% if settings.CAN_CONTACT %}
@@ -146,8 +146,8 @@
                     {% endif %}
                     <li><a href='{{ "/about.html"|l }}'>{% trans "About this Pootle Server" %}</a></li>
                 </ul>
-                {% endblock footer %}
             </div><!--footer-->
+            {% endblock footer %}
         </div> <!--wrapper-->
         {% block scripts %}
         <!--[if lt IE 7.]>
