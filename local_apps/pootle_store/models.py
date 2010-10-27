@@ -725,6 +725,24 @@ class Store(models.Model, base.TranslationStore):
             cache.set(key, self.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
             return
 
+    def _remove_obsolete(self, source, store=None):
+        """
+        removes an obsolete unit. from both database and filesystem store
+        this will usually be used after fuzzy matching
+        """
+        changed = False
+        #if store is None and self.file:
+        #    store = self.file.store
+        obsolete_unit = self.findunit(source, obsolete=True)
+        if obsolete_unit:
+            #if store:
+            #    st_obsolete = store.findid(obsolete_unit.getid())
+            #    if st_obsolete and st_obsolete.isobsolete():
+            #        del st_obsolete
+            #        changed = True
+            obsolete_unit.delete()
+        return changed
+
     @commit_on_success
     def update(self, update_structure=False, update_translation=False, conservative=True, store=None, fuzzy=False):
         """update db with units from file"""
@@ -773,6 +791,7 @@ class Store(models.Model, base.TranslationStore):
                         match_unit = newunit.fuzzy_translate(matcher)
                         if match_unit:
                             newunit.save()
+                            self._remove_obsolete(match_unit.source, store=store)
 
             if update_translation:
                 shared_dbids = [self.dbid_index.get(uid) for uid in old_ids & new_ids]
@@ -789,6 +808,7 @@ class Store(models.Model, base.TranslationStore):
                         match_unit = unit.fuzzy_translate(matcher)
                         if match_unit:
                             changed = True
+                            self._remove_obsolete(match_unit.source, store=store)
                     if changed:
                         unit.save()
         finally:
