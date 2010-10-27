@@ -100,6 +100,8 @@ msgstr "2adim"
         Project.objects.get_or_create(code="testproj", fullname=u"testproj",
                                       source_language=en)
         self.project = Project.objects.get(code='testproj')
+        for tp in self.project.translationproject_set.iterator():
+            tp.require_units()
 
     def test_treestyle(self):
         """test treestyle detection"""
