@@ -258,6 +258,12 @@ td.translate-full textarea.translation
     margin: 0 auto 1em;
 }
 
+td.translate-full textarea.translation
+{
+     padding: 0;
+}
+
+
 /* TM */
 
 .sidebar
@@ -430,7 +436,7 @@ li.check > a {
 {
     left: 102%;
     position: absolute;
-    margin: 0 10px;
+    margin: -3px 10px 0;
 }
 
 .translate-buttons-block[dir="rtl"]
@@ -441,30 +447,50 @@ li.check > a {
 
 .translate-buttons-block input[type="submit"]
 {
-    display: block;
-    -moz-border-radius: 5px 5px 5px 5px;
-    -webkit-border-radius: 5px 5px 5px 5px;
-    border-radius: 5px 5px 5px 5px;
-    background-position: 10px 50%;
-    border: 1px solid #ccc;
-    padding: 5px 10px 5px 33px;
-    min-width: 110px;
     margin-bottom: 1em;
 }
 
-.translate-buttons-block[dir="rtl"] input[type="submit"]
+.buttons input[type="submit"].submit
 {
-    padding: 5px 33px 5px 10px;
-    background-position: 90% center;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeffee', endColorstr='#77ee77');
+    background: -webkit-gradient(linear, left top, left bottom, from(#efe), to(#7e7));
+    background: -moz-linear-gradient(top,  #efe,  #7e7);
 }
 
-.translate-buttons-block input.submit,
-.translate-buttons-block input.suggest
-{
-    color: #000;
-    background-color: inherit;
+.translate-buttons-block input.submit:hover {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#99ff99');
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#9f9));
+    background: -moz-linear-gradient(top,  #fff,  #9f9);
 }
 
+.translate-buttons-block input.submit:active
+{
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#77ee77', endColorstr='#eeffee');
+    background: -webkit-gradient(linear, left top, left bottom, from(#7e7), to(#efe));
+    background: -moz-linear-gradient(top,  #7e7,  #efe);
+}
+
+.buttons input[type="submit"].suggest
+{
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffee', endColorstr='#eedd88');
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffe), to(#ed8));
+    background: -moz-linear-gradient(top,  #ffe,  #ed8);
+}
+
+.translate-buttons-block input.suggest:hover {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffee99');
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fe9));
+    background: -moz-linear-gradient(top,  #fff,  #fe9);
+}
+
+.translate-buttons-block input.suggest:active
+{
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eedd88', endColorstr='#ffffee');
+    background: -webkit-gradient(linear, left top, left bottom, from(#ed8), to(#ffe));
+    background: -moz-linear-gradient(top,  #ed8,  #ffe);
+}
+
+/*
 .translate-buttons-block input.submit
 {
     background-image: url('images/good.png');
@@ -478,6 +504,7 @@ li.check > a {
     background-color: #ffd;
     border-color: #cc3;
 }
+*/
 
 .translate-buttons-block input[type="submit"]:hover,
 .translate-buttons-block input[type="submit"]:active,
@@ -497,9 +524,7 @@ div#prevnext .next
 }
 
 div#prevnext .previous,
-div#prevnext .next,
-.translate-buttons-block .submit,
-.translate-buttons-block .suggest
+div#prevnext .next
 {
     background-repeat: no-repeat;
     cursor: pointer;

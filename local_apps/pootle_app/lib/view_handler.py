@@ -77,7 +77,7 @@ class Handler(object):
     def as_p(self):
         return mark_safe("""
         %(inner_form)s
-        <p class="common-buttons-block">%(submits)s</p>""" % {
+        <p class="buttons">%(submits)s</p>""" % {
             'inner_form': self.form.as_p(),
             'submits': self.render_submits(),
             })

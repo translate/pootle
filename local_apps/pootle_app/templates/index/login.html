@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<div id="login" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+<div id="login" class="form" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
     <h2>{% trans 'Login to Pootle' %}</h2>
     <form method="post" action='{{ "/accounts/login/"|l }}' 
       name="loginform" id="loginform">
@@ -18,16 +18,18 @@
     </div>
     {% endif %}
     {{ form.as_p }}
-    <p class="common-buttons-block submit">
+    <p class="buttons">
         <input type="submit" class="login" name="login" value="{% trans 'Login' %}" />
         <input type="hidden" name="next" value="{{ next }}" />
     </p>
-</form>
-<p><a href='{{ "/accounts/password/reset/"|l }}'>{% trans "Lost your Password?" %}</a></p>
+    </form>
 </div>
 
+<h2 class="formlink">
+  <a href='{{ "/accounts/password/reset/"|l }}'>{% trans "Lost your Password?" %}</a>
+</h2>
 {% if settings.CAN_REGISTER %}
-<h2 class="registerlink">{% trans "Don't have an account yet?" %}
+<h2 class="formlink">{% trans "Don't have an account yet?" %}
     <a href='{{ "/accounts/register"|l }}' title="{% trans 'Register.' %}">{% trans 'Register.' %}</a>
 </h2>
 {% endif %}

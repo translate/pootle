@@ -1,0 +1,13 @@
+/*
+ * IE-ONLY RULES
+ */
+
+.form {
+    border: 1px solid #aaa;
+    border-bottom-width: 2px; /* imitate shadow */
+}
+
+.buttons input[type="submit"]
+{
+    border: 1px solid #aaa;
+}

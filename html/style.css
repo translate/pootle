@@ -94,7 +94,7 @@ h1, h2, h3, h4, h5, h6
 {
     font-weight: normal;
     font-size: 100%;
-    background-color: inherit;
+    b--ackground-color: inherit;
     color: #333;
 }
 
@@ -142,7 +142,7 @@ p, blockquote
 input, textarea
 {
     margin: 0;
-    padding: 1px;
+    p--adding: 1px;
 }
 
 table
@@ -434,7 +434,7 @@ html[dir="rtl"] #zoom {
 {
     background: #fff url(images/footer-bg.jpg) top center repeat-x;
     text-align: center;
-    color: #898378;
+    color: #888;
     clear: both;
     font-size: 90%;
     margin-top: 2em;
@@ -471,13 +471,13 @@ html[dir="rtl"] #zoom {
 #footer a:link,
 #footer a:visited
 {
-    color: #898378;
+    color: #888;
 }
 
 #footer a:hover,
 #footer a:active
 {
-    color: #69645c;
+    color: #888;
 }
 
 
@@ -533,10 +533,11 @@ html[dir="rtl"] #xhr-error span
 
 #site-message
 {
-    background-color: #ffe;
-    border: 1px solid #fc9;
-    margin-bottom: 2em;
-    padding: 10px 25px;
+    /*
+    background-color: #fee;
+    border: 1px solid #c00;
+    padding: 0.5em 1em;
+    */
 }
 
 #site-message .success
@@ -546,7 +547,7 @@ html[dir="rtl"] #xhr-error span
 
 #site-message .error
 {
-    color: #f33;
+    color: #c00;
 }
 
 .hide
@@ -582,11 +583,8 @@ ul.errorlist
 
 .errorlist li
 {
-    color: #f33;
-    background-color: #ffe;
-    border: 1px solid #fc9;
-    margin-bottom: 0.5em;
-    padding: 10px 25px;
+    color: #c00;
+    margin-top: 0.2em;
 }
 
 
@@ -720,99 +718,135 @@ html[dir="rtl"] .module-primary .hd h2
     font-size: 120%;
 }
 
-/* UPLOAD FORM / UPDATE FROM VCS / CAPTCHA */
+/* UPLOAD FORM / UPDATE FROM VCS */
 
 div#upload p,
 div#upload ul,
 div#update p,
-p.captcha,
 .general-message input
 {
-    font-size: 85%;
     margin-bottom: 0.5em;
 }
 
 
 /*
- * LOGIN/REGISTER PAGE
+ * FORMS
  */
 
-#login,
-#register,
-#contact
-{
+.form {
     width: 30em;
     margin: 2em auto;
-    border: 2px solid #ccc;
     padding: 1em;
-    background-color: #e5edef;
     text-align: left;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px #777;
+    -moz-box-shadow: 0px 2px 5px #777;
+    -webkit-box-shadow: 0px 2px 5px #777;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e5f3f8', endColorstr='#cde7f1');
+    background: -webkit-gradient(linear, left top, left bottom, from(#e5f3f8), to(#cde7f1));
+    background: -moz-linear-gradient(top,  #e5f3f8,  #cde7f1);
 }
 
-#login[dir="rtl"],
-#register[dir="rtl"],
-#contact[dir="rtl"]
+.form[dir="rtl"]
 {
     text-align: right;
 }
 
-#login h2,
-#register h2,
-#contact h2
+.form h2
 {
-    margin-bottom: 0.7em;
+    margin-bottom: 0.5em;
 }
 
-#login p,
-#register p,
-#contact p
+.form p
 {
-    margin-bottom: 1em;
+    margin-top: 1em;
 }
 
-
-#loginform,
-#registerform,
-#contactform
+.form input[type="text"],
+.form input[type="password"],
+.form select,
+.form textarea
 {
-    font-size: 85%;
+    width: 99%;
 }
 
-#login input[type="text"],
-#login input[type="password"],
-#login select,
-#register input[type="text"],
-#register input[type="password"],
-#contact input[type="text"],
-#contact input[type="password"],
-#contact textarea
+.form .buttons
 {
-    width: 97%;
-}
-
-#login .submit,
-#register .submit,
-#contact .submit
-{
+    margin-top: 2em;
     margin-bottom: 0;
     text-align: right;
 }
 
-#login[dir="rtl"] .submit,
-#register[dir="rtl"] .submit,
-#contact[dir="rtl"] .submit
+html[dir="rtl"] .form .buttons
 {
     text-align: left;
 }
 
-.loginlink,
-.registerlink
+.buttons input[type="submit"]
 {
-    width: 20em;
-    margin: 0 auto 8em;
-    padding: 0 1em;
+    border: 0;
+    padding: 5px 10px;
+    min-height: 16px;
+    min-width: 110px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 0px 1px 2px #000;
+    -moz-box-shadow: 0px 1px 2px #000;
+    -webkit-box-shadow: 0px 0px 2px #000;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#cccccc');
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc));
+    background: -moz-linear-gradient(top,  #fff,  #ccc);
+}
+
+.buttons input[type="submit"]:hover {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dddddd');
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));
+    background: -moz-linear-gradient(top,  #fff,  #ddd);
+}
+
+.buttons input[type="submit"]:active
+{
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cccccc', endColorstr='#ffffff');
+    background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#fff));
+    background: -moz-linear-gradient(top,  #ccc,  #fff);
+}
+
+.formlink
+{
+    margin: 0 auto 1em;
     font-size: 137%;
     text-align: center;
+}
+
+
+/*
+ * CAPTCHA FORM
+ */
+
+.form .captcha
+{
+    text-align: left;
+    margin-top: 1em;
+}
+
+.form .captcha .question
+{
+    font-size: 120%;
+}
+
+.form .captcha input[type="text"]
+{
+    font-size: 120%;
+    width: 3em;
+}
+
+.form .captcha input[type="submit"]
+{
+    margin-left: 1em;
+    vertical-align: bottom;
 }
 
 
@@ -1041,99 +1075,6 @@ div#settings
 {
     color: #fff;
 }
-
-/* COMMON BUTTONS */
-
-.common-buttons-block
-{
-    margin-bottom: 1em;
-}
-
-.common-buttons-block input
-{
-    margin-bottom: 0.3em;
-}
-
-.common-buttons-block input[type="submit"]
-{
-    cursor: pointer;
-    -moz-border-radius: 5px 5px 5px 5px;
-    -webkit-border-radius: 5px 5px 5px 5px;
-    border-radius: 5px 5px 5px 5px;
-    background-position: 10px 50%;
-    background-repeat: no-repeat;
-    border: 1px solid #ccc;
-    padding: 5px 10px 5px 33px;
-    min-height: 16px;
-    min-width: 110px;
-    margin-bottom: 1em;
-}
-
-html[dir="rtl"] .common-buttons-block input[type="submit"]
-{
-    padding: 5px 33px 5px 10px;
-    background-position: 90% center;
-}
-
-.common-buttons-block input[type="submit"]:hover,
-.common-buttons-block input[type="submit"]:active,
-.common-buttons-block input[type="submit"]:focus
-{
-    border-color: #999;
-    border-style: solid;
-}
-
-.common-buttons-block .accept
-{
-    background-image: url('images/accept.png');
-}
-
-.common-buttons-block .login
-{
-    background-image: url('images/door_in.png');
-}
-
-.common-buttons-block .news-publish
-{
-    background-image: url('images/newspaper_go.png');
-}
-
-.common-buttons-block .password-change
-{
-    background-image: url('images/key_go.png');
-}
-
-.common-buttons-block .register
-{
-    background-image: url('images/user_go.png');
-}
-
-.common-buttons-block .save
-{
-    background-image: url('images/database_save.png');
-}
-
-.common-buttons-block .send
-{
-    background-image: url('images/email_go.png');
-}
-
-.common-buttons-block .term-extract
-{
-    background-image: url('images/book_next.png');
-    margin: 0 auto;
-}
-
-.upload input[type="submit"]
-{
-    background-image: url('images/page_get.png');
-}
-
-.vcs-update input[type="submit"]
-{
-    background-image: url('images/drive_network.png');
-}
-
 
 /*
  * SUMMARIES

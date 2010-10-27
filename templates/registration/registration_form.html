@@ -4,7 +4,7 @@
 {% block title %}{{ block.super }}: {% trans "Register" %}{% endblock %}
  
 {% block content %}
-<div id="register" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+<div id="register" class="form" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
     <h2>{% trans "Register a New Pootle Account" %}</h2>
     <p>{% trans "Fill in the following form to get started translating." %}</p>
     <form method="post" action="" name="registerform" id="registerform">
@@ -31,13 +31,13 @@
         {{ form.password2 }}
         {{ form.password2.errors }}
     </p>
-    <p class="common-buttons-block submit">
+    <p class="buttons">
         <input type="submit" class="register" name="register" value="{% trans 'Register' %}" />
     </p>
 </form>
 </div>
 
-<h2 class="loginlink">{% trans "Already have an account?" %}
+<h2 class="formlink">{% trans "Already have an account?" %}
     <a href='{{ "/accounts/login/"|l }}' title="{% trans "Log In." %}">{% trans "Log In." %}</a>
 </h2>
 {% endblock %}

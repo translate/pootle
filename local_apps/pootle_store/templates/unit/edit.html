@@ -101,7 +101,7 @@
         </div>
       </div>
       <!-- Buttons, resize links, special characters -->
-      <div class="translate-buttons-block" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+      <div class="buttons translate-buttons-block" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
         {% if cantranslate %}
         <input type="submit" name="submit" class="submit" tabindex="11" accesskey="s" value="{% trans 'Submit' %}" />
         {% endif %}
