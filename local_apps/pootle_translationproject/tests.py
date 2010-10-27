@@ -26,6 +26,7 @@ from pootle_project.models import Project
 from pootle_store.models import Store
 from pootle_app.project_tree import get_translated_name, get_translated_name_gnu
 from pootle_language.models import Language
+from pootle_app.management import require_english
 from pootle_store.util import OBSOLETE
 
 class GnuTests(PootleTestCase):
@@ -95,7 +96,6 @@ msgstr "2adim"
 
     def setUp(self):
         super(GnuTests, self).setUp()
-        from pootle_app.management import require_english
         en = require_english()
         Project.objects.get_or_create(code="testproj", fullname=u"testproj",
                                       source_language=en)
@@ -244,4 +244,256 @@ class NonGnuTests(GnuTests):
     def test_treestyle(self):
         """test treestyle detection"""
         self.assertEqual(self.project.get_treestyle(), 'nongnu')
+
+
+class XliffTests(PootleTestCase):
+    """tests for XLIFF projects"""
+
+    template_text = r'''<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.1" xmlns="urn:oasis:names:tc:xliff:document:1.1">
+    <file original="doc.txt" source-language="en-US">
+        <body>
+            <trans-unit xml:space="preserve" id="header" approved="no" restype="x-gettext-domain-header">
+                <source>Project-Id-Version: PACKAGE VERSION
+Report-Msgid-Bugs-To:
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Generator: Pootle Tests
+</source>
+                <target state="translated">Project-Id-Version: PACKAGE VERSION
+Report-Msgid-Bugs-To:
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Generator: Pootle Tests
+</target>
+            </trans-unit>
+            <trans-unit id="Exact"><source>Exact</source><target></target></trans-unit>
+            <trans-unit id="Fuzzy"><source>Fuzzy</source><target></target></trans-unit>
+            <group id="1" restype="x-gettext-plurals">
+                <trans-unit id="1[0]"><source>%d new</source><target></target></trans-unit>
+                <trans-unit id="1[1]"><source>%d news</source><target></target></trans-unit>
+            </group>
+        </body>
+    </file>
+</xliff>
+'''
+    target_text = r'''<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.1" xmlns="urn:oasis:names:tc:xliff:document:1.1">
+    <file original="doc.txt" source-language="en-US">
+        <body>
+            <trans-unit xml:space="preserve" id="header" approved="no" restype="x-gettext-domain-header">
+                <source>Project-Id-Version: PACKAGE VERSION
+Report-Msgid-Bugs-To:
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Generator: Pootle Tests
+</source>
+                <target state="translated">Project-Id-Version: PACKAGE VERSION
+Report-Msgid-Bugs-To:
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Generator: Pootle Tests
+</target>
+            </trans-unit>
+            <trans-unit id="Exact" approved="yes"><source>Exact</source><target>Belzabt</target></trans-unit>
+            <trans-unit id="fuzzy" approved="yes"><source>fuzzy</source><target>ta2riban</target></trans-unit>
+            <trans-unit id="obsolete" approved="yes"><source>obsolete</source><target>2adim</target></trans-unit>
+        </body>
+    </file>
+</xliff>
+'''
+    ext = 'xlf'
+    unit_count = 3
+    nontrans_count = 1
+
+    def _setup_test_files(self):
+        gnu = os.path.join(self.testpodir, "testproj")
+        os.mkdir(gnu)
+        potfile = file(os.path.join(gnu, "test_en."+self.ext), 'w')
+        potfile.write(self.template_text)
+        potfile.close()
+        pofile = file(os.path.join(gnu, "test_ar."+self.ext), 'w')
+        pofile.write(self.target_text)
+        pofile.close()
+        pofile = file(os.path.join(gnu, "test_af."+self.ext), 'w')
+        pofile.write(self.target_text)
+        pofile.close()
+        pofile = file(os.path.join(gnu, "test_zu."+self.ext), 'w')
+        pofile.write(self.target_text)
+        pofile.close()
+
+    def setUp(self):
+        super(XliffTests, self).setUp()
+        en = require_english()
+        Project.objects.get_or_create(code="testproj", fullname=u"testproj",
+                                      localfiletype=self.ext, source_language=en)
+        self.project = Project.objects.get(code='testproj')
+        for tp in self.project.translationproject_set.iterator():
+            tp.require_units()
+
+    def test_new(self):
+        """test initializing a new file from templates"""
+        fr = Language.objects.get(code='fr')
+        new_tp = self.project.translationproject_set.create(language=fr)
+        new_tp.update_from_templates()
+        store_count = new_tp.stores.count()
+        self.assertEqual(store_count, 1)
+        store = new_tp.stores.all()[0]
+        dbunit_count = store.units.count()
+        self.assertEqual(dbunit_count, self.unit_count)
+        stunit_count = len(store.file.store.units)
+        self.assertEqual(stunit_count, self.unit_count + self.nontrans_count)
+
+        unit = store.findunit('%d new')
+        self.assertTrue(unit)
+
+    def test_update(self):
+        """test updating existing files to templates"""
+        tp = self.project.translationproject_set.get(language__code='ar')
+        tp.update_from_templates()
+
+        store_count = tp.stores.count()
+        self.assertEqual(store_count, 1)
+
+        store = tp.stores.all()[0]
+        dbunit_count = store.units.count()
+        self.assertEqual(dbunit_count, self.unit_count)
+
+        stunit_count = len(store.file.store.units)
+        self.assertEqual(stunit_count, self.unit_count + self.nontrans_count)
+
+        unit = store.findunit('Exact')
+        self.assertEqual(unit.target, u'Belzabt')
+        self.assertFalse(unit.isfuzzy())
+
+        unit = store.findunit('Fuzzy')
+        #sugg_count = unit.get_suggestions().count()
+        #self.assertEqual(sugg_count, 1)
+        #sugg = unit.get_suggestions()[0]
+        #self.assertEqual(sugg.target, u'ta2riban')
+        self.assertEqual(unit.target, u'ta2riban')
+        self.assertTrue(unit.isfuzzy())
+
+        unit = store.findunit('%d new')
+        self.assertFalse(unit.istranslated())
+
+        obsolete_count = store.unit_set.filter(state=OBSOLETE).count()
+        self.assertEqual(obsolete_count, 1)
+        unit = store.unit_set.filter(state=OBSOLETE)[0]
+        self.assertEqual(unit.source, u'obsolete')
+        self.assertEqual(unit.target, u'2adim')
+
+
+class TsTests(XliffTests):
+    """Tests for Qt ts projects"""
+    template_text = r'''<!DOCTYPE TS>
+<TS version="2.0">
+    <context>
+        <name>header</name>
+        <message><source></source><translation>some headers</translation></message>
+    </context>
+    <context>
+        <name>fish.c</name>
+        <message><source>Exact</source><translation></translation></message>
+        <message><source>Fuzzy</source><translation></translation></message>
+        <message numerus="yes"><source>%d new</source>
+        <translation><numerusform></numerusform><numerusform></numerusform></translation></message>
+    </context>
+</TS>
+'''
+    target_text = r'''<!DOCTYPE TS>
+<TS version="2.0">
+    <context>
+        <name>header</name>
+        <message><source></source><translation>some headers</translation></message>
+    </context>
+    <context>
+        <name>fish.c</name>
+        <message><source>Exact</source><translation>Belzabt</translation></message>
+        <message><source>fuzzy</source><translation>ta2riban</translation></message>
+        <message><source>obsolete</source><translation>2adim</translation></message>
+    </context>
+</TS>
+'''
+    ext = 'ts'
+
+class PropTests(XliffTests):
+    """tests for java properties projects"""
+
+    template_text = r'''# old template
+
+Exact=Exact
+fuzzy=fuzzy
+obsolete=obsolete
+'''
+    target_text = r'''# target
+
+Exact=Belzabt
+fuzzy=ta2riban
+obsolete=2adim
+'''
+
+    new_template_text = r'''# new template
+
+Exact=Exact
+Fuzzy=Fuzzy
+new=%d new
+'''
+    ext = 'properties'
+
+    def setUp(self):
+        super(PropTests, self).setUp()
+        potfile = file(os.path.join(self.testpodir, "testproj", "test_en."+self.ext), 'w')
+        potfile.write(self.new_template_text)
+        potfile.close()
+        template_tp = self.project.translationproject_set.get(language__code='en')
+        template_tp.update(conservative=False)
+
+
+class SrtTests(PropTests):
+    """Tests for subtitles projects"""
+
+    template_text = r'''1
+00:00:00,000 --> 00:00:05,000
+Exact
+
+2
+00:00:06,000 --> 00:00:11,000
+fuzzy
+
+3
+00:00:11,000 --> 00:00:14,000
+obsolete
+
+'''
+    target_text = r'''1
+00:00:00,000 --> 00:00:05,000
+Belzabt
+
+2
+00:00:06,000 --> 00:00:11,000
+ta2riban
+
+3
+00:00:11,000 --> 00:00:14,000
+2adim
+'''
+    new_template_text = r'''1
+00:00:00,000 --> 00:00:05,000
+Exact
+
+2
+00:00:05,000 --> 00:00:11,000
+Fuzzy
+
+3
+00:00:10,000 --> 00:00:14,000
+%d new
+'''
+    ext = 'srt'
+    nontrans_count = 0
 
