@@ -20,8 +20,6 @@
 
 import re
 
-from translate.lang.data import langcode_re
-
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
@@ -34,10 +32,10 @@ from pootle_profile.models import PootleProfile
 
 
 ### Language
-
+LANGCODE_RE = re.compile("^[a-z]{2,}([_-][a-z]{2,})*(@[a-z0-9]+)?$", re.IGNORECASE)
 class MyLanguageAdminForm(forms.ModelForm):
     def clean_code(self):
-        if not self.cleaned_data['code'] == 'templates' and not langcode_re.match(self.cleaned_data['code']):
+        if not self.cleaned_data['code'] == 'templates' and not LANGCODE_RE.match(self.cleaned_data['code']):
             raise forms.ValidationError(_('Language code does not follow the ISO convention'))
         return self.cleaned_data["code"]
 
