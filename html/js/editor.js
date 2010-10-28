@@ -170,6 +170,7 @@
           }
           var which = parseInt(PTL.editor.pages_got[p].length / 2);
           var uid = PTL.editor.pages_got[p][which];
+          PTL.editor.get_meta(true);
           PTL.editor.display_edit_unit(uid);
         break;
       }
