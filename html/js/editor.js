@@ -147,13 +147,15 @@
       switch (parts[0]) {
         case "unit":
           var uid = parseInt(parts[1]);
-          // Take care when we want to access a unit directly from a permalink
-          if (PTL.editor.active_uid != uid
-              && PTL.editor.units[uid] == undefined) {
-            PTL.editor.active_uid = uid;
-            PTL.editor.get_meta(true);
+          if (uid && !isNan(uid)) {
+            // Take care when we want to access a unit directly from a permalink
+            if (PTL.editor.active_uid != uid
+                && PTL.editor.units[uid] == undefined) {
+              PTL.editor.active_uid = uid;
+              PTL.editor.get_meta(true);
+            }
+            PTL.editor.display_edit_unit(uid);
           }
-          PTL.editor.display_edit_unit(uid);
         break;
         case "filter":
           PTL.editor.checks = parts[1] == "checks" ? parts[2].split(',') : [];
@@ -165,13 +167,15 @@
         break;
         case "page":
           var p = parseInt(parts[1]);
-          if (!(p in PTL.editor.pages_got)) {
-            PTL.editor.get_view_units(false, p);
+          if (p && !isNaN(p)) {
+            if (!(p in PTL.editor.pages_got)) {
+              PTL.editor.get_view_units(false, p);
+            }
+            var which = parseInt(PTL.editor.pages_got[p].length / 2);
+            var uid = PTL.editor.pages_got[p][which];
+            PTL.editor.get_meta(true);
+            PTL.editor.display_edit_unit(uid);
           }
-          var which = parseInt(PTL.editor.pages_got[p].length / 2);
-          var uid = PTL.editor.pages_got[p][which];
-          PTL.editor.get_meta(true);
-          PTL.editor.display_edit_unit(uid);
         break;
       }
     }, {'unescape': true});
