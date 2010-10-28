@@ -334,19 +334,20 @@ class Unit(models.Model, base.TranslationUnit):
                     #FIXME: we need to do this cause we discard nplurals for empty plurals
                     changed = True
         notes = unit.getnotes(origin="developer")
-        if self.developer_comment != notes:
-            self.developer_comment = notes
+        if self.developer_comment != notes and (self.developer_comment or notes):
+            self.developer_comment = notes or None
             changed = True
         notes = unit.getnotes(origin="translator")
-        if self.translator_comment != notes:
-            self.translator_comment = notes
+        if self.translator_comment != notes and (self.translator_comment or notes):
+            self.translator_comment = notes or None
             changed = True
         locations = "\n".join(unit.getlocations())
-        if self.locations != locations:
-            self.locations = locations
+        if self.locations != locations and (self.locations or locations):
+            self.locations = locations or None
             changed = True
-        if self.context != unit.getcontext():
-            self.context = unit.getcontext()
+        context = unit.getcontext()
+        if self.context != unit.getcontext() and (self.context or context):
+            self.context = context or None
             changed = True
         if self.isfuzzy() != unit.isfuzzy():
             self.markfuzzy(unit.isfuzzy())
@@ -393,9 +394,9 @@ class Unit(models.Model, base.TranslationUnit):
                 notes += self.developer_comment
             return notes
         elif origin == "translator":
-            return self.translator_comment
+            return self.translator_comment or ''
         elif origin in ["programmer", "developer", "source code"]:
-            return self.developer_comment
+            return self.developer_comment or ''
         else:
             raise ValueError("Comment type not valid")
 
