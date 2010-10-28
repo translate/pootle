@@ -91,6 +91,9 @@
     /* Editor navigation/submission */
     $("table.translate-table").live("editor_ready", this.ready);
     $("tr.view-row").live("click", this.goto_unit);
+    $("input#item-number").live("keypress", function(e) {
+        if (e.keyCode == 13) PTL.editor.goto_page();
+    });
     $("input.submit, input.suggest").live("click", this.process_submit);
     $("input.previous, input.next").live("click", this.goto_prevnext);
     $("#translate-suggestion-container .rejectsugg").live("click", this.reject_suggestion);
@@ -159,6 +162,15 @@
           PTL.editor.units = {};
           PTL.editor.get_meta(false);
           PTL.editor.display_edit_unit(PTL.editor.active_uid);
+        break;
+        case "page":
+          var p = parseInt(parts[1]);
+          if (!(p in PTL.editor.pages_got)) {
+            PTL.editor.get_view_units(false, p);
+          }
+          var which = parseInt(PTL.editor.pages_got[p].length / 2);
+          var uid = PTL.editor.pages_got[p][which];
+          PTL.editor.display_edit_unit(uid);
         break;
       }
     }, {'unescape': true});
@@ -398,7 +410,7 @@
     for (var m in prevnext) {
       var tu = current;
       for (var i=0; i<limit; i++) {
-        if (tu[m] != undefined) {
+        if (tu[m] != undefined && tu[m] in this.units) {
           var tu = this.units[tu[m]];
           uids[prevnext[m]].push(tu.id);
         }
@@ -583,8 +595,18 @@
     }
     var m = $(this).attr("id").match(/row([0-9]+)/);
     if (m) {
-      var uid = m[1];
-      var newhash = "unit/" + parseInt(uid);
+      var uid = parseInt(m[1]);
+      var newhash = "unit/" + uid;
+      $.history.load(newhash);
+    }
+  },
+
+  /* Loads the editor on a specific page */
+  goto_page: function() {
+    var page = parseInt($("input#item-number").val());
+    if (page && !isNaN(page)) {
+      var newhash = "page/" + page;
+      console.log("loading " + page);
       $.history.load(newhash);
     }
   },
