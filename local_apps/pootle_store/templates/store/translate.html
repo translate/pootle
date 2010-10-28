@@ -122,9 +122,9 @@ $(document).ready (function() {
   </div>
 
   <div id="prevnext" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-    <input type="submit" class="previous" name="back" accesskey="b" value="{% trans 'Previous' %}" title="{% trans 'Go to the previous unit' %}" />
+    <input type="submit" class="previous" name="back" accesskey="b" value="{% trans 'Previous' %}" title="{% trans 'Go to the previous unit (Ctrl+Up)' %}" />
     <span id="item-navigation"><input id="item-number" type="text" value="1" size="1" /> / <span id="items-count"></span></span>
-    <input type="submit" class="next" name="skip" accesskey="k" value="{% trans 'Next' %}" title="{% trans 'Go to the next unit' %}" />
+    <input type="submit" class="next" name="skip" accesskey="k" value="{% trans 'Next' %}" title="{% trans 'Go to the next unit (Ctrl+Down)' %}" />
   </div>
 
   <!--

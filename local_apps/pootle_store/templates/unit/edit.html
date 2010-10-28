@@ -103,10 +103,10 @@
       <!-- Buttons, resize links, special characters -->
       <div class="buttons translate-buttons-block" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
         {% if cantranslate %}
-        <input type="submit" name="submit" class="submit" tabindex="11" accesskey="s" value="{% trans 'Submit' %}" />
+        <input type="submit" name="submit" class="submit" tabindex="11" accesskey="s" value="{% trans 'Submit' %}" title="Submit translation and go to the next unit (Ctrl+Enter)" />
         {% endif %}
         {% if cansuggest %}
-        <input type="submit" name="suggest" class="suggest" tabindex="12" accesskey="e" value="{% trans 'Suggest' %}" />
+        <input type="submit" name="suggest" class="suggest" tabindex="12" accesskey="e" value="{% trans 'Suggest' %}" title="Suggest translation and go to the next unit (Ctrl+Shift+Enter)" />
         {% endif %}
         <input type="hidden" name="store" value="{{ store }}" />
         <input type="hidden" name="path" value="{{ store|l }}" />
