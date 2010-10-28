@@ -38,15 +38,20 @@
     this.keepstate = false;
 
     /* Ugly hack to avoid JS templates from being interpreted by Django. */
+    /* FOR REVIEW: This won't work: IE prohibits modifying the contents of the <script> tag */
+    /*
     $("script[type=text/x-jquery-template]").each(function() {
       var stext = $(this).text();
       stext = stext.replace(/\[\[/g, "{{").replace(/\]\]/g, "}}");
       $(this).text(stext);
     });
+    */
 
     /* Compile templates */
-    this.tmpl = {vunit: $("#view_unit").template()}
-    //this.tmpl = {vunit: $.template(text)}
+    /* FOR REVIEW: instead, hacking the contents of the script right before compiling
+       (without modifying the <script> tag */
+    //this.tmpl = {vunit: $("#view_unit").template()}
+    this.tmpl = {vunit: $.template($("#view_unit").text().replace(/\[\[/g, '{{').replace(/\]\]/g, '}}'))}
 
     /* Set initial focus on page load */
     this.focused = $(".translate-original-focus textarea").get(0);
