@@ -46,6 +46,7 @@
 
     /* Compile templates */
     this.tmpl = {vunit: $("#view_unit").template()}
+    //this.tmpl = {vunit: $.template(text)}
 
     /* Set initial focus on page load */
     this.focused = $(".translate-original-focus textarea").get(0);
@@ -111,11 +112,27 @@
     shortcut.add('ctrl+shift+return', function() {
       $("input.suggest").trigger("click");
     });
+    shortcut.add('ctrl+space', function(e) {
+      // to prevent the click event which occurs in Firefox but not in Chrome (and not in IE)
+      if (e && e.preventDefault) e.preventDefault();
+
+      // prevent automatic unfuzzying on keyup
+      PTL.editor.keepstate = true; 
+
+      if (PTL.editor.isFuzzy()) {
+        PTL.editor.ungoFuzzy();
+      } else {
+        PTL.editor.goFuzzy();
+      }
+    });
     shortcut.add('ctrl+up', function() {
       $("input.previous").trigger("click");
     });
     shortcut.add('ctrl+down', function() {
       $("input.next").trigger("click");
+    });
+    shortcut.add('ctrl+shift+u', function() {
+      $("input#item-number").focus().select();
     });
 
     /* XHR activity indicator */
@@ -261,17 +278,11 @@
   },
 
   doFuzzyBox: function() {
-    var checkbox = $("input.fuzzycheck");
-    if (!this.isFuzzy()) {
-      checkbox.attr("checked", "checked");
-    }
+    $("input.fuzzycheck").attr("checked", "checked");
   },
 
   undoFuzzyBox: function() {
-    var checkbox = $("input.fuzzycheck");
-    if (this.isFuzzy()) {
-      checkbox.removeAttr("checked");
-    }
+    $("input.fuzzycheck").removeAttr("checked");
   },
 
   goFuzzy: function() {
@@ -291,13 +302,7 @@
   },
 
   isFuzzy: function() {
-    var checkbox = $("input.fuzzycheck");
-    var checked = checkbox.attr("checked");
-    if (checked == undefined || checked == false) {
-      return false;
-    } else {
-      return true;
-    }
+    return !!$("input.fuzzycheck").attr("checked");
   },
 
   /*

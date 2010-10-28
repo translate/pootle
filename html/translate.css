@@ -515,7 +515,7 @@ li.check > a {
 
 .translate-fuzzy-block
 {
-    min-width: 150px;
+    text-align: center;
 }
 
 .translate-fuzzy-block label
@@ -644,12 +644,8 @@ td.translate-full div.translate-translation:lang(zh)
 tr.translate-translation-fuzzy td.translate-translation,
 .translate-translation-fuzzy textarea.translation
 {
-    color: #999;
-}
-
-tr.translate-translation-fuzzy td.translate-focus
-{
-    border-color: #aaa;
+    color: #888;
+    font-style: italic;
 }
 
 textarea.translation

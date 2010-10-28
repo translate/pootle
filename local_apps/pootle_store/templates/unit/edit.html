@@ -111,7 +111,7 @@
         <input type="hidden" name="store" value="{{ store }}" />
         <input type="hidden" name="path" value="{{ store|l }}" />
         <input type="hidden" name="pootle_path" value="{{ store.pootle_path }}" />
-        <div class="translate-fuzzy-block" lang="{{ LANGUAGE_CODE }}">
+        <div class="translate-fuzzy-block" lang="{{ LANGUAGE_CODE }}" title="{% trans 'Toggle fuzzy state (Ctrl+Space)' %}">
           {{ form.state }} {{ form.state.label_tag }}
         </div>
       </div>
