@@ -138,7 +138,7 @@ def project_admin(request, project_code):
             update = forms.BooleanField(required=False, label=_("Update from templates"))
         #FIXME: maybe we can detect if initialize is needed to avoid
         # displaying it when not relevant
-        initialize = forms.BooleanField(required=False, label=_("Initialize"))
+        #initialize = forms.BooleanField(required=False, label=_("Initialize"))
         project = forms.ModelChoiceField(queryset=Project.objects.filter(pk=current_project.pk),
                                          initial=current_project.pk, widget=forms.HiddenInput)
         language = LiberalModelChoiceField(label=_("Language"),
