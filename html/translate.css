@@ -30,15 +30,9 @@ div#toolbar > div
     padding: 1em 0.5em;
 }
 
-div#toolbar > div > div
-{
-    display: inline-block;
-}
-
 #prevnext
 {
-    position: absolute;
-    right: 0px;
+    float: right;
 }
 
 #prevnext #item-navigation
