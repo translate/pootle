@@ -20,6 +20,7 @@
 
 import os
 import logging
+import re
 
 from translate.lang    import data as langdata
 from translate.convert import pot2po
@@ -29,13 +30,19 @@ from pootle_store.util import absolute_real_path, relative_real_path
 from pootle_store.filetypes import factory_classes
 from pootle_app.models.directory  import Directory
 
+# case insensitive match for language codes
+LANGCODE_RE = re.compile('^[a-z]{2,3}([_-][a-z]{2,3})?(@[a-z0-9]+)?$', re.IGNORECASE)
+# case insensitive match for language codes as postfix
+LANGCODE_POSTFIX_RE = re.compile('^.*?[-_.]([a-z]{2,3}([_-][a-z]{2,3})?(@[a-z0-9]+)?)$', re.IGNORECASE)
+
 def language_match_filename(language_code, filename):
     name, ext = os.path.splitext(os.path.basename(filename))
     return langdata.languagematch(language_code, name)
 
 def direct_language_match_filename(language_code, path_name):
     name, ext = os.path.splitext(os.path.basename(path_name))
-    return (language_code == name or name.endswith('-'+language_code) or name.endswith('_'+language_code))
+    regexp = "^(.*[-_.])?%s$" % language_code
+    return bool(re.match(regexp, name, re.IGNORECASE))
 
 def match_template_filename(project, filename):
     """test if path_name might point at a template file for given
@@ -149,18 +156,14 @@ def add_files(translation_project, ignored_files, ext, real_dir, db_dir, file_fi
         add_files(translation_project, ignored_files, ext, fs_subdir, db_subdir, file_filter)
 
 def find_lang_postfix(filename):
+    """finds the language code at end of a filename"""
     name = os.path.splitext(filename)[0]
-    if langdata.langcode_re.match(name):
+    if LANGCODE_RE.match(name):
         return name
-    suffix = name.split('-')[-1]
-    if langdata.langcode_re.match(suffix):
-        return suffix
 
-    parts = name.split('_')
-    for i in xrange(1, len(parts)):
-        suffix = '_'.join(parts[len(parts)-i:])
-        if langdata.langcode_re.match(suffix):
-            return suffix
+    match = LANGCODE_POSTFIX_RE.match(name)
+    if match:
+        return match.groups()[0]
 
 def translation_project_should_exist(language, project):
     """tests if there are translation files corresponding to given
