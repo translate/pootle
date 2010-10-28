@@ -603,18 +603,16 @@
    */
 
   /* Gets the failing check options for the current query */
-  get_check_options: function(uid) {
+  get_check_options: function() {
     var checks_url = l(this.store + '/checks/');
-    var opts = '';
+    var opts;
     $.ajax({
       url: checks_url,
       async: false,
       dataType: 'json',
       success: function(data) {
         if (data.success) {
-          $.each(data.checks, function() {
-            opts += '<option value="' + this.name + '">' + this.text + '</option>';
-          });
+          opts = data.checks;
         } else {
           PTL.editor.error(data.msg);
         }
@@ -636,12 +634,20 @@
   filter_status: function() {
     var filter_by = $("option:selected", this).val();
     if (filter_by == "checks") {
-      var dropdown = '<div id="filter-checks" class="toolbar-item">';
-      dropdown += '<select name="filter-checks">';
-      dropdown += '<option selected="selected" value="none">------</option>';
-      dropdown += PTL.editor.get_check_options();
-      dropdown += '</select></div>';
-      $("div#filter-status").first().after(dropdown);
+      var opts = PTL.editor.get_check_options();
+      if (opts.length) {
+        var dropdown = '<div id="filter-checks" class="toolbar-item">';
+        dropdown += '<select name="filter-checks">';
+        dropdown += '<option selected="selected" value="none">------</option>';
+        $.each(opts, function() {
+          dropdown += '<option value="' + this.name + '">' + this.text + '</option>';
+        });
+        dropdown += '</select></div>';
+        $("div#filter-status").first().after(dropdown);
+      } else {
+        // TODO: i18n
+        PTL.editor.error("No results.");
+      }
     } else {
       $("div#filter-checks").remove();
       var newhash = "filter/" + filter_by;
