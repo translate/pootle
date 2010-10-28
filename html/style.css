@@ -1256,13 +1256,16 @@ div#actionlinks a:hover
 
 .item
 {
-    background-color: #F7F7F7;
     padding: 1em;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
 }
 
+.tptranslate .item,
+.tpreview .item {
+    background-color: #F7F7F7;
+}
 
 .item .title
 {
