@@ -863,6 +863,11 @@ class Store(models.Model, base.TranslationStore):
                 cache.set(key, self.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
             return
 
+        if self.translation_project.is_template_project:
+            #FIXME: should we do this on conservative == True only?
+            # don't save to templates
+            return
+
         logging.debug(u"Syncing %s", self.pootle_path)
         self.require_dbid_index(update=True)
         old_ids = set(self.file.store.getids())
