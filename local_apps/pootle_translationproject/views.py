@@ -533,13 +533,16 @@ class UploadHandler(view_handler.Handler):
 
     @classmethod
     def must_display(cls, request, *args, **kwargs):
-        return check_permission('translate', request)
+        return check_permission('translate', request) or check_permission('suggest', request) or check_permission('overwrite', request)
 
     def __init__(self, request, data=None, files=None):
-        choices = [('merge', _("Merge the file with the current file and turn conflicts into suggestions")),
-                   ('suggest', _("Add all new translations as suggestions"))]
+        choices = []
         if check_permission('overwrite', request):
-            choices.insert(0, ('overwrite', _("Overwrite the current file if it exists")))
+            choices.append(('overwrite', _("Overwrite the current file if it exists")))
+        if check_permission('translate', request):
+            choices.append(('merge', _("Merge the file with the current file and turn conflicts into suggestions")))
+        if check_permission('suggest', request):
+            choices.append(('suggest', _("Add all new translations as suggestions")))
 
         translation_project = request.translation_project
 
@@ -553,8 +556,12 @@ class UploadHandler(view_handler.Handler):
 
         class UploadForm(forms.Form):
             file = forms.FileField(required=True, label=_('File'))
+            if check_permission('translate', request):
+                initial = 'merge'
+            else:
+                initial = 'suggest'
             overwrite = forms.ChoiceField(required=True, widget=forms.RadioSelect,
-                                          label='', choices=choices, initial='merge')
+                                          label='', choices=choices, initial=initial)
             upload_to = StoreFormField(required=False, label=_('Upload to'),
                                        queryset=translation_project.stores.all(),
                                        help_text=_("Optionally select the file you want to merge with. If not specified, the uploaded file's name is used."))
