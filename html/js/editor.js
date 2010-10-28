@@ -306,7 +306,7 @@
   error: function(msg) {
     if (msg) {
       $("#xhr-activity").hide();
-      $("#xhr-error span").text(msg).parent().show();
+      $("#xhr-error span").text(msg).parent().show().fadeOut(3500);
     }
   },
 
@@ -345,6 +345,8 @@
           PTL.editor.error("No results.");
           PTL.editor.checks = PTL.editor.prev_checks;
           PTL.editor.filter = PTL.editor.prev_filter;
+          $("#filter-status option[value=" + PTL.editor.filter + "]")
+            .attr("selected", "selected");
         }
       }
     });
@@ -670,6 +672,11 @@
         });
         dropdown += '</select></div>';
         $("div#filter-status").first().after(dropdown);
+      } else { // No results
+        // TODO: i18n
+        PTL.editor.error("No results.");
+        $("#filter-status option[value=" + PTL.editor.filter + "]")
+          .attr("selected", "selected");
       }
     } else {
       $("div#filter-checks").remove();
