@@ -126,6 +126,12 @@ def count_words(strings):
         wordcount += statsdb.wordcount(string)
     return wordcount
 
+def stringcount(string):
+    try:
+        return len(string.strings)
+    except AttributeError:
+        return 1
+
 class UnitManager(RelatedManager):
     def get_by_natural_key(self, unitid_hash, pootle_path):
         return self.get(unitid_hash=unitid_hash, store__pootle_path=pootle_path)
@@ -319,20 +325,16 @@ class Unit(models.Model, base.TranslationUnit):
     def update(self, unit):
         """update indb translation from file"""
         changed = False
-        if self.hasplural() != unit.hasplural():
-            self.source = unit.source
-            self.target = unit.target
-            changed = True
-        else:
-            if self.source != unit.source:
+        if self.source != unit.source or len(self.source.strings) != stringcount(unit.source) or \
+               self.hasplural() != unit.hasplural():
                 self.source = unit.source
+            changed = True
+        if self.target != unit.target or len(self.target.strings) != stringcount(unit.target):
+            notempty = filter(None, self.target_f.strings)
+            self.target = unit.target
+            if filter(None, self.target_f.strings) or notempty:
+                #FIXME: we need to do this cause we discard nplurals for empty plurals
                 changed = True
-            if self.target != unit.target:
-                notempty = filter(None, self.target_f.strings)
-                self.target = unit.target
-                if filter(None, self.target_f.strings) or notempty:
-                    #FIXME: we need to do this cause we discard nplurals for empty plurals
-                    changed = True
         notes = unit.getnotes(origin="developer")
         if self.developer_comment != notes and (self.developer_comment or notes):
             self.developer_comment = notes or None
