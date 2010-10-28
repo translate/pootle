@@ -52,7 +52,8 @@ class Command(NoArgsCommand):
         for translation_project in TranslationProject.objects.filter(real_path__startswith=refresh_path).order_by('project__code', 'language__code').iterator():
             if not os.path.isdir(translation_project.abs_real_path):
                 # translation project no longer exists
-                translation_project.delete()
+                logging.error(u"translation project %s not present on file system", translation_project)
+                #translation_project.delete()
                 continue
 
             logging.info(u"Scanning for new files in %s", translation_project)
