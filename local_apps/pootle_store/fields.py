@@ -39,7 +39,7 @@ from pootle_store.filetypes import factory_classes
 ################# String #############################
 
 SEPERATOR = "__%$%__%$%__%$%__"
-
+PLURAL_PLACEHOLDER = "__%POOTLE%_$NUMEROUS$__"
 def list_empty(strings):
     """check if list is exclusively made of empty strings.
 
@@ -66,7 +66,15 @@ class MultiStringField(models.Field):
         elif isinstance(value, multistring):
             return value
         elif isinstance(value, basestring):
-            return multistring(value.split(SEPERATOR), encoding="UTF-8")
+            strings = value.split(SEPERATOR)
+            if strings[-1] == PLURAL_PLACEHOLDER:
+                strings = strings[:-1]
+                plural = True
+            else:
+                plural = len(strings) > 1
+            ms = multistring(strings, encoding="UTF-8")
+            ms.plural = plural
+            return ms
         elif isinstance(value, dict):
             return multistring([val for key, val in sorted(value.items())], encoding="UTF-8")
         else:

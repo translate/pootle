@@ -42,7 +42,7 @@ from pootle_misc.util import getfromcache, deletefromcache
 from pootle_misc.aggregate import group_by_count, max_column
 from pootle_misc.baseurl import l
 
-from pootle_store.fields  import TranslationStoreField, MultiStringField
+from pootle_store.fields  import TranslationStoreField, MultiStringField, PLURAL_PLACEHOLDER
 from pootle_store.util import calculate_stats, empty_quickstats
 from pootle_store.util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED
 from pootle_store.filetypes import factory_classes, is_monolingual
@@ -327,6 +327,9 @@ class Unit(models.Model, base.TranslationUnit):
         changed = False
         if self.source != unit.source or len(self.source.strings) != stringcount(unit.source) or \
                self.hasplural() != unit.hasplural():
+            if unit.hasplural() and len(unit.source.strings) == 1:
+                self.source = [unit.source, PLURAL_PLACEHOLDER]
+            else:
                 self.source = unit.source
             changed = True
         if self.target != unit.target or len(self.target.strings) != stringcount(unit.target):
@@ -449,7 +452,8 @@ class Unit(models.Model, base.TranslationUnit):
                 self.state = UNTRANSLATED
 
     def hasplural(self):
-        return self.source is not None and len(self.source.strings) > 1
+        return self.source is not None and (
+            len(self.source.strings) > 1 or hasattr(self.source, "plural") and self.source.plural)
 
     def isobsolete(self):
         return self.state == OBSOLETE
