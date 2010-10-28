@@ -158,10 +158,11 @@
           }
         break;
         case "filter":
+          // Save previous states in case there are no results
+          PTL.editor.prev_checks = PTL.editor.checks;
+          PTL.editor.prev_filter = PTL.editor.filter;
           PTL.editor.checks = parts[1] == "checks" ? parts[2].split(',') : [];
           PTL.editor.filter = parts[1];
-          PTL.editor.pages_got = {};
-          PTL.editor.units = {};
           PTL.editor.get_meta(false);
           PTL.editor.display_edit_unit(PTL.editor.active_uid);
         break;
@@ -328,13 +329,22 @@
       data: req_data,
       dataType: 'json',
       success: function(data) {
-        PTL.editor.meta = data.meta;
         if (data.pager) {
-            PTL.editor.update_pager(data.pager);
-            PTL.editor.fetch_pages(false);
-            if (data.uid) {
-              PTL.editor.active_uid = data.uid;
-            }
+          PTL.editor.has_results = true;
+          PTL.editor.meta = data.meta;
+          PTL.editor.pages_got = {};
+          PTL.editor.units = {};
+          PTL.editor.update_pager(data.pager);
+          PTL.editor.fetch_pages(false);
+          if (data.uid) {
+            PTL.editor.active_uid = data.uid;
+          }
+        } else { // No results
+          PTL.editor.has_results = false;
+          // TODO: i18n
+          PTL.editor.error("No results.");
+          PTL.editor.checks = PTL.editor.prev_checks;
+          PTL.editor.filter = PTL.editor.prev_filter;
         }
       }
     });
@@ -443,16 +453,13 @@
 
   /* Sets the edit view for unit 'uid' */
   display_edit_unit: function(uid) {
-    this.fetch_pages(true);
-    if (Object.size(this.units) > 0) {
+    if (PTL.editor.has_results) {
+      this.fetch_pages(true);
       var uids = this.get_uids_before_after(uid);
       var newtbody = this.build_rows(uids.before) +
                      this.get_edit_unit(uid) +
                      this.build_rows(uids.after);
       this.redraw(newtbody);
-    } else {
-      // TODO: i18n
-      this.error("No results.");
     }
   },
 
@@ -663,9 +670,6 @@
         });
         dropdown += '</select></div>';
         $("div#filter-status").first().after(dropdown);
-      } else {
-        // TODO: i18n
-        PTL.editor.error("No results.");
       }
     } else {
       $("div#filter-checks").remove();
