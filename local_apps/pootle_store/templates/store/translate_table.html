@@ -2,7 +2,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 <!-- JS templates: move from here when possible -->
-<script id="view_unit" type="text/x-jquery-template">
+<textarea id="view_unit" type="text/x-jquery-template">
 <td dir="${meta.source_dir}" class="translate-original" rowspan="1" colspan="1">
   <div class="translate-original translate-view" id="orig${unit.id}">
     [[each(i, source) unit.source]]
@@ -23,7 +23,7 @@
     [[/each]]
   </div>
 </td>
-</script>
+</textarea>
 <div class="translate-form">
     <div id="pootle_path" class="hide">{{ store.pootle_path }}</div>
     <div id="active_uid" class="hide">{{ form.instance.id }}</div>

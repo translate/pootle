@@ -4,6 +4,10 @@
 
 /* MAIN TOOLBAR */
 
+textarea#view_unit {
+    display: none;
+}
+
 div#toolbar
 {
     background-color: #e5f3f8;
