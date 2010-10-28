@@ -585,18 +585,9 @@ def _build_pager_dict(pager):
     @return: A dictionary containing necessary pager information to build
     a pager.
     """
-    start = max(1, pager.number - 4)
-    end = min(pager.paginator.num_pages, pager.number + 4)
-    return {"has_previous": pager.has_previous(),
-            "pp_number": pager.previous_page_number(),
-            "number": pager.number,
+    return {"number": pager.number,
             "num_pages": pager.paginator.num_pages,
-            "per_page": pager.paginator.per_page,
-            "pages": [i for i in range(start, end+1)],
-            "has_next": pager.has_next(),
-            "np_number": pager.next_page_number(),
-            "start": start,
-            "end": end,
+            "per_page": pager.paginator.per_page
            }
 
 def _get_index_in_qs(qs, unit):

@@ -45,8 +45,7 @@
     });
 
     /* Compile templates */
-    this.tmpl = {pager: $("#pager").template(),
-                 vunit: $("#view_unit").template()}
+    this.tmpl = {vunit: $("#view_unit").template()}
 
     /* Set initial focus on page load */
     this.focused = $(".translate-original-focus textarea").get(0);
@@ -315,8 +314,6 @@
         PTL.editor.meta = data.meta;
         if (data.pager) {
             PTL.editor.update_pager(data.pager);
-            PTL.editor.current_page = data.pager.number;
-            PTL.editor.current_num_pages = data.pager.num_pages;
             PTL.editor.fetch_pages(false);
             if (data.uid) {
               PTL.editor.active_uid = data.uid;
@@ -478,13 +475,8 @@
         || this.current_num_pages != pager.num_pages) {
       this.current_page = pager.number;
       this.current_num_pages = pager.num_pages;
-      var where = $("div.translation-nav");
-      var newpager = "";
-      if (this.current_num_pages > 1) {
-        newpager = this.tmpl.pager($, {data: {pager: pager}}).join("");
-      }
-      where.children().remove();
-      where.append(newpager);
+      $("input#item-number").val(pager.number);
+      $("span#items-count").text(pager.num_pages);
     }
   },
 

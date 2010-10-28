@@ -24,32 +24,6 @@
   </div>
 </td>
 </script>
-<!-- TODO: Provide localized texts -->
-<script id="pager" type="text/x-jquery-template">
-<ul class="pager">
-  [[if pager.has_previous]]
-  <li><a href="?page=1" class="nth-link">First</a></li>
-  <li><a href="?page=${pager.pp_number}" class="nth-link">Previous</a></li>
-  [[/if]]
-  [[if pager.start > 1]]
-  <li>...</li>
-  [[/if]]
-  [[each(i, page) pager.pages]]
-  [[if page == pager.number]]
-  <li><span class="current-link">${ page }</span></li>
-  [[else]]
-  <li><a href="?page=${ page }" class="number-link">${ page }</a></li>
-  [[/if]]
-  [[/each]]
-  [[if pager.end < pager.num_pages]]
-  <li>...</li>
-  [[/if]]
-  [[if pager.has_next]]
-  <li><a href="?page=${pager.np_number}" class="nth-link">Next</a></li>
-  <li><a href="?page=${pager.num_pages}" class="nth-link">Last (${pager.num_pages})</a></li>
-  [[/if]]
-</ul>
-</script>
 <div class="translate-form">
     <div id="pootle_path" class="hide">{{ store.pootle_path }}</div>
     <div id="active_uid" class="hide">{{ form.instance.id }}</div>
