@@ -668,8 +668,7 @@ class Store(models.Model, base.TranslationStore):
         """make sure file is parsed and units are created"""
         if self.state < PARSED and self.unit_set.count() == 0:
             if  self.file and is_monolingual(type(self.file.store)) and \
-                   not self.translation_project.is_template_project and \
-                   self.translation_project.project.get_template_translationproject():
+                   not self.translation_project.is_template_project:
                 self.translation_project.update_from_templates(pootle_path=self.pootle_path)
             else:
                 self.parse()
