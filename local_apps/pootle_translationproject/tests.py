@@ -28,6 +28,7 @@ from pootle_app.project_tree import get_translated_name, get_translated_name_gnu
 from pootle_language.models import Language
 from pootle_app.management import require_english
 from pootle_store.util import OBSOLETE
+from pootle_store.models import Store
 
 class GnuTests(PootleTestCase):
     """Tests for Gnu Style projects"""
@@ -356,6 +357,11 @@ X-Generator: Pootle Tests
         unit = store.findunit('%d new')
         self.assertTrue(unit)
 
+    def test_plural(self):
+        store = Store.objects.get(pootle_path='/en/testproj/test_en.'+self.ext)
+        unit = store.findunit('%d new')
+        self.assertTrue(unit.hasplural())
+
     def test_update(self):
         """test updating existing files to templates"""
         tp = self.project.translationproject_set.get(language__code='ar')
@@ -458,6 +464,9 @@ new=%d new
         template_tp = self.project.translationproject_set.get(language__code='en')
         template_tp.update(conservative=False)
 
+    def test_plural(self):
+        # monolingual files don't do plurals, suppress
+        pass
 
 class SrtTests(PropTests):
     """Tests for subtitles projects"""
