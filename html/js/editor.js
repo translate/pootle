@@ -147,7 +147,7 @@
       switch (parts[0]) {
         case "unit":
           var uid = parseInt(parts[1]);
-          if (uid && !isNan(uid)) {
+          if (uid && !isNaN(uid)) {
             // Take care when we want to access a unit directly from a permalink
             if (PTL.editor.active_uid != uid
                 && PTL.editor.units[uid] == undefined) {
