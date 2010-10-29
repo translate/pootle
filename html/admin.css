@@ -74,6 +74,11 @@ textarea#id_DESCRIPTION
     text-align: center;
 }
 
+#rss-alerts iframe
+{
+    height: 25em;
+}
+
 /* ADMIN LANGUAGES, FILES */
 
 td.code input
