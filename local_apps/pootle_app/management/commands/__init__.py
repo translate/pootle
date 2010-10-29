@@ -97,6 +97,16 @@ class PootleCommand(NoArgsCommand):
             languages = options.get('languages', [])
             path = options.get('path', '')
 
+        if languages and hasattr(self, "handle_language"):
+            lang_query = Language.objects.all()
+            if languages:
+                lang_query = lang_query.filter(code__in=languages)
+            for lang in lang_query.iterator():
+                logging.info(u"running %s over %s", self.name, lang)
+                try:
+                    self.handle_language(lang, **options)
+                except Exception, e:
+                    logging.error(u"failed to run %s over %s:\n%s", self.name, lang, e)
 
         project_query = Project.objects.all()
         if projects:
