@@ -1414,13 +1414,6 @@ table.sortable th.sorttable_sorted_reverse {
 
 /* PAGER */
 
-div.translation-nav
-{
-    position: absolute;
-    top: 5px;
-    right: 0px;
-}
-
 ul.pager li
 {
     float: left;
