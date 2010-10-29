@@ -1090,7 +1090,19 @@ div#settings
 
 .delete-selected
 {
-    background-color: #f60 !important;
+    background-color: #e08566 !important;
+}
+
+.delete-selected.even
+{
+    background-color: #d67f62 !important;
+}
+
+.delete-selected > * {
+    filter:alpha(opacity=40);
+    -moz-opacity: 0.4;
+    -khtml-opacity: 0.4;
+    opacity: 0.4;
 }
 
 .other-selected a,
@@ -1401,6 +1413,12 @@ table.sortable th
     color: #999;
     font-size: 85%;
 }
+
+table.sortable td
+{
+    padding: 5px;
+}
+
 
 table.sortable th.sorttable_sorted,
 table.sortable th.sorttable_sorted_reverse {

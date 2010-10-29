@@ -75,6 +75,37 @@ textarea#id_DESCRIPTION
 
 /* ADMIN LANGUAGES, FILES */
 
+td.code input
+{
+   width: 5em;
+}
+
+td.fullname {
+    width: 20%;
+}
+
+td.pluralequation
+{
+    width: 50%;
+}
+
+td.fullname input
+{
+    min-width: 10em;
+}
+
+td.specialchars input
+{
+    min-width: 5em;
+}
+
+td.fullname input,
+td.pluralequation input,
+td.specialchars input
+{
+    width: 90%;
+}
+
 td.fullname input,
 td.pluralequation input,
 td.pootle_path
