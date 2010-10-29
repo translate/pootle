@@ -18,7 +18,7 @@
 
 {% block breadcrumbs %}
 <div id="breadcrumbs">
-  <h2 class="title">{% block breadcrumbs_content %}
+    {% block breadcrumbs_content %}
     {% cache settings.CACHE_TIMEOUT tp_bread directory.id LANGUAGE_CODE %}
     <a href="{{ language.pootle_path|l }}">{{ language.localname }}</a> » <a href="{{ translation_project.pootle_path|l }}">{{ translation_project.project }}</a>
     {% if directory.trail.count %} »
@@ -27,7 +27,7 @@
     {% endfor %}
     {% endif %}
     {% endcache %}
-    {% endblock %}</h2>
+    {% endblock %}
 </div>
 {% endblock %}
 

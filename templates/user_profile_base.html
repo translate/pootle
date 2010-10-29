@@ -7,7 +7,7 @@
 
 {% block breadcrumbs %}
 <div id="breadcrumbs">
-    <h2 class="title">{% block breadcrumb_content %}{% trans "My Account" %}{% endblock %}</h2>
+    {% block breadcrumb_content %}{% trans "My Account" %}{% endblock %}
 </div>
 {% endblock %}
 

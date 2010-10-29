@@ -35,17 +35,17 @@ approach for this.
 {% block nav-secondary %}
 {% if directory.is_language %}
 <div id="breadcrumbs">
-    <h2 class="title"><a href="{% filter l %}/{{ directory.language.code }}/{% endfilter %}">{{ directory.language.name }}</a></h2>
+    <a href="{% filter l %}/{{ directory.language.code }}/{% endfilter %}">{{ directory.language.name }}</a>
 </div>
 {% else %}
     {% if directory.is_project %}
     <div id="breadcrumbs">
-        <h2 class="title"><a href="{% filter l %}/projects/{{ directory.project.code }}/{% endfilter %}">{{ directory.project.fullname }}</a></h2>
+        <a href="{% filter l %}/projects/{{ directory.project.code }}/{% endfilter %}">{{ directory.project.fullname }}</a>
     </div>
     {% else %}
     {% block breadcrumbs %}
     <div id="breadcrumbs">
-      <h2 class="title">{% include "language/item_title.html" %}</h2>
+      {% include "language/item_title.html" %}
     </div>
     {% endblock %}
     {% endif %}

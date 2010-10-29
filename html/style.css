@@ -301,22 +301,17 @@ html[dir="rtl"] #nav-access
 #header h1
 {
     margin: 0;
-    padding: 0;
-}
-
-#header h1 a
-{
-    background: url(images/logo.png) left 50% no-repeat;
-    padding: 25px 0;
+    padding: 25px;
+    background: url(images/logo.png) left 0.7em no-repeat;
     padding-left: 60px;
     float: left;
     margin: 0 30px 0 20px;
     font-weight: bold;
 }
 
-html[dir="rtl"] #header h1 a
+html[dir="rtl"] #header h1
 {
-    background: url(images/logo.png) right 50% no-repeat;
+    background: url(images/logo.png) right 0.7em no-repeat;
     padding-left: 0;
     padding-right: 60px;
     margin: 0px 20px 0 30px;
@@ -1521,15 +1516,16 @@ html[dir="rtl"] ul.pager li:last-child > *
 
 div#breadcrumbs
 {
-    float: left;
-    margin-top: 23px;
+    display: inline;
+    font-weight: normal;
+    margin-left: 0.5em;
 }
 
 html[dir="rtl"] div#breadcrumbs
 {
     float: right;
     margin-left: 0;
-    margin-right: 3em;
+    margin-right: 0.5em;
 }
 
 /* SEARCH */
