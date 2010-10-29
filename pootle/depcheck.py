@@ -28,10 +28,11 @@ from django.conf import settings
 ##########################
 # test core dependencies #
 ##########################
+translate_required_ver = (1, 8, 0)
 def test_translate():
     try:
         from translate.__version__ import ver, sver
-        if ver >= (1, 8, 0):
+        if ver >= translate_required_ver:
             return True, sver
         else:
             return False, sver
@@ -78,10 +79,11 @@ def test_iso_codes():
     return len(gettext.find('iso_639', languages=languages, all=True)) > 0
 
 
+lxml_required_ver = (2, 1, 4, 0)
 def test_lxml():
     try:
         from lxml.etree import LXML_VERSION, __version__
-        if LXML_VERSION >= (2, 1, 4, 0):
+        if LXML_VERSION >= lxml_required_ver:
             return True, __version__
         else:
             return False, __version__

@@ -48,7 +48,7 @@ def required_depcheck():
         text = _('Translate Toolkit version %s installed.', version)
         state = 'good'
     else:
-        text = _('Translate Toolkit version %(installed)s installed. Pootle requires version %(required)s.', {'installed': version, 'required': "1.8.0"})
+        text = _('Translate Toolkit version %(installed)s installed. Pootle requires at least version %(required)s.', {'installed': version, 'required': ".".join(depcheck.translate_required_ver)})
         state = 'error'
     required.append({'dependency': 'translate', 'state': state, 'text': text})
 
@@ -66,7 +66,7 @@ def required_depcheck():
         text = _('lxml version %s is installed.', version)
         state = 'good'
     elif version is not None:
-        text = _('lxml version %(installed)s is installed. Pootle requires version %(required)s for XML format support.', {'installed': version, 'required': "2.1.4"})
+        text = _('lxml version %(installed)s is installed. Pootle requires at least version %(required)s for XML format support.', {'installed': version, 'required': ".".join(depcheck.lxml_required_ver})
         state = 'error'
     else:
         text = _('lxml is not installed. Pootle requires lxml for XML format support.')
