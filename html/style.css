@@ -1105,6 +1105,13 @@ div#settings
     opacity: 0.4;
 }
 
+.delete-selected td.DELETE {
+    filter:alpha(opacity=100);
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    opacity: 1;
+}
+
 .other-selected a,
 .delete-selected a
 {
