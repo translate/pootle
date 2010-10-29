@@ -71,6 +71,14 @@ class UnitTests(PootleTestCase):
         pofile = factory.getobject(self.store.file.path)
         self.assertEqual(dbunit.target, pofile.units[dbunit.index].target)
 
+    def test_empty_plural_target(self):
+        """test we don't delete empty plural targets"""
+        dbunit = self._update_translation(2, {'target': [u'samaka']})
+        storeunit = dbunit.getorig()
+        self.assertEqual(len(storeunit.target.strings), 2)
+        dbunit = self._update_translation(2, {'target': u''})
+        self.assertEqual(len(storeunit.target.strings), 2)
+
     def test_update_plural_target(self):
         dbunit = self._update_translation(2, {'target': [u'samaka', u'samak']})
         storeunit = dbunit.getorig()
