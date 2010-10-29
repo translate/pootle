@@ -16,7 +16,7 @@
       </thead>
       <tbody>
         {% for unit in units %}
-        <tr id="row{{ unit.id }}" class="{% ifequal unit form.instance %}edit-row{% else %}view-row {% cycle 'even' 'odd' %}{% endifequal %}{% if unit.isfuzzy %} fuzzy-unit{% endif %}"{% ifequal unit form.instance %} colspan="2"{% endifequal %}>
+        <tr id="row{{ unit.id }}" class="{% ifequal unit form.instance %}edit-row{% else %}view-row {% cycle 'even' 'odd' %}{% endifequal %}"{% ifequal unit form.instance %} colspan="2"{% endifequal %}>
           {% ifequal unit form.instance %}
             {% cache settings.CACHE_TIMEOUT unit_edit unit.id unit.mtime cantranslate cansuggest canreview alt_src_codes profile.id LANGUAGE_CODE %}
             {% render_unit_edit form %}

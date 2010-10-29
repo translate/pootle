@@ -25,8 +25,8 @@
   </div>
   {% endif %}
 </td>
-<td colspan="1" rowspan="1" class="translate-translation" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-  <div id="trans{{ unit.index }}" class="translate-translation translate-view{% if unit.isfuzzy %} fuzzy-unit{% endif %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+<td colspan="1" rowspan="1" class="translate-translation{% if unit.isfuzzy %} fuzzy-unit{% endif %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+  <div id="trans{{ unit.index }}" class="translate-translation translate-view" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
     <!--! Normal view mode -->
     {% for i, target, title in unit|pluralize_target %}
     {% if title %}<span class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</span><br />{% endif %}
