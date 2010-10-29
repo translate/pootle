@@ -617,7 +617,7 @@ msgstr "Cik pa Django %s kityeko keto."
 #, python-format
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
-msgstr "Cik pa Django % kityeko keto, ento cik me rwom mamalo kityeko miyo tam."
+msgstr "Cik pa Django %s kityeko keto, ento cik me rwom mamalo kityeko miyo tam."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:63
 #, python-format
@@ -1110,12 +1110,12 @@ msgstr "Tic idiiru ikum loko cura. Man tero dakika manok."
 #: local_apps/pootle_misc/dbinit.py:96
 #, python-format
 msgid "%(language)s is %(percent)d%% complete"
-msgstr "%(language)s tye %(percent)%% tyeko"
+msgstr "%(language)s tye %(percent)d%% tyeko"
 
 #: local_apps/pootle_misc/dbinit.py:103
 #, python-format
 msgid "Project %(project)s is %(percent)d%% complete"
-msgstr "Purojek %(purojek)s tye  %(percent)d%% tyeko"
+msgstr "Purojek %(project)s tye %(percent)d%% tyeko"
 
 #: local_apps/pootle_misc/dbinit.py:111
 msgid "Done calculating statistics for default languages and projects"
@@ -1131,7 +1131,7 @@ msgid "Pootle: Update"
 msgstr "Pootle: Manyen"
 
 #: local_apps/pootle_misc/dbupdate.py:72
-#, python-format
+#, python-format, fuzzy
 msgid ""
 "Database tables are currently at build version %d. Pootle will now update "
 "the database."
@@ -1203,7 +1203,7 @@ msgstr ""
 #: local_apps/pootle_misc/middleware/errorpages.py:63
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
-msgstr "Bal me donyo %(Filename)s, Filesystem bal ma kicwalo: %(errormsg)s"
+msgstr "Bal me donyo %(filename)s, Filesystem bal ma kicwalo: %(errormsg)s"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:32
 msgid "First"
@@ -1557,23 +1557,23 @@ msgid "Translator Comments"
 msgstr "Tam pa ngat ma oloko woko"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:73
-#, python-format
+#, python-format, fuzzy
 msgid "Suggestion %(i)d by %(user)s:"
 msgstr "Tam amia %(i)d kwede %(latic kwede)s: "
 
 #: local_apps/pootle_store/templatetags/store_tags.py:77
-#, python-format
+#, python-format, fuzzy
 msgid "Suggestion by %(user)s"
 msgstr "Tam amia kwede %(latic kwede)s"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:85
-#, python-format
+#, python-format, fuzzy
 msgid "Words Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
 msgstr ""
 "Nyig lok ma ki loko: %(kiloko woko)d/%(lung)d - %(kiloko wokopacenti)d%%"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:93
-#, python-format
+#, python-format, fuzzy
 msgid "Strings Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
 msgstr "Tol ma ki loko: %(ki loko woko)d/%(total)d - %(ki loko wokopacenti)d%%"
 
@@ -1663,7 +1663,7 @@ msgstr "Fail makimiyo iye ngec %s ni aa ikum gengo cik manyen"
 #: local_apps/pootle_translationproject/models.py:356
 #, python-format
 msgid "Failed to update %s from version control"
-msgstr "Otyeko kwero miyo ngec woko % ni aa ki gengo cik manyen"
+msgstr "Otyeko kwero miyo ngec woko %s ni aa ki gengo cik manyen"
 
 #: local_apps/pootle_translationproject/views.py:83
 msgid "You do not have rights to access translation mode."
@@ -2113,7 +2113,7 @@ msgid "Account Activated"
 msgstr "Akaunt mamegi dong kitero woko."
 
 #: templates/registration/activate.html:10
-#, python-format
+#, python-format, fuzzy
 msgid ""
 "The account has been activated for username \"%(account)s\". You can now "
 "proceed to log in."
@@ -2193,7 +2193,7 @@ msgid "Password Reset Complete."
 msgstr "Tero icwil nitit dong otyeko tum."
 
 #: templates/registration/password_reset_complete.html:10
-#, python-format
+#, python-format, fuzzy
 msgid ""
 "Your password has been set. You may go ahead and <a href=\"%(login_url)s"
 "\">log in</a> now."
@@ -2254,7 +2254,7 @@ msgstr ""
 "ni. Ibino nongo ne ma cokcokki. "
 
 #: templates/registration/password_reset_email.html:2
-#, python-format
+#, python-format, fuzzy
 msgid ""
 "You're receiving this e-mail because you requested a password reset for your "
 "user account at %(site_name)s."
@@ -2267,7 +2267,7 @@ msgid "Please go to the following page and choose a new password:"
 msgstr "Tim ber iciti ipot karatac man ci iyer icwil me donyo ni manyen."
 
 #: templates/registration/password_reset_email.html:8
-#, python-format
+#, python-format, fuzzy
 msgid "Your username is %(user)s."
 msgstr "Nyingi me tic en aye 0/0(user)s."
 
