@@ -1,4 +1,7 @@
 {% load i18n render_pager %}
+<div class="pagination-control">
+    {{ objects|render_pager }}
+</div>
 <form action="" method="post" name="{{ text.formid }}" id="{{ text.formid }}">
     {% if text.error_msg %}
     <div id="site-message">
@@ -13,6 +16,6 @@
         <input type="submit" class="save" name="{{ text.submitname }}" value="{{ text.savechanges }}" />
     </p>
 </form>
-<div class="translation-nav">
+<div class="pagination-control">
     {{ objects|render_pager }}
 </div>
