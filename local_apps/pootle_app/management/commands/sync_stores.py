@@ -20,42 +20,21 @@
 
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
-
-import logging
 from optparse import make_option
 
-from django.core.management.base import NoArgsCommand
+from pootle_app.management.commands import PootleCommand
 
-from pootle_translationproject.models import TranslationProject
-
-class Command(NoArgsCommand):
-    option_list = NoArgsCommand.option_list + (
-        make_option('--directory', action='store', dest='directory', default='',
-                    help='directory to synchronise relative to po directory'),
+class Command(PootleCommand):
+    option_list = PootleCommand.option_list + (
         make_option('--overwrite', action='store_true', dest='overwrite', default=False,
                     help="don't just save translations, but overwrite files to reflect state in database"),
         )
     help = "Save new translations to disk manually."
 
-    def handle_noargs(self, **options):
-        refresh_path = options.get('directory', '')
+    def handle_all_stores(self, translation_project, **options):
         overwrite = options.get('overwrite', False)
+        translation_project.sync(conservative=not overwrite)
 
-        # reduce size of parse pool early on
-        from pootle_store.fields import  TranslationStoreFieldFile
-        TranslationStoreFieldFile._store_cache.maxsize = 2
-        TranslationStoreFieldFile._store_cache.cullsize = 2
-        TranslationProject._non_db_state_cache.maxsize = 2
-        TranslationProject._non_db_state_cache.cullsize = 2
-
-        for translation_project in TranslationProject.objects.filter(real_path__startswith=refresh_path).order_by('project__code', 'language__code').iterator():
-            if not os.path.isdir(translation_project.abs_real_path):
-                # translation project no longer exists
-                logging.error(u"translation project %s not present on file system", translation_project)
-                #translation_project.delete()
-                continue
-
-            logging.info(u"saving new translation for %s", translation_project)
-            # sync new translations
-            for store in translation_project.stores.exclude(file='').iterator():
-                store.sync(update_translation=True, conservative=not overwrite, update_structure=overwrite)
+    def handle_store(self, store, **options):
+        overwrite = options.get('overwrite', False)
+        store.sync(update_translation=True, conservative=not overwrite, update_structure=overwrite)

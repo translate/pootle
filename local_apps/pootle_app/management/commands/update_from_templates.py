@@ -21,31 +21,10 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
-import logging
-from optparse import make_option
+from pootle_app.management.commands import PootleCommand
 
-from django.core.management.base import NoArgsCommand
-
-from pootle_translationproject.models import TranslationProject
-
-class Command(NoArgsCommand):
-    option_list = NoArgsCommand.option_list + (
-        make_option('--directory', action='store', dest='directory', default='',
-                    help='directory to update relative to po directory'),
-        )
+class Command(PootleCommand):
     help = "mass update from templates."
 
-    def handle_noargs(self, **options):
-        update_path = options.get('directory', '')
-
-        # reduce size of parse pool early on
-        from pootle_store.fields import  TranslationStoreFieldFile
-        TranslationStoreFieldFile._store_cache.maxsize = 2
-        TranslationStoreFieldFile._store_cache.cullsize = 2
-        TranslationProject._non_db_state_cache.maxsize = 2
-        TranslationProject._non_db_state_cache.cullsize = 2
-
-
-        for translation_project in TranslationProject.objects.filter(real_path__startswith=update_path).order_by('project__code', 'language__code').iterator():
-            logging.info(u"Updating %s from templates", translation_project)
-            translation_project.update_from_templates()
+    def handle_translation_project(self, translation_project, **options):
+        translation_project.update_from_templates()
