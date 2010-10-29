@@ -290,16 +290,21 @@ class Unit(models.Model, base.TranslationUnit):
     def sync(self, unit):
         """sync in file unit with translations from db"""
         changed = False
-        if unit.hasplural():
-            if unit.target.strings != self.target.strings:
-                unit.target = self.target.strings
-                changed = True
-        else:
-            if unit.target != self.target:
+        if unit.target != self.target:
+            if unit.hasplural():
+                nplurals = self.store.translation_project.language.nplurals
+                target_plurals = len(self.target.strings)
+                strings = self.target.strings
+                if target_plurals < nplurals:
+                    strings.extend([u'']*(nplurals - target_plurals))
+                if unit.target.strings != strings:
+                    unit.target = strings
+                    changed = True
+            else:
                 unit.target = self.target
                 changed = True
 
-        if unit.getnotes(origin="translator") != self.getnotes(origin="translator"):
+        if unit.getnotes(origin="translator") != self.getnotes(origin="translator") or '':
             unit.addnote(self.getnotes(origin="translator"),
                          origin="translator", position="replace")
             changed = True
