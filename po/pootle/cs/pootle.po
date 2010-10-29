@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-08-19 10:54+0200\n"
-"Last-Translator: Milan <milan.jaros@gmail.com>\n"
+"PO-Revision-Date: 2010-09-23 20:58+0200\n"
+"Last-Translator: Vv <vymetal.vaclav@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Pootle 2.1.1\n"
+"X-Generator: Pootle 2.1.2\n"
 
 #: strings.py:8
 msgid ""
@@ -663,10 +663,13 @@ msgid ""
 msgstr ""
 
 #: local_apps/pootle_app/views/admin/dashboard.py:96
+#, fuzzy
 msgid ""
 "No text indexing engine found. Searching is faster if an indexing engine "
 "like Xapian or Lucene is installed."
 msgstr ""
+"Nenalezen nástroj pro indexování textu. Indexovací nástroje jako Xapian nebo "
+"Lucene urychlují hledání."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:106
 msgid ""
@@ -1724,12 +1727,12 @@ msgstr "Vyhledat"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:11
 msgid "Here you can manage the files in this translation project."
-msgstr ""
+msgstr "Zde můžete spravovat soubory tohoto překladatelského projektu."
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:14
 #, fuzzy
 msgid "Update files from templates"
-msgstr "Aktualizovat z šablon"
+msgstr "Aktualizovat soubory z šablon"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:15
 msgid "Rescan project files"
@@ -1802,7 +1805,7 @@ msgstr "Chyba na straně serveru"
 
 #: templates/500.html:11
 msgid "An error has occurred. Thank you for your patience."
-msgstr ""
+msgstr "Vyskytla se chyba. Děkujeme za vaši trpělivost."
 
 #: templates/admin_profile_base.html:5 templates/admin_profile_base.html:10
 msgid "Administration"
@@ -1810,15 +1813,16 @@ msgstr "Spravovat"
 
 #: templates/admin_profile_menu.html:5
 msgid "Information and statistics about this Pootle server"
-msgstr ""
+msgstr "Informace a statistika tohoto Pootle serveru"
 
 #: templates/admin_profile_menu.html:5
 msgid "Info"
 msgstr "Info"
 
 #: templates/admin_profile_menu.html:6
+#, fuzzy
 msgid "Configure the general settings for your site"
-msgstr ""
+msgstr "Nastavte hlavní ovládání vaší stránky"
 
 #: templates/admin_profile_menu.html:6
 msgid "General"
@@ -1916,11 +1920,11 @@ msgstr "Hlavní stránka projektu"
 
 #: templates/project_menu.html:8
 msgid "Project news"
-msgstr ""
+msgstr "Novinky projektu"
 
 #: templates/project_menu.html:10
 msgid "Administrate your project"
-msgstr ""
+msgstr "Správa projektu"
 
 #: templates/project_menu.html:11
 msgid "Manage project permissions"
@@ -1931,20 +1935,22 @@ msgid "Manage Terminology"
 msgstr ""
 
 #: templates/tp_menu.html:7
+#, fuzzy
 msgid "Translation project main page"
-msgstr ""
+msgstr "Hlavní stránka překladu"
 
 #: templates/tp_menu.html:8
+#, fuzzy
 msgid "Translation project news"
-msgstr ""
+msgstr "Novinky překladu"
 
 #: templates/tp_menu.html:9
 msgid "Translate this project"
-msgstr ""
+msgstr "Přelož tento projekt"
 
 #: templates/tp_menu.html:10
 msgid "Quality checks and review suggestions"
-msgstr ""
+msgstr "Kontrola kvality a návrhy oprav"
 
 #: templates/tp_menu.html:12
 msgid "Administrate your project permissions"
@@ -1955,12 +1961,14 @@ msgid "Administrate your project files"
 msgstr ""
 
 #: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
+#, fuzzy
 msgid "Overview of your account"
-msgstr ""
+msgstr "Prohlídka účtu"
 
 #: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
+#, fuzzy
 msgid "Configure your translation preferences"
-msgstr ""
+msgstr "Konfigurovat nastavení překladu"
 
 #: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Settings"
@@ -2065,7 +2073,7 @@ msgstr "příjmení"
 #: templates/registration/activate.html:5
 #: templates/registration/activate.html:9
 msgid "Account Activated"
-msgstr ""
+msgstr "Účet aktivován"
 
 #: templates/registration/activate.html:10
 #, python-format
@@ -2073,6 +2081,8 @@ msgid ""
 "The account has been activated for username \"%(account)s\". You can now "
 "proceed to log in."
 msgstr ""
+"Účet byl aktivován pro uživatelské jméno \"%(account)s\". Můžete pokračovat v "
+"přihlašování."
 
 #: templates/registration/activation_email.txt:2
 msgid "A Pootle account has been created for you using this email address."
@@ -2114,10 +2124,13 @@ msgid "Change Password"
 msgstr "Změnit heslo"
 
 #: templates/registration/password_change_form.html:15
+#, fuzzy
 msgid ""
 "Please enter your old password, for security's sake, and then enter your new "
 "password twice so we can verify you typed it in correctly."
 msgstr ""
+"Z bezpečnostních důvodů vložte své původní heslo, následně opakovaně vložte "
+"heslo nové z důvodu kontroly proti překlepům."
 
 #: templates/registration/password_change_form.html:23
 msgid "Old password"
@@ -2132,17 +2145,16 @@ msgid "Confirm password"
 msgstr "Potvrďte heslo"
 
 #: templates/registration/password_change_form.html:38
-#, fuzzy
 msgid "Change My Password"
 msgstr "Změnit heslo"
 
 #: templates/registration/password_reset_complete.html:4
 msgid "Password Reset"
-msgstr ""
+msgstr "Resetovat heslo"
 
 #: templates/registration/password_reset_complete.html:8
 msgid "Password Reset Complete."
-msgstr ""
+msgstr "Resetování hesla dokončeno."
 
 #: templates/registration/password_reset_complete.html:10
 #, python-format
@@ -2150,6 +2162,8 @@ msgid ""
 "Your password has been set. You may go ahead and <a href=\"%(login_url)s"
 "\">log in</a> now."
 msgstr ""
+"Vaše heslo bylo nastaveno. Nyní se můžete <a href=\"%(login_url)s\"> přihlásit "
+"</a>."
 
 #: templates/registration/password_reset_confirm.html:5
 #: templates/registration/password_reset_done.html:5
@@ -2164,10 +2178,11 @@ msgid "Enter New Password."
 msgstr "Zadejte nové heslo."
 
 #: templates/registration/password_reset_confirm.html:12
+#, fuzzy
 msgid ""
 "Please enter your new password twice so we can verify you typed it in "
 "correctly."
-msgstr ""
+msgstr "Pro zamezení překlepu vložte nové heslo dvakrát."
 
 #: templates/registration/password_reset_confirm.html:16
 msgid "New Password"
@@ -2180,11 +2195,11 @@ msgstr "Potvrďte heslo"
 #: templates/registration/password_reset_confirm.html:26
 #: templates/registration/password_reset_form.html:20
 msgid "Reset My Password"
-msgstr ""
+msgstr "Resetovat mé heslo"
 
 #: templates/registration/password_reset_confirm.html:30
 msgid "Password Reset Failed."
-msgstr ""
+msgstr "Resetování hesla se nezdařilo."
 
 #: templates/registration/password_reset_confirm.html:32
 msgid ""
@@ -2193,21 +2208,27 @@ msgid ""
 msgstr ""
 
 #: templates/registration/password_reset_done.html:11
+#, fuzzy
 msgid ""
 "We've e-mailed you instructions for setting your password to the e-mail "
 "address you submitted. You should receive it shortly."
 msgstr ""
+"Na vámi určený email byly odeslány instrukce pro resetování hesla. Měli by "
+"jste jej obdržet v krátké době."
 
 #: templates/registration/password_reset_email.html:2
-#, python-format
+#, python-format, fuzzy
 msgid ""
 "You're receiving this e-mail because you requested a password reset for your "
 "user account at %(site_name)s."
 msgstr ""
+"Tento email vám byl zaslán v návaznosti na požadavek resetování hesla k účtu "
+"na %(site_name)s."
 
 #: templates/registration/password_reset_email.html:4
+#, fuzzy
 msgid "Please go to the following page and choose a new password:"
-msgstr ""
+msgstr "Pro vybrání nového hesla přejděte na následující stránku."
 
 #: templates/registration/password_reset_email.html:8
 #, python-format
@@ -2223,6 +2244,8 @@ msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
+"Zapomněli jste heslo? Vložte vaši emailovou adresu a my vám pošleme "
+"instrukce pro nastavení nového."
 
 #: templates/registration/password_reset_form.html:15
 #: templates/registration/registration_form.html:20
@@ -2236,15 +2259,15 @@ msgstr "Registrace byla dokončena"
 
 #: templates/registration/registration_complete.html:10
 msgid "Please check your email to activate your account."
-msgstr ""
+msgstr "Prosím zkontrolujte si emailovou schránku pro aktivaci vašeho účtu."
 
 #: templates/registration/registration_form.html:8
 msgid "Register a New Pootle Account"
-msgstr ""
+msgstr "Registrovat nový účet Pootle "
 
 #: templates/registration/registration_form.html:9
 msgid "Fill in the following form to get started translating."
-msgstr ""
+msgstr "Vyplnění následujícího formuláře vám umožní začít s překladem."
 
 #: templates/registration/registration_form.html:30
 msgid "Password (again)"

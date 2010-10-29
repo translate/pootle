@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-08-04 15:58+0200\n"
+"PO-Revision-Date: 2010-10-04 09:00+0200\n"
 "Last-Translator: F Wolff <friedel@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: af\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.0-beta2\n"
+"X-Generator: Pootle 2.1.2\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
@@ -1337,7 +1337,7 @@ msgstr "Outomaties bepaald (stadiger)"
 
 #: local_apps/pootle_project/models.py:54
 msgid "GNU style: files named by language code"
-msgstr "GNU-style: tale benoem volgens taalkode"
+msgstr "GNU-styl: tale benoem volgens taalkode"
 
 #: local_apps/pootle_project/models.py:55
 msgid "Non-GNU: Each language in its own directory"
@@ -1700,7 +1700,7 @@ msgid ""
 "Invalid GNU-style file name: %(local_filename)s. It must match '%(langcode)s."
 "%(filetype)s'."
 msgstr ""
-"Ongeldige lêernaam in die GNU-style: %(local_filename)s. Dit moet '%"
+"Ongeldige lêernaam in die GNU-styl: %(local_filename)s. Dit moet '%"
 "(langcode)s.%(filetype)s' wees."
 
 #: local_apps/pootle_translationproject/views.py:300

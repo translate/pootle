@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-08-07 18:52+0200\n"
-"Last-Translator: Łukasz <deejay1@srem.org>\n"
+"PO-Revision-Date: 2010-09-28 00:21+0200\n"
+"Last-Translator: Halina Arendt <halare@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.1.0-beta2\n"
+"X-Generator: Pootle 2.1.2\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
@@ -284,7 +284,7 @@ msgstr "Przetłumaczone"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:7
 msgid "Needs review"
-msgstr "Wymagające przeglądu"
+msgstr "Potrzebna korekta"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:8
 #: local_apps/pootle_app/views/index/index.py:114
@@ -307,8 +307,8 @@ msgid ""
 "Here you can add, edit, and delete all the available languages in this "
 "Pootle server."
 msgstr ""
-"W tym miejscu można dodawać, edytować oraz usuwać dostępne języki dla tego "
-"serwera Pootle."
+"W tym miejscu można dołączać, poprawiać oraz usuwać wszystkie języki "
+"dostępne w tym serwerze Pootle."
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:11
@@ -327,8 +327,8 @@ msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
 msgstr ""
-"W tym miejscu można dodawać, edytować oraz usuwać domyślne uprawnienia dla "
-"tego serwera Pootle."
+"W tym miejscu można dołączać, poprawiać oraz usuwać wstępne uprawnienia w "
+"tym serwerze Pootle."
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:18
 #: local_apps/pootle_language/templates/language/language_admin.html:16

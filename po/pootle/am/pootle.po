@@ -7,75 +7,75 @@ msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-07-15 15:15+0200\n"
-"Last-Translator: admin <>\n"
+"PO-Revision-Date: 2010-10-27 22:05+0200\n"
+"Last-Translator: ፍሬው  <w.firew@gmail.com>\n"
 "Language-Team: Amharic\n"
 "Language: am\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.1.2\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
-msgstr ""
+msgstr "ከ አንድ በላይ ለመምርጥ የቁጥጥር አዝራር ተጭነህ ያዝ፣ ወይም ለ ማክ የትእዛዝ አዝራር ተጭነህ ያዝ"
 
 #: strings.py:9
 msgid "Enter a valid e-mail address."
-msgstr ""
+msgstr "ትክክለኛ የኢሜይል አድራሻ አስገባ"
 
 #: strings.py:10
 msgid ""
 "That e-mail address doesn't have an associated user account. Are you sure "
 "you've registered?"
-msgstr ""
+msgstr "ይህ ኢሜይል አድራሻ ተዛማች የተጠቃሚ መለያ የለውም። ስለ መመዝገብህ እርግጠኛ ነህ?"
 
 #: strings.py:11
 msgid "This field is required."
-msgstr ""
+msgstr "ይህ መስክ አስፈላጊ ነው።"
 
 #: strings.py:12
 #, python-format
 msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
-msgstr ""
+msgstr "ይህ እሴት ቢበዛ % (max)d ቁምፊ ( %(length)d ያለው) እንዳለው አርጋግጥ።"
 
 #: strings.py:13
 msgid "Save and add another"
-msgstr ""
+msgstr "አስቅምጥና ሌላ አክል "
 
 #: strings.py:14
 msgid "Save and continue editing"
-msgstr ""
+msgstr "አስቀምጥና እርማትን ቀጥል"
 
 #: strings.py:15
 msgid "Add"
-msgstr ""
+msgstr "ጨምር"
 
 #: strings.py:16
 msgid "Change"
-msgstr ""
+msgstr "ለውጥ"
 
 #. l10n: This is a constructed string that might end up saying "Add language" or "Add project". If you need to translate that differently, you might want to try to translate it as "Add an entry to the %(name)s table" or "Add an object of type "%(name)s".
 #: strings.py:19
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "%(name)s አክል"
 
 #. l10n: This link takes the user to the page where the currently configured option is displayed (such as a project or language)
 #: strings.py:22
 msgid "View on site"
-msgstr ""
+msgstr "ድረገፁ ላይ ተመልከት"
 
 #: strings.py:24
 msgid "first name"
-msgstr ""
+msgstr "ስም"
 
 #: strings.py:25
 msgid "last name"
-msgstr ""
+msgstr "የአባት ስም"
 
 #: strings.py:26
 #, fuzzy
@@ -84,12 +84,12 @@ msgstr "ኤ-መልዕክት አድራሻ"
 
 #: strings.py:27
 msgid "active"
-msgstr ""
+msgstr "ገባሪ"
 
 #. l10n: Please translate this simply as "Administrator". This string is needed by Django, but 'superuser' is very technical and should be avoided.
 #: strings.py:30
 msgid "superuser status"
-msgstr ""
+msgstr "የአብይ ተጠቃሚ ሁኔታ"
 
 #. l10n: The language from which translation will happen
 #: strings.py:33 local_apps/pootle_app/views/admin/adminprojects.py:43
@@ -103,21 +103,21 @@ msgstr ""
 
 #: external_apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr ""
+msgstr "የአንተ/ቺ ስም"
 
 #: external_apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr ""
+msgstr "የአንተ/ቺ ኢሜይል አድራሻ"
 
 #: external_apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr ""
+msgstr "የአንተ/ቺ መልዕክት"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "እባክህ ስህተቱን አስተካለ/ሊ "
+msgstr[1] "እባክህ ስህተቶቹን አስተካለ/ሊ "
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
@@ -128,7 +128,7 @@ msgstr ""
 #: templates/profiles/edit_personal.html:34
 #: templates/profiles/edit_profile.html:25
 msgid "Save"
-msgstr ""
+msgstr "አስቅምጥ"
 
 #: external_apps/registration/forms.py:36
 #, fuzzy
@@ -147,11 +147,11 @@ msgstr "ማለፊያ ቃል"
 
 #: external_apps/registration/forms.py:43
 msgid "password (again)"
-msgstr ""
+msgstr "ሚስጢራዊ ቃል (እንደገና)"
 
 #: external_apps/registration/forms.py:55
 msgid "This username is already taken. Please choose another."
-msgstr ""
+msgstr "ይህ የተጠቃሚ ስም በአገልግሎት ላይ ውሏል። እባኮተን ሌላ ይምረጡ።"
 
 #: external_apps/registration/forms.py:67
 msgid "You must type the same password each time"
@@ -165,7 +165,7 @@ msgstr ""
 msgid ""
 "This email address is already in use. Please supply a different email "
 "address."
-msgstr ""
+msgstr "ይህ ኢሜይል አድራሻ በ አገልግሎት ላይ ውሏል። እባኮትን ሌላ ኢሜይል አድራሻ ያቅርቡ። "
 
 #: external_apps/registration/forms.py:133
 msgid ""
@@ -175,7 +175,7 @@ msgstr ""
 
 #: external_apps/registration/models.py:218
 msgid "user"
-msgstr ""
+msgstr "ተጠቃሚ"
 
 #: external_apps/registration/models.py:219
 msgid "activation key"
@@ -207,7 +207,7 @@ msgstr "ርዕስ"
 
 #: local_apps/pootle_app/forms.py:29
 msgid "The name for this Pootle server"
-msgstr ""
+msgstr "ለዚህ Pootle አገልጋይ ስም"
 
 #: local_apps/pootle_app/forms.py:34
 msgid "Description"
@@ -221,31 +221,31 @@ msgstr ""
 
 #: local_apps/pootle_app/management/__init__.py:72
 msgid "Can view a translation project"
-msgstr ""
+msgstr "የትርጉም ፕሮጀክቶችን ማየት ይቻላል"
 
 #: local_apps/pootle_app/management/__init__.py:74
 msgid "Can make a suggestion for a translation"
-msgstr ""
+msgstr "ለትርጉም ምክር መስጠት ይቻላል "
 
 #: local_apps/pootle_app/management/__init__.py:76
 msgid "Can submit a translation"
-msgstr ""
+msgstr "ለትርጉም መቅረብ ይቻላል"
 
 #: local_apps/pootle_app/management/__init__.py:78
 msgid "Can overwrite translations on uploading files"
-msgstr ""
+msgstr "ትርጉምን ፋይል በመጫን መተካት ይቻላል"
 
 #: local_apps/pootle_app/management/__init__.py:80
 msgid "Can review translations"
-msgstr ""
+msgstr "ትርጉምን መከለስ ይቻላል"
 
 #: local_apps/pootle_app/management/__init__.py:82
 msgid "Can download archives of translation projects"
-msgstr ""
+msgstr "የትርጉም ፕሮጀክቶችን ከ መዝገብ ቤት ማውረድ ይቻላል"
 
 #: local_apps/pootle_app/management/__init__.py:84
 msgid "Can administrate a translation project"
-msgstr ""
+msgstr "የትርጉም ፕሮጀክቶችን ማስተዳደር ይቻላል"
 
 #: local_apps/pootle_app/management/__init__.py:86
 msgid "Can commit to version control"
@@ -253,7 +253,7 @@ msgstr ""
 
 #: local_apps/pootle_app/models/suggestion.py:33
 msgid "Pending"
-msgstr ""
+msgstr "በጥበቃ ላይ"
 
 #: local_apps/pootle_app/models/suggestion.py:34
 #, fuzzy
@@ -267,7 +267,7 @@ msgstr "አትቀበል"
 
 #: local_apps/pootle_app/templates/top_contributers_table.html:7
 msgid "Top Contributors"
-msgstr ""
+msgstr "ዋና አዋጮች"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:6
 #: local_apps/pootle_app/views/language/view.py:39
@@ -277,7 +277,7 @@ msgstr "ፈጣን ትርጉም"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:7
 msgid "Needs review"
-msgstr ""
+msgstr "ክለሳ የሚያስፈልጋቸው "
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:8
 #: local_apps/pootle_app/views/index/index.py:114
@@ -1834,18 +1834,16 @@ msgstr ""
 
 #: templates/base.html:57 templates/base.html.py:117 templates/docs.html:5
 msgid "Help"
-msgstr ""
+msgstr "እገዛ"
 
 #: templates/base.html:62 templates/user_profile_base.html:5
 #: templates/user_profile_base.html:10
-#, fuzzy
 msgid "My Account"
-msgstr "የኔ ቋንቋዎች"
+msgstr "የኔ መለያ"
 
 #: templates/base.html:63
-#, fuzzy
 msgid "Log Out"
-msgstr "ሎግውጣ"
+msgstr "ዘግተህ ውጣ"
 
 #: templates/base.html:66 templates/registration/registration_form.html:4
 #: templates/registration/registration_form.html:35
@@ -1860,7 +1858,7 @@ msgstr "በ VG ${VG}"
 #: templates/base.html:119 templates/contact_form/contact_form.html:4
 #: templates/contact_form/contact_form.html:8
 msgid "Contact Us"
-msgstr ""
+msgstr "ያግኙን"
 
 #: templates/base.html:121
 #, fuzzy
@@ -1869,21 +1867,21 @@ msgstr "የSSH ተጠሪ መግቢያ ቁልፍ አሻራ፦ {fingerprint}"
 
 #: templates/captcha.html:5 templates/captcha.html.py:14
 msgid "Are You Human?"
-msgstr ""
+msgstr "ሰው ኖት?"
 
 #: templates/captcha.html:15
 msgid ""
 "To protect the server against attacks we have to verify that submissions are "
 "made by human users."
-msgstr ""
+msgstr "ሰርቨሩን ከ አደጋ ለመከላከል አቅርቦቱ በ ሰው እንደተሰራ ማረጋግጥ ያስፈልጋል።"
 
 #: templates/captcha.html:16
 msgid "Please answer this question:"
-msgstr ""
+msgstr "ይህን ጥያቄ ይመልሱ"
 
 #: templates/captcha.html:20
 msgid "Confirm"
-msgstr ""
+msgstr "ያረጋግጡ"
 
 #: templates/language_menu.html:7
 msgid "Language main page"
@@ -1933,11 +1931,11 @@ msgstr ""
 
 #: templates/tp_menu.html:9
 msgid "Translate this project"
-msgstr ""
+msgstr "ይህን ፕሮጀክት ተርጉም"
 
 #: templates/tp_menu.html:10
 msgid "Quality checks and review suggestions"
-msgstr ""
+msgstr "ጥራት መቆጣጠር እና የክለሳ ምከር "
 
 #: templates/tp_menu.html:12
 msgid "Administrate your project permissions"
@@ -1999,11 +1997,11 @@ msgstr ""
 
 #: templates/profiles/edit_personal.html:19
 msgid "First Name"
-msgstr ""
+msgstr "ስም"
 
 #: templates/profiles/edit_personal.html:24
 msgid "Last Name"
-msgstr ""
+msgstr "የአባት ስም"
 
 #: templates/profiles/edit_personal.html:29
 #, fuzzy
@@ -2013,7 +2011,7 @@ msgstr "ኤ-መልዕክት አድራሻ"
 #: templates/profiles/edit_profile.html:5
 #: templates/profiles/edit_profile.html:11
 msgid "Translation Settings"
-msgstr ""
+msgstr "የትርጉም ቅንብር"
 
 #: templates/profiles/edit_profile.html:14
 msgid ""
@@ -2112,19 +2110,19 @@ msgstr ""
 
 #: templates/registration/password_change_form.html:23
 msgid "Old password"
-msgstr ""
+msgstr "አሮጌ ሚስጢራዊ ቃል"
 
 #: templates/registration/password_change_form.html:28
 msgid "New password"
-msgstr ""
+msgstr "አዲስ ሚስጢራዊ ቃል"
 
 #: templates/registration/password_change_form.html:33
 msgid "Confirm password"
-msgstr "ማለፊያ ቃልን ያረጋግጡ"
+msgstr "ሚስጢራዊ ቃልን ያረጋግጡ"
 
 #: templates/registration/password_change_form.html:38
 msgid "Change My Password"
-msgstr ""
+msgstr "ሚስጢራዊ ቃል ለውጥ"
 
 #: templates/registration/password_reset_complete.html:4
 msgid "Password Reset"
@@ -2198,22 +2196,24 @@ msgstr ""
 
 #: templates/registration/password_reset_email.html:4
 msgid "Please go to the following page and choose a new password:"
-msgstr ""
+msgstr "እባኮትን ወደ ሚቅጥለው ገፅ ያምሩና አዲስ ሚስጢራዊ ቃል የምረጡ።"
 
 #: templates/registration/password_reset_email.html:8
 #, python-format
 msgid "Your username is %(user)s."
-msgstr ""
+msgstr "የእርሶ መለያ %(user)s ነው።"
 
 #: templates/registration/password_reset_email.html:10
 msgid "Thank you for using Pootle!"
-msgstr ""
+msgstr "Pootle በመተቀሞ እናመስግኖታለን!"
 
 #: templates/registration/password_reset_form.html:11
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
+"ሚስጢራዊ ቃል ረስተዋል? ከዝህ በታች የኢሜይል አድራሻዎን ያስገቡ፣ አዲስ ሚስጢራዊ ቃል ለማቀናጀት የሚያስፈልጎትን መረጃ "
+"በኢሜይል እንልክሎታለን።"
 
 #: templates/registration/password_reset_form.html:15
 #: templates/registration/registration_form.html:20
@@ -2223,27 +2223,27 @@ msgstr "ኤ-መልዕክት አድራሻ"
 #: templates/registration/registration_complete.html:5
 #: templates/registration/registration_complete.html:9
 msgid "Registration Complete"
-msgstr ""
+msgstr "መዝገባውን ጨርሰዋል"
 
 #: templates/registration/registration_complete.html:10
 msgid "Please check your email to activate your account."
-msgstr ""
+msgstr "እብክህ/ሽ መለያውን ለማስጀመር የኢሜይልህን/ሽን የምልከቱ።  "
 
 #: templates/registration/registration_form.html:8
 msgid "Register a New Pootle Account"
-msgstr ""
+msgstr "አዲስ የ Pootle መለያ መዝግብ"
 
 #: templates/registration/registration_form.html:9
 msgid "Fill in the following form to get started translating."
-msgstr ""
+msgstr "ትርጉም ለመጀመር ይህን ቅፅ ሙላ "
 
 #: templates/registration/registration_form.html:30
 msgid "Password (again)"
-msgstr ""
+msgstr "ሚስጢራዊ ቃል (እንደገና)"
 
 #: templates/registration/registration_form.html:40
 msgid "Already have an account?"
-msgstr ""
+msgstr "መለያ አለህ?"
 
 #: templates/registration/registration_form.html:41
 #, fuzzy
