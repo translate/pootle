@@ -1,29 +1,9 @@
 {% load i18n baseurl store_tags cache %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
-<!-- JS templates: move from here when possible -->
-<textarea id="view_unit" type="text/x-jquery-template">
-<td dir="${meta.source_dir}" class="translate-original" rowspan="1" colspan="1">
-  <div class="translate-original translate-view" id="orig${unit.id}">
-    [[each(i, source) unit.source]]
-    [[if source.title]]
-    <span class="translation-text-headers" lang="${meta.source_lang}">${ source.title }</span>
-    [[/if]]
-    <div lang="${meta.source_lang}" dir="${meta.source_dir}" class="translation-text">[[html source.text]]</div>
-    [[/each]]
-  </div>
-</td>
-<td dir="${meta.target_dir}" class="translate-translation" rowspan="1" colspan="1">
-  <div dir="${meta.target_dir}" class="translate-translation translate-view[[if ${unit.isfuzzy}]] fuzzy-unit[[/if]]" id="trans${unit.id}">
-    [[each(i, target) unit.target]]
-    [[if target.title && target.text]]
-    <span class="translation-text-headers" lang="${meta.target_lang}">${ target.title }</span>
-    [[/if]]
-    <div lang="${meta.target_lang}" class="translation-text" dir="${meta.target_dir}">[[html target.text]]</div>
-    [[/each]]
-  </div>
-</td>
-</textarea>
+<script id="view_unit" type="text/x-jquery-template">
+  {% include_raw "unit/xhr-view.html" %}
+</script>
 <div class="translate-form">
     <div id="pootle_path" class="hide">{{ store.pootle_path }}</div>
     <div id="active_uid" class="hide">{{ form.instance.id }}</div>

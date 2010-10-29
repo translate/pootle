@@ -23,6 +23,7 @@ from django.utils.safestring import mark_safe
 from django import template
 from django.utils.translation import ugettext as _
 from django.core.exceptions import  ObjectDoesNotExist
+from django.template.loaders.app_directories import load_template_source
 
 from pootle_store.fields import list_empty
 from pootle_store.models import Unit
@@ -229,3 +230,22 @@ def translate_table(context):
     """encapsulate translate_table in a tag to avoid parsing template
     when cache will be used"""
     return context
+
+def do_include_raw(parser, token):
+    """
+    Performs a template include without parsing the context, just dumps
+    the template in.
+    Source: http://djangosnippets.org/snippets/1684/
+    """
+    bits = token.split_contents()
+    if len(bits) != 2:
+        raise TemplateSyntaxError, "%r tag takes one argument: the name of the template to be included" % bits[0]
+
+    template_name = bits[1]
+    if template_name[0] in ('"', "'") and template_name[-1] == template_name[0]:
+        template_name = template_name[1:-1]
+
+    source, path = load_template_source(template_name)
+
+    return template.TextNode(source)
+register.tag("include_raw", do_include_raw)
