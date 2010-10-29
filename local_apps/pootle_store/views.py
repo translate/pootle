@@ -573,6 +573,7 @@ def _build_units_list(qs, units):
             target_unit.append(unit_dict)
         prev, next = _get_prevnext_unit_ids(qs, unit)
         return_units.append({'id': unit.id,
+                             'isfuzzy': unit.isfuzzy(),
                              'prev': prev,
                              'next': next,
                              'source': source_unit,

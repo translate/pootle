@@ -14,7 +14,7 @@
   </div>
 </td>
 <td dir="${meta.target_dir}" class="translate-translation" rowspan="1" colspan="1">
-  <div dir="${meta.target_dir}" class="translate-translation translate-view" id="trans${unit.id}">
+  <div dir="${meta.target_dir}" class="translate-translation translate-view[[if ${unit.isfuzzy}]] fuzzy-unit[[/if]]" id="trans${unit.id}">
     [[each(i, target) unit.target]]
     [[if target.title && target.text]]
     <span class="translation-text-headers" lang="${meta.target_lang}">${ target.title }</span>
@@ -36,7 +36,7 @@
       </thead>
       <tbody>
         {% for unit in units %}
-        <tr id="row{{ unit.id }}" class="{% ifequal unit form.instance %}edit-row{% else %}view-row {% cycle 'even' 'odd' %}{% endifequal %}{% if unit.isfuzzy %} translate-translation-fuzzy{% endif %}"{% ifequal unit form.instance %} colspan="2"{% endifequal %}>
+        <tr id="row{{ unit.id }}" class="{% ifequal unit form.instance %}edit-row{% else %}view-row {% cycle 'even' 'odd' %}{% endifequal %}{% if unit.isfuzzy %} fuzzy-unit{% endif %}"{% ifequal unit form.instance %} colspan="2"{% endifequal %}>
           {% ifequal unit form.instance %}
             {% cache settings.CACHE_TIMEOUT unit_edit unit.id unit.mtime cantranslate cansuggest canreview alt_src_codes profile.id LANGUAGE_CODE %}
             {% render_unit_edit form %}

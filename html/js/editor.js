@@ -275,11 +275,11 @@
    * Fuzzying / unfuzzying functions
    */
   doFuzzyArea: function() {
-    $("tr.edit-row").addClass("translate-translation-fuzzy");
+    $("tr.edit-row").addClass("fuzzy-unit");
   },
 
   undoFuzzyArea: function() {
-    $("tr.edit-row").removeClass("translate-translation-fuzzy");
+    $("tr.edit-row").removeClass("fuzzy-unit");
   },
 
   doFuzzyBox: function() {
@@ -541,8 +541,10 @@
         }
       }
     });
+    var eclass = "edit-row";
+    eclass += this.units[uid].isfuzzy ? " fuzzy-unit" : "";
     var editor = this.build_ctxt_rows(ctxt.before) +
-                 '<tr id="row' + uid + '" class="edit-row">' +
+                 '<tr id="row' + uid + '" class="' + eclass + '">' +
                   widget + '</tr>' +
                   this.build_ctxt_rows(ctxt.before);
     this.active_uid = uid;
@@ -581,6 +583,7 @@
         } else {
           if (data.success) {
             if (type == 'submission') {
+              PTL.editor.units[uid].isfuzzy = $("input#id_state").is(":checked");
               $("textarea[id^=id_target_f_]").each(function(i) {
                 PTL.editor.units[uid].target[i].text = $(this).val();
               });
