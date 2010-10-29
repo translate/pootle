@@ -153,7 +153,7 @@ def optimal_depcheck():
 
 def _format_numbers(dict):
     for k in dict.keys():
-        dict[k] = locale.format("%d", dict[k], 1)
+        dict[k] = locale.format("%d", dict[k], grouping=True)
 
 def server_stats():
     result = cache.get("server_stats")
