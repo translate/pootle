@@ -1,3 +1,22 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#
+# Copyright 2009 Zuza Software Foundation
+#
+# This file is part of Pootle.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
 import time
 
 from translate.storage import factory
@@ -46,6 +65,14 @@ class UnitTests(PootleTestCase):
         self.assertEqual(dbunit.target, storeunit.target)
         pofile = factory.getobject(self.store.file.path)
         self.assertEqual(dbunit.target, pofile.units[dbunit.index].target)
+
+    def test_empty_plural_target(self):
+        """test we don't delete empty plural targets"""
+        dbunit = self._update_translation(2, {'target': [u'samaka']})
+        storeunit = dbunit.getorig()
+        self.assertEqual(len(storeunit.target.strings), 2)
+        dbunit = self._update_translation(2, {'target': u''})
+        self.assertEqual(len(storeunit.target.strings), 2)
 
     def test_update_plural_target(self):
         dbunit = self._update_translation(2, {'target': [u'samaka', u'samak']})
