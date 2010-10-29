@@ -66,7 +66,7 @@ def required_depcheck():
         text = _('lxml version %s is installed.', version)
         state = 'good'
     elif version is not None:
-        text = _('lxml version %(installed)s is installed. Pootle requires at least version %(required)s for XML format support.', {'installed': version, 'required': ".".join(depcheck.lxml_required_ver})
+        text = _('lxml version %(installed)s is installed. Pootle requires at least version %(required)s for XML format support.', {'installed': version, 'required': ".".join(depcheck.lxml_required_ver)})
         state = 'error'
     else:
         text = _('lxml is not installed. Pootle requires lxml for XML format support.')
