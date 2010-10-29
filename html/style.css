@@ -1690,6 +1690,21 @@ html[dir="rtl"] .translations-nav li:last-child:after
 
 
 /*
+ * RSS ALERTS
+ */
+
+#rss-alerts div.bd div.centered
+{
+    width: 100%;
+    text-align: center;
+}
+
+#rss-alerts iframe
+{
+    height: 25em;
+}
+
+/*
  * MISC
  */
 

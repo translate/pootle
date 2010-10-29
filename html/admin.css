@@ -66,19 +66,6 @@ textarea#id_DESCRIPTION
     width: 100%;
 }
 
-/* ADMIN RSS NEWS FEED */
-
-#rss-alerts div.bd div.centered
-{
-    width: 100%;
-    text-align: center;
-}
-
-#rss-alerts iframe
-{
-    height: 25em;
-}
-
 /* ADMIN LANGUAGES, FILES */
 
 td.code input
