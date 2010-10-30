@@ -111,6 +111,13 @@ html[dir="rtl"] td.pootle_path
     text-align: right;
 }
 
+/* ADMIN PERMISSIONS */
+
+td.positive_permissions select
+{
+    height: 11.5em;
+}
+
 /* ADMIN BUTTONS */
 
 .admin-buttons-block input
