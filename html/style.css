@@ -873,6 +873,21 @@ input[type="submit"]:active
 
 
 /*
+ * EXTERNAL LINKS
+ */
+
+a.external {
+  background: url(images/external-link.png) left 50% no-repeat;
+  padding-left: 14px;
+}
+
+html[dir="rtl"] a.external {
+  background: url(images/external-link.png) right 50% no-repeat;
+  padding-left: 0;
+  padding-right: 14px;
+}
+
+/*
  * DOCUMENTATION
  */
 
@@ -919,7 +934,7 @@ input[type="submit"]:active
 .documentation .sidenote
 {
     width: 10em;
-    font-size: 90%;
+    font-size: 95%;
     background-color: #ffe;
     padding: 0 1em;
     border: 1px dashed #cc9;
@@ -931,6 +946,11 @@ input[type="submit"]:active
 {
     line-height: 130%;
 }
+
+.documentation .sidenote li {
+    margin: 0.2em 0;
+}
+
 
 /*
  * TABBED MENU
