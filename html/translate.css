@@ -95,7 +95,7 @@ tr.view-row:hover
 
 tr.view-row:hover td.translate-translation
 {
-    background-image: url('images/pencil.png');
+    background-image: url('images/edit.png');
     background-repeat: no-repeat;
     background-position: 5px center;
 }
