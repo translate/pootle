@@ -5,6 +5,10 @@
 {{ block.super }}: {% trans "Are You Human?" %}
 {% endblock %}
 
+{% block breadcrumb_content %}
+{{ block.super }} » {% trans "Are You Human?" %}
+{% endblock %}
+
 {% block content %}
 {% include "captcha-xhr.html" %}
 {% endblock content %}

@@ -6,6 +6,10 @@
 {{ block.super }} » {% trans "Permissions" %}
 {% endblock %}
 
+{% block breadcrumb_content %}
+{{ block.super }} » <span>{% trans "Permissions" %}</span>
+{% endblock %}
+
 {% block bodyclass %}tpadminpermissions{% endblock %}
 
 {% block section_body %}

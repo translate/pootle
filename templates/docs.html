@@ -5,6 +5,10 @@
 {{ block.super }}: {% trans "Help" %}
 {% endblock %}
 
+{% block breadcrumb_content %}
+{{ block.super }} » <span>{% trans "Help" %}</span>
+{% endblock %}
+
 {% block content %}
 <div class="documentation" lang="en" dir="LTR">
     {% ifequal params.docfile "howto.html" %}

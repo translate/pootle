@@ -66,13 +66,17 @@
                 </div>
                 <h1>
                   <a href='{{"/"|l}}' title='{% trans "Home" %}'>{{ settings.TITLE }}</a>
-                  {% block breadcrumbs %}{% endblock %}
+                  {% block breadcrumbs %}
+                  <div id="breadcrumbs">
+                      {% block breadcrumb_content %}{% endblock %}
+                  </div>
+                  {% endblock %}
                 </h1>
                 <div id="nav-main" class="menubar" lang="{{ LANGUAGE_CODE }}">
                     <div class="bd">
                         {% block menu %}
                         <ul class="first-of-type">
-                            <li class="menubaritem"><a href='{{ "/"|l }}'>{% trans "Home" %}</a></li>
+                            <!--<li class="menubaritem"><a href='{{ "/"|l }}'>{% trans "Home" %}</a></li>-->
                             <li class="menubaritem"><a href='{{ "/docs/index.html"|l }}'>{% trans "Help" %}</a></li>
                             {% if user.is_superuser %}
                             <li class="menubaritem"><a class="admin" href='{{ "/admin/"|l }}'>{% trans "Admin" %}</a></li>
@@ -142,7 +146,6 @@
             {% block footer %}
             <div id="footer" lang="{{ LANGUAGE_CODE }}">
                 <ul class="nav">
-                    <li><a href='{{ "/docs/index.html"|l }}'>{% trans "Help" %}</a></li>
                     {% if settings.CAN_CONTACT %}
                     <li><a href='{{ "/contact/"|l }}'>{% trans "Contact Us" %}</a></li>
                     {% endif %}

@@ -7,6 +7,14 @@
 {{ block.super }} » {% trans "Translate" %} » {{ store }}
 {% endblock %}
 
+{% block breadcrumb_content %}
+{% cache settings.CACHE_TIMEOUT store_bread store.id LANGUAGE_CODE %}
+{{ block.super }}
+   {% if not directory.trail.count %} » {% endif %}
+   <span><a href="{{ store.pootle_path|l}}/translate">{{ store.name }}</a></span>
+{% endcache %}
+{% endblock %}
+
 {% block body.id %}translatepage{% endblock body.id %}
 
 {% block bodyclass %}{% if checks %}tpreview{% else %}tptranslate{% endif %}{% endblock %}
@@ -42,13 +50,6 @@ $(document).ready (function() {
 
 {% block search %}
 {% render_search search_form "?" %}
-{% endblock %}
-
-{% block breadcrumbs_content %}
-{% cache settings.CACHE_TIMEOUT store_bread store.id LANGUAGE_CODE %}
-{{ block.super }} {% if not directory.trail.count %} » {% endif %}
- <a href="{{ store.pootle_path|l}}/translate">{{ store.name }}</a>
-{% endcache %}
 {% endblock %}
 
 {% block innernav %}

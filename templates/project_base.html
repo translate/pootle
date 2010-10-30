@@ -1,15 +1,14 @@
 {% extends "base.html"  %}
 
-{% load i18n %}
+{% load i18n baseurl %}
 
 {% block title %}
 {{ block.super }}: {% trans "Projects" %}
 {% endblock %}
 
-{% block breadcrumbs %}
-<div id="breadcrumbs">
-    {% block breadcrumbs_content %}{% endblock %}
-</div>
+{% block breadcrumb_content %}
+    {{ block.super }} »
+    <span><a href='{{ "/projects/"|l }}'>{% trans "Projects" %}</a></span>
 {% endblock %}
 
 {% block precontent %}

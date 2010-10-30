@@ -8,16 +8,17 @@
 {{ block.super }} » {{ project.name }} » {% trans "Permissions" %}
 {% endblock %}
 
+{% block breadcrumbs_content %}
+  {{ block.super }} »
+  <span><a href="{% filter l %}/projects/{{ project.code }}/{% endfilter %}">{{ project.fullname }}</a></span>
+{% endblock %}
+
 {% block css %}
 {{ block.super }}
 <link rel="stylesheet" type="text/css" href='{{ "admin.css"|m }}' />
-{% endblock css %}
+{% endblock %}
 
 {% block bodyclass %}projectperm{% endblock %}
-
-{% block breadcrumbs_content %}
-<a href="{% filter l %}/projects/{{ project.code }}/{% endfilter %}">{{ project.fullname }}</a>
-{% endblock breadcrumbs_content %}
 
 {% block content %}
 <div class="settings-container centered" lang="{{ LANGUAGE_CODE }}">

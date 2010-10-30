@@ -6,6 +6,19 @@
 {{ block.super }}: {{ translation_project.fullname }}
 {% endblock %}
 
+{% block breadcrumb_content %}
+    {{ block.super }} » 
+    {% cache settings.CACHE_TIMEOUT tp_bread directory.id LANGUAGE_CODE %}
+    <span><a href="{{ language.pootle_path|l }}">{{ language.localname }}</a></span> » <span><a href="{{ translation_project.pootle_path|l }}">{{ translation_project.project }}</a></span>
+    {% if directory.trail.count %}
+        »
+       {% for dir in directory.trail %}
+       <span><a href="{{ dir.pootle_path|l}}">{{ dir.name }}</a></span> /
+       {% endfor %}
+    {% endif %}
+    {% endcache %}
+{% endblock %}
+
 {% block extra_head %}
 <link rel="alternate" type="application/rss+xml" href="{% url pootle_notifications.feeds.view feed_path %}" />
 {% endblock %}
@@ -14,21 +27,6 @@
 {% cache settings.CACHE_TIMEOUT tp_search translation_project.id LANGUAGE_CODE %}
 {% render_search %}
 {% endcache %}
-{% endblock %}
-
-{% block breadcrumbs %}
-<div id="breadcrumbs">
-    {% block breadcrumbs_content %}
-    {% cache settings.CACHE_TIMEOUT tp_bread directory.id LANGUAGE_CODE %}
-    <a href="{{ language.pootle_path|l }}">{{ language.localname }}</a> » <a href="{{ translation_project.pootle_path|l }}">{{ translation_project.project }}</a>
-    {% if directory.trail.count %} »
-    {% for dir in directory.trail %}
-    <a href="{{ dir.pootle_path|l}}">{{ dir.name }}</a> /
-    {% endfor %}
-    {% endif %}
-    {% endcache %}
-    {% endblock %}
-</div>
 {% endblock %}
 
 {% block precontent %}

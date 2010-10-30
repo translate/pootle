@@ -6,6 +6,10 @@
 {{ block.super }} » {% trans "Translate" %}
 {% endblock %}
 
+{% block breadcrumb_content %}
+{{ block.super }} » <span>{% trans "Translate" %}</span>
+{% endblock %}
+
 {% block bodyclass %}tptranslate{% endblock bodyclass %}
 
 {% block content %}

@@ -4,22 +4,21 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block title %}
-{{ block.super }}: {% trans "About" %}
+{{ block.super }}: {% trans "About This Pootle Server" %}
+{% endblock %}
+
+{% block breadcrumb_content %}
+{{ block.super }} » <span>{% trans "About This Pootle Server" %}</span>
 {% endblock %}
 
 {% block body.id %}about{% endblock body.id %}
 
-{% block precontent %}
-    {{ description|safe }}
-{% endblock precontent %}
-
 {% block content %}
 <div lang="{{ LANGUAGE_CODE }}">
-    <h2 class="title">{% trans "About Pootle" %}</h2>
-    <p class="about">{% blocktrans %}This site is running Pootle &mdash; powerful web software to empower teams to do translation and translation management. This community tool is Free Software, and any team can use it and contribute to the Pootle community. Read more on the <a href="http://translate.sourceforge.net/">project website</a>.{% endblocktrans %}</p>
-    <p class="about">{{ pootle_version }}</p>
-    <!--
-    {{ version_details }}
-    -->
+    <div class="documentation">
+        <p>{% blocktrans %}This site is running Pootle &mdash; powerful web software to empower teams to do translation and translation management. This community tool is Free Software, and any team can use it and contribute to the Pootle community. Read more on the <a href="http://translate.sourceforge.net/">project website</a>.{% endblocktrans %}</p>
+        <p>{{ pootle_version }}</p>
+        <!-- {{ version_details }} -->
+    </div>
 </div>
 {% endblock content%}

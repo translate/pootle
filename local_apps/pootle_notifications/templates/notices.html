@@ -24,32 +24,26 @@ approach for this.
 » {% trans "News" %}
 {% endblock %}
 
+{% block breadcrumb_content %}
+    {{ block.super }} » 
+    {% if directory.is_language %}
+      <span><a href="{% filter l %}/{{ directory.language.code }}/{% endfilter %}">{{ directory.language.name }}</a></span>
+    {% else %}
+        {% if directory.is_project %}
+            <span><a href="{% filter l %}/projects/{{ directory.project.code }}/{% endfilter %}">{{ directory.project.fullname }}</a></span>
+        {% else %}
+            <span>{% include "language/item_title.html" %}</span>
+        {% endif %}
+    {% endif %}
+    » <span>{% trans "News" %}</span>
+{% endblock %}
+
 {% block extra_head %}
 <link rel="alternate" type="application/rss+xml" title="{{ title }}" href="{% url pootle_notifications.feeds.view path %}" />
 {% endblock %}
 
 {% block bodyclass %}
 {% if directory.is_language %}languagenews{% else %}tpnews{% endif %}
-{% endblock %}
-
-{% block nav-secondary %}
-{% if directory.is_language %}
-<div id="breadcrumbs">
-    <a href="{% filter l %}/{{ directory.language.code }}/{% endfilter %}">{{ directory.language.name }}</a>
-</div>
-{% else %}
-    {% if directory.is_project %}
-    <div id="breadcrumbs">
-        <a href="{% filter l %}/projects/{{ directory.project.code }}/{% endfilter %}">{{ directory.project.fullname }}</a>
-    </div>
-    {% else %}
-    {% block breadcrumbs %}
-    <div id="breadcrumbs">
-      {% include "language/item_title.html" %}
-    </div>
-    {% endblock %}
-    {% endif %}
-{% endif %}
 {% endblock %}
 
 {% block precontent %}

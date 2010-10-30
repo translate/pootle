@@ -881,16 +881,6 @@ input[type="submit"]:active
 
 
 /*
- * ABOUT PAGE
- */
-
-p.about
-{
-    margin-bottom: 1em;
-}
-
-
-/*
  * DOCUMENTATION
  */
 
@@ -901,8 +891,7 @@ p.about
 
 .documentation p
 {
-    padding-top: 0.2em;
-    padding-bottom: 0.2em;
+    margin: 1em 0;
 }
 
 .documentation ul li
@@ -916,12 +905,6 @@ p.about
     list-style-type: inherit;
     list-style-position: inside;
 }
-
-p.top
-{
-    margin-left: 2em;
-}
-
 
 /*
  * TABBED MENU
@@ -1518,15 +1501,12 @@ div#breadcrumbs
 {
     display: inline;
     font-weight: normal;
-    margin-left: 0.5em;
 }
 
-html[dir="rtl"] div#breadcrumbs
-{
-    float: right;
-    margin-left: 0;
-    margin-right: 0.5em;
+div#breadcrumbs span:last-child a {
+    color: inherit;
 }
+
 
 /* SEARCH */
 

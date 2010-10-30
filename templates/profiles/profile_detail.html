@@ -12,11 +12,11 @@
 {% block bodyclass %}dashboard{% endblock %}
 
 {% block breadcrumb_content %}
-{% ifequal user profile.user %}
-    {{ block.super }} » {% trans "Dashboard" %}
-{% else %}
-    {{ profile.user }}
-{% endifequal %}
+    {% ifequal user profile.user %}
+        {{ block.super }}
+    {% else %}
+        » <span>{% trans "Users" %}</span> » <span>{{ profile.user }}</span>
+    {% endifequal %}
 {% endblock %}
 
 {% block content %}

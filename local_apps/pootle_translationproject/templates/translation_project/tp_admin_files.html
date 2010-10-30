@@ -6,6 +6,10 @@
 {{ block.super }} » {% trans "Files" %}
 {% endblock %}
 
+{% block breadcrumb_content %}
+{{ block.super }} » <span>{% trans "File" %}</span>
+{% endblock %}
+
 {% block bodyclass %}tpadminfiles{% endblock %}
 
 {% block section_description %}{% trans "Here you can manage the files in this translation project." %}

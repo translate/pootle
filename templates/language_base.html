@@ -6,14 +6,13 @@
 {{ block.super }}: {{ language.name }}
 {% endblock %}
 
-{% block extra_head %}
-<link rel="alternate" type="application/rss+xml" href="{% url pootle_notifications.feeds.view feed_path %}" />
+{% block breadcrumb_content %}
+    {{ block.super }} » 
+    <span><a href="{% filter l %}/{{ language.code }}/{% endfilter %}">{{ language.name }}</a></span>
 {% endblock %}
 
-{% block breadcrumbs %}
-<div id="breadcrumbs">
-    <a href="{% filter l %}/{{ language.code }}/{% endfilter %}">{{ language.name }}</a>
-</div>
+{% block extra_head %}
+<link rel="alternate" type="application/rss+xml" href="{% url pootle_notifications.feeds.view feed_path %}" />
 {% endblock %}
 
 {% block precontent %}

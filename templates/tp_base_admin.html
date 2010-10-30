@@ -5,7 +5,11 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block title %}
-{{ block.super }} » {% trans "Administrate" %}
+{{ block.super }}
+{% endblock %}
+
+{% block breadcrumb_content %}
+{{ block.super }}
 {% endblock %}
 
 {% block css %}

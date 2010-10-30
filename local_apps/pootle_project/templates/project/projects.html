@@ -9,6 +9,10 @@
 {{ block.super }}: {% trans "Projects" %}
 {% endblock %}
 
+{% block breadcrumb_content %}
+{{ block.super }} » <span>{% trans "Projects" %}</span>
+{% endblock %}
+
 {% block body.id %}projectsindex{% endblock body.id %}
 
 {% block content %}

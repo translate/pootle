@@ -5,6 +5,10 @@
 {{ block.super }}: {% trans "Login" %}
 {% endblock %}
 
+{% block breadcrumb_content %}
+{{ block.super }} » <span>{% trans "Login" %}</span>
+{% endblock %}
+
 {% block content %}
 <div id="login" class="form" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
     <h2>{% trans 'Login to Pootle' %}</h2>

@@ -2,7 +2,13 @@
 
 {% load i18n baseurl %}
 
-{% block title %}{{ block.super }}: {% trans "Registration Complete" %}{% endblock %}
+{% block title %}
+{{ block.super }}: {% trans "Registration Complete" %}
+{% endblock %}
+
+{% block breadcrumb_content %}
+{{ block.super }} » <span>{% trans "Registration Complete" %}</span>
+{% endblock %}
  
 {% block content %}
 <div class="general-message">

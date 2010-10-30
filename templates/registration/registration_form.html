@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 {% load i18n baseurl %}
 
-{% block title %}{{ block.super }}: {% trans "Register" %}{% endblock %}
+{% block title %}
+{{ block.super }}: {% trans "Register" %}
+{% endblock %}
+
+{% block breadcrumb_content %}
+{{ block.super }} » <span>{% trans "Register" %}</span>
+{% endblock %}
  
 {% block content %}
 <div id="register" class="form" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
