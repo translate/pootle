@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="general-message" lang="{{ LANGUAGE_CODE }}">
+<div class="form message error" lang="{{ LANGUAGE_CODE }}">
     <h2>{% trans 'Permission Denied' %}</h2>
     {% if permission_error %}
     <p>{{ permission_error }}</p>

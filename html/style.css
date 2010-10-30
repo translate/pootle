@@ -530,47 +530,39 @@ html[dir="rtl"] #xhr-error span
     background: url("images/error.png") 1em center no-repeat #e5f3f8;
 }
 
+.form.message,
 #site-message
 {
-    /*
-    background-color: #fee;
-    border: 1px solid #c00;
-    padding: 0.5em 1em;
-    */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e5f3f8', endColorstr='#cde7f1');
     background: -webkit-gradient(linear, left top, left bottom, from(#ffd), to(#ffa));
     background: -moz-linear-gradient(top,  #e5f3f8,  #cde7f1);
 }
 
+.form.message p.info,
 #site-message p.info
 {
     margin: 0.3em 0;
 }
 
+.form.message.success,
 #site-message .success
 {
-    color: #3f3;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeffdd', endColorstr='#ccff99');
+    background: -webkit-gradient(linear, left top, left bottom, from(#efd), to(#cf9));
+    background: -moz-linear-gradient(top,  #efd,  #cf9);
 }
 
+.form.message.error,
 #site-message .error
 {
-    color: #c00;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffeeee', endColorstr='#ffcccc');
+    background: -webkit-gradient(linear, left top, left bottom, from(#fee), to(#fcc));
+    background: -moz-linear-gradient(top,  #fee,  #fcc);
 }
 
 .hide
 {
     display: none;
-}
-
-.general-message
-{
-    text-align: center;
-    margin-bottom: 2em;
-}
-
-.general-message h2
-{
-    margin-bottom: 0.7em;
 }
 
 p.help,

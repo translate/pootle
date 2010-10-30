@@ -10,7 +10,7 @@
 {% endblock %}
  
 {% block content %}
-<div id="contact" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+<div class="form" id="contact" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
     <h2>{% trans "Contact Us" %}</h2>
     <form method="post" action="" name="contactform" id="contactform">
       {{ form.as_p }}
