@@ -15,11 +15,9 @@
     <form method="post" action='{{ "/accounts/login/"|l }}' 
       name="loginform" id="loginform">
     {% if form.errors %}
-    <div id="site-message">
         <div class="error">
         {% trans "Your username and password didn't match. Please try again." %}
         </div>
-    </div>
     {% endif %}
     {{ form.as_p }}
     <p class="buttons">

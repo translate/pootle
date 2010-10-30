@@ -130,7 +130,7 @@
             </div> <!--body-->
 
             {% if message or error_message or messages %}
-            <div id="site-message" class="form" lang="{{ LANGUAGE_CODE }}">
+            <div class="form message{% if error_message %} error{% endif %}" lang="{{ LANGUAGE_CODE }}">
                 {% block message %}
                 <div class="info">{{ message }}</div>
                 <div class="error">{{ error_message }}</div>
@@ -140,7 +140,7 @@
                     </p>
                     {% endfor %}
                 {% endblock message %}
-            </div><!--site-message-->
+            </div>
             {% endif %}
 
             {% block footer %}
