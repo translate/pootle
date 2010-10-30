@@ -11,14 +11,6 @@
 
 {% block content %}
 <div class="documentation" lang="en" dir="LTR">
-    {% ifequal params.docfile "howto.html" %}
-        {% include "docs/howto.html" %}
-    {% else %}
-        {% ifequal params.docfile "resources.html" %}
-            {% include "docs/resources.html" %}
-        {% else %}
-            {% include "docs/index.html" %}
-        {% endifequal %}
-    {% endifequal %}
+    {% include "docs/index.html" %}
 </div>
 {% endblock %}

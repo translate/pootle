@@ -881,21 +881,55 @@ input[type="submit"]:active
     margin: 2em;
 }
 
+.documentation h2,
+.documentation h3 {
+    color: #999;
+    border-bottom: 1px solid #eee;
+}
+
+.documentation h3 {
+    margin-top: 1.5em;
+}
+
 .documentation p
 {
     margin: 1em 0;
 }
 
+.documentation ol,
+.documentation ul {
+    margin: 1em 1.5em;
+}
+
 .documentation ul li
 {
     list-style-type: square;
-    list-style-position: inside;
 }
 
 .documentation ol li
 {
     list-style-type: inherit;
-    list-style-position: inside;
+}
+
+.documentation dfn
+{
+    border-bottom: 1px dotted black;
+}
+
+.documentation .sidenote
+{
+    width: 10em;
+    font-size: 90%;
+    background-color: #ffe;
+    padding: 0 1em;
+    border: 1px dashed #cc9;
+    margin-top: 4em;
+    color: #777;
+}
+
+.documentation .sidenote p
+{
+    line-height: 130%;
 }
 
 /*
