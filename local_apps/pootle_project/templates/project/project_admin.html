@@ -5,12 +5,11 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block title %}
-{{ block.super }} » {{ project.name }} » {% trans "Permissions" %}
+{{ block.super }} » {{ project.name }} » {% trans "Administrate" %}
 {% endblock %}
 
 {% block breadcrumb_content %}
-  {{ block.super }} » <span>{{ project.name }}</span> » 
-  <span><a href="{% filter l %}/projects/{{ project.code }}/{% endfilter %}">{{ project.name }}</a></span>
+  {{ block.super }} » <span><a href="{% filter l %}/projects/{{ project.code }}/{% endfilter %}">{{ project.name }}</a></span> » <span>{% trans "Administrate" %}</span>
 {% endblock %}
 
 {% block css %}

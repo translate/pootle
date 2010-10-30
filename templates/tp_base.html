@@ -3,19 +3,20 @@
 {% load i18n baseurl translation_project_tags cache %}
 
 {% block title %}
-{{ block.super }}: {{ translation_project.fullname }}
+    {{ block.super }} » 
+    {{ language.localname }} » {{ translation_project.project }}
+    {% for dir in directory.trail %}
+        » /{{ dir.name }}
+    {% endfor %}
 {% endblock %}
 
 {% block breadcrumb_content %}
     {{ block.super }} » 
     {% cache settings.CACHE_TIMEOUT tp_bread directory.id LANGUAGE_CODE %}
-    <span><a href="{{ language.pootle_path|l }}">{{ language.localname }}</a></span> » <span><a href="{{ translation_project.pootle_path|l }}">{{ translation_project.project }}</a></span>
-    {% if directory.trail.count %}
-        »
-       {% for dir in directory.trail %}
-       <span><a href="{{ dir.pootle_path|l}}">{{ dir.name }}</a></span> /
-       {% endfor %}
-    {% endif %}
+        <span><a href="{{ language.pootle_path|l }}">{{ language.localname }}</a></span> » <span><a href="{{ translation_project.pootle_path|l }}">{{ translation_project.project }}</a></span>
+        {% for dir in directory.trail %}
+            » <span><a href="{{ dir.pootle_path|l}}">/{{ dir.name }}</a></span>
+        {% endfor %}
     {% endcache %}
 {% endblock %}
 

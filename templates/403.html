@@ -2,7 +2,11 @@
 {% load i18n baseurl %}
 
 {% block title %}
-{{ block.super }}: {% trans "Permission Denied" %}
+{{ block.super }} » {% trans "Permission Denied" %}
+{% endblock %}
+
+{% block breadcrumb_content %}
+{{ block.super }} » <span>{% trans "Permission Denied" %}</span>
 {% endblock %}
 
 {% block content %}

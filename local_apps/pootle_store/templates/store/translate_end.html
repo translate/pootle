@@ -7,6 +7,10 @@
 {{ block.super }} » {% trans "Translate" %}
 {% endblock %}
 
+{% block breadcrumb_content %}
+{{ block.super }} » <span>{% trans "Translate" %}</span>
+{% endblock %}
+
 {% block body.id %}translatepage{% endblock body.id %}
 
 {% block bodyclass %}{% if checks %}tpreview{% else %}tptranslate{% endif %}{% endblock %}

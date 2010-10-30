@@ -2,7 +2,11 @@
 {% load i18n baseurl %}
 
 {% block title %}
-{{ block.super }}: {% trans "Server Error" %}
+{{ block.super }} » {% trans "Server Error" %}
+{% endblock %}
+
+{% block breadcrumb_content %}
+{{ block.super }} » <span>{% trans "Server Error" %}</span>
 {% endblock %}
 
 {% block content %}

@@ -2,22 +2,22 @@
 {% load i18n baseurl %}
 
 {% block title %}
-{% ifequal user profile.user %}
-    {{ block.super }} » {% trans "Dashboard" %}
-{% else %}
-    {{ settings.TITLE }}: {% trans "Users" %} » {{ username }}
-{% endifequal %}
+    {% ifequal user profile.user %}
+        {{ block.super }}
+    {% else %}
+        {{ settings.TITLE }} » {% trans "Users" %} » {{ username }}
+    {% endifequal %}
 {% endblock %}
-
-{% block bodyclass %}dashboard{% endblock %}
 
 {% block breadcrumb_content %}
     {% ifequal user profile.user %}
         {{ block.super }}
     {% else %}
-        » <span>{% trans "Users" %}</span> » <span>{{ profile.user }}</span>
+        {{ settings.TITLE }} » <span>{% trans "Users" %}</span> » <span>{{ profile.user }}</span>
     {% endifequal %}
 {% endblock %}
+
+{% block bodyclass %}dashboard{% endblock %}
 
 {% block content %}
 <div class="module first" lang="{{ LANGUAGE_CODE }}">

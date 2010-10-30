@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 {% load i18n baseurl %}
 
-{% block title %}{{ block.super }}: {% trans "Contact Us" %}{% endblock %}
+{% block title %}
+{{ block.super }} » {% trans "Contact Us" %}
+{% endblock %}
+ 
+{% block breadcrumb_content %}
+{{ block.super }} » <span>{% trans "Contact Us" %}</span>
+{% endblock %}
  
 {% block content %}
 <div id="contact" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">

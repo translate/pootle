@@ -4,14 +4,12 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
 {% block title %}
-{{ block.super }} » {% trans "Translate" %} » {{ store }}
+{{ block.super }} » {{ store.name }}
 {% endblock %}
 
 {% block breadcrumb_content %}
 {% cache settings.CACHE_TIMEOUT store_bread store.id LANGUAGE_CODE %}
-{{ block.super }}
-   {% if not directory.trail.count %} » {% endif %}
-   <span><a href="{{ store.pootle_path|l}}/translate">{{ store.name }}</a></span>
+{{ block.super }} » <span><a href="{{ store.pootle_path|l}}/translate">{{ store.name }}</a></span>
 {% endcache %}
 {% endblock %}
 
