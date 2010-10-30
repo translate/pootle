@@ -1497,13 +1497,12 @@ html[dir="rtl"] ul.pager li:last-child > *
     unicode-bidi: embed;
 }
 
-div#breadcrumbs
+#breadcrumbs
 {
-    display: inline;
     font-weight: normal;
 }
 
-div#breadcrumbs span:last-child a {
+#breadcrumbs span:last-child a {
     color: inherit;
 }
 
