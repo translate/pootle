@@ -44,7 +44,7 @@ TITLE = _("Pootle Demo")
 #l10n: Change the language code (en) to your language code, and replace ltr with rtl if you language is written from right to left.
 DESCRIPTION = _("""<div dir="ltr" lang="en">
 <h2 class="title">This is a demo installation of Pootle.</h2>
-<p class="about">You can also visit the official <a href="http://pootle.locamotion.org">Pootle server</a>. The server administrator has not provided contact information or a description of this server. If you are the administrator for this server, edit this description in your preference file or in the administration interface.</p>
+<p class="about">You can also visit the official <a class="external" href="http://pootle.locamotion.org">Pootle server</a>. The server administrator has not provided contact information or a description of this server. If you are the administrator for this server, edit this description in your preference file or in the administration interface.</p>
 </div>""")
 
 # Local time zone for this installation. Choices can be found here:
