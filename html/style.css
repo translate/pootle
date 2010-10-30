@@ -17,7 +17,7 @@ body
     color: #000;
     width: 100%;
 
-    font-family: Segoe UI, Ubuntu, Arial, sans-serif;
+    font-family: Segoe UI, Ubuntu, sans-serif;
     font-size: 0.8125em;
     font-style: normal;
     font-variant: normal;
@@ -1754,7 +1754,7 @@ a.slide
 
 :lang(fa)
 {
-    font-family: Terafik, Traffic, Roya, Nazli, Nazanin, sans;
+    font-family: Terafik, Traffic, Roya, Nazli, Nazanin, inherit;
     font-size: large;
 }
 
