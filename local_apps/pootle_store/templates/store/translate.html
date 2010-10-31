@@ -44,6 +44,9 @@ $(document).ready (function() {
   $("table.translate-table").trigger("editor_ready");
 });
 </script>
+<script id="view_unit" type="text/x-jquery-template">
+{% include_raw "unit/xhr-view.html" %}
+</script>
 {% endblock extra_head %}
 
 {% block search %}

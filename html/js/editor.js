@@ -38,7 +38,7 @@
     this.keepstate = false;
 
     /* Compile templates */
-    this.tmpl = {vunit: $.template($("#view_unit").text())}
+    this.tmpl = {vunit: $.template($("#view_unit").html())}
 
     /* Set initial focus on page load */
     this.focused = $(".translate-original-focus textarea").get(0);

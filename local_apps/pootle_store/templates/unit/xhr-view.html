@@ -8,7 +8,7 @@
     {{/each}}
   </div>
 </td>
-<td dir="${meta.target_dir}" class="translate-translation{{if ${unit.isfuzzy}}} fuzzy-unit{{/if}}" rowspan="1" colspan="1">
+<td dir="${meta.target_dir}" class="translate-translation{{if unit.isfuzzy}} fuzzy-unit{{/if}}" rowspan="1" colspan="1">
   <div dir="${meta.target_dir}" class="translate-translation translate-view" id="trans${unit.id}">
     {{each(i, target) unit.target}}
     {{if target.title && target.text}}
