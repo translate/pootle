@@ -10,4 +10,5 @@
 input[type="submit"]
 {
     border: 1px solid #aaa;
+    min-width: 90px; /* as it adds up paddings */
 }

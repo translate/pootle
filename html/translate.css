@@ -255,6 +255,21 @@ div.translator-comments
     text-align: center;
 }
 
+table.suggest-mode div.translator-comments
+{
+    display: none; /* for now, all translator comments are simply hidden in suggestion mode; TODO: display existing comments in read-only mode*/
+}
+
+div.translator-comments a
+{
+    text-decoration: none;
+}
+
+div.translator-comments a:hover
+{
+    border-bottom: 1px dotted #0489b7;
+}
+ 
 div.translator-comments label
 {
     display: block;
@@ -491,9 +506,9 @@ li.check > a {
 
 .translate-buttons-block
 {
-    left: 102%;
+    left: 100%;
     position: absolute;
-    margin: -3px 10px 0;
+    margin: -3px 10px 0 20px;
 }
 
 .translate-buttons-block[dir="rtl"]
@@ -547,6 +562,18 @@ li.check > a {
     background: -moz-linear-gradient(top,  #ed8,  #ffe);
 }
 
+.translate-buttons-block input.suggest {
+    display: none;
+}
+
+table.suggest-mode .translate-buttons-block input.suggest {
+    display: block;
+}
+
+table.suggest-mode .translate-buttons-block input.submit {
+    display: none;
+}
+
 .translate-fuzzy-block
 {
     text-align: center;
@@ -560,6 +587,46 @@ li.check > a {
 input.fuzzycheck
 {
     vertical-align: middle;
+}
+
+table.suggest-mode .translate-fuzzy-block
+{
+    display: none;
+}
+
+.switch-suggest-mode
+{
+    position: absolute;
+    left: 128px;
+    top: 0px;
+    padding: 5px 0;
+    line-height: 150%;
+}
+
+.switch-suggest-mode a
+{
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.switch-suggest-mode a:hover
+{
+    border-bottom: 1px dotted #0489b7;
+}
+
+.switch-suggest-mode .suggest
+{
+    display: none;
+}
+
+table.suggest-mode .switch-suggest-mode .suggest
+{
+    display: inherit;
+}
+
+table.suggest-mode .switch-suggest-mode .submit
+{
+    display: none;
 }
 
 .translate-specialchars-block
@@ -689,12 +756,22 @@ td.translate-full div.translate-translation:lang(zh)
     margin-bottom: 35px;
 }
 
-tr.view-row td.fuzzy-unit .translation-text,
-tr.edit-row.fuzzy-unit textarea.translation
+tr.view-row td.fuzzy-unit .translation-text
 {
     color: #888;
     font-style: italic;
 }
+
+tr.edit-row.fuzzy-unit textarea.translation
+{
+    font-style: italic;
+}
+
+table.suggest-mode tr.edit-row.fuzzy-unit textarea.translation {
+    color: inherit;
+    font-style: normal;
+}
+
 
 textarea.translation
 {

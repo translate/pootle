@@ -61,6 +61,12 @@
       }
     });
 
+    /* Suggest / submit */
+    $(".switch-suggest-mode a").live("click", function() {
+      PTL.editor.toggleSuggestMode();
+      return false;
+    });
+
     /* Collapsing */
     $(".collapse").live("click", function(e) {
       e.preventDefault();
@@ -99,10 +105,11 @@
 
     /* Bind hotkeys */
     shortcut.add('ctrl+return', function() {
-      $("input.submit").trigger("click");
-    });
-    shortcut.add('ctrl+shift+return', function() {
-      $("input.suggest").trigger("click");
+      if (PTL.editor.isSuggestMode()) {
+        $("input.suggest").trigger("click");
+      } else {
+        $("input.submit").trigger("click");
+      }
     });
     shortcut.add('ctrl+space', function(e) {
       // to prevent the click event which occurs in Firefox but not in Chrome (and not in IE)
@@ -116,6 +123,9 @@
       } else {
         PTL.editor.goFuzzy();
       }
+    });
+    shortcut.add('ctrl+shift+space', function() {
+      PTL.editor.toggleSuggestMode();
     });
     shortcut.add('ctrl+up', function() {
       $("input.previous").trigger("click");
@@ -295,6 +305,29 @@
 
   isFuzzy: function() {
     return !!$("input.fuzzycheck").attr("checked");
+  },
+
+  /*
+   * Suggest / submit mode functions
+   */
+  doSuggestMode: function() {
+    $("table.translate-table").addClass("suggest-mode");
+  },
+
+  undoSuggestMode: function() {
+    $("table.translate-table").removeClass("suggest-mode");
+  },
+
+  isSuggestMode: function() {
+    return $("table.translate-table").hasClass("suggest-mode");
+  },
+
+  toggleSuggestMode: function() {
+    if (this.isSuggestMode()) {
+      this.undoSuggestMode();
+    } else {
+      this.doSuggestMode();
+    }
   },
 
   /*
