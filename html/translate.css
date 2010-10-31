@@ -546,10 +546,22 @@ input.fuzzycheck
     right: 2px;
 }
 
+.translate-toolbar a
+{
+    margin-left: 0.5em;
+}
+
+
 div.translation-text-headers[dir="rtl"] div.translate-toolbar
 {
     right: auto;
     left: 2px;
+}
+
+div.translation-text-headers[dir="rtl"] div.translate-toolbar a
+{
+    margin-left: 0;
+    margin-right: 0.5em;
 }
 
 a.copyoriginal,
@@ -561,6 +573,7 @@ a.writespecial,
     cursor: pointer;
 }
 
+a.translate-mt,
 a.copyoriginal {
     filter:alpha(opacity=50);
     -moz-opacity: 0.5;
@@ -568,7 +581,8 @@ a.copyoriginal {
     opacity: 0.5;
 }
 
-.original:hover a.copyoriginal {
+a.translate-mt:hover,
+a.copyoriginal:hover {
     filter:alpha(opacity=100);
     -moz-opacity: 1;
     -khtml-opacity: 1;
@@ -646,7 +660,7 @@ td.translate-full div.translate-translation:lang(zh)
 }
 
 tr.view-row td.fuzzy-unit .translation-text,
-tr.edit-row td.fuzzy-unit textarea.translation
+tr.edit-row.fuzzy-unit textarea.translation
 {
     color: #888;
     font-style: italic;
