@@ -66,6 +66,7 @@ table.translate-table
 {
     width: 100%;
     table-layout: fixed;
+    margin-top: -1.5em;
 }
 
 table.translate-table td
