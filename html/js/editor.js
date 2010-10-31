@@ -502,6 +502,14 @@
     var oldrows = $("tr", where);
     oldrows.remove();
     where.append(newtbody);
+
+    // FOR REVIEW: Tipsy tooltips won't be applied automatically to newly inserted DOM nodes.
+    // The line below forces all title attributes in the table to be passed through tipsy.
+    // The proper fix would be to either hook tipsy automatically to all added DOM nodes, or
+    // at least to use some global function/variable (here and in base.html) instead of passing
+    // all the hardcoded presentation parameters in both places.
+    $(".translate-table [title]").tipsy({gravity: $.fn.tipsy.autoNSedge, html: true, fade: true, delayIn: 750});
+
     $(ttable).trigger("editor_ready");
   },
 
