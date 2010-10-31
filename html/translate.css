@@ -424,6 +424,15 @@ div.translator-comments + #translate-suggestion-container
 .translate-suggestion-block .rejectsugg img,
 .translate-suggestion-block .acceptsugg img
 {
+    filter:alpha(opacity=10);
+    -moz-opacity: 0.1;
+    -khtml-opacity: 0.1;
+    opacity: 0.1;
+}
+
+.translate-suggestion-block:hover .rejectsugg img,
+.translate-suggestion-block:hover .acceptsugg img
+{
     filter:alpha(opacity=50);
     -moz-opacity: 0.5;
     -khtml-opacity: 0.5;
@@ -443,7 +452,7 @@ div.translator-comments + #translate-suggestion-container
 {
     background-color: #f1f7e4;
     border: 1px dotted #ccc;
-    color: #777;
+    color: #444;
     line-height: 140%;
     padding: 0.5em;
     padding-right: 3em;
