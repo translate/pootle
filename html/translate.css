@@ -597,7 +597,7 @@ table.suggest-mode .translate-fuzzy-block
 .switch-suggest-mode
 {
     position: absolute;
-    left: 128px;
+    left: 120px;
     top: 0px;
     padding: 5px 0;
     line-height: 150%;
@@ -607,11 +607,18 @@ table.suggest-mode .translate-fuzzy-block
 {
     text-decoration: none;
     white-space: nowrap;
+    filter:alpha(opacity=50);
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
 }
 
 .switch-suggest-mode a:hover
 {
-    border-bottom: 1px dotted #0489b7;
+    filter:alpha(opacity=100);
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    opacity: 1;
 }
 
 .switch-suggest-mode .suggest
