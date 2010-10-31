@@ -380,38 +380,68 @@ div.translator-comments + #translate-suggestion-container
 .translate-suggestion-block .rejectsugg img
 {
     position: absolute;
-    top: 0px;
-    right: 0px;
+    top: 1.95em;
+    right: 0.5em;
     cursor: pointer;
 }
 
 .translate-suggestion-block .rejectsugg img[dir="rtl"]
 {
-    left: 0px;
+    left: 0.5em;
     right: auto;
 }
 
 .translate-suggestion-block .acceptsugg img
 {
     position: absolute;
-    top: 0px;
-    right: 20px;
+    top: 1.95em;
+    right: 2.5em;
     cursor: pointer;
 }
 
 .translate-suggestion-block .acceptsugg img[dir="rtl"]
 {
-    left: 20px;
+    left: 2.5em;
     right: auto;
+}
+
+.translate-suggestion-block .rejectsugg img,
+.translate-suggestion-block .acceptsugg img
+{
+    filter:alpha(opacity=50);
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+}
+
+.translate-suggestion-block .rejectsugg img:hover,
+.translate-suggestion-block .acceptsugg img:hover
+{
+    filter:alpha(opacity=100);
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    opacity: 1;
 }
 
 .translate-suggestion
 {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 0.5em;
+    background-color: #f1f7e4;
+    border: 1px dotted #ccc;
     color: #777;
+    line-height: 140%;
+    padding: 0.5em;
+    padding-right: 3em;
 }
+
+.translate-translation[dir="rtl"] .translate-suggestion {
+    padding-right: 0.5em;
+    padding-left: 3em;
+}
+
+.translate-suggestion:hover {
+    background-color: #fff;
+}
+
 
 /* CHECKS */
 
@@ -609,20 +639,20 @@ a.writespecial:hover
 
 .translate-diff-replace
 {
-    background-color: #ffff00;
-    border: 1px solid #f0f000;
+    color: #900;
+    border-bottom: 1px dotted #900;
 }
 
 .translate-diff-delete
 {
-    background-color: #ccc;
+    color: #aaa;
     text-decoration: line-through;
 }
 
 .translate-diff-insert
 {
-    background-color: #80ff00;
-    border: 1px solid #70f000;
+    color: #070;
+    border-bottom: 1px dotted #070;
 }
 
 /* HIGHLIGHT */
