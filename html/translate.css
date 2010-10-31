@@ -524,22 +524,22 @@ li.check > a {
 
 .buttons input[type="submit"].submit
 {
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeffee', endColorstr='#77ee77');
-    background: -webkit-gradient(linear, left top, left bottom, from(#efe), to(#7e7));
-    background: -moz-linear-gradient(top,  #efe,  #7e7);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffee', endColorstr='#aaee77');
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffe), to(#ae7));
+    background: -moz-linear-gradient(top,  #ffe,  #ae7);
 }
 
 .translate-buttons-block input.submit:hover {
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#99ff99');
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#9f9));
-    background: -moz-linear-gradient(top,  #fff,  #9f9);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#bbff88');
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#bf8));
+    background: -moz-linear-gradient(top,  #fff,  #bf8);
 }
 
 .translate-buttons-block input.submit:active
 {
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#77ee77', endColorstr='#eeffee');
-    background: -webkit-gradient(linear, left top, left bottom, from(#7e7), to(#efe));
-    background: -moz-linear-gradient(top,  #7e7,  #efe);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#aaee77', endColorstr='#ffffee');
+    background: -webkit-gradient(linear, left top, left bottom, from(#ae7), to(#ffe));
+    background: -moz-linear-gradient(top,  #ae7,  #ffe);
 }
 
 .buttons input[type="submit"].suggest
