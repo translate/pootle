@@ -990,9 +990,9 @@ class Store(models.Model, base.TranslationStore):
         source_hash = md5_f(source.encode("utf-8")).hexdigest()
         units = self.unit_set.filter(source_hash=source_hash)
         if obsolete:
-            units.filter(state=OBSOLETE)
+            units = units.filter(state=OBSOLETE)
         else:
-            units.filter(state__gt=OBSOLETE)
+            units = units.filter(state__gt=OBSOLETE)
         if units.count():
             return units
 
