@@ -29,6 +29,7 @@ from pootle_store.models      import Store, PARSED
 from pootle_store.util import absolute_real_path, relative_real_path
 from pootle_store.filetypes import factory_classes
 from pootle_app.models.directory  import Directory
+from pootle_language.models import Language
 
 # case insensitive match for language codes
 LANGCODE_RE = re.compile('^[a-z]{2,3}([_-][a-z]{2,3})?(@[a-z0-9]+)?$', re.IGNORECASE)
@@ -41,6 +42,13 @@ def language_match_filename(language_code, filename):
 
 def direct_language_match_filename(language_code, path_name):
     name, ext = os.path.splitext(os.path.basename(path_name))
+    if name == language_code or name.lower() == language_code.lower():
+        return True
+
+    # check file doesn't match another language
+    if Language.objects.filter(code__in=[name, name.lower()]).count():
+        return False
+
     regexp = "^(.{4,}[-_.])?%s$" % language_code
     return bool(re.match(regexp, name, re.IGNORECASE))
 
@@ -182,6 +190,7 @@ def translation_project_should_exist(language, project):
             # find files with the language name in the project dir
             for dirpath, dirnames, filenames in os.walk(project.get_real_path()):
                 for filename in filenames:
+                    #FIXME: don't reuse already used file
                     if project.file_belongs_to_project(filename, match_templates=False) and \
                            direct_language_match_filename(language.code, filename):
                         return True
