@@ -272,8 +272,8 @@ def convert_template(translation_project, template_store, target_pootle_path, ta
 def get_translated_name_gnu(translation_project, store):
     """given a template store and a translation_project return target filename"""
     suffix = translation_project.language.code + os.extsep + translation_project.project.localfiletype
-    use_prefix = store.parent.child_stores.count() > 1 or \
-                 translation_project.stores.exclude(name=suffix).exclude(file="").count()
+    use_prefix = store.parent.child_stores.exclude(file="").count() > 1 or \
+                 translation_project.stores.exclude(name__in=[suffix, suffix.lower()]).exclude(file="").count()
     if not use_prefix:
         # let's make sure
         for tp in translation_project.project.translationproject_set.exclude(language__code='templates').iterator():
@@ -284,19 +284,36 @@ def get_translated_name_gnu(translation_project, store):
 
     pootle_path_parts = store.pootle_path.split('/')
     pootle_path_parts[1] = translation_project.language.code
+    pootle_path = '/'.join(pootle_path_parts[:-1])
     if store.file:
+        target_store = None
         path_parts = store.file.path.split(os.sep)
         if use_prefix:
             #FIXME: what about dashes
             if store.translation_project.language.code == 'templates':
-                prefix = os.path.splitext(store.name)[0] + '_'
+                prefix = os.path.splitext(store.name)[0]
+                try:
+                    target_store = translation_project.stores.filter(pootle_path__startswith=pootle_path, name__in=
+                                       [prefix+'-'+suffix, prefix+'_'+suffix, prefix+'.'+suffix,
+                                       prefix+'-'+suffix.lower(), prefix+'_'+suffix.lower(), prefix+'.'+suffix.lower()])[0]
+                except (Store.DoesNotExist, IndexError):
+                    pass
+                prefix = prefix + '-'
             else:
                 prefix = os.path.splitext(store.name)[0][:-len(store.translation_project.language.code)]
+                try:
+                    target_store = translation_project.stores.filter(pootle_path__startswith=pootle_path, name__in=
+                                                        [prefix+suffix, prefix+suffix.lower()])[0]
+                except (Store.DoesNotExist, IndexError):
+                    pass
         else:
             prefix = ""
-        name = prefix + suffix
-        path_parts[-1] =  name
-        pootle_path_parts[-1] = name
+        if target_store:
+            return target_store.pootle_path, target_store.file.path
+        else:
+            name = prefix + suffix
+            path_parts[-1] =  name
+            pootle_path_parts[-1] = name
     else:
         path_parts = store.parent.get_real_path().split(os.sep)
         path_parts.append(store.name)
