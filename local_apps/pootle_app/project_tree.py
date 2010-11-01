@@ -41,7 +41,7 @@ def language_match_filename(language_code, filename):
 
 def direct_language_match_filename(language_code, path_name):
     name, ext = os.path.splitext(os.path.basename(path_name))
-    regexp = "^(.*[-_.])?%s$" % language_code
+    regexp = "^(.{4,}[-_.])?%s$" % language_code
     return bool(re.match(regexp, name, re.IGNORECASE))
 
 def match_template_filename(project, filename):
