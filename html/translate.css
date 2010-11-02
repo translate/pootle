@@ -498,6 +498,12 @@ div.translator-comments + #translate-suggestion-container
 
 /* CHECKS */
 
+ul.checks
+{
+    display: inline;
+    font-size: 85%;
+}
+
 div.check a
 {
     cursor: help;
@@ -519,13 +525,18 @@ div.check a
     color: #900;
 }
 
-#translate-checks-block li
+li.check
 {
     display: inline-block;
-    margin-right: 0.5em;
-    margin-bottom: 0.8em;
     border: 1px dotted #900;
-    padding: 0px 4px;
+    margin: 0 0.5em 0.5em 0;
+    padding: 0.1em 0.1em 0.1em 0.5em;
+
+}
+
+li.check:hover
+{
+    background-color: #fff;
 }
 
 li.check > a {
@@ -535,9 +546,21 @@ li.check > a {
 #translate-checks-block .rejectcheck img
 {
     vertical-align: top;
-    margin-top: 2px;
-    margin-bottom: 2px;
+    margin-top: -1px;
+    margin-bottom: -1px;
     cursor: pointer;
+    filter:alpha(opacity=50);
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+}
+
+#translate-checks-block .rejectcheck img:hover
+{
+    filter:alpha(opacity=100);
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    opacity: 1;
 }
 
 /* CONTROLS */

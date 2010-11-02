@@ -50,7 +50,7 @@
       {% if unit.get_qualitychecks.count %}
       <!-- Quality Checks -->
       <div id="translate-checks-block" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}">
-          <div class="sidetitle" lang="{{ LANGUAGE_CODE }}" title='{% trans "Possible issues with the translation" %}'>{% trans "Failing Checks" %}</div>
+          <div class="sidetitle" lang="{{ LANGUAGE_CODE }}" title='{% trans "Possible issues with the translation" %}'>{% trans "Failing checks:" %}</div>
           <ul class="checks">
           {% for check in unit.get_qualitychecks.iterator %}
           <li class="check">
