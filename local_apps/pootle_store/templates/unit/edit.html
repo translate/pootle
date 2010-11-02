@@ -165,8 +165,8 @@
               {% endfor %}
               {% if canreview %}
                 <input type="hidden" id="sugg-{{sugg.id }}" class="suggid" name="suggid" value="{{ sugg.id }}" />
-                <a title="{% trans 'Accept suggestion' %}" accesskey="a" id="accept-{{ sugg.id }}" class="acceptsugg"><img src='{{ "images/accept.png"|m }}' dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
-                <a title="{% trans 'Reject suggestion' %}" accesskey="r" id="reject-{{ sugg.id }}" class="rejectsugg"><img src='{{ "images/reject.png"|m }}' dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
+                <a accesskey="a" id="accept-{{ sugg.id }}" class="acceptsugg"><img src='{{ "images/accept.png"|m }}' title="{% trans 'Accept suggestion' %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
+                <a accesskey="r" id="reject-{{ sugg.id }}" class="rejectsugg"><img src='{{ "images/reject.png"|m }}' title="{% trans 'Reject suggestion' %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
               {% else %}
                 {% if user.is_authenticated %}
                 {% ifequal profile sugg.user %}
