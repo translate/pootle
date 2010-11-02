@@ -1,20 +1,14 @@
 <td dir="${meta.source_dir}" class="translate-original" rowspan="1" colspan="1">
   <div class="translate-original translate-view" id="orig${unit.id}">
     {{each(i, source) unit.source}}
-    {{if source.title}}
-    <span class="translation-text-headers" lang="${meta.source_lang}">${ source.title }</span>
-    {{/if}}
-    <div lang="${meta.source_lang}" dir="${meta.source_dir}" class="translation-text">{{html source.text}}</div>
+    <div lang="${meta.source_lang}" dir="${meta.source_dir}" class="translation-text"{{if source.title}} title="${ source.title }"{{/if}}>{{html source.text}}</div>
     {{/each}}
   </div>
 </td>
 <td dir="${meta.target_dir}" class="translate-translation{{if unit.isfuzzy}} fuzzy-unit{{/if}}" rowspan="1" colspan="1">
   <div dir="${meta.target_dir}" class="translate-translation translate-view" id="trans${unit.id}">
     {{each(i, target) unit.target}}
-    {{if target.title && target.text}}
-    <span class="translation-text-headers" lang="${meta.target_lang}">${ target.title }</span>
-    {{/if}}
-    <div lang="${meta.target_lang}" class="translation-text" dir="${meta.target_dir}">{{html target.text}}</div>
+    <div lang="${meta.target_lang}" class="translation-text" dir="${meta.target_dir}"{{if target.title}} title="${ target.title }"{{/if}}>{{html target.text}}</div>
     {{/each}}
   </div>
 </td>

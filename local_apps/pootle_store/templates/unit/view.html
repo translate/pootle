@@ -5,8 +5,7 @@
 <td colspan="1" rowspan="1" class="translate-original" dir="{{ souce_language.get_direction }}">
   <div id="orig{{ unit.index }}" class="translate-original translate-view">
     {% for i, source, title in unit|pluralize_source %}
-    {% if title %}<span class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</span><br />{% endif %}
-    <div class="translation-text" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}">{{ source|fancy_highlight }}</div>
+    <div class="translation-text" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ source|fancy_highlight }}</div>
     {% endfor %}
   </div>
   {% if show_comments %}
@@ -29,8 +28,7 @@
   <div id="trans{{ unit.index }}" class="translate-translation translate-view" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
     <!--! Normal view mode -->
     {% for i, target, title in unit|pluralize_target %}
-    {% if title %}<span class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</span><br />{% endif %}
-    <div dir="{{ language.get_direction }}" lang="{{ language.code }}" class="translation-text">{{ target|fancy_highlight }}</div>
+    <div dir="{{ language.get_direction }}" lang="{{ language.code }}" class="translation-text"{% if title %} title="{{ title }}"{% endif %}>{{ target|fancy_highlight }}</div>
     {% endfor %}
   </div>
   {% if show_comments and unit.translator_comment %}

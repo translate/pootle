@@ -79,8 +79,9 @@ class MultiStringWidget(forms.MultiWidget):
 
         output = ''
         for i, widget in enumerate(rendered_widgets):
-            output += '<p class="translation-text-headers" lang="%s">%s</p>' % (get_language(), _('Plural Form %d', i))
+            output += '<div lang="%s" title="%s">' % (get_language(), _('Plural Form %d', i))
             output += widget
+            output += '</div>'
         return mark_safe(output)
 
     def decompress(self, value):

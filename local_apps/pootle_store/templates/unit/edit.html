@@ -26,7 +26,7 @@
         <div class="developer-comments" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}"{% if unit.locations %}title="{{ unit.locations }}"{% endif %}>{{ unit.developer_comment|urlize|linebreaks }}</div>
         {% endif %}
         {% if unit.locations and not unit.developer_comment %}
-        <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Location:" %}</div>
+        <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Locations:" %}</div>
         <div class="translate-locations" lang="en" dir="ltr" title="{{ unit.locations }}">{{ unit.locations|truncatewords:3 }}</div>
         {% endif %}
       </div>
@@ -80,8 +80,7 @@
           </div>
           <div id="unit-{{ altunit.id }}" class="translate-original translate-original-focus{% if unit.hasplural %} translate-plural{% endif %}">
             {% for i, target, title in altunit|pluralize_target %}
-            {% if title %}<div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</div>{% endif %}
-            <div class="translation-text" lang="{{ altunit.store.translation_project.language.code }}" dir="{{ altunit.store.translation_project.language.get_direction }}">{{ target|fancy_highlight }}</div>
+            <div class="translation-text" lang="{{ altunit.store.translation_project.language.code }}" dir="{{ altunit.store.translation_project.language.get_direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ target|fancy_highlight }}</div>
             {% endfor %}
             <div class="placeholder"></div>
           </div>
@@ -99,8 +98,7 @@
           </div>
           <div class="translate-original translate-original-focus{% if unit.hasplural %} translate-plural{% endif %}">
             {% for i, source, title in unit|pluralize_source %}
-            {% if title %}<div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</div>{% endif %}
-            <div class="translation-text" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}">{{ source|fancy_highlight }}</div>
+            <div class="translation-text" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ source|fancy_highlight }}</div>
             {% endfor %}
             <div class="placeholder"></div>
           </div>
@@ -160,8 +158,7 @@
             <strong>{{ sugtitle }}</strong>
             <div class="translate-suggestion">
               {% for i, target, diff, title in sugg|pluralize_diff_sugg %}
-                {% if title %}<div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}">{{ title }}</div>{% endif %}
-                <div class="suggdiff" id="suggdiff-{{sugg.id}}-{{i}}" lang="{{ language.code }}" dir="{{ language.get_direction }}">{{ diff }}</div>
+                <div class="suggdiff" id="suggdiff-{{sugg.id}}-{{i}}" lang="{{ language.code }}" dir="{{ language.get_direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ diff }}</div>
               {% endfor %}
               {% if canreview %}
                 <input type="hidden" id="sugg-{{sugg.id }}" class="suggid" name="suggid" value="{{ sugg.id }}" />

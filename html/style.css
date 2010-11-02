@@ -805,6 +805,16 @@ input[type="submit"]
     color: #000;
 }
 
+body.zoom-out-1 input[type="submit"]
+{
+    min-width: 100px;
+}
+
+body.zoom-out-2 input[type="submit"]
+{
+    min-width: 90px;
+}
+
 input[type="submit"]:hover {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dddddd');
     background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));
