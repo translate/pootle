@@ -126,9 +126,9 @@ $(document).ready (function() {
   <div id="prevnext" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
     <input type="submit" class="previous" name="back" accesskey="b" value="{% trans 'Previous unit' %}" title="{% trans 'Go to the previous unit (Ctrl+Up)<br/><br/>Also:<br/>10 units up: Ctrl+Page&nbsp;Up<br/>First unit: Ctrl+Home' %}" />
     <span id="item-navigation">
-      <input id="item-number" type="text" value="1" size="1" title="{% trans 'Current unit (Ctrl+Shift+U)<br/><br/>Type in the number and press Enter<br/>to go to any position' %}" />
+      <input id="item-number" type="text" value="1" size="1" title="{% trans 'Current page number (Ctrl+Shift+U)<br/><br/>Type in the number and press Enter<br/>to go to any position' %}" />
       /
-      <span id="items-count" title="{% trans 'Total units found' %}"></span>
+      <span id="items-count" title="{% trans 'Total pages' %}"></span>
     </span>
     <input type="submit" class="next" name="skip" accesskey="k" value="{% trans 'Next unit' %}" title="{% trans 'Go to the next unit (Ctrl+Down)<br/><br/>Also:<br/>10 units down: Ctrl+Page&nbsp;Down<br/>Last unit: Ctrl+End' %}" />
   </div>
