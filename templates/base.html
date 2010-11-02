@@ -77,7 +77,7 @@
                         {% block menu %}
                         <ul class="first-of-type">
                             <!--<li class="menubaritem"><a href='{{ "/"|l }}'>{% trans "Home" %}</a></li>-->
-                            <li class="menubaritem"><a href='{{ "/docs/index.html"|l }}'>{% trans "Help" %}</a></li>
+                            <li class="menubaritem"><a href='{{ "/projects/"|l }}'>{% trans "Projects" %}</a></li>
                             {% if user.is_superuser %}
                             <li class="menubaritem"><a class="admin" href='{{ "/admin/"|l }}'>{% trans "Admin" %}</a></li>
                             {% endif %}
@@ -146,6 +146,7 @@
             {% block footer %}
             <div id="footer" lang="{{ LANGUAGE_CODE }}">
                 <ul class="nav">
+                    <li><a href='{{ "/docs/index.html"|l }}'>{% trans "Help" %}</a></li>
                     {% if settings.CAN_CONTACT %}
                     <li><a href='{{ "/contact/"|l }}'>{% trans "Contact Us" %}</a></li>
                     {% endif %}
