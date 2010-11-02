@@ -566,7 +566,7 @@
     var editor = this.build_ctxt_rows(ctxt.before) +
                  '<tr id="row' + uid + '" class="' + eclass + '">' +
                   widget + '</tr>' +
-                  this.build_ctxt_rows(ctxt.before);
+                  this.build_ctxt_rows(ctxt.after);
     this.active_uid = uid;
     return editor;
   },
