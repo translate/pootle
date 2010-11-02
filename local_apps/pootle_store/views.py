@@ -520,8 +520,11 @@ def _filter_ctxt_units(units_qs, edit_index, limit):
     """
     Returns C{limit}*2 units that are before and after C{index}.
     """
-    before = units_qs.filter(index__lt=edit_index)[:limit]
-    after = units_qs.filter(index__gt=edit_index)[:limit]
+    bs = 0
+    if edit_index > limit:
+        bs = edit_index - limit
+    before = units_qs.filter(index__lte=edit_index)[bs:edit_index]
+    after = units_qs.filter(index__gt=edit_index + 1)[:limit]
     return {'before': _build_units_list(units_qs, before),
             'after': _build_units_list(units_qs, after)}
 
