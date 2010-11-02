@@ -37,7 +37,7 @@
       <div id="tm" class="sidebar" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
         <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Terminology:" %}</div>
         {% for term in terms %}
-        <div class="tm-unit writetm" title="{{ unit.getnotes }}">
+        <div class="tm-unit writetm" title="{% trans 'Click to insert the translated term into the editor' %}">
           <span class="tm-original" dir="{{ source_language.get_direction }}" lang="{{ source_language.code }}">{{ term.source }}</span>
           <span class="tm-translation" dir="{{ language.get_direction }}" lang="{{ language.code }}">{{ term.target }}</span>
         </div>
@@ -135,7 +135,7 @@
         <div class="translate-specialchars-block" lang="{{ language.code }}">
           {% for specialchar in language.specialchars %}
           {% if not specialchar.isspace %}
-          <a class="writespecial">{{ specialchar }}</a>
+          <a class="writespecial" title="{% trans 'Click to insert this symbol into the editor' %}">{{ specialchar }}</a>
           {% else %}
           <span class="extraspace"> </span>
           {% endif %}
