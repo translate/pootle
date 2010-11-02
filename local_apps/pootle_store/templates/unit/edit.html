@@ -7,11 +7,35 @@
     {{ form.index.as_hidden }}
     {{ form.source_f.as_hidden }}
     <div class="translate-{% if LANGUAGE_BIDI %}right{% else %}left{% endif %}">
+      <!-- Context information and comments -->
+      {% if unit.getcontext %}
+      {% ifnotequal unit.locations unit.context %}
+      <div class="translate-context sidebar">
+        <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Context:" %}</div>
+        <div class="translate-context-value">
+          {{ unit.getcontext }}
+        </div>
+      </div>
+      {% endifnotequal %}
+      {% endif %}
+      <!-- Developer comments -->
+      {% if unit.developer_comment or unit.locations %}
+      <div class="comments sidebar">
+        {% if unit.developer_comment %}
+        <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Comments:" %}</div>
+        <div class="developer-comments" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}"{% if unit.locations %}title="{{ unit.locations }}"{% endif %}>{{ unit.developer_comment|urlize|linebreaks }}</div>
+        {% endif %}
+        {% if unit.locations and not unit.developer_comment %}
+        <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Location:" %}</div>
+        <div class="translate-locations" lang="en" dir="ltr" title="{{ unit.locations }}">{{ unit.locations|truncatewords:3 }}</div>
+        {% endif %}
+      </div>
+      {% endif %}
       <!-- Terminology suggestions -->
       {% with unit.get_terminology as terms %}
       {% if terms %}
       <div id="tm" class="sidebar" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-        <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Terminology" %}</div>
+        <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Terminology:" %}</div>
         {% for term in terms %}
         <div class="tm-unit writetm" title="{{ unit.getnotes }}">
           <span class="tm-original" dir="{{ source_language.get_direction }}" lang="{{ source_language.code }}">{{ term.source }}</span>
@@ -42,24 +66,6 @@
       {% endif %}
     </div>
     <div class="translate-middle">
-      <!-- Context information and comments -->
-      {% if unit.getcontext %}
-      {% ifnotequal unit.locations unit.context %}
-      <div class="translate-context">
-        {{ unit.getcontext }}
-      </div>
-      {% endifnotequal %}
-      {% endif %}
-      {% if unit.developer_comment or unit.locations %}
-      <div class="comments">
-        {% if unit.developer_comment %}
-        <div class="developer-comments" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}"{% if unit.locations %}title="{{ unit.locations }}"{% endif %}>{{ unit.developer_comment|urlize|linebreaks }}</div>
-        {% endif %}
-        {% if unit.locations and not unit.developer_comment %}
-        <div class="translate-locations" lang="en" dir="ltr" title="{{ unit.locations }}">{{ unit.locations|truncatewords:3 }}</div>
-        {% endif %}
-      </div>
-      {% endif %}
       <div class="sources">
         <!-- Alternative source language translations -->
         {% for altunit in altsrcs %}

@@ -4,7 +4,8 @@
 
 /* MAIN TOOLBAR */
 
-textarea#view_unit {
+textarea#view_unit
+{
     display: none;
 }
 
@@ -80,7 +81,8 @@ th.translate-translation
     width: 50%;
 }
 
-tr.context-row {
+tr.context-row
+{
     background-color: #e5f3f8;
 }
 
@@ -89,16 +91,16 @@ tr.edit-row
     background-color: #f1f7f8;
 }
 
-tr.view-row:hover
+tr.view-row
 {
-    background-color: #f1f7f8;
+    font-size: 92%;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
 }
 
-tr.view-row:hover td.translate-translation
+tr.view-row:hover
 {
-    background-image: url('images/edit.png');
-    background-repeat: no-repeat;
-    background-position: 5px center;
+    background-color: #d9edf4;
 }
 
 .translation-text
@@ -129,7 +131,8 @@ div.translate-plural .translation-text
     position: relative;
 }
 
-.sources .translation-text-headers {
+.sources .translation-text-headers
+{
     border-bottom: 1px dotted #ccc;
 }
 
@@ -158,6 +161,13 @@ div.translate-container
     position: relative;
 }
 
+div.translate-left,
+div.translate-right
+{
+    margin-top: -1em;
+}
+
+
 div.translate-left
 {
     float: left;
@@ -178,11 +188,6 @@ div.translate-right
 }
 
 /* ORIGINAL */
-
-div.source-language > div.translation-text-headers
-{
-    min-height: 18px;
-}
 
 div.language-name
 {
@@ -210,17 +215,14 @@ div.alternative
     color: #777;
 }
 
-div.translate-original
+table td.translate-original,
+table td.translate-translation
 {
-    min-height: 1.5em;
+    padding: 0.5em 5px;
 }
 
-table td.translate-original
+table td.translate-translation
 {
-    padding: 0 5px;
-}
-
-table td.translate-translation {
     padding-left: 30px;
 }
 
@@ -233,22 +235,42 @@ table[dir="rtl"] td.translate-translation
 
 /* COMMENTS */
 
-.translate-locations,
-.developer-comments,
-.translate-context,
-.translator-comments
+.comments
 {
-    margin-top: 1em;
-    margin-bottom: 1em;
+    clear: both;
+    color: #666;
+}
+
+.comments p
+{
+    display: inline;
+    font-size: 85%;
+    line-height: 120%;
+}
+
+.sidetitle,
+.comments .developer-comments
+{
+    display: inline;
 }
 
 .translate-locations,
 .developer-comments,
 .translate-context
 {
-    overflow: auto;
+    margin-bottom: 0.5em;
+}
+
+.translate-context-value
+{
     font-size: 90%;
-    color: #666;
+    font-weight: bold;
+    display: inline;
+}
+
+.translator-comments
+{
+    margin-bottom: 1em;
 }
 
 div.translator-comments
@@ -303,8 +325,6 @@ td.translate-focus
 {
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
-    padding-top: .5em;
-    padding-bottom: .5em;
     vertical-align: top;
 }
 
@@ -312,12 +332,13 @@ td.translate-full div.translate-original,
 td.translate-full textarea.translation
 {
     width: 100%;
-    margin: 0 auto 1em;
+    margin: 0 auto 0.5em;
 }
 
 td.translate-full textarea.translation
 {
-     padding: 0;
+    padding: 0;
+    min-height: 2.7em; 
 }
 
 
@@ -325,12 +346,11 @@ td.translate-full textarea.translation
 
 .sidebar
 {
-    padding: 10px 20px;
+    padding: 0 20px 1em;
 }
 
 .sidetitle
 {
-    padding-bottom: 0.5em;
     color: #999;
     font-size: 85%;
 }
@@ -343,10 +363,10 @@ td.translate-full textarea.translation
 .tm-unit
 {
     margin: 0 0.5em 0.5em 0;
-    padding: 0.3em 0.6em;
+    padding: 0.1em 0.5em;
     border: 1px dotted #999;
     cursor: pointer;
-    float: left;
+    display: inline-block;
     font-size: 90%;
 }
 
@@ -357,7 +377,13 @@ td.translate-full textarea.translation
 .tm-original
 {
     font-weight: bolder;
-    padding-right: 0.4em;
+    padding-right: 0.3em;
+}
+
+#tm[dir="rtl"] .tm-original
+{
+    padding-right: auto;
+    padding-left: 0.3em;
 }
 
 .tm-translation
@@ -380,6 +406,7 @@ div.translator-comments + #translate-suggestion-container
 #translate-suggestion-container
 {
     margin-top: 1.8em;
+    margin-bottom: 1em;
 }
 
 .translate-suggestion-block
@@ -458,7 +485,8 @@ div.translator-comments + #translate-suggestion-container
     padding-right: 3em;
 }
 
-.translate-translation[dir="rtl"] .translate-suggestion {
+.translate-translation[dir="rtl"] .translate-suggestion
+{
     padding-right: 0.5em;
     padding-left: 3em;
 }
@@ -518,7 +546,7 @@ li.check > a {
 {
     left: 100%;
     position: absolute;
-    margin: -3px 10px 0 20px;
+    margin: 0 10px 0 20px;
 }
 
 .translate-buttons-block[dir="rtl"]
@@ -529,7 +557,7 @@ li.check > a {
 
 .translate-buttons-block input[type="submit"]
 {
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
 }
 
 .buttons input[type="submit"].submit
@@ -572,15 +600,18 @@ li.check > a {
     background: -moz-linear-gradient(top,  #ed8,  #ffe);
 }
 
-.translate-buttons-block input.suggest {
+.translate-buttons-block input.suggest
+{
     display: none;
 }
 
-table.suggest-mode .translate-buttons-block input.suggest {
+table.suggest-mode .translate-buttons-block input.suggest
+{
     display: block;
 }
 
-table.suggest-mode .translate-buttons-block input.submit {
+table.suggest-mode .translate-buttons-block input.submit
+{
     display: none;
 }
 
@@ -655,9 +686,9 @@ table.suggest-mode .switch-suggest-mode .submit
 .translate-toolbar
 {
     position: absolute;
-    top: 1px;
+    top: -18px;
     /* LTR */
-    right: 2px;
+    right: 0;
 }
 
 .translate-toolbar a
@@ -669,7 +700,7 @@ table.suggest-mode .switch-suggest-mode .submit
 div.translation-text-headers[dir="rtl"] div.translate-toolbar
 {
     right: auto;
-    left: 2px;
+    left: 0;
 }
 
 div.translation-text-headers[dir="rtl"] div.translate-toolbar a
@@ -758,11 +789,6 @@ div.translate-translation
     min-height: 1.5em;
 }
 
-td.translate-full div.translate-translation
-{
-    margin-bottom: 20px;
-}
-
 /* Special handling for languages with big fonts */
 td.translate-full div.translate-translation:lang(bn),
 td.translate-full div.translate-translation:lang(fa),
@@ -784,7 +810,8 @@ tr.edit-row.fuzzy-unit textarea.translation
     font-style: italic;
 }
 
-table.suggest-mode tr.edit-row.fuzzy-unit textarea.translation {
+table.suggest-mode tr.edit-row.fuzzy-unit textarea.translation
+{
     color: inherit;
     font-style: normal;
 }
