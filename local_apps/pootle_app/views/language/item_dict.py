@@ -125,7 +125,7 @@ def zip_link(request, path_obj):
         text = _('ZIP of directory')
         link = dispatch.download_zip(request, path_obj)
         return {
-            'class': 'download',
+            'class': 'file download',
             'href': link,
             'text': text,
             }
@@ -138,11 +138,11 @@ def xliff_link(request, path_obj):
         text = _('Translate offline')
         tooltip = _('Download XLIFF file for offline translation')
     else:
-        text = _('Download XLIFF')
+        text = _('Translate offline')
         tooltip = _('Download XLIFF file for offline translation')
     href = dispatch.export(request, path_obj.pootle_path, 'xlf')
     return {
-        'class': 'translate-offline',
+        'class': 'translate download',
         'href': href,
         'text': text,
         'title': tooltip,
@@ -158,7 +158,7 @@ def download_link(request, path_obj):
             tooltip = _('Download file')
 
         return {
-            'class': 'download',
+            'class': 'file download',
             'href': '%s/download/' % path_obj.pootle_path,
             'text': text,
             'title': tooltip,
@@ -169,7 +169,7 @@ def commit_link(request, path_obj):
         link = dispatch.commit(request, path_obj)
         text = _('Commit to VCS')
         return {
-            'class': 'vcs',
+            'class': 'vcs commit',
             'href': link,
             'text': text,
             'link': link,
@@ -180,7 +180,7 @@ def update_link(request, path_obj):
         link = dispatch.update(request, path_obj)
         text = _('Update from VCS')
         return {
-            'class': 'vcs',
+            'class': 'vcs update',
             'href': link,
             'text': text,
             'link': link,
@@ -196,12 +196,12 @@ def _gen_link_list(request, path_obj, linkfuncs):
 
 def store_translate_links(request, path_obj):
     """returns a list of links for store items in translate tab"""
-    linkfuncs = [quick_link, translate_all_link, download_link, xliff_link, update_link, commit_link]
+    linkfuncs = [quick_link, translate_all_link, xliff_link, download_link, update_link, commit_link]
     return _gen_link_list(request, path_obj, linkfuncs)
 
 def store_review_links(request, path_obj):
     """returns a list of links for store items in review tab"""
-    linkfuncs = [review_link, download_link, xliff_link, update_link, commit_link]
+    linkfuncs = [review_link, xliff_link, download_link, update_link, commit_link]
     return _gen_link_list(request, path_obj, linkfuncs)
 
 def directory_translate_links(request, path_obj):

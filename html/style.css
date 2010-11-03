@@ -1295,6 +1295,19 @@ html[dir="rtl"] div#actionlinks a
     margin-left: 0.5em;
 }
 
+div#actionlinks a span
+{
+    background: url('images/actionlink.png') left 50% no-repeat;
+    padding-left: 1.2em;
+}
+
+html[dir="rtl"] div#actionlinks a span
+{
+    background-position: right 50%;
+    padding-left: 0;
+    padding-right: 1.2em;
+}
+
 div#actionlinks a.translate
 {
     background-color: #e6f2f7;
@@ -1302,30 +1315,62 @@ div#actionlinks a.translate
     color: #337e99;
 }
 
-div#actionlinks a.download
+div#actionlinks a.translate span
+{
+    background-image: url('images/actionlink-translate-online.png');
+}
+
+div#actionlinks a.translate.download
+{
+    background-color: #faeee3;
+    border-color: #efcca9;
+    color: #ac6520;
+}
+
+div#actionlinks a.translate.download span
+{
+    background-image: url('images/actionlink-translate-offline.png');
+}
+
+div#actionlinks a.file.download,
+div#actionlinks a.file.upload
 {
     background-color: #eef3e9;
     border-color: #ccdbbd;
     color: #668548;
 }
 
-div#actionlinks a.translate-offline
+div#actionlinks a.file.download span
 {
-    background-color: #f3e9f3;
-    border-color: #dbbddb;
-    color: #854885;
+    background-image: url('images/actionlink-download.png');
 }
 
-div#actionlinks a.vcs
+div#actionlinks a.file.upload span
+{
+    background-image: url('images/actionlink-upload.png');
+}
+
+div#actionlinks a.vcs.update,
+div#actionlinks a.vcs.commit
 {
     background-color: #f3e9e9;
     border-color: #dbbdbd;
     color: #854848;
 }
 
+div#actionlinks a.vcs.update span
+{
+    background-image: url('images/actionlink-update.png');
+}
+
+div#actionlinks a.vcs.commit span
+{
+    background-image: url('images/actionlink-commit.png');
+}
+
 div#actionlinks a:hover
 {
-    background-color: #fff;
+    background-color: #fff !important;
     text-decoration: none;
 }
 
@@ -1333,10 +1378,6 @@ div#actionlinks a:hover
 {
     font-size: 85%;
     padding-bottom: 0.2em;
-}
-
-.item div#actionlinks a
-{
 }
 
 .item
