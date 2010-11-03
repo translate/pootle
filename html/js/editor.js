@@ -656,7 +656,6 @@
     var page = parseInt($("input#item-number").val());
     if (page && !isNaN(page)) {
       var newhash = "page/" + page;
-      console.log("loading " + page);
       $.history.load(newhash);
     }
   },
