@@ -93,6 +93,7 @@ def review_link(request, path_obj):
             else:
                 text = _('View Suggestions')
             return {
+                    'class': 'translate',
                     'href': dispatch.translate(request, path_obj.pootle_path, matchnames=['hassuggestion']),
                     'text': text}
     except IOError:
@@ -106,6 +107,7 @@ def quick_link(request, path_obj):
             else:
                 text = _('View Untranslated')
             return {
+                    'class': 'translate',
                     'href': dispatch.translate(request, path_obj.pootle_path, unitstates=['fuzzy', 'untranslated']),
                     'text': text}
     except IOError:
@@ -114,6 +116,7 @@ def quick_link(request, path_obj):
 def translate_all_link(request, path_obj):
     #FIXME: what permissions to check for here?
     return {
+        'class': 'translate',
         'href': dispatch.translate(request, path_obj.pootle_path, matchnames=[]),
         'text': _('Translate All')}
 
@@ -122,6 +125,7 @@ def zip_link(request, path_obj):
         text = _('ZIP of directory')
         link = dispatch.download_zip(request, path_obj)
         return {
+            'class': 'download',
             'href': link,
             'text': text,
             }
@@ -138,6 +142,7 @@ def xliff_link(request, path_obj):
         tooltip = _('Download XLIFF file for offline translation')
     href = dispatch.export(request, path_obj.pootle_path, 'xlf')
     return {
+        'class': 'translate-offline',
         'href': href,
         'text': text,
         'title': tooltip,
@@ -153,6 +158,7 @@ def download_link(request, path_obj):
             tooltip = _('Download file')
 
         return {
+            'class': 'download',
             'href': '%s/download/' % path_obj.pootle_path,
             'text': text,
             'title': tooltip,
@@ -163,6 +169,7 @@ def commit_link(request, path_obj):
         link = dispatch.commit(request, path_obj)
         text = _('Commit to VCS')
         return {
+            'class': 'vcs',
             'href': link,
             'text': text,
             'link': link,
@@ -173,6 +180,7 @@ def update_link(request, path_obj):
         link = dispatch.update(request, path_obj)
         text = _('Update from VCS')
         return {
+            'class': 'vcs',
             'href': link,
             'text': text,
             'link': link,
@@ -188,12 +196,12 @@ def _gen_link_list(request, path_obj, linkfuncs):
 
 def store_translate_links(request, path_obj):
     """returns a list of links for store items in translate tab"""
-    linkfuncs = [quick_link, translate_all_link, update_link, commit_link, download_link, xliff_link]
+    linkfuncs = [quick_link, translate_all_link, download_link, xliff_link, update_link, commit_link]
     return _gen_link_list(request, path_obj, linkfuncs)
 
 def store_review_links(request, path_obj):
     """returns a list of links for store items in review tab"""
-    linkfuncs = [review_link, update_link, commit_link, download_link, xliff_link]
+    linkfuncs = [review_link, download_link, xliff_link, update_link, commit_link]
     return _gen_link_list(request, path_obj, linkfuncs)
 
 def directory_translate_links(request, path_obj):

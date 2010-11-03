@@ -1295,10 +1295,37 @@ html[dir="rtl"] div#actionlinks a
     margin-left: 0.5em;
 }
 
+div#actionlinks a.translate
+{
+    background-color: #e6f2f7;
+    border-color: #b3d8e6;
+    color: #337e99;
+}
+
+div#actionlinks a.download
+{
+    background-color: #eef3e9;
+    border-color: #ccdbbd;
+    color: #668548;
+}
+
+div#actionlinks a.translate-offline
+{
+    background-color: #f3e9f3;
+    border-color: #dbbddb;
+    color: #854885;
+}
+
+div#actionlinks a.vcs
+{
+    background-color: #f3e9e9;
+    border-color: #dbbdbd;
+    color: #854848;
+}
+
 div#actionlinks a:hover
 {
     background-color: #fff;
-    color: #333;
     text-decoration: none;
 }
 

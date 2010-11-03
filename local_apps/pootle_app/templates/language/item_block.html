@@ -21,7 +21,7 @@
     {% if item.actions %}
     <div id="actionlinks" class="item-description">
         {% for link in item.actions %}
-        <a href="{{ link.href|l }}" title="{{ link.title }}">{{ link.text }}</a>
+        <a class="{{ link.class }}" href="{{ link.href|l }}" title="{{ link.title }}">{{ link.text }}</a>
         {% endfor %}
     </div>
     {% endif %}
