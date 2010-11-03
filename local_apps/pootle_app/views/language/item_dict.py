@@ -117,15 +117,6 @@ def translate_all_link(request, path_obj):
         'href': dispatch.translate(request, path_obj.pootle_path, matchnames=[]),
         'text': _('Translate All')}
 
-def terminology_link(request, path_obj):
-    if check_permission('administrate', request):
-        text = _('Manage Glossary')
-        link = dispatch.terminology(request, path_obj)
-        return {
-            'href': link,
-            'text': text,
-       }
-
 def zip_link(request, path_obj):
     if check_permission('archive', request):
         text = _('ZIP of directory')
@@ -207,7 +198,7 @@ def store_review_links(request, path_obj):
 
 def directory_translate_links(request, path_obj):
     """returns a list of links for directory items in translate tab"""
-    return _gen_link_list(request, path_obj, [quick_link, translate_all_link, zip_link, terminology_link])
+    return _gen_link_list(request, path_obj, [quick_link, translate_all_link, zip_link])
 
 def directory_review_links(request, path_obj):
     """returns a list of links for directory items in review tab"""
