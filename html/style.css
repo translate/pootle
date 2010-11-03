@@ -1341,7 +1341,8 @@ div#actionlinks a.translate span
     background-image: url('images/actionlink-translate-online.png');
 }
 
-div#actionlinks a.translate.download
+div#actionlinks a.translate.download,
+div#actionlinks a.translate.upload
 {
     background-color: #faeee3;
     border-color: #efcca9;
@@ -1353,8 +1354,12 @@ div#actionlinks a.translate.download span
     background-image: url('images/actionlink-translate-offline.png');
 }
 
-div#actionlinks a.file.download,
-div#actionlinks a.file.upload
+div#actionlinks a.translate.upload span
+{
+    background-image: url('images/actionlink-upload.png');
+}
+
+div#actionlinks a.file.download
 {
     background-color: #eef3e9;
     border-color: #ccdbbd;
@@ -1364,11 +1369,6 @@ div#actionlinks a.file.upload
 div#actionlinks a.file.download span
 {
     background-image: url('images/actionlink-download.png');
-}
-
-div#actionlinks a.file.upload span
-{
-    background-image: url('images/actionlink-upload.png');
 }
 
 div#actionlinks a.vcs.update,

@@ -164,6 +164,18 @@ def download_link(request, path_obj):
             'title': tooltip,
             }
 
+def upload_link(request, path_obj):
+        #FIXME: check for upload permissions
+        text = _('Upload Translated File')
+        tooltip = _('Open dialog for file upload/merge')
+        link = 'javascript:alert("Not implemented")' #FIXME: provide actual link
+        return {
+            'class': 'translate upload',
+            'href': link,
+            'text': text,
+            'title': tooltip,
+            }
+
 def commit_link(request, path_obj):
     if path_obj.abs_real_path and check_permission('commit', request) and versioncontrol.hasversioning(path_obj.abs_real_path):
         link = dispatch.commit(request, path_obj)
@@ -178,6 +190,17 @@ def commit_link(request, path_obj):
 def update_link(request, path_obj):
     if path_obj.abs_real_path and check_permission('commit', request) and versioncontrol.hasversioning(path_obj.abs_real_path):
         link = dispatch.update(request, path_obj)
+        text = _('Update from VCS')
+        return {
+            'class': 'vcs update',
+            'href': link,
+            'text': text,
+            'link': link,
+        }
+
+def update_all_link(request, path_obj):
+    if check_permission('commit', request): #FIXME: also check if directory under VCS control
+        link = 'javascript:alert("Not implemented")' #FIXME: provide actual link
         text = _('Update from VCS')
         return {
             'class': 'vcs update',
@@ -206,11 +229,11 @@ def store_review_links(request, path_obj):
 
 def directory_translate_links(request, path_obj):
     """returns a list of links for directory items in translate tab"""
-    return _gen_link_list(request, path_obj, [quick_link, translate_all_link, zip_link])
+    return _gen_link_list(request, path_obj, [quick_link, translate_all_link, upload_link, zip_link, update_all_link])
 
 def directory_review_links(request, path_obj):
     """returns a list of links for directory items in review tab"""
-    return _gen_link_list(request, path_obj, [review_link, zip_link])
+    return _gen_link_list(request, path_obj, [review_link, upload_link, zip_link, update_all_link])
 
 
 ################################################################################
