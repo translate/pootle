@@ -1272,6 +1272,27 @@ div#innernav
     margin: 1.5em 1em 0;
 }
 
+.translate-offline-notice
+{
+    margin: 2em 1em;
+    padding: 0.5em 1em;
+    background-color: #fcf5ee;
+    border: 1px dashed #f5e0cb;
+    color: #bd844d;
+    line-height: 1.5;
+}
+
+.translate-offline-notice > div
+{
+    font-size: 85%;
+}
+
+.translate-offline-notice dfn
+{
+    border-bottom: 1px dotted #ac6520;
+}
+
+
 div#actionlinks
 {
     margin-top: 0.5em;

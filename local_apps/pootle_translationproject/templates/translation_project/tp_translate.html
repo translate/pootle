@@ -12,6 +12,10 @@
 
 {% block bodyclass %}tptranslate{% endblock bodyclass %}
 
+{% block precontent %}
+{{ block.super }}
+{% endblock precontent %}
+
 {% block content %}
 <!-- The editing view -->
 {% for item in children %}
@@ -28,6 +32,7 @@
 {% endblock content %}
 
 {% block postcontent %}
+{% include "translation_project/translate_offline_notice.html" %}
 {% include "translation_project/fileop_forms.html" %}
 {% include "top_contributers_table.html" %}
 {% endblock postcontent %}
