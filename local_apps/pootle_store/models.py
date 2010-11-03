@@ -564,6 +564,7 @@ class Unit(models.Model, base.TranslationUnit):
             return False
 
         self.target = suggestion.target
+        self.state = TRANSLATED
         self.save()
         suggestion.delete()
         if settings.AUTOSYNC and self.file:

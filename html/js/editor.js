@@ -762,6 +762,7 @@
              $("textarea[id^=id_target_f_]").each(function(i) {
                PTL.editor.units[uid].target[i].text = $(this).val();
              });
+             PTL.editor.units[uid].isfuzzy = false;
              element.fadeOut(200, function() {
                $(this).remove();
                if (!$("div#translate-suggestion-container div.translate-suggestion").length) {
