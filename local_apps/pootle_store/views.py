@@ -516,15 +516,16 @@ def _filter_view_units(units_qs, current_page, per_page):
     filtered = units_qs[start_index:end_index]
     return _build_units_list(units_qs, filtered)
 
-def _filter_ctxt_units(units_qs, edit_index, limit):
+def _filter_ctxt_units(units_qs, edit_index, limit, gap=0):
     """
     Returns C{limit}*2 units that are before and after C{index}.
     """
     bs = 0
-    if edit_index > limit:
-        bs = edit_index - limit
-    before = units_qs.filter(index__lte=edit_index)[bs:edit_index]
-    after = units_qs.filter(index__gt=edit_index + 1)[:limit]
+    sindex = edit_index - gap > 0 and edit_index - gap or 0
+    if sindex > limit and sindex != 0:
+        bs = sindex - limit
+    before = units_qs.filter(index__lte=sindex)[bs:sindex]
+    after = units_qs.filter(index__gt=edit_index + gap + 1)[:limit]
     return {'before': _build_units_list(units_qs, before),
             'after': _build_units_list(units_qs, after)}
 
@@ -691,6 +692,45 @@ def get_view_units(request, pootle_path, limit=0):
                     limit = profile.get_unit_rows()
                 units_qs = _filter_queryset(request.GET, store.units)
                 json["units"] = _filter_view_units(units_qs, int(page), int(limit))
+                json["success"] = True
+            except Unit.DoesNotExist:
+                json["success"] = False
+                json["msg"] = _("Unit %(uid)s does not exist on %(path)s." %
+                                {'uid': uid, 'path': pootle_path})
+    except Store.DoesNotExist:
+        json["success"] = False
+        json["msg"] = _("Store %(path)s does not exist." %
+                        {'path': pootle_path})
+
+    response = simplejson.dumps(json)
+    return HttpResponse(response, mimetype="application/json")
+
+@ajax_required
+def get_more_context(request, pootle_path, uid):
+    """
+    @return: An object in JSON notation that contains the source and target
+    texts for units that are in context of unit C{uid}.
+
+    Success status that indicates if the unit has been succesfully
+    retrieved or not is returned as well.
+    """
+    if pootle_path[0] != '/':
+        pootle_path = '/' + pootle_path
+    profile = get_profile(request.user)
+    json = {}
+    gap = int(request.GET.get('gap', 0))
+
+    try:
+        store = Store.objects.select_related('translation_project', 'parent').get(pootle_path=pootle_path)
+        if not check_profile_permission(profile, 'view', store.parent):
+            json["success"] = False
+            json["msg"] = _("You do not have rights to access translation mode.")
+        else:
+            try:
+                units_qs = store.units
+                current_unit = units_qs.get(id=uid, store__pootle_path=pootle_path)
+                edit_index = _get_index_in_qs(units_qs, current_unit)
+                json["ctxt"] = _filter_ctxt_units(units_qs, edit_index, 2, gap)
                 json["success"] = True
             except Unit.DoesNotExist:
                 json["success"] = False
