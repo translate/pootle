@@ -304,7 +304,7 @@
   },
 
   isFuzzy: function() {
-    return !!$("input.fuzzycheck").attr("checked");
+    return $("input.fuzzycheck").is("checked");
   },
 
   /*
