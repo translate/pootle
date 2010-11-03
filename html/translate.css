@@ -95,19 +95,69 @@ th.translate-translation
     width: 50%;
 }
 
-tr.context-row
-{
-    background-color: #e5f3f8;
-}
-
 tr.edit-row
 {
     background-color: #f1f7f8;
 }
 
+tr.more-context
+{
+    font-size: 82%;
+}
+
+tr.more-context td
+{
+    text-align: center;
+}
+
+tr.more-context a
+{
+    text-decoration: none;
+    filter:alpha(opacity=50);
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+}
+
+tr.more-context a:hover
+{
+    filter:alpha(opacity=100);
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    opacity: 1;
+}
+
+tr.more-context.before td
+{
+    border-top: 1px solid #ccc;
+}
+
+tr.more-context.after td
+{
+    border-bottom: 1px solid #ccc;
+}
+
+tr.context-row,
 tr.view-row
 {
     font-size: 92%;
+}
+
+tr.more-context,
+tr.context-row
+{
+    background-color: #f8fbfb;
+}
+
+tr.context-row
+{
+    color: #777;/*#76a1b0;*/
+    border-bottom: 1px solid #fff;
+    border-top: 1px solid #fff;
+}
+
+tr.view-row
+{
     border-top: 1px solid #fff;
     border-bottom: 1px solid #fff;
 }
@@ -166,11 +216,6 @@ body.zoom-out-2 div.sources .alternative .translation-text
     font-size: 95%;
 }
 
-div.translate-plural .translation-text
-{
-    p--adding: 0;
-}
-
 .translation-text-headers
 {
     color: #999;
@@ -179,17 +224,6 @@ div.translate-plural .translation-text
     border-bottom: 1px dotted #ccc;
     padding-top: 0.5em;
 }
-
-
-/*
-div.translate-plural .translation-text-headers
-{
-    font-weight: normal;
-    margin-top: 10px;
-    margin-bottom: -2px;
-    border-bottom: 0;
-}
-*/
 
 .translation-space
 {
@@ -271,17 +305,6 @@ table td.translate-original,
 table td.translate-translation
 {
     padding: 0.5em 5px;
-}
-
-table td.translate-translation
-{
-    padding-left: 30px;
-}
-
-table[dir="rtl"] td.translate-translation
-{
-    padding-left: 5px;
-    padding-right: 30px;
 }
 
 

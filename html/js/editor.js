@@ -569,10 +569,12 @@
     });
     var eclass = "edit-row";
     eclass += this.units[uid].isfuzzy ? " fuzzy-unit" : "";
-    var editor = this.build_ctxt_rows(ctxt.before) +
+    var editor = '<tr class="more-context before"><td colspan="2"><a class="morecontext">Show more context rows</a></td></tr>' +
+                 this.build_ctxt_rows(ctxt.before) +
                  '<tr id="row' + uid + '" class="' + eclass + '">' +
                   widget + '</tr>' +
-                  this.build_ctxt_rows(ctxt.after);
+                  this.build_ctxt_rows(ctxt.after) +
+                 '<tr class="more-context after"><td colspan="2"><a class="morecontext">Show more context rows</a></td></tr>';
     this.active_uid = uid;
     return editor;
   },
