@@ -508,9 +508,10 @@ div.translator-comments + #translate-suggestion-container
     margin-bottom: 0.5em;
 }
 
-.translate-suggestion-block > strong
+.translate-suggestion-block .suggestion-title
 {
     color: #999;
+    font-size: 85%;
 }
 
 .translate-suggestion-block .rejectsugg img
