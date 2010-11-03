@@ -202,6 +202,9 @@
 
     /* Retrieve metadata used for this query */
     this.get_meta(true);
+
+    /* Editor is ready to be used at this stage */
+    $("table.translate-table").trigger("editor_ready");
   },
 
   /*
