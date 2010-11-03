@@ -669,9 +669,6 @@ def get_view_units(request, pootle_path, limit=0):
     @return: An object in JSON notation that contains the source and target
     texts for units that will be displayed before and after unit C{uid}.
 
-    This object also contains more information used for rendering the view
-    unit, such as the source/target language codes, direction of the text, ...
-
     Success status that indicates if the unit has been succesfully
     retrieved or not is returned as well.
     """
@@ -687,16 +684,11 @@ def get_view_units(request, pootle_path, limit=0):
             json["success"] = False
             json["msg"] = _("You do not have rights to access translation mode.")
         else:
-            try:
-                if not limit:
-                    limit = profile.get_unit_rows()
-                units_qs = _filter_queryset(request.GET, store.units)
-                json["units"] = _filter_view_units(units_qs, int(page), int(limit))
-                json["success"] = True
-            except Unit.DoesNotExist:
-                json["success"] = False
-                json["msg"] = _("Unit %(uid)s does not exist on %(path)s." %
-                                {'uid': uid, 'path': pootle_path})
+            if not limit:
+                limit = profile.get_unit_rows()
+            units_qs = _filter_queryset(request.GET, store.units)
+            json["units"] = _filter_view_units(units_qs, int(page), int(limit))
+            json["success"] = True
     except Store.DoesNotExist:
         json["success"] = False
         json["msg"] = _("Store %(path)s does not exist." %
