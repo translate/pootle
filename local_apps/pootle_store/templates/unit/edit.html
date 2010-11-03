@@ -117,8 +117,8 @@
         <input type="hidden" name="pootle_path" value="{{ store.pootle_path }}" />
         {% if cansuggest and cantranslate %}
         <div class="switch-suggest-mode tiny" lang="{{ LANGUAGE_CODE }}" title="{% trans 'Toggle suggest mode (Ctrl+Shift+Space)' %}">
-          <div class="suggest"><a href="#">&larr; {% trans "Submit" %}</a></div>
-          <div class="submit"><a href="#">&larr; {% trans "Suggest" %}</a></div>
+          <div class="suggest"><a href="#">&harr; {% trans "Submit" %}</a></div>
+          <div class="submit"><a href="#">&harr; {% trans "Suggest" %}</a></div>
         </div>
         {% endif %}
         <div class="translate-fuzzy-block" lang="{{ LANGUAGE_CODE }}" title="{% trans 'Toggle fuzzy state (Ctrl+Space)' %}">
