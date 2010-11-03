@@ -79,10 +79,9 @@
         $(sources).each(function() {
           var source = PTL.editor.normalize_code($(this).attr("lang"));
           if (PTL.editor.isSupportedSource(_this.pairs, source)) {
-            PTL.editor.addMTButton($(this).parent().siblings().children(".translate-toolbar"),
-                                 "googletranslate",
-                                 m("images/google-translate.png"),
-                                 "Google Translate");
+            PTL.editor.addMTButton("googletranslate",
+                                   m("images/google-translate.png"),
+                                   "Google Translate");
           }
         });
       }

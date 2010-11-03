@@ -817,14 +817,10 @@
     return false;
   },
 
-  addMTButton: function(element, aclass, imgfn, tooltip) {
-      var a = document.createElement("a");
-      a.setAttribute("class", "translate-mt " + aclass);
-      var img = document.createElement("img");
-      img.setAttribute("src", imgfn);
-      img.setAttribute("title", tooltip);
-      a.appendChild(img);
-      element.prepend(a);
+  addMTButton: function(aclass, imgfn, tooltip) {
+      var btn = '<a class="translate-mt ' + aclass + '">';
+      btn += '<img src="' + imgfn + '" title="' + tooltip + '" /></a>';
+      $("div.translate-toolbar").first().prepend(btn);
   },
 
   normalize_code: function(locale) {

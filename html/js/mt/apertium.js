@@ -40,8 +40,7 @@
         $(sources).each(function() {
           var source = PTL.editor.normalize_code($(this).attr("lang"));
           if (PTL.editor.isSupportedPair(_this.pairs, source, _this.target_lang)) {
-            PTL.editor.addMTButton($(this).parent().siblings().children(".translate-toolbar"),
-                                   "apertium",
+            PTL.editor.addMTButton("apertium",
                                    m("images/apertium.png"),
                                    "Apertium");
           }
