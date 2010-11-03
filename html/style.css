@@ -772,7 +772,7 @@ div#update p,
 .form select,
 .form textarea
 {
-    width: 99%;
+    width: 100%;
 }
 
 .form .buttons
