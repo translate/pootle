@@ -35,6 +35,7 @@
     this.pages_got = {};
     this.filter = "all";
     this.checks = [];
+    this.ctxt_gap = 0;
     this.keepstate = false;
 
     /* Compile templates */
@@ -102,6 +103,7 @@
     /* Filtering */
     $("div#filter-status select").live("change", this.filter_status);
     $("div#filter-checks select").live("change", this.filter_checks);
+    $("a.morecontext").live("click", this.get_more_context);
 
     /* Bind hotkeys */
     shortcut.add('ctrl+return', function() {
@@ -559,6 +561,7 @@
           PTL.editor.update_pager(data.pager);
         }
         if (data.ctxt) {
+          PTL.editor.ctxt_gap = 2;
           ctxt.before = data.ctxt.before;
           ctxt.after = data.ctxt.after;
         }
@@ -718,6 +721,30 @@
       var newhash = "filter/" + filter_by;
       $.history.load(newhash);
     }
+  },
+
+  /* Gets more context units */
+  get_more_context: function() {
+    var ctxt_url = l(PTL.editor.store + '/context/' + PTL.editor.active_uid);
+    var req_data = {gap: PTL.editor.ctxt_gap};
+    $.ajax({
+      url: ctxt_url,
+      async: false,
+      dataType: 'json',
+      data: req_data,
+      success: function(data) {
+        if (data.success) {
+          PTL.editor.ctxt_gap += 2;
+          var before = PTL.editor.build_ctxt_rows(data.ctxt.before);
+          var after = PTL.editor.build_ctxt_rows(data.ctxt.after);
+          var ctxt_rows = $("tr.context-row");
+          ctxt_rows.first().before(before);
+          ctxt_rows.last().after(after);
+        } else {
+          PTL.editor.error(data.msg);
+        }
+      }
+    });
   },
 
 

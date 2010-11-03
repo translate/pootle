@@ -124,6 +124,10 @@
         <div class="translate-fuzzy-block" lang="{{ LANGUAGE_CODE }}" title="{% trans 'Toggle fuzzy state (Ctrl+Space)' %}">
           {{ form.state }} {{ form.state.label_tag }}
         </div>
+        {% comment %}Yes I know... this shouldn't be displayed on the first request{% endcomment %}
+        {% ifnotequal request.GET.filter "all" %}
+        <div><a class="morecontext tiny" title="{% trans "Display more context units." %}">{% trans "More context" %}</a></div>
+        {% endifnotequal %}
       </div>
       <!-- Translation -->
       <div id="orig{{ unit.index }}" class="translate-translation translate-original-focus" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
