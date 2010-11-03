@@ -379,13 +379,15 @@ div.translator-comments label
 {
     display: block;
     color: #999;
+    font-size: 85%;
 }
 
 div.translator-comments textarea
 {
     vertical-align: top;
+    padding: 0;
     min-height: 1em;
-    min-width: 100%; /* this won't work in IE I guess */
+    width: 100%;
     color: #666;
     font-size: 90%;
     line-height: 1.2em;
