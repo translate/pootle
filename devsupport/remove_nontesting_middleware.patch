@@ -1,0 +1,23 @@
+Index: pootle/settings.py
+===================================================================
+--- pootle/settings.py	(revision 16363)
++++ pootle/settings.py	(working copy)
+@@ -92,10 +92,8 @@
+     'pootle_misc.middleware.baseurl.BaseUrlMiddleware', # resolves paths
+     'django.middleware.transaction.TransactionMiddleware', # needs to be before anything that writes to the db
+     'pootle_misc.middleware.siteconfig.SiteConfigMiddleware', # must be early to detect the need to install or update schema, but must precede the cache middleware
+-    'django.middleware.cache.UpdateCacheMiddleware', # must be as high as possible (see above)
+     'django.middleware.http.ConditionalGetMiddleware', # support for e-tag
+     'django.middleware.gzip.GZipMiddleware', # compress responses
+-    'django.contrib.csrf.middleware.CsrfMiddleware', # protection against cross-site request forgery
+     'django.contrib.sessions.middleware.SessionMiddleware', # must be before authentication
+     'django.contrib.auth.middleware.AuthenticationMiddleware', # must be before anything user-related
+     'django.middleware.locale.LocaleMiddleware', # user-related
+@@ -105,7 +103,6 @@
+     #'pootle.middleware.check_cookies.CheckCookieMiddleware',
+     'pootle.middleware.captcha.CaptchaMiddleware', # must be early in the response cycle (close to bottom)
+     #'pootle.middleware.profile.ProfilerMiddleware',
+-    'django.middleware.cache.FetchFromCacheMiddleware' # must be last in the request cycle (at the bottom)
+ )
+ 
+ CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
