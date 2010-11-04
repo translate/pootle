@@ -8,8 +8,8 @@
       {{ form.non_field_errors }}
       {% for field in upload.form %}
       <p {% if field.help_text %}title="{{ field.help_text }}"{% endif %}>
-        {{ field.errors }}
         {{ field.label_tag }} {{ field }}
+        {{ field.errors }}
       </p>
       {% endfor %}
       <p class="buttons">
