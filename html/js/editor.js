@@ -611,7 +611,7 @@
         } else {
           if (data.success) {
             if (type == 'submission') {
-              PTL.editor.units[uid].isfuzzy = $("input#id_state").is(":checked");
+              PTL.editor.units[uid].isfuzzy = PTL.editor.isFuzzy();
               $("textarea[id^=id_target_f_]").each(function(i) {
                 PTL.editor.units[uid].target[i].text = $(this).val();
               });
