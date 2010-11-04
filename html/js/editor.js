@@ -569,6 +569,7 @@
     });
     var eclass = "edit-row";
     eclass += this.units[uid].isfuzzy ? " fuzzy-unit" : "";
+    // TODO: i18n
     var editor = (ctxt.before.length ? '<tr class="more-context before"><td colspan="2"><a class="morecontext">Show more context rows</a></td></tr>' : '') +
                  this.build_ctxt_rows(ctxt.before) +
                  '<tr id="row' + uid + '" class="' + eclass + '">' +
