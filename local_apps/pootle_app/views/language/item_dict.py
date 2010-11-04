@@ -219,21 +219,21 @@ def _gen_link_list(request, path_obj, linkfuncs):
 
 def store_translate_links(request, path_obj):
     """returns a list of links for store items in translate tab"""
-    linkfuncs = [review_link, quick_link, translate_all_link, xliff_link, download_link, update_link, commit_link]
+    linkfuncs = [quick_link, translate_all_link, xliff_link, download_link, update_link, commit_link]
     return _gen_link_list(request, path_obj, linkfuncs)
 
 def store_review_links(request, path_obj):
     """returns a list of links for store items in review tab"""
-    linkfuncs = []
+    linkfuncs = [review_link]
     return _gen_link_list(request, path_obj, linkfuncs)
 
 def directory_translate_links(request, path_obj):
     """returns a list of links for directory items in translate tab"""
-    return _gen_link_list(request, path_obj, [review_link, quick_link, translate_all_link, upload_link, zip_link, update_all_link])
+    return _gen_link_list(request, path_obj, [quick_link, translate_all_link, upload_link, zip_link, update_all_link])
 
 def directory_review_links(request, path_obj):
     """returns a list of links for directory items in review tab"""
-    return _gen_link_list(request, path_obj, [])
+    return _gen_link_list(request, path_obj, [review_link])
 
 
 ################################################################################
