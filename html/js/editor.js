@@ -309,7 +309,7 @@
   },
 
   isFuzzy: function() {
-    return $("input.fuzzycheck").is("checked");
+    return $("input.fuzzycheck").attr("checked");
   },
 
   /*
