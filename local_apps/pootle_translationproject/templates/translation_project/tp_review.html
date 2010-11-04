@@ -3,11 +3,11 @@
 {% load i18n %}
 
 {% block title %}
-{{ block.super }} » {% trans "Review" %}
+{{ block.super }} » {% trans "Quality Checks" %}
 {% endblock %}
 
 {% block breadcrumb_content %}
-{{ block.super }} » <span>{% trans "Review" %}</span>
+{{ block.super }} » <span>{% trans "Quality Checks" %}</span>
 {% endblock %}
 
 {% get_current_language as LANGUAGE_CODE %}
@@ -33,6 +33,5 @@
 {% endblock content %}
 
 {% block postcontent %}
-{% include "translation_project/translate_offline_notice.html" %}
 {% include "top_contributers_table.html" %}
 {% endblock postcontent %}
