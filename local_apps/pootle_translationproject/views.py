@@ -50,7 +50,7 @@ from pootle_app.views.language.view import get_stats_headings
 from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions
 from pootle_app.views.language.view import get_translation_project, set_request_context
-from pootle_app.project_tree import ensure_target_dir_exists
+from pootle_app.project_tree import ensure_target_dir_exists, direct_language_match_filename
 
 from pootle_store.models import Store, Unit
 from pootle_store.util import absolute_real_path, relative_real_path
@@ -290,9 +290,7 @@ def get_local_filename(translation_project, upload_filename):
     # project_tree.py! The rest of Pootle shouldn't have to care
     # whether something is GNU-style or not.
     if translation_project.file_style == "gnu" and not translation_project.is_template_project:
-        name = os.path.splitext(local_filename)[0]
-        if not (name.endswith('_'+translation_project.language.code) or \
-                name.endswith('+'+translation_project.language.code)):
+        if not direct_language_match_filename(translation_project.language.code, local_filename):
             raise ValueError(_("Invalid GNU-style file name: %(local_filename)s. It must match '%(langcode)s.%(filetype)s'.",
                              {'local_filename': local_filename,
                               'langcode': translation_project.language.code,
