@@ -173,6 +173,10 @@ def find_lang_postfix(filename):
     if match:
         return match.groups()[0]
 
+    for code in Language.objects.values_list('code', flat=True):
+        if name.endswith(code) or name.lower().endswith(code.lower()):
+            return code
+
 def translation_project_should_exist(language, project):
     """tests if there are translation files corresponding to given
     language and project"""
