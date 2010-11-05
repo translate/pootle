@@ -902,6 +902,11 @@ a.writespecial:hover
     color: #A00000;
 }
 
+.highlight
+{
+    background-color: #FFC;
+}
+
 /* FUZZY TRANSLATION */
 
 div.translate-translation

@@ -85,6 +85,11 @@ Directory contents
 
       http://laboratorium.0xab.cd/jquery/fieldselection/0.1.0/
 
+    - jquery.highlighRegex.js :
+      Plugin to highlight text on selected elements using regular expressions.
+
+      https://github.com/jbr/jQuery.highlightRegex
+
     - jquery.history.js :
       Plugin to handle AJAX history using hashes.
 

@@ -227,6 +227,8 @@
     var maxheight = $(window).height() * 0.3;
     $('textarea.expanding').TextAreaExpander('10', maxheight);
     $(".focusthis").get(0).focus();
+    var hl = PTL.editor.filter == "search" ? PTL.editor.search_text : "";
+    $("div.translation-text").highlightRegex(hl);
     $("table.translate-table").trigger("mt_ready");
   },
 
