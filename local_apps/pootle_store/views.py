@@ -63,7 +63,7 @@ def export_as_xliff(request, pootle_path):
     export_path = os.path.join('POOTLE_EXPORT', path + os.path.extsep + 'xlf')
     abs_export_path = absolute_real_path(export_path)
 
-    key = "%s:export_as_xliff"
+    key = "%s:export_as_xliff" % pootle_path
     last_export = cache.get(key)
     if not (last_export and last_export == store.get_mtime() and os.path.isfile(abs_export_path)):
         ensure_target_dir_exists(abs_export_path)
