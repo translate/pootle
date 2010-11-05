@@ -52,7 +52,11 @@ def get_supported_formats():
         formats.append(('catkeys', _('Haiku catkeys'), CatkeysFile, 'bilingual'))
     except ImportError:
         pass
-
+    try:
+        from translate.storage.csvl10n  import csvfile
+        formats.append(('csv', _('Excel CSV'), csvfile, 'bilingual'))
+    except ImportError:
+        pass
     # Monolingual formats
     try:
         from translate.storage.properties import javafile
