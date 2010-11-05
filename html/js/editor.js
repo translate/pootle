@@ -105,6 +105,11 @@
     $("div#filter-checks select").live("change", this.filter_checks);
     $("a.morecontext").live("click", this.get_more_context);
 
+    /* Search */
+    $("input#id_search").live("keypress", function(e) {
+        if (e.keyCode == 13) { e.preventDefault(); PTL.editor.search(); }
+    });
+
     /* Bind hotkeys */
     shortcut.add('ctrl+return', function() {
       if (PTL.editor.isSuggestMode()) {
@@ -184,6 +189,12 @@
           PTL.editor.prev_filter = PTL.editor.filter;
           PTL.editor.checks = parts[1] == "checks" ? parts[2].split(',') : [];
           PTL.editor.filter = parts[1];
+          PTL.editor.get_meta(false);
+          PTL.editor.display_edit_unit(PTL.editor.active_uid);
+        break;
+        case "search":
+          PTL.editor.filter = parts[0];
+          PTL.editor.search_text = parts[1];
           PTL.editor.get_meta(false);
           PTL.editor.display_edit_unit(PTL.editor.active_uid);
         break;
@@ -355,8 +366,14 @@
     var append = with_uid ? this.active_uid : "";
     var meta_url = l(this.store + "/meta/" + append);
     var req_data = {filter: this.filter};
+    // TODO: refactor getting request vars
     if (this.checks.length) {
       req_data.checks = this.checks.join(",");
+    }
+    if (this.filter == "search") {
+      req_data.search = this.search_text;
+      // TODO: parse and pass search fields
+      req_data.sfields = "source";
     }
     $.ajax({
       url: meta_url,
@@ -398,6 +415,11 @@
     var req_data = {page: page, filter: this.filter};
     if (this.checks.length) {
       req_data.checks = this.checks.join(",");
+    }
+    if (this.filter == "search") {
+      req_data.search = this.search_text;
+      // TODO: parse and pass search fields
+      req_data.sfields = "source";
     }
     $.ajax({
       url: view_for_url,
@@ -547,6 +569,11 @@
     var req_data = {page: this.current_page, filter: this.filter};
     if (this.checks.length) {
       req_data.checks = this.checks.join(",");
+    }
+    if (this.filter == "search") {
+      req_data.search = this.search_text;
+      // TODO: parse and pass search fields
+      req_data.sfields = "source";
     }
     var widget = '';
     var ctxt = {before: [], after: []};
@@ -748,6 +775,20 @@
         }
       }
     });
+  },
+
+
+  /*
+   * Search
+   */
+  search: function() {
+    // XXX: we can parse search text to allow operators in searches
+    // example: "in:source foo"
+    var text = $("input#id_search").val();
+    if (text) {
+      var newhash = "search/" + text;
+      $.history.load(newhash);
+    }
   },
 
 

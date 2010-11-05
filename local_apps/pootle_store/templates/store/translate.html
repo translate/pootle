@@ -49,7 +49,9 @@ $(document).ready (function() {
 {% endblock extra_head %}
 
 {% block search %}
+{% comment %}
 {% render_search search_form "?" %}
+{% endcomment %}
 {% endblock %}
 
 {% block innernav %}

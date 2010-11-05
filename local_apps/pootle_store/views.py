@@ -480,7 +480,7 @@ def translate(request, pootle_path):
 # Views used with XMLHttpRequest requests.
 #
 
-def _filter_queryset(qdict, qs):
+def _filter_queryset(qdict, qs, tp):
     """
     Filters the given C{qs} unit queryset by the criterion specified
     in the C{qdict} POST/GET parameters.
@@ -498,6 +498,10 @@ def _filter_queryset(qdict, qs):
             filtered = qs.filter(state=FUZZY)
         elif filter_by == "suggestions":
             filtered = qs.exclude(suggestion=None)
+        elif filter_by == "search":
+            search_form = SearchForm(qdict)
+            if search_form.is_valid():
+                filtered = get_search_step_query(tp, search_form, qs)
 
     if 'checks' in qdict:
         checks = qdict['checks'].split(',')
@@ -627,7 +631,8 @@ def get_tp_metadata(request, pootle_path, uid=None):
             json["success"] = False
             json["msg"] = _("You do not have rights to access translation mode.")
         else:
-            units_qs = _filter_queryset(request.GET, store.units)
+            units_qs = _filter_queryset(request.GET, store.units,
+                                        store.translation_project)
             unit_rows = profile.get_unit_rows()
 
             try:
@@ -686,7 +691,8 @@ def get_view_units(request, pootle_path, limit=0):
         else:
             if not limit:
                 limit = profile.get_unit_rows()
-            units_qs = _filter_queryset(request.GET, store.units)
+            units_qs = _filter_queryset(request.GET, store.units,
+                                        store.translation_project)
             json["units"] = _filter_view_units(units_qs, int(page), int(limit))
             json["success"] = True
     except Store.DoesNotExist:
@@ -779,7 +785,8 @@ def get_edit_unit(request, pootle_path, uid):
 
     current_page = int(request.GET.get('page', 1))
     all_units = unit.store.units
-    units_qs = _filter_queryset(request.GET, all_units)
+    units_qs = _filter_queryset(request.GET, all_units,
+                                store.translation_project)
     unit_rows = profile.get_unit_rows()
     current_unit = unit
     if current_unit is not None:
@@ -898,7 +905,8 @@ def process_submit(request, pootle_path, uid, type):
 
                 current_page = int(request.POST.get('page', 1))
                 all_units = unit.store.units
-                units_qs = _filter_queryset(request.POST, all_units)
+                units_qs = _filter_queryset(request.POST, all_units,
+                                            unit.store.translation_project)
                 unit_rows = profile.get_unit_rows()
                 current_unit = unit
                 if current_unit is not None:
