@@ -165,7 +165,7 @@ def add_files(translation_project, ignored_files, ext, real_dir, db_dir, file_fi
 
 def find_lang_postfix(filename):
     """finds the language code at end of a filename"""
-    name = os.path.splitext(filename)[0]
+    name = os.path.splitext(os.path.basename(filename))[0]
     if LANGCODE_RE.match(name):
         return name
 
