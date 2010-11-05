@@ -53,7 +53,7 @@ from pootle_store.models import Store, Unit
 from pootle_store.forms import unit_form_factory, highlight_whitespace
 from pootle_store.templatetags.store_tags import fancy_highlight, find_altsrcs, get_sugg_list, highlight_diffs, pluralize_source, pluralize_target
 from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED, absolute_real_path, ajax_required
-
+from pootle_store.filetypes import factory_classes, is_monolingual
 
 def export_as_xliff(request, pootle_path):
     """export given file to xliff for offline translation"""
@@ -72,6 +72,31 @@ def export_as_xliff(request, pootle_path):
         outputstore = store.convert(PoXliffFile)
         outputstore.switchfile(store.name, createifmissing=True)
         fd, tempstore = tempfile.mkstemp(prefix=store.name, suffix='.xlf')
+        os.close(fd)
+        outputstore.savefile(tempstore)
+        shutil.move(tempstore, abs_export_path)
+        cache.set(key, store.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
+    return redirect('/export/' + export_path)
+
+def export_as_type(request, pootle_path, filetype):
+    """export given file to xliff for offline translation"""
+    if pootle_path[0] != '/':
+        pootle_path = '/' + pootle_path
+    store = get_object_or_404(Store, pootle_path=pootle_path)
+    klass = factory_classes.get(filetype, None)
+    if not klass or is_monolingual(klass) or pootle_path.endswith(filetype):
+        raise ValueError
+
+    path, ext = os.path.splitext(store.real_path)
+    export_path = os.path.join('POOTLE_EXPORT', path + os.path.extsep + filetype)
+    abs_export_path = absolute_real_path(export_path)
+
+    key = "%s:export_as_%s" % (pootle_path, filetype)
+    last_export = cache.get(key)
+    if not (last_export and last_export == store.get_mtime() and os.path.isfile(abs_export_path)):
+        ensure_target_dir_exists(abs_export_path)
+        outputstore = store.convert(klass)
+        fd, tempstore = tempfile.mkstemp(prefix=store.name, suffix=os.path.extsep + filetype)
         os.close(fd)
         outputstore.savefile(tempstore)
         shutil.move(tempstore, abs_export_path)
