@@ -358,6 +358,24 @@
     }
   },
 
+  /*
+   * Gets common request data
+   */
+  get_req_data: function() {
+    var req_data = {filter: this.filter};
+    if (this.filter == "checks" && this.checks.length) {
+      req_data.checks = this.checks.join(",");
+    }
+    if (this.filter == "search") {
+      req_data.search = this.search_text;
+      req_data.sfields = [];
+      $("div.advancedsearch input:checked").each(function() {
+        req_data.sfields.push($(this).val());
+      });
+    }
+    return req_data;
+  },
+
 
   /*
    * Unit navigation, display, submission
@@ -367,19 +385,7 @@
   get_meta: function(with_uid) {
     var append = with_uid ? this.active_uid : "";
     var meta_url = l(this.store + "/meta/" + append);
-    var req_data = {filter: this.filter};
-    // TODO: refactor getting request vars
-    if (this.checks.length) {
-      req_data.checks = this.checks.join(",");
-    }
-    if (this.filter == "search") {
-      req_data.search = this.search_text;
-      // TODO: parse and pass search fields
-      req_data.sfields = [];
-      $("div.advancedsearch input:checked").each(function() {
-        req_data.sfields.push($(this).val());
-      });
-    }
+    var req_data = this.get_req_data();
     $.ajax({
       url: meta_url,
       async: false,
@@ -417,18 +423,7 @@
     var url_str = this.store + '/view';
     url_str = limit ? url_str + '/limit/' + limit : url_str;
     var view_for_url = l(url_str);
-    var req_data = {page: page, filter: this.filter};
-    if (this.checks.length) {
-      req_data.checks = this.checks.join(",");
-    }
-    if (this.filter == "search") {
-      req_data.search = this.search_text;
-      // TODO: parse and pass search fields
-      req_data.sfields = [];
-      $("div.advancedsearch input:checked").each(function() {
-        req_data.sfields.push($(this).val());
-      });
-    }
+    var req_data = $.extend({page: page}, this.get_req_data());
     $.ajax({
       url: view_for_url,
       data: req_data,
@@ -574,18 +569,7 @@
   /* Loads the edit unit 'uid' */
   get_edit_unit: function(uid) {
     var edit_url = l(this.store + '/edit/' + uid);
-    var req_data = {page: this.current_page, filter: this.filter};
-    if (this.checks.length) {
-      req_data.checks = this.checks.join(",");
-    }
-    if (this.filter == "search") {
-      req_data.search = this.search_text;
-      // TODO: parse and pass search fields
-      req_data.sfields = [];
-      $("div.advancedsearch input:checked").each(function() {
-        req_data.sfields.push($(this).val());
-      });
-    }
+    var req_data = $.extend({page: this.current_page}, this.get_req_data);
     var widget = '';
     var ctxt = {before: [], after: []};
     $.ajax({
