@@ -49,6 +49,7 @@
         $(document).ready(function() {
             initZoom();
             $("[title], [original-title]").tipsy({gravity: $.fn.tipsy.autoNSedge, html: true, fade: true, delayIn: 750, live: true});
+            $.ajaxSetup({ traditional: true });
         });
         </script>
         {% endblock js %}

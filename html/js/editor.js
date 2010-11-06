@@ -375,7 +375,10 @@
     if (this.filter == "search") {
       req_data.search = this.search_text;
       // TODO: parse and pass search fields
-      req_data.sfields = "source";
+      req_data.sfields = [];
+      $("div.advancedsearch input:checked").each(function() {
+        req_data.sfields.push($(this).val());
+      });
     }
     $.ajax({
       url: meta_url,
@@ -421,7 +424,10 @@
     if (this.filter == "search") {
       req_data.search = this.search_text;
       // TODO: parse and pass search fields
-      req_data.sfields = "source";
+      req_data.sfields = [];
+      $("div.advancedsearch input:checked").each(function() {
+        req_data.sfields.push($(this).val());
+      });
     }
     $.ajax({
       url: view_for_url,
@@ -575,7 +581,10 @@
     if (this.filter == "search") {
       req_data.search = this.search_text;
       // TODO: parse and pass search fields
-      req_data.sfields = "source";
+      req_data.sfields = [];
+      $("div.advancedsearch input:checked").each(function() {
+        req_data.sfields.push($(this).val());
+      });
     }
     var widget = '';
     var ctxt = {before: [], after: []};

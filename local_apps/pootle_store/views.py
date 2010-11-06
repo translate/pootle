@@ -524,9 +524,10 @@ def _filter_queryset(qdict, qs, tp):
         elif filter_by == "suggestions":
             filtered = qs.exclude(suggestion=None)
         elif filter_by == "search":
-            search_form = SearchForm(qdict)
-            if search_form.is_valid():
-                filtered = get_search_step_query(tp, search_form, qs)
+            if 'search' in qdict and 'sfields' in qdict:
+                search_form = SearchForm(qdict)
+                if search_form.is_valid():
+                    filtered = get_search_step_query(tp, search_form, qs)
 
     if 'checks' in qdict:
         checks = qdict['checks'].split(',')
