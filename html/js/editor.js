@@ -633,6 +633,8 @@
     var submit_url = l(PTL.editor.store + '/process/' + uid + '/' + type);
     // Serialize data to be sent
     var req_data = $("form#" + form_id).serialize();
+    // TODO: align with the way we're using in other places for getting
+    // request data
     req_data += "&page=" + PTL.editor.current_page + "&filter=" + PTL.editor.filter;
     if (PTL.editor.checks.length) {
       req_data += "&checks=" + PTL.editor.checks.join(",");
