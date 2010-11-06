@@ -2,6 +2,12 @@
  * TRANSLATE PAGE
  */
 
+/* TEMPORAL UGLY THING: PLEASE REMOVE! */
+div.advancedsearch
+{
+    bottom: 3em;
+}
+
 /* MAIN TOOLBAR */
 
 textarea#view_unit
