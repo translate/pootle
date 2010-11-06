@@ -136,7 +136,6 @@ def get_alt_src_langs(request, profile, translation_project):
     return langs
 
 def get_non_indexed_search_step_query(form, units_queryset):
-    result = units_queryset
     words = form.cleaned_data['search'].split()
     result = units_queryset.none()
 
