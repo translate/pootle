@@ -91,7 +91,7 @@ $(document).ready (function() {
   -->
   {% endif %}
 
-  <div class="label">Search:</div>
+  <!--<div class="label">Search:</div>-->
   <div id="__search" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
     <form action="{{ search_action }}" method="get" id="searchform" title="Search (Ctrl+Shift+S)<br/>Type in, then press Enter to search">
       <label class="inputHint" for="id_search">{% trans "Search" %}</label>{{ search_form.search }}
