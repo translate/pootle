@@ -228,9 +228,24 @@
     var maxheight = $(window).height() * 0.3;
     $('textarea.expanding').TextAreaExpander('10', maxheight);
     $(".focusthis").get(0).focus();
-    var hl = PTL.editor.filter == "search" ? PTL.editor.search_text : "";
-    $("div.translation-text").highlightRegex(new RegExp(hl, "i"));
+    PTL.editor.hl_search();
     $("table.translate-table").trigger("mt_ready");
+  },
+
+  /*
+   * Highlights search results
+   */
+  hl_search: function() {
+    var hl = PTL.editor.filter == "search" ? PTL.editor.search_text : "";
+    var sel_map = {notes: "div.developer-comments",
+                   locations: "div.translate-locations",
+                   source: "td.translate-original, div.original div.translation-text",
+                   target: "td.translate-translation"};
+    var sel = [];
+    $("div.advancedsearch input:checked").each(function() {
+     sel.push(sel_map[$(this).val()]);
+    });
+    $(sel.join(", ")).highlightRegex(new RegExp(hl, "i"));
   },
 
   /*
