@@ -481,7 +481,7 @@
   /* Gets uids that should be displayed before/after 'uid' */
   get_uids_before_after: function(uid) {
     var uids = {before: [], after: []};
-    var limit = (this.pager.per_page - 1) / 2;
+    var limit = parseInt((this.pager.per_page - 1) / 2);
     var current = this.units[uid];
     var prevnext = {prev: "before", next: "after"};
     for (var m in prevnext) {
