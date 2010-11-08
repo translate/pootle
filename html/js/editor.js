@@ -228,7 +228,7 @@
     $('textarea.expanding').TextAreaExpander('10', maxheight);
     $(".focusthis").get(0).focus();
     var hl = PTL.editor.filter == "search" ? PTL.editor.search_text : "";
-    $("div.translation-text").highlightRegex(hl);
+    $("div.translation-text").highlightRegex(new RegExp(hl, "i"));
     $("table.translate-table").trigger("mt_ready");
   },
 
