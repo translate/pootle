@@ -569,7 +569,7 @@
   /* Loads the edit unit 'uid' */
   get_edit_unit: function(uid) {
     var edit_url = l(this.store + '/edit/' + uid);
-    var req_data = $.extend({page: this.current_page}, this.get_req_data);
+    var req_data = $.extend({page: this.current_page}, this.get_req_data());
     var widget = '';
     var ctxt = {before: [], after: []};
     $.ajax({
