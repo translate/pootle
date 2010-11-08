@@ -37,6 +37,7 @@
     this.checks = [];
     this.ctxt_gap = 0;
     this.keepstate = false;
+    this.cp_re = new RegExp("^(<[^>]+>|\\[n\|t]|\\W$^\\n)*(\\b|$)", "gm");
 
     /* Compile templates */
     this.tmpl = {vunit: $.template($("#view_unit").html())}
@@ -266,8 +267,14 @@
         var newval = clean_sources[i] || clean_sources[max];
         $(targets.get(i)).val(newval);
       }
-      $(targets).get(0).focus();
+      var active = $(targets).get(0);
+      active.focus();
       PTL.editor.goFuzzy();
+      /* Place cursor at start of target text */
+      PTL.editor.cp_re.exec($(active).val());
+      var i = PTL.editor.cp_re.lastIndex;
+      $(active).caret(i, i);
+      PTL.editor.cp_re.lastIndex = 0;
     }
   },
 
