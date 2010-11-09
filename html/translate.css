@@ -2,12 +2,6 @@
  * TRANSLATE PAGE
  */
 
-/* TEMPORAL UGLY THING: PLEASE REMOVE! */
-div.advancedsearch
-{
-    bottom: 3em;
-}
-
 /* MAIN TOOLBAR */
 
 textarea#view_unit
@@ -41,13 +35,21 @@ body.zoom-out-1 #toolbar
     height: 47px;
 }
 
+body.zoom-out-1 .xhr-message
+{
+    bottom: 48px;
+}
+
 body.zoom-out-2 #toolbar
 {
     font-size: 90%;
     height: 44px;
 }
 
-
+body.zoom-out-2 .xhr-message
+{
+    bottom: 45px;
+}
 
 div#toolbar > div
 {
@@ -524,8 +526,6 @@ div.translator-comments + #suggestion-container
 
 .suggestion-block .rejectsugg img
 {
-    position: absolute;
-    top: 1.95em;
     right: 0.5em;
     cursor: pointer;
 }
@@ -538,8 +538,6 @@ div.translator-comments + #suggestion-container
 
 .suggestion-block .acceptsugg img
 {
-    position: absolute;
-    top: 1.95em;
     right: 2.5em;
     cursor: pointer;
 }
@@ -553,6 +551,8 @@ div.translator-comments + #suggestion-container
 .suggestion-block .rejectsugg img,
 .suggestion-block .acceptsugg img
 {
+    position: absolute;
+    top: 50%;
     filter:alpha(opacity=10);
     -moz-opacity: 0.1;
     -khtml-opacity: 0.1;
@@ -584,13 +584,13 @@ div.translator-comments + #suggestion-container
     color: #444;
     line-height: 140%;
     padding: 0.5em;
-    padding-right: 3em;
+    padding-right: 5em;
 }
 
 .translate-translation[dir="rtl"] .suggestion
 {
     padding-right: 0.5em;
-    padding-left: 3em;
+    padding-left: 5em;
 }
 
 .suggestion:hover {

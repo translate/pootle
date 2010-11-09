@@ -157,9 +157,6 @@
           <div id="suggestion{{ sugg.id }}" class="suggestion-block">
             <div class="suggestion-title">{{ sugtitle }}</div>
             <div class="suggestion">
-              {% for i, target, diff, title in sugg|pluralize_diff_sugg %}
-                <div class="suggdiff" id="suggdiff-{{sugg.id}}-{{i}}" lang="{{ language.code }}" dir="{{ language.get_direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ diff }}</div>
-              {% endfor %}
               {% if canreview %}
                 <input type="hidden" id="sugg-{{sugg.id }}" class="suggid" name="suggid" value="{{ sugg.id }}" />
                 <a accesskey="a" id="accept-{{ sugg.id }}" class="acceptsugg"><img src='{{ "images/accept.png"|m }}' title="{% trans 'Accept suggestion' %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
@@ -172,6 +169,9 @@
                 {% endifequal %}
                 {% endif %}
               {% endif %}
+              {% for i, target, diff, title in sugg|pluralize_diff_sugg %}
+                <div class="suggdiff" id="suggdiff-{{sugg.id}}-{{i}}" lang="{{ language.code }}" dir="{{ language.get_direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ diff }}</div>
+              {% endfor %}
             </div>
           </div>
           {% endfor %}

@@ -488,11 +488,11 @@ html[dir="rtl"] #zoom {
 {
     position: fixed;
     height: 2em;
-    bottom: 50px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    z-index: 9999;
+    bottom: 51px;
+    left: 50%;
+    width: 400px;
+    margin-left: -200px;
+    z-index: 1001;
     text-align: center;
 }
 
@@ -1674,6 +1674,13 @@ div#search[dir="rtl"]
     left: 2em;
 }
 
+div#toolbar_search
+{
+    position: relative;
+}
+
+
+div#toolbar_search input[type=text],
 div#search input[type=text]
 {
     border: 1px solid #76b0bf;
@@ -1681,6 +1688,7 @@ div#search input[type=text]
     width: 145px;
 }
 
+div#toolbar_search .advancedlink,
 div#search .advancedlink
 {
     width: 20px;
@@ -1692,6 +1700,7 @@ div#search .advancedlink
     vertical-align: top; /* IE alignment fix */
 }
 
+div#toolbar_search[dir="rtl"] .advancedlink,
 div#search[dir="rtl"] .advancedlink
 {
     margin: 0 -5px 0 0;
@@ -1704,20 +1713,32 @@ div.advancedsearch
     border-left: 1px solid #76b0bf;
     border-right: 1px solid #76b0bf;
     overflow: auto;
-    padding-bottom: 3px;
-    padding-left: 3px;
-    padding-right: 8px;
+    padding: 5px;
     position: absolute;
-    z-index: 2;
+    z-index: 2000;
     display: none;
-    margin-top: 0;
-    width: 155px;
+    width: 135px;
 }
 
-#search[dir="rtl"] div.advancedsearch
+div.advancedsearch li {
+    padding: 0.4em;
+    font-size: 90%;
+}
+
+div.advancedsearch li input {
+    vertical-align: top;
+}
+
+
+div.search-container
 {
-    padding-left: 8px;
-    padding-right: 3px;
+    position: relative;
+}
+
+div#toolbar_search div.advancedsearch {
+    border-bottom: none;
+    border-top: 1px solid #76b0bf;
+    bottom: 20px;
 }
 
 div.nodefaultsearch

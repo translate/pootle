@@ -93,22 +93,24 @@ $(document).ready (function() {
   {% endif %}
 
   <!--<div class="label">Search:</div>-->
-  <div id="__search" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-    <form action="{{ search_action }}" method="get" id="searchform" title="Search (Ctrl+Shift+S)<br/>Type in, then press Enter to search">
-      <div class="advancedsearch">
-        {{ search_form.sfields }}
-      </div>
-      <label class="inputHint" for="id_search">{% trans "Search" %}</label>{{ search_form.search }}
-      <a class="advancedlink">
-        {% if LANGUAGE_BIDI %}
-        <img src='{{ "images/sarrow_down_rtl.png"|m }}' alt="{{ advanced_search_title }}" title="{{ advanced_search_title }}" class="togglesearch" />
-        <img src='{{ "images/sarrow_up_rtl.png"|m }}' alt="{{ advanced_search_title }}" title="{{ advanced_search_title }}" class="togglesearch" style="display: none;"/>
-        {% else %}
-        <img src='{{ "images/sarrow_down.png"|m }}' alt="{{ advanced_search_title }}" title="{{ advanced_search_title }}" class="togglesearch" />
-        <img src='{{ "images/sarrow_up.png"|m }}' alt="{{ advanced_search_title }}" title="{{ advanced_search_title }}" class="togglesearch" style="display: none;"/>
-        {% endif %}
-      </a>
-    </form>
+  <div id="toolbar_search" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+    <div class="search-container">
+      <form action="{{ search_action }}" method="get" id="searchform" title="Search (Ctrl+Shift+S)<br/>Type in, then press Enter to search">
+        <div class="advancedsearch">
+          {{ search_form.sfields }}
+        </div>
+        <label class="inputHint" for="id_search">{% trans "Search" %}</label>{{ search_form.search }}
+        <a class="advancedlink">
+          {% if LANGUAGE_BIDI %}
+          <img src='{{ "images/sarrow_down_rtl.png"|m }}' alt="{{ advanced_search_title }}" title="{{ advanced_search_title }}" class="togglesearch" />
+          <img src='{{ "images/sarrow_up_rtl.png"|m }}' alt="{{ advanced_search_title }}" title="{{ advanced_search_title }}" class="togglesearch" style="display: none;"/>
+          {% else %}
+          <img src='{{ "images/sarrow_down.png"|m }}' alt="{{ advanced_search_title }}" title="{{ advanced_search_title }}" class="togglesearch" />
+          <img src='{{ "images/sarrow_up.png"|m }}' alt="{{ advanced_search_title }}" title="{{ advanced_search_title }}" class="togglesearch" style="display: none;"/>
+          {% endif %}
+        </a>
+      </form>
+    </div>
   </div>
 
   <div class="label">Filter by:</div>
