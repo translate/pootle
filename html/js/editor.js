@@ -97,8 +97,8 @@
     });
     $("input.submit, input.suggest").live("click", this.process_submit);
     $("input.previous, input.next").live("click", this.goto_prevnext);
-    $("#translate-suggestion-container .rejectsugg").live("click", this.reject_suggestion);
-    $("#translate-suggestion-container .acceptsugg").live("click", this.accept_suggestion);
+    $("#suggestion-container .rejectsugg").live("click", this.reject_suggestion);
+    $("#suggestion-container .acceptsugg").live("click", this.accept_suggestion);
     $("#translate-checks-block .rejectcheck").live("click", this.reject_check);
 
     /* Filtering */
@@ -837,11 +837,11 @@
               for (var i=0; i<data.length && i<3; i++) {
                 units += '<div id="tm' + i + '" class="suggestion-block" title="' + data[i].quality + '">';
                 units += '<div class="suggestion-title">amaGama</div>';
-                units += '<div class="translate-suggestion">';
+                units += '<div class="suggestion">';
                 units += '<div>' + data[i].source + '</div><div>';
                 units += data[i].target + '</div></div></div>';
               }
-              $("div#translate-suggestion-container").append(units);
+              $("div#suggestion-container").append(units);
             }
            });
   },
@@ -856,7 +856,7 @@
            function(rdata) {
              element.fadeOut(200, function() {
                $(this).remove();
-               if (!$("div#translate-suggestion-container div.translate-suggestion").length) {
+               if (!$("div#suggestion-container div.suggestion").length) {
                  $("input.next").trigger("click");
                }
              });
@@ -886,7 +886,7 @@
              PTL.editor.units[uid].isfuzzy = false;
              element.fadeOut(200, function() {
                $(this).remove();
-               if (!$("div#translate-suggestion-container div.translate-suggestion").length) {
+               if (!$("div#suggestion-container div.suggestion").length) {
                  $("input.next").trigger("click");
                }
              });

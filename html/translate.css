@@ -499,12 +499,12 @@ body.zoom-out-2 .sidebar
 
 /* SUGGESTIONS */
 
-div.translator-comments + #translate-suggestion-container
+div.translator-comments + #suggestion-container
 {
     margin-top: 0.5em;
 }
 
-#translate-suggestion-container
+#suggestion-container
 {
     margin-top: 1.8em;
     margin-bottom: 1em;
@@ -577,7 +577,7 @@ div.translator-comments + #translate-suggestion-container
     opacity: 1;
 }
 
-.translate-suggestion
+.suggestion
 {
     background-color: #f1f7e4;
     border: 1px dotted #ccc;
@@ -587,13 +587,13 @@ div.translator-comments + #translate-suggestion-container
     padding-right: 3em;
 }
 
-.translate-translation[dir="rtl"] .translate-suggestion
+.translate-translation[dir="rtl"] .suggestion
 {
     padding-right: 0.5em;
     padding-left: 3em;
 }
 
-.translate-suggestion:hover {
+.suggestion:hover {
     background-color: #fff;
 }
 

@@ -151,12 +151,12 @@
         </div>
         {% endif %}
         <!-- Suggestions from users and TM -->
-        <div id="translate-suggestion-container"> 
+        <div id="suggestion-container"> 
         {% if suggestions %}
           {% for sugg, sugtitle in suggestions %}
           <div id="suggestion{{ sugg.id }}" class="suggestion-block">
             <div class="suggestion-title">{{ sugtitle }}</div>
-            <div class="translate-suggestion">
+            <div class="suggestion">
               {% for i, target, diff, title in sugg|pluralize_diff_sugg %}
                 <div class="suggdiff" id="suggdiff-{{sugg.id}}-{{i}}" lang="{{ language.code }}" dir="{{ language.get_direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ diff }}</div>
               {% endfor %}
