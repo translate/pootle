@@ -544,6 +544,7 @@
                      this.get_edit_unit(uid) +
                      this.build_rows(uids.after);
       this.redraw(newtbody);
+      this.get_tm_units();
     }
   },
 
@@ -812,8 +813,34 @@
 
 
   /*
-   * Suggestions handling
+   * Suggestions
    */
+
+  /* Gets TM suggestions from amaGama */
+  get_tm_units: function() {
+    // XXX: hard-coded source and target languages for now,
+    //      the server is experimental!
+    // var src = this.meta.source_lang;
+    // var tgt = this.meta.target_lang;
+    var src = "en";
+    var tgt = "ar";
+    var stext = $($("input[id^=id_source_f_]").get(0)).val();
+    var tm_url = "http://amagama.locamotion.org/tmserver/";
+    tm_url += src + "/" + tgt + "/unit/" + stext + "?jsoncallback=?";
+    $.ajax({url: tm_url,
+            async: true,
+            dataType: 'jsonp',
+            success: function(data) {
+              // FIXME: this just retrieves the first four results
+              // we could limit based on a threshold too.
+              for (var i=0; i<data.length && i<3; i++) {
+                console.log("Source: " + data[i].source);
+                console.log("Target: " + data[i].target);
+                console.log("Quality: " + data[i].quality);
+              }
+            }
+           });
+  },
 
   /* Rejects a suggestion */
   reject_suggestion: function() {
