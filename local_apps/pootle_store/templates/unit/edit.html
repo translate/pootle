@@ -154,7 +154,7 @@
         <div id="translate-suggestion-container"> 
         {% if suggestions %}
           {% for sugg, sugtitle in suggestions %}
-          <div id="suggestion{{ sugg.id }}" class="translate-suggestion-block">
+          <div id="suggestion{{ sugg.id }}" class="suggestion-block">
             <div class="suggestion-title">{{ sugtitle }}</div>
             <div class="translate-suggestion">
               {% for i, target, diff, title in sugg|pluralize_diff_sugg %}

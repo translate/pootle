@@ -510,19 +510,19 @@ div.translator-comments + #translate-suggestion-container
     margin-bottom: 1em;
 }
 
-.translate-suggestion-block
+.suggestion-block
 {
     position: relative;
     margin-bottom: 0.5em;
 }
 
-.translate-suggestion-block .suggestion-title
+.suggestion-block .suggestion-title
 {
     color: #999;
     font-size: 85%;
 }
 
-.translate-suggestion-block .rejectsugg img
+.suggestion-block .rejectsugg img
 {
     position: absolute;
     top: 1.95em;
@@ -530,13 +530,13 @@ div.translator-comments + #translate-suggestion-container
     cursor: pointer;
 }
 
-.translate-suggestion-block .rejectsugg img[dir="rtl"]
+.suggestion-block .rejectsugg img[dir="rtl"]
 {
     left: 0.5em;
     right: auto;
 }
 
-.translate-suggestion-block .acceptsugg img
+.suggestion-block .acceptsugg img
 {
     position: absolute;
     top: 1.95em;
@@ -544,14 +544,14 @@ div.translator-comments + #translate-suggestion-container
     cursor: pointer;
 }
 
-.translate-suggestion-block .acceptsugg img[dir="rtl"]
+.suggestion-block .acceptsugg img[dir="rtl"]
 {
     left: 2.5em;
     right: auto;
 }
 
-.translate-suggestion-block .rejectsugg img,
-.translate-suggestion-block .acceptsugg img
+.suggestion-block .rejectsugg img,
+.suggestion-block .acceptsugg img
 {
     filter:alpha(opacity=10);
     -moz-opacity: 0.1;
@@ -559,8 +559,8 @@ div.translator-comments + #translate-suggestion-container
     opacity: 0.1;
 }
 
-.translate-suggestion-block:hover .rejectsugg img,
-.translate-suggestion-block:hover .acceptsugg img
+.suggestion-block:hover .rejectsugg img,
+.suggestion-block:hover .acceptsugg img
 {
     filter:alpha(opacity=50);
     -moz-opacity: 0.5;
@@ -568,8 +568,8 @@ div.translator-comments + #translate-suggestion-container
     opacity: 0.5;
 }
 
-.translate-suggestion-block .rejectsugg img:hover,
-.translate-suggestion-block .acceptsugg img:hover
+.suggestion-block .rejectsugg img:hover,
+.suggestion-block .acceptsugg img:hover
 {
     filter:alpha(opacity=100);
     -moz-opacity: 1;
