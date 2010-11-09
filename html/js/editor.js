@@ -162,64 +162,68 @@
         async: false,
         dataType: 'script',
         success: function() {
+          setTimeout(function() {
+            PTL.editor.mt[backend].init();
+          }, 0);
           $("table.translate-table").live("mt_ready", PTL.editor.mt[backend].ready);
-          PTL.editor.mt[backend].init();
         }
       });
     });
 
     /* History support */
-    $.history.init(function(hash) {
-      var parts = hash.split("/");
-      switch (parts[0]) {
-        case "unit":
-          var uid = parseInt(parts[1]);
-          if (uid && !isNaN(uid)) {
-            // Take care when we want to access a unit directly from a permalink
-            if (PTL.editor.active_uid != uid
-                && PTL.editor.units[uid] == undefined) {
-              PTL.editor.active_uid = uid;
+    setTimeout(function() {
+      $.history.init(function(hash) {
+        var parts = hash.split("/");
+        switch (parts[0]) {
+          case "unit":
+            var uid = parseInt(parts[1]);
+            if (uid && !isNaN(uid)) {
+              // Take care when we want to access a unit directly from a permalink
+              if (PTL.editor.active_uid != uid
+                  && PTL.editor.units[uid] == undefined) {
+                PTL.editor.active_uid = uid;
+                PTL.editor.get_meta(true);
+              }
+              PTL.editor.display_edit_unit(uid);
+            }
+          break;
+          case "filter":
+            // Save previous states in case there are no results
+            PTL.editor.prev_checks = PTL.editor.checks;
+            PTL.editor.prev_filter = PTL.editor.filter;
+            PTL.editor.checks = parts[1] == "checks" ? parts[2].split(',') : [];
+            PTL.editor.filter = parts[1];
+            PTL.editor.get_meta(false);
+            PTL.editor.display_edit_unit(PTL.editor.active_uid);
+          break;
+          case "search":
+            PTL.editor.filter = parts[0];
+            PTL.editor.search_text = parts[1];
+            PTL.editor.get_meta(false);
+            PTL.editor.display_edit_unit(PTL.editor.active_uid);
+          break;
+          case "page":
+            var p = parseInt(parts[1]);
+            if (p && !isNaN(p)) {
+              if (!(p in PTL.editor.pages_got)) {
+                PTL.editor.get_view_units(false, p);
+              }
+              var which = parseInt(PTL.editor.pages_got[p].length / 2);
+              var uid = PTL.editor.pages_got[p][which];
               PTL.editor.get_meta(true);
+              PTL.editor.display_edit_unit(uid);
             }
-            PTL.editor.display_edit_unit(uid);
-          }
-        break;
-        case "filter":
-          // Save previous states in case there are no results
-          PTL.editor.prev_checks = PTL.editor.checks;
-          PTL.editor.prev_filter = PTL.editor.filter;
-          PTL.editor.checks = parts[1] == "checks" ? parts[2].split(',') : [];
-          PTL.editor.filter = parts[1];
-          PTL.editor.get_meta(false);
-          PTL.editor.display_edit_unit(PTL.editor.active_uid);
-        break;
-        case "search":
-          PTL.editor.filter = parts[0];
-          PTL.editor.search_text = parts[1];
-          PTL.editor.get_meta(false);
-          PTL.editor.display_edit_unit(PTL.editor.active_uid);
-        break;
-        case "page":
-          var p = parseInt(parts[1]);
-          if (p && !isNaN(p)) {
-            if (!(p in PTL.editor.pages_got)) {
-              PTL.editor.get_view_units(false, p);
-            }
-            var which = parseInt(PTL.editor.pages_got[p].length / 2);
-            var uid = PTL.editor.pages_got[p][which];
+          break;
+          default:
+            /* Retrieve metadata used for this query */
             PTL.editor.get_meta(true);
-            PTL.editor.display_edit_unit(uid);
-          }
-        break;
-        default:
-          /* Retrieve metadata used for this query */
-          PTL.editor.get_meta(true);
 
-          /* Editor is ready to be used at this stage */
-          $("table.translate-table").trigger("editor_ready");
-        break;
-      }
-    }, {'unescape': true});
+            /* Editor is ready to be used at this stage */
+            $("table.translate-table").trigger("editor_ready");
+          break;
+        }
+      }, {'unescape': true});
+    }, 1000);
 
   },
 
