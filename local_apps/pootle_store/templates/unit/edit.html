@@ -150,9 +150,9 @@
           {% endif %}
         </div>
         {% endif %}
-        {% if suggestions %}
         <!-- Suggestions from users and TM -->
-        <div id="translate-suggestion-container">
+        <div id="translate-suggestion-container"> 
+        {% if suggestions %}
           {% for sugg, sugtitle in suggestions %}
           <div id="suggestion{{ sugg.id }}" class="translate-suggestion-block">
             <div class="suggestion-title">{{ sugtitle }}</div>
@@ -175,8 +175,8 @@
             </div>
           </div>
           {% endfor %}
-        </div>
         {% endif %}
+        </div>
       </div>
     </div>
   </div>

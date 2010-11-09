@@ -831,13 +831,17 @@
             async: true,
             dataType: 'jsonp',
             success: function(data) {
+              var units = '';
               // FIXME: this just retrieves the first four results
               // we could limit based on a threshold too.
               for (var i=0; i<data.length && i<3; i++) {
-                console.log("Source: " + data[i].source);
-                console.log("Target: " + data[i].target);
-                console.log("Quality: " + data[i].quality);
+                units += '<div id="tm' + i + '" class="translation-suggestion-block" title="' + data[i].quality + '">';
+                units += '<div class="suggestion-title">amaGama</div>';
+                units += '<div class="translate-suggestion">';
+                units += '<div>' + data[i].source + '</div><div>';
+                units += data[i].target + '</div></div></div>';
               }
+              $("div#translate-suggestion-container").append(units);
             }
            });
   },
