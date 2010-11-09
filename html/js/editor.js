@@ -856,7 +856,7 @@
            function(rdata) {
              element.fadeOut(200, function() {
                $(this).remove();
-               if (!$("div#suggestion-container div.suggestion").length) {
+               if (!$("div#suggestion-container div[id^=suggestion]").length) {
                  $("input.next").trigger("click");
                }
              });
@@ -886,7 +886,7 @@
              PTL.editor.units[uid].isfuzzy = false;
              element.fadeOut(200, function() {
                $(this).remove();
-               if (!$("div#suggestion-container div.suggestion").length) {
+               if (!$("div#suggestion-container div[id^=suggestion]").length) {
                  $("input.next").trigger("click");
                }
              });
