@@ -235,6 +235,7 @@
     $('textarea.expanding').TextAreaExpander('10', maxheight);
     $(".focusthis").get(0).focus();
     PTL.editor.hl_search();
+    PTL.editor.get_tm_units();
     $("table.translate-table").trigger("mt_ready");
   },
 
@@ -550,7 +551,6 @@
                      this.get_edit_unit(uid) +
                      this.build_rows(uids.after);
       this.redraw(newtbody);
-      this.get_tm_units();
     }
   },
 
