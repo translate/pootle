@@ -153,3 +153,11 @@ MT_BACKENDS = [
 #        ('APERTIUM', ''),
 #        ('GOOGLE_TRANSLATE', ''),
 ]
+
+# URL used for the amaGama TM server.
+# The global amaGama service should work fine, but if your language/project
+# has a better server, or you want to use your own, you can define here
+# its URL.
+# This URL must point to the public API URL which returns JSON. Don't forget
+# the trailing slash.
+AMAGAMA_URL = 'http://amagama.locamotion.org/tmserver/'

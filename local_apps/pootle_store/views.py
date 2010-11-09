@@ -484,6 +484,7 @@ def translate_page(request, units_queryset, store=None):
         'GET_state': '&'.join(GET_vars),
         'checks': checks,
         'MT_BACKENDS': settings.MT_BACKENDS,
+        'AMAGAMA_URL': settings.AMAGAMA_URL,
         }
     return render_to_response('store/translate.html', context, context_instance=RequestContext(request))
 
