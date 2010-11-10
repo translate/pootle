@@ -863,8 +863,7 @@
           units += data[i].target + '</div></div></div>';
         }
         $("div#suggestion-container").append(units);
-      },
-      error: PTL.editor.error
+      }
     });
   },
 
