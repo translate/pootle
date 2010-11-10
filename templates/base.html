@@ -47,7 +47,6 @@
             return l("{{ MEDIA_URL }}" + path);
           }
         $(document).ready(function() {
-            initZoom();
             $("[title], [original-title]").tipsy({gravity: $.fn.tipsy.autoNSedge, html: true, fade: true, delayIn: 750, live: true});
             $.ajaxSetup({ traditional: true });
         });
@@ -58,6 +57,9 @@
 
     <body id="{% if body.id %}{{ body.id }}{% else %}home{% endif %}"
           class="{% block bodyclass %}{% endblock %}">
+        <script type="text/javascript">
+            initZoom();
+        </script>
         {% block body %}
         <div id="wrapper">
             <div id="header">
