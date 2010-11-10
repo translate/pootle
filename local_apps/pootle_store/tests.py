@@ -18,7 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 import time
-import types
 
 from django.contrib.auth.models import User
 from django.utils import simplejson
@@ -200,19 +199,15 @@ class XHRTestCase(PootleTestCase):
                             {'pootle_path': self.bad_path,
                              'uid': self.uid},
                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-        self.assertEqual(r.status_code, 200)
-        j = simplejson.loads(r.content)
-        self.assertFalse(j['success'])
+        self.assertEqual(r.status_code, 404)
 
     def test_get_tp_metadata_bad_unit(self):
-        """Checks for store correctness when passing an invalid path."""
+        """Checks for store correctness when passing an invalid uid."""
         r = self.client.get("%(pootle_path)s/meta/%(uid)s" %\
                             {'pootle_path': self.path,
                              'uid': self.bad_uid},
                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-        self.assertEqual(r.status_code, 200)
-        j = simplejson.loads(r.content)
-        self.assertFalse(j['success'])
+        self.assertEqual(r.status_code, 404)
 
     def test_get_tp_metadata_bad_store_unit(self):
         """Checks for store/unit correctness when passing an invalid path/uid."""
@@ -220,21 +215,7 @@ class XHRTestCase(PootleTestCase):
                             {'pootle_path': self.bad_path,
                              'uid': self.bad_uid},
                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-        self.assertEqual(r.status_code, 200)
-        j = simplejson.loads(r.content)
-        self.assertFalse(j['success'])
-
-    def test_get_tp_metadata_good_response(self):
-        """Checks for returned data correctness."""
-        r = self.client.get("%(pootle_path)s/meta/%(uid)s" %\
-                            {'pootle_path': self.path,
-                             'uid': self.uid},
-                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-        self.assertEqual(r.status_code, 200)
-        j = simplejson.loads(r.content)
-        self.assertTrue(j['success'])
-        self.assertTrue(len(j['meta']) == 4)
-        self.assertTrue(len(j['pager']) == 10)
+        self.assertEqual(r.status_code, 404)
 
     #
     # Tests for the get_view_units() view.
@@ -257,20 +238,49 @@ class XHRTestCase(PootleTestCase):
         r = self.client.get("%(pootle_path)s/view" %\
                             {'pootle_path': self.bad_path},
                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-        self.assertEqual(r.status_code, 200)
-        j = simplejson.loads(r.content)
-        self.assertFalse(j['success'])
+        self.assertEqual(r.status_code, 404)
 
-    def test_get_view_units_good_response(self):
-        """Checks for unit and returned data correctness."""
-        r = self.client.get("%(pootle_path)s/view" %\
-                            {'pootle_path': self.path},
+    #
+    # Tests for the get_more_context() view.
+    #
+    def test_get_more_context_bad_request(self):
+        """Not an AJAX request, should return HTTP 400."""
+        r = self.client.get("%(pootle_path)s/context/%(uid)s" %\
+                            {'pootle_path': self.path,
+                             'uid': self.uid})
+        self.assertEqual(r.status_code, 400)
+
+    def test_get_more_context_response_ok(self):
+        """AJAX request, should return HTTP 200."""
+        r = self.client.get("%(pootle_path)s/context/%(uid)s" %\
+                            {'pootle_path': self.path,
+                             'uid': self.uid},
                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(r.status_code, 200)
-        j = simplejson.loads(r.content)
-        self.assertTrue(j['success'])
-        unit_rows = self.profile.get_unit_rows()
-        self.assertTrue(len(j['units']) <= unit_rows)
+
+    def test_get_more_context_bad_store(self):
+        """Checks for store correctness when passing an invalid path."""
+        r = self.client.get("%(pootle_path)s/context/%(uid)s" %\
+                            {'pootle_path': self.bad_path,
+                             'uid': self.uid},
+                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(r.status_code, 404)
+
+    def test_get_more_context_bad_unit(self):
+        """Checks for store correctness when passing an invalid uid."""
+        r = self.client.get("%(pootle_path)s/context/%(uid)s" %\
+                            {'pootle_path': self.path,
+                             'uid': self.bad_uid},
+                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(r.status_code, 404)
+
+    def test_get_more_context_bad_store_unit(self):
+        """Checks for store/unit correctness when passing an invalid path/uid."""
+        r = self.client.get("%(pootle_path)s/context/%(uid)s" %\
+                            {'pootle_path': self.bad_path,
+                             'uid': self.bad_uid},
+                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(r.status_code, 404)
 
     #
     # Tests for the get_edit_unit() view.
@@ -344,9 +354,7 @@ class XHRTestCase(PootleTestCase):
         r = self.client.get("%(pootle_path)s/checks/" %\
                             {'pootle_path': self.bad_path},
                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-        self.assertEqual(r.status_code, 200)
-        j = simplejson.loads(r.content)
-        self.assertFalse(j['success'])
+        self.assertEqual(r.status_code, 404)
 
 
     #
@@ -381,9 +389,7 @@ class XHRTestCase(PootleTestCase):
                                  'method': m},
                                 self.post_data,
                                 HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-            self.assertEqual(r.status_code, 200)
-            j = simplejson.loads(r.content)
-            self.assertFalse(j['success'])
+            self.assertEqual(r.status_code, 404)
 
     def test_process_submit_bad_unit(self):
         """Checks for unit correctness when passing an invalid uid."""
@@ -394,9 +400,7 @@ class XHRTestCase(PootleTestCase):
                                  'method': m},
                                 self.post_data,
                                 HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-            self.assertEqual(r.status_code, 200)
-            j = simplejson.loads(r.content)
-            self.assertFalse(j['success'])
+            self.assertEqual(r.status_code, 404)
 
     def test_process_submit_bad_store_unit(self):
         """Checks for store/unit correctness when passing an invalid path/uid."""
@@ -407,9 +411,7 @@ class XHRTestCase(PootleTestCase):
                                  'method': m},
                                 self.post_data,
                                 HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-            self.assertEqual(r.status_code, 200)
-            j = simplejson.loads(r.content)
-            self.assertFalse(j['success'])
+            self.assertEqual(r.status_code, 404)
 
     def test_process_submit_bad_form(self):
         """Checks for form correctness when bad POST data is passed."""
@@ -422,23 +424,7 @@ class XHRTestCase(PootleTestCase):
                                  'method': m},
                                 form_data,
                                 HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-            self.assertEqual(r.status_code, 200)
-            j = simplejson.loads(r.content)
-            self.assertFalse(j['success'])
-
-    def test_process_submit_good_response(self):
-        """Checks for returned data correctness."""
-        for m in ("submission", "suggestion"):
-            r = self.client.post("%(pootle_path)s/process/%(uid)s/%(method)s" %\
-                                {'pootle_path': self.path,
-                                 'uid': self.uid,
-                                 'method': m},
-                                self.post_data,
-                                HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-            self.assertEqual(r.status_code, 200)
-            j = simplejson.loads(r.content)
-            self.assertTrue(j['success'])
-            self.assertTrue(type(j['new_uid']) == types.IntType)
+            self.assertEqual(r.status_code, 400)
 
 
 class XHRTestAnonymous(XHRTestCase):

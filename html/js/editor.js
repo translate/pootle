@@ -459,15 +459,15 @@
       dataType: 'json',
       async: async,
       success: function(data) {
-        if (data.success) {
-          PTL.editor.pages_got[page] = [];
-          $.each(data.units, function() {
-            PTL.editor.units[this.id] = this;
-            PTL.editor.pages_got[page].push(this.id);
-          });
-        } else {
-          PTL.editor.error(data.msg);
-        }
+        PTL.editor.pages_got[page] = [];
+        $.each(data.units, function() {
+          PTL.editor.units[this.id] = this;
+          PTL.editor.pages_got[page].push(this.id);
+        });
+      },
+      error: function() {
+        // TODO: build a generic error callback for xhr requests
+        //PTL.editor.error(data.msg);
       }
     });
   },
@@ -616,6 +616,10 @@
           ctxt.before = data.ctxt.before;
           ctxt.after = data.ctxt.after;
         }
+      },
+      error: function() {
+        // TODO: build a generic error callback for xhr requests
+        //PTL.editor.error(data.msg);
       }
     });
     var eclass = "edit-row";
@@ -663,22 +667,22 @@
           $.fancybox(data.captcha);
           $("input#id_captcha_answer").focus();
         } else {
-          if (data.success) {
-            if (type == 'submission') {
-              PTL.editor.units[uid].isfuzzy = PTL.editor.isFuzzy();
-              $("textarea[id^=id_target_f_]").each(function(i) {
-                PTL.editor.units[uid].target[i].text = $(this).val();
-              });
-            }
-            var new_uid = parseInt(data.new_uid);
-            if (new_uid) {
-              var newhash = "unit/" + new_uid;
-              $.history.load(newhash);
-            }
-          } else {
-            PTL.editor.error(data.msg);
+          if (type == 'submission') {
+            PTL.editor.units[uid].isfuzzy = PTL.editor.isFuzzy();
+            $("textarea[id^=id_target_f_]").each(function(i) {
+              PTL.editor.units[uid].target[i].text = $(this).val();
+            });
+          }
+          var new_uid = parseInt(data.new_uid);
+          if (new_uid) {
+            var newhash = "unit/" + new_uid;
+            $.history.load(newhash);
           }
         }
+      },
+      error: function() {
+        // TODO: build a generic error callback for xhr requests
+        //PTL.editor.error(data.msg);
       }
     });
     return false;
@@ -733,11 +737,11 @@
       async: false,
       dataType: 'json',
       success: function(data) {
-        if (data.success) {
-          opts = data.checks;
-        } else {
-          PTL.editor.error(data.msg);
-        }
+        opts = data.checks;
+      },
+      error: function() {
+        // TODO: build a generic error callback for xhr requests
+        //PTL.editor.error(data.msg);
       }
     });
     return opts;
@@ -789,16 +793,16 @@
       dataType: 'json',
       data: req_data,
       success: function(data) {
-        if (data.success) {
-          PTL.editor.ctxt_gap += 2;
-          var before = PTL.editor.build_ctxt_rows(data.ctxt.before);
-          var after = PTL.editor.build_ctxt_rows(data.ctxt.after);
-          var ctxt_rows = $("tr.context-row");
-          ctxt_rows.first().before(before);
-          ctxt_rows.last().after(after);
-        } else {
-          PTL.editor.error(data.msg);
-        }
+        PTL.editor.ctxt_gap += 2;
+        var before = PTL.editor.build_ctxt_rows(data.ctxt.before);
+        var after = PTL.editor.build_ctxt_rows(data.ctxt.after);
+        var ctxt_rows = $("tr.context-row");
+        ctxt_rows.first().before(before);
+        ctxt_rows.last().after(after);
+      },
+      error: function() {
+        // TODO: build a generic error callback for xhr requests
+        //PTL.editor.error(data.msg);
       }
     });
   },

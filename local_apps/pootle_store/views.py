@@ -642,9 +642,6 @@ def get_tp_metadata(request, pootle_path, uid=None):
     @return: An object in JSON notation that contains the metadata information
     about the current translation project: source/target language codes,
     the direction of the text and also a initial pager.
-
-    Success status that indicates if the information has been succesfully
-    retrieved or not is returned as well.
     """
     if pootle_path[0] != '/':
         pootle_path = '/' + pootle_path
@@ -654,7 +651,7 @@ def get_tp_metadata(request, pootle_path, uid=None):
     try:
         store = Store.objects.select_related('translation_project', 'parent').get(pootle_path=pootle_path)
         if not check_profile_permission(profile, 'view', store.parent):
-            json["success"] = False
+            rcode = 403
             json["msg"] = _("You do not have rights to access translation mode.")
         else:
             units_qs = _filter_queryset(request.GET, store.units,
@@ -681,27 +678,24 @@ def get_tp_metadata(request, pootle_path, uid=None):
                                 "source_dir": tp.project.source_language.get_direction(),
                                 "target_lang": tp.language.code,
                                 "target_dir": tp.language.get_direction()}
-                json["success"] = True
+                rcode = 200
             except Unit.DoesNotExist:
-                json["success"] = False
+                rcode = 404
                 json["msg"] = _("Unit %(uid)s does not exist on %(path)s." %
                                 {'uid': uid, 'path': pootle_path})
     except Store.DoesNotExist:
-        json["success"] = False
+        rcode = 404
         json["msg"] = _("Store %(path)s does not exist." %
                         {'path': pootle_path})
 
     response = simplejson.dumps(json)
-    return HttpResponse(response, mimetype="application/json")
+    return HttpResponse(response, status=rcode, mimetype="application/json")
 
 @ajax_required
 def get_view_units(request, pootle_path, limit=0):
     """
     @return: An object in JSON notation that contains the source and target
     texts for units that will be displayed before and after unit C{uid}.
-
-    Success status that indicates if the unit has been succesfully
-    retrieved or not is returned as well.
     """
     if pootle_path[0] != '/':
         pootle_path = '/' + pootle_path
@@ -712,7 +706,7 @@ def get_view_units(request, pootle_path, limit=0):
     try:
         store = Store.objects.select_related('translation_project', 'parent').get(pootle_path=pootle_path)
         if not check_profile_permission(profile, 'view', store.parent):
-            json["success"] = False
+            rcode = 403
             json["msg"] = _("You do not have rights to access translation mode.")
         else:
             if not limit:
@@ -720,23 +714,20 @@ def get_view_units(request, pootle_path, limit=0):
             units_qs = _filter_queryset(request.GET, store.units,
                                         store.translation_project)
             json["units"] = _filter_view_units(units_qs, int(page), int(limit))
-            json["success"] = True
+            rcode = 200
     except Store.DoesNotExist:
-        json["success"] = False
+        rcode = 404
         json["msg"] = _("Store %(path)s does not exist." %
                         {'path': pootle_path})
 
     response = simplejson.dumps(json)
-    return HttpResponse(response, mimetype="application/json")
+    return HttpResponse(response, status=rcode, mimetype="application/json")
 
 @ajax_required
 def get_more_context(request, pootle_path, uid):
     """
     @return: An object in JSON notation that contains the source and target
     texts for units that are in context of unit C{uid}.
-
-    Success status that indicates if the unit has been succesfully
-    retrieved or not is returned as well.
     """
     if pootle_path[0] != '/':
         pootle_path = '/' + pootle_path
@@ -747,7 +738,7 @@ def get_more_context(request, pootle_path, uid):
     try:
         store = Store.objects.select_related('translation_project', 'parent').get(pootle_path=pootle_path)
         if not check_profile_permission(profile, 'view', store.parent):
-            json["success"] = False
+            rcode = 403
             json["msg"] = _("You do not have rights to access translation mode.")
         else:
             try:
@@ -755,18 +746,18 @@ def get_more_context(request, pootle_path, uid):
                 current_unit = units_qs.get(id=uid, store__pootle_path=pootle_path)
                 edit_index = _get_index_in_qs(units_qs, current_unit)
                 json["ctxt"] = _filter_ctxt_units(units_qs, edit_index, 2, gap)
-                json["success"] = True
+                rcode = 200
             except Unit.DoesNotExist:
-                json["success"] = False
+                rcode = 404
                 json["msg"] = _("Unit %(uid)s does not exist on %(path)s." %
                                 {'uid': uid, 'path': pootle_path})
     except Store.DoesNotExist:
-        json["success"] = False
+        rcode = 404
         json["msg"] = _("Store %(path)s does not exist." %
                         {'path': pootle_path})
 
     response = simplejson.dumps(json)
-    return HttpResponse(response, mimetype="application/json")
+    return HttpResponse(response, status=rcode, mimetype="application/json")
 
 @ajax_required
 def get_edit_unit(request, pootle_path, uid):
@@ -780,55 +771,61 @@ def get_edit_unit(request, pootle_path, uid):
     """
     if pootle_path[0] != '/':
         pootle_path = '/' + pootle_path
+    json = {}
 
-    unit = get_object_or_404(Unit, id=uid, store__pootle_path=pootle_path)
-    translation_project = unit.store.translation_project
-    language = translation_project.language
-    form_class = unit_form_factory(language, len(unit.source.strings))
-    form = form_class(instance=unit)
-    store = unit.store
-    directory = store.parent
-    profile = get_profile(request.user)
-    alt_src_langs = get_alt_src_langs(request, profile, translation_project)
-    project = translation_project.project
-    template_vars = {'unit': unit,
-                     'form': form,
-                     'store': store,
-                     'profile': profile,
-                     'user': request.user,
-                     'language': language,
-                     'source_language': translation_project.project.source_language,
-                     'cantranslate': check_profile_permission(profile, "translate", directory),
-                     'cansuggest': check_profile_permission(profile, "suggest", directory),
-                     'canreview': check_profile_permission(profile, "review", directory),
-                     'altsrcs': find_altsrcs(unit, alt_src_langs, store=store, project=project),
-                     'suggestions': get_sugg_list(unit)}
+    try:
+        unit = Unit.objects.get(id=uid, store__pootle_path=pootle_path)
+        translation_project = unit.store.translation_project
+        language = translation_project.language
+        form_class = unit_form_factory(language, len(unit.source.strings))
+        form = form_class(instance=unit)
+        store = unit.store
+        directory = store.parent
+        profile = get_profile(request.user)
+        alt_src_langs = get_alt_src_langs(request, profile, translation_project)
+        project = translation_project.project
+        template_vars = {'unit': unit,
+                         'form': form,
+                         'store': store,
+                         'profile': profile,
+                         'user': request.user,
+                         'language': language,
+                         'source_language': translation_project.project.source_language,
+                         'cantranslate': check_profile_permission(profile, "translate", directory),
+                         'cansuggest': check_profile_permission(profile, "suggest", directory),
+                         'canreview': check_profile_permission(profile, "review", directory),
+                         'altsrcs': find_altsrcs(unit, alt_src_langs, store=store, project=project),
+                         'suggestions': get_sugg_list(unit)}
 
-    t = loader.get_template('unit/edit.html')
-    c = RequestContext(request, template_vars)
-    json = {'success': True,
-            'editor': t.render(c)}
+        t = loader.get_template('unit/edit.html')
+        c = RequestContext(request, template_vars)
+        json['editor'] = t.render(c)
+        rcode = 200
 
-    current_page = int(request.GET.get('page', 1))
-    all_units = unit.store.units
-    units_qs = _filter_queryset(request.GET, all_units,
-                                store.translation_project)
-    unit_rows = profile.get_unit_rows()
-    current_unit = unit
-    if current_unit is not None:
-        current_index = _get_index_in_qs(units_qs, current_unit)
-        preceding = units_qs[:current_index].count()
-        page = preceding / unit_rows + 1
-        if page != current_page:
-            pager = paginate(request, units_qs, items=unit_rows, page=page)
-            json["pager"] = _build_pager_dict(pager)
-        # Return context rows if filtering is applied
-        if 'filter' in request.GET and request.GET.get('filter', 'all') != 'all':
-            edit_index = _get_index_in_qs(all_units, current_unit)
-            json["ctxt"] = _filter_ctxt_units(all_units, edit_index, 2)
+        current_page = int(request.GET.get('page', 1))
+        all_units = unit.store.units
+        units_qs = _filter_queryset(request.GET, all_units,
+                                    store.translation_project)
+        unit_rows = profile.get_unit_rows()
+        current_unit = unit
+        if current_unit is not None:
+            current_index = _get_index_in_qs(units_qs, current_unit)
+            preceding = units_qs[:current_index].count()
+            page = preceding / unit_rows + 1
+            if page != current_page:
+                pager = paginate(request, units_qs, items=unit_rows, page=page)
+                json["pager"] = _build_pager_dict(pager)
+            # Return context rows if filtering is applied
+            if 'filter' in request.GET and request.GET.get('filter', 'all') != 'all':
+                edit_index = _get_index_in_qs(all_units, current_unit)
+                json["ctxt"] = _filter_ctxt_units(all_units, edit_index, 2)
+    except Unit.DoesNotExist:
+        rcode = 404
+        json["msg"] = _("Unit %(uid)s does not exist on %(path)s." %
+                        {'uid': uid, 'path': pootle_path})
 
     response = simplejson.dumps(json)
-    return HttpResponse(response, mimetype="application/json")
+    return HttpResponse(response, status=rcode, mimetype="application/json")
 
 @ajax_required
 def get_failing_checks(request, pootle_path):
@@ -848,7 +845,7 @@ def get_failing_checks(request, pootle_path):
     try:
         store = Store.objects.select_related('translation_project', 'parent').get(pootle_path=pootle_path)
         if not check_profile_permission(profile, 'view', store.parent):
-            json["success"] = False
+            rcode = 403
             json["msg"] = _("You do not have rights to access translation mode.")
         else:
             # Borrowed from pootle_app.views.language.item_dict.getcheckdetails
@@ -869,26 +866,24 @@ def get_failing_checks(request, pootle_path):
                                     'text': stats}
                         checkopts.append(checkopt)
                 json["checks"] = checkopts
-                json["success"] = True
+                rcode = 200
             except IOError:
-                json["success"] = False
-                json["msg"] = _("Input/Output error.")
+                pass
     except Store.DoesNotExist:
-        json["success"] = False
+        rcode = 404
         json["msg"] = _("Store %(path)s does not exist." %
                         {'path': pootle_path})
 
     response = simplejson.dumps(json)
-    return HttpResponse(response, mimetype="application/json")
+    return HttpResponse(response, status=rcode, mimetype="application/json")
 
 @ajax_required
 def process_submit(request, pootle_path, uid, type):
     """
+    Processes submissions and suggestions and stores them in the database.
+
     @return: An object in JSON notation that contains the previous
     and last units for the unit next to unit C{uid}.
-
-    This object also contains success status that indicates if the submission
-    has been succesfully saved or not.
     """
     json = {}
     if pootle_path[0] != '/':
@@ -902,7 +897,7 @@ def process_submit(request, pootle_path, uid, type):
         cansuggest = check_profile_permission(profile, "suggest", directory)
         if type == 'submission' and not cantranslate or \
            type == 'suggestion' and not cansuggest:
-            json["success"] = False
+            rcode = 403
             json["msg"] = _("You do not have rights to access translation mode.")
         else:
             translation_project = unit.store.translation_project
@@ -949,22 +944,22 @@ def process_submit(request, pootle_path, uid, type):
                         # End of set: let's assume the new unit is the last we had
                         new_unit = unit
                         json["new_uid"] = None
-                    json["success"] = True
+                    rcode = 200
             else:
                 # Form failed
-                json["success"] = False
+                rcode = 400
                 json["msg"] = _("Failed to process submit.")
     except Store.DoesNotExist:
-        json["success"] = False
+        rcode = 404
         json["msg"] = _("Store %(path)s does not exist." %
                         {'path': pootle_path})
     except Unit.DoesNotExist:
-        json["success"] = False
+        rcode = 404
         json["msg"] = _("Unit %(uid)s does not exist on %(path)s." %
                         {'uid': uid, 'path': pootle_path})
 
     response = simplejson.dumps(json)
-    return HttpResponse(response, mimetype="application/json")
+    return HttpResponse(response, status=rcode, mimetype="application/json")
 
 
 @ajax_required
@@ -981,16 +976,17 @@ def reject_suggestion(request, uid, suggid):
             try:
                 sugg = unit.suggestion_set.get(id=suggid)
             except ObjectDoesNotExist:
+                rcode = 404
                 sugg = None
 
             profile = get_profile(request.user)
             if not check_profile_permission(profile, 'review', directory) and \
                    (not request.user.is_authenticated() or sugg and sugg.user != profile):
-                json["success"] = False
+                rcode = 403
                 json["msg"] = _("You do not have rights to access review mode.")
             else:
-                json['success'] = unit.reject_suggestion(suggid)
-                if sugg is not None and json['success']:
+                success = unit.reject_suggestion(suggid)
+                if sugg is not None and success:
                     #FIXME: we need a totally different model for tracking stats, this is just lame
                     suggstat, created = SuggestionStat.objects.get_or_create(translation_project=translation_project,
                                                                     suggester=sugg.user,
@@ -999,13 +995,14 @@ def reject_suggestion(request, uid, suggid):
                     suggstat.reviewer = get_profile(request.user)
                     suggstat.state = 'rejected'
                     suggstat.save()
+                    rcode = 200
     except Unit.DoesNotExist:
-        json["success"] = False
+        rcode = 404
         json["msg"] = _("Unit %(uid)s does not exist." %
                         {'uid': uid})
 
     response = simplejson.dumps(json)
-    return HttpResponse(response, mimetype="application/json")
+    return HttpResponse(response, status=rcode, mimetype="application/json")
 
 @ajax_required
 def accept_suggestion(request, uid, suggid):
@@ -1017,7 +1014,7 @@ def accept_suggestion(request, uid, suggid):
         profile = get_profile(request.user)
 
         if not check_profile_permission(profile, 'review', directory):
-            json["success"] = False
+            rcode = 403
             json["msg"] = _("You do not have rights to access review mode.")
         else:
             json["udbid"] = unit.id
@@ -1026,16 +1023,17 @@ def accept_suggestion(request, uid, suggid):
                 try:
                     sugg = unit.suggestion_set.get(id=suggid)
                 except ObjectDoesNotExist:
+                    rcode = 404
                     sugg = None
 
-                json['success'] = unit.accept_suggestion(suggid)
+                success = unit.accept_suggestion(suggid)
                 json['newtargets'] = [highlight_whitespace(target) for target in unit.target.strings]
                 json['newdiffs'] = {}
                 for sugg in unit.get_suggestions():
                     json['newdiffs'][sugg.id] = [highlight_diffs(unit.target.strings[i], target) \
                                                      for i, target in enumerate(sugg.target.strings)]
 
-                if sugg is not None and json['success']:
+                if sugg is not None and success:
                     #FIXME: we need a totally different model for tracking stats, this is just lame
                     suggstat, created = SuggestionStat.objects.get_or_create(translation_project=translation_project,
                                                                     suggester=sugg.user,
@@ -1049,13 +1047,14 @@ def accept_suggestion(request, uid, suggid):
                                      submitter=profile,
                                      from_suggestion=suggstat)
                     sub.save()
+                    rcode = 200
     except Unit.DoesNotExist:
-        json["success"] = False
+        rcode = 404
         json["msg"] = _("Unit %(uid)s does not exist." %
                         {'uid': uid})
 
     response = simplejson.dumps(json)
-    return HttpResponse(response, mimetype="application/json")
+    return HttpResponse(response, status=rcode, mimetype="application/json")
 
 
 @ajax_required
@@ -1065,7 +1064,7 @@ def reject_qualitycheck(request, uid, checkid):
         unit = Unit.objects.get(id=uid)
         directory = unit.store.parent
         if not check_profile_permission(get_profile(request.user), 'review', directory):
-            json["success"] = False
+            rcode = 403
             json["msg"] = _("You do not have rights to access review mode.")
         else:
             json["udbid"] = uid
@@ -1077,16 +1076,16 @@ def reject_qualitycheck(request, uid, checkid):
                     check.save()
                     # update timestamp
                     unit.save()
-                    json['success'] = True
+                    rcode = 200
                 except ObjectDoesNotExist:
                     check = None
-                    json['success'] = False
+                    rcode = 404
                     json["msg"] = _("Check %(checkid)s does not exist." %
                                     {'checkid': checkid})
     except Unit.DoesNotExist:
-        json['success'] = False
+        rcode = 404
         json["msg"] = _("Unit %(uid)s does not exist." %
                         {'uid': uid})
 
     response = simplejson.dumps(json)
-    return HttpResponse(response, mimetype="application/json")
+    return HttpResponse(response, status=rcode, mimetype="application/json")
