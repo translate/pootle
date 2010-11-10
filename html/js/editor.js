@@ -380,11 +380,36 @@
   /*
    * Displays error messages returned in XHR requests
    */
-  error: function(msg) {
+  displayError: function(msg) {
     if (msg) {
       $("#xhr-activity").hide();
       $("#xhr-error span").text(msg).parent().show().fadeOut(3500);
     }
+  },
+
+  /*
+   * Handles XHR errors
+   */
+  error: function(xhr, s) {
+    var msg = "";
+    switch (s) {
+      case "error":
+        if (xhr.status == 500) {
+          msg = "Server error";
+        } else {
+          msg = $.parseJSON(xhr.responseText);
+        }
+      break;
+      case "timeout":
+        this.displayError(msg);
+        msg = "Server seems down, try again later";
+      break;
+      default:
+        // TODO: i18n
+        msg = "Unknown error";
+      break;
+    }
+    this.displayError(msg);
   },
 
   /*
@@ -434,7 +459,7 @@
         } else { // No results
           PTL.editor.has_results = false;
           // TODO: i18n
-          PTL.editor.error("No results.");
+          PTL.editor.displayError("No results.");
           PTL.editor.checks = PTL.editor.prev_checks;
           PTL.editor.filter = PTL.editor.prev_filter;
           $("#filter-status option[value=" + PTL.editor.filter + "]")
@@ -465,10 +490,7 @@
           PTL.editor.pages_got[page].push(this.id);
         });
       },
-      error: function() {
-        // TODO: build a generic error callback for xhr requests
-        //PTL.editor.error(data.msg);
-      }
+      error: PTL.editor.error
     });
   },
 
@@ -617,10 +639,7 @@
           ctxt.after = data.ctxt.after;
         }
       },
-      error: function() {
-        // TODO: build a generic error callback for xhr requests
-        //PTL.editor.error(data.msg);
-      }
+      error: PTL.editor.error
     });
     var eclass = "edit-row";
     eclass += this.units[uid].isfuzzy ? " fuzzy-unit" : "";
@@ -680,10 +699,7 @@
           }
         }
       },
-      error: function() {
-        // TODO: build a generic error callback for xhr requests
-        //PTL.editor.error(data.msg);
-      }
+      error: PTL.editor.error
     });
     return false;
   },
@@ -739,10 +755,7 @@
       success: function(data) {
         opts = data.checks;
       },
-      error: function() {
-        // TODO: build a generic error callback for xhr requests
-        //PTL.editor.error(data.msg);
-      }
+      error: PTL.editor.error
     });
     return opts;
   },
@@ -772,7 +785,7 @@
         $("div#filter-status").first().after(dropdown);
       } else { // No results
         // TODO: i18n
-        PTL.editor.error("No results.");
+        PTL.editor.displayError("No results.");
         $("#filter-status option[value=" + PTL.editor.filter + "]")
           .attr("selected", "selected");
       }
@@ -800,10 +813,7 @@
         ctxt_rows.first().before(before);
         ctxt_rows.last().after(after);
       },
-      error: function() {
-        // TODO: build a generic error callback for xhr requests
-        //PTL.editor.error(data.msg);
-      }
+      error: PTL.editor.error
     });
   },
 
