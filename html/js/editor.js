@@ -391,25 +391,18 @@
    * Handles XHR errors
    */
   error: function(xhr, s) {
+    // TODO: i18n
     var msg = "";
-    switch (s) {
-      case "error":
-        if (xhr.status == 500) {
-          msg = "Server error";
-        } else {
-          msg = $.parseJSON(xhr.responseText);
-        }
-      break;
-      case "timeout":
-        this.displayError(msg);
-        msg = "Server seems down, try again later";
-      break;
-      default:
-        // TODO: i18n
-        msg = "Unknown error";
-      break;
+    if (xhr.status == 0) {
+      msg = "You seem to be offline.";
+    } else if (xhr.status == 500) {
+      msg = "Server error.";
+    } else if (s == "timeout") {
+      msg = "Server seems down, try again later.";
+    } else {
+      msg = $.parseJSON(xhr.responseText);
     }
-    this.displayError(msg);
+    PTL.editor.displayError(msg);
   },
 
   /*
