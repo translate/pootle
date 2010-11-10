@@ -848,9 +848,10 @@
         var units = '';
         // FIXME: this just retrieves the first four results
         // we could limit based on a threshold too.
+        // FIXME: use localized 'N% match' format string
         units +=   '<div class="suggestion-title tm-server">amaGama server:</div>';
         for (var i=0; i<data.length && i<3; i++) {
-          units += '<div id="tm' + i + '" class="suggestion-block" title="' + data[i].quality + '">';
+          units += '<div id="tm' + i + '" class="suggestion-block" title="' + data[i].quality + '% match">';
           units +=   '<div class="suggestion">';
           units +=     '<div class="suggestion-original">' + data[i].source + '</div>';
           units +=     '<div class="suggestion-translation">' + data[i].target + '</div>';
