@@ -848,12 +848,14 @@
         var units = '';
         // FIXME: this just retrieves the first four results
         // we could limit based on a threshold too.
+        units +=   '<div class="suggestion-title tm-server">amaGama server:</div>';
         for (var i=0; i<data.length && i<3; i++) {
           units += '<div id="tm' + i + '" class="suggestion-block" title="' + data[i].quality + '">';
-          units += '<div class="suggestion-title">amaGama</div>';
-          units += '<div class="suggestion">';
-          units += '<div>' + data[i].source + '</div><div>';
-          units += data[i].target + '</div></div></div>';
+          units +=   '<div class="suggestion">';
+          units +=     '<div class="suggestion-original">' + data[i].source + '</div>';
+          units +=     '<div class="suggestion-translation">' + data[i].target + '</div>';
+          units +=   '</div>';
+          units += '</div>';
         }
         $("div#suggestion-container").append(units);
       }

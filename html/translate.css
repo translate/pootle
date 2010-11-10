@@ -19,7 +19,6 @@ div#toolbar
     position: fixed;
     left: 0;
     bottom: 0;
-    /*top: 85px;*/
     z-index: 1000;
     box-shadow: 0px 0px 0px #ccc;
     -moz-box-shadow: 0px 0px 20px #ccc;
@@ -518,7 +517,7 @@ div.translator-comments + #suggestion-container
     margin-bottom: 0.5em;
 }
 
-.suggestion-block .suggestion-title
+.suggestion-title
 {
     color: #999;
     font-size: 85%;
@@ -597,6 +596,29 @@ div.translator-comments + #suggestion-container
     background-color: #fff;
 }
 
+.suggestion-original,
+.suggestion-translation
+{
+    display: inline-block;
+}
+
+.suggestion-original
+{
+    font-weight: bolder;
+    color: #070;
+    padding-right: 0.5em;
+}
+
+#suggestion[dir="rtl"] .suggestion-original
+{
+    padding-right: auto;
+    padding-left: 0.5em;
+}
+
+.suggestion-translation[dir="rtl"]
+{
+    text-align: right;
+}
 
 /* CHECKS */
 
