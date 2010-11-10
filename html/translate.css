@@ -517,6 +517,11 @@ div.translator-comments + #suggestion-container
     margin-bottom: 0.5em;
 }
 
+.suggestion-block:last-child
+{
+    margin-bottom: 0;
+}
+
 .suggestion-title
 {
     color: #999;

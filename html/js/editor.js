@@ -850,6 +850,7 @@
           // FIXME: this just retrieves the first four results
           // we could limit based on a threshold too.
           // FIXME: use localized 'N% match' format string
+          units += '<div id="amagama_results" style="display:none">';
           units +=   '<div class="suggestion-title tm-server">amaGama server:</div>';
           for (var i=0; i<data.length && i<3; i++) {
             units += '<div id="tm' + i + '" class="suggestion-block" title="' + data[i].quality + '% match">';
@@ -859,7 +860,9 @@
             units +=   '</div>';
             units += '</div>';
           }
+          units += '</div>';
           $("div#suggestion-container").append(units);
+          $("div#amagama_results").animate({height: 'show'}, 1000, 'easeOutQuad');
         }
       }
     });
