@@ -853,7 +853,7 @@
           units += '<div id="amagama_results" style="display:none">';
           units +=   '<div class="suggestion-title tm-server">amaGama server:</div>';
           for (var i=0; i<data.length && i<3; i++) {
-            units += '<div id="tm' + i + '" class="suggestion-block" title="' + data[i].quality + '% match">';
+            units += '<div id="tm' + i + '" class="suggestion-block" title="' + Math.round(data[i].quality) + '% match">';
             units +=   '<div class="suggestion">';
             units +=     '<div class="suggestion-original">' + data[i].source + '</div>';
             units +=     '<div class="suggestion-translation">' + data[i].target + '</div>';
