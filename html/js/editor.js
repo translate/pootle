@@ -847,23 +847,25 @@
     var stext = $($("input[id^=id_source_f_]").get(0)).val();
     var tm_url = this.settings.tm_url + src + "/" + tgt +
         "/unit/" + encodeURIComponent(stext) + "?jsoncallback=?";
-    $.ajax({url: tm_url,
-            async: true,
-            dataType: 'jsonp',
-            success: function(data) {
-              var units = '';
-              // FIXME: this just retrieves the first four results
-              // we could limit based on a threshold too.
-              for (var i=0; i<data.length && i<3; i++) {
-                units += '<div id="tm' + i + '" class="suggestion-block" title="' + data[i].quality + '">';
-                units += '<div class="suggestion-title">amaGama</div>';
-                units += '<div class="suggestion">';
-                units += '<div>' + data[i].source + '</div><div>';
-                units += data[i].target + '</div></div></div>';
-              }
-              $("div#suggestion-container").append(units);
-            }
-           });
+    $.ajax({
+      url: tm_url,
+      async: true,
+      dataType: 'jsonp',
+      success: function(data) {
+        var units = '';
+        // FIXME: this just retrieves the first four results
+        // we could limit based on a threshold too.
+        for (var i=0; i<data.length && i<3; i++) {
+          units += '<div id="tm' + i + '" class="suggestion-block" title="' + data[i].quality + '">';
+          units += '<div class="suggestion-title">amaGama</div>';
+          units += '<div class="suggestion">';
+          units += '<div>' + data[i].source + '</div><div>';
+          units += data[i].target + '</div></div></div>';
+        }
+        $("div#suggestion-container").append(units);
+      },
+      error: PTL.editor.error
+    });
   },
 
   /* Rejects a suggestion */
