@@ -15,7 +15,7 @@ div#toolbar
     border-top: 1px solid #ccc;
     text-align: left;
     width: 100%;
-    height: 50px;
+    height: 46px;
     position: fixed;
     left: 0;
     bottom: 0;
@@ -31,29 +31,39 @@ div#toolbar
 body.zoom-out-1 #toolbar
 {
     font-size: 95%;
-    height: 47px;
+    height: 42px;
 }
 
 body.zoom-out-1 .xhr-message
 {
-    bottom: 48px;
+    bottom: 43px;
 }
 
 body.zoom-out-2 #toolbar
 {
     font-size: 90%;
-    height: 44px;
+    height: 36px;
 }
 
 body.zoom-out-2 .xhr-message
 {
-    bottom: 45px;
+    bottom: 37px;
 }
 
 div#toolbar > div
 {
     display: inline-block;
-    padding: 1em 0.5em;
+    padding: 10px;
+}
+
+body.zoom-out-1 div#toolbar > div
+{
+    padding: 8px;
+}
+
+body.zoom-out-2 div#toolbar > div
+{
+    padding: 6px;
 }
 
 #prevnext
@@ -71,7 +81,36 @@ div#toolbar > div
 {
     margin: 0; padding: 0;
     text-align: center;
+    position: relative;
+    top: 1px;
 }
+
+#prevnext #items-count
+{
+    display: inline-block;
+    min-width: 1em;
+}
+
+
+#prevnext input[type="submit"]
+{
+    min-width: 100px;
+    padding: 4px 10px;
+}
+
+body.zoom-out-1 #prevnext input[type="submit"]
+{
+    min-width: 90px;
+    padding: 3px 8px;
+}
+
+body.zoom-out-2 #prevnext input[type="submit"]
+{
+    min-width: 85px;
+    padding: 2px 8px;
+}
+
+
 
 /* SPECIAL FOOTER */
 

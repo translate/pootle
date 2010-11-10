@@ -488,7 +488,7 @@ html[dir="rtl"] #zoom {
 {
     position: fixed;
     height: 2em;
-    bottom: 51px;
+    bottom: 47px; /* #toolbar height + 1 */
     left: 50%;
     width: 400px;
     margin-left: -200px;
