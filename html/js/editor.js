@@ -846,7 +846,7 @@
     var tgt = "ar";
     var stext = $($("input[id^=id_source_f_]").get(0)).val();
     var tm_url = this.settings.tm_url + src + "/" + tgt +
-        "/unit/" + stext + "?jsoncallback=?";
+        "/unit/" + encodeURIComponent(stext) + "?jsoncallback=?";
     $.ajax({url: tm_url,
             async: true,
             dataType: 'jsonp',
