@@ -70,21 +70,21 @@ def _google_highlight_diffs(old, new):
     for op, text in diff:
         if op == 0: # equality
             if removed:
-                textdiff += '<span class="translate-diff-delete">%s</span>' % fancy_escape(removed)
+                textdiff += '<span class="diff-delete">%s</span>' % fancy_escape(removed)
                 removed = u""
             textdiff += fancy_escape(text)
         elif op == 1: # insertion
             if removed:
                 # this is part of a substitution, not a plain insertion. We
                 # will format this differently.
-                textdiff += '<span class="translate-diff-replace">%s</span>' % fancy_escape(text)
+                textdiff += '<span class="diff-replace">%s</span>' % fancy_escape(text)
                 removed = u""
             else:
-                textdiff += '<span class="translate-diff-insert">%s</span>' % fancy_escape(text)
+                textdiff += '<span class="diff-insert">%s</span>' % fancy_escape(text)
         elif op == -1: # deletion
             removed = text
     if removed:
-        textdiff += '<span class="translate-diff-delete">%s</span>' % fancy_escape(removed)
+        textdiff += '<span class="diff-delete">%s</span>' % fancy_escape(removed)
     return mark_safe(textdiff)
 
 def _difflib_highlight_diffs(old, new):
@@ -98,13 +98,13 @@ def _difflib_highlight_diffs(old, new):
         if tag == 'equal':
             textdiff += fancy_escape(old[i1:i2])
         if tag == "insert":
-            textdiff += '<span class="translate-diff-insert">%s</span>' % fancy_escape(new[j1:j2])
+            textdiff += '<span class="diff-insert">%s</span>' % fancy_escape(new[j1:j2])
         if tag == "delete":
-            textdiff += '<span class="translate-diff-delete">%s</span>' % fancy_escape(old[i1:i2])
+            textdiff += '<span class="diff-delete">%s</span>' % fancy_escape(old[i1:i2])
         if tag == "replace":
             # We don't show text that was removed as part of a change:
             #textdiff += "<span>%s</span>" % fance_escape(a[i1:i2])}
-            textdiff += '<span class="translate-diff-replace">%s</span>' % fancy_escape(new[j1:j2])
+            textdiff += '<span class="diff-replace">%s</span>' % fancy_escape(new[j1:j2])
     return mark_safe(textdiff)
 
 try:

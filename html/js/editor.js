@@ -853,8 +853,8 @@
       text = v[1];
       if (op == 0) {
           if (removed) {
-            //textDiff += '<span class="translate-diff-delete">' + this.fancyEscape(removed) + '</span>'
-            textDiff += '<span class="translate-diff-delete">' + removed + '</span>'
+            //textDiff += '<span class="diff-delete">' + this.fancyEscape(removed) + '</span>'
+            textDiff += '<span class="diff-delete">' + removed + '</span>'
             removed = "";
           }
           //textDiff += this.fancyEscape(text);
@@ -863,20 +863,20 @@
         if (removed) {
           // this is part of a substitution, not a plain insertion. We
           // will format this differently.
-          //textDiff += '<span class="translate-diff-replace">' + this.fancyEscape(text) + '</span>';
-          textDiff += '<span class="translate-diff-replace">' + text + '</span>';
+          //textDiff += '<span class="diff-replace">' + this.fancyEscape(text) + '</span>';
+          textDiff += '<span class="diff-replace">' + text + '</span>';
           removed = "";
         } else {
-          //textDiff += '<span class="translate-diff-insert">' + this.fancyEscape(text) + '</span>';
-          textDiff += '<span class="translate-diff-insert">' + text + '</span>';
+          //textDiff += '<span class="diff-insert">' + this.fancyEscape(text) + '</span>';
+          textDiff += '<span class="diff-insert">' + text + '</span>';
         }
       } else if (op == -1) {
         removed = text;
       }
     });
     if (removed) {
-      //textDiff += '<span class="translate-diff-delete">' + this.fancyEscape(removed) + '</span>';
-      textDiff += '<span class="translate-diff-delete">' + removed + '</span>';
+      //textDiff += '<span class="diff-delete">' + this.fancyEscape(removed) + '</span>';
+      textDiff += '<span class="diff-delete">' + removed + '</span>';
     }
     return textDiff;
   },

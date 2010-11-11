@@ -945,19 +945,19 @@ a.writespecial:hover
 
 /* DIFF */
 
-.translate-diff-replace
+.diff-replace
 {
     color: #900;
     border-bottom: 1px dotted #900;
 }
 
-.translate-diff-delete
+.diff-delete
 {
     color: #aaa;
     text-decoration: line-through;
 }
 
-.translate-diff-insert
+.diff-insert
 {
     color: #070;
     border-bottom: 1px dotted #070;
