@@ -170,7 +170,7 @@
                 {% endif %}
               {% endif %}
               {% for i, target, diff, title in sugg|pluralize_diff_sugg %}
-                <div class="suggdiff" id="suggdiff-{{sugg.id}}-{{i}}" lang="{{ language.code }}" dir="{{ language.get_direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ diff }}</div>
+                <div id="suggdiff-{{sugg.id}}-{{i}}" class="suggestion-translation" lang="{{ language.code }}" dir="{{ language.get_direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ diff }}</div>
               {% endfor %}
             </div>
           </div>

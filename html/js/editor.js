@@ -88,7 +88,14 @@
     $(".writetm, .writespecial, .translate-full .translation-highlight-escape, .translate-full .translation-highlight-html").live("click", this.copy_text);
 
     /* Copy original translation */
-    $("a.copyoriginal").live("click", this.copy_original);
+    $("a.copyoriginal").live("click", function() {
+      var sources = $(".translation-text", $(this).parent().parent().parent());
+      PTL.editor.copy_original(sources);
+    });
+    $("div.suggestion").live("click", function() {
+      var sources = $(".suggestion-translation", this);
+      PTL.editor.copy_original(sources);
+    });
 
     /* Editor navigation/submission */
     $("table.translate-table").live("editor_ready", this.ready);
@@ -274,8 +281,7 @@
   /*
    * Copies source text(s) into the target textarea(s)
    */
-  copy_original: function() {
-    var sources = $(".translation-text", $(this).parent().parent().parent());
+  copy_original: function(sources) {
     var clean_sources = [];
     $.each(sources, function(i) {
       clean_sources[i] = $(this).text()

@@ -638,10 +638,11 @@ div.translator-comments + #suggestion-container
 
 .suggestion:hover {
     background-color: #fff;
+    cursor: pointer;
 }
 
 .suggestion-original,
-.suggestion-translation
+#amagama_results .suggestion-translation
 {
     display: inline-block;
 }
