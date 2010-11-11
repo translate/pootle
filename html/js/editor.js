@@ -888,9 +888,11 @@
     // FIXME: this just retrieves the first four results
     // we could limit based on a threshold too.
     // FIXME: use localized 'N% match' format string
+    var source = $(".edit-row .translate-original .translation-text").first().html();
     var target = $("[id^=id_target_f_]").first().html();
     var filtered = [];
     for (var i=0; i<results.length && i<3; i++) {
+      results[i].source = this.doDiff(source, results[i].source);
       results[i].target = this.doDiff(target, results[i].target);
       results[i].qTitle = Math.round(results[i].quality) + '% match';
       filtered.push(results[i]);
