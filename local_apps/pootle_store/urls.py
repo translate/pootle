@@ -23,7 +23,7 @@ from django.conf.urls.defaults import *
 
 urlpatterns = patterns('pootle_store.views',
     (r'^(?P<pootle_path>.*)/export/xlf/?$', 'export_as_xliff'),
-    (r'^(?P<pootle_path>.*)/export/(?P<filetype>.*)/?$', 'export_as_type'),
+    (r'^(?P<pootle_path>.*)/export_store/(?P<filetype>.*)/?$', 'export_as_type'),
     (r'^(?P<pootle_path>.*)/download/?$', 'download'),
     (r'^(?P<pootle_path>.*)/translate/?$', 'translate'),
     (r'^(?P<pootle_path>.*)/checks/?$', 'get_failing_checks'),
