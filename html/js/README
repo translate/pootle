@@ -111,6 +111,11 @@ Directory contents
 
       http://github.com/nje/jquery-tmpl
 
+    - jquery.easing.js :
+      jQuery plugin that provides dfferent easing (animation) formulas.
+
+      http://gsgd.co.uk/sandbox/jquery/easing/
+
   + mt/
 
     - apertium.js :
