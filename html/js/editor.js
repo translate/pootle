@@ -40,7 +40,8 @@
     this.cp_re = new RegExp("^(<[^>]+>|\\[n\|t]|\\W$^\\n)*(\\b|$)", "gm");
 
     /* Compile templates */
-    this.tmpl = {vunit: $.template($("#view_unit").html())}
+    this.tmpl = {vunit: $.template($("#view_unit").html()),
+                 tm: $.template($("#tm_suggestions").html())}
 
     /* Set initial focus on page load */
     this.focused = $(".translate-original-focus textarea").get(0);
@@ -829,6 +830,21 @@
    * Suggestions
    */
 
+  /*
+   * Filters TM results
+   */
+  filterTMResults: function(results) {
+    // FIXME: this just retrieves the first four results
+    // we could limit based on a threshold too.
+    // FIXME: use localized 'N% match' format string
+    var filtered = [];
+    for (var i=0; i<results.length && i<3; i++) {
+      results[i].qTitle = Math.round(results[i].quality) + '% match';
+      filtered.push(results[i]);
+    }
+    return filtered;
+  },
+
   /* Gets TM suggestions from amaGama */
   get_tm_units: function() {
     // XXX: hard-coded source and target languages for now,
@@ -846,22 +862,13 @@
       dataType: 'jsonp',
       success: function(data) {
         if (data.length > 0) {
-          var units = '';
-          // FIXME: this just retrieves the first four results
-          // we could limit based on a threshold too.
-          // FIXME: use localized 'N% match' format string
-          units += '<div id="amagama_results" style="display:none">';
-          units +=   '<div class="suggestion-title tm-server">amaGama server:</div>';
-          for (var i=0; i<data.length && i<3; i++) {
-            units += '<div id="tm' + i + '" class="suggestion-block" title="' + Math.round(data[i].quality) + '% match">';
-            units +=   '<div class="suggestion">';
-            units +=     '<div class="suggestion-original">' + data[i].source + '</div>';
-            units +=     '<div class="suggestion-translation">' + data[i].target + '</div>';
-            units +=   '</div>';
-            units += '</div>';
-          }
-          units += '</div>';
-          $("div#suggestion-container").append(units);
+          var filtered = PTL.editor.filterTMResults(data);
+          // TODO: i18n
+          var name = "amaGama server";
+          var tm = PTL.editor.tmpl.tm($, {data: {meta: PTL.editor.meta,
+                                                 suggs: filtered,
+                                                 name: name}}).join("");
+          $("div#suggestion-container").append(tm);
           $("div#amagama_results").animate({height: 'show'}, 1000, 'easeOutQuad');
         }
       }
