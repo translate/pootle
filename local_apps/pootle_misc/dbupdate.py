@@ -101,6 +101,7 @@ def update_tables_21000():
     """ % _('Updating existing database tables...')
     logging.info("Updating existing database tables")
     from south.db import db
+    #raise ImportError
     table_name = Store._meta.db_table
     field = Store._meta.get_field('state')
     db.add_column(table_name, field.name, field)
@@ -117,7 +118,13 @@ def update_tables_21000():
     db.add_column(table_name, field.name, field)
 
     field = Project._meta.get_field('source_language')
-    en, created = Language.objects.get_or_create(code='en', fullname='English', nplurals=2)
+    try:
+        en = Language.objects.get(code='en')
+    except Language.DoesNotExist:
+        # we can't allow translation project detection to kick in yet so let's create en manually
+        en = Language(code='en', fullname='English', nplurals=2, pluralequation="(n != 1)")
+        en.directory = Directory.objects.root.get_or_make_subdir(en.code)
+        en.save_base(raw=True)
     field.default = en.id
     db.add_column(table_name, field.name, field)
     db.create_index(table_name, (field.name + '_id',))
@@ -182,7 +189,6 @@ def footer():
 
 def staggered_update(db_buildversion):
     """Update pootle database, while displaying progress report for each step"""
-
     # django's syncdb command prints progress reports to stdout, but
     # mod_wsgi doesn't like stdout, so we reroute to stderr
     stdout = sys.stdout
