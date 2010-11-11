@@ -23,6 +23,12 @@ Directory contents
 
     http://homepage.ntlworld.com/bobosola
 
+  - diff_match_patch.js :
+    Google's Diff, Match, and Patch libraries for plain text.
+    It's used for suggestion's diff highlighting.
+
+    https://code.google.com/p/google-diff-match-patch/
+
   - editor.js :
     Code that sets up the editor and handles all the actions involved there.
     This includes unit navigation, submission, suggestions' handling, copying

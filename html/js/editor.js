@@ -39,6 +39,9 @@
     this.keepstate = false;
     this.cp_re = new RegExp("^(<[^>]+>|\\[n\|t]|\\W$^\\n)*(\\b|$)", "gm");
 
+    /* Differencer */
+    this.differencer = new diff_match_patch();
+
     /* Compile templates */
     this.tmpl = {vunit: $.template($("#view_unit").html()),
                  tm: $.template($("#tm_suggestions").html())}
@@ -837,14 +840,58 @@
    */
 
   /*
-   * Filters TM results
+   * Does the actual diffing
+   */
+  doDiff: function(a, b) {
+    var d, op, text,
+        textDiff = "",
+        removed = "",
+        diff = this.differencer.diff_main(a, b);
+    this.differencer.diff_cleanupSemantic(diff);
+    $.each(diff, function(k, v) {
+      op = v[0];
+      text = v[1];
+      if (op == 0) {
+          if (removed) {
+            //textDiff += '<span class="translate-diff-delete">' + this.fancyEscape(removed) + '</span>'
+            textDiff += '<span class="translate-diff-delete">' + removed + '</span>'
+            removed = "";
+          }
+          //textDiff += this.fancyEscape(text);
+          textDiff += text;
+      } else if (op == 1) {
+        if (removed) {
+          // this is part of a substitution, not a plain insertion. We
+          // will format this differently.
+          //textDiff += '<span class="translate-diff-replace">' + this.fancyEscape(text) + '</span>';
+          textDiff += '<span class="translate-diff-replace">' + text + '</span>';
+          removed = "";
+        } else {
+          //textDiff += '<span class="translate-diff-insert">' + this.fancyEscape(text) + '</span>';
+          textDiff += '<span class="translate-diff-insert">' + text + '</span>';
+        }
+      } else if (op == -1) {
+        removed = text;
+      }
+    });
+    if (removed) {
+      //textDiff += '<span class="translate-diff-delete">' + this.fancyEscape(removed) + '</span>';
+      textDiff += '<span class="translate-diff-delete">' + removed + '</span>';
+    }
+    return textDiff;
+  },
+
+  /*
+   * Filters TM results and does some processing (add diffs, extra texts, ...)
    */
   filterTMResults: function(results) {
     // FIXME: this just retrieves the first four results
     // we could limit based on a threshold too.
     // FIXME: use localized 'N% match' format string
+    var target = $("[id^=id_target_f_]").first().html();
     var filtered = [];
     for (var i=0; i<results.length && i<3; i++) {
+      results[i].target = this.doDiff(target, results[i].target);
       results[i].qTitle = Math.round(results[i].quality) + '% match';
       filtered.push(results[i]);
     }
