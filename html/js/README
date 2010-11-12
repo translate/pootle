@@ -63,7 +63,7 @@ Directory contents
   + jquery/
 
     - jquery.min.js :
-      The jQuery library, version 1.4.3, minified.
+      The jQuery library, version 1.4.4, minified.
 
     - jquery.bidi.js :
       jQuery plugin used to automatically set line direction of news
