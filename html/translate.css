@@ -650,14 +650,14 @@ div.translator-comments + #suggestion-container
 .suggestion-original
 {
     font-weight: bolder;
-    color: #070;
-    padding-right: 0.5em;
+    color: #000;
+    padding-right: 1em;
 }
 
 #suggestion[dir="rtl"] .suggestion-original
 {
     padding-right: auto;
-    padding-left: 0.5em;
+    padding-left: 1em;
 }
 
 .suggestion-translation[dir="rtl"]
@@ -945,10 +945,13 @@ a.writespecial:hover
 
 /* DIFF */
 
-.diff-replace
+.diff-replace,
+.diff-delete,
+.diff-insert
 {
-    color: #900;
-    border-bottom: 1px dotted #900;
+    color: #000;
+    background-color: #ffd;
+    border: 1px dotted #ccc;
 }
 
 .diff-delete
@@ -957,11 +960,21 @@ a.writespecial:hover
     text-decoration: line-through;
 }
 
-.diff-insert
+/* DIFF FOR TM SERVER ENTRIES */
+
+.tm-server .diff-replace,
+.tm-server .diff-delete,
+.tm-server .diff-insert
 {
-    color: #070;
-    border-bottom: 1px dotted #070;
+    color: #aaa;
+    background-color: #F1F7F8; /* same as edit-row bg */
 }
+
+.tm-server .diff-delete
+{
+    text-decoration: none;
+}
+
 
 /* HIGHLIGHT */
 
