@@ -206,6 +206,7 @@ tr.view-row
 {
     border-top: 1px solid #fff;
     border-bottom: 1px solid #fff;
+    cursor: pointer;
 }
 
 tr.view-row:hover
@@ -628,6 +629,7 @@ div.translator-comments + #suggestion-container
     line-height: 140%;
     padding: 0.5em;
     padding-right: 5em;
+    cursor: pointer;
 }
 
 .translate-translation[dir="rtl"] .suggestion
@@ -638,7 +640,6 @@ div.translator-comments + #suggestion-container
 
 .suggestion:hover {
     background-color: #fff;
-    cursor: pointer;
 }
 
 .suggestion-original,
