@@ -894,6 +894,7 @@
     for (var i=0; i<results.length && i<3; i++) {
       results[i].source = this.doDiff(this.escapeHtml(source), this.escapeHtml(results[i].source));
       //results[i].target = this.doDiff(this.escapeHtml(target), this.escapeHtml(results[i].target));
+      results[i].target = this.escapeHtml(results[i].target);
       results[i].qTitle = Math.round(results[i].quality) + '% match';
       filtered.push(results[i]);
     }
