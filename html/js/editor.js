@@ -903,12 +903,8 @@
 
   /* Gets TM suggestions from amaGama */
   get_tm_units: function() {
-    // XXX: hard-coded source and target languages for now,
-    //      the server is experimental!
     var src = this.meta.source_lang;
     var tgt = this.meta.target_lang;
-    //var src = "en";
-    //var tgt = "ar";
     var stext = $($("input[id^=id_source_f_]").get(0)).val();
     var tm_url = this.settings.tm_url + src + "/" + tgt +
         "/unit/" + encodeURIComponent(stext) + "?jsoncallback=?";
