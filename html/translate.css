@@ -951,8 +951,8 @@ a.writespecial:hover
 .diff-insert
 {
     color: #000;
-    background-color: #ffd;
-    border: 1px dotted #ccc;
+    background-color: #ffb;
+    border: 1px dotted #999;
 }
 
 .diff-delete
@@ -968,6 +968,7 @@ a.writespecial:hover
 .tm-server .diff-insert
 {
     color: #999;
+    border: 1px dotted #ccc;
     background-color: #F1F7F8; /* same as edit-row bg */
 }
 
