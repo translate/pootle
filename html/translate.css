@@ -963,15 +963,17 @@ a.writespecial:hover
 /* DIFF FOR TM SERVER ENTRIES */
 
 .tm-server .diff-replace,
+.tm-server .diff-delete,
 .tm-server .diff-insert
 {
-    color: #aaa;
+    color: #999;
     background-color: #F1F7F8; /* same as edit-row bg */
 }
 
 .tm-server .diff-delete
 {
-    display: none;
+    font-weight: normal;
+    color: #ccc;
 }
 
 

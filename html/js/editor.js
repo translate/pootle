@@ -889,11 +889,11 @@
     // we could limit based on a threshold too.
     // FIXME: use localized 'N% match' format string
     var source = $("[id^=id_source_f_]").first().val();
-    var target = $("[id^=id_target_f_]").first().val();
+    //var target = $("[id^=id_target_f_]").first().val();
     var filtered = [];
     for (var i=0; i<results.length && i<3; i++) {
-      results[i].source = this.doDiff(source, results[i].source);
-      results[i].target = this.doDiff(target, results[i].target);
+      results[i].source = this.doDiff(this.escapeHtml(source), this.escapeHtml(results[i].source));
+      //results[i].target = this.doDiff(this.escapeHtml(target), this.escapeHtml(results[i].target));
       results[i].qTitle = Math.round(results[i].quality) + '% match';
       filtered.push(results[i]);
     }
@@ -904,10 +904,10 @@
   get_tm_units: function() {
     // XXX: hard-coded source and target languages for now,
     //      the server is experimental!
-    // var src = this.meta.source_lang;
-    // var tgt = this.meta.target_lang;
-    var src = "en";
-    var tgt = "ar";
+    var src = this.meta.source_lang;
+    var tgt = this.meta.target_lang;
+    //var src = "en";
+    //var tgt = "ar";
     var stext = $($("input[id^=id_source_f_]").get(0)).val();
     var tm_url = this.settings.tm_url + src + "/" + tgt +
         "/unit/" + encodeURIComponent(stext) + "?jsoncallback=?";
@@ -1048,6 +1048,10 @@
     substitute_string = "__" + pos + "__";
     pos = pos + 1;
     return substitute_string;
+  },
+
+  escapeHtml: function(s) {
+    return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/,"<br/>");
   }
 
   };
