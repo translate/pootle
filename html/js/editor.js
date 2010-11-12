@@ -585,6 +585,11 @@
     var where = $("tbody", ttable);
     var oldrows = $("tr", where);
     oldrows.remove();
+
+    // This fixes the issue with tipsy popups staying on the screen
+    // if their owner elements have been removed
+    $('.tipsy').remove(); // kill all open tipsy popups
+
     where.append(newtbody);
     $(ttable).trigger("editor_ready");
   },
