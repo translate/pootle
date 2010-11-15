@@ -38,6 +38,7 @@
     this.ctxt_gap = 0;
     this.keepstate = false;
     this.cp_re = new RegExp("^(<[^>]+>|\\[n\|t]|\\W$^\\n)*(\\b|$)", "gm");
+    this.escapeRE = new RegExp("<[^<]*?>|\\r\\n|[\\r\\n\\t&<>]", "gm");
 
     /* Differencer */
     this.differencer = new diff_match_patch();
@@ -844,6 +845,34 @@
    * Suggestions
    */
 
+  fancyEscape: function(text) {
+    function replace(match) {
+        var replaced,
+            escapeHl= '<span class="translation-highlight-escape">%s</span>',
+            htmlHl = '<span class="translation-highlight-html">&lt;%s&gt;</span>';
+        submap = {
+          '\r\n': escapeHl.replace(/%s/, '\\r\\n') + '<br/>\n',
+          '\r': escapeHl.replace(/%s/, '\\r') + '<br/>\n',
+          '\n': escapeHl.replace(/%s/, '\\n') + '<br/>\n',
+          '\t': escapeHl.replace(/%s/, '\\t') + '\t',
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;'
+        }
+        replaced = submap[match];
+        if (replaced == undefined) {
+            replaced = htmlHl.replace(/%s/, match.slice(1, match.length-1));
+        }
+        return replaced;
+    }
+    var orig = text,
+        matches = text.match(this.escapeRE);
+    for (var i in matches) {
+      orig = orig.replace(matches[i], replace(matches[i]))
+    }
+    return orig;
+  },
+
   /*
    * Does the actual diffing
    */
@@ -858,30 +887,25 @@
       text = v[1];
       if (op == 0) {
           if (removed) {
-            //textDiff += '<span class="diff-delete">' + this.fancyEscape(removed) + '</span>'
-            textDiff += '<span class="diff-delete">' + removed + '</span>'
+            textDiff += '<span class="diff-delete">' + PTL.editor.fancyEscape(removed) + '</span>'
             removed = "";
           }
-          //textDiff += this.fancyEscape(text);
-          textDiff += text;
+          textDiff += PTL.editor.fancyEscape(text);
       } else if (op == 1) {
         if (removed) {
           // this is part of a substitution, not a plain insertion. We
           // will format this differently.
-          //textDiff += '<span class="diff-replace">' + this.fancyEscape(text) + '</span>';
-          textDiff += '<span class="diff-replace">' + text + '</span>';
+          textDiff += '<span class="diff-replace">' + PTL.editor.fancyEscape(text) + '</span>';
           removed = "";
         } else {
-          //textDiff += '<span class="diff-insert">' + this.fancyEscape(text) + '</span>';
-          textDiff += '<span class="diff-insert">' + text + '</span>';
+          textDiff += '<span class="diff-insert">' + PTL.editor.fancyEscape(text) + '</span>';
         }
       } else if (op == -1) {
         removed = text;
       }
     });
     if (removed) {
-      //textDiff += '<span class="diff-delete">' + this.fancyEscape(removed) + '</span>';
-      textDiff += '<span class="diff-delete">' + removed + '</span>';
+      textDiff += '<span class="diff-delete">' + PTL.editor.fancyEscape(removed) + '</span>';
     }
     return textDiff;
   },
@@ -894,12 +918,10 @@
     // we could limit based on a threshold too.
     // FIXME: use localized 'N% match' format string
     var source = $("[id^=id_source_f_]").first().val();
-    //var target = $("[id^=id_target_f_]").first().val();
     var filtered = [];
     for (var i=0; i<results.length && i<3; i++) {
-      results[i].source = this.doDiff(this.escapeHtml(source), this.escapeHtml(results[i].source));
-      //results[i].target = this.doDiff(this.escapeHtml(target), this.escapeHtml(results[i].target));
-      results[i].target = this.escapeHtml(results[i].target);
+      results[i].source = this.doDiff(source, results[i].source);
+      results[i].target = this.fancyEscape(results[i].target);
       results[i].qTitle = Math.round(results[i].quality) + '% match';
       filtered.push(results[i]);
     }
