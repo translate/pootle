@@ -247,6 +247,7 @@
     $('textarea.expanding').TextAreaExpander('10', maxheight);
     $(".focusthis").get(0).focus();
     PTL.editor.hl_search();
+    PTL.editor.hlTerms();
     PTL.editor.get_tm_units();
     $("table.translate-table").trigger("mt_ready");
   },
@@ -265,6 +266,17 @@
      sel.push(sel_map[$(this).val()]);
     });
     $(sel.join(", ")).highlightRegex(new RegExp(hl, "i"));
+  },
+
+  /*
+   * Highlights matching terms in the source text.
+   */
+  hlTerms: function() {
+    var term;
+    $(".tm-original").each(function() {
+      term = $(this).text();
+      $("div.original .translation-text").highlightRegex(new RegExp(term, "g"));
+    });
   },
 
   /*
