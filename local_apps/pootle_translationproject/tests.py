@@ -399,6 +399,25 @@ X-Generator: Pootle Tests
         self.assertEqual(unit.target, u'2adim')
 
 
+class CsvTests(XliffTests):
+    """Tests for CSV projects"""
+    template_text = r'''id, source, target, location, fuzzy
+"Excat", "Exact", "", "fish.c:1"
+"Fuzzy", "Fuzzy", "", "test.c:1"
+"%d new", "%d new", "", "fish.c:2"
+'''
+    target_text = r'''id, source, target, location, fuzzy
+"Exact", "Exact", "Belzabt", "fish.c:1"
+"fuzzy", "fuzzy", "ta2riban", "test.c:1"
+"obsolete", "obsolete", "2adim", "fish.c:2"
+'''
+    ext = 'csv'
+    nontrans_count = 0
+
+    def test_plural(self):
+        # csv files don't do plurals, suppress
+        pass
+
 class TsTests(XliffTests):
     """Tests for Qt ts projects"""
     template_text = r'''<!DOCTYPE TS>
