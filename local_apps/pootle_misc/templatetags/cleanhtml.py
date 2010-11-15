@@ -51,7 +51,7 @@ def fancy_escape(text):
             return html_highlight %  match.group()[1:-1]
     return ESCAPE_RE.sub(replace, text)
 
-WHITESPACE_RE = re.compile('^ +| +$|[\r\n\t] +')
+WHITESPACE_RE = re.compile('^ +| +$|[\r\n\t] +| {2,}')
 def fancy_spaces(text):
     """Highlight spaces to make them easily visible"""
     def replace(match):
