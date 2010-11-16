@@ -30,14 +30,14 @@
     /* Initialize variables */
     this.units = {};
     this.store = $("div#pootle_path").text();
-    this.active_uid = $("#active_uid").text();
-    this.current_page = 1;
-    this.pages_got = {};
+    this.activeUid = $("#active_uid").text();
+    this.currentPage = 1;
+    this.pagesGot = {};
     this.filter = "all";
     this.checks = [];
-    this.ctxt_gap = 0;
-    this.keepstate = false;
-    this.cp_re = new RegExp("^(<[^>]+>|\\[n\|t]|\\W$^\\n)*(\\b|$)", "gm");
+    this.ctxtGap = 0;
+    this.keepState = false;
+    this.cpRE = new RegExp("^(<[^>]+>|\\[n\|t]|\\W$^\\n)*(\\b|$)", "gm");
     this.escapeRE = new RegExp("<[^<]*?>|\\r\\n|[\\r\\n\\t&<>]", "gm");
 
     /* TM requests handler */
@@ -47,7 +47,7 @@
     this.differencer = new diff_match_patch();
 
     /* Compile templates */
-    this.tmpl = {vunit: $.template($("#view_unit").html()),
+    this.tmpl = {vUnit: $.template($("#view_unit").html()),
                  tm: $.template($("#tm_suggestions").html())}
 
     /* Set initial focus on page load */
@@ -59,7 +59,7 @@
 
     /* Fuzzy / unfuzzy */
     $("textarea.translation").live("keyup blur", function() {
-      if (!PTL.editor.keepstate && $(this).attr("defaultValue") != $(this).val()) {
+      if (!PTL.editor.keepState && $(this).attr("defaultValue") != $(this).val()) {
         PTL.editor.ungoFuzzy();
       }
     });
@@ -92,34 +92,34 @@
     });
 
     /* Write TM results, special chars... into the currently focused element */
-    $(".writetm, .writespecial, .translate-full .translation-highlight-escape, .translate-full .translation-highlight-html").live("click", this.copy_text);
+    $(".writetm, .writespecial, .translate-full .translation-highlight-escape, .translate-full .translation-highlight-html").live("click", this.copyText);
 
     /* Copy original translation */
     $("a.copyoriginal").live("click", function() {
       var sources = $(".translation-text", $(this).parent().parent().parent());
-      PTL.editor.copy_original(sources);
+      PTL.editor.copyOriginal(sources);
     });
     $("div.suggestion").live("click", function() {
       var sources = $(".suggestion-translation", this);
-      PTL.editor.copy_original(sources);
+      PTL.editor.copyOriginal(sources);
     });
 
     /* Editor navigation/submission */
     $("table.translate-table").live("editor_ready", this.ready);
-    $("tr.view-row").live("click", this.goto_unit);
+    $("tr.view-row").live("click", this.gotoUnit);
     $("input#item-number").live("keypress", function(e) {
-        if (e.keyCode == 13) PTL.editor.goto_page();
+        if (e.keyCode == 13) PTL.editor.gotoPage();
     });
-    $("input.submit, input.suggest").live("click", this.process_submit);
-    $("input.previous, input.next").live("click", this.goto_prevnext);
-    $("#suggestion-container .rejectsugg").live("click", this.reject_suggestion);
-    $("#suggestion-container .acceptsugg").live("click", this.accept_suggestion);
-    $("#translate-checks-block .rejectcheck").live("click", this.reject_check);
+    $("input.submit, input.suggest").live("click", this.processSubmit);
+    $("input.previous, input.next").live("click", this.gotoPrevNext);
+    $("#suggestion-container .rejectsugg").live("click", this.rejectSuggestion);
+    $("#suggestion-container .acceptsugg").live("click", this.aceptSuggestion);
+    $("#translate-checks-block .rejectcheck").live("click", this.rejectCheck);
 
     /* Filtering */
-    $("div#filter-status select").live("change", this.filter_status);
-    $("div#filter-checks select").live("change", this.filter_checks);
-    $("a.morecontext").live("click", this.get_more_context);
+    $("div#filter-status select").live("change", this.filterStatus);
+    $("div#filter-checks select").live("change", this.filterChecks);
+    $("a.morecontext").live("click", this.getMoreContext);
 
     /* Search */
     $("input#id_search").live("keypress", function(e) {
@@ -139,7 +139,7 @@
       if (e && e.preventDefault) e.preventDefault();
 
       // prevent automatic unfuzzying on keyup
-      PTL.editor.keepstate = true; 
+      PTL.editor.keepState = true;
 
       if (PTL.editor.isFuzzy()) {
         PTL.editor.ungoFuzzy();
@@ -198,44 +198,44 @@
             var uid = parseInt(parts[1]);
             if (uid && !isNaN(uid)) {
               // Take care when we want to access a unit directly from a permalink
-              if (PTL.editor.active_uid != uid
+              if (PTL.editor.activeUid != uid
                   && PTL.editor.units[uid] == undefined) {
-                PTL.editor.active_uid = uid;
-                PTL.editor.get_meta(true);
+                PTL.editor.activeUid = uid;
+                PTL.editor.getMeta(true);
               }
-              PTL.editor.display_edit_unit(uid);
+              PTL.editor.displayEditUnit(uid);
             }
           break;
           case "filter":
             // Save previous states in case there are no results
-            PTL.editor.prev_checks = PTL.editor.checks;
-            PTL.editor.prev_filter = PTL.editor.filter;
+            PTL.editor.prevChecks = PTL.editor.checks;
+            PTL.editor.prevFilter = PTL.editor.filter;
             PTL.editor.checks = parts[1] == "checks" ? parts[2].split(',') : [];
             PTL.editor.filter = parts[1];
-            PTL.editor.get_meta(false);
-            PTL.editor.display_edit_unit(PTL.editor.active_uid);
+            PTL.editor.getMeta(false);
+            PTL.editor.displayEditUnit(PTL.editor.activeUid);
           break;
           case "search":
             PTL.editor.filter = parts[0];
-            PTL.editor.search_text = parts[1];
-            PTL.editor.get_meta(false);
-            PTL.editor.display_edit_unit(PTL.editor.active_uid);
+            PTL.editor.searchText = parts[1];
+            PTL.editor.getMeta(false);
+            PTL.editor.displayEditUnit(PTL.editor.activeUid);
           break;
           case "page":
             var p = parseInt(parts[1]);
             if (p && !isNaN(p)) {
-              if (!(p in PTL.editor.pages_got)) {
-                PTL.editor.get_view_units(false, p);
+              if (!(p in PTL.editor.pagesGot)) {
+                PTL.editor.getViewUnits(false, p);
               }
-              var which = parseInt(PTL.editor.pages_got[p].length / 2);
-              var uid = PTL.editor.pages_got[p][which];
-              PTL.editor.get_meta(true);
-              PTL.editor.display_edit_unit(uid);
+              var which = parseInt(PTL.editor.pagesGot[p].length / 2);
+              var uid = PTL.editor.pagesGot[p][which];
+              PTL.editor.getMeta(true);
+              PTL.editor.displayEditUnit(uid);
             }
           break;
           default:
             /* Retrieve metadata used for this query */
-            PTL.editor.get_meta(true);
+            PTL.editor.getMeta(true);
 
             /* Editor is ready to be used at this stage */
             $("table.translate-table").trigger("editor_ready");
@@ -253,24 +253,24 @@
     var maxheight = $(window).height() * 0.3;
     $('textarea.expanding').TextAreaExpander('10', maxheight);
     $(".focusthis").get(0).focus();
-    PTL.editor.hl_search();
+    PTL.editor.hlSearch();
     PTL.editor.hlTerms();
-    PTL.editor.get_tm_units();
+    PTL.editor.getTMUnits();
     $("table.translate-table").trigger("mt_ready");
   },
 
   /*
    * Highlights search results
    */
-  hl_search: function() {
-    var hl = PTL.editor.filter == "search" ? PTL.editor.search_text : "";
-    var sel_map = {notes: "div.developer-comments",
-                   locations: "div.translate-locations",
-                   source: "td.translate-original, div.original div.translation-text",
-                   target: "td.translate-translation"};
+  hlSearch: function() {
+    var hl = PTL.editor.filter == "search" ? PTL.editor.searchText : "";
+    var selMap = {notes: "div.developer-comments",
+                  locations: "div.translate-locations",
+                  source: "td.translate-original, div.original div.translation-text",
+                  target: "td.translate-translation"};
     var sel = [];
     $("div.advancedsearch input:checked").each(function() {
-     sel.push(sel_map[$(this).val()]);
+     sel.push(selMap[$(this).val()]);
     });
     $(sel.join(", ")).highlightRegex(new RegExp(hl, "i"));
   },
@@ -289,7 +289,7 @@
   /*
    * Copies text into the focused textarea
    */
-  copy_text: function(e) {
+  copyText: function(e) {
     if ($(".tm-translation", this).length) {
       var text = $(".tm-translation", this).text();
     } else {
@@ -304,36 +304,36 @@
   /*
    * Copies source text(s) into the target textarea(s)
    */
-  copy_original: function(sources) {
-    var clean_sources = [];
+  copyOriginal: function(sources) {
+    var cleanSources = [];
     $.each(sources, function(i) {
-      clean_sources[i] = $(this).text()
+      cleanSources[i] = $(this).text()
                                 .replace("\n", "\\n\n", "g")
                                 .replace("\t", "\\t", "g");
     });
 
     var targets = $("[id^=id_target_f_]");
     if (targets.length) {
-      var max = clean_sources.length - 1;
+      var max = cleanSources.length - 1;
       for (var i=0; i<targets.length; i++) {
-        var newval = clean_sources[i] || clean_sources[max];
+        var newval = cleanSources[i] || cleanSources[max];
         $(targets.get(i)).val(newval);
       }
       var active = $(targets).get(0);
       active.focus();
       PTL.editor.goFuzzy();
       /* Place cursor at start of target text */
-      PTL.editor.cp_re.exec($(active).val());
-      var i = PTL.editor.cp_re.lastIndex;
+      PTL.editor.cpRE.exec($(active).val());
+      var i = PTL.editor.cpRE.lastIndex;
       $(active).caret(i, i);
-      PTL.editor.cp_re.lastIndex = 0;
+      PTL.editor.cpRE.lastIndex = 0;
     }
   },
 
   /*
    * Gets selected text
    */
-  get_selected_text: function() {
+  getSelectedText: function() {
     var t = '';
     if (window.getSelection) {
       t = window.getSelection();
@@ -366,7 +366,7 @@
 
   goFuzzy: function() {
     if (!this.isFuzzy()) {
-      this.keepstate = true;
+      this.keepState = true;
       this.doFuzzyArea();
       this.doFuzzyBox();
     }
@@ -374,7 +374,7 @@
 
   ungoFuzzy: function() {
     if (this.isFuzzy()) {
-      this.keepstate = true;
+      this.keepState = true;
       this.undoFuzzyArea();
       this.undoFuzzyBox();
     }
@@ -444,19 +444,19 @@
   /*
    * Gets common request data
    */
-  get_req_data: function() {
-    var req_data = {filter: this.filter};
+  getReqData: function() {
+    var reqData = {filter: this.filter};
     if (this.filter == "checks" && this.checks.length) {
-      req_data.checks = this.checks.join(",");
+      reqData.checks = this.checks.join(",");
     }
     if (this.filter == "search") {
-      req_data.search = this.search_text;
-      req_data.sfields = [];
+      reqData.search = this.searchText;
+      reqData.sfields = [];
       $("div.advancedsearch input:checked").each(function() {
-        req_data.sfields.push($(this).val());
+        reqData.sfields.push($(this).val());
       });
     }
-    return req_data;
+    return reqData;
   },
 
 
@@ -465,32 +465,32 @@
    */
 
   /* Retrieves the metadata used for this query */
-  get_meta: function(with_uid) {
-    var append = with_uid ? this.active_uid : "";
-    var meta_url = l(this.store + "/meta/" + append);
-    var req_data = this.get_req_data();
+  getMeta: function(withUid) {
+    var append = withUid ? this.activeUid : "";
+    var metaUrl = l(this.store + "/meta/" + append);
+    var reqData = this.getReqData();
     $.ajax({
-      url: meta_url,
+      url: metaUrl,
       async: false,
-      data: req_data,
+      data: reqData,
       dataType: 'json',
       success: function(data) {
         if (data.pager) {
-          PTL.editor.has_results = true;
+          PTL.editor.hasResults = true;
           PTL.editor.meta = data.meta;
-          PTL.editor.pages_got = {};
+          PTL.editor.pagesGot = {};
           PTL.editor.units = {};
-          PTL.editor.update_pager(data.pager);
-          PTL.editor.fetch_pages(false);
+          PTL.editor.updatePager(data.pager);
+          PTL.editor.fetchPages(false);
           if (data.uid) {
-            PTL.editor.active_uid = data.uid;
+            PTL.editor.activeUid = data.uid;
           }
         } else { // No results
-          PTL.editor.has_results = false;
+          PTL.editor.hasResults = false;
           // TODO: i18n
           PTL.editor.displayError("No results.");
-          PTL.editor.checks = PTL.editor.prev_checks;
-          PTL.editor.filter = PTL.editor.prev_filter;
+          PTL.editor.checks = PTL.editor.prevChecks;
+          PTL.editor.filter = PTL.editor.prevFilter;
           $("#filter-status option[value=" + PTL.editor.filter + "]")
             .attr("selected", "selected");
         }
@@ -498,25 +498,25 @@
     });
   },
 
-  /* Gets the view units that refer to current_page */
-  get_view_units: function(async, page, limit) {
+  /* Gets the view units that refer to currentPage */
+  getViewUnits: function(async, page, limit) {
     var async = async == undefined ? false : async;
-    var page = page == undefined ? this.current_page : page;
+    var page = page == undefined ? this.currentPage : page;
     var limit = limit == undefined ? 0 : limit;
-    var url_str = this.store + '/view';
-    url_str = limit ? url_str + '/limit/' + limit : url_str;
-    var view_for_url = l(url_str);
-    var req_data = $.extend({page: page}, this.get_req_data());
+    var urlStr = this.store + '/view';
+    urlStr = limit ? urlStr + '/limit/' + limit : urlStr;
+    var viewUrl = l(urlStr);
+    var reqData = $.extend({page: page}, this.getReqData());
     $.ajax({
-      url: view_for_url,
-      data: req_data,
+      url: viewUrl,
+      data: reqData,
       dataType: 'json',
       async: async,
       success: function(data) {
-        PTL.editor.pages_got[page] = [];
+        PTL.editor.pagesGot[page] = [];
         $.each(data.units, function() {
           PTL.editor.units[this.id] = this;
-          PTL.editor.pages_got[page].push(this.id);
+          PTL.editor.pagesGot[page].push(this.id);
         });
       },
       error: PTL.editor.error
@@ -524,7 +524,7 @@
   },
 
   /* Builds view rows for units represented by 'uids' */
-  build_rows: function(uids) {
+  buildRows: function(uids) {
     var cls = "even";
     var even = true;
     var rows = "";
@@ -532,7 +532,7 @@
       var _this = uids[i].id || uids[i];
       var unit = this.units[_this];
       rows += '<tr id="row' + _this + '" class="view-row ' + cls + '">';
-      rows += this.tmpl.vunit($, {data: {meta: this.meta,
+      rows += this.tmpl.vUnit($, {data: {meta: this.meta,
                                          unit: unit}}).join("");
       rows += '</tr>';
       cls = even ? "odd" : "even";
@@ -542,14 +542,14 @@
   },
 
   /* Builds context rows for units passed as 'units' */
-  build_ctxt_rows: function(units) {
+  buildCtxtRows: function(units) {
     var cls = "even";
     var even = true;
     var rows = "";
     for (var i=0; i<units.length; i++) {
       var unit = units[i];
       rows += '<tr id="ctxt' + unit.id + '" class="context-row ' + cls + '">';
-      rows += this.tmpl.vunit($, {data: {meta: this.meta,
+      rows += this.tmpl.vUnit($, {data: {meta: this.meta,
                                          unit: unit}}).join("");
       rows += '</tr>';
       cls = even ? "odd" : "even";
@@ -559,31 +559,31 @@
   },
 
   /* Gets uids that should be displayed before/after 'uid' */
-  get_uids_before_after: function(uid) {
+  getUidsBeforeAfter: function(uid) {
     var uids = {before: [], after: []};
     var limit = parseInt((this.pager.per_page - 1) / 2);
     var current = this.units[uid];
-    var prevnext = {prev: "before", next: "after"};
-    for (var m in prevnext) {
+    var prevNext = {prev: "before", next: "after"};
+    for (var m in prevNext) {
       var tu = current;
       for (var i=0; i<limit; i++) {
         if (tu[m] != undefined && tu[m] in this.units) {
           var tu = this.units[tu[m]];
-          uids[prevnext[m]].push(tu.id);
+          uids[prevNext[m]].push(tu.id);
         }
       }
     }
     if (Object.size(this.units) > limit) {
-      var prevnextl = {prev: "after", next: "before"};
-      for (var m in prevnext) {
-        if (uids[prevnextl[m]].length < limit) {
-          // Add (limit - length) units to uids[prevnext[m]]
-          var how_much = limit - uids[prevnextl[m]].length;
-          var tu = this.units[uids[prevnext[m]][uids[prevnext[m]].length-1]];
-          for (var i=0; i<how_much; i++) {
+      var prevNextl = {prev: "after", next: "before"};
+      for (var m in prevNext) {
+        if (uids[prevNextl[m]].length < limit) {
+          // Add (limit - length) units to uids[prevNext[m]]
+          var howMuch = limit - uids[prevNextl[m]].length;
+          var tu = this.units[uids[prevNext[m]][uids[prevNext[m]].length-1]];
+          for (var i=0; i<howMuch; i++) {
             if (tu[m] != undefined) {
               var tu = this.units[tu[m]];
-              uids[prevnext[m]].push(tu.id);
+              uids[prevNext[m]].push(tu.id);
             }
           }
         }
@@ -594,81 +594,81 @@
   },
 
   /* Sets the edit view for unit 'uid' */
-  display_edit_unit: function(uid) {
-    if (PTL.editor.has_results) {
-      this.fetch_pages(true);
-      var uids = this.get_uids_before_after(uid);
-      var newtbody = this.build_rows(uids.before) +
-                     this.get_edit_unit(uid) +
-                     this.build_rows(uids.after);
-      this.redraw(newtbody);
+  displayEditUnit: function(uid) {
+    if (PTL.editor.hasResults) {
+      this.fetchPages(true);
+      var uids = this.getUidsBeforeAfter(uid);
+      var newTbody = this.buildRows(uids.before) +
+                     this.getEditUnit(uid) +
+                     this.buildRows(uids.after);
+      this.reDraw(newTbody);
     }
   },
 
-  /* Redraws the translate table rows */
-  redraw: function(newtbody) {
-    var ttable = $("table.translate-table");
-    var where = $("tbody", ttable);
-    var oldrows = $("tr", where);
-    oldrows.remove();
+  /* reDraws the translate table rows */
+  reDraw: function(newTbody) {
+    var tTable = $("table.translate-table");
+    var where = $("tbody", tTable);
+    var oldRows = $("tr", where);
+    oldRows.remove();
 
     // This fixes the issue with tipsy popups staying on the screen
     // if their owner elements have been removed
     $('.tipsy').remove(); // kill all open tipsy popups
 
-    where.append(newtbody);
-    $(ttable).trigger("editor_ready");
+    where.append(newTbody);
+    $(tTable).trigger("editor_ready");
   },
 
   /* Fetches more view unit pages in case they're needed */
-  fetch_pages: function(async) {
-    var current = this.current_page;
+  fetchPages: function(async) {
+    var current = this.currentPage;
     var candidates = [current, current + 1, current - 1];
     var pages = [];
 
     for (var i=0; i<candidates.length; i++) {
       if (candidates[i] <= this.pager.num_pages &&
           candidates[i] > 0 &&
-          !(candidates[i] in this.pages_got)) {
+          !(candidates[i] in this.pagesGot)) {
         pages.push(candidates[i]);
       }
     }
     for (var i=0; i<pages.length; i++) {
-      this.get_view_units(async, pages[i]);
+      this.getViewUnits(async, pages[i]);
     }
   },
 
   /* Updates the pager */
-  update_pager: function(pager) {
+  updatePager: function(pager) {
     this.pager = pager;
     // If page number or num_pages has changed, redraw pager
-    if (this.current_page != pager.number
-        || this.current_num_pages != pager.num_pages) {
-      this.current_page = pager.number;
-      this.current_num_pages = pager.num_pages;
+    if (this.currentPage != pager.number
+        || this.currentNumPages != pager.num_pages) {
+      this.currentPage = pager.number;
+      this.currentNumPages = pager.num_pages;
       $("input#item-number").val(pager.number);
       $("span#items-count").text(pager.num_pages);
     }
   },
 
   /* Loads the edit unit 'uid' */
-  get_edit_unit: function(uid) {
-    var edit_url = l(this.store + '/edit/' + uid);
-    var req_data = $.extend({page: this.current_page}, this.get_req_data());
+  getEditUnit: function(uid) {
+    var editUrl = l(this.store + '/edit/' + uid);
+    var reqData = $.extend({page: this.currentPage}, this.getReqData());
     var widget = '';
     var ctxt = {before: [], after: []};
     $.ajax({
-      url: edit_url,
+      url: editUrl,
       async: false,
-      data: req_data,
+      data: reqData,
       dataType: 'json',
       success: function(data) {
         widget = data['editor'];
         if (data.pager) {
-          PTL.editor.update_pager(data.pager);
+          PTL.editor.updatePager(data.pager);
         }
         if (data.ctxt) {
-          PTL.editor.ctxt_gap = 2;
+          PTL.editor.ctxtGap = 2;
           ctxt.before = data.ctxt.before;
           ctxt.after = data.ctxt.after;
         }
@@ -679,17 +679,17 @@
     eclass += this.units[uid].isfuzzy ? " fuzzy-unit" : "";
     // TODO: i18n
     var editor = (ctxt.before.length ? '<tr class="more-context before"><td colspan="2"><a class="morecontext">Show more context rows</a></td></tr>' : '') +
-                 this.build_ctxt_rows(ctxt.before) +
+                 this.buildCtxtRows(ctxt.before) +
                  '<tr id="row' + uid + '" class="' + eclass + '">' +
                   widget + '</tr>' +
-                  this.build_ctxt_rows(ctxt.after) +
+                  this.buildCtxtRows(ctxt.after) +
                  (ctxt.after.length ? '<tr class="more-context after"><td colspan="2"><a class="morecontext">Show more context rows</a></td></tr>' : '');
-    this.active_uid = uid;
+    this.activeUid = uid;
     return editor;
   },
 
   /* Pushes submissions or suggestions and moves to the next unit */
-  process_submit: function(e, type_class) {
+  processSubmit: function(e, type_class) {
     e.preventDefault();
     if (type_class == undefined) {
       type_class = $(e.target).attr("class");
@@ -697,22 +697,22 @@
     } else {
       form_id = "captcha";
     }
-    var uid = PTL.editor.active_uid;
-    var type_map = {submit: "submission", suggest: "suggestion"};
-    var type = type_map[type_class];
-    var submit_url = l(PTL.editor.store + '/process/' + uid + '/' + type);
+    var uid = PTL.editor.activeUid;
+    var typeMap = {submit: "submission", suggest: "suggestion"};
+    var type = typeMap[type_class];
+    var submitUrl = l(PTL.editor.store + '/process/' + uid + '/' + type);
     // Serialize data to be sent
-    var req_data = $("form#" + form_id).serialize();
+    var reqData = $("form#" + form_id).serialize();
     // TODO: align with the way we're using in other places for getting
     // request data
-    req_data += "&page=" + PTL.editor.current_page + "&filter=" + PTL.editor.filter;
+    reqData += "&page=" + PTL.editor.currentPage + "&filter=" + PTL.editor.filter;
     if (PTL.editor.checks.length) {
-      req_data += "&checks=" + PTL.editor.checks.join(",");
+      reqData += "&checks=" + PTL.editor.checks.join(",");
     }
     $.ajax({
-      url: submit_url,
+      url: submitUrl,
       type: 'POST',
-      data: req_data,
+      data: reqData,
       dataType: 'json',
       async: false,
       success: function(data) {
@@ -726,10 +726,10 @@
               PTL.editor.units[uid].target[i].text = $(this).val();
             });
           }
-          var new_uid = parseInt(data.new_uid);
-          if (new_uid) {
-            var newhash = "unit/" + new_uid;
-            $.history.load(newhash);
+          var newUid = parseInt(data.new_uid);
+          if (newUid) {
+            var newHash = "unit/" + newUid;
+            $.history.load(newHash);
           }
         }
       },
@@ -739,37 +739,37 @@
   },
 
   /* Loads the editor with the next unit */
-  goto_prevnext: function(e) {
+  gotoPrevNext: function(e) {
     e.preventDefault();
-    var current = PTL.editor.units[PTL.editor.active_uid];
-    var prevnext_map = {previous: current.prev, next: current.next};
-    var new_uid = prevnext_map[$(e.target).attr("class")];
-    if (new_uid != null) {
-        var newhash = "unit/" + parseInt(new_uid);
-        $.history.load(newhash);
+    var current = PTL.editor.units[PTL.editor.activeUid];
+    var prevnextMap = {previous: current.prev, next: current.next};
+    var newUid = prevnextMap[$(e.target).attr("class")];
+    if (newUid != null) {
+        var newHash = "unit/" + parseInt(newUid);
+        $.history.load(newHash);
     }
   },
 
   /* Loads the editor with a specific unit */
-  goto_unit: function(e) {
+  gotoUnit: function(e) {
     e.preventDefault();
-    if (PTL.editor.get_selected_text() != "") {
+    if (PTL.editor.getSelectedText() != "") {
       return;
     }
     var m = $(this).attr("id").match(/row([0-9]+)/);
     if (m) {
       var uid = parseInt(m[1]);
-      var newhash = "unit/" + uid;
-      $.history.load(newhash);
+      var newHash = "unit/" + uid;
+      $.history.load(newHash);
     }
   },
 
   /* Loads the editor on a specific page */
-  goto_page: function() {
+  gotoPage: function() {
     var page = parseInt($("input#item-number").val());
     if (page && !isNaN(page)) {
-      var newhash = "page/" + page;
-      $.history.load(newhash);
+      var newHash = "page/" + page;
+      $.history.load(newHash);
     }
   },
 
@@ -780,10 +780,10 @@
 
   /* Gets the failing check options for the current query */
   get_check_options: function() {
-    var checks_url = l(this.store + '/checks/');
+    var checksUrl = l(this.store + '/checks/');
     var opts;
     $.ajax({
-      url: checks_url,
+      url: checksUrl,
       async: false,
       dataType: 'json',
       success: function(data) {
@@ -795,18 +795,18 @@
   },
 
   /* Loads units based on checks filtering */
-  filter_checks: function() {
-    var filter_by = $("option:selected", this).val();
-    if (filter_by != "none") {
-      var newhash = "filter/checks/" + filter_by;
-      $.history.load(newhash);
+  filterChecks: function() {
+    var filterBy = $("option:selected", this).val();
+    if (filterBy != "none") {
+      var newHash = "filter/checks/" + filterBy;
+      $.history.load(newHash);
     }
   },
 
   /* Loads units based on filtering */
-  filter_status: function() {
-    var filter_by = $("option:selected", this).val();
-    if (filter_by == "checks") {
+  filterStatus: function() {
+    var filterBy = $("option:selected", this).val();
+    if (filterBy == "checks") {
       var opts = PTL.editor.get_check_options();
       if (opts.length) {
         var dropdown = '<div id="filter-checks" class="toolbar-item">';
@@ -825,24 +825,24 @@
       }
     } else {
       $("div#filter-checks").remove();
-      var newhash = "filter/" + filter_by;
-      $.history.load(newhash);
+      var newHash = "filter/" + filterBy;
+      $.history.load(newHash);
     }
   },
 
   /* Gets more context units */
-  get_more_context: function() {
-    var ctxt_url = l(PTL.editor.store + '/context/' + PTL.editor.active_uid);
-    var req_data = {gap: PTL.editor.ctxt_gap};
+  getMoreContext: function() {
+    var ctxt_url = l(PTL.editor.store + '/context/' + PTL.editor.activeUid);
+    var reqData = {gap: PTL.editor.ctxtGap};
     $.ajax({
       url: ctxt_url,
       async: false,
       dataType: 'json',
-      data: req_data,
+      data: reqData,
       success: function(data) {
-        PTL.editor.ctxt_gap += 2;
-        var before = PTL.editor.build_ctxt_rows(data.ctxt.before);
-        var after = PTL.editor.build_ctxt_rows(data.ctxt.after);
+        PTL.editor.ctxtGap += 2;
+        var before = PTL.editor.buildCtxtRows(data.ctxt.before);
+        var after = PTL.editor.buildCtxtRows(data.ctxt.after);
         var ctxt_rows = $("tr.context-row");
         ctxt_rows.first().before(before);
         ctxt_rows.last().after(after);
@@ -860,8 +860,8 @@
     // example: "in:source foo"
     var text = $("input#id_search").val();
     if (text) {
-      var newhash = "search/" + text;
-      $.history.load(newhash);
+      var newHash = "search/" + text;
+      $.history.load(newHash);
     }
   },
 
@@ -954,11 +954,11 @@
   },
 
   /* Gets TM suggestions from amaGama */
-  get_tm_units: function() {
+  getTMUnits: function() {
     var src = this.meta.source_lang;
     var tgt = this.meta.target_lang;
     var stext = $($("input[id^=id_source_f_]").get(0)).val();
-    var tm_url = this.settings.tm_url + src + "/" + tgt +
+    var tmUrl = this.settings.tmUrl + src + "/" + tgt +
         "/unit/" + encodeURIComponent(stext) + "?jsoncallback=?";
     /* Always abort previous requests so we only get results for the
      * current unit */
@@ -966,12 +966,12 @@
       this.tmReq.abort();
     }
     this.tmReq = $.jsonp({
-      url: tm_url,
-      callback: '_jsonp' + PTL.editor.active_uid,
+      url: tmUrl,
+      callback: '_jsonp' + PTL.editor.activeUid,
       dataType: 'jsonp',
       success: function(data) {
         var uid = this.callback.slice(6);
-        if (uid == PTL.editor.active_uid && data.length > 0) {
+        if (uid == PTL.editor.activeUid && data.length > 0) {
           var filtered = PTL.editor.filterTMResults(data);
           // TODO: i18n
           var name = "amaGama server";
@@ -987,13 +987,13 @@
   },
 
   /* Rejects a suggestion */
-  reject_suggestion: function() {
+  rejectSuggestion: function() {
     var element = $(this).parent().parent();
     var uid = $('.translate-container input#id_id').val();
-    var suggid = $(this).siblings("input.suggid").val();
-    var url = l('/suggestion/reject/') + uid + '/' + suggid;
+    var suggId = $(this).siblings("input.suggid").val();
+    var url = l('/suggestion/reject/') + uid + '/' + suggId;
     $.post(url, {'reject': 1},
-           function(rdata) {
+           function(data) {
              element.fadeOut(200, function() {
                $(this).remove();
                if (!$("div#suggestion-container div[id^=suggestion]").length) {
@@ -1005,19 +1005,19 @@
   },
 
   /* Accepts a suggestion */
-  accept_suggestion: function() {
+  aceptSuggestion: function() {
     var element = $(this).parent().parent();
     var uid = $('.translate-container input#id_id').val();
-    var suggid = $(this).siblings("input.suggid").val();
-    var url = l('/suggestion/accept/') + uid + '/' + suggid;
+    var suggId = $(this).siblings("input.suggid").val();
+    var url = l('/suggestion/accept/') + uid + '/' + suggId;
     $.post(url, {'accept': 1},
-           function(rdata) {
-             $.each(rdata.newtargets, function(i, target) {
+           function(data) {
+             $.each(data.newtargets, function(i, target) {
                $("textarea#id_target_f_" + i).val(target).focus();
              });
-             $.each(rdata.newdiffs, function(suggid, sugg) {
+             $.each(data.newdiffs, function(suggId, sugg) {
                $.each(sugg, function(i, target) {
-                 $("#suggdiff-" + suggid + "-" + i).html(target);
+                 $("#suggdiff-" + suggId + "-" + i).html(target);
                });
              });
              $("textarea[id^=id_target_f_]").each(function(i) {
@@ -1035,13 +1035,13 @@
   },
 
   /* Rejects a quality check marking it as false positive */
-  reject_check: function() {
+  rejectCheck: function() {
     var element = $(this).parent();
-    var checkid = $(this).siblings("input.checkid").val();
+    var checkId = $(this).siblings("input.checkid").val();
     var uid = $('.translate-container input#id_id').val();
-    var url = l('/qualitycheck/reject/') + uid + '/' + checkid;
+    var url = l('/qualitycheck/reject/') + uid + '/' + checkId;
     $.post(url, {'reject': 1},
-           function(rdata) {
+           function(data) {
              element.fadeOut(200, function() {
                $(this).remove();
              });
@@ -1081,13 +1081,13 @@
     return false;
   },
 
-  addMTButton: function(aclass, imgfn, tooltip) {
-      var btn = '<a class="translate-mt ' + aclass + '">';
-      btn += '<img src="' + imgfn + '" title="' + tooltip + '" /></a>';
+  addMTButton: function(aClass, imgFn, tooltip) {
+      var btn = '<a class="translate-mt ' + aClass + '">';
+      btn += '<img src="' + imgFn + '" title="' + tooltip + '" /></a>';
       $("div.translate-toolbar").first().prepend(btn);
   },
 
-  normalize_code: function(locale) {
+  normalizeCode: function(locale) {
       var clean = locale.replace('_', '-')
       var atIndex = locale.indexOf("@");
       if (atIndex != -1) {

@@ -115,7 +115,7 @@ $(document).ready (function() {
     options.mt.push({name: "{{ backend|lower }}", key: "{{ apikey }}"});
     {% endfor %}
   {% endif %}
-  options.tm_url = '{{ AMAGAMA_URL }}';
+  options.tmUrl = '{{ AMAGAMA_URL }}';
   PTL.editor.init(options);
 });
 </script>

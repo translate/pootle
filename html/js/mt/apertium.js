@@ -14,7 +14,7 @@
       $.getScript(_this.url, function() {
         /* Init variables */
         var _this = PTL.editor.mt.apertium;
-        _this.target_lang = PTL.editor.normalize_code($("#id_target_f_0").attr("lang"));
+        _this.target_lang = PTL.editor.normalizeCode($("#id_target_f_0").attr("lang"));
 
         _this.pairs = $.cookie(_this.cookie_name);
         if (!_this.pairs) {
