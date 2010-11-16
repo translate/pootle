@@ -311,6 +311,7 @@ class TranslationProject(models.Model):
             logging.debug(u"updating %s from version control", store.file.path)
             versioncontrol.updatefile(store.file.path)
             store.file._delete_store_cache()
+            store.file._update_store_cache()
         except Exception, e:
             #something wrong, file potentially modified, bail out
             #and replace with working copy
