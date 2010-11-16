@@ -994,6 +994,11 @@ a.writespecial:hover
     color: #840;
 }
 
+.tm-server .suggestion-original .translation-highlight-html
+{
+    color: #630;
+}
+
 .highlight
 {
     background-color: #FFC;
