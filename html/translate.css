@@ -956,9 +956,10 @@ a.writespecial:hover
     border: 1px dotted #999;
 }
 
-.diff-delete
+.diff-delete,
+.diff-delete *
 {
-    color: #aaa;
+    color: #aaa !important;
     text-decoration: line-through;
 }
 
@@ -973,10 +974,11 @@ a.writespecial:hover
     background-color: #F1F7F8; /* same as edit-row bg */
 }
 
-.tm-server .diff-delete
+.tm-server .diff-delete,
+.tm-server .diff-delete *
 {
+    color: #ccc !important;
     font-weight: normal;
-    color: #ccc;
 }
 
 
