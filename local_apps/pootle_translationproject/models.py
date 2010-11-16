@@ -311,8 +311,6 @@ class TranslationProject(models.Model):
             logging.debug(u"updating %s from version control", store.file.path)
             versioncontrol.updatefile(store.file.path)
             store.file._delete_store_cache()
-            store.update(update_structure=True, update_translation=True, conservative=False)
-            remotestats = store.getquickstats()
         except Exception, e:
             #something wrong, file potentially modified, bail out
             #and replace with working copy
@@ -320,9 +318,18 @@ class TranslationProject(models.Model):
             working_copy.save()
             raise VersionControlError
 
-        #FIXME: try to avoid merging if file was not updated
-        logging.debug(u"merging %s with version control update", store.file.path)
-        store.mergefile(working_copy, None, allownewstrings=False, suggestions=True, notranslate=False, obsoletemissing=False)
+        try:
+            logging.debug(u"parsing version control copy of %s into db", store.file.path)
+            store.update(update_structure=True, update_translation=True, conservative=False)
+            remotestats = store.getquickstats()
+            #FIXME: try to avoid merging if file was not updated
+            logging.debug(u"merging %s with version control update", store.file.path)
+            store.mergefile(working_copy, None, allownewstrings=False, suggestions=True, notranslate=False, obsoletemissing=False)
+        except Exception, e:
+            logging.error(u"near fatal catastrophe, exception %s while merging %s with version control copy", e, store.file.path)
+            working_copy.save()
+            store.update(update_structure=True, update_translation=True, conservative=False)
+            raise
 
         try:
             hooks.hook(self.project.code, "postupdate", store.file.path)
