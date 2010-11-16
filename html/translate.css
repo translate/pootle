@@ -811,6 +811,7 @@ table.suggest-mode .translate-buttons-block input.submit
 .translate-fuzzy-block
 {
     text-align: center;
+    font-style: italic;
 }
 
 .translate-fuzzy-block label
