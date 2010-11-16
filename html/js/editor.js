@@ -113,7 +113,7 @@
     $("input.submit, input.suggest").live("click", this.processSubmit);
     $("input.previous, input.next").live("click", this.gotoPrevNext);
     $("#suggestion-container .rejectsugg").live("click", this.rejectSuggestion);
-    $("#suggestion-container .acceptsugg").live("click", this.aceptSuggestion);
+    $("#suggestion-container .acceptsugg").live("click", this.acceptSuggestion);
     $("#translate-checks-block .rejectcheck").live("click", this.rejectCheck);
 
     /* Filtering */
@@ -1005,7 +1005,7 @@
   },
 
   /* Accepts a suggestion */
-  aceptSuggestion: function() {
+  acceptSuggestion: function() {
     var element = $(this).parent().parent();
     var uid = $('.translate-container input#id_id').val();
     var suggId = $(this).siblings("input.suggid").val();
