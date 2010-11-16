@@ -106,6 +106,17 @@ Directory contents
 
       http://blogs.sitepointstatic.com/examples/tech/textarea-expander/jquery.textarea-expander.js
 
+    - jquery.jsonp.min.js :
+      Alternative solution to jQuery's JSONP support.
+
+      jQuery's JSONP support has some limitations (it can't handle error
+      callbacks, doesn't have an abort method, ...), and this plugin
+      tries to address those issues.
+
+      These features may be implemented in jQuery core at some stage.
+
+      https://code.google.com/p/jquery-jsonp/
+
     - jquery.tmpl.js :
       jQuery templating engine.
 

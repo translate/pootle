@@ -421,13 +421,19 @@
     // TODO: i18n
     var msg = "";
     if (xhr.status == 0) {
-      msg = "You seem to be offline.";
+      msg = "Error while connecting to the server.";
     } else if (xhr.status == 500) {
       msg = "Server error.";
     } else if (s == "timeout") {
       msg = "Server seems down, try again later.";
     } else {
-      msg = $.parseJSON(xhr.responseText);
+      // Since we use jquery-jsonp, we must differentiate between
+      // the passed arguments
+      if (xhr instanceof XMLHttpRequest) {
+        msg = $.parseJSON(xhr.responseText);
+      } else {
+        msg = "Unknown error.";
+      }
     }
     PTL.editor.displayError(msg);
   },
@@ -950,9 +956,10 @@
     var tgt = this.meta.target_lang;
     var stext = $($("input[id^=id_source_f_]").get(0)).val();
     var tm_url = this.settings.tm_url + src + "/" + tgt +
-        "/unit/" + encodeURIComponent(stext) + "?jsoncallback=?";
-    $.ajax({
+        "/unit/" + encodeURIComponent(stext);
+    $.jsonp({
       url: tm_url,
+      callbackParameter: 'jsoncallback',
       async: true,
       dataType: 'jsonp',
       success: function(data) {
@@ -966,7 +973,8 @@
           $("div#suggestion-container").append(tm);
           $("div#amagama_results").animate({height: 'show'}, 1000, 'easeOutQuad');
         }
-      }
+      },
+      error: PTL.editor.error
     });
   },
 
