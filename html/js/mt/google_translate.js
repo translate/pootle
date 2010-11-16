@@ -77,7 +77,7 @@
       if (PTL.editor.isSupportedTarget(_this.pairs, _this.target_lang)) {
         var sources = $("div.placeholder").prev(".translation-text");
         $(sources).each(function() {
-          var source = PTL.editor.normalize_code($(this).attr("lang"));
+          var source = PTL.editor.normalizeCode($(this).attr("lang"));
           if (PTL.editor.isSupportedSource(_this.pairs, source)) {
             PTL.editor.addMTButton("googletranslate",
                                    m("images/google-translate.png"),
@@ -90,8 +90,8 @@
     translate: function() {
       var areas = $("[id^=id_target_f_]");
       var sources = $(this).parent().parent().siblings().children(".translation-text");
-      var lang_from = PTL.editor.normalize_code(sources.eq(0).attr("lang"));
-      var lang_to = PTL.editor.normalize_code(areas.eq(0).attr("lang"));
+      var lang_from = PTL.editor.normalizeCode(sources.eq(0).attr("lang"));
+      var lang_to = PTL.editor.normalizeCode(areas.eq(0).attr("lang"));
 
       // The printf regex based on http://phpjs.org/functions/sprintf:522
       var c_printf_pattern = /%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuidfegEG])/g;
