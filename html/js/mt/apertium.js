@@ -78,7 +78,7 @@
             areas.eq(j).val(translation);
             areas.eq(j).focus();
           } else {
-            PTL.editor.error("Apertium Error: " + result.error.message);
+            PTL.editor.displayError("Apertium Error: " + result.error.message);
           }
         });
       });
