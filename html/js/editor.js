@@ -40,6 +40,9 @@
     this.cp_re = new RegExp("^(<[^>]+>|\\[n\|t]|\\W$^\\n)*(\\b|$)", "gm");
     this.escapeRE = new RegExp("<[^<]*?>|\\r\\n|[\\r\\n\\t&<>]", "gm");
 
+    /* TM requests handler */
+    this.tmReq = null;
+
     /* Differencer */
     this.differencer = new diff_match_patch();
 
@@ -956,14 +959,19 @@
     var tgt = this.meta.target_lang;
     var stext = $($("input[id^=id_source_f_]").get(0)).val();
     var tm_url = this.settings.tm_url + src + "/" + tgt +
-        "/unit/" + encodeURIComponent(stext);
-    $.jsonp({
+        "/unit/" + encodeURIComponent(stext) + "?jsoncallback=?";
+    /* Always abort previous requests so we only get results for the
+     * current unit */
+    if (this.tmReq != null) {
+      this.tmReq.abort();
+    }
+    this.tmReq = $.jsonp({
       url: tm_url,
-      callbackParameter: 'jsoncallback',
-      async: true,
+      callback: '_jsonp' + PTL.editor.active_uid,
       dataType: 'jsonp',
       success: function(data) {
-        if (data.length > 0) {
+        var uid = this.callback.slice(6);
+        if (uid == PTL.editor.active_uid && data.length > 0) {
           var filtered = PTL.editor.filterTMResults(data);
           // TODO: i18n
           var name = "amaGama server";
