@@ -159,8 +159,12 @@
 
     /* XHR activity indicator */
     $(document).ajaxStart(function() {
-      $("#xhr-error").hide();
-      $("#xhr-activity").show();
+      setTimeout(function() {
+        $("#xhr-error").hide();
+        if ($.active > 0) {
+          $("#xhr-activity").show();
+        }
+      }, 3000);
     });
     $(document).ajaxStop(function() {
       $("#xhr-activity").hide();
