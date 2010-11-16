@@ -297,6 +297,7 @@ class TranslationProject(models.Model):
     has_index = property(_has_index)
 
     def update_file_from_version_control(self, store):
+        store.sync(update_translation=True)
         try:
             hooks.hook(self.project.code, "preupdate", store.file.path)
         except:
