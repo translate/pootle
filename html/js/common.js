@@ -22,15 +22,15 @@ function initZoom() {
 
   $(document.body).addClass(zoomClassName());
 
-  shortcut.add('ctrl+shift+insert', function() {
+  shortcut.add('ctrl+shift+insert', function () {
     zoom(-1);
   });
 
-  shortcut.add('ctrl+shift+home', function() {
+  shortcut.add('ctrl+shift+home', function () {
     zoom(0);
   });
 
-  shortcut.add('ctrl+shift+page_up', function() {
+  shortcut.add('ctrl+shift+page_up', function () {
     zoom(1);
   });
 }
@@ -40,10 +40,14 @@ function zoom(v) {
   var oldClassName = zoomClassName();
 
   if (v == -1) {
-    if (pageZoom == -2) return; // minimum zoom level reached
+    if (pageZoom == -2) {
+      return; // minimum zoom level reached
+    }
     pageZoom--;
   } else if (v == 1) {
-    if (pageZoom == 2) return; // maximum zoom level reached
+    if (pageZoom == 2) {
+      return; // maximum zoom level reached
+    }
     pageZoom++;
   } else if (v == 0) {
     pageZoom = 0;
@@ -58,12 +62,12 @@ function zoom(v) {
  * Search control helper
  */
 
-$(document).ready(function($) {
+$(document).ready(function ($) {
   /* Search input text */
   var focused = { color: "#000" }
   var unfocused = { color: "#aaa" }
 
-  $('label.inputHint').each(function() {
+  $('label.inputHint').each(function () {
     var label = $(this);
     var input = $('#' + label.attr('for'));
     if (input.attr("defaultValue")) {
@@ -72,12 +76,12 @@ $(document).ready(function($) {
     } else {
       var initial = label.hide().text().replace(':', '');
     }
-    input.focus(function() {
+    input.focus(function () {
       input.css(focused);
       if (input.val() == initial && !search) {
         input.val('');
       }
-    }).blur(function() {
+    }).blur(function () {
       if (input.val() == '') {
         input.val(initial).css(unfocused);
       } else if (search && input.val() == initial) {
@@ -87,12 +91,12 @@ $(document).ready(function($) {
   });
 
   /* Dropdown toggling */
-  $("a.advancedlink").click(function(event) {
+  $("a.advancedlink").click(function (event) {
     event.preventDefault();
     $("div.advancedsearch").slideToggle();
-  }).toggle(function() {
+  }).toggle(function () {
     $("img.togglesearch").toggle();
-  }, function() {
+  }, function () {
     $("img.togglesearch").toggle();
   });
 });

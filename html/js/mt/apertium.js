@@ -1,4 +1,4 @@
-(function($) {
+(function ($) {
   window.PTL.editor.mt = window.PTL.editor.mt || {};
 
   PTL.editor.mt.apertium = {
@@ -7,11 +7,11 @@
     cookieName: "apertium_pairs",
     cookieOptions: {path: '/', expires: 15},
 
-    init: function(apiKey) {
+    init: function (apiKey) {
       var _this = PTL.editor.mt.apertium;
       /* Load Apertium library */
       _this.url = apiKey == undefined ? _this.url : _this.url + '?key=' + apiKey;
-      $.getScript(_this.url, function() {
+      $.getScript(_this.url, function () {
         /* Init variables */
         var _this = PTL.editor.mt.apertium;
         _this.targetLang = PTL.editor.normalizeCode($("div#target_lang").text());
@@ -19,7 +19,7 @@
         _this.pairs = $.cookie(_this.cookieName);
         if (!_this.pairs) {
           var pairs = apertium.getSupportedLanguagePairs();
-          _this.pairs = $.map(pairs, function(obj, i) {
+          _this.pairs = $.map(pairs, function (obj, i) {
             return {source: obj.source, target: obj.target};
           });
           var cookie_data = JSON.stringify(_this.pairs);
@@ -33,11 +33,11 @@
       });
     },
 
-    ready: function() {
+    ready: function () {
       var _this = PTL.editor.mt.apertium;
       if (PTL.editor.isSupportedTarget(_this.pairs, _this.targetLang)) {
         var sources = $("div.placeholder").prev(".translation-text");
-        $(sources).each(function() {
+        $(sources).each(function () {
           var source = PTL.editor.normalizeCode($(this).attr("lang"));
           if (PTL.editor.isSupportedPair(_this.pairs, source, _this.targetLang)) {
             PTL.editor.addMTButton("apertium",
@@ -48,7 +48,7 @@
       }
     },
 
-    translate: function() {
+    translate: function () {
       var areas = $("[id^=id_target_f_]");
       var sources = $(this).parent().parent().siblings().children(".translation-text");
       var langFrom = PTL.editor.normalizeCode(sources.eq(0).attr("lang"));
@@ -61,7 +61,7 @@
       var pos = 0;
       var argSubs = new Array();
 
-      $(sources).each(function(j) {
+      $(sources).each(function (j) {
         var sourceText = $(this).text();
         sourceText = sourceText.replace(cPrintfPat, PTL.editor.collectArguments);
         sourceText = sourceText.replace(csharpStrPat, PTL.editor.collectArguments);
@@ -70,7 +70,7 @@
         var content = new Object()
         content.text = sourceText;
         content.type = "txt";
-        apertium.translate(content, langFrom, langTo, function(result) {
+        apertium.translate(content, langFrom, langTo, function (result) {
           if (result.translation) {
             var translation = result.translation;
             for (var i=0; i<argSubs.length; i++)

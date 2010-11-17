@@ -1,4 +1,4 @@
-(function($) {
+(function ($) {
   window.PTL.editor.mt = window.PTL.editor.mt || {};
 
   PTL.editor.mt.google_translate = {
@@ -61,7 +61,7 @@
             {"source":"cy","target":"cy"},
             {"source":"yi","target":"yi"}],
 
-    init: function(apiKey) {
+    init: function (apiKey) {
       /* Prepare URL for requests. */
       this.url = PTL.editor.settings.secure == false ? this.url : this.url.replace("http", "https");
       this.url += "?callback=?";
@@ -71,12 +71,12 @@
       $(".googletranslate").live("click", this.translate);
     },
 
-    ready: function() {
+    ready: function () {
       var _this = PTL.editor.mt.google_translate;
 
       if (PTL.editor.isSupportedTarget(_this.pairs, _this.targetLang)) {
         var sources = $("div.placeholder").prev(".translation-text");
-        $(sources).each(function() {
+        $(sources).each(function () {
           var source = PTL.editor.normalizeCode($(this).attr("lang"));
           if (PTL.editor.isSupportedSource(_this.pairs, source)) {
             PTL.editor.addMTButton("googletranslate",
@@ -87,7 +87,7 @@
       }
     },
 
-    translate: function() {
+    translate: function () {
       var areas = $("[id^=id_target_f_]");
       var sources = $(this).parent().parent().siblings().children(".translation-text");
       var langFrom = PTL.editor.normalizeCode(sources.eq(0).attr("lang"));
@@ -100,7 +100,7 @@
       var pos = 0;
       var argSubs = new Array();
 
-      $(sources).each(function(j) {
+      $(sources).each(function (j) {
         var sourceText = $(this).text();
         sourceText = sourceText.replace(cPrintfPat, PTL.editor.collectArguments);
         sourceText = sourceText.replace(csharpStrPat, PTL.editor.collectArguments);
@@ -108,7 +108,7 @@
 
         var transData = {v: '1.0', q: sourceText,
                          langpair: langFrom + '|' + langTo}
-        $.getJSON(PTL.editor.mt.google_translate.url, transData, function(r) {
+        $.getJSON(PTL.editor.mt.google_translate.url, transData, function (r) {
           if (r.responseData && r.responseStatus == 200) {
             var translation = r.responseData.translatedText;
             for (var i=0; i<argSubs.length; i++)

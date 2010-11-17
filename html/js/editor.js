@@ -1,11 +1,13 @@
-(function($) {
+(function ($) {
   window.PTL = window.PTL || {};
 
   // XXX: Know of a better place for this?
-  Object.size = function(obj) {
+  Object.size = function (obj) {
     var size = 0, key;
     for (key in obj) {
-      if (obj.hasOwnProperty(key)) size++;
+      if (obj.hasOwnProperty(key)) {
+        size++;
+      }
     }
     return size;
   };
@@ -15,7 +17,7 @@
   /*
    * Initializes the editor
    */
-  init: function(options) {
+  init: function (options) {
 
     /* Default settings */
     this.settings = {
@@ -57,12 +59,13 @@
      */
 
     /* Fuzzy / unfuzzy */
-    $("textarea.translation").live("keyup blur", function() {
-      if (!PTL.editor.keepState && $(this).attr("defaultValue") != $(this).val()) {
+    $("textarea.translation").live("keyup blur", function () {
+      if (!PTL.editor.keepState &&
+          $(this).attr("defaultValue") != $(this).val()) {
         PTL.editor.ungoFuzzy();
       }
     });
-    $("input.fuzzycheck").live("click", function() {
+    $("input.fuzzycheck").live("click", function () {
       if (PTL.editor.isFuzzy()) {
         PTL.editor.doFuzzyArea();
       } else {
@@ -71,13 +74,13 @@
     });
 
     /* Suggest / submit */
-    $(".switch-suggest-mode a").live("click", function() {
+    $(".switch-suggest-mode a").live("click", function () {
       PTL.editor.toggleSuggestMode();
       return false;
     });
 
     /* Collapsing */
-    $(".collapse").live("click", function(e) {
+    $(".collapse").live("click", function (e) {
       e.preventDefault();
       $(this).siblings(".collapsethis").slideToggle("fast");
       if ($("textarea", $(this).next("div.collapsethis")).length) {
@@ -86,7 +89,7 @@
     });
 
     /* Update focus when appropriate */
-    $(".focusthis").live("focus", function(e) {
+    $(".focusthis").live("focus", function (e) {
       PTL.editor.focused = e.target;
     });
 
@@ -94,11 +97,11 @@
     $(".writetm, .writespecial, .translate-full .highlight-escape, .translate-full .highlight-html").live("click", this.copyText);
 
     /* Copy original translation */
-    $("a.copyoriginal").live("click", function() {
+    $("a.copyoriginal").live("click", function () {
       var sources = $(".translation-text", $(this).parent().parent().parent());
       PTL.editor.copyOriginal(sources);
     });
-    $("div.suggestion").live("click", function() {
+    $("div.suggestion").live("click", function () {
       if (PTL.editor.getSelectedText() != "") {
         return;
       }
@@ -109,8 +112,10 @@
     /* Editor navigation/submission */
     $("table.translate-table").live("editor_ready", this.ready);
     $("tr.view-row").live("click", this.gotoUnit);
-    $("input#item-number").live("keypress", function(e) {
-        if (e.keyCode == 13) PTL.editor.gotoPage();
+    $("input#item-number").live("keypress", function (e) {
+        if (e.keyCode == 13) {
+          PTL.editor.gotoPage();
+        }
     });
     $("input.submit, input.suggest").live("click", this.processSubmit);
     $("input.previous, input.next").live("click", this.gotoPrevNext);
@@ -124,21 +129,26 @@
     $("a.morecontext").live("click", this.getMoreContext);
 
     /* Search */
-    $("input#id_search").live("keypress", function(e) {
-        if (e.keyCode == 13) { e.preventDefault(); PTL.editor.search(); }
+    $("input#id_search").live("keypress", function (e) {
+        if (e.keyCode == 13) {
+          e.preventDefault();
+          PTL.editor.search();
+        }
     });
 
     /* Bind hotkeys */
-    shortcut.add('ctrl+return', function() {
+    shortcut.add('ctrl+return', function () {
       if (PTL.editor.isSuggestMode()) {
         $("input.suggest").trigger("click");
       } else {
         $("input.submit").trigger("click");
       }
     });
-    shortcut.add('ctrl+space', function(e) {
+    shortcut.add('ctrl+space', function (e) {
       // to prevent the click event which occurs in Firefox but not in Chrome (and not in IE)
-      if (e && e.preventDefault) e.preventDefault();
+      if (e && e.preventDefault) {
+        e.preventDefault();
+      }
 
       // prevent automatic unfuzzying on keyup
       PTL.editor.keepState = true;
@@ -149,41 +159,41 @@
         PTL.editor.goFuzzy();
       }
     });
-    shortcut.add('ctrl+shift+space', function() {
+    shortcut.add('ctrl+shift+space', function () {
       PTL.editor.toggleSuggestMode();
     });
-    shortcut.add('ctrl+up', function() {
+    shortcut.add('ctrl+up', function () {
       $("input.previous").trigger("click");
     });
-    shortcut.add('ctrl+down', function() {
+    shortcut.add('ctrl+down', function () {
       $("input.next").trigger("click");
     });
-    shortcut.add('ctrl+shift+u', function() {
+    shortcut.add('ctrl+shift+u', function () {
       $("input#item-number").focus().select();
     });
 
     /* XHR activity indicator */
-    $(document).ajaxStart(function() {
-      setTimeout(function() {
+    $(document).ajaxStart(function () {
+      setTimeout(function () {
         $("#xhr-error").hide();
         if ($.active > 0) {
           $("#xhr-activity").show();
         }
       }, 3000);
     });
-    $(document).ajaxStop(function() {
+    $(document).ajaxStop(function () {
       $("#xhr-activity").hide();
     });
 
     /* Load MT backends */
-    $.each(this.settings.mt, function() {
+    $.each(this.settings.mt, function () {
       var backend = this.name;
       $.ajax({
         url: m('js/mt/' + backend + '.js'),
         async: false,
         dataType: 'script',
-        success: function() {
-          setTimeout(function() {
+        success: function () {
+          setTimeout(function () {
             PTL.editor.mt[backend].init();
           }, 0);
           $("table.translate-table").live("mt_ready", PTL.editor.mt[backend].ready);
@@ -192,22 +202,22 @@
     });
 
     /* History support */
-    setTimeout(function() {
-      $.history.init(function(hash) {
+    setTimeout(function () {
+      $.history.init(function (hash) {
         var parts = hash.split("/");
         switch (parts[0]) {
           case "unit":
             var uid = parseInt(parts[1]);
             if (uid && !isNaN(uid)) {
               // Take care when we want to access a unit directly from a permalink
-              if (PTL.editor.activeUid != uid
-                  && PTL.editor.units[uid] == undefined) {
+              if (PTL.editor.activeUid != uid &&
+                  PTL.editor.units[uid] == undefined) {
                 PTL.editor.activeUid = uid;
                 PTL.editor.getMeta(true);
               }
               PTL.editor.displayEditUnit(uid);
             }
-          break;
+            break;
           case "filter":
             // Save previous states in case there are no results
             PTL.editor.prevChecks = PTL.editor.checks;
@@ -216,13 +226,13 @@
             PTL.editor.filter = parts[1];
             PTL.editor.getMeta(false);
             PTL.editor.displayEditUnit(PTL.editor.activeUid);
-          break;
+            break;
           case "search":
             PTL.editor.filter = parts[0];
             PTL.editor.searchText = parts[1];
             PTL.editor.getMeta(false);
             PTL.editor.displayEditUnit(PTL.editor.activeUid);
-          break;
+            break;
           case "page":
             var p = parseInt(parts[1]);
             if (p && !isNaN(p)) {
@@ -234,11 +244,10 @@
               PTL.editor.getMeta(true);
               PTL.editor.displayEditUnit(uid);
             }
-          break;
+            break;
           default:
             PTL.editor.getMeta(false);
             PTL.editor.displayEditUnit(PTL.editor.activeUid);
-          break;
         }
       }, {'unescape': true});
     }, 1000);
@@ -248,7 +257,7 @@
   /*
    * Stuff to be done when the editor is ready
    */
-  ready: function() {
+  ready: function () {
     var maxheight = $(window).height() * 0.3;
     $('textarea.expanding').TextAreaExpander('10', maxheight);
     $(".focusthis").get(0).focus();
@@ -261,14 +270,14 @@
   /*
    * Highlights search results
    */
-  hlSearch: function() {
+  hlSearch: function () {
     var hl = PTL.editor.filter == "search" ? PTL.editor.searchText : "";
     var selMap = {notes: "div.developer-comments",
                   locations: "div.translate-locations",
                   source: "td.translate-original, div.original div.translation-text",
                   target: "td.translate-translation"};
     var sel = [];
-    $("div.advancedsearch input:checked").each(function() {
+    $("div.advancedsearch input:checked").each(function () {
      sel.push(selMap[$(this).val()]);
     });
     $(sel.join(", ")).highlightRegex(new RegExp(hl, "i"));
@@ -277,9 +286,9 @@
   /*
    * Highlights matching terms in the source text.
    */
-  hlTerms: function() {
+  hlTerms: function () {
     var term;
-    $(".tm-original").each(function() {
+    $(".tm-original").each(function () {
       term = $(this).text();
       $("div.original .translation-text").highlightRegex(new RegExp(term, "g"));
     });
@@ -288,7 +297,7 @@
   /*
    * Copies text into the focused textarea
    */
-  copyText: function(e) {
+  copyText: function (e) {
     if ($(".tm-translation", this).length) {
       var text = $(".tm-translation", this).text();
     } else {
@@ -303,12 +312,12 @@
   /*
    * Copies source text(s) into the target textarea(s)
    */
-  copyOriginal: function(sources) {
+  copyOriginal: function (sources) {
     var cleanSources = [];
-    $.each(sources, function(i) {
+    $.each(sources, function (i) {
       cleanSources[i] = $(this).text()
-                                .replace("\n", "\\n\n", "g")
-                                .replace("\t", "\\t", "g");
+                               .replace("\n", "\\n\n", "g")
+                               .replace("\t", "\\t", "g");
     });
 
     var targets = $("[id^=id_target_f_]");
@@ -332,7 +341,7 @@
   /*
    * Gets selected text
    */
-  getSelectedText: function() {
+  getSelectedText: function () {
     var t = '';
     if (window.getSelection) {
       t = window.getSelection();
@@ -347,23 +356,23 @@
   /*
    * Fuzzying / unfuzzying functions
    */
-  doFuzzyArea: function() {
+  doFuzzyArea: function () {
     $("tr.edit-row").addClass("fuzzy-unit");
   },
 
-  undoFuzzyArea: function() {
+  undoFuzzyArea: function () {
     $("tr.edit-row").removeClass("fuzzy-unit");
   },
 
-  doFuzzyBox: function() {
+  doFuzzyBox: function () {
     $("input.fuzzycheck").attr("checked", "checked");
   },
 
-  undoFuzzyBox: function() {
+  undoFuzzyBox: function () {
     $("input.fuzzycheck").removeAttr("checked");
   },
 
-  goFuzzy: function() {
+  goFuzzy: function () {
     if (!this.isFuzzy()) {
       this.keepState = true;
       this.doFuzzyArea();
@@ -371,7 +380,7 @@
     }
   },
 
-  ungoFuzzy: function() {
+  ungoFuzzy: function () {
     if (this.isFuzzy()) {
       this.keepState = true;
       this.undoFuzzyArea();
@@ -379,26 +388,26 @@
     }
   },
 
-  isFuzzy: function() {
+  isFuzzy: function () {
     return $("input.fuzzycheck").attr("checked");
   },
 
   /*
    * Suggest / submit mode functions
    */
-  doSuggestMode: function() {
+  doSuggestMode: function () {
     $("table.translate-table").addClass("suggest-mode");
   },
 
-  undoSuggestMode: function() {
+  undoSuggestMode: function () {
     $("table.translate-table").removeClass("suggest-mode");
   },
 
-  isSuggestMode: function() {
+  isSuggestMode: function () {
     return $("table.translate-table").hasClass("suggest-mode");
   },
 
-  toggleSuggestMode: function() {
+  toggleSuggestMode: function () {
     if (this.isSuggestMode()) {
       this.undoSuggestMode();
     } else {
@@ -409,7 +418,7 @@
   /*
    * Displays error messages returned in XHR requests
    */
-  displayError: function(msg) {
+  displayError: function (msg) {
     if (msg) {
       $("#xhr-activity").hide();
       $("#xhr-error span").text(msg).parent().show().fadeOut(3500);
@@ -419,7 +428,7 @@
   /*
    * Handles XHR errors
    */
-  error: function(xhr, s) {
+  error: function (xhr, s) {
     // TODO: i18n
     var msg = "";
     if (xhr.status == 0) {
@@ -443,7 +452,7 @@
   /*
    * Gets common request data
    */
-  getReqData: function() {
+  getReqData: function () {
     var reqData = {filter: this.filter};
     if (this.filter == "checks" && this.checks.length) {
       reqData.checks = this.checks.join(",");
@@ -451,7 +460,7 @@
     if (this.filter == "search") {
       reqData.search = this.searchText;
       reqData.sfields = [];
-      $("div.advancedsearch input:checked").each(function() {
+      $("div.advancedsearch input:checked").each(function () {
         reqData.sfields.push($(this).val());
       });
     }
@@ -464,7 +473,7 @@
    */
 
   /* Retrieves the metadata used for this query */
-  getMeta: function(withUid) {
+  getMeta: function (withUid) {
     var append = withUid ? this.activeUid : "";
     var metaUrl = l(this.store + "/meta/" + append);
     var reqData = this.getReqData();
@@ -473,7 +482,7 @@
       async: false,
       data: reqData,
       dataType: 'json',
-      success: function(data) {
+      success: function (data) {
         if (data.pager) {
           PTL.editor.hasResults = true;
           PTL.editor.meta = data.meta;
@@ -498,7 +507,7 @@
   },
 
   /* Gets the view units that refer to currentPage */
-  getViewUnits: function(async, page, limit) {
+  getViewUnits: function (async, page, limit) {
     var async = async == undefined ? false : async;
     var page = page == undefined ? this.currentPage : page;
     var limit = limit == undefined ? 0 : limit;
@@ -511,9 +520,9 @@
       data: reqData,
       dataType: 'json',
       async: async,
-      success: function(data) {
+      success: function (data) {
         PTL.editor.pagesGot[page] = [];
-        $.each(data.units, function() {
+        $.each(data.units, function () {
           PTL.editor.units[this.id] = this;
           PTL.editor.pagesGot[page].push(this.id);
         });
@@ -523,7 +532,7 @@
   },
 
   /* Builds view rows for units represented by 'uids' */
-  buildRows: function(uids) {
+  buildRows: function (uids) {
     var cls = "even";
     var even = true;
     var rows = "";
@@ -541,7 +550,7 @@
   },
 
   /* Builds context rows for units passed as 'units' */
-  buildCtxtRows: function(units) {
+  buildCtxtRows: function (units) {
     var cls = "even";
     var even = true;
     var rows = "";
@@ -558,7 +567,7 @@
   },
 
   /* Gets uids that should be displayed before/after 'uid' */
-  getUidsBeforeAfter: function(uid) {
+  getUidsBeforeAfter: function (uid) {
     var uids = {before: [], after: []};
     var limit = parseInt((this.pager.per_page - 1) / 2);
     var current = this.units[uid];
@@ -593,7 +602,7 @@
   },
 
   /* Sets the edit view for unit 'uid' */
-  displayEditUnit: function(uid) {
+  displayEditUnit: function (uid) {
     if (PTL.editor.hasResults) {
       this.fetchPages(true);
       var uids = this.getUidsBeforeAfter(uid);
@@ -605,7 +614,7 @@
   },
 
   /* reDraws the translate table rows */
-  reDraw: function(newTbody) {
+  reDraw: function (newTbody) {
     var tTable = $("table.translate-table");
     var where = $("tbody", tTable);
     var oldRows = $("tr", where);
@@ -620,7 +629,7 @@
   },
 
   /* Fetches more view unit pages in case they're needed */
-  fetchPages: function(async) {
+  fetchPages: function (async) {
     var current = this.currentPage;
     var candidates = [current, current + 1, current - 1];
     var pages = [];
@@ -638,7 +647,7 @@
   },
 
   /* Updates the pager */
-  updatePager: function(pager) {
+  updatePager: function (pager) {
     this.pager = pager;
     // If page number or num_pages has changed, redraw pager
     if (this.currentPage != pager.number
@@ -651,7 +660,7 @@
   },
 
   /* Loads the edit unit 'uid' */
-  getEditUnit: function(uid) {
+  getEditUnit: function (uid) {
     var editUrl = l(this.store + '/edit/' + uid);
     var reqData = $.extend({page: this.currentPage}, this.getReqData());
     var widget = '';
@@ -661,7 +670,7 @@
       async: false,
       data: reqData,
       dataType: 'json',
-      success: function(data) {
+      success: function (data) {
         widget = data['editor'];
         if (data.pager) {
           PTL.editor.updatePager(data.pager);
@@ -688,7 +697,7 @@
   },
 
   /* Pushes submissions or suggestions and moves to the next unit */
-  processSubmit: function(e, type_class) {
+  processSubmit: function (e, type_class) {
     e.preventDefault();
     if (type_class == undefined) {
       type_class = $(e.target).attr("class");
@@ -714,14 +723,14 @@
       data: reqData,
       dataType: 'json',
       async: false,
-      success: function(data) {
+      success: function (data) {
         if (data.captcha) {
           $.fancybox(data.captcha);
           $("input#id_captcha_answer").focus();
         } else {
           if (type == 'submission') {
             PTL.editor.units[uid].isfuzzy = PTL.editor.isFuzzy();
-            $("textarea[id^=id_target_f_]").each(function(i) {
+            $("textarea[id^=id_target_f_]").each(function (i) {
               PTL.editor.units[uid].target[i].text = $(this).val();
             });
           }
@@ -738,7 +747,7 @@
   },
 
   /* Loads the editor with the next unit */
-  gotoPrevNext: function(e) {
+  gotoPrevNext: function (e) {
     e.preventDefault();
     var current = PTL.editor.units[PTL.editor.activeUid];
     var prevnextMap = {previous: current.prev, next: current.next};
@@ -750,7 +759,7 @@
   },
 
   /* Loads the editor with a specific unit */
-  gotoUnit: function(e) {
+  gotoUnit: function (e) {
     e.preventDefault();
     if (PTL.editor.getSelectedText() != "") {
       return;
@@ -764,7 +773,7 @@
   },
 
   /* Loads the editor on a specific page */
-  gotoPage: function() {
+  gotoPage: function () {
     var page = parseInt($("input#item-number").val());
     if (page && !isNaN(page)) {
       var newHash = "page/" + page;
@@ -778,14 +787,14 @@
    */
 
   /* Gets the failing check options for the current query */
-  get_check_options: function() {
+  get_check_options: function () {
     var checksUrl = l(this.store + '/checks/');
     var opts;
     $.ajax({
       url: checksUrl,
       async: false,
       dataType: 'json',
-      success: function(data) {
+      success: function (data) {
         opts = data.checks;
       },
       error: PTL.editor.error
@@ -794,7 +803,7 @@
   },
 
   /* Loads units based on checks filtering */
-  filterChecks: function() {
+  filterChecks: function () {
     var filterBy = $("option:selected", this).val();
     if (filterBy != "none") {
       var newHash = "filter/checks/" + filterBy;
@@ -803,7 +812,7 @@
   },
 
   /* Loads units based on filtering */
-  filterStatus: function() {
+  filterStatus: function () {
     var filterBy = $("option:selected", this).val();
     if (filterBy == "checks") {
       var opts = PTL.editor.get_check_options();
@@ -811,7 +820,7 @@
         var dropdown = '<div id="filter-checks" class="toolbar-item">';
         dropdown += '<select name="filter-checks">';
         dropdown += '<option selected="selected" value="none">------</option>';
-        $.each(opts, function() {
+        $.each(opts, function () {
           dropdown += '<option value="' + this.name + '">' + this.text + '</option>';
         });
         dropdown += '</select></div>';
@@ -830,7 +839,7 @@
   },
 
   /* Gets more context units */
-  getMoreContext: function() {
+  getMoreContext: function () {
     var ctxt_url = l(PTL.editor.store + '/context/' + PTL.editor.activeUid);
     var reqData = {gap: PTL.editor.ctxtGap};
     $.ajax({
@@ -838,7 +847,7 @@
       async: false,
       dataType: 'json',
       data: reqData,
-      success: function(data) {
+      success: function (data) {
         PTL.editor.ctxtGap += 2;
         var before = PTL.editor.buildCtxtRows(data.ctxt.before);
         var after = PTL.editor.buildCtxtRows(data.ctxt.after);
@@ -854,7 +863,7 @@
   /*
    * Search
    */
-  search: function() {
+  search: function () {
     // XXX: we can parse search text to allow operators in searches
     // example: "in:source foo"
     var text = $("input#id_search").val();
@@ -869,7 +878,7 @@
    * Suggestions
    */
 
-  fancyEscape: function(text) {
+  fancyEscape: function (text) {
     function replace(match) {
         var replaced,
             escapeHl= '<span class="highlight-escape">%s</span>',
@@ -900,13 +909,13 @@
   /*
    * Does the actual diffing
    */
-  doDiff: function(a, b) {
+  doDiff: function (a, b) {
     var d, op, text,
         textDiff = "",
         removed = "",
         diff = this.differencer.diff_main(a, b);
     this.differencer.diff_cleanupSemantic(diff);
-    $.each(diff, function(k, v) {
+    $.each(diff, function (k, v) {
       op = v[0];
       text = v[1];
       if (op == 0) {
@@ -937,7 +946,7 @@
   /*
    * Filters TM results and does some processing (add diffs, extra texts, ...)
    */
-  filterTMResults: function(results) {
+  filterTMResults: function (results) {
     // FIXME: this just retrieves the first four results
     // we could limit based on a threshold too.
     // FIXME: use localized 'N% match' format string
@@ -953,7 +962,7 @@
   },
 
   /* Gets TM suggestions from amaGama */
-  getTMUnits: function() {
+  getTMUnits: function () {
     var src = this.meta.source_lang;
     var tgt = this.meta.target_lang;
     var stext = $($("input[id^=id_source_f_]").get(0)).val();
@@ -968,7 +977,7 @@
       url: tmUrl,
       callback: '_jsonp' + PTL.editor.activeUid,
       dataType: 'jsonp',
-      success: function(data) {
+      success: function (data) {
         var uid = this.callback.slice(6);
         if (uid == PTL.editor.activeUid && data.length > 0) {
           var filtered = PTL.editor.filterTMResults(data);
@@ -986,65 +995,65 @@
   },
 
   /* Rejects a suggestion */
-  rejectSuggestion: function() {
+  rejectSuggestion: function () {
     var element = $(this).parent().parent();
     var uid = $('.translate-container input#id_id').val();
     var suggId = $(this).siblings("input.suggid").val();
     var url = l('/suggestion/reject/') + uid + '/' + suggId;
     $.post(url, {'reject': 1},
-           function(data) {
-             element.fadeOut(200, function() {
-               $(this).remove();
-               if (!$("div#suggestion-container div[id^=suggestion]").length) {
-                 $("input.next").trigger("click");
-               }
-             });
-           }, "json");
+      function (data) {
+        element.fadeOut(200, function () {
+          $(this).remove();
+          if (!$("div#suggestion-container div[id^=suggestion]").length) {
+            $("input.next").trigger("click");
+          }
+        });
+      }, "json");
     return false;
   },
 
   /* Accepts a suggestion */
-  acceptSuggestion: function() {
+  acceptSuggestion: function () {
     var element = $(this).parent().parent();
     var uid = $('.translate-container input#id_id').val();
     var suggId = $(this).siblings("input.suggid").val();
     var url = l('/suggestion/accept/') + uid + '/' + suggId;
     $.post(url, {'accept': 1},
-           function(data) {
-             $.each(data.newtargets, function(i, target) {
-               $("textarea#id_target_f_" + i).val(target).focus();
-             });
-             $.each(data.newdiffs, function(suggId, sugg) {
-               $.each(sugg, function(i, target) {
-                 $("#suggdiff-" + suggId + "-" + i).html(target);
-               });
-             });
-             $("textarea[id^=id_target_f_]").each(function(i) {
-               PTL.editor.units[uid].target[i].text = $(this).val();
-             });
-             PTL.editor.units[uid].isfuzzy = false;
-             element.fadeOut(200, function() {
-               $(this).remove();
-               if (!$("div#suggestion-container div[id^=suggestion]").length) {
-                 $("input.next").trigger("click");
-               }
-             });
-           }, "json");
+      function (data) {
+        $.each(data.newtargets, function (i, target) {
+          $("textarea#id_target_f_" + i).val(target).focus();
+        });
+        $.each(data.newdiffs, function (suggId, sugg) {
+          $.each(sugg, function (i, target) {
+             $("#suggdiff-" + suggId + "-" + i).html(target);
+          });
+        });
+        $("textarea[id^=id_target_f_]").each(function (i) {
+          PTL.editor.units[uid].target[i].text = $(this).val();
+        });
+        PTL.editor.units[uid].isfuzzy = false;
+        element.fadeOut(200, function () {
+          $(this).remove();
+          if (!$("div#suggestion-container div[id^=suggestion]").length) {
+          $("input.next").trigger("click");
+          }
+        });
+      }, "json");
     return false;
   },
 
   /* Rejects a quality check marking it as false positive */
-  rejectCheck: function() {
+  rejectCheck: function () {
     var element = $(this).parent();
     var checkId = $(this).siblings("input.checkid").val();
     var uid = $('.translate-container input#id_id').val();
     var url = l('/qualitycheck/reject/') + uid + '/' + checkId;
     $.post(url, {'reject': 1},
-           function(data) {
-             element.fadeOut(200, function() {
-               $(this).remove();
-             });
-           }, "json");
+      function (data) {
+        element.fadeOut(200, function () {
+          $(this).remove();
+        });
+      }, "json");
     return false;
   },
 
@@ -1052,7 +1061,7 @@
   /*
    * Machine Translation
    */
-  isSupportedSource: function(pairs, source) {
+  isSupportedSource: function (pairs, source) {
     for (var i in pairs) {
       if (source == pairs[i].source) {
         return true;
@@ -1061,7 +1070,7 @@
     return false;
   },
 
-  isSupportedTarget: function(pairs, target) {
+  isSupportedTarget: function (pairs, target) {
     for (var i in pairs) {
       if (target == pairs[i].target) {
         return true;
@@ -1070,7 +1079,7 @@
     return false;
   },
 
-  isSupportedPair: function(pairs, source, target) {
+  isSupportedPair: function (pairs, source, target) {
     for (var i in pairs) {
       if (source == pairs[i].source &&
           target == pairs[i].target) {
@@ -1080,13 +1089,13 @@
     return false;
   },
 
-  addMTButton: function(aClass, imgFn, tooltip) {
+  addMTButton: function (aClass, imgFn, tooltip) {
       var btn = '<a class="translate-mt ' + aClass + '">';
       btn += '<img src="' + imgFn + '" title="' + tooltip + '" /></a>';
       $("div.translate-toolbar").first().prepend(btn);
   },
 
-  normalizeCode: function(locale) {
+  normalizeCode: function (locale) {
       var clean = locale.replace('_', '-')
       var atIndex = locale.indexOf("@");
       if (atIndex != -1) {
@@ -1095,7 +1104,7 @@
       return clean;
   },
 
-  collectArguments: function(substring) {
+  collectArguments: function (substring) {
     if (substring == '%%') {
       return '%%';
     }
@@ -1105,7 +1114,7 @@
     return substitute_string;
   },
 
-  escapeHtml: function(s) {
+  escapeHtml: function (s) {
     return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/,"<br/>");
   }
 
