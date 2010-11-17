@@ -100,6 +100,9 @@
       PTL.editor.copyOriginal(sources);
     });
     $("div.suggestion").live("click", function() {
+      if (PTL.editor.getSelectedText() != "") {
+        return;
+      }
       var sources = $(".suggestion-translation", this);
       PTL.editor.copyOriginal(sources);
     });
