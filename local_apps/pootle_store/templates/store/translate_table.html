@@ -3,7 +3,11 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 <div class="translate-form">
     <div id="pootle_path" class="hide">{{ store.pootle_path }}</div>
-    <div id="active_uid" class="hide">{{ form.instance.id }}</div>
+    <div id="target_lang" class="hide">{{ language.code }}</div>
+    <noscript>
+      <h1>{% trans "Pootle's editor requires JavaScript" %}</h1>
+      <p>{% trans "Please enable JavaScript it in your browser preferences and reload the page." %}</p>
+    </noscript>
     <table cellpadding="0" cellspacing="0" class="translate-table{% if cansuggest and not cantranslate %} suggest-mode{% endif%}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
       <thead>
         <tr lang="{{ LANGUAGE_CODE }}">
@@ -12,6 +16,7 @@
         </tr>
       </thead>
       <tbody>
+        {% comment %}
         {% for unit in units %}
         <tr id="row{{ unit.id }}" class="{% ifequal unit form.instance %}edit-row{% else %}view-row {% cycle 'even' 'odd' %}{% endifequal %}"{% ifequal unit form.instance %} colspan="2"{% endifequal %}>
           {% ifequal unit form.instance %}
@@ -25,6 +30,7 @@
           {% endifequal %}
         </tr>
         {% endfor %}
+        {% endcomment %}
       </tbody>
     </table>
 </div>

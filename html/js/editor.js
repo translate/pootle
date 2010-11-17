@@ -30,7 +30,6 @@
     /* Initialize variables */
     this.units = {};
     this.store = $("div#pootle_path").text();
-    this.activeUid = $("#active_uid").text();
     this.currentPage = 1;
     this.pagesGot = {};
     this.filter = "all";
@@ -237,11 +236,8 @@
             }
           break;
           default:
-            /* Retrieve metadata used for this query */
-            PTL.editor.getMeta(true);
-
-            /* Editor is ready to be used at this stage */
-            $("table.translate-table").trigger("editor_ready");
+            PTL.editor.getMeta(false);
+            PTL.editor.displayEditUnit(PTL.editor.activeUid);
           break;
         }
       }, {'unescape': true});

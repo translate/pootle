@@ -66,7 +66,7 @@
       this.url = PTL.editor.settings.secure == false ? this.url : this.url.replace("http", "https");
       this.url += "?callback=?";
       /* Set target language */
-      this.targetLang = PTL.editor.normalizeCode($("#id_target_f_0").attr("lang"));
+      this.targetLang = PTL.editor.normalizeCode($("div#target_lang").text());
       /* Bind event handler */
       $(".googletranslate").live("click", this.translate);
     },

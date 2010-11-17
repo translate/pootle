@@ -340,7 +340,7 @@ def translate_page(request, units_queryset, store=None):
     # shouldn't we globalize profile context
     profile = get_profile(request.user)
 
-    step_queryset = None
+    #step_queryset = None
 
     # Process search first
     search_form = None
@@ -351,6 +351,7 @@ def translate_page(request, units_queryset, store=None):
     else:
         search_form = SearchForm()
 
+    '''
     # which units are we interested in?
     if step_queryset is None:
         step_queryset = get_step_query(request, units_queryset)
@@ -461,28 +462,29 @@ def translate_page(request, units_queryset, store=None):
     # precalculate alternative source languages
     alt_src_langs = get_alt_src_langs(request, profile, translation_project)
     alt_src_codes = alt_src_langs.values_list('code', flat=True)
+    '''
 
     context = {
-        'unit_rows': unit_rows,
-        'alt_src_langs': alt_src_langs,
-        'alt_src_codes': alt_src_codes,
+        #'unit_rows': unit_rows,
+        #'alt_src_langs': alt_src_langs,
+        #'alt_src_codes': alt_src_codes,
         'cantranslate': cantranslate,
         'cansuggest': cansuggest,
-        'canreview': canreview,
-        'form': form,
+        #'canreview': canreview,
+        #'form': form,
         'search_form': search_form,
-        'edit_unit': edit_unit,
+        #'edit_unit': edit_unit,
         'store': store,
-        'pager': pager,
-        'units': units,
+        #'pager': pager,
+        #'units': units,
         'language': language,
         'translation_project': translation_project,
-        'project': translation_project.project,
+        #'project': translation_project.project,
         'profile': profile,
         'source_language': translation_project.project.source_language,
         'directory': store.parent,
-        'GET_state': '&'.join(GET_vars),
-        'checks': checks,
+        #'GET_state': '&'.join(GET_vars),
+        #'checks': checks,
         'MT_BACKENDS': settings.MT_BACKENDS,
         'AMAGAMA_URL': settings.AMAGAMA_URL,
         }
