@@ -29,7 +29,7 @@ try:
 except ImportError:
     clean_html = lambda text: text
 
-ESCAPE_RE = re.compile('<[^<]*?>|\r\n|[\r\n\t&<>]')
+ESCAPE_RE = re.compile('<[^<]*?>|\\\\|\r\n|[\r\n\t&<>]')
 def fancy_escape(text):
     """replace special chars with entities, and highlight xml tags and
     whitespaces"""
@@ -44,6 +44,7 @@ def fancy_escape(text):
             '&': '&amp;',
             '<': '&lt;',
             '>': '&gt;',
+            '\\': (escape_highlight % '\\\\'),
             }
         try:
             return submap[match.group()]
