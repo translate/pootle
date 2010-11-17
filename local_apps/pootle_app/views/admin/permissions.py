@@ -21,10 +21,10 @@
 
 from django.utils.translation import ugettext as _
 from django import forms
-from django.contrib.contenttypes.models import ContentType
 
 from pootle_profile.models import PootleProfile
-from pootle_app.models import Directory, PermissionSet
+from pootle_app.models import Directory
+from pootle_app.models.permissions import PermissionSet, get_permission_contenttype
 from pootle_app.views.admin import util
 from pootle_misc.forms import GroupedModelChoiceField
 
@@ -33,7 +33,7 @@ class PermissionFormField(forms.ModelMultipleChoiceField):
         return _(instance.name)
 
 def admin_permissions(request, current_directory, template, context):
-    content_type = ContentType.objects.get(name='pootle', app_label='pootle_app')
+    content_type = get_permission_contenttype()
     permission_queryset = content_type.permission_set.exclude(codename__in=['add_directory', 'change_directory', 'delete_directory'])
 
     context['submitname'] = 'changepermissions'
