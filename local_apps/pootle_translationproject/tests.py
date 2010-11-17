@@ -402,14 +402,14 @@ X-Generator: Pootle Tests
 class CsvTests(XliffTests):
     """Tests for CSV projects"""
     template_text = r'''id, source, target, location, fuzzy
-"Excat", "Exact", "", "fish.c:1"
-"Fuzzy", "Fuzzy", "", "test.c:1"
-"%d new", "%d new", "", "fish.c:2"
+"Excat", "Exact", "", "fish.c:1", "False"
+"Fuzzy", "Fuzzy", "", "test.c:1", "False"
+"%d new", "%d new", "", "fish.c:2", "False"
 '''
     target_text = r'''id, source, target, location, fuzzy
-"Exact", "Exact", "Belzabt", "fish.c:1"
-"fuzzy", "fuzzy", "ta2riban", "test.c:1"
-"obsolete", "obsolete", "2adim", "fish.c:2"
+"Exact", "Exact", "Belzabt", "fish.c:1", "False"
+"fuzzy", "fuzzy", "ta2riban", "test.c:1", "False"
+"obsolete", "obsolete", "2adim", "fish.c:2", "False"
 '''
     ext = 'csv'
     nontrans_count = 0
