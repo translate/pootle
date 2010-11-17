@@ -34,8 +34,8 @@ def fancy_escape(text):
     """replace special chars with entities, and highlight xml tags and
     whitespaces"""
     def replace(match):
-        escape_highlight = '<span class="translation-highlight-escape">%s</span>'
-        html_highlight = '<span class="translation-highlight-html">&lt;%s&gt;</span>'
+        escape_highlight = '<span class="highlight-escape">%s</span>'
+        html_highlight = '<span class="highlight-html">&lt;%s&gt;</span>'
         submap = {
             '\r\n': (escape_highlight % '\\r\\n') + '<br/>\n',
             '\r': (escape_highlight % '\\r') + '<br/>\n',

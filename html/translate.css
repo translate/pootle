@@ -907,8 +907,8 @@ a.copyoriginal,
 a.translate-mt,
 a.writespecial,
 a.morecontext,
-.translate-full .translation-highlight-escape,
-.translate-full .translation-highlight-html
+.translate-full .highlight-escape,
+.translate-full .highlight-html
 {
     cursor: pointer;
 }
@@ -984,17 +984,17 @@ a.writespecial:hover
 
 /* HIGHLIGHT */
 
-.translation-highlight-escape
+.highlight-escape
 {
     color: purple;
 }
 
-.translation-highlight-html
+.highlight-html
 {
     color: #840;
 }
 
-.tm-server .suggestion-original .translation-highlight-html
+.tm-server .suggestion-original .highlight-html
 {
     color: #630;
 }

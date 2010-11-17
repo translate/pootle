@@ -92,7 +92,7 @@
     });
 
     /* Write TM results, special chars... into the currently focused element */
-    $(".writetm, .writespecial, .translate-full .translation-highlight-escape, .translate-full .translation-highlight-html").live("click", this.copyText);
+    $(".writetm, .writespecial, .translate-full .highlight-escape, .translate-full .highlight-html").live("click", this.copyText);
 
     /* Copy original translation */
     $("a.copyoriginal").live("click", function() {
@@ -876,8 +876,8 @@
   fancyEscape: function(text) {
     function replace(match) {
         var replaced,
-            escapeHl= '<span class="translation-highlight-escape">%s</span>',
-            htmlHl = '<span class="translation-highlight-html">&lt;%s&gt;</span>';
+            escapeHl= '<span class="highlight-escape">%s</span>',
+            htmlHl = '<span class="highlight-html">&lt;%s&gt;</span>';
         submap = {
           '\r\n': escapeHl.replace(/%s/, '\\r\\n') + '<br/>\n',
           '\r': escapeHl.replace(/%s/, '\\r') + '<br/>\n',
