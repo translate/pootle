@@ -38,7 +38,7 @@ from django import forms
 
 from translate.storage import factory, versioncontrol
 
-from pootle_misc.baseurl import redirect
+from pootle_misc.baseurl import redirect, l
 from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.models.signals import post_file_upload
 from pootle_app.models             import Directory
@@ -187,7 +187,7 @@ def tp_admin_files(request, translation_project):
         'directory': translation_project.directory,
         }
     link = lambda instance: '<a href="%s/translate">%s</a>' % (
-        instance.pootle_path, instance.pootle_path[len(translation_project.pootle_path):])
+        l(instance.pootle_path), instance.pootle_path[len(translation_project.pootle_path):])
 
     return util.edit(request, 'translation_project/tp_admin_files.html', Store, model_args,
                      link, linkfield='pootle_path', queryset=queryset,
