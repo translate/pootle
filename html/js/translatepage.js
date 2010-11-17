@@ -53,8 +53,9 @@ $(document).ready(function() {
     var clean_sources = [];
     $.each(sources, function(i) {
       clean_sources[i] = $(this).text()
-                                .replace("\n", "\\n\n", "g")
-                                .replace("\t", "\\t", "g");
+	  //.replace("\n", "\\n\n", "g")
+	  //.replace("\t", "\\t", "g")
+	  ;
     });
 
     var targets = $("[id^=id_target_f_]");
