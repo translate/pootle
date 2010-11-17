@@ -27,15 +27,19 @@ from django.contrib.contenttypes.models import ContentType
 
 from pootle_app.lib.util import RelatedManager
 
+def get_permission_contenttype():
+    content_type = ContentType.objects.filter(name='pootle', app_label='pootle_app', model="directory")[0]
+    return content_type
+
 def get_pootle_permission(codename):
     # The content type of our permission
-    content_type = ContentType.objects.get(name='pootle', app_label='pootle_app')
+    content_type = get_permission_contenttype()
     # Get the pootle view permission
     return Permission.objects.get(content_type=content_type, codename=codename)
 
 def get_pootle_permissions(codenames=None):
     """gets the available rights and their localized names"""
-    content_type = ContentType.objects.get(name='pootle', app_label='pootle_app')
+    content_type = get_permission_contenttype()
     if codenames is not None:
         permissions = Permission.objects.filter(content_type=content_type, codename__in=codenames)
     else:
