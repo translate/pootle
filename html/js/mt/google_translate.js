@@ -61,12 +61,12 @@
             {"source":"cy","target":"cy"},
             {"source":"yi","target":"yi"}],
 
-    init: function(apikey) {
+    init: function(apiKey) {
       /* Prepare URL for requests. */
       this.url = PTL.editor.settings.secure == false ? this.url : this.url.replace("http", "https");
       this.url += "?callback=?";
       /* Set target language */
-      this.target_lang = PTL.editor.normalizeCode($("#id_target_f_0").attr("lang"));
+      this.targetLang = PTL.editor.normalizeCode($("#id_target_f_0").attr("lang"));
       /* Bind event handler */
       $(".googletranslate").live("click", this.translate);
     },
@@ -74,7 +74,7 @@
     ready: function() {
       var _this = PTL.editor.mt.google_translate;
 
-      if (PTL.editor.isSupportedTarget(_this.pairs, _this.target_lang)) {
+      if (PTL.editor.isSupportedTarget(_this.pairs, _this.targetLang)) {
         var sources = $("div.placeholder").prev(".translation-text");
         $(sources).each(function() {
           var source = PTL.editor.normalizeCode($(this).attr("lang"));
@@ -90,29 +90,29 @@
     translate: function() {
       var areas = $("[id^=id_target_f_]");
       var sources = $(this).parent().parent().siblings().children(".translation-text");
-      var lang_from = PTL.editor.normalizeCode(sources.eq(0).attr("lang"));
-      var lang_to = PTL.editor.normalizeCode(areas.eq(0).attr("lang"));
+      var langFrom = PTL.editor.normalizeCode(sources.eq(0).attr("lang"));
+      var langTo = PTL.editor.normalizeCode(areas.eq(0).attr("lang"));
 
       // The printf regex based on http://phpjs.org/functions/sprintf:522
-      var c_printf_pattern = /%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuidfegEG])/g;
-      var csharp_string_format_pattern = /{\d+(,\d+)?(:[a-zA-Z ]+)?}/g;
-      var percent_number_pattern = /%\d+/g;
+      var cPrintfPat = /%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuidfegEG])/g;
+      var csharpStrPat = /{\d+(,\d+)?(:[a-zA-Z ]+)?}/g;
+      var percentNumberPat = /%\d+/g;
       var pos = 0;
-      var argument_subs = new Array();
+      var argSubs = new Array();
 
       $(sources).each(function(j) {
-        var source_text = $(this).text();
-        source_text = source_text.replace(c_printf_pattern, PTL.editor.collectArguments);
-        source_text = source_text.replace(csharp_string_format_pattern, PTL.editor.collectArguments);
-        source_text = source_text.replace(percent_number_pattern, PTL.editor.collectArguments);
+        var sourceText = $(this).text();
+        sourceText = sourceText.replace(cPrintfPat, PTL.editor.collectArguments);
+        sourceText = sourceText.replace(csharpStrPat, PTL.editor.collectArguments);
+        sourceText = sourceText.replace(percentNumberPat, PTL.editor.collectArguments);
 
-        var trans_data = {v: '1.0', q: source_text,
-                         langpair: lang_from + '|' + lang_to}
-        $.getJSON(PTL.editor.mt.google_translate.url, trans_data, function(r) {
+        var transData = {v: '1.0', q: sourceText,
+                         langpair: langFrom + '|' + langTo}
+        $.getJSON(PTL.editor.mt.google_translate.url, transData, function(r) {
           if (r.responseData && r.responseStatus == 200) {
             var translation = r.responseData.translatedText;
-            for (var i=0; i<argument_subs.length; i++)
-              translation = translation.replace("__" + i + "__", argument_subs[i]);
+            for (var i=0; i<argSubs.length; i++)
+              translation = translation.replace("__" + i + "__", argSubs[i]);
             areas.eq(j).val($("<div />").html(translation).text());
             areas.eq(j).focus();
           } else {
