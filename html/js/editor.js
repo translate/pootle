@@ -316,8 +316,9 @@
     var cleanSources = [];
     $.each(sources, function (i) {
       cleanSources[i] = $(this).text()
-                               .replace("\n", "\\n\n", "g")
-                               .replace("\t", "\\t", "g");
+	  //.replace("\n", "\\n\n", "g")
+	  //.replace("\t", "\\t", "g")
+	  ;
     });
 
     var targets = $("[id^=id_target_f_]");
