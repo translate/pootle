@@ -342,6 +342,8 @@ def translate_page(request, units_queryset, store=None):
 
     #step_queryset = None
 
+    search_form = SearchForm()
+    '''
     # Process search first
     search_form = None
     if 'search' in request.GET and 'sfields' in request.GET:
@@ -351,7 +353,6 @@ def translate_page(request, units_queryset, store=None):
     else:
         search_form = SearchForm()
 
-    '''
     # which units are we interested in?
     if step_queryset is None:
         step_queryset = get_step_query(request, units_queryset)
