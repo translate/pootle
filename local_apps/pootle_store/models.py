@@ -30,6 +30,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.files.storage import FileSystemStorage
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.transaction import commit_on_success
+from django.utils.encoding import iri_to_uri
 
 from translate.storage import base, statsdb, po, poheader
 from translate.misc.hash import md5_f
@@ -708,7 +709,7 @@ class Store(models.Model, base.TranslationStore):
         if store is None:
             store = self.file.store
 
-        key = "%s:sync" % self.pootle_path
+        key = iri_to_uri("%s:sync" % self.pootle_path)
 
         if self.state < PARSED:
             logging.debug(u"Parsing %s", self.pootle_path)
@@ -772,7 +773,7 @@ class Store(models.Model, base.TranslationStore):
         if store is None:
             store = self.file.store
 
-        key = "%s:sync" % self.pootle_path
+        key = iri_to_uri("%s:sync" % self.pootle_path)
 
         # lock store
         logging.debug(u"Updating %s", self.pootle_path)
@@ -849,7 +850,7 @@ class Store(models.Model, base.TranslationStore):
 
     def sync(self, update_structure=False, update_translation=False, conservative=True, create=False, profile=None):
         """sync file with translations from db"""
-        key = "%s:sync" % self.pootle_path
+        key = iri_to_uri("%s:sync" % self.pootle_path)
         last_sync = cache.get(key)
         if conservative and last_sync and last_sync == self.get_mtime():
             return

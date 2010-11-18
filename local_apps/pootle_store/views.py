@@ -37,8 +37,8 @@ from django.utils.translation.trans_real import parse_accept_lang_header
 from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from django.core.cache import cache
 from django.utils import simplejson
-from django.utils.html import escape
 from django.views.decorators.cache import never_cache
+from django.utils.encoding import iri_to_uri
 
 from pootle_misc.baseurl import redirect
 from pootle_app.models.permissions import get_matching_permissions, check_permission, check_profile_permission
@@ -65,7 +65,7 @@ def export_as_xliff(request, pootle_path):
     export_path = os.path.join('POOTLE_EXPORT', path + os.path.extsep + 'xlf')
     abs_export_path = absolute_real_path(export_path)
 
-    key = "%s:export_as_xliff" % pootle_path
+    key = iri_to_uri("%s:export_as_xliff" % pootle_path)
     last_export = cache.get(key)
     if not (last_export and last_export == store.get_mtime() and os.path.isfile(abs_export_path)):
         ensure_target_dir_exists(abs_export_path)
@@ -91,7 +91,7 @@ def export_as_type(request, pootle_path, filetype):
     export_path = os.path.join('POOTLE_EXPORT', path + os.path.extsep + filetype)
     abs_export_path = absolute_real_path(export_path)
 
-    key = "%s:export_as_%s" % (pootle_path, filetype)
+    key = iri_to_uri("%s:export_as_%s" % (pootle_path, filetype))
     last_export = cache.get(key)
     if not (last_export and last_export == store.get_mtime() and os.path.isfile(abs_export_path)):
         ensure_target_dir_exists(abs_export_path)

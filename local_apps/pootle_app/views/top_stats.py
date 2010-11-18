@@ -19,10 +19,10 @@
 # along with Pootle; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from django.utils.translation import ugettext as _
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.core.cache import cache
+from django.utils.encoding import iri_to_uri
 
 from pootle_misc.aggregate import group_by_sort
 
@@ -55,7 +55,7 @@ def gentopstats_language(language):
       {'data':        [],
        'headerlabel': u'Submissions'}]
     """
-    key = "%s:gentopstats" % language.pootle_path
+    key = iri_to_uri("%s:gentopstats" % language.pootle_path)
     result = cache.get(key)
     if result is None:
         top_sugg   = group_by_sort(User.objects.filter(pootleprofile__suggester__translation_project__language=language),
@@ -80,7 +80,7 @@ def gentopstats_project(project):
       {'data':        [],
        'headerlabel': u'Submissions'}]
     """
-    key = "%s:gentopstats" % project.pootle_path
+    key = iri_to_uri("%s:gentopstats" % project.pootle_path)
     result = cache.get(key)
     if result is None:
         top_sugg   = group_by_sort(User.objects.filter(pootleprofile__suggester__translation_project__project=project),
@@ -105,7 +105,7 @@ def gentopstats_translation_project(translation_project):
       {'data':        [],
        'headerlabel': u'Submissions'}]
     """
-    key = "%s:gentopstats" % translation_project.pootle_path
+    key = iri_to_uri("%s:gentopstats" % translation_project.pootle_path)
     result = cache.get(key)
     if result is None:
         top_sugg   = group_by_sort(User.objects.filter(pootleprofile__suggester__translation_project=translation_project),
