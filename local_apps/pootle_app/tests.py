@@ -1,3 +1,4 @@
+import time
 import os
 import zipfile
 
@@ -174,7 +175,9 @@ msgstr "resto"
             'do_upload': 'upload',
             }
         response = self.client.post("/af/tutorial/", post_dict)
-
+        pootle_path = "/af/tutorial/pootle.po"
+        response = self.client.get(pootle_path + "/translate")
+        time.sleep(1)
         pocontent = wStringIO.StringIO('#: test.c\nmsgid "test"\nmsgstr "blo3"\n\n#: fish.c\nmsgid "fish"\nmsgstr "stink"\n')
         pocontent.name = "pootle.po"
 
@@ -188,7 +191,6 @@ msgstr "resto"
         # NOTE: this is what we do currently: any altered strings become suggestions.
         # It may be a good idea to change this
         mergedcontent = '#: fish.c\nmsgid "fish"\nmsgstr "stink"\n'
-        pootle_path = "/af/tutorial/pootle.po"
         response = self.client.get(pootle_path + "/download")
         store = Store.objects.get(pootle_path=pootle_path)
         self.assertTrue(store.file.read().find(mergedcontent) >= 0)
@@ -281,6 +283,8 @@ msgstr "resto"
     def test_submit_translation(self):
         """Tests that we can translate units."""
         pootle_path = "/af/tutorial/pootle.po"
+        response = self.client.get(pootle_path + "/translate")
+        time.sleep(1)
         submit_dict = {
             'target_f_0': 'submitted translation',
             'submit': 'Submit',
@@ -321,10 +325,8 @@ msgstr "resto"
 
     def test_submit_plural_to_singular_lang(self):
         """Tests that we can submit a translation with plurals to a language without plurals."""
-
         pocontent = wStringIO.StringIO('msgid "singular"\nmsgid_plural "plural"\nmsgstr[0] ""\nmsgstr[1] ""\n\nmsgid "no fish"\nmsgstr ""\n')
         pocontent.name = 'test_plural_submit.po'
-
         post_dict = {
             'file': pocontent,
             'overwrite': 'overwrite',
@@ -332,6 +334,8 @@ msgstr "resto"
             }
         response = self.client.post("/ja/tutorial/", post_dict)
         pootle_path = "/ja/tutorial/test_plural_submit.po"
+        response = self.client.get(pootle_path + "/translate")
+        time.sleep(1)
         submit_dict = {
             'target_f_0': 'just fish',
             'submit': 'Submit',
