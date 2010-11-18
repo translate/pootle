@@ -117,6 +117,15 @@ Directory contents
 
       https://code.google.com/p/jquery-jsonp/
 
+    - jquery.serializeObject.min.js :
+      A method for serializing forms directly into objects.
+
+      Whereas jQuery’s built-in .serializeArray() method serializes a form
+      into an array, .serializeObject() serializes a form into an
+      (arguably more useful) object.
+
+      http://benalman.com/projects/jquery-misc-plugins/#serializeobject
+
     - jquery.tmpl.js :
       jQuery templating engine.
 

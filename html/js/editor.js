@@ -735,13 +735,8 @@
     var type = typeMap[type_class];
     var submitUrl = l(PTL.editor.store + '/process/' + uid + '/' + type);
     // Serialize data to be sent
-    var reqData = $("form#" + form_id).serialize();
-    // TODO: align with the way we're using in other places for getting
-    // request data
-    reqData += "&page=" + PTL.editor.currentPage + "&filter=" + PTL.editor.filter;
-    if (PTL.editor.checks.length) {
-      reqData += "&checks=" + PTL.editor.checks.join(",");
-    }
+    var reqData = $("form#" + form_id).serializeObject();
+    $.extend(reqData, {page: PTL.editor.currentPage}, PTL.editor.getReqData());
     $.ajax({
       url: submitUrl,
       type: 'POST',
