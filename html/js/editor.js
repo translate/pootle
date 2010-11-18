@@ -785,7 +785,7 @@
    */
 
   /* Gets the failing check options for the current query */
-  get_check_options: function () {
+  getCheckOptions: function () {
     var checksUrl = l(this.store + '/checks/');
     var opts;
     $.ajax({
@@ -813,7 +813,7 @@
   filterStatus: function () {
     var filterBy = $("option:selected", this).val();
     if (filterBy == "checks") {
-      var opts = PTL.editor.get_check_options();
+      var opts = PTL.editor.getCheckOptions();
       if (opts.length) {
         var dropdown = '<div id="filter-checks" class="toolbar-item">';
         dropdown += '<select name="filter-checks">';
@@ -838,10 +838,10 @@
 
   /* Gets more context units */
   getMoreContext: function () {
-    var ctxt_url = l(PTL.editor.store + '/context/' + PTL.editor.activeUid);
+    var ctxtUrl = l(PTL.editor.store + '/context/' + PTL.editor.activeUid);
     var reqData = {gap: PTL.editor.ctxtGap};
     $.ajax({
-      url: ctxt_url,
+      url: ctxtUrl,
       async: false,
       dataType: 'json',
       data: reqData,
@@ -849,9 +849,9 @@
         PTL.editor.ctxtGap += 2;
         var before = PTL.editor.buildCtxtRows(data.ctxt.before);
         var after = PTL.editor.buildCtxtRows(data.ctxt.after);
-        var ctxt_rows = $("tr.context-row");
-        ctxt_rows.first().before(before);
-        ctxt_rows.last().after(after);
+        var ctxtRows = $("tr.context-row");
+        ctxtRows.first().before(before);
+        ctxtRows.last().after(after);
       },
       error: PTL.editor.error
     });
