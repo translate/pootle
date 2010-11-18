@@ -256,6 +256,7 @@ def convert_template(translation_project, template_store, target_pootle_path, ta
     if template_store.file:
         if store:
             store.update(update_structure=True, update_translation=True, conservative=False, store=output_file, fuzzy=True)
+        output_file.settargetlanguage(translation_project.language.code)
         output_file.savefile(target_path)
     elif store:
         store.mergefile(output_file, None, allownewstrings=True, suggestions=False, notranslate=False, obsoletemissing=True)
