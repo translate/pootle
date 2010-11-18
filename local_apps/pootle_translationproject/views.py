@@ -35,6 +35,8 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.forms.models import BaseModelFormSet
 from django import forms
+from django.utils.encoding import iri_to_uri
+
 
 from translate.storage import factory, versioncontrol
 
@@ -247,7 +249,7 @@ def export_zip(request, translation_project, file_path):
     export_path = os.path.join('POOTLE_EXPORT', translation_project.real_path, archivename)
     abs_export_path = absolute_real_path(export_path)
 
-    key = "%s:export_zip" % pootle_path
+    key = iri_to_uri("%s:export_zip" % pootle_path)
     last_export = cache.get(key)
     if not (last_export and last_export == translation_project.get_mtime() and os.path.isfile(abs_export_path)):
         ensure_target_dir_exists(abs_export_path)

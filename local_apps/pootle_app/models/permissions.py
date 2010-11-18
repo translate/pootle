@@ -24,6 +24,7 @@ from django.core.cache import cache
 from django.conf import settings
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
+from django.utils.encoding import iri_to_uri
 
 from pootle_app.lib.util import RelatedManager
 
@@ -49,7 +50,7 @@ def get_pootle_permissions(codenames=None):
 def get_permissions_by_username(username, directory):
     pootle_path = directory.pootle_path
     path_parts = filter(None, pootle_path.split('/'))
-    key = 'Permissions:%s' % username
+    key = iri_to_uri('Permissions:%s' % username)
     permissions_cache = cache.get(key, {})
     if pootle_path not in permissions_cache:
         try:
@@ -125,10 +126,10 @@ class PermissionSet(models.Model):
 
     def save(self, *args, **kwargs):
         super(PermissionSet, self).save(*args, **kwargs)
-        key = 'Permissions:%s' % self.profile.user.username
+        key = iri_to_uri('Permissions:%s' % self.profile.user.username)
         cache.delete(key)
 
     def delete(self, *args, **kwargs):
         super(PermissionSet, self).delete(*args, **kwargs)
-        key = 'Permissions:%s' % self.profile.user.username
+        key = iri_to_uri('Permissions:%s' % self.profile.user.username)
         cache.delete(key)
