@@ -35,15 +35,21 @@ def new_object(created, message, parent):
         notice = Notice(directory=parent, message=message)
         notice.save()
 
-def new_language(sender, instance, created=False, **kwargs):
+def new_language(sender, instance, created=False, raw=False, **kwargs):
+    if raw:
+        return
     message = 'New language <a href="%s">%s</a> created.' % (instance.get_absolute_url(), instance.fullname)
     new_object(created, message, instance.directory.parent)
 
-def new_project(sender, instance, created=False, **kwargs):
+def new_project(sender, instance, created=False, raw=False, **kwargs):
+    if raw:
+        return
     message = 'New project <a href="%s">%s</a> created.' % (instance.get_absolute_url(), instance.fullname)
     new_object(created, message, parent=Directory.objects.root)
 
-def new_user(sender, instance, created=False, **kwargs):
+def new_user(sender, instance, created=False, raw=False, **kwargs):
+    if raw:
+        return
     # new user needs to be wrapped in a try block because it might be
     # called before the rest of the models are loaded when first
     # installing Pootle
@@ -54,7 +60,9 @@ def new_user(sender, instance, created=False, **kwargs):
     except:
         pass
 
-def new_translationproject(sender, instance, created=False, **kwargs):
+def new_translationproject(sender, instance, created=False, raw=False, **kwargs):
+    if raw:
+        return
     message = 'New project <a href="%s">%s</a> added to language <a href="%s">%s</a>.' % (
         instance.get_absolute_url(), instance.project.fullname,
         instance.language.get_absolute_url(), instance.language.fullname)
@@ -64,7 +72,9 @@ def new_translationproject(sender, instance, created=False, **kwargs):
         instance.project.get_absolute_url(), instance.project.fullname)
     new_object(created, message, instance.project.directory)
 
-def unit_updated(sender, instance, **kwargs):
+def unit_updated(sender, instance, raw=False, **kwargs):
+    if raw:
+        return
     if instance.id is not None and instance.istranslated():
         dbcopy = Unit.objects.get(id=instance.id)
         if dbcopy.istranslated():
