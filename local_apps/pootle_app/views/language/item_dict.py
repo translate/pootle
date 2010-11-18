@@ -35,20 +35,28 @@ from pootle_misc.util import add_percentages
 def get_item_summary(request, quick_stats, path_obj):
     translated_words = quick_stats['translatedsourcewords']
     total_words      = quick_stats['totalsourcewords']
-    num_stores       = Store.objects.filter(pootle_path__startswith=path_obj.pootle_path).count()
-    file_stats = ungettext("%d file", "%d files", num_stores, num_stores)
+
     # The translated word counts
     word_stats = _("%(translated)d/%(total)d words (%(translatedpercent)d%%) translated",
                    {"translated": translated_words,
                     "total": total_words,
                     "translatedpercent": quick_stats['translatedpercentage']})
+
     # The translated unit counts
     string_stats_text = _("%(translated)d/%(total)d strings",
                           {"translated": quick_stats['translated'],
                            "total": quick_stats['total']})
     string_stats = '<span class="string-statistics">[%s]</span>' % string_stats_text
+
     # The whole string of stats
-    return '%s %s %s' % (file_stats, word_stats, string_stats)
+    if not path_obj.is_dir:
+        summary = '%s %s' % (word_stats, string_stats)
+    else:
+        num_stores = Store.objects.filter(pootle_path__startswith=path_obj.pootle_path).count()
+        file_stats = ungettext("%d file", "%d files", num_stores, num_stores)
+        summary = '%s %s %s' % (file_stats, word_stats, string_stats)
+
+    return summary
 
 def get_item_stats(request, quick_stats, path_obj, show_checks=False):
     result = {
