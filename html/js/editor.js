@@ -238,15 +238,19 @@
             break;
           case "page":
             var p = parseInt(parts[1]);
-            if (p && !isNaN(p)) {
+            if (p && !isNaN(p) && p > 0) {
               if (!(p in PTL.editor.pagesGot)) {
                 PTL.editor.getViewUnits(false, p);
               }
-              var which = parseInt(PTL.editor.pagesGot[p].length / 2);
-              var uid = PTL.editor.pagesGot[p][which];
-              PTL.editor.activeUid = uid;
-              PTL.editor.getMeta(true);
-              PTL.editor.displayEditUnit(uid);
+              // If there are no results for page p, it may be an
+              // invalid page number
+              if (PTL.editor.hasResults) {
+                var which = parseInt(PTL.editor.pagesGot[p].length / 2);
+                var uid = PTL.editor.pagesGot[p][which];
+                PTL.editor.activeUid = uid;
+                PTL.editor.getMeta(true);
+                PTL.editor.displayEditUnit(uid);
+              }
             }
             break;
           default:
@@ -535,11 +539,18 @@
       dataType: 'json',
       async: async,
       success: function (data) {
-        PTL.editor.pagesGot[page] = [];
-        $.each(data.units, function () {
-          PTL.editor.units[this.id] = this;
-          PTL.editor.pagesGot[page].push(this.id);
-        });
+        if (data.length) {
+          PTL.editor.pagesGot[page] = [];
+          $.each(data.units, function () {
+            PTL.editor.units[this.id] = this;
+            PTL.editor.pagesGot[page].push(this.id);
+          });
+          PTL.editor.hasResults = true;
+        } else {
+          PTL.editor.hasResults = false;
+          // TODO: i18n
+          PTL.editor.displayError("No results.");
+        }
       },
       error: PTL.editor.error
     });
@@ -789,7 +800,8 @@
   /* Loads the editor on a specific page */
   gotoPage: function () {
     var page = parseInt($("input#item-number").val());
-    if (page && !isNaN(page)) {
+    if (page && !isNaN(page) && page > 0 &&
+        page <= PTL.editor.pager.num_pages) {
       var newHash = "page/" + page;
       $.history.load(newHash);
     }
