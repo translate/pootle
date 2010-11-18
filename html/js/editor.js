@@ -539,7 +539,7 @@
       dataType: 'json',
       async: async,
       success: function (data) {
-        if (data.length) {
+        if (data.units.length) {
           PTL.editor.pagesGot[page] = [];
           $.each(data.units, function () {
             PTL.editor.units[this.id] = this;
