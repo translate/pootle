@@ -244,6 +244,7 @@
               }
               var which = parseInt(PTL.editor.pagesGot[p].length / 2);
               var uid = PTL.editor.pagesGot[p][which];
+              PTL.editor.activeUid = uid;
               PTL.editor.getMeta(true);
               PTL.editor.displayEditUnit(uid);
             }
