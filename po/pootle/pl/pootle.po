@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-09-28 00:21+0200\n"
-"Last-Translator: Halina Arendt <halare@gmail.com>\n"
+"PO-Revision-Date: 2010-11-06 16:04+0200\n"
+"Last-Translator: jankro <jankro@vp.pl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -1542,8 +1542,9 @@ msgid "Failing Checks"
 msgstr ""
 
 #: local_apps/pootle_store/templates/unit/edit.html:37
+#, fuzzy
 msgid "Remove quality check"
-msgstr ""
+msgstr "Usuń kontrolę jakości"
 
 #: local_apps/pootle_store/templates/unit/edit.html:73
 #: local_apps/pootle_store/templates/unit/edit.html:87
@@ -1619,13 +1620,15 @@ msgstr "liczba mnoga"
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:6
 msgid "Regenerate Glossary"
-msgstr ""
+msgstr "Przebudowa słownika"
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:7
 msgid ""
 "Are you sure you want to regenerate the glossary? Any existing terms and "
 "their translations will be deleted."
 msgstr ""
+"Czy na pewno chcesz przebudować słownik? Wszelkie istniejące wyrażenia i ich "
+"tłumaczenia zostaną usunięte."
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:8
 msgid "Extract"
@@ -1645,11 +1648,11 @@ msgstr "Usuń"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:43
 msgid "Glossary is Empty"
-msgstr ""
+msgstr "Słownik jest pusty"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:44
 msgid "Generate Glossary"
-msgstr ""
+msgstr "Generowanie słownika"
 
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:10
 msgid "Description..."
@@ -1789,7 +1792,7 @@ msgstr "Szukaj"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:11
 msgid "Here you can manage the files in this translation project."
-msgstr ""
+msgstr "Tutaj możesz zarządzać plikami w projekcie tłumaczeń."
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:14
 #, fuzzy
@@ -1798,7 +1801,7 @@ msgstr "Aktualizuj z szablonów"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:15
 msgid "Rescan project files"
-msgstr ""
+msgstr "Przeskanuj pliki projektu"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_permissions.html:13
 #, fuzzy
@@ -1884,7 +1887,7 @@ msgstr "Zarządzanie"
 
 #: templates/admin_profile_menu.html:5
 msgid "Information and statistics about this Pootle server"
-msgstr ""
+msgstr "Informacje i statystyki dotyczące tego serwera Pootle"
 
 #: templates/admin_profile_menu.html:5
 msgid "Info"
@@ -1951,7 +1954,7 @@ msgstr "Informacje o serwerze Pootle"
 
 #: templates/captcha.html:5 templates/captcha.html.py:14
 msgid "Are You Human?"
-msgstr ""
+msgstr "Czy jesteś człowiekiem?"
 
 #: templates/captcha.html:15
 msgid ""
@@ -1961,11 +1964,11 @@ msgstr ""
 
 #: templates/captcha.html:16
 msgid "Please answer this question:"
-msgstr ""
+msgstr "Proszę odpowiedzieć na to pytanie:"
 
 #: templates/captcha.html:20
 msgid "Confirm"
-msgstr ""
+msgstr "Potwierdź"
 
 #: templates/language_menu.html:7
 msgid "Language main page"
@@ -1999,11 +2002,11 @@ msgstr "Zarządzanie projektem"
 
 #: templates/project_menu.html:11
 msgid "Manage project permissions"
-msgstr ""
+msgstr "Zarządzanie uprawnieniami projektu"
 
 #: templates/tp_base_terminology.html:5
 msgid "Manage Terminology"
-msgstr ""
+msgstr "Zarządzanie terminologią"
 
 #: templates/tp_menu.html:7
 msgid "Translation project main page"

@@ -7,14 +7,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-10-27 18:52+0200\n"
+"PO-Revision-Date: 2010-11-02 14:59+0200\n"
 "Last-Translator: Ibrahima SARR <ibrahima.sarr@pulaagu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ff\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 2.1.2\n"
+"X-Generator: Pootle 2.1.3\n"
 
 #: strings.py:8
 msgid ""
@@ -44,7 +44,7 @@ msgstr "Ndee waalaare fotaani diwde %(max)d alkule (ende jogii %(length)d)."
 
 #: strings.py:13
 msgid "Save and add another"
-msgstr "Danndu; ɓeydaa heen goɗɗo"
+msgstr "Danndu, ɓeydaa heen goɗɗo"
 
 #: strings.py:14
 msgid "Save and continue editing"
@@ -67,7 +67,7 @@ msgstr "Ɓeydu %(name)s"
 #. l10n: This link takes the user to the page where the currently configured option is displayed (such as a project or language)
 #: strings.py:22
 msgid "View on site"
-msgstr "Yuurno e lowre ndee"
+msgstr "Hollit e lowre ndee"
 
 #: strings.py:24
 msgid "first name"
@@ -146,7 +146,7 @@ msgstr "finnde (waɗtude)"
 
 #: external_apps/registration/forms.py:55
 msgid "This username is already taken. Please choose another."
-msgstr "Ndee-ɗoo innde kuutoro ko ƴettaande. Tiiɗno suɓo woɗnde."
+msgstr "Ndeeɗoo innde huutorde ko ƴettaande. Tiiɗno suɓo woɗnde."
 
 #: external_apps/registration/forms.py:67
 msgid "You must type the same password each time"
@@ -248,7 +248,7 @@ msgstr "Ina waawi yilyde eɓɓaande firo"
 
 #: local_apps/pootle_app/management/__init__.py:86
 msgid "Can commit to version control"
-msgstr "Ina waawi jolnude to xeewndol yamre"
+msgstr "Ina waawi jolnude to ƴeewndol yamre"
 
 #: local_apps/pootle_app/models/suggestion.py:33
 msgid "Pending"
@@ -1056,7 +1056,7 @@ msgstr[0] "%(projects)d eɓɓooje, %(average)d%% piraama"
 
 #: local_apps/pootle_language/views.py:108
 msgid "You do not have rights to administer this language."
-msgstr "A alaa jamirooje ngam yiildengal ɗemngal."
+msgstr "A alaa jamirooje ngam yiilde ngal ɗemngal."
 
 #: local_apps/pootle_language/templates/language/language_admin.html:13
 msgid "Below you can add, edit, and delete the permissions for this language."

@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-08-03 01:09+0200\n"
-"Last-Translator: Anonymous Pootle User\n"
+"PO-Revision-Date: 2010-11-13 11:16+0200\n"
+"Last-Translator: asdf@mailinator.com <asdf@mailinator.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: lv\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.1.3\n"
 
 #: strings.py:8
 msgid ""
@@ -25,7 +25,7 @@ msgstr ""
 
 #: strings.py:9
 msgid "Enter a valid e-mail address."
-msgstr ""
+msgstr "Ievadiet derīgu e-pasta adresi."
 
 #: strings.py:10
 msgid ""
@@ -52,11 +52,11 @@ msgstr ""
 
 #: strings.py:15
 msgid "Add"
-msgstr ""
+msgstr "Pievienot"
 
 #: strings.py:16
 msgid "Change"
-msgstr ""
+msgstr "Mainīt"
 
 #. l10n: This is a constructed string that might end up saying "Add language" or "Add project". If you need to translate that differently, you might want to try to translate it as "Add an entry to the %(name)s table" or "Add an object of type "%(name)s".
 #: strings.py:19
@@ -71,11 +71,11 @@ msgstr ""
 
 #: strings.py:24
 msgid "first name"
-msgstr ""
+msgstr "Vārds"
 
 #: strings.py:25
 msgid "last name"
-msgstr ""
+msgstr "Uzvārds"
 
 #: strings.py:26
 #, fuzzy
@@ -84,7 +84,7 @@ msgstr "E-pasta adrese"
 
 #: strings.py:27
 msgid "active"
-msgstr ""
+msgstr "aktīvs"
 
 #. l10n: Please translate this simply as "Administrator". This string is needed by Django, but 'superuser' is very technical and should be avoided.
 #: strings.py:30
@@ -103,11 +103,11 @@ msgstr ""
 
 #: external_apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr ""
+msgstr "Jūsu vards"
 
 #: external_apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr ""
+msgstr "Jūsu e-pasta adrese"
 
 #: external_apps/contact_form_i18n/forms.py:148
 msgid "Your message"
@@ -122,14 +122,14 @@ msgstr[2] ""
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
-msgstr ""
+msgstr "Iestatījumi ir saglabāti."
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:29
 #: templates/profiles/edit_personal.html:34
 #: templates/profiles/edit_profile.html:25
 msgid "Save"
-msgstr ""
+msgstr "Saglabāt"
 
 #: external_apps/registration/forms.py:36
 #, fuzzy
@@ -176,19 +176,19 @@ msgstr ""
 
 #: external_apps/registration/models.py:218
 msgid "user"
-msgstr ""
+msgstr "lietotājs"
 
 #: external_apps/registration/models.py:219
 msgid "activation key"
-msgstr ""
+msgstr "aktivācijas atslēga"
 
 #: external_apps/registration/models.py:224
 msgid "registration profile"
-msgstr ""
+msgstr "reģistrācijas profils"
 
 #: external_apps/registration/models.py:225
 msgid "registration profiles"
-msgstr ""
+msgstr "reģistrācijas profili"
 
 #: local_apps/pootle_app/admin.py:41
 msgid "Language code does not follow the ISO convention"
@@ -381,7 +381,7 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:17
 msgid "Server Statistics"
-msgstr ""
+msgstr "Servera statistika"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:23
 #: local_apps/pootle_app/views/language/view.py:41
@@ -394,7 +394,7 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:34
 msgid "Active users"
-msgstr ""
+msgstr "aktīvie lietotāji"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:37
 msgid "Active projects"

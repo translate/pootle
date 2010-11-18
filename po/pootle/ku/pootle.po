@@ -1954,12 +1954,10 @@ msgid ""
 msgstr ""
 
 #: templates/profiles/edit_personal.html:19
-#, fuzzy
 msgid "First Name"
 msgstr "Nav"
 
 #: templates/profiles/edit_personal.html:24
-#, fuzzy
 msgid "Last Name"
 msgstr "Paşnav"
 

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-10-27 22:05+0200\n"
+"PO-Revision-Date: 2010-10-31 22:35+0200\n"
 "Last-Translator: ፍሬው  <w.firew@gmail.com>\n"
 "Language-Team: Amharic\n"
 "Language: am\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.2\n"
+"X-Generator: Pootle 2.1.3\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
@@ -78,9 +78,8 @@ msgid "last name"
 msgstr "የአባት ስም"
 
 #: strings.py:26
-#, fuzzy
 msgid "e-mail address"
-msgstr "ኤ-መልዕክት አድራሻ"
+msgstr "ኢሜይል አድራሻ"
 
 #: strings.py:27
 msgid "active"
@@ -95,7 +94,7 @@ msgstr "የአብይ ተጠቃሚ ሁኔታ"
 #: strings.py:33 local_apps/pootle_app/views/admin/adminprojects.py:43
 #: local_apps/pootle_project/models.py:64
 msgid "Source Language"
-msgstr ""
+msgstr "ሶርስ ቋንቋ"
 
 #: strings.py:35
 msgid "Android strings"
@@ -116,12 +115,12 @@ msgstr "የአንተ/ቺ መልዕክት"
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] "እባክህ ስህተቱን አስተካለ/ሊ "
-msgstr[1] "እባክህ ስህተቶቹን አስተካለ/ሊ "
+msgstr[0] "እባኮትን ስህተቱን ያስተካክሉ "
+msgstr[1] "እባኮትን ስህተቶቹን ያስተካክሉ"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
-msgstr ""
+msgstr "ቅንብሮች ተቀምጠዋል።"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:29
@@ -131,19 +130,16 @@ msgid "Save"
 msgstr "አስቅምጥ"
 
 #: external_apps/registration/forms.py:36
-#, fuzzy
 msgid "username"
 msgstr "የተጠቃሚ ስም"
 
 #: external_apps/registration/forms.py:39
-#, fuzzy
 msgid "email address"
-msgstr "ኤ-መልዕክት አድራሻ"
+msgstr "ኢሜይል አድራሻ"
 
 #: external_apps/registration/forms.py:41
-#, fuzzy
 msgid "password"
-msgstr "ማለፊያ ቃል"
+msgstr "ሚስጢራዊ ቃል"
 
 #: external_apps/registration/forms.py:43
 msgid "password (again)"
@@ -155,11 +151,11 @@ msgstr "ይህ የተጠቃሚ ስም በአገልግሎት ላይ ውሏል። 
 
 #: external_apps/registration/forms.py:67
 msgid "You must type the same password each time"
-msgstr ""
+msgstr "እያንዳንዴ ተመሳሳይ ሚስጢራዊ ቃል ያስገቡ"
 
 #: external_apps/registration/forms.py:90
 msgid "I have read and agree to the Terms of Service"
-msgstr ""
+msgstr "የአገልግሎት ውሉን አንብቤ ተስማምቻለሁ"
 
 #: external_apps/registration/forms.py:107
 msgid ""
@@ -171,7 +167,7 @@ msgstr "ይህ ኢሜይል አድራሻ በ አገልግሎት ላይ ውሏል
 msgid ""
 "Registration using free email addresses is prohibited. Please supply a "
 "different email address."
-msgstr ""
+msgstr "በነፃ ኢሜይል አድራሻ መመዝገብ የተከለከለ ነው። እባክህ ሌላ የኢሜይል አድራሻ አቅርብ።"
 
 #: external_apps/registration/models.py:218
 msgid "user"
@@ -183,23 +179,23 @@ msgstr ""
 
 #: external_apps/registration/models.py:224
 msgid "registration profile"
-msgstr ""
+msgstr "የምዝገባ መግልጫ"
 
 #: external_apps/registration/models.py:225
 msgid "registration profiles"
-msgstr ""
+msgstr "የምዝገባ መግለቻውች"
 
 #: local_apps/pootle_app/admin.py:41
 msgid "Language code does not follow the ISO convention"
-msgstr ""
+msgstr "የቋንቋው ኮድ የ ISO ስምምነት አልተከተለም።"
 
 #: local_apps/pootle_app/admin.py:67
 msgid "Project code may only contain letters, numbers and _"
-msgstr ""
+msgstr "የፕሮጀክት ኮድ ፊደል፣ ቁጥር እና _ መሆን አለበት። "
 
 #: local_apps/pootle_app/admin.py:79
 msgid "Advanced Options"
-msgstr ""
+msgstr "የላቀ አማራጮች"
 
 #: local_apps/pootle_app/forms.py:28
 msgid "Title"
@@ -217,7 +213,7 @@ msgstr "መግለጫ"
 msgid ""
 "The description and instructions shown on the front page and about page. Be "
 "sure to use valid HTML."
-msgstr ""
+msgstr "ገለጣ እና መመሪያ  በ ፊት ገፁ እና ስለ ገፁ ላይ አታያል። ትክክለኛ HTML መጠቀምህን አረጋግጥ። "
 
 #: local_apps/pootle_app/management/__init__.py:72
 msgid "Can view a translation project"
@@ -256,14 +252,12 @@ msgid "Pending"
 msgstr "በጥበቃ ላይ"
 
 #: local_apps/pootle_app/models/suggestion.py:34
-#, fuzzy
 msgid "Accepted"
 msgstr "ተቀበል"
 
 #: local_apps/pootle_app/models/suggestion.py:35
-#, fuzzy
 msgid "Rejected"
-msgstr "አትቀበል"
+msgstr "አለተቀብለም"
 
 #: local_apps/pootle_app/templates/top_contributers_table.html:7
 msgid "Top Contributors"
@@ -271,9 +265,8 @@ msgstr "ዋና አዋጮች"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:6
 #: local_apps/pootle_app/views/language/view.py:39
-#, fuzzy
 msgid "Translated"
-msgstr "ፈጣን ትርጉም"
+msgstr "የተተረጎመ"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:7
 msgid "Needs review"
@@ -299,7 +292,7 @@ msgstr "ቋንቋዎች"
 msgid ""
 "Here you can add, edit, and delete all the available languages in this "
 "Pootle server."
-msgstr ""
+msgstr "በዚህ Pootle ሰርቨር ላይ ሁሉንም የሚገኙ ቋንቋዎች ማከል፣ ማረም እና መሰርዝ እዚህ ይቻላል።  "
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:11
@@ -311,13 +304,13 @@ msgstr ""
 #: templates/project_menu.html:11 templates/tp_menu.html:12
 #: templates/profiles/profile_detail.html:44
 msgid "Permissions"
-msgstr ""
+msgstr "ፈቃዶች"
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:14
 msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
-msgstr ""
+msgstr "በዚህ Pootle ሰርቨር ላይ የነባሪ ፈቃድ ማከል፣ ማረም እና መሰርዝ እዚህ ይቻላል።   "
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:18
 #: local_apps/pootle_language/templates/language/language_admin.html:16
@@ -329,6 +322,8 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
+"ማንም የሚባለው ተጠቃሚ የሚያመለክተው ማንኛውም ያልገባን/ችን ተጠቃሚ ነው (ስም አልባ፣ መለያ አልባ)። ነባሪ ተጠቃሚ "
+"የሚያመለክተው የገባን/ችን ተጠቃሚ መብት በነባሪ ያላቸው መብት ነው፣ የተለየ የተወሰነ መብት እስካተሰጣቸው ድርስ።  "
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:11
@@ -345,16 +340,16 @@ msgstr "ፕሮጀክቶች"
 msgid ""
 "Here you can add, edit, and delete all the available projects in this Pootle "
 "server."
-msgstr ""
+msgstr "በዚህ Pootle ሰርቨር ላይ ሁሉንም የሚገኙ ፕሮጀክቶችን ማከል፣ ማረም እና መሰርዝ እዚህ ይቻላል። "
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:11
 msgid "General Settings"
-msgstr ""
+msgstr "አጠቃላይ ቅንብር"
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:14
 msgid "Configure here the general settings for your site."
-msgstr ""
+msgstr "እዚህ የገፅህን አጠቃላይ ቅንብር አዋቅር።  "
 
 #: local_apps/pootle_app/templates/admin/admin_general_users.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_users.html:11
@@ -369,7 +364,7 @@ msgstr "ተጠቃሚዎች"
 msgid ""
 "Here you can add, edit, and delete all the available users in this Pootle "
 "server."
-msgstr ""
+msgstr "በዚህ Pootle ሰርቨር ላይ ሁሉንም የሚገኙ ተጠቃሚዎችን ማከል፣ ማረም እና መሰርዝ እዚህ ይቻላል። "
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:5
 #: local_apps/pootle_app/templates/admin/dashboard.html:11
@@ -377,45 +372,43 @@ msgstr ""
 #: templates/profiles/profile_detail.html:6
 #: templates/profiles/profile_detail.html:16
 msgid "Dashboard"
-msgstr ""
+msgstr "ዳሽቦርድ "
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:17
 msgid "Server Statistics"
-msgstr ""
+msgstr "የሰርቨር ስታትስቲክስ"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:23
 #: local_apps/pootle_app/views/language/view.py:41
-#, fuzzy
 msgid "Translated words"
-msgstr "ፈጣን ትርጉም"
+msgstr "የተተረጎሙ ቃላቶች"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:26
 msgid "Pending suggestions"
-msgstr ""
+msgstr "መክር ጠባቂዎች"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:34
 msgid "Active users"
-msgstr ""
+msgstr "ገባሪ ተጠቃሚዎች"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:37
 msgid "Active projects"
-msgstr ""
+msgstr "ገባሪ ፕሮጀክቶች"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:40
 msgid "Active languages"
-msgstr ""
+msgstr "ገባሪ ቋንቋዎች"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:43
 #: local_apps/pootle_translationproject/views.py:175
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:6
 #: templates/tp_menu.html:13 templates/profiles/profile_detail.html:44
 msgid "Files"
-msgstr ""
+msgstr "ፋይሎች"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:46
-#, fuzzy
 msgid "Translated strings"
-msgstr "በራስ-ገዝ የተተረጎሙ %u ሐረጎች"
+msgstr "የተተረጎሙ ሐረጎች"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:49
 #: local_apps/pootle_app/views/top_stats.py:43
@@ -423,15 +416,15 @@ msgstr "በራስ-ገዝ የተተረጎሙ %u ሐረጎች"
 #: local_apps/pootle_app/views/top_stats.py:89
 #: local_apps/pootle_app/views/top_stats.py:112
 msgid "Submissions"
-msgstr ""
+msgstr "ግባቶች"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:54
 msgid "More..."
-msgstr ""
+msgstr "አብዛ"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:62
 msgid "Support"
-msgstr ""
+msgstr "እርዳታ"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:65
 msgid ""
@@ -439,31 +432,32 @@ msgid ""
 "localization experts. We want Pootle to help your localization work reach "
 "its full potential."
 msgstr ""
+"Pootle የተገነባው በ Translate.org.za እና ትጉ በሆነ የአካባቢነት ባለሞያውች ነው። እኛ Pootle "
+"የእርሶን የአካባቢነት ስራ ውጤታማ እንዲሆን እንድያግዝ እንፈልጋለን።  "
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:66
 msgid "You will find the following helpful for support:"
-msgstr ""
+msgstr "የሚቀጥለውን ለ እርዳታ አጋዥ ሆኖ ታገኘዋለህ።"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:68
 msgid "The Pootle documentation"
-msgstr ""
+msgstr "የPootle ስነዶች"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:69
 msgid "The Pootle mailing list"
-msgstr ""
+msgstr "የPootle የኢሜይል አድራሻ ዝርዝር"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:70
 msgid "(commercial support)"
-msgstr ""
+msgstr "የንግድ እርዳታ"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:78
 msgid "Dependency Checks"
 msgstr ""
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:87
-#, fuzzy
 msgid "Optional"
-msgstr "ምርጫ"
+msgstr "ግድ ያይደል"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:95
 msgid "Optimizations"
@@ -471,11 +465,11 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
-msgstr ""
+msgstr "Pootle ማስጠንቅቂያዎች"
 
 #: local_apps/pootle_app/templates/index/about.html:7
 msgid "About"
-msgstr ""
+msgstr "ስለ"
 
 #: local_apps/pootle_app/templates/index/about.html:18
 msgid "About Pootle"
@@ -492,15 +486,14 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/index/index.html:26
 #: local_apps/pootle_project/views.py:144
-#, fuzzy
 msgid "Language"
-msgstr "%s ቋንቋ"
+msgstr "ቋንቋ"
 
 #: local_apps/pootle_app/templates/index/index.html:27
 #: local_apps/pootle_app/templates/index/index.html:62
 #: local_apps/pootle_project/templates/project/projects.html:23
 msgid "Overall Completion"
-msgstr ""
+msgstr "ጥቅል ፍፃሜ"
 
 #: local_apps/pootle_app/templates/index/index.html:28
 #: local_apps/pootle_app/templates/index/index.html:63
@@ -508,28 +501,26 @@ msgstr ""
 #: local_apps/pootle_project/templates/project/project.html:36
 #: local_apps/pootle_project/templates/project/projects.html:24
 msgid "Last Activity"
-msgstr ""
+msgstr "የቅርብ ተግባራት"
 
 #: local_apps/pootle_app/templates/index/index.html:61
 #: local_apps/pootle_project/templates/project/projects.html:22
-#, fuzzy
 msgid "Project"
-msgstr "ፕሮጀክቶች"
+msgstr "ፕሮጀክት"
 
 #: local_apps/pootle_app/templates/index/index.html:90
 #: local_apps/pootle_notifications/templates/notices.html:80
 msgid "Latest News"
-msgstr ""
+msgstr "የቅርብ ዜና"
 
 #: local_apps/pootle_app/templates/index/index.html:93
 msgid "Subscribe to the RSS feed."
-msgstr ""
+msgstr "ለRSS መጋቢዎች ተመዝገብ"
 
 #: local_apps/pootle_app/templates/index/login.html:5
 #: local_apps/pootle_app/templates/index/login.html:22
-#, fuzzy
 msgid "Login"
-msgstr "እንደ ስር መግባትን አስችል፡፡"
+msgstr "ይግቡ"
 
 #: local_apps/pootle_app/templates/index/login.html:10
 msgid "Login to Pootle"
@@ -537,20 +528,19 @@ msgstr "ወደ ፑትሌ ይግቡ"
 
 #: local_apps/pootle_app/templates/index/login.html:16
 msgid "Your username and password didn't match. Please try again."
-msgstr ""
+msgstr "የተጠቃሚ ስም እና ሚስጢራዊ ቃል አለተጣጣመም። እባኮ ደግመው ይሞክሩ።"
 
 #: local_apps/pootle_app/templates/index/login.html:26
 msgid "Lost your Password?"
-msgstr ""
+msgstr "ሚስጢራዊ ቃል ጠፋቦት?"
 
 #: local_apps/pootle_app/templates/index/login.html:30
 msgid "Don't have an account yet?"
-msgstr ""
+msgstr "እስካሁን መለያ የሎትም?"
 
 #: local_apps/pootle_app/templates/index/login.html:31
-#, fuzzy
 msgid "Register."
-msgstr "ተመዝገብ"
+msgstr "ይመዝገቡ"
 
 #: local_apps/pootle_app/templates/language/item_block.html:12
 #: local_apps/pootle_app/templates/language/item_summary.html:9
@@ -559,23 +549,21 @@ msgstr "ስህተት"
 
 #: local_apps/pootle_app/templates/language/item_summary.html:32
 msgid "Complete"
-msgstr ""
+msgstr "የተጠናቀቀ"
 
 #: local_apps/pootle_app/views/top_stats.py:41
 #: local_apps/pootle_app/views/top_stats.py:64
 #: local_apps/pootle_app/views/top_stats.py:87
 #: local_apps/pootle_app/views/top_stats.py:110
-#, fuzzy
 msgid "Suggestions"
-msgstr "አስተያየት"
+msgstr "አስተያየቶች"
 
 #: local_apps/pootle_app/views/top_stats.py:42
 #: local_apps/pootle_app/views/top_stats.py:65
 #: local_apps/pootle_app/views/top_stats.py:88
 #: local_apps/pootle_app/views/top_stats.py:111
-#, fuzzy
 msgid "Reviews"
-msgstr "አርም"
+msgstr "ክለሳዎች"
 
 #: local_apps/pootle_app/views/admin/adminusers.py:52
 #: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
@@ -586,7 +574,7 @@ msgstr "ማለፊያ ቃል"
 #: local_apps/pootle_app/views/admin/dashboard.py:45
 #, python-format
 msgid "Translate Toolkit version %s installed."
-msgstr ""
+msgstr "Translate Toolkit ዝርያ %s ትጭኗል።"
 
 #: local_apps/pootle_app/views/admin/dashboard.py:48
 #, python-format
@@ -594,33 +582,34 @@ msgid ""
 "Translate Toolkit version %(installed)s installed. Pootle requires version %"
 "(required)s."
 msgstr ""
+"Translate Toolkit ዝርያ %(installed)s ትጭኗል። Pootle ዝርያ %(required)s ይፈልጋል።"
 
 #: local_apps/pootle_app/views/admin/dashboard.py:54
 #, python-format
 msgid "Django version %s is installed."
-msgstr ""
+msgstr "Django ዝርያ %s አሁን ትጭኗል።"
 
 #: local_apps/pootle_app/views/admin/dashboard.py:57
 #, python-format
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
-msgstr ""
+msgstr "Django ዝርያ %s አሁን ትጭኗል። ግን የላቅ ዝርያ በእጅጉ ይምከራል።"
 
 #: local_apps/pootle_app/views/admin/dashboard.py:63
 #, python-format
 msgid "lxml version %s is installed."
-msgstr ""
+msgstr "lxml ዝርያ %s ትጭኗል።"
 
 #: local_apps/pootle_app/views/admin/dashboard.py:66
 #, python-format
 msgid ""
 "lxml version %(installed)s is installed. Pootle requires version %(required)"
 "s for XML format support."
-msgstr ""
+msgstr "xml ዝርያ %s አሁን ትጭኗል። Pootle ዝርያ %(required)s ለXML ቅረጽ እርዳታ ይፈልጋል።"
 
 #: local_apps/pootle_app/views/admin/dashboard.py:69
 msgid "lxml is not installed. Pootle requires lxml for XML format support."
-msgstr ""
+msgstr "xml ዝርያ %s አልተጫነም። Pootle ለXML ቅረጽ እርዳታ lxml ይፈልጋል።"
 
 #: local_apps/pootle_app/views/admin/dashboard.py:80
 msgid ""
@@ -725,15 +714,15 @@ msgstr ""
 #: local_apps/pootle_app/views/admin/permissions.py:49
 #: local_apps/pootle_app/views/admin/permissions.py:51
 msgid "Project Members"
-msgstr ""
+msgstr "የፕሮጀክት አባላት"
 
 #: local_apps/pootle_app/views/admin/permissions.py:53
 msgid "Language Members"
-msgstr ""
+msgstr "የቋንቋ አባላት"
 
 #: local_apps/pootle_app/views/admin/permissions.py:54
 msgid "All Users"
-msgstr ""
+msgstr "ሁሉም ተጠቃሚ"
 
 #: local_apps/pootle_app/views/admin/util.py:38
 #, fuzzy
@@ -752,7 +741,7 @@ msgstr ""
 
 #: local_apps/pootle_app/views/admin/util.py:164
 msgid "There are errors in the form. Please review the problems below."
-msgstr ""
+msgstr "በቅፁ ላይ ስህተቶች አሉ። እባኮትን በድጋሚ ከታች ያሉትን ችግሮችን ይከልሱ። "
 
 #: local_apps/pootle_app/views/admin/util.py:184 templates/base.html:51
 #: templates/base.html.py:56
@@ -760,7 +749,6 @@ msgid "Home"
 msgstr "ቤት"
 
 #: local_apps/pootle_app/views/admin/util.py:186
-#, fuzzy
 msgid "Save Changes"
 msgstr "ለውጦችን አስቀምጥ"
 
@@ -775,52 +763,51 @@ msgstr ""
 #: local_apps/pootle_project/views.py:69
 #, python-format
 msgid "%(percentage)d%% complete"
-msgstr ""
+msgstr "%(percentage)d%%  ተጠናቋል"
 
 #: local_apps/pootle_app/views/index/index.py:112
 #: local_apps/pootle_project/views.py:109
 #: local_apps/pootle_project/views.py:196
 msgid "Translations are complete"
-msgstr ""
+msgstr "ትርጓሜ ተጠናቋል"
 
 #: local_apps/pootle_app/views/index/index.py:113
 #: local_apps/pootle_project/views.py:110
 #: local_apps/pootle_project/views.py:197
 msgid "Translations need to be checked (they are marked fuzzy)"
-msgstr ""
+msgstr "ትርጓሜው ምርመራ የፈልጋል (አለመጥራት ምልክት አለባቸው) "
 
 #: local_apps/pootle_app/views/language/item_dict.py:38
 #, python-format
 msgid "%d file"
 msgid_plural "%d files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d ፋይል"
+msgstr[1] "%d ፋይሎች"
 
 #: local_apps/pootle_app/views/language/item_dict.py:40
 #, python-format
 msgid "%(translated)d/%(total)d words (%(translatedpercent)d%%) translated"
-msgstr ""
+msgstr "%(translated)d/%(total)d ቃላቶች (%(translatedpercent)d%%) ተተርጉሟል"
 
 #: local_apps/pootle_app/views/language/item_dict.py:46
 #, python-format
 msgid "%(translated)d/%(total)d strings"
-msgstr ""
+msgstr "%(translated)d/%(total)d ሐረጎች"
 
 #: local_apps/pootle_app/views/language/item_dict.py:76
 #, python-format
 msgid "%(checks)d string (%(checkspercent)d%%) failed"
 msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(checks)d ሐረግ (%(checkspercent)d%%) ውድቅ ሆኗል"
+msgstr[1] "%(checks)d ሐረጎች (%(checkspercent)d%%) ውድቅ ሆኗል"
 
 #: local_apps/pootle_app/views/language/item_dict.py:94
 msgid "Review Suggestions"
 msgstr "ምክሮችን አርም"
 
 #: local_apps/pootle_app/views/language/item_dict.py:96
-#, fuzzy
 msgid "View Suggestions"
-msgstr "ሙሉ-ስክሪን ዕይታ &F"
+msgstr "አስተያተቶችን ተመልከት"
 
 #: local_apps/pootle_app/views/language/item_dict.py:107
 msgid "Quick Translate"
@@ -828,7 +815,7 @@ msgstr "ፈጣን ትርጉም"
 
 #: local_apps/pootle_app/views/language/item_dict.py:109
 msgid "View Untranslated"
-msgstr ""
+msgstr "ያለተተረጎሙትን ተመልከት"
 
 #: local_apps/pootle_app/views/language/item_dict.py:120
 msgid "Translate All"
@@ -836,7 +823,7 @@ msgstr "ሁሉንም ይተርጉሙ"
 
 #: local_apps/pootle_app/views/language/item_dict.py:124
 msgid "Manage Glossary"
-msgstr ""
+msgstr "መፍትሄ ቃላቶችን ያሰናዱ"
 
 #: local_apps/pootle_app/views/language/item_dict.py:133
 msgid "ZIP of directory"
@@ -884,21 +871,18 @@ msgstr ""
 msgid "%d word needs attention"
 msgid_plural "%d words need attention"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:248
 #, python-format
 msgid "%d word untranslated"
 msgid_plural "%d words untranslated"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:249
 #, python-format
 msgid "%d word needs review"
 msgid_plural "%d words need review"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:275
 #: local_apps/pootle_language/views.py:67
@@ -907,7 +891,6 @@ msgstr[1] ""
 msgid "Error reading %d file"
 msgid_plural "Error reading %d files"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_app/views/language/navbar_dict.py:53
 #: local_apps/pootle_project/views.py:104 templates/base.html:59
@@ -1026,7 +1009,6 @@ msgstr "ብዙ-ቤት፦"
 msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_language/views.py:108
 #, fuzzy
@@ -1115,7 +1097,6 @@ msgstr ""
 msgid "Imported %(count)d suggestion from %(store)s"
 msgid_plural "Imported %(count)d suggestions from %(store)s"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_misc/dbupdate.py:149
 #, python-format
@@ -1127,7 +1108,6 @@ msgstr ""
 msgid "Imported %(count)d unit from %(store)s"
 msgid_plural "Imported %(count)d units from %(store)s"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_misc/dbupdate.py:165
 #, python-format
@@ -1156,22 +1136,22 @@ msgstr ""
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:32
 msgid "First"
-msgstr ""
+msgstr "የመጀመሪያ"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:33
 #: local_apps/pootle_store/templates/unit/edit.html:111
 msgid "Previous"
-msgstr ""
+msgstr "ያለፈ"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:48
 #: local_apps/pootle_store/templates/unit/edit.html:112
 msgid "Next"
-msgstr ""
+msgstr "ቀጣይ"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:49
 #, python-format
 msgid "Last (%d)"
-msgstr ""
+msgstr "የመጨረሻ (%d)"
 
 #: local_apps/pootle_notifications/models.py:28
 msgid "Message"
@@ -1216,7 +1196,7 @@ msgstr ""
 #: templates/language_menu.html:8 templates/project_menu.html:8
 #: templates/tp_menu.html:8
 msgid "News"
-msgstr ""
+msgstr "ዜና"
 
 #: local_apps/pootle_notifications/templates/notices.html:75
 msgid "Publish"
@@ -1237,19 +1217,19 @@ msgstr ""
 
 #: local_apps/pootle_profile/models.py:96
 msgid "Suggestions Accepted"
-msgstr ""
+msgstr "የፀድቁ አስተያየቶች"
 
 #: local_apps/pootle_profile/models.py:97
 msgid "Suggestions Pending"
-msgstr ""
+msgstr "በጥበቃ ላይ ያሉ አስተያየቶች"
 
 #: local_apps/pootle_profile/models.py:98
 msgid "Suggestions Reviewed"
-msgstr ""
+msgstr "የተከለሱ አስተያየቶች"
 
 #: local_apps/pootle_profile/models.py:99
 msgid "Submissions Made"
-msgstr ""
+msgstr "የተሰጡ አስተያየቶች"
 
 #: local_apps/pootle_profile/views.py:66
 msgid "Default"
@@ -1300,7 +1280,6 @@ msgstr ""
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
 msgstr[0] ""
-msgstr[1] ""
 
 #: local_apps/pootle_project/views.py:132
 #: local_apps/pootle_project/views.py:174
@@ -1445,7 +1424,7 @@ msgstr "ፈጣን ትርጉም"
 
 #: local_apps/pootle_store/templates/store/translate_table.html:17
 msgid "Edit translation"
-msgstr ""
+msgstr "ትርጉምን አርም"
 
 #: local_apps/pootle_store/templates/unit/edit.html:15
 msgid "Terminology"
@@ -1487,19 +1466,19 @@ msgstr ""
 
 #: local_apps/pootle_store/templates/unit/edit.html:130
 msgid "Add Comment"
-msgstr ""
+msgstr "አስተያየት አክል"
 
 #: local_apps/pootle_store/templates/unit/edit.html:148
 msgid "Accept suggestion"
-msgstr ""
+msgstr "አስተያየቶችን ተቀበል"
 
 #: local_apps/pootle_store/templates/unit/edit.html:149
 msgid "Reject suggestion"
-msgstr ""
+msgstr "አስተያየቶችን አትቀበል"
 
 #: local_apps/pootle_store/templates/unit/edit.html:154
 msgid "Remove suggestion"
-msgstr ""
+msgstr "አስተያየቶችን አስወግድ"
 
 #: local_apps/pootle_store/templates/unit/view.html:38
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:27
@@ -1510,22 +1489,22 @@ msgstr "የተርጓሚ አስተያየት"
 #: local_apps/pootle_store/templatetags/store_tags.py:73
 #, python-format
 msgid "Suggestion %(i)d by %(user)s:"
-msgstr ""
+msgstr "አስተያየት %(i)d በ %(user)s:"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:77
 #, python-format
 msgid "Suggestion by %(user)s"
-msgstr ""
+msgstr "አስተያየት በ%(user)s"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:85
 #, python-format
 msgid "Words Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
-msgstr ""
+msgstr "የተተረጎሙ ቃልቶች: %(translated)d/%(total)d - %(translatedpercent)d%%"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:93
 #, python-format
 msgid "Strings Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
-msgstr ""
+msgstr "የተተረጎሙ ሐረጎች: %(translated)d/%(total)d - %(translatedpercent)d%%"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:104
 msgid "Singular"
@@ -1576,19 +1555,19 @@ msgstr "መግለጫ"
 
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:15
 msgid "Details..."
-msgstr ""
+msgstr "ዝርዝሮች..."
 
 #: local_apps/pootle_translationproject/forms.py:28
 msgid "Source Text"
-msgstr ""
+msgstr "ምንጭ ጽሁፍ"
 
 #: local_apps/pootle_translationproject/forms.py:29
 msgid "Target Text"
-msgstr ""
+msgstr "መቀበያ ጽሑፍ"
 
 #: local_apps/pootle_translationproject/forms.py:30
 msgid "Comments"
-msgstr ""
+msgstr "አስተያየቶች"
 
 #: local_apps/pootle_translationproject/forms.py:31
 msgid "Locations"
@@ -1671,16 +1650,16 @@ msgstr ""
 
 #: local_apps/pootle_translationproject/views.py:478
 msgid "Upload"
-msgstr ""
+msgstr "ስቅል"
 
 #: local_apps/pootle_translationproject/views.py:485
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
-msgstr ""
+msgstr "ፋይሉን ከአሁን ፋይል ጋር አዋህድ እና ግጮችን ወደ አስተያየት ለውጥ"
 
 #: local_apps/pootle_translationproject/views.py:486
 msgid "Add all new translations as suggestions"
-msgstr ""
+msgstr "ሁሉንም አዳዲስ ትርጉሞች እንደ አስተያየት አክል"
 
 #: local_apps/pootle_translationproject/views.py:488
 #, fuzzy
@@ -1689,11 +1668,11 @@ msgstr "ፋይልን ከሰረዙት ለዘላለም ይጠፋል።"
 
 #: local_apps/pootle_translationproject/views.py:492
 msgid "File"
-msgstr ""
+msgstr "ፋይል"
 
 #: local_apps/pootle_translationproject/views.py:495
 msgid "Upload to"
-msgstr ""
+msgstr "ስቅል ወደ"
 
 #: local_apps/pootle_translationproject/views.py:496
 msgid ""
@@ -1702,9 +1681,8 @@ msgid ""
 msgstr ""
 
 #: local_apps/pootle_translationproject/views.py:501
-#, fuzzy
 msgid "Upload File"
-msgstr "HTML ፋይል (*.html)|*.html"
+msgstr "ፋይል ስቀል"
 
 #: local_apps/pootle_translationproject/templates/translation_project/search.html:8
 msgid "Search"
@@ -1736,7 +1714,7 @@ msgstr "አርም"
 
 #: local_apps/pootle_translationproject/templatetags/translation_project_tags.py:40
 msgid "Advanced search"
-msgstr ""
+msgstr "የላቀ ፍለጋ"
 
 #: pootle/settings.py:42
 msgid "Pootle Demo"
@@ -1814,23 +1792,23 @@ msgstr ""
 
 #: templates/admin_profile_menu.html:7
 msgid "Manage the users"
-msgstr ""
+msgstr "ተጠቃሚዎችን አሰናዳ"
 
 #: templates/admin_profile_menu.html:8
 msgid "Manage the languages"
-msgstr ""
+msgstr "ቋንቋዎችን አስናዳ"
 
 #: templates/admin_profile_menu.html:9
 msgid "Manage the projects"
-msgstr ""
+msgstr "ፕሮጀክቶችን አሰናዳ"
 
 #: templates/admin_profile_menu.html:10
 msgid "Manage the default permissions"
-msgstr ""
+msgstr "ነባሪ ፈቃዶችን አሰናዳ"
 
 #: templates/base.html:49
 msgid "skip to navigation"
-msgstr ""
+msgstr "ወደ ዳሰሳ ዝለል"
 
 #: templates/base.html:57 templates/base.html.py:117 templates/docs.html:5
 msgid "Help"
@@ -1851,9 +1829,8 @@ msgid "Register"
 msgstr "ተመዝገብ"
 
 #: templates/base.html:68
-#, fuzzy
 msgid "Log In"
-msgstr "በ VG ${VG}"
+msgstr "ይግቡ"
 
 #: templates/base.html:119 templates/contact_form/contact_form.html:4
 #: templates/contact_form/contact_form.html:8
@@ -1861,9 +1838,8 @@ msgid "Contact Us"
 msgstr "ያግኙን"
 
 #: templates/base.html:121
-#, fuzzy
 msgid "About this Pootle Server"
-msgstr "የSSH ተጠሪ መግቢያ ቁልፍ አሻራ፦ {fingerprint}"
+msgstr "ስለዚህ Pootle ሰርቨር"
 
 #: templates/captcha.html:5 templates/captcha.html.py:14
 msgid "Are You Human?"
@@ -1885,7 +1861,7 @@ msgstr "ያረጋግጡ"
 
 #: templates/language_menu.html:7
 msgid "Language main page"
-msgstr ""
+msgstr "ቋንቋ ዋና ገጽ"
 
 #: templates/language_menu.html:7 templates/project_menu.html:7
 #: templates/tp_menu.html:7
@@ -1951,21 +1927,21 @@ msgstr ""
 
 #: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Configure your translation preferences"
-msgstr ""
+msgstr "የትርጉም ምርጦችን አዋቅር"
 
 #: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Settings"
-msgstr ""
+msgstr "ቅንብሮች"
 
 #: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 msgid "Change your personal information"
-msgstr ""
+msgstr "የግል መረጃዎትን ይለውጡ"
 
 #: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 #: templates/profiles/edit_personal.html:5
 #: templates/profiles/edit_personal.html:11
 msgid "Profile"
-msgstr ""
+msgstr "መገለጫ"
 
 #: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
 msgid "Change your password"
@@ -2021,23 +1997,23 @@ msgstr ""
 
 #: templates/profiles/profile_detail.html:25
 msgid "Quick Links"
-msgstr ""
+msgstr "ፋጣን አገናኝ"
 
 #: templates/profiles/profile_detail.html:53
 msgid "No languages or projects selected. Choose yours now."
-msgstr ""
+msgstr "ቋንቋ ወይም ፕሮጀክት አልተመረጠም። የራሶትን ይምረጡ።"
 
 #: templates/profiles/profile_detail.html:55
 msgid "This user has not selected languages or projects yet."
-msgstr ""
+msgstr "ይህ ተጠቃሚ እስካሁን ቋንቋ ወይም ፕሮጀክት አልመረጠም።"
 
 #: templates/profiles/profile_detail.html:65
 msgid "User Statistics"
-msgstr ""
+msgstr "የተጠቃሚ ስታትስቲክስ"
 
 #: templates/profiles/profile_list.html:7
 msgid "Profiles list"
-msgstr ""
+msgstr "የመግለጫ ዝርዝር"
 
 #: templates/profiles/profile_list.html:11
 #: templates/registration/registration_form.html:15
@@ -2046,7 +2022,7 @@ msgstr "የተጠቃሚ ስም"
 
 #: templates/profiles/profile_list.html:12
 msgid "First name"
-msgstr ""
+msgstr "ስም"
 
 #: templates/profiles/profile_list.html:13
 msgid "Last name"

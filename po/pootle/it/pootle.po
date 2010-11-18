@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-08-06 09:46+0200\n"
+"PO-Revision-Date: 2010-10-31 13:15+0200\n"
 "Last-Translator: Fantu <fantonifabio@tiscali.it>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.0-beta2\n"
+"X-Generator: Pootle 2.1.3\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
@@ -102,8 +102,9 @@ msgid "Source Language"
 msgstr "Lingua di partenza"
 
 #: strings.py:35
+#, fuzzy
 msgid "Android strings"
-msgstr ""
+msgstr "Stringa Android"
 
 #: external_apps/contact_form_i18n/forms.py:143
 msgid "Your name"
@@ -459,7 +460,7 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:66
 msgid "You will find the following helpful for support:"
-msgstr ""
+msgstr "Troverai utili per il supporto le seguenti risorse:"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:68
 msgid "The Pootle documentation"
@@ -753,6 +754,9 @@ msgid ""
 "The \"from\" address used to send registration emails is not specified. Also "
 "review the mail server settings."
 msgstr ""
+"L'indirizzo \"mittente\" usato per spedire le email di registrazione non è "
+"specificato. Si prega di controllare anche la configurazione del server di "
+"posta."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:139
 msgid ""
