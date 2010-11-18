@@ -2,6 +2,7 @@
   window.PTL = window.PTL || {};
 
   // XXX: Know of a better place for this?
+  /* Returns the number (size) of properties of a given object */
   Object.size = function (obj) {
     var size = 0, key;
     for (key in obj) {
@@ -38,6 +39,8 @@
     this.checks = [];
     this.ctxtGap = 0;
     this.keepState = false;
+
+    /* Regular expressions */
     this.cpRE = new RegExp("^(<[^>]+>|\\[n\|t]|\\W$^\\n)*(\\b|$)", "gm");
     this.escapeRE = new RegExp("<[^<]*?>|\\r\\n|[\\r\\n\\t&<>]", "gm");
 
@@ -354,22 +357,28 @@
   /*
    * Fuzzying / unfuzzying functions
    */
+
+  /* Sets the current unit's styling as fuzzy */
   doFuzzyArea: function () {
     $("tr.edit-row").addClass("fuzzy-unit");
   },
 
+  /* Unsets the current unit's styling as fuzzy */
   undoFuzzyArea: function () {
     $("tr.edit-row").removeClass("fuzzy-unit");
   },
 
+  /* Checks the current unit's fuzzy checkbox */
   doFuzzyBox: function () {
     $("input.fuzzycheck").attr("checked", "checked");
   },
 
+  /* Unchecks the current unit's fuzzy checkbox */
   undoFuzzyBox: function () {
     $("input.fuzzycheck").removeAttr("checked");
   },
 
+  /* Sets the current unit status as fuzzy (both styling and checkbox) */
   goFuzzy: function () {
     if (!this.isFuzzy()) {
       this.keepState = true;
@@ -378,6 +387,7 @@
     }
   },
 
+  /* Unsets the current unit status as fuzzy (both styling and checkbox) */
   ungoFuzzy: function () {
     if (this.isFuzzy()) {
       this.keepState = true;
@@ -393,18 +403,23 @@
   /*
    * Suggest / submit mode functions
    */
+
+  /* Changes the editor into suggest mode */
   doSuggestMode: function () {
     $("table.translate-table").addClass("suggest-mode");
   },
 
+  /* Changes the editor into submit mode */
   undoSuggestMode: function () {
     $("table.translate-table").removeClass("suggest-mode");
   },
 
+  /* Returns true if the editor is in suggest mode */
   isSuggestMode: function () {
     return $("table.translate-table").hasClass("suggest-mode");
   },
 
+  /* Toggles suggest/submit modes */
   toggleSuggestMode: function () {
     if (this.isSuggestMode()) {
       this.undoSuggestMode();
@@ -876,6 +891,12 @@
    * Suggestions
    */
 
+  /* Escapes HTML tags */
+  escapeHtml: function (s) {
+    return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/,"<br/>");
+  },
+
+  /* Fancy escapes to highlight parts of the text such as HTML tags */
   fancyEscape: function (text) {
     function replace(match) {
         var replaced,
@@ -924,7 +945,7 @@
           textDiff += PTL.editor.fancyEscape(text);
       } else if (op == 1) {
         if (removed) {
-          // this is part of a substitution, not a plain insertion. We
+          // This is part of a substitution, not a plain insertion. We
           // will format this differently.
           textDiff += '<span class="diff-replace">' + PTL.editor.fancyEscape(text) + '</span>';
           removed = "";
@@ -1059,6 +1080,8 @@
   /*
    * Machine Translation
    */
+
+  /* Checks whether the provided source is supported */
   isSupportedSource: function (pairs, source) {
     for (var i in pairs) {
       if (source == pairs[i].source) {
@@ -1068,6 +1091,7 @@
     return false;
   },
 
+  /* Checks whether the provided target is supported */
   isSupportedTarget: function (pairs, target) {
     for (var i in pairs) {
       if (target == pairs[i].target) {
@@ -1077,6 +1101,7 @@
     return false;
   },
 
+  /* Checks whether the provided source-target pair is supported */
   isSupportedPair: function (pairs, source, target) {
     for (var i in pairs) {
       if (source == pairs[i].source &&
@@ -1087,12 +1112,14 @@
     return false;
   },
 
+  /* Adds a new MT service button in the editor toolbar */
   addMTButton: function (aClass, imgFn, tooltip) {
       var btn = '<a class="translate-mt ' + aClass + '">';
       btn += '<img src="' + imgFn + '" title="' + tooltip + '" /></a>';
       $("div.translate-toolbar").first().prepend(btn);
   },
 
+  /* Normalizes language codes in order to use them in MT services */
   normalizeCode: function (locale) {
       var clean = locale.replace('_', '-')
       var atIndex = locale.indexOf("@");
@@ -1106,14 +1133,12 @@
     if (substring == '%%') {
       return '%%';
     }
+    // FIXME: what do these variables do here?
+    // and why are they in the global scope?
     argument_subs[pos] = substring;
     substitute_string = "__" + pos + "__";
     pos = pos + 1;
     return substitute_string;
-  },
-
-  escapeHtml: function (s) {
-    return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/,"<br/>");
   }
 
   };
