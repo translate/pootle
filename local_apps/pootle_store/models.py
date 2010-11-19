@@ -870,8 +870,7 @@ class Store(models.Model, base.TranslationStore):
                 cache.set(key, self.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
             return
 
-        if self.translation_project.is_template_project:
-            #FIXME: should we do this on conservative == True only?
+        if conservative and self.translation_project.is_template_project:
             # don't save to templates
             return
 
