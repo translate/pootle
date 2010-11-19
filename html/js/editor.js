@@ -40,9 +40,15 @@
     this.ctxtGap = 0;
     this.keepState = false;
 
+    /* Currently active search fields */
+    this.searchFields = [];
+    /* Valid search field options */
+    this.searchOptions = ['source', 'target', 'notes', 'locations'];
+
     /* Regular expressions */
     this.cpRE = new RegExp("^(<[^>]+>|\\[n\|t]|\\W$^\\n)*(\\b|$)", "gm");
     this.escapeRE = new RegExp("<[^<]*?>|\\r\\n|[\\r\\n\\t&<>]", "gm");
+    this.searchRE = new RegExp("^in:.+|\\sin:.+", "i");
 
     /* TM requests handler */
     this.tmReq = null;
@@ -232,7 +238,28 @@
             break;
           case "search":
             PTL.editor.filter = parts[0];
-            PTL.editor.searchText = parts[1];
+
+            /* Parse search fields from query string */
+            var params, pair, key, val,
+                sfields = [],
+                qs = parts[1].split("?");
+
+            // Search text is all the text before "?"
+            PTL.editor.searchText = qs[0];
+
+            // Parse query parameters and detect fields
+            params = qs[1] == undefined ? [] : qs[1].split("&");
+            $.each(params, function (i, keyVal) {
+              pair = keyVal.split("=");
+              key = pair[0];
+              val = pair[1];
+              // We will only consider keys that match 'sfields'
+              if (key == 'sfields') {
+                sfields.push(val);
+              }
+            });
+            PTL.editor.searchFields = sfields;
+
             PTL.editor.getMeta(false);
             PTL.editor.displayEditUnit(PTL.editor.activeUid);
             break;
@@ -279,15 +306,22 @@
    * Highlights search results
    */
   hlSearch: function () {
-    var hl = PTL.editor.filter == "search" ? PTL.editor.searchText : "";
-    var selMap = {notes: "div.developer-comments",
+    var hl = PTL.editor.filter == "search" ? PTL.editor.searchText : "",
+        sel = [],
+        selMap = {notes: "div.developer-comments",
                   locations: "div.translate-locations",
                   source: "td.translate-original, div.original div.translation-text",
                   target: "td.translate-translation"};
-    var sel = [];
-    $("div.advancedsearch input:checked").each(function () {
-     sel.push(selMap[$(this).val()]);
+
+    $.each(PTL.editor.searchFields, function (i, field) {
+      sel.push(selMap[field]);
     });
+
+    // By default we search source and target texts
+    if (!sel.length) {
+      sel = [selMap['source'], selMap['target']];
+    }
+
     $(sel.join(", ")).highlightRegex(new RegExp(hl, "i"));
   },
 
@@ -477,10 +511,13 @@
     }
     if (this.filter == "search") {
       reqData.search = this.searchText;
-      reqData.sfields = [];
-      $("div.advancedsearch input:checked").each(function () {
-        reqData.sfields.push($(this).val());
-      });
+
+      // Override defaults if any fields have been specified
+      if (this.searchFields.length) {
+        reqData.sfields = this.searchFields;
+      } else {
+        reqData.sfields = ["source", "target"];
+      }
     }
     return reqData;
   },
@@ -884,12 +921,63 @@
   /*
    * Search
    */
+
+  /* Parses search text to detect any given fields */
+  parseSearch: function (text) {
+    var urlFields = [],
+        parsed = text;
+
+    // Check if there are fields specified within the search text
+    if (this.searchRE.test(text)) {
+      var opt,
+          removeParts = [],
+          parts = text.split(" ");
+
+      $.each(parts, function (i, part) {
+        if (PTL.editor.searchRE.test(part)) {
+          opt = part.split(":")[1];
+
+          // Only consider valid fields
+          if ($.inArray(opt, PTL.editor.searchOptions) > -1) {
+            urlFields.push({name: 'sfields', value: opt});
+          }
+
+          // If it's an invalid field name, discard it from the search text
+          removeParts.push(i);
+        }
+      });
+
+      // Remove parsed fields from the original array.
+      // It has to be done in reverse order for not clashing with indexes.
+      $.each(removeParts.reverse(), function (i, j) {
+        parts.splice(j, 1);
+      });
+
+      // Join unparsed remaining text, as this will be the actual search text
+      parsed = encodeURIComponent(parts.join(" "));
+    } else {
+      // There were no fields specified within the text so we use the dropdown
+      $("div.advancedsearch input:checked").each(function () {
+        urlFields.push({name: 'sfields', value: $(this).val()});
+      });
+    }
+
+    // If any fields have been chosen, append them to the resulting URL
+    if (urlFields.length) {
+      parsed += "?" + $.param(urlFields);
+    }
+
+    return parsed;
+  },
+
+  /* Loads the search view */
   search: function () {
     // XXX: we can parse search text to allow operators in searches
     // example: "in:source foo"
     var text = $("input#id_search").val();
     if (text) {
-      var newHash = "search/" + text;
+      var parsed = this.parseSearch(text);
+      var newHash = "search/" + parsed;
       $.history.load(newHash);
     }
   },
