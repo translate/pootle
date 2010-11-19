@@ -88,15 +88,6 @@
       return false;
     });
 
-    /* Collapsing */
-    $(".collapse").live("click", function (e) {
-      e.preventDefault();
-      $(this).siblings(".collapsethis").slideToggle("fast");
-      if ($("textarea", $(this).next("div.collapsethis")).length) {
-        $("textarea", $(this).next("div.collapsethis")).focus();
-      }
-    });
-
     /* Update focus when appropriate */
     $(".focusthis").live("focus", function (e) {
       PTL.editor.focused = e.target;

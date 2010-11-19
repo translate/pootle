@@ -99,4 +99,14 @@ $(document).ready(function ($) {
   }, function () {
     $("img.togglesearch").toggle();
   });
+
+  /* Collapsing functionality */
+  $(".collapse").live("click", function (e) {
+    e.preventDefault();
+    $(this).siblings(".collapsethis").slideToggle("fast");
+    if ($("textarea", $(this).next("div.collapsethis")).length) {
+      $("textarea", $(this).next("div.collapsethis")).focus();
+    }
+  });
+
 });
