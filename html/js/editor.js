@@ -46,7 +46,7 @@
     this.searchOptions = ['source', 'target', 'notes', 'locations'];
 
     /* Regular expressions */
-    this.cpRE = /^(<[^>]+>|\[n\|t]|\\W$^\n)*(\b|$)/gm;
+    this.cpRE = /^(<[^>]+>|\[n\|t]|\W$^\n)*(\b|$)/gm;
     this.escapeRE = /<[^<]*?>|\r\n|[\r\n\t&<>]/gm;
     this.searchRE = /^in:.+|\sin:.+/i;
 
