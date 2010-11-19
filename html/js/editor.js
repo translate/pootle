@@ -46,9 +46,9 @@
     this.searchOptions = ['source', 'target', 'notes', 'locations'];
 
     /* Regular expressions */
-    this.cpRE = new RegExp("^(<[^>]+>|\\[n\|t]|\\W$^\\n)*(\\b|$)", "gm");
-    this.escapeRE = new RegExp("<[^<]*?>|\\r\\n|[\\r\\n\\t&<>]", "gm");
-    this.searchRE = new RegExp("^in:.+|\\sin:.+", "i");
+    this.cpRE = /^(<[^>]+>|\[n\|t]|\\W$^\n)*(\b|$)/gm;
+    this.escapeRE = /<[^<]*?>|\r\n|[\r\n\t&<>]/gm;
+    this.searchRE = /^in:.+|\sin:.+/i;
 
     /* TM requests handler */
     this.tmReq = null;
