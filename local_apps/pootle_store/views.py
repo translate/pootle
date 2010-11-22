@@ -703,27 +703,36 @@ def get_tp_metadata(request, pootle_path, uid=None):
     response = simplejson.dumps(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
 
+
+def get_view_units(request, units_queryset, limit=0):
+    """
+    @return: An object in JSON notation that contains the source and target
+    texts for units that will be displayed before and after editing unit.
+    """
+    profile = get_profile(request.user)
+
+    json = {}
+
+    if not limit:
+        limit = profile.get_unit_rows()
+
+    step_queryset = get_step_query(request, units_queryset)
+    pager = paginate(request, step_queryset, items=limit)
+    json["units"] = _build_units_list(pager.object_list)
+    response = simplejson.dumps(json)
+    return HttpResponse(response, mimetype="application/json")
+
+
 @ajax_required
-def get_view_units(request, pootle_path, limit=0):
+def get_view_units_store(request, pootle_path, limit=0):
     """
     @return: An object in JSON notation that contains the source and target
     texts for units that will be displayed before and after unit C{uid}.
     """
     if pootle_path[0] != '/':
         pootle_path = '/' + pootle_path
-    profile = get_profile(request.user)
-    json = {}
-    page = request.GET.get('page', 1)
-
     try:
         store = Store.objects.select_related('translation_project', 'parent').get(pootle_path=pootle_path)
-        else:
-            if not limit:
-                limit = profile.get_unit_rows()
-            units_qs = _filter_queryset(request.GET, store.units,
-                                        store.translation_project)
-            json["units"] = _filter_view_units(units_qs, int(page), int(limit))
-            rcode = 200
     except Store.DoesNotExist:
         raise Http404
     request.translation_project = store.translation_project
@@ -731,8 +740,7 @@ def get_view_units(request, pootle_path, limit=0):
     if not check_permission("view", request):
         raise PermissionDenied(_("You do not have rights to access this translation project."))
 
-    response = simplejson.dumps(json)
-    return HttpResponse(response, status=rcode, mimetype="application/json")
+    return get_view_units(request, store.units, limit=limit)
 
 @ajax_required
 def get_more_context(request, pootle_path, uid):
