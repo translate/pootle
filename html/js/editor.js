@@ -288,7 +288,7 @@
     $('textarea.expanding').TextAreaExpander('10', maxheight);
     $(".focusthis").get(0).focus();
     PTL.editor.hlSearch();
-    PTL.editor.hlTerms();
+    //PTL.editor.hlTerms();
     PTL.editor.getTMUnits();
     $("table.translate-table").trigger("mt_ready");
   },
