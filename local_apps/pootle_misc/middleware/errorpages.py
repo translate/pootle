@@ -21,9 +21,11 @@
 import traceback
 import sys
 
+from django.utils import simplejson
+
 from django.core.exceptions import PermissionDenied
 from django.http import  HttpResponseForbidden, HttpResponseServerError
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.template.loader import render_to_string
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
@@ -36,19 +38,30 @@ class ErrorPagesMiddleware(object):
     """
     Friendlier Error Pages
     """
+    def _ajax_error(self, rcode, msg):
+        json = {'msg': msg}
+        response = simplejson.dumps(json)
+        return HttpResponse(response, status=rcode, mimetype="application/json")
+
     def process_exception(self, request, exception):
+        msg = unicode(exception)
         if isinstance(exception, Http404):
-            pass
+            if request.is_ajax():
+                return self._ajax_error(404, msg)
+
         elif isinstance(exception, PermissionDenied):
+            if request.is_ajax():
+                return self._ajax_error(403, msg)
+
             templatevars = {}
-            if len(exception.args) > 0:
-                templatevars['permission_error'] = unicode(exception)
+            templatevars['permission_error'] = msg
             if not request.user.is_authenticated():
                 login_msg = _('You need to <a href="%(login_link)s">login</a> to access this page.',
                               {'login_link': l("/accounts/login/")})
                 templatevars["login_message"] = login_msg
             return HttpResponseForbidden(render_to_string('403.html', templatevars,
                                       RequestContext(request)))
+
         else:
             #FIXME: implement better 500
             tb = traceback.format_exc()
@@ -56,13 +69,11 @@ class ErrorPagesMiddleware(object):
             if not settings.DEBUG:
                 try:
                     templatevars = {}
-                    if len(exception.args) > 0:
-                        templatevars['exception'] = unicode(exception.args[0])
-
+                    templatevars['exception'] = msg
                     if hasattr(exception, 'filename'):
-                        templatevars['fserror'] = _('Error accessing %(filename)s, Filesystem sent error: %(errormsg)s',
+                        msg = _('Error accessing %(filename)s, Filesystem sent error: %(errormsg)s',
                                                     {'filename': exception.filename, 'errormsg': exception.strerror})
-
+                        templatevars['fserror'] = msg
                     # send email to admins with details about exception
                     subject = 'Error (%s IP): %s' % ((request.META.get('REMOTE_ADDR') in settings.INTERNAL_IPS and 'internal' or 'EXTERNAL'), request.path)
                     try:
@@ -71,6 +82,9 @@ class ErrorPagesMiddleware(object):
                         request_repr = "Request repr() unavailable"
                     message = "%s\n\n%s\n\n%s" % (unicode(exception.args[0]), tb, request_repr)
                     mail_admins(subject, message, fail_silently=True)
+
+                    if request.is_ajax():
+                        return self._ajax_error(500, msg)
                     return HttpResponseServerError(render_to_string('500.html', templatevars,
                                                                     RequestContext(request)))
                 except:
