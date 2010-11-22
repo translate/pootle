@@ -232,6 +232,10 @@ def get_step_query(request, units_queryset):
                     qualitycheck__false_positive=False, qualitycheck__name__in=matchnames)
             units_queryset = match_queryset
 
+    if 'search' in request.GET and 'sfields' in request.GET:
+        search_form = SearchForm(request.GET)
+        if search_form.is_valid():
+            units_queryset = get_search_step_query(request.translation_project, search_form, units_queryset)
     return units_queryset
 
 def get_current_units(request, step_queryset, units_queryset):
