@@ -589,7 +589,7 @@ def _get_prevnext_unit_ids(qs, unit):
         next = None
     return prev, next
 
-def _build_units_list(qs, units):
+def _build_units_list(units):
     """
     Given a list/queryset of units, builds a list with the unit data
     contained in a dictionary ready to be returned as JSON.
@@ -611,11 +611,13 @@ def _build_units_list(qs, units):
             if title:
                 unit_dict["title"] = title
             target_unit.append(unit_dict)
-        prev, next = _get_prevnext_unit_ids(qs, unit)
+        prev = None
+        if return_units:
+            return_units[-1]['next'] = unit.id
+            prev = return_units[-1]['id']
         return_units.append({'id': unit.id,
                              'isfuzzy': unit.isfuzzy(),
                              'prev': prev,
-                             'next': next,
                              'source': source_unit,
                              'target': target_unit})
     return return_units
