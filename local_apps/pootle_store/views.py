@@ -717,9 +717,6 @@ def get_view_units(request, pootle_path, limit=0):
 
     try:
         store = Store.objects.select_related('translation_project', 'parent').get(pootle_path=pootle_path)
-        if not check_profile_permission(profile, 'view', store.parent):
-            rcode = 403
-            json["msg"] = _("You do not have rights to access translation mode.")
         else:
             if not limit:
                 limit = profile.get_unit_rows()
@@ -728,9 +725,11 @@ def get_view_units(request, pootle_path, limit=0):
             json["units"] = _filter_view_units(units_qs, int(page), int(limit))
             rcode = 200
     except Store.DoesNotExist:
-        rcode = 404
-        json["msg"] = _("Store %(path)s does not exist." %
-                        {'path': pootle_path})
+        raise Http404
+    request.translation_project = store.translation_project
+    request.permissions = get_matching_permissions(get_profile(request.user), request.translation_project.directory)
+    if not check_permission("view", request):
+        raise PermissionDenied(_("You do not have rights to access this translation project."))
 
     response = simplejson.dumps(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
