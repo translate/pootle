@@ -355,7 +355,9 @@ def translate_page(request, units_queryset, store=None):
 
     # which units are we interested in?
     if step_queryset is None:
-        step_queryset = get_step_query(request, units_queryset)
+    '''
+
+    step_queryset = get_step_query(request, units_queryset)
 
     prev_unit, edit_unit, pager = get_current_units(request, step_queryset, units_queryset)
 
@@ -412,6 +414,7 @@ def translate_page(request, units_queryset, store=None):
         preceding = pager_query.filter(index__lt=edit_unit.index).count()
         store_preceding = preceding
 
+    '''
     unit_rows = profile.get_unit_rows()
 
     # regardless of the query used to step through units, we will
@@ -471,7 +474,7 @@ def translate_page(request, units_queryset, store=None):
         #'alt_src_codes': alt_src_codes,
         'cantranslate': cantranslate,
         'cansuggest': cansuggest,
-        #'canreview': canreview,
+        'canreview': canreview,
         #'form': form,
         'search_form': search_form,
         #'edit_unit': edit_unit,
