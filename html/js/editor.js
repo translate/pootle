@@ -102,6 +102,7 @@
       PTL.editor.copyOriginal(sources);
     });
     $("div.suggestion").live("click", function () {
+      // Don't copy if text has been selected
       if (PTL.editor.getSelectedText() != "") {
         return;
       }
@@ -113,6 +114,7 @@
     $("table.translate-table").live("editor_ready", this.ready);
     $("tr.view-row").live("click", this.gotoUnit);
     $("input#item-number").live("keypress", function (e) {
+        // Perform action only when the 'Enter' key is pressed
         if (e.keyCode == 13) {
           PTL.editor.gotoPage();
         }
@@ -145,12 +147,13 @@
       }
     });
     shortcut.add('ctrl+space', function (e) {
-      // to prevent the click event which occurs in Firefox but not in Chrome (and not in IE)
+      // To prevent the click event which occurs in Firefox
+      // but not in Chrome (and not in IE)
       if (e && e.preventDefault) {
         e.preventDefault();
       }
 
-      // prevent automatic unfuzzying on keyup
+      // Prevent automatic unfuzzying on keyup
       PTL.editor.keepState = true;
 
       if (PTL.editor.isFuzzy()) {
@@ -188,6 +191,7 @@
     /* Load MT backends */
     $.each(this.settings.mt, function () {
       var backend = this.name;
+
       $.ajax({
         url: m('js/mt/' + backend + '.js'),
         async: false,
@@ -196,7 +200,8 @@
           setTimeout(function () {
             PTL.editor.mt[backend].init();
           }, 0);
-          $("table.translate-table").live("mt_ready", PTL.editor.mt[backend].ready);
+          $("table.translate-table").live("mt_ready",
+                                          PTL.editor.mt[backend].ready);
         }
       });
     });
@@ -205,32 +210,48 @@
     setTimeout(function () {
       $.history.init(function (hash) {
         var parts = hash.split("/");
+
         switch (parts[0]) {
+
+          /* Load a specific unit based o its uid */
           case "unit":
             var uid = parseInt(parts[1]);
+
             if (uid && !isNaN(uid)) {
-              // Take care when we want to access a unit directly from a permalink
+              // Take care when we want to access a unit directly
+              // from a permalink
               if (PTL.editor.activeUid != uid &&
                   PTL.editor.units[uid] == undefined) {
                 PTL.editor.activeUid = uid;
                 PTL.editor.getMeta(true);
               }
+              // Now it's safe to actually load the unit
               PTL.editor.displayEditUnit(uid);
             }
+
             break;
+
+          /* Filter units based on specific criterias */
           case "filter":
             // Save previous states in case there are no results
             PTL.editor.prevChecks = PTL.editor.checks;
             PTL.editor.prevFilter = PTL.editor.filter;
+
+            // Set current state
             PTL.editor.checks = parts[1] == "checks" ? parts[2].split(',') : [];
             PTL.editor.filter = parts[1];
+
+            // Load units based on this filtering criteria
             PTL.editor.getMeta(false);
             PTL.editor.displayEditUnit(PTL.editor.activeUid);
+
             break;
+
+          /* Perform search and parse search fields */
           case "search":
             PTL.editor.filter = parts[0];
 
-            /* Parse search fields from query string */
+            // Parse search fields from query string
             var params, pair, key, val,
                 sfields = [],
                 qs = parts[1].split("?");
@@ -251,11 +272,16 @@
             });
             PTL.editor.searchFields = sfields;
 
+            // Finally, load the units that match this search
             PTL.editor.getMeta(false);
             PTL.editor.displayEditUnit(PTL.editor.activeUid);
+
             break;
+
+          /* Load pages directly */
           case "page":
             var p = parseInt(parts[1]);
+
             if (p && !isNaN(p) && p > 0) {
               if (!(p in PTL.editor.pagesGot)) {
                 PTL.editor.getViewUnits(false, p);
@@ -270,7 +296,10 @@
                 PTL.editor.displayEditUnit(uid);
               }
             }
+
             break;
+
+          /* Load the first page in the current view as default */
           default:
             PTL.editor.getMeta(false);
             PTL.editor.displayEditUnit(PTL.editor.activeUid);
@@ -284,12 +313,21 @@
    * Stuff to be done when the editor is ready
    */
   ready: function () {
+    // Set textarea's initial height as well as the max-height
     var maxheight = $(window).height() * 0.3;
     $('textarea.expanding').TextAreaExpander('10', maxheight);
+
+    // Focus on the first textarea
     $(".focusthis").get(0).focus();
+
+    // Highlight stuff
     PTL.editor.hlSearch();
-    //PTL.editor.hlTerms();
+    //PTL.editor.hlTerms(); // Disabled for now — it's annoying!
+
+    // Start retrieving TM units from amaGama
     PTL.editor.getTMUnits();
+
+    // All is ready, let's call the ready functions of the MT backends
     $("table.translate-table").trigger("mt_ready");
   },
 
@@ -304,6 +342,7 @@
                   source: "td.translate-original, div.original div.translation-text",
                   target: "td.translate-translation"};
 
+    // Build highlighting selector based on chosen search fields
     $.each(PTL.editor.searchFields, function (i, field) {
       sel.push(selMap[field]);
     });
@@ -321,6 +360,7 @@
    */
   hlTerms: function () {
     var term;
+
     $(".tm-original").each(function () {
       term = $(this).text();
       $("div.original .translation-text").highlightRegex(new RegExp(term, "g"));
@@ -331,13 +371,18 @@
    * Copies text into the focused textarea
    */
   copyText: function (e) {
+    var text, element, start;
+
+    // Determine which text we need
     if ($(".tm-translation", this).length) {
-      var text = $(".tm-translation", this).text();
+      text = $(".tm-translation", this).text();
     } else {
-      var text = $(this).text();
+      text = $(this).text();
     }
-    var element = $(PTL.editor.focused);
-    var start = element.caret().start + text.length;
+
+    element = $(PTL.editor.focused);
+    start = element.caret().start + text.length;
+
     element.val(element.caret().replace(text));
     element.caret(start, start);
   },
@@ -353,17 +398,22 @@
 
     var targets = $("[id^=id_target_f_]");
     if (targets.length) {
-      var max = cleanSources.length - 1;
+      var i, active,
+          max = cleanSources.length - 1;
+
       for (var i=0; i<targets.length; i++) {
         var newval = cleanSources[i] || cleanSources[max];
         $(targets.get(i)).val(newval);
       }
-      var active = $(targets).get(0);
+
+      // Focus on the first textarea
+      active = $(targets).get(0);
       active.focus();
+      // Make this fuzzy
       PTL.editor.goFuzzy();
-      /* Place cursor at start of target text */
+      // Place cursor at start of target text
       PTL.editor.cpRE.exec($(active).val());
-      var i = PTL.editor.cpRE.lastIndex;
+      i = PTL.editor.cpRE.lastIndex;
       $(active).caret(i, i);
       PTL.editor.cpRE.lastIndex = 0;
     }
@@ -374,6 +424,7 @@
    */
   getSelectedText: function () {
     var t = '';
+
     if (window.getSelection) {
       t = window.getSelection();
     } else if (document.getSelection) {
@@ -381,6 +432,7 @@
     } else if (document.selection) {
       t = document.selection.createRange().text;
     }
+
     return t;
   },
 
@@ -426,6 +478,7 @@
     }
   },
 
+  /* Returns whether the current unit is fuzzy or not */
   isFuzzy: function () {
     return $("input.fuzzycheck").attr("checked");
   },
@@ -474,6 +527,7 @@
   error: function (xhr, s) {
     // TODO: i18n
     var msg = "";
+
     if (xhr.status == 0) {
       msg = "Error while connecting to the server.";
     } else if (xhr.status == 500) {
@@ -489,6 +543,7 @@
         msg = "Unknown error.";
       }
     }
+
     PTL.editor.displayError(msg);
   },
 
@@ -497,9 +552,11 @@
    */
   getReqData: function () {
     var reqData = {filter: this.filter};
+
     if (this.filter == "checks" && this.checks.length) {
       reqData.checks = this.checks.join(",");
     }
+
     if (this.filter == "search") {
       reqData.search = this.searchText;
 
@@ -510,6 +567,7 @@
         reqData.sfields = ["source", "target"];
       }
     }
+
     return reqData;
   },
 
@@ -520,9 +578,10 @@
 
   /* Retrieves the metadata used for this query */
   getMeta: function (withUid) {
-    var append = withUid ? this.activeUid : "";
-    var metaUrl = l(this.store + "/meta/" + append);
-    var reqData = this.getReqData();
+    var append = withUid ? this.activeUid : "",
+        metaUrl = l(this.store + "/meta/" + append),
+        reqData = this.getReqData();
+
     $.ajax({
       url: metaUrl,
       async: false,
@@ -554,13 +613,16 @@
 
   /* Gets the view units that refer to currentPage */
   getViewUnits: function (async, page, limit) {
-    var async = async == undefined ? false : async;
-    var page = page == undefined ? this.currentPage : page;
-    var limit = limit == undefined ? 0 : limit;
-    var urlStr = this.store + '/view';
+    var reqData, viewUrl,
+        async = async == undefined ? false : async,
+        page = page == undefined ? this.currentPage : page,
+        limit = limit == undefined ? 0 : limit,
+        urlStr = this.store + '/view';
+
     urlStr = limit ? urlStr + '/limit/' + limit : urlStr;
-    var viewUrl = l(urlStr);
-    var reqData = $.extend({page: page}, this.getReqData());
+    viewUrl = l(urlStr);
+    reqData = $.extend({page: page}, this.getReqData());
+
     $.ajax({
       url: viewUrl,
       data: reqData,
@@ -569,10 +631,13 @@
       success: function (data) {
         if (data.units.length) {
           PTL.editor.pagesGot[page] = [];
+
+          // Copy retrieved units to the client
           $.each(data.units, function () {
             PTL.editor.units[this.id] = this;
             PTL.editor.pagesGot[page].push(this.id);
           });
+
           PTL.editor.hasResults = true;
         } else {
           PTL.editor.hasResults = false;
@@ -586,62 +651,85 @@
 
   /* Builds view rows for units represented by 'uids' */
   buildRows: function (uids) {
-    var cls = "even";
-    var even = true;
-    var rows = "";
-    for (var i=0; i<uids.length; i++) {
-      var _this = uids[i].id || uids[i];
-      var unit = this.units[_this];
+    var _this, i, unit,
+        cls = "even",
+        even = true,
+        rows = "";
+
+    for (i=0; i<uids.length; i++) {
+      _this = uids[i].id || uids[i];
+      unit = this.units[_this];
+
+      // Build row i
       rows += '<tr id="row' + _this + '" class="view-row ' + cls + '">';
       rows += this.tmpl.vUnit($, {data: {meta: this.meta,
                                          unit: unit}}).join("");
       rows += '</tr>';
+
+      // Update odd/even class
       cls = even ? "odd" : "even";
       even = !even;
     }
+
     return rows;
   },
 
   /* Builds context rows for units passed as 'units' */
   buildCtxtRows: function (units) {
-    var cls = "even";
-    var even = true;
-    var rows = "";
-    for (var i=0; i<units.length; i++) {
-      var unit = units[i];
+    var i, unit,
+        cls = "even",
+        even = true,
+        rows = "";
+
+    for (i=0; i<units.length; i++) {
+      unit = units[i];
+
+      // Build context row i
       rows += '<tr id="ctxt' + unit.id + '" class="context-row ' + cls + '">';
       rows += this.tmpl.vUnit($, {data: {meta: this.meta,
                                          unit: unit}}).join("");
       rows += '</tr>';
+
+      // Update odd/even class
       cls = even ? "odd" : "even";
       even = !even;
     }
+
     return rows;
   },
 
   /* Gets uids that should be displayed before/after 'uid' */
   getUidsBeforeAfter: function (uid) {
-    var uids = {before: [], after: []};
-    var limit = parseInt((this.pager.per_page - 1) / 2);
-    var current = this.units[uid];
-    var prevNext = {prev: "before", next: "after"};
-    for (var m in prevNext) {
-      var tu = current;
-      for (var i=0; i<limit; i++) {
+    var howMuch, i, m, prevNextL, tu,
+        uids = {before: [], after: []},
+        limit = parseInt((this.pager.per_page - 1) / 2),
+        current = this.units[uid],
+        prevNext = {prev: "before", next: "after"};
+
+    for (m in prevNext) {
+      tu = current;
+
+      // Fill uids[before|after] with prev/next ids
+      for (i=0; i<limit; i++) {
         if (tu[m] != undefined && tu[m] in this.units) {
           var tu = this.units[tu[m]];
           uids[prevNext[m]].push(tu.id);
         }
       }
     }
+
+    // Only fill remaining rows if we have more units than the limit
     if (Object.size(this.units) > limit) {
-      var prevNextl = {prev: "after", next: "before"};
-      for (var m in prevNext) {
-        if (uids[prevNextl[m]].length < limit) {
+      prevNextL = {prev: "after", next: "before"};
+
+      for (m in prevNext) {
+        // If we have less units that the limit, fill that in
+        if (uids[prevNextL[m]].length < limit) {
           // Add (limit - length) units to uids[prevNext[m]]
-          var howMuch = limit - uids[prevNextl[m]].length;
-          var tu = this.units[uids[prevNext[m]][uids[prevNext[m]].length-1]];
-          for (var i=0; i<howMuch; i++) {
+          howMuch = limit - uids[prevNextL[m]].length;
+          tu = this.units[uids[prevNext[m]][uids[prevNext[m]].length-1]];
+
+          for (i=0; i<howMuch; i++) {
             if (tu[m] != undefined) {
               var tu = this.units[tu[m]];
               uids[prevNext[m]].push(tu.id);
@@ -650,7 +738,9 @@
         }
       }
     }
+
     uids.before.reverse();
+
     return uids;
   },
 
@@ -695,22 +785,32 @@
 
   /* Sets the edit view for unit 'uid' */
   displayEditUnit: function (uid) {
+    var uids, newTbody;
+
+    // Ensure linking is correct before moving to a specific unit
     this.checkUnitsLinking();
+
     if (PTL.editor.hasResults) {
+      // Fetch pages asynchronously — we already have the needed pages
+      // so this will return units whenever it can
       this.fetchPages(true);
-      var uids = this.getUidsBeforeAfter(uid);
-      var newTbody = this.buildRows(uids.before) +
-                     this.getEditUnit(uid) +
-                     this.buildRows(uids.after);
+
+      // Get the actual editing widget and the surrounding view rows
+      uids = this.getUidsBeforeAfter(uid);
+      newTbody = this.buildRows(uids.before) +
+                 this.getEditUnit(uid) +
+                 this.buildRows(uids.after);
+
       this.reDraw(newTbody);
     }
   },
 
   /* reDraws the translate table rows */
   reDraw: function (newTbody) {
-    var tTable = $("table.translate-table");
-    var where = $("tbody", tTable);
-    var oldRows = $("tr", where);
+    var tTable = $("table.translate-table"),
+        where = $("tbody", tTable),
+        oldRows = $("tr", where);
+
     oldRows.remove();
 
     // This fixes the issue with tipsy popups staying on the screen
@@ -718,22 +818,29 @@
     $('.tipsy').remove(); // kill all open tipsy popups
 
     where.append(newTbody);
+
+    // We are ready, call the ready handlers
     $(tTable).trigger("editor_ready");
   },
 
   /* Fetches more view unit pages in case they're needed */
   fetchPages: function (async) {
-    var current = this.currentPage;
-    var candidates = [current, current + 1, current - 1];
-    var pages = [];
+    var i,
+        current = this.currentPage,
+        candidates = [current, current + 1, current - 1],
+        pages = [];
 
-    for (var i=0; i<candidates.length; i++) {
+    // We will only fetch valid pages and pages that haven't
+    // already been fetched
+    for (i=0; i<candidates.length; i++) {
       if (candidates[i] <= this.pager.num_pages &&
           candidates[i] > 0 &&
           !(candidates[i] in this.pagesGot)) {
         pages.push(candidates[i]);
       }
     }
+
+    // Do the actual fetching
     for (var i=0; i<pages.length; i++) {
       this.getViewUnits(async, pages[i]);
     }
@@ -742,11 +849,14 @@
   /* Updates the pager */
   updatePager: function (pager) {
     this.pager = pager;
+
     // If page number or num_pages has changed, redraw pager
-    if (this.currentPage != pager.number
-        || this.currentNumPages != pager.num_pages) {
+    if (this.currentPage != pager.number ||
+        this.currentNumPages != pager.num_pages) {
       this.currentPage = pager.number;
       this.currentNumPages = pager.num_pages;
+
+      // Update UI elements
       $("input#item-number").val(pager.number);
       $("span#items-count").text(pager.num_pages);
     }
@@ -754,10 +864,13 @@
 
   /* Loads the edit unit 'uid' */
   getEditUnit: function (uid) {
-    var editUrl = l(this.store + '/edit/' + uid);
-    var reqData = $.extend({page: this.currentPage}, this.getReqData());
-    var widget = '';
-    var ctxt = {before: [], after: []};
+    var editor,
+        eClass = "edit-row",
+        editUrl = l(this.store + '/edit/' + uid);
+        reqData = $.extend({page: this.currentPage}, this.getReqData()),
+        widget = '',
+        ctxt = {before: [], after: []};
+
     $.ajax({
       url: editUrl,
       async: false,
@@ -776,16 +889,18 @@
       },
       error: PTL.editor.error
     });
-    var eclass = "edit-row";
-    eclass += this.units[uid].isfuzzy ? " fuzzy-unit" : "";
+
+    eClass += this.units[uid].isfuzzy ? " fuzzy-unit" : "";
     // TODO: i18n
-    var editor = (ctxt.before.length ? '<tr class="more-context before"><td colspan="2"><a class="morecontext">Show more context rows</a></td></tr>' : '') +
-                 this.buildCtxtRows(ctxt.before) +
-                 '<tr id="row' + uid + '" class="' + eclass + '">' +
-                  widget + '</tr>' +
-                  this.buildCtxtRows(ctxt.after) +
-                 (ctxt.after.length ? '<tr class="more-context after"><td colspan="2"><a class="morecontext">Show more context rows</a></td></tr>' : '');
+    editor = (ctxt.before.length ? '<tr class="more-context before"><td colspan="2"><a class="morecontext">Show more context rows</a></td></tr>' : '') +
+             this.buildCtxtRows(ctxt.before) +
+             '<tr id="row' + uid + '" class="' + eClass + '">' +
+             widget + '</tr>' +
+             this.buildCtxtRows(ctxt.after) +
+             (ctxt.after.length ? '<tr class="more-context after"><td colspan="2"><a class="morecontext">Show more context rows</a></td></tr>' : '');
+
     this.activeUid = uid;
+
     return editor;
   },
 
@@ -837,9 +952,11 @@
   /* Loads the editor with the next unit */
   gotoPrevNext: function (e) {
     e.preventDefault();
+
     var current = PTL.editor.units[PTL.editor.activeUid],
         prevNextMap = {previous: current.prev, next: current.next},
         newUid = prevNextMap[$(e.target).attr("class")];
+
     if (newUid != null) {
       var newHash = "unit/" + parseInt(newUid);
       $.history.load(newHash);
@@ -849,13 +966,15 @@
   /* Loads the editor with a specific unit */
   gotoUnit: function (e) {
     e.preventDefault();
+
     if (PTL.editor.getSelectedText() != "") {
       return;
     }
+
     var m = $(this).attr("id").match(/row([0-9]+)/);
     if (m) {
-      var uid = parseInt(m[1]);
-      var newHash = "unit/" + uid;
+      var uid = parseInt(m[1]),
+          newHash = "unit/" + uid;
       $.history.load(newHash);
     }
   },
@@ -863,6 +982,7 @@
   /* Loads the editor on a specific page */
   gotoPage: function () {
     var page = parseInt($("input#item-number").val());
+
     if (page && !isNaN(page) && page > 0 &&
         page <= PTL.editor.pager.num_pages) {
       var newHash = "page/" + page;
