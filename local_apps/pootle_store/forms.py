@@ -132,6 +132,7 @@ def unit_form_factory(language, snplurals=None):
         tnplurals = language.nplurals
     else:
         tnplurals = 1
+        snplurals = 1
     target_attrs = {
         'lang': language.code,
         'dir': language.get_direction(),
