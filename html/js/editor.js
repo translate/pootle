@@ -654,8 +654,48 @@
     return uids;
   },
 
+  /* Checks and fixes the linking between units */
+  checkUnitsLinking: function () {
+    var first, last, lastInPrevPage, p, pnP;
+
+    for (p in this.pagesGot) {
+      // Ensure we work with integers
+      p = parseInt(p);
+
+      // First and last units in this page
+      first = this.pagesGot[p][0];
+      last = this.pagesGot[p][this.pagesGot[p].length-1];
+
+      // Check linking to the previous unit from the first unit in this page
+      if (p > 1 &&
+          (!this.units[first].hasOwnProperty('prev') ||
+           (this.units[first].hasOwnProperty('prev') &&
+            this.units[first].prev == null) ) ) {
+        // We can only set the linking if the previous page
+        // has already been fetched
+        pnP = p - 1;
+        if (pnP in this.pagesGot) {
+          lastInPrevPage = this.pagesGot[pnP][this.pagesGot[pnP].length-1];
+          $.extend(this.units[first], {prev: lastInPrevPage});
+        }
+      }
+
+      // Check linking to the next unit from the last unit in this page
+      if (p < this.pager.num_pages &&
+          !this.units[last].hasOwnProperty('next')) {
+        // We can only set the linking if the next page
+        // has already been fetched
+        pnP = p + 1;
+        if (pnP in this.pagesGot) {
+          $.extend(this.units[last], {next: this.pagesGot[pnP][0]});
+        }
+      }
+    }
+  },
+
   /* Sets the edit view for unit 'uid' */
   displayEditUnit: function (uid) {
+    this.checkUnitsLinking();
     if (PTL.editor.hasResults) {
       this.fetchPages(true);
       var uids = this.getUidsBeforeAfter(uid);
