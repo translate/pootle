@@ -804,7 +804,12 @@ def get_edit_unit(request, pootle_path, uid):
         unit = Unit.objects.get(id=uid, store__pootle_path=pootle_path)
         translation_project = unit.store.translation_project
         language = translation_project.language
-        form_class = unit_form_factory(language, len(unit.source.strings))
+
+        if unit.hasplural():
+            snplurals = len(unit.source.strings)
+        else:
+            snplurals = None
+        form_class = unit_form_factory(language, snplurals)
         form = form_class(instance=unit)
         store = unit.store
         directory = store.parent
@@ -929,7 +934,11 @@ def process_submit(request, pootle_path, uid, type):
         else:
             translation_project = unit.store.translation_project
             language = translation_project.language
-            form_class = unit_form_factory(language, len(unit.source.strings))
+            if unit.hasplural():
+                snplurals = len(unit.source.strings)
+            else:
+                snplurals = None
+            form_class = unit_form_factory(language, snplurals)
             form = form_class(request.POST, instance=unit)
             if form.is_valid():
                 if type == 'submission':
