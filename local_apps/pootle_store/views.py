@@ -554,7 +554,7 @@ def _filter_view_units(units_qs, current_page, per_page):
     start_index = per_page * (current_page - 1)
     end_index = start_index + per_page
     filtered = units_qs[start_index:end_index]
-    return _build_units_list(units_qs, filtered)
+    return _build_units_list(filtered)
 
 def _filter_ctxt_units(units_qs, edit_index, limit, gap=0):
     """
@@ -566,8 +566,8 @@ def _filter_ctxt_units(units_qs, edit_index, limit, gap=0):
         bs = sindex - limit
     before = units_qs.filter(index__lte=sindex)[bs:sindex]
     after = units_qs.filter(index__gt=edit_index + gap + 1)[:limit]
-    return {'before': _build_units_list(units_qs, before),
-            'after': _build_units_list(units_qs, after)}
+    return {'before': _build_units_list(before),
+            'after': _build_units_list(after)}
 
 def _get_prevnext_unit_ids(qs, unit):
     """
