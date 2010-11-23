@@ -369,7 +369,11 @@ def translate_page(request, units_queryset, store=None):
            'suggest' in request.POST and not cansuggest:
             raise PermissionDenied
 
-        form_class = unit_form_factory(language, len(prev_unit.source.strings))
+        if prev_unit.hasplural():
+            snplurals = len(prev_unit.source.strings)
+        else:
+            snplurals = None
+        form_class = unit_form_factory(language, snplurals)
         form = form_class(request.POST, instance=prev_unit)
         if form.is_valid():
             if cantranslate and 'submit' in request.POST:
@@ -400,7 +404,11 @@ def translate_page(request, units_queryset, store=None):
 
     # only create form for edit_unit if prev_unit was processed successfully
     if form is None or form.is_valid():
-        form_class = unit_form_factory(language, len(edit_unit.source.strings))
+        if edit_unit.hasplural():
+            snplurals = len(edit_unit.source.strings)
+        else:
+            snplurals = None
+        form_class = unit_form_factory(language, snplurals)
         form = form_class(instance=edit_unit)
 
     if store is None:
