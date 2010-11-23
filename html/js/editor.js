@@ -801,8 +801,8 @@
     var prevnextMap = {previous: current.prev, next: current.next};
     var newUid = prevnextMap[$(e.target).attr("class")];
     if (newUid != null) {
-        var newHash = "unit/" + parseInt(newUid);
-        $.history.load(newHash);
+      var newHash = "unit/" + parseInt(newUid);
+      $.history.load(newHash);
     }
   },
 
@@ -1141,7 +1141,7 @@
         element.fadeOut(200, function () {
           $(this).remove();
           if (!$("div#suggestion-container div[id^=suggestion]").length) {
-          $("input.next").trigger("click");
+            $("input.next").trigger("click");
           }
         });
       }, "json");
