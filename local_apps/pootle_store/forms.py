@@ -127,8 +127,8 @@ class MultiStringFormField(forms.MultiValueField):
         return [unhighlight_whitespace(string) for string in data_list]
 
 
-def unit_form_factory(language, snplurals=1):
-    if snplurals > 1:
+def unit_form_factory(language, snplurals=None):
+    if snplurals is not None:
         tnplurals = language.nplurals
     else:
         tnplurals = 1
