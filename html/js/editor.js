@@ -837,9 +837,9 @@
   /* Loads the editor with the next unit */
   gotoPrevNext: function (e) {
     e.preventDefault();
-    var current = PTL.editor.units[PTL.editor.activeUid];
-    var prevnextMap = {previous: current.prev, next: current.next};
-    var newUid = prevnextMap[$(e.target).attr("class")];
+    var current = PTL.editor.units[PTL.editor.activeUid],
+        prevNextMap = {previous: current.prev, next: current.next},
+        newUid = prevNextMap[$(e.target).attr("class")];
     if (newUid != null) {
       var newHash = "unit/" + parseInt(newUid);
       $.history.load(newHash);
