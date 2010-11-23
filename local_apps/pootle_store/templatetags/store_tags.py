@@ -117,7 +117,16 @@ def stat_summary(store):
 @register.filter('pluralize_source')
 def pluralize_source(unit):
     if unit.hasplural():
-        return [(0, unit.source.strings[0], _('Singular')), (1, unit.source.strings[1], _('Plural'))]
+        count = len(unit.source.strings)
+        if count == 1:
+            return [(0, unit.source.strings[0], "%s+%s" % (_('Singular'), _('Plural')))]
+        elif count == 2:
+            return [(0, unit.source.strings[0], _('Singular')), (1, unit.source.strings[1], _('Plural'))]
+        else:
+            forms = []
+            for i, source in enumerate(unit.source.strings):
+                forms.append((i, source, _('Plural Form %d', i)))
+            return forms
     else:
         return [(0, unit.source, None)]
 
