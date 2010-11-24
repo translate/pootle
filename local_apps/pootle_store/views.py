@@ -591,18 +591,20 @@ def _filter_view_units(units_qs, current_page, per_page):
     filtered = units_qs[start_index:end_index]
     return _build_units_list(filtered)
 
-def _filter_ctxt_units(units_qs, edit_index, limit, gap=0):
+def _filter_ctxt_units(units_qs, index, limit, gap=0):
     """
     Returns C{limit}*2 units that are before and after C{index}.
     """
-    bs = 0
-    sindex = edit_index - gap > 0 and edit_index - gap or 0
-    if sindex > limit and sindex != 0:
-        bs = sindex - limit
-    before = units_qs.filter(index__lte=sindex)[bs:sindex]
-    after = units_qs.filter(index__gt=edit_index + gap + 1)[:limit]
-    return {'before': _build_units_list(before),
-            'after': _build_units_list(after)}
+    result = {}
+    if index - gap > 0:
+        before = units_qs.filter(index__lt=index)[gap:limit]
+        result['before'] = _build_units_list(before)
+    else:
+        result['before'] = []
+    #FIXME: can we avoid this query if length is known?
+    after = units_qs.filter(index__gt=index)[gap:limit]
+    result['after'] = _build_units_list(after)
+    return result
 
 def _get_prevnext_unit_ids(qs, unit):
     """
