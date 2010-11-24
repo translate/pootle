@@ -760,23 +760,13 @@ def get_view_units(request, units_queryset, limit=0):
     return HttpResponse(response, mimetype="application/json")
 
 
-@ajax_required
-def get_view_units_store(request, pootle_path, limit=0):
+#@ajax_required
+@get_store_context('view')
+def get_view_units_store(request, store, limit=0):
     """
     @return: An object in JSON notation that contains the source and target
     texts for units that will be displayed before and after unit C{uid}.
     """
-    if pootle_path[0] != '/':
-        pootle_path = '/' + pootle_path
-    try:
-        store = Store.objects.select_related('translation_project', 'parent').get(pootle_path=pootle_path)
-    except Store.DoesNotExist:
-        raise Http404
-    request.translation_project = store.translation_project
-    request.permissions = get_matching_permissions(get_profile(request.user), request.translation_project.directory)
-    if not check_permission("view", request):
-        raise PermissionDenied(_("You do not have rights to access this translation project."))
-
     return get_view_units(request, store.units, limit=limit)
 
 @ajax_required
