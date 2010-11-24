@@ -758,7 +758,7 @@ def get_view_units(request, units_queryset, limit=0):
     return HttpResponse(response, mimetype="application/json")
 
 
-#@ajax_required
+@ajax_required
 @get_store_context('view')
 def get_view_units_store(request, store, limit=0):
     """
