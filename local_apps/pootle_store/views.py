@@ -834,10 +834,6 @@ def get_edit_unit(request, pootle_path, uid):
         json['editor'] = t.render(c)
         rcode = 200
 
-        current_page = int(request.GET.get('page', 1))
-        all_units = unit.store.units
-        units_qs = _filter_queryset(request.GET, all_units,
-                                    store.translation_project)
         unit_rows = profile.get_unit_rows()
         current_unit = unit
         if current_unit is not None:

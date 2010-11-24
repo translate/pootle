@@ -1007,8 +1007,8 @@
   getEditUnit: function (uid) {
     var editor,
         eClass = "edit-row",
-        editUrl = l(this.store + '/edit/' + uid);
-        reqData = $.extend({page: this.currentPage}, this.getReqData()),
+        editUrl = l(this.store + '/edit/' + uid),
+        reqData = this.getReqData(),
         widget = '',
         ctxt = {before: [], after: []};
 
@@ -1069,7 +1069,7 @@
 
     // Serialize data to be sent and get required attributes for the request
     reqData = $("form#" + formId).serializeObject();
-    $.extend(reqData, {page: PTL.editor.currentPage}, PTL.editor.getReqData());
+    $.extend(reqData, PTL.editor.getReqData());
 
     $.ajax({
       url: submitUrl,
