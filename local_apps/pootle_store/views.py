@@ -954,22 +954,7 @@ def process_submit(request, pootle_path, uid, type):
                                                                  suggester=get_profile(request.user),
                                                                  state='pending', unit=unit.id)
 
-                current_page = int(request.POST.get('page', 1))
-                all_units = unit.store.units
-                units_qs = _filter_queryset(request.POST, all_units,
-                                            unit.store.translation_project)
-                unit_rows = profile.get_unit_rows()
-                current_unit = unit
-                if current_unit is not None:
-                    current_index = _get_index_in_qs(units_qs, current_unit)
-                    try:
-                        new_index = current_index + 1
-                        json["new_uid"] = units_qs[new_index].id
-                    except IndexError:
-                        # End of set: let's assume the new unit is the last we had
-                        new_unit = unit
-                        json["new_uid"] = None
-                    rcode = 200
+                rcode = 200
             else:
                 # Form failed
                 rcode = 400

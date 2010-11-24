@@ -1092,7 +1092,7 @@
           }
 
           // Try loading the next unit
-          var newUid = parseInt(data.new_uid);
+          var newUid = parseInt(PTL.editor.units[uid].next);
           if (newUid) {
             var newHash = "unit/" + newUid;
             $.history.load(newHash);
