@@ -143,10 +143,8 @@ def export_as_type(request, store, filetype):
         cache.set(key, store.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
     return redirect('/export/' + export_path)
 
-def download(request, pootle_path):
-    if pootle_path[0] != '/':
-        pootle_path = '/' + pootle_path
-    store = get_object_or_404(Store, pootle_path=pootle_path)
+@get_store_context('view')
+def download(request, store):
     store.sync(update_translation=True)
     return redirect('/export/' + store.real_path)
 
