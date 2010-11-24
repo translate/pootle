@@ -55,17 +55,59 @@ from pootle_store.templatetags.store_tags import fancy_highlight, find_altsrcs, 
 from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED, absolute_real_path, ajax_required
 from pootle_store.filetypes import factory_classes, is_monolingual
 
-def export_as_xliff(request, pootle_path):
-    """export given file to xliff for offline translation"""
-    if pootle_path[0] != '/':
-        pootle_path = '/' + pootle_path
-    store = get_object_or_404(Store, pootle_path=pootle_path)
+def _common_context(request,  translation_project, permission_codes):
+    """adds common context to request object and checks permissions"""
+    request.translation_project = translation_project
+    request.profile = get_profile(request.user)
+    request.permissions = get_matching_permissions(request.profile,
+                                                   translation_project.directory)
+    if not permission_codes:
+        # skip checking permissions
+        return
 
+    if isinstance(permission_codes, basestring):
+        permission_codes = [permission_codes]
+    for permission_code in permission_codes:
+        if not check_permission(permission_code, request):
+            raise PermissionDenied(_("Insufficient rights to this translation project."))
+
+
+def get_store_context(permission_codes):
+    def wrap_f(f):
+        def decorated_f(request, pootle_path, *args, **kwargs):
+            if pootle_path[0] != '/':
+                pootle_path = '/' + pootle_path
+            try:
+                store = Store.objects.select_related('translation_project', 'parent').get(pootle_path=pootle_path)
+            except Store.DoesNotExist:
+                raise Http404
+            _common_context(request, store.translation_project, permission_codes)
+            request.store = store
+            request.directory = store.parent
+            return f(request, store, *args, **kwargs)
+        return decorated_f
+    return wrap_f
+
+def get_unit_context(permission_codes):
+    def wrap_f(f):
+        def decorated_f(request, uid, *args, **kwargs):
+            unit = get_object_or_404(Unit, id=uid)
+            _common_context(request, unit.store.translation_project, permission_codes)
+            request.unit = unit
+            request.store = unit.store
+            request.directory = unit.store.parent
+            return f(request, unit, *args, **kwargs)
+        return decorated_f
+    return wrap_f
+
+@get_store_context('view')
+def export_as_xliff(request, store):
+    """export given file to xliff for offline translation"""
     path, ext = os.path.splitext(store.real_path)
     export_path = os.path.join('POOTLE_EXPORT', path + os.path.extsep + 'xlf')
     abs_export_path = absolute_real_path(export_path)
 
-    key = iri_to_uri("%s:export_as_xliff" % pootle_path)
+    key = iri_to_uri("%s:export_as_xliff" % store.pootle_path)
     last_export = cache.get(key)
     if not (last_export and last_export == store.get_mtime() and os.path.isfile(abs_export_path)):
         ensure_target_dir_exists(abs_export_path)
