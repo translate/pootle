@@ -15,9 +15,7 @@
 
   PTL.editor = {
 
-  /*
-   * Initializes the editor
-   */
+  /* Initializes the editor */
   init: function (options) {
 
     /* Default settings */
@@ -309,9 +307,8 @@
 
   },
 
-  /*
-   * Stuff to be done when the editor is ready
-   */
+
+  /* Stuff to be done when the editor is ready  */
   ready: function () {
     // Set textarea's initial height as well as the max-height
     var maxheight = $(window).height() * 0.3;
@@ -331,9 +328,12 @@
     $("table.translate-table").trigger("mt_ready");
   },
 
+
   /*
-   * Highlights search results
+   * Text utils
    */
+
+  /* Highlights search results */
   hlSearch: function () {
     var hl = PTL.editor.filter == "search" ? PTL.editor.searchText : "",
         sel = [],
@@ -355,9 +355,7 @@
     $(sel.join(", ")).highlightRegex(new RegExp(hl, "i"));
   },
 
-  /*
-   * Highlights matching terms in the source text.
-   */
+  /* Highlights matching terms in the source text */
   hlTerms: function () {
     var term;
 
@@ -367,9 +365,8 @@
     });
   },
 
-  /*
-   * Copies text into the focused textarea
-   */
+
+  /* Copies text into the focused textarea */
   copyText: function (e) {
     var text, element, start;
 
@@ -387,9 +384,8 @@
     element.caret(start, start);
   },
 
-  /*
-   * Copies source text(s) into the target textarea(s)
-   */
+
+  /* Copies source text(s) into the target textarea(s)*/
   copyOriginal: function (sources) {
     var cleanSources = [];
     $.each(sources, function (i) {
@@ -419,9 +415,8 @@
     }
   },
 
-  /*
-   * Gets selected text
-   */
+
+  /* Gets selected text */
   getSelectedText: function () {
     var t = '';
 
@@ -436,6 +431,90 @@
     return t;
   },
 
+  /* Escapes HTML tags */
+  escapeHtml: function (s) {
+    return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").
+             replace(/>/g,"&gt;").replace(/\n/,"<br/>");
+  },
+
+
+  /* Fancy escapes to highlight parts of the text such as HTML tags */
+  fancyEscape: function (text) {
+    function replace(match) {
+        var replaced,
+            escapeHl= '<span class="highlight-escape">%s</span>',
+            htmlHl = '<span class="highlight-html">&lt;%s&gt;</span>',
+            submap = {
+              '\r\n': escapeHl.replace(/%s/, '\\r\\n') + '<br/>\n',
+              '\r': escapeHl.replace(/%s/, '\\r') + '<br/>\n',
+              '\n': escapeHl.replace(/%s/, '\\n') + '<br/>\n',
+              '\t': escapeHl.replace(/%s/, '\\t') + '\t',
+              '&': '&amp;',
+              '<': '&lt;',
+              '>': '&gt;'
+            }
+
+        replaced = submap[match];
+
+        if (replaced == undefined) {
+            replaced = htmlHl.replace(/%s/, match.slice(1, match.length-1));
+        }
+
+        return replaced;
+    }
+
+    var orig = text,
+        matches = text.match(this.escapeRE);
+
+    for (var i in matches) {
+      orig = orig.replace(matches[i], replace(matches[i]))
+    }
+
+    return orig;
+  },
+
+
+  /* Does the actual diffing */
+  doDiff: function (a, b) {
+    var d, op, text,
+        textDiff = "",
+        removed = "",
+        diff = this.differencer.diff_main(a, b);
+
+    this.differencer.diff_cleanupSemantic(diff);
+
+    $.each(diff, function (k, v) {
+      op = v[0];
+      text = v[1];
+
+      if (op == 0) {
+          if (removed) {
+            textDiff += '<span class="diff-delete">' + PTL.editor.fancyEscape(removed) + '</span>'
+            removed = "";
+          }
+          textDiff += PTL.editor.fancyEscape(text);
+      } else if (op == 1) {
+        if (removed) {
+          // This is part of a substitution, not a plain insertion. We
+          // will format this differently.
+          textDiff += '<span class="diff-replace">' + PTL.editor.fancyEscape(text) + '</span>';
+          removed = "";
+        } else {
+          textDiff += '<span class="diff-insert">' + PTL.editor.fancyEscape(text) + '</span>';
+        }
+      } else if (op == -1) {
+        removed = text;
+      }
+    });
+
+    if (removed) {
+      textDiff += '<span class="diff-delete">' + PTL.editor.fancyEscape(removed) + '</span>';
+    }
+
+    return textDiff;
+  },
+
+
   /*
    * Fuzzying / unfuzzying functions
    */
@@ -445,20 +524,24 @@
     $("tr.edit-row").addClass("fuzzy-unit");
   },
 
+
   /* Unsets the current unit's styling as fuzzy */
   undoFuzzyArea: function () {
     $("tr.edit-row").removeClass("fuzzy-unit");
   },
+
 
   /* Checks the current unit's fuzzy checkbox */
   doFuzzyBox: function () {
     $("input.fuzzycheck").attr("checked", "checked");
   },
 
+
   /* Unchecks the current unit's fuzzy checkbox */
   undoFuzzyBox: function () {
     $("input.fuzzycheck").removeAttr("checked");
   },
+
 
   /* Sets the current unit status as fuzzy (both styling and checkbox) */
   goFuzzy: function () {
@@ -469,6 +552,7 @@
     }
   },
 
+
   /* Unsets the current unit status as fuzzy (both styling and checkbox) */
   ungoFuzzy: function () {
     if (this.isFuzzy()) {
@@ -478,10 +562,12 @@
     }
   },
 
+
   /* Returns whether the current unit is fuzzy or not */
   isFuzzy: function () {
     return $("input.fuzzycheck").attr("checked");
   },
+
 
   /*
    * Suggest / submit mode functions
@@ -492,15 +578,18 @@
     $("table.translate-table").addClass("suggest-mode");
   },
 
+
   /* Changes the editor into submit mode */
   undoSuggestMode: function () {
     $("table.translate-table").removeClass("suggest-mode");
   },
 
+
   /* Returns true if the editor is in suggest mode */
   isSuggestMode: function () {
     return $("table.translate-table").hasClass("suggest-mode");
   },
+
 
   /* Toggles suggest/submit modes */
   toggleSuggestMode: function () {
@@ -511,9 +600,12 @@
     }
   },
 
+
   /*
-   * Displays error messages returned in XHR requests
+   * Error handling
    */
+
+  /* Displays error messages returned in XHR requests */
   displayError: function (msg) {
     if (msg) {
       $("#xhr-activity").hide();
@@ -521,9 +613,8 @@
     }
   },
 
-  /*
-   * Handles XHR errors
-   */
+
+  /* Handles XHR errors */
   error: function (xhr, s) {
     // TODO: i18n
     var msg = "";
@@ -547,9 +638,12 @@
     PTL.editor.displayError(msg);
   },
 
+
   /*
-   * Gets common request data
+   * Misc functions
    */
+
+  /* Gets common request data */
   getReqData: function () {
     var reqData = {filter: this.filter};
 
@@ -590,9 +684,11 @@
       success: function (data) {
         if (data.pager) {
           PTL.editor.hasResults = true;
-          PTL.editor.meta = data.meta;
+
+          // Clear old data and add new results
           PTL.editor.pagesGot = {};
           PTL.editor.units = {};
+          PTL.editor.meta = data.meta;
           PTL.editor.updatePager(data.pager);
           PTL.editor.fetchPages(false);
           if (data.uid) {
@@ -602,6 +698,8 @@
           PTL.editor.hasResults = false;
           // TODO: i18n
           PTL.editor.displayError("No results.");
+
+          // Restore previous status
           PTL.editor.checks = PTL.editor.prevChecks;
           PTL.editor.filter = PTL.editor.prevFilter;
           $("#filter-status option[value=" + PTL.editor.filter + "]")
@@ -610,6 +708,7 @@
       }
     });
   },
+
 
   /* Gets the view units that refer to currentPage */
   getViewUnits: function (async, page, limit) {
@@ -649,6 +748,7 @@
     });
   },
 
+
   /* Builds view rows for units represented by 'uids' */
   buildRows: function (uids) {
     var _this, i, unit,
@@ -674,6 +774,7 @@
     return rows;
   },
 
+
   /* Builds context rows for units passed as 'units' */
   buildCtxtRows: function (units) {
     var i, unit,
@@ -697,6 +798,7 @@
 
     return rows;
   },
+
 
   /* Gets uids that should be displayed before/after 'uid' */
   getUidsBeforeAfter: function (uid) {
@@ -744,6 +846,7 @@
     return uids;
   },
 
+
   /* Checks and fixes the linking between units */
   checkUnitsLinking: function () {
     var first, last, lastInPrevPage, p, pnP;
@@ -783,6 +886,7 @@
     }
   },
 
+
   /* Sets the edit view for unit 'uid' */
   displayEditUnit: function (uid) {
     var uids, newTbody;
@@ -805,6 +909,7 @@
     }
   },
 
+
   /* reDraws the translate table rows */
   reDraw: function (newTbody) {
     var tTable = $("table.translate-table"),
@@ -822,6 +927,7 @@
     // We are ready, call the ready handlers
     $(tTable).trigger("editor_ready");
   },
+
 
   /* Fetches more view unit pages in case they're needed */
   fetchPages: function (async) {
@@ -846,6 +952,7 @@
     }
   },
 
+
   /* Updates the pager */
   updatePager: function (pager) {
     this.pager = pager;
@@ -861,6 +968,7 @@
       $("span#items-count").text(pager.num_pages);
     }
   },
+
 
   /* Loads the edit unit 'uid' */
   getEditUnit: function (uid) {
@@ -878,9 +986,11 @@
       dataType: 'json',
       success: function (data) {
         widget = data['editor'];
+
         if (data.pager) {
           PTL.editor.updatePager(data.pager);
         }
+
         if (data.ctxt) {
           PTL.editor.ctxtGap = 2;
           ctxt.before = data.ctxt.before;
@@ -904,22 +1014,31 @@
     return editor;
   },
 
+
   /* Pushes submissions or suggestions and moves to the next unit */
-  processSubmit: function (e, type_class) {
+  processSubmit: function (e, typeClass) {
     e.preventDefault();
-    if (type_class == undefined) {
-      type_class = $(e.target).attr("class");
-      form_id = "translate";
+
+    var formId, reqData, submitUrl, type,
+        uid = PTL.editor.activeUid,
+        typeMap = {submit: "submission", suggest: "suggestion"};
+
+    // Detect whether it's being called from a normal submit or
+    // from a captcha
+    if (typeClass == undefined) {
+      typeClass = $(e.target).attr("class");
+      formId = "translate";
     } else {
-      form_id = "captcha";
+      formId = "captcha";
     }
-    var uid = PTL.editor.activeUid;
-    var typeMap = {submit: "submission", suggest: "suggestion"};
-    var type = typeMap[type_class];
-    var submitUrl = l(PTL.editor.store + '/process/' + uid + '/' + type);
-    // Serialize data to be sent
-    var reqData = $("form#" + form_id).serializeObject();
+
+    type = typeMap[typeClass];
+    submitUrl = l(PTL.editor.store + '/process/' + uid + '/' + type);
+
+    // Serialize data to be sent and get required attributes for the request
+    reqData = $("form#" + formId).serializeObject();
     $.extend(reqData, {page: PTL.editor.currentPage}, PTL.editor.getReqData());
+
     $.ajax({
       url: submitUrl,
       type: 'POST',
@@ -931,12 +1050,16 @@
           $.fancybox(data.captcha);
           $("input#id_captcha_answer").focus();
         } else {
+          // If it has been a successful submission, update the textarea
+          // contents as well as the fuzzy status
           if (type == 'submission') {
             PTL.editor.units[uid].isfuzzy = PTL.editor.isFuzzy();
             $("textarea[id^=id_target_f_]").each(function (i) {
               PTL.editor.units[uid].target[i].text = $(this).val();
             });
           }
+
+          // Try loading the next unit
           var newUid = parseInt(data.new_uid);
           if (newUid) {
             var newHash = "unit/" + newUid;
@@ -946,8 +1069,8 @@
       },
       error: PTL.editor.error
     });
-    return false;
   },
+
 
   /* Loads the editor with the next unit */
   gotoPrevNext: function (e) {
@@ -957,20 +1080,25 @@
         prevNextMap = {previous: current.prev, next: current.next},
         newUid = prevNextMap[$(e.target).attr("class")];
 
+    // Try loading the prev/next unit
     if (newUid != null) {
       var newHash = "unit/" + parseInt(newUid);
       $.history.load(newHash);
     }
   },
 
+
   /* Loads the editor with a specific unit */
   gotoUnit: function (e) {
     e.preventDefault();
 
+    // Don't load anything if we're just selecting text
     if (PTL.editor.getSelectedText() != "") {
       return;
     }
 
+    // Get clicked unit's uid from the row's id information and
+    // try to load it
     var m = $(this).attr("id").match(/row([0-9]+)/);
     if (m) {
       var uid = parseInt(m[1]),
@@ -979,10 +1107,12 @@
     }
   },
 
+
   /* Loads the editor on a specific page */
   gotoPage: function () {
     var page = parseInt($("input#item-number").val());
 
+    // Only load the given page if it's within a valid page range
     if (page && !isNaN(page) && page > 0 &&
         page <= PTL.editor.pager.num_pages) {
       var newHash = "page/" + page;
@@ -997,8 +1127,9 @@
 
   /* Gets the failing check options for the current query */
   getCheckOptions: function () {
-    var checksUrl = l(this.store + '/checks/');
-    var opts;
+    var opts,
+        checksUrl = l(this.store + '/checks/');
+
     $.ajax({
       url: checksUrl,
       async: false,
@@ -1008,12 +1139,14 @@
       },
       error: PTL.editor.error
     });
+
     return opts;
   },
 
   /* Loads units based on checks filtering */
   filterChecks: function () {
     var filterBy = $("option:selected", this).val();
+
     if (filterBy != "none") {
       var newHash = "filter/checks/" + filterBy;
       $.history.load(newHash);
@@ -1023,8 +1156,13 @@
   /* Loads units based on filtering */
   filterStatus: function () {
     var filterBy = $("option:selected", this).val();
+
+    // Filtering by failing checks
     if (filterBy == "checks") {
+      // Get actual failing checks
       var opts = PTL.editor.getCheckOptions();
+
+      // If there are any failing checks, add them in a dropdown
       if (opts.length) {
         var dropdown = '<div id="filter-checks" class="toolbar-item">';
         dropdown += '<select name="filter-checks">';
@@ -1040,7 +1178,7 @@
         $("#filter-status option[value=" + PTL.editor.filter + "]")
           .attr("selected", "selected");
       }
-    } else {
+    } else { // Normal filtering options (untranslated, fuzzy...)
       $("div#filter-checks").remove();
       var newHash = "filter/" + filterBy;
       $.history.load(newHash);
@@ -1049,17 +1187,23 @@
 
   /* Gets more context units */
   getMoreContext: function () {
-    var ctxtUrl = l(PTL.editor.store + '/context/' + PTL.editor.activeUid);
-    var reqData = {gap: PTL.editor.ctxtGap};
+    var ctxtUrl = l(PTL.editor.store + '/context/' + PTL.editor.activeUid),
+        reqData = {gap: PTL.editor.ctxtGap};
+
     $.ajax({
       url: ctxtUrl,
       async: false,
       dataType: 'json',
       data: reqData,
       success: function (data) {
+        // As we now have got more context rows, increase its gap
         PTL.editor.ctxtGap += 2;
+
+        // Create context rows HTML
         var before = PTL.editor.buildCtxtRows(data.ctxt.before);
         var after = PTL.editor.buildCtxtRows(data.ctxt.after);
+
+        // Append context rows to their respective places
         var ctxtRows = $("tr.context-row");
         ctxtRows.first().before(before);
         ctxtRows.last().after(after);
@@ -1121,206 +1265,156 @@
     return parsed;
   },
 
+
   /* Loads the search view */
   search: function () {
-    // XXX: we can parse search text to allow operators in searches
-    // example: "in:source foo"
     var text = $("input#id_search").val();
     if (text) {
-      var parsed = this.parseSearch(text);
-      var newHash = "search/" + parsed;
+      var parsed = this.parseSearch(text),
+          newHash = "search/" + parsed;
       $.history.load(newHash);
     }
   },
 
 
   /*
-   * Suggestions
+   * User and TM suggestions
    */
 
-  /* Escapes HTML tags */
-  escapeHtml: function (s) {
-    return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/,"<br/>");
-  },
-
-  /* Fancy escapes to highlight parts of the text such as HTML tags */
-  fancyEscape: function (text) {
-    function replace(match) {
-        var replaced,
-            escapeHl= '<span class="highlight-escape">%s</span>',
-            htmlHl = '<span class="highlight-html">&lt;%s&gt;</span>';
-        submap = {
-          '\r\n': escapeHl.replace(/%s/, '\\r\\n') + '<br/>\n',
-          '\r': escapeHl.replace(/%s/, '\\r') + '<br/>\n',
-          '\n': escapeHl.replace(/%s/, '\\n') + '<br/>\n',
-          '\t': escapeHl.replace(/%s/, '\\t') + '\t',
-          '&': '&amp;',
-          '<': '&lt;',
-          '>': '&gt;'
-        }
-        replaced = submap[match];
-        if (replaced == undefined) {
-            replaced = htmlHl.replace(/%s/, match.slice(1, match.length-1));
-        }
-        return replaced;
-    }
-    var orig = text,
-        matches = text.match(this.escapeRE);
-    for (var i in matches) {
-      orig = orig.replace(matches[i], replace(matches[i]))
-    }
-    return orig;
-  },
-
-  /*
-   * Does the actual diffing
-   */
-  doDiff: function (a, b) {
-    var d, op, text,
-        textDiff = "",
-        removed = "",
-        diff = this.differencer.diff_main(a, b);
-    this.differencer.diff_cleanupSemantic(diff);
-    $.each(diff, function (k, v) {
-      op = v[0];
-      text = v[1];
-      if (op == 0) {
-          if (removed) {
-            textDiff += '<span class="diff-delete">' + PTL.editor.fancyEscape(removed) + '</span>'
-            removed = "";
-          }
-          textDiff += PTL.editor.fancyEscape(text);
-      } else if (op == 1) {
-        if (removed) {
-          // This is part of a substitution, not a plain insertion. We
-          // will format this differently.
-          textDiff += '<span class="diff-replace">' + PTL.editor.fancyEscape(text) + '</span>';
-          removed = "";
-        } else {
-          textDiff += '<span class="diff-insert">' + PTL.editor.fancyEscape(text) + '</span>';
-        }
-      } else if (op == -1) {
-        removed = text;
-      }
-    });
-    if (removed) {
-      textDiff += '<span class="diff-delete">' + PTL.editor.fancyEscape(removed) + '</span>';
-    }
-    return textDiff;
-  },
-
-  /*
-   * Filters TM results and does some processing (add diffs, extra texts, ...)
-   */
+  /* Filters TM results and does some processing (add diffs, extra texts...) */
   filterTMResults: function (results) {
     // FIXME: this just retrieves the first four results
     // we could limit based on a threshold too.
     // FIXME: use localized 'N% match' format string
-    var source = $("[id^=id_source_f_]").first().val();
-    var filtered = [];
+    var source = $("[id^=id_source_f_]").first().val(),
+        filtered = [];
+
     for (var i=0; i<results.length && i<3; i++) {
       results[i].source = this.doDiff(source, results[i].source);
       results[i].target = this.fancyEscape(results[i].target);
       results[i].qTitle = Math.round(results[i].quality) + '% match';
       filtered.push(results[i]);
     }
+
     return filtered;
   },
 
+
   /* Gets TM suggestions from amaGama */
   getTMUnits: function () {
-    var src = this.meta.source_lang;
-    var tgt = this.meta.target_lang;
-    var stext = $($("input[id^=id_source_f_]").get(0)).val();
-    var tmUrl = this.settings.tmUrl + src + "/" + tgt +
-        "/unit/" + encodeURIComponent(stext) + "?jsoncallback=?";
-    /* Always abort previous requests so we only get results for the
-     * current unit */
+    var src = this.meta.source_lang,
+        tgt = this.meta.target_lang,
+        stext = $($("input[id^=id_source_f_]").get(0)).val(),
+        tmUrl = this.settings.tmUrl + src + "/" + tgt +
+          "/unit/" + encodeURIComponent(stext) + "?jsoncallback=?";
+
+    // Always abort previous requests so we only get results for the
+    // current unit
     if (this.tmReq != null) {
       this.tmReq.abort();
     }
+
+    // We use $.jsonp here because jQuery's current jsonp methods don't
+    // accept error callbacks nor aborting requests
     this.tmReq = $.jsonp({
       url: tmUrl,
       callback: '_jsonp' + PTL.editor.activeUid,
       dataType: 'jsonp',
       success: function (data) {
         var uid = this.callback.slice(6);
+
         if (uid == PTL.editor.activeUid && data.length > 0) {
-          var filtered = PTL.editor.filterTMResults(data);
+          var filtered = PTL.editor.filterTMResults(data),
           // TODO: i18n
-          var name = "amaGama server";
-          var tm = PTL.editor.tmpl.tm($, {data: {meta: PTL.editor.meta,
+              name = "amaGama server",
+              tm = PTL.editor.tmpl.tm($, {data: {meta: PTL.editor.meta,
                                                  suggs: filtered,
                                                  name: name}}).join("");
+
+          // Append results
           $("div#suggestion-container").append(tm);
-          $("div#amagama_results").animate({height: 'show'}, 1000, 'easeOutQuad');
+          $("div#amagama_results").animate({height: 'show'}, 1000,
+                                           'easeOutQuad');
         }
       },
       error: PTL.editor.error
     });
   },
 
+
   /* Rejects a suggestion */
   rejectSuggestion: function () {
-    var element = $(this).parent().parent();
-    var uid = $('.translate-container input#id_id').val();
-    var suggId = $(this).siblings("input.suggid").val();
-    var url = l('/suggestion/reject/') + uid + '/' + suggId;
+    var element = $(this).parent().parent(),
+        uid = $('.translate-container input#id_id').val(),
+        suggId = $(this).siblings("input.suggid").val(),
+        url = l('/suggestion/reject/') + uid + '/' + suggId;
+
     $.post(url, {'reject': 1},
       function (data) {
         element.fadeOut(200, function () {
           $(this).remove();
+
+          // Go to the next unit if there are no more suggestions left
           if (!$("div#suggestion-container div[id^=suggestion]").length) {
             $("input.next").trigger("click");
           }
         });
       }, "json");
-    return false;
   },
+
 
   /* Accepts a suggestion */
   acceptSuggestion: function () {
-    var element = $(this).parent().parent();
-    var uid = $('.translate-container input#id_id').val();
-    var suggId = $(this).siblings("input.suggid").val();
-    var url = l('/suggestion/accept/') + uid + '/' + suggId;
+    var element = $(this).parent().parent(),
+        uid = $('.translate-container input#id_id').val(),
+        suggId = $(this).siblings("input.suggid").val(),
+        url = l('/suggestion/accept/') + uid + '/' + suggId;
+
     $.post(url, {'accept': 1},
       function (data) {
+        // Update target textareas
         $.each(data.newtargets, function (i, target) {
           $("textarea#id_target_f_" + i).val(target).focus();
         });
+
+        // Update remaining suggestion's diff
         $.each(data.newdiffs, function (suggId, sugg) {
           $.each(sugg, function (i, target) {
              $("#suggdiff-" + suggId + "-" + i).html(target);
           });
         });
+
+        // As in submissions, save current unit's status in the client
         $("textarea[id^=id_target_f_]").each(function (i) {
           PTL.editor.units[uid].target[i].text = $(this).val();
         });
         PTL.editor.units[uid].isfuzzy = false;
+
         element.fadeOut(200, function () {
           $(this).remove();
+
+          // Go to the next unit if there are no more suggestions left
           if (!$("div#suggestion-container div[id^=suggestion]").length) {
             $("input.next").trigger("click");
           }
         });
       }, "json");
-    return false;
   },
+
 
   /* Rejects a quality check marking it as false positive */
   rejectCheck: function () {
-    var element = $(this).parent();
-    var checkId = $(this).siblings("input.checkid").val();
-    var uid = $('.translate-container input#id_id').val();
-    var url = l('/qualitycheck/reject/') + uid + '/' + checkId;
+    var element = $(this).parent(),
+        checkId = $(this).siblings("input.checkid").val(),
+        uid = $('.translate-container input#id_id').val(),
+        url = l('/qualitycheck/reject/') + uid + '/' + checkId;
+
     $.post(url, {'reject': 1},
       function (data) {
         element.fadeOut(200, function () {
           $(this).remove();
         });
       }, "json");
-    return false;
   },
 
 
@@ -1338,6 +1432,7 @@
     return false;
   },
 
+
   /* Checks whether the provided target is supported */
   isSupportedTarget: function (pairs, target) {
     for (var i in pairs) {
@@ -1347,6 +1442,7 @@
     }
     return false;
   },
+
 
   /* Checks whether the provided source-target pair is supported */
   isSupportedPair: function (pairs, source, target) {
@@ -1359,12 +1455,14 @@
     return false;
   },
 
+
   /* Adds a new MT service button in the editor toolbar */
   addMTButton: function (aClass, imgFn, tooltip) {
       var btn = '<a class="translate-mt ' + aClass + '">';
       btn += '<img src="' + imgFn + '" title="' + tooltip + '" /></a>';
       $("div.translate-toolbar").first().prepend(btn);
   },
+
 
   /* Normalizes language codes in order to use them in MT services */
   normalizeCode: function (locale) {
@@ -1376,18 +1474,21 @@
       return clean;
   },
 
+
   collectArguments: function (substring) {
     if (substring == '%%') {
       return '%%';
     }
+
     // FIXME: what do these variables do here?
     // and why are they in the global scope?
     argument_subs[pos] = substring;
     substitute_string = "__" + pos + "__";
     pos = pos + 1;
+
     return substitute_string;
   }
 
-  };
+  }; // PTL.editor
 
 })(jQuery);
