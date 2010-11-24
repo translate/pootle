@@ -746,12 +746,10 @@ def get_view_units(request, units_queryset, limit=0):
     @return: An object in JSON notation that contains the source and target
     texts for units that will be displayed before and after editing unit.
     """
-    profile = get_profile(request.user)
-
     json = {}
 
     if not limit:
-        limit = profile.get_unit_rows()
+        limit = request.profile.get_unit_rows()
 
     step_queryset = get_step_query(request, units_queryset)
     pager = paginate(request, step_queryset, items=limit)
