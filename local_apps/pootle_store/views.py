@@ -841,12 +841,6 @@ def get_edit_unit(request, pootle_path, uid):
         unit_rows = profile.get_unit_rows()
         current_unit = unit
         if current_unit is not None:
-            current_index = _get_index_in_qs(units_qs, current_unit)
-            preceding = units_qs[:current_index].count()
-            page = preceding / unit_rows + 1
-            if page != current_page:
-                pager = paginate(request, units_qs, items=unit_rows, page=page)
-                json["pager"] = _build_pager_dict(pager)
             # Return context rows if filtering is applied
             if 'filter' in request.GET and request.GET.get('filter', 'all') != 'all':
                 edit_index = _get_index_in_qs(all_units, current_unit)
@@ -968,11 +962,6 @@ def process_submit(request, pootle_path, uid, type):
                 current_unit = unit
                 if current_unit is not None:
                     current_index = _get_index_in_qs(units_qs, current_unit)
-                    preceding = units_qs[:current_index].count()
-                    page = preceding / unit_rows + 1
-                    if page != current_page:
-                        pager = paginate(request, units_qs, items=unit_rows, page=page)
-                        json["pager"] = _build_pager_dict(pager)
                     try:
                         new_index = current_index + 1
                         json["new_uid"] = units_qs[new_index].id

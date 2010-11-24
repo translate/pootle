@@ -969,6 +969,39 @@
     }
   },
 
+  /* Creates a pager based on the current client data and the given uid */
+  createPager: function (uid) {
+    var newPager = this.pager;
+
+    // In case the given uid is not within the current page,
+    // calculate in which page it is
+    if ($.inArray(uid, this.pagesGot[this.currentPage]) == -1) {
+      var newPageNumber,
+          i = this.currentPage,
+          j = this.currentPage,
+          found = false;
+
+      // Search uid within the pages the client knows of
+      while (!found && (i > 0 || j <= this.pager.num_pages)) {
+        if ($.inArray(uid, this.pagesGot[i]) != -1) {
+          newPageNumber = i;
+          found = true;
+        } else if ($.inArray(uid, this.pagesGot[j]) != -1) {
+          newPageNumber = j;
+          found = true;
+        }
+
+        i--;
+        j++;
+      }
+
+      if (found) {
+        newPager.number = newPageNumber;
+      }
+    }
+
+    return newPager;
+  },
 
   /* Loads the edit unit 'uid' */
   getEditUnit: function (uid) {
@@ -987,9 +1020,8 @@
       success: function (data) {
         widget = data['editor'];
 
-        if (data.pager) {
-          PTL.editor.updatePager(data.pager);
-        }
+        // Update pager in case it's needed
+        PTL.editor.updatePager(PTL.editor.createPager(uid));
 
         if (data.ctxt) {
           PTL.editor.ctxtGap = 2;
