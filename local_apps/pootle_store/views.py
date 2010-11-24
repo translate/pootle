@@ -120,20 +120,18 @@ def export_as_xliff(request, store):
         cache.set(key, store.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
     return redirect('/export/' + export_path)
 
-def export_as_type(request, pootle_path, filetype):
+@get_store_context('view')
+def export_as_type(request, store, filetype):
     """export given file to xliff for offline translation"""
-    if pootle_path[0] != '/':
-        pootle_path = '/' + pootle_path
-    store = get_object_or_404(Store, pootle_path=pootle_path)
     klass = factory_classes.get(filetype, None)
-    if not klass or is_monolingual(klass) or pootle_path.endswith(filetype):
+    if not klass or is_monolingual(klass) or store.pootle_path.endswith(filetype):
         raise ValueError
 
     path, ext = os.path.splitext(store.real_path)
     export_path = os.path.join('POOTLE_EXPORT', path + os.path.extsep + filetype)
     abs_export_path = absolute_real_path(export_path)
 
-    key = iri_to_uri("%s:export_as_%s" % (pootle_path, filetype))
+    key = iri_to_uri("%s:export_as_%s" % (store.pootle_path, filetype))
     last_export = cache.get(key)
     if not (last_export and last_export == store.get_mtime() and os.path.isfile(abs_export_path)):
         ensure_target_dir_exists(abs_export_path)
@@ -375,9 +373,6 @@ def translate_end(request, translation_project):
 
 
 def translate_page(request, units_queryset, store=None):
-    if not check_permission("view", request):
-        raise PermissionDenied(_("You do not have rights to access this translation project."))
-
     cantranslate = check_permission("translate", request)
     cansuggest = check_permission("suggest", request)
     canreview = check_permission("review", request)
@@ -549,16 +544,8 @@ def translate_page(request, units_queryset, store=None):
     return render_to_response('store/translate.html', context, context_instance=RequestContext(request))
 
 @never_cache
-def translate(request, pootle_path):
-    if pootle_path[0] != '/':
-        pootle_path = '/' + pootle_path
-    try:
-        store = Store.objects.select_related('translation_project', 'parent').get(pootle_path=pootle_path)
-    except Store.DoesNotExist:
-        raise Http404
-    request.translation_project = store.translation_project
-    request.permissions = get_matching_permissions(get_profile(request.user), request.translation_project.directory)
-
+@get_store_context('view')
+def translate(request, store):
     return translate_page(request, store.units, store=store)
 
 #
