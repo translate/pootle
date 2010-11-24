@@ -769,44 +769,30 @@ def get_view_units_store(request, store, limit=0):
     """
     return get_view_units(request, store.units, limit=limit)
 
+def _is_filtered(request):
+    """checks if unit list is filtered"""
+    return 'unitstates' in request.GET or 'matchnames' in request.GET or \
+           ('search' in request.GET and 'sfields' in request.GET)
+
 @ajax_required
-def get_more_context(request, pootle_path, uid):
+@get_unit_context('view')
+def get_more_context(request, unit):
     """
     @return: An object in JSON notation that contains the source and target
     texts for units that are in context of unit C{uid}.
     """
-    if pootle_path[0] != '/':
-        pootle_path = '/' + pootle_path
-    profile = get_profile(request.user)
+    store = request.store
     json = {}
     gap = int(request.GET.get('gap', 0))
 
-    try:
-        store = Store.objects.select_related('translation_project', 'parent').get(pootle_path=pootle_path)
-        if not check_profile_permission(profile, 'view', store.parent):
-            rcode = 403
-            json["msg"] = _("You do not have rights to access translation mode.")
-        else:
-            try:
-                units_qs = store.units
-                current_unit = units_qs.get(id=uid, store__pootle_path=pootle_path)
-                edit_index = _get_index_in_qs(units_qs, current_unit)
-                json["ctxt"] = _filter_ctxt_units(units_qs, edit_index, 2, gap)
-                rcode = 200
-            except Unit.DoesNotExist:
-                rcode = 404
-                json["msg"] = _("Unit %(uid)s does not exist on %(path)s." %
-                                {'uid': uid, 'path': pootle_path})
-    except Store.DoesNotExist:
-        rcode = 404
-        json["msg"] = _("Store %(path)s does not exist." %
-                        {'path': pootle_path})
-
+    json["ctxt"] = _filter_ctxt_units(store.units, unit.index, 2, gap)
+    rcode = 200
     response = simplejson.dumps(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
 
 @ajax_required
-def get_edit_unit(request, pootle_path, uid):
+@get_unit_context('view')
+def get_edit_unit(request, unit):
     """
     Given a store path C{pootle_path} and unit id C{uid}, gathers all the
     necessary information to build the editing widget.
@@ -815,56 +801,43 @@ def get_edit_unit(request, pootle_path, uid):
     variable and paging information is also returned if the page number has
     changed.
     """
-    if pootle_path[0] != '/':
-        pootle_path = '/' + pootle_path
+
     json = {}
 
-    try:
-        unit = Unit.objects.get(id=uid, store__pootle_path=pootle_path)
-        translation_project = unit.store.translation_project
-        language = translation_project.language
+    translation_project = request.translation_project
+    language = translation_project.language
 
-        if unit.hasplural():
-            snplurals = len(unit.source.strings)
-        else:
-            snplurals = None
-        form_class = unit_form_factory(language, snplurals)
-        form = form_class(instance=unit)
-        store = unit.store
-        directory = store.parent
-        profile = get_profile(request.user)
-        alt_src_langs = get_alt_src_langs(request, profile, translation_project)
-        project = translation_project.project
-        template_vars = {'unit': unit,
-                         'form': form,
-                         'store': store,
-                         'profile': profile,
-                         'user': request.user,
-                         'language': language,
-                         'source_language': translation_project.project.source_language,
-                         'cantranslate': check_profile_permission(profile, "translate", directory),
-                         'cansuggest': check_profile_permission(profile, "suggest", directory),
-                         'canreview': check_profile_permission(profile, "review", directory),
-                         'altsrcs': find_altsrcs(unit, alt_src_langs, store=store, project=project),
-                         'suggestions': get_sugg_list(unit)}
+    if unit.hasplural():
+        snplurals = len(unit.source.strings)
+    else:
+        snplurals = None
+    form_class = unit_form_factory(language, snplurals)
+    form = form_class(instance=unit)
+    store = unit.store
+    directory = store.parent
+    profile = get_profile(request.user)
+    alt_src_langs = get_alt_src_langs(request, profile, translation_project)
+    project = translation_project.project
+    template_vars = {'unit': unit,
+                     'form': form,
+                     'store': store,
+                     'profile': profile,
+                     'user': request.user,
+                     'language': language,
+                     'source_language': translation_project.project.source_language,
+                     'cantranslate': check_profile_permission(profile, "translate", directory),
+                     'cansuggest': check_profile_permission(profile, "suggest", directory),
+                     'canreview': check_profile_permission(profile, "review", directory),
+                     'altsrcs': find_altsrcs(unit, alt_src_langs, store=store, project=project),
+                     'suggestions': get_sugg_list(unit)}
 
-        t = loader.get_template('unit/edit.html')
-        c = RequestContext(request, template_vars)
-        json['editor'] = t.render(c)
-        rcode = 200
-
-        unit_rows = profile.get_unit_rows()
-        current_unit = unit
-        if current_unit is not None:
-            # Return context rows if filtering is applied
-            if 'filter' in request.GET and request.GET.get('filter', 'all') != 'all':
-                edit_index = _get_index_in_qs(all_units, current_unit)
-                json["ctxt"] = _filter_ctxt_units(all_units, edit_index, 2)
-    except Unit.DoesNotExist:
-        rcode = 404
-        json["msg"] = _("Unit %(uid)s does not exist on %(path)s." %
-                        {'uid': uid, 'path': pootle_path})
-
+    t = loader.get_template('unit/edit.html')
+    c = RequestContext(request, template_vars)
+    json['editor'] = t.render(c)
+    rcode = 200
+    # Return context rows if filtering is applied
+    if _is_filtered(request) or request.GET.get('filter', 'all') != 'all':
+        json['ctxt'] = _filter_ctxt_units(store.units, unit.index, 2)
     response = simplejson.dumps(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
 
@@ -919,7 +892,8 @@ def get_failing_checks(request, pootle_path):
     return HttpResponse(response, status=rcode, mimetype="application/json")
 
 @ajax_required
-def process_submit(request, pootle_path, uid, type):
+@get_unit_context('')
+def process_submit(request, unit, type):
     """
     Processes submissions and suggestions and stores them in the database.
 
@@ -927,62 +901,44 @@ def process_submit(request, pootle_path, uid, type):
     and last units for the unit next to unit C{uid}.
     """
     json = {}
-    if pootle_path[0] != '/':
-        pootle_path = '/' + pootle_path
+    cantranslate = check_permission("translate", request)
+    cansuggest = check_permission("suggest", request)
+    if type == 'submission' and not cantranslate or type == 'suggestion' and not cansuggest:
+        raise PermissionDenied(_("You do not have rights to access translation mode."))
 
-    try:
-        unit = Unit.objects.get(id=uid, store__pootle_path=pootle_path)
-        directory = unit.store.parent
-        profile = get_profile(request.user)
-        cantranslate = check_profile_permission(profile, "translate", directory)
-        cansuggest = check_profile_permission(profile, "suggest", directory)
-        if type == 'submission' and not cantranslate or \
-           type == 'suggestion' and not cansuggest:
-            rcode = 403
-            json["msg"] = _("You do not have rights to access translation mode.")
-        else:
-            translation_project = unit.store.translation_project
-            language = translation_project.language
-            if unit.hasplural():
-                snplurals = len(unit.source.strings)
-            else:
-                snplurals = None
-            form_class = unit_form_factory(language, snplurals)
-            form = form_class(request.POST, instance=unit)
-            if form.is_valid():
-                if type == 'submission':
-                    if form.instance._target_updated or \
-                       form.instance._translator_comment_updated or \
-                       form.instance._state_updated:
-                        form.save()
-                        sub = Submission(translation_project=translation_project,
-                                         submitter=get_profile(request.user))
-                        sub.save()
-                elif type == 'suggestion':
-                    if form.instance._target_updated:
-                        #HACKISH: django 1.2 stupidly modifies instance on
-                        # model form validation, reload unit from db
-                        unit = Unit.objects.get(id=unit.id)
-                        sugg = unit.add_suggestion(form.cleaned_data['target_f'], get_profile(request.user))
-                        if sugg:
-                            SuggestionStat.objects.get_or_create(translation_project=translation_project,
-                                                                 suggester=get_profile(request.user),
-                                                                 state='pending', unit=unit.id)
-
-                rcode = 200
-            else:
-                # Form failed
-                rcode = 400
-                json["msg"] = _("Failed to process submit.")
-    except Store.DoesNotExist:
-        rcode = 404
-        json["msg"] = _("Store %(path)s does not exist." %
-                        {'path': pootle_path})
-    except Unit.DoesNotExist:
-        rcode = 404
-        json["msg"] = _("Unit %(uid)s does not exist on %(path)s." %
-                        {'uid': uid, 'path': pootle_path})
-
+    translation_project = request.translation_project
+    language = translation_project.language
+    if unit.hasplural():
+        snplurals = len(unit.source.strings)
+    else:
+        snplurals = None
+    form_class = unit_form_factory(language, snplurals)
+    form = form_class(request.POST, instance=unit)
+    if form.is_valid():
+        if type == 'submission':
+            if form.instance._target_updated or \
+               form.instance._translator_comment_updated or \
+               form.instance._state_updated:
+                form.save()
+                sub = Submission(translation_project=translation_project,
+                                 submitter=get_profile(request.user))
+                sub.save()
+        elif type == 'suggestion':
+            if form.instance._target_updated:
+                #HACKISH: django 1.2 stupidly modifies instance on
+                # model form validation, reload unit from db
+                unit = Unit.objects.get(id=unit.id)
+                sugg = unit.add_suggestion(form.cleaned_data['target_f'], get_profile(request.user))
+                if sugg:
+                    SuggestionStat.objects.get_or_create(translation_project=translation_project,
+                                                         suggester=get_profile(request.user),
+                                                         state='pending', unit=unit.id)
+        rcode = 200
+    else:
+        # Form failed
+        #FIXME: we should display validation errors here
+        rcode = 400
+        json["msg"] = _("Failed to process submit.")
     response = simplejson.dumps(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
 

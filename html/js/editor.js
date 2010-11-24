@@ -1007,7 +1007,7 @@
   getEditUnit: function (uid) {
     var editor,
         eClass = "edit-row",
-        editUrl = l(this.store + '/edit/' + uid),
+        editUrl = l('/unit/edit/' + uid),
         reqData = this.getReqData(),
         widget = '',
         ctxt = {before: [], after: []};
@@ -1065,7 +1065,7 @@
     }
 
     type = typeMap[typeClass];
-    submitUrl = l(PTL.editor.store + '/process/' + uid + '/' + type);
+    submitUrl = l('/unit/process/' + uid + '/' + type);
 
     // Serialize data to be sent and get required attributes for the request
     reqData = $("form#" + formId).serializeObject();
@@ -1219,7 +1219,7 @@
 
   /* Gets more context units */
   getMoreContext: function () {
-    var ctxtUrl = l(PTL.editor.store + '/context/' + PTL.editor.activeUid),
+    var ctxtUrl = l('/unit/context/' + PTL.editor.activeUid);
         reqData = {gap: PTL.editor.ctxtGap};
 
     $.ajax({
