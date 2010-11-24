@@ -998,129 +998,88 @@ def process_submit(request, pootle_path, uid, type):
 
 
 @ajax_required
-def reject_suggestion(request, uid, suggid):
+@get_unit_context('')
+def reject_suggestion(request, unit, suggid):
     json = {}
-    try:
-        unit = Unit.objects.get(id=uid)
-        directory = unit.store.parent
-        translation_project = unit.store.translation_project
+    translation_project = request.translation_project
 
-        json["udbid"] = uid
-        json["sugid"] = suggid
-        if request.POST.get('reject'):
-            try:
-                sugg = unit.suggestion_set.get(id=suggid)
-            except ObjectDoesNotExist:
-                rcode = 404
-                sugg = None
+    json["udbid"] = unit.id
+    json["sugid"] = suggid
+    if request.POST.get('reject'):
+        try:
+            sugg = unit.suggestion_set.get(id=suggid)
+        except ObjectDoesNotExist:
+            raise Http404
+        if not check_permission('review', request) and \
+                   (not request.user.is_authenticated() or sugg and sugg.user != request.profile):
+            raise PermissionDenied(_("You do not have rights to access review mode."))
 
-            profile = get_profile(request.user)
-            if not check_profile_permission(profile, 'review', directory) and \
-                   (not request.user.is_authenticated() or sugg and sugg.user != profile):
-                rcode = 403
-                json["msg"] = _("You do not have rights to access review mode.")
-            else:
-                success = unit.reject_suggestion(suggid)
-                if sugg is not None and success:
-                    #FIXME: we need a totally different model for tracking stats, this is just lame
-                    suggstat, created = SuggestionStat.objects.get_or_create(translation_project=translation_project,
-                                                                    suggester=sugg.user,
-                                                                    state='pending',
-                                                                    unit=unit.id)
-                    suggstat.reviewer = get_profile(request.user)
-                    suggstat.state = 'rejected'
-                    suggstat.save()
-                    rcode = 200
-    except Unit.DoesNotExist:
-        rcode = 404
-        json["msg"] = _("Unit %(uid)s does not exist." %
-                        {'uid': uid})
-
+        success = unit.reject_suggestion(suggid)
+        if sugg is not None and success:
+            #FIXME: we need a totally different model for tracking stats, this is just lame
+            suggstat, created = SuggestionStat.objects.get_or_create(translation_project=translation_project,
+                                                                     suggester=sugg.user,
+                                                                     state='pending',
+                                                                     unit=unit.id)
+            suggstat.reviewer = get_profile(request.user)
+            suggstat.state = 'rejected'
+            suggstat.save()
     response = simplejson.dumps(json)
-    return HttpResponse(response, status=rcode, mimetype="application/json")
+    return HttpResponse(response, mimetype="application/json")
 
 @ajax_required
-def accept_suggestion(request, uid, suggid):
+@get_unit_context('review')
+def accept_suggestion(request, unit, suggid):
     json = {}
-    try:
-        unit = Unit.objects.get(id=uid)
-        directory = unit.store.parent
-        translation_project = unit.store.translation_project
-        profile = get_profile(request.user)
+    translation_project = request.translation_project
+    json["udbid"] = unit.id
+    json["sugid"] = suggid
+    if request.POST.get('accept'):
+        try:
+            sugg = unit.suggestion_set.get(id=suggid)
+        except ObjectDoesNotExist:
+            raise Http404
 
-        if not check_profile_permission(profile, 'review', directory):
-            rcode = 403
-            json["msg"] = _("You do not have rights to access review mode.")
-        else:
-            json["udbid"] = unit.id
-            json["sugid"] = suggid
-            if request.POST.get('accept'):
-                try:
-                    sugg = unit.suggestion_set.get(id=suggid)
-                except ObjectDoesNotExist:
-                    rcode = 404
-                    sugg = None
+        success = unit.accept_suggestion(suggid)
+        json['newtargets'] = [highlight_whitespace(target) for target in unit.target.strings]
+        json['newdiffs'] = {}
+        for sugg in unit.get_suggestions():
+            json['newdiffs'][sugg.id] = [highlight_diffs(unit.target.strings[i], target) \
+                                         for i, target in enumerate(sugg.target.strings)]
 
-                success = unit.accept_suggestion(suggid)
-                json['newtargets'] = [highlight_whitespace(target) for target in unit.target.strings]
-                json['newdiffs'] = {}
-                for sugg in unit.get_suggestions():
-                    json['newdiffs'][sugg.id] = [highlight_diffs(unit.target.strings[i], target) \
-                                                     for i, target in enumerate(sugg.target.strings)]
+        if sugg is not None and success:
+            #FIXME: we need a totally different model for tracking stats, this is just lame
+            suggstat, created = SuggestionStat.objects.get_or_create(translation_project=translation_project,
+                                                                     suggester=sugg.user,
+                                                                     state='pending',
+                                                                     unit=unit.id)
+            suggstat.reviewer = request.profile
+            suggstat.state = 'accepted'
+            suggstat.save()
 
-                if sugg is not None and success:
-                    #FIXME: we need a totally different model for tracking stats, this is just lame
-                    suggstat, created = SuggestionStat.objects.get_or_create(translation_project=translation_project,
-                                                                    suggester=sugg.user,
-                                                                    state='pending',
-                                                                    unit=unit.id)
-                    suggstat.reviewer = profile
-                    suggstat.state = 'accepted'
-                    suggstat.save()
-
-                    sub = Submission(translation_project=translation_project,
-                                     submitter=profile,
-                                     from_suggestion=suggstat)
-                    sub.save()
-                    rcode = 200
-    except Unit.DoesNotExist:
-        rcode = 404
-        json["msg"] = _("Unit %(uid)s does not exist." %
-                        {'uid': uid})
-
+            sub = Submission(translation_project=translation_project,
+                             submitter=request.profile,
+                             from_suggestion=suggstat)
+            sub.save()
     response = simplejson.dumps(json)
-    return HttpResponse(response, status=rcode, mimetype="application/json")
+    return HttpResponse(response, mimetype="application/json")
 
 
 @ajax_required
-def reject_qualitycheck(request, uid, checkid):
+@get_unit_context('review')
+def reject_qualitycheck(request, unit, checkid):
     json = {}
-    try:
-        unit = Unit.objects.get(id=uid)
-        directory = unit.store.parent
-        if not check_profile_permission(get_profile(request.user), 'review', directory):
-            rcode = 403
-            json["msg"] = _("You do not have rights to access review mode.")
-        else:
-            json["udbid"] = uid
-            json["checkid"] = checkid
-            if request.POST.get('reject'):
-                try:
-                    check = unit.qualitycheck_set.get(id=checkid)
-                    check.false_positive = True
-                    check.save()
-                    # update timestamp
-                    unit.save()
-                    rcode = 200
-                except ObjectDoesNotExist:
-                    check = None
-                    rcode = 404
-                    json["msg"] = _("Check %(checkid)s does not exist." %
-                                    {'checkid': checkid})
-    except Unit.DoesNotExist:
-        rcode = 404
-        json["msg"] = _("Unit %(uid)s does not exist." %
-                        {'uid': uid})
+    json["udbid"] = unit.id
+    json["checkid"] = checkid
+    if request.POST.get('reject'):
+        try:
+            check = unit.qualitycheck_set.get(id=checkid)
+            check.false_positive = True
+            check.save()
+            # update timestamp
+            unit.save()
+        except ObjectDoesNotExist:
+            raise Http404
 
     response = simplejson.dumps(json)
-    return HttpResponse(response, status=rcode, mimetype="application/json")
+    return HttpResponse(response, mimetype="application/json")
