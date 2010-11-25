@@ -398,6 +398,14 @@ X-Generator: Pootle Tests
         self.assertEqual(unit.source, u'obsolete')
         self.assertEqual(unit.target, u'2adim')
 
+        pofile = open(store.abs_real_path, 'w')
+        pofile.write(self.target_text)
+        pofile.close()
+
+        store.update(update_structure=True, update_translation=True, conservative=False)
+        unit = store.findunit('obsolete')
+        self.assertEqual(unit.target, u'2adim')
+        self.assertFalse(unit.isobsolete())
 
 class CsvTests(XliffTests):
     """Tests for CSV projects"""
