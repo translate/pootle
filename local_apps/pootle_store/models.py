@@ -792,7 +792,9 @@ class Store(models.Model, base.TranslationStore):
             if update_structure:
                 obsolete_dbids = [self.dbid_index.get(uid) for uid in old_ids - new_ids]
                 for unit in self.findid_bulk(obsolete_dbids):
-                    if not unit.istranslated() or not conservative:
+                    if not unit.istranslated():
+                        unit.delete()
+                    elif not conservative:
                         #FIXME: make obselete instead?
                         unit.makeobsolete()
                         unit.save()
