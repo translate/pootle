@@ -513,7 +513,7 @@ def translate_page(request, units_queryset, store=None):
     alt_src_langs = get_alt_src_langs(request, profile, translation_project)
     alt_src_codes = alt_src_langs.values_list('code', flat=True)
     """
-    #"
+
     context = {
         #'unit_rows': unit_rows,
         #'alt_src_langs': alt_src_langs,
@@ -684,64 +684,54 @@ def _get_index_in_qs(qs, unit):
     """
     return qs.filter(index__lt=unit.index).count()
 
-def get_tp_metadata(request, units_queryset, uid=None):
-    """
-    @return: An object in JSON notation that contains the metadata information
-    about the current translation project: source/target language codes,
-    the direction of the text and also a initial pager.
-    """
-    json = {}
-
-    step_queryset = get_step_query(request, units_queryset)
-    unit_rows = request.profile.get_unit_rows()
-
-    try:
-        if uid is None:
-            try:
-                current_unit = step_queryset[0:1][0]
-                json["uid"] = current_unit.id
-            except IndexError:
-                current_unit = None
-        else:
-            current_unit = step_queryset.get(id=uid)
-
-        if current_unit is not None:
-            preceding = _get_index_in_qs(step_queryset, current_unit)
-            page = preceding / unit_rows + 1
-            pager = paginate(request, step_queryset, items=unit_rows, page=page)
-            json["pager"] = _build_pager_dict(pager)
-            tp = request.translation_project
-            json["meta"] = {"source_lang": tp.project.source_language.code,
-                            "source_dir": tp.project.source_language.get_direction(),
-                            "target_lang": tp.language.code,
-                            "target_dir": tp.language.get_direction()}
-            rcode = 200
-    except Unit.DoesNotExist:
-        rcode = 404
-        json["msg"] = _("Unit %(uid)s does not exist on %(path)s." %
-                        {'uid': uid, 'path': request.translation_project.pootle_path})
-    response = simplejson.dumps(json)
-    return HttpResponse(response, status=rcode, mimetype="application/json")
-
-@ajax_required
-@get_store_context('view')
-def get_tp_metadata_store(request, store, uid=None):
-    return get_tp_metadata(request, store.units, uid=None)
-
 def get_view_units(request, units_queryset, limit=0):
     """
     @return: An object in JSON notation that contains the source and target
     texts for units that will be displayed before and after editing unit.
+
+    If asked by using the 'meta' and 'pager' parameters, metadata and pager
+    information will be calculated and returned too.
     """
     json = {}
+    pager = None
 
     if not limit:
         limit = request.profile.get_unit_rows()
 
     step_queryset = get_step_query(request, units_queryset)
-    pager = paginate(request, step_queryset, items=limit)
+
+    # Return metadata it has been explicitely requested
+    if request.GET.get('meta', False):
+        tp = request.translation_project
+        json["meta"] = {"source_lang": tp.project.source_language.code,
+                        "source_dir": tp.project.source_language.get_direction(),
+                        "target_lang": tp.language.code,
+                        "target_dir": tp.language.get_direction()}
+
+    # Return paging information if requested to do so
+    if request.GET.get('pager', False):
+        uid = request.GET.get('uid', None)
+        if uid:
+            current_unit = step_queryset.get(id=uid)
+        else:
+            try:
+                current_unit = step_queryset[0:1][0]
+                json["uid"] = current_unit.id
+            except IndexError:
+                current_unit = None
+
+        # If we are loading a concrete unit, the current page varies
+        if current_unit is not None:
+            preceding = _get_index_in_qs(step_queryset, current_unit)
+            page = preceding / limit + 1
+            pager = paginate(request, step_queryset, items=limit, page=page)
+            json["pager"] = _build_pager_dict(pager)
+
+    if not pager:
+        pager = paginate(request, step_queryset, items=limit)
+
     json["units"] = _build_units_list(pager.object_list)
-    json["pager"] = _build_pager_dict(pager)
+
     response = simplejson.dumps(json)
     return HttpResponse(response, mimetype="application/json")
 

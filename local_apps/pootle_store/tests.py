@@ -176,48 +176,6 @@ class XHRTestCase(PootleTestCase):
                           'target_f_0': 'arraina'}
 
     #
-    # Tests for the get_tp_metadata() view.
-    #
-    def test_get_tp_metadata_bad_request(self):
-        """Not an AJAX request, should return HTTP 400."""
-        r = self.client.get("%(pootle_path)s/meta/%(uid)s" %\
-                            {'pootle_path': self.path,
-                             'uid': self.uid})
-        self.assertEqual(r.status_code, 400)
-
-    def test_get_tp_metadata_response_ok(self):
-        """AJAX request, should return HTTP 200."""
-        r = self.client.get("%(pootle_path)s/meta/%(uid)s" %\
-                            {'pootle_path': self.path,
-                             'uid': self.uid},
-                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-        self.assertEqual(r.status_code, 200)
-
-    def test_get_tp_metadata_bad_store(self):
-        """Checks for store correctness when passing an invalid path."""
-        r = self.client.get("%(pootle_path)s/meta/%(uid)s" %\
-                            {'pootle_path': self.bad_path,
-                             'uid': self.uid},
-                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-        self.assertEqual(r.status_code, 404)
-
-    def test_get_tp_metadata_bad_unit(self):
-        """Checks for store correctness when passing an invalid uid."""
-        r = self.client.get("%(pootle_path)s/meta/%(uid)s" %\
-                            {'pootle_path': self.path,
-                             'uid': self.bad_uid},
-                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-        self.assertEqual(r.status_code, 404)
-
-    def test_get_tp_metadata_bad_store_unit(self):
-        """Checks for store/unit correctness when passing an invalid path/uid."""
-        r = self.client.get("%(pootle_path)s/meta/%(uid)s" %\
-                            {'pootle_path': self.bad_path,
-                             'uid': self.bad_uid},
-                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-        self.assertEqual(r.status_code, 404)
-
-    #
     # Tests for the get_view_units() view.
     #
     def test_get_view_units_bad_request(self):

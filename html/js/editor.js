@@ -222,7 +222,7 @@
               if (PTL.editor.activeUid != uid &&
                   PTL.editor.units[uid] == undefined) {
                 PTL.editor.activeUid = uid;
-                PTL.editor.getMeta(true);
+                PTL.editor.getViewUnits({pager: true, withUid: true});
               }
               // Now it's safe to actually load the unit
               PTL.editor.displayEditUnit(uid);
@@ -241,7 +241,7 @@
             PTL.editor.filter = parts[1];
 
             // Load units based on this filtering criteria
-            PTL.editor.getMeta(false);
+            PTL.editor.getViewUnits({pager: true});
             PTL.editor.displayEditUnit(PTL.editor.activeUid);
 
             break;
@@ -272,7 +272,7 @@
             PTL.editor.searchFields = sfields;
 
             // Finally, load the units that match this search
-            PTL.editor.getMeta(false);
+            PTL.editor.getViewUnits({pager: true});
             PTL.editor.displayEditUnit(PTL.editor.activeUid);
 
             break;
@@ -291,7 +291,7 @@
                 var which = parseInt(PTL.editor.pagesGot[p].length / 2);
                 var uid = PTL.editor.pagesGot[p][which];
                 PTL.editor.activeUid = uid;
-                PTL.editor.getMeta(true);
+                PTL.editor.getViewUnits({pager: true, withUid: true});
                 PTL.editor.displayEditUnit(uid);
               }
             }
@@ -300,7 +300,7 @@
 
           /* Load the first page in the current view as default */
           default:
-            PTL.editor.getMeta(false);
+            PTL.editor.getViewUnits({pager: true});
             PTL.editor.displayEditUnit(PTL.editor.activeUid);
         }
       }, {'unescape': true});
@@ -691,51 +691,11 @@
    * Unit navigation, display, submission
    */
 
-  /* Retrieves the metadata used for this query */
-  getMeta: function (withUid) {
-    var append = withUid ? this.activeUid : "",
-        metaUrl = this.store ? l(this.store + "/meta/" + append) : l(this.directory + "meta.html"),
-        reqData = this.getReqData();
-
-    $.ajax({
-      url: metaUrl,
-      async: false,
-      data: reqData,
-      dataType: 'json',
-      success: function (data) {
-        if (data.pager) {
-          PTL.editor.hasResults = true;
-
-          // Clear old data and add new results
-          PTL.editor.pagesGot = {};
-          PTL.editor.units = {};
-          PTL.editor.meta = data.meta;
-          PTL.editor.updatePager(data.pager);
-          PTL.editor.fetchPages(false);
-          if (data.uid) {
-            PTL.editor.activeUid = data.uid;
-          }
-        } else { // No results
-          PTL.editor.hasResults = false;
-          // TODO: i18n
-          PTL.editor.displayError("No results.");
-
-          // Restore previous status
-          PTL.editor.checks = PTL.editor.prevChecks;
-          PTL.editor.filter = PTL.editor.prevFilter;
-          $("#filter-status option[value=" + PTL.editor.filter + "]")
-            .attr("selected", "selected");
-        }
-      }
-    });
-  },
-
-
   /* Gets the view units that refer to currentPage */
   getViewUnits: function (opts) {
     var extraData, reqData, viewUrl,
-        defaults = {async: false, page: this.currentPage, limit: 0,
-                    pager: false},
+        defaults = {async: false, limit: 0, page: this.currentPage,
+                    pager: false, withUid: false},
         urlStr = this.store ? this.store + '/view' : this.directory + 'view.html';
     // Merge passed arguments with defaults
     opts = $.extend({}, defaults, opts);
@@ -754,6 +714,9 @@
     if (opts.pager) {
       extraData.pager = opts.pager;
     }
+    if (opts.withUid) {
+      extraData.uid = PTL.editor.activeUid;
+    }
     reqData = $.extend(extraData, this.getReqData());
 
     $.ajax({
@@ -763,7 +726,7 @@
       async: opts.async,
       success: function (data) {
         // Fill in metadata information if we don't have it yet
-        if (opts.meta && data.meta) {
+        if (Object.size(PTL.editor.meta) == 0 && data.meta) {
           PTL.editor.meta = data.meta;
         }
 
