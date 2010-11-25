@@ -680,15 +680,18 @@ class Store(models.Model, base.TranslationStore):
             else:
                 self.parse()
 
-    def require_dbid_index(self, update=False):
+    def require_dbid_index(self, update=False, obsolete=False):
         """build a quick mapping index between unit ids and database ids"""
         if update or not hasattr(self, "dbid_index"):
-            self.dbid_index = dict(self.units.values_list('unitid', 'id'))
+            units = self.unit_set.all()
+            if not obsolete:
+                units.filter(state__gt=OBSOLETE)
+            self.dbid_index = dict(units.values_list('unitid', 'id'))
 
     def findid_bulk(self, ids):
         chunks = 200
         for i in xrange(0, len(ids), chunks):
-            units = self.units.filter(id__in=ids[i:i+chunks])
+            units = self.unit_set.filter(id__in=ids[i:i+chunks])
             for unit in units.iterator():
                 yield unit
 
@@ -785,7 +788,7 @@ class Store(models.Model, base.TranslationStore):
                 matcher = self.get_matcher()
 
             monolingual = is_monolingual(type(store))
-            self.require_dbid_index(update=True)
+            self.require_dbid_index(update=True, obsolete=True)
             old_ids = set(self.dbid_index.keys())
             new_ids = set(store.getids())
 
