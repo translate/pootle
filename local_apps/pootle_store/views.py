@@ -380,9 +380,8 @@ def translate_page(request, units_queryset, store=None):
     profile = get_profile(request.user)
 
     #step_queryset = None
-
     search_form = SearchForm()
-    '''
+    """
     # Process search first
     search_form = None
     if 'search' in request.GET and 'sfields' in request.GET:
@@ -513,8 +512,8 @@ def translate_page(request, units_queryset, store=None):
     # precalculate alternative source languages
     alt_src_langs = get_alt_src_langs(request, profile, translation_project)
     alt_src_codes = alt_src_langs.values_list('code', flat=True)
-    '''
-
+    """
+    #"
     context = {
         #'unit_rows': unit_rows,
         #'alt_src_langs': alt_src_langs,
