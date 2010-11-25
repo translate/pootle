@@ -25,7 +25,7 @@ from django.core.exceptions import PermissionDenied
 from pootle_misc.baseurl import redirect
 from pootle_translationproject.models import TranslationProject
 from pootle_store.models import Store, Unit
-from pootle_store.views import translate_page, get_failing_checks, get_tp_metadata, get_view_units
+from pootle_store.views import translate_page, get_failing_checks, get_view_units
 from pootle_profile.models import get_profile
 
 from pootle_app.views.language     import dispatch
@@ -92,16 +92,6 @@ def get_failing_checks_dir(request, translation_project, dir_path):
     else:
         pathobj = translation_project
     return get_failing_checks(request, pathobj)
-
-@get_translation_project
-@set_request_context
-def get_tp_metadata_dir(request, translation_project, dir_path, uid=None):
-    if dir_path:
-        pootle_path = translation_project.pootle_path + dir_path
-        units_query = Unit.objects.filter(store__pootle_path__startswith=pootle_path)
-    else:
-        units_query = Unit.objects.filter(store__translation_project=translation_project)
-    return get_tp_metadata(request, units_query, uid=uid)
 
 @get_translation_project
 @set_request_context
