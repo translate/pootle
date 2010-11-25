@@ -735,7 +735,7 @@
   getViewUnits: function (opts) {
     var extraData, reqData, viewUrl,
         defaults = {async: false, page: this.currentPage, limit: 0,
-                    pager: false, meta: false},
+                    pager: false},
         urlStr = this.store ? this.store + '/view' : this.directory + 'view.html';
     // Merge passed arguments with defaults
     opts = $.extend({}, defaults, opts);
@@ -746,10 +746,10 @@
     }
     viewUrl = l(urlStr);
 
-    // Extra request variables Specific to this function
+    // Extra request variables specific to this function
     extraData = {page: opts.page};
-    if (opts.meta) {
-      extraData.meta = opts.meta;
+    if (Object.size(PTL.editor.meta) == 0) {
+      extraData.meta = true;
     }
     if (opts.pager) {
       extraData.pager = opts.pager;
