@@ -364,7 +364,7 @@ class Unit(models.Model, base.TranslationUnit):
             self.markfuzzy(unit.isfuzzy())
             changed = True
         if self.isobsolete() != unit.isobsolete():
-            if unit.isobsoltete():
+            if unit.isobsolete():
                 self.makeobsolete()
             else:
                 self.resurrect()
