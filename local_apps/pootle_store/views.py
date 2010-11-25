@@ -692,8 +692,8 @@ def get_view_units(request, units_queryset, limit=0):
     If asked by using the 'meta' and 'pager' parameters, metadata and pager
     information will be calculated and returned too.
     """
+    current_unit = None
     json = {}
-    pager = None
 
     if not limit:
         limit = request.profile.get_unit_rows()
@@ -708,27 +708,25 @@ def get_view_units(request, units_queryset, limit=0):
                         "target_lang": tp.language.code,
                         "target_dir": tp.language.get_direction()}
 
+    # Maybe we are trying to load directly a specific unit, so we have
+    # to calculate its page number
+    uid = request.GET.get('uid', None)
+    if uid:
+        current_unit = step_queryset.get(id=uid)
+        preceding = _get_index_in_qs(step_queryset, current_unit)
+        page = preceding / limit + 1
+    else:
+        # Try to get a given page number, otherwise assume it's the first one
+        page = int(request.GET.get('page', 1))
+
+    pager = paginate(request, step_queryset, items=limit, page=page)
+
     # Return paging information if requested to do so
     if request.GET.get('pager', False):
-        uid = request.GET.get('uid', None)
-        if uid:
-            current_unit = step_queryset.get(id=uid)
-        else:
-            try:
-                current_unit = step_queryset[0:1][0]
-                json["uid"] = current_unit.id
-            except IndexError:
-                current_unit = None
-
-        # If we are loading a concrete unit, the current page varies
-        if current_unit is not None:
-            preceding = _get_index_in_qs(step_queryset, current_unit)
-            page = preceding / limit + 1
-            pager = paginate(request, step_queryset, items=limit, page=page)
-            json["pager"] = _build_pager_dict(pager)
-
-    if not pager:
-        pager = paginate(request, step_queryset, items=limit)
+        json["pager"] = _build_pager_dict(pager)
+        if not current_unit:
+            current_unit = pager.object_list[0]
+        json["uid"] = current_unit.id
 
     json["units"] = _build_units_list(pager.object_list)
 
