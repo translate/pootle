@@ -30,7 +30,7 @@ from pootle_profile.models import get_profile
 
 from pootle_app.views.language     import dispatch
 from pootle_app.models.permissions import get_matching_permissions, check_permission
-
+from pootle_app.models.directory import Directory
 
 def get_stats_headings():
     """returns a dictionary of localised headings"""
@@ -68,6 +68,7 @@ def set_request_context(f):
         return f(request, translation_project, *args, **kwargs)
     return decorated_f
 
+
 ################################################################################
 
 @get_translation_project
@@ -76,8 +77,10 @@ def translate(request, translation_project, dir_path=None):
     if dir_path:
         pootle_path = translation_project.pootle_path + dir_path
         units_query = Unit.objects.filter(store__pootle_path__startswith=pootle_path)
+        request.directory = Directory.objects.get(pootle_path=pootle_path)
     else:
         units_query = Unit.objects.filter(store__translation_project=translation_project)
+        request.directory = translation_project.directory
     return translate_page(request, units_query)
 
 @get_translation_project
