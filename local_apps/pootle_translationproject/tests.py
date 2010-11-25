@@ -28,7 +28,7 @@ from pootle_app.project_tree import get_translated_name, get_translated_name_gnu
 from pootle_language.models import Language
 from pootle_app.management import require_english
 from pootle_store.util import OBSOLETE
-from pootle_store.models import Store
+
 
 class GnuTests(PootleTestCase):
     """Tests for Gnu Style projects"""
@@ -402,7 +402,7 @@ X-Generator: Pootle Tests
 class CsvTests(XliffTests):
     """Tests for CSV projects"""
     template_text = r'''id, source, target, location, fuzzy
-"Excat", "Exact", "", "fish.c:1", "False"
+"Exact", "Exact", "", "fish.c:1", "False"
 "Fuzzy", "Fuzzy", "", "test.c:1", "False"
 "%d new", "%d new", "", "fish.c:2", "False"
 '''
