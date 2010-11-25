@@ -33,6 +33,7 @@
     this.store = $("div#pootle_path").text();
     this.directory = $("div#directory").text();
     this.currentPage = 1;
+    this.currentNumPages = 0;
     this.pagesGot = {};
     this.filter = "all";
     this.checks = [];
@@ -272,7 +273,7 @@
             PTL.editor.searchFields = sfields;
 
             // Finally, load the units that match this search
-            PTL.editor.getViewUnits({pager: true});
+            PTL.editor.getViewUnits({page: 1, pager: true});
             PTL.editor.displayEditUnit(PTL.editor.activeUid);
 
             break;
@@ -283,7 +284,7 @@
 
             if (p && !isNaN(p) && p > 0) {
               if (!(p in PTL.editor.pagesGot)) {
-                PTL.editor.getViewUnits({page: p});
+                PTL.editor.getViewUnits({pager: true, page: p});
               }
               // If there are no results for page p, it may be an
               // invalid page number
@@ -291,7 +292,6 @@
                 var which = parseInt(PTL.editor.pagesGot[p].length / 2);
                 var uid = PTL.editor.pagesGot[p][which];
                 PTL.editor.activeUid = uid;
-                PTL.editor.getViewUnits({pager: true, withUid: true});
                 PTL.editor.displayEditUnit(uid);
               }
             }
@@ -708,14 +708,17 @@
 
     // Extra request variables specific to this function
     extraData = {page: opts.page};
-    if (Object.size(PTL.editor.meta) == 0) {
+    if (Object.size(this.meta) == 0) {
       extraData.meta = true;
     }
     if (opts.pager) {
       extraData.pager = opts.pager;
     }
     if (opts.withUid) {
-      extraData.uid = PTL.editor.activeUid;
+      extraData.uid = this.activeUid;
+      // We don't know the page number beforehand —
+      // delete the parameter as it's useless
+      delete extraData.page
     }
     reqData = $.extend(extraData, this.getReqData());
 
@@ -976,7 +979,7 @@
     }
 
     // Do the actual fetching
-    for (var i=0; i<pages.length; i++) {
+    for (i=0; i<pages.length; i++) {
       this.getViewUnits({async: async, page: pages[i]});
     }
   },
