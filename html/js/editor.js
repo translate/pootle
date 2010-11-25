@@ -694,7 +694,7 @@
   /* Retrieves the metadata used for this query */
   getMeta: function (withUid) {
     var append = withUid ? this.activeUid : "",
-        metaUrl = l(this.store + "/meta/" + append),
+        metaUrl = this.store ? l(this.store + "/meta/" + append) : l(this.directory + "meta.html"),
         reqData = this.getReqData();
 
     $.ajax({
@@ -737,7 +737,7 @@
         async = async == undefined ? false : async,
         page = page == undefined ? this.currentPage : page,
         limit = limit == undefined ? 0 : limit,
-        urlStr = this.store + '/view';
+        urlStr = this.store ? this.store + '/view' : this.directory + 'view.html';
 
     urlStr = limit ? urlStr + '/limit/' + limit : urlStr;
     viewUrl = l(urlStr);
@@ -1181,7 +1181,7 @@
   /* Gets the failing check options for the current query */
   getCheckOptions: function () {
     var opts,
-        checksUrl = l(this.store + '/checks/');
+        checksUrl = this.store ? l(this.store + '/checks/') : l(this.directory + "checks.html");
 
     $.ajax({
       url: checksUrl,
