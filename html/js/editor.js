@@ -283,7 +283,7 @@
 
             if (p && !isNaN(p) && p > 0) {
               if (!(p in PTL.editor.pagesGot)) {
-                PTL.editor.getViewUnits(false, p);
+                PTL.editor.getViewUnits({page: p});
               }
               // If there are no results for page p, it may be an
               // invalid page number
@@ -732,30 +732,33 @@
 
 
   /* Gets the view units that refer to currentPage */
-  getViewUnits: function (async, page, limit) {
+  getViewUnits: function (opts) {
     var reqData, viewUrl,
-        async = async == undefined ? false : async,
-        page = page == undefined ? this.currentPage : page,
-        limit = limit == undefined ? 0 : limit,
+        defaults = {async: false, page: this.currentPage, limit: 0,
+                    pager: false, meta: false},
         urlStr = this.store ? this.store + '/view' : this.directory + 'view.html';
+    // Merge passed arguments with defaults
+    opts = $.extend({}, defaults, opts);
 
-    urlStr = limit ? urlStr + '/limit/' + limit : urlStr;
+    if (opts.limit != 0) {
+      urlStr = urlStr + '/limit/' + limit;
+    }
     viewUrl = l(urlStr);
-    reqData = $.extend({page: page}, this.getReqData());
+    reqData = $.extend({page: opts.page}, this.getReqData());
 
     $.ajax({
       url: viewUrl,
       data: reqData,
       dataType: 'json',
-      async: async,
+      async: opts.async,
       success: function (data) {
         if (data.units.length) {
-          PTL.editor.pagesGot[page] = [];
+          PTL.editor.pagesGot[opts.page] = [];
 
           // Copy retrieved units to the client
           $.each(data.units, function () {
             PTL.editor.units[this.id] = this;
-            PTL.editor.pagesGot[page].push(this.id);
+            PTL.editor.pagesGot[opts.page].push(this.id);
           });
 
           PTL.editor.hasResults = true;
@@ -969,7 +972,7 @@
 
     // Do the actual fetching
     for (var i=0; i<pages.length; i++) {
-      this.getViewUnits(async, pages[i]);
+      this.getViewUnits({async: async, page: pages[i]});
     }
   },
 
