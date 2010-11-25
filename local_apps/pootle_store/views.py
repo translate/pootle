@@ -754,6 +754,7 @@ def get_view_units(request, units_queryset, limit=0):
     step_queryset = get_step_query(request, units_queryset)
     pager = paginate(request, step_queryset, items=limit)
     json["units"] = _build_units_list(pager.object_list)
+    json["pager"] = _build_pager_dict(pager)
     response = simplejson.dumps(json)
     return HttpResponse(response, mimetype="application/json")
 
