@@ -62,8 +62,8 @@ def set_request_context(f):
     def decorated_f(request, translation_project, *args, **kwargs):
         # For now, all permissions in a translation project are
         # relative to the root of that translation project.
-        request.permissions = get_matching_permissions(
-            get_profile(request.user), translation_project.directory)
+        request.profile = get_profile(request.user)
+        request.permissions = get_matching_permissions(request.profile, translation_project.directory)
         request.translation_project = translation_project
         return f(request, translation_project, *args, **kwargs)
     return decorated_f
