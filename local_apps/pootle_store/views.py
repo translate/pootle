@@ -840,55 +840,41 @@ def get_edit_unit(request, unit):
     response = simplejson.dumps(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
 
-@ajax_required
-def get_failing_checks(request, pootle_path):
+
+def get_failing_checks(pathobj):
     """
-    Gets a list of failing checks for the current query.
+    Gets a list of failing checks for the current object.
 
     @return: JSON string representing action status and depending on success,
     returns an error message or a list containing the the name and number of
     failing checks.
     """
-    pass
-    if pootle_path[0] != '/':
-        pootle_path = '/' + pootle_path
-    profile = get_profile(request.user)
     json = {}
-
-    try:
-        store = Store.objects.select_related('translation_project', 'parent').get(pootle_path=pootle_path)
-        if not check_profile_permission(profile, 'view', store.parent):
-            rcode = 403
-            json["msg"] = _("You do not have rights to access translation mode.")
-        else:
-            # Borrowed from pootle_app.views.language.item_dict.getcheckdetails
-            checkopts = []
-            try:
-                property_stats = store.getcompletestats()
-                quick_stats = store.getquickstats()
-                total = quick_stats['total']
-                keys = property_stats.keys()
-                keys.sort()
-                for checkname in keys:
-                    checkcount = property_stats[checkname]
-                    if total and checkcount:
-                        stats = ungettext('%(checkname)s (%(checks)d)',
-                                          '%(checkname)s (%(checks)d)', checkcount,
-                                          {"checks": checkcount, "checkname": checkname})
-                        checkopt = {'name': checkname,
-                                    'text': stats}
-                        checkopts.append(checkopt)
-                json["checks"] = checkopts
-                rcode = 200
-            except IOError:
-                pass
-    except Store.DoesNotExist:
-        rcode = 404
-        json["msg"] = _("Store %(path)s does not exist." %
-                        {'path': pootle_path})
-
+    checkopts = []
+    # Borrowed from pootle_app.views.language.item_dict.getcheckdetails
+    property_stats = pathobj.getcompletestats()
+    quick_stats = pathobj.getquickstats()
+    total = quick_stats['total']
+    keys = property_stats.keys()
+    keys.sort()
+    for checkname in keys:
+        checkcount = property_stats[checkname]
+        if total and checkcount:
+            stats = ungettext('%(checkname)s (%(checks)d)',
+                              '%(checkname)s (%(checks)d)', checkcount,
+                              {"checks": checkcount, "checkname": checkname})
+            checkopt = {'name': checkname,
+                        'text': stats}
+            checkopts.append(checkopt)
+            json["checks"] = checkopts
     response = simplejson.dumps(json)
-    return HttpResponse(response, status=rcode, mimetype="application/json")
+    return HttpResponse(response, mimetype="application/json")
+
+
+@ajax_required
+@get_store_context('view')
+def get_failing_checks_store(request, store):
+    return get_failing_checks(store)
 
 @ajax_required
 @get_unit_context('')
