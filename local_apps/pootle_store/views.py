@@ -685,61 +685,49 @@ def _get_index_in_qs(qs, unit):
     """
     return qs.filter(index__lt=unit.index).count()
 
-@ajax_required
-def get_tp_metadata(request, pootle_path, uid=None):
+def get_tp_metadata(request, units_queryset, uid=None):
     """
     @return: An object in JSON notation that contains the metadata information
     about the current translation project: source/target language codes,
     the direction of the text and also a initial pager.
     """
-    if pootle_path[0] != '/':
-        pootle_path = '/' + pootle_path
-    profile = get_profile(request.user)
     json = {}
 
+    step_queryset = get_step_query(request, units_queryset)
+    unit_rows = request.profile.get_unit_rows()
+
     try:
-        store = Store.objects.select_related('translation_project', 'parent').get(pootle_path=pootle_path)
-        if not check_profile_permission(profile, 'view', store.parent):
-            rcode = 403
-            json["msg"] = _("You do not have rights to access translation mode.")
-        else:
-            units_qs = _filter_queryset(request.GET, store.units,
-                                        store.translation_project)
-            unit_rows = profile.get_unit_rows()
-
+        if uid is None:
             try:
-                if uid is None:
-                    try:
-                        current_unit = units_qs[0]
-                        json["uid"] = units_qs[0].id
-                    except IndexError:
-                        current_unit = None
-                else:
-                    current_unit = units_qs.get(id=uid, store__pootle_path=pootle_path)
-                if current_unit is not None:
-                    current_index = _get_index_in_qs(units_qs, current_unit)
-                    preceding = units_qs[:current_index].count()
-                    page = preceding / unit_rows + 1
-                    pager = paginate(request, units_qs, items=unit_rows, page=page)
-                    json["pager"] = _build_pager_dict(pager)
-                tp = store.translation_project
-                json["meta"] = {"source_lang": tp.project.source_language.code,
-                                "source_dir": tp.project.source_language.get_direction(),
-                                "target_lang": tp.language.code,
-                                "target_dir": tp.language.get_direction()}
-                rcode = 200
-            except Unit.DoesNotExist:
-                rcode = 404
-                json["msg"] = _("Unit %(uid)s does not exist on %(path)s." %
-                                {'uid': uid, 'path': pootle_path})
-    except Store.DoesNotExist:
-        rcode = 404
-        json["msg"] = _("Store %(path)s does not exist." %
-                        {'path': pootle_path})
+                current_unit = step_queryset[0:1][0]
+                json["uid"] = current_unit.id
+            except IndexError:
+                current_unit = None
+        else:
+            current_unit = step_queryset.get(id=uid)
 
+        if current_unit is not None:
+            preceding = _get_index_in_qs(step_queryset, current_unit)
+            page = preceding / unit_rows + 1
+            pager = paginate(request, step_queryset, items=unit_rows, page=page)
+            json["pager"] = _build_pager_dict(pager)
+            tp = request.translation_project
+            json["meta"] = {"source_lang": tp.project.source_language.code,
+                            "source_dir": tp.project.source_language.get_direction(),
+                            "target_lang": tp.language.code,
+                            "target_dir": tp.language.get_direction()}
+            rcode = 200
+    except Unit.DoesNotExist:
+        rcode = 404
+        json["msg"] = _("Unit %(uid)s does not exist on %(path)s." %
+                        {'uid': uid, 'path': request.translation_project.pootle_path})
     response = simplejson.dumps(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
 
+@ajax_required
+@get_store_context('view')
+def get_tp_metadata_store(request, store, uid=None):
+    return get_tp_metadata(request, store.units, uid=None)
 
 def get_view_units(request, units_queryset, limit=0):
     """
