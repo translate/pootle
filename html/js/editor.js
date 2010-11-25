@@ -733,18 +733,28 @@
 
   /* Gets the view units that refer to currentPage */
   getViewUnits: function (opts) {
-    var reqData, viewUrl,
+    var extraData, reqData, viewUrl,
         defaults = {async: false, page: this.currentPage, limit: 0,
                     pager: false, meta: false},
         urlStr = this.store ? this.store + '/view' : this.directory + 'view.html';
     // Merge passed arguments with defaults
     opts = $.extend({}, defaults, opts);
 
+    // Extend URL if needed
     if (opts.limit != 0) {
       urlStr = urlStr + '/limit/' + limit;
     }
     viewUrl = l(urlStr);
-    reqData = $.extend({page: opts.page}, this.getReqData());
+
+    // Extra request variables Specific to this function
+    extraData = {page: opts.page};
+    if (opts.meta) {
+      extraData.meta = opts.meta;
+    }
+    if (opts.pager) {
+      extraData.pager = opts.pager;
+    }
+    reqData = $.extend(extraData, this.getReqData());
 
     $.ajax({
       url: viewUrl,
@@ -752,6 +762,38 @@
       dataType: 'json',
       async: opts.async,
       success: function (data) {
+        // Fill in metadata information if we don't have it yet
+        if (opts.meta && data.meta) {
+          PTL.editor.meta = data.meta;
+        }
+
+        // Receive pager in case we have asked for it
+        if (opts.pager) {
+          if (data.pager) {
+            PTL.editor.hasResults = true;
+
+            // Clear old data and add new results
+            PTL.editor.pagesGot = {};
+            PTL.editor.units = {};
+            PTL.editor.updatePager(data.pager);
+            // PTL.editor.fetchPages(false);
+            if (data.uid) {
+              PTL.editor.activeUid = data.uid;
+            }
+          } else { // No results
+            PTL.editor.hasResults = false;
+            // TODO: i18n
+            PTL.editor.displayError("No results.");
+
+            // Restore previous status
+            PTL.editor.checks = PTL.editor.prevChecks;
+            PTL.editor.filter = PTL.editor.prevFilter;
+            $("#filter-status option[value=" + PTL.editor.filter + "]")
+              .attr("selected", "selected");
+          }
+        }
+
+        // Store view units in the client
         if (data.units.length) {
           PTL.editor.pagesGot[opts.page] = [];
 
