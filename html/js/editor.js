@@ -31,6 +31,7 @@
     /* Initialize variables */
     this.units = {};
     this.store = $("div#pootle_path").text();
+    this.directory = $("div#directory").text();
     this.currentPage = 1;
     this.pagesGot = {};
     this.filter = "all";
