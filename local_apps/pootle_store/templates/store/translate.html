@@ -8,9 +8,13 @@
 {% endblock %}
 
 {% block breadcrumb_content %}
+{% comment %}
 {% cache settings.CACHE_TIMEOUT store_bread store.id LANGUAGE_CODE %}
+{% endcomment %}
 {{ block.super }} » <span><a href="{{ store.pootle_path|l}}/translate">{{ store.name }}</a></span>
+{% comment %}
 {% endcache %}
+{% endcomment %}
 {% endblock %}
 
 {% block body.id %}translatepage{% endblock body.id %}
@@ -31,6 +35,7 @@
 {% block search %}
 {% endblock %}
 
+{% comment %}
 {% block innernav %}
 <!-- Navigation bar -->
 <div id="innernav" class="navbar">
@@ -39,6 +44,7 @@
   </div>
 </div><!--innernav-->
 {% endblock innernav %}
+{% endcomment %}
 
 {% block precontent %}
 {{ block.super }}
