@@ -533,7 +533,7 @@ def translate_page(request, units_queryset, store=None):
         #'project': translation_project.project,
         'profile': profile,
         'source_language': translation_project.project.source_language,
-        'directory': store.parent,
+        'directory': getattr(request, "directory", None),
         #'GET_state': '&'.join(GET_vars),
         #'checks': checks,
         'MT_BACKENDS': settings.MT_BACKENDS,
