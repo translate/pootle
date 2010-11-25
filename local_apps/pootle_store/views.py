@@ -841,7 +841,7 @@ def get_edit_unit(request, unit):
     return HttpResponse(response, status=rcode, mimetype="application/json")
 
 
-def get_failing_checks(pathobj):
+def get_failing_checks(request, pathobj):
     """
     Gets a list of failing checks for the current object.
 
@@ -874,7 +874,7 @@ def get_failing_checks(pathobj):
 @ajax_required
 @get_store_context('view')
 def get_failing_checks_store(request, store):
-    return get_failing_checks(store)
+    return get_failing_checks(request, store)
 
 @ajax_required
 @get_unit_context('')
