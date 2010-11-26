@@ -37,7 +37,6 @@ from django.utils.translation.trans_real import parse_accept_lang_header
 from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from django.core.cache import cache
 from django.utils import simplejson
-from django.views.decorators.cache import never_cache
 from django.utils.encoding import iri_to_uri
 
 from pootle_misc.baseurl import redirect
@@ -284,100 +283,6 @@ def get_step_query(request, units_queryset):
     return units_queryset
 
 def translate_page(request):
-def get_current_units(request, step_queryset, units_queryset):
-    """returns current active unit, and in case of POST previously active unit"""
-    edit_unit = None
-    prev_unit = None
-    pager = None
-    # GET gets priority
-    if 'unit' in request.GET:
-        # load a specific unit in GET
-        try:
-            edit_id = int(request.GET['unit'])
-            edit_unit = step_queryset.get(id=edit_id)
-        except (Unit.DoesNotExist, ValueError):
-            pass
-    elif 'page' in request.GET:
-        # load first unit in a specific page
-        profile = request.profile
-        unit_rows = profile.get_unit_rows()
-        pager = paginate(request, units_queryset, items=unit_rows)
-        edit_unit = pager.object_list[0]
-    elif 'id' in request.POST and 'index' in request.POST:
-        # GET doesn't specify a unit try POST
-        prev_id = int(request.POST['id'])
-        prev_index = int(request.POST['index'])
-        pootle_path = request.POST['pootle_path']
-        back = request.POST.get('back', False)
-        if back:
-            queryset = (step_queryset.filter(store__pootle_path=pootle_path, index__lte=prev_index) | \
-                        step_queryset.filter(store__pootle_path__lt=pootle_path)
-                        ).order_by('-store__pootle_path', '-index')
-        else:
-            queryset = (step_queryset.filter(store__pootle_path=pootle_path, index__gte=prev_index) | \
-                        step_queryset.filter(store__pootle_path__gt=pootle_path)
-                        ).order_by('store__pootle_path', 'index')
-
-        #FIXME: instead of using an arbitrary limit it would be best to page through mother query
-        for unit in queryset[:64].iterator():
-            if edit_unit is None and prev_unit is not None:
-                edit_unit = unit
-                break
-            if unit.id == prev_id:
-                prev_unit = unit
-            elif unit.index > prev_index or back and unit.index < prev_index:
-                logging.debug(u"submitting to a unit no longer part of step query, %s:%d", (pootle_path, prev_id))
-                # prev_unit no longer part of the query, load it directly
-                edit_unit = unit
-                prev_unit = Unit.objects.get(store__pootle_path=pootle_path, id=prev_id)
-                break
-
-    if edit_unit is None:
-        if prev_unit is not None:
-            # probably prev_unit was last unit in chain.
-            if back:
-                edit_unit = prev_unit
-        else:
-            # all methods failed, get first unit in queryset
-            try:
-                edit_unit = step_queryset[0:1][0]
-            except IndexError:
-                pass
-
-    return prev_unit, edit_unit, pager
-
-def translate_end(request, translation_project):
-    """render a message at end of review, translate or search action"""
-    checks = 'matchnames' in request.GET
-    if request.POST:
-        # end of iteration
-        if checks:
-            message = _("No more matching strings to review.")
-        else:
-            message = _("No more matching strings to translate.")
-    else:
-        if checks:
-            message = _("No matching strings to review.")
-        else:
-            message = _("No matching strings to translate.")
-
-    if 'search' in request.GET and 'sfields' in request.GET:
-        search_form = SearchForm(request.GET)
-    else:
-        search_form = SearchForm()
-
-    context = {
-        'endmessage': message,
-        'translation_project': translation_project,
-        'language': translation_project.language,
-        'project': translation_project.project,
-        'directory': translation_project.directory,
-        'search_form': search_form,
-        'checks': checks,
-        }
-    return render_to_response('store/translate_end.html', context, context_instance=RequestContext(request))
-
-
     cantranslate = check_permission("translate", request)
     cansuggest = check_permission("suggest", request)
     canreview = check_permission("review", request)
@@ -385,168 +290,23 @@ def translate_end(request, translation_project):
     language = translation_project.language
     profile = request.profile
 
-    #step_queryset = None
     search_form = SearchForm()
-    """
-    # Process search first
-    search_form = None
-    if 'search' in request.GET and 'sfields' in request.GET:
-        search_form = SearchForm(request.GET)
-        if search_form.is_valid():
-            step_queryset = get_search_step_query(request.translation_project, search_form, units_queryset)
-    else:
-        search_form = SearchForm()
-
-    # which units are we interested in?
-    if step_queryset is None:
-    '''
-
-    step_queryset = get_step_query(request, units_queryset)
-
-    prev_unit, edit_unit, pager = get_current_units(request, step_queryset, units_queryset)
-
-    # time to process POST submission
-    form = None
-    if prev_unit is not None and ('submit' in request.POST or 'suggest' in request.POST):
-        # check permissions
-        if 'submit'  in request.POST and not cantranslate or \
-           'suggest' in request.POST and not cansuggest:
-            raise PermissionDenied
-
-        if prev_unit.hasplural():
-            snplurals = len(prev_unit.source.strings)
-        else:
-            snplurals = None
-        form_class = unit_form_factory(language, snplurals)
-        form = form_class(request.POST, instance=prev_unit)
-        if form.is_valid():
-            if cantranslate and 'submit' in request.POST:
-                if form.instance._target_updated or form.instance._translator_comment_updated or \
-                       form.instance._state_updated:
-                    form.save()
-                    sub = Submission(translation_project=translation_project,
-                                     submitter=profile)
-                    sub.save()
-
-            elif cansuggest and 'suggest' in request.POST:
-                if form.instance._target_updated:
-                    #HACKISH: django 1.2 stupidly modifies instance on
-                    # model form validation, reload unit from db
-                    prev_unit = Unit.objects.get(id=prev_unit.id)
-                    sugg = prev_unit.add_suggestion(form.cleaned_data['target_f'], profile)
-                    if sugg:
-                        SuggestionStat.objects.get_or_create(translation_project=translation_project,
-                                                             suggester=profile,
-                                                             state='pending', unit=prev_unit.id)
-        else:
-            # form failed, don't skip to next unit
-            edit_unit = prev_unit
-
-    if edit_unit is None:
-        # no more units to step through, display end of translation message
-        return translate_end(request, translation_project)
-
-    # only create form for edit_unit if prev_unit was processed successfully
-    if form is None or form.is_valid():
-        if edit_unit.hasplural():
-            snplurals = len(edit_unit.source.strings)
-        else:
-            snplurals = None
-        form_class = unit_form_factory(language, snplurals)
-        form = form_class(instance=edit_unit)
-
-    if store is None:
-        store = edit_unit.store
-        pager_query = units_queryset
-        preceding = (pager_query.filter(store=store, index__lt=edit_unit.index) | \
-                     pager_query.filter(store__pootle_path__lt=store.pootle_path)).count()
-        store_preceding = store.units.filter(index__lt=edit_unit.index).count()
-    else:
-        pager_query = store.units
-        preceding = pager_query.filter(index__lt=edit_unit.index).count()
-        store_preceding = preceding
-
-    '''
-    unit_rows = profile.get_unit_rows()
-
-    # regardless of the query used to step through units, we will
-    # display units in their original context, and display a pager for
-    # the store not for the unit_step query
-    if pager is None:
-        page = preceding / unit_rows + 1
-        pager = paginate(request, pager_query, items=unit_rows, page=page)
-
-    # we always display the active unit in the middle of the page to
-    # provide context for translators
-    context_rows = (unit_rows - 1) / 2
-    if store_preceding > context_rows:
-        unit_position = store_preceding % unit_rows
-        if unit_position < context_rows:
-            # units too close to the top of the batch
-            offset = unit_rows - (context_rows - unit_position)
-            units_query = store.units[offset:]
-            page = store_preceding / unit_rows
-            units = paginate(request, units_query, items=unit_rows, page=page).object_list
-        elif unit_position >= unit_rows - context_rows:
-            # units too close to the bottom of the batch
-            offset = context_rows - (unit_rows - unit_position - 1)
-            units_query = store.units[offset:]
-            page = store_preceding / unit_rows + 1
-            units = paginate(request, units_query, items=unit_rows, page=page).object_list
-        else:
-            units = pager.object_list
-    else:
-        units = store.units[:unit_rows]
-
-    # caluclate url querystring so state is retained on POST
-    # we can't just use request URL cause unit and page GET vars cancel state
-    GET_vars = []
-    for key, values in request.GET.lists():
-        if key not in ('page', 'unit'):
-            for value in values:
-                GET_vars.append('%s=%s' % (key, value))
-
-    # links for quality check documentation
-    checks = []
-    for check in request.GET.get('matchnames', '').split(','):
-        if not check:
-            continue
-        safe_check = escape(check)
-        link = '<a href="http://translate.sourceforge.net/wiki/toolkit/pofilter_tests#%s" target="_blank">%s</a>' % (safe_check, safe_check)
-        checks.append(_('checking %s', link))
-
-    # precalculate alternative source languages
-    alt_src_langs = get_alt_src_langs(request, profile, translation_project)
-    alt_src_codes = alt_src_langs.values_list('code', flat=True)
-    """
-
     context = {
-        #'unit_rows': unit_rows,
-        #'alt_src_langs': alt_src_langs,
-        #'alt_src_codes': alt_src_codes,
         'cantranslate': cantranslate,
         'cansuggest': cansuggest,
         'canreview': canreview,
-        #'form': form,
         'search_form': search_form,
         'store': getattr(request, "store", None),
-        #'edit_unit': edit_unit,
-        #'pager': pager,
-        #'units': units,
         'language': language,
         'translation_project': translation_project,
-        #'project': translation_project.project,
         'profile': profile,
         'source_language': translation_project.project.source_language,
         'directory': getattr(request, "directory", None),
-        #'GET_state': '&'.join(GET_vars),
-        #'checks': checks,
         'MT_BACKENDS': settings.MT_BACKENDS,
         'AMAGAMA_URL': settings.AMAGAMA_URL,
         }
     return render_to_response('store/translate.html', context, context_instance=RequestContext(request))
 
-@never_cache
 @get_store_context('view')
 def translate(request, store):
     return translate_page(request)
@@ -554,47 +314,6 @@ def translate(request, store):
 #
 # Views used with XMLHttpRequest requests.
 #
-
-def _filter_queryset(qdict, qs, tp):
-    """
-    Filters the given C{qs} unit queryset by the criterion specified
-    in the C{qdict} POST/GET parameters.
-
-    @return: A filtered queryset.
-    """
-    filtered = qs
-    if 'filter' in qdict and 'checks' not in qdict:
-        filter_by = qdict['filter']
-        if filter_by == "incomplete":
-            filtered = qs.filter(state=FUZZY) | qs.filter(state=UNTRANSLATED)
-        elif filter_by == "untranslated":
-            filtered = qs.filter(state=UNTRANSLATED)
-        elif filter_by == "fuzzy":
-            filtered = qs.filter(state=FUZZY)
-        elif filter_by == "suggestions":
-            filtered = qs.exclude(suggestion=None)
-        elif filter_by == "search":
-            if 'search' in qdict and 'sfields' in qdict:
-                search_form = SearchForm(qdict)
-                if search_form.is_valid():
-                    filtered = get_search_step_query(tp, search_form, qs)
-
-    if 'checks' in qdict:
-        checks = qdict['checks'].split(',')
-        if checks:
-            filtered = qs.filter(qualitycheck__false_positive=False,
-                                 qualitycheck__name__in=checks)
-
-    return filtered
-
-def _filter_view_units(units_qs, current_page, per_page):
-    """
-    Returns C{per_page} units that are contained within page C{current_page}.
-    """
-    start_index = per_page * (current_page - 1)
-    end_index = start_index + per_page
-    filtered = units_qs[start_index:end_index]
-    return _build_units_list(filtered)
 
 def _filter_ctxt_units(units_qs, index, limit, gap=0):
     """
@@ -610,30 +329,6 @@ def _filter_ctxt_units(units_qs, index, limit, gap=0):
     after = units_qs.filter(index__gt=index)[gap:limit+gap]
     result['after'] = _build_units_list(after)
     return result
-
-def _get_prevnext_unit_ids(qs, unit):
-    """
-    Gets the previous and next unit ids of C{unit} based on index.
-
-    @return: previous and next units. If previous or next is missing,
-    None will be returned.
-    """
-    current_index = _get_index_in_qs(qs, unit)
-    prev_index = qs.count()
-    next_index = prev_index
-    if current_index is not None:
-        if current_index > 0:
-            prev_index = current_index - 1
-        next_index = current_index + 1
-    try:
-        prev = qs[prev_index].id
-    except IndexError:
-        prev = None
-    try:
-        next = qs[next_index].id
-    except IndexError:
-        next = None
-    return prev, next
 
 def _build_units_list(units):
     """
