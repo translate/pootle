@@ -19,15 +19,13 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 import time
 
-from django.contrib.auth.models import User
 from django.utils import simplejson
 
 from translate.storage import factory
 from translate.storage import statsdb
 
 from pootle.tests import PootleTestCase
-from pootle_profile.models import get_profile
-from pootle_store.models import Store
+from pootle_store.models import Store, Unit
 
 class UnitTests(PootleTestCase):
     def setUp(self):
@@ -154,13 +152,13 @@ class StoreTests(PootleTestCase):
         self.assertEqual(dbstats['translatedtargetwords'], filestats['translatedtargetwords'])
 
 
-class XHRTestCase(PootleTestCase):
+class XHRTestAnonymous(PootleTestCase):
     """
     Base class for testing the XHR views.
     """
     def setUp(self):
         # FIXME: We should test on a bigger dataset (with a fixture maybe)
-        super(XHRTestCase, self).setUp()
+        super(XHRTestAnonymous, self).setUp()
         self.store = Store.objects.get(pootle_path="/af/tutorial/pootle.po")
         self.unit = self.store.units[0]
         self.uid = self.unit.id
@@ -178,12 +176,6 @@ class XHRTestCase(PootleTestCase):
     #
     # Tests for the get_view_units() view.
     #
-    def test_get_view_units_bad_request(self):
-        """Not an AJAX request, should return HTTP 400."""
-        r = self.client.get("%(pootle_path)s/view" %\
-                            {'pootle_path': self.path})
-        self.assertEqual(r.status_code, 400)
-
     def test_get_view_units_response_ok(self):
         """AJAX request, should return HTTP 200."""
         r = self.client.get("%(pootle_path)s/view" %\
@@ -201,92 +193,48 @@ class XHRTestCase(PootleTestCase):
     #
     # Tests for the get_more_context() view.
     #
-    def test_get_more_context_bad_request(self):
-        """Not an AJAX request, should return HTTP 400."""
-        r = self.client.get("%(pootle_path)s/context/%(uid)s" %\
-                            {'pootle_path': self.path,
-                             'uid': self.uid})
-        self.assertEqual(r.status_code, 400)
-
     def test_get_more_context_response_ok(self):
         """AJAX request, should return HTTP 200."""
-        r = self.client.get("%(pootle_path)s/context/%(uid)s" %\
-                            {'pootle_path': self.path,
-                             'uid': self.uid},
+        r = self.client.get("/unit/context/%s" % self.uid,
                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(r.status_code, 200)
 
-    def test_get_more_context_bad_store(self):
-        """Checks for store correctness when passing an invalid path."""
-        r = self.client.get("%(pootle_path)s/context/%(uid)s" %\
-                            {'pootle_path': self.bad_path,
-                             'uid': self.uid},
-                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-        self.assertEqual(r.status_code, 404)
-
     def test_get_more_context_bad_unit(self):
         """Checks for store correctness when passing an invalid uid."""
-        r = self.client.get("%(pootle_path)s/context/%(uid)s" %\
-                            {'pootle_path': self.path,
-                             'uid': self.bad_uid},
+        r = self.client.get("/unit/context/%s" % self.bad_uid,
                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(r.status_code, 404)
 
     def test_get_more_context_bad_store_unit(self):
         """Checks for store/unit correctness when passing an invalid path/uid."""
-        r = self.client.get("%(pootle_path)s/context/%(uid)s" %\
-                            {'pootle_path': self.bad_path,
-                             'uid': self.bad_uid},
+        r = self.client.get("/unit/context/%s" % self.bad_uid,
                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(r.status_code, 404)
 
     #
     # Tests for the get_edit_unit() view.
     #
-    def test_get_edit_unit_bad_request(self):
-        """Not an AJAX request, should return HTTP 400."""
-        r = self.client.get("%(pootle_path)s/edit/%(uid)s" %\
-                            {'pootle_path': self.path,
-                             'uid': self.uid})
-        self.assertEqual(r.status_code, 400)
-
     def test_get_edit_unit_response_ok(self):
         """AJAX request, should return HTTP 200."""
-        r = self.client.get("%(pootle_path)s/edit/%(uid)s" %\
-                            {'pootle_path': self.path,
-                             'uid': self.uid},
+        r = self.client.get("/unit/edit/%s" % self.uid,
                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(r.status_code, 200)
 
-    def test_get_edit_unit_bad_store(self):
-        """Checks for store correctness when passing an invalid path."""
-        r = self.client.get("%(pootle_path)s/edit/%(uid)s" %\
-                            {'pootle_path': self.bad_path,
-                             'uid': self.uid},
-                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-        self.assertEqual(r.status_code, 404)
-
     def test_get_edit_unit_bad_unit(self):
         """Checks for unit correctness when passing an invalid uid."""
-        r = self.client.get("%(pootle_path)s/edit/%(uid)s" %\
-                            {'pootle_path': self.path,
-                             'uid': self.bad_uid},
+        r = self.client.get("/unit/edit/%s" % self.bad_uid,
                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(r.status_code, 404)
 
     def test_get_edit_unit_bad_store_unit(self):
         """Checks for store/unit correctness when passing an invalid path/uid."""
-        r = self.client.get("%(pootle_path)s/edit/%(uid)s" %\
-                            {'pootle_path': self.bad_path,
-                             'uid': self.bad_uid},
+        r = self.client.get("/unit/edit/%s" % self.bad_uid,
                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(r.status_code, 404)
 
     def test_get_edit_unit_good_response(self):
         """Checks for returned data correctness."""
-        r = self.client.get("%(pootle_path)s/edit/%(uid)s" %\
-                            {'pootle_path': self.path,
-                             'uid': self.uid},
+        r = self.client.get("/unit/edit/%s" % self.uid,
                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(r.status_code, 200)
         self.assertTemplateUsed(r, 'unit/edit.html')
@@ -294,12 +242,6 @@ class XHRTestCase(PootleTestCase):
     #
     # Tests for the get_failing_checks() view.
     #
-    def test_get_failing_checks_bad_request(self):
-        """Not an AJAX request, should return HTTP 400."""
-        r = self.client.get("%(pootle_path)s/checks/" %\
-                            {'pootle_path': self.path})
-        self.assertEqual(r.status_code, 400)
-
     def test_get_failing_checks_response_ok(self):
         """AJAX request, should return HTTP 200."""
         r = self.client.get("%(pootle_path)s/checks/" %\
@@ -318,106 +260,20 @@ class XHRTestCase(PootleTestCase):
     #
     # Tests for the process_submit() view.
     #
-    def test_process_submit_bad_request(self):
-        """Not an AJAX request, should return HTTP 400."""
-        for m in ("submission", "suggestion"):
-            r = self.client.get("%(pootle_path)s/process/%(uid)s/%(method)s" %\
-                                {'pootle_path': self.path,
-                                 'uid': self.uid,
-                                 'method': m})
-            self.assertEqual(r.status_code, 400)
-
     def test_process_submit_response_ok(self):
         """AJAX request, should return HTTP 200."""
         for m in ("submission", "suggestion"):
-            r = self.client.post("%(pootle_path)s/process/%(uid)s/%(method)s" %\
-                                {'pootle_path': self.path,
-                                 'uid': self.uid,
-                                 'method': m},
+            r = self.client.post("/unit/process/%(uid)s/%(method)s" %\
+                                 {'uid': self.uid, 'method': m},
                                 self.post_data,
                                 HTTP_X_REQUESTED_WITH='XMLHttpRequest')
             self.assertEqual(r.status_code, 200)
 
-    def test_process_submit_bad_store(self):
-        """Checks for store correctness when passing an invalid path."""
-        for m in ("submission", "suggestion"):
-            r = self.client.post("%(pootle_path)s/process/%(uid)s/%(method)s" %\
-                                {'pootle_path': self.bad_path,
-                                 'uid': self.uid,
-                                 'method': m},
-                                self.post_data,
-                                HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-            self.assertEqual(r.status_code, 404)
-
     def test_process_submit_bad_unit(self):
         """Checks for unit correctness when passing an invalid uid."""
         for m in ("submission", "suggestion"):
-            r = self.client.post("%(pootle_path)s/process/%(uid)s/%(method)s" %\
-                                {'pootle_path': self.path,
-                                 'uid': self.bad_uid,
-                                 'method': m},
-                                self.post_data,
-                                HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-            self.assertEqual(r.status_code, 404)
-
-    def test_process_submit_bad_store_unit(self):
-        """Checks for store/unit correctness when passing an invalid path/uid."""
-        for m in ("submission", "suggestion"):
-            r = self.client.post("%(pootle_path)s/process/%(uid)s/%(method)s" %\
-                                {'pootle_path': self.bad_path,
-                                 'uid': self.bad_uid,
-                                 'method': m},
-                                self.post_data,
-                                HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-            self.assertEqual(r.status_code, 404)
-
-    def test_process_submit_bad_form(self):
-        """Checks for form correctness when bad POST data is passed."""
-        form_data = self.post_data
-        del(form_data['index'])
-        for m in ("submission", "suggestion"):
-            r = self.client.post("%(pootle_path)s/process/%(uid)s/%(method)s" %\
-                                {'pootle_path': self.path,
-                                 'uid': self.uid,
-                                 'method': m},
-                                form_data,
-                                HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-            self.assertEqual(r.status_code, 400)
-
-
-class XHRTestAnonymous(XHRTestCase):
-    """
-    Tests the XHR views as an anonymous user.
-    """
-    def setUp(self):
-        super(XHRTestAnonymous, self).setUp()
-        self.user = User.objects.get(username='nobody')
-        self.profile = get_profile(self.user)
-
-    #
-    # Overriden tests for process_submit()
-    # As we are anonymous users, we will always get a captcha
-    #
-    def test_process_submit_bad_store(self):
-        """Checks for store correctness when passing an invalid path."""
-        for m in ("submission", "suggestion"):
-            r = self.client.post("%(pootle_path)s/process/%(uid)s/%(method)s" %\
-                                {'pootle_path': self.bad_path,
-                                 'uid': self.uid,
-                                 'method': m},
-                                self.post_data,
-                                HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-            self.assertEqual(r.status_code, 200)
-            j = simplejson.loads(r.content)
-            self.assertTrue('captcha' in j.keys())
-
-    def test_process_submit_bad_unit(self):
-        """Checks for unit correctness when passing an invalid uid."""
-        for m in ("submission", "suggestion"):
-            r = self.client.post("%(pootle_path)s/process/%(uid)s/%(method)s" %\
-                                {'pootle_path': self.path,
-                                 'uid': self.bad_uid,
-                                 'method': m},
+            r = self.client.post("/unit/process/%(uid)s/%(method)s" %\
+                                {'uid': self.bad_uid, 'method': m},
                                 self.post_data,
                                 HTTP_X_REQUESTED_WITH='XMLHttpRequest')
             self.assertEqual(r.status_code, 200)
@@ -427,10 +283,8 @@ class XHRTestAnonymous(XHRTestCase):
     def test_process_submit_bad_store_unit(self):
         """Checks for store/unit correctness when passing an invalid path/uid."""
         for m in ("submission", "suggestion"):
-            r = self.client.post("%(pootle_path)s/process/%(uid)s/%(method)s" %\
-                                {'pootle_path': self.bad_path,
-                                 'uid': self.bad_uid,
-                                 'method': m},
+            r = self.client.post("/unit/process/%(uid)s/%(method)s" %\
+                                {'uid': self.bad_uid, 'method': m},
                                 self.post_data,
                                 HTTP_X_REQUESTED_WITH='XMLHttpRequest')
             self.assertEqual(r.status_code, 200)
@@ -442,10 +296,8 @@ class XHRTestAnonymous(XHRTestCase):
         form_data = self.post_data
         del(form_data['index'])
         for m in ("submission", "suggestion"):
-            r = self.client.post("%(pootle_path)s/process/%(uid)s/%(method)s" %\
-                                {'pootle_path': self.path,
-                                 'uid': self.uid,
-                                 'method': m},
+            r = self.client.post("/unit/process/%(uid)s/%(method)s" %\
+                                {'uid': self.uid, 'method': m},
                                 form_data,
                                 HTTP_X_REQUESTED_WITH='XMLHttpRequest')
             self.assertEqual(r.status_code, 200)
@@ -455,10 +307,8 @@ class XHRTestAnonymous(XHRTestCase):
     def test_process_submit_good_response(self):
         """Checks for returned data correctness."""
         for m in ("submission", "suggestion"):
-            r = self.client.post("%(pootle_path)s/process/%(uid)s/%(method)s" %\
-                                {'pootle_path': self.path,
-                                 'uid': self.uid,
-                                 'method': m},
+            r = self.client.post("/unit/process/%(uid)s/%(method)s" %\
+                                {'uid': self.uid, 'method': m},
                                 self.post_data,
                                 HTTP_X_REQUESTED_WITH='XMLHttpRequest')
             self.assertEqual(r.status_code, 200)
@@ -466,23 +316,67 @@ class XHRTestAnonymous(XHRTestCase):
             self.assertTrue('captcha' in j.keys())
 
 
-class XHRTestNobody(XHRTestCase):
+
+class XHRTestNobody(XHRTestAnonymous):
     """
     Tests the XHR views as a non-privileged user.
     """
+    username = 'nonpriv'
+    password = 'nonpriv'
     def setUp(self):
         super(XHRTestNobody, self).setUp()
-        self.user = User.objects.get(username='nonpriv')
-        self.profile = get_profile(self.user)
-        self.client.login(username='nonpriv', password='nonpriv')
+        self.client.login(username=self.username, password=self.password)
+
+    def test_process_submit_bad_unit(self):
+        """Checks for unit correctness when passing an invalid uid."""
+        for m in ("submission", "suggestion"):
+            r = self.client.post("/unit/process/%(uid)s/%(method)s" %\
+                                {'uid': self.bad_uid, 'method': m},
+                                self.post_data,
+                                HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+            self.assertEqual(r.status_code, 404)
+
+    def test_process_submit_bad_store_unit(self):
+        """Checks for store/unit correctness when passing an invalid path/uid."""
+        for m in ("submission", "suggestion"):
+            r = self.client.post("/unit/process/%(uid)s/%(method)s" %\
+                                {'uid': self.bad_uid, 'method': m},
+                                self.post_data,
+                                HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+            self.assertEqual(r.status_code, 404)
+
+    def test_process_submit_bad_form(self):
+        """Checks for form correctness when bad POST data is passed."""
+        form_data = self.post_data
+        del(form_data['index'])
+        for m in ("submission", "suggestion"):
+            r = self.client.post("/unit/process/%(uid)s/%(method)s" %\
+                                {'uid': self.uid, 'method': m},
+                                form_data,
+                                HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+            self.assertEqual(r.status_code, 400)
+
+    def test_process_submit_good_response(self):
+        """Checks for returned data correctness."""
+        r = self.client.post("/unit/process/%(uid)s/%(method)s" %\
+                             {'uid': self.uid, 'method': "suggestion"}, self.post_data,
+                                HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(r.status_code, 200)
+        unit = Unit.objects.get(id=self.uid)
+        sugg = unit.get_suggestions()[0]
+        self.assertEqual(sugg.target, self.post_data['target_f_0'])
+        r = self.client.post("/unit/process/%(uid)s/%(method)s" %\
+                             {'uid': self.uid, 'method': "submission"}, self.post_data,
+                                HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(r.status_code, 200)
+        unit = Unit.objects.get(id=self.uid)
+        self.assertEqual(unit.target, self.post_data['target_f_0'])
 
 
-class XHRTestAdmin(XHRTestCase):
+class XHRTestAdmin(XHRTestNobody):
     """
     Tests the XHR views as admin user.
     """
-    def setUp(self):
-        super(XHRTestAdmin, self).setUp()
-        self.user = User.objects.get(username='admin')
-        self.profile = get_profile(self.user)
-        self.client.login(username='admin', password='admin')
+    username = 'admin'
+    password = 'admin'
+
