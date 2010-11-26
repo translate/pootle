@@ -19,7 +19,6 @@
 # along with Pootle; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from pootle_app.models.permissions import check_permission
 from pootle_app import url_state, url_manip
 
 ################################################################################
@@ -53,8 +52,7 @@ def get_store(request):
 
 ################################################################################
 
-def translate(request, path, **kwargs):
-    params = TranslatePageState(request.GET, **kwargs)
+def translate(pathobj, state=None, check=None, suggestions=False):
     # In Pootle, URLs ending in translate.html are used when the user
     # translates all files in a directory (for example, if the user is
     # going through all fuzzy translations in a directory). If this is
@@ -63,11 +61,21 @@ def translate(request, path, **kwargs):
     # when the user clicks submit/skip/suggest on a translation
     # unit. But otherwise the store name is the last component of the
     # path name and we don't need to pass the 'store' GET variable.
-    if path[-1] == '/':
-        path = path + 'translate.html'
+    path = pathobj.pootle_path
+    if path.endswith('/'):
+        path += 'translate.html'
     else:
-        path = path + '/translate/'
-    return url_manip.make_url(path, params.encode())
+        path += '/translate/'
+
+    if state:
+        path += '#filter/%s' % state
+    elif check:
+        path += '#filter/checks/%s' % check
+    elif suggestions:
+        path += '#filter/suggestions'
+
+    return path
+
 
 def show_directory(request, directory_path, **kwargs):
     params = ProjectIndexState(request.GET, **kwargs).encode()
