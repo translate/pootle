@@ -291,7 +291,7 @@ def get_current_units(request, step_queryset, units_queryset):
             pass
     elif 'page' in request.GET:
         # load first unit in a specific page
-        profile = get_profile(request.user)
+        profile = request.profile
         unit_rows = profile.get_unit_rows()
         pager = paginate(request, units_queryset, items=unit_rows)
         edit_unit = pager.object_list[0]
@@ -376,8 +376,7 @@ def translate_page(request, units_queryset, store=None):
     canreview = check_permission("review", request)
     translation_project = request.translation_project
     language = translation_project.language
-    # shouldn't we globalize profile context
-    profile = get_profile(request.user)
+    profile = request.profile
 
     #step_queryset = None
     search_form = SearchForm()
@@ -419,7 +418,7 @@ def translate_page(request, units_queryset, store=None):
                        form.instance._state_updated:
                     form.save()
                     sub = Submission(translation_project=translation_project,
-                                     submitter=get_profile(request.user))
+                                     submitter=profile)
                     sub.save()
 
             elif cansuggest and 'suggest' in request.POST:
@@ -427,10 +426,10 @@ def translate_page(request, units_queryset, store=None):
                     #HACKISH: django 1.2 stupidly modifies instance on
                     # model form validation, reload unit from db
                     prev_unit = Unit.objects.get(id=prev_unit.id)
-                    sugg = prev_unit.add_suggestion(form.cleaned_data['target_f'], get_profile(request.user))
+                    sugg = prev_unit.add_suggestion(form.cleaned_data['target_f'], profile)
                     if sugg:
                         SuggestionStat.objects.get_or_create(translation_project=translation_project,
-                                                             suggester=get_profile(request.user),
+                                                             suggester=profile,
                                                              state='pending', unit=prev_unit.id)
         else:
             # form failed, don't skip to next unit
@@ -789,7 +788,7 @@ def get_edit_unit(request, unit):
     form = form_class(instance=unit)
     store = unit.store
     directory = store.parent
-    profile = get_profile(request.user)
+    profile = request.profile
     alt_src_langs = get_alt_src_langs(request, profile, translation_project)
     project = translation_project.project
     template_vars = {'unit': unit,
@@ -881,17 +880,17 @@ def process_submit(request, unit, type):
                form.instance._state_updated:
                 form.save()
                 sub = Submission(translation_project=translation_project,
-                                 submitter=get_profile(request.user))
+                                 submitter=request.profile)
                 sub.save()
         elif type == 'suggestion':
             if form.instance._target_updated:
                 #HACKISH: django 1.2 stupidly modifies instance on
                 # model form validation, reload unit from db
                 unit = Unit.objects.get(id=unit.id)
-                sugg = unit.add_suggestion(form.cleaned_data['target_f'], get_profile(request.user))
+                sugg = unit.add_suggestion(form.cleaned_data['target_f'], request.profile)
                 if sugg:
                     SuggestionStat.objects.get_or_create(translation_project=translation_project,
-                                                         suggester=get_profile(request.user),
+                                                         suggester=request.profile,
                                                          state='pending', unit=unit.id)
         rcode = 200
     else:
@@ -927,7 +926,7 @@ def reject_suggestion(request, unit, suggid):
                                                                      suggester=sugg.user,
                                                                      state='pending',
                                                                      unit=unit.id)
-            suggstat.reviewer = get_profile(request.user)
+            suggstat.reviewer = request.profile
             suggstat.state = 'rejected'
             suggstat.save()
     response = simplejson.dumps(json)
