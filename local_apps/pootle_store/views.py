@@ -399,6 +399,11 @@ def get_view_units(request, units_queryset, limit=0):
     current_unit = None
     json = {}
 
+    try:
+        limit = int(limit)
+    except ValueError:
+        limit = None
+
     if not limit:
         limit = request.profile.get_unit_rows()
 
