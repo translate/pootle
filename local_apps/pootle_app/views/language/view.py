@@ -76,12 +76,10 @@ def set_request_context(f):
 def translate(request, translation_project, dir_path=None):
     if dir_path:
         pootle_path = translation_project.pootle_path + dir_path
-        units_query = Unit.objects.filter(store__pootle_path__startswith=pootle_path)
         request.directory = Directory.objects.get(pootle_path=pootle_path)
     else:
-        units_query = Unit.objects.filter(store__translation_project=translation_project)
         request.directory = translation_project.directory
-    return translate_page(request, units_query)
+    return translate_page(request)
 
 @get_translation_project
 @set_request_context

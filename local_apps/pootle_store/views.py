@@ -283,6 +283,7 @@ def get_step_query(request, units_queryset):
             units_queryset = get_search_step_query(request.translation_project, search_form, units_queryset)
     return units_queryset
 
+def translate_page(request):
 def get_current_units(request, step_queryset, units_queryset):
     """returns current active unit, and in case of POST previously active unit"""
     edit_unit = None
@@ -377,7 +378,6 @@ def translate_end(request, translation_project):
     return render_to_response('store/translate_end.html', context, context_instance=RequestContext(request))
 
 
-def translate_page(request, units_queryset, store=None):
     cantranslate = check_permission("translate", request)
     cansuggest = check_permission("suggest", request)
     canreview = check_permission("review", request)
@@ -529,8 +529,8 @@ def translate_page(request, units_queryset, store=None):
         'canreview': canreview,
         #'form': form,
         'search_form': search_form,
+        'store': getattr(request, "store", None),
         #'edit_unit': edit_unit,
-        'store': store,
         #'pager': pager,
         #'units': units,
         'language': language,
@@ -549,7 +549,7 @@ def translate_page(request, units_queryset, store=None):
 @never_cache
 @get_store_context('view')
 def translate(request, store):
-    return translate_page(request, store.units, store=store)
+    return translate_page(request)
 
 #
 # Views used with XMLHttpRequest requests.
