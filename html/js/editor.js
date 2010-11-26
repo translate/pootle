@@ -761,12 +761,21 @@
 
         // Store view units in the client
         if (data.units.length) {
-          PTL.editor.pagesGot[opts.page] = [];
+          // Determine in which page we want to save units, as we may not
+          // have specified it in the GET parameters — in that case, the
+          // page number is specified within the response pager
+          if (opts.withUid && data.pager) {
+            var page = data.pager.number;
+          } else {
+            var page = opts.page;
+          }
+
+          PTL.editor.pagesGot[page] = [];
 
           // Copy retrieved units to the client
           $.each(data.units, function () {
             PTL.editor.units[this.id] = this;
-            PTL.editor.pagesGot[opts.page].push(this.id);
+            PTL.editor.pagesGot[page].push(this.id);
           });
 
           PTL.editor.hasResults = true;
