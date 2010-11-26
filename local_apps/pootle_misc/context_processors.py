@@ -35,6 +35,7 @@ def pootle_context(request):
             'MEDIA_URL': settings.MEDIA_URL,
             'POOTLE_VERSION': sver,
             'CACHE_TIMEOUT': settings.CACHE_MIDDLEWARE_SECONDS,
+            'DEBUG': settings.DEBUG,
         },
     }
     return context
