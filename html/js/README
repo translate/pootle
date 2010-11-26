@@ -62,8 +62,8 @@ Directory contents
 
   + jquery/
 
-    - jquery.min.js :
-      The jQuery library, version 1.4.4, minified.
+    - jquery.js :
+      The jQuery library, version 1.4.4.
 
     - jquery.bidi.js :
       jQuery plugin used to automatically set line direction of news
@@ -82,11 +82,11 @@ Directory contents
 
       http://gsgd.co.uk/sandbox/jquery/easing/
 
-    - jquery.fancybox.min.js :
+    - jquery.fancybox.js :
       Fancybox plugin for jQuery that adds the ability to display overlay
       boxes with all sorts of content: images, HTML, AJAX data, ...
 
-      Using version 1.3.1, minified.
+      Using version 1.3.4.
 
       http://fancybox.net/
 
@@ -106,7 +106,7 @@ Directory contents
 
       http://github.com/tkyk/jquery-history-plugin/
 
-    - jquery.jsonp.min.js :
+    - jquery.jsonp.js :
       Alternative solution to jQuery's JSONP support.
 
       jQuery's JSONP support has some limitations (it can't handle error
@@ -115,9 +115,11 @@ Directory contents
 
       These features may be implemented in jQuery core at some stage.
 
+      Using version 2.1.4.
+
       https://code.google.com/p/jquery-jsonp/
 
-    - jquery.serializeObject.min.js :
+    - jquery.serializeObject.js :
       A method for serializing forms directly into objects.
 
       Whereas jQuery’s built-in .serializeArray() method serializes a form
