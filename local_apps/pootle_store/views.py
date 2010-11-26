@@ -602,12 +602,12 @@ def _filter_ctxt_units(units_qs, index, limit, gap=0):
     """
     result = {}
     if index - gap > 0:
-        before = units_qs.filter(index__lt=index)[gap:limit]
+        before = units_qs.filter(index__lt=index)[gap:limit+gap]
         result['before'] = _build_units_list(before)
     else:
         result['before'] = []
     #FIXME: can we avoid this query if length is known?
-    after = units_qs.filter(index__gt=index)[gap:limit]
+    after = units_qs.filter(index__gt=index)[gap:limit+gap]
     result['after'] = _build_units_list(after)
     return result
 
