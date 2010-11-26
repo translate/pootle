@@ -24,6 +24,7 @@ from django.core.cache import cache
 from django.conf import settings
 from django.core.paginator import Paginator
 from django.utils.encoding import iri_to_uri
+from django.http import HttpResponseBadRequest
 
 def getfromcache(function, timeout=settings.OBJECT_CACHE_TIMEOUT):
     def _getfromcache(instance, *args, **kwargs):
@@ -93,3 +94,22 @@ def add_percentages(quick_stats):
     quick_stats['struntranslatedpercentage'] = 100 - quick_stats['strtranslatedpercentage'] - quick_stats['strfuzzypercentage']
 
     return quick_stats
+
+def ajax_required(f):
+    """
+    AJAX request required decorator
+    use it in your views:
+
+    @ajax_required
+    def my_view(request):
+        ....
+
+    Taken from:
+    http://djangosnippets.org/snippets/771/
+    """
+    def wrapper(request, *args, **kwargs):
+        if not settings.DEBUG and not request.is_ajax():
+            return HttpResponseBadRequest("This must be an AJAX request.")
+        return f(request, *args, **kwargs)
+    return wrapper
+

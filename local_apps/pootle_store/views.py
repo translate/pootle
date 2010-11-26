@@ -42,7 +42,7 @@ from django.utils.encoding import iri_to_uri
 
 from pootle_misc.baseurl import redirect
 from pootle_app.models.permissions import get_matching_permissions, check_permission, check_profile_permission
-from pootle_misc.util import paginate
+from pootle_misc.util import paginate, ajax_required
 from pootle_profile.models import get_profile
 from pootle_translationproject.forms import SearchForm
 from pootle_statistics.models import Submission
@@ -52,7 +52,7 @@ from pootle_app.project_tree import ensure_target_dir_exists
 from pootle_store.models import Store, Unit
 from pootle_store.forms import unit_form_factory, highlight_whitespace
 from pootle_store.templatetags.store_tags import fancy_highlight, find_altsrcs, get_sugg_list, highlight_diffs, pluralize_source, pluralize_target
-from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED, absolute_real_path, ajax_required
+from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED, absolute_real_path
 from pootle_store.filetypes import factory_classes, is_monolingual
 
 def _common_context(request,  translation_project, permission_codes):
