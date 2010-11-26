@@ -37,6 +37,7 @@ from django.utils.translation.trans_real import parse_accept_lang_header
 from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from django.core.cache import cache
 from django.utils import simplejson
+from django.views.decorators.cache import never_cache
 from django.utils.encoding import iri_to_uri
 
 from pootle_misc.baseurl import redirect
@@ -469,6 +470,7 @@ def get_more_context(request, unit):
     response = jsonify(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
 
+@never_cache
 @ajax_required
 @get_unit_context('view')
 def get_edit_unit(request, unit):
