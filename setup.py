@@ -174,7 +174,7 @@ def list_tree(target_base, root):
 
 class PootleMinifyJS(DistutilsBuild):
     # Replace this with the path to the Google Closure Compiler
-    JS_COMPILER = "/path/to/compiler.jar"
+    JS_COMPILER = "./compiler.jar"
 
     def minify_js(self):
         """Minify and concatenate JS files within bundles"""
