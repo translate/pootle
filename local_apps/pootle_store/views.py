@@ -727,14 +727,18 @@ def get_view_units(request, units_queryset, limit=0):
 
     pager = paginate(request, step_queryset, items=limit, page=page)
 
+    json["units"] = _build_units_list(pager.object_list)
+
     # Return paging information if requested to do so
     if request.GET.get('pager', False):
         json["pager"] = _build_pager_dict(pager)
         if not current_unit:
-            current_unit = pager.object_list[0]
-        json["uid"] = current_unit.id
-
-    json["units"] = _build_units_list(pager.object_list)
+            try:
+                json["uid"] = json["units"][0]["id"]
+            except IndexError:
+                pass
+        else:
+            json["uid"] = current_unit.id
 
     response = jsonify(json)
     return HttpResponse(response, mimetype="application/json")
