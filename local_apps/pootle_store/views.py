@@ -55,6 +55,13 @@ from pootle_store.templatetags.store_tags import fancy_highlight, find_altsrcs, 
 from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED, absolute_real_path
 from pootle_store.filetypes import factory_classes, is_monolingual
 
+def jsonify(json):
+    if settings.DEBUG:
+        indent = 4
+    else:
+        indent = None
+    return simplejson.dumps(json, indent=indent)
+
 def _common_context(request,  translation_project, permission_codes):
     """adds common context to request object and checks permissions"""
     request.translation_project = translation_project
@@ -729,7 +736,7 @@ def get_view_units(request, units_queryset, limit=0):
 
     json["units"] = _build_units_list(pager.object_list)
 
-    response = simplejson.dumps(json)
+    response = jsonify(json)
     return HttpResponse(response, mimetype="application/json")
 
 
@@ -760,7 +767,7 @@ def get_more_context(request, unit):
 
     json["ctxt"] = _filter_ctxt_units(store.units, unit.index, 2, gap)
     rcode = 200
-    response = simplejson.dumps(json)
+    response = jsonify(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
 
 @ajax_required
@@ -811,7 +818,7 @@ def get_edit_unit(request, unit):
     # Return context rows if filtering is applied
     if _is_filtered(request) or request.GET.get('filter', 'all') != 'all':
         json['ctxt'] = _filter_ctxt_units(store.units, unit.index, 2)
-    response = simplejson.dumps(json)
+    response = jsonify(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
 
 
@@ -841,7 +848,7 @@ def get_failing_checks(request, pathobj):
                         'text': stats}
             checkopts.append(checkopt)
             json["checks"] = checkopts
-    response = simplejson.dumps(json)
+    response = jsonify(json)
     return HttpResponse(response, mimetype="application/json")
 
 
@@ -898,7 +905,7 @@ def process_submit(request, unit, type):
         #FIXME: we should display validation errors here
         rcode = 400
         json["msg"] = _("Failed to process submit.")
-    response = simplejson.dumps(json)
+    response = jsonify(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
 
 
@@ -929,7 +936,7 @@ def reject_suggestion(request, unit, suggid):
             suggstat.reviewer = request.profile
             suggstat.state = 'rejected'
             suggstat.save()
-    response = simplejson.dumps(json)
+    response = jsonify(json)
     return HttpResponse(response, mimetype="application/json")
 
 @ajax_required
@@ -966,7 +973,7 @@ def accept_suggestion(request, unit, suggid):
                              submitter=request.profile,
                              from_suggestion=suggstat)
             sub.save()
-    response = simplejson.dumps(json)
+    response = jsonify(json)
     return HttpResponse(response, mimetype="application/json")
 
 
@@ -986,5 +993,5 @@ def reject_qualitycheck(request, unit, checkid):
         except ObjectDoesNotExist:
             raise Http404
 
-    response = simplejson.dumps(json)
+    response = jsonify(json)
     return HttpResponse(response, mimetype="application/json")
