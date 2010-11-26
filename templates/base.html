@@ -30,11 +30,17 @@
         <link rel="shortcut icon" href="{{ "favicon.ico"|m }}" />
         {% endblock favicon %}
         {% block js %}
+        {% if DEBUG %}
         <script type="text/javascript" src="{{ "js/jquery/jquery.js"|m }}"></script>
+        <script type="text/javascript" src="{{ "js/jquery/jquery.bidi.js"|m }}"></script>
         <script type="text/javascript" src="{{ "js/jquery/jquery.tipsy.js"|m }}"></script>
         <script type="text/javascript" src="{{ "js/jquery/jquery.cookie.js"|m }}"></script>
         <script type="text/javascript" src="{{ "js/shortcut.js"|m }}"></script>
         <script type="text/javascript" src="{{ "js/common.js"|m }}"></script>
+        <script type="text/javascript" src="{{ "js/sorttable.js"|m }}"></script>
+        {% else %}
+        <script type="text/javascript" src="{{ "js/common_bundle.js"|m }}"></script>
+        {% endif %}
         <script type="text/javascript">
           function l(path) {
             var basepath = "{{ settings.SCRIPT_NAME  }}";
@@ -49,6 +55,7 @@
         $(document).ready(function() {
             $("[title], [original-title]").tipsy({gravity: $.fn.tipsy.autoNSedge, html: true, fade: true, delayIn: 750, live: true});
             $.ajaxSetup({ traditional: true });
+            initZoom();
         });
         </script>
         {% endblock js %}
@@ -57,9 +64,6 @@
 
     <body id="{% if body.id %}{{ body.id }}{% else %}home{% endif %}"
           class="{% block bodyclass %}{% endblock %}">
-        <script type="text/javascript">
-            initZoom();
-        </script>
         {% block body %}
         <div id="wrapper">
             <div id="header">

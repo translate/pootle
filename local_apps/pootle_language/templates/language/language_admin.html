@@ -24,5 +24,9 @@
 {% endblock %}
 
 {% block scripts_extra %}
+{% if DEBUG %}
 <script type="text/javascript" src='{{ "js/admin.js"|m }}'></script>
+{% else %}
+<script type="text/javascript" src='{{ "js/admin_bundle.js"|m }}'></script>
+{% endif %}
 {% endblock %}

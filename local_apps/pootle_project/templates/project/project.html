@@ -62,8 +62,6 @@
 {% endblock postcontent %}
 
 {% block scripts_extra %}
-<script type="text/javascript" src='{{ "js/sorttable.js"|m }}'></script>
-<script type="text/javascript" src='{{ "js/jquery/jquery.bidi.js"|m }}'></script>
 <script type="text/javascript">
 $(document).ready(function() {
   $(".intro, td.stats-name").filter(":not([dir])").bidi();

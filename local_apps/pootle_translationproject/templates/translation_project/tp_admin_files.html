@@ -29,6 +29,9 @@
 
 {% block scripts_extra %}
 {{ block.super }}
-<script type="text/javascript" src='{{ "js/admin.js"|m }}'></script>
-<script type="text/javascript" src='{{ "js/sorttable.js"|m }}'></script>
+{% if DEBUG %}
+<script type="text/javascript" src="{{ "js/admin.js"|m }}"></script>
+{% else %}
+<script type="text/javascript" src="{{ "js/admin_bundle.js"|m }}"></script>
+{% endif %}
 {% endblock %}
