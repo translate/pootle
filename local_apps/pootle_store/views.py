@@ -292,12 +292,14 @@ def translate_page(request):
     profile = request.profile
 
     search_form = SearchForm()
+    store = getattr(request, "store", None)
     context = {
         'cantranslate': cantranslate,
         'cansuggest': cansuggest,
         'canreview': canreview,
         'search_form': search_form,
-        'store': getattr(request, "store", None),
+        'store': store,
+        'store_id': store and store.id,
         'language': language,
         'translation_project': translation_project,
         'profile': profile,
