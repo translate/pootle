@@ -40,7 +40,7 @@ class AdminTests(PootleTestCase):
     def test_admin_rights(self):
         """checks that admin user can access admin pages"""
         response = self.client.get('/')
-        self.assertContains(response, "<a href='/admin/'>Admin</a>")
+        self.assertContains(response, "<a class=\"admin\" href='/admin/'>Admin</a>")
         response = self.client.get('/admin/')
         self.assertContains(response, 'Dependency Checks')
 
@@ -120,7 +120,7 @@ class AdminTests(PootleTestCase):
             'overwrite': 'overwrite',
             'do_upload': 'upload',
             }
-        response = self.client.post("/af/tutorial/", post_dict)
+        self.client.post("/af/tutorial/", post_dict)
 
         # Now we only test with 'in' since the header is added
         store = Store.objects.get(pootle_path="/af/tutorial/pootle.po")
@@ -174,9 +174,9 @@ msgstr "resto"
             'overwrite': 'overwrite',
             'do_upload': 'upload',
             }
-        response = self.client.post("/af/tutorial/", post_dict)
+        self.client.post("/af/tutorial/", post_dict)
         pootle_path = "/af/tutorial/pootle.po"
-        response = self.client.get(pootle_path + "/translate")
+        self.client.get(pootle_path + "/translate")
         time.sleep(1)
         pocontent = wStringIO.StringIO('#: test.c\nmsgid "test"\nmsgstr "blo3"\n\n#: fish.c\nmsgid "fish"\nmsgstr "stink"\n')
         pocontent.name = "pootle.po"
@@ -186,12 +186,12 @@ msgstr "resto"
             'overwrite': 'merge',
             'do_upload': 'upload',
             }
-        response = self.client.post("/af/tutorial/", post_dict)
+        self.client.post("/af/tutorial/", post_dict)
 
         # NOTE: this is what we do currently: any altered strings become suggestions.
         # It may be a good idea to change this
         mergedcontent = '#: fish.c\nmsgid "fish"\nmsgstr "stink"\n'
-        response = self.client.get(pootle_path + "/download")
+        self.client.get(pootle_path + "/download")
         store = Store.objects.get(pootle_path=pootle_path)
         self.assertTrue(store.file.read().find(mergedcontent) >= 0)
         suggestions = [str(sug) for sug in store.findunit('test').get_suggestions()]
@@ -237,7 +237,7 @@ msgstr "resto"
             'overwrite': 'overwrite',
             'do_upload': 'upload',
             }
-        response = self.client.post("/ar/tutorial/", post_dict)
+        self.client.post("/ar/tutorial/", post_dict)
 
         xlfcontent = wStringIO.StringIO('''<?xml version="1.0" encoding="utf-8"?>
         <xliff version="1.1" xmlns="urn:oasis:names:tc:xliff:document:1.1">
@@ -267,12 +267,11 @@ msgstr "resto"
             'overwrite': 'merge',
             'do_upload': 'upload',
             }
-        response = self.client.post("/ar/tutorial/", post_dict)
+        self.client.post("/ar/tutorial/", post_dict)
 
         # NOTE: this is what we do currently: any altered strings become suggestions.
         # It may be a good idea to change this
         mergedcontent = '#: test.c\nmsgid "test"\nmsgstr "rest"\n\n#: frog.c\nmsgid "tadpole"\nmsgstr "fish"\n'
-        suggestedcontent = '#: test.c\nmsgid ""\n"_: suggested by admin [595179475]\\n"\n"test"\nmsgstr "rested"\n'
         store = Store.objects.get(pootle_path="/ar/tutorial/test_upload_xliff.po")
         self.assertTrue(os.path.isfile(store.file.path))
         self.assertTrue(store.file.read().find(mergedcontent) >= 0)
@@ -283,15 +282,17 @@ msgstr "resto"
     def test_submit_translation(self):
         """Tests that we can translate units."""
         pootle_path = "/af/tutorial/pootle.po"
-        response = self.client.get(pootle_path + "/translate")
+        self.client.get(pootle_path + "/view/limit/1",
+                        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         time.sleep(1)
         submit_dict = {
             'target_f_0': 'submitted translation',
-            'submit': 'Submit',
             }
         submit_dict.update(unit_dict(pootle_path))
-        response = self.client.post(pootle_path + "/translate", submit_dict)
-
+        self.client.post("/unit/process/%d/%s" %  (submit_dict['id'], 'submission'),
+                         submit_dict, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        response = self.client.get("/unit/edit/%d" % submit_dict['id'],
+                                   HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertContains(response, 'submitted translation')
         response = self.client.get(pootle_path + "/download")
         store = Store.objects.get(pootle_path=pootle_path)
@@ -307,18 +308,19 @@ msgstr "resto"
             'overwrite': 'overwrite',
             'do_upload': 'upload',
             }
-        response = self.client.post("/ar/tutorial/", post_dict)
+        self.client.post("/ar/tutorial/", post_dict)
 
         pootle_path = '/ar/tutorial/test_plural_submit.po'
         submit_dict = {
             'target_f_0': 'a fish',
             'target_f_1': 'some fish',
             'target_f_2': 'lots of fish',
-            'submit': 'Submit',
             }
         submit_dict.update(unit_dict(pootle_path))
-        response = self.client.post(pootle_path + "/translate", submit_dict)
-
+        self.client.post("/unit/process/%d/%s" %  (submit_dict['id'], 'submission'),
+                         submit_dict, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        response = self.client.get("/unit/edit/%d" % submit_dict['id'],
+                                   HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertContains(response, 'a fish')
         self.assertContains(response, 'some fish')
         self.assertContains(response, 'lots of fish')
@@ -332,17 +334,19 @@ msgstr "resto"
             'overwrite': 'overwrite',
             'do_upload': 'upload',
             }
-        response = self.client.post("/ja/tutorial/", post_dict)
+        self.client.post("/ja/tutorial/", post_dict)
         pootle_path = "/ja/tutorial/test_plural_submit.po"
-        response = self.client.get(pootle_path + "/translate")
+        self.client.get(pootle_path + "/view/limit/1",
+                        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         time.sleep(1)
         submit_dict = {
             'target_f_0': 'just fish',
-            'submit': 'Submit',
             }
         submit_dict.update(unit_dict(pootle_path))
-        response = self.client.post(pootle_path + "/translate", submit_dict)
-
+        self.client.post("/unit/process/%d/%s" %  (submit_dict['id'], 'submission'),
+                         submit_dict, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        response = self.client.get("/unit/edit/%d" % submit_dict['id'],
+                                   HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertContains(response, 'just fish')
 
         expectedcontent = 'msgid "singular"\nmsgid_plural "plural"\nmsgstr[0] "just fish"\n'
@@ -357,16 +361,20 @@ msgstr "resto"
         # Fetch the page and check that the fuzzy checkbox is NOT checked.
         pootle_path = '/af/tutorial/pootle.po'
         unit_d = unit_dict(pootle_path)
-        response = self.client.get(pootle_path + '/translate')
+        self.client.get(pootle_path + "/view/limit/1",
+                        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         submit_dict = {
             'target_f_0': 'fuzzy translation',
             'state': 'on',
-            'submit': 'Submit',
             }
         submit_dict.update(unit_d)
-        response = self.client.post(pootle_path + "/translate", submit_dict)
+        self.client.post("/unit/process/%d/%s" %  (submit_dict['id'], 'submission'),
+                         submit_dict, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.client.get("/unit/edit/%d" % submit_dict['id'],
+                        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         # Fetch the page again and check that the fuzzy checkbox IS checked.
-        response = self.client.get(pootle_path + "/translate")
+        self.client.get(pootle_path + "/view/limit/1",
+                        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
 
         store = Store.objects.get(pootle_path=pootle_path)
         self.assertTrue(store.units[0].isfuzzy())
@@ -378,9 +386,14 @@ msgstr "resto"
             'submit': 'Submit',
             }
         submit_dict.update(unit_d)
-        response = self.client.post(pootle_path + "/translate", submit_dict)
+        self.client.post("/unit/process/%d/%s" %  (submit_dict['id'], 'submission'),
+                         submit_dict, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.client.get("/unit/edit/%d" % submit_dict['id'],
+                        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         # Fetch the page once more and check that the fuzzy checkbox is NOT checked.
-        response = self.client.get(pootle_path + "/translate")
+        self.client.get(pootle_path + "/view/limit/1",
+                        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        store = Store.objects.get(pootle_path=pootle_path)
         self.assertFalse(store.units[0].isfuzzy())
 
     def test_submit_translator_comments(self):
@@ -392,7 +405,10 @@ msgstr "resto"
             'submit': 'Submit',
             }
         submit_dict.update(unit_dict(pootle_path))
-        response = self.client.post(pootle_path + "/translate", submit_dict)
+        self.client.post("/unit/process/%d/%s" %  (submit_dict['id'], 'submission'),
+                         submit_dict, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.client.get("/unit/edit/%d" % submit_dict['id'],
+                        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         store = Store.objects.get(pootle_path=pootle_path)
         self.assertEqual(store.units[0].getnotes(), 'goodbye\nand thanks for all the fish')
 
@@ -417,7 +433,7 @@ class NonprivTests(PootleTestCase):
             'overwrite': 'merge',
             'do_upload': 'upload',
             }
-        response = self.client.post("/af/tutorial/", post_dict)
+        self.client.post("/af/tutorial/", post_dict)
 
         # Check that the orignal file didn't take the new suggestion.
         # We test with 'in' since the header is added
