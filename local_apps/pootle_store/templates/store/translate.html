@@ -56,7 +56,25 @@
 {% cache settings.CACHE_TIMEOUT translate_table edit_unit.id store.get_mtime cantranslate cansuggest canreview alt_src_codes unit_rows profile.id LANGUAGE_CODE %}
 {% endcomment %}
 <form action="" method="post" name="translate" id="translate">
-{% translate_table %}
+<div class="translate-form">
+    <div id="pootle_path" class="hide">{{ store.pootle_path }}</div>
+    <div id="directory" class="hide">{{ directory.pootle_path }}</div>
+    <div id="target_lang" class="hide">{{ language.code }}</div>
+    <noscript>
+      <h1>{% trans "Pootle's editor requires JavaScript" %}</h1>
+      <p>{% trans "Please enable JavaScript in your browser preferences and reload the page." %}</p>
+    </noscript>
+    <table cellpadding="0" cellspacing="0" class="translate-table{% if cansuggest and not cantranslate %} suggest-mode{% endif%}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+      <thead>
+        <tr lang="{{ LANGUAGE_CODE }}">
+          <th colspan="1" rowspan="1" class="translate-table-title translate-original"></th>
+          <th colspan="1" rowspan="1" class="translate-table-title translate-translation"></th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+</div>
 {% comment %}
 {% endcache %}
 {% endcomment %}
