@@ -172,6 +172,49 @@ def list_tree(target_base, root):
 # CLASSES
 ###############################################################################
 
+class PootleMinifyJS(DistutilsBuild):
+    # Replace this with the path to the Google Closure Compiler
+    JS_COMPILER = "/path/to/compiler.jar"
+
+    def minify_js(self):
+        """Minify and concatenate JS files within bundles"""
+        import shlex
+        import subprocess
+
+        bundles = {
+            'common': ('jquery/jquery.js', 'jquery/jquery.tipsy.js',
+                       'jquery/jquery.cookie.js', 'jquery/jquery.bidi.js',
+                       'common.js', 'sorttable.js', 'shortcut.js'),
+            'admin': ('admin.js', ),
+            'editor': ('jquery/jquery.easing.js', 'jquery/jquery.history.js',
+                       'jquery/jquery.tmpl.js', 'jquery/jquery.jsonp.js',
+                       'jquery/jquery.textarea-expander.js',
+                       'diff_match_patch.js', 'editor.js', 'json2.js',
+                       'jquery/jquery.fieldselection.js',
+                       'jquery/jquery.caret.js',
+                       'jquery/jquery.highlightRegex.js',
+                       'jquery/jquery.serializeObject.js')
+        }
+
+        print "Minifying JavaScript files"
+        for bundle in bundles:
+            cmd = "java -jar %(comp)s" %\
+                    {'comp': self.JS_COMPILER}
+
+            for filename in bundles[bundle]:
+                cmd += " --js %(fn)s" % {'fn': path.join("html", "js", filename)}
+
+            cmd += " --js_output_file %(bn)s_bundle.js" %\
+                    {'bn': path.join("html", "js", bundle)}
+
+            print "Bundling '%(bn)s' files into '%(bn)s_bundle.js'" %\
+                    {'bn': bundle}
+            args = shlex.split(cmd)
+            subprocess.Popen(args)
+
+    def run(self):
+        self.minify_js()
+
 class PootleBuildMo(DistutilsBuild):
     def build_mo(self):
         """Compile .mo files from available .po files"""
@@ -263,6 +306,6 @@ if __name__ == '__main__':
         install_requires=["translate-toolkit>=1.5.0", "Django>=1.0"],
         platforms=["any"],
         classifiers=classifiers,
-        cmdclass={'install': PootleInstall, 'build': PootleBuild, 'build_mo': PootleBuildMo},
+        cmdclass={'install': PootleInstall, 'build': PootleBuild, 'build_mo': PootleBuildMo, 'minify_js': PootleMinifyJS},
         **collect_options()
     )
