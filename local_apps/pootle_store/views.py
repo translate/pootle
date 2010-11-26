@@ -425,8 +425,7 @@ def get_view_units(request, units_queryset, limit=0):
         preceding = _get_index_in_qs(step_queryset, current_unit)
         page = preceding / limit + 1
     else:
-        # Try to get a given page number, otherwise assume it's the first one
-        page = int(request.GET.get('page', 1))
+        page = None
 
     pager = paginate(request, step_queryset, items=limit, page=page)
 
