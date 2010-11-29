@@ -73,9 +73,7 @@ class SiteConfigMiddleware(object):
             if db_tt_buildversion < code_tt_buildversion:
                 """Toolkit build version changed. clear stale quality checks data"""
                 logging.info("New Translate Toolkit version, flushing quality checks")
-                from pootle_store.models import Store, QualityCheck, CHECKED, PARSED
-                Store.objects.filter(state=CHECKED).update(state=PARSED)
-                QualityCheck.objects.filter(false_positive=False).delete()
+                dbupdate.flush_quality_checks()
                 config.set('TT_BUILDVERSION', code_tt_buildversion)
                 config.save()
 
