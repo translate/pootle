@@ -27,10 +27,26 @@ from pootle.i18n.gettext import ugettext as _
 from pootle.i18n.gettext import ungettext
 
 from pootle_app.models import Directory
-from pootle_store.models import Store
+from pootle_store.models import Store, QualityCheck, CHECKED, PARSED
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_misc.dbinit import stats_start, stats_language, stats_project, stats_end
+
+def flush_quality_checks():
+    """reverts stores to unchecked state. if store has false positives
+    marked updates quality checks keeping false postivies intact"""
+    for store in Store.objects.filter(state=CHECKED).iterator():
+        store_checks = QualityCheck.objects.filter(unit__store=store)
+        false_positives = store_checks.filter(false_positive=True).count()
+        if false_positives:
+            logging.debug("%s has false positives, updating quality checks", store.pootle_path)
+            for unit in store.units.iterator():
+                unit.update_qualitychecks(keep_false_positives=True)
+        else:
+            logging.debug("%s has no false positives, deleting checks", store.pootle_path)
+            store_checks.delete()
+            store.state = PARSED
+            store.save()
 
 def header(db_buildversion):
     text = """
