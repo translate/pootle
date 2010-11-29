@@ -380,14 +380,19 @@ class Unit(models.Model, base.TranslationUnit):
                 changed = True
         return changed
 
-    def update_qualitychecks(self, created=False):
+    def update_qualitychecks(self, created=False, keep_false_positives=False):
         """run quality checks and store result in database"""
+        existing = []
         if not created:
-            self.qualitycheck_set.all().delete()
+            checks = self.qualitycheck_set.all()
+            if keep_false_positives:
+                existing = set(checks.filter(false_positive=True).values_list('name', flat=True))
+                checks = checks.filter(false_positive=False)
+            checks.delete()
         if not self.target:
             return
         for name, message in self.store.translation_project.checker.run_filters(self).items():
-            if name == 'isfuzzy':
+            if name == 'isfuzzy' or name in existing:
                 continue
             self.qualitycheck_set.create(name=name, message=message)
 
