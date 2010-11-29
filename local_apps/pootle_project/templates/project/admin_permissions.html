@@ -15,7 +15,11 @@
 
 {% block css %}
 {{ block.super }}
+{% if DEBUG %}
 <link rel="stylesheet" type="text/css" href='{{ "admin.css"|m }}' />
+{% else %}
+<link rel="stylesheet" type="text/css" href='{{ "admin.min.css"|m }}' />
+{% endif %}
 {% endblock %}
 
 {% block bodyclass %}projectperm{% endblock %}

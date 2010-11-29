@@ -215,6 +215,36 @@ class PootleMinifyJS(DistutilsBuild):
     def run(self):
         self.minify_js()
 
+
+class PootleMinifyCSS(DistutilsBuild):
+    # Replace this with the path to the YUI Compressor
+    CSS_COMPILER = "./yuicompressor.jar"
+
+    def minify_css(self):
+        """Minify and concatenate CSS files"""
+        import shlex
+        import subprocess
+
+        files = ('style.css', 'admin.css', 'translate.css', 'fancybox-captcha.css')
+
+        print "Minifying CSS files"
+        for fn in files:
+            cmd = "java -jar %(comp)s" %\
+                    {'comp': self.CSS_COMPILER}
+
+            print "Minifying '%(bn)s' file into '%(bn)s.min.css'" %\
+                {'bn': fn[:-4]}
+            cmd += " -o %(ofn)s %(fn)s" %\
+                {'ofn': path.join("html", "%s.min.css" % fn[:-4]),
+                 'fn': path.join("html", fn)}
+
+            args = shlex.split(cmd)
+            subprocess.Popen(args)
+
+    def run(self):
+        self.minify_css()
+
+
 class PootleBuildMo(DistutilsBuild):
     def build_mo(self):
         """Compile .mo files from available .po files"""
@@ -306,6 +336,6 @@ if __name__ == '__main__':
         install_requires=["translate-toolkit>=1.5.0", "Django>=1.0"],
         platforms=["any"],
         classifiers=classifiers,
-        cmdclass={'install': PootleInstall, 'build': PootleBuild, 'build_mo': PootleBuildMo, 'minify_js': PootleMinifyJS},
+        cmdclass={'install': PootleInstall, 'build': PootleBuild, 'build_mo': PootleBuildMo, 'minify_js': PootleMinifyJS, 'minify_css': PootleMinifyCSS},
         **collect_options()
     )

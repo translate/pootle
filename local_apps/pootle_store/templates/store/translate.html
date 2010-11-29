@@ -20,9 +20,16 @@
 {% block css %}
 {% cache settings.CACHE_TIMEOUT translate_css user.is_authenticated %}
 {{ block.super }}
+{% if DEBUG %}
 <link rel="stylesheet" type="text/css" href='{{ "translate.css"|m }}' />
 {% if not user.is_authenticated %}
 <link rel="stylesheet" type="text/css" href='{{ "fancybox-captcha.css"|m }}' />
+{% endif %}
+{% else %}
+<link rel="stylesheet" type="text/css" href='{{ "translate.min.css"|m }}' />
+{% if not user.is_authenticated %}
+<link rel="stylesheet" type="text/css" href='{{ "fancybox-captcha.min.css"|m }}' />
+{% endif %}
 {% endif %}
 {% endcache %}
 {% endblock css %}
