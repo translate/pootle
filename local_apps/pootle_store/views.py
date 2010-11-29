@@ -318,18 +318,18 @@ def translate(request, store):
 # Views used with XMLHttpRequest requests.
 #
 
-def _filter_ctxt_units(units_qs, index, limit, gap=0):
+def _filter_ctxt_units(units_qs, unit, limit, gap=0):
     """
     Returns C{limit}*2 units that are before and after C{index}.
     """
     result = {}
-    if index - gap > 0:
-        before = units_qs.filter(index__lt=index)[gap:limit+gap]
+    if unit.index - gap > 0:
+        before = units_qs.filter(store=unit.store_id, index__lt=unit.index)[gap:limit+gap]
         result['before'] = _build_units_list(before)
     else:
         result['before'] = []
     #FIXME: can we avoid this query if length is known?
-    after = units_qs.filter(index__gt=index)[gap:limit+gap]
+    after = units_qs.filter(store=unit.store_id, index__gt=unit.index)[gap:limit+gap]
     result['after'] = _build_units_list(after)
     return result
 
@@ -471,7 +471,7 @@ def get_more_context(request, unit):
     json = {}
     gap = int(request.GET.get('gap', 0))
 
-    json["ctxt"] = _filter_ctxt_units(store.units, unit.index, 2, gap)
+    json["ctxt"] = _filter_ctxt_units(store.units, unit, 2, gap)
     rcode = 200
     response = jsonify(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
