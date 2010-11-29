@@ -524,7 +524,7 @@ def get_edit_unit(request, unit):
     rcode = 200
     # Return context rows if filtering is applied
     if _is_filtered(request) or request.GET.get('filter', 'all') != 'all':
-        json['ctxt'] = _filter_ctxt_units(store.units, unit.index, 2)
+        json['ctxt'] = _filter_ctxt_units(store.units, unit, 2)
     response = jsonify(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
 
