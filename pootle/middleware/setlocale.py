@@ -32,11 +32,15 @@ class SetLocale(object):
         # locale for these
         lang = translation.to_locale(translation.get_language())
         try:
+            if lang == 'tr' or lang.startswith('tr_'):
+                raise ValueError("Turkish locale broken due to changed meaning of lower()")
             locale.setlocale(locale.LC_ALL, (lang, 'UTF-8'))
         except:
             logging.debug('Failed to set locale to %s; using Pootle default', lang)
             lang = translation.to_locale(settings.LANGUAGE_CODE)
             try:
+                if lang == 'tr' or lang.startswith('tr_'):
+                    raise ValueError("Turkish locale broken due to changed meaning of lower()")
                 locale.setlocale(locale.LC_ALL, (lang, 'UTF-8'))
             except:
                 logging.debug('Failed to set locale to Pootle default (%s); loading system default', lang)
@@ -45,6 +49,8 @@ class SetLocale(object):
     def process_response(self, request, response):
         lang = translation.to_locale(settings.LANGUAGE_CODE)
         try:
+            if lang == 'tr' or lang.startswith('tr_'):
+                raise ValueError("Turkish locale broken due to changed meaning of lower()")
             locale.setlocale(locale.LC_ALL, (lang, 'UTF-8'))
         except:
             logging.debug('Failed to set locale to Pootle default (%s); loading system default', lang)
@@ -54,6 +60,8 @@ class SetLocale(object):
     def process_exception(self, request, exception):
         lang = translation.to_locale(settings.LANGUAGE_CODE)
         try:
+            if lang == 'tr' or lang.startswith('tr_'):
+                raise ValueError("Turkish locale broken due to changed meaning of lower()")
             locale.setlocale(locale.LC_ALL, (lang, 'UTF-8'))
         except:
             logging.debug('Failed to set locale to Pootle default (%s); loading system default', lang)
