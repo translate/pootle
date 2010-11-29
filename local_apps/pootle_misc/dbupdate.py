@@ -146,6 +146,14 @@ def update_tables_21000():
     db.create_index(table_name, (field.name + '_id',))
     return text
 
+def update_qualitychecks_21040():
+    text = """
+    <p>%s</p>
+    """ % _('Removing quality checks, will be recalculated on demand...')
+    logging.info("Fixing quality checks")
+    flush_quality_checks()
+    return text
+
 def parse_start():
     text = u"""
     <p>%s</p>
@@ -256,6 +264,9 @@ def staggered_update(db_buildversion):
                 logging.warning(u"something broke while parsing %s:\n%s", store, e)
 
         yield parse_end()
+
+    if db_buildversion < 21040:
+        yield update_qualitychecks_21040()
 
     # first time to visit the front page all stats for projects and
     # languages will be calculated which can take forever, since users
