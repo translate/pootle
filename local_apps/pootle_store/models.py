@@ -809,6 +809,8 @@ class Store(models.Model, base.TranslationStore):
                         if match_unit:
                             newunit.save()
                             self._remove_obsolete(match_unit.source, store=store)
+                    if oldstate >= CHECKED:
+                        newunit.update_qualitychecks(created=True)
 
             if update_translation:
                 shared_dbids = [self.dbid_index.get(uid) for uid in old_ids & new_ids]
@@ -827,7 +829,11 @@ class Store(models.Model, base.TranslationStore):
                             changed = True
                             self._remove_obsolete(match_unit.source, store=store)
                     if changed:
+                        do_checks = unit._source_updated or unit._target_updated
                         unit.save()
+                        if do_checks and oldstate >= CHECKED:
+                            unit.update_qualitychecks()
+
         finally:
             # unlock store
             self.state = oldstate
@@ -1099,7 +1105,10 @@ class Store(models.Model, base.TranslationStore):
             if (not monolingual or self.translation_project.is_template_project) and allownewstrings:
                 new_units = (newfile.findid(uid) for uid in new_ids - old_ids)
                 for unit in new_units:
-                    self.addunit(unit)
+                    newunit = self.addunit(unit)
+                    if oldstate >= CHECKED:
+                        newunit.update_qualitychecks(created=True)
+
 
             if obsoletemissing:
                 obsolete_dbids = [self.dbid_index.get(uid) for uid in old_ids - new_ids]
@@ -1122,7 +1131,11 @@ class Store(models.Model, base.TranslationStore):
                 else:
                     changed = oldunit.merge(newunit)
                     if changed:
+                        do_checks = oldunit._source_updated or oldunit._target_updated
                         oldunit.save()
+                        if do_checks and oldstate >= CHECKED:
+                            oldunit.update_qualitychecks()
+
             if allownewstrings or obsoletemissing:
                 self.sync(update_structure=True, update_translation=True, conservative=False, create=False, profile=profile)
 
