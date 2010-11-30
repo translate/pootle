@@ -241,6 +241,21 @@ class PootleMinifyCSS(DistutilsBuild):
             args = shlex.split(cmd)
             subprocess.Popen(args)
 
+        print "Bundling files: 'pootle.bundle.css'"
+        of = open(path.join("html", "pootle.bundle.css"), "w")
+        # Concatenate all minified files in a single bundle
+        for minfn in (path.join("html", "%s.min.css" % fn[:-4]) for fn in files):
+            # Read from *.min.css and write to pootle.bundle.css
+            f = open(minfn, "r")
+            for l in f:
+                of.write(l)
+            f.close()
+
+            # We don't need the file anymore
+            os.remove(minfn)
+
+        of.close()
+
     def run(self):
         self.minify_css()
 
