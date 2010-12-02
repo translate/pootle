@@ -324,8 +324,9 @@ def _filter_ctxt_units(units_qs, unit, limit, gap=0):
     """
     result = {}
     if unit.index - gap > 0:
-        before = units_qs.filter(store=unit.store_id, index__lt=unit.index)[gap:limit+gap]
-        result['before'] = _build_units_list(before)
+        before = units_qs.filter(store=unit.store_id, index__lt=unit.index).order_by('-index')[gap:limit+gap]
+        result['before'] = _build_units_list(before, reverse=True)
+        result['before'].reverse()
     else:
         result['before'] = []
     #FIXME: can we avoid this query if length is known?
@@ -333,7 +334,7 @@ def _filter_ctxt_units(units_qs, unit, limit, gap=0):
     result['after'] = _build_units_list(after)
     return result
 
-def _build_units_list(units):
+def _build_units_list(units, reverse=False):
     """
     Given a list/queryset of units, builds a list with the unit data
     contained in a dictionary ready to be returned as JSON.
@@ -356,12 +357,18 @@ def _build_units_list(units):
                 unit_dict["title"] = title
             target_unit.append(unit_dict)
         prev = None
+        next = None
         if return_units:
-            return_units[-1]['next'] = unit.id
-            prev = return_units[-1]['id']
+            if reverse:
+                return_units[-1]['prev'] = unit.id
+                next = return_units[-1]['id']
+            else:
+                return_units[-1]['next'] = unit.id
+                prev = return_units[-1]['id']
         return_units.append({'id': unit.id,
                              'isfuzzy': unit.isfuzzy(),
                              'prev': prev,
+                             'next': next,
                              'source': source_unit,
                              'target': target_unit})
     return return_units
