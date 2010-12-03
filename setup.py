@@ -210,7 +210,7 @@ class PootleMinifyJS(DistutilsBuild):
             print "Bundling '%(bn)s' files into '%(bn)s_bundle.js'" %\
                     {'bn': bundle}
             args = shlex.split(cmd)
-            subprocess.Popen(args)
+            subprocess.call(args)
 
     def run(self):
         self.minify_js()
@@ -239,7 +239,7 @@ class PootleMinifyCSS(DistutilsBuild):
                  'fn': path.join("html", fn)}
 
             args = shlex.split(cmd)
-            subprocess.Popen(args)
+            subprocess.call(args)
 
         print "Bundling files: 'pootle.bundle.css'"
         of = open(path.join("html", "pootle.bundle.css"), "w")
