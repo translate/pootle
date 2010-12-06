@@ -838,6 +838,12 @@ table.suggest-mode .translate-fuzzy-block
     line-height: 150%;
 }
 
+.translate-full[dir="rtl"] .switch-suggest-mode
+{
+    left: 0px;
+    right: 120px;
+}
+
 .switch-suggest-mode a
 {
     text-decoration: none;
