@@ -2,7 +2,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 {% cache settings.CACHE_TIMEOUT unit_edit unit.id unit.mtime cantranslate cansuggest canreview altsrcs profile.id LANGUAGE_CODE %}
-<td colspan="3" rowspan="1" class="translate-full translate-focus{% if unit.isfuzzy %} fuzzy-unit{% endif %}" dir="{{ source_language.get_direction }}">
+<td colspan="3" rowspan="1" class="translate-full translate-focus{% if unit.isfuzzy %} fuzzy-unit{% endif %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
   <div class="translate-container">
     {{ form.id.as_hidden }}
     {{ form.index.as_hidden }}
@@ -50,12 +50,12 @@
     <div class="translate-{% if LANGUAGE_BIDI %}left{% else %}right{% endif %}">
       {% if unit.get_qualitychecks.count %}
       <!-- Quality Checks -->
-      <div id="translate-checks-block" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}">
+      <div id="translate-checks-block" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
           <div class="sidetitle" lang="{{ LANGUAGE_CODE }}" title='{% trans "Possible issues with the translation" %}'>{% trans "Failing checks:" %}</div>
           <ul class="checks">
           {% for check in unit.get_qualitychecks.iterator %}
           <li class="check">
-            <a href="http://translate.sourceforge.net/wiki/toolkit/pofilter_tests#{{check.name}}" target="_blank">{{ check.name }}</a>
+            <a lang="en" href="http://translate.sourceforge.net/wiki/toolkit/pofilter_tests#{{check.name}}" target="_blank">{{ check.name }}</a>
             {% if canreview %}
             <input type="hidden" class="checkid" name="checkid" value="{{ check.id }}" />
             <a title="{% trans "Remove quality check" %}" class="rejectcheck"><img src='{{ "images/block.png"|m }}' /></a>
