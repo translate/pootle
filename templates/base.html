@@ -21,7 +21,7 @@
 
         {% endblock meta %}
         {% block css %}
-        {% if DEBUG %}
+        {% if settings.DEBUG %}
         <link rel="stylesheet" type="text/css" href='{{ "style.css"|m }}' />
         {% else %}
         <link rel="stylesheet" type="text/css" href='{{ "pootle.bundle.css"|m }}' />
@@ -34,7 +34,7 @@
         <link rel="shortcut icon" href="{{ "favicon.ico"|m }}" />
         {% endblock favicon %}
         {% block js %}
-        {% if DEBUG %}
+        {% if settings.DEBUG %}
         <script type="text/javascript" src="{{ "js/jquery/jquery.js"|m }}"></script>
         <script type="text/javascript" src="{{ "js/jquery/jquery.bidi.js"|m }}"></script>
         <script type="text/javascript" src="{{ "js/jquery/jquery.tipsy.js"|m }}"></script>

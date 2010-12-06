@@ -14,7 +14,7 @@
 
 {% block css %}
 {{ block.super }}
-{% if DEBUG %}
+{% if settings.DEBUG %}
 <link rel="stylesheet" type="text/css" href='{{ "admin.css"|m }}' />
 {% endif %}
 {% endblock css %}

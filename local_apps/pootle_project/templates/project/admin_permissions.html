@@ -15,7 +15,7 @@
 
 {% block css %}
 {{ block.super }}
-{% if DEBUG %}
+{% if settings.DEBUG %}
 <link rel="stylesheet" type="text/css" href='{{ "admin.css"|m }}' />
 {% endif %}
 {% endblock %}
@@ -34,7 +34,7 @@
 {% endblock %}
 
 {% block scripts_extra %}
-{% if DEBUG %}
+{% if settings.DEBUG %}
 <script type="text/javascript" src='{{ "js/admin.js"|m }}'></script>
 {% else %}
 <script type="text/javascript" src='{{ "js/admin_bundle.js"|m }}'></script>

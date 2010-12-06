@@ -5,7 +5,7 @@
 
 {% block css %}
 {{ block.super }}
-{% if DEBUG %}
+{% if settings.DEBUG %}
 <link rel="stylesheet" type="text/css" href='{{ "translate.css"|m }}' />
 {% endif %}
 {% endblock css %}
