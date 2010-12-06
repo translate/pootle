@@ -751,7 +751,7 @@ div#update p,
     background: -moz-linear-gradient(top,  #e5f3f8,  #cde7f1);
 }
 
-.form[dir="rtl"]
+html[dir="rtl"] .form
 {
     text-align: right;
 }
