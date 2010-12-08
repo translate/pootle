@@ -256,7 +256,11 @@ def get_current_units(request, step_queryset, units_queryset):
         profile = get_profile(request.user)
         unit_rows = profile.get_unit_rows()
         pager = paginate(request, units_queryset, items=unit_rows)
-        edit_unit = pager.object_list[0]
+        if pager.has_next():
+            edit_unit = pager.object_list[0]
+        else:
+            edit_unit = pager.object_list[pager.end_index() - pager.start_index()]
+
     elif 'id' in request.POST and 'index' in request.POST:
         # GET doesn't specify a unit try POST
         prev_id = int(request.POST['id'])
