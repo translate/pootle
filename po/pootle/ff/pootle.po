@@ -600,7 +600,7 @@ msgid ""
 "Translate Toolkit version %(installed)s installed. Pootle requires version %"
 "(required)s."
 msgstr ""
-"Translation Toolkit yamre %s(installed)s loowaama. Pootle naamnii ko yamre %"
+"Translation Toolkit yamre %(installed)s loowaama. Pootle naamnii ko yamre %"
 "(required)s."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:54
@@ -1114,7 +1114,7 @@ msgid "Pootle: Update"
 msgstr "Pootle: Hesɗitin"
 
 #: local_apps/pootle_misc/dbupdate.py:72
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Database tables are currently at build version %d. Pootle will now update "
 "the database."
@@ -1454,7 +1454,7 @@ msgid "No matching strings to translate."
 msgstr "Ɓoggi potɗi fireede goɗɗi ngasii."
 
 #: local_apps/pootle_store/views.py:387
-#, python-format
+#, fuzzy, python-format
 msgid "checking %s"
 msgstr "ena ƴeewtoo às"
 

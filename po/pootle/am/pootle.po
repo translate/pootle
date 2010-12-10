@@ -38,7 +38,7 @@ msgid "This field is required."
 msgstr "ይህ መስክ አስፈላጊ ነው።"
 
 #: strings.py:12
-#, python-format
+#, fuzzy, python-format
 msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
 msgstr "ይህ እሴት ቢበዛ % (max)d ቁምፊ ( %(length)d ያለው) እንዳለው አርጋግጥ።"
 
@@ -601,13 +601,14 @@ msgid "lxml version %s is installed."
 msgstr "lxml ዝርያ %s ትጭኗል።"
 
 #: local_apps/pootle_app/views/admin/dashboard.py:66
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "lxml version %(installed)s is installed. Pootle requires version %(required)"
 "s for XML format support."
 msgstr "xml ዝርያ %s አሁን ትጭኗል። Pootle ዝርያ %(required)s ለXML ቅረጽ እርዳታ ይፈልጋል።"
 
 #: local_apps/pootle_app/views/admin/dashboard.py:69
+#, fuzzy
 msgid "lxml is not installed. Pootle requires lxml for XML format support."
 msgstr "xml ዝርያ %s አልተጫነም። Pootle ለXML ቅረጽ እርዳታ lxml ይፈልጋል።"
 

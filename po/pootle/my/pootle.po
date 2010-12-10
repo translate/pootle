@@ -1080,7 +1080,7 @@ msgid "Pootle: Install"
 msgstr ""
 
 #: local_apps/pootle_misc/dbinit.py:69
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Error: \"%s\" while attempting to access the Pootle database, will try to "
 "initialize database."
@@ -1104,12 +1104,12 @@ msgstr ""
 "မိနစ်အနည်းငယ် ကြာပါမည်"
 
 #: local_apps/pootle_misc/dbinit.py:96
-#, python-format
+#, fuzzy, python-format
 msgid "%(language)s is %(percent)d%% complete"
 msgstr "%(ဘာသာစကား) သည် %(ရာခိုင်နှုန်း)d%% ပြီးပါပြီ"
 
 #: local_apps/pootle_misc/dbinit.py:103
-#, python-format
+#, fuzzy, python-format
 msgid "Project %(project)s is %(percent)d%% complete"
 msgstr "စီမံကိန်း%(စီမံကိန်း) သည်  %(ရာခိုင်နှုန်း)d%% ပြီးပါပြီ"
 
@@ -2233,7 +2233,7 @@ msgstr ""
 "ရွေးချယ်ပါ"
 
 #: templates/registration/password_reset_email.html:8
-#, python-format
+#, fuzzy, python-format
 msgid "Your username is %(user)s."
 msgstr "သင်အသုံးပြုသောနာမည်က%(အသုံးပြုသူ)s."
 

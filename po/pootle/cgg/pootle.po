@@ -840,7 +840,7 @@ msgid_plural "%d files"
 msgstr[0] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:40
-#, python-format
+#, fuzzy, python-format
 msgid "%(translated)d/%(total)d words (%(translatedpercent)d%%) translated"
 msgstr ""
 "ebigambo %(ebivunurwe)d/%(ahari)d, ebivunurwe (%(ebicweka  ahari igana)d%%)"
@@ -1101,12 +1101,12 @@ msgid "Calculating translation statistics, this will take a few minutes"
 msgstr "Kubara ebirarugye omukuvunura, nikibasa kutwara edakiika nkye"
 
 #: local_apps/pootle_misc/dbinit.py:96
-#, python-format
+#, fuzzy, python-format
 msgid "%(language)s is %(percent)d%% complete"
 msgstr "ekicweka %(kyendimi) %(ahari)d%% kihwire"
 
 #: local_apps/pootle_misc/dbinit.py:103
-#, python-format
+#, fuzzy, python-format
 msgid "Project %(project)s is %(percent)d%% complete"
 msgstr "Omurimo %(yemirimo) %(ahari)d%% kihwire"
 
