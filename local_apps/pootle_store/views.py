@@ -54,6 +54,7 @@ from pootle_store.forms import unit_form_factory, highlight_whitespace
 from pootle_store.templatetags.store_tags import highlight_diffs
 from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED, absolute_real_path
 from pootle_store.filetypes import factory_classes, is_monolingual
+from pootle_store.signals import translation_submitted
 
 def export_as_xliff(request, pootle_path):
     """export given file to xliff for offline translation"""
@@ -381,6 +382,9 @@ def translate_page(request, units_queryset, store=None):
                 if form.instance._target_updated or form.instance._translator_comment_updated or \
                        form.instance._state_updated:
                     form.save()
+                    translation_submitted.send(sender=translation_project,
+                                               unit=form.instance, profile=profile)
+
                     sub = Submission(translation_project=translation_project,
                                      submitter=get_profile(request.user))
                     sub.save()
@@ -563,9 +567,9 @@ def accept_suggestion(request, uid, suggid):
 
     if request.POST.get('accept'):
         try:
-            sugg = unit.suggestion_set.get(id=suggid)
+            suggestion = unit.suggestion_set.get(id=suggid)
         except ObjectDoesNotExist:
-            sugg = None
+            suggestion = None
 
         response['success'] = unit.accept_suggestion(suggid)
         response['newtargets'] = [highlight_whitespace(target) for target in unit.target.strings]
@@ -574,10 +578,12 @@ def accept_suggestion(request, uid, suggid):
             response['newdiffs'][sugg.id] = [highlight_diffs(unit.target.strings[i], target) \
                                              for i, target in enumerate(sugg.target.strings)]
 
-        if sugg is not None and response['success']:
+        if suggestion is not None and response['success']:
+            if suggestion.user:
+                translation_submitted.send(sender=translation_project, unit=unit, profile=suggestion.user)
             #FIXME: we need a totally different model for tracking stats, this is just lame
             suggstat, created = SuggestionStat.objects.get_or_create(translation_project=translation_project,
-                                                            suggester=sugg.user,
+                                                            suggester=suggestion.user,
                                                             state='pending',
                                                             unit=unit.id)
             suggstat.reviewer = get_profile(request.user)
