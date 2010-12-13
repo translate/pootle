@@ -54,6 +54,7 @@ from pootle_store.forms import unit_form_factory, highlight_whitespace
 from pootle_store.templatetags.store_tags import fancy_highlight, find_altsrcs, get_sugg_list, highlight_diffs, pluralize_source, pluralize_target
 from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED, absolute_real_path
 from pootle_store.filetypes import factory_classes, is_monolingual
+from pootle_store.signals import translation_submitted
 
 def jsonify(json):
     if settings.DEBUG:
@@ -600,6 +601,9 @@ def process_submit(request, unit, type):
                form.instance._translator_comment_updated or \
                form.instance._state_updated:
                 form.save()
+                translation_submitted.send(sender=translation_project,
+                                           unit=form.instance, profile=request.profile)
+
                 sub = Submission(translation_project=translation_project,
                                  submitter=request.profile)
                 sub.save()
@@ -662,7 +666,7 @@ def accept_suggestion(request, unit, suggid):
     json["sugid"] = suggid
     if request.POST.get('accept'):
         try:
-            sugg = unit.suggestion_set.get(id=suggid)
+            suggestion = unit.suggestion_set.get(id=suggid)
         except ObjectDoesNotExist:
             raise Http404
 
@@ -673,10 +677,12 @@ def accept_suggestion(request, unit, suggid):
             json['newdiffs'][sugg.id] = [highlight_diffs(unit.target.strings[i], target) \
                                          for i, target in enumerate(sugg.target.strings)]
 
-        if sugg is not None and success:
+        if suggestion is not None and success:
+            if suggestion.user:
+                translation_submitted.send(sender=translation_project, unit=unit, profile=suggestion.user)
             #FIXME: we need a totally different model for tracking stats, this is just lame
             suggstat, created = SuggestionStat.objects.get_or_create(translation_project=translation_project,
-                                                                     suggester=sugg.user,
+                                                                     suggester=suggestion.user,
                                                                      state='pending',
                                                                      unit=unit.id)
             suggstat.reviewer = request.profile
