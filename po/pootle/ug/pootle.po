@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-09-21 10:30+0200\n"
+"PO-Revision-Date: 2010-12-08 11:10+0200\n"
 "Last-Translator: Abduqadir Abliz <sahran.ug@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ug\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.1.2\n"
+"X-Generator: Pootle 2.1.3\n"
 
 #: strings.py:8
 msgid ""
@@ -24,7 +24,7 @@ msgstr "بىردىن كۆپ تۈر تاللاش ئۈچۈن \"Control\" ياكى 
 
 #: strings.py:9
 msgid "Enter a valid e-mail address."
-msgstr "ئىناۋەتلىك ئېلخەت مەنزىلىدىن بىرنى كىرگۈزۈڭ."
+msgstr "ئىناۋەتلىك ئېلخەت ئادرېسىدىن بىرنى كىرگۈزۈڭ."
 
 #: strings.py:10
 msgid ""
@@ -99,7 +99,7 @@ msgstr "مەنبە تىل"
 
 #: strings.py:35
 msgid "Android strings"
-msgstr ""
+msgstr "Android ھەرپ تىزمىسى"
 
 #: external_apps/contact_form_i18n/forms.py:143
 msgid "Your name"
@@ -111,7 +111,7 @@ msgstr "ئېلخەت ئادرېسىڭىز"
 
 #: external_apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr "گېپىڭىز"
+msgstr "ئۇچۇرىڭىز"
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
@@ -221,35 +221,35 @@ msgstr ""
 
 #: local_apps/pootle_app/management/__init__.py:72
 msgid "Can view a translation project"
-msgstr "تەرجىمە قۇرۇلۇشىنى كۆرگىلى بولىدۇ"
+msgstr "تەرجىمە قۇرۇلۇشىنى كۆرەلەيدۇ"
 
 #: local_apps/pootle_app/management/__init__.py:74
 msgid "Can make a suggestion for a translation"
-msgstr "تەرجىمىگە تەۋسىيە قىلغىلى بولىدۇ"
+msgstr "تەرجىمىگە تەۋسىيە قىلالايدۇ"
 
 #: local_apps/pootle_app/management/__init__.py:76
 msgid "Can submit a translation"
-msgstr "تەرجىمىنى يوللىغىلى بولىدۇ"
+msgstr "تەرجىمىنى يوللىيالايدۇ"
 
 #: local_apps/pootle_app/management/__init__.py:78
 msgid "Can overwrite translations on uploading files"
-msgstr "يۈكلىگەن ھۆججەتتىكى تەرجىمىنى قاپلىۋەتكىلى بولىدۇ"
+msgstr "يۈكلىگەن ھۆججەتتىكى تەرجىمىنى قاپلىۋېتەلەيدۇ"
 
 #: local_apps/pootle_app/management/__init__.py:80
 msgid "Can review translations"
-msgstr "تەرجىمىنى كۆزدىن كۆچۈرگىلى بولىدۇ"
+msgstr "تەرجىمىنى كۆزدىن كەچۈرەلەيدۇ"
 
 #: local_apps/pootle_app/management/__init__.py:82
 msgid "Can download archives of translation projects"
-msgstr "تەرجىمىنىڭ ئارخىپلىرىنى چۈشۈرگىلى بولىدۇ"
+msgstr "تەرجىمىنىڭ ئارخىپلىرىنى چۈشۈرەلەيدۇ"
 
 #: local_apps/pootle_app/management/__init__.py:84
 msgid "Can administrate a translation project"
-msgstr "تەرجىمە قۇرۇلۇشىنى باشقۇرغىلى بولىدۇ"
+msgstr "تەرجىمە قۇرۇلۇشىنى باشقۇرالايدۇ"
 
 #: local_apps/pootle_app/management/__init__.py:86
 msgid "Can commit to version control"
-msgstr "نەشر باشقۇرۇش سىستېمىسىغا يوللىغىلى بولىدۇ"
+msgstr "نەشر باشقۇرۇش سىستېمىسىغا يوللىيالايدۇ"
 
 #: local_apps/pootle_app/models/suggestion.py:33
 msgid "Pending"
@@ -434,7 +434,7 @@ msgstr "تاپشۇرۇلغانلىرى"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:54
 msgid "More..."
-msgstr "تېخىمۇ كوپ..."
+msgstr "تېخىمۇ كۆپ…"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:62
 msgid "Support"
@@ -2022,7 +2022,7 @@ msgstr "سەپلىمە ھۆججەت"
 
 #: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
 msgid "Change your password"
-msgstr "ئىم ئۆزگەرت"
+msgstr "ئىم ئۆزگەرتىڭ"
 
 #: templates/admin/base_site.html:4 templates/admin/base_site.html.py:7
 msgid "Django administration"

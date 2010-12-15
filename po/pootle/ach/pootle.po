@@ -7,14 +7,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-10-12 10:09+0200\n"
-"Last-Translator: George Patrick <chanchumgpa@gmail.com>\n"
+"PO-Revision-Date: 2010-12-15 11:12+0200\n"
+"Last-Translator: A Kenneth <akogwal@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ach\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 2.1.2\n"
+"X-Generator: Pootle 2.1.3\n"
 
 #: strings.py:8
 msgid ""
@@ -24,7 +24,7 @@ msgstr ""
 
 #: strings.py:9
 msgid "Enter a valid e-mail address."
-msgstr "Ket e-mail adress ma meri matiyo."
+msgstr "Ket e-mail address matiyo. "
 
 #: strings.py:10
 msgid ""
@@ -36,12 +36,12 @@ msgstr ""
 
 #: strings.py:11
 msgid "This field is required."
-msgstr "Di bar man gimito."
+msgstr "Dyer bar man mite."
 
 #: strings.py:12
 #, python-format
 msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
-msgstr "Nen ni mano welle tye maromo %(max)d kitemere  (it has %(length)d)."
+msgstr "Nen ni mano welle tye maromo %(max)d kite (it has %(length)d)."
 
 #: strings.py:13
 msgid "Save and add another"
@@ -68,7 +68,7 @@ msgstr "Med %(name)s"
 #. l10n: This link takes the user to the page where the currently configured option is displayed (such as a project or language)
 #: strings.py:22
 msgid "View on site"
-msgstr "Nen odoco idi bar"
+msgstr "Nen odoco idyer bar"
 
 #: strings.py:24
 msgid "first name"
@@ -107,16 +107,16 @@ msgstr "Nyingi"
 
 #: external_apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr "E-mail address mamegi"
+msgstr "E-mail address megi"
 
 #: external_apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr "Kwena mamegi"
+msgstr "Kwena megi"
 
-# Tim ber iyub bal ma otime piny kenyo ni.
+# Yub bal ma otime piny kany ni.
 # ----------------------------------------
 # 
-# Tim ber iyub kwone bal mapatpat ma otime piny kenyo ni.
+# Yub kwone bal mapatpat ma otime piny kanyo ni.
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
@@ -124,7 +124,7 @@ msgstr[0] ""
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
-msgstr "Gutyeko gwoko tera woko."
+msgstr "Gityeko gwoko ter weng woko."
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:29
@@ -182,7 +182,7 @@ msgstr "Latic kwede"
 
 #: external_apps/registration/models.py:219
 msgid "activation key"
-msgstr "Kipunggua pa kitikiti"
+msgstr "Kipunggua ma kitikiti"
 
 #: external_apps/registration/models.py:224
 msgid "registration profile"
@@ -198,7 +198,7 @@ msgstr "Ngec ikum leb man pe lube ki cikke me ISO"
 
 #: local_apps/pootle_app/admin.py:67
 msgid "Project code may only contain letters, numbers and _"
-msgstr "Ngec ikum purujek man romo bedo ki nukta, namba ki _"
+msgstr "Ngec ikom purujek man romo bedo ki nukta, namba ki _"
 
 #: local_apps/pootle_app/admin.py:79
 msgid "Advanced Options"
@@ -214,7 +214,7 @@ msgstr "Nying me Lagab ngec me Pootle man"
 
 #: local_apps/pootle_app/forms.py:34
 msgid "Description"
-msgstr "Kit ma cal kwede"
+msgstr "Tito ne kore kikore"
 
 #: local_apps/pootle_app/forms.py:35
 msgid ""
@@ -226,7 +226,7 @@ msgstr ""
 
 #: local_apps/pootle_app/management/__init__.py:72
 msgid "Can view a translation project"
-msgstr "Twero neno purujek me loko leb."
+msgstr "Twero me neno purujek me loko leb."
 
 # SERVER-LAPOK TIC
 #: local_apps/pootle_app/management/__init__.py:74
@@ -239,7 +239,7 @@ msgstr "Twero cwalo leb ma kiloko."
 
 #: local_apps/pootle_app/management/__init__.py:78
 msgid "Can overwrite translations on uploading files"
-msgstr "Twero coyo ngec ikum leb makiloko mamako keto fail manyen"
+msgstr "Twero coyo ngec ikom loko leb mamako keto fail manyen"
 
 #: local_apps/pootle_app/management/__init__.py:80
 msgid "Can review translations"
@@ -247,7 +247,7 @@ msgstr "Twero neno odoco leb ma kiloko"
 
 #: local_apps/pootle_app/management/__init__.py:82
 msgid "Can download archives of translation projects"
-msgstr "Twero nongo purujek me loko leb pi kare mukato angec"
+msgstr "Twero golo purujek me loko leb pi kare mukato angec"
 
 #: local_apps/pootle_app/management/__init__.py:84
 msgid "Can administrate a translation project"
@@ -255,15 +255,15 @@ msgstr "Twero telo wi lutic i purujek me loko leb"
 
 #: local_apps/pootle_app/management/__init__.py:86
 msgid "Can commit to version control"
-msgstr "Twero cung ikum alokaloka me leb"
+msgstr "Twero cung ikom alokaloka me leb"
 
 #: local_apps/pootle_app/models/suggestion.py:33
 msgid "Pending"
-msgstr "Pwud tye ka kuru"
+msgstr "Pwud tye ka gem"
 
 #: local_apps/pootle_app/models/suggestion.py:34
 msgid "Accepted"
-msgstr "Kityeko yee dong woko"
+msgstr "Kityeko yee woko"
 
 #: local_apps/pootle_app/models/suggestion.py:35
 msgid "Rejected"
@@ -362,11 +362,11 @@ msgstr ""
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:11
 msgid "General Settings"
-msgstr "Yuba me lumuku"
+msgstr "Tera Lung"
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:14
 msgid "Configure here the general settings for your site."
-msgstr "Nong kikany yuba me lumuku pi gang kal mamegi. "
+msgstr "Nong kikany yuba me lumuku pi gang kal megi. "
 
 #: local_apps/pootle_app/templates/admin/admin_general_users.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_users.html:11
@@ -837,8 +837,8 @@ msgstr "Loko leb dong otyeko woko"
 msgid "Translations need to be checked (they are marked fuzzy)"
 msgstr "Loko leb mito arota (gin guketo alama fuzzy)"
 
-# %d file
-# %d files
+# %d fail
+# %d fail mapol
 #: local_apps/pootle_app/views/language/item_dict.py:38
 #, python-format
 msgid "%d file"
@@ -856,10 +856,10 @@ msgid "%(translated)d/%(total)d strings"
 msgstr "%(translated)d/%(total)d Tol"
 
 # Singular
-# %(checks)d tol (%(checkspercent)d%%) pe olare
+# %(checks)d coc (%(checkspercent)d%%) pe olare
 # 
 # plural
-# %(checks)d tole 
+# %(checks)d coc
 # (%(checkspercent)d%%) pe olare
 #: local_apps/pootle_app/views/language/item_dict.py:76
 #, python-format
@@ -1189,7 +1189,7 @@ msgid ""
 "Pootle initialized the database. You will be redirected to the front page in "
 "10 seconds."
 msgstr ""
-"Pootle otyeko yiko database. gubino medo nyuti ni oo ipot karatac me acaki "
+"Pootle otyeko yiko lacok jami. gubino medo nyuti ni oo ipot karatac me acaki "
 "iceken 10."
 
 # Yin myero <a href="%(login_link)s">login</a> wek idony ipot karatac man.

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-08-09 17:55+0200\n"
+"PO-Revision-Date: 2010-12-09 01:40+0200\n"
 "Last-Translator: Massimeddu <massimeddu@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sc\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.0-beta2\n"
+"X-Generator: Pootle 2.1.3\n"
 
 #: strings.py:8
 msgid ""
@@ -48,7 +48,7 @@ msgstr ""
 
 #: strings.py:13
 msgid "Save and add another"
-msgstr "Alloga e annanghe un'àteru"
+msgstr "Alloga e agiunghe un'àteru"
 
 #: strings.py:14
 msgid "Save and continue editing"
@@ -56,7 +56,7 @@ msgstr "Alloga e sighi a traballare"
 
 #: strings.py:15
 msgid "Add"
-msgstr "Annanghe"
+msgstr "Agiunghe"
 
 #: strings.py:16
 msgid "Change"
@@ -66,7 +66,7 @@ msgstr "Muda"
 #: strings.py:19
 #, python-format
 msgid "Add %(name)s"
-msgstr "Annanghe %(name)s"
+msgstr "Agiunghe %(name)s"
 
 #. l10n: This link takes the user to the page where the currently configured option is displayed (such as a project or language)
 #: strings.py:22
@@ -189,7 +189,7 @@ msgstr "còdighe de ativatzione"
 
 #: external_apps/registration/models.py:224
 msgid "registration profile"
-msgstr "profilu de registratzione"
+msgstr "perfilu de registratzione"
 
 #: external_apps/registration/models.py:225
 msgid "registration profiles"
@@ -385,8 +385,8 @@ msgid ""
 "Here you can add, edit, and delete all the available users in this Pootle "
 "server."
 msgstr ""
-"Inoghe podes annanghere, mudare e fuliare totus is impitadores chi s'agatant "
-"in custu serbidore Pootle."
+"Inoghe podes agiùnghere, mudare e fulliare totus is impitadores chi "
+"s'agatant in custu serbidore Pootle."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:5
 #: local_apps/pootle_app/templates/admin/dashboard.html:11
@@ -1103,7 +1103,7 @@ msgstr "Non tenes is permissos pro amministrare custa limba."
 #: local_apps/pootle_language/templates/language/language_admin.html:13
 msgid "Below you can add, edit, and delete the permissions for this language."
 msgstr ""
-"Inoghe a suta podes annanghere, mudare e fuliare sos permissos pro custa "
+"Inoghe a suta podes agiùnghere, mudare e fulliare sos permissos pro custa "
 "limba."
 
 #: local_apps/pootle_misc/dbinit.py:68
@@ -1193,8 +1193,8 @@ msgstr ""
 #, python-format
 msgid "Imported %(count)d suggestion from %(store)s"
 msgid_plural "Imported %(count)d suggestions from %(store)s"
-msgstr[0] "Importadu %(count)d consìgiu dae %(store)s"
-msgstr[1] "Importados %(count)d consìgios dae %(store)s"
+msgstr[0] "Importadu %(count)d cussìgiu dae %(store)s"
+msgstr[1] "Importados %(count)d cussìgios dae %(store)s"
 
 #: local_apps/pootle_misc/dbupdate.py:149
 #, python-format
@@ -1406,7 +1406,7 @@ msgstr "Cumentza"
 #: local_apps/pootle_project/templates/project/admin_permissions.html:19
 msgid "Below you can add, edit, and delete the permissions for this project."
 msgstr ""
-"Inoghe a suta podes annanghere, mudare e fuliare is permissos pro custu "
+"Inoghe a suta podes agiunghere, mudare e fulliare is permissos pro custu "
 "progetu."
 
 #: local_apps/pootle_project/templates/project/project_admin.html:8
@@ -1416,7 +1416,7 @@ msgstr "Amministra"
 
 #: local_apps/pootle_project/templates/project/project_admin.html:19
 msgid "Here you can add, edit, or delete the languages for this project."
-msgstr "Inoghe podes annanghere, mudare o fuliare is limbas pro custu progetu."
+msgstr "Inoghe podes agiunghere, mudare o fulliare is limbas pro custu progetu."
 
 #: local_apps/pootle_store/filetypes.py:29
 msgid "Gettext PO"
@@ -1570,7 +1570,7 @@ msgstr "Anda a sa unidade sighente"
 
 #: local_apps/pootle_store/templates/unit/edit.html:130
 msgid "Add Comment"
-msgstr "Annanghe cummentu"
+msgstr "Agiunghe cummentu"
 
 #: local_apps/pootle_store/templates/unit/edit.html:148
 msgid "Accept suggestion"
@@ -1578,11 +1578,11 @@ msgstr "Atzeta cummentu"
 
 #: local_apps/pootle_store/templates/unit/edit.html:149
 msgid "Reject suggestion"
-msgstr "Non atzetare su consìgiu"
+msgstr "Non atzetare su cussìgiu"
 
 #: local_apps/pootle_store/templates/unit/edit.html:154
 msgid "Remove suggestion"
-msgstr "Fùlia su consìgiu"
+msgstr "Fùllia su cussìgiu"
 
 #: local_apps/pootle_store/templates/unit/view.html:38
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:27
@@ -1592,7 +1592,7 @@ msgstr "Cummentos de su bortadore"
 #: local_apps/pootle_store/templatetags/store_tags.py:73
 #, python-format
 msgid "Suggestion %(i)d by %(user)s:"
-msgstr "Consìgiu %(i)d de %(user)s:"
+msgstr "Cussìgiu %(i)d dae %(user)s:"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:77
 #, python-format
@@ -1762,7 +1762,7 @@ msgstr "Auni su file cun cussu currente e muda is cuntierras in consìgios"
 
 #: local_apps/pootle_translationproject/views.py:486
 msgid "Add all new translations as suggestions"
-msgstr "Annanghe totus is bortaduras noas comente consìgios"
+msgstr "Agiunghe totus is bortaduras noas comente cussìgios"
 
 #: local_apps/pootle_translationproject/views.py:488
 msgid "Overwrite the current file if it exists"
@@ -1809,7 +1809,7 @@ msgid ""
 "Below you can add, edit, and delete the permissions for this translation "
 "project."
 msgstr ""
-"Inoghe a suta opodes annanghere, mudare e fuliare sos permissos de custu "
+"Inoghe a suta podes agiùnghere, mudare e fulliare sos permissos de custu "
 "progetu de bortadura."
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_review.html:6
@@ -2055,7 +2055,7 @@ msgstr "Muda is informatziones personales tuas"
 #: templates/profiles/edit_personal.html:5
 #: templates/profiles/edit_personal.html:11
 msgid "Profile"
-msgstr "Profilu"
+msgstr "Perfilu"
 
 #: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
 msgid "Change your password"

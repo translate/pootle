@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-08-03 12:15+0200\n"
+"PO-Revision-Date: 2010-12-13 01:36+0200\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: eu\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.0-beta2\n"
+"X-Generator: Pootle 2.1.3\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
@@ -272,7 +272,7 @@ msgstr "Baztertuta"
 
 #: local_apps/pootle_app/templates/top_contributers_table.html:7
 msgid "Top Contributors"
-msgstr "Itzultzaileenak"
+msgstr "Gehien itzuli dutenak"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:6
 #: local_apps/pootle_app/views/language/view.py:39
@@ -1921,7 +1921,7 @@ msgstr "Hasi saioa"
 #: templates/base.html:119 templates/contact_form/contact_form.html:4
 #: templates/contact_form/contact_form.html:8
 msgid "Contact Us"
-msgstr "Jar zaitez harremanetan gurekin"
+msgstr "Kontaktua"
 
 #: templates/base.html:121
 msgid "About this Pootle Server"
