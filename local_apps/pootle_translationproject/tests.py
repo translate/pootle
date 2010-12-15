@@ -94,6 +94,9 @@ msgstr "2adim"
         pofile = file(os.path.join(gnu, "zu.po"), 'w')
         pofile.write(self.target_text)
         pofile.close()
+        pofile = file(os.path.join(gnu, "pt_br.po"), 'w')
+        pofile.write(self.target_text)
+        pofile.close()
 
     def setUp(self):
         super(GnuTests, self).setUp()
@@ -116,13 +119,13 @@ msgstr "2adim"
     def test_file_detection(self):
         """test correct language detection when a project is added"""
         lang_count = self.project.translationproject_set.count()
-        self.assertEqual(lang_count, 4)
+        self.assertEqual(lang_count, 5)
 
         store_count = Store.objects.filter(translation_project__project=self.project).count()
-        self.assertEqual(store_count, 4)
+        self.assertEqual(store_count, 5)
 
         lang_list = list(self.project.translationproject_set.values_list('language__code', flat=True).order_by('language__code'))
-        self.assertEqual(lang_list, [u'af', u'ar', u'templates', u'zu'])
+        self.assertEqual(lang_list, [u'af', u'ar', u'pt_BR', u'templates', u'zu'])
 
     def test_template_detection(self):
         """test that given a template the correct target file name is generated"""
@@ -202,6 +205,9 @@ class PrefixGnuTests(GnuTests):
         pofile = file(os.path.join(gnu, "test_zu.po"), 'w')
         pofile.write(self.target_text)
         pofile.close()
+        pofile = file(os.path.join(gnu, "test_pt_br.po"), 'w')
+        pofile.write(self.target_text)
+        pofile.close()
 
 class NonGnuTests(GnuTests):
     """tests for Non-Gnu style projects"""
@@ -217,6 +223,8 @@ class NonGnuTests(GnuTests):
         os.mkdir(nongnu_af)
         nongnu_zu = os.path.join(nongnu, "zu")
         os.mkdir(nongnu_zu)
+        nongnu_pt_br = os.path.join(nongnu, "pt_BR")
+        os.mkdir(nongnu_pt_br)
 
         potfile = file(os.path.join(nongnu_templates, "test.pot"), 'w')
         potfile.write(self.template_text)
@@ -228,6 +236,9 @@ class NonGnuTests(GnuTests):
         pofile.write(self.target_text)
         pofile.close()
         pofile = file(os.path.join(nongnu_zu, "test.po"), 'w')
+        pofile.write(self.target_text)
+        pofile.close()
+        pofile = file(os.path.join(nongnu_pt_br, "test.po"), 'w')
         pofile.write(self.target_text)
         pofile.close()
 
