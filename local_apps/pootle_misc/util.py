@@ -57,8 +57,10 @@ def dictsum(x, y):
     return dict((n, x.get(n, 0)+y.get(n, 0)) for n in set(x)|set(y))
 
 
-def paginate(request, queryset, items=30, page=None):
-    paginator = Paginator(queryset, items, orphans=max(2, items/2 - 1))
+def paginate(request, queryset, items=30, page=None, orphans=None):
+    if orphans is None:
+        orphans = items / 2 - 1
+    paginator = Paginator(queryset, items, orphans=orphans)
 
     if not page:
         try:
