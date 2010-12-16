@@ -256,7 +256,7 @@ def get_current_units(request, step_queryset, units_queryset):
         # load first unit in a specific page
         profile = get_profile(request.user)
         unit_rows = profile.get_unit_rows()
-        pager = paginate(request, units_queryset, items=unit_rows)
+        pager = paginate(request, units_queryset, items=unit_rows, orphans=0)
         edit_unit = pager.object_list[0]
 
     elif 'id' in request.POST and 'index' in request.POST:
@@ -434,25 +434,30 @@ def translate_page(request, units_queryset, store=None):
     # the store not for the unit_step query
     if pager is None:
         page = preceding / unit_rows + 1
-        pager = paginate(request, pager_query, items=unit_rows, page=page)
+        pager = paginate(request, pager_query, items=unit_rows, page=page, orphans=0)
 
     # we always display the active unit in the middle of the page to
     # provide context for translators
     context_rows = (unit_rows - 1) / 2
     if store_preceding > context_rows:
         unit_position = store_preceding % unit_rows
-        if unit_position < context_rows:
+        page_length = pager.end_index() - pager.start_index() + 1
+        if page_length < unit_rows:
+            units_query = store.units[page_length:]
+            page = store_preceding / unit_rows
+            units = paginate(request, units_query, items=unit_rows, page=page, orphans=0).object_list
+        elif unit_position < context_rows:
             # units too close to the top of the batch
             offset = unit_rows - (context_rows - unit_position)
             units_query = store.units[offset:]
             page = store_preceding / unit_rows
-            units = paginate(request, units_query, items=unit_rows, page=page).object_list
+            units = paginate(request, units_query, items=unit_rows, page=page, orphans=0).object_list
         elif unit_position >= unit_rows - context_rows:
             # units too close to the bottom of the batch
             offset = context_rows - (unit_rows - unit_position - 1)
             units_query = store.units[offset:]
             page = store_preceding / unit_rows + 1
-            units = paginate(request, units_query, items=unit_rows, page=page).object_list
+            units = paginate(request, units_query, items=unit_rows, page=page, orphans=0).object_list
         else:
             units = pager.object_list
     else:
