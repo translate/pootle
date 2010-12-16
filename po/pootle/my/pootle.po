@@ -623,11 +623,11 @@ msgid "Django version %s is installed."
 msgstr "Django ​ေဆာ့​ဝလ်​အ​မှတ်​ %s​ ​ထည့်​သွင်း​​ြပီး​​ြဖစ်​သည်​။​"
 
 #: local_apps/pootle_app/views/admin/dashboard.py:57
-#, python-format
+#, python-format, fuzzy
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
 msgstr ""
-"Django ​ေဆာ့​ဝလ်​အ​မှတ်​ အ​မှတ်​​ %(installed)s​ "
+"Django ​ေဆာ့​ဝလ်​အ​မှတ်​ အ​မှတ်​​ %s​ "
 "​သွင်း​ထား​​ြပီး​​ြဖစ်​သည်​။​​​ ​ေနာက်​ဆံုး​ထုတ်​ေဆာ့​္ဓဲလ်​အ​မှတ်​စဥ်အား​ "
 "​ထည့်​သွင်း​ပါ​က​ ​ပို​မို​ေကာင်း​မွန်​မည်​ြဖစ်​သည်​။​​"
 
@@ -841,7 +841,7 @@ msgstr ""
 #: local_apps/pootle_project/views.py:69
 #, python-format
 msgid "%(percentage)d%% complete"
-msgstr "%(ထဲ​မှ)d%% ကို​ ​ြပန်​ဆို​ထား​​ြပီး​​ြဖစ်​သည်​။​"
+msgstr "%(percentage)d%% ကို​ ​ြပန်​ဆို​ထား​​ြပီး​​ြဖစ်​သည်​။​"
 
 #: local_apps/pootle_app/views/index/index.py:112
 #: local_apps/pootle_project/views.py:109
