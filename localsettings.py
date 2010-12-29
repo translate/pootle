@@ -17,7 +17,7 @@ from pootle.install_dirs import *
 # Mail server settings
 
 # By default Pootle uses SMTP server on localhost, if the server is
-# not configured for sending emails use these settings to setup and
+# not configured for sending emails use these settings to setup an
 # external outgoing SMTP server.
 
 # Example for Google as an external SMTP server
