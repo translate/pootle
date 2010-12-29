@@ -81,7 +81,7 @@ CACHE_BACKEND = 'db://pootlecache?max_entries=65536&cull_frequency=16'
 # Uncomment this if you're using memcached as CACHE_BACKEND and running under Django 1.0
 #SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
-# Uncomment this if you're using memcached as CACHE_BACKEND and running under Django 1.1
+# Uncomment this if you're using memcached as CACHE_BACKEND and running under Django >= 1.1
 #SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
 # To improve performance, non-logged users get cached copies of most pages.
