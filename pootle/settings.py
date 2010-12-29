@@ -21,7 +21,7 @@
 """This is a standard module defining some Django settings, as well as some
 settings specific to Pootle.
 
-Note that some of this can also be specified in pootle.ini in order to have a
+Note that some of this can also be specified in localsettings.py in order to have a
 configuration override outside of the code."""
 
 import logging
