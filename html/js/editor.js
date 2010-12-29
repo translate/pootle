@@ -213,7 +213,7 @@
 
         switch (parts[0]) {
 
-          /* Load a specific unit based o its uid */
+          /* Load a specific unit based on its uid */
           case "unit":
             var uid = parseInt(parts[1]);
 
@@ -899,12 +899,8 @@
       // First and last units in this page
       first = this.pagesGot[p][0];
       last = this.pagesGot[p][this.pagesGot[p].length-1];
-
       // Check linking to the previous unit from the first unit in this page
-      if (p > 1 &&
-          (!this.units[first].hasOwnProperty('prev') ||
-           (this.units[first].hasOwnProperty('prev') &&
-            this.units[first].prev == null) ) ) {
+      if (p > 1 && (!this.units[first].hasOwnProperty('prev') || this.units[first].prev == null)) {
         // We can only set the linking if the previous page
         // has already been fetched
         pnP = p - 1;
@@ -916,7 +912,7 @@
 
       // Check linking to the next unit from the last unit in this page
       if (p < this.pager.num_pages &&
-          !this.units[last].hasOwnProperty('next')) {
+          (!this.units[last].hasOwnProperty('next') || this.units[last].next == null)) {
         // We can only set the linking if the next page
         // has already been fetched
         pnP = p + 1;
@@ -1148,7 +1144,6 @@
   /* Loads the editor with the next unit */
   gotoPrevNext: function (e) {
     e.preventDefault();
-
     var current = PTL.editor.units[PTL.editor.activeUid],
         prevNextMap = {previous: current.prev, next: current.next},
         newUid = prevNextMap[$(e.target).attr("class")];
