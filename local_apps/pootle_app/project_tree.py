@@ -275,10 +275,16 @@ def convert_template(translation_project, template_store, target_pootle_path, ta
 
 def get_translated_name_gnu(translation_project, store):
     """given a template store and a translation_project return target filename"""
+    pootle_path_parts = store.pootle_path.split('/')
+    pootle_path_parts[1] = translation_project.language.code
+    pootle_path = '/'.join(pootle_path_parts[:-1])
+    if not pootle_path.endswith('/'):
+        pootle_path = pootle_path + '/'
+
     suffix = translation_project.language.code + os.extsep + translation_project.project.localfiletype
     # try loading file first
     try:
-        target_store = translation_project.stores.get(name__iexact=suffix)
+        target_store = translation_project.stores.get(parent__pootle_path=pootle_path, name__iexact=suffix)
         return target_store.pootle_path, target_store.file and target_store.file.path
     except Store.DoesNotExist:
         target_store = None
@@ -294,9 +300,6 @@ def get_translated_name_gnu(translation_project, store):
                 use_prefix = True
                 break
 
-    pootle_path_parts = store.pootle_path.split('/')
-    pootle_path_parts[1] = translation_project.language.code
-    pootle_path = '/'.join(pootle_path_parts[:-1])
     if use_prefix:
         if store.translation_project.language.code == 'templates':
             tprefix = os.path.splitext(store.name)[0]
@@ -306,7 +309,7 @@ def get_translated_name_gnu(translation_project, store):
             prefix = os.path.splitext(store.name)[0][:-len(store.translation_project.language.code)]
             tprefix = prefix[:-1]
         try:
-            target_store = translation_project.stores.filter(pootle_path__startswith=pootle_path, name__in=
+            target_store = translation_project.stores.filter(parent__pootle_path=pootle_path, name__in=
                                               [tprefix+'-'+suffix, tprefix+'_'+suffix, tprefix+'.'+suffix,
                                               tprefix+'-'+suffix.lower(), tprefix+'_'+suffix.lower(), tprefix+'.'+suffix.lower()])[0]
             return target_store.pootle_path, target_store.file and target_store.file.path
