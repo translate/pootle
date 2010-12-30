@@ -142,6 +142,7 @@ class Unit(models.Model, base.TranslationUnit):
     class Meta:
         ordering = ['store', 'index']
         unique_together = ('store', 'unitid_hash')
+        get_latest_by = 'mtime'
 
     store = models.ForeignKey("pootle_store.Store", db_index=True)
     index = models.IntegerField(db_index=True)
