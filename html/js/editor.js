@@ -1412,7 +1412,7 @@
 
   /* Rejects a suggestion */
   rejectSuggestion: function () {
-    var element = $(this).parent().parent(),
+    var element = $(this).parent(),
         uid = $('.translate-container input#id_id').val(),
         suggId = $(this).siblings("input.suggid").val(),
         url = l('/suggestion/reject/') + uid + '/' + suggId;
@@ -1433,7 +1433,7 @@
 
   /* Accepts a suggestion */
   acceptSuggestion: function () {
-    var element = $(this).parent().parent(),
+    var element = $(this).parent(),
         uid = $('.translate-container input#id_id').val(),
         suggId = $(this).siblings("input.suggid").val(),
         url = l('/suggestion/accept/') + uid + '/' + suggId;
