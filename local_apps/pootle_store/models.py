@@ -661,7 +661,7 @@ class Store(models.Model, base.TranslationStore):
 
     @getfromcache
     def get_mtime(self):
-        return max_column(self.units, 'mtime', None)
+        return max_column(self.unit_set.all(), 'mtime', None)
 
     def _get_abs_real_path(self):
         if self.file:
