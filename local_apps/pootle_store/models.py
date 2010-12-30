@@ -708,8 +708,32 @@ class Store(models.Model, base.TranslationStore):
         matcher.extendtm(self.unit_set.filter(state=OBSOLETE))
         return matcher
 
+    def clean_stale_lock(self):
+        if self.state != LOCKED:
+            return
+        mtime = max_column(self.unit_set.all(), 'mtime', None)
+
+        if mtime is None:
+            #FIXME: we can't tell stale locks if store has no units at all
+            return
+
+        delta = mtime.now() - mtime
+        if delta.days or delta.seconds > 2 * 60 * 60:
+            logging.warning("found stale lock in %s, something went wrong with a previous operation on the store", self.pootle_path)
+            # lock been around for too long, assume it is stale
+            if QualityCheck.objects.filter(unit__store=self).exists():
+                # there are quality checks, assume we are checked
+                self.state = CHECKED
+            else:
+                # there are units assumed we are parsed
+                self.state = PARSED
+            return True
+
+        return False
+
     @commit_on_success
     def parse(self, store=None):
+        self.clean_stale_lock()
         if self.state == LOCKED:
             # file currently being updated
             #FIXME: shall we idle wait for lock to be released first? what about stale locks?
@@ -768,6 +792,7 @@ class Store(models.Model, base.TranslationStore):
     @commit_on_success
     def update(self, update_structure=False, update_translation=False, conservative=True, store=None, fuzzy=False):
         """update db with units from file"""
+        self.clean_stale_lock()
         if self.state == LOCKED:
             # file currently being updated
             #FIXME: shall we idle wait for lock to be released first? what about stale locks?
@@ -1087,6 +1112,7 @@ class Store(models.Model, base.TranslationStore):
         if not newfile.units:
                 return
         monolingual = is_monolingual(type(newfile))
+        self.clean_stale_lock()
         if self.state == LOCKED:
             # file currently being updated
             #FIXME: shall we idle wait for lock to be released first? what about stale locks?
