@@ -271,8 +271,13 @@ def get_step_query(request, units_queryset):
         if matchnames:
             match_queryset = units_queryset.none()
             if 'hassuggestion' in matchnames:
+                #FIXME: is None the most efficient query
                 match_queryset = units_queryset.exclude(suggestion=None)
                 matchnames.remove('hassuggestion')
+            elif 'ownsuggestion' in matchnames:
+                match_queryset = units_queryset.filter(suggestion__user=request.profile).distinct()
+                matchnames.remove('ownsuggestion')
+
             if matchnames:
                 match_queryset = match_queryset | units_queryset.filter(
                     qualitycheck__false_positive=False, qualitycheck__name__in=matchnames)

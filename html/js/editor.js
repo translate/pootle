@@ -669,7 +669,11 @@
 
       case "suggestions":
         reqData.matchnames = 'hassuggestion'
-      break;
+        break;
+
+      case "mysuggestions":
+        reqData.matchnames = 'ownsuggestion'
+        break;
 
       case "all":
         break;
