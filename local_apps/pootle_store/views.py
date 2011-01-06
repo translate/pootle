@@ -696,7 +696,7 @@ def accept_suggestion(request, unit, suggid):
                 suggstat.save()
 
             sub = Submission(translation_project=translation_project,
-                             submitter=request.profile,
+                             submitter=suggestion.user,
                              from_suggestion=suggstat)
             sub.save()
     response = jsonify(json)
