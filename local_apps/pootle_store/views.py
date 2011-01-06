@@ -650,7 +650,7 @@ def reject_suggestion(request, unit, suggid):
             raise PermissionDenied(_("You do not have rights to access review mode."))
 
         success = unit.reject_suggestion(suggid)
-        if sugg is not None and success:
+        if sugg is not None and success and request.profile != sugg.user:
             #FIXME: we need a totally different model for tracking stats, this is just lame
             suggstat, created = SuggestionStat.objects.get_or_create(translation_project=translation_project,
                                                                      suggester=sugg.user,
@@ -686,13 +686,14 @@ def accept_suggestion(request, unit, suggid):
             if suggestion.user:
                 translation_submitted.send(sender=translation_project, unit=unit, profile=suggestion.user)
             #FIXME: we need a totally different model for tracking stats, this is just lame
-            suggstat, created = SuggestionStat.objects.get_or_create(translation_project=translation_project,
+            if suggestion.user != request.profile:
+                suggstat, created = SuggestionStat.objects.get_or_create(translation_project=translation_project,
                                                                      suggester=suggestion.user,
                                                                      state='pending',
                                                                      unit=unit.id)
-            suggstat.reviewer = request.profile
-            suggstat.state = 'accepted'
-            suggstat.save()
+                suggstat.reviewer = request.profile
+                suggstat.state = 'accepted'
+                suggstat.save()
 
             sub = Submission(translation_project=translation_project,
                              submitter=request.profile,
