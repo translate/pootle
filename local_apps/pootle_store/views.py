@@ -434,7 +434,7 @@ def get_view_units(request, units_queryset, limit=0):
     # to calculate its page number
     uid = request.GET.get('uid', None)
     if uid:
-        current_unit = step_queryset.get(id=uid)
+        current_unit = units_queryset.get(id=uid)
         preceding = _get_index_in_qs(step_queryset, current_unit)
         page = preceding / limit + 1
     else:
