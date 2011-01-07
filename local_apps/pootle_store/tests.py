@@ -103,7 +103,7 @@ class UnitTests(PootleTestCase):
         self.assertEqual(dbunit.target, pofile.units[dbunit.index].target)
 
     def test_update_fuzzy(self):
-        dbunit = self._update_translation(0, {'fuzzy': True})
+        dbunit = self._update_translation(0, {'target': u'samaka', 'fuzzy': True})
         storeunit = dbunit.getorig()
 
         self.assertTrue(dbunit.isfuzzy())
