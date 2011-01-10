@@ -387,10 +387,11 @@ class TranslationProject(models.Model):
 
     def commitpofile(self, request, store):
         """commits an individual PO file to version control"""
+        #FIXME: this is a view what is it doing here
         if not check_permission("commit", request):
             raise PermissionDenied(_("You do not have rights to commit files here"))
 
-        store.sync(update_structure=True, update_translation=True, conservative=False)
+        store.sync(update_structure=False, update_translation=True, conservative=True)
         stats = store.getquickstats()
         author = request.user.username
         message = stats_message("Commit from %s by user %s." % (settings.TITLE, author), stats)
