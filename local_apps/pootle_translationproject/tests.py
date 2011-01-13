@@ -505,7 +505,7 @@ class TsTests(XliffTests):
 <TS version="2.0">
     <context>
         <name>header</name>
-        <message><source></source><translation>some headers</translation></message>
+        <message><source></source><translatorcomment>some headers</translatorcomment></message>
     </context>
     <context>
         <name>fish.c</name>
