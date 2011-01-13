@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-08-04 22:17+0200\n"
+"PO-Revision-Date: 2011-01-11 19:23+0200\n"
 "Last-Translator: Serhij Dubyk - Сергій Дубик <dubyk@library.lviv.ua>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.1.0-beta2\n"
+"X-Generator: Pootle 2.1.4\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
@@ -914,7 +914,7 @@ msgstr "Звантажити XLIFF-файл для перекладу в офф�
 
 #: local_apps/pootle_app/views/language/item_dict.py:145
 msgid "Download XLIFF"
-msgstr "Завантажити XLIFF"
+msgstr "Звантажити XLIFF-файл"
 
 #: local_apps/pootle_app/views/language/item_dict.py:157
 msgid "Export"

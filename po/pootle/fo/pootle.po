@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-08-26 19:10+0200\n"
+"PO-Revision-Date: 2010-12-25 16:47+0200\n"
 "Last-Translator: Gunleif <fo.umseting@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fo\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.1\n"
+"X-Generator: Pootle 2.1.4\n"
 
 #: strings.py:8
 msgid ""
@@ -221,6 +221,8 @@ msgid ""
 "The description and instructions shown on the front page and about page. Be "
 "sure to use valid HTML."
 msgstr ""
+"Lýsingin og vegleiðingar sýndar á forsíðuni og um okkum síðuni. Tryggja tær "
+"at einans nýta gylduga HTML."
 
 #: local_apps/pootle_app/management/__init__.py:72
 msgid "Can view a translation project"
@@ -440,7 +442,7 @@ msgstr "Meira..."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:62
 msgid "Support"
-msgstr ""
+msgstr "Stuðul"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:65
 msgid ""
@@ -466,7 +468,7 @@ msgstr "Pootle postlistin"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:70
 msgid "(commercial support)"
-msgstr ""
+msgstr "(vinnuligur stuðul)"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:78
 msgid "Dependency Checks"
@@ -741,6 +743,8 @@ msgid ""
 "The \"from\" address used to send registration emails is not specified. Also "
 "review the mail server settings."
 msgstr ""
+"\"Frá\"-adressan nýtt til at skrásetinga t-post er ikki ásett. Hygg eisini "
+"eftir uppsetingin á t-post ambætaranum."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:139
 msgid ""
@@ -794,6 +798,7 @@ msgstr "Ongar fílur í hesari verkætlan."
 #: local_apps/pootle_app/views/admin/util.py:164
 msgid "There are errors in the form. Please review the problems below."
 msgstr ""
+"Har eru villur á oyðublaðnum. Vinarliga kanna trupulleikarnar niðanfyri."
 
 #: local_apps/pootle_app/views/admin/util.py:184 templates/base.html:51
 #: templates/base.html.py:56
@@ -1170,12 +1175,13 @@ msgstr "Miseydnaðist at innflyta uppskot frá %s"
 #, python-format
 msgid "Imported %(count)d unit from %(store)s"
 msgid_plural "Imported %(count)d units from %(store)s"
-msgstr[0] ""
+msgstr[0] "Flutti inn %(count)d eind úr %(store)s"
+msgstr[1] "Flutti inn %(count)d eindir úr %(store)s"
 
 #: local_apps/pootle_misc/dbupdate.py:165
 #, python-format
 msgid "Failed to import units from %s"
-msgstr ""
+msgstr "Miseydnaðist at flyta inn eindir úr %s"
 
 #: local_apps/pootle_misc/dbupdate.py:172
 msgid "All translations are now imported."
@@ -1273,7 +1279,7 @@ msgstr "Útgev"
 
 #: local_apps/pootle_profile/models.py:64
 msgid "Number of Rows"
-msgstr ""
+msgstr "Tal á røðum"
 
 #: local_apps/pootle_profile/models.py:68
 #: local_apps/pootle_profile/views.py:76
@@ -1407,7 +1413,7 @@ msgstr "TBX"
 
 #: local_apps/pootle_store/filetypes.py:52
 msgid "Haiku catkeys"
-msgstr ""
+msgstr "Haiku catkeys"
 
 #: local_apps/pootle_store/filetypes.py:58
 msgid "Java Properties"
@@ -1421,7 +1427,7 @@ msgstr "OS X Strings"
 
 #: local_apps/pootle_store/filetypes.py:67
 msgid "PHP arrays"
-msgstr ""
+msgstr "PHP fylki"
 
 #: local_apps/pootle_store/filetypes.py:70
 msgid "Subtitles: srt"
@@ -1529,11 +1535,11 @@ msgstr "Skjót upp"
 
 #: local_apps/pootle_store/templates/unit/edit.html:111
 msgid "Go to the previous unit"
-msgstr ""
+msgstr "Far aftur til fyrru eindina"
 
 #: local_apps/pootle_store/templates/unit/edit.html:112
 msgid "Go to the next unit"
-msgstr ""
+msgstr "Far til næstu eindina"
 
 #: local_apps/pootle_store/templates/unit/edit.html:130
 msgid "Add Comment"
@@ -1598,7 +1604,7 @@ msgstr ""
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:8
 msgid "Extract"
-msgstr ""
+msgstr "Avstappa"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:9
 msgid "You can regenerate the glossary from scratch."
@@ -1746,6 +1752,8 @@ msgid ""
 "Optionally select the file you want to merge with. If not specified, the "
 "uploaded file's name is used."
 msgstr ""
+"Vel valfrítt ta fíluna, tú vil flætta saman við. Um hetta ikki er ásett, "
+"verður navnið á uppsendu fíluni nýtt."
 
 #: local_apps/pootle_translationproject/views.py:501
 msgid "Upload File"
@@ -1819,7 +1827,7 @@ msgstr "Skriva eitt tal"
 
 #: pootle/middleware/captcha.py:156
 msgid "Incorrect"
-msgstr ""
+msgstr "Gali"
 
 #: templates/403.html:5 templates/403.html.py:10
 msgid "Permission Denied"
@@ -1883,7 +1891,7 @@ msgstr "Umsit forsettu loyvini"
 
 #: templates/base.html:49
 msgid "skip to navigation"
-msgstr ""
+msgstr "Leyp til navigering"
 
 #: templates/base.html:57 templates/base.html.py:117 templates/docs.html:5
 msgid "Help"
@@ -1901,7 +1909,7 @@ msgstr "Útrita"
 #: templates/base.html:66 templates/registration/registration_form.html:4
 #: templates/registration/registration_form.html:35
 msgid "Register"
-msgstr "Skráset"
+msgstr "Skráset teg"
 
 #: templates/base.html:68
 msgid "Log In"
@@ -2039,7 +2047,7 @@ msgstr "Boðini eru send"
 #: templates/contact_form/contact_form_subject.txt:2
 #, python-format
 msgid " message by %(name)s"
-msgstr "boð frá %(name)s"
+msgstr " boð frá %(name)s"
 
 #: templates/profiles/edit_personal.html:14
 msgid ""
@@ -2118,7 +2126,7 @@ msgid ""
 "The account has been activated for username \"%(account)s\". You can now "
 "proceed to log in."
 msgstr ""
-"Kontan er virkjað fyri brúkaranvan \"%(account)s. Tú kannst halda á at "
+"Kontan er virkjað fyri brúkaranavnið \"%(account)s. Tú kannst halda á at "
 "innrita."
 
 #: templates/registration/activation_email.txt:2
@@ -2185,11 +2193,11 @@ msgstr "Broyt mítt atlát"
 
 #: templates/registration/password_reset_complete.html:4
 msgid "Password Reset"
-msgstr ""
+msgstr "Tómstilla atlát"
 
 #: templates/registration/password_reset_complete.html:8
 msgid "Password Reset Complete."
-msgstr ""
+msgstr "Tómstillan av atláti er fullfíggjað."
 
 #: templates/registration/password_reset_complete.html:10
 #, python-format

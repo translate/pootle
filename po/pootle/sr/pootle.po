@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-08-03 01:16+0200\n"
-"Last-Translator: Anonymous Pootle User\n"
+"PO-Revision-Date: 2011-01-12 08:07+0200\n"
+"Last-Translator: Филип Милетић <filmil@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -16,47 +16,52 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.1.4\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
 msgstr ""
+"Држите притиснут тастер „Control“ или „Command“ на Мекинтошу како бисте "
+"изабрали више од једне ставке"
 
 #: strings.py:9
 msgid "Enter a valid e-mail address."
-msgstr ""
+msgstr "Унесите важећу ел. адресу."
 
 #: strings.py:10
 msgid ""
 "That e-mail address doesn't have an associated user account. Are you sure "
 "you've registered?"
 msgstr ""
+"Ова ел. адреса нема придружен кориснички налог. Да ли сте сигурни да сте се "
+"регистровали?"
 
 #: strings.py:11
 msgid "This field is required."
-msgstr ""
+msgstr "Ово поље је обавезно."
 
 #: strings.py:12
 #, python-format
 msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
 msgstr ""
+"Проверите да ова вредност има највише %(max)d знакова (дужина %(length)d)."
 
 #: strings.py:13
 msgid "Save and add another"
-msgstr ""
+msgstr "Сачувај и додај још један"
 
 #: strings.py:14
 msgid "Save and continue editing"
-msgstr ""
+msgstr "Сачувај и настави уређивање"
 
 #: strings.py:15
 msgid "Add"
-msgstr ""
+msgstr "Додај"
 
 #: strings.py:16
 msgid "Change"
-msgstr ""
+msgstr "Промени"
 
 #. l10n: This is a constructed string that might end up saying "Add language" or "Add project". If you need to translate that differently, you might want to try to translate it as "Add an entry to the %(name)s table" or "Add an object of type "%(name)s".
 #: strings.py:19

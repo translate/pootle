@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Pootle 1.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-08-04 00:19+0200\n"
+"PO-Revision-Date: 2011-01-02 12:00+0200\n"
 "Last-Translator: Robert <robert_readman@hotmail.com>\n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.0-beta2\n"
+"X-Generator: Pootle 2.1.4\n"
 
 #: strings.py:8
 msgid ""
@@ -107,7 +107,7 @@ msgstr "Your name"
 
 #: external_apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr "Your email address"
+msgstr "Your e-mail address"
 
 #: external_apps/contact_form_i18n/forms.py:148
 msgid "Your message"

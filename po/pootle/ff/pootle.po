@@ -7,14 +7,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-11-02 14:59+0200\n"
-"Last-Translator: Ibrahima SARR <ibrahima.sarr@pulaagu.com>\n"
+"PO-Revision-Date: 2010-12-31 13:34+0200\n"
+"Last-Translator: bokar <bokarba@yahoo.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ff\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 2.1.3\n"
+"X-Generator: Pootle 2.1.4\n"
 
 #: strings.py:8
 msgid ""
@@ -600,7 +600,7 @@ msgid ""
 "Translate Toolkit version %(installed)s installed. Pootle requires version %"
 "(required)s."
 msgstr ""
-"Translation Toolkit yamre %(installed)s loowaama. Pootle naamnii ko yamre %"
+"Translation Toolkit yamre %s(installed)s loowaama. Pootle naamnii ko yamre %"
 "(required)s."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:54
@@ -1114,7 +1114,7 @@ msgid "Pootle: Update"
 msgstr "Pootle: Hesɗitin"
 
 #: local_apps/pootle_misc/dbupdate.py:72
-#, fuzzy, python-format
+#, python-format, fuzzy
 msgid ""
 "Database tables are currently at build version %d. Pootle will now update "
 "the database."
@@ -1146,7 +1146,9 @@ msgstr ""
 #, python-format
 msgid "Imported %(count)d suggestion from %(store)s"
 msgid_plural "Imported %(count)d suggestions from %(store)s"
-msgstr[0] "Jiggagol %(count)d wasiyaaji iwde e %(store)s"
+msgstr[0] ""
+"TeelalJiggagol %(count)d wasiyaaji iwde e %(store)sKeewalJiggagol %(count)d "
+"wasiyaaji iwde e %(store)s"
 
 #: local_apps/pootle_misc/dbupdate.py:149
 #, python-format
@@ -1157,7 +1159,9 @@ msgstr "Jiggagol wasiyaaji iwde e %s feewaani"
 #, python-format
 msgid "Imported %(count)d unit from %(store)s"
 msgid_plural "Imported %(count)d units from %(store)s"
-msgstr[0] "Jiggagol %(count)d teelɗe iwde e %(store)s"
+msgstr[0] ""
+"TeelalJiggagol %(count)d teelngal iwngal e %(store)sKeewalJiggagol %(count)d "
+"teelɗe iwde e %(store)s"
 
 #: local_apps/pootle_misc/dbupdate.py:165
 #, python-format
@@ -1454,7 +1458,7 @@ msgid "No matching strings to translate."
 msgstr "Ɓoggi potɗi fireede goɗɗi ngasii."
 
 #: local_apps/pootle_store/views.py:387
-#, fuzzy, python-format
+#, python-format, fuzzy
 msgid "checking %s"
 msgstr "ena ƴeewtoo às"
 

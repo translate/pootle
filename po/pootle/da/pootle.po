@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-10-15 18:39+0200\n"
+"PO-Revision-Date: 2010-12-17 05:35+0200\n"
 "Last-Translator: Aputsiaq <aj@isit.gl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.2\n"
+"X-Generator: Pootle 2.1.4\n"
 "Generated-By: pygettext.py 1.5\n"
 
 #: strings.py:8
@@ -279,7 +279,7 @@ msgstr "Oversat"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:7
 msgid "Needs review"
-msgstr "Behøver review"
+msgstr "Kræver gennemgang"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:8
 #: local_apps/pootle_app/views/index/index.py:114
@@ -947,8 +947,8 @@ msgstr[1] "%d ord mangler oversættelse"
 #, python-format
 msgid "%d word needs review"
 msgid_plural "%d words need review"
-msgstr[0] "%d ord behøver review"
-msgstr[1] "%d ord behøver review"
+msgstr[0] "%d ord kræver gennemgang"
+msgstr[1] "%d ord kræver gennemgang"
 
 #: local_apps/pootle_app/views/language/item_dict.py:275
 #: local_apps/pootle_language/views.py:67
@@ -1074,7 +1074,7 @@ msgstr "Flertalsligning"
 msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
 msgstr[0] "%(projects)d projekt, %(average)d%% oversat"
-msgstr[1] "%(projects)d projecter, %(average)d%% oversat"
+msgstr[1] "%(projects)d projekter, %(average)d%% oversat"
 
 #: local_apps/pootle_language/views.py:108
 msgid "You do not have rights to administer this language."
@@ -1416,13 +1416,13 @@ msgstr "Haiku catkeys"
 
 #: local_apps/pootle_store/filetypes.py:58
 msgid "Java Properties"
-msgstr ""
+msgstr "Java-egenskaber"
 
 #. l10n: Don't translate "strings" unless you are sure these files have
 #. another name in your language
 #: local_apps/pootle_store/filetypes.py:63
 msgid "OS X Strings"
-msgstr ""
+msgstr "OS X-strenge"
 
 #: local_apps/pootle_store/filetypes.py:67
 msgid "PHP arrays"

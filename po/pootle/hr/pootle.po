@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-12-12 19:31+0200\n"
-"Last-Translator: snjezana <snjezana@lavabit.com>\n"
+"PO-Revision-Date: 2010-12-31 00:11+0200\n"
+"Last-Translator: Ivica  <ikoli@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -16,13 +16,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.1.3\n"
+"X-Generator: Pootle 2.1.4\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
 msgstr ""
-"Držite \"Control\" ili \"Command\" na Mac-u kako biste odabrali više od jedne "
+"Držite \"Control\", ili \"Command\" na Mac-u, kako biste odabrali više od jedne "
 "opcije."
 
 #: strings.py:9
@@ -112,7 +112,7 @@ msgstr "Vaše ime"
 
 #: external_apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr "Vaše e-mail adrese."
+msgstr "Vaše e-mail adrese"
 
 #: external_apps/contact_form_i18n/forms.py:148
 msgid "Your message"
@@ -158,11 +158,11 @@ msgstr "To korisničko ime je već zauzeto. Molimo izaberite drugo."
 
 #: external_apps/registration/forms.py:67
 msgid "You must type the same password each time"
-msgstr "Morate oba puta unijeti istu lozinku."
+msgstr "Morate oba puta unijeti istu lozinku"
 
 #: external_apps/registration/forms.py:90
 msgid "I have read and agree to the Terms of Service"
-msgstr "Pročitao sam i slažem se sa uvjetima."
+msgstr "Pročitao sam i slažem se sa uvjetima"
 
 #: external_apps/registration/forms.py:107
 msgid ""
@@ -248,7 +248,7 @@ msgstr "Možete pregledavati prijevode"
 
 #: local_apps/pootle_app/management/__init__.py:82
 msgid "Can download archives of translation projects"
-msgstr "Možete preuzimati iz arhiva projekata prevođenja."
+msgstr "Možete preuzimati iz arhiva projekata prevođenja"
 
 #: local_apps/pootle_app/management/__init__.py:84
 msgid "Can administrate a translation project"
@@ -471,7 +471,7 @@ msgstr "Pootleov popis e-pošte"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:70
 msgid "(commercial support)"
-msgstr "(Komercijalna podrška)"
+msgstr "(komercijalna podrška)"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:78
 msgid "Dependency Checks"
@@ -606,20 +606,20 @@ msgid ""
 msgstr ""
 
 #: local_apps/pootle_app/views/admin/dashboard.py:54
-#, python-format, fuzzy
+#, python-format, 
 msgid "Django version %s is installed."
-msgstr "Django verzija je instalirana."
+msgstr "Django verzija %s je instalirana."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:57
-#, python-format, fuzzy
+#, python-format, 
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
-msgstr "Django verzija je instalirana, ali više se preporuča veća verzija."
+msgstr "Django verzija %s je instalirana, ali više se preporuča veća verzija."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:63
-#, python-format, fuzzy
+#, python-format, 
 msgid "lxml version %s is installed."
-msgstr "Instalirana je lxml verzja."
+msgstr "Instalirana je %s lxml verzja."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:66
 #, python-format
@@ -1276,7 +1276,7 @@ msgstr "Zadano"
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
-msgstr "Kratki kod projekta"
+msgstr "Kratki kod projekta."
 
 #: local_apps/pootle_project/models.py:44
 msgid ""
@@ -1581,7 +1581,7 @@ msgstr ""
 
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:10
 msgid "Description..."
-msgstr "Opis"
+msgstr "Opis..."
 
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:15
 msgid "Details..."
@@ -1756,7 +1756,7 @@ msgid ""
 "or in the administration interface.</p>\n"
 "</div>"
 msgstr ""
-"<div dir=\"ltr\" lang=\"en\">\n"
+"<div dir=\"ltr\" lang=\"hr\">\n"
 "<h2 class=\"title\">Ovo je demo instalacije Pootle.</ h2>\n"
 "<p class=\"about\">Također možete posjetiti službeni<a "
 "href=\"http://pootle.locamotion.org\">Pootle server</ a>. Administrator "
@@ -1943,15 +1943,15 @@ msgstr "Prevedi ovaj projekt"
 
 #: templates/tp_menu.html:10
 msgid "Quality checks and review suggestions"
-msgstr "Kvalitetna provjera i pregledani prijedlozi."
+msgstr "Kvalitetna provjera i pregledani prijedlozi"
 
 #: templates/tp_menu.html:12
 msgid "Administrate your project permissions"
-msgstr "Upravljanje dozvolama vašeg projekta."
+msgstr "Upravljanje dozvolama vašeg projekta"
 
 #: templates/tp_menu.html:13
 msgid "Administrate your project files"
-msgstr "Upravljanje datoteka vašeg projekta."
+msgstr "Upravljanje datoteka vašeg projekta"
 
 #: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
 msgid "Overview of your account"
@@ -1959,7 +1959,7 @@ msgstr "Pregled vašeg korisničkog računa"
 
 #: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Configure your translation preferences"
-msgstr "Podesite postavke vašeg prijevoda."
+msgstr "Podesite postavke vašeg prijevoda"
 
 #: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Settings"
@@ -2155,8 +2155,8 @@ msgid ""
 "Your password has been set. You may go ahead and <a href=\"%(login_url)s"
 "\">log in</a> now."
 msgstr ""
-"Vaša lozinka je postavljena. Možete ići naprijed i <a href=\"%"
-"(login_url)s\">Prijaviti se</a>sada."
+"Vaša lozinka je postavljena.Možete ići naprijed i <a href=\"%"
+"(login_url)s\">prijaviti se</a>sada."
 
 #: templates/registration/password_reset_confirm.html:5
 #: templates/registration/password_reset_done.html:5
@@ -2164,7 +2164,7 @@ msgstr ""
 #: templates/registration/password_reset_form.html:5
 #: templates/registration/password_reset_form.html:9
 msgid "Reset Password"
-msgstr "Reset lozinke."
+msgstr "Reset lozinke"
 
 #: templates/registration/password_reset_confirm.html:10
 msgid "Enter New Password."
@@ -2189,7 +2189,7 @@ msgstr "Potvrdite lozinku"
 #: templates/registration/password_reset_confirm.html:26
 #: templates/registration/password_reset_form.html:20
 msgid "Reset My Password"
-msgstr "Resetiraj moju lozinku."
+msgstr "Resetiraj moju lozinku"
 
 #: templates/registration/password_reset_confirm.html:30
 msgid "Password Reset Failed."
@@ -2273,7 +2273,7 @@ msgstr "Već imate korisnički račun?"
 
 #: templates/registration/registration_form.html:41
 msgid "Log In."
-msgstr "Prijavite se"
+msgstr "Prijavite se."
 
 #~ msgid "You do not have rights to suggest changes here"
 #~ msgstr "Nemate prava za predlaganje promjena ovdje"

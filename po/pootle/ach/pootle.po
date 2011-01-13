@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-12-15 11:12+0200\n"
-"Last-Translator: A Kenneth <akogwal@gmail.com>\n"
+"PO-Revision-Date: 2011-01-12 14:03+0200\n"
+"Last-Translator: Alfred John <agwanta2004@yahoo.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ach\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 2.1.3\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Pootle 2.1.4\n"
 
 #: strings.py:8
 msgid ""
@@ -53,11 +54,11 @@ msgstr "Gwoki ki imede ki yubu ne"
 
 #: strings.py:15
 msgid "Add"
-msgstr "Medi"
+msgstr "Med"
 
 #: strings.py:16
 msgid "Change"
-msgstr "Loki"
+msgstr "Lok"
 
 #. l10n: This is a constructed string that might end up saying "Add language" or "Add project". If you need to translate that differently, you might want to try to translate it as "Add an entry to the %(name)s table" or "Add an object of type "%(name)s".
 #: strings.py:19
@@ -107,11 +108,11 @@ msgstr "Nyingi"
 
 #: external_apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr "E-mail address megi"
+msgstr "E-mail address mamegi"
 
 #: external_apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr "Kwena megi"
+msgstr "Kwena mamegi"
 
 # Yub bal ma otime piny kany ni.
 # ----------------------------------------
@@ -259,7 +260,7 @@ msgstr "Twero cung ikom alokaloka me leb"
 
 #: local_apps/pootle_app/models/suggestion.py:33
 msgid "Pending"
-msgstr "Pwud tye ka gem"
+msgstr "Pwod tye ka gem"
 
 #: local_apps/pootle_app/models/suggestion.py:34
 msgid "Accepted"
@@ -276,7 +277,7 @@ msgstr "Lu mii tam muloyo"
 #: local_apps/pootle_app/templates/translation_summary_legend.html:6
 #: local_apps/pootle_app/views/language/view.py:39
 msgid "Translated"
-msgstr "Ma dong kiloko woko"
+msgstr "Kiloko woko"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:7
 msgid "Needs review"
@@ -296,7 +297,7 @@ msgstr "Ma pwod peya kiloko"
 #: local_apps/pootle_app/views/index/index.py:106
 #: local_apps/pootle_profile/models.py:66 templates/admin_profile_menu.html:8
 msgid "Languages"
-msgstr "Leb "
+msgstr "Leb"
 
 #: local_apps/pootle_app/templates/admin/admin_general_languages.html:14
 msgid ""
@@ -366,7 +367,7 @@ msgstr "Tera Lung"
 
 #: local_apps/pootle_app/templates/admin/admin_general_settings.html:14
 msgid "Configure here the general settings for your site."
-msgstr "Nong kikany yuba me lumuku pi gang kal megi. "
+msgstr "Nong kikany yuba me lumuku pi gang kal mamegi. "
 
 #: local_apps/pootle_app/templates/admin/admin_general_users.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_users.html:11
@@ -382,7 +383,7 @@ msgid ""
 "Here you can add, edit, and delete all the available users in this Pootle "
 "server."
 msgstr ""
-" Kany itwero medo, loko, ki yweyo ducu woko lutic ma gitye i lagab tic me "
+"Kany itwero medo, loko, ki yweyo ducu woko lutic ma gitye i lagab tic me "
 "Pootle man."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:5
@@ -395,7 +396,7 @@ msgstr "Wi nyim motoka i yie"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:17
 msgid "Server Statistics"
-msgstr "Namba me ngec pa lagam  tic"
+msgstr "Namba me ngec pa lagab tic"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:23
 #: local_apps/pootle_app/views/language/view.py:41
@@ -456,15 +457,15 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:66
 msgid "You will find the following helpful for support:"
-msgstr "Ibi nongo cwak ma guryeyo  konyo atika ."
+msgstr "Ibi nongo cwak ma guryeyo konyo atika ."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:68
 msgid "The Pootle documentation"
-msgstr "Caden me coc pa Pootle"
+msgstr "Caden pi coc acoya me Pootle"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:69
 msgid "The Pootle mailing list"
-msgstr "Nying ma gi cano pi nongo mail ipootle"
+msgstr "Nying ma gi cano pi nongo mail i pootle"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:70
 msgid "(commercial support)"
@@ -534,11 +535,11 @@ msgstr "Purujek"
 #: local_apps/pootle_app/templates/index/index.html:90
 #: local_apps/pootle_notifications/templates/notices.html:80
 msgid "Latest News"
-msgstr "Lok angeya  manyen"
+msgstr "Lok angeya manyen"
 
 #: local_apps/pootle_app/templates/index/index.html:93
 msgid "Subscribe to the RSS feed."
-msgstr "Coye ikum RSS feed."
+msgstr "Coye ikom RSS feed."
 
 #: local_apps/pootle_app/templates/index/login.html:5
 #: local_apps/pootle_app/templates/index/login.html:22
@@ -635,15 +636,15 @@ msgstr ""
 
 #: local_apps/pootle_app/views/admin/dashboard.py:69
 msgid "lxml is not installed. Pootle requires lxml for XML format support."
-msgstr "lxml pe kityeko keto. Pootle mite lxml  pi XML pi cwak pa XML."
+msgstr "lxml pe kityeko keto.Pootle mite lxml pi XML pi cwak pa XML."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:80
 msgid ""
 "Can't find the unzip command. Uploading archives is faster if \"unzip\" is "
 "available."
 msgstr ""
-"Pe romo nongo cike me gonyo jib. Keto  katatac pa stori ma okato tye oyoto "
-"ka ''gonyi'' tye dong bene."
+"Pe romo nongo cike me gonyo jib.Keto katatac pa stori ma okato tye oyoto ka "
+"''gonyi''tye dong bene."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:84
 msgid ""
@@ -666,7 +667,7 @@ msgid ""
 "with python-levenshtein."
 msgstr ""
 "pe romo nongo nyalo-levenshtein ma kicoko. miyo ngec manyen i aa ki gin ma "
-"kiyiko ma lapor  ma cacal tye madwir ki nyalo-elevenshtein. "
+"kiyiko ma lapor ma cacal tye madwir ki nyalo-elevenshtein. "
 
 #: local_apps/pootle_app/views/admin/dashboard.py:96
 msgid ""
@@ -897,7 +898,7 @@ msgstr "Jib pa lanyut"
 
 #: local_apps/pootle_app/views/language/item_dict.py:142
 msgid "Translate offline"
-msgstr "Lok  ma pe i lain"
+msgstr "Lok ma pe i lain"
 
 #: local_apps/pootle_app/views/language/item_dict.py:143
 #: local_apps/pootle_app/views/language/item_dict.py:146
@@ -922,7 +923,7 @@ msgstr "Lok woko"
 
 #: local_apps/pootle_app/views/language/item_dict.py:161
 msgid "Download file"
-msgstr "Lok woko fail ma ikompuita "
+msgstr "Lok woko fail ma ikompiuta "
 
 #: local_apps/pootle_app/views/language/item_dict.py:172
 msgid "Commit to VCS"

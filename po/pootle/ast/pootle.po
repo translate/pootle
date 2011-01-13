@@ -6,21 +6,20 @@ msgstr ""
 "Project-Id-Version: Pootle 2.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-09-23 17:29+0200\n"
-"Last-Translator: Xandru <xandru@softastur.org>\n"
+"PO-Revision-Date: 2010-12-29 01:01+0200\n"
+"Last-Translator: astur <ivarela@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ast\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.2\n"
+"X-Generator: Pootle 2.1.4\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
-msgstr ""
-"Caltén calcada \"Control\", o \"Comandu\" nun Mav, pa seleicionar más d'una."
+msgstr "Caltén calcada \"Control\", o \"Comandu\" nun Mac, pa seleicionar más d'un."
 
 #: strings.py:9
 msgid "Enter a valid e-mail address."
@@ -1422,7 +1421,7 @@ msgstr "Haiku \"catkeys\""
 
 #: local_apps/pootle_store/filetypes.py:58
 msgid "Java Properties"
-msgstr ""
+msgstr "Java Properties"
 
 #. l10n: Don't translate "strings" unless you are sure these files have
 #. another name in your language
@@ -1899,7 +1898,7 @@ msgstr "saltar a la navegación"
 
 #: templates/base.html:57 templates/base.html.py:117 templates/docs.html:5
 msgid "Help"
-msgstr "Aida"
+msgstr "Ayuda"
 
 #: templates/base.html:62 templates/user_profile_base.html:5
 #: templates/user_profile_base.html:10
