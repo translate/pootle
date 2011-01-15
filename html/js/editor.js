@@ -630,7 +630,7 @@
   displayError: function (msg) {
     if (msg) {
       this.hideActivity();
-      $("#xhr-error span").text(msg).parent().fadeIn(300).delay(2000).fadeOut(3500);
+      $("#xhr-error span").text(msg).parent().stop(true, true).fadeIn(300).delay(2000).fadeOut(3500);
     }
   },
 
