@@ -318,8 +318,10 @@
     var maxheight = $(window).height() * 0.3;
     $('textarea.expanding').TextAreaExpander('10', maxheight);
 
-    // Focus on the first textarea
-    $(".focusthis").get(0).focus();
+    // Focus on the first textarea, if any
+    if ($(".focusthis").get(0)) {
+      $(".focusthis").get(0).focus();
+    }
 
     // Highlight stuff
     PTL.editor.hlSearch();
