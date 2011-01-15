@@ -878,7 +878,7 @@
 
       // Fill uids[before|after] with prev/next ids
       for (i=0; i<limit; i++) {
-        if (tu[m] != undefined && tu[m] in this.units) {
+        if (tu != undefined && tu[m] != undefined && tu[m] in this.units) {
           var tu = this.units[tu[m]];
           uids[prevNext[m]].push(tu.id);
         }
