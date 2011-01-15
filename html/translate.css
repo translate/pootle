@@ -274,12 +274,12 @@ body.zoom-out-2 div.sources .alternative .translation-text
 
 .translation-space
 {
-    padding: 0 4px 2px;
+    padding: 0 4px;
     margin: 0 0.2em;
     background-image: url('images/squiggle.png');
     background-repeat: repeat-x;
     background-position: text-bottom;
-    vertical-align: text-top;
+    vertical-align: middle;
 }
 
 /* TRANSLATION UNIT LAYOUT */
