@@ -1144,6 +1144,9 @@
           if (newUid) {
             var newHash = "unit/" + newUid;
             $.history.load(newHash);
+          } else {
+            // TODO: i18n
+            PTL.editor.displayError("Congratulations, you walked through all items");
           }
         }
       },
