@@ -322,8 +322,10 @@
     PTL.editor.hlSearch();
     //PTL.editor.hlTerms(); // Disabled for now — it's annoying!
 
-    // Start retrieving TM units from amaGama
-    PTL.editor.getTMUnits();
+    if (PTL.editor.settings.tmUrl != '') {
+      // Start retrieving TM units from amaGama
+      PTL.editor.getTMUnits();
+    }
 
     // All is ready, let's call the ready functions of the MT backends
     $("table.translate-table").trigger("mt_ready");
