@@ -40,6 +40,9 @@
     this.ctxtGap = 0;
     this.keepState = false;
 
+    this.isLoading = true;
+    this.showActivity();
+
     /* Currently active search fields */
     this.searchFields = [];
     /* Valid search field options */
@@ -177,18 +180,16 @@
 
     /* XHR activity indicator */
     $(document).ajaxStart(function () {
-      setTimeout(function () {
-        if ($.active > 0) {
-          // show activity indicator only if error message is not visible,
-          // otherwise it would result in message flickering and incorrect fading
-          if ($("#xhr-error").is(':hidden')) {
-            $("#xhr-activity").show();
-          }
-        }
+      clearTimeout(PTL.editor.delayedActivityTimer);
+      PTL.editor.delayedActivityTimer = setTimeout(function () {
+        PTL.editor.showActivity();
       }, 3000);
     });
     $(document).ajaxStop(function () {
-      $("#xhr-activity").hide();
+      clearTimeout(PTL.editor.delayedActivityTimer);
+      if (!PTL.editor.isLoading) {
+        PTL.editor.hideActivity();
+      }
     });
 
     /* Load MT backends */
@@ -334,6 +335,9 @@
 
     // All is ready, let's call the ready functions of the MT backends
     $("table.translate-table").trigger("mt_ready");
+
+    PTL.editor.isLoading = false;
+    PTL.editor.hideActivity();
   },
 
 
@@ -608,6 +612,15 @@
     }
   },
 
+  showActivity: function (force) {
+    if ($("#xhr-error").is(':hidden')) {
+      $("#xhr-activity").show();
+    }
+  },
+
+  hideActivity: function () {
+    $("#xhr-activity").hide();
+  },
 
   /*
    * Error handling
@@ -616,7 +629,7 @@
   /* Displays error messages returned in XHR requests */
   displayError: function (msg) {
     if (msg) {
-      $("#xhr-activity").hide();
+      this.hideActivity();
       $("#xhr-error span").text(msg).parent().fadeIn(300).delay(2000).fadeOut(3500);
     }
   },
