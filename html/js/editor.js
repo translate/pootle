@@ -178,9 +178,12 @@
     /* XHR activity indicator */
     $(document).ajaxStart(function () {
       setTimeout(function () {
-        $("#xhr-error").hide();
         if ($.active > 0) {
-          $("#xhr-activity").show();
+          // show activity indicator only if error message is not visible,
+          // otherwise it would result in message flickering and incorrect fading
+          if ($("#xhr-error").is(':hidden')) {
+            $("#xhr-activity").show();
+          }
         }
       }, 3000);
     });
@@ -612,7 +615,7 @@
   displayError: function (msg) {
     if (msg) {
       $("#xhr-activity").hide();
-      $("#xhr-error span").text(msg).parent().show().fadeOut(3500);
+      $("#xhr-error span").text(msg).parent().fadeIn(300).delay(2000).fadeOut(3500);
     }
   },
 
