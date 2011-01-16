@@ -17,3 +17,11 @@ input[type="submit"]
 {
     min-width: 80px; /* as it adds up paddings */
 }
+
+
+/* ADMIN PERMISSIONS */
+
+td.positive_permissions select
+{
+    height: 12em;
+}
