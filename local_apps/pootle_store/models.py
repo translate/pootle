@@ -319,10 +319,6 @@ class Unit(models.Model, base.TranslationUnit):
             unit.markfuzzy(self.isfuzzy())
             changed = True
 
-        if self.isobsolete() and not unit.isobsolete():
-            unit.makeobsolete()
-            changed = True
-
         if hasattr(unit, 'addalttrans') and self.get_suggestions().count():
             alttranslist = [alttrans.target for alttrans in unit.getalttrans()]
             for suggestion in self.get_suggestions().iterator():
@@ -331,6 +327,11 @@ class Unit(models.Model, base.TranslationUnit):
                     continue
                 unit.addalttrans(suggestion.target, unicode(suggestion.user))
                 changed = True
+
+        if self.isobsolete() and not unit.isobsolete():
+            unit.makeobsolete()
+            changed = True
+
         return changed
 
     def update(self, unit):
