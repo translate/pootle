@@ -296,6 +296,11 @@ class Unit(models.Model, base.TranslationUnit):
     def sync(self, unit):
         """sync in file unit with translations from db"""
         changed = False
+
+        if not self.isobsolete() and unit.isobsolete():
+            unit.resurrect()
+            changed = True
+
         if unit.target != self.target:
             if unit.hasplural():
                 nplurals = self.store.translation_project.language.nplurals
