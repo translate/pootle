@@ -57,16 +57,23 @@ def get_permissions_by_username(username, directory):
             permissionset = PermissionSet.objects.filter(
                 directory__in=directory.trail(only_dirs=False),
                 profile__user__username=username).order_by('-directory__pootle_path')[0]
-            if len(path_parts) > 1 and path_parts[0] != 'projects' and len(filter(None, permissionset.directory.pootle_path.split('/'))) < 2:
+        except IndexError:
+            permissionset = None
+
+        if len(path_parts) > 1 and path_parts[0] != 'projects' and \
+               (permissionset is None or len(filter(None, permissionset.directory.pootle_path.split('/'))) < 2):
                 # active permission at language level or higher, check project level permission
                 try:
                     project_path = '/projects/%s/' % path_parts[1]
                     permissionset = PermissionSet.objects.get(directory__pootle_path=project_path, profile__user__username=username)
                 except PermissionSet.DoesNotExist:
                     pass
+
+        if permissionset:
             permissions_cache[pootle_path] = permissionset.to_dict()
-        except IndexError:
+        else:
             permissions_cache[pootle_path] = None
+
         cache.set(key, permissions_cache, settings.OBJECT_CACHE_TIMEOUT)
 
     return permissions_cache[pootle_path]
