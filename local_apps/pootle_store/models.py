@@ -261,6 +261,10 @@ class Unit(models.Model, base.TranslationUnit):
         if hasattr(newunit, "addalttrans"):
             for suggestion in self.get_suggestions().iterator():
                 newunit.addalttrans(suggestion.target, origin=unicode(suggestion.user))
+
+        if self.isobsolete():
+            newunit.makeobsolete()
+
         return newunit
 
     def get_unit_class(self):
