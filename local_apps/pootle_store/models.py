@@ -701,7 +701,7 @@ class Store(models.Model, base.TranslationStore):
         if update or not hasattr(self, "dbid_index"):
             units = self.unit_set.all()
             if not obsolete:
-                units.filter(state__gt=OBSOLETE)
+                units = units.filter(state__gt=OBSOLETE)
             self.dbid_index = dict(units.values_list('unitid', 'id'))
 
     def findid_bulk(self, ids):
