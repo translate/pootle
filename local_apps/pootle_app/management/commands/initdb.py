@@ -111,7 +111,7 @@ def create_default_languages():
     nso = Language(code="nso")
     nso.fullname = u'Pedi; Sepedi; Northern Sotho'
     nso.nplurals = '2'
-    nso.pluralequation = '(n > 1)'
+    nso.pluralequation = '(n != 1)'
     nso.specialchars = "šŠ"
     nso.save()
 
@@ -174,6 +174,13 @@ def create_default_languages():
     lg = Language(code='lg')
     lg.fullname = u'Ganda'
     lg.save()
+
+    gd = Language(code='gd')
+    gd.fullname = u'Gaelic; Scottish Gaelic'
+    gd.nplurals = '4'
+    gd.pluralequation = '(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3'
+    gd.specialchars = u'àòùèìÀÈÌÒÙ'
+    gd.save()
 
     # import languages from toolkit
     from translate.lang import data
