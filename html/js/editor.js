@@ -359,6 +359,22 @@
    * Text utils
    */
 
+  escapeUnsafeRegexSymbols: function (s) {
+    r = "\\.+*?[^]$(){}=!<>¦:"; 
+    for (i = 0; i < s.length; i++) { 
+      s = s.replace(new RegExp("\\" + r.charAt(i),"g"), "\\" + r.charAt(i));
+    }
+    return s;
+  },
+
+  makeRegexForMultipleWords: function (s) {
+    var w = s.split(' ');
+    for (i = 0; i < w.length; i++) { 
+      w[i] = this.escapeUnsafeRegexSymbols(w[i]);
+    }
+    return '(' + w.join("|") + ')';
+  },
+
   /* Highlights search results */
   hlSearch: function () {
     var hl = PTL.editor.filter == "search" ? PTL.editor.searchText : "",
@@ -378,7 +394,7 @@
       sel = [selMap['source'], selMap['target']];
     }
 
-    $(sel.join(", ")).highlightRegex(new RegExp(hl, "i"));
+    $(sel.join(", ")).highlightRegex(new RegExp(PTL.editor.makeRegexForMultipleWords(hl), "i"));
   },
 
   /* Highlights matching terms in the source text */
@@ -387,7 +403,7 @@
 
     $(".tm-original").each(function () {
       term = $(this).text();
-      $("div.original .translation-text").highlightRegex(new RegExp(term, "g"));
+      $("div.original .translation-text").highlightRegex(new RegExp(PTL.editor.escapeUnsafeRegexSymbols(term), "g"));
     });
   },
 
