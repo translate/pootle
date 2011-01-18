@@ -6,6 +6,21 @@
 <div id="search" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
   <script type="text/javascript">
   $(document).ready(function() {
+    shortcut.add('ctrl+shift+s', function () {
+      $("#id_search").focus().select();
+    });
+    $("#id_search").focus(function() {
+      $(this).attr("focused", true);
+    });
+    $("#id_search").blur(function() {
+      $(this).attr("focused", "");
+    });
+    shortcut.add('escape', function () {
+      if ($("#id_search").attr("focused")) {
+        $("#id_search").blur();
+      }
+    });
+
     $("#searchform").submit(function(e) {
       e.preventDefault();
 
@@ -24,7 +39,7 @@
     });
   });
   </script>
-  <form action="{{ search_action }}" method="get" id="searchform">
+  <form action="{{ search_action }}" method="get" id="searchform" title="Search (Ctrl+Shift+S)<br/>Type in, then press Enter to search">
     <label class="inputHint" for="id_search">{% trans "Search" %}</label>{{ search_form.search }}
     <a class="advancedlink">
       {% if LANGUAGE_BIDI %}

@@ -177,6 +177,20 @@
     shortcut.add('ctrl+shift+u', function () {
       $("input#item-number").focus().select();
     });
+    shortcut.add('ctrl+shift+s', function () {
+      $("#id_search").focus().select();
+    });
+    $("#id_search").focus(function() {
+      $(this).attr("focused", true);
+    });
+    $("#id_search").blur(function() {
+      $(this).attr("focused", "");
+    });
+    shortcut.add('escape', function () {
+      if ($("#id_search").attr("focused")) {
+        $("#id_search").blur();
+      }
+    });
 
     /* XHR activity indicator */
     $(document).ajaxStart(function () {
