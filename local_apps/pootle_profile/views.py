@@ -32,7 +32,31 @@ from django.contrib.auth.decorators import login_required
 
 from pootle.i18n.override import lang_choices
 
+from pootle_profile.models import PootleProfile, get_profile
+from pootle_app.models import Directory
+from pootle_app.models.permissions import check_profile_permission
 from pootle_misc.baseurl import redirect
+
+from profiles.views import edit_profile
+
+
+def get_pootle_profile_form(request):
+    """return a profile form suitable for creating/editing PootleProfile"""
+    can_view = check_profile_permission(get_profile(request.user), "view", Directory.objects.root)
+
+    if can_view:
+        excluded = ('user',)
+    else:
+        excluded = ('user', 'projects')
+
+    class PootleProfileForm(ModelForm):
+        class Meta:
+            model = PootleProfile
+            exclude = excluded
+    return PootleProfileForm
+
+def profile_edit(request):
+    return edit_profile(request, form_class=get_pootle_profile_form(request))
 
 
 class UserForm(ModelForm):

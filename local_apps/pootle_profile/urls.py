@@ -25,6 +25,7 @@ from django.conf import settings
 urlpatterns = patterns('pootle_profile.views',
     (r'^login/?$',    'login'),
     (r'^logout/?$',   'logout'),
+    (r'^edit/?$', 'profile_edit'),
     (r'^personal/edit/?$',   'edit_personal_info'),
 )
 urlpatterns += patterns('django.contrib.auth.views',
