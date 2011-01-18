@@ -4,6 +4,26 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
 <div id="search" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $("#searchform").submit(function(e) {
+      e.preventDefault();
+
+      var s = $(this.search).val().trim();
+      if (!s) return false;
+
+      var params = [];
+      $(this.sfields).each(function() {
+        if ($(this).attr("checked")) {
+          params.push('sfields=' + encodeURIComponent($(this).val()));
+        }
+      });
+
+      window.location = this.action + '#search/' + encodeURIComponent(s) + (params.length > 0 ? '?' + params.join('&') : '');
+      return false;
+    });
+  });
+  </script>
   <form action="{{ search_action }}" method="get" id="searchform">
     <label class="inputHint" for="id_search">{% trans "Search" %}</label>{{ search_form.search }}
     <a class="advancedlink">
