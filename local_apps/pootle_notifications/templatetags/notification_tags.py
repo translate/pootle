@@ -20,18 +20,26 @@
 
 from django import template
 
-from pootle_app.models import Directory
-
+from pootle_app.models.directory import Directory
+from pootle_app.models.permissions import check_profile_permission
+from pootle_profile.models import get_profile
 from pootle_notifications.models import Notice
 
 register = template.Library()
 
-
-@register.inclusion_tag('latest_news_snippet.html')
-def render_latest_news(path, num):
+@register.inclusion_tag('latest_news_snippet.html', takes_context=True)
+def render_latest_news(context, path, num):
     try:
+
         directory = Directory.objects.get(pootle_path='/%s' % path)
+        user = context['user']
+        can_view = check_profile_permission(get_profile(user), "view", directory)
+        if not can_view:
+            directory = None
     except Directory.DoesNotExist:
+        directory = None
+
+    if directory is None:
         return {'news_items': None}
     news_items = Notice.objects.filter(directory=directory)[:num]
     return {'news_items': news_items}
