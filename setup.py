@@ -202,10 +202,10 @@ class PootleMinifyJS(DistutilsBuild):
                     {'comp': self.JS_COMPILER}
 
             for filename in bundles[bundle]:
-                cmd += " --js %(fn)s" % {'fn': path.join("html", "js", filename)}
+                cmd += " --js %(fn)s" % {'fn': path.join("html", "js", filename).replace('\\', '/')}
 
             cmd += " --js_output_file %(bn)s_bundle.js" %\
-                    {'bn': path.join("html", "js", bundle)}
+                    {'bn': path.join("html", "js", bundle).replace('\\', '/')}
 
             print "Bundling '%(bn)s' files into '%(bn)s_bundle.js'" %\
                     {'bn': bundle}
@@ -235,8 +235,8 @@ class PootleMinifyCSS(DistutilsBuild):
             print "Minifying '%(bn)s' file into '%(bn)s.min.css'" %\
                 {'bn': fn[:-4]}
             cmd += " -o %(ofn)s %(fn)s" %\
-                {'ofn': path.join("html", "%s.min.css" % fn[:-4]),
-                 'fn': path.join("html", fn)}
+                {'ofn': path.join("html", "%s.min.css" % fn[:-4]).replace('\\', '/'),
+                 'fn': path.join("html", fn).replace('\\', '/')}
 
             args = shlex.split(cmd)
             subprocess.call(args)
