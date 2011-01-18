@@ -112,6 +112,7 @@ def view(request):
         'translationlegend': {'translated': _('Translations are complete'),
                               'fuzzy': _('Translations need to be checked (they are marked fuzzy)'),
                               'untranslated': _('Untranslated')},
+        'permissions': request.permissions,
         }
     visible_langs = [l for l in templatevars['languages'] if l['total'] != 0]
     templatevars['moreprojects'] = len(templatevars['projects']) >\
