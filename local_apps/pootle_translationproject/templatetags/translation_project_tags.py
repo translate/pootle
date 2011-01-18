@@ -32,7 +32,7 @@ def render_search(context, form=None, action=None):
     if form is None:
         form = SearchForm()
     if action is None:
-        action = l(translation_project.pootle_path + 'translate.html')
+        action = l('translate.html')
 
     template_vars = {
         'search_form': form,
