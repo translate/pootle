@@ -12,6 +12,25 @@
         return hash;
       }
     },
+    update_part: function(part, newVal, replace) {
+      var hash = this.get();
+      if (!hash) {
+        return part + "/" + newVal;
+      }
+
+      var parts = hash.split("/");
+      var part_idx = parts.indexOf(part);
+      if (part_idx == -1) {
+        part_idx = parts.indexOf(replace);
+      }
+
+      if (part_idx > -1 ) {
+        parts[part_idx] = part;
+        parts[part_idx + 1] = newVal;
+        return parts.join("/");
+      }
+      return hash + "/" + part + "/" + newVal;
+    },
     encoder: encodeURIComponent
   };
 
