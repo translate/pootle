@@ -295,10 +295,34 @@
             PTL.editor.checks = parts[1] == "checks" ? parts[2].split(',') : [];
             PTL.editor.filter = parts[1];
 
+            unit_idx = parts.indexOf('unit');
+            if (unit_idx > -1) {
+              var uid = parseInt(parts[unit_idx+1])
+              if (uid && !isNaN(uid)) {
+                PTL.editor.activeUid = uid;
+                PTL.editor.getViewUnits({pager: true, withUid: true});
+                PTL.editor.displayEditUnit(PTL.editor.activeUid);
+                break;
+              }
+            } else {
+              page_idx = parts.indexOf('page');
+              if (page_idx > -1) {
+                var p = parseInt(parts[page_idx + 1]);
+                if (p && !isNaN(p) && p > 0) {
+                  PTL.editor.getViewUnits({pager: true, page: p});
+                  if (PTL.editor.hasResults) {
+                    var which = parseInt(PTL.editor.pagesGot[p].length / 2);
+                    var uid = PTL.editor.pagesGot[p][which];
+                    PTL.editor.activeUid = uid;
+                    PTL.editor.displayEditUnit(uid);
+                    break;
+                  }
+                }
+              }
+            }
             // Load units based on this filtering criteria
             PTL.editor.getViewUnits({pager: true});
             PTL.editor.displayEditUnit(PTL.editor.activeUid);
-
             break;
 
           /* Perform search and parse search fields */
@@ -1221,7 +1245,7 @@
           // Try loading the next unit
           var newUid = parseInt(PTL.editor.units[uid].next);
           if (newUid) {
-            var newHash = "unit/" + newUid;
+            var newHash = locationWrapper.update_part("unit", newUid, "page");
             $.history.load(newHash);
           } else {
             // TODO: i18n
@@ -1243,7 +1267,7 @@
 
     // Try loading the prev/next unit
     if (newUid != null) {
-      var newHash = "unit/" + parseInt(newUid);
+      var newHash = locationWrapper.update_part("unit", parseInt(newUid), "page");
       $.history.load(newHash);
     } else {
       if ($(e.target).attr("class") == 'previous') {
@@ -1270,8 +1294,8 @@
     // try to load it
     var m = $(this).attr("id").match(/row([0-9]+)/);
     if (m) {
-      var uid = parseInt(m[1]),
-          newHash = "unit/" + uid;
+      var uid = parseInt(m[1]);
+      var newHash = locationWrapper.update_part("unit", uid, "page");
       $.history.load(newHash);
     }
   },
@@ -1284,7 +1308,7 @@
     // Only load the given page if it's within a valid page range
     if (page && !isNaN(page) && page > 0 &&
         page <= PTL.editor.pager.num_pages) {
-      var newHash = "page/" + page;
+      var newHash = locationWrapper.update_part("page", page, "unit");
       $.history.load(newHash);
     }
   },
