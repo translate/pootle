@@ -1,41 +1,43 @@
 (function ($) {
+
+  window.PTL = window.PTL || {};
+
   var locationWrapper = {
-    put: function(hash, win) {
+    put: function (hash, win) {
       (win || window).location.hash = this.encoder(hash);
     },
-    get: function(win) {
+
+    get: function (win) {
       var hash = ((win || window).location.hash).replace(/^#/, '');
       try {
         return $.browser.mozilla ? hash : decodeURIComponent(hash);
-      }
-      catch (error) {
+      } catch (error) {
         return hash;
       }
     },
-    update_part: function(part, newVal, replace) {
+
+    updatePart: function (part, newVal, replace) {
       var hash = this.get();
       if (!hash) {
         return part + "/" + newVal;
       }
 
       var parts = hash.split("/");
-      var part_idx = parts.indexOf(part);
-      if (part_idx == -1) {
-        part_idx = parts.indexOf(replace);
+      var partIdx = parts.indexOf(part);
+      if (partIdx == -1) {
+        partIdx = parts.indexOf(replace);
       }
 
-      if (part_idx > -1 ) {
-        parts[part_idx] = part;
-        parts[part_idx + 1] = newVal;
+      if (partIdx > -1 ) {
+        parts[partIdx] = part;
+        parts[partIdx + 1] = newVal;
         return parts.join("/");
       }
       return hash + "/" + part + "/" + newVal;
     },
+
     encoder: encodeURIComponent
   };
-
-
-  window.PTL = window.PTL || {};
 
   // XXX: Know of a better place for this?
   /* Returns the number (size) of properties of a given object */
@@ -1245,7 +1247,7 @@
           // Try loading the next unit
           var newUid = parseInt(PTL.editor.units[uid].next);
           if (newUid) {
-            var newHash = locationWrapper.update_part("unit", newUid, "page");
+            var newHash = locationWrapper.updatePart("unit", newUid, "page");
             $.history.load(newHash);
           } else {
             // TODO: i18n
@@ -1267,7 +1269,7 @@
 
     // Try loading the prev/next unit
     if (newUid != null) {
-      var newHash = locationWrapper.update_part("unit", parseInt(newUid), "page");
+      var newHash = locationWrapper.updatePart("unit", parseInt(newUid), "page");
       $.history.load(newHash);
     } else {
       if ($(e.target).attr("class") == 'previous') {
@@ -1295,7 +1297,7 @@
     var m = $(this).attr("id").match(/row([0-9]+)/);
     if (m) {
       var uid = parseInt(m[1]);
-      var newHash = locationWrapper.update_part("unit", uid, "page");
+      var newHash = locationWrapper.updatePart("unit", uid, "page");
       $.history.load(newHash);
     }
   },
@@ -1308,7 +1310,7 @@
     // Only load the given page if it's within a valid page range
     if (page && !isNaN(page) && page > 0 &&
         page <= PTL.editor.pager.num_pages) {
-      var newHash = locationWrapper.update_part("page", page, "unit");
+      var newHash = locationWrapper.updatePart("page", page, "unit");
       $.history.load(newHash);
     }
   },
