@@ -2,12 +2,11 @@
 
   window.PTL = window.PTL || {};
 
-  var locationWrapper = {
-    put: function (hash, win) {
-      (win || window).location.hash = this.encoder(hash);
-    },
+  // XXX: maybe this can go into its own file
+  PTL.utils = {
 
-    get: function (win) {
+    /* Gets current URL's hash */
+    getHash: function (win) {
       var hash = ((win || window).location.hash).replace(/^#/, '');
       try {
         return $.browser.mozilla ? hash : decodeURIComponent(hash);
@@ -16,14 +15,15 @@
       }
     },
 
-    updatePart: function (part, newVal, replace) {
-      var hash = this.get();
+    /* Updates current URL's hash */
+    updateHashPart: function (part, newVal, replace) {
+      var hash = this.getHash();
       if (!hash) {
         return part + "/" + newVal;
       }
 
-      var parts = hash.split("/");
-      var partIdx = parts.indexOf(part);
+      var parts = hash.split("/"),
+          partIdx = parts.indexOf(part);
       if (partIdx == -1) {
         partIdx = parts.indexOf(replace);
       }
@@ -35,8 +35,6 @@
       }
       return hash + "/" + part + "/" + newVal;
     },
-
-    encoder: encodeURIComponent
   };
 
   // XXX: Know of a better place for this?
@@ -1247,7 +1245,7 @@
           // Try loading the next unit
           var newUid = parseInt(PTL.editor.units[uid].next);
           if (newUid) {
-            var newHash = locationWrapper.updatePart("unit", newUid, "page");
+            var newHash = PTL.utils.updateHashPart("unit", newUid, "page");
             $.history.load(newHash);
           } else {
             // TODO: i18n
@@ -1269,7 +1267,7 @@
 
     // Try loading the prev/next unit
     if (newUid != null) {
-      var newHash = locationWrapper.updatePart("unit", parseInt(newUid), "page");
+      var newHash = PTL.utils.updateHashPart("unit", parseInt(newUid), "page");
       $.history.load(newHash);
     } else {
       if ($(e.target).attr("class") == 'previous') {
@@ -1297,7 +1295,7 @@
     var m = $(this).attr("id").match(/row([0-9]+)/);
     if (m) {
       var uid = parseInt(m[1]);
-      var newHash = locationWrapper.updatePart("unit", uid, "page");
+      var newHash = PTL.utils.updateHashPart("unit", uid, "page");
       $.history.load(newHash);
     }
   },
@@ -1310,7 +1308,7 @@
     // Only load the given page if it's within a valid page range
     if (page && !isNaN(page) && page > 0 &&
         page <= PTL.editor.pager.num_pages) {
-      var newHash = locationWrapper.updatePart("page", page, "unit");
+      var newHash = PTL.utils.updateHashPart("page", page, "unit");
       $.history.load(newHash);
     }
   },
