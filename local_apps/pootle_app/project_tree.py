@@ -173,7 +173,8 @@ def find_lang_postfix(filename):
         return match.groups()[0]
 
     for code in Language.objects.values_list('code', flat=True):
-        if name.endswith(code) or name.lower().endswith(code.lower()):
+        if name.endswith('-'+code) or name.endswith('_'+code) or name.endswith('.'+code) or \
+               name.lower().endswith('-'+code.lower()) or name.endswith('_'+code) or name.endswith('.'+code):
             return code
 
 def translation_project_should_exist(language, project):
