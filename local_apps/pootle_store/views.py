@@ -521,6 +521,7 @@ def get_edit_unit(request, unit):
     template_vars = {'unit': unit,
                      'form': form,
                      'store': store,
+                     'directory': directory,
                      'profile': profile,
                      'user': request.user,
                      'language': language,
@@ -534,6 +535,11 @@ def get_edit_unit(request, unit):
     t = loader.get_template('unit/edit.html')
     c = RequestContext(request, template_vars)
     json['editor'] = t.render(c)
+    t = loader.get_template('store/dircrumbs.html')
+    json['dircrumbs'] = t.render(c)
+    t = loader.get_template('store/storecrumbs.html')
+    json['storecrumbs'] = t.render(c)
+
     rcode = 200
     # Return context rows if filtering is applied
     if _is_filtered(request) or request.GET.get('filter', 'all') != 'all':

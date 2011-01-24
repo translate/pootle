@@ -14,9 +14,14 @@
     {{ block.super }} » 
     {% cache settings.CACHE_TIMEOUT tp_bread directory.id LANGUAGE_CODE %}
         <span><a href="{{ language.pootle_path|l }}">{{ language.localname }}</a></span> » <span><a href="{{ translation_project.pootle_path|l }}">{{ translation_project.project }}</a></span>
-        {% for dir in directory.trail %}
-            » <span><a href="{{ dir.pootle_path|l}}">/{{ dir.name }}</a></span>
-        {% endfor %}
+	<span id="dircrumbs">
+	  {% if directory.trail %}
+	  » 
+	    {% for dir in directory.trail %}
+	      <span><a href="{{ dir.pootle_path|l}}">{{ dir.name }}</a> / </span>
+	    {% endfor %}
+	  {% endif %}
+	</span>
     {% endcache %}
 {% endblock %}
 
