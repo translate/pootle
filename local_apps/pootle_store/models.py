@@ -1080,8 +1080,8 @@ class Store(models.Model, base.TranslationStore):
 
     def header(self):
         #FIXME: we should store some metadata in db
-        if self.file and hasattr(self.file, 'header'):
-            return self.file.header()
+        if self.file and hasattr(self.file.store, 'header'):
+            return self.file.store.header()
 
 ############################### Stats ############################
 
