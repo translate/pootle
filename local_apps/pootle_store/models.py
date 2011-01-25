@@ -1220,7 +1220,9 @@ class Store(models.Model, base.TranslationStore):
 
             po_revision_date = mtime.strftime('%Y-%m-%d %H:%M') + poheader.tzstring()
             headerupdates = {'PO_Revision_Date': po_revision_date,
-                             'X_Generator': x_generator}
+                             'X_Generator': x_generator,
+                             'X_POOTLE_MTIME': '%s.%d' % (mtime.strftime('%s'), mtime.microsecond),
+                             }
             if profile and profile.user.is_authenticated():
                 headerupdates['Last_Translator'] = '%s <%s>' % (profile.user.first_name or profile.user.username, profile.user.email)
             else:
