@@ -1143,7 +1143,19 @@ class Store(models.Model, base.TranslationStore):
         oldstate = self.state
         self.state = LOCKED
         self.save()
+
         try:
+            if suggestions and isinstance(newfile, poheader.poheader):
+                try:
+                    mtime = newfile.parseheader().get('X-POOTLE-MTIME', None)
+                    if mtime:
+                        mtime = datetime.datetime.fromtimestamp(float(mtime))
+                except Exception, e:
+                    logging.debug("failed to parse mtime: %s", e)
+                    mtime = None
+            else:
+                mtime = None
+
             self.require_dbid_index(update=True, obsolete=True)
             old_ids = set(self.dbid_index.keys())
             if issubclass(self.translation_project.project.get_file_class(), newfile.__class__):
@@ -1173,17 +1185,17 @@ class Store(models.Model, base.TranslationStore):
                 newunit = newfile.findid(oldunit.getid())
                 if monolingual and not self.translation_project.is_template_project:
                     fix_monolingual(oldunit, newunit, monolingual)
-                if notranslate or oldunit.istranslated() and suggestions:
-                    if newunit.istranslated():
-                        #FIXME: add a user argument
+                if newunit.istranslated():
+                    if notranslate or \
+                       suggestions and oldunit.istranslated() and (not mtime or mtime < oldunit.mtime):
                         oldunit.add_suggestion(newunit.target, profile)
-                else:
-                    changed = oldunit.merge(newunit)
-                    if changed:
-                        do_checks = oldunit._source_updated or oldunit._target_updated
-                        oldunit.save()
-                        if do_checks and oldstate >= CHECKED:
-                            oldunit.update_qualitychecks()
+                    else:
+                        changed = oldunit.merge(newunit, overwrite=True)
+                        if changed:
+                            do_checks = oldunit._source_updated or oldunit._target_updated
+                            oldunit.save()
+                            if do_checks and oldstate >= CHECKED:
+                                oldunit.update_qualitychecks()
 
             if allownewstrings or obsoletemissing:
                 self.sync(update_structure=True, update_translation=True, conservative=False, create=False, profile=profile)
