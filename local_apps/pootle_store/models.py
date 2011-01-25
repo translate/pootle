@@ -1127,14 +1127,16 @@ class Store(models.Model, base.TranslationStore):
                 return
         monolingual = is_monolingual(type(newfile))
         self.clean_stale_lock()
+
+        # must be done before locking the file in case it wasn't already parsed
+        self.require_units()
+
         if self.state == LOCKED:
             # file currently being updated
             #FIXME: shall we idle wait for lock to be released first? what about stale locks?
             logging.info(u"attemped to merge %s while locked", self.pootle_path)
             return
 
-        # must be done before locking the file in case it wasn't already parsed
-        self.require_units()
         logging.debug(u"merging %s", self.pootle_path)
 
         # lock store
