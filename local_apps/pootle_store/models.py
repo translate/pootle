@@ -543,12 +543,16 @@ class Unit(models.Model, base.TranslationUnit):
             # current translation more trusted
             return changed
 
-        self.target = unit.target
-        if self.source != unit.source:
-            self.markfuzzy()
-        else:
+        if self.target != unit.target:
+            self.target = unit.target
+            if self.source != unit.source:
+                self.markfuzzy()
+            else:
+                self.markfuzzy(unit.isfuzzy())
+            changed = True
+        elif self.isfuzzy() != unit.isfuzzy():
             self.markfuzzy(unit.isfuzzy())
-        changed = True
+            changed = True
 
         return changed
 
