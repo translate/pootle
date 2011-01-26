@@ -15,25 +15,43 @@
       }
     },
 
+    decodeURIParameter: function(s) {
+      return decodeURIComponent(s.replace(/\+/g, " "));
+    },
+
+    getParsedHash: function (h) {
+      var params = new Object();
+      var r = /([^&;=]+)=?([^&;]*)/g;
+      if (h == undefined) h = this.getHash();
+      var e;
+      while (e = r.exec(h)) {
+        params[this.decodeURIParameter(e[1])] = this.decodeURIParameter(e[2]);
+      }
+      return params;
+    },
+
     /* Updates current URL's hash */
-    updateHashPart: function (part, newVal, replace) {
-      var hash = this.getHash();
-      if (!hash) {
-        return part + "/" + newVal;
+    updateHashPart: function (part, newVal, removePart) {
+      var params = new Array();
+      var r = /([^&;=]+)=?([^&;]*)/g;
+      var h = this.getHash();
+      var e, ok;
+      while (e = r.exec(h)) {
+        var p = this.decodeURIParameter(e[1]);
+        if (p == part) {
+          // replace with the given value
+          params.push(e[1]+'='+encodeURIComponent(newVal));
+          ok = true;
+        } else if (p != removePart) {
+          // use the parameter as is
+          params.push(e[1]+'='+e[2]);
+        }
       }
-
-      var parts = hash.split("/"),
-          partIdx = parts.indexOf(part);
-      if (partIdx == -1) {
-        partIdx = parts.indexOf(replace);
+      // if there was no old parameter, push the param at the end
+      if (!ok) {
+        params.push(encodeURIComponent(part)+'='+encodeURIComponent(newVal));
       }
-
-      if (partIdx > -1 ) {
-        parts[partIdx] = part;
-        parts[partIdx + 1] = newVal;
-        return parts.join("/");
-      }
-      return hash + "/" + part + "/" + newVal;
+      return params.join('&');
     },
   };
 
@@ -263,129 +281,62 @@
     /* History support */
     setTimeout(function () {
       $.history.init(function (hash) {
-        var parts = hash.split("/");
+        var params = PTL.utils.getParsedHash(hash);
 
-        switch (parts[0]) {
+        var withUid = false;
+        var pageNumber = undefined;
 
-          /* Load a specific unit based on its uid */
-          case "unit":
-            var uid = parseInt(parts[1]);
+        // Walk through known filtering criterias and apply them to the editor object
 
-            if (uid && !isNaN(uid)) {
-              // Take care when we want to access a unit directly
-              // from a permalink
-              if (PTL.editor.activeUid != uid &&
-                  PTL.editor.units[uid] == undefined) {
-                PTL.editor.activeUid = uid;
-                PTL.editor.getViewUnits({pager: true, withUid: true});
-              }
-              // Now it's safe to actually load the unit
-              PTL.editor.displayEditUnit(uid);
-            }
+        if ('unit' in params) {
+          var uid = parseInt(params['unit']);
 
-            break;
+          if (uid && !isNaN(uid)) {
+            PTL.editor.activeUid = uid;
+            withUid = true;
+          }
+        } else if ('page' in params) {
+          var p = parseInt(params['page']);
 
-          /* Filter units based on specific criterias */
-          case "filter":
-            // Save previous states in case there are no results
-            PTL.editor.prevChecks = PTL.editor.checks;
-            PTL.editor.prevFilter = PTL.editor.filter;
-
-            // Set current state
-            PTL.editor.checks = parts[1] == "checks" ? parts[2].split(',') : [];
-            PTL.editor.filter = parts[1];
-
-            unit_idx = parts.indexOf('unit');
-            if (unit_idx > -1) {
-              var uid = parseInt(parts[unit_idx+1])
-              if (uid && !isNaN(uid)) {
-                PTL.editor.activeUid = uid;
-                PTL.editor.getViewUnits({pager: true, withUid: true});
-                PTL.editor.displayEditUnit(PTL.editor.activeUid);
-                break;
-              }
-            } else {
-              page_idx = parts.indexOf('page');
-              if (page_idx > -1) {
-                var p = parseInt(parts[page_idx + 1]);
-                if (p && !isNaN(p) && p > 0) {
-                  PTL.editor.getViewUnits({pager: true, page: p});
-                  if (PTL.editor.hasResults) {
-                    var which = parseInt(PTL.editor.pagesGot[p].length / 2);
-                    var uid = PTL.editor.pagesGot[p][which];
-                    PTL.editor.activeUid = uid;
-                    PTL.editor.displayEditUnit(uid);
-                    break;
-                  }
-                }
-              }
-            }
-            // Load units based on this filtering criteria
-            PTL.editor.getViewUnits({pager: true});
-            PTL.editor.displayEditUnit(PTL.editor.activeUid);
-            break;
-
-          /* Perform search and parse search fields */
-          case "search":
-            PTL.editor.filter = parts[0];
-
-            // Parse search fields from query string
-            var params, pair, key, val,
-                sfields = [],
-                qs = parts[1].split("?");
-
-            // Search text is all the text before "?"
-            PTL.editor.searchText = qs[0];
-
-            // Parse query parameters and detect fields
-            params = qs[1] == undefined ? [] : qs[1].split("&");
-            $.each(params, function (i, keyVal) {
-              pair = keyVal.split("=");
-              key = pair[0];
-              val = pair[1];
-              // We will only consider keys that match 'sfields'
-              if (key == 'sfields') {
-                sfields.push(val);
-              }
-            });
-            PTL.editor.searchFields = sfields;
-
-            // Finally, load the units that match this search
-            PTL.editor.getViewUnits({page: 1, pager: true});
-            PTL.editor.displayEditUnit(PTL.editor.activeUid);
-
-            break;
-
-          /* Load pages directly */
-          case "page":
-            var p = parseInt(parts[1]);
-
-            if (p && !isNaN(p) && p > 0) {
-              if (!(p in PTL.editor.pagesGot)) {
-                PTL.editor.getViewUnits({pager: true, page: p});
-              }
-              // If there are no results for page p, it may be an
-              // invalid page number
-              if (PTL.editor.hasResults) {
-                var which = parseInt(PTL.editor.pagesGot[p].length / 2);
-                var uid = PTL.editor.pagesGot[p][which];
-                PTL.editor.activeUid = uid;
-                PTL.editor.displayEditUnit(uid);
-              }
-            }
-
-            break;
-
-          /* Load the first page in the current view as default */
-          default:
-            PTL.editor.getViewUnits({pager: true});
-            PTL.editor.displayEditUnit(PTL.editor.activeUid);
+          if (p && !isNaN(p) && p > 0) {
+            pageNumber = p;
+          }
         }
+
+        if ('filter' in params) {
+          // Save previous states in case there are no results
+          PTL.editor.prevChecks = PTL.editor.checks;
+          PTL.editor.prevFilter = PTL.editor.filter;
+
+          var a = params['filter'].split(',');
+
+          // Set current state
+          PTL.editor.filter = a.shift();
+          PTL.editor.checks = (PTL.editor.filter == "checks") ? a : [];
+        }
+
+        if ('search' in params) {
+          // Note that currently the search, if provided along with the other filters,
+          // would override them
+          PTL.editor.filter = "search";
+          PTL.editor.searchText = params['search'];
+          if ('sfields' in params) {
+            PTL.editor.searchFields = params['sfields'].split(',');
+          }
+        }
+
+        // Load the units that match the given criterias
+
+        PTL.editor.getViewUnits({pager: true, page: pageNumber, withUid: withUid});
+
+        if (PTL.editor.hasResults) {
+          PTL.editor.displayEditUnit(PTL.editor.activeUid);
+        }
+
       }, {'unescape': true});
-    }, 1000);
+    }, 1); // not sure why we had a 1000ms timeout here
 
   },
-
 
   /* Stuff to be done when the editor is ready  */
   ready: function () {
@@ -1270,7 +1221,6 @@
     });
   },
 
-
   /* Loads the editor with the next unit */
   gotoPrevNext: function (e) {
     e.preventDefault();
@@ -1354,7 +1304,7 @@
     var filterBy = $("option:selected", this).val();
 
     if (filterBy != "none") {
-      var newHash = "filter/checks/" + filterBy;
+      var newHash = "filter=checks," + filterBy;
       $.history.load(newHash);
     }
   },
@@ -1386,7 +1336,7 @@
       }
     } else { // Normal filtering options (untranslated, fuzzy...)
       $("div#filter-checks").remove();
-      var newHash = "filter/" + filterBy;
+      var newHash = "filter=" + filterBy;
       $.history.load(newHash);
     }
   },
@@ -1425,7 +1375,7 @@
 
   /* Parses search text to detect any given fields */
   parseSearch: function (text) {
-    var urlFields = [],
+    var searchFields = [],
         parsed = text;
 
     // Check if there are fields specified within the search text
@@ -1440,7 +1390,7 @@
 
           // Only consider valid fields
           if ($.inArray(opt, PTL.editor.searchOptions) > -1) {
-            urlFields.push({name: 'sfields', value: opt});
+            searchFields.push(opt);
           }
 
           // If it's an invalid field name, discard it from the search text
@@ -1459,13 +1409,13 @@
     } else {
       // There were no fields specified within the text so we use the dropdown
       $("div.advancedsearch input:checked").each(function () {
-        urlFields.push({name: 'sfields', value: $(this).val()});
+        searchFields.push($(this).val());
       });
     }
 
-    // If any fields have been chosen, append them to the resulting URL
-    if (urlFields.length) {
-      parsed += "?" + $.param(urlFields);
+    // If any options have been chosen, append them to the resulting URL
+    if (searchFields.length) {
+      parsed += "&sfields=" + searchFields.join(',');
     }
 
     return parsed;
@@ -1477,7 +1427,7 @@
     var text = $("input#id_search").val();
     if (text) {
       var parsed = this.parseSearch(text),
-          newHash = "search/" + parsed;
+          newHash = "search=" + parsed;
       $.history.load(newHash);
     }
   },

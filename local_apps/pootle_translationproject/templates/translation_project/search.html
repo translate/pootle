@@ -30,11 +30,11 @@
       var params = [];
       $(this.sfields).each(function() {
         if ($(this).attr("checked")) {
-          params.push('sfields=' + encodeURIComponent($(this).val()));
+          params.push(encodeURIComponent($(this).val()));
         }
       });
 
-      window.location = this.action + '#search/' + encodeURIComponent(s) + (params.length > 0 ? '?' + params.join('&') : '');
+      window.location = this.action + '#search=' + encodeURIComponent(s) + (params.length > 0 ? '&sfields=' + params.join(',') : '');
       return false;
     });
   });
