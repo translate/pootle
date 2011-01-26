@@ -68,11 +68,11 @@ def translate(pathobj, state=None, check=None, suggestions=False):
         path += '/translate/'
 
     if state:
-        path += '#filter/%s' % state
+        path += '#filter=%s' % state
     elif check:
-        path += '#filter/checks/%s' % check
+        path += '#filter=checks,%s' % check
     elif suggestions:
-        path += '#filter/suggestions'
+        path += '#filter=suggestions'
 
     return path
 
