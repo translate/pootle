@@ -614,6 +614,21 @@ ul.errorlist
     line-height: 1.3em;
 }
 
+.intro .announcement {
+    background-color: #f9edd0;
+    padding: 1em 1em;
+    border: 1px dashed #935300;
+    color: #624800;
+}
+
+.intro strong {
+   font-weight: bold;
+}
+
+.intro em {
+   font-style: italic;
+}
+
 /* TABLES */
 
 .module table, 
