@@ -52,7 +52,7 @@
         params.push(encodeURIComponent(part)+'='+encodeURIComponent(newVal));
       }
       return params.join('&');
-    },
+    }
   };
 
   // XXX: Know of a better place for this?
