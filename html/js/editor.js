@@ -1060,7 +1060,7 @@
         this.dircrumbs = dircrumbs;
         $("#dircrumbs").html(dircrumbs);
       }
-      if (this.storecrumbs != breadcrumbs) {
+      if (this.storecrumbs != storecrumbs) {
         this.storecrumbs = storecrumbs;
         $("#storecrumbs").html(storecrumbs);
       }
