@@ -294,8 +294,16 @@
           var uid = parseInt(params['unit']);
 
           if (uid && !isNaN(uid)) {
-            PTL.editor.activeUid = uid;
-            withUid = true;
+            if (PTL.editor.activeUid != uid &&
+                PTL.editor.units[uid] == undefined) {
+              PTL.editor.activeUid = uid;
+              withUid = true;
+            } else {
+              // if uid is already preloaded, just switch to it
+              PTL.editor.activeUid = uid;
+              PTL.editor.displayEditUnit(uid);
+              return;
+            }
           }
         } else if ('page' in params) {
           var p = parseInt(params['page']);
