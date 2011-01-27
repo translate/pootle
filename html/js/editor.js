@@ -22,7 +22,9 @@
     getParsedHash: function (h) {
       var params = new Object();
       var r = /([^&;=]+)=?([^&;]*)/g;
-      if (h == undefined) h = this.getHash();
+      if (h == undefined) {
+        h = this.getHash();
+      }
       var e;
       while (e = r.exec(h)) {
         params[this.decodeURIParameter(e[1])] = this.decodeURIParameter(e[2]);
@@ -40,16 +42,16 @@
         var p = this.decodeURIParameter(e[1]);
         if (p == part) {
           // replace with the given value
-          params.push(e[1]+'='+encodeURIComponent(newVal));
+          params.push(e[1] + '=' + encodeURIComponent(newVal));
           ok = true;
         } else if (p != removePart) {
           // use the parameter as is
-          params.push(e[1]+'='+e[2]);
+          params.push(e[1] + '=' + e[2]);
         }
       }
       // if there was no old parameter, push the param at the end
       if (!ok) {
-        params.push(encodeURIComponent(part)+'='+encodeURIComponent(newVal));
+        params.push(encodeURIComponent(part) + '=' + encodeURIComponent(newVal));
       }
       return params.join('&');
     }
