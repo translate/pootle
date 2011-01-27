@@ -66,7 +66,7 @@
   </div>
   <div class="bd">
     <div class="avatar">
-      <img src="http://www.gravatar.com/avatar/{{ profile.get_email_hash }}?s=100&d=mm" width="100" height="100" />
+      <img src="http://www.gravatar.com/avatar/{{ profile.get_email_hash }}?s=100&d=mm" width="100" height="100"{% ifequal user profile.user %} title="{% trans "You can set or change your avatar image at www.gravatar.com" %}"{% endifequal %} />
     </div>
     <table>
       {% for stat in profile.getuserstatistics %}
