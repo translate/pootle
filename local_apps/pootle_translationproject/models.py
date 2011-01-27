@@ -44,7 +44,7 @@ from pootle_misc.baseurl import l
 from pootle_misc.aggregate import group_by_count, max_column
 from pootle_store.util import calculate_stats
 from pootle_store.models           import Store, Unit, QualityCheck, PARSED, CHECKED
-from pootle_store.util             import relative_real_path, absolute_real_path
+from pootle_store.util             import relative_real_path, absolute_real_path, OBSOLETE
 from pootle_store.util import empty_quickstats, empty_completestats
 
 from pootle_app.lib.util           import RelatedManager
@@ -211,7 +211,7 @@ class TranslationProject(models.Model):
         if self.is_template_project:
             return empty_quickstats
         errors = self.require_units()
-        stats = calculate_stats(Unit.objects.filter(store__translation_project=self))
+        stats = calculate_stats(Unit.objects.filter(store__translation_project=self, state__gt=OBSOLETE))
         stats['errors'] = errors
         return stats
 
