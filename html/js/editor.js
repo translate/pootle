@@ -340,6 +340,11 @@
         PTL.editor.getViewUnits({pager: true, page: pageNumber, withUid: withUid});
 
         if (PTL.editor.hasResults) {
+          // ensure all the data is preloaded before rendering the table
+          // otherwise, when the page is reloaded, some pages will not yet be there
+          PTL.editor.fetchPages(false);
+
+          // now we can safely render the table
           PTL.editor.displayEditUnit(PTL.editor.activeUid);
         }
 
