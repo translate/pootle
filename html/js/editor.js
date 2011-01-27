@@ -373,6 +373,11 @@
 
     PTL.editor.isLoading = false;
     PTL.editor.hideActivity();
+
+    // clear any pending 'Loading...' indicator timer
+    // as ajaxStop() is not fired in IE properly
+    // at initial page load (?!) 
+    clearTimeout(PTL.editor.delayedActivityTimer);
   },
 
 
