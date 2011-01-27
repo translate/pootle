@@ -95,6 +95,7 @@
     this.checks = [];
     this.ctxtGap = 0;
     this.keepState = false;
+    this.preventNavigation = false;
 
     this.isLoading = true;
     this.showActivity();
@@ -334,6 +335,36 @@
             PTL.editor.searchFields = params['sfields'].split(',');
           }
         }
+
+        // Update the filter UI to match the current filter
+
+        // disable navigation on UI toolbar events to prevent data reload
+        PTL.editor.preventNavigation = true;
+
+        $("div#filter-status select [value='" + PTL.editor.filter + "']").attr("selected", "selected");
+        if (PTL.editor.filter == "checks") {
+          // if the checks selector is empty (i.e. the 'change' event was not fired
+          // because the selection did not change), force the update to populate the selector
+          if ($("div#filter-checks").length == 0) {
+            PTL.editor.filterStatus();
+          }
+          $("div#filter-checks select [value='" + PTL.editor.checks[0] + "']").attr("selected", "selected");
+        }
+
+        if (PTL.editor.filter == "search") {
+          $("#id_search").triggerHandler('focus');
+          $("#id_search").val(PTL.editor.searchText);
+
+          $("div.advancedsearch input").each(function () {
+            if ($.inArray($(this).val(), PTL.editor.searchFields) >= 0) {
+              $(this).attr("checked", "checked");
+            } else {
+              $(this).removeAttr("checked");
+            }
+          });
+        }
+        // re-enable normal event handling
+        PTL.editor.preventNavigation = false;
 
         // Load the units that match the given criterias
 
@@ -1321,6 +1352,9 @@
 
   /* Loads units based on checks filtering */
   filterChecks: function () {
+    if (PTL.editor.preventNavigation) {
+      return;
+    }
     var filterBy = $("option:selected", this).val();
 
     if (filterBy != "none") {
@@ -1331,7 +1365,9 @@
 
   /* Loads units based on filtering */
   filterStatus: function () {
-    var filterBy = $("option:selected", this).val();
+    // this function can be executed in different contexts,
+    // so using the full selector here
+    var filterBy = $("div#filter-status option:selected").val();
 
     // Filtering by failing checks
     if (filterBy == "checks") {
@@ -1356,8 +1392,10 @@
       }
     } else { // Normal filtering options (untranslated, fuzzy...)
       $("div#filter-checks").remove();
-      var newHash = "filter=" + filterBy;
-      $.history.load(newHash);
+      if (!PTL.editor.preventNavigation) {
+        var newHash = "filter=" + filterBy;
+        $.history.load(newHash);
+      }
     }
   },
 
