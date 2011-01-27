@@ -1265,9 +1265,9 @@ td.stats-number
     text-align: right;
 }
 
-td.stats-name
+td.stats-name .user-nobody
 {
-    font-weight: bold;
+    font-style: italic;
 }
 
 html[dir="rtl"] td.language,
