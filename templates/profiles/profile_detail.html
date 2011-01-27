@@ -60,11 +60,14 @@
 {% endblock %}
 
 {% block postcontent %}
-<div class="module" lang="{{ LANGUAGE_CODE }}">
+<div class="module user-statistics" lang="{{ LANGUAGE_CODE }}">
   <div class="hd">
     <h2>{% trans "User Statistics" %}</h2>
   </div>
   <div class="bd">
+    <div class="avatar">
+      <img src="http://www.gravatar.com/avatar/{{ profile.get_email_hash }}?s=100&d=mm" width="100" height="100" />
+    </div>
     <table>
       {% for stat in profile.getuserstatistics %}
       <tr>

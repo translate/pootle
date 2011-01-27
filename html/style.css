@@ -730,6 +730,36 @@ html[dir="rtl"] .module-primary .hd h2
     font-size: 120%;
 }
 
+/* USER STATISTICS MODULE */
+
+.module.user-statistics table
+{
+    width: auto;
+}
+
+.module.user-statistics table th,
+.module.user-statistics table td
+{
+    padding: 0 0 10px;
+}
+
+.module.user-statistics table th
+{
+    padding-right: 2em;
+}
+
+.module.user-statistics div.avatar
+{
+    position: relative;
+}
+
+.module.user-statistics div.avatar img
+{
+    position: absolute;
+    right: 0;
+    border: 1px solid #EEE;
+}
+
 /* UPLOAD FORM / UPDATE FROM VCS */
 
 div#upload p,

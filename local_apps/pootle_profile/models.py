@@ -29,7 +29,7 @@ from django.db.models.signals import post_save
 
 from pootle.i18n.override import lang_choices
 from pootle_misc.baseurl import l
-
+from translate.misc.hash import md5_f
 
 class PootleUserManager(UserManager):
     """A manager class which is meant to replace the manager class for the User model. This manager
@@ -80,6 +80,9 @@ class PootleProfile(models.Model):
 
     def get_absolute_url(self):
         return l('/accounts/%s/' % self.user.username)
+
+    def get_email_hash(self):
+        return md5_f(self.user.email).hexdigest()
 
     def _get_status(self):
         #FIXME: what's this for?
