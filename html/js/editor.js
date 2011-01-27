@@ -33,7 +33,7 @@
     },
 
     /* Updates current URL's hash */
-    updateHashPart: function (part, newVal, removePart) {
+    updateHashPart: function (part, newVal, removeArray) {
       var params = new Array();
       var r = /([^&;=]+)=?([^&;]*)/g;
       var h = this.getHash();
@@ -44,7 +44,7 @@
           // replace with the given value
           params.push(e[1] + '=' + encodeURIComponent(newVal));
           ok = true;
-        } else if (p != removePart) {
+        } else if ($.inArray(p, removeArray) == -1) {
           // use the parameter as is
           params.push(e[1] + '=' + e[2]);
         }
@@ -1260,7 +1260,7 @@
           // Try loading the next unit
           var newUid = parseInt(PTL.editor.units[uid].next);
           if (newUid) {
-            var newHash = PTL.utils.updateHashPart("unit", newUid, "page");
+            var newHash = PTL.utils.updateHashPart("unit", newUid, ["page"]);
             $.history.load(newHash);
           } else {
             // TODO: i18n
@@ -1281,7 +1281,7 @@
 
     // Try loading the prev/next unit
     if (newUid != null) {
-      var newHash = PTL.utils.updateHashPart("unit", parseInt(newUid), "page");
+      var newHash = PTL.utils.updateHashPart("unit", parseInt(newUid), ["page"]);
       $.history.load(newHash);
     } else {
       if ($(e.target).attr("class") == 'previous') {
@@ -1309,7 +1309,7 @@
     var m = $(this).attr("id").match(/row([0-9]+)/);
     if (m) {
       var uid = parseInt(m[1]);
-      var newHash = PTL.utils.updateHashPart("unit", uid, "page");
+      var newHash = PTL.utils.updateHashPart("unit", uid, ["page"]);
       $.history.load(newHash);
     }
   },
@@ -1322,7 +1322,7 @@
     // Only load the given page if it's within a valid page range
     if (page && !isNaN(page) && page > 0 &&
         page <= PTL.editor.pager.num_pages) {
-      var newHash = PTL.utils.updateHashPart("page", page, "unit");
+      var newHash = PTL.utils.updateHashPart("page", page, ["unit"]);
       $.history.load(newHash);
     }
   },
@@ -1483,11 +1483,14 @@
   /* Loads the search view */
   search: function () {
     var text = $("input#id_search").val();
+    var newHash;
     if (text) {
-      var parsed = this.parseSearch(text),
-          newHash = "search=" + parsed;
-      $.history.load(newHash);
+      var parsed = this.parseSearch(text);
+      newHash = "search=" + parsed;
+    } else {
+      newHash = PTL.utils.updateHashPart("filter", "all", ["search", "sfields"]);
     }
+    $.history.load(newHash);
   },
 
 
