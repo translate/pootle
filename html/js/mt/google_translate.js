@@ -87,71 +87,18 @@
       }
     },
 
-    collectArguments: function (s) {
-      this.argSubs[this.argPos] = s;
-      return "[" + (this.argPos++) + "]";
-    },
-
     translate: function () {
-      var areas = $("[id^=id_target_f_]");
-      var sources = $(this).parent().parent().siblings().children(".translation-text");
-      var langFrom = PTL.editor.normalizeCode(sources.eq(0).attr("lang"));
-      var langTo = PTL.editor.normalizeCode(areas.eq(0).attr("lang"));
-
-      var htmlPat = /<[\/]?\w+.*?>/g;
-      // The printf regex based on http://phpjs.org/functions/sprintf:522
-      var cPrintfPat = /%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuidfegEG])/g;
-      var csharpStrPat = /{\d+(,\d+)?(:[a-zA-Z ]+)?}/g;
-      var percentNumberPat = /%\d+/g;
-      var pos = 0;
-
-      var _this = PTL.editor.mt.google_translate;
-
-      $(sources).each(function (j) {
-        var sourceText = $(this).text();
-
-        // Reset collected arguments array and counter
-        _this.argSubs = new Array();
-        _this.argPos = 0;
-
-        // Walk through known patterns and replace them with [N] placeholders
-        // for Google Translate to be happy
-        
-        sourceText = sourceText.replace(htmlPat, function(s) { return _this.collectArguments(s) });
-        sourceText = sourceText.replace(cPrintfPat, function(s) { return _this.collectArguments(s) });
-        sourceText = sourceText.replace(csharpStrPat, function(s) { return _this.collectArguments(s) });
-        sourceText = sourceText.replace(percentNumberPat, function(s) { return _this.collectArguments(s) });
-
+      PTL.editor.translate(function(sourceText, langFrom, langTo, resultCallback) {
         var transData = {v: '1.0', q: sourceText,
                          langpair: langFrom + '|' + langTo}
         $.getJSON(PTL.editor.mt.google_translate.url, transData, function (r) {
           if (r.responseData && r.responseStatus == 200) {
-            var translation = r.responseData.translatedText;
-
-            // Fix whitespace which Google Translate addes around [N] blocks
-            for (var i = 0; i < _this.argSubs.length; i++) {
-              if (sourceText.match(new RegExp("\\[" + i + "\\][^\\s]"))) {
-                translation = translation.replace(new RegExp("\\[" + i + "\\]\\s+"), "[" + i + "]");
-              }
-              if (sourceText.match(new RegExp("[^\\s]\\[" + i + "\\]"))) {
-                translation = translation.replace(new RegExp("\\s+\\[" + i + "\\]"), "[" + i + "]");
-              }
-            }
-
-            // Replace temporary [N] placeholders back to their real values
-            for (var i = 0; i < _this.argSubs.length; i++) {
-              translation = translation.replace("[" + i + "]", _this.argSubs[i]);
-            }
-
-            areas.eq(j).val(translation);
-            areas.eq(j).focus();
+            resultCallback(r.responseData.translatedText);
           } else {
-            PTL.editor.displayError("Google Translate Error: " + r.responseDetails);
+            resultCallback(false, "Google Translate Error: " + r.responseDetails);
           }
         });
       });
-      PTL.editor.goFuzzy();
-      return false;
     }
   };
 })(jQuery);

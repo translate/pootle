@@ -49,41 +49,19 @@
     },
 
     translate: function () {
-      var areas = $("[id^=id_target_f_]");
-      var sources = $(this).parent().parent().siblings().children(".translation-text");
-      var langFrom = PTL.editor.normalizeCode(sources.eq(0).attr("lang"));
-      var langTo = PTL.editor.normalizeCode(areas.eq(0).attr("lang"));
-
-      // The printf regex based on http://phpjs.org/functions/sprintf:522
-      var cPrintfPat = /%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuidfegEG])/g;
-      var csharpStrPat = /{\d+(,\d+)?(:[a-zA-Z ]+)?}/g;
-      var percentNumberPat = /%\d+/g;
-      var pos = 0;
-      var argSubs = new Array();
-
-      $(sources).each(function (j) {
-        var sourceText = $(this).text();
-        sourceText = sourceText.replace(cPrintfPat, PTL.editor.collectArguments);
-        sourceText = sourceText.replace(csharpStrPat, PTL.editor.collectArguments);
-        sourceText = sourceText.replace(percentNumberPat, PTL.editor.collectArguments);
-
+      PTL.editor.translate(function(sourceText, langFrom, langTo, resultCallback) {
         var content = new Object()
         content.text = sourceText;
         content.type = "txt";
         apertium.translate(content, langFrom, langTo, function (result) {
           if (result.translation) {
-            var translation = result.translation;
-            for (var i=0; i<argSubs.length; i++)
-              translation = translation.replace("__" + i + "__", argSubs[i]);
-            areas.eq(j).val(translation);
-            areas.eq(j).focus();
+            resultCallback(result.translation);
           } else {
-            PTL.editor.displayError("Apertium Error: " + result.error.message);
+            resultCallback(false, "Apertium Error: " + result.error.message);
           }
         });
       });
-      PTL.editor.goFuzzy();
-      return false;
     }
+
   };
 })(jQuery);

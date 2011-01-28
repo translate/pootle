@@ -1689,6 +1689,72 @@
         clean = clean.slice(0, atIndex);
       }
       return clean;
+  },
+
+  collectArguments: function (s) {
+    this.argSubs[this.argPos] = s;
+    return "[" + (this.argPos++) + "]";
+  },
+
+  translate: function (providerCallback) {
+    var areas = $("[id^=id_target_f_]");
+    var sources = $(".source-language.original .translation-text");
+    var langFrom = PTL.editor.normalizeCode(sources.eq(0).attr("lang"));
+    var langTo = PTL.editor.normalizeCode(areas.eq(0).attr("lang"));
+    console.log(langFrom + '=>' + langTo);
+
+    var htmlPat = /<[\/]?\w+.*?>/g;
+    // The printf regex based on http://phpjs.org/functions/sprintf:522
+    var cPrintfPat = /%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuidfegEG])/g;
+    var csharpStrPat = /{\d+(,\d+)?(:[a-zA-Z ]+)?}/g;
+    var percentNumberPat = /%\d+/g;
+    var pos = 0;
+
+    var _this = this;
+
+    $(sources).each(function (j) {
+      var sourceText = $(this).text();
+
+      // Reset collected arguments array and counter
+      _this.argSubs = new Array();
+      _this.argPos = 0;
+
+      // Walk through known patterns and replace them with [N] placeholders
+      
+      sourceText = sourceText.replace(htmlPat, function(s) { return _this.collectArguments(s) });
+      sourceText = sourceText.replace(cPrintfPat, function(s) { return _this.collectArguments(s) });
+      sourceText = sourceText.replace(csharpStrPat, function(s) { return _this.collectArguments(s) });
+      sourceText = sourceText.replace(percentNumberPat, function(s) { return _this.collectArguments(s) });
+      console.log(sourceText);
+
+      var result = providerCallback(sourceText, langFrom, langTo, function(translation, message) {
+        if (translation === false) {
+          PTL.editor.displayError(message);
+          return;
+        }
+        
+        // Fix whitespace which may have been added around [N] blocks
+        for (var i = 0; i < _this.argSubs.length; i++) {
+          if (sourceText.match(new RegExp("\\[" + i + "\\][^\\s]"))) {
+            translation = translation.replace(new RegExp("\\[" + i + "\\]\\s+"), "[" + i + "]");
+          }
+          if (sourceText.match(new RegExp("[^\\s]\\[" + i + "\\]"))) {
+            translation = translation.replace(new RegExp("\\s+\\[" + i + "\\]"), "[" + i + "]");
+          }
+        }
+
+        // Replace temporary [N] placeholders back to their real values
+        for (var i = 0; i < _this.argSubs.length; i++) {
+          translation = translation.replace("[" + i + "]", _this.argSubs[i]);
+        }
+
+        areas.eq(j).val(translation);
+        areas.eq(j).focus();
+      });
+    });
+
+    PTL.editor.goFuzzy();
+    return false;
   }
 
   }; // PTL.editor
