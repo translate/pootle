@@ -3,6 +3,11 @@
 
   PTL.editor.mt.apertium = {
 
+    buttonClassName: "apertium",
+    imageUri: m("images/apertium.png"),
+    hint: "Apertium",
+    validatePair: true,
+
     url: "http://api.apertium.org/JSLibrary.js",
     cookieName: "apertium_pairs",
     cookieOptions: {path: '/', expires: 15},
@@ -34,22 +39,11 @@
     },
 
     ready: function () {
-      var _this = PTL.editor.mt.apertium;
-      if (PTL.editor.isSupportedTarget(_this.pairs, _this.targetLang)) {
-        var sources = $("div.placeholder").prev(".translation-text");
-        $(sources).each(function () {
-          var source = PTL.editor.normalizeCode($(this).attr("lang"));
-          if (PTL.editor.isSupportedPair(_this.pairs, source, _this.targetLang)) {
-            PTL.editor.addMTButton("apertium",
-                                   m("images/apertium.png"),
-                                   "Apertium");
-          }
-        });
-      }
+      PTL.editor.addMTButtons(PTL.editor.mt.apertium);
     },
 
     translate: function () {
-      PTL.editor.translate(function(sourceText, langFrom, langTo, resultCallback) {
+      PTL.editor.translate(this, function(sourceText, langFrom, langTo, resultCallback) {
         var content = new Object()
         content.text = sourceText;
         content.type = "txt";

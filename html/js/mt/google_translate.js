@@ -3,6 +3,11 @@
 
   PTL.editor.mt.google_translate = {
 
+    buttonClassName: "googletranslate",
+    imageUri: m("images/google-translate.png"),
+    hint: "Google Translate",
+    validatePair: false,
+
     url: "http://ajax.googleapis.com/ajax/services/language/translate",
     pairs: [{"source":"af","target":"af"},
             {"source":"sq","target":"sq"},
@@ -72,23 +77,11 @@
     },
 
     ready: function () {
-      var _this = PTL.editor.mt.google_translate;
-
-      if (PTL.editor.isSupportedTarget(_this.pairs, _this.targetLang)) {
-        var sources = $("div.placeholder").prev(".translation-text");
-        $(sources).each(function () {
-          var source = PTL.editor.normalizeCode($(this).attr("lang"));
-          if (PTL.editor.isSupportedSource(_this.pairs, source)) {
-            PTL.editor.addMTButton("googletranslate",
-                                   m("images/google-translate.png"),
-                                   "Google Translate");
-          }
-        });
-      }
+      PTL.editor.addMTButtons(PTL.editor.mt.google_translate);
     },
 
     translate: function () {
-      PTL.editor.translate(function(sourceText, langFrom, langTo, resultCallback) {
+      PTL.editor.translate(this, function(sourceText, langFrom, langTo, resultCallback) {
         var transData = {v: '1.0', q: sourceText,
                          langpair: langFrom + '|' + langTo}
         $.getJSON(PTL.editor.mt.google_translate.url, transData, function (r) {

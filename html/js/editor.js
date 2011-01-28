@@ -1674,12 +1674,38 @@
 
 
   /* Adds a new MT service button in the editor toolbar */
-  addMTButton: function (aClass, imgFn, tooltip) {
+  addMTButton: function (container, aClass, imgFn, tooltip) {
       var btn = '<a class="translate-mt ' + aClass + '">';
       btn += '<img src="' + imgFn + '" title="' + tooltip + '" /></a>';
-      $("div.translate-toolbar").first().prepend(btn);
+      $(container).first().prepend(btn);
   },
 
+  /* Goes through all source languages and adds a new MT service button
+   * in the editor toolbar if the language is supported
+   */
+  addMTButtons: function (provider) {
+    if (this.isSupportedTarget(provider.pairs, provider.targetLang)) {
+      var _this = this;
+      var sources = $(".translate-toolbar");
+      $(sources).each(function () {
+        var source = _this.normalizeCode($(this).parent().parent().find('.translation-text').attr("lang"));
+
+        var ok;
+        if (provider.validatePairs) {
+          ok = _this.isSupportedPair(provider.pairs, source, provider.targetLang);
+        } else {
+          ok = _this.isSupportedSource(provider.pairs, source);
+        }
+
+        if (ok) {
+          _this.addMTButton(this,
+            provider.buttonClassName,
+            provider.imageUri,
+            provider.hint + ' (' + source.toUpperCase() + '&rarr;' + provider.targetLang.toUpperCase() + ')');
+        }
+      });
+    }
+  },
 
   /* Normalizes language codes in order to use them in MT services */
   normalizeCode: function (locale) {
@@ -1696,9 +1722,9 @@
     return "[" + (this.argPos++) + "]";
   },
 
-  translate: function (providerCallback) {
+  translate: function (linkObject, providerCallback) {
     var areas = $("[id^=id_target_f_]");
-    var sources = $(".source-language.original .translation-text");
+    var sources = $(linkObject).parent().parent().parent().find('.translation-text');
     var langFrom = PTL.editor.normalizeCode(sources.eq(0).attr("lang"));
     var langTo = PTL.editor.normalizeCode(areas.eq(0).attr("lang"));
 
