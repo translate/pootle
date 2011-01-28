@@ -89,7 +89,7 @@
 
     collectArguments: function (s) {
       this.argSubs[this.argPos] = s;
-      return "__" + (this.argPos++) + "__";
+      return "[" + (this.argPos++) + "]";
     },
 
     translate: function () {
@@ -114,7 +114,7 @@
         _this.argSubs = new Array();
         _this.argPos = 0;
 
-        // Walk through known patterns and replace them with __N__ placeholders
+        // Walk through known patterns and replace them with [N] placeholders
         // for Google Translate to be happy
         
         sourceText = sourceText.replace(htmlPat, function(s) { return _this.collectArguments(s) });
@@ -128,12 +128,22 @@
           if (r.responseData && r.responseStatus == 200) {
             var translation = r.responseData.translatedText;
 
-            // Replace temporary __N__ placeholders back to their real values
+            // Fix whitespace which Google Translate addes around [N] blocks
             for (var i = 0; i < _this.argSubs.length; i++) {
-              translation = translation.replace("__" + i + "__", _this.argSubs[i]);
+              if (sourceText.match(new RegExp("\\[" + i + "\\][^\\s]"))) {
+                translation = translation.replace(new RegExp("\\[" + i + "\\]\\s+"), "[" + i + "]");
+              }
+              if (sourceText.match(new RegExp("[^\\s]\\[" + i + "\\]"))) {
+                translation = translation.replace(new RegExp("\\s+\\[" + i + "\\]"), "[" + i + "]");
+              }
             }
 
-            areas.eq(j).val($("<div />").html(translation).text());
+            // Replace temporary [N] placeholders back to their real values
+            for (var i = 0; i < _this.argSubs.length; i++) {
+              translation = translation.replace("[" + i + "]", _this.argSubs[i]);
+            }
+
+            areas.eq(j).val(translation);
             areas.eq(j).focus();
           } else {
             PTL.editor.displayError("Google Translate Error: " + r.responseDetails);
