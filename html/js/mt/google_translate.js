@@ -87,32 +87,52 @@
       }
     },
 
+    collectArguments: function (s) {
+      this.argSubs[this.argPos] = s;
+      return "__" + (this.argPos++) + "__";
+    },
+
     translate: function () {
       var areas = $("[id^=id_target_f_]");
       var sources = $(this).parent().parent().siblings().children(".translation-text");
       var langFrom = PTL.editor.normalizeCode(sources.eq(0).attr("lang"));
       var langTo = PTL.editor.normalizeCode(areas.eq(0).attr("lang"));
 
+      var htmlPat = /<[\/]?\w+.*?>/g;
       // The printf regex based on http://phpjs.org/functions/sprintf:522
       var cPrintfPat = /%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuidfegEG])/g;
       var csharpStrPat = /{\d+(,\d+)?(:[a-zA-Z ]+)?}/g;
       var percentNumberPat = /%\d+/g;
       var pos = 0;
-      var argSubs = new Array();
+
+      var _this = PTL.editor.mt.google_translate;
 
       $(sources).each(function (j) {
         var sourceText = $(this).text();
-        sourceText = sourceText.replace(cPrintfPat, PTL.editor.collectArguments);
-        sourceText = sourceText.replace(csharpStrPat, PTL.editor.collectArguments);
-        sourceText = sourceText.replace(percentNumberPat, PTL.editor.collectArguments);
+
+        // Reset collected arguments array and counter
+        _this.argSubs = new Array();
+        _this.argPos = 0;
+
+        // Walk through known patterns and replace them with __N__ placeholders
+        // for Google Translate to be happy
+        
+        sourceText = sourceText.replace(htmlPat, function(s) { return _this.collectArguments(s) });
+        sourceText = sourceText.replace(cPrintfPat, function(s) { return _this.collectArguments(s) });
+        sourceText = sourceText.replace(csharpStrPat, function(s) { return _this.collectArguments(s) });
+        sourceText = sourceText.replace(percentNumberPat, function(s) { return _this.collectArguments(s) });
 
         var transData = {v: '1.0', q: sourceText,
                          langpair: langFrom + '|' + langTo}
         $.getJSON(PTL.editor.mt.google_translate.url, transData, function (r) {
           if (r.responseData && r.responseStatus == 200) {
             var translation = r.responseData.translatedText;
-            for (var i=0; i<argSubs.length; i++)
-              translation = translation.replace("__" + i + "__", argSubs[i]);
+
+            // Replace temporary __N__ placeholders back to their real values
+            for (var i = 0; i < _this.argSubs.length; i++) {
+              translation = translation.replace("__" + i + "__", _this.argSubs[i]);
+            }
+
             areas.eq(j).val($("<div />").html(translation).text());
             areas.eq(j).focus();
           } else {

@@ -1689,21 +1689,6 @@
         clean = clean.slice(0, atIndex);
       }
       return clean;
-  },
-
-
-  collectArguments: function (substring) {
-    if (substring == '%%') {
-      return '%%';
-    }
-
-    // FIXME: what do these variables do here?
-    // and why are they in the global scope?
-    argument_subs[pos] = substring;
-    substitute_string = "__" + pos + "__";
-    pos = pos + 1;
-
-    return substitute_string;
   }
 
   }; // PTL.editor
