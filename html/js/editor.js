@@ -422,7 +422,7 @@
    */
 
   escapeUnsafeRegexSymbols: function (s) {
-    r = "\\.+*?[^]$(){}=!<>¦:"; 
+    var i, r = "\\.+*?[^]$(){}=!<>¦:"; 
     for (i = 0; i < r.length; i++) { 
       s = s.replace(new RegExp("\\" + r.charAt(i),"g"), "\\" + r.charAt(i));
     }
@@ -430,7 +430,7 @@
   },
 
   makeRegexForMultipleWords: function (s) {
-    var w = s.split(' ');
+    var i, w = s.split(' ');
     for (i = 0; i < w.length; i++) { 
       w[i] = this.escapeUnsafeRegexSymbols(w[i]);
     }
