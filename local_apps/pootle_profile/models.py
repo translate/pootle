@@ -81,8 +81,18 @@ class PootleProfile(models.Model):
     def get_absolute_url(self):
         return l('/accounts/%s/' % self.user.username)
 
+    # XXX: Does Django have a @cached_property decorator?
+    # If not, we should add our own.
+    @property
     def get_email_hash(self):
         return md5_f(self.user.email).hexdigest()
+
+    def gravatar_url(self, size=80):
+        if not self.get_email_hash:
+            return ''
+
+        return 'http://www.gravatar.com/avatar/%s?s=%d&d=mm' %\
+            (self.get_email_hash, size)
 
     def _get_status(self):
         #FIXME: what's this for?
