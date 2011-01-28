@@ -1701,7 +1701,6 @@
     var sources = $(".source-language.original .translation-text");
     var langFrom = PTL.editor.normalizeCode(sources.eq(0).attr("lang"));
     var langTo = PTL.editor.normalizeCode(areas.eq(0).attr("lang"));
-    console.log(langFrom + '=>' + langTo);
 
     var htmlPat = /<[\/]?\w+.*?>/g;
     // The printf regex based on http://phpjs.org/functions/sprintf:522
@@ -1725,7 +1724,6 @@
       sourceText = sourceText.replace(cPrintfPat, function(s) { return _this.collectArguments(s) });
       sourceText = sourceText.replace(csharpStrPat, function(s) { return _this.collectArguments(s) });
       sourceText = sourceText.replace(percentNumberPat, function(s) { return _this.collectArguments(s) });
-      console.log(sourceText);
 
       var result = providerCallback(sourceText, langFrom, langTo, function(translation, message) {
         if (translation === false) {
@@ -1745,10 +1743,11 @@
 
         // Replace temporary [N] placeholders back to their real values
         for (var i = 0; i < _this.argSubs.length; i++) {
-          translation = translation.replace("[" + i + "]", _this.argSubs[i]);
+          var value = _this.argSubs[i].replace(/\&/g, "&amp;").replace(/\</g, "&lt;").replace(/\>/g, "&gt;");
+          translation = translation.replace("[" + i + "]", value);
         }
 
-        areas.eq(j).val(translation);
+        areas.eq(j).val($("<div />").html(translation).text());
         areas.eq(j).focus();
       });
     });
