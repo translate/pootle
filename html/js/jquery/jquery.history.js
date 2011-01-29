@@ -31,13 +31,17 @@
             (win || window).location.hash = this.encoder(hash);
         },
         get: function(win) {
-            var hash = ((win || window).location.hash).replace(/^#/, '');
-            try {
-                return $.browser.mozilla ? hash : decodeURIComponent(hash);
-            }
-            catch (error) {
-                return hash;
-            }
+            // *******************************************
+            // Patched by Igor Afanasyev
+            // *******************************************
+            // Mozilla has a bug when it automatically unescapes %26 to '&'
+            // when getting hash from `window.location.hash'.
+            // So, we have to extract it from the `window.location'.
+            // Also, we don't need to decodeURIComponent() the hash
+            // as it will break encoded ampersand again
+            // (decoding can be done on the higher level, if needed)
+            return (win || window).location.toString().split('#', 2)[1] || '';
+            // *******************************************
         },
         encoder: encodeURIComponent
     };

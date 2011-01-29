@@ -7,12 +7,13 @@
 
     /* Gets current URL's hash */
     getHash: function (win) {
-      var hash = ((win || window).location.hash).replace(/^#/, '');
-      try {
-        return $.browser.mozilla ? hash : decodeURIComponent(hash);
-      } catch (error) {
-        return hash;
-      }
+      // Mozilla has a bug when it automatically unescapes %26 to '&'
+      // when getting hash from `window.location.hash'.
+      // So, we have to extract it from the `window.location'.
+      // Also, we don't need to decodeURIComponent() the hash
+      // as it will break encoded ampersand again
+      // (decoding can be done on the higher level, if needed)
+      return (win || window).location.toString().split('#', 2)[1] || '';
     },
 
     decodeURIParameter: function(s) {
@@ -1465,6 +1466,7 @@
       // Join unparsed remaining text, as this will be the actual search text
       parsed = encodeURIComponent(parts.join(" "));
     } else {
+      parsed = encodeURIComponent(parsed);
       // There were no fields specified within the text so we use the dropdown
       $("div.advancedsearch input:checked").each(function () {
         searchFields.push($(this).val());
