@@ -1108,13 +1108,19 @@
 
   /* Update filename breadcrumb */
     updateBreadcrumbs: function (dircrumbs, storecrumbs) {
-      if (this.dircrumbs != dircrumbs) {
+      var needUpdate;
+      if (this.dircrumbs && (this.dircrumbs != dircrumbs)) {
         this.dircrumbs = dircrumbs;
-        $("#dircrumbs").html(dircrumbs);
+        needUpdate = true;
       }
-      if (this.storecrumbs != storecrumbs) {
+      if (this.storecrumbs && (this.storecrumbs != storecrumbs)) {
         this.storecrumbs = storecrumbs;
-        $("#storecrumbs").html(storecrumbs);
+        needUpdate = true;
+      }
+      if (needUpdate) {
+        var c = $("#breadcrumbs").contents();
+        c.slice(c.index($("#projectcrumb")) + 1).remove();
+        $('#projectcrumb').after(dircrumbs + storecrumbs);
       }
     },
 
