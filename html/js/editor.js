@@ -177,7 +177,7 @@
     $("input#item-number").live("keypress", function (e) {
         // Perform action only when the 'Enter' key is pressed
         if (e.keyCode == 13) {
-          PTL.editor.gotoPage();
+          PTL.editor.gotoPage(parseInt($("input#item-number").val()));
         }
     });
     $("input.submit, input.suggest").live("click", this.processSubmit);
@@ -231,6 +231,18 @@
     });
     shortcut.add('ctrl+down', function () {
       $("input.next").trigger("click");
+    });
+    shortcut.add('ctrl+home', function () {
+      PTL.editor.gotoFirstPage();
+    });
+    shortcut.add('ctrl+end', function () {
+      PTL.editor.gotoLastPage();
+    });
+    shortcut.add('ctrl+pageup', function () {
+      PTL.editor.gotoPrevPage();
+    });
+    shortcut.add('ctrl+pagedown', function () {
+      PTL.editor.gotoNextPage();
     });
     shortcut.add('ctrl+shift+u', function () {
       $("input#item-number").focus().select();
@@ -1315,11 +1327,8 @@
     }
   },
 
-
   /* Loads the editor on a specific page */
-  gotoPage: function () {
-    var page = parseInt($("input#item-number").val());
-
+  gotoPage: function (page) {
     // Only load the given page if it's within a valid page range
     if (page && !isNaN(page) && page > 0 &&
         page <= PTL.editor.pager.num_pages) {
@@ -1328,6 +1337,29 @@
     }
   },
 
+  gotoFirstPage: function () {
+    if (PTL.editor.currentNumPages > 0) {
+      this.gotoPage(1);
+    }
+  },
+
+  gotoLastPage: function () {
+    if (PTL.editor.currentNumPages > 0) {
+      this.gotoPage(PTL.editor.currentNumPages);
+    }
+  },
+
+  gotoPrevPage: function () {
+    if ((PTL.editor.currentNumPages > 0) && (this.currentPage > 1)) {
+      this.gotoPage(this.currentPage - 1);
+    }
+  },
+
+  gotoNextPage: function () {
+    if ((PTL.editor.currentNumPages > 0) && (this.currentPage < PTL.editor.currentNumPages)) {
+      this.gotoPage(this.currentPage + 1);
+    }
+  },
 
   /*
    * Units filtering
