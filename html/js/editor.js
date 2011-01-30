@@ -328,10 +328,6 @@
         }
 
         if ('filter' in params) {
-          // Save previous states in case there are no results
-          PTL.editor.prevChecks = PTL.editor.checks;
-          PTL.editor.prevFilter = PTL.editor.filter;
-
           var a = params['filter'].split(',');
 
           // Set current state
@@ -875,16 +871,6 @@
             if (data.uid) {
               PTL.editor.activeUid = data.uid;
             }
-          } else { // No results
-            PTL.editor.hasResults = false;
-            // TODO: i18n
-            PTL.editor.displayError("No results.");
-
-            // Restore previous status
-            PTL.editor.checks = PTL.editor.prevChecks;
-            PTL.editor.filter = PTL.editor.prevFilter;
-            $("#filter-status option[value=" + PTL.editor.filter + "]")
-              .attr("selected", "selected");
           }
         }
 
@@ -912,6 +898,8 @@
           PTL.editor.hasResults = false;
           // TODO: i18n
           PTL.editor.displayError("No results.");
+          // Clear the results table
+          PTL.editor.reDraw(null);
         }
       },
       error: PTL.editor.error
