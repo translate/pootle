@@ -232,16 +232,16 @@
     shortcut.add('ctrl+down', function () {
       $("input.next").trigger("click");
     });
-    shortcut.add('ctrl+home', function () {
+    shortcut.add('ctrl+shift+home', function () {
       PTL.editor.gotoFirstPage();
     });
-    shortcut.add('ctrl+end', function () {
+    shortcut.add('ctrl+shift+end', function () {
       PTL.editor.gotoLastPage();
     });
-    shortcut.add('ctrl+pageup', function () {
+    shortcut.add('ctrl+shift+pageup', function () {
       PTL.editor.gotoPrevPage();
     });
-    shortcut.add('ctrl+pagedown', function () {
+    shortcut.add('ctrl+shift+pagedown', function () {
       PTL.editor.gotoNextPage();
     });
     shortcut.add('ctrl+shift+u', function () {
