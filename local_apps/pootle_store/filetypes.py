@@ -65,6 +65,11 @@ def get_supported_formats():
         from translate.storage.properties import propfile
         formats.append(('properties', _('Java Properties'), propfile, 'monolingual'))
     try:
+        from translate.storage.properties import javautf8file
+        formats.append(('properties', _('Java Properties (UTF-8)'), javautf8file, 'monolingual'))
+    except ImportError:
+        pass
+    try:
         from translate.storage.properties import stringsfile
         #l10n: Don't translate "strings" unless you are sure these files have
         # another name in your language
