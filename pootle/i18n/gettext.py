@@ -35,17 +35,32 @@ def _format_translation(message, vars=None):
             pass
     return message
 
-def ugettext(message, vars=None):
-    return _format_translation(translation.real_ugettext(message), vars)
+try:
+    from django.utils.translation import _trans
+    def ugettext(message, vars=None):
+        return _format_translation(_trans.ugettext(message), vars)
 
-def gettext(message, vars=None):
-    return _format_translation(translation.real_gettext(message), vars)
+    def gettext(message, vars=None):
+        return _format_translation(_trans.gettext(message), vars)
 
-def ungettext(singular, plural, number, vars=None):
-    return _format_translation(translation.real_ungettext(singular, plural, number), vars)
+    def ungettext(singular, plural, number, vars=None):
+        return _format_translation(_trans.ungettext(singular, plural, number), vars)
 
-def ngettext(singular, plural, number, vars=None):
-    return _format_translation(translation.real_ngettext(singular, plural, number), vars)
+    def ngettext(singular, plural, number, vars=None):
+        return _format_translation(_trans.ngettext(singular, plural, number), vars)
+except ImportError:
+    def ugettext(message, vars=None):
+        return _format_translation(translation.real_ugettext(message), vars)
+
+    def gettext(message, vars=None):
+        return _format_translation(translation.real_gettext(message), vars)
+
+    def ungettext(singular, plural, number, vars=None):
+        return _format_translation(translation.real_ungettext(singular, plural, number), vars)
+
+    def ngettext(singular, plural, number, vars=None):
+        return _format_translation(translation.real_ngettext(singular, plural, number), vars)
+
 
 def tr_lang(language_name):
     """translate language name"""
