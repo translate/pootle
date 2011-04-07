@@ -443,7 +443,10 @@ def translate_page(request, units_queryset, store=None):
         unit_position = store_preceding % unit_rows
         page_length = pager.end_index() - pager.start_index() + 1
         if page_length < unit_rows:
-            units_query = store.units[page_length:]
+            if pager.has_other_pages():
+                units_query = store.units[page_length:]
+            else:
+                units_query = store.units
             page = store_preceding / unit_rows
             units = paginate(request, units_query, items=unit_rows, page=page, orphans=0).object_list
         elif unit_position < context_rows:
