@@ -700,7 +700,8 @@ def accept_suggestion(request, unit, suggid):
                 suggstat.reviewer = request.profile
                 suggstat.state = 'accepted'
                 suggstat.save()
-
+            else:
+                suggstat = None
             sub = Submission(translation_project=translation_project,
                              submitter=suggestion.user,
                              from_suggestion=suggstat)
