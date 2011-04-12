@@ -28,8 +28,11 @@ from pootle.i18n.gettext import ungettext
 
 from pootle_app.models import Directory
 from pootle_store.models import Store, QualityCheck, CHECKED, PARSED
+from pootle_store.util import OBSOLETE
+from pootle_misc.util import deletefromcache
 from pootle_language.models import Language
 from pootle_project.models import Project
+from pootle_translationproject.models import TranslationProject
 from pootle_misc.dbinit import stats_start, stats_language, stats_project, stats_end
 
 def flush_quality_checks():
@@ -152,6 +155,15 @@ def update_qualitychecks_21040():
     """ % _('Removing quality checks, will be recalculated on demand...')
     logging.info("Fixing quality checks")
     flush_quality_checks()
+    return text
+
+def update_stats_21060():
+    text = """
+    <p>%s</p>
+    """ %_('Removing potentially incorrect cached stats, will be recalculated...')
+    logging.info('flushing cached stats')
+    for tp in TranslationProject.objects.filter(stores__unit__state=OBSOLETE).distinct().iterator():
+        deletefromcache(tp, ["getquickstats", "getcompletestats", "get_mtime", "has_suggestions"])
     return text
 
 def update_ts_tt_12008():
@@ -280,8 +292,12 @@ def staggered_update(db_buildversion, tt_buildversion):
     if db_buildversion < 21040:
         yield update_qualitychecks_21040()
 
+    if db_buildversion < 21060:
+        yield update_stats_21060()
+
     if tt_buildversion < 12008:
         yield update_ts_tt_12008()
+
     # first time to visit the front page all stats for projects and
     # languages will be calculated which can take forever, since users
     # don't like webpages that take forever let's precalculate the
