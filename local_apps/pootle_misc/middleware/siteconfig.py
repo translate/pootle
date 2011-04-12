@@ -19,6 +19,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import logging
+import sys
 
 from django.http import HttpResponse
 
@@ -61,21 +62,28 @@ class SiteConfigMiddleware(object):
         """load site config, return a dummy response if database seems uninitialized"""
         #FIXME: can't we find a more efficient method?
         try:
-            config = siteconfig.load_site_config()
-            db_buildversion = config.get('BUILDVERSION', DEFAULT_BUILDVERSION)
-            if db_buildversion < code_buildversion:
-                response = HttpResponse()
-                response.status_code = UPDATE_STATUS_CODE
-                response.db_buildversion = db_buildversion
-                return response
+            response = HttpResponse()
+            response.status_code = UPDATE_STATUS_CODE
 
-            db_tt_buildversion = config.get('TT_BUILDVERSION', DEFAULT_TT_BUILDVERSION)
+            config = siteconfig.load_site_config()
+            db_buildversion = int(config.get('BUILDVERSION', DEFAULT_BUILDVERSION))
+            if db_buildversion < code_buildversion:
+                response.db_buildversion = db_buildversion
+                response.tt_buildversion = sys.maxint
+            else:
+                response.db_buildversion = sys.maxint
+
+            db_tt_buildversion = int(config.get('TT_BUILDVERSION', DEFAULT_TT_BUILDVERSION))
             if db_tt_buildversion < code_tt_buildversion:
                 """Toolkit build version changed. clear stale quality checks data"""
                 logging.info("New Translate Toolkit version, flushing quality checks")
                 dbupdate.flush_quality_checks()
                 config.set('TT_BUILDVERSION', code_tt_buildversion)
                 config.save()
+                response.tt_buildversion = db_tt_buildversion
+
+            if (response.db_buildversion, response.tt_buildversion) != (sys.maxint, sys.maxint):
+                return response
 
         except Exception, e:
             #HACKISH: since exceptions thrown by different databases
@@ -104,6 +112,6 @@ class SiteConfigMiddleware(object):
         if response.status_code == INSTALL_STATUS_CODE:
             return HttpResponse(dbinit.staggered_install(response.exception))
         elif response.status_code == UPDATE_STATUS_CODE:
-            return HttpResponse(dbupdate.staggered_update(response.db_buildversion))
+            return HttpResponse(dbupdate.staggered_update(response.db_buildversion, response.tt_buildversion))
         else:
             return response
