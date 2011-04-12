@@ -211,7 +211,7 @@ def footer():
     """ % {'endmsg': _('Pootle initialized the database. You will be redirected to the front page in 10 seconds.')}
     return text
 
-def staggered_update(db_buildversion):
+def staggered_update(db_buildversion, tt_buildversion):
     """Update pootle database, while displaying progress report for each step"""
     # django's syncdb command prints progress reports to stdout, but
     # mod_wsgi doesn't like stdout, so we reroute to stderr

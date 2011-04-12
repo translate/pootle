@@ -19,6 +19,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import logging
+import sys
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
@@ -41,7 +42,7 @@ def update_db():
     db_buildversion = config.get('BUILDVERSION', DEFAULT_BUILDVERSION)
     if db_buildversion < code_buildversion:
         logging.info("Upgrading database from schema version %d to %d", db_buildversion, code_buildversion)
-        for i in staggered_update(db_buildversion):
+        for i in staggered_update(db_buildversion, sys.maxint):
             pass
         logging.info("Database upgrade done, current schema version %d", code_buildversion)
     else:
