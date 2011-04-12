@@ -20,6 +20,6 @@
 
 """This file contains the version of Pootle."""
 
-build = 21040
+build = 21060
 sver = "2.1.5"
 ver = (2, 1, 5)
