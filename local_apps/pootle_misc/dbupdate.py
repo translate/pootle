@@ -154,6 +154,18 @@ def update_qualitychecks_21040():
     flush_quality_checks()
     return text
 
+def update_ts_tt_12008():
+    text = """
+    <p>%s</p>
+    """ %_('Reparsing Qt ts files...')
+    logging.info('reparsing qt ts')
+    for store in Store.objects.filter(state__gt=PARSED,
+                                      translation_project__project__localfiletype='ts',
+                                      file__iendswith='.ts').iterator():
+        store.sync(update_translation=True)
+        store.update(update_structure=True, update_translation=True, conservative=False)
+    return text
+
 def parse_start():
     text = u"""
     <p>%s</p>
@@ -268,6 +280,8 @@ def staggered_update(db_buildversion, tt_buildversion):
     if db_buildversion < 21040:
         yield update_qualitychecks_21040()
 
+    if tt_buildversion < 12008:
+        yield update_ts_tt_12008()
     # first time to visit the front page all stats for projects and
     # languages will be calculated which can take forever, since users
     # don't like webpages that take forever let's precalculate the
