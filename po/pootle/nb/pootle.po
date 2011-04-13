@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-09-28 13:37+0200\n"
-"Last-Translator: jinx <fenderbass@c2i.net>\n"
+"PO-Revision-Date: 2011-02-24 14:00+0200\n"
+"Last-Translator: Jo-Erlend <joerlend.schinstad@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.2\n"
+"X-Generator: Pootle 2.1.5\n"
 
 #: strings.py:8
 msgid ""
@@ -96,7 +96,7 @@ msgstr "superbruker status"
 #: strings.py:33 local_apps/pootle_app/views/admin/adminprojects.py:43
 #: local_apps/pootle_project/models.py:64
 msgid "Source Language"
-msgstr ""
+msgstr "Kildespråk"
 
 #: strings.py:35
 msgid "Android strings"
@@ -334,6 +334,10 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
+"Brukeren \"nobody\" viser til enhver bruker som ikke er logget inn (en anonym, "
+"uidentifisert bruker). Brukeren \"default\" viser til rettighetene alle "
+"innloggede brukere vil ha, med mindre andre bestemte rettigheter har blitt "
+"tildelt dem. "
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:11
@@ -389,9 +393,8 @@ msgid "Dashboard"
 msgstr "Dashbord"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:17
-#, fuzzy
 msgid "Server Statistics"
-msgstr "Brukerstatistikk"
+msgstr "Tjenerstatistikk"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:23
 #: local_apps/pootle_app/views/language/view.py:41
@@ -404,15 +407,15 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:34
 msgid "Active users"
-msgstr ""
+msgstr "Aktive brukere"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:37
 msgid "Active projects"
-msgstr ""
+msgstr "Aktive prosjekter"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:40
 msgid "Active languages"
-msgstr ""
+msgstr "Aktive språk"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:43
 #: local_apps/pootle_translationproject/views.py:175
@@ -422,9 +425,8 @@ msgid "Files"
 msgstr "Filer"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:46
-#, fuzzy
 msgid "Translated strings"
-msgstr "Oversett mine strenger"
+msgstr "Oversatte strenger"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:49
 #: local_apps/pootle_app/views/top_stats.py:43
@@ -436,7 +438,7 @@ msgstr "Innsendinger"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:54
 msgid "More..."
-msgstr ""
+msgstr "Mer..."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:62
 msgid "Support"
@@ -459,11 +461,11 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:69
 msgid "The Pootle mailing list"
-msgstr ""
+msgstr "Pootles mailingliste"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:70
 msgid "(commercial support)"
-msgstr ""
+msgstr "(kommersiell brukerstøtte)"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:78
 msgid "Dependency Checks"
@@ -614,11 +616,12 @@ msgstr "Django versjon %s er installert."
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
 msgstr ""
+"Django versjon %s er installert, men en nyere versjon er sterkt anbefalt. "
 
 #: local_apps/pootle_app/views/admin/dashboard.py:63
-#, python-format, fuzzy
+#, python-format
 msgid "lxml version %s is installed."
-msgstr "Django versjon %s er installert."
+msgstr "lxml versjon %s er installert."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:66
 #, python-format
@@ -626,10 +629,12 @@ msgid ""
 "lxml version %(installed)s is installed. Pootle requires version %(required)"
 "s for XML format support."
 msgstr ""
+"lxml versjon %(installed)s er installert. Pootle krever versjon %(required)s "
+"for støtte av XML-format. "
 
 #: local_apps/pootle_app/views/admin/dashboard.py:69
 msgid "lxml is not installed. Pootle requires lxml for XML format support."
-msgstr ""
+msgstr "lxml er ikke installert. Pootle krever lxml for støtte av XML format."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:80
 msgid ""
@@ -652,6 +657,8 @@ msgid ""
 "Can't find the aeidon package. Pootle requires Gaupol or aeidon to support "
 "subtitle formats."
 msgstr ""
+"Kan ikke finne pakken aeidon. Pootle krever Gaupol eller aeidon for støtte "
+"av undertekst-formater."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:92
 msgid ""
@@ -735,12 +742,16 @@ msgid ""
 "The \"from\" address used to send registration emails is not specified. Also "
 "review the mail server settings."
 msgstr ""
+"Fra-adressen som brukes til å sende epost ved registrering, er ikke "
+"spesifisert. Gjennomgå også innstillingene for epost-tjeneren."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:139
 msgid ""
 "No contact address is specified. The contact form will allow users to "
 "contact the server administrators."
 msgstr ""
+"Ingen kontaktadresse er spesifisert. Kontaktskjemaet vil la brukere kontakte "
+"tjener-administratorene."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:143
 msgid ""
@@ -761,15 +772,15 @@ msgstr ""
 #: local_apps/pootle_app/views/admin/permissions.py:49
 #: local_apps/pootle_app/views/admin/permissions.py:51
 msgid "Project Members"
-msgstr ""
+msgstr "Prosjektmedlemmer"
 
 #: local_apps/pootle_app/views/admin/permissions.py:53
 msgid "Language Members"
-msgstr ""
+msgstr "Språkmedlemmer"
 
 #: local_apps/pootle_app/views/admin/permissions.py:54
 msgid "All Users"
-msgstr ""
+msgstr "Alle brukere"
 
 #: local_apps/pootle_app/views/admin/util.py:38
 msgid "You do not have rights to administer Pootle."
@@ -876,12 +887,12 @@ msgstr "ZIP av mappe"
 
 #: local_apps/pootle_app/views/language/item_dict.py:142
 msgid "Translate offline"
-msgstr ""
+msgstr "Oversett frakoblet"
 
 #: local_apps/pootle_app/views/language/item_dict.py:143
 #: local_apps/pootle_app/views/language/item_dict.py:146
 msgid "Download XLIFF file for offline translation"
-msgstr ""
+msgstr "Last ned XLIFF-fil for frakoblet oversettelse"
 
 #: local_apps/pootle_app/views/language/item_dict.py:145
 msgid "Download XLIFF"
@@ -889,11 +900,11 @@ msgstr "Last ned XLIFF"
 
 #: local_apps/pootle_app/views/language/item_dict.py:157
 msgid "Export"
-msgstr ""
+msgstr "Eksporter"
 
 #: local_apps/pootle_app/views/language/item_dict.py:158
 msgid "Export translations"
-msgstr ""
+msgstr "Eksporter oversettelser"
 
 #: local_apps/pootle_app/views/language/item_dict.py:160
 msgid "Download"
@@ -901,7 +912,7 @@ msgstr "Last ned"
 
 #: local_apps/pootle_app/views/language/item_dict.py:161
 msgid "Download file"
-msgstr ""
+msgstr "Last ned fil"
 
 # omskriv gjerne
 #: local_apps/pootle_app/views/language/item_dict.py:172
@@ -1116,7 +1127,7 @@ msgstr "Starter opp database, du vil be omdirigert til forsiden om 10 sekunder"
 
 #: local_apps/pootle_misc/dbupdate.py:71
 msgid "Pootle: Update"
-msgstr ""
+msgstr "Pottle: oppdatering"
 
 #: local_apps/pootle_misc/dbupdate.py:72
 #, python-format
@@ -1126,9 +1137,8 @@ msgid ""
 msgstr ""
 
 #: local_apps/pootle_misc/dbupdate.py:78
-#, fuzzy
 msgid "Creating missing database tables..."
-msgstr "Lager database tabeller..."
+msgstr "Oppretter manglende databasetabeller..."
 
 #: local_apps/pootle_misc/dbupdate.py:86
 msgid "Fixing permission table..."
@@ -1136,25 +1146,27 @@ msgstr ""
 
 #: local_apps/pootle_misc/dbupdate.py:101
 msgid "Updating existing database tables..."
-msgstr ""
+msgstr "Oppdaterer eksisterende databasetabeller..."
 
 #: local_apps/pootle_misc/dbupdate.py:130
 msgid ""
 "Pootle will now import all the translations into the database. It could take "
 "a long time."
 msgstr ""
+"Pootle vil nå importere alle oversettelsene inn i databasen. Det kan ta lang "
+"tid."
 
 #: local_apps/pootle_misc/dbupdate.py:141
 #, python-format
 msgid "Imported %(count)d suggestion from %(store)s"
 msgid_plural "Imported %(count)d suggestions from %(store)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Importerte %(count)d oversettelse fra %(store)s"
+msgstr[1] "Importerte %(count)d oversettelser fra %(store)s"
 
 #: local_apps/pootle_misc/dbupdate.py:149
 #, python-format
 msgid "Failed to import suggestions from %s"
-msgstr ""
+msgstr "Import av forslag fra %s feilet."
 
 #: local_apps/pootle_misc/dbupdate.py:159
 #, python-format

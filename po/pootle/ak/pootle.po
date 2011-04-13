@@ -1408,7 +1408,7 @@ msgstr "Haiku catkeys"
 
 #: local_apps/pootle_store/filetypes.py:58
 msgid "Java Properties"
-msgstr ""
+msgstr "Java bɔbea"
 
 #. l10n: Don't translate "strings" unless you are sure these files have
 #. another name in your language
@@ -1561,7 +1561,7 @@ msgstr "Nsusui %(i)d firi %(user)s:"
 #: local_apps/pootle_store/templatetags/store_tags.py:77
 #, python-format
 msgid "Suggestion by %(user)s"
-msgstr ""
+msgstr "Adwenkyerɛ a efre %(user)s"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:85
 #, python-format
@@ -2034,7 +2034,7 @@ msgstr "Mɛsege no asɛende"
 #: templates/contact_form/contact_form_subject.txt:2
 #, python-format
 msgid " message by %(name)s"
-msgstr ""
+msgstr " nkratoɔ a efre %(name)s"
 
 #: templates/profiles/edit_personal.html:14
 msgid ""

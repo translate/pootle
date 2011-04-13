@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-11-06 16:20+0200\n"
+"PO-Revision-Date: 2011-02-02 17:47+0200\n"
 "Last-Translator: Jussi <jta_l10n@saunalahti.fi>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fi\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.2\n"
+"X-Generator: Pootle 2.1.5\n"
 
 #: strings.py:8
 msgid ""
@@ -439,7 +439,7 @@ msgstr "Käännökset"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:54
 msgid "More..."
-msgstr "Lisää.."
+msgstr "Lisää..."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:62
 msgid "Support"
@@ -451,6 +451,9 @@ msgid ""
 "localization experts. We want Pootle to help your localization work reach "
 "its full potential."
 msgstr ""
+"Pootlea kehittävät Translate.org.za ja joukko asialle omistautuneita "
+"kotoistuksen erityisosaajia. Toivomme, että Pootlen avulla saat "
+"kotoistusprojektisi voimavarat käyttöön täysipainoisesti."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:66
 msgid "You will find the following helpful for support:"
@@ -782,7 +785,7 @@ msgstr "Projektin jäsenet"
 
 #: local_apps/pootle_app/views/admin/permissions.py:53
 msgid "Language Members"
-msgstr ""
+msgstr "Kieliryhmän jäsenet"
 
 #: local_apps/pootle_app/views/admin/permissions.py:54
 msgid "All Users"
@@ -908,11 +911,11 @@ msgstr "Lataa XLIFF-tiedosto"
 
 #: local_apps/pootle_app/views/language/item_dict.py:157
 msgid "Export"
-msgstr ""
+msgstr "Vie"
 
 #: local_apps/pootle_app/views/language/item_dict.py:158
 msgid "Export translations"
-msgstr ""
+msgstr "Vie käännökset"
 
 #: local_apps/pootle_app/views/language/item_dict.py:160
 msgid "Download"
@@ -1148,7 +1151,7 @@ msgstr "Luodaan puuttuvat tietokantataulut..."
 
 #: local_apps/pootle_misc/dbupdate.py:86
 msgid "Fixing permission table..."
-msgstr ""
+msgstr "Korjataan käyttöoikeustaulut..."
 
 #: local_apps/pootle_misc/dbupdate.py:101
 msgid "Updating existing database tables..."
@@ -1164,23 +1167,25 @@ msgstr "Pootle tuo kaikki käännökset tietokantaan. Tämä voi kestää kauan 
 #, python-format
 msgid "Imported %(count)d suggestion from %(store)s"
 msgid_plural "Imported %(count)d suggestions from %(store)s"
-msgstr[0] ""
+msgstr[0] "Tuotiin %(count)d ehdotus kohteesta %(store)s"
+msgstr[1] "Tuotiin %(count)d ehdotusta kohteesta %(store)s"
 
 #: local_apps/pootle_misc/dbupdate.py:149
 #, python-format
 msgid "Failed to import suggestions from %s"
-msgstr ""
+msgstr "Ehdotusten tuonti kohteesta %s epäonnistui"
 
 #: local_apps/pootle_misc/dbupdate.py:159
 #, python-format
 msgid "Imported %(count)d unit from %(store)s"
 msgid_plural "Imported %(count)d units from %(store)s"
-msgstr[0] ""
+msgstr[0] "Tuotiin %(count)d käännösyksikköä kohteesta %(store)s"
+msgstr[1] "Tuotiin %(count)d käännösyksikköä kohteesta %(store)s"
 
 #: local_apps/pootle_misc/dbupdate.py:165
 #, python-format
 msgid "Failed to import units from %s"
-msgstr ""
+msgstr "Käännösyksikköjen tuonti kohteesta %s epäonnistui"
 
 #: local_apps/pootle_misc/dbupdate.py:172
 msgid "All translations are now imported."
@@ -1421,7 +1426,7 @@ msgstr "OS X Strings"
 
 #: local_apps/pootle_store/filetypes.py:67
 msgid "PHP arrays"
-msgstr ""
+msgstr "PHP-taulukot"
 
 #: local_apps/pootle_store/filetypes.py:70
 msgid "Subtitles: srt"
@@ -1503,7 +1508,7 @@ msgstr "Terminologia"
 
 #: local_apps/pootle_store/templates/unit/edit.html:30
 msgid "Possible issues with the translation"
-msgstr ""
+msgstr "Käännöksen mahdolliset ongelmat"
 
 #: local_apps/pootle_store/templates/unit/edit.html:30
 msgid "Failing Checks"
@@ -1599,7 +1604,7 @@ msgstr ""
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:8
 msgid "Extract"
-msgstr ""
+msgstr "Luo sanasto"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:9
 msgid "You can regenerate the glossary from scratch."

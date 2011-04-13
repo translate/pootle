@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2011-01-11 19:23+0200\n"
+"PO-Revision-Date: 2011-03-24 13:43+0200\n"
 "Last-Translator: Serhij Dubyk - Сергій Дубик <dubyk@library.lviv.ua>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.1.4\n"
+"X-Generator: Pootle 2.1.5\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
@@ -1234,22 +1234,22 @@ msgstr ""
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:32
 msgid "First"
-msgstr "Перший"
+msgstr "Перша"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:33
 #: local_apps/pootle_store/templates/unit/edit.html:111
 msgid "Previous"
-msgstr "Попередній"
+msgstr "Попередня"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:48
 #: local_apps/pootle_store/templates/unit/edit.html:112
 msgid "Next"
-msgstr "Наступний"
+msgstr "Наступна"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:49
 #, python-format
 msgid "Last (%d)"
-msgstr "Останні (%d)"
+msgstr "Остання (%d)"
 
 #: local_apps/pootle_notifications/models.py:28
 msgid "Message"
@@ -1558,11 +1558,11 @@ msgstr "Запропонувати"
 
 #: local_apps/pootle_store/templates/unit/edit.html:111
 msgid "Go to the previous unit"
-msgstr "Перейти до попереднього рядка"
+msgstr "Перейти до попередньої фрази"
 
 #: local_apps/pootle_store/templates/unit/edit.html:112
 msgid "Go to the next unit"
-msgstr "Перейти до наступного рядка"
+msgstr "Перейти до наступної фрази"
 
 #: local_apps/pootle_store/templates/unit/edit.html:130
 msgid "Add Comment"

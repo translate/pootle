@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-09-03 16:53+0200\n"
+"PO-Revision-Date: 2011-02-24 21:57+0200\n"
 "Last-Translator: Mohomodou  <mh@bollag-areal.ch>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: son\n"
@@ -15,13 +15,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.1.1\n"
+"X-Generator: Pootle 2.1.5\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
 msgstr ""
-"\"Dabari\" dii ganda, wala \"Juwal\" Mac ga, ka suuba hinna kaŋ ga bisa affoo."
+"\"Dabari\" dii ganda, wala \"Juwal\" Mac ga, ka suuba hinna kaŋ ga bisa affoo. "
 
 #: strings.py:9
 msgid "Enter a valid e-mail address."
@@ -117,7 +117,7 @@ msgstr "War alhabaaroo"
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] "Taare ne ganda firkaa / firkawey hanse."
+msgstr[0] "Taare ne ganda firkaa hanse."
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."

@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-08-03 00:58+0200\n"
-"Last-Translator: Anonymous Pootle User\n"
+"PO-Revision-Date: 2011-03-04 08:04+0200\n"
+"Last-Translator: DenisArnaud <denisarnuad@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: br\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.1.5\n"
 
 #: strings.py:8
 msgid ""
@@ -51,11 +51,11 @@ msgstr ""
 
 #: strings.py:15
 msgid "Add"
-msgstr ""
+msgstr "Ouzhpennañ"
 
 #: strings.py:16
 msgid "Change"
-msgstr ""
+msgstr "Daskemmañ"
 
 #. l10n: This is a constructed string that might end up saying "Add language" or "Add project". If you need to translate that differently, you might want to try to translate it as "Add an entry to the %(name)s table" or "Add an object of type "%(name)s".
 #: strings.py:19
@@ -70,16 +70,15 @@ msgstr ""
 
 #: strings.py:24
 msgid "first name"
-msgstr ""
+msgstr "kentanv"
 
 #: strings.py:25
 msgid "last name"
-msgstr ""
+msgstr "Anv"
 
 #: strings.py:26
-#, fuzzy
 msgid "e-mail address"
-msgstr "Chomlec'h postel"
+msgstr "chomlec'h postel"
 
 #: strings.py:27
 msgid "active"
@@ -127,26 +126,23 @@ msgstr ""
 #: templates/profiles/edit_personal.html:34
 #: templates/profiles/edit_profile.html:25
 msgid "Save"
-msgstr ""
+msgstr "Enrollañ"
 
 #: external_apps/registration/forms.py:36
-#, fuzzy
 msgid "username"
-msgstr "Anv Implijer"
+msgstr "Anv an arveriad"
 
 #: external_apps/registration/forms.py:39
-#, fuzzy
 msgid "email address"
 msgstr "Chomlec'h postel"
 
 #: external_apps/registration/forms.py:41
-#, fuzzy
 msgid "password"
 msgstr "Ger-tremen"
 
 #: external_apps/registration/forms.py:43
 msgid "password (again)"
-msgstr ""
+msgstr "Ger-tremen (c'hoazh)"
 
 #: external_apps/registration/forms.py:55
 msgid "This username is already taken. Please choose another."
@@ -174,7 +170,7 @@ msgstr ""
 
 #: external_apps/registration/models.py:218
 msgid "user"
-msgstr ""
+msgstr "arveriad"
 
 #: external_apps/registration/models.py:219
 msgid "activation key"
@@ -198,7 +194,7 @@ msgstr ""
 
 #: local_apps/pootle_app/admin.py:79
 msgid "Advanced Options"
-msgstr ""
+msgstr "Dibarzhioù kemplesoc'h"
 
 #: local_apps/pootle_app/forms.py:28
 msgid "Title"
@@ -274,7 +270,7 @@ msgstr "Troet"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:7
 msgid "Needs review"
-msgstr ""
+msgstr "Da vezañ adlennet"
 
 #: local_apps/pootle_app/templates/translation_summary_legend.html:8
 #: local_apps/pootle_app/views/index/index.py:114
@@ -308,7 +304,7 @@ msgstr ""
 #: templates/project_menu.html:11 templates/tp_menu.html:12
 #: templates/profiles/profile_detail.html:44
 msgid "Permissions"
-msgstr ""
+msgstr "Aotreoù"
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:14
 msgid ""
@@ -360,7 +356,7 @@ msgstr ""
 #: templates/admin_profile_menu.html:7
 #: templates/profiles/profile_detail.html:8
 msgid "Users"
-msgstr "Implijerien"
+msgstr "Arveriaded"
 
 #: local_apps/pootle_app/templates/admin/admin_general_users.html:14
 msgid ""
@@ -406,7 +402,7 @@ msgstr ""
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:6
 #: templates/tp_menu.html:13 templates/profiles/profile_detail.html:44
 msgid "Files"
-msgstr ""
+msgstr "Restroù"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:46
 #, fuzzy
@@ -423,11 +419,11 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:54
 msgid "More..."
-msgstr ""
+msgstr "Muioc'h..."
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:62
 msgid "Support"
-msgstr ""
+msgstr "Skor"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:65
 msgid ""
@@ -471,7 +467,7 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/index/about.html:7
 msgid "About"
-msgstr ""
+msgstr "Diwar-benn"
 
 #: local_apps/pootle_app/templates/index/about.html:18
 msgid "About Pootle"
@@ -507,14 +503,13 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/index/index.html:61
 #: local_apps/pootle_project/templates/project/projects.html:22
-#, fuzzy
 msgid "Project"
-msgstr "Raktresoù"
+msgstr "Raktres"
 
 #: local_apps/pootle_app/templates/index/index.html:90
 #: local_apps/pootle_notifications/templates/notices.html:80
 msgid "Latest News"
-msgstr ""
+msgstr "Keleirer nevesañ"
 
 #: local_apps/pootle_app/templates/index/index.html:93
 msgid "Subscribe to the RSS feed."
@@ -553,7 +548,7 @@ msgstr "Fazi"
 
 #: local_apps/pootle_app/templates/language/item_summary.html:32
 msgid "Complete"
-msgstr ""
+msgstr "Graet"
 
 #: local_apps/pootle_app/views/top_stats.py:41
 #: local_apps/pootle_app/views/top_stats.py:64
@@ -569,7 +564,7 @@ msgstr "Kinnig :"
 #: local_apps/pootle_app/views/top_stats.py:111
 #, fuzzy
 msgid "Reviews"
-msgstr "Adwelet"
+msgstr "adlennaoù"
 
 #: local_apps/pootle_app/views/admin/adminusers.py:52
 #: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
@@ -838,20 +833,20 @@ msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:142
 msgid "Translate offline"
-msgstr ""
+msgstr "Treiñ ezlinenn"
 
 #: local_apps/pootle_app/views/language/item_dict.py:143
 #: local_apps/pootle_app/views/language/item_dict.py:146
 msgid "Download XLIFF file for offline translation"
-msgstr ""
+msgstr "Pellgaragañ ar restr XLIFF evit treiñ ezlinenn"
 
 #: local_apps/pootle_app/views/language/item_dict.py:145
 msgid "Download XLIFF"
-msgstr ""
+msgstr "Pellgargañ XLIFF"
 
 #: local_apps/pootle_app/views/language/item_dict.py:157
 msgid "Export"
-msgstr ""
+msgstr "Ezporzhiañ"
 
 #: local_apps/pootle_app/views/language/item_dict.py:158
 msgid "Export translations"
@@ -859,11 +854,11 @@ msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:160
 msgid "Download"
-msgstr ""
+msgstr "Pellgargañ"
 
 #: local_apps/pootle_app/views/language/item_dict.py:161
 msgid "Download file"
-msgstr ""
+msgstr "Pellagargañ ar restr"
 
 #: local_apps/pootle_app/views/language/item_dict.py:172
 msgid "Commit to VCS"
@@ -975,7 +970,7 @@ msgstr ""
 #: local_apps/pootle_language/models.py:40
 #: local_apps/pootle_project/models.py:58
 msgid "Code"
-msgstr ""
+msgstr "Boneg"
 
 #: local_apps/pootle_language/models.py:41
 #: local_apps/pootle_project/models.py:59
@@ -987,9 +982,8 @@ msgid "Enter any special characters that users might find difficult to type"
 msgstr ""
 
 #: local_apps/pootle_language/models.py:44
-#, fuzzy
 msgid "Special Characters"
-msgstr "(arouezennoù ispisial)"
+msgstr "Arouezennoù arbennik"
 
 #: local_apps/pootle_language/models.py:46
 msgid ""
@@ -999,7 +993,7 @@ msgstr ""
 
 #: local_apps/pootle_language/models.py:47
 msgid "Unknown"
-msgstr ""
+msgstr "Dianav"
 
 #: local_apps/pootle_language/models.py:48
 msgid "Number of Plurals"
@@ -1069,7 +1063,7 @@ msgstr ""
 
 #: local_apps/pootle_misc/dbupdate.py:71
 msgid "Pootle: Update"
-msgstr ""
+msgstr "Pootle : hizivadur"
 
 #: local_apps/pootle_misc/dbupdate.py:72
 #, python-format
@@ -1142,22 +1136,23 @@ msgstr ""
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:32
 msgid "First"
-msgstr ""
+msgstr "Kentañ"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:33
 #: local_apps/pootle_store/templates/unit/edit.html:111
 msgid "Previous"
-msgstr ""
+msgstr "Kent"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:48
 #: local_apps/pootle_store/templates/unit/edit.html:112
+#, fuzzy
 msgid "Next"
-msgstr ""
+msgstr "War-raok"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:49
 #, python-format
 msgid "Last (%d)"
-msgstr ""
+msgstr "Diwezhañ (%d)"
 
 #: local_apps/pootle_notifications/models.py:28
 msgid "Message"
@@ -1166,7 +1161,7 @@ msgstr ""
 #. l10n: The date that the news item was written
 #: local_apps/pootle_notifications/models.py:30
 msgid "Added"
-msgstr ""
+msgstr "Ouzhpennet"
 
 #: local_apps/pootle_notifications/views.py:81
 #, python-format
@@ -1195,18 +1190,18 @@ msgstr ""
 #: local_apps/pootle_notifications/templates/latest_news_snippet.html:9
 #: local_apps/pootle_notifications/templates/notices.html:88
 msgid "No news yet."
-msgstr ""
+msgstr "Keloù ebet."
 
 #: local_apps/pootle_notifications/templates/notices.html:21
 #: local_apps/pootle_notifications/templates/notices.html:24
 #: templates/language_menu.html:8 templates/project_menu.html:8
 #: templates/tp_menu.html:8
 msgid "News"
-msgstr ""
+msgstr "Keleier"
 
 #: local_apps/pootle_notifications/templates/notices.html:75
 msgid "Publish"
-msgstr ""
+msgstr "Embann"
 
 #: local_apps/pootle_profile/models.py:64
 msgid "Number of Rows"
@@ -1215,7 +1210,7 @@ msgstr ""
 #: local_apps/pootle_profile/models.py:68
 #: local_apps/pootle_profile/views.py:76
 msgid "Interface Language"
-msgstr ""
+msgstr "Yezh ar c'hetal"
 
 #: local_apps/pootle_profile/models.py:69
 #, fuzzy
@@ -1272,7 +1267,7 @@ msgstr ""
 
 #: local_apps/pootle_project/models.py:62
 msgid "File Type"
-msgstr "Seurt Restr"
+msgstr "Rizh ar restr"
 
 #: local_apps/pootle_project/models.py:63
 msgid "Project Tree Style"
@@ -1318,23 +1313,23 @@ msgstr ""
 
 #: local_apps/pootle_store/filetypes.py:29
 msgid "Gettext PO"
-msgstr ""
+msgstr "Gettext PO"
 
 #: local_apps/pootle_store/filetypes.py:32
 msgid "XLIFF"
-msgstr ""
+msgstr "XLIFF"
 
 #: local_apps/pootle_store/filetypes.py:37
 msgid "Qt ts"
-msgstr ""
+msgstr "Qt ts"
 
 #: local_apps/pootle_store/filetypes.py:42
 msgid "TMX"
-msgstr ""
+msgstr "TMX"
 
 #: local_apps/pootle_store/filetypes.py:47
 msgid "TBX"
-msgstr ""
+msgstr "TBX"
 
 #: local_apps/pootle_store/filetypes.py:52
 msgid "Haiku catkeys"
@@ -1342,7 +1337,7 @@ msgstr ""
 
 #: local_apps/pootle_store/filetypes.py:58
 msgid "Java Properties"
-msgstr ""
+msgstr "Perzhioù Java"
 
 #. l10n: Don't translate "strings" unless you are sure these files have
 #. another name in your language
@@ -1380,13 +1375,12 @@ msgid "Plural Form %d"
 msgstr "Stumm Lies %d"
 
 #: local_apps/pootle_store/forms.py:168
-#, fuzzy
 msgid "Translator comment"
-msgstr "Evezhiadennoù an Troer"
+msgstr "Askelenn an troer"
 
 #: local_apps/pootle_store/models.py:558
 msgid "Path"
-msgstr ""
+msgstr "Treug"
 
 #: local_apps/pootle_store/views.py:245
 msgid "No more matching strings to review."
@@ -1427,7 +1421,7 @@ msgstr "Troidigezh"
 
 #: local_apps/pootle_store/templates/store/translate_table.html:17
 msgid "Edit translation"
-msgstr ""
+msgstr "Daskemmañ an droidigezh"
 
 #: local_apps/pootle_store/templates/unit/edit.html:15
 msgid "Terminology"
@@ -1469,7 +1463,7 @@ msgstr ""
 
 #: local_apps/pootle_store/templates/unit/edit.html:130
 msgid "Add Comment"
-msgstr ""
+msgstr "Ouzhpennañ un askelenn"
 
 #: local_apps/pootle_store/templates/unit/edit.html:148
 msgid "Accept suggestion"
@@ -1486,19 +1480,18 @@ msgstr "Disteuler ar c'hinnig"
 
 #: local_apps/pootle_store/templates/unit/view.html:38
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:27
-#, fuzzy
 msgid "Translator Comments"
-msgstr "Evezhiadennoù an Troer"
+msgstr "Askelennoù an troer"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:73
 #, python-format
 msgid "Suggestion %(i)d by %(user)s:"
-msgstr ""
+msgstr "Kinnig %(i)d gant %(user)s:"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:77
 #, python-format
 msgid "Suggestion by %(user)s"
-msgstr ""
+msgstr "Kinnig gant %(user)s"
 
 #: local_apps/pootle_store/templatetags/store_tags.py:85
 #, python-format
@@ -1542,7 +1535,7 @@ msgstr ""
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:22
 msgid "Delete"
-msgstr ""
+msgstr "Dilemel"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:43
 msgid "Glossary is Empty"
@@ -1554,13 +1547,12 @@ msgstr ""
 
 # resisaat
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:10
-#, fuzzy
 msgid "Description..."
-msgstr "Deskrivadur"
+msgstr "Deskrivadur..."
 
 #: local_apps/pootle_terminology/templates/terminology/term_edit.html:15
 msgid "Details..."
-msgstr ""
+msgstr "Munudoù..."
 
 #: local_apps/pootle_translationproject/forms.py:28
 msgid "Source Text"
@@ -1572,7 +1564,7 @@ msgstr "Testenn Bal"
 
 #: local_apps/pootle_translationproject/forms.py:30
 msgid "Comments"
-msgstr "Evezhiadennoù"
+msgstr "Askelennoù"
 
 #: local_apps/pootle_translationproject/forms.py:31
 msgid "Locations"
@@ -1673,7 +1665,7 @@ msgstr "Frikañ ar restr red mar bez"
 
 #: local_apps/pootle_translationproject/views.py:492
 msgid "File"
-msgstr ""
+msgstr "Restr"
 
 #: local_apps/pootle_translationproject/views.py:495
 msgid "Upload to"
@@ -1769,16 +1761,15 @@ msgstr ""
 
 #: templates/500.html:5 templates/500.html.py:10
 msgid "Server Error"
-msgstr ""
+msgstr "Fazi an dafariad"
 
 #: templates/500.html:11
 msgid "An error has occurred. Thank you for your patience."
 msgstr ""
 
 #: templates/admin_profile_base.html:5 templates/admin_profile_base.html:10
-#, fuzzy
 msgid "Administration"
-msgstr "Merañ"
+msgstr "Melestradur"
 
 #: templates/admin_profile_menu.html:5
 msgid "Information and statistics about this Pootle server"
@@ -1794,7 +1785,7 @@ msgstr ""
 
 #: templates/admin_profile_menu.html:6
 msgid "General"
-msgstr ""
+msgstr "Hollek"
 
 #: templates/admin_profile_menu.html:7
 msgid "Manage the users"
@@ -1818,18 +1809,16 @@ msgstr ""
 
 #: templates/base.html:57 templates/base.html.py:117 templates/docs.html:5
 msgid "Help"
-msgstr ""
+msgstr "Skoazell"
 
 #: templates/base.html:62 templates/user_profile_base.html:5
 #: templates/user_profile_base.html:10
-#, fuzzy
 msgid "My Account"
 msgstr "Ma C'hont"
 
 #: templates/base.html:63
-#, fuzzy
 msgid "Log Out"
-msgstr "Kuitaat"
+msgstr "Dilugañ"
 
 #: templates/base.html:66 templates/registration/registration_form.html:4
 #: templates/registration/registration_form.html:35
@@ -1837,19 +1826,17 @@ msgid "Register"
 msgstr "Marilhañ"
 
 #: templates/base.html:68
-#, fuzzy
 msgid "Log In"
 msgstr "Emlugañ"
 
 #: templates/base.html:119 templates/contact_form/contact_form.html:4
 #: templates/contact_form/contact_form.html:8
 msgid "Contact Us"
-msgstr ""
+msgstr "Skrivit deomp"
 
 #: templates/base.html:121
-#, fuzzy
 msgid "About this Pootle Server"
-msgstr "Diwar-benn ar servijer Pootle-mañ"
+msgstr "Diwar-benn an dafariad Pootle-mañ"
 
 #: templates/captcha.html:5 templates/captcha.html.py:14
 msgid "Are You Human?"
@@ -1867,45 +1854,46 @@ msgstr ""
 
 #: templates/captcha.html:20
 msgid "Confirm"
-msgstr ""
+msgstr "Kadarnaat"
 
 #: templates/language_menu.html:7
 msgid "Language main page"
-msgstr ""
+msgstr "Pajenn degemer ar yezh"
 
 #: templates/language_menu.html:7 templates/project_menu.html:7
 #: templates/tp_menu.html:7
 msgid "Overview"
-msgstr ""
+msgstr "Alberz"
 
 #: templates/language_menu.html:8
 msgid "Language news"
-msgstr ""
+msgstr "Keleier ar yezh"
 
 #: templates/language_menu.html:10
+#, fuzzy
 msgid "Administrate your language permissions"
-msgstr ""
+msgstr "Merañ aotreoù ho yezh"
 
 #: templates/project_menu.html:7
-#, fuzzy
 msgid "Project main page"
 msgstr "Pajenn degemer ar raktres"
 
 #: templates/project_menu.html:8
 msgid "Project news"
-msgstr ""
+msgstr "Keleier ar raktres"
 
 #: templates/project_menu.html:10
 msgid "Administrate your project"
-msgstr ""
+msgstr "Melestradur ho raktres"
 
 #: templates/project_menu.html:11
 msgid "Manage project permissions"
-msgstr ""
+msgstr "Melestradur aotreoù ar raktres"
 
 #: templates/tp_base_terminology.html:5
+#, fuzzy
 msgid "Manage Terminology"
-msgstr ""
+msgstr "Merañ ar geriaoueg"
 
 #: templates/tp_menu.html:7
 msgid "Translation project main page"
@@ -1941,7 +1929,7 @@ msgstr ""
 
 #: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Settings"
-msgstr ""
+msgstr "Arventennoù"
 
 #: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 msgid "Change your personal information"
@@ -1951,7 +1939,7 @@ msgstr ""
 #: templates/profiles/edit_personal.html:5
 #: templates/profiles/edit_personal.html:11
 msgid "Profile"
-msgstr ""
+msgstr "Aelad"
 
 #: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
 msgid "Change your password"
@@ -1963,7 +1951,7 @@ msgstr ""
 
 #: templates/contact_form/contact_form.html:12
 msgid "Send"
-msgstr ""
+msgstr "Kas"
 
 #: templates/contact_form/contact_form_sent.html:5
 #: templates/contact_form/contact_form_sent.html:9
@@ -1983,21 +1971,20 @@ msgstr ""
 
 #: templates/profiles/edit_personal.html:19
 msgid "First Name"
-msgstr ""
+msgstr "Kentanv"
 
 #: templates/profiles/edit_personal.html:24
 msgid "Last Name"
-msgstr ""
+msgstr "Anv"
 
 #: templates/profiles/edit_personal.html:29
-#, fuzzy
 msgid "Email address"
 msgstr "Chomlec'h postel"
 
 #: templates/profiles/edit_profile.html:5
 #: templates/profiles/edit_profile.html:11
 msgid "Translation Settings"
-msgstr ""
+msgstr "Arventennoù treiñ"
 
 #: templates/profiles/edit_profile.html:14
 msgid ""
@@ -2028,15 +2015,15 @@ msgstr ""
 #: templates/profiles/profile_list.html:11
 #: templates/registration/registration_form.html:15
 msgid "Username"
-msgstr "Anv Implijer"
+msgstr "Anv an arveriad"
 
 #: templates/profiles/profile_list.html:12
 msgid "First name"
-msgstr ""
+msgstr "Kentanv"
 
 #: templates/profiles/profile_list.html:13
 msgid "Last name"
-msgstr ""
+msgstr "Anv"
 
 #: templates/registration/activate.html:5
 #: templates/registration/activate.html:9
@@ -2093,7 +2080,7 @@ msgstr ""
 #: templates/registration/password_change_form.html:5
 #: templates/registration/password_change_form.html:11
 msgid "Change Password"
-msgstr ""
+msgstr "Kemmañ ar ger-tremen"
 
 #: templates/registration/password_change_form.html:15
 msgid ""
@@ -2103,11 +2090,11 @@ msgstr ""
 
 #: templates/registration/password_change_form.html:23
 msgid "Old password"
-msgstr ""
+msgstr "Ger-tremen kozh"
 
 #: templates/registration/password_change_form.html:28
 msgid "New password"
-msgstr ""
+msgstr "Ger-tremen nevez"
 
 #: templates/registration/password_change_form.html:33
 msgid "Confirm password"
@@ -2152,10 +2139,9 @@ msgstr ""
 
 #: templates/registration/password_reset_confirm.html:16
 msgid "New Password"
-msgstr ""
+msgstr "Ger-tremen nevez"
 
 #: templates/registration/password_reset_confirm.html:21
-#, fuzzy
 msgid "Confirm Password"
 msgstr "Kadarnaat ar ger-tremen"
 

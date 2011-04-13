@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-08-15 08:39+0200\n"
-"Last-Translator: Language <langtechie@gmail.com>\n"
+"PO-Revision-Date: 2011-04-06 12:30+0200\n"
+"Last-Translator: capiscuas <capiscuas@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.1.0-rc1\n"
+"X-Generator: Pootle 2.1.5\n"
 
 # PC鍵盤上顯示的是「Ctrl」，所以將原文Control改成Ctrl。
 #: strings.py:8
@@ -482,6 +482,8 @@ msgid ""
 "Read more on the <a href=\"http://translate.sourceforge.net/\">project "
 "website</a>."
 msgstr ""
+"此網站採用Pootle，一個讓團隊能夠執行翻譯與翻譯管理的強力軟體。此群組型工具是免費的軟體，而且任何團隊都能夠使用並對您的Pootle群組作貢獻。想知"
+"道更多請上 <a href=\"http://translate.sourceforge.net/\">Pootle 網站</a>"
 
 #: local_apps/pootle_app/templates/index/index.html:26
 #: local_apps/pootle_project/views.py:144

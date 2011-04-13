@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-11-06 16:04+0200\n"
+"PO-Revision-Date: 2011-04-09 15:11+0200\n"
 "Last-Translator: jankro <jankro@vp.pl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.1.2\n"
+"X-Generator: Pootle 2.1.5\n"
 "Generated-By: pygettext.py 1.1\n"
 
 #: strings.py:8
@@ -109,7 +109,7 @@ msgstr "Ciągi dla platformy Android"
 
 #: external_apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr "Imię"
+msgstr "Twoje imię"
 
 #: external_apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
@@ -340,6 +340,11 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
+"Użytkownik \"ktokolwiek\" odnosi się do dowolnego użytkownika który nie jest "
+"zalogowany (użytkownik anonimowy, niezidentyfikowany). Użytkownik \"domyślny\" "
+"odnosi się do wszystkich zalogowanych użytkowników posiadających domyślne "
+"uprawnienia, do momentu kiedy nie zostaną przydzielone jakieś specyficzne "
+"uprawnienia. "
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:11
@@ -543,7 +548,7 @@ msgstr "Najnowsze informacje"
 
 #: local_apps/pootle_app/templates/index/index.html:93
 msgid "Subscribe to the RSS feed."
-msgstr "Zapisz się do źródła RSS."
+msgstr "Subskrybuj kanał RSS."
 
 #: local_apps/pootle_app/templates/index/login.html:5
 #: local_apps/pootle_app/templates/index/login.html:22
@@ -758,6 +763,8 @@ msgid ""
 "The \"from\" address used to send registration emails is not specified. Also "
 "review the mail server settings."
 msgstr ""
+"Adres \"from\" użyty do wysyłania wiadomości nie został określony. Ponadto "
+"należy sprawdzić ustawienia serwera pocztowego."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:139
 msgid ""
@@ -792,9 +799,8 @@ msgid "Project Members"
 msgstr "Członkowie projektu"
 
 #: local_apps/pootle_app/views/admin/permissions.py:53
-#, fuzzy
 msgid "Language Members"
-msgstr "Członkowie języka"
+msgstr "Użytkownicy języka"
 
 #: local_apps/pootle_app/views/admin/permissions.py:54
 msgid "All Users"
@@ -1191,7 +1197,9 @@ msgstr ""
 #, python-format
 msgid "Imported %(count)d suggestion from %(store)s"
 msgid_plural "Imported %(count)d suggestions from %(store)s"
-msgstr[0] ""
+msgstr[0] "Zaimportowano %(count)d sugestie z %(store)s"
+msgstr[1] "Zaimportowano %(count)d sugestii z %(store)s"
+msgstr[2] ""
 
 #: local_apps/pootle_misc/dbupdate.py:149
 #, python-format
@@ -1202,7 +1210,9 @@ msgstr "Nie można zaimportować podpowiedzi z %s"
 #, python-format
 msgid "Imported %(count)d unit from %(store)s"
 msgid_plural "Imported %(count)d units from %(store)s"
-msgstr[0] ""
+msgstr[0] "Zaimportowano %(count)d jednostki z %(store)s"
+msgstr[1] "Zaimportowano %(count)d jednostek z %(store)s"
+msgstr[2] ""
 
 #: local_apps/pootle_misc/dbupdate.py:165
 #, python-format
@@ -1539,12 +1549,11 @@ msgstr "Potencjalne problemy z tłumaczeniem"
 
 #: local_apps/pootle_store/templates/unit/edit.html:30
 msgid "Failing Checks"
-msgstr ""
+msgstr "Brak kontroli"
 
 #: local_apps/pootle_store/templates/unit/edit.html:37
-#, fuzzy
 msgid "Remove quality check"
-msgstr "Usuń kontrolę jakości"
+msgstr "Zakończ kontrolę jakości"
 
 #: local_apps/pootle_store/templates/unit/edit.html:73
 #: local_apps/pootle_store/templates/unit/edit.html:87
@@ -1632,11 +1641,11 @@ msgstr ""
 
 #: local_apps/pootle_terminology/templates/terminology/extract.html:8
 msgid "Extract"
-msgstr ""
+msgstr "Rozpakuj"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:9
 msgid "You can regenerate the glossary from scratch."
-msgstr ""
+msgstr "Można przebudować słowniczek od podstaw."
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:20
 msgid "Term"
@@ -1781,6 +1790,8 @@ msgid ""
 "Optionally select the file you want to merge with. If not specified, the "
 "uploaded file's name is used."
 msgstr ""
+"Opcjonalnie wybierz plik, który chcesz scalić. Jeśli nie podano inaczej, "
+"nazwa przesłanego pliku pozostanie bez zmian."
 
 #: local_apps/pootle_translationproject/views.py:501
 msgid "Upload File"
@@ -1795,20 +1806,20 @@ msgid "Here you can manage the files in this translation project."
 msgstr "Tutaj możesz zarządzać plikami w projekcie tłumaczeń."
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:14
-#, fuzzy
 msgid "Update files from templates"
-msgstr "Aktualizuj z szablonów"
+msgstr "Aktualizacja plików na podstawie szablonów"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:15
 msgid "Rescan project files"
 msgstr "Przeskanuj pliki projektu"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_permissions.html:13
-#, fuzzy
 msgid ""
 "Below you can add, edit, and delete the permissions for this translation "
 "project."
-msgstr "Poniżej można dodawać, edytować oraz usuwać uprawnienia dla języka."
+msgstr ""
+"Poniżej można dodawać, edytować i usuwać uprawnienia do tego projektu "
+"tłumaczenia."
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_review.html:6
 #: templates/tp_menu.html:10
@@ -1816,7 +1827,6 @@ msgid "Review"
 msgstr "Przejrzyj"
 
 #: local_apps/pootle_translationproject/templatetags/translation_project_tags.py:40
-#, fuzzy
 msgid "Advanced search"
 msgstr "Wyszukiwanie zaawansowane"
 
@@ -1847,15 +1857,15 @@ msgstr ""
 
 #: pootle/middleware/captcha.py:123
 msgid "Time to answer has expired"
-msgstr ""
+msgstr "Czas na odpowiedź minął"
 
 #: pootle/middleware/captcha.py:141
 msgid "Enter a number"
-msgstr ""
+msgstr "Wprowadź numer"
 
 #: pootle/middleware/captcha.py:156
 msgid "Incorrect"
-msgstr ""
+msgstr "Niepoprawny"
 
 #: templates/403.html:5 templates/403.html.py:10
 msgid "Permission Denied"
@@ -1891,7 +1901,7 @@ msgstr "Informacje i statystyki dotyczące tego serwera Pootle"
 
 #: templates/admin_profile_menu.html:5
 msgid "Info"
-msgstr ""
+msgstr "Informacje o"
 
 #: templates/admin_profile_menu.html:6
 msgid "Configure the general settings for your site"
@@ -1946,7 +1956,7 @@ msgstr "Zaloguj się"
 #: templates/base.html:119 templates/contact_form/contact_form.html:4
 #: templates/contact_form/contact_form.html:8
 msgid "Contact Us"
-msgstr ""
+msgstr "Skontaktuj się z nami"
 
 #: templates/base.html:121
 msgid "About this Pootle Server"
@@ -1961,6 +1971,8 @@ msgid ""
 "To protect the server against attacks we have to verify that submissions are "
 "made by human users."
 msgstr ""
+"Aby chronić serwer przed atakami musimy sprawdzić, czy te czynności są "
+"wykonane przez człowieka."
 
 #: templates/captcha.html:16
 msgid "Please answer this question:"
@@ -1994,7 +2006,7 @@ msgstr "Strona główna projektu"
 
 #: templates/project_menu.html:8
 msgid "Project news"
-msgstr ""
+msgstr "Aktualności projektu"
 
 #: templates/project_menu.html:10
 msgid "Administrate your project"
@@ -2064,17 +2076,17 @@ msgstr "Administracja Django"
 
 #: templates/contact_form/contact_form.html:12
 msgid "Send"
-msgstr ""
+msgstr "Wyślij"
 
 #: templates/contact_form/contact_form_sent.html:5
 #: templates/contact_form/contact_form_sent.html:9
 msgid "Message Sent"
-msgstr ""
+msgstr "Wiadomość została wysłana"
 
 #: templates/contact_form/contact_form_subject.txt:2
 #, python-format
 msgid " message by %(name)s"
-msgstr ""
+msgstr "komunikat wysłany przez %(name)s"
 
 #: templates/profiles/edit_personal.html:14
 msgid ""

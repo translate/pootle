@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-07-30 09:16+0200\n"
-"Last-Translator: admin <>\n"
+"PO-Revision-Date: 2011-01-26 02:35+0200\n"
+"Last-Translator: gusjaya102 <gusjaya102@rocketmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.1.5\n"
 
 #: strings.py:8
 msgid ""
@@ -34,7 +34,7 @@ msgstr ""
 
 #: strings.py:11
 msgid "This field is required."
-msgstr ""
+msgstr "Bagian ini harus diisi."
 
 #: strings.py:12
 #, python-format
@@ -51,7 +51,7 @@ msgstr ""
 
 #: strings.py:15
 msgid "Add"
-msgstr ""
+msgstr "Tambahkan"
 
 #: strings.py:16
 msgid "Change"
@@ -83,7 +83,7 @@ msgstr "Alamat Email"
 
 #: strings.py:27
 msgid "active"
-msgstr ""
+msgstr "aktif"
 
 #. l10n: Please translate this simply as "Administrator". This string is needed by Django, but 'superuser' is very technical and should be avoided.
 #: strings.py:30
@@ -102,7 +102,7 @@ msgstr ""
 
 #: external_apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr ""
+msgstr "Nama anda"
 
 #: external_apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
@@ -126,7 +126,7 @@ msgstr ""
 #: templates/profiles/edit_personal.html:34
 #: templates/profiles/edit_profile.html:25
 msgid "Save"
-msgstr ""
+msgstr "Simpan"
 
 #: external_apps/registration/forms.py:36
 #, fuzzy
@@ -173,7 +173,7 @@ msgstr ""
 
 #: external_apps/registration/models.py:218
 msgid "user"
-msgstr ""
+msgstr "anggota"
 
 #: external_apps/registration/models.py:219
 msgid "activation key"
@@ -308,7 +308,7 @@ msgstr ""
 #: templates/project_menu.html:11 templates/tp_menu.html:12
 #: templates/profiles/profile_detail.html:44
 msgid "Permissions"
-msgstr ""
+msgstr "Hak akses"
 
 #: local_apps/pootle_app/templates/admin/admin_general_permissions.html:14
 msgid ""
@@ -406,7 +406,7 @@ msgstr ""
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:6
 #: templates/tp_menu.html:13 templates/profiles/profile_detail.html:44
 msgid "Files"
-msgstr ""
+msgstr "Files"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:46
 #, fuzzy
@@ -849,7 +849,7 @@ msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:157
 msgid "Export"
-msgstr ""
+msgstr "Ekspor"
 
 #: local_apps/pootle_app/views/language/item_dict.py:158
 msgid "Export translations"
@@ -857,7 +857,7 @@ msgstr ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:160
 msgid "Download"
-msgstr ""
+msgstr "Unduh"
 
 #: local_apps/pootle_app/views/language/item_dict.py:161
 msgid "Download file"
@@ -969,7 +969,7 @@ msgstr ""
 #: local_apps/pootle_language/models.py:40
 #: local_apps/pootle_project/models.py:58
 msgid "Code"
-msgstr ""
+msgstr "Kode"
 
 #: local_apps/pootle_language/models.py:41
 #: local_apps/pootle_project/models.py:59
@@ -993,7 +993,7 @@ msgstr ""
 
 #: local_apps/pootle_language/models.py:47
 msgid "Unknown"
-msgstr ""
+msgstr "Tak dikenal"
 
 #: local_apps/pootle_language/models.py:48
 msgid "Number of Plurals"
@@ -1143,7 +1143,7 @@ msgstr ""
 #: local_apps/pootle_misc/templatetags/render_pager.py:48
 #: local_apps/pootle_store/templates/unit/edit.html:112
 msgid "Next"
-msgstr ""
+msgstr "Selanjutnya"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:49
 #, python-format
@@ -1152,7 +1152,7 @@ msgstr ""
 
 #: local_apps/pootle_notifications/models.py:28
 msgid "Message"
-msgstr ""
+msgstr "Isi pesan"
 
 #. l10n: The date that the news item was written
 #: local_apps/pootle_notifications/models.py:30
@@ -1375,7 +1375,7 @@ msgstr "Catatan penerjemah"
 
 #: local_apps/pootle_store/models.py:558
 msgid "Path"
-msgstr ""
+msgstr "Path"
 
 #: local_apps/pootle_store/views.py:245
 msgid "No more matching strings to review."
@@ -1530,7 +1530,7 @@ msgstr ""
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:22
 msgid "Delete"
-msgstr ""
+msgstr "Hapus"
 
 #: local_apps/pootle_terminology/templates/terminology/manage.html:43
 msgid "Glossary is Empty"
@@ -1559,7 +1559,7 @@ msgstr ""
 
 #: local_apps/pootle_translationproject/forms.py:30
 msgid "Comments"
-msgstr ""
+msgstr "Komentar"
 
 #: local_apps/pootle_translationproject/forms.py:31
 msgid "Locations"
@@ -1642,7 +1642,7 @@ msgstr ""
 
 #: local_apps/pootle_translationproject/views.py:478
 msgid "Upload"
-msgstr ""
+msgstr "Unggah"
 
 #: local_apps/pootle_translationproject/views.py:485
 msgid ""
@@ -1659,7 +1659,7 @@ msgstr "Timpa berkas sekarang jika sudah ada"
 
 #: local_apps/pootle_translationproject/views.py:492
 msgid "File"
-msgstr ""
+msgstr "File"
 
 #: local_apps/pootle_translationproject/views.py:495
 msgid "Upload to"
@@ -1705,7 +1705,7 @@ msgstr "Review"
 
 #: local_apps/pootle_translationproject/templatetags/translation_project_tags.py:40
 msgid "Advanced search"
-msgstr ""
+msgstr "Pencarian lanjutan"
 
 #: pootle/settings.py:42
 msgid "Pootle Demo"
@@ -1803,7 +1803,7 @@ msgstr ""
 
 #: templates/base.html:57 templates/base.html.py:117 templates/docs.html:5
 msgid "Help"
-msgstr ""
+msgstr "Panduan"
 
 #: templates/base.html:62 templates/user_profile_base.html:5
 #: templates/user_profile_base.html:10
@@ -1852,7 +1852,7 @@ msgstr ""
 
 #: templates/captcha.html:20
 msgid "Confirm"
-msgstr ""
+msgstr "Konfirmasi"
 
 #: templates/language_menu.html:7
 msgid "Language main page"
@@ -1861,7 +1861,7 @@ msgstr ""
 #: templates/language_menu.html:7 templates/project_menu.html:7
 #: templates/tp_menu.html:7
 msgid "Overview"
-msgstr ""
+msgstr "Tinjauan"
 
 #: templates/language_menu.html:8
 msgid "Language news"
@@ -1926,7 +1926,7 @@ msgstr ""
 
 #: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
 msgid "Settings"
-msgstr ""
+msgstr "Pengaturan"
 
 #: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
 msgid "Change your personal information"
@@ -1936,7 +1936,7 @@ msgstr ""
 #: templates/profiles/edit_personal.html:5
 #: templates/profiles/edit_personal.html:11
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
 msgid "Change your password"
@@ -1948,7 +1948,7 @@ msgstr ""
 
 #: templates/contact_form/contact_form.html:12
 msgid "Send"
-msgstr ""
+msgstr "Kirim"
 
 #: templates/contact_form/contact_form_sent.html:5
 #: templates/contact_form/contact_form_sent.html:9

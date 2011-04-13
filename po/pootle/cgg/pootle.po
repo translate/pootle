@@ -7,14 +7,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-11-08 12:29+0200\n"
+"PO-Revision-Date: 2011-03-25 11:24+0200\n"
 "Last-Translator: Florence <tushabe@cit.mak.ac.ug>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cgg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 2.1.3\n"
+"X-Generator: Pootle 2.1.5\n"
 
 #: strings.py:8
 msgid ""
@@ -332,9 +332,9 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
-"Omukozesi \"Nobody\" nikimanyisa omukozesi weena atataahiremu (omukozesa "
-"atamanyibwe). Omukozesi \"default\" nikimanyisa ebikirizibwe abakozesi boona "
-"abatahiremu, ahandi ebikirizibwe ebindi byabahebwa."
+"Omukozesi \"haawe\" nikimanyisa omukozesi weena atataahiremu (omukozesa "
+"atateirwemu, atamanyibwe). Omukozesi \"ateirwemu\" nikimanyisa ebikirizibwe "
+"abakozesi boona abatahiremu, ahandi ebikirizibwe ebindi byabahebwa."
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:11
@@ -628,7 +628,7 @@ msgid ""
 "lxml version %(installed)s is installed. Pootle requires version %(required)"
 "s for XML format support."
 msgstr ""
-"Eshuura ya lxml %(installed)s eteibwemu. Pootle neeyetega eshuura %"
+"eshuura ya lxml %(installed)s eteibwemu. Pootle neeyetega eshuura %"
 "(required)s ahabwa XML."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:69
@@ -640,8 +640,8 @@ msgid ""
 "Can't find the unzip command. Uploading archives is faster if \"unzip\" is "
 "available."
 msgstr ""
-"Tiikyabaasa kubona eiteeka ryokushumurura ebihandiko ebihango \"unzip\". "
-"Kwohereze ebyafaayo nikyanguha haba kiriho."
+"Tiikyabaasa kubona eiteeka ryokushumurura ebihandiko ebihango. Kwohereze "
+"ebyafaayo nikyanguha haba \"unzip\" kiriho."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:84
 msgid ""
@@ -733,7 +733,7 @@ msgstr "Kwenda kukoragye, kozesa memcached okubiika amakuru."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:133
 msgid "For optimal performance, use Apache as the webserver."
-msgstr "Kwenda kukoragye, kozesa Apache  nka kanyabwengye ya weebu."
+msgstr "Kwenda kukoragye, kozesa Apache nka kanyabwengye ya weebu."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:136
 msgid ""
@@ -840,15 +840,14 @@ msgid_plural "%d files"
 msgstr[0] ""
 
 #: local_apps/pootle_app/views/language/item_dict.py:40
-#, python-format, fuzzy
+#, python-format
 msgid "%(translated)d/%(total)d words (%(translatedpercent)d%%) translated"
-msgstr ""
-"ebigambo %(ebivunurwe)d/%(ahari)d, ebivunurwe (%(ebicweka  ahari igana)d%%)"
+msgstr "%(translated)d/%(total)d ebigambo (%(translatedpercent)d%%) ebivunurwe"
 
 #: local_apps/pootle_app/views/language/item_dict.py:46
 #, python-format
 msgid "%(translated)d/%(total)d strings"
-msgstr "ebigambo %(translated)d/%(total)d"
+msgstr "%(translated)d/%(total)d ebigambo"
 
 #: local_apps/pootle_app/views/language/item_dict.py:76
 #, python-format
@@ -1043,9 +1042,9 @@ msgid ""
 "For more information, visit <a href=\"http://translate.sourceforge.net/wiki/"
 "l10n/pluralforms\">our wiki page</a> on plural forms."
 msgstr ""
-"Okumanya ebirakiraho, tayaaya  <a "
+"Okumanya ebirakiraho, tayaaya <a "
 "href=\"http://translate.sourceforge.net/wiki/l10n/pluralforms\">orupapura "
-"rweitu </a> omu foomu ahari obwingi."
+"rweitu</a> omu foomu ahari obwingi."
 
 #: local_apps/pootle_language/models.py:47
 msgid "Unknown"
@@ -1101,14 +1100,14 @@ msgid "Calculating translation statistics, this will take a few minutes"
 msgstr "Kubara ebirarugye omukuvunura, nikibasa kutwara edakiika nkye"
 
 #: local_apps/pootle_misc/dbinit.py:96
-#, python-format, fuzzy
+#, python-format
 msgid "%(language)s is %(percent)d%% complete"
-msgstr "ekicweka %(kyendimi) %(ahari)d%% kihwire"
+msgstr "%(language)s %(percent)d%% bihwire"
 
 #: local_apps/pootle_misc/dbinit.py:103
-#, python-format, fuzzy
+#, python-format
 msgid "Project %(project)s is %(percent)d%% complete"
-msgstr "Omurimo %(yemirimo) %(ahari)d%% kihwire"
+msgstr "Omurimo %(project)s %(percent)d%% kihwire"
 
 #: local_apps/pootle_misc/dbinit.py:111
 msgid "Done calculating statistics for default languages and projects"
@@ -1119,7 +1118,7 @@ msgid ""
 "Initialized database, you will be redirected to the front page in 10 seconds"
 msgstr ""
 "Ibiiko lyatandikire, nooza kugarubwa aha rupapura orurabanza omuri "
-"omubutikiti ikumi"
+"omubutikiti 10"
 
 #: local_apps/pootle_misc/dbupdate.py:71
 msgid "Pootle: Update"
@@ -1185,7 +1184,7 @@ msgid ""
 "10 seconds."
 msgstr ""
 "Pootlelyatandikire ibiiko. Nooza kugarubwa aha rupapura orurabanza omuri "
-"omubutikiti ikumi."
+"omubutikiti 10."
 
 #: local_apps/pootle_misc/middleware/errorpages.py:47
 #, python-format
@@ -1324,7 +1323,7 @@ msgstr "Omuringo gwa GNU: ebihandiko nibweteregwa akabonero ko rurimi"
 
 #: local_apps/pootle_project/models.py:55
 msgid "Non-GNU: Each language in its own directory"
-msgstr "Ebitari- GNU: Buri rurimi omumulingo rwaryo"
+msgstr "Ebitari-GNU: Buri rurimi omumulingo rwaryo"
 
 #: local_apps/pootle_project/models.py:61
 msgid "Quality Checks"
@@ -1378,7 +1377,7 @@ msgstr ""
 
 #: local_apps/pootle_store/filetypes.py:29
 msgid "Gettext PO"
-msgstr "Gettext PO"
+msgstr "Tunga PO"
 
 #: local_apps/pootle_store/filetypes.py:32
 msgid "XLIFF"
@@ -1386,7 +1385,7 @@ msgstr "XLIFF"
 
 #: local_apps/pootle_store/filetypes.py:37
 msgid "Qt ts"
-msgstr "Qt ts"
+msgstr "Ts"
 
 #: local_apps/pootle_store/filetypes.py:42
 msgid "TMX"
@@ -1398,7 +1397,7 @@ msgstr "TBX"
 
 #: local_apps/pootle_store/filetypes.py:52
 msgid "Haiku catkeys"
-msgstr "Haiku catkeys"
+msgstr "Enyiguta"
 
 #: local_apps/pootle_store/filetypes.py:58
 msgid "Java Properties"
@@ -2018,7 +2017,7 @@ msgstr "Hindura akekihama kaawe"
 
 #: templates/admin/base_site.html:4 templates/admin/base_site.html.py:7
 msgid "Django administration"
-msgstr "entegyeka ya Django"
+msgstr "Entegyeka ya Django"
 
 #: templates/contact_form/contact_form.html:12
 msgid "Send"
@@ -2141,7 +2140,7 @@ msgstr "Kwehandikisa aha Pootle"
 #: templates/registration/password_change_done.html:5
 #: templates/registration/password_change_done.html:15
 msgid "Password Changed"
-msgstr "akekihama kahinduka"
+msgstr "Akekihama Kahinduka"
 
 #: templates/registration/password_change_done.html:16
 msgid "Your password was changed successfully."

@@ -7,14 +7,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-03 02:17+0200\n"
-"PO-Revision-Date: 2010-12-31 13:34+0200\n"
-"Last-Translator: bokar <bokarba@yahoo.fr>\n"
+"PO-Revision-Date: 2011-03-16 12:24+0200\n"
+"Last-Translator: Ibrahima SARR <ibrahima.sarr@pulaagu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ff\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 2.1.4\n"
+"X-Generator: Pootle 2.1.5\n"
 
 #: strings.py:8
 msgid ""
@@ -115,7 +115,7 @@ msgstr "Ɓatakuru maa"
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] "Saato njomu wonnde les ndee."
+msgstr[0] "SingulierSahto njomu ngonngu les ngu.PlurielSahto joɓɓi gonɗi les ɗi."
 
 #: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
@@ -677,7 +677,10 @@ msgid ""
 "Using the default sqlite3 database engine. SQLite is only suitable for small "
 "installations with a small number of users. Pootle will perform better with "
 "the MySQL database engine."
-msgstr "Huutoraade sqlite3 "
+msgstr ""
+"Huutoraa ko motoor ruttorde keɓe sqlite3 . SQLite yahdi tan ko e lowe "
+"tokoose tawa ena famɗi huutorɓe. Pootle ɓuri heewde semmbe ko nde huutoraa "
+"motoor keɓe MySQL."
 
 #: local_apps/pootle_app/views/admin/dashboard.py:108
 msgid ""
@@ -823,7 +826,7 @@ msgstr "Firooji timmii"
 #: local_apps/pootle_project/views.py:110
 #: local_apps/pootle_project/views.py:197
 msgid "Translations need to be checked (they are marked fuzzy)"
-msgstr "Firooji ena cokli ƴeewteede (eɗe toɓɓaa "
+msgstr "Firooji ena cokli ƴeewteede (eɗe toɓɓaa laaɓtaani)"
 
 #: local_apps/pootle_app/views/language/item_dict.py:38
 #, python-format
@@ -873,7 +876,7 @@ msgstr "Toppito Saggitorde"
 
 #: local_apps/pootle_app/views/language/item_dict.py:133
 msgid "ZIP of directory"
-msgstr "ZIP rungere"
+msgstr "Tiɗɗannde ZIP rungere"
 
 #: local_apps/pootle_app/views/language/item_dict.py:142
 msgid "Translate offline"
@@ -1114,13 +1117,13 @@ msgid "Pootle: Update"
 msgstr "Pootle: Hesɗitin"
 
 #: local_apps/pootle_misc/dbupdate.py:72
-#, python-format, fuzzy
+#, python-format
 msgid ""
 "Database tables are currently at build version %d. Pootle will now update "
 "the database."
 msgstr ""
-"Taabe ruttorde keɓe ɗee ngoni jooni ko e mahngo yamre àd. Pootle maa hes"
-"ɗitin-nde jooni."
+"Taabe ruttorde keɓe ɗee ngoni jooni ko e mahngo yamre %d. Pootle maa "
+"hesɗitin ruttorde nde jooni."
 
 #: local_apps/pootle_misc/dbupdate.py:78
 msgid "Creating missing database tables..."
@@ -1147,8 +1150,8 @@ msgstr ""
 msgid "Imported %(count)d suggestion from %(store)s"
 msgid_plural "Imported %(count)d suggestions from %(store)s"
 msgstr[0] ""
-"TeelalJiggagol %(count)d wasiyaaji iwde e %(store)sKeewalJiggagol %(count)d "
-"wasiyaaji iwde e %(store)s"
+"Jiggagol %(count)d wasiyaaji iwde e %(store)s Jiggagol %(count)d wasiyaaji "
+"iwde e %(store)s"
 
 #: local_apps/pootle_misc/dbupdate.py:149
 #, python-format
@@ -1194,22 +1197,22 @@ msgstr ""
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:32
 msgid "First"
-msgstr "Fuɗɗorde"
+msgstr "Gadanol"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:33
 #: local_apps/pootle_store/templates/unit/edit.html:111
 msgid "Previous"
-msgstr "Ɓennuɗo"
+msgstr "Ɓennungol"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:48
 #: local_apps/pootle_store/templates/unit/edit.html:112
 msgid "Next"
-msgstr "Payɗo"
+msgstr "Dewngol heen"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:49
 #, python-format
 msgid "Last (%d)"
-msgstr "Gasirde (%d)"
+msgstr "Battanol (%d)"
 
 #: local_apps/pootle_notifications/models.py:28
 msgid "Message"
@@ -1402,7 +1405,7 @@ msgstr "Keeriiɗe Java"
 #. another name in your language
 #: local_apps/pootle_store/filetypes.py:63
 msgid "OS X Strings"
-msgstr "Ɓoggi X Strings"
+msgstr "Ɓoggi OS X"
 
 #: local_apps/pootle_store/filetypes.py:67
 msgid "PHP arrays"
@@ -1458,9 +1461,9 @@ msgid "No matching strings to translate."
 msgstr "Ɓoggi potɗi fireede goɗɗi ngasii."
 
 #: local_apps/pootle_store/views.py:387
-#, python-format, fuzzy
+#, python-format
 msgid "checking %s"
-msgstr "ena ƴeewtoo às"
+msgstr "ƴeewtagol %s"
 
 #: local_apps/pootle_store/templates/store/translate.html:7
 #: local_apps/pootle_store/templates/store/translate_end.html:7
@@ -1663,7 +1666,7 @@ msgstr "A yamiraaka naatde e ndee eɓɓoore firo."
 
 #: local_apps/pootle_translationproject/views.py:230
 msgid "You do not have the right to create ZIP archives."
-msgstr "A yamiraaka sosde tiɗɗe ZIP."
+msgstr "A yamiraaka sosde tiɗɗanɗe ZIP."
 
 #: local_apps/pootle_translationproject/views.py:273
 #, python-format
