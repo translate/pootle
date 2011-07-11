@@ -56,6 +56,7 @@ from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED, absolute_real_pat
 from pootle_store.filetypes import factory_classes, is_monolingual
 from pootle_store.signals import translation_submitted
 
+
 def jsonify(json):
     if settings.DEBUG:
         indent = 4
@@ -63,7 +64,8 @@ def jsonify(json):
         indent = None
     return simplejson.dumps(json, indent=indent)
 
-def _common_context(request,  translation_project, permission_codes):
+
+def _common_context(request, translation_project, permission_codes):
     """adds common context to request object and checks permissions"""
     request.translation_project = translation_project
     request.profile = get_profile(request.user)
@@ -96,6 +98,7 @@ def get_store_context(permission_codes):
         return decorated_f
     return wrap_f
 
+
 def get_unit_context(permission_codes):
     def wrap_f(f):
         def decorated_f(request, uid, *args, **kwargs):
@@ -107,6 +110,7 @@ def get_unit_context(permission_codes):
             return f(request, unit, *args, **kwargs)
         return decorated_f
     return wrap_f
+
 
 @get_store_context('view')
 def export_as_xliff(request, store):
@@ -127,6 +131,7 @@ def export_as_xliff(request, store):
         shutil.move(tempstore, abs_export_path)
         cache.set(key, store.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
     return redirect('/export/' + export_path)
+
 
 @get_store_context('view')
 def export_as_type(request, store, filetype):
@@ -213,6 +218,7 @@ def get_non_indexed_search_step_query(form, units_queryset):
 
     return result
 
+
 def get_search_step_query(translation_project, form, units_queryset):
     """Narrows down units query to units matching search string"""
 
@@ -250,6 +256,7 @@ def get_search_step_query(translation_project, form, units_queryset):
         dbids = [int(item['dbid'][0]) for item in result[:999]]
         cache.set(cache_key, dbids, settings.OBJECT_CACHE_TIMEOUT)
     return units_queryset.filter(id__in=dbids)
+
 
 def get_step_query(request, units_queryset):
     """Narrows down unit query to units matching conditions in GET and POST"""
@@ -289,6 +296,7 @@ def get_step_query(request, units_queryset):
             units_queryset = get_search_step_query(request.translation_project, search_form, units_queryset)
     return units_queryset
 
+
 def translate_page(request):
     cantranslate = check_permission("translate", request)
     cansuggest = check_permission("suggest", request)
@@ -315,6 +323,7 @@ def translate_page(request):
         'AMAGAMA_URL': settings.AMAGAMA_URL,
         }
     return render_to_response('store/translate.html', context, context_instance=RequestContext(request))
+
 
 @get_store_context('view')
 def translate(request, store):
@@ -379,6 +388,7 @@ def _build_units_list(units, reverse=False):
                              'target': target_unit})
     return return_units
 
+
 def _build_pager_dict(pager):
     """
     Given a pager object C{pager}, retrieves all the information needed
@@ -392,6 +402,7 @@ def _build_pager_dict(pager):
             "per_page": pager.paginator.per_page
            }
 
+
 def _get_index_in_qs(qs, unit):
     """
     Given a queryset C{qs}, returns the position (index) of the unit C{unit}
@@ -400,6 +411,7 @@ def _get_index_in_qs(qs, unit):
     @return: Integer value representing the position of the unit C{unit}.
     """
     return qs.filter(index__lt=unit.index).count()
+
 
 def get_view_units(request, units_queryset, limit=0):
     """
@@ -468,10 +480,12 @@ def get_view_units_store(request, store, limit=0):
     """
     return get_view_units(request, store.units, limit=limit)
 
+
 def _is_filtered(request):
     """checks if unit list is filtered"""
     return 'unitstates' in request.GET or 'matchnames' in request.GET or \
            ('search' in request.GET and 'sfields' in request.GET)
+
 
 @ajax_required
 @get_unit_context('view')
@@ -488,6 +502,7 @@ def get_more_context(request, unit):
     rcode = 200
     response = jsonify(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
+
 
 @never_cache
 @ajax_required
@@ -583,6 +598,7 @@ def get_failing_checks(request, pathobj):
 def get_failing_checks_store(request, store):
     return get_failing_checks(request, store)
 
+
 @ajax_required
 @get_unit_context('')
 def process_submit(request, unit, type):
@@ -667,6 +683,7 @@ def reject_suggestion(request, unit, suggid):
             suggstat.save()
     response = jsonify(json)
     return HttpResponse(response, mimetype="application/json")
+
 
 @ajax_required
 @get_unit_context('review')
