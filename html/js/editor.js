@@ -742,18 +742,18 @@
     var msg = "";
 
     if (xhr.status == 0) {
-      msg = "Error while connecting to the server.";
+      msg = "Error while connecting to the server";
     } else if (xhr.status == 500) {
-      msg = "Server error.";
+      msg = "Server error";
     } else if (s == "timeout") {
-      msg = "Server seems down, try again later.";
+      msg = "The server seems down. Try again later.";
     } else {
       // Since we use jquery-jsonp, we must differentiate between
       // the passed arguments
       if (xhr instanceof XMLHttpRequest) {
         msg = $.parseJSON(xhr.responseText);
       } else {
-        msg = "Unknown error.";
+        msg = "Unknown error";
       }
     }
 
