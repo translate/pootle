@@ -1565,6 +1565,7 @@
       url: tmUrl,
       callback: '_jsonp' + PTL.editor.activeUid,
       dataType: 'jsonp',
+      cache: true,
       success: function (data) {
         var uid = this.callback.slice(6);
 
