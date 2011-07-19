@@ -23,7 +23,6 @@ import re
 
 from django import forms
 from django.utils.translation import get_language, ugettext as _
-from django.utils.safestring import mark_safe
 
 from translate.misc.multistring import multistring
 
@@ -75,6 +74,7 @@ class MultiStringWidget(forms.MultiWidget):
         super(MultiStringWidget, self).__init__(widgets, attrs)
 
     def format_output(self, rendered_widgets):
+        from django.utils.safestring import mark_safe
         if len(rendered_widgets) == 1:
             return mark_safe(rendered_widgets[0])
 

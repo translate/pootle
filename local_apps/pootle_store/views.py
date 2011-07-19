@@ -20,10 +20,7 @@
 
 import os
 import logging
-import tempfile
-import shutil
 
-from translate.storage.poxliff import PoXliffFile
 from translate.lang import data
 
 from django.conf import settings
@@ -47,13 +44,11 @@ from pootle_profile.models import get_profile
 from pootle_translationproject.forms import SearchForm
 from pootle_statistics.models import Submission
 from pootle_app.models import Suggestion as SuggestionStat
-from pootle_app.project_tree import ensure_target_dir_exists
 
 from pootle_store.models import Store, Unit
 from pootle_store.forms import unit_form_factory, highlight_whitespace
 from pootle_store.templatetags.store_tags import fancy_highlight, find_altsrcs, get_sugg_list, highlight_diffs, pluralize_source, pluralize_target
 from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED, absolute_real_path
-from pootle_store.filetypes import factory_classes, is_monolingual
 from pootle_store.signals import translation_submitted
 
 
@@ -122,6 +117,10 @@ def export_as_xliff(request, store):
     key = iri_to_uri("%s:export_as_xliff" % store.pootle_path)
     last_export = cache.get(key)
     if not (last_export and last_export == store.get_mtime() and os.path.isfile(abs_export_path)):
+        from pootle_app.project_tree import ensure_target_dir_exists
+        from translate.storage.poxliff import PoXliffFile
+        import tempfile
+        import shutil
         ensure_target_dir_exists(abs_export_path)
         outputstore = store.convert(PoXliffFile)
         outputstore.switchfile(store.name, createifmissing=True)
@@ -136,6 +135,7 @@ def export_as_xliff(request, store):
 @get_store_context('view')
 def export_as_type(request, store, filetype):
     """export given file to xliff for offline translation"""
+    from pootle_store.filetypes import factory_classes, is_monolingual
     klass = factory_classes.get(filetype, None)
     if not klass or is_monolingual(klass) or store.pootle_path.endswith(filetype):
         raise ValueError
@@ -147,6 +147,9 @@ def export_as_type(request, store, filetype):
     key = iri_to_uri("%s:export_as_%s" % (store.pootle_path, filetype))
     last_export = cache.get(key)
     if not (last_export and last_export == store.get_mtime() and os.path.isfile(abs_export_path)):
+        from pootle_app.project_tree import ensure_target_dir_exists
+        import tempfile
+        import shutil
         ensure_target_dir_exists(abs_export_path)
         outputstore = store.convert(klass)
         fd, tempstore = tempfile.mkstemp(prefix=store.name, suffix=os.path.extsep + filetype)

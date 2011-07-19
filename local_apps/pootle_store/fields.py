@@ -21,20 +21,14 @@
 """Fields required for handling translation files"""
 
 import logging
-import shutil
-import tempfile
 import os
 
-from django.conf import settings
 from django.db import models
 from django.db.models.fields.files import FieldFile, FileField
 
-from translate.storage import factory
-from translate.misc.lru import LRUCachingDict
 from translate.misc.multistring import multistring
 
 from pootle_store.signals import translation_file_updated
-from pootle_store.filetypes import factory_classes
 
 ################# String #############################
 
@@ -118,6 +112,8 @@ class TranslationStoreFieldFile(FieldFile):
     """FieldFile is the File-like object of a FileField, that is found in a
     TranslationStoreField."""
 
+    from translate.misc.lru import LRUCachingDict
+    from django.conf import settings
     _store_cache = LRUCachingDict(settings.PARSE_POOL_SIZE, settings.PARSE_POOL_CULL_FREQUENCY)
 
     def getpomtime(self):
@@ -160,6 +156,8 @@ class TranslationStoreFieldFile(FieldFile):
                     raise KeyError
             except KeyError:
                 logging.debug(u"cache miss for %s", self.path)
+                from translate.storage import factory
+                from pootle_store.filetypes import factory_classes
                 self._store_tuple = StoreTuple(factory.getobject(self.path, ignore=self.field.ignore, classes=factory_classes),
                                                mod_info, self.realpath)
                 self._store_cache[self.path] = self._store_tuple
@@ -197,6 +195,8 @@ class TranslationStoreFieldFile(FieldFile):
     def savestore(self):
         """Saves to temporary file then moves over original file. This
         way we avoid the need for locking."""
+        import shutil
+        import tempfile
         tmpfile, tmpfilename = tempfile.mkstemp(suffix=self.filename)
         os.close(tmpfile)
         self.store.savefile(tmpfilename)

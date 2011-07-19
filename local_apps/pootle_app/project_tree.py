@@ -23,11 +23,9 @@ import logging
 import re
 
 from translate.lang    import data as langdata
-from translate.convert import pot2po
 
 from pootle_store.models      import Store, PARSED
 from pootle_store.util import absolute_real_path, relative_real_path
-from pootle_store.filetypes import factory_classes
 from pootle_app.models.directory  import Directory
 from pootle_language.models import Language
 
@@ -252,6 +250,8 @@ def convert_template(translation_project, template_store, target_pootle_path, ta
         original_file = None
         store = None
 
+    from translate.convert import pot2po
+    from pootle_store.filetypes import factory_classes
     output_file = pot2po.convert_stores(template_file, original_file, fuzzymatching=False, classes=factory_classes)
     if template_store.file:
         if store:

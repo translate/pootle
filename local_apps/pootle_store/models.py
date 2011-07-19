@@ -32,11 +32,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db.transaction import commit_on_success
 from django.utils.encoding import iri_to_uri
 
-from translate.storage import base, statsdb, po, poheader
+from translate.storage import base
 from translate.misc.hash import md5_f
-from translate.search import match
-
-from pootle.__version__ import sver as pootle_version
 
 from pootle_app.lib.util import RelatedManager
 from pootle_misc.util import getfromcache, deletefromcache
@@ -123,6 +120,7 @@ def fix_monolingual(oldunit, newunit, monolingual=None):
 
 def count_words(strings):
     wordcount = 0
+    from translate.storage import statsdb
     for string in strings:
         wordcount += statsdb.wordcount(string)
     return wordcount
@@ -272,6 +270,7 @@ class Unit(models.Model, base.TranslationUnit):
         try:
             return self.store.get_file_class().UnitClass
         except ObjectDoesNotExist:
+            from translate.storage import po
             return po.pounit
 
     def __unicode__(self):
@@ -616,7 +615,6 @@ class Unit(models.Model, base.TranslationUnit):
 
 ###################### Store ###########################
 
-x_generator = "Pootle %s" % pootle_version
 
 # custom storage otherwise djago assumes all files are uploads headed to
 # media dir
@@ -717,6 +715,7 @@ class Store(models.Model, base.TranslationStore):
 
     def get_matcher(self):
         """builds a TM matcher from current translations and obsolete units"""
+        from translate.search import match
         #FIXME: should we cache this?
         matcher = match.matcher(self, max_candidates=1, usefuzzy=True)
         matcher.extendtm(self.unit_set.filter(state=OBSOLETE))
@@ -1150,6 +1149,7 @@ class Store(models.Model, base.TranslationStore):
         self.save()
 
         try:
+            from translate.storage import poheader
             if suggestions and isinstance(newfile, poheader.poheader):
                 try:
                     mtime = newfile.parseheader().get('X-POOTLE-MTIME', None)
@@ -1217,6 +1217,7 @@ class Store(models.Model, base.TranslationStore):
         self.file.store.settargetlanguage(language.code)
         self.file.store.setsourcelanguage(source_language.code)
 
+        from translate.storage import poheader
         if isinstance(self.file.store, poheader.poheader):
             mtime = self.get_mtime()
             if mtime is None:
@@ -1236,6 +1237,8 @@ class Store(models.Model, base.TranslationStore):
                         pass
 
             po_revision_date = mtime.strftime('%Y-%m-%d %H:%M') + poheader.tzstring()
+            from pootle.__version__ import sver as pootle_version
+            x_generator = "Pootle %s" % pootle_version
             headerupdates = {'PO_Revision_Date': po_revision_date,
                              'X_Generator': x_generator,
                              'X_POOTLE_MTIME': '%s.%d' % (mtime.strftime('%s'), mtime.microsecond),
