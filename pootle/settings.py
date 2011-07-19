@@ -168,7 +168,7 @@ MAX_AUTOTERMS = 600
 
 # defaults for localsettings vars
 CONTACT_EMAIL = None
-USE_CAPTCHA = False
+USE_CAPTCHA = True
 AUTOSYNC = False
 MT_BACKENDS = ()
 CAN_CONTACT = True
