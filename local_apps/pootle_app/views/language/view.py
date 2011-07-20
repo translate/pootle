@@ -95,7 +95,7 @@ def get_failing_checks_dir(request, translation_project, dir_path):
 @set_request_context
 def get_view_units_dir(request, translation_project, dir_path):
     if not check_permission("view", request):
-        raise PermissionDenied("get_view_units_dir")
+        raise PermissionDenied(_("You do not have rights to access this translation project."))
     if dir_path:
         pootle_path = translation_project.pootle_path + dir_path
         units_query = Unit.objects.filter(store__pootle_path__startswith=pootle_path)
