@@ -157,7 +157,7 @@ def unit_form_factory(language, snplurals=None):
     class UnitForm(forms.ModelForm):
         class Meta:
             model = Unit
-            exclude = ['store']
+            exclude = ['store', 'developer_comment']
 
         id = forms.IntegerField(required=False)
         source_f = MultiStringFormField(nplurals=snplurals or 1, required=False, textarea=False)
@@ -168,8 +168,6 @@ def unit_form_factory(language, snplurals=None):
         translator_comment = forms.CharField(required=False,
                 widget=forms.Textarea(attrs=comment_attrs),
                 label=_("Translator comment"))
-        developer_comment = forms.CharField(required=False,
-                widget=forms.Textarea(attrs=comment_attrs))
 
         def clean_source_f(self):
             value = self.cleaned_data['source_f']
