@@ -22,16 +22,11 @@ from django.conf import settings
 from django.utils.translation import ugettext as _
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django import forms
 from django.db.transaction import commit_on_success
-
-from translate.tools.poterminology import TerminologyExtractor
 
 from pootle_app.views.language.view import get_translation_project
 from pootle_app.views.admin import util
 from pootle_store.models import Store, Unit, PARSED, LOCKED
-from pootle_store.forms import unit_form_factory
-from pootle_misc.baseurl import redirect
 
 def create_termunit(term, unit, targets, locations, sourcenotes, transnotes, filecounts):
     termunit = Unit()
@@ -77,6 +72,7 @@ def extract(request, translation_project):
         }
     terminology_filename = get_terminology_filename(translation_project)
     if request.method == 'POST' and request.POST['extract']:
+        from translate.tools.poterminology import TerminologyExtractor
         extractor = TerminologyExtractor(accelchars=translation_project.checker.config.accelmarkers,
                                          sourcelanguage=str(translation_project.project.source_language.code))
         for store in translation_project.stores.iterator():
@@ -115,6 +111,7 @@ def extract(request, translation_project):
 
         template_vars['store'] = store
         template_vars['termcount'] = len(termunits)
+        from pootle_misc.baseurl import redirect
         return redirect(translation_project.pootle_path + 'terminology_manage.html')
     return render_to_response("terminology/extract.html", template_vars, context_instance=RequestContext(request))
 
@@ -136,6 +133,7 @@ def manage(request, translation_project):
         template_vars['store'] = term_store
 
         #HACKISH: Django won't allow excluding form fields already defined in parent class, manually extra fields.
+        from pootle_store.forms import unit_form_factory
         unit_form_class = unit_form_factory(translation_project.language, 1)
         del(unit_form_class.base_fields['target_f'])
         del(unit_form_class.base_fields['id'])
@@ -148,6 +146,7 @@ def manage(request, translation_project):
 
         class TermUnitForm(unit_form_class):
             # set store for new terms
+            from django import forms
             store = forms.ModelChoiceField(queryset=Store.objects.filter(pk=term_store.pk), initial=term_store.pk, widget=forms.HiddenInput)
             index = forms.IntegerField(required=False, widget=forms.HiddenInput)
 
