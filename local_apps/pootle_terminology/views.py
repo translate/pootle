@@ -134,7 +134,7 @@ def manage(request, translation_project):
 
         #HACKISH: Django won't allow excluding form fields already defined in parent class, manually extra fields.
         from pootle_store.forms import unit_form_factory
-        unit_form_class = unit_form_factory(translation_project.language, 1)
+        unit_form_class = unit_form_factory(translation_project.language)
         del(unit_form_class.base_fields['target_f'])
         del(unit_form_class.base_fields['id'])
         del(unit_form_class.base_fields['translator_comment'])
