@@ -34,7 +34,9 @@ urlpatterns = patterns('',
     (r'^django_admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    (r'^django_admin/(.*)', admin.site.urls),
+    (r'^django_admin/', include(admin.site.urls)),
+    # Or if you really need to run under Django 1.0:
+    #(r'^django_admin/(.*)', admin.site.root),
 
     # Static and media files
     (r'^html/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
