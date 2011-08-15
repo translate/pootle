@@ -54,7 +54,7 @@ from pootle_app.views.admin.permissions import admin_permissions
 from pootle_app.views.language.view import get_translation_project, set_request_context
 from pootle_app.project_tree import ensure_target_dir_exists, direct_language_match_filename
 
-from pootle_store.models import Store, Unit
+from pootle_store.models import Store
 from pootle_store.util import absolute_real_path, relative_real_path
 from pootle_store.filetypes import factory_classes
 from pootle_store.views import translate_page
@@ -610,5 +610,4 @@ class UploadHandler(view_handler.Handler):
 @get_translation_project
 @set_request_context
 def translate(request, translation_project):
-    units_queryset = Unit.objects.filter(store__translation_project=translation_project)
-    return translate_page(request, units_queryset)
+    return translate_page(request, translation_project.units)

@@ -206,6 +206,14 @@ class TranslationProject(models.Model):
                 errors += 1
         return errors
 
+    def _get_units(self):
+        self.require_units()
+        # FIXME: we rely on implicit ordering defined in the model. We might
+        # want to consider pootle_path as well
+        return Unit.objects.filter(store__translation_project=self, state__gt=OBSOLETE).select_related('store')
+
+    units = property(_get_units)
+
     @getfromcache
     def getquickstats(self):
         if self.is_template_project:
