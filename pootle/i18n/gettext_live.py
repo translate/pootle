@@ -37,7 +37,7 @@ def get_live_translation(language_code):
     return _translation_project_cache[language_code]
 
 def _dummy_translate(singular, plural, n):
-    if plural is not None and n > 1:
+    if plural is not None and n != 1:
         return plural
     else:
         return singular
