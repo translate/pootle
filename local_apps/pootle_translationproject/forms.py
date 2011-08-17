@@ -19,14 +19,22 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 """Form fields required for handling Translation Project"""
+
+
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
+
 class SearchForm(forms.Form):
     search = forms.CharField(widget=forms.TextInput(attrs={'size': '15'}))
-    sfields = forms.MultipleChoiceField(required=False, widget=forms.CheckboxSelectMultiple,
-                                              choices=(('source', _('Source Text')),
-                                                       ('target', _('Target Text')),
-                                                       ('notes', _('Comments')),
-                                                       ('locations', _('Locations'))),
-                                              initial=['source', 'target'])
+    sfields = forms.MultipleChoiceField(
+            required=False,
+            widget=forms.CheckboxSelectMultiple,
+            choices=(
+                ('source', _('Source Text')),
+                ('target', _('Target Text')),
+                ('notes', _('Comments')),
+                ('locations', _('Locations'))
+            ),
+            initial=['source', 'target'],
+    )
