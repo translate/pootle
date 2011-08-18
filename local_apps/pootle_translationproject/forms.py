@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2010-2011 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -25,7 +25,17 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 
+def make_search_form(**kwargs):
+    """A factory that instantiates one of the search forms below."""
+    terminology = kwargs.pop('terminology', False)
+    if terminology:
+        return TermSearchForm(**kwargs)
+    else:
+        return SearchForm(**kwargs)
+
+
 class SearchForm(forms.Form):
+    """Normal search form for translation projects."""
     search = forms.CharField(widget=forms.TextInput(attrs={'size': '15'}))
     sfields = forms.MultipleChoiceField(
             required=False,
@@ -37,4 +47,19 @@ class SearchForm(forms.Form):
                 ('locations', _('Locations'))
             ),
             initial=['source', 'target'],
+    )
+
+
+class TermSearchForm(SearchForm):
+    """Search form for terminology projects and pootle-terminology files."""
+    # Mostly the same as SearchForm, but defining it this way seemed easiest
+    sfields = forms.ChoiceField(
+            required=False,
+            widget=forms.CheckboxSelectMultiple,
+            choices=(
+                ('source', _('Source Terms')),
+                ('target', _('Target Terms')),
+                ('notes', _('Definitions')),
+            ),
+            initial=['source', 'target', 'notes'],
     )

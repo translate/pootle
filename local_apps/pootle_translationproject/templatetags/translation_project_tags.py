@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2010-2011 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -21,7 +21,7 @@
 from django import template
 from django.utils.translation import ugettext as _
 
-from pootle_translationproject.forms import SearchForm
+from pootle_translationproject.forms import make_search_form
 from pootle_misc.baseurl import l
 
 register = template.Library()
@@ -30,7 +30,8 @@ register = template.Library()
 def render_search(context, form=None, action=None):
     translation_project = context['translation_project']
     if form is None:
-        form = SearchForm()
+        is_terminology =  translation_project.project.is_terminology
+        form = make_search_form(terminology=is_terminology)
     if action is None:
         action = l('translate.html')
 

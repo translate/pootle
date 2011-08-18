@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2009 Zuza Software Foundation
+# Copyright 2010-2011 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -41,7 +41,7 @@ from pootle_misc.baseurl import redirect
 from pootle_app.models.permissions import get_matching_permissions, check_permission, check_profile_permission
 from pootle_misc.util import paginate, ajax_required
 from pootle_profile.models import get_profile
-from pootle_translationproject.forms import SearchForm
+from pootle_translationproject.forms import make_search_form
 from pootle_statistics.models import Submission
 from pootle_app.models import Suggestion as SuggestionStat
 
@@ -294,7 +294,8 @@ def get_step_query(request, units_queryset):
             units_queryset = match_queryset
 
     if 'search' in request.GET and 'sfields' in request.GET:
-        search_form = SearchForm(request.GET)
+        # use the search form for validation only
+        search_form = make_search_form(request.GET)
         if search_form.is_valid():
             units_queryset = get_search_step_query(request.translation_project, search_form, units_queryset)
     return units_queryset
@@ -308,8 +309,9 @@ def translate_page(request):
     language = translation_project.language
     profile = request.profile
 
-    search_form = SearchForm()
     store = getattr(request, "store", None)
+    is_terminology = translation_project.project.is_terminology or store and store.is_terminology
+    search_form = make_search_form(terminology=is_terminology)
     context = {
         'cantranslate': cantranslate,
         'cansuggest': cansuggest,
