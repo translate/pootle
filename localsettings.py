@@ -92,7 +92,7 @@ CACHE_BACKEND = 'db://pootlecache?max_entries=65536&cull_frequency=16'
 CACHE_MIDDLEWARE_SECONDS = 600
 
 
-# Set this to False. DEBUG mode is only needed when testing beta's or
+# Set this to False. DEBUG mode is only needed when testing betas or
 # hacking Pootle.
 DEBUG = False
 
