@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2009-2011 Zuza Software Foundation
 #
 # This file is part of translate.
 #
@@ -127,6 +127,11 @@ class Project(models.Model):
     def is_monolingual(self):
         """is this a monolingual project"""
         return is_monolingual(self.get_file_class())
+
+    def _get_is_terminology(self):
+        """is this a terminology project"""
+        return self.checkstyle == 'terminology'
+    is_terminology = property(_get_is_terminology)
 
     def file_belongs_to_project(self, filename, match_templates=True):
         """tests if filename matches project filetype (ie. extension),

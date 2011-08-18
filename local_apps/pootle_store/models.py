@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2009 Zuza Software Foundation
+# Copyright 2008-2011 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -981,6 +981,14 @@ class Store(models.Model, base.TranslationStore):
                 name, ext = os.path.splitext(self.name)
                 return factory_classes[ext]
         return factory_classes['po']
+
+    def _get_is_terminology(self):
+        """is this a project specific terminology store?"""
+        #TODO: Consider if this should check if the store belongs to a
+        # terminology project. Probably not, in case this might be called over
+        # several files in a project.
+        return self.name.startswith('pootle-terminology')
+    is_terminology = property(_get_is_terminology)
 
     def convert(self, fileclass):
         """export to fileclass"""

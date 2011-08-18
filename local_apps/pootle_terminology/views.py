@@ -76,7 +76,7 @@ def extract(request, translation_project):
         extractor = TerminologyExtractor(accelchars=translation_project.checker.config.accelmarkers,
                                          sourcelanguage=str(translation_project.project.source_language.code))
         for store in translation_project.stores.iterator():
-            if store.name.startswith('pootle-terminology.'):
+            if store.is_terminology:
                 continue
             extractor.processunits(store.units, store.pootle_path)
         terms = extractor.extract_terms(create_termunit=create_termunit)
