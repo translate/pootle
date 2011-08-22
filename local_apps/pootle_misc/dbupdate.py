@@ -178,6 +178,17 @@ def update_ts_tt_12008():
         store.update(update_structure=True, update_translation=True, conservative=False)
     return text
 
+def update_toolkit_version():
+    text = """
+    <p>%s</p>
+    """ % _('Removing quality checks, will be recalculated on demand...')
+    logging.info("New Translate Toolkit version, flushing quality checks")
+    flush_quality_checks()
+    # TT_BUILDVERSION in siteconfig should now be updated, but it would have
+    # already happened due to the hook to syncdb doing this too early in
+    # pootle_app/management/__init__.py
+    return text
+
 def parse_start():
     text = u"""
     <p>%s</p>
@@ -297,6 +308,13 @@ def staggered_update(db_buildversion, tt_buildversion):
 
     if tt_buildversion < 12008:
         yield update_ts_tt_12008()
+
+    if tt_buildversion != sys.maxint and db_buildversion >= 21040:
+        # sys.maxint is set in siteconfig middleware if toolkit is unchanged.
+        # Otherwise, toolkit build version changed. Let's clear stale quality
+        # checks data. We can only do that safely if the db schema is
+        # already up to date.
+        yield update_toolkit_version()
 
     # first time to visit the front page all stats for projects and
     # languages will be calculated which can take forever, since users

@@ -74,12 +74,11 @@ class SiteConfigMiddleware(object):
                 response.db_buildversion = sys.maxint
 
             db_tt_buildversion = int(config.get('TT_BUILDVERSION', DEFAULT_TT_BUILDVERSION))
-            if db_tt_buildversion < code_tt_buildversion:
-                """Toolkit build version changed. clear stale quality checks data"""
-                logging.info("New Translate Toolkit version, flushing quality checks")
-                dbupdate.flush_quality_checks()
-                config.set('TT_BUILDVERSION', code_tt_buildversion)
-                config.save()
+            if response.db_buildversion == sys.maxint and db_tt_buildversion < code_tt_buildversion:
+                # Toolkit build version changed. Stale quality checks need to
+                # be cleared. We can only do that safely when the db schema is
+                # already up to date. The new toolkit version will be set by
+                # dbupdate after it fixed things.
                 response.tt_buildversion = db_tt_buildversion
 
             if (response.db_buildversion, response.tt_buildversion) != (sys.maxint, sys.maxint):
