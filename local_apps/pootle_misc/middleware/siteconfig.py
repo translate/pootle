@@ -24,8 +24,6 @@ import sys
 from django.http import HttpResponse
 
 from pootle_misc import siteconfig
-from pootle_misc import dbinit
-from pootle_misc import dbupdate
 
 from pootle.__version__ import build as code_buildversion
 from translate.__version__ import build as code_tt_buildversion
@@ -109,8 +107,10 @@ class SiteConfigMiddleware(object):
         db install process"""
 
         if response.status_code == INSTALL_STATUS_CODE:
+            from pootle_misc import dbinit
             return HttpResponse(dbinit.staggered_install(response.exception))
         elif response.status_code == UPDATE_STATUS_CODE:
+            from pootle_misc import dbupdate
             return HttpResponse(dbupdate.staggered_update(response.db_buildversion, response.tt_buildversion))
         else:
             return response

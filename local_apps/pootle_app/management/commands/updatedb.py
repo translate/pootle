@@ -27,7 +27,6 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from django.core.management.base import NoArgsCommand
 
 from pootle_misc import siteconfig
-from pootle_misc.dbupdate import staggered_update
 
 from pootle_misc.middleware.siteconfig import DEFAULT_BUILDVERSION
 from pootle.__version__ import build as code_buildversion
@@ -42,6 +41,7 @@ def update_db():
     db_buildversion = config.get('BUILDVERSION', DEFAULT_BUILDVERSION)
     if db_buildversion < code_buildversion:
         logging.info("Upgrading database from schema version %d to %d", db_buildversion, code_buildversion)
+        from pootle_misc.dbupdate import staggered_update
         for i in staggered_update(db_buildversion, sys.maxint):
             pass
         logging.info("Database upgrade done, current schema version %d", code_buildversion)
