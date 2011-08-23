@@ -25,13 +25,13 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 
-def make_search_form(**kwargs):
+def make_search_form(*args, **kwargs):
     """A factory that instantiates one of the search forms below."""
     terminology = kwargs.pop('terminology', False)
     if terminology:
-        return TermSearchForm(**kwargs)
+        return TermSearchForm(*args, **kwargs)
     else:
-        return SearchForm(**kwargs)
+        return SearchForm(*args, **kwargs)
 
 
 class SearchForm(forms.Form):
