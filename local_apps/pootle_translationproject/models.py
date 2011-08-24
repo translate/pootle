@@ -627,7 +627,10 @@ class TranslationProject(models.Model):
 
             local_terminology = self.stores.filter(name__startswith='pootle-terminology')
             for store in local_terminology.iterator():
-                mtime = max(mtime, store.get_mtime())
+                if mtime is None:
+                    mtime = store.get_mtime()
+                else:
+                    mtime = max(mtime, store.get_mtime())
             terminology_stores = terminology_stores | local_terminology
         if mtime is None:
             return
