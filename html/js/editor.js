@@ -751,7 +751,7 @@
       // Since we use jquery-jsonp, we must differentiate between
       // the passed arguments
       if (xhr instanceof XMLHttpRequest) {
-        msg = $.parseJSON(xhr.responseText);
+        msg = $.parseJSON(xhr.responseText).msg;
       } else {
         msg = "Unknown error";
       }
