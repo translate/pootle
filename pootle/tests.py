@@ -100,7 +100,7 @@ msgstr[1] ""
 
 
     def follow_redirect(self, response):
-        """follow a redirect chain until a non redirect response is recieved"""
+        """follow a redirect chain until a non-redirect response is received"""
         new_response = response
         while new_response.status_code in (301, 302, 303, 307):
             scheme, netloc, path, query, fragment = urlparse.urlsplit(new_response['location'])
