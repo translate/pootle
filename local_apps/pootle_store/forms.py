@@ -144,7 +144,7 @@ def unit_form_factory(language, snplurals=None):
     comment_attrs = {
         'lang': language.code,
         'dir': language.get_direction(),
-        'class': 'comments expanding',
+        'class': 'comments expanding focusthis',
         'rows': 1,
         'tabindex': 15,
         }
