@@ -143,8 +143,12 @@ def create_template_language():
 def create_terminology_project():
     """terminology project is used to display terminology suggestions while translating"""
     en = require_english()
-    terminology, created = Project.objects.get_or_create(code="terminology", fullname=u"Terminology",
-                                                         source_language=en)
+    terminology, created = Project.objects.get_or_create(
+            code="terminology",
+            fullname=u"Terminology",
+            source_language=en,
+            checkstyle="terminology",
+    )
 
 def post_syncdb_handler(sender, created_models, **kwargs):
     try:
