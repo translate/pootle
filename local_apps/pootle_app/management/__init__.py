@@ -170,8 +170,10 @@ def post_syncdb_handler(sender, created_models, **kwargs):
         create_pootle_permission_sets()
 
     config = siteconfig.load_site_config()
-    config.set('BUILDVERSION', code_buildversion)
-    config.set('TT_BUILDVERSION', code_tt_buildversion)
+    if not config.get('BUILDVERSION', None):
+        config.set('BUILDVERSION', code_buildversion)
+    if not config.get('TT_BUILDVERSION', None):
+        config.set('TT_BUILDVERSION', code_tt_buildversion)
     config.save()
 post_syncdb.connect(post_syncdb_handler, sender=pootle_app.models)
 

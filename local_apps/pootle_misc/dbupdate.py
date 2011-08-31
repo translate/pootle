@@ -51,6 +51,26 @@ def flush_quality_checks():
             store.state = PARSED
             store.save()
 
+def save_toolkit_version(build=None):
+    from pootle_misc import siteconfig
+    if not build:
+        from translate.__version__ import build
+
+    config = siteconfig.load_site_config()
+    config.set('TT_BUILDVERSION', build)
+    config.save()
+    logging.info("Database now at Toolkit build %d" % build)
+
+def save_pootle_version(build=None):
+    from pootle_misc import siteconfig
+    if not build:
+        from pootle.__version__ import build
+
+    config = siteconfig.load_site_config()
+    config.set('BUILDVERSION', build)
+    config.save()
+    logging.info("Database now at Pootle build %d" % build)
+
 def header(db_buildversion):
     text = """
     <?xml version="1.0" encoding="UTF-8"?>
@@ -112,6 +132,7 @@ def update_permissions_20030():
         permission.save()
     contenttype.name = 'pootle'
     contenttype.save()
+    save_pootle_version(20030)
     return text
 
 def update_tables_21000():
@@ -147,6 +168,7 @@ def update_tables_21000():
     field.default = en.id
     db.add_column(table_name, field.name, field)
     db.create_index(table_name, (field.name + '_id',))
+    # We shouldn't do save_pootle_version(21000) yet - more to do below
     return text
 
 def update_qualitychecks_21040():
@@ -155,6 +177,7 @@ def update_qualitychecks_21040():
     """ % _('Removing quality checks, will be recalculated on demand...')
     logging.info("Fixing quality checks")
     flush_quality_checks()
+    save_pootle_version(21040)
     return text
 
 def update_stats_21060():
@@ -164,6 +187,7 @@ def update_stats_21060():
     logging.info('flushing cached stats')
     for tp in TranslationProject.objects.filter(stores__unit__state=OBSOLETE).distinct().iterator():
         deletefromcache(tp, ["getquickstats", "getcompletestats", "get_mtime", "has_suggestions"])
+    save_pootle_version(21060)
     return text
 
 def update_ts_tt_12008():
@@ -176,6 +200,7 @@ def update_ts_tt_12008():
                                       file__iendswith='.ts').iterator():
         store.sync(update_translation=True)
         store.update(update_structure=True, update_translation=True, conservative=False)
+    save_toolkit_version(12008)
     return text
 
 def update_toolkit_version():
@@ -184,9 +209,7 @@ def update_toolkit_version():
     """ % _('Removing quality checks, will be recalculated on demand...')
     logging.info("New Translate Toolkit version, flushing quality checks")
     flush_quality_checks()
-    # TT_BUILDVERSION in siteconfig should now be updated, but it would have
-    # already happened due to the hook to syncdb doing this too early in
-    # pootle_app/management/__init__.py
+    save_toolkit_version()
     return text
 
 def parse_start():
@@ -265,6 +288,7 @@ def staggered_update(db_buildversion, tt_buildversion):
             yield update_tables_21000()
         except Exception, e:
             logging.warning(u"something broke while upgrading database tables:\n%s", e)
+            #TODO: should we continue?
 
         logging.info("creating project directories")
         Directory.objects.root.get_or_make_subdir('projects')
@@ -299,6 +323,7 @@ def staggered_update(db_buildversion, tt_buildversion):
                 logging.warning(u"something broke while parsing %s:\n%s", store, e)
 
         yield parse_end()
+        save_pootle_version(21000)
 
     if db_buildversion < 21040:
         yield update_qualitychecks_21040()
@@ -315,6 +340,9 @@ def staggered_update(db_buildversion, tt_buildversion):
         # checks data. We can only do that safely if the db schema is
         # already up to date.
         yield update_toolkit_version()
+    elif tt_buildversion != sys.maxint:
+        # only need to update the toolkit version, not do the upgrade
+        save_toolkit_version()
 
     # first time to visit the front page all stats for projects and
     # languages will be calculated which can take forever, since users
