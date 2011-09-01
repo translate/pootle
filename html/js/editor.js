@@ -1143,18 +1143,16 @@
   /* Creates a pager based on the current client data and the given uid */
   createPager: function (uid) {
     var newPager = this.pager;
-
     // In case the given uid is not within the current page,
     // calculate in which page it is
     if ($.inArray(uid, this.pagesGot[this.currentPage]) == -1) {
       var newPageNumber,
           i = this.currentPage,
-          j = this.currentPage,
+          j = this.currentPage + 1,
           found = false;
-
       // Search uid within the pages the client knows of
       while (!found && (i > 0 || j <= this.pager.num_pages)) {
-        if ($.inArray(uid, this.pagesGot[i]) != -1) {
+        if (i > 0 && $.inArray(uid, this.pagesGot[i]) != -1) {
           newPageNumber = i;
           found = true;
         } else if ($.inArray(uid, this.pagesGot[j]) != -1) {
