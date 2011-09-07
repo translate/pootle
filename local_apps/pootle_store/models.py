@@ -40,7 +40,7 @@ from pootle_misc.util import getfromcache, deletefromcache
 from pootle_misc.aggregate import group_by_count, max_column
 from pootle_misc.baseurl import l
 
-from pootle_store.fields  import TranslationStoreField, MultiStringField, PLURAL_PLACEHOLDER
+from pootle_store.fields  import TranslationStoreField, MultiStringField, PLURAL_PLACEHOLDER, SEPERATOR
 from pootle_store.util import calculate_stats, empty_quickstats
 from pootle_store.util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED
 from pootle_store.filetypes import factory_classes, is_monolingual
@@ -87,6 +87,8 @@ class Suggestion(models.Model, base.TranslationUnit):
     unit = models.ForeignKey('pootle_store.Unit')
     user = models.ForeignKey('pootle_profile.PootleProfile', null=True)
 
+    translator_comment_f = models.TextField(null=True, blank=True)
+
     def natural_key(self):
         return (self.target_hash, self.unit.unitid_hash, self.unit.store.pootle_path)
     natural_key.dependencies = ['pootle_store.Unit', 'pootle_store.Store']
@@ -94,15 +96,30 @@ class Suggestion(models.Model, base.TranslationUnit):
     def __unicode__(self):
         return unicode(self.target)
 
+    def _set_hash(self):
+        string = self.translator_comment_f
+        if string:
+            string = self.target_f + SEPERATOR + string
+        else:
+            string = self.target_f
+        self.target_hash = md5_f(string.encode("utf-8")).hexdigest()
+
     def _get_target(self):
         return self.target_f
 
     def _set_target(self, value):
         self.target_f = value
-        self.target_hash = md5_f(self.target_f.encode("utf-8")).hexdigest()
+        self._set_hash()
 
     _target = property(_get_target, _set_target)
     _source = property(lambda self: self.unit._source)
+
+    def _set_translator_comment(self, value):
+        self.translator_comment_f = value
+        self._set_hash()
+
+    translator_comment = property(lambda self: self.translator_comment_f, _set_translator_comment)
+
 
 ############### Unit ####################
 

@@ -203,6 +203,19 @@ def update_ts_tt_12008():
     save_toolkit_version(12008)
     return text
 
+def update_tables_22000():
+    text = u"""
+    <p>%s</p>
+    """ % _('Updating existing database tables...')
+    logging.info("Updating existing database tables")
+    from south.db import db
+    from pootle_store.models import Suggestion
+    table_name = Suggestion._meta.db_table
+    field = Suggestion._meta.get_field('translator_comment_f')
+    field.null = True
+    db.add_column(table_name, field.name, field)
+    save_pootle_version(22000)
+
 def update_toolkit_version():
     text = """
     <p>%s</p>
