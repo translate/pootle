@@ -513,7 +513,11 @@ class TranslationProject(models.Model):
         try:
             indexer.begin_transaction()
             for store in self.stores.iterator():
-                self.update_index(indexer, store)
+                try:
+                    self.update_index(indexer, store)
+                except OSError, e:
+                    # broken link or permission problem?
+                    logging.error("Erorr indexing %s: %s", store, e)
             indexer.commit_transaction()
             indexer.flush(optimize=True)
         except Exception, e:
