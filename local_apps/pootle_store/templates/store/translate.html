@@ -75,7 +75,7 @@
 
   <div id="toolbar_search" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
     <div class="search-container">
-      <form action="{{ search_action }}" method="get" id="searchform" title="Search (Ctrl+Shift+S)<br/>Type in, then press Enter to search">
+      <form action="{{ search_action }}" method="get" id="searchform" title="{% trans 'Search (Ctrl+Shift+S)<br/>Type in, then press Enter to search' %}">
         <div class="advancedsearch">
           {{ search_form.sfields }}
         </div>
@@ -93,7 +93,7 @@
     </div>
   </div>
 
-  <div class="label">Filter by:</div>
+  <div class="label">{% trans "Filter by:" %}</div>
   <div id="filter-status" class="toolbar-item">
     <select name="filter-status">
       <option selected="selected" value="all">{% trans "All" %}</option>
