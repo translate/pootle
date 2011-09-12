@@ -39,7 +39,7 @@
     });
   });
   </script>
-  <form action="{{ search_action }}" method="get" id="searchform" title="Search (Ctrl+Shift+S)<br/>Type in, then press Enter to search">
+  <form action="{{ search_action }}" method="get" id="searchform" title="{% trans 'Search (Ctrl+Shift+S)<br/>Type in, then press Enter to search' %}">
     <label class="inputHint" for="id_search">{% trans "Search" %}</label>{{ search_form.search }}
     <a class="advancedlink">
       {% if LANGUAGE_BIDI %}
