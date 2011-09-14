@@ -14,6 +14,10 @@ _("Save and add another")
 _("Save and continue editing")
 _("Add")
 _("Change")
+_("Please enter a correct username and password. Note that both fields are case-sensitive.")
+# from Django/django/contrib/auth/forms.py:
+# l10n: Email subject line. The variable is the server name shown on the top of each page
+_("Password reset on %s")
 
 # l10n: This is a constructed string that might end up saying "Add language" or "Add project". If you need to translate that differently, you might want to try to translate it as "Add an entry to the %(name)s table" or "Add an object of type "%(name)s".
 _("Add %(name)s")
