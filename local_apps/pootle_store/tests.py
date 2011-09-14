@@ -131,6 +131,22 @@ class UnitTests(PootleTestCase):
         self.assertEqual(dbunit.getnotes(origin="translator"), pofile.units[dbunit.index].getnotes(origin="translator"))
 
 
+class SuggestionTests(PootleTestCase):
+    def setUp(self):
+        super(SuggestionTests, self).setUp()
+        self.store = Store.objects.get(pootle_path="/af/tutorial/pootle.po")
+
+    def test_hash(self):
+        unit = self.store.getitem(0)
+        suggestion = unit.add_suggestion("gras")
+        first_hash = suggestion.target_hash
+        suggestion.translator_comment = "my nice comment"
+        second_hash = suggestion.target_hash
+        assert first_hash != second_hash
+        suggestion.target = "gras++"
+        assert first_hash != second_hash != suggestion.target_hash
+
+
 class StoreTests(PootleTestCase):
     def setUp(self):
         super(StoreTests, self).setUp()
