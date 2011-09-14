@@ -33,6 +33,7 @@
         <li class="todo"><a href="{% filter l %}{% if item.isfile %}{{ item.href_todo }}{% else %}{{ item.href }}{{ "translate.html#filter=incomplete"|force_escape }}{% endif %}{% endfilter %}" title="{{ item.todo_tooltip }}">{{ item.todo_text }}</a></li>
         {% endif %}
         {% ifequal item.data.translatedsourcewords item.data.totalsourcewords %}
+        {# l10n: This is not a verb. It is used if the translation is at 100%. #}
         <li class="complete">{% trans "Complete" %}</li>
         {% endifequal %}
     </ul>
