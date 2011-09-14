@@ -162,6 +162,8 @@
       var sources = $(".translation-text", $(this).parent().parent().parent());
       PTL.editor.copyOriginal(sources);
     });
+
+    /* Copy suggestion */
     $("div.suggestion").live("click", function () {
       // Don't copy if text has been selected
       if (PTL.editor.getSelectedText() != "") {
