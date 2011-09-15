@@ -115,6 +115,7 @@ except ImportError, e:
     from difflib import SequenceMatcher
     highlight_diffs = _difflib_highlight_diffs
 
+
 def get_sugg_list(unit):
     """get suggested translations for given unit with the localized
     title string for each suggestions"""
@@ -122,13 +123,20 @@ def get_sugg_list(unit):
     # variables in templates, since template translation is not safe
     # and might fail on livetranslation
     sugg_list = []
-    for i, sugg in enumerate(unit.get_suggestions().iterator()):
+    scores = []
+    suggestions = unit.get_suggestions()
+    if suggestions:
+        from voting.models import Vote
+        scores = Vote.objects.get_scores_in_bulk(suggestions)
+    for i, sugg in enumerate(suggestions):
         title = _(u"Suggestion %(i)d by %(user)s:", {'i': i+1, 'user': sugg.user})
-        sugg_list.append((sugg, title))
+        score = scores.get(sugg.id, False)
+        sugg_list.append((sugg, title, score))
     if len(sugg_list) == 1:
         sugg = sugg_list[0][0]
-        sugg_list = [(sugg, _(u"Suggestion by %(user)s", {'user': sugg.user}))]
-    return sugg_list
+        sugg_list = [(sugg, _(u"Suggestion by %(user)s", {'user': sugg.user}), scores.get(sugg.id, False))]
+    return suggestions, sugg_list
+
 
 @register.filter('stat_summary')
 def stat_summary(store):
@@ -210,6 +218,7 @@ def render_unit_edit(context, form):
     alt_src_langs = context['alt_src_langs']
     translation_project = context['translation_project']
     project = translation_project.project
+    suggestions, suggestion_detail = get_sugg_list(unit)
     template_vars = {'unit': unit,
                      'form': form,
                      'store': store,
@@ -221,7 +230,8 @@ def render_unit_edit(context, form):
                      'cansuggest': context['cansuggest'],
                      'canreview': context['canreview'],
                      'altsrcs': find_altsrcs(unit, alt_src_langs, store=store, project=project),
-                     "suggestions": get_sugg_list(unit),
+                     "suggestions": suggestions,
+                     "suggestion_detail": suggestion_detail,
                      }
     return template_vars
 

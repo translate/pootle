@@ -538,6 +538,7 @@ def get_edit_unit(request, unit):
     profile = request.profile
     alt_src_langs = get_alt_src_langs(request, profile, translation_project)
     project = translation_project.project
+    suggestions, suggestion_details = get_sugg_list(unit)
     template_vars = {'unit': unit,
                      'form': form,
                      'store': store,
@@ -550,7 +551,9 @@ def get_edit_unit(request, unit):
                      'cansuggest': check_profile_permission(profile, "suggest", directory),
                      'canreview': check_profile_permission(profile, "review", directory),
                      'altsrcs': find_altsrcs(unit, alt_src_langs, store=store, project=project),
-                     'suggestions': get_sugg_list(unit)}
+                     'suggestions': suggestions,
+                     'suggestion_detail': suggestion_details,
+    }
 
     t = loader.get_template('unit/edit.html')
     c = RequestContext(request, template_vars)

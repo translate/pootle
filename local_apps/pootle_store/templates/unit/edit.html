@@ -154,7 +154,7 @@
         <!-- Suggestions from users and TM -->
         <div id="suggestion-container"> 
         {% if suggestions %}
-          {% for sugg, sugtitle in suggestions %}
+          {% for sugg, sugtitle, score in suggestion_detail %}
           <div id="suggestion{{ sugg.id }}" class="suggestion-block">
             <div class="suggestion-title">{{ sugtitle }}</div>
               {% if canreview %}
