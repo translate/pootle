@@ -1591,7 +1591,8 @@
 
 
   /* Rejects a suggestion */
-  rejectSuggestion: function () {
+  rejectSuggestion: function (e) {
+    e.stopPropagation(); //we don't want to trigger a click on the text below
     var element = $(this).parent().parent(), // the top suggestion div
         uid = $('.translate-container input#id_id').val(),
         suggId = $(this).siblings("input.suggid").val(),
@@ -1612,7 +1613,8 @@
 
 
   /* Accepts a suggestion */
-  acceptSuggestion: function () {
+  acceptSuggestion: function (e) {
+    e.stopPropagation(); //we don't want to trigger a click on the text below
     var element = $(this).parent().parent(), // the top suggestion div
         uid = $('.translate-container input#id_id').val(),
         suggId = $(this).siblings("input.suggid").val(),
@@ -1651,6 +1653,7 @@
 
   /* Clears the vote for a specific suggestion */
   clearVote: function (e) {
+    e.stopPropagation(); //we don't want to trigger a click on the text below
     var element = $(this);
         voteId = element.siblings("input.voteid").val(),
         url = l('/vote/clear/') + voteId;
@@ -1675,6 +1678,7 @@
 
   /* Votes for a specific suggestion */
   voteUp: function (e) {
+    e.stopPropagation(); //we don't want to trigger a click on the text below
     var element = $(this);
         suggId = element.siblings("input.suggid").val(),
         uid = $('.translate-container input#id_id').val(),
