@@ -31,6 +31,7 @@ from django.core.files.storage import FileSystemStorage
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.transaction import commit_on_success
 from django.utils.encoding import iri_to_uri
+from django.db.models.signals import post_delete
 
 from translate.storage import base
 from translate.misc.hash import md5_f
@@ -119,6 +120,17 @@ class Suggestion(models.Model, base.TranslationUnit):
         self._set_hash()
 
     translator_comment = property(lambda self: self.translator_comment_f, _set_translator_comment)
+
+def delete_votes(sender, instance, **kwargs):
+    # Since votes are linked by ContentType and not foreign keys, referential
+    # integrity is not kept, and we have to ensure we remove any votes manually
+    # when a suggestion is removed
+    from voting.models import Vote
+    from django.contrib.contenttypes.models import ContentType
+    ctype = ContentType.objects.get_for_model(instance)
+    Vote.objects.filter(content_type=ctype, object_id=instance._get_pk_val()).delete()
+
+post_delete.connect(delete_votes, sender=Suggestion)
 
 
 ############### Unit ####################
