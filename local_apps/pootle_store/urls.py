@@ -34,5 +34,7 @@ urlpatterns = patterns('pootle_store.views',
     (r'^unit/process/(?P<uid>[0-9]+)/(?P<type>submission|suggestion)/?$', 'process_submit'),
     (r'^suggestion/reject/(?P<uid>[0-9]+)/(?P<suggid>[0-9]+)/?$', 'reject_suggestion'),
     (r'^suggestion/accept/(?P<uid>[0-9]+)/(?P<suggid>[0-9]+)/?$', 'accept_suggestion'),
+    (r'^vote/clear/(?P<voteid>[0-9]+)/?$', 'clear_vote'),
+    (r'^vote/up/(?P<uid>[0-9]+)/(?P<suggid>[0-9]+)/?$', 'vote_up'),
     (r'^qualitycheck/reject/(?P<uid>[0-9]+)/(?P<checkid>[0-9]+)/?$', 'reject_qualitycheck'),
 )
