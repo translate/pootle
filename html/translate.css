@@ -569,41 +569,34 @@ div.translator-comments + #suggestion-container
 
 .suggestion-block .rejectsugg img
 {
-    right: 0.5em;
     cursor: pointer;
-}
-
-.suggestion-block .rejectsugg img[dir="rtl"]
-{
-    left: 0.5em;
-    right: auto;
 }
 
 .suggestion-block .acceptsugg img
 {
-    right: 2.5em;
     cursor: pointer;
-}
-
-.suggestion-block .acceptsugg img[dir="rtl"]
-{
-    left: 2.5em;
-    right: auto;
 }
 
 .suggestion-block .rejectsugg img,
 .suggestion-block .acceptsugg img
 {
-    position: absolute;
+    float: right;
     top: 50%;
     filter:alpha(opacity=10);
     -moz-opacity: 0.1;
     -khtml-opacity: 0.1;
     opacity: 0.1;
 }
+.suggestion-block .rejectsugg img[dir="rtl"],
+.suggestion-block .acceptsugg img[dir="rtl"],
+.suggestion-block .suggestion-vote img[dir="rtl"]
+{
+    float: left;
+}
 
 .suggestion-block:hover .rejectsugg img,
-.suggestion-block:hover .acceptsugg img
+.suggestion-block:hover .acceptsugg img,
+.suggestion-block:hover .suggestion-vote img
 {
     filter:alpha(opacity=50);
     -moz-opacity: 0.5;
@@ -612,12 +605,32 @@ div.translator-comments + #suggestion-container
 }
 
 .suggestion-block .rejectsugg img:hover,
-.suggestion-block .acceptsugg img:hover
+.suggestion-block .acceptsugg img:hover,
+.suggestion-block .suggestion-vote:hover img
 {
     filter:alpha(opacity=100);
     -moz-opacity: 1;
     -khtml-opacity: 1;
     opacity: 1;
+}
+
+.num_votes
+{
+    position: absolute;
+    top: 8px;
+    right: 0.9em;
+    text-shadow: 0 0 8px #777;
+}
+
+.suggestion-block .suggestion-vote img
+{
+    top: 50%;
+    filter:alpha(opacity=30);
+    -moz-opacity: 0.3;
+    -khtml-opacity: 0.3;
+    opacity: 0.3;
+    float: right;
+    cursor: pointer;
 }
 
 .suggestion
@@ -627,14 +640,7 @@ div.translator-comments + #suggestion-container
     color: #444;
     line-height: 140%;
     padding: 0.5em;
-    padding-right: 5em;
     cursor: pointer;
-}
-
-.translate-translation[dir="rtl"] .suggestion
-{
-    padding-right: 0.5em;
-    padding-left: 5em;
 }
 
 .suggestion:hover {
