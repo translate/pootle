@@ -555,7 +555,10 @@ def get_edit_unit(request, unit):
                      'suggestion_detail': suggestion_details,
     }
 
-    t = loader.get_template('unit/edit.html')
+    if translation_project.project.is_terminology or store.is_terminology:
+        t = loader.get_template('unit/term_edit.html')
+    else:
+        t = loader.get_template('unit/edit.html')
     c = RequestContext(request, template_vars)
     json['editor'] = t.render(c)
     t = loader.get_template('store/dircrumbs.html')
