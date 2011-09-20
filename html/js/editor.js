@@ -1553,7 +1553,7 @@
         tgt = this.meta.target_lang,
         stext = $($("input[id^=id_source_f_]").get(0)).val(),
         tmUrl = this.settings.tmUrl + src + "/" + tgt +
-          "/unit/" + encodeURIComponent(stext) + "?jsoncallback=?";
+          "/unit/?source=" + encodeURIComponent(stext) + "&jsoncallback=?";
 
     // Always abort previous requests so we only get results for the
     // current unit
