@@ -1145,9 +1145,13 @@ class Store(models.Model, base.TranslationStore):
     @getfromcache
     def getcompletestats(self):
         """report result of quality checks"""
-        self.require_qualitychecks()
-        queryset = QualityCheck.objects.filter(unit__store=self, unit__state__gt=UNTRANSLATED, false_positive=False)
-        return group_by_count(queryset, 'name')
+        try:
+            self.require_qualitychecks()
+            queryset = QualityCheck.objects.filter(unit__store=self, unit__state__gt=UNTRANSLATED, false_positive=False)
+            return group_by_count(queryset, 'name')
+        except e:
+            logging.info(u"Error getting quality checks for %s\n%s", self.name, e)
+            return {}
 
     @getfromcache
     def has_suggestions(self):
