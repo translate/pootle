@@ -162,8 +162,7 @@ def manage(request, translation_project):
                 if value:
                     existing = term_store.findid(value[0])
                     if existing and existing.id != self.instance.id:
-                        #TODO: we need a better error message
-                        raise forms.ValidationError(_('Please correct the error below.'))
+                        raise forms.ValidationError(_('This term already exists in this file.'))
                     self.instance.setid(value[0])
                 return value
 
