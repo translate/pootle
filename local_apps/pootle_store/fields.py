@@ -148,7 +148,7 @@ class TranslationStoreFieldFile(FieldFile):
         """Add translation store to dictionary cache, replace old cached
         version if needed."""
         mod_info = self.getpomtime()
-        if not hasattr(self, "_store_typle") or self._store_tuple.mod_info != mod_info:
+        if not hasattr(self, "_store_tuple") or self._store_tuple.mod_info != mod_info:
             try:
                 self._store_tuple = self._store_cache[self.path]
                 if self._store_tuple.mod_info != mod_info:
