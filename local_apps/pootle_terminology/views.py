@@ -132,6 +132,7 @@ def manage(request, translation_project):
         term_store = Store.objects.get(pootle_path=translation_project.pootle_path + terminology_filename)
         template_vars['store'] = term_store
 
+        from django import forms
         #HACKISH: Django won't allow excluding form fields already defined in parent class, manually extra fields.
         from pootle_store.forms import unit_form_factory
         unit_form_class = unit_form_factory(translation_project.language)
@@ -146,7 +147,6 @@ def manage(request, translation_project):
 
         class TermUnitForm(unit_form_class):
             # set store for new terms
-            from django import forms
             store = forms.ModelChoiceField(queryset=Store.objects.filter(pk=term_store.pk), initial=term_store.pk, widget=forms.HiddenInput)
             index = forms.IntegerField(required=False, widget=forms.HiddenInput)
 
@@ -162,6 +162,7 @@ def manage(request, translation_project):
                 if value:
                     existing = term_store.findid(value[0])
                     if existing and existing.id != self.instance.id:
+                        #TODO: we need a better error message
                         raise forms.ValidationError(_('Please correct the error below.'))
                     self.instance.setid(value[0])
                 return value
