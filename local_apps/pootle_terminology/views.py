@@ -116,20 +116,11 @@ def extract(request, translation_project):
     return render_to_response("terminology/extract.html", template_vars, context_instance=RequestContext(request))
 
 
-def manage_store(request, translation_project, term_store):
-    template_vars = {
-        "translation_project": translation_project,
-        "language": translation_project.language,
-        "project": translation_project.project,
-        "source_language": translation_project.project.source_language,
-        "directory": translation_project.directory,
-        'formid': 'terminology-manage',
-        'submitname': 'changeterminology',
-        }
+def manage_store(request, template_vars, language, term_store):
     from django import forms
     #HACKISH: Django won't allow excluding form fields already defined in parent class, manually extra fields.
     from pootle_store.forms import unit_form_factory
-    unit_form_class = unit_form_factory(translation_project.language)
+    unit_form_class = unit_form_factory(language)
     del(unit_form_class.base_fields['target_f'])
     del(unit_form_class.base_fields['id'])
     del(unit_form_class.base_fields['translator_comment'])
@@ -168,11 +159,20 @@ def manage_store(request, translation_project, term_store):
 @get_translation_project
 @util.has_permission('administrate')
 def manage(request, translation_project):
+    template_vars = {
+        "translation_project": translation_project,
+        "language": translation_project.language,
+        "project": translation_project.project,
+        "source_language": translation_project.project.source_language,
+        "directory": translation_project.directory,
+        'formid': 'terminology-manage',
+        'submitname': 'changeterminology',
+        }
     try:
         terminology_filename = get_terminology_filename(translation_project)
         term_store = Store.objects.get(pootle_path=translation_project.pootle_path + terminology_filename)
 
-        return manage_store(request, translation_project, term_store)
+        return manage_store(request, template_vars, translation_project.language, term_store)
     except Store.DoesNotExist:
         return render_to_response("terminology/manage.html", template_vars,
                                   context_instance=RequestContext(request))
