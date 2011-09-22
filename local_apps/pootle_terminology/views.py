@@ -101,7 +101,7 @@ def extract(request, translation_project):
             #FIXME: what to do with score?
             unit.save()
             for suggestion in unit.pending_suggestions:
-                unit.add_suggestion(suggestion)
+                unit.add_suggestion(suggestion) # Touch=True which saves unit on every call
 
         # unlock file
         store.state = oldstate
@@ -115,9 +115,8 @@ def extract(request, translation_project):
         return redirect(translation_project.pootle_path + 'terminology_manage.html')
     return render_to_response("terminology/extract.html", template_vars, context_instance=RequestContext(request))
 
-@get_translation_project
-@util.has_permission('administrate')
-def manage(request, translation_project):
+
+def manage_store(request, translation_project, term_store):
     template_vars = {
         "translation_project": translation_project,
         "language": translation_project.language,
@@ -127,48 +126,53 @@ def manage(request, translation_project):
         'formid': 'terminology-manage',
         'submitname': 'changeterminology',
         }
+    from django import forms
+    #HACKISH: Django won't allow excluding form fields already defined in parent class, manually extra fields.
+    from pootle_store.forms import unit_form_factory
+    unit_form_class = unit_form_factory(translation_project.language)
+    del(unit_form_class.base_fields['target_f'])
+    del(unit_form_class.base_fields['id'])
+    del(unit_form_class.base_fields['translator_comment'])
+    del(unit_form_class.base_fields['state'])
+    del(unit_form_class.declared_fields['target_f'])
+    del(unit_form_class.declared_fields['id'])
+    del(unit_form_class.declared_fields['translator_comment'])
+    del(unit_form_class.declared_fields['state'])
+
+    class TermUnitForm(unit_form_class):
+        # set store for new terms
+        store = forms.ModelChoiceField(queryset=Store.objects.filter(pk=term_store.pk), initial=term_store.pk, widget=forms.HiddenInput)
+        index = forms.IntegerField(required=False, widget=forms.HiddenInput)
+        #TODO: voeg konteks by
+
+        def clean_index(self):
+            # assign new terms an index value
+            value = self.cleaned_data['index']
+            if self.instance.id is None:
+                value = term_store.max_index() + 1
+            return value
+
+        def clean_source_f(self):
+            value = super(TermUnitForm, self).clean_source_f()
+            if value:
+                existing = term_store.findid(value[0])
+                if existing and existing.id != self.instance.id:
+                    raise forms.ValidationError(_('This term already exists in this file.'))
+                self.instance.setid(value[0])
+            return value
+
+    return util.edit(request, 'terminology/manage.html', Unit, template_vars, None, None,
+                     queryset=term_store.units, can_delete=True, form=TermUnitForm,
+                     exclude=['state', 'target_f', 'id', 'translator_comment'])
+
+@get_translation_project
+@util.has_permission('administrate')
+def manage(request, translation_project):
     try:
         terminology_filename = get_terminology_filename(translation_project)
         term_store = Store.objects.get(pootle_path=translation_project.pootle_path + terminology_filename)
-        template_vars['store'] = term_store
 
-        from django import forms
-        #HACKISH: Django won't allow excluding form fields already defined in parent class, manually extra fields.
-        from pootle_store.forms import unit_form_factory
-        unit_form_class = unit_form_factory(translation_project.language)
-        del(unit_form_class.base_fields['target_f'])
-        del(unit_form_class.base_fields['id'])
-        del(unit_form_class.base_fields['translator_comment'])
-        del(unit_form_class.base_fields['state'])
-        del(unit_form_class.declared_fields['target_f'])
-        del(unit_form_class.declared_fields['id'])
-        del(unit_form_class.declared_fields['translator_comment'])
-        del(unit_form_class.declared_fields['state'])
-
-        class TermUnitForm(unit_form_class):
-            # set store for new terms
-            store = forms.ModelChoiceField(queryset=Store.objects.filter(pk=term_store.pk), initial=term_store.pk, widget=forms.HiddenInput)
-            index = forms.IntegerField(required=False, widget=forms.HiddenInput)
-
-            def clean_index(self):
-                # assign new terms an index value
-                value = self.cleaned_data['index']
-                if self.instance.id is None:
-                    value = term_store.max_index() + 1
-                return value
-
-            def clean_source_f(self):
-                value = super(TermUnitForm, self).clean_source_f()
-                if value:
-                    existing = term_store.findid(value[0])
-                    if existing and existing.id != self.instance.id:
-                        raise forms.ValidationError(_('This term already exists in this file.'))
-                    self.instance.setid(value[0])
-                return value
-
-        return util.edit(request, 'terminology/manage.html', Unit, template_vars, None, None,
-                         queryset=term_store.units, can_delete=True, form=TermUnitForm,
-                         exclude=['state', 'target_f', 'id', 'translator_comment'])
+        return manage_store(request, translation_project, term_store)
     except Store.DoesNotExist:
         return render_to_response("terminology/manage.html", template_vars,
                                   context_instance=RequestContext(request))
