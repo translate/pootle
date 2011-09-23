@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2009-2011 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -168,6 +168,15 @@ def manage(request, translation_project):
         'formid': 'terminology-manage',
         'submitname': 'changeterminology',
         }
+    if translation_project.project.is_terminology:
+        stores = list(Store.objects.filter(translation_project=translation_project))
+
+        if stores:
+            return manage_store(request, template_vars, translation_project.language, stores[0])
+        else:
+            # TODO: rather show list of files for the user to select
+            pass
+
     try:
         terminology_filename = get_terminology_filename(translation_project)
         term_store = Store.objects.get(pootle_path=translation_project.pootle_path + terminology_filename)
