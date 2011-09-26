@@ -88,5 +88,10 @@
       <script src='{{ "js/mt/apertium.js"|m }}' type="text/javascript"></script>
     {% endifequal %}
   {% endfor %}
+{% else %}
+<script type="text/javascript">
+    $('textarea').attr('disabled', true);
+    $('input.fuzzycheck').attr('disabled', true);
+</script>
 {% endif %}
 {% endblock scripts_extra %}
