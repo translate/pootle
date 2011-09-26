@@ -30,8 +30,6 @@ from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
-from pootle.i18n.override import lang_choices
-
 from pootle_profile.models import PootleProfile, get_profile
 from pootle_app.models import Directory
 from pootle_app.models.permissions import check_profile_permission
@@ -90,6 +88,8 @@ def language_list(request):
     tr_default = _("Default")
     if tr_default != "Default":
         tr_default = u"%s | \u202dDefault" % tr_default
+
+    from pootle.i18n.override import lang_choices
     choices = lang_choices()
     choices.insert(0, ('', tr_default))
     return choices
