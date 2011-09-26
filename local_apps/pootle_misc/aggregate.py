@@ -38,7 +38,7 @@ try:
         for column in columns:
             arg_dict[column] = Sum(column)
 
-        return  queryset.aggregate(**arg_dict)
+        return queryset.aggregate(**arg_dict)
 
     def group_by_count(queryset, column):
         result = queryset.values(column).annotate(count=Count(column))
