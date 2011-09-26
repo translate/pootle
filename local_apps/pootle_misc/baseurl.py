@@ -20,6 +20,7 @@
 
 """ utility functions to help deploy Pootle under different url prefixes """
 
+import os
 import urllib
 
 from django.conf import settings
@@ -42,6 +43,9 @@ def m(path):
     return l(settings.MEDIA_URL + path)
 
 def redirect(url, **kwargs):
+    if os.name == 'nt':
+        # A catch-all to fix any issues on Windows
+        url = url.replace("\\", "/")
     if len(kwargs) > 0:
         return HttpResponseRedirect(l('%s?%s' % (url, urllib.urlencode(kwargs))))
     else:
