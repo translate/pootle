@@ -21,10 +21,6 @@
 import os
 import logging
 import StringIO
-import subprocess
-import zipfile
-import datetime
-from tempfile import mkdtemp, mkstemp
 
 from django.shortcuts import get_object_or_404
 from django.conf import settings
@@ -37,8 +33,7 @@ from django.forms.models import BaseModelFormSet
 from django import forms
 from django.utils.encoding import iri_to_uri
 
-
-from translate.storage import factory, versioncontrol
+from translate.storage import versioncontrol
 
 from pootle_misc.baseurl import redirect, l
 from pootle_app.models.permissions import get_matching_permissions, check_permission
@@ -302,6 +297,7 @@ def get_local_filename(translation_project, upload_filename):
 
 def unzip_external(request, directory, django_file, overwrite):
     # Make a temporary directory to hold a zip file and its unzipped contents
+    from tempfile import mkdtemp, mkstemp
     tempdir = mkdtemp(prefix='pootle')
     # Make a temporary file to hold the zip file
     tempzipfd, tempzipname = mkstemp(prefix='pootle', suffix='.zip')
@@ -312,7 +308,9 @@ def unzip_external(request, directory, django_file, overwrite):
         finally:
             os.close(tempzipfd)
         # Unzip the temporary zip file
+        import subprocess
         if subprocess.call(["unzip", tempzipname, "-d", tempdir]):
+            import zipfile
             raise zipfile.BadZipfile(_("Error while extracting archive"))
         # Enumerate the temporary directory...
         maybe_skip = True
@@ -354,6 +352,7 @@ def unzip_external(request, directory, django_file, overwrite):
         shutil.rmtree(tempdir)
 
 def unzip_python(request, directory, django_file, overwrite):
+    import zipfile
     django_file.seek(0)
     archive = zipfile.ZipFile(django_file, 'r')
     # TODO: find a better way to return errors...
@@ -421,6 +420,7 @@ def overwrite_file(request, relative_root_dir, django_file, upload_path):
                 # newfile, delay parsing
                 pass
     else:
+        from translate.storage import factory
         newstore = factory.getobject(django_file, classes=factory_classes)
         if not newstore.units:
             return
@@ -499,6 +499,7 @@ def upload_file(request, directory, django_file, overwrite, store=None):
         return
 
     django_file.seek(0)
+    from translate.storage import factory
     newstore = factory.getobject(django_file, classes=factory_classes)
 
     #FIXME: are we sure this is what we want to do? shouldn't we
@@ -598,6 +599,7 @@ class UploadHandler(view_handler.Handler):
 
             # create a submission, doesn't fix stats but at least
             # shows up in last activity column
+            import datetime
             s = Submission(creation_time=datetime.datetime.utcnow(),
                            translation_project=translation_project,
                            submitter=get_profile(request.user))
