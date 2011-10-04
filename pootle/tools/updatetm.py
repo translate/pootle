@@ -24,7 +24,6 @@
 from translate.storage import factory
 from translate.search import match
 from translate.convert import convert
-import os.path
 import exceptions
 
 # We don't want to reinitialise the TM each time, so let's store it here.

@@ -19,7 +19,6 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django import template
-from pootle_profile.models import get_profile
 
 register = template.Library()
 @register.inclusion_tag('terminology/term_edit.html', takes_context=True)

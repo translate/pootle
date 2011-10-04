@@ -22,7 +22,6 @@ import glob
 import os
 import os.path as path
 import re
-from distutils import util
 from distutils.command.build import build as DistutilsBuild
 from distutils.command.install import install as DistutilsInstall
 from distutils.core import setup
