@@ -249,7 +249,12 @@ $(document).ready(function() {
       $.post(url, {'reject': 1},
              function(rdata) {
                $("#response").remove();
-               element.fadeOut(500);
+               if (element.siblings().size() == 0) {
+                 element = $('#translate-checks-block');
+               }
+               element.fadeOut(500, function () {
+                 $(this).remove();
+               });
              }, "json");
       return false;
     });
