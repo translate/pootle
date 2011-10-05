@@ -1712,6 +1712,9 @@
 
     $.post(url, {'reject': 1},
       function (data) {
+        if (element.siblings().size() == 0) {
+          element = $('#translate-checks-block');
+        }
         element.fadeOut(200, function () {
           $(this).remove();
         });
