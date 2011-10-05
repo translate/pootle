@@ -1717,6 +1717,7 @@
         }
         element.fadeOut(200, function () {
           $(this).remove();
+          $('.tipsy').remove();
         });
       }, "json");
   },
