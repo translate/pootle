@@ -123,7 +123,7 @@ def get_sugg_list(unit):
     # variables in templates, since template translation is not safe
     # and might fail on livetranslation
     sugg_list = []
-    scores = []
+    scores = {}
     suggestions = unit.get_suggestions()
     if suggestions:
         from voting.models import Vote
