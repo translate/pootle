@@ -13,7 +13,9 @@
 </td>
 <td colspan="1" rowspan="1" class="translate-translation terminology">
   <!-- Additional information button -->
+  {% if unit.translator_comment or unit.locations %}
   <a class="collapse tiny left"><img src="{{ "images/information.png"|m }}" title="{% trans "Details..." %}" /></a>
+  {% endif %}
   <div id="trans{{unit.index}}" class="translate-term-translation" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
     <!-- Translation -->
     <div dir="{{ language.get_direction }}" lang="{{ language.code }}" class="translation-text">{{ unit.target|fancy_highlight }}</div>
