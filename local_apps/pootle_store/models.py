@@ -50,13 +50,13 @@ from pootle_store.filetypes import factory_classes, is_monolingual
 # Store States
 #
 
-"""Store being modified."""
+# Store being modified
 LOCKED = -1
-"""Store just created, not parsed yet."""
+# Store just created, not parsed yet
 NEW = 0
-"""Store just parsed, units added but no quality checks were run."""
+# Store just parsed, units added but no quality checks were run
 PARSED = 1
-"""Quality checks run."""
+# Quality checks run
 CHECKED = 2
 
 ############### Quality Check #############
