@@ -164,8 +164,8 @@ def server_stats():
         # FIXME: the special users should not be retuned with is_active
         result['submission_count'] = Submission.objects.count() + SuggestiontStat.objects.count()
         result['pending_count'] = Suggestion.objects.count()
-        _format_numbers(result)
         cache.set("server_stats", result, 86400)
+    _format_numbers(result)
     return result
 
 @user_is_admin
@@ -185,8 +185,8 @@ def server_stats_more(request):
         result['user_active_count'] = (PootleProfile.objects.exclude(submission=None) |\
                                        PootleProfile.objects.exclude(suggestion=None) |\
                                        PootleProfile.objects.exclude(suggester=None)).order_by().count()
-        _format_numbers(result)
         cache.set("server_stats_more", result, 86400)
+    _format_numbers(result)
     stat_strings = {'store_count': _('Files'),
                     'project_count': _('Active projects'),
                     'language_count': _('Active languages'),
