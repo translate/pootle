@@ -46,15 +46,18 @@ from pootle_store.util import calculate_stats, empty_quickstats
 from pootle_store.util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED
 from pootle_store.filetypes import factory_classes, is_monolingual
 
+#
 # Store States
+#
+
+"""Store being modified."""
 LOCKED = -1
-"""store being modified"""
+"""Store just created, not parsed yet."""
 NEW = 0
-"""store just created, not parsed yet"""
+"""Store just parsed, units added but no quality checks were run."""
 PARSED = 1
-"""store just parsed, units added but no quality checks where run"""
+"""Quality checks run."""
 CHECKED = 2
-"""quality checks run"""
 
 ############### Quality Check #############
 
@@ -832,12 +835,16 @@ class Store(models.Model, base.TranslationStore):
         return changed
 
     @commit_on_success
-    def update(self, update_structure=False, update_translation=False, conservative=True, store=None, fuzzy=False):
-        """update db with units from file"""
+    def update(self, update_structure=False, update_translation=False,
+               conservative=True, store=None, fuzzy=False):
+        """Update DB with units from file."""
+
         self.clean_stale_lock()
+
         if self.state == LOCKED:
             # file currently being updated
-            #FIXME: shall we idle wait for lock to be released first? what about stale locks?
+            #FIXME: Shall we idle wait for lock to be released first?
+            # What about stale locks?
             logging.info(u"attempted to update %s while locked", self.pootle_path)
             return
         elif self.state < PARSED:
@@ -851,11 +858,12 @@ class Store(models.Model, base.TranslationStore):
 
         key = iri_to_uri("%s:sync" % self.pootle_path)
 
-        # lock store
+        # Lock store
         logging.debug(u"Updating %s", self.pootle_path)
         oldstate = self.state
         self.state = LOCKED
         self.save()
+
         try:
             if fuzzy:
                 matcher = self.get_matcher()
@@ -866,12 +874,13 @@ class Store(models.Model, base.TranslationStore):
             new_ids = set(store.getids())
 
             if update_structure:
-                obsolete_dbids = [self.dbid_index.get(uid) for uid in old_ids - new_ids]
+                obsolete_dbids = [self.dbid_index.get(uid) \
+                    for uid in old_ids - new_ids]
                 for unit in self.findid_bulk(obsolete_dbids):
                     if not unit.istranslated():
                         unit.delete()
                     elif not conservative:
-                        #FIXME: make obselete instead?
+                        #FIXME: make obsolete instead?
                         unit.makeobsolete()
                         unit.save()
 
@@ -882,21 +891,28 @@ class Store(models.Model, base.TranslationStore):
                         match_unit = newunit.fuzzy_translate(matcher)
                         if match_unit:
                             newunit.save()
-                            self._remove_obsolete(match_unit.source, store=store)
+                            self._remove_obsolete(match_unit.source,
+                                                  store=store)
                     if oldstate >= CHECKED:
                         newunit.update_qualitychecks(created=True)
 
             if update_translation:
-                shared_dbids = [self.dbid_index.get(uid) for uid in old_ids & new_ids]
+                shared_dbids = [self.dbid_index.get(uid) \
+                    for uid in old_ids & new_ids]
 
                 for unit in self.findid_bulk(shared_dbids):
                     newunit = store.findid(unit.getid())
-                    if monolingual and not self.translation_project.is_template_project:
+
+                    if monolingual and not \
+                       self.translation_project.is_template_project:
                         fix_monolingual(unit, newunit, monolingual)
+
                     changed = unit.update(newunit)
+
                     if update_structure and unit.index != newunit.index:
                         unit.index = newunit.index
                         changed = True
+
                     if fuzzy and not filter(None, unit.target.strings):
                         match_unit = unit.fuzzy_translate(matcher)
                         if match_unit:
@@ -909,9 +925,10 @@ class Store(models.Model, base.TranslationStore):
                             unit.update_qualitychecks()
 
         finally:
-            # unlock store
+            # Unlock store
             self.state = oldstate
             self.save()
+
             if update_structure and update_translation and not conservative:
                 cache.set(key, self.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
 
