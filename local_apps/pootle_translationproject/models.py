@@ -223,11 +223,16 @@ class TranslationProject(models.Model):
         return group_by_count(query, 'name')
 
     def update_from_templates(self, pootle_path=None):
-        """update translation project from templates"""
+        """Update translation project from templates."""
+
         if self.is_template_project:
             return
-        template_translation_project = self.project.get_template_translationproject()
-        if template_translation_project is None or template_translation_project == self:
+
+        template_translation_project = self.project \
+            .get_template_translationproject()
+
+        if template_translation_project is None or \
+           template_translation_project == self:
             return
 
         monolingual = self.project.is_monolingual()
@@ -238,22 +243,30 @@ class TranslationProject(models.Model):
         if pootle_path is None:
             oldstats = self.getquickstats()
 
-        from pootle_app.project_tree import convert_template, get_translated_name, get_translated_name_gnu
+        from pootle_app.project_tree import convert_template, \
+            get_translated_name, get_translated_name_gnu
+
         for store in template_translation_project.stores.iterator():
+
             if self.file_style == 'gnu':
                 new_pootle_path, new_path = get_translated_name_gnu(self, store)
             else:
                 new_pootle_path, new_path = get_translated_name(self, store)
+
             if pootle_path is not None and new_pootle_path != pootle_path:
                 continue
+
             convert_template(self, store, new_pootle_path, new_path, monolingual)
+
         self.scan_files()
         #self.update(conservative=False)
 
         if pootle_path is None:
             newstats = self.getquickstats()
+
             from pootle_app.models.signals import post_template_update
-            post_template_update.send(sender=self, oldstats=oldstats, newstats=newstats)
+            post_template_update.send(sender=self, oldstats=oldstats,
+                                      newstats=newstats)
 
     def scan_files(self):
         """returns a list of po files for the project and language"""
