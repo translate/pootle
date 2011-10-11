@@ -216,6 +216,14 @@ class Project(models.Model):
         return "nongnu"
 
     def get_template_translationproject(self):
+        """Returns the translation project that will be used as a template
+        for this project.
+
+        First it tries to retrieve the translation project that has the
+        special 'templates' language within this project, otherwise it
+        falls back to the source language set for current project.
+        """
+
         try:
             return self.translationproject_set.get(language__code='templates')
         except ObjectDoesNotExist:
