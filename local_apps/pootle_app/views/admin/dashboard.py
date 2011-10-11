@@ -196,8 +196,6 @@ def server_stats_more(request):
     response = []
     for k in result.keys():
         response.append((stat_strings[k], result[k]))
-    print response
-    print locale.getlocale()
     response = simplejson.dumps(response)
     return HttpResponse(response, mimetype="application/json")
 
