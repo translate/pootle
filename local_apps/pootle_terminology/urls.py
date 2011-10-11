@@ -23,4 +23,5 @@ from django.conf.urls.defaults import *
 urlpatterns = patterns('pootle_terminology.views',
       (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/terminology_extract.html', 'extract'),
       (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/terminology_manage.html', 'manage'),
+      (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<path>.*?)/terminology_manage.html', 'manage'),
 )

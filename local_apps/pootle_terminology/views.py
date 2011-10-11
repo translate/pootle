@@ -158,7 +158,7 @@ def manage_store(request, template_vars, language, term_store):
 
 @get_translation_project
 @util.has_permission('administrate')
-def manage(request, translation_project):
+def manage(request, translation_project, path=None):
     template_vars = {
         "translation_project": translation_project,
         "language": translation_project.language,
@@ -169,13 +169,28 @@ def manage(request, translation_project):
         'submitname': 'changeterminology',
         }
     if translation_project.project.is_terminology:
-        stores = list(Store.objects.filter(translation_project=translation_project))
+        if path:
+            try:
+                path = translation_project.pootle_path + path
+                store = Store.objects.get(pootle_path=path)
+                return manage_store(request, template_vars, translation_project.language, store)
+            except Store.DoesNotExist:
+                # FIXME   flash message and show list?
+                pass
 
-        if stores:
+        # which file should we edit?
+        stores = list(Store.objects.filter(translation_project=translation_project))
+        if len(stores) == 1:
+            # There is only one, and we're not going to offer file-level
+            # activities, so let's just edit the one that is there.
             return manage_store(request, template_vars, translation_project.language, stores[0])
-        else:
-            # TODO: rather show list of files for the user to select
-            pass
+        elif len(stores) > 1:
+            for store in stores:
+                store.nice_name = store.pootle_path[len(translation_project.pootle_path):]
+
+            template_vars['stores'] = stores
+            return render_to_response("terminology/stores.html", template_vars,
+                                  context_instance=RequestContext(request))
 
     try:
         terminology_filename = get_terminology_filename(translation_project)
