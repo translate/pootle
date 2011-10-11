@@ -371,55 +371,84 @@ class Unit(models.Model, base.TranslationUnit):
         return changed
 
     def update(self, unit):
-        """update indb translation from file"""
+        """Update in-DB translation from file."""
+
         changed = False
-        if self.source != unit.source or len(self.source.strings) != stringcount(unit.source) or \
-               self.hasplural() != unit.hasplural():
+
+        if self.source != unit.source or \
+           len(self.source.strings) != stringcount(unit.source) or \
+           self.hasplural() != unit.hasplural():
+
             if unit.hasplural() and len(unit.source.strings) == 1:
                 self.source = [unit.source, PLURAL_PLACEHOLDER]
             else:
                 self.source = unit.source
+
             changed = True
-        if self.target != unit.target or len(self.target.strings) != stringcount(unit.target):
+
+        if self.target != unit.target or \
+           len(self.target.strings) != stringcount(unit.target):
+
             notempty = filter(None, self.target_f.strings)
             self.target = unit.target
+
             if filter(None, self.target_f.strings) or notempty:
-                #FIXME: we need to do this cause we discard nplurals for empty plurals
+                #FIXME: we need to do this cause we discard nplurals
+                # for empty plurals
                 changed = True
+
         notes = unit.getnotes(origin="developer")
-        if self.developer_comment != notes and (self.developer_comment or notes):
+
+        if self.developer_comment != notes and \
+           (self.developer_comment or notes):
+
             self.developer_comment = notes or None
             changed = True
+
         notes = unit.getnotes(origin="translator")
-        if self.translator_comment != notes and (self.translator_comment or notes):
+
+        if self.translator_comment != notes and \
+           (self.translator_comment or notes):
+
             self.translator_comment = notes or None
             changed = True
+
         locations = "\n".join(unit.getlocations())
+
         if self.locations != locations and (self.locations or locations):
             self.locations = locations or None
             changed = True
+
         context = unit.getcontext()
+
         if self.context != unit.getcontext() and (self.context or context):
             self.context = context or None
             changed = True
+
         if self.isfuzzy() != unit.isfuzzy():
             self.markfuzzy(unit.isfuzzy())
             changed = True
+
         if self.isobsolete() != unit.isobsolete():
             if unit.isobsolete():
                 self.makeobsolete()
             else:
                 self.resurrect()
+
             changed = True
+
         if self.unitid != unit.getid():
             self.unitid = unicode(unit.getid()) or unicode(unit.source)
             self.unitid_hash = md5_f(self.unitid.encode("utf-8")).hexdigest()
             changed = True
+
         if hasattr(unit, 'getalttrans'):
             for suggestion in unit.getalttrans():
                 if suggestion.source == self.source:
                     self.add_suggestion(suggestion.target, touch=False)
+
                 changed = True
+
         return changed
 
     def update_qualitychecks(self, created=False, keep_false_positives=False):
