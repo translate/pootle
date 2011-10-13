@@ -326,6 +326,7 @@ def translate_page(request):
         'directory': getattr(request, "directory", None),
         'MT_BACKENDS': settings.MT_BACKENDS,
         'AMAGAMA_URL': settings.AMAGAMA_URL,
+        'advanced_search_title': _('Advanced search'),
         }
     return render_to_response('store/translate.html', context, context_instance=RequestContext(request))
 
