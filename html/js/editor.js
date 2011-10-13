@@ -1371,7 +1371,7 @@
       async: false,
       dataType: 'json',
       success: function (data) {
-        opts = data.checks;
+        opts = data.checks || {};
       },
       error: PTL.editor.error
     });
