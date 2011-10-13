@@ -54,7 +54,7 @@ class PootleCommand(NoArgsCommand):
             try:
                 self.handle_all_stores(tp, **options)
             except Exception, e:
-                logging.error(u"failed to run %s over %s's files", self.name, tp)
+                logging.error(u"failed to run %s over %s's files\n%s", self.name, tp, e)
                 return
         elif hasattr(self, "handle_store"):
             store_query = tp.stores.all()
