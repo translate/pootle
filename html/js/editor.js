@@ -1430,7 +1430,7 @@
 
   /* Gets more context units */
   getMoreContext: function () {
-    var ctxtUrl = l('/unit/context/' + PTL.editor.activeUid);
+    var ctxtUrl = l('/unit/context/' + PTL.editor.activeUid),
         reqData = {gap: PTL.editor.ctxtGap};
 
     $.ajax({
