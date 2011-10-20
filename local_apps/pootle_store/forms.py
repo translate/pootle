@@ -26,6 +26,7 @@ from django.utils.translation import get_language, ugettext as _
 
 from translate.misc.multistring import multistring
 
+from pootle_app.models.permissions import check_permission
 from pootle_store.models import Unit
 from pootle_store.util import FUZZY, TRANSLATED
 from pootle_store.fields import PLURAL_PLACEHOLDER
@@ -128,11 +129,20 @@ class MultiStringFormField(forms.MultiValueField):
         return [unhighlight_whitespace(string) for string in data_list]
 
 
-def unit_form_factory(language, snplurals=None):
+def unit_form_factory(language, snplurals=None, request=None):
+
     if snplurals is not None:
         tnplurals = language.nplurals
     else:
         tnplurals = 1
+
+    action_disabled = False
+    if request is not None:
+        cantranslate = check_permission("translate", request)
+        cansuggest = check_permission("suggest", request)
+
+        if not (cansuggest or cantranslate):
+            action_disabled = True
 
     target_attrs = {
         'lang': language.code,
@@ -141,6 +151,7 @@ def unit_form_factory(language, snplurals=None):
         'rows': 5,
         'tabindex': 10,
         }
+
     comment_attrs = {
         'lang': language.code,
         'dir': language.get_direction(),
@@ -154,6 +165,10 @@ def unit_form_factory(language, snplurals=None):
         'class': 'fuzzycheck',
         'tabindex': 13,
         }
+
+    if action_disabled:
+        target_attrs['disabled'] = 'disabled'
+        fuzzy_attrs['disabled'] = 'disabled'
 
     class UnitForm(forms.ModelForm):
         class Meta:

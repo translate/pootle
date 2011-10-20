@@ -532,7 +532,8 @@ def get_edit_unit(request, unit):
         snplurals = len(unit.source.strings)
     else:
         snplurals = None
-    form_class = unit_form_factory(language, snplurals)
+
+    form_class = unit_form_factory(language, snplurals, request)
     form = form_class(instance=unit)
     store = unit.store
     directory = store.parent
@@ -628,12 +629,15 @@ def process_submit(request, unit, type):
 
     translation_project = request.translation_project
     language = translation_project.language
+
     if unit.hasplural():
         snplurals = len(unit.source.strings)
     else:
         snplurals = None
-    form_class = unit_form_factory(language, snplurals)
+
+    form_class = unit_form_factory(language, snplurals, request)
     form = form_class(request.POST, instance=unit)
+
     if form.is_valid():
         if type == 'submission':
             if form.instance._target_updated or \
