@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-"""Form fields required for handling translation files"""
+"""Form fields required for handling translation files."""
 import re
 
 from django import forms
@@ -32,9 +32,12 @@ from pootle_store.util import FUZZY, TRANSLATED
 from pootle_store.fields import PLURAL_PLACEHOLDER
 
 ############## text cleanup and highlighting #########################
+
 FORM_RE = re.compile('\r\n|\r|\n|\t|\\\\')
+
 def highlight_whitespace(text):
-    """make whitespace chars visible"""
+    """Make whitespace chars visible."""
+
     def replace(match):
         submap = {
             '\r\n': '\\r\\n\n',
@@ -44,11 +47,13 @@ def highlight_whitespace(text):
             '\\': '\\\\',
             }
         return submap[match.group()]
+
     return FORM_RE.sub(replace, text)
 
 FORM_UNRE = re.compile('\r|\n|\t|\\\\r|\\\\n|\\\\t|\\\\\\\\')
 def unhighlight_whitespace(text):
-    """replace visible whitespace with proper whitespace"""
+    """Replace visible whitespace with proper whitespace."""
+
     def replace(match):
         submap = {
             '\t': '',
@@ -60,11 +65,13 @@ def unhighlight_whitespace(text):
             '\\\\': '\\',
             }
         return submap[match.group()]
+
     return FORM_UNRE.sub(replace, text)
 
 class MultiStringWidget(forms.MultiWidget):
     """Custom Widget for editing multistrings, expands number of text
-    area based on number of plural forms"""
+    area based on number of plural forms."""
+
     def __init__(self, attrs=None, nplurals=1, textarea=True):
         if textarea:
             widget = forms.Textarea
@@ -81,9 +88,11 @@ class MultiStringWidget(forms.MultiWidget):
 
         output = ''
         for i, widget in enumerate(rendered_widgets):
-            output += '<div lang="%s" title="%s">' % (get_language(), _('Plural Form %d', i))
+            output += '<div lang="%s" title="%s">' % \
+                (get_language(), _('Plural Form %d', i))
             output += widget
             output += '</div>'
+
         return mark_safe(output)
 
     def decompress(self, value):
@@ -99,7 +108,8 @@ class MultiStringWidget(forms.MultiWidget):
             raise ValueError
 
 class HiddenMultiStringWidget(MultiStringWidget):
-    """uses hidden input instead of text areas"""
+    """Uses hidden input instead of textareas."""
+
     def __init__(self, attrs=None, nplurals=1):
         widgets = [forms.HiddenInput(attrs=attrs) for i in xrange(nplurals)]
         super(MultiStringWidget, self).__init__(widgets, attrs)
@@ -119,11 +129,14 @@ class HiddenMultiStringWidget(MultiStringWidget):
         return self
 
 class MultiStringFormField(forms.MultiValueField):
+
     def __init__(self, nplurals=1, attrs=None, textarea=True, *args, **kwargs):
-        self.widget = MultiStringWidget(nplurals=nplurals, attrs=attrs, textarea=textarea)
+        self.widget = MultiStringWidget(nplurals=nplurals, attrs=attrs,
+                                        textarea=textarea)
         self.hidden_widget = HiddenMultiStringWidget(nplurals=nplurals)
         fields = [forms.CharField() for i in range(nplurals)]
-        super(MultiStringFormField, self).__init__(fields=fields, *args, **kwargs)
+        super(MultiStringFormField, self).__init__(fields=fields,
+                                                   *args, **kwargs)
 
     def compress(self, data_list):
         return [unhighlight_whitespace(string) for string in data_list]
@@ -176,40 +189,50 @@ def unit_form_factory(language, snplurals=None, request=None):
             exclude = ['store', 'developer_comment']
 
         id = forms.IntegerField(required=False)
-        source_f = MultiStringFormField(nplurals=snplurals or 1, required=False, textarea=False)
-        target_f = MultiStringFormField(nplurals=tnplurals, required=False, attrs=target_attrs)
-        state = forms.BooleanField(required=False,
-                label=_('Fuzzy'),
-                widget=forms.CheckboxInput(attrs=fuzzy_attrs, check_test=lambda x: x == FUZZY))
+        source_f = MultiStringFormField(nplurals=snplurals or 1,
+                                        required=False, textarea=False)
+        target_f = MultiStringFormField(nplurals=tnplurals, required=False,
+                                        attrs=target_attrs)
+        state = forms.BooleanField(required=False, label=_('Fuzzy'),
+                                   widget=forms.CheckboxInput(attrs=fuzzy_attrs,
+                                       check_test=lambda x: x == FUZZY))
         translator_comment = forms.CharField(required=False,
-                widget=forms.Textarea(attrs=comment_attrs),
-                label=_("Translator comment"))
+                                             label=_("Translator comment"),
+                                             widget=forms.Textarea(
+                                                 attrs=comment_attrs))
 
         def clean_source_f(self):
             value = self.cleaned_data['source_f']
+
             if self.instance.source.strings != value:
                 self.instance._source_updated = True
             if snplurals == 1:
                 # plural with single form, insert placeholder
                 value.append(PLURAL_PLACEHOLDER)
+
             return value
 
         def clean_target_f(self):
             value = self.cleaned_data['target_f']
+
             if self.instance.target.strings != value:
                 self.instance._target_updated = True
+
             return value
 
         def clean_translator_comment(self):
             value = self.cleaned_data['translator_comment']
+
             if self.instance.translator_comment != value:
                 self.instance._translator_comment_updated = True
             else:
                 self.instance._translator_comment_updated = False
+
             return value
 
         def clean_state(self):
             value = self.cleaned_data['state']
+
             if self.instance.state != value:
                 self.instance._state_updated = True
             else:
