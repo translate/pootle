@@ -24,7 +24,6 @@ import StringIO
 import subprocess
 import zipfile
 import datetime
-from tempfile import mkdtemp, mkstemp
 
 from django.shortcuts import get_object_or_404
 from django.conf import settings
@@ -60,6 +59,8 @@ from pootle_store.filetypes import factory_classes
 from pootle_store.views import translate_page
 from pootle_statistics.models import Submission
 from pootle_profile.models import get_profile
+
+from pootle_misc.ptempfile import mkdtemp, mkstemp
 
 class TPTranslateView(BaseView):
     def GET(self, template_vars, request, translation_project, directory):

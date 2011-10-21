@@ -22,7 +22,6 @@
 
 import logging
 import shutil
-import tempfile
 import os
 
 from django.conf import settings
@@ -35,6 +34,8 @@ from translate.misc.multistring import multistring
 
 from pootle_store.signals import translation_file_updated
 from pootle_store.filetypes import factory_classes
+
+from pootle_misc import ptempfile as tempfile
 
 ################# String #############################
 

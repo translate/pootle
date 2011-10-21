@@ -20,7 +20,6 @@
 
 import os
 import logging
-import tempfile
 import shutil
 
 from translate.storage.poxliff import PoXliffFile
@@ -41,6 +40,7 @@ from django.views.decorators.cache import never_cache
 from django.utils.encoding import iri_to_uri
 
 from pootle_misc.baseurl import redirect
+from pootle_misc import ptempfile as tempfile
 from pootle_app.models.permissions import get_matching_permissions, check_permission, check_profile_permission
 from pootle_misc.util import paginate
 from pootle_profile.models import get_profile

@@ -260,3 +260,9 @@ if not DEBUG:
 
     from django.template import loader
     loader.get_template = cache_templates(loader.get_template)
+
+# On POSIX systems, exported files and directories will be assigned these
+# permissions. Use 0644/0755 for publically-readable files/directories, or
+# 0600/0700 if you want only the Pootle user to be able to read them.
+EXPORTED_FILE_MODE = 0644
+EXPORTED_DIRECTORY_MODE = 0755

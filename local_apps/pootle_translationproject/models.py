@@ -23,7 +23,6 @@ import cStringIO
 import gettext
 import zipfile
 import logging
-import tempfile
 import shutil
 
 from django.conf                   import settings
@@ -39,6 +38,7 @@ from translate.storage.base import ParseError
 from translate.misc.lru import LRUCachingDict
 
 from pootle.scripts                import hooks
+from pootle_misc import ptempfile as tempfile
 from pootle_misc.util import getfromcache, dictsum, deletefromcache
 from pootle_misc.baseurl import l
 from pootle_misc.aggregate import group_by_count, max_column
