@@ -199,10 +199,13 @@
               {% endif %}
             {% endif %}
 
-              {% for i, target, diff, title in sugg|pluralize_diff_sugg %}
-                <div id="suggdiff-{{sugg.id}}-{{i}}" class="suggestion-translation" lang="{{ language.code }}" dir="{{ language.get_direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ diff }}</div>
-              {% endfor %}
-            </div>
+            {% if sugg.target %}
+              <div id="suggdiff-{{sugg.id}}-0" class="suggestion-translation" lang="{{ language.code }}" dir="{{ language.get_direction }}">{{ sugg.target }}</div>
+            {% endif %}
+            {% if sugg.translator_comment %}
+              <div class="suggestion-comment-block" lang="{{ language.code }}" dir="{{ language.get_direction }}">{% trans "Comment: " %}<span class="suggestion-comment">{{ sugg.translator_comment }}</span></div>
+            {% endif %}
+            </div> <!--suggestion -->
           </div>
           {% endfor %}
         {% endif %}
