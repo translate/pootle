@@ -291,7 +291,7 @@ def stats_descriptions(quick_stats):
         'todo_tooltip': todo_tooltip,
     }
 
-def make_generic_item(request, path_obj, action, show_checks=False):
+def make_generic_item(request, path_obj, action, show_checks=False, terminology=False):
     """Template variables for each row in the table.
 
     make_directory_item() and make_store_item() will add onto these variables."""
@@ -303,7 +303,7 @@ def make_generic_item(request, path_obj, action, show_checks=False):
             'tooltip': _('%(percentage)d%% complete' %
                          {'percentage': quick_stats['translatedpercentage']}),
             'title':   path_obj.name,
-            'stats':   get_item_stats(request, quick_stats, path_obj, show_checks),
+            'stats':   get_item_stats(request, quick_stats, path_obj, show_checks, terminology),
             }
         errors = quick_stats.get('errors', 0)
         if errors:
@@ -318,10 +318,10 @@ def make_generic_item(request, path_obj, action, show_checks=False):
             }
     return info
 
-def make_directory_item(request, directory, links_required=None):
+def make_directory_item(request, directory, links_required=None, terminology=False):
     action = dispatch.show_directory(request, directory.pootle_path)
     show_checks = links_required == 'review'
-    item = make_generic_item(request, directory, action, show_checks)
+    item = make_generic_item(request, directory, action, show_checks, terminology)
     if links_required == 'translate':
         item['actions'] = directory_translate_links(request, directory)
     elif links_required == 'review':
@@ -333,10 +333,10 @@ def make_directory_item(request, directory, links_required=None):
             'isdir': True})
     return item
 
-def make_store_item(request, store, links_required=None):
+def make_store_item(request, store, links_required=None, terminology=False):
     action = dispatch.translate(store)
     show_checks = links_required == 'review'
-    item = make_generic_item(request, store, action, show_checks)
+    item = make_generic_item(request, store, action, show_checks, terminology)
     if links_required == 'translate':
         item['actions'] = store_translate_links(request, store)
     elif links_required == 'review':
