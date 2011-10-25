@@ -58,9 +58,31 @@ def get_item_summary(request, quick_stats, path_obj):
 
     return summary
 
-def get_item_stats(request, quick_stats, path_obj, show_checks=False):
+def get_terminology_item_summary(request, quick_stats, path_obj):
+    # The translated unit counts
+    string_stats_text = _("%(translated)d/%(total)d terms",
+                          {"translated": quick_stats['translated'],
+                           "total": quick_stats['total']})
+    string_stats = '<span class="string-statistics">%s</span>' % string_stats_text
+
+    # The whole string of stats
+    if not path_obj.is_dir:
+        summary = string_stats
+    else:
+        num_stores = Store.objects.filter(pootle_path__startswith=path_obj.pootle_path).count()
+        file_stats = ungettext("%d file", "%d files", num_stores, num_stores)
+        summary = '%s %s' % (file_stats, string_stats)
+
+    return summary
+
+def get_item_stats(request, quick_stats, path_obj, show_checks=False, terminology=False):
+    if terminology:
+        summary = get_terminology_item_summary(request, quick_stats, path_obj)
+    else:
+        summary = get_item_summary(request, quick_stats, path_obj)
+
     result = {
-        'summary': get_item_summary(request, quick_stats, path_obj),
+        'summary': summary,
         'checks': [],
         }
     if show_checks:
