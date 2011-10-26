@@ -40,11 +40,13 @@
     <form action="" method="post">
       {{ formset.management_form }}
       <table cellpadding="0" cellspacing="0" class="translate-table" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+      <thead>
       <tr lang="{{ LANGUAGE_CODE }}">
         <th colspan="1" rowspan="1" class="translate-table-title translate-original">{% trans "Term" %}</th>
         <th colspan="1" rowspan="1" class="translate-table-title translate-translation">{% trans "Translation" %}</th>
         <th colspan="1" rowspan="1" class="translate-table-title translate-edit">{% trans "Delete" %}</th>
       </tr>
+      </thead>
       {% for form in formset.forms %}
       <tr class="{% cycle 'even' 'odd' %}">
         {% render_term_edit form %}
