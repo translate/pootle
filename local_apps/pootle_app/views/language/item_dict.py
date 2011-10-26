@@ -85,7 +85,7 @@ def get_item_stats(request, quick_stats, path_obj, show_checks=False, terminolog
         'summary': summary,
         'checks': [],
         }
-    if show_checks:
+    if show_checks and not terminology:
         result['checks'] = getcheckdetails(request, path_obj)
     return result
 
