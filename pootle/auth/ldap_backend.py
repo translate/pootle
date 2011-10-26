@@ -44,7 +44,7 @@ class LdapBackend(object):
         try:
             ldo.simple_bind_s(settings.AUTH_LDAP_ANON_DN, settings.AUTH_LDAP_ANON_PASS)
 
-            result = ldo.search_s(settings.AUTH_LDAP_BASE_DN, ldap.SCOPE_SUBTREE, ldap.filter.escape_filter_chars(settings.AUTH_LDAP_FILTER) % username, settings.AUTH_LDAP_FIELDS.values())
+            result = ldo.search_s(settings.AUTH_LDAP_BASE_DN, ldap.SCOPE_SUBTREE, settings.AUTH_LDAP_FILTER % ldap.filter.escape_filter_chars(username), settings.AUTH_LDAP_FIELDS.values())
 
             if len(result) != 1:
                 logger.debug("More or less than 1 matching account for (%s).  Failing LDAP auth." % (username))
