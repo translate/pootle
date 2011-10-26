@@ -62,6 +62,7 @@ class TPTranslateView(BaseView):
         request.permissions = get_matching_permissions(get_profile(request.user), translation_project.directory)
         project  = translation_project.project
         language = translation_project.language
+        is_terminology = project.is_terminology
 
         template_vars.update({
             'translation_project': translation_project,
@@ -69,7 +70,7 @@ class TPTranslateView(BaseView):
             'language': language,
             'directory': directory,
             'children': get_children(request, translation_project, directory, links_required='translate'),
-            'navitems': [navbar_dict.make_directory_navbar_dict(request, directory, links_required='translate')],
+            'navitems': [navbar_dict.make_directory_navbar_dict(request, directory, links_required='translate', terminology=is_terminology)],
             'feed_path': directory.pootle_path[1:],
             'topstats': gentopstats_translation_project(translation_project),
             })
@@ -98,6 +99,7 @@ class TPReviewView(BaseView):
         request.permissions = get_matching_permissions(get_profile(request.user), translation_project.directory)
         project  = translation_project.project
         language = translation_project.language
+        is_terminology = project.is_terminology
 
         template_vars.update({
             'translation_project': translation_project,
@@ -105,7 +107,7 @@ class TPReviewView(BaseView):
             'language': language,
             'directory': directory,
             'children': get_children(request, translation_project, directory, links_required='review'),
-            'navitems': [navbar_dict.make_directory_navbar_dict(request, directory, links_required='review')],
+            'navitems': [navbar_dict.make_directory_navbar_dict(request, directory, links_required='review', terminology=is_terminology)],
             'topstats': gentopstats_translation_project(translation_project),
             'feed_path': directory.pootle_path[1:],
             })
@@ -195,6 +197,7 @@ class ProjectIndexView(BaseView):
         state    = dispatch.ProjectIndexState(request.GET)
         project  = translation_project.project
         language = translation_project.language
+        is_terminology = project.is_terminology
 
         template_vars.update({
             'translation_project': translation_project,
@@ -202,7 +205,7 @@ class ProjectIndexView(BaseView):
             'language': language,
             'directory': directory,
             'children': get_children(request, translation_project, directory),
-            'navitems': [navbar_dict.make_directory_navbar_dict(request, directory)],
+            'navitems': [navbar_dict.make_directory_navbar_dict(request, directory, terminology=is_terminology)],
             'stats_headings': get_stats_headings(),
             'editing': state.editing,
             'topstats': gentopstats_translation_project(translation_project),
@@ -253,9 +256,10 @@ def export_zip(request, translation_project, file_path):
     return redirect('/export/' + export_path)
 
 def get_children(request, translation_project, directory, links_required=None):
-    return [item_dict.make_directory_item(request, child_dir, links_required=links_required)
+    is_terminology = translation_project.project.is_terminology
+    return [item_dict.make_directory_item(request, child_dir, links_required=links_required, terminology=is_terminology)
             for child_dir in directory.child_dirs.iterator()] + \
-           [item_dict.make_store_item(request, child_store, links_required=links_required)
+           [item_dict.make_store_item(request, child_store, links_required=links_required, terminology=is_terminology)
             for child_store in directory.child_stores.iterator()]
 
 def unix_to_host_path(p):

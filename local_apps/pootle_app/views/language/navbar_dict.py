@@ -64,8 +64,8 @@ def make_navbar_path_dict(request, path_links=None):
                       'text': project.fullname},
         'pathlinks': path_links}
 
-def make_directory_navbar_dict(request, directory, links_required=None):
-    result = item_dict.make_directory_item(request, directory, links_required)
+def make_directory_navbar_dict(request, directory, links_required=None, terminology=False):
+    result = item_dict.make_directory_item(request, directory, links_required, terminology)
     project_url = request.translation_project.directory.pootle_path
     path_links = make_directory_pathlinks(request, project_url, directory.pootle_path, [])
     if links_required:
