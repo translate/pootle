@@ -10,6 +10,14 @@
 {% endif %}
 {% endblock css %}
 
+{% block scripts_extra %}
+{% if settings.DEBUG %}
+<script type="text/javascript" src="{{ "js/admin.js"|m }}"></script>
+{% else %}
+<script type="text/javascript" src='{{ "js/admin_bundle.js"|m }}'></script>
+{% endif %}
+{% endblock scripts_extra %}
+
 {% block extra_head %}
 <script src='{{ "js/jquery/jquery.textarea-expander.js"|m }}' type="text/javascript"></script>
 <script type="text/javascript">
@@ -40,7 +48,7 @@
       {% for form in formset.forms %}
       <tr class="{% cycle 'even' 'odd' %}">
         {% render_term_edit form %}
-        <td class="translate-delete-terminology">{% for hidden_field in form.hidden_fields %}{{ hidden_field }}{% endfor %}
+        <td class="DELETE">{% for hidden_field in form.hidden_fields %}{{ hidden_field }}{% endfor %}
           {{ form.DELETE }}
         </td>
       </tr>
