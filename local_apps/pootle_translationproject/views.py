@@ -137,7 +137,6 @@ def tp_admin_permissions(request, translation_project):
         "project": project,
         "language": language,
         "directory": translation_project.directory,
-        "navitems": [navbar_dict.make_directory_navbar_dict(request, translation_project.directory)],
         "feed_path": translation_project.pootle_path[1:],
     }
     return admin_permissions(request, translation_project.directory, "translation_project/tp_admin_permissions.html",
@@ -176,7 +175,6 @@ def tp_admin_files(request, translation_project):
         'title': _("Files"),
         'submitname': "changestores",
         'formid': "stores",
-        'navitems': [navbar_dict.make_directory_navbar_dict(request, translation_project.directory)],
         'feed_path': translation_project.directory.pootle_path[1:],
         'translation_project': translation_project,
         'language': translation_project.language,
