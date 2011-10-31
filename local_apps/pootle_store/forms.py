@@ -182,6 +182,7 @@ def unit_form_factory(language, snplurals=None, request=None):
     if action_disabled:
         target_attrs['disabled'] = 'disabled'
         fuzzy_attrs['disabled'] = 'disabled'
+        comment_attrs['disabled'] = 'disabled'
 
     class UnitForm(forms.ModelForm):
         class Meta:
