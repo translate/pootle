@@ -61,5 +61,5 @@ class TermSearchForm(SearchForm):
                 ('target', _('Target Terms')),
                 ('notes', _('Definitions')),
             ),
-            initial=['source', 'target', 'notes'],
+            initial=['source', 'target'],
     )
