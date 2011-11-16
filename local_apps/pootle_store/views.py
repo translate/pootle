@@ -347,15 +347,18 @@ def _filter_ctxt_units(units_qs, unit, limit, gap=0):
     Returns C{limit}*2 units that are before and after C{index}.
     """
     result = {}
-    if unit.index - gap > 0:
+    if limit and unit.index - gap > 0:
         before = units_qs.filter(store=unit.store_id, index__lt=unit.index).order_by('-index')[gap:limit+gap]
         result['before'] = _build_units_list(before, reverse=True)
         result['before'].reverse()
     else:
         result['before'] = []
     #FIXME: can we avoid this query if length is known?
-    after = units_qs.filter(store=unit.store_id, index__gt=unit.index)[gap:limit+gap]
-    result['after'] = _build_units_list(after)
+    if limit:
+        after = units_qs.filter(store=unit.store_id, index__gt=unit.index)[gap:limit+gap]
+        result['after'] = _build_units_list(after)
+    else:
+        result['after'] = []
     return result
 
 def _build_units_list(units, reverse=False):
@@ -574,7 +577,10 @@ def get_edit_unit(request, unit):
     rcode = 200
     # Return context rows if filtering is applied
     if _is_filtered(request) or request.GET.get('filter', 'all') != 'all':
-        json['ctxt'] = _filter_ctxt_units(store.units, unit, 2)
+        if translation_project.project.is_terminology or store.is_terminology:
+            json['ctxt'] = _filter_ctxt_units(store.units, unit, 0)
+        else:
+            json['ctxt'] = _filter_ctxt_units(store.units, unit, 2)
     response = jsonify(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
 
