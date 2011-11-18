@@ -291,6 +291,7 @@
     /* Load MT backends */
     $.each(this.settings.mt, function () {
       var backend = this.name;
+      var key = this.key;
 
       $.ajax({
         url: m('js/mt/' + backend + '.js'),
@@ -298,7 +299,7 @@
         dataType: 'script',
         success: function () {
           setTimeout(function () {
-            PTL.editor.mt[backend].init();
+            PTL.editor.mt[backend].init(key);
           }, 0);
           $("table.translate-table").live("mt_ready",
                                           PTL.editor.mt[backend].ready);
