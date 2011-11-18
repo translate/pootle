@@ -142,10 +142,13 @@ AUTOSYNC = False
 # be used in case the service supports using an API key.
 #
 # Available options are:
-# 'APERTIUM': Apertium service. For this service you need to set the
-#             API key as well.
+# 'APERTIUM': Apertium service.
+#             For this service you need to set the API key.
 #             Get your key at http://api.apertium.org/register.jsp
 # 'GOOGLE_TRANSLATE': Google Translate service.
+#             For this service you need to set the API key.
+#             Note that Google Translate API is a paid service
+#             See more at http://code.google.com/apis/language/translate/v2/pricing.html
 #
 MT_BACKENDS = [
 #        ('APERTIUM', ''),
