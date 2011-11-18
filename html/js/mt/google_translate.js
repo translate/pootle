@@ -8,7 +8,9 @@
     hint: "Google Translate",
     validatePair: false,
 
-    url: "http://ajax.googleapis.com/ajax/services/language/translate",
+    /* using Google Translate API v2 */
+    url: "https://www.googleapis.com/language/translate/v2",
+
     pairs: [{"source":"af","target":"af"},
             {"source":"sq","target":"sq"},
             {"source":"ar","target":"ar"},
@@ -70,6 +72,8 @@
       /* Prepare URL for requests. */
       this.url = PTL.editor.settings.secure == false ? this.url : this.url.replace("http", "https");
       this.url += "?callback=?";
+      /* Set API key */
+      this.apiKey = apiKey;
       /* Set target language */
       this.targetLang = PTL.editor.normalizeCode($("div#target_lang").text());
       /* Bind event handler */
@@ -82,13 +86,19 @@
 
     translate: function () {
       PTL.editor.translate(this, function(sourceText, langFrom, langTo, resultCallback) {
-        var transData = {v: '1.0', q: sourceText,
-                         langpair: langFrom + '|' + langTo}
+        var transData = {key: PTL.editor.mt.google_translate.apiKey,
+                         q: sourceText,
+                         source: langFrom,
+                         target: langTo}
         $.getJSON(PTL.editor.mt.google_translate.url, transData, function (r) {
-          if (r.responseData && r.responseStatus == 200) {
-            resultCallback(r.responseData.translatedText);
+          if (r.data && r.data.translations) {
+            resultCallback(r.data.translations[0].translatedText);
           } else {
-            resultCallback(false, "Google Translate Error: " + r.responseDetails);
+            if (r.error && r.error.message) {
+              resultCallback(false, "Google Translate Error: " + r.error.message);
+            } else {
+              resultCallback(false, "Malformed response from Google Translate API");
+            }
           }
         });
       });
