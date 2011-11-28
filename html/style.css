@@ -173,6 +173,7 @@ caption,
 th
 {
     text-align: left;
+    padding: 5px;
 }
 
 html[dir="rtl"] caption,
@@ -1291,7 +1292,12 @@ table.topcontributors td
 
 td.stats-number
 {
-    padding-right: 10px;
+    padding-right: 26px !important; /* magic number to put padding between right and left aligned column, and to right-align heading with number */
+    text-align: right;
+}
+
+th.stats-number
+{
     text-align: right;
 }
 
