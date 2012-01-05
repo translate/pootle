@@ -126,8 +126,10 @@ def get_sugg_list(unit):
     scores = {}
     suggestions = unit.get_suggestions()
     if suggestions:
-        from voting.models import Vote
-        scores = Vote.objects.get_scores_in_bulk(suggestions)
+        # avoid the votes query if we're not editing terminology
+        if unit.store.is_terminology or unit.store.translation_project.project.is_terminology:
+            from voting.models import Vote
+            scores = Vote.objects.get_scores_in_bulk(suggestions)
     for i, sugg in enumerate(suggestions):
         title = _(u"Suggestion %(i)d by %(user)s:", {'i': i+1, 'user': sugg.user})
         score = scores.get(sugg.id, False)
