@@ -169,6 +169,9 @@
       if (PTL.editor.getSelectedText() != "") {
         return;
       }
+      if ($("#id_target_f_0").attr("disabled")) {
+        return;
+      }
       // When clicking on a suggestion, fill in text/comment if it exists
       var sources = $(".suggestion-translation", this);
       if (sources.length) {
