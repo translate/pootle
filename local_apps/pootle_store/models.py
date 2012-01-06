@@ -714,6 +714,7 @@ class Store(models.Model, base.TranslationStore):
         #FIXME: should we cache this?
         matcher = match.matcher(self, max_candidates=1, usefuzzy=True)
         matcher.extendtm(self.unit_set.filter(state=OBSOLETE))
+        matcher.addpercentage = False
         return matcher
 
     def clean_stale_lock(self):
