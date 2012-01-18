@@ -30,7 +30,8 @@ def hook(project, hooktype, file, *args, **kwargs):
             logger.debug("Executing hook %s for project %s on file %s", hooktype, project, file)
             return getattr(activehook, hooktype)(file, *args, **kwargs)
         else:
-            return []
+            logger.debug("Imported %s, but it is not a suitable %s hook", activehook.__file__, hooktype)
+            raise ImportError("Imported %s, but it is not a suitable %s hook" % (activehook.__file__, hooktype))
     except ImportError, e:
         raise ImportError(e)
     except Exception, e:
