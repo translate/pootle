@@ -1112,7 +1112,7 @@ class Store(models.Model, base.TranslationStore):
         if index is None:
             index = self.max_index() + 1
 
-        newunit = Unit(store=self, index=index)
+        newunit = self.UnitClass(store=self, index=index)
         newunit.update(unit)
         if self.id:
             newunit.save()
