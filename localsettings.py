@@ -108,7 +108,7 @@ AUTH_LDAP_ANON_DN = ''
 AUTH_LDAP_ANON_PASS = ''
 # Base DN to search
 AUTH_LDAP_BASE_DN = ''
-# What are we filtering on? %s will be the username, for example 'filter=%s', or 'uid=%s'.
+# What are we filtering on? %s will be the username, for example 'sn=%s', or 'uid=%s'.
 AUTH_LDAP_FILTER = ''
 # This is a mapping of Pootle field names to LDAP fields.  The key is Pootle's name, the value should be your LDAP field name.  If you don't use the field
 # or don't want to automatically retrieve these fields from LDAP comment them out.  The only required field is 'dn'.
