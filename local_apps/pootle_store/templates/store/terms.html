@@ -22,7 +22,7 @@
 {{ block.super }}
 {% if settings.DEBUG %}
 <link rel="stylesheet" type="text/css" href='{{ "translate.css"|m }}' />
-{% if not user.is_authenticated %}
+{% if not user.is_authenticated or LOOKUP_BACKENDS %}
 <link rel="stylesheet" type="text/css" href='{{ "fancybox-captcha.css"|m }}' />
 {% endif %}
 {% endif %}
@@ -120,7 +120,7 @@
 {% endblock %}
 
 {% block scripts_extra %}
-{% cache settings.CACHE_TIMEOUT translate_scripts request.is_secure cansuggest cantranslate MT_BACKENDS user.is_authenticated LANGUAGE_CODE settings.DEBUG %}
+{% cache settings.CACHE_TIMEOUT translate_scripts request.is_secure cansuggest cantranslate MT_BACKENDS LOOKUP_BACKENDS user.is_authenticated LANGUAGE_CODE settings.DEBUG %}
 {{ block.super }}
 <script id="view_unit" type="text/x-jquery-template">
 {% include_raw "unit/xhr-view.html" %}
@@ -154,11 +154,15 @@ $(document).ready (function() {
     options.mt.push({name: "{{ backend|lower }}", key: "{{ apikey }}"});
     {% endfor %}
   {% endif %}
+  options.lookup = [];
+  {% for backend in LOOKUP_BACKENDS %}
+    options.lookup.push("{{ backend|lower }}");
+  {% endfor %}
   options.tmUrl = '{{ AMAGAMA_URL }}';
   PTL.editor.init(options);
 });
 </script>
-{% if not user.is_authenticated %}
+{% if not user.is_authenticated or LOOKUP_BACKENDS %}
 <script src='{{ "js/jquery/jquery.fancybox.js"|m }}' type="text/javascript"></script>
 {% endif %}
 {% endcache %}

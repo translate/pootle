@@ -155,6 +155,12 @@ MT_BACKENDS = [
 #        ('GOOGLE_TRANSLATE', ''),
 ]
 
+# Set the backends you want to use to allow web-based lookup. To disable this
+# feature completely just comment all the lines to set an empty list [] to the
+# LOOKUP_BACKENDS setting.
+LOOKUP_BACKENDS = [
+]
+
 # URL used for the amaGama TM server.
 # The global amaGama service should work fine, but if your language/project
 # has a better server, or you want to use your own, you can define here

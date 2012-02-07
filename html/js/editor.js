@@ -310,6 +310,24 @@
       });
     });
 
+    /* Load lookup backends */
+    $.each(this.settings.lookup, function () {
+      var backend = this;
+
+      $.ajax({
+        url: m('js/lookup/' + backend + '.js'),
+        async: false,
+        dataType: 'script',
+        success: function () {
+          setTimeout(function () {
+            PTL.editor.lookup[backend].init();
+          }, 0);
+          $("table.translate-table").live("lookup_ready",
+                                          PTL.editor.lookup[backend].ready);
+        }
+      });
+    });
+
     /* History support */
     setTimeout(function () {
       $.history.init(function (hash) {
@@ -431,6 +449,7 @@
 
     // All is ready, let's call the ready functions of the MT backends
     $("table.translate-table").trigger("mt_ready");
+    $("table.translate-table").trigger("lookup_ready");
 
     PTL.editor.isLoading = false;
     PTL.editor.hideActivity();
@@ -1880,7 +1899,61 @@
 
     PTL.editor.goFuzzy();
     return false;
-  }
+  },
+
+
+  /*
+   * Lookup
+   */
+
+  /* Adds a new Lookup button in the editor toolbar */
+  addLookupButton: function (container, aClass, imgFn, tooltip) {
+    var btn = '<a class="translate-lookup iframe ' + aClass + '">';
+    btn += '<img src="' + imgFn + '" title="' + tooltip + '" /></a>';
+    $(container).first().prepend(btn);
+  },
+
+  /* Goes through all source languages and adds a new lookup service button
+   * in the editor toolbar if the language is supported
+   */
+  addLookupButtons: function (provider) {
+    var _this = this;
+    var sources = $(".translate-toolbar");
+    $(sources).each(function () {
+      var source = _this.normalizeCode($(this).parent().parent().find('.translation-text').attr("lang"));
+
+    _this.addLookupButton(this,
+      provider.buttonClassName,
+      provider.imageUri,
+      provider.hint + ' (' + source.toUpperCase() + ')');
+    });
+  },
+
+  lookup: function (linkObject, providerCallback) {
+    var areas = $("[id^=id_target_f_]");
+    var sources = $(linkObject).parent().parent().parent().find('.translation-text');
+    var langFrom = PTL.editor.normalizeCode(sources.eq(0).attr("lang"));
+    var langTo = PTL.editor.normalizeCode(areas.eq(0).attr("lang"));
+
+    var lookupText = PTL.editor.getSelectedText().toString();
+    if (!lookupText) {
+      lookupText = sources.eq(0).text();
+    }
+    var url = providerCallback(lookupText, langFrom, langTo);
+    $.fancybox({
+            "href": url,
+            "type": "iframe",
+            "autoScale": false,
+            "transitionIn": 'none',
+            "transitionOut": 'fade',
+            "width": '75%',
+            "height": '75%',
+    });
+    $("#fancybox-frame").css({'width': '100%', 'height': '100%'});
+    linkObject.href = url;
+    return false;
+  },
+
 
   }; // PTL.editor
 
