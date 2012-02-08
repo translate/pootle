@@ -1947,12 +1947,12 @@
             "transitionIn": 'none',
             "transitionOut": 'fade',
             "width": '75%',
-            "height": '75%',
+            "height": '75%'
     });
     $("#fancybox-frame").css({'width': '100%', 'height': '100%'});
     linkObject.href = url;
     return false;
-  },
+  }
 
 
   }; // PTL.editor
