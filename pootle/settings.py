@@ -172,6 +172,7 @@ CONTACT_EMAIL = None
 USE_CAPTCHA = True
 AUTOSYNC = False
 MT_BACKENDS = ()
+LOOKUP_BACKENDS = ()
 CAN_CONTACT = True
 
 # By default Pootle sends only text emails. If your organization would
