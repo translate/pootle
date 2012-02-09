@@ -26,7 +26,7 @@ from django.utils.translation import ugettext_lazy as _
 class GeneralSettingsForm(SiteSettingsForm):
     TITLE = forms.CharField(
         label=_("Title"),
-        help_text=_("The name for this Pootle server"),
+        help_text=_("The name for this server"),
         max_length=50,
         required=True,
     )
