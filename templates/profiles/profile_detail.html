@@ -77,10 +77,6 @@
     </table>
   </div>
 </div>
-{% if user.is_superuser %}{% ifequal user profile.user %}
-<div style="clear: {% if LANGUAGE_BIDI %}left{% else %}right{% endif %};" ></div>
-{% include "admin/rss_widget.html" %}
-{% endifequal %}{% endif %}
 {% endblock %}
 
 
