@@ -157,11 +157,9 @@
             {% block footer %}
             <div id="footer" lang="{{ LANGUAGE_CODE }}">
                 <ul class="nav">
-                    <li><a href='{{ "/docs/index.html"|l }}'>{% trans "Help" %}</a></li>
                     {% if settings.CAN_CONTACT %}
                     <li><a href='{{ "/contact/"|l }}'>{% trans "Contact Us" %}</a></li>
                     {% endif %}
-                    <li><a href='{{ "/about.html"|l }}'>{% trans "About this Pootle Server" %}</a></li>
                 </ul>
             </div><!--footer-->
             {% endblock footer %}

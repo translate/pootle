@@ -11,7 +11,7 @@
 
 {% block content %}
 <div id="login" class="form" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-    <h2>{% trans 'Login to Pootle' %}</h2>
+    <h2>{% trans 'Login' %}</h2>
     <form method="post" action='{{ "/accounts/login/"|l }}' 
       name="loginform" id="loginform">
     {% if form.errors %}
