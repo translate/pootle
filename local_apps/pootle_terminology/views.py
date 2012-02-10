@@ -130,11 +130,21 @@ def manage_store(request, template_vars, language, term_store):
     del(unit_form_class.declared_fields['translator_comment'])
     del(unit_form_class.declared_fields['state'])
 
+    pos_attrs = {
+        'lang': language.code, # or source language?
+        'dir': language.get_direction(), # correct language?
+        'class': 'expanding',
+        'title': _("Part of speech (optional)"),
+        }
+
+
     class TermUnitForm(unit_form_class):
         # set store for new terms
         store = forms.ModelChoiceField(queryset=Store.objects.filter(pk=term_store.pk), initial=term_store.pk, widget=forms.HiddenInput)
         index = forms.IntegerField(required=False, widget=forms.HiddenInput)
-        #TODO: voeg konteks by
+        context = forms.CharField(required=False,
+                widget=forms.TextInput(attrs=pos_attrs),
+        )
 
         def clean_index(self):
             # assign new terms an index value
