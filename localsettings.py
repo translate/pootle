@@ -171,6 +171,9 @@ LOOKUP_BACKENDS = [
 AMAGAMA_URL = 'http://amagama.locamotion.org/tmserver/'
 
 # Settings for DISQUS
+# To see the shortname of your website, navigate to Settings->General on the
+# DISQUS website
+DISQUS_WEBSITE_SHORTNAME = ''
+
 # Get your API key here when logged into DISQUS: http://disqus.com/api/get_my_key/
-#
 DISQUS_API_KEY = ''
