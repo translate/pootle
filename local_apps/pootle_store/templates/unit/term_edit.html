@@ -12,7 +12,7 @@
       {% if unit.getcontext %}
       {% ifnotequal unit.locations unit.context %}
       <div class="translate-context sidebar">
-        <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Context:" %}</div>
+        <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Part of speech:" %}</div>
         <div class="translate-context-value">
           {{ unit.getcontext }}
         </div>
@@ -184,7 +184,7 @@
               <div id="suggdiff-{{sugg.id}}-0" class="suggestion-translation" lang="{{ language.code }}" dir="{{ language.get_direction }}">{{ sugg.target }}</div>
             {% endif %}
             {% if sugg.translator_comment %}
-              <div class="suggestion-comment-block" lang="{{ language.code }}" dir="{{ language.get_direction }}">{% trans "Comment: " %}<span class="suggestion-comment">{{ sugg.translator_comment }}</span></div>
+              <div class="suggestion-comment-block" lang="{{ language.code }}" dir="{{ language.get_direction }}">{% trans "Definition: " %}<span class="suggestion-comment">{{ sugg.translator_comment }}</span></div>
             {% endif %}
             </div> <!--suggestion -->
           </div>
