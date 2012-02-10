@@ -191,7 +191,7 @@ class Unit(models.Model, base.TranslationUnit):
     developer_comment = models.TextField(null=True, blank=True)
     translator_comment = models.TextField(null=True, blank=True)
     locations = models.TextField(null=True, editable=False)
-    context = models.TextField(null=True, editable=False)
+    context = models.TextField(null=True)
 
     state = models.IntegerField(null=False, default=UNTRANSLATED, db_index=True)
 
@@ -620,15 +620,24 @@ class Unit(models.Model, base.TranslationUnit):
     def get_suggestions(self):
         return self.suggestion_set.select_related('user').all()
 
-    def add_suggestion(self, translation, user=None, touch=True):
+    def add_suggestion(self, translation, user=None, touch=True, comment=None):
         if not filter(None, translation):
-            return None
+            translation = None
+        elif translation and translation == self.target:
+            translation = None
 
-        if translation == self.target:
+        if comment and comment == self.translator_comment:
+            comment = None
+
+        if translation == comment == None:
+            # nothing new suggested
             return None
 
         suggestion = Suggestion(unit=self, user=user)
-        suggestion.target = translation
+        if translation:
+            suggestion.target = translation
+        if suggestion:
+            suggestion.translator_comment = comment
         try:
             suggestion.save()
             if touch:
