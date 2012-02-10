@@ -169,3 +169,8 @@ LOOKUP_BACKENDS = [
 # This URL must point to the public API URL which returns JSON. Don't forget
 # the trailing slash.
 AMAGAMA_URL = 'http://amagama.locamotion.org/tmserver/'
+
+# Settings for DISQUS
+# Get your API key here when logged into DISQUS: http://disqus.com/api/get_my_key/
+#
+DISQUS_API_KEY = ''

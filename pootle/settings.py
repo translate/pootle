@@ -148,6 +148,7 @@ INSTALLED_APPS = (
     'djblets.util',
     'contact_form_i18n',
     'voting',
+    'disqus',
 )
 
 AUTH_PROFILE_MODULE = "pootle_profile.PootleProfile"
