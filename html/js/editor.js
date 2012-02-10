@@ -338,20 +338,24 @@
 
         // Walk through known filtering criterias and apply them to the editor object
 
+        var uid = false;
         if ('unit' in params) {
           var uid = parseInt(params['unit']);
+        }
+        else if ('!unit' in params) {
+          var uid = parseInt(params['!unit']);
+        }
 
-          if (uid && !isNaN(uid)) {
-            if (PTL.editor.activeUid != uid &&
-                PTL.editor.units[uid] == undefined) {
-              PTL.editor.activeUid = uid;
-              withUid = true;
-            } else {
-              // if uid is already preloaded, just switch to it
-              PTL.editor.activeUid = uid;
-              PTL.editor.displayEditUnit(uid);
-              return;
-            }
+        if (uid && !isNaN(uid)) {
+          if (PTL.editor.activeUid != uid &&
+              PTL.editor.units[uid] == undefined) {
+            PTL.editor.activeUid = uid;
+            withUid = true;
+          } else {
+            // if uid is already preloaded, just switch to it
+            PTL.editor.activeUid = uid;
+            PTL.editor.displayEditUnit(uid);
+            return;
           }
         } else if ('page' in params) {
           var p = parseInt(params['page']);
