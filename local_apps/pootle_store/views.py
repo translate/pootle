@@ -325,6 +325,7 @@ def translate_page(request):
         'source_language': translation_project.project.source_language,
         'directory': getattr(request, "directory", None),
         'MT_BACKENDS': settings.MT_BACKENDS,
+        'LOOKUP_BACKENDS': settings.LOOKUP_BACKENDS,
         'AMAGAMA_URL': settings.AMAGAMA_URL,
         'advanced_search_title': _('Advanced search'),
         }
