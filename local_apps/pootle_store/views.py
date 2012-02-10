@@ -546,7 +546,7 @@ def get_edit_unit(request, unit):
     profile = request.profile
     alt_src_langs = get_alt_src_langs(request, profile, translation_project)
     project = translation_project.project
-    suggestions, suggestion_details = get_sugg_list(unit)
+    suggestions, suggestion_details = get_sugg_list(unit, request.user)
     template_vars = {'unit': unit,
                      'form': form,
                      'store': store,

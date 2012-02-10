@@ -157,7 +157,7 @@
                 {% if score %}{{ score.score }}{% endif %}
               {% endifnotequal %}
               </span>
-                <img src='{{ "images/vote.png"|m }}' title="{% trans 'Your current vote. Click to remove this vote.' %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" />
+                <img src='{{ "images/vote.png"|m }}' title="{% trans 'Your current vote. Click to remove this vote.' %}<br />Other voters: {{ score.users }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" />
               </a>
               <a class="voteup suggestion-vote"{% ifequal vote.object sugg %} style="display:none;"{% endifequal %}>
                 <span class="num_votes">
@@ -167,7 +167,7 @@
                   {% if score %}{{ score.score }}{% endif %}
                 {% endifequal %}
                 </span>
-                <img src='{{ "images/vote_bw.png"|m }}' title="{% trans 'Vote for this suggestion' %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" />
+                <img src='{{ "images/vote_bw.png"|m }}' title="{% trans 'Vote for this suggestion' %}<br />Other voters: {{ score.users }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" />
               </a>
               {% endif %}
 

@@ -116,7 +116,7 @@ except ImportError, e:
     highlight_diffs = _difflib_highlight_diffs
 
 
-def get_sugg_list(unit):
+def get_sugg_list(unit, user=None):
     """get suggested translations for given unit with the localized
     title string for each suggestions"""
     # this function is only needed to avoid translations strings with
@@ -129,7 +129,23 @@ def get_sugg_list(unit):
         # avoid the votes query if we're not editing terminology
         if unit.store.is_terminology or unit.store.translation_project.project.is_terminology:
             from voting.models import Vote
-            scores = Vote.objects.get_scores_in_bulk(suggestions)
+            from django.contrib.auth.models import User
+            from django.contrib.contenttypes.models import ContentType
+            ctype = ContentType.objects.get_for_model(suggestions[0])
+            votes = Vote.objects.filter(object_id__in=suggestions, content_type=ctype).values('object_id', 'user_id')
+            #TODO: limit the number of people
+            users = User.objects.filter(id__in=(s['user_id'] for s in votes))
+            scores = dict((sugg.id, {'users':[]}) for sugg in suggestions)
+            for row in votes:
+                scores[row['object_id']]['users'].append(users.get(id=row['user_id']))
+            for score_dict in scores.values():
+                user_list = score_dict['users']
+                score_dict['score'] = len(user_list)
+                if user:
+                    score_dict['users'] = u", ".join(u.username for u in user_list if not u.username==user.username)
+                else:
+                    score_dict['users'] = u", ".join(u.username for u in user_list)
+
     for i, sugg in enumerate(suggestions):
         title = _(u"Suggestion %(i)d by %(user)s:", {'i': i+1, 'user': sugg.user})
         score = scores.get(sugg.id, False)
