@@ -92,6 +92,7 @@ class Suggestion(models.Model, base.TranslationUnit):
     user = models.ForeignKey('pootle_profile.PootleProfile', null=True)
 
     translator_comment_f = models.TextField(null=True, blank=True)
+    translator_extra_f = models.TextField(null=True, blank=True)
 
     def natural_key(self):
         return (self.target_hash, self.unit.unitid_hash, self.unit.store.pootle_path)
@@ -106,6 +107,9 @@ class Suggestion(models.Model, base.TranslationUnit):
             string = self.target_f + SEPERATOR + string
         else:
             string = self.target_f
+        extra = unicode(self.translator_extra)
+        if extra:
+            string += SEPERATOR + extra
         self.target_hash = md5_f(string.encode("utf-8")).hexdigest()
 
     def _get_target(self):
@@ -123,6 +127,12 @@ class Suggestion(models.Model, base.TranslationUnit):
         self._set_hash()
 
     translator_comment = property(lambda self: self.translator_comment_f, _set_translator_comment)
+
+    def _set_translator_extra(self, value):
+        self.translator_extra_f = value
+        self._set_hash()
+
+    translator_extra = property(lambda self: self.translator_extra_f, _set_translator_extra)
 
 def delete_votes(sender, instance, **kwargs):
     # Since votes are linked by ContentType and not foreign keys, referential
@@ -623,7 +633,7 @@ class Unit(models.Model, base.TranslationUnit):
     def get_suggestions(self):
         return self.suggestion_set.select_related('user').all()
 
-    def add_suggestion(self, translation, user=None, touch=True, comment=None):
+    def add_suggestion(self, translation, user=None, touch=True, comment=None, extra=None):
         if not filter(None, translation):
             translation = None
         elif translation and translation == self.target:
@@ -632,7 +642,10 @@ class Unit(models.Model, base.TranslationUnit):
         if comment and comment == self.translator_comment:
             comment = None
 
-        if translation == comment == None:
+        if extra and extra == self.translator_extra:
+            extra = None
+
+        if translation == comment == extra == None:
             # nothing new suggested
             return None
 
@@ -641,6 +654,8 @@ class Unit(models.Model, base.TranslationUnit):
             suggestion.target = translation
         if suggestion:
             suggestion.translator_comment = comment
+        if extra:
+            suggestion.translator_extra = extra
         try:
             suggestion.save()
             if touch:

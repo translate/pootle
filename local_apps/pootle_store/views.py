@@ -652,6 +652,7 @@ def process_submit(request, unit, type):
         if type == 'submission':
             if form.instance._target_updated or \
                form.instance._translator_comment_updated or \
+               form.instance._translator_extra_updated or \
                form.instance._state_updated:
                 form.save()
                 translation_submitted.send(sender=translation_project,
@@ -662,11 +663,16 @@ def process_submit(request, unit, type):
                 sub.save()
         elif type == 'suggestion':
             if form.instance._target_updated or \
-                    form.instance._translator_comment_updated:
+                    form.instance._translator_comment_updated or \
+                    form.instance._translator_extra_updated:
                 #HACKISH: django 1.2 stupidly modifies instance on
                 # model form validation, reload unit from db
                 unit = Unit.objects.get(id=unit.id)
-                sugg = unit.add_suggestion(form.cleaned_data['target_f'], request.profile, comment=form.cleaned_data['translator_comment'])
+                sugg = unit.add_suggestion(form.cleaned_data['target_f'],
+                            request.profile,
+                            comment=form.cleaned_data['translator_comment'],
+                            extra=form.cleaned_data['translator_extra'],
+                        )
                 if sugg:
                     SuggestionStat.objects.get_or_create(translation_project=translation_project,
                                                          suggester=request.profile,

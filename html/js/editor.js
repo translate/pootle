@@ -182,6 +182,11 @@
         comment_textarea = $("#id_translator_comment");
         comment_textarea.val(comments.text());
       }
+      var extra = $(".suggestion-extra", this);
+      if (extra.length) {
+        extra_textarea = $("#id_translator_extra");
+        extra_textarea.val(extra.text());
+      }
     });
 
     /* Editor navigation/submission */
