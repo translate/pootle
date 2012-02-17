@@ -259,7 +259,7 @@ def store_review_links(request, path_obj):
 
 def directory_translate_links(request, path_obj):
     """returns a list of links for directory items in translate tab"""
-    return _gen_link_list(request, path_obj, [quick_link, translate_all_link, upload_link, zip_link])
+    return _gen_link_list(request, path_obj, [quick_link, translate_all_link, zip_link])
 
 def directory_review_links(request, path_obj):
     """returns a list of links for directory items in review tab"""
