@@ -127,7 +127,7 @@
         </div>
         {% endif %}
         {% if form.initial.translator_comment or cansuggest or cantranslate %}
-        <div class="translator-comments" lang="{{ LANGUAGE_CODE }}">
+        <div class="translator-comments-term" lang="{{ LANGUAGE_CODE }}">
           <div>{% trans "Term Definition" %}</div>
           {{ form.translator_comment }}
           <div>{% trans "Comments" %}</div>
