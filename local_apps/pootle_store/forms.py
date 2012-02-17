@@ -202,6 +202,11 @@ def unit_form_factory(language, snplurals=None, request=None):
                                              widget=forms.Textarea(
                                                  attrs=comment_attrs))
 
+        translator_extra = forms.CharField(required=False,
+                                             label=_("Translator extra"),
+                                             widget=forms.Textarea(
+                                                 attrs=comment_attrs))
+
         def clean_source_f(self):
             value = self.cleaned_data['source_f']
 
