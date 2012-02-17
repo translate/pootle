@@ -27,12 +27,12 @@
       {% if unit.developer_comment or unit.locations %}
       <div class="comments sidebar">
         {% if unit.developer_comment %}
-        <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Comments:" %}</div>
+        <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Term Definition:" %}</div>
         <div class="developer-comments" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}"{% if unit.locations %}title="{{ unit.locations }}"{% endif %}>{{ unit.developer_comment|urlize|linebreaks }}</div>
         {% endif %}
-        {% if unit.locations and not unit.developer_comment %}
-        <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Locations:" %}</div>
-        <div class="translate-locations" lang="en" dir="ltr" title="{{ unit.locations }}">{{ unit.locations|truncatewords:3 }}</div>
+        {% if unit.developer_extra %}
+        <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Comments:" %}</div>
+        <div class="developer-comments" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}">{{ unit.developer_extra|urlize|linebreaks }}</div>
         {% endif %}
       </div>
       {% endif %}
@@ -40,7 +40,7 @@
       {% with unit.get_terminology as terms %}
       {% if terms %}
       <div id="tm" class="sidebar" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-        <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Terminology:" %}</div>
+        <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Related:" %}</div>
         {% for term in terms %}
         <div class="tm-unit writetm" title="{% trans 'Click to insert the translated term into the editor' %}">
           <span class="tm-original" dir="{{ source_language.get_direction }}" lang="{{ source_language.code }}">{{ term.source }}</span>
@@ -126,14 +126,12 @@
           {% endfor %}
         </div>
         {% endif %}
-        {% if form.initial.translator_comment or cantranslate %}
+        {% if form.initial.translator_comment or cansuggest or cantranslate %}
         <div class="translator-comments" lang="{{ LANGUAGE_CODE }}">
-          {% if form.initial.translator_comment %}
-          <div>{{ form.translator_comment.label_tag }} {{ form.translator_comment }}</div>
-          {% else %}
-          <a class="collapse tiny" tabindex="15">{% trans "Add Comment" %}</a>
-          <div class="collapsethis">{{ form.translator_comment }}</div>
-          {% endif %}
+          <div>{% trans "Term Definition" %}</div>
+          {{ form.translator_comment }}
+          <div>{% trans "Comments" %}</div>
+          {{ form.translator_extra}}
         </div>
         {% endif %}
         <!-- Suggestions from users and TM -->

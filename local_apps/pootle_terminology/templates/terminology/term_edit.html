@@ -10,6 +10,7 @@
   <!-- Add description button -->
   <a class="collapse left"><img src="{{ "images/comment_add.png"|m }}" title="{% trans "Description..." %}" /></a>
   <div class="translate-term-original collapsethis tiny clear">{{ form.developer_comment }}</div>
+  <div class="translate-term-original collapsethis tiny clear">{{ form.developer_extra }}</div>
   </div>
 </td>
 <td colspan="1" rowspan="1" class="translate-translation terminology">
@@ -27,6 +28,9 @@
     {% endif %}
     {% if unit.locations %}
     <div class="translate-locations" lang="en" dir="ltr">{{ unit.locations }}</div>
+    {% endif %}
+    {% if unit.translator_extra %}
+    <div class="translator-comments tiny" dir="{{ language.dir }}" lang="{{ language.code }}">{{ unit.translator_extra }}</div>
     {% endif %}
   </div>
 </td>
