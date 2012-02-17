@@ -130,11 +130,28 @@ def manage_store(request, template_vars, language, term_store):
     del(unit_form_class.declared_fields['translator_comment'])
     del(unit_form_class.declared_fields['state'])
 
+    del(unit_form_class.declared_fields['translator_extra'])
+
     pos_attrs = {
         'lang': language.code, # or source language?
         'dir': language.get_direction(), # correct language?
         'class': 'expanding',
         'title': _("Part of speech (optional)"),
+        }
+
+    comments_attrs = {
+        'lang': language.code, # or source language?
+        'dir': language.get_direction(), # correct language?
+        'class': 'expanding',
+        'title': _("Term Definition"),
+        'rows': 2,
+        }
+    extra_attrs = {
+        'lang': language.code, # or source language?
+        'dir': language.get_direction(), # correct language?
+        'class': 'expanding',
+        'title': _("Comments"),
+        'rows': 2,
         }
 
 
@@ -144,6 +161,12 @@ def manage_store(request, template_vars, language, term_store):
         index = forms.IntegerField(required=False, widget=forms.HiddenInput)
         context = forms.CharField(required=False,
                 widget=forms.TextInput(attrs=pos_attrs),
+        )
+        developer_comment = forms.CharField(required=False,
+                widget=forms.Textarea(attrs=comments_attrs),
+        )
+        developer_extra = forms.CharField(required=False,
+                widget=forms.Textarea(attrs=extra_attrs),
         )
 
         def clean_index(self):
