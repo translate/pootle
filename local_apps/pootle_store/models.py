@@ -193,6 +193,9 @@ class Unit(models.Model, base.TranslationUnit):
     locations = models.TextField(null=True, editable=False)
     context = models.TextField(null=True)
 
+    developer_extra = models.TextField(null=True, blank=True)
+    translator_extra = models.TextField(null=True, blank=True)
+
     state = models.IntegerField(null=False, default=UNTRANSLATED, db_index=True)
 
     mtime = models.DateTimeField(auto_now=True, auto_now_add=True, db_index=True, editable=False)
