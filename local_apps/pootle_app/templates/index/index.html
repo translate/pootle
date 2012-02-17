@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load i18n baseurl notification_tags cleanhtml %}
+{% load disqus_tags %}
 
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
@@ -58,6 +59,10 @@
     <div class="bd">
         {% render_latest_news "" 5 %}
         <p class="subscribe"><a href="{% url pootle_notifications.feeds.view "" %}">{% trans "Subscribe to the RSS feed." %}</a></p>
+    </div>
+    <div class="hd"><h2>{% trans 'Latest Comments' %}</h2></div>
+    <div class="bd">
+        {% disqus_recent_comments %}
     </div>
 </div>
 
