@@ -439,6 +439,17 @@ div.translator-comments textarea
     line-height: 1.2em;
 }
 
+div.translator-comments-term textarea
+{
+    vertical-align: top;
+    padding: 0;
+    min-height: 4em;
+    width: 100%;
+    color: #666;
+    font-size: 90%;
+    line-height: 1.2em;
+}
+
 .terminology div.translator-comments
 {
     background: #eaf0f4 url('images/user_comment.png') no-repeat;
@@ -470,6 +481,14 @@ td.translate-full textarea.translation
     margin: 0 auto 0.5em;
     padding: 0;
     min-height: 2.7em; 
+}
+
+td.translate-full-term textarea.translation
+{
+    width: 100%;
+    margin: 0 auto 0.5em;
+    padding: 0;
+    min-height: 2em; 
 }
 
 
