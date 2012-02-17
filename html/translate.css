@@ -364,9 +364,9 @@ table td.translate-translation
 
 .comments p
 {
-    display: inline;
     font-size: 85%;
     line-height: 120%;
+    margin-bottom: 1em; /* separate definition+comment */
 }
 
 .sidetitle,
