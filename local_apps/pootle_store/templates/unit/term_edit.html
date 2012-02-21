@@ -208,13 +208,14 @@ if (typeof DISQUS == 'object') {
     reload: true,
     config: function () {
       this.page.identifier = "unit_{{ unit.id }}";
+      this.page.title = '{{ unit.source }}';
       this.page.url = window.location.toString().split('#')[0] + "#!unit={{ unit.id }}";
     }
   });
 } else {
   var disqus_shortname = 'translatedev';
   var disqus_identifier = "unit_{{ unit.id }}";
-  var disqus_title = '{{ term.source }}'; 
+  var disqus_title = '{{ unit.source }}';
   var disqus_url = window.location.toString().split('#')[0] + "#!unit={{ unit.id }}";
   var disqus_config = function () {
     var disqus_code_map = {'en-us': 'en', 'en-uk': 'en', 'en-za': 'en', 'de': 'de_formal', 'zh-hk': 'zh_HANT', 'zh-tw': 'zh_HANT', 'zh-cn': 'zh', 'pt': 'pt_EU', 'pt-br': 'pt_BR', 'es': 'es_ES', 'sv': 'sv_SE'};
