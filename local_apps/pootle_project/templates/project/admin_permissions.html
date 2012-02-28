@@ -1,6 +1,6 @@
 {% extends "project_base.html" %}
 
-{% load i18n baseurl %}
+{% load i18n assets baseurl %}
 
 {% get_current_language as LANGUAGE_CODE %}
 
@@ -15,9 +15,9 @@
 
 {% block css %}
 {{ block.super }}
-{% if settings.DEBUG %}
-<link rel="stylesheet" type="text/css" href='{{ "admin.css"|m }}' />
-{% endif %}
+{% assets "css_admin" %}
+<link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
+{% endassets %}
 {% endblock %}
 
 {% block bodyclass %}projectperm{% endblock %}

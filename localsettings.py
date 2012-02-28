@@ -95,6 +95,15 @@ CACHE_MIDDLEWARE_SECONDS = 600
 DEBUG = False
 
 
+# Whether to debug assets or not. Set to False in production environments
+# for better performance, but make sure 'cssmin' is installed.
+# Valid options are True, False, and "merge".
+# You can set more configuration options for webassets if needed.
+# Read its documentation for further details:
+#   http://elsdoerfer.name/docs/webassets/django/settings.html
+ASSETS_DEBUG = DEBUG
+
+
 # Use the commented definition to authenticate first with an LDAP system and
 # then to fall back to Django's authentication system.
 #AUTHENTICATION_BACKENDS = ('pootle.auth.ldap_backend.LdapBackend', 'django.contrib.auth.backends.ModelBackend',)

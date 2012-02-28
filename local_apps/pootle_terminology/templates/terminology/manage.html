@@ -1,25 +1,24 @@
 {% extends "tp_base_terminology.html" %}
-{% load i18n render_pager baseurl store_tags terminology_tags %}
+
+{% load i18n assets render_pager baseurl store_tags terminology_tags %}
+
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
 {% block css %}
 {{ block.super }}
-{% if settings.DEBUG %}
-<link rel="stylesheet" type="text/css" href='{{ "translate.css"|m }}' />
-{% endif %}
+{% assets "css_editor" %}
+<link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
+{% endassets %}
 {% endblock css %}
 
 {% block scripts_extra %}
-{% if settings.DEBUG %}
-<script type="text/javascript" src="{{ "js/admin.js"|m }}"></script>
-{% else %}
-<script type="text/javascript" src='{{ "js/admin_bundle.js"|m }}'></script>
-{% endif %}
+{% assets "js_admin" %}
+<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+{% endassets %}
 {% endblock scripts_extra %}
 
 {% block extra_head %}
-<script src='{{ "js/jquery/jquery.textarea-expander.js"|m }}' type="text/javascript"></script>
 <script type="text/javascript">
   $(document).ready (function() {
      $('textarea.expanding').TextAreaExpander('10', '100');

@@ -1,5 +1,7 @@
 {% extends "tp_base_extended.html" %}
-{% load i18n render_pager baseurl store_tags translation_project_tags cache %}
+
+{% load i18n assets render_pager baseurl store_tags translation_project_tags cache %}
+
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
@@ -20,12 +22,9 @@
 {% block css %}
 {% cache settings.CACHE_TIMEOUT translate_css user.is_authenticated settings.DEBUG %}
 {{ block.super }}
-{% if settings.DEBUG %}
-<link rel="stylesheet" type="text/css" href='{{ "translate.css"|m }}' />
-{% if not user.is_authenticated or LOOKUP_BACKENDS %}
-<link rel="stylesheet" type="text/css" href='{{ "fancybox-captcha.css"|m }}' />
-{% endif %}
-{% endif %}
+{% assets "css_editor" %}
+<link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
+{% endassets %}
 {% endcache %}
 {% endblock css %}
 
@@ -128,22 +127,9 @@
 <script id="tm_suggestions" type="text/x-jquery-template">
 {% include_raw "unit/xhr-tm.html" %}
 </script>
-{% if settings.DEBUG %}
-<script src='{{ "js/jquery/jquery.easing.js"|m }}' type="text/javascript"></script>
-<script src='{{ "js/jquery/jquery.history.js"|m }}' type="text/javascript"></script>
-<script src='{{ "js/jquery/jquery.tmpl.js"|m }}' type="text/javascript"></script>
-<script src='{{ "js/jquery/jquery.jsonp.js"|m }}' type="text/javascript"></script>
-<script src='{{ "js/jquery/jquery.textarea-expander.js"|m }}' type="text/javascript"></script>
-<script src='{{ "js/diff_match_patch.js"|m }}' type="text/javascript"></script>
-<script src='{{ "js/editor.js"|m }}' type="text/javascript"></script>
-<script src='{{ "js/json2.js"|m }}' type="text/javascript"></script>
-<script src='{{ "js/jquery/jquery.fieldselection.js"|m }}' type="text/javascript"></script>
-<script src='{{ "js/jquery/jquery.caret.js"|m }}' type="text/javascript"></script>
-<script src='{{ "js/jquery/jquery.highlightRegex.js"|m }}' type="text/javascript"></script>
-<script src='{{ "js/jquery/jquery.serializeObject.js"|m }}' type="text/javascript"></script>
-{% else %}
-<script src='{{ "js/editor_bundle.js"|m }}' type="text/javascript"></script>
-{% endif %}
+{% assets "js_editor" %}
+<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+{% endassets %}
 <script type="text/javascript">
 $(document).ready (function() {
   var options = {};
@@ -162,9 +148,6 @@ $(document).ready (function() {
   PTL.editor.init(options);
 });
 </script>
-{% if not user.is_authenticated or LOOKUP_BACKENDS %}
-<script src='{{ "js/jquery/jquery.fancybox.js"|m }}' type="text/javascript"></script>
-{% endif %}
 {% endcache %}
 {% endblock scripts_extra %}
 

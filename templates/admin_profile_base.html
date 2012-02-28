@@ -1,5 +1,5 @@
 {% extends "base.html"  %}
-{% load i18n baseurl %}
+{% load i18n assets baseurl %}
 
 {% block title %}
 {{ block.super }} » {% trans "Administration" %}
@@ -12,9 +12,9 @@
 
 {% block css %}
 {{ block.super }}
-{% if settings.DEBUG %}
-<link rel="stylesheet" type="text/css" href='{{ "admin.css"|m }}' />
-{% endif %}
+{% assets "css_admin" %}
+<link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
+{% endassets %}
 {% endblock css %}
 
 {% block precontent %}

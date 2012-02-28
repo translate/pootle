@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-{% load i18n baseurl %}
+{% load i18n assets baseurl %}
 
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
@@ -21,30 +21,20 @@
 
         {% endblock meta %}
         {% block css %}
-        {% if settings.DEBUG %}
-        <link rel="stylesheet" type="text/css" href='{{ "style.css"|m }}' />
-        {% else %}
-        <link rel="stylesheet" type="text/css" href='{{ "pootle.bundle.css"|m }}' />
-        {% endif %}
+        {% assets "css_common" %}
+        <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
+        {% endassets %}
         <!--[if IE]>
-	<link rel="stylesheet" type="text/css" href='{{ "ie.css"|m }}' />
+        <link rel="stylesheet" type="text/css" href="{{ "ie.css"|m }}" />
         <![endif]-->
         {% endblock css %}
         {% block favicon %}
         <link rel="shortcut icon" href="{{ "favicon.ico"|m }}" />
         {% endblock favicon %}
         {% block js %}
-        {% if settings.DEBUG %}
-        <script type="text/javascript" src="{{ "js/jquery/jquery.js"|m }}"></script>
-        <script type="text/javascript" src="{{ "js/jquery/jquery.bidi.js"|m }}"></script>
-        <script type="text/javascript" src="{{ "js/jquery/jquery.tipsy.js"|m }}"></script>
-        <script type="text/javascript" src="{{ "js/jquery/jquery.cookie.js"|m }}"></script>
-        <script type="text/javascript" src="{{ "js/shortcut.js"|m }}"></script>
-        <script type="text/javascript" src="{{ "js/common.js"|m }}"></script>
-        <script type="text/javascript" src="{{ "js/sorttable.js"|m }}"></script>
-        {% else %}
-        <script type="text/javascript" src="{{ "js/common_bundle.js"|m }}"></script>
-        {% endif %}
+        {% assets "js_common" %}
+        <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+        {% endassets %}
         <script type="text/javascript">
           function l(path) {
             var basepath = "{{ settings.SCRIPT_NAME  }}";
