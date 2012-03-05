@@ -33,6 +33,8 @@ Directory contents
     Google's Diff, Match, and Patch libraries for plain text.
     It's used for suggestion's diff highlighting.
 
+    Version 20120106.
+
     https://code.google.com/p/google-diff-match-patch/
 
   - editor.js :
