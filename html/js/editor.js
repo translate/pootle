@@ -457,7 +457,7 @@
 
     // clear any pending 'Loading...' indicator timer
     // as ajaxStop() is not fired in IE properly
-    // at initial page load (?!) 
+    // at initial page load (?!)
     clearTimeout(PTL.editor.delayedActivityTimer);
   },
 
@@ -467,8 +467,8 @@
    */
 
   escapeUnsafeRegexSymbols: function (s) {
-    var i, r = "\\.+*?[^]$(){}=!<>¦:"; 
-    for (i = 0; i < r.length; i++) { 
+    var i, r = "\\.+*?[^]$(){}=!<>¦:";
+    for (i = 0; i < r.length; i++) {
       s = s.replace(new RegExp("\\" + r.charAt(i),"g"), "\\" + r.charAt(i));
     }
     return s;
@@ -476,7 +476,7 @@
 
   makeRegexForMultipleWords: function (s) {
     var i, w = s.split(' ');
-    for (i = 0; i < w.length; i++) { 
+    for (i = 0; i < w.length; i++) {
       w[i] = this.escapeUnsafeRegexSymbols(w[i]);
     }
     return '(' + w.join("|") + ')';
@@ -1727,7 +1727,7 @@
         element.hide();
         element.siblings("#suggestion-container .voteup").fadeTo(200, 1);
       },
-    error: function (xhr, s) {
+      error: function (xhr, s) {
         PTL.editor.error(xhr, s);
         //Let's wait a while before showing the voting widget again
         element.delay(3000).fadeTo(2000, 1);
@@ -1754,7 +1754,7 @@
         element.hide();
         element.siblings("#suggestion-container .clearvote").fadeTo(200, 1);
       },
-    error: function (xhr, s) {
+      error: function (xhr, s) {
         PTL.editor.error(xhr, s);
         //Let's wait a while before showing the voting widget again
         element.delay(3000).fadeTo(2000, 1);
@@ -1892,7 +1892,7 @@
       _this.argPos = 0;
 
       // Walk through known patterns and replace them with [N] placeholders
-      
+
       sourceText = sourceText.replace(htmlPat, function(s) { return _this.collectArguments(s) });
       sourceText = sourceText.replace(cPrintfPat, function(s) { return _this.collectArguments(s) });
       sourceText = sourceText.replace(csharpStrPat, function(s) { return _this.collectArguments(s) });
@@ -1903,7 +1903,7 @@
           PTL.editor.displayError(message);
           return;
         }
-        
+
         // Fix whitespace which may have been added around [N] blocks
         for (var i = 0; i < _this.argSubs.length; i++) {
           if (sourceText.match(new RegExp("\\[" + i + "\\][^\\s]"))) {
