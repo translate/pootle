@@ -65,7 +65,7 @@ Directory contents
   + jquery/
 
     - jquery.js :
-      The jQuery library, version 1.4.4.
+      The jQuery library, version 1.7.1.
 
     - jquery.bidi.js :
       jQuery plugin used to automatically set line direction of news
