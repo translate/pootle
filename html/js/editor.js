@@ -589,6 +589,7 @@
 
   /* Fancy escapes to highlight parts of the text such as HTML tags */
   fancyEscape: function (text) {
+
     function replace(match) {
         var replaced,
             escapeHl= '<span class="highlight-escape">%s</span>',
@@ -606,7 +607,7 @@
         replaced = submap[match];
 
         if (replaced == undefined) {
-            replaced = htmlHl.replace(/%s/, match.slice(1, match.length-1));
+          replaced = htmlHl.replace(/%s/, match.slice(1, match.length-1));
         }
 
         return replaced;
