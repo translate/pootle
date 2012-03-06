@@ -130,13 +130,13 @@
      */
 
     /* Fuzzy / unfuzzy */
-    $("textarea.translation").live("keyup blur", function () {
+    $(document).on("keyup blur", "textarea.translation", function () {
       if (!PTL.editor.keepState &&
           $(this).attr("defaultValue") != $(this).val()) {
         PTL.editor.ungoFuzzy();
       }
     });
-    $("input.fuzzycheck").live("click", function () {
+    $(document).on("click", "input.fuzzycheck", function () {
       if (PTL.editor.isFuzzy()) {
         PTL.editor.doFuzzyArea();
       } else {
@@ -145,27 +145,27 @@
     });
 
     /* Suggest / submit */
-    $(".switch-suggest-mode a").live("click", function () {
+    $(document).on("click", ".switch-suggest-mode a", function () {
       PTL.editor.toggleSuggestMode();
       return false;
     });
 
     /* Update focus when appropriate */
-    $(".focusthis").live("focus", function (e) {
+    $(document).on("focus", ".focusthis", function (e) {
       PTL.editor.focused = e.target;
     });
 
     /* Write TM results, special chars... into the currently focused element */
-    $(".writetm, .writespecial, .translate-full .highlight-escape, .translate-full .highlight-html").live("click", this.copyText);
+    $(document).on("click", ".writetm, .writespecial, .translate-full .highlight-escape, .translate-full .highlight-html", this.copyText);
 
     /* Copy original translation */
-    $("a.copyoriginal").live("click", function () {
+    $(document).on("click", "a.copyoriginal", function () {
       var sources = $(".translation-text", $(this).parent().parent().parent());
       PTL.editor.copyOriginal(sources);
     });
 
     /* Copy suggestion */
-    $("div.suggestion").live("click", function () {
+    $(document).on("click", "div.suggestion", function () {
       // Don't copy if text has been selected
       if (PTL.editor.getSelectedText() != "") {
         return;
@@ -186,29 +186,29 @@
     });
 
     /* Editor navigation/submission */
-    $("table.translate-table").live("editor_ready", this.ready);
-    $("tr.view-row").live("click", this.gotoUnit);
-    $("input#item-number").live("keypress", function (e) {
+    $(document).on("editor_ready", "table.translate-table", this.ready);
+    $(document).on("click", "tr.view-row", this.gotoUnit);
+    $(document).on("keypress", "input#item-number", function (e) {
         // Perform action only when the 'Enter' key is pressed
         if (e.keyCode == 13) {
           PTL.editor.gotoPage(parseInt($("input#item-number").val()));
         }
     });
-    $("input.submit, input.suggest").live("click", this.processSubmit);
-    $("input.previous, input.next").live("click", this.gotoPrevNext);
-    $("#suggestion-container .rejectsugg").live("click", this.rejectSuggestion);
-    $("#suggestion-container .acceptsugg").live("click", this.acceptSuggestion);
-    $("#suggestion-container .clearvote").live("click", this.clearVote);
-    $("#suggestion-container .voteup").live("click", this.voteUp);
-    $("#translate-checks-block .rejectcheck").live("click", this.rejectCheck);
+    $(document).on("click", "input.submit, input.suggest", this.processSubmit);
+    $(document).on("click", "input.previous, input.next", this.gotoPrevNext);
+    $(document).on("click", "#suggestion-container .rejectsugg", this.rejectSuggestion);
+    $(document).on("click", "#suggestion-container .acceptsugg", this.acceptSuggestion);
+    $(document).on("click", "#suggestion-container .clearvote", this.clearVote);
+    $(document).on("click", "#suggestion-container .voteup", this.voteUp);
+    $(document).on("click", "#translate-checks-block .rejectcheck", this.rejectCheck);
 
     /* Filtering */
-    $("div#filter-status select").live("change", this.filterStatus);
-    $("div#filter-checks select").live("change", this.filterChecks);
-    $("a.morecontext").live("click", this.getMoreContext);
+    $(document).on("change", "div#filter-status select", this.filterStatus);
+    $(document).on("change", "div#filter-checks select", this.filterChecks);
+    $(document).on("click", "a.morecontext", this.getMoreContext);
 
     /* Search */
-    $("input#id_search").live("keypress", function (e) {
+    $(document).on("keypress", "input#id_search", function (e) {
         if (e.keyCode == 13) {
           e.preventDefault();
           PTL.editor.search();
@@ -305,8 +305,8 @@
           setTimeout(function () {
             PTL.editor.mt[backend].init(key);
           }, 0);
-          $("table.translate-table").live("mt_ready",
-                                          PTL.editor.mt[backend].ready);
+          $(document).on("mt_ready", "table.translate-table",
+                         PTL.editor.mt[backend].ready);
         }
       });
     });
@@ -323,8 +323,8 @@
           setTimeout(function () {
             PTL.editor.lookup[backend].init();
           }, 0);
-          $("table.translate-table").live("lookup_ready",
-                                          PTL.editor.lookup[backend].ready);
+          $(document).on("lookup_ready", "table.translate-table",
+                         PTL.editor.lookup[backend].ready);
         }
       });
     });

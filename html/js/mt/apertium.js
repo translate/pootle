@@ -34,7 +34,7 @@
         }
 
         /* Bind event handler */
-        $(".apertium").live("click", _this.translate);
+        $(document).on("click", ".apertium", _this.translate);
       });
     },
 

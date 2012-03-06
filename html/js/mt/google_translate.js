@@ -77,7 +77,7 @@
       /* Set target language */
       this.targetLang = PTL.editor.normalizeCode($("div#target_lang").text());
       /* Bind event handler */
-      $(".googletranslate").live("click", this.translate);
+      $(document).on("click", ".googletranslate", this.translate);
     },
 
     ready: function () {
