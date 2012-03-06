@@ -109,6 +109,7 @@
     /* Regular expressions */
     this.cpRE = /^(<[^>]+>|\[n\|t]|\W$^\n)*(\b|$)/gm;
     this.escapeRE = /<[^<]*?>|\r\n|[\r\n\t&<>]/gm;
+    this.whitespaceRE = /^ +| +$|[\r\n\t] +| {2,}/gm;
     this.searchRE = /^in:.+|\sin:.+/i;
 
     /* TM requests handler */
@@ -622,6 +623,32 @@
   },
 
 
+  /* Highlight spaces to make them easily visible */
+  fancySpaces: function (text) {
+
+    function replace(match) {
+        var spaceHl= '<span class="translation-space"> </span>';
+
+        return Array(match.length + 1).join(spaceHl);
+    }
+
+    var orig = text,
+        matches = text.match(this.whitespaceRE);
+
+    for (var i in matches) {
+      orig = orig.replace(matches[i], replace(matches[i]))
+    }
+
+    return orig;
+  },
+
+
+  /* Fancy highlight: fancy spaces + fancy escape */
+  fancyHl: function (text) {
+    return this.fancySpaces(this.fancyEscape(text));
+  },
+
+
   /* Does the actual diffing */
   doDiff: function (a, b) {
     var d, op, text,
@@ -637,18 +664,18 @@
 
       if (op == 0) {
           if (removed) {
-            textDiff += '<span class="diff-delete">' + PTL.editor.fancyEscape(removed) + '</span>'
+            textDiff += '<span class="diff-delete">' + PTL.editor.fancyHl(removed) + '</span>'
             removed = "";
           }
-          textDiff += PTL.editor.fancyEscape(text);
+          textDiff += PTL.editor.fancyHl(text);
       } else if (op == 1) {
         if (removed) {
           // This is part of a substitution, not a plain insertion. We
           // will format this differently.
-          textDiff += '<span class="diff-replace">' + PTL.editor.fancyEscape(text) + '</span>';
+          textDiff += '<span class="diff-replace">' + PTL.editor.fancyHl(text) + '</span>';
           removed = "";
         } else {
-          textDiff += '<span class="diff-insert">' + PTL.editor.fancyEscape(text) + '</span>';
+          textDiff += '<span class="diff-insert">' + PTL.editor.fancyHl(text) + '</span>';
         }
       } else if (op == -1) {
         removed = text;
@@ -656,7 +683,7 @@
     });
 
     if (removed) {
-      textDiff += '<span class="diff-delete">' + PTL.editor.fancyEscape(removed) + '</span>';
+      textDiff += '<span class="diff-delete">' + PTL.editor.fancyHl(removed) + '</span>';
     }
 
     return textDiff;
@@ -1293,7 +1320,7 @@
           if (type == 'submission') {
             PTL.editor.units[uid].isfuzzy = PTL.editor.isFuzzy();
             $("textarea[id^=id_target_f_]").each(function (i) {
-              PTL.editor.units[uid].target[i].text = PTL.editor.fancyEscape($(this).val());
+              PTL.editor.units[uid].target[i].text = PTL.editor.fancyHl($(this).val());
             });
           }
 
@@ -1569,7 +1596,7 @@
 
     for (var i=0; i<results.length && i<3; i++) {
       results[i].source = this.doDiff(source, results[i].source);
-      results[i].target = this.fancyEscape(results[i].target);
+      results[i].target = this.fancyHl(results[i].target);
       results[i].qTitle = Math.round(results[i].quality) + '% match';
       filtered.push(results[i]);
     }
@@ -1667,7 +1694,7 @@
 
         // As in submissions, save current unit's status in the client
         $("textarea[id^=id_target_f_]").each(function (i) {
-          PTL.editor.units[uid].target[i].text = PTL.editor.fancyEscape($(this).val());
+          PTL.editor.units[uid].target[i].text = PTL.editor.fancyHl($(this).val());
         });
         PTL.editor.units[uid].isfuzzy = false;
 
