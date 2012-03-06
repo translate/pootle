@@ -48,7 +48,8 @@
           }
         $(document).ready(function() {
             $("[title], [original-title]").tipsy({gravity: $.fn.tipsy.autoNSedge, html: true, fade: true, delayIn: 750, live: true});
-            $.ajaxSetup({ traditional: true });
+            $.ajaxSetup({ traditional: true ,
+                          data: { csrfmiddlewaretoken: '{{ csrf_token }}' } });
             initZoom();
         });
         </script>
