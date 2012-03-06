@@ -601,7 +601,7 @@
               '&': '&amp;',
               '<': '&lt;',
               '>': '&gt;'
-            }
+            };
 
         replaced = submap[match];
 
