@@ -122,6 +122,13 @@ Directory contents
 
       http://blogs.sitepointstatic.com/examples/tech/textarea-expander/jquery.textarea-expander.js
 
+    - jquery.tipsy.js :
+      Facebook-style tooltips for jQuery.
+
+      Using revision 9fe119e.
+
+      https://github.com/jaz303/tipsy
+
     - jquery.tmpl.js :
       jQuery templating engine.
 

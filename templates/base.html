@@ -47,9 +47,10 @@
             return l("{{ MEDIA_URL }}" + path);
           }
         $(document).ready(function() {
-            $("[title], [original-title]").tipsy({gravity: $.fn.tipsy.autoNSedge, html: true, fade: true, delayIn: 750, live: true});
-            $.ajaxSetup({ traditional: true ,
-                          data: { csrfmiddlewaretoken: '{{ csrf_token }}' } });
+            $("[title], [original-title]").tipsy({
+              gravity: $.fn.tipsy.autoBounds(150, 'n'),
+              html: true, fade: true, delayIn: 750, live: true});
+            $.ajaxSetup({ traditional: true });
             initZoom();
         });
         </script>
