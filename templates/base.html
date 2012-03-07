@@ -51,6 +51,13 @@
               gravity: $.fn.tipsy.autoBounds(150, 'n'),
               html: true, fade: true, delayIn: 750, live: true});
             $.ajaxSetup({ traditional: true });
+            $.ajaxPrefilter(function (options, originalOptions) {
+              if (options.type === 'post') {
+                options.data = $.param(
+                  $.extend(originalOptions.data,
+                           { csrfmiddlewaretoken: '{{ csrf_token }}' }) );
+              }
+            });
             initZoom();
         });
         </script>
