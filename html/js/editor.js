@@ -1303,8 +1303,8 @@
           $.fancybox(data.captcha);
           $("input#id_captcha_answer").focus();
         } else {
-          // If it has been a successful submission, update the textarea
-          // contents as well as the fuzzy status
+          // If it has been a successful submission, update the data
+          // stored in the client
           if (type == 'submission') {
             PTL.editor.units[uid].isfuzzy = PTL.editor.isFuzzy();
             $("textarea[id^=id_target_f_]").each(function (i) {
