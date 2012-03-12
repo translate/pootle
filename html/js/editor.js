@@ -613,14 +613,7 @@
         return replaced;
     }
 
-    var orig = text,
-        matches = text.match(this.escapeRE);
-
-    for (var i in matches) {
-      orig = orig.replace(matches[i], replace(matches[i]))
-    }
-
-    return orig;
+    return text.replace(this.escapeRE, replace);
   },
 
 
@@ -633,14 +626,7 @@
         return Array(match.length + 1).join(spaceHl);
     }
 
-    var orig = text,
-        matches = text.match(this.whitespaceRE);
-
-    for (var i in matches) {
-      orig = orig.replace(matches[i], replace(matches[i]))
-    }
-
-    return orig;
+    return text.replace(this.whitespaceRE, replace);
   },
 
 
