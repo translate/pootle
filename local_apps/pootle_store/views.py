@@ -47,7 +47,7 @@ from pootle_app.models import Suggestion as SuggestionStat
 
 from pootle_store.models import Store, Unit
 from pootle_store.forms import unit_form_factory, highlight_whitespace
-from pootle_store.templatetags.store_tags import fancy_highlight, find_altsrcs, get_sugg_list, highlight_diffs, pluralize_source, pluralize_target
+from pootle_store.templatetags.store_tags import find_altsrcs, get_sugg_list, highlight_diffs, pluralize_source, pluralize_target
 from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED, absolute_real_path
 from pootle_store.signals import translation_submitted
 
@@ -375,12 +375,12 @@ def _build_units_list(units, reverse=False):
         source_unit = []
         target_unit = []
         for i, source, title in pluralize_source(unit):
-            unit_dict = {'text': fancy_highlight(source)}
+            unit_dict = {'text': source}
             if title:
                 unit_dict["title"] = title
             source_unit.append(unit_dict)
         for i, target, title in pluralize_target(unit):
-            unit_dict = {'text': fancy_highlight(target)}
+            unit_dict = {'text': target}
             if title:
                 unit_dict["title"] = title
             target_unit.append(unit_dict)

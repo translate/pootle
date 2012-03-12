@@ -1308,7 +1308,7 @@
           if (type == 'submission') {
             PTL.editor.units[uid].isfuzzy = PTL.editor.isFuzzy();
             $("textarea[id^=id_target_f_]").each(function (i) {
-              PTL.editor.units[uid].target[i].text = PTL.editor.fancyHl($(this).val());
+              PTL.editor.units[uid].target[i].text = $(this).val();
             });
           }
 
@@ -1680,7 +1680,7 @@
 
         // As in submissions, save current unit's status in the client
         $("textarea[id^=id_target_f_]").each(function (i) {
-          PTL.editor.units[uid].target[i].text = PTL.editor.fancyHl($(this).val());
+          PTL.editor.units[uid].target[i].text = $(this).val();
         });
         PTL.editor.units[uid].isfuzzy = false;
 
