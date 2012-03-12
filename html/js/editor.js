@@ -665,18 +665,18 @@
 
       if (op == 0) {
           if (removed) {
-            textDiff += '<span class="diff-delete">' + PTL.editor.fancyHl(removed) + '</span>'
+            textDiff += '<span class="diff-delete">' + PTL.editor.fancyEscape(removed) + '</span>'
             removed = "";
           }
-          textDiff += PTL.editor.fancyHl(text);
+          textDiff += PTL.editor.fancyEscape(text);
       } else if (op == 1) {
         if (removed) {
           // This is part of a substitution, not a plain insertion. We
           // will format this differently.
-          textDiff += '<span class="diff-replace">' + PTL.editor.fancyHl(text) + '</span>';
+          textDiff += '<span class="diff-replace">' + PTL.editor.fancyEscape(text) + '</span>';
           removed = "";
         } else {
-          textDiff += '<span class="diff-insert">' + PTL.editor.fancyHl(text) + '</span>';
+          textDiff += '<span class="diff-insert">' + PTL.editor.fancyEscape(text) + '</span>';
         }
       } else if (op == -1) {
         removed = text;
@@ -684,7 +684,7 @@
     });
 
     if (removed) {
-      textDiff += '<span class="diff-delete">' + PTL.editor.fancyHl(removed) + '</span>';
+      textDiff += '<span class="diff-delete">' + PTL.editor.fancyEscape(removed) + '</span>';
     }
 
     return textDiff;
