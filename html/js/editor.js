@@ -580,12 +580,6 @@
     return t;
   },
 
-  /* Escapes HTML tags */
-  escapeHtml: function (s) {
-    return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").
-             replace(/>/g,"&gt;").replace(/\n/,"<br/>");
-  },
-
   /* Cleans '\t' and '\n' escape sequences */
   cleanEscape: function (s) {
     return s.replace(/\\t/g, "").replace(/\\n/g, "");
