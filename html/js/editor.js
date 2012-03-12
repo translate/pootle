@@ -586,6 +586,11 @@
              replace(/>/g,"&gt;").replace(/\n/,"<br/>");
   },
 
+  /* Cleans '\t' and '\n' escape sequences */
+  cleanEscape: function (s) {
+    return s.replace(/\\t/g, "").replace(/\\n/g, "");
+  },
+
 
   /* Fancy escapes to highlight parts of the text such as HTML tags */
   fancyEscape: function (text) {
@@ -1308,7 +1313,7 @@
           if (type == 'submission') {
             PTL.editor.units[uid].isfuzzy = PTL.editor.isFuzzy();
             $("textarea[id^=id_target_f_]").each(function (i) {
-              PTL.editor.units[uid].target[i].text = $(this).val();
+              PTL.editor.units[uid].target[i].text = PTL.editor.cleanEscape($(this).val());
             });
           }
 
@@ -1680,7 +1685,7 @@
 
         // As in submissions, save current unit's status in the client
         $("textarea[id^=id_target_f_]").each(function (i) {
-          PTL.editor.units[uid].target[i].text = $(this).val();
+          PTL.editor.units[uid].target[i].text = PTL.editor.cleanEscape($(this).val());
         });
         PTL.editor.units[uid].isfuzzy = false;
 
