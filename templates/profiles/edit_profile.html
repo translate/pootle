@@ -1,5 +1,5 @@
 {% extends "user_profile_base_extended.html"  %}
-{% load i18n baseurl %}
+{% load assets i18n baseurl %}
  
 {% block title %}
 {{ block.super }} » {% trans "Translation Settings" %}
@@ -29,11 +29,9 @@
 {% endblock %}
 
 {% block scripts_extra %}
-{% if settings.DEBUG %}
-<script type="text/javascript" src="{{ "js/admin.js"|m }}"></script>
-{% else %}
-<script type="text/javascript" src='{{ "js/admin_bundle.js"|m }}'></script>
-{% endif %}
+{% assets "js_common" %}
+<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+{% endassets %}
 {% if LANGUAGE_BIDI %}
 <script type="text/javascript">
 $(document).ready(function() {
