@@ -18,10 +18,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+import random
 import re
 
 from django import template
 from django.template.defaultfilters import stringfilter
+from django.utils.html import escape, simple_email_re as email_re
 from django.utils.safestring import mark_safe
 
 try:
@@ -70,6 +72,29 @@ def clean_wrapper(text):
 def fancy_highlight(text):
     return mark_safe(fancy_spaces(fancy_escape(text)))
 
+
+def obfuscate(text):
+    """Obfuscates the given text in case it is an email address.
+    Based on the implementation used in addons.mozilla.org"""
+
+    if not email_re.match(text):
+        return text
+
+    fallback = text[::-1]  # reverse
+    # inject junk somewhere
+    i = random.randint(0, len(text) - 1)
+    fallback = u"%s%s%s" % (escape(fallback[:i]),
+                            u'<span class="i">null</span>',
+                            escape(fallback[i:]))
+    # replace @ and .
+    fallback = fallback.replace('@', '&#x0040;').replace('.', '&#x002E;')
+
+    title = '<span class="email">%s</span>' % fallback
+
+    node = u'%s<span class="email hide">%s</span>' % (title, fallback)
+    return mark_safe(node)
+
 register = template.Library()
 register.filter('clean', stringfilter(clean_wrapper))
 register.filter('fancy_highlight', stringfilter(fancy_highlight))
+register.filter('obfuscate', stringfilter(obfuscate))

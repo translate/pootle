@@ -2060,3 +2060,21 @@ body.zoom-in-2 table.translate-table,
 body.zoom-in-2 table.stats {
     font-size: 130%;
 }
+
+
+/*
+ * Obfuscated email addresses
+ */
+
+span.email {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+}
+
+html[dir="rtl"] span.email {
+    direction: ltr;
+}
+
+span.email .i {
+    display: none;
+}

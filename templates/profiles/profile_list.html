@@ -1,5 +1,5 @@
 {% extends "base.html"  %}
-{% load i18n baseurl %}
+{% load i18n baseurl cleanhtml %}
 
 {% block content %}
 
@@ -16,7 +16,7 @@
         {% for profile in object_list %}  
         <tr>
             <td><a href="{% filter l %}/accounts/{{ profile.user.username }}/{% endfilter %}">
-                    {{ profile.user.username }}
+                    {{ profile.user.username|obfuscate }}
             </a></td>
             <td>{{ profile.user.first_name }}</td>
             <td>{{ profile.user.last_name }} </td>
