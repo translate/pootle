@@ -113,3 +113,20 @@ def ajax_required(f):
         return f(request, *args, **kwargs)
     return wrapper
 
+
+def cached_property(f):
+    """A property which value is computed only once and then stored with
+    the instance for quick repeated retrieval.
+    """
+
+    def _closure(self):
+        cache_key = '_cache__%s' % f.__name__
+        value = getattr(self, cache_key, None)
+
+        if value == None:
+            value = f(self)
+            setattr(self, cache_key, value)
+
+        return value
+
+    return property(_closure)
