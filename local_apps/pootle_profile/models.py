@@ -29,6 +29,8 @@ from django.db.models.signals import post_save
 
 from pootle.i18n.override import lang_choices
 from pootle_misc.baseurl import l
+from pootle_misc.util import cached_property
+
 from translate.misc.hash import md5_f
 
 class PootleUserManager(UserManager):
@@ -81,9 +83,7 @@ class PootleProfile(models.Model):
     def get_absolute_url(self):
         return l('/accounts/%s/' % self.user.username)
 
-    # XXX: Does Django have a @cached_property decorator?
-    # If not, we should add our own.
-    @property
+    @cached_property
     def get_email_hash(self):
         return md5_f(self.user.email).hexdigest()
 
