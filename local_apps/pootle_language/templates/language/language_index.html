@@ -29,7 +29,7 @@
         {% for item in projects %}
             <tr class="item {% cycle 'even' 'odd' %}" title="{{ item.description|striptags }}">
             {% include "language/item_summary.html" %}
-	    <td>{{ item.lastactivity }}</td>
+            <td>{{ item.lastactivity }}</td>
             </tr>
         {% endfor %}
         </tbody>
