@@ -24,6 +24,7 @@ import locale
 from django.db import models
 from django.db.models import Q
 from django.contrib.auth.models import User, UserManager, AnonymousUser
+from django.utils.html import simple_email_re as email_re
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
 
@@ -78,7 +79,12 @@ class PootleProfile(models.Model):
     natural_key.dependencies = ['auth.User']
 
     def __unicode__(self):
-        return self.user.username
+        username = self.user.username
+
+        if email_re.match(username):
+            username = username.strip().rsplit('@', 1)[0]
+
+        return username
 
     def get_absolute_url(self):
         return l('/accounts/%s/' % self.user.username)
