@@ -53,7 +53,8 @@ def limit(query):
 
 def get_last_action(translation_project):
     try:
-        return Submission.objects.filter(translation_project=translation_project).latest()
+        return Submission.objects.filter(
+            translation_project=translation_project).latest().as_html()
     except Submission.DoesNotExist:
         return ''
 

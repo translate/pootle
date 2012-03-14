@@ -20,6 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.db import models
+from django.utils.safestring import mark_safe
 
 from pootle_app.lib.util import RelatedManager
 
@@ -40,4 +41,11 @@ class Submission(models.Model):
         return u"%s (%s)" % (self.creation_time.strftime("%Y-%m-%d %H:%M"),
                              unicode(self.submitter))
 
+    def as_html(self):
+        snippet = u'%(time)s (<a href="%(profile_url)s">%(submitter)s</a>)' % {
+                    'time': self.creation_time.strftime("%Y-%m-%d %H:%M"),
+                    'profile_url': self.submitter.get_absolute_url(),
+                    'submitter': unicode(self.submitter),
+                }
 
+        return mark_safe(snippet)

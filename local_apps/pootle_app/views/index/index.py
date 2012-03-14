@@ -49,11 +49,10 @@ def get_items(request, model, get_last_action, name_func):
         stats = item.getquickstats()
         stats = add_percentages(stats)
 
-        lastact = get_last_action(item)
         items.append({
             'code': item.code,
             'name': name_func(item.fullname),
-            'lastactivity': lastact,
+            'lastactivity': get_last_action(item),
             'trans': stats["translatedsourcewords"],
             'fuzzy': stats["fuzzysourcewords"],
             'untrans': stats["untranslatedsourcewords"],
@@ -70,7 +69,8 @@ def get_items(request, model, get_last_action, name_func):
 def getlanguages(request):
     def get_last_action(item):
         try:
-            return Submission.objects.filter(translation_project__language=item).latest()
+            return Submission.objects.filter(
+                translation_project__language=item).latest().as_html()
         except Submission.DoesNotExist:
             return ''
 
@@ -79,7 +79,8 @@ def getlanguages(request):
 def getprojects(request):
     def get_last_action(item):
         try:
-            return Submission.objects.filter(translation_project__project=item).latest()
+            return Submission.objects.filter(
+                translation_project__project=item).latest().as_html()
         except Submission.DoesNotExist:
             return ''
 
