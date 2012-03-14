@@ -20,6 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.db                import models
+from django.utils.html import simple_email_re as email_re
 
 from pootle_app.lib.util import RelatedManager
 
@@ -37,4 +38,10 @@ class Submission(models.Model):
 
 
     def __unicode__(self):
-        return u"%s (%s)" % (self.creation_time.strftime("%Y-%m-%d %H:%M"), unicode(self.submitter))
+        username = unicode(self.submitter)
+
+        if email_re.match(username):
+            username = username.strip().rsplit('@', 1)[0]
+
+        return u"%s (%s)" % (self.creation_time.strftime("%Y-%m-%d %H:%M"),
+                             unicode(username))
