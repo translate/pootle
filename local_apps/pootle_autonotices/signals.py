@@ -38,13 +38,15 @@ def new_object(created, message, parent):
 def new_language(sender, instance, created=False, raw=False, **kwargs):
     if raw:
         return
-    message = 'New language <a href="%s">%s</a> created.' % (instance.get_absolute_url(), instance.fullname)
+    message = 'New language <a href="%s">%s</a> created.' % (
+            instance.get_absolute_url(), instance.fullname)
     new_object(created, message, instance.directory.parent)
 
 def new_project(sender, instance, created=False, raw=False, **kwargs):
     if raw:
         return
-    message = 'New project <a href="%s">%s</a> created.' % (instance.get_absolute_url(), instance.fullname)
+    message = 'New project <a href="%s">%s</a> created.' % (
+        instance.get_absolute_url(), instance.fullname)
     new_object(created, message, parent=Directory.objects.root)
 
 def new_user(sender, instance, created=False, raw=False, **kwargs):
@@ -55,7 +57,9 @@ def new_user(sender, instance, created=False, raw=False, **kwargs):
     # installing Pootle
 
     try:
-        message = 'New user <a href="%s">%s</a> registered.' % (instance.get_profile().get_absolute_url(), instance.username)
+        message = 'New user <a href="%s">%s</a> registered.' % (
+            instance.get_profile().get_absolute_url(),
+            instance.username)
         new_object(created, message, parent=Directory.objects.root)
     except:
         pass
@@ -87,7 +91,8 @@ def unit_updated(sender, instance, raw=False, **kwargs):
             # by the end of this we will be 100%
             translation_project = store.translation_project
             directory = translation_project.directory
-            message = '<a href="%s">%s</a> fully translated</a> <br />' % (store.get_absolute_url(), store.name)
+            message = '<a href="%s">%s</a> fully translated</a> <br />' % (
+                    store.get_absolute_url(), store.name)
             quickstats = translation_project.getquickstats()
             quickstats['translated'] += 1
             if dbcopy.isfuzzy():
@@ -103,7 +108,8 @@ def updated_from_template(sender, oldstats, newstats, **kwargs):
     if oldstats == newstats:
         # nothing changed, no need to report
         return
-    message = 'Updated <a href="%s">%s</a> to latest template <br />' % (sender.get_absolute_url(), sender.fullname)
+    message = 'Updated <a href="%s">%s</a> to latest template <br />' % (
+        sender.get_absolute_url(), sender.fullname)
     message += stats_message("Before update", oldstats) + " <br />"
     message += stats_message("After update", newstats) + " <br />"
     new_object(True, message, sender.directory)
@@ -119,7 +125,8 @@ def updated_from_version_control(sender, oldstats, remotestats, newstats, **kwar
         # nothing changed, no need to report
         return
 
-    message = 'Updated <a href="%s">%s</a> from version control <br />' % (sender.get_absolute_url(), sender.fullname)
+    message = 'Updated <a href="%s">%s</a> from version control <br />' % (
+        sender.get_absolute_url(), sender.fullname)
     message += stats_message("Before update", oldstats) + " <br />"
     if not remotestats == newstats:
         message += stats_message("Remote copy", remotestats) + " <br />"
