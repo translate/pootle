@@ -59,7 +59,7 @@ def new_user(sender, instance, created=False, raw=False, **kwargs):
     try:
         message = 'New user <a href="%s">%s</a> registered.' % (
             instance.get_profile().get_absolute_url(),
-            instance.username)
+            instance.get_profile())
         new_object(created, message, parent=Directory.objects.root)
     except:
         pass
@@ -135,7 +135,7 @@ def updated_from_version_control(sender, oldstats, remotestats, newstats, **kwar
 
 def committed_to_version_control(sender, store, stats, user, success, **kwargs):
     message = '<a href="%s">%s</a> committed <a href="%s">%s</a> to version control' % (
-        user.get_absolute_url(), user.username,
+        user.get_absolute_url(), get_profile(user),
         store.get_absolute_url(), store.pootle_path)
     message = stats_message(message, stats)
     new_object(success, message, sender.directory)
@@ -153,11 +153,11 @@ def file_uploaded(sender, oldstats, user, newstats, archive, **kwargs):
 
     if archive:
         message = '<a href="%s">%s</a> uploaded an archive to <a href="%s">%s</a> <br />' % (
-            get_profile(user).get_absolute_url(), user.username,
+            get_profile(user).get_absolute_url(), get_profile(user),
             sender.get_absolute_url(), sender.fullname)
     else:
         message = '<a href="%s">%s</a> uploaded a file to <a href="%s">%s</a> <br />' % (
-            get_profile(user).get_absolute_url(), user.username,
+            get_profile(user).get_absolute_url(), get_profile(user),
             sender.get_absolute_url(), sender.fullname)
 
     message += stats_message('Before upload', oldstats) + ' <br />'
@@ -170,15 +170,15 @@ def file_uploaded(sender, oldstats, user, newstats, archive, **kwargs):
 def user_joined_project(sender, instance, action, reverse, model, pk_set, **kwargs):
     if action == 'post_add' and not reverse:
         for project in instance.projects.filter(pk__in=pk_set).iterator():
-            message = 'user <a href="%s">%s</a> joined project <a href="%s">%s</a>' % (
-                instance.get_absolute_url(), instance.user.username,
+            message = 'User <a href="%s">%s</a> joined project <a href="%s">%s</a>' % (
+                instance.get_absolute_url(), get_profile(user),
                 project.get_absolute_url(), project.fullname)
             new_object(True, message, project.directory)
 
 def user_joined_language(sender, instance, action, reverse, model, pk_set, **kwargs):
     if action == 'post_add' and not reverse:
         for project in instance.languages.filter(pk__in=pk_set).iterator():
-            message = 'user <a href="%s">%s</a> joined language <a href="%s">%s</a>' % (
-                instance.get_absolute_url(), instance.user.username,
+            message = 'User <a href="%s">%s</a> joined language <a href="%s">%s</a>' % (
+                instance.get_absolute_url(), get_profile(user),
                 project.get_absolute_url(), project.fullname)
             new_object(True, message, project.directory)
