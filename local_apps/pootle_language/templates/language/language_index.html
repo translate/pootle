@@ -27,7 +27,7 @@
         </thead>
         <tbody class="stats">
         {% for item in projects %}
-            <tr class="item {% cycle 'even' 'odd' %}" title="{{ item.description|striptags }}">
+            <tr class="item {% cycle 'even' 'odd' %}">
             {% include "language/item_summary.html" %}
             <td>{{ item.lastactivity }}</td>
             </tr>

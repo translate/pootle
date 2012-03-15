@@ -27,7 +27,7 @@
             </thead>
             <tbody class="stats">
                 {% for item in children %}
-                <tr class="item {% cycle 'even' 'odd' %}" title="{{ item.description }}">
+                <tr class="item {% cycle 'even' 'odd' %}">
                 {% include "language/item_summary.html" %}
                 </tr>
                 {% endfor %}
