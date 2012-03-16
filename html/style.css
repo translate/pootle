@@ -1608,8 +1608,22 @@ table.sortable td
 
 
 table.sortable th.sorttable_sorted,
-table.sortable th.sorttable_sorted_reverse {
+table.sortable th.sorttable_sorted_reverse
+{
     color: #000;
+}
+
+table.sortable th input
+{
+    float: left;
+    margin-right: 5px;
+}
+
+html[dir="rtl"] table.sortable th input
+{
+    float: right;
+    margin-right: 0;
+    margin-left: 5px;
 }
 
 .sortkey

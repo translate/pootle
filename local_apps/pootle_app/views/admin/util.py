@@ -64,18 +64,25 @@ def form_set_as_table(formset, link=None, linkfield='code'):
     If the forms are based on database models, the order of the
     columns is determined by the order of the fields in the model
     specification."""
+
     def add_header(result, fields, form):
         result.append('<tr>\n')
         for field in fields:
             widget = form.fields[field].widget
             widget_name = widget.__class__.__name__
+
             if widget.is_hidden or \
                widget_name in ('CheckboxInput', 'SelectMultiple'):
                 result.append('<th class="sorttable_nosort">')
             else:
                 result.append('<th>')
-            if form.fields[field].label is not None:
+
+            if widget_name in ('CheckboxInput',):
+                result.append(form[field].as_widget())
+                result.append(form[field].label_tag())
+            elif form.fields[field].label is not None:
                 result.append(unicode(form.fields[field].label))
+
             result.append('</th>\n')
         result.append('</tr>\n')
 

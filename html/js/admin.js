@@ -53,14 +53,25 @@ $(document).ready(function () {
   $(".slide").bind('click', slide_table);
 
   /* Sets background color to table rows when checking selects */
-  $("td.DELETE input[type=checkbox]").click(function () {
-      $(this).parents("tr").toggleClass("delete-selected");
+  $("td.DELETE input[type=checkbox]").change(function (e) {
+      $(this).parents("tr").toggleClass("delete-selected",
+                                        $(e.target).is(":checked"));
   });
-  $("td[class!=DELETE] input[type=checkbox]").click(function () {
+  $("td[class!=DELETE] input[type=checkbox]").change(function (e) {
     if (!$("input[type=checkbox][checked]",
         $(this).parent().siblings("td[class!=DELETE]")).length) {
-      $(this).parents("tr").toggleClass("other-selected");
+      $(this).parents("tr").toggleClass("other-selected",
+                                        $(e.target).is(":checked"));
     }
+  });
+
+
+  /* Selects all checkboxes */
+  $("th input").click(function (e) {
+      var className = e.target.id.split('-').reverse()[0];
+      $("td." + className + " input").prop("checked",
+                                           $(e.target).is(":checked"));
+      $("td." + className + " input").change();
   });
 
 });
