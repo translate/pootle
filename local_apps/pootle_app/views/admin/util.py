@@ -67,7 +67,13 @@ def form_set_as_table(formset, link=None, linkfield='code'):
     def add_header(result, fields, form):
         result.append('<tr>\n')
         for field in fields:
-            result.append('<th>')
+            widget = form.fields[field].widget
+            widget_name = widget.__class__.__name__
+            if widget.is_hidden or \
+               widget_name in ('CheckboxInput', 'SelectMultiple'):
+                result.append('<th class="sorttable_nosort">')
+            else:
+                result.append('<th>')
             if form.fields[field].label is not None:
                 result.append(unicode(form.fields[field].label))
             result.append('</th>\n')

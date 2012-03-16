@@ -1596,6 +1596,11 @@ table.sortable th
     font-size: 85%;
 }
 
+table.sortable th.sorttable_nosort
+{
+    cursor: default;
+}
+
 table.sortable td
 {
     padding: 5px;
