@@ -1,0 +1,14 @@
+# /
+/LICENSE
+
+# /dbs/
+/dbs/stats.db
+/dbs/pootle.db
+
+# General
+*.pyc
+*.prefs
+*.stats
+*.pending
+*.po.tm
+.translation_index
