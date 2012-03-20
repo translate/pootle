@@ -48,11 +48,11 @@ css_common = Bundle(
 register('css_common', css_common)
 
 css_admin = Bundle(
-    'admin.css', 'local/custom.css',
+    'admin.css',
     filters='cssmin', output='admin.min.css')
 register('css_admin', css_admin)
 
 css_editor = Bundle(
-    'translate.css', 'local/custom.css',
+    'translate.css',
     filters='cssmin', output='editor.min.css')
 register('css_editor', css_editor)
