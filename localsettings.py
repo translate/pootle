@@ -104,6 +104,19 @@ DEBUG = False
 ASSETS_DEBUG = DEBUG
 
 
+# Two-tuple defining the markup filter to apply in certain textareas.
+# - Accepted values for the first element are 'textile', 'markdown',
+#   'restructuredtext' and None
+# - The second element should be a dictionary of keyword arguments that
+#   will be passed to the markup function
+#
+# Examples:
+#   MARKUP_FILTER = (None, {})
+#   MARKUP_FILTER = ('markdown', {'safe_mode': True})
+#   MARKUP_FILTER = ('restructuredtext', {})
+MARKUP_FILTER = (None, {})
+
+
 # Use the commented definition to authenticate first with an LDAP system and
 # then to fall back to Django's authentication system.
 #AUTHENTICATION_BACKENDS = ('pootle.auth.ldap_backend.LdapBackend', 'django.contrib.auth.backends.ModelBackend',)
