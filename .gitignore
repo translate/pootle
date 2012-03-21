@@ -2,8 +2,7 @@
 /LICENSE
 
 # /dbs/
-/dbs/stats.db
-/dbs/pootle.db
+/dbs/*.db
 
 # General
 *.pyc
@@ -12,3 +11,7 @@
 *.pending
 *.po.tm
 .translation_index
+
+# ViM-generated
+*.swo
+*.swp
