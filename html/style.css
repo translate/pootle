@@ -951,6 +951,12 @@ html[dir="rtl"] a.external {
     margin: 2em;
 }
 
+.documentation .document h1
+{
+    margin-top: .5em;
+    margin-bottom: .25em;
+}
+
 .documentation h2,
 .documentation h3
 {
