@@ -188,4 +188,4 @@ def apply_markup_filter(text):
         if 'writer_name' not in markup_kwargs:
             markup_kwargs.update(writer_name='html4css1')
         parts = core.publish_parts(source=text, **markup_kwargs)
-        return parts['fragment']
+        return parts['html_body']
