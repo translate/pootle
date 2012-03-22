@@ -32,6 +32,7 @@ from pootle_app.models.permissions import get_matching_permissions, check_permis
 from pootle_profile.models import get_profile
 
 
+# XXX: Move to pootle_misc?
 def user_is_admin(f):
     def decorated_f(request, *args, **kwargs):
         if not request.user.is_superuser:
