@@ -953,12 +953,14 @@ html[dir="rtl"] a.external {
 }
 
 .documentation h2,
-.documentation h3 {
+.documentation h3
+{
     color: #999;
     border-bottom: 1px solid #eee;
 }
 
-.documentation h3 {
+.documentation h3
+{
     margin-top: 1.5em;
 }
 
@@ -968,7 +970,8 @@ html[dir="rtl"] a.external {
 }
 
 .documentation ol,
-.documentation ul {
+.documentation ul
+{
     margin: 1em 1.5em;
 }
 
