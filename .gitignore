@@ -4,6 +4,11 @@
 # /dbs/
 /dbs/*.db
 
+# /html/
+/html/.webassets-cache/
+/html/*.min.css
+/html/js/*.min.js
+
 # General
 *.pyc
 *.prefs
