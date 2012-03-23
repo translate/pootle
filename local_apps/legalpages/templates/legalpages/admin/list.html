@@ -1,0 +1,26 @@
+{% extends "admin_profile_base.html" %}
+{% load i18n %}
+
+{% block title %}
+{{ block.super }} » {% trans "Legal Pages" %}
+{% endblock %}
+
+{% block bodyclass %}adminlegalpages{% endblock %}
+
+{% block breadcrumb_content %}
+{{ block.super }} » <span>{% trans "Legal Pages" %}</span>
+{% endblock %}
+
+{% block section_body %}
+<div id="settings">
+  <ul>
+{%  for lp in legalpages %}
+    <li>{{ lp.title }} ({% if lp.active %}{% trans "Active" %}{% else %}{% trans "Inactive" %}{% endif %}) — <a href="{% url legalpages.views.admin_page lp.id %}">{% trans "Edit" %}</a></li>
+{%  empty %}
+    <li>{% trans "No pages yet." %}</li>
+{%  endfor %}
+  </ul>
+</div>
+<h2>{% trans "Add a new Legal Page" %}</h2>
+{% include "legalpages/admin/form.html" %}
+{% endblock %}

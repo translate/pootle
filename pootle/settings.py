@@ -132,6 +132,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sites',
     'django.contrib.admin',
+    # Pootle-specific
     'pootle_app',
     'pootle_misc',
     'pootle_store',
@@ -143,6 +144,8 @@ INSTALLED_APPS = (
     'pootle_notifications',
     'pootle_autonotices',
     'pootle_terminology',
+    'legalpages',
+    # External apps
     'registration',
     'profiles',
     'djblets.siteconfig',

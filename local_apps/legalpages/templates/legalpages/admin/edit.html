@@ -1,0 +1,18 @@
+{% extends "admin_profile_base.html" %}
+{% load i18n %}
+
+{% block title %}
+{{ block.super }} » {% trans "Edit Legal Page" %}
+{% endblock %}
+
+{% block bodyclass %}adminlegalpages{% endblock %}
+
+{% block breadcrumb_content %}
+{{ block.super }} » <span>{% trans "Edit Legal Page" %}</span>
+{% endblock %}
+
+{% block section_body %}
+<div id="settings">
+{% include "legalpages/admin/form.html" %}
+</div>
+{% endblock %}

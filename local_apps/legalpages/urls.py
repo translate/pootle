@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008 Zuza Software Foundation
+# Copyright 2012 Zuza Software Foundation
 #
-# This file is part of translate.
+# This file is part of Pootle.
 #
 # translate is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,15 +21,12 @@
 
 from django.conf.urls.defaults import *
 
-import legalpages.urls
-
-urlpatterns = patterns('pootle_app.views.admin',
-    (r'^/legalpages/', include(legalpages.urls.admin_patterns)),
-    (r'^/users.html$',       'adminusers.view'),
-    (r'^/languages.html$',   'adminlanguages.view'),
-    (r'^/projects.html$',    'adminprojects.view'),
-    (r'^/permissions.html$', 'adminroot.view'),
-    (r'^/general.html$', 'adminpages.view'),
-    (r'^/stats/more/?$', 'dashboard.server_stats_more'),
-    (r'^/?|/index.html$', 'dashboard.view'),
+urlpatterns = patterns('',
+    (r'^(?P<slug>[^/]+)/$', 'legalpages.views.legalpage'),
 )
+
+admin_patterns = patterns('',
+    (r'^$', 'legalpages.views.admin'),
+    (r'^(?P<page_id>\d+)/?$', 'legalpages.views.admin_page'),
+)
+

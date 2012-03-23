@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-{% load i18n assets baseurl %}
+{% load i18n assets baseurl legalpage_tags %}
 
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
@@ -161,6 +161,10 @@
                     <li><a href='{{ "/contact/"|l }}'>{% trans "Contact Us" %}</a></li>
                     {% endif %}
                     <li><a href='{{ "/about.html"|l }}'>{% trans "About this Pootle Server" %}</a></li>
+                    {% get_legalpages as legalpages %}
+                    {% for lp in legalpages %}
+                    <li><a href="{{ lp.get_absolute_url }}">{{ lp.title }}</a></li>
+                    {% endfor %}
                 </ul>
             </div><!--footer-->
             {% endblock footer %}

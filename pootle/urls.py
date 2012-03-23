@@ -50,6 +50,7 @@ urlpatterns = patterns('',
     (r'^contact/', include('contact_form_i18n.urls')),
     (r'^accounts/', include('pootle_profile.urls')),
     # Pootle urls
+    (r'^about/', include('legalpages.urls')),
     (r'^projects/', include('pootle_project.urls')),
     (r'', include('pootle_notifications.urls')),
     (r'', include('pootle_terminology.urls')),
