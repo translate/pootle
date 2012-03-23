@@ -268,6 +268,6 @@ if __name__ == '__main__':
         install_requires=["translate-toolkit>=1.5.0", "Django>=1.0"],
         platforms=["any"],
         classifiers=classifiers,
-        cmdclass={'install': PootleInstall, 'build': PootleBuild, 'build_mo': PootleBuildMo, 'minify_js': PootleMinifyJS, 'minify_css': PootleMinifyCSS},
+        cmdclass={'install': PootleInstall, 'build': PootleBuild, 'build_mo': PootleBuildMo},
         **collect_options()
     )
