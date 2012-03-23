@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n baseurl %}
+{% load i18n baseurl legalpage_tags %}
 
 {% block title %}
 {{ block.super }} » {% trans "Register" %}
@@ -10,6 +10,19 @@
 {% endblock %}
  
 {% block content %}
+{% get_legalpages as legalpages reg %}
+{% if legalpages %}
+<div class="legal">
+  <div class="sidenote">
+    <p>{% trans "Make sure to read the following:" %}</p>
+    <ul>
+{%  for lp in legalpages %}
+    <li><a href="{{ lp.get_absolute_url }}" class="fancybox{% if lp.url %} external{% endif %}">{{ lp.title }}</a></li>
+{%  endfor %}
+    </ul>
+  </div>
+</div>
+{% endif %}
 <div id="register" class="form" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
     <h2>{% trans "Register a New Pootle Account" %}</h2>
     <p>{% trans "Fill in the following form to get started translating." %}</p>

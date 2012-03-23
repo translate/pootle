@@ -943,12 +943,19 @@ html[dir="rtl"] a.external {
 }
 
 /*
- * DOCUMENTATION
+ * DOCUMENTATION, LEGAL
  */
 
 .documentation
 {
     margin: 2em;
+}
+
+.legal
+{
+    float: right;
+    margin-right: 3em;
+    position: relative;
 }
 
 .documentation .document h1
@@ -969,18 +976,21 @@ html[dir="rtl"] a.external {
     margin-top: 1.5em;
 }
 
-.documentation p
+.documentation p,
+.legal p
 {
     margin: 1em 0;
 }
 
 .documentation ol,
-.documentation ul
+.documentation ul,
+.legal ul
 {
     margin: 1em 1.5em;
 }
 
-.documentation ul li
+.documentation ul li,
+.legal ul li
 {
     list-style-type: square;
 }
@@ -995,7 +1005,8 @@ html[dir="rtl"] a.external {
     border-bottom: 1px dotted black;
 }
 
-.documentation .sidenote
+.documentation .sidenote,
+.legal .sidenote
 {
     width: 10em;
     font-size: 95%;
@@ -1006,12 +1017,20 @@ html[dir="rtl"] a.external {
     color: #777;
 }
 
-.documentation .sidenote p
+.legal .sidenote
+{
+    width: 12em;
+}
+
+.documentation .sidenote p,
+.legal .sidenote p
 {
     line-height: 130%;
 }
 
-.documentation .sidenote li {
+.documentation .sidenote li,
+.legal .sidenote li
+{
     margin: 0.2em 0;
 }
 
