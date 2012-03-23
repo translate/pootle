@@ -131,4 +131,10 @@ $(document).ready(function ($) {
     }
   });
 
+  /* Fancybox on links */
+  $(document).on("click", "a.fancybox", function (e) {
+    e.preventDefault();
+    $.fancybox({'href': $(e.target).attr('href'), 'type': 'ajax'});
+  });
+
 });
