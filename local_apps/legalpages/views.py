@@ -81,5 +81,9 @@ def legalpage(request, slug):
     if lp.url:
         return redirect(lp.url)
 
-    return render_to_response('legalpages/legalpage.html', {'lp': lp},
+    template_name = 'legalpages/legalpage.html'
+    if 'HTTP_X_FANCYBOX' in request.META:
+        template_name = 'legalpages/legalpage_body.html'
+
+    return render_to_response(template_name, {'lp': lp},
             RequestContext(request))
