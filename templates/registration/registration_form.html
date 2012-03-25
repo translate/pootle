@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n baseurl legalpage_tags %}
+{% load i18n baseurl cache legalpage_tags %}
 
 {% block title %}
 {{ block.super }} » {% trans "Register" %}
@@ -10,6 +10,7 @@
 {% endblock %}
  
 {% block content %}
+{% cache settings.CACHE_TIMEOUT legalpages_reg LANGUAGE_CODE %}
 {% get_legalpages as legalpages reg %}
 {% if legalpages %}
 <div class="legal">
@@ -23,6 +24,7 @@
   </div>
 </div>
 {% endif %}
+{% endcache %}
 <div id="register" class="form" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
     <h2>{% trans "Register a New Pootle Account" %}</h2>
     <p>{% trans "Fill in the following form to get started translating." %}</p>
