@@ -37,6 +37,11 @@ def admin_page(request, page_id):
     lp = get_object_or_404(LegalPage, id=page_id)
 
     if request.method == 'POST':
+
+        if '_delete' in request.POST:
+            lp.delete()
+            return redirect('legalpages.views.admin')
+
         form = LegalPageForm(request.POST, instance=lp)
 
         if form.is_valid():
