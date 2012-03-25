@@ -57,6 +57,10 @@ class LegalPage(models.Model):
         return self.slug
 
 
+    def localized_title(self):
+        return _(self.title)
+
+
     def get_absolute_url(self):
 
         if self.url:
