@@ -37,3 +37,10 @@ _("superuser status")
 _("Source Language")
 
 _("Android strings")
+
+
+# Commonly used terms to refer to Terms of Services, Privacy Policies...
+
+_("Privacy Policy")
+_("Legal")
+_("License")
