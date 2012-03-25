@@ -43,5 +43,4 @@ class LegalPageForm(ModelForm):
             msg = _('URL or content must be provided.')
             raise ValidationError(msg)
 
-
         return cleaned_data
