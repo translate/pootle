@@ -129,6 +129,20 @@
                     {% block innernav %}{% endblock %}
                 </div><!-- precontent -->
 
+                {% if message or error_message or messages %}
+                <div class="form message{% if error_message %} error{% endif %}" lang="{{ LANGUAGE_CODE }}">
+                    {% block message %}
+                    <div class="info">{{ message }}</div>
+                    <div class="error">{{ error_message }}</div>
+                        {% for msg in messages %}
+                        <p class="info">
+                        {{ msg }}
+                        </p>
+                        {% endfor %}
+                    {% endblock message %}
+                </div>
+                {% endif %}
+
                 <div id="content">
                     {% block content %}{% endblock %}
                 </div><!-- content -->
@@ -138,20 +152,6 @@
                 </div><!-- postcontent -->
                 {% block extra_content %}{% endblock %}
             </div> <!--body-->
-
-            {% if message or error_message or messages %}
-            <div class="form message{% if error_message %} error{% endif %}" lang="{{ LANGUAGE_CODE }}">
-                {% block message %}
-                <div class="info">{{ message }}</div>
-                <div class="error">{{ error_message }}</div>
-                    {% for msg in messages %}
-                    <p class="info">
-                    {{ msg }}
-                    </p>
-                    {% endfor %}
-                {% endblock message %}
-            </div>
-            {% endif %}
 
             {% block footer %}
             <div id="footer" lang="{{ LANGUAGE_CODE }}">
