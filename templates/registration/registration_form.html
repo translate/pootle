@@ -18,7 +18,7 @@
     <p>{% trans "Make sure to read the following:" %}</p>
     <ul>
 {%  for lp in legalpages %}
-    <li><a href="{{ lp.get_absolute_url }}" class="fancybox{% if lp.url %} external{% endif %}">{{ lp.title }}</a></li>
+    <li><a href="{{ lp.get_absolute_url }}" class="fancybox{% if lp.url %} external{% endif %}">{{ lp.localized_title }}</a></li>
 {%  endfor %}
     </ul>
   </div>

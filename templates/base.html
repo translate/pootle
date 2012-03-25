@@ -164,7 +164,7 @@
                     {% cache settings.CACHE_TIMEOUT legalpages LANGUAGE_CODE %}
                     {% get_legalpages as legalpages %}
                     {% for lp in legalpages %}
-                    <li><a href="{{ lp.get_absolute_url }}">{{ lp.title }}</a></li>
+                    <li><a href="{{ lp.get_absolute_url }}">{{ lp.localized_title }}</a></li>
                     {% endfor %}
                     {% endcache %}
                 </ul>
