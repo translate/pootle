@@ -9,6 +9,9 @@
 /html/*.min.css
 /html/js/*.min.js
 
+# /mo/
+/mo/*
+
 # General
 *.pyc
 *.prefs
