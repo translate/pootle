@@ -37,8 +37,8 @@ class LegalPage(models.Model):
     # TODO: make title and body localizable fields
     title = models.CharField(_("Title"), max_length=100)
     url = models.URLField(_("URL"), blank=True,
-            help_text=_('If set, any references to this legal page will point ' \
-                    'to this URL rather than to the slug.'))
+            help_text=_('If set, any references to this legal page will redirect ' \
+                    'to this URL.'))
     slug = models.SlugField(_("slug"),
             help_text=_('The page will be independently available in ' \
                     '/about/<slug>/.'))
