@@ -190,7 +190,6 @@ class PootleBuildMo(DistutilsBuild):
                 gettext.c2py(store.getheaderplural()[1])
             except Exception, e:
                 print "skipping %s, probably invalid header: %s" % (lang, e)
-                return
 
             try:
                 if not path.exists(lang_dir):
