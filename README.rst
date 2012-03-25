@@ -2,14 +2,10 @@
 Pootle: a web translation and translation management engine
 ===========================================================
 
-* How it works
-* Running
-* Manual preparation
-* Notes
-* Assignments
-* Common problems
-* Bug reporting/Feature requests
-* References
+* Web: <http://translate.sourceforge.net/wiki/pootle/index>
+* Bugzilla: <http://bugs.locamotion.org/>
+* Mailing List: <https://lists.sourceforge.net/lists/listinfo/translate-pootle>
+* IRC: #pootle on irc.freenode.org
 
 
 How it works
@@ -119,12 +115,3 @@ specific about how the bug occurred and what you expected to happen.
 
 If this is a feature request then try to be specific about how you think this
 feature should work.
-
-
-References
-----------
-
-* Web: <http://translate.sourceforge.net/wiki/pootle/index>
-* Bugzilla: <http://bugs.locamotion.org/>
-* Mailing List: <https://lists.sourceforge.net/lists/listinfo/translate-pootle>
-* IRC: #pootle on irc.freenode.org
