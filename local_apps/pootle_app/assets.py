@@ -43,7 +43,7 @@ js_editor = Bundle(
 register('js_editor', js_editor)
 
 css_common = Bundle(
-    'style.css', 'fancybox.css', 'tipsy.css', 'local/custom.css',
+    'style.css', 'fancybox.css', 'tipsy.css', 'custom/custom.css',
     filters='cssmin', output='common.min.css')
 register('css_common', css_common)
 
