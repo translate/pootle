@@ -19,7 +19,8 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from django.forms import ModelForm
+from django.forms import ModelForm, ValidationError
+from django.utils.translation import ugettext_lazy as _
 
 from legalpages.models import LegalPage
 
@@ -29,3 +30,18 @@ class LegalPageForm(ModelForm):
     class Meta:
         model = LegalPage
 
+
+    def clean(self):
+
+        cleaned_data = super(LegalPageForm, self).clean()
+
+        url = cleaned_data.get('url')
+        body = cleaned_data.get('body')
+
+        if url == '' and body == '':
+            #L10n: 'URL' and 'content' refer to form fields.
+            msg = _('URL or content must be provided.')
+            raise ValidationError(msg)
+
+
+        return cleaned_data
