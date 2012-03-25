@@ -41,7 +41,7 @@ Use ``--help`` to see the other options. The defaults will generally work.
 
 Now visit http://localhost:8000/ to try out Pootle.
 
-To stop the server, press Ctrl-C.
+To stop the server, press ``Ctrl-C``.
 
 It is not recommended to run Pootle as the root user.  For any non-trivial
 installation of Pootle, ensure that you use a database server (not SQLite) and
