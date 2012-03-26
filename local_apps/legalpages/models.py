@@ -38,10 +38,10 @@ class LegalPage(models.Model):
     title = models.CharField(_("Title"), max_length=100)
     url = models.URLField(_("URL"), blank=True,
             help_text=_('If set, any references to this legal page will redirect ' \
-                    'to this URL.'))
+                    'to this URL'))
     slug = models.SlugField(_("slug"),
             help_text=_('The page will be independently available in ' \
-                    '/about/<slug>/.'))
+                    '/about/<slug>/'))
 
     try:
         markup_filter = settings.MARKUP_FILTER[0]
