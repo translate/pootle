@@ -845,6 +845,13 @@ input[type="submit"]
     color: #000;
 }
 
+input.delete[type="submit"]
+{
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffeeee', endColorstr='#ffcccc');
+    background: -webkit-gradient(linear, left top, left bottom, from(#fee), to(#fcc));
+    background: -moz-linear-gradient(top,  #fee,  #fcc);
+}
+
 body.zoom-out-1 input[type="submit"]
 {
     min-width: 100px;
