@@ -51,7 +51,8 @@ def admin_page(request, page_id):
     else:
         form = LegalPageForm(instance=lp)
 
-    return render_to_response('legalpages/admin/edit.html', {'form': form},
+    return render_to_response('legalpages/admin/edit.html',
+            {'form': form, 'show_delete': True},
             RequestContext(request))
 
 
@@ -74,7 +75,8 @@ def admin(request):
     lps = LegalPage.objects.all()
 
     return render_to_response('legalpages/admin/list.html',
-            {'legalpages': lps, 'form': form, 'message': msg},
+            {'legalpages': lps, 'form': form, 'message': msg,
+             'show_delete': False},
             RequestContext(request))
 
 
