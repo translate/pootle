@@ -12,15 +12,28 @@
 {% endblock %}
 
 {% block section_body %}
-<div id="settings">
-  <ul>
-{%  for lp in legalpages %}
-    <li>{{ lp.title }} ({% if lp.active %}{% trans "Active" %}{% else %}{% trans "Inactive" %}{% endif %}) — <a href="{% url legalpages.views.admin_page lp.id %}">{% trans "Edit" %}</a></li>
-{%  empty %}
-    <li>{% trans "No pages yet." %}</li>
-{%  endfor %}
-  </ul>
+<div class="legalpages settings-container centered">
+  <div class="legalpages-list module first">
+    <div class="hd">
+      <h2>{% trans "Existing Legal Pages" %}</h2>
+    </div>
+    <div class="bd">
+      <ul>
+      {% for lp in legalpages %}
+        <li>{{ lp.title }} ({% if lp.active %}{% trans "Active" %}{% else %}{% trans "Inactive" %}{% endif %}) — <a href="{% url legalpages.views.admin_page lp.id %}">{% trans "Edit" %}</a></li>
+      {% empty %}
+        <li>{% trans "No pages yet." %}</li>
+      {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="legalpages-edit module">
+    <div class="hd">
+      <h2>{% trans "Add a new Legal Page" %}</h2>
+    </div>
+    <div class="bd">
+    {% include "legalpages/admin/form.html" %}
+    </div>
+  </div>
 </div>
-<h2>{% trans "Add a new Legal Page" %}</h2>
-{% include "legalpages/admin/form.html" %}
 {% endblock %}

@@ -12,7 +12,14 @@
 {% endblock %}
 
 {% block section_body %}
-<div id="settings">
-{% include "legalpages/admin/form.html" %}
+<div class="legalpages settings-container centered">
+  <div class="legalpages-edit">
+    <div class="hd">
+      <h2>{% trans "Edit Legal Page" %}</h2>
+    </div>
+    <div class="bd">
+    {% include "legalpages/admin/form.html" %}
+    </div>
+  </div>
 </div>
 {% endblock %}

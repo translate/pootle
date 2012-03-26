@@ -61,9 +61,30 @@ html[dir="rtl"] div#depchecks ul li.error
 
 /* ADMIN GENERAL SETTINGS */
 
-textarea#id_DESCRIPTION
+textarea#id_DESCRIPTION,
+.legalpages-form textarea
 {
     width: 100%;
+}
+
+/* LEGAL PAGES */
+
+.legalpages-list li
+{
+    margin: 0 1em;
+    list-style-type: square;
+}
+
+.legalpages-form input[type="checkbox"]
+{
+    display: inline;
+    float: left;
+    margin: 0 .25em;
+}
+
+html[dir="rtl"] .legalpages-form input[type="checkbox"]
+{
+    float: right;
 }
 
 /* ADMIN LANGUAGES, FILES */
@@ -115,5 +136,8 @@ html[dir="rtl"] td.pootle_path
 
 .admin-buttons-block input
 {
+    display: inline;
     margin-bottom: 1em;
+    margin-left: .25em;
+    margin-right: .25em;
 }
