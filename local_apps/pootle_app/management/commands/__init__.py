@@ -74,7 +74,7 @@ class PootleCommand(NoArgsCommand):
         debug_levels = {0:logging.ERROR, 1:logging.WARNING, 2:logging.DEBUG}
         debug_level = debug_levels.get(verbosity, logging.DEBUG)
         logging.getLogger().setLevel(debug_level)
-        
+
         # reduce size of parse pool early on
         self.name = self.__class__.__module__.split('.')[-1]
         from pootle_store.fields import  TranslationStoreFieldFile
