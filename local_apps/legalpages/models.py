@@ -29,10 +29,10 @@ from pootle_misc.util import apply_markup_filter
 class LegalPage(models.Model):
 
     active = models.BooleanField(_('Active'),
-            _('Whether this page is active or not.'))
+            help_text=_('Whether this page is active or not.'))
 
     display_on_register = models.BooleanField(_('Display on registration'),
-            _('Whether this page should be displayed on registration.'))
+            help_text=_('Whether this page should be displayed on registration.'))
 
     # TODO: make title and body localizable fields
     title = models.CharField(_("Title"), max_length=100)
@@ -48,7 +48,7 @@ class LegalPage(models.Model):
     except AttributeError, IndexError:
         markup_filter = u'HTML'
     body = models.TextField(_("Content"), blank=True,
-            help_text=_('Allowed markup: %s' % markup_filter))
+            help_text=_('Allowed markup: %s', markup_filter))
 
     body_html = models.TextField(editable=False, blank=True)
 
