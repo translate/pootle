@@ -29,6 +29,7 @@
     <h2>{% trans "Register a New Pootle Account" %}</h2>
     <p>{% trans "Fill in the following form to get started translating." %}</p>
     <form method="post" action="" name="registerform" id="registerform">
+    {% csrf_token %}
     {% if form.non_field_errors %}
         {{ form.non_field_errors }}
     {% endif %}

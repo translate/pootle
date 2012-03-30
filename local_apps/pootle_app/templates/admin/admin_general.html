@@ -3,6 +3,7 @@
     {{ objects|render_pager }}
 </div>
 <form action="" method="post" name="{{ text.formid }}" id="{{ text.formid }}">
+    {% csrf_token %}
     {% if text.error_msg %}
         <div class="error">{% trans text.error_msg %}</div>
     {% endif %}

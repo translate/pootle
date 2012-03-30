@@ -15,6 +15,7 @@
 
 {% block section_body %}
 <form method="post" action="">
+  {% csrf_token %}
   {{ form.non_field_errors }}
   {% for field in form %}
   <p>{{ field.errors }}

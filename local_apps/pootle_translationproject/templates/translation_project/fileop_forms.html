@@ -5,6 +5,7 @@
 <div id="upload" class="form" lang="{{ LANGUAGE_CODE }}">
     <h2>{{ upload.form.title }}</h2>
     <form action="" method="post" class="upload" id="uploadform" name="uploadform" enctype="multipart/form-data">
+      {% csrf_token %}
       {{ form.non_field_errors }}
       {% for field in upload.form %}
       <p {% if field.help_text %}title="{{ field.help_text }}"{% endif %}>
@@ -23,6 +24,7 @@
     <h2>{% trans "Update from Version Control" %}</h2>
     <p>{% trans "Use this option to update all the files in this area from the version control." %}</p>
     <form action="" method="post" class="vcs-update" name="updateform" enctype="multipart/form-data">
+    {% csrf_token %}
     {{ update.as_p }}
     </form>
 </div>

@@ -15,6 +15,7 @@
 {% block section_description %}{% trans "Here you can manage the files in this translation project." %}
 <div id="filesmanage">
   <form action="" method="post">
+    {% csrf_token %}
     <div class="admin-buttons-block" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
       <input type="submit" class="update" name="template_update" value='{% trans "Update files from templates" %}' />
       <input type="submit" class="rescan" name="scan_files" value='{% trans "Rescan project files" %}' />
