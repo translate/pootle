@@ -130,7 +130,7 @@ def get_lang_from_http_header(request, supported):
     return None
 
 
-def get_language_from_request(request):
+def get_language_from_request(request, check_path=False):
     """Try to get the user's preferred language by first checking the
     cookie, then the user's preferences (stored in the PootleProfile
     model) and finally by checking the HTTP language headers.

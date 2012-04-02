@@ -74,7 +74,7 @@ class MultiStringField(models.Field):
         else:
             return multistring(value, encoding="UTF-8")
 
-    def get_db_prep_value(self, value):
+    def get_db_prep_value(self, value, *args, **kwargs):
         #FIXME: maybe we need to override get_db_prep_save instead?
         if value is None:
             return None
@@ -91,10 +91,10 @@ class MultiStringField(models.Field):
         else:
             return value
 
-    def get_db_prep_lookup(self, lookup_type, value):
+    def get_db_prep_lookup(self, lookup_type, value, *args, **kwargs):
         if lookup_type in ('exact', 'iexact') or not isinstance(value, basestring):
             value = self.get_db_prep_value(value)
-        return super(MultiStringField, self).get_db_prep_lookup(lookup_type, value)
+        return super(MultiStringField, self).get_db_prep_lookup(lookup_type, value, *args, **kwargs)
 
 ################# File ###############################
 
