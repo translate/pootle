@@ -119,10 +119,7 @@ def optimal_depcheck():
                                 'text': _("Pootle is configured to use memcached as a caching backend, but can't connect to the memcached server. Caching is currently disabled.")})
             else:
                 if not depcheck.test_session():
-                    if depcheck.test_cached_db_session():
-                        text = _('For optimal performance, use django.contrib.sessions.backends.cached_db as the session engine.')
-                    else:
-                        text =  _('For optimal performance, use django.contrib.sessions.backends.cache as the session engine.')
+                    text = _('For optimal performance, use django.contrib.sessions.backends.cached_db as the session engine.')
                     optimal.append({'dependency': 'session', 'text': text})
         else:
             optimal.append({'dependency': 'cache',

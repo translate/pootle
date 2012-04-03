@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2009,2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -126,32 +126,38 @@ def test_mysqldb():
 
 def test_db():
     """test that we are not using sqlite3 as the django database"""
-    return settings.DATABASE_ENGINE != 'sqlite3'
+    if getattr(settings, "DATABASES", None):
+        return "sqlite" not in settings.DATABASES['default']['ENGINE']
+    else:
+        return getattr(settings, "DATABASE_ENGINE", None) != 'sqlite3'
 
 def test_cache():
     """test if cache backend is memcached"""
     #FIXME: maybe we shouldn't complain if cache is set to db or file?
-    return settings.CACHE_BACKEND.startswith('memcached')
+    if getattr(settings, "CACHES", None):
+        return "memcache" in settings.CACHES['default']['BACKEND']
+    else:
+        return settings.CACHE_BACKEND.startswith('memcached')
 
 def test_memcache():
     try:
         import memcache
         return True
     except ImportError:
+        # Since Django 1.3.0 there is support for pylibmc as well
+        import django
+        if django.VERSION >= (1, 3, 0, '', 0):
+            try:
+                import pylibmc
+                return True
+            except ImportError:
+                return False
         return False
 
 def test_memcached():
     """test if we can connect to memcache server"""
     from django.core.cache import cache
     return cache._cache.servers[0].connect()
-
-def test_cached_db_session():
-    """test that cached_db session is available"""
-    try:
-        import django.contrib.sessions.backends.cached_db
-        return True
-    except ImportError:
-        return False
 
 def test_session():
     """test that session backend is set to memcahce"""
