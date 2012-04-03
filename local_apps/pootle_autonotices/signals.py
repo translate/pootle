@@ -171,7 +171,7 @@ def user_joined_project(sender, instance, action, reverse, model, pk_set, **kwar
     if action == 'post_add' and not reverse:
         for project in instance.projects.filter(pk__in=pk_set).iterator():
             message = 'User <a href="%s">%s</a> joined project <a href="%s">%s</a>' % (
-                instance.get_absolute_url(), get_profile(user),
+                instance.get_absolute_url(), get_profile(instance.user),
                 project.get_absolute_url(), project.fullname)
             new_object(True, message, project.directory)
 
@@ -179,6 +179,6 @@ def user_joined_language(sender, instance, action, reverse, model, pk_set, **kwa
     if action == 'post_add' and not reverse:
         for project in instance.languages.filter(pk__in=pk_set).iterator():
             message = 'User <a href="%s">%s</a> joined language <a href="%s">%s</a>' % (
-                instance.get_absolute_url(), get_profile(user),
+                instance.get_absolute_url(), get_profile(instance.user),
                 project.get_absolute_url(), project.fullname)
             new_object(True, message, project.directory)
