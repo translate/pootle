@@ -28,13 +28,18 @@ from pootle.install_dirs import *
 #EMAIL_USE_TLS = True
 
 
-# Database configuration
-DATABASE_ENGINE = 'sqlite3'                 # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = working_path('dbs/pootle.db') # Or path to database file if using sqlite3.
-DATABASE_USER = ''                          # Not used with sqlite3.
-DATABASE_PASSWORD = ''                      # Not used with sqlite3.
-DATABASE_HOST = ''                          # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = ''                          # Set to empty string for default. Not used with sqlite3.
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+                                         # Replace 'sqlite3' with 'postgresql_psycopg2', 'mysql' or 'oracle'.
+        'NAME': working_path('dbs/pootle.db'),
+                                         # Database name or path to database file if using sqlite3.
+        'USER': '',                      # Not used with sqlite3.
+        'PASSWORD': '',                  # Not used with sqlite3.
+        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+    }
+}
 
 
 # The directory where the translation files are kept
@@ -64,23 +69,37 @@ PARSE_POOL_CULL_FREQUENCY = 4
 
 # Cache Backend settings
 #
-# By default we use Django's in memory cache which is only suitable
+# By default we use Django's database cache which is only suitable
 # for small deployments. memcached is preferred. For more info, check
 # http://docs.djangoproject.com/en/dev/topics/cache/#setting-up-the-cache
 CACHE_BACKEND = 'db://pootlecache?max_entries=65536&cull_frequency=16'
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'pootlecache',
+        'TIMEOUT': 60,
+        'OPTIONS': {
+            'MAX_ENTRIES': 65536,
+            'CULL_FREQUENCY': 16,
+        }
+    }
+}
 
 # Uncomment to use memcached for caching
 #CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
+#CACHES = {
+#    'default': {
+#        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+#        'LOCATION': '127.0.0.1:11211',
+#        'KEY_PREFIX': '',
+#    }
+#}
 
 # Using memcached to store sessions improves performance for anonymous
 # users. For more info, check
 # http://docs.djangoproject.com/en/dev/topics/http/sessions/#configuring-the-session-engine
-
-# Uncomment this if you're using memcached as CACHE_BACKEND and running under Django 1.0
-#SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
-
-# Uncomment this if you're using memcached as CACHE_BACKEND and running under Django >= 1.1
-#SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+# Uncomment this if you're using memcached as CACHE_BACKEND
+SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
 # To improve performance, non-logged users get cached copies of most pages.
 # This variable is the number of seconds for which a page will be reused from
