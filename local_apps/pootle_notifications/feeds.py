@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2009-2010,2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -19,8 +19,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.core.exceptions import PermissionDenied
-from django.contrib.syndication.feeds import Feed
-from django.http import HttpResponse
+from django.contrib.syndication.views import Feed
 from django.shortcuts import get_object_or_404
 
 from pootle_misc.baseurl import l
@@ -31,33 +30,25 @@ from pootle_profile.models import get_profile
 from pootle_notifications.models import Notice
 from pootle_notifications.views import directory_to_title
 
-def view(request, path):
-    pootle_path = '/%s' % path
-    directory = get_object_or_404(Directory, pootle_path=pootle_path)
-
-    request.permissions = get_matching_permissions(get_profile(request.user), directory)
-    if not check_permission('view', request):
-        raise PermissionDenied
-
-    feedgen = NoticeFeed(pootle_path, request, directory).get_feed(path)
-    response = HttpResponse(mimetype=feedgen.mime_type)
-    feedgen.write(response, 'utf-8')
-    return response
 
 class NoticeFeed(Feed):
     title_template = "notice_title.html"
     description_template = "notice_body.html"
-    def __init__(self, slug, request, directory):
-        self.link = l(directory.pootle_path)
-        self.directory = directory
-        self.recusrive = request.GET.get('all', False)
-        super(NoticeFeed, self).__init__(slug, request)
 
-    def get_object(self, bits):
+    def get_object(self, request, path):
+        pootle_path = '/%s' % path
+        directory = get_object_or_404(Directory, pootle_path=pootle_path)
+        request.permissions = get_matching_permissions(get_profile(request.user), directory)
+        if not check_permission('view', request):
+            raise PermissionDenied
+        self.directory = directory
+        self.link = l(directory.pootle_path)
+        self.recusrive = request.GET.get('all', False)
+
         return self.directory
 
     def title(self, directory):
-        return directory_to_title(self.request, directory)
+        return directory_to_title(directory)
 
     def items(self, directory):
         if self.recusrive:

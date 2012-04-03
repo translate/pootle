@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2009-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -51,7 +51,7 @@ def view(request, path):
 
     if check_permission('administrate', request):
         template_vars['form'] = handle_form(request, directory)
-        template_vars['title'] = directory_to_title(request, directory)
+        template_vars['title'] = directory_to_title(directory)
     if request.GET.get('all', False):
         template_vars['notices'] = Notice.objects.filter(directory__pootle_path__startswith=directory.pootle_path).select_related('directory')[:30]
     else:
@@ -69,7 +69,7 @@ def view(request, path):
 
     return render_to_response('notices.html', template_vars, context_instance=RequestContext(request))
 
-def directory_to_title(request, directory):
+def directory_to_title(directory):
     """figures out if directory refers to a Language or
     TranslationProject and returns appropriate string for use in
     titles"""

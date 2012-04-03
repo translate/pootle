@@ -6,7 +6,7 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
 {% block extra_head %}
-<link rel="alternate" type="application/rss+xml" href="{% url pootle_notifications.feeds.view "" %}" />
+<link rel="alternate" type="application/rss+xml" href="{% url pootle_notifications__feed "" %}" />
 {% endblock %}
 
 {% block body.id %}frontpage{% endblock body.id %}
@@ -90,7 +90,7 @@
     <div class="hd"><h2>{% trans 'Latest News' %}</h2></div>
     <div class="bd">
         {% render_latest_news "" 5 %}
-        <p class="subscribe"><a href="{% url pootle_notifications.feeds.view "" %}">{% trans "Subscribe to the RSS feed." %}</a></p>
+        <p class="subscribe"><a href="{% url pootle_notifications__feed "" %}">{% trans "Subscribe to the RSS feed." %}</a></p>
     </div>
 </div>
 

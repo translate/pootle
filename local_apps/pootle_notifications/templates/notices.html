@@ -40,7 +40,7 @@ approach for this.
 {% endblock %}
 
 {% block extra_head %}
-<link rel="alternate" type="application/rss+xml" title="{{ title }}" href="{% url pootle_notifications.feeds.view path %}" />
+<link rel="alternate" type="application/rss+xml" title="{{ title }}" href="{% url pootle_notifications__feed path %}" />
 {% endblock %}
 
 {% block bodyclass %}
