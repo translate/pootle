@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2009 Zuza Software Foundation
+# Copyright 2008-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -81,10 +81,9 @@ ADMIN_MEDIA_PREFIX = '/media/'
 # TODO: We should find a way to reset this for new installations.
 SECRET_KEY = '^&4$dlpce2_pnronsi289xd7-9ke10q_%wa@9srm@zaa!ig@1k'
 
-# List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.load_template_source',
-    'django.template.loaders.app_directories.load_template_source',
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
 #     'django.template.loaders.eggs.load_template_source',
 )
 
@@ -95,7 +94,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.cache.UpdateCacheMiddleware', # must be as high as possible (see above)
     'django.middleware.http.ConditionalGetMiddleware', # support for e-tag
     'django.middleware.gzip.GZipMiddleware', # compress responses
-    'django.contrib.csrf.middleware.CsrfMiddleware', # protection against cross-site request forgery
+    'django.middleware.csrf.CsrfViewMiddleware', # protection against cross-site request forgery
     'django.contrib.sessions.middleware.SessionMiddleware', # must be before authentication
     'django.contrib.auth.middleware.AuthenticationMiddleware', # must be before anything user-related
     'django.middleware.locale.LocaleMiddleware', # user-related
@@ -112,11 +111,13 @@ CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 
 ROOT_URLCONF = 'pootle.urls'
 
-TEMPLATE_CONTEXT_PROCESSORS = ("django.core.context_processors.auth",
+TEMPLATE_CONTEXT_PROCESSORS = (
+                               "django.contrib.auth.context_processors.auth",
                                "django.core.context_processors.i18n",
                                "django.core.context_processors.media",
                                "django.core.context_processors.request",
-                               "pootle_misc.context_processors.pootle_context")
+                               "pootle_misc.context_processors.pootle_context",
+)
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
