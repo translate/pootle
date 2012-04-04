@@ -51,12 +51,14 @@ from pootle_app.models import Directory
 def limit(query):
     return query[:5]
 
+
 def get_last_action(translation_project):
     try:
         return Submission.objects.filter(
             translation_project=translation_project).latest().as_html()
     except Submission.DoesNotExist:
         return ''
+
 
 def make_language_item(request, translation_project):
     href = '/%s/%s/' % (translation_project.language.code, translation_project.project.code)
@@ -70,23 +72,33 @@ def make_language_item(request, translation_project):
         'tooltip': _('%(percentage)d%% complete',
                      {'percentage': projectstats['translatedpercentage']}),
     }
+
     errors = projectstats.get('errors', 0)
+
     if errors:
         info['errortooltip'] = ungettext('Error reading %d file', 'Error reading %d files', errors, errors)
+
     info.update(stats_descriptions(projectstats))
+
     return info
 
 
 def project_language_index(request, project_code):
     """page listing all languages added to project"""
     project = get_object_or_404(Project, code=project_code)
-    request.permissions = get_matching_permissions(get_profile(request.user), project.directory)
+    request.permissions = get_matching_permissions(
+            get_profile(request.user), project.directory
+    )
+
     if not check_permission('view', request):
         raise PermissionDenied
 
     translation_projects = project.translationproject_set.all()
-    items = [make_language_item(request, translation_project) for translation_project in translation_projects.iterator()]
+
+    items = [make_language_item(request, translation_project) \
+            for translation_project in translation_projects.iterator()]
     items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
+
     languagecount = len(translation_projects)
     totals = add_percentages(project.getquickstats())
     average = totals['translatedpercentage']
@@ -111,79 +123,118 @@ def project_language_index(request, project_code):
                               'fuzzy': _('Translations need to be checked (they are marked fuzzy)'),
                               'untranslated': _('Untranslated')},
     }
+
     return render_to_response('project/project.html', templatevars, context_instance=RequestContext(request))
 
 
 class TranslationProjectFormSet(BaseModelFormSet):
+
     def save_existing(self, form, instance, commit=True):
-        result = super(TranslationProjectFormSet, self).save_existing(form, instance, commit)
+        result = super(TranslationProjectFormSet, self).\
+                save_existing(form, instance, commit)
         form.process_extra_fields()
+
         return result
+
 
     def save_new(self, form, commit=True):
         result = super(TranslationProjectFormSet, self).save_new(form, commit)
         form.process_extra_fields()
+
         return result
+
 
 def project_admin(request, project_code):
     """adding and deleting project languages"""
     current_project = Project.objects.get(code=project_code)
     request.permissions = get_matching_permissions(get_profile(request.user), current_project.directory)
+
     if not check_permission('administrate', request):
         raise PermissionDenied(_("You do not have rights to administer this project."))
 
     template_translation_project = current_project.get_template_translationproject()
 
+
     class TranslationProjectForm(forms.ModelForm):
+
         if template_translation_project is not None:
-            update = forms.BooleanField(required=False, label=_("Update from templates"))
+            update = forms.BooleanField(required=False,
+                                        label=_("Update from templates"))
+
         #FIXME: maybe we can detect if initialize is needed to avoid
         # displaying it when not relevant
         #initialize = forms.BooleanField(required=False, label=_("Initialize"))
-        project = forms.ModelChoiceField(queryset=Project.objects.filter(pk=current_project.pk),
-                                         initial=current_project.pk, widget=forms.HiddenInput)
-        language = LiberalModelChoiceField(label=_("Language"),
-                                          queryset=Language.objects.exclude(translationproject__project=current_project))
+
+        project = forms.ModelChoiceField(
+                queryset=Project.objects.filter(pk=current_project.pk),
+                initial=current_project.pk, widget=forms.HiddenInput
+        )
+        language = LiberalModelChoiceField(
+                label=_("Language"),
+                queryset=Language.objects.exclude(
+                    translationproject__project=current_project)
+                )
+
+
         class Meta:
             prefix = "existing_language"
             model = TranslationProject
 
+
         def process_extra_fields(self):
+
             if self.instance.pk is not None:
+
                 if self.cleaned_data.get('initialize', None):
                     self.instance.initialize()
 
-                if self.cleaned_data.get('update', None) or not self.instance.stores.count():
+                if self.cleaned_data.get('update', None) \
+                        or not self.instance.stores.count():
                     self.instance.update_from_templates()
 
-    queryset = TranslationProject.objects.filter(project=current_project).order_by('pootle_path')
+    queryset = TranslationProject.objects.filter(
+            project=current_project).order_by('pootle_path')
+
     model_args = {}
     model_args['project'] = {'code': current_project.code,
                              'name': current_project.fullname}
     model_args['formid'] = "translation-projects"
     model_args['submitname'] = "changetransprojects"
+
     link = lambda instance: '<a href="%s">%s</a>' % (l(instance.pootle_path + 'admin_permissions.html'), instance.language)
-    return util.edit(request, 'project/project_admin.html', TranslationProject, model_args, link, linkfield="language",
-                     queryset=queryset, can_delete=True, form=TranslationProjectForm, formset=TranslationProjectFormSet)
+
+    return util.edit(request, 'project/project_admin.html', TranslationProject,
+            model_args, link, linkfield="language", queryset=queryset,
+            can_delete=True, form=TranslationProjectForm,
+            formset=TranslationProjectFormSet)
+
 
 def project_admin_permissions(request, project_code):
     # Check if the user can access this view
     project = get_object_or_404(Project, code=project_code)
     request.permissions = get_matching_permissions(get_profile(request.user),
                                                    project.directory)
+
     if not check_permission('administrate', request):
-        raise PermissionDenied(_("You do not have rights to administer this project."))
+        raise PermissionDenied(_("You do not have rights to administer "
+                                 "this project."))
 
     template_vars = {
         "project": project,
         "directory": project.directory,
         "feed_path": project.pootle_path[1:],
     }
-    return admin_permissions(request, project.directory, "project/admin_permissions.html", template_vars)
+
+    return admin_permissions(request, project.directory,
+                             "project/admin_permissions.html", template_vars)
+
 
 def projects_index(request):
     """page listing all projects"""
-    request.permissions = get_matching_permissions(get_profile(request.user), Directory.objects.root)
+
+    request.permissions = get_matching_permissions(get_profile(request.user),
+                                                   Directory.objects.root)
+
     if not check_permission('view', request):
         raise PermissionDenied
 
@@ -198,4 +249,6 @@ def projects_index(request):
                               'fuzzy': _('Translations need to be checked (they are marked fuzzy)'),
                               'untranslated': _('Untranslated')},
         }
-    return render_to_response('project/projects.html', templatevars, RequestContext(request))
+
+    return render_to_response('project/projects.html', templatevars,
+                              RequestContext(request))

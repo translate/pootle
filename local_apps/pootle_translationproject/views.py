@@ -56,7 +56,9 @@ from pootle_store.views import translate_page
 from pootle_statistics.models import Submission
 from pootle_profile.models import get_profile
 
+
 class TPTranslateView(BaseView):
+
     def GET(self, template_vars, request, translation_project, directory):
         template_vars = super(TPTranslateView, self).GET(template_vars, request)
         request.permissions = get_matching_permissions(get_profile(request.user), translation_project.directory)
@@ -74,13 +76,17 @@ class TPTranslateView(BaseView):
             'feed_path': directory.pootle_path[1:],
             'topstats': gentopstats_translation_project(translation_project),
             })
+
         return template_vars
+
 
 @get_translation_project
 @set_request_context
 def tp_translate(request, translation_project, dir_path):
+
     request.permissions = get_matching_permissions(get_profile(request.user),
                                                    translation_project.directory)
+
     if not check_permission("view", request):
         raise PermissionDenied(_("You do not have rights to access translation mode."))
 
@@ -88,51 +94,72 @@ def tp_translate(request, translation_project, dir_path):
 
     view_obj = TPTranslateView(forms=dict(upload=UploadHandler,
                                           update=UpdateHandler))
+
     return render_to_response("translation_project/tp_translate.html",
-                         view_obj(request, translation_project, directory),
-                              context_instance=RequestContext(request))
+            view_obj(request, translation_project, directory),
+            context_instance=RequestContext(request))
 
 
 class TPReviewView(BaseView):
+
     def GET(self, template_vars, request, translation_project, directory):
         template_vars = super(TPReviewView, self).GET(template_vars, request)
-        request.permissions = get_matching_permissions(get_profile(request.user), translation_project.directory)
+
+        request.permissions = get_matching_permissions(
+                get_profile(request.user), translation_project.directory)
         project  = translation_project.project
         language = translation_project.language
         is_terminology = project.is_terminology
+
+        children = get_children(request, translation_project, directory,
+                                links_required='review')
+        navitems = [navbar_dict.make_directory_navbar_dict(
+            request, directory, links_required='review',
+            terminology=is_terminology)]
 
         template_vars.update({
             'translation_project': translation_project,
             'project': project,
             'language': language,
             'directory': directory,
-            'children': get_children(request, translation_project, directory, links_required='review'),
-            'navitems': [navbar_dict.make_directory_navbar_dict(request, directory, links_required='review', terminology=is_terminology)],
+            'children': children,
+            'navitems': navitems,
             'topstats': gentopstats_translation_project(translation_project),
             'feed_path': directory.pootle_path[1:],
             })
+
         return template_vars
+
 
 @get_translation_project
 @set_request_context
 def tp_review(request, translation_project, dir_path):
-    request.permissions = get_matching_permissions(get_profile(request.user),
-                                                   translation_project.directory)
+
+    request.permissions = get_matching_permissions(
+            get_profile(request.user),
+            translation_project.directory)
+
     if not check_permission("view", request):
         raise PermissionDenied(_("You do not have rights to access review mode."))
 
-    directory = get_object_or_404(Directory, pootle_path=translation_project.directory.pootle_path + dir_path)
+    directory = get_object_or_404(
+            Directory,
+            pootle_path=translation_project.directory.pootle_path + dir_path)
+
     view_obj = TPReviewView({})
+
     return render_to_response("translation_project/tp_review.html",
                               view_obj(request, translation_project, directory),
                               context_instance=RequestContext(request))
+
 
 @get_translation_project
 @set_request_context
 @util.has_permission('administrate')
 def tp_admin_permissions(request, translation_project):
-    language               = translation_project.language
-    project                = translation_project.project
+
+    language = translation_project.language
+    project = translation_project.project
 
     template_vars = {
         'translation_project': translation_project,
@@ -141,13 +168,17 @@ def tp_admin_permissions(request, translation_project):
         "directory": translation_project.directory,
         "feed_path": translation_project.pootle_path[1:],
     }
-    return admin_permissions(request, translation_project.directory, "translation_project/tp_admin_permissions.html",
+
+    return admin_permissions(request, translation_project.directory,
+                             "translation_project/tp_admin_permissions.html",
                              template_vars)
 
 
 class StoreFormset(BaseModelFormSet):
+
     def save_existing_objects(self, commit=True):
         result = super(StoreFormset, self).save_existing_objects(commit)
+
         for store in self.deleted_objects:
             #hackish: we disabled deleting files when field is
             # deleted except for when value is being overwritten, but
@@ -155,22 +186,29 @@ class StoreFormset(BaseModelFormSet):
             # system files should be deleted
             if store.file:
                 store.file.storage.delete(store.file.name)
+
         return result
+
 
 @get_translation_project
 @set_request_context
 @util.has_permission('administrate')
 def tp_admin_files(request, translation_project):
+
     queryset = translation_project.stores.all()
+
     if 'template_update' in request.POST:
         translation_project.update_from_templates()
         request.POST = {}
 
     if 'scan_files' in request.POST:
         translation_project.scan_files()
+
         for store in translation_project.stores.exclude(file='').iterator():
             store.sync(update_translation=True)
-            store.update(update_structure=True, update_translation=True, conservative=False)
+            store.update(update_structure=True, update_translation=True,
+                         conservative=False)
+
         request.POST = {}
 
     model_args = {
@@ -183,14 +221,20 @@ def tp_admin_files(request, translation_project):
         'project': translation_project.project,
         'directory': translation_project.directory,
         }
-    link = lambda instance: '<a href="%s/translate">%s</a>' % (
-        l(instance.pootle_path), instance.pootle_path[len(translation_project.pootle_path):])
 
-    return util.edit(request, 'translation_project/tp_admin_files.html', Store, model_args,
-                     link, linkfield='pootle_path', queryset=queryset,
-                     formset=StoreFormset, can_delete=True, extra=0)
+    link = lambda instance: '<a href="%s/translate">%s</a>' % (
+            l(instance.pootle_path),
+            instance.pootle_path[len(translation_project.pootle_path):]
+    )
+
+    return util.edit(request, 'translation_project/tp_admin_files.html',
+                     Store, model_args, link, linkfield='pootle_path',
+                     queryset=queryset, formset=StoreFormset,
+                     can_delete=True, extra=0)
+
 
 class ProjectIndexView(BaseView):
+
     def GET(self, template_vars, request, translation_project, directory):
         template_vars = super(ProjectIndexView, self).GET(template_vars, request)
         request.permissions = get_matching_permissions(get_profile(request.user), translation_project.directory)
@@ -211,74 +255,97 @@ class ProjectIndexView(BaseView):
             'topstats': gentopstats_translation_project(translation_project),
             'feed_path': directory.pootle_path[1:],
             })
+
         return template_vars
+
 
 @get_translation_project
 @set_request_context
 def tp_overview(request, translation_project, dir_path):
     request.permissions = get_matching_permissions(get_profile(request.user),
                                                    translation_project.directory)
+
     if not check_permission("view", request):
         raise PermissionDenied(_("You do not have rights to access this translation project."))
+
     directory = get_object_or_404(Directory, pootle_path=translation_project.directory.pootle_path + dir_path)
     view_obj = ProjectIndexView(forms=dict(upload=UploadHandler,
                                            update=UpdateHandler))
+
     return render_to_response("translation_project/tp_overview.html",
                               view_obj(request, translation_project, directory),
                               context_instance=RequestContext(request))
 
+
 @get_translation_project
 @set_request_context
 def export_zip(request, translation_project, file_path):
+
     if not check_permission("archive", request):
         raise PermissionDenied(_('You do not have the right to create ZIP archives.'))
+
     translation_project.sync()
     pootle_path = translation_project.pootle_path + (file_path or '')
 
     archivename = '%s-%s' % (translation_project.project.code, translation_project.language.code)
+
     if file_path.endswith('/'):
         file_path = file_path[:-1]
 
     if file_path:
         archivename += '-' + file_path.replace('/', '-')
+
     archivename += '.zip'
     export_path = os.path.join('POOTLE_EXPORT', translation_project.real_path, archivename)
     abs_export_path = absolute_real_path(export_path)
 
     key = iri_to_uri("%s:export_zip" % pootle_path)
     last_export = cache.get(key)
+
     if not (last_export and last_export == translation_project.get_mtime() and os.path.isfile(abs_export_path)):
         ensure_target_dir_exists(abs_export_path)
 
         stores = Store.objects.filter(pootle_path__startswith=pootle_path).exclude(file='')
         translation_project.get_archive(stores, abs_export_path)
         cache.set(key, translation_project.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
+
     return redirect('/export/' + export_path)
 
+
 def get_children(request, translation_project, directory, links_required=None):
+
     is_terminology = translation_project.project.is_terminology
+
     return [item_dict.make_directory_item(request, child_dir, links_required=links_required, terminology=is_terminology)
             for child_dir in directory.child_dirs.iterator()] + \
            [item_dict.make_store_item(request, child_store, links_required=links_required, terminology=is_terminology)
             for child_store in directory.child_stores.iterator()]
 
+
 def unix_to_host_path(p):
     return os.sep.join(p.split('/'))
 
+
 def host_to_unix_path(p):
     return '/'.join(p.split(os.sep))
+
+
 
 def get_upload_path(translation_project, relative_root_dir, local_filename):
     """gets the path of a translation file being uploaded securely,
     creating directories as neccessary"""
     dir_path = os.path.join(translation_project.real_path, unix_to_host_path(relative_root_dir))
+
     return relative_real_path(os.path.join(dir_path, local_filename))
+
 
 def get_local_filename(translation_project, upload_filename):
     base, ext = os.path.splitext(upload_filename)
     new_ext = translation_project.project.localfiletype
+
     if new_ext == 'po' and translation_project.is_template_project:
         new_ext = 'pot'
+
     local_filename =  '%s.%s' % (base, new_ext)
 
     # check if name is valid
@@ -296,6 +363,7 @@ def get_local_filename(translation_project, upload_filename):
                               'filetype': translation_project.project.localfiletype,
                               }))
     return local_filename
+
 
 def unzip_external(request, directory, django_file, overwrite):
     # Make a temporary directory to hold a zip file and its unzipped contents
@@ -353,6 +421,7 @@ def unzip_external(request, directory, django_file, overwrite):
         os.unlink(tempzipname)
         shutil.rmtree(tempdir)
 
+
 def unzip_python(request, directory, django_file, overwrite):
     import zipfile
     django_file.seek(0)
@@ -385,6 +454,7 @@ def unzip_python(request, directory, django_file, overwrite):
     finally:
         archive.close()
 
+
 def upload_archive(request, directory, django_file, overwrite):
     # First we try to use "unzip" from the system, otherwise fall back to using
     # the slower zipfile module
@@ -392,6 +462,7 @@ def upload_archive(request, directory, django_file, overwrite):
         unzip_external(request, directory, django_file, overwrite)
     except:
         unzip_python(request, directory, django_file, overwrite)
+
 
 def overwrite_file(request, relative_root_dir, django_file, upload_path):
     """overwrite with uploaded file"""
@@ -440,6 +511,7 @@ def overwrite_file(request, relative_root_dir, django_file, upload_path):
         #FIXME: maybe there is a faster way to do this?
         store.update(update_structure=True, update_translation=True, conservative=False, store=newstore)
         store.sync(update_structure=True, update_translation=True, conservative=False)
+
 
 def upload_file(request, directory, django_file, overwrite, store=None):
     translation_project = request.translation_project
@@ -516,69 +588,109 @@ def upload_file(request, directory, django_file, overwrite, store=None):
     store.mergefile(newstore, get_profile(request.user), suggestions=suggestions, notranslate=notranslate,
                     allownewstrings=allownewstrings, obsoletemissing=allownewstrings)
 
+
 class UpdateHandler(view_handler.Handler):
+
     actions = [('do_update', _('Update all from version control'))]
+
 
     class Form(forms.Form):
         pass
+
+
+    @classmethod
+    def must_display(cls, request, *args, **kwargs):
+        return check_permission('commit', request) and \
+            versioncontrol.hasversioning(
+                    request.translation_project.abs_real_path)
+
 
     def do_update(self, request, translation_project, directory):
         translation_project.update_project(request)
         return {}
 
-    @classmethod
-    def must_display(cls, request, *args, **kwargs):
-        return check_permission('commit', request) and \
-            versioncontrol.hasversioning(request.translation_project.abs_real_path)
 
 class UploadHandler(view_handler.Handler):
+
     actions = [('do_upload', _('Upload'))]
 
     @classmethod
     def must_display(cls, request, *args, **kwargs):
-        return check_permission('translate', request) or check_permission('suggest', request) or check_permission('overwrite', request)
+        return check_permission('translate', request) or \
+               check_permission('suggest', request) or \
+               check_permission('overwrite', request)
+
 
     def __init__(self, request, data=None, files=None):
+
         choices = []
+
         if check_permission('overwrite', request):
-            choices.append(('overwrite', _("Overwrite the current file if it exists")))
+            choices.append(('overwrite',
+                _("Overwrite the current file if it exists")))
+
         if check_permission('translate', request):
-            choices.append(('merge', _("Merge the file with the current file and turn conflicts into suggestions")))
+            choices.append(('merge',
+                _("Merge the file with the current file and turn "
+                  "conflicts into suggestions")))
+
         if check_permission('suggest', request):
-            choices.append(('suggest', _("Add all new translations as suggestions")))
+            choices.append(('suggest',
+                _("Add all new translations as suggestions")))
 
         translation_project = request.translation_project
 
+
         class StoreFormField(forms.ModelChoiceField):
+
             def label_from_instance(self, instance):
                 return _(instance.pootle_path[len(translation_project.pootle_path):])
+
 
         class DirectoryFormField(forms.ModelChoiceField):
+
             def label_from_instance(self, instance):
                 return _(instance.pootle_path[len(translation_project.pootle_path):])
 
+
         class UploadForm(forms.Form):
+
             file = forms.FileField(required=True, label=_('File'))
             if check_permission('translate', request):
                 initial = 'merge'
             else:
                 initial = 'suggest'
-            overwrite = forms.ChoiceField(required=True, widget=forms.RadioSelect,
-                                          label='', choices=choices, initial=initial)
-            upload_to = StoreFormField(required=False, label=_('Upload to'),
-                                       queryset=translation_project.stores.all(),
-                                       help_text=_("Optionally select the file you want to merge with. If not specified, the uploaded file's name is used."))
-            upload_to_dir = DirectoryFormField(required=False, label=_('Upload to'),
-                              queryset=Directory.objects.filter(pootle_path__startswith=translation_project.pootle_path).exclude(pk=translation_project.directory.pk),
-                              help_text=_("Optionally select the file you want to merge with. If not specified, the uploaded file's name is used."))
+
+            overwrite = forms.ChoiceField(
+                    required=True, widget=forms.RadioSelect,
+                    label='', choices=choices, initial=initial)
+            upload_to = StoreFormField(
+                    required=False, label=_('Upload to'),
+                    queryset=translation_project.stores.all(),
+                    help_text=_("Optionally select the file you want to "
+                                "merge with. If not specified, the uploaded "
+                                "file's name is used."))
+
+            upload_to_dir = DirectoryFormField(
+                    required=False, label=_('Upload to'),
+                    queryset=Directory.objects.filter(
+                        pootle_path__startswith=translation_project.pootle_path).\
+                        exclude(pk=translation_project.directory.pk),
+                    help_text=_("Optionally select the file you want to "
+                                "merge with. If not specified, the uploaded "
+                                "file's name is used."))
 
 
         self.Form = UploadForm
+
         super(UploadHandler, self).__init__(request, data, files)
+
         self.form.allow_overwrite = check_permission('overwrite', request)
         self.form.title = _("Upload File")
 
+
     def do_upload(self, request, translation_project, directory):
+
         if self.form.is_valid() and 'file' in request.FILES:
             django_file = self.form.cleaned_data['file']
             overwrite = self.form.cleaned_data['overwrite']
@@ -586,16 +698,20 @@ class UploadHandler(view_handler.Handler):
             upload_to_dir = self.form.cleaned_data['upload_to_dir']
             translation_project.scan_files()
             oldstats = translation_project.getquickstats()
+
             # The URL relative to the URL of the translation project. Thus, if
             # directory.pootle_path == /af/pootle/foo/bar, then
             # relative_root_dir == foo/bar.
             if django_file.name.endswith('.zip'):
                 archive = True
                 target_directory = upload_to_dir or directory
-                upload_archive(request, target_directory, django_file, overwrite)
+                upload_archive(request, target_directory, django_file,
+                               overwrite)
             else:
                 archive = False
-                upload_file(request, directory, django_file, overwrite, store=upload_to)
+                upload_file(request, directory, django_file, overwrite,
+                            store=upload_to)
+
             translation_project.scan_files()
             newstats = translation_project.getquickstats()
 
@@ -607,9 +723,12 @@ class UploadHandler(view_handler.Handler):
                            submitter=get_profile(request.user))
             s.save()
 
-            post_file_upload.send(sender=translation_project, user=request.user, oldstats=oldstats,
-                                  newstats=newstats, archive=archive)
+            post_file_upload.send(
+                    sender=translation_project, user=request.user,
+                    oldstats=oldstats, newstats=newstats, archive=archive)
+
         return {'upload': self}
+
 
 @get_translation_project
 @set_request_context
