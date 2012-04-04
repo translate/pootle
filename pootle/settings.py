@@ -81,13 +81,6 @@ ADMIN_MEDIA_PREFIX = '/media/'
 # TODO: We should find a way to reset this for new installations.
 SECRET_KEY = '^&4$dlpce2_pnronsi289xd7-9ke10q_%wa@9srm@zaa!ig@1k'
 
-TEMPLATE_LOADERS = (
-    ('django.template.loaders.cached.Loader', (
-        'django.template.loaders.filesystem.Loader',
-        'django.template.loaders.app_directories.Loader',
-    )),
-)
-
 MIDDLEWARE_CLASSES = (
     'pootle_misc.middleware.baseurl.BaseUrlMiddleware', # resolves paths
     'django.middleware.transaction.TransactionMiddleware', # needs to be before anything that writes to the db
@@ -243,6 +236,20 @@ if not os.path.exists(tempfile.tempdir):
 TEMPLATE_DEBUG = DEBUG
 if TEMPLATE_DEBUG:
     TEMPLATE_CONTEXT_PROCESSORS += ("django.core.context_processors.debug",)
+
+if DEBUG or True:
+    TEMPLATE_LOADERS = (
+        'django.template.loaders.filesystem.Loader',
+        'django.template.loaders.app_directories.Loader',
+    )
+else:
+    # We should only enable caching with DEBUG = False
+    TEMPLATE_LOADERS = (
+        ('django.template.loaders.cached.Loader', (
+            'django.template.loaders.filesystem.Loader',
+            'django.template.loaders.app_directories.Loader',
+        )),
+    )
 
 if DEBUG:
     logging.basicConfig(
