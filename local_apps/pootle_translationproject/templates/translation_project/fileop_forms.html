@@ -22,7 +22,7 @@
 {% if update %}
 <div id="update" class="form" lang="{{ LANGUAGE_CODE }}">
     <h2>{% trans "Update from Version Control" %}</h2>
-    <p>{% trans "Use this option to update all the files in this area from the version control." %}</p>
+    <p>{% trans "Use this option to update all the files in this area from version control." %}</p>
     <form action="" method="post" class="vcs-update" name="updateform" enctype="multipart/form-data">
     {% csrf_token %}
     {{ update.as_p }}
