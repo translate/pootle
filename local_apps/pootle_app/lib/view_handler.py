@@ -33,7 +33,7 @@ class HandlerError(FormError):
 class View(object):
 
     def find_post_handler_action(self, request):
-        action_names = [action_name for action_name in self.handlers
+        action_names = [action_name for action_name in self.handlers \
                         if action_name in set(request.POST)]
 
         if len(action_names) == 1:
@@ -112,7 +112,7 @@ class Handler(object):
         output = u""
 
         for action in self.actions:
-            output += u'<input type="submit" name="%(action_name)s" '
+            output += u'<input type="submit" name="%(action_name)s" ' \
                       u'value="%(action_value)s" />' % \
                       {'action_name': action[0],
                        'action_value': unicode(action[1])}
