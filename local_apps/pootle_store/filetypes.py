@@ -57,6 +57,11 @@ def get_supported_formats():
         formats.append(('csv', _('Excel CSV'), csvfile, 'bilingual'))
     except ImportError:
         pass
+    try:
+        from translate.storage.mozilla_lang  import LangStore
+        formats.append(('lang', _('Mozilla .lang'), LangStore, 'bilingual'))
+    except ImportError:
+        pass
     # Monolingual formats
     try:
         from translate.storage.properties import javafile
