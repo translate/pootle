@@ -404,7 +404,7 @@ class TranslationProject(models.Model):
         self.scan_files()
 
     def commitpofile(self, request, store):
-        """commits an individual PO file to version control"""
+        """Commits an individual file to version control."""
         #FIXME: this is a view what is it doing here
         if not check_permission("commit", request):
             raise PermissionDenied(_("You do not have rights to commit files here"))
