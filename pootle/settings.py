@@ -237,7 +237,7 @@ TEMPLATE_DEBUG = DEBUG
 if TEMPLATE_DEBUG:
     TEMPLATE_CONTEXT_PROCESSORS += ("django.core.context_processors.debug",)
 
-if DEBUG or True:
+if DEBUG:
     TEMPLATE_LOADERS = (
         'django.template.loaders.filesystem.Loader',
         'django.template.loaders.app_directories.Loader',
