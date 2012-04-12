@@ -1,8 +1,4 @@
 #!/usr/bin/python
-import sys
-import os
-import os.path
-import subprocess
 
 import logging
 
