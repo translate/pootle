@@ -403,19 +403,18 @@ class TranslationProject(models.Model):
 
         self.scan_files()
 
-    def commitpofile(self, request, store):
-        """Commits an individual file to version control."""
-        #FIXME: this is a view what is it doing here
-        if not check_permission("commit", request):
-            raise PermissionDenied(_("You do not have rights to commit files here"))
+    def commitpofile(self, user, store):
+        """Commits an individual file to version control.
 
+        This does not do permission checking.
+        """
         store.sync(update_structure=False, update_translation=True, conservative=True)
         stats = store.getquickstats()
-        author = request.user.username
+        author = user.username
         message = stats_message("Commit from %s by user %s." % (settings.TITLE, author), stats)
         # Try to append email as well, since some VCS does not allow omitting it (ie. Git).
-        if request.user.is_authenticated() and len(request.user.email):
-            author += " <%s>" % request.user.email
+        if user.is_authenticated() and len(user.email):
+            author += " <%s>" % user.email
 
         from pootle.scripts import hooks
         try:
@@ -430,10 +429,10 @@ class TranslationProject(models.Model):
             from translate.storage import versioncontrol
             for file in filestocommit:
                 versioncontrol.commitfile(file, message=message, author=author)
-                request.user.message_set.create(message="Committed file: <em>%s</em>" % file)
+                user.message_set.create(message="Committed file: <em>%s</em>" % file)
         except Exception, e:
             logging.error(u"Failed to commit files: %s", e)
-            request.user.message_set.create(message="Failed to commit file: %s" % e)
+            user.message_set.create(message="Failed to commit file: %s" % e)
             success = False
         try:
             hooks.hook(self.project.code, "postcommit", store.file.path, success=success)
@@ -441,7 +440,7 @@ class TranslationProject(models.Model):
             #FIXME: We should not hide the exception - makes development impossible
             pass
         from pootle_app.models.signals import post_vc_commit
-        post_vc_commit.send(sender=self, store=store, stats=stats, user=request.user, success=success)
+        post_vc_commit.send(sender=self, store=store, stats=stats, user=user, success=success)
         return success
 
 

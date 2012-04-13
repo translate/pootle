@@ -111,7 +111,7 @@ def commit_file(request, translation_project, file_path):
         raise PermissionDenied(_("You do not have rights to commit files here"))
     pootle_path = translation_project.directory.pootle_path + file_path
     store = get_object_or_404(Store, pootle_path=pootle_path)
-    result = translation_project.commitpofile(request, store)
+    result = translation_project.commitpofile(request.user, store)
     return redirect(dispatch.show_directory(request, translation_project.directory.pootle_path))
 
 @get_translation_project
