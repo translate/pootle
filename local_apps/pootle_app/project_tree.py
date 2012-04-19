@@ -121,6 +121,14 @@ def split_files_and_dirs(ignored_files, ext, real_dir, file_filter):
     return files, dirs
 
 def add_items(fs_items, db_items, create_db_item):
+    """Add/remove the database items to correspond to the filesystem.
+
+    :param fs_items: entries currently in the filesystem
+    :param db_items: entries currently in the database
+    :create_db_item: callable that will create a new db item with a given name
+    :return: list of all items, list of newly added items
+    :rtype: tuple
+    """
     items = []
     fs_items_set = set(fs_items)
     db_items_set = set(db_items)
