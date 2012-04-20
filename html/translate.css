@@ -819,7 +819,7 @@ li.check > a {
 
 .translate-buttons-block input.suggest
 {
-    display: none;
+/*    display: none;*/
 }
 
 table.suggest-mode .translate-buttons-block input.suggest
@@ -829,7 +829,7 @@ table.suggest-mode .translate-buttons-block input.suggest
 
 table.suggest-mode .translate-buttons-block input.submit
 {
-    display: none;
+/*    display: none;*/
 }
 
 .translate-fuzzy-block
@@ -888,7 +888,7 @@ table.suggest-mode .translate-fuzzy-block
 
 .switch-suggest-mode .suggest
 {
-    display: none;
+/*    display: none;*/
 }
 
 table.suggest-mode .switch-suggest-mode .suggest
@@ -898,7 +898,7 @@ table.suggest-mode .switch-suggest-mode .suggest
 
 table.suggest-mode .switch-suggest-mode .submit
 {
-    display: none;
+/*    display: none;*/
 }
 
 .translate-specialchars-block
