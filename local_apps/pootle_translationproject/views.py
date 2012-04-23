@@ -33,7 +33,7 @@ from django.forms.models import BaseModelFormSet
 from django import forms
 from django.utils.encoding import iri_to_uri
 
-from translate.storage import versioncontrol
+from pootle_misc.versioncontrol import hasversioning
 
 from pootle_misc.baseurl import redirect, l
 from pootle_app.models.permissions import get_matching_permissions, check_permission
@@ -601,8 +601,7 @@ class UpdateHandler(view_handler.Handler):
     @classmethod
     def must_display(cls, request, *args, **kwargs):
         return check_permission('commit', request) and \
-            versioncontrol.hasversioning(
-                    request.translation_project.abs_real_path)
+            hasversioning(request.translation_project.abs_real_path)
 
 
     def do_update(self, request, translation_project, directory):

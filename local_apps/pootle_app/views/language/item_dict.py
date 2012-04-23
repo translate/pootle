@@ -24,7 +24,7 @@ similar pages."""
 from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext
 
-from translate.storage import versioncontrol
+from pootle_misc.versioncontrol import hasversioning
 from pootle_app.models.permissions     import check_permission
 from pootle_store.models               import Store
 from pootle_app.views.language         import dispatch
@@ -207,7 +207,7 @@ def upload_link(request, path_obj):
             }
 
 def commit_link(request, path_obj):
-    if path_obj.abs_real_path and check_permission('commit', request) and versioncontrol.hasversioning(path_obj.abs_real_path):
+    if path_obj.abs_real_path and check_permission('commit', request) and hasversioning(path_obj.abs_real_path):
         link = dispatch.commit(request, path_obj)
         text = _('Commit to VCS')
         return {
@@ -218,7 +218,7 @@ def commit_link(request, path_obj):
         }
 
 def update_link(request, path_obj):
-    if path_obj.abs_real_path and check_permission('commit', request) and versioncontrol.hasversioning(path_obj.abs_real_path):
+    if path_obj.abs_real_path and check_permission('commit', request) and hasversioning(path_obj.abs_real_path):
         link = dispatch.update(request, path_obj)
         text = _('Update from VCS')
         return {
