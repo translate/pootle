@@ -31,7 +31,7 @@
         <div class="developer-comments" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}"{% if unit.locations %}title="{{ unit.locations }}"{% endif %}>{{ unit.developer_comment|urlize|linebreaks }}</div>
         {% endif %}
         {% if unit.developer_extra %}
-        <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Comments:" %}</div>
+        <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Explanatory notes:" %}</div>
         <div class="developer-comments" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}">{{ unit.developer_extra|urlize|linebreaks }}</div>
         {% endif %}
       </div>
