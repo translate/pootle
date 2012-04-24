@@ -229,7 +229,8 @@ def update_link(request, path_obj):
         }
 
 def update_all_link(request, path_obj):
-    if check_permission('commit', request): #FIXME: also check if directory under VCS control
+    # Directory.get_real_path() doesn't give an absolute path :-(
+    if check_permission('commit', request) and hasversioning(path_obj.get_real_path()):
         link = 'javascript:alert("Not implemented")' #FIXME: provide actual link
         text = _('Update from VCS')
         return {
@@ -259,7 +260,7 @@ def store_review_links(request, path_obj):
 
 def directory_translate_links(request, path_obj):
     """returns a list of links for directory items in translate tab"""
-    return _gen_link_list(request, path_obj, [quick_link, translate_all_link, upload_link, zip_link, update_all_link])
+    return _gen_link_list(request, path_obj, [quick_link, translate_all_link, upload_link, zip_link])
 
 def directory_review_links(request, path_obj):
     """returns a list of links for directory items in review tab"""
