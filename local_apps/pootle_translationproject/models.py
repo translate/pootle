@@ -258,8 +258,16 @@ class TranslationProject(models.Model):
 
             convert_template(self, store, new_pootle_path, new_path, monolingual)
 
-        self.scan_files()
+        all_files, new_files = self.scan_files()
         #self.update(conservative=False)
+
+        from pootle_misc.versioncontrol import hasversioning
+        project_path = self.project.get_real_path()
+        if new_files and hasversioning(real_path):
+            from translate.storage import versioncontrol
+            vcs = versioncontrol.get_versioned_object(real_path)
+            output = vcs.add([s.abs_real_path for s in new_files],
+                    "New files added from %s based on templates" % (settings.TITLE))
 
         if pootle_path is None:
             newstats = self.getquickstats()
