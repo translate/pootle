@@ -130,6 +130,7 @@ def add_items(fs_items, db_items, create_db_item):
     :rtype: tuple
     """
     items = []
+    new_items = []
     fs_items_set = set(fs_items)
     db_items_set = set(db_items)
 
@@ -145,28 +146,33 @@ def add_items(fs_items, db_items, create_db_item):
     for name in items_to_create:
         item = create_db_item(name)
         items.append(item)
+        new_items.append(item)
         try:
             item.save()
         except Exception, e:
             logging.error('Error while adding %s:\n%s', item, e)
-    return items
+    return items, new_items
 
 def add_files(translation_project, ignored_files, ext, real_dir, db_dir, file_filter=lambda _x: True):
     files, dirs = split_files_and_dirs(ignored_files, ext, real_dir, file_filter)
     existing_stores = dict((store.name, store) for store in db_dir.child_stores.exclude(file='').iterator())
     existing_dirs = dict((dir.name, dir) for dir in db_dir.child_dirs.iterator())
-    add_items(files, existing_stores,
+    project_path = translation_project.project.get_real_path()
+    files, new_files = add_items(files, existing_stores,
               lambda name: Store(file=relative_real_path(os.path.join(real_dir, name)),
                                  parent=db_dir,
                                  name=name,
                                  translation_project=translation_project))
 
-    db_subdirs = add_items(dirs, existing_dirs,
+    db_subdirs, new_db_subdirs = add_items(dirs, existing_dirs,
                            lambda name: Directory(name=name, parent=db_dir))
 
     for db_subdir in db_subdirs:
         fs_subdir = os.path.join(real_dir, db_subdir.name)
-        add_files(translation_project, ignored_files, ext, fs_subdir, db_subdir, file_filter)
+        _files, _new_files = add_files(translation_project, ignored_files, ext, fs_subdir, db_subdir, file_filter)
+        files += _files
+        new_files += _new_files
+    return files, new_files
 
 def find_lang_postfix(filename):
     """finds the language code at end of a filename"""

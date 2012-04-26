@@ -278,15 +278,22 @@ class TranslationProject(models.Model):
             ext = os.extsep + self.project.get_template_filtetype()
 
         from pootle_app.project_tree import add_files, match_template_filename, direct_language_match_filename
+        all_files = []
+        new_files = []
         if self.file_style == 'gnu':
             if self.pootle_path.startswith('/templates/'):
-                add_files(self, ignored_files, ext, self.abs_real_path, self.directory,
+                all_files, new_files = add_files(self,
+                          ignored_files,
+                          ext,
+                          self.abs_real_path,
+                          self.directory,
                           lambda filename: match_template_filename(self.project, filename))
             else:
-                add_files(self, ignored_files, ext, self.abs_real_path, self.directory,
+                all_files, new_files = add_files(self, ignored_files, ext, self.abs_real_path, self.directory,
                           lambda filename: direct_language_match_filename(self.language.code, filename))
         else:
-            add_files(self, ignored_files, ext, self.abs_real_path, self.directory)
+            all_files, new_files = add_files(self, ignored_files, ext, self.abs_real_path, self.directory)
+        return all_files, new_files
 
     def _get_indexer(self):
         if self.non_db_state.indexer is None and self.non_db_state._indexing_enabled:
