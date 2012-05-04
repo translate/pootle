@@ -34,7 +34,7 @@ from pootle import depcheck
 
 from pootle_app.views.admin.util import user_is_admin
 from pootle_misc.aggregate import sum_column
-from pootle_app.models import Suggestion as SuggestiontStat
+from pootle_app.models import Suggestion as SuggestionStat
 from pootle_store.models import Unit, Suggestion
 from pootle_profile.models import PootleProfile
 from pootle_store.util import TRANSLATED
@@ -159,7 +159,7 @@ def server_stats():
         result['user_count'] = max(User.objects.filter(is_active=True).count()-2, 0)
         # 'default' and 'nobody' might be counted
         # FIXME: the special users should not be retuned with is_active
-        result['submission_count'] = Submission.objects.count() + SuggestiontStat.objects.count()
+        result['submission_count'] = Submission.objects.count() + SuggestionStat.objects.count()
         result['pending_count'] = Suggestion.objects.count()
         cache.set("server_stats", result, 86400)
     _format_numbers(result)
