@@ -33,13 +33,12 @@ from django.utils.translation import ungettext
 from django.utils.translation.trans_real import parse_accept_lang_header
 from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from django.core.cache import cache
-from django.utils import simplejson
 from django.views.decorators.cache import never_cache
 from django.utils.encoding import iri_to_uri
 
 from pootle_misc.baseurl import redirect
 from pootle_app.models.permissions import get_matching_permissions, check_permission, check_profile_permission
-from pootle_misc.util import paginate, ajax_required
+from pootle_misc.util import paginate, ajax_required, jsonify
 from pootle_profile.models import get_profile
 from pootle_translationproject.forms import make_search_form
 from pootle_statistics.models import Submission
@@ -50,14 +49,6 @@ from pootle_store.forms import unit_form_factory, highlight_whitespace
 from pootle_store.templatetags.store_tags import find_altsrcs, get_sugg_list, highlight_diffs, pluralize_source, pluralize_target
 from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED, absolute_real_path
 from pootle_store.signals import translation_submitted
-
-
-def jsonify(json):
-    if settings.DEBUG:
-        indent = 4
-    else:
-        indent = None
-    return simplejson.dumps(json, indent=indent)
 
 
 def _common_context(request, translation_project, permission_codes):

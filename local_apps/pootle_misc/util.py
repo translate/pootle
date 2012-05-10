@@ -23,6 +23,7 @@ import logging
 from django.core.cache import cache
 from django.conf import settings
 from django.core.paginator import Paginator
+from django.utils import simplejson
 from django.utils.encoding import iri_to_uri
 from django.http import HttpResponseBadRequest
 
@@ -94,6 +95,15 @@ def add_percentages(quick_stats):
     quick_stats['struntranslatedpercentage'] = 100 - quick_stats['strtranslatedpercentage'] - quick_stats['strfuzzypercentage']
 
     return quick_stats
+
+
+def jsonify(json):
+    if settings.DEBUG:
+        indent = 4
+    else:
+        indent = None
+    return simplejson.dumps(json, indent=indent)
+
 
 def ajax_required(f):
     """
