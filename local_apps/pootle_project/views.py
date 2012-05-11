@@ -37,7 +37,6 @@ from pootle_app.views.language.view import get_stats_headings
 from pootle_app.views.language.item_dict import add_percentages, stats_descriptions
 from pootle.i18n.gettext import tr_lang
 from pootle_app.views.top_stats import gentopstats_project, gentopstats_root
-from pootle_app.views import pagelayout
 from pootle_language.models import Language
 from pootle_translationproject.models import TranslationProject
 from pootle_app.views.admin import util
@@ -116,7 +115,6 @@ def project_language_index(request, project_code):
         'description': project.description,
         'adminlink': _('Admin'),
         'languages': items,
-        'instancetitle': pagelayout.get_title(),
         'topstats': topstats,
         'statsheadings': get_stats_headings(),
         'translationlegend': {'translated': _('Translations are complete'),
@@ -244,7 +242,6 @@ def projects_index(request):
         'projectlink': _('Projects'),
         'projects': getprojects(request),
         'topstats': topstats,
-        'instancetitle': pagelayout.get_title(),
         'translationlegend': {'translated': _('Translations are complete'),
                               'fuzzy': _('Translations need to be checked (they are marked fuzzy)'),
                               'untranslated': _('Untranslated')},

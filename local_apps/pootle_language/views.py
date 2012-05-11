@@ -27,7 +27,6 @@ from django.core.exceptions import PermissionDenied
 from pootle_app.views.language.view import get_stats_headings
 from pootle_misc.util import nice_percentage, add_percentages
 from pootle_app.views.language.item_dict import  stats_descriptions
-from pootle_app.views import pagelayout
 from pootle_app.views.top_stats import gentopstats_language
 from pootle_language.models import Language
 from pootle_statistics.models import Submission
@@ -96,7 +95,6 @@ def language_index(request, language_code):
         'projects': items,
         'statsheadings': get_stats_headings(),
         'topstats': topstats,
-        'instancetitle': pagelayout.get_title(),
         }
     return render_to_response("language/language_index.html", templatevars, context_instance=RequestContext(request))
 

@@ -20,6 +20,7 @@
 
 import locale
 
+from django.conf import settings
 from django.utils.translation import ugettext as _
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -31,7 +32,6 @@ from pootle_statistics.models import Submission
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_app.models.permissions import get_matching_permissions, check_permission
-from pootle_app.views import pagelayout
 from pootle_app.views.top_stats import gentopstats_root
 from pootle.i18n.gettext import tr_lang
 from pootle_app.views.language.item_dict import add_percentages
@@ -93,7 +93,7 @@ def view(request):
     topstats = gentopstats_root()
 
     templatevars = {
-        'description': pagelayout.get_description(),
+        'description': _(settings.DESCRIPTION),
         'keywords': [
             'Pootle',
             'translate',
@@ -109,7 +109,6 @@ def view(request):
         'projectlink': _('Projects'),
         'projects': getprojects(request),
         'topstats': topstats,
-        'instancetitle': pagelayout.get_title(),
         'translationlegend': {'translated': _('Translations are complete'),
                               'fuzzy': _('Translations need to be checked (they are marked fuzzy)'),
                               'untranslated': _('Untranslated')},
