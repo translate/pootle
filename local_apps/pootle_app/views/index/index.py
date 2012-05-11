@@ -119,4 +119,11 @@ def view(request):
     templatevars['moreprojects'] = len(templatevars['projects']) >\
                                    len(visible_langs)
 
+    if request.user.is_superuser:
+        from pootle_misc.siteconfig import load_site_config
+        from pootle_app.forms import GeneralSettingsForm
+        siteconfig = load_site_config()
+        setting_form = GeneralSettingsForm(siteconfig)
+        templatevars['form'] = setting_form
+
     return render_to_response('index/index.html', templatevars, RequestContext(request))
