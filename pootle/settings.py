@@ -106,11 +106,11 @@ CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 ROOT_URLCONF = 'pootle.urls'
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-                               "django.contrib.auth.context_processors.auth",
-                               "django.core.context_processors.i18n",
-                               "django.core.context_processors.media",
-                               "django.core.context_processors.request",
-                               "pootle_misc.context_processors.pootle_context",
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.request",
+    "pootle_misc.context_processors.pootle_context",
 )
 
 TEMPLATE_DIRS = (
@@ -151,8 +151,6 @@ INSTALLED_APPS = (
 )
 
 AUTH_PROFILE_MODULE = "pootle_profile.PootleProfile"
-
-ENABLE_ALT_SRC = True
 
 # number of rows in top contributors table
 TOPSTAT_SIZE = 5

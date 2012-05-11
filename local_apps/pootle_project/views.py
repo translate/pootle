@@ -117,9 +117,6 @@ def project_language_index(request, project_code):
         'languages': items,
         'topstats': topstats,
         'statsheadings': get_stats_headings(),
-        'translationlegend': {'translated': _('Translations are complete'),
-                              'fuzzy': _('Translations need to be checked (they are marked fuzzy)'),
-                              'untranslated': _('Untranslated')},
     }
 
     return render_to_response('project/project.html', templatevars, context_instance=RequestContext(request))

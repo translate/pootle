@@ -32,7 +32,6 @@ def pootle_context(request):
             'CAN_REGISTER': settings.CAN_REGISTER,
             'CAN_CONTACT': settings.CAN_CONTACT and settings.CONTACT_EMAIL,
             'SCRIPT_NAME': settings.SCRIPT_NAME,
-            'MEDIA_URL': settings.MEDIA_URL,
             'POOTLE_VERSION': sver,
             'CACHE_TIMEOUT': settings.CACHE_MIDDLEWARE_SECONDS,
             'DEBUG': settings.DEBUG,
