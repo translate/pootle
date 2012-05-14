@@ -630,11 +630,14 @@ ul.errorlist
 }
 
 
-#edit_settings, #show_settings {
+#edit_settings,
+#show_settings
+{
     left: 3px;
     position: absolute;
     cursor: pointer;
 }
+
 html[dir="rtl"] #edit_settings,
 html[dir="rtl"] #show_settings
 {
