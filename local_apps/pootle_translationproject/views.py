@@ -84,9 +84,6 @@ class TPTranslateView(BaseView):
 @set_request_context
 def tp_translate(request, translation_project, dir_path):
 
-    request.permissions = get_matching_permissions(get_profile(request.user),
-                                                   translation_project.directory)
-
     if not check_permission("view", request):
         raise PermissionDenied(_("You do not have rights to access translation mode."))
 
@@ -134,10 +131,6 @@ class TPReviewView(BaseView):
 @get_translation_project
 @set_request_context
 def tp_review(request, translation_project, dir_path):
-
-    request.permissions = get_matching_permissions(
-            get_profile(request.user),
-            translation_project.directory)
 
     if not check_permission("view", request):
         raise PermissionDenied(_("You do not have rights to access review mode."))
@@ -262,9 +255,6 @@ class ProjectIndexView(BaseView):
 @get_translation_project
 @set_request_context
 def tp_overview(request, translation_project, dir_path):
-    request.permissions = get_matching_permissions(get_profile(request.user),
-                                                   translation_project.directory)
-
     if not check_permission("view", request):
         raise PermissionDenied(_("You do not have rights to access this translation project."))
 
