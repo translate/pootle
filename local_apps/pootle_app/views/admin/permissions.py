@@ -36,9 +36,6 @@ def admin_permissions(request, current_directory, template, context):
     content_type = get_permission_contenttype()
     permission_queryset = content_type.permission_set.exclude(codename__in=['add_directory', 'change_directory', 'delete_directory'])
 
-    context['submitname'] = 'changepermissions'
-    context['formid'] = 'permission-manage'
-
     project = context.get('project', None)
     language = context.get('language', None)
 

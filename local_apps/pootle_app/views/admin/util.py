@@ -184,24 +184,15 @@ def process_modelformset(request, model_class, queryset, **kwargs):
     return formset_class(queryset=objects.object_list), None, objects
 
 
-def edit(request, template, model_class,
-         model_args={'title': '', 'formid': '', 'submitname': ''},
+def edit(request, template, model_class, model_args={},
          link=None, linkfield='code', queryset=None, **kwargs):
 
     formset, msg, objects = process_modelformset(request, model_class, queryset=queryset, **kwargs)
-    #FIXME: title should differ depending on model_class
     template_vars = {
             "formset_text": mark_safe(form_set_as_table(formset, link, linkfield)),
             "formset": formset,
             "objects": objects,
-            "text": {
-                "home": _("Home"),
-                "title": model_args.get('title', ''),
-                "savechanges": _("Save Changes"),
-                "submitname": model_args['submitname'],
-                "formid": model_args['formid'],
-                "error_msg": msg,
-            }
+            "error_msg": msg,
     }
     #FIXME: this should be done through an extra context argument
     if 'translation_project' in model_args:

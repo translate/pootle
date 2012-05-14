@@ -165,8 +165,6 @@ def manage(request, translation_project, path=None):
         "project": translation_project.project,
         "source_language": translation_project.project.source_language,
         "directory": translation_project.directory,
-        'formid': 'terminology-manage',
-        'submitname': 'changeterminology',
         }
     if translation_project.project.is_terminology:
         if path:

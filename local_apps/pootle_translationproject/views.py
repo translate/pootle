@@ -205,9 +205,6 @@ def tp_admin_files(request, translation_project):
         request.POST = {}
 
     model_args = {
-        'title': _("Files"),
-        'submitname': "changestores",
-        'formid': "stores",
         'feed_path': translation_project.directory.pootle_path[1:],
         'translation_project': translation_project,
         'language': translation_project.language,

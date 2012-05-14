@@ -66,11 +66,6 @@ def view(request):
                 value = self.instance.treestyle
             return value
 
-
-    model_args = {}
-    model_args['title'] = _("Projects")
-    model_args['formid'] = "projects"
-    model_args['submitname'] = "changeprojects"
-    link = '/projects/%s/admin.html'
-    return util.edit(request, 'admin/admin_general_projects.html', Project, model_args, link,
-              form=ProjectForm, exclude='description', can_delete=True)
+    return util.edit(request, 'admin/admin_general_projects.html', Project,
+                     link='/projects/%s/admin.html',
+                     form=ProjectForm, exclude='description', can_delete=True)
