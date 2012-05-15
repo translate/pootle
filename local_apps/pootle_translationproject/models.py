@@ -263,9 +263,9 @@ class TranslationProject(models.Model):
 
         from pootle_misc.versioncontrol import hasversioning
         project_path = self.project.get_real_path()
-        if new_files and hasversioning(real_path):
+        if new_files and hasversioning(project_path):
             from translate.storage import versioncontrol
-            vcs = versioncontrol.get_versioned_object(real_path)
+            vcs = versioncontrol.get_versioned_object(project_path)
             output = vcs.add([s.abs_real_path for s in new_files],
                     "New files added from %s based on templates" % (settings.TITLE))
 
