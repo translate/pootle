@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2010,2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -20,10 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django import forms
-try:
-    from django.core.validators import EMPTY_VALUES
-except ImportError:
-    from django.forms.fields import EMPTY_VALUES
+from django.core.validators import EMPTY_VALUES
 
 
 class GroupedModelChoiceField(forms.ModelChoiceField):
