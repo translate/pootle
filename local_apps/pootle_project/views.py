@@ -24,11 +24,13 @@ from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.template import loader, RequestContext
 from django import forms
 from django.forms.models import BaseModelFormSet
 from django.core.exceptions import PermissionDenied
+from django.http import HttpResponse
 
+from pootle_misc.util import ajax_required, jsonify
 from pootle_misc.baseurl import l
 from pootle_misc.forms import LiberalModelChoiceField
 from pootle_project.models import Project
@@ -119,7 +121,40 @@ def project_language_index(request, project_code):
         'statsheadings': get_stats_headings(),
     }
 
+    if check_permission('administrate', request):
+        from pootle_project.forms import DescriptionForm
+        templatevars['form'] = DescriptionForm(instance=project)
+
     return render_to_response('project/project.html', templatevars, context_instance=RequestContext(request))
+
+
+@ajax_required
+def project_settings_edit(request, project_code):
+    project = get_object_or_404(Project, code=project_code)
+    request.permissions = get_matching_permissions(
+            get_profile(request.user), project.directory
+    )
+    if not check_permission('administrate', request):
+        raise PermissionDenied
+
+    from pootle_project.forms import DescriptionForm
+    form = DescriptionForm(request.POST, instance=project)
+    response = {}
+    if form.is_valid():
+        form.save()
+        response = {
+                "intro": form.cleaned_data['description'],
+                "valid": True,
+        }
+    context = {
+            "form": form,
+            "form_action": project.pootle_path + "edit_settings.html",
+    }
+    t = loader.get_template('admin/general_settings_form.html')
+    c = RequestContext(request, context)
+    response['form'] = t.render(c)
+
+    return HttpResponse(jsonify(response), mimetype="application/json")
 
 
 class TranslationProjectFormSet(BaseModelFormSet):
