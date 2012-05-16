@@ -29,6 +29,7 @@ js_common = Bundle(
 register('js_common', js_common)
 
 js_admin = Bundle(
+    'js/jquery/jquery.form.js',
     'js/admin.js',
     filters='rjsmin', output='js/admin.min.js')
 register('js_admin', js_admin)
