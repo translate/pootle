@@ -25,7 +25,7 @@ from django.shortcuts import render_to_response
 from django.template import loader, RequestContext
 from django.http import HttpResponse
 
-from pootle_misc.util import ajax_required, jsonify
+from pootle_misc.util import jsonify
 from pootle_misc.siteconfig import load_site_config
 from pootle_app.forms import GeneralSettingsForm
 
