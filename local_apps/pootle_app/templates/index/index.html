@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load i18n baseurl notification_tags cleanhtml %}
+{% load i18n baseurl notification_tags cleanhtml assets %}
 
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
@@ -113,9 +113,11 @@
 <script type="text/javascript">
 $(document).ready(function() {
   $(".intro, li.newsitem, .newsitem address, .newsitem blockcode, .newsitem blockquote, .newsitem :header, .newsitem p, .newsitem pre, .newsitem li, .newsitem dt, .newsitem dd, .newsitem ul, .newsitem ol, .newsitem dl, td.language").filter(":not([dir])").bidi();
-  $('#edit_settings, #show_settings').click(function(e) {
-    $('#header h1, .intro, .settings-container, #edit_settings, #show_settings').slideToggle();
-  });
 });
 </script>
+{% if user.is_superuser or request.permissions.administrate %}
+    {% assets "js_admin" %}
+    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+{% endif %}
 {% endblock %}
