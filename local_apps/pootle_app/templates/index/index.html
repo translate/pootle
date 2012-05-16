@@ -15,7 +15,7 @@
 {% if user.is_superuser %}
   {% include "admin/edit_links.html" %}
   <div class="settings-container" style="display: none;">
-    {% include "admin/general_settings_form.html" %}
+    {% include "admin/general_settings_form.html" with form_action="/admin/general.html" %}
   </div>
 {% endif %}
 <div class="intro">{{ description|safe|linebreaks|clean }}</div>

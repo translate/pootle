@@ -1,6 +1,6 @@
 {% load i18n baseurl %}
 <div id="settings">
-<form action="{{ '/admin/general.html'|l }}" method="post">
+<form action="{{ form_action|l }}" method="post">
   {% csrf_token %}
   {{ form.non_field_errors }}
     {% for field in form %}
