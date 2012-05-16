@@ -13,10 +13,7 @@
 
 {% block precontent %}
 {% if user.is_superuser %}
-  <a id="edit_settings" title="{% trans 'Edit' %}">
-    <img src="{{ "images/pencil.png"|m }}" /></a>
-  <a id="show_settings" title="{% trans 'Cancel' %}" style="display: none;">
-    <img src="{{ "images/reject.png"|m }}" /></a>
+  {% include "admin/edit_links.html" %}
   <div class="settings-container" style="display: none;">
     {% include "admin/general_settings_form.html" %}
   </div>
