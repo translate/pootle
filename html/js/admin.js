@@ -74,4 +74,34 @@ $(document).ready(function () {
       $("td." + className + " input").change();
   });
 
+
+  /* Initialise description data and form */
+  $('#edit_settings, #show_settings').click(function(e) {
+    _toggle_editing();
+  });
+  _init_description();
+
+  function _toggle_editing() {
+    $('.intro, .settings-container, #edit_settings, #show_settings').slideToggle();
+  }
+  function _init_description() {
+    $(".intro,").filter(":not([dir])").bidi();
+    $('.settings-container form').submit(function(e) {
+      e.preventDefault();
+      $.ajax({
+        url: $(this).attr('action'),
+        type: 'POST',
+        data: $(this).formSerialize(), //from jquery.form.js
+        success: function(data) {
+          $('.intro').html(data.intro);
+          $('.settings-container').html(data.form);
+          _init_description();
+          if (data.valid) {
+            _toggle_editing();
+          }
+        }
+      });
+    });
+  }
+
 });
