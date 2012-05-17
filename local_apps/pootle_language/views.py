@@ -37,8 +37,6 @@ from pootle_app.models.permissions import get_matching_permissions, check_permis
 from pootle_app.views.admin.permissions import admin_permissions
 from pootle_profile.models import get_profile
 
-def limit(query):
-    return query[:5]
 
 def get_last_action(translation_project):
     try:

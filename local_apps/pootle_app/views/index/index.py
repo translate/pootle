@@ -36,8 +36,6 @@ from pootle_app.views.top_stats import gentopstats_root
 from pootle.i18n.gettext import tr_lang
 from pootle_app.views.language.item_dict import add_percentages
 
-def limit(query):
-    return query[:5]
 
 def get_items(request, model, get_last_action, name_func):
 

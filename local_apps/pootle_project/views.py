@@ -49,10 +49,6 @@ from pootle_app.views.admin.permissions import admin_permissions
 from pootle_app.models import Directory
 
 
-def limit(query):
-    return query[:5]
-
-
 def get_last_action(translation_project):
     try:
         return Submission.objects.filter(
