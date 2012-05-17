@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008 Zuza Software Foundation
+# Copyright 2008-2010,2012 Zuza Software Foundation
 #
 # This file is part of translate.
 #
@@ -26,4 +26,5 @@ from pootle_app.admin import MyLanguageAdminForm
 @util.user_is_admin
 def view(request):
     return util.edit(request, 'admin/admin_general_languages.html', Language,
-                     link='/%s/admin.html', form=MyLanguageAdminForm, can_delete=True)
+                     link='/%s/admin.html', form=MyLanguageAdminForm,
+                     exclude='description', can_delete=True)
