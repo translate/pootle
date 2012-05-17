@@ -1,5 +1,5 @@
 {% extends "language_base.html" %}
-{% load i18n baseurl %}
+{% load i18n baseurl cleanhtml assets %}
 
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
@@ -9,6 +9,16 @@
 {% block bodyclass %}languageoverview{% endblock bodyclass %}
 
 {% block content %}
+{% if user.is_superuser or request.permissions.administrate %}
+  {% include "admin/edit_links.html" %}
+  <div class="settings-container" style="display: none;">
+    {% include "admin/general_settings_form.html" with form_action="edit_settings.html" %}
+  </div>
+{% endif %}
+<div class="intro">
+    {{ language.description|safe|linebreaks|clean }}
+</div>
+
 <div id="innernav" class="item-statistics">
   <h2 lang="{{ LANGUAGE_CODE }}">{{ language.stats }}</h2>
 </div>
@@ -47,3 +57,16 @@
 
 {% include "top_contributers_table.html" %}
 {% endblock postcontent %}
+
+{% block scripts_extra %}
+<script type="text/javascript">
+$(document).ready(function() {
+  $("td.stats-name").filter(":not([dir])").bidi();
+});
+</script>
+{% if user.is_superuser or request.permissions.administrate %}
+  {% assets "js_admin" %}
+    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+  {% endassets %}
+{% endif %}
+{% endblock %}

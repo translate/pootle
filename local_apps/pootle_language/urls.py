@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008 Zuza Software Foundation
+# Copyright 2008,2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -24,4 +24,5 @@ from django.conf.urls.defaults import *
 urlpatterns = patterns('pootle_language.views',
     (r'^(?P<language_code>[^/]*)/(index.html)?$', 'language_index'),
     (r'^(?P<language_code>[^/]*)/admin.html$', 'language_admin'),
+    (r'^(?P<language_code>[^/]*)/edit_settings.html$', 'language_settings_edit'),
 )

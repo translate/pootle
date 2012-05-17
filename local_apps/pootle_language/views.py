@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2004-2009 Zuza Software Foundation
+# Copyright 2004-2010,2012 Zuza Software Foundation
 #
 # This file is part of translate.
 #
@@ -21,11 +21,12 @@
 from django.shortcuts import get_object_or_404, render_to_response
 from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext
-from django.template import RequestContext
+from django.template import loader, RequestContext
 from django.core.exceptions import PermissionDenied
+from django.http import HttpResponse
 
 from pootle_app.views.language.view import get_stats_headings
-from pootle_misc.util import nice_percentage, add_percentages
+from pootle_misc.util import nice_percentage, add_percentages, jsonify, ajax_required
 from pootle_app.views.language.item_dict import  stats_descriptions
 from pootle_app.views.top_stats import gentopstats_language
 from pootle_language.models import Language
@@ -85,6 +86,7 @@ def language_index(request, language_code):
         'language': {
           'code': language.code,
           'name': tr_lang(language.fullname),
+          'description': language.description,
           'stats': ungettext('%(projects)d project, %(average)d%% translated',
                              '%(projects)d projects, %(average)d%% translated',
                              projectcount, {"projects": projectcount, "average": average}),
@@ -94,7 +96,40 @@ def language_index(request, language_code):
         'statsheadings': get_stats_headings(),
         'topstats': topstats,
         }
+    if check_permission('administrate', request):
+        from pootle_language.forms import DescriptionForm
+        templatevars['form'] = DescriptionForm(instance=language)
+
     return render_to_response("language/language_index.html", templatevars, context_instance=RequestContext(request))
+
+@ajax_required
+def language_settings_edit(request, language_code):
+    language = get_object_or_404(Language, code=language_code)
+    request.permissions = get_matching_permissions(
+            get_profile(request.user), language.directory
+    )
+    if not check_permission('administrate', request):
+        raise PermissionDenied
+
+    from pootle_language.forms import DescriptionForm
+    form = DescriptionForm(request.POST, instance=language)
+    response = {}
+    if form.is_valid():
+        form.save()
+        response = {
+                "intro": form.cleaned_data['description'],
+                "valid": True,
+        }
+    context = {
+            "form": form,
+            "form_action": language.pootle_path + "edit_settings.html",
+    }
+    t = loader.get_template('admin/general_settings_form.html')
+    c = RequestContext(request, context)
+    response['form'] = t.render(c)
+
+    return HttpResponse(jsonify(response), mimetype="application/json")
+
 
 def language_admin(request, language_code):
     # Check if the user can access this view
