@@ -82,7 +82,7 @@ $(document).ready(function () {
   _init_description();
 
   function _toggle_editing() {
-    $('.intro, .settings-container, #edit_settings, #show_settings').slideToggle();
+    $('.intro, .settings-container, #edit_settings, #show_settings, #hide_description').slideToggle();
   }
   function _init_description() {
     $(".intro,").filter(":not([dir])").bidi();

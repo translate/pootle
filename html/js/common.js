@@ -137,4 +137,8 @@ $(document).ready(function ($) {
     $.fancybox({'href': $(e.target).attr('href'), 'type': 'ajax'});
   });
 
+  /* Show/hide descriptions */
+  $('#hide_description, #show_description').click(function(e) {
+    $('.intro, #edit_settings, #hide_description, #show_description').slideToggle();
+  });
 });
