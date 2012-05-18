@@ -25,9 +25,7 @@
     {% include "admin/general_settings_form.html" with form_action="edit_settings.html" %}
   </div>
 {% endif %}
-<div class="intro">
-    {{ description|safe|linebreaks|clean }}
-</div>
+{% include "description.html" %}
 
 <div id="innernav" class="item-statistics">
   <h2 lang="{{ LANGUAGE_CODE }}">{{ project.stats }}</h2>
