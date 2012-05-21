@@ -137,8 +137,20 @@ $(document).ready(function ($) {
     $.fancybox({'href': $(e.target).attr('href'), 'type': 'ajax'});
   });
 
+  cookieName = "hide_description";
+  cookieOptions = {path: '/', expires: 15};
+
   /* Show/hide descriptions */
+  if ($.cookie(cookieName) == "yes") {
+    $('.intro, #edit_settings, #hide_description, #show_description').toggle();
+  }
   $('#hide_description, #show_description').click(function(e) {
     $('.intro, #edit_settings, #hide_description, #show_description').slideToggle();
+    if ($.cookie(cookieName) == "yes") {
+        $.cookie(cookieName, "no", cookieOptions);
+    } else {
+        $.cookie(cookieName, "yes", cookieOptions);
+    }
+
   });
 });
