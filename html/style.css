@@ -612,6 +612,7 @@ ul.errorlist
 {
     margin: 0 1em;
     line-height: 1.3em;
+    max-width: 85%;
 }
 
 .intro .announcement {
