@@ -145,7 +145,8 @@ $(document).ready(function ($) {
     $('.intro, #edit_settings, #hide_description, #show_description').toggle();
   }
   $('#hide_description, #show_description').click(function(e) {
-    $('.intro, #edit_settings, #hide_description, #show_description').slideToggle();
+    $('#edit_settings, #hide_description, #show_description').toggle();
+    $('.intro,').slideToggle();
     if ($.cookie(cookieName) == "yes") {
         $.cookie(cookieName, "no", cookieOptions);
     } else {
