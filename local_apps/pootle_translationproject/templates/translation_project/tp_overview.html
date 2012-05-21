@@ -1,6 +1,6 @@
 {% extends "tp_base_extended.html" %}
 
-{% load i18n baseurl %}
+{% load i18n baseurl cleanhtml %}
 
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
@@ -9,6 +9,29 @@
 
 {% block bodyclass %}tpoverview{% endblock bodyclass %}
 
+
+{% block precontent %}
+{{ block.super }}
+{% if description %}
+  {% include "description.html" %}
+  {% endif %}
+{% if not description and project.description or not description and language.description %}
+  <a id="hide_description" title="{% trans 'Hide' %}">
+      <span>{% trans 'Hide' %}</span></a>
+  <a id="show_description" title="{% trans 'Show' %}" style="display: none;">
+      <span>{% trans 'Show description' %}</span></a>
+  <div class="intro">
+    {% if project.description %}
+      <h3 class="intro-helper">{% trans 'Project Description' %}</h3>
+      {{ project.description|safe|linebreaks|clean }}
+    {% endif %}
+    {% if language.description %}
+      <h3 class="intro-helper">{% trans 'Language Description' %}</h3>
+      {{ language.description|safe|linebreaks|clean }}
+    {% endif %}
+  </div>
+{% endif %}
+{% endblock %}
 
 {% block content %}
 {% if children %}

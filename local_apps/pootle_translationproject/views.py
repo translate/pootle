@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2009 Zuza Software Foundation
+# Copyright 2008-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -232,9 +232,11 @@ class ProjectIndexView(BaseView):
         project  = translation_project.project
         language = translation_project.language
         is_terminology = project.is_terminology
+        description = u"" # temporary placeholder
 
         template_vars.update({
             'translation_project': translation_project,
+            'description': description,
             'project': project,
             'language': language,
             'directory': directory,

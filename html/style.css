@@ -622,6 +622,10 @@ ul.errorlist
     color: #624800;
 }
 
+h3.intro-helper {
+    color: #999;
+}
+
 .intro strong {
    font-weight: bold;
 }
