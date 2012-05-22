@@ -224,6 +224,12 @@ def update_tables_22000():
     field.default = u''
     db.add_column(table_name, field.name, field)
 
+    from pootle_translationproject.models import TranslationProject
+    table_name = TranslationProject._meta.db_table
+    field = TranslationProject._meta.get_field('description')
+    field.default = u''
+    db.add_column(table_name, field.name, field)
+
     save_pootle_version(22000)
 
 def update_toolkit_version():
