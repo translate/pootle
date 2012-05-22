@@ -71,4 +71,4 @@ class DescriptionForm(forms.ModelForm):
 
     class Meta:
         model = TranslationProject
-        fields = ()
+        fields = ("description",)
