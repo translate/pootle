@@ -1,6 +1,6 @@
 {% extends "tp_base_extended.html" %}
 
-{% load i18n baseurl cleanhtml %}
+{% load i18n baseurl cleanhtml assets %}
 
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
@@ -12,9 +12,15 @@
 
 {% block precontent %}
 {{ block.super }}
-{% if description %}
-  {% include "description.html" %}
-  {% endif %}
+{% if user.is_superuser or request.permissions.administrate %}
+  {% include "admin/edit_links.html" %}
+  <div class="settings-container" style="display: none;">
+    {% include "admin/general_settings_form.html" with form_action="edit_settings.html" %}
+  </div>
+{% endif %}
+{% include "description.html" %}
+
+{% comment %}If there is no description, inherrit from the project and the language{% endcomment %}
 {% if not description and project.description or not description and language.description %}
   <a id="hide_description" title="{% trans 'Hide' %}">
       <span>{% trans 'Hide' %}</span></a>
@@ -83,5 +89,10 @@ $(document).ready(function() {
   });
 });
 </script>
+{% endif %}
+{% if user.is_superuser or request.permissions.administrate %}
+  {% assets "js_admin" %}
+    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+  {% endassets %}
 {% endif %}
 {% endblock %}

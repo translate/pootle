@@ -28,10 +28,11 @@ from django.core.cache import cache
 from django.utils.translation import ugettext_lazy as _
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.template import loader, RequestContext
 from django.forms.models import BaseModelFormSet
 from django import forms
 from django.utils.encoding import iri_to_uri
+from django.http import HttpResponse
 
 from pootle_misc.versioncontrol import hasversioning
 
@@ -48,6 +49,8 @@ from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions
 from pootle_app.views.language.view import get_translation_project, set_request_context
 from pootle_app.project_tree import ensure_target_dir_exists, direct_language_match_filename
+
+from pootle_misc.util import jsonify, ajax_required
 
 from pootle_store.models import Store
 from pootle_store.util import absolute_real_path, relative_real_path
@@ -232,7 +235,7 @@ class ProjectIndexView(BaseView):
         project  = translation_project.project
         language = translation_project.language
         is_terminology = project.is_terminology
-        description = u"" # temporary placeholder
+        description = translation_project.description
 
         template_vars.update({
             'translation_project': translation_project,
@@ -247,6 +250,10 @@ class ProjectIndexView(BaseView):
             'topstats': gentopstats_translation_project(translation_project),
             'feed_path': directory.pootle_path[1:],
             })
+
+        if check_permission('administrate', request):
+            from pootle_translationproject.forms import DescriptionForm
+            template_vars['form'] = DescriptionForm(instance=translation_project)
 
         return template_vars
 
@@ -264,6 +271,35 @@ def tp_overview(request, translation_project, dir_path):
     return render_to_response("translation_project/tp_overview.html",
                               view_obj(request, translation_project, directory),
                               context_instance=RequestContext(request))
+
+
+@ajax_required
+@get_translation_project
+def tp_settings_edit(request, translation_project):
+    request.permissions = get_matching_permissions(
+            get_profile(request.user), translation_project.directory
+    )
+    if not check_permission('administrate', request):
+        raise PermissionDenied
+
+    from pootle_translationproject.forms import DescriptionForm
+    form = DescriptionForm(request.POST, instance=translation_project)
+    response = {}
+    if form.is_valid():
+        form.save()
+        response = {
+                "intro": form.cleaned_data['description'],
+                "valid": True,
+        }
+    context = {
+            "form": form,
+            "form_action": translation_project.pootle_path + "edit_settings.html",
+    }
+    t = loader.get_template('admin/general_settings_form.html')
+    c = RequestContext(request, context)
+    response['form'] = t.render(c)
+
+    return HttpResponse(jsonify(response), mimetype="application/json")
 
 
 @get_translation_project
