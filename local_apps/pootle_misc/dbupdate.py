@@ -210,16 +210,18 @@ def update_tables_22000():
     logging.info("Updating existing database tables")
     from south.db import db
 
+    # For the sake of South bug 313, we set the default for these fields here:
+    # See http://south.aeracode.org/ticket/313
     from pootle_store.models import Suggestion
     table_name = Suggestion._meta.db_table
     field = Suggestion._meta.get_field('translator_comment_f')
-    field.null = True
+    field.default = u''
     db.add_column(table_name, field.name, field)
 
     from pootle_language.models import Language
     table_name = Language._meta.db_table
     field = Language._meta.get_field('description')
-    field.null = True
+    field.default = u''
     db.add_column(table_name, field.name, field)
 
     save_pootle_version(22000)
