@@ -24,6 +24,8 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
+from pootle_translationproject.models import TranslationProject
+
 
 def make_search_form(*args, **kwargs):
     """A factory that instantiates one of the search forms below."""
@@ -63,3 +65,10 @@ class TermSearchForm(SearchForm):
             ),
             initial=['source', 'target'],
     )
+
+
+class DescriptionForm(forms.ModelForm):
+
+    class Meta:
+        model = TranslationProject
+        fields = ()
