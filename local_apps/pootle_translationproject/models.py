@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009-2011 Zuza Software Foundation
+# Copyright 2009-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -89,6 +89,8 @@ class TranslationProject(models.Model):
         unique_together = ('language', 'project')
         db_table = 'pootle_app_translationproject'
 
+    description_help_text = _('A description of this project. This is useful to give more information or instructions. This field should be valid HTML.')
+    description  = models.TextField(blank=True, help_text=description_help_text)
     language  = models.ForeignKey(Language, db_index=True)
     project   = models.ForeignKey(Project, db_index=True)
     real_path = models.FilePathField(editable=False)
