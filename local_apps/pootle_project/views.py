@@ -230,7 +230,9 @@ def project_admin(request, project_code):
     return util.edit(request, 'project/project_admin.html', TranslationProject,
             model_args, link, linkfield="language", queryset=queryset,
             can_delete=True, form=TranslationProjectForm,
-            formset=TranslationProjectFormSet)
+            formset=TranslationProjectFormSet,
+            exclude=('description'),
+    )
 
 
 def project_admin_permissions(request, project_code):
