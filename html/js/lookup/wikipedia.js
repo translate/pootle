@@ -10,7 +10,7 @@
 
     init: function () {
       /* Bind event handler */
-      $(document).live("click", ".wikipedia", this.lookup);
+      $(document).on("click", ".wikipedia", this.lookup);
     },
 
     ready: function () {
