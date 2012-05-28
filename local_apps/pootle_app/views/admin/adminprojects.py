@@ -66,6 +66,12 @@ def view(request):
                 value = self.instance.treestyle
             return value
 
-    return util.edit(request, 'admin/admin_general_projects.html', Project,
-                     link='/projects/%s/admin.html',
-                     form=ProjectForm, exclude='description', can_delete=True)
+    return util.edit(
+            request,
+            'admin/admin_general_projects.html',
+            Project,
+            link='/projects/%s/admin.html',
+            form=ProjectForm,
+            exclude=('description', 'report_target'),
+            can_delete=True,
+    )
