@@ -48,6 +48,7 @@ class Project(models.Model):
 
     code_help_text = _('A short code for the project. This should only contain ASCII characters, numbers, and the underscore (_) character.')
     description_help_text = _('A description of this project. This is useful to give more information or instructions. This field should be valid HTML.')
+    report_target_help_text = _('A URL or an email address where issues with the source text can be reported.')
 
     checker_choices = [('standard', 'standard')]
     checkers = list(checks.projectcheckers.keys())
@@ -70,6 +71,7 @@ class Project(models.Model):
     source_language  = models.ForeignKey('pootle_language.Language', db_index=True, verbose_name=_('Source Language'))
     ignoredfiles   = models.CharField(max_length=255, blank=True, null=False, default="", verbose_name=_('Ignore Files'))
     directory = models.OneToOneField('pootle_app.Directory', db_index=True, editable=False)
+    report_target  = models.CharField(max_length=512, blank=True, verbose_name=_("Report Target"), help_text=report_target_help_text)
 
     def natural_key(self):
         return (self.code,)

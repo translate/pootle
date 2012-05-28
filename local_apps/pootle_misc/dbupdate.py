@@ -230,6 +230,12 @@ def update_tables_22000():
     field.default = u''
     db.add_column(table_name, field.name, field)
 
+    from pootle_project.models import Project
+    table_name = Project._meta.db_table
+    field = Project._meta.get_field('report_target')
+    field.default = u''
+    db.add_column(table_name, field.name, field)
+
     save_pootle_version(22000)
 
 def update_toolkit_version():
