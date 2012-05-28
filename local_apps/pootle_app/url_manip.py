@@ -19,6 +19,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import urllib
+import urlparse
 
 def strip_trailing_slash(path):
     """If path ends with a /, strip it and return the stripped version."""
@@ -85,3 +86,22 @@ def make_url(url, args={}):
 def basename(url):
     _parent_part, child_part = url_split(url)
     return child_part
+
+
+def ensure_uri(uri):
+    """Ensure that we return a URI that the user can click on in an a tag."""
+    if not uri:
+        return uri
+    scheme, netloc, path, query, fragment = urlparse.urlsplit(uri)
+    if scheme:
+        return uri
+
+    if u'@' in uri:
+        uri = u"mailto:%s" % uri
+    else:
+        # If we don't supply a protocol, browsers will interpret it as a
+        # relative URL, like
+        # http://pootle.locamotion.org/af/pootle/bugs.locamotion.org
+        # So let's assume http
+        uri = u"http://" + uri
+    return uri

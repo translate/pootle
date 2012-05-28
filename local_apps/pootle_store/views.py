@@ -37,6 +37,7 @@ from django.views.decorators.cache import never_cache
 from django.utils.encoding import iri_to_uri
 
 from pootle_misc.baseurl import redirect
+from pootle_app.url_manip import ensure_uri
 from pootle_app.models.permissions import get_matching_permissions, check_permission, check_profile_permission
 from pootle_misc.util import paginate, ajax_required, jsonify
 from pootle_profile.models import get_profile
@@ -538,6 +539,8 @@ def get_edit_unit(request, unit):
     profile = request.profile
     alt_src_langs = get_alt_src_langs(request, profile, translation_project)
     project = translation_project.project
+    report_target = ensure_uri(project.report_target)
+
     suggestions, suggestion_details = get_sugg_list(unit)
     template_vars = {'unit': unit,
                      'form': form,
@@ -551,6 +554,7 @@ def get_edit_unit(request, unit):
                      'cansuggest': check_profile_permission(profile, "suggest", directory),
                      'canreview': check_profile_permission(profile, "review", directory),
                      'altsrcs': find_altsrcs(unit, alt_src_langs, store=store, project=project),
+                     'report_target': report_target,
                      'suggestions': suggestions,
                      'suggestion_detail': suggestion_details,
     }
