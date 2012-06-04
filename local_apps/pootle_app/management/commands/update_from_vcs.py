@@ -28,9 +28,9 @@ class Command(PootleCommand):
     help = "Allow VCS-managed data to be updated manually."
 
     def handle_translation_project(self, tp, **options):
-        """ Update all stores in a translation project from the VCS
+        """Update all stores in a translation project from the VCS
 
-        The translation project may be limited by language, project etc
+        The translation project may be limited by language, project etc.
         """
         store_query = tp.stores.all()
         for store in store_query.iterator():

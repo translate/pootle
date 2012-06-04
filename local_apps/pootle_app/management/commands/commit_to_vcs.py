@@ -33,7 +33,7 @@ class Command(PootleCommand):
         make_option('--user', default='admin',
                     help="username to list in the commit message"),
         )
-        
+
     def handle_noargs(self, **options):
         from django.contrib.auth.models import User
         try:
@@ -44,7 +44,7 @@ class Command(PootleCommand):
         super(Command, self).handle_noargs(**options)
 
     def handle_translation_project(self, tp, **options):
-        """ Commit to VCS all stores referred to by the translation project
+        """Commit to VCS all stores referred to by the translation project
 
         The translation project may be limited by language, filename, etc.
         """
