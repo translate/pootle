@@ -18,6 +18,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+"""Automatic database update code used when upgrading to a new Pootle version.
+
+When adding new fields in models, take into account the following:
+
+    - Only use ``null=True`` for non-string fields such as integers,
+      booleans and dates
+    - If ``null=True`` is not set, then you need to set a default value
+      for the field you are adding.
+"""
+
 import sys
 import logging
 
