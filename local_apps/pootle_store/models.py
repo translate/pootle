@@ -63,7 +63,7 @@ CHECKED = 2
 ############### Quality Check #############
 
 class QualityCheck(models.Model):
-    """database cache of results of qualitychecks on unit"""
+    """Database cache of results of qualitychecks on unit."""
     objects = RelatedManager()
     name = models.CharField(max_length=64, db_index=True)
     unit = models.ForeignKey("pootle_store.Unit", db_index=True)
@@ -454,7 +454,7 @@ class Unit(models.Model, base.TranslationUnit):
         return changed
 
     def update_qualitychecks(self, created=False, keep_false_positives=False):
-        """run quality checks and store result in database"""
+        """Run quality checks and store result in the database."""
         existing = []
         if not created:
             checks = self.qualitycheck_set.all()
