@@ -33,6 +33,7 @@ from django.db.transaction import commit_on_success
 from django.utils.encoding import iri_to_uri
 from django.db.models.signals import post_delete
 
+from translate.filters.decorators import NO_CATEGORY
 from translate.storage import base
 from translate.misc.hash import md5_f
 
@@ -66,6 +67,7 @@ class QualityCheck(models.Model):
     objects = RelatedManager()
     name = models.CharField(max_length=64, db_index=True)
     unit = models.ForeignKey("pootle_store.Unit", db_index=True)
+    category = models.IntegerField(null=False, default=NO_CATEGORY)
     message = models.TextField()
     false_positive = models.BooleanField(default=False, db_index=True)
 
