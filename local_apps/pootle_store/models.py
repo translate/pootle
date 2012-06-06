@@ -456,18 +456,32 @@ class Unit(models.Model, base.TranslationUnit):
     def update_qualitychecks(self, created=False, keep_false_positives=False):
         """Run quality checks and store result in the database."""
         existing = []
+
         if not created:
             checks = self.qualitycheck_set.all()
+
             if keep_false_positives:
                 existing = set(checks.filter(false_positive=True).values_list('name', flat=True))
                 checks = checks.filter(false_positive=False)
+
             checks.delete()
+
         if not self.target:
             return
-        for name, message in self.store.translation_project.checker.run_filters(self).items():
+
+        qc_failures = self.store.translation_project.checker. \
+                run_filters(self, categorised=True)
+
+        for name in qc_failures.iterkeys():
             if name == 'isfuzzy' or name in existing:
                 continue
-            self.qualitycheck_set.create(name=name, message=message)
+
+            message = qc_failures[name]['message']
+            category = qc_failures[name]['category']
+
+            self.qualitycheck_set.create(name=name, message=message,
+                                         category=category)
+
 
     def get_qualitychecks(self):
         return self.qualitycheck_set.filter(false_positive=False)
