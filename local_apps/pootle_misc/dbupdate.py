@@ -258,6 +258,8 @@ def update_tables_22000():
 
     save_pootle_version(22000)
 
+    return text
+
 def update_toolkit_version():
     text = """
     <p>%s</p>
@@ -387,7 +389,7 @@ def staggered_update(db_buildversion, tt_buildversion):
         yield update_stats_21060()
 
     if db_buildversion < 22000:
-        update_tables_22000()
+        yield update_tables_22000()
 
     if tt_buildversion < 12008:
         yield update_ts_tt_12008()
