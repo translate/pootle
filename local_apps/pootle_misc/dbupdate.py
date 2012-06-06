@@ -246,6 +246,16 @@ def update_tables_22000():
     field.default = u''
     db.add_column(table_name, field.name, field)
 
+    table_name = QualityCheck._meta.db_table
+    field = QualityCheck._meta.get_field('category')
+    db.add_column(table_name, field.name, field)
+
+    text += """
+    <p>%s</p>
+    """ % _('Removing quality checks, will be recalculated on demand...')
+    logging.info("Fixing quality checks")
+    flush_quality_checks()
+
     save_pootle_version(22000)
 
 def update_toolkit_version():
