@@ -1,4 +1,4 @@
-{% extends "tp_base_extended.html" %}
+{% extends "tp_base.html" %}
 
 {% load i18n baseurl cleanhtml assets %}
 
@@ -40,35 +40,51 @@
 {% endblock %}
 
 {% block content %}
-{% if children %}
-<!--! The statistics view -->
-<div class="module-primary" lang="{{ LANGUAGE_CODE }}">
-    <div class="bd">
-        <table class="sortable stats" id="stats" cellpadding="5"
-        cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-            <thead>
-                <tr>
-                    <th class="stats">{{ stats_headings.name }}</th>
-                    <th class="stats">{{ stats_headings.progress }}</th>
-                    <th class="stats sorttable_numeric">{{ stats_headings.summary }}</th>
-                    <th class="stats stats-number">{{ stats_headings.totalwords }}</th>
-                </tr>
-            </thead>
-            <tbody class="stats">
-                {% for item in children %}
-                <tr class="item {% cycle 'even' 'odd' %}">
-                {% include "language/item_summary.html" %}
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+<div class="module first">
+  <div class="hd">
+    <h2>{{ directory.pootle_path }}</h2>
+  </div>
+  <div class="bd">
+    <ul>
+      <li>{% blocktrans with dir_stats.total.words as words and dir_stats.translated.percentage as percentage %}This folder has {{ words }} words, {{ percentage }}% of which are translated{% endblocktrans %}</li>
+      <li><a href="{{ directory.get_translate_incomplete_url }}">{% blocktrans with dir_stats.untranslated.words as words %}{{ words }} words need translation{% endblocktrans %}</a></li>
+    </ul>
+  </div>
+
+  {% if children %}
+  <div class="hd">
+    <h2>{% trans "Files and Subfolders" %}</h2>
+  </div>
+  <div class="bd">
+      <div class="files-subfolders" lang="{{ LANGUAGE_CODE }}">
+          <table class="sortable stats" id="stats" cellpadding="5"
+          cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+              <thead>
+                  <tr>
+                      <th class="stats">{{ stats_headings.name }}</th>
+                      <th class="stats">{{ stats_headings.progress }}</th>
+                      <th class="stats sorttable_numeric">{{ stats_headings.need_translation }}</th>
+                  </tr>
+              </thead>
+              <tbody class="stats">
+                  {% for item in children %}
+                  <tr class="item {% cycle 'even' 'odd' %}">
+                  {% include "language/item_summary.html" %}
+                  </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+      </div>
+  </div>
+  {% endif %}
 </div>
-{% endif %}
+
+<div class="module">
+{% include "translation_project/fileop_forms.html" %}
+</div>
 {% endblock content %}
 
 {% block postcontent %}
-{% include "translation_project/fileop_forms.html" %}
 {% include "top_contributers_table.html" %}
 {% endblock postcontent %}
 
