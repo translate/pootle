@@ -105,6 +105,9 @@ class Directory(models.Model):
     def get_absolute_url(self):
         return l(self.pootle_path)
 
+    def get_translate_incomplete_url(self):
+        return l(self.pootle_path) + 'translate.html#filter=incomplete'
+
     @getfromcache
     def getquickstats(self):
         """calculate aggregate stats for all directory based on stats
