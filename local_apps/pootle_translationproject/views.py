@@ -37,6 +37,7 @@ from django.http import HttpResponse
 from pootle_misc.versioncontrol import hasversioning
 
 from pootle_misc.baseurl import redirect, l
+from pootle_misc.util import add_percentages
 from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.models.signals import post_file_upload
 from pootle_app.models             import Directory
@@ -177,6 +178,45 @@ def tp_admin_files(request, translation_project):
                      can_delete=True, extra=0)
 
 
+# TODO: move this function somewhere else
+def get_raw_directory_stats(path_obj):
+    """Returns a dictionary of raw stats for `path_obj`.
+
+    Example::
+
+        {'translated': {'units': 0, 'percentage': 0, 'words': 0},
+         'fuzzy': {'units': 0, 'percentage': 0, 'words': 0},
+         'untranslated': {'units': 34, 'percentage': 100, 'words': 181},
+         'total': {'units': 34, 'percentage': 100, 'words': 181} }
+    """
+    quick_stats = add_percentages(path_obj.getquickstats())
+
+    stats = {
+        'total': {
+            'words': quick_stats['totalsourcewords'],
+            'percentage': 100,
+            'units': quick_stats['total'],
+            },
+        'translated': {
+            'words': quick_stats['translatedsourcewords'],
+            'percentage': quick_stats['translatedpercentage'],
+            'units': quick_stats['translated'],
+            },
+        'fuzzy': {
+            'words': quick_stats['fuzzysourcewords'],
+            'percentage': quick_stats['fuzzypercentage'],
+            'units': quick_stats['fuzzy'],
+            },
+        'untranslated': {
+            'words': quick_stats['untranslatedsourcewords'],
+            'percentage': quick_stats['untranslatedpercentage'],
+            'units': quick_stats['untranslated'],
+            },
+    }
+
+    return stats
+
+
 class ProjectIndexView(BaseView):
 
     def GET(self, template_vars, request, translation_project, directory):
@@ -188,6 +228,8 @@ class ProjectIndexView(BaseView):
         is_terminology = project.is_terminology
         description = translation_project.description
 
+        directory_stats = get_raw_directory_stats(directory)
+
         template_vars.update({
             'translation_project': translation_project,
             'description': description,
@@ -196,6 +238,7 @@ class ProjectIndexView(BaseView):
             'directory': directory,
             'children': get_children(request, translation_project, directory),
             'navitems': [navbar_dict.make_directory_navbar_dict(request, directory, terminology=is_terminology)],
+            'dir_stats': directory_stats,
             'stats_headings': get_stats_headings(),
             'editing': state.editing,
             'topstats': gentopstats_translation_project(translation_project),
