@@ -237,10 +237,8 @@ class ProjectIndexView(BaseView):
             'language': language,
             'directory': directory,
             'children': get_children(request, translation_project, directory),
-            'navitems': [navbar_dict.make_directory_navbar_dict(request, directory, terminology=is_terminology)],
             'dir_stats': directory_stats,
             'stats_headings': get_stats_headings(),
-            'editing': state.editing,
             'topstats': gentopstats_translation_project(translation_project),
             'feed_path': directory.pootle_path[1:],
             })
