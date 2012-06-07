@@ -289,6 +289,7 @@ def stats_descriptions(quick_stats):
 
     return {
         'todo_text': todo_text,
+        'todo_words': todo_words,
         'todo_tooltip': todo_tooltip,
     }
 
