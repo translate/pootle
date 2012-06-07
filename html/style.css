@@ -1593,6 +1593,11 @@ ul.directory-summary
     line-height: 1.8em;
 }
 
+li.directory-incomplete a
+{
+    font-weight: bold;
+}
+
 /* 
  * Pretty Graphs, mostly from http://l10n.gnome.org/
  */
