@@ -100,55 +100,6 @@ def tp_translate(request, translation_project, dir_path):
             context_instance=RequestContext(request))
 
 
-class TPReviewView(BaseView):
-
-    def GET(self, template_vars, request, translation_project, directory):
-        template_vars = super(TPReviewView, self).GET(template_vars, request)
-
-        request.permissions = get_matching_permissions(
-                get_profile(request.user), translation_project.directory)
-        project  = translation_project.project
-        language = translation_project.language
-        is_terminology = project.is_terminology
-
-        children = get_children(request, translation_project, directory,
-                                links_required='review')
-        navitems = [navbar_dict.make_directory_navbar_dict(
-            request, directory, links_required='review',
-            terminology=is_terminology)]
-
-        template_vars.update({
-            'translation_project': translation_project,
-            'project': project,
-            'language': language,
-            'directory': directory,
-            'children': children,
-            'navitems': navitems,
-            'topstats': gentopstats_translation_project(translation_project),
-            'feed_path': directory.pootle_path[1:],
-            })
-
-        return template_vars
-
-
-@get_translation_project
-@set_request_context
-def tp_review(request, translation_project, dir_path):
-
-    if not check_permission("view", request):
-        raise PermissionDenied(_("You do not have rights to access review mode."))
-
-    directory = get_object_or_404(
-            Directory,
-            pootle_path=translation_project.directory.pootle_path + dir_path)
-
-    view_obj = TPReviewView({})
-
-    return render_to_response("translation_project/tp_review.html",
-                              view_obj(request, translation_project, directory),
-                              context_instance=RequestContext(request))
-
-
 @get_translation_project
 @set_request_context
 @util.has_permission('administrate')
