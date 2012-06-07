@@ -45,7 +45,7 @@
     <h2>{{ directory.pootle_path }}</h2>
   </div>
   <div class="bd">
-    <ul>
+    <ul class="directory-summary">
       <li>{% blocktrans with dir_stats.total.words as words and dir_stats.translated.percentage as percentage %}This folder has {{ words }} words, {{ percentage }}% of which are translated{% endblocktrans %}</li>
       <li><a href="{{ directory.get_translate_incomplete_url }}">{% blocktrans with dir_stats.untranslated.words as words %}{{ words }} words need translation{% endblocktrans %}</a></li>
     </ul>
