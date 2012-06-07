@@ -50,6 +50,7 @@ def get_stats_headings():
         # l10n: noun. The graphical representation of translation status
         "progress":               _("Progress"),
         "summary":                _("Summary"),
+        "need_translation":       _("Need Translation"),
         }
 
 def get_translation_project(f):
