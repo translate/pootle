@@ -25,7 +25,7 @@ import StringIO
 from django.shortcuts import get_object_or_404
 from django.conf import settings
 from django.core.cache import cache
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _, ungettext as _n
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import render_to_response
 from django.template import loader, RequestContext
@@ -216,6 +216,29 @@ def get_raw_directory_stats(path_obj):
 
     return stats
 
+# TODO: move this function somewhere else
+def get_directory_summary(directory, dir_stats):
+    """Returns a list of sentences to be displayed for each directory."""
+    summary = [
+        _n("This folder has %(num)d word, %(percentage)d%% of which is "
+           "translated",
+           "This folder has %(num)d words, %(percentage)d%% of which are "
+           "translated",
+           dir_stats['total']['words'],
+           {'num': dir_stats['total']['words'],
+            'percentage': dir_stats['total']['percentage']}),
+        _n('<a class="directory-incomplete" href="%(url)s">%(num)d word '
+           'needs translation</a>',
+           '<a class="directory-incomplete" href="%(url)s">%(num)d words '
+           'need translation</a>',
+           dir_stats['untranslated']['words'],
+           {'num': dir_stats['untranslated']['words'],
+            'url': dispatch.translate(directory, state='incomplete')}),
+    ]
+
+    return summary
+
+
 
 class ProjectIndexView(BaseView):
 
@@ -229,6 +252,7 @@ class ProjectIndexView(BaseView):
         description = translation_project.description
 
         directory_stats = get_raw_directory_stats(directory)
+        directory_summary = get_directory_summary(directory, directory_stats)
 
         template_vars.update({
             'translation_project': translation_project,
@@ -237,7 +261,7 @@ class ProjectIndexView(BaseView):
             'language': language,
             'directory': directory,
             'children': get_children(request, translation_project, directory),
-            'dir_stats': directory_stats,
+            'dir_summary': directory_summary,
             'stats_headings': get_stats_headings(),
             'topstats': gentopstats_translation_project(translation_project),
             'feed_path': directory.pootle_path[1:],

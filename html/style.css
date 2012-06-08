@@ -1593,7 +1593,7 @@ ul.directory-summary
     line-height: 1.8em;
 }
 
-li.directory-incomplete a
+a.directory-incomplete
 {
     font-weight: bold;
 }

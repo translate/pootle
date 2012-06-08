@@ -46,8 +46,9 @@
   </div>
   <div class="bd">
     <ul class="directory-summary">
-      <li>{% blocktrans with dir_stats.total.words as words and dir_stats.translated.percentage as percentage %}This folder has {{ words }} words, {{ percentage }}% of which are translated{% endblocktrans %}</li>
-      <li class="directory-incomplete"><a href="{{ directory.get_translate_incomplete_url }}">{% blocktrans with dir_stats.untranslated.words as words %}{{ words }} words need translation{% endblocktrans %}</a></li>
+      {% for summary_item in dir_summary %}
+      <li>{{ summary_item|safe }}</li>
+      {% endfor %}
     </ul>
   </div>
 
