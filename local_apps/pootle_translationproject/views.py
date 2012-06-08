@@ -226,7 +226,7 @@ def get_directory_summary(directory, dir_stats):
            "translated",
            dir_stats['total']['words'],
            {'num': dir_stats['total']['words'],
-            'percentage': dir_stats['total']['percentage']}),
+            'percentage': dir_stats['translated']['percentage']}),
         _n('<a class="directory-incomplete" href="%(url)s">%(num)d word '
            'needs translation</a>',
            '<a class="directory-incomplete" href="%(url)s">%(num)d words '
