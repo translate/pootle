@@ -44,6 +44,7 @@ from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_translationproject.models import TranslationProject
 from pootle_misc.dbinit import stats_start, stats_language, stats_project, stats_end
+from pootle_notifications.models import Notice
 
 def flush_quality_checks():
     """reverts stores to unchecked state. if store has false positives
@@ -144,6 +145,51 @@ def update_permissions_20030():
     contenttype.save()
     save_pootle_version(20030)
     return text
+
+def update_tables_23000():
+    text = u"""
+    <p>%s</p>
+    """ % _('Updating existing database tables...')
+    logging.info("Updating existing database tables")
+    from south.db import db
+    #raise ImportError
+    table_name = Notice._meta.db_table
+    field = Notice._meta.get_field('rss_only')
+    db.add_column(table_name, field.name, field)
+    db.create_index(table_name, (field.name,))
+
+    field = Notice._meta.get_field('email_only')
+    db.add_column(table_name, field.name, field)
+    db.create_index(table_name, (field.name,))
+
+    field = Notice._meta.get_field('email_header')
+    db.add_column(table_name, field.name, field)
+    db.create_index(table_name, (field.name,))
+
+    field = Notice._meta.get_field('restrict_to_project')
+    db.add_column(table_name, field.name, field)
+    db.create_index(table_name, (field.name,))
+
+    field = Notice._meta.get_field('restrict_to_language')
+    db.add_column(table_name, field.name, field)
+    db.create_index(table_name, (field.name,))
+
+    field = Notice._meta.get_field('restrict_to_active_users')
+    db.add_column(table_name, field.name, field)
+    db.create_index(table_name, (field.name,))
+
+    field = Notice._meta.get_field('send_to_projects')
+    db.add_column(table_name, field.name, field)
+    db.create_index(table_name, (field.name,))
+
+    field = Notice._meta.get_field('send_to_langs')
+    db.add_column(table_name, field.name, field)
+    db.create_index(table_name, (field.name,))
+
+    save_pootle_version(23000)
+
+    return text
+  
 
 def update_tables_21000():
     text = u"""
@@ -390,6 +436,10 @@ def staggered_update(db_buildversion, tt_buildversion):
 
     if db_buildversion < 22000:
         yield update_tables_22000()
+
+    if db_buildversion < 23000:
+        yield update_tables_23000()
+
 
     if tt_buildversion < 12008:
         yield update_ts_tt_12008()
