@@ -239,6 +239,47 @@ def get_directory_summary(directory, dir_stats):
     return summary
 
 
+# TODO: move this function somewhere else
+def get_translation_stats(directory, dir_stats):
+    """Returns a list of statistics ready to be displayed."""
+
+    stats = [
+        {'title': _("Total"),
+         'words': _('<a href="%(url)s">%(num)d words</a>' % \
+            {'url': dispatch.translate(directory),
+             'num': dir_stats['total']['words']}),
+         'percentage': _("%(num)d%%" % \
+            {'num': dir_stats['total']['percentage']}),
+         'units': _("(%(num)d units)" % \
+            {'num': dir_stats['total']['units']}) },
+        {'title': _("Translated"),
+         'words': _('<a href="%(url)s">%(num)d words</a>' % \
+            {'url': dispatch.translate(directory, state='translated'),
+             'num': dir_stats['translated']['words']}),
+         'percentage': _("%(num)d%%" % \
+            {'num': dir_stats['translated']['percentage']}),
+         'units': _("(%(num)d units)" % \
+            {'num': dir_stats['translated']['units']}) },
+        {'title': _("Fuzzy"),
+         'words': _('<a href="%(url)s">%(num)d words</a>' % \
+            {'url': dispatch.translate(directory, state='fuzzy'),
+             'num': dir_stats['fuzzy']['words']}),
+         'percentage': _("%(num)d%%" % \
+            {'num': dir_stats['fuzzy']['percentage']}),
+         'units': _("(%(num)d units)" % \
+            {'num': dir_stats['fuzzy']['units']}) },
+        {'title': _("Untranslated"),
+         'words': _('<a href="%(url)s">%(num)d words</a>' % \
+            {'url': dispatch.translate(directory, state='incomplete'),
+             'num': dir_stats['untranslated']['words']}),
+         'percentage': _("%(num)d%%" % \
+            {'num': dir_stats['untranslated']['percentage']}),
+         'units': _("(%(num)d units)" % \
+            {'num': dir_stats['untranslated']['units']}) }
+    ]
+
+    return stats
+
 
 class ProjectIndexView(BaseView):
 
@@ -253,6 +294,7 @@ class ProjectIndexView(BaseView):
 
         directory_stats = get_raw_directory_stats(directory)
         directory_summary = get_directory_summary(directory, directory_stats)
+        translation_stats = get_translation_stats(directory, directory_stats)
 
         template_vars.update({
             'translation_project': translation_project,
@@ -262,6 +304,7 @@ class ProjectIndexView(BaseView):
             'directory': directory,
             'children': get_children(request, translation_project, directory),
             'dir_summary': directory_summary,
+            'trans_stats': translation_stats,
             'stats_headings': get_stats_headings(),
             'topstats': gentopstats_translation_project(translation_project),
             'feed_path': directory.pootle_path[1:],

@@ -725,6 +725,13 @@ html[dir="rtl"] .module.first
 }
 
 .module .hd h2, 
+.module-primary .hd h2,
+.module .hd h3,
+{
+    color: #999;
+}
+
+.module .hd h2,
 .module-primary .hd h2
 {
     margin: 1em 0.5em 0;
@@ -737,6 +744,20 @@ html[dir="rtl"] .module-primary .hd h2
 {
     margin-left: 0;
     margin-right: 0.5em;
+}
+
+.module .hd h3
+{
+    border-top: 1px solid #eee;
+    margin: 1em 0 0 0;
+}
+
+.module .hd h3 span
+{
+    position: relative;
+    top: -10px;
+    padding: 0 5px;
+    background-color: #fff;
 }
 
 .module .bd,
