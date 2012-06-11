@@ -44,8 +44,8 @@
   <div class="hd">
     <h2>{{ directory.pootle_path }}</h2>
   </div>
-  <div class="bd">
-    <ul class="directory-summary">
+  <div class="bd directory-summary">
+    <ul>
       {% for summary_item in dir_summary %}
       <li>{{ summary_item|safe }}</li>
       {% endfor %}

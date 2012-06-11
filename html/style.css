@@ -1609,7 +1609,7 @@ img.error
     vertical-align: middle;
 }
 
-ul.directory-summary
+directory-summary ul
 {
     line-height: 1.8em;
 }
