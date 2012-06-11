@@ -46,7 +46,7 @@ def group_by_count(queryset, column):
     return dict((item[column], item['count']) for item in result)
 
 
-def group_by_count_extra(queryset, count_column, extra_column=[]):
+def group_by_count_extra(queryset, count_column, extra_column):
     """Similar to :meth:`group_by_count` but returns an extra column which
     is the key in the top level of the returning dictionary.
 
@@ -62,9 +62,14 @@ def group_by_count_extra(queryset, count_column, extra_column=[]):
 
     result = queryset.values(*columns).annotate(count=Count(count_column))
 
-    return dict((item[extra_column],
-                dict([(item[count_column], item['count'])]) ) \
-                for item in result)
+    rv = {}
+    try:
+        rv[result[0][extra_column]] = dict((item[count_column], item['count']) \
+            for item in result)
+    except e:
+        pass
+
+    return rv
 
 
 def group_by_sort(queryset, column, fields):
