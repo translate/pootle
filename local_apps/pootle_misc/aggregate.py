@@ -63,11 +63,9 @@ def group_by_count_extra(queryset, count_column, extra_column):
     result = queryset.values(*columns).annotate(count=Count(count_column))
 
     rv = {}
-    try:
-        rv[result[0][extra_column]] = dict((item[count_column], item['count']) \
-            for item in result)
-    except e:
-        pass
+    for item in result:
+        rv.setdefault(item[extra_column], {}) \
+          .update(dict([(item[count_column], item['count'])]))
 
     return rv
 
