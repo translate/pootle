@@ -34,6 +34,8 @@ from django import forms
 from django.utils.encoding import iri_to_uri
 from django.http import HttpResponse
 
+from translate.filters.decorators import Category
+
 from pootle_misc.versioncontrol import hasversioning
 
 from pootle_misc.baseurl import redirect, l
@@ -286,6 +288,13 @@ def get_quality_check_failures(path_obj, dir_stats):
     """Returns a list of the failed checks sorted by their importance.
     """
     checks = {}
+    category_map = {
+        Category.CRITICAL: _("Critical"),
+        Category.FUNCTIONAL: _("Functional"),
+        Category.COSMETIC: _("Cosmetic"),
+        Category.EXTRACTION: _("Extraction"),
+        Category.NO_CATEGORY: _("No category"),
+    }
 
     try:
         property_stats = path_obj.getcompletestats()
@@ -305,7 +314,7 @@ def get_quality_check_failures(path_obj, dir_stats):
                                                        check=checkname),
                              'name': checkname,
                              'count': checkcount}
-                    checks.setdefault(category, []).append(check)
+                    checks.setdefault(category_map[category], []).append(check)
     except IOError:
         pass
 
