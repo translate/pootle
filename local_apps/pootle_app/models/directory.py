@@ -122,18 +122,22 @@ class Directory(models.Model):
         stats = dictsum(file_result, dir_result)
         return stats
 
-        #return calculate_stats(Unit.objects.filter(store__pootle_path__startswith=self.pootle_path))
 
     @getfromcache
     def getcompletestats(self):
         if self.is_template_project:
             return empty_completestats
+
         file_result = completestatssum(self.child_stores.iterator())
-        dir_result  = completestatssum(self.child_dirs.iterator())
-        stats = dictsum(file_result, dir_result)
+        dir_result = completestatssum(self.child_dirs.iterator())
+
+        stats = {}
+        for cat in set(file_result)|set(dir_result):
+            stats[cat] = dictsum(file_result.get(cat, {}),
+                                 dir_result.get(cat, {}))
+
         return stats
-        #queryset = QualityCheck.objects.filter(unit__store__pootle_path__startswith=self.pootle_path, false_positive=False)
-        #return group_by_count(queryset, 'name')
+
 
     def trail(self, only_dirs=True):
         """return list of ancestor directories excluding TranslationProject and above"""

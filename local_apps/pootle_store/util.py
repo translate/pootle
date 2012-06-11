@@ -19,6 +19,7 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
+import copy
 import os
 
 from django.conf import settings
@@ -80,16 +81,21 @@ def statssum(queryset, empty_stats=empty_quickstats):
             totals['errors'] += 1
     return totals
 
-empty_completestats = {u'isfuzzy': 0,
-                       'errors': 0}
+empty_completestats = {0: {u'isfuzzy': 0,
+                           'errors': 0} }
 
 def completestatssum(queryset, empty_stats=empty_completestats):
-    totals = empty_stats
+    totals = copy.deepcopy(empty_stats)
+
     for item in queryset:
         try:
-            totals = dictsum(totals, item.getcompletestats())
+            item_totals = item.getcompletestats()
+
+            for cat in set(item_totals)|set(totals):
+                totals[cat] = dictsum(totals.get(cat, {}),
+                                      item_totals.get(cat, {}))
         except:
-            totals['errors'] += 1
+            totals[0]['errors'] += 1
     return totals
 
 def calculate_stats(units):

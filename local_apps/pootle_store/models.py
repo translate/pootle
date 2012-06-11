@@ -39,7 +39,7 @@ from translate.misc.hash import md5_f
 
 from pootle_app.lib.util import RelatedManager
 from pootle_misc.util import getfromcache, deletefromcache
-from pootle_misc.aggregate import group_by_count, max_column
+from pootle_misc.aggregate import group_by_count_extra, max_column
 from pootle_misc.baseurl import l
 
 from pootle_store.fields  import TranslationStoreField, MultiStringField, PLURAL_PLACEHOLDER, SEPERATOR
@@ -1210,8 +1210,10 @@ class Store(models.Model, base.TranslationStore):
         """report result of quality checks"""
         try:
             self.require_qualitychecks()
-            queryset = QualityCheck.objects.filter(unit__store=self, unit__state__gt=UNTRANSLATED, false_positive=False)
-            return group_by_count(queryset, 'name')
+            queryset = QualityCheck.objects.filter(unit__store=self,
+                                                   unit__state__gt=UNTRANSLATED,
+                                                   false_positive=False)
+            return group_by_count_extra(queryset, 'name', 'category')
         except e:
             logging.info(u"Error getting quality checks for %s\n%s", self.name, e)
             return {}

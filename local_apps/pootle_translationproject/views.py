@@ -281,6 +281,37 @@ def get_translation_stats(directory, dir_stats):
     return stats
 
 
+# TODO: move this function somewhere else
+def get_quality_check_failures(path_obj, dir_stats):
+    """Returns a list of the failed checks sorted by their importance.
+    """
+    checks = {}
+
+    try:
+        property_stats = path_obj.getcompletestats()
+        total = dir_stats['total']['units']
+        keys = property_stats.keys()
+        keys.sort(reverse=True)
+
+        for category in keys:
+            cat_keys = property_stats[category].keys()
+            cat_keys.sort()
+
+            for checkname in cat_keys:
+                checkcount = property_stats[category][checkname]
+
+                if total and checkcount:
+                    check = {'url': dispatch.translate(path_obj,
+                                                       check=checkname),
+                             'name': checkname,
+                             'count': checkcount}
+                    checks.setdefault(category, []).append(check)
+    except IOError:
+        pass
+
+    return checks
+
+
 class ProjectIndexView(BaseView):
 
     def GET(self, template_vars, request, translation_project, directory):
@@ -295,6 +326,7 @@ class ProjectIndexView(BaseView):
         directory_stats = get_raw_directory_stats(directory)
         directory_summary = get_directory_summary(directory, directory_stats)
         translation_stats = get_translation_stats(directory, directory_stats)
+        quality_checks = get_quality_check_failures(directory, directory_stats)
 
         template_vars.update({
             'translation_project': translation_project,
@@ -303,6 +335,7 @@ class ProjectIndexView(BaseView):
             'language': language,
             'directory': directory,
             'children': get_children(request, translation_project, directory),
+            'check_failures': quality_checks,
             'dir_summary': directory_summary,
             'trans_stats': translation_stats,
             'stats_headings': get_stats_headings(),
