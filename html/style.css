@@ -241,6 +241,22 @@ pre, code, kbd, samp, tt
 
 
 /*
+ * Icons
+ */
+
+[class^="icon-"],
+[class*=" icon-"]
+{
+    background-repeat: no-repeat;
+    display: inline-block;
+    line-height: 16px;
+    width: 16px;
+    height: 16px;
+    vertical-align: text-top;
+}
+
+
+/*
  * MAIN DIVs
  */
 
