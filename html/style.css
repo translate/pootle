@@ -727,6 +727,7 @@ html[dir="rtl"] .module.first
 .module .hd h2, 
 .module-primary .hd h2,
 .module .hd h3,
+.module .hd h4
 {
     color: #999;
 }
@@ -783,6 +784,11 @@ html[dir="rtl"] .module-primary .hd h2
 .module-primary .bd h3
 {
     font-size: 120%;
+}
+
+.module .bd h4
+{
+    font-size: 100%;
 }
 
 /* USER STATISTICS MODULE */
@@ -1563,7 +1569,8 @@ div.item-statistics
     margin-top: 1em;
 }
 
-div.item-statistics dl
+div.item-statistics dl,
+div.checks dl
 {
     margin: 0;
 }
@@ -1583,6 +1590,17 @@ html[dir="rtl"] div.item-statistics dl dt
     text-align: left;
 }
 
+div.checks
+{
+    margin: .3em 0 1em;
+}
+
+div.checks dl dt
+{
+    display: inline-block;
+    width: 18%;
+}
+
 div.item-statistics dl dd
 {
     line-height: inherit;
@@ -1592,6 +1610,30 @@ div.item-statistics dl dd
 html[dir="rtl"] div.item-statistics dl dd
 {
     margin: 0 110px 0 0;
+}
+
+div.checks dl dd
+{
+    display: inline;
+    line-height: inherit;
+    margin: 0 11% 0 18%;
+    width: 18%;
+}
+
+html[dir="rtl"] div.checks dl dd
+{
+    margin: 0 18% 0 11%;
+}
+
+div.check-100 dl
+{
+    font-weight: bold;
+}
+
+div.check-100 dl dd
+{
+    background-color: inherit;
+    color: #c30;
 }
 
 div.small
