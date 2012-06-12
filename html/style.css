@@ -255,6 +255,16 @@ pre, code, kbd, samp, tt
     vertical-align: text-top;
 }
 
+.icon-expand
+{
+    background-image: url('images/icon-expand.png');
+}
+
+.icon-collapse
+{
+    background-image: url('images/icon-collapse.png');
+}
+
 
 /*
  * MAIN DIVs
