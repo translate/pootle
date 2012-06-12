@@ -303,9 +303,10 @@ def get_quality_check_failures(path_obj, dir_stats):
         keys.sort(reverse=True)
 
         for i, category in enumerate(keys):
-            checks.append({'category': category,
-                           'category_display': category_map[category],
-                           'checks': []})
+            if category != Category.NO_CATEGORY:
+                checks.append({'category': category,
+                               'category_display': category_map[category],
+                               'checks': []})
 
             cat_keys = property_stats[category].keys()
             cat_keys.sort()
