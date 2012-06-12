@@ -63,13 +63,16 @@ function zoom(v) {
  */
 
 $(document).ready(function ($) {
-  $('html').ajaxSend(function(event, xhr, settings) {
+  $('html').ajaxSend(function (event, xhr, settings) {
     function getCookie(name) {
       var cookieValue = null;
+
       if (document.cookie && document.cookie != '') {
         var cookies = document.cookie.split(';');
+
         for (var i = 0; i < cookies.length; i++) {
           var cookie = jQuery.trim(cookies[i]);
+
           // Does this cookie string begin with the name we want?
           if (cookie.substring(0, name.length + 1) == (name + '=')) {
             cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
@@ -79,6 +82,7 @@ $(document).ready(function ($) {
       }
       return cookieValue;
     }
+
     if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
       // Only send the token to relative URLs i.e. locally.
       xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
@@ -92,14 +96,17 @@ $(document).ready(function ($) {
   $('label.inputHint').each(function () {
     var label = $(this);
     var input = $('#' + label.attr('for'));
+
     if (input.attr("defaultValue")) {
       var initial = input.attr("defaultValue");
       var search = true;
     } else {
       var initial = label.hide().text().replace(':', '');
     }
+
     input.focus(function () {
       input.css(focused);
+
       if (input.val() == initial && !search) {
         input.val('');
       }
@@ -126,6 +133,7 @@ $(document).ready(function ($) {
   $(document).on("click", ".collapse", function (e) {
     e.preventDefault();
     $(this).siblings(".collapsethis").slideToggle("fast");
+
     if ($("textarea", $(this).next("div.collapsethis")).length) {
       $("textarea", $(this).next("div.collapsethis")).focus();
     }
@@ -144,9 +152,11 @@ $(document).ready(function ($) {
   if ($.cookie(cookieName) == "yes") {
     $('.intro, #edit_settings, #hide_description, #show_description').toggle();
   }
+
   $('#hide_description, #show_description').click(function(e) {
     $('#edit_settings, #hide_description, #show_description').toggle();
     $('.intro,').slideToggle();
+
     if ($.cookie(cookieName) == "yes") {
         $.cookie(cookieName, "no", cookieOptions);
     } else {
@@ -154,4 +164,5 @@ $(document).ready(function ($) {
     }
 
   });
+
 });
