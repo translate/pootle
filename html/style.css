@@ -2076,6 +2076,26 @@ a.slide
     display: none;
 }
 
+.pull-left
+{
+    float: left;
+}
+
+html[dir="rtl"] .pull-left
+{
+    float: right;
+}
+
+.pull-right
+{
+    float: right;
+}
+
+html[dir="rtl"] .pull-right
+{
+    float: left;
+}
+
 
 /*
  * LANGUAGE SPECIFIC SETTINGS
