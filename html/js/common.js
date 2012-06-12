@@ -165,4 +165,35 @@ $(document).ready(function ($) {
 
   });
 
+  /* Directory summary */
+  $(document).on("click", ".js-directory-summary", function (e) {
+    e.preventDefault();
+    var node = $(".js-directory-summary-more"),
+        icon = $("i.js-directory-summary"),
+        data = node.data();
+
+    function hideShow() {
+      node.toggle('slow', function () {
+        oldClass = data.collapsed ? 'icon-expand' : 'icon-collapse';
+        newClass = data.collapsed ? 'icon-collapse' : 'icon-expand';
+        icon.removeClass(oldClass).addClass(newClass);
+        node.data('collapsed', !data.collapsed);
+      });
+    }
+
+    if (data.loaded) {
+      hideShow();
+    } else {
+      var url = l("dir_summary.html");
+      $.ajax({
+        url: url,
+        success: function (data) {
+          node.html(data).hide();
+          node.data('loaded', true);
+          hideShow();
+        },
+      });
+    }
+  });
+
 });

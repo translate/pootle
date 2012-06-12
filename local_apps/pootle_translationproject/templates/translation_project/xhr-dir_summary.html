@@ -1,0 +1,36 @@
+{% load i18n %}
+<div class="hd">
+  <h3><span>{% trans "Translation Statistics" %}<span></h3>
+</div>
+<div>
+  <table class="stats" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+      <tbody>
+          {% for item in trans_stats %}
+          <tr class="item">
+            <td class="stats-name">{{ item.title }}</td>
+            <td class="stats-number">{{ item.words|safe }}</td>
+            <td class="stats-number">{{ item.percentage }}</td>
+            <td class="stats-number">{{ item.units }}</td>
+          </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+</div>
+<div class="hd">
+  <h3><span>{% trans "Failing Checks" %}<span></h3>
+</div>
+<div>
+{% for failure in check_failures %}
+  <div class="hd">
+    <h4>{{ failure.category_display }}</h4>
+  </div>
+  <div class="checks check-{{ failure.category }}">
+    <dl>
+    {% for check in failure.checks %}
+    <dt><a href="{{ check.url }}">{{ check.name }}</a></dt><dd>{{ check.count}}</dd>
+    {% endfor %}
+    </dl>
+  </div>
+{% endfor %}
+</div>
+

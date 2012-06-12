@@ -339,8 +339,6 @@ class ProjectIndexView(BaseView):
 
         directory_stats = get_raw_directory_stats(directory)
         directory_summary = get_directory_summary(directory, directory_stats)
-        translation_stats = get_translation_stats(directory, directory_stats)
-        quality_checks = get_quality_check_failures(directory, directory_stats)
 
         template_vars.update({
             'translation_project': translation_project,
@@ -349,9 +347,7 @@ class ProjectIndexView(BaseView):
             'language': language,
             'directory': directory,
             'children': get_children(request, translation_project, directory),
-            'check_failures': quality_checks,
             'dir_summary': directory_summary,
-            'trans_stats': translation_stats,
             'stats_headings': get_stats_headings(),
             'topstats': gentopstats_translation_project(translation_project),
             'feed_path': directory.pootle_path[1:],
@@ -377,6 +373,24 @@ def tp_overview(request, translation_project, dir_path):
     return render_to_response("translation_project/tp_overview.html",
                               view_obj(request, translation_project, directory),
                               context_instance=RequestContext(request))
+
+
+@ajax_required
+@get_translation_project
+def tp_dir_summary(request, translation_project):
+    directory = translation_project.directory
+
+    directory_stats = get_raw_directory_stats(directory)
+    translation_stats = get_translation_stats(directory, directory_stats)
+    quality_checks = get_quality_check_failures(directory, directory_stats)
+
+    context = {
+        'check_failures': quality_checks,
+        'trans_stats': translation_stats,
+    }
+
+    return render_to_response('translation_project/xhr-dir_summary.html',
+                              context, RequestContext(request))
 
 
 @ajax_required
