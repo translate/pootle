@@ -382,18 +382,17 @@ table td.translate-translation
     margin-bottom: 0.5em;
 }
 
-.translate-locations
+.translate-locations,
+.translate-context-value
 {
-    display: inline;
     font-size: 90%;
+    display: inline;
     word-wrap: break-word;
 }
 
 .translate-context-value
 {
-    font-size: 90%;
     font-weight: bold;
-    display: inline;
 }
 
 .translator-comments
