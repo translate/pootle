@@ -72,13 +72,17 @@
         <h3><span>{% trans "Failing Checks" %}<span></h3>
       </div>
       <div>
-      {% for category, failures in check_failures.items %}
-        <h4>{{ category }}</h4>
-        <dl>
-        {% for check in failures %}
-        <dt><a href="{{ check.url }}">{{ check.name }}</a></dt><dd>{{ check.count}}</dd>
-        {% endfor %}
-        </dl>
+      {% for failure in check_failures %}
+        <div class="hd">
+          <h4>{{ failure.category_display }}</h4>
+        </div>
+        <div class="checks check-{{ failure.category }}">
+          <dl>
+          {% for check in failure.checks %}
+          <dt><a href="{{ check.url }}">{{ check.name }}</a></dt><dd>{{ check.count}}</dd>
+          {% endfor %}
+          </dl>
+        </div>
       {% endfor %}
       </div>
     </div>

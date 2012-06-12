@@ -287,7 +287,7 @@ def get_translation_stats(directory, dir_stats):
 def get_quality_check_failures(path_obj, dir_stats):
     """Returns a list of the failed checks sorted by their importance.
     """
-    checks = {}
+    checks = []
     category_map = {
         Category.CRITICAL: _("Critical"),
         Category.FUNCTIONAL: _("Functional"),
@@ -302,7 +302,11 @@ def get_quality_check_failures(path_obj, dir_stats):
         keys = property_stats.keys()
         keys.sort(reverse=True)
 
-        for category in keys:
+        for i, category in enumerate(keys):
+            checks.append({'category': category,
+                           'category_display': category_map[category],
+                           'checks': []})
+
             cat_keys = property_stats[category].keys()
             cat_keys.sort()
 
@@ -314,7 +318,7 @@ def get_quality_check_failures(path_obj, dir_stats):
                                                        check=checkname),
                              'name': checkname,
                              'count': checkcount}
-                    checks.setdefault(category_map[category], []).append(check)
+                    checks[i]['checks'].append(check)
     except IOError:
         pass
 
