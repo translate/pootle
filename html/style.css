@@ -2065,7 +2065,8 @@ html[dir="rtl"] .translations-nav li:last-child:after
  */
 
 a.collapse,
-a.slide
+a.slide,
+.ptr
 {
     cursor: pointer;
 }
