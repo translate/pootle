@@ -234,7 +234,7 @@ def unit_form_factory(language, snplurals=None, request=None):
         def clean_state(self):
             value = self.cleaned_data['state']
 
-            if self.instance.state != value:
+            if self.instance.isfuzzy() != value:
                 self.instance._state_updated = True
             else:
                 self.instance._state_updated = False
