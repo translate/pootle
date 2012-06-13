@@ -232,18 +232,26 @@ def unit_form_factory(language, snplurals=None, request=None):
             return value
 
         def clean_state(self):
-            value = self.cleaned_data['state']
+            old_state = self.instance.state    #integer
+            value = self.cleaned_data['state'] #boolean
+            new_target = self.cleaned_data['target_f']
 
-            if self.instance.isfuzzy() != value:
+            new_state = None
+            if new_target:
+                if value:
+                    new_state = FUZZY
+                else:
+                    new_state = TRANSLATED
+            else:
+                new_state = UNTRANSLATED
+
+
+            if old_state != new_state:
                 self.instance._state_updated = True
             else:
                 self.instance._state_updated = False
 
-            if value:
-                return FUZZY
-            elif self.instance.state != FUZZY:
-                return self.instance.state
-            else:
-                return TRANSLATED
+            return new_state
+
 
     return UnitForm
