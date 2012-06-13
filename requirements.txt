@@ -1,0 +1,10 @@
+Django
+django-voting
+MySQL-python
+python-levenshtein
+python-memcached
+South
+webassets
+
+# Translate Toolkit
+-e git://github.com/translate/translate.git#egg=translate
