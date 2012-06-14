@@ -180,9 +180,9 @@ class PootleBuildMo(DistutilsBuild):
         from translate.storage import factory
 
         print "Preparing localization files"
-        for po_filename in glob.glob(path.join('po', 'pootle', '*', 'pootle.po')):
+        for po_filename in glob.glob(path.join('pootle', 'po', 'pootle', '*', 'pootle.po')):
             lang = path.split(path.split(po_filename)[0])[1]
-            lang_dir = path.join('mo', lang, 'LC_MESSAGES')
+            lang_dir = path.join('pootle', 'mo', lang, 'LC_MESSAGES')
             mo_filename = path.join(lang_dir, 'django.mo')
 
             try:
