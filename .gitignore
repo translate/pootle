@@ -1,16 +1,13 @@
-# /
-/LICENSE
+# /pootle/dbs/
+/pootle/dbs/*.db
 
-# /dbs/
-/dbs/*.db
-
-# /html/
-/html/.webassets-cache/
-/html/*.min.css
-/html/js/*.min.js
+# /pootle/html/
+/pootle/html/.webassets-cache/
+/pootle/html/*.min.css
+/pootle/html/js/*.min.js
 
 # /mo/
-/mo/*
+/pootle/mo/*
 
 # General
 *.pyc
