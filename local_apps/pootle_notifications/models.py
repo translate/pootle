@@ -52,24 +52,28 @@ class Notice(models.Model):
 
 class NoticeForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-	self.current_directory = kwargs.pop('current_directory')
-       	self.directory = forms.ModelChoiceField( queryset=Directory.objects.filter(pk=self.current_directory.pk), initial=self.current_directory.pk, widget=forms.HiddenInput)
+	current_directory = kwargs.pop('current_directory')
 	super(NoticeForm, self).__init__(*args, **kwargs)
+	#load in current directory
+	self.fields['directory'].queryset=Directory.objects.filter(pk=current_directory.pk)
+	self.fields['directory'].inital = current_directory.pk
 
+
+    directory = forms.ModelChoiceField(queryset=Directory.objects.all(), widget=forms.HiddenInput)
     #
-    #new attributes - andy 8/june/2012
+    #new attributes - andy 15/june/2012
     # 
     publish_rss = forms.BooleanField(label=_('Publish on News feed'))
-    send_email = forms.BooleanField(label=_('Send Email'))
-    email_header = forms.CharField(label=_('Title'))
-    restrict_to_active_users = forms.BooleanField(label=_('Email only to recently active users'))
+    send_email = forms.BooleanField(label=_('Send Email'), required=False)
+    email_header = forms.CharField(label=_('Title'), required=False)
+    restrict_to_active_users = forms.BooleanField(label=_('Email only to recently active users'), required=False)
 
     #project selection 
-    project_all = forms.BooleanField(label=_('All projects'))
-    project_selection = forms.ModelMultipleChoiceField(queryset=Project.objects.all())
+    project_all = forms.BooleanField(label=_('All projects'), required=False)
+    project_selection = forms.ModelMultipleChoiceField(queryset=Project.objects.all(), required=False)
     #language 
-    language_all = forms.BooleanField(label=_('All Languages'))
-    language_selection = forms.ModelMultipleChoiceField(queryset=Language.objects.all())
+    language_all = forms.BooleanField(label=_('All Languages'), required=False)
+    language_selection = forms.ModelMultipleChoiceField(queryset=Language.objects.all(), required=False)
 
     class Meta:
 	model = Notice
