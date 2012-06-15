@@ -52,9 +52,9 @@ class NoticeFeed(Feed):
 
     def items(self, directory):
         if self.recusrive:
-            return Notice.objects.filter(directory__pootle_path__startswith=directory.pootle_path).select_related('directory')[:30]
+            return Notice.objects.filter(email_only=False).filter(directory__pootle_path__startswith=directory.pootle_path).select_related('directory')[:30]
         else:
-            return Notice.objects.filter(directory=directory).select_related('directory')[:30]
+            return Notice.objects.filter(email_only=False).filter(directory=directory).select_related('directory')[:30]
 
     def item_pubdate(self, item):
         return item.added

@@ -23,8 +23,6 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.shortcuts import get_object_or_404
-from django import forms
-from django.forms import ModelForm
 
 from pootle.i18n.gettext import tr_lang
 
@@ -33,7 +31,7 @@ from pootle_app.models.permissions import get_matching_permissions, check_permis
 from pootle_app.views.language import navbar_dict
 from pootle_profile.models import get_profile
 
-from pootle_notifications.models import Notice
+from pootle_notifications.models import Notice, NoticeForm
 
 def view(request, path):
     #FIXME: why do we have leading and trailing slashes in pootle_path?
@@ -91,21 +89,13 @@ def directory_to_title(directory):
              {'path': directory.pootle_path})
 
 def handle_form(request, current_directory):
-    class NoticeForm(ModelForm):
-        directory = forms.ModelChoiceField(
-            queryset=Directory.objects.filter(pk=current_directory.pk),
-            initial=current_directory.pk, widget=forms.HiddenInput)
-
-        class Meta:
-            model = Notice
-
     if request.method == 'POST':
-        form = NoticeForm(request.POST)
+        form = NoticeForm(request.POST,current_directory=current_directory)
         if form.is_valid():
             form.save()
-            form = NoticeForm()
+            form = NoticeForm(current_directory=current_directory)
     else:
-        form = NoticeForm()
+        form = NoticeForm(current_directory=current_directory, initial = { 'publish_rss': True } )
 
     return form
 

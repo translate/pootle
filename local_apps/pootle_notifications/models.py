@@ -22,29 +22,20 @@ import locale
 
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-
-from pootle_misc.baseurl import l
 from django.db.models import Q
+from django import forms
+
+from pootle_app.models import Directory
+from pootle_misc.baseurl import l
+from pootle_language.models import Language
+from pootle_project.models import Project
+
 
 class Notice(models.Model):
     directory = models.ForeignKey('pootle_app.Directory', db_index=True)
     message = models.TextField(_('Message'))
     #l10n: The date that the news item was written
     added = models.DateTimeField(_('Added'), auto_now_add=True, null=True, db_index=True)
-
-    #new attributs - andy 8/june/2012
-    # we assume that both False means rss AND email
-    rss_only = models.BooleanField(_('RSS only'), default=False, null=False, db_index=True)
-    email_only = models.BooleanField(_('Email only'), default=False, null=False, db_index=True)
-    email_header = models.TextField(_('Email Header'), null=False, default='')
-    
-    restrict_to_project = models.BooleanField(_('Email only to selected projects'), default=True, null=False, db_index=True)
-    restrict_to_language = models.BooleanField(_('Email only to selected languages'), default=False, null=False, db_index=True)
-    restrict_to_active_users = models.BooleanField(_('Email only to recently active users'), default=True, null=False, db_index=True)
-
-    send_to_projects = models.ManyToManyField('pootle_project.Project', blank=True, db_index=True, verbose_name=_("Projects"))
-    send_to_langs = models.ManyToManyField('pootle_language.Language', blank=True, limit_choices_to=~Q(code='templates'), related_name="notice_languages", verbose_name=_("Languages"), db_index=True)
-   
 
     def __unicode__(self):
         return self.message
@@ -57,3 +48,32 @@ class Notice(models.Model):
 
     class Meta:
         ordering = ["-added"]
+
+
+class NoticeForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+	self.current_directory = kwargs.pop('current_directory')
+       	self.directory = forms.ModelChoiceField( queryset=Directory.objects.filter(pk=self.current_directory.pk), initial=self.current_directory.pk, widget=forms.HiddenInput)
+	super(NoticeForm, self).__init__(*args, **kwargs)
+
+    #
+    #new attributes - andy 8/june/2012
+    # 
+    publish_rss = forms.BooleanField(label=_('Publish on News feed'))
+    send_email = forms.BooleanField(label=_('Send Email'))
+    email_header = forms.CharField(label=_('Title'))
+    restrict_to_active_users = forms.BooleanField(label=_('Email only to recently active users'))
+
+    #project selection 
+    project_all = forms.BooleanField(label=_('All projects'))
+    project_selection = forms.ModelMultipleChoiceField(queryset=Project.objects.all())
+    #language 
+    language_all = forms.BooleanField(label=_('All Languages'))
+    language_selection = forms.ModelMultipleChoiceField(queryset=Language.objects.all())
+
+    class Meta:
+	model = Notice
+	widgets = {
+		'email_header': forms.TextInput,
+		'directory' : forms.HiddenInput
+	}	
