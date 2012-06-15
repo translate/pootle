@@ -1,10 +1,10 @@
 # /pootle/dbs/
 /pootle/dbs/*.db
 
-# /pootle/html/
-/pootle/html/.webassets-cache/
-/pootle/html/*.min.css
-/pootle/html/js/*.min.js
+# /pootle/static/
+/pootle/static/.webassets-cache/
+/pootle/static/*.min.css
+/pootle/static/js/*.min.js
 
 # /mo/
 /pootle/mo/*

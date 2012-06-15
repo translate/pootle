@@ -67,7 +67,7 @@ def collect_options():
         (INSTALL_CONFIG_DIR, ['localsettings.py']),
         (INSTALL_DOC_DIR, ['wsgi.py', 'ChangeLog', 'COPYING', 'README', 'INSTALL']),
         (INSTALL_WORKING_DIR + '/dbs', []), # Create the empty "dbs" dir
-    ] + list_tree(INSTALL_DATA_DIR, 'templates') + list_tree(INSTALL_DATA_DIR, 'html') + \
+    ] + list_tree(INSTALL_DATA_DIR, 'templates') + list_tree(INSTALL_DATA_DIR, 'static') + \
         list_tree(INSTALL_WORKING_DIR, 'po') + list_tree(INSTALL_DATA_DIR, 'mo')
 
     packages = ['pootle'] + ['pootle.' + pkg for pkg in find_packages('pootle')] + \

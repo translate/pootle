@@ -37,7 +37,7 @@ urlpatterns = patterns('',
     (r'^django_admin/', include(admin.site.urls)),
 
     # Static and media files
-    (r'^html/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     (r'^(favicon.ico)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': DJANGO_MEDIA}),
     # direct download of translation files
