@@ -44,6 +44,48 @@ def list_empty(strings):
             return False
     return True
 
+
+def to_db(value):
+    """Flatten the given value (string, list of plurals or multistring) into
+    the database string representation."""
+    if value is None:
+        return None
+    elif isinstance(value, multistring):
+        if list_empty(value.strings):
+            return ''
+        else:
+            return SEPERATOR.join(value.strings)
+    elif isinstance(value, list):
+        if list_empty(value):
+            return ''
+        else:
+            return SEPERATOR.join(value)
+    else:
+        return value
+
+
+def to_python(value):
+    """Reconstruct a multistring from the database string representation."""
+    if not value:
+        return multistring("", encoding="UTF-8")
+    elif isinstance(value, multistring):
+        return value
+    elif isinstance(value, basestring):
+        strings = value.split(SEPERATOR)
+        if strings[-1] == PLURAL_PLACEHOLDER:
+            strings = strings[:-1]
+            plural = True
+        else:
+            plural = len(strings) > 1
+        ms = multistring(strings, encoding="UTF-8")
+        ms.plural = plural
+        return ms
+    elif isinstance(value, dict):
+        return multistring([val for key, val in sorted(value.items())], encoding="UTF-8")
+    else:
+        return multistring(value, encoding="UTF-8")
+
+
 class MultiStringField(models.Field):
     description = "a field imitating translate.misc.multistring used for plurals"
     __metaclass__ = models.SubfieldBase
@@ -55,6 +97,8 @@ class MultiStringField(models.Field):
         return "TextField"
 
     def to_python(self, value):
+        return to_python(value)
+
         if not value:
             return multistring("", encoding="UTF-8")
         elif isinstance(value, multistring):
@@ -76,20 +120,7 @@ class MultiStringField(models.Field):
 
     def get_db_prep_value(self, value, *args, **kwargs):
         #FIXME: maybe we need to override get_db_prep_save instead?
-        if value is None:
-            return None
-        elif isinstance(value, multistring):
-            if list_empty(value.strings):
-                return ''
-            else:
-                return SEPERATOR.join(value.strings)
-        elif isinstance(value, list):
-            if list_empty(value):
-                return ''
-            else:
-                return SEPERATOR.join(value)
-        else:
-            return value
+        return to_db(value)
 
     def get_db_prep_lookup(self, lookup_type, value, *args, **kwargs):
         if lookup_type in ('exact', 'iexact') or not isinstance(value, basestring):
