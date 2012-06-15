@@ -100,7 +100,7 @@ def collect_options():
         'profiles': 'apps/profiles',
         'djblets': 'apps/djblets',
     }
-    scripts = ['import_pootle_prefs', 'updatetm', 'PootleServer']
+    scripts = ['updatetm', 'PootleServer']
     options = {
         'data_files': data_files,
         'packages': packages,
