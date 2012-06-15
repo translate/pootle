@@ -59,7 +59,7 @@ from pootle_store.models import Store
 from pootle_store.util import absolute_real_path, relative_real_path
 from pootle_store.filetypes import factory_classes
 from pootle_store.views import translate_page
-from pootle_statistics.models import Submission
+from pootle_statistics.models import Submission, UPLOAD
 from pootle_profile.models import get_profile
 
 
@@ -862,9 +862,13 @@ class UploadHandler(view_handler.Handler):
             # create a submission, doesn't fix stats but at least
             # shows up in last activity column
             import datetime
-            s = Submission(creation_time=datetime.datetime.utcnow(),
-                           translation_project=translation_project,
-                           submitter=get_profile(request.user))
+            s = Submission(
+                    creation_time=datetime.datetime.utcnow(),
+                    translation_project=translation_project,
+                    submitter=get_profile(request.user),
+                    type=UPLOAD,
+                    # the other fields are only relevant to unit-based changes
+            )
             s.save()
 
             post_file_upload.send(
