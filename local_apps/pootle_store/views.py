@@ -734,6 +734,7 @@ def accept_suggestion(request, unit, suggid):
         except ObjectDoesNotExist:
             raise Http404
 
+        old_target = unit.target
         success = unit.accept_suggestion(suggid)
         json['newtargets'] = [highlight_whitespace(target) for target in unit.target.strings]
         json['newdiffs'] = {}
@@ -755,9 +756,21 @@ def accept_suggestion(request, unit, suggid):
                 suggstat.save()
             else:
                 suggstat = None
-            sub = Submission(translation_project=translation_project,
-                             submitter=suggestion.user,
-                             from_suggestion=suggstat)
+
+            # For now assume the target changed
+            # TODO: check all fields for changes
+            creation_time=datetime.utcnow()
+            sub = Submission(
+                    creation_time=creation_time,
+                    translation_project=translation_project,
+                    submitter=suggestion.user,
+                    from_suggestion=suggstat,
+                    unit=unit,
+                    field="pootle_store.Unit.target",
+                    type=SUGG_ACCEPT,
+                    old_value=old_target,
+                    new_value=unit.target,
+            )
             sub.save()
     response = jsonify(json)
     return HttpResponse(response, mimetype="application/json")
