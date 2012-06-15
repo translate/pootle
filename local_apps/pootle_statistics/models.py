@@ -24,6 +24,14 @@ from django.utils.safestring import mark_safe
 
 from pootle_app.lib.util import RelatedManager
 
+
+# These are the values for the 'type' field of Submission:
+#None/0 = no information
+NORMAL = 1          # Interactive web editing
+REVERT = 2          # Revert action on the web
+SUGG_ACCEPT = 3     # Accepting a suggestion
+UPLOAD = 4          # Uploading an offline file
+
 class Submission(models.Model):
     class Meta:
         get_latest_by = "creation_time"
@@ -31,11 +39,21 @@ class Submission(models.Model):
 
     objects = RelatedManager()
 
-    creation_time       = models.DateTimeField(auto_now_add=True, db_index=True)
+    creation_time       = models.DateTimeField(db_index=True)
     translation_project = models.ForeignKey('pootle_translationproject.TranslationProject', db_index=True)
     submitter           = models.ForeignKey('pootle_profile.PootleProfile', null=True, db_index=True)
     from_suggestion     = models.OneToOneField('pootle_app.Suggestion', null=True, db_index=True)
-
+    unit                = models.ForeignKey('pootle_store.Unit', blank=True, null=True, on_delete=models.SET_NULL, db_index=True)
+    # the field in the unit that changed:
+    field               = models.CharField(max_length=128, blank=True, default=u"")
+    # how did this submission come about? (one of the constants above)
+    type                = models.IntegerField(null=True, blank=True, db_index=True)
+    # old_value and new_value can store string representations of multistrings
+    # in the case where they store values for a unit's source or target. In
+    # such cases, the strings might not be usable as is. Use the two helper
+    # functions in pootle_store.fields to convert to and from this format.
+    old_value           = models.TextField(blank=True, default=u"")
+    new_value           = models.TextField(blank=True, default=u"")
 
     def __unicode__(self):
         return u"%s (%s)" % (self.creation_time.strftime("%Y-%m-%d %H:%M"),

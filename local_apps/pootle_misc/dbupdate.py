@@ -250,6 +250,12 @@ def update_tables_22000():
     field = QualityCheck._meta.get_field('category')
     db.add_column(table_name, field.name, field)
 
+    from pootle_statistics.models import Submission
+    table_name = Submission._meta.db_table
+    for field_name in ('unit', 'field', 'type', 'old_value', 'new_value'):
+        field = Submission._meta.get_field(field_name)
+        db.add_column(table_name, field.name, field)
+
     text += """
     <p>%s</p>
     """ % _('Removing quality checks, will be recalculated on demand...')
