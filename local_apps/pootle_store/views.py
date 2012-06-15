@@ -20,6 +20,7 @@
 
 import os
 import logging
+from datetime import datetime
 
 from translate.lang import data
 
@@ -42,7 +43,7 @@ from pootle_app.models.permissions import get_matching_permissions, check_permis
 from pootle_misc.util import paginate, ajax_required, jsonify
 from pootle_profile.models import get_profile
 from pootle_translationproject.forms import make_search_form
-from pootle_statistics.models import Submission
+from pootle_statistics.models import Submission, NORMAL, SUGG_ACCEPT
 from pootle_app.models import Suggestion as SuggestionStat
 
 from pootle_store.models import Store, Unit
@@ -640,21 +641,35 @@ def process_submit(request, unit, type):
     else:
         snplurals = None
 
+    import copy
+    old_unit = copy.copy(unit)
     form_class = unit_form_factory(language, snplurals, request)
     form = form_class(request.POST, instance=unit)
 
     if form.is_valid():
-        if type == 'submission':
-            if form.instance._target_updated or \
-               form.instance._translator_comment_updated or \
-               form.instance._state_updated:
-                form.save()
-                translation_submitted.send(sender=translation_project,
-                                           unit=form.instance, profile=request.profile)
-
-                sub = Submission(translation_project=translation_project,
-                                 submitter=request.profile)
+        if type == 'submission' and form.updated_fields:
+            # Store creation time so that it is the same for all submissions:
+            creation_time=datetime.utcnow()
+            for field, old_value, new_value in form.updated_fields:
+                sub = Submission(
+                        creation_time=creation_time,
+                        translation_project=translation_project,
+                        submitter=request.profile,
+                        unit=unit,
+                        field=field,
+                        type=NORMAL,
+                        old_value=old_value,
+                        new_value=new_value,
+                )
                 sub.save()
+
+            form.save()
+            translation_submitted.send(
+                    sender=translation_project,
+                    unit=form.instance,
+                    profile=request.profile,
+            )
+
         elif type == 'suggestion':
             if form.instance._target_updated:
                 #HACKISH: django 1.2 stupidly modifies instance on
