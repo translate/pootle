@@ -90,12 +90,12 @@ def directory_to_title(directory):
 
 def handle_form(request, current_directory):
     if request.method == 'POST':
-        form = NoticeForm(request.POST,current_directory=current_directory)
+        form = NoticeForm(request.POST)
         if form.is_valid():
             form.save()
-            form = NoticeForm(current_directory=current_directory)
+            form = NoticeForm()
     else:
-        form = NoticeForm(current_directory=current_directory, initial = { 'publish_rss': True } )
+        form = NoticeForm(initial = { 'publish_rss': True , 'directory' : current_directory.pk} )
 
     return form
 

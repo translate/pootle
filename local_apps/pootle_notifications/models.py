@@ -51,13 +51,6 @@ class Notice(models.Model):
 
 
 class NoticeForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-	current_directory = kwargs.pop('current_directory')
-	super(NoticeForm, self).__init__(*args, **kwargs)
-	#load in current directory
-	self.fields['directory'].queryset=Directory.objects.filter(pk=current_directory.pk)
-	self.fields['directory'].inital = current_directory.pk
-
 
     directory = forms.ModelChoiceField(queryset=Directory.objects.all(), widget=forms.HiddenInput)
     #
@@ -79,5 +72,4 @@ class NoticeForm(forms.ModelForm):
 	model = Notice
 	widgets = {
 		'email_header': forms.TextInput,
-		'directory' : forms.HiddenInput
 	}	
