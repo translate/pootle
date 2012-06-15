@@ -28,8 +28,8 @@ from translate.misc.multistring import multistring
 
 from pootle_app.models.permissions import check_permission
 from pootle_store.models import Unit
-from pootle_store.util import FUZZY, TRANSLATED
-from pootle_store.fields import PLURAL_PLACEHOLDER
+from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED
+from pootle_store.fields import PLURAL_PLACEHOLDER, to_db
 
 ############## text cleanup and highlighting #########################
 
@@ -202,11 +202,16 @@ def unit_form_factory(language, snplurals=None, request=None):
                                              widget=forms.Textarea(
                                                  attrs=comment_attrs))
 
+        def __init__(self, *args, **argv):
+            super(UnitForm, self).__init__(*args, **argv)
+            self.updated_fields = []
+
         def clean_source_f(self):
             value = self.cleaned_data['source_f']
 
             if self.instance.source.strings != value:
                 self.instance._source_updated = True
+                self.updated_fields.append(("pootle_store.Unit.source", to_db(self.instance.source), to_db(value)))
             if snplurals == 1:
                 # plural with single form, insert placeholder
                 value.append(PLURAL_PLACEHOLDER)
@@ -216,16 +221,19 @@ def unit_form_factory(language, snplurals=None, request=None):
         def clean_target_f(self):
             value = self.cleaned_data['target_f']
 
-            if self.instance.target.strings != value:
+            if self.instance.target.strings != multistring(value or [u'']):
                 self.instance._target_updated = True
+                self.updated_fields.append(("pootle_store.Unit.target", to_db(self.instance.target), to_db(value)))
 
             return value
 
         def clean_translator_comment(self):
             value = self.cleaned_data['translator_comment']
+            old_value = self.instance.translator_comment or u''
 
-            if self.instance.translator_comment != value:
+            if old_value != value:
                 self.instance._translator_comment_updated = True
+                self.updated_fields.append(("pootle_store.Unit.translator_comment", old_value, value))
             else:
                 self.instance._translator_comment_updated = False
 
@@ -248,6 +256,7 @@ def unit_form_factory(language, snplurals=None, request=None):
 
             if old_state != new_state:
                 self.instance._state_updated = True
+                self.updated_fields.append(("pootle_store.Unit.state", old_state, new_state))
             else:
                 self.instance._state_updated = False
 
