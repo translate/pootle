@@ -1,0 +1,10 @@
+-r base.txt
+
+# Databases
+MySQL-python
+# Uncomment for PostgreSQL
+# psycopg2
+
+# Libraries
+python-levenshtein
+python-memcached
