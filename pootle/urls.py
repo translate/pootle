@@ -29,10 +29,6 @@ admin.autodiscover()
 DJANGO_MEDIA = path.join(path.dirname(admin.__file__), 'media')
 
 urlpatterns = patterns('',
-    # Uncomment the admin/doc line below and add 'django.contrib.admindocs'
-    # to INSTALLED_APPS to enable admin documentation:
-    (r'^django_admin/doc/', include('django.contrib.admindocs.urls')),
-
     # Uncomment the next line to enable the admin:
     (r'^django_admin/', include(admin.site.urls)),
 
