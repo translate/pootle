@@ -9,7 +9,7 @@
 # /pootle/settings/
 /pootle/settings/*-local.conf
 
-# /mo/
+# /pootle/mo/
 /pootle/mo/*
 
 # General
