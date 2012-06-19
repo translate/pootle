@@ -6,11 +6,16 @@
 /pootle/static/*.min.css
 /pootle/static/js/*.min.js
 
+# /pootle/settings/
+/pootle/settings/*-local.conf
+
 # /mo/
 /pootle/mo/*
 
 # General
+*.bak
 *.pyc
+*.pyo
 *.prefs
 *.stats
 *.pending
@@ -18,6 +23,7 @@
 .translation_index
 
 # ViM-generated
+*.swn
 *.swo
 *.swp
 *~
