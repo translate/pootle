@@ -1,3 +1,8 @@
+# /deploy/*/
+/deploy/*/fabric.py
+/deploy/*/settings.conf
+/deploy/*/virtualhost.conf
+
 # /pootle/dbs/
 /pootle/dbs/*.db
 
