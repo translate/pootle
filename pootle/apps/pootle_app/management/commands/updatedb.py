@@ -21,29 +21,47 @@
 import logging
 import sys
 import os
-os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
+os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from django.core.management.base import NoArgsCommand
 
 from pootle_misc import siteconfig
-
-from pootle_misc.middleware.siteconfig import DEFAULT_BUILDVERSION
+from pootle_misc.middleware.siteconfig import (DEFAULT_BUILDVERSION,
+                                               DEFAULT_TT_BUILDVERSION)
 from pootle.__version__ import build as code_buildversion
+
+from translate.__version__ import build as code_tt_buildversion
 
 class Command(NoArgsCommand):
     def handle_noargs(self, **options):
         update_db()
 
 def update_db():
-    # get current database buildversion
+    # Get current database build versions
     config = siteconfig.load_site_config()
     db_buildversion = config.get('BUILDVERSION', DEFAULT_BUILDVERSION)
-    if db_buildversion < code_buildversion:
-        logging.info("Upgrading database from schema version %d to %d", db_buildversion, code_buildversion)
+    db_tt_buildversion = int(config.get('TT_BUILDVERSION', DEFAULT_TT_BUILDVERSION))
+
+    if (db_buildversion < code_buildversion or
+        db_tt_buildversion < code_tt_buildversion):
+
+        if db_buildversion < code_buildversion:
+            logging.info("Upgrading Pootle database from schema version "
+                         "%d to %d", db_buildversion, code_buildversion)
+
+        if db_tt_buildversion < code_tt_buildversion:
+            logging.info("Upgrading TT database from schema version %d to %d",
+                         db_tt_buildversion, code_tt_buildversion)
+
         from pootle_misc.dbupdate import staggered_update
-        for i in staggered_update(db_buildversion, sys.maxint):
+        for i in staggered_update(db_buildversion, db_tt_buildversion):
             pass
-        logging.info("Database upgrade done, current schema version %d", code_buildversion)
+
+        logging.info("Database upgrade done, current schema versions:\n"
+                     "- Pootle: %d\n- Translate Toolkit: %d",
+                     code_buildversion, code_tt_buildversion)
     else:
-        logging.info("No database upgrades required, current schema version %d", db_buildversion)
+        logging.info("No database upgrades required, current schema "
+                     "versions:\n - Pootle: %d\n- Translate Toolkit: %d",
+                     db_buildversion, db_tt_buildversion)
