@@ -377,8 +377,9 @@ def tp_overview(request, translation_project, dir_path):
 
 @ajax_required
 @get_translation_project
-def tp_dir_summary(request, translation_project):
-    directory = translation_project.directory
+def tp_dir_summary(request, translation_project, dir_path):
+    current_path = translation_project.directory.pootle_path + dir_path
+    directory = get_object_or_404(Directory, pootle_path=current_path)
 
     directory_stats = get_raw_directory_stats(directory)
     translation_stats = get_translation_stats(directory, directory_stats)
