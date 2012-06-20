@@ -10,8 +10,8 @@ running in a Apache server with *mod_wsgi*.
 
 The deployment is separated in two different environments:
 
-  - Staging environment (*/deploy/staging/* directory)
-  - Production environment (*/deploy/production/* directory)
+- Staging environment (*/deploy/staging/* directory)
+- Production environment (*/deploy/production/* directory)
 
 This way server administrators can separate their testing and real-world
 Pootle servers.
@@ -21,16 +21,16 @@ Configuration
 -------------
 
 For deploying a Pootle server in any of the desired environments, it is
-necessary to put some configuration files into the directory.
+necessary to put some configuration files in place.
 
-  */deploy/environment/fabric.py*
-    Module with settings that will be used in Fabric.
+*/deploy/environment/fabric.py*
+  Module with settings that will be used in Fabric.
 
-  */deploy/environment/settings.conf*
-    Pootle-specific settings for the server (it will override the defaults).
+*/deploy/environment/settings.conf*
+  Pootle-specific settings for the server (it will override the defaults).
 
-  */deploy/environment/virtualhost.conf*
-    Apache VirtualHost configuration file.
+*/deploy/environment/virtualhost.conf*
+  Apache VirtualHost configuration file.
 
 All the settings defined in the ``fabric.py`` module will populate the Fabric
 ``env`` dictionary, making the configuration keys available in the
