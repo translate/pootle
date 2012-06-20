@@ -332,8 +332,8 @@ class ProjectIndexView(BaseView):
         template_vars = super(ProjectIndexView, self).GET(template_vars, request)
 
         user_profile = get_profile(request.user)
-        directory = translation_project.directory
-        request.permissions = get_matching_permissions(user_profile, directory)
+        tp_dir = translation_project.directory
+        request.permissions = get_matching_permissions(user_profile, tp_dir)
 
         state = dispatch.ProjectIndexState(request.GET)
         project = translation_project.project
