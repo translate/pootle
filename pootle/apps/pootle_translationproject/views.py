@@ -330,9 +330,13 @@ class ProjectIndexView(BaseView):
 
     def GET(self, template_vars, request, translation_project, directory):
         template_vars = super(ProjectIndexView, self).GET(template_vars, request)
-        request.permissions = get_matching_permissions(get_profile(request.user), translation_project.directory)
-        state    = dispatch.ProjectIndexState(request.GET)
-        project  = translation_project.project
+
+        user_profile = get_profile(request.user)
+        directory = translation_project.directory
+        request.permissions = get_matching_permissions(user_profile, directory)
+
+        state = dispatch.ProjectIndexState(request.GET)
+        project = translation_project.project
         language = translation_project.language
         is_terminology = project.is_terminology
         description = translation_project.description
@@ -364,9 +368,11 @@ class ProjectIndexView(BaseView):
 @set_request_context
 def tp_overview(request, translation_project, dir_path):
     if not check_permission("view", request):
-        raise PermissionDenied(_("You do not have rights to access this translation project."))
+        raise PermissionDenied(_("You do not have rights to access this "
+                                 "translation project."))
 
-    directory = get_object_or_404(Directory, pootle_path=translation_project.directory.pootle_path + dir_path)
+    current_path = translation_project.directory.pootle_path + dir_path
+    directory = get_object_or_404(Directory, pootle_path=current_path)
     view_obj = ProjectIndexView(forms=dict(upload=UploadHandler,
                                            update=UpdateHandler))
 
