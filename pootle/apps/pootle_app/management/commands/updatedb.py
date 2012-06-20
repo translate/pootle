@@ -63,5 +63,5 @@ def update_db():
                      code_buildversion, code_tt_buildversion)
     else:
         logging.info("No database upgrades required, current schema "
-                     "versions:\n - Pootle: %d\n- Translate Toolkit: %d",
+                     "versions:\n- Pootle: %d\n- Translate Toolkit: %d",
                      db_buildversion, db_tt_buildversion)
