@@ -35,7 +35,7 @@ urlpatterns = patterns('pootle_translationproject.views',
     # XHR views
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/((.*/)*)edit_settings.html$',
      'tp_settings_edit'),
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)(dir_summary.html)?$',
+    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)dir_summary.html$',
      'tp_dir_summary'),
 
     # Exporting files
