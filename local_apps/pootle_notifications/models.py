@@ -50,13 +50,15 @@ class Notice(models.Model):
         ordering = ["-added"]
 
 
-class NoticeForm(forms.ModelForm):
+class NoticeForm(forms.Form):
 
     directory = forms.ModelChoiceField(queryset=Directory.objects.all(), widget=forms.HiddenInput)
     #
-    #new attributes - andy 15/june/2012
+    # Notice attributes
     # 
-    publish_rss = forms.BooleanField(label=_('Publish on News feed'))
+    message = forms.CharField(_('Message'), widget=forms.Textarea)
+
+    publish_rss = forms.BooleanField(label=_('Publish on News feed'),required=False)
     send_email = forms.BooleanField(label=_('Send Email'), required=False)
     email_header = forms.CharField(label=_('Title'), required=False)
     restrict_to_active_users = forms.BooleanField(label=_('Email only to recently active users'), required=False)
@@ -67,9 +69,3 @@ class NoticeForm(forms.ModelForm):
     #language 
     language_all = forms.BooleanField(label=_('All Languages'), required=False)
     language_selection = forms.ModelMultipleChoiceField(queryset=Language.objects.all(), required=False)
-
-    class Meta:
-	model = Notice
-	widgets = {
-		'email_header': forms.TextInput,
-	}	

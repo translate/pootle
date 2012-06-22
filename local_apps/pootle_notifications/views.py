@@ -23,15 +23,21 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.shortcuts import get_object_or_404
+from django.core.mail import send_mail
+from django.db.models import Q
 
 from pootle.i18n.gettext import tr_lang
 
 from pootle_app.models import Directory
 from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.views.language import navbar_dict
-from pootle_profile.models import get_profile
-
+from pootle_profile.models import get_profile, PootleProfile
 from pootle_notifications.models import Notice, NoticeForm
+from pootle.settings import DEFAULT_FROM_EMAIL
+from pootle_language.models import Language
+from pootle_project.models import Project
+
+import sys
 
 def view(request, path):
     #FIXME: why do we have leading and trailing slashes in pootle_path?
@@ -91,9 +97,73 @@ def directory_to_title(directory):
 def handle_form(request, current_directory):
     if request.method == 'POST':
         form = NoticeForm(request.POST)
+
+	#basic validation
         if form.is_valid():
-            form.save()
-            form = NoticeForm()
+	    #Lets save this NoticeForm, if it is requsted we do that - ie 'publish_rss' is true.
+	    if form.cleaned_data['publish_rss'] == True:
+
+		##XXX do we need to do something re: project and language settings
+
+		new_notice = Notice()
+		new_notice.message = form.cleaned_data['message']
+		new_notice.directory = form.cleaned_data['directory']
+	        new_notice.save()
+
+	    #If we want to email it , then do that...
+	    if form.cleaned_data['send_email'] == True:
+		#print >>sys.stderr , 'Form email is %s' % form.cleaned_data
+
+		email_header = form.cleaned_data['email_header']
+
+
+		proj_filter = Q()
+		lang_filter = Q()
+		#Find users to send email too, based on project
+		if form.cleaned_data['project_all'] == True:
+			projs = Project.objects.all()
+		else:
+			projs = form.cleaned_data['project_selection']
+		#construct the project OR filter
+		for proj in projs:
+			proj_filter|=Q(projects__exact=proj)
+
+		#Find users to send email too, based on language
+		if form.cleaned_data['language_all'] == True:
+			langs = Language.objects.all()
+		else:
+			langs = form.cleaned_data['language_selection']
+		#construct the language OR filter
+		for lang in langs:
+			lang_filter|=Q(languages__exact=lang)
+		
+		#print >>sys.stderr , 'Project and lang filters are %s\n%s' % (proj_filter, lang_filter)
+		#list of pootleprofile objects, linked to User.	
+
+		#XXX Take it account 'only active users' flag from from
+
+		#grab all appropriate Profiles..
+		to_list = PootleProfile.objects.filter(lang_filter,proj_filter).distinct()
+
+		#print >>sys.stderr , 'To list is %s' % to_list
+
+		to_list_emails = []
+		for person in to_list:
+			if person.user.email != '':
+				to_list_emails.append(person.user.email)	
+
+		#print >>sys.stderr , 'To list emails is %s' % to_list_emails
+
+		#rest of email settings 
+		from_email = DEFAULT_FROM_EMAIL
+		message = form.cleaned_data['message']
+
+		#do it.	
+		send_mail(email_header, message, from_email, to_list_emails, fail_silently=True)	
+
+	    #return a blank Form to allow user to continue publishing notices
+	    # with our defaults
+            form = NoticeForm(initial = { 'publish_rss': True , 'directory' : current_directory.pk})
     else:
         form = NoticeForm(initial = { 'publish_rss': True , 'directory' : current_directory.pk} )
 
