@@ -23,13 +23,13 @@
 
 <div class="module-primary" lang="{{ LANGUAGE_CODE }}">
     <div class="bd">
-    <table class="sortable stats" id="stats" cellpadding="5" cellspacing="0" width="100%">
+    <table class="sortable stats" id="js-stats-language" cellpadding="5" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <th class="stats">{{ statsheadings.name }}</th>
-                <th class="stats">{{ statsheadings.progress }}</th>
-                <th class="stats-number sorttable_numeric">{{ statsheadings.need_translation }}</th>
-                <th>{% trans 'Last Activity' %}</th>
+                <th id="js-stats-project" class="stats">{{ statsheadings.name }}</th>
+                <th id="js-stats-progress" class="stats">{{ statsheadings.progress }}</th>
+                <th id="js-stats-need-translation" class="stats-number sorttable_numeric">{{ statsheadings.need_translation }}</th>
+                <th id="js-stats-activity" class="stats">{% trans 'Last Activity' %}</th>
             </tr>
         </thead>
         <tbody class="stats">

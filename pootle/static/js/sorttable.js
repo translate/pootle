@@ -73,7 +73,7 @@ sorttable = {
       }
       delete sortbottomrows;
     }
-    
+
     // work through each column and calculate its type
     headrow = table.tHead.rows[0].cells;
     for (var i=0; i<headrow.length; i++) {
@@ -86,15 +86,20 @@ sorttable = {
         } else {
          headrow[i].sorttable_sortfunction = sorttable.guessType(table,i);
         }
+
         // make it clickable to sort
         headrow[i].sorttable_columnindex = i;
         headrow[i].sorttable_tbody = table.tBodies[0];
+
         // Add unsorted icon
         unsorted = document.createElement('img');
         unsorted.className = "sorttable_unsorted";
         unsorted.src = m('images/ascdesc.gif');
         headrow[i].appendChild(unsorted);
+
         dean_addEvent(headrow[i],"click", function(e) {
+
+          var tableId = $(this).parents("table").attr("id");
 
           if (this.className.search(/\bsorttable_sorted\b/) != -1) {
             // if we're already sorted by this column, just 
@@ -107,8 +112,13 @@ sorttable = {
             sortrevind.id = "sorttable_sortrevind";
             sortrevind.src = m('images/desc.gif');
             this.appendChild(sortrevind);
+
+            // Store current sorting criteria in a cookie
+            sorttable.setSortCookie(tableId, this.id, "desc");
+
             return;
           }
+
           if (this.className.search(/\bsorttable_sorted_reverse\b/) != -1) {
             // if we're already sorted by this column in reverse, just 
             // re-reverse the table, which is quicker
@@ -120,64 +130,89 @@ sorttable = {
             sortfwdind.id = "sorttable_sortfwdind";
             sortfwdind.src = m('images/asc.gif');
             this.appendChild(sortfwdind);
+
+            // Store current sorting criteria in a cookie
+            sorttable.setSortCookie(tableId, this.id, "asc");
+
             return;
           }
-          
-          // remove sorttable_sorted classes
-          theadrow = this.parentNode;
-          forEach(theadrow.childNodes, function(cell) {
-            if (cell.nodeType == 1) { // an element
-              // Add unsorted icon if necessary as well
-              if (cell.className.search(/\b(sorttable_sorted|sorttable_sorted_reverse)\b/) != -1) {
-                unsorted = document.createElement('img');
-                unsorted.className = "sorttable_unsorted";
-                unsorted.src = m('images/ascdesc.gif');
-                cell.appendChild(unsorted);
-              }
-              cell.className = cell.className.replace('sorttable_sorted_reverse','');
-              cell.className = cell.className.replace('sorttable_sorted','');
-            }
-          });
-          unsorted = $('.sorttable_unsorted', this).get(0);
-          if (unsorted) { unsorted.parentNode.removeChild(unsorted); }
-          sortfwdind = document.getElementById('sorttable_sortfwdind');
-          if (sortfwdind) { sortfwdind.parentNode.removeChild(sortfwdind); }
-          sortrevind = document.getElementById('sorttable_sortrevind');
-          if (sortrevind) { sortrevind.parentNode.removeChild(sortrevind); }
-          
-          this.className += ' sorttable_sorted';
-          sortfwdind = document.createElement('img');
-          sortfwdind.id = "sorttable_sortfwdind";
-          sortfwdind.src = m('images/asc.gif');
-          this.appendChild(sortfwdind);
 
-          // build an array to sort. This is a Schwartzian transform thing,
-          // i.e., we "decorate" each row with the actual sort key,
-          // sort based on the sort keys, and then put the rows back in order
-          // which is a lot faster because you only do getInnerText once per row
-          row_array = [];
-          col = this.sorttable_columnindex;
-          rows = this.sorttable_tbody.rows;
-          for (var j=0; j<rows.length; j++) {
-            row_array[row_array.length] = [sorttable.getInnerText(rows[j].cells[col]), rows[j]];
-          }
-          /* If you want a stable sort, uncomment the following line */
-          sorttable.shaker_sort(row_array, this.sorttable_sortfunction);
-          /* and comment out this one */
-          //row_array.sort(this.sorttable_sortfunction);
-
-          tb = this.sorttable_tbody;
-          for (var j=0; j<row_array.length; j++) {
-            tb.appendChild(row_array[j][1]);
-          }
-
-            sorttable.make_zebra();
-
-            delete row_array;
+          sorttable.doSort(this);
         });
       }
     }
 
+    // Custom:
+    // Get this table's stored sort order and fire the column's click event
+    var columnSort = sorttable.getSortCookie(table.id);
+
+    if (columnSort !== null) {
+      var th = document.getElementById(columnSort.columnId);
+      $(th).click();
+
+      // If the sorting order was descending, fire another click event
+      if (columnSort.order === "desc") {
+        $(th).click();
+      }
+    }
+
+  },
+
+  doSort: function(th) {
+    var tableId = $(th).parents("table").attr("id");
+
+    // Remove sorttable_sorted classes
+    theadrow = th.parentNode;
+    forEach(theadrow.childNodes, function(cell) {
+      if (cell.nodeType == 1) { // an element
+        // Add unsorted icon if necessary as well
+        if (cell.className.search(/\b(sorttable_sorted|sorttable_sorted_reverse)\b/) != -1) {
+          unsorted = document.createElement('img');
+          unsorted.className = "sorttable_unsorted";
+          unsorted.src = m('images/ascdesc.gif');
+          cell.appendChild(unsorted);
+        }
+        cell.className = cell.className.replace('sorttable_sorted_reverse','');
+        cell.className = cell.className.replace('sorttable_sorted','');
+      }
+    });
+
+    unsorted = $('.sorttable_unsorted', th).get(0);
+    if (unsorted) { unsorted.parentNode.removeChild(unsorted); }
+    sortfwdind = document.getElementById('sorttable_sortfwdind');
+    if (sortfwdind) { sortfwdind.parentNode.removeChild(sortfwdind); }
+    sortrevind = document.getElementById('sorttable_sortrevind');
+    if (sortrevind) { sortrevind.parentNode.removeChild(sortrevind); }
+
+    th.className += ' sorttable_sorted';
+    sortfwdind = document.createElement('img');
+    sortfwdind.id = "sorttable_sortfwdind";
+    sortfwdind.src = m('images/asc.gif');
+    th.appendChild(sortfwdind);
+
+    // build an array to sort. This is a Schwartzian transform thing,
+    // i.e., we "decorate" each row with the actual sort key,
+    // sort based on the sort keys, and then put the rows back in order
+    // which is a lot faster because you only do getInnerText once per row
+    row_array = [];
+    col = th.sorttable_columnindex;
+    rows = th.sorttable_tbody.rows;
+    for (var j=0; j<rows.length; j++) {
+      row_array[row_array.length] = [sorttable.getInnerText(rows[j].cells[col]), rows[j]];
+    }
+    /* If you want a stable sort, uncomment the following line */
+    sorttable.shaker_sort(row_array, th.sorttable_sortfunction);
+    /* and comment out this one */
+    //row_array.sort(th.sorttable_sortfunction);
+
+    tb = th.sorttable_tbody;
+    for (var j=0; j<row_array.length; j++) {
+      tb.appendChild(row_array[j][1]);
+    }
+
+    sorttable.make_zebra();
+
+    delete row_array;
   },
   
   guessType: function(table, column) {
@@ -357,7 +392,28 @@ sorttable = {
           $(this).removeClass(cls)
           even = !even;
       });
-  }
+  },
+
+  /*
+   * Saves the sorting order for ``tableId`` table's ``theadId`` column
+   */
+  setSortCookie: function (tableId, theadId, sortOrder) {
+    if (!tableId || !theadId) {
+      return;
+    }
+
+    var cookieData = JSON.stringify({columnId: theadId,
+                                     order: sortOrder});
+    $.cookie(tableId, cookieData);
+  },
+
+  /*
+   * Retrieves the sorting order for ``tableId`` table's ``theadId`` column
+   */
+  getSortCookie: function (tableId) {
+    return JSON.parse($.cookie(tableId));
+  },
+
 }
 
 /* ******************************************************************

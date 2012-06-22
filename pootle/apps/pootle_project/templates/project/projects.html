@@ -21,11 +21,11 @@
         <h2>{{ projectlink }}</h2>
     </div>
     <div class="bd">
-        <table class="sortable">
+        <table class="sortable" id="js-stats-projects">
             <tr>
-                <th>{% trans 'Project' %}</th>
-                <th>{% trans 'Overall Completion' %}</th>
-                <th>{% trans 'Last Activity' %}</th>
+                <th id="js-stats-language" class="stats">{% trans 'Project' %}</th>
+                <th id="js-stats-progress" class="stats">{% trans 'Overall Completion' %}</th>
+                <th id="js-stats-activity" class="stats">{% trans 'Last Activity' %}</th>
             </tr>
             {% for item in projects %}
             <tr class="{% cycle 'even' 'odd' %}">

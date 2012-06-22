@@ -27,11 +27,11 @@
         <h2>{{ languagelink }}</h2>
     </div>
     <div class="bd">
-        <table class="sortable">
+        <table class="sortable" id="js-stats-index-languages">
             <tr>
-                <th>{% trans 'Language' %}</th>
-                <th>{% trans 'Overall Completion' %}</th>
-                <th>{% trans 'Last Activity' %}</th>
+                <th id="js-stats-language">{% trans 'Language' %}</th>
+                <th id="js-stats-progress">{% trans 'Overall Completion' %}</th>
+                <th id="js-stats-activity">{% trans 'Last Activity' %}</th>
             </tr>
             {% for item in languages %}
             {% ifnotequal item.total 0 %}
@@ -62,11 +62,11 @@
         <h2>{{ projectlink }}</h2>
     </div>
     <div class="bd">
-        <table class="sortable">
+        <table class="sortable" id="js-stats-index-projects">
             <tr>
-                <th>{% trans 'Project' %}</th>
-                <th>{% trans 'Overall Completion' %}</th>
-                <th>{% trans 'Last Activity' %}</th>
+                <th id="js-stats-project">{% trans 'Project' %}</th>
+                <th id="js-stats-progress">{% trans 'Overall Completion' %}</th>
+                <th id="js-stats-activity">{% trans 'Last Activity' %}</th>
             </tr>
             {% for item in projects %}
             <tr class="{% cycle 'even' 'odd' %}">

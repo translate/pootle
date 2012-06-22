@@ -61,13 +61,13 @@
   </div>
   <div class="bd">
       <div class="files-subfolders" lang="{{ LANGUAGE_CODE }}">
-          <table class="sortable stats" id="stats" cellpadding="5"
+          <table class="sortable stats" id="js-stats-tp" cellpadding="5"
           cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
               <thead>
                   <tr>
-                      <th class="stats">{{ stats_headings.name }}</th>
-                      <th class="stats">{{ stats_headings.progress }}</th>
-                      <th class="stats-number sorttable_numeric">{{ stats_headings.need_translation }}</th>
+                      <th id="js-stats-filename" class="stats">{{ stats_headings.name }}</th>
+                      <th id="js-stats-progress" class="stats">{{ stats_headings.progress }}</th>
+                      <th id="js-stats-need-translation" class="stats-number sorttable_numeric">{{ stats_headings.need_translation }}</th>
                   </tr>
               </thead>
               <tbody class="stats">
