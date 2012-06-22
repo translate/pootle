@@ -29,7 +29,7 @@ from django.db.models import Q
 from pootle.i18n.gettext import tr_lang
 
 from pootle_app.models import Directory
-from pootle_app.models.permissions import get_matching_permissions, check_permission
+from pootle_app.models.permissions import get_matching_permissions, check_permission, check_profile_permission
 from pootle_app.views.language import navbar_dict
 from pootle_profile.models import get_profile, PootleProfile
 from pootle_notifications.models import Notice, NoticeForm
@@ -145,10 +145,14 @@ def handle_form(request, current_directory):
 		#grab all appropriate Profiles..
 		to_list = PootleProfile.objects.filter(lang_filter,proj_filter).distinct()
 
-		#print >>sys.stderr , 'To list is %s' % to_list
+		#print >>sys.stderr, 'directory is %s' % form.cleaned_data['directory']
+		#print >>sys.stderr , 'profile list is %s' % to_list
 
 		to_list_emails = []
 		for person in to_list:
+			#Check if the User object here as permissions
+			if not check_profile_permission(person, 'view', form.cleaned_data['directory']):
+				continue
 			if person.user.email != '':
 				to_list_emails.append(person.user.email)	
 
