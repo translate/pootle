@@ -1,0 +1,144 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""Sample configuration file.
+
+This file includes the settings that administrators will likely change.
+You can find the defaults in the ``*.conf`` files for more advanced settings.
+
+In order for this configuration changes to take effect, bear in mind that you
+need to change the extension of this file from ``.conf.sample`` to ``.conf``.
+"""
+
+
+#
+# Base
+#
+
+# Local time zone for this installation. Choices can be found here:
+# http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
+# although not all choices may be available on all operating systems.
+# If running in a Windows environment this must be set to the same as your
+# system time zone.
+TIME_ZONE = 'UTC'
+
+
+#
+# Backends
+#
+
+# Database backend settings
+DATABASES = {
+    'default': {
+        # Replace 'sqlite3' with 'postgresql_psycopg2', 'mysql' or 'oracle'.
+        'ENGINE': 'django.db.backends.sqlite3',
+        # Database name or path to database file if using sqlite3.
+        'NAME': working_path('dbs/pootle.db'),
+        # Not used with sqlite3.
+        'USER': '',
+        # Not used with sqlite3.
+        'PASSWORD': '',
+        # Set to empty string for localhost. Not used with sqlite3.
+        'HOST': '',
+        # Set to empty string for default. Not used with sqlite3.
+        'PORT': '',
+    }
+}
+
+
+# Cache Backend settings
+
+# We use memcached for better performance. For more info, check
+# http://docs.djangoproject.com/en/dev/topics/cache/#setting-up-the-cache
+CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+        'KEY_PREFIX': '',
+    }
+}
+
+
+#
+# Site
+#
+
+# This Pootle server admins
+ADMINS = (
+    # ('Your Name', 'your_email@domain.com'),
+)
+
+# Set this to False to disable user registration, admins will still be
+# able to create user accounts.
+CAN_REGISTER = True
+
+# Mail settings
+
+# Address used for messages sent by Pootle.
+DEFAULT_FROM_EMAIL = 'info@YOUR_DOMAIN.com'
+
+# Address to receive messages sent by contact form.
+CONTACT_EMAIL = 'info@YOUR_DOMAIN.com'
+CAN_CONTACT = True
+
+# Mail server settings
+
+# By default Pootle uses SMTP server on localhost, if the server is
+# not configured for sending emails use these settings to setup an
+# external outgoing SMTP server.
+
+# Example for Google as an external SMTP server
+EMAIL_HOST_USER = 'USER@YOUR_DOMAIN.com'
+EMAIL_HOST_PASSWORD = 'YOUR_PASSWORD'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+
+#
+# Translation
+#
+
+# The directory where the translation files are kept
+PODIRECTORY = working_path('po')
+
+# Two-tuple defining the markup filter to apply in certain textareas.
+# - Accepted values for the first element are 'textile', 'markdown',
+#   'restructuredtext' and None
+# - The second element should be a dictionary of keyword arguments that
+#   will be passed to the markup function
+#
+# Examples:
+#   MARKUP_FILTER = (None, {})
+#   MARKUP_FILTER = ('markdown', {'safe_mode': True})
+#   MARKUP_FILTER = ('restructuredtext', {})
+MARKUP_FILTER = (None, {})
+
+# Set the backends you want to use to enable translation suggestions through
+# several online services. To disable this feature completely just comment all
+# the lines to set an empty list [] to the MT_BACKENDS setting.
+#
+# The second parameter for each backend option is the API key, which will
+# be used in case the service supports using an API key.
+#
+# Available options are:
+# 'APERTIUM': Apertium service.
+#             For this service you need to set the API key.
+#             Get your key at http://api.apertium.org/register.jsp
+# 'GOOGLE_TRANSLATE': Google Translate service.
+#             For this service you need to set the API key.
+#             Note that Google Translate API is a paid service
+#             See more at http://code.google.com/apis/language/translate/v2/pricing.html
+#
+MT_BACKENDS = [
+#        ('APERTIUM', ''),
+#        ('GOOGLE_TRANSLATE', ''),
+]
+
+# Set the backends you want to use to allow web-based lookup. To disable this
+# feature completely just comment all the lines to set an empty list [] to the
+# LOOKUP_BACKENDS setting.
+LOOKUP_BACKENDS = [
+#        'wikipedia',
+]
