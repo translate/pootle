@@ -82,19 +82,19 @@ $(document).ready(function () {
   _init_description();
 
   function _toggle_editing() {
-    $('.intro, .settings-container, #edit_settings, #show_settings, #hide_description').slideToggle();
+    $('.intro, .js-admin-description, #edit_settings, #show_settings, #hide_description').slideToggle();
   }
   function _init_description() {
     $(".intro,").filter(":not([dir])").bidi();
-    $('.settings-container form').submit(function(e) {
+    $('.js-admin-description form').submit(function (e) {
       e.preventDefault();
       $.ajax({
         url: $(this).attr('action'),
         type: 'POST',
         data: $(this).formSerialize(), //from jquery.form.js
-        success: function(data) {
+        success: function (data) {
           $('.intro').html(data.intro);
-          $('.settings-container').html(data.form);
+          $('.js-admin-description').html(data.form);
           _init_description();
           if (data.valid) {
             _toggle_editing();
