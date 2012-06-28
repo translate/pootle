@@ -156,7 +156,7 @@
     });
 
     /* Write TM results, special chars... into the currently focused element */
-    $(document).on("click", ".writetm, .writespecial, .translate-full .highlight-escape, .translate-full .highlight-html", this.copyText);
+    $(document).on("click", ".js-editor-copytext", this.copyText);
 
     /* Copy original translation */
     $(document).on("click", "a.copyoriginal", function () {

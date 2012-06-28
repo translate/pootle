@@ -930,10 +930,7 @@ div.translation-text-headers[dir="rtl"] a.report-bug
 a.copyoriginal,
 a.report-bug
 a.translate-mt,
-a.writespecial,
-a.morecontext,
-.translate-full .highlight-escape,
-.translate-full .highlight-html
+.js-editor-copytext
 {
     cursor: pointer;
 }
@@ -956,7 +953,7 @@ a.report-bug:hover {
     opacity: 1;
 }
 
-a.writespecial
+a.editor-specialchar
 {
     border: 1px dotted #999;
     padding: 0 0.2em;
@@ -966,7 +963,7 @@ a.writespecial
     display: inline-block;
 }
 
-a.writespecial:hover
+a.editor-specialchar:hover
 {
     background-color: #fff;
     text-decoration: none;
