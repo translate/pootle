@@ -42,9 +42,10 @@ from pootle_misc.util import getfromcache, deletefromcache
 from pootle_misc.aggregate import group_by_count_extra, max_column
 from pootle_misc.baseurl import l
 
-from pootle_store.fields  import TranslationStoreField, MultiStringField, PLURAL_PLACEHOLDER, SEPERATOR
-from pootle_store.util import calculate_stats, empty_quickstats
-from pootle_store.util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED
+from pootle_store.fields import (TranslationStoreField, MultiStringField,
+                                 PLURAL_PLACEHOLDER, SEPERATOR)
+from pootle_store.util import (calculate_stats, empty_quickstats,
+                               OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED)
 from pootle_store.filetypes import factory_classes, is_monolingual
 
 #
