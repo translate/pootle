@@ -1023,6 +1023,11 @@ a.editor-specialchar:hover
     color: #630;
 }
 
+.highlight-punctuation
+{
+    background-color: #f1f7e4;
+}
+
 .highlight
 {
     background-color: #FFC;

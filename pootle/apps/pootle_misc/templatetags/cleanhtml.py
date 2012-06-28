@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2009 Zuza Software Foundation
+# Copyright 2008-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -25,6 +25,8 @@ from django import template
 from django.template.defaultfilters import stringfilter
 from django.utils.html import escape, simple_email_re as email_re
 from django.utils.safestring import mark_safe
+
+from translate.storage.placeables import general
 
 try:
     from lxml.html.clean import clean_html
@@ -71,8 +73,20 @@ def clean_wrapper(text):
     immediate rendering in templates"""
     return mark_safe(clean_html(text))
 
+
+PUNCTUATION_RE = general.PunctuationPlaceable().regex
+def fancy_punctuation_chars(text):
+    """Wraps punctuation chars found in the ``text`` around tags."""
+    def replace(match):
+        fancy_special_char = '<span class="highlight-punctuation ' \
+                             'js-editor-copytext">%s</span>'
+        return fancy_special_char % match.group()
+
+    return PUNCTUATION_RE.sub(replace, text)
+
+
 def fancy_highlight(text):
-    return mark_safe(fancy_spaces(fancy_escape(text)))
+    return mark_safe(fancy_punctuation_chars(fancy_spaces(fancy_escape(text))))
 
 
 def obfuscate(text):
