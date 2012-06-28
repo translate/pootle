@@ -54,7 +54,7 @@ from pootle_store.signals import translation_submitted
 
 
 def _common_context(request, translation_project, permission_codes):
-    """adds common context to request object and checks permissions"""
+    """Adds common context to request object and checks permissions."""
     request.translation_project = translation_project
     request.profile = get_profile(request.user)
     request.permissions = get_matching_permissions(request.profile,
@@ -102,7 +102,7 @@ def get_unit_context(permission_codes):
 
 @get_store_context('view')
 def export_as_xliff(request, store):
-    """export given file to xliff for offline translation"""
+    """Export given file to xliff for offline translation."""
     path, ext = os.path.splitext(store.real_path)
     export_path = os.path.join('POOTLE_EXPORT', path + os.path.extsep + 'xlf')
     abs_export_path = absolute_real_path(export_path)
@@ -127,7 +127,7 @@ def export_as_xliff(request, store):
 
 @get_store_context('view')
 def export_as_type(request, store, filetype):
-    """export given file to xliff for offline translation"""
+    """Export given file to xliff for offline translation."""
     from pootle_store.filetypes import factory_classes, is_monolingual
     klass = factory_classes.get(filetype, None)
     if not klass or is_monolingual(klass) or store.pootle_path.endswith(filetype):
@@ -216,7 +216,7 @@ def get_non_indexed_search_step_query(form, units_queryset):
 
 
 def get_search_step_query(translation_project, form, units_queryset):
-    """Narrows down units query to units matching search string"""
+    """Narrows down units query to units matching search string."""
 
     if translation_project.indexer is None:
         logging.debug(u"No indexer for %s, using database search", translation_project)
@@ -255,7 +255,7 @@ def get_search_step_query(translation_project, form, units_queryset):
 
 
 def get_step_query(request, units_queryset):
-    """Narrows down unit query to units matching conditions in GET and POST"""
+    """Narrows down unit query to units matching conditions in GET and POST."""
     if 'unitstates' in request.GET:
         unitstates = request.GET['unitstates'].split(',')
         if unitstates:
@@ -337,9 +337,7 @@ def translate(request, store):
 #
 
 def _filter_ctxt_units(units_qs, unit, limit, gap=0):
-    """
-    Returns C{limit}*2 units that are before and after C{index}.
-    """
+    """Returns ``limit``*2 units that are before and after ``index``."""
     result = {}
     if limit and unit.index - gap > 0:
         before = units_qs.filter(store=unit.store_id, index__lt=unit.index).order_by('-index')[gap:limit+gap]
@@ -356,12 +354,11 @@ def _filter_ctxt_units(units_qs, unit, limit, gap=0):
     return result
 
 def _build_units_list(units, reverse=False):
-    """
-    Given a list/queryset of units, builds a list with the unit data
+    """Given a list/queryset of units, builds a list with the unit data
     contained in a dictionary ready to be returned as JSON.
 
-    @return: A list with unit id, source, and target texts. In case of
-    having plural forms, a title for the plural form is also provided.
+    :return: A list with unit id, source, and target texts. In case of
+             having plural forms, a title for the plural form is also provided.
     """
     return_units = []
     for unit in units.iterator():
@@ -396,12 +393,11 @@ def _build_units_list(units, reverse=False):
 
 
 def _build_pager_dict(pager):
-    """
-    Given a pager object C{pager}, retrieves all the information needed
+    """Given a pager object ``pager``, retrieves all the information needed
     to build a pager.
 
-    @return: A dictionary containing necessary pager information to build
-    a pager.
+    :return: A dictionary containing necessary pager information to build
+             a pager.
     """
     return {"number": pager.number,
             "num_pages": pager.paginator.num_pages,
@@ -410,22 +406,25 @@ def _build_pager_dict(pager):
 
 
 def _get_index_in_qs(qs, unit):
-    """
-    Given a queryset C{qs}, returns the position (index) of the unit C{unit}
-    within that queryset.
+    """Given a queryset ``qs``, returns the position (index) of the unit
+    ``unit`` within that queryset.
 
-    @return: Integer value representing the position of the unit C{unit}.
+    :return: Value representing the position of the unit ``unit``.
+    :rtype: int
     """
     return qs.filter(index__lt=unit.index).count()
 
 
 def get_view_units(request, units_queryset, limit=0):
-    """
-    @return: An object in JSON notation that contains the source and target
-    texts for units that will be displayed before and after editing unit.
+    """Gets source and target texts excluding the editing unit.
 
-    If asked by using the 'meta' and 'pager' parameters, metadata and pager
-    information will be calculated and returned too.
+    :return: An object in JSON notation that contains the source and target
+             texts for units that will be displayed before and after editing
+             unit.
+
+             If asked by using the ``meta`` and ``pager`` parameters,
+             metadata and pager information will be calculated and returned
+             too.
     """
     current_unit = None
     json = {}
@@ -480,15 +479,17 @@ def get_view_units(request, units_queryset, limit=0):
 @ajax_required
 @get_store_context('view')
 def get_view_units_store(request, store, limit=0):
-    """
-    @return: An object in JSON notation that contains the source and target
-    texts for units that will be displayed before and after unit C{uid}.
+    """Gets source and target texts excluding the editing widget (store-level).
+
+    :return: An object in JSON notation that contains the source and target
+             texts for units that will be displayed before and after
+             unit ``uid``.
     """
     return get_view_units(request, store.units, limit=limit)
 
 
 def _is_filtered(request):
-    """checks if unit list is filtered"""
+    """Checks if unit list is filtered."""
     return 'unitstates' in request.GET or 'matchnames' in request.GET or \
            ('search' in request.GET and 'sfields' in request.GET)
 
@@ -496,9 +497,10 @@ def _is_filtered(request):
 @ajax_required
 @get_unit_context('view')
 def get_more_context(request, unit):
-    """
-    @return: An object in JSON notation that contains the source and target
-    texts for units that are in context of unit C{uid}.
+    """Retrieves more context units.
+
+    :return: An object in JSON notation that contains the source and target
+             texts for units that are in the context of unit ``uid``.
     """
     store = request.store
     json = {}
@@ -514,13 +516,12 @@ def get_more_context(request, unit):
 @ajax_required
 @get_unit_context('view')
 def get_edit_unit(request, unit):
-    """
-    Given a store path C{pootle_path} and unit id C{uid}, gathers all the
+    """Given a store path ``pootle_path`` and unit id ``uid``, gathers all the
     necessary information to build the editing widget.
 
-    @return: A templatised editing widget is returned within the C{editor}
-    variable and paging information is also returned if the page number has
-    changed.
+    :return: A templatised editing widget is returned within the ``editor``
+             variable and paging information is also returned if the page
+             number has changed.
     """
 
     json = {}
@@ -583,12 +584,11 @@ def get_edit_unit(request, unit):
 
 
 def get_failing_checks(request, pathobj):
-    """
-    Gets a list of failing checks for the current object.
+    """Gets a list of failing checks for the current object.
 
-    @return: JSON string representing action status and depending on success,
-    returns an error message or a list containing the the name and number of
-    failing checks.
+    :return: JSON string representing action status and depending on success,
+             returns an error message or a list containing the the name and
+             number of failing checks.
     """
     json = {}
     checkopts = []
@@ -621,11 +621,10 @@ def get_failing_checks_store(request, store):
 @ajax_required
 @get_unit_context('')
 def process_submit(request, unit, type):
-    """
-    Processes submissions and suggestions and stores them in the database.
+    """Processes submissions and suggestions and stores them in the database.
 
-    @return: An object in JSON notation that contains the previous
-    and last units for the unit next to unit C{uid}.
+    :return: An object in JSON notation that contains the previous and last
+             units for the unit next to unit ``uid``.
     """
     json = {}
     cantranslate = check_permission("translate", request)
