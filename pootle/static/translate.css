@@ -395,11 +395,6 @@ table td.translate-translation
     font-weight: bold;
 }
 
-.translator-comments
-{
-    margin-bottom: 1em;
-}
-
 div.translator-comments
 {
     text-align: right;
@@ -930,11 +925,6 @@ table.suggest-mode .switch-suggest-mode .suggest
 table.suggest-mode .switch-suggest-mode .submit
 {
     display: none;
-}
-
-.translate-specialchars-block
-{
-    padding-bottom: 0.5em;
 }
 
 .translate-toolbar
