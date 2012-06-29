@@ -40,7 +40,7 @@ TRANSLATED = 200
 def add_trailing_slash(path):
     """If path does not end with /, add it and return."""
 
-    if path[-1] == os.sep:
+    if len(path) > 0 and path[-1] == os.sep:
         return path
     else:
         return path + os.sep
