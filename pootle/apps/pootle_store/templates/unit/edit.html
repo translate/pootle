@@ -133,6 +133,8 @@
       <div id="orig{{ unit.index }}" class="translate-translation translate-original-focus" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
         <!-- Begin: Normal editing -->
         {{ form.target_f }}
+        <a id="show-history" class="tiny ptr" href='{{ "/unit/history/"|l }}{{ unit.id }}'>{% trans 'History' %}</a>
+        <a id="hide-history" class="tiny ptr" style="display: none;">{% trans 'Hide History' %}</a>
         {% if cantranslate or cansuggest %}
         <div class="translate-specialchars-block" lang="{{ language.code }}">
           {% for specialchar in language.specialchars %}

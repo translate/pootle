@@ -112,6 +112,9 @@
     this.whitespaceRE = /^ +| +$|[\r\n\t] +| {2,}/gm;
     this.searchRE = /^in:.+|\sin:.+/i;
 
+    /* History requests handler */
+    this.historyReq = null;
+
     /* TM requests handler */
     this.tmReq = null;
 
@@ -200,6 +203,8 @@
     $(document).on("click", "#suggestion-container .acceptsugg", this.acceptSuggestion);
     $(document).on("click", "#suggestion-container .clearvote", this.clearVote);
     $(document).on("click", "#suggestion-container .voteup", this.voteUp);
+    $(document).on("click", "#show-history", this.showHistory);
+    $(document).on("click", "#hide-history", this.hideHistory);
     $(document).on("click", "#translate-checks-block .rejectcheck", this.rejectCheck);
 
     /* Filtering */
@@ -1564,6 +1569,61 @@
       newHash = PTL.utils.updateHashPart("filter", "all", ["search", "sfields"]);
     }
     $.history.load(newHash);
+  },
+
+
+  /*
+   * Unit history
+   */
+
+  /* Get the history data from Pootle asynchronously */
+  showHistory: function (e) {
+    e.preventDefault();
+
+    // the results might already be there from earlier:
+    if ($("#history_results").length) {
+      $("#hide-history").show();
+      $("#history_results").show();
+      $("#show-history").hide();
+      return
+    }
+
+    var _this = this;
+    var uid = PTL.editor.activeUid,
+        historyUrl = l("/unit/history/" + uid);
+
+    // Always abort previous requests so we only get results for the
+    // current unit
+    if (this.historyReq != null) {
+      this.historyReq.abort();
+    }
+
+    this.historyReq = $.ajax({
+      url: historyUrl,
+      dataType: 'json',
+      success: function (data) {
+        var uid = data.uid;
+
+        if (uid == PTL.editor.activeUid) {
+          $(_this).hide();
+          $("div#suggestion-container").prepend(data.entries);
+          $("div#history_results").animate(
+                  {height: 'show'},
+                  1000,
+                  'easeOutQuad',
+                  function() {$("#hide-history").show()}
+          );
+        }
+      },
+      error: PTL.editor.error
+    });
+  },
+
+ /* Hide the history panel */
+  hideHistory: function (e) {
+    $("#hide-history").hide();
+    $("#history_results").hide();
+    $("#show-history").show();
   },
 
 
