@@ -46,19 +46,20 @@ def render_search(context, form=None, action=None):
 
 @register.filter
 def trail(directory, separator='/'):
-    rv = u''
+    trail_list = []
     dir_trail = directory.trail()
+    sep = u' %s ' % separator
 
     for i, trail_dir in enumerate(dir_trail):
         if i != (len(dir_trail) - 1):
-            rv += u'<span><a href="%(url)s">%(dir_name)s</a></span> %(separator)s ' % {
+            tr = u'<span><a href="%(url)s">%(dir_name)s</a></span>' % {
                 'url': trail_dir.get_absolute_url(),
                 'dir_name': trail_dir.name,
-                'separator': separator
             }
         else:
-            rv += u'<span class="dir-trail-last">%(dir_name)s</span>' % {
+            tr = u'<span class="dir-trail-last">%(dir_name)s</span>' % {
                 'dir_name': trail_dir.name,
             }
+        trail_list.append(tr)
 
-    return mark_safe(rv)
+    return mark_safe(sep.join(trail_list))
