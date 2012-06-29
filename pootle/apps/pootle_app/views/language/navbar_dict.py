@@ -24,11 +24,11 @@ from django.utils.translation import ugettext as _
 
 from pootle.i18n.gettext import tr_lang
 
-from pootle_app import url_manip
 from pootle_app.models.permissions import check_permission
-from pootle_app.views.language import dispatch
-from pootle_app.views.language import item_dict
-from pootle_app.views.language.item_dict import directory_translate_links, directory_review_links
+from pootle_app.views.language import dispatch, item_dict
+from pootle_app.views.language.item_dict import (directory_translate_links,
+                                                 directory_review_links)
+from pootle_misc import url_manip
 
 
 def make_directory_pathlinks(project_url, url, links):

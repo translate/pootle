@@ -37,14 +37,16 @@ from django.core.cache import cache
 from django.views.decorators.cache import never_cache
 from django.utils.encoding import iri_to_uri
 
+from pootle_app.models import Suggestion as SuggestionStat
+from pootle_app.models.permissions import (get_matching_permissions,
+                                           check_permission,
+                                           check_profile_permission)
 from pootle_misc.baseurl import redirect
-from pootle_app.url_manip import ensure_uri
-from pootle_app.models.permissions import get_matching_permissions, check_permission, check_profile_permission
+from pootle_misc.url_manip import ensure_uri
 from pootle_misc.util import paginate, ajax_required, jsonify
 from pootle_profile.models import get_profile
-from pootle_translationproject.forms import make_search_form
 from pootle_statistics.models import Submission, NORMAL, SUGG_ACCEPT
-from pootle_app.models import Suggestion as SuggestionStat
+from pootle_translationproject.forms import make_search_form
 
 from pootle_store.models import Store, Unit
 from pootle_store.forms import unit_form_factory, highlight_whitespace
