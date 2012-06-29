@@ -46,6 +46,12 @@ def render_search(context, form=None, action=None):
 
 @register.filter
 def trail(directory, separator='/'):
+    """Outputs an HTML-formatted directory trail.
+
+    :param directory: A :cls:`pootle_app.models.Directory` object.
+                      The trail will be built based on this directory.
+    :param separator: A string that will be used to join the trail.
+    """
     trail_list = []
     dir_trail = directory.trail()
     sep = u' %s ' % separator
