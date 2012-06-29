@@ -33,7 +33,7 @@ from pootle_app.views.language.item_dict import directory_translate_links, direc
 
 def make_directory_pathlinks(request, project_url, url, links):
     if url != project_url:
-        links.append({'href': dispatch.show_directory(request, url),
+        links.append({'href': url,
                       'text': url_manip.basename(url)})
         return make_directory_pathlinks(request, project_url, url_manip.parent(url), links)
     else:
@@ -47,20 +47,12 @@ def make_directory_actions(request, links_required=None):
         return directory_review_links(request, directory)
 
 def make_navbar_path_dict(request, path_links=None):
-    def make_admin(request):
-        if check_permission('admin', request):
-            return {'href': dispatch.translation_project_admin(request.translation_project),
-                    'text': _('Admin')}
-        else:
-            return None
-
-    language     = request.translation_project.language
-    project      = request.translation_project.project
+    language = request.translation_project.language
+    project = request.translation_project.project
     return {
-        'admin':     make_admin(request),
-        'language':  {'href': dispatch.open_language(request, language.code),
+        'language':  {'href': dispatch.open_language(language.code),
                       'text': tr_lang(language.fullname)},
-        'project':   {'href': dispatch.open_translation_project(request, language.code, project.code),
+        'project':   {'href': dispatch.open_translation_project(language.code, project.code),
                       'text': project.fullname},
         'pathlinks': path_links}
 

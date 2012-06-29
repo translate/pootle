@@ -153,7 +153,7 @@ def translate_all_link(request, path_obj):
 def zip_link(request, path_obj):
     if check_permission('archive', request):
         text = _('ZIP of directory')
-        link = dispatch.download_zip(request, path_obj)
+        link = dispatch.download_zip(path_obj)
         return {
             'class': 'file download',
             'href': link,
@@ -170,7 +170,7 @@ def xliff_link(request, path_obj):
     else:
         text = _('Translate offline')
         tooltip = _('Download XLIFF file for offline translation')
-    href = dispatch.export(request, path_obj.pootle_path, 'xlf')
+    href = dispatch.export(path_obj.pootle_path, 'xlf')
     return {
         'class': 'translate download',
         'href': href,
@@ -208,7 +208,7 @@ def upload_link(request, path_obj):
 
 def commit_link(request, path_obj):
     if path_obj.abs_real_path and check_permission('commit', request) and hasversioning(path_obj.abs_real_path):
-        link = dispatch.commit(request, path_obj)
+        link = dispatch.commit(path_obj)
         text = _('Commit to VCS')
         return {
             'class': 'vcs commit',
@@ -219,7 +219,7 @@ def commit_link(request, path_obj):
 
 def update_link(request, path_obj):
     if path_obj.abs_real_path and check_permission('commit', request) and hasversioning(path_obj.abs_real_path):
-        link = dispatch.update(request, path_obj)
+        link = dispatch.update(path_obj)
         text = _('Update from VCS')
         return {
             'class': 'vcs update',
@@ -321,7 +321,7 @@ def make_generic_item(request, path_obj, action, show_checks=False, terminology=
     return info
 
 def make_directory_item(request, directory, links_required=None, terminology=False):
-    action = dispatch.show_directory(request, directory.pootle_path)
+    action = directory.pootle_path
     show_checks = links_required == 'review'
     item = make_generic_item(request, directory, action, show_checks, terminology)
     if links_required == 'translate':

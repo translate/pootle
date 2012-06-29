@@ -28,7 +28,6 @@ from pootle_store.models import Store
 from pootle_store.views import translate_page, get_failing_checks, get_view_units
 from pootle_profile.models import get_profile
 
-from pootle_app.views.language     import dispatch
 from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.models.directory import Directory
 
@@ -113,7 +112,7 @@ def commit_file(request, translation_project, file_path):
     pootle_path = translation_project.directory.pootle_path + file_path
     store = get_object_or_404(Store, pootle_path=pootle_path)
     result = translation_project.commitpofile(request.user, store)
-    return redirect(dispatch.show_directory(request, translation_project.directory.pootle_path))
+    return redirect(translation_project.directory.pootle_path)
 
 @get_translation_project
 @set_request_context
@@ -123,5 +122,4 @@ def update_file(request, translation_project, file_path):
     pootle_path = translation_project.directory.pootle_path + file_path
     store = get_object_or_404(Store, pootle_path=pootle_path)
     result = translation_project.update_file(request, store)
-    return redirect(dispatch.show_directory(request, translation_project.directory.pootle_path))
-
+    return redirect(translation_project.directory.pootle_path)

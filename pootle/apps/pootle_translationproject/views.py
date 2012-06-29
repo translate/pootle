@@ -335,7 +335,6 @@ class ProjectIndexView(BaseView):
         tp_dir = translation_project.directory
         request.permissions = get_matching_permissions(user_profile, tp_dir)
 
-        state = dispatch.ProjectIndexState(request.GET)
         project = translation_project.project
         language = translation_project.language
         is_terminology = project.is_terminology
