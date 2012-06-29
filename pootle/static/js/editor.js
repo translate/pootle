@@ -1237,9 +1237,7 @@
       dataType: 'json',
       success: function (data) {
         widget = data['editor'];
-        storecrumbs = data['storecrumbs'];
-        dircrumbs = data['dircrumbs'];
-        PTL.editor.updateBreadcrumbs(dircrumbs, storecrumbs);
+        PTL.editor.updateBreadcrumbs(data['dircrumbs'], data['storecrumbs']);
         // Update pager in case it's needed
         PTL.editor.updatePager(PTL.editor.createPager(uid));
 
