@@ -522,6 +522,7 @@ def get_history(request, unit):
     @return: JSON with changes to the unit rendered in HTML.
     """
     entries = Submission.objects.filter(unit=unit, field="pootle_store.Unit.target")
+    entries = entries.select_related("submitter__user", "translation_project__language")
     values = []
     # list of tuples (datetime, submitter, value)
 
