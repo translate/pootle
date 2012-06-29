@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2010-2011 Zuza Software Foundation
+# Copyright 2010-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -19,6 +19,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django import template
+from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 
 from pootle_translationproject.forms import make_search_form
@@ -41,3 +42,23 @@ def render_search(context, form=None, action=None):
         'advanced_search_title': _('Advanced search'),
         }
     return template_vars
+
+
+@register.filter
+def trail(directory, separator='/'):
+    rv = u''
+    dir_trail = directory.trail()
+
+    for i, trail_dir in enumerate(dir_trail):
+        if i != (len(dir_trail) - 1):
+            rv += u'<span><a href="%(url)s">%(dir_name)s</a></span> %(separator)s ' % {
+                'url': trail_dir.get_absolute_url(),
+                'dir_name': trail_dir.name,
+                'separator': separator
+            }
+        else:
+            rv += u'<span class="dir-trail-last">%(dir_name)s</span>' % {
+                'dir_name': trail_dir.name,
+            }
+
+    return mark_safe(rv)

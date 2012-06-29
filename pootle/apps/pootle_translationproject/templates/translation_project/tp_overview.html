@@ -1,6 +1,6 @@
 {% extends "tp_base.html" %}
 
-{% load i18n baseurl cleanhtml assets %}
+{% load assets baseurl cache cleanhtml i18n translation_project_tags %}
 
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
@@ -42,7 +42,9 @@
 {% block content %}
 <div class="module first">
   <div class="hd">
-    <h2>{{ directory.pootle_path }}</h2>
+    {% cache settings.CACHE_TIMEOUT directory_trail directory.id %}
+    <h2><span><a href="{{ translation_project.pootle_path|l }}">{{ project.code }}</a> / {{ directory|trail:"/" }}</span></h2>
+    {% endcache %}
   </div>
   <div class="bd directory-summary">
     <ul>
