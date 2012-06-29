@@ -36,6 +36,7 @@ from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from django.core.cache import cache
 from django.views.decorators.cache import never_cache
 from django.utils.encoding import iri_to_uri
+from django.utils import simplejson
 
 from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.models.permissions import (get_matching_permissions,
@@ -92,7 +93,7 @@ def get_store_context(permission_codes):
 def get_unit_context(permission_codes):
     def wrap_f(f):
         def decorated_f(request, uid, *args, **kwargs):
-            unit = get_object_or_404(Unit, id=uid)
+            unit = get_object_or_404(Unit.objects.select_related("store__translation_project", "store__parent"), id=uid)
             _common_context(request, unit.store.translation_project, permission_codes)
             request.unit = unit
             request.store = unit.store
@@ -512,6 +513,63 @@ def get_more_context(request, unit):
     rcode = 200
     response = jsonify(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
+
+
+@never_cache
+@get_unit_context('view')
+def get_history(request, unit):
+    """
+    @return: JSON with changes to the unit rendered in HTML.
+    """
+    entries = Submission.objects.filter(unit=unit, field="pootle_store.Unit.target")
+    values = []
+    # list of tuples (datetime, submitter, value)
+
+    import locale
+    from pootle_store.fields import to_python
+
+    old_value = u""
+    language = None
+
+    for entry in entries:
+        language = entry.translation_project.language
+        # If the old_value doesn't correspond to the previous new_value, let's
+        # add it anyway, even if we don't have more information about it. It
+        # might be because of an upload, VCS action, etc. that wasn't recorded.
+        if old_value != entry.old_value:
+            #l10n: this refers to an unknown date
+            values.append((_("(unknown)"), u"", to_python(entry.old_value)))
+        old_value = entry.new_value
+        values.append((
+                entry.creation_time.strftime(locale.nl_langinfo(locale.D_T_FMT)),
+                entry.submitter,
+                to_python(old_value),
+        ))
+
+    if old_value and old_value != unit.target:
+        values.append((_("Now"), u"", to_python(old_value)))
+
+    # let's reverse the chronological order
+    values.reverse()
+    ec = {
+        'values': values,
+        'language': language,
+    }
+
+    if request.is_ajax():
+        t = loader.get_template('unit/history-xhr.html')
+        c = RequestContext(request, ec)
+        json = {
+                # The client will want to confirm that the response is
+                # relevant for the unit on screen at the time of receiving
+                # this, so we add the uid.
+                'uid': unit.id,
+                'entries': t.render(c),
+        }
+        response = simplejson.dumps(json)
+        return HttpResponse(response, mimetype="application/json")
+    else:
+        return render_to_response('unit/history.html', ec, context_instance=RequestContext(request))
 
 
 @never_cache

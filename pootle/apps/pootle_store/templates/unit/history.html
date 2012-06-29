@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n baseurl assets %}
+
+{% block title %}
+{{ block.super }} » {% trans "Previous Work" %}
+{% endblock %}
+
+{% block css %}
+{{ block.super }}
+{% assets "css_editor" %}
+<link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
+{% endassets %}
+{% endblock css %}
+
+{% block breadcrumb_content %}
+{{ block.super }} » {% trans "Previous Work" %}
+{% endblock %}
+
+{% block content %}
+<div id="history_content">
+    {% include "unit/history-xhr.html" %}
+</div>
+{% endblock content %}
+
+{% block scripts_extra %}
+<script type="text/javascript">
+    $("#history_results").show();
+</script>
+{% endblock scripts_extra %}

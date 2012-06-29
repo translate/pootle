@@ -670,6 +670,53 @@ div.translator-comments + #suggestion-container
     text-align: right;
 }
 
+
+.history-gravatar
+{
+    position: absolute;
+    top: 0px;
+    left: 100%;
+}
+
+html[dir="rtl"] .history-gravatar
+{
+    right: 100%;
+    left: auto;
+}
+
+.history-extra
+{
+    position:absolute;
+    top: 0;
+    left: 100%;
+    font-size: 0.9em;
+    padding: 2px;
+}
+
+html[dir="rtl"] .history-extra
+{
+    left: auto;
+    right: 100%;
+}
+
+
+#show-history,
+#hide-history
+{
+    float: right;
+}
+
+html[dir="rtl"] #show-history,
+html[dir="rtl"] #hide-history
+{
+    float: left;
+}
+
+#history_content
+{
+    margin: 5% 15% 0%; 5%
+}
+
 /* CHECKS */
 
 ul.checks
@@ -1100,4 +1147,18 @@ td.translate-delete-terminology input
 .right
 {
     float: right;
+}
+
+/* HISTORY */
+
+table.history,
+table.history td
+{
+    width: 100%;
+    border: 1px solid black;
+}
+
+table.history td
+{
+    padding: 5px;
 }
