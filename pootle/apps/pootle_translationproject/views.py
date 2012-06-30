@@ -464,13 +464,32 @@ def export_zip(request, translation_project, file_path):
 
 
 def get_children(request, translation_project, directory, links_required=None):
+    """Returns a list of children directories and stores for this
+    ``directory``, and also the parent directory.
+
+    The elements of the list are dictionaries which keys are populated after
+    in the templates.
+    """
 
     is_terminology = translation_project.project.is_terminology
 
-    return [item_dict.make_directory_item(request, child_dir, links_required=links_required, terminology=is_terminology)
-            for child_dir in directory.child_dirs.iterator()] + \
-           [item_dict.make_store_item(request, child_store, links_required=links_required, terminology=is_terminology)
-            for child_store in directory.child_stores.iterator()]
+    parent = []
+    parent_dir = directory.parent
+
+    if not (parent_dir.is_language() or parent_dir.is_project()):
+        parent = [{'title': u'..', 'href': parent_dir}]
+
+    directories = [item_dict.make_directory_item(request, child_dir,
+                                                 links_required=links_required,
+                                                 terminology=is_terminology)
+                   for child_dir in directory.child_dirs.iterator()]
+
+    stores = [item_dict.make_store_item(request, child_store,
+                                        links_required=links_required,
+                                        terminology=is_terminology)
+              for child_store in directory.child_stores.iterator()]
+
+    return parent + directories + stores
 
 
 def unix_to_host_path(p):
