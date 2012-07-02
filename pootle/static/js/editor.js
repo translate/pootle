@@ -1419,7 +1419,7 @@
       async: false,
       dataType: 'json',
       success: function (data) {
-        opts = data.checks || {};
+        opts = data;
       },
       error: PTL.editor.error
     });
@@ -1449,17 +1449,24 @@
     // Filtering by failing checks
     if (filterBy == "checks") {
       // Get actual failing checks
-      var opts = PTL.editor.getCheckOptions();
+      var optGroups = PTL.editor.getCheckOptions();
 
       // If there are any failing checks, add them in a dropdown
-      if (opts.length) {
+      if (optGroups.length) {
         var dropdown = '<div id="filter-checks" class="toolbar-item">';
         dropdown += '<select name="filter-checks">';
         dropdown += '<option selected="selected" value="none">------</option>';
-        $.each(opts, function () {
-          dropdown += '<option value="' + this.name + '">' + this.text + '</option>';
+
+        $.each(optGroups, function () {
+          dropdown += '<optgroup label="' + this.category_display + '">';
+          $.each(this.checks, function () {
+            dropdown += '<option value="' + this.name + '">' + this.name + ' (' + this.count + ')</option>';
+          });
+          dropdown += '</optgroup>';
         });
+
         dropdown += '</select></div>';
+
         $("div#filter-status").first().after(dropdown);
       } else { // No results
         // TODO: i18n

@@ -44,6 +44,8 @@ from pootle_app.models.permissions import (get_matching_permissions,
                                            check_profile_permission)
 from pootle_misc.baseurl import redirect
 from pootle_misc.url_manip import ensure_uri
+from pootle_misc.checks import get_quality_check_failures
+from pootle_misc.stats import get_raw_stats
 from pootle_misc.util import paginate, ajax_required, jsonify
 from pootle_profile.models import get_profile
 from pootle_statistics.models import Submission, NORMAL, SUGG_ACCEPT
@@ -654,29 +656,14 @@ def get_edit_unit(request, unit):
 def get_failing_checks(request, pathobj):
     """Gets a list of failing checks for the current object.
 
-    :return: JSON string representing action status and depending on success,
-             returns an error message or a list containing the the name and
-             number of failing checks.
+    :return: JSON string with a list of failing check categories which
+             include the actual checks that are failing.
     """
-    json = {}
-    checkopts = []
-    # Borrowed from pootle_app.views.language.item_dict.getcheckdetails
-    property_stats = pathobj.getcompletestats()
-    quick_stats = pathobj.getquickstats()
-    total = quick_stats['total']
-    keys = property_stats.keys()
-    keys.sort()
-    for checkname in keys:
-        checkcount = property_stats[checkname]
-        if total and checkcount:
-            stats = ungettext('%(checkname)s (%(checks)d)',
-                              '%(checkname)s (%(checks)d)', checkcount,
-                              {"checks": checkcount, "checkname": checkname})
-            checkopt = {'name': checkname,
-                        'text': stats}
-            checkopts.append(checkopt)
-            json["checks"] = checkopts
-    response = jsonify(json)
+    stats = get_raw_stats(pathobj)
+    failures = get_quality_check_failures(pathobj, stats, include_url=False)
+
+    response = jsonify(failures)
+
     return HttpResponse(response, mimetype="application/json")
 
 
