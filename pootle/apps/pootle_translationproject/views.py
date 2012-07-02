@@ -369,6 +369,7 @@ def tp_overview(request, translation_project, dir_path):
                                  "translation project."))
 
     current_path = translation_project.directory.pootle_path + dir_path
+    request.current_path = current_path
     directory = get_object_or_404(Directory, pootle_path=current_path)
     view_obj = ProjectIndexView(forms=dict(upload=UploadHandler,
                                            update=UpdateHandler))
@@ -833,7 +834,8 @@ class UploadHandler(view_handler.Handler):
                     label='', choices=choices, initial=initial)
             upload_to = StoreFormField(
                     required=False, label=_('Upload to'),
-                    queryset=translation_project.stores.all(),
+                    queryset=translation_project.stores.filter(
+                        pootle_path__startswith=request.current_path),
                     help_text=_("Optionally select the file you want to "
                                 "merge with. If not specified, the uploaded "
                                 "file's name is used."))
