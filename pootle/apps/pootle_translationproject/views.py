@@ -206,6 +206,7 @@ class ProjectIndexView(BaseView):
             'directory': directory,
             'children': get_children(request, translation_project, directory),
             'dir_summary': directory_summary,
+            'stats': directory_stats,
             'stats_headings': get_stats_headings(),
             'topstats': gentopstats_translation_project(translation_project),
             'feed_path': directory.pootle_path[1:],
