@@ -38,7 +38,7 @@ from pootle_misc.versioncontrol import hasversioning
 
 from pootle_misc.baseurl import redirect, l
 from pootle_misc.checks import get_quality_check_failures
-from pootle_misc.stats import (get_raw_directory_stats, get_translation_stats,
+from pootle_misc.stats import (get_raw_stats, get_translation_stats,
                                get_directory_summary)
 from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.models.signals import post_file_upload
@@ -195,7 +195,7 @@ class ProjectIndexView(BaseView):
         is_terminology = project.is_terminology
         description = translation_project.description
 
-        directory_stats = get_raw_directory_stats(directory)
+        directory_stats = get_raw_stats(directory)
         directory_summary = get_directory_summary(directory, directory_stats)
 
         template_vars.update({
@@ -242,7 +242,7 @@ def tp_dir_summary(request, translation_project, dir_path):
     current_path = translation_project.directory.pootle_path + dir_path
     directory = get_object_or_404(Directory, pootle_path=current_path)
 
-    directory_stats = get_raw_directory_stats(directory)
+    directory_stats = get_raw_stats(directory)
     translation_stats = get_translation_stats(directory, directory_stats)
     quality_checks = get_quality_check_failures(directory, directory_stats)
 

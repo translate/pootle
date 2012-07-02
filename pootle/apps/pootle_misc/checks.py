@@ -28,7 +28,7 @@ def get_quality_check_failures(path_obj, dir_stats):
 
     :param path_obj: An object which has the ``getcompletestats`` method.
     :param dir_stats: A dictionary of raw stats, as returned by
-                      :func:`pootle_misc.stats.get_raw_directory_stats`.
+                      :func:`pootle_misc.stats.get_raw_stats`.
     """
     checks = []
     category_map = {

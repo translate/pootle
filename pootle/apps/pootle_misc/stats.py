@@ -24,7 +24,7 @@ from pootle_app.views.language import dispatch
 from pootle_misc.util import add_percentages
 
 
-def get_raw_directory_stats(path_obj):
+def get_raw_stats(path_obj):
     """Returns a dictionary of raw stats for `path_obj`.
 
     Example::
