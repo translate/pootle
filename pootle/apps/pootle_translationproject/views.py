@@ -25,7 +25,7 @@ import StringIO
 from django.shortcuts import get_object_or_404
 from django.conf import settings
 from django.core.cache import cache
-from django.utils.translation import ugettext_lazy as _, ungettext as _n
+from django.utils.translation import ugettext_lazy as _
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import render_to_response
 from django.template import loader, RequestContext
@@ -34,19 +34,19 @@ from django import forms
 from django.utils.encoding import iri_to_uri
 from django.http import HttpResponse
 
-from translate.filters.decorators import Category
-
 from pootle_misc.versioncontrol import hasversioning
 
 from pootle_misc.baseurl import redirect, l
-from pootle_misc.util import add_percentages
+from pootle_misc.checks import get_quality_check_failures
+from pootle_misc.stats import (get_raw_directory_stats, get_translation_stats,
+                               get_directory_summary)
 from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.models.signals import post_file_upload
 from pootle_app.models             import Directory
 from pootle_app.lib import view_handler
 from pootle_app.views.top_stats import gentopstats_translation_project
 from pootle_app.views.base import BaseView
-from pootle_app.views.language import navbar_dict, dispatch, item_dict
+from pootle_app.views.language import navbar_dict, item_dict
 from pootle_app.views.language.view import get_stats_headings
 from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions
@@ -180,152 +180,6 @@ def tp_admin_files(request, translation_project):
                      Store, model_args, link, linkfield='pootle_path',
                      queryset=queryset, formset=StoreFormset,
                      can_delete=True, extra=0)
-
-
-# TODO: move this function somewhere else
-def get_raw_directory_stats(path_obj):
-    """Returns a dictionary of raw stats for `path_obj`.
-
-    Example::
-
-        {'translated': {'units': 0, 'percentage': 0, 'words': 0},
-         'fuzzy': {'units': 0, 'percentage': 0, 'words': 0},
-         'untranslated': {'units': 34, 'percentage': 100, 'words': 181},
-         'total': {'units': 34, 'percentage': 100, 'words': 181} }
-    """
-    quick_stats = add_percentages(path_obj.getquickstats())
-
-    stats = {
-        'total': {
-            'words': quick_stats['totalsourcewords'],
-            'percentage': 100,
-            'units': quick_stats['total'],
-            },
-        'translated': {
-            'words': quick_stats['translatedsourcewords'],
-            'percentage': quick_stats['translatedpercentage'],
-            'units': quick_stats['translated'],
-            },
-        'fuzzy': {
-            'words': quick_stats['fuzzysourcewords'],
-            'percentage': quick_stats['fuzzypercentage'],
-            'units': quick_stats['fuzzy'],
-            },
-        'untranslated': {
-            'words': quick_stats['untranslatedsourcewords'],
-            'percentage': quick_stats['untranslatedpercentage'],
-            'units': quick_stats['untranslated'],
-            },
-    }
-
-    return stats
-
-# TODO: move this function somewhere else
-def get_directory_summary(directory, dir_stats):
-    """Returns a list of sentences to be displayed for each directory."""
-    summary = [
-        _n("This folder has %(num)d word, %(percentage)d%% of which is "
-           "translated",
-           "This folder has %(num)d words, %(percentage)d%% of which are "
-           "translated",
-           dir_stats['total']['words'],
-           {'num': dir_stats['total']['words'],
-            'percentage': dir_stats['translated']['percentage']}),
-        _n('<a class="directory-incomplete" href="%(url)s">%(num)d word '
-           'needs translation</a>',
-           '<a class="directory-incomplete" href="%(url)s">%(num)d words '
-           'need translation</a>',
-           dir_stats['untranslated']['words'],
-           {'num': dir_stats['untranslated']['words'],
-            'url': dispatch.translate(directory, state='incomplete')}),
-    ]
-
-    return summary
-
-
-# TODO: move this function somewhere else
-def get_translation_stats(directory, dir_stats):
-    """Returns a list of statistics ready to be displayed."""
-
-    stats = [
-        {'title': _("Total"),
-         'words': _('<a href="%(url)s">%(num)d words</a>' % \
-            {'url': dispatch.translate(directory),
-             'num': dir_stats['total']['words']}),
-         'percentage': _("%(num)d%%" % \
-            {'num': dir_stats['total']['percentage']}),
-         'units': _("(%(num)d units)" % \
-            {'num': dir_stats['total']['units']}) },
-        {'title': _("Translated"),
-         'words': _('<a href="%(url)s">%(num)d words</a>' % \
-            {'url': dispatch.translate(directory, state='translated'),
-             'num': dir_stats['translated']['words']}),
-         'percentage': _("%(num)d%%" % \
-            {'num': dir_stats['translated']['percentage']}),
-         'units': _("(%(num)d units)" % \
-            {'num': dir_stats['translated']['units']}) },
-        {'title': _("Fuzzy"),
-         'words': _('<a href="%(url)s">%(num)d words</a>' % \
-            {'url': dispatch.translate(directory, state='fuzzy'),
-             'num': dir_stats['fuzzy']['words']}),
-         'percentage': _("%(num)d%%" % \
-            {'num': dir_stats['fuzzy']['percentage']}),
-         'units': _("(%(num)d units)" % \
-            {'num': dir_stats['fuzzy']['units']}) },
-        {'title': _("Untranslated"),
-         'words': _('<a href="%(url)s">%(num)d words</a>' % \
-            {'url': dispatch.translate(directory, state='incomplete'),
-             'num': dir_stats['untranslated']['words']}),
-         'percentage': _("%(num)d%%" % \
-            {'num': dir_stats['untranslated']['percentage']}),
-         'units': _("(%(num)d units)" % \
-            {'num': dir_stats['untranslated']['units']}) }
-    ]
-
-    return stats
-
-
-# TODO: move this function somewhere else
-def get_quality_check_failures(path_obj, dir_stats):
-    """Returns a list of the failed checks sorted by their importance.
-    """
-    checks = []
-    category_map = {
-        Category.CRITICAL: _("Critical"),
-        Category.FUNCTIONAL: _("Functional"),
-        Category.COSMETIC: _("Cosmetic"),
-        Category.EXTRACTION: _("Extraction"),
-        Category.NO_CATEGORY: _("No category"),
-    }
-
-    try:
-        property_stats = path_obj.getcompletestats()
-        total = dir_stats['total']['units']
-        keys = property_stats.keys()
-        keys.sort(reverse=True)
-
-        for i, category in enumerate(keys):
-            if category != Category.NO_CATEGORY:
-                checks.append({'category': category,
-                               'category_display': category_map[category],
-                               'checks': []})
-
-            cat_keys = property_stats[category].keys()
-            cat_keys.sort()
-
-            for checkname in cat_keys:
-                checkcount = property_stats[category][checkname]
-
-                if total and checkcount:
-                    check = {'url': dispatch.translate(path_obj,
-                                                       check=checkname),
-                             'name': checkname,
-                             'count': checkcount}
-                    checks[i]['checks'].append(check)
-    except IOError:
-        pass
-
-    return checks
 
 
 class ProjectIndexView(BaseView):
