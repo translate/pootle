@@ -92,7 +92,10 @@ def tp_translate(request, translation_project, dir_path):
     if not check_permission("view", request):
         raise PermissionDenied(_("You do not have rights to access translation mode."))
 
-    directory = get_object_or_404(Directory, pootle_path=translation_project.directory.pootle_path + dir_path)
+    directory = get_object_or_404(
+            Directory,
+            pootle_path=translation_project.directory.pootle_path + dir_path
+    )
 
     view_obj = TPTranslateView(forms=dict(upload=UploadHandler,
                                           update=UpdateHandler))
