@@ -93,7 +93,10 @@ def get_store_context(permission_codes):
 def get_unit_context(permission_codes):
     def wrap_f(f):
         def decorated_f(request, uid, *args, **kwargs):
-            unit = get_object_or_404(Unit.objects.select_related("store__translation_project", "store__parent"), id=uid)
+            unit = get_object_or_404(
+                    Unit.objects.select_related("store__translation_project", "store__parent"),
+                    id=uid,
+            )
             _common_context(request, unit.store.translation_project, permission_codes)
             request.unit = unit
             request.store = unit.store
@@ -523,8 +526,8 @@ def get_history(request, unit):
     """
     entries = Submission.objects.filter(unit=unit, field="pootle_store.Unit.target")
     entries = entries.select_related("submitter__user", "translation_project__language")
+    #: list of tuples (datetime, submitter, value)
     values = []
-    # list of tuples (datetime, submitter, value)
 
     import locale
     from pootle_store.fields import to_python
@@ -570,7 +573,11 @@ def get_history(request, unit):
         response = simplejson.dumps(json)
         return HttpResponse(response, mimetype="application/json")
     else:
-        return render_to_response('unit/history.html', ec, context_instance=RequestContext(request))
+        return render_to_response(
+                'unit/history.html',
+                ec,
+                context_instance=RequestContext(request),
+        )
 
 
 @never_cache

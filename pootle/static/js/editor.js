@@ -1588,8 +1588,8 @@
       return
     }
 
-    var _this = this;
-    var uid = PTL.editor.activeUid,
+    var _this = this,
+        uid = PTL.editor.activeUid,
         historyUrl = l("/unit/history/" + uid);
 
     // Always abort previous requests so we only get results for the
