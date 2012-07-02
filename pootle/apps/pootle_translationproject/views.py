@@ -67,8 +67,7 @@ class TPTranslateView(BaseView):
 
     def GET(self, template_vars, request, translation_project, directory):
         template_vars = super(TPTranslateView, self).GET(template_vars, request)
-        request.permissions = get_matching_permissions(get_profile(request.user), translation_project.directory)
-        project  = translation_project.project
+        project = translation_project.project
         language = translation_project.language
         is_terminology = project.is_terminology
 
@@ -333,7 +332,6 @@ class ProjectIndexView(BaseView):
 
         user_profile = get_profile(request.user)
         tp_dir = translation_project.directory
-        request.permissions = get_matching_permissions(user_profile, tp_dir)
 
         project = translation_project.project
         language = translation_project.language
