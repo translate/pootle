@@ -39,7 +39,7 @@ class LegalPageForm(ModelForm):
         body = cleaned_data.get('body')
 
         if url == '' and body == '':
-            #L10n: 'URL' and 'content' refer to form fields.
+            # Translators: 'URL' and 'content' refer to form fields.
             msg = _('URL or content must be provided.')
             raise ValidationError(msg)
 

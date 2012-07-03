@@ -16,13 +16,18 @@ _("Add")
 _("Change")
 _("Please enter a correct username and password. Note that both fields are case-sensitive.")
 # from Django/django/contrib/auth/forms.py:
-# l10n: Email subject line. The variable is the server name shown on the top of each page
+# Translators: Email subject line. The variable is the server name shown
+# on the top of each page
 _("Password reset on %s")
 
-# l10n: This is a constructed string that might end up saying "Add language" or "Add project". If you need to translate that differently, you might want to try to translate it as "Add an entry to the %(name)s table" or "Add an object of type "%(name)s".
+# Translators: This is a constructed string that might end up saying
+# "Add language" or "Add project". If you need to translate that differently,
+# you might want to try to translate it as "Add an entry to the %(name)s table"
+# or "Add an object of type "%(name)s".
 _("Add %(name)s")
 
-# l10n: This link takes the user to the page where the currently configured option is displayed (such as a project or language)
+# Translators: This link takes the user to the page where the currently
+# configured option is displayed (such as a project or language)
 _("View on site")
 
 _("first name")
@@ -30,10 +35,11 @@ _("last name")
 _("e-mail address")
 _("active")
 
-# l10n: Please translate this simply as "Administrator". This string is needed by Django, but 'superuser' is very technical and should be avoided.
+# Translators: Please translate this simply as "Administrator". This string is
+# needed by Django, but 'superuser' is very technical and should be avoided.
 _("superuser status")
 
-# l10n: The language from which translation will happen
+# Translators: The language from which translation will happen
 _("Source Language")
 
 _("Android strings")

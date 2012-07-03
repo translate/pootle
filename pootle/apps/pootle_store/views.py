@@ -543,7 +543,7 @@ def get_history(request, unit):
         # add it anyway, even if we don't have more information about it. It
         # might be because of an upload, VCS action, etc. that wasn't recorded.
         if old_value != entry.old_value:
-            #l10n: this refers to an unknown date
+            # Translators: this refers to an unknown date
             values.append((_("(unknown)"), u"", to_python(entry.old_value)))
         old_value = entry.new_value
         values.append((
