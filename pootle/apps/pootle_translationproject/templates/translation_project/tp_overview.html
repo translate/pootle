@@ -1,6 +1,6 @@
 {% extends "tp_base.html" %}
 
-{% load assets baseurl cache cleanhtml i18n translation_project_tags %}
+{% load assets baseurl cache cleanhtml i18n translation_project_tags progressbar %}
 
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
@@ -52,15 +52,7 @@
       <li>{{ summary_item|safe }}</li>
       {% endfor %}
     </ul>
-    <div class="graph" title="{% blocktrans with stats.translated.percentage as percent %}{{ percent }}% complete{% endblocktrans %}">
-        <div class="translated" style="width: {{ stats.translated.percentage }}px;"></div>
-        {% if stats.fuzzy.words %}
-        <div class="fuzzy" style="{% if LANGUAGE_BIDI %}right{%else%}left{%endif%}: {{ stats.translated.percentage }}px; width: {{ stats.fuzzy.percentage }}px;"></div>
-        {% endif %}
-        {% if stats.untranslated.words %}
-        <div class="untranslated" style="{% if LANGUAGE_BIDI %}right{%else%}left{%endif%}: {{ stats.translated.percentage|add:stats.fuzzy.percentage }}px; width: {{ stats.untranslated.percentage }}px;"></div>
-        {% endif %}
-    </div>
+    {% progressbar stats %}
     <a href="{{ "dir_summary.html"|l }}"><i class="icon-expand js-directory-summary ptr pull-right"></i></a>
     <div class="js-directory-summary-more" data-loaded="false" data-collapsed="true">
     </div>

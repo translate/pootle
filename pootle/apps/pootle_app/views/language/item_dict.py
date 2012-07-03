@@ -29,6 +29,7 @@ from pootle_app.models.permissions     import check_permission
 from pootle_store.models               import Store
 from pootle_app.views.language         import dispatch
 from pootle_misc.util import add_percentages
+from pootle_misc.stats import get_raw_stats
 
 ################################################################################
 
