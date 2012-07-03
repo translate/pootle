@@ -18,7 +18,7 @@
 #-o $basedir/po/pootle/templates/pootle.pot \
 #`find ../  -name "*.py" | sort`
 
-basedir=`dirname $0`/../..
+basedir=`dirname $0`/..
 verbosity=0
 
 pushd . 2>&1 > /dev/null
