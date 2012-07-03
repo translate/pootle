@@ -791,15 +791,14 @@
 
   /* Handles XHR errors */
   error: function (xhr, s) {
-    // TODO: i18n
     var msg = "";
 
     if (xhr.status == 0) {
-      msg = "Error while connecting to the server";
+      msg = gettext("Error while connecting to the server");
     } else if (xhr.status == 500) {
-      msg = "Server error";
+      msg = gettext("Server error");
     } else if (s == "timeout") {
-      msg = "The server seems down. Try again later.";
+      msg = gettext("The server seems down. Try again later.");
     } else {
       // XXX: Is this still necessary? Review
       // Since we use jquery-jsonp, we must differentiate between
@@ -807,7 +806,7 @@
       if (xhr instanceof XMLHttpRequest) {
         msg = $.parseJSON(xhr.responseText).msg;
       } else {
-        msg = "Unknown error";
+        msg = gettext("Unknown error");
       }
     }
 
@@ -950,8 +949,7 @@
           PTL.editor.hasResults = true;
         } else {
           PTL.editor.hasResults = false;
-          // TODO: i18n
-          PTL.editor.displayError("No results.");
+          PTL.editor.displayError(gettext("No results."));
           // Clear the results table
           PTL.editor.reDraw(null);
         }
@@ -1256,13 +1254,12 @@
     });
 
     eClass += this.units[uid].isfuzzy ? " fuzzy-unit" : "";
-    // TODO: i18n
-    editor = (ctxt.before.length ? '<tr class="more-context before"><td colspan="2"><a class="morecontext">Show more context rows</a></td></tr>' : '') +
+    editor = (ctxt.before.length ? '<tr class="more-context before"><td colspan="2"><a class="morecontext">' + gettext("Show more context rows") + '</a></td></tr>' : '') +
              this.buildCtxtRows(ctxt.before) +
              '<tr id="row' + uid + '" class="' + eClass + '">' +
              widget + '</tr>' +
              this.buildCtxtRows(ctxt.after) +
-             (ctxt.after.length ? '<tr class="more-context after"><td colspan="2"><a class="morecontext">Show more context rows</a></td></tr>' : '');
+             (ctxt.after.length ? '<tr class="more-context after"><td colspan="2"><a class="morecontext">' + gettext("Show more context rows") + '</a></td></tr>' : '');
 
     this.activeUid = uid;
 
@@ -1320,8 +1317,7 @@
             var newHash = PTL.utils.updateHashPart("unit", newUid, ["page"]);
             $.history.load(newHash);
           } else {
-            // TODO: i18n
-            PTL.editor.displayError("Congratulations, you walked through all items");
+            PTL.editor.displayError(gettext("Congratulations, you walked through all items"));
           }
         }
       },
@@ -1342,11 +1338,9 @@
       $.history.load(newHash);
     } else {
       if ($(e.target).attr("class") == 'previous') {
-        // TODO: i18n
-        PTL.editor.displayError("You reached the beginning of the list");
+        PTL.editor.displayError(gettext("You reached the beginning of the list"));
       } else {
-        // TODO: i18n
-        PTL.editor.displayError("You reached the end of the list");
+        PTL.editor.displayError(gettext("You reached the end of the list"));
       }
     }
   },
@@ -1469,8 +1463,7 @@
 
         $("div#filter-status").first().after(dropdown);
       } else { // No results
-        // TODO: i18n
-        PTL.editor.displayError("No results.");
+        PTL.editor.displayError(gettext("No results."));
         $("#filter-status option[value=" + PTL.editor.filter + "]")
           .attr("selected", "selected");
       }
@@ -1642,14 +1635,18 @@
   filterTMResults: function (results) {
     // FIXME: this just retrieves the first four results
     // we could limit based on a threshold too.
-    // FIXME: use localized 'N% match' format string
     var source = $("[id^=id_source_f_]").first().val(),
-        filtered = [];
+        filtered = [],
+        quality;
 
     for (var i=0; i<results.length && i<3; i++) {
       results[i].source = this.doDiff(source, results[i].source);
       results[i].target = this.fancyHl(results[i].target);
-      results[i].qTitle = Math.round(results[i].quality) + '% match';
+      quality = Math.round(results[i].quality);
+      // Translators: This is the quality match percentage of a TM result.
+      // '%s' will be replaced by a number, and you should keep the extra
+      // '%' symbol to denote a percentage is being used.
+      results[i].qTitle = interpolate(gettext('%s% match'), [quality]);
       filtered.push(results[i]);
     }
 
@@ -1681,8 +1678,7 @@
 
         if (uid == PTL.editor.activeUid && data.length > 0) {
           var filtered = PTL.editor.filterTMResults(data),
-          // TODO: i18n
-              name = "amaGama server",
+              name = gettext("amaGama server"),
               tm = PTL.editor.tmpl.tm($, {data: {meta: PTL.editor.meta,
                                                  suggs: filtered,
                                                  name: name}}).join("");

@@ -27,7 +27,9 @@ PACKAGE_VERSION_PLACEHOLDER="PACKAGE VERSION"
 
 # Filename constants
 DJANGO_POT="locale/pot/LC_MESSAGES/django.po"
+DJANGO_JS_POT="locale/pot/LC_MESSAGES/djangojs.po"
 POOTLE_POT="po/pootle/templates/pootle.pot"
+POOTLE_JS_POT="po/pootle/templates/pootle_js.pot"
 
 # Header settings
 YEAR=`date +%Y`
@@ -41,12 +43,14 @@ verbosity="-v $verbosity"
 mkdir locale
 
 ./manage.py makemessages $verbosity -e ".py" -e ".txt" -e ".html" -l pot
+./manage.py makemessages $verbosity -d djangojs -l pot
 
 # Header replacements
 sed -i "s/$YEAR_COPYRIGHT_PLACEHOLDER/$YEAR $COPYRIGHT_HOLDER/" $DJANGO_POT
 sed -i "s/$PACKAGE_VERSION_PLACEHOLDER/$PACKAGE $VERSION/" $DJANGO_POT
 
 mv $DJANGO_POT $POOTLE_POT
+mv $DJANGO_JS_POT $POOTLE_JS_POT
 
 rm -rf locale
 popd  2>&1  >  /dev/null

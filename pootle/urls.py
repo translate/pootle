@@ -40,6 +40,10 @@ urlpatterns = patterns('',
     (r'^media/(?P<path>.*)$', 'django.views.static.serve',
         {'document_root': DJANGO_MEDIA}),
 
+    # JavaScript i18n
+    (r'^jsi18n/$', 'django.views.i18n.javascript_catalog',
+        {'packages': ('pootle',),}),
+
     # Direct download of translation files
     (r'^export/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.PODIRECTORY}),
 
