@@ -21,11 +21,26 @@
 basedir=`dirname $0`/..
 verbosity=0
 
+YEAR_COPYRIGHT_PLACEHOLDER="YEAR THE PACKAGE'S COPYRIGHT HOLDER"
+PACKAGE_VERSION_PLACEHOLDER="PACKAGE VERSION"
+
+YEAR=`date +%Y`
+COPYRIGHT_HOLDER="Zuza Software Foundation (Translate.org.za)"
+PACKAGE="Pootle"
+VERSION="2.2"
+
 pushd . 2>&1 > /dev/null
 cd $basedir
 verbosity="-v $verbosity"
 mkdir locale
+
 ./manage.py makemessages $verbosity -e ".py" -e ".txt" -e ".html" -l pot
+
+# Header replacements
+sed -i "s/$YEAR_COPYRIGHT_PLACEHOLDER/$YEAR $COPYRIGHT_HOLDER/" locale/pot/LC_MESSAGES/django.po
+sed -i "s/$PACKAGE_VERSION_PLACEHOLDER/$PACKAGE $VERSION/" locale/pot/LC_MESSAGES/django.po
+
 mv locale/pot/LC_MESSAGES/django.po po/pootle/templates/pootle.pot
+
 rm -rf locale
 popd  2>&1  >  /dev/null
