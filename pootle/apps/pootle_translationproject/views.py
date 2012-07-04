@@ -571,12 +571,14 @@ def upload_file(request, directory, django_file, overwrite, store=None):
     elif store:
         # uploading to a virtual store
         pootle_path = store.pootle_path
-        upload_path = get_upload_path(translation_project, relative_root_dir, store.name)
+        upload_path = get_upload_path(translation_project, relative_root_dir,
+                                      store.name)
     else:
         local_filename = get_local_filename(translation_project, django_file.name)
         pootle_path = directory.pootle_path + local_filename
         # The full filesystem path to 'local_filename'
-        upload_path    = get_upload_path(translation_project, relative_root_dir, local_filename)
+        upload_path = get_upload_path(translation_project, relative_root_dir,
+                                      local_filename)
         try:
             store = translation_project.stores.get(pootle_path=pootle_path)
         except Store.DoesNotExist:
@@ -610,10 +612,10 @@ def upload_file(request, directory, django_file, overwrite, store=None):
     notranslate = overwrite == 'suggest'
     allownewstrings = overwrite == 'overwrite' and store.file == ''
 
-    #allownewstrings = check_permission('overwrite', request) or check_permission('administrate', request) or check_permission('commit', request)
-    #obsoletemissing = allownewstrings and overwrite == 'merge'
-    store.mergefile(newstore, get_profile(request.user), suggestions=suggestions, notranslate=notranslate,
-                    allownewstrings=allownewstrings, obsoletemissing=allownewstrings)
+    store.mergefile(newstore, get_profile(request.user),
+                    suggestions=suggestions, notranslate=notranslate,
+                    allownewstrings=allownewstrings,
+                    obsoletemissing=allownewstrings)
 
 
 class UpdateHandler(view_handler.Handler):
