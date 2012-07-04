@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.utils.translation import ugettext_lazy as _, ungettext as _n
+from django.utils.translation import ugettext_lazy as _, ungettext
 
 from pootle_app.views.language import dispatch
 from pootle_misc.util import add_percentages
@@ -106,20 +106,22 @@ def get_translation_stats(directory, dir_stats):
 def get_directory_summary(directory, dir_stats):
     """Returns a list of sentences to be displayed for each directory."""
     summary = [
-        _n("This folder has %(num)d word, %(percentage)d%% of which is "
+        ungettext("This folder has %(num)d word, %(percentage)d%% of which is "
            "translated",
            "This folder has %(num)d words, %(percentage)d%% of which are "
            "translated",
-           dir_stats['total']['words'],
-           {'num': dir_stats['total']['words'],
-            'percentage': dir_stats['translated']['percentage']}),
-        _n('<a class="directory-incomplete" href="%(url)s">%(num)d word '
+           dir_stats['total']['words']) % {
+               'num': dir_stats['total']['words'],
+               'percentage': dir_stats['translated']['percentage']
+           },
+        ungettext('<a class="directory-incomplete" href="%(url)s">%(num)d word '
            'needs translation</a>',
            '<a class="directory-incomplete" href="%(url)s">%(num)d words '
            'need translation</a>',
-           dir_stats['untranslated']['words'],
-           {'num': dir_stats['untranslated']['words'],
-            'url': dispatch.translate(directory, state='incomplete')}),
+           dir_stats['untranslated']['words']) % {
+               'num': dir_stats['untranslated']['words'],
+               'url': dispatch.translate(directory, state='incomplete')
+           },
     ]
 
     return summary
