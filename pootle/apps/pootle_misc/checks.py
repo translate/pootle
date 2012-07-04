@@ -18,6 +18,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+from django.utils.translation import ugettext_lazy as _
+
 from translate.filters.decorators import Category
 
 from pootle_app.views.language import dispatch
@@ -50,7 +52,7 @@ def get_quality_check_failures(path_obj, dir_stats, include_url=True):
         for i, category in enumerate(keys):
             if category != Category.NO_CATEGORY:
                 checks.append({'category': category,
-                               'category_display': category_map[category],
+                               'category_display': unicode(category_map[category]),
                                'checks': []})
 
             cat_keys = property_stats[category].keys()
