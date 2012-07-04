@@ -672,7 +672,7 @@ class UploadHandler(view_handler.Handler):
         class StoreFormField(forms.ModelChoiceField):
 
             def label_from_instance(self, instance):
-                return _(instance.pootle_path[len(translation_project.pootle_path):])
+                return _(instance.pootle_path[len(request.current_path):])
 
 
         class DirectoryFormField(forms.ModelChoiceField):
