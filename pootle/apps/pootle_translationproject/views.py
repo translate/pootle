@@ -45,7 +45,6 @@ from pootle_app.models.signals import post_file_upload
 from pootle_app.models             import Directory
 from pootle_app.lib import view_handler
 from pootle_app.views.top_stats import gentopstats_translation_project
-from pootle_app.views.base import BaseView
 from pootle_app.views.language import navbar_dict, item_dict
 from pootle_app.views.language.view import get_stats_headings
 from pootle_app.views.admin import util
@@ -174,11 +173,9 @@ def tp_admin_files(request, translation_project):
                      can_delete=True, extra=0)
 
 
-class ProjectIndexView(BaseView):
+class ProjectIndexView(view_handler.View):
 
     def GET(self, template_vars, request, translation_project, directory):
-        template_vars = super(ProjectIndexView, self).GET(template_vars, request)
-
         user_profile = get_profile(request.user)
         tp_dir = translation_project.directory
 
@@ -190,7 +187,7 @@ class ProjectIndexView(BaseView):
         directory_stats = get_raw_stats(directory)
         directory_summary = get_directory_summary(directory, directory_stats)
 
-        template_vars.update({
+        template_vars = {
             'translation_project': translation_project,
             'description': description,
             'project': project,
@@ -202,7 +199,7 @@ class ProjectIndexView(BaseView):
             'stats_headings': get_stats_headings(),
             'topstats': gentopstats_translation_project(translation_project),
             'feed_path': directory.pootle_path[1:],
-            })
+        }
 
         if check_permission('administrate', request):
             from pootle_translationproject.forms import DescriptionForm
