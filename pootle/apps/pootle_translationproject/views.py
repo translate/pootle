@@ -63,28 +63,6 @@ from pootle_statistics.models import Submission, UPLOAD
 from pootle_profile.models import get_profile
 
 
-class TPTranslateView(BaseView):
-
-    def GET(self, template_vars, request, translation_project, directory):
-        template_vars = super(TPTranslateView, self).GET(template_vars, request)
-        project = translation_project.project
-        language = translation_project.language
-        is_terminology = project.is_terminology
-
-        template_vars.update({
-            'translation_project': translation_project,
-            'project': project,
-            'language': language,
-            'directory': directory,
-            'children': get_children(request, translation_project, directory, links_required='translate'),
-            'navitems': [navbar_dict.make_directory_navbar_dict(request, directory, links_required='translate', terminology=is_terminology)],
-            'feed_path': directory.pootle_path[1:],
-            'topstats': gentopstats_translation_project(translation_project),
-            })
-
-        return template_vars
-
-
 @get_translation_project
 @set_request_context
 def tp_translate(request, translation_project, dir_path):
@@ -97,12 +75,26 @@ def tp_translate(request, translation_project, dir_path):
             pootle_path=translation_project.directory.pootle_path + dir_path
     )
 
-    view_obj = TPTranslateView(forms=dict(upload=UploadHandler,
-                                          update=UpdateHandler))
+    project = translation_project.project
+    language = translation_project.language
+    is_terminology = project.is_terminology
+
+    template_vars = {
+        'translation_project': translation_project,
+        'project': project,
+        'language': language,
+        'directory': directory,
+        'children': get_children(request, translation_project, directory,
+                                 links_required='translate'),
+        'navitems': [navbar_dict.make_directory_navbar_dict(
+            request, directory, links_required='translate',
+            terminology=is_terminology)],
+        'feed_path': directory.pootle_path[1:],
+        'topstats': gentopstats_translation_project(translation_project),
+    }
 
     return render_to_response("translation_project/tp_translate.html",
-            view_obj(request, translation_project, directory),
-            context_instance=RequestContext(request))
+            template_vars, context_instance=RequestContext(request))
 
 
 @get_translation_project
