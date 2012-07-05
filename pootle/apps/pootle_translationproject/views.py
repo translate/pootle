@@ -187,7 +187,7 @@ class ProjectIndexView(view_handler.View):
         directory_stats = get_raw_stats(directory)
         directory_summary = get_directory_summary(directory, directory_stats)
 
-        template_vars = {
+        template_vars.update({
             'translation_project': translation_project,
             'description': description,
             'project': project,
@@ -199,7 +199,7 @@ class ProjectIndexView(view_handler.View):
             'stats_headings': get_stats_headings(),
             'topstats': gentopstats_translation_project(translation_project),
             'feed_path': directory.pootle_path[1:],
-        }
+        })
 
         if check_permission('administrate', request):
             from pootle_translationproject.forms import DescriptionForm
