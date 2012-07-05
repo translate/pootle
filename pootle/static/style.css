@@ -1755,11 +1755,16 @@ div.graph[dir="rtl"] div.translated
 
 /* SORTABLE */
 
+table.sortable th,
+table tfoot
+{
+    color: #999;
+    font-size: 85%;
+}
+
 table.sortable th
 {
     cursor: pointer;
-    color: #999;
-    font-size: 85%;
 }
 
 table.sortable th.sorttable_nosort

@@ -87,6 +87,20 @@ def form_set_as_table(formset, link=None, linkfield='code'):
             result.append('</th>\n')
         result.append('</tr>\n')
 
+    def add_footer(result, fields, form):
+        result.append('<tr>\n')
+        for field in fields:
+            widget = form.fields[field].widget
+            widget_name = widget.__class__.__name__
+
+            result.append('<td>')
+
+            if form.fields[field].label is not None:
+                result.append(unicode(form.fields[field].label))
+
+            result.append('</td>\n')
+        result.append('</tr>\n')
+
     def add_errors(result, fields, form):
         # If the form has errors, then we'll add a table row with the
         # errors.
@@ -129,7 +143,15 @@ def form_set_as_table(formset, link=None, linkfield='code'):
         # Get the fields of the form, but filter our the 'id' field,
         # since we don't want to print a table column for it.
         fields = [field for field in first_form.fields if field != 'id']
+
+        result.append('<thead>\n')
         add_header(result, fields, first_form)
+        result.append('</thead>\n')
+        result.append('<tfoot>\n')
+        add_footer(result, fields, first_form)
+        result.append('</tfoot>\n')
+
+        result.append('<tbody>\n')
         for i, form in enumerate(formset.forms):
             if i % 2:
                 zebra = "odd"
@@ -137,6 +159,7 @@ def form_set_as_table(formset, link=None, linkfield='code'):
                 zebra = "even"
             add_errors(result, fields, form)
             add_widgets(result, fields, form, link, zebra)
+        result.append('</tbody>\n')
     except IndexError:
         result.append('<tr>\n')
         result.append('<td>\n')
