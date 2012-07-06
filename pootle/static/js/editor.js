@@ -95,6 +95,7 @@
     this.filter = "all";
     this.checks = [];
     this.ctxGap = 0;
+    this.ctxStep= 2;
     this.keepState = false;
     this.preventNavigation = false;
 
@@ -210,7 +211,8 @@
     /* Filtering */
     $(document).on("change", "div#filter-status select", this.filterStatus);
     $(document).on("change", "div#filter-checks select", this.filterChecks);
-    $(document).on("click", "a.morecontext", this.getMoreContext);
+    $(document).on("click", "a.js-more-ctx", this.moreContext);
+    $(document).on("click", "a.js-less-ctx", this.lessContext);
 
     /* Search */
     $(document).on("keypress", "input#id_search", function (e) {
@@ -986,7 +988,7 @@
 
 
   /* Builds context rows for units passed as 'units' */
-  buildCtxRows: function (units) {
+  buildCtxRows: function (units, extraCls) {
     var i, unit,
         cls = "even",
         even = true,
@@ -996,7 +998,8 @@
       unit = units[i];
 
       // Build context row i
-      rows += '<tr id="ctx' + unit.id + '" class="context-row ' + cls + '">';
+      rows += '<tr id="ctx' + unit.id + '" class="ctx-row ' + extraCls +
+              ' ' + cls + '">';
       rows += this.tmpl.vUnit($, {data: {meta: this.meta,
                                          unit: unit}}).join("");
       rows += '</tr>';
@@ -1246,7 +1249,7 @@
         PTL.editor.updatePager(PTL.editor.createPager(uid));
 
         if (data.ctx) {
-          PTL.editor.ctxGap = 2;
+          PTL.editor.ctxGap = PTL.editor.ctxStep;
           ctx.before = data.ctx.before;
           ctx.after = data.ctx.after;
         }
@@ -1255,14 +1258,18 @@
     });
 
     eClass += this.units[uid].isfuzzy ? " fuzzy-unit" : "";
-    ctx_cell = '<td colspan="2"><a class="morecontext ptr">' + gettext("Show more context rows") + '</a></td>';
+    ctx_cell = '<td colspan="2"><a class="js-more-ctx ptr">' +
+      gettext("More") + '</a> / <a class="js-less-ctx ptr">' +
+      gettext("Less") + '</a></td>';
 
-    editor = (ctx.before.length ? '<tr class="more-context before">' + ctx_cell + '</tr>' : '') +
-             this.buildCtxRows(ctx.before) +
+    editor = (ctx.before.length ? '<tr class="edit-ctx before">' +
+              ctx_cell + '</tr>' : '') +
+             this.buildCtxRows(ctx.before, "before") +
              '<tr id="row' + uid + '" class="' + eClass + '">' +
              widget + '</tr>' +
-             this.buildCtxRows(ctx.after) +
-             (ctx.after.length ? '<tr class="more-context after">' + ctx_cell + '</tr>' : '');
+             this.buildCtxRows(ctx.after, "after") +
+             (ctx.after.length ? '<tr class="edit-ctx after">' +
+              ctx_cell + '</tr>' : '');
 
     this.activeUid = uid;
 
@@ -1480,7 +1487,7 @@
   },
 
   /* Gets more context units */
-  getMoreContext: function () {
+  moreContext: function () {
     var ctxUrl = l('/unit/context/' + PTL.editor.activeUid),
         reqData = {gap: PTL.editor.ctxGap};
 
@@ -1490,20 +1497,38 @@
       dataType: 'json',
       data: reqData,
       success: function (data) {
-        // As we now have got more context rows, increase its gap
-        PTL.editor.ctxGap += 2;
+        if (data.ctx.before.length || data.ctx.after.length) {
+          // As we now have got more context rows, increase its gap
+          PTL.editor.ctxGap += PTL.editor.ctxStep;
 
-        // Create context rows HTML
-        var before = PTL.editor.buildCtxRows(data.ctx.before);
-        var after = PTL.editor.buildCtxRows(data.ctx.after);
+          // Create context rows HTML
+          var before = PTL.editor.buildCtxRows(data.ctx.before, "before"),
+              after = PTL.editor.buildCtxRows(data.ctx.after, "after");
 
-        // Append context rows to their respective places
-        var ctxRows = $("tr.context-row");
-        ctxRows.first().before(before);
-        ctxRows.last().after(after);
+          // Append context rows to their respective places
+          var editCtxRows = $("tr.edit-ctx");
+          editCtxRows.first().after(before);
+          editCtxRows.last().before(after);
+        }
       },
       error: PTL.editor.error
     });
+  },
+
+  /* Shrinks context lines */
+  lessContext: function () {
+
+    var before = $(".ctx-row.before"),
+        after = $(".ctx-row.after");
+
+    // Make sure there are context rows before decreasing the gap and
+    // removing any context rows
+    if (before.length || after.length) {
+      PTL.editor.ctxGap -= PTL.editor.ctxStep;
+
+      before.slice(0, PTL.editor.ctxStep).remove();
+      after.slice(-PTL.editor.ctxStep).remove();
+    }
   },
 
 

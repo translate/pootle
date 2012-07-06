@@ -145,17 +145,17 @@ tr.edit-row
     background-color: #f1f7f8;
 }
 
-tr.more-context
+tr.edit-ctx
 {
     font-size: 82%;
 }
 
-tr.more-context td
+tr.edit-ctx td
 {
     text-align: center;
 }
 
-tr.more-context a
+tr.edit-ctx a
 {
     text-decoration: none;
     filter:alpha(opacity=50);
@@ -164,7 +164,7 @@ tr.more-context a
     opacity: 0.5;
 }
 
-tr.more-context a:hover
+tr.edit-ctx a:hover
 {
     filter:alpha(opacity=100);
     -moz-opacity: 1;
@@ -172,29 +172,29 @@ tr.more-context a:hover
     opacity: 1;
 }
 
-tr.more-context.before td
+tr.edit-ctx.before td
 {
     border-top: 1px solid #ccc;
 }
 
-tr.more-context.after td
+tr.edit-ctx.after td
 {
     border-bottom: 1px solid #ccc;
 }
 
-tr.context-row,
+tr.ctx-row,
 tr.view-row
 {
     font-size: 92%;
 }
 
-tr.more-context,
-tr.context-row
+tr.edit-ctx,
+tr.ctx-row
 {
     background-color: #f8fbfb;
 }
 
-tr.context-row
+tr.ctx-row
 {
     color: #777;/*#76a1b0;*/
     border-bottom: 1px solid #fff;
