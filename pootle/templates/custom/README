@@ -1,0 +1,8 @@
+Here you can provide custom templates to be used by Pootle. For any styling
+changes, rather add custom style sheets and images in static/local/.
+
+You must completely duplicate a template here, and the template shipped with
+Pootle will be completely ignored.
+
+More information on Django templates:
+https://docs.djangoproject.com/en/dev/ref/templates/

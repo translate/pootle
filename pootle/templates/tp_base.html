@@ -1,0 +1,32 @@
+{% extends "base.html"  %}
+
+{% load i18n baseurl translation_project_tags cache %}
+
+{% block title %}
+    {{ block.super }} » 
+    {{ language.localname }} » {{ translation_project.project }}
+{% endblock %}
+
+{% block breadcrumb_content %}
+    {{ block.super }} » 
+    {% cache settings.CACHE_TIMEOUT tp_bread directory.id LANGUAGE_CODE %}
+        <span><a href="{{ language.pootle_path|l }}">{{ language.localname }}</a></span> » <span id="projectcrumb"><a href="{{ translation_project.pootle_path|l }}">{{ translation_project.project }}</a></span>
+    {% endcache %}
+{% endblock %}
+
+{% block extra_head %}
+<link rel="alternate" type="application/rss+xml" href="{% url pootle_notifications__feed feed_path %}" />
+{% endblock %}
+
+{% block search %}
+{% cache settings.CACHE_TIMEOUT tp_search translation_project.id LANGUAGE_CODE %}
+{% render_search %}
+{% endcache %}
+{% endblock %}
+
+{% block precontent %}
+{% include "tp_menu.html" %}
+{% endblock %}
+
+{% block scripts_extra %}
+{% endblock %}

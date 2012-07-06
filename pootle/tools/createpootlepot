@@ -18,14 +18,39 @@
 #-o $basedir/po/pootle/templates/pootle.pot \
 #`find ../  -name "*.py" | sort`
 
-basedir=`dirname $0`/../..
+basedir=`dirname $0`/..
 verbosity=0
+
+# Placeholders
+YEAR_COPYRIGHT_PLACEHOLDER="YEAR THE PACKAGE'S COPYRIGHT HOLDER"
+PACKAGE_VERSION_PLACEHOLDER="PACKAGE VERSION"
+
+# Filename constants
+DJANGO_POT="locale/pot/LC_MESSAGES/django.po"
+DJANGO_JS_POT="locale/pot/LC_MESSAGES/djangojs.po"
+POOTLE_POT="po/pootle/templates/pootle.pot"
+POOTLE_JS_POT="po/pootle/templates/pootle_js.pot"
+
+# Header settings
+YEAR=`date +%Y`
+COPYRIGHT_HOLDER="Zuza Software Foundation (Translate.org.za)"
+PACKAGE="Pootle"
+VERSION="2.2"
 
 pushd . 2>&1 > /dev/null
 cd $basedir
 verbosity="-v $verbosity"
 mkdir locale
-./manage.py makepropermessages $verbosity -e ".py" -e ".txt" -e ".html" -l pot
-mv locale/pot/LC_MESSAGES/django.po po/pootle/templates/pootle.pot
+
+./manage.py makemessages $verbosity -e ".py" -e ".txt" -e ".html" -l pot
+./manage.py makemessages $verbosity -d djangojs -l pot
+
+# Header replacements
+sed -i "s/$YEAR_COPYRIGHT_PLACEHOLDER/$YEAR $COPYRIGHT_HOLDER/" $DJANGO_POT
+sed -i "s/$PACKAGE_VERSION_PLACEHOLDER/$PACKAGE $VERSION/" $DJANGO_POT
+
+mv $DJANGO_POT $POOTLE_POT
+mv $DJANGO_JS_POT $POOTLE_JS_POT
+
 rm -rf locale
 popd  2>&1  >  /dev/null

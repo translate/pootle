@@ -1,0 +1,70 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#
+# Copyright 2012 Zuza Software Foundation
+#
+# This file is part of Pootle.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
+
+"""Fabric settings file."""
+
+SETTINGS = {}
+
+
+#
+# SSH connection
+#
+
+#: List of hosts to work on
+SETTINGS['hosts'] = ['foo.bar.tld']
+#: Username to log in in the remote machine
+SETTINGS['user'] = 'foobarbaz'
+
+
+#
+# Project
+#
+
+#: A meaningful name for your Pootle installation
+SETTINGS['project_name'] = 'pootle-staging'
+#: Change the first path part if your Apache websites are stored somewhere else
+SETTINGS['project_path'] = '/var/www/sites/%s' % SETTINGS['project_name']
+SETTINGS['project_repo_path'] = '%s/pootle' % SETTINGS['project_path']
+SETTINGS['project_po_path'] = '%s/podirectory' % SETTINGS['project_path']
+SETTINGS['project_repo'] = 'git://github.com/translate/pootle.git'
+#: This URL will be used in the VirtualHost section
+SETTINGS['project_url'] = 'my-pootle.foo.tld'
+SETTINGS['project_settings_path'] = '%s/pootle/settings' % \
+                                        SETTINGS['project_repo_path']
+
+
+#
+# Virtualenv
+#
+
+#: Python version that will be used in the virtualenv
+SETTINGS['python'] = 'python2.6'
+SETTINGS['env_path'] = '%s/env' % SETTINGS['project_path']
+
+
+#
+# Apache + VirtualHost + WSGI
+#
+
+#: The group your web server is running on
+SETTINGS['server_group'] = 'www-data'
+SETTINGS['vhost_file'] = '/etc/apache2/sites-available/%s' % \
+                                SETTINGS['project_name']
+SETTINGS['wsgi_file'] = '%s/pootle.wsgi' % SETTINGS['project_path']

@@ -1,0 +1,37 @@
+WSGIRestrictEmbedded On
+WSGIPythonOptimize 1
+<VirtualHost *:80>
+    ServerName %(project_url)s
+
+    ErrorLog %(project_path)s/logs/error.log
+    CustomLog %(project_path)s/logs/access.log combined
+
+    WSGIDaemonProcess %(project_name)s processes=2 threads=3 stack-size=1048576 maximum-requests=500 inactivity-timeout=300 display-name=%{GROUP}
+    WSGIProcessGroup %(project_name)s
+    WSGIScriptAlias / %(wsgi_file)s
+
+    <Directory "%(project_path)s">
+        WSGIProcessGroup %(project_name)s
+        WSGIScriptReloading On
+
+        Order deny,allow
+        Allow from all
+    </Directory>
+
+    Alias /static %(project_repo_path)s/pootle/static
+    <Directory "%(project_path)s/pootle/static/">
+        Order deny,allow
+        Allow from all
+    </Directory>
+
+    Alias /export %(project_po_path)s
+    <Directory "%(project_po_path)s">
+        Order deny,allow
+        Allow from all
+    </Directory>
+
+    <Location /export>
+        SetOutputFilter DEFLATE
+    </Location>
+
+</VirtualHost>

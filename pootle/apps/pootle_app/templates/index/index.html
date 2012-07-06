@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% load i18n baseurl notification_tags cleanhtml assets %}
+
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+
+{% block extra_head %}
+<link rel="alternate" type="application/rss+xml" href="{% url pootle_notifications__feed "" %}" />
+{% endblock %}
+
+{% block body.id %}frontpage{% endblock body.id %}
+
+{% block precontent %}
+{% if user.is_superuser %}
+  {% include "admin/edit_links.html" %}
+  <div class="settings-container js-admin-description" style="display: none;">
+    {% include "admin/general_settings_form.html" with form_action="/admin/general.html" %}
+  </div>
+{% endif %}
+{% include "description.html" %}
+{% endblock precontent %}
+
+{% block content %}
+<div class="module first" lang="{{ LANGUAGE_CODE }}">
+    <div class="hd">
+        <h2>{{ languagelink }}</h2>
+    </div>
+    <div class="bd">
+        <table class="sortable" id="js-stats-index-languages">
+            <tr>
+                <th id="js-stats-language">{% trans 'Language' %}</th>
+                <th id="js-stats-progress">{% trans 'Overall Completion' %}</th>
+                <th id="js-stats-activity">{% trans 'Last Activity' %}</th>
+            </tr>
+            {% for item in languages %}
+            {% ifnotequal item.total 0 %}
+            <tr class="{% cycle 'even' 'odd' %}">
+                <td class="language"><a href="{% filter l %}/{{ item.code }}/{% endfilter %}">{{ item.name }}</a></td>
+                <td>
+                    <div class="sortkey">{{ item.transper }}</div>
+                    <div class="graph" title="{{ item.completed_title }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+                        <div class="translated" style="width: {{ item.transper }}px"></div>
+                        {% if item.fuzzy %}
+                        <div class="fuzzy" style="{%if LANGUAGE_BIDI%}right{%else%}left{%endif%}: {{ item.transper }}px; width: {{ item.fuzzyper }}px"></div>
+                        {% endif %}
+                        {% if item.untrans %}
+                        <div class="untranslated" style="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %}: {{ item.transper|add:item.fuzzyper }}px; width: {{ item.untransper }}px"></div>
+                        {% endif %}
+                    </div>
+                </td> 
+                <td>{{ item.lastactivity }}</td>
+            </tr>
+            {% endifnotequal %}
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+<div class="module" lang="{{ LANGUAGE_CODE }}">
+    <div class="hd">
+        <h2>{{ projectlink }}</h2>
+    </div>
+    <div class="bd">
+        <table class="sortable" id="js-stats-index-projects">
+            <tr>
+                <th id="js-stats-project">{% trans 'Project' %}</th>
+                <th id="js-stats-progress">{% trans 'Overall Completion' %}</th>
+                <th id="js-stats-activity">{% trans 'Last Activity' %}</th>
+            </tr>
+            {% for item in projects %}
+            <tr class="{% cycle 'even' 'odd' %}">
+                <td class="project"><a href="{% filter l %}/projects/{{ item.code }}/{% endfilter %}" title="{{ item.description }}">{{ item.name }}</a></td>
+                <td>
+                    <div class="sortkey">{{ item.transper }}</div>
+                    <div class="graph" title="{{ item.completed_title }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+                        <div class="translated" style="width: {{ item.transper }}px"> </div>
+                        {% if item.fuzzy %}
+                        <div class="fuzzy" style="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %}: {{ item.transper }}px; width: {{ item.fuzzyper }}px"></div>
+                        {% endif %}
+                        {% if item.untrans %}
+                        <div class="untranslated" style="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %}: {{ item.transper|add:item.fuzzyper }}px; width: {{ item.untransper }}px"></div>
+                        {% endif %}
+                    </div>
+                </td> 
+                <td>{{ item.lastactivity }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock content %}
+
+{% block postcontent %}
+<div class="module latestnews{% if moreprojects %} first{% endif %}" lang="{{ LANGUAGE_CODE }}">
+    <div class="hd"><h2>{% trans 'Latest News' %}</h2></div>
+    <div class="bd">
+        {% render_latest_news "" 5 %}
+        <p class="subscribe"><a href="{% url pootle_notifications__feed "" %}">{% trans "Subscribe to the RSS feed." %}</a></p>
+    </div>
+</div>
+
+<div class="module first clear" lang="{{ LANGUAGE_CODE }}">
+    <div class="bd">
+    {% include "translation_summary_legend.html" %}
+    </div>
+</div>
+
+{% include "top_contributers_table.html" %}
+{% endblock postcontent %}
+
+{% block scripts_extra %}
+<script type="text/javascript">
+$(document).ready(function() {
+  $(".intro, li.newsitem, .newsitem address, .newsitem blockcode, .newsitem blockquote, .newsitem :header, .newsitem p, .newsitem pre, .newsitem li, .newsitem dt, .newsitem dd, .newsitem ul, .newsitem ol, .newsitem dl, td.language").filter(":not([dir])").bidi();
+});
+</script>
+{% if user.is_superuser or request.permissions.administrate %}
+    {% assets "js_admin" %}
+    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+{% endif %}
+{% endblock %}

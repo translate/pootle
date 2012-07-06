@@ -1,0 +1,121 @@
+{% extends "tp_base.html" %}
+
+{% load assets baseurl cache cleanhtml i18n translation_project_tags progressbar %}
+
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+
+{% block body.id %}fileindex{% endblock body.id %}
+
+{% block bodyclass %}tpoverview{% endblock bodyclass %}
+
+
+{% block precontent %}
+{{ block.super }}
+{% if user.is_superuser or request.permissions.administrate %}
+  {% include "admin/edit_links.html" %}
+  <div class="settings-container js-admin-description" style="display: none;">
+    {% include "admin/general_settings_form.html" with form_action="edit_settings.html" %}
+  </div>
+{% endif %}
+{% include "description.html" %}
+
+{% comment %}If there is no description, inherrit from the project and the language{% endcomment %}
+{% if not description and project.description or not description and language.description %}
+  <a id="hide_description" title="{% trans 'Hide' %}">
+      <span>{% trans 'Hide' %}</span></a>
+  <a id="show_description" title="{% trans 'Show' %}" style="display: none;">
+      <span>{% trans 'Show description' %}</span></a>
+  <div class="intro">
+    {% if project.description %}
+      <h3 class="intro-helper">{% trans 'Project Description' %}</h3>
+      {{ project.description|safe|linebreaks|clean }}
+    {% endif %}
+    {% if language.description %}
+      <h3 class="intro-helper">{% trans 'Language Description' %}</h3>
+      {{ language.description|safe|linebreaks|clean }}
+    {% endif %}
+  </div>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="module first">
+  <div class="hd">
+    {% cache settings.CACHE_TIMEOUT directory_trail directory.id %}
+    <h2><span><a href="{{ translation_project.pootle_path|l }}">{{ project.code }}</a> / {{ directory|trail:"/" }}</span></h2>
+    {% endcache %}
+  </div>
+  <div class="bd directory-summary">
+    <ul>
+      {% for summary_item in dir_summary %}
+      <li>{{ summary_item|safe }}</li>
+      {% endfor %}
+    </ul>
+    {% progressbar stats %}
+    <a href="{{ "dir_summary.html"|l }}"><i class="icon-expand js-directory-summary ptr pull-right"></i></a>
+    <div class="js-directory-summary-more" data-loaded="false" data-collapsed="true">
+    </div>
+  </div>
+
+  {% if children %}
+  <div class="hd">
+    <h2>{% trans "Files and Subfolders" %}</h2>
+  </div>
+  <div class="bd">
+      <div class="files-subfolders" lang="{{ LANGUAGE_CODE }}">
+          <table class="sortable stats" id="js-stats-tp" cellpadding="5"
+          cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+              <thead>
+                  <tr>
+                      <th id="js-stats-filename" class="stats">{{ stats_headings.name }}</th>
+                      <th id="js-stats-progress" class="stats">{{ stats_headings.progress }}</th>
+                      <th id="js-stats-need-translation" class="stats-number sorttable_numeric">{{ stats_headings.need_translation }}</th>
+                  </tr>
+              </thead>
+              <tbody class="stats">
+                  {% for item in children %}
+                  <tr class="item {% cycle 'even' 'odd' %}">
+                  {% include "language/item_summary.html" %}
+                  </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+      </div>
+  </div>
+  {% endif %}
+</div>
+
+<div class="module">
+{% include "translation_project/fileop_forms.html" %}
+</div>
+{% endblock content %}
+
+{% block postcontent %}
+{% include "top_contributers_table.html" %}
+{% endblock postcontent %}
+
+{% block scripts_extra %}
+{{ block.super }}
+{% if upload %}
+<script type="text/javascript">
+$(document).ready(function() {
+  $("select#id_upload_to_dir").parent().hide();
+  $("input#id_file").change(function() {
+    if (/\.zip$/.test($(this).val())) {
+      $("select#id_upload_to").parent().hide();
+      $("select#id_upload_to_dir").parent().show();
+    } else {
+      $("select#id_upload_to_dir").parent().hide();
+      $("select#id_upload_to").parent().show();
+    }
+  });
+});
+</script>
+{% endif %}
+{% if user.is_superuser or request.permissions.administrate %}
+  {% assets "js_admin" %}
+    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+  {% endassets %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,1158 @@
+/*
+ * TRANSLATE PAGE
+ */
+
+/* MAIN TOOLBAR */
+
+textarea#view_unit
+{
+    display: none;
+}
+
+div#toolbar
+{
+    background-color: #e5f3f8;
+    border-top: 1px solid #ccc;
+    text-align: left;
+    width: 100%;
+    height: 46px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+    box-shadow: 0px 0px 0px #ccc;
+    -moz-box-shadow: 0px 0px 20px #ccc;
+    -webkit-box-shadow: 0px 0px 20px #ccc;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e5f3f8', endColorstr='#cde7f1');
+    background: -webkit-gradient(linear, left top, left bottom, from(#e5f3f8), to(#cde7f1));
+    background: -moz-linear-gradient(top,  #e5f3f8,  #cde7f1);
+}
+
+body.zoom-out-1 #toolbar
+{
+    font-size: 95%;
+    height: 42px;
+}
+
+body.zoom-out-1 .xhr-message
+{
+    bottom: 43px;
+}
+
+body.zoom-out-2 #toolbar
+{
+    font-size: 90%;
+    height: 36px;
+}
+
+body.zoom-out-2 .xhr-message
+{
+    bottom: 37px;
+}
+
+div#toolbar > div
+{
+    display: inline-block;
+    padding: 10px;
+}
+
+body.zoom-out-1 div#toolbar > div
+{
+    padding: 8px;
+}
+
+body.zoom-out-2 div#toolbar > div
+{
+    padding: 6px;
+}
+
+#prevnext
+{
+    float: right;
+}
+
+#prevnext #item-navigation
+{
+    font-size: 120%;
+    margin: 0 0.5em;
+}
+
+#prevnext #item-number
+{
+    margin: 0; padding: 0;
+    text-align: center;
+    position: relative;
+    top: 1px;
+}
+
+#prevnext #items-count
+{
+    display: inline-block;
+    min-width: 1em;
+}
+
+
+#prevnext input[type="submit"]
+{
+    min-width: 100px;
+    padding: 4px 10px;
+}
+
+body.zoom-out-1 #prevnext input[type="submit"]
+{
+    min-width: 90px;
+    padding: 3px 8px;
+}
+
+body.zoom-out-2 #prevnext input[type="submit"]
+{
+    min-width: 85px;
+    padding: 2px 8px;
+}
+
+
+
+/* SPECIAL FOOTER */
+
+#translate-footer
+{
+    margin: 0 1em;
+    margin-bottom: 50px; /* this should be equlal or the height of the #toolbar */
+}
+
+/* TRANSLATE TABLE */
+
+table.translate-table
+{
+    width: 100%;
+    table-layout: fixed;
+    margin-top: -1.5em;
+}
+
+table.translate-table td
+{
+    vertical-align: middle;
+}
+
+th.translate-original,
+th.translate-translation
+{
+    width: 50%;
+}
+
+tr.edit-row
+{
+    background-color: #f1f7f8;
+}
+
+tr.more-context
+{
+    font-size: 82%;
+}
+
+tr.more-context td
+{
+    text-align: center;
+}
+
+tr.more-context a
+{
+    text-decoration: none;
+    filter:alpha(opacity=50);
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+}
+
+tr.more-context a:hover
+{
+    filter:alpha(opacity=100);
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    opacity: 1;
+}
+
+tr.more-context.before td
+{
+    border-top: 1px solid #ccc;
+}
+
+tr.more-context.after td
+{
+    border-bottom: 1px solid #ccc;
+}
+
+tr.context-row,
+tr.view-row
+{
+    font-size: 92%;
+}
+
+tr.more-context,
+tr.context-row
+{
+    background-color: #f8fbfb;
+}
+
+tr.context-row
+{
+    color: #777;/*#76a1b0;*/
+    border-bottom: 1px solid #fff;
+    border-top: 1px solid #fff;
+}
+
+tr.view-row
+{
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    cursor: pointer;
+}
+
+tr.view-row:hover
+{
+    background-color: #d9edf4;
+}
+
+.translation-text
+{
+    max-width: 100%;
+    overflow: auto;
+    font-size: 115%;
+}
+
+div.sources
+{
+    margin-top: 2em;
+    margin-bottom: -0.5em; /* depends on zoom level */
+}
+
+
+body.zoom-out-1 div.sources
+{
+    margin-bottom: -0.7em;
+}
+
+body.zoom-out-2 div.sources
+{
+    margin-bottom: -1em;
+}
+
+div.sources .translation-text
+{
+    padding: 0.1em 0;
+}
+
+body.zoom-out-1 div.sources .translation-text
+{
+    padding-top: 0.4em;
+}
+
+body.zoom-out-1 div.sources .alternative .translation-text
+{
+    font-size: 98%;
+}
+
+body.zoom-out-2 div.sources .translation-text
+{
+    padding-top: 0.2em;
+}
+
+body.zoom-out-2 div.sources .alternative .translation-text
+{
+    font-size: 95%;
+}
+
+.translation-text-headers
+{
+    color: #999;
+    font-size: 85%;
+    position: relative;
+    border-bottom: 1px dotted #ccc;
+    padding-top: 0.5em;
+}
+
+.translation-space
+{
+    padding: 0 4px;
+    margin: 0 0.2em;
+    background-image: url('images/squiggle.png');
+    background-repeat: repeat-x;
+    background-position: text-bottom;
+    vertical-align: middle;
+}
+
+/* TRANSLATION UNIT LAYOUT */
+
+div.translate-container
+{
+    position: relative;
+}
+
+div.translate-left,
+div.translate-right
+{
+    margin-top: -1em;
+}
+
+
+div.translate-left
+{
+    float: left;
+    width: 24.5%;
+}
+
+div.translate-middle
+{
+    width: 50%;
+    margin: 0 auto;
+    position: relative;
+}
+
+div.translate-right
+{
+    float: right;
+    width: 24.5%;
+}
+
+/* ORIGINAL */
+
+div.source-language
+{
+    margin-bottom: 1em;
+}
+
+div.language-name
+{
+    border-top: 1px dotted #ccc;
+    border-left: 1px dotted #ccc;
+    border-right: 1px dotted #ccc;
+    border-bottom: 1px solid #f1f7f8;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+
+    padding: 1px 5px 0px;
+    display: inline-block;
+    position: absolute;
+    bottom: -1px;
+}
+
+.translate-focus div.translate-original,
+{
+    color: #000;
+}
+
+div.alternative
+{
+    color: #777;
+}
+
+table td.translate-original,
+table td.translate-translation
+{
+    padding: 0.5em 5px;
+}
+
+
+/* COMMENTS */
+
+.comments
+{
+    clear: both;
+    color: #666;
+}
+
+.comments p
+{
+    display: inline;
+    font-size: 85%;
+    line-height: 120%;
+}
+
+.sidetitle,
+.comments .developer-comments
+{
+    display: inline;
+}
+
+.translate-locations,
+.developer-comments,
+.translate-context
+{
+    margin-bottom: 0.5em;
+}
+
+.translate-locations,
+.translate-context-value
+{
+    font-size: 90%;
+    display: inline;
+    word-wrap: break-word;
+}
+
+.translate-context-value
+{
+    font-weight: bold;
+}
+
+div.translator-comments
+{
+    text-align: right;
+}
+
+html[dir="rtl"] div.translator-comments
+{
+    text-align: left;
+}
+
+table.suggest-mode div.translator-comments
+{
+    display: none; /* for now, all translator comments are simply hidden in suggestion mode; TODO: display existing comments in read-only mode*/
+}
+
+div.translator-comments a
+{
+    text-decoration: none;
+}
+
+div.translator-comments a:hover
+{
+    border-bottom: 1px dotted #0489b7;
+}
+ 
+div.translator-comments label
+{
+    display: block;
+    color: #999;
+    font-size: 85%;
+}
+
+div.translator-comments textarea
+{
+    vertical-align: top;
+    padding: 0;
+    min-height: 1em;
+    width: 100%;
+    color: #666;
+    font-size: 90%;
+    line-height: 1.2em;
+}
+
+.terminology div.translator-comments
+{
+    background: #eaf0f4 url('images/user_comment.png') no-repeat;
+    background-position: 5px center;
+    border: 1px solid #d2e1ed;
+    overflow: auto;
+    padding: 5px 25px;
+}
+
+
+/* TRANSLATION */
+
+td.translate-focus
+{
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    vertical-align: top;
+}
+
+td.translate-full div.translate-original
+{
+    width: 100%;
+    margin: 0.5em 0;
+}
+
+td.translate-full textarea.translation
+{
+    width: 100%;
+    margin: 0 auto 0.5em;
+    padding: 0;
+    min-height: 2.7em; 
+}
+
+
+/* TM and suggestions */
+
+.sidebar
+{
+    padding: 0 20px 1em;
+}
+
+body.zoom-out-1 .sidebar
+{
+    padding-bottom: 0.7em;
+}
+
+body.zoom-out-2 .sidebar
+{
+    padding-bottom: 0.5em;
+}
+
+.sidetitle
+{
+    color: #999;
+    font-size: 85%;
+}
+
+#tm
+{
+    position: relative;
+}
+
+.tm-unit
+{
+    margin: 0 0.5em 0.5em 0;
+    padding: 0.1em 0.5em;
+    border: 1px dotted #999;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 90%;
+}
+
+.tm-unit:hover {
+    background-color: #fff;
+}
+
+.tm-original
+{
+    font-weight: bolder;
+    padding-right: 0.3em;
+}
+
+#tm[dir="rtl"] .tm-original
+{
+    padding-right: auto;
+    padding-left: 0.3em;
+}
+
+.tm-translation
+{
+    font-style: oblique;
+}
+
+.tm-translation[dir="rtl"]
+{
+    text-align: right;
+}
+
+/* SUGGESTIONS */
+
+div.translator-comments + #suggestion-container
+{
+    margin-top: 0.5em;
+}
+
+#suggestion-container
+{
+    margin-top: 1.8em;
+    margin-bottom: 1em;
+}
+
+.suggestion-block
+{
+    position: relative;
+}
+
+.suggestion-block:last-child
+{
+    margin-bottom: 0;
+}
+
+.suggestion-title
+{
+    color: #999;
+    font-size: 85%;
+}
+
+.suggestion-block .rejectsugg img
+{
+    cursor: pointer;
+}
+
+.suggestion-block .acceptsugg img
+{
+    cursor: pointer;
+}
+
+.suggestion-block .rejectsugg img,
+.suggestion-block .acceptsugg img
+{
+    float: right;
+    top: 50%;
+    filter:alpha(opacity=10);
+    -moz-opacity: 0.1;
+    -khtml-opacity: 0.1;
+    opacity: 0.1;
+}
+.suggestion-block .rejectsugg img[dir="rtl"],
+.suggestion-block .acceptsugg img[dir="rtl"],
+.suggestion-block .suggestion-vote img[dir="rtl"]
+{
+    float: left;
+}
+
+.suggestion-block:hover .rejectsugg img,
+.suggestion-block:hover .acceptsugg img,
+.suggestion-block:hover .suggestion-vote img
+{
+    filter:alpha(opacity=50);
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+}
+
+.suggestion-block .rejectsugg img:hover,
+.suggestion-block .acceptsugg img:hover,
+.suggestion-block .suggestion-vote:hover img
+{
+    filter:alpha(opacity=100);
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    opacity: 1;
+}
+
+.num_votes
+{
+    position: absolute;
+    top: 8px;
+    right: 0.9em;
+    text-shadow: 0 0 8px #777;
+}
+
+.suggestion-block .suggestion-vote img
+{
+    top: 50%;
+    filter:alpha(opacity=30);
+    -moz-opacity: 0.3;
+    -khtml-opacity: 0.3;
+    opacity: 0.3;
+    float: right;
+    cursor: pointer;
+}
+
+.suggestion
+{
+    background-color: #f1f7e4;
+    border: 1px dotted #ccc;
+    color: #444;
+    line-height: 140%;
+    padding: 0.5em;
+    cursor: pointer;
+}
+
+.suggestion:hover {
+    background-color: #fff;
+}
+
+.suggestion-original,
+#amagama_results .suggestion-translation
+{
+    display: inline-block;
+}
+
+.suggestion-original
+{
+    font-weight: bolder;
+    color: #000;
+    padding-right: 1em;
+}
+
+#suggestion[dir="rtl"] .suggestion-original
+{
+    padding-right: auto;
+    padding-left: 1em;
+}
+
+.suggestion-translation[dir="rtl"]
+{
+    text-align: right;
+}
+
+
+.history-gravatar
+{
+    position: absolute;
+    top: 0px;
+    left: 100%;
+}
+
+html[dir="rtl"] .history-gravatar
+{
+    right: 100%;
+    left: auto;
+}
+
+.history-extra
+{
+    position:absolute;
+    top: 0;
+    left: 100%;
+    font-size: 0.9em;
+    padding: 2px;
+}
+
+html[dir="rtl"] .history-extra
+{
+    left: auto;
+    right: 100%;
+}
+
+
+#show-history,
+#hide-history
+{
+    float: right;
+}
+
+html[dir="rtl"] #show-history,
+html[dir="rtl"] #hide-history
+{
+    float: left;
+}
+
+#history_content
+{
+    margin: 5% 15% 0%; 5%
+}
+
+/* CHECKS */
+
+ul.checks
+{
+    display: inline;
+    font-size: 85%;
+}
+
+div.check a
+{
+    cursor: help;
+}
+
+.checkinfo
+{
+    vertical-align: top;
+    margin-top: 3px;
+}
+
+#translate-checks-block
+{
+    margin: 0 1em;
+}
+
+#translate-checks-block .sidetitle
+{
+    color: #900;
+}
+
+li.check
+{
+    display: inline-block;
+    border: 1px dotted #900;
+    margin: 0 0.5em 0.5em 0;
+    padding: 0.1em 0.1em 0.1em 0.5em;
+
+}
+
+li.check:hover
+{
+    background-color: #fff;
+}
+
+li.check > a {
+    cursor: help;
+}
+
+#translate-checks-block .rejectcheck img
+{
+    vertical-align: top;
+    margin-top: -1px;
+    margin-bottom: -1px;
+    cursor: pointer;
+    filter:alpha(opacity=50);
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+}
+
+#translate-checks-block .rejectcheck img:hover
+{
+    filter:alpha(opacity=100);
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    opacity: 1;
+}
+
+/* CONTROLS */
+
+.translate-buttons-block
+{
+    left: 100%;
+    position: absolute;
+    margin: 0 10px 0 20px;
+}
+
+.translate-buttons-block[dir="rtl"]
+{
+    left: auto;
+    right: 102%;
+}
+
+.translate-buttons-block input[type="submit"]
+{
+    margin-bottom: 0.5em;
+}
+
+.buttons input[type="submit"].submit
+{
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffee', endColorstr='#aaee77');
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffe), to(#ae7));
+    background: -moz-linear-gradient(top,  #ffe,  #ae7);
+}
+
+.translate-buttons-block input.submit:hover {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#bbff88');
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#bf8));
+    background: -moz-linear-gradient(top,  #fff,  #bf8);
+}
+
+.translate-buttons-block input.submit:active
+{
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#aaee77', endColorstr='#ffffee');
+    background: -webkit-gradient(linear, left top, left bottom, from(#ae7), to(#ffe));
+    background: -moz-linear-gradient(top,  #ae7,  #ffe);
+}
+
+.buttons input[type="submit"].suggest
+{
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffee', endColorstr='#eedd88');
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffe), to(#ed8));
+    background: -moz-linear-gradient(top,  #ffe,  #ed8);
+}
+
+.translate-buttons-block input.suggest:hover {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffee99');
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fe9));
+    background: -moz-linear-gradient(top,  #fff,  #fe9);
+}
+
+.translate-buttons-block input.suggest:active
+{
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eedd88', endColorstr='#ffffee');
+    background: -webkit-gradient(linear, left top, left bottom, from(#ed8), to(#ffe));
+    background: -moz-linear-gradient(top,  #ed8,  #ffe);
+}
+
+.translate-buttons-block input.suggest
+{
+    display: none;
+}
+
+table.suggest-mode .translate-buttons-block input.suggest
+{
+    display: block;
+}
+
+table.suggest-mode .translate-buttons-block input.submit
+{
+    display: none;
+}
+
+.translate-fuzzy-block
+{
+    text-align: center;
+    font-style: italic;
+}
+
+.translate-fuzzy-block label
+{
+    vertical-align: middle;
+}
+
+input.fuzzycheck
+{
+    vertical-align: middle;
+}
+
+table.suggest-mode .translate-fuzzy-block
+{
+    display: none;
+}
+
+.switch-suggest-mode
+{
+    position: absolute;
+    left: 120px;
+    top: 0px;
+    padding: 5px 0;
+    line-height: 150%;
+}
+
+.translate-full[dir="rtl"] .switch-suggest-mode
+{
+    left: 0px;
+    right: 120px;
+}
+
+.switch-suggest-mode a
+{
+    text-decoration: none;
+    white-space: nowrap;
+    filter:alpha(opacity=50);
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+}
+
+.switch-suggest-mode a:hover
+{
+    filter:alpha(opacity=100);
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    opacity: 1;
+}
+
+.switch-suggest-mode .suggest
+{
+    display: none;
+}
+
+table.suggest-mode .switch-suggest-mode .suggest
+{
+    display: inherit;
+}
+
+table.suggest-mode .switch-suggest-mode .submit
+{
+    display: none;
+}
+
+.translate-toolbar
+{
+    position: absolute;
+    top: -12px;
+    /* LTR */
+    right: 0;
+}
+
+.translate-toolbar a
+{
+    margin-left: 0.5em;
+}
+
+
+div.translation-text-headers[dir="rtl"] div.translate-toolbar
+{
+    right: auto;
+    left: 0;
+}
+
+div.translation-text-headers[dir="rtl"] div.translate-toolbar a
+{
+    margin-left: 0;
+    margin-right: 0.5em;
+}
+
+
+a.report-bug
+{
+    position: absolute;
+    top: -12px;
+    left: 7em;
+}
+
+div.translation-text-headers[dir="rtl"] a.report-bug
+{
+    left: inherit;
+    right: 7em;
+}
+
+a.copyoriginal,
+a.report-bug
+a.translate-mt,
+.js-editor-copytext
+{
+    cursor: pointer;
+}
+
+a.translate-mt,
+a.copyoriginal,
+a.report-bug {
+    filter:alpha(opacity=50);
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+}
+
+a.translate-mt:hover,
+a.copyoriginal:hover,
+a.report-bug:hover {
+    filter:alpha(opacity=100);
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    opacity: 1;
+}
+
+a.editor-specialchar
+{
+    border: 1px dotted #999;
+    padding: 0 0.2em;
+    text-align: center;
+    min-width: 1.3em;
+    margin: 2px 0;
+    color: #666;
+    display: inline-block;
+}
+
+a.editor-specialchar:hover
+{
+    background-color: #fff;
+    text-decoration: none;
+}
+
+/* DIFF */
+
+.diff-replace,
+.diff-delete,
+.diff-insert
+{
+    color: #000;
+    background-color: #ffb;
+    border: 1px dotted #999;
+}
+
+.diff-delete,
+.diff-delete *
+{
+    color: #aaa !important;
+    text-decoration: line-through;
+}
+
+/* DIFF FOR TM SERVER ENTRIES */
+
+.tm-server .diff-replace,
+.tm-server .diff-delete,
+.tm-server .diff-insert
+{
+    color: #999;
+    border: 1px dotted #ccc;
+    background-color: #F1F7F8; /* same as edit-row bg */
+}
+
+.tm-server .diff-delete,
+.tm-server .diff-delete *
+{
+    color: #ccc !important;
+    font-weight: normal;
+}
+
+
+/* HIGHLIGHT */
+
+.highlight-escape
+{
+    color: purple;
+}
+
+.highlight-html
+{
+    color: #840;
+}
+
+.tm-server .suggestion-original .highlight-html
+{
+    color: #630;
+}
+
+.highlight-punctuation
+{
+    background-color: #f1f7e4;
+}
+
+.highlight
+{
+    background-color: #FFC;
+}
+
+/* FUZZY TRANSLATION */
+
+div.translate-translation
+{
+    min-height: 1.5em;
+}
+
+/* Special handling for languages with big fonts */
+td.translate-full div.translate-translation:lang(bn),
+td.translate-full div.translate-translation:lang(fa),
+td.translate-full div.translate-translation:lang(ja),
+td.translate-full div.translate-translation:lang(ko),
+td.translate-full div.translate-translation:lang(zh)
+{
+    margin-bottom: 35px;
+}
+
+tr.view-row td.fuzzy-unit .translation-text
+{
+    color: #888;
+    font-style: italic;
+}
+
+tr.edit-row.fuzzy-unit textarea.translation
+{
+    font-style: italic;
+}
+
+table.suggest-mode tr.edit-row.fuzzy-unit textarea.translation
+{
+    color: inherit;
+    font-style: normal;
+}
+
+
+textarea.translation
+{
+    resize: vertical;
+    font-size: 115%;
+}
+
+/* TERMINOLOGY MANAGEMENT */
+
+td.translate-delete-terminology input
+{
+    display: block;
+    margin: 0 auto;
+}
+
+.translate-term-original
+{
+    padding: 0 10px;
+}
+
+.translate-term-translation
+{
+    padding: 0 25px;
+}
+
+.left
+{
+    float: left;
+}
+
+.right
+{
+    float: right;
+}
+
+/* HISTORY */
+
+table.history,
+table.history td
+{
+    width: 100%;
+    border: 1px solid black;
+}
+
+table.history td
+{
+    padding: 5px;
+}

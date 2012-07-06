@@ -67,40 +67,40 @@ def collect_options():
         (INSTALL_CONFIG_DIR, ['localsettings.py']),
         (INSTALL_DOC_DIR, ['wsgi.py', 'ChangeLog', 'COPYING', 'README', 'INSTALL']),
         (INSTALL_WORKING_DIR + '/dbs', []), # Create the empty "dbs" dir
-    ] + list_tree(INSTALL_DATA_DIR, 'templates') + list_tree(INSTALL_DATA_DIR, 'html') + \
+    ] + list_tree(INSTALL_DATA_DIR, 'templates') + list_tree(INSTALL_DATA_DIR, 'static') + \
         list_tree(INSTALL_WORKING_DIR, 'po') + list_tree(INSTALL_DATA_DIR, 'mo')
 
     packages = ['pootle'] + ['pootle.' + pkg for pkg in find_packages('pootle')] + \
-            find_packages('local_apps') + find_packages('external_apps')
+            find_packages('pootle/apps')
     package_data = {
         '': ['*.html', '*.txt', '*.xml', '*.css', '*.js'],
-        'pootle_app': expand_tree_globs('local_apps/pootle_app', ['templates'], ['*.html']),
-        'pootle_language': expand_tree_globs('local_apps/pootle_language', ['templates'], ['*.html']),
-        'pootle_notifications': expand_tree_globs('local_apps/pootle_notifications', ['templates'], ['*.html']),
-        'pootle_project': expand_tree_globs('local_apps/pootle_project', ['templates'], ['*.html']),
-        'pootle_store': expand_tree_globs('local_apps/pootle_store', ['templates'], ['*.html']),
-        'pootle_terminology': expand_tree_globs('local_apps/pootle_terminology', ['templates'], ['*.html']),
-        'pootle_translationproject': expand_tree_globs('local_apps/pootle_translationproject', ['templates'], ['*.html']),
-        'djblets': expand_tree_globs('external_apps/djblets', ['siteconfig', 'util'], ['*.html']),
+        'pootle_app': expand_tree_globs('apps/pootle_app', ['templates'], ['*.html']),
+        'pootle_language': expand_tree_globs('apps/pootle_language', ['templates'], ['*.html']),
+        'pootle_notifications': expand_tree_globs('apps/pootle_notifications', ['templates'], ['*.html']),
+        'pootle_project': expand_tree_globs('apps/pootle_project', ['templates'], ['*.html']),
+        'pootle_store': expand_tree_globs('apps/pootle_store', ['templates'], ['*.html']),
+        'pootle_terminology': expand_tree_globs('apps/pootle_terminology', ['templates'], ['*.html']),
+        'pootle_translationproject': expand_tree_globs('apps/pootle_translationproject', ['templates'], ['*.html']),
+        'djblets': expand_tree_globs('apps/djblets', ['siteconfig', 'util'], ['*.html']),
     }
     package_dir = {
-        'pootle_app': 'local_apps/pootle_app',
-        'pootle_autonotices': 'local_apps/pootle_autonotices',
-        'pootle_language': 'local_apps/pootle_language',
-        'pootle_misc': 'local_apps/pootle_misc',
-        'pootle_notifications': 'local_apps/pootle_notifications',
-        'pootle_profile': 'local_apps/pootle_profile',
-        'pootle_project': 'local_apps/pootle_project',
-        'pootle_statistics': 'local_apps/pootle_statistics',
-        'pootle_store': 'local_apps/pootle_store',
-        'pootle_terminology': 'local_apps/pootle_terminology',
-        'pootle_translationproject': 'local_apps/pootle_translationproject',
-        'registration': 'external_apps/registration',
-        'contact_form_i18n': 'external_apps/contact_form_i18n',
-        'profiles': 'external_apps/profiles',
-        'djblets': 'external_apps/djblets',
+        'pootle_app': 'apps/pootle_app',
+        'pootle_autonotices': 'apps/pootle_autonotices',
+        'pootle_language': 'apps/pootle_language',
+        'pootle_misc': 'apps/pootle_misc',
+        'pootle_notifications': 'apps/pootle_notifications',
+        'pootle_profile': 'apps/pootle_profile',
+        'pootle_project': 'apps/pootle_project',
+        'pootle_statistics': 'apps/pootle_statistics',
+        'pootle_store': 'apps/pootle_store',
+        'pootle_terminology': 'apps/pootle_terminology',
+        'pootle_translationproject': 'apps/pootle_translationproject',
+        'registration': 'apps/registration',
+        'contact_form_i18n': 'apps/contact_form_i18n',
+        'profiles': 'apps/profiles',
+        'djblets': 'apps/djblets',
     }
-    scripts = ['import_pootle_prefs', 'updatetm', 'PootleServer']
+    scripts = ['updatetm', 'PootleServer']
     options = {
         'data_files': data_files,
         'packages': packages,
@@ -180,10 +180,18 @@ class PootleBuildMo(DistutilsBuild):
         from translate.storage import factory
 
         print "Preparing localization files"
-        for po_filename in glob.glob(path.join('po', 'pootle', '*', 'pootle.po')):
+        pootle_po = glob.glob(path.join('pootle', 'po', 'pootle', '*',
+                                        'pootle.po'))
+        pootle_js_po = glob.glob(path.join('pootle', 'po', 'pootle', '*',
+                                           'pootle_js.po'))
+        for po_filename in pootle_po + pootle_js_po:
             lang = path.split(path.split(po_filename)[0])[1]
-            lang_dir = path.join('mo', lang, 'LC_MESSAGES')
-            mo_filename = path.join(lang_dir, 'django.mo')
+            lang_dir = path.join('pootle', 'mo', lang, 'LC_MESSAGES')
+
+            if po_filename in pootle_po:
+                mo_filename = path.join(lang_dir, 'django.mo')
+            else:
+                mo_filename = path.join(lang_dir, 'djangojs.mo')
 
             try:
                 store = factory.getobject(po_filename)

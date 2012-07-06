@@ -1,19 +1,26 @@
-# /
-/LICENSE
+# /deploy/*/
+/deploy/*/fabric.py
+/deploy/*/settings.conf
+/deploy/*/virtualhost.conf
 
-# /dbs/
-/dbs/*.db
+# /pootle/dbs/
+/pootle/dbs/*.db
 
-# /html/
-/html/.webassets-cache/
-/html/*.min.css
-/html/js/*.min.js
+# /pootle/static/
+/pootle/static/.webassets-cache/
+/pootle/static/*.min.css
+/pootle/static/js/*.min.js
 
-# /mo/
-/mo/*
+# /pootle/settings/
+/pootle/settings/*-local.conf
+
+# /pootle/mo/
+/pootle/mo/*
 
 # General
+*.bak
 *.pyc
+*.pyo
 *.prefs
 *.stats
 *.pending
@@ -21,6 +28,7 @@
 .translation_index
 
 # ViM-generated
+*.swn
 *.swo
 *.swp
 *~

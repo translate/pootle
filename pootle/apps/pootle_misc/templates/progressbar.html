@@ -1,0 +1,11 @@
+{% load i18n %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+<div class="graph" style="width: {{ stats.total.width }}px;" title="{% blocktrans with stats.translated.percentage as percent %}{{ percent }}% complete{% endblocktrans %}">
+    <div class="translated" style="width: {{ stats.translated.width }}px;"></div>
+    {% if stats.fuzzy.words %}
+    <div class="fuzzy" style="{% if LANGUAGE_BIDI %}right{%else%}left{%endif%}: {{ stats.translated.width }}px; width: {{ stats.fuzzy.width }}px;"></div>
+    {% endif %}
+    {% if stats.untranslated.words %}
+    <div class="untranslated" style="{% if LANGUAGE_BIDI %}right{%else%}left{%endif%}: {{ stats.translated.width|add:stats.fuzzy.width }}px; width: {{ stats.untranslated.width }}px;"></div>
+    {% endif %}
+</div>

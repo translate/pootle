@@ -29,25 +29,32 @@ admin.autodiscover()
 DJANGO_MEDIA = path.join(path.dirname(admin.__file__), 'media')
 
 urlpatterns = patterns('',
-    # Uncomment the admin/doc line below and add 'django.contrib.admindocs'
-    # to INSTALLED_APPS to enable admin documentation:
-    (r'^django_admin/doc/', include('django.contrib.admindocs.urls')),
-
     # Uncomment the next line to enable the admin:
     (r'^django_admin/', include(admin.site.urls)),
 
     # Static and media files
-    (r'^html/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
-    (r'^(favicon.ico)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
-    (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': DJANGO_MEDIA}),
-    # direct download of translation files
+    (r'^static/(?P<path>.*)$', 'django.views.static.serve',
+        {'document_root': settings.MEDIA_ROOT}),
+    (r'^(favicon.ico)$', 'django.views.static.serve',
+        {'document_root': settings.MEDIA_ROOT}),
+    (r'^media/(?P<path>.*)$', 'django.views.static.serve',
+        {'document_root': DJANGO_MEDIA}),
+
+    # JavaScript i18n
+    (r'^jsi18n/$', 'django.views.i18n.javascript_catalog',
+        {'packages': ('pootle',),}),
+
+    # Direct download of translation files
     (r'^export/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.PODIRECTORY}),
-    # documentation
+
+    # Documentation
     (r'^docs/(?P<docfile>.*)$', 'django.views.generic.simple.direct_to_template', {'template': "docs.html"}),
-    # External Apps
+
+    # External apps
     (r'^contact/', include('contact_form_i18n.urls')),
     (r'^accounts/', include('pootle_profile.urls')),
-    # Pootle urls
+
+    # Pootle URLs
     (r'^about/', include('legalpages.urls')),
     (r'^projects/', include('pootle_project.urls')),
     (r'', include('pootle_notifications.urls')),
