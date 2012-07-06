@@ -1254,12 +1254,12 @@
     });
 
     eClass += this.units[uid].isfuzzy ? " fuzzy-unit" : "";
-    editor = (ctxt.before.length ? '<tr class="more-context before"><td colspan="2"><a class="morecontext">' + gettext("Show more context rows") + '</a></td></tr>' : '') +
+    editor = (ctxt.before.length ? '<tr class="more-context before"><td colspan="2"><a class="morecontext ptr">' + gettext("Show more context rows") + '</a></td></tr>' : '') +
              this.buildCtxtRows(ctxt.before) +
              '<tr id="row' + uid + '" class="' + eClass + '">' +
              widget + '</tr>' +
              this.buildCtxtRows(ctxt.after) +
-             (ctxt.after.length ? '<tr class="more-context after"><td colspan="2"><a class="morecontext">' + gettext("Show more context rows") + '</a></td></tr>' : '');
+             (ctxt.after.length ? '<tr class="more-context after"><td colspan="2"><a class="morecontext ptr">' + gettext("Show more context rows") + '</a></td></tr>' : '');
 
     this.activeUid = uid;
 
