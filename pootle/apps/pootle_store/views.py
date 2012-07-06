@@ -344,7 +344,7 @@ def translate(request, store):
 # Views used with XMLHttpRequest requests.
 #
 
-def _filter_ctxt_units(units_qs, unit, limit, gap=0):
+def _filter_ctx_units(units_qs, unit, limit, gap=0):
     """Returns ``limit``*2 units that are before and after ``index``."""
     result = {}
     if limit and unit.index - gap > 0:
@@ -514,7 +514,7 @@ def get_more_context(request, unit):
     json = {}
     gap = int(request.GET.get('gap', 0))
 
-    json["ctxt"] = _filter_ctxt_units(store.units, unit, 2, gap)
+    json["ctx"] = _filter_ctx_units(store.units, unit, 2, gap)
     rcode = 200
     response = jsonify(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
@@ -646,9 +646,9 @@ def get_edit_unit(request, unit):
     # Return context rows if filtering is applied
     if _is_filtered(request) or request.GET.get('filter', 'all') != 'all':
         if translation_project.project.is_terminology or store.is_terminology:
-            json['ctxt'] = _filter_ctxt_units(store.units, unit, 0)
+            json['ctx'] = _filter_ctx_units(store.units, unit, 0)
         else:
-            json['ctxt'] = _filter_ctxt_units(store.units, unit, 2)
+            json['ctx'] = _filter_ctx_units(store.units, unit, 2)
     response = jsonify(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
 

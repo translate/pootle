@@ -94,7 +94,7 @@
     this.pagesGot = {};
     this.filter = "all";
     this.checks = [];
-    this.ctxtGap = 0;
+    this.ctxGap = 0;
     this.keepState = false;
     this.preventNavigation = false;
 
@@ -986,7 +986,7 @@
 
 
   /* Builds context rows for units passed as 'units' */
-  buildCtxtRows: function (units) {
+  buildCtxRows: function (units) {
     var i, unit,
         cls = "even",
         even = true,
@@ -996,7 +996,7 @@
       unit = units[i];
 
       // Build context row i
-      rows += '<tr id="ctxt' + unit.id + '" class="context-row ' + cls + '">';
+      rows += '<tr id="ctx' + unit.id + '" class="context-row ' + cls + '">';
       rows += this.tmpl.vUnit($, {data: {meta: this.meta,
                                          unit: unit}}).join("");
       rows += '</tr>';
@@ -1231,7 +1231,8 @@
         editUrl = l('/unit/edit/' + uid),
         reqData = this.getReqData(),
         widget = '',
-        ctxt = {before: [], after: []};
+        ctx_cell,
+        ctx = {before: [], after: []};
 
     $.ajax({
       url: editUrl,
@@ -1244,22 +1245,24 @@
         // Update pager in case it's needed
         PTL.editor.updatePager(PTL.editor.createPager(uid));
 
-        if (data.ctxt) {
-          PTL.editor.ctxtGap = 2;
-          ctxt.before = data.ctxt.before;
-          ctxt.after = data.ctxt.after;
+        if (data.ctx) {
+          PTL.editor.ctxGap = 2;
+          ctx.before = data.ctx.before;
+          ctx.after = data.ctx.after;
         }
       },
       error: PTL.editor.error
     });
 
     eClass += this.units[uid].isfuzzy ? " fuzzy-unit" : "";
-    editor = (ctxt.before.length ? '<tr class="more-context before"><td colspan="2"><a class="morecontext ptr">' + gettext("Show more context rows") + '</a></td></tr>' : '') +
-             this.buildCtxtRows(ctxt.before) +
+    ctx_cell = '<td colspan="2"><a class="morecontext ptr">' + gettext("Show more context rows") + '</a></td>';
+
+    editor = (ctx.before.length ? '<tr class="more-context before">' + ctx_cell + '</tr>' : '') +
+             this.buildCtxRows(ctx.before) +
              '<tr id="row' + uid + '" class="' + eClass + '">' +
              widget + '</tr>' +
-             this.buildCtxtRows(ctxt.after) +
-             (ctxt.after.length ? '<tr class="more-context after"><td colspan="2"><a class="morecontext ptr">' + gettext("Show more context rows") + '</a></td></tr>' : '');
+             this.buildCtxRows(ctx.after) +
+             (ctx.after.length ? '<tr class="more-context after">' + ctx_cell + '</tr>' : '');
 
     this.activeUid = uid;
 
@@ -1478,26 +1481,26 @@
 
   /* Gets more context units */
   getMoreContext: function () {
-    var ctxtUrl = l('/unit/context/' + PTL.editor.activeUid),
-        reqData = {gap: PTL.editor.ctxtGap};
+    var ctxUrl = l('/unit/context/' + PTL.editor.activeUid),
+        reqData = {gap: PTL.editor.ctxGap};
 
     $.ajax({
-      url: ctxtUrl,
+      url: ctxUrl,
       async: false,
       dataType: 'json',
       data: reqData,
       success: function (data) {
         // As we now have got more context rows, increase its gap
-        PTL.editor.ctxtGap += 2;
+        PTL.editor.ctxGap += 2;
 
         // Create context rows HTML
-        var before = PTL.editor.buildCtxtRows(data.ctxt.before);
-        var after = PTL.editor.buildCtxtRows(data.ctxt.after);
+        var before = PTL.editor.buildCtxRows(data.ctx.before);
+        var after = PTL.editor.buildCtxRows(data.ctx.after);
 
         // Append context rows to their respective places
-        var ctxtRows = $("tr.context-row");
-        ctxtRows.first().before(before);
-        ctxtRows.last().after(after);
+        var ctxRows = $("tr.context-row");
+        ctxRows.first().before(before);
+        ctxRows.last().after(after);
       },
       error: PTL.editor.error
     });
