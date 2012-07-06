@@ -614,21 +614,24 @@ def get_edit_unit(request, unit):
     report_target = ensure_uri(project.report_target)
 
     suggestions, suggestion_details = get_sugg_list(unit)
-    template_vars = {'unit': unit,
-                     'form': form,
-                     'store': store,
-                     'directory': directory,
-                     'profile': profile,
-                     'user': request.user,
-                     'language': language,
-                     'source_language': translation_project.project.source_language,
-                     'cantranslate': check_profile_permission(profile, "translate", directory),
-                     'cansuggest': check_profile_permission(profile, "suggest", directory),
-                     'canreview': check_profile_permission(profile, "review", directory),
-                     'altsrcs': find_altsrcs(unit, alt_src_langs, store=store, project=project),
-                     'report_target': report_target,
-                     'suggestions': suggestions,
-                     'suggestion_detail': suggestion_details,
+    template_vars = {
+        'unit': unit,
+        'form': form,
+        'store': store,
+        'directory': directory,
+        'profile': profile,
+        'user': request.user,
+        'language': language,
+        'source_language': translation_project.project.source_language,
+        'cantranslate': check_profile_permission(profile, "translate",
+                                                 directory),
+        'cansuggest': check_profile_permission(profile, "suggest", directory),
+        'canreview': check_profile_permission(profile, "review", directory),
+        'altsrcs': find_altsrcs(unit, alt_src_langs, store=store,
+                                project=project),
+        'report_target': report_target,
+        'suggestions': suggestions,
+        'suggestion_detail': suggestion_details,
     }
 
     if translation_project.project.is_terminology or store.is_terminology:
