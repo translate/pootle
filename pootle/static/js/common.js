@@ -64,6 +64,7 @@ function zoom(v) {
 
 $(document).ready(function ($) {
   $('html').ajaxSend(function (event, xhr, settings) {
+    // FIXME: Can't we use $.cookie() here?
     function getCookie(name) {
       var cookieValue = null;
 
