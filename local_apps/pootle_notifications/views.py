@@ -53,8 +53,30 @@ def view(request, path):
     template_vars = {'path': path,
                      'directory': directory}
 
+
+
+    # Find language and project defaults, passed to handle_form
+    proj = None
+    lang = None
+    if not directory.is_language() and not directory.is_project():
+        try:
+            translation_project = directory.get_translationproject()
+            lang = translation_project.language
+            proj = translation_project.project
+        except:
+            pass
+    else:
+	if directory.is_language():
+		lang = directory.language
+		proj = None
+	if directory.is_project():
+		lang = None
+		proj = directory.project
+	
+
     if check_permission('administrate', request):
-        template_vars['form'] = handle_form(request, directory)
+	# Thus, form is only set for the template if the user has 'administrate' permission
+        template_vars['form'] = handle_form(request, directory, proj, lang)
         template_vars['title'] = directory_to_title(directory)
     if request.GET.get('all', False):
         template_vars['notices'] = Notice.objects.filter(directory__pootle_path__startswith=directory.pootle_path).select_related('directory')[:30]
@@ -94,13 +116,22 @@ def directory_to_title(directory):
     return _('News for %(path)s',
              {'path': directory.pootle_path})
 
-def handle_form(request, current_directory):
+def handle_form(request, current_directory, current_project, current_language):
+
+    current_project_pk = None
+    if current_project != None:
+	current_project_pk = current_project.pk
+	
+    current_language_pk = None
+    if current_language != None:
+	current_language_pk = current_language.pk
+	
     if request.method == 'POST':
         form = NoticeForm(request.POST)
 
-	#basic validation
+	# Basic validation
         if form.is_valid():
-	    #Lets save this NoticeForm, if it is requsted we do that - ie 'publish_rss' is true.
+	    # Lets save this NoticeForm, if it is requsted we do that - ie 'publish_rss' is true.
 	    if form.cleaned_data['publish_rss'] == True:
 
 		##XXX do we need to do something re: project and language settings
@@ -110,43 +141,36 @@ def handle_form(request, current_directory):
 		new_notice.directory = form.cleaned_data['directory']
 	        new_notice.save()
 
-	    #If we want to email it , then do that...
+	    # If we want to email it , then do that...
 	    if form.cleaned_data['send_email'] == True:
-		#print >>sys.stderr , 'Form email is %s' % form.cleaned_data
 
 		email_header = form.cleaned_data['email_header']
 
-
 		proj_filter = Q()
 		lang_filter = Q()
-		#Find users to send email too, based on project
+		# Find users to send email too, based on project
 		if form.cleaned_data['project_all'] == True:
 			projs = Project.objects.all()
 		else:
 			projs = form.cleaned_data['project_selection']
-		#construct the project OR filter
+		# Construct the project OR filter
 		for proj in projs:
 			proj_filter|=Q(projects__exact=proj)
 
-		#Find users to send email too, based on language
+		# Find users to send email too, based on language
 		if form.cleaned_data['language_all'] == True:
 			langs = Language.objects.all()
 		else:
 			langs = form.cleaned_data['language_selection']
-		#construct the language OR filter
+		# construct the language OR filter
 		for lang in langs:
 			lang_filter|=Q(languages__exact=lang)
 		
-		#print >>sys.stderr , 'Project and lang filters are %s\n%s' % (proj_filter, lang_filter)
-		#list of pootleprofile objects, linked to User.	
+		# Generate a list of pootleprofile objects, which are linked to Users and their emails.	
+		# XXX Take into account 'only active users' flag from the form.
 
-		#XXX Take it account 'only active users' flag from from
-
-		#grab all appropriate Profiles..
+		# Grab all appropriate Profiles.
 		to_list = PootleProfile.objects.filter(lang_filter,proj_filter).distinct()
-
-		#print >>sys.stderr, 'directory is %s' % form.cleaned_data['directory']
-		#print >>sys.stderr , 'profile list is %s' % to_list
 
 		to_list_emails = []
 		for person in to_list:
@@ -156,20 +180,20 @@ def handle_form(request, current_directory):
 			if person.user.email != '':
 				to_list_emails.append(person.user.email)	
 
-		#print >>sys.stderr , 'To list emails is %s' % to_list_emails
-
-		#rest of email settings 
+		# The rest of the email settings 
 		from_email = DEFAULT_FROM_EMAIL
 		message = form.cleaned_data['message']
 
-		#do it.	
+		# Send the email to the list of people
 		send_mail(email_header, message, from_email, to_list_emails, fail_silently=True)	
 
-	    #return a blank Form to allow user to continue publishing notices
+	    # Finally return a blank Form to allow user to continue publishing notices
 	    # with our defaults
-            form = NoticeForm(initial = { 'publish_rss': True , 'directory' : current_directory.pk})
+            form = NoticeForm(initial = { 'publish_rss': True , 'directory' : current_directory.pk, 'project_all':False, 'project_selection':(current_project_pk,), 'language_all':False, 'language_selection':(current_language_pk,),} )
+
     else:
-        form = NoticeForm(initial = { 'publish_rss': True , 'directory' : current_directory.pk} )
+	# Not a POST method. Return a default starting state of the form
+	form = NoticeForm(initial = { 'publish_rss': True , 'directory' : current_directory.pk, 'project_all':False, 'language_all':False, 'project_selection':(current_project_pk,), 'language_selection':(current_language_pk,), } )
 
     return form
 

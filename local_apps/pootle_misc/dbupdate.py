@@ -146,35 +146,6 @@ def update_permissions_20030():
     save_pootle_version(20030)
     return text
 
-#def update_tables_23001():
-#    text = u"""
-#    <p>%s</p>
-#    """ % _('Updating existing database tables...')
-#    logging.info("Updating existing database tables")
-#    from south.db import db
-    #raise ImportError
-#    table_name = Notice._meta.db_table
-#    field = Notice._meta.get_field('publish_rss')
-#    db.add_column(table_name, field.name, field)
-#    db.create_index(table_name, (field.name,))
-
-#    field = Notice._meta.get_field('send_email')
-#    db.add_column(table_name, field.name, field)
-#    db.create_index(table_name, (field.name,))
-
-#    field = Notice._meta.get_field('email_header')
-#    db.add_column(table_name, field.name, field)
-#    db.create_index(table_name, (field.name,))
-
-#    field = Notice._meta.get_field('restrict_to_active_users')
-#    db.add_column(table_name, field.name, field)
-#    db.create_index(table_name, (field.name,))
-
-#    save_pootle_version(23001)
-
-#    return text
-  
-
 def update_tables_21000():
     text = u"""
     <p>%s</p>
@@ -420,10 +391,6 @@ def staggered_update(db_buildversion, tt_buildversion):
 
     if db_buildversion < 22000:
         yield update_tables_22000()
-
-    #if db_buildversion < 23001:
-    #    yield update_tables_23001()
-
 
     if tt_buildversion < 12008:
         yield update_ts_tt_12008()

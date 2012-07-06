@@ -105,3 +105,86 @@ $(document).ready(function () {
   }
 
 });
+
+// NoticeForm UI code - to show/hide certain UI elements in response to 
+// the users selections
+function toggle_email_fields() {
+
+	$('#id_email_header').toggle();
+	$("label[for='id_email_header']").toggle();
+
+	$('#id_restrict_to_active_users').toggle();
+	$("label[for='id_restrict_to_active_users']").toggle();
+
+};
+
+
+function select_all_project_fields() {
+
+	$('#id_project_selection option').prop('selected',true);
+};
+
+function select_none_project_fields() {
+
+	$('#id_project_selection option').prop('selected',false );
+};
+
+function select_all_language_fields() {
+
+	$('#id_language_selection option').prop('selected',true);
+};
+
+function select_none_language_fields() {
+
+	$('#id_language_selection option').prop('selected',false );
+};
+
+
+function NoticeForm_init() {
+
+	//Assuming the default is for the 'Send Email' check button to be unselected, lets
+	//by default hide the email related fields..
+	toggle_email_fields();
+
+	//install a toggle hide/show on the 'Send Email' check button
+	$('#id_send_email').change(function()  {
+		toggle_email_fields();
+	});	
+
+	//install a toggle hide/show on the 'All Projects' check button
+	$('#id_project_all').change(function()  {
+		if ( $('#id_project_all').is(':checked')) {
+			//if selected..
+			select_all_project_fields();
+			//then hide..
+			$('#id_project_selection').hide();
+			$("label[for='id_project_selection']").hide();
+		} else {
+			//else, unselect all, and show...
+			select_none_project_fields();
+			//then show
+			$('#id_project_selection').show();
+			$("label[for='id_project_selection']").show();
+
+		}
+	});	
+
+	//install a toggle hide/show on the 'All Languages' check button
+	$('#id_language_all').change(function()  {
+		if ( $('#id_language_all').is(':checked')) {
+			//if selected..
+			select_all_language_fields();
+			//then hide..
+			$('#id_language_selection').hide();
+			$("label[for='id_language_selection']").hide();
+		} else {
+			//else, unselect all, and show...
+			select_none_language_fields();
+			//then show
+			$('#id_language_selection').show();
+			$("label[for='id_language_selection']").show();
+
+		}
+	});	
+
+};
