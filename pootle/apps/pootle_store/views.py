@@ -523,12 +523,12 @@ def get_more_context(request, unit):
 @never_cache
 @get_unit_context('view')
 def get_history(request, unit):
-    """
-    @return: JSON with changes to the unit rendered in HTML.
+    """Returns a JSON-encoded string including the changes to the unit
+    rendered in HTML.
     """
     entries = Submission.objects.filter(unit=unit, field="pootle_store.Unit.target")
     entries = entries.select_related("submitter__user", "translation_project__language")
-    #: list of tuples (datetime, submitter, value)
+    #: List of tuples (datetime, submitter, value)
     values = []
 
     import locale
