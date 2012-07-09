@@ -354,23 +354,19 @@ def translate(request, store):
 
 def _filter_ctx_units(units_qs, unit, how_many, gap=0):
     """Returns ``how_many``*2 units that are before and after ``index``."""
-    result = {}
+    result = {'before': [], 'after': []}
 
     if how_many and unit.index - gap > 0:
         before = units_qs.filter(store=unit.store_id, index__lt=unit.index) \
                          .order_by('-index')[gap:how_many+gap]
         result['before'] = _build_units_list(before, reverse=True)
         result['before'].reverse()
-    else:
-        result['before'] = []
 
     #FIXME: can we avoid this query if length is known?
     if how_many:
         after = units_qs.filter(store=unit.store_id,
                                 index__gt=unit.index)[gap:how_many+gap]
         result['after'] = _build_units_list(after)
-    else:
-        result['after'] = []
 
     return result
 
