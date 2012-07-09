@@ -95,7 +95,8 @@
     this.filter = "all";
     this.checks = [];
     this.ctxGap = 0;
-    this.ctxStep= 2;
+    this.ctxQty = parseInt($.cookie('ctxQty')) || 1;
+    this.ctxStep= 1;
     this.keepState = false;
     this.preventNavigation = false;
 
@@ -1249,7 +1250,7 @@
         PTL.editor.updatePager(PTL.editor.createPager(uid));
 
         if (data.ctx) {
-          PTL.editor.ctxGap = PTL.editor.ctxStep;
+          PTL.editor.ctxGap += PTL.editor.ctxStep;
           ctx.before = data.ctx.before;
           ctx.after = data.ctx.after;
         }
@@ -1489,7 +1490,7 @@
   /* Gets more context units */
   moreContext: function () {
     var ctxUrl = l('/unit/context/' + PTL.editor.activeUid),
-        reqData = {gap: PTL.editor.ctxGap};
+        reqData = {gap: PTL.editor.ctxGap, qty: PTL.editor.ctxStep};
 
     $.ajax({
       url: ctxUrl,
@@ -1500,6 +1501,7 @@
         if (data.ctx.before.length || data.ctx.after.length) {
           // As we now have got more context rows, increase its gap
           PTL.editor.ctxGap += PTL.editor.ctxStep;
+          $.cookie('ctxQty', PTL.editor.ctxGap, {path: '/'});
 
           // Create context rows HTML
           var before = PTL.editor.buildCtxRows(data.ctx.before, "before"),
@@ -1525,6 +1527,7 @@
     // removing any context rows
     if (before.length || after.length) {
       PTL.editor.ctxGap -= PTL.editor.ctxStep;
+      $.cookie('ctxQty', PTL.editor.ctxGap, {path: '/'});
 
       before.slice(0, PTL.editor.ctxStep).remove();
       after.slice(-PTL.editor.ctxStep).remove();

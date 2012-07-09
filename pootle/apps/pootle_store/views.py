@@ -522,8 +522,9 @@ def get_more_context(request, unit):
     store = request.store
     json = {}
     gap = int(request.GET.get('gap', 0))
+    qty = int(request.GET.get('qty', 1))
 
-    json["ctx"] = _filter_ctx_units(store.units, unit, 2, gap)
+    json["ctx"] = _filter_ctx_units(store.units, unit, qty, gap)
     rcode = 200
     response = jsonify(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
@@ -658,10 +659,12 @@ def get_edit_unit(request, unit):
     # Return context rows if filtering is applied
     current_filter = request.GET.get('filter', 'all')
     if (_is_filtered(request) or current_filter not in ('all', 'checks',)):
+        # TODO: review if this first 'if' branch makes sense
         if translation_project.project.is_terminology or store.is_terminology:
             json['ctx'] = _filter_ctx_units(store.units, unit, 0)
         else:
-            json['ctx'] = _filter_ctx_units(store.units, unit, 2)
+            ctx_qty = int(request.COOKIES.get('ctxQty', 1))
+            json['ctx'] = _filter_ctx_units(store.units, unit, ctx_qty)
     response = jsonify(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
 
