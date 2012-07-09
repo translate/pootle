@@ -277,6 +277,17 @@ def get_step_query(request, units_queryset):
                     state_queryset = state_queryset | units_queryset.filter(state=FUZZY)
             units_queryset = state_queryset
 
+    if 'checks' in request.GET:
+        checks = request.GET['checks'].split(',')
+
+        if checks:
+            checks_queryset = units_queryset.filter(
+                qualitycheck__false_positive=False,
+                qualitycheck__name__in=checks
+            )
+
+            units_queryset = checks_queryset
+
     if 'matchnames' in request.GET:
         matchnames = request.GET['matchnames'].split(',')
         if matchnames:
@@ -289,9 +300,6 @@ def get_step_query(request, units_queryset):
                 match_queryset = units_queryset.filter(suggestion__user=request.profile).distinct()
                 matchnames.remove('ownsuggestion')
 
-            if matchnames:
-                match_queryset = match_queryset | units_queryset.filter(
-                    qualitycheck__false_positive=False, qualitycheck__name__in=matchnames)
             units_queryset = match_queryset
 
     if 'search' in request.GET and 'sfields' in request.GET:
@@ -593,7 +601,6 @@ def get_edit_unit(request, unit):
              variable and paging information is also returned if the page
              number has changed.
     """
-
     json = {}
 
     translation_project = request.translation_project
@@ -646,8 +653,10 @@ def get_edit_unit(request, unit):
     json['storecrumbs'] = t.render(c)
 
     rcode = 200
+
     # Return context rows if filtering is applied
-    if _is_filtered(request) or request.GET.get('filter', 'all') != 'all':
+    current_filter = request.GET.get('filter', 'all')
+    if (_is_filtered(request) or current_filter not in ('all', 'checks',)):
         if translation_project.project.is_terminology or store.is_terminology:
             json['ctx'] = _filter_ctx_units(store.units, unit, 0)
         else:
