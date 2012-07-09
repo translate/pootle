@@ -94,7 +94,6 @@
     this.pagesGot = {};
     this.filter = "all";
     this.checks = [];
-    this.ctxGap = 0;
     this.ctxQty = parseInt($.cookie('ctxQty')) || 1;
     this.ctxStep= 1;
     this.keepState = false;
@@ -1250,7 +1249,9 @@
         PTL.editor.updatePager(PTL.editor.createPager(uid));
 
         if (data.ctx) {
-          PTL.editor.ctxGap += PTL.editor.ctxStep;
+          // Initialize context gap to the maximum context rows available
+          PTL.editor.ctxGap = Math.max(data.ctx.before.length,
+                                       data.ctx.after.length);
           ctx.before = data.ctx.before;
           ctx.after = data.ctx.after;
         }
@@ -1527,7 +1528,10 @@
     // removing any context rows
     if (before.length || after.length) {
       PTL.editor.ctxGap -= PTL.editor.ctxStep;
-      $.cookie('ctxQty', PTL.editor.ctxGap, {path: '/'});
+
+      if (PTL.editor.ctxGap > 0) {
+        $.cookie('ctxQty', PTL.editor.ctxGap, {path: '/'});
+      }
 
       before.slice(0, PTL.editor.ctxStep).remove();
       after.slice(-PTL.editor.ctxStep).remove();
