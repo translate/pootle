@@ -102,7 +102,7 @@ msgstr ""
 msgid "Please enter your password here"
 msgstr ""
 
-#. In this message there is reference to "Linux" (a product name). Many languages will not translate it, but your language might use a translitiration if you don't use the Latin script for your language.
+#. In this message there is reference to "Linux" (a product name). Many languages will not translate it, but your language might use a transliteration if you don't use the Latin script for your language.
 msgid "This software runs on Linux"
 msgstr ""
 
