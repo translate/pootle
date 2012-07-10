@@ -955,26 +955,22 @@ div.translation-text-headers[dir="rtl"] a.report-bug
     right: 7em;
 }
 
-a.copyoriginal,
-a.report-bug
-a.translate-mt,
+.translate-toolbar a,
 .js-editor-copytext
 {
     cursor: pointer;
 }
 
-a.translate-mt,
-a.copyoriginal,
-a.report-bug {
+.translate-toolbar a
+{
     filter:alpha(opacity=50);
     -moz-opacity: 0.5;
     -khtml-opacity: 0.5;
     opacity: 0.5;
 }
 
-a.translate-mt:hover,
-a.copyoriginal:hover,
-a.report-bug:hover {
+.translate-toolbar a:hover
+{
     filter:alpha(opacity=100);
     -moz-opacity: 1;
     -khtml-opacity: 1;
