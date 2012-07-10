@@ -75,7 +75,7 @@
       /* Set API key */
       this.apiKey = apiKey;
       /* Set target language */
-      this.targetLang = PTL.editor.normalizeCode($("div#target_lang").text());
+      this.targetLang = PTL.editor.normalizeCode($("#target_lang").text());
       /* Bind event handler */
       $(document).on("click", ".googletranslate", this.translate);
     },

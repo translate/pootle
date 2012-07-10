@@ -87,8 +87,8 @@
 
     /* Initialize variables */
     this.units = {};
-    this.store = $("div#pootle_path").text();
-    this.directory = $("div#directory").text();
+    this.store = $("#pootle_path").text();
+    this.directory = $("#directory").text();
     this.currentPage = 1;
     this.currentNumPages = 0;
     this.pagesGot = {};
@@ -208,10 +208,10 @@
     /* Editor navigation/submission */
     $(document).on("editor_ready", "table.translate-table", this.ready);
     $(document).on("click", "tr.view-row", this.gotoUnit);
-    $(document).on("keypress", "input#item-number", function (e) {
+    $(document).on("keypress", "#item-number", function (e) {
         // Perform action only when the 'Enter' key is pressed
         if (e.keyCode == 13) {
-          PTL.editor.gotoPage(parseInt($("input#item-number").val()));
+          PTL.editor.gotoPage(parseInt($("#item-number").val()));
         }
     });
     $(document).on("click", "input.submit, input.suggest", this.processSubmit);
@@ -225,13 +225,13 @@
     $(document).on("click", "#translate-checks-block .rejectcheck", this.rejectCheck);
 
     /* Filtering */
-    $(document).on("change", "div#filter-status select", this.filterStatus);
-    $(document).on("change", "div#filter-checks select", this.filterChecks);
+    $(document).on("change", "#filter-status select", this.filterStatus);
+    $(document).on("change", "#filter-checks select", this.filterChecks);
     $(document).on("click", ".js-more-ctx", this.moreContext);
     $(document).on("click", ".js-less-ctx", this.lessContext);
 
     /* Search */
-    $(document).on("keypress", "input#id_search", function (e) {
+    $(document).on("keypress", "#id_search", function (e) {
         if (e.keyCode == 13) {
           e.preventDefault();
           PTL.editor.search();
@@ -284,7 +284,7 @@
       PTL.editor.gotoNextPage();
     });
     shortcut.add('ctrl+shift+u', function () {
-      $("input#item-number").focus().select();
+      $("#item-number").focus().select();
     });
     shortcut.add('ctrl+shift+s', function () {
       $("#id_search").focus().select();
@@ -408,14 +408,14 @@
         // disable navigation on UI toolbar events to prevent data reload
         PTL.editor.preventNavigation = true;
 
-        $("div#filter-status select [value='" + PTL.editor.filter + "']").attr("selected", "selected");
+        $("#filter-status select [value='" + PTL.editor.filter + "']").attr("selected", "selected");
         if (PTL.editor.filter == "checks") {
           // if the checks selector is empty (i.e. the 'change' event was not fired
           // because the selection did not change), force the update to populate the selector
-          if ($("div#filter-checks").length == 0) {
+          if ($("#filter-checks").length == 0) {
             PTL.editor.filterStatus();
           }
-          $("div#filter-checks select [value='" + PTL.editor.checks[0] + "']").attr("selected", "selected");
+          $("#filter-checks select [value='" + PTL.editor.checks[0] + "']").attr("selected", "selected");
         }
 
         if (PTL.editor.filter == "search") {
@@ -1206,8 +1206,8 @@
       this.currentNumPages = pager.num_pages;
 
       // Update UI elements
-      $("input#item-number").val(pager.number);
-      $("span#items-count").text(pager.num_pages);
+      $("#item-number").val(pager.number);
+      $("#items-count").text(pager.num_pages);
     }
   },
 
@@ -1320,7 +1320,7 @@
       success: function (data) {
         if (data.captcha) {
           $.fancybox(data.captcha);
-          $("input#id_captcha_answer").focus();
+          $("#id_captcha_answer").focus();
         } else {
           // If it has been a successful submission, update the data
           // stored in the client
@@ -1458,7 +1458,7 @@
   filterStatus: function () {
     // this function can be executed in different contexts,
     // so using the full selector here
-    var filterBy = $("div#filter-status option:selected").val();
+    var filterBy = $("#filter-status option:selected").val();
 
     // Filtering by failing checks
     if (filterBy == "checks") {
@@ -1481,14 +1481,14 @@
 
         dropdown += '</select></div>';
 
-        $("div#filter-status").first().after(dropdown);
+        $("#filter-status").first().after(dropdown);
       } else { // No results
         PTL.editor.displayError(gettext("No results."));
         $("#filter-status option[value=" + PTL.editor.filter + "]")
           .attr("selected", "selected");
       }
     } else { // Normal filtering options (untranslated, fuzzy...)
-      $("div#filter-checks").remove();
+      $("#filter-checks").remove();
       if (!PTL.editor.preventNavigation) {
         var newHash = "filter=" + filterBy;
         $.history.load(newHash);
@@ -1610,7 +1610,7 @@
 
   /* Loads the search view */
   search: function () {
-    var text = $("input#id_search").val();
+    var text = $("#id_search").val();
     var newHash;
     if (text) {
       var parsed = this.parseSearch(text);
@@ -1656,8 +1656,8 @@
 
         if (uid == PTL.editor.activeUid) {
           $(_this).hide();
-          $("div#suggestion-container").prepend(data.entries);
-          $("div#history_results").animate(
+          $("#suggestion-container").prepend(data.entries);
+          $("#history_results").animate(
                   {height: 'show'},
                   1000,
                   'easeOutQuad',
@@ -1734,8 +1734,8 @@
                                                  name: name}}).join("");
 
           // Append results
-          $("div#suggestion-container").append(tm);
-          $("div#amagama_results").animate({height: 'show'}, 1000,
+          $("#suggestion-container").append(tm);
+          $("#amagama_results").animate({height: 'show'}, 1000,
                                            'easeOutQuad');
         }
       },
@@ -1748,7 +1748,7 @@
   rejectSuggestion: function (e) {
     e.stopPropagation(); //we don't want to trigger a click on the text below
     var element = $(this).parent().parent(), // the top suggestion div
-        uid = $('.translate-container input#id_id').val(),
+        uid = $('.translate-container #id_id').val(),
         suggId = $(this).siblings("input.suggid").val(),
         url = l('/suggestion/reject/') + uid + '/' + suggId;
 
@@ -1758,7 +1758,7 @@
           $(this).remove();
 
           // Go to the next unit if there are no more suggestions left
-          if (!$("div#suggestion-container div[id^=suggestion]").length) {
+          if (!$("#suggestion-container div[id^=suggestion]").length) {
             $("input.next").trigger("click");
           }
         });
@@ -1770,7 +1770,7 @@
   acceptSuggestion: function (e) {
     e.stopPropagation(); //we don't want to trigger a click on the text below
     var element = $(this).parent().parent(), // the top suggestion div
-        uid = $('.translate-container input#id_id').val(),
+        uid = $('.translate-container #id_id').val(),
         suggId = $(this).siblings("input.suggid").val(),
         url = l('/suggestion/accept/') + uid + '/' + suggId;
 
@@ -1778,7 +1778,7 @@
       function (data) {
         // Update target textareas
         $.each(data.newtargets, function (i, target) {
-          $("textarea#id_target_f_" + i).val(target).focus();
+          $("#id_target_f_" + i).val(target).focus();
         });
 
         // Update remaining suggestion's diff
@@ -1798,7 +1798,7 @@
           $(this).remove();
 
           // Go to the next unit if there are no more suggestions left
-          if (!$("div#suggestion-container div[id^=suggestion]").length) {
+          if (!$("#suggestion-container div[id^=suggestion]").length) {
             $("input.next").trigger("click");
           }
         });
@@ -1835,7 +1835,7 @@
     e.stopPropagation(); //we don't want to trigger a click on the text below
     var element = $(this);
         suggId = element.siblings("input.suggid").val(),
-        uid = $('.translate-container input#id_id').val(),
+        uid = $('.translate-container #id_id').val(),
         url = l('/vote/up/') + uid + '/' + suggId;
 
     element.fadeTo(200, 0.01); //instead of fadeOut that will cause layout changes
@@ -1861,7 +1861,7 @@
   rejectCheck: function () {
     var element = $(this).parent(),
         checkId = $(this).siblings("input.checkid").val(),
-        uid = $('.translate-container input#id_id').val(),
+        uid = $('.translate-container #id_id').val(),
         url = l('/qualitycheck/reject/') + uid + '/' + checkId;
 
     $.post(url, {'reject': 1},
