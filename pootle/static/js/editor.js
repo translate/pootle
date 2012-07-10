@@ -193,11 +193,11 @@
     /* Context controls */
     $('tr.js-inject-ctx').hoverIntent({
       over: function () {
-        var editCtx = $('.js-ctx-display');
-        editCtx.css({display: 'block'});
+        var editCtx = $('.js-more-ctx, .js-less-ctx');
+        editCtx.css({display: 'inline-block'});
       },
       out: function () {
-        var editCtx = $('.js-ctx-display');
+        var editCtx = $('.js-more-ctx, .js-less-ctx');
         editCtx.css({display: 'none'});
       },
       interval: 150,
