@@ -94,6 +94,7 @@
     this.pagesGot = {};
     this.filter = "all";
     this.checks = [];
+    this.ctxGap = 0;
     this.ctxQty = parseInt($.cookie('ctxQty')) || 1;
     this.ctxStep= 1;
     this.keepState = false;
