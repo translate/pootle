@@ -56,7 +56,7 @@
             <div class="language-name">{{ altunit.store.translation_project.language.localname }}</div>
             {% if cansuggest or cantranslate %}
             <div class="translate-toolbar">
-              <a class="copyoriginal"><img src='{{ "images/copy.png"|m }}' title="{% trans 'Copy into translation' %}" /></a>
+              <a class="icon-copy js-copyoriginal" title="{% trans 'Copy into translation' %}" accesskey="c"></a>
             </div>
             {% endif %}
           </div>
@@ -77,7 +77,7 @@
                 <a class="report-bug" href="{{ report_target }}"><img src='{{ "images/bug.png"|m }}' title="{% trans 'Report a problem with the source string' %}" /></a>
               {% endif %}
             <div class="translate-toolbar">
-              <a class="copyoriginal" accesskey="c"><img src='{{ "images/copy.png"|m }}' title="{% trans 'Copy into translation' %}" /></a>
+              <a class="icon-copy js-copyoriginal" title="{% trans 'Copy into translation' %}" accesskey="c"></a>
             </div>
             {% endif %}
           </div>

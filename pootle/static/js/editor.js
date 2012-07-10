@@ -164,7 +164,7 @@
     $(document).on("click", ".js-editor-copytext", this.copyText);
 
     /* Copy original translation */
-    $(document).on("click", "a.copyoriginal", function () {
+    $(document).on("click", ".js-copyoriginal", function () {
       var sources = $(".translation-text", $(this).parent().parent().parent());
       PTL.editor.copyOriginal(sources);
     });

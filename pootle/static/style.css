@@ -265,6 +265,11 @@ pre, code, kbd, samp, tt
     background-image: url('images/icon-collapse.png');
 }
 
+.icon-copy
+{
+    background-image: url('images/icon-copy.png');
+}
+
 .icon-thin-arrow-up
 {
     background-image: url('images/icon-thin-arrow-up.png');
