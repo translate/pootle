@@ -145,41 +145,29 @@ tr.edit-row
     background-color: #f1f7f8;
 }
 
-tr.edit-ctx
+/* Context */
+
+.edit-ctx
 {
-    font-size: 82%;
+    position: relative;
+    width: 36px;
+    margin: 0 auto;
 }
 
-tr.edit-ctx td
+.edit-ctx i
 {
-    text-align: center;
-}
-
-tr.edit-ctx a
-{
-    text-decoration: none;
     filter:alpha(opacity=50);
     -moz-opacity: 0.5;
     -khtml-opacity: 0.5;
     opacity: 0.5;
 }
 
-tr.edit-ctx a:hover
+.edit-ctx i:hover
 {
     filter:alpha(opacity=100);
     -moz-opacity: 1;
     -khtml-opacity: 1;
     opacity: 1;
-}
-
-tr.edit-ctx.before td
-{
-    border-top: 1px solid #ccc;
-}
-
-tr.edit-ctx.after td
-{
-    border-bottom: 1px solid #ccc;
 }
 
 tr.ctx-row,

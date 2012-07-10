@@ -3,6 +3,10 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 {% cache settings.CACHE_TIMEOUT unit_edit unit.id unit.mtime cantranslate cansuggest canreview report_target altsrcs profile.id LANGUAGE_CODE %}
 <td colspan="3" rowspan="1" class="translate-full translate-focus{% if unit.isfuzzy %} fuzzy-unit{% endif %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+  <div class="edit-ctx js-ctx-display hide">
+    <i class="icon-thin-arrow-up js-more-ctx ptr" title="{% trans 'Show more context rows' %}"></i><i class="icon-thin-arrow-down js-less-ctx ptr" title="{% trans 'Show less context rows' %}"></i>
+  </div>
+
   <div class="translate-container">
     {{ form.id.as_hidden }}
     {{ form.index.as_hidden }}
@@ -185,6 +189,10 @@
         {% endif %}
         </div>
       </div>
+    </div>
+
+    <div class="edit-ctx js-ctx-display hide">
+      <i class="icon-thin-arrow-down js-more-ctx ptr" title="{% trans 'Show more context rows' %}"></i><i class="icon-thin-arrow-up js-less-ctx ptr" title="{% trans 'Show less context rows' %}"></i>
     </div>
   </div>
 </td>

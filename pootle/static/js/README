@@ -115,6 +115,13 @@ Directory contents
 
       http://github.com/tkyk/jquery-history-plugin/
 
+    - jquery.hoverIntent.js :
+      Similar to the jQuery's built-in 'hover' function but not that aggressive.
+
+      Using r6 with customizations to handle live events.
+
+      http://cherne.net/brian/resources/jquery.hoverIntent.html
+
     - jquery.serializeObject.js :
       A method for serializing forms directly into objects.
 
