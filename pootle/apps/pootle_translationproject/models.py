@@ -340,7 +340,7 @@ class TranslationProject(models.Model):
         working_copy = store.file.store
 
         try:
-            logging.debug(u"updating %s from version control", store.file.path)
+            logging.debug(u"updating %s from version control", store.file.name)
             from translate.storage import versioncontrol
             versioncontrol.updatefile(store.file.path)
             store.file._delete_store_cache()
@@ -348,19 +348,19 @@ class TranslationProject(models.Model):
         except Exception, e:
             #something wrong, file potentially modified, bail out
             #and replace with working copy
-            logging.error(u"near fatal catastrophe, exception %s while updating %s from version control", e, store.file.path)
+            logging.error(u"near fatal catastrophe, exception %s while updating %s from version control", e, store.file.name)
             working_copy.save()
             raise VersionControlError
 
         try:
-            logging.debug(u"parsing version control copy of %s into db", store.file.path)
+            logging.debug(u"parsing version control copy of %s into db", store.file.name)
             store.update(update_structure=True, update_translation=True, conservative=False)
             remotestats = store.getquickstats()
             #FIXME: try to avoid merging if file was not updated
-            logging.debug(u"merging %s with version control update", store.file.path)
+            logging.debug(u"merging %s with version control update", store.file.name)
             store.mergefile(working_copy, None, allownewstrings=False, suggestions=True, notranslate=False, obsoletemissing=False)
         except Exception, e:
-            logging.error(u"near fatal catastrophe, exception %s while merging %s with version control copy", e, store.file.path)
+            logging.error(u"near fatal catastrophe, exception %s while merging %s with version control copy", e, store.file.name)
             working_copy.save()
             store.update(update_structure=True, update_translation=True, conservative=False)
             raise
