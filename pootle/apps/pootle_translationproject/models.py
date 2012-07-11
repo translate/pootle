@@ -331,7 +331,7 @@ class TranslationProject(models.Model):
         from pootle.scripts import hooks
         store.sync(update_translation=True)
         try:
-            hooks.hook(self.project.code, "preupdate", store.file.path)
+            hooks.hook(self.project.code, "preupdate", store.file.name)
         except:
             pass
 
@@ -366,7 +366,7 @@ class TranslationProject(models.Model):
             raise
 
         try:
-            hooks.hook(self.project.code, "postupdate", store.file.path)
+            hooks.hook(self.project.code, "postupdate", store.file.name)
         except:
             pass
 
@@ -435,7 +435,7 @@ class TranslationProject(models.Model):
 
         from pootle.scripts import hooks
         try:
-            filestocommit = hooks.hook(self.project.code, "precommit", store.file.path, author=author, message=message)
+            filestocommit = hooks.hook(self.project.code, "precommit", store.file.name, author=author, message=message)
         except ImportError:
             # Failed to import the hook - we're going to assume there just isn't a hook to
             # import.    That means we'll commit the original file.
@@ -452,7 +452,7 @@ class TranslationProject(models.Model):
             user.message_set.create(message="Failed to commit file: %s" % e)
             success = False
         try:
-            hooks.hook(self.project.code, "postcommit", store.file.path, success=success)
+            hooks.hook(self.project.code, "postcommit", store.file.name, success=success)
         except:
             #FIXME: We should not hide the exception - makes development impossible
             pass
