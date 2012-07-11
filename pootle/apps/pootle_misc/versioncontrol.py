@@ -21,9 +21,31 @@
 
 import os.path
 
+from translate.storage import versioncontrol
+
 from django.conf import settings
 
 
+def to_vcs_path(path):
+    return os.path.join(settings.PODIRECTORY, path)
+
+
 def hasversioning(path):
-    from translate.storage import versioncontrol
     return versioncontrol.hasversioning(path, settings.PODIRECTORY)
+
+
+def commit_file(path, message, author):
+    vcs_path = to_vcs_path(path)
+    versioncontrol.commitfile(vcs_path, message=message, author=author)
+
+
+def update_file(path):
+    vcs_path = to_vcs_path(path)
+    versioncontrol.updatefile(vcs_path)
+
+
+def add_files(path, files, message):
+    vcs_path = to_vcs_path(path)
+    vcs = versioncontrol.get_versioned_object(vcs_path)
+    output = vcs.add([to_vcs_path(f) for f in files], message)
+    return output
