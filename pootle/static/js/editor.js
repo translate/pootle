@@ -190,21 +190,6 @@
       }
     });
 
-    /* Context controls */
-    $('tr.js-inject-ctx').hoverIntent({
-      over: function () {
-        var editCtx = $('.js-more-ctx, .js-less-ctx');
-        editCtx.css({display: 'inline-block'});
-      },
-      out: function () {
-        var editCtx = $('.js-more-ctx, .js-less-ctx');
-        editCtx.css({display: 'none'});
-      },
-      interval: 150,
-      timeout: 500,
-      sensitivity: 5
-    });
-
     /* Editor navigation/submission */
     $(document).on("editor_ready", "table.translate-table", this.ready);
     $(document).on("click", "tr.view-row", this.gotoUnit);
@@ -1246,10 +1231,11 @@
   /* Loads the edit unit 'uid' */
   getEditUnit: function (uid) {
     var editor,
-        eClass = "edit-row js-inject-ctx",
+        eClass = "edit-row",
         editUrl = l('/unit/edit/' + uid),
         reqData = this.getReqData(),
         widget = '',
+        ctx_cell,
         ctx = {before: [], after: []};
 
     $.ajax({
@@ -1276,10 +1262,18 @@
 
     eClass += this.units[uid].isfuzzy ? " fuzzy-unit" : "";
 
-    editor = this.buildCtxRows(ctx.before, "before") +
+    ctx_cell = '<td colspan="2"><a class="js-more-ctx ptr">' +
+      gettext("More") + '</a> | <a class="js-less-ctx ptr">' +
+      gettext("Less") + '</a></td>';
+
+    editor = (ctx.before.length ? '<tr class="edit-ctx before">' +
+              ctx_cell + '</tr>' : '') +
+             this.buildCtxRows(ctx.before, "before") +
              '<tr id="row' + uid + '" class="' + eClass + '">' +
              widget + '</tr>' +
-             this.buildCtxRows(ctx.after, "after");
+             this.buildCtxRows(ctx.after, "after") +
+             (ctx.after.length ? '<tr class="edit-ctx after">' +
+              ctx_cell + '</tr>' : '');
 
     this.activeUid = uid;
 
@@ -1517,11 +1511,9 @@
               after = PTL.editor.buildCtxRows(data.ctx.after, "after");
 
           // Append context rows to their respective places
-          var ctxRow = $(".ctx-row"),
-              injectCtx = ctxRow.length ? ctxRow : $(".js-inject-ctx");
-
-          injectCtx.first().before(before);
-          injectCtx.last().after(after);
+          var editCtxRows = $("tr.edit-ctx");
+          editCtxRows.first().after(before);
+          editCtxRows.last().before(after);
         }
       },
       error: PTL.editor.error

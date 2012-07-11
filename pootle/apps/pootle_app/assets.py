@@ -40,7 +40,6 @@ js_editor = Bundle(
     'js/diff_match_patch.js', 'js/editor.js', 'js/json2.js',
     'js/jquery/jquery.fieldselection.js', 'js/jquery/jquery.caret.js',
     'js/jquery/jquery.highlightRegex.js', 'js/jquery/jquery.serializeObject.js',
-    'js/jquery/jquery.hoverIntent.js',
     filters='rjsmin', output='js/editor.min.js')
 register('js_editor', js_editor)
 
