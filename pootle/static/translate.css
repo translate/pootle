@@ -155,6 +155,7 @@ tr.edit-ctx
 tr.edit-ctx td
 {
     text-align: center;
+    color: #ccc;
 }
 
 tr.edit-ctx a
@@ -178,10 +179,12 @@ tr.edit-ctx a:hover
 tr.edit-ctx.before td
 {
     border-top: 1px solid #ccc;
+    border-bottom: 1px dashed #ccc;
 }
 
 tr.edit-ctx.after td
 {
+    border-top: 1px dashed #ccc;
     border-bottom: 1px solid #ccc;
 }
 
@@ -200,7 +203,15 @@ tr.ctx-row
 tr.ctx-row
 {
     color: #777;/*#76a1b0;*/
+}
+
+tr.ctx-row.before
+{
     border-bottom: 1px solid #fff;
+}
+
+tr.ctx-row.after
+{
     border-top: 1px solid #fff;
 }
 
