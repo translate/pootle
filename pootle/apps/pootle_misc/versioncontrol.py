@@ -25,12 +25,16 @@ from translate.storage import versioncontrol
 
 from django.conf import settings
 
+from pootle_store.util import relative_real_path
+
 
 def to_vcs_path(path):
+    path = relative_real_path(path)
     return os.path.join(settings.PODIRECTORY, path)
 
 
 def hasversioning(path):
+    path = to_vcs_path(path)
     return versioncontrol.hasversioning(path, settings.PODIRECTORY)
 
 
