@@ -263,12 +263,10 @@ class TranslationProject(models.Model):
         all_files, new_files = self.scan_files()
         #self.update(conservative=False)
 
-        from pootle_misc.versioncontrol import hasversioning
+        from pootle_misc import versioncontrol
         project_path = self.project.get_real_path()
-        if new_files and hasversioning(project_path):
-            from translate.storage import versioncontrol
-            vcs = versioncontrol.get_versioned_object(project_path)
-            output = vcs.add([s.abs_real_path for s in new_files],
+        if new_files and versioncontrol.hasversioning(project_path):
+            output = versioncontrol.add_files(project_path, [s.file.name for s in new_files],
                     "New files added from %s based on templates" % (settings.TITLE))
 
         if pootle_path is None:
@@ -341,8 +339,8 @@ class TranslationProject(models.Model):
 
         try:
             logging.debug(u"updating %s from version control", store.file.name)
-            from translate.storage import versioncontrol
-            versioncontrol.updatefile(store.file.path)
+            from pootle_misc import versioncontrol
+            versioncontrol.update_file(store.file.name)
             store.file._delete_store_cache()
             store.file._update_store_cache()
         except Exception, e:
@@ -439,13 +437,13 @@ class TranslationProject(models.Model):
         except ImportError:
             # Failed to import the hook - we're going to assume there just isn't a hook to
             # import.    That means we'll commit the original file.
-            filestocommit = [store.file.path]
+            filestocommit = [store.file.name]
 
         success = True
         try:
-            from translate.storage import versioncontrol
+            from pootle_misc import versioncontrol
             for file in filestocommit:
-                versioncontrol.commitfile(file, message=message, author=author)
+                versioncontrol.commit_file(file, message=message, author=author)
                 user.message_set.create(message="Committed file: <em>%s</em>" % file)
         except Exception, e:
             logging.error(u"Failed to commit files: %s", e)
