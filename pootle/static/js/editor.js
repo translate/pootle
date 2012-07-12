@@ -125,7 +125,8 @@
 
     /* Compile templates */
     this.tmpl = {vUnit: $.template($("#view_unit").html()),
-                 tm: $.template($("#tm_suggestions").html())}
+                 tm: $.template($("#tm_suggestions").html()),
+                 editCtx: $.template($("#editCtx").html())}
 
     /* Set initial focus on page load */
     this.focused = $(".translate-original-focus textarea").get(0);
@@ -212,8 +213,12 @@
     /* Filtering */
     $(document).on("change", "#filter-status select", this.filterStatus);
     $(document).on("change", "#filter-checks select", this.filterChecks);
-    $(document).on("click", ".js-more-ctx", this.moreContext);
+    $(document).on("click", ".js-more-ctx", function () {
+      PTL.editor.moreContext(false)
+    });
     $(document).on("click", ".js-less-ctx", this.lessContext);
+    $(document).on("click", ".js-show-ctx", this.showContext);
+    $(document).on("click", ".js-hide-ctx", this.hideContext);
 
     /* Search */
     $(document).on("keypress", "#id_search", function (e) {
@@ -1230,12 +1235,11 @@
 
   /* Loads the edit unit 'uid' */
   getEditUnit: function (uid) {
-    var editor,
+    var editor, editCtxRowBefore, editCtxRowAfter, editCtxWidgets, hasData,
         eClass = "edit-row",
         editUrl = l('/unit/edit/' + uid),
         reqData = this.getReqData(),
         widget = '',
-        ctx_cell,
         ctx = {before: [], after: []};
 
     $.ajax({
@@ -1262,18 +1266,17 @@
 
     eClass += this.units[uid].isfuzzy ? " fuzzy-unit" : "";
 
-    ctx_cell = '<td colspan="2"><a class="js-more-ctx ptr">' +
-      gettext("More") + '</a> | <a class="js-less-ctx ptr">' +
-      gettext("Less") + '</a></td>';
+    hasData = ctx.before.length || ctx.after.length;
+    editCtxWidgets = this.editCtxUI({hasData: hasData});
+    editCtxRowBefore = editCtxWidgets[0];
+    editCtxRowAfter = editCtxWidgets[1];
 
-    editor = (ctx.before.length ? '<tr class="edit-ctx before">' +
-              ctx_cell + '</tr>' : '') +
-             this.buildCtxRows(ctx.before, "before") +
+    editor = (PTL.editor.filter !== 'all' ?
+              editCtxRowBefore + this.buildCtxRows(ctx.before, "before") : '') +
              '<tr id="row' + uid + '" class="' + eClass + '">' +
              widget + '</tr>' +
-             this.buildCtxRows(ctx.after, "after") +
-             (ctx.after.length ? '<tr class="edit-ctx after">' +
-              ctx_cell + '</tr>' : '');
+             (PTL.editor.filter !== 'all' ?
+              this.buildCtxRows(ctx.after, "after") + editCtxRowAfter : '');
 
     this.activeUid = uid;
 
@@ -1490,10 +1493,37 @@
     }
   },
 
+  /* Generates the edit context rows' UI */
+  editCtxUI: function (opts) {
+    var defaults = {hasData: false, replace: false};
+    opts = $.extend({}, defaults, opts);
+
+    editCtxRowBefore = PTL.editor.tmpl.editCtx($, {data: {hasData: opts.hasData,
+                                                          extraCls: 'before'}})
+                                      .join("");
+    editCtxRowAfter = PTL.editor.tmpl.editCtx($, {data: {hasData: opts.hasData,
+                                                         extraCls: 'after'}})
+                                     .join("");
+
+    if (opts.replace) {
+      $("tr.edit-ctx.before").replaceWith(editCtxRowBefore);
+      $("tr.edit-ctx.after").replaceWith(editCtxRowAfter);
+    }
+
+    return [editCtxRowBefore, editCtxRowAfter];
+  },
+
   /* Gets more context units */
-  moreContext: function () {
+  moreContext: function (initial) {
     var ctxUrl = l('/unit/context/' + PTL.editor.activeUid),
-        reqData = {gap: PTL.editor.ctxGap, qty: PTL.editor.ctxStep};
+        reqData = {gap: PTL.editor.ctxGap};
+
+    reqData.qty = initial ? PTL.editor.ctxQty : PTL.editor.ctxStep;
+
+    // Don't waste a request if nothing is expected initially
+    if (initial && reqData.qty === 0) {
+      return;
+    }
 
     $.ajax({
       url: ctxUrl,
@@ -1503,7 +1533,13 @@
       success: function (data) {
         if (data.ctx.before.length || data.ctx.after.length) {
           // As we now have got more context rows, increase its gap
-          PTL.editor.ctxGap += PTL.editor.ctxStep;
+          if (initial) {
+            PTL.editor.ctxGap = Math.max(data.ctx.before.length,
+                                         data.ctx.after.length);
+          } else {
+            PTL.editor.ctxGap += Math.max(data.ctx.before.length,
+                                          data.ctx.after.length);
+          }
           $.cookie('ctxQty', PTL.editor.ctxGap, {path: '/'});
 
           // Create context rows HTML
@@ -1539,10 +1575,47 @@
 
       PTL.editor.ctxGap -= PTL.editor.ctxStep;
 
-      if (PTL.editor.ctxGap > 0) {
+      if (PTL.editor.ctxGap >= 0) {
+        if (PTL.editor.ctxGap == 0) {
+          PTL.editor.editCtxUI({hasData: false, replace: true});
+          $.cookie('ctxShow', false, {path: '/'});
+        }
+
         $.cookie('ctxQty', PTL.editor.ctxGap, {path: '/'});
       }
     }
+  },
+
+  /* Shows context rows */
+  showContext: function () {
+
+    var editCtxRowBefore, editCtxRowAfter,
+        before = $(".ctx-row.before"),
+        after = $(".ctx-row.after");
+
+    if (before.length || after.length) {
+      before.show();
+      after.show();
+    } else {
+      PTL.editor.moreContext(true);
+    }
+
+    PTL.editor.editCtxUI({hasData: true, replace: true});
+    $.cookie('ctxShow', true, {path: '/'});
+  },
+
+  /* Hides context rows */
+  hideContext: function () {
+
+    var editCtxRowBefore, editCtxRowAfter,
+        before = $(".ctx-row.before"),
+        after = $(".ctx-row.after");
+
+    before.hide();
+    after.hide();
+
+    PTL.editor.editCtxUI({hasData: false, replace: true});
+    $.cookie('ctxShow', false, {path: '/'});
   },
 
 

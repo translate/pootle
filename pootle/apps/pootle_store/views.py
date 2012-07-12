@@ -507,8 +507,9 @@ def get_view_units_store(request, store, limit=0):
 
 def _is_filtered(request):
     """Checks if unit list is filtered."""
-    return 'unitstates' in request.GET or 'matchnames' in request.GET or \
-           ('search' in request.GET and 'sfields' in request.GET)
+    return ('unitstates' in request.GET or 'matchnames' in request.GET or
+            'checks' in request.GET or ('search' in request.GET and
+            'sfields' in request.GET))
 
 
 @ajax_required
@@ -656,9 +657,13 @@ def get_edit_unit(request, unit):
 
     rcode = 200
 
-    # Return context rows if filtering is applied
+    # Return context rows if filtering is applied but
+    # don't return any if the user has asked not to have it
     current_filter = request.GET.get('filter', 'all')
-    if (_is_filtered(request) or current_filter not in ('all', 'checks',)):
+    show_ctx = request.COOKIES.get('ctxShow', 'true')
+
+    if ((_is_filtered(request) or current_filter not in ('all',)) and
+        show_ctx == 'true'):
         # TODO: review if this first 'if' branch makes sense
         if translation_project.project.is_terminology or store.is_terminology:
             json['ctx'] = _filter_ctx_units(store.units, unit, 0)
