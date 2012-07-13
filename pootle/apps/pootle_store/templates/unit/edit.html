@@ -81,7 +81,7 @@
           </div>
           <div id="unit-{{ altunit.id }}" class="translate-original translate-original-focus{% if unit.hasplural %} translate-plural{% endif %}">
             {% for i, target, title in altunit|pluralize_target %}
-            <div class="translation-text" lang="{{ altunit.store.translation_project.language.code }}" dir="{{ altunit.store.translation_project.language.get_direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ target|safe }}</div>
+            <div class="translation-text" lang="{{ altunit.store.translation_project.language.code }}" dir="{{ altunit.store.translation_project.language.get_direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ target|fancy_highlight }}</div>
             {% endfor %}
             <div class="placeholder"></div>
           </div>
