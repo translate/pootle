@@ -210,7 +210,6 @@ def handle_form(request, current_directory, current_project, current_language, t
 
                 # If we want to email it , then do that.
                 if form.cleaned_data['send_email'] == True:
-
 			email_header = form.cleaned_data['email_header']
 			proj_filter = Q()
 			lang_filter = Q()
@@ -249,6 +248,10 @@ def handle_form(request, current_directory, current_project, current_language, t
 					continue
 				if person.user.email != '':
 					to_list_emails.append(person.user.email)        
+					if template_vars['notices_published'] == None:
+						template_vars['notices_published'] = []
+					template_vars['notices_published'].append("Sent an email to %s" % person.user.email)
+	
 
 			# The rest of the email settings 
 			from_email = DEFAULT_FROM_EMAIL
