@@ -157,7 +157,6 @@ def add_files(translation_project, ignored_files, ext, real_dir, db_dir, file_fi
     files, dirs = split_files_and_dirs(ignored_files, ext, real_dir, file_filter)
     existing_stores = dict((store.name, store) for store in db_dir.child_stores.exclude(file='').iterator())
     existing_dirs = dict((dir.name, dir) for dir in db_dir.child_dirs.iterator())
-    project_path = translation_project.project.get_real_path()
     files, new_files = add_items(files, existing_stores,
               lambda name: Store(file=relative_real_path(os.path.join(real_dir, name)),
                                  parent=db_dir,
@@ -201,7 +200,7 @@ def translation_project_should_exist(language, project):
                 for filename in filenames:
                     if project.file_belongs_to_project(filename, match_templates=True) and \
                            match_template_filename(project, filename):
-                            return True
+                        return True
         else:
             # find files with the language name in the project dir
             for dirpath, dirnames, filenames in os.walk(project.get_real_path()):
