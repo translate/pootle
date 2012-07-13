@@ -62,11 +62,29 @@ approach for this.
 {% block content %}
 <div id="innernav" lang="{{ LANGUAGE_CODE }}">
 
+    {% comment %} 
+	Form is only defined if the user has permissions to use it 
+    {% endcomment %}
     {% if form %}
+
         <h2>{{ title }}</h2>
         <div class="form news">
         <h2>{% trans "Publish News" %}</h2>
         <p>{{ success }}</p>
+
+	{% if notices_published %}
+		<h3> Successfully published the following Notices </h3>
+		<div name="publishednotice">
+		{% for np in notices_published %}
+			<p> {{ np }} </p>
+		{% endfor %}
+		</div>
+		<hr/>
+	{% endif %}
+
+
+
+
         <form method="post" action="">
             {% csrf_token %}
             {{ form.as_p }}
@@ -88,7 +106,9 @@ approach for this.
         <h2>{% trans "Latest News" %} {{ name }}</h2>
     {% endif %}
 
+
     <div class="news-feed{% if form %}-with-form{% endif %}">
+
         {% if notices %}
             {% for notice in notices %}
                 <div class="datetime"><small>{{ notice.get_date }}</small></div>
