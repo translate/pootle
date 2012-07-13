@@ -148,6 +148,15 @@ def handle_form(request, current_directory, current_project, current_language, t
 			else:
 				projs = form.cleaned_data['project_selection']
 
+			# Find the Languages we want to publish this news to.
+			if form.cleaned_data['language_all'] == True:
+				langs = Language.objects.all()
+			else:
+				langs = form.cleaned_data['language_selection']
+			# construct the language OR filter
+			for lang in langs:
+				lang_filter|=Q(language__exact=lang)
+
 			#
 			# We use all the projects that we want to publish this News to.
 			#
@@ -156,7 +165,7 @@ def handle_form(request, current_directory, current_project, current_language, t
 			for p in projs:
 				# If the user selected no language, and not "every lang", then just use the project's directory.	
 				if form.cleaned_data['language_selection'] == [] and form.cleaned_data['language_all'] == False:
-					# Publish this Notice, using the project's Directory obejct
+					# Publish this Notice, using the project's Directory object
 					new_notice = Notice()
 					new_notice.message = form.cleaned_data['message']
 					new_notice.directory = p.directory
@@ -167,16 +176,7 @@ def handle_form(request, current_directory, current_project, current_language, t
 					template_vars['notices_published'].append("Published to Project %s" % p.fullname)
 					
 				else:
-					# Find the Languages we want to publish this news to.
-					if form.cleaned_data['language_all'] == True:
-						langs = Language.objects.all()
-					else:
-						langs = form.cleaned_data['language_selection']
-					# construct the language OR filter
-					for lang in langs:
-						lang_filter|=Q(language__exact=lang)
-
-					# Find the languages we want to restrict publishing News to.
+					# Find the languages we want to restrict publishing News to, for this particular Project.
 					# Lets find the TranslationProject to find the directory object to use.
 					translationprojects_to_publish_to = TranslationProject.objects.filter(lang_filter,project__exact=p).distinct()
 					for tp in translationprojects_to_publish_to:
@@ -189,6 +189,24 @@ def handle_form(request, current_directory, current_project, current_language, t
 						if template_vars['notices_published'] == None:
 							template_vars['notices_published'] = []
 						template_vars['notices_published'].append("Published to Translation Project %s" % tp.fullname)
+
+			#
+			# We use all the languages that we want to publish this News to, and for each lang, publish news into that Directory
+			# We only need to check if the user selected no projects - the case of selected projects and languages is covered above.
+
+			# If the user selected no project, and not "every proj", then just use the languages's directory.	
+			if form.cleaned_data['project_selection'] == [] and form.cleaned_data['project_all'] == False:
+				for l in langs:
+					# Publish this Notice, using the languages's Directory object
+					new_notice = Notice()
+					new_notice.message = form.cleaned_data['message']
+					new_notice.directory = l.directory
+					new_notice.save()
+
+					if template_vars['notices_published'] == None:
+						template_vars['notices_published'] = []
+					template_vars['notices_published'].append("Published to Language %s" % l.fullname)
+					
 
                 # If we want to email it , then do that.
                 if form.cleaned_data['send_email'] == True:
@@ -215,10 +233,14 @@ def handle_form(request, current_directory, current_project, current_language, t
 				lang_filter|=Q(languages__exact=lang)
 			
 			# Generate a list of pootleprofile objects, which are linked to Users and their emails. 
-			# XXX Take into account 'only active users' flag from the form.
+			#
 
-			# Grab all appropriate Profiles.
-			to_list = PootleProfile.objects.filter(lang_filter,proj_filter).distinct()
+			# Take into account 'only active users' flag from the form.
+			if form.cleaned_data['restrict_to_active_users'] == True:
+				to_list = PootleProfile.objects.filter(lang_filter,proj_filter).distinct().exclude(submission=None).exclude(suggestion=None).exclude(suggester=None)
+			else:
+				# Grab all appropriate Profiles.
+				to_list = PootleProfile.objects.filter(lang_filter,proj_filter).distinct()
 
 			to_list_emails = []
 			for person in to_list:
