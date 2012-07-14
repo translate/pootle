@@ -31,7 +31,6 @@
 
 {% block content %}
 {% cache settings.CACHE_TIMEOUT translate_content directory.id store_id cantranslate cansuggest LANGUAGE_CODE %}
-<form action="" method="post" name="translate" id="translate">
 <div class="translate-form">
     <div id="pootle_path" class="hide">{{ store.pootle_path }}</div>
     <div id="directory" class="hide">{{ directory.pootle_path }}</div>
@@ -51,7 +50,6 @@
       </tbody>
     </table>
 </div>
-</form>
 {% endcache %}
 {% endblock %}
 
