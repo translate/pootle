@@ -1,4 +1,6 @@
 -r base.txt
 
 django-extensions
+sphinx
+
 -e git://github.com/django-debug-toolbar/django-debug-toolbar.git#egg=django-debug-toolbar
