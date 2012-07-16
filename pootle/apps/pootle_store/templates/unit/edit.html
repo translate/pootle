@@ -152,7 +152,7 @@
         {% endfor %}
       </div>
       {% endif %}
-      {% if cansuggest %}
+      {% if cantranslate %}
       <a class="collapse tiny" tabindex="15">{% trans "Add Comment" %}</a>
       <!-- Comment form -->
       <div class="collapsethis">
@@ -167,8 +167,10 @@
       <div id="extras-container">
       {% if unit.translator_comment %}
         <!-- Latest comment -->
-        <div class="translator-comments" lang="{{ LANGUAGE_CODE }}">
+        <div id="translator-comment" lang="{{ LANGUAGE_CODE }}">
+          <div class="extra-item">
           {{ unit.translator_comment }}
+          </div>
         </div>
       {% endif %}
       {% if suggestions %}
