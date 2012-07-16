@@ -537,7 +537,7 @@ def get_more_context(request, unit):
 
 @never_cache
 @get_unit_context('view')
-def get_history(request, unit):
+def timeline(request, unit):
     """Returns a JSON-encoded string including the changes to the unit
     rendered in HTML.
     """
@@ -578,7 +578,7 @@ def get_history(request, unit):
     }
 
     if request.is_ajax():
-        t = loader.get_template('unit/history-xhr.html')
+        t = loader.get_template('unit/xhr-timeline.html')
         c = RequestContext(request, ec)
         json = {
                 # The client will want to confirm that the response is
@@ -590,11 +590,8 @@ def get_history(request, unit):
         response = simplejson.dumps(json)
         return HttpResponse(response, mimetype="application/json")
     else:
-        return render_to_response(
-                'unit/history.html',
-                ec,
-                context_instance=RequestContext(request),
-        )
+        return render_to_response('unit/timeline.html', ec,
+                                  context_instance=RequestContext(request))
 
 
 @ajax_required

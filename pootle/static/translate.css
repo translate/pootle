@@ -649,20 +649,20 @@ body.zoom-out-2 .sidebar
 }
 
 
-.history-gravatar
+.timeline-gravatar
 {
     position: absolute;
     top: 0px;
     left: 100%;
 }
 
-html[dir="rtl"] .history-gravatar
+html[dir="rtl"] .timeline-gravatar
 {
     right: 100%;
     left: auto;
 }
 
-.history-extra
+.timeline-extra
 {
     position:absolute;
     top: 0;
@@ -671,26 +671,26 @@ html[dir="rtl"] .history-gravatar
     padding: 2px;
 }
 
-html[dir="rtl"] .history-extra
+html[dir="rtl"] .timeline-extra
 {
     left: auto;
     right: 100%;
 }
 
 
-#show-history,
-#hide-history
+#show-timeline,
+#hide-timeline
 {
     float: right;
 }
 
-html[dir="rtl"] #show-history,
-html[dir="rtl"] #hide-history
+html[dir="rtl"] #show-timeline,
+html[dir="rtl"] #hide-timeline
 {
     float: left;
 }
 
-#history_content
+#timeline-content
 {
     margin: 5% 15% 0%; 5%
 }

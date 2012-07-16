@@ -1,14 +1,14 @@
 {% load i18n profile_tags %}
-<div id="history_results" style="display: none;">
-  <div class="extra-item-title">{% trans 'History' %}</div>
+<div id="timeline-results" style="display: none;">
+  <div class="extra-item-title">{% trans 'Timeline' %}</div>
   {% for datetime, submitter, value in values %}
   <div class="extra-item-block">
     <div class="extra-item" title="{{ datetime }}">
       <div class="suggestion-translation" lang="{{ language.code }}" dir="{{ language.get_direction }}">{{ value }}</div>
-      <div class="history-gravatar">
+      <div class="timeline-gravatar">
         {% if submitter %}
           <img src="{{ submitter|gravatar:24 }}" alt="{{ submitter.user.username }}" width="24" height="24"{% if user == profile.user %} title="{% trans "You can set or change your avatar image at www.gravatar.com" %}"{% endif %} />
-          <div class="history-extra">{{ submitter }}</div>
+          <div class="timeline-extra">{{ submitter }}</div>
         {% endif %}
       </div>
     </div>

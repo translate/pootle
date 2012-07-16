@@ -139,8 +139,8 @@
     </div>
 
     <div class="translate-middle">
-      <a id="show-history" class="tiny ptr" href='{{ "/unit/history/"|l }}{{ unit.id }}'>{% trans 'History' %}</a>
-      <a id="hide-history" class="tiny ptr" style="display: none;">{% trans 'Hide History' %}</a>
+      <a id="show-timeline" class="tiny" href='{{ "/unit/timeline/"|l }}{{ unit.id }}'>{% trans 'Timeline' %}</a>
+      <a id="hide-timeline" class="tiny ptr" style="display: none;">{% trans 'Hide Timeline' %}</a>
       {% if cantranslate or cansuggest %}
       <div class="translate-specialchars-block" lang="{{ language.code }}">
         {% for specialchar in language.specialchars %}

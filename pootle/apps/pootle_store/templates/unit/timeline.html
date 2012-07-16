@@ -18,12 +18,12 @@
 
 {% block content %}
 <div id="history_content">
-    {% include "unit/history-xhr.html" %}
+    {% include "unit/xhr-timeline.html" %}
 </div>
 {% endblock content %}
 
 {% block scripts_extra %}
 <script type="text/javascript">
-    $("#history_results").show();
+    $("#timeline-results").show();
 </script>
 {% endblock scripts_extra %}

@@ -114,8 +114,8 @@
     this.whitespaceRE = /^ +| +$|[\r\n\t] +| {2,}/gm;
     this.searchRE = /^in:.+|\sin:.+/i;
 
-    /* History requests handler */
-    this.historyReq = null;
+    /* Timeline requests handler */
+    this.timelineReq = null;
 
     /* TM requests handler */
     this.tmReq = null;
@@ -198,8 +198,8 @@
     $(document).on("click", "#extras-container .acceptsugg", this.acceptSuggestion);
     $(document).on("click", "#extras-container .clearvote", this.clearVote);
     $(document).on("click", "#extras-container .voteup", this.voteUp);
-    $(document).on("click", "#show-history", this.showHistory);
-    $(document).on("click", "#hide-history", this.hideHistory);
+    $(document).on("click", "#show-timeline", this.showTimeline);
+    $(document).on("click", "#hide-timeline", this.hideTimeline);
     $(document).on("click", "#translate-checks-block .rejectcheck", this.rejectCheck);
 
     /* Filtering */
@@ -1707,33 +1707,33 @@
 
 
   /*
-   * Unit history
+   * Unit timeline
    */
 
-  /* Get the history data from Pootle asynchronously */
-  showHistory: function (e) {
+  /* Get the timeline data */
+  showTimeline: function (e) {
     e.preventDefault();
 
-    // the results might already be there from earlier:
-    if ($("#history_results").length) {
-      $("#hide-history").show();
-      $("#history_results").show();
-      $("#show-history").hide();
+    // The results might already be there from earlier:
+    if ($("#timeline-results").length) {
+      $("#hide-timeline").show();
+      $("#timeline-results").show();
+      $("#show-timeline").hide();
       return
     }
 
     var _this = this,
         uid = PTL.editor.activeUid,
-        historyUrl = l("/unit/history/" + uid);
+        timelineUrl = l("/unit/timeline/" + uid);
 
     // Always abort previous requests so we only get results for the
     // current unit
-    if (this.historyReq != null) {
-      this.historyReq.abort();
+    if (this.timelineReq != null) {
+      this.timelineReq.abort();
     }
 
-    this.historyReq = $.ajax({
-      url: historyUrl,
+    this.timelineReq = $.ajax({
+      url: timelineUrl,
       dataType: 'json',
       success: function (data) {
         var uid = data.uid;
@@ -1741,11 +1741,11 @@
         if (uid == PTL.editor.activeUid) {
           $(_this).hide();
           $("#translator-comment").append(data.entries);
-          $("#history_results").animate(
+          $("#timeline-results").animate(
                   {height: 'show'},
                   1000,
                   'easeOutQuad',
-                  function() {$("#hide-history").show()}
+                  function() {$("#hide-timeline").show()}
           );
         }
       },
@@ -1753,11 +1753,11 @@
     });
   },
 
- /* Hide the history panel */
-  hideHistory: function (e) {
-    $("#hide-history").hide();
-    $("#history_results").hide();
-    $("#show-history").show();
+ /* Hide the timeline panel */
+  hideTimeline: function (e) {
+    $("#hide-timeline").hide();
+    $("#timeline-results").hide();
+    $("#show-timeline").show();
   },
 
 
