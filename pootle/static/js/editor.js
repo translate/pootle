@@ -1719,7 +1719,7 @@
 
         if (uid == PTL.editor.activeUid) {
           $(_this).hide();
-          $("#extras-container").prepend(data.entries);
+          $("#translator-comment").append(data.entries);
           $("#history_results").animate(
                   {height: 'show'},
                   1000,
