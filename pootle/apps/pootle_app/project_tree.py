@@ -21,6 +21,7 @@
 import os
 import logging
 import re
+import shutil
 
 from translate.lang    import data as langdata
 
@@ -153,21 +154,64 @@ def add_items(fs_items, db_items, create_db_item):
             logging.error('Error while adding %s:\n%s', item, e)
     return items, new_items
 
-def add_files(translation_project, ignored_files, ext, real_dir, db_dir, file_filter=lambda _x: True):
-    files, dirs = split_files_and_dirs(ignored_files, ext, real_dir, file_filter)
+
+def add_files(translation_project, ignored_files, ext, relative_dir, db_dir, file_filter=lambda _x: True):
+    from pootle_misc import versioncontrol
+    has_versioning = versioncontrol.hasversioning(relative_dir)
+    podir_path = versioncontrol.to_podir_path(relative_dir)
+    vcs_path = versioncontrol.to_vcs_path(relative_dir)
+
+    if has_versioning:
+        # bring the tree in the podirectory up to date with the tree in the VCS
+        vcs_files, vcs_dirs = split_files_and_dirs(ignored_files, ext, vcs_path, file_filter)
+        files, dirs = split_files_and_dirs(ignored_files, ext, podir_path, file_filter)
+
+        vcs_file_set = set(vcs_files)
+        vcs_dir_set = set(vcs_dirs)
+        file_set = set(files)
+        dir_set = set(dirs)
+
+        # copy into podir
+        for f in vcs_file_set - file_set:
+            vcs_f = os.path.join(vcs_path, f)
+            new_path = os.path.join(podir_path, f)
+            shutil.copy2(vcs_f, new_path)
+
+        for d in vcs_dir_set - dir_set:
+            new_path = os.path.join(podir_path, d)
+            os.makedirs(new_path)
+
+        # remove from podir
+        #TODO: review this carefully, as we are now deleting stuff
+        for f in file_set - vcs_file_set:
+            remove_path = os.path.join(podir_path, f)
+            os.remove(remove_path)
+
+        for d in dir_set - vcs_dir_set:
+            remove_path = os.path.join(podir_path, d)
+            shutil.rmtree(remove_path)
+
+        file_set = vcs_file_set
+        dir_set = vcs_dir_set
+
+    else:
+        files, dirs = split_files_and_dirs(ignored_files, ext, podir_path, file_filter)
+        file_set = set(files)
+        dir_set = set(dirs)
+
     existing_stores = dict((store.name, store) for store in db_dir.child_stores.exclude(file='').iterator())
     existing_dirs = dict((dir.name, dir) for dir in db_dir.child_dirs.iterator())
-    files, new_files = add_items(files, existing_stores,
-              lambda name: Store(file=relative_real_path(os.path.join(real_dir, name)),
+    files, new_files = add_items(file_set, existing_stores,
+              lambda name: Store(file=os.path.join(relative_dir, name),
                                  parent=db_dir,
                                  name=name,
                                  translation_project=translation_project))
 
-    db_subdirs, new_db_subdirs = add_items(dirs, existing_dirs,
+    db_subdirs, new_db_subdirs = add_items(dir_set, existing_dirs,
                            lambda name: Directory(name=name, parent=db_dir))
 
     for db_subdir in db_subdirs:
-        fs_subdir = os.path.join(real_dir, db_subdir.name)
+        fs_subdir = os.path.join(relative_dir, db_subdir.name)
         _files, _new_files = add_files(translation_project, ignored_files, ext, fs_subdir, db_subdir, file_filter)
         files += _files
         new_files += _new_files

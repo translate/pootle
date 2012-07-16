@@ -293,14 +293,14 @@ class TranslationProject(models.Model):
                 all_files, new_files = add_files(self,
                           ignored_files,
                           ext,
-                          self.abs_real_path,
+                          self.real_path,
                           self.directory,
                           lambda filename: match_template_filename(self.project, filename))
             else:
-                all_files, new_files = add_files(self, ignored_files, ext, self.abs_real_path, self.directory,
+                all_files, new_files = add_files(self, ignored_files, ext, self.real_path, self.directory,
                           lambda filename: direct_language_match_filename(self.language.code, filename))
         else:
-            all_files, new_files = add_files(self, ignored_files, ext, self.abs_real_path, self.directory)
+            all_files, new_files = add_files(self, ignored_files, ext, self.real_path, self.directory)
         return all_files, new_files
 
     def _get_indexer(self):
