@@ -141,6 +141,9 @@ Directory contents
 
       http://github.com/nje/jquery-tmpl
 
+    - jquery.utils.js :
+      Custom utilities that extend jQuery's capabilities.
+
   + mt/
 
     - apertium.js :
