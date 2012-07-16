@@ -409,39 +409,7 @@ table td.translate-translation
     font-weight: bold;
 }
 
-div.translator-comments
-{
-    text-align: right;
-}
-
-html[dir="rtl"] div.translator-comments
-{
-    text-align: left;
-}
-
-table.suggest-mode div.translator-comments
-{
-    display: none; /* for now, all translator comments are simply hidden in suggestion mode; TODO: display existing comments in read-only mode*/
-}
-
-div.translator-comments a
-{
-    text-decoration: none;
-}
-
-div.translator-comments a:hover
-{
-    border-bottom: 1px dotted #0489b7;
-}
- 
-div.translator-comments label
-{
-    display: block;
-    color: #999;
-    font-size: 85%;
-}
-
-div.translator-comments textarea
+#comment-form textarea
 {
     vertical-align: top;
     padding: 0;
@@ -450,8 +418,10 @@ div.translator-comments textarea
     color: #666;
     font-size: 90%;
     line-height: 1.2em;
+    margin-bottom: 5px;
 }
 
+/* TODO: review this */
 .terminology div.translator-comments
 {
     background: #eaf0f4 url('images/user_comment.png') no-repeat;
