@@ -530,14 +530,12 @@
 
   /* Copies text into the focused textarea */
   copyText: function (e) {
-    var text, element, start;
+    var selector, text, element, start;
 
     // Determine which text we need
-    if ($(".tm-translation", this).length) {
-      text = $(".tm-translation", this).text();
-    } else {
-      text = $(this).text();
-    }
+    selector = $(".tm-translation", this).ifExists() ||
+               $(".suggestion-translation", this).ifExists() || $(this);
+    text = selector.text();
 
     element = $(PTL.editor.focused);
     start = element.caret().start + text.length;
