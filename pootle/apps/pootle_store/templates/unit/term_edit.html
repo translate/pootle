@@ -145,7 +145,7 @@
           <div id="suggestion{{ sugg.id }}" class="extra-item-block">
             <div class="extra-item-title">{{ sugtitle }}</div>
 
-            <div class="extra-item">
+            <div class="extra-item js-editor-copytext">
             {% if user.is_authenticated %}
               {% dict_entry_for_item sugg from vote_dict as vote %}
               <input type="hidden" id="sugg-{{sugg.id }}" class="suggid" name="suggid" value="{{ sugg.id }}" />
