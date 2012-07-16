@@ -179,16 +179,8 @@
       if ($("#id_target_f_0").attr("disabled")) {
         return;
       }
-      // When clicking on a suggestion, fill in text/comment if it exists
       var sources = $(".suggestion-translation", this);
-      if (sources.length) {
-        PTL.editor.copyOriginal(sources);
-      }
-      var comments = $(".suggestion-comment", this);
-      if (comments.length) {
-        comment_textarea = $("#id_translator_comment");
-        comment_textarea.val(comments.text());
-      }
+      PTL.editor.copyOriginal(sources);
     });
 
     /* Editor navigation/submission */
