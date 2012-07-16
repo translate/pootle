@@ -31,6 +31,7 @@ NORMAL = 1          # Interactive web editing
 REVERT = 2          # Revert action on the web
 SUGG_ACCEPT = 3     # Accepting a suggestion
 UPLOAD = 4          # Uploading an offline file
+COMMENT = 5         # Posting a comment
 
 class Submission(models.Model):
     class Meta:

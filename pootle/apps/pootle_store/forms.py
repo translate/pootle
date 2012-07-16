@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009-2010 Zuza Software Foundation
+# Copyright 2009-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -21,12 +21,15 @@
 """Form fields required for handling translation files."""
 import re
 
+from datetime import datetime
+
 from django import forms
 from django.utils.translation import get_language, ugettext as _
 
 from translate.misc.multistring import multistring
 
 from pootle_app.models.permissions import check_permission
+from pootle_statistics.models import Submission, COMMENT
 from pootle_store.models import Unit
 from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED
 from pootle_store.fields import PLURAL_PLACEHOLDER, to_db
@@ -165,14 +168,6 @@ def unit_form_factory(language, snplurals=None, request=None):
         'tabindex': 10,
         }
 
-    comment_attrs = {
-        'lang': language.code,
-        'dir': language.get_direction(),
-        'class': 'comments expanding focusthis',
-        'rows': 1,
-        'tabindex': 15,
-        }
-
     fuzzy_attrs = {
         'accesskey': 'f',
         'class': 'fuzzycheck',
@@ -182,12 +177,11 @@ def unit_form_factory(language, snplurals=None, request=None):
     if action_disabled:
         target_attrs['disabled'] = 'disabled'
         fuzzy_attrs['disabled'] = 'disabled'
-        comment_attrs['disabled'] = 'disabled'
 
     class UnitForm(forms.ModelForm):
         class Meta:
             model = Unit
-            exclude = ['store', 'developer_comment']
+            exclude = ['store', 'developer_comment', 'translator_comment']
 
         id = forms.IntegerField(required=False)
         source_f = MultiStringFormField(nplurals=snplurals or 1,
@@ -197,10 +191,6 @@ def unit_form_factory(language, snplurals=None, request=None):
         state = forms.BooleanField(required=False, label=_('Fuzzy'),
                                    widget=forms.CheckboxInput(attrs=fuzzy_attrs,
                                        check_test=lambda x: x == FUZZY))
-        translator_comment = forms.CharField(required=False,
-                                             label=_("Translator comment"),
-                                             widget=forms.Textarea(
-                                                 attrs=comment_attrs))
 
         def __init__(self, *args, **argv):
             super(UnitForm, self).__init__(*args, **argv)
@@ -224,18 +214,6 @@ def unit_form_factory(language, snplurals=None, request=None):
             if self.instance.target.strings != multistring(value or [u'']):
                 self.instance._target_updated = True
                 self.updated_fields.append(("pootle_store.Unit.target", to_db(self.instance.target), to_db(value)))
-
-            return value
-
-        def clean_translator_comment(self):
-            value = self.cleaned_data['translator_comment']
-            old_value = self.instance.translator_comment or u''
-
-            if old_value != value:
-                self.instance._translator_comment_updated = True
-                self.updated_fields.append(("pootle_store.Unit.translator_comment", old_value, value))
-            else:
-                self.instance._translator_comment_updated = False
 
             return value
 
@@ -264,3 +242,62 @@ def unit_form_factory(language, snplurals=None, request=None):
 
 
     return UnitForm
+
+
+def unit_comment_form_factory(language):
+
+    comment_attrs = {
+        'lang': language.code,
+        'dir': language.get_direction(),
+        'class': 'comments expanding focusthis',
+        'rows': 2,
+        'tabindex': 15,
+    }
+
+
+    class UnitCommentForm(forms.ModelForm):
+
+        class Meta:
+            fields = ('translator_comment',)
+            model = Unit
+
+
+        translator_comment = forms.CharField(required=False,
+                                             label=_("Translator comment"),
+                                             widget=forms.Textarea(
+                                                 attrs=comment_attrs))
+
+
+        def __init__(self, *args, **kwargs):
+            self.request = kwargs.pop('request', None)
+            super(UnitCommentForm, self).__init__(*args, **kwargs)
+
+
+        def clean_translator_comment(self):
+            self.old_value = self.instance.translator_comment or u''
+            self.new_value = self.cleaned_data['translator_comment']
+
+            return self.new_value
+
+
+        def save(self):
+            """Registers the submission and saves the comment."""
+            if self.has_changed():
+                field = "pootle_store.Unit.translator_comment"
+                creation_time=datetime.utcnow()
+                translation_project = self.request.translation_project
+
+                sub = Submission(creation_time=creation_time,
+                                 translation_project=translation_project,
+                                 submitter=self.request.profile,
+                                 unit=self.instance,
+                                 field=field,
+                                 type=COMMENT,
+                                 old_value=self.old_value,
+                                 new_value=self.new_value)
+                sub.save()
+
+            super(UnitCommentForm, self).save()
+
+
+    return UnitCommentForm

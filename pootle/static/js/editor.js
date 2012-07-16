@@ -220,6 +220,9 @@
     $(document).on("click", ".js-show-ctx", this.showContext);
     $(document).on("click", ".js-hide-ctx", this.hideContext);
 
+    /* Commenting */
+    $(document).on("submit", "#comment-form", this.comment);
+
     /* Search */
     $(document).on("keypress", "#id_search", function (e) {
         if (e.keyCode == 13) {
@@ -1682,6 +1685,32 @@
       newHash = PTL.utils.updateHashPart("filter", "all", ["search", "sfields"]);
     }
     $.history.load(newHash);
+  },
+
+
+  /*
+   * Comments
+   */
+  comment: function (e) {
+    e.preventDefault();
+
+    var url = $(this).attr('action'),
+        reqData = $(this).serialize();
+
+    $.ajax({
+      url: url,
+      type: 'POST',
+      data: reqData,
+      success: function (data) {
+        $("#editor-comment").fadeOut(200);
+        var commentHtml = '<div class="extra-item">' + data.comment + '</div>';
+        $(commentHtml).hide().prependTo("#translator-comment").delay(200)
+                      .fadeIn(2000);
+      },
+      error: PTL.editor.error
+    });
+
+    return false;
   },
 
 

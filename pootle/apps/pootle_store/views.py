@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2010-2011 Zuza Software Foundation
+# Copyright 2010-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -52,8 +52,12 @@ from pootle_statistics.models import Submission, NORMAL, SUGG_ACCEPT
 from pootle_translationproject.forms import make_search_form
 
 from pootle_store.models import Store, Unit
-from pootle_store.forms import unit_form_factory, highlight_whitespace
-from pootle_store.templatetags.store_tags import find_altsrcs, get_sugg_list, highlight_diffs, pluralize_source, pluralize_target
+from pootle_store.forms import (unit_comment_form_factory, unit_form_factory,
+                                highlight_whitespace)
+from pootle_store.templatetags.store_tags import (find_altsrcs, get_sugg_list,
+                                                  highlight_diffs,
+                                                  pluralize_source,
+                                                  pluralize_target)
 from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED, absolute_real_path
 from pootle_store.signals import translation_submitted
 
@@ -593,6 +597,32 @@ def get_history(request, unit):
         )
 
 
+@ajax_required
+@get_unit_context('translate')
+def comment(request, unit):
+    """Stores a new comment for the given ``unit``.
+
+    :return: If the form validates, the cleaned comment is returned.
+             An error message is returned otherwise.
+    """
+    language = request.translation_project.language
+    form = unit_comment_form_factory(language)(request.POST, instance=unit,
+                                               request=request)
+
+    if form.is_valid():
+        form.save()
+
+        json = {'comment': unit.translator_comment}
+        rcode = 200
+    else:
+        json = {'msg':  _("Comment submission failed.")}
+        rcode = 400
+
+    response = simplejson.dumps(json)
+
+    return HttpResponse(response, status=rcode, mimetype="application/json")
+
+
 @never_cache
 @ajax_required
 @get_unit_context('view')
@@ -616,6 +646,9 @@ def get_edit_unit(request, unit):
 
     form_class = unit_form_factory(language, snplurals, request)
     form = form_class(instance=unit)
+    comment_form_class = unit_comment_form_factory(language)
+    comment_form = comment_form_class({}, instance=unit)
+
     store = unit.store
     directory = store.parent
     profile = request.profile
@@ -627,6 +660,7 @@ def get_edit_unit(request, unit):
     template_vars = {
         'unit': unit,
         'form': form,
+        'comment_form': comment_form,
         'store': store,
         'directory': directory,
         'profile': profile,
