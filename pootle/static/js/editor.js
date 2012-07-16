@@ -202,10 +202,10 @@
     });
     $(document).on("click", "input.submit, input.suggest", this.processSubmit);
     $(document).on("click", "input.previous, input.next", this.gotoPrevNext);
-    $(document).on("click", "#suggestion-container .rejectsugg", this.rejectSuggestion);
-    $(document).on("click", "#suggestion-container .acceptsugg", this.acceptSuggestion);
-    $(document).on("click", "#suggestion-container .clearvote", this.clearVote);
-    $(document).on("click", "#suggestion-container .voteup", this.voteUp);
+    $(document).on("click", "#extras-container .rejectsugg", this.rejectSuggestion);
+    $(document).on("click", "#extras-container .acceptsugg", this.acceptSuggestion);
+    $(document).on("click", "#extras-container .clearvote", this.clearVote);
+    $(document).on("click", "#extras-container .voteup", this.voteUp);
     $(document).on("click", "#show-history", this.showHistory);
     $(document).on("click", "#hide-history", this.hideHistory);
     $(document).on("click", "#translate-checks-block .rejectcheck", this.rejectCheck);
@@ -1721,7 +1721,7 @@
 
         if (uid == PTL.editor.activeUid) {
           $(_this).hide();
-          $("#suggestion-container").prepend(data.entries);
+          $("#extras-container").prepend(data.entries);
           $("#history_results").animate(
                   {height: 'show'},
                   1000,
@@ -1799,7 +1799,7 @@
                                                  name: name}}).join("");
 
           // Append results
-          $("#suggestion-container").append(tm);
+          $("#extras-container").append(tm);
           $("#amagama_results").animate({height: 'show'}, 1000,
                                            'easeOutQuad');
         }
@@ -1823,7 +1823,7 @@
           $(this).remove();
 
           // Go to the next unit if there are no more suggestions left
-          if (!$("#suggestion-container div[id^=suggestion]").length) {
+          if (!$("#extras-container div[id^=suggestion]").length) {
             $("input.next").trigger("click");
           }
         });
@@ -1863,7 +1863,7 @@
           $(this).remove();
 
           // Go to the next unit if there are no more suggestions left
-          if (!$("#suggestion-container div[id^=suggestion]").length) {
+          if (!$("#extras-container div[id^=suggestion]").length) {
             $("input.next").trigger("click");
           }
         });
@@ -1885,7 +1885,7 @@
       dataType: 'json',
       success: function (data) {
         element.hide();
-        element.siblings("#suggestion-container .voteup").fadeTo(200, 1);
+        element.siblings("#extras-container .voteup").fadeTo(200, 1);
       },
       error: function (xhr, s) {
         PTL.editor.error(xhr, s);
@@ -1912,7 +1912,7 @@
       success: function (data) {
         element.siblings("input.voteid").attr("value", data.voteid);
         element.hide();
-        element.siblings("#suggestion-container .clearvote").fadeTo(200, 1);
+        element.siblings("#extras-container .clearvote").fadeTo(200, 1);
       },
       error: function (xhr, s) {
         PTL.editor.error(xhr, s);

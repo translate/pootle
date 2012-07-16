@@ -550,47 +550,42 @@ body.zoom-out-2 .sidebar
     text-align: right;
 }
 
-/* SUGGESTIONS */
+/* SUGGESTIONS, TM RESULTS, COMMENTS */
 
-div.translator-comments + #suggestion-container
-{
-    margin-top: 0.5em;
-}
-
-#suggestion-container
+#extras-container
 {
     margin-top: 1.8em;
     margin-bottom: 1em;
 }
 
-.suggestion-block
+.extra-item-block
 {
     position: relative;
 }
 
-.suggestion-block:last-child
+.extra-item-block:last-child
 {
     margin-bottom: 0;
 }
 
-.suggestion-title
+.extra-item-title
 {
     color: #999;
     font-size: 85%;
 }
 
-.suggestion-block .rejectsugg img
+.extra-item-block .rejectsugg img
 {
     cursor: pointer;
 }
 
-.suggestion-block .acceptsugg img
+.extra-item-block .acceptsugg img
 {
     cursor: pointer;
 }
 
-.suggestion-block .rejectsugg img,
-.suggestion-block .acceptsugg img
+.extra-item-block .rejectsugg img,
+.extra-item-block .acceptsugg img
 {
     float: right;
     top: 50%;
@@ -599,16 +594,16 @@ div.translator-comments + #suggestion-container
     -khtml-opacity: 0.1;
     opacity: 0.1;
 }
-.suggestion-block .rejectsugg img[dir="rtl"],
-.suggestion-block .acceptsugg img[dir="rtl"],
-.suggestion-block .suggestion-vote img[dir="rtl"]
+.extra-item-block .rejectsugg img[dir="rtl"],
+.extra-item-block .acceptsugg img[dir="rtl"],
+.extra-item-block .suggestion-vote img[dir="rtl"]
 {
     float: left;
 }
 
-.suggestion-block:hover .rejectsugg img,
-.suggestion-block:hover .acceptsugg img,
-.suggestion-block:hover .suggestion-vote img
+.extra-item-block:hover .rejectsugg img,
+.extra-item-block:hover .acceptsugg img,
+.extra-item-block:hover .suggestion-vote img
 {
     filter:alpha(opacity=50);
     -moz-opacity: 0.5;
@@ -616,9 +611,9 @@ div.translator-comments + #suggestion-container
     opacity: 0.5;
 }
 
-.suggestion-block .rejectsugg img:hover,
-.suggestion-block .acceptsugg img:hover,
-.suggestion-block .suggestion-vote:hover img
+.extra-item-block .rejectsugg img:hover,
+.extra-item-block .acceptsugg img:hover,
+.extra-item-block .suggestion-vote:hover img
 {
     filter:alpha(opacity=100);
     -moz-opacity: 1;
@@ -634,7 +629,7 @@ div.translator-comments + #suggestion-container
     text-shadow: 0 0 8px #777;
 }
 
-.suggestion-block .suggestion-vote img
+.extra-item-block .suggestion-vote img
 {
     top: 50%;
     filter:alpha(opacity=30);
@@ -645,7 +640,7 @@ div.translator-comments + #suggestion-container
     cursor: pointer;
 }
 
-.suggestion
+.extra-item
 {
     background-color: #f1f7e4;
     border: 1px dotted #ccc;
@@ -655,7 +650,7 @@ div.translator-comments + #suggestion-container
     cursor: pointer;
 }
 
-.suggestion:hover {
+.extra-item:hover {
     background-color: #fff;
 }
 

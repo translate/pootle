@@ -138,14 +138,14 @@
         </div>
         {% endif %}
         <!-- Suggestions from users and TM -->
-        <div id="suggestion-container"> 
+        <div id="extras-container">
         {% if suggestions %}
           {% votes_by_user user on suggestions as vote_dict %}
           {% for sugg, sugtitle, score in suggestion_detail %}
-          <div id="suggestion{{ sugg.id }}" class="suggestion-block">
-            <div class="suggestion-title">{{ sugtitle }}</div>
+          <div id="suggestion{{ sugg.id }}" class="extra-item-block">
+            <div class="extra-item-title">{{ sugtitle }}</div>
 
-            <div class="suggestion">
+            <div class="extra-item">
             {% if user.is_authenticated %}
               {% dict_entry_for_item sugg from vote_dict as vote %}
               <input type="hidden" id="sugg-{{sugg.id }}" class="suggid" name="suggid" value="{{ sugg.id }}" />

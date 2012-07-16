@@ -164,7 +164,7 @@
       {% endif %}
       <!-- Latest comment, [timeline of changes], suggestions from users
            and Translation Memory -->
-      <div id="suggestion-container">
+      <div id="extras-container">
       {% if unit.translator_comment %}
         <!-- Latest comment -->
         <div class="translator-comments" lang="{{ LANGUAGE_CODE }}">
@@ -173,9 +173,9 @@
       {% endif %}
       {% if suggestions %}
         {% for sugg, sugtitle, score in suggestion_detail %}
-        <div id="suggestion{{ sugg.id }}" class="suggestion-block">
-          <div class="suggestion-title">{{ sugtitle }}</div>
-          <div class="suggestion">
+        <div id="suggestion{{ sugg.id }}" class="extra-item-block">
+          <div class="extra-item-title">{{ sugtitle }}</div>
+          <div class="extra-item">
             {% if canreview %}
               <input type="hidden" id="sugg-{{sugg.id }}" class="suggid" name="suggid" value="{{ sugg.id }}" />
               <a accesskey="a" id="accept-{{ sugg.id }}" class="acceptsugg"><img src='{{ "images/accept.png"|m }}' title="{% trans 'Accept suggestion' %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>

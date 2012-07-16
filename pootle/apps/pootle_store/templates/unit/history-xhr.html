@@ -1,9 +1,9 @@
 {% load i18n profile_tags %}
 <div id="history_results" style="display: none;">
-  <div class="suggestion-title">{% trans 'History' %}</div>
+  <div class="extra-item-title">{% trans 'History' %}</div>
   {% for datetime, submitter, value in values %}
-  <div class="suggestion-block">
-    <div class="suggestion" title="{{ datetime }}">
+  <div class="extra-item-block">
+    <div class="extra-item" title="{{ datetime }}">
       <div class="suggestion-translation" lang="{{ language.code }}" dir="{{ language.get_direction }}">{{ value }}</div>
       <div class="history-gravatar">
         {% if submitter %}

@@ -1,8 +1,8 @@
 <div id="amagama_results" class="tm-server" style="display:none">
-  <div class="suggestion-title">${name}</div>
+  <div class="extra-item-title">${name}</div>
   {{each(i, sugg) suggs}}
-  <div id="tm${i}" class="suggestion-block" title="${sugg.qTitle}">
-    <div class="suggestion">
+  <div id="tm${i}" class="extra-item-block" title="${sugg.qTitle}">
+    <div class="extra-item">
       <div class="suggestion-original" lang="${meta.source_lang}" dir="${meta.source_dir}">{{html sugg.source }}</div>
       <div class="suggestion-translation" lang="${meta.target_lang}" dir="${meta.target_dir}">{{html sugg.target }}</div>
     </div>
