@@ -381,14 +381,46 @@ class TranslationProject(models.Model):
         old_stats = self.getquickstats()
         remote_stats = {}
 
+        from pootle_misc import versioncontrol
+        versioncontrol.update_dir(self.real_path)
+
+        from pootle.scripts import hooks
+        from pootle_misc import versioncontrol
+
+        # Go through all stores except any pootle-terminology.* ones
         for store in self.stores.exclude(file="").iterator():
+            store.sync(update_translation=True)
             try:
-                oldstats, remotestats, newstats = self.update_file_from_version_control(store)
-                remote_stats = dictsum(remote_stats, remotestats)
-            except VersionControlError:
+                hooks.hook(self.project.code, "preupdate", store.file.name)
+            except:
                 pass
 
-        self.scan_files()
+            # keep a copy of working files in memory before updating
+            working_copy = store.file.store
+
+            store.file._delete_store_cache()
+            store.file._update_store_cache()
+
+            try:
+                logging.debug(u"parsing version control copy of %s into db", store.file.name)
+                store.update(update_structure=True, update_translation=True, conservative=False)
+                remotestats = store.getquickstats()
+                #FIXME: try to avoid merging if file was not updated
+                logging.debug(u"merging %s with version control update", store.file.name)
+                store.mergefile(working_copy, None, allownewstrings=False, suggestions=True, notranslate=False, obsoletemissing=False)
+            except Exception, e:
+                logging.error(u"near fatal catastrophe, exception %s while merging %s with version control copy", e, store.file.name)
+                working_copy.save()
+                store.update(update_structure=True, update_translation=True, conservative=False)
+                raise
+
+            try:
+                hooks.hook(self.project.code, "postupdate", store.file.name)
+            except:
+                pass
+
+            remote_stats = dictsum(remote_stats, remotestats)
+
         new_stats = self.getquickstats()
 
         request.user.message_set.create(message=unicode(_('Updated project "%s" from version control', self.fullname)))
