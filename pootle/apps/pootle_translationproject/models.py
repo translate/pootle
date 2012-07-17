@@ -383,6 +383,7 @@ class TranslationProject(models.Model):
 
         from pootle_misc import versioncontrol
         versioncontrol.update_dir(self.real_path)
+        self.scan_files()
 
         from pootle.scripts import hooks
         from pootle_misc import versioncontrol
