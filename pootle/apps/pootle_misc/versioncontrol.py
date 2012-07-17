@@ -58,6 +58,21 @@ def update_file(path):
     shutil.copy2(vcs_path, path)
 
 
+def update_dir(path):
+    """Updates a whole directory without syncing with the po directory.
+
+    This assumes that we can update cleanly, and must be followed by
+    translation_projec.scan_files() since the podirectory isn't updated as
+    part of this call.
+
+    For some systems (like git) this can cause the rest of a cloned repository
+    to be updated as well, so changes might not be limited to the given path.
+    """
+    vcs_path = to_vcs_path(path)
+    vcs_object = versioncontrol.get_versioned_object(vcs_path)
+    vcs_object.update(needs_revert=False)
+
+
 def add_files(path, files, message):
     vcs_path = to_vcs_path(path)
     path = to_podir_path(path)
