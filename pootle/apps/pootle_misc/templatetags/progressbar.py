@@ -46,10 +46,16 @@ def progressbar(context, cur_stats):
     the context using this inclusion tag must have a ``stats`` dictionary
     with the totals for that context/directory.
 
+    If the stats say there are no translatable units, nothing is rendered.
+
     :param cur_stats: Dictionary of quick stats as returned by
                       :func:`pootle_misc.stats.get_raw_stats`
     """
     dir_total_words = context['stats']['total']['words']
+
+    if dir_total_words == 0:
+        return {}
+
     cur_total_words = cur_stats['total']['words']
     progressbar_width = (200 * cur_total_words) / dir_total_words
 
