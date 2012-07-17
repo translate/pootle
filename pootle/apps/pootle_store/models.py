@@ -43,7 +43,7 @@ from pootle_misc.aggregate import group_by_count_extra, max_column
 from pootle_misc.baseurl import l
 
 from pootle_store.fields import (TranslationStoreField, MultiStringField,
-                                 PLURAL_PLACEHOLDER, SEPERATOR)
+                                 PLURAL_PLACEHOLDER, SEPARATOR)
 from pootle_store.util import (calculate_stats, empty_quickstats,
                                OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED)
 from pootle_store.filetypes import factory_classes, is_monolingual
@@ -106,7 +106,7 @@ class Suggestion(models.Model, base.TranslationUnit):
     def _set_hash(self):
         string = self.translator_comment_f
         if string:
-            string = self.target_f + SEPERATOR + string
+            string = self.target_f + SEPARATOR + string
         else:
             string = self.target_f
         self.target_hash = md5_f(string.encode("utf-8")).hexdigest()

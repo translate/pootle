@@ -32,8 +32,9 @@ from pootle_store.signals import translation_file_updated
 
 ################# String #############################
 
-SEPERATOR = "__%$%__%$%__%$%__"
+SEPARATOR = "__%$%__%$%__%$%__"
 PLURAL_PLACEHOLDER = "__%POOTLE%_$NUMEROUS$__"
+
 def list_empty(strings):
     """check if list is exclusively made of empty strings.
 
@@ -54,12 +55,12 @@ def to_db(value):
         if list_empty(value.strings):
             return ''
         else:
-            return SEPERATOR.join(value.strings)
+            return SEPARATOR.join(value.strings)
     elif isinstance(value, list):
         if list_empty(value):
             return ''
         else:
-            return SEPERATOR.join(value)
+            return SEPARATOR.join(value)
     else:
         return value
 
@@ -71,7 +72,7 @@ def to_python(value):
     elif isinstance(value, multistring):
         return value
     elif isinstance(value, basestring):
-        strings = value.split(SEPERATOR)
+        strings = value.split(SEPARATOR)
         if strings[-1] == PLURAL_PLACEHOLDER:
             strings = strings[:-1]
             plural = True
@@ -104,7 +105,7 @@ class MultiStringField(models.Field):
         elif isinstance(value, multistring):
             return value
         elif isinstance(value, basestring):
-            strings = value.split(SEPERATOR)
+            strings = value.split(SEPARATOR)
             if strings[-1] == PLURAL_PLACEHOLDER:
                 strings = strings[:-1]
                 plural = True
