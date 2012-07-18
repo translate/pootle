@@ -1739,14 +1739,13 @@
         var uid = data.uid;
 
         if (uid == PTL.editor.activeUid) {
-          $(_this).hide();
-          $("#translator-comment").append(data.entries);
-          $("#timeline-results").animate(
-                  {height: 'show'},
-                  1000,
-                  'easeOutQuad',
-                  function() {$("#hide-timeline").show()}
-          );
+          if ($("#translator-comment").length) {
+            $(data.entries).hide().appendTo("#translator-comment")
+                                            .fadeIn(2000, 'easeOutQuad');
+          } else {
+            $(data.entries).hide().prependTo("#extras-container")
+                                            .fadeIn(2000, 'easeOutQuad');
+          }
         }
       },
       error: PTL.editor.error
