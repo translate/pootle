@@ -578,15 +578,15 @@ def timeline(request, unit):
     }
 
     if request.is_ajax():
-        t = loader.get_template('unit/xhr-timeline.html')
-        c = RequestContext(request, ec)
-        json = {
-                # The client will want to confirm that the response is
-                # relevant for the unit on screen at the time of receiving
-                # this, so we add the uid.
-                'uid': unit.id,
-                'entries': t.render(c),
-        }
+        # The client will want to confirm that the response is relevant for
+        # the unit on screen at the time of receiving this, so we add the uid.
+        json = {'uid': unit.id}
+
+        if values:
+            t = loader.get_template('unit/xhr-timeline.html')
+            c = RequestContext(request, ec)
+            json['entries'] = t.render(c)
+
         response = simplejson.dumps(json)
         return HttpResponse(response, mimetype="application/json")
     else:
