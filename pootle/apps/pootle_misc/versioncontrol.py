@@ -62,7 +62,7 @@ def update_dir(path):
     """Updates a whole directory without syncing with the po directory.
 
     This assumes that we can update cleanly, and must be followed by
-    ``:meth:~pootle_translationproject.models.TranslationProject.scan_files``
+    :meth:`~pootle_translationproject.models.TranslationProject.scan_files`
     since the podirectory isn't updated as part of this call.
 
     For some systems (like git) this can cause the rest of a cloned repository
