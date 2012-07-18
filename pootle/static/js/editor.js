@@ -1719,7 +1719,7 @@
       $("#hide-timeline").show();
       $("#timeline-results").show();
       $("#show-timeline").hide();
-      return
+      return;
     }
 
     var _this = this,
