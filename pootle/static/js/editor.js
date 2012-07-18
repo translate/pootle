@@ -1696,8 +1696,14 @@
       success: function (data) {
         $("#editor-comment").fadeOut(200);
         var commentHtml = '<div class="extra-item">' + data.comment + '</div>';
-        $(commentHtml).hide().prependTo("#translator-comment").delay(200)
-                      .fadeIn(2000);
+        if ($("#translator-comment").length) {
+          $(commentHtml).hide().prependTo("#translator-comment").delay(200)
+                        .animate({height: 'show'}, 1000, 'easeOutQuad');
+        } else {
+          commentHtml = '<div id="translator-comment">' + commentHtml + '</div>';
+          $(commentHtml).prependTo("#extras-container").delay(200)
+                        .hide().animate({height: 'show'}, 1000, 'easeOutQuad');
+        }
       },
       error: PTL.editor.error
     });
@@ -1717,7 +1723,7 @@
     // The results might already be there from earlier:
     if ($("#timeline-results").length) {
       $("#hide-timeline").show();
-      $("#timeline-results").show();
+      $("#timeline-results").animate({height: 'show'}, 1000, 'easeOutQuad');
       $("#show-timeline").hide();
       return;
     }
@@ -1739,12 +1745,13 @@
 
         if (uid == PTL.editor.activeUid) {
           if ($("#translator-comment").length) {
-            $(data.entries).hide().appendTo("#translator-comment")
-                                            .fadeIn(2000, 'easeOutQuad');
+            $(data.entries).appendTo("#translator-comment")
+                           .animate({height: 'show'}, 1000, 'easeOutQuad');
           } else {
-            $(data.entries).hide().prependTo("#extras-container")
-                                            .fadeIn(2000, 'easeOutQuad');
+            $(data.entries).prependTo("#extras-container")
+                           .animate({height: 'show'}, 1000, 'easeOutQuad');
           }
+          $("#show-timeline").hide();
           $("#hide-timeline").show();
         }
       },
@@ -1755,7 +1762,7 @@
  /* Hide the timeline panel */
   hideTimeline: function (e) {
     $("#hide-timeline").hide();
-    $("#timeline-results").hide();
+    $("#timeline-results").animate({height: 'hide'}, 1000, 'easeOutQuad');
     $("#show-timeline").show();
   },
 
