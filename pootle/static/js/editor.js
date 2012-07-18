@@ -1745,6 +1745,7 @@
             $(data.entries).hide().prependTo("#extras-container")
                                             .fadeIn(2000, 'easeOutQuad');
           }
+          $("#hide-timeline").show();
         }
       },
       error: PTL.editor.error
