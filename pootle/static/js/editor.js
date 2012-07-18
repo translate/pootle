@@ -1722,17 +1722,16 @@
       return;
     }
 
-    var _this = this,
-        uid = PTL.editor.activeUid,
+    var uid = PTL.editor.activeUid,
         timelineUrl = l("/unit/timeline/" + uid);
 
     // Always abort previous requests so we only get results for the
     // current unit
-    if (this.timelineReq != null) {
-      this.timelineReq.abort();
+    if (PTL.editor.timelineReq != null) {
+      PTL.editor.timelineReq.abort();
     }
 
-    this.timelineReq = $.ajax({
+    PTL.editor.timelineReq = $.ajax({
       url: timelineUrl,
       dataType: 'json',
       success: function (data) {
