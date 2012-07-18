@@ -92,7 +92,7 @@ def get_translation_stats(directory, dir_stats):
             {'num': dir_stats['fuzzy']['units']} },
         {'title': _("Untranslated"),
          'words': _('<a href="%(url)s">%(num)d words</a>') % \
-            {'url': dispatch.translate(directory, state='incomplete'),
+            {'url': dispatch.translate(directory, state='untranslated'),
              'num': dir_stats['untranslated']['words']},
          'percentage': _("%(num)d%%") % \
             {'num': dir_stats['untranslated']['percentage']},
