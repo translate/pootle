@@ -134,6 +134,19 @@
         <div id="orig{{ unit.index }}" class="translate-translation translate-original-focus" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
           <!-- Begin: Normal editing -->
           {{ form.target_f }}
+          {% if language.specialchars %}
+            {% if cantranslate or cansuggest %}
+            <div class="translate-specialchars-block" lang="{{ language.code }}">
+              {% for specialchar in language.specialchars %}
+              {% if not specialchar.isspace %}
+              <a class="editor-specialchar js-editor-copytext" title="{% trans 'Click to insert this symbol into the editor' %}">{{ specialchar }}</a>
+              {% else %}
+              <span class="extraspace"> </span>
+              {% endif %}
+              {% endfor %}
+            </div>
+            {% endif %}
+          {% endif %}
         </div>
       </form>
     </div>
@@ -141,17 +154,6 @@
     <div class="translate-middle">
       <a id="show-timeline" class="tiny" href='{{ "/unit/timeline/"|l }}{{ unit.id }}'>{% trans 'Timeline' %}</a>
       <a id="hide-timeline" class="tiny ptr" style="display: none;">{% trans 'Hide Timeline' %}</a>
-      {% if cantranslate or cansuggest %}
-      <div class="translate-specialchars-block" lang="{{ language.code }}">
-        {% for specialchar in language.specialchars %}
-        {% if not specialchar.isspace %}
-        <a class="editor-specialchar js-editor-copytext" title="{% trans 'Click to insert this symbol into the editor' %}">{{ specialchar }}</a>
-        {% else %}
-        <span class="extraspace"> </span>
-        {% endif %}
-        {% endfor %}
-      </div>
-      {% endif %}
       {% if cantranslate %}
       <div id="editor-comment">
         <a class="collapse tiny" tabindex="15">{% trans "Add Comment" %}</a>
