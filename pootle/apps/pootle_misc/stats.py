@@ -65,40 +65,55 @@ def get_raw_stats(path_obj):
 def get_translation_stats(directory, dir_stats):
     """Returns a list of statistics ready to be displayed."""
 
-    stats = [
-        {'title': _("Total"),
-         'words': _('<a href="%(url)s">%(num)d words</a>') % \
-            {'url': dispatch.translate(directory),
-             'num': dir_stats['total']['words']},
-         'percentage': _("%(num)d%%") % \
-            {'num': dir_stats['total']['percentage']},
-         'units': _("(%(num)d units)") % \
-            {'num': dir_stats['total']['units']} },
-        {'title': _("Translated"),
-         'words': _('<a href="%(url)s">%(num)d words</a>') % \
-            {'url': dispatch.translate(directory, state='translated'),
-             'num': dir_stats['translated']['words']},
-         'percentage': _("%(num)d%%") % \
-            {'num': dir_stats['translated']['percentage']},
-         'units': _("(%(num)d units)") % \
-            {'num': dir_stats['translated']['units']} },
-        {'title': _("Fuzzy"),
-         'words': _('<a href="%(url)s">%(num)d words</a>') % \
-            {'url': dispatch.translate(directory, state='fuzzy'),
-             'num': dir_stats['fuzzy']['words']},
-         'percentage': _("%(num)d%%") % \
-            {'num': dir_stats['fuzzy']['percentage']},
-         'units': _("(%(num)d units)") % \
-            {'num': dir_stats['fuzzy']['units']} },
-        {'title': _("Untranslated"),
-         'words': _('<a href="%(url)s">%(num)d words</a>') % \
-            {'url': dispatch.translate(directory, state='untranslated'),
-             'num': dir_stats['untranslated']['words']},
-         'percentage': _("%(num)d%%") % \
-            {'num': dir_stats['untranslated']['percentage']},
-         'units': _("(%(num)d units)") % \
-            {'num': dir_stats['untranslated']['units']} }
-    ]
+    stats = []
+
+    if dir_stats['total']['units'] > 0:
+        stats.append({
+            'title': _("Total"),
+            'words': _('<a href="%(url)s">%(num)d words</a>') % \
+                {'url': dispatch.translate(directory),
+                 'num': dir_stats['total']['words']},
+            'percentage': _("%(num)d%%") % \
+                {'num': dir_stats['total']['percentage']},
+            'units': _("(%(num)d units)") % \
+                {'num': dir_stats['total']['units']}
+        })
+
+    if dir_stats['translated']['units'] > 0:
+        stats.append({
+            'title': _("Translated"),
+            'words': _('<a href="%(url)s">%(num)d words</a>') % \
+                {'url': dispatch.translate(directory, state='translated'),
+                 'num': dir_stats['translated']['words']},
+            'percentage': _("%(num)d%%") % \
+                {'num': dir_stats['translated']['percentage']},
+            'units': _("(%(num)d units)") % \
+                {'num': dir_stats['translated']['units']}
+        })
+
+    if dir_stats['fuzzy']['units'] > 0:
+        stats.append({
+            'title': _("Fuzzy"),
+            'words': _('<a href="%(url)s">%(num)d words</a>') % \
+                {'url': dispatch.translate(directory, state='fuzzy'),
+                 'num': dir_stats['fuzzy']['words']},
+            'percentage': _("%(num)d%%") % \
+                {'num': dir_stats['fuzzy']['percentage']},
+            'units': _("(%(num)d units)") % \
+                {'num': dir_stats['fuzzy']['units']}
+        })
+
+    if dir_stats['untranslated']['units'] > 0:
+        stats.append({
+            'title': _("Untranslated"),
+            'words': _('<a href="%(url)s">%(num)d words</a>') % \
+                {'url': dispatch.translate(directory, state='untranslated'),
+                 'num': dir_stats['untranslated']['words']},
+            'percentage': _("%(num)d%%") % \
+                {'num': dir_stats['untranslated']['percentage']},
+            'units': _("(%(num)d units)") % \
+                {'num': dir_stats['untranslated']['units']}
+        })
 
     return stats
 
@@ -113,15 +128,19 @@ def get_directory_summary(directory, dir_stats):
            dir_stats['total']['words']) % {
                'num': dir_stats['total']['words'],
                'percentage': dir_stats['translated']['percentage']
-           },
-        ungettext('<a class="directory-incomplete" href="%(url)s">%(num)d word '
-           'needs translation</a>',
-           '<a class="directory-incomplete" href="%(url)s">%(num)d words '
-           'need translation</a>',
-           dir_stats['untranslated']['words']) % {
-               'num': dir_stats['untranslated']['words'],
-               'url': dispatch.translate(directory, state='incomplete')
-           },
+           }
     ]
+
+    if dir_stats['untranslated']['words'] > 0:
+        summary.append(
+            ungettext('<a class="directory-incomplete" href="%(url)s">%(num)d '
+               'word needs translation</a>',
+               '<a class="directory-incomplete" href="%(url)s">%(num)d words '
+               'need translation</a>',
+               dir_stats['untranslated']['words']) % {
+                   'num': dir_stats['untranslated']['words'],
+                   'url': dispatch.translate(directory, state='incomplete')
+               }
+        )
 
     return summary
