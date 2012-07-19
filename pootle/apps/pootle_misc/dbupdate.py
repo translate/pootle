@@ -44,6 +44,7 @@ from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_translationproject.models import TranslationProject
 from pootle_misc.dbinit import stats_start, stats_language, stats_project, stats_end
+from pootle_notifications.models import Notice
 
 def flush_quality_checks():
     """reverts stores to unchecked state. if store has false positives

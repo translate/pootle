@@ -23,17 +23,22 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.shortcuts import get_object_or_404
-from django import forms
-from django.forms import ModelForm
+from django.core.mail import send_mail
+from django.db.models import Q
 
 from pootle.i18n.gettext import tr_lang
 
 from pootle_app.models import Directory
-from pootle_app.models.permissions import get_matching_permissions, check_permission
+from pootle_app.models.permissions import get_matching_permissions, check_permission, check_profile_permission
 from pootle_app.views.language import navbar_dict
-from pootle_profile.models import get_profile
+from pootle_language.models import Language
+from pootle_notifications.models import Notice, NoticeForm
+from pootle_translationproject.models import TranslationProject
+from pootle_project.models import Project
+from pootle_profile.models import get_profile, PootleProfile
+from pootle.settings import DEFAULT_FROM_EMAIL
 
-from pootle_notifications.models import Notice
+import sys
 
 def view(request, path):
     #FIXME: why do we have leading and trailing slashes in pootle_path?
@@ -49,9 +54,32 @@ def view(request, path):
     template_vars = {'path': path,
                      'directory': directory}
 
+    # Find language and project defaults, passed to handle_form
+    proj = None
+    lang = None
+    if not directory.is_language() and not directory.is_project():
+        try:
+            translation_project = directory.get_translationproject()
+            lang = translation_project.language
+            proj = translation_project.project
+        except:
+            pass
+    else:
+        if directory.is_language():
+                lang = directory.language
+                proj = None
+        if directory.is_project():
+                lang = None
+                proj = directory.project
+        
+
     if check_permission('administrate', request):
-        template_vars['form'] = handle_form(request, directory)
+        # Thus, form is only set for the template if the user has 'administrate' permission
+        template_vars['form'] = handle_form(request, directory, proj, lang, template_vars)
         template_vars['title'] = directory_to_title(directory)
+    else:
+        template_vars['form'] = None
+
     if request.GET.get('all', False):
         template_vars['notices'] = Notice.objects.filter(directory__pootle_path__startswith=directory.pootle_path).select_related('directory')[:30]
     else:
@@ -90,24 +118,167 @@ def directory_to_title(directory):
     return _('News for %(path)s',
              {'path': directory.pootle_path})
 
-def handle_form(request, current_directory):
-    class NoticeForm(ModelForm):
-        directory = forms.ModelChoiceField(
-            queryset=Directory.objects.filter(pk=current_directory.pk),
-            initial=current_directory.pk, widget=forms.HiddenInput)
+def handle_form(request, current_directory, current_project, current_language, template_vars):
 
-        class Meta:
-            model = Notice
-
+    current_project_pk = None
+    if current_project != None:
+        current_project_pk = current_project.pk
+        
+    current_language_pk = None
+    if current_language != None:
+        current_language_pk = current_language.pk
+    
+    # Check if the user submitted the form    
     if request.method == 'POST':
+
+        # Reconstruct the NoticeForm with the user data.
         form = NoticeForm(request.POST)
+        template_vars['notices_published'] = None
+
+        # Basic validation, only proceed if the form data is valid.
         if form.is_valid():
-            form.save()
-            form = NoticeForm()
+            
+            # Lets save this NoticeForm as a Notice (an RSS item on the website)
+            # if it is requsted we do that - ie 'publish_rss' is true.
+            if form.cleaned_data['publish_rss'] == True:
+            
+                proj_filter = Q()
+                lang_filter = Q()
+                # Find the Projects we want to publish this news to.
+                if form.cleaned_data['project_all'] == True:
+                    projs = Project.objects.all()
+                else:
+                    projs = form.cleaned_data['project_selection']
+
+                # Find the Languages we want to publish this news to.
+                if form.cleaned_data['language_all'] == True:
+                    langs = Language.objects.all()
+                else:
+                    langs = form.cleaned_data['language_selection']
+                # construct the language OR filter
+                for lang in langs:
+                    lang_filter|=Q(language__exact=lang)
+
+                #
+                # We use all the projects that we want to publish this News to.
+                #
+                # For each project, depending on language selection, publish news into that Directory
+                #
+                for p in projs:
+                    # If the user selected no language, and not "every lang", then just use the project's directory.    
+                    if form.cleaned_data['language_selection'] == [] and form.cleaned_data['language_all'] == False:
+                        # Publish this Notice, using the project's Directory object
+                        new_notice = Notice()
+                        new_notice.message = form.cleaned_data['message']
+                        new_notice.directory = p.directory
+                        new_notice.save()
+
+                        if template_vars['notices_published'] == None:
+                            template_vars['notices_published'] = []
+                        template_vars['notices_published'].append("Published to Project %s" % p.fullname)
+                            
+                    else:
+                        # Find the languages we want to restrict publishing News to, for this particular Project.
+                        # Lets find the TranslationProject to find the directory object to use.
+                        translationprojects_to_publish_to = TranslationProject.objects.filter(lang_filter,project__exact=p).distinct()
+                        for tp in translationprojects_to_publish_to:
+                            # Publish this Notice, using the translation project's Directory obejct
+                            new_notice = Notice()
+                            new_notice.message = form.cleaned_data['message']
+                            new_notice.directory = tp.directory
+                            new_notice.save()
+
+                            if template_vars['notices_published'] == None:
+                                template_vars['notices_published'] = []
+                            template_vars['notices_published'].append("Published to Translation Project %s" % tp.fullname)
+
+                #
+                # We use all the languages that we want to publish this News to, and for each lang, publish news into that Directory
+                # We only need to check if the user selected no projects - the case of selected projects and languages is covered above.
+
+                # If the user selected no project, and not "every proj", then just use the languages's directory.   
+                if form.cleaned_data['project_selection'] == [] and form.cleaned_data['project_all'] == False:
+                    for l in langs:
+                        # Publish this Notice, using the languages's Directory object
+                        new_notice = Notice()
+                        new_notice.message = form.cleaned_data['message']
+                        new_notice.directory = l.directory
+                        new_notice.save()
+
+                        if template_vars['notices_published'] == None:
+                            template_vars['notices_published'] = []
+                        template_vars['notices_published'].append("Published to Language %s" % l.fullname)
+                            
+
+            # If we want to email it , then do that.
+            if form.cleaned_data['send_email'] == True:
+
+                email_header = form.cleaned_data['email_header']
+                proj_filter = Q()
+                lang_filter = Q()
+                # Find users to send email too, based on project
+                if form.cleaned_data['project_all'] == True:
+                    projs = Project.objects.all()
+                else:
+                    projs = form.cleaned_data['project_selection']
+                # Construct the project OR filter
+                for proj in projs:
+                    proj_filter|=Q(projects__exact=proj)
+
+                # Find users to send email too, based on language
+                if form.cleaned_data['language_all'] == True:
+                    langs = Language.objects.all()
+                else:
+                    langs = form.cleaned_data['language_selection']
+                # construct the language OR filter
+                for lang in langs:
+                    lang_filter|=Q(languages__exact=lang)
+            
+                # Generate a list of pootleprofile objects, which are linked to Users and their emails. 
+                #
+
+                # Take into account 'only active users' flag from the form.
+                if form.cleaned_data['restrict_to_active_users'] == True:
+                    to_list = PootleProfile.objects.filter(lang_filter,proj_filter).distinct().exclude(submission=None).exclude(suggestion=None).exclude(suggester=None)
+                else:
+                    # Grab all appropriate Profiles.
+                    to_list = PootleProfile.objects.filter(lang_filter,proj_filter).distinct()
+
+                to_list_emails = []
+                for person in to_list:
+                    #Check if the User object here as permissions
+                    if not check_profile_permission(person, 'view', form.cleaned_data['directory']):
+                        continue
+                    if person.user.email != '':
+                        to_list_emails.append(person.user.email)        
+                        if template_vars['notices_published'] == None:
+                            template_vars['notices_published'] = []
+                        template_vars['notices_published'].append("Sent an email to %s" % person.user.email)
+    
+                # The rest of the email settings 
+                from_email = DEFAULT_FROM_EMAIL
+                message = form.cleaned_data['message']
+
+                # Send the email to the list of people
+                send_mail(email_header, message, from_email, to_list_emails, fail_silently=True)        
+
+        # Finally return a blank Form to allow user to continue publishing notices
+        # with our defaults
+        form = NoticeForm(initial = noticeform_initial_dict(current_directory,\
+                current_project_pk, current_language_pk) )
+
     else:
-        form = NoticeForm()
+        # Not a POST method. Return a default starting state of the form
+        form = NoticeForm(initial = noticeform_initial_dict(current_directory,\
+                current_project_pk, current_language_pk) )
 
     return form
+
+
+def noticeform_initial_dict(current_directory, current_project_pk, current_language_pk):
+    return  { 'publish_rss': True , 'directory' : current_directory.pk,\
+        'project_all':False, 'language_all':False, 'project_selection':(current_project_pk,),\
+        'language_selection':(current_language_pk,), }
 
 
 def view_notice_item(request, path, notice_id):
