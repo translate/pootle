@@ -152,20 +152,19 @@
     </div>
 
     <div class="translate-middle">
-      <a id="show-timeline" class="tiny" href='{{ "/unit/timeline/"|l }}{{ unit.id }}'>{% trans 'Timeline' %}</a>
-      <a id="hide-timeline" class="tiny ptr" style="display: none;">{% trans 'Hide Timeline' %}</a>
-      {% if cantranslate %}
-      <div id="editor-comment">
-        <a class="collapse tiny" tabindex="15">{% trans "Add Comment" %}</a>
-        <!-- Comment form -->
-        <div class="collapsethis">
+      <div id="extras-bar">
+        {% if cantranslate %}<a class="js-editor-comment" tabindex="15">{% trans "Add Comment" %}</a>{% endif %}
+        <a id="show-timeline" href='{{ "/unit/timeline/"|l }}{{ unit.id }}'>{% trans 'Show Timeline' %}</a>
+        <a id="hide-timeline" class="hide">{% trans 'Hide Timeline' %}</a>
+        {% if cantranslate %}
+        <div id="editor-comment" class="hide">
           <form id="comment-form" action="{% url pootle_store.views.comment unit.id %}" method="post">
             <p>{{ comment_form.translator_comment }}</p>
             <p><input type="submit" value="{% trans 'Submit' %}" /></p>
           </form>
         </div>
+        {% endif %}
       </div>
-      {% endif %}
       <!-- Latest comment, [timeline of changes], suggestions from users
            and Translation Memory -->
       <div id="extras-container">

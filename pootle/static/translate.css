@@ -520,12 +520,24 @@ body.zoom-out-2 .sidebar
     text-align: right;
 }
 
-/* SUGGESTIONS, TM RESULTS, COMMENTS */
+/* EXTRAS: SUGGESTIONS, TM RESULTS, COMMENTS */
 
 #extras-container
 {
-    margin-top: 1.8em;
-    margin-bottom: 1em;
+    margin-top: .5em;
+}
+
+#extras-bar a
+{
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 0.9em;
+}
+
+html[dir="rtl"] #extras-bar a
+{
+    margin-right: 0;
+    margin-left: 10px;
 }
 
 .extra-item-block
@@ -677,22 +689,9 @@ html[dir="rtl"] .timeline-extra
     right: 100%;
 }
 
-
-#show-timeline,
-#hide-timeline
+#editor-comment
 {
-    float: right;
-}
-
-html[dir="rtl"] #show-timeline,
-html[dir="rtl"] #hide-timeline
-{
-    float: left;
-}
-
-#timeline-content
-{
-    margin: 5% 15% 0%; 5%
+    margin: 10px 0;
 }
 
 /* CHECKS */

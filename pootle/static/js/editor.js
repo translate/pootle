@@ -213,6 +213,10 @@
     $(document).on("click", ".js-hide-ctx", this.hideContext);
 
     /* Commenting */
+    $(document).on("click", ".js-editor-comment", function (e) {
+      e.preventDefault();
+      $("#editor-comment").slideToggle("fast");
+    });
     $(document).on("submit", "#comment-form", this.comment);
 
     /* Search */
