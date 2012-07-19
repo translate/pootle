@@ -2133,6 +2133,11 @@ html[dir="rtl"] .pull-right
     float: left;
 }
 
+.muted
+{
+    color: #999;
+}
+
 
 /*
  * LANGUAGE SPECIFIC SETTINGS

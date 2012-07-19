@@ -28,7 +28,11 @@
     </div>
 </td>
 <td class="stats-number">
+    {% if item.todo_words > 0 %}
     <a href="{% filter l %}{% if item.isfile %}{{ item.href_todo }}{% else %}{{ item.href }}{{ "translate.html#filter=incomplete"|force_escape }}{% endif %}{% endfilter %}" title="{{ item.todo_tooltip }}">{{ item.todo_words }}</a>
+    {% else %}
+    <span class="muted">{{ item.todo_words }}</span>
+    {% endif %}
 </td>
 {% else %}
 <td colspan="2"></td>
