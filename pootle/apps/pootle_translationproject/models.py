@@ -383,13 +383,20 @@ class TranslationProject(models.Model):
 
         from pootle_misc import versioncontrol
         versioncontrol.update_dir(self.real_path)
-        self.scan_files()
+        all_files, new_files = self.scan_files()
+        new_file_set = set(new_files)
 
         from pootle.scripts import hooks
         from pootle_misc import versioncontrol
 
         # Go through all stores except any pootle-terminology.* ones
         for store in self.stores.exclude(file="").iterator():
+            if store in new_file_set:
+                # these won't have to be merged, since they are new
+                remotestats = store.getquickstats()
+                remote_stats = dictsum(remote_stats, remotestats)
+                continue
+
             store.sync(update_translation=True)
             try:
                 hooks.hook(self.project.code, "preupdate", store.file.name)
