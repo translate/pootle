@@ -968,11 +968,15 @@ div.translation-text-headers[dir="rtl"] a.report-bug
     opacity: 1;
 }
 
+.editor-specialchars-block
+{
+    text-align: center;
+}
+
 a.editor-specialchar
 {
     border: 1px dotted #999;
     padding: 0 0.2em;
-    text-align: center;
     min-width: 1.3em;
     margin: 2px 0;
     color: #666;

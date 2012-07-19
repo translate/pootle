@@ -136,7 +136,7 @@
           {{ form.target_f }}
           {% if language.specialchars %}
             {% if cantranslate or cansuggest %}
-            <div class="translate-specialchars-block" lang="{{ language.code }}">
+            <div class="editor-specialchars-block" lang="{{ language.code }}">
               {% for specialchar in language.specialchars %}
               {% if not specialchar.isspace %}
               <a class="editor-specialchar js-editor-copytext" title="{% trans 'Click to insert this symbol into the editor' %}">{{ specialchar }}</a>
