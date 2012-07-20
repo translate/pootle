@@ -124,7 +124,7 @@ def export_as_xliff(request, store):
     if not (last_export and last_export == store.get_mtime() and os.path.isfile(abs_export_path)):
         from pootle_app.project_tree import ensure_target_dir_exists
         from translate.storage.poxliff import PoXliffFile
-        import tempfile
+        from pootle_misc import ptempfile as tempfile
         import shutil
         ensure_target_dir_exists(abs_export_path)
         outputstore = store.convert(PoXliffFile)
@@ -153,7 +153,7 @@ def export_as_type(request, store, filetype):
     last_export = cache.get(key)
     if not (last_export and last_export == store.get_mtime() and os.path.isfile(abs_export_path)):
         from pootle_app.project_tree import ensure_target_dir_exists
-        import tempfile
+        from pootle_misc import ptempfile as tempfile
         import shutil
         ensure_target_dir_exists(abs_export_path)
         outputstore = store.convert(klass)

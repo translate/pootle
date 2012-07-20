@@ -511,7 +511,7 @@ class TranslationProject(models.Model):
     def get_archive(self, stores, path=None):
         """returns an archive of the given filenames"""
         tempzipfile = None
-        import tempfile
+        from pootle_misc import ptempfile as tempfile
         import shutil
         try:
             # using zip command line is fast

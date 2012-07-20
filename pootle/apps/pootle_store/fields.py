@@ -228,7 +228,7 @@ class TranslationStoreFieldFile(FieldFile):
         """Saves to temporary file then moves over original file. This
         way we avoid the need for locking."""
         import shutil
-        import tempfile
+        from pootle_misc import ptempfile as tempfile
         tmpfile, tmpfilename = tempfile.mkstemp(suffix=self.filename)
         os.close(tmpfile)
         self.store.savefile(tmpfilename)

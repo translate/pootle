@@ -383,10 +383,10 @@ def get_local_filename(translation_project, upload_filename):
 
 def unzip_external(request, directory, django_file, overwrite):
     # Make a temporary directory to hold a zip file and its unzipped contents
-    from tempfile import mkdtemp, mkstemp
-    tempdir = mkdtemp(prefix='pootle')
+    from pootle_misc import ptempfile as tempfile
+    tempdir = tempfile.mkdtemp(prefix='pootle')
     # Make a temporary file to hold the zip file
-    tempzipfd, tempzipname = mkstemp(prefix='pootle', suffix='.zip')
+    tempzipfd, tempzipname = tempfile.mkstemp(prefix='pootle', suffix='.zip')
     try:
         # Dump the uploaded file to the temporary file
         try:
