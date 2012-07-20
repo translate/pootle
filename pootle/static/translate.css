@@ -556,29 +556,26 @@ html[dir="rtl"] #extras-bar a
     font-size: 85%;
 }
 
-.extra-item-block .rejectsugg img
+.rejectsugg img,
+.acceptsugg img
 {
-    cursor: pointer;
-}
-
-.extra-item-block .acceptsugg img
-{
-    cursor: pointer;
-}
-
-.extra-item-block .rejectsugg img,
-.extra-item-block .acceptsugg img
-{
-    float: right;
     top: 50%;
     filter:alpha(opacity=10);
     -moz-opacity: 0.1;
     -khtml-opacity: 0.1;
     opacity: 0.1;
 }
-.extra-item-block .rejectsugg img[dir="rtl"],
-.extra-item-block .acceptsugg img[dir="rtl"],
-.extra-item-block .suggestion-vote img[dir="rtl"]
+
+a.rejectsugg,
+a.acceptsugg,
+a.suggestion-vote
+{
+    float: right;
+}
+
+html[dir="rtl"] .rejectsugg,
+html[dir="rtl"] .acceptsugg,
+html[dir="rtl"] .suggestion-vote
 {
     float: left;
 }
@@ -611,15 +608,13 @@ html[dir="rtl"] #extras-bar a
     text-shadow: 0 0 8px #777;
 }
 
-.extra-item-block .suggestion-vote img
+.suggestion-vote img
 {
     top: 50%;
     filter:alpha(opacity=30);
     -moz-opacity: 0.3;
     -khtml-opacity: 0.3;
     opacity: 0.3;
-    float: right;
-    cursor: pointer;
 }
 
 .extra-item
