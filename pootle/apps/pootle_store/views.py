@@ -609,7 +609,15 @@ def comment(request, unit):
     if form.is_valid():
         form.save()
 
-        json = {'comment': unit.translator_comment}
+        context = {
+            'comment': unit.translator_comment,
+            'language': language,
+            'submitter': request.profile,
+        }
+        t = loader.get_template('unit/xhr-comment.html')
+        c = RequestContext(request, context)
+
+        json = {'comment': t.render(c)}
         rcode = 200
     else:
         json = {'msg':  _("Comment submission failed.")}
