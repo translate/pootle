@@ -661,7 +661,7 @@ def get_edit_unit(request, unit):
     project = translation_project.project
     report_target = ensure_uri(project.report_target)
 
-    suggestions, suggestion_details = get_sugg_list(unit)
+    suggestions = get_sugg_list(unit)
     template_vars = {
         'unit': unit,
         'form': form,
@@ -680,7 +680,6 @@ def get_edit_unit(request, unit):
                                 project=project),
         'report_target': report_target,
         'suggestions': suggestions,
-        'suggestion_detail': suggestion_details,
     }
 
     if translation_project.project.is_terminology or store.is_terminology:

@@ -119,27 +119,28 @@ except ImportError, e:
 
 
 def get_sugg_list(unit):
-    """get suggested translations for given unit with the localized
-    title string for each suggestions"""
-    # this function is only needed to avoid translations strings with
-    # variables in templates, since template translation is not safe
-    # and might fail on livetranslation
+    """Get suggested translations and rated scores for the given unit.
+
+    :return: List of tuples containing the suggestion and the score for
+             it in case it's a terminology project. Otherwise the score
+             part is filled with False values.
+    """
     sugg_list = []
     scores = {}
     suggestions = unit.get_suggestions()
+
     if suggestions:
-        # avoid the votes query if we're not editing terminology
-        if unit.store.is_terminology or unit.store.translation_project.project.is_terminology:
+        # Avoid the votes query if we're not editing terminology
+        if (unit.store.is_terminology or
+            unit.store.translation_project.project.is_terminology):
             from voting.models import Vote
             scores = Vote.objects.get_scores_in_bulk(suggestions)
-    for i, sugg in enumerate(suggestions):
-        title = _(u"Suggestion %(i)d by %(user)s:", {'i': i+1, 'user': sugg.user})
+
+    for sugg in suggestions:
         score = scores.get(sugg.id, False)
-        sugg_list.append((sugg, title, score))
-    if len(sugg_list) == 1:
-        sugg = sugg_list[0][0]
-        sugg_list = [(sugg, _(u"Suggestion by %(user)s", {'user': sugg.user}), scores.get(sugg.id, False))]
-    return suggestions, sugg_list
+        sugg_list.append((sugg, score))
+
+    return sugg_list
 
 
 @register.filter('stat_summary')
@@ -222,7 +223,7 @@ def render_unit_edit(context, form):
     alt_src_langs = context['alt_src_langs']
     translation_project = context['translation_project']
     project = translation_project.project
-    suggestions, suggestion_detail = get_sugg_list(unit)
+    suggestions = get_sugg_list(unit)
     template_vars = {'unit': unit,
                      'form': form,
                      'store': store,
@@ -235,7 +236,6 @@ def render_unit_edit(context, form):
                      'canreview': context['canreview'],
                      'altsrcs': find_altsrcs(unit, alt_src_langs, store=store, project=project),
                      "suggestions": suggestions,
-                     "suggestion_detail": suggestion_detail,
                      }
     return template_vars
 
