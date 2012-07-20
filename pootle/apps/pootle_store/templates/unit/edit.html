@@ -196,7 +196,7 @@
               {% for i, target, diff, title in sugg|pluralize_diff_sugg %}
               <div id="suggdiff-{{sugg.id}}-{{i}}" class="suggestion-translation" lang="{{ language.code }}" dir="{{ language.get_direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ diff }}</div>
               <div class="extra-gravatar">
-                <img src="{{ sugg.user|gravatar:24 }}" alt="{{ sugg.user.username }}" width="24" height="24" title="{{ sugg.user }}" />
+                <a href="{{ sugg.user.get_absolute_url }}"><img src="{{ sugg.user|gravatar:24 }}" alt="{{ sugg.user.username }}" width="24" height="24" title="{{ sugg.user }}" /></a>
               </div>
               {% endfor %}
             </div>

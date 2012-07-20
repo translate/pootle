@@ -7,7 +7,7 @@
       <div class="suggestion-translation" lang="{{ language.code }}" dir="{{ language.get_direction }}" title="{{ datetime }}">{{ value }}</div>
       {% if submitter %}
       <div class="extra-gravatar">
-        <img src="{{ submitter|gravatar:24 }}" alt="{{ submitter.user.username }}" width="24" height="24" title="{{ submitter }}" />
+        <a href="{{ submitter.get_absolute_url }}"><img src="{{ submitter|gravatar:24 }}" alt="{{ submitter.user.username }}" width="24" height="24" title="{{ submitter }}" /></a>
       </div>
       {% endif %}
     </div>
