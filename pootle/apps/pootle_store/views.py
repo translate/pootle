@@ -582,10 +582,9 @@ def timeline(request, unit):
         # the unit on screen at the time of receiving this, so we add the uid.
         json = {'uid': unit.id}
 
-        if values:
-            t = loader.get_template('unit/xhr-timeline.html')
-            c = RequestContext(request, ec)
-            json['entries'] = t.render(c)
+        t = loader.get_template('unit/xhr-timeline.html')
+        c = RequestContext(request, ec)
+        json['entries'] = t.render(c)
 
         response = simplejson.dumps(json)
         return HttpResponse(response, mimetype="application/json")
