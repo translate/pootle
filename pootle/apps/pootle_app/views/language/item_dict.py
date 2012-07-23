@@ -116,41 +116,6 @@ def getcheckdetails(request, path_obj):
 
 ################################################################################
 
-def review_link(request, path_obj):
-    try:
-        if path_obj.has_suggestions():
-            if check_permission('translate', request):
-                text = _('Review Suggestions')
-            else:
-                text = _('View Suggestions')
-            return {
-                    'class': 'translate',
-                    'href': dispatch.translate(path_obj, suggestions=True),
-                    'text': text}
-    except IOError:
-        pass
-
-def quick_link(request, path_obj):
-    try:
-        if path_obj.getquickstats()['translated'] < path_obj.getquickstats()['total']:
-            if check_permission('translate', request):
-                text = _('Quick Translate')
-            else:
-                text = _('View Untranslated')
-            return {
-                    'class': 'translate',
-                    'href': dispatch.translate(path_obj, state='incomplete'),
-                    'text': text}
-    except IOError:
-        pass
-
-def translate_all_link(request, path_obj):
-    #FIXME: what permissions to check for here?
-    return {
-        'class': 'translate',
-        'href': dispatch.translate(path_obj),
-        'text': _('Translate All')}
-
 def zip_link(request, path_obj):
     if check_permission('archive', request):
         text = _('ZIP of directory')
@@ -191,18 +156,6 @@ def download_link(request, path_obj):
         return {
             'class': 'file download',
             'href': '%s/download/' % path_obj.pootle_path,
-            'text': text,
-            'title': tooltip,
-            }
-
-def upload_link(request, path_obj):
-        #FIXME: check for upload permissions
-        text = _('Upload Translated File')
-        tooltip = _('Open dialog for file upload/merge')
-        link = 'javascript:alert("Not implemented")' #FIXME: provide actual link
-        return {
-            'class': 'translate upload',
-            'href': link,
             'text': text,
             'title': tooltip,
             }
@@ -251,21 +204,12 @@ def _gen_link_list(request, path_obj, linkfuncs):
 
 def store_translate_links(request, path_obj):
     """returns a list of links for store items in translate tab"""
-    linkfuncs = [quick_link, translate_all_link, xliff_link, download_link, update_link, commit_link]
-    return _gen_link_list(request, path_obj, linkfuncs)
-
-def store_review_links(request, path_obj):
-    """returns a list of links for store items in review tab"""
-    linkfuncs = [review_link]
+    linkfuncs = [xliff_link, download_link, update_link, commit_link]
     return _gen_link_list(request, path_obj, linkfuncs)
 
 def directory_translate_links(request, path_obj):
     """returns a list of links for directory items in translate tab"""
-    return _gen_link_list(request, path_obj, [quick_link, translate_all_link, upload_link, zip_link])
-
-def directory_review_links(request, path_obj):
-    """returns a list of links for directory items in review tab"""
-    return _gen_link_list(request, path_obj, [review_link])
+    return _gen_link_list(request, path_obj, [zip_link])
 
 
 ################################################################################

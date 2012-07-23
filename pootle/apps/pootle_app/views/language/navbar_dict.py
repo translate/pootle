@@ -26,8 +26,7 @@ from pootle.i18n.gettext import tr_lang
 
 from pootle_app.models.permissions import check_permission
 from pootle_app.views.language import dispatch, item_dict
-from pootle_app.views.language.item_dict import (directory_translate_links,
-                                                 directory_review_links)
+from pootle_app.views.language.item_dict import directory_translate_links
 from pootle_misc import url_manip
 
 
@@ -43,8 +42,6 @@ def make_directory_actions(request, links_required=None):
     directory = request.translation_project.directory
     if links_required == 'translate':
         return directory_translate_links(request, directory)
-    elif links_required == 'review':
-        return directory_review_links(request, directory)
 
 def make_navbar_path_dict(request, path_links=None):
     language = request.translation_project.language
