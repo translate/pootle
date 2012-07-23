@@ -194,10 +194,10 @@
     });
     $(document).on("click", "input.submit, input.suggest", this.processSubmit);
     $(document).on("click", "input.previous, input.next", this.gotoPrevNext);
-    $(document).on("click", "#extras-container .rejectsugg", this.rejectSuggestion);
-    $(document).on("click", "#extras-container .acceptsugg", this.acceptSuggestion);
-    $(document).on("click", "#extras-container .clearvote", this.clearVote);
-    $(document).on("click", "#extras-container .voteup", this.voteUp);
+    $(document).on("click", "#suggestions .rejectsugg", this.rejectSuggestion);
+    $(document).on("click", "#suggestions .acceptsugg", this.acceptSuggestion);
+    $(document).on("click", "#suggestions .clearvote", this.clearVote);
+    $(document).on("click", "#suggestions .voteup", this.voteUp);
     $(document).on("click", "#show-timeline", this.showTimeline);
     $(document).on("click", "#hide-timeline", this.hideTimeline);
     $(document).on("click", "#translate-checks-block .rejectcheck", this.rejectCheck);
@@ -1840,9 +1840,9 @@
   /* Rejects a suggestion */
   rejectSuggestion: function (e) {
     e.stopPropagation(); //we don't want to trigger a click on the text below
-    var element = $(this).parent().parent(), // the top suggestion div
+    var suggId = $(this).attr("id").split("-")[1],
+        element = $("#suggestion-" + suggId);
         uid = $('.translate-container #id_id').val(),
-        suggId = $(this).siblings("input.suggid").val(),
         url = l('/suggestion/reject/') + uid + '/' + suggId;
 
     $.post(url, {'reject': 1},
@@ -1851,7 +1851,7 @@
           $(this).remove();
 
           // Go to the next unit if there are no more suggestions left
-          if (!$("#extras-container div[id^=suggestion]").length) {
+          if (!$("#suggestions div[id^=suggestion]").length) {
             $("input.next").trigger("click");
           }
         });
@@ -1862,9 +1862,9 @@
   /* Accepts a suggestion */
   acceptSuggestion: function (e) {
     e.stopPropagation(); //we don't want to trigger a click on the text below
-    var element = $(this).parent().parent(), // the top suggestion div
+    var suggId = $(this).attr("id").split("-")[1],
+        element = $("#suggestion-" + suggId);
         uid = $('.translate-container #id_id').val(),
-        suggId = $(this).siblings("input.suggid").val(),
         url = l('/suggestion/accept/') + uid + '/' + suggId;
 
     $.post(url, {'accept': 1},
@@ -1891,7 +1891,7 @@
           $(this).remove();
 
           // Go to the next unit if there are no more suggestions left
-          if (!$("#extras-container div[id^=suggestion]").length) {
+          if (!$("#suggestions div[id^=suggestion]").length) {
             $("input.next").trigger("click");
           }
         });
@@ -1913,7 +1913,7 @@
       dataType: 'json',
       success: function (data) {
         element.hide();
-        element.siblings("#extras-container .voteup").fadeTo(200, 1);
+        element.siblings("#suggestions .voteup").fadeTo(200, 1);
       },
       error: function (xhr, s) {
         PTL.editor.error(xhr, s);
@@ -1940,7 +1940,7 @@
       success: function (data) {
         element.siblings("input.voteid").attr("value", data.voteid);
         element.hide();
-        element.siblings("#extras-container .clearvote").fadeTo(200, 1);
+        element.siblings("#suggestions .clearvote").fadeTo(200, 1);
       },
       error: function (xhr, s) {
         PTL.editor.error(xhr, s);
