@@ -189,32 +189,31 @@
       {% if suggestions %}
       <div id="suggestions">
         <div class="extra-item-title clear">{% trans 'User suggestions' %}</div>
-          {% for sugg, score in suggestions %}
-          <div id="suggestion{{ sugg.id }}" class="extra-item-block">
-            {% for i, target, diff, title in sugg|pluralize_diff_sugg %}
-            <div class="extra-item-gravatar">
-              <a href="{{ sugg.user.get_absolute_url }}"><img src="{{ sugg.user|gravatar:24 }}" alt="{{ sugg.user.username }}" width="24" height="24" title="{{ sugg.user }}" /></a>
-            </div>
-            <div class="extra-item-content">
-              <div class="extra-item js-editor-copytext">
-                {% if canreview %}
-                <input type="hidden" id="sugg-{{sugg.id }}" class="suggid" name="suggid" value="{{ sugg.id }}" />
-                <a accesskey="a" id="accept-{{ sugg.id }}" class="acceptsugg"><img src='{{ "images/accept.png"|m }}' title="{% trans 'Accept suggestion' %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
-                <a accesskey="r" id="reject-{{ sugg.id }}" class="rejectsugg"><img src='{{ "images/reject.png"|m }}' title="{% trans 'Reject suggestion' %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
-                {% else %}
-                {% if user.is_authenticated and profile == sugg.user%}
-                <input type="hidden" id="sugg-{{sugg.id }}" class="suggid" name="suggid" value="{{ sugg.id }}" />
-                <a title="{% trans 'Remove suggestion' %}" accesskey="r" id="reject-{{ sugg.id }}" class="rejectsugg"><img src='{{ "images/reject.png"|m }}' dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
-                {% endif %}
-                {% endif %}
+        {% for sugg, score in suggestions %}
+        <div id="suggestion-{{ sugg.id }}" class="extra-item-block">
+          {% for i, target, diff, title in sugg|pluralize_diff_sugg %}
+          <div class="extra-item-gravatar">
+            <a href="{{ sugg.user.get_absolute_url }}"><img src="{{ sugg.user|gravatar:24 }}" alt="{{ sugg.user.username }}" width="24" height="24" title="{{ sugg.user }}" /></a>
+          </div>
+          <div class="extra-item-content">
+            <div class="extra-item js-editor-copytext">
+              {% if canreview %}
+              <input type="hidden" id="sugg-{{sugg.id }}" class="suggid" name="suggid" value="{{ sugg.id }}" />
+              <a accesskey="a" id="accept-{{ sugg.id }}" class="acceptsugg"><img src='{{ "images/accept.png"|m }}' title="{% trans 'Accept suggestion' %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
+              <a accesskey="r" id="reject-{{ sugg.id }}" class="rejectsugg"><img src='{{ "images/reject.png"|m }}' title="{% trans 'Reject suggestion' %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
+              {% else %}
+              {% if user.is_authenticated and profile == sugg.user%}
+              <input type="hidden" id="sugg-{{sugg.id }}" class="suggid" name="suggid" value="{{ sugg.id }}" />
+              <a title="{% trans 'Remove suggestion' %}" accesskey="r" id="reject-{{ sugg.id }}" class="rejectsugg"><img src='{{ "images/reject.png"|m }}' dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
+              {% endif %}
+              {% endif %}
 
-                <div id="suggdiff-{{sugg.id}}-{{i}}" class="suggestion-translation" lang="{{ language.code }}" dir="{{ language.get_direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ diff }}</div>
-              </div>
+              <div id="suggdiff-{{sugg.id}}-{{i}}" class="suggestion-translation" lang="{{ language.code }}" dir="{{ language.get_direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ diff }}</div>
             </div>
-            {% endfor %}
           </div>
           {% endfor %}
         </div>
+        {% endfor %}
       </div>
       {% endif %}
     </div>
