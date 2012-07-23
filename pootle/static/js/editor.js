@@ -1829,10 +1829,7 @@
                                                  suggs: filtered,
                                                  name: name}}).join("");
 
-          // Append results
-          $("#extras-container").append(tm);
-          $("#amagama_results").animate({height: 'show'}, 1000,
-                                           'easeOutQuad');
+          $(tm).hide().appendTo("#extras-container").show(1000, 'easeOutQuad');
         }
       },
       error: PTL.editor.error

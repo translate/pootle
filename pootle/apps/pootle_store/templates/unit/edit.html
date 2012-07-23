@@ -64,94 +64,99 @@
       {% endif %}
     </div>
     <div class="translate-middle">
-      <form action="" method="post" name="translate" id="translate">
-        {{ form.id.as_hidden }}
-        {{ form.index.as_hidden }}
-        {{ form.source_f.as_hidden }}
-        <div class="sources">
-          <!-- Alternative source language translations -->
-          {% for altunit in altsrcs %}
-          <div class="source-language alternative">
-            <div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-              <div class="language-name">{{ altunit.store.translation_project.language.localname }}</div>
-              {% if cansuggest or cantranslate %}
-              <div class="translate-toolbar">
-                <a class="icon-copy js-copyoriginal" title="{% trans 'Copy into translation' %}" accesskey="c"></a>
-              </div>
-              {% endif %}
-            </div>
-            <div id="unit-{{ altunit.id }}" class="translate-original translate-original-focus{% if unit.hasplural %} translate-plural{% endif %}">
-              {% for i, target, title in altunit|pluralize_target %}
-              <div class="translation-text" lang="{{ altunit.store.translation_project.language.code }}" dir="{{ altunit.store.translation_project.language.get_direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ target|fancy_highlight }}</div>
-              {% endfor %}
-              <div class="placeholder"></div>
-            </div>
-          </div>
-          {% endfor %}
-          <!-- Original -->
-          <div class="source-language original">
-            <div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-              <div class="language-name">{{ source_language.localname }}</div>
-              {% if cansuggest or cantranslate %}
-                {% if report_target %}
-                  <a class="report-bug" href="{{ report_target }}"><img src='{{ "images/bug.png"|m }}' title="{% trans 'Report a problem with the source string' %}" /></a>
+      <div id="target-item-gravatar">
+        <span class="invisible">placeholder</span>
+      </div>
+      <div id="target-item-content">
+        <form action="" method="post" name="translate" id="translate">
+          {{ form.id.as_hidden }}
+          {{ form.index.as_hidden }}
+          {{ form.source_f.as_hidden }}
+          <div class="sources">
+            <!-- Alternative source language translations -->
+            {% for altunit in altsrcs %}
+            <div class="source-language alternative">
+              <div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+                <div class="language-name">{{ altunit.store.translation_project.language.localname }}</div>
+                {% if cansuggest or cantranslate %}
+                <div class="translate-toolbar">
+                  <a class="icon-copy js-copyoriginal" title="{% trans 'Copy into translation' %}" accesskey="c"></a>
+                </div>
                 {% endif %}
-              <div class="translate-toolbar">
-                <a class="icon-copy js-copyoriginal" title="{% trans 'Copy into translation' %}" accesskey="c"></a>
               </div>
-              {% endif %}
+              <div id="unit-{{ altunit.id }}" class="translate-original translate-original-focus{% if unit.hasplural %} translate-plural{% endif %}">
+                {% for i, target, title in altunit|pluralize_target %}
+                <div class="translation-text" lang="{{ altunit.store.translation_project.language.code }}" dir="{{ altunit.store.translation_project.language.get_direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ target|fancy_highlight }}</div>
+                {% endfor %}
+                <div class="placeholder"></div>
+              </div>
             </div>
-            <div class="translate-original translate-original-focus{% if unit.hasplural %} translate-plural{% endif %}">
-              {% for i, source, title in unit|pluralize_source %}
-              <div class="translation-text" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ source|fancy_highlight }}</div>
-              {% endfor %}
-              <div class="placeholder"></div>
+            {% endfor %}
+            <!-- Original -->
+            <div class="source-language original">
+              <div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+                <div class="language-name">{{ source_language.localname }}</div>
+                {% if cansuggest or cantranslate %}
+                  {% if report_target %}
+                    <a class="report-bug" href="{{ report_target }}"><img src='{{ "images/bug.png"|m }}' title="{% trans 'Report a problem with the source string' %}" /></a>
+                  {% endif %}
+                <div class="translate-toolbar">
+                  <a class="icon-copy js-copyoriginal" title="{% trans 'Copy into translation' %}" accesskey="c"></a>
+                </div>
+                {% endif %}
+              </div>
+              <div class="translate-original translate-original-focus{% if unit.hasplural %} translate-plural{% endif %}">
+                {% for i, source, title in unit|pluralize_source %}
+                <div class="translation-text" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ source|fancy_highlight }}</div>
+                {% endfor %}
+                <div class="placeholder"></div>
+              </div>
             </div>
           </div>
-        </div>
-        <!-- Buttons, resize links, special characters -->
-        <div class="buttons translate-buttons-block" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-          {% if cantranslate %}
-          <input type="submit" name="submit" class="submit" tabindex="11" accesskey="s" value="{% trans 'Submit' %}" title="{% trans 'Submit translation and go to the next unit (Ctrl+Enter)' %}" />
-          {% endif %}
-          {% if cansuggest %}
-          <input type="submit" name="suggest" class="suggest" tabindex="11" accesskey="s" value="{% trans 'Suggest' %}" title="{% trans 'Suggest translation and go to the next unit (Ctrl+Enter)' %}" />
-          {% endif %}
-          <input type="hidden" name="store" value="{{ store }}" />
-          <input type="hidden" name="path" value="{{ store|l }}" />
-          <input type="hidden" name="pootle_path" value="{{ store.pootle_path }}" />
-          {% if cansuggest and cantranslate %}
-          <div class="switch-suggest-mode tiny" lang="{{ LANGUAGE_CODE }}" title="{% trans 'Toggle suggest mode (Ctrl+Shift+Space)' %}">
-            <div class="suggest"><a href="#">&harr; {% trans "Submit" %}</a></div>
-            <div class="submit"><a href="#">&harr; {% trans "Suggest" %}</a></div>
-          </div>
-          {% endif %}
-          <div class="translate-fuzzy-block" lang="{{ LANGUAGE_CODE }}" title="{% trans 'Toggle fuzzy state (Ctrl+Space)' %}">
-            {{ form.state }} {{ form.state.label_tag }}
-          </div>
-        </div>
-        <!-- Translation -->
-        <div id="orig{{ unit.index }}" class="translate-translation translate-original-focus" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-          <!-- Begin: Normal editing -->
-          {{ form.target_f }}
-          {% if language.specialchars %}
-            {% if cantranslate or cansuggest %}
-            <div class="editor-specialchars-block" lang="{{ language.code }}">
-              {% for specialchar in language.specialchars %}
-              {% if not specialchar.isspace %}
-              <a class="editor-specialchar js-editor-copytext" title="{% trans 'Click to insert this symbol into the editor' %}">{{ specialchar }}</a>
-              {% else %}
-              <span class="extraspace"> </span>
-              {% endif %}
-              {% endfor %}
+          <!-- Buttons, resize links, special characters -->
+          <div class="buttons translate-buttons-block" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+            {% if cantranslate %}
+            <input type="submit" name="submit" class="submit" tabindex="11" accesskey="s" value="{% trans 'Submit' %}" title="{% trans 'Submit translation and go to the next unit (Ctrl+Enter)' %}" />
+            {% endif %}
+            {% if cansuggest %}
+            <input type="submit" name="suggest" class="suggest" tabindex="11" accesskey="s" value="{% trans 'Suggest' %}" title="{% trans 'Suggest translation and go to the next unit (Ctrl+Enter)' %}" />
+            {% endif %}
+            <input type="hidden" name="store" value="{{ store }}" />
+            <input type="hidden" name="path" value="{{ store|l }}" />
+            <input type="hidden" name="pootle_path" value="{{ store.pootle_path }}" />
+            {% if cansuggest and cantranslate %}
+            <div class="switch-suggest-mode tiny" lang="{{ LANGUAGE_CODE }}" title="{% trans 'Toggle suggest mode (Ctrl+Shift+Space)' %}">
+              <div class="suggest"><a href="#">&harr; {% trans "Submit" %}</a></div>
+              <div class="submit"><a href="#">&harr; {% trans "Suggest" %}</a></div>
             </div>
             {% endif %}
-          {% endif %}
-        </div>
-      </form>
+            <div class="translate-fuzzy-block" lang="{{ LANGUAGE_CODE }}" title="{% trans 'Toggle fuzzy state (Ctrl+Space)' %}">
+              {{ form.state }} {{ form.state.label_tag }}
+            </div>
+          </div>
+          <!-- Translation -->
+          <div id="orig{{ unit.index }}" class="translate-translation translate-original-focus" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+            <!-- Begin: Normal editing -->
+            {{ form.target_f }}
+            {% if language.specialchars %}
+              {% if cantranslate or cansuggest %}
+              <div class="editor-specialchars-block" lang="{{ language.code }}">
+                {% for specialchar in language.specialchars %}
+                {% if not specialchar.isspace %}
+                <a class="editor-specialchar js-editor-copytext" title="{% trans 'Click to insert this symbol into the editor' %}">{{ specialchar }}</a>
+                {% else %}
+                <span class="extraspace"> </span>
+                {% endif %}
+                {% endfor %}
+              </div>
+              {% endif %}
+            {% endif %}
+          </div>
+        </form>
+      </div>
     </div>
 
-    <div class="translate-middle">
+    <div class="translate-middle clear">
       <div id="extras-bar">
         {% if cantranslate %}<a class="js-editor-comment" tabindex="15">{% trans "Add Comment" %}</a>{% endif %}
         <a id="show-timeline" href='{{ "/unit/timeline/"|l }}{{ unit.id }}'>{% trans 'Show Timeline' %}</a>
@@ -171,35 +176,42 @@
       {% if unit.translator_comment %}
         <!-- Latest comment -->
         <div id="translator-comment" lang="{{ LANGUAGE_CODE }}">
-          <div class="extra-item">
-          {{ unit.translator_comment }}
+          <div class="extra-item-gravatar">
+            <span class="invisible">placeholder</span>
+          </div>
+          <div class="extra-item-content">
+            <div class="extra-item">
+            {{ unit.translator_comment }}
+            </div>
           </div>
         </div>
       {% endif %}
       {% if suggestions %}
       <div id="suggestions">
-        <div class="extra-item-title">{% trans 'User suggestions' %}</div>
+        <div class="extra-item-title clear">{% trans 'User suggestions' %}</div>
           {% for sugg, score in suggestions %}
           <div id="suggestion{{ sugg.id }}" class="extra-item-block">
-            <div class="extra-item js-editor-copytext">
-              {% if canreview %}
-              <input type="hidden" id="sugg-{{sugg.id }}" class="suggid" name="suggid" value="{{ sugg.id }}" />
-              <a accesskey="a" id="accept-{{ sugg.id }}" class="acceptsugg"><img src='{{ "images/accept.png"|m }}' title="{% trans 'Accept suggestion' %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
-              <a accesskey="r" id="reject-{{ sugg.id }}" class="rejectsugg"><img src='{{ "images/reject.png"|m }}' title="{% trans 'Reject suggestion' %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
-              {% else %}
-              {% if user.is_authenticated and profile == sugg.user%}
-              <input type="hidden" id="sugg-{{sugg.id }}" class="suggid" name="suggid" value="{{ sugg.id }}" />
-              <a title="{% trans 'Remove suggestion' %}" accesskey="r" id="reject-{{ sugg.id }}" class="rejectsugg"><img src='{{ "images/reject.png"|m }}' dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
-              {% endif %}
-              {% endif %}
-
-              {% for i, target, diff, title in sugg|pluralize_diff_sugg %}
-              <div id="suggdiff-{{sugg.id}}-{{i}}" class="suggestion-translation" lang="{{ language.code }}" dir="{{ language.get_direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ diff }}</div>
-              <div class="extra-gravatar">
-                <a href="{{ sugg.user.get_absolute_url }}"><img src="{{ sugg.user|gravatar:24 }}" alt="{{ sugg.user.username }}" width="24" height="24" title="{{ sugg.user }}" /></a>
-              </div>
-              {% endfor %}
+            {% for i, target, diff, title in sugg|pluralize_diff_sugg %}
+            <div class="extra-item-gravatar">
+              <a href="{{ sugg.user.get_absolute_url }}"><img src="{{ sugg.user|gravatar:24 }}" alt="{{ sugg.user.username }}" width="24" height="24" title="{{ sugg.user }}" /></a>
             </div>
+            <div class="extra-item-content">
+              <div class="extra-item js-editor-copytext">
+                {% if canreview %}
+                <input type="hidden" id="sugg-{{sugg.id }}" class="suggid" name="suggid" value="{{ sugg.id }}" />
+                <a accesskey="a" id="accept-{{ sugg.id }}" class="acceptsugg"><img src='{{ "images/accept.png"|m }}' title="{% trans 'Accept suggestion' %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
+                <a accesskey="r" id="reject-{{ sugg.id }}" class="rejectsugg"><img src='{{ "images/reject.png"|m }}' title="{% trans 'Reject suggestion' %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
+                {% else %}
+                {% if user.is_authenticated and profile == sugg.user%}
+                <input type="hidden" id="sugg-{{sugg.id }}" class="suggid" name="suggid" value="{{ sugg.id }}" />
+                <a title="{% trans 'Remove suggestion' %}" accesskey="r" id="reject-{{ sugg.id }}" class="rejectsugg"><img src='{{ "images/reject.png"|m }}' dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
+                {% endif %}
+                {% endif %}
+
+                <div id="suggdiff-{{sugg.id}}-{{i}}" class="suggestion-translation" lang="{{ language.code }}" dir="{{ language.get_direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ diff }}</div>
+              </div>
+            </div>
+            {% endfor %}
           </div>
           {% endfor %}
         </div>

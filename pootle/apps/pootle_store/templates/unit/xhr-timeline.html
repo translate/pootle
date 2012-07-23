@@ -1,15 +1,17 @@
 {% load i18n profile_tags %}
-<div id="timeline-results">
+<div id="timeline-results" class="clear">
   <div class="extra-item-title">{% trans 'Timeline' %}</div>
   {% for datetime, submitter, value in values %}
   <div class="extra-item-block">
-    <div class="extra-item">
-      <div class="suggestion-translation" lang="{{ language.code }}" dir="{{ language.get_direction }}" title="{{ datetime }}">{{ value }}</div>
-      {% if submitter %}
-      <div class="extra-gravatar">
-        <a href="{{ submitter.get_absolute_url }}"><img src="{{ submitter|gravatar:24 }}" alt="{{ submitter.user.username }}" width="24" height="24" title="{{ submitter }}" /></a>
+    {% if submitter %}
+    <div class="extra-item-gravatar">
+      <a href="{{ submitter.get_absolute_url }}"><img src="{{ submitter|gravatar:24 }}" alt="{{ submitter.user.username }}" width="24" height="24" title="{{ submitter }}" /></a>
+    </div>
+    {% endif %}
+    <div class="extra-item-content">
+      <div class="extra-item">
+        <div class="suggestion-translation" lang="{{ language.code }}" dir="{{ language.get_direction }}" title="{{ datetime }}">{{ value }}</div>
       </div>
-      {% endif %}
     </div>
   </div>
   {% endfor %}
