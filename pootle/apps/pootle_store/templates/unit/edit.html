@@ -5,19 +5,17 @@
 <td colspan="3" rowspan="1" class="translate-full translate-focus{% if unit.isfuzzy %} fuzzy-unit{% endif %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
   <div class="translate-container">
     <div class="translate-{% if LANGUAGE_BIDI %}right{% else %}left{% endif %}">
+      {% if unit.getcontext and unit.locations != unit.context %}
       <!-- Context information and comments -->
-      {% if unit.getcontext %}
-      {% ifnotequal unit.locations unit.context %}
       <div class="translate-context sidebar">
         <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Context:" %}</div>
         <div class="translate-context-value">
           {{ unit.getcontext }}
         </div>
       </div>
-      {% endifnotequal %}
       {% endif %}
-      <!-- Developer comments -->
       {% if unit.developer_comment or unit.locations %}
+      <!-- Developer comments -->
       <div class="comments sidebar">
         {% if unit.developer_comment %}
         <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Comments:" %}</div>
