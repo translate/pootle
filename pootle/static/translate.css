@@ -705,6 +705,12 @@ html[dir="rtl"] #target-item-content
     margin-right: 1%;
 }
 
+#timeline-results,
+#tm-results
+{
+    clear: both;
+}
+
 .timeline-extra
 {
     position:absolute;

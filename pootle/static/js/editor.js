@@ -1727,7 +1727,7 @@
     // The results might already be there from earlier:
     if ($("#timeline-results").length) {
       $("#hide-timeline").show();
-      $("#timeline-results").show(1000, 'easeOutQuad');
+      $("#timeline-results").slideDown(1000, 'easeOutQuad');
       $("#show-timeline").hide();
       return;
     }
@@ -1751,10 +1751,10 @@
           if (uid == PTL.editor.activeUid) {
             if ($("#translator-comment").length) {
               $(data.entries).hide().appendTo("#translator-comment")
-                             .show(1000, 'easeOutQuad');
+                             .slideDown(1000, 'easeOutQuad');
             } else {
               $(data.entries).hide().prependTo("#extras-container")
-                             .show(1000, 'easeOutQuad');
+                             .slideDown(1000, 'easeOutQuad');
             }
             $("#show-timeline").hide();
             $("#hide-timeline").show();
@@ -1768,7 +1768,7 @@
  /* Hide the timeline panel */
   hideTimeline: function (e) {
     $("#hide-timeline").hide();
-    $("#timeline-results").hide(1000, 'easeOutQuad');
+    $("#timeline-results").slideUp(1000, 'easeOutQuad');
     $("#show-timeline").show();
   },
 
@@ -1829,7 +1829,8 @@
                                                  suggs: filtered,
                                                  name: name}}).join("");
 
-          $(tm).hide().appendTo("#extras-container").show(1000, 'easeOutQuad');
+          $(tm).hide().appendTo("#extras-container")
+                      .slideDown(1000, 'easeOutQuad');
         }
       },
       error: PTL.editor.error
