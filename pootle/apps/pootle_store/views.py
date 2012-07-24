@@ -755,8 +755,6 @@ def process_submit(request, unit, type):
     else:
         snplurals = None
 
-    import copy
-    old_unit = copy.copy(unit)
     form_class = unit_form_factory(language, snplurals, request)
     form = form_class(request.POST, instance=unit)
 
