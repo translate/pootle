@@ -48,7 +48,7 @@ from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.stats import get_raw_stats
 from pootle_misc.util import paginate, ajax_required, jsonify
 from pootle_profile.models import get_profile
-from pootle_statistics.models import Submission, NORMAL, SUGG_ACCEPT
+from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_translationproject.forms import make_search_form
 
 from pootle_store.models import Store, Unit
@@ -770,7 +770,7 @@ def process_submit(request, unit, type):
                         submitter=request.profile,
                         unit=unit,
                         field=field,
-                        type=NORMAL,
+                        type=SubmissionTypes.NORMAL,
                         old_value=old_value,
                         new_value=new_value,
                 )
@@ -880,7 +880,7 @@ def accept_suggestion(request, unit, suggid):
                     from_suggestion=suggstat,
                     unit=unit,
                     field="pootle_store.Unit.target",
-                    type=SUGG_ACCEPT,
+                    type=SubmissionTypes.SUGG_ACCEPT,
                     old_value=old_target,
                     new_value=unit.target,
             )

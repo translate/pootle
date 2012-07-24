@@ -58,7 +58,7 @@ from pootle_store.models import Store
 from pootle_store.util import absolute_real_path, relative_real_path
 from pootle_store.filetypes import factory_classes
 from pootle_store.views import translate_page
-from pootle_statistics.models import Submission, UPLOAD
+from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_profile.models import get_profile
 
 
@@ -740,7 +740,7 @@ class UploadHandler(view_handler.Handler):
                     creation_time=datetime.datetime.utcnow(),
                     translation_project=translation_project,
                     submitter=get_profile(request.user),
-                    type=UPLOAD,
+                    type=SubmissionTypes.UPLOAD,
                     # the other fields are only relevant to unit-based changes
             )
             s.save()

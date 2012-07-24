@@ -29,7 +29,7 @@ from django.utils.translation import get_language, ugettext as _
 from translate.misc.multistring import multistring
 
 from pootle_app.models.permissions import check_permission
-from pootle_statistics.models import Submission, COMMENT
+from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_store.models import Unit
 from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED
 from pootle_store.fields import PLURAL_PLACEHOLDER, to_db
@@ -292,7 +292,7 @@ def unit_comment_form_factory(language):
                                  submitter=self.request.profile,
                                  unit=self.instance,
                                  field=field,
-                                 type=COMMENT,
+                                 type=SubmissionTypes.NORMAL,
                                  old_value=self.old_value,
                                  new_value=self.new_value)
                 sub.save()
