@@ -262,7 +262,7 @@ def unit_comment_form_factory(language):
             model = Unit
 
 
-        translator_comment = forms.CharField(required=False,
+        translator_comment = forms.CharField(required=True,
                                              label=_("Translator comment"),
                                              widget=forms.Textarea(
                                                  attrs=comment_attrs))
@@ -273,12 +273,6 @@ def unit_comment_form_factory(language):
             super(UnitCommentForm, self).__init__(*args, **kwargs)
 
 
-        def clean_translator_comment(self):
-            self.new_value = self.cleaned_data['translator_comment']
-
-            return self.new_value
-
-
         def save(self):
             """Registers the submission and saves the comment."""
             if self.has_changed():
@@ -286,14 +280,16 @@ def unit_comment_form_factory(language):
                 creation_time=datetime.utcnow()
                 translation_project = self.request.translation_project
 
-                sub = Submission(creation_time=creation_time,
-                                 translation_project=translation_project,
-                                 submitter=self.request.profile,
-                                 unit=self.instance,
-                                 field=field,
-                                 type=SubmissionTypes.NORMAL,
-                                 old_value=u"",
-                                 new_value=self.new_value)
+                sub = Submission(
+                    creation_time=creation_time,
+                    translation_project=translation_project,
+                    submitter=self.request.profile,
+                    unit=self.instance,
+                    field=field,
+                    type=SubmissionTypes.NORMAL,
+                    old_value=u"",
+                    new_value=self.cleaned_data['translator_comment']
+                )
                 sub.save()
 
             super(UnitCommentForm, self).save()
