@@ -34,6 +34,14 @@ class SubmissionTypes(object):
     UPLOAD = 4  # Uploading an offline file
 
 
+#: Values for the 'field' field of Submission
+class SubmissionFields(object):
+    SOURCE = 1  # pootle_store.models.Unit.source
+    TARGET = 2  # pootle_store.models.Unit.target
+    STATE = 3  #pootle_store.models.Unit.state
+    COMMENT = 4  #pootle_store.models.Unit.translator_comment
+
+
 class Submission(models.Model):
     class Meta:
         get_latest_by = "creation_time"
@@ -46,8 +54,8 @@ class Submission(models.Model):
     submitter           = models.ForeignKey('pootle_profile.PootleProfile', null=True, db_index=True)
     from_suggestion     = models.OneToOneField('pootle_app.Suggestion', null=True, db_index=True)
     unit                = models.ForeignKey('pootle_store.Unit', blank=True, null=True, on_delete=models.SET_NULL, db_index=True)
-    # the field in the unit that changed:
-    field               = models.CharField(max_length=128, blank=True, default=u"")
+    #: The field in the unit that changed
+    field               = models.IntegerField(null=True, blank=True, db_index=True)
     # how did this submission come about? (one of the constants above)
     type                = models.IntegerField(null=True, blank=True, db_index=True)
     # old_value and new_value can store string representations of multistrings

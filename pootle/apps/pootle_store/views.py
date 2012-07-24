@@ -48,7 +48,8 @@ from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.stats import get_raw_stats
 from pootle_misc.util import paginate, ajax_required, jsonify
 from pootle_profile.models import get_profile
-from pootle_statistics.models import Submission, SubmissionTypes
+from pootle_statistics.models import (Submission, SubmissionFields,
+                                      SubmissionTypes)
 from pootle_translationproject.forms import make_search_form
 
 from pootle_store.models import Store, Unit
@@ -541,7 +542,7 @@ def timeline(request, unit):
     """Returns a JSON-encoded string including the changes to the unit
     rendered in HTML.
     """
-    entries = Submission.objects.filter(unit=unit, field="pootle_store.Unit.target")
+    entries = Submission.objects.filter(unit=unit, field__in=[SubmissionFields.TARGET])
     entries = entries.select_related("submitter__user", "translation_project__language")
     #: List of tuples (datetime, submitter, value)
     values = []
@@ -879,7 +880,7 @@ def accept_suggestion(request, unit, suggid):
                     submitter=suggestion.user,
                     from_suggestion=suggstat,
                     unit=unit,
-                    field="pootle_store.Unit.target",
+                    field=SubmissionFields.TARGET,
                     type=SubmissionTypes.SUGG_ACCEPT,
                     old_value=old_target,
                     new_value=unit.target,

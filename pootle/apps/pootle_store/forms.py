@@ -29,7 +29,8 @@ from django.utils.translation import get_language, ugettext as _
 from translate.misc.multistring import multistring
 
 from pootle_app.models.permissions import check_permission
-from pootle_statistics.models import Submission, SubmissionTypes
+from pootle_statistics.models import (Submission, SubmissionFields,
+                                      SubmissionTypes)
 from pootle_store.models import Unit
 from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED
 from pootle_store.fields import PLURAL_PLACEHOLDER, to_db
@@ -201,7 +202,9 @@ def unit_form_factory(language, snplurals=None, request=None):
 
             if self.instance.source.strings != value:
                 self.instance._source_updated = True
-                self.updated_fields.append(("pootle_store.Unit.source", to_db(self.instance.source), to_db(value)))
+                self.updated_fields.append((SubmissionFields.SOURCE,
+                                            to_db(self.instance.source),
+                                            to_db(value)))
             if snplurals == 1:
                 # plural with single form, insert placeholder
                 value.append(PLURAL_PLACEHOLDER)
@@ -213,7 +216,9 @@ def unit_form_factory(language, snplurals=None, request=None):
 
             if self.instance.target.strings != multistring(value or [u'']):
                 self.instance._target_updated = True
-                self.updated_fields.append(("pootle_store.Unit.target", to_db(self.instance.target), to_db(value)))
+                self.updated_fields.append((SubmissionFields.TARGET,
+                                            to_db(self.instance.target),
+                                            to_db(value)))
 
             return value
 
@@ -234,7 +239,8 @@ def unit_form_factory(language, snplurals=None, request=None):
 
             if old_state != new_state:
                 self.instance._state_updated = True
-                self.updated_fields.append(("pootle_store.Unit.state", old_state, new_state))
+                self.updated_fields.append((SubmissionFields.STATE,
+                                            old_state, new_state))
             else:
                 self.instance._state_updated = False
 
@@ -276,7 +282,6 @@ def unit_comment_form_factory(language):
         def save(self):
             """Registers the submission and saves the comment."""
             if self.has_changed():
-                field = "pootle_store.Unit.translator_comment"
                 creation_time=datetime.utcnow()
                 translation_project = self.request.translation_project
 
@@ -285,7 +290,7 @@ def unit_comment_form_factory(language):
                     translation_project=translation_project,
                     submitter=self.request.profile,
                     unit=self.instance,
-                    field=field,
+                    field=SubmissionFields.COMMENT,
                     type=SubmissionTypes.NORMAL,
                     old_value=u"",
                     new_value=self.cleaned_data['translator_comment']
