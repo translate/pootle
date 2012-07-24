@@ -86,13 +86,6 @@ approach for this.
         </form>
         </div>
 
-      <script type="text/javascript">
-          $(document).ready(function() {
-            //Load the NoticeForm processing init code
-            noticeFormInit();
-          });
-      </script>
-
     {% else %}
         <h2>{% trans "Latest News" %} {{ name }}</h2>
     {% endif %}
@@ -112,15 +105,16 @@ approach for this.
 {% endblock %}
 
 {% block scripts_extra %}
-<script type="text/javascript">
- $(document).ready(function() {
-    $(".newsitem address, .newsitem blockcode, .newsitem blockquote, .newsitem :header, .newsitem p, .newsitem pre, .newsitem li, .newsitem dt, .newsitem dd, .newsitem ul, .newsitem ol, .newsitem dl").filter(":not([dir])").bidi();
-    });
-</script>
 {% if user.is_superuser or request.permissions.administrate %}
   {% assets "js_admin" %}
     <script type="text/javascript" src="{{ ASSET_URL }}"></script>
   {% endassets %}
 {% endif %}
+<script type="text/javascript">
+ $(document).ready(function() {
+    $(".newsitem address, .newsitem blockcode, .newsitem blockquote, .newsitem :header, .newsitem p, .newsitem pre, .newsitem li, .newsitem dt, .newsitem dd, .newsitem ul, .newsitem ol, .newsitem dl").filter(":not([dir])").bidi();
+    });
+    noticeFormInit();
+</script>
 
 {% endblock %}
