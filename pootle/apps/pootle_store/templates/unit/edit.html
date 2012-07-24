@@ -65,7 +65,11 @@
     </div>
     <div class="translate-middle">
       <div id="target-item-gravatar">
+        {% if unit.submitted_by %}
+        <a href="{{ unit.submitted_by.get_absolute_url }}"><img src="{{ unit.submitted_by|gravatar:24 }}" alt="{{ unit.submitted_by.username }}" width="24" height="24" title="{{ unit.submitted_by.user }}" /></a>
+        {% else %}
         <span class="invisible">placeholder</span>
+        {% endif %}
       </div>
       <div id="target-item-content">
         <form action="" method="post" name="translate" id="translate">
@@ -177,7 +181,11 @@
         <!-- Latest comment -->
         <div id="translator-comment" lang="{{ LANGUAGE_CODE }}">
           <div class="extra-item-gravatar">
+            {% if unit.commented_by %}
+            <a href="{{ unit.commented_by.get_absolute_url }}"><img src="{{ unit.commented_by|gravatar:24 }}" alt="{{ unit.commented_by.username }}" width="24" height="24" title="{{ unit.commented_by.user }}" /></a>
+            {% else %}
             <span class="invisible">placeholder</span>
+            {% endif %}
           </div>
           <div class="extra-item-content">
             <div class="extra-item">

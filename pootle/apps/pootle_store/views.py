@@ -603,6 +603,10 @@ def comment(request, unit):
     :return: If the form validates, the cleaned comment is returned.
              An error message is returned otherwise.
     """
+    # Update current unit instance's attributes
+    unit.commented_by = request.profile
+    unit.commented_on = datetime.utcnow()
+
     language = request.translation_project.language
     form = unit_comment_form_factory(language)(request.POST, instance=unit,
                                                request=request)
@@ -733,6 +737,8 @@ def get_failing_checks_store(request, store):
     return get_failing_checks(request, store)
 
 
+# TODO: split this function into more logical and independent submit
+#       and suggest functions
 @ajax_required
 @get_unit_context('')
 def process_submit(request, unit, type):
@@ -754,6 +760,10 @@ def process_submit(request, unit, type):
         snplurals = len(unit.source.strings)
     else:
         snplurals = None
+
+    # Update current unit instance's attributes
+    unit.submitted_by = request.profile
+    unit.submitted_on = datetime.utcnow()
 
     form_class = unit_form_factory(language, snplurals, request)
     form = form_class(request.POST, instance=unit)
