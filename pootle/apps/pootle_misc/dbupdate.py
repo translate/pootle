@@ -256,6 +256,14 @@ def update_tables_22000():
         field = Submission._meta.get_field(field_name)
         db.add_column(table_name, field.name, field)
 
+    from pootle_store.models import Unit
+    table_name = Unit._meta.db_table
+    for field_name in ('submitted_by', 'submitted_on', 'commented_by',
+                       'commented_on'):
+        print "ADDING", field_name
+        field = Unit._meta.get_field(field_name)
+        db.add_column(table_name, field.name, field)
+
     text += """
     <p>%s</p>
     """ % _('Removing quality checks, will be recalculated on demand...')
