@@ -274,7 +274,6 @@ def unit_comment_form_factory(language):
 
 
         def clean_translator_comment(self):
-            self.old_value = self.instance.translator_comment or u''
             self.new_value = self.cleaned_data['translator_comment']
 
             return self.new_value
@@ -293,7 +292,7 @@ def unit_comment_form_factory(language):
                                  unit=self.instance,
                                  field=field,
                                  type=SubmissionTypes.NORMAL,
-                                 old_value=self.old_value,
+                                 old_value=u"",
                                  new_value=self.new_value)
                 sub.save()
 
