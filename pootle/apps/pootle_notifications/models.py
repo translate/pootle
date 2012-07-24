@@ -22,8 +22,14 @@ import locale
 
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.db.models import Q
+from django import forms
 
+from pootle_app.models import Directory
 from pootle_misc.baseurl import l
+from pootle_language.models import Language
+from pootle_project.models import Project
+
 
 class Notice(models.Model):
     directory = models.ForeignKey('pootle_app.Directory', db_index=True)
@@ -42,3 +48,23 @@ class Notice(models.Model):
 
     class Meta:
         ordering = ["-added"]
+
+
+class NoticeForm(forms.Form):
+
+    directory = forms.ModelChoiceField(queryset=Directory.objects.all(), widget=forms.HiddenInput)
+
+    # Notice attributes
+    message = forms.CharField(_('Message'), widget=forms.Textarea)
+    publish_rss = forms.BooleanField(label=_('Publish on News feed'),required=False)
+    send_email = forms.BooleanField(label=_('Send Email'), required=False)
+    email_header = forms.CharField(label=_('Title'), required=False)
+    restrict_to_active_users = forms.BooleanField(label=_('Email only to recently active users'), required=False)
+
+    #project selection
+    project_all = forms.BooleanField(label=_('All Projects'), required=False)
+    project_selection = forms.ModelMultipleChoiceField(queryset=Project.objects.all(), required=False)
+
+    #language selection
+    language_all = forms.BooleanField(label=_('All Languages'), required=False)
+    language_selection = forms.ModelMultipleChoiceField(queryset=Language.objects.all(), required=False)
