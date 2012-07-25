@@ -173,7 +173,7 @@ def handle_form(request, current_directory, current_project, current_language, t
 
                         if template_vars['notices_published'] == None:
                             template_vars['notices_published'] = []
-                        template_vars['notices_published'].append("Published to Project %s" % p.fullname)
+                        template_vars['notices_published'].append(_("Published to Project %s", p.fullname))
 
                     else:
                         # Find the languages we want to restrict publishing News to, for this particular Project.
@@ -188,7 +188,7 @@ def handle_form(request, current_directory, current_project, current_language, t
 
                             if template_vars['notices_published'] == None:
                                 template_vars['notices_published'] = []
-                            template_vars['notices_published'].append("Published to Translation Project %s" % tp.fullname)
+                            template_vars['notices_published'].append(_("Published to Translation Project %s", tp.fullname))
 
                 # We use all the languages that we want to publish this News to, and for each lang, publish news into that Directory
                 # We only need to check if the user selected no projects - the case of selected projects and languages is covered above.
@@ -204,7 +204,7 @@ def handle_form(request, current_directory, current_project, current_language, t
 
                         if template_vars['notices_published'] == None:
                             template_vars['notices_published'] = []
-                        template_vars['notices_published'].append("Published to Language %s" % l.fullname)
+                        template_vars['notices_published'].append(_("Published to Language %s", l.fullname))
 
 
             # If we want to email it , then do that.
@@ -250,7 +250,7 @@ def handle_form(request, current_directory, current_project, current_language, t
                         to_list_emails.append(person.user.email)
                         if template_vars['notices_published'] == None:
                             template_vars['notices_published'] = []
-                        template_vars['notices_published'].append("Sent an email to %s" % person.user.email)
+                        template_vars['notices_published'].append(_("Sent an email to %s", person.user.email))
 
                 # The rest of the email settings
                 from_email = DEFAULT_FROM_EMAIL
