@@ -142,7 +142,6 @@ def handle_form(request, current_directory, current_project, current_language, t
             # if it is requsted we do that - ie 'publish_rss' is true.
             if form.cleaned_data['publish_rss'] == True:
 
-                proj_filter = Q()
                 lang_filter = Q()
                 # Find the Projects we want to publish this news to.
                 if form.cleaned_data['project_all'] == True:
@@ -157,7 +156,7 @@ def handle_form(request, current_directory, current_project, current_language, t
                     langs = form.cleaned_data['language_selection']
                 # construct the language OR filter
                 for lang in langs:
-                    lang_filter|=Q(language__exact=lang)
+                    lang_filter |= Q(language__exact=lang)
 
                 # We use all the projects that we want to publish this News to.
                 # For each project, depending on language selection, publish
@@ -178,7 +177,7 @@ def handle_form(request, current_directory, current_project, current_language, t
                     else:
                         # Find the languages we want to restrict publishing News to, for this particular Project.
                         # Lets find the TranslationProject to find the directory object to use.
-                        translationprojects_to_publish_to = TranslationProject.objects.filter(lang_filter,project__exact=p).distinct()
+                        translationprojects_to_publish_to = TranslationProject.objects.filter(lang_filter, project__exact=p).distinct()
                         for tp in translationprojects_to_publish_to:
                             # Publish this Notice, using the translation project's Directory obejct
                             new_notice = Notice()
@@ -220,7 +219,7 @@ def handle_form(request, current_directory, current_project, current_language, t
                     projs = form.cleaned_data['project_selection']
                 # Construct the project OR filter
                 for proj in projs:
-                    proj_filter|=Q(projects__exact=proj)
+                    proj_filter |= Q(projects__exact=proj)
 
                 # Find users to send email too, based on language
                 if form.cleaned_data['language_all'] == True:
@@ -229,17 +228,17 @@ def handle_form(request, current_directory, current_project, current_language, t
                     langs = form.cleaned_data['language_selection']
                 # construct the language OR filter
                 for lang in langs:
-                    lang_filter|=Q(languages__exact=lang)
+                    lang_filter |= Q(languages__exact=lang)
 
                 # Generate a list of pootleprofile objects, which are linked to Users and their emails.
                 #
 
                 # Take into account 'only active users' flag from the form.
                 if form.cleaned_data['restrict_to_active_users'] == True:
-                    to_list = PootleProfile.objects.filter(lang_filter,proj_filter).distinct().exclude(submission=None).exclude(suggestion=None).exclude(suggester=None)
+                    to_list = PootleProfile.objects.filter(lang_filter, proj_filter).distinct().exclude(submission=None).exclude(suggestion=None).exclude(suggester=None)
                 else:
                     # Grab all appropriate Profiles.
-                    to_list = PootleProfile.objects.filter(lang_filter,proj_filter).distinct()
+                    to_list = PootleProfile.objects.filter(lang_filter, proj_filter).distinct()
 
                 to_list_emails = []
                 for person in to_list:
