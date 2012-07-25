@@ -737,21 +737,20 @@ def get_failing_checks_store(request, store):
     return get_failing_checks(request, store)
 
 
-# TODO: split this function into more logical and independent submit
-#       and suggest functions
 @ajax_required
 @get_unit_context('')
-def process_submit(request, unit, type):
-    """Processes submissions and suggestions and stores them in the database.
+def submit(request, unit):
+    """Processes translation submissions and stores them in the database.
 
     :return: An object in JSON notation that contains the previous and last
              units for the unit next to unit ``uid``.
     """
     json = {}
+
     cantranslate = check_permission("translate", request)
-    cansuggest = check_permission("suggest", request)
-    if type == 'submission' and not cantranslate or type == 'suggestion' and not cansuggest:
-        raise PermissionDenied(_("You do not have rights to access translation mode."))
+    if not cantranslate:
+        raise PermissionDenied(_("You do not have rights to access "
+                                 "translation mode."))
 
     translation_project = request.translation_project
     language = translation_project.language
@@ -769,8 +768,8 @@ def process_submit(request, unit, type):
     form = form_class(request.POST, instance=unit)
 
     if form.is_valid():
-        if type == 'submission' and form.updated_fields:
-            # Store creation time so that it is the same for all submissions:
+        if form.updated_fields:
+            # Store creation time so that it is the same for all submissions
             creation_time=datetime.utcnow()
             for field, old_value, new_value in form.updated_fields:
                 sub = Submission(
@@ -792,22 +791,61 @@ def process_submit(request, unit, type):
                     profile=request.profile,
             )
 
-        elif type == 'suggestion':
-            if form.instance._target_updated:
-                #HACKISH: django 1.2 stupidly modifies instance on
-                # model form validation, reload unit from db
-                unit = Unit.objects.get(id=unit.id)
-                sugg = unit.add_suggestion(form.cleaned_data['target_f'], request.profile)
-                if sugg:
-                    SuggestionStat.objects.get_or_create(translation_project=translation_project,
-                                                         suggester=request.profile,
-                                                         state='pending', unit=unit.id)
         rcode = 200
     else:
         # Form failed
         #FIXME: we should display validation errors here
         rcode = 400
-        json["msg"] = _("Failed to process submit.")
+        json["msg"] = _("Failed to process submission.")
+    response = jsonify(json)
+    return HttpResponse(response, status=rcode, mimetype="application/json")
+
+
+@ajax_required
+@get_unit_context('')
+def suggest(request, unit):
+    """Processes translation suggestions and stores them in the database.
+
+    :return: An object in JSON notation that contains the previous and last
+             units for the unit next to unit ``uid``.
+    """
+    json = {}
+
+    cansuggest = check_permission("suggest", request)
+    if not cansuggest:
+        raise PermissionDenied(_("You do not have rights to access "
+                                 "translation mode."))
+
+    translation_project = request.translation_project
+    language = translation_project.language
+
+    if unit.hasplural():
+        snplurals = len(unit.source.strings)
+    else:
+        snplurals = None
+
+    form_class = unit_form_factory(language, snplurals, request)
+    form = form_class(request.POST, instance=unit)
+
+    if form.is_valid():
+        if form.instance._target_updated:
+            # TODO: Review if this hackish method is still necessary
+            #HACKISH: django 1.2 stupidly modifies instance on
+            # model form validation, reload unit from db
+            unit = Unit.objects.get(id=unit.id)
+            sugg = unit.add_suggestion(form.cleaned_data['target_f'],
+                                       request.profile)
+            if sugg:
+                SuggestionStat.objects.get_or_create(
+                    translation_project=translation_project,
+                    suggester=request.profile, state='pending', unit=unit.id
+                )
+        rcode = 200
+    else:
+        # Form failed
+        #FIXME: we should display validation errors here
+        rcode = 400
+        json["msg"] = _("Failed to process suggestion.")
     response = jsonify(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
 

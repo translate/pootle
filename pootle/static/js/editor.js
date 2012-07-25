@@ -192,7 +192,8 @@
           PTL.editor.gotoPage(parseInt($("#item-number").val()));
         }
     });
-    $(document).on("click", "input.submit, input.suggest", this.processSubmit);
+    $(document).on("click", "input.submit", this.submit);
+    $(document).on("click", "input.suggest", this.suggest);
     $(document).on("click", "input.previous, input.next", this.gotoPrevNext);
     $(document).on("click", "#suggestions .rejectsugg", this.rejectSuggestion);
     $(document).on("click", "#suggestions .acceptsugg", this.acceptSuggestion);
@@ -1280,29 +1281,18 @@
     return editor;
   },
 
-
-  /* Pushes submissions or suggestions and moves to the next unit */
-  processSubmit: function (e, typeClass) {
+  /* Pushes translation submissions and moves to the next unit */
+  submit: function (e) {
     e.preventDefault();
 
-    var formId, reqData, submitUrl, type,
+    var reqData, submitUrl,
         uid = PTL.editor.activeUid,
-        typeMap = {submit: "submission", suggest: "suggestion"};
+        form = $("#captcha").ifExists() || $("#translate");
 
-    // Detect whether it's being called from a normal submit or
-    // from a captcha
-    if (typeClass == undefined) {
-      typeClass = $(e.target).attr("class");
-      formId = "translate";
-    } else {
-      formId = "captcha";
-    }
-
-    type = typeMap[typeClass];
-    submitUrl = l('/unit/process/' + uid + '/' + type);
+    submitUrl = l('/unit/submit/' + uid);
 
     // Serialize data to be sent and get required attributes for the request
-    reqData = $("form#" + formId).serializeObject();
+    reqData = form.serializeObject();
     $.extend(reqData, PTL.editor.getReqData());
 
     $.ajax({
@@ -1318,25 +1308,60 @@
         } else {
           // If it has been a successful submission, update the data
           // stored in the client
-          if (type == 'submission') {
-            PTL.editor.units[uid].isfuzzy = PTL.editor.isFuzzy();
-            $("textarea[id^=id_target_f_]").each(function (i) {
-              PTL.editor.units[uid].target[i].text = PTL.editor.cleanEscape($(this).val());
-            });
-          }
+          PTL.editor.units[uid].isfuzzy = PTL.editor.isFuzzy();
+          $("textarea[id^=id_target_f_]").each(function (i) {
+            PTL.editor.units[uid].target[i].text = PTL.editor.cleanEscape($(this).val());
+          });
 
-          // Try loading the next unit
-          var newUid = parseInt(PTL.editor.units[uid].next);
-          if (newUid) {
-            var newHash = PTL.utils.updateHashPart("unit", newUid, ["page"]);
-            $.history.load(newHash);
-          } else {
-            PTL.editor.displayError(gettext("Congratulations, you walked through all items"));
-          }
+          PTL.editor.loadNext(uid);
         }
       },
       error: PTL.editor.error
     });
+  },
+
+  /* Pushes translation suggestions and moves to the next unit */
+  suggest: function (e) {
+    e.preventDefault();
+
+    var reqData, suggestUrl,
+        uid = PTL.editor.activeUid,
+        form = $("#captcha").ifExists() || $("#translate");
+
+    suggestUrl = l('/unit/suggest/' + uid);
+
+    // Serialize data to be sent and get required attributes for the request
+    reqData = form.serializeObject();
+    $.extend(reqData, PTL.editor.getReqData());
+
+    $.ajax({
+      url: suggestUrl,
+      type: 'POST',
+      data: reqData,
+      dataType: 'json',
+      async: false,
+      success: function (data) {
+        if (data.captcha) {
+          $.fancybox(data.captcha);
+          $("#id_captcha_answer").focus();
+        } else {
+          PTL.editor.loadNext(uid);
+        }
+      },
+      error: PTL.editor.error
+    });
+  },
+
+  /* Loads the next unit */
+  loadNext: function (uid) {
+    // FIXME: we can reuse the 'gotoPrevNext' function below for this purpose
+    var newUid = parseInt(PTL.editor.units[uid].next);
+    if (newUid) {
+      var newHash = PTL.utils.updateHashPart("unit", newUid, ["page"]);
+      $.history.load(newHash);
+    } else {
+      PTL.editor.displayError(gettext("Congratulations, you walked through all items"));
+    }
   },
 
   /* Loads the editor with the next unit */
