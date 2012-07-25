@@ -59,7 +59,8 @@ from pootle_store.templatetags.store_tags import (find_altsrcs, get_sugg_list,
                                                   highlight_diffs,
                                                   pluralize_source,
                                                   pluralize_target)
-from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED, absolute_real_path
+from pootle_store.util import (UNTRANSLATED, FUZZY, TRANSLATED, STATES_MAP,
+                               absolute_real_path)
 from pootle_store.signals import translation_submitted
 
 
@@ -542,56 +543,67 @@ def timeline(request, unit):
     """Returns a JSON-encoded string including the changes to the unit
     rendered in HTML.
     """
-    entries = Submission.objects.filter(unit=unit, field__in=[SubmissionFields.TARGET])
-    entries = entries.select_related("submitter__user", "translation_project__language")
-    #: List of tuples (datetime, submitter, value)
-    values = []
+    timeline = Submission.objects.filter(unit=unit, field__in=[
+        SubmissionFields.TARGET, SubmissionFields.STATE,
+        SubmissionFields.COMMENT
+    ])
+    timeline = timeline.select_related("submitter__user",
+                                       "translation_project__language")
+
+    context = {}
+    entries_group = []
 
     import locale
+    from itertools import groupby
     from pootle_store.fields import to_python
 
-    old_value = u""
-    language = None
+    for key, values in groupby(timeline, key=lambda x: x.creation_time):
+        entry_group = {
+            'datetime': key.strftime(locale.nl_langinfo(locale.D_T_FMT)),
+            'entries': [],
+        }
 
-    for entry in entries:
-        language = entry.translation_project.language
-        # If the old_value doesn't correspond to the previous new_value, let's
-        # add it anyway, even if we don't have more information about it. It
-        # might be because of an upload, VCS action, etc. that wasn't recorded.
-        if old_value != entry.old_value:
-            # Translators: this refers to an unknown date
-            values.append((_("(unknown)"), u"", to_python(entry.old_value)))
-        old_value = entry.new_value
-        values.append((
-                entry.creation_time.strftime(locale.nl_langinfo(locale.D_T_FMT)),
-                entry.submitter,
-                to_python(old_value),
-        ))
+        for item in values:
+            # Only add submitter information for the whole entry group once
+            if 'submitter' not in entry_group:
+                entry_group['submitter'] = item.submitter
 
-    if old_value and old_value != unit.target:
-        values.append((_("Now"), u"", to_python(old_value)))
+            if 'language' not in context:
+                context['language'] = item.translation_project.language
 
-    # let's reverse the chronological order
-    values.reverse()
-    ec = {
-        'values': values,
-        'language': language,
-    }
+            entry = {
+                'field': item.field,
+                'field_name': SubmissionFields.NAMES_MAP[item.field],
+            }
+
+            if item.field == SubmissionFields.STATE:
+                entry['old_value'] = STATES_MAP[int(to_python(item.old_value))]
+                entry['new_value'] = STATES_MAP[int(to_python(item.new_value))]
+            else:
+                entry['new_value'] = to_python(item.new_value)
+
+            entry_group['entries'].append(entry)
+
+        entries_group.append(entry_group)
+
+    # Let's reverse the chronological order
+    entries_group.reverse()
+    context['entries_group'] = entries_group
 
     if request.is_ajax():
         # The client will want to confirm that the response is relevant for
         # the unit on screen at the time of receiving this, so we add the uid.
         json = {'uid': unit.id}
 
-        if values:
+        if entries_group:
             t = loader.get_template('unit/xhr-timeline.html')
-            c = RequestContext(request, ec)
-            json['entries'] = t.render(c)
+            c = RequestContext(request, context)
+            json['timeline'] = t.render(c)
 
         response = simplejson.dumps(json)
         return HttpResponse(response, mimetype="application/json")
     else:
-        return render_to_response('unit/timeline.html', ec,
+        return render_to_response('unit/timeline.html', context,
                                   context_instance=RequestContext(request))
 
 

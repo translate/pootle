@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2004-2006 Zuza Software Foundation
+# Copyright 2004-2012 Zuza Software Foundation
 #
 # This file is part of translate.
 #
@@ -23,19 +23,28 @@ import copy
 import os
 
 from django.conf import settings
+from django.utils.translation import ugettext as _
 
 from pootle_misc.aggregate import sum_column
 from pootle_misc.util import dictsum
 
 # Unit States
+#: Unit is no longer part of the store
 OBSOLETE = -100
-"""unit is no longer part of store"""
+#: Empty unit
 UNTRANSLATED = 0
-"""empty unit"""
+#: Marked as fuzzy, typically means translation needs more work
 FUZZY = 50
-"""marked as fuzzy, typically means translation needs more work"""
+#: Unit is fully translated
 TRANSLATED = 200
-"""unit is fully translated"""
+
+# Map for retrieving natural names for unit states
+STATES_MAP = {
+    OBSOLETE: _("Obsolete"),
+    UNTRANSLATED: _("Untranslated"),
+    FUZZY: _("Needs work"),
+    TRANSLATED: _("Translated"),
+}
 
 def add_trailing_slash(path):
     """If path does not end with /, add it and return."""

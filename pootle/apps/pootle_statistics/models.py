@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2009-2012 Zuza Software Foundation
 #
 # This file is part of translate.
 #
@@ -21,6 +21,7 @@
 
 from django.db import models
 from django.utils.safestring import mark_safe
+from django.utils.translation import ugettext as _
 
 from pootle_app.lib.util import RelatedManager
 
@@ -40,6 +41,13 @@ class SubmissionFields(object):
     TARGET = 2  # pootle_store.models.Unit.target
     STATE = 3  #pootle_store.models.Unit.state
     COMMENT = 4  #pootle_store.models.Unit.translator_comment
+
+    NAMES_MAP = {
+        SOURCE: _("Source"),
+        TARGET: _("Target"),
+        STATE: _("State"),
+        COMMENT: _("Comment"),
+    }
 
 
 class Submission(models.Model):

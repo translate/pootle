@@ -473,7 +473,8 @@ body.zoom-out-2 .sidebar
     padding-bottom: 0.5em;
 }
 
-.sidetitle
+.sidetitle,
+.extra-item-title
 {
     color: #999;
     font-size: 85%;
@@ -561,12 +562,6 @@ html[dir="rtl"] #extras-bar a
 .extra-item-block:last-child
 {
     margin-bottom: 0;
-}
-
-.extra-item-title
-{
-    color: #999;
-    font-size: 85%;
 }
 
 .rejectsugg img,
@@ -724,6 +719,16 @@ html[dir="rtl"] .timeline-extra
 {
     left: auto;
     right: 100%;
+}
+
+.timeline-field-3
+{
+    font-size: 85%;
+}
+
+.timeline-field-3 .sidetitle
+{
+    font-size: 100%;
 }
 
 #editor-comment

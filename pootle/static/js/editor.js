@@ -1772,14 +1772,14 @@
       success: function (data) {
         var uid = data.uid;
 
-        if (data.entries) {
+        if (data.timeline) {
           if (uid == PTL.editor.activeUid) {
             if ($("#translator-comment").length) {
-              $(data.entries).hide().appendTo("#translator-comment")
-                             .slideDown(1000, 'easeOutQuad');
+              $(data.timeline).hide().appendTo("#translator-comment")
+                              .slideDown(1000, 'easeOutQuad');
             } else {
-              $(data.entries).hide().prependTo("#extras-container")
-                             .slideDown(1000, 'easeOutQuad');
+              $(data.timeline).hide().prependTo("#extras-container")
+                              .slideDown(1000, 'easeOutQuad');
             }
             $("#show-timeline").hide();
             $("#hide-timeline").show();

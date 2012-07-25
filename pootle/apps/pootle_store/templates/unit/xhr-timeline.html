@@ -1,18 +1,22 @@
 {% load i18n profile_tags %}
 <div id="timeline-results">
   <div class="extra-item-title">{% trans 'Timeline' %}</div>
-  {% for datetime, submitter, value in values %}
+  {% for entry_group in entries_group %}
   <div class="extra-item-block">
     <div class="extra-item-gravatar">
-      {% if submitter %}
-      <a href="{{ submitter.get_absolute_url }}"><img src="{{ submitter|gravatar:24 }}" alt="{{ submitter.user.username }}" width="24" height="24" title="{{ submitter }}" /></a>
+      {% if entry_group.submitter %}
+      <a href="{{ entry_group.submitter.get_absolute_url }}"><img src="{{ entry_group.submitter|gravatar:24 }}" alt="{{ entry_group.submitter.user.username }}" width="24" height="24" title="{{ entry_group.submitter }}" /></a>
       {% else %}
       <span class="invisible">placeholder</span>
       {% endif %}
     </div>
     <div class="extra-item-content">
       <div class="extra-item">
-        <div class="suggestion-translation" lang="{{ language.code }}" dir="{{ language.get_direction }}" title="{{ datetime }}">{{ value }}</div>
+        <div class="timeline-entry" lang="{{ language.code }}" dir="{{ language.get_direction }}" title="{{ entry_group.datetime }}">
+          {% for entry in entry_group.entries %}
+          <div class="timeline-field-{{ entry.field }}">{% if entry.field != 2 %}<span class="sidetitle">{{ entry.field_name }}:</span> {% endif %}{% if entry.field != 3 %}{{ entry.new_value }}{% else %}{{ entry.old_value }} → {{ entry.new_value }}{% endif %}</div>
+          {% endfor %}
+        </div>
       </div>
     </div>
   </div>
