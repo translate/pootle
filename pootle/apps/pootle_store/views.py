@@ -48,7 +48,8 @@ from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.stats import get_raw_stats
 from pootle_misc.util import paginate, ajax_required, jsonify
 from pootle_profile.models import get_profile
-from pootle_statistics.models import Submission, NORMAL, SUGG_ACCEPT
+from pootle_statistics.models import (Submission, SubmissionFields,
+                                      SubmissionTypes)
 from pootle_translationproject.forms import make_search_form
 
 from pootle_store.models import Store, Unit
@@ -58,7 +59,8 @@ from pootle_store.templatetags.store_tags import (find_altsrcs, get_sugg_list,
                                                   highlight_diffs,
                                                   pluralize_source,
                                                   pluralize_target)
-from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED, absolute_real_path
+from pootle_store.util import (UNTRANSLATED, FUZZY, TRANSLATED, STATES_MAP,
+                               absolute_real_path)
 from pootle_store.signals import translation_submitted
 
 
@@ -541,55 +543,67 @@ def timeline(request, unit):
     """Returns a JSON-encoded string including the changes to the unit
     rendered in HTML.
     """
-    entries = Submission.objects.filter(unit=unit, field="pootle_store.Unit.target")
-    entries = entries.select_related("submitter__user", "translation_project__language")
-    #: List of tuples (datetime, submitter, value)
-    values = []
+    timeline = Submission.objects.filter(unit=unit, field__in=[
+        SubmissionFields.TARGET, SubmissionFields.STATE,
+        SubmissionFields.COMMENT
+    ])
+    timeline = timeline.select_related("submitter__user",
+                                       "translation_project__language")
+
+    context = {}
+    entries_group = []
 
     import locale
+    from itertools import groupby
     from pootle_store.fields import to_python
 
-    old_value = u""
-    language = None
+    for key, values in groupby(timeline, key=lambda x: x.creation_time):
+        entry_group = {
+            'datetime': key.strftime(locale.nl_langinfo(locale.D_T_FMT)),
+            'entries': [],
+        }
 
-    for entry in entries:
-        language = entry.translation_project.language
-        # If the old_value doesn't correspond to the previous new_value, let's
-        # add it anyway, even if we don't have more information about it. It
-        # might be because of an upload, VCS action, etc. that wasn't recorded.
-        if old_value != entry.old_value:
-            # Translators: this refers to an unknown date
-            values.append((_("(unknown)"), u"", to_python(entry.old_value)))
-        old_value = entry.new_value
-        values.append((
-                entry.creation_time.strftime(locale.nl_langinfo(locale.D_T_FMT)),
-                entry.submitter,
-                to_python(old_value),
-        ))
+        for item in values:
+            # Only add submitter information for the whole entry group once
+            if 'submitter' not in entry_group:
+                entry_group['submitter'] = item.submitter
 
-    if old_value and old_value != unit.target:
-        values.append((_("Now"), u"", to_python(old_value)))
+            if 'language' not in context:
+                context['language'] = item.translation_project.language
 
-    # let's reverse the chronological order
-    values.reverse()
-    ec = {
-        'values': values,
-        'language': language,
-    }
+            entry = {
+                'field': item.field,
+                'field_name': SubmissionFields.NAMES_MAP[item.field],
+            }
+
+            if item.field == SubmissionFields.STATE:
+                entry['old_value'] = STATES_MAP[int(to_python(item.old_value))]
+                entry['new_value'] = STATES_MAP[int(to_python(item.new_value))]
+            else:
+                entry['new_value'] = to_python(item.new_value)
+
+            entry_group['entries'].append(entry)
+
+        entries_group.append(entry_group)
+
+    # Let's reverse the chronological order
+    entries_group.reverse()
+    context['entries_group'] = entries_group
 
     if request.is_ajax():
         # The client will want to confirm that the response is relevant for
         # the unit on screen at the time of receiving this, so we add the uid.
         json = {'uid': unit.id}
 
-        t = loader.get_template('unit/xhr-timeline.html')
-        c = RequestContext(request, ec)
-        json['entries'] = t.render(c)
+        if entries_group:
+            t = loader.get_template('unit/xhr-timeline.html')
+            c = RequestContext(request, context)
+            json['timeline'] = t.render(c)
 
         response = simplejson.dumps(json)
         return HttpResponse(response, mimetype="application/json")
     else:
-        return render_to_response('unit/timeline.html', ec,
+        return render_to_response('unit/timeline.html', context,
                                   context_instance=RequestContext(request))
 
 
@@ -601,6 +615,10 @@ def comment(request, unit):
     :return: If the form validates, the cleaned comment is returned.
              An error message is returned otherwise.
     """
+    # Update current unit instance's attributes
+    unit.commented_by = request.profile
+    unit.commented_on = datetime.utcnow()
+
     language = request.translation_project.language
     form = unit_comment_form_factory(language)(request.POST, instance=unit,
                                                request=request)
@@ -608,7 +626,15 @@ def comment(request, unit):
     if form.is_valid():
         form.save()
 
-        json = {'comment': unit.translator_comment}
+        context = {
+            'comment': unit.translator_comment,
+            'language': language,
+            'submitter': request.profile,
+        }
+        t = loader.get_template('unit/xhr-comment.html')
+        c = RequestContext(request, context)
+
+        json = {'comment': t.render(c)}
         rcode = 200
     else:
         json = {'msg':  _("Comment submission failed.")}
@@ -652,7 +678,7 @@ def get_edit_unit(request, unit):
     project = translation_project.project
     report_target = ensure_uri(project.report_target)
 
-    suggestions, suggestion_details = get_sugg_list(unit)
+    suggestions = get_sugg_list(unit)
     template_vars = {
         'unit': unit,
         'form': form,
@@ -671,7 +697,6 @@ def get_edit_unit(request, unit):
                                 project=project),
         'report_target': report_target,
         'suggestions': suggestions,
-        'suggestion_detail': suggestion_details,
     }
 
     if translation_project.project.is_terminology or store.is_terminology:
@@ -726,17 +751,18 @@ def get_failing_checks_store(request, store):
 
 @ajax_required
 @get_unit_context('')
-def process_submit(request, unit, type):
-    """Processes submissions and suggestions and stores them in the database.
+def submit(request, unit):
+    """Processes translation submissions and stores them in the database.
 
     :return: An object in JSON notation that contains the previous and last
              units for the unit next to unit ``uid``.
     """
     json = {}
+
     cantranslate = check_permission("translate", request)
-    cansuggest = check_permission("suggest", request)
-    if type == 'submission' and not cantranslate or type == 'suggestion' and not cansuggest:
-        raise PermissionDenied(_("You do not have rights to access translation mode."))
+    if not cantranslate:
+        raise PermissionDenied(_("You do not have rights to access "
+                                 "translation mode."))
 
     translation_project = request.translation_project
     language = translation_project.language
@@ -746,14 +772,16 @@ def process_submit(request, unit, type):
     else:
         snplurals = None
 
-    import copy
-    old_unit = copy.copy(unit)
+    # Update current unit instance's attributes
+    unit.submitted_by = request.profile
+    unit.submitted_on = datetime.utcnow()
+
     form_class = unit_form_factory(language, snplurals, request)
     form = form_class(request.POST, instance=unit)
 
     if form.is_valid():
-        if type == 'submission' and form.updated_fields:
-            # Store creation time so that it is the same for all submissions:
+        if form.updated_fields:
+            # Store creation time so that it is the same for all submissions
             creation_time=datetime.utcnow()
             for field, old_value, new_value in form.updated_fields:
                 sub = Submission(
@@ -762,7 +790,7 @@ def process_submit(request, unit, type):
                         submitter=request.profile,
                         unit=unit,
                         field=field,
-                        type=NORMAL,
+                        type=SubmissionTypes.NORMAL,
                         old_value=old_value,
                         new_value=new_value,
                 )
@@ -775,22 +803,61 @@ def process_submit(request, unit, type):
                     profile=request.profile,
             )
 
-        elif type == 'suggestion':
-            if form.instance._target_updated:
-                #HACKISH: django 1.2 stupidly modifies instance on
-                # model form validation, reload unit from db
-                unit = Unit.objects.get(id=unit.id)
-                sugg = unit.add_suggestion(form.cleaned_data['target_f'], request.profile)
-                if sugg:
-                    SuggestionStat.objects.get_or_create(translation_project=translation_project,
-                                                         suggester=request.profile,
-                                                         state='pending', unit=unit.id)
         rcode = 200
     else:
         # Form failed
         #FIXME: we should display validation errors here
         rcode = 400
-        json["msg"] = _("Failed to process submit.")
+        json["msg"] = _("Failed to process submission.")
+    response = jsonify(json)
+    return HttpResponse(response, status=rcode, mimetype="application/json")
+
+
+@ajax_required
+@get_unit_context('')
+def suggest(request, unit):
+    """Processes translation suggestions and stores them in the database.
+
+    :return: An object in JSON notation that contains the previous and last
+             units for the unit next to unit ``uid``.
+    """
+    json = {}
+
+    cansuggest = check_permission("suggest", request)
+    if not cansuggest:
+        raise PermissionDenied(_("You do not have rights to access "
+                                 "translation mode."))
+
+    translation_project = request.translation_project
+    language = translation_project.language
+
+    if unit.hasplural():
+        snplurals = len(unit.source.strings)
+    else:
+        snplurals = None
+
+    form_class = unit_form_factory(language, snplurals, request)
+    form = form_class(request.POST, instance=unit)
+
+    if form.is_valid():
+        if form.instance._target_updated:
+            # TODO: Review if this hackish method is still necessary
+            #HACKISH: django 1.2 stupidly modifies instance on
+            # model form validation, reload unit from db
+            unit = Unit.objects.get(id=unit.id)
+            sugg = unit.add_suggestion(form.cleaned_data['target_f'],
+                                       request.profile)
+            if sugg:
+                SuggestionStat.objects.get_or_create(
+                    translation_project=translation_project,
+                    suggester=request.profile, state='pending', unit=unit.id
+                )
+        rcode = 200
+    else:
+        # Form failed
+        #FIXME: we should display validation errors here
+        rcode = 400
+        json["msg"] = _("Failed to process suggestion.")
     response = jsonify(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
 
@@ -871,8 +938,8 @@ def accept_suggestion(request, unit, suggid):
                     submitter=suggestion.user,
                     from_suggestion=suggstat,
                     unit=unit,
-                    field="pootle_store.Unit.target",
-                    type=SUGG_ACCEPT,
+                    field=SubmissionFields.TARGET,
+                    type=SubmissionTypes.SUGG_ACCEPT,
                     old_value=old_target,
                     new_value=unit.target,
             )

@@ -192,12 +192,13 @@
           PTL.editor.gotoPage(parseInt($("#item-number").val()));
         }
     });
-    $(document).on("click", "input.submit, input.suggest", this.processSubmit);
+    $(document).on("click", "input.submit", this.submit);
+    $(document).on("click", "input.suggest", this.suggest);
     $(document).on("click", "input.previous, input.next", this.gotoPrevNext);
-    $(document).on("click", "#extras-container .rejectsugg", this.rejectSuggestion);
-    $(document).on("click", "#extras-container .acceptsugg", this.acceptSuggestion);
-    $(document).on("click", "#extras-container .clearvote", this.clearVote);
-    $(document).on("click", "#extras-container .voteup", this.voteUp);
+    $(document).on("click", "#suggestions .rejectsugg", this.rejectSuggestion);
+    $(document).on("click", "#suggestions .acceptsugg", this.acceptSuggestion);
+    $(document).on("click", "#suggestions .clearvote", this.clearVote);
+    $(document).on("click", "#suggestions .voteup", this.voteUp);
     $(document).on("click", "#show-timeline", this.showTimeline);
     $(document).on("click", "#hide-timeline", this.hideTimeline);
     $(document).on("click", "#translate-checks-block .rejectcheck", this.rejectCheck);
@@ -213,6 +214,10 @@
     $(document).on("click", ".js-hide-ctx", this.hideContext);
 
     /* Commenting */
+    $(document).on("click", ".js-editor-comment", function (e) {
+      e.preventDefault();
+      $("#editor-comment").slideToggle("fast");
+    });
     $(document).on("submit", "#comment-form", this.comment);
 
     /* Search */
@@ -1276,29 +1281,18 @@
     return editor;
   },
 
-
-  /* Pushes submissions or suggestions and moves to the next unit */
-  processSubmit: function (e, typeClass) {
+  /* Pushes translation submissions and moves to the next unit */
+  submit: function (e) {
     e.preventDefault();
 
-    var formId, reqData, submitUrl, type,
+    var reqData, submitUrl,
         uid = PTL.editor.activeUid,
-        typeMap = {submit: "submission", suggest: "suggestion"};
+        form = $("#captcha").ifExists() || $("#translate");
 
-    // Detect whether it's being called from a normal submit or
-    // from a captcha
-    if (typeClass == undefined) {
-      typeClass = $(e.target).attr("class");
-      formId = "translate";
-    } else {
-      formId = "captcha";
-    }
-
-    type = typeMap[typeClass];
-    submitUrl = l('/unit/process/' + uid + '/' + type);
+    submitUrl = l('/unit/submit/' + uid);
 
     // Serialize data to be sent and get required attributes for the request
-    reqData = $("form#" + formId).serializeObject();
+    reqData = form.serializeObject();
     $.extend(reqData, PTL.editor.getReqData());
 
     $.ajax({
@@ -1314,25 +1308,60 @@
         } else {
           // If it has been a successful submission, update the data
           // stored in the client
-          if (type == 'submission') {
-            PTL.editor.units[uid].isfuzzy = PTL.editor.isFuzzy();
-            $("textarea[id^=id_target_f_]").each(function (i) {
-              PTL.editor.units[uid].target[i].text = PTL.editor.cleanEscape($(this).val());
-            });
-          }
+          PTL.editor.units[uid].isfuzzy = PTL.editor.isFuzzy();
+          $("textarea[id^=id_target_f_]").each(function (i) {
+            PTL.editor.units[uid].target[i].text = PTL.editor.cleanEscape($(this).val());
+          });
 
-          // Try loading the next unit
-          var newUid = parseInt(PTL.editor.units[uid].next);
-          if (newUid) {
-            var newHash = PTL.utils.updateHashPart("unit", newUid, ["page"]);
-            $.history.load(newHash);
-          } else {
-            PTL.editor.displayError(gettext("Congratulations, you walked through all items"));
-          }
+          PTL.editor.loadNext(uid);
         }
       },
       error: PTL.editor.error
     });
+  },
+
+  /* Pushes translation suggestions and moves to the next unit */
+  suggest: function (e) {
+    e.preventDefault();
+
+    var reqData, suggestUrl,
+        uid = PTL.editor.activeUid,
+        form = $("#captcha").ifExists() || $("#translate");
+
+    suggestUrl = l('/unit/suggest/' + uid);
+
+    // Serialize data to be sent and get required attributes for the request
+    reqData = form.serializeObject();
+    $.extend(reqData, PTL.editor.getReqData());
+
+    $.ajax({
+      url: suggestUrl,
+      type: 'POST',
+      data: reqData,
+      dataType: 'json',
+      async: false,
+      success: function (data) {
+        if (data.captcha) {
+          $.fancybox(data.captcha);
+          $("#id_captcha_answer").focus();
+        } else {
+          PTL.editor.loadNext(uid);
+        }
+      },
+      error: PTL.editor.error
+    });
+  },
+
+  /* Loads the next unit */
+  loadNext: function (uid) {
+    // FIXME: we can reuse the 'gotoPrevNext' function below for this purpose
+    var newUid = parseInt(PTL.editor.units[uid].next);
+    if (newUid) {
+      var newHash = PTL.utils.updateHashPart("unit", newUid, ["page"]);
+      $.history.load(newHash);
+    } else {
+      PTL.editor.displayError(gettext("Congratulations, you walked through all items"));
+    }
   },
 
   /* Loads the editor with the next unit */
@@ -1695,12 +1724,12 @@
       data: reqData,
       success: function (data) {
         $("#editor-comment").fadeOut(200);
-        var commentHtml = '<div class="extra-item">' + data.comment + '</div>';
         if ($("#translator-comment").length) {
-          $(commentHtml).hide().prependTo("#translator-comment").delay(200)
-                        .animate({height: 'show'}, 1000, 'easeOutQuad');
+          $(data.comment).hide().prependTo("#translator-comment").delay(200)
+                         .animate({height: 'show'}, 1000, 'easeOutQuad');
         } else {
-          commentHtml = '<div id="translator-comment">' + commentHtml + '</div>';
+          var commentHtml = '<div id="translator-comment">' + data.comment
+                          + '</div>';
           $(commentHtml).prependTo("#extras-container").delay(200)
                         .hide().animate({height: 'show'}, 1000, 'easeOutQuad');
         }
@@ -1723,7 +1752,7 @@
     // The results might already be there from earlier:
     if ($("#timeline-results").length) {
       $("#hide-timeline").show();
-      $("#timeline-results").animate({height: 'show'}, 1000, 'easeOutQuad');
+      $("#timeline-results").slideDown(1000, 'easeOutQuad');
       $("#show-timeline").hide();
       return;
     }
@@ -1743,14 +1772,14 @@
       success: function (data) {
         var uid = data.uid;
 
-        if (data.entries) {
+        if (data.timeline) {
           if (uid == PTL.editor.activeUid) {
             if ($("#translator-comment").length) {
-              $(data.entries).appendTo("#translator-comment")
-                             .animate({height: 'show'}, 1000, 'easeOutQuad');
+              $(data.timeline).hide().appendTo("#translator-comment")
+                              .slideDown(1000, 'easeOutQuad');
             } else {
-              $(data.entries).prependTo("#extras-container")
-                             .animate({height: 'show'}, 1000, 'easeOutQuad');
+              $(data.timeline).hide().prependTo("#extras-container")
+                              .slideDown(1000, 'easeOutQuad');
             }
             $("#show-timeline").hide();
             $("#hide-timeline").show();
@@ -1764,7 +1793,7 @@
  /* Hide the timeline panel */
   hideTimeline: function (e) {
     $("#hide-timeline").hide();
-    $("#timeline-results").animate({height: 'hide'}, 1000, 'easeOutQuad');
+    $("#timeline-results").slideUp(1000, 'easeOutQuad');
     $("#show-timeline").show();
   },
 
@@ -1825,10 +1854,8 @@
                                                  suggs: filtered,
                                                  name: name}}).join("");
 
-          // Append results
-          $("#extras-container").append(tm);
-          $("#amagama_results").animate({height: 'show'}, 1000,
-                                           'easeOutQuad');
+          $(tm).hide().appendTo("#extras-container")
+                      .slideDown(1000, 'easeOutQuad');
         }
       },
       error: PTL.editor.error
@@ -1839,9 +1866,9 @@
   /* Rejects a suggestion */
   rejectSuggestion: function (e) {
     e.stopPropagation(); //we don't want to trigger a click on the text below
-    var element = $(this).parent().parent(), // the top suggestion div
+    var suggId = $(this).attr("id").split("-")[1],
+        element = $("#suggestion-" + suggId);
         uid = $('.translate-container #id_id').val(),
-        suggId = $(this).siblings("input.suggid").val(),
         url = l('/suggestion/reject/') + uid + '/' + suggId;
 
     $.post(url, {'reject': 1},
@@ -1850,7 +1877,7 @@
           $(this).remove();
 
           // Go to the next unit if there are no more suggestions left
-          if (!$("#extras-container div[id^=suggestion]").length) {
+          if (!$("#suggestions div[id^=suggestion]").length) {
             $("input.next").trigger("click");
           }
         });
@@ -1861,9 +1888,9 @@
   /* Accepts a suggestion */
   acceptSuggestion: function (e) {
     e.stopPropagation(); //we don't want to trigger a click on the text below
-    var element = $(this).parent().parent(), // the top suggestion div
+    var suggId = $(this).attr("id").split("-")[1],
+        element = $("#suggestion-" + suggId);
         uid = $('.translate-container #id_id').val(),
-        suggId = $(this).siblings("input.suggid").val(),
         url = l('/suggestion/accept/') + uid + '/' + suggId;
 
     $.post(url, {'accept': 1},
@@ -1890,7 +1917,7 @@
           $(this).remove();
 
           // Go to the next unit if there are no more suggestions left
-          if (!$("#extras-container div[id^=suggestion]").length) {
+          if (!$("#suggestions div[id^=suggestion]").length) {
             $("input.next").trigger("click");
           }
         });
@@ -1912,7 +1939,7 @@
       dataType: 'json',
       success: function (data) {
         element.hide();
-        element.siblings("#extras-container .voteup").fadeTo(200, 1);
+        element.siblings("#suggestions .voteup").fadeTo(200, 1);
       },
       error: function (xhr, s) {
         PTL.editor.error(xhr, s);
@@ -1939,7 +1966,7 @@
       success: function (data) {
         element.siblings("input.voteid").attr("value", data.voteid);
         element.hide();
-        element.siblings("#extras-container .clearvote").fadeTo(200, 1);
+        element.siblings("#suggestions .clearvote").fadeTo(200, 1);
       },
       error: function (xhr, s) {
         PTL.editor.error(xhr, s);

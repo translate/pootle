@@ -165,17 +165,25 @@ URL_RE = re.compile('http://|https://', re.I)
 
 
 class CaptchaMiddleware:
-    """
-    Middle ware to display a captcha question to verify POST
-    submissions are made by humans
+    """Middleware to display a captcha question to verify POST submissions
+    are made by humans.
     """
     def process_request(self, request):
-        if not settings.USE_CAPTCHA or not request.POST or request.session.get('ishuman', False):
+        if (not settings.USE_CAPTCHA or not request.POST or
+            request.session.get('ishuman', False)):
+            return
+
+        # FIXME: Can we replace the URL checks and just compare the names
+        # returned by urlresolvers.resolve(request.path)?
+        if (request.path.endswith('accounts/login') or
+            request.path.endswith('accounts/login/')):
+            # exclude login form
             return
 
         if request.user.is_authenticated():
-            if 'target_f_0' not in request.POST and 'translator_comment' not in request.POST or \
-                   'submit' not in request.POST and 'suggest' not in request.POST:
+            if ('target_f_0' not in request.POST or
+                'translator_comment' not in request.POST or
+                ('submit' not in request.POST and 'suggest' not in request.POST)):
                 return
 
             # We are in translate page. Users introducing new URLs in the
@@ -198,18 +206,8 @@ class CaptchaMiddleware:
             if comment_urls == 0 and (target_urls == 0 or target_urls == source_urls):
                 return
 
-        if request.path.endswith('accounts/login') or request.path.endswith('accounts/login/'):
-            # exclude login form
-            return
-
-        if (request.path.endswith('/translate') or request.path.endswith('/translate/') or request.path.endswith('/translate.html')) and \
-           ('back' in request.POST or 'skip' in request.POST) and \
-           'submit' not in request.POST and 'suggest' not in request.POST:
-            # exclude skip and back, users don't expect these to be POST
-            return
-
         if 'captcha_answer' in request.POST:
-            form =  MathCaptchaForm(request.POST)
+            form = MathCaptchaForm(request.POST)
             if form.is_valid():
                 request.session['ishuman'] = True
                 return
@@ -219,18 +217,28 @@ class CaptchaMiddleware:
 
         else:
             form = MathCaptchaForm()
+
         ec = {
             'form': form,
             'url': request.path,
             'post_data': request.POST,
-            }
+        }
+
         if request.is_ajax():
-            type_class = request.path.endswith('/submit') and 'submit' or 'suggest'
-            ec['type_class'] = type_class
+            js_function = None
+            if '/submit/' in request.path:
+                js_function = 'submit'
+            elif '/suggest/' in request.path:
+                js_function = 'suggest'
+
+            ec['js_function'] = js_function
+
             t = loader.get_template('captcha-xhr.html')
             c = RequestContext(request, ec)
             json = {'captcha': t.render(c)}
+
             response = simplejson.dumps(json)
             return HttpResponse(response, mimetype="application/json")
         else:
-            return render_to_response('captcha.html', ec, context_instance=RequestContext(request))
+            return render_to_response('captcha.html', ec,
+                                      context_instance=RequestContext(request))

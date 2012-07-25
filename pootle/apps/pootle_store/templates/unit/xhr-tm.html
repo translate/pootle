@@ -1,10 +1,15 @@
-<div id="amagama_results" class="tm-server" style="display:none">
+<div id="tm-results" class="tm-server clear">
   <div class="extra-item-title">${name}</div>
   {{each(i, sugg) suggs}}
   <div id="tm${i}" class="extra-item-block" title="${sugg.qTitle}">
-    <div class="extra-item js-editor-copytext">
-      <div class="suggestion-original" lang="${meta.source_lang}" dir="${meta.source_dir}">{{html sugg.source }}</div>
-      <div class="suggestion-translation" lang="${meta.target_lang}" dir="${meta.target_dir}">{{html sugg.target }}</div>
+    <div class="extra-item-gravatar">
+      <span class="invisible">placeholder</span>
+    </div>
+    <div class="extra-item-content">
+      <div class="extra-item js-editor-copytext">
+        <div class="suggestion-original" lang="${meta.source_lang}" dir="${meta.source_dir}">{{html sugg.source }}</div>
+        <div class="suggestion-translation" lang="${meta.target_lang}" dir="${meta.target_dir}">{{html sugg.target }}</div>
+      </div>
     </div>
   </div>
   {{/each}}

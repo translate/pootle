@@ -596,6 +596,11 @@ html[dir="rtl"] #xhr-error span
     display: none;
 }
 
+.invisible
+{
+    visibility: hidden;
+}
+
 p.help,
 span.help_text
 {
