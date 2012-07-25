@@ -20,23 +20,23 @@
 {% endif %}
 {% include "description.html" %}
 
-{% comment %}If there is no description, inherrit from the project and the language{% endcomment %}
-{% if not description and project.description or not description and language.description %}
+{% comment %}Inherrit from the project and the language{% endcomment %}
+{% if not description %}
   <a id="hide_description" title="{% trans 'Hide' %}">
       <span>{% trans 'Hide' %}</span></a>
   <a id="show_description" title="{% trans 'Show' %}" style="display: none;">
       <span>{% trans 'Show description' %}</span></a>
-  <div class="intro">
-    {% if project.description %}
-      <h3 class="intro-helper">{% trans 'Project Description' %}</h3>
-      {{ project.description|safe|linebreaks|clean }}
-    {% endif %}
-    {% if language.description %}
-      <h3 class="intro-helper">{% trans 'Language Description' %}</h3>
-      {{ language.description|safe|linebreaks|clean }}
-    {% endif %}
-  </div>
 {% endif %}
+<div class="intro">
+{% if project.description %}
+  <h3 class="intro-helper">{% trans 'Project Description' %}</h3>
+  {{ project.description|safe|linebreaks|clean }}
+{% endif %}
+{% if language.description %}
+  <h3 class="intro-helper">{% trans 'Language Description' %}</h3>
+  {{ language.description|safe|linebreaks|clean }}
+{% endif %}
+</div>
 {% endblock %}
 
 {% block content %}
