@@ -17,15 +17,5 @@
     <h2>
     {{ item.stats.summary|safe }}
     </h2>
-
-    {% if item.actions %}
-    <div id="actionlinks" class="item-description">
-        {% for link in item.actions %}
-        <a class="{{ link.class }}" href="{{ link.href|l }}" title="{{ link.title }}"><span>{{ link.text }}</span></a>
-        {% endfor %}
-    </div>
-    {% endif %}
-
-    {% include "language/item_stats.html" %}
 </div>
 <!-- /itemblock -->

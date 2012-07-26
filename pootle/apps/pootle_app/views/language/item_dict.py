@@ -31,7 +31,6 @@ from pootle_app.views.language         import dispatch
 from pootle_misc.util import add_percentages
 from pootle_misc.stats import get_raw_stats
 
-################################################################################
 
 def get_item_summary(request, quick_stats, path_obj):
     translated_words = quick_stats['translatedsourcewords']
@@ -76,45 +75,14 @@ def get_terminology_item_summary(request, quick_stats, path_obj):
 
     return summary
 
-def get_item_stats(request, quick_stats, path_obj, show_checks=False, terminology=False):
+def get_item_stats(request, quick_stats, path_obj, terminology=False):
     if terminology:
         summary = get_terminology_item_summary(request, quick_stats, path_obj)
     else:
         summary = get_item_summary(request, quick_stats, path_obj)
 
-    result = {
-        'summary': summary,
-        'checks': [],
-        }
-    if show_checks and not terminology:
-        result['checks'] = getcheckdetails(request, path_obj)
-    return result
+    return {'summary': summary}
 
-def getcheckdetails(request, path_obj):
-    """return a list of strings describing the results of
-    checks"""
-    checklinks = []
-    try:
-        property_stats = path_obj.getcompletestats()
-        quick_stats = path_obj.getquickstats()
-        total = quick_stats['total']
-        keys = property_stats.keys()
-        keys.sort()
-        for checkname in keys:
-            checkcount = property_stats[checkname]
-            if total and checkcount:
-                stats = ungettext('%(checks)d string (%(checkspercent)d%%) failed',
-                                  '%(checks)d strings (%(checkspercent)d%%) failed', checkcount,
-                                  {"checks": checkcount, "checkspercent": (checkcount * 100) / total})
-                checklink = {'href': dispatch.translate(path_obj, check=checkname),
-                             'text': checkname,
-                             'stats': stats}
-                checklinks += [checklink]
-    except IOError:
-        pass
-    return checklinks
-
-################################################################################
 
 def zip_link(request, path_obj):
     if check_permission('archive', request):
@@ -212,9 +180,6 @@ def directory_translate_links(request, path_obj):
     return _gen_link_list(request, path_obj, [zip_link])
 
 
-################################################################################
-
-
 def stats_descriptions(quick_stats):
     """Provides a dictionary with two textual descriptions of the work
     outstanding."""
@@ -238,7 +203,7 @@ def stats_descriptions(quick_stats):
         'todo_tooltip': todo_tooltip,
     }
 
-def make_generic_item(request, path_obj, action, show_checks=False, terminology=False):
+def make_generic_item(request, path_obj, action, terminology=False):
     """Template variables for each row in the table.
 
     make_directory_item() and make_store_item() will add onto these variables."""
@@ -250,7 +215,7 @@ def make_generic_item(request, path_obj, action, show_checks=False, terminology=
             'tooltip': _('%(percentage)d%% complete' %
                          {'percentage': quick_stats['translatedpercentage']}),
             'title':   path_obj.name,
-            'stats':   get_item_stats(request, quick_stats, path_obj, show_checks, terminology),
+            'stats':   get_item_stats(request, quick_stats, path_obj, terminology),
             }
         errors = quick_stats.get('errors', 0)
         if errors:
@@ -265,31 +230,17 @@ def make_generic_item(request, path_obj, action, show_checks=False, terminology=
             }
     return info
 
-def make_directory_item(request, directory, links_required=None, terminology=False):
+def make_directory_item(request, directory, terminology=False):
     action = directory.pootle_path
-    show_checks = links_required == 'review'
-    item = make_generic_item(request, directory, action, show_checks, terminology)
-    if links_required == 'translate':
-        item['actions'] = directory_translate_links(request, directory)
-    elif links_required == 'review':
-        item['actions'] = directory_review_links(request, directory)
-    else:
-        item['actions'] = []
+    item = make_generic_item(request, directory, action, terminology)
     item.update({
             'icon': 'folder',
             'isdir': True})
     return item
 
-def make_store_item(request, store, links_required=None, terminology=False):
+def make_store_item(request, store, terminology=False):
     action = dispatch.translate(store)
-    show_checks = links_required == 'review'
-    item = make_generic_item(request, store, action, show_checks, terminology)
-    if links_required == 'translate':
-        item['actions'] = store_translate_links(request, store)
-    elif links_required == 'review':
-        item['actions'] = store_review_links(request, store)
-    else:
-        item['actions'] = []
+    item = make_generic_item(request, store, action, terminology)
     item['href_todo'] = dispatch.translate(store, state='incomplete')
     item.update({
             'icon': 'page',
