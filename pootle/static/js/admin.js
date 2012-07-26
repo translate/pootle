@@ -93,7 +93,7 @@ $(document).ready(function () {
         type: 'POST',
         data: $(this).formSerialize(), //from jquery.form.js
         success: function (data) {
-          $('.intro').html(data.intro);
+          $('.intro').first().html(data.intro);
           $('.js-admin-description').html(data.form);
           _init_description();
           if (data.valid) {
