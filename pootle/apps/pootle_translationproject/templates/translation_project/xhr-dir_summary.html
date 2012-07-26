@@ -1,7 +1,7 @@
 {% load i18n %}
 {% if trans_stats %}
 <div class="hd">
-  <h3><span>{% trans "Translation Statistics" %}<span></h3>
+  <h3><span>{% trans "Translation Statistics" %}</span></h3>
 </div>
 <div>
   <table class="stats" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
@@ -20,7 +20,7 @@
 {% endif %}
 {% if check_failures %}
 <div class="hd">
-  <h3><span>{% trans "Failing Checks" %}<span></h3>
+  <h3><span>{% trans "Failing Checks" %}</span></h3>
 </div>
 <div>
 {% for failure in check_failures %}
