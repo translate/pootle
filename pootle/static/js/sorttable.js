@@ -210,7 +210,7 @@ sorttable = {
       tb.appendChild(row_array[j][1]);
     }
 
-    sorttable.make_zebra();
+    sorttable.makeZebra();
 
     delete row_array;
   },
@@ -382,15 +382,15 @@ sorttable = {
     } // while(swap)
   },
 
-  make_zebra: function() {
-      /* Customisation for zebra tags */
-      var cls = "even";
-      var even = true;
-      $("table.sortable tbody tr").each(function() {
-          $(this).addClass(cls)
-          cls = even ? "odd" : "even";
-          $(this).removeClass(cls)
-          even = !even;
+  /* Customisation for zebra tags */
+  makeZebra: function() {
+      var cls = "even",
+          even = true;
+      $("table.sortable tbody tr").each(function () {
+        $(this).addClass(cls);
+        cls = even ? "odd" : "even";
+        $(this).removeClass(cls);
+        even = !even;
       });
   },
 
