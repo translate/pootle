@@ -138,6 +138,10 @@ sorttable = {
           }
 
           sorttable.doSort(this);
+
+          // Store current sorting criteria in a cookie
+          sorttable.setSortCookie(tableId, this.id, "asc");
+
         });
       }
     }
@@ -404,7 +408,7 @@ sorttable = {
 
     var cookieData = JSON.stringify({columnId: theadId,
                                      order: sortOrder});
-    $.cookie(tableId, cookieData);
+    $.cookie(tableId, cookieData, {path: '/'});
   },
 
   /*
