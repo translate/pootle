@@ -45,7 +45,7 @@ from pootle_app.models.signals import post_file_upload
 from pootle_app.models             import Directory
 from pootle_app.lib import view_handler
 from pootle_app.views.top_stats import gentopstats_translation_project
-from pootle_app.views.language import navbar_dict, item_dict
+from pootle_app.views.language import item_dict
 from pootle_app.views.language.view import get_stats_headings
 from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions
@@ -60,40 +60,6 @@ from pootle_store.filetypes import factory_classes
 from pootle_store.views import translate_page
 from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_profile.models import get_profile
-
-
-@get_translation_project
-@set_request_context
-def tp_translate(request, translation_project, dir_path):
-
-    if not check_permission("view", request):
-        raise PermissionDenied(_("You do not have rights to access translation mode."))
-
-    directory = get_object_or_404(
-            Directory,
-            pootle_path=translation_project.directory.pootle_path + dir_path
-    )
-
-    project = translation_project.project
-    language = translation_project.language
-    is_terminology = project.is_terminology
-
-    template_vars = {
-        'translation_project': translation_project,
-        'project': project,
-        'language': language,
-        'directory': directory,
-        'children': get_children(request, translation_project, directory,
-                                 links_required='translate'),
-        'navitems': [navbar_dict.make_directory_navbar_dict(
-            request, directory, links_required='translate',
-            terminology=is_terminology)],
-        'feed_path': directory.pootle_path[1:],
-        'topstats': gentopstats_translation_project(translation_project),
-    }
-
-    return render_to_response("translation_project/tp_translate.html",
-            template_vars, context_instance=RequestContext(request))
 
 
 @get_translation_project
@@ -309,7 +275,7 @@ def export_zip(request, translation_project, file_path):
     return redirect('/export/' + export_path)
 
 
-def get_children(request, translation_project, directory, links_required=None):
+def get_children(request, translation_project, directory):
     """Returns a list of children directories and stores for this
     ``directory``, and also the parent directory.
 
@@ -326,12 +292,10 @@ def get_children(request, translation_project, directory, links_required=None):
         parent = [{'title': u'..', 'href': parent_dir}]
 
     directories = [item_dict.make_directory_item(request, child_dir,
-                                                 links_required=links_required,
                                                  terminology=is_terminology)
                    for child_dir in directory.child_dirs.iterator()]
 
     stores = [item_dict.make_store_item(request, child_store,
-                                        links_required=links_required,
                                         terminology=is_terminology)
               for child_store in directory.child_stores.iterator()]
 

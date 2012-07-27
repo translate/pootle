@@ -320,13 +320,16 @@ def translate_page(request):
     cantranslate = check_permission("translate", request)
     cansuggest = check_permission("suggest", request)
     canreview = check_permission("review", request)
+
     translation_project = request.translation_project
     language = translation_project.language
+    project = translation_project.project
     profile = request.profile
 
     store = getattr(request, "store", None)
-    is_terminology = translation_project.project.is_terminology or store and store.is_terminology
+    is_terminology = project.is_terminology or store and store.is_terminology
     search_form = make_search_form(terminology=is_terminology)
+
     context = {
         'cantranslate': cantranslate,
         'cansuggest': cansuggest,
@@ -335,6 +338,7 @@ def translate_page(request):
         'store': store,
         'store_id': store and store.id,
         'language': language,
+        'project': project,
         'translation_project': translation_project,
         'profile': profile,
         'source_language': translation_project.project.source_language,
@@ -344,6 +348,7 @@ def translate_page(request):
         'AMAGAMA_URL': settings.AMAGAMA_URL,
         'advanced_search_title': _('Advanced search'),
         }
+
     if is_terminology:
         return render_to_response('store/terms.html', context, context_instance=RequestContext(request))
     else:

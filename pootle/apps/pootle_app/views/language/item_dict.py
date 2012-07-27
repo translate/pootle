@@ -162,23 +162,6 @@ def update_all_link(request, path_obj):
             'link': link,
         }
 
-def _gen_link_list(request, path_obj, linkfuncs):
-    links = []
-    for linkfunc in linkfuncs:
-        link = linkfunc(request, path_obj)
-        if link is not None:
-            links.append(link)
-    return links
-
-def store_translate_links(request, path_obj):
-    """returns a list of links for store items in translate tab"""
-    linkfuncs = [xliff_link, download_link, update_link, commit_link]
-    return _gen_link_list(request, path_obj, linkfuncs)
-
-def directory_translate_links(request, path_obj):
-    """returns a list of links for directory items in translate tab"""
-    return _gen_link_list(request, path_obj, [zip_link])
-
 
 def stats_descriptions(quick_stats):
     """Provides a dictionary with two textual descriptions of the work
