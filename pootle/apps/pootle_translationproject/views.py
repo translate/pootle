@@ -61,6 +61,8 @@ from pootle_store.views import translate_page
 from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_profile.models import get_profile
 
+from pootle_translationproject.actions import action_groups
+
 
 @get_translation_project
 @set_request_context
@@ -165,6 +167,7 @@ class ProjectIndexView(view_handler.View):
             'stats_headings': get_stats_headings(),
             'topstats': gentopstats_translation_project(translation_project),
             'feed_path': directory.pootle_path[1:],
+            'action_groups': action_groups(request, directory),
         })
 
         if check_permission('administrate', request):

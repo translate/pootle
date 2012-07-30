@@ -9,36 +9,6 @@
 
 {% block bodyclass %}tpoverview{% endblock bodyclass %}
 
-
-{% block precontent %}
-{{ block.super }}
-{% if user.is_superuser or request.permissions.administrate %}
-  {% include "admin/edit_links.html" %}
-  <div class="settings-container js-admin-description" style="display: none;">
-    {% include "admin/general_settings_form.html" with form_action="edit_settings.html" %}
-  </div>
-{% endif %}
-{% include "description.html" %}
-
-{% comment %}Inherrit from the project and the language{% endcomment %}
-{% if not description %}
-  <a id="hide_description" title="{% trans 'Hide' %}">
-      <span>{% trans 'Hide' %}</span></a>
-  <a id="show_description" title="{% trans 'Show' %}" style="display: none;">
-      <span>{% trans 'Show description' %}</span></a>
-{% endif %}
-<div class="intro">
-{% if project.description %}
-  <h3 class="intro-helper">{% trans 'Project Description' %}</h3>
-  {{ project.description|safe|linebreaks|clean }}
-{% endif %}
-{% if language.description %}
-  <h3 class="intro-helper">{% trans 'Language Description' %}</h3>
-  {{ language.description|safe|linebreaks|clean }}
-{% endif %}
-</div>
-{% endblock %}
-
 {% block content %}
 <div class="module first">
   <div class="hd">
@@ -87,6 +57,64 @@
 </div>
 
 <div class="module">
+  {% if action_groups %}
+  <div class="hd">
+    <h2>{% trans "Actions" %}</h2>
+  </div>
+  <div id="overview-actions" class="bd">
+    {% for action_group in action_groups %}
+    <div id="overview-actions-{{ action_group.group }}"
+         class="overview-actions-container{% if forloop.first %} first{% endif %}">
+      <div class="overview-actions-group">{{ action_group.group_display }}</div>
+      <div class="overview-actions-content">
+        <ul>
+        {% for action in action_group.actions %}
+        <li class="{% cycle "odd" "even" %}">
+          <a href="{{ action.href }}" title="{{ action.tooltip }}"
+          {% if action.class %}class="{{ action.class }}"{% endif %}>
+            <i class="{{ action.icon }}"></i> {{ action.text }}</a></li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if description or project.description or language.description or user.is_superuser %}
+  <div class="hd">
+    <h2>{% trans "Description" %}</h2>
+  </div>
+  <div id="overview-description" class="bd">
+    {% if user.is_superuser or request.permissions.administrate %}
+      {% include "admin/edit_links.html" %}
+      <div class="settings-container js-admin-description" style="display: none;">
+        {% include "admin/general_settings_form.html" with form_action="edit_settings.html" %}
+      </div>
+    {% endif %}
+
+    {% include "description.html" %}
+
+    {% if not description %}
+      <a id="hide_description" title="{% trans 'Hide' %}">
+          <span>{% trans 'Hide' %}</span></a>
+      <a id="show_description" title="{% trans 'Show' %}" class="hide">
+          <span>{% trans 'Show description' %}</span></a>
+    {% endif %}
+    <div class="intro">
+    {% if project.description %}
+      {{ project.description|safe|linebreaks|clean }}
+    {% endif %}
+    {% if language.description %}
+      {{ language.description|safe|linebreaks|clean }}
+    {% endif %}
+    </div>
+  </div>
+  {% endif %}
+
+</div>
+
+<div class="hide">
 {% include "translation_project/fileop_forms.html" %}
 </div>
 {% endblock content %}

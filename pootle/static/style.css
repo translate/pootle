@@ -270,6 +270,26 @@ pre, code, kbd, samp, tt
     background-image: url('images/icon-copy.png');
 }
 
+.icon-download
+{
+    background-image: url('images/icon-download.png');
+}
+
+.icon-upload
+{
+    background-image: url('images/icon-upload.png');
+}
+
+.icon-vcs-commit
+{
+    background-image: url('images/icon-vcs-commit.png');
+}
+
+.icon-vcs-update
+{
+    background-image: url('images/icon-vcs-update.png');
+}
+
 
 /*
  * MAIN DIVs
@@ -1749,6 +1769,77 @@ html[dir="rtl"] ul.pager li:last-child > *
     -moz-border-radius: 1em 0 0 1em;
     -webkit-border-radius: 1em 0 0 1em;
     border-radius: 1em 0 0 1em;
+}
+
+
+/*
+ * OVERVIEW PAGE
+ */
+
+#overview-actions li
+{
+    background-color: inherit;
+}
+
+.overview-actions-container
+{
+    padding: 1em 0;
+    border-top: 1px solid #eee;
+}
+
+.overview-actions-container.first
+{
+    border-top: 0 none;
+}
+
+.overview-actions-group
+{
+    width: 20%;
+    font-size: 85%;
+    float: left;
+}
+
+.overview-actions-content
+{
+    width: 75%;
+    margin-left: 25%;
+}
+
+html[dir="rtl"] .overview-actions-content
+{
+    margin-left: 0;
+    margin-right: 25%;
+}
+
+#overview-actions-translate-offline a
+{
+    color: #ac6520;
+}
+
+#overview-actions-translate-offline li
+{
+    display: inline;
+}
+
+#overview-actions-translate-offline li.odd
+{
+    margin-right: 25%;
+}
+
+html[dir="rtl"] #overview-actions-translate-offline li.odd
+{
+    margin-right: 0;
+    margin-left: 25%;
+}
+
+#overview-actions-manage a
+{
+    color: #854848;
+}
+
+#overview-actions-download-source a
+{
+    color: #ac6520;
 }
 
 

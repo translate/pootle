@@ -24,8 +24,6 @@ similar pages."""
 from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext
 
-from pootle_misc.versioncontrol import hasversioning
-from pootle_app.models.permissions     import check_permission
 from pootle_store.models               import Store
 from pootle_app.views.language         import dispatch
 from pootle_misc.util import add_percentages
@@ -82,85 +80,6 @@ def get_item_stats(request, quick_stats, path_obj, terminology=False):
         summary = get_item_summary(request, quick_stats, path_obj)
 
     return {'summary': summary}
-
-
-def zip_link(request, path_obj):
-    if check_permission('archive', request):
-        text = _('ZIP of directory')
-        link = dispatch.download_zip(path_obj)
-        return {
-            'class': 'file download',
-            'href': link,
-            'text': text,
-            }
-
-def xliff_link(request, path_obj):
-    if path_obj.translation_project.project.localfiletype == 'xlf':
-        return
-
-    if path_obj.translation_project.project.is_monolingual():
-        text = _('Translate offline')
-        tooltip = _('Download XLIFF file for offline translation')
-    else:
-        text = _('Translate offline')
-        tooltip = _('Download XLIFF file for offline translation')
-    href = dispatch.export(path_obj.pootle_path, 'xlf')
-    return {
-        'class': 'translate download',
-        'href': href,
-        'text': text,
-        'title': tooltip,
-        }
-
-def download_link(request, path_obj):
-    if path_obj.file != "":
-        if path_obj.translation_project.project.is_monolingual():
-            text = _('Export')
-            tooltip = _('Export translations')
-        else:
-            text = _('Download')
-            tooltip = _('Download file')
-
-        return {
-            'class': 'file download',
-            'href': '%s/download/' % path_obj.pootle_path,
-            'text': text,
-            'title': tooltip,
-            }
-
-def commit_link(request, path_obj):
-    if path_obj.abs_real_path and check_permission('commit', request) and hasversioning(path_obj.abs_real_path):
-        link = dispatch.commit(path_obj)
-        text = _('Commit to VCS')
-        return {
-            'class': 'vcs commit',
-            'href': link,
-            'text': text,
-            'link': link,
-        }
-
-def update_link(request, path_obj):
-    if path_obj.abs_real_path and check_permission('commit', request) and hasversioning(path_obj.abs_real_path):
-        link = dispatch.update(path_obj)
-        text = _('Update from VCS')
-        return {
-            'class': 'vcs update',
-            'href': link,
-            'text': text,
-            'link': link,
-        }
-
-def update_all_link(request, path_obj):
-    # Directory.get_real_path() doesn't give an absolute path :-(
-    if check_permission('commit', request) and hasversioning(path_obj.get_real_path()):
-        link = 'javascript:alert("Not implemented")' #FIXME: provide actual link
-        text = _('Update from VCS')
-        return {
-            'class': 'vcs update',
-            'href': link,
-            'text': text,
-            'link': link,
-        }
 
 
 def stats_descriptions(quick_stats):
