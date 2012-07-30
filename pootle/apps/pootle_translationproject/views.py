@@ -67,7 +67,7 @@ from pootle_translationproject.actions import action_groups
 @get_translation_project
 @set_request_context
 @util.has_permission('administrate')
-def tp_admin_permissions(request, translation_project):
+def admin_permissions(request, translation_project):
 
     language = translation_project.language
     project = translation_project.project
@@ -81,7 +81,7 @@ def tp_admin_permissions(request, translation_project):
     }
 
     return admin_permissions(request, translation_project.directory,
-                             "translation_project/tp_admin_permissions.html",
+                             "translation_project/admin_permissions.html",
                              template_vars)
 
 
@@ -104,7 +104,7 @@ class StoreFormset(BaseModelFormSet):
 @get_translation_project
 @set_request_context
 @util.has_permission('administrate')
-def tp_admin_files(request, translation_project):
+def admin_files(request, translation_project):
 
     queryset = translation_project.stores.all()
 
@@ -135,7 +135,7 @@ def tp_admin_files(request, translation_project):
             instance.pootle_path[len(translation_project.pootle_path):]
     )
 
-    return util.edit(request, 'translation_project/tp_admin_files.html',
+    return util.edit(request, 'translation_project/admin_files.html',
                      Store, model_args, link, linkfield='pootle_path',
                      queryset=queryset, formset=StoreFormset,
                      can_delete=True, extra=0)
@@ -179,7 +179,7 @@ class ProjectIndexView(view_handler.View):
 
 @get_translation_project
 @set_request_context
-def tp_overview(request, translation_project, dir_path):
+def overview(request, translation_project, dir_path):
     if not check_permission("view", request):
         raise PermissionDenied(_("You do not have rights to access this "
                                  "translation project."))
@@ -190,14 +190,14 @@ def tp_overview(request, translation_project, dir_path):
     view_obj = ProjectIndexView(forms=dict(upload=UploadHandler,
                                            update=UpdateHandler))
 
-    return render_to_response("translation_project/tp_overview.html",
+    return render_to_response("translation_project/overview.html",
                               view_obj(request, translation_project, directory),
                               context_instance=RequestContext(request))
 
 
 @ajax_required
 @get_translation_project
-def tp_dir_summary(request, translation_project, dir_path):
+def dir_summary(request, translation_project, dir_path):
     current_path = translation_project.directory.pootle_path + dir_path
     directory = get_object_or_404(Directory, pootle_path=current_path)
 
@@ -216,7 +216,7 @@ def tp_dir_summary(request, translation_project, dir_path):
 
 @ajax_required
 @get_translation_project
-def tp_settings_edit(request, translation_project):
+def edit_settings(request, translation_project):
     request.permissions = get_matching_permissions(
             get_profile(request.user), translation_project.directory
     )

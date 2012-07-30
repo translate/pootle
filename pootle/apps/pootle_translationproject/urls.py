@@ -23,22 +23,24 @@ from django.conf.urls.defaults import *
 urlpatterns = patterns('pootle_translationproject.views',
     # Admin views
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/((.*/)*)admin_permissions.html$',
-     'tp_admin_permissions'),
+     'admin_permissions'),
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/((.*/)*)admin_files.html$',
-     'tp_admin_files'),
+     'admin_files'),
 
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)(index.html)?$',
-     'tp_overview'),
+     'overview'),
 
     # XHR views
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/((.*/)*)edit_settings.html$',
-     'tp_settings_edit'),
+     'edit_settings'),
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)dir_summary.html$',
-     'tp_dir_summary'),
+     'dir_summary'),
 
     # Exporting files
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<file_path>.*)export/zip$',
      'export_zip'),
+
+    # Project-wide translation
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/translate.html$',
      'translate'),
 )
