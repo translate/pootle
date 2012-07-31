@@ -1608,6 +1608,12 @@ a.directory-incomplete
     font-weight: bold;
 }
 
+#directory-summary-toggle
+{
+    text-align: right;
+}
+
+
 /* 
  * Pretty Graphs, mostly from http://l10n.gnome.org/
  */

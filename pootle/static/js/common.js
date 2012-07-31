@@ -170,11 +170,11 @@ $(document).ready(function ($) {
   $(document).on("click", ".js-directory-summary", function (e) {
     e.preventDefault();
     var node = $(".js-directory-summary-more"),
-        icon = $("i.js-directory-summary"),
+        icon = $(this),
         data = node.data();
 
     function hideShow() {
-      node.toggle('slow', function () {
+      node.slideToggle('slow', 'easeOutQuad', function () {
         oldClass = data.collapsed ? 'icon-expand' : 'icon-collapse';
         newClass = data.collapsed ? 'icon-collapse' : 'icon-expand';
         icon.removeClass(oldClass).addClass(newClass);

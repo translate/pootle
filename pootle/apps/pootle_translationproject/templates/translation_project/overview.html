@@ -23,7 +23,10 @@
       {% endfor %}
     </ul>
     {% progressbar stats %}
-    <a href="{{ "dir_summary.html"|l }}"><i class="icon-expand js-directory-summary ptr pull-right"></i></a>
+    <div id="directory-summary-toggle">
+      <a class="icon-expand js-directory-summary" title="{% trans "Detailed statistics" %}"
+         href="{{ "dir_summary.html"|l }}"></a>
+    </div>
     <div class="js-directory-summary-more" data-loaded="false" data-collapsed="true">
     </div>
   </div>
