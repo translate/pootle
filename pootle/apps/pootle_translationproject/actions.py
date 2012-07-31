@@ -171,7 +171,6 @@ def action_groups(request, path_obj):
     for group in groups:
         action_links = _gen_link_list(request, path_obj, group['actions'])
 
-        print "action_links for group", group['group'], action_links
         if action_links:
             group['actions'] = action_links
             action_groups.append(group)
