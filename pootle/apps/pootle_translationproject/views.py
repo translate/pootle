@@ -150,14 +150,12 @@ class ProjectIndexView(view_handler.View):
         project = translation_project.project
         language = translation_project.language
         is_terminology = project.is_terminology
-        description = translation_project.description
 
         directory_stats = get_raw_stats(directory)
         directory_summary = get_directory_summary(directory, directory_stats)
 
         template_vars.update({
             'translation_project': translation_project,
-            'description': description,
             'project': project,
             'language': language,
             'directory': directory,

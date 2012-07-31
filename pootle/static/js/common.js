@@ -202,4 +202,10 @@ $(document).ready(function ($) {
       $.fancybox("#upload");
   });
 
+  /* Generic toggle */
+  $(document).on("click", ".js-toggle", function (e) {
+    var target = $(this).attr("href") || $(this).data("target");
+    $(target).toggle();
+  });
+
 });

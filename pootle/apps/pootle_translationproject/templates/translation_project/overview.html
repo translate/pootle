@@ -81,7 +81,7 @@
   </div>
   {% endif %}
 
-  {% if description or project.description or language.description or user.is_superuser %}
+  {% if translation_project.description or project.description or language.description or user.is_superuser %}
   <div class="hd">
     <h2>{% trans "Description" %}</h2>
   </div>
@@ -93,22 +93,25 @@
       </div>
     {% endif %}
 
-    {% include "description.html" %}
-
-    {% if not description %}
-      <a id="hide_description" title="{% trans 'Hide' %}">
-          <span>{% trans 'Hide' %}</span></a>
-      <a id="show_description" title="{% trans 'Show' %}" class="hide">
-          <span>{% trans 'Show description' %}</span></a>
-    {% endif %}
-    <div class="intro">
-    {% if project.description %}
-      {{ project.description|safe|linebreaks|clean }}
-    {% endif %}
-    {% if language.description %}
-      {{ language.description|safe|linebreaks|clean }}
-    {% endif %}
+    {% if translation_project.description %}
+    <div id="overview-description-tp">
+      {{ translation_project.description|safe|linebreaks|clean }}
     </div>
+    {% endif %}
+
+    {% if project.description %}
+    <a class="overview-description-toggle js-toggle" href="#overview-description-project">{% blocktrans with project.fullname as project %}{{ project }} project information{% endblocktrans %}</a>
+    <div id="overview-description-project" class="hide">
+      {{ project.description|safe|linebreaks|clean }}
+    </div>
+    {% endif %}
+
+    {% if language.description %}
+    <a class="overview-description-toggle js-toggle" href="#overview-description-language">{% blocktrans with language.name as language %}{{ language }} project information{% endblocktrans %}</a>
+    <div id="overview-description-language" class="hide">
+      {{ language.description|safe|linebreaks|clean }}
+    </div>
+    {% endif %}
   </div>
   {% endif %}
 
