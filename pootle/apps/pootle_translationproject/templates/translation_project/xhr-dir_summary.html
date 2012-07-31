@@ -24,13 +24,13 @@
 </div>
 <div>
 {% for failure in check_failures %}
-  <div class="hd">
-    <h4>{{ failure.category_display }}</h4>
-  </div>
-  <div class="checks check-{{ failure.category }}">
+  <h4>{{ failure.category_display }}</h4>
+  <div id="check-{{ failure.category }}" class="checks">
     <dl>
     {% for check in failure.checks %}
-    <dt><a href="{{ check.url }}">{{ check.name }}</a></dt><dd>{{ check.count}}</dd>
+    <dt><a href="{{ check.url }}">{{ check.name }}</a></dt>
+    {% comment %}Ugly workaround for the non-resetting cycle tag{% endcomment %}
+    <dd class="{% if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %}">{{ check.count}}</dd>
     {% endfor %}
     </dl>
   </div>
