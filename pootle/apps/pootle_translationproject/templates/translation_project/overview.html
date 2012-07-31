@@ -16,7 +16,7 @@
     <h2><span><a href="{{ translation_project.pootle_path|l }}">{{ project.code }}</a> / {{ directory|trail:"/" }}</span></h2>
     {% endcache %}
   </div>
-  <div class="bd directory-summary">
+  <div id="directory-summary" class="bd">
     <ul>
       {% for summary_item in dir_summary %}
       <li>{{ summary_item|safe }}</li>
