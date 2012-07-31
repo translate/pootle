@@ -24,6 +24,7 @@ js_common = Bundle(
     'js/jquery/jquery.js', 'js/jquery/jquery.tipsy.js',
     'js/jquery/jquery.cookie.js', 'js/jquery/jquery.bidi.js',
     'js/jquery/jquery.fancybox.js', 'js/jquery/jquery.utils.js',
+    'js/jquery/jquery.easing.js',
     'js/common.js', 'js/sorttable.js', 'js/shortcut.js',
     filters='rjsmin', output='js/common.min.js')
 register('js_common', js_common)
@@ -35,11 +36,11 @@ js_admin = Bundle(
 register('js_admin', js_admin)
 
 js_editor = Bundle(
-    'js/jquery/jquery.easing.js', 'js/jquery/jquery.history.js',
-    'js/jquery/jquery.tmpl.js', 'js/jquery/jquery.textarea-expander.js',
-    'js/diff_match_patch.js', 'js/editor.js', 'js/json2.js',
+    'js/jquery/jquery.history.js', 'js/jquery/jquery.tmpl.js',
+    'js/jquery/jquery.textarea-expander.js', 'js/diff_match_patch.js',
     'js/jquery/jquery.fieldselection.js', 'js/jquery/jquery.caret.js',
     'js/jquery/jquery.highlightRegex.js', 'js/jquery/jquery.serializeObject.js',
+    'js/editor.js', 'js/json2.js',
     filters='rjsmin', output='js/editor.min.js')
 register('js_editor', js_editor)
 
