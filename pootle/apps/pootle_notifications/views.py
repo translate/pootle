@@ -66,11 +66,11 @@ def view(request, path):
             pass
     else:
         if directory.is_language():
-                lang = directory.language
-                proj = None
+            lang = directory.language
+            proj = None
         if directory.is_project():
-                lang = None
-                proj = directory.project
+            lang = None
+            proj = directory.project
 
 
     if check_permission('administrate', request):
