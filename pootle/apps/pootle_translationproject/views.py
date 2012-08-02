@@ -48,7 +48,7 @@ from pootle_app.views.top_stats import gentopstats_translation_project
 from pootle_app.views.language import item_dict
 from pootle_app.views.language.view import get_stats_headings
 from pootle_app.views.admin import util
-from pootle_app.views.admin.permissions import admin_permissions
+from pootle_app.views.admin.permissions import admin_permissions as admin_perms
 from pootle_app.views.language.view import get_translation_project, set_request_context
 from pootle_app.project_tree import ensure_target_dir_exists, direct_language_match_filename
 
@@ -80,9 +80,9 @@ def admin_permissions(request, translation_project):
         "feed_path": translation_project.pootle_path[1:],
     }
 
-    return admin_permissions(request, translation_project.directory,
-                             "translation_project/admin_permissions.html",
-                             template_vars)
+    return admin_perms(request, translation_project.directory,
+                       "translation_project/admin_permissions.html",
+                       template_vars)
 
 
 class StoreFormset(BaseModelFormSet):
