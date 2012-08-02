@@ -24,7 +24,7 @@ from fabric.api import cd, env
 from fabric.context_managers import hide, prefix, settings
 from fabric.contrib.console import confirm
 from fabric.contrib.files import exists, upload_template
-from fabric.operations import put, require, run, sudo
+from fabric.operations import require, run, sudo
 
 #
 # Deployment environments
