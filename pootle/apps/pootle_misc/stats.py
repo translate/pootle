@@ -131,14 +131,15 @@ def get_directory_summary(directory, dir_stats):
            }
     ]
 
-    if dir_stats['untranslated']['words'] > 0:
+    if dir_stats['untranslated']['words'] > 0 or dir_stats['fuzzy']['words'] > 0:
+        num_words = dir_stats['untranslated']['words'] + dir_stats['fuzzy']['words']
         summary.append(
             ungettext('<a class="directory-incomplete" href="%(url)s">%(num)d '
                'word needs translation</a>',
                '<a class="directory-incomplete" href="%(url)s">%(num)d words '
                'need translation</a>',
-               dir_stats['untranslated']['words']) % {
-                   'num': dir_stats['untranslated']['words'],
+               num_words) % {
+                   'num': num_words,
                    'url': dispatch.translate(directory, state='incomplete')
                }
         )
