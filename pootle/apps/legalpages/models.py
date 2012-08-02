@@ -45,6 +45,8 @@ class LegalPage(models.Model):
 
     try:
         markup_filter = settings.MARKUP_FILTER[0]
+        if markup_filter is None:
+            markup_filter = u'HTML'
     except AttributeError, IndexError:
         markup_filter = u'HTML'
     body = models.TextField(_("Content"), blank=True,
