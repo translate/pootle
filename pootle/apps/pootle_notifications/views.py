@@ -118,6 +118,18 @@ def directory_to_title(directory):
     return _('News for %(path)s',
              {'path': directory.pootle_path})
 
+
+def create_notice(creator, message, directory):
+    profile = get_profile(creator)
+    if not check_profile_permission(profile, 'administrate', directory):
+        raise PermissionDenied
+    new_notice = Notice()
+    new_notice.message = message
+    new_notice.directory = directory
+    new_notice.save()
+    return new_notice
+
+
 def handle_form(request, current_directory, current_project, current_language, template_vars):
 
     current_project_pk = None
@@ -142,6 +154,7 @@ def handle_form(request, current_directory, current_project, current_language, t
 
     # Basic validation, only proceed if the form data is valid.
     if form.is_valid():
+        message = form.cleaned_data['message']
 
         # Lets save this NoticeForm as a Notice (an RSS item on the website)
         # if it is requsted we do that - ie 'publish_rss' is true.
@@ -172,10 +185,7 @@ def handle_form(request, current_directory, current_project, current_language, t
                 if form.cleaned_data['language_selection'] == [] and \
                         form.cleaned_data['language_all'] == False:
                     # Publish this Notice, using the project's Directory object
-                    new_notice = Notice()
-                    new_notice.message = form.cleaned_data['message']
-                    new_notice.directory = p.directory
-                    new_notice.save()
+                    create_notice(request.user, message, p.directory)
 
                     if template_vars['notices_published'] == None:
                         template_vars['notices_published'] = []
@@ -191,10 +201,7 @@ def handle_form(request, current_directory, current_project, current_language, t
                     for tp in tps:
                         # Publish this Notice, using the translation project's
                         # Directory object
-                        new_notice = Notice()
-                        new_notice.message = form.cleaned_data['message']
-                        new_notice.directory = tp.directory
-                        new_notice.save()
+                        create_notice(request.user, message, tp.directory)
 
                         if template_vars['notices_published'] == None:
                             template_vars['notices_published'] = []
@@ -213,10 +220,7 @@ def handle_form(request, current_directory, current_project, current_language, t
                     form.cleaned_data['project_all'] == False:
                 for l in langs:
                     # Publish this Notice using the languages's Directory object
-                    new_notice = Notice()
-                    new_notice.message = form.cleaned_data['message']
-                    new_notice.directory = l.directory
-                    new_notice.save()
+                    create_notice(request.user, message, l.directory)
 
                     if template_vars['notices_published'] == None:
                         template_vars['notices_published'] = []
