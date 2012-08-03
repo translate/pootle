@@ -46,7 +46,7 @@ def fancy_escape(text):
             '\r\n': (escape_highlight % '\\r\\n') + '<br/>\n',
             '\r': (escape_highlight % '\\r') + '<br/>\n',
             '\n': (escape_highlight % '\\n') + '<br/>\n',
-            '\t': (escape_highlight % '\\t') + '\t',
+            '\t': (escape_highlight % '\\t'),
             '&': '&amp;',
             '<': '&lt;',
             '>': '&gt;',

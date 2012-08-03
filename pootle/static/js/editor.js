@@ -591,9 +591,9 @@
     return t;
   },
 
-  /* Cleans '\t' and '\n' escape sequences */
+  /* Cleans '\n' escape sequences and adds '\t' sequences */
   cleanEscape: function (s) {
-    return s.replace(/\\t/g, "").replace(/\\n/g, "");
+    return s.replace(/\\t/g, "\t").replace(/\\n/g, "");
   },
 
 
@@ -608,7 +608,7 @@
               '\r\n': escapeHl.replace(/%s/, '\\r\\n') + '<br/>\n',
               '\r': escapeHl.replace(/%s/, '\\r') + '<br/>\n',
               '\n': escapeHl.replace(/%s/, '\\n') + '<br/>\n',
-              '\t': escapeHl.replace(/%s/, '\\t') + '\t',
+              '\t': escapeHl.replace(/%s/, '\\t'),
               '&': '&amp;',
               '<': '&lt;',
               '>': '&gt;'

@@ -47,7 +47,7 @@ def highlight_whitespace(text):
             '\r\n': '\\r\\n\n',
             '\r': '\\r\n',
             '\n': '\\n\n',
-            '\t': '\\t\t',
+            '\t': '\\t',
             '\\': '\\\\',
             }
         return submap[match.group()]
