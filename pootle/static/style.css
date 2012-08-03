@@ -706,19 +706,6 @@ html[dir="rtl"] #show_settings
     right: 3px;
 }
 
-#hide_description,
-#show_description
-{
-    float: right;
-    cursor: pointer;
-}
-
-html[dir="rtl"] #hide_description,
-html[dir="rtl"] #show_description
-{
-    float: left;
-}
-
 /* TABLES */
 
 .module table, 

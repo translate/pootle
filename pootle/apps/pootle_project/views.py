@@ -106,11 +106,11 @@ def project_language_index(request, project_code):
         'project': {
           'code': project.code,
           'name': project.fullname,
+          'description': project.description,
           'stats': ungettext('%(languages)d language, %(average)d%% translated',
                              '%(languages)d languages, %(average)d%% translated',
                              languagecount, {"languages": languagecount, "average": average}),
         },
-        'description': project.description,
         'adminlink': _('Admin'),
         'languages': items,
         'topstats': topstats,

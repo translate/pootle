@@ -92,7 +92,6 @@ def language_index(request, language_code):
                              projectcount, {"projects": projectcount, "average": average}),
         },
         'feed_path': '%s/' % language.code,
-        'description': language.description,
         'projects': items,
         'statsheadings': get_stats_headings(),
         'topstats': topstats,

@@ -19,39 +19,54 @@
 {% block bodyclass %}projectoverview{% endblock %}
 
 {% block content %}
-{% if user.is_superuser or request.permissions.administrate %}
-  {% include "admin/edit_links.html" %}
-  <div class="settings-container js-admin-description" style="display: none;">
-    {% include "admin/general_settings_form.html" with form_action="edit_settings.html" %}
+<div class="module first">
+  <div class="hd">
+    <h2>{{ project.stats }}</h2>
   </div>
-{% endif %}
-{% include "description.html" %}
 
-<div id="innernav" class="item-statistics">
-  <h2 lang="{{ LANGUAGE_CODE }}">{{ project.stats }}</h2>
+  <div class="bd">
+    <table class="sortable stats" id="js-stats-project" cellpadding="5" cellspacing="0">
+    <thead>
+      <tr>
+        <th id="js-stats-language" class="stats">{{ statsheadings.name }}</th>
+        <th id="js-stats-progress" class="stats">{{ statsheadings.progress }}</th>
+        <th id="js-stats-need-translation" class="stats-number sorttable_numeric">{{ statsheadings.need_translation }}</th>
+        <th id="js-stats-activity" class="stats">{% trans 'Last Activity' %}</th>
+      </tr>
+    </thead>
+    <tbody class="stats">
+    {% for item in languages %}
+      <tr class="item {% cycle 'even' 'odd' %}">
+      {% include "language/item_summary.html" %}
+      <td>{{ item.lastactivity }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+  </div>
 </div>
 
-<div class="module-primary" lang="{{ LANGUAGE_CODE }}">
-    <div class="bd">
-        <table class="sortable stats" id="js-stats-project" cellpadding="5" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th id="js-stats-language" class="stats">{{ statsheadings.name }}</th>
-                <th id="js-stats-progress" class="stats">{{ statsheadings.progress }}</th>
-                <th id="js-stats-need-translation" class="stats-number sorttable_numeric">{{ statsheadings.need_translation }}</th>
-                <th id="js-stats-activity" class="stats">{% trans 'Last Activity' %}</th>
-            </tr>
-        </thead>
-        <tbody class="stats">
-        {% for item in languages %}
-            <tr class="item {% cycle 'even' 'odd' %}">
-            {% include "language/item_summary.html" %}
-            <td>{{ item.lastactivity }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-        </table>
+<div class="module">
+  {% if project.description or user.is_superuser %}
+  <div class="hd">
+    <h2>{% trans "Description" %}</h2>
+  </div>
+
+  <div id="overview-description" class="bd">
+    {% if user.is_superuser or request.permissions.administrate %}
+      {% include "admin/edit_links.html" %}
+      <div class="settings-container js-admin-description" style="display: none;">
+        {% include "admin/general_settings_form.html" with form_action="edit_settings.html" %}
+      </div>
+    {% endif %}
+
+    {% if project.description %}
+    <div id="overview-description-project">
+      {{ project.description|safe|linebreaks|clean }}
     </div>
+    {% endif %}
+  </div>
+  {% endif %}
 </div>
 {% endblock content %}
 

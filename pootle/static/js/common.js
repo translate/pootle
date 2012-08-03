@@ -146,26 +146,6 @@ $(document).ready(function ($) {
     $.fancybox({'href': $(e.target).attr('href'), 'type': 'ajax'});
   });
 
-  cookieName = "hide_description";
-  cookieOptions = {path: '/', expires: 15};
-
-  /* Show/hide descriptions */
-  if ($.cookie(cookieName) == "yes") {
-    $('.intro, #edit_settings, #hide_description, #show_description').toggle();
-  }
-
-  $('#hide_description, #show_description').click(function(e) {
-    $('#edit_settings, #hide_description, #show_description').toggle();
-    $('.intro,').slideToggle();
-
-    if ($.cookie(cookieName) == "yes") {
-        $.cookie(cookieName, "no", cookieOptions);
-    } else {
-        $.cookie(cookieName, "yes", cookieOptions);
-    }
-
-  });
-
   /* Directory summary */
   $(document).on("click", ".js-directory-summary", function (e) {
     e.preventDefault();
