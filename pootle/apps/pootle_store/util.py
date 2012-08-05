@@ -117,7 +117,7 @@ def calculate_stats(units):
                        ['source_wordcount'], count=True)
     translated = sum_column(units.filter(state=TRANSLATED),
                             ['source_wordcount', 'target_wordcount'], count=True)
-    result = {}
+    result = {'errors': 0}
     result['total'] = total['count']
     if result['total'] == 0:
         result['totalsourcewords'] = 0
@@ -141,3 +141,11 @@ def calculate_stats(units):
         result['translatedsourcewords'] = translated['source_wordcount']
         result['translatedtargetwords'] = translated['target_wordcount']
     return result
+
+
+def suggestions_sum(queryset):
+    total = 0
+    for item in queryset:
+        total += item.get_suggestion_count()
+
+    return total

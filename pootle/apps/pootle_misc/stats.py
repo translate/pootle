@@ -24,15 +24,20 @@ from pootle_app.views.language import dispatch
 from pootle_misc.util import add_percentages
 
 
-def get_raw_stats(path_obj):
+def get_raw_stats(path_obj, include_suggestions=False):
     """Returns a dictionary of raw stats for `path_obj`.
+
+    :param path_obj: A Directory/Store object.
+    :param include_suggestions: Whether to include suggestion count in the
+                                output or not.
 
     Example::
 
         {'translated': {'units': 0, 'percentage': 0, 'words': 0},
          'fuzzy': {'units': 0, 'percentage': 0, 'words': 0},
          'untranslated': {'units': 34, 'percentage': 100, 'words': 181},
-         'total': {'units': 34, 'percentage': 100, 'words': 181} }
+         'total': {'units': 34, 'percentage': 100, 'words': 181}
+         'suggestions': 4 }
     """
     quick_stats = add_percentages(path_obj.getquickstats())
 
@@ -57,7 +62,12 @@ def get_raw_stats(path_obj):
             'percentage': quick_stats['untranslatedpercentage'],
             'units': quick_stats['untranslated'],
             },
+        'errors': quick_stats['errors'],
+        'suggestions': -1,
     }
+
+    if include_suggestions:
+        stats['suggestions'] = path_obj.get_suggestion_count()
 
     return stats
 
@@ -141,6 +151,18 @@ def get_directory_summary(directory, dir_stats):
                num_words) % {
                    'num': num_words,
                    'url': dispatch.translate(directory, state='incomplete')
+               }
+        )
+
+    if dir_stats['suggestions'] > 0:
+        summary.append(
+            ungettext('<a class="directory-incomplete" href="%(url)s">%(num)d '
+               'suggestion</a> needs review',
+               '<a class="directory-incomplete" href="%(url)s">%(num)d '
+               'suggestions</a> need review',
+               dir_stats['suggestions']) % {
+                   'num': dir_stats['suggestions'],
+                   'url': dispatch.translate(directory, state='suggestions')
                }
         )
 

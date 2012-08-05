@@ -86,8 +86,8 @@ def stats_descriptions(quick_stats):
     """Provides a dictionary with two textual descriptions of the work
     outstanding."""
 
-    untranslated = quick_stats["untranslatedsourcewords"]
-    fuzzy = quick_stats["fuzzysourcewords"]
+    untranslated = quick_stats["untranslated"]["words"]
+    fuzzy = quick_stats["fuzzy"]["words"]
     todo_words = untranslated + fuzzy
     todo_text = ungettext("%d word needs attention",
             "%d words need attention", todo_words, todo_words)
@@ -105,24 +105,31 @@ def stats_descriptions(quick_stats):
         'todo_tooltip': todo_tooltip,
     }
 
-def make_generic_item(request, path_obj, action, terminology=False):
+
+def make_generic_item(request, path_obj, action, include_suggestions=False,
+                      terminology=False):
     """Template variables for each row in the table.
 
     make_directory_item() and make_store_item() will add onto these variables."""
     try:
+        stats = get_raw_stats(path_obj, include_suggestions)
         quick_stats = add_percentages(path_obj.getquickstats())
         info = {
-            'href':    action,
-            'data':    quick_stats,
+            'href': action,
+            'href_todo': dispatch.translate(path_obj, state='incomplete'),
+            'href_sugg': dispatch.translate(path_obj, state='suggestions'),
+            'stats': stats,
             'tooltip': _('%(percentage)d%% complete' %
-                         {'percentage': quick_stats['translatedpercentage']}),
-            'title':   path_obj.name,
-            'stats':   get_item_stats(request, quick_stats, path_obj, terminology),
-            }
-        errors = quick_stats.get('errors', 0)
+                         {'percentage': stats['translated']['percentage']}),
+            'title': path_obj.name,
+            'summary': get_item_stats(request, quick_stats, path_obj, terminology),
+        }
+
+        errors = stats.get('errors', 0)
         if errors:
             info['errortooltip'] = ungettext('Error reading %d file', 'Error reading %d files', errors, errors)
-        info.update(stats_descriptions(quick_stats))
+
+        info.update(stats_descriptions(stats))
     except IOError, e:
         info = {
             'href': action,
@@ -130,20 +137,24 @@ def make_generic_item(request, path_obj, action, terminology=False):
             'errortooltip': e.strerror,
             'data': {'errors': 1},
             }
+
     return info
 
-def make_directory_item(request, directory, terminology=False):
+def make_directory_item(request, directory, include_suggestions=False,
+                        terminology=False):
     action = directory.pootle_path
-    item = make_generic_item(request, directory, action, terminology)
+    item = make_generic_item(request, directory, action, include_suggestions,
+                             terminology)
     item.update({
             'icon': 'folder',
             'isdir': True})
     return item
 
-def make_store_item(request, store, terminology=False):
+def make_store_item(request, store, include_suggestions=False,
+                    terminology=False):
     action = dispatch.translate(store)
-    item = make_generic_item(request, store, action, terminology)
-    item['href_todo'] = dispatch.translate(store, state='incomplete')
+    item = make_generic_item(request, store, action, include_suggestions,
+                             terminology)
     item.update({
             'icon': 'page',
             'isfile': True})

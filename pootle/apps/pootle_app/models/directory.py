@@ -136,6 +136,13 @@ class Directory(models.Model):
         return stats
 
 
+    @getfromcache
+    def get_suggestion_stats(self):
+        file_result = suggestions_sum(self.child_stores.iterator())
+        dir_result = suggestions_sum(self.child_dirs.iterator())
+        return file_result + dir_result
+
+
     def trail(self, only_dirs=True):
         """return list of ancestor directories excluding TranslationProject and above"""
         path_parts = self.pootle_path.split('/')
@@ -153,9 +160,10 @@ class Directory(models.Model):
             return Directory.objects.filter(pootle_path__in=parents).order_by('pootle_path')
         return Directory.objects.none()
 
-    def has_suggestions(self):
+    def get_suggestion_count(self):
         """check if any child store has suggestions"""
-        return Suggestion.objects.filter(unit__store__pootle_path__startswith=self.pootle_path).count() > 0
+        return Suggestion.objects.filter(
+            unit__store__pootle_path__startswith=self.pootle_path).count()
 
     def is_language(self):
         """does this directory point at a language"""

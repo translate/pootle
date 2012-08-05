@@ -50,6 +50,8 @@ def get_stats_headings():
         "progress":               _("Progress"),
         "summary":                _("Summary"),
         "need_translation":       _("Need Translation"),
+        # Translators: The number of suggestions pending review
+        "suggestions": _("Suggestions"),
         }
 
 def get_translation_project(f):

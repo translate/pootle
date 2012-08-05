@@ -267,8 +267,8 @@ class Unit(models.Model, base.TranslationUnit):
             store = self.store
             #translation_project = store.translation_project
             #translation_project.update_index(translation_project.indexer, store, self.id)
-            deletefromcache(store,
-                            ["getquickstats", "getcompletestats", "get_mtime", "has_suggestions"])
+            deletefromcache(store, ["getquickstats", "getcompletestats",
+                                    "get_mtime", "get_suggestion_count"])
 
     def _get_source(self):
         return self.source_f
@@ -756,11 +756,13 @@ class Store(models.Model, base.TranslationStore):
                 # update search index
                 #self.translation_project.update_index(self.translation_project.indexer, self)
             # new units, let's flush cache
-            deletefromcache(self, ["getquickstats", "getcompletestats", "get_mtime", "has_suggestions"])
+            deletefromcache(self, ["getquickstats", "getcompletestats",
+                                   "get_mtime", "get_suggestion_count"])
 
     def delete(self, *args, **kwargs):
         super(Store, self).delete(*args, **kwargs)
-        deletefromcache(self, ["getquickstats", "getcompletestats", "get_mtime", "has_suggestions"])
+        deletefromcache(self, ["getquickstats", "getcompletestats",
+                               "get_mtime", "get_suggestion_count"])
 
     @getfromcache
     def get_mtime(self):
@@ -1233,9 +1235,11 @@ class Store(models.Model, base.TranslationStore):
             return {}
 
     @getfromcache
-    def has_suggestions(self):
-        """check if any unit in store has suggestions"""
-        return Suggestion.objects.filter(unit__store=self, unit__state__gt=OBSOLETE).count()
+    def get_suggestion_count(self):
+        """Check if any unit in the store has suggestions"""
+        return Suggestion.objects.filter(unit__store=self,
+                                         unit__state__gt=OBSOLETE).count()
+
 
 ################################ Translation #############################
 

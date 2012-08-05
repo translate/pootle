@@ -1,0 +1,15 @@
+{% extends "language/item_summary.html" %}
+
+{% load progressbar %}
+
+{% block progressbar %}{% progressbar item.stats stats.total.words %}{% endblock %}
+
+{% block extra_columns %}
+<td class="stats-number">
+  {% if item.stats.suggestions > 0 %}
+  <a href="{{ item.href_sugg }}">{{ item.stats.suggestions }}</a>
+  {% else %}
+  <span class="muted">0</span>
+  {% endif %}
+</td>
+{% endblock %}

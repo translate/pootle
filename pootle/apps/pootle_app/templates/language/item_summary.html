@@ -29,12 +29,13 @@
 </td>
 <td class="stats-number">
     {% if item.todo_words > 0 %}
-    <a href="{% filter l %}{% if item.isfile %}{{ item.href_todo }}{% else %}{{ item.href }}{{ "translate.html#filter=incomplete"|force_escape }}{% endif %}{% endfilter %}" title="{{ item.todo_tooltip }}">{{ item.todo_words }}</a>
+    <a href="{{ item.href_todo }}" title="{{ item.todo_tooltip }}">{{ item.todo_words }}</a>
     {% else %}
-    <span class="muted">{{ item.todo_words }}</span>
+    <span class="muted">0</span>
     {% endif %}
 </td>
+{% block extra_columns %}{% endblock %}
 {% else %}
-<td colspan="2"></td>
+<td colspan="3"></td>
 {% endif %}
 {% endblock itemstats %}

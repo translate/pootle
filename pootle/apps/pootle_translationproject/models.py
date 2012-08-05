@@ -128,7 +128,7 @@ class TranslationProject(models.Model):
         super(TranslationProject, self).delete(*args, **kwargs)
         directory.delete()
         deletefromcache(self, ["getquickstats", "getcompletestats",
-                "get_mtime", "has_suggestions"])
+                               "get_mtime", "get_suggestion_count"])
 
 
     def get_absolute_url(self):

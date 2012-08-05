@@ -293,7 +293,10 @@ def import_suggestions(store):
     try:
         logging.info(u"Importing suggestions for %s if any.", store.real_path)
         store.import_pending()
-        count = store.has_suggestions()
+        try:
+            count = store.has_suggestions()
+        except:
+            count = store.get_suggestion_count()
         if count:
             text = u"""
             <li>%s</li>

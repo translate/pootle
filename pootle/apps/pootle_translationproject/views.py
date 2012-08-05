@@ -42,7 +42,7 @@ from pootle_misc.stats import (get_raw_stats, get_translation_stats,
                                get_directory_summary)
 from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_app.models.signals import post_file_upload
-from pootle_app.models             import Directory
+from pootle_app.models import Directory
 from pootle_app.lib import view_handler
 from pootle_app.views.top_stats import gentopstats_translation_project
 from pootle_app.views.language import item_dict
@@ -151,7 +151,7 @@ class ProjectIndexView(view_handler.View):
         language = translation_project.language
         is_terminology = project.is_terminology
 
-        directory_stats = get_raw_stats(directory)
+        directory_stats = get_raw_stats(directory, include_suggestions=True)
         directory_summary = get_directory_summary(directory, directory_stats)
 
         template_vars.update({
@@ -293,10 +293,12 @@ def get_children(request, translation_project, directory):
         parent = [{'title': u'..', 'href': parent_dir}]
 
     directories = [item_dict.make_directory_item(request, child_dir,
+                                                 include_suggestions=True,
                                                  terminology=is_terminology)
                    for child_dir in directory.child_dirs.iterator()]
 
     stores = [item_dict.make_store_item(request, child_store,
+                                        include_suggestions=True,
                                         terminology=is_terminology)
               for child_store in directory.child_stores.iterator()]
 
