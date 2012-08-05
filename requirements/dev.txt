@@ -1,3 +1,4 @@
 -r base.txt
 
+django-extensions
 -e git://github.com/django-debug-toolbar/django-debug-toolbar.git#egg=django-debug-toolbar
