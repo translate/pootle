@@ -32,7 +32,6 @@ class LegalPageForm(ModelForm):
 
 
     def clean(self):
-
         cleaned_data = super(LegalPageForm, self).clean()
 
         url = cleaned_data.get('url')

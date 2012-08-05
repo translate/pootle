@@ -33,7 +33,6 @@ from pootle_app.views.admin.util import user_is_admin
 @user_is_admin
 def admin_page(request, page_id):
     """Administration view."""
-
     lp = get_object_or_404(LegalPage, id=page_id)
 
     if request.method == 'POST':
@@ -59,7 +58,6 @@ def admin_page(request, page_id):
 @user_is_admin
 def admin(request):
     """Lists available pages in the administration."""
-
     msg = ''
 
     if request.method == 'POST':
@@ -82,7 +80,6 @@ def admin(request):
 
 def legalpage(request, slug):
     """The actual Legal Page."""
-
     lp = get_object_or_404(LegalPage, active=True, slug=slug)
 
     if lp.url:

@@ -29,4 +29,3 @@ admin_patterns = patterns('',
     (r'^$', 'legalpages.views.admin'),
     (r'^(?P<page_id>\d+)/?$', 'legalpages.views.admin_page'),
 )
-

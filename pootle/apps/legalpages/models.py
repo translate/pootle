@@ -26,8 +26,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from pootle_misc.util import apply_markup_filter
 
-class LegalPage(models.Model):
 
+class LegalPage(models.Model):
     active = models.BooleanField(_('Active'),
             help_text=_('Whether this page is active or not.'))
 
@@ -64,7 +64,6 @@ class LegalPage(models.Model):
 
 
     def get_absolute_url(self):
-
         if self.url:
             return self.url
 
@@ -73,6 +72,5 @@ class LegalPage(models.Model):
 
     def save(self, *args, **kwargs):
         """Applies a markup filter to populate `body_html` upon saving."""
-
         self.body_html = apply_markup_filter(self.body)
         super(LegalPage, self).save(*args, **kwargs)
