@@ -91,7 +91,7 @@ class Directory(models.Model):
     def _get_stores(self):
         """queryset with all descending stores"""
         from pootle_store.models import Store
-        return Store.object.filter(pootle_path__startswith=self.pootle_path)
+        return Store.objects.filter(pootle_path__startswith=self.pootle_path)
 
     stores = property(_get_stores)
 
