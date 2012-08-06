@@ -41,26 +41,31 @@ def add_widths(stats, progressbar_width):
 
 
 @register.inclusion_tag('progressbar.html', takes_context=True)
-def progressbar(context, cur_stats):
+def progressbar(context, cur_stats, total_words=None):
     """Inclusion tag that populates the given ``cur_stats`` stats dictionary
     with the proper widths that the rendering progressbar should have.
 
-    This builds a proportional progressbar. The only requirement is that
-    the context using this inclusion tag must have a ``stats`` dictionary
-    with the totals for that context/directory.
-
-    If the stats say there are no translatable units, nothing is rendered.
+    If ``total_words`` is given, this builds a proportional progressbar.
+    If the ``total_words`` is 0, nothing is rendered.
 
     :param cur_stats: Dictionary of quick stats as returned by
                       :func:`pootle_misc.stats.get_raw_stats`
+    :param total_words: Total translatable words for the context of the
+                        building progressbar. If given, this will result
+                        in proportional progressbars.
     """
-    dir_total_words = context['stats']['total']['words']
+    proportional = True
+    if total_words is None:
+        proportional = False
 
-    if dir_total_words == 0:
+    if proportional and total_words == 0:
         return {}
 
     cur_total_words = cur_stats['total']['words']
-    progressbar_width = (200 * cur_total_words) / dir_total_words
+    if proportional:
+        progressbar_width = (200 * cur_total_words) / total_words
+    else:
+        progressbar_width = 100
 
     add_widths(cur_stats, progressbar_width)
 
