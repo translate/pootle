@@ -93,7 +93,9 @@
     {% if user.is_superuser or request.permissions.administrate %}
       {% include "admin/edit_links.html" %}
       <div class="settings-container js-admin-description" style="display: none;">
-        {% include "admin/general_settings_form.html" with form_action="edit_settings.html" %}
+        {% with "edit_settings.html" as form_action %}
+        {% include "admin/general_settings_form.html" %}
+        {% endwith %}
       </div>
     {% endif %}
 
