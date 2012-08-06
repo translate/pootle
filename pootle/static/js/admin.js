@@ -27,30 +27,36 @@ $(document).ready(function () {
   });
 
   /* Sliding table within admin dashboard */
-  var slide_table = function (event) {
+  var slideTable = function (event) {
     event.preventDefault();
+    var node = $("#" + $(event.target).data('target'));
+
     $.ajax({
       url: l('/admin/stats/more'),
       dataType: 'json',
-      beforeSend: function () {
-        $(".slide").unbind('click', slide_table);
-      },
-      error: function () {
-        $(".slide").bind('click', slide_table);
-      },
       success: function (data) {
         var newstats = '';
         $(data).each(function () {
           newstats += '<tr><th scope="row">' + this[0] + '</th>'
                       + '<td class="stats-number">' + this[1] + '</td></tr>';
         });
-        $("tbody.slidethis").append(newstats);
-        $("tbody.slidethis").slideDown("fast");
-        $("tbody.slidethis").next("tbody").remove();
+        node.append(newstats);
+        node.slideDown("fast");
+        node.next("tbody").remove();
+      },
+      beforeSend: function () {
+        $(document).off("click", ".slide", slideTable);
+        node.spin();
+      },
+      complete: function () {
+        node.spin(false);
+      },
+      error: function () {
+        $(document).on("click", ".slide", slideTable);
       }
     });
   };
-  $(".slide").bind('click', slide_table);
+  $(".slide").bind('click', slideTable);
 
   /* Sets background color to table rows when checking selects */
   $("td.DELETE input[type=checkbox]").change(function (e) {

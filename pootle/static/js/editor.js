@@ -1690,6 +1690,7 @@
     }
 
     var uid = PTL.editor.activeUid,
+        node = $("#extras-container"),
         timelineUrl = l("/unit/timeline/" + uid);
 
     // Always abort previous requests so we only get results for the
@@ -1717,6 +1718,12 @@
             $("#hide-timeline").show();
           }
         }
+      },
+      beforeSend: function () {
+        node.spin();
+      },
+      complete: function () {
+        node.spin(false);
       },
       error: PTL.editor.error
     });

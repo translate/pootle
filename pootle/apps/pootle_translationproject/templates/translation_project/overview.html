@@ -24,10 +24,12 @@
     </ul>
     {% progressbar stats stats.total.words %}
     <div id="directory-summary-toggle">
-      <a class="icon-expand js-directory-summary" title="{% trans "Detailed statistics" %}"
+      <a id="js-directory-summary" class="icon-expand"
+         data-target="js-directory-summary-more"
+         title="{% trans "Detailed statistics" %}"
          href="{{ "dir_summary.html"|l }}"></a>
     </div>
-    <div class="js-directory-summary-more" data-loaded="false" data-collapsed="true">
+    <div id="js-directory-summary-more" data-loaded="false" data-collapsed="true">
     </div>
   </div>
 

@@ -147,9 +147,9 @@ $(document).ready(function ($) {
   });
 
   /* Directory summary */
-  $(document).on("click", ".js-directory-summary", function (e) {
+  $(document).on("click", "#js-directory-summary", function (e) {
     e.preventDefault();
-    var node = $(".js-directory-summary-more"),
+    var node = $("#" + $(this).data('target')),
         icon = $(this),
         data = node.data();
 
@@ -172,6 +172,12 @@ $(document).ready(function ($) {
           node.html(data).hide();
           node.data('loaded', true);
           hideShow();
+        },
+        beforeSend: function () {
+          node.spin();
+        },
+        complete: function () {
+          node.spin(false);
         },
       });
     }
