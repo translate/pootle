@@ -1,4 +1,4 @@
-{% load i18n baseurl %}
+{% load i18n baseurl progressbar %}
 
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
@@ -9,23 +9,15 @@
     class="icon" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"/>
  {% endif %}
     <a href="{{ item.href|l }}">{{ item.title }}</a>
-    {% if item.data.errors %}
+    {% if item.stats.errors %}
     <img src="{{ "images/error.png"|m }}" alt="{% trans 'Error' %}"
          title="{{ item.errortooltip }}" class="error" />
     {% endif %}
 </td>
-{% if item.data %}
+{% if item.stats %}
 <td class="stats-graph">
-    <div class="sortkey">{{ item.data.translatedpercentage }}</div>
-    <div class="graph" title="{{ item.tooltip }}">
-        <div class="translated" style="width: {{ item.data.translatedpercentage }}px;"></div>
-        {% if item.data.fuzzysourcewords %}
-        <div class="fuzzy" style="{% if LANGUAGE_BIDI %}right{%else%}left{%endif%}: {{ item.data.translatedpercentage }}px; width: {{ item.data.fuzzypercentage }}px;"></div>
-        {% endif %}
-        {% if item.data.untranslatedsourcewords %}
-        <div class="untranslated" style="{% if LANGUAGE_BIDI %}right{%else%}left{%endif%}: {{ item.data.translatedpercentage|add:item.data.fuzzypercentage }}px; width: {{ item.data.untranslatedpercentage }}px;"></div>
-        {% endif %}
-    </div>
+    <div class="sortkey">{{ item.stats.translated.percentage }}</div>
+    {% block progressbar %}{% progressbar item.stats %}{% endblock %}
 </td>
 <td class="stats-number">
     {% if item.todo_words > 0 %}

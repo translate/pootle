@@ -33,10 +33,11 @@ from django.http import HttpResponse
 from pootle_misc.util import ajax_required, jsonify
 from pootle_misc.baseurl import l
 from pootle_misc.forms import LiberalModelChoiceField
+from pootle_misc.stats import get_raw_stats
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
 from pootle_app.views.language.view import get_stats_headings
-from pootle_app.views.language.item_dict import add_percentages, stats_descriptions
+from pootle_app.views.language.item_dict import stats_descriptions
 from pootle.i18n.gettext import tr_lang
 from pootle_app.views.top_stats import gentopstats_project, gentopstats_root
 from pootle_language.models import Language
@@ -59,23 +60,23 @@ def get_last_action(translation_project):
 
 def make_language_item(request, translation_project):
     href = '/%s/%s/' % (translation_project.language.code, translation_project.project.code)
-    projectstats = add_percentages(translation_project.getquickstats())
+    project_stats = get_raw_stats(translation_project)
     info = {
         'code': translation_project.language.code,
         'href': href,
         'title': tr_lang(translation_project.language.fullname),
-        'data': projectstats,
+        'stats': project_stats,
         'lastactivity': get_last_action(translation_project),
         'tooltip': _('%(percentage)d%% complete',
-                     {'percentage': projectstats['translatedpercentage']}),
+                     {'percentage': project_stats['translated']['percentage']}),
     }
 
-    errors = projectstats.get('errors', 0)
+    errors = project_stats.get('errors', 0)
 
     if errors:
         info['errortooltip'] = ungettext('Error reading %d file', 'Error reading %d files', errors, errors)
 
-    info.update(stats_descriptions(projectstats))
+    info.update(stats_descriptions(project_stats))
 
     return info
 
@@ -97,8 +98,8 @@ def project_language_index(request, project_code):
     items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
 
     languagecount = len(translation_projects)
-    totals = add_percentages(project.getquickstats())
-    average = totals['translatedpercentage']
+    project_stats = get_raw_stats(project)
+    average = project_stats['translated']['percentage']
 
     topstats = gentopstats_project(project)
 
@@ -107,9 +108,10 @@ def project_language_index(request, project_code):
           'code': project.code,
           'name': project.fullname,
           'description': project.description,
-          'stats': ungettext('%(languages)d language, %(average)d%% translated',
-                             '%(languages)d languages, %(average)d%% translated',
-                             languagecount, {"languages": languagecount, "average": average}),
+          'summary': ungettext('%(languages)d language, %(average)d%% translated',
+                               '%(languages)d languages, %(average)d%% translated',
+                               languagecount, {"languages": languagecount,
+                                               "average": average}),
         },
         'languages': items,
         'topstats': topstats,

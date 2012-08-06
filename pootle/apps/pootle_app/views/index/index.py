@@ -25,7 +25,6 @@ from django.utils.translation import ugettext as _
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-
 from pootle_profile.models import get_profile
 from pootle_app.models import Directory
 from pootle_statistics.models import Submission
@@ -35,6 +34,7 @@ from pootle_app.models.permissions import get_matching_permissions, check_permis
 from pootle_app.views.top_stats import gentopstats_root
 from pootle.i18n.gettext import tr_lang
 from pootle_app.views.language.item_dict import add_percentages
+from pootle_misc.stats import get_raw_stats
 
 
 def get_items(request, model, get_last_action, name_func):
@@ -44,22 +44,15 @@ def get_items(request, model, get_last_action, name_func):
         return items
 
     for item in model.objects.iterator():
-        stats = item.getquickstats()
-        stats = add_percentages(stats)
+        stats = get_raw_stats(item)
 
         items.append({
             'code': item.code,
             'name': name_func(item.fullname),
             'lastactivity': get_last_action(item),
-            'trans': stats["translatedsourcewords"],
-            'fuzzy': stats["fuzzysourcewords"],
-            'untrans': stats["untranslatedsourcewords"],
-            'total': stats["totalsourcewords"],
-            'transper': stats["translatedpercentage"],
-            'fuzzyper': stats["fuzzypercentage"],
-            'untransper': stats["untranslatedpercentage"],
+            'stats': stats,
             'completed_title': _("%(percentage)d%% complete",
-                                 {'percentage': stats['translatedpercentage']}),
+                                 {'percentage': stats['translated']['percentage']}),
             })
     items.sort(lambda x, y: locale.strcoll(x['name'], y['name']))
     return items
@@ -89,6 +82,7 @@ def view(request):
     request.permissions = get_matching_permissions(get_profile(request.user), Directory.objects.root)
 
     topstats = gentopstats_root()
+    languages = getlanguages(request)
 
     templatevars = {
         'description': _(settings.DESCRIPTION),
@@ -103,7 +97,7 @@ def view(request):
             'traduire',
             ],
         'languagelink': _('Languages'),
-        'languages': getlanguages(request),
+        'languages': languages,
         'projectlink': _('Projects'),
         'projects': getprojects(request),
         'topstats': topstats,
@@ -112,7 +106,7 @@ def view(request):
                               'untranslated': _('Untranslated')},
         'permissions': request.permissions,
         }
-    visible_langs = [l for l in templatevars['languages'] if l['total'] != 0]
+    visible_langs = [l for l in languages if l['stats']['total']['words'] != 0]
     templatevars['moreprojects'] = len(templatevars['projects']) >\
                                    len(visible_langs)
 

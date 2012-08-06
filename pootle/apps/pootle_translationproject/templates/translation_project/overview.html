@@ -22,7 +22,7 @@
       <li>{{ summary_item|safe }}</li>
       {% endfor %}
     </ul>
-    {% progressbar stats %}
+    {% progressbar stats stats.total.words %}
     <div id="directory-summary-toggle">
       <a class="icon-expand js-directory-summary" title="{% trans "Detailed statistics" %}"
          href="{{ "dir_summary.html"|l }}"></a>

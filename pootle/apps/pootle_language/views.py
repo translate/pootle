@@ -27,6 +27,7 @@ from django.http import HttpResponse
 
 from pootle_app.views.language.view import get_stats_headings
 from pootle_misc.util import nice_percentage, add_percentages, jsonify, ajax_required
+from pootle_misc.stats import get_raw_stats
 from pootle_app.views.language.item_dict import  stats_descriptions
 from pootle_app.views.top_stats import gentopstats_language
 from pootle_language.models import Language
@@ -49,22 +50,22 @@ def get_last_action(translation_project):
 def make_project_item(translation_project):
     project = translation_project.project
     href = translation_project.pootle_path
-    projectstats = add_percentages(translation_project.getquickstats())
+    project_stats = get_raw_stats(translation_project)
     info = {
         'code': project.code,
         'href': href,
         'title': project.fullname,
         'description': project.description,
-        'data': projectstats,
+        'stats': project_stats,
         'lastactivity': get_last_action(translation_project),
         'isproject': True,
         'tooltip': _('%(percentage)d%% complete',
-                     {'percentage': projectstats['translatedpercentage']}),
+                     {'percentage': project_stats['translated']['percentage']}),
     }
-    errors = projectstats.get('errors', 0)
+    errors = project_stats.get('errors', 0)
     if errors:
         info['errortooltip'] = ungettext('Error reading %d file', 'Error reading %d files', errors, errors)
-    info.update(stats_descriptions(projectstats))
+    info.update(stats_descriptions(project_stats))
     return info
 
 def language_index(request, language_code):
@@ -87,9 +88,9 @@ def language_index(request, language_code):
           'code': language.code,
           'name': tr_lang(language.fullname),
           'description': language.description,
-          'stats': ungettext('%(projects)d project, %(average)d%% translated',
-                             '%(projects)d projects, %(average)d%% translated',
-                             projectcount, {"projects": projectcount, "average": average}),
+          'summary': ungettext('%(projects)d project, %(average)d%% translated',
+                               '%(projects)d projects, %(average)d%% translated',
+                               projectcount, {"projects": projectcount, "average": average}),
         },
         'feed_path': '%s/' % language.code,
         'projects': items,
