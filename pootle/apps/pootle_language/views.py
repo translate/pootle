@@ -18,26 +18,24 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.shortcuts import get_object_or_404, render_to_response
-from django.utils.translation import ugettext as _
-from django.utils.translation import ungettext
-from django.template import loader, RequestContext
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
-
-from pootle_app.views.language.view import get_stats_headings
-from pootle_misc.util import nice_percentage, add_percentages, jsonify, ajax_required
-from pootle_misc.stats import get_raw_stats
-from pootle_app.views.language.item_dict import  stats_descriptions
-from pootle_app.views.top_stats import gentopstats_language
-from pootle_language.models import Language
-from pootle_statistics.models import Submission
+from django.shortcuts import get_object_or_404, render_to_response
+from django.template import loader, RequestContext
+from django.utils.translation import ugettext as _, ungettext
 
 from pootle.i18n.gettext import tr_lang
-
-from pootle_app.models.permissions import get_matching_permissions, check_permission
+from pootle_app.models.permissions import (get_matching_permissions,
+                                           check_permission)
 from pootle_app.views.admin.permissions import admin_permissions
+from pootle_app.views.language.item_dict import stats_descriptions
+from pootle_app.views.language.view import get_stats_headings
+from pootle_app.views.top_stats import gentopstats_language
+from pootle_language.models import Language
+from pootle_misc.stats import get_raw_stats
+from pootle_misc.util import nice_percentage, jsonify, ajax_required
 from pootle_profile.models import get_profile
+from pootle_statistics.models import Submission
 
 
 def get_last_action(translation_project):
