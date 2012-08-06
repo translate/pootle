@@ -150,7 +150,7 @@ def handle_form(request, current_directory, current_project, current_language, t
 
     # Reconstruct the NoticeForm with the user data.
     form = NoticeForm(request.POST)
-    template_vars['notices_published'] = None
+    template_vars['notices_published'] = []
 
     # Basic validation, only proceed if the form data is valid.
     if form.is_valid():
@@ -187,8 +187,6 @@ def handle_form(request, current_directory, current_project, current_language, t
                     # Publish this Notice, using the project's Directory object
                     create_notice(request.user, message, p.directory)
 
-                    if template_vars['notices_published'] == None:
-                        template_vars['notices_published'] = []
                     template_vars['notices_published'].append(
                             _("Published to Project %s", p.fullname)
                     )
@@ -203,8 +201,6 @@ def handle_form(request, current_directory, current_project, current_language, t
                         # Directory object
                         create_notice(request.user, message, tp.directory)
 
-                        if template_vars['notices_published'] == None:
-                            template_vars['notices_published'] = []
                         template_vars['notices_published'].append(
                                 _("Published to Translation Project %s", tp.fullname)
                         )
@@ -222,8 +218,6 @@ def handle_form(request, current_directory, current_project, current_language, t
                     # Publish this Notice using the languages's Directory object
                     create_notice(request.user, message, l.directory)
 
-                    if template_vars['notices_published'] == None:
-                        template_vars['notices_published'] = []
                     template_vars['notices_published'].append(
                             _("Published to Language %s", l.fullname)
                     )
@@ -271,8 +265,6 @@ def handle_form(request, current_directory, current_project, current_language, t
                     continue
                 if person.user.email != '':
                     to_list_emails.append(person.user.email)
-                    if template_vars['notices_published'] == None:
-                        template_vars['notices_published'] = []
                     template_vars['notices_published'].append(
                             _("Sent an email to %s", person.user.email)
                     )
@@ -284,6 +276,8 @@ def handle_form(request, current_directory, current_project, current_language, t
             # Send the email to the list of people
             send_mail(email_header, message, from_email, to_list_emails, fail_silently=True)
 
+    if not template_vars['notices_published']:
+        template_vars['notices_published'] = None
     # Finally return a blank Form to allow user to continue publishing notices
     # with our defaults
     form = NoticeForm(initial = noticeform_initial_dict(current_directory,\
