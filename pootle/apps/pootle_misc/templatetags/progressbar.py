@@ -28,6 +28,9 @@ def add_widths(stats, progressbar_width):
     """Adds widths to the ``stats`` dictionary according to the
     ``progressbar_width``.
     """
+    if progressbar_width < 30:
+        progressbar_width = 30
+
     stats['total']['width'] = progressbar_width
     stats['translated']['width'] = \
         (stats['translated']['percentage'] * progressbar_width) / 100
