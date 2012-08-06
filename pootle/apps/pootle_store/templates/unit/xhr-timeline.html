@@ -21,7 +21,12 @@
     </div>
   </div>
   {% empty %}
-  {% trans "No results." %}
+  <div class="extra-item-gravatar">
+    <span class="invisible">placeholder</span>
+  </div>
+  <div class="extra-item-content">
+    {% trans "No results." %}
+  </div>
   {% endfor %}
   </div>
 </div>
