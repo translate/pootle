@@ -18,7 +18,9 @@
     {% include "admin/general_settings_form.html" with form_action="/admin/general.html" %}
   </div>
 {% endif %}
-{% include "description.html" %}
+<div class="intro">
+{{ description|safe|linebreaks|clean }}
+</div>
 {% endblock precontent %}
 
 {% block content %}
