@@ -61,7 +61,7 @@ class Submission(models.Model):
     translation_project = models.ForeignKey('pootle_translationproject.TranslationProject', db_index=True)
     submitter           = models.ForeignKey('pootle_profile.PootleProfile', null=True, db_index=True)
     from_suggestion     = models.OneToOneField('pootle_app.Suggestion', null=True, db_index=True)
-    unit                = models.ForeignKey('pootle_store.Unit', blank=True, null=True, on_delete=models.SET_NULL, db_index=True)
+    unit                = models.ForeignKey('pootle_store.Unit', blank=True, null=True, db_index=True)
     #: The field in the unit that changed
     field               = models.IntegerField(null=True, blank=True, db_index=True)
     # how did this submission come about? (one of the constants above)
