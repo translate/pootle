@@ -22,45 +22,42 @@ import os
 import logging
 import StringIO
 
-from django.shortcuts import get_object_or_404
+from django import forms
 from django.conf import settings
 from django.core.cache import cache
-from django.utils.translation import ugettext_lazy as _
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import render_to_response
-from django.template import loader, RequestContext
-from django.forms.models import BaseModelFormSet
-from django import forms
-from django.utils.encoding import iri_to_uri
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, render_to_response
+from django.template import loader, RequestContext
+from django.utils.encoding import iri_to_uri
+from django.utils.translation import ugettext_lazy as _
 
-from pootle_misc.versioncontrol import hasversioning
-
-from pootle_misc.baseurl import redirect, l
-from pootle_misc.checks import get_quality_check_failures
-from pootle_misc.stats import (get_raw_stats, get_translation_stats,
-                               get_directory_summary)
-from pootle_app.models.permissions import get_matching_permissions, check_permission
+from pootle_app.lib import view_handler
+from pootle_app.models.permissions import (get_matching_permissions,
+                                           check_permission)
 from pootle_app.models.signals import post_file_upload
 from pootle_app.models import Directory
-from pootle_app.lib import view_handler
+from pootle_app.project_tree import (ensure_target_dir_exists,
+                                     direct_language_match_filename)
 from pootle_app.views.top_stats import gentopstats_translation_project
 from pootle_app.views.language import item_dict
 from pootle_app.views.language.view import get_stats_headings
 from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
-from pootle_app.views.language.view import get_translation_project, set_request_context
-from pootle_app.project_tree import ensure_target_dir_exists, direct_language_match_filename
-
+from pootle_app.views.language.view import (get_translation_project,
+                                            set_request_context)
+from pootle_misc.baseurl import redirect, l
+from pootle_misc.checks import get_quality_check_failures
+from pootle_misc.stats import (get_raw_stats, get_translation_stats,
+                               get_directory_summary)
+from pootle_misc.versioncontrol import hasversioning
 from pootle_misc.util import jsonify, ajax_required
-
+from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_store.models import Store
 from pootle_store.util import absolute_real_path, relative_real_path
 from pootle_store.filetypes import factory_classes
 from pootle_store.views import translate_page
-from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_profile.models import get_profile
-
 from pootle_translationproject.actions import action_groups
 
 
@@ -85,7 +82,7 @@ def admin_permissions(request, translation_project):
                        template_vars)
 
 
-class StoreFormset(BaseModelFormSet):
+class StoreFormset(forms.models.BaseModelFormSet):
 
     def save_existing_objects(self, commit=True):
         result = super(StoreFormset, self).save_existing_objects(commit)

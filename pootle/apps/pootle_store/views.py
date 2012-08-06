@@ -22,46 +22,43 @@ import os
 import logging
 from datetime import datetime
 
-from translate.lang import data
-
 from django.conf import settings
-from django.shortcuts import get_object_or_404
-from django.http import HttpResponse, Http404
-from django.shortcuts import render_to_response
-from django.template import loader, RequestContext
-from django.utils.translation import to_locale, ugettext as _
-from django.utils.translation import ungettext
-from django.utils.translation.trans_real import parse_accept_lang_header
-from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from django.core.cache import cache
-from django.views.decorators.cache import never_cache
-from django.utils.encoding import iri_to_uri
+from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
+from django.http import HttpResponse, Http404
+from django.shortcuts import get_object_or_404, render_to_response
+from django.template import loader, RequestContext
+from django.utils.translation import to_locale, ugettext as _, ungettext
+from django.utils.translation.trans_real import parse_accept_lang_header
 from django.utils import simplejson
+from django.utils.encoding import iri_to_uri
+from django.views.decorators.cache import never_cache
+
+from translate.lang import data
 
 from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.models.permissions import (get_matching_permissions,
                                            check_permission,
                                            check_profile_permission)
 from pootle_misc.baseurl import redirect
-from pootle_misc.url_manip import ensure_uri
 from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.stats import get_raw_stats
+from pootle_misc.url_manip import ensure_uri
 from pootle_misc.util import paginate, ajax_required, jsonify
 from pootle_profile.models import get_profile
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
-from pootle_translationproject.forms import make_search_form
-
 from pootle_store.models import Store, Unit
 from pootle_store.forms import (unit_comment_form_factory, unit_form_factory,
                                 highlight_whitespace)
+from pootle_store.signals import translation_submitted
 from pootle_store.templatetags.store_tags import (find_altsrcs, get_sugg_list,
                                                   highlight_diffs,
                                                   pluralize_source,
                                                   pluralize_target)
 from pootle_store.util import (UNTRANSLATED, FUZZY, TRANSLATED, STATES_MAP,
                                absolute_real_path)
-from pootle_store.signals import translation_submitted
+from pootle_translationproject.forms import make_search_form
 
 
 def _common_context(request, translation_project, permission_codes):

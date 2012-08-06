@@ -20,34 +20,32 @@
 
 import locale
 
-from django.utils.translation import ugettext as _
-from django.utils.translation import ungettext
-from django.shortcuts import get_object_or_404
-from django.shortcuts import render_to_response
-from django.template import loader, RequestContext
 from django import forms
-from django.forms.models import BaseModelFormSet
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, render_to_response
+from django.template import loader, RequestContext
+from django.utils.translation import ugettext as _, ungettext
 
-from pootle_misc.util import ajax_required, jsonify
+from pootle_app.models import Directory
+from pootle_app.models.permissions import (get_matching_permissions,
+                                           check_permission)
+from pootle_app.views.admin import util
+from pootle_app.views.admin.permissions import admin_permissions
+from pootle_app.views.index.index import getprojects
+from pootle_app.views.language.view import get_stats_headings
+from pootle_app.views.language.item_dict import stats_descriptions
+from pootle_app.views.top_stats import gentopstats_project, gentopstats_root
+from pootle.i18n.gettext import tr_lang
+from pootle_language.models import Language
 from pootle_misc.baseurl import l
 from pootle_misc.forms import LiberalModelChoiceField
 from pootle_misc.stats import get_raw_stats
+from pootle_misc.util import ajax_required, jsonify
+from pootle_profile.models import get_profile
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
-from pootle_app.views.language.view import get_stats_headings
-from pootle_app.views.language.item_dict import stats_descriptions
-from pootle.i18n.gettext import tr_lang
-from pootle_app.views.top_stats import gentopstats_project, gentopstats_root
-from pootle_language.models import Language
 from pootle_translationproject.models import TranslationProject
-from pootle_app.views.admin import util
-from pootle_profile.models import get_profile
-from pootle_app.views.index.index import getprojects
-from pootle_app.models.permissions import get_matching_permissions, check_permission
-from pootle_app.views.admin.permissions import admin_permissions
-from pootle_app.models import Directory
 
 
 def get_last_action(translation_project):
@@ -154,7 +152,7 @@ def project_settings_edit(request, project_code):
     return HttpResponse(jsonify(response), mimetype="application/json")
 
 
-class TranslationProjectFormSet(BaseModelFormSet):
+class TranslationProjectFormSet(forms.models.BaseModelFormSet):
 
     def save_existing(self, form, instance, commit=True):
         result = super(TranslationProjectFormSet, self).\
