@@ -111,7 +111,6 @@ def project_language_index(request, project_code):
                              '%(languages)d languages, %(average)d%% translated',
                              languagecount, {"languages": languagecount, "average": average}),
         },
-        'adminlink': _('Admin'),
         'languages': items,
         'topstats': topstats,
         'statsheadings': get_stats_headings(),
