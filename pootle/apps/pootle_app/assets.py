@@ -25,7 +25,7 @@ js_common = Bundle(
     'js/jquery/jquery.cookie.js', 'js/jquery/jquery.bidi.js',
     'js/jquery/jquery.fancybox.js', 'js/jquery/jquery.utils.js',
     'js/jquery/jquery.easing.js',
-    'js/common.js', 'js/sorttable.js', 'js/shortcut.js',
+    'js/common.js', 'js/sorttable.js', 'js/shortcut.js', 'js/utils.js',
     filters='rjsmin', output='js/common.min.js')
 register('js_common', js_common)
 
