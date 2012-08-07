@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2011 Zuza Software Foundation
+# Copyright 2008-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -18,35 +18,35 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-import os
-import logging
-import re
 import datetime
+import logging
+import os
+import re
 
-from django.db import models, IntegrityError
-from django.core.cache import cache
 from django.conf import settings
-from django.utils.translation import ugettext_lazy as _
-from django.core.files.storage import FileSystemStorage
+from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
-from django.db.transaction import commit_on_success
-from django.utils.encoding import iri_to_uri
+from django.core.files.storage import FileSystemStorage
+from django.db import models, IntegrityError
 from django.db.models.signals import post_delete
+from django.db.transaction import commit_on_success
+from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import iri_to_uri
 
 from translate.filters.decorators import Category
-from translate.storage import base
 from translate.misc.hash import md5_f
+from translate.storage import base
 
 from pootle_app.lib.util import RelatedManager
-from pootle_misc.util import getfromcache, deletefromcache
 from pootle_misc.aggregate import group_by_count_extra, max_column
 from pootle_misc.baseurl import l
-
+from pootle_misc.util import getfromcache, deletefromcache
 from pootle_store.fields import (TranslationStoreField, MultiStringField,
                                  PLURAL_PLACEHOLDER, SEPARATOR)
+from pootle_store.filetypes import factory_classes, is_monolingual
 from pootle_store.util import (calculate_stats, empty_quickstats,
                                OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED)
-from pootle_store.filetypes import factory_classes, is_monolingual
+
 
 #
 # Store States
