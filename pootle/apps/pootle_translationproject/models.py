@@ -157,6 +157,7 @@ class TranslationProject(models.Model):
                                                      checks.StandardChecker),
                           checks.StandardUnitChecker]
         return checks.TeeChecker(checkerclasses=checkerclasses,
+                                 excludefilters=['hassuggestion'],
                                  errorhandler=self.filtererrorhandler,
                                  languagecode=self.language.code)
 

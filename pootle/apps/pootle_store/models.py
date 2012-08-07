@@ -668,6 +668,7 @@ class Unit(models.Model, base.TranslationUnit):
             return None
         return suggestion
 
+
     def accept_suggestion(self, suggid):
         try:
             suggestion = self.suggestion_set.get(id=suggid)
@@ -676,24 +677,34 @@ class Unit(models.Model, base.TranslationUnit):
 
         self.target = suggestion.target
         self.state = TRANSLATED
-        self.save()
+
+        # It is important to first delete the suggestion before calling
+        # ``save``, otherwise the quality checks won't be properly updated
+        # when saving the unit.
         suggestion.delete()
+        self.save()
+
         if settings.AUTOSYNC and self.file:
             #FIXME: update alttrans
             self.sync(self.getorig())
             self.store.update_store_header(profile=suggestion.user)
             self.file.savestore()
+
         return True
+
 
     def reject_suggestion(self, suggid):
         try:
             suggestion = self.suggestion_set.get(id=suggid)
         except Suggestion.DoesNotExist:
             return False
+
         suggestion.delete()
-        # update timestamp
+        # Update timestamp
         self.save()
+
         return True
+
 
     def get_terminology(self):
         """get terminology suggestions"""
