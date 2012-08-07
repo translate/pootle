@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}
+{{ block.super }} » {% trans "Contributors" %}
+{% endblock %}
+
+{% block breadcrumb_content %}
+{{ block.super }} » <span>{% trans "Contributors" %}</span>
+{% endblock %}
+
+{% block css %}
+{{ block.super }}
+<style type="text/css">
+#contributors li { padding-left:25px; }
+#contributors li.lang { font-weight:bold; font-size: 120%; margin-top:12px; }
+#contributors li.proj { font-weight:bold; font-size: 80%; }
+#contributors li.user { font-weight:normal; font-size: 100%; }
+</style>
+{% endblock %}
+
+{% block body.id %}about{% endblock body.id %}
+
+{% block content %}
+
+<ul id="contributors">
+  {% for language, projects in contributors %}
+  <li class="lang">{{ language }}
+    <ul>
+      {% for project, users in projects %}
+      <li class="proj">{{ project }}
+        <ul>
+          {% for user in users %}
+          <li class="user">{{ user }}</li>
+          {% endfor %}
+        </ul>
+      </li>
+      {% endfor %}
+    </ul>
+  </li>
+  {% endfor %}
+</ul>
+
+
+{% endblock content%}
