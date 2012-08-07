@@ -33,11 +33,11 @@ from translate.misc.lru import LRUCachingDict
 
 from pootle_misc.util import getfromcache, dictsum, deletefromcache
 from pootle_misc.baseurl import l
-from pootle_misc.aggregate import group_by_count, max_column
+from pootle_misc.aggregate import group_by_count_extra, max_column
 from pootle_store.models import Store, Unit, QualityCheck, PARSED, CHECKED
-from pootle_store.util import relative_real_path, absolute_real_path, OBSOLETE
-from pootle_store.util import empty_quickstats, empty_completestats
-from pootle_store.util import calculate_stats
+from pootle_store.util import (absolute_real_path, calculate_stats,
+                               empty_quickstats, empty_completestats,
+                               relative_real_path, OBSOLETE, UNTRANSLATED)
 
 from pootle_app.lib.util           import RelatedManager
 from pootle_project.models     import Project
@@ -234,15 +234,22 @@ class TranslationProject(models.Model):
         stats['errors'] = errors
         return stats
 
+
     @getfromcache
     def getcompletestats(self):
         if self.is_template_project:
             return empty_completestats
+
         for store in self.stores.filter(state__lt=CHECKED).iterator():
             store.require_qualitychecks()
-        query = QualityCheck.objects.filter(\
-                unit__store__translation_project=self, false_positive=False)
-        return group_by_count(query, 'name')
+
+        query = QualityCheck.objects.filter(
+            unit__store__translation_project=self,
+            unit__state__gt=UNTRANSLATED,
+            false_positive=False
+        )
+        return group_by_count_extra(query, 'name', 'category')
+
 
     def update_from_templates(self, pootle_path=None):
         """Update translation project from templates."""
