@@ -1418,7 +1418,7 @@
 
       // If there are any failing checks, add them in a dropdown
       if (optGroups.length) {
-        var dropdown = '<div id="filter-checks" class="toolbar-item">';
+        var dropdown = '<div id="filter-checks">';
         dropdown += '<select name="filter-checks">';
         dropdown += '<option selected="selected" value="none">------</option>';
 
