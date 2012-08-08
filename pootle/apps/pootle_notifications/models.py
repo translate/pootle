@@ -48,27 +48,3 @@ class Notice(models.Model):
 
     class Meta:
         ordering = ["-added"]
-
-
-class NoticeForm(forms.Form):
-
-    directory = forms.ModelChoiceField(queryset=Directory.objects.all(), widget=forms.HiddenInput)
-
-    # Notice attributes
-    message = forms.CharField(label=_('Message'), widget=forms.Textarea)
-    publish_rss = forms.BooleanField(label=_('Publish on News feed'),required=False)
-    send_email = forms.BooleanField(label=_('Send Email'), required=False)
-    email_header = forms.CharField(label=_('Title'), required=False)
-    restrict_to_active_users = forms.BooleanField(label=_('Email only to recently active users'), required=False)
-
-    #project selection
-    project_all = forms.BooleanField(label=_('All Projects'), required=False)
-    project_selection = forms.ModelMultipleChoiceField(label=_("Project Selection"),
-                                                       queryset=Project.objects.all(),
-                                                       required=False)
-
-    #language selection
-    language_all = forms.BooleanField(label=_('All Languages'), required=False)
-    language_selection = forms.ModelMultipleChoiceField(label=_("Language Selection"),
-                                                        queryset=Language.objects.all(),
-                                                        required=False)
