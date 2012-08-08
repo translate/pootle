@@ -1060,70 +1060,59 @@ html[dir="rtl"] a.external {
 }
 
 /*
- * DOCUMENTATION, LEGAL
+ * DOCUMENTATION, LEGAL, CONTRIBUTORS
  */
 
-.documentation
+#about
 {
     margin: 2em;
 }
 
-.legal
-{
-    float: right;
-    margin-right: 3em;
-    position: relative;
-}
-
-.documentation .document h1
+#about .document h1
 {
     margin-top: .5em;
     margin-bottom: .25em;
 }
 
-.documentation h2,
-.documentation h3
+#about h2,
+#about h3
 {
     color: #999;
     border-bottom: 1px solid #eee;
 }
 
-.documentation h3
+#about h3
 {
     margin-top: 1.5em;
 }
 
-.documentation p,
-.legal p
+#about p
 {
     margin: 1em 0;
 }
 
-.documentation ol,
-.documentation ul,
-.legal ul
+#about ol,
+#about ul
 {
     margin: 1em 1.5em;
 }
 
-.documentation ul li,
-.legal ul li
+#about ul li
 {
     list-style-type: square;
 }
 
-.documentation ol li
+#about ol li
 {
     list-style-type: inherit;
 }
 
-.documentation dfn
+#about dfn
 {
     border-bottom: 1px dotted black;
 }
 
-.documentation .sidenote,
-.legal .sidenote
+#about .sidenote
 {
     width: 10em;
     font-size: 95%;
@@ -1134,21 +1123,45 @@ html[dir="rtl"] a.external {
     color: #777;
 }
 
-.legal .sidenote
-{
-    width: 12em;
-}
-
-.documentation .sidenote p,
-.legal .sidenote p
+#about .sidenote p
 {
     line-height: 130%;
 }
 
-.documentation .sidenote li,
-.legal .sidenote li
+#about .sidenote li
 {
     margin: 0.2em 0;
+}
+
+#contributors ul,
+#contributors ul li
+{
+    margin: 0;
+    list-style-type: none;
+}
+
+#contributors ul li
+{
+    padding-left: 25px;
+}
+
+#contributors ul li.lang
+{
+    font-weight: bold;
+    font-size: 120%;
+    margin-top: 12px;
+}
+
+#contributors ul li.proj
+{
+    font-weight: bold;
+    font-size: 80%;
+}
+
+#contributors ul li.user
+{
+    font-weight: normal;
+    font-size: 100%;
 }
 
 
