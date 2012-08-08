@@ -1091,10 +1091,12 @@
     // if their owner elements have been removed
     $('.tipsy').remove(); // kill all open tipsy popups
 
-    where.append(newTbody);
+    if (newTbody !== false) {
+      where.append(newTbody);
 
-    // We are ready, call the ready handlers
-    $(tTable).trigger("editor_ready");
+      // We are ready, call the ready handlers
+      $(tTable).trigger("editor_ready");
+    }
   },
 
 
