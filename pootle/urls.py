@@ -55,12 +55,12 @@ urlpatterns = patterns('',
     (r'^accounts/', include('pootle_profile.urls')),
 
     # Pootle URLs
+    (r'', include('pootle_app.urls')),
     (r'^about/', include('legalpages.urls')),
     (r'^projects/', include('pootle_project.urls')),
     (r'', include('pootle_notifications.urls')),
     (r'', include('pootle_terminology.urls')),
     (r'', include('pootle_store.urls')),
-    (r'', include('pootle_app.urls')),
     (r'', include('pootle_translationproject.urls')),
     (r'', include('pootle_language.urls')),
 )

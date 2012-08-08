@@ -21,8 +21,8 @@
 from django.conf.urls.defaults import *
 
 urlpatterns = patterns('pootle_app.views.index',
-    (r'^robots.txt$',      'robots.view'),
-    (r'^about.html$',      'about.view'),
+    (r'^robots.txt$', 'robots.view'),
     (r'^/?$|^index.html$', 'index.view'),
-    (r'^about/contributors$', 'contributors.view'),
+    (r'^about/$', 'about.view'),
+    (r'^about/contributors/$', 'contributors.view'),
 )
