@@ -24,4 +24,5 @@ urlpatterns = patterns('pootle_app.views.index',
     (r'^robots.txt$',      'robots.view'),
     (r'^about.html$',      'about.view'),
     (r'^/?$|^index.html$', 'index.view'),
+    (r'^about/contributors$', 'contributors.view'),
 )
