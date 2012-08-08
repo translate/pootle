@@ -557,6 +557,7 @@ html[dir="rtl"] #extras-bar a
 .extra-item-block
 {
     position: relative;
+    clear: both;
 }
 
 .extra-item-block:last-child
