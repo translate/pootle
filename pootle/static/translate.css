@@ -9,7 +9,7 @@ textarea#view_unit
     display: none;
 }
 
-div#toolbar
+#toolbar
 {
     background-color: #e5f3f8;
     border-top: 1px solid #ccc;
@@ -27,6 +27,8 @@ div#toolbar
     background: -webkit-gradient(linear, left top, left bottom, from(#e5f3f8), to(#cde7f1));
     background: -moz-linear-gradient(top,  #e5f3f8,  #cde7f1);
 }
+
+/* Zoom levels */
 
 body.zoom-out-1 #toolbar
 {
@@ -56,15 +58,17 @@ div#toolbar > div
     padding: 10px;
 }
 
-body.zoom-out-1 div#toolbar > div
+body.zoom-out-1 #toolbar > div
 {
     padding: 8px;
 }
 
-body.zoom-out-2 div#toolbar > div
+body.zoom-out-2 #toolbar > div
 {
     padding: 6px;
 }
+
+/* Navigation buttons */
 
 #prevnext
 {
