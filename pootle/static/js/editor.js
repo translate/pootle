@@ -117,6 +117,7 @@
 
     /* Editor navigation/submission */
     $(document).on("editor_ready", "table.translate-table", this.ready);
+    $(document).on("noResults", "table.translate-table", this.noResults);
     $(document).on("click", "tr.view-row", this.gotoUnit);
     $(document).on("keypress", "#item-number", function (e) {
         // Perform action only when the 'Enter' key is pressed
@@ -399,11 +400,19 @@
 
     PTL.editor.isLoading = false;
     PTL.editor.hideActivity();
+    PTL.editor.updatePermalink();
 
     // clear any pending 'Loading...' indicator timer
     // as ajaxStop() is not fired in IE properly
     // at initial page load (?!)
     clearTimeout(PTL.editor.delayedActivityTimer);
+  },
+
+  /* Things to do when no results are returned */
+  noResults: function () {
+    PTL.editor.displayError(gettext("No results."));
+    PTL.editor.reDraw(false);
+    PTL.editor.updatePermalink(false);
   },
 
 
@@ -714,6 +723,23 @@
     $("#xhr-activity").hide();
   },
 
+  updatePermalink: function (opts) {
+    if (opts !== false) {
+      // FIXME: We need a completely different way for getting view URLs in JS
+      var urlStr = this.store + '/translate/#unit=';
+      // Translators: Permalink to the current unit in the editor.
+      //    The first '%s' is the permalink URL.
+      //    The second '%s' is the unit number.
+      var thePermalink = interpolate(gettext('<a href="%s">Unit %s</a>'),
+                                     [l(urlStr + PTL.editor.activeUid),
+                                      PTL.editor.activeUid]);
+    } else {
+      var thePermalink = '';
+    }
+
+    $("#editor-permalink").html(thePermalink);
+  },
+
   /*
    * Error handling
    */
@@ -887,9 +913,7 @@
           PTL.editor.hasResults = true;
         } else {
           PTL.editor.hasResults = false;
-          PTL.editor.displayError(gettext("No results."));
-          // Clear the results table
-          PTL.editor.reDraw(null);
+          $("table.translate-table").trigger("noResults");
         }
       },
       error: PTL.editor.error

@@ -57,48 +57,53 @@
 {% cache settings.CACHE_TIMEOUT translate_extra LANGUAGE_CODE %}
 <div id="toolbar">
 
-  <div id="toolbar_search" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-    <div class="search-container">
-      <form action="{{ search_action }}" method="get" id="searchform" title="{% trans 'Search (Ctrl+Shift+S)<br/>Type in, then press Enter to search' %}">
-        <div class="advancedsearch">
-          {{ search_form.sfields }}
-        </div>
-        <label class="inputHint" for="id_search">{% trans "Search" %}</label>{{ search_form.search }}
-        <a class="advancedlink">
-          {% if LANGUAGE_BIDI %}
-          <img src='{{ "images/sarrow_up_rtl.png"|m }}' alt="{{ advanced_search_title }}" title="{{ advanced_search_title }}" class="togglesearch" />
-          <img src='{{ "images/sarrow_down_rtl.png"|m }}' alt="{{ advanced_search_title }}" title="{{ advanced_search_title }}" class="togglesearch" style="display: none;"/>
-          {% else %}
-          <img src='{{ "images/sarrow_up.png"|m }}' alt="{{ advanced_search_title }}" title="{{ advanced_search_title }}" class="togglesearch" />
-          <img src='{{ "images/sarrow_down.png"|m }}' alt="{{ advanced_search_title }}" title="{{ advanced_search_title }}" class="togglesearch" style="display: none;"/>
-          {% endif %}
-        </a>
-      </form>
+  <div class="toolbar pull-left">
+    <div id="toolbar_search" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+      <div class="search-container">
+        <form action="{{ search_action }}" method="get" id="searchform" title="{% trans 'Search (Ctrl+Shift+S)<br/>Type in, then press Enter to search' %}">
+          <div class="advancedsearch">
+            {{ search_form.sfields }}
+          </div>
+          <label class="inputHint" for="id_search">{% trans "Search" %}</label>{{ search_form.search }}
+          <a class="advancedlink">
+            {% if LANGUAGE_BIDI %}
+            <img src='{{ "images/sarrow_up_rtl.png"|m }}' alt="{{ advanced_search_title }}" title="{{ advanced_search_title }}" class="togglesearch" />
+            <img src='{{ "images/sarrow_down_rtl.png"|m }}' alt="{{ advanced_search_title }}" title="{{ advanced_search_title }}" class="togglesearch" style="display: none;"/>
+            {% else %}
+            <img src='{{ "images/sarrow_up.png"|m }}' alt="{{ advanced_search_title }}" title="{{ advanced_search_title }}" class="togglesearch" />
+            <img src='{{ "images/sarrow_down.png"|m }}' alt="{{ advanced_search_title }}" title="{{ advanced_search_title }}" class="togglesearch" style="display: none;"/>
+            {% endif %}
+          </a>
+        </form>
+      </div>
+    </div>
+
+    <div class="label">{% trans "Filter by:" %}</div>
+    <div id="filter-status">
+      <select name="filter-status">
+        <option selected="selected" value="all">{% trans "All" %}</option>
+        <option value="translated">{% trans "Translated" %}</option>
+        <option value="incomplete">{% trans "Incomplete" %}</option>
+        <option value="untranslated">{% trans "Untranslated" %}</option>
+        <option value="fuzzy">{% trans "Fuzzy" %}</option>
+        <option value="suggestions">{% trans "Suggestions" %}</option>
+        <option value="mysuggestions">{% trans "My Suggestions" %}</option>
+        <option value="checks">{% trans "Checks" %}</option>
+      </select>
     </div>
   </div>
 
-  <div class="label">{% trans "Filter by:" %}</div>
-  <div id="filter-status">
-    <select name="filter-status">
-      <option selected="selected" value="all">{% trans "All" %}</option>
-      <option value="translated">{% trans "Translated" %}</option>
-      <option value="incomplete">{% trans "Incomplete" %}</option>
-      <option value="untranslated">{% trans "Untranslated" %}</option>
-      <option value="fuzzy">{% trans "Fuzzy" %}</option>
-      <option value="suggestions">{% trans "Suggestions" %}</option>
-      <option value="mysuggestions">{% trans "My Suggestions" %}</option>
-      <option value="checks">{% trans "Checks" %}</option>
-    </select>
-  </div>
-
-  <div id="prevnext" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-    <input type="submit" class="previous" name="back" accesskey="b" value="{% trans 'Previous unit' %}" title="{% trans 'Go to the previous unit (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl+Shift+Page&nbsp;Up<br/>First page: Ctrl+Shift+Home' %}" />
-    <span id="item-navigation">
-      <input id="item-number" type="text" value="1" size="1" title="{% trans 'Current page number (Ctrl+Shift+U)<br/><br/>Type in the number and press Enter<br/>to go to any position' %}" />
-      /
-      <span id="items-count" title="{% trans 'Total pages' %}"></span>
-    </span>
-    <input type="submit" class="next" name="skip" accesskey="k" value="{% trans 'Next unit' %}" title="{% trans 'Go to the next unit (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift+Page&nbsp;Down<br/>Last page: Ctrl+Shift+End' %}" />
+  <div class="toolbar pull-right">
+    <div id="editor-permalink"></div>
+    <div id="prevnext" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+      <input type="submit" class="previous" name="back" accesskey="b" value="{% trans 'Previous unit' %}" title="{% trans 'Go to the previous unit (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl+Shift+Page&nbsp;Up<br/>First page: Ctrl+Shift+Home' %}" />
+      <span id="item-navigation">
+        <input id="item-number" type="text" value="1" size="1" title="{% trans 'Current page number (Ctrl+Shift+U)<br/><br/>Type in the number and press Enter<br/>to go to any position' %}" />
+        /
+        <span id="items-count" title="{% trans 'Total pages' %}"></span>
+      </span>
+      <input type="submit" class="next" name="skip" accesskey="k" value="{% trans 'Next unit' %}" title="{% trans 'Go to the next unit (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift+Page&nbsp;Down<br/>Last page: Ctrl+Shift+End' %}" />
+    </div>
   </div>
 </div>
 {% endcache %}

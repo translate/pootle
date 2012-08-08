@@ -52,28 +52,23 @@ body.zoom-out-2 .xhr-message
     bottom: 37px;
 }
 
-div#toolbar > div
+.toolbar > div
 {
     display: inline-block;
     padding: 10px;
 }
 
-body.zoom-out-1 #toolbar > div
+body.zoom-out-1 .toolbar > div
 {
     padding: 8px;
 }
 
-body.zoom-out-2 #toolbar > div
+body.zoom-out-2 .toolbar > div
 {
     padding: 6px;
 }
 
 /* Navigation buttons */
-
-#prevnext
-{
-    float: right;
-}
 
 #prevnext #item-navigation
 {
@@ -113,7 +108,6 @@ body.zoom-out-2 #prevnext input[type="submit"]
     min-width: 85px;
     padding: 2px 8px;
 }
-
 
 
 /* SPECIAL FOOTER */
