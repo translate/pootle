@@ -266,7 +266,6 @@ def projects_index(request):
     topstats = gentopstats_root()
 
     templatevars = {
-        'projectlink': _('Projects'),
         'projects': getprojects(request),
         'topstats': topstats,
         'translationlegend': {'translated': _('Translations are complete'),
