@@ -28,6 +28,7 @@ from pootle.i18n.gettext import tr_lang
 from pootle_app.models.permissions import (get_matching_permissions,
                                            check_permission)
 from pootle_app.views.admin.permissions import admin_permissions
+from pootle_app.views.language import dispatch
 from pootle_app.views.language.item_dict import stats_descriptions
 from pootle_app.views.language.view import get_stats_headings
 from pootle_app.views.top_stats import gentopstats_language
@@ -48,10 +49,14 @@ def get_last_action(translation_project):
 def make_project_item(translation_project):
     project = translation_project.project
     href = translation_project.pootle_path
+    href_todo = dispatch.translate(translation_project, state='incomplete')
+
     project_stats = get_raw_stats(translation_project)
+
     info = {
         'code': project.code,
         'href': href,
+        'href_todo': href_todo,
         'title': project.fullname,
         'description': project.description,
         'stats': project_stats,
@@ -60,10 +65,14 @@ def make_project_item(translation_project):
         'tooltip': _('%(percentage)d%% complete',
                      {'percentage': project_stats['translated']['percentage']}),
     }
+
     errors = project_stats.get('errors', 0)
+
     if errors:
         info['errortooltip'] = ungettext('Error reading %d file', 'Error reading %d files', errors, errors)
+
     info.update(stats_descriptions(project_stats))
+
     return info
 
 def language_index(request, language_code):

@@ -33,6 +33,7 @@ from pootle_app.models.permissions import (get_matching_permissions,
 from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions
 from pootle_app.views.index.index import getprojects
+from pootle_app.views.language import dispatch
 from pootle_app.views.language.view import get_stats_headings
 from pootle_app.views.language.item_dict import stats_descriptions
 from pootle_app.views.top_stats import gentopstats_project, gentopstats_root
@@ -57,11 +58,16 @@ def get_last_action(translation_project):
 
 
 def make_language_item(request, translation_project):
-    href = '/%s/%s/' % (translation_project.language.code, translation_project.project.code)
+    href = '/%s/%s/' % (translation_project.language.code,
+                        translation_project.project.code)
+    href_todo = dispatch.translate(translation_project, state='incomplete')
+
     project_stats = get_raw_stats(translation_project)
+
     info = {
         'code': translation_project.language.code,
         'href': href,
+        'href_todo': href_todo,
         'title': tr_lang(translation_project.language.fullname),
         'stats': project_stats,
         'lastactivity': get_last_action(translation_project),
