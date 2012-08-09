@@ -30,54 +30,58 @@ from pootle_misc.util import add_percentages
 from pootle_store.models import Store
 
 
-def get_item_summary(request, quick_stats, path_obj):
-    translated_words = quick_stats['translatedsourcewords']
-    total_words      = quick_stats['totalsourcewords']
+def get_item_summary(request, stats, path_obj):
+    translated_words = stats['translated']['words']
+    total_words = stats['total']['words']
 
     # The translated word counts
     word_stats = _("%(translated)d/%(total)d words (%(translatedpercent)d%%) translated",
                    {"translated": translated_words,
                     "total": total_words,
-                    "translatedpercent": quick_stats['translatedpercentage']})
+                    "translatedpercent": stats['translated']['percentage']})
 
     # The translated unit counts
     string_stats_text = _("%(translated)d/%(total)d strings",
-                          {"translated": quick_stats['translated'],
-                           "total": quick_stats['total']})
+                          {"translated": stats['translated']['units'],
+                           "total": stats['total']['units']})
     string_stats = '<span class="string-statistics">[%s]</span>' % string_stats_text
 
     # The whole string of stats
     if not path_obj.is_dir:
         summary = '%s %s' % (word_stats, string_stats)
     else:
-        num_stores = Store.objects.filter(pootle_path__startswith=path_obj.pootle_path).count()
+        num_stores = Store.objects.filter(
+            pootle_path__startswith=path_obj.pootle_path
+        ).count()
         file_stats = ungettext("%d file", "%d files", num_stores, num_stores)
         summary = '%s %s %s' % (file_stats, word_stats, string_stats)
 
     return summary
 
-def get_terminology_item_summary(request, quick_stats, path_obj):
+def get_terminology_item_summary(request, stats, path_obj):
     # The translated unit counts
     string_stats_text = _("%(translated)d/%(total)d terms",
-                          {"translated": quick_stats['translated'],
-                           "total": quick_stats['total']})
+                          {"translated": stats['translated']['units'],
+                           "total": stats['total']['units']})
     string_stats = '<span class="string-statistics">%s</span>' % string_stats_text
 
     # The whole string of stats
     if not path_obj.is_dir:
         summary = string_stats
     else:
-        num_stores = Store.objects.filter(pootle_path__startswith=path_obj.pootle_path).count()
+        num_stores = Store.objects.filter(
+            pootle_path__startswith=path_obj.pootle_path
+        ).count()
         file_stats = ungettext("%d file", "%d files", num_stores, num_stores)
         summary = '%s %s' % (file_stats, string_stats)
 
     return summary
 
-def get_item_stats(request, quick_stats, path_obj, terminology=False):
+def get_item_stats(request, stats, path_obj, terminology=False):
     if terminology:
-        summary = get_terminology_item_summary(request, quick_stats, path_obj)
+        summary = get_terminology_item_summary(request, stats, path_obj)
     else:
-        summary = get_item_summary(request, quick_stats, path_obj)
+        summary = get_item_summary(request, stats, path_obj)
 
     return {'summary': summary}
 
@@ -113,7 +117,6 @@ def make_generic_item(request, path_obj, action, include_suggestions=False,
     make_directory_item() and make_store_item() will add onto these variables."""
     try:
         stats = get_raw_stats(path_obj, include_suggestions)
-        quick_stats = add_percentages(path_obj.getquickstats())
         info = {
             'href': action,
             'href_todo': dispatch.translate(path_obj, state='incomplete'),
@@ -122,7 +125,7 @@ def make_generic_item(request, path_obj, action, include_suggestions=False,
             'tooltip': _('%(percentage)d%% complete' %
                          {'percentage': stats['translated']['percentage']}),
             'title': path_obj.name,
-            'summary': get_item_stats(request, quick_stats, path_obj, terminology),
+            'summary': get_item_stats(request, stats, path_obj, terminology),
         }
 
         errors = stats.get('errors', 0)
