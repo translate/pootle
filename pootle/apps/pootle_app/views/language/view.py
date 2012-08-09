@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2009 Zuza Software Foundation
+# Copyright 2008-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -21,6 +21,8 @@
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext as _
+
+from translate.misc.decorators import decorate
 
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import (get_matching_permissions,
@@ -56,20 +58,32 @@ def get_stats_headings():
         "suggestions": _("Suggestions"),
         }
 
+
+@decorate
 def get_translation_project(f):
     def decorated_f(request, language_code, project_code, *args, **kwargs):
-        translation_project = get_object_or_404(TranslationProject, language__code=language_code, project__code=project_code)
+        translation_project = get_object_or_404(
+            TranslationProject,
+            language__code=language_code,
+            project__code=project_code
+        )
         return f(request, translation_project, *args, **kwargs)
+
     return decorated_f
 
+
+@decorate
 def set_request_context(f):
     def decorated_f(request, translation_project, *args, **kwargs):
         # For now, all permissions in a translation project are
         # relative to the root of that translation project.
         request.profile = get_profile(request.user)
-        request.permissions = get_matching_permissions(request.profile, translation_project.directory)
+        request.permissions = get_matching_permissions(
+            request.profile, translation_project.directory
+        )
         request.translation_project = translation_project
         return f(request, translation_project, *args, **kwargs)
+
     return decorated_f
 
 
