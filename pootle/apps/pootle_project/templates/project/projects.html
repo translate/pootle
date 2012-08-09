@@ -17,36 +17,36 @@
 
 {% block content %}
 <div class="module first" lang="{{ LANGUAGE_CODE }}">
-    <div class="hd">
-        <h2>{{ projectlink }}</h2>
-    </div>
-    <div class="bd">
-        <table class="sortable" id="js-stats-projects">
-            <tr>
-                <th id="js-stats-language" class="stats">{% trans 'Project' %}</th>
-                <th id="js-stats-progress" class="stats">{% trans 'Overall Completion' %}</th>
-                <th id="js-stats-activity" class="stats">{% trans 'Last Activity' %}</th>
-            </tr>
-            {% for item in projects %}
-            <tr class="{% cycle 'even' 'odd' %}">
-                <td class="project"><a href="{% filter l %}/projects/{{ item.code }}/{% endfilter %}" title="{{ item.description }}">{{ item.name }}</a></td>
-                <td>
-                    <div class="sortkey">{{ item.transper }}</div>
-                    <div class="graph" title="{{ item.completed_title }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-                        <div class="translated" style="width: {{ item.transper }}px"></div>
-                        {% if item.fuzzy %}
-                        <div class="fuzzy" style="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %}: {{ item.transper }}px; width: {{ item.fuzzyper }}px"></div>
-                        {% endif %}
-                        {% if item.untrans %}
-                        <div class="untranslated" style="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %}: {{ item.transper|add:item.fuzzyper }}px; width: {{ item.untransper }}px"></div>
-                        {% endif %}
-                    </div>
-                </td>
-                <td>{{ item.lastactivity }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
+  <div class="hd">
+    <h2>{{ projectlink }}</h2>
+  </div>
+  <div class="bd">
+    <table class="sortable" id="js-stats-projects">
+      <tr>
+        <th id="js-stats-language" class="stats">{% trans 'Project' %}</th>
+        <th id="js-stats-progress" class="stats">{% trans 'Overall Completion' %}</th>
+        <th id="js-stats-activity" class="stats">{% trans 'Last Activity' %}</th>
+      </tr>
+      {% for item in projects %}
+      <tr class="{% cycle 'even' 'odd' %}">
+        <td class="project"><a href="{% filter l %}/projects/{{ item.code }}/{% endfilter %}" title="{{ item.description }}">{{ item.name }}</a></td>
+        <td>
+          <div class="sortkey">{{ item.transper }}</div>
+          <div class="graph" title="{{ item.completed_title }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+            <div class="translated" style="width: {{ item.transper }}px"></div>
+            {% if item.fuzzy %}
+            <div class="fuzzy" style="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %}: {{ item.transper }}px; width: {{ item.fuzzyper }}px"></div>
+            {% endif %}
+            {% if item.untrans %}
+            <div class="untranslated" style="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %}: {{ item.transper|add:item.fuzzyper }}px; width: {{ item.untransper }}px"></div>
+            {% endif %}
+          </div>
+        </td>
+        <td>{{ item.lastactivity }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
 </div>
 {% endblock content %}
 

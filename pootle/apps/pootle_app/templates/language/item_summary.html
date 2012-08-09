@@ -5,26 +5,26 @@
 {% block itemstats %}
 <td class="stats-name"{% if item.description %} title="{{ item.description|striptags }}"{% endif %}>
   {% if item.icon %}
-    <img src="{% filter m %}images/{{ item.icon }}.png{% endfilter %}"
-    class="icon" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"/>
- {% endif %}
-    <a href="{{ item.href|l }}">{{ item.title }}</a>
-    {% if item.stats.errors %}
-    <img src="{{ "images/error.png"|m }}" alt="{% trans 'Error' %}"
-         title="{{ item.errortooltip }}" class="error" />
-    {% endif %}
+  <img src="{% filter m %}images/{{ item.icon }}.png{% endfilter %}"
+  class="icon" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"/>
+  {% endif %}
+  <a href="{{ item.href|l }}">{{ item.title }}</a>
+  {% if item.stats.errors %}
+  <img src="{{ "images/error.png"|m }}" alt="{% trans 'Error' %}"
+       title="{{ item.errortooltip }}" class="error" />
+  {% endif %}
 </td>
 {% if item.stats %}
 <td class="stats-graph">
-    <div class="sortkey">{{ item.stats.translated.percentage }}</div>
-    {% block progressbar %}{% progressbar item.stats %}{% endblock %}
+  <div class="sortkey">{{ item.stats.translated.percentage }}</div>
+  {% block progressbar %}{% progressbar item.stats %}{% endblock %}
 </td>
 <td class="stats-number">
-    {% if item.todo_words > 0 %}
-    <a href="{{ item.href_todo }}" title="{{ item.todo_tooltip }}">{{ item.todo_words }}</a>
-    {% else %}
-    <span class="muted">0</span>
-    {% endif %}
+  {% if item.todo_words > 0 %}
+  <a href="{{ item.href_todo }}" title="{{ item.todo_tooltip }}">{{ item.todo_words }}</a>
+  {% else %}
+  <span class="muted">0</span>
+  {% endif %}
 </td>
 {% block extra_columns %}{% endblock %}
 {% else %}
