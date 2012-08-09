@@ -351,7 +351,7 @@ div.language-name
 
 .translate-focus div.translate-original,
 {
-    color: #000;
+    color: #130f30;
 }
 
 div.alternative
@@ -647,7 +647,7 @@ html[dir="rtl"] .suggestion-vote
 .suggestion-original
 {
     font-weight: bolder;
-    color: #000;
+    color: #130f30;
     padding-right: 1em;
 }
 
@@ -1035,7 +1035,7 @@ a.editor-specialchar:hover
 .diff-delete,
 .diff-insert
 {
-    color: #000;
+    color: #130f30;
     background-color: #ffb;
     border: 1px dotted #999;
 }

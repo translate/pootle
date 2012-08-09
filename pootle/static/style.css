@@ -4,7 +4,7 @@
 
 html
 {
-    color: #000;
+    color: #130f30;
     background: #FFF;
     width: 100%;
     margin: 0;
@@ -14,7 +14,7 @@ html
 body
 {
     background: #FFF;
-    color: #000;
+    color: #130f30;
     width: 100%;
 
     font-family: Segoe UI, Ubuntu, sans-serif;
@@ -66,7 +66,7 @@ em
 abbr,
 acronym
 {
-    border-bottom: 1px dotted #000;
+    border-bottom: 1px dotted #130f30;
     cursor: help;
 }
 
@@ -216,7 +216,7 @@ select
 legend
 { 
     background-color: inherit;
-    color: #000;
+    color: #130f30;
 }
 
 pre, code, kbd, samp, tt
@@ -946,13 +946,13 @@ input[type="submit"]
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    box-shadow: 0px 1px 2px #000;
-    -moz-box-shadow: 0px 1px 2px #000;
-    -webkit-box-shadow: 0px 0px 2px #000;
+    box-shadow: 0px 1px 2px #130f30;
+    -moz-box-shadow: 0px 1px 2px #130f30;
+    -webkit-box-shadow: 0px 0px 2px #130f30;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#cccccc');
     background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc));
     background: -moz-linear-gradient(top,  #fff,  #ccc);
-    color: #000;
+    color: #130f30;
 }
 
 input.delete[type="submit"]
@@ -1109,7 +1109,7 @@ html[dir="rtl"] a.external {
 
 #about dfn
 {
-    border-bottom: 1px dotted black;
+    border-bottom: 1px dotted #130f30;
 }
 
 #about .sidenote
@@ -1261,7 +1261,7 @@ body.tpadminfiles div#submenu-tabs a.tpadminfiles
     border-color: #777 #777 #fff;
     border-style: solid;
     border-width: 1px;
-    color: black;
+    color: #130f30;
     height: 30px;
     line-height: 28px;
     margin-top: 3px;
@@ -1634,7 +1634,6 @@ div.translated
     background: #448844;
     background: url('images/bar-translated.png');
     background-repeat: repeat-x;
-    color: black;
 }
 
 div.goodchange
@@ -1645,7 +1644,6 @@ div.goodchange
     background: #55DD55;
     background: url('images/bar-goodchange.png');
     background-repeat: repeat-x;
-    color: black;
 }
 
 div.fuzzy
@@ -1656,7 +1654,6 @@ div.fuzzy
     background: #4444AA;
     background: url('images/bar-fuzzy.png');
     background-repeat: repeat-x;
-    color: black;
 }
 
 div.untranslated
@@ -1667,7 +1664,6 @@ div.untranslated
     background: #FF4444;
     background: url('images/bar-untranslated.png');
     background-repeat: repeat-x;
-    color: black;
 }
 
 div.graph[dir="ltr"] div.translated
@@ -1708,7 +1704,7 @@ table.sortable td
 table.sortable th.sorttable_sorted,
 table.sortable th.sorttable_sorted_reverse
 {
-    color: #000;
+    color: #130f30;
 }
 
 table.sortable th input
