@@ -43,7 +43,7 @@ from pootle_app.models.permissions import (get_matching_permissions,
 from pootle_misc.baseurl import redirect
 from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.stats import get_raw_stats
-from pootle_misc.url_manip import ensure_uri
+from pootle_misc.url_manip import ensure_uri, previous_view_url
 from pootle_misc.util import paginate, ajax_required, jsonify
 from pootle_profile.models import get_profile
 from pootle_statistics.models import (Submission, SubmissionFields,
@@ -327,6 +327,8 @@ def translate_page(request):
     is_terminology = project.is_terminology or store and store.is_terminology
     search_form = make_search_form(terminology=is_terminology)
 
+    previous_overview_url = previous_view_url(request, ['overview'])
+
     context = {
         'cantranslate': cantranslate,
         'cansuggest': cansuggest,
@@ -340,6 +342,7 @@ def translate_page(request):
         'profile': profile,
         'source_language': translation_project.project.source_language,
         'directory': getattr(request, "directory", None),
+        'previous_overview_url': previous_overview_url,
         'MT_BACKENDS': settings.MT_BACKENDS,
         'LOOKUP_BACKENDS': settings.LOOKUP_BACKENDS,
         'AMAGAMA_URL': settings.AMAGAMA_URL,

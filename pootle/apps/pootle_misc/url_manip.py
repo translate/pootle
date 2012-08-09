@@ -20,6 +20,8 @@
 
 import urlparse
 
+from django.core.urlresolvers import resolve
+
 
 def strip_trailing_slash(path):
     """If path ends with a /, strip it and return the stripped version."""
@@ -64,3 +66,18 @@ def ensure_uri(uri):
         # So let's assume http
         uri = u"http://" + uri
     return uri
+
+
+def previous_view_url(request, view_names):
+    """Returns the previous request URL if it matches certain view(s).
+
+    :param request: Django's request object.
+    :param view_names: List of view names to look for.
+    """
+    referer_url = request.META.get('HTTP_REFERER', None)
+    view, args, kwargs = resolve(urlparse.urlparse(referer_url)[2])
+
+    if view.__name__ in view_names:
+        return referer_url
+
+    return ''
