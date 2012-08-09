@@ -99,9 +99,7 @@ def stats_descriptions(quick_stats):
     todo_tooltip = u""
     untranslated_tooltip = ungettext("%d word untranslated", "%d words untranslated", untranslated, untranslated)
     fuzzy_tooltip = ungettext("%d word needs review", "%d words need review", fuzzy, fuzzy)
-    # Firefox and Opera doesn't actually support newlines in tooltips, so we
-    # add some extra space to keep things readable
-    todo_tooltip = u"  \n".join([untranslated_tooltip, fuzzy_tooltip])
+    todo_tooltip = u"<br>".join([untranslated_tooltip, fuzzy_tooltip])
 
     return {
         'todo_text': todo_text,
