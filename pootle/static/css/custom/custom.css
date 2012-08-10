@@ -2,10 +2,10 @@
  * at the supplied CSS files for ideas. This CSS file will be applied to all
  * pages, unless you modify the specification of the assets. Assets are defined
  * here:
- *   local_apps/pootle_app/assets.py
+ *   apps/pootle_app/assets.py
  *
  * You can refer to your own images in this directory in the CSS directly by
  * name without a path, for example:
- *   url(image.png) to refer to /html/custom/image.png
+ *   url('image.png') to refer to /static/css/custom/image.png
  */
 
