@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009-2011 Zuza Software Foundation
+# Copyright 2009-2012 Zuza Software Foundation
 #
 # This file is part of translate.
 #
@@ -21,20 +21,21 @@
 
 import os
 
-from django.utils.translation import ugettext_lazy as _
-from django.db                import models
+from django.db import models
 from django.core.exceptions import ObjectDoesNotExist
+from django.utils.translation import ugettext_lazy as _
 
 from translate.filters import checks
 from translate.lang.data import langcode_re
 
-from pootle_store.util import absolute_real_path, statssum
-from pootle_misc.aggregate import max_column
-from pootle_store.models import Unit
-from pootle_store.filetypes import filetype_choices, factory_classes, is_monolingual
-from pootle_misc.util import getfromcache
-from pootle_misc.baseurl import l
 from pootle_app.lib.util import RelatedManager
+from pootle_misc.aggregate import max_column
+from pootle_misc.baseurl import l
+from pootle_misc.util import getfromcache
+from pootle_store.models import Unit
+from pootle_store.filetypes import (filetype_choices, factory_classes,
+                                    is_monolingual)
+from pootle_store.util import absolute_real_path, statssum
 
 class ProjectManager(RelatedManager):
     def get_by_natural_key(self, code):

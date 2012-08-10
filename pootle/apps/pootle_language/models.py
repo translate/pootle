@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009,2010,2012 Zuza Software Foundation
+# Copyright 2009-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -18,17 +18,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from django.db                import models
 
+from pootle_app.lib.util import RelatedManager
 from pootle.i18n.gettext import tr_lang, language_dir
-
-from pootle_misc.util import getfromcache
 from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
-from pootle_store.util import statssum
+from pootle_misc.util import getfromcache
 from pootle_store.models import Unit
-from pootle_app.lib.util import RelatedManager
+from pootle_store.util import statssum
+
 
 class LanguageManager(RelatedManager):
     def get_by_natural_key(self, code):
