@@ -249,6 +249,9 @@ def update_tables_22000():
     table_name = QualityCheck._meta.db_table
     field = QualityCheck._meta.get_field('category')
     db.add_column(table_name, field.name, field)
+    # Delete all 'hassuggestion' failures, since we don't actually use them
+    # See bug 2412.
+    QualityCheck.objects.filter(name="hassuggestion").delete()
 
     from pootle_statistics.models import Submission
     table_name = Submission._meta.db_table
