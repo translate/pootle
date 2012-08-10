@@ -1,6 +1,5 @@
-{% load i18n store_tags cleanhtml %}
+{% load i18n store_tags cleanhtml locale %}
 {% get_current_language as LANGUAGE_CODE %}
-{% get_current_language_bidi as LANGUAGE_BIDI %}
 <!--! Cell with original -->
 <td colspan="1" rowspan="1" class="translate-original" dir="{{ souce_language.get_direction }}">
   <div id="orig{{ unit.index }}" class="translate-original translate-view">
@@ -24,8 +23,8 @@
   </div>
   {% endif %}
 </td>
-<td colspan="1" rowspan="1" class="translate-translation{% if unit.isfuzzy %} fuzzy-unit{% endif %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-  <div id="trans{{ unit.index }}" class="translate-translation translate-view" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+<td colspan="1" rowspan="1" class="translate-translation{% if unit.isfuzzy %} fuzzy-unit{% endif %}" dir="{% locale_dir %}">
+  <div id="trans{{ unit.index }}" class="translate-translation translate-view" dir="{% locale_dir %}">
     <!--! Normal view mode -->
     {% for i, target, title in unit|pluralize_target %}
     <div dir="{{ language.get_direction }}" lang="{{ language.code }}" class="translation-text"{% if title %} title="{{ title }}"{% endif %}>{{ target|fancy_highlight }}</div>

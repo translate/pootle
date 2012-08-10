@@ -1,5 +1,5 @@
 {% extends "user_profile_base.html"  %}
-{% load i18n baseurl profile_tags %}
+{% load i18n baseurl locale profile_tags %}
 
 {% block title %}
     {% if user == profile.user %}
@@ -74,7 +74,7 @@
   </div>
 </div>
 {% if user.is_superuser %}{% if user == profile.user %}
-<div style="clear: {% if LANGUAGE_BIDI %}left{% else %}right{% endif %};" ></div>
+<div style="clear: {% locale_align %};" ></div>
 {% include "admin/rss_widget.html" %}
 {% endif %}{% endif %}
 {% endblock %}

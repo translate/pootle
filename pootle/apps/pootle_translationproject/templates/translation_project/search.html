@@ -1,9 +1,9 @@
-{% load i18n baseurl %}
+{% load i18n baseurl locale %}
 
 {% get_current_language as LANGUAGE_CODE %}
-{% get_current_language_bidi as LANGUAGE_BIDI %}
+{% get_current_language as LANGUAGE_BIDI %}
 
-<div id="search" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+<div id="search" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
   <script type="text/javascript">
   $(document).ready(function() {
     shortcut.add('ctrl+shift+s', function () {

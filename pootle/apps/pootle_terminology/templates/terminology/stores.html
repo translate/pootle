@@ -1,5 +1,5 @@
 {% extends "tp_base_terminology.html" %}
-{% load i18n %}
+{% load i18n locale %}
 
 {% block content %}
 {% if stores %}
@@ -8,7 +8,7 @@
 </div>
 
 <table class="sortable stats" id="stats" cellpadding="5"
-    cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+    cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
   <thead>
     <tr>
       <th>{% trans "File" %}</th>

@@ -1,10 +1,9 @@
-{% load i18n baseurl store_tags cleanhtml cache profile_tags %}
+{% load i18n baseurl store_tags cleanhtml cache profile_tags locale %}
 {% get_current_language as LANGUAGE_CODE %}
-{% get_current_language_bidi as LANGUAGE_BIDI %}
 {% cache settings.CACHE_TIMEOUT unit_edit unit.id unit.mtime cantranslate cansuggest canreview report_target altsrcs profile.id LANGUAGE_CODE %}
-<td colspan="3" rowspan="1" class="translate-full translate-focus{% if unit.isfuzzy %} fuzzy-unit{% endif %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+<td colspan="3" rowspan="1" class="translate-full translate-focus{% if unit.isfuzzy %} fuzzy-unit{% endif %}" dir="{% locale_dir %}">
   <div class="translate-container">
-    <div class="translate-{% if LANGUAGE_BIDI %}right{% else %}left{% endif %}">
+    <div class="translate-{% locale_align %}">
       {% if unit.getcontext and unit.locations != unit.context %}
       <!-- Context information and comments -->
       <div class="translate-context sidebar">
@@ -30,7 +29,7 @@
       <!-- Terminology suggestions -->
       {% with unit.get_terminology as terms %}
       {% if terms %}
-      <div id="tm" class="sidebar" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+      <div id="tm" class="sidebar" dir="{% locale_dir %}">
         <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Terminology:" %}</div>
         {% for term in terms %}
         <div class="tm-unit js-editor-copytext" title="{% trans 'Click to insert the translated term into the editor' %}">
@@ -42,10 +41,10 @@
       {% endif %}
       {% endwith %}
     </div>
-    <div class="translate-{% if LANGUAGE_BIDI %}left{% else %}right{% endif %}">
+    <div class="translate-{% locale_align %}">
       {% if unit.get_qualitychecks.count %}
       <!-- Quality Checks -->
-      <div id="translate-checks-block" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+      <div id="translate-checks-block" dir="{% locale_dir %}">
           <div class="sidetitle" lang="{{ LANGUAGE_CODE }}" title='{% trans "Possible issues with the translation" %}'>{% trans "Failing checks:" %}</div>
           <ul class="checks">
           {% for check in unit.get_qualitychecks.iterator %}
@@ -78,7 +77,7 @@
             <!-- Alternative source language translations -->
             {% for altunit in altsrcs %}
             <div class="source-language alternative">
-              <div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+              <div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
                 <div class="language-name">{{ altunit.store.translation_project.language.localname }}</div>
                 {% if cansuggest or cantranslate %}
                 <div class="translate-toolbar">
@@ -96,7 +95,7 @@
             {% endfor %}
             <!-- Original -->
             <div class="source-language original">
-              <div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+              <div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
                 <div class="language-name">{{ source_language.localname }}</div>
                 {% if cansuggest or cantranslate %}
                   {% if report_target %}
@@ -116,7 +115,7 @@
             </div>
           </div>
           <!-- Buttons, resize links, special characters -->
-          <div class="buttons translate-buttons-block" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+          <div class="buttons translate-buttons-block" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
             {% if cantranslate %}
             <input type="submit" name="submit" class="submit" tabindex="11" accesskey="s" value="{% trans 'Submit' %}" title="{% trans 'Submit translation and go to the next unit (Ctrl+Enter)' %}" />
             {% endif %}
@@ -137,7 +136,7 @@
             </div>
           </div>
           <!-- Translation -->
-          <div id="orig{{ unit.index }}" class="translate-translation translate-original-focus" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+          <div id="orig{{ unit.index }}" class="translate-translation translate-original-focus" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
             <!-- Begin: Normal editing -->
             {{ form.target_f }}
             {% if language.specialchars %}
@@ -205,12 +204,12 @@
             <div class="extra-item js-editor-copytext">
               {% if canreview %}
               <input type="hidden" id="sugg-{{sugg.id }}" class="suggid" name="suggid" value="{{ sugg.id }}" />
-              <a accesskey="a" id="accept-{{ sugg.id }}" class="acceptsugg"><img src='{{ "images/accept.png"|m }}' title="{% trans 'Accept suggestion' %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
-              <a accesskey="r" id="reject-{{ sugg.id }}" class="rejectsugg"><img src='{{ "images/reject.png"|m }}' title="{% trans 'Reject suggestion' %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
+              <a accesskey="a" id="accept-{{ sugg.id }}" class="acceptsugg"><img src='{{ "images/accept.png"|m }}' title="{% trans 'Accept suggestion' %}" dir="{% locale_dir %}" /></a>
+              <a accesskey="r" id="reject-{{ sugg.id }}" class="rejectsugg"><img src='{{ "images/reject.png"|m }}' title="{% trans 'Reject suggestion' %}" dir="{% locale_dir %}" /></a>
               {% else %}
               {% if user.is_authenticated and profile == sugg.user%}
               <input type="hidden" id="sugg-{{sugg.id }}" class="suggid" name="suggid" value="{{ sugg.id }}" />
-              <a title="{% trans 'Remove suggestion' %}" accesskey="r" id="reject-{{ sugg.id }}" class="rejectsugg"><img src='{{ "images/reject.png"|m }}' dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" /></a>
+              <a title="{% trans 'Remove suggestion' %}" accesskey="r" id="reject-{{ sugg.id }}" class="rejectsugg"><img src='{{ "images/reject.png"|m }}' dir="{% locale_dir %}" /></a>
               {% endif %}
               {% endif %}
 

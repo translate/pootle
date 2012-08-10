@@ -1,9 +1,8 @@
 {% extends "tp_base.html" %}
 
-{% load assets baseurl cache cleanhtml i18n translation_project_tags progressbar %}
+{% load assets baseurl cache cleanhtml i18n locale translation_project_tags progressbar %}
 
 {% get_current_language as LANGUAGE_CODE %}
-{% get_current_language_bidi as LANGUAGE_BIDI %}
 
 {% block body.id %}fileindex{% endblock body.id %}
 
@@ -40,7 +39,7 @@
   <div class="bd">
       <div class="files-subfolders" lang="{{ LANGUAGE_CODE }}">
           <table class="sortable stats" id="js-stats-tp" cellpadding="5"
-          cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+          cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
               <thead>
                   <tr>
                       <th id="js-stats-filename" class="stats">{{ stats_headings.name }}</th>

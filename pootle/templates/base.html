@@ -1,10 +1,7 @@
-{% load i18n assets baseurl cache legalpages %}
-
+{% load i18n assets baseurl cache legalpages locale %}
 {% get_current_language as LANGUAGE_CODE %}
-{% get_current_language_bidi as LANGUAGE_BIDI %}
 <!DOCTYPE html>
-<html lang="{{ LANGUAGE_CODE }}"
-      dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+<html lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
     <head>
         <title>{% block title %}{{ settings.TITLE }}{% endblock title %}</title>
         {% block meta %}

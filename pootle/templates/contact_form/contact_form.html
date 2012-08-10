@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n baseurl %}
+{% load i18n baseurl locale %}
 
 {% block title %}
 {{ block.super }} » {% trans "Contact Us" %}
@@ -10,7 +10,7 @@
 {% endblock %}
  
 {% block content %}
-<div class="form" id="contact" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+<div class="form" id="contact" dir="{% locale_dir %}">
     <h2>{% trans "Contact Us" %}</h2>
     <form method="post" action="" name="contactform" id="contactform">
       {% csrf_token %}

@@ -1,9 +1,8 @@
 {% extends "tp_base_extended.html" %}
 
-{% load i18n assets render_pager baseurl store_tags translation_project_tags cache %}
-
+{% load i18n assets render_pager baseurl store_tags translation_project_tags cache locale %}
 {% get_current_language as LANGUAGE_CODE %}
-{% get_current_language_bidi as LANGUAGE_BIDI %}
+{% get_current_language as LANGUAGE_BIDI %}
 
 {% block title %}
 {{ block.super }}{% if store_id %} » {{ store.name }}{% endif %}
@@ -53,7 +52,7 @@
       <h1>{% trans "Pootle's editor requires JavaScript" %}</h1>
       <p>{% trans "Please enable JavaScript in your browser preferences and reload the page." %}</p>
     </noscript>
-    <table cellpadding="0" cellspacing="0" class="translate-table{% if cansuggest and not cantranslate %} suggest-mode{% endif%}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+    <table cellpadding="0" cellspacing="0" class="translate-table{% if cansuggest and not cantranslate %} suggest-mode{% endif%}" dir="{% locale_dir %}">
       <thead>
         <tr lang="{{ LANGUAGE_CODE }}">
           <th colspan="1" rowspan="1" class="translate-table-title translate-original"></th>
@@ -72,7 +71,7 @@
 {% cache settings.CACHE_TIMEOUT translate_extra LANGUAGE_CODE %}
 <div id="toolbar">
 
-  <div id="toolbar_search" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+  <div id="toolbar_search" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
     <div class="search-container">
       <form action="{{ search_action }}" method="get" id="searchform" title="{% trans 'Search (Ctrl+Shift+S)<br/>Type in, then press Enter to search' %}">
         <div class="advancedsearch">
@@ -105,7 +104,7 @@
     </select>
   </div>
 
-  <div id="prevnext" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+  <div id="prevnext" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir%}">
     <input type="submit" class="previous" name="back" accesskey="b" value="{% trans 'Previous term' %}" title="{% trans 'Go to the previous term (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl+Shift+Page&nbsp;Up<br/>First page: Ctrl+Shift+Home' %}" />
     <span id="item-navigation">
       <input id="item-number" type="text" value="1" size="1" title="{% trans 'Current page number (Ctrl+Shift+U)<br/><br/>Type in the number and press Enter<br/>to go to any position' %}" />

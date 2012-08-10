@@ -1,6 +1,5 @@
 {% extends "tp_base_admin.html" %}
-
-{% load assets i18n baseurl %}
+{% load assets i18n baseurl locale_dir %}
 
 {% block title %}
 {{ block.super }} » {% trans "Files" %}
@@ -16,7 +15,7 @@
 <div id="filesmanage">
   <form action="" method="post">
     {% csrf_token %}
-    <div class="admin-buttons-block" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+    <div class="admin-buttons-block" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
       <input type="submit" class="update" name="template_update" value='{% trans "Update files from templates" %}' />
       <input type="submit" class="rescan" name="scan_files" value='{% trans "Rescan project files" %}' />
     </div>

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n baseurl cache legalpages %}
+{% load i18n baseurl cache legalpages locale %}
 
 {% block title %}
 {{ block.super }} » {% trans "Register" %}
@@ -10,7 +10,7 @@
 {% endblock %}
  
 {% block content %}
-<div id="register" class="form" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+<div id="register" class="form" dir="{% locale_dir %}">
     <h2>{% trans "Register a New Pootle Account" %}</h2>
     <p>{% trans "Fill in the following form to get started translating." %}</p>
     <form method="post" action="" name="registerform" id="registerform">

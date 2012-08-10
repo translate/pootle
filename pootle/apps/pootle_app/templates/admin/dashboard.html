@@ -1,5 +1,5 @@
 {% extends "admin_profile_base.html" %}
-{% load i18n baseurl %}
+{% load i18n baseurl locale %}
 
 {% block title %}
 {{ block.super }}
@@ -53,7 +53,7 @@
       </p>
   </div>
 </div>
-<div style="clear: {% if LANGUAGE_BIDI %}right{% else %}left{% endif %};"></div>
+<div style="clear: {% locale_align %};"></div>
 <div id="depchecks" class="module first" lang="{{ LANGUAGE_CODE }}">
   <div class="hd">
     <h2>{% trans "Dependency Checks" %}</h2>

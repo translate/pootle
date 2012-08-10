@@ -1,6 +1,5 @@
-{% load i18n baseurl store_tags cleanhtml %}
+{% load i18n baseurl store_tags cleanhtml locale %}
 {% get_current_language as LANGUAGE_CODE %}
-{% get_current_language_bidi as LANGUAGE_BIDI %}
 <td colspan="1" rowspan="1" class="translate-original terminology" dir="{{ source_language.get_direction }}">
   <!-- Original -->
   <div id="orig{{unit.index}}" class="translate-term-original left">
@@ -16,7 +15,7 @@
   {% if unit.translator_comment or unit.locations %}
   <a class="collapse tiny left"><img src="{{ "images/information.png"|m }}" title="{% trans "Details..." %}" /></a>
   {% endif %}
-  <div id="trans{{unit.index}}" class="translate-term-translation" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+  <div id="trans{{unit.index}}" class="translate-term-translation" dir="{% locale_dir %}">
     <!-- Translation -->
     <div dir="{{ language.get_direction }}" lang="{{ language.code }}" class="translation-text">{{ unit.target|fancy_highlight }}</div>
   </div>

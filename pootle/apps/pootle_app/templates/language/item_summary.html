@@ -1,12 +1,10 @@
-{% load i18n baseurl progressbar %}
-
-{% get_current_language_bidi as LANGUAGE_BIDI %}
+{% load i18n baseurl progressbar locale %}
 
 {% block itemstats %}
 <td class="stats-name"{% if item.description %} title="{{ item.description|striptags }}"{% endif %}>
   {% if item.icon %}
   <img src="{% filter m %}images/{{ item.icon }}.png{% endfilter %}"
-  class="icon" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"/>
+  class="icon" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}"/>
   {% endif %}
   <a href="{{ item.href|l }}">{{ item.title }}</a>
   {% if item.stats.errors %}

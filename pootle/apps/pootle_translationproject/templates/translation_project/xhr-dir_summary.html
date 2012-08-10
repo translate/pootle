@@ -1,10 +1,10 @@
-{% load i18n %}
+{% load i18n locale %}
 {% if trans_stats %}
 <div class="hd">
   <h3><span>{% trans "Translation Statistics" %}</span></h3>
 </div>
 <div>
-  <table class="stats" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+  <table class="stats" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
       <tbody>
           {% for item in trans_stats %}
           <tr class="item">
