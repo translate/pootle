@@ -19,7 +19,7 @@
     {% endwith%}
   </div>
 {% endif %}
-<div class="intro">
+<div class="markup-body">
 {{ description|safe|clean }}
 </div>
 {% endblock precontent %}
@@ -99,7 +99,7 @@
 {% block scripts_extra %}
 <script type="text/javascript">
 $(document).ready(function() {
-  $(".intro, li.newsitem, .newsitem address, .newsitem blockcode, .newsitem blockquote, .newsitem :header, .newsitem p, .newsitem pre, .newsitem li, .newsitem dt, .newsitem dd, .newsitem ul, .newsitem ol, .newsitem dl, td.language").filter(":not([dir])").bidi();
+  $(".markup-body, li.newsitem, .newsitem address, .newsitem blockcode, .newsitem blockquote, .newsitem :header, .newsitem p, .newsitem pre, .newsitem li, .newsitem dt, .newsitem dd, .newsitem ul, .newsitem ol, .newsitem dl, td.language").filter(":not([dir])").bidi();
 });
 </script>
 {% if user.is_superuser or request.permissions.administrate %}

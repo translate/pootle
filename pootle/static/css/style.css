@@ -664,33 +664,6 @@ ul.errorlist
     visibility: hidden;
 }
 
-.intro
-{
-    margin: 0 1em;
-    line-height: 1.3em;
-    max-width: 85%;
-}
-
-.intro .announcement {
-    background-color: #f9edd0;
-    padding: 1em 1em;
-    border: 1px dashed #935300;
-    color: #624800;
-}
-
-h3.intro-helper {
-    color: #999;
-}
-
-.intro strong {
-   font-weight: bold;
-}
-
-.intro em {
-   font-style: italic;
-}
-
-
 #edit_settings,
 #show_settings
 {
