@@ -102,21 +102,21 @@
 
     {% if translation_project.description %}
     <div id="overview-description-tp">
-      {{ translation_project.description|safe|linebreaks|clean }}
+      {{ translation_project.description|safe|clean }}
     </div>
     {% endif %}
 
     {% if project.description %}
     <a class="overview-description-toggle js-toggle" href="#overview-description-project">{% blocktrans with project.fullname as project %}{{ project }} project information{% endblocktrans %}</a>
     <div id="overview-description-project" class="hide">
-      {{ project.description|safe|linebreaks|clean }}
+      {{ project.description|safe|clean }}
     </div>
     {% endif %}
 
     {% if language.description %}
     <a class="overview-description-toggle js-toggle" href="#overview-description-language">{% blocktrans with language.name as language %}{{ language }} project information{% endblocktrans %}</a>
     <div id="overview-description-language" class="hide">
-      {{ language.description|safe|linebreaks|clean }}
+      {{ language.description|safe|clean }}
     </div>
     {% endif %}
   </div>
