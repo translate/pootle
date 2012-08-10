@@ -82,8 +82,7 @@
                 <div id="nav-main" class="menubar" lang="{{ LANGUAGE_CODE }}">
                     <div class="bd">
                         {% block menu %}
-                        <ul class="first-of-type">
-                            <!--<li class="menubaritem"><a href='{{ "/"|l }}'>{% trans "Home" %}</a></li>-->
+                        <ul>
                             <li class="menubaritem"><a href='{{ "/projects/"|l }}'>{% trans "Projects" %}</a></li>
                             {% if user.is_superuser %}
                             <li class="menubaritem"><a class="admin" href='{{ "/admin/"|l }}'>{% trans "Admin" %}</a></li>
