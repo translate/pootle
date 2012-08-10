@@ -21,7 +21,7 @@
 
 from django import template
 
-from legalpages.models import LegalPage
+from ..models import LegalPage
 
 
 register = template.Library()
