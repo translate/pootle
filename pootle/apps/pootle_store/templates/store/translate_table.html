@@ -19,8 +19,8 @@
       <tbody>
         {% comment %}
         {% for unit in units %}
-        <tr id="row{{ unit.id }}" class="{% ifequal unit form.instance %}edit-row{% else %}view-row {% cycle 'even' 'odd' %}{% endifequal %}"{% ifequal unit form.instance %} colspan="2"{% endifequal %}>
-          {% ifequal unit form.instance %}
+        <tr id="row{{ unit.id }}" class="{% if unit == form.instance %}edit-row{% else %}view-row {% cycle 'even' 'odd' %}{% endif %}"{% if unit == form.instance %} colspan="2"{% endif %}>
+          {% if unit == form.instance %}
             {% cache settings.CACHE_TIMEOUT unit_edit unit.id unit.mtime cantranslate cansuggest canreview alt_src_codes profile.id LANGUAGE_CODE %}
             {% render_unit_edit form %}
             {% endcache %}
@@ -28,7 +28,7 @@
             {% cache settings.CACHE_TIMEOUT unit_view unit.id unit.mtime LANGUAGE_CODE %}
             {% render_unit_view unit %}
             {% endcache %}
-          {% endifequal %}
+          {% endif %}
         </tr>
         {% endfor %}
         {% endcomment %}

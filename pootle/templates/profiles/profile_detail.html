@@ -2,19 +2,19 @@
 {% load i18n baseurl profile_tags %}
 
 {% block title %}
-    {% ifequal user profile.user %}
+    {% if user == profile.user %}
         {{ block.super }}
     {% else %}
         {{ settings.TITLE }} » {% trans "Users" %} » {{ profile.user }}
-    {% endifequal %}
+    {% endif %}
 {% endblock %}
 
 {% block breadcrumb_content %}
-    {% ifequal user profile.user %}
+    {% if user == profile.user %}
         {{ block.super }}
     {% else %}
         » <span>{% trans "Users" %}</span> » <span>{{ profile.user }}</span>
-    {% endifequal %}
+    {% endif %}
 {% endblock %}
 
 {% block bodyclass %}dashboard{% endblock %}
@@ -30,30 +30,26 @@
         <dl class="languagelist">
             <dt class="language">
                 <a href="{% filter l %}/{{ language.code }}/{% endfilter %}">{{ language.name }}</a>
-                {% ifequal user profile.user %}
-                {% if language.islangadmin %}
+                {% if user == profile.user and language.islangadmin %}
                     <span class="adminlink">(<a href="{% filter l %}/{{ language.code }}/admin.html{% endfilter %}">{% trans "Admin" %}</a>)</span>
                 {% endif %}
-                {% endifequal %}
             </dt>
             {% for project in language.projects %}
             <dd>
             <a href="{% filter l %}/{{ language.code }}/{{ project.code }}/{% endfilter %}">{{ project.name }}</a>
-            {% ifequal user profile.user %}
-            {% if project.isprojectadmin %}
+            {% if user == profile.user and project.isprojectadmin %}
                 <span class="adminlink">(<a href="{% filter l %}/{{ language.code }}/{{ project.code }}/admin_permissions.html{% endfilter %}">{% trans "Permissions" %}</a> | <a href="{% filter l %}/{{ language.code }}/{{ project.code }}/admin_files.html{% endfilter %}">{% trans "Files" %}</a>)</span>
             {% endif %}
-            {% endifequal %}
             </dd>
             {% endfor %}
         </dl>
         {% endfor %}
     {% else %}
-        {% ifequal user profile.user %}
+        {% if user == profile.user %}
         <p><a href='{{ "/accounts/edit/"|l }}'>{% trans "No languages or projects selected. Choose yours now." %}</a></p>
         {% else %}
         {% trans "This user has not selected languages or projects yet." %}
-        {% endifequal %}
+        {% endif %}
     {% endif %}
     </div>
 </div>
@@ -66,7 +62,7 @@
   </div>
   <div class="bd">
     <div class="avatar">
-        <img src="{{ profile|gravatar:100 }}" width="100" height="100"{% ifequal user profile.user %} title="{% trans "You can set or change your avatar image at www.gravatar.com" %}"{% endifequal %} />
+        <img src="{{ profile|gravatar:100 }}" width="100" height="100"{% if user == profile.user %} title="{% trans "You can set or change your avatar image at www.gravatar.com" %}"{% endif %} />
     </div>
     <table>
       {% for stat in profile.getuserstatistics %}
@@ -77,10 +73,10 @@
     </table>
   </div>
 </div>
-{% if user.is_superuser %}{% ifequal user profile.user %}
+{% if user.is_superuser %}{% if user == profile.user %}
 <div style="clear: {% if LANGUAGE_BIDI %}left{% else %}right{% endif %};" ></div>
 {% include "admin/rss_widget.html" %}
-{% endifequal %}{% endif %}
+{% endif %}{% endif %}
 {% endblock %}
 
 
