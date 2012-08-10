@@ -726,7 +726,8 @@
   updatePermalink: function (opts) {
     if (opts !== false) {
       // FIXME: We need a completely different way for getting view URLs in JS
-      var urlStr = this.store + '/translate/#unit=';
+      var urlStr = this.store ? this.store + '/translate/#unit=' :
+                                this.directory + 'translate.html#unit=';
       // Translators: Permalink to the current unit in the editor.
       //    The first '%s' is the permalink URL.
       //    The second '%s' is the unit number.
