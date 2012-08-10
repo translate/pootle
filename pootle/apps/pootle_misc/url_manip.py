@@ -20,7 +20,7 @@
 
 import urlparse
 
-from django.core.urlresolvers import resolve
+from django.core.urlresolvers import Resolver404, resolve
 
 
 def strip_trailing_slash(path):
@@ -74,8 +74,12 @@ def previous_view_url(request, view_names):
     :param request: Django's request object.
     :param view_names: List of view names to look for.
     """
-    referer_url = request.META.get('HTTP_REFERER', None)
-    view, args, kwargs = resolve(urlparse.urlparse(referer_url)[2])
+    referer_url = request.META.get('HTTP_REFERER', '')
+
+    try:
+        view, args, kwargs = resolve(urlparse.urlparse(referer_url)[2])
+    except Resolver404:
+        return ''
 
     if view.__name__ in view_names:
         return referer_url
