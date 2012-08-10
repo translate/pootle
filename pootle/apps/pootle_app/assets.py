@@ -46,16 +46,17 @@ js_editor = Bundle(
 register('js_editor', js_editor)
 
 css_common = Bundle(
-    'style.css', 'fancybox.css', 'tipsy.css', 'custom/custom.css',
-    filters='cssmin', output='common.min.css')
+    'css/style.css', 'css/fancybox.css', 'css/tipsy.css',
+    'css/custom/custom.css',
+    filters='cssmin', output='css/common.min.css')
 register('css_common', css_common)
 
 css_admin = Bundle(
-    'admin.css',
-    filters='cssmin', output='admin.min.css')
+    'css/admin.css',
+    filters='cssmin', output='css/admin.min.css')
 register('css_admin', css_admin)
 
 css_editor = Bundle(
-    'translate.css',
+    'css/editor.css',
     filters='cssmin', output='editor.min.css')
 register('css_editor', css_editor)

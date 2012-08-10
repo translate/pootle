@@ -287,7 +287,7 @@ body.zoom-out-2 div.sources .alternative .translation-text
 {
     padding: 0 4px;
     margin: 0 0.2em;
-    background-image: url('images/squiggle.png');
+    background-image: url('../images/squiggle.png');
     background-repeat: repeat-x;
     background-position: text-bottom;
     vertical-align: middle;
@@ -422,7 +422,7 @@ table td.translate-translation
 /* TODO: review this */
 .terminology div.translator-comments
 {
-    background: #eaf0f4 url('images/user_comment.png') no-repeat;
+    background: #eaf0f4 url('../images/user_comment.png') no-repeat;
     background-position: 5px center;
     border: 1px solid #d2e1ed;
     overflow: auto;

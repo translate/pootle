@@ -26,7 +26,7 @@ div#depchecks ul li
 
 div#depchecks ul li.good
 {
-    background-image: url('images/good.png');
+    background-image: url('../images/good.png');
     background-position: left top;
 }
 
@@ -37,7 +37,7 @@ html[dir="rtl"] div#depchecks ul li.good
 
 div#depchecks ul li.warning
 {
-    background-image: url('images/warning.png');
+    background-image: url('../images/warning.png');
     background-position: left top;
 }
 
@@ -48,7 +48,7 @@ html[dir="rtl"] div#depchecks ul li.warning
 
 div#depchecks ul li.error
 {
-    background-image: url('images/error.png');
+    background-image: url('../images/error.png');
     background-position: left top;
     font-weight: bold;
     color: #d54e21;

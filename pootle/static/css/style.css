@@ -257,37 +257,37 @@ pre, code, kbd, samp, tt
 
 .icon-expand
 {
-    background-image: url('images/icon-expand.png');
+    background-image: url('../images/icon-expand.png');
 }
 
 .icon-collapse
 {
-    background-image: url('images/icon-collapse.png');
+    background-image: url('../images/icon-collapse.png');
 }
 
 .icon-copy
 {
-    background-image: url('images/icon-copy.png');
+    background-image: url('../images/icon-copy.png');
 }
 
 .icon-download
 {
-    background-image: url('images/icon-download.png');
+    background-image: url('../images/icon-download.png');
 }
 
 .icon-upload
 {
-    background-image: url('images/icon-upload.png');
+    background-image: url('../images/icon-upload.png');
 }
 
 .icon-vcs-commit
 {
-    background-image: url('images/icon-vcs-commit.png');
+    background-image: url('../images/icon-vcs-commit.png');
 }
 
 .icon-vcs-update
 {
-    background-image: url('images/icon-vcs-update.png');
+    background-image: url('../images/icon-vcs-update.png');
 }
 
 
@@ -348,7 +348,7 @@ html[dir="rtl"] #nav-access
 {
     margin: 0;
     padding: 25px;
-    background: url(images/logo.png) left 0.7em no-repeat;
+    background: url('../images/logo.png') left 0.7em no-repeat;
     padding-left: 60px;
     float: left;
     margin: 0 30px 0 20px;
@@ -357,7 +357,7 @@ html[dir="rtl"] #nav-access
 
 html[dir="rtl"] #header h1
 {
-    background: url(images/logo.png) right 0.7em no-repeat;
+    background: url('../images/logo.png') right 0.7em no-repeat;
     padding-left: 0;
     padding-right: 60px;
     margin: 0px 20px 0 30px;
@@ -477,7 +477,7 @@ html[dir="rtl"] #zoom {
 
 #footer
 {
-    background: #fff url(images/footer-bg.jpg) top center repeat-x;
+    background: #fff url('../images/footer-bg.jpg') top center repeat-x;
     text-align: center;
     color: #888;
     clear: both;
@@ -568,12 +568,12 @@ html[dir="rtl"] #xhr-error span
 
 #xhr-activity span
 {
-    background: url("images/activity.gif") 1em center no-repeat #e5f3f8;
+    background: url("../images/activity.gif") 1em center no-repeat #e5f3f8;
 }
 
 #xhr-error span
 {
-    background: url("images/error.png") 1em center no-repeat #e5f3f8;
+    background: url("../images/error.png") 1em center no-repeat #e5f3f8;
 }
 
 .form.message
@@ -651,7 +651,7 @@ ul.errorlist
 {
     margin: 0;
     padding: 5px 0px;
-    background: #fff url(images/page-bg.jpg) top left repeat-x;
+    background: #fff url('../images/page-bg.jpg') top left repeat-x;
 }
 
 #body:after
@@ -1049,12 +1049,12 @@ input[type="submit"]:active
  */
 
 a.external {
-  background: url(images/external-link.png) left 50% no-repeat;
+  background: url('../images/external-link.png') left 50% no-repeat;
   padding-left: 14px;
 }
 
 html[dir="rtl"] a.external {
-  background: url(images/external-link.png) right 50% no-repeat;
+  background: url('../images/external-link.png') right 50% no-repeat;
   padding-left: 0;
   padding-right: 14px;
 }
@@ -1404,7 +1404,7 @@ div.latestnews li
 
 div.latestnews p.subscribe
 {
-    background-image: url('images/feed.png');
+    background-image: url('../images/feed.png');
     background-repeat: no-repeat;
     margin-top: 1em;
     /* ltr */
@@ -1632,7 +1632,7 @@ div.translated
     top: 2px;
     height: 100%;
     background: #448844;
-    background: url('images/bar-translated.png');
+    background: url('../images/bar-translated.png');
     background-repeat: repeat-x;
 }
 
@@ -1642,7 +1642,7 @@ div.goodchange
     top: 2px;
     height: 100%;
     background: #55DD55;
-    background: url('images/bar-goodchange.png');
+    background: url('../images/bar-goodchange.png');
     background-repeat: repeat-x;
 }
 
@@ -1652,7 +1652,7 @@ div.fuzzy
     top: 2px;
     height: 100%;
     background: #4444AA;
-    background: url('images/bar-fuzzy.png');
+    background: url('../images/bar-fuzzy.png');
     background-repeat: repeat-x;
 }
 
@@ -1662,7 +1662,7 @@ div.untranslated
     height: 100%;
     top: 2px;
     background: #FF4444;
-    background: url('images/bar-untranslated.png');
+    background: url('../images/bar-untranslated.png');
     background-repeat: repeat-x;
 }
 
