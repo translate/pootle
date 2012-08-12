@@ -41,22 +41,6 @@ html[dir="rtl"] .markup-body ol
 }
 
 
-/* Links (copied from css/style.css) */
-
-.markup-body a
-{
-    background: url('../images/external-link.png') left 50% no-repeat;
-    padding-left: 14px;
-}
-
-html[dir="rtl"] a
-{
-    background: url('../images/external-link.png') right 50% no-repeat;
-    padding-left: 0;
-    padding-right: 14px;
-}
-
-
 /* Headings */
 
 .markup-body h1,
