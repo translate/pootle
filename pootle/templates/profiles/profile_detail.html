@@ -73,10 +73,10 @@
     </table>
   </div>
 </div>
-{% if user.is_superuser %}{% if user == profile.user %}
+{% if user.is_superuser and user == profile.user %}
 <div style="clear: {% if LANGUAGE_BIDI %}left{% else %}right{% endif %};" ></div>
 {% include "admin/rss_widget.html" %}
-{% endif %}{% endif %}
+{% endif %}
 {% endblock %}
 
 
