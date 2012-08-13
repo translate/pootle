@@ -99,10 +99,10 @@
               <div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
                 <div class="language-name">{{ source_language.localname }}</div>
                 {% if cansuggest or cantranslate %}
-                  {% if report_target %}
-                    <a class="report-bug" href="{{ report_target }}"><img src='{{ "images/bug.png"|m }}' title="{% trans 'Report a problem with the source string' %}" /></a>
-                  {% endif %}
                 <div class="translate-toolbar">
+                  {% if report_target %}
+                  <a class="icon-report-bug" href="{{ report_target }}" title="{% trans 'Report a problem with the source string' %}"></a>
+                  {% endif %}
                   <a class="icon-copy js-copyoriginal" title="{% trans 'Copy into translation' %}" accesskey="c"></a>
                 </div>
                 {% endif %}

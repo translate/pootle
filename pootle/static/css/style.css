@@ -290,6 +290,11 @@ pre, code, kbd, samp, tt
     background-image: url('../images/icon-vcs-update.png');
 }
 
+.icon-report-bug
+{
+    background-image: url('../images/icon-report-bug.png');
+}
+
 
 /*
  * MAIN DIVs

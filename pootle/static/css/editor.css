@@ -972,20 +972,6 @@ div.translation-text-headers[dir="rtl"] div.translate-toolbar a
     margin-right: 0.5em;
 }
 
-
-a.report-bug
-{
-    position: absolute;
-    top: -12px;
-    left: 7em;
-}
-
-div.translation-text-headers[dir="rtl"] a.report-bug
-{
-    left: inherit;
-    right: 7em;
-}
-
 .translate-toolbar a,
 .js-editor-copytext
 {
