@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2009-2012 Zuza Software Foundation
 #
 # This file is part of translate.
 #
@@ -21,12 +21,13 @@
 
 from django.db import models
 
-from pootle_store.util import empty_quickstats, empty_completestats, statssum, completestatssum
-from pootle_store.models import Suggestion, Unit
-
-from pootle_misc.util import getfromcache, dictsum
 from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
+from pootle_misc.util import getfromcache, dictsum
+from pootle_store.models import Suggestion, Unit
+from pootle_store.util import (empty_quickstats, empty_completestats,
+                               statssum, completestatssum)
+
 
 class DirectoryManager(models.Manager):
     def get_query_set(self):
