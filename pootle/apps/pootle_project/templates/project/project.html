@@ -1,7 +1,5 @@
 {% extends "project_base.html" %}
-
 {% load i18n baseurl cleanhtml assets %}
-
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block title %}
@@ -35,10 +33,10 @@
     </thead>
     <tbody class="stats">
     {% for item in languages %}
-      <tr class="item {% cycle 'even' 'odd' %}">
-      {% include "language/item_summary.html" %}
-      <td>{{ item.lastactivity }}</td>
-      </tr>
+    <tr class="item {% cycle 'even' 'odd' %}">
+    {% include "language/item_summary.html" %}
+    <td>{{ item.lastactivity }}</td>
+    </tr>
     {% endfor %}
     </tbody>
     </table>
@@ -53,12 +51,12 @@
 
   <div id="overview-description" class="bd">
     {% if user.is_superuser or request.permissions.administrate %}
-      {% include "admin/edit_links.html" %}
-      <div class="settings-container js-admin-description" style="display: none;">
-        {% with "edit_settings.html" as form_action %}
-        {% include "admin/general_settings_form.html" %}
-        {% endwith%}
-      </div>
+    {% include "admin/edit_links.html" %}
+    <div class="settings-container js-admin-description" style="display: none;">
+      {% with "edit_settings.html" as form_action %}
+      {% include "admin/general_settings_form.html" %}
+      {% endwith%}
+    </div>
     {% endif %}
 
     {% if project.description %}
@@ -73,9 +71,9 @@
 
 {% block postcontent %}
 <div class="module first clear" lang="{{ LANGUAGE_CODE }}">
-    <div class="bd">
-    {% include "translation_summary_legend.html" %}
-    </div>
+  <div class="bd">
+  {% include "translation_summary_legend.html" %}
+  </div>
 </div>
 {% include "top_contributers_table.html" %}
 {% endblock postcontent %}
@@ -87,8 +85,8 @@ $(document).ready(function() {
 });
 </script>
 {% if user.is_superuser or request.permissions.administrate %}
-  {% assets "js_admin" %}
-    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
-  {% endassets %}
+{% assets "js_admin" %}
+<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+{% endassets %}
 {% endif %}
 {% endblock %}

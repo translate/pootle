@@ -1,7 +1,5 @@
 {% extends "tp_base.html" %}
-
 {% load assets baseurl cache cleanhtml i18n locale translation_project_tags progressbar %}
-
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block body.id %}fileindex{% endblock body.id %}
@@ -37,26 +35,26 @@
     <h2>{% trans "Files and Subfolders" %}</h2>
   </div>
   <div class="bd">
-      <div class="files-subfolders" lang="{{ LANGUAGE_CODE }}">
-          <table class="sortable stats" id="js-stats-tp" cellpadding="5"
-          cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
-              <thead>
-                  <tr>
-                      <th id="js-stats-filename" class="stats">{{ stats_headings.name }}</th>
-                      <th id="js-stats-progress" class="stats">{{ stats_headings.progress }}</th>
-                      <th id="js-stats-need-translation" class="stats-number sorttable_numeric">{{ stats_headings.need_translation }}</th>
-                      <th id="js-stats-suggestions" class="stats-number sorttable_numeric">{{ stats_headings.suggestions }}</th>
-                  </tr>
-              </thead>
-              <tbody class="stats">
-                  {% for item in children %}
-                  <tr class="item {% cycle 'even' 'odd' %}">
-                  {% include "translation_project/listing_row.html" %}
-                  </tr>
-                  {% endfor %}
-              </tbody>
-          </table>
-      </div>
+    <div class="files-subfolders" lang="{{ LANGUAGE_CODE }}">
+      <table class="sortable stats" id="js-stats-tp" cellpadding="5"
+      cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
+        <thead>
+          <tr>
+            <th id="js-stats-filename" class="stats">{{ stats_headings.name }}</th>
+            <th id="js-stats-progress" class="stats">{{ stats_headings.progress }}</th>
+            <th id="js-stats-need-translation" class="stats-number sorttable_numeric">{{ stats_headings.need_translation }}</th>
+            <th id="js-stats-suggestions" class="stats-number sorttable_numeric">{{ stats_headings.suggestions }}</th>
+          </tr>
+        </thead>
+        <tbody class="stats">
+          {% for item in children %}
+          <tr class="item {% cycle 'even' 'odd' %}">
+          {% include "translation_project/listing_row.html" %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
   </div>
   {% endif %}
 </div>
@@ -92,12 +90,12 @@
   </div>
   <div id="overview-description" class="bd">
     {% if user.is_superuser or request.permissions.administrate %}
-      {% include "admin/edit_links.html" %}
-      <div class="settings-container js-admin-description" style="display: none;">
-        {% with "edit_settings.html" as form_action %}
-        {% include "admin/general_settings_form.html" %}
-        {% endwith %}
-      </div>
+    {% include "admin/edit_links.html" %}
+    <div class="settings-container js-admin-description" style="display: none;">
+      {% with "edit_settings.html" as form_action %}
+      {% include "admin/general_settings_form.html" %}
+      {% endwith %}
+    </div>
     {% endif %}
 
     {% if translation_project.description %}
@@ -152,8 +150,8 @@ $(document).ready(function() {
 </script>
 {% endif %}
 {% if user.is_superuser or request.permissions.administrate %}
-  {% assets "js_admin" %}
-    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
-  {% endassets %}
+{% assets "js_admin" %}
+<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+{% endassets %}
 {% endif %}
 {% endblock %}

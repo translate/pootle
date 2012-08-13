@@ -63,9 +63,9 @@
 
 {% block postcontent %}
 <div class="module first clear" lang="{{ LANGUAGE_CODE }}">
-    <div class="bd">
-    {% include "translation_summary_legend.html" %}
-    </div>
+  <div class="bd">
+  {% include "translation_summary_legend.html" %}
+  </div>
 </div>
 
 {% include "top_contributers_table.html" %}
@@ -78,8 +78,8 @@ $(document).ready(function() {
 });
 </script>
 {% if user.is_superuser or request.permissions.administrate %}
-  {% assets "js_admin" %}
-    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
-  {% endassets %}
+{% assets "js_admin" %}
+<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+{% endassets %}
 {% endif %}
 {% endblock %}

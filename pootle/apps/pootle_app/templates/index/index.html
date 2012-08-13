@@ -1,7 +1,5 @@
 {% extends "base.html" %}
-
 {% load i18n baseurl notification_tags cleanhtml assets progressbar %}
-
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block extra_head %}
@@ -14,9 +12,9 @@
 {% if user.is_superuser %}
   {% include "admin/edit_links.html" %}
   <div class="settings-container js-admin-description" style="display: none;">
-    {% with "edit_settings.html" as form_action %}
-    {% include "admin/general_settings_form.html" %}
-    {% endwith%}
+  {% with "edit_settings.html" as form_action %}
+  {% include "admin/general_settings_form.html" %}
+  {% endwith%}
   </div>
 {% endif %}
 <div class="markup-body">
@@ -26,71 +24,71 @@
 
 {% block content %}
 <div class="module first" lang="{{ LANGUAGE_CODE }}">
-    <div class="hd">
-        <h2>{{ languagelink }}</h2>
-    </div>
-    <div class="bd">
-        <table class="sortable" id="js-stats-index-languages">
-            <tr>
-                <th id="js-stats-language">{% trans 'Language' %}</th>
-                <th id="js-stats-progress">{% trans 'Overall Completion' %}</th>
-                <th id="js-stats-activity">{% trans 'Last Activity' %}</th>
-            </tr>
-            {% for item in languages %}
-            {% if item.stats.total != 0 %}
-            <tr class="{% cycle 'even' 'odd' %}">
-                <td class="language"><a href="{% filter l %}/{{ item.code }}/{% endfilter %}">{{ item.name }}</a></td>
-                <td>
-                    <div class="sortkey">{{ item.stats.translated.percentage }}</div>
-                    {% progressbar item.stats %}
-                </td> 
-                <td>{{ item.lastactivity }}</td>
-            </tr>
-            {% endif %}
-            {% endfor %}
-        </table>
-    </div>
+  <div class="hd">
+    <h2>{{ languagelink }}</h2>
+  </div>
+  <div class="bd">
+    <table class="sortable" id="js-stats-index-languages">
+      <tr>
+        <th id="js-stats-language">{% trans 'Language' %}</th>
+        <th id="js-stats-progress">{% trans 'Overall Completion' %}</th>
+        <th id="js-stats-activity">{% trans 'Last Activity' %}</th>
+      </tr>
+      {% for item in languages %}
+      {% if item.stats.total != 0 %}
+      <tr class="{% cycle 'even' 'odd' %}">
+        <td class="language"><a href="{% filter l %}/{{ item.code }}/{% endfilter %}">{{ item.name }}</a></td>
+        <td>
+          <div class="sortkey">{{ item.stats.translated.percentage }}</div>
+          {% progressbar item.stats %}
+        </td>
+        <td>{{ item.lastactivity }}</td>
+      </tr>
+      {% endif %}
+      {% endfor %}
+    </table>
+  </div>
 </div>
 
 <div class="module" lang="{{ LANGUAGE_CODE }}">
-    <div class="hd">
-        <h2>{{ projectlink }}</h2>
-    </div>
-    <div class="bd">
-        <table class="sortable" id="js-stats-index-projects">
-            <tr>
-                <th id="js-stats-project">{% trans 'Project' %}</th>
-                <th id="js-stats-progress">{% trans 'Overall Completion' %}</th>
-                <th id="js-stats-activity">{% trans 'Last Activity' %}</th>
-            </tr>
-            {% for item in projects %}
-            <tr class="{% cycle 'even' 'odd' %}">
-                <td class="project"><a href="{% filter l %}/projects/{{ item.code }}/{% endfilter %}" title="{{ item.description }}">{{ item.name }}</a></td>
-                <td>
-                    <div class="sortkey">{{ item.stats.translated.percentage }}</div>
-                    {% progressbar item.stats %}
-                </td> 
-                <td>{{ item.lastactivity }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
+  <div class="hd">
+    <h2>{{ projectlink }}</h2>
+  </div>
+  <div class="bd">
+    <table class="sortable" id="js-stats-index-projects">
+      <tr>
+        <th id="js-stats-project">{% trans 'Project' %}</th>
+        <th id="js-stats-progress">{% trans 'Overall Completion' %}</th>
+        <th id="js-stats-activity">{% trans 'Last Activity' %}</th>
+      </tr>
+      {% for item in projects %}
+      <tr class="{% cycle 'even' 'odd' %}">
+        <td class="project"><a href="{% filter l %}/projects/{{ item.code }}/{% endfilter %}" title="{{ item.description }}">{{ item.name }}</a></td>
+        <td>
+          <div class="sortkey">{{ item.stats.translated.percentage }}</div>
+          {% progressbar item.stats %}
+        </td>
+        <td>{{ item.lastactivity }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
 </div>
 {% endblock content %}
 
 {% block postcontent %}
 <div class="module latestnews{% if moreprojects %} first{% endif %}" lang="{{ LANGUAGE_CODE }}">
-    <div class="hd"><h2>{% trans 'Latest News' %}</h2></div>
-    <div class="bd">
-        {% render_latest_news "" 5 %}
-        <p class="subscribe"><a href="{% url pootle_notifications__feed "" %}">{% trans "Subscribe to the RSS feed." %}</a></p>
-    </div>
+  <div class="hd"><h2>{% trans 'Latest News' %}</h2></div>
+  <div class="bd">
+    {% render_latest_news "" 5 %}
+    <p class="subscribe"><a href="{% url pootle_notifications__feed "" %}">{% trans "Subscribe to the RSS feed." %}</a></p>
+  </div>
 </div>
 
 <div class="module first clear" lang="{{ LANGUAGE_CODE }}">
-    <div class="bd">
-    {% include "translation_summary_legend.html" %}
-    </div>
+  <div class="bd">
+  {% include "translation_summary_legend.html" %}
+  </div>
 </div>
 
 {% include "top_contributers_table.html" %}
@@ -103,8 +101,8 @@ $(document).ready(function() {
 });
 </script>
 {% if user.is_superuser or request.permissions.administrate %}
-    {% assets "js_admin" %}
-    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
-    {% endassets %}
+{% assets "js_admin" %}
+<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+{% endassets %}
 {% endif %}
 {% endblock %}
