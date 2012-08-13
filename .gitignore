@@ -8,7 +8,7 @@
 
 # /pootle/static/
 /pootle/static/.webassets-cache/
-/pootle/static/*.min.css
+/pootle/static/css/*.min.css
 /pootle/static/js/*.min.js
 
 # /pootle/settings/
