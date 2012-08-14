@@ -90,14 +90,14 @@ def login(request):
 
                 language = request.POST.get('language')
                 request.session['django_language'] = language
-                response = redirect_after_login(request)
 
-                return response
+                return redirect_after_login(request)
         else:
             form = LangAuthenticationForm()
 
         context = {
             'form': form,
+            'next': request.GET.get(auth.REDIRECT_FIELD_NAME, ''),
             }
 
         return render_to_response("index/login.html", context,

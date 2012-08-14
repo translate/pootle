@@ -32,7 +32,7 @@ from django.utils.translation import ugettext as _
 from django.conf import settings
 from django.core.mail import mail_admins
 
-from pootle_misc.baseurl import l
+from pootle_misc.baseurl import l, get_next
 
 class ErrorPagesMiddleware(object):
     """
@@ -56,8 +56,10 @@ class ErrorPagesMiddleware(object):
             templatevars = {}
             templatevars['permission_error'] = msg
             if not request.user.is_authenticated():
-                login_msg = _('You need to <a href="%(login_link)s">login</a> to access this page.',
-                              {'login_link': l("/accounts/login/")})
+                login_msg = _('You need to <a href="%(login_link)s">login</a> '
+                              'to access this page.',
+                              {'login_link': "%s%s" % \
+                                (l("/accounts/login/"), get_next(request))})
                 templatevars["login_message"] = login_msg
             return HttpResponseForbidden(render_to_string('403.html', templatevars,
                                       RequestContext(request)))

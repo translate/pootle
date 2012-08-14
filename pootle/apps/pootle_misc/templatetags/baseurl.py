@@ -21,9 +21,11 @@
 from django import template
 from django.template.defaultfilters import stringfilter
 
-from pootle_misc.baseurl import l, m, abs_l
+from pootle_misc.baseurl import l, m, abs_l, get_next
 
 register = template.Library()
+
 register.filter('l', stringfilter(l))
 register.filter('m', stringfilter(m))
 register.filter('abs_l', stringfilter(abs_l))
+register.filter('get_next', get_next)

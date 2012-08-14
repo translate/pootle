@@ -91,7 +91,7 @@
           {% if settings.CAN_REGISTER %}
           <li><a href='{{ "/accounts/register/"|l }}'>{% trans "Register" %}</a></li>
           {% endif %}
-          <li><a href='{{ "/accounts/login/"|l }}'>{% trans "Log In" %}</a></li>
+          <li><a href="{{ "/accounts/login/"|l }}{{ request|get_next }}">{% trans "Log In" %}</a></li>
           {% endif %}
         </ul>
         <div id="zoom">

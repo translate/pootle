@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2009 Zuza Software Foundation
+# Copyright 2008-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -24,7 +24,9 @@ import os
 import urllib
 
 from django.conf import settings
+from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.http import HttpResponseRedirect
+from django.utils.http import urlencode
 
 def l(path):
     """ filter urls adding base_path prefix if required """
@@ -50,3 +52,16 @@ def redirect(url, **kwargs):
         return HttpResponseRedirect(l('%s?%s' % (url, urllib.urlencode(kwargs))))
     else:
         return HttpResponseRedirect(l(url))
+
+
+def get_next(request):
+    """Return a query string to use as a next URL."""
+    try:
+        next = request.GET.get(REDIRECT_FIELD_NAME, '')
+
+        if not next:
+            next = request.path
+    except AttributeError, e:
+        next = ''
+
+    return u"?%s" % urlencode({REDIRECT_FIELD_NAME: next})

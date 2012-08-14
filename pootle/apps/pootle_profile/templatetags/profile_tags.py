@@ -25,4 +25,3 @@ register = template.Library()
 @register.filter
 def gravatar(profile, size):
     return profile.gravatar_url(size)
-
