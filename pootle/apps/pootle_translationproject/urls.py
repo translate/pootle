@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008 Zuza Software Foundation
+# Copyright 2008-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -20,6 +20,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.conf.urls.defaults import *
+
+
 urlpatterns = patterns('pootle_translationproject.views',
     # Admin views
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/((.*/)*)admin_permissions.html$',
@@ -27,14 +29,12 @@ urlpatterns = patterns('pootle_translationproject.views',
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/((.*/)*)admin_files.html$',
      'admin_files'),
 
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)(index.html)?$',
-     'overview'),
-
     # XHR views
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/((.*/)*)edit_settings.html$',
      'edit_settings'),
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)dir_summary.html$',
-     'dir_summary'),
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/summary/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
+        'path_summary_more',
+        name='tp.path_summary_more'),
 
     # Exporting files
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<file_path>.*)export/zip$',
@@ -43,4 +43,8 @@ urlpatterns = patterns('pootle_translationproject.views',
     # Project-wide translation
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/translate.html$',
      'translate'),
+
+    # Overview
+    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
+     'overview'),
 )

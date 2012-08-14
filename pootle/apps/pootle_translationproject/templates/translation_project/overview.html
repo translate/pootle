@@ -9,24 +9,30 @@
 {% block content %}
 <div class="module first">
   <div class="hd">
-    {% cache settings.CACHE_TIMEOUT directory_trail directory.id %}
+    {% if store %}
+    {% cache settings.CACHE_TIMEOUT path_trail store.id %}
+    <h2><span><a href="{{ translation_project.pootle_path|l }}">{{ project.code }}</a> / {{ store|trail:"/" }}</span></h2>
+    {% endcache %}
+    {% else %}
+    {% cache settings.CACHE_TIMEOUT path_trail directory.id %}
     <h2><span><a href="{{ translation_project.pootle_path|l }}">{{ project.code }}</a> / {{ directory|trail:"/" }}</span></h2>
     {% endcache %}
+    {% endif %}
   </div>
-  <div id="directory-summary" class="bd">
+  <div id="path-summary" class="bd">
     <ul>
-      {% for summary_item in dir_summary %}
+      {% for summary_item in path_summary %}
       <li>{{ summary_item|safe }}</li>
       {% endfor %}
     </ul>
     {% progressbar stats stats.total.words %}
-    <div id="directory-summary-toggle">
-      <a id="js-directory-summary" class="icon-expand"
-         data-target="js-directory-summary-more"
+    <div id="path-summary-toggle">
+      <a id="js-path-summary" class="icon-expand"
+         data-target="js-path-summary-more"
          title="{% trans "Detailed statistics" %}"
-         href="{{ "dir_summary.html"|l }}"></a>
+         href="{{ url_path_summary_more }}"></a>
     </div>
-    <div id="js-directory-summary-more" data-loaded="false" data-collapsed="true">
+    <div id="js-path-summary-more" data-loaded="false" data-collapsed="true">
     </div>
   </div>
 
