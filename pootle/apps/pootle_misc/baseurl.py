@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-""" utility functions to help deploy Pootle under different url prefixes """
+"""Utility functions to help deploy Pootle under different url prefixes."""
 
 import os
 import urllib
