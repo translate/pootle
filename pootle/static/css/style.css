@@ -369,43 +369,6 @@ html[dir="rtl"] #header h1
     float: right;
 }
 
-#nav-main ul
-{
-    margin: 5px 5px 0 5px;
-    position: absolute;
-    right: 0px;
-    top: 0px;
-}
-
-html[dir="rtl"] #nav-main ul
-{
-    right: auto;
-    left: 0px;
-}
-
-#nav-main ul li
-{
-    float: left;
-}
-
-html[dir="rtl"] #nav-main ul li
-{
-    float: right;
-}
-
-#nav-main ul li a
-{
-    padding: 0 10px;
-    display: block;
-    font-weight: bold;
-    font-size: 95%;
-}
-
-#nav-main a.admin
-{
-    color: #c30;
-}
-
 
 /*
  * ZOOM CONTROL
@@ -451,28 +414,52 @@ html[dir="rtl"] #zoom {
  * MENUBAR
  */
 
-.menubar
+#nav-main
 {
-    visibility: visible;
-    position: static;
+    margin: 10px 5px 0;
+    position: absolute;
+    right: 0px;
+    top: 0px;
 }
 
-.menubar ul,
-.menubar li,
-.menubar h6
+html[dir="rtl"] #nav-main
 {
-    margin: 0;
-    padding: 0;
+    right: auto;
+    left: 0px;
 }
 
-.menubar>.bd>ul:after
+#nav-main li
 {
-    content: ".";
+    float: left;
+}
+
+html[dir="rtl"] #nav-main li
+{
+    float: right;
+}
+
+#nav-main li a
+{
+    padding: 0 10px;
     display: block;
-    clear: both;
-    visibility: hidden;
-    height: 0;
-    line-height: 0;
+    font-weight: bold;
+    font-size: 95%;
+}
+
+#nav-main a.admin
+{
+    color: #c30;
+}
+
+#user
+{
+    float: left;
+}
+
+#user img
+{
+    float: left;
+    margin: -2px 5px 0;
 }
 
 
