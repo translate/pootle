@@ -1576,17 +1576,17 @@ img.error
     vertical-align: middle;
 }
 
-#directory-summary ul
+#path-summary ul
 {
     line-height: 1.8em;
 }
 
-a.directory-incomplete
+a.path-incomplete
 {
     font-weight: bold;
 }
 
-#directory-summary-toggle
+#path-summary-toggle
 {
     text-align: right;
 }

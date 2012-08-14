@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2009-2012 Zuza Software Foundation
 #
 # This file is part of translate.
 #
@@ -21,12 +21,13 @@
 
 from django.db import models
 
-from pootle_store.util import empty_quickstats, empty_completestats, statssum, completestatssum
-from pootle_store.models import Suggestion, Unit
-
-from pootle_misc.util import getfromcache, dictsum
 from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
+from pootle_misc.util import cached_property, dictsum, getfromcache
+from pootle_store.models import Suggestion, Unit
+from pootle_store.util import (empty_quickstats, empty_completestats,
+                               statssum, completestatssum)
+
 
 class DirectoryManager(models.Manager):
     def get_query_set(self):
@@ -94,6 +95,18 @@ class Directory(models.Model):
         return Store.objects.filter(pootle_path__startswith=self.pootle_path)
 
     stores = property(_get_stores)
+
+
+    @cached_property
+    def path(self):
+        """Returns just the path part omitting language and project codes.
+
+        If the `pootle_path` of a :cls:`Directory` object `dir` is
+        `/af/project/dir1/dir2/file.po`, `dir.path` will return
+        `dir1/dir2/file.po`.
+        """
+        return u'/'.join(self.pootle_path.split(u'/')[3:])
+
 
     def get_or_make_subdir(self, child_name):
         child_dir, created = Directory.objects.get_or_create(name=child_name, parent=self)

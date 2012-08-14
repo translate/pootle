@@ -26,6 +26,7 @@ from django import forms
 from django.conf import settings
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
@@ -49,7 +50,7 @@ from pootle_app.views.language.view import (get_translation_project,
 from pootle_misc.baseurl import redirect, l
 from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.stats import (get_raw_stats, get_translation_stats,
-                               get_directory_summary)
+                               get_path_summary)
 from pootle_misc.versioncontrol import hasversioning
 from pootle_misc.util import jsonify, ajax_required
 from pootle_statistics.models import Submission, SubmissionTypes
@@ -140,7 +141,8 @@ def admin_files(request, translation_project):
 
 class ProjectIndexView(view_handler.View):
 
-    def GET(self, template_vars, request, translation_project, directory):
+    def GET(self, template_vars, request, translation_project, directory,
+            store=None):
         user_profile = get_profile(request.user)
         tp_dir = translation_project.directory
 
@@ -148,22 +150,40 @@ class ProjectIndexView(view_handler.View):
         language = translation_project.language
         is_terminology = project.is_terminology
 
-        directory_stats = get_raw_stats(directory, include_suggestions=True)
-        directory_summary = get_directory_summary(directory, directory_stats)
+        path_obj = store or directory
+
+        # Build URL for getting more summary information for the current path
+        url_args = [language.code, project.code, directory.path]
+        if store:
+            url_args.append(store.name)
+        url_path_summary_more = reverse('tp.path_summary_more', args=url_args)
+
+        path_stats = get_raw_stats(path_obj, include_suggestions=True)
+        path_summary = get_path_summary(path_obj, path_stats)
 
         template_vars.update({
             'translation_project': translation_project,
             'project': project,
             'language': language,
             'directory': directory,
-            'children': get_children(request, translation_project, directory),
-            'dir_summary': directory_summary,
-            'stats': directory_stats,
+            'path_summary': path_summary,
+            'url_path_summary_more': url_path_summary_more,
+            'stats': path_stats,
             'stats_headings': get_stats_headings(),
             'topstats': gentopstats_translation_project(translation_project),
             'feed_path': directory.pootle_path[1:],
-            'action_groups': action_groups(request, directory),
+            'action_groups': action_groups(request, path_obj),
         })
+
+        if store is not None:
+            template_vars.update({
+                'store': store
+            })
+        else:
+            template_vars.update({
+                'children': get_children(request, translation_project,
+                                         directory)
+            })
 
         if check_permission('administrate', request):
             from pootle_translationproject.forms import DescriptionForm
@@ -174,38 +194,59 @@ class ProjectIndexView(view_handler.View):
 
 @get_translation_project
 @set_request_context
-def overview(request, translation_project, dir_path):
+def overview(request, translation_project, dir_path, filename=None):
     if not check_permission("view", request):
         raise PermissionDenied(_("You do not have rights to access this "
                                  "translation project."))
 
     current_path = translation_project.directory.pootle_path + dir_path
+
+    if filename:
+        current_path = current_path + filename
+        store = get_object_or_404(Store, pootle_path=current_path)
+        directory = store.parent
+    else:
+        directory = get_object_or_404(Directory, pootle_path=current_path)
+        store = None
+
     request.current_path = current_path
-    directory = get_object_or_404(Directory, pootle_path=current_path)
+
     view_obj = ProjectIndexView(forms=dict(upload=UploadHandler,
                                            update=UpdateHandler))
 
     return render_to_response("translation_project/overview.html",
-                              view_obj(request, translation_project, directory),
+                              view_obj(request, translation_project,
+                                       directory, store),
                               context_instance=RequestContext(request))
 
 
 @ajax_required
 @get_translation_project
-def dir_summary(request, translation_project, dir_path):
+def path_summary_more(request, translation_project, dir_path, filename=None):
+    """Returns an HTML snippet with more detailed summary information
+       for the current path."""
     current_path = translation_project.directory.pootle_path + dir_path
-    directory = get_object_or_404(Directory, pootle_path=current_path)
 
-    directory_stats = get_raw_stats(directory)
-    translation_stats = get_translation_stats(directory, directory_stats)
-    quality_checks = get_quality_check_failures(directory, directory_stats)
+    if filename:
+        current_path = current_path + filename
+        store = get_object_or_404(Store, pootle_path=current_path)
+        directory = store.parent
+    else:
+        directory = get_object_or_404(Directory, pootle_path=current_path)
+        store = None
+
+    path_obj = store or directory
+
+    path_stats = get_raw_stats(path_obj)
+    translation_stats = get_translation_stats(path_obj, path_stats)
+    quality_checks = get_quality_check_failures(path_obj, path_stats)
 
     context = {
         'check_failures': quality_checks,
         'trans_stats': translation_stats,
     }
 
-    return render_to_response('translation_project/xhr-dir_summary.html',
+    return render_to_response('translation_project/xhr-path_summary.html',
                               context, RequestContext(request))
 
 
@@ -625,13 +666,13 @@ class UploadHandler(view_handler.Handler):
         class StoreFormField(forms.ModelChoiceField):
 
             def label_from_instance(self, instance):
-                return _(instance.pootle_path[len(request.current_path):])
+                return instance.pootle_path[len(request.current_path):]
 
 
         class DirectoryFormField(forms.ModelChoiceField):
 
             def label_from_instance(self, instance):
-                return _(instance.pootle_path[len(translation_project.pootle_path):])
+                return instance.pootle_path[len(translation_project.pootle_path):]
 
 
         class UploadForm(forms.Form):

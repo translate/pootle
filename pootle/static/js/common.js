@@ -146,8 +146,8 @@ $(document).ready(function ($) {
     $.fancybox({'href': $(e.target).attr('href'), 'type': 'ajax'});
   });
 
-  /* Directory summary */
-  $(document).on("click", "#js-directory-summary", function (e) {
+  /* Path summary */
+  $(document).on("click", "#js-path-summary", function (e) {
     e.preventDefault();
     var node = $("#" + $(this).data('target')),
         icon = $(this),
@@ -165,7 +165,7 @@ $(document).ready(function ($) {
     if (data.loaded) {
       hideShow();
     } else {
-      var url = l("dir_summary.html");
+      var url = $(this).attr('href');
       $.ajax({
         url: url,
         success: function (data) {

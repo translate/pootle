@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2009-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -141,6 +141,7 @@ def make_generic_item(request, path_obj, action, include_suggestions=False,
 
     return info
 
+
 def make_directory_item(request, directory, include_suggestions=False,
                         terminology=False):
     action = directory.pootle_path
@@ -151,9 +152,10 @@ def make_directory_item(request, directory, include_suggestions=False,
             'isdir': True})
     return item
 
+
 def make_store_item(request, store, include_suggestions=False,
                     terminology=False):
-    action = dispatch.translate(store)
+    action = store.pootle_path
     item = make_generic_item(request, store, action, include_suggestions,
                              terminology)
     item.update({

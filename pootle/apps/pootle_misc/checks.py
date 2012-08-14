@@ -25,12 +25,12 @@ from translate.filters.decorators import Category
 from pootle_app.views.language import dispatch
 
 
-def get_quality_check_failures(path_obj, dir_stats, include_url=True):
+def get_quality_check_failures(path_obj, path_stats, include_url=True):
     """Returns a list of the failed checks sorted by their importance.
 
     :param path_obj: An object which has the ``getcompletestats`` method.
-    :param dir_stats: A dictionary of raw stats, as returned by
-                      :func:`pootle_misc.stats.get_raw_stats`.
+    :param path_stats: A dictionary of raw stats, as returned by
+                       :func:`pootle_misc.stats.get_raw_stats`.
     :param include_url: Whether to include URLs in the returning result
                         or not.
     """
@@ -45,7 +45,7 @@ def get_quality_check_failures(path_obj, dir_stats, include_url=True):
 
     try:
         property_stats = path_obj.getcompletestats()
-        total = dir_stats['total']['units']
+        total = path_stats['total']['units']
         keys = property_stats.keys()
         keys.sort(reverse=True)
 

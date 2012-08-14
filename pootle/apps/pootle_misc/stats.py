@@ -72,97 +72,116 @@ def get_raw_stats(path_obj, include_suggestions=False):
     return stats
 
 
-def get_translation_stats(directory, dir_stats):
-    """Returns a list of statistics ready to be displayed."""
+def get_translation_stats(path_obj, path_stats):
+    """Returns a list of statistics for ``path_obj`` ready to be displayed.
 
+    :param path_obj: A :cls:`pootle_app.models.directory.Directory` or
+                     :cls:`pootle_store.models.Store` object.
+    :param path_stats: A dictionary of raw stats, as returned by
+                       :func:`pootle_misc.stats.get_raw_stats`.
+    """
     stats = []
 
-    if dir_stats['total']['units'] > 0:
+    if path_stats['total']['units'] > 0:
         stats.append({
             'title': _("Total"),
             'words': _('<a href="%(url)s">%(num)d words</a>') % \
-                {'url': dispatch.translate(directory),
-                 'num': dir_stats['total']['words']},
+                {'url': dispatch.translate(path_obj),
+                 'num': path_stats['total']['words']},
             'percentage': _("%(num)d%%") % \
-                {'num': dir_stats['total']['percentage']},
+                {'num': path_stats['total']['percentage']},
             'units': _("(%(num)d units)") % \
-                {'num': dir_stats['total']['units']}
+                {'num': path_stats['total']['units']}
         })
 
-    if dir_stats['translated']['units'] > 0:
+    if path_stats['translated']['units'] > 0:
         stats.append({
             'title': _("Translated"),
             'words': _('<a href="%(url)s">%(num)d words</a>') % \
-                {'url': dispatch.translate(directory, state='translated'),
-                 'num': dir_stats['translated']['words']},
+                {'url': dispatch.translate(path_obj, state='translated'),
+                 'num': path_stats['translated']['words']},
             'percentage': _("%(num)d%%") % \
-                {'num': dir_stats['translated']['percentage']},
+                {'num': path_stats['translated']['percentage']},
             'units': _("(%(num)d units)") % \
-                {'num': dir_stats['translated']['units']}
+                {'num': path_stats['translated']['units']}
         })
 
-    if dir_stats['fuzzy']['units'] > 0:
+    if path_stats['fuzzy']['units'] > 0:
         stats.append({
             'title': _("Fuzzy"),
             'words': _('<a href="%(url)s">%(num)d words</a>') % \
-                {'url': dispatch.translate(directory, state='fuzzy'),
-                 'num': dir_stats['fuzzy']['words']},
+                {'url': dispatch.translate(path_obj, state='fuzzy'),
+                 'num': path_stats['fuzzy']['words']},
             'percentage': _("%(num)d%%") % \
-                {'num': dir_stats['fuzzy']['percentage']},
+                {'num': path_stats['fuzzy']['percentage']},
             'units': _("(%(num)d units)") % \
-                {'num': dir_stats['fuzzy']['units']}
+                {'num': path_stats['fuzzy']['units']}
         })
 
-    if dir_stats['untranslated']['units'] > 0:
+    if path_stats['untranslated']['units'] > 0:
         stats.append({
             'title': _("Untranslated"),
             'words': _('<a href="%(url)s">%(num)d words</a>') % \
-                {'url': dispatch.translate(directory, state='untranslated'),
-                 'num': dir_stats['untranslated']['words']},
+                {'url': dispatch.translate(path_obj, state='untranslated'),
+                 'num': path_stats['untranslated']['words']},
             'percentage': _("%(num)d%%") % \
-                {'num': dir_stats['untranslated']['percentage']},
+                {'num': path_stats['untranslated']['percentage']},
             'units': _("(%(num)d units)") % \
-                {'num': dir_stats['untranslated']['units']}
+                {'num': path_stats['untranslated']['units']}
         })
 
     return stats
 
 
-def get_directory_summary(directory, dir_stats):
-    """Returns a list of sentences to be displayed for each directory."""
-    summary = [
-        ungettext("This folder has %(num)d word, %(percentage)d%% of which is "
-           "translated",
-           "This folder has %(num)d words, %(percentage)d%% of which are "
-           "translated",
-           dir_stats['total']['words']) % {
-               'num': dir_stats['total']['words'],
-               'percentage': dir_stats['translated']['percentage']
-           }
-    ]
+def get_path_summary(path_obj, path_stats):
+    """Returns a list of sentences to be displayed for each ``path_obj``."""
+    summary = []
 
-    if dir_stats['untranslated']['words'] > 0 or dir_stats['fuzzy']['words'] > 0:
-        num_words = dir_stats['untranslated']['words'] + dir_stats['fuzzy']['words']
+    if path_obj.is_dir:
         summary.append(
-            ungettext('<a class="directory-incomplete" href="%(url)s">%(num)d '
+            ungettext("This folder has %(num)d word, %(percentage)d%% of "
+                "which is translated",
+                "This folder has %(num)d words, %(percentage)d%% of "
+                "which are translated",
+                path_stats['total']['words']) % {
+                    'num': path_stats['total']['words'],
+                    'percentage': path_stats['translated']['percentage']
+                }
+        )
+    else:
+        summary.append(
+            ungettext("This file has %(num)d word, %(percentage)d%% of "
+                "which is translated",
+                "This file has %(num)d words, %(percentage)d%% of "
+                "which are translated",
+                path_stats['total']['words']) % {
+                    'num': path_stats['total']['words'],
+                    'percentage': path_stats['translated']['percentage']
+                }
+        )
+
+    if path_stats['untranslated']['words'] > 0 or path_stats['fuzzy']['words'] > 0:
+        num_words = path_stats['untranslated']['words'] + path_stats['fuzzy']['words']
+        summary.append(
+            ungettext('<a class="path-incomplete" href="%(url)s">%(num)d '
                'word needs translation</a>',
-               '<a class="directory-incomplete" href="%(url)s">%(num)d words '
+               '<a class="path-incomplete" href="%(url)s">%(num)d words '
                'need translation</a>',
                num_words) % {
                    'num': num_words,
-                   'url': dispatch.translate(directory, state='incomplete')
+                   'url': dispatch.translate(path_obj, state='incomplete')
                }
         )
 
-    if dir_stats['suggestions'] > 0:
+    if path_stats['suggestions'] > 0:
         summary.append(
-            ungettext('<a class="directory-incomplete" href="%(url)s">%(num)d '
+            ungettext('<a class="path-incomplete" href="%(url)s">%(num)d '
                'suggestion</a> needs review',
-               '<a class="directory-incomplete" href="%(url)s">%(num)d '
+               '<a class="path-incomplete" href="%(url)s">%(num)d '
                'suggestions</a> need review',
-               dir_stats['suggestions']) % {
-                   'num': dir_stats['suggestions'],
-                   'url': dispatch.translate(directory, state='suggestions')
+               path_stats['suggestions']) % {
+                   'num': path_stats['suggestions'],
+                   'url': dispatch.translate(path_obj, state='suggestions')
                }
         )
 

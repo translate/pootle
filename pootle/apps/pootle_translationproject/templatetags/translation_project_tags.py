@@ -45,27 +45,37 @@ def render_search(context, form=None, action=None):
 
 
 @register.filter
-def trail(directory, separator='/'):
-    """Outputs an HTML-formatted directory trail.
+def trail(path_obj, separator='/'):
+    """Outputs an HTML-formatted directory/store trail.
 
-    :param directory: A :cls:`pootle_app.models.Directory` object.
-                      The trail will be built based on this directory.
+    :param path_obj: A :cls:`pootle_app.models.Directory` or
+                     :cls:`pootle_store.models.Store` object.
+                     In case `path_obj` is a store, it will be built based
+                     on its parent directory.
     :param separator: A string that will be used to join the trail.
     """
     trail_list = []
+    is_store = not path_obj.is_dir
+    directory = is_store and path_obj.parent or path_obj
     dir_trail = directory.trail()
     sep = u' %s ' % separator
 
     for i, trail_dir in enumerate(dir_trail):
-        if i != (len(dir_trail) - 1):
+        if is_store or i != (len(dir_trail) - 1):
             tr = u'<span><a href="%(url)s">%(dir_name)s</a></span>' % {
                 'url': trail_dir.get_absolute_url(),
                 'dir_name': trail_dir.name,
             }
         else:
-            tr = u'<span class="dir-trail-last">%(dir_name)s</span>' % {
+            tr = u'<span>%(dir_name)s</span>' % {
                 'dir_name': trail_dir.name,
             }
+        trail_list.append(tr)
+
+    if is_store:
+        tr = u'<span>%(file_name)s</span>' % {
+            'file_name': path_obj.name,
+        }
         trail_list.append(tr)
 
     return mark_safe(sep.join(trail_list))
