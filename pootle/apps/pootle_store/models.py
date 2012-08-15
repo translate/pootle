@@ -40,6 +40,7 @@ from translate.storage import base
 from pootle_app.lib.util import RelatedManager
 from pootle_misc.aggregate import group_by_count_extra, max_column
 from pootle_misc.baseurl import l
+from pootle_misc.checks import check_names
 from pootle_misc.util import getfromcache, deletefromcache
 from pootle_store.fields import (TranslationStoreField, MultiStringField,
                                  PLURAL_PLACEHOLDER, SEPARATOR)
@@ -74,6 +75,11 @@ class QualityCheck(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    @property
+    def display_name(self):
+        return check_names.get(self.name, self.name)
+
 
 ################# Suggestion ################
 

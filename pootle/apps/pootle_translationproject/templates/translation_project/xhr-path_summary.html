@@ -23,14 +23,14 @@
   <h3><span>{% trans "Failing Checks" %}</span></h3>
 </div>
 <div>
-{% for failure in check_failures %}
-  <h4>{{ failure.category_display }}</h4>
-  <div id="check-{{ failure.category }}" class="checks">
+{% for failure_category in check_failures %}
+  <h4>{{ failure_category.display_name }}</h4>
+  <div id="check-{{ failure.name }}" class="checks">
     <dl>
-    {% for check in failure.checks %}
-    <dt><a href="{{ check.url }}">{{ check.name }}</a></dt>
+    {% for check in failure_category.checks %}
+    <dt><a href="{{ check.url }}">{{ check.display_name }}</a></dt>
     {% comment %}Ugly workaround for the non-resetting cycle tag{% endcomment %}
-    <dd class="{% if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %}">{{ check.count}}</dd>
+    <dd class="{% if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %}">{{ check.count }}</dd>
     {% endfor %}
     </dl>
   </div>

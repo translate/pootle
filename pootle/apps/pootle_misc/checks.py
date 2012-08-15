@@ -25,6 +25,59 @@ from translate.filters.decorators import Category
 from pootle_app.views.language import dispatch
 
 
+category_names = {
+    Category.CRITICAL: _("Critical"),
+    Category.FUNCTIONAL: _("Functional"),
+    Category.COSMETIC: _("Cosmetic"),
+    Category.EXTRACTION: _("Extraction"),
+    Category.NO_CATEGORY: _("No category"),
+}
+
+check_names = {
+    'accelerators': _(u"Accelerators"),
+    'acronyms': _(u"Acronyms"),
+    'blank': _(u"Blank"),
+    'brackets': _(u"Brackets"),
+    'compendiumconflicts': _(u"Compendium conflict"),
+    'credits': _(u"Translator credits"),
+    'doublequoting': _(u"Double quotes"),
+    'doublespacing': _(u"Double spaces"),
+    'doublewords': _(u"Repeated word"),
+    'emails': _(u"E-mail"),
+    'endpunc': _(u"Ending punctuation"),
+    'endwhitespace': _(u"Ending whitespace"),
+    'escapes': _(u"Escapes"),
+    'filepaths': _(u"File paths"),
+    'functions': _(u"Functions"),
+    'gconf': _(u"GConf values"),
+    'kdecomments': _(u"Old KDE comment"),
+    'long': _(u"Long"),
+    'musttranslatewords': _(u"Must translate words"),
+    'newlines': _(u"Newlines"),
+    'nplurals': _(u"Number of plurals"),
+    'notranslatewords': _(u"Don't translate words"),
+    'numbers': _(u"Numbers"),
+    'options': _(u"Options"),
+    'printf': _(u"printf()"),
+    'puncspacing': _(u"Punctuation spacing"),
+    'purepunc': _(u"Pure punctuation"),
+    'sentencecount': _(u"Number of sentences"),
+    'short': _(u"Short"),
+    'simplecaps': _(u"Simple capitalization"),
+    'simpleplurals': _(u"Simple plural(s)"),
+    'singlequoting': _(u"Single quotes"),
+    'startcaps': _(u"Starting capitalization"),
+    'startpunc': _(u"Starting punctuation"),
+    'startwhitespace': _(u"Starting whitespace"),
+    'tabs': _(u"Tabs"),
+    'unchanged': _(u"Unchanged"),
+    'urls': _(u"URLs"),
+    'validchars': _(u"Valid characters"),
+    'variables': _(u"Placeholders"),
+    'xmltags': _(u"XML tags"),
+}
+
+
 def get_quality_check_failures(path_obj, path_stats, include_url=True):
     """Returns a list of the failed checks sorted by their importance.
 
@@ -35,13 +88,6 @@ def get_quality_check_failures(path_obj, path_stats, include_url=True):
                         or not.
     """
     checks = []
-    category_map = {
-        Category.CRITICAL: _("Critical"),
-        Category.FUNCTIONAL: _("Functional"),
-        Category.COSMETIC: _("Cosmetic"),
-        Category.EXTRACTION: _("Extraction"),
-        Category.NO_CATEGORY: _("No category"),
-    }
 
     try:
         property_stats = path_obj.getcompletestats()
@@ -51,8 +97,8 @@ def get_quality_check_failures(path_obj, path_stats, include_url=True):
 
         for i, category in enumerate(keys):
             if category != Category.NO_CATEGORY:
-                checks.append({'category': category,
-                               'category_display': category_map[category],
+                checks.append({'name': category,
+                               'display_name': category_names[category],
                                'checks': []})
 
             cat_keys = property_stats[category].keys()
@@ -62,7 +108,9 @@ def get_quality_check_failures(path_obj, path_stats, include_url=True):
                 checkcount = property_stats[category][checkname]
 
                 if total and checkcount:
+                    check_display = check_names.get(checkname, checkname)
                     check = {'name': checkname,
+                             'display_name': check_display,
                              'count': checkcount}
 
                     if include_url:

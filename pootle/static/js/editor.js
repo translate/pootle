@@ -1450,9 +1450,9 @@
         dropdown += '<option selected="selected" value="none">------</option>';
 
         $.each(optGroups, function () {
-          dropdown += '<optgroup label="' + this.category_display + '">';
+          dropdown += '<optgroup label="' + this.display_name + '">';
           $.each(this.checks, function () {
-            dropdown += '<option value="' + this.name + '">' + this.name + ' (' + this.count + ')</option>';
+            dropdown += '<option value="' + this.name + '">' + this.display_name + ' (' + this.count + ')</option>';
           });
           dropdown += '</optgroup>';
         });
