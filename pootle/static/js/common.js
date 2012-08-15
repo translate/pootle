@@ -192,6 +192,7 @@ $(document).ready(function ($) {
 
   /* Generic toggle */
   $(document).on("click", ".js-toggle", function (e) {
+    e.preventDefault();
     var target = $(this).attr("href") || $(this).data("target");
     $(target).toggle();
   });
