@@ -98,8 +98,8 @@ $(document).ready(function ($) {
     var label = $(this);
     var input = $('#' + label.attr('for'));
 
-    if (input.attr("defaultValue")) {
-      var initial = input.attr("defaultValue");
+    if (input.prop("defaultValue")) {
+      var initial = input.prop("defaultValue");
       var search = true;
     } else {
       var initial = label.hide().text().replace(':', '');

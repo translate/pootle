@@ -70,7 +70,7 @@
     /* Fuzzy / unfuzzy */
     $(document).on("keyup blur", "textarea.translation", function () {
       if (!PTL.editor.keepState &&
-          $(this).attr("defaultValue") != $(this).val()) {
+          $(this).prop("defaultValue") != $(this).val()) {
         PTL.editor.ungoFuzzy();
       }
     });
