@@ -91,18 +91,20 @@ $(document).ready(function ($) {
   });
 
   /* Search input text */
-  var focused = { color: "#000" }
-  var unfocused = { color: "#aaa" }
+  var focused = { color: "#000" },
+      unfocused = { color: "#aaa" };
 
   $('label.inputHint').each(function () {
-    var label = $(this);
-    var input = $('#' + label.attr('for'));
+    var initial,
+        search = false,
+        label = $(this),
+        input = $('#' + label.attr('for'));
 
     if (input.prop("defaultValue")) {
-      var initial = input.prop("defaultValue");
-      var search = true;
+      initial = input.prop("defaultValue");
+      search = true;
     } else {
-      var initial = label.hide().text().replace(':', '');
+      initial = label.hide().text().replace(':', '');
     }
 
     input.focus(function () {
