@@ -590,19 +590,30 @@ class TranslationProject(models.Model):
     ###########################################################################
 
     def get_archive(self, stores, path=None):
-        """returns an archive of the given filenames"""
-        tempzipfile = None
-        from pootle_misc import ptempfile as tempfile
+        """Returns an archive of the given files."""
         import shutil
+        from pootle_misc import ptempfile as tempfile
+
+        tempzipfile = None
+
         try:
             # using zip command line is fast
             # The temporary file below is opened and immediately closed for
             # security reasons
             fd, tempzipfile = tempfile.mkstemp(prefix='pootle', suffix='.zip')
             os.close(fd)
-            result = os.system("cd %s ; zip -r - %s > %s" % (self.abs_real_path,
-                " ".join(store.abs_real_path[len(self.abs_real_path)+1:] for \
-                        store in stores.iterator()), tempzipfile))
+
+            file_list = u" ".join(
+                store.abs_real_path[len(self.abs_real_path)+1:] \
+                for store in stores.iterator()
+            )
+            cmd = u"cd %(path)s ; zip -r - %(file_list)s > %(tmpfile)s" % {
+                    'path': self.abs_real_path,
+                    'file_list': file_list,
+                    'tmpfile': tempzipfile,
+            }
+            result = os.system(cmd.encode('utf-8'))
+
             if result == 0:
                 if path is not None:
                     shutil.move(tempzipfile, path)
