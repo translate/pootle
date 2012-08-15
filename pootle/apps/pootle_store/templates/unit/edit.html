@@ -52,8 +52,8 @@
           <li class="check">
             <a lang="en" href="http://translate.sourceforge.net/wiki/toolkit/pofilter_tests#{{ check.name }}" target="_blank">{{ check.display_name }}</a>
             {% if canreview %}
-            <input type="hidden" class="checkid" name="checkid" value="{{ check.id }}" />
-            <a title="{% trans "Remove quality check" %}" class="rejectcheck"><img src='{{ "images/block.png"|m }}' /></a>
+            <a title="{% trans "Remove quality check" %}" class="js-reject-check"
+               data-check-id="{{ check.id }}"><img src='{{ "images/block.png"|m }}' /></a>
             {% endif %}
           </li>
           {% endfor %}

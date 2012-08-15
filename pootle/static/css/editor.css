@@ -782,7 +782,7 @@ li.check > a {
     cursor: help;
 }
 
-#translate-checks-block .rejectcheck img
+#translate-checks-block img
 {
     vertical-align: top;
     margin-top: -1px;
@@ -794,7 +794,7 @@ li.check > a {
     opacity: 0.5;
 }
 
-#translate-checks-block .rejectcheck img:hover
+#translate-checks-block img:hover
 {
     filter:alpha(opacity=100);
     -moz-opacity: 1;

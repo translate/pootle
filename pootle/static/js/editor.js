@@ -134,7 +134,7 @@
     $(document).on("click", "#suggestions .voteup", this.voteUp);
     $(document).on("click", "#show-timeline", this.showTimeline);
     $(document).on("click", "#hide-timeline", this.hideTimeline);
-    $(document).on("click", "#translate-checks-block .rejectcheck", this.rejectCheck);
+    $(document).on("click", "#translate-checks-block .js-reject-check", this.rejectCheck);
 
     /* Filtering */
     $(document).on("change", "#filter-status select", this.filterStatus);
@@ -1945,7 +1945,7 @@
   /* Rejects a quality check marking it as false positive */
   rejectCheck: function () {
     var element = $(this).parent(),
-        checkId = $(this).siblings("input.checkid").val(),
+        checkId = $(this).data("check-id"),
         uid = $('.translate-container #id_id').val(),
         url = l('/qualitycheck/reject/') + uid + '/' + checkId;
 
