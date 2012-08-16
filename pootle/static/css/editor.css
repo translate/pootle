@@ -638,6 +638,13 @@ html[dir="rtl"] .suggestion-vote
     background-color: #fff;
 }
 
+#translator-comment .extra-item:hover,
+#timeline-results .extra-item:hover
+{
+    background-color: #f1f7e4;
+    cursor: auto;
+}
+
 .suggestion-original,
 #tm-results .suggestion-translation
 {

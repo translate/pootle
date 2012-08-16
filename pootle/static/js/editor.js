@@ -471,7 +471,8 @@
 
   /* Copies text into the focused textarea */
   copyText: function (e) {
-    var selector, text, element, start;
+    var selector, text, element, start,
+        action = $(this).data('action');
 
     // Determine which text we need
     selector = $(".tm-translation", this).ifExists() ||
@@ -479,9 +480,15 @@
     text = selector.text();
 
     element = $(PTL.editor.focused);
-    start = element.caret().start + text.length;
 
-    element.val(element.caret().replace(text));
+    if (action === "overwrite") {
+      element.val(text);
+      start = text.length;
+    } else {
+      start = element.caret().start + text.length;
+      element.val(element.caret().replace(text));
+    }
+
     element.caret(start, start);
   },
 
