@@ -563,8 +563,7 @@ html[dir="rtl"] #extras-bar a
     margin-bottom: 0;
 }
 
-.rejectsugg img,
-.acceptsugg img
+.suggestion-action img
 {
     top: 50%;
     filter:alpha(opacity=10);
@@ -573,22 +572,19 @@ html[dir="rtl"] #extras-bar a
     opacity: 0.1;
 }
 
-a.rejectsugg,
-a.acceptsugg,
+a.suggestion-action,
 a.suggestion-vote
 {
     float: right;
 }
 
-html[dir="rtl"] .rejectsugg,
-html[dir="rtl"] .acceptsugg,
+html[dir="rtl"] .suggestion-action,
 html[dir="rtl"] .suggestion-vote
 {
     float: left;
 }
 
-.extra-item-block:hover .rejectsugg img,
-.extra-item-block:hover .acceptsugg img,
+.extra-item-block:hover .suggestion-action img,
 .extra-item-block:hover .suggestion-vote img
 {
     filter:alpha(opacity=50);
@@ -597,8 +593,7 @@ html[dir="rtl"] .suggestion-vote
     opacity: 0.5;
 }
 
-.extra-item-block .rejectsugg img:hover,
-.extra-item-block .acceptsugg img:hover,
+.extra-item-block .suggestion-action img:hover,
 .extra-item-block .suggestion-vote:hover img
 {
     filter:alpha(opacity=100);

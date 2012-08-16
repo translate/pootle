@@ -203,13 +203,23 @@
           <div class="extra-item-content">
             <div class="extra-item js-editor-copytext" data-action="overwrite">
               {% if canreview %}
-              <input type="hidden" id="sugg-{{sugg.id }}" class="suggid" name="suggid" value="{{ sugg.id }}" />
-              <a accesskey="a" id="accept-{{ sugg.id }}" class="acceptsugg"><img src='{{ "images/accept.png"|m }}' title="{% trans 'Accept suggestion' %}" dir="{% locale_dir %}" /></a>
-              <a accesskey="r" id="reject-{{ sugg.id }}" class="rejectsugg"><img src='{{ "images/reject.png"|m }}' title="{% trans 'Reject suggestion' %}" dir="{% locale_dir %}" /></a>
+              <a accesskey="a" class="suggestion-action js-suggestion-accept"
+                data-sugg-id="{{ sugg.id }}">
+                <img src="{{ "images/accept.png"|m }}" dir="{% locale_dir %}"
+                  title="{% trans 'Accept suggestion' %}"/>
+              </a>
+              <a accesskey="r" class="suggestion-action js-suggestion-reject"
+                data-sugg-id="{{ sugg.id }}">
+                <img src="{{ "images/reject.png"|m }}" dir="{% locale_dir %}"
+                  title="{% trans 'Reject suggestion' %}"/>
+              </a>
               {% else %}
-              {% if user.is_authenticated and profile == sugg.user%}
-              <input type="hidden" id="sugg-{{sugg.id }}" class="suggid" name="suggid" value="{{ sugg.id }}" />
-              <a title="{% trans 'Remove suggestion' %}" accesskey="r" id="reject-{{ sugg.id }}" class="rejectsugg"><img src='{{ "images/reject.png"|m }}' dir="{% locale_dir %}" /></a>
+              {% if user.is_authenticated and profile == sugg.user %}
+              <a accesskey="r" class="suggestion-action js-suggestion-reject"
+                data-sugg-id="{{ sugg.id }}">
+                <img src='{{ "images/reject.png"|m }}' dir="{% locale_dir %}"
+                  title="{% trans 'Remove suggestion' %}"/>
+              </a>
               {% endif %}
               {% endif %}
 

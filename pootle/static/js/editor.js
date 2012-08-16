@@ -128,8 +128,8 @@
     $(document).on("click", "input.submit", this.submit);
     $(document).on("click", "input.suggest", this.suggest);
     $(document).on("click", "input.previous, input.next", this.gotoPrevNext);
-    $(document).on("click", "#suggestions .rejectsugg", this.rejectSuggestion);
-    $(document).on("click", "#suggestions .acceptsugg", this.acceptSuggestion);
+    $(document).on("click", ".js-suggestion-reject", this.rejectSuggestion);
+    $(document).on("click", ".js-suggestion-accept", this.acceptSuggestion);
     $(document).on("click", "#suggestions .clearvote", this.clearVote);
     $(document).on("click", "#suggestions .voteup", this.voteUp);
     $(document).on("click", "#show-timeline", this.showTimeline);
@@ -1839,7 +1839,7 @@
   /* Rejects a suggestion */
   rejectSuggestion: function (e) {
     e.stopPropagation(); //we don't want to trigger a click on the text below
-    var suggId = $(this).attr("id").split("-")[1],
+    var suggId = $(this).data("sugg-id"),
         element = $("#suggestion-" + suggId);
         uid = $('.translate-container #id_id').val(),
         url = l('/suggestion/reject/') + uid + '/' + suggId;
@@ -1861,7 +1861,7 @@
   /* Accepts a suggestion */
   acceptSuggestion: function (e) {
     e.stopPropagation(); //we don't want to trigger a click on the text below
-    var suggId = $(this).attr("id").split("-")[1],
+    var suggId = $(this).data("sugg-id"),
         element = $("#suggestion-" + suggId);
         uid = $('.translate-container #id_id').val(),
         url = l('/suggestion/accept/') + uid + '/' + suggId;
