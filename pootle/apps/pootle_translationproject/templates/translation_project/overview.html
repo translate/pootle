@@ -90,7 +90,7 @@
   </div>
   {% endif %}
 
-  {% if translation_project.description or project.description or language.description or user.is_superuser %}
+  {% if translation_project.description_html or project.description_html or language.description_html or user.is_superuser %}
   <div class="hd">
     <h2>{% trans "Description" %}</h2>
   </div>
@@ -104,23 +104,23 @@
     </div>
     {% endif %}
 
-    {% if translation_project.description %}
+    {% if translation_project.description_html %}
     <div id="overview-description-tp" class="markup-body">
-      {{ translation_project.description|safe|clean }}
+      {{ translation_project.description_html|safe|clean }}
     </div>
     {% endif %}
 
-    {% if project.description %}
+    {% if project.description_html %}
     <a class="overview-description-toggle js-toggle" href="#overview-description-project">{% blocktrans with project.fullname as project %}{{ project }} project information{% endblocktrans %}</a>
     <div id="overview-description-project" class="markup-body hide">
-      {{ project.description|safe|clean }}
+      {{ project.description_html|safe|clean }}
     </div>
     {% endif %}
 
-    {% if language.description %}
+    {% if language.description_html %}
     <a class="overview-description-toggle js-toggle" href="#overview-description-language">{% blocktrans with language.name as language %}{{ language }} project information{% endblocktrans %}</a>
     <div id="overview-description-language" class="markup-body hide">
-      {{ language.description|safe|clean }}
+      {{ language.description_html|safe|clean }}
     </div>
     {% endif %}
   </div>

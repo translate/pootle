@@ -234,15 +234,27 @@ def update_tables_22000():
     field.default = u''
     db.add_column(table_name, field.name, field)
 
+    field = Language._meta.get_field('description_html')
+    field.default = u''
+    db.add_column(table_name, field.name, field)
+
     from pootle_translationproject.models import TranslationProject
     table_name = TranslationProject._meta.db_table
     field = TranslationProject._meta.get_field('description')
     field.default = u''
     db.add_column(table_name, field.name, field)
 
+    field = TranslationProject._meta.get_field('description_html')
+    field.default = u''
+    db.add_column(table_name, field.name, field)
+
     from pootle_project.models import Project
     table_name = Project._meta.db_table
     field = Project._meta.get_field('report_target')
+    field.default = u''
+    db.add_column(table_name, field.name, field)
+
+    field = Project._meta.get_field('description_html')
     field.default = u''
     db.add_column(table_name, field.name, field)
 

@@ -36,7 +36,7 @@
 </div>
 
 <div class="module">
-  {% if language.description or user.is_superuser %}
+  {% if language.description_html or user.is_superuser %}
   <div class="hd">
     <h2>{% trans "Description" %}</h2>
   </div>
@@ -51,9 +51,9 @@
       </div>
     {% endif %}
 
-    {% if language.description %}
+    {% if language.description_html %}
     <div id="overview-description-language" class="markup-body">
-      {{ language.description|safe|clean }}
+      {{ language.description_html|safe|clean }}
     </div>
     {% endif %}
   </div>

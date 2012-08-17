@@ -58,7 +58,7 @@ def make_project_item(translation_project):
         'href': href,
         'href_todo': href_todo,
         'title': project.fullname,
-        'description': project.description,
+        'description_html': project.description_html,
         'stats': project_stats,
         'lastactivity': get_last_action(translation_project),
         'isproject': True,
@@ -94,7 +94,7 @@ def language_index(request, language_code):
         'language': {
           'code': language.code,
           'name': tr_lang(language.fullname),
-          'description': language.description,
+          'description_html': language.description_html,
           'summary': ungettext('%(projects)d project, %(average)d%% translated',
                                '%(projects)d projects, %(average)d%% translated',
                                projectcount, {"projects": projectcount, "average": average}),

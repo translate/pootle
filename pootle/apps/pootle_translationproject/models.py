@@ -33,7 +33,8 @@ from translate.storage.base import ParseError
 
 from pootle_misc.aggregate import group_by_count_extra, max_column
 from pootle_misc.baseurl import l
-from pootle_misc.util import getfromcache, dictsum, deletefromcache
+from pootle_misc.util import (getfromcache, dictsum, deletefromcache,
+                              get_markup_filter_name, apply_markup_filter)
 from pootle_store.models import Store, Unit, QualityCheck, PARSED, CHECKED
 from pootle_store.util import (absolute_real_path, calculate_stats,
                                empty_quickstats, empty_completestats,
@@ -92,10 +93,12 @@ class TranslationProject(models.Model):
         unique_together = ('language', 'project')
         db_table = 'pootle_app_translationproject'
 
-    description_help_text = _('A description of this project. This is useful '
-            'to give more information or instructions. This field should be '
-            'valid HTML.')
-    description  = models.TextField(blank=True, help_text=description_help_text)
+    description_help_text = _('A description of this translation project. '
+            'This is useful to give more information or instructions. '
+            'Allowed markup: %s', get_markup_filter_name())
+    description = models.TextField(blank=True, help_text=description_help_text)
+    description_html = models.TextField(editable=False, blank=True)
+
     language  = models.ForeignKey(Language, db_index=True)
     project   = models.ForeignKey(Project, db_index=True)
     real_path = models.FilePathField(editable=False)
@@ -120,7 +123,12 @@ class TranslationProject(models.Model):
         self.directory = self.language.directory.get_or_make_subdir(
                 self.project.code)
         self.pootle_path = self.directory.pootle_path
+
+        # Apply markup filter
+        self.description_html = apply_markup_filter(self.description)
+
         super(TranslationProject, self).save(*args, **kwargs)
+
         if created:
             self.scan_files()
 
