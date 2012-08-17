@@ -26,7 +26,6 @@ from django.utils.translation import ugettext as _
 
 from legalpages.forms import LegalPageForm
 from legalpages.models import LegalPage
-
 from pootle_app.views.admin.util import user_is_admin
 
 
