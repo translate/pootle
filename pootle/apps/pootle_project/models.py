@@ -187,7 +187,7 @@ class Project(models.Model):
     def get_absolute_url(self):
         return l(self.pootle_path)
 
-    def get_template_filtetype(self):
+    def get_template_filetype(self):
         if self.localfiletype == 'po':
             return 'pot'
         else:
@@ -213,7 +213,7 @@ class Project(models.Model):
         If ``match_templates`` is ``True``, this will also check if the
         file matches the template filetype.
         """
-        template_ext = os.path.extsep + self.get_template_filtetype()
+        template_ext = os.path.extsep + self.get_template_filetype()
         return (filename.endswith(os.path.extsep + self.localfiletype)
                 or match_templates and filename.endswith(template_ext))
 

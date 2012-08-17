@@ -55,7 +55,7 @@ def match_template_filename(project, filename):
     project"""
     name, ext = os.path.splitext(os.path.basename(filename))
     #FIXME: is the test for matching extension redundant?
-    if ext == os.path.extsep + project.get_template_filtetype():
+    if ext == os.path.extsep + project.get_template_filetype():
         if ext != os.path.extsep + project.localfiletype:
             # template extension is distinct, surely file is a template
             return True

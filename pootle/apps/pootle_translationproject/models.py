@@ -338,7 +338,7 @@ class TranslationProject(models.Model):
 
         # Scan for pots if template project
         if self.is_template_project:
-            ext = os.extsep + self.project.get_template_filtetype()
+            ext = os.extsep + self.project.get_template_filetype()
 
         from pootle_app.project_tree import add_files, match_template_filename,\
                 direct_language_match_filename
