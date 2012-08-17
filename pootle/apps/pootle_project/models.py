@@ -21,8 +21,8 @@
 
 import os
 
-from django.db import models
 from django.core.exceptions import ObjectDoesNotExist
+from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from translate.filters import checks

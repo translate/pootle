@@ -31,20 +31,19 @@ from django.utils.translation import ugettext_lazy as _
 from translate.misc.lru import LRUCachingDict
 from translate.storage.base import ParseError
 
-from pootle_misc.aggregate import group_by_count_extra, max_column
-from pootle_misc.baseurl import l
-from pootle_misc.util import (getfromcache, dictsum, deletefromcache,
-                              get_markup_filter_name, apply_markup_filter)
-from pootle_store.models import Store, Unit, QualityCheck, PARSED, CHECKED
-from pootle_store.util import (absolute_real_path, calculate_stats,
-                               empty_quickstats, empty_completestats,
-                               relative_real_path, OBSOLETE, UNTRANSLATED)
-
 from pootle_app.lib.util import RelatedManager
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import check_permission
 from pootle_language.models import Language
+from pootle_misc.aggregate import group_by_count_extra, max_column
+from pootle_misc.baseurl import l
+from pootle_misc.util import (getfromcache, dictsum, deletefromcache,
+                              get_markup_filter_name, apply_markup_filter)
 from pootle_project.models import Project
+from pootle_store.models import Store, Unit, QualityCheck, PARSED, CHECKED
+from pootle_store.util import (absolute_real_path, calculate_stats,
+                               empty_quickstats, empty_completestats,
+                               relative_real_path, OBSOLETE, UNTRANSLATED)
 
 
 class TranslationProjectNonDBState(object):
