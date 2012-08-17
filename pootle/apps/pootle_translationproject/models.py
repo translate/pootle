@@ -48,11 +48,14 @@ from pootle_project.models import Project
 
 
 class TranslationProjectNonDBState(object):
+
     def __init__(self, parent):
         self.parent = parent
-        # terminology matcher
+
+        # Terminology matcher
         self.termmatcher = None
         self.termmatchermtime = None
+
         self._indexing_enabled = True
         self._index_initialized = False
         self.indexer = None
@@ -62,26 +65,30 @@ def create_translation_project(language, project):
     from pootle_app import project_tree
     if project_tree.translation_project_should_exist(language, project):
         try:
-            translation_project, created = TranslationProject.objects.\
-                    get_or_create(language=language, project=project)
+            translation_project, created = TranslationProject.objects \
+                    .get_or_create(language=language, project=project)
             return translation_project
         except OSError:
             return None
         except IndexError:
             return None
 
+
 def scan_translation_projects():
     for language in Language.objects.iterator():
         for project in Project.objects.iterator():
             create_translation_project(language, project)
 
+
 class VersionControlError(Exception):
     pass
+
 
 class TranslationProjectManager(RelatedManager):
     def get_by_natural_key(self, pootle_path):
         #FIXME: should we use Language and Project codes instead?
         return self.get(pootle_path=pootle_path)
+
 
 class TranslationProject(models.Model):
     _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE,
@@ -89,6 +96,7 @@ class TranslationProject(models.Model):
 
     objects = TranslationProjectManager()
     index_directory = ".translation_index"
+
     class Meta:
         unique_together = ('language', 'project')
         db_table = 'pootle_app_translationproject'
@@ -99,8 +107,8 @@ class TranslationProject(models.Model):
     description = models.TextField(blank=True, help_text=description_help_text)
     description_html = models.TextField(editable=False, blank=True)
 
-    language  = models.ForeignKey(Language, db_index=True)
-    project   = models.ForeignKey(Project, db_index=True)
+    language = models.ForeignKey(Language, db_index=True)
+    project = models.ForeignKey(Project, db_index=True)
     real_path = models.FilePathField(editable=False)
     directory = models.OneToOneField(Directory, db_index=True, editable=False)
     pootle_path = models.CharField(max_length=255, null=False, unique=True,
@@ -116,6 +124,7 @@ class TranslationProject(models.Model):
 
     def save(self, *args, **kwargs):
         created = self.id is None
+
         project_dir = self.project.get_real_path()
         from pootle_app.project_tree import get_translation_project_dir
         self.abs_real_path = get_translation_project_dir(self.language,
@@ -134,11 +143,12 @@ class TranslationProject(models.Model):
 
     def delete(self, *args, **kwargs):
         directory = self.directory
+
         super(TranslationProject, self).delete(*args, **kwargs)
+
         directory.delete()
         deletefromcache(self, ["getquickstats", "getcompletestats",
                                "get_mtime", "get_suggestion_count"])
-
 
     def get_absolute_url(self):
         return l(self.pootle_path)
@@ -190,26 +200,26 @@ class TranslationProject(models.Model):
     non_db_state = property(_get_non_db_state)
 
     def update(self, conservative=True):
-        """update all stores to reflect state on disk"""
-        for store in self.stores.exclude(file='').filter(state__gte=PARSED).\
-                iterator():
+        """Update all stores to reflect state on disk"""
+        stores = self.stores.exclude(file='').filter(state__gte=PARSED)
+        for store in stores.iterator():
             store.update(update_translation=True, update_structure=\
                     not conservative, conservative=conservative)
 
     def sync(self, conservative=True):
-        """sync unsaved work on all stores to disk"""
-        for store in self.stores.exclude(file='').filter(state__gte=PARSED).\
-                iterator():
+        """Sync unsaved work on all stores to disk"""
+        stores = self.stores.exclude(file='').filter(state__gte=PARSED)
+        for store in stores.iterator():
             store.sync(update_translation=True, update_structure=\
                     not conservative, conservative=conservative, create=False)
 
     @getfromcache
     def get_mtime(self):
-        return max_column(Unit.objects.filter(store__translation_project=self),
-                'mtime', None)
+        tp_units = Unit.objects.filter(store__translation_project=self)
+        return max_column(tp_units, 'mtime', None)
 
     def require_units(self):
-        """makes sure all stores are parsed"""
+        """Makes sure all stores are parsed"""
         errors = 0
         for store in self.stores.filter(state__lt=PARSED).iterator():
             try:
@@ -223,6 +233,7 @@ class TranslationProject(models.Model):
             except (IOError, OSError), e:
                 logging.info(u"Can't access %s\n%s", store.abs_real_path, e)
                 errors += 1
+
         return errors
 
     def _get_units(self):
@@ -238,12 +249,16 @@ class TranslationProject(models.Model):
     def getquickstats(self):
         if self.is_template_project:
             return empty_quickstats
-        errors = self.require_units()
-        stats = calculate_stats(Unit.objects.filter(\
-                store__translation_project=self, state__gt=OBSOLETE))
-        stats['errors'] = errors
-        return stats
 
+        errors = self.require_units()
+
+        tp_obsolete_units = Unit.objects \
+                                .filter(store__translation_project=self,
+                                        state__gt=OBSOLETE)
+        stats = calculate_stats(tp_obsolete_units)
+        stats['errors'] = errors
+
+        return stats
 
     @getfromcache
     def getcompletestats(self):
@@ -260,7 +275,6 @@ class TranslationProject(models.Model):
         )
         return group_by_count_extra(query, 'name', 'category')
 
-
     def update_from_templates(self, pootle_path=None):
         """Update translation project from templates."""
 
@@ -270,8 +284,8 @@ class TranslationProject(models.Model):
         template_translation_project = self.project \
             .get_template_translationproject()
 
-        if template_translation_project is None or \
-           template_translation_project == self:
+        if (template_translation_project is None or
+            template_translation_project == self):
             return
 
         monolingual = self.project.is_monolingual()
@@ -286,7 +300,6 @@ class TranslationProject(models.Model):
             get_translated_name, get_translated_name_gnu
 
         for store in template_translation_project.stores.iterator():
-
             if self.file_style == 'gnu':
                 new_pootle_path, new_path = get_translated_name_gnu(self, store)
             else:
@@ -295,13 +308,15 @@ class TranslationProject(models.Model):
             if pootle_path is not None and new_pootle_path != pootle_path:
                 continue
 
-            convert_template(self, store, new_pootle_path, new_path, monolingual)
+            convert_template(self, store, new_pootle_path, new_path,
+                             monolingual)
 
         all_files, new_files = self.scan_files()
         #self.update(conservative=False)
 
         from pootle_misc import versioncontrol
         project_path = self.project.get_real_path()
+
         if new_files and versioncontrol.hasversioning(project_path):
             output = versioncontrol.add_files(project_path, \
                     [s.file.name for s in new_files],
@@ -316,12 +331,12 @@ class TranslationProject(models.Model):
                                       newstats=newstats)
 
     def scan_files(self):
-        """returns a list of po files for the project and language"""
-        ignored_files = set(p.strip() for p in self.project.ignoredfiles.\
-                split(','))
-        ext           = os.extsep + self.project.localfiletype
+        """Returns a list of po files for the project and language"""
+        projects = [p.strip() for p in self.project.ignoredfiles.split(',')]
+        ignored_files = set(projects)
+        ext = os.extsep + self.project.localfiletype
 
-        # scan for pots if template project
+        # Scan for pots if template project
         if self.is_template_project:
             ext = os.extsep + self.project.get_template_filtetype()
 
@@ -329,6 +344,7 @@ class TranslationProject(models.Model):
                 direct_language_match_filename
         all_files = []
         new_files = []
+
         if self.file_style == 'gnu':
             if self.pootle_path.startswith('/templates/'):
                 all_files, new_files = add_files(self,
@@ -346,6 +362,7 @@ class TranslationProject(models.Model):
         else:
             all_files, new_files = add_files(self, ignored_files, ext, \
                     self.real_path, self.directory)
+
         return all_files, new_files
 
     def _get_indexer(self):
@@ -358,8 +375,8 @@ class TranslationProject(models.Model):
                     self.non_db_state._index_initialized = True
                 self.non_db_state.indexer =  indexer
             except Exception, e:
-                logging.warning(u"Could not initialize indexer for %s in %s: %s",\
-                        self.project.code, self.language.code, str(e))
+                logging.warning(u"Could not initialize indexer for %s in %s: "
+                        "%s", self.project.code, self.language.code, str(e))
                 self.non_db_state._indexing_enabled = False
 
         return self.non_db_state.indexer
@@ -367,56 +384,58 @@ class TranslationProject(models.Model):
     indexer = property(_get_indexer)
 
     def _has_index(self):
-        return self.non_db_state._indexing_enabled and \
-            (self.non_db_state._index_initialized or self.indexer != None)
+        return (self.non_db_state._indexing_enabled and
+                (self.non_db_state._index_initialized or self.indexer != None))
 
     has_index = property(_has_index)
 
     def update_file_from_version_control(self, store):
         from pootle.scripts import hooks
         store.sync(update_translation=True)
+
         try:
             hooks.hook(self.project.code, "preupdate", store.file.name)
         except:
             pass
 
-        # keep a copy of working files in memory before updating
+        # Keep a copy of working files in memory before updating
         oldstats = store.getquickstats()
         working_copy = store.file.store
 
         try:
-            logging.debug(u"updating %s from version control", store.file.name)
+            logging.debug(u"Updating %s from version control", store.file.name)
             from pootle_misc import versioncontrol
             versioncontrol.update_file(store.file.name)
             store.file._delete_store_cache()
             store.file._update_store_cache()
         except Exception, e:
-            #something wrong, file potentially modified, bail out
-            #and replace with working copy
-            logging.error(u"near fatal catastrophe, exception %s while updating" \
+            # Something wrong, file potentially modified, bail out
+            # and replace with working copy
+            logging.error(u"Near fatal catastrophe, exception %s while updating "
                     "%s from version control", e, store.file.name)
             working_copy.save()
-            raise VersionControlError
 
+            raise VersionControlError
         try:
-            logging.debug(u"parsing version control copy of %s into db", \
-                    store.file.name)
-            store.update(update_structure=True, update_translation=True, \
-                    conservative=False)
+            logging.debug(u"Parsing version control copy of %s into db",
+                          store.file.name)
+            store.update(update_structure=True, update_translation=True,
+                         conservative=False)
             remotestats = store.getquickstats()
+
             #FIXME: try to avoid merging if file was not updated
-            logging.debug(u"merging %s with version control update", \
-                    store.file.name)
-            store.mergefile(working_copy, None, allownewstrings=False,\
-                    suggestions=True, notranslate=False, obsoletemissing=False)
+            logging.debug(u"Merging %s with version control update",
+                          store.file.name)
+            store.mergefile(working_copy, None, allownewstrings=False,
+                            suggestions=True, notranslate=False,
+                            obsoletemissing=False)
         except Exception, e:
-            logging.error(u"near fatal catastrophe, exception %s while merging "\
+            logging.error(u"Near fatal catastrophe, exception %s while merging "
                     "%s with version control copy", e, store.file.name)
             working_copy.save()
             store.update(update_structure=True, update_translation=True,\
                     conservative=False)
             raise
-
         try:
             hooks.hook(self.project.code, "postupdate", store.file.name)
         except:
@@ -426,7 +445,7 @@ class TranslationProject(models.Model):
         return oldstats, remotestats, newstats
 
     def update_project(self, request):
-        """updates project translation files from version control,
+        """Updates project translation files from version control,
         retaining uncommitted translations"""
 
         if not check_permission("commit", request):
@@ -465,28 +484,26 @@ class TranslationProject(models.Model):
             store.file._update_store_cache()
 
             try:
-                logging.debug(u"parsing version control copy of %s into db", \
-                        store.file.name)
+                logging.debug(u"Parsing version control copy of %s into db",
+                              store.file.name)
                 store.update(update_structure=True, update_translation=True, \
                         conservative=False)
                 remotestats = store.getquickstats()
-                #FIXME: try to avoid merging if file was not updated
-                logging.debug(u"merging %s with version control update", \
-                        store.file.name)
-                store.mergefile(working_copy, None,
-                        allownewstrings=False,
-                        suggestions=True,
-                        notranslate=False,
-                        obsoletemissing=False)
+
+                #FIXME: Try to avoid merging if file was not updated
+                logging.debug(u"Merging %s with version control update",
+                              store.file.name)
+                store.mergefile(working_copy, None, allownewstrings=False,
+                                suggestions=True, notranslate=False,
+                                obsoletemissing=False)
             except Exception, e:
-                logging.error(u"near fatal catastrophe, exception %s while "
-                        "merging %s with version control copy", e, \
-                                store.file.name)
+                logging.error(u"Near fatal catastrophe, exception %s while "
+                              "merging %s with version control copy",
+                              e, store.file.name)
                 working_copy.save()
                 store.update(update_structure=True, update_translation=True, \
                         conservative=False)
                 raise
-
             try:
                 hooks.hook(self.project.code, "postupdate", store.file.name)
             except:
@@ -510,7 +527,7 @@ class TranslationProject(models.Model):
                 remotestats=remote_stats, newstats=new_stats)
 
     def update_file(self, request, store):
-        """updates file from version control, retaining uncommitted
+        """Updates file from version control, retaining uncommitted
         translations"""
         if not check_permission("commit", request):
             raise PermissionDenied(_("You do not have rights to update from "
@@ -585,7 +602,6 @@ class TranslationProject(models.Model):
                 success=success)
         return success
 
-
     def initialize(self):
         try:
             from pootle.scripts import hooks
@@ -605,7 +621,7 @@ class TranslationProject(models.Model):
         tempzipfile = None
 
         try:
-            # using zip command line is fast
+            # Using zip command line is fast
             # The temporary file below is opened and immediately closed for
             # security reasons
             fd, tempzipfile = tempfile.mkstemp(prefix='pootle', suffix='.zip')
@@ -634,7 +650,7 @@ class TranslationProject(models.Model):
             if tempzipfile is not None and os.path.exists(tempzipfile):
                 os.remove(tempzipfile)
 
-        # but if it doesn't work, we can do it from python
+        # But if it doesn't work, we can do it from python
         archivecontents = None
         try:
             if path is not None:
@@ -652,6 +668,7 @@ class TranslationProject(models.Model):
                         store.abs_real_path[len(self.abs_real_path)+1:].encode(\
                         'utf-8'))
             archive.close()
+
             if path is not None:
                 shutil.move(tempzipfile, path)
             else:
@@ -667,7 +684,7 @@ class TranslationProject(models.Model):
     ############################################################################
 
     def make_indexer(self):
-        """get an indexing object for this project
+        """Get an indexing object for this project.
 
         Since we do not want to keep the indexing databases open for the
         lifetime of the TranslationProject (it is cached!), it may NOT be
@@ -684,10 +701,11 @@ class TranslationProject(models.Model):
                         "pomtime": index.ANALYZER_EXACT,
                         "dbid": index.ANALYZER_EXACT,
                         })
+
         return index
 
     def init_index(self, indexer):
-        """initializes the search index"""
+        """Initializes the search index."""
         #FIXME: stop relying on pomtime so virtual files can be searchable?
         try:
             indexer.begin_transaction()
@@ -695,7 +713,7 @@ class TranslationProject(models.Model):
                 try:
                     self.update_index(indexer, store)
                 except OSError, e:
-                    # broken link or permission problem?
+                    # Broken link or permission problem?
                     logging.error("Erorr indexing %s: %s", store, e)
             indexer.commit_transaction()
             indexer.flush(optimize=True)
@@ -706,52 +724,53 @@ class TranslationProject(models.Model):
             except:
                 pass
 
-
     def update_index(self, indexer, store, unitid=None):
-        """updates the index with the contents of store (limit to unitid if given)
+        """Updates the index with the contents of store (limit to
+        ``unitid`` if given).
 
         There are three reasons for calling this function:
-            1. creating a new instance of L{TranslationProject} (see L{initindex})
-                    -> check if the index is up-to-date / rebuild the index if
-                       necessary
-            2. translating a unit via the web interface
-                    -> (re)index only the specified unit(s)
+
+            1. Creating a new instance of :cls:`TranslationProject`
+               (see :meth:`TranslationProject.init_index`)
+               -> Check if the index is up-to-date / rebuild the index if
+               necessary
+            2. Translating a unit via the web interface
+               -> (re)index only the specified unit(s)
 
         The argument L{item} should be None for 1.
 
-        known problems:
-            1. This function should get called, when the po file changes
-                 externally.
-                 WARNING: You have to stop the pootle server before manually
-                 changing po files, if you want to keep the index database in
-                 sync.
+        Known problems:
 
-        @param unitid: pk of unit within the po file OR None (=rebuild all)
-        @type unitid: int
-        @param optimize: should the indexing database be optimized afterwards
-        @type optimize: bool
+            1. This function should get called, when the po file changes
+               externally.
+
+               WARNING: You have to stop the pootle server before manually
+               changing po files, if you want to keep the index database in
+               sync.
         """
         #FIXME: leverage file updated signal to check if index needs updating
         if indexer == None:
             return False
-        # check if the pomtime in the index == the latest pomtime
+
+        # Check if the pomtime in the index == the latest pomtime
         pomtime = str(hash(store.get_mtime()) ** 2)
         pofilenamequery = indexer.make_query([("pofilename", store.pootle_path)],
                 True)
         pomtimequery = indexer.make_query([("pomtime", pomtime)], True)
         gooditemsquery = indexer.make_query([pofilenamequery, pomtimequery], True)
         gooditemsnum = indexer.get_query_result(gooditemsquery).get_matches_count()
-        # if there is at least one up-to-date indexing item, then the po file
+
+        # If there is at least one up-to-date indexing item, then the po file
         # was not changed externally -> no need to update the database
         units = None
         if (gooditemsnum > 0) and (not unitid):
-            # nothing to be done
+            # Nothing to be done
             return
         elif unitid is not None:
             # Update only specific item - usually translation via the web
             # interface. All other items should still be up-to-date (even with an
             # older pomtime).
-            # delete the relevant item from the database
+            # Delete the relevant item from the database
             units = store.units.filter(id=unitid)
             itemsquery = indexer.make_query([("dbid", str(unitid))], False)
             indexer.delete_doc([pofilenamequery, itemsquery])
@@ -763,6 +782,7 @@ class TranslationProject(models.Model):
                     store.pootle_path)
             indexer.delete_doc({"pofilename": store.pootle_path})
             units = store.units
+
         addlist = []
         for unit in units.iterator():
             doc = {"pofilename": store.pootle_path,
@@ -770,21 +790,23 @@ class TranslationProject(models.Model):
                    "itemno": str(unit.index),
                    "dbid": str(unit.id),
                    }
+
             if unit.hasplural():
                 orig = "\n".join(unit.source.strings)
                 trans = "\n".join(unit.target.strings)
             else:
                 orig = unit.source
                 trans = unit.target
+
             doc["source"] = orig
             doc["target"] = trans
             doc["notes"] = unit.getnotes()
             doc["locations"] = unit.getlocations()
             addlist.append(doc)
+
         if addlist:
             for add_item in addlist:
                 indexer.index_document(add_item)
-
 
     ###########################################################################
 
@@ -794,9 +816,10 @@ class TranslationProject(models.Model):
             self.project.get_template_translationproject())
 
     def gettermmatcher(self):
-        """returns the terminology matcher"""
+        """Returns the terminology matcher."""
         terminology_stores = Store.objects.none()
         mtime = None
+
         if self.is_terminology_project:
             terminology_stores = self.stores.all()
             mtime = self.get_mtime()
@@ -817,14 +840,18 @@ class TranslationProject(models.Model):
                     mtime = store.get_mtime()
                 else:
                     mtime = max(mtime, store.get_mtime())
+
             terminology_stores = terminology_stores | local_terminology
+
         if mtime is None:
             return
+
         if mtime != self.non_db_state.termmatchermtime:
             from translate.search import match
             self.non_db_state.termmatcher = match.terminologymatcher(
                     terminology_stores.iterator())
             self.non_db_state.termmatchermtime = mtime
+
         return self.non_db_state.termmatcher
 
     ###########################################################################
@@ -836,15 +863,17 @@ class TranslationProject(models.Model):
             if unit is not None and unit.istranslated():
                 if unit.hasplural() and n != 1:
                     pluralequation = self.language.pluralequation
+
                     if pluralequation:
                         pluralfn = gettext.c2py(pluralequation)
                         target =  unit.target.strings[pluralfn(n)]
+
                         if target is not None:
                             return target
                 else:
                     return unit.target
 
-        # no translation found
+        # No translation found
         if n != 1 and plural is not None:
             return plural
         else:
@@ -856,13 +885,16 @@ def stats_message(version, stats):
            (version, stats.get("translated", 0), stats.get("total", 0),
             stats.get("fuzzy", 0))
 
+
 def scan_languages(sender, instance, created=False, raw=False, **kwargs):
     if not created or raw:
         return
 
     for language in Language.objects.iterator():
         create_translation_project(language, instance)
+
 post_save.connect(scan_languages, sender=Project)
+
 
 def scan_projects(sender, instance, created=False, raw=False, **kwargs):
     if not created or raw:
@@ -870,4 +902,5 @@ def scan_projects(sender, instance, created=False, raw=False, **kwargs):
 
     for project in Project.objects.iterator():
         create_translation_project(instance, project)
+
 post_save.connect(scan_projects, sender=Language)

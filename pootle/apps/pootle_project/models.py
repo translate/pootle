@@ -33,39 +33,32 @@ from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 from pootle_misc.util import (getfromcache, get_markup_filter_name,
                               apply_markup_filter)
-from pootle_store.models import Unit
 from pootle_store.filetypes import (filetype_choices, factory_classes,
                                     is_monolingual)
+from pootle_store.models import Unit
 from pootle_store.util import absolute_real_path, statssum
 
 
 class ProjectManager(RelatedManager):
+
     def get_by_natural_key(self, code):
         return self.get(code=code)
 
+
 class Project(models.Model):
+
     objects = ProjectManager()
+
     class Meta:
         ordering = ['code']
         db_table = 'pootle_app_project'
 
     code_help_text = _('A short code for the project. This should only contain ASCII characters, numbers, and the underscore (_) character.')
-    report_target_help_text = _('A URL or an email address where issues with the source text can be reported.')
+    code = models.CharField(max_length=255, null=False, unique=True,
+            db_index=True, verbose_name=_('Code'), help_text=code_help_text)
 
-    checker_choices = [('standard', 'standard')]
-    checkers = list(checks.projectcheckers.keys())
-    checkers.sort()
-    checker_choices.extend([(checker, checker) for checker in checkers])
-    local_choices = filetype_choices
-    treestyle_choices = (
-            # TODO: check that the None is stored and handled correctly
-            ('auto', _('Automatic detection (slower)')),
-            ('gnu', _('GNU style: files named by language code')),
-            ('nongnu', _('Non-GNU: Each language in its own directory')),
-    )
-
-    code           = models.CharField(max_length=255, null=False, unique=True, db_index=True, verbose_name=_('Code'), help_text=code_help_text)
-    fullname       = models.CharField(max_length=255, null=False, verbose_name=_("Full Name"))
+    fullname = models.CharField(max_length=255, null=False,
+            verbose_name=_("Full Name"))
 
     description_help_text = _('A description of this project. '
             'This is useful to give more information or instructions. '
@@ -73,13 +66,39 @@ class Project(models.Model):
     description = models.TextField(blank=True, help_text=description_help_text)
     description_html = models.TextField(editable=False, blank=True)
 
-    checkstyle     = models.CharField(max_length=50, default='standard', null=False, choices=checker_choices, verbose_name=_('Quality Checks'))
-    localfiletype  = models.CharField(max_length=50, default="po", choices=local_choices, verbose_name=_('File Type'))
-    treestyle      = models.CharField(max_length=20, default='auto', choices=treestyle_choices, verbose_name=_('Project Tree Style'))
-    source_language  = models.ForeignKey('pootle_language.Language', db_index=True, verbose_name=_('Source Language'))
-    ignoredfiles   = models.CharField(max_length=255, blank=True, null=False, default="", verbose_name=_('Ignore Files'))
-    directory = models.OneToOneField('pootle_app.Directory', db_index=True, editable=False)
-    report_target  = models.CharField(max_length=512, blank=True, verbose_name=_("Report Target"), help_text=report_target_help_text)
+    checker_choices = [('standard', 'standard')]
+    checkers = list(checks.projectcheckers.keys())
+    checkers.sort()
+    checker_choices.extend([(checker, checker) for checker in checkers])
+    checkstyle = models.CharField(max_length=50, default='standard',
+            null=False, choices=checker_choices,
+            verbose_name=_('Quality Checks'))
+
+    localfiletype  = models.CharField(max_length=50, default="po",
+            choices=filetype_choices, verbose_name=_('File Type'))
+
+    treestyle_choices = (
+            # TODO: check that the None is stored and handled correctly
+            ('auto', _('Automatic detection (slower)')),
+            ('gnu', _('GNU style: files named by language code')),
+            ('nongnu', _('Non-GNU: Each language in its own directory')),
+    )
+    treestyle = models.CharField(max_length=20, default='auto',
+            choices=treestyle_choices, verbose_name=_('Project Tree Style'))
+
+    source_language = models.ForeignKey('pootle_language.Language',
+            db_index=True, verbose_name=_('Source Language'))
+
+    ignoredfiles = models.CharField(max_length=255, blank=True, null=False,
+            default="", verbose_name=_('Ignore Files'))
+
+    directory = models.OneToOneField('pootle_app.Directory', db_index=True,
+            editable=False)
+
+    report_target_help_text = _('A URL or an email address where issues '
+            'with the source text can be reported.')
+    report_target = models.CharField(max_length=512, blank=True,
+            verbose_name=_("Report Target"), help_text=report_target_help_text)
 
     def natural_key(self):
         return (self.code,)
@@ -89,10 +108,11 @@ class Project(models.Model):
         return self.fullname
 
     def save(self, *args, **kwargs):
-        # create file system directory if needed
+        # Create file system directory if needed
         project_path = self.get_real_path()
         if not os.path.exists(project_path):
             os.makedirs(project_path)
+
         from pootle_app.models.directory import Directory
         self.directory = Directory.objects.projects.get_or_make_subdir(self.code)
 
@@ -122,32 +142,40 @@ class Project(models.Model):
         # Doing this finer grained garbage collection keeps memory usage even
         # lower but can take a bit longer.
 
-        #from pootle_statistics.models import Submission
-        #from pootle_app.models import Suggestion as AppSuggestion
-        #from pootle_store.models import Suggestion as StoreSuggestion
-        #from pootle_store.models import QualityCheck
-        #Submission.objects.filter(from_suggestion__translation_project__project=self).delete()
-        #AppSuggestion.objects.filter(translation_project__project=self).delete()
-        #StoreSuggestion.objects.filter(unit__store__translation_project__project=self).delete()
-        #QualityCheck.objects.filter(unit__store__translation_project__project=self).delete()
-        #gc.collect()
-        #for tp in self.translationproject_set.iterator():
-        #    Unit.objects.filter(store__translation_project=tp).delete()
-        #    gc.collect()
+        '''
+        from pootle_statistics.models import Submission
+        from pootle_app.models import Suggestion as AppSuggestion
+        from pootle_store.models import Suggestion as StoreSuggestion
+        from pootle_store.models import QualityCheck
+        Submission.objects.filter(from_suggestion__translation_project__project=self).delete()
+        AppSuggestion.objects.filter(translation_project__project=self).delete()
+        StoreSuggestion.objects.filter(unit__store__translation_project__project=self).delete()
+        QualityCheck.objects.filter(unit__store__translation_project__project=self).delete()
+        gc.collect()
+        for tp in self.translationproject_set.iterator():
+            Unit.objects.filter(store__translation_project=tp).delete()
+            gc.collect()
+        '''
 
         super(Project, self).delete(*args, **kwargs)
+
         directory.delete()
 
     @getfromcache
     def get_mtime(self):
-        return max_column(Unit.objects.filter(store__translation_project__project=self), 'mtime', None)
+        project_units = Unit.objects.filter(
+                store__translation_project__project=self
+        )
+        return max_column(project_units, 'mtime', None)
 
     @getfromcache
     def getquickstats(self):
         return statssum(self.translationproject_set.iterator())
 
     def translated_percentage(self):
-        return int(100.0 * self.getquickstats()['translatedsourcewords'] / max(self.getquickstats()['totalsourcewords'], 1))
+        qs = self.getquickstats()
+        max_words = max(qs['totalsourcewords'], 1)
+        return int(100.0 * qs['translatedsourcewords'] / max_words)
 
     def _get_pootle_path(self):
         return "/projects/" + self.code + "/"
@@ -166,25 +194,28 @@ class Project(models.Model):
             return self.localfiletype
 
     def get_file_class(self):
-        """returns the TranslationStore subclass required for parsing Project files"""
+        """Returns the TranslationStore subclass required for parsing
+        project files."""
         return factory_classes[self.localfiletype]
 
     def is_monolingual(self):
-        """is this a monolingual project"""
+        """Returns ``True`` if this project is monolingual."""
         return is_monolingual(self.get_file_class())
 
     def _get_is_terminology(self):
-        """is this a terminology project"""
+        """Returns ``True`` if this project is a terminology project."""
         return self.checkstyle == 'terminology'
     is_terminology = property(_get_is_terminology)
 
     def file_belongs_to_project(self, filename, match_templates=True):
-        """tests if filename matches project filetype (ie. extension),
-        if match_templates is true will also check if file matches
-        template filetype"""
+        """Tests if ``filename`` matches project filetype (ie. extension).
 
-        return filename.endswith(os.path.extsep + self.localfiletype) or \
-               match_templates and filename.endswith(os.path.extsep + self.get_template_filtetype())
+        If ``match_templates`` is ``True``, this will also check if the
+        file matches the template filetype.
+        """
+        template_ext = os.path.extsep + self.get_template_filtetype()
+        return (filename.endswith(os.path.extsep + self.localfiletype)
+                or match_templates and filename.endswith(template_ext))
 
     def _detect_treestyle(self):
         try:
@@ -192,40 +223,43 @@ class Project(models.Model):
             dirpath, dirnames, filenames = dirlisting.next()
 
             if not dirnames:
-                # no subdirectories
+                # No subdirectories
                 if filter(self.file_belongs_to_project, filenames):
-                    # translation files found, assume gnu
+                    # Translation files found, assume gnu
                     return "gnu"
             else:
-                # there are subdirectories
+                # There are subdirectories
                 if filter(lambda dirname: dirname == 'templates' or langcode_re.match(dirname), dirnames):
-                    # found language dirs assume nongnu
+                    # Found language dirs assume nongnu
                     return "nongnu"
                 else:
-                    # no language subdirs found, look for any translation file
+                    # No language subdirs found, look for any translation file
                     for dirpath, dirnames, filenames in os.walk(self.get_real_path()):
                         if filter(self.file_belongs_to_project, filenames):
                             return "gnu"
         except:
             pass
-        # unsure
+
+        # Unsure
         return None
 
     def get_treestyle(self):
-        """returns the real treestyle, if treestyle is set to auto it
-        checks the project directory and tries to guess if it is gnu
-        style or nongnu style.
+        """Returns the real treestyle, if :attr:`Project.treestyle` is set
+        to ``auto`` it checks the project directory and tries to guess
+        if it is gnu style or nongnu style.
 
-        we are biased towards nongnu because it makes managing project
-        from the web easier"""
+        We are biased towards nongnu because it makes managing projects
+        from the web easier.
+        """
         if self.treestyle != "auto":
             return self.treestyle
         else:
             detected = self._detect_treestyle()
+
             if detected is not None:
                 return detected
 
-        # when unsure return nongnu
+        # When unsure return nongnu
         return "nongnu"
 
     def get_template_translationproject(self):
@@ -236,11 +270,11 @@ class Project(models.Model):
         special 'templates' language within this project, otherwise it
         falls back to the source language set for current project.
         """
-
         try:
             return self.translationproject_set.get(language__code='templates')
         except ObjectDoesNotExist:
             try:
-                return self.translationproject_set.get(language=self.source_language_id)
+                return self.translationproject_set \
+                           .get(language=self.source_language_id)
             except ObjectDoesNotExist:
                 pass

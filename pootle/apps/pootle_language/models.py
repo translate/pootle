@@ -32,18 +32,27 @@ from pootle_store.util import statssum
 
 
 class LanguageManager(RelatedManager):
+
     def get_by_natural_key(self, code):
         return self.get(code=code)
 
+
 class Language(models.Model):
+
     objects = LanguageManager()
+
     class Meta:
         ordering = ['code']
         db_table = 'pootle_app_language'
 
-    code_help_text = _('ISO 639 language code for the language, possibly followed by an underscore (_) and an ISO 3166 country code. <a href="http://www.w3.org/International/articles/language-tags/">More information</a>')
-    code     = models.CharField(max_length=50, null=False, unique=True, db_index=True, verbose_name=_("Code"), help_text=code_help_text)
-    fullname = models.CharField(max_length=255, null=False, verbose_name=_("Full Name"))
+    code_help_text = _('ISO 639 language code for the language, possibly '
+            'followed by an underscore (_) and an ISO 3166 country code. '
+            '<a href="http://www.w3.org/International/articles/language-tags/">'
+            'More information</a>')
+    code = models.CharField(max_length=50, null=False, unique=True,
+            db_index=True, verbose_name=_("Code"), help_text=code_help_text)
+    fullname = models.CharField(max_length=255, null=False,
+            verbose_name=_("Full Name"))
 
     description_help_text = _('A description of this language. '
             'This is useful to give more information or instructions. '
@@ -51,15 +60,25 @@ class Language(models.Model):
     description = models.TextField(blank=True, help_text=description_help_text)
     description_html = models.TextField(editable=False, blank=True)
 
-    specialchars_help_text = _('Enter any special characters that users might find difficult to type')
-    specialchars   = models.CharField(max_length=255, blank=True, verbose_name=_("Special Characters"), help_text=specialchars_help_text)
+    specialchars_help_text = _('Enter any special characters that users '
+            'might find difficult to type')
+    specialchars = models.CharField(max_length=255, blank=True,
+            verbose_name=_("Special Characters"),
+            help_text=specialchars_help_text)
 
-    plurals_help_text = _('For more information, visit <a href="http://translate.sourceforge.net/wiki/l10n/pluralforms">our wiki page</a> on plural forms.')
-    nplural_choices = ((0, _('Unknown')), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6))
-    nplurals       = models.SmallIntegerField(default=0, choices=nplural_choices, verbose_name=_("Number of Plurals"), help_text=plurals_help_text)
+    plurals_help_text = _('For more information, visit '
+            '<a href="http://translate.sourceforge.net/wiki/l10n/pluralforms">'
+            'our wiki page</a> on plural forms.')
+    nplural_choices = (
+            (0, _('Unknown')), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6)
+    )
+    nplurals = models.SmallIntegerField(default=0, choices=nplural_choices,
+            verbose_name=_("Number of Plurals"), help_text=plurals_help_text)
+    pluralequation = models.CharField(max_length=255, blank=True,
+            verbose_name=_("Plural Equation"), help_text=plurals_help_text)
 
-    pluralequation = models.CharField(max_length=255, blank=True, verbose_name=_("Plural Equation"), help_text=plurals_help_text)
-    directory = models.OneToOneField('pootle_app.Directory', db_index=True, editable=False)
+    directory = models.OneToOneField('pootle_app.Directory', db_index=True,
+            editable=False)
 
     pootle_path = property(lambda self: '/%s/' % self.code)
 
@@ -90,7 +109,8 @@ class Language(models.Model):
 
     @getfromcache
     def get_mtime(self):
-        return max_column(Unit.objects.filter(store__translation_project__language=self), 'mtime', None)
+        return max_column(Unit.objects.filter(
+            store__translation_project__language=self), 'mtime', None)
 
     @getfromcache
     def getquickstats(self):
@@ -109,4 +129,6 @@ class Language(models.Model):
         return language_dir(self.code)
 
     def translated_percentage(self):
-        return int(100.0 * self.getquickstats()['translatedsourcewords'] / max(self.getquickstats()['totalsourcewords'], 1))
+        qs = self.getquickstats()
+        word_count = max(qs['totalsourcewords'], 1)
+        return int(100.0 * qs['translatedsourcewords'] / word_count)
