@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2004-2009 Zuza Software Foundation
+# Copyright 2004-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -20,12 +20,13 @@
 
 import logging
 
-from django.core.cache import cache
 from django.conf import settings
+from django.core.cache import cache
 from django.core.paginator import Paginator
+from django.http import HttpResponseBadRequest
 from django.utils import simplejson
 from django.utils.encoding import iri_to_uri
-from django.http import HttpResponseBadRequest
+
 
 def getfromcache(function, timeout=settings.OBJECT_CACHE_TIMEOUT):
     def _getfromcache(instance, *args, **kwargs):
