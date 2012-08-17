@@ -142,6 +142,18 @@ def cached_property(f):
     return property(_closure)
 
 
+def get_markup_filter_name():
+    """Returns the configured markup filter's name as a string."""
+    try:
+        markup_filter = settings.MARKUP_FILTER[0]
+        if markup_filter is None:
+            markup_filter = u'HTML'
+    except AttributeError, IndexError:
+        markup_filter = u'HTML'
+
+    return markup_filter
+
+
 def apply_markup_filter(text):
     """
     Applies a text-to-HTML conversion function to a piece of text and

@@ -24,7 +24,7 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 
-from pootle_misc.util import apply_markup_filter
+from pootle_misc.util import get_markup_filter_name, apply_markup_filter
 
 
 class LegalPage(models.Model):
@@ -43,14 +43,8 @@ class LegalPage(models.Model):
             help_text=_('The page will be independently available in ' \
                     '/about/<slug>/'))
 
-    try:
-        markup_filter = settings.MARKUP_FILTER[0]
-        if markup_filter is None:
-            markup_filter = u'HTML'
-    except AttributeError, IndexError:
-        markup_filter = u'HTML'
     body = models.TextField(_("Content"), blank=True,
-            help_text=_('Allowed markup: %s', markup_filter))
+            help_text=_('Allowed markup: %s', get_markup_filter_name()))
 
     body_html = models.TextField(editable=False, blank=True)
 
