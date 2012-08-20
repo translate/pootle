@@ -38,16 +38,6 @@ from translate.misc.multistring import multistring
 
 register = template.Library()
 
-def find_altsrcs(unit, alt_src_langs, store=None, project=None):
-    store = store or unit.store
-    project = project or store.translation_project.project
-    altsrcs = Unit.objects.filter(unitid_hash=unit.unitid_hash,
-                                 store__translation_project__project=project,
-                                 store__translation_project__language__in=alt_src_langs,
-                                 state=TRANSLATED).select_related('store', 'store__translation_project', 'store__translation_project__language')
-    if project.get_treestyle() == 'nongnu':
-        altsrcs = altsrcs.filter(store__name=store.name)
-    return altsrcs
 
 def call_highlight(old, new):
     """Calls diff highlighting code only if the target is set.
@@ -116,31 +106,6 @@ try:
 except ImportError, e:
     from difflib import SequenceMatcher
     highlight_diffs = _difflib_highlight_diffs
-
-
-def get_sugg_list(unit):
-    """Get suggested translations and rated scores for the given unit.
-
-    :return: List of tuples containing the suggestion and the score for
-             it in case it's a terminology project. Otherwise the score
-             part is filled with False values.
-    """
-    sugg_list = []
-    scores = {}
-    suggestions = unit.get_suggestions()
-
-    if suggestions:
-        # Avoid the votes query if we're not editing terminology
-        if (unit.store.is_terminology or
-            unit.store.translation_project.project.is_terminology):
-            from voting.models import Vote
-            scores = Vote.objects.get_scores_in_bulk(suggestions)
-
-    for sugg in suggestions:
-        score = scores.get(sugg.id, False)
-        sugg_list.append((sugg, score))
-
-    return sugg_list
 
 
 @register.filter('stat_summary')

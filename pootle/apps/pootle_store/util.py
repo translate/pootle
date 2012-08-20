@@ -28,6 +28,7 @@ from django.utils.translation import ugettext_lazy as _
 from pootle_misc.aggregate import sum_column
 from pootle_misc.util import dictsum
 
+
 # Unit States
 #: Unit is no longer part of the store
 OBSOLETE = -100
@@ -149,3 +150,49 @@ def suggestions_sum(queryset):
         total += item.get_suggestion_count()
 
     return total
+
+
+def find_altsrcs(unit, alt_src_langs, store=None, project=None):
+    from pootle_store.models import Unit
+
+    store = store or unit.store
+    project = project or store.translation_project.project
+
+    altsrcs = Unit.objects.filter(
+                    unitid_hash=unit.unitid_hash,
+                    store__translation_project__project=project,
+                    store__translation_project__language__in=alt_src_langs,
+                    state=TRANSLATED) \
+                          .select_related(
+                                'store', 'store__translation_project',
+                                'store__translation_project__language')
+
+    if project.get_treestyle() == 'nongnu':
+        altsrcs = altsrcs.filter(store__name=store.name)
+
+    return altsrcs
+
+
+def get_sugg_list(unit):
+    """Get suggested translations and rated scores for the given unit.
+
+    :return: List of tuples containing the suggestion and the score for
+             it in case it's a terminology project. Otherwise the score
+             part is filled with False values.
+    """
+    sugg_list = []
+    scores = {}
+    suggestions = unit.get_suggestions()
+
+    if suggestions:
+        # Avoid the votes query if we're not editing terminology
+        if (unit.store.is_terminology or
+            unit.store.translation_project.project.is_terminology):
+            from voting.models import Vote
+            scores = Vote.objects.get_scores_in_bulk(suggestions)
+
+    for sugg in suggestions:
+        score = scores.get(sugg.id, False)
+        sugg_list.append((sugg, score))
+
+    return sugg_list

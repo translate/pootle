@@ -52,12 +52,11 @@ from pootle_store.models import Store, Unit
 from pootle_store.forms import (unit_comment_form_factory, unit_form_factory,
                                 highlight_whitespace)
 from pootle_store.signals import translation_submitted
-from pootle_store.templatetags.store_tags import (find_altsrcs, get_sugg_list,
-                                                  highlight_diffs,
+from pootle_store.templatetags.store_tags import (highlight_diffs,
                                                   pluralize_source,
                                                   pluralize_target)
 from pootle_store.util import (UNTRANSLATED, FUZZY, TRANSLATED, STATES_MAP,
-                               absolute_real_path)
+                               absolute_real_path, find_altsrcs, get_sugg_list)
 from pootle_translationproject.forms import make_search_form
 
 
