@@ -19,8 +19,8 @@
 
     /* Initialize variables */
     this.units = {};
-    this.store = $("#pootle_path").text();
-    this.directory = $("#directory").text();
+    this.store = $("#editor").data("pootle-path");
+    this.directory = $("#editor").data("directory");
     this.currentPage = 1;
     this.currentNumPages = 0;
     this.pagesGot = {};
