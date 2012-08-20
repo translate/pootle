@@ -216,44 +216,6 @@ def pluralize_diff_sugg(sugg):
         return [(0, sugg.target, call_highlight(unit.target, sugg.target), None)]
 
 
-@register.inclusion_tag('unit/edit.html', takes_context=True)
-def render_unit_edit(context, form):
-    unit = form.instance
-    store = context['store']
-    alt_src_langs = context['alt_src_langs']
-    translation_project = context['translation_project']
-    project = translation_project.project
-    suggestions = get_sugg_list(unit)
-    template_vars = {'unit': unit,
-                     'form': form,
-                     'store': store,
-                     'profile': context['profile'],
-                     'user': context['user'],
-                     'language': context['language'],
-                     'source_language': context['source_language'],
-                     'cantranslate': context['cantranslate'],
-                     'cansuggest': context['cansuggest'],
-                     'canreview': context['canreview'],
-                     'altsrcs': find_altsrcs(unit, alt_src_langs, store=store, project=project),
-                     "suggestions": suggestions,
-                     }
-    return template_vars
-
-@register.inclusion_tag('unit/view.html', takes_context=True)
-def render_unit_view(context, unit, show_comments=False):
-    template_vars = {'unit': unit,
-                     'language': context['language'],
-                     'source_language': context['source_language'],
-                     'show_comments': show_comments,
-                     }
-    return template_vars
-
-@register.inclusion_tag('store/translate_table.html', takes_context=True)
-def translate_table(context):
-    """encapsulate translate_table in a tag to avoid parsing template
-    when cache will be used"""
-    return context
-
 def do_include_raw(parser, token):
     """
     Performs a template include without parsing the context, just dumps
