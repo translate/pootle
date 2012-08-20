@@ -22,8 +22,8 @@ from django import template
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 
-from pootle_translationproject.forms import make_search_form
 from pootle_misc.baseurl import l
+from pootle_translationproject.forms import make_search_form
 
 register = template.Library()
 

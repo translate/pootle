@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2009-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -18,23 +18,21 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.utils.safestring import mark_safe
-
 from django import template
-from django.utils.translation import ugettext as _
 from django.core.exceptions import  ObjectDoesNotExist
 #FIXME: _loader is probably not a stable API for the future, but seems like
 # the best way to go for now:
 from django.template.loaders.app_directories import _loader
+from django.utils.safestring import mark_safe
+from django.utils.translation import ugettext as _
 
+from translate.misc.multistring import multistring
+
+from pootle_misc.templatetags.cleanhtml import fancy_escape, fancy_highlight
+from pootle_misc.util import add_percentages
 from pootle_store.fields import list_empty
 from pootle_store.models import Unit
 from pootle_store.util import TRANSLATED
-from pootle_misc.templatetags.cleanhtml import fancy_escape
-from pootle_misc.util import add_percentages
-from pootle_misc.templatetags.cleanhtml import fancy_highlight
-
-from translate.misc.multistring import multistring
 
 register = template.Library()
 
