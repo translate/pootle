@@ -1,5 +1,5 @@
 {% extends "tp_base_extended.html" %}
-{% load i18n assets render_pager baseurl store_tags translation_project_tags cache locale %}
+{% load i18n assets render_pager baseurl cache locale search store_tags translation_project_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language as LANGUAGE_BIDI %}
 
@@ -57,24 +57,8 @@
 <div id="toolbar">
 
   <div class="toolbar pull-left">
-    <div id="toolbar_search" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
-      <div class="search-container">
-        <form action="{{ search_action }}" method="get" id="searchform" title="{% trans 'Search (Ctrl+Shift+S)<br/>Type in, then press Enter to search' %}">
-          <div class="advancedsearch">
-            {{ search_form.sfields }}
-          </div>
-          <label class="inputHint" for="id_search">{% trans "Search" %}</label>{{ search_form.search }}
-          <a class="advancedlink">
-            {% if LANGUAGE_BIDI %}
-            <img src='{{ "images/sarrow_up_rtl.png"|m }}' alt="{{ advanced_search_title }}" title="{{ advanced_search_title }}" class="togglesearch" />
-            <img src='{{ "images/sarrow_down_rtl.png"|m }}' alt="{{ advanced_search_title }}" title="{{ advanced_search_title }}" class="togglesearch" style="display: none;"/>
-            {% else %}
-            <img src='{{ "images/sarrow_up.png"|m }}' alt="{{ advanced_search_title }}" title="{{ advanced_search_title }}" class="togglesearch" />
-            <img src='{{ "images/sarrow_down.png"|m }}' alt="{{ advanced_search_title }}" title="{{ advanced_search_title }}" class="togglesearch" style="display: none;"/>
-            {% endif %}
-          </a>
-        </form>
-      </div>
+    <div id="toolbar-search">
+      {% render_search search_form %}
     </div>
 
     <div class="label">{% trans "Filter by:" %}</div>

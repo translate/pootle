@@ -20,28 +20,9 @@
 
 from django import template
 from django.utils.safestring import mark_safe
-from django.utils.translation import ugettext as _
 
-from pootle_misc.baseurl import l
-from pootle_translationproject.forms import make_search_form
 
 register = template.Library()
-
-@register.inclusion_tag('translation_project/search.html', takes_context=True)
-def render_search(context, form=None, action=None):
-    translation_project = context['translation_project']
-    if form is None:
-        is_terminology =  translation_project.project.is_terminology
-        form = make_search_form(terminology=is_terminology)
-    if action is None:
-        action = l('translate.html')
-
-    template_vars = {
-        'search_form': form,
-        'search_action': action,
-        'advanced_search_title': _('Advanced search'),
-        }
-    return template_vars
 
 
 @register.filter

@@ -1,10 +1,17 @@
 {% extends "tp_base.html" %}
-{% load assets baseurl cache cleanhtml i18n locale translation_project_tags progressbar %}
+{% load assets baseurl cache cleanhtml i18n locale progressbar search translation_project_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block body.id %}fileindex{% endblock body.id %}
 
 {% block bodyclass %}tpoverview{% endblock bodyclass %}
+
+{% block search %}
+{% cache settings.CACHE_TIMEOUT tp_search translation_project.id LANGUAGE_CODE %}
+{% render_search %}
+{% endcache %}
+{% endblock %}
+
 
 {% block content %}
 <div class="module first">
@@ -139,9 +146,25 @@
 
 {% block scripts_extra %}
 {{ block.super }}
-{% if upload %}
 <script type="text/javascript">
 $(document).ready(function() {
+  PTL.search.init();
+
+  $("#searchform").submit(function(e) {
+    e.preventDefault();
+
+    var s = $(this.search).val();
+
+    if (!s) {
+      return false;
+    }
+
+    var hash = "#search=" + PTL.search.parse(s);
+    window.location = this.action + hash;
+
+    return false;
+  });
+{% if upload %}
   $("select#id_upload_to_dir").parent().hide();
   $("input#id_file").change(function() {
     if (/\.zip$/.test($(this).val())) {
@@ -152,9 +175,9 @@ $(document).ready(function() {
       $("select#id_upload_to").parent().show();
     }
   });
+{% endif %}
 });
 </script>
-{% endif %}
 {% if user.is_superuser or request.permissions.administrate %}
 {% assets "js_admin" %}
 <script type="text/javascript" src="{{ ASSET_URL }}"></script>

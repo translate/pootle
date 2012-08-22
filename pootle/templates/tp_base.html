@@ -1,6 +1,6 @@
 {% extends "base.html"  %}
 
-{% load i18n baseurl translation_project_tags cache %}
+{% load i18n baseurl cache %}
 
 {% block title %}
     {{ block.super }} » 
@@ -16,12 +16,6 @@
 
 {% block extra_head %}
 <link rel="alternate" type="application/rss+xml" href="{% url pootle_notifications__feed feed_path %}" />
-{% endblock %}
-
-{% block search %}
-{% cache settings.CACHE_TIMEOUT tp_search translation_project.id LANGUAGE_CODE %}
-{% render_search %}
-{% endcache %}
 {% endblock %}
 
 {% block precontent %}

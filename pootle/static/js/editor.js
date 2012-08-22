@@ -37,14 +37,11 @@
 
     /* Currently active search fields */
     this.searchFields = [];
-    /* Valid search field options */
-    this.searchOptions = ['source', 'target', 'notes', 'locations'];
 
     /* Regular expressions */
     this.cpRE = /^(<[^>]+>|\[n\|t]|\W$^\n)*(\b|$)/gm;
     this.escapeRE = /<[^<]*?>|\r\n|[\r\n\t&<>]/gm;
     this.whitespaceRE = /^ +| +$|[\r\n\t] +| {2,}/gm;
-    this.searchRE = /^in:.+|\sin:.+/i;
 
     /* Timeline requests handler */
     this.timelineReq = null;
@@ -62,6 +59,10 @@
 
     /* Set initial focus on page load */
     this.focused = $(".translate-original-focus textarea").get(0);
+
+    /* Initialize search */
+    // TODO: pass the environment option to the init
+    PTL.search.init();
 
     /*
      * Bind event handlers
@@ -208,20 +209,6 @@
     });
     shortcut.add('ctrl+shift+u', function () {
       $("#item-number").focus().select();
-    });
-    shortcut.add('ctrl+shift+s', function () {
-      $("#id_search").focus().select();
-    });
-    $("#id_search").focus(function() {
-      $(this).attr("focused", true);
-    });
-    $("#id_search").blur(function() {
-      $(this).attr("focused", "");
-    });
-    shortcut.add('escape', function () {
-      if ($("#id_search").attr("focused")) {
-        $("#id_search").blur();
-      }
     });
 
     /* XHR activity indicator */
@@ -1607,66 +1594,13 @@
   },
 
 
-  /*
-   * Search
-   */
-
-  /* Parses search text to detect any given fields */
-  parseSearch: function (text) {
-    var searchFields = [],
-        parsed = text;
-
-    // Check if there are fields specified within the search text
-    if (this.searchRE.test(text)) {
-      var opt,
-          removeParts = [],
-          parts = text.split(" ");
-
-      $.each(parts, function (i, part) {
-        if (PTL.editor.searchRE.test(part)) {
-          opt = part.split(":")[1];
-
-          // Only consider valid fields
-          if ($.inArray(opt, PTL.editor.searchOptions) > -1) {
-            searchFields.push(opt);
-          }
-
-          // If it's an invalid field name, discard it from the search text
-          removeParts.push(i);
-        }
-      });
-
-      // Remove parsed fields from the original array.
-      // It has to be done in reverse order for not clashing with indexes.
-      $.each(removeParts.reverse(), function (i, j) {
-        parts.splice(j, 1);
-      });
-
-      // Join unparsed remaining text, as this will be the actual search text
-      parsed = encodeURIComponent(parts.join(" "));
-    } else {
-      parsed = encodeURIComponent(parsed);
-      // There were no fields specified within the text so we use the dropdown
-      $("div.advancedsearch input:checked").each(function () {
-        searchFields.push($(this).val());
-      });
-    }
-
-    // If any options have been chosen, append them to the resulting URL
-    if (searchFields.length) {
-      parsed += "&sfields=" + searchFields.join(',');
-    }
-
-    return parsed;
-  },
-
-
   /* Loads the search view */
   search: function () {
-    var text = $("#id_search").val();
-    var newHash;
+    var newHash,
+        text = $("#id_search").val();
+
     if (text) {
-      var parsed = this.parseSearch(text);
+      var parsed = PTL.search.parse(text);
       newHash = "search=" + parsed;
     } else {
       newHash = PTL.utils.updateHashPart("filter", "all", ["search", "sfields"]);

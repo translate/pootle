@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2010-2011 Zuza Software Foundation
+# Copyright 2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -18,16 +18,29 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-"""Form fields required for handling Translation Project"""
+from django import template
+
+from pootle_misc.baseurl import l
+from pootle_misc.forms import make_search_form
 
 
-from django import forms
-
-from pootle_translationproject.models import TranslationProject
+register = template.Library()
 
 
-class DescriptionForm(forms.ModelForm):
+@register.inclusion_tag('search.html', takes_context=True)
+def render_search(context, form=None, action=None):
+    translation_project = context['translation_project']
 
-    class Meta:
-        model = TranslationProject
-        fields = ("description",)
+    if form is None:
+        is_terminology = translation_project.project.is_terminology
+        form = make_search_form(terminology=is_terminology)
+
+    if action is None:
+        action = l('translate.html')
+
+    template_vars = {
+        'search_form': form,
+        'search_action': action,
+    }
+
+    return template_vars

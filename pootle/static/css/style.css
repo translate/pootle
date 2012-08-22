@@ -1888,13 +1888,12 @@ div#search[dir="rtl"]
     left: 2em;
 }
 
-div#toolbar_search
+#toolbar-search
 {
     position: relative;
 }
 
 
-div#toolbar_search input[type=text],
 div#search input[type=text]
 {
     border: 1px solid #76b0bf;
@@ -1902,7 +1901,6 @@ div#search input[type=text]
     width: 145px;
 }
 
-div#toolbar_search .advancedlink,
 div#search .advancedlink
 {
     width: 20px;
@@ -1914,7 +1912,6 @@ div#search .advancedlink
     vertical-align: top; /* IE alignment fix */
 }
 
-div#toolbar_search[dir="rtl"] .advancedlink,
 div#search[dir="rtl"] .advancedlink
 {
     margin: 0 -5px 0 0;
@@ -1943,13 +1940,12 @@ div.advancedsearch li input {
     vertical-align: top;
 }
 
-
-div.search-container
+#toolbar-search > #search
 {
-    position: relative;
+    position: static;
 }
 
-div#toolbar_search div.advancedsearch {
+#toolbar-search div.advancedsearch {
     border-bottom: none;
     border-top: 1px solid #76b0bf;
     bottom: 20px;

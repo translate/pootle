@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2010,2012 Zuza Software Foundation
+# Copyright 2010-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -21,6 +21,7 @@
 
 from django import forms
 from django.core.validators import EMPTY_VALUES
+from django.utils.translation import ugettext_lazy as _
 
 
 class GroupedModelChoiceField(forms.ModelChoiceField):
@@ -65,3 +66,44 @@ class LiberalModelChoiceField(forms.ModelChoiceField):
         except self.queryset.model.DoesNotExist:
             raise forms.ValidationError(self.error_messages['invalid_choice'])
         return value
+
+
+def make_search_form(*args, **kwargs):
+    """A factory that instantiates one of the search forms below."""
+    terminology = kwargs.pop('terminology', False)
+
+    if terminology:
+        return TermSearchForm(*args, **kwargs)
+
+    return SearchForm(*args, **kwargs)
+
+
+class SearchForm(forms.Form):
+    """Normal search form for translation projects."""
+    search = forms.CharField(widget=forms.TextInput(attrs={'size': '15'}))
+    sfields = forms.MultipleChoiceField(
+            required=False,
+            widget=forms.CheckboxSelectMultiple,
+            choices=(
+                ('source', _('Source Text')),
+                ('target', _('Target Text')),
+                ('notes', _('Comments')),
+                ('locations', _('Locations'))
+            ),
+            initial=['source', 'target'],
+    )
+
+
+class TermSearchForm(SearchForm):
+    """Search form for terminology projects and pootle-terminology files."""
+    # Mostly the same as SearchForm, but defining it this way seemed easiest
+    sfields = forms.ChoiceField(
+            required=False,
+            widget=forms.CheckboxSelectMultiple,
+            choices=(
+                ('source', _('Source Terms')),
+                ('target', _('Target Terms')),
+                ('notes', _('Definitions')),
+            ),
+            initial=['source', 'target'],
+    )

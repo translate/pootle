@@ -42,6 +42,7 @@ from pootle_app.models.permissions import (get_matching_permissions,
                                            check_profile_permission)
 from pootle_misc.baseurl import redirect
 from pootle_misc.checks import get_quality_check_failures
+from pootle_misc.forms import make_search_form
 from pootle_misc.stats import get_raw_stats
 from pootle_misc.url_manip import ensure_uri, previous_view_url
 from pootle_misc.util import paginate, ajax_required, jsonify
@@ -57,7 +58,6 @@ from pootle_store.templatetags.store_tags import (highlight_diffs,
                                                   pluralize_target)
 from pootle_store.util import (UNTRANSLATED, FUZZY, TRANSLATED, STATES_MAP,
                                absolute_real_path, find_altsrcs, get_sugg_list)
-from pootle_translationproject.forms import make_search_form
 
 
 def _common_context(request, translation_project, permission_codes):
@@ -345,7 +345,6 @@ def translate_page(request):
         'MT_BACKENDS': settings.MT_BACKENDS,
         'LOOKUP_BACKENDS': settings.LOOKUP_BACKENDS,
         'AMAGAMA_URL': settings.AMAGAMA_URL,
-        'advanced_search_title': _('Advanced search'),
         }
 
     if is_terminology:
