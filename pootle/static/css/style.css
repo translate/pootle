@@ -1899,6 +1899,7 @@ div#search input[type=text]
     border: 1px solid #76b0bf;
     height: 16px;
     width: 145px;
+    background-color: #fff;
 }
 
 div#search .advancedlink
@@ -1949,11 +1950,6 @@ div.advancedsearch li input {
     border-bottom: none;
     border-top: 1px solid #76b0bf;
     bottom: 20px;
-}
-
-div.nodefaultsearch
-{
-    background-color: #f1f3f5 !important;
 }
 
 label.inputHint
