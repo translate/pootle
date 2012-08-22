@@ -1894,15 +1894,21 @@ div#search[dir="rtl"]
 }
 
 
-div#search input[type=text]
+#search input[type=text]
 {
     border: 1px solid #76b0bf;
     height: 16px;
     width: 145px;
     background-color: #fff;
+    color: #aaa;
 }
 
-div#search .advancedlink
+#search input[type=text]:focus
+{
+    color: #130f30;
+}
+
+#search .advancedlink
 {
     width: 20px;
     height: 20px;
@@ -1913,7 +1919,7 @@ div#search .advancedlink
     vertical-align: top; /* IE alignment fix */
 }
 
-div#search[dir="rtl"] .advancedlink
+#search[dir="rtl"] .advancedlink
 {
     margin: 0 -5px 0 0;
 }
@@ -1946,7 +1952,8 @@ div.advancedsearch li input {
     position: static;
 }
 
-#toolbar-search div.advancedsearch {
+#toolbar-search div.advancedsearch
+{
     border-bottom: none;
     border-top: 1px solid #76b0bf;
     bottom: 20px;

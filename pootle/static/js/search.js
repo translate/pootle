@@ -45,9 +45,6 @@
       });
 
       /* Search input text */
-      var focused = { color: "#000" },
-          unfocused = { color: "#aaa" };
-
       $('label.inputHint').each(function () {
         var initial,
             search = false,
@@ -62,18 +59,14 @@
         }
 
         input.focus(function () {
-          input.css(focused);
-
           if (input.val() == initial && !search) {
             input.val('');
           }
         }).blur(function () {
           if (input.val() == '') {
-            input.val(initial).css(unfocused);
-          } else if (search && input.val() == initial) {
-            input.css(unfocused);
+            input.val(initial);
           }
-        }).css(unfocused).val(initial);
+        }).val(initial);
       });
 
       /* Dropdown toggling */
