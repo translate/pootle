@@ -344,8 +344,8 @@
         PTL.editor.preventNavigation = false;
 
         // Load the units that match the given criterias
-
-        PTL.editor.getViewUnits({pager: true, page: pageNumber, withUid: withUid});
+        PTL.editor.getViewUnits({pager: true, page: pageNumber,
+                                 withUid: withUid});
 
         if (PTL.editor.hasResults) {
           // ensure all the data is preloaded before rendering the table
