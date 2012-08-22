@@ -28,6 +28,24 @@ textarea#view_unit
     background: -moz-linear-gradient(top,  #e5f3f8,  #cde7f1);
 }
 
+/* Toolbar search */
+
+#toolbar #search
+{
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+}
+
+#toolbar div.advancedsearch
+{
+    border-bottom: none;
+    border-top: 1px solid #76b0bf;
+    bottom: 30px;
+}
+
+
 /* Zoom levels */
 
 body.zoom-out-1 #toolbar

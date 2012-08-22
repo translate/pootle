@@ -1888,12 +1888,6 @@ div#search[dir="rtl"]
     left: 2em;
 }
 
-#toolbar-search
-{
-    position: relative;
-}
-
-
 #search input[type=text]
 {
     border: 1px solid #76b0bf;
@@ -1945,18 +1939,6 @@ div.advancedsearch li {
 
 div.advancedsearch li input {
     vertical-align: top;
-}
-
-#toolbar-search > #search
-{
-    position: static;
-}
-
-#toolbar-search div.advancedsearch
-{
-    border-bottom: none;
-    border-top: 1px solid #76b0bf;
-    bottom: 20px;
 }
 
 label.inputHint
