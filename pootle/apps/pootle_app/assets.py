@@ -58,5 +58,5 @@ register('css_admin', css_admin)
 
 css_editor = Bundle(
     'css/editor.css',
-    filters='cssmin', output='editor.min.css')
+    filters='cssmin', output='css/editor.min.css')
 register('css_editor', css_editor)
