@@ -43,6 +43,49 @@
       $("#id_search").blur(function() {
         $(this).attr("focused", "");
       });
+
+      /* Search input text */
+      var focused = { color: "#000" },
+          unfocused = { color: "#aaa" };
+
+      $('label.inputHint').each(function () {
+        var initial,
+            search = false,
+            label = $(this),
+            input = $('#' + label.attr('for'));
+
+        if (input.prop("defaultValue")) {
+          initial = input.prop("defaultValue");
+          search = true;
+        } else {
+          initial = label.hide().text().replace(':', '');
+        }
+
+        input.focus(function () {
+          input.css(focused);
+
+          if (input.val() == initial && !search) {
+            input.val('');
+          }
+        }).blur(function () {
+          if (input.val() == '') {
+            input.val(initial).css(unfocused);
+          } else if (search && input.val() == initial) {
+            input.css(unfocused);
+          }
+        }).css(unfocused).val(initial);
+      });
+
+      /* Dropdown toggling */
+      $("a.advancedlink").click(function (event) {
+        event.preventDefault();
+        $("div.advancedsearch").slideToggle();
+      }).toggle(function () {
+        $("img.togglesearch").toggle();
+      }, function () {
+        $("img.togglesearch").toggle();
+      });
+
     },
 
     /* Parses search text to detect any given fields */
