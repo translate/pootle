@@ -28,7 +28,7 @@ from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
-from django.utils.translation import to_locale, ugettext as _, ungettext
+from django.utils.translation import to_locale, ugettext as _
 from django.utils.translation.trans_real import parse_accept_lang_header
 from django.utils import simplejson
 from django.utils.encoding import iri_to_uri

@@ -31,8 +31,7 @@ from translate.misc.multistring import multistring
 from pootle_misc.templatetags.cleanhtml import fancy_escape, fancy_highlight
 from pootle_misc.util import add_percentages
 from pootle_store.fields import list_empty
-from pootle_store.models import Unit
-from pootle_store.util import TRANSLATED
+
 
 register = template.Library()
 

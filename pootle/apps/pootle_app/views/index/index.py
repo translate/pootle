@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2009-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -25,16 +25,15 @@ from django.utils.translation import ugettext as _
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
+from pootle.i18n.gettext import tr_lang
 from pootle_app.models import Directory
 from pootle_app.models.permissions import (get_matching_permissions,
                                            check_permission)
-from pootle_app.views.language.item_dict import add_percentages
 from pootle_app.views.top_stats import gentopstats_root
-from pootle.i18n.gettext import tr_lang
+from pootle_profile.models import get_profile
+from pootle_project.models import Project
 from pootle_language.models import Language
 from pootle_misc.stats import get_raw_stats
-from pootle_project.models import Project
-from pootle_profile.models import get_profile
 from pootle_statistics.models import Submission
 
 

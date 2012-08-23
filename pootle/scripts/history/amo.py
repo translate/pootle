@@ -8,23 +8,20 @@
 # Dan Schafer <dschafer@andrew.cmu.edu>
 # Frederic Wenzel <fwenzel@mozilla.com>
 
-import sys
 import os
-import os.path
-import subprocess
-import StringIO
-
 import logging
-from django.conf import settings
-
-from pootle.scripts.convert import monopo2po, po2monopo
-from translate.convert import html2po, po2html
-
 import re
+import StringIO
 try:
     import tidy
 except:
     pass
+
+from django.conf import settings
+
+from pootle.scripts.convert import monopo2po, po2monopo
+from translate.convert import html2po
+
 
 def _getfiles(file):
     mainfile = os.path.join(os.path.split(file)[0], "messages.po")

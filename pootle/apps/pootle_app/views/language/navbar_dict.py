@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2009-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -20,11 +20,7 @@
 
 """Helper methods for the navigation bar."""
 
-from django.utils.translation import ugettext as _
-
 from pootle.i18n.gettext import tr_lang
-
-from pootle_app.models.permissions import check_permission
 from pootle_app.views.language import dispatch, item_dict
 from pootle_misc import url_manip
 

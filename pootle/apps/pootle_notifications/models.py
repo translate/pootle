@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2009-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -22,13 +22,8 @@ import locale
 
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from django.db.models import Q
-from django import forms
 
-from pootle_app.models import Directory
 from pootle_misc.baseurl import l
-from pootle_language.models import Language
-from pootle_project.models import Project
 
 
 class Notice(models.Model):

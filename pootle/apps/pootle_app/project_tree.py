@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2009-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -18,17 +18,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-import os
 import logging
+import os
 import re
 import shutil
 
-from translate.lang    import data as langdata
+from translate.lang import data as langdata
 
-from pootle_store.models      import Store, PARSED
-from pootle_store.util import absolute_real_path, relative_real_path
 from pootle_app.models.directory  import Directory
 from pootle_language.models import Language
+from pootle_store.models import Store, PARSED
+from pootle_store.util import absolute_real_path
+
 
 # case insensitive match for language codes
 LANGCODE_RE = re.compile('^[a-z]{2,3}([_-][a-z]{2,3})?(@[a-z0-9]+)?$', re.IGNORECASE)

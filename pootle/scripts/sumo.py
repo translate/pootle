@@ -5,12 +5,12 @@
 #
 # Author: Wil Clouser <clouserw@mozilla.com>
 
-import sys
 import os
-import os.path
-import subprocess
+
 from django.conf import settings
+
 from translate.convert import tiki2po, po2tiki
+
 
 def initialize(projectdir, languagecode):
     """The first paramater is the path to the project directory.  It's up to this

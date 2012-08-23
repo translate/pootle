@@ -18,28 +18,27 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-import sys
-
+from django.db.models import Q
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import render_to_response
+from django.core.mail import send_mail
+from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
-from pootle.i18n.gettext import ungettext
-from django.shortcuts import get_object_or_404
-from django.core.mail import send_mail
-from django.db.models import Q
 
 from pootle.i18n.gettext import tr_lang
-
+# XXX: shouldn't this be coming from django.conf.settings?
+from pootle.settings import DEFAULT_FROM_EMAIL
 from pootle_app.models import Directory
-from pootle_app.models.permissions import get_matching_permissions, check_permission, check_profile_permission
+from pootle_app.models.permissions import (get_matching_permissions,
+                                           check_permission,
+                                           check_profile_permission)
 from pootle_app.views.language import navbar_dict
 from pootle_language.models import Language
 from pootle_notifications.models import Notice
-from pootle_translationproject.models import TranslationProject
 from pootle_project.models import Project
 from pootle_profile.models import get_profile, PootleProfile
-from pootle.settings import DEFAULT_FROM_EMAIL
+from pootle_translationproject.models import TranslationProject
+
 
 def view(request, path):
     #FIXME: why do we have leading and trailing slashes in pootle_path?
