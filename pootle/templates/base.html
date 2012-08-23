@@ -44,7 +44,7 @@
           html: true, fade: true, delayIn: 750, live: true});
         $.ajaxSetup({ traditional: true });
         $.ajaxPrefilter(function (options, originalOptions) {
-          if (options.type === 'post') {
+          if (options.type === 'post' || options.type === 'POST') {
             options.data = $.param(
               $.extend(originalOptions.data,
                        { csrfmiddlewaretoken: '{{ csrf_token }}' }) );

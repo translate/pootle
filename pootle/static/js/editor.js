@@ -1616,7 +1616,7 @@
     e.preventDefault();
 
     var url = $(this).attr('action'),
-        reqData = $(this).serialize();
+        reqData = $(this).serializeObject();
 
     $.ajax({
       url: url,
