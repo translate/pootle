@@ -324,7 +324,7 @@ def translate_page(request):
 
     store = getattr(request, "store", None)
     is_terminology = project.is_terminology or store and store.is_terminology
-    search_form = make_search_form(terminology=is_terminology)
+    search_form = make_search_form(request=request, terminology=is_terminology)
 
     previous_overview_url = previous_view_url(request, ['overview'])
 

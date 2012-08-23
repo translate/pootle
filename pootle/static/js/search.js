@@ -127,6 +127,13 @@
         parsed += "&sfields=" + searchFields.join(',');
       }
 
+      if (searchFields.length) {
+        // Remember field selection in a cookie
+        var cookieName = "search-" + this.settings['environment'],
+            cookieData = JSON.stringify(searchFields);
+        $.cookie(cookieName, cookieData, {path: '/'});
+      }
+
       return parsed;
     }
 

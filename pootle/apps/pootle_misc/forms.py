@@ -71,6 +71,18 @@ class LiberalModelChoiceField(forms.ModelChoiceField):
 def make_search_form(*args, **kwargs):
     """A factory that instantiates one of the search forms below."""
     terminology = kwargs.pop('terminology', False)
+    request = kwargs.pop('request', None)
+
+    if request is not None:
+        env = terminology and "terminology" or "editor"
+        fields = request.COOKIES.get("search-%s" % env)
+
+        if fields:
+            import urllib
+            from django.utils import simplejson
+
+            sfields = simplejson.loads(urllib.unquote(fields))
+            kwargs.update({'initial': {'sfields': sfields}})
 
     if terminology:
         return TermSearchForm(*args, **kwargs)
