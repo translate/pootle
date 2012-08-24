@@ -1021,11 +1021,9 @@ div.translation-text-headers[dir="rtl"] div.translate-toolbar a
 
 a.editor-specialchar
 {
-    border: 1px dotted #999;
     padding: 0 0.2em;
     min-width: 1.3em;
     margin: 2px 0;
-    color: #666;
     display: inline-block;
 }
 
@@ -1089,9 +1087,11 @@ a.editor-specialchar:hover
     color: #630;
 }
 
+a.editor-specialchar,
 .highlight-punctuation
 {
-    background-color: #f1f7e4;
+    border: 1px dotted #999;
+    color: #666;
 }
 
 .highlight
