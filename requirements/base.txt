@@ -1,4 +1,4 @@
-Django>=1.2.0
+Django>=1.2.0,<1.5
 
 # Django apps
 django-voting
