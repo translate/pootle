@@ -47,6 +47,15 @@ _("Android strings")
 
 # Commonly used terms to refer to Terms of Services, Privacy Policies...
 
+# Translators: Label that refers to the site's privacy policy
 _("Privacy Policy")
+# Translators: Label that refers to the site's legal requirements
 _("Legal")
+# Translators: Label that refers to the site's license requirements
 _("License")
+# Translators: Label that refers to the site's license requirements
+_("Contributor License")
+# Translators: Label that refers to the site's terms of use
+_("Terms of Use")
+# Translators: Label that refers to the site's terms of service
+_("Terms of Service")
