@@ -7,7 +7,7 @@ webassets
 
 # Libraries
 cssmin
-# lxml>=2.1.4
+lxml>=2.1.4
 
 # Translate Toolkit
 -e git://github.com/translate/translate.git#egg=translate

@@ -21,6 +21,8 @@
 import random
 import re
 
+from lxml.html.clean import clean_html
+
 from django import template
 from django.template.defaultfilters import stringfilter
 from django.utils.html import escape, simple_email_re as email_re
@@ -28,10 +30,6 @@ from django.utils.safestring import mark_safe
 
 from translate.storage.placeables import general
 
-try:
-    from lxml.html.clean import clean_html
-except ImportError:
-    clean_html = lambda text: text
 
 ESCAPE_RE = re.compile('<[^<]*?>|\\\\|\r\n|[\r\n\t&<>]')
 def fancy_escape(text):

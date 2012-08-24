@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009,2012 Zuza Software Foundation
+# Copyright 2009-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -57,6 +57,18 @@ def test_django():
     else:
         return False, get_version()
 
+lxml_required_ver = (2, 1, 4, 0)
+def test_lxml():
+    try:
+        from lxml.etree import LXML_VERSION, __version__
+        return False, __version__
+        if LXML_VERSION >= lxml_required_ver:
+            return True, __version__
+        else:
+            return False, __version__
+    except ImportError:
+        return None, None
+
 ##############################
 # test optional dependencies #
 ##############################
@@ -77,18 +89,6 @@ def test_iso_codes():
         # about that here.
         languages = ['af', 'ar', 'fr']
     return len(gettext.find('iso_639', languages=languages, all=True)) > 0
-
-
-lxml_required_ver = (2, 1, 4, 0)
-def test_lxml():
-    try:
-        from lxml.etree import LXML_VERSION, __version__
-        if LXML_VERSION >= lxml_required_ver:
-            return True, __version__
-        else:
-            return False, __version__
-    except ImportError:
-        return None, None
 
 def test_levenshtein():
     try:

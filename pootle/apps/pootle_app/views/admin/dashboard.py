@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008 Zuza Software Foundation
+# Copyright 2008-2012 Zuza Software Foundation
 #
 # This file is part of translate.
 #
@@ -71,12 +71,18 @@ def required_depcheck():
         text = _('lxml version %s is installed.', version)
         state = 'good'
     elif version is not None:
-        text = _('lxml version %(installed)s is installed. Pootle requires at least version %(required)s for XML format support.', {'installed': version, 'required': ".".join(depcheck.lxml_required_ver)})
+        required = ".".join(str(i) for i in depcheck.lxml_required_ver
+        text = _('lxml version %(installed)s is installed. Pootle requires '
+                 'at least version %(required)s.', {
+                     'installed': version,
+                     'required': required)
+                })
         state = 'error'
     else:
-        text = _('lxml is not installed. Pootle requires lxml for XML format support.')
+        text = _('lxml is not installed. Pootle requires lxml.')
         state = 'error'
     required.append({'dependency': 'lxml', 'state': state, 'text': text})
+
     return required
 
 
