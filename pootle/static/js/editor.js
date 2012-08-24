@@ -332,6 +332,11 @@
           $("#id_search").triggerHandler('focus');
           $("#id_search").val(PTL.editor.searchText);
 
+          // Set defaults if no fields have been specified
+          if (!PTL.editor.searchFields.length) {
+            PTL.editor.searchFields = ["source", "target"];
+          }
+
           $("div.advancedsearch input").each(function () {
             if ($.inArray($(this).val(), PTL.editor.searchFields) >= 0) {
               $(this).attr("checked", "checked");
@@ -436,11 +441,6 @@
     $.each(PTL.editor.searchFields, function (i, field) {
       sel.push(selMap[field]);
     });
-
-    // By default we search source and target texts
-    if (!sel.length) {
-      sel = [selMap['source'], selMap['target']];
-    }
 
     $(sel.join(", ")).highlightRegex(new RegExp(PTL.editor.makeRegexForMultipleWords(hl), "i"));
   },
@@ -791,13 +791,7 @@
 
       case "search":
         reqData.search = this.searchText;
-
-        // Override defaults if any fields have been specified
-        if (this.searchFields.length) {
-          reqData.sfields = this.searchFields;
-        } else {
-          reqData.sfields = ["source", "target"];
-        }
+        reqData.sfields = this.searchFields;
         break;
 
       case "suggestions":
