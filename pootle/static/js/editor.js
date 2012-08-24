@@ -439,7 +439,8 @@
 
     // Build highlighting selector based on chosen search fields
     $.each(PTL.editor.searchFields, function (i, field) {
-      sel.push(selMap[field]);
+      sel.push("tr.edit-row " + selMap[field]);
+      sel.push("tr.view-row " + selMap[field]);
     });
 
     $(sel.join(", ")).highlightRegex(new RegExp(PTL.editor.makeRegexForMultipleWords(hl), "i"));
