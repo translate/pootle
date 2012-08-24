@@ -71,16 +71,17 @@ def required_depcheck():
         text = _('lxml version %s is installed.', version)
         state = 'good'
     elif version is not None:
-        required = ".".join(str(i) for i in depcheck.lxml_required_ver
+        required_ver = ".".join(str(i) for i in depcheck.lxml_required_ver)
         text = _('lxml version %(installed)s is installed. Pootle requires '
                  'at least version %(required)s.', {
                      'installed': version,
-                     'required': required)
+                     'required': required_ver,
                 })
         state = 'error'
     else:
         text = _('lxml is not installed. Pootle requires lxml.')
         state = 'error'
+
     required.append({'dependency': 'lxml', 'state': state, 'text': text})
 
     return required

@@ -61,7 +61,6 @@ lxml_required_ver = (2, 1, 4, 0)
 def test_lxml():
     try:
         from lxml.etree import LXML_VERSION, __version__
-        return False, __version__
         if LXML_VERSION >= lxml_required_ver:
             return True, __version__
         else:
