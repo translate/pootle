@@ -236,6 +236,16 @@ def unit_form_factory(language, snplurals=None, request=None):
 
             return value
 
+        def clean_translator_extra(self):
+            value = self.cleaned_data['translator_extra']
+
+            if self.instance.translator_extra != value:
+                self.instance._translator_extra_updated = True
+            else:
+                self.instance._translator_extra_updated = False
+
+            return value
+
         def clean_state(self):
             value = self.cleaned_data['state']
 
