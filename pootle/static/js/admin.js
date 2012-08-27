@@ -97,7 +97,7 @@ $(document).ready(function () {
       $.ajax({
         url: $(this).attr('action'),
         type: 'POST',
-        data: $(this).formSerialize(), //from jquery.form.js
+        data: $(this).serializeObject(),
         success: function (data) {
           $('.intro').first().html(data.intro);
           $('.js-admin-description').html(data.form);

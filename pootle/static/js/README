@@ -73,13 +73,6 @@ Directory contents
 
       http://plugins.jquery.com/project/bidi
 
-    - jquery.form.js :
-      jQuery plugin providing the ability to upgrade HTML forms to use AJAX.
-
-      Version 3.09 (16-APR-2012)
-
-      http://jquery.malsup.com/form/
-
     - jquery.caret.js :
       jQuery plugin to write text on top of the selected text or just after
       the caret position.
