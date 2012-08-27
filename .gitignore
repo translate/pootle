@@ -3,6 +3,9 @@
 /deploy/*/settings.conf
 /deploy/*/virtualhost.conf
 
+# /docs/
+/docs/_build/
+
 # /pootle/dbs/
 /pootle/dbs/*.db
 
