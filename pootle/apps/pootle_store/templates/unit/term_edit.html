@@ -74,7 +74,7 @@
             <div class="language-name">{{ source_language.localname }}</div>
             {% if cansuggest or cantranslate %}
               {% if report_target %}
-                <a class="report-bug" href="{{ report_target }}"><img src='{{ "images/bug.png"|m }}' title="{% trans 'Report a problem with the source string' %}" /></a>
+                <a class="report-bug" href="{{ report_target }}" target="_blank"><img src='{{ "images/bug.png"|m }}' title="{% trans 'Report a problem with the source string' %}" /></a>
               {% endif %}
             <div class="translate-toolbar">
               <a class="icon-copy js-copyoriginal" title="{% trans 'Copy into translation' %}" accesskey="c"></a>
