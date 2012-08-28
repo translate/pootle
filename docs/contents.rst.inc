@@ -1,12 +1,16 @@
+.. _users:
+
 Using Pootle
 ------------
 
 .. toctree::
    :maxdepth: 2
 
-   getting_started
-   translating
+   users/getting_started
+   users/translating
 
+
+.. _features:
 
 Features
 --------
@@ -15,16 +19,19 @@ Features
    :maxdepth: 2
 
 
+.. _server:
+
 Administering a server
 ----------------------
 
 .. toctree::
    :maxdepth: 2
 
-   installation
-   upgrading
-   changelog
+   server/installation
+   server/upgrading
 
+
+.. _developers:
 
 Developers
 ----------
@@ -35,8 +42,10 @@ read through this part.
 .. toctree::
    :maxdepth: 2
 
-   styleguide
+   developers/styleguide
 
+
+.. _notes:
 
 Additional Notes
 ----------------
@@ -44,4 +53,5 @@ Additional Notes
 .. toctree::
    :maxdepth: 2
 
+   changelog
    license
