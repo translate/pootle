@@ -1,7 +1,7 @@
 .. _changelog:
 
-Pootle Changelog
-================
+Changelog
+=========
 
 These are the critical changes that have happened in Pootle and may affect
 your server. Also be aware of the :ref:`important changes in the

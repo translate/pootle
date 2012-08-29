@@ -1,0 +1,333 @@
+.. _commands:
+
+Management commands
+===================
+
+The *manage.py* commands are administration commands provided by Django,
+Pootle or any external Django app being used with Pootle. How you run manage
+commands depends on how you installed Pootle.
+
+
+.. _commands#running_from_checkout:
+
+Running from checkout
+---------------------
+
+If you run Pootle from a checkout (either directly from SVN or from a release
+tarball) you can use the *manage.py* file found in the main Pootle directory.
+
+For example, to get information about all available manage.py commands, run::
+
+    # ./manage.py help
+
+
+.. _commands#running_from_install:
+
+Running from install
+--------------------
+
+If you run Pootle from an install (with *setup.py* or your operating system
+package) you will have to use the `django-admin` or `django-admin.py`
+command that comes with Django.
+
+Here is the same example::
+
+    # django-admin.py help --settings=pootle.settings
+
+Note since `django-admin.py` is a global command it needs to know where to
+find Pootle via the ``--settings=pootle.settings`` command line option.
+
+
+.. _commands#managing_pootle_projects:
+
+Managing Pootle projects
+------------------------
+
+These commands will go through all existing projects performing maintenance
+tasks. The tasks are all available through the web interface but on a project
+by project or file by file basis.
+
+All commands in that category accept a ``--directory`` command line option that
+expects a path relative to the *po/* directory to limit it's action to.
+
+.. versionchanged:: 2.1.2
+
+Commands target can be limited in a more flexible way using the ``--project``
+``--language`` command line options. They can be repeated to indicate multiple
+languages or projects. If you use both options together it will only match the
+files that match both languages and projects selected.
+
+If you need to limit the commands to certain files or subdirectories you can
+use the ``--path-prefix`` option, path should be relative to project/language
+pair.
+
+For example, to *refresh_stats* for the tutorial project only, run::
+
+    ./manage.py refresh_stats --project=tutorial
+
+To only refresh a the Zulu and Basque language files within the tutorial
+project, run::
+
+    ./manage.py refresh_stats --project=tutorial --language=zu --language=eu
+
+
+.. _commands#refresh_stats:
+
+refresh_stats
+^^^^^^^^^^^^^
+
+This command will go through all existing projects making sure calculated data
+is up to date. Running *refresh_stats* immediately after an install, upgrade
+or after adding large number of files will make Pootle feel faster as it will
+require less on-demand calculation of expensive statistics.
+
+*refresh_stats* will do the following tasks:
+
+- Update statistics cache (only useful if you are using memcached)
+
+- Calculate quality checks so they appear on the translate page without the
+  need to visit the review tab first
+
+- Update :doc:`full text search index <indexing>` (Lucene or Xapian)
+
+
+.. _commands#sync_stores:
+
+sync_stores
+^^^^^^^^^^^
+
+This command will save all translations currently in database to the file
+system, thereby bringing the files under the *po/* directory in sync with the
+Pootle database.
+
+For better performance Pootle keeps translations in database and doesn't save
+them to disk except on demand (before file downloads and before major file
+level operations like version control update).
+
+You must run this command before taking backups or running scripts that modify
+the translation files directly on the file system, otherwise you might miss out
+on translations that are in database but not yet saved to disk.
+
+
+.. _commands#update_stores:
+
+update_stores
+^^^^^^^^^^^^^
+
+This command is the opposite of *sync_stores*. It will update the strings in
+database to reflect what is on disk, as Pootle will not detect changes in the
+file system on it's own.
+
+It will also discover and import any new files added to existing languages
+within the projects.
+
+You must run this command after running scripts that modify translation files
+directly on the file system.
+
+*update_stores* has an extra command line option ``--keep`` that will prevent
+it from overwriting any existing translation in the database, thus only
+updating new translations and discovering new files and strings.
+
+Note that if files on the file system are corrupt translations might be deleted
+from database. Handle with care!
+
+
+.. _commands#update_from_templates:
+
+update_from_templates
+^^^^^^^^^^^^^^^^^^^^^
+
+This command is essentially an interface to the Translate Toolkit command
+:doc:`pot2po <toolkit:pot2po>` with special Pootle specific routines to update
+database as well as file system to reflect the latest version of translation
+templates for each language in a project.
+
+While updating existing files it will retain translations, and even do fuzzy
+matching in case strings had minor changes. New templates will initialize new
+untranslated files.
+
+It is unlikely you will ever need to run this command for all projects at once.
+Use the ``--directory`` command line option to be specific about the project or
+project/language pair you want to target.
+
+If the template files are corrupt translations might be lost. If you generate
+templates based on a script make sure they are in good shape.
+
+
+.. _commands#update_translation_projects:
+
+update_translation_projects
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This command scans project directories looking for files matching languages not
+added to the project then adds them. It basically repeats the discovery process
+done by Pootle when you create a new project.
+
+Using the ``--cleanup`` command line option, languages added to projects that
+no longer have matching files on the filesystem will be deleted.
+
+
+.. _commands#update_from_vcs:
+
+update_from_vcs
+^^^^^^^^^^^^^^^
+
+.. versionadded:: 2.2
+
+This command updates the specified files from their
+:doc:`../features/version_control` system(s). It supports the parameters
+``--directory``, ``--project``, and ``--language``.
+
+Pootle will take care to avoid version control conflicts, and will handle any
+conflicts on string level, just like it would if the update was done through
+the web front-end.
+
+
+.. _commands#commit_to_vcs:
+
+commit_to_vcs
+^^^^^^^^^^^^^
+
+.. versionadded:: 2.2
+
+This command commits the specified files to their
+:doc:`../features/version_control` system(s). It supports the parameters
+``--directory``, ``--project``, and ``--language``.
+
+A file needs to be up to date, otherwise the commit will fail. Files can be
+updated inside Pootle, or using the update_from_vcs command. This is not done
+automatically, otherwise the merged version of the file will be committed
+without review without anybody knowing.
+
+
+.. _commands#manually_installing_pootle:
+
+Manually installing Pootle
+--------------------------
+
+These commands expose the database installation and upgrade process from the
+command line.
+
+
+.. _commands#syncdb:
+
+syncdb
+^^^^^^
+
+Strictly speaking *syncdb* is a generic django *manage.py* command that creates
+empty database tables. It has been customized for Pootle to create everything
+required for a bare bones install. This includes database tables, default
+permissions, some default objects used internally by Pootle (like the "default"
+and "nobody" user profiles) and the special Terminology and Templates
+languages.
+
+If you just run *syncdb* you will have a usable Pootle install but you will
+need to create all languages manually, and you will not have a tutorial project
+to play with.
+
+Use this command if you plan to upgrade from a Pootle 1.2 install or if you
+don't like having many languages by default.
+
+
+.. _commands#initdb:
+
+initdb
+^^^^^^
+
+This is Pootle's install process, it creates the default admin user, populates
+the language table with several languages with their correct fields,
+initializes several terminology projects, and creates the tutorial project.
+
+*initdb* can only be run after *syncdb*.
+
+Note that initdb will not import translations in database, so the first visit
+to Pootle after initdb will be very slow. **It is best to run *refresh_stats*
+immediately after *initdb***.
+
+
+.. _commands#updatedb:
+
+updatedb
+^^^^^^^^
+
+This is a command line interface to Pootle's database scheme upgrade process.
+Usually database upgrade is triggered automatically on the first visit to a
+:doc:`new version of Pootle <upgrading>`, but for very large installs database
+upgrades can be too slow for the browser and it is best to run *updatedb*
+from the command line.
+
+
+.. _commands#useful_django_commands:
+
+Useful Django commands
+----------------------
+
+
+.. _commands#changepassword:
+
+changepassword
+^^^^^^^^^^^^^^
+
+ ::
+
+    ./manage.py changepassword <username>
+
+This can be used to change the password of any user from the command line.
+
+
+.. _commands#createsuperuser:
+
+createsuperuser
+^^^^^^^^^^^^^^^
+
+This creates a new admin user. It will prompt for username, password and email
+address.
+
+
+.. _commands#dbshell:
+
+dbshell
+^^^^^^^
+
+This opens a database command prompt with the Pootle database already loaded.
+It is useful if you know SQL. Try not to break anything.
+
+
+.. _commands#shell:
+
+shell
+^^^^^
+
+This opens a Python shell with the Django and Pootle environment already
+loaded. Useful if you know a bit of python or the Django models syntax.
+
+
+.. _commands#running_in_cron:
+
+Running commands in cron
+------------------------
+
+If you want to schedule certain actions on your Pootle server, using
+management commands with cron might be a solution.
+
+The management commands can perform certain batch commands which you might want
+to have executed periodically without user intervention.
+
+For the full details on how to configure cron, read your platform documentation
+(for example ``man crontab``). Here is an example that runs the *refresh_stats*
+command daily at 02:00 AM::
+
+    00 02 * * * www-data /var/www/sites/pootle/manage.py refresh_stats
+
+Test your command with the parameters you want from the command line. Insert it
+in the cron table, and ensure that it is executed as the correct user (the same
+as your web server) like *www-data*, for example. The user executing the
+command is specified in the sixth column. Cron might report errors through
+local mail, but it might also be useful to look at the logs in
+*/var/log/cron/*, for example.
+
+If you are running Pootle from a virtualenv, or if you set any custom
+``PYTHONPATH`` or similar, you might need to run your management command from a
+bash script that creates the correct environment for your command to run from.
+Call this script then from cron. It shouldn't be necessary to specify the
+settings file for Pootle - it should automatically be detected.
