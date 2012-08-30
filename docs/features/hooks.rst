@@ -3,7 +3,7 @@
 Hooks
 =====
 
-Pootle supports hooks to customise behaviour on submit and update from
+Pootle supports hooks to customize behaviour on submit and update from
 :doc:`Version Control Systems <version_control>`. They are Python scripts and
 can do things like checking or converting formats before commit.
 

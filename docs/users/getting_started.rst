@@ -29,12 +29,12 @@ You can register in the register page (accessible by clicking *Register* in the
 menubar) following two simple steps, providing you have a current e-mail
 address.
 
-# Fill in your desired user name, a valid e-mail account, and enter your
-password twice for verification. Then choose *Register* and an you will receive a
-message with an activation link in the e-mail address you have provided.
+#. Fill in your desired user name, a valid e-mail account, and enter your
+   password twice for verification. Then choose *Register* and an you will receive a
+   message with an activation link in the e-mail address you have provided.
 
-# When you receive the activation message by e-mail, just click on the
-activation link and your account will be activated.
+#. When you receive the activation message by e-mail, just click on the
+   activation link and your account will be activated.
 
 
 .. _getting-started#login:

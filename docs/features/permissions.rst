@@ -14,7 +14,7 @@ used in each project unless other permissions are configured.
 Permissions precedence
 ----------------------
 
-Permissions can be customised server-wide, per-language, per-project or
+Permissions can be customized server-wide, per-language, per-project or
 language/project combination (translation project).
 
 Permissions apply recursively, so server-wide permissions will apply to all

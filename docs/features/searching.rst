@@ -18,7 +18,7 @@ Pootle.
 Search domain
 -------------
 
-It is important to realise that when a new search term is entered, **searching
+It is important to realize that when a new search term is entered, **searching
 will take place inside the currently viewed domain**. If you are currently at
 the top level of your project, the whole project will be searched. If you are
 viewing a directory, only files in that directory will be searched. If you are
@@ -56,7 +56,7 @@ Backend
 ^^^^^^^
 
 The basic searching uses :doc:`pogrep <toolkit:pogrep>` which will look for the
-substring in the source and target text. It supports Unicode normalisation.
+substring in the source and target text. It supports Unicode normalization.
 Alternatively, a Pootle server might be installed with an :doc:`indexing engine
 <../server/indexing>` (PyLucene or Xapian) to speed up searching. Search
 results can differ slightly from the normal search, based on the indexing that

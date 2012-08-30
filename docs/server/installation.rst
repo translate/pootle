@@ -41,7 +41,7 @@ Software requirements
 
 This section helps you choose the versions of software that you need, the
 dependencies and optional software.  These might be slightly different if you
-are installing e.g. Windows so please familiarise yourself with your target
+are installing e.g. Windows so please familiarize yourself with your target
 platform and installation options before downloading all the software.
 
 .. note::

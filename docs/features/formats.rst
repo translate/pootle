@@ -52,7 +52,7 @@ without conversion.
 
 Monolingual files need special attention in order to provide translators with
 good workflow and to assist to perform good translation.  Read more in the
-`localisation guide`.
+localization guide.
 
 The main difference between monolingual and bilingual projects in Pootle is
 that for monolingual projects a translation template is required. Pootle cannot

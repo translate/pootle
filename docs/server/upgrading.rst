@@ -6,7 +6,7 @@ Upgrading
 Pootle can easily be upgraded to newer versions to get the benefit of the
 newest versions.  Here are some tips to make the process easier:
 
-Familiarise yourself with :doc:`important changes <../changelog>` in Pootle
+Familiarize yourself with :doc:`important changes <../changelog>` in Pootle
 over the versions.  If you are upgrading to Pootle 2.x from Pootle 1.x, have a
 look at the :doc:`database_migration` page first, although some of the issues
 on this page could still be relevant.
@@ -24,7 +24,7 @@ completely before upgrading Pootle (or the other way round).
 
 Always make backups of all your translation files (your whole *podirectory*),
 and your settings (*localsettings.py*).  With Pootle 2.1 there is a way to
-synchronise all translation files with the database from the :doc:`command line
+synchronize all translation files with the database from the :doc:`command line
 <commands>`.
 
 Make a backup of your complete database using the appropriate *dump* command

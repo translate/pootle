@@ -124,8 +124,8 @@ Configurable logos
   moment it will probably be easiest to ensure that the same image sizes
   are used as the standard images.
 
-Localised language names
-  Users can now feel more at home with language names being localised.
+Localized language names
+  Users can now feel more at home with language names being localized.
   This functionality is actually provided by the toolkit and your system's
   iso-codes package.
 
