@@ -9,7 +9,8 @@ Pootle is built using the powerful API of the *Translate Toolkit* and the
 *Django framework*. If you want to know more about these, you can dive into
 their own documentation.
 
-- `Translate Toolkit Documentation <http://translate-toolkit.readthedocs.org/en/latest/>`_
+- `Translate Toolkit Documentation
+  <http://translate.readthedocs.org/projects/translate-toolkit/en/latest/>`_
 
 - `Django Documentation <https://docs.djangoproject.com/>`_
 
