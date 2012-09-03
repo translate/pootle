@@ -57,9 +57,6 @@
                  tm: $.template($("#tm_suggestions").html()),
                  editCtx: $.template($("#editCtx").html())}
 
-    /* Set initial focus on page load */
-    this.focused = $(".translate-original-focus textarea").get(0);
-
     /* Initialize search */
     // TODO: pass the environment option to the init
     PTL.search.init();

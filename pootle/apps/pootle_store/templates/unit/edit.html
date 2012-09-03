@@ -86,7 +86,7 @@
                 </div>
                 {% endif %}
               </div>
-              <div id="unit-{{ altunit.id }}" class="translate-original translate-original-focus{% if unit.hasplural %} translate-plural{% endif %}">
+              <div id="unit-{{ altunit.id }}" class="translate-original{% if unit.hasplural %} translate-plural{% endif %}">
                 {% for i, target, title in altunit|pluralize_target %}
                 <div class="translation-text" lang="{{ altunit.store.translation_project.language.code }}" dir="{{ altunit.store.translation_project.language.get_direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ target|fancy_highlight }}</div>
                 {% endfor %}
@@ -107,7 +107,7 @@
                 </div>
                 {% endif %}
               </div>
-              <div class="translate-original translate-original-focus{% if unit.hasplural %} translate-plural{% endif %}">
+              <div class="translate-original{% if unit.hasplural %} translate-plural{% endif %}">
                 {% for i, source, title in unit|pluralize_source %}
                 <div class="translation-text" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ source|fancy_highlight }}</div>
                 {% endfor %}
@@ -137,7 +137,7 @@
             </div>
           </div>
           <!-- Translation -->
-          <div id="orig{{ unit.index }}" class="translate-translation translate-original-focus" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
+          <div id="orig{{ unit.index }}" class="translate-translation" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
             <!-- Begin: Normal editing -->
             {{ form.target_f }}
             {% if language.specialchars and cantranslate or cansuggest %}
