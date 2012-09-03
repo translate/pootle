@@ -505,14 +505,7 @@ html[dir="rtl"] #nav-main li
     margin: 0;
 }
 
-#footer a:link,
-#footer a:visited
-{
-    color: #888;
-}
-
-#footer a:hover,
-#footer a:active
+#footer a
 {
     color: #888;
 }
