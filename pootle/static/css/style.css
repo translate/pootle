@@ -1508,6 +1508,18 @@ html[dir="rtl"] div.item-statistics dl dd
 
 /* Expanded checks */
 
+.checks td
+{
+    height: 100%;
+}
+
+.checks td a
+{
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+}
+
 .check-name
 {
     width: 22%;
@@ -1526,7 +1538,7 @@ html[dir="rtl"] .check-count
     padding-left: 5%;
 }
 
-#check-100 td
+#check-100 td a
 {
     background-color: inherit;
     color: #c30;

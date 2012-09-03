@@ -29,7 +29,7 @@
     <tr>
     {% for check in failure_category.checks %}
       <td class="check-name"><a href="{{ check.url }}">{{ check.display_name }}</a></td>
-      <td class="check-count">{{ check.count }}</td>
+      <td class="check-count"><a href="{{ check.url }}">{{ check.count }}</a></td>
     {% if not forloop.counter0|divisibleby:2 %}
     </tr>
     <tr>
