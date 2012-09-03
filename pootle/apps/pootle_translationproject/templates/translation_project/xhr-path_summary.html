@@ -25,7 +25,7 @@
 <div>
 {% for failure_category in check_failures %}
   <h4>{{ failure_category.display_name }}</h4>
-  <div id="check-{{ failure.name }}" class="checks">
+  <div id="check-{{ failure_category.name }}" class="checks">
     <dl>
     {% for check in failure_category.checks %}
     <dt><a href="{{ check.url }}">{{ check.display_name }}</a></dt>
