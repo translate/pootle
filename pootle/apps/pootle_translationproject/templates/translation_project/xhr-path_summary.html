@@ -25,15 +25,18 @@
 <div>
 {% for failure_category in check_failures %}
   <h4>{{ failure_category.display_name }}</h4>
-  <div id="check-{{ failure_category.name }}" class="checks">
-    <dl>
+  <table id="check-{{ failure_category.name }}" class="checks">
+    <tr>
     {% for check in failure_category.checks %}
-    <dt><a href="{{ check.url }}">{{ check.display_name }}</a></dt>
-    {% comment %}Ugly workaround for the non-resetting cycle tag{% endcomment %}
-    <dd class="{% if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %}">{{ check.count }}</dd>
+      <td class="check-name"><a href="{{ check.url }}">{{ check.display_name }}</a></td>
+      <td class="check-count">{{ check.count }}</td>
+    {% if not forloop.counter0|divisibleby:2 %}
+    </tr>
+    <tr>
+    {% endif %}
     {% endfor %}
-    </dl>
-  </div>
+    </tr>
+  </table>
 {% endfor %}
 </div>
 {% endif %}

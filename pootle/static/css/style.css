@@ -1506,47 +1506,33 @@ html[dir="rtl"] div.item-statistics dl dd
     margin: 0 110px 0 0;
 }
 
-div.checks dl dd
+/* Expanded checks */
+
+.check-name
 {
-    display: inline-block;
-    line-height: inherit;
-    font-size: 120%;
-    width: 25%;
-    margin-left: 0;
+    width: 22%;
+}
+
+.check-count
+{
     text-align: right;
+    width: 5%;
+    padding-right: 5%;
 }
 
-div.checks dl dd.odd
+html[dir="rtl"] .check-count
 {
-    margin-right: 11%;
+    padding-right: 0;
+    padding-left: 5%;
 }
 
-div.checks dl dd.even
-{
-    margin-right: 0;
-}
-
-html[dir="rtl"] div.checks dl dd.odd
-{
-    margin-left: 11%;
-    margin-right: 0;
-}
-
-html[dir="rtl"] div.checks dl dd.even
-{
-    margin-left: 0;
-}
-
-#check-100 dl
-{
-    font-weight: bold;
-}
-
-#check-100 dl dd
+#check-100 td
 {
     background-color: inherit;
     color: #c30;
+    font-weight: bold;
 }
+
 
 div.small
 {
