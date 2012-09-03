@@ -644,18 +644,16 @@ html[dir="rtl"] .suggestion-vote
     color: #444;
     line-height: 140%;
     padding: 0.5em;
-    cursor: pointer;
 }
 
-.extra-item:hover {
+.extra-item:hover
+{
     background-color: #fff;
 }
 
-#translator-comment .extra-item:hover,
-#timeline-results .extra-item:hover
+#translator-comment .extra-item:hover
 {
     background-color: #f1f7e4;
-    cursor: auto;
 }
 
 .suggestion-original,
