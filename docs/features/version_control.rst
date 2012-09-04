@@ -49,7 +49,7 @@ necessary to construct the correct file system structure in the
 version control system has to follow a layout that corresponds to the
 ``PODIRECTORY``. The ``VCS_DIRECTORY`` is *pootle/repos* by default and should
 contain one directory for each project on the server that is either a
-clone/checkout for the corresposonding Pootle project, or a symlink (or
+clone/checkout for the corresponding Pootle project, or a symlink (or a
 directory with symlinks) to the repo somewhere else on the file system.
 
 The ``PODIRECTORY`` therefore contains the translation files used during normal
