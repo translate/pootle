@@ -542,7 +542,7 @@ body.zoom-out-2 .sidebar
 
 #extras-container
 {
-    margin-top: .5em;
+    margin-top: 1em;
 }
 
 #extras-bar,
@@ -574,7 +574,6 @@ html[dir="rtl"] #extras-bar a
 .extra-item-block
 {
     position: relative;
-    clear: both;
 }
 
 .extra-item-block:last-child
@@ -716,12 +715,6 @@ html[dir="rtl"] #target-item-content
     float: right;
     margin-left: 0;
     margin-right: 1%;
-}
-
-#timeline-results,
-#tm-results
-{
-    clear: both;
 }
 
 .timeline-extra

@@ -155,9 +155,6 @@
           </div>
         </form>
       </div>
-    </div>
-
-    <div class="translate-middle clear">
       <div id="extras-bar">
         {% if cantranslate %}<a class="js-editor-comment" tabindex="15">{% trans "Add Comment" %}</a>{% endif %}
         <a id="show-timeline" href='{{ "/unit/timeline/"|l }}{{ unit.id }}'>{% trans 'Show Timeline' %}</a>
@@ -193,7 +190,7 @@
       {% endif %}
       {% if suggestions %}
       <div id="suggestions">
-        <div class="extra-item-title clear">{% trans 'User suggestions' %}</div>
+        <div class="extra-item-title">{% trans 'User suggestions' %}</div>
         {% for sugg, score in suggestions %}
         <div id="suggestion-{{ sugg.id }}" class="extra-item-block">
           {% for i, target, diff, title in sugg|pluralize_diff_sugg %}
