@@ -98,7 +98,7 @@ def get_quality_check_failures(path_obj, path_stats, include_url=True):
         for i, category in enumerate(keys):
             if category != Category.NO_CATEGORY:
                 checks.append({'name': category,
-                               'display_name': category_names[category],
+                               'display_name': unicode(category_names[category]),
                                'checks': []})
 
             cat_keys = property_stats[category].keys()
@@ -108,7 +108,7 @@ def get_quality_check_failures(path_obj, path_stats, include_url=True):
                 checkcount = property_stats[category][checkname]
 
                 if total and checkcount:
-                    check_display = check_names.get(checkname, checkname)
+                    check_display = unicode(check_names.get(checkname, checkname))
                     check = {'name': checkname,
                              'display_name': check_display,
                              'count': checkcount}
