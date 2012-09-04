@@ -126,8 +126,43 @@ Examples
 HTML
 ----
 
+Indenting
+  - Indent using 2 spaces. Don't use tabs.
+
+  - Although it's desirable to avoid lines longer than 80 characters, most of
+    the time the templating library doesn't easily allow this. So try not to
+    extend too much the line length.
+
 CSS
 ---
+
+Indenting
+  - Indent using 4 spaces. Don't use tabs.
+
+  - Put selectors and braces on their own lines.
+
+  Good:
+
+  .. code-block:: css
+
+    .foo-bar,
+    .foo-bar:hover
+    {
+        background-color: #eee;
+    }
+
+  Bad:
+
+  .. code-block:: css
+
+    .foo-bar, .foo-bar:hover {
+      background-color: #eee;
+    }
+
+Naming
+  - Selectors should all be in lowercase and consequent words should be
+    separated using dashes. As an example, rather use ``.tm-results`` and not
+    ``.TM_results``.
 
 .. _Translate Styleguide: http://readthedocs.org/docs/translate-toolkit/en/latest/styleguide.html
 .. _1: http://javascript.crockford.com/code.html
