@@ -562,7 +562,8 @@ def timeline(request, unit):
 
     for key, values in groupby(timeline, key=lambda x: x.creation_time):
         entry_group = {
-            'datetime': key.strftime(locale.nl_langinfo(locale.D_T_FMT)),
+            'datetime': key,
+            'datetime_str': key.strftime(locale.nl_langinfo(locale.D_T_FMT)),
             'entries': [],
         }
 

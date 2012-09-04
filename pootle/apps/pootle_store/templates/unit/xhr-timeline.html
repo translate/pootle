@@ -1,4 +1,4 @@
-{% load i18n profile_tags %}
+{% load i18n profile_tags store_tags %}
 <div id="timeline-results">
   <div class="extra-item-title">{% trans 'Timeline' %}</div>
   {% for entry_group in entries_group %}
@@ -12,13 +12,18 @@
     </div>
     <div class="extra-item-content">
       <div class="extra-item">
-        <div class="timeline-entry" lang="{{ language.code }}" dir="{{ language.get_direction }}" title="{{ entry_group.datetime }}">
+        <div class="timeline-entry" lang="{{ language.code }}"
+             dir="{{ language.get_direction }}">
           {% for entry in entry_group.entries %}
           <div class="timeline-field-{{ entry.field }}
             {% if entry.field == 2 %} js-editor-copytext{% endif %}"
             {% if entry.field == 2 %}data-action="overwrite"{% endif %}>{% if entry.field != 2 %}<span class="sidetitle">{{ entry.field_name }}:</span> {% endif %}{% if entry.field != 3 %}{{ entry.new_value }}{% else %}{{ entry.old_value }} → {{ entry.new_value }}{% endif %}</div>
           {% endfor %}
         </div>
+      </div>
+      <div class="extra-item-meta pull-right"
+           title="{{ entry_group.datetime_str }}">
+        {{ entry_group.datetime|timedelta }}
       </div>
     </div>
   </div>

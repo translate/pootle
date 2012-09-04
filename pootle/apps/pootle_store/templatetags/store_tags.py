@@ -18,13 +18,15 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+import datetime
+
 from django import template
 from django.core.exceptions import  ObjectDoesNotExist
 #FIXME: _loader is probably not a stable API for the future, but seems like
 # the best way to go for now:
 from django.template.loaders.app_directories import _loader
 from django.utils.safestring import mark_safe
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext as _, ungettext
 
 from translate.misc.multistring import multistring
 
@@ -196,3 +198,39 @@ def do_include_raw(parser, token):
 
     return template.TextNode(source)
 register.tag("include_raw", do_include_raw)
+
+
+@register.filter
+def timedelta(date):
+    """Returns a human-readable time delta, similar to Django's ``timesince``
+    template filter but allowing proper localizability.
+
+    Adapted from http://djangosnippets.org/snippets/2275/
+    """
+    delta = datetime.datetime.now() - date
+
+    num_years = delta.days / 365
+    if (num_years > 0):
+        return ungettext(u"%d year ago",
+                         u"%d years ago", num_years) % num_years
+
+    num_weeks = delta.days / 7
+    if (num_weeks > 0):
+        return ungettext(u"%d week ago",
+                         u"%d weeks ago", num_weeks) % num_weeks
+
+    if (delta.days > 0):
+        return ungettext(u"%d day ago",
+                         u"%d days ago", delta.days) % delta.days
+
+    num_hours = delta.seconds / 3600
+    if (num_hours > 0):
+        return ungettext(u"%d hour ago",
+                         u"%d hours ago", num_hours) % num_hours
+
+    num_minutes = delta.seconds / 60
+    if (num_minutes > 0):
+        return ungettext(u"%d minute ago",
+                         u"%d minutes ago", num_minutes) % num_minutes
+
+    return _(u"Few seconds ago")
