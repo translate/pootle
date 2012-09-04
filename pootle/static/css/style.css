@@ -832,8 +832,7 @@ html[dir="rtl"] .module .hd h3 span
 
 div#upload p,
 div#upload ul,
-div#update p,
-.general-message input
+div#update p
 {
     margin-bottom: 0.5em;
 }
