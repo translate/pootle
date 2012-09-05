@@ -62,6 +62,22 @@ Directory contents
 
     http://www.kryogenix.org/code/browser/sorttable/
 
+  + bootstrap/
+
+    - bootstrap-alert.js :
+      Dismiss functionality for all alert messages.
+
+      Version 2.1.1
+
+      https://github.com/twitter/bootstrap/blob/master/js/bootstrap-alert.js
+
+    - bootstrap-transition.js :
+      Transition support for bootstrap scripts.
+
+      Version 2.1.1
+
+      https://github.com/twitter/bootstrap/blob/master/js/bootstrap-transition.js
+
   + jquery/
 
     - jquery.js :

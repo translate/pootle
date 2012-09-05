@@ -61,6 +61,17 @@
         class="{% block bodyclass %}{% endblock %}">
     {% block body %}
     <div id="wrapper">
+      {% if messages %}
+      <div id="alerts" class="affix">
+        {% for message in messages %}
+        <div class="alert alert-block alert-{{ message.tags }} fade in" lang="{{ LANGUAGE_CODE }}">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          {{ message }}
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
       <div id="header">
         {% block header %}
         <div id="nav-access">
@@ -118,20 +129,6 @@
           {% block precontent %}{% endblock %}
           {% block innernav %}{% endblock %}
         </div>
-
-        {% if message or error_message or messages %}
-        <div class="form message{% if error_message %} error{% endif %}" lang="{{ LANGUAGE_CODE }}">
-          {% block message %}
-          <div class="info">{{ message }}</div>
-          <div class="error">{{ error_message }}</div>
-          {% for msg in messages %}
-          <p class="info">
-          {{ msg }}
-          </p>
-          {% endfor %}
-          {% endblock message %}
-        </div>
-        {% endif %}
 
         <div id="content">
           {% block content %}{% endblock %}
