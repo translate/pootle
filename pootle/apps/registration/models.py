@@ -12,6 +12,12 @@ from django.utils.hashcompat import sha_constructor
 from django.utils.translation import ugettext_lazy as _
 
 
+try:
+    from django.utils.timezone import now as datetime_now
+except ImportError:
+    datetime_now = datetime.datetime.now
+
+
 SHA1_RE = re.compile('^[a-f0-9]{40}$')
 
 
@@ -258,5 +264,5 @@ class RegistrationProfile(models.Model):
         """
         expiration_date = datetime.timedelta(days=settings.ACCOUNT_ACTIVATION_DAYS)
         return self.activation_key == self.ACTIVATED or \
-               (self.user.date_joined + expiration_date <= datetime.datetime.now())
+               (self.user.date_joined + expiration_date <= datetime_now())
     activation_key_expired.boolean = True
