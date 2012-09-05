@@ -35,7 +35,7 @@ POOTLE_JS_POT="po/pootle/templates/pootle_js.pot"
 YEAR=`date +%Y`
 COPYRIGHT_HOLDER="Zuza Software Foundation (Translate.org.za)"
 PACKAGE="Pootle"
-VERSION="2.2"
+VERSION=`egrep "^ver" __version__.py | sed "s,.*(\(.*\)),\1,g" | sed "s,[ ],,g" | sed "s/,/./g"`
 
 pushd . 2>&1 > /dev/null
 cd $basedir
