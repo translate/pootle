@@ -118,16 +118,17 @@ def extract(request, translation_project):
 
 def manage_store(request, template_vars, language, term_store):
     from django import forms
-    #HACKISH: Django won't allow excluding form fields already defined in parent class, manually extra fields.
     from pootle_store.forms import unit_form_factory
     unit_form_class = unit_form_factory(language)
+
+    # XXX: Review this
+    # HACKISH: Django won't allow excluding form fields already defined in
+    # the parent class, manually extra fields.
     del(unit_form_class.base_fields['target_f'])
     del(unit_form_class.base_fields['id'])
-    del(unit_form_class.base_fields['translator_comment'])
     del(unit_form_class.base_fields['state'])
     del(unit_form_class.declared_fields['target_f'])
     del(unit_form_class.declared_fields['id'])
-    del(unit_form_class.declared_fields['translator_comment'])
     del(unit_form_class.declared_fields['state'])
 
     class TermUnitForm(unit_form_class):
