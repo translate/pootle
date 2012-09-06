@@ -168,18 +168,15 @@ def form_set_as_table(formset, link=None, linkfield='code'):
         result.append('</tr>\n')
     return u''.join(result)
 
-def process_modelformset(request, model_class, queryset, **kwargs):
-    """With the Django model class 'model_class' and the Django form class 'form_class',
-    construct a Django formset which can manipulate """
 
-    # Create a formset class for the model 'model_class' (i.e. it will contain forms whose
-    # contents are based on the fields of 'model_class'); parameters for the construction
-    # of the forms used in the formset should be in kwargs. In Django 1.0, the interface
-    # to modelformset_factory is
-    # def modelformset_factory(model, form=ModelForm, formfield_callback=lambda f: f.formfield(),
-    #                          formset=BaseModelFormSet,
-    #                          extra=1, can_delete=False, can_order=False,
-    #                          max_num=0, fields=None, exclude=None)
+def process_modelformset(request, model_class, queryset, **kwargs):
+    """With the Django model class `model_class` and the given `queryset`,
+    construct a formset process its submission."""
+
+    # Create a formset class for the model `model_class` (i.e. it will contain
+    # forms whose contents are based on the fields of `model_class`);
+    # parameters for the construction of the forms used in the formset should
+    # be in kwargs.
     formset_class = modelformset_factory(model_class, **kwargs)
 
     if queryset is None:
