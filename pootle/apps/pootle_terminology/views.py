@@ -132,25 +132,31 @@ def manage_store(request, template_vars, language, term_store):
     del(unit_form_class.declared_fields['state'])
 
     class TermUnitForm(unit_form_class):
-        # set store for new terms
-        store = forms.ModelChoiceField(queryset=Store.objects.filter(pk=term_store.pk), initial=term_store.pk, widget=forms.HiddenInput)
+        # Set store for new terms
+        qs = Store.objects.filter(pk=term_store.pk)
+        store = forms.ModelChoiceField(queryset=qs, initial=term_store.pk,
+                                       widget=forms.HiddenInput)
         index = forms.IntegerField(required=False, widget=forms.HiddenInput)
-        #TODO: voeg konteks by
 
         def clean_index(self):
-            # assign new terms an index value
+            # Assign new terms an index value
             value = self.cleaned_data['index']
+
             if self.instance.id is None:
                 value = term_store.max_index() + 1
             return value
 
         def clean_source_f(self):
             value = super(TermUnitForm, self).clean_source_f()
+
             if value:
                 existing = term_store.findid(value[0])
+
                 if existing and existing.id != self.instance.id:
-                    raise forms.ValidationError(_('This term already exists in this file.'))
+                    raise forms.ValidationError(_('This term already exists '
+                                                  'in this file.'))
                 self.instance.setid(value[0])
+
             return value
 
     return util.edit(request, 'terminology/manage.html', Unit, template_vars, None, None,
