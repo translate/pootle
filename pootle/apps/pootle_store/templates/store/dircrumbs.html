@@ -1,8 +1,0 @@
-{% load baseurl cache %}
-{% cache settings.CACHE_TIMEOUT dircrumbs directory.id %}
-{% if directory.trail %}
-{% for dir in directory.trail %}
-» <span><a href="{{ dir.pootle_path|l}}">{{ dir.name }}</a></span>
-{% endfor %}
-{% endif %}
-{% endcache %}

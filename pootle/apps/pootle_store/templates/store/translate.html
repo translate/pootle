@@ -4,13 +4,7 @@
 {% get_current_language as LANGUAGE_BIDI %}
 
 {% block title %}
-{{ block.super }}{% if store_id %} » {{ store.name }}{% endif %}
-{% endblock %}
-
-{% block breadcrumb_content %}
-{% cache settings.CACHE_TIMEOUT translate_bread directory.id store_id LANGUAGE_CODE %}
-{{ block.super }}{% if store_id %} » <span><a href="{{ store.pootle_path|l}}/translate">{{ store.name }}</a></span>{% endif %}
-{% endcache %}
+{{ block.super }} » {% trans "Translate" %}
 {% endblock %}
 
 {% block body.id %}translatepage{% endblock body.id %}

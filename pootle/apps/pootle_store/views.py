@@ -708,10 +708,6 @@ def get_edit_unit(request, unit):
         t = loader.get_template('unit/edit.html')
     c = RequestContext(request, template_vars)
     json['editor'] = t.render(c)
-    t = loader.get_template('store/dircrumbs.html')
-    json['dircrumbs'] = t.render(c)
-    t = loader.get_template('store/storecrumbs.html')
-    json['storecrumbs'] = t.render(c)
 
     rcode = 200
 

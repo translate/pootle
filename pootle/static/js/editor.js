@@ -1110,24 +1110,6 @@
     }
   },
 
-  /* Update filename breadcrumb */
-  updateBreadcrumbs: function (dircrumbs, storecrumbs) {
-    var needUpdate;
-    if (this.dircrumbs && (this.dircrumbs != dircrumbs)) {
-      this.dircrumbs = dircrumbs;
-      needUpdate = true;
-    }
-    if (this.storecrumbs && (this.storecrumbs != storecrumbs)) {
-      this.storecrumbs = storecrumbs;
-      needUpdate = true;
-    }
-    if (needUpdate) {
-      var c = $("#breadcrumbs").contents();
-      c.slice(c.index($("#projectcrumb")) + 1).remove();
-      $('#projectcrumb').after(dircrumbs + storecrumbs);
-    }
-  },
-
   /* Updates the pager */
   updatePager: function (pager) {
     this.pager = pager;
@@ -1192,7 +1174,6 @@
       dataType: 'json',
       success: function (data) {
         widget = data['editor'];
-        PTL.editor.updateBreadcrumbs(data['dircrumbs'], data['storecrumbs']);
         // Update pager in case it's needed
         PTL.editor.updatePager(PTL.editor.createPager(uid));
 
