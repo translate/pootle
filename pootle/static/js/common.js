@@ -118,7 +118,8 @@ $(document).ready(function ($) {
 
   /* Overview actions */
   $(document).on("click", ".js-overview-actions-upload", function (e) {
-      $.fancybox("#upload");
+    e.preventDefault();
+    $.fancybox("#upload");
   });
 
   /* Generic toggle */

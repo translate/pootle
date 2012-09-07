@@ -561,6 +561,126 @@ html[dir="rtl"] #xhr-error span
     background: url("../images/error.png") 1em center no-repeat #e5f3f8;
 }
 
+/* Alerts from Bootstrap */
+
+#alerts
+{
+    top: 100px;
+    width: 400px;
+    left: 50%;
+    margin-left: -200px;
+    z-index: 1001;
+}
+
+.alert
+{
+    padding: 8px 35px 8px 14px;
+    margin-bottom: 1em;
+    color: #c09853;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    background-color: #fcf8e3;
+    border: 1px solid #fbeed5;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+}
+
+.alert h4
+{
+    margin: 0;
+}
+
+.alert .close
+{
+    position: relative;
+    top: -5px;
+    right: -21px;
+    line-height: 20px;
+}
+
+.alert-success
+{
+    color: #468847;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.alert-danger,
+.alert-error
+{
+    color: #b94a48;
+    background-color: #f2dede;
+    border-color: #eed3d7;
+}
+
+.alert-info
+{
+    color: #3a87ad;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+
+.alert-block
+{
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+.alert-block > p,
+.alert-block > ul
+{
+    margin-bottom: 0;
+}
+
+.alert-block p + p
+{
+    margin-top: 5px;
+}
+
+.close
+{
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 20px;
+    color: #000000;
+    text-shadow: 0 1px 0 #ffffff;
+    opacity: 0.2;
+    filter: alpha(opacity=20);
+}
+
+.close:hover
+{
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+}
+
+button.close
+{
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    -webkit-appearance: none;
+}
+
+.fade {
+  opacity: 0;
+  -webkit-transition: opacity 0.15s linear;
+     -moz-transition: opacity 0.15s linear;
+       -o-transition: opacity 0.15s linear;
+          transition: opacity 0.15s linear;
+}
+
+.fade.in {
+  opacity: 1;
+}
+
+/* Form messages */
+
 .form.message
 {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e5f3f8', endColorstr='#cde7f1');
@@ -604,6 +724,11 @@ html[dir="rtl"] #xhr-error span
 .invisible
 {
     visibility: hidden;
+}
+
+.affix
+{
+    position: fixed;
 }
 
 p.help,
@@ -832,8 +957,7 @@ html[dir="rtl"] .module .hd h3 span
 
 div#upload p,
 div#upload ul,
-div#update p,
-.general-message input
+div#update p
 {
     margin-bottom: 0.5em;
 }
@@ -1212,8 +1336,7 @@ body.tpoverview div#submenu-tabs a.tpoverview,
 body.tpnews div#submenu-tabs a.tpnews,
 body.tptranslate div#submenu-tabs a.tptranslate,
 body.tpterminology div#submenu-tabs a.tpterminology,
-body.tpadminpermissions div#submenu-tabs a.tpadminpermissions,
-body.tpadminfiles div#submenu-tabs a.tpadminfiles
+body.tpadminpermissions div#submenu-tabs a.tpadminpermissions
 {
     background-color: #fff;
     border-color: #777 #777 #fff;

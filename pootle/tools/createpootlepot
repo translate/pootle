@@ -35,7 +35,7 @@ POOTLE_JS_POT="po/pootle/templates/pootle_js.pot"
 YEAR=`date +%Y`
 COPYRIGHT_HOLDER="Zuza Software Foundation (Translate.org.za)"
 PACKAGE="Pootle"
-VERSION="2.2"
+VERSION=`egrep "^ver" __version__.py | sed "s,.*(\(.*\)),\1,g" | sed "s,[ ],,g" | sed "s/,/./g"`
 
 pushd . 2>&1 > /dev/null
 cd $basedir
@@ -48,6 +48,9 @@ mkdir locale
 # Header replacements
 sed -i "s/$YEAR_COPYRIGHT_PLACEHOLDER/$YEAR $COPYRIGHT_HOLDER/" $DJANGO_POT
 sed -i "s/$PACKAGE_VERSION_PLACEHOLDER/$PACKAGE $VERSION/" $DJANGO_POT
+
+sed -i "s/$YEAR_COPYRIGHT_PLACEHOLDER/$YEAR $COPYRIGHT_HOLDER/" $DJANGO_JS_POT
+sed -i "s/$PACKAGE_VERSION_PLACEHOLDER/$PACKAGE $VERSION/" $DJANGO_JS_POT
 
 mv $DJANGO_POT $POOTLE_POT
 mv $DJANGO_JS_POT $POOTLE_JS_POT

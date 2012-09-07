@@ -10,7 +10,6 @@
         {% if user.is_superuser or request.permissions.administrate %}
         <a href='{{ translation_project.pootle_path|l }}terminology_manage.html' class="tpterminology admintab" title="{% trans 'Manage terminology' %}">{% trans "Terminology" %}</a>
         <a href='{{ translation_project.pootle_path|l }}admin_permissions.html' class="tpadminpermissions admintab" title="{% trans 'Administrate your project permissions' %}">{% trans "Permissions" %}</a>
-        <a href='{{ translation_project.pootle_path|l }}admin_files.html' class="tpadminfiles admintab" title="{% trans 'Administrate your project files' %}">{% trans "Files" %}</a>
         {% endif %}
     </div>
 </div>

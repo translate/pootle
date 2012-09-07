@@ -18,16 +18,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-import os
 import logging
+import os
 import StringIO
 
 from django import forms
 from django.conf import settings
+from django.contrib import messages
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
 from django.utils.encoding import iri_to_uri
@@ -40,25 +41,25 @@ from pootle_app.models.signals import post_file_upload
 from pootle_app.models import Directory
 from pootle_app.project_tree import (ensure_target_dir_exists,
                                      direct_language_match_filename)
-from pootle_app.views.top_stats import gentopstats_translation_project
-from pootle_app.views.language import item_dict
-from pootle_app.views.language.view import get_stats_headings
 from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
-from pootle_app.views.language.view import (get_translation_project,
+from pootle_app.views.language import item_dict
+from pootle_app.views.language.view import (get_stats_headings,
+                                            get_translation_project,
                                             set_request_context)
+from pootle_app.views.top_stats import gentopstats_translation_project
 from pootle_misc.baseurl import redirect, l
 from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.stats import (get_raw_stats, get_translation_stats,
                                get_path_summary)
-from pootle_misc.versioncontrol import hasversioning
 from pootle_misc.util import jsonify, ajax_required
+from pootle_misc.versioncontrol import hasversioning
+from pootle_profile.models import get_profile
 from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_store.models import Store
 from pootle_store.util import absolute_real_path, relative_real_path
 from pootle_store.filetypes import factory_classes
 from pootle_store.views import translate_page
-from pootle_profile.models import get_profile
 from pootle_translationproject.actions import action_groups
 
 
@@ -83,34 +84,11 @@ def admin_permissions(request, translation_project):
                        template_vars)
 
 
-class StoreFormset(forms.models.BaseModelFormSet):
-
-    def save_existing_objects(self, commit=True):
-        result = super(StoreFormset, self).save_existing_objects(commit)
-
-        for store in self.deleted_objects:
-            #hackish: we disabled deleting files when field is
-            # deleted except for when value is being overwritten, but
-            # this form is the only place in pootle where actual file
-            # system files should be deleted
-            if store.file:
-                store.file.storage.delete(store.file.name)
-
-        return result
-
-
 @get_translation_project
 @set_request_context
 @util.has_permission('administrate')
-def admin_files(request, translation_project):
-
-    queryset = translation_project.stores.all()
-
-    if 'template_update' in request.POST:
-        translation_project.update_from_templates()
-        request.POST = {}
-
-    if 'scan_files' in request.POST:
+def rescan_files(request, translation_project):
+    try:
         translation_project.scan_files()
 
         for store in translation_project.stores.exclude(file='').iterator():
@@ -118,25 +96,88 @@ def admin_files(request, translation_project):
             store.update(update_structure=True, update_translation=True,
                          conservative=False)
 
-        request.POST = {}
+        messages.success(request, _("Translation project files have been "
+                                    "rescanned."))
+    except:
+        messages.error(request, _("Error while rescanning translation project "
+                                  "files."))
 
-    model_args = {
-        'feed_path': translation_project.directory.pootle_path[1:],
-        'translation_project': translation_project,
-        'language': translation_project.language,
-        'project': translation_project.project,
-        'directory': translation_project.directory,
-        }
+    language = translation_project.language.code
+    project = translation_project.project.code
+    overview_url = reverse('tp.overview', args=[language, project, ''])
 
-    link = lambda instance: '<a href="%s/translate">%s</a>' % (
-            l(instance.pootle_path),
-            instance.pootle_path[len(translation_project.pootle_path):]
-    )
+    return HttpResponseRedirect(overview_url)
 
-    return util.edit(request, 'translation_project/admin_files.html',
-                     Store, model_args, link, linkfield='pootle_path',
-                     queryset=queryset, formset=StoreFormset,
-                     can_delete=True, extra=0)
+
+@get_translation_project
+@set_request_context
+@util.has_permission('administrate')
+def update_against_templates(request, translation_project):
+    try:
+        translation_project.update_from_templates()
+
+        messages.success(request, _("Translation project has been updated "
+                                    "against latest templates."))
+    except:
+        messages.error(request, _("Error while updating translation project "
+                                  "against latest templates."))
+
+    language = translation_project.language.code
+    project = translation_project.project.code
+    overview_url = reverse('tp.overview', args=[language, project, ''])
+
+    return HttpResponseRedirect(overview_url)
+
+
+@get_translation_project
+@set_request_context
+@util.has_permission('administrate')
+def delete_path_obj(request, translation_project, dir_path, filename=None):
+    """Deletes the path objects under `dir_path` (+ `filename`) from the
+    filesystem."""
+    current_path = translation_project.directory.pootle_path + dir_path
+
+    try:
+        if filename:
+            current_path = current_path + filename
+            store = get_object_or_404(Store, pootle_path=current_path)
+            stores_to_delete = [store]
+            directory = None
+        else:
+            directory = get_object_or_404(Directory, pootle_path=current_path)
+            stores_to_delete = directory.stores
+
+        # Delete stores in the current context from the DB and the filesystem
+        for store in stores_to_delete:
+            # First from the FS
+            if store.file:
+                store.file.storage.delete(store.file.name)
+
+            # From the DB after
+            store.delete()
+
+        if directory:
+            # First remove children directories from the DB
+            for child_dir in directory.child_dirs.iterator():
+                child_dir.delete()
+
+            # Then the current directory
+            directory.delete()
+
+            # And finally all the directory tree from the filesystem
+            import shutil
+            po_dir = unicode(settings.PODIRECTORY)
+            shutil.rmtree(os.path.join(po_dir, directory.get_real_path()))
+
+        messages.success(request, _("Files have been deleted."))
+    except:
+        messages.error(request, _("Error while trying to delete files."))
+
+    language = translation_project.language.code
+    project = translation_project.project.code
+    overview_url = reverse('tp.overview', args=[language, project, ''])
+
+    return HttpResponseRedirect(overview_url)
 
 
 class ProjectIndexView(view_handler.View):

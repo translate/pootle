@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2009 Zuza Software Foundation
+# Copyright 2008-2012 Zuza Software Foundation
 #
 # This file is part of translate.
 #
@@ -20,15 +20,16 @@
 
 from django.core.exceptions import PermissionDenied
 from django.forms.models import modelformset_factory
-from django.utils.translation import ugettext as _
-from django.utils.safestring import mark_safe
+from django.forms.util import ErrorList
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.forms.util import ErrorList
+from django.utils.safestring import mark_safe
+from django.utils.translation import ugettext as _
 
+from pootle_app.models.permissions import (get_matching_permissions,
+                                           check_permission)
 from pootle_misc.baseurl import l
 from pootle_misc.util import paginate
-from pootle_app.models.permissions import get_matching_permissions, check_permission
 from pootle_profile.models import get_profile
 
 
@@ -36,20 +37,29 @@ from pootle_profile.models import get_profile
 def user_is_admin(f):
     def decorated_f(request, *args, **kwargs):
         if not request.user.is_superuser:
-            raise PermissionDenied(_("You do not have rights to administer Pootle."))
+            raise PermissionDenied(_("You do not have rights to administer "
+                                     "Pootle."))
         else:
             return f(request, *args, **kwargs)
+
     return decorated_f
+
 
 def has_permission(permission_code):
     def wrap_f(f):
         def decorated_f(request, path_obj, *args, **kwargs):
-            request.permissions = get_matching_permissions(get_profile(request.user), path_obj.directory)
+            profile = get_profile(request.user)
+            request.permissions = get_matching_permissions(profile,
+                                                           path_obj.directory)
+
             if check_permission(permission_code, request):
                 return f(request, path_obj, *args, **kwargs)
             else:
-                raise PermissionDenied(_("You do not have rights to administer %s.", path_obj.fullname))
+                raise PermissionDenied(_("You do not have rights to "
+                                         "administer %s.", path_obj.fullname))
+
         return decorated_f
+
     return wrap_f
 
 
@@ -110,6 +120,7 @@ def form_set_as_table(formset, link=None, linkfield='code'):
                 result.append('<td>')
                 result.append(form.errors.get(field, ErrorList()).as_ul())
                 result.append('</td>\n')
+
             result.append('</tr>\n')
 
     def add_widgets(result, fields, form, link, zebra):
@@ -121,9 +132,8 @@ def form_set_as_table(formset, link=None, linkfield='code'):
             if i == 0:
                 result.append(form['id'].as_hidden())
 
-            """
-            'link' indicates whether we put the first field as a link or as widget
-            """
+            # `link` indicates whether we put the first field as a link or as
+            # widget
             if field == linkfield and linkfield in form.initial and link:
                 if callable(link):
                     result.append(link(form.instance))
@@ -134,6 +144,7 @@ def form_set_as_table(formset, link=None, linkfield='code'):
                     result.append(form[field].as_hidden())
             else:
                 result.append(form[field].as_widget())
+
             result.append('</td>\n')
         result.append('</tr>\n')
 
@@ -157,8 +168,10 @@ def form_set_as_table(formset, link=None, linkfield='code'):
                 zebra = "odd"
             else:
                 zebra = "even"
+
             add_errors(result, fields, form)
             add_widgets(result, fields, form, link, zebra)
+
         result.append('</tbody>\n')
     except IndexError:
         result.append('<tr>\n')
@@ -166,57 +179,58 @@ def form_set_as_table(formset, link=None, linkfield='code'):
         result.append(_('No files in this project.'))
         result.append('</td>\n')
         result.append('</tr>\n')
+
     return u''.join(result)
 
-def process_modelformset(request, model_class, queryset, **kwargs):
-    """With the Django model class 'model_class' and the Django form class 'form_class',
-    construct a Django formset which can manipulate """
 
-    # Create a formset class for the model 'model_class' (i.e. it will contain forms whose
-    # contents are based on the fields of 'model_class'); parameters for the construction
-    # of the forms used in the formset should be in kwargs. In Django 1.0, the interface
-    # to modelformset_factory is
-    # def modelformset_factory(model, form=ModelForm, formfield_callback=lambda f: f.formfield(),
-    #                          formset=BaseModelFormSet,
-    #                          extra=1, can_delete=False, can_order=False,
-    #                          max_num=0, fields=None, exclude=None)
+def process_modelformset(request, model_class, queryset, **kwargs):
+    """With the Django model class `model_class` and the given `queryset`,
+    construct a formset process its submission."""
+
+    # Create a formset class for the model `model_class` (i.e. it will contain
+    # forms whose contents are based on the fields of `model_class`);
+    # parameters for the construction of the forms used in the formset should
+    # be in kwargs.
     formset_class = modelformset_factory(model_class, **kwargs)
 
     if queryset is None:
         queryset = model_class.objects.all()
 
-
     # If the request is a POST, we want to possibly update our data
     if request.method == 'POST' and request.POST:
-        # Create a formset from all the 'model_class' instances whose values will
-        # be updated using the contents of request.POST
+        # Create a formset from all the 'model_class' instances whose values
+        # will be updated using the contents of request.POST
         objects = paginate(request, queryset)
         formset = formset_class(request.POST, queryset=objects.object_list)
+
         # Validate all the forms in the formset
         if formset.is_valid():
             # If all is well, Django can save all our data for us
             formset.save()
         else:
             # Otherwise, complain to the user that something went wrong
-            return formset, _("There are errors in the form. Please review the problems below."), objects
+            return formset, _("There are errors in the form. Please review "
+                              "the problems below."), objects
 
-        # hack to force reevaluation of same query
+        # Hack to force reevaluation of same query
         queryset = queryset.filter()
 
     objects = paginate(request, queryset)
+
     return formset_class(queryset=objects.object_list), None, objects
 
 
 def edit(request, template, model_class, model_args={},
          link=None, linkfield='code', queryset=None, **kwargs):
-
-    formset, msg, objects = process_modelformset(request, model_class, queryset=queryset, **kwargs)
+    formset, msg, objects = process_modelformset(request, model_class,
+                                                 queryset=queryset, **kwargs)
     template_vars = {
             "formset_text": mark_safe(form_set_as_table(formset, link, linkfield)),
             "formset": formset,
             "objects": objects,
             "error_msg": msg,
     }
+
     #FIXME: this should be done through an extra context argument
     if 'translation_project' in model_args:
         template_vars['translation_project'] = model_args['translation_project']
@@ -232,4 +246,6 @@ def edit(request, template, model_class, model_args={},
         template_vars["navitems"] = model_args['navitems']
     if 'feed_path' in model_args:
         template_vars["feed_path"] = model_args['feed_path']
-    return render_to_response(template, template_vars, context_instance=RequestContext(request))
+
+    return render_to_response(template, template_vars,
+                              context_instance=RequestContext(request))

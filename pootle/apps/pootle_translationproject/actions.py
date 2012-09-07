@@ -20,6 +20,7 @@
 
 """Actions available for the translation project overview page."""
 
+from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
 
 from pootle_app.models.permissions import check_permission
@@ -28,7 +29,6 @@ from pootle_misc.versioncontrol import hasversioning
 
 
 # FIXME: Replace dispatch.* calls by django.core.urlresolvers.reverse
-# TODO: Add missing actions: bug 2415
 
 def directory(fn):
     """Decorator that returns links only for directory objects."""
@@ -63,6 +63,40 @@ def download_zip(request, path_obj):
             'href': link,
             'text': text,
         }
+
+
+@store
+def download_source(request, path_obj):
+    if path_obj.translation_project.project.is_monolingual():
+        text = _('Export')
+        tooltip = _('Export translations')
+    else:
+        text = _('Download')
+        tooltip = _('Download file')
+
+    return {
+        'icon': 'icon-download',
+        'href': '%s/download/' % path_obj.pootle_path,
+        'text': text,
+        'tooltip': tooltip,
+    }
+
+
+@store
+def download_xliff(request, path_obj):
+    if path_obj.translation_project.project.localfiletype == 'xlf':
+        return
+
+    text = _('Translate offline')
+    tooltip = _('Download XLIFF file for offline translation')
+    href = dispatch.export(path_obj.pootle_path, 'xlf')
+
+    return {
+        'icon': 'icon-translate-download',
+        'href': href,
+        'text': text,
+        'tooltip': tooltip,
+    }
 
 
 def upload_zip(request, path_obj):
@@ -108,38 +142,50 @@ def commit_to_vcs(request, path_obj):
         }
 
 
-@store
-def download_xliff(request, path_obj):
-    if path_obj.translation_project.project.localfiletype == 'xlf':
-        return
+def rescan_project_files(request, path_obj):
+    if check_permission('administrate', request):
+        tp = path_obj.translation_project
+        link = reverse('tp.rescan', args=[tp.language.code, tp.project.code])
+        text = _("Rescan project files")
 
-    text = _('Translate offline')
-    tooltip = _('Download XLIFF file for offline translation')
-    href = dispatch.export(path_obj.pootle_path, 'xlf')
-
-    return {
-        'icon': 'icon-translate-download',
-        'href': href,
-        'text': text,
-        'tooltip': tooltip,
-    }
+        return {
+            'icon': 'icon-vcs-commit',
+            'href': link,
+            'text': text,
+        }
 
 
-@store
-def download_sources(request, path_obj):
-    if path_obj.translation_project.project.is_monolingual():
-        text = _('Export')
-        tooltip = _('Export translations')
-    else:
-        text = _('Download')
-        tooltip = _('Download file')
+def update_against_templates(request, path_obj):
+    if check_permission('administrate', request):
+        tp = path_obj.translation_project
+        link = reverse('tp.update_against_templates', args=[tp.language.code,
+                                                            tp.project.code])
+        text = _("Update against templates")
 
-    return {
-        'icon': 'icon-download',
-        'href': '%s/download/' % path_obj.pootle_path,
-        'text': text,
-        'tooltip': tooltip,
-    }
+        return {
+            'icon': 'icon-vcs-commit',
+            'href': link,
+            'text': text,
+        }
+
+
+def delete_path_obj(request, path_obj):
+    if check_permission('administrate', request):
+        tp = path_obj.translation_project
+        link = reverse('tp.delete_path_obj', args=[tp.language.code,
+                                                   tp.project.code,
+                                                   path_obj.path])
+
+        if path_obj.is_dir:
+            text = _("Delete this folder...")
+        else:
+            text = _("Delete this file...")
+
+        return {
+            'icon': 'icon-vcs-commit',
+            'href': link,
+            'text': text,
+        }
 
 
 def _gen_link_list(request, path_obj, link_funcs):
@@ -161,11 +207,10 @@ def action_groups(request, path_obj):
 
     groups = [
         {'group': 'translate-offline', 'group_display': _("Translate offline"),
-         'actions': [download_zip, upload_zip]},
+         'actions': [download_source, download_zip, upload_zip]},
         {'group': 'manage', 'group_display': _("Manage"),
-         'actions': [update_from_vcs, commit_to_vcs]},
-        {'group': 'download-source', 'group_display': _("Download sources"),
-         'actions': [download_sources]},
+         'actions': [update_from_vcs, commit_to_vcs, rescan_project_files,
+                     update_against_templates, delete_path_obj]},
     ]
 
     for group in groups:

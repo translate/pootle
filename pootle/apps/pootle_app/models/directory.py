@@ -191,8 +191,9 @@ class Directory(models.Model):
 
     is_template_project = property(lambda self: self.pootle_path.startswith('/templates/'))
 
-    def get_translationproject(self):
-        """returns the translation project belonging to this directory."""
+    @cached_property
+    def translation_project(self):
+        """Returns the translation project belonging to this directory."""
         if self.is_language() or self.is_project():
             return None
         else:
@@ -200,10 +201,10 @@ class Directory(models.Model):
                 return self.translationproject
             else:
                 aux_dir = self
-                while not aux_dir.is_translationproject() and\
-                    aux_dir.parent is not None:
-
+                while (not aux_dir.is_translationproject() and
+                       aux_dir.parent is not None):
                     aux_dir = aux_dir.parent
+
                 return aux_dir.translationproject
 
     def get_real_path(self):
@@ -211,7 +212,7 @@ class Directory(models.Model):
         if self.is_project():
             return self.project.code
 
-        translation_project = self.get_translationproject()
+        translation_project = self.translation_project
         if self.is_translationproject():
             return translation_project.real_path
 

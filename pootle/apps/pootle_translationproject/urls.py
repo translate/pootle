@@ -26,8 +26,17 @@ urlpatterns = patterns('pootle_translationproject.views',
     # Admin views
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/((.*/)*)admin_permissions.html$',
      'admin_permissions'),
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/((.*/)*)admin_files.html$',
-     'admin_files'),
+
+    # Management actions
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/rescan/?$',
+        'rescan_files',
+        name='tp.rescan'),
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/update/?$',
+        'update_against_templates',
+        name='tp.update_against_templates'),
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/delete/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
+        'delete_path_obj',
+        name='tp.delete_path_obj'),
 
     # XHR views
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/((.*/)*)edit_settings.html$',
@@ -45,6 +54,7 @@ urlpatterns = patterns('pootle_translationproject.views',
      'translate'),
 
     # Overview
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
-     'overview'),
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
+        'overview',
+        name='tp.overview'),
 )

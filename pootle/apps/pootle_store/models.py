@@ -41,7 +41,7 @@ from pootle_app.lib.util import RelatedManager
 from pootle_misc.aggregate import group_by_count_extra, max_column
 from pootle_misc.baseurl import l
 from pootle_misc.checks import check_names
-from pootle_misc.util import getfromcache, deletefromcache
+from pootle_misc.util import cached_property, getfromcache, deletefromcache
 from pootle_store.fields import (TranslationStoreField, MultiStringField,
                                  PLURAL_PLACEHOLDER, SEPARATOR)
 from pootle_store.filetypes import factory_classes, is_monolingual
@@ -795,6 +795,16 @@ class Store(models.Model, base.TranslationStore):
         return self.file.name
 
     real_path = property(_get_real_path)
+
+    @cached_property
+    def path(self):
+        """Returns just the path part omitting language and project codes.
+
+        If the `pootle_path` of a :cls:`Store` object `store` is
+        `/af/project/dir1/dir2/file.po`, `store.path` will return
+        `dir1/dir2/file.po`.
+        """
+        return u'/'.join(self.pootle_path.split(u'/')[3:])
 
     def get_absolute_url(self):
         return l(self.pootle_path + '/translate/')
