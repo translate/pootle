@@ -113,7 +113,17 @@ def get_unit_context(permission_codes):
 @get_store_context('view')
 def export_as_xliff(request, store):
     """Export given file to xliff for offline translation."""
-    path, ext = os.path.splitext(store.real_path)
+    path = store.real_path
+    if not path:
+        # bug 2106
+        project = request.translation_project.project
+        if project.get_treestyle() == "gnu":
+            path = "/".join(store.pootle_path.split(os.path.sep)[2:])
+        else:
+            parts = store.pootle_path.split(os.path.sep)[1:]
+            path = "%s/%s/%s" % (parts[1], parts[0], "/".join(parts[2:]))
+
+    path, ext = os.path.splitext(path)
     export_path = os.path.join('POOTLE_EXPORT', path + os.path.extsep + 'xlf')
     abs_export_path = absolute_real_path(export_path)
 
