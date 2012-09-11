@@ -149,7 +149,7 @@ def rescan_project_files(request, path_obj):
         text = _("Rescan project files")
 
         return {
-            'icon': 'icon-vcs-commit',
+            'icon': 'icon-rescan-files',
             'href': link,
             'text': text,
         }
@@ -163,7 +163,7 @@ def update_against_templates(request, path_obj):
         text = _("Update against templates")
 
         return {
-            'icon': 'icon-vcs-commit',
+            'icon': 'icon-update-templates',
             'href': link,
             'text': text,
         }
@@ -182,7 +182,7 @@ def delete_path_obj(request, path_obj):
             text = _("Delete this file...")
 
         return {
-            'icon': 'icon-vcs-commit',
+            'icon': 'icon-delete-path',
             'href': link,
             'text': text,
         }

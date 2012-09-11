@@ -290,6 +290,21 @@ pre, code, kbd, samp, tt
     background-image: url('../images/icon-vcs-update.png');
 }
 
+.icon-rescan-files
+{
+    background-image: url('../images/icon-rescan-files.png');
+}
+
+.icon-update-templates
+{
+    background-image: url('../images/icon-update-templates.png');
+}
+
+.icon-delete-path
+{
+    background-image: url('../images/icon-delete-path.png');
+}
+
 .icon-report-bug
 {
     background-image: url('../images/icon-report-bug.png');
@@ -1918,7 +1933,7 @@ html[dir="rtl"] .overview-actions-content
 
 #overview-actions-translate-offline a
 {
-    color: #ac6520;
+    color: #cc6633;
 }
 
 #overview-actions-translate-offline li
@@ -1939,12 +1954,7 @@ html[dir="rtl"] #overview-actions-translate-offline li.odd
 
 #overview-actions-manage a
 {
-    color: #854848;
-}
-
-#overview-actions-download-source a
-{
-    color: #ac6520;
+    color: #cc3366;
 }
 
 .overview-description-toggle
