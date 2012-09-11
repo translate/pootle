@@ -750,6 +750,10 @@
   error: function (xhr, s) {
     var msg = "";
 
+    if (s == "abort") {
+        return;
+    }
+
     if (xhr.status == 0) {
       msg = gettext("Error while connecting to the server");
     } else if (xhr.status == 500) {
