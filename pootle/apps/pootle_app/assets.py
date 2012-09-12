@@ -40,7 +40,7 @@ js_editor = Bundle(
     'js/jquery/jquery.history.js', 'js/jquery/jquery.tmpl.js',
     'js/jquery/jquery.textarea-expander.js', 'js/diff_match_patch.js',
     'js/jquery/jquery.fieldselection.js', 'js/jquery/jquery.caret.js',
-    'js/jquery/jquery.highlightRegex.js',
+    'js/jquery/jquery.highlightRegex.js', 'js/jquery/jquery.jsonp.js',
     'js/editor.js', 'js/json2.js',
     filters='rjsmin', output='js/editor.min.js')
 register('js_editor', js_editor)

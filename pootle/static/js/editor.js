@@ -761,7 +761,6 @@
     } else if (s == "timeout") {
       msg = gettext("The server seems down. Try again later.");
     } else {
-      // XXX: Is this still necessary? Review
       // Since we use jquery-jsonp, we must differentiate between
       // the passed arguments
       if (xhr instanceof XMLHttpRequest) {
@@ -1723,7 +1722,7 @@
       this.tmReq.abort();
     }
 
-    this.tmReq = $.ajax({
+    this.tmReq = $.jsonp({
       url: tmUrl,
       callback: '_jsonp' + PTL.editor.activeUid,
       dataType: 'jsonp',
