@@ -131,6 +131,18 @@ def update_code():
         _update_requirements()
 
 
+def deploy_static():
+    """Runs `collectstatic` to collect all the static files"""
+    require('environment', provided_by=[production, staging])
+
+    print('Collecting static files...')
+
+    with settings(hide('stdout', 'stderr')):
+        with cd('%(project_repo_path)s/pootle' % env):
+            with prefix('source %(env_path)s/bin/activate' % env):
+                run('python manage.py collectstatic -v0 --noinput')
+
+
 def deploy():
     """Updates the code and installs the production site"""
     require('environment', provided_by=[production, staging])
@@ -139,6 +151,7 @@ def deploy():
 
     with settings(hide('stdout', 'stderr')):
         update_code()
+        deploy_static()
         install_site()
 
 
