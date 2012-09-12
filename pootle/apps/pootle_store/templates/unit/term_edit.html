@@ -74,7 +74,7 @@
             <div class="language-name">{{ source_language.localname }}</div>
             {% if cansuggest or cantranslate %}
               {% if report_target %}
-                <a class="report-bug" href="{{ report_target }}" target="_blank"><img src='{{ "images/bug.png"|m }}' title="{% trans 'Report a problem with the source string' %}" /></a>
+                <a class="report-bug" href="{{ report_target }}" target="_blank"><img src='{{ "images/bug.png"|s }}' title="{% trans 'Report a problem with the source string' %}" /></a>
               {% endif %}
             <div class="translate-toolbar">
               <a class="icon-copy js-copyoriginal" title="{% trans 'Copy into translation' %}" accesskey="c"></a>
@@ -158,7 +158,7 @@
                 {% if score %}{{ score.score }}{% endif %}
               {% endifnotequal %}
               </span>
-                <img src='{{ "images/vote.png"|m }}' title="{% trans 'Your current vote. Click to remove this vote.' %}" dir="{% locale_dir %}" />
+                <img src='{{ "images/vote.png"|s }}' title="{% trans 'Your current vote. Click to remove this vote.' %}" dir="{% locale_dir %}" />
               </a>
               <a class="voteup suggestion-vote"{% ifequal vote.object sugg %} style="display:none;"{% endifequal %}>
                 <span class="num_votes">
@@ -168,19 +168,19 @@
                   {% if score %}{{ score.score }}{% endif %}
                 {% endifequal %}
                 </span>
-                <img src='{{ "images/vote_bw.png"|m }}' title="{% trans 'Vote for this suggestion' %}" dir="{% locale_dir %}" />
+                <img src='{{ "images/vote_bw.png"|s }}' title="{% trans 'Vote for this suggestion' %}" dir="{% locale_dir %}" />
               </a>
               {% endif %}
 
             {% if canreview %}
               <input type="hidden" id="sugg-{{sugg.id }}" class="suggid" name="suggid" value="{{ sugg.id }}" />
-              <a accesskey="a" id="accept-{{ sugg.id }}" class="acceptsugg"><img src='{{ "images/accept.png"|m }}' title="{% trans 'Accept suggestion' %}" dir="{% locale_dir %}" /></a>
-              <a accesskey="r" id="reject-{{ sugg.id }}" class="rejectsugg"><img src='{{ "images/reject.png"|m }}' title="{% trans 'Reject suggestion' %}" dir="{% locale_dir %}" /></a>
+              <a accesskey="a" id="accept-{{ sugg.id }}" class="acceptsugg"><img src='{{ "images/accept.png"|s }}' title="{% trans 'Accept suggestion' %}" dir="{% locale_dir %}" /></a>
+              <a accesskey="r" id="reject-{{ sugg.id }}" class="rejectsugg"><img src='{{ "images/reject.png"|s }}' title="{% trans 'Reject suggestion' %}" dir="{% locale_dir %}" /></a>
             {% else %}
               {% if user.is_authenticated %}
               {% ifequal profile sugg.user %}
               <input type="hidden" id="sugg-{{sugg.id }}" class="suggid" name="suggid" value="{{ sugg.id }}" />
-              <a title="{% trans 'Remove suggestion' %}" accesskey="r" id="reject-{{ sugg.id }}" class="rejectsugg"><img src='{{ "images/reject.png"|m }}' dir="{% locale_dir %}" /></a>
+              <a title="{% trans 'Remove suggestion' %}" accesskey="r" id="reject-{{ sugg.id }}" class="rejectsugg"><img src='{{ "images/reject.png"|s }}' dir="{% locale_dir %}" /></a>
               {% endifequal %}
               {% endif %}
             {% endif %}

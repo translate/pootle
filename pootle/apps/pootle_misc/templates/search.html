@@ -7,11 +7,11 @@
     <label class="inputHint" for="id_search">{% trans "Search" %}</label>{{ search_form.search }}
     <a class="advancedlink">
       {% if LANGUAGE_BIDI %}
-      <img src='{{ "images/sarrow_down_rtl.png"|m }}' title="{% trans "Advanced search" %}" class="togglesearch" />
-      <img src='{{ "images/sarrow_up_rtl.png"|m }}' title="{% trans "Advanced search" %}" class="togglesearch hide"/>
+      <img src='{{ "images/sarrow_down_rtl.png"|s }}' title="{% trans "Advanced search" %}" class="togglesearch" />
+      <img src='{{ "images/sarrow_up_rtl.png"|s }}' title="{% trans "Advanced search" %}" class="togglesearch hide"/>
       {% else %}
-      <img src='{{ "images/sarrow_down.png"|m }}' title="{% trans "Advanced search" %}" class="togglesearch" />
-      <img src='{{ "images/sarrow_up.png"|m }}' title="{% trans "Advanced search" %}" class="togglesearch hide"/>
+      <img src='{{ "images/sarrow_down.png"|s }}' title="{% trans "Advanced search" %}" class="togglesearch" />
+      <img src='{{ "images/sarrow_up.png"|s }}' title="{% trans "Advanced search" %}" class="togglesearch hide"/>
       {% endif %}
     </a>
     <div class="advancedsearch">

@@ -6,6 +6,9 @@
 # /docs/
 /docs/_build/
 
+# /pootle/assets/*/
+/pootle/assets/
+
 # /pootle/dbs/
 /pootle/dbs/*.db
 

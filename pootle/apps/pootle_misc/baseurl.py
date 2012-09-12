@@ -43,6 +43,12 @@ def m(path):
     """ filter urls adding media url prefix if required """
     return l(settings.MEDIA_URL + path)
 
+
+def s(path):
+    """Filter URLs adding STATIC_URL prefix."""
+    return l(settings.STATIC_URL + path)
+
+
 def redirect(url, **kwargs):
     if os.name == 'nt':
         # A catch-all to fix any issues on Windows

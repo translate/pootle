@@ -4,7 +4,7 @@
   PTL.editor.mt.google_translate = {
 
     buttonClassName: "googletranslate",
-    imageUri: m("images/google-translate.png"),
+    imageUri: s("images/google-translate.png"),
     hint: "Google Translate",
     validatePair: false,
 

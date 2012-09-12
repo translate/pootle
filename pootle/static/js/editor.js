@@ -228,7 +228,7 @@
       var key = this.key;
 
       $.ajax({
-        url: m('js/mt/' + backend + '.js'),
+        url: s('js/mt/' + backend + '.js'),
         async: false,
         dataType: 'script',
         success: function () {
@@ -246,7 +246,7 @@
       var backend = this;
 
       $.ajax({
-        url: m('js/lookup/' + backend + '.js'),
+        url: s('js/lookup/' + backend + '.js'),
         async: false,
         dataType: 'script',
         success: function () {

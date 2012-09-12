@@ -94,7 +94,7 @@ sorttable = {
         // Add unsorted icon
         unsorted = document.createElement('img');
         unsorted.className = "sorttable_unsorted";
-        unsorted.src = m('images/ascdesc.gif');
+        unsorted.src = s('images/ascdesc.gif');
         headrow[i].appendChild(unsorted);
 
         dean_addEvent(headrow[i],"click", function(e) {
@@ -110,7 +110,7 @@ sorttable = {
             this.removeChild(document.getElementById('sorttable_sortfwdind'));
             sortrevind = document.createElement('img');
             sortrevind.id = "sorttable_sortrevind";
-            sortrevind.src = m('images/desc.gif');
+            sortrevind.src = s('images/desc.gif');
             this.appendChild(sortrevind);
 
             // Store current sorting criteria in a cookie
@@ -128,7 +128,7 @@ sorttable = {
             this.removeChild(document.getElementById('sorttable_sortrevind'));
             sortfwdind = document.createElement('img');
             sortfwdind.id = "sorttable_sortfwdind";
-            sortfwdind.src = m('images/asc.gif');
+            sortfwdind.src = s('images/asc.gif');
             this.appendChild(sortfwdind);
 
             // Store current sorting criteria in a cookie
@@ -173,7 +173,7 @@ sorttable = {
         if (cell.className.search(/\b(sorttable_sorted|sorttable_sorted_reverse)\b/) != -1) {
           unsorted = document.createElement('img');
           unsorted.className = "sorttable_unsorted";
-          unsorted.src = m('images/ascdesc.gif');
+          unsorted.src = s('images/ascdesc.gif');
           cell.appendChild(unsorted);
         }
         cell.className = cell.className.replace('sorttable_sorted_reverse','');
@@ -191,7 +191,7 @@ sorttable = {
     th.className += ' sorttable_sorted';
     sortfwdind = document.createElement('img');
     sortfwdind.id = "sorttable_sortfwdind";
-    sortfwdind.src = m('images/asc.gif');
+    sortfwdind.src = s('images/asc.gif');
     th.appendChild(sortfwdind);
 
     // build an array to sort. This is a Schwartzian transform thing,

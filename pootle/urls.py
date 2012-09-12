@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2009 Zuza Software Foundation
+# Copyright 2008-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -20,25 +20,15 @@
 
 from django.conf.urls.defaults import *
 from django.conf import settings
-from os import path
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
-DJANGO_MEDIA = path.join(path.dirname(admin.__file__), 'media')
 
 urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     (r'^django_admin/', include(admin.site.urls)),
-
-    # Static and media files
-    (r'^static/(?P<path>.*)$', 'django.views.static.serve',
-        {'document_root': settings.MEDIA_ROOT}),
-    (r'^(favicon.ico)$', 'django.views.static.serve',
-        {'document_root': settings.MEDIA_ROOT}),
-    (r'^media/(?P<path>.*)$', 'django.views.static.serve',
-        {'document_root': DJANGO_MEDIA}),
 
     # JavaScript i18n
     (r'^jsi18n/$', 'django.views.i18n.javascript_catalog',
