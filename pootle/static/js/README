@@ -130,7 +130,7 @@ Directory contents
 
       Using version 2.4.0.
 
-      https://code.google.com/p/jquery-jsonp/
+      https://github.com/jaubourg/jquery-jsonp
 
     - jquery.serializeObject.js :
       A method for serializing forms directly into objects.
