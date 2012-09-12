@@ -59,31 +59,21 @@ standard package management command *easy_install*
 Prerequisite Software
 ^^^^^^^^^^^^^^^^^^^^^
 
-==========================  =====================  ======================================================================  ========================================================================================================================================================
- Package                     Best version           Website                                                                 Notes                                                                                                                                                    
-==========================  =====================  ======================================================================  ========================================================================================================================================================
- Pootle                      Latest stable          http://sourceforge.net/projects/translate/files/Pootle/                 At least Pootle 2.1.6 is needed with Django 1.2.5 and later                                                                                              
+==========================  =====================  ======================================================================  ================================================================
+ Package                     Best version           Website                                                                 Notes
+==========================  =====================  ======================================================================  ================================================================
+ Pootle                      2.2 or later           http://sourceforge.net/projects/translate/files/Pootle/ 
  Django                      1.3 or later           http://www.djangoproject.com/download/
- Translate Toolkit           Latest version         http://sourceforge.net/projects/translate/files/Translate%20Toolkit/    Version 1.9 for Pootle 2.1. (Version 1.8 should work with older Django versions, Pootle 2.0 might work with Toolkit 1.5, but this is not recommended)    
- Python                      Latest 2.x version     http://www.python.org/                                                  At least version 2.4                                                                                                                                     
- lxml                        2.1.4 or later         http://pypi.python.org/pypi/lxml/                                       XLIFF support and HTML sanitation and cleanup for news items                                                                                             
- Python database bindings                           See the `optional software`_ list below                                                                                                                                              
- South                                              http://south.aeracode.org/  \\ pip install South                        Required for upgrading between Pootle versions                                                                                                           
-==========================  =====================  ======================================================================  ========================================================================================================================================================
+ Translate Toolkit           Latest version         http://sourceforge.net/projects/translate/files/Translate%20Toolkit/
+ Python                      Latest 2.x version     http://www.python.org/                                                  At least version 2.4
+ lxml                        2.1.4 or later         http://pypi.python.org/pypi/lxml/                                       XLIFF support and HTML sanitation and cleanup for news items
+ Python database bindings                           See the `optional software`_ list below
+ South                                              http://south.aeracode.org/  \\ pip install South                        Required for upgrading between Pootle versions
+ django-voting                                      http://code.google.com/p/django-voting/ \\ pip install django-voting
+ webassets                   0.6 or later           http://github.com/miracle2k/webassets/ \\ pip install webassets         For bundling assets.
+ cssmin                                             http://github.com/zacharyvoase/cssmin \\ pip install cssmin             Required for webassets.
+==========================  =====================  ======================================================================  ================================================================
 
-
-.. _installation#requirements_for_the_unreleased_version:
-
-Requirements for the unreleased version
----------------------------------------
-
-===============  ===============  ======================================================================  =========================
- Package          Best version     Website                                                                 Notes                     
-===============  ===============  ======================================================================  =========================
- django-voting                     http://code.google.com/p/django-voting/ \\ pip install django-voting                              
- webassets        0.6 or later     http://github.com/miracle2k/webassets/ \\ pip install webassets         For bundling assets.      
- cssmin                            http://github.com/zacharyvoase/cssmin \\ pip install cssmin             Required for webassets.   
-===============  ===============  ======================================================================  =========================
 
 .. _installation#optional_software:
 
