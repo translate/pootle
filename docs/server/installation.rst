@@ -83,18 +83,18 @@ Optional Software
 ================================  ==============  =====================================================================  ================================================================================================================
  Package                           Version         Website                                                                Reason                                                                                                           
 ================================  ==============  =====================================================================  ================================================================================================================
- MySQLdb                                           http://mysql-python.sourceforge.net/                                   MySQL support for django                                                                                         
- [[MySQL]] [#f1]_                  4.1 or later                                                                           Database for storing Users, Projects and Language information                                                    
- python-memcache and memcached                     http://www.tummy.com/Community/software/python-memcached/              more efficient caching                                                                                           
- [[Apache]]                                                                                                               Web server (best way to run Pootle)                                                                              
- Xapian [#f2]_                                     http://xapian.org/docs/bindings/python/                                [[Indexing]] library to speed up searching                                                                       
- PyLucene                                          http://pylucene.osafoundation.org/                                     Indexing library to speed up searching                                                                           
- zip and unzip                                                                                                            Fast (un)compression of file archives                                                                            
- iso-codes                         any             http://packages.debian.org/unstable/source/iso-codes                   Enables translated language and country names                                                                    
- python-levenshtein                                http://sourceforge.net/projects/translate/files/python-Levenshtein/    Provides speed-up when updating from templates                                                                   
- python-ldap                                       http://www.python-ldap.org/                                            If using [[LDAP]] authentication                                                                                 
- sqlite [#f3]_                     version 3       http://www.sqlite.org/                                                 Database for translation statistics in Pootle 2.0. Optionally the Django database, but this isn't recommended.   
- Version Control Software                                                                                                 [[version control]] integration                                                                                  
+ MySQLdb                                           http://mysql-python.sourceforge.net/                                   MySQL support for django
+ MySQL_ [#f1]_                     4.1 or later                                                                           Database for storing Users, Projects and Language information
+ python-memcache and memcached                     http://www.tummy.com/Community/software/python-memcached/              more efficient caching
+ :doc:`Apache <apache>`                                                                                                   Web server (best way to run Pootle)
+ Xapian [#f2]_                                     http://xapian.org/docs/bindings/python/                                :doc:`Indexing <indexing>` library to speed up searching
+ PyLucene                                          http://pylucene.osafoundation.org/                                     Indexing library to speed up searching
+ zip and unzip                                                                                                            Fast (un)compression of file archives
+ iso-codes                         any             http://packages.debian.org/unstable/source/iso-codes                   Enables translated language and country names
+ python-levenshtein                                http://sourceforge.net/projects/translate/files/python-Levenshtein/    Provides speed-up when updating from templates
+ python-ldap                                       http://www.python-ldap.org/                                            If using :ref:`LDAP <authentication#ldap>` authentication
+ sqlite [#f3]_                     version 3       http://www.sqlite.org/                                                 Database for translation statistics in Pootle 2.0. Optionally the Django database, but this isn't recommended.
+ Version Control Software                                                                                                 :ref:`Version control <version_control>` integration
 ================================  ==============  =====================================================================  ================================================================================================================
 
 .. rubric:: Notes
