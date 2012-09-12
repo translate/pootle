@@ -138,7 +138,7 @@ Running from checkout or archive
 Running from checkout is the easiet way to test Pootle, no need to install it
 or even configure, just change your directory to inside Pootle's directory
 (extracted from downloaded archive or checked out from Git), and then execute
-`PootleServer`.
+``PootleServer``.
 
 For example if you have downloaded `Pootle-2.1.1.tar.bz2
 <http://sourceforge.net/projects/translate/files/Pootle/>`_ you would do::
@@ -171,7 +171,7 @@ directory::
     cd Pootle-2.1.1
     ./setup.py install
 
-To start Pootle simply run:
+To start Pootle simply run::
 
     PootleServer
 
@@ -234,7 +234,7 @@ files, be sure to read the section on the :doc:`command line actions
 Other deployment scenarios
 --------------------------
 
-The easiest way to run Pootle is using *PootleServer* as described above,
+The easiest way to run Pootle is using ``PootleServer`` as described above,
 however installations with a large number of users are better off :doc:`running
 under apache <apache>`. You might also consider using :doc:`nginx` if you
 prefer it.
