@@ -124,7 +124,7 @@ def export_as_xliff(request, store):
             path = "%s/%s/%s" % (parts[1], parts[0], "/".join(parts[2:]))
 
     path, ext = os.path.splitext(path)
-    export_path = os.path.join('POOTLE_EXPORT', path + os.path.extsep + 'xlf')
+    export_path = "/".join(['POOTLE_EXPORT'] + path + os.path.extsep + 'xlf')
     abs_export_path = absolute_real_path(export_path)
 
     key = iri_to_uri("%s:export_as_xliff" % store.pootle_path)
