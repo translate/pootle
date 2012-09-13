@@ -668,7 +668,7 @@ class UpdateHandler(view_handler.Handler):
             hasversioning(request.translation_project.abs_real_path)
 
 
-    def do_update(self, request, translation_project, directory):
+    def do_update(self, request, translation_project, directory, store):
         translation_project.update_project(request)
         return {}
 
@@ -753,7 +753,7 @@ class UploadHandler(view_handler.Handler):
         self.form.title = _("Upload File")
 
 
-    def do_upload(self, request, translation_project, directory):
+    def do_upload(self, request, translation_project, directory, store):
 
         if self.form.is_valid() and 'file' in request.FILES:
             django_file = self.form.cleaned_data['file']
