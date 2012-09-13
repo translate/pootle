@@ -50,12 +50,15 @@ def test_sqlite():
     except ImportError:
         return False
 
+
+django_required_ver = (1, 3, 0)
 def test_django():
     from django import VERSION, get_version
-    if VERSION >= (1, 2, 0):
+    if VERSION >= django_required_ver:
         return True, get_version()
     else:
         return False, get_version()
+
 
 lxml_required_ver = (2, 1, 4, 0)
 def test_lxml():
