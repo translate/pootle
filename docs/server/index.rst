@@ -36,6 +36,7 @@ Performance tuning and managing the server
 .. toctree::
    :maxdepth: 2
 
+   settings
    optimization
    cache
    indexing
