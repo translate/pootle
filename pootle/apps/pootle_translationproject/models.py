@@ -515,7 +515,9 @@ class TranslationProject(models.Model):
         new_stats = self.getquickstats()
 
         msg = [
-            _(u'Updated project "%s" from version control' % self.fullname),
+            _(u'Updated project <em>%(project)s</em> from version control' % {
+                'project': self.fullname
+            }),
             stats_message(_(u"Working copy"), old_stats),
             stats_message(_(u"Remote copy"), remote_stats),
             stats_message(_(u"Merged copy"), new_stats)
@@ -539,7 +541,9 @@ class TranslationProject(models.Model):
                     self.update_file_from_version_control(store)
 
             msg = [
-                _(u'Updated file "%s" from version control', store.file.name),
+                _(u'Updated file <em>%(filename)s</em> from version control' % {
+                    'filename': store.file.name
+                }),
                 stats_message(_(u"Working copy"), old_stats),
                 stats_message(_(u"Remote copy"), remote_stats),
                 stats_message(_(u"Merged copy"), new_stats)
