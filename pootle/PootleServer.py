@@ -25,7 +25,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 import optparse
 
 import django
-from django.core.servers.basehttp import AdminMediaHandler
+from django.contrib.staticfiles.handlers import StaticFilesHandler
 from django.core.handlers.wsgi import WSGIHandler
 from django.core.management import call_command
 
@@ -83,8 +83,7 @@ def display_versions():
 def run_pootle(options, args):
     """Run the requested action."""
     if options.action == 'runwebserver':
-        path = django.__path__[0] + '/contrib/admin/media'
-        handler = AdminMediaHandler(WSGIHandler(), path)
+        handler = StaticFilesHandler(WSGIHandler())
         wsgi.launch_server('0.0.0.0', options.port, handler)
     elif options.action == 'refreshstats':
         call_command('refresh_stats')
