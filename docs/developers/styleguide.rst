@@ -16,6 +16,19 @@ For Python code and documentation Pootle follows the
 
 - :ref:`Documentation style conventions <toolkit:styleguide-docs>`
 
+
+Pootle-specific markup
+^^^^^^^^^^^^^^^^^^^^^^
+
+For documenting several things, Pootle defines custom Sphinx roles.
+
+- Settings::
+
+    .. setting:: PODIRECTORY
+
+  To link to a setting, use ``:setting:`PODIRECTORY```.
+
+
 JavaScript
 ----------
 
