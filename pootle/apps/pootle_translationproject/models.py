@@ -23,6 +23,7 @@ import logging
 import os
 
 from django.conf import settings
+from django.contrib import messages
 from django.core.exceptions import PermissionDenied
 from django.db import models, IntegrityError
 from django.db.models.signals import post_save
@@ -512,14 +513,13 @@ class TranslationProject(models.Model):
 
         new_stats = self.getquickstats()
 
-        request.user.message_set.create(message=unicode(_('Updated project "%s" '
-            'from version control', self.fullname)))
-        request.user.message_set.create(message=stats_message("working copy",
-                old_stats))
-        request.user.message_set.create(message=stats_message("remote copy",
-                remote_stats))
-        request.user.message_set.create(message=stats_message("merged copy",
-                new_stats))
+        msg = [
+            _(u'Updated project "%s" from version control' % self.fullname),
+            stats_message(_(u"Working copy"), old_stats),
+            stats_message(_(u"Remote copy"), remote_stats),
+            stats_message(_(u"Merged copy"), new_stats)
+        ]
+        messages.info(request, u"\n".join(msg))
 
         from pootle_app.models.signals import post_vc_update
         post_vc_update.send(sender=self, oldstats=old_stats,
@@ -533,22 +533,23 @@ class TranslationProject(models.Model):
                 "version control here"))
 
         try:
-            oldstats, remotestats, newstats = \
+            old_stats, remote_stats, new_stats = \
                     self.update_file_from_version_control(store)
-            request.user.message_set.create(message=unicode(_("Updated file %s "
-                "from version control", store.file.name)))
-            request.user.message_set.create(message=stats_message("working copy",
-                oldstats))
-            request.user.message_set.create(message=stats_message("remote copy",
-                remotestats))
-            request.user.message_set.create(message=stats_message("merged copy",
-                newstats))
+
+            msg = [
+                _(u'Updated file "%s" from version control', store.file.name),
+                stats_message(_(u"Working copy"), old_stats),
+                stats_message(_(u"Remote copy"), remote_stats),
+                stats_message(_(u"Merged copy"), new_stats)
+            ]
+            messages.info(request, u"\n".join(msg))
+
             from pootle_app.models.signals import post_vc_update
-            post_vc_update.send(sender=self, oldstats=oldstats,
-                remotestats=remotestats, newstats=newstats)
+            post_vc_update.send(sender=self, oldstats=old_stats,
+                remotestats=remote_stats, newstats=new_stats)
         except VersionControlError:
-            request.user.message_set.create(message=unicode(_("Failed to update"
-                    " %s from version control", store.file.name)))
+            messages.error(_(u"Failed to update %(filename)s from "
+                             u"version control", {'filename': store.file.name}))
 
         self.scan_files()
 
@@ -561,8 +562,16 @@ class TranslationProject(models.Model):
             conservative=True)
         stats = store.getquickstats()
         author = user.username
-        message = stats_message("Commit from %s by user %s." % (settings.TITLE,
-                author), stats)
+
+        message = u"Commit from %(server)s by user %(user)s: %(translated)d " \
+                  u"of %(total)d messages translated (%(fuzzy)d fuzzy)." % {
+                      'server': settings.TITLE,
+                      'user': author,
+                      'translated': stats.get("translated", 0),
+                      'total': stats.get("total", 0),
+                      'fuzzy': stats.get("fuzzy", 0)
+                  }
+
         # Try to append email as well, since some VCS does not allow omitting
         # it (ie. Git).
         if user.is_authenticated() and len(user.email):
@@ -583,12 +592,17 @@ class TranslationProject(models.Model):
             from pootle_misc import versioncontrol
             for file in filestocommit:
                 versioncontrol.commit_file(file, message=message, author=author)
-                user.message_set.create(message="Committed file: <em>%s</em>" % \
-                        file)
+
+                messages.success(_("Committed file: %(filename)s" % {
+                        'filename': file
+                    }))
         except Exception, e:
-            logging.error(u"Failed to commit files: %s", e)
-            user.message_set.create(message="Failed to commit file: %s" % e)
+            logging.error(u"Failed to commit file: %s", e)
+
+            messages.error(_("Failed to commit file: %(error)s" % {'error': e}))
+
             success = False
+
         try:
             hooks.hook(self.project.code, "postcommit", store.file.name, 
                     success=success)
@@ -596,10 +610,13 @@ class TranslationProject(models.Model):
             #FIXME: We should not hide the exception - makes development
             # impossible
             pass
+
         from pootle_app.models.signals import post_vc_commit
         post_vc_commit.send(sender=self, store=store, stats=stats, user=user,
                 success=success)
+
         return success
+
 
     def initialize(self):
         try:
@@ -880,9 +897,16 @@ class TranslationProject(models.Model):
 
 
 def stats_message(version, stats):
-    return "%s: %d of %d messages translated (%d fuzzy)." % \
-           (version, stats.get("translated", 0), stats.get("total", 0),
-            stats.get("fuzzy", 0))
+    """Builds a message of statistics used in VCS actions."""
+    # Translators: 'type' is the type of VCS file: working, remote,
+    # or merged copy.
+    return _(u"%(type)s: %(translated)d of %(total)d messages translated "
+             u"(%(fuzzy)d fuzzy)." % {
+                 'type': version,
+                 'translated': stats.get("translated", 0),
+                 'total': stats.get("total", 0),
+                 'fuzzy': stats.get("fuzzy", 0)
+                })
 
 
 def scan_languages(sender, instance, created=False, raw=False, **kwargs):
