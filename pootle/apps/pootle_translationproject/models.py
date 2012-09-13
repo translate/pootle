@@ -551,8 +551,9 @@ class TranslationProject(models.Model):
             post_vc_update.send(sender=self, oldstats=old_stats,
                 remotestats=remote_stats, newstats=new_stats)
         except VersionControlError:
-            messages.error(_(u"Failed to update %(filename)s from "
-                             u"version control", {'filename': store.file.name}))
+            msg = _(u"Failed to update <em>%(filename)s</em> from "
+                    u"version control", {'filename': store.file.name})
+            messages.error(request, msg)
 
         self.scan_files()
 
