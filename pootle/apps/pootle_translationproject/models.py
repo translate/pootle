@@ -27,6 +27,7 @@ from django.contrib import messages
 from django.core.exceptions import PermissionDenied
 from django.db import models, IntegrityError
 from django.db.models.signals import post_save
+from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext_lazy as _
 
 from translate.misc.lru import LRUCachingDict
@@ -519,7 +520,8 @@ class TranslationProject(models.Model):
             stats_message(_(u"Remote copy"), remote_stats),
             stats_message(_(u"Merged copy"), new_stats)
         ]
-        messages.info(request, u"\n".join(msg))
+        msg = u"<br/>".join([force_unicode(m) for m in msg])
+        messages.info(request, msg)
 
         from pootle_app.models.signals import post_vc_update
         post_vc_update.send(sender=self, oldstats=old_stats,
@@ -542,7 +544,8 @@ class TranslationProject(models.Model):
                 stats_message(_(u"Remote copy"), remote_stats),
                 stats_message(_(u"Merged copy"), new_stats)
             ]
-            messages.info(request, u"\n".join(msg))
+            msg = u"<br/>".join([force_unicode(m) for m in msg])
+            messages.info(request, msg)
 
             from pootle_app.models.signals import post_vc_update
             post_vc_update.send(sender=self, oldstats=old_stats,
