@@ -7,11 +7,11 @@ Pootle's settings are spread in several *.conf* files within the
 *pootle/settings/* directory. Files are split by category: project-level
 settings, settings that control database backends, translation options, etc.
 
-When customizing settings, creating a *90-local.conf* file is recommended. This
-way, in case you deploy Pootle by cloning the git repository, the configuration
-file will be ignored by git. Moreover, all files ending in *-local.conf* will
-be ignored, so it's a good way for keeping separate configuration files for
-production, testing and development purposes.
+When customizing settings, **creating a 90-local.conf file is recommended**.
+This way, in case you deploy Pootle by cloning the git repository, the
+configuration file will be ignored by git. Moreover, all files ending in
+*-local.conf* will be ignored, so it's a good way for keeping separate
+configuration files for production, testing and development purposes.
 
 The git repository provides a sample *90-local.conf.sample* configuration file
 with the settings you are more likely to customize. You can find all the
