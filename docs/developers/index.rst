@@ -9,6 +9,8 @@ other way, make sure to read through this part.
 .. toctree::
    :maxdepth: 2
 
+   contributing
+   hacking
    customization
    testing
    glossary
