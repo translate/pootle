@@ -561,7 +561,7 @@ class TranslationProject(models.Model):
 
         self.scan_files()
 
-    def commitpofile(self, user, store):
+    def commitpofile(self, user, store, request=None):
         """Commits an individual file to version control.
 
         This does not do permission checking.
@@ -601,13 +601,17 @@ class TranslationProject(models.Model):
             for file in filestocommit:
                 versioncontrol.commit_file(file, message=message, author=author)
 
-                messages.success(_("Committed file: %(filename)s" % {
+                if request is not None:
+                    msg = _("Committed file: %(filename)s" % {
                         'filename': file
-                    }))
+                    })
+                    messages.success(request, msg)
         except Exception, e:
             logging.error(u"Failed to commit file: %s", e)
 
-            messages.error(_("Failed to commit file: %(error)s" % {'error': e}))
+            if request is not None:
+                msg = _("Failed to commit file: %(error)s" % {'error': e})
+                messages.error(request, msg)
 
             success = False
 
