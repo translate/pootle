@@ -52,6 +52,6 @@ class Command(PootleCommand):
         for store in store_query.iterator():
             logging.info(u"running %s over %s", self.name, store.pootle_path)
             try:
-                tp.commitpofile(self.user, store)
+                tp.commit_file(self.user, store)
             except Exception, e:
                 logging.error(u"failed to run %s over %s:\n%s", self.name, store.pootle_path, e)

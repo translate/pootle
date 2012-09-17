@@ -561,7 +561,7 @@ class TranslationProject(models.Model):
 
         self.scan_files()
 
-    def commitpofile(self, user, store, request=None):
+    def commit_file(self, user, store, request=None):
         """Commits an individual file to version control.
 
         This does not do permission checking.
