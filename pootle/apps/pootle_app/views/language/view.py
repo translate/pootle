@@ -67,6 +67,7 @@ def get_translation_project(f):
             language__code=language_code,
             project__code=project_code
         )
+
         return f(request, translation_project, *args, **kwargs)
 
     return decorated_f
@@ -82,12 +83,11 @@ def set_request_context(f):
             request.profile, translation_project.directory
         )
         request.translation_project = translation_project
+
         return f(request, translation_project, *args, **kwargs)
 
     return decorated_f
 
-
-################################################################################
 
 @get_translation_project
 @set_request_context
@@ -97,7 +97,9 @@ def translate(request, translation_project, dir_path=None):
         request.directory = Directory.objects.get(pootle_path=pootle_path)
     else:
         request.directory = translation_project.directory
+
     return translate_page(request)
+
 
 @get_translation_project
 @set_request_context
@@ -107,21 +109,25 @@ def get_failing_checks_dir(request, translation_project, dir_path):
         pathobj = Directory.objects.get(pootle_path=pootle_path)
     else:
         pathobj = translation_project
+
     return get_failing_checks(request, pathobj)
+
 
 @get_translation_project
 @set_request_context
 def get_view_units_dir(request, translation_project, dir_path):
     if not check_permission("view", request):
-        raise PermissionDenied(_("You do not have rights to access this translation project."))
+        raise PermissionDenied(_("You do not have rights to access this "
+                                 "translation project."))
+
     units_query = translation_project.units
     if dir_path:
         pootle_path = translation_project.pootle_path + dir_path
         units_query = units_query.filter(store__pootle_path__startswith=pootle_path)
+
     return get_view_units(request, units_query)
 
 
-################################################################################
 @get_translation_project
 @set_request_context
 def commit_file(request, translation_project, file_path):
@@ -134,12 +140,15 @@ def commit_file(request, translation_project, file_path):
 
     return redirect(translation_project.directory.pootle_path)
 
+
 @get_translation_project
 @set_request_context
 def update_file(request, translation_project, file_path):
     if not check_permission("commit", request):
         raise PermissionDenied(_("You do not have rights to update files here"))
+
     pootle_path = translation_project.directory.pootle_path + file_path
     store = get_object_or_404(Store, pootle_path=pootle_path)
     result = translation_project.update_file(request, store)
+
     return redirect(translation_project.directory.pootle_path)

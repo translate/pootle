@@ -567,7 +567,7 @@ class TranslationProject(models.Model):
         This does not do permission checking.
         """
         store.sync(update_structure=False, update_translation=True,
-            conservative=True)
+                   conservative=True)
         stats = store.getquickstats()
         author = user.username
 
@@ -588,7 +588,8 @@ class TranslationProject(models.Model):
         from pootle.scripts import hooks
         try:
             filestocommit = hooks.hook(self.project.code, "precommit",
-                    store.file.name, author=author, message=message)
+                                       store.file.name, author=author,
+                                       message=message)
         except ImportError:
             # Failed to import the hook - we're going to assume there just
             # isn't a hook to import. That means we'll commit the original
@@ -616,8 +617,8 @@ class TranslationProject(models.Model):
             success = False
 
         try:
-            hooks.hook(self.project.code, "postcommit", store.file.name, 
-                    success=success)
+            hooks.hook(self.project.code, "postcommit", store.file.name,
+                       success=success)
         except:
             #FIXME: We should not hide the exception - makes development
             # impossible
@@ -625,10 +626,9 @@ class TranslationProject(models.Model):
 
         from pootle_app.models.signals import post_vc_commit
         post_vc_commit.send(sender=self, store=store, stats=stats, user=user,
-                success=success)
+                            success=success)
 
         return success
-
 
     def initialize(self):
         try:

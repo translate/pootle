@@ -54,4 +54,5 @@ class Command(PootleCommand):
             try:
                 tp.commit_file(self.user, store)
             except Exception, e:
-                logging.error(u"failed to run %s over %s:\n%s", self.name, store.pootle_path, e)
+                logging.error(u"failed to run %s over %s:\n%s", self.name,
+                              store.pootle_path, e)
