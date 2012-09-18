@@ -186,3 +186,23 @@ def get_path_summary(path_obj, path_stats):
         )
 
     return summary
+
+
+def stats_message_raw(stats):
+    """Builds a message of statistics used in VCS actions."""
+    return "%s: %d of %d messages translated (%d fuzzy)." % \
+           (version, stats.get("translated", 0), stats.get("total", 0),
+            stats.get("fuzzy", 0))
+
+
+def stats_message(version, stats):
+    """Builds a localized message of statistics used in VCS actions."""
+    # Translators: 'type' is the type of VCS file: working, remote,
+    # or merged copy.
+    return _(u"%(type)s: %(translated)d of %(total)d messages translated "
+             u"(%(fuzzy)d fuzzy)." % {
+                 'type': version,
+                 'translated': stats.get("translated", 0),
+                 'total': stats.get("total", 0),
+                 'fuzzy': stats.get("fuzzy", 0)
+                })

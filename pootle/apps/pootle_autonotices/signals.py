@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2009-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -23,10 +23,12 @@ events."""
 
 import logging
 
-from pootle_notifications.models import Notice
 from pootle_app.models import Directory
+from pootle_misc.stats import stats_message_raw
+from pootle_notifications.models import Notice
 from pootle_profile.models import get_profile
 from pootle_store.models import Unit
+
 
 ##### Model Events #####
 
@@ -97,12 +99,10 @@ def unit_updated(sender, instance, raw=False, **kwargs):
             quickstats['translated'] += 1
             if dbcopy.isfuzzy():
                 quickstats['fuzzy'] -= 1
-            message += stats_message("Project now at", quickstats)
+            message += stats_message_raw("Project now at", quickstats)
             new_object(True, message, directory)
 
 ##### TranslationProject Events #####
-
-from pootle_translationproject.models import stats_message
 
 def updated_from_template(sender, oldstats, newstats, **kwargs):
     if oldstats == newstats:
@@ -110,8 +110,8 @@ def updated_from_template(sender, oldstats, newstats, **kwargs):
         return
     message = 'Updated <a href="%s">%s</a> to latest template <br />' % (
         sender.get_absolute_url(), sender.fullname)
-    message += stats_message("Before update", oldstats) + " <br />"
-    message += stats_message("After update", newstats) + " <br />"
+    message += stats_message_raw("Before update", oldstats) + " <br />"
+    message += stats_message_raw("After update", newstats) + " <br />"
     new_object(True, message, sender.directory)
 
 def updated_from_version_control(sender, oldstats, remotestats, newstats, **kwargs):
@@ -127,17 +127,17 @@ def updated_from_version_control(sender, oldstats, remotestats, newstats, **kwar
 
     message = 'Updated <a href="%s">%s</a> from version control <br />' % (
         sender.get_absolute_url(), sender.fullname)
-    message += stats_message("Before update", oldstats) + " <br />"
+    message += stats_message_raw("Before update", oldstats) + " <br />"
     if not remotestats == newstats:
-        message += stats_message("Remote copy", remotestats) + " <br />"
-    message += stats_message("After update", newstats)
+        message += stats_message_raw("Remote copy", remotestats) + " <br />"
+    message += stats_message_raw("After update", newstats)
     new_object(True, message, directory)
 
 def committed_to_version_control(sender, store, stats, user, success, **kwargs):
     message = '<a href="%s">%s</a> committed <a href="%s">%s</a> to version control' % (
         user.get_absolute_url(), get_profile(user),
         store.get_absolute_url(), store.pootle_path)
-    message = stats_message(message, stats)
+    message = stats_message_raw(message, stats)
     new_object(success, message, sender.directory)
 
 def file_uploaded(sender, oldstats, user, newstats, archive, **kwargs):
@@ -160,8 +160,8 @@ def file_uploaded(sender, oldstats, user, newstats, archive, **kwargs):
             get_profile(user).get_absolute_url(), get_profile(user),
             sender.get_absolute_url(), sender.fullname)
 
-    message += stats_message('Before upload', oldstats) + ' <br />'
-    message += stats_message('After upload', newstats) + ' <br />'
+    message += stats_message_raw('Before upload', oldstats) + ' <br />'
+    message += stats_message_raw('After upload', newstats) + ' <br />'
     new_object(True, message, directory)
 
 
