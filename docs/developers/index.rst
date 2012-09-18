@@ -13,5 +13,6 @@ other way, make sure to read through this part.
    hacking
    customization
    testing
+   release
    glossary
    styleguide
