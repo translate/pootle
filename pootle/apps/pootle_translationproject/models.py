@@ -909,7 +909,7 @@ class TranslationProject(models.Model):
 
 
 def stats_message(version, stats):
-    """Builds a message of statistics used in VCS actions."""
+    """Builds a localized message of statistics used in VCS actions."""
     # Translators: 'type' is the type of VCS file: working, remote,
     # or merged copy.
     return _(u"%(type)s: %(translated)d of %(total)d messages translated "
