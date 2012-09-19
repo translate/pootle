@@ -6,7 +6,7 @@ WSGIPythonOptimize 1
     ErrorLog %(project_path)s/logs/error.log
     CustomLog %(project_path)s/logs/access.log combined
 
-    WSGIDaemonProcess %(project_name)s processes=2 threads=3 stack-size=1048576 maximum-requests=500 inactivity-timeout=300 display-name=%{GROUP}
+    WSGIDaemonProcess %(project_name)s processes=2 threads=3 stack-size=1048576 maximum-requests=500 inactivity-timeout=300 display-name=%%{GROUP}
     WSGIProcessGroup %(project_name)s
     WSGIScriptAlias / %(wsgi_file)s
 
