@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2009 Zuza Software Foundation
+# Copyright 2008-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -28,22 +28,22 @@ When adding new fields in models, take into account the following:
       for the field you are adding.
 """
 
-import sys
 import logging
+import sys
 
 from django.core.management import call_command
 
-from pootle.i18n.gettext import ugettext as _
-from pootle.i18n.gettext import ungettext
-
+from pootle.i18n.gettext import ungettext, ugettext as _
 from pootle_app.models import Directory
+from pootle_language.models import Language
+from pootle_misc.dbinit import (stats_start, stats_language, stats_project,
+                                stats_end)
+from pootle_misc.util import deletefromcache
+from pootle_project.models import Project
 from pootle_store.models import Store, QualityCheck, CHECKED, PARSED
 from pootle_store.util import OBSOLETE
-from pootle_misc.util import deletefromcache
-from pootle_language.models import Language
-from pootle_project.models import Project
 from pootle_translationproject.models import TranslationProject
-from pootle_misc.dbinit import stats_start, stats_language, stats_project, stats_end
+
 
 def flush_quality_checks():
     """reverts stores to unchecked state. if store has false positives
