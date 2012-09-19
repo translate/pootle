@@ -250,7 +250,7 @@ def update_ts_tt_12008():
     return text
 
 
-def update_tables_22000():
+def update_tables_22000(flush_checks):
     text = u"""
     <p>%s</p>
     """ % _('Updating existing database tables...')
@@ -316,11 +316,12 @@ def update_tables_22000():
         field = Unit._meta.get_field(field_name)
         db.add_column(table_name, field.name, field)
 
-    text += """
-    <p>%s</p>
-    """ % _('Removing quality checks, will be recalculated on demand...')
-    logging.info("Fixing quality checks")
-    flush_quality_checks()
+    if flush_checks:
+        text += """
+        <p>%s</p>
+        """ % _('Removing quality checks, will be recalculated on demand...')
+        logging.info("Fixing quality checks")
+        flush_quality_checks()
 
     save_pootle_version(22000)
 
@@ -423,6 +424,11 @@ def staggered_update(db_buildversion, tt_buildversion):
 
     yield header(db_buildversion)
 
+    # sys.maxint is set in siteconfig middleware if Toolkit is unchanged.
+    # Otherwise, Toolkit build version changed.
+    needs_toolkit_upgrade = (tt_buildversion != sys.maxint and
+                             db_buildversion >= 21040)
+
     ############## version specific updates ############
 
     if db_buildversion < 20030:
@@ -476,7 +482,8 @@ def staggered_update(db_buildversion, tt_buildversion):
         save_pootle_version(21000)
 
     if db_buildversion < 22000:
-        yield update_tables_22000()
+        flush_checks = not needs_toolkit_upgrade
+        yield update_tables_22000(flush_checks)
 
     # Since :func:`update_stats_21060` works with the :cls:`TranslationProject`
     # model, this has to go after upgrading the DB tables, otherwise the model
@@ -487,11 +494,9 @@ def staggered_update(db_buildversion, tt_buildversion):
     if tt_buildversion < 12008:
         yield update_ts_tt_12008()
 
-    if tt_buildversion != sys.maxint and db_buildversion >= 21040:
-        # sys.maxint is set in siteconfig middleware if toolkit is unchanged.
-        # Otherwise, toolkit build version changed. Let's clear stale quality
-        # checks data. We can only do that safely if the db schema is
-        # already up to date.
+    if needs_toolkit_upgrade:
+        # Let's clear stale quality checks data. We can only do that safely if
+        # the db schema is already up to date.
         yield update_toolkit_version()
     elif tt_buildversion != sys.maxint:
         # only need to update the toolkit version, not do the upgrade
