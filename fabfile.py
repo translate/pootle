@@ -177,7 +177,7 @@ def update_config():
                         env.vhost_file, context=env, use_sudo=True)
 
         # Configure WSGI application
-        upload_template('deploy/pootle.wsgi' % env,
+        upload_template('deploy/pootle.wsgi',
                         env.wsgi_file, context=env)
 
         # Configure and install settings
