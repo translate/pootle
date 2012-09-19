@@ -227,8 +227,8 @@ def update_stats_21060():
         deletefromcache(tp, ["getquickstats", "getcompletestats",
                              "get_mtime", "has_suggestions"])
 
-    save_pootle_version(21060)
-
+    # There's no need to save the schema version here as it will already be
+    # saved by :func:`update_tables_22000`
     return text
 
 
@@ -475,11 +475,14 @@ def staggered_update(db_buildversion, tt_buildversion):
         yield parse_end()
         save_pootle_version(21000)
 
-    if db_buildversion < 21060:
-        yield update_stats_21060()
-
     if db_buildversion < 22000:
         yield update_tables_22000()
+
+    # Since :func:`update_stats_21060` works with the :cls:`TranslationProject`
+    # model, this has to go after upgrading the DB tables, otherwise the model
+    # and DB table definitions don't match.
+    if db_buildversion < 21060:
+        yield update_stats_21060()
 
     if tt_buildversion < 12008:
         yield update_ts_tt_12008()
