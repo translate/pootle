@@ -215,19 +215,6 @@ def update_tables_21000():
     return text
 
 
-def update_qualitychecks_21040():
-    text = """
-    <p>%s</p>
-    """ % _('Removing quality checks, will be recalculated on demand...')
-    logging.info("Fixing quality checks")
-
-    flush_quality_checks()
-
-    save_pootle_version(21040)
-
-    return text
-
-
 def update_stats_21060():
     text = """
     <p>%s</p>
@@ -487,9 +474,6 @@ def staggered_update(db_buildversion, tt_buildversion):
 
         yield parse_end()
         save_pootle_version(21000)
-
-    if db_buildversion < 21040:
-        yield update_qualitychecks_21040()
 
     if db_buildversion < 21060:
         yield update_stats_21060()
