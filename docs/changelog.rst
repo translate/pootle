@@ -21,7 +21,9 @@ Not released yet.
 - Static files are now handled by the ``django.contrib.staticfiles`` module.
   This means you will need to run the ``python manage.py collectstatic``
   command on production and serve the *pootle/assets/* directory from your
-  webserver.
+  webserver at */assets/*. If you are upgrading from a previous version, you
+  will to replace the occurrences of *static* with *assets* within your web
+  server configuration.
 
 - Static files are bundled into assets by using `django-assets
   <http://elsdoerfer.name/docs/webassets/django/index.html>`_.

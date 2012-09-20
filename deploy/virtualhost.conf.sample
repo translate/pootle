@@ -18,7 +18,7 @@ WSGIPythonOptimize 1
         Allow from all
     </Directory>
 
-    Alias /static %(project_repo_path)s/pootle/assets
+    Alias /assets %(project_repo_path)s/pootle/assets
     <Directory "%(project_path)s/pootle/assets/">
         Order deny,allow
         Allow from all
