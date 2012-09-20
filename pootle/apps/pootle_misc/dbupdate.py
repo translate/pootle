@@ -157,11 +157,11 @@ def update_permissions_20030():
     from django.contrib.auth.models import Permission
     from django.contrib.contenttypes.models import ContentType
 
-    contenttype, created = ContentType.objects
+    contenttype, created = ContentType.objects \
                                       .get_or_create(app_label="pootle_app",
                                                      model="directory")
 
-    for permission in Permission.objects.filter(content_type__name='pootle')
+    for permission in Permission.objects.filter(content_type__name='pootle') \
                                         .iterator():
         permission.content_type = contenttype
         permission.save()
@@ -222,7 +222,7 @@ def update_stats_21060():
            'recalculated...')
     logging.info('Flushing cached stats')
 
-    for tp in TranslationProject.objects.filter(stores__unit__state=OBSOLETE)
+    for tp in TranslationProject.objects.filter(stores__unit__state=OBSOLETE) \
                                         .distinct().iterator():
         deletefromcache(tp, ["getquickstats", "getcompletestats",
                              "get_mtime", "has_suggestions"])
@@ -238,9 +238,10 @@ def update_ts_tt_12008():
     """ %_('Reparsing Qt ts files...')
     logging.info('Reparsing Qt ts')
 
-    for store in Store.objects.filter(state__gt=PARSED,
-                                      translation_project__project__localfiletype='ts',
-                                      file__iendswith='.ts').iterator():
+    for store in Store.objects \
+                      .filter(state__gt=PARSED,
+                              translation_project__project__localfiletype='ts',
+                              file__iendswith='.ts').iterator():
         store.sync(update_translation=True)
         store.update(update_structure=True, update_translation=True,
                      conservative=False)
