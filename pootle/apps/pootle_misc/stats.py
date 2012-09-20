@@ -188,7 +188,7 @@ def get_path_summary(path_obj, path_stats):
     return summary
 
 
-def stats_message_raw(stats):
+def stats_message_raw(version, stats):
     """Builds a message of statistics used in VCS actions."""
     return "%s: %d of %d messages translated (%d fuzzy)." % \
            (version, stats.get("translated", 0), stats.get("total", 0),
