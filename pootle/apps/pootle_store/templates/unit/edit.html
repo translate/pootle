@@ -209,6 +209,7 @@
           </div>
           <div class="extra-item-content">
             <div class="extra-item js-editor-copytext" data-action="overwrite">
+              {% block votes %}{% endblock %}
               {% if canreview %}
               <a accesskey="a" class="suggestion-action js-suggestion-accept"
                 data-sugg-id="{{ sugg.id }}">
@@ -232,6 +233,7 @@
 
               <div id="suggdiff-{{sugg.id}}-{{i}}" class="suggestion-translation" lang="{{ language.code }}" dir="{{ language.get_direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ diff }}</div>
             </div>
+            {% block suggestion_comment %}{% endblock %}
           </div>
           {% endfor %}
         </div>

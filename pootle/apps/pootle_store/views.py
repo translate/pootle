@@ -357,10 +357,8 @@ def translate_page(request):
         'AMAGAMA_URL': settings.AMAGAMA_URL,
         }
 
-    if is_terminology:
-        return render_to_response('store/terms.html', context, context_instance=RequestContext(request))
-    else:
-        return render_to_response('store/translate.html', context, context_instance=RequestContext(request))
+    return render_to_response('store/translate.html', context,
+                              context_instance=RequestContext(request))
 
 
 @get_store_context('view')

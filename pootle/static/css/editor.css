@@ -620,7 +620,7 @@ html[dir="rtl"] .suggestion-vote
     opacity: 1;
 }
 
-.num_votes
+.num-votes
 {
     position: absolute;
     top: 8px;

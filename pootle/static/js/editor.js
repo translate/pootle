@@ -128,8 +128,8 @@
     $(document).on("click", "input.previous, input.next", this.gotoPrevNext);
     $(document).on("click", ".js-suggestion-reject", this.rejectSuggestion);
     $(document).on("click", ".js-suggestion-accept", this.acceptSuggestion);
-    $(document).on("click", "#suggestions .clearvote", this.clearVote);
-    $(document).on("click", "#suggestions .voteup", this.voteUp);
+    $(document).on("click", ".js-vote-clear", this.clearVote);
+    $(document).on("click", ".js-vote-up", this.voteUp);
     $(document).on("click", "#show-timeline", this.showTimeline);
     $(document).on("click", "#hide-timeline", this.hideTimeline);
     $(document).on("click", "#translate-checks-block .js-reject-check", this.rejectCheck);
@@ -1810,8 +1810,8 @@
   /* Clears the vote for a specific suggestion */
   clearVote: function (e) {
     e.stopPropagation(); //we don't want to trigger a click on the text below
-    var element = $(this);
-        voteId = element.siblings("input.voteid").val(),
+    var element = $(this),
+        voteId = element.data("vote-id"),
         url = l('/vote/clear/') + voteId;
 
     element.fadeTo(200, 0.01); //instead of fadeOut that will cause layout changes
@@ -1822,7 +1822,7 @@
       dataType: 'json',
       success: function (data) {
         element.hide();
-        element.siblings("#suggestions .voteup").fadeTo(200, 1);
+        element.siblings(".js-vote-up").fadeTo(200, 1);
       },
       error: function (xhr, s) {
         PTL.editor.error(xhr, s);
@@ -1834,11 +1834,10 @@
 
   /* Votes for a specific suggestion */
   voteUp: function (e) {
-    e.stopPropagation(); //we don't want to trigger a click on the text below
-    var element = $(this);
-        suggId = element.siblings("input.suggid").val(),
-        uid = $('.translate-container #id_id').val(),
-        url = l('/vote/up/') + uid + '/' + suggId;
+    e.stopPropagation();
+    var element = $(this),
+        suggId = element.siblings("[data-sugg-id]").data("sugg-id"),
+        url = l('/vote/up/') + PTL.editor.activeUid + '/' + suggId;
 
     element.fadeTo(200, 0.01); //instead of fadeOut that will cause layout changes
     $.ajax({
@@ -1847,9 +1846,9 @@
       data: {'up': 1},
       dataType: 'json',
       success: function (data) {
-        element.siblings("input.voteid").attr("value", data.voteid);
+        element.siblings("[data-vote-id]").data("vote-id", data.voteid);
         element.hide();
-        element.siblings("#suggestions .clearvote").fadeTo(200, 1);
+        element.siblings(".js-vote-clear").fadeTo(200, 1);
       },
       error: function (xhr, s) {
         PTL.editor.error(xhr, s);
