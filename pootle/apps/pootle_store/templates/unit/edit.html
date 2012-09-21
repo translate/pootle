@@ -201,7 +201,11 @@
         <div id="suggestion-{{ sugg.id }}" class="extra-item-block">
           {% for i, target, diff, title in sugg|pluralize_diff_sugg %}
           <div class="extra-item-gravatar">
+            {% if sugg.user %}
             <a href="{{ sugg.user.get_absolute_url }}"><img src="{{ sugg.user|gravatar:24 }}" alt="{{ sugg.user.username }}" width="24" height="24" title="{{ sugg.user }}" /></a>
+            {% else %}
+            <span class="invisible">placeholder</span>
+            {% endif %}
           </div>
           <div class="extra-item-content">
             <div class="extra-item js-editor-copytext" data-action="overwrite">
