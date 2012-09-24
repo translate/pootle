@@ -72,5 +72,5 @@ Project administrators can generate a list of frequently occurring terms from
 the *Translate* tab in the Pootle interface, which can help to quickly
 standardize some frequently occurring terms.  It is also possible to add extra
 entries.  This is based on the `poterminology
-<http://translate.sourceforge.net/toolkit/poterminology>`_ tool from the
+<http://translate.sourceforge.net/wiki/toolkit/poterminology>`_ tool from the
 Translate Toolkit.

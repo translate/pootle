@@ -16,7 +16,7 @@ Offline translation using whatever tool the user prefers can be integrated
 within Pootle's workflow easily through downloading and uploading translation
 files.
 
-We recommend `Virtaal <http://translate.sourceforge.net/virtaal>`_ for offline
+We recommend `Virtaal <http://virtaal.org>`_ for offline
 translation, as it supports the same formats that Pootle supports, has all of
 Pootle's features and power and more.
 
