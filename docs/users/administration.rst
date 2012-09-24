@@ -14,7 +14,7 @@ the whole site.
     assign superuser rights to another user.
 
 
-.. _administration#scope
+.. _administration#scope:
 
 Administration scope
 --------------------
