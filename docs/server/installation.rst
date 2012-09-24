@@ -63,15 +63,15 @@ Prerequisite Software
  Package                     Best version           Website                                                                 Notes
 ==========================  =====================  ======================================================================  ================================================================
  Pootle                      2.2 or later           http://sourceforge.net/projects/translate/files/Pootle/ 
- Django                      1.3 or later           http://www.djangoproject.com/download/
+ Django                      1.3 or later           https://www.djangoproject.com/download/
  Translate Toolkit           Latest version         http://sourceforge.net/projects/translate/files/Translate%20Toolkit/
  Python                      Latest 2.x version     http://www.python.org/                                                  At least version 2.4
  lxml                        2.1.4 or later         http://pypi.python.org/pypi/lxml/                                       XLIFF support and HTML sanitation and cleanup for news items
  Python database bindings                           See the `optional software`_ list below
  South                                              http://south.aeracode.org/  \\ pip install South                        Required for upgrading between Pootle versions
  django-voting                                      http://code.google.com/p/django-voting/ \\ pip install django-voting
- webassets                   0.6 or later           http://github.com/miracle2k/webassets/ \\ pip install webassets         For bundling assets.
- cssmin                                             http://github.com/zacharyvoase/cssmin \\ pip install cssmin             Required for webassets.
+ webassets                   0.6 or later           https://github.com/miracle2k/webassets/ \\ pip install webassets         For bundling assets.
+ cssmin                                             https://github.com/zacharyvoase/cssmin \\ pip install cssmin             Required for webassets.
 ==========================  =====================  ======================================================================  ================================================================
 
 
@@ -212,7 +212,7 @@ by issuing the following command (don't forget to switch user account to
 `pootle` before!): service pootle start
 
 If you have difficulty installing please email the `translate-pootle
-<http://lists.sourceforge.net/lists/listinfo/translate-pootle>`_ list with
+<https://lists.sourceforge.net/lists/listinfo/translate-pootle>`_ list with
 details of exactly what you did and what didn’t work. If possible, please
 include the output of ``PootleServer --version``.
 
