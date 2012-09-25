@@ -1,3 +1,12 @@
+# Stuff from the master branch
+*.pyc
+deploy
+docs
+pootle
+
+# LESS
+assets/less/bootstrap
+
 # Jekyll-generated
 _site
 
