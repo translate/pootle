@@ -1,0 +1,8 @@
+# Jekyll-generated
+_site
+
+# ViM-generated
+*.swn
+*.swo
+*.swp
+*~
