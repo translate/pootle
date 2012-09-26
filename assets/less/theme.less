@@ -22,6 +22,12 @@
 
 // Base CSS
 @import "bootstrap/type.less";
+
+ul,
+ol {
+  list-style: square;
+}
+
 @import "bootstrap/code.less";
 //@import "bootstrap/forms.less";
 //@import "bootstrap/tables.less";
@@ -117,6 +123,7 @@ footer a {
 
 #content {
   font-family: @altFontFamily;
+  font-size: @baseFontSize * 1.6;
 
   h2, h3 {
     font-style: italic;
@@ -128,13 +135,21 @@ footer a {
   h3 {
     font-size: @baseFontSize * 2.2;
   }
-  p {
-    font-size: @baseFontSize * 1.6;
+  p,
+  li {
     line-height: 1.4;
+  }
+  p {
     margin: 20px 0;
+  }
+  li {
+    margin-left: 1.5em;
   }
   section {
     padding: 60px 0 40px;
+  }
+  .btn {
+    font-family: @baseFontFamily;
   }
 }
 
