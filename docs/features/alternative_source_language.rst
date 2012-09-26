@@ -6,8 +6,8 @@ Alternative source language
 Pootle has the ability to display alternative source languages while
 translating. Thus, translators who know another language better than English
 can take part in the translation project. Also, it provides a way to
-disambiguate terminology seeing how other languages have translated the same
-translation unit.
+disambiguate terminology by seeing how other languages have translated the
+same translation unit.
 
 .. image:: ../_static/altsrc.png
 
@@ -24,15 +24,10 @@ to guess the user's alternative source language by looking at the browser's
 
 .. note::
 
-    If the selected project doesn't have translations for the alternative
-    source language then it can't be displayed.
+    If the selected project doesn't have translations in the alternative
+    source language then no alternative will be displayed.
 
-This feature is enabled by default, but alternatively, Pootle server
-administrators can disable this feature server-wide by setting ::
-
-    ENABLE_ALT_SRC = False
-
-in *localsettings.py*.
+This feature is enabled by default.
 
 
 .. _alternative_source_language#matching_criteria:
