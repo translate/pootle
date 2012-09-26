@@ -2,5 +2,16 @@
 layout: default
 title: Download 
 ---
-<h2>Download this!</h2>
+<div id="content" class="container">
+  <h2>Download Pootle</h2>
+  <p>The latest stable version is <strong>{{ site.latest_version }}</strong>.</p>
+  <p><a class="btn btn-success btn-huge"
+    href="http://sourceforge.net/projects/translate/files/Pootle/2.1.6/Pootle-2.1.6.tar.bz2/download">Download
+    Now&nbsp;<i class="icon-circle-arrow-down icon-large"></i></a></p>
 
+  <hr>
+
+  <h2>About this release</h2>
+  {% assign post = site.categories.releases | first %}
+  {{ post.content }}
+</div>
