@@ -49,7 +49,9 @@ Available Machine Translation services
 --------------------------------------
 
 Supported Services:
+
 - Google Translate
+
 - Apertium.
 
 Google Translate is widely used and supports many `translation pairs
