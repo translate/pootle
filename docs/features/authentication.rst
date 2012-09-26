@@ -36,7 +36,11 @@ the branch *employees* on the LDAP.
     # What are we filtering on?  %s will be the username (must be in the string)
     # In this case, we filter on mails, which are the uid.
     AUTH_LDAP_FILTER = 'uid=%s'
-    # This is a mapping of Pootle field names to LDAP fields.  The key is # Pootle's name, the value should be your LDAP field name.  If you don't use the # field or don't want to automatically retrieve these fields from LDAP comment # them out. The only required field is 'dn'. givenName, sn and uid are the names # of the LDAP fields.
+    # This is a mapping of Pootle field names to LDAP fields.  The key is
+    # Pootle's name, the value should be your LDAP field name.  If you don't use the
+    # field or don't want to automatically retrieve these fields from LDAP comment
+    # them out. The only required field is 'dn'. givenName, sn and uid are the names
+    # of the LDAP fields.
     AUTH_LDAP_FIELDS = {
             'dn': 'dn',
             'first_name':'givenName',
