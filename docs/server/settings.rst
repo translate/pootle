@@ -370,3 +370,19 @@ Translation environment configuration settings.
   Default: ``working_path('repos')``
 
   The directory where version control clones/checkouts are kept.
+
+Deprecated settings
+-------------------
+
+.. setting:: ENABLE_ALT_SRC
+
+``ENABLE_ALT_SRC``
+  Defaut: ``True``
+
+  .. deprecated:: 2.2
+
+  Display alternate source languages in the translation interface.
+
+  .. note:: Alternate source languages are now on by default. This ensures
+     that translators have access to as much useful information as possible
+     when translating.
