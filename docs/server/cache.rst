@@ -5,20 +5,21 @@ Caching System
 
 Pootle uses a caching system to improve performance. It is an essential part
 of :doc:`optimizing <optimization>` your Pootle installation. It is based on
-Django's caching system, and is used for various things:
+:ref:`Django's caching system<django:django-s-cache-framework>`, and is used
+for various things:
 
 - To serve cached (possibly slightly outdated) versions of most pages to
   anonymous users to reduce their impact on server performance.
 
 - To cache bits of the user interface, even for logged in users. Data will not
-  be out of date but Pootle still tries to use cache to reduce impact on server
-  performance.
+  be out of date but Pootle still tries to use the cache to reduce the impact
+  on server performance.
 
 - To store the result of expensive calculations like translation statistics.
 
-- To keep track of last update timestamps to avoid unnecessary file operations
-  (for example don't attempt to save translations before a download if there
-  are no new translations).
+- To keep track of last update timestamps to avoid unnecessary and expensive
+  file operations (for example don't attempt to save translations before a
+  download if there are no new translations).
 
 Without a well functioning cache system, Pootle could be slow.
 
@@ -28,9 +29,10 @@ Without a well functioning cache system, Pootle could be slow.
 Cache backends
 --------------
 
-Django supports multiple cache backends (methods of storing cache data). You
-specify which backend to use by changing the value of ``CACHE_BACKEND`` in the
-`localsettings.py` file.
+Django supports :ref:`multiple cache backends <django:setting-up-the-cache>`
+(methods of storing cache data). You can specify which backend to use
+by overriding the value of ``CACHES`` in the `settings/20-backends.conf`
+file in your `settins/90-local.conf` file.
 
 
 .. _cache#memcached:
@@ -40,7 +42,12 @@ Memcached
 
 ::
 
-    CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+            'LOCATION': '127.0.0.1:11211',
+        }
+    }
 
 Memcached is the recommended cache backend, it provides the best performance.
 And works fine with multiprocessing servers like Apache. It requires the
@@ -55,7 +62,12 @@ Memcached on Unix sockets
 
 ::
 
-    CACHE_BACKEND = 'memcached:unix:/path/to/memcached.sock'
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+            'LOCATION': 'unix:/path/to/memcached.sock',
+        }
+    }
 
 If you don't want Pootle using TCP/IP to access memcached then you can use Unix
 sockets.  This is often a situation in hardened installations using SELinux.
@@ -72,12 +84,18 @@ Database
 
 ::
 
-    CACHE_BACKEND = 'db://pootlecache?max_entries=65536&cull_frequency=16'
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+            'LOCATION': 'my_cache_table',
+        }
+    }
 
-Database caching relies on a table in the main Pootle database for storing the
-cached data, which makes it suitable for multiprocessing servers, with the
-added benefit that the cached data remains intact after a server reboot (unlike
-memcached) but it is considerably slower than memcached.
+:ref:`Database caching <django:database-caching>` relies on a table in the
+main Pootle database for storing the cached data, which makes it suitable for
+multiprocessing servers, with the added benefit that the cached data remains
+intact after a server reboot (unlike memcached) but it is considerably
+slower than memcached.
 
 .. versionchanged:: 2.1.1
 
@@ -89,27 +107,3 @@ like to switch to the database cache backend using this :doc:`manage.py command
 <commands>`::
 
     ./manage.py createcachetable pootlecache
-
-
-.. _cache#local_memory:
-
-Local memory
-^^^^^^^^^^^^
-
-::
-
-    CACHE_BACKEND = 'locmem:///?max_entries=4096&cull_frequency=5'
-
-
-.. deprecated:: 2.1
-
-The default was to use this less efficient but simpler memory cache backend.
-That default is not suitable at all for multiprocess servers like
-:doc:`apache`.
-
-Since it uses in-process memory, it is impossible to update cache across all
-processes leading to translation statistics being different for each process,
-which often results in users seeing different values on consecutive requests, a
-problem easily solved by switching to memcached.
-
-There is little reason to continue using local memory.
