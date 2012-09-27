@@ -1,11 +1,8 @@
 /* Here you can add any extra CSS to override the default styling. Have a look
  * at the supplied CSS files for ideas. This CSS file will be applied to all
- * pages, unless you modify the specification of the assets. Assets are defined
- * here:
- *   apps/pootle_app/assets.py
+ * pages, unless you modify the default base template (templates/base.html).
  *
  * You can refer to your own images in this directory in the CSS directly by
  * name without a path, for example:
- *   url('image.png') to refer to /static/css/custom/image.png
+ *   url('image.png') to refer to /assets/css/custom/image.png
  */
-

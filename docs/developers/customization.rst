@@ -1,7 +1,7 @@
 .. _customization:
 
-Customizing Pootle's look
-=========================
+Customizing the look
+====================
 
 In some cases it might be desirable to customize the styling of Pootle to fit
 in with your other websites or other aspects of your identity. It might also be
@@ -18,8 +18,8 @@ are unlikely to affect your customizations.
 Customizing CSS
 ---------------
 
-Edit the file in *static/custom/custom.css* to override any rules from the main
-CSS file. That CSS file will be included in every page.
+Edit the file in *static/css/custom/custom.css* to override any rules from the
+main CSS file. That CSS file will be included in every page.
 
 
 .. _customization#images:
@@ -27,9 +27,9 @@ CSS file. That CSS file will be included in every page.
 Customizing images
 ------------------
 
-Any custom images can be placed in *static/custom/*. The *custom.css* file can
-refer to it directly by name, without having to specify a path, since it is in
-the same directory.
+Any custom images can be placed in *static/css/custom/*. The *custom.css* file
+can refer to it directly by name, without having to specify a path, since it is
+in the same directory.
 
 
 .. _customization#favicon:

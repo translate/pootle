@@ -20,6 +20,9 @@
     <link rel="stylesheet" type="text/css" href="{{ "css/ie.css"|s }}" />
     <![endif]-->
     {% endblock css %}
+    {% assets "css_custom" %}
+    <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
+    {% endassets %}
     {% block favicon %}
     <link rel="shortcut icon" href="{{ "favicon.ico"|s }}" />
     {% endblock favicon %}
