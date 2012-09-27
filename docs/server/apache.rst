@@ -17,7 +17,7 @@ For anything except the most trivial deployments it is best to use a database
 server such as :ref:`installation#mysql` or PostgreSQL rather than the default SQLite, and
 to install `memcached
 <https://docs.djangoproject.com/en/dev/topics/cache/#memcached>`_ and configure
-it in *localsettings.py*.
+it in *settings/90-local.conf*.
 
 Make sure to review your global Apache settings (something like
 */etc/apache2/httpd.conf* or */etc/httpd/conf/httpd.conf*) for the
