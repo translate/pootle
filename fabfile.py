@@ -135,12 +135,13 @@ def deploy_static():
     """Runs `collectstatic` to collect all the static files"""
     require('environment', provided_by=[production, staging])
 
-    print('Collecting static files...')
+    print('Collecting and building static files...')
 
     with settings(hide('stdout', 'stderr')):
         with cd('%(project_repo_path)s/pootle' % env):
             with prefix('source %(env_path)s/bin/activate' % env):
-                run('python manage.py collectstatic -v0 --noinput')
+                run('python manage.py collectstatic --noinput')
+                run('python manage.py assets build')
 
 
 def deploy():
