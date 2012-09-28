@@ -6,13 +6,13 @@ Optimization
 With a few extra steps, you can support more users and more data.  Here are
 some tips for performance tuning on your Pootle installation.
 
-- Ensure that Pootle runs under a webserver like :doc:`apache`, or a `fastcgi
-  server
+- Ensure that Pootle runs under a webserver like :doc:`Apache <apache>`,
+  :doc:`Nginx <nginx>` or a `fastcgi server
   <http://cleverdevil.org/computing/24/python-fastcgi-wsgi-and-lighttpd>`_. 
 
-- If you really can't install under another web server, at least install
-  `cherrypy <http://www.cherrypy.org>`_ which Pootle will automatically use.
-  This will help a little bit with performance.
+   - If you really can't install under another web server, at least install
+     `cherrypy <http://www.cherrypy.org>`_ which Pootle will automatically use.
+     This will help a little bit with performance.
 
 - Be sure to use a proper database server like :ref:`MySQL
   <installation#mysql>` instead of the default SQLite.  You can :doc:`migrate
@@ -21,22 +21,23 @@ some tips for performance tuning on your Pootle installation.
 
 - Install :doc:`memcached <cache>` and enable it in the settings file.
 
-- Install the latest recommended version of all dependencies. Especially Django
-  and the Translate Toolkit might affect performance. Django 1.0 will badly
-  affect performance.  Later versions of Pootle should also give better
-  performance.  You can :doc:`upgrade <upgrading>` to newer versions of Pootle
-  easily.
+- Install the latest recommended version of all dependencies. Django and the
+  Translate Toolkit might affect performance.  Later versions of Pootle should
+  also give better performance.  You can :doc:`upgrade <upgrading>` to newer
+  versions of Pootle easily.
 
-- Disable live translation.
+- Ensure ``LIVE_TRANSLATION`` is disabled.
 
-- Disable ``DEBUG`` mode.
+- Ensure ``DEBUG`` mode is disabled.
 
-- Ensure that the zip and unzip commands are installed on your server.  These
-  can improve the performance during upload and download of large ZIP files.
+- Ensure that the ``zip`` and ``unzip`` commands are installed on your
+  server.  These can improve the performance during upload and download
+  of large ZIP files.
 
-- Ensure that you have an :doc:`indexing` engine installed with its Python
-  bindings. This will improve the performance of searching in big projects.
-  PyLucene should perform better, although it might be harder to install.
+- Ensure that you have an :doc:`indexing engine <indexing>` installed with its
+  Python bindings. This will improve the performance of searching in big
+  projects.  PyLucene should perform better, although it might be harder to
+  install.
 
 - Ensure that you have python-levenshtein installed. This will improve the
   performance when updating from templates.
@@ -50,11 +51,6 @@ some tips for performance tuning on your Pootle installation.
 - Disable swap on the server.  Things should be configured so that physical
   memory of the server is never exceeded. Swapping is bound to seriously
   degrade the user experience.
-
-- If your Pootle version is < 2.1, you can Vacuum your statistics database
-  with::
-
-      sqlite3 Pootle/dbs/stats.db "VACUUM;"
 
 
 .. _optimization#apache:
@@ -89,7 +85,7 @@ Fast PO implementation
 ----------------------
 
 If you want better performance for your PO based operations, you can try to
-enable the fast new PO implementation available since Translate Toolkit 1.5.0.
+enable the fast PO implementation available since Translate Toolkit 1.5.0.
 This implementation will be used if ``USECPO=2`` is available in the operating
 system environment variables.  Note that this is different from the Apache
 environment variables.
