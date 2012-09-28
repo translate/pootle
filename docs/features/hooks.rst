@@ -3,19 +3,43 @@
 Hooks
 =====
 
-Pootle supports hooks to customize behaviour on submit and update from
-:doc:`Version Control Systems <version_control>`. They are Python scripts and
-can do things like checking or converting formats before commit.
+Pootle supports hooks to customize its behavior at various points in its
+interaction with :doc:`Version Control Systems <version_control>`,
+translation update and translation initialization.
+
+Hooks are Python scripts and can do things like checking or converting
+formats before commit.
+
+.. note:: See `bug 2559 <http://bugs.locamotion.org/show_bug.cgi?id=2559>`_ tracking changes
+   needed for hooks to run on Pootle 2.2
 
 
-.. _hooks#notes:
+.. _hooks#implementing:
 
-Notes
------
+Implementing a hook
+-------------------
+Hooks are Python scripts stored in the *pootle/scripts* directory and are
+named after their project name.  Thus, *hello.py* for a project called
+**hello**.
 
-For Pootle 2.2, hooks will have to be rewritten:
+The project hook should implement functions for each needed hooktype.
 
-- They need to take into account that VCS checkouts/clones are not separate, in
-  *settings.VCS_DIRECTORY*
 
-- Paths are given relative to the root of the *podirectory*.
+.. _hooks#hooktypes:
+
+Available hooktypes
+-------------------
+
++------------+---------------------------+---------+
+| Hooktype   | Arguments                 | Return  |
++============+===========================+=========+
+| initalize  | projectdir, languagecodee |         |
++------------+---------------------------+---------+
+| precommit  | file, author, message     |         |
++------------+---------------------------+---------+
+| postcommit | file, success             |         |
++------------+---------------------------+---------+
+| preupdate  | file                      |         |
++------------+---------------------------+---------+
+| postupdate | file                      |         |
++------------+---------------------------+---------+
