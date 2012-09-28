@@ -583,14 +583,15 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini{*padding-top:1px;*padding-
 body{padding-top:61px;}
 footer a{color:#777777;margin:0 2em;}footer a:active{color:#555555;}
 footer a:hover{color:#333333;text-decoration:none;}
-#content{font-family:"Baskerville","Georgia",serif;font-size:22.400000000000002px;}#content h2,#content h3{font-style:italic;font-weight:normal;}
-#content h2{font-size:33.6px;}
-#content h3{font-size:30.800000000000004px;}
-#content p,#content li{line-height:1.4;}
-#content p{margin:20px 0;}
-#content li{margin-left:1.5em;}
-#content section{padding:60px 0 40px;}
-#content .btn{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
+.content{font-family:"Baskerville","Georgia",serif;font-size:22.400000000000002px;}.content h2,.content h3{font-style:italic;font-weight:normal;}
+.content h2{font-size:33.6px;}
+.content h3{font-size:30.800000000000004px;}
+.content h2+p,.content h3+p{margin-top:10px;}
+.content p,.content li,.content dt,.content dd{line-height:1.4;}
+.content p{margin:20px 0;}
+.content li{margin-left:1.5em;}
+.content section{padding:60px 0 40px;}
+.content .btn{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
 .ac{text-align:center;}
 .pull-right{float:right;}
 .pull-left{float:left;}
