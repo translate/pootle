@@ -36,7 +36,7 @@ the *settings/90-local.conf* file in your new Poole version.
 
 You might want to look for any new settings that are available in the new
 version that you might want to configure. For example, the setting
-``CONTACT_EMAIL`` was introduced in Pootle 2.1 - that would be
+:setting:`CONTACT_EMAIL` was introduced in Pootle 2.1 - that would be
 missing from a settings file from Pootle 2.0.
 
 When you start the new version of Pootle, you want to be sure that your
