@@ -63,12 +63,7 @@ Navigation
 +---------------------------+-----------------------------+
 | Move 10 units down        | :kbd:`Ctrl+Shift+Page Down` |
 +---------------------------+-----------------------------+
-| Focus on search field in  | :kbd:`Ctrl+Shift+S`         |
-| the navigation bar (and   |                             |
-| select its contents)      |                             |
+| Select search box         | :kbd:`Ctrl+Shift+S`         |
 +---------------------------+-----------------------------+
-| Focus on item number      | :kbd:`Ctrl+Shift+U`         |
-| field in the navigation   |                             |
-| bar (and select its       |                             |
-| contents)                 |                             |
+| Select page number        | :kbd:`Ctrl+Shift+U`         |
 +---------------------------+-----------------------------+
