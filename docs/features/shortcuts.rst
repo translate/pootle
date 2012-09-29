@@ -31,12 +31,9 @@ Editing
 | Submit and move to next   | Ctrl+Enter          |                      |
 | translation               |                     |                      |
 +---------------------------+---------------------+----------------------+
-| Suggest and move to next  | Ctrl+Shift+Enter    | Ctrl+Enter           |
-| translation               |                     |  (submit+suggest)    |
-+---------------------------+---------------------+----------------------+
 | Toggle the fuzzy flag     | Ctrl+Space          |                      |
 +---------------------------+---------------------+----------------------+
-| Toggle the suggest/submit |                     | Ctrl+Shift+Space     |
+| Toggle the suggest/submit | Ctrl+Shift+Space    |                      |
 | mode                      |                     |                      |
 +---------------------------+---------------------+----------------------+
 | Copy the contents from    |                     | Alt+Down             |
