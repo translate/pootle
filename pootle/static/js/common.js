@@ -22,15 +22,15 @@ function initZoom() {
 
   $(document.body).addClass(zoomClassName());
 
-  shortcut.add('ctrl+shift+insert', function () {
+  shortcut.add('ctrl+shift+-', function () {
     zoom(-1);
   });
 
-  shortcut.add('ctrl+shift+home', function () {
+  shortcut.add('ctrl+shift+0', function () {
     zoom(0);
   });
 
-  shortcut.add('ctrl+shift+page_up', function () {
+  shortcut.add('ctrl+shift++', function () {
     zoom(1);
   });
 }

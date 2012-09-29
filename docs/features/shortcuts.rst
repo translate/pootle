@@ -11,13 +11,13 @@ Keyboard shortcuts
 Global
 ------
 
-===================== =========================== ========================
-Action                 Current shortcut            Proposed shortcut
-===================== =========================== ========================
-Content Zoom Out       :kbd:`Ctrl+Shift+Insert`    :kbd:`Ctrl+Shift+-`
-Reset Content Zoom     :kbd:`Ctrl+Shift+Home`      :kbd:`Ctrl+Shift+*`
-Content Zoom In        :kbd:`Ctrl+Shift+Page Up`   :kbd:`Ctrl+Shift+"+"`
-===================== =========================== ========================
+===================== =======================
+Action                 Shortcut
+===================== =======================
+Content Zoom Out       :kbd:`Ctrl+Shift+-`
+Reset Content Zoom     :kbd:`Ctrl+Shift+0`
+Content Zoom In        :kbd:`Ctrl+Shift+"+"`
+===================== =======================
 
 
 .. _shortcuts#editing:
