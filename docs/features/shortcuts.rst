@@ -51,27 +51,27 @@ Editing
 Navigation
 ----------
 
-+---------------------------+---------------------+----------------------+
-| Action                    | Current shortcut    | Proposed shortcut    |
-+===========================+=====================+======================+
-| Move to previous unit     | Ctrl+Up             |                      |
-+---------------------------+---------------------+----------------------+
-| Move to next unit         | Ctrl+Down           |                      |
-+---------------------------+---------------------+----------------------+
-| Move to the first unit    |                     | Ctrl+Home            |
-+---------------------------+---------------------+----------------------+
-| Move to the last unit     |                     | Ctrl+End             |
-+---------------------------+---------------------+----------------------+
-| Move 10 units up          |                     | Ctrl+Page Up         |
-+---------------------------+---------------------+----------------------+
-| Move 10 units down        |                     | Ctrl+Page Down       |
-+---------------------------+---------------------+----------------------+
-| Focus on search field in  |                     | Ctrl+Shift+S         |
-| the navigation bar (and   |                     |                      |
-| select its contents)      |                     |                      |
-+---------------------------+---------------------+----------------------+
-| Focus on item number      |                     | Ctrl+Shift+U         |
-| field in the navigation   |                     |                      |
-| bar (and select its       |                     |                      |
-| contents)                 |                     |                      |
-+---------------------------+---------------------+----------------------+
++---------------------------+----------------------+
+| Action                    | Shortcut             |
++===========================+======================+
+| Move to previous unit     | Ctrl+Up              |
++---------------------------+----------------------+
+| Move to next unit         | Ctrl+Down            |
++---------------------------+----------------------+
+| Move to the first unit    | Ctrl+Shift+Home      |
++---------------------------+----------------------+
+| Move to the last unit     | Ctrl+Shift+End       |
++---------------------------+----------------------+
+| Move 10 units up          | Ctrl+Shift+Page Up   |
++---------------------------+----------------------+
+| Move 10 units down        | Ctrl+Shift+Page Down |
++---------------------------+----------------------+
+| Focus on search field in  | Ctrl+Shift+S         |
+| the navigation bar (and   |                      |
+| select its contents)      |                      |
++---------------------------+----------------------+
+| Focus on item number      | Ctrl+Shift+U         |
+| field in the navigation   |                      |
+| bar (and select its       |                      |
+| contents)                 |                      |
++---------------------------+----------------------+
