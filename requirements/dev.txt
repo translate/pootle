@@ -2,5 +2,6 @@
 
 django-extensions
 sphinx
+glue
 
 -e git://github.com/django-debug-toolbar/django-debug-toolbar.git#egg=django-debug-toolbar
