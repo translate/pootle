@@ -7,10 +7,8 @@ Captcha support
 
 With Pootle's flexible :doc:`permissions <permissions>` several ways of
 interacting with your translation community are possible.  If you have a very
-open Pootle server, you might want to ensure that spammers don't abuse it.
-
-Read more about `captchas on Wikipedia
-<http://en.wikipedia.org/wiki/CAPTCHA>`_.
+open Pootle server, you might want to ensure that spammers don't abuse it by
+enabling `captchas <http://en.wikipedia.org/wiki/CAPTCHA>`_.
 
 
 .. _captchas#configuration:
@@ -22,8 +20,10 @@ Configuration
    Captchas are now enabled by default.
 
 
-Enable the setting ``USE_CAPTCHA`` in your *localsettings.py*, and restart your
-server.
+If you have no need for captchas, e.g. at a translation sprint, you might
+want to remove captcha support. To disable set :setting:`USE_CAPTCHA` in
+*settings/90-local.conf* to ``False``.  Restart your server for the setting
+to take effect.
 
 
 .. _captchas#customization:
@@ -31,7 +31,9 @@ server.
 Customization
 -------------
 
-To customize the captchas have a look at the template and the code using it:
+The captchas can be customized.  Look at the captcha template and code:
 
-- *templates/captcha.html* and
+- *pootle/templates/captcha.html* and
 - *pootle/middleware/captcha.py*
+
+and make the changes you need.
