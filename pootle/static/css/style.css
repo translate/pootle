@@ -1730,16 +1730,6 @@ div.translated
     background-repeat: repeat-x;
 }
 
-div.goodchange
-{
-    position: absolute;
-    top: 2px;
-    height: 100%;
-    background: #55DD55;
-    background: url('../images/bar-goodchange.png');
-    background-repeat: repeat-x;
-}
-
 div.fuzzy
 {
     position: absolute;
