@@ -5,7 +5,7 @@ Integration with Version Control Systems
 
 Pootle has the ability to integrate with version control systems (also called
 revision control systems). Read more on Wikipedia for a general overview of
-what a `version control system
+what a `Version Control System
 <https://en.wikipedia.org/wiki/Revision_control>`_ is.
 
 
@@ -45,19 +45,19 @@ Preparation
 
 To have any sort of integration with version control from within Pootle, it is
 necessary to construct the correct file system structure in the
-:setting:`VCS_DIRECTORY` as defined in the settings. The projects integrating with a
-version control system has to follow a layout that corresponds to the
-:setting:`PODIRECTORY`. The :setting:`VCS_DIRECTORY` is *pootle/repos* by default and should
-contain one directory for each project on the server that is either a
-clone/checkout for the corresponding Pootle project, or a symlink (or a
-directory with symlinks) to the repo somewhere else on the file system.
+:setting:`VCS_DIRECTORY` as defined in the settings. The projects integrating
+with a version control system has to follow a layout that corresponds to the
+:setting:`PODIRECTORY`. The :setting:`VCS_DIRECTORY` is *pootle/repos* by
+default and should contain one directory for each project on the server that is
+either a clone/checkout for the corresponding Pootle project, or a symlink (or
+a directory with symlinks) to the repo somewhere else on the file system.
 
-The :setting:`PODIRECTORY` therefore contains the translation files used during normal
-operation of Pootle, and the :setting:`VCS_DIRECTORY` contains "clean" versions (with
-no uncommitted changes) that enables the version control integration. The meta
-files for the version control system (*CVS/*, *.svn/*, *.hg*, *.git*, etc.)
-therefore should be present in :setting:`VCS_DIRECTORY` for Pootle to perform the
-integration. Here is an example layout::
+The :setting:`PODIRECTORY` therefore contains the translation files used during
+normal operation of Pootle, and the :setting:`VCS_DIRECTORY` contains "clean"
+versions (with no uncommitted changes) that enables the version control
+integration. The meta files for the version control system (*CVS/*, *.svn/*,
+*.hg*, *.git*, etc.) therefore should be present in :setting:`VCS_DIRECTORY`
+for Pootle to perform the integration. Here is an example layout::
 
     pootle/pootle/po/project/de.po
     pootle/pootle/po/project/fr.po
@@ -71,8 +71,8 @@ integration. Here is an example layout::
 
 This has to be done outside of Pootle.
 
-The :setting:`VCS_DIRECTORY` should never contain uncommitted changes. Pootle will
-bring in changes from the upstream VCS and rely on it succeeding without
+The :setting:`VCS_DIRECTORY` should never contain uncommitted changes. Pootle
+will bring in changes from the upstream VCS and rely on it succeeding without
 conflicts.
 
 
@@ -83,8 +83,8 @@ Example
 
 ::
 
-    cd pootle/repos/
-    svn co https://translate.svn.sourceforge.net/svnroot/translate/src/trunk/Pootle/po/pootle
+    $ cd pootle/repos/
+    $ svn co https://translate.svn.sourceforge.net/svnroot/translate/src/trunk/Pootle/po/pootle
 
 Now you have the directory *pootle* containing a translation project. If that
 directory is now one of your projects registered on the server, the version
@@ -111,11 +111,11 @@ from the default structure found in the source project?
 
 If yes, then you might consider using symlinking every single language file to
 the expected location. The version control support of Pootle will follow these
-links. Thus the meta directories of your version control system (e.g.:
-*.svn/* or *CVS/*) do not necessarily have to be below your :setting:`VCS_DIRECTORY`
+links. Thus the meta directories of your version control system (e.g.: *.svn/*
+or *CVS/*) do not necessarily have to be below your :setting:`VCS_DIRECTORY`
 (see your settings for the value of this setting). In this case, everything
-under :setting:`VCS_DIRECTORY` for this project must be outside of the clone/checkout
-for the project.
+under :setting:`VCS_DIRECTORY` for this project must be outside of the
+clone/checkout for the project.
 
 If you use symlinks, ensure that the resulting structure under
 :setting:`VCS_DIRECTORY` corresponds to the structure under :setting:`PODIRECTORY`
@@ -138,7 +138,7 @@ conflicts will understand that we can't afford to have that as we won't be able
 to resolve them.  Therefore Pootle will be conservative and will consider the
 version control system to be the authority and any conflicts in the local file
 get be converted to suggestions.  These suggestions then need to be reviewed by
-a translator with 'review' rights.
+a translator with *review* rights.
 
 
 .. _version_control#committing:
@@ -158,9 +158,10 @@ server.
 This usage scenario is more useful for people hosting their own Pootle server
 where they are able to setup one commit account on the version control server,
 or perhaps one account for each team.  A typical commit message when committing
-from Pootle will look something like this:
+from Pootle will look something like this::
 
-  Commit from GNOME Pootle by user Sipho.  80 of 100 messages translated (7 fuzzy).
+    Commit from GNOME Pootle by user Sipho.  80 of 100 messages translated (7
+    fuzzy).
 
 So it is still possible to see who submitted what and when, and actually
 provides some useful statistics in the commit message.  A user must be assigned
@@ -224,6 +225,7 @@ initialized from the templates, and commit these initial versions. The same is
 done when updating from templates at a later stage - if this introduced any new
 files, these will be added to the configured version control system.
 
-A typical commit message when adding from Pootle will look something like this:
+A typical commit message when adding from Pootle will look something like
+this::
 
     New files added from Labs Translation Server based on templates
