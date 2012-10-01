@@ -125,7 +125,7 @@ def get_view_units_dir(request, translation_project, dir_path):
         pootle_path = translation_project.pootle_path + dir_path
         units_query = units_query.filter(store__pootle_path__startswith=pootle_path)
 
-    return get_view_units(request, units_query)
+    return get_view_units(request, units_query, store=False)
 
 
 @get_translation_project
