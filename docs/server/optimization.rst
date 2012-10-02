@@ -28,7 +28,7 @@ some tips for performance tuning on your Pootle installation.
 
 - Ensure :setting:`LIVE_TRANSLATION` is disabled.
 
-- Ensure ``DEBUG`` mode is disabled.
+- Ensure :setting:`DEBUG` mode is disabled.
 
 - Ensure that the ``zip`` and ``unzip`` commands are installed on your
   server.  These can improve the performance during upload and download

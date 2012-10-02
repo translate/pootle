@@ -36,7 +36,7 @@ Enabling Machine Translations
 
 To enable a certain Machine Translation Service, edit
 :file:`settings/60-translation.conf` and uncomment the line regarding the
-desired service within the ``MT_BACKENDS`` setting.
+desired service within the :setting:`MT_BACKENDS` setting.
 
 Each line is a tuple which has the name of the service and an optional API key.
 Some services may not require API keys but others do, so please take care of
