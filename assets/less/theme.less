@@ -112,15 +112,26 @@ body {
   padding-top: @navbarHeight + 1;
 }
 
-footer a {
-  color: @navbarLinkColor;
-
-  &:active {
-    color: @navbarLinkColorActive;
+footer {
+  .nav li {
+    .pull-left;
+    a {
+      padding: 0 15px;
+      &:hover {
+        background-color: inherit;
+      }
+    }
   }
-  &:hover {
-    color: @navbarLinkColorHover;
-    text-decoration: none;
+  a {
+    color: @navbarLinkColor;
+
+    &:active {
+      color: @navbarLinkColorActive;
+    }
+    &:hover {
+      color: @navbarLinkColorHover;
+      text-decoration: none;
+    }
   }
 }
 
