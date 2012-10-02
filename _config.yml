@@ -6,5 +6,5 @@ latest_version: 2.1.6
 author: Translate House
 
 about_url: http://translatehouse.org/about.html
-docs_url: http://docs.translatehouse.org/projects/pootle/en/latest/
+docs_url: http://docs.translatehouse.org/projects/pootle/
 gh_url: https://github.com/translate/pootle
