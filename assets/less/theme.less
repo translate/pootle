@@ -23,9 +23,13 @@
 // Base CSS
 @import "bootstrap/type.less";
 
-ul,
-ol {
+ul, ol {
   list-style: square;
+}
+
+blockquote {
+  font-style: italic;
+  color: @grayLight;
 }
 
 @import "bootstrap/code.less";
@@ -60,7 +64,7 @@ ol {
 @import "bootstrap/navbar.less";
 
 .navbar .brand {
-  padding: 12px 20px;
+  color: @grayDark;
 }
 
 .navbar-fixed-top,
@@ -110,7 +114,6 @@ body {
 
 footer a {
   color: @navbarLinkColor;
-  margin: 0 2em;
 
   &:active {
     color: @navbarLinkColorActive;
@@ -122,12 +125,19 @@ footer a {
 }
 
 .content {
-  font-family: @altFontFamily;
-  font-size: @baseFontSize * 1.6;
+  h1, h2, h3, h4, h5, h6,
+  p, blockquote,
+  li, dd, dt {
+    font-family: @altFontFamily;
+    font-size: @baseFontSize * 1.6;
+  }
 
-  h2, h3 {
+  h1, h2, h3, h4, h5, h6 {
     font-style: italic;
     font-weight: normal;
+  }
+  h1 {
+    font-size: @baseFontSize * 2.6;
   }
   h2 {
     font-size: @baseFontSize * 2.4;
@@ -135,23 +145,31 @@ footer a {
   h3 {
     font-size: @baseFontSize * 2.2;
   }
-  h2 + p, h3 + p {
-    margin-top: 10px;
+  h4 {
+    font-size: @baseFontSize * 2.0;
   }
+  h5 {
+    font-size: @baseFontSize * 1.8;
+  }
+  h6 {
+    font-size: @baseFontSize * 1.6;
+  }
+
   p, li, dt, dd {
     line-height: 1.4;
   }
   p {
-    margin: 20px 0;
+    margin: 10px 0 20px;
   }
-  li {
+  li, dd {
     margin-left: 1.5em;
   }
+  dt {
+    font-style: italic;
+  }
+
   section {
     padding: 60px 0 40px;
-  }
-  .btn {
-    font-family: @baseFontFamily;
   }
 }
 
