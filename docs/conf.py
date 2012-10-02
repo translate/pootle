@@ -257,3 +257,8 @@ intersphinx_mapping = {
     'django': ('http://django.readthedocs.org/en/latest/', None),
     'toolkit': ('http://translate-toolkit.readthedocs.org/en/latest/', None),
 }
+
+# -- Options for Gettext -------------------------------------------------
+
+locale_dirs = ["_translations/"]
+gettext_compact = False
