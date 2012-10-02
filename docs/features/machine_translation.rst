@@ -52,7 +52,7 @@ Supported Services:
 
 - Google Translate
 
-- Apertium.
+- Apertium
 
 Google Translate is widely used and supports many `translation pairs
 <https://code.google.com/intl/eu/apis/ajaxlanguage/documentation/#supportedpairs>`_.
