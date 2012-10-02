@@ -49,10 +49,10 @@ Memcached
         }
     }
 
-Memcached is the recommended cache backend, it provides the best performance.
-And works fine with multiprocessing servers like Apache. It requires the
-`python-memcached` package and a running memcached server. Due to extra
-dependencies it is not enabled by default.
+:ref:`Memcached <django:memcached>` is the recommended cache backend, it
+provides the best performance.  And works fine with multiprocessing servers
+like Apache. It requires the `python-memcached` package and a running
+memcached server. Due to extra dependencies it is not enabled by default.
 
 
 .. _cache#memcached_on_unix_sockets:
