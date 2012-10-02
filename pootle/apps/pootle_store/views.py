@@ -451,7 +451,7 @@ def _get_index_in_qs(qs, unit, store=False):
         return qs.filter(index__lt=unit.index).count()
     else:
         store = unit.store
-        return (qs.filter(index__lt=unit.index) | \
+        return (qs.filter(store=store, index__lt=unit.index) | \
                 qs.filter(store__pootle_path__lt=store.pootle_path)).count()
 
 
