@@ -23,7 +23,7 @@ Using Machine Translation
     suggestion given.
 
 If the server administrator has enabled machine translation then an icon
-|icon:google-translate| will be displayed for each source text (English or
+|icon:generic-web-translate| will be displayed for each source text (English or
 alternative source language) next to the Copy button. Clicking the relevant
 buttons will retrieve translation suggestions from the online services and
 will mark the current unit as fuzzy to indicate that review is required.
