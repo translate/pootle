@@ -22,11 +22,11 @@ Using Machine Translation
     as suggestion of a translation, but don't forget to review the
     suggestion given.
 
-If the server administrator has enabled machine translation then an icon will
-be displayed for each source text (English or alternative source language) next
-to the Copy button. Clicking the relevant buttons will retrieve translation
-suggestions from the online services and will mark the current unit as fuzzy
-to indicate that review is required.
+If the server administrator has enabled machine translation then an icon
+|icon:google-translate| will be displayed for each source text (English or
+alternative source language) next to the Copy button. Clicking the relevant
+buttons will retrieve translation suggestions from the online services and
+will mark the current unit as fuzzy to indicate that review is required.
 
 
 .. _machine_translation#how_to_enable_machine_translations:
@@ -50,9 +50,9 @@ Available Machine Translation services
 
 Supported Services:
 
-- Google Translate
+|icon:google-translate| Google Translate
 
-- Apertium
+|icon:apertium| Apertium
 
 Google Translate is widely used and supports many `translation pairs
 <https://code.google.com/intl/eu/apis/ajaxlanguage/documentation/#supportedpairs>`_.
