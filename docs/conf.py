@@ -93,17 +93,21 @@ pygments_style = 'sphinx'
 import os
 
 icons_dir = "../pootle/static/images"
-icons_txt_file = open("icons.txt", "w")
+icons_inc_file_name = "icons.rst.inc"
+icons_txt_file = open(icons_inc_file_name, "w")
 
 for icon_image in os.listdir(icons_dir):
     icon_name = icon_image[:icon_image.rfind(".")]
-    print >>icons_txt_file, ".. |icon:"+icon_name+"| image:: /"+icons_dir+"/"+icon_image
-    print >>icons_txt_file, "                      :alt: " + icon_name.replace("-", " ") + " icon"
+    print >>icons_txt_file, ".. |icon:" + icon_name + "| " + \
+                            "image:: /" + icons_dir + "/" + icon_image
+    print >>icons_txt_file, "                      :alt: " + \
+                            icon_name.replace("-", " ").replace("_", " ") + \
+                            " icon"
     print >>icons_txt_file
 
 rst_epilog = """
-.. include:: /icons.txt
-"""
+.. include:: /%s
+""" % icons_inc_file_name
 
 
 # -- Options for HTML output --------------------------------------------------
