@@ -255,61 +255,6 @@ pre, code, kbd, samp, tt
     vertical-align: text-top;
 }
 
-.icon-expand
-{
-    background-image: url('../images/icon-expand.png');
-}
-
-.icon-collapse
-{
-    background-image: url('../images/icon-collapse.png');
-}
-
-.icon-copy
-{
-    background-image: url('../images/icon-copy.png');
-}
-
-.icon-download
-{
-    background-image: url('../images/icon-download.png');
-}
-
-.icon-upload
-{
-    background-image: url('../images/icon-upload.png');
-}
-
-.icon-vcs-commit
-{
-    background-image: url('../images/icon-vcs-commit.png');
-}
-
-.icon-vcs-update
-{
-    background-image: url('../images/icon-vcs-update.png');
-}
-
-.icon-rescan-files
-{
-    background-image: url('../images/icon-rescan-files.png');
-}
-
-.icon-update-templates
-{
-    background-image: url('../images/icon-update-templates.png');
-}
-
-.icon-delete-path
-{
-    background-image: url('../images/icon-delete-path.png');
-}
-
-.icon-report-bug
-{
-    background-image: url('../images/icon-report-bug.png');
-}
-
 
 /*
  * MAIN DIVs
