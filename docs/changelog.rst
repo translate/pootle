@@ -22,8 +22,8 @@ Not released yet.
   This means you will need to run the ``python manage.py collectstatic``
   command on production and serve the *pootle/assets/* directory from your
   webserver at */assets/*. If you are upgrading from a previous version, you
-  will to replace the occurrences of *static* with *assets* within your web
-  server configuration.
+  will need to replace the occurrences of *static* with *assets* within your
+  web server configuration.
 
 - Static files are bundled into assets by using `django-assets
   <http://elsdoerfer.name/docs/webassets/django/index.html>`_.
@@ -31,7 +31,7 @@ Not released yet.
 - Several features from translation projects have been merged into the
   *Overview* tab, including quality check failures and directory- and
   file-level actions. As a consequence the *Review* tab has been dropped and
-  the *Translate* tab serves solely for displaying the actual translation
+  the *Translate* tab serves solely to display the actual translation
   editor.
 
 
