@@ -106,7 +106,7 @@ Released on December 7th 2009.
   in flat files (projects, languages, users and permissions) is now stored
   in a database. Migration scripts are provided.
 
-  Review all suggestions before migrating, and note that assignments
+- Review all suggestions before migrating, and note that assignments
   are not yet supported in Pootle 2.0.
 
 
