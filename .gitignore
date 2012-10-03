@@ -5,6 +5,7 @@
 
 # /docs/
 /docs/_build/
+/docs/icons.rst.inc
 
 # /pootle/assets/*/
 /pootle/assets/
