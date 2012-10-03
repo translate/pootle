@@ -65,7 +65,7 @@ Bugfix release, released on September 3rd 2010.
 Version 2.1
 -----------
 
-Released on August 17 2010.
+Released on August 17th 2010.
 
 - Pootle no longer depends on statsdb and SQLite.
 
