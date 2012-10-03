@@ -34,6 +34,9 @@ Not released yet.
   the *Translate* tab serves solely to display the actual translation
   editor.
 
+- Settings have been migrated from *localsettings.py* into *settings/\*.conf*
+  files. Your customisations go in *settings/90-local.conf*
+
 
 Version 2.1.6
 -------------
