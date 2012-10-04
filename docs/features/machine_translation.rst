@@ -54,9 +54,11 @@ Supported Services:
 
 |icon:apertium| Apertium
 
-Google Translate is widely used and supports many `translation pairs
-<https://code.google.com/intl/eu/apis/ajaxlanguage/documentation/#supportedpairs>`_.
-It is now a paid service requiring an account and API key.
+Google Translate is widely used and supports a number of `languages
+<https://developers.google.com/translate/v2/using_rest#language-params>`_.
+It is a `paid service <https://developers.google.com/translate/v2/pricing>`_
+requiring an account and API key.
 
-On the other hand, Apertium is best suited for close language pairs. Especially
-for those languages spoken in the Iberian Peninsula that are similar.
+On the other hand, `Apertium <http://www.apertium.org/>`_ is best suited for
+close language pairs. Especially for those languages spoken in the Iberian
+Peninsula that are similar.
