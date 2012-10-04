@@ -23,7 +23,7 @@ Using Machine Translation
     suggestion given.
 
 If the server administrator has enabled machine translation then an icon
-|icon:generic-web-translate| will be displayed for each source text (English or
+|icon:icon-web-translate| will be displayed for each source text (English or
 alternative source language) next to the Copy button. Clicking the relevant
 buttons will retrieve translation suggestions from the online services and
 will mark the current unit as fuzzy to indicate that review is required.
@@ -50,9 +50,9 @@ Available Machine Translation services
 
 Supported Services:
 
-|icon:google-translate| Google Translate
+|icon:icon-google-translate| Google Translate
 
-|icon:apertium| Apertium
+|icon:icon-apertium| Apertium
 
 Google Translate is widely used and supports a number of `languages`_.
 It is a `paid service`_ requiring an account and API key.

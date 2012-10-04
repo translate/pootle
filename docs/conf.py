@@ -92,7 +92,7 @@ pygments_style = 'sphinx'
 
 import os
 
-icons_dir = "../pootle/static/images"
+icons_dir = "../pootle/static/images/sprite"
 icons_inc_file_name = "icons.rst.inc"
 icons_txt_file = open(icons_inc_file_name, "w")
 
