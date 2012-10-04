@@ -22,10 +22,6 @@ Pootle server for one of the many projects that use Pootle.
 
 - http://www.moongift.jp/2006/09/2326/ (Japanese, 日本語)
 
-- https://tracker.gnulinuxmatters.org/wiki/Translating/Pootle
-
-- http://kondosyokai.org/~john/computing/pootle/OpenBSD-installation.html
-
 - http://gustavonarea.net/blog/posts/installing-pootle-on-debian-etch-the-easiest-way/
 
 - http://wiki.laptop.org/go/Pootle (OLPC project)
@@ -33,6 +29,3 @@ Pootle server for one of the many projects that use Pootle.
 - http://wiki.list.org/display/DEV/Pootle+primer (mailman project)
 
 - http://wiki.squid-cache.org/Translations/Basics (Squid project)
-
-- http://mindjunks.co.cc/2008/12/pootle-as-a-online-transalation-toolkit/ -
-  installing on Fedora
