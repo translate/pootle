@@ -2,9 +2,9 @@
 .bar-translated,
 .bar-fuzzy,
 .brand,
-.desc,
-.ascdesc,
-.asc,
+.icon-desc,
+.icon-ascdesc,
+.icon-asc,
 .icon-wikipedia,
 .icon-web-translate,
 .icon-warning,
@@ -40,9 +40,9 @@
 .bar-translated{background-position:0px -12px;width:200px;height:12px;}
 .bar-fuzzy{background-position:0px -24px;width:200px;height:12px;}
 .brand{background-position:0px -36px;width:68px;height:48px;}
-.desc{background-position:-68px -36px;width:21px;height:4px;}
-.ascdesc{background-position:-68px -40px;width:21px;height:9px;}
-.asc{background-position:-89px -36px;width:21px;height:4px;}
+.icon-desc{background-position:-68px -36px;width:21px;height:4px;}
+.icon-ascdesc{background-position:-68px -40px;width:21px;height:9px;}
+.icon-asc{background-position:-89px -36px;width:21px;height:4px;}
 .icon-wikipedia{background-position:-68px -49px;width:16px;height:16px;}
 .icon-web-translate{background-position:-84px -49px;width:16px;height:16px;}
 .icon-warning{background-position:-100px -49px;width:16px;height:16px;}
