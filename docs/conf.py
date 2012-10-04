@@ -90,21 +90,37 @@ pygments_style = 'sphinx'
 # A list of ignored prefixes for module index sorting.
 #modindex_common_prefix = []
 
+# Build a refence icon.rst.inc files that we can include for inline
+# icons.
 import os
 
 icons_dir = "../pootle/static/images/sprite"
 icons_inc_file_name = "icons.rst.inc"
-icons_txt_file = open(icons_inc_file_name, "w")
+build_icons_inc = False
 
-for icon_image in os.listdir(icons_dir):
-    icon_name = icon_image[:icon_image.rfind(".")]
-    print >>icons_txt_file, ".. |icon:" + icon_name + "| " + \
-                            "image:: /" + icons_dir + "/" + icon_image
-    print >>icons_txt_file, "                      :alt: " + \
-                            icon_name.replace("-", " ").replace("_", " ") + \
-                            " icon"
-    print >>icons_txt_file
+if not os.path.isfile(os.path.join(os.curdir, icons_inc_file_name)):
+    build_icons_inc = True
+else:
+    icon_inc_mtime = os.stat(os.path.join(os.curdir,
+                                          icons_inc_file_name)).st_mtime
+    for icon_image in os.listdir(icons_dir):
+        if os.stat(os.path.join(icons_dir,
+                                icon_image)).st_mtime > icon_inc_mtime:
+            build_icons_inc = True
 
+if build_icons_inc:
+    icons_txt_file = open(icons_inc_file_name, "w")
+    for icon_image in os.listdir(icons_dir):
+        icon_name = icon_image[:icon_image.rfind(".")]
+        print >>icons_txt_file, ".. |icon:" + icon_name + "| " + \
+                                "image:: /" + icons_dir + "/" + icon_image
+        print >>icons_txt_file, "                      :alt: " + \
+                                icon_name.replace("-", " ").replace("_", " ") + \
+                                " icon"
+        print >>icons_txt_file
+    icons_txt_file.close()
+
+# Files to include at the end of every .rst file
 rst_epilog = """
 .. include:: /%s
 """ % icons_inc_file_name
