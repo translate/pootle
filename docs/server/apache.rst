@@ -65,7 +65,8 @@ Configuration
     Allow from all
     </Directory>
 
-`More info <http://docs.djangoproject.com/en/dev/howto/deployment/modwsgi/>`_
+More info :doc:`Django + Apache + mod_wsgi
+<django:how-to-use-django-with-apache-and-mod-wsgi>`
 
 
 .. _apache#.htaccess:
