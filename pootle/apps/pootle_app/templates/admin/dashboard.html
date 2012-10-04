@@ -59,24 +59,24 @@
     <h2>{% trans "Dependency Checks" %}</h2>
   </div>
   <div class="bd">
-    <ul id="required">
+    <ul id="required" class="icons">
       {% for dep in required %}
-      <li class="{{ dep.state }} {{ dep.dependency }}">{{ dep.text }}</li>
+      <li class="{{ dep.dependency }}"><i class="icon-{{ dep.state }}"></i> {{ dep.text }}</li>
       {% endfor %}
     </ul>
     {% if optional %}
     <h3>{% trans "Optional" %}</h3>
-    <ul id="optional">
+    <ul id="optional" class="icons">
       {% for dep in optional %}
-      <li class="warning {{ dep.dependency }}">{{ dep.text }}</li>
+      <li class="{{ dep.dependency }}"><i class="icon-warning"></i> {{ dep.text }}</li>
       {% endfor %}
     </ul>
     {% endif %}
     {% if optimal %}
     <h3>{% trans "Optimizations" %}</h3>
-    <ul id="optimal">
+    <ul id="optimal" class="icons">
       {% for dep in optimal %}
-      <li class="warning {{ dep.dependency }}">{{ dep.text }}</li>
+      <li class="{{ dep.dependency }}"><i class="icon-warning"></i> {{ dep.text }}</li>
       {% endfor %}
     </ul>
     {% endif %}

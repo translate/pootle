@@ -7,13 +7,15 @@
     {{ form.source_f }}
   </div>
   <!-- Add description button -->
-  <a class="collapse left"><img src="{{ "images/comment_add.png"|s }}" title="{% trans "Description..." %}" /></a>
+  <a class="collapse left"><i class="icon-comment-add"
+      title="{% trans "Description..." %}"></i></a>
   <div class="translate-term-original collapsethis tiny clear">{{ form.developer_comment }}</div>
 </td>
 <td colspan="1" rowspan="1" class="translate-translation terminology">
   <!-- Additional information button -->
   {% if unit.translator_comment or unit.locations %}
-  <a class="collapse tiny left"><img src="{{ "images/information.png"|s }}" title="{% trans "Details..." %}" /></a>
+  <a class="collapse tiny left"><i class="icon-information"
+      title="{% trans "Details..." %}"></i></a>
   {% endif %}
   <div id="trans{{unit.index}}" class="translate-term-translation" dir="{% locale_dir %}">
     <!-- Translation -->
@@ -26,7 +28,7 @@
   {% endif %}
   <div class="collapsethis tiny" lang="{{ LANGUAGE_CODE }}">
     {% if unit.translator_comment %}
-    <div title="{% trans "Translator Comments" %}" class="translator-comments tiny" dir="{{ language.dir }}" lang="{{ language.code }}">{{ unit.translator_comment }}</div>
+    <div title="{% trans "Translator Comments" %}" class="translator-comments tiny" dir="{{ language.dir }}" lang="{{ language.code }}"><i class="icon-comment-user"></i> {{ unit.translator_comment }}</div>
     {% endif %}
     {% if unit.locations %}
     <div class="translate-locations" lang="en" dir="ltr">{{ unit.locations }}</div>

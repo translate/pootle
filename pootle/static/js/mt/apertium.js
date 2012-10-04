@@ -4,7 +4,6 @@
   PTL.editor.mt.apertium = {
 
     buttonClassName: "apertium",
-    imageUri: s("images/apertium.png"),
     hint: "Apertium",
     validatePair: true,
 

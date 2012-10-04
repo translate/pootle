@@ -1917,9 +1917,9 @@
 
 
   /* Adds a new MT service button in the editor toolbar */
-  addMTButton: function (container, aClass, imgFn, tooltip) {
+  addMTButton: function (container, aClass, tooltip) {
       var btn = '<a class="translate-mt ' + aClass + '">';
-      btn += '<img src="' + imgFn + '" title="' + tooltip + '" /></a>';
+      btn += '<i class="icon-' + aClass+ '" title="' + tooltip + '"><i/></a>';
       $(container).first().prepend(btn);
   },
 
@@ -1943,7 +1943,6 @@
         if (ok) {
           _this.addMTButton(this,
             provider.buttonClassName,
-            provider.imageUri,
             provider.hint + ' (' + source.toUpperCase() + '&rarr;' + provider.targetLang.toUpperCase() + ')');
         }
       });
@@ -2031,9 +2030,9 @@
    */
 
   /* Adds a new Lookup button in the editor toolbar */
-  addLookupButton: function (container, aClass, imgFn, tooltip) {
+  addLookupButton: function (container, aClass, tooltip) {
     var btn = '<a class="translate-lookup iframe ' + aClass + '">';
-    btn += '<img src="' + imgFn + '" title="' + tooltip + '" /></a>';
+    btn += '<i class="icon-' + aClass + '" title="' + tooltip + '"></i></a>';
     $(container).first().prepend(btn);
   },
 
@@ -2048,7 +2047,6 @@
 
     _this.addLookupButton(this,
       provider.buttonClassName,
-      provider.imageUri,
       provider.hint + ' (' + source.toUpperCase() + ')');
     });
   },

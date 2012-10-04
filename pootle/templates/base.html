@@ -81,7 +81,7 @@
           <a href="#nav-main">{% trans 'skip to navigation' %}</a>
         </div>
         <h1>
-          <a href='{{"/"|l}}' title='{% trans "Home" %}'>{{ settings.TITLE }}</a>
+          <a href="{{ "/"|l }}" title="{% trans "Home" %}"><i class="brand"></i>{{ settings.TITLE }}</a>
           {% block breadcrumbs %}
           <span id="breadcrumbs">
           {% block breadcrumb_content %}{% endblock %}

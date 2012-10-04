@@ -59,7 +59,7 @@
             <a lang="en" href="http://translate.sourceforge.net/wiki/toolkit/pofilter_tests#{{ check.name }}" target="_blank">{{ check.display_name }}</a>
             {% if canreview %}
             <a title="{% trans "Remove quality check" %}" class="js-reject-check"
-               data-check-id="{{ check.id }}"><img src='{{ "images/block.png"|s }}' /></a>
+              data-check-id="{{ check.id }}"><i class="icon-block.png"></i></a>
             {% endif %}
           </li>
           {% endfor %}
@@ -213,20 +213,20 @@
               {% if canreview %}
               <a accesskey="a" class="suggestion-action js-suggestion-accept"
                 data-sugg-id="{{ sugg.id }}">
-                <img src="{{ "images/accept.png"|s }}" dir="{% locale_dir %}"
-                  title="{% trans 'Accept suggestion' %}"/>
+                <i class="icon-accept.png" dir="{% locale_dir %}"
+                  title="{% trans 'Accept suggestion' %}"></i>
               </a>
               <a accesskey="r" class="suggestion-action js-suggestion-reject"
                 data-sugg-id="{{ sugg.id }}">
-                <img src="{{ "images/reject.png"|s }}" dir="{% locale_dir %}"
-                  title="{% trans 'Reject suggestion' %}"/>
+                <i class="icon-reject.png" dir="{% locale_dir %}"
+                  title="{% trans 'Reject suggestion' %}"></i>
               </a>
               {% else %}
               {% if user.is_authenticated and profile == sugg.user %}
               <a accesskey="r" class="suggestion-action js-suggestion-reject"
                 data-sugg-id="{{ sugg.id }}">
-                <img src='{{ "images/reject.png"|s }}' dir="{% locale_dir %}"
-                  title="{% trans 'Remove suggestion' %}"/>
+                <i class="icon-reject" dir="{% locale_dir %}"
+                  title="{% trans 'Remove suggestion' %}"></i>
               </a>
               {% endif %}
               {% endif %}

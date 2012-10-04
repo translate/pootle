@@ -1,12 +1,12 @@
 {% load i18n locale %}
 {% if stats %}
 <div class="graph" style="width: {{ stats.total.width }}px;" title="{% blocktrans with stats.translated.percentage as percent %}{{ percent }}% complete{% endblocktrans %}">
-    <div class="translated" style="width: {{ stats.translated.width }}px;"></div>
+    <div class="bar-translated" style="width: {{ stats.translated.width }}px;"></div>
     {% if stats.fuzzy.words %}
-    <div class="fuzzy" style="{% locale_align %}: {{ stats.translated.width }}px; width: {{ stats.fuzzy.width }}px;"></div>
+    <div class="bar-fuzzy" style="{% locale_align %}: {{ stats.translated.width }}px; width: {{ stats.fuzzy.width }}px;"></div>
     {% endif %}
     {% if stats.untranslated.words %}
-    <div class="untranslated" style="{% locale_align %}: {{ stats.translated.width|add:stats.fuzzy.width }}px; width: {{ stats.untranslated.width }}px;"></div>
+    <div class="bar-untranslated" style="{% locale_align %}: {{ stats.translated.width|add:stats.fuzzy.width }}px; width: {{ stats.untranslated.width }}px;"></div>
     {% endif %}
 </div>
 {% endif %}

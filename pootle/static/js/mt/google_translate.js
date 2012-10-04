@@ -3,8 +3,7 @@
 
   PTL.editor.mt.google_translate = {
 
-    buttonClassName: "googletranslate",
-    imageUri: s("images/google-translate.png"),
+    buttonClassName: "google-translate",
     hint: "Google Translate",
     validatePair: false,
 
@@ -78,7 +77,7 @@
       var targetLanguage = $("#editor").data("target-language");
       this.targetLang = PTL.editor.normalizeCode(targetLanguage);
       /* Bind event handler */
-      $(document).on("click", ".googletranslate", this.translate);
+      $(document).on("click", ".google-translate", this.translate);
     },
 
     ready: function () {

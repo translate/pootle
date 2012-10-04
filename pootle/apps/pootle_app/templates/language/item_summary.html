@@ -2,14 +2,9 @@
 
 {% block itemstats %}
 <td class="stats-name"{% if item.description %} title="{{ item.description|striptags }}"{% endif %}>
-  {% if item.icon %}
-  <img src="{% filter s %}images/{{ item.icon }}.png{% endfilter %}"
-  class="icon" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}"/>
-  {% endif %}
-  <a href="{{ item.href|l }}">{{ item.title }}</a>
+  <a href="{{ item.href|l }}">{% if item.icon %}<i class="icon-{{ item.icon }}"></i> {% endif %}{{ item.title }}</a>
   {% if item.stats.errors %}
-  <img src="{{ "images/error.png"|s }}" alt="{% trans 'Error' %}"
-       title="{{ item.errortooltip }}" class="error" />
+  <i class="icon-error"></i>
   {% endif %}
 </td>
 {% if item.stats %}

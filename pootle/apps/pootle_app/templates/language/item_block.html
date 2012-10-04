@@ -4,13 +4,12 @@
 <div class="contentsitem" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
     {% if item.title %}
     <div class="title">
-    <img src="{% filter s %}images/{{ item.icon }}.png{% endfilter %}"
-    class="icon" alt="icon" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}"/>
-    <a href="{{ item.href|l }}">{{ item.title }}</a>
-    {% if item.data.errors %}
-    <img src="{{ "images/error.png"|s }}" alt="{% trans 'Error' %}"
-         title="{{ item.errortooltip }}" class="error" />
-    {% endif %}
+      <a href="{{ item.href|l }}"><i class="icon-{{ item.icon }}"
+          lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}"></i> {{ item.title }}</a>
+      {% if item.data.errors %}
+      <i class="icon-error.png" alt="{% trans 'Error' %}"
+        title="{{ item.errortooltip }}" class="error"></i>
+      {% endif %}
     </div>
     {% endif %}
 

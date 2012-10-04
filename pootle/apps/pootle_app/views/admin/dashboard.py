@@ -46,7 +46,7 @@ def required_depcheck():
     status, version = depcheck.test_translate()
     if status:
         text = _('Translate Toolkit version %s installed.', version)
-        state = 'good'
+        state = 'tick'
     else:
         text = _('Translate Toolkit version %(installed)s installed. Pootle requires at least version %(required)s.', 
             {
@@ -60,7 +60,7 @@ def required_depcheck():
     status, version = depcheck.test_django()
     if status:
         text = _('Django version %s is installed.', version)
-        state = 'good'
+        state = 'tick'
     else:
         text = _('Django version %s is installed, but a higher version is highly recommended.', version)
         state = 'error'
@@ -69,7 +69,7 @@ def required_depcheck():
     status, version = depcheck.test_lxml()
     if status:
         text = _('lxml version %s is installed.', version)
-        state = 'good'
+        state = 'tick'
     elif version is not None:
         required_ver = ".".join(str(i) for i in depcheck.lxml_required_ver)
         text = _('lxml version %(installed)s is installed. Pootle requires '

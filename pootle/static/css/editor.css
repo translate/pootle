@@ -440,11 +440,10 @@ table td.translate-translation
 /* TODO: review this */
 .terminology div.translator-comments
 {
-    background: #eaf0f4 url('../images/user_comment.png') no-repeat;
-    background-position: 5px center;
+    background-color: #eaf0f4;
     border: 1px solid #d2e1ed;
     overflow: auto;
-    padding: 5px 25px;
+    padding: 5px;
 }
 
 

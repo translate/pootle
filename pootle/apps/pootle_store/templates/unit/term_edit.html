@@ -18,7 +18,7 @@
     {% if score %}{{ score.score }}{% endif %}
   {% endif %}
   </span>
-    <img src='{{ "images/vote.png"|s }}' title="{% trans 'Your current vote. Click to remove this vote.' %}" dir="{% locale_dir %}" />
+  <i class="icon-vote-active" title="{% trans 'Your current vote. Click to remove this vote.' %}" dir="{% locale_dir %}"></i>
   </a>
   <a class="js-vote-up suggestion-vote{% if vote.object == sugg %} hide{% endif%}"
     data-vote-id="{{ vote.id }}">
@@ -30,7 +30,7 @@
       {% if score %}{{ score.score }}{% endif %}
     {% endif %}
     </span>
-    <img src='{{ "images/vote_bw.png"|s }}' title="{% trans 'Vote for this suggestion' %}" dir="{% locale_dir %}" />
+    <i class="icon-vote-inactive" title="{% trans 'Vote for this suggestion' %}" dir="{% locale_dir %}"></i>
   </a>
 {% endif %}
 {% endblock %}

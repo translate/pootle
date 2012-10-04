@@ -159,6 +159,6 @@ def make_store_item(request, store, include_suggestions=False,
     item = make_generic_item(request, store, action, include_suggestions,
                              terminology)
     item.update({
-            'icon': 'page',
+            'icon': 'file',
             'isfile': True})
     return item

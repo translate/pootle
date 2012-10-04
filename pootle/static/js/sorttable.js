@@ -92,9 +92,8 @@ sorttable = {
         headrow[i].sorttable_tbody = table.tBodies[0];
 
         // Add unsorted icon
-        unsorted = document.createElement('img');
-        unsorted.className = "sorttable_unsorted";
-        unsorted.src = s('images/ascdesc.gif');
+        unsorted = document.createElement('i');
+        unsorted.className = "sorttable_unsorted icon-ascdesc";
         headrow[i].appendChild(unsorted);
 
         dean_addEvent(headrow[i],"click", function(e) {
@@ -110,7 +109,7 @@ sorttable = {
             this.removeChild(document.getElementById('sorttable_sortfwdind'));
             sortrevind = document.createElement('img');
             sortrevind.id = "sorttable_sortrevind";
-            sortrevind.src = s('images/desc.gif');
+            sortrevind.className = "icon-desc";
             this.appendChild(sortrevind);
 
             // Store current sorting criteria in a cookie
@@ -128,7 +127,7 @@ sorttable = {
             this.removeChild(document.getElementById('sorttable_sortrevind'));
             sortfwdind = document.createElement('img');
             sortfwdind.id = "sorttable_sortfwdind";
-            sortfwdind.src = s('images/asc.gif');
+            sortfwdind.className = "icon-asc";
             this.appendChild(sortfwdind);
 
             // Store current sorting criteria in a cookie
@@ -171,9 +170,8 @@ sorttable = {
       if (cell.nodeType == 1) { // an element
         // Add unsorted icon if necessary as well
         if (cell.className.search(/\b(sorttable_sorted|sorttable_sorted_reverse)\b/) != -1) {
-          unsorted = document.createElement('img');
-          unsorted.className = "sorttable_unsorted";
-          unsorted.src = s('images/ascdesc.gif');
+          unsorted = document.createElement('i');
+          unsorted.className = "sorttable_unsorted icon-ascdesc";
           cell.appendChild(unsorted);
         }
         cell.className = cell.className.replace('sorttable_sorted_reverse','');
@@ -191,7 +189,7 @@ sorttable = {
     th.className += ' sorttable_sorted';
     sortfwdind = document.createElement('img');
     sortfwdind.id = "sorttable_sortfwdind";
-    sortfwdind.src = s('images/asc.gif');
+    sortfwdind.className = "icon-asc";
     th.appendChild(sortfwdind);
 
     // build an array to sort. This is a Schwartzian transform thing,

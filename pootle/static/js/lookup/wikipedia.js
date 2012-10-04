@@ -4,7 +4,6 @@
   PTL.editor.lookup.wikipedia = {
 
     buttonClassName: "wikipedia",
-    imageUri: s("images/wikipedia.png"),
     hint: "Wikipedia",
     url: "http://%(querylang)s.wikipedia.org/wiki/%(query)s'",
 

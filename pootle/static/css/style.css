@@ -255,6 +255,27 @@ pre, code, kbd, samp, tt
     vertical-align: text-top;
 }
 
+[class^="bar-"],
+[class*=" bar-"]
+{
+    display: inline-block;
+    position: absolute;
+    vertical-align: middle;
+}
+
+ul.icons
+{
+    list-style-type: none;
+    margin-left: 20px;
+    text-indent: -20px;
+}
+
+html[dir="rtl"] ul.icons
+{
+    margin-right: 20px;
+    margin-left: auto;
+}
+
 
 /*
  * MAIN DIVs
@@ -311,21 +332,27 @@ html[dir="rtl"] #nav-access
 
 #header h1
 {
-    margin: 0;
-    padding: 25px;
-    background: url('../images/logo.png') left 0.7em no-repeat;
-    padding-left: 60px;
     float: left;
+    padding: 25px 0 10px;
     margin: 0 30px 0 20px;
-    font-weight: bold;
+    text-shadow: 0 1px 0 #F8F8F8;
 }
 
 html[dir="rtl"] #header h1
 {
-    background: url('../images/logo.png') right 0.7em no-repeat;
-    padding-left: 0;
-    padding-right: 60px;
+    float: right;
     margin: 0px 20px 0 30px;
+}
+
+.brand
+{
+    display: inline-block;
+    float: left;
+    margin-top: -10px;
+}
+
+html[dir="rtl"]
+{
     float: right;
 }
 
@@ -722,6 +749,7 @@ ul.errorlist
     margin: 0;
     padding: 5px 0px;
     background: #fff url('../images/page-bg.jpg') top left repeat-x;
+    background-repeat: repeat-x;
 }
 
 #body:after
@@ -1401,34 +1429,29 @@ div#settings
  * SUMMARIES
  */
 
+#summary-legend
+{
+    color: #888;
+    font-size: 85%;
+    font-style: italic;
+}
+
+#summary-legend li
+{
+    line-height: 16px;
+}
+
+#summary-legend [class^="bar-"],
+#summary-legend [class*=" bar-"]
+{
+    position: relative;
+    width: 32px;
+}
+
 div.newsitem-sep
 {
     border-bottom: 1px solid #ddd;
     margin: 1.5em 0 2em;
-}
-
-#translationsummarylegend div {
-    font-size: 85%;
-    color: #888;
-    font-style: italic;
-}
-
-html[dir="ltr"] #translationsummarylegend div {
-  float: left;
-  margin-right: 2em;
-}
-
-html[dir="rtl"] #translationsummarylegend div {
-  float: right;
-  margin-left: 2em;
-}
-
-#translationsummarylegend div img
-{
-    vertical-align: middle;
-    width: 25px;
-    height: 15px;
-    padding: 0px 5px;
 }
 
 div#rss-alerts ul,
@@ -1632,11 +1655,6 @@ div.small
     font-size: 0.9em;
 }
 
-img.error
-{
-    vertical-align: middle;
-}
-
 #path-summary ul
 {
     line-height: 1.8em;
@@ -1663,36 +1681,6 @@ div.graph
     width: 100px;
     border: 0 none;
     position: relative;
-}
-
-div.translated
-{
-    position: absolute;
-    top: 2px;
-    height: 100%;
-    background: #448844;
-    background: url('../images/bar-translated.png');
-    background-repeat: repeat-x;
-}
-
-div.fuzzy
-{
-    position: absolute;
-    top: 2px;
-    height: 100%;
-    background: #4444AA;
-    background: url('../images/bar-fuzzy.png');
-    background-repeat: repeat-x;
-}
-
-div.untranslated
-{
-    position: absolute;
-    height: 100%;
-    top: 2px;
-    background: #FF4444;
-    background: url('../images/bar-untranslated.png');
-    background-repeat: repeat-x;
 }
 
 div.graph[dir="ltr"] div.translated
