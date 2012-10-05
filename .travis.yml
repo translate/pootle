@@ -1,0 +1,18 @@
+# https://travis-ci.org/#!/translate/amagama
+language: python
+python:
+  - 2.5
+  - 2.6
+  - 2.7
+env:
+  - DJANGO_VERSION=1.3.3
+  - DJANGO_VERSION=1.4.1
+install:
+  - pip install --use-mirrors translate-toolkit
+  - pip install --use-mirrors python-Levenshtein
+  - pip install --use-mirrors Django==$DJANGO_VERSION
+  - python setup.py install
+notifications:
+  email:
+    on_failure: change
+    on_success: change
