@@ -1,4 +1,4 @@
-# https://travis-ci.org/#!/translate/amagama
+# https://travis-ci.org/#!/translate/pootle
 language: python
 python:
   - 2.5
