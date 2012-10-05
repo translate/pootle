@@ -8,14 +8,8 @@ env:
   - DJANGO_VERSION=1.3.3
   - DJANGO_VERSION=1.4.1
 install:
-  - pip install --use-mirrors translate-toolkit
-  - pip install --use-mirrors python-Levenshtein
   - pip install --use-mirrors Django==$DJANGO_VERSION
-  - pip install --use-mirrors django-voting
-  - pip install --use-mirrors South
-  - pip install --use-mirrors webassets
-  - pip install --use-mirrors cssmin
-  - pip install --use-mirrors lxml>=2.14
+  - pip install -r requirements/base.txt --use-mirrors
 script:
   - cd pootle
   - ./manage.py assets rebuild
