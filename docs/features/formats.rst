@@ -59,10 +59,11 @@ that for monolingual projects a translation template is required. Pootle cannot
 meaningfully import strings from monolingual files unless the original text is
 present.
 
-Either the source language or the special templates language must be added to
-the project and their files uploaded before other languages are added. Files
-found in either will be considered template files (in the case where both
-templates and source language exist templates will be used).
+Either the source language or the :ref:`special Templates language
+<templates#the_templates_language>` must be added to the project and their
+files uploaded before other languages are added. Files found in either will be
+considered template files (in the case where both templates and source language
+exist templates will be used).
 
 What users will see when translating monolingual file is a matching between
 strings in the templates file and strings in the target language files. The
