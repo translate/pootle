@@ -13,7 +13,7 @@ The different elements of the LDAP configuration are defined in your
 Although most of it is explained in the settings files, below
 is a brief example of a working configuration.
 
-The mail addresses are *john.doe@website.org*, the ldap server is
+The mail addresses are *john.doe@website.org*, the LDAP server is
 *your.ldapserver.org*. In this case, we need a specific user account to search
 in our LDAP server, this user/password is *admin*/*pootle*. The LDAP accounts
 are based on the mail addresses: these are the uids. Finally, *John Doe* is
