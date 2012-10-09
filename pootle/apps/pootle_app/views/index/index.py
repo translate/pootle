@@ -21,24 +21,23 @@
 import locale
 
 from django.conf import settings
-from django.utils.translation import ugettext as _
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.utils.translation import ugettext as _
 
 from pootle.i18n.gettext import tr_lang
 from pootle_app.models import Directory
 from pootle_app.models.permissions import (get_matching_permissions,
                                            check_permission)
 from pootle_app.views.top_stats import gentopstats_root
-from pootle_profile.models import get_profile
-from pootle_project.models import Project
 from pootle_language.models import Language
 from pootle_misc.stats import get_raw_stats
+from pootle_profile.models import get_profile
+from pootle_project.models import Project
 from pootle_statistics.models import Submission
 
 
 def get_items(request, model, get_last_action, name_func):
-
     items = []
     if not check_permission('view', request):
         return items
@@ -46,16 +45,20 @@ def get_items(request, model, get_last_action, name_func):
     for item in model.objects.iterator():
         stats = get_raw_stats(item)
 
+        translated_percentage = stats['translated']['percentage']
         items.append({
             'code': item.code,
             'name': name_func(item.fullname),
             'lastactivity': get_last_action(item),
             'stats': stats,
             'completed_title': _("%(percentage)d%% complete",
-                                 {'percentage': stats['translated']['percentage']}),
+                                 {'percentage': translated_percentage}),
             })
+
     items.sort(lambda x, y: locale.strcoll(x['name'], y['name']))
+
     return items
+
 
 def getlanguages(request):
     def get_last_action(item):
@@ -66,6 +69,7 @@ def getlanguages(request):
             return ''
 
     return get_items(request, Language, get_last_action, tr_lang)
+
 
 def getprojects(request):
     def get_last_action(item):
@@ -79,7 +83,8 @@ def getprojects(request):
 
 
 def view(request):
-    request.permissions = get_matching_permissions(get_profile(request.user), Directory.objects.root)
+    request.permissions = get_matching_permissions(get_profile(request.user),
+                                                   Directory.objects.root)
 
     topstats = gentopstats_root()
     languages = getlanguages(request)
@@ -100,13 +105,14 @@ def view(request):
         'projects': getprojects(request),
         'topstats': topstats,
         'translationlegend': {'translated': _('Translations are complete'),
-                              'fuzzy': _('Translations need to be checked (they are marked fuzzy)'),
+                              'fuzzy': _("Translations need to be checked "
+                                         "(they are marked fuzzy)"),
                               'untranslated': _('Untranslated')},
         'permissions': request.permissions,
         }
     visible_langs = [l for l in languages if l['stats']['total']['words'] != 0]
-    templatevars['moreprojects'] = len(templatevars['projects']) >\
-                                   len(visible_langs)
+    templatevars['moreprojects'] = (len(templatevars['projects']) >
+                                    len(visible_langs))
 
     if request.user.is_superuser:
         from pootle_misc.siteconfig import load_site_config
@@ -115,4 +121,5 @@ def view(request):
         setting_form = GeneralSettingsForm(siteconfig)
         templatevars['form'] = setting_form
 
-    return render_to_response('index/index.html', templatevars, RequestContext(request))
+    return render_to_response('index/index.html', templatevars,
+                              RequestContext(request))
