@@ -205,6 +205,17 @@ automatically, otherwise the merged version of the file will be committed
 without review without anybody knowing.
 
 
+.. _commands#list_languages:
+
+list_languages
+^^^^^^^^^^^^^^
+
+.. versionadded:: 2.2
+
+This commands prints all the language codes on the server. This might be useful
+for automation.
+
+
 .. _commands#manually_installing_pootle:
 
 Manually installing Pootle
