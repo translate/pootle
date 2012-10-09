@@ -135,7 +135,7 @@ server eventually.
 Running from checkout or archive
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Running from checkout is the easiet way to test Pootle, no need to install it
+Running from checkout is the easiest way to test Pootle, no need to install it
 or even configure, just change your directory to inside Pootle's directory
 (extracted from downloaded archive or checked out from Git), and then execute
 ``PootleServer``.
