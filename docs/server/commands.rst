@@ -212,7 +212,18 @@ list_languages
 
 .. versionadded:: 2.2
 
-This commands prints all the language codes on the server. This might be useful
+This command prints all the language codes on the server. This might be useful
+for automation.
+
+
+.. _commands#list_projects:
+
+list_projects
+^^^^^^^^^^^^^
+
+.. versionadded:: 2.2
+
+This command prints all the project codes on the server. This might be useful
 for automation.
 
 
