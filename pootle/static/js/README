@@ -58,6 +58,13 @@ Directory contents
 
     http://www.kryogenix.org/code/browser/sorttable/
 
+  - spin.js :
+    A spinning activity indicator.
+
+    Version 1.2.7
+
+    https://github.com/fgnass/spin.js
+
   + bootstrap/
 
     - bootstrap-alert.js :
