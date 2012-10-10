@@ -186,7 +186,8 @@ def apply_markup_filter(text):
     """
     markup_func_name, markup_kwargs = settings.MARKUP_FILTER
 
-    if markup_func_name is None: # No processing is needed.
+    # No processing is needed.
+    if markup_func_name is None or not text.strip():
         return text
 
     if markup_func_name not in ('textile', 'markdown', 'restructuredtext'):
