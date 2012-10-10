@@ -4,8 +4,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-27 16:13+0200\n"
 "PO-Revision-Date: 2010-08-03 01:03+0200\n"
-"Last-Translator: Anonymous Pootle User\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
+"Language-Team: Irish\n"
 "Language: ga\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,6 +25,7 @@ msgstr "dearbh"
 msgid "abstract"
 msgstr "teibí"
 
+# graphics (not keyboard)
 msgid "accelerator"
 msgstr "luasaire"
 
@@ -109,8 +110,6 @@ msgstr "algartam"
 msgid "alias"
 msgstr "ainm bréige"
 
-# تسنن" مع الرسوميات (الخطوط وخلافه)
-# تسنن" مع الرسوميات (الخطوط وخلافه)
 msgid "aliasing"
 msgstr "ailiasáil"
 
@@ -157,14 +156,14 @@ msgid "anonymous"
 msgstr "anaithnid"
 
 msgid "anti-aliasing"
-msgstr "frith-ailiasáil"
+msgstr "frithailiasáil"
 
+# genitive as adj.
 msgid "anti virus"
-msgstr "frith aicídnimh"
+msgstr "frithvíris"
 
-#, fuzzy
 msgid "appear"
-msgstr "Nocht"
+msgstr "nocht"
 
 msgid "append"
 msgstr "iarcheangail"
@@ -185,7 +184,7 @@ msgid "approve"
 msgstr "ceadaigh"
 
 msgid "approximate"
-msgstr "neasgar"
+msgstr "garbh"
 
 msgid "arbitrary"
 msgstr "treallach"
@@ -193,8 +192,9 @@ msgstr "treallach"
 msgid "archive"
 msgstr "cartlann"
 
+# not a measure of area
 msgid "area"
-msgstr "achar"
+msgstr "limistéar"
 
 msgid "argument"
 msgstr "argóint"
@@ -221,13 +221,13 @@ msgid "assignment"
 msgstr "sannachán"
 
 msgid "asynchronous"
-msgstr "aisioncranach"
+msgstr "aisioncrónach"
 
 msgid "attach"
 msgstr "ceangail"
 
 msgid "attachment"
-msgstr "ceangaltán"
+msgstr "iatán"
 
 msgid "attempt"
 msgstr "iarracht"
@@ -254,7 +254,7 @@ msgid "auto"
 msgstr "uath"
 
 msgid "automatic"
-msgstr "uathoibríodh"
+msgstr "uathoibríoch"
 
 msgid "availability"
 msgstr "infhaighteacht"
@@ -272,7 +272,7 @@ msgid "backbone"
 msgstr "cnámh droma"
 
 msgid "back-end"
-msgstr "cúil"
+msgstr "inneall"
 
 msgid "background"
 msgstr "cúlra"
@@ -287,7 +287,7 @@ msgid "banner"
 msgstr "meirge"
 
 msgid "bar"
-msgstr "sabh"
+msgstr "barra"
 
 msgid "base"
 msgstr "bun"
@@ -302,13 +302,13 @@ msgid "behavior"
 msgstr "iompraíocht"
 
 msgid "binary"
-msgstr "dénarthach"
+msgstr "dénártha"
 
 msgid "bind"
 msgstr "cuibhrigh"
 
 msgid "bit"
-msgstr "beart"
+msgstr "giotán"
 
 msgid "bitmap"
 msgstr "mapa giotán"
@@ -328,8 +328,9 @@ msgstr "coisc"
 msgid "blog"
 msgstr "blag"
 
+# verb
 msgid "blur"
-msgstr "geamhú"
+msgstr "geamhaigh"
 
 msgid "board"
 msgstr "clár"
@@ -341,7 +342,7 @@ msgid "bold"
 msgstr "trom"
 
 msgid "bookmarks"
-msgstr "astail"
+msgstr "leabharmharcanna"
 
 msgid "boot"
 msgstr "tosaigh"
@@ -353,13 +354,13 @@ msgid "box"
 msgstr "bosca"
 
 msgid "bracket"
-msgstr "eallóg"
+msgstr "lúibín"
 
 msgid "branch"
 msgstr "craobh"
 
 msgid "break"
-msgstr "sos"
+msgstr "briseadh"
 
 msgid "break (program)"
 msgstr "sos"
@@ -368,7 +369,7 @@ msgid "break point"
 msgstr "brisphointe"
 
 msgid "bridge (verb)"
-msgstr "droichead"
+msgstr "trasnaigh"
 
 msgid "bridge (noun)"
 msgstr "droichead"
@@ -377,10 +378,10 @@ msgid "broken"
 msgstr "briste"
 
 msgid "browse"
-msgstr "siortaigh"
+msgstr "brabhsáil"
 
 msgid "browser"
-msgstr "líonléitheoir"
+msgstr "brabhsálaí"
 
 msgid "buffer"
 msgstr "maolán"
@@ -389,13 +390,13 @@ msgid "bug"
 msgstr "fabht"
 
 msgid "build"
-msgstr "tiomsaigh"
+msgstr "tóg"
 
 msgid "built-in"
-msgstr "ionsuite"
+msgstr "insuite"
 
 msgid "bullet"
-msgstr "piléar"
+msgstr "urchar"
 
 msgid "bus"
 msgstr "bus"
@@ -425,7 +426,7 @@ msgid "call"
 msgstr "glao"
 
 msgid "camera"
-msgstr "grianghrafadán"
+msgstr "ceamara"
 
 msgid "cancel"
 msgstr "cealaigh"
@@ -436,6 +437,7 @@ msgstr "cumas"
 msgid "capacity"
 msgstr "toilleadh"
 
+# above picture
 msgid "caption"
 msgstr "ceannscríbhinn"
 
@@ -452,7 +454,7 @@ msgid "case (font)"
 msgstr "cás (clófhoireann)"
 
 msgid "catalog"
-msgstr "clár"
+msgstr "catalóg"
 
 msgid "category"
 msgstr "aicme"
@@ -461,7 +463,7 @@ msgid "cell"
 msgstr "cillín"
 
 msgid "certificate"
-msgstr "deimhniú"
+msgstr "teastas"
 
 msgid "certify"
 msgstr "deimhnigh"
@@ -470,13 +472,14 @@ msgid "change"
 msgstr "athraigh"
 
 msgid "channel"
-msgstr "bealach"
+msgstr "cainéal"
 
+# litir isn't good here
 msgid "character"
-msgstr "litir"
+msgstr "carachtar"
 
 msgid "charset"
-msgstr "tacar litreacha"
+msgstr "tacar carachtar"
 
 msgid "chart"
 msgstr "cairt"
@@ -500,10 +503,10 @@ msgid "choose"
 msgstr "roghnaigh"
 
 msgid "class"
-msgstr "rang"
+msgstr "aicme"
 
 msgid "classic"
-msgstr "seannósach"
+msgstr "clasaiceach"
 
 msgid "classify"
 msgstr "aicmigh"
@@ -515,16 +518,16 @@ msgid "clear"
 msgstr "glan"
 
 msgid "click (noun)"
-msgstr "smeach"
+msgstr "clic"
 
 msgid "click (verb)"
-msgstr "brúigh"
+msgstr "cliceáil"
 
 msgid "client"
 msgstr "cliaint"
 
 msgid "clip art"
-msgstr "fáisc-ealaín"
+msgstr "fáiscealaín"
 
 msgid "clip board"
 msgstr "gearrthaisce"
@@ -545,7 +548,7 @@ msgid "codec"
 msgstr "comhbhrú/dí-chomhbhrú"
 
 msgid "collapse"
-msgstr "leacaigh"
+msgstr "laghdaigh"
 
 msgid "collect"
 msgstr "bailigh"
@@ -565,21 +568,17 @@ msgstr "aithne"
 msgid "comment"
 msgstr "nóta"
 
-#, fuzzy
 msgid "common"
-msgstr "Gnáth"
+msgstr "gnáth"
 
-#, fuzzy
 msgid "communication"
-msgstr "Cumarsáid"
+msgstr "cumarsáid"
 
-#, fuzzy
 msgid "compact"
-msgstr "Dlúth"
+msgstr "dlúth"
 
-#, fuzzy
 msgid "compare"
-msgstr "Cuir i gComparáid"
+msgstr "cuir i gcomparáid"
 
 msgid "compatibility"
 msgstr "comhoiriúnacht"
@@ -587,8 +586,6 @@ msgstr "comhoiriúnacht"
 msgid "compatible"
 msgstr "comhoiriúnach"
 
-# حويل الشفرة المصرية إلى ملفات ثنائية (برمجة
-# حويل الشفرة المصرية إلى ملفات ثنائية (برمجة
 msgid "compilation"
 msgstr "tiomsú"
 
@@ -601,31 +598,26 @@ msgstr "tiomsaitheoir"
 msgid "complete"
 msgstr "críochnaithe"
 
-#, fuzzy
 msgid "component"
-msgstr "Comhpháirt"
+msgstr "comhpháirt"
 
-#, fuzzy
 msgid "compose"
-msgstr "Cumadóir"
+msgstr "cum"
 
-#, fuzzy
 msgid "composition"
-msgstr "Comhdhéanamh"
+msgstr "cumadh"
 
-#, fuzzy
 msgid "compress"
-msgstr "Comhbhrúigh"
+msgstr "comhbhrúigh"
 
-#, fuzzy
 msgid "compression"
-msgstr "Comhbhrú"
+msgstr "comhbhrú"
 
 msgid "computer"
 msgstr "ríomhaire"
 
 msgid "computing"
-msgstr "ag ríomh"
+msgstr "ríomhaireacht"
 
 msgid "concatenate"
 msgstr "comhchaitéinigh"
@@ -652,22 +644,22 @@ msgid "confirmation"
 msgstr "deimhniú"
 
 msgid "conflict"
-msgstr "coinbhleachtaí"
+msgstr "coinbhleacht"
 
 msgid "connect"
-msgstr "nasc"
+msgstr "ceangail"
 
 msgid "connection"
-msgstr "nasc"
+msgstr "ceangal"
 
 msgid "console"
-msgstr "eallóg"
+msgstr "consól"
 
 msgid "contact (noun)"
 msgstr "teagmháil"
 
 msgid "contact (verb)"
-msgstr "tadhaill"
+msgstr "déan teagmháil"
 
 msgid "content"
 msgstr "inneachar"
@@ -697,25 +689,24 @@ msgid "cookie"
 msgstr "fianán"
 
 msgid "cooperative"
-msgstr "comhoibríoch"
+msgstr "comhoibritheach"
 
 msgid "coordinate"
-msgstr "comheagraigh"
+msgstr "comhordaigh"
 
 msgid "copy (noun)"
-msgstr "macasamhail"
+msgstr "cóip"
 
 msgid "copy (verb)"
-msgstr "macasamhlaigh"
+msgstr "cóipeáil"
 
-#, fuzzy
 msgid "copy left"
-msgstr "Barr ar chlé"
+msgstr "cóipchlé"
 
-#, fuzzy
 msgid "copy right"
-msgstr "Cóipcheart"
+msgstr "cóipcheart"
 
+# adj. not verb
 msgid "correct"
 msgstr "ceart"
 
@@ -725,6 +716,7 @@ msgstr "comhfhreagras"
 msgid "correspondent"
 msgstr "comhfhreagraí"
 
+# adj.
 msgid "corrupt"
 msgstr "truaillithe"
 
@@ -747,14 +739,14 @@ msgid "criteria"
 msgstr "slat tomhais"
 
 msgid "crop"
-msgstr "laghdaigh"
+msgstr "bearr"
 
+# gs. as adj.
 msgid "cross-platform"
 msgstr "trasardáin"
 
-#, fuzzy
 msgid "crypt"
-msgstr "uaimh"
+msgstr "criptiú"
 
 msgid "cryptology"
 msgstr "cripteolaíocht"
@@ -772,7 +764,7 @@ msgid "custom"
 msgstr "saincheaptha"
 
 msgid "customization"
-msgstr "saincheapú"
+msgstr "saincheapadh"
 
 msgid "customize"
 msgstr "saincheap"
@@ -784,10 +776,11 @@ msgid "cycle"
 msgstr "ciogal"
 
 msgid "daemon"
-msgstr "daemon"
+msgstr "deamhan"
 
+# noun (or déan ~)
 msgid "damage"
-msgstr "díobháil"
+msgstr "damáiste"
 
 msgid "data"
 msgstr "sonraí"
@@ -883,7 +876,7 @@ msgid "destination"
 msgstr "sprioc"
 
 msgid "destroy"
-msgstr "scrios"
+msgstr "léirscrios"
 
 msgid "detach"
 msgstr "díscoir"
@@ -912,14 +905,16 @@ msgstr "diail"
 msgid "dialog"
 msgstr "agallamh"
 
+# gs as adj.
 msgid "dialup"
-msgstr "diailchaoi"
+msgstr "diailnaisc"
 
 msgid "difference"
-msgstr "éagsúlacht"
+msgstr "difríocht"
 
+# "uimhir" isn't good here
 msgid "digit"
-msgstr "uimhir"
+msgstr "digit"
 
 msgid "digital"
 msgstr "uimhreach"
@@ -927,6 +922,7 @@ msgstr "uimhreach"
 msgid "dimension"
 msgstr "toise"
 
+# files, not contact info
 msgid "directory"
 msgstr "comhadlann"
 
@@ -948,9 +944,11 @@ msgstr "plé"
 msgid "disk"
 msgstr "diosca"
 
+# verb
 msgid "dispatch"
-msgstr "riar am"
+msgstr "seol"
 
+# verb
 msgid "display"
 msgstr "taispeáin"
 
@@ -964,10 +962,10 @@ msgid "distribution"
 msgstr "dáileadh"
 
 msgid "distributor"
-msgstr "dáilitheoir"
+msgstr "dáileoir"
 
 msgid "dock"
-msgstr "glas"
+msgstr "duga"
 
 msgid "document"
 msgstr "cáipéis"
@@ -978,8 +976,9 @@ msgstr "doiciméadú"
 msgid "domain"
 msgstr "fearann"
 
+# treat as verb
 msgid "double click"
-msgstr "brúigh faoi dó"
+msgstr "cliceáil faoi dhó"
 
 msgid "download"
 msgstr "íosluchtaigh"
@@ -1008,6 +1007,7 @@ msgstr "dinimiciúil"
 msgid "echo"
 msgstr "macalla"
 
+# verb, short for "cuir in eagar"
 msgid "edit"
 msgstr "eagar"
 
@@ -1024,7 +1024,7 @@ msgid "eject"
 msgstr "díchuir"
 
 msgid "electronic"
-msgstr "aibhléiseach"
+msgstr "leictreonach"
 
 msgid "element"
 msgstr "ball"
@@ -1038,6 +1038,7 @@ msgstr "leabaigh"
 msgid "emoticon"
 msgstr "straoiseog"
 
+# adj. not verb
 msgid "empty"
 msgstr "folamh"
 
@@ -1102,22 +1103,25 @@ msgid "erase"
 msgstr "glan"
 
 msgid "error"
-msgstr "botún"
+msgstr "earráid"
 
+# verb
 msgid "escape"
 msgstr "éalaigh"
 
 msgid "evaluation"
 msgstr "luacháil"
 
+# computing, not social event
 msgid "event"
 msgstr "teagmhas"
 
 msgid "exception"
 msgstr "eisceacht"
 
+# adj.
 msgid "executable"
-msgstr "comhad inrite"
+msgstr "inrite"
 
 msgid "execute"
 msgstr "rith"
@@ -1149,8 +1153,9 @@ msgstr "sín"
 msgid "extensible"
 msgstr "inbhreisithe"
 
+# addon, not filename extension
 msgid "extension"
-msgstr "breisiú"
+msgstr "eisínteacht"
 
 msgid "external"
 msgstr "seachtrach"
@@ -1164,7 +1169,6 @@ msgstr "bain"
 msgid "fail"
 msgstr "teip"
 
-# فادح: مثل خطأ فادح
 msgid "fatal"
 msgstr "marfach"
 
@@ -1177,8 +1181,9 @@ msgstr "ceanán"
 msgid "feature"
 msgstr "gné"
 
+# noun
 msgid "feed"
-msgstr "fothaire"
+msgstr "fotha"
 
 msgid "feedback"
 msgstr "aiseolas"
@@ -1187,232 +1192,194 @@ msgid "fetch"
 msgstr "gabh"
 
 msgid "field"
-msgstr "field"
+msgstr "réimse"
 
-#, fuzzy
 msgid "figure"
-msgstr "Léaráid"
+msgstr "léaráid"
 
 msgid "file"
 msgstr "comhad"
 
-#, fuzzy
 msgid "fill"
-msgstr "comhad"
+msgstr "líon"
 
 msgid "filter"
 msgstr "scagaire"
 
 msgid "find"
-msgstr "cuardaigh"
+msgstr "aimsigh"
 
 msgid "firewall"
-msgstr ""
+msgstr "balla dóiteáin"
 
-#, fuzzy
 msgid "firmware"
-msgstr "Dochtearraí:"
+msgstr "dochtearraí"
 
 msgid "fit"
-msgstr ""
+msgstr "oiriúnaigh"
 
 msgid "fix"
-msgstr ""
+msgstr "deisigh"
 
 msgid "flag"
-msgstr "brat"
+msgstr "bratach"
 
-#, fuzzy
 msgid "flash"
-msgstr "Soladas"
+msgstr "splanc"
 
-#, fuzzy
 msgid "flat"
-msgstr "float"
+msgstr "cothrom"
 
-#, fuzzy
 msgid "flip"
-msgstr "Smeach"
+msgstr "smeach"
 
-#, fuzzy
 msgid "float (verb)"
-msgstr "coisc"
+msgstr ""
 
 msgid "flood"
-msgstr ""
+msgstr "líonadh"
 
 msgid "floppy"
 msgstr "diosca flapach"
 
-#, fuzzy
 msgid "folder"
-msgstr "Fillteán"
+msgstr "fillteán"
 
-#, fuzzy
 msgid "font"
-msgstr "éadan"
+msgstr "clófhoireann"
 
-#, fuzzy
 msgid "footer"
-msgstr "Buntásc"
+msgstr "buntásc"
 
-#, fuzzy
 msgid "form"
-msgstr "foirmeacha"
+msgstr "foirm"
 
 msgid "format (noun)"
-msgstr ""
+msgstr "formáid"
 
 msgid "format (verb)"
-msgstr ""
+msgstr "formáidigh"
 
 msgid "formatted"
-msgstr ""
+msgstr "formáidithe"
 
-#, fuzzy
 msgid "formula"
-msgstr "Foirmle"
+msgstr "foirmle"
 
-#, fuzzy
 msgid "forum"
-msgstr "foirmeacha"
+msgstr "fóram"
 
 msgid "fragment"
-msgstr ""
+msgstr "blúire"
 
 msgid "frame"
-msgstr "framá"
+msgstr "fráma"
 
 msgid "frame set"
-msgstr ""
+msgstr "frámadán"
 
-#, fuzzy
 msgid "framework"
-msgstr "Frámaíocht"
+msgstr "frámaíocht"
 
 msgid "free software"
-msgstr ""
+msgstr "saorbhogearra"
 
-#, fuzzy
 msgid "freeze"
-msgstr "Reoigh"
+msgstr "reoigh"
 
 msgid "frequency"
 msgstr "minicíocht"
 
 msgid "front end"
-msgstr ""
+msgstr "comhéadan"
 
-#, fuzzy
 msgid "function"
-msgstr "Feidhm"
+msgstr "feidhm"
 
-#, fuzzy
 msgid "gallery"
-msgstr "Gailearaí"
+msgstr "gailearaí"
 
-#, fuzzy
 msgid "game"
-msgstr "Ainm"
+msgstr "cluiche"
 
-#, fuzzy
 msgid "gateway"
-msgstr "Inneal Geata"
+msgstr "geata"
 
-#, fuzzy
 msgid "generate"
-msgstr "Cruthaigh"
+msgstr "gin"
 
-#, fuzzy
 msgid "generation"
-msgstr "Gineadóir"
+msgstr "giniúint"
 
-#, fuzzy
 msgid "generator"
-msgstr "Gineadóir"
+msgstr "gineadóir"
 
-#, fuzzy
 msgid "generic"
-msgstr "Ginearálta"
+msgstr "ginearálta"
 
-#, fuzzy
 msgid "geometric"
-msgstr "Céimseata"
+msgstr "céimseatúil"
 
-#, fuzzy
 msgid "geometry"
-msgstr "Céimseata"
+msgstr "céimseata"
 
-#, fuzzy
 msgid "grab"
-msgstr "liath"
+msgstr "beir ar"
 
-#, fuzzy
 msgid "gradient"
-msgstr "Grádán"
+msgstr "grádán"
 
-#, fuzzy
 msgid "grain"
-msgstr "neartú"
+msgstr "gráinne"
 
-#, fuzzy
 msgid "graph"
-msgstr "Graif"
+msgstr "graf"
 
-#, fuzzy
 msgid "graphic"
-msgstr "Grafaic"
+msgstr "grafaic"
 
-#, fuzzy
 msgid "graphical"
-msgstr "Grafaic"
+msgstr "grafach"
 
-#, fuzzy
 msgid "graphics"
-msgstr "Grafaic"
+msgstr "grafaic"
 
-#, fuzzy
 msgid "gray-scale"
-msgstr "Liathscála"
+msgstr "liathscála"
 
-#, fuzzy
 msgid "grid"
-msgstr "Greille"
+msgstr "greille"
 
+# noun
 msgid "group"
 msgstr "grúpa"
 
-#, fuzzy
 msgid "guess"
-msgstr "Cuairteoir"
+msgstr "buille faoi thuairim"
 
-#, fuzzy
 msgid "guest"
-msgstr "Cuairteoir"
+msgstr "cuairteoir"
 
 msgid "handle (noun)"
-msgstr ""
+msgstr "hanla"
 
 msgid "handle (verb)"
-msgstr ""
+msgstr "láimhseáil"
 
 msgid "handler"
-msgstr ""
+msgstr "láimhseálaí"
 
-#, fuzzy
 msgid "hardware"
-msgstr "Crua-Earraí"
+msgstr "crua-earraí"
 
 msgid "hash"
 msgstr "haiseáil"
 
-#, fuzzy
 msgid "head"
-msgstr "thead"
+msgstr "ceann"
 
-#, fuzzy
 msgid "header"
-msgstr "Léitheoir"
+msgstr "ceanntásc"
 
 msgid "height"
 msgstr "airde"
@@ -1420,65 +1387,56 @@ msgstr "airde"
 msgid "help"
 msgstr "cuidiú"
 
-#, fuzzy
 msgid "hide"
-msgstr "Folaigh"
+msgstr "folaigh"
 
-#, fuzzy
 msgid "hierarchy"
-msgstr "Ordlathas"
+msgstr "ordlathas"
 
-#, fuzzy
 msgid "high light"
-msgstr "Aibhsigh"
+msgstr "aibhsigh"
 
-#, fuzzy
 msgid "history"
-msgstr "Stair"
+msgstr "stair"
 
-#, fuzzy
 msgid "host"
-msgstr "Óstríomhaire"
+msgstr "óstríomhaire"
 
-#, fuzzy
 msgid "hostname"
-msgstr "Óstainm"
+msgstr "óstainm"
 
 msgid "hyperlink"
-msgstr ""
+msgstr "hipearnasc"
 
 msgid "hypertext"
-msgstr ""
+msgstr "hipirtéacs"
 
 msgid "icon"
-msgstr "dealbh"
+msgstr "deilbhín"
 
-#, fuzzy
 msgid "identify"
-msgstr "Aitheantas"
+msgstr "aithin"
 
 msgid "idle"
 msgstr "díomhaoin"
 
-#, fuzzy
 msgid "ignore"
-msgstr "Déan neamhshuim"
+msgstr "déan neamhshuim ar"
 
 msgid "image"
-msgstr "íomha"
+msgstr "íomhá"
 
 msgid "implement"
-msgstr ""
+msgstr "cuir i bhfeidhm"
 
 msgid "import"
-msgstr "import"
+msgstr "iompórtáil"
 
-#, fuzzy
 msgid "inactive"
-msgstr "Neamhghníomhach"
+msgstr "neamhghníomhach"
 
 msgid "inbox"
-msgstr "post isteach"
+msgstr "bosca isteach"
 
 msgid "inch"
 msgstr "orlach"
@@ -1486,34 +1444,29 @@ msgstr "orlach"
 msgid "include"
 msgstr "include"
 
-#, fuzzy
 msgid "incoming"
-msgstr "Isteach/"
+msgstr "isteach"
 
-#, fuzzy
 msgid "incompatible"
-msgstr "comhoiriúnach"
+msgstr "neamh-chomhoiriúnach"
 
-#, fuzzy
 msgid "increase"
-msgstr "Méadaigh"
+msgstr "méadaigh"
 
-#, fuzzy
 msgid "increment"
-msgstr "incriminteach"
+msgstr "incrimintigh"
 
-#, fuzzy
 msgid "indent"
-msgstr "Eangaigh"
+msgstr "eangaigh"
 
 msgid "index"
-msgstr "inneacs"
+msgstr "innéacs"
 
 msgid "indice"
-msgstr ""
+msgstr "innéacs"
 
 msgid "infect"
-msgstr ""
+msgstr "ionfhabhtaigh"
 
 msgid "infinite"
 msgstr "éigríochta"
@@ -1521,108 +1474,86 @@ msgstr "éigríochta"
 msgid "information"
 msgstr "eolas"
 
-#, fuzzy
 msgid "infrared"
-msgstr "Infridhearg"
+msgstr "infridhearg"
 
-#, fuzzy
 msgid "initial"
-msgstr "Túslitreacha"
+msgstr ""
 
-#, fuzzy
 msgid "initialize"
-msgstr "Túsa&igh"
+msgstr "túsaigh"
 
-#, fuzzy
 msgid "input"
-msgstr "Inchur"
+msgstr "ionchur"
 
-#, fuzzy
 msgid "insert"
-msgstr "Ionsáigh"
+msgstr "ionsáigh"
 
-#, fuzzy
 msgid "install"
-msgstr "suiteáil,"
+msgstr "suiteáil"
 
-#, fuzzy
 msgid "installer"
-msgstr "suiteáilte,"
+msgstr "suiteálaí"
 
-#, fuzzy
 msgid "instance"
-msgstr "Ásc"
+msgstr "ásc"
 
-#, fuzzy
 msgid "instruction"
-msgstr "Treoir"
+msgstr "treoir"
 
-#, fuzzy
 msgid "integer"
-msgstr "Slánuimhir"
+msgstr "slánuimhir"
 
-#, fuzzy
 msgid "integral"
-msgstr "Eatramh"
+msgstr "slánuimhreach"
 
 msgid "integrate"
-msgstr ""
+msgstr "comhtháthaigh"
 
-#, fuzzy
 msgid "integration"
-msgstr "Timthriall:"
+msgstr "comhtháthú"
 
-#, fuzzy
 msgid "integrity"
-msgstr "Déine"
+msgstr "sláine"
 
-#, fuzzy
 msgid "intensity"
-msgstr "Déine"
+msgstr "déine"
 
 msgid "interactivity"
-msgstr ""
+msgstr "idirghníomhaíocht"
 
-#, fuzzy
 msgid "interface"
-msgstr "Comhéadan"
+msgstr "comhéadan"
 
-#, fuzzy
 msgid "internal"
-msgstr "Eatramh"
+msgstr "inmheánach"
 
-#, fuzzy
 msgid "internet"
 msgstr "Idirlíon"
 
-#, fuzzy
 msgid "interrupt"
-msgstr "Idirbhriseadh"
+msgstr "idirbhris"
 
 msgid "invalid"
-msgstr "easlán"
+msgstr "neamhbhailí"
 
-#, fuzzy
 msgid "inverse"
-msgstr "Invert"
+msgstr "inbhéarta"
 
-#, fuzzy
 msgid "invert"
-msgstr "Inbhéartaigh"
+msgstr "inbhéartaigh"
 
 msgid "invoke"
-msgstr ""
+msgstr "gair"
 
 msgid "italic"
 msgstr "iodálach"
 
-#, fuzzy
 msgid "item"
-msgstr "Mír"
+msgstr "mír"
 
-#, fuzzy
 msgid "iteration"
-msgstr "Timthriall:"
+msgstr "timthriall"
 
 msgid "jag"
 msgstr ""
@@ -1631,48 +1562,41 @@ msgid "jam"
 msgstr ""
 
 msgid "job"
-msgstr ""
+msgstr "jab"
 
-#, fuzzy
+# take part, or connect?
 msgid "join"
-msgstr "Ceangail"
+msgstr ""
 
 msgid "joy stick"
-msgstr ""
+msgstr "luamhán stiúrtha"
 
-#, fuzzy
 msgid "jump"
-msgstr "Dumpáil"
+msgstr "léim"
 
-#, fuzzy
 msgid "junk"
-msgstr "Bruscar"
+msgstr "bruscar"
 
-#, fuzzy
 msgid "justify"
-msgstr "&Comhfhadaigh"
+msgstr "comhfhadaigh"
 
-#, fuzzy
 msgid "keep"
-msgstr "Coinnigh"
+msgstr "coinnigh"
 
-#, fuzzy
 msgid "kernel"
-msgstr "Eithne"
+msgstr "eithne"
 
 msgid "key"
-msgstr "key"
+msgstr "eochair"
 
-#, fuzzy
 msgid "keyboard"
-msgstr "Miarchlar"
+msgstr "méarchlár"
 
 msgid "key stroke"
-msgstr ""
+msgstr "eochairbhuille"
 
-#, fuzzy
 msgid "key word"
-msgstr "Eochairfhocal"
+msgstr "eochairfhocal"
 
 msgid "label"
 msgstr "lipéad"
@@ -1680,32 +1604,26 @@ msgstr "lipéad"
 msgid "landscape"
 msgstr "tírdhreach"
 
-#, fuzzy
 msgid "language"
-msgstr "Teanga"
+msgstr "teanga"
 
-#, fuzzy
 msgid "laptop"
-msgstr "Ríomhaire Glúine"
+msgstr "ríomhaire glúine"
 
-#, fuzzy
 msgid "launch"
-msgstr "Lainseáil"
+msgstr "tosaigh"
 
-#, fuzzy
 msgid "layer"
-msgstr "Imreoir"
+msgstr "sraith"
 
-#, fuzzy
 msgid "layout"
-msgstr "Scéim"
+msgstr "leagan amach"
 
 msgid "length"
-msgstr "length"
+msgstr "fad"
 
-#, fuzzy
 msgid "license"
-msgstr "Ceadúnas"
+msgstr "ceadúnas"
 
 msgid "line"
 msgstr "líne"
@@ -1716,82 +1634,71 @@ msgstr "nasc"
 msgid "list"
 msgstr "liosta"
 
-#, fuzzy
+# verb, not CPU load
 msgid "load"
-msgstr "Lód"
+msgstr "luchtaigh"
 
 msgid "local"
 msgstr "logánta"
 
-#, fuzzy
 msgid "localization"
-msgstr "Fíorú"
+msgstr "logánú"
 
-#, fuzzy
 msgid "location"
-msgstr "Suíomh"
+msgstr "suíomh"
 
-#, fuzzy
+# noun == log file
 msgid "log"
-msgstr "Blog"
+msgstr "logchomhad"
 
 msgid "lookup"
-msgstr ""
+msgstr "cuardach"
 
-#, fuzzy
 msgid "lower-case"
-msgstr "Cás Íochtair"
+msgstr "cás íochtair"
 
-#, fuzzy
 msgid "machine"
-msgstr "Ríomhaire"
+msgstr "ríomhaire"
 
 msgid "main board"
-msgstr ""
+msgstr "príomhchlár"
 
 msgid "maintainer"
 msgstr "cothaitheoir"
 
 msgid "maintenance"
-msgstr ""
+msgstr "cothabháil"
 
-#, fuzzy
 msgid "manage"
-msgstr "Bainisteoir"
+msgstr "bainistigh"
 
-#, fuzzy
 msgid "management"
-msgstr "&Bainisteoireacht"
+msgstr "bainisteoireacht"
 
-#, fuzzy
 msgid "manager"
-msgstr "Bainisteoir"
+msgstr "bainisteoir"
 
+# like a book, not 'by hand'
 msgid "manual"
 msgstr "lámhleabhar"
 
-#, fuzzy
 msgid "margin"
-msgstr "Imeall"
+msgstr "imeall"
 
-#, fuzzy
 msgid "mark"
-msgstr "marcanna"
+msgstr "marc"
 
-#, fuzzy
 msgid "master"
-msgstr "Máistir"
+msgstr "máistir"
 
 msgid "match"
 msgstr "meaitseáil"
 
-#, fuzzy
 msgid "maximize"
-msgstr "Uasmhéadaigh"
+msgstr "uasmhéadaigh"
 
-#, fuzzy
 msgid "memory"
-msgstr "Cuimhne"
+msgstr "cuimhne"
 
 msgid "menu"
 msgstr "roghchlár"
@@ -1802,264 +1709,222 @@ msgstr "cumaisc"
 msgid "message"
 msgstr "scéal"
 
-#, fuzzy
 msgid "method"
-msgstr "Modh"
+msgstr "modh"
 
-#, fuzzy
 msgid "minimize"
-msgstr "Íoslaghdaigh"
+msgstr "íoslaghdaigh"
 
 msgid "mode"
-msgstr "modh"
+msgstr "mód"
 
 msgid "modem"
 msgstr "móideim"
 
-#, fuzzy
 msgid "moderator"
-msgstr "stiúrtha"
+msgstr "modhnóir"
 
-#, fuzzy
 msgid "modify"
-msgstr "Athraigh"
+msgstr "athraigh"
 
-#, fuzzy
 msgid "module"
-msgstr "Modúl"
+msgstr "modúl"
 
-#, fuzzy
+# noun == screen
 msgid "monitor"
-msgstr "Scáileán"
+msgstr "scáileán"
 
 msgid "mosaic"
-msgstr ""
+msgstr "mósáic"
 
-#, fuzzy
 msgid "motion"
-msgstr "Gluaiseacht"
+msgstr "gluaiseacht"
 
-#, fuzzy
 msgid "mouse"
-msgstr "teach"
+msgstr "luch"
 
-#, fuzzy
+# verb, not move in a game
 msgid "move"
-msgstr "Bog"
+msgstr "bog"
 
-#, fuzzy
 msgid "multimedia"
-msgstr "Illmheáin"
+msgstr "ilmheáin"
 
 msgid "multitasking"
-msgstr ""
+msgstr "iltascáil"
 
 msgid "name"
 msgstr "ainm"
 
-#, fuzzy
 msgid "navigation"
-msgstr "Nascleanúint"
+msgstr "nascleanúint"
 
-#, fuzzy
 msgid "navigator"
-msgstr "Nascleanúint"
+msgstr "nascleantóir"
 
-#, fuzzy
 msgid "network"
-msgstr "Líonra"
+msgstr "líonra"
 
-#, fuzzy
 msgid "news group"
-msgstr "grúpa nua"
+msgstr "grúpa nuachta"
 
-#, fuzzy
 msgid "next"
-msgstr "An Chéad Cheann Eile"
+msgstr "ar aghaidh"
 
-#, fuzzy
 msgid "nick name"
-msgstr "Leasainm:"
+msgstr "leasainm"
 
 msgid "no"
 msgstr "níl"
 
-#, fuzzy
 msgid "node"
-msgstr "Inód"
+msgstr "nód"
 
 msgid "notation"
-msgstr "notation"
+msgstr "nodaireacht"
 
 msgid "note"
 msgstr "nóta"
 
-#, fuzzy
 msgid "notebook"
-msgstr "féilire"
+msgstr "leabhar nótaí"
 
-#, fuzzy
 msgid "notification"
-msgstr "Fógraíocht"
+msgstr "fógra"
 
 msgid "notify"
-msgstr ""
+msgstr "fógair"
 
-# في الرياضيات "صفر"
-# الصفة "منعدم"
-#, fuzzy
 msgid "null"
-msgstr "Lán"
+msgstr "nialasach"
 
 msgid "number"
 msgstr "uimhir"
 
-#, fuzzy
 msgid "numbering"
-msgstr "Uimhriú"
+msgstr "uimhriú"
 
 msgid "object"
 msgstr "réad"
 
 msgid "occurrence"
-msgstr ""
+msgstr "tarlú"
 
 msgid "octet"
-msgstr ""
+msgstr "ochtréad"
 
 msgid "offline"
 msgstr "as líne"
 
 msgid "OK"
-msgstr "Ceart go leor"
+msgstr "ceart go leor"
 
 msgid "online"
 msgstr "ar líne"
 
 msgid "ongoing"
-msgstr ""
+msgstr "leanúnach"
 
-#, fuzzy
 msgid "opacity"
-msgstr "Teimhneacht"
+msgstr "teimhneacht"
 
-#, fuzzy
 msgid "opaque"
-msgstr "Teimhneach"
+msgstr "teimhneach"
 
+# verb, not adj.
 msgid "open"
 msgstr "oscail"
 
-#, fuzzy
 msgid "operation"
-msgstr "Oibríocht"
+msgstr "oibríocht"
 
-#, fuzzy
 msgid "option"
-msgstr "Rogha"
+msgstr "rogha"
 
-#, fuzzy
 msgid "optional"
-msgstr "Roghnach"
+msgstr "roghnach"
 
-#, fuzzy
 msgid "order"
-msgstr "Imlíne"
+msgstr "ord"
 
-#, fuzzy
 msgid "organize"
-msgstr "Eagraí"
+msgstr "eagraigh"
 
-#, fuzzy
 msgid "orientation"
-msgstr "Treosuíomh"
+msgstr "treoshuíomh"
 
 msgid "original"
 msgstr "bunúsach"
 
 msgid "outgoing"
-msgstr ""
+msgstr "amach"
 
 msgid "output"
 msgstr "aschur"
 
 msgid "overflow"
-msgstr ""
+msgstr "róshreabhadh"
 
-#, fuzzy
 msgid "override"
-msgstr "Forscríobh"
+msgstr "sáraigh"
 
-#, fuzzy
 msgid "overwrite"
-msgstr "Forscríobh"
+msgstr "forscríobh"
 
-#, fuzzy
 msgid "owner"
-msgstr "Úinéir"
+msgstr "úinéir"
 
-#, fuzzy
 msgid "pack"
-msgstr "cuireata"
+msgstr "pacáil"
 
-#, fuzzy
 msgid "package"
-msgstr "pacáisteoir"
+msgstr "pacáiste"
 
 msgid "packet"
-msgstr ""
+msgstr "paicéad"
 
-#, fuzzy
 msgid "padding"
-msgstr "Stuáil"
+msgstr "stuáil"
 
 msgid "page"
 msgstr "leathanach"
 
-#, fuzzy
+# noun
 msgid "paint"
-msgstr "gpéint"
+msgstr "péint"
 
-#, fuzzy
 msgid "pair"
-msgstr "Gruaig"
+msgstr "péire"
 
-#, fuzzy
 msgid "palette"
-msgstr "Pailéad"
+msgstr "pailéad"
 
 msgid "panel"
 msgstr "painéal"
 
-#, fuzzy
 msgid "parallel"
-msgstr "Comhuaineach"
+msgstr "comhthreomhar"
 
-#, fuzzy
 msgid "parameter"
-msgstr "Paraiméadar"
+msgstr "paraiméadar"
 
-#, fuzzy
 msgid "parcel"
-msgstr "Beart"
+msgstr "beart"
 
 msgid "parent"
-msgstr ""
+msgstr "tuismitheoir"
 
 msgid "parity"
-msgstr ""
+msgstr "paireacht"
 
-#, fuzzy
 msgid "parse"
-msgstr "Gann"
+msgstr "parsáil"
 
-#, fuzzy
 msgid "partition"
-msgstr "Deighilt"
+msgstr "deighilt"
 
-#, fuzzy
 msgid "pass"
-msgstr "Mais"
+msgstr ""
 
 msgid "password"
 msgstr "focal faire"
@@ -2068,10 +1933,10 @@ msgid "paste"
 msgstr "greamaigh"
 
 msgid "patch (noun)"
-msgstr ""
+msgstr "paiste"
 
 msgid "patch (verb)"
-msgstr ""
+msgstr "cuir paiste i bhfeidhm"
 
 msgid "path"
 msgstr "slí"
@@ -2079,248 +1944,208 @@ msgstr "slí"
 msgid "pattern"
 msgstr "patrún"
 
-#, fuzzy
 msgid "pause"
-msgstr "moillithe"
+msgstr "cuir ar shos"
 
 msgid "peripheral"
-msgstr ""
+msgstr "forimeallach"
 
-#, fuzzy
 msgid "permanent"
-msgstr "Buan"
+msgstr "buan"
 
-#, fuzzy
 msgid "permission"
-msgstr "Ceadanna"
+msgstr "cead"
 
 msgid "permutation"
-msgstr ""
+msgstr "iomalartú"
 
-#, fuzzy
 msgid "physical"
-msgstr "fisic"
+msgstr "fisiceach"
 
-#, fuzzy
 msgid "picture"
-msgstr "Pictiúr"
+msgstr "pictiúr"
 
-#, fuzzy
 msgid "pipe"
-msgstr "Píopa"
+msgstr "píopa"
 
 msgid "pixel"
 msgstr "picteilín"
 
-#, fuzzy
 msgid "placement"
-msgstr "Ionadaí"
+msgstr "ionadú"
 
 msgid "plain"
 msgstr "simplí"
 
-#, fuzzy
 msgid "plot (verb)"
-msgstr "coisc"
+msgstr "breac"
 
-#, fuzzy
 msgid "plotter"
-msgstr "Scoilteoir"
+msgstr "breacaire"
 
 msgid "plugin"
-msgstr "breiseán"
+msgstr "forlíontán"
 
 msgid "pop up"
-msgstr ""
+msgstr "preab"
 
-#, fuzzy
+# networking, not port to a new OS
 msgid "port"
-msgstr "Port"
+msgstr "port"
 
-#, fuzzy
 msgid "position"
-msgstr "Áit"
+msgstr "ionad"
 
-#, fuzzy
 msgid "post"
-msgstr "Óstríomhaire"
+msgstr "postáil"
 
 msgid "preferences"
-msgstr "roghnachais"
+msgstr "sainroghanna"
 
 msgid "prepare"
-msgstr ""
+msgstr "ullmhaigh"
 
-#, fuzzy
 msgid "presentation"
-msgstr "Láithreoireacht"
+msgstr "láithreoireacht"
 
+# verb
 msgid "press"
-msgstr ""
+msgstr "brúigh"
 
-#, fuzzy
 msgid "prevent"
-msgstr "láithreach"
+msgstr "coisc"
 
-#, fuzzy
 msgid "preview"
-msgstr "Reámhtaispeántas"
+msgstr "réamhamharc"
 
-#, fuzzy
 msgid "primary"
-msgstr "Príomhúil"
+msgstr "príomh-"
 
-#, fuzzy
 msgid "principal"
-msgstr "Bunairgead"
+msgstr "príomh-"
 
 msgid "print"
 msgstr "priontáil"
 
-#, fuzzy
 msgid "printer"
-msgstr "Printéir"
+msgstr "printéir"
 
 msgid "priority"
 msgstr "tosaíocht"
 
-#, fuzzy
 msgid "privacy"
-msgstr "Príobháid"
+msgstr "príobháideacht"
 
-#, fuzzy
 msgid "private"
-msgstr "Príobhádach"
+msgstr "príobháideach"
 
 msgid "privilege"
-msgstr ""
+msgstr "pribhléid"
 
 msgid "procedure"
-msgstr "procedure"
+msgstr "gnás"
 
-#, fuzzy
 msgid "process"
-msgstr "Próiseas"
+msgstr "próiseas"
 
-#, fuzzy
 msgid "processor"
-msgstr "Próiseas"
+msgstr "próiseálaí"
 
-#, fuzzy
+# software, not multiplication
 msgid "product"
-msgstr "Táirge"
+msgstr "táirge"
 
 msgid "profile"
 msgstr "próifíl"
 
 msgid "program"
-msgstr "Ríomhoideas"
+msgstr "ríomhchlár"
 
 msgid "programmer"
-msgstr "Ríomhchláiraitheoir"
+msgstr "ríomhchláraitheoir"
 
-#, fuzzy
 msgid "project"
-msgstr "Tionscadal"
+msgstr "tionscadal"
 
+# noun
 msgid "prompt"
 msgstr "leid"
 
-#, fuzzy
 msgid "property"
-msgstr "Airí"
+msgstr "airí"
 
-#, fuzzy
 msgid "proprietary"
-msgstr "Dílsithe"
+msgstr "dílsithe"
 
-#, fuzzy
 msgid "protect"
-msgstr "Tionscadal"
+msgstr "cosain"
 
-#, fuzzy
 msgid "protection"
-msgstr "Cosaint"
+msgstr "cosaint"
 
-#, !!!
-#, fuzzy
 msgid "protocol"
-msgstr "Prótacal"
+msgstr "prótacal"
 
 msgid "provide"
-msgstr ""
+msgstr "cuir ar fáil"
 
 msgid "provider"
-msgstr ""
+msgstr "soláthraí"
 
-#, fuzzy
 msgid "proxy"
-msgstr "Seachfhreastalaí"
+msgstr "seachfhreastalaí"
 
-#, fuzzy
 msgid "public"
-msgstr "Poiblí"
+msgstr "poiblí"
 
-#, fuzzy
 msgid "publish"
-msgstr "Foilsigh"
+msgstr "foilsigh"
 
-#, fuzzy
 msgid "pull"
-msgstr "Lán"
+msgstr "tarraing"
 
-#, fuzzy
 msgid "push"
-msgstr "Brúigh"
+msgstr "brúigh"
 
-#, fuzzy
 msgid "quality"
-msgstr "Cáilíocht"
+msgstr "cáilíocht"
 
-#, fuzzy
 msgid "quantity"
-msgstr "Cáilíocht"
+msgstr "líon"
 
 msgid "quarantine"
-msgstr ""
+msgstr "coraintín"
 
-#, fuzzy
 msgid "query"
-msgstr "Ceist"
+msgstr "iarratas"
 
-#, fuzzy
+# noun
 msgid "queue"
-msgstr "Ciú"
+msgstr "ciú"
 
 msgid "quit"
-msgstr "ealu"
+msgstr "scoir"
 
-#, fuzzy
 msgid "quota"
-msgstr "Cuóta"
+msgstr "cuóta"
 
-#, fuzzy
 msgid "quotation"
-msgstr "Rothlú"
+msgstr "athfhriotal"
 
-#, fuzzy
 msgid "quote"
-msgstr "Cuóta"
+msgstr "comhartha athfhriotail"
 
-#, fuzzy
 msgid "raise"
-msgstr "Ardaigh"
+msgstr "ardaigh"
 
-#, fuzzy
 msgid "random"
-msgstr "Randamach"
+msgstr "randamach"
 
 msgid "range"
 msgstr "raon"
 
-#, fuzzy
 msgid "rate"
-msgstr "Dáta"
+msgstr "ráta"
 
 msgid "ratio"
 msgstr "cóimheas"
@@ -2328,279 +2153,226 @@ msgstr "cóimheas"
 msgid "raw"
 msgstr "amh"
 
-#, fuzzy
 msgid "ray"
-msgstr "Liath"
+msgstr "ga"
 
+# verb
 msgid "read"
-msgstr "léamh"
+msgstr "léigh"
 
-#, fuzzy
 msgid "read only"
 msgstr "inléite amháin"
 
-#, fuzzy
 msgid "ready"
-msgstr "léamh"
+msgstr "réidh"
 
-#, fuzzy
 msgid "real"
-msgstr "léamh"
+msgstr "réadúil"
 
-#, fuzzy
 msgid "reboot"
-msgstr "Atosaigh"
+msgstr "atosaigh"
 
-#, fuzzy
 msgid "receipt"
-msgstr "Fáltas:"
+msgstr "admháil"
 
-#, fuzzy
 msgid "receive"
-msgstr "Glacadóir"
+msgstr "faigh"
 
 msgid "recognition"
-msgstr ""
+msgstr "aitheantas"
 
-#, fuzzy
 msgid "reconnect"
-msgstr "Athnasc"
+msgstr "athcheangail"
 
 msgid "record"
 msgstr "taifead"
 
 msgid "record (verb)"
-msgstr ""
+msgstr "taifead"
 
-#, fuzzy
 msgid "recover"
-msgstr "_Athshlánaigh"
+msgstr "athshlánaigh"
 
-#, fuzzy
 msgid "recovery"
-msgstr "_Athshlánaigh"
+msgstr "athshlánú"
 
-#
-#
-#
-#, fuzzy
 msgid "recursion"
-msgstr "Athchúrsálacha"
+msgstr "athchúrsáil"
 
-#, fuzzy
 msgid "recursive"
-msgstr "Athchúrsach"
+msgstr "athchúrsach"
 
 msgid "redirect"
-msgstr ""
+msgstr "athdhírigh"
 
-#, fuzzy
 msgid "redo"
-msgstr "dearg"
+msgstr "athdhéan"
 
 msgid "reduce"
-msgstr ""
+msgstr "laghdaigh"
 
 msgid "reduction"
-msgstr ""
+msgstr "laghdú"
 
 msgid "redundant"
-msgstr ""
+msgstr "iomarcach"
 
-#, fuzzy
 msgid "reference"
-msgstr "Tagairt"
+msgstr "tagairt"
 
 msgid "referer"
-msgstr ""
+msgstr "tagróir"
 
 msgid "referral"
-msgstr ""
+msgstr "cur ar aghaidh"
 
 msgid "reflexive"
-msgstr ""
+msgstr "aisfhillteach"
 
-#, fuzzy
 msgid "refresh"
-msgstr "Athnuaigh"
+msgstr "athnuaigh"
 
-#, fuzzy
 msgid "refuse"
-msgstr "Diúltaigh"
+msgstr "diúltaigh"
 
-#, fuzzy
 msgid "regenerate"
-msgstr "Cruthaigh"
+msgstr "athghin"
 
-#, fuzzy
 msgid "register"
-msgstr "Cláraigh"
+msgstr "cláraigh"
 
-#, fuzzy
 msgid "registration"
-msgstr "Clárúchán"
+msgstr "clárú"
 
-#, fuzzy
 msgid "registry"
-msgstr "Cláraigh"
+msgstr "clárlann"
 
 msgid "regular"
 msgstr "rialta"
 
-#, fuzzy
 msgid "regulate"
-msgstr "rialta"
+msgstr "rialaigh"
 
-#, fuzzy
 msgid "relay"
-msgstr "Moill"
+msgstr "athsheachaid"
 
 msgid "release"
 msgstr "scaoileadh"
 
-#, fuzzy
 msgid "remaining"
-msgstr "Meid atá fanacht"
+msgstr "fágtha"
 
 msgid "remind"
-msgstr ""
+msgstr "meabhraigh"
 
-#, fuzzy
 msgid "remote"
-msgstr "scríos"
+msgstr "cianda"
 
-#, fuzzy
 msgid "removable"
-msgstr "Dobhogtha"
+msgstr "inbhainte"
 
 msgid "remove"
-msgstr "scríos"
+msgstr "bain"
 
-#, fuzzy
 msgid "rename"
-msgstr "Athainmnigh"
+msgstr "athainmnigh"
 
-#, fuzzy
 msgid "render"
-msgstr "Seoltóir"
+msgstr "rindreáil"
 
 msgid "renew"
-msgstr ""
+msgstr "athnuaigh"
 
 msgid "repair"
-msgstr ""
+msgstr "deisigh"
 
-#, fuzzy
 msgid "repeat"
-msgstr "Arís"
+msgstr "déan arís"
 
-#, fuzzy
 msgid "replace"
-msgstr "Glac áit"
+msgstr "ionadaigh"
 
-#, fuzzy
 msgid "replicate"
-msgstr "Dúblach"
+msgstr "macasamhlaigh"
 
-#, fuzzy
 msgid "replication"
-msgstr "feidhmchlár"
+msgstr "macasamhlú"
 
-#, fuzzy
 msgid "reply"
-msgstr "Freagrair"
+msgstr "freagair"
 
-#, fuzzy
 msgid "report"
-msgstr "Tuairisc"
+msgstr "tuairisc"
 
-#, fuzzy
 msgid "repository"
-msgstr "Stór"
+msgstr "stórlann"
 
-#, fuzzy
 msgid "request"
-msgstr "Iarratas"
+msgstr "iarratas"
 
-#, fuzzy
 msgid "require"
-msgstr "Riachtanach"
+msgstr "teastaigh"
 
-#, fuzzy
 msgid "requirement"
-msgstr "Riachtanais"
+msgstr "riachtanas"
 
-#, fuzzy
 msgid "reset"
-msgstr "Athshocraigh"
+msgstr "athshocraigh"
 
-#, fuzzy
 msgid "resize"
-msgstr "Athmhéadaigh"
+msgstr "athraigh an mhéid"
 
-#, fuzzy
+# on screen
 msgid "resolution"
-msgstr "Taifeach"
+msgstr "taifeach"
 
-#, fuzzy
 msgid "resolver"
-msgstr "Réitithe"
+msgstr "taifeoir"
 
 msgid "resource"
 msgstr "acmhainn"
 
-#, fuzzy
 msgid "response"
-msgstr "Freagra"
+msgstr "freagra"
 
-#, fuzzy
 msgid "restart"
-msgstr "Atosaigh"
+msgstr "atosaigh"
 
-#, fuzzy
 msgid "restore"
-msgstr "Cuir ar ais"
+msgstr "athchóirigh"
 
 msgid "restrict"
-msgstr ""
+msgstr "cúngaigh"
 
 msgid "restriction"
-msgstr "restriction"
+msgstr "cúngú"
 
-#, fuzzy
 msgid "result"
-msgstr "Toradh"
+msgstr "toradh"
 
-#, fuzzy
 msgid "resume"
-msgstr "Lean"
+msgstr "lean"
 
-#, fuzzy
 msgid "retrieve"
-msgstr "Aisghabh"
+msgstr "aisghabh"
 
-#, fuzzy
 msgid "retry"
-msgstr "Atriail"
+msgstr "atriail"
 
-#, fuzzy
 msgid "return"
-msgstr "Aisfhilleadh"
+msgstr "ais-seol"
 
-#, fuzzy
 msgid "reverse"
-msgstr "Aisiompaithe"
+msgstr "aisiompaigh"
 
-#, fuzzy
 msgid "revert"
-msgstr "Fill"
+msgstr "fill"
 
 msgid "revocation"
-msgstr ""
+msgstr "cúlghairm"
 
-#, fuzzy
 msgid "revoke"
-msgstr "Aisghair"
+msgstr "cúlghair"
 
 msgid "root"
 msgstr "fréamh"
@@ -2609,182 +2381,150 @@ msgid "rotate"
 msgstr "rothlaigh"
 
 msgid "route"
-msgstr ""
+msgstr "ród"
 
 msgid "router"
-msgstr ""
+msgstr "ródaire"
 
 msgid "routine"
-msgstr ""
+msgstr "gnáthamh"
 
 msgid "row"
-msgstr "row"
+msgstr "ró"
 
-#, fuzzy
 msgid "rule"
-msgstr "Riail"
+msgstr "riail"
 
 msgid "run"
-msgstr ""
+msgstr "rith"
 
 msgid "runtime"
-msgstr ""
+msgstr "am rite"
 
-#, fuzzy
 msgid "safe"
-msgstr "sábháil"
+msgstr "slán"
 
-#, fuzzy
 msgid "sample"
-msgstr "samplaí"
+msgstr "sampla"
 
 msgid "sans"
-msgstr ""
+msgstr "sans"
 
 msgid "save"
 msgstr "sábháil"
 
 msgid "scalable"
-msgstr ""
+msgstr "inscálaithe"
 
 msgid "scale"
 msgstr "scála"
 
-#, fuzzy
 msgid "scan"
-msgstr "Scanáil"
+msgstr "scan"
 
-#, fuzzy
 msgid "scanner"
-msgstr "Scanóir"
+msgstr "scanóir"
 
-#, fuzzy
 msgid "schedule"
-msgstr "Sceideal"
+msgstr "sceideal"
 
-#, fuzzy
 msgid "scheme"
-msgstr "Scheme"
+msgstr "scéim"
 
 msgid "scratch"
-msgstr ""
+msgstr "scrabh"
 
-#, fuzzy
 msgid "screen"
-msgstr "Scáthán"
+msgstr "scáileán"
 
-#, fuzzy
 msgid "screw"
-msgstr "Scriú"
+msgstr "scriú"
 
-#, fuzzy
 msgid "script"
-msgstr "Script"
+msgstr "script"
 
-# من لف الشئ يلفه
-# فتقول:
-# لف ﻷعلى=scroll up ، وهكذا
-#, fuzzy
 msgid "scroll"
-msgstr "Scroll"
+msgstr "scrollaigh"
 
-#, fuzzy
+# verb
 msgid "search"
-msgstr "Cuardaigh"
+msgstr "cuardaigh"
 
 msgid "section"
 msgstr "rannán"
 
-#, fuzzy
 msgid "sector"
-msgstr "Veicteoir"
+msgstr "teascóg"
 
-#, fuzzy
 msgid "secure"
-msgstr "Éadaingean"
+msgstr "slán"
 
-#, fuzzy
 msgid "security"
-msgstr "Slándáil"
+msgstr "slándáil"
 
-#, fuzzy
 msgid "seek"
-msgstr "Seachtain"
+msgstr "cuardaigh"
 
 msgid "segment"
 msgstr "mírlíne"
 
 msgid "segmentation"
-msgstr ""
+msgstr "deighilt"
 
-#, fuzzy
 msgid "select"
-msgstr "Roghnaigh"
+msgstr "roghnaigh"
 
-#, fuzzy
 msgid "selection"
-msgstr "Roghnú"
+msgstr "roghnúchán"
 
 msgid "semantic"
-msgstr ""
+msgstr "séimeantach"
 
-#, fuzzy
 msgid "send"
-msgstr "Seol"
+msgstr "seol"
 
-#, fuzzy
 msgid "sender"
-msgstr "seoltóir:"
+msgstr "seoltóir"
 
-#, fuzzy
 msgid "sensitive"
-msgstr "Íogair"
+msgstr "íogair"
 
-#, fuzzy
 msgid "sensor"
-msgstr "Braiteoir"
+msgstr "braiteoir"
 
 msgid "serif"
 msgstr "serif"
 
-#, fuzzy
 msgid "server"
-msgstr "Freastalaí"
+msgstr "freastalaí"
 
-#, fuzzy
 msgid "session"
-msgstr "Seisiún"
+msgstr "seisiún"
 
+# past participle, not noun
 msgid "set"
-msgstr ""
+msgstr "socraithe"
 
-#, fuzzy
 msgid "settings"
-msgstr "Socruithe"
+msgstr "socruithe"
 
-#, fuzzy
 msgid "setup"
-msgstr "Socrú"
+msgstr "socrú"
 
-#, fuzzy
 msgid "shading"
-msgstr "Scáthlíniú"
+msgstr "scáthlíniú"
 
-#, fuzzy
 msgid "shadow"
-msgstr "Scáth"
+msgstr "scáth"
 
-#, fuzzy
 msgid "shape"
-msgstr "Cruth"
+msgstr "cruth"
 
-#, fuzzy
 msgid "share"
-msgstr "Comhroinn"
+msgstr "comhroinn"
 
-#, fuzzy
 msgid "sharp"
-msgstr "Géar"
+msgstr "géar"
 
 msgid "sheet"
 msgstr "bileog"
@@ -2792,93 +2532,75 @@ msgstr "bileog"
 msgid "shell"
 msgstr "blaosc"
 
-#, fuzzy
 msgid "shift"
-msgstr "Shift"
+msgstr "iomlaoid"
 
 msgid "shortcut"
-msgstr "shortcut"
+msgstr "aicearra"
 
-#, fuzzy
 msgid "show"
-msgstr "Taispeáin"
+msgstr "taispeáin"
 
-#, fuzzy
 msgid "shrink"
-msgstr "Laghdaigh"
+msgstr "laghdaigh"
 
-#, fuzzy
 msgid "shut down"
-msgstr "múchadh"
+msgstr "múch"
 
-#, fuzzy
 msgid "side bar"
-msgstr "Barra Taoibh"
+msgstr "barra taoibh"
 
-#, fuzzy
 msgid "sign"
-msgstr "Sínigh"
+msgstr "sínigh"
 
-#, fuzzy
 msgid "signal"
-msgstr "Comhartha"
+msgstr "comhartha"
 
-#, fuzzy
 msgid "signature"
-msgstr "Síniú"
+msgstr "síniú"
 
-#, fuzzy
 msgid "site"
-msgstr "suíomh:"
+msgstr "suíomh"
 
 msgid "size"
 msgstr "méid"
 
-#, fuzzy
 msgid "skew"
-msgstr "Sceabha"
+msgstr "sceabha"
 
-#, fuzzy
 msgid "skip"
-msgstr "Ná bac leis"
+msgstr "ná bac leis"
 
-#, fuzzy
 msgid "slave"
-msgstr "sábháil"
+msgstr "sclábhaí"
 
 msgid "sleep"
-msgstr ""
+msgstr "codail"
 
-#, fuzzy
+# noun
 msgid "slide"
-msgstr "Sleamhnán"
+msgstr "sleamhnán"
 
-#, fuzzy
 msgid "slot"
-msgstr "Sliotán"
+msgstr "sliotán"
 
-#, fuzzy
 msgid "smart"
-msgstr "Cliste"
+msgstr "cliste"
 
 msgid "smiley"
-msgstr ""
+msgstr "straoiseog"
 
-#, fuzzy
 msgid "smooth"
-msgstr "Réidh"
+msgstr "mín"
 
-#, fuzzy
 msgid "socket"
-msgstr "Soicéad"
+msgstr "soicéad"
 
-#, fuzzy
 msgid "software"
-msgstr "Oideasra"
+msgstr "bogearraí"
 
-#, fuzzy
 msgid "solid"
-msgstr "Trom"
+msgstr "soladach"
 
 msgid "sort"
 msgstr "sórtáil"
@@ -2886,158 +2608,136 @@ msgstr "sórtáil"
 msgid "source"
 msgstr "foinse"
 
-#, fuzzy
 msgid "space"
-msgstr "spásanna"
+msgstr "spás"
 
-#, fuzzy
 msgid "spacing"
-msgstr "Spásáil"
+msgstr "spásáil"
 
-#, fuzzy
 msgid "spam"
-msgstr "Spam"
+msgstr "dramhphost"
 
-#, fuzzy
 msgid "span"
-msgstr "pan"
+msgstr ""
 
-#, fuzzy
 msgid "spawn"
-msgstr "pan"
+msgstr "sceith"
 
-#, fuzzy
 msgid "specify"
-msgstr "&Sonraigh"
+msgstr "sonraigh"
 
-#, fuzzy
 msgid "speed"
-msgstr "Luas"
+msgstr "luas"
 
-#, fuzzy
 msgid "spelling"
-msgstr "Litriú"
+msgstr "litriú"
 
 msgid "splash"
 msgstr ""
 
-#, fuzzy
 msgid "split"
-msgstr "Roinn"
+msgstr "roinn"
 
 msgid "spool"
-msgstr ""
+msgstr "spól"
 
-#, fuzzy
 msgid "spread sheet"
-msgstr "Leathanach tacaíocht Gnumeric"
+msgstr "scarbhileog"
 
 msgid "stack"
-msgstr ""
+msgstr "cruach"
 
 msgid "stand alone"
-msgstr ""
+msgstr "saorsheasaimh"
 
-#, fuzzy
+# noun
 msgid "standard"
-msgstr "Caighdeán"
+msgstr "caighdeán"
 
-#, fuzzy
+# verb
 msgid "start"
-msgstr "réalta"
+msgstr "tosaigh"
 
-#, fuzzy
+# computing, not nation-state
 msgid "state"
-msgstr "Eastát"
+msgstr "staid"
 
 msgid "static"
-msgstr ""
+msgstr "statach"
 
-#, fuzzy
 msgid "statistics"
-msgstr "Staitisticí"
+msgstr "staitisticí"
 
+# noun
 msgid "step"
-msgstr "step"
+msgstr "céim"
 
+# verb
 msgid "stop"
 msgstr "stad"
 
-#, fuzzy
 msgid "storage"
-msgstr "Stóras"
+msgstr "stóras"
 
-#, fuzzy
 msgid "store"
-msgstr "Stóráil"
+msgstr "stóráil"
 
-#, fuzzy
 msgid "stream"
-msgstr "Sruth"
+msgstr "sruth"
 
-#, fuzzy
 msgid "stretch"
-msgstr "Sí_n"
+msgstr "sín"
 
 msgid "strict"
-msgstr ""
+msgstr "docht"
 
 msgid "string"
 msgstr "teaghrán"
 
-#, fuzzy
 msgid "strip"
-msgstr "Struipeáil"
+msgstr "struipeáil"
 
-#, fuzzy
 msgid "stroke"
-msgstr "Stríoc"
+msgstr "stríoc"
 
-#, fuzzy
 msgid "structure"
-msgstr "Struchtúir"
+msgstr "struchtúr"
 
 msgid "stub"
-msgstr ""
+msgstr "smut"
 
-#, fuzzy
 msgid "style"
-msgstr "stíl1"
+msgstr "stíl"
 
-#, fuzzy
 msgid "sub directory"
-msgstr "Is fillteán ann"
+msgstr "fochomhadlann"
 
-#, fuzzy
 msgid "sub folder"
-msgstr "%u comhadlann"
+msgstr "fofhillteán"
 
 msgid "submission"
-msgstr ""
+msgstr "aighneacht"
 
-#, fuzzy
 msgid "submit"
-msgstr "Cuir Isteach"
+msgstr "seol"
 
-#, fuzzy
 msgid "subscribe"
-msgstr "Díliostáil"
+msgstr "liostáil"
 
-#, fuzzy
 msgid "subscription"
-msgstr "Cur Síos"
+msgstr "síntiús"
 
 msgid "subtract"
 msgstr "dealaigh"
 
 msgid "succeed"
-msgstr "rathaigh"
+msgstr ""
 
 msgid "suggest"
 msgstr "mol"
 
 msgid "suggestion"
-msgstr "moltaí"
+msgstr "moladh"
 
 msgid "sum (noun)"
 msgstr "suim"
@@ -3070,7 +2770,7 @@ msgid "symbol"
 msgstr "comhartha"
 
 msgid "synchronize"
-msgstr "comhaimsearaigh"
+msgstr "sioncrónaigh"
 
 msgid "syntax"
 msgstr "comhréir"
@@ -3078,6 +2778,7 @@ msgstr "comhréir"
 msgid "system"
 msgstr "córas"
 
+# in browser window, not space character (táb)
 msgid "tab"
 msgstr "cluaisín"
 
@@ -3091,7 +2792,7 @@ msgid "target"
 msgstr "sprioc"
 
 msgid "template"
-msgstr "fíoraí"
+msgstr "teimpléad"
 
 msgid "temporary"
 msgstr "sealadach"
@@ -3100,28 +2801,30 @@ msgid "terminal"
 msgstr "teirminéal"
 
 msgid "test"
-msgstr "dearbháil"
+msgstr "tástáil"
 
 msgid "text"
-msgstr "téasc"
+msgstr "téacs"
 
 msgid "texture"
 msgstr "uigeacht"
 
 msgid "theme"
-msgstr "ábhar"
+msgstr "téama"
 
 msgid "thread"
-msgstr "snáth"
+msgstr "snáithe"
 
 msgid "thumbnail"
 msgstr "mionsamhail"
 
+# noun
 msgid "tick"
 msgstr "tic"
 
+# noun
 msgid "tile"
-msgstr "leacán"
+msgstr "tíl"
 
 msgid "time"
 msgstr "am"
@@ -3129,6 +2832,7 @@ msgstr "am"
 msgid "time out"
 msgstr "teorainn ama"
 
+# = hint
 msgid "tip"
 msgstr "leid"
 
@@ -3138,6 +2842,7 @@ msgstr "teideal"
 msgid "toggle"
 msgstr "scoránaigh"
 
+# security only!
 msgid "token"
 msgstr "ceadchomhartha"
 
@@ -3169,28 +2874,30 @@ msgid "transform"
 msgstr "trasfhoirmigh"
 
 msgid "transformation"
-msgstr "athchuma"
+msgstr "trasfhoirmiú"
 
 msgid "trap"
 msgstr "gaiste"
 
+# noun
 msgid "trash"
 msgstr "bruscar"
 
 msgid "trigger"
-msgstr "truicir"
+msgstr "truicear"
 
 msgid "trouble shoot"
 msgstr "fabhtcheartaigh"
 
+# verb I guess
 msgid "tune"
-msgstr "fonn"
+msgstr "tiúin"
 
 msgid "tweak"
-msgstr "deasaigh beagán"
+msgstr "mionathraigh"
 
 msgid "type (noun)"
-msgstr "cló"
+msgstr "cineál"
 
 msgid "type (verb)"
 msgstr "clóscríobh"
@@ -3217,12 +2924,11 @@ msgid "unit"
 msgstr "aonad"
 
 msgid "unknown"
-msgstr "gan aithnid"
+msgstr "anaithnid"
 
 msgid "unload"
 msgstr "díluchtaigh"
 
-#, fuzzy
 msgid "named"
 msgstr "ainmnithe"
 
@@ -3230,7 +2936,7 @@ msgid "reachable"
 msgstr "insroichte"
 
 msgid "readable"
-msgstr "soléite"
+msgstr "inléite"
 
 msgid "unspecified"
 msgstr "gan sonrú"
@@ -3241,6 +2947,7 @@ msgstr "díliostáil"
 msgid "unsupported"
 msgstr "gan tacaíocht"
 
+# verb
 msgid "update"
 msgstr "nuashonraigh"
 
@@ -3266,7 +2973,7 @@ msgid "utility"
 msgstr "áirge"
 
 msgid "valid"
-msgstr "seasmhach"
+msgstr "bailí"
 
 msgid "validation"
 msgstr "bailíochtú"
@@ -3292,6 +2999,7 @@ msgstr "fíoraigh"
 msgid "version"
 msgstr "leagan"
 
+# specific video
 msgid "video"
 msgstr "físeán"
 
@@ -3305,11 +3013,12 @@ msgid "virtual"
 msgstr "fíorúil"
 
 msgid "virus"
-msgstr "aicídnimh"
+msgstr "víreas"
 
 msgid "visual"
 msgstr "radharcach"
 
+# loudness
 msgid "volume"
 msgstr "airde"
 
@@ -3317,16 +3026,16 @@ msgid "wallpaper"
 msgstr "cúlbhrat"
 
 msgid "warn"
-msgstr "rabhadh"
+msgstr "tabhair rabhadh"
 
 msgid "web"
 msgstr "gréasán"
 
 msgid "web cam"
-msgstr "grianghrafadán gréasáin"
+msgstr "ceamara gréasáin"
 
 msgid "web master"
-msgstr "máistir gréasáin"
+msgstr "stiúrthóir gréasáin"
 
 msgid "web page"
 msgstr "leathanach gréasáin"
@@ -3338,7 +3047,7 @@ msgid "width"
 msgstr "leithead"
 
 msgid "wi fi"
-msgstr "wi fi"
+msgstr "wifi"
 
 msgid "wild card"
 msgstr "saoróg"
@@ -3350,16 +3059,17 @@ msgid "wizard"
 msgstr "treoraí"
 
 msgid "word processor"
-msgstr ""
+msgstr "próiseálaí focal"
 
+# noun
 msgid "work around"
-msgstr ""
+msgstr "seift"
 
 msgid "work group"
-msgstr ""
+msgstr "grúpa oibre"
 
 msgid "work station"
-msgstr ""
+msgstr "stáisiún oibre"
 
 msgid "wrap"
 msgstr "timfhill"
@@ -3371,4 +3081,4 @@ msgid "zone"
 msgstr "crios"
 
 msgid "zoom"
-msgstr "féithigh"
+msgstr "súmáil"
