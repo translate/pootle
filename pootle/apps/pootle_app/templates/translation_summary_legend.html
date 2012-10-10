@@ -1,9 +1,8 @@
 {% load i18n %}
-
-{% block translation_summary_legend %}
-<ul id="summary-legend" class="icons">
-  <li><i class="bar-translated"></i> {% trans 'Translated' %}</li>
-  <li><i class="bar-fuzzy"></i> {% trans 'Needs review' %}</li>
-  <li><i class="bar-untranslated"></i> {% trans 'Untranslated' %}</li>
-</ul>
-{% endblock translation_summary_legend %}
+<div class="bd">
+  <ul id="summary-legend" class="icons">
+    <li><i class="bar-translated"></i> {% trans 'Translated' %}</li>
+    <li><i class="bar-fuzzy"></i> {% trans 'Needs review' %}</li>
+    <li><i class="bar-untranslated"></i> {% trans 'Untranslated' %}</li>
+  </ul>
+</div>

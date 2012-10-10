@@ -41,6 +41,8 @@
     </tbody>
     </table>
   </div>
+
+  {% include "translation_summary_legend.html" %}
 </div>
 
 <div class="module">
@@ -68,11 +70,6 @@
 {% endblock content %}
 
 {% block postcontent %}
-<div class="module first clear" lang="{{ LANGUAGE_CODE }}">
-  <div class="bd">
-  {% include "translation_summary_legend.html" %}
-  </div>
-</div>
 {% include "top_contributers_table.html" %}
 {% endblock postcontent %}
 

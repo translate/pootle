@@ -46,6 +46,8 @@
       {% endfor %}
     </table>
   </div>
+
+  {% include "translation_summary_legend.html" %}
 </div>
 
 <div class="module" lang="{{ LANGUAGE_CODE }}">
@@ -80,12 +82,6 @@
   <div class="bd">
     {% render_latest_news "" 5 %}
     <p class="subscribe"><a href="{% url pootle_notifications__feed "" %}">{% trans "Subscribe to the RSS feed." %}</a></p>
-  </div>
-</div>
-
-<div class="module first clear" lang="{{ LANGUAGE_CODE }}">
-  <div class="bd">
-  {% include "translation_summary_legend.html" %}
   </div>
 </div>
 
