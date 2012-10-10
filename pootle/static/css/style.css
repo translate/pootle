@@ -1466,24 +1466,9 @@ div.latestnews li
     list-style-type: square;
 }
 
-div.latestnews p.subscribe
+.subscribe
 {
-    background-image: url('../images/feed.png');
-    background-repeat: no-repeat;
     margin-top: 1em;
-    /* ltr */
-    background-position: left center;
-    padding-left: 2em;
-}
-
-html[dir="rtl"] div.latestnews p.subscribe
-{
-    /* undo ltr */
-    padding-left: 0;
-    /* rtl */
-    background-position: right center;
-    text-align: right;
-    padding-right: 2em;
 }
 
 div.topcontributors

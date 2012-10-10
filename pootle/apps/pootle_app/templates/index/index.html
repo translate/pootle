@@ -81,7 +81,7 @@
   <div class="hd"><h2>{% trans 'Latest News' %}</h2></div>
   <div class="bd">
     {% render_latest_news "" 5 %}
-    <p class="subscribe"><a href="{% url pootle_notifications__feed "" %}">{% trans "Subscribe to the RSS feed." %}</a></p>
+    <p class="subscribe"><a href="{% url pootle_notifications__feed "" %}"><i class="icon-feed"></i> {% trans "Subscribe to the RSS feed." %}</a></p>
   </div>
 </div>
 
