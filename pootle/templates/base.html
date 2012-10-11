@@ -31,29 +31,29 @@
     <script type="text/javascript" src="{{ ASSET_URL }}"></script>
     {% endassets %}
     <script type="text/javascript">
-      function l(path) {
-        var basepath = "{{ settings.SCRIPT_NAME  }}";
-        if (path[0] == '/') {
-          return basepath + path;
+    function l(path) {
+      var basepath = "{{ settings.SCRIPT_NAME  }}";
+      if (path[0] == '/') {
+        return basepath + path;
+      }
+      return path;
+    }
+    function s(path) {
+      return l("{{ STATIC_URL }}" + path);
+    }
+    $(function() {
+      $("[title], [original-title]").tipsy({
+        gravity: $.fn.tipsy.autoBounds(150, 'n'),
+        html: true, fade: true, delayIn: 750, live: true});
+      $.ajaxSetup({ traditional: true });
+      $.ajaxPrefilter(function (options, originalOptions) {
+        if (options.type === 'post' || options.type === 'POST') {
+          options.data = $.param(
+            $.extend(originalOptions.data,
+                     { csrfmiddlewaretoken: '{{ csrf_token }}' }) );
         }
-        return path;
-      }
-      function s(path) {
-        return l("{{ STATIC_URL }}" + path);
-      }
-    $(document).ready(function() {
-        $("[title], [original-title]").tipsy({
-          gravity: $.fn.tipsy.autoBounds(150, 'n'),
-          html: true, fade: true, delayIn: 750, live: true});
-        $.ajaxSetup({ traditional: true });
-        $.ajaxPrefilter(function (options, originalOptions) {
-          if (options.type === 'post' || options.type === 'POST') {
-            options.data = $.param(
-              $.extend(originalOptions.data,
-                       { csrfmiddlewaretoken: '{{ csrf_token }}' }) );
-          }
-        });
-        initZoom();
+      });
+      initZoom();
     });
     </script>
     {% endblock js %}

@@ -101,7 +101,7 @@
 {% endassets %}
 <script type="text/javascript" src="{% url django.views.i18n.javascript_catalog %}"></script>
 <script type="text/javascript">
-$(document).ready (function() {
+$(function() {
   var options = {};
   {% if request.is_secure %}options.secure = true;{% endif %}
   {% if cansuggest or cantranslate %}

@@ -62,7 +62,7 @@ function zoom(v) {
  * Search control helper
  */
 
-$(document).ready(function ($) {
+$(function ($) {
   /* Collapsing functionality */
   $(document).on("click", ".collapse", function (e) {
     e.preventDefault();

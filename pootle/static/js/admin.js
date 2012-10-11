@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(function () {
   /* Sorts language names within select elements */
   var ids = ["id_languages", "id_alt_src_langs", "-language",
              "-source_language"];
