@@ -30,6 +30,7 @@ a:link
     text-decoration: none;
     background-color: inherit;
     color: #0489b7;
+    cursor: pointer;
 }
 
 a:visited
@@ -2087,8 +2088,7 @@ html[dir="rtl"] .translations-nav li:last-child:after
  */
 
 a.collapse,
-a.slide,
-.ptr
+a.slide
 {
     cursor: pointer;
 }
