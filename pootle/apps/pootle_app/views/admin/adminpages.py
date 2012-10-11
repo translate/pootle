@@ -19,13 +19,13 @@
 # You should have received a copy of the GNU General Public License along with
 # this program; if not, see <http://www.gnu.org/licenses/>.
 
-
-from pootle_app.views.admin.util import user_is_admin
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from pootle_misc.siteconfig import load_site_config
+from pootle_app.views.admin.util import user_is_admin
 from pootle_app.forms import GeneralSettingsForm
+from pootle_misc.siteconfig import load_site_config
+
 
 @user_is_admin
 def view(request):
