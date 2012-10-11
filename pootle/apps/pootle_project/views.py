@@ -27,6 +27,7 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
 from django.utils.translation import ugettext as _, ungettext
 
+from pootle.i18n.gettext import tr_lang
 from pootle_app.models import Directory
 from pootle_app.models.permissions import (get_matching_permissions,
                                            check_permission)
@@ -37,7 +38,6 @@ from pootle_app.views.language import dispatch
 from pootle_app.views.language.view import get_stats_headings
 from pootle_app.views.language.item_dict import stats_descriptions
 from pootle_app.views.top_stats import gentopstats_project, gentopstats_root
-from pootle.i18n.gettext import tr_lang
 from pootle_language.models import Language
 from pootle_misc.baseurl import l
 from pootle_misc.forms import LiberalModelChoiceField
