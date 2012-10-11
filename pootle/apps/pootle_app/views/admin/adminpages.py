@@ -22,36 +22,19 @@
 
 from pootle_app.views.admin.util import user_is_admin
 from django.shortcuts import render_to_response
-from django.template import loader, RequestContext
-from django.http import HttpResponse
+from django.template import RequestContext
 
-from pootle_misc.util import jsonify
 from pootle_misc.siteconfig import load_site_config
 from pootle_app.forms import GeneralSettingsForm
 
 @user_is_admin
 def view(request):
     siteconfig = load_site_config()
-    response = {}
     if request.POST:
         setting_form = GeneralSettingsForm(siteconfig, data=request.POST)
         if setting_form.is_valid():
             setting_form.save()
             load_site_config()
-            response = {
-                    "intro": setting_form.cleaned_data['DESCRIPTION'],
-                    "valid": True,
-            }
-        if request.is_ajax():
-            context = {
-                    "form": setting_form,
-                    "form_action": "/admin/general.html"
-            }
-            t = loader.get_template('admin/general_settings_form.html')
-            c = RequestContext(request, context)
-            response['form'] = t.render(c)
-
-            return HttpResponse(jsonify(response), mimetype="application/json")
     else:
         setting_form = GeneralSettingsForm(siteconfig)
 
