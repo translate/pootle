@@ -33,7 +33,7 @@ msgstr "Cuir isteach seoladh ríomhphoist ceart."
 msgid ""
 "That e-mail address doesn't have an associated user account. Are you sure "
 "you've registered?"
-msgstr ""
+msgstr "Níl aon chuntas ann leis an seoladh ríomhphoist seo. An bhfuil tú cinnte gur chláraigh tú?"
 
 #: strings.py:11
 msgid "This field is required."
@@ -42,15 +42,15 @@ msgstr "Tá an réimse seo de dhíth."
 #: strings.py:12
 #, python-format
 msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
-msgstr ""
+msgstr "Bí cinnte nach bhfuil níos mó ná %(max)d carachtar anseo (%(length)d anois)."
 
 #: strings.py:13
 msgid "Save and add another"
-msgstr ""
+msgstr "Sábháil agus cuir ceann eile leis"
 
 #: strings.py:14
 msgid "Save and continue editing"
-msgstr ""
+msgstr "Sábháil agus lean ar aghaidh"
 
 #: strings.py:15
 msgid "Add"
@@ -174,7 +174,7 @@ msgstr ""
 msgid ""
 "Registration using free email addresses is prohibited. Please supply a "
 "different email address."
-msgstr ""
+msgstr "Ní cheadaítear clárú le seoladh ríomhphoist ó sheirbhísí saor in aisce. Tabhair seoladh ríomhphoist eile."
 
 #: external_apps/registration/models.py:218
 msgid "user"
@@ -194,7 +194,7 @@ msgstr "beathaisnéisíní chlárúchán"
 
 #: local_apps/pootle_app/admin.py:41
 msgid "Language code does not follow the ISO convention"
-msgstr ""
+msgstr "Ní ghéilleann an cód teanga don chaighdeán ISO"
 
 #: local_apps/pootle_app/admin.py:67
 msgid "Project code may only contain letters, numbers and _"
@@ -220,7 +220,7 @@ msgstr "Cur Síos"
 msgid ""
 "The description and instructions shown on the front page and about page. Be "
 "sure to use valid HTML."
-msgstr ""
+msgstr "An cur síos agus na treoracha a thaispeánfar ar an bpríomhleathanach agus an leathanach 'Maidir Leis'. Bí cinnte go n-úsáídeann tú HTML bailí."
 
 #: local_apps/pootle_app/management/__init__.py:72
 msgid "Can view a translation project"
@@ -236,7 +236,7 @@ msgstr "Is féidir aistriúchán a sheoladh isteach"
 
 #: local_apps/pootle_app/management/__init__.py:78
 msgid "Can overwrite translations on uploading files"
-msgstr ""
+msgstr "Is féidir aistriúcháin a fhorscríobh le comhaid uasluchtaithe"
 
 #: local_apps/pootle_app/management/__init__.py:80
 msgid "Can review translations"
@@ -244,7 +244,7 @@ msgstr "Is féidir athbhreithniú a dhéanamh ar aistriúcháin"
 
 #: local_apps/pootle_app/management/__init__.py:82
 msgid "Can download archives of translation projects"
-msgstr ""
+msgstr "Is féidir cartlann tionscadail a íosluchtú"
 
 #: local_apps/pootle_app/management/__init__.py:84
 msgid "Can administrate a translation project"
@@ -252,7 +252,7 @@ msgstr "Is féidir tionscadal aistriúcháin a bhainistiú"
 
 #: local_apps/pootle_app/management/__init__.py:86
 msgid "Can commit to version control"
-msgstr ""
+msgstr "Is féidir athruithe a chur i bhfeidhm sa chóras rialaithe leaganacha"
 
 #: local_apps/pootle_app/models/suggestion.py:33
 msgid "Pending"
@@ -331,7 +331,9 @@ msgid ""
 "unidentified user). The user “default” refers to the rights that all logged "
 "in users will have by default, unless other specific rights were assigned to "
 "them."
-msgstr ""
+msgstr "Déanann “nobody” tagairt d'aon úsáideoir nach bhfuil logáilte isteach (is é sin le rá, "
+"úsáideoir gan ainm). Déanann “default” tagairt do na cearta a bhfuil úsáideoirí logáilte isteach acu "
+"de réir réamhshocraithe, murar tugadh cearta ar leith dóibh."
 
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:5
 #: local_apps/pootle_app/templates/admin/admin_general_projects.html:11
@@ -426,7 +428,7 @@ msgstr "Teaghráin aistrithe"
 #: local_apps/pootle_app/views/top_stats.py:89
 #: local_apps/pootle_app/views/top_stats.py:112
 msgid "Submissions"
-msgstr ""
+msgstr "Aistriúcháin Seolta"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:54
 msgid "More..."
@@ -445,7 +447,7 @@ msgstr ""
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:66
 msgid "You will find the following helpful for support:"
-msgstr ""
+msgstr "Tá tacaíocht ar fáil sna háiteanna seo:"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:68
 msgid "The Pootle documentation"
@@ -461,7 +463,7 @@ msgstr "(tacaíocht thrádálach)"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:78
 msgid "Dependency Checks"
-msgstr ""
+msgstr "Seiceálacha Spleáchais"
 
 #: local_apps/pootle_app/templates/admin/dashboard.html:87
 msgid "Optional"
@@ -501,7 +503,7 @@ msgstr "Teanga"
 #: local_apps/pootle_app/templates/index/index.html:62
 #: local_apps/pootle_project/templates/project/projects.html:23
 msgid "Overall Completion"
-msgstr ""
+msgstr "Dul Chun Cinn"
 
 #: local_apps/pootle_app/templates/index/index.html:28
 #: local_apps/pootle_app/templates/index/index.html:63
@@ -528,11 +530,11 @@ msgstr "Liostáil leis an bhfotha RSS."
 #: local_apps/pootle_app/templates/index/login.html:5
 #: local_apps/pootle_app/templates/index/login.html:22
 msgid "Login"
-msgstr "Sínigh isteach"
+msgstr "Logáil isteach"
 
 #: local_apps/pootle_app/templates/index/login.html:10
 msgid "Login to Pootle"
-msgstr "Sínigh isteach go Pootle"
+msgstr "Logáil isteach i bPootle"
 
 #: local_apps/pootle_app/templates/index/login.html:16
 msgid "Your username and password didn't match. Please try again."
@@ -746,7 +748,7 @@ msgstr "Níl comhaid sa thionscadal seo."
 
 #: local_apps/pootle_app/views/admin/util.py:164
 msgid "There are errors in the form. Please review the problems below."
-msgstr ""
+msgstr "Bhí earráidí san fhoirm. Feicfidh tú na fadhbanna thíos."
 
 #: local_apps/pootle_app/views/admin/util.py:184 templates/base.html:51
 #: templates/base.html.py:56
@@ -760,7 +762,7 @@ msgstr "Sábháil na hAthruithe"
 #: local_apps/pootle_app/views/index/about.py:48
 #, python-format
 msgid "Pootle %(pootle_ver)s is powered by Translate Toolkit %(toolkit_ver)s"
-msgstr ""
+msgstr "Pootle %(pootle_ver)s, á chumhachtú ag Translate Toolkit %(toolkit_ver)s"
 
 #: local_apps/pootle_app/views/index/index.py:64
 #: local_apps/pootle_app/views/language/item_dict.py:268
@@ -1010,6 +1012,8 @@ msgid ""
 "For more information, visit <a href=\"http://translate.sourceforge.net/wiki/"
 "l10n/pluralforms\">our wiki page</a> on plural forms."
 msgstr ""
+"Tuilleadh eolais faoi fhoirmeacha iolra ar fáil ónár <a href=\"http://translate.sourceforge.net/wiki/"
+"l10n/pluralforms\">vicí</a>."
 
 #: local_apps/pootle_language/models.py:47
 msgid "Unknown"
@@ -1039,7 +1043,7 @@ msgstr "Níl cead agat an teanga seo a bhainistiú."
 
 #: local_apps/pootle_language/templates/language/language_admin.html:13
 msgid "Below you can add, edit, and delete the permissions for this language."
-msgstr ""
+msgstr "Is féidir ceadanna a chruthú, a scriosadh, nó a chur in eagar don teanga seo thíos."
 
 #: local_apps/pootle_misc/dbinit.py:68
 msgid "Pootle: Install"
@@ -1096,15 +1100,15 @@ msgstr ""
 
 #: local_apps/pootle_misc/dbupdate.py:78
 msgid "Creating missing database tables..."
-msgstr ""
+msgstr "Táblaí bunachair sonraí ar iarraidh á gcruthú..."
 
 #: local_apps/pootle_misc/dbupdate.py:86
 msgid "Fixing permission table..."
-msgstr ""
+msgstr "Tábla ceadanna á dheisiú..."
 
 #: local_apps/pootle_misc/dbupdate.py:101
 msgid "Updating existing database tables..."
-msgstr ""
+msgstr "Táblaí bunachair sonraí atá ann á nuashonrú..."
 
 #: local_apps/pootle_misc/dbupdate.py:130
 msgid ""
@@ -1125,7 +1129,7 @@ msgstr[4] "Iompórtáladh %(count)d moladh ó %(store)s"
 #: local_apps/pootle_misc/dbupdate.py:149
 #, python-format
 msgid "Failed to import suggestions from %s"
-msgstr ""
+msgstr "Níorbh fhéidir moltaí a iompórtáil ó %s"
 
 #: local_apps/pootle_misc/dbupdate.py:159
 #, python-format
@@ -1140,11 +1144,11 @@ msgstr[4] "Iompórtáladh %(count)d aonad ó %(store)s"
 #: local_apps/pootle_misc/dbupdate.py:165
 #, python-format
 msgid "Failed to import units from %s"
-msgstr ""
+msgstr "Níorbh fhéidir aonaid a iompórtáil ó %s"
 
 #: local_apps/pootle_misc/dbupdate.py:172
 msgid "All translations are now imported."
-msgstr ""
+msgstr "Iompórtáladh gach aistriúchán."
 
 #: local_apps/pootle_misc/dbupdate.py:180
 msgid ""
@@ -1160,16 +1164,16 @@ msgstr "Caithfidh tú <a href=\"%(login_link)s\">logáil isteach</a> chun an le
 #: local_apps/pootle_misc/middleware/errorpages.py:63
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
-msgstr ""
+msgstr "Earráid agus %(filename)s á rochtain. Fuarthas an earráid ón gcóras comhad: %(errormsg)s"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:32
 msgid "First"
-msgstr "An Chéad"
+msgstr "Tús"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:33
 #: local_apps/pootle_store/templates/unit/edit.html:111
 msgid "Previous"
-msgstr "Roimhe"
+msgstr "Roimhe Seo"
 
 #: local_apps/pootle_misc/templatetags/render_pager.py:48
 #: local_apps/pootle_store/templates/unit/edit.html:112
@@ -1241,7 +1245,7 @@ msgstr "Teanga an Chomhéadain"
 
 #: local_apps/pootle_profile/models.py:69
 msgid "Alternative Source Languages"
-msgstr ""
+msgstr "Teangacha Foinseacha Mar Mhalairt"
 
 #: local_apps/pootle_profile/models.py:96
 msgid "Suggestions Accepted"
@@ -1253,11 +1257,11 @@ msgstr "Moltaí Ar Feitheamh"
 
 #: local_apps/pootle_profile/models.py:98
 msgid "Suggestions Reviewed"
-msgstr ""
+msgstr "Moltaí Athbhreithnithe"
 
 #: local_apps/pootle_profile/models.py:99
 msgid "Submissions Made"
-msgstr ""
+msgstr "Aistriúcháin Seolta"
 
 #: local_apps/pootle_profile/views.py:66
 msgid "Default"
@@ -1267,33 +1271,33 @@ msgstr "Réamhshocrú"
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
-msgstr ""
+msgstr "Gearrchód don tionscadal seo. Ba chóir carachtair ASCII, uimhreacha, agus fostríoc (_) amháin a úsáid."
 
 #: local_apps/pootle_project/models.py:44
 msgid ""
 "A description of this project. This is useful to give more information or "
 "instructions. This field should be valid HTML."
-msgstr ""
+msgstr "Cur síos ar an tionscadal. Tabhair tuilleadh eolais nó treoracha speisialta anseo. Ba chóir duit HTML bailí a úsáid."
 
 #: local_apps/pootle_project/models.py:53
 msgid "Automatic detection (slower)"
-msgstr ""
+msgstr "Brath uathoibríoch (níos moille)"
 
 #: local_apps/pootle_project/models.py:54
 msgid "GNU style: files named by language code"
-msgstr ""
+msgstr "Nós GNU: úsáíd cód teanga mar ainm comhaid"
 
 #: local_apps/pootle_project/models.py:55
 msgid "Non-GNU: Each language in its own directory"
-msgstr ""
+msgstr "Neamh-GNU: Cuir gach teanga ina chomhadlann féin"
 
 #: local_apps/pootle_project/models.py:61
 msgid "Quality Checks"
-msgstr ""
+msgstr "Seiceálacha Cáilíochta"
 
 #: local_apps/pootle_project/models.py:62
 msgid "File Type"
-msgstr "Cineál Comhad"
+msgstr "Cineál Comhaid"
 
 #: local_apps/pootle_project/models.py:63
 msgid "Project Tree Style"
@@ -1320,7 +1324,7 @@ msgstr "Níl cead agat an tionscadal seo a bhainistiú."
 
 #: local_apps/pootle_project/views.py:138
 msgid "Update from templates"
-msgstr "Nuashonraigh ó chláir gabhála"
+msgstr "Nuashonraigh ó na teimpléid"
 
 #: local_apps/pootle_project/views.py:141
 msgid "Initialize"
@@ -1328,7 +1332,7 @@ msgstr "Túsaigh"
 
 #: local_apps/pootle_project/templates/project/admin_permissions.html:19
 msgid "Below you can add, edit, and delete the permissions for this project."
-msgstr ""
+msgstr "Is féidir ceadanna a chruthú, a scriosadh, nó a chur in eagar don tionscadal seo thíos."
 
 #: local_apps/pootle_project/templates/project/project_admin.html:8
 #: templates/project_menu.html:10 templates/tp_base_admin.html:8
@@ -1337,7 +1341,7 @@ msgstr "Bainistigh"
 
 #: local_apps/pootle_project/templates/project/project_admin.html:19
 msgid "Here you can add, edit, or delete the languages for this project."
-msgstr ""
+msgstr "Anseo is féidir teangacha a chruthú, a scriosadh, nó a chur in eagar don tionscadal seo."
 
 #: local_apps/pootle_store/filetypes.py:29
 msgid "Gettext PO"
@@ -1412,19 +1416,19 @@ msgstr "Conair"
 
 #: local_apps/pootle_store/views.py:245
 msgid "No more matching strings to review."
-msgstr ""
+msgstr "Níl aon teaghráin chomhoiriúnacha eile le hathbhreithniú."
 
 #: local_apps/pootle_store/views.py:247
 msgid "No more matching strings to translate."
-msgstr ""
+msgstr "Níl aon teaghráin chomhoiriúnacha eile le haistriú."
 
 #: local_apps/pootle_store/views.py:250
 msgid "No matching strings to review."
-msgstr ""
+msgstr "Níl aon teaghráin chomhoiriúnacha le hathbhreithniú."
 
 #: local_apps/pootle_store/views.py:252
 msgid "No matching strings to translate."
-msgstr ""
+msgstr "Níl aon teaghráin chomhoiriúnacha le haistriú."
 
 #: local_apps/pootle_store/views.py:387
 #, python-format
@@ -1440,7 +1444,7 @@ msgstr "Aistrigh"
 
 #: local_apps/pootle_store/templates/store/translate_table.html:11
 msgid "Original"
-msgstr "Leagan Bunaidh"
+msgstr "Bunleagan"
 
 #: local_apps/pootle_store/templates/store/translate_table.html:12
 #: local_apps/pootle_terminology/templates/terminology/manage.html:21
@@ -1449,7 +1453,7 @@ msgstr "Aistriúchán"
 
 #: local_apps/pootle_store/templates/store/translate_table.html:17
 msgid "Edit translation"
-msgstr "Déan eagarthóireacht ar an aistriúchán"
+msgstr "Cuir an t-aistriúchán in eagar"
 
 #: local_apps/pootle_store/templates/unit/edit.html:15
 msgid "Terminology"
@@ -1599,22 +1603,22 @@ msgstr "Suíomhanna"
 #: local_apps/pootle_translationproject/models.py:320
 #: local_apps/pootle_translationproject/models.py:346
 msgid "You do not have rights to update from version control here"
-msgstr ""
+msgstr "Níl cead agat nuashonrú ón gcóras rialaithe leaganacha"
 
 #: local_apps/pootle_translationproject/models.py:335
 #, python-format
 msgid "Updated project \"%s\" from version control"
-msgstr ""
+msgstr "Nuashonraíodh tionscadal \"%s\" ón gcóras rialaithe leaganacha"
 
 #: local_apps/pootle_translationproject/models.py:350
 #, python-format
 msgid "Updated file %s from version control"
-msgstr ""
+msgstr "Nuashonraíodh comhad %s ón gcóras rialaithe leaganacha"
 
 #: local_apps/pootle_translationproject/models.py:356
 #, python-format
 msgid "Failed to update %s from version control"
-msgstr ""
+msgstr "Níorbh fhéidir %s a nuashonrú ón gcóras rialaithe leaganacha"
 
 #: local_apps/pootle_translationproject/views.py:83
 msgid "You do not have rights to access translation mode."
@@ -1646,7 +1650,7 @@ msgstr ""
 
 #: local_apps/pootle_translationproject/views.py:300
 msgid "Error while extracting archive"
-msgstr ""
+msgstr "Earráid agus an chomhadlann á hoscailt"
 
 #: local_apps/pootle_translationproject/views.py:438
 msgid "You do not have rights to overwrite files here."
@@ -1663,7 +1667,7 @@ msgstr "Níl cead agat comhaid a uasluchtú anseo."
 
 #: local_apps/pootle_translationproject/views.py:463
 msgid "Update all from version control"
-msgstr ""
+msgstr "Nuashonraigh uile ón gcóras rialaithe leaganacha"
 
 #: local_apps/pootle_translationproject/views.py:478
 msgid "Upload"
@@ -1672,11 +1676,11 @@ msgstr "Uasluchtaigh"
 #: local_apps/pootle_translationproject/views.py:485
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
-msgstr ""
+msgstr "Cumaisc an comhad leis an gcomhad reatha, agus úsáid coinbhleachtaí mar mholtaí"
 
 #: local_apps/pootle_translationproject/views.py:486
 msgid "Add all new translations as suggestions"
-msgstr ""
+msgstr "Déan moladh as gach aistriúchán nua"
 
 #: local_apps/pootle_translationproject/views.py:488
 msgid "Overwrite the current file if it exists"
@@ -1706,15 +1710,15 @@ msgstr "Cuardaigh"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:11
 msgid "Here you can manage the files in this translation project."
-msgstr ""
+msgstr "Anseo, is féidir na comhaid sa tionscadal aistriúcháin seo a bhainistiú."
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:14
 msgid "Update files from templates"
-msgstr "Nuashonraigh comhaid ó na creatchomhaid"
+msgstr "Nuashonraigh comhaid ó na teimpléid"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:15
 msgid "Rescan project files"
-msgstr ""
+msgstr "Scan comhaid an tionscadail arís"
 
 #: local_apps/pootle_translationproject/templates/translation_project/tp_admin_permissions.html:13
 msgid ""
@@ -1733,7 +1737,7 @@ msgstr "Cuardach casta"
 
 #: pootle/settings.py:42
 msgid "Pootle Demo"
-msgstr "Taispeánadh Pootle"
+msgstr "Taispeántas Pootle"
 
 #. l10n: Change the language code (en) to your language code, and replace ltr with rtl if you language is written from right to left.
 #: pootle/settings.py:45
@@ -1754,7 +1758,7 @@ msgstr ""
 
 #: pootle/middleware/captcha.py:141
 msgid "Enter a number"
-msgstr "Cuir isteach uimhir"
+msgstr "Cuir uimhir isteach"
 
 #: pootle/middleware/captcha.py:156
 msgid "Incorrect"
@@ -1888,7 +1892,7 @@ msgstr "Nuacht faoi dtaobh de teangacha"
 
 #: templates/language_menu.html:10
 msgid "Administrate your language permissions"
-msgstr ""
+msgstr "Bainistigh ceadanna le haghaidh do theanga"
 
 #: templates/project_menu.html:7
 msgid "Project main page"
@@ -1912,7 +1916,7 @@ msgstr "Bainistigh Téarmaíocht"
 
 #: templates/tp_menu.html:7
 msgid "Translation project main page"
-msgstr ""
+msgstr "Príomhleathanach an tionscadail aistriúcháin"
 
 #: templates/tp_menu.html:8
 msgid "Translation project news"
@@ -1928,7 +1932,7 @@ msgstr ""
 
 #: templates/tp_menu.html:12
 msgid "Administrate your project permissions"
-msgstr ""
+msgstr "Bainistigh ceadanna le haghaidh do thionscadal"
 
 #: templates/tp_menu.html:13
 msgid "Administrate your project files"
@@ -2023,11 +2027,11 @@ msgstr "Níor roghnaigh an duine seo teangacha nó tionscadail go fóill."
 
 #: templates/profiles/profile_detail.html:65
 msgid "User Statistics"
-msgstr ""
+msgstr "Staitisticí Úsáideora"
 
 #: templates/profiles/profile_list.html:7
 msgid "Profiles list"
-msgstr ""
+msgstr "Liosta próifílí"
 
 #: templates/profiles/profile_list.html:11
 #: templates/registration/registration_form.html:15
@@ -2196,7 +2200,7 @@ msgstr "Téigh go dtí an leathanach seo a leanas agus roghnaigh focal faire nua
 #: templates/registration/password_reset_email.html:8
 #, python-format
 msgid "Your username is %(user)s."
-msgstr ""
+msgstr "Is é %(user)s d'ainm úsáideora."
 
 #: templates/registration/password_reset_email.html:10
 msgid "Thank you for using Pootle!"
@@ -2234,7 +2238,7 @@ msgstr "Líon na nithe seo a leanas chun tosú ag aistriú."
 
 #: templates/registration/registration_form.html:30
 msgid "Password (again)"
-msgstr "Focal faire (arís)"
+msgstr "Focal Faire (arís)"
 
 #: templates/registration/registration_form.html:40
 msgid "Already have an account?"
