@@ -95,6 +95,8 @@ def project_language_index(request, project_code):
     if not check_permission('view', request):
         raise PermissionDenied
 
+    can_edit = check_permission('administrate', request)
+
     translation_projects = project.translationproject_set.all()
 
     items = [make_language_item(request, translation_project) \
@@ -120,9 +122,10 @@ def project_language_index(request, project_code):
         'languages': items,
         'topstats': topstats,
         'statsheadings': get_stats_headings(),
+        'can_edit': can_edit,
     }
 
-    if check_permission('administrate', request):
+    if can_edit:
         from pootle_project.forms import DescriptionForm
         templatevars['form'] = DescriptionForm(instance=project)
 
@@ -140,22 +143,34 @@ def project_settings_edit(request, project_code):
 
     from pootle_project.forms import DescriptionForm
     form = DescriptionForm(request.POST, instance=project)
+
     response = {}
+    rcode = 400
+
     if form.is_valid():
         form.save()
-        response = {
-                "intro": form.cleaned_data['description'],
-                "valid": True,
-        }
+        rcode = 200
+
+        if project.description_html:
+            the_html = project.description_html
+        else:
+            the_html = u"".join([
+                u'<p class="placeholder muted">',
+                _(u"No description yet."), u"</p>"
+            ])
+
+        response["description_html"] = the_html
+
     context = {
-            "form": form,
-            "form_action": project.pootle_path + "edit_settings.html",
+        "form": form,
+        "form_action": project.pootle_path + "edit_settings.html",
     }
     t = loader.get_template('admin/general_settings_form.html')
     c = RequestContext(request, context)
     response['form'] = t.render(c)
 
-    return HttpResponse(jsonify(response), mimetype="application/json")
+    return HttpResponse(jsonify(response), status=rcode,
+                        mimetype="application/json")
 
 
 class TranslationProjectFormSet(forms.models.BaseModelFormSet):

@@ -19,12 +19,14 @@
 # You should have received a copy of the GNU General Public License along with
 # this program; if not, see <http://www.gnu.org/licenses/>.
 
+from django.http import HttpResponse
 from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.template import loader, RequestContext
 
 from pootle_app.views.admin.util import user_is_admin
 from pootle_app.forms import GeneralSettingsForm
 from pootle_misc.siteconfig import load_site_config
+from pootle_misc.util import jsonify, ajax_required
 
 
 @user_is_admin
@@ -43,3 +45,35 @@ def view(request):
         'form': setting_form,
         }
     return render_to_response(template, template_vars, context_instance=RequestContext(request))
+
+
+@ajax_required
+@user_is_admin
+def edit_settings(request):
+    """Saves the site's general settings."""
+    siteconfig = load_site_config()
+    form = GeneralSettingsForm(siteconfig, data=request.POST)
+
+    response = {}
+    rcode = 400
+
+    if form.is_valid():
+        form.save()
+        rcode = 200
+
+        the_html = u"".join([
+            u"<div>", form.cleaned_data['DESCRIPTION'], "</div>"
+        ])
+
+        response["description_html"] = the_html
+
+    context = {
+        "form": form,
+        "form_action": "/admin/edit_settings.html"
+    }
+    t = loader.get_template('admin/general_settings_form.html')
+    c = RequestContext(request, context)
+    response['form'] = t.render(c)
+
+    return HttpResponse(jsonify(response), status=rcode,
+                        mimetype="application/json")

@@ -85,6 +85,7 @@ def getprojects(request):
 def view(request):
     request.permissions = get_matching_permissions(get_profile(request.user),
                                                    Directory.objects.root)
+    can_edit = request.user.is_superuser
 
     topstats = gentopstats_root()
     languages = getlanguages(request)
@@ -109,12 +110,13 @@ def view(request):
                                          "(they are marked fuzzy)"),
                               'untranslated': _('Untranslated')},
         'permissions': request.permissions,
+        'can_edit': can_edit,
         }
     visible_langs = [l for l in languages if l['stats']['total']['words'] != 0]
     templatevars['moreprojects'] = (len(templatevars['projects']) >
                                     len(visible_langs))
 
-    if request.user.is_superuser:
+    if can_edit:
         from pootle_misc.siteconfig import load_site_config
         from pootle_app.forms import GeneralSettingsForm
         siteconfig = load_site_config()

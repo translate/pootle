@@ -186,6 +186,7 @@ class ProjectIndexView(view_handler.View):
             store=None):
         user_profile = get_profile(request.user)
         tp_dir = translation_project.directory
+        can_edit = check_permission('administrate', request)
 
         project = translation_project.project
         language = translation_project.language
@@ -214,6 +215,7 @@ class ProjectIndexView(view_handler.View):
             'topstats': gentopstats_translation_project(translation_project),
             'feed_path': directory.pootle_path[1:],
             'action_groups': action_groups(request, path_obj),
+            'can_edit': can_edit,
         })
 
         if store is not None:
@@ -226,7 +228,7 @@ class ProjectIndexView(view_handler.View):
                                          directory)
             })
 
-        if check_permission('administrate', request):
+        if can_edit:
             from pootle_translationproject.forms import DescriptionForm
             template_vars['form'] = DescriptionForm(instance=translation_project)
 
@@ -302,22 +304,34 @@ def edit_settings(request, translation_project):
 
     from pootle_translationproject.forms import DescriptionForm
     form = DescriptionForm(request.POST, instance=translation_project)
+
     response = {}
+    rcode = 400
+
     if form.is_valid():
         form.save()
-        response = {
-                "intro": form.cleaned_data['description'],
-                "valid": True,
-        }
+        rcode = 200
+
+        if translation_project.description_html:
+            the_html = translation_project.description_html
+        else:
+            the_html = u"".join([
+                u'<p class="placeholder muted">',
+                _(u"No description yet."), u"</p>"
+            ])
+
+        response["description_html"] = the_html
+
     context = {
-            "form": form,
-            "form_action": translation_project.pootle_path + "edit_settings.html",
+        "form": form,
+        "form_action": translation_project.pootle_path + "edit_settings.html",
     }
     t = loader.get_template('admin/general_settings_form.html')
     c = RequestContext(request, context)
     response['form'] = t.render(c)
 
-    return HttpResponse(jsonify(response), mimetype="application/json")
+    return HttpResponse(jsonify(response), status=rcode,
+                        mimetype="application/json")
 
 
 @get_translation_project

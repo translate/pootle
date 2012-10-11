@@ -82,6 +82,8 @@ def language_index(request, language_code):
     if not check_permission("view", request):
         raise PermissionDenied
 
+    can_edit = check_permission('administrate', request)
+
     projects = language.translationproject_set.order_by('project__fullname')
     projectcount = len(projects)
     items = (make_project_item(translate_project) for translate_project in projects.iterator())
@@ -103,8 +105,10 @@ def language_index(request, language_code):
         'projects': items,
         'statsheadings': get_stats_headings(),
         'topstats': topstats,
+        'can_edit': can_edit,
         }
-    if check_permission('administrate', request):
+
+    if can_edit:
         from pootle_language.forms import DescriptionForm
         templatevars['form'] = DescriptionForm(instance=language)
 
@@ -121,22 +125,34 @@ def language_settings_edit(request, language_code):
 
     from pootle_language.forms import DescriptionForm
     form = DescriptionForm(request.POST, instance=language)
+
     response = {}
+    rcode = 400
+
     if form.is_valid():
         form.save()
-        response = {
-                "intro": form.cleaned_data['description'],
-                "valid": True,
-        }
+        rcode = 200
+
+        if language.description_html:
+            the_html = language.description_html
+        else:
+            the_html = u"".join([
+                u'<p class="placeholder muted">',
+                _(u"No description yet."), u"</p>"
+            ])
+
+        response["description_html"] = the_html
+
     context = {
-            "form": form,
-            "form_action": language.pootle_path + "edit_settings.html",
+        "form": form,
+        "form_action": language.pootle_path + "edit_settings.html",
     }
     t = loader.get_template('admin/general_settings_form.html')
     c = RequestContext(request, context)
     response['form'] = t.render(c)
 
-    return HttpResponse(jsonify(response), mimetype="application/json")
+    return HttpResponse(jsonify(response), status=rcode,
+                        mimetype="application/json")
 
 
 def language_admin(request, language_code):

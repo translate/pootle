@@ -20,7 +20,6 @@
 .icon-feed,
 .icon-expand,
 .icon-error,
-.icon-edit,
 .icon-copy,
 .icon-comment-user,
 .icon-comment-add,
@@ -58,19 +57,18 @@
 .icon-feed{background-position:-132px -65px;width:16px;height:16px;}
 .icon-expand{background-position:-148px -65px;width:16px;height:16px;}
 .icon-error{background-position:-164px -65px;width:16px;height:16px;}
-.icon-edit{background-position:-180px -65px;width:16px;height:16px;}
-.icon-copy{background-position:0px -84px;width:16px;height:16px;}
-.icon-comment-user{background-position:-16px -84px;width:16px;height:16px;}
-.icon-comment-add{background-position:-32px -84px;width:16px;height:16px;}
-.icon-collapse{background-position:-48px -84px;width:16px;height:16px;}
-.icon-block{background-position:-64px -84px;width:16px;height:16px;}
-.icon-apertium{background-position:-80px -84px;width:16px;height:16px;}
-.icon-accept{background-position:-96px -84px;width:16px;height:16px;}
-.icon-vcs-update{background-position:-112px -84px;width:14px;height:14px;}
-.icon-vcs-commit{background-position:-126px -84px;width:14px;height:14px;}
-.icon-upload{background-position:-140px -84px;width:14px;height:14px;}
-.icon-update-templates{background-position:-154px -84px;width:14px;height:14px;}
-.icon-rescan-files{background-position:-168px -84px;width:14px;height:14px;}
-.icon-download{background-position:-182px -84px;width:14px;height:14px;}
-.icon-delete-path{background-position:0px -100px;width:14px;height:14px;}
-.icon-external-link{background-position:-14px -100px;width:12px;height:12px;}
+.icon-copy{background-position:-180px -65px;width:16px;height:16px;}
+.icon-comment-user{background-position:0px -84px;width:16px;height:16px;}
+.icon-comment-add{background-position:-16px -84px;width:16px;height:16px;}
+.icon-collapse{background-position:-32px -84px;width:16px;height:16px;}
+.icon-block{background-position:-48px -84px;width:16px;height:16px;}
+.icon-apertium{background-position:-64px -84px;width:16px;height:16px;}
+.icon-accept{background-position:-80px -84px;width:16px;height:16px;}
+.icon-vcs-update{background-position:-96px -84px;width:14px;height:14px;}
+.icon-vcs-commit{background-position:-110px -84px;width:14px;height:14px;}
+.icon-upload{background-position:-124px -84px;width:14px;height:14px;}
+.icon-update-templates{background-position:-138px -84px;width:14px;height:14px;}
+.icon-rescan-files{background-position:-152px -84px;width:14px;height:14px;}
+.icon-download{background-position:-166px -84px;width:14px;height:14px;}
+.icon-delete-path{background-position:-180px -84px;width:14px;height:14px;}
+.icon-external-link{background-position:0px -100px;width:12px;height:12px;}

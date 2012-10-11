@@ -9,15 +9,26 @@
 {% block body.id %}frontpage{% endblock body.id %}
 
 {% block precontent %}
-{% if user.is_superuser %}
-  {% include "admin/edit_links.html" %}
-  <div class="settings-container js-admin-description" style="display: none;">
-  {% include "admin/general_settings_form.html" with form_action="edit_settings.html" %}
+{% if description or can_edit %}
+  <div class="markup-body{% if can_edit %} js-ctx-meta-desc{% endif %}">
+    {% if description %}
+      {# The surrounding div tag is kept for convenience #}
+      <div>
+      {{ description|safe|clean }}
+      </div>
+    {% else %}
+      <p class="placeholder muted">{% trans "No description set." %}</p>
+    {% endif %}
+    {% if can_edit %}
+      {% include "admin/edit_links.html" %}
+    {% endif %}
   </div>
 {% endif %}
-<div class="markup-body">
-{{ description|safe|clean }}
-</div>
+{% if can_edit %}
+  <div class="settings-container js-edit-ctx-meta-desc" style="display:none;">
+    {% include "admin/general_settings_form.html" with form_action="/admin/edit_settings.html" %}
+  </div>
+{% endif %}
 {% endblock precontent %}
 
 {% block content %}

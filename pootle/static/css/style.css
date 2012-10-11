@@ -763,21 +763,6 @@ ul.errorlist
     visibility: hidden;
 }
 
-#edit_settings,
-#show_settings
-{
-    left: 3px;
-    position: absolute;
-    cursor: pointer;
-}
-
-html[dir="rtl"] #edit_settings,
-html[dir="rtl"] #show_settings
-{
-    left: 100%;
-    right: 3px;
-}
-
 /* TABLES */
 
 .module table, 
@@ -1061,6 +1046,18 @@ input[type="submit"]:active
     margin: 0 auto 1em;
     font-size: 137%;
     text-align: center;
+}
+
+.form-horizontal.form-actions input
+{
+    display: inline-block;
+    margin-right: 1em;
+}
+
+html[dir="rtl"] .form-horizontal.form-actions input
+{
+    margin-right: inherit;
+    margin-left: 1em;
 }
 
 
@@ -1885,6 +1882,13 @@ html[dir="rtl"] .overview-description-toggle
     margin: 1em 0;
 }
 
+/* Inline editing */
+
+.markup-body:hover .js-edit-details
+{
+    visibility: visible;
+}
+
 
 /*
  * NAVIGATION BAR
@@ -2121,7 +2125,17 @@ html[dir="rtl"] .pull-right
 
 .muted
 {
-    color: #999999;
+    color: #999;
+}
+
+.placeholder
+{
+    font-style: italic;
+}
+
+.danger
+{
+    color: #b94a48;
 }
 
 

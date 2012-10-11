@@ -35,27 +35,34 @@
 
     {% include "translation_summary_legend.html" %}
   </div>
+
 </div>
 
 <div class="module">
-  {% if language.description_html or user.is_superuser %}
+  {% if language.description_html or can_edit %}
   <div class="hd">
     <h2>{% trans "Description" %}</h2>
   </div>
 
   <div id="overview-description" class="bd">
-    {% if user.is_superuser or request.permissions.administrate %}
-      {% include "admin/edit_links.html" %}
-      <div class="settings-container js-admin-description" style="display: none;">
-        {% include "admin/general_settings_form.html" with form_action="edit_settings.html" %}
-      </div>
-    {% endif %}
 
+    <div id="overview-description-language"
+      class="markup-body{% if can_edit %} js-ctx-meta-desc{% endif %}">
     {% if language.description_html %}
-    <div id="overview-description-language" class="markup-body">
       {{ language.description_html|safe|clean }}
-    </div>
+    {% else %}
+      <p class="placeholder muted">{% trans "No description set." %}</p>
     {% endif %}
+    {% if can_edit %}
+      {% include "admin/edit_links.html" %}
+    {% endif %}
+    </div>
+  {% if can_edit %}
+    <div class="settings-container js-edit-ctx-meta-desc" style="display:none;">
+      {% include "admin/general_settings_form.html" with form_action="edit_settings.html" %}
+    </div>
+  {% endif %}
+
   </div>
   {% endif %}
 </div>

@@ -81,31 +81,54 @@ $(document).ready(function () {
   });
 
 
-  /* Initialise description data and form */
-  $('#edit_settings, #show_settings').click(function(e) {
-    _toggle_editing();
-  });
-  _init_description();
+  /* Inline editing */
 
-  function _toggle_editing() {
-    $('.intro, .js-admin-description, #edit_settings, #show_settings, #hide_description').slideToggle();
-  }
-  function _init_description() {
-    $(".intro,").filter(":not([dir])").bidi();
-    $('.js-admin-description form').submit(function (e) {
+  $('.markup-body').filter(':not([dir])').bidi();
+
+  if ($('.js-edit-details').length) {
+    var $metaDesc = $('.js-ctx-meta-desc'),
+        $editMetaDesc = $('.js-edit-ctx-meta-desc');
+
+    $metaDesc.on('click', '.js-edit-details', function (e) {
       e.preventDefault();
+      $metaDesc.hide();
+      $editMetaDesc.show();
+      $editMetaDesc.find('#id_description').focus();
+    });
+
+    $editMetaDesc.on('click', '.js-edit-details-cancel', function (e) {
+      e.preventDefault();
+      $metaDesc.show();
+      $editMetaDesc.hide();
+    });
+
+    $editMetaDesc.on('submit', '#js-admin-edit-meta', function (e) {
+      e.preventDefault();
+
+      $editMetaDesc.spin();
+      $editMetaDesc.css({opacity: .5});
+
       $.ajax({
         url: $(this).attr('action'),
         type: 'POST',
         data: $(this).serializeObject(),
         success: function (data) {
-          $('.intro').first().html(data.intro);
-          $('.js-admin-description').html(data.form);
-          _init_description();
-          if (data.valid) {
-            _toggle_editing();
-          }
-        }
+          var $metaDescContent = $metaDesc.children().filter(':first');
+
+          $editMetaDesc.hide();
+          $editMetaDesc.html(data.form);
+          $editMetaDesc.spin(false);
+          $editMetaDesc.css({opacity: 1});
+
+          $metaDescContent.replaceWith(data.description_html);
+          $metaDesc.show();
+
+          $('.markup-body').filter(':not([dir])').bidi();
+        },
+        error: function () {
+          $editMetaDesc.spin(false);
+          $editMetaDesc.css({opacity: 1});
+        },
       });
     });
   }
