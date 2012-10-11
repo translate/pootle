@@ -32,9 +32,9 @@ def view(request):
     siteconfig = load_site_config()
     if request.POST:
         setting_form = GeneralSettingsForm(siteconfig, data=request.POST)
+
         if setting_form.is_valid():
             setting_form.save()
-            load_site_config()
     else:
         setting_form = GeneralSettingsForm(siteconfig)
 

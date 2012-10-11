@@ -22,6 +22,8 @@ from django import forms
 from djblets.siteconfig.forms import SiteSettingsForm
 from django.utils.translation import ugettext_lazy as _
 
+from pootle_misc.siteconfig import load_site_config
+
 
 class GeneralSettingsForm(SiteSettingsForm):
     TITLE = forms.CharField(
@@ -30,6 +32,7 @@ class GeneralSettingsForm(SiteSettingsForm):
         max_length=50,
         required=True,
     )
+
     DESCRIPTION = forms.CharField(
         label=_("Description"),
         help_text=_("The description and instructions shown on the front page and about page. Be sure to use valid HTML."),
@@ -40,3 +43,7 @@ class GeneralSettingsForm(SiteSettingsForm):
 
     class Meta:
         title = "General Settings"
+
+    def save(self):
+        super(GeneralSettingsForm, self).save()
+        load_site_config()
