@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2009 Zuza Software Foundation
+# Copyright 2008-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -129,7 +129,8 @@ def project_language_index(request, project_code):
         from pootle_project.forms import DescriptionForm
         templatevars['form'] = DescriptionForm(instance=project)
 
-    return render_to_response('project/project.html', templatevars, context_instance=RequestContext(request))
+    return render_to_response('project/project.html', templatevars,
+                              context_instance=RequestContext(request))
 
 
 @ajax_required
@@ -176,8 +177,8 @@ def project_settings_edit(request, project_code):
 class TranslationProjectFormSet(forms.models.BaseModelFormSet):
 
     def save_existing(self, form, instance, commit=True):
-        result = super(TranslationProjectFormSet, self).\
-                save_existing(form, instance, commit)
+        result = super(TranslationProjectFormSet, self) \
+                .save_existing(form, instance, commit)
         form.process_extra_fields()
 
         return result
@@ -193,12 +194,15 @@ class TranslationProjectFormSet(forms.models.BaseModelFormSet):
 def project_admin(request, project_code):
     """adding and deleting project languages"""
     current_project = Project.objects.get(code=project_code)
-    request.permissions = get_matching_permissions(get_profile(request.user), current_project.directory)
+    request.permissions = get_matching_permissions(get_profile(request.user),
+                                                   current_project.directory)
 
     if not check_permission('administrate', request):
-        raise PermissionDenied(_("You do not have rights to administer this project."))
+        raise PermissionDenied(_("You do not have rights to administer "
+                                 "this project."))
 
-    template_translation_project = current_project.get_template_translationproject()
+    template_translation_project = current_project \
+                                        .get_template_translationproject()
 
 
     class TranslationProjectForm(forms.ModelForm):
@@ -221,11 +225,9 @@ def project_admin(request, project_code):
                     translationproject__project=current_project)
                 )
 
-
         class Meta:
             prefix = "existing_language"
             model = TranslationProject
-
 
         def process_extra_fields(self):
 
@@ -245,7 +247,10 @@ def project_admin(request, project_code):
     model_args['project'] = {'code': current_project.code,
                              'name': current_project.fullname}
 
-    link = lambda instance: '<a href="%s">%s</a>' % (l(instance.pootle_path + 'admin_permissions.html'), instance.language)
+    link = lambda instance: '<a href="%s">%s</a>' % (
+            l(instance.pootle_path + 'admin_permissions.html'),
+            instance.language
+    )
 
     return util.edit(request, 'project/project_admin.html', TranslationProject,
             model_args, link, linkfield="language", queryset=queryset,
@@ -256,7 +261,6 @@ def project_admin(request, project_code):
 
 
 def project_admin_permissions(request, project_code):
-    # Check if the user can access this view
     project = get_object_or_404(Project, code=project_code)
     request.permissions = get_matching_permissions(get_profile(request.user),
                                                    project.directory)
@@ -277,7 +281,6 @@ def project_admin_permissions(request, project_code):
 
 def projects_index(request):
     """page listing all projects"""
-
     request.permissions = get_matching_permissions(get_profile(request.user),
                                                    Directory.objects.root)
 
@@ -290,7 +293,8 @@ def projects_index(request):
         'projects': getprojects(request),
         'topstats': topstats,
         'translationlegend': {'translated': _('Translations are complete'),
-                              'fuzzy': _('Translations need to be checked (they are marked fuzzy)'),
+                              'fuzzy': _('Translations need to be checked '
+                                         '(they are marked fuzzy)'),
                               'untranslated': _('Untranslated')},
         }
 

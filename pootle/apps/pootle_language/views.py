@@ -46,6 +46,7 @@ def get_last_action(translation_project):
     except Submission.DoesNotExist:
         return ''
 
+
 def make_project_item(translation_project):
     project = translation_project.project
     href = translation_project.pootle_path
@@ -69,7 +70,9 @@ def make_project_item(translation_project):
     errors = project_stats.get('errors', 0)
 
     if errors:
-        info['errortooltip'] = ungettext('Error reading %d file', 'Error reading %d files', errors, errors)
+        info['errortooltip'] = ungettext('Error reading %d file',
+                                         'Error reading %d files',
+                                         errors, errors)
 
     info.update(stats_descriptions(project_stats))
 
@@ -77,7 +80,8 @@ def make_project_item(translation_project):
 
 def language_index(request, language_code):
     language = get_object_or_404(Language, code=language_code)
-    request.permissions = get_matching_permissions(get_profile(request.user), language.directory)
+    request.permissions = get_matching_permissions(get_profile(request.user),
+                                                   language.directory)
 
     if not check_permission("view", request):
         raise PermissionDenied
@@ -99,7 +103,9 @@ def language_index(request, language_code):
           'description_html': language.description_html,
           'summary': ungettext('%(projects)d project, %(average)d%% translated',
                                '%(projects)d projects, %(average)d%% translated',
-                               projectcount, {"projects": projectcount, "average": average}),
+                               projectcount, {
+                                   "projects": projectcount,
+                                   "average": average}),
         },
         'feed_path': '%s/' % language.code,
         'projects': items,
@@ -112,7 +118,8 @@ def language_index(request, language_code):
         from pootle_language.forms import DescriptionForm
         templatevars['form'] = DescriptionForm(instance=language)
 
-    return render_to_response("language/language_index.html", templatevars, context_instance=RequestContext(request))
+    return render_to_response("language/language_index.html", templatevars,
+                              context_instance=RequestContext(request))
 
 @ajax_required
 def language_settings_edit(request, language_code):

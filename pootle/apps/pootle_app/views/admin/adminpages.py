@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-#  Copyright 2006-2009 Zuza Software Foundation
+#  Copyright 2006-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -44,7 +44,8 @@ def view(request):
     template_vars = {
         'form': setting_form,
         }
-    return render_to_response(template, template_vars, context_instance=RequestContext(request))
+    return render_to_response(template, template_vars,
+                              context_instance=RequestContext(request))
 
 
 @ajax_required
