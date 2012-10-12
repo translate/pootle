@@ -14,7 +14,7 @@
     {% if description %}
       {# The surrounding div tag is kept for convenience #}
       <div>
-      {{ description|safe|clean }}
+      {{ description|clean }}
       </div>
     {% else %}
       <p class="placeholder muted">{% trans "No description set." %}</p>

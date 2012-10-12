@@ -49,7 +49,7 @@
     <div id="overview-description-language"
       class="markup-body{% if can_edit %} js-ctx-meta-desc{% endif %}">
     {% if language.description_html %}
-      {{ language.description_html|safe|clean }}
+      {{ language.description_html|clean }}
     {% else %}
       <p class="placeholder muted">{% trans "No description set." %}</p>
     {% endif %}

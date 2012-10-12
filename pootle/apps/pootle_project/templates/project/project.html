@@ -57,7 +57,7 @@
     <div id="overview-description-project"
       class="markup-body{% if can_edit %} js-ctx-meta-desc{% endif %}">
     {% if project.description_html %}
-      {{ project.description_html|safe|clean }}
+      {{ project.description_html|clean }}
     {% else %}
       <p class="placeholder muted">{% trans "No description set." %}</p>
     {% endif %}

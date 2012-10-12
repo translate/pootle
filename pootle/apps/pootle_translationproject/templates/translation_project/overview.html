@@ -107,7 +107,7 @@
     <div id="overview-description-tp"
       class="markup-body{% if can_edit %} js-ctx-meta-desc{% endif %}">
     {% if translation_project.description_html %}
-      {{ translation_project.description_html|safe|clean }}
+      {{ translation_project.description_html|clean }}
     {% else %}
       <p class="placeholder muted">{% trans "No description set." %}</p>
     {% endif %}
@@ -124,14 +124,14 @@
     {% if project.description_html %}
     <a class="overview-description-toggle js-toggle" href="#overview-description-project">{% blocktrans with project.fullname as project %}{{ project }} project information{% endblocktrans %}</a>
     <div id="overview-description-project" class="markup-body hide">
-      {{ project.description_html|safe|clean }}
+      {{ project.description_html|clean }}
     </div>
     {% endif %}
 
     {% if language.description_html %}
     <a class="overview-description-toggle js-toggle" href="#overview-description-language">{% blocktrans with language.name as language %}{{ language }} project information{% endblocktrans %}</a>
     <div id="overview-description-language" class="markup-body hide">
-      {{ language.description_html|safe|clean }}
+      {{ language.description_html|clean }}
     </div>
     {% endif %}
 
