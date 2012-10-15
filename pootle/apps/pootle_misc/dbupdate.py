@@ -317,6 +317,11 @@ def update_tables_22000(flush_checks):
         field = Unit._meta.get_field(field_name)
         db.add_column(table_name, field.name, field)
 
+    from pootle_store.models import Store
+    table_name = Store._meta.db_table
+    field = Store._meta.get_field('sync_time')
+    db.add_column(table_name, field.name, field)
+
     if flush_checks:
         text += """
         <p>%s</p>

@@ -753,6 +753,7 @@ class Store(models.Model, base.TranslationStore):
     translation_project = models.ForeignKey('pootle_translationproject.TranslationProject', related_name='stores', db_index=True, editable=False)
     pootle_path = models.CharField(max_length=255, null=False, unique=True, db_index=True, verbose_name=_("Path"))
     name = models.CharField(max_length=128, null=False, editable=False)
+    sync_time = models.DateTimeField(default=datetime.datetime.min)
     state = models.IntegerField(null=False, default=NEW, editable=False, db_index=True)
 
     def natural_key(self):
