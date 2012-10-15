@@ -352,7 +352,7 @@ html[dir="rtl"] #header h1
     margin-top: -10px;
 }
 
-html[dir="rtl"]
+html[dir="rtl"] .brand
 {
     float: right;
 }
