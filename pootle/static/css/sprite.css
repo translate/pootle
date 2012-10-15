@@ -1,7 +1,7 @@
 .bar-untranslated,
 .bar-translated,
 .bar-fuzzy,
-.brand,
+.logo,
 .icon-desc,
 .icon-ascdesc,
 .icon-asc,
@@ -38,7 +38,7 @@
 .bar-untranslated{background-position:0px 0px;width:200px;height:12px;}
 .bar-translated{background-position:0px -12px;width:200px;height:12px;}
 .bar-fuzzy{background-position:0px -24px;width:200px;height:12px;}
-.brand{background-position:0px -36px;width:68px;height:48px;}
+.logo{background-position:0px -36px;width:68px;height:48px;}
 .icon-desc{background-position:-68px -36px;width:21px;height:4px;}
 .icon-ascdesc{background-position:-68px -40px;width:21px;height:9px;}
 .icon-asc{background-position:-89px -36px;width:21px;height:4px;}
