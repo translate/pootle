@@ -18,5 +18,8 @@
   {% else %}
   <p class="exception">{{ exception }}</p>
   {% endif %}
+  {% if request.sentry.id %}
+  <p class="exception">{% blocktrans with ref=request.sentry.id %}If you need assistance, you may refer to this error as <strong>{{ ref }}</strong>.{% endblocktrans %}</p>
+  {% endif %}
 </div>
 {% endblock %}
