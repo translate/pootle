@@ -321,6 +321,16 @@ def update_tables_22000(flush_checks):
     table_name = Store._meta.db_table
     field = Store._meta.get_field('sync_time')
     db.add_column(table_name, field.name, field)
+    # In previous versions, we cached the sync times, so let's see if we can
+    # recover some
+    from django.core.cache import cache
+    from django.utils.encoding import iri_to_uri
+    for store in Store.objects.iterator():
+        key = iri_to_uri("%s:sync" % store.pootle_path)
+        last_sync = cache.get(key)
+        if last_sync:
+            store.sync_time = last_sync
+            store.save()
 
     if flush_checks:
         text += """
