@@ -33,6 +33,11 @@ from django.utils.translation import ugettext as _
 
 from pootle_misc.baseurl import l, get_next
 
+try:
+    from raven.contrib.django.models import sentry_exception_handler
+except ImportError:
+    sentry_exception_handler = None
+
 
 class ErrorPagesMiddleware(object):
     """Friendlier error pages."""
@@ -81,22 +86,26 @@ class ErrorPagesMiddleware(object):
                                 })
                         templatevars['fserror'] = msg
 
-                    # Send email to admins with details about exception
-                    ip_type = (request.META.get('REMOTE_ADDR') in \
-                            settings.INTERNAL_IPS and 'internal' or 'EXTERNAL')
-                    subject = 'Error (%s IP): %s' % (ip_type, request.path)
+                    if sentry_exception_handler is None:
+                        # Send email to admins with details about exception
+                        ip_type = (request.META.get('REMOTE_ADDR') in \
+                                settings.INTERNAL_IPS and 'internal' or 'EXTERNAL')
+                        subject = 'Error (%s IP): %s' % (ip_type, request.path)
 
-                    try:
-                        request_repr = repr(request)
-                    except:
-                        request_repr = "Request repr() unavailable"
+                        try:
+                            request_repr = repr(request)
+                        except:
+                            request_repr = "Request repr() unavailable"
 
-                    message = "%s\n\n%s\n\n%s" % (unicode(exception.args[0]),
-                                                  tb, request_repr)
-                    mail_admins(subject, message, fail_silently=True)
+                        message = "%s\n\n%s\n\n%s" % (unicode(exception.args[0]),
+                                                      tb, request_repr)
+                        mail_admins(subject, message, fail_silently=True)
+                    else:
+                        sentry_exception_handler(request=request)
 
                     if request.is_ajax():
                         return self._ajax_error(500, msg)
+
                     return HttpResponseServerError(
                         render_to_string('500.html', templatevars,
                                          RequestContext(request)))
