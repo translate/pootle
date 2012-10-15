@@ -282,20 +282,9 @@ html[dir="rtl"] ul.icons
  * MAIN DIVs
  */
 
-#wrapper,
-#doc
+#wrapper
 {
     width: 100%;
-}
-
-#doc:after
-{
-    content: ".";
-    display: block;
-    height: 0;
-    width: 0;
-    clear: both;
-    visibility: hidden;
 }
 
 #nav-access
