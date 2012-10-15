@@ -24,14 +24,12 @@ import os
 import re
 
 from django.conf import settings
-from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import FileSystemStorage
 from django.db import models, IntegrityError
 from django.db.models.signals import post_delete
 from django.db.transaction import commit_on_success
 from django.utils.translation import ugettext_lazy as _
-from django.utils.encoding import iri_to_uri
 
 from translate.filters.decorators import Category
 from translate.misc.hash import md5_f
@@ -877,8 +875,6 @@ class Store(models.Model, base.TranslationStore):
         if store is None:
             store = self.file.store
 
-        key = iri_to_uri("%s:sync" % self.pootle_path)
-
         if self.state < PARSED:
             logging.debug(u"Parsing %s", self.pootle_path)
             # no existing units in db, file hasn't been parsed before
@@ -902,8 +898,8 @@ class Store(models.Model, base.TranslationStore):
                 raise
 
             self.state = PARSED
+            self.sync_time = self.get_mtime()
             self.save()
-            cache.set(key, self.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
             return
 
     def _remove_obsolete(self, source, store=None):
@@ -945,8 +941,6 @@ class Store(models.Model, base.TranslationStore):
 
         if store is None:
             store = self.file.store
-
-        key = iri_to_uri("%s:sync" % self.pootle_path)
 
         # Lock store
         logging.debug(u"Updating %s", self.pootle_path)
@@ -1017,10 +1011,10 @@ class Store(models.Model, base.TranslationStore):
         finally:
             # Unlock store
             self.state = oldstate
+            if update_structure and update_translation and not conservative:
+                self.sync_time = self.get_mtime()
             self.save()
 
-            if update_structure and update_translation and not conservative:
-                cache.set(key, self.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
 
     def require_qualitychecks(self):
         """make sure quality checks are run"""
@@ -1041,9 +1035,7 @@ class Store(models.Model, base.TranslationStore):
 
     def sync(self, update_structure=False, update_translation=False, conservative=True, create=False, profile=None):
         """sync file with translations from db"""
-        key = iri_to_uri("%s:sync" % self.pootle_path)
-        last_sync = cache.get(key)
-        if conservative and last_sync and last_sync == self.get_mtime():
+        if conservative and self.sync_time == self.get_mtime():
             return
 
         if not self.file:
@@ -1055,10 +1047,10 @@ class Store(models.Model, base.TranslationStore):
                 store = self.convert(storeclass)
                 store.savefile(store_path)
                 self.file = store_path
-                self.save()
                 self.update_store_header(profile=profile)
                 self.file.savestore()
-                cache.set(key, self.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
+                self.sync_time = self.get_mtime()
+                self.save()
             return
 
         if conservative and self.translation_project.is_template_project:
@@ -1107,7 +1099,8 @@ class Store(models.Model, base.TranslationStore):
             self.update_store_header(profile=profile)
             self.file.savestore()
 
-        cache.set(key, self.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
+        self.sync_time = self.get_mtime()
+        self.save()
 
     def get_file_class(self):
         try:
