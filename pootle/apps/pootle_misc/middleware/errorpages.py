@@ -31,12 +31,12 @@ from django.template.loader import render_to_string
 from django.utils import simplejson
 from django.utils.translation import ugettext as _
 
-from pootle_misc.baseurl import l, get_next
-
 try:
     from raven.contrib.django.models import sentry_exception_handler
 except ImportError:
     sentry_exception_handler = None
+
+from pootle_misc.baseurl import l, get_next
 
 
 class ErrorPagesMiddleware(object):
