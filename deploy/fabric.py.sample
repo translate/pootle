@@ -41,7 +41,7 @@ SETTINGS['user'] = 'foobarbaz'
 SETTINGS['project_name'] = 'pootle-staging'
 #: Change the first path part if your Apache websites are stored somewhere else
 SETTINGS['project_path'] = '/var/www/sites/%s' % SETTINGS['project_name']
-SETTINGS['project_repo_path'] = '%s/pootle' % SETTINGS['project_path']
+SETTINGS['project_repo_path'] = '%s/src' % SETTINGS['project_path']
 SETTINGS['project_po_path'] = '%s/podirectory' % SETTINGS['project_path']
 SETTINGS['project_repo'] = 'git://github.com/translate/pootle.git'
 #: This URL will be used in the VirtualHost section
