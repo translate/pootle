@@ -1069,17 +1069,19 @@ html[dir="rtl"] .form-horizontal.form-actions input
  */
 
 .news-feed,
-.news-feed-with-form {
-  margin-top: 2em;
+.news-feed-with-form
+{
+    margin-top: 2em;
 }
 
-.news-feed-with-form {
-  margin-left: 38em;
+.news-feed-with-form
+{
+    margin-left: 38em;
 }
 
 .news {
-  margin: 2em 0;
-  float: left;
+    margin: 2em 0;
+    float: left;
 }
 
 /*
