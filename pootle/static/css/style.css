@@ -734,7 +734,7 @@ button.close
 
 .form .error
 {
-    color: #c00;
+    color: #c33;
 }
 
 .hide
@@ -769,7 +769,7 @@ ul.errorlist
 
 .errorlist li
 {
-    color: #c00;
+    color: #c33;
     margin-top: 0.2em;
 }
 
