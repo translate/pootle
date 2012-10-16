@@ -1,11 +1,9 @@
 {% load i18n baseurl %}
-<div id="submenu" lang="{{ LANGUAGE_CODE }}">
-    <div id="submenu-tabs">
-        {% if user == profile.user or not profile.user %}
-        <a href='{% filter l %}/accounts/{{ user.username }} {% endfilter %}' class="dashboard" title="{% trans 'Overview of your account' %}">{% trans "Dashboard" %}</a>
-        <a href='{{ "/accounts/edit/"|l }}' class="settings" title="{% trans 'Configure your translation preferences' %}">{% trans "Settings" %}</a>
-        <a href='{{ "/accounts/personal/edit/"|l }}' class="profile" title="{% trans 'Change your personal information' %}">{% trans "Profile" %}</a>
-        <a href='{{ "/accounts/password/change/"|l }}' class="password" title="{% trans 'Change your password' %}">{% trans "Password" %}</a>
-        {% endif %}
-    </div>
-</div>
+<ul id="tabs">
+  {% if user == profile.user or not profile.user %}
+  <li><a href='{% filter l %}/accounts/{{ user.username }} {% endfilter %}' class="dashboard" title="{% trans 'Overview of your account' %}">{% trans "Dashboard" %}</a></li>
+  <li><a href='{{ "/accounts/edit/"|l }}' class="settings" title="{% trans 'Configure your translation preferences' %}">{% trans "Settings" %}</a></li>
+  <li><a href='{{ "/accounts/personal/edit/"|l }}' class="profile" title="{% trans 'Change your personal information' %}">{% trans "Profile" %}</a></li>
+  <li><a href='{{ "/accounts/password/change/"|l }}' class="password" title="{% trans 'Change your password' %}">{% trans "Password" %}</a></li>
+  {% endif %}
+</ul>
