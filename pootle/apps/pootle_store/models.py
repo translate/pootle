@@ -922,7 +922,7 @@ class Store(models.Model, base.TranslationStore):
 
     @commit_on_success
     def update(self, update_structure=False, update_translation=False,
-               conservative=True, store=None, fuzzy=False):
+               conservative=True, store=None, fuzzy=False, only_newer=False):
         """Update DB with units from file."""
 
         self.clean_stale_lock()
@@ -937,6 +937,11 @@ class Store(models.Model, base.TranslationStore):
             # file has not been parsed before
             logging.debug(u"attempted to update unparsed file %s", self.pootle_path)
             self.parse(store=store)
+            return
+
+        disk_mtime = datetime.datetime.fromtimestamp(self.file.getpomtime()[0])
+        if only_newer and disk_mtime <= self.sync_time:
+            # the file on disk wasn't changed synce the last sync
             return
 
         if store is None:
@@ -1012,7 +1017,7 @@ class Store(models.Model, base.TranslationStore):
             # Unlock store
             self.state = oldstate
             if update_structure and update_translation and not conservative:
-                self.sync_time = self.get_mtime()
+                self.sync_time = datetime.datetime.now()
             self.save()
 
 
@@ -1035,7 +1040,7 @@ class Store(models.Model, base.TranslationStore):
 
     def sync(self, update_structure=False, update_translation=False, conservative=True, create=False, profile=None):
         """sync file with translations from db"""
-        if conservative and self.sync_time == self.get_mtime():
+        if conservative and self.sync_time >= self.get_mtime():
             return
 
         if not self.file:
@@ -1100,7 +1105,7 @@ class Store(models.Model, base.TranslationStore):
             self.update_store_header(profile=profile)
             self.file.savestore()
 
-        self.sync_time = self.get_mtime()
+        self.sync_time = datetime.datetime.now()
         self.save()
 
     def get_file_class(self):
