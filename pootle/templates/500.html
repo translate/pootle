@@ -5,8 +5,8 @@
 {{ block.super }} » {% trans "Server Error" %}
 {% endblock %}
 
-{% block breadcrumb_content %}
-{{ block.super }} » <span>{% trans "Server Error" %}</span>
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Server Error" %}</li>
 {% endblock %}
 
 {% block content %}

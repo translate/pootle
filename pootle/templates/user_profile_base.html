@@ -5,9 +5,8 @@
 {{ block.super }} » {% trans "My Account" %}
 {% endblock %}
 
-{% block breadcrumb_content %}
-    {{ block.super }} »
-    <span><a href="{% filter l %}/accounts/{{ user.username }}/{% endfilter %}">{% trans "My Account" %}</a></span>
+{% block breadcrumbs %}
+{{ block.super }}<li><a href="{% filter l %}/accounts/{{ user.username }}/{% endfilter %}">{% trans "My Account" %}</a></li>
 {% endblock %}
 
 {% block tabs %}

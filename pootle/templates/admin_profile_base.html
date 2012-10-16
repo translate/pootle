@@ -5,9 +5,8 @@
 {{ block.super }} » {% trans "Administration" %}
 {% endblock %}
 
-{% block breadcrumb_content %}
-  {{ block.super }} »
-  <span><a class="admin" href='{{ "/admin/"|l }}'>{% trans "Administration" %}</a></span>
+{% block breadcrumbs %}
+{{ block.super }}<li><a class="admin" href='{{ "/admin/"|l }}'>{% trans "Administration" %}</a></li>
 {% endblock %}
 
 {% block css %}

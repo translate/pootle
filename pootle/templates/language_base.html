@@ -6,9 +6,8 @@
 {{ block.super }} » {{ language.name }}
 {% endblock %}
 
-{% block breadcrumb_content %}
-    {{ block.super }} » 
-    <span><a href="{% filter l %}/{{ language.code }}/{% endfilter %}">{{ language.name }}</a></span>
+{% block breadcrumbs %}
+{{ block.super }}<li><a href="{% filter l %}/{{ language.code }}/{% endfilter %}">{{ language.name }}</a></li>
 {% endblock %}
 
 {% block extra_head %}

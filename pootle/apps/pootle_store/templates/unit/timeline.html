@@ -12,8 +12,8 @@
 {% endassets %}
 {% endblock css %}
 
-{% block breadcrumb_content %}
-{{ block.super }} » {% trans "Previous Work" %}
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Previous Work" %}</li>
 {% endblock %}
 
 {% block content %}

@@ -1823,17 +1823,41 @@ html[dir="rtl"] .overview-description-toggle
 
 /* Breadcrumbs */
 
-#breadcrumbs
+.breadcrumb
 {
-    font-size: 14px;
+    font-size: 18px;
     font-weight: normal;
-    line-height: 49px;
+    line-height: 50px;
+}
+
+.breadcrumb li
+{
+    float: left;
+}
+
+html[dir="rtl"] .breadcrumb li
+{
+    float: right;
+}
+
+.breadcrumb li:before
+{
+    content: "/";
+    color: #999;
+    margin: 0 5px;
+}
+
+.breadcrumb li:first-child:before
+{
+    content: "";
+    margin: 0;
 }
 
 /* Tabs */
 
 #tabs
 {
+    clear: both;
     height: 34px;
 }
 

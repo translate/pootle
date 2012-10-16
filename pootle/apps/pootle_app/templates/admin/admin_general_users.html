@@ -7,8 +7,8 @@
 
 {% block body_id %}adminusers{% endblock %}
 
-{% block breadcrumb_content %}
-{{ block.super }} » <span>{% trans "Users" %}</span>
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Users" %}</li>
 {% endblock %}
 
 {% block section_description %}{% trans "Here you can add, edit, and delete all the available users in this Pootle server." %}{% endblock %}

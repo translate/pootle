@@ -5,8 +5,8 @@
 {{ block.super }} » {% trans "Permission Denied" %}
 {% endblock %}
 
-{% block breadcrumb_content %}
-{{ block.super }} » <span>{% trans "Permission Denied" %}</span>
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Permission Denied" %}</li>
 {% endblock %}
 
 {% block content %}

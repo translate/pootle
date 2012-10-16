@@ -5,8 +5,8 @@
 {{ block.super }} » {% trans "Manage Terminology" %}
 {% endblock %}
 
-{% block breadcrumb_content %}
-{{ block.super }} » <span>{% trans "Manage Terminology" %}</span>
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Manage Terminology" %}</li>
 {% endblock %}
 
 {% block body_id %}tpterminology{% endblock %}

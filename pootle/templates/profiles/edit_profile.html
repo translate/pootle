@@ -5,8 +5,8 @@
 {{ block.super }} » {% trans "Translation Settings" %}
 {% endblock %}
 
-{% block breadcrumb_content %}
-{{ block.super }} » <span>{% trans "Translation Settings" %}</span>
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Translation Settings" %}</li>
 {% endblock %}
 
 {% block body_id %}settings{% endblock %}

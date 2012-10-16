@@ -6,9 +6,8 @@
 {{ block.super }} » {{ project.name }}
 {% endblock %}
 
-{% block breadcrumb_content %}
-  {{ block.super }} » 
-  <span><a href="{%filter l%}/projects/{{ project.code }}/{%endfilter%}">{{ project.name }}</a></span>
+{% block breadcrumbs %}
+{{ block.super }}<li><a href="{%filter l%}/projects/{{ project.code }}/{%endfilter%}">{{ project.name }}</a></li>
 {% endblock %}
 
 {% block body_id %}projectoverview{% endblock %}

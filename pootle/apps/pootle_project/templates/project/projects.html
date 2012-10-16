@@ -8,8 +8,8 @@
 {{ block.super }}: {% trans "Projects" %}
 {% endblock %}
 
-{% block breadcrumb_content %}
-{{ block.super }} » <span>{% trans "Projects" %}</span>
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Projects" %}</li>
 {% endblock %}
 
 {% block content %}

@@ -5,8 +5,8 @@
 {{ block.super }} » {% trans "Login" %}
 {% endblock %}
 
-{% block breadcrumb_content %}
-{{ block.super }} » <span>{% trans "Login" %}</span>
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Login" %}</li>
 {% endblock %}
 
 {% block content %}

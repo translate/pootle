@@ -6,8 +6,8 @@
 {{ block.super }} » {% trans "Message Sent" %}
 {% endblock %}
  
-{% block breadcrumb_content %}
-{{ block.super }} » <span>{% trans "Message Sent" %}</span>
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Message Sent" %}</li>
 {% endblock %}
  
 {% block content %}

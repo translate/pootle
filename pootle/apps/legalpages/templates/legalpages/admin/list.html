@@ -7,8 +7,8 @@
 
 {% block body_id %}adminlegalpages{% endblock %}
 
-{% block breadcrumb_content %}
-{{ block.super }} » <span>{% trans "Legal Pages" %}</span>
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Legal Pages" %}</li>
 {% endblock %}
 
 {% block section_body %}

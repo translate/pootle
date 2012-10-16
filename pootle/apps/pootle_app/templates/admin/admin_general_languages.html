@@ -7,8 +7,8 @@
 
 {% block body_id %}adminlanguages{% endblock %}
 
-{% block breadcrumb_content %}
-{{ block.super }} » <span>{% trans "Languages" %}</span>
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Languages" %}</li>
 {% endblock %}
 
 {% block section_description %}{% trans "Here you can add, edit, and delete all the available languages in this Pootle server." %}{% endblock %}

@@ -6,9 +6,8 @@
 {{ block.super }} » {% trans "Projects" %}
 {% endblock %}
 
-{% block breadcrumb_content %}
-    {{ block.super }} »
-    <span><a href='{{ "/projects/"|l }}'>{% trans "Projects" %}</a></span>
+{% block breadcrumbs %}
+{{ block.super }}<li><a href='{{ "/projects/"|l }}'>{% trans "Projects" %}</a></li>
 {% endblock %}
 
 {% block tabs %}

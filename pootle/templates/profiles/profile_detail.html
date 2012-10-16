@@ -9,11 +9,11 @@
     {% endif %}
 {% endblock %}
 
-{% block breadcrumb_content %}
+{% block breadcrumbs %}
     {% if user == profile.user %}
         {{ block.super }}
     {% else %}
-        » <span>{% trans "Users" %}</span> » <span>{{ profile.user }}</span>
+        <li>{% trans "Users" %}</li><li>{{ profile.user }}</li>
     {% endif %}
 {% endblock %}
 

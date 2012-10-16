@@ -6,8 +6,8 @@
 {{ block.super }} » {% trans "Permissions" %}
 {% endblock %}
 
-{% block breadcrumb_content %}
-{{ block.super }} » <span>{% trans "Permissions" %}</span>
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Permissions" %}</li>
 {% endblock %}
 
 {% block body_id %}languageadmin{% endblock %}

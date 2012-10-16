@@ -8,8 +8,8 @@
 {{ block.super }} » {{ project.name }} » {% trans "Administrate" %}
 {% endblock %}
 
-{% block breadcrumb_content %}
-  {{ block.super }} » <span><a href="{% filter l %}/projects/{{ project.code }}/{% endfilter %}">{{ project.name }}</a></span> » <span>{% trans "Administrate" %}</span>
+{% block breadcrumbs %}
+{{ block.super }}<li><a href="{% filter l %}/projects/{{ project.code }}/{% endfilter %}">{{ project.name }}</a></li><li>{% trans "Administrate" %}</li>
 {% endblock %}
 
 {% block css %}

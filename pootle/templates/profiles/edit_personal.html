@@ -5,8 +5,8 @@
 {{ block.super }} » {% trans "Profile" %}
 {% endblock %}
 
-{% block breadcrumb_content %}
-{{ block.super }} » <span>{% trans "Profile" %}</span>
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Profile" %}</li>
 {% endblock %}
 
 {% block body_id %}profile{% endblock %}

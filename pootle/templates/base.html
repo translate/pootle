@@ -115,9 +115,12 @@
       {% block header_meta_block %}
       <div id="header-meta" class="header">
         {% block header_meta %}{% endblock %}
-        <ul id="breadcrumbs">
-        {% block breadcrumb_content %}{% endblock %}
+
+        {% block breadcrumbs_block %}
+        <ul class="breadcrumb">
+        {% block breadcrumbs %}{% endblock %}
         </ul>
+        {% endblock %}
       </div>
       {% endblock %}
 
