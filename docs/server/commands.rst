@@ -231,6 +231,18 @@ This command prints all the project codes on the server. This might be useful
 for automation.
 
 
+.. _commands#latest_change_id:
+
+latest_change_id
+^^^^^^^^^^^^^^^^
+
+.. versionadded:: 2.2
+
+This command prints the ID of the latest change (submission) made on the
+server. This is mostly useful in combination with other commands that operate
+with these IDs.
+
+
 .. _commands#manually_installing_pootle:
 
 Manually installing Pootle
