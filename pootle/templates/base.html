@@ -114,9 +114,7 @@
 
       {% block header_meta_block %}
       <div id="header-meta" class="header">
-        {% block header %}
-        {% block search %}{% endblock %}
-
+        {% block header_meta %}{% endblock %}
         <ul id="breadcrumbs">
         {% block breadcrumb_content %}{% endblock %}
         </ul>
@@ -125,8 +123,8 @@
 
       {% block header_tabs_block %}
       <div id="header-tabs" class="header">
+        {% block search %}{% endblock %}
         {% block tabs %}{% endblock %}
-        {% endblock %}
       </div>
       {% endblock %}
 
