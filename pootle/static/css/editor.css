@@ -12,7 +12,7 @@ textarea#view_unit
 #toolbar
 {
     background-color: #e5f3f8;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #d9d9d9;
     text-align: left;
     width: 100%;
     height: 46px;
@@ -20,9 +20,9 @@ textarea#view_unit
     left: 0;
     bottom: 0;
     z-index: 1000;
-    box-shadow: 0px 0px 0px #ccc;
-    -moz-box-shadow: 0px 0px 20px #ccc;
-    -webkit-box-shadow: 0px 0px 20px #ccc;
+    box-shadow: 0px 0px 20px #d9d9d9;
+    -moz-box-shadow: 0px 0px 20px #d9d9d9;
+    -webkit-box-shadow: 0px 0px 20px #d9d9d9;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e5f3f8', endColorstr='#cde7f1');
     background: -webkit-gradient(linear, left top, left bottom, from(#e5f3f8), to(#cde7f1));
     background: -moz-linear-gradient(top,  #e5f3f8,  #cde7f1);
@@ -173,7 +173,7 @@ tr.edit-ctx
 tr.edit-ctx td
 {
     text-align: center;
-    color: #ccc;
+    color: #d9d9d9;
 }
 
 tr.edit-ctx a
@@ -196,14 +196,14 @@ tr.edit-ctx a:hover
 
 tr.edit-ctx.before td
 {
-    border-top: 1px solid #ccc;
-    border-bottom: 1px dashed #ccc;
+    border-top: 1px solid #d9d9d9;
+    border-bottom: 1px dashed #d9d9d9;
 }
 
 tr.edit-ctx.after td
 {
-    border-top: 1px dashed #ccc;
-    border-bottom: 1px solid #ccc;
+    border-top: 1px dashed #d9d9d9;
+    border-bottom: 1px solid #d9d9d9;
 }
 
 tr.ctx-row,
@@ -299,7 +299,7 @@ body.zoom-out-2 div.sources .alternative .translation-text
     color: #999;
     font-size: 85%;
     position: relative;
-    border-bottom: 1px dotted #ccc;
+    border-bottom: 1px dotted #d9d9d9;
     padding-top: 0.5em;
 }
 
@@ -355,9 +355,9 @@ div.source-language
 
 div.language-name
 {
-    border-top: 1px dotted #ccc;
-    border-left: 1px dotted #ccc;
-    border-right: 1px dotted #ccc;
+    border-top: 1px dotted #d9d9d9;
+    border-left: 1px dotted #d9d9d9;
+    border-right: 1px dotted #d9d9d9;
     border-bottom: 1px solid #f1f7f8;
     -moz-border-radius: 5px 5px 0 0;
     -webkit-border-radius: 5px 5px 0 0;
@@ -453,8 +453,8 @@ table td.translate-translation
 
 td.translate-focus
 {
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #d9d9d9;
+    border-bottom: 1px solid #d9d9d9;
     vertical-align: top;
 }
 
@@ -641,7 +641,7 @@ html[dir="rtl"] .suggestion-vote
 .extra-item
 {
     background-color: #f1f7e4;
-    border: 1px dotted #ccc;
+    border: 1px dotted #d9d9d9;
     color: #444;
     line-height: 140%;
     padding: 0.5em;
@@ -1050,14 +1050,14 @@ a.editor-specialchar:hover
 .tm-server .diff-insert
 {
     color: #999;
-    border: 1px dotted #ccc;
+    border: 1px dotted #d9d9d9;
     background-color: #F1F7F8; /* same as edit-row bg */
 }
 
 .tm-server .diff-delete,
 .tm-server .diff-delete *
 {
-    color: #ccc !important;
+    color: #d9d9d9 !important;
     font-weight: normal;
 }
 

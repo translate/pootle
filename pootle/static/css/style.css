@@ -553,7 +553,7 @@ html[dir="rtl"] #nav-main li
     -moz-border-radius: 5px 5px 0 0;
     -webkit-border-radius: 5px 5px 0 0;
     border-radius: 5px 5px 0 0;
-    border: 1px solid #ccc;
+    border: 1px solid #d9d9d9;
     border-bottom: 0px;
     line-height: 2em;
     padding: 0.5em 1em 0.5em 36px;
@@ -1650,7 +1650,7 @@ ul.pager li
 ul.pager li a,
 ul.pager li a:visited
 {
-    border: 1px solid #ccc;
+    border: 1px solid #d9d9d9;
     text-decoration: none;
 }
 
