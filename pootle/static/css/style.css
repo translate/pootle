@@ -490,23 +490,17 @@ html[dir="rtl"] #nav-main li
 
 #footer
 {
-    background: #fff url('../images/footer-bg.jpg') top center repeat-x;
-    text-align: center;
-    color: #888;
+    background-color: #f8f8f8;
+    color: #d9d9d9;
     clear: both;
-    font-size: 90%;
-    margin-top: 2em;
-}
-
-#footer-contents
-{
-    margin: 0 auto;
-    width: 90%;
-}
-
-#footer .nav
-{
+    font-size: 12px;
     padding: 35px 0;
+    text-align: center;
+}
+
+#footer a
+{
+    color: #999;
 }
 
 #footer .nav li
@@ -517,18 +511,13 @@ html[dir="rtl"] #nav-main li
 #footer .nav li:after
 {
     content:  "|";
-    margin: 0 10px;
+    margin: 0 25px;
 }
 
 #footer .nav li:last-child:after
 {
     content: '';
     margin: 0;
-}
-
-#footer a
-{
-    color: #888;
 }
 
 
