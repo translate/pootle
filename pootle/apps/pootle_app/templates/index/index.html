@@ -8,6 +8,8 @@
 
 {% block body.id %}frontpage{% endblock body.id %}
 
+{% block header_block %}{% endblock %}
+
 {% block precontent %}
 {% if description or can_edit %}
   <div class="markup-body{% if can_edit %} js-ctx-meta-desc{% endif %}">
