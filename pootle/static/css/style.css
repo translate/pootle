@@ -305,6 +305,20 @@ html[dir="rtl"] ul.icons
     margin-left: auto;
 }
 
+/* Hack to avoid ugly underlines in the space between icons and text */
+
+td.stats-name a:hover,
+.overview-actions-content a:hover
+{
+    text-decoration: none;
+}
+
+td.stats-name a:hover > i + span,
+.overview-actions-content a:hover > i + span
+{
+    text-decoration: underline;
+}
+
 
 /*
  * MAIN DIVs
