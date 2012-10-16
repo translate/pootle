@@ -36,6 +36,8 @@ textarea#view_unit
     left: auto;
     right: auto;
     top: auto;
+    float: none;
+    margin: 0;
 }
 
 #toolbar div.advancedsearch

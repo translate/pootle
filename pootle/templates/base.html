@@ -115,6 +115,8 @@
       {% block header_block %}
       <div id="header">
         {% block header %}
+        {% block search %}{% endblock %}
+
         <ul id="breadcrumbs">
         {% block breadcrumb_content %}{% endblock %}
         </ul>
@@ -128,12 +130,6 @@
         </div>
         <div id="xhr-error" class="xhr-message hide">
           <span> </span>
-        </div>
-
-        <div id="nav-secondary" lang="{{ LANGUAGE_CODE }}">
-        {% block nav-secondary %}
-          {% block search %}{% endblock %}
-        {% endblock nav-secondary %}
         </div>
 
         <div id="precontent">

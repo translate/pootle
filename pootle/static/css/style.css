@@ -1906,18 +1906,15 @@ html[dir="rtl"] .overview-description-toggle
 
 /* SEARCH */
 
-div#search
+#search
 {
-    /* this should better be fixed in html template */
-    position: absolute;
-    right: 1em;
-    top: 85px;
+    float: right;
+    margin: 1.1em;
 }
 
-div#search[dir="rtl"]
+#search[dir="rtl"]
 {
-    right: auto;
-    left: 2em;
+    float: left;
 }
 
 #search input[type=text]
