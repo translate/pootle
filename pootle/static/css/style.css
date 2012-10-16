@@ -285,6 +285,7 @@ html[dir="rtl"] ul.icons
 #wrapper
 {
     width: 100%;
+    margin-top: 41px; /* navbar height + border */
 }
 
 #nav-access
@@ -317,47 +318,65 @@ html[dir="rtl"] #nav-access
 
 
 /*
- * HEADER
+ * NAVBAR
  */
 
-#header h1
+#navbar
 {
-    float: left;
-    padding: 25px 0 10px;
-    margin: 0 30px 0 20px;
-    text-shadow: 0 1px 0 #F8F8F8;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin-bottom: 0;
+    z-index: 999;
+    overflow: visible;
 }
 
-html[dir="rtl"] #header h1
+#navbar a
 {
-    float: right;
-    margin: 0px 20px 0 30px;
+    color: #c1e1ee;
+    text-shadow: 0 1px 0 #130f30;
+    text-decoration: none;
+}
+
+#navbar a.brand
+{
+    color: #f8f8f8;
+}
+
+.brand
+{
+    font-size: 1.5em;
+    line-height: 2em;
 }
 
 .logo
 {
     display: inline-block;
     float: left;
-    margin-top: -10px;
+    margin-top: 2px;
 }
 
-html[dir="rtl"] .brand
+/* Navbar container */
+
+#navbar-inner
 {
-    float: right;
+    background-color: #0489B7;
+    border-bottom: 1px solid #d9d9d9;
+    min-height: 40px;
+    -webkit-box-shadow: 0 1px 4px #d9d9d9;
+       -moz-box-shadow: 0 1px 4px #d9d9d9;
+            box-shadow: 0 1px 4px #d9d9d9;
 }
 
-
-/*
- * ZOOM CONTROL
- */
+/* Zoom controls */
 
 #zoom {
-    padding: 12px;
-    position: absolute;
-    right: 0px;
-    top: 25px;
     font-size: 12px;
     font-weight: bold;
+    line-height: 40px;
+    float: right;
+    margin-left: 20px;
 
     filter:alpha(opacity=40);
     -moz-opacity: 0.4;
@@ -366,8 +385,9 @@ html[dir="rtl"] .brand
 }
 
 html[dir="rtl"] #zoom {
-    right: auto;
-    left: 0px;
+    float: left;
+    margin-left: 0;
+    margin-right: 20px;
 }
 
 #zoom a {
@@ -377,32 +397,27 @@ html[dir="rtl"] #zoom {
 
 #zoom:hover {
     filter:alpha(opacity=100);
-    -moz-opacity: 1;
     -khtml-opacity: 1;
-    opacity: 1;
+      -moz-opacity: 1;
+           opacity: 1;
 }
 
 #zoom a:hover {
-    border: 1px dotted #0489b7;
+    border: 1px dotted #130f30;
     text-decoration: none;
 }
 
-/*
- * MENUBAR
- */
+
+/* Main navigation items */
 
 #nav-main
 {
-    margin: 10px 5px 0;
-    position: absolute;
-    right: 0px;
-    top: 0px;
+    float: right;
 }
 
 html[dir="rtl"] #nav-main
 {
-    right: auto;
-    left: 0px;
+    float: left;
 }
 
 #nav-main li
@@ -417,10 +432,9 @@ html[dir="rtl"] #nav-main li
 
 #nav-main li a
 {
-    padding: 0 10px;
     display: block;
-    font-weight: bold;
-    font-size: 95%;
+    font-size: 12px;
+    padding: 12px;
 }
 
 #nav-main a.admin
@@ -1863,21 +1877,28 @@ html[dir="rtl"] .overview-description-toggle
 
 
 /*
- * NAVIGATION BAR
+ * HEADER
  */
 
-.title a
+#header
 {
-    unicode-bidi: embed;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #d9d9d9;
+    padding: 0 1em;
+    height: 49px;
 }
 
 #breadcrumbs
 {
+    font-size: 14px;
     font-weight: normal;
+    line-height: 49px;
 }
 
-#breadcrumbs span:last-child a {
-    color: inherit;
+
+.title a
+{
+    unicode-bidi: embed;
 }
 
 
