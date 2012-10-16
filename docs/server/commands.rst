@@ -130,6 +130,10 @@ directly on the file system.
 it from overwriting any existing translation in the database, thus only
 updating new translations and discovering new files and strings.
 
+By default *update_stores* will only update files that appear to have changed
+on disk since the last synchronisation with Pootle. To force all files to
+update, specify ``--force``.
+
 .. warning:: If files on the file system are corrupt translations might be
    deleted from database. Handle with care!
 
