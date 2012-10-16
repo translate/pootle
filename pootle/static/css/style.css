@@ -1833,7 +1833,7 @@ html[dir="rtl"] .breadcrumb li
 {
     content: "/";
     color: #999;
-    margin: 0 5px;
+    margin: 0 10px;
 }
 
 .breadcrumb li:first-child:before
