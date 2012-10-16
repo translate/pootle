@@ -7,9 +7,7 @@
 {{ block.super }} » {% trans "Translate" %}
 {% endblock %}
 
-{% block body.id %}translatepage{% endblock body.id %}
-
-{% block bodyclass %}tptranslate{% endblock %}
+{% block body_id %}tptranslate{% endblock %}
 
 {% block css %}
 {% cache settings.CACHE_TIMEOUT translate_css user.is_authenticated settings.DEBUG %}

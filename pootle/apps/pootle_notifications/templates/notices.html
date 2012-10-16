@@ -43,9 +43,7 @@ approach for this.
 <link rel="alternate" type="application/rss+xml" title="{{ title }}" href="{% url pootle_notifications__feed path %}" />
 {% endblock %}
 
-{% block bodyclass %}
-{% if directory.is_language %}languagenews{% else %}tpnews{% endif %}
-{% endblock %}
+{% block body_id %}{% if directory.is_language %}languagenews{% else %}tpnews{% endif %}{% endblock %}
 
 {% block precontent %}
 {% if directory.is_language %}

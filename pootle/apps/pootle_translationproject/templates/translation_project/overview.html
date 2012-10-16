@@ -2,9 +2,7 @@
 {% load assets baseurl cache cleanhtml i18n locale progressbar search translation_project_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block body.id %}fileindex{% endblock body.id %}
-
-{% block bodyclass %}tpoverview{% endblock bodyclass %}
+{% block body_id %}tpoverview{% endblock %}
 
 {% block search %}
 {% cache settings.CACHE_TIMEOUT tp_search translation_project.id LANGUAGE_CODE %}

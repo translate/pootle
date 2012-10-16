@@ -60,8 +60,7 @@
     {% block extra_head %}{% endblock %}
   </head>
 
-  <body id="{% if body.id %}{{ body.id }}{% else %}home{% endif %}"
-        class="{% block bodyclass %}{% endblock %}">
+  <body id="{% block body_id %}{% endblock %}">
     {% block body %}
     <div id="wrapper">
       {% if messages %}
