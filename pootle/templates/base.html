@@ -112,14 +112,20 @@
         </div>
       </div>
 
-      {% block header_block %}
-      <div id="header">
+      {% block header_meta_block %}
+      <div id="header-meta" class="header">
         {% block header %}
         {% block search %}{% endblock %}
 
         <ul id="breadcrumbs">
         {% block breadcrumb_content %}{% endblock %}
         </ul>
+      </div>
+      {% endblock %}
+
+      {% block header_tabs_block %}
+      <div id="header-tabs" class="header">
+        {% block tabs %}{% endblock %}
         {% endblock %}
       </div>
       {% endblock %}
@@ -142,7 +148,7 @@
 
         <div id="postcontent">
           {% block postcontent %}{% endblock %}
-        </div><!-- postcontent -->
+        </div>
         {% block extra_content %}{% endblock %}
       </div>
 

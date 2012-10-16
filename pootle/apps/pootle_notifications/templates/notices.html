@@ -45,7 +45,7 @@ approach for this.
 
 {% block body_id %}{% if directory.is_language %}languagenews{% else %}tpnews{% endif %}{% endblock %}
 
-{% block precontent %}
+{% block tabs %}
 {% if directory.is_language %}
     {% include "language_menu.html" %}
 {% else %}
