@@ -4,7 +4,7 @@
 {
     font-size: 13px;
     line-height: 1.5;
-    color: #333;
+    color: #666;
 }
 
 
@@ -52,7 +52,7 @@ html[dir="rtl"] .markup-body ol
 {
     font-weight: bold;
     margin: 10px 0 5px !important;
-    color: #333 !important;
+    color: #666 !important;
 }
 
 .markup-body h1 + p,
