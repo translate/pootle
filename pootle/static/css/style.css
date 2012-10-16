@@ -1507,11 +1507,6 @@ html[dir="rtl"] select#id_ui_lang option
     text-align: right !important;
 }
 
-div#innernav
-{
-    margin: 1.5em 1em 0;
-}
-
 .item
 {
     padding: 1em;
