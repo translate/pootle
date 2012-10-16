@@ -738,8 +738,6 @@ ul.errorlist
 {
     margin: 0;
     padding: 5px 0px;
-    background: #fff url('../images/page-bg.jpg') top left repeat-x;
-    background-repeat: repeat-x;
 }
 
 #body:after
