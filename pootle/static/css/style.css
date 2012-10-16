@@ -1816,6 +1816,11 @@ html[dir="rtl"] .overview-description-toggle
     margin-top: -1px;
 }
 
+#header-meta
+{
+    min-height: 50px;
+}
+
 /* Breadcrumbs */
 
 #breadcrumbs
