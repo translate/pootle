@@ -1808,6 +1808,7 @@ html[dir="rtl"] .overview-description-toggle
 #header-meta
 {
     min-height: 50px;
+    line-height: 50px;
 }
 
 /* Breadcrumbs */
@@ -1816,7 +1817,6 @@ html[dir="rtl"] .overview-description-toggle
 {
     font-size: 18px;
     font-weight: normal;
-    line-height: 50px;
 }
 
 .breadcrumb li
