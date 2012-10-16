@@ -339,7 +339,9 @@ html[dir="rtl"] #nav-access
     text-decoration: none;
 }
 
-#navbar a.brand
+#navbar a.brand,
+#navbar a:active,
+#navbar a:hover
 {
     color: #f8f8f8;
 }
