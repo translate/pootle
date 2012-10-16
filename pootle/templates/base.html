@@ -156,10 +156,7 @@
       {% block footer %}
       <div id="footer">
         <ul class="nav">
-          <li>
-            <a href="http://translate.readthedocs.org/projects/pootle/en/latest/users/index.html">
-            {% trans "Help" %}</a>
-          </li>
+          <li><a href="http://docs.translatehouse.org/projects/pootle/">{% trans "Help" %}</a></li>
           {% if settings.CAN_CONTACT %}
           <li><a href='{{ "/contact/"|l }}'>{% trans "Contact Us" %}</a></li>
           {% endif %}
