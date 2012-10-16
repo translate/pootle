@@ -1059,13 +1059,14 @@ class Store(models.Model, base.TranslationStore):
 
         logging.debug(u"Syncing %s", self.pootle_path)
         self.require_dbid_index(update=True)
-        old_ids = set(self.file.store.getids())
+        disk_store = self.file.store
+        old_ids = set(disk_store.getids())
         new_ids = set(self.dbid_index.keys())
 
         file_changed = False
 
         if update_structure:
-            obsolete_units = (self.file.store.findid(uid) for uid in old_ids - new_ids)
+            obsolete_units = (disk_store.findid(uid) for uid in old_ids - new_ids)
             for unit in obsolete_units:
                 if not unit.istranslated():
                     del unit
@@ -1077,11 +1078,11 @@ class Store(models.Model, base.TranslationStore):
 
             new_dbids = [self.dbid_index.get(uid) for uid in new_ids - old_ids]
             for unit in self.findid_bulk(new_dbids):
-                newunit = unit.convert(self.file.store.UnitClass)
-                self.file.store.addunit(newunit)
+                newunit = unit.convert(disk_store.UnitClass)
+                disk_store.addunit(newunit)
                 file_changed = True
 
-        monolingual = is_monolingual(type(self.file.store))
+        monolingual = is_monolingual(type(disk_store))
 
         if update_translation:
             shared_dbids = [self.dbid_index.get(uid) for uid in old_ids & new_ids]
@@ -1089,7 +1090,7 @@ class Store(models.Model, base.TranslationStore):
                 #FIXME: use a better mechanism for handling states and different formats
                 if monolingual and not unit.istranslated():
                     continue
-                match = self.file.store.findid(unit.getid())
+                match = disk_store.findid(unit.getid())
                 if match is not None:
                     changed = unit.sync(match)
                     if changed:
@@ -1359,11 +1360,12 @@ class Store(models.Model, base.TranslationStore):
     def update_store_header(self, profile=None):
         language = self.translation_project.language
         source_language = self.translation_project.project.source_language
-        self.file.store.settargetlanguage(language.code)
-        self.file.store.setsourcelanguage(source_language.code)
+        disk_store = self.file.store
+        disk_store.settargetlanguage(language.code)
+        disk_store.setsourcelanguage(source_language.code)
 
         from translate.storage import poheader
-        if isinstance(self.file.store, poheader.poheader):
+        if isinstance(disk_store, poheader.poheader):
             mtime = self.get_mtime()
             if mtime is None:
                 mtime = datetime.datetime.now()
@@ -1393,10 +1395,10 @@ class Store(models.Model, base.TranslationStore):
             else:
                 #FIXME: maybe insert settings.TITLE or domain here?
                 headerupdates['Last_Translator'] = 'Anonymous Pootle User'
-            self.file.store.updateheader(add=True, **headerupdates)
+            disk_store.updateheader(add=True, **headerupdates)
 
             if language.nplurals and language.pluralequation:
-                self.file.store.updateheaderplural(language.nplurals, language.pluralequation)
+                disk_store.updateheaderplural(language.nplurals, language.pluralequation)
 
 
 ############################## Pending Files #################################
