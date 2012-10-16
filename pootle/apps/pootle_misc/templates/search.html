@@ -3,7 +3,7 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
 <div id="search" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
-  <form action="{{ search_action }}" method="get" id="searchform" title="{% trans 'Search (Ctrl+Shift+S)<br/>Type in, then press Enter to search' %}">
+  <form action="{{ search_action }}" method="get" id="searchform">
     <label class="inputHint" for="id_search">{% trans "Search" %}</label>{{ search_form.search }}
     <a class="advancedlink">
       {% if LANGUAGE_BIDI %}
