@@ -5,7 +5,7 @@
 <div id="search" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
   <form action="{{ search_action }}" method="get" id="searchform">
     <label class="inputHint" for="id_search">{% trans "Search" %}</label>{{ search_form.search }}
-    <a class="advancedlink">
+    <a class="advancedlink js-search-fields-toggle">
       {% if LANGUAGE_BIDI %}
       <img src='{{ "images/sarrow_down_rtl.png"|s }}' title="{% trans "Advanced search" %}" class="togglesearch" />
       <img src='{{ "images/sarrow_up_rtl.png"|s }}' title="{% trans "Advanced search" %}" class="togglesearch hide"/>
@@ -14,7 +14,7 @@
       <img src='{{ "images/sarrow_up.png"|s }}' title="{% trans "Advanced search" %}" class="togglesearch hide"/>
       {% endif %}
     </a>
-    <div class="search-fields">
+    <div class="search-fields js-search-fields">
       {{ search_form.sfields }}
     </div>
   </form>

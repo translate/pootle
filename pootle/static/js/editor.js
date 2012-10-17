@@ -334,7 +334,7 @@
             PTL.editor.searchFields = ["source", "target"];
           }
 
-          $("div.advancedsearch input").each(function () {
+          $(".js-search-fields input").each(function () {
             if ($.inArray($(this).val(), PTL.editor.searchFields) >= 0) {
               $(this).attr("checked", "checked");
             } else {
