@@ -72,7 +72,7 @@
       /* Dropdown toggling */
       $("a.advancedlink").click(function (event) {
         event.preventDefault();
-        $("div.advancedsearch").slideToggle();
+        $(".search-fields").slideToggle();
       }).toggle(function () {
         $("img.togglesearch").toggle();
       }, function () {
@@ -117,7 +117,7 @@
       } else {
         parsed = encodeURIComponent(parsed);
         // There were no fields specified within the text so we use the dropdown
-        $("div.advancedsearch input:checked").each(function () {
+        $(".search-fields input:checked").each(function () {
           searchFields.push($(this).val());
         });
       }

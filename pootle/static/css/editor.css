@@ -40,7 +40,7 @@ textarea#view_unit
     margin: 0;
 }
 
-#toolbar div.advancedsearch
+#toolbar .search-fields
 {
     border-bottom: none;
     border-top: 1px solid #76b0bf;

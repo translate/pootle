@@ -1985,7 +1985,7 @@ body#tpadminpermissions #tabs a.tpadminpermissions
     margin: 0 -5px 0 0;
 }
 
-div.advancedsearch
+.search-fields
 {
     background-color: #fff;
     border-bottom: 1px solid #76b0bf;
@@ -1999,12 +1999,14 @@ div.advancedsearch
     width: 135px;
 }
 
-div.advancedsearch li {
+.search-fields li
+{
     padding: 0.4em;
     font-size: 90%;
 }
 
-div.advancedsearch li input {
+.search-fields li input
+{
     vertical-align: top;
 }
 
