@@ -112,6 +112,7 @@
         </div>
       </div>
 
+    {% block header_block %}
       {% block header_meta_block %}
       <div id="header-meta" class="header">
         {% block header_meta %}{% endblock %}
@@ -130,6 +131,7 @@
         {% block tabs %}{% endblock %}
       </div>
       {% endblock %}
+    {% endblock %}
 
       <div id="body">
         <div id="xhr-activity" class="xhr-message hide">
