@@ -58,9 +58,6 @@ function zoom(v) {
   $(document.body).removeClass(oldClassName).addClass(zoomClassName());
 }
 
-/*
- * Search control helper
- */
 
 $(function ($) {
   /* Collapsing functionality */
