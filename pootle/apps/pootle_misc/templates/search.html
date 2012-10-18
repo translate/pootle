@@ -1,19 +1,13 @@
-{% load i18n baseurl locale %}
-{% get_current_language as LANGUAGE_CODE %}
-{% get_current_language_bidi as LANGUAGE_BIDI %}
-
-<div id="search" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
+{% load i18n %}
+<div id="search">
   <form action="{{ search_action }}" method="get" id="searchform">
-    <label class="inputHint" for="id_search">{% trans "Search" %}</label>{{ search_form.search }}
-    <a class="advancedlink js-search-fields-toggle">
-      {% if LANGUAGE_BIDI %}
-      <img src='{{ "images/sarrow_down_rtl.png"|s }}' title="{% trans "Advanced search" %}" class="togglesearch" />
-      <img src='{{ "images/sarrow_up_rtl.png"|s }}' title="{% trans "Advanced search" %}" class="togglesearch hide"/>
-      {% else %}
-      <img src='{{ "images/sarrow_down.png"|s }}' title="{% trans "Advanced search" %}" class="togglesearch" />
-      <img src='{{ "images/sarrow_up.png"|s }}' title="{% trans "Advanced search" %}" class="togglesearch hide"/>
-      {% endif %}
-    </a>
+    <div class="input-append">
+      <label class="js-input-hint hide" for="id_search">{% trans "Search" %}</label>{{ search_form.search }}
+      <button type="button" class="btn btn-search-fields js-search-fields-toggle"
+        title="{% trans "Advanced search" %}">
+        <i class="icon-down"></i>
+      </button>
+    </div>
     <div class="search-fields js-search-fields">
       {{ search_form.sfields }}
     </div>

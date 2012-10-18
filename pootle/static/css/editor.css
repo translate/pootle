@@ -33,18 +33,20 @@ textarea#view_unit
 #toolbar #search
 {
     position: relative;
-    left: auto;
-    right: auto;
-    top: auto;
-    float: none;
+    float: left;
     margin: 0;
+}
+
+html[dir="rtl"] #toolbar #search
+{
+    float: right;
 }
 
 #toolbar .search-fields
 {
     border-bottom: none;
     border-top: 1px solid #76b0bf;
-    bottom: 30px;
+    bottom: 32px;
 }
 
 

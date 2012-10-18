@@ -8,6 +8,7 @@
       /* Reusable selectors */
       this.$fields = $(".js-search-fields");
       this.$fieldsToggle = $(".js-search-fields-toggle");
+      this.$iconToggle = this.$fieldsToggle.find("i");
       this.$input = $("#id_search");
 
       /* Default settings */
@@ -50,17 +51,17 @@
       });
 
       /* Search input text */
-      $('label.inputHint').each(function () {
+      $('.js-input-hint').each(function () {
         var initial,
             search = false,
-            label = $(this),
-            input = $('#' + label.attr('for'));
+            $label = $(this),
+            input = $('#' + $label.attr('for'));
 
         if (input.prop("defaultValue")) {
           initial = input.prop("defaultValue");
           search = true;
         } else {
-          initial = label.hide().text().replace(':', '');
+          initial = $label.hide().text().replace(':', '');
         }
 
         input.focus(function () {
@@ -78,12 +79,8 @@
       PTL.search.$fieldsToggle.click(function (event) {
         event.preventDefault();
         PTL.search.$fields.slideToggle();
-      }).toggle(function () {
-        $("img.togglesearch").toggle();
-      }, function () {
-        $("img.togglesearch").toggle();
+        PTL.search.$iconToggle.toggleClass("icon-down icon-up");
       });
-
     },
 
     /* Parses search text to detect any given fields */

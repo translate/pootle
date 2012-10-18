@@ -974,6 +974,26 @@ div#update p
 
 
 /*
+ * BUTTONS
+ */
+
+.btn
+{
+    border: 0;
+    cursor: pointer;
+    display: inline-block;
+    padding: 4px 10px;
+}
+
+.btn-search-fields
+{
+    background-color: #76b0bf;
+    padding: 2px 0;
+    outline: 0;
+}
+
+
+/*
  * FORMS
  */
 
@@ -1094,6 +1114,32 @@ html[dir="rtl"] .form-horizontal.form-actions input
 {
     margin-right: inherit;
     margin-left: 1em;
+}
+
+.input-append
+{
+    font-size: 0;
+    white-space: nowrap;
+}
+
+.input-append input,
+.input-append .btn
+{
+    vertical-align: top;
+}
+
+.input-append .btn:last-child
+{
+    -webkit-border-radius: 0 3px 3px 0;
+       -moz-border-radius: 0 3px 3px 0;
+            border-radius: 0 3px 3px 0;
+}
+
+html[dir="rtl"] .input-append .btn:last-child
+{
+    -webkit-border-radius: 3px 0 0 3px;
+       -moz-border-radius: 3px 0 0 3px;
+            border-radius: 3px 0 0 3px;
 }
 
 
@@ -1947,7 +1993,7 @@ body#tpadminpermissions #tabs a.tpadminpermissions
 #search
 {
     float: right;
-    margin: 5px;
+    margin: 6px 0;
 }
 
 #search[dir="rtl"]
@@ -1958,31 +2004,18 @@ body#tpadminpermissions #tabs a.tpadminpermissions
 #search input[type=text]
 {
     border: 1px solid #76b0bf;
-    height: 16px;
+    height: 12px;
+    line-height: 16px;
+    padding: 3px;
     width: 145px;
     background-color: #fff;
-    color: #aaa;
+    color: #d9d9d9;
+    font-size: 12px;
 }
 
 #search input[type=text]:focus
 {
     color: #130f30;
-}
-
-#search .advancedlink
-{
-    width: 20px;
-    height: 20px;
-    padding: 0;
-    border: 0;
-    margin: 0 0 0 -5px;
-    cursor: pointer;
-    vertical-align: top; /* IE alignment fix */
-}
-
-#search[dir="rtl"] .advancedlink
-{
-    margin: 0 -5px 0 0;
 }
 
 .search-fields
@@ -1996,7 +2029,7 @@ body#tpadminpermissions #tabs a.tpadminpermissions
     position: absolute;
     z-index: 2000;
     display: none;
-    width: 135px;
+    width: 141px;
 }
 
 .search-fields li
@@ -2008,11 +2041,6 @@ body#tpadminpermissions #tabs a.tpadminpermissions
 .search-fields li input
 {
     vertical-align: top;
-}
-
-label.inputHint
-{
-    display: none;
 }
 
 .togglesearch

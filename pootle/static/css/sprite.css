@@ -31,8 +31,10 @@
 .icon-vcs-commit,
 .icon-upload,
 .icon-update-templates,
+.icon-up,
 .icon-rescan-files,
 .icon-download,
+.icon-down,
 .icon-delete-path,
 .icon-external-link{background-image:url('../images/sprite.png');background-repeat:no-repeat}
 .bar-untranslated{background-position:0px 0px;width:200px;height:12px;}
@@ -68,7 +70,9 @@
 .icon-vcs-commit{background-position:-30px -84px;width:14px;height:14px;}
 .icon-upload{background-position:-44px -84px;width:14px;height:14px;}
 .icon-update-templates{background-position:-58px -84px;width:14px;height:14px;}
-.icon-rescan-files{background-position:-72px -84px;width:14px;height:14px;}
-.icon-download{background-position:-86px -84px;width:14px;height:14px;}
-.icon-delete-path{background-position:-100px -84px;width:14px;height:14px;}
-.icon-external-link{background-position:-114px -84px;width:12px;height:12px;}
+.icon-up{background-position:-72px -84px;width:14px;height:14px;}
+.icon-rescan-files{background-position:-86px -84px;width:14px;height:14px;}
+.icon-download{background-position:-100px -84px;width:14px;height:14px;}
+.icon-down{background-position:-114px -84px;width:14px;height:14px;}
+.icon-delete-path{background-position:-128px -84px;width:14px;height:14px;}
+.icon-external-link{background-position:-142px -84px;width:12px;height:12px;}
