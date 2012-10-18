@@ -74,7 +74,22 @@ Whitespace
 
 Naming
   - Variable and function names should always start by a lowercase letter
-    and consequent words should be CamelCased.
+    and consequent words should be CamelCased. Never use underscores.
+
+  - If a variable holds a jQuery object, prefix it by a dollar sign ``$``. For
+    example:
+
+    .. code-block:: javascript
+
+      var $fields = $(".js-search-fields");
+
+Selectors
+  - Prefix selectors that deal with JavaScript with ``js-``. This way it's
+    clear the separation between class selectors that deal with presentation
+    (CSS) and functionality (JavaScript).
+
+  - Use the same naming criterion as with CSS selector names, ie, lowercase and
+    consequent words separated by dashes.
 
 Control statements
   Control statements such as ``if``, ``for``, or ``switch`` should follow
