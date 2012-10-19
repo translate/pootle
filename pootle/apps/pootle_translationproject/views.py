@@ -134,7 +134,7 @@ def update_against_templates(request, translation_project):
 @util.has_permission('administrate')
 def delete_path_obj(request, translation_project, dir_path, filename=None):
     """Deletes the path objects under `dir_path` (+ `filename`) from the
-    filesystem."""
+    filesystem, including `dir_path` in case it's not a translation project."""
     current_path = translation_project.directory.pootle_path + dir_path
 
     try:
@@ -157,17 +157,35 @@ def delete_path_obj(request, translation_project, dir_path, filename=None):
             store.delete()
 
         if directory:
+            directory_is_tp = directory.is_translationproject()
+
             # First remove children directories from the DB
             for child_dir in directory.child_dirs.iterator():
                 child_dir.delete()
 
-            # Then the current directory
-            directory.delete()
+            # Then the current directory (only if we are not in the root of the
+            # translation project)
+            if not directory_is_tp:
+                directory.delete()
 
-            # And finally all the directory tree from the filesystem
-            import shutil
-            po_dir = unicode(settings.PODIRECTORY)
-            shutil.rmtree(os.path.join(po_dir, directory.get_real_path()))
+            # And finally all the directory tree from the filesystem (excluding
+            # the root of the translation project)
+            try:
+                import shutil
+                po_dir = unicode(settings.PODIRECTORY)
+                root_dir = os.path.join(po_dir, directory.get_real_path())
+
+                if directory_is_tp:
+                    children = [os.path.join(root_dir, child) \
+                                for child in os.listdir(root_dir)]
+                    child_dirs = filter(os.path.isdir, children)
+                    for child_dir in child_dirs:
+                        shutil.rmtree(child_dir)
+                else:
+                    shutil.rmtree(root_dir)
+            except OSError:
+                messages.warning(request, _("Symbolic link hasn't been "
+                                            "removed from the filesystem."))
 
         messages.success(request, _("Files have been deleted."))
     except:
