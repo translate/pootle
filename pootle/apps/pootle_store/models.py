@@ -345,7 +345,7 @@ class Unit(models.Model, base.TranslationUnit):
         return unit
 
     def sync(self, unit):
-        """sync in file unit with translations from db"""
+        """Sync in file unit with translations from the DB."""
         changed = False
 
         if not self.isobsolete() and unit.isobsolete():
@@ -392,12 +392,11 @@ class Unit(models.Model, base.TranslationUnit):
 
     def update(self, unit):
         """Update in-DB translation from file."""
-
         changed = False
 
-        if self.source != unit.source or \
-           len(self.source.strings) != stringcount(unit.source) or \
-           self.hasplural() != unit.hasplural():
+        if (self.source != unit.source or
+            len(self.source.strings) != stringcount(unit.source) or
+            self.hasplural() != unit.hasplural()):
 
             if unit.hasplural() and len(unit.source.strings) == 1:
                 self.source = [unit.source, PLURAL_PLACEHOLDER]
@@ -406,9 +405,8 @@ class Unit(models.Model, base.TranslationUnit):
 
             changed = True
 
-        if self.target != unit.target or \
-           len(self.target.strings) != stringcount(unit.target):
-
+        if (self.target != unit.target or
+            len(self.target.strings) != stringcount(unit.target)):
             notempty = filter(None, self.target_f.strings)
             self.target = unit.target
 
@@ -419,28 +417,24 @@ class Unit(models.Model, base.TranslationUnit):
 
         notes = unit.getnotes(origin="developer")
 
-        if self.developer_comment != notes and \
-           (self.developer_comment or notes):
-
+        if (self.developer_comment != notes and
+            (self.developer_comment or notes)):
             self.developer_comment = notes or None
             changed = True
 
         notes = unit.getnotes(origin="translator")
 
-        if self.translator_comment != notes and \
-           (self.translator_comment or notes):
-
+        if (self.translator_comment != notes and
+            (self.translator_comment or notes)):
             self.translator_comment = notes or None
             changed = True
 
         locations = "\n".join(unit.getlocations())
-
         if self.locations != locations and (self.locations or locations):
             self.locations = locations or None
             changed = True
 
         context = unit.getcontext()
-
         if self.context != unit.getcontext() and (self.context or context):
             self.context = context or None
             changed = True
@@ -479,7 +473,8 @@ class Unit(models.Model, base.TranslationUnit):
             checks = self.qualitycheck_set.all()
 
             if keep_false_positives:
-                existing = set(checks.filter(false_positive=True).values_list('name', flat=True))
+                existing = set(checks.filter(false_positive=True) \
+                                     .values_list('name', flat=True))
                 checks = checks.filter(false_positive=False)
 
             checks.delete()
@@ -867,11 +862,15 @@ class Store(models.Model, base.TranslationStore):
     @commit_on_success
     def parse(self, store=None):
         self.clean_stale_lock()
+
         if self.state == LOCKED:
-            # file currently being updated
-            #FIXME: shall we idle wait for lock to be released first? what about stale locks?
-            logging.info(u"attemped to update %s while locked", self.pootle_path)
+            # File currently being updated
+            # FIXME: shall we idle wait for lock to be released first? what
+            # about stale locks?
+            logging.info(u"Attemped to update %s while locked",
+                         self.pootle_path)
             return
+
         if store is None:
             store = self.file.store
 
@@ -879,7 +878,7 @@ class Store(models.Model, base.TranslationStore):
             logging.debug(u"Parsing %s", self.pootle_path)
             # no existing units in db, file hasn't been parsed before
             # no point in merging, add units directly
-            oldstate = self.state
+            old_state = self.state
             self.state = LOCKED
             self.save()
             try:
@@ -888,12 +887,14 @@ class Store(models.Model, base.TranslationStore):
                         try:
                             self.addunit(unit, index)
                         except IntegrityError, e:
-                            logging.warning(u'Data integrity error while importing unit %s:\n%s', unit.getid(), e)
+                            logging.warning(u'Data integrity error while '
+                                            u'importing unit %s:\n%s',
+                                            unit.getid(), e)
             except:
-                # something broke, delete any units that got created
+                # Something broke, delete any units that got created
                 # and return store state to its original value
                 self.unit_set.all().delete()
-                self.state = oldstate
+                self.state = old_state
                 self.save()
                 raise
 
@@ -949,7 +950,7 @@ class Store(models.Model, base.TranslationStore):
 
         # Lock store
         logging.debug(u"Updating %s", self.pootle_path)
-        oldstate = self.state
+        old_state = self.state
         self.state = LOCKED
         self.save()
 
@@ -982,7 +983,7 @@ class Store(models.Model, base.TranslationStore):
                             newunit.save()
                             self._remove_obsolete(match_unit.source,
                                                   store=store)
-                    if oldstate >= CHECKED:
+                    if old_state >= CHECKED:
                         newunit.update_qualitychecks(created=True)
 
             if update_translation:
@@ -1010,12 +1011,12 @@ class Store(models.Model, base.TranslationStore):
                     if changed:
                         do_checks = unit._source_updated or unit._target_updated
                         unit.save()
-                        if do_checks and oldstate >= CHECKED:
+                        if do_checks and old_state >= CHECKED:
                             unit.update_qualitychecks()
 
         finally:
             # Unlock store
-            self.state = oldstate
+            self.state = old_state
             if update_structure and update_translation and not conservative:
                 self.sync_time = datetime.datetime.now()
             self.save()
@@ -1038,23 +1039,29 @@ class Store(models.Model, base.TranslationStore):
             self.state = CHECKED
             self.save()
 
-    def sync(self, update_structure=False, update_translation=False, conservative=True, create=False, profile=None):
-        """sync file with translations from db"""
+    def sync(self, update_structure=False, update_translation=False,
+             conservative=True, create=False, profile=None):
+        """Sync file with translations from DB."""
         if conservative and self.sync_time >= self.get_mtime():
             return
 
         if not self.file:
             if create:
-                # file doesn't exist let's create it
+                # File doesn't exist let's create it
                 logging.debug(u"Creating file %s", self.pootle_path)
+
                 storeclass = self.get_file_class()
-                store_path = os.path.join(self.translation_project.abs_real_path, self.name)
+                store_path = os.path.join(
+                    self.translation_project.abs_real_path, self.name
+                )
                 store = self.convert(storeclass)
                 store.savefile(store_path)
+
                 self.file = store_path
                 self.update_store_header(profile=profile)
                 self.file.savestore()
                 self.sync_time = self.get_mtime()
+
                 self.save()
             return
 
@@ -1071,14 +1078,17 @@ class Store(models.Model, base.TranslationStore):
         file_changed = False
 
         if update_structure:
-            obsolete_units = (disk_store.findid(uid) for uid in old_ids - new_ids)
+            obsolete_units = (disk_store.findid(uid) \
+                              for uid in old_ids - new_ids)
             for unit in obsolete_units:
                 if not unit.istranslated():
                     del unit
                 elif not conservative:
                     unit.makeobsolete()
+
                     if not unit.isobsolete():
                         del unit
+
                 file_changed = True
 
             new_dbids = [self.dbid_index.get(uid) for uid in new_ids - old_ids]
@@ -1090,11 +1100,14 @@ class Store(models.Model, base.TranslationStore):
         monolingual = is_monolingual(type(disk_store))
 
         if update_translation:
-            shared_dbids = [self.dbid_index.get(uid) for uid in old_ids & new_ids]
+            shared_dbids = [self.dbid_index.get(uid) \
+                            for uid in old_ids & new_ids]
             for unit in self.findid_bulk(shared_dbids):
-                #FIXME: use a better mechanism for handling states and different formats
+                # FIXME: use a better mechanism for handling states and
+                # different formats
                 if monolingual and not unit.istranslated():
                     continue
+
                 match = disk_store.findid(unit.getid())
                 if match is not None:
                     changed = unit.sync(match)
@@ -1173,17 +1186,21 @@ class Store(models.Model, base.TranslationStore):
 
         newunit = self.UnitClass(store=self, index=index)
         newunit.update(unit)
+
         if self.id:
             newunit.save()
         else:
-            # we can't save the unit if the store is not in the
+            # We can't save the unit if the store is not in the
             # database already, so let's keep it in temporary list
             if not hasattr(self, '_units'):
                 class FakeQuerySet(list):
                     def iterator(self):
                         return self.__iter__()
+
                 self._units = FakeQuerySet()
+
             self._units.append(newunit)
+
         return newunit
 
     def findunits(self, source, obsolete=False):
@@ -1275,27 +1292,30 @@ class Store(models.Model, base.TranslationStore):
         return self.units[item]
 
     @commit_on_success
-    def mergefile(self, newfile, profile, allownewstrings, suggestions, notranslate, obsoletemissing):
-        """make sure each msgid is unique ; merge comments etc from
-        duplicates into original"""
+    def mergefile(self, newfile, profile, allownewstrings, suggestions,
+                  notranslate, obsoletemissing):
+        """Make sure each msgid is unique ; merge comments etc from duplicates
+        into original."""
         if not newfile.units:
                 return
+
         monolingual = is_monolingual(type(newfile))
         self.clean_stale_lock()
 
-        # must be done before locking the file in case it wasn't already parsed
+        # Must be done before locking the file in case it wasn't already parsed
         self.require_units()
 
         if self.state == LOCKED:
-            # file currently being updated
-            #FIXME: shall we idle wait for lock to be released first? what about stale locks?
-            logging.info(u"attemped to merge %s while locked", self.pootle_path)
+            # File currently being updated
+            # FIXME: shall we idle wait for lock to be released first? what
+            # about stale locks?
+            logging.info(u"Attemped to merge %s while locked", self.pootle_path)
             return
 
-        logging.debug(u"merging %s", self.pootle_path)
+        logging.debug(u"Merging %s", self.pootle_path)
 
-        # lock store
-        oldstate = self.state
+        # Lock store
+        old_state = self.state
         self.state = LOCKED
         self.save()
 
@@ -1314,21 +1334,24 @@ class Store(models.Model, base.TranslationStore):
 
             self.require_dbid_index(update=True, obsolete=True)
             old_ids = set(self.dbid_index.keys())
-            if issubclass(self.translation_project.project.get_file_class(), newfile.__class__):
+            if issubclass(self.translation_project.project.get_file_class(),
+                          newfile.__class__):
                 new_ids = set(newfile.getids())
             else:
                 new_ids = set(newfile.getids(self.name))
 
-            if (not monolingual or self.translation_project.is_template_project) and allownewstrings:
+            if ((not monolingual or
+                 self.translation_project.is_template_project) and
+                allownewstrings):
                 new_units = (newfile.findid(uid) for uid in new_ids - old_ids)
                 for unit in new_units:
                     newunit = self.addunit(unit)
-                    if oldstate >= CHECKED:
+                    if old_state >= CHECKED:
                         newunit.update_qualitychecks(created=True)
 
-
             if obsoletemissing:
-                obsolete_dbids = [self.dbid_index.get(uid) for uid in old_ids - new_ids]
+                obsolete_dbids = [self.dbid_index.get(uid) \
+                                  for uid in old_ids - new_ids]
                 for unit in self.findid_bulk(obsolete_dbids):
                     if unit.istranslated():
                         unit.makeobsolete()
@@ -1336,29 +1359,37 @@ class Store(models.Model, base.TranslationStore):
                     else:
                         unit.delete()
 
-            shared_dbids = [self.dbid_index.get(uid) for uid in old_ids & new_ids]
+            shared_dbids = [self.dbid_index.get(uid) \
+                            for uid in old_ids & new_ids]
             for oldunit in self.findid_bulk(shared_dbids):
                 newunit = newfile.findid(oldunit.getid())
-                if monolingual and not self.translation_project.is_template_project:
+
+                if (monolingual and
+                    not self.translation_project.is_template_project):
                     fix_monolingual(oldunit, newunit, monolingual)
+
                 if newunit.istranslated():
-                    if notranslate or \
-                       suggestions and oldunit.istranslated() and (not mtime or mtime < oldunit.mtime):
+                    if (notranslate or suggestions and
+                        oldunit.istranslated() and
+                        (not mtime or mtime < oldunit.mtime)):
                         oldunit.add_suggestion(newunit.target, profile)
                     else:
                         changed = oldunit.merge(newunit, overwrite=True)
                         if changed:
-                            do_checks = oldunit._source_updated or oldunit._target_updated
+                            do_checks = (oldunit._source_updated or
+                                         oldunit._target_updated)
                             oldunit.save()
-                            if do_checks and oldstate >= CHECKED:
+
+                            if do_checks and old_state >= CHECKED:
                                 oldunit.update_qualitychecks()
 
             if allownewstrings or obsoletemissing:
-                self.sync(update_structure=True, update_translation=True, conservative=False, create=False, profile=profile)
+                self.sync(update_structure=True, update_translation=True,
+                          conservative=False, create=False, profile=profile)
 
         finally:
-            # unlock store
-            self.state = oldstate
+            # Unlock store
+            self.state = old_state
             self.save()
 
 
