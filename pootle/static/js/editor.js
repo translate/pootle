@@ -1716,6 +1716,11 @@
         tmUrl = this.settings.tmUrl + src + "/" + tgt +
           "/unit/?source=" + encodeURIComponent(stext) + "&jsoncallback=?";
 
+    if (stext.length == 0) {
+        // No use in looking up an empty string
+        return;
+    }
+
     // Always abort previous requests so we only get results for the
     // current unit
     if (this.tmReq != null) {
