@@ -485,7 +485,8 @@ def get_view_units(request, units_queryset, store, limit=0):
         json["meta"] = {"source_lang": tp.project.source_language.code,
                         "source_dir": tp.project.source_language.get_direction(),
                         "target_lang": tp.language.code,
-                        "target_dir": tp.language.get_direction()}
+                        "target_dir": tp.language.get_direction(),
+                        "project_style": tp.project.checkstyle}
 
     # Maybe we are trying to load directly a specific unit, so we have
     # to calculate its page number

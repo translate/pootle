@@ -1721,6 +1721,10 @@
         return;
     }
 
+    if (this.meta.project_style.length > 0) {
+        tmUrl += '&style=' + this.meta.project_style;
+    }
+
     // Always abort previous requests so we only get results for the
     // current unit
     if (this.tmReq != null) {
