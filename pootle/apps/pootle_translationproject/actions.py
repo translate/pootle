@@ -188,6 +188,7 @@ def delete_path_obj(request, path_obj):
 
         return {
             'icon': 'icon-delete-path',
+            'class': 'js-overview-actions-delete-path',
             'href': link,
             'text': text,
         }
