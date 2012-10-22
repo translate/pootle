@@ -1713,6 +1713,7 @@
     var src = this.meta.source_lang,
         tgt = this.meta.target_lang,
         stext = $($("input[id^=id_source_f_]").get(0)).val(),
+        pstyle = this.meta.project_style,
         tmUrl = this.settings.tmUrl + src + "/" + tgt +
           "/unit/?source=" + encodeURIComponent(stext) + "&jsoncallback=?";
 
@@ -1721,7 +1722,7 @@
         return;
     }
 
-    if (this.meta.project_style.length) {
+    if (pstyle.length && pstyle != "standard") {
         tmUrl += '&style=' + this.meta.project_style;
     }
 
