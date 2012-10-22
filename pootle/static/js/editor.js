@@ -319,7 +319,7 @@
         if (PTL.editor.filter == "checks") {
           // if the checks selector is empty (i.e. the 'change' event was not fired
           // because the selection did not change), force the update to populate the selector
-          if ($("#filter-checks").length == 0) {
+          if (!$("#filter-checks").length) {
             PTL.editor.filterStatus();
           }
           $("#filter-checks select [value='" + PTL.editor.checks[0] + "']").attr("selected", "selected");
@@ -1716,12 +1716,12 @@
         tmUrl = this.settings.tmUrl + src + "/" + tgt +
           "/unit/?source=" + encodeURIComponent(stext) + "&jsoncallback=?";
 
-    if (stext.length == 0) {
+    if (!stext.length) {
         // No use in looking up an empty string
         return;
     }
 
-    if (this.meta.project_style.length > 0) {
+    if (this.meta.project_style.length) {
         tmUrl += '&style=' + this.meta.project_style;
     }
 
@@ -1739,7 +1739,7 @@
       success: function (data) {
         var uid = this.callback.slice(6);
 
-        if (uid == PTL.editor.activeUid && data.length > 0) {
+        if (uid == PTL.editor.activeUid && data.length) {
           var filtered = PTL.editor.filterTMResults(data),
               name = gettext("amaGama server"),
               tm = PTL.editor.tmpl.tm($, {data: {meta: PTL.editor.meta,
