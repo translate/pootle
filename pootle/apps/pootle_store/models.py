@@ -1040,8 +1040,11 @@ class Store(models.Model, base.TranslationStore):
             self.save()
 
     def sync(self, update_structure=False, update_translation=False,
-             conservative=True, create=False, profile=None):
+             conservative=True, create=False, profile=None, skip_missing=False):
         """Sync file with translations from DB."""
+        if skip_missing and not self.file.exists():
+            return
+
         if conservative and self.sync_time >= self.get_mtime():
             return
 

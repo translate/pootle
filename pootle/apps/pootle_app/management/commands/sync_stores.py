@@ -28,13 +28,18 @@ class Command(PootleCommand):
     option_list = PootleCommand.option_list + (
         make_option('--overwrite', action='store_true', dest='overwrite', default=False,
                     help="don't just save translations, but overwrite files to reflect state in database"),
+        make_option('--skip-missing', action='store_true', dest='skip_missing', default=False,
+                    help="ignore missing files on disk"),
         )
     help = "Save new translations to disk manually."
 
     def handle_all_stores(self, translation_project, **options):
         overwrite = options.get('overwrite', False)
-        translation_project.sync(conservative=not overwrite)
+        skip_missing = options.get('skip_missing', False)
+        translation_project.sync(conservative=not overwrite, skip_missing=skip_missing)
 
     def handle_store(self, store, **options):
         overwrite = options.get('overwrite', False)
-        store.sync(update_translation=True, conservative=not overwrite, update_structure=overwrite)
+        skip_missing = options.get('skip_missing', False)
+        store.sync(update_translation=True, conservative=not overwrite,
+                   update_structure=overwrite, skip_missing=skip_missing)

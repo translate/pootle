@@ -224,6 +224,9 @@ class TranslationStoreFieldFile(FieldFile):
 
     store = property(_get_store)
 
+    def exists(self):
+        return os.path.exists(self.realpath)
+
     def savestore(self):
         """Saves to temporary file then moves over original file. This
         way we avoid the need for locking."""
