@@ -1712,17 +1712,17 @@
   getTMUnits: function () {
     var src = this.meta.source_lang,
         tgt = this.meta.target_lang,
-        stext = $($("input[id^=id_source_f_]").get(0)).val(),
-        pstyle = this.meta.project_style,
+        sText = $($("input[id^=id_source_f_]").get(0)).val(),
+        pStyle = this.meta.project_style,
         tmUrl = this.settings.tmUrl + src + "/" + tgt +
-          "/unit/?source=" + encodeURIComponent(stext) + "&jsoncallback=?";
+          "/unit/?source=" + encodeURIComponent(sText) + "&jsoncallback=?";
 
-    if (!stext.length) {
+    if (!sText.length) {
         // No use in looking up an empty string
         return;
     }
 
-    if (pstyle.length && pstyle != "standard") {
+    if (pStyle.length && pStyle != "standard") {
         tmUrl += '&style=' + this.meta.project_style;
     }
 
