@@ -187,9 +187,17 @@ def delete_path_obj(request, translation_project, dir_path, filename=None):
                 messages.warning(request, _("Symbolic link hasn't been "
                                             "removed from the filesystem."))
 
-        messages.success(request, _("Files have been deleted."))
+        if directory:
+            messages.success(request, _("Directory and its containing files "
+                                        "have been deleted."))
+        else:
+            messages.success(request, _("File has been deleted."))
     except:
-        messages.error(request, _("Error while trying to delete files."))
+        if directory:
+            messages.error(request, _("Error while trying to delete "
+                                      "directory."))
+        else:
+            messages.error(request, _("Error while trying to delete file."))
 
     language = translation_project.language.code
     project = translation_project.project.code
