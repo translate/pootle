@@ -1870,7 +1870,7 @@ html[dir="rtl"] .overview-description-toggle
 #header-meta
 {
     min-height: 50px;
-    line-height: 50px;
+    line-height: 2.7;
 }
 
 /* Breadcrumbs */
