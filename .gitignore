@@ -39,3 +39,8 @@
 *.swo
 *.swp
 *~
+
+# Ignore stuff from the 'gh-pages' branch
+assets/
+_layouts/
+_site/
