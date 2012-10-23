@@ -116,9 +116,9 @@ on translations that are in database but not yet saved to disk.
 update_stores
 ^^^^^^^^^^^^^
 
-This command is the opposite of *sync_stores*. It will update the strings in
-database to reflect what is on disk, as Pootle will not detect changes in the
-file system on it's own.
+This command is the opposite of :ref:`commands#sync_stores`. It will update the
+strings in database to reflect what is on disk, as Pootle will not detect
+changes in the file system on it's own.
 
 It will also discover and import any new files added to existing languages
 within the projects.
@@ -131,11 +131,11 @@ it from overwriting any existing translation in the database, thus only
 updating new translations and discovering new files and strings.
 
 By default *update_stores* will only update files that appear to have changed
-on disk since the last synchronisation with Pootle. To force all files to
+on disk since the last synchronization with Pootle. To force all files to
 update, specify ``--force``.
 
-.. warning:: If files on the file system are corrupt translations might be
-   deleted from database. Handle with care!
+.. warning:: If files on the file system are corrupt, translations might be
+   deleted from the database. Handle with care!
 
 
 .. _commands#update_from_templates:
@@ -183,8 +183,8 @@ update_from_vcs
 
 .. versionadded:: 2.2
 
-This command updates the specified files from their
-:doc:`../features/version_control` system(s). It supports the parameters
+This command updates the specified files from their :doc:`Version Control
+System(s) <../features/version_control>`. It supports the parameters
 ``--directory``, ``--project``, and ``--language``.
 
 Pootle will take care to avoid version control conflicts, and will handle any
@@ -199,14 +199,14 @@ commit_to_vcs
 
 .. versionadded:: 2.2
 
-This command commits the specified files to their
-:doc:`../features/version_control` system(s). It supports the parameters
+This command commits the specified files to their :doc:`Version Control
+System(s) <../features/version_control>`. It supports the parameters
 ``--directory``, ``--project``, and ``--language``.
 
 A file needs to be up to date, otherwise the commit will fail. Files can be
-updated inside Pootle, or using the update_from_vcs command. This is not done
-automatically, otherwise the merged version of the file will be committed
-without review without anybody knowing.
+updated inside Pootle, or using the :ref:`commands#update_from_vcs` command.
+This is not done automatically, otherwise the merged version of the file will
+be committed without review without anybody knowing.
 
 
 .. _commands#list_languages:
@@ -261,8 +261,8 @@ Strictly speaking *syncdb* is a generic django *manage.py* command that creates
 empty database tables. It has been customized for Pootle to create everything
 required for a bare bones install. This includes database tables, default
 permissions, some default objects used internally by Pootle (like the "default"
-and "nobody" user profiles) and the special Terminology and Templates
-languages.
+and "nobody" user profiles) and the special Terminology and :ref:`Templates
+languages <templates#the_templates_language>`.
 
 If you just run *syncdb* you will have a usable Pootle install but you will
 need to create all languages manually, and you will not have a tutorial project
@@ -283,9 +283,9 @@ initializes several terminology projects, and creates the tutorial project.
 
 *initdb* can only be run after *syncdb*.
 
-.. note:: initdb will not import translations into the database, so the first
-   visit to Pootle after initdb will be very slow. **It is best to run
-   *refresh_stats* immediately after *initdb***.
+.. note:: *initdb* will not import translations into the database, so the first
+   visit to Pootle after *initdb* will be very slow. **It is best to run
+   refresh_stats immediately after initdb**.
 
 
 .. _commands#updatedb:
@@ -311,7 +311,7 @@ Useful Django commands
 changepassword
 ^^^^^^^^^^^^^^
 
- ::
+::
 
     ./manage.py changepassword <username>
 
@@ -359,8 +359,8 @@ The management commands can perform certain batch commands which you might want
 to have executed periodically without user intervention.
 
 For the full details on how to configure cron, read your platform documentation
-(for example ``man crontab``). Here is an example that runs the *refresh_stats*
-command daily at 02:00 AM::
+(for example ``man crontab``). Here is an example that runs the
+:ref:`commands#refresh_stats` command daily at 02:00 AM::
 
     00 02 * * * www-data /var/www/sites/pootle/manage.py refresh_stats
 
@@ -375,4 +375,4 @@ If you are running Pootle from a virtualenv, or if you set any custom
 ``PYTHONPATH`` or similar, you might need to run your management command from a
 bash script that creates the correct environment for your command to run from.
 Call this script then from cron. It shouldn't be necessary to specify the
-settings file for Pootle - it should automatically be detected.
+settings file for Pootle — it should automatically be detected.
