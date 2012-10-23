@@ -26,10 +26,10 @@ YEAR_COPYRIGHT_PLACEHOLDER="YEAR THE PACKAGE'S COPYRIGHT HOLDER"
 PACKAGE_VERSION_PLACEHOLDER="PACKAGE VERSION"
 
 # Filename constants
-DJANGO_POT="locale/pot/LC_MESSAGES/django.po"
-DJANGO_JS_POT="locale/pot/LC_MESSAGES/djangojs.po"
-POOTLE_POT="po/pootle/templates/pootle.pot"
-POOTLE_JS_POT="po/pootle/templates/pootle_js.pot"
+DJANGO_POT="locale/templates/LC_MESSAGES/django.po"
+DJANGO_JS_POT="locale/templates/LC_MESSAGES/djangojs.po"
+POOTLE_POT="locale/templates/pootle.pot"
+POOTLE_JS_POT="locale/templates/pootle_js.pot"
 
 # Header settings
 YEAR=`date +%Y`
@@ -42,8 +42,8 @@ cd $basedir
 verbosity="-v $verbosity"
 mkdir -p locale
 
-./manage.py makemessages $verbosity -e ".py" -e ".txt" -e ".html" -l pot
-./manage.py makemessages $verbosity -d djangojs -l pot
+./manage.py makemessages $verbosity -e ".py" -e ".txt" -e ".html" -l templates
+./manage.py makemessages $verbosity -d djangojs -l templates
 
 # Header replacements
 sed -i "s/$YEAR_COPYRIGHT_PLACEHOLDER/$YEAR $COPYRIGHT_HOLDER/" $DJANGO_POT

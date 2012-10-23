@@ -13,6 +13,9 @@
 # /pootle/dbs/
 /pootle/dbs/*.db
 
+# /pootle/locale/*/LC_MESSAGES/
+/pootle/locale/*/LC_MESSAGES/
+
 # /pootle/static/
 /pootle/static/.webassets-cache/
 /pootle/static/css/*.min.css
@@ -20,9 +23,6 @@
 
 # /pootle/settings/
 /pootle/settings/*-local.conf
-
-# /pootle/mo/
-/pootle/mo/*
 
 # General
 *.bak
