@@ -29,11 +29,10 @@ def translate(pathobj, state=None, check=None, suggestions=False):
     # when the user clicks submit/skip/suggest on a translation
     # unit. But otherwise the store name is the last component of the
     # path name and we don't need to pass the 'store' GET variable.
-    path = pathobj.pootle_path
-    if path.endswith('/'):
-        path += 'translate.html'
+    if pathobj.pootle_path.endswith('/'):
+        path = 'translate.html'
     else:
-        path += '/translate/'
+        path = 'translate/'
 
     if state:
         path += '#filter=%s' % state
