@@ -20,7 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 
-def translate(pathobj, state=None, check=None, suggestions=False):
+def translate(path_obj, state=None, check=None, suggestions=False):
     # In Pootle, URLs ending in translate.html are used when the user
     # translates all files in a directory (for example, if the user is
     # going through all fuzzy translations in a directory). If this is
@@ -29,10 +29,10 @@ def translate(pathobj, state=None, check=None, suggestions=False):
     # when the user clicks submit/skip/suggest on a translation
     # unit. But otherwise the store name is the last component of the
     # path name and we don't need to pass the 'store' GET variable.
-    if pathobj.pootle_path.endswith('/'):
+    if path_obj.is_dir:
         path = 'translate.html'
     else:
-        path = 'translate/'
+        path = '%s/translate/' % (path_obj.name,)
 
     if state:
         path += '#filter=%s' % state
