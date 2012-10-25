@@ -40,6 +40,63 @@ Note since `django-admin.py` is a global command it needs to know where to
 find Pootle via the ``--settings=pootle.settings`` command line option.
 
 
+.. _commands#running:
+
+Running WSGI servers
+--------------------
+
+There are multiple ways to run Pootle, and some of they rely on running WSGI
+servers that can be reverse proxyed to a proper HTTP web server such as nginx
+or lighttpd.
+
+The Translate Toolkit offers a bundled CherryPy server but there are many more
+options such as gunicorn, flup, paste, etc.
+
+
+.. _commands#run_cherrypy:
+
+run_cherrypy
+^^^^^^^^^^^^
+
+.. versionadded:: 2.5
+
+This command runs the CherryPy server bundled with the Translate Toolkit.
+
+Available options:
+
+``--host``
+  The hostname to listen on.
+
+  Default: ``127.0.0.1``.
+
+``--port``
+  The TCP port on which the server should listen for new connections.
+
+  Default: ``8080``.
+
+``--threads``
+  The number of working threads to create.
+
+  Default: ``1``.
+
+``--name``
+  The name of the worker process.
+
+  Default: :func:`socket.gethostname`.
+
+``--queue``
+  Specifies the maximum number of queued connections. This is the the
+  ``backlog`` argument to :func:`socket.listen`.
+
+  Default: ``5``.
+
+``--ssl_certificate``
+  The filename of the server SSL certificate.
+
+``--ssl_privatekey``
+  The filename of the server's private key file.
+
+
 .. _commands#managing_pootle_projects:
 
 Managing Pootle projects

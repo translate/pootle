@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2009-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -20,7 +20,7 @@
 
 import logging
 
-from django.core.management.base import NoArgsCommand
+from django.core.management.base import BaseCommand, NoArgsCommand
 from optparse import make_option
 
 from pootle_translationproject.models import TranslationProject
@@ -144,3 +144,30 @@ class PootleCommand(NoArgsCommand):
                     continue
                 self.do_translation_project(tp, path, **options)
 
+
+class BaseRunCommand(BaseCommand):
+    """Base class to build new server runners.
+
+    Based on code from `django-shoes
+    <https://bitbucket.org/mlzboy/django-shoes/>`_."""
+    hostport_option_list = (
+        make_option('--host', action='store', dest='host', default='127.0.0.1',
+            help='Hostname to listen on.'),
+        make_option('--port', action='store', dest='port', default=8080,
+            type=int, help='The TCP port to listen on.'),
+    )
+
+    option_list = BaseCommand.option_list + hostport_option_list
+
+    def handle(self, *args, **options):
+        return self.serve_forever(*args, **options)
+
+    def get_app(self):
+        from django.contrib.staticfiles.handlers import StaticFilesHandler
+        from django.core.handlers.wsgi import WSGIHandler
+
+        app = StaticFilesHandler(WSGIHandler())
+        return app
+
+    def serve_forever(self, *args, **kwargs):
+        raise NotImplementedError
