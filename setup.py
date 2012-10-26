@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008 Zuza Software Foundation
+# Copyright 2008-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -210,12 +210,6 @@ class PootleBuildMo(DistutilsBuild):
         self.build_mo()
 
 
-class PootleBuild(DistutilsBuild):
-    """make sure build_mo is run when build is run"""
-    def run(self):
-        DistutilsBuild.run(self)
-
-
 class PootleInstall(DistutilsInstall):
     def run(self):
         DistutilsInstall.run(self)
@@ -274,6 +268,6 @@ if __name__ == '__main__':
         install_requires=["translate-toolkit>=1.5.0", "Django>=1.0"],
         platforms=["any"],
         classifiers=classifiers,
-        cmdclass={'install': PootleInstall, 'build': PootleBuild, 'build_mo': PootleBuildMo},
+        cmdclass={'install': PootleInstall, 'build_mo': PootleBuildMo},
         **collect_options()
     )
