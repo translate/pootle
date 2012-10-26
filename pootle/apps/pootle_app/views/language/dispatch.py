@@ -19,6 +19,8 @@
 # along with Pootle; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
+from django.core.urlresolvers import get_script_prefix
+
 
 def translate(path_obj, state=None, check=None, suggestions=False):
     # In Pootle, URLs ending in translate.html are used when the user
@@ -29,10 +31,11 @@ def translate(path_obj, state=None, check=None, suggestions=False):
     # when the user clicks submit/skip/suggest on a translation
     # unit. But otherwise the store name is the last component of the
     # path name and we don't need to pass the 'store' GET variable.
-    if path_obj.is_dir:
-        path = 'translate.html'
+    path = "%s%s" % (get_script_prefix(), path_obj.pootle_path[1:])
+    if path.endswith('/'):
+        path += 'translate.html'
     else:
-        path = '%s/translate/' % (path_obj.name,)
+        path += '/translate/'
 
     if state:
         path += '#filter=%s' % state
