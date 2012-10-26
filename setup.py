@@ -47,11 +47,6 @@ classifiers = [
     "Operating System :: Microsoft :: Windows",
     "Operating System :: Unix",
 ]
-pootle_description = "An online collaborative localization tool."
-pootle_description_long = """Pootle is used to create program translations.
-
-It uses the Translate Toolkit to get access to translation files and therefore
-can edit a variety of files (including PO and XLIFF files)."""
 
 INSTALL_CONFIG_DIR = '/etc/pootle'
 INSTALL_DATA_DIR = 'share/pootle'
@@ -259,11 +254,11 @@ if __name__ == '__main__':
         name="Pootle",
         version=pootle_version,
         license="GNU General Public License (GPL)",
-        description=pootle_description,
-        long_description=pootle_description_long,
+        description="An online collaborative localization tool.",
+        long_description=open('README.rst').read(),
         author="Translate.org.za",
-        author_email="translate-devel@lists.sourceforge.net",
-        url="http://translate.sourceforge.net/wiki/pootle/index",
+        author_email="dev@translate.org.za",
+        url="http://pootle.translatehouse.org",
         download_url="http://sourceforge.net/projects/translate/files/Pootle/",
         install_requires=["translate-toolkit>=1.5.0", "Django>=1.0"],
         platforms=["any"],
