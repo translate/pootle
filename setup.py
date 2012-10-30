@@ -68,7 +68,7 @@ def collect_options():
     packages = ['pootle'] + ['pootle.' + pkg for pkg in find_packages('pootle')] + \
             find_packages('pootle/apps')
     package_data = {
-        '': ['*.html', '*.txt', '*.xml', '*.css', '*.js'],
+        '': ['*.html', '*.txt', '*.css', '*.js'],
         'pootle_app': expand_tree_globs('apps/pootle_app', ['templates'], ['*.html']),
         'pootle_language': expand_tree_globs('apps/pootle_language', ['templates'], ['*.html']),
         'pootle_notifications': expand_tree_globs('apps/pootle_notifications', ['templates'], ['*.html']),
