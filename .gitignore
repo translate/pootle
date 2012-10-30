@@ -44,3 +44,7 @@
 assets/
 _layouts/
 _site/
+
+# Build stuff
+dist/
+Pootle.egg-info/
