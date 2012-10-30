@@ -24,7 +24,8 @@ import os.path as path
 import re
 from distutils.command.build import build as DistutilsBuild
 from distutils.command.install import install as DistutilsInstall
-from distutils.core import setup
+
+from setuptools import find_packages, setup
 
 from pootle.__version__ import sver as pootle_version
 
@@ -123,31 +124,6 @@ def expand_tree_globs(root, subdirs, globs):
                         dirglobs.append(path.join(curdir, d, g))
     return dirglobs
 
-# The function below was shamelessly copied from setuptools
-def find_packages(where='.', exclude=()):
-    """Return a list all Python packages found within directory 'where'
-
-    'where' should be supplied as a "cross-platform" (i.e. URL-style) path; it
-    will be converted to the appropriate local path syntax.  'exclude' is a
-    sequence of package names to exclude; '*' can be used as a wildcard in the
-    names, such that 'foo.*' will exclude all subpackages of 'foo' (but not
-    'foo' itself).
-    """
-    from distutils.util import convert_path
-    out = []
-    stack = [(convert_path(where), '')]
-    while stack:
-        where, prefix = stack.pop(0)
-        for name in os.listdir(where):
-            fn = os.path.join(where, name)
-            if ('.' not in name and os.path.isdir(fn) and
-                os.path.isfile(os.path.join(fn, '__init__.py'))):
-                out.append(prefix+name)
-                stack.append((fn, prefix+name+'.'))
-    for pat in list(exclude)+['ez_setup']:
-        from fnmatch import fnmatchcase
-        out = [item for item in out if not fnmatchcase(item, pat)]
-    return out
 
 def list_tree(target_base, root):
     tree = []
