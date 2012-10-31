@@ -14,5 +14,5 @@ much work is involved, and allows for more accurate time estimation.
 
 Pootle also assists in translation quality assurance, by performing several
 :doc:`checks` on the translations which can help in review. These quality
-checks correspond to the :doc:`quality checks <toolkit:pofilter_tests>`
-performed by pofilter from the Translate Toolkit.
+checks correspond to the :ref:`quality checks <toolkit:pofilter_tests>`
+performed by :ref:`pofilter <toolkit:pofilter>` from the Translate Toolkit.

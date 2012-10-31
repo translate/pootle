@@ -29,7 +29,7 @@ Downloading
 From the Translate tab in the translation project page users can download files
 for offline translations.
 
-Files are available in the original format and in :doc:`toolkit:xliff` format.
+Files are available in the original format and in :ref:`toolkit:xliff` format.
 Bilingual formats are suitable for offline translation, but
 :ref:`formats#monolingual` should be treated as just an export. If you want to
 translate files offline from a monolingual project, it is best to download the
@@ -88,7 +88,7 @@ uploaded file with an existing file based on filename.
 
 In case a file got renamed or you want to merge translations from a different
 file (for example a translation compendium created by
-:doc:`toolkit:pocompendium`) use the *Upload to* field to specify which
+:ref:`toolkit:pocompendium`) use the *Upload to* field to specify which
 existing file to merge with.
 
 Users with admin permissions can introduce new files by just uploading them.

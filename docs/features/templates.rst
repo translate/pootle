@@ -38,7 +38,7 @@ Starting a new translation
 When adding a new language to a project, Pootle will first scan the file system
 and look for translation files for that language. If none are present a fresh
 copy will be generated based on the templates files (in a manner similar to
-:doc:`<toolkit:pot2po>`).
+:ref:`<toolkit:pot2po>`).
 
 
 .. _templates#updating_from_templates:

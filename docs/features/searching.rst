@@ -55,7 +55,7 @@ colour.
 Backend
 ^^^^^^^
 
-The basic searching uses :doc:`pogrep <toolkit:pogrep>` which will look for the
+The basic searching uses :ref:`pogrep <toolkit:pogrep>` which will look for the
 substring in the source and target text. It supports Unicode normalization.
 Alternatively, a Pootle server might be installed with an :doc:`indexing engine
 <../server/indexing>` (PyLucene or Xapian) to speed up searching. Search

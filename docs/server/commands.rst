@@ -202,7 +202,7 @@ update_from_templates
 
 This updates languages to match what is present in the translation templates.
 This command is essentially an interface to the
-Translate Toolkit command :doc:`pot2po <toolkit:pot2po>` with special Pootle
+Translate Toolkit command :ref:`pot2po <toolkit:pot2po>` with special Pootle
 specific routines to update the database and file system to reflect the
 latest version of translation templates for each language in a project.
 
