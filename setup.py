@@ -56,73 +56,6 @@ INSTALL_WORKING_DIR = '/var/lib/pootle'
 # HELPER FUNCTIONS
 ###############################################################################
 
-def collect_options():
-    data_files = [
-        (INSTALL_CONFIG_DIR, ['localsettings.py']),
-        (INSTALL_DOC_DIR, ['wsgi.py', 'ChangeLog', 'COPYING', 'README', 'INSTALL']),
-        (INSTALL_WORKING_DIR + '/dbs', []), # Create the empty "dbs" dir
-    ] + list_tree(INSTALL_DATA_DIR, 'templates') + list_tree(INSTALL_DATA_DIR, 'static') + \
-        list_tree(INSTALL_WORKING_DIR, 'po') + list_tree(INSTALL_DATA_DIR, 'mo')
-
-    packages = ['pootle'] + ['pootle.' + pkg for pkg in find_packages('pootle')] + \
-            find_packages('pootle/apps')
-    package_data = {
-        '': ['*.html', '*.txt', '*.css', '*.js'],
-        'pootle_app': expand_tree_globs('apps/pootle_app', ['templates'], ['*.html']),
-        'pootle_language': expand_tree_globs('apps/pootle_language', ['templates'], ['*.html']),
-        'pootle_notifications': expand_tree_globs('apps/pootle_notifications', ['templates'], ['*.html']),
-        'pootle_project': expand_tree_globs('apps/pootle_project', ['templates'], ['*.html']),
-        'pootle_store': expand_tree_globs('apps/pootle_store', ['templates'], ['*.html']),
-        'pootle_terminology': expand_tree_globs('apps/pootle_terminology', ['templates'], ['*.html']),
-        'pootle_translationproject': expand_tree_globs('apps/pootle_translationproject', ['templates'], ['*.html']),
-        'djblets': expand_tree_globs('apps/djblets', ['siteconfig', 'util'], ['*.html']),
-    }
-    package_dir = {
-        'pootle_app': 'apps/pootle_app',
-        'pootle_autonotices': 'apps/pootle_autonotices',
-        'pootle_language': 'apps/pootle_language',
-        'pootle_misc': 'apps/pootle_misc',
-        'pootle_notifications': 'apps/pootle_notifications',
-        'pootle_profile': 'apps/pootle_profile',
-        'pootle_project': 'apps/pootle_project',
-        'pootle_statistics': 'apps/pootle_statistics',
-        'pootle_store': 'apps/pootle_store',
-        'pootle_terminology': 'apps/pootle_terminology',
-        'pootle_translationproject': 'apps/pootle_translationproject',
-        'registration': 'apps/registration',
-        'contact_form_i18n': 'apps/contact_form_i18n',
-        'profiles': 'apps/profiles',
-        'djblets': 'apps/djblets',
-    }
-    scripts = ['updatetm', 'PootleServer']
-    options = {
-        'data_files': data_files,
-        'packages': packages,
-        'package_data': package_data,
-        'package_dir': package_dir,
-        'scripts': scripts,
-    }
-    return options
-
-def expand_tree_globs(root, subdirs, globs):
-    if root.endswith('/'):
-        root = root[:-1]
-
-    dirglobs = []
-    for subdir in subdirs:
-        for g in globs:
-            if glob.glob(path.join(root, subdir, g)):
-                dirglobs.append(path.join(subdir, g))
-
-        for dirpath, dirs, files in os.walk(path.join(root, subdir)):
-            curdir = dirpath[len(root)+1:]
-            for d in dirs:
-                for g in globs:
-                    if glob.glob(path.join(root, curdir, d, g)):
-                        dirglobs.append(path.join(curdir, d, g))
-    return dirglobs
-
-
 def list_tree(target_base, root):
     tree = []
     headlen = -1
@@ -257,6 +190,18 @@ if __name__ == '__main__':
 
         platforms=["any"],
         classifiers=classifiers,
-        cmdclass={'install': PootleInstall, 'build_mo': PootleBuildMo},
-        **collect_options()
+        zip_safe=False,
+        packages = find_packages(exclude=['deploy*']),
+        include_package_data = True,
+        data_files = [
+            (os.path.join(INSTALL_WORKING_DIR, 'dbs'), []),
+            (os.path.join(INSTALL_WORKING_DIR, 'repos'), []),
+        ] + list_tree(INSTALL_WORKING_DIR, 'po') +
+            list_tree(INSTALL_DATA_DIR, 'templates') +
+            list_tree(INSTALL_DATA_DIR, 'static'),
+
+        cmdclass={
+            'install': PootleInstall,
+            'build_mo': PootleBuildMo
+        },
     )
