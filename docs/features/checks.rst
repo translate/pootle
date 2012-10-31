@@ -4,7 +4,7 @@ Quality checks
 ==============
 
 Pootle provides a powerful way of reviewing translations for quality. It
-exposes most of the :doc:`pofilter tests <toolkit:pofilter_tests>` that can
+exposes most of the :ref:`pofilter tests <toolkit:pofilter_tests>` that can
 test for several issues that can affect the quality of your translations.
 
 If Pootle indicates a possible problem with a translation, it doesn't mean that
@@ -17,10 +17,10 @@ To review the quality checks you need to have translation rights for the
 project. To find the results, click on the "Review" tab. Clicking on the name
 of a test will step you through the translations that fail the test.
 
-To understand the meaning of each test, Pootle displays the running tests on
+To understand the meaning of each test, Pootle displays the failing tests on
 the top-right corner of the translation page with a link to the online
 documentation. You can also read the detailed descriptions of the
-:doc:`pofilter tests <toolkit:pofilter_tests>`.
+:ref:`pofilter tests <toolkit:test_description>`.
 
 
 .. _checks#overriding_quality_checks:
