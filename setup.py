@@ -169,45 +169,41 @@ class PootleInstall(DistutilsInstall):
         open(settings_path, 'w').write(''.join(lines))
 
 
-###############################################################################
-# MAIN
-###############################################################################
-if __name__ == '__main__':
-    setup(
-        name="Pootle",
-        version=pootle_version,
+setup(
+    name="Pootle",
+    version=pootle_version,
 
-        description="An online collaborative localization tool.",
-        long_description=open(
-            os.path.join(os.path.dirname(__file__), 'README.rst')
-        ).read(),
+    description="An online collaborative localization tool.",
+    long_description=open(
+        os.path.join(os.path.dirname(__file__), 'README.rst')
+    ).read(),
 
-        author="Translate.org.za",
-        author_email="dev@translate.org.za",
-        license="GNU General Public License (GPL)",
-        url="http://pootle.translatehouse.org",
-        download_url="http://sourceforge.net/projects/translate/files/Pootle/",
+    author="Translate.org.za",
+    author_email="dev@translate.org.za",
+    license="GNU General Public License (GPL)",
+    url="http://pootle.translatehouse.org",
+    download_url="http://sourceforge.net/projects/translate/files/Pootle/",
 
-        install_requires=parse_requirements('requirements/base.txt'),
-        # Remove this once Translate Toolkit is available on PyPi
-        dependency_links=[
-            'http://github.com/translate/translate/tarball/master#egg=translate-1.10'
-        ],
+    install_requires=parse_requirements('requirements/base.txt'),
+    # Remove this once Translate Toolkit is available on PyPi
+    dependency_links=[
+        'http://github.com/translate/translate/tarball/master#egg=translate-1.10'
+    ],
 
-        platforms=["any"],
-        classifiers=classifiers,
-        zip_safe=False,
-        packages = find_packages(exclude=['deploy*']),
-        include_package_data = True,
-        data_files = [
-            (os.path.join(INSTALL_WORKING_DIR, 'dbs'), []),
-            (os.path.join(INSTALL_WORKING_DIR, 'repos'), []),
-        ] + list_tree(INSTALL_WORKING_DIR, 'po') +
-            list_tree(INSTALL_DATA_DIR, 'templates') +
-            list_tree(INSTALL_DATA_DIR, 'static'),
+    platforms=["any"],
+    classifiers=classifiers,
+    zip_safe=False,
+    packages = find_packages(exclude=['deploy*']),
+    include_package_data = True,
+    data_files = [
+        (os.path.join(INSTALL_WORKING_DIR, 'dbs'), []),
+        (os.path.join(INSTALL_WORKING_DIR, 'repos'), []),
+    ] + list_tree(INSTALL_WORKING_DIR, 'po') +
+        list_tree(INSTALL_DATA_DIR, 'templates') +
+        list_tree(INSTALL_DATA_DIR, 'static'),
 
-        cmdclass={
-            'install': PootleInstall,
-            'build_mo': PootleBuildMo
-        },
-    )
+    cmdclass={
+        'install': PootleInstall,
+        'build_mo': PootleBuildMo
+    },
+)
