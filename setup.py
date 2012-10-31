@@ -176,7 +176,7 @@ if __name__ == '__main__':
     setup(
         name="Pootle",
         version=pootle_version,
-        license="GNU General Public License (GPL)",
+
         description="An online collaborative localization tool.",
         long_description=open(
             os.path.join(os.path.dirname(__file__), 'README.rst')
@@ -184,6 +184,7 @@ if __name__ == '__main__':
 
         author="Translate.org.za",
         author_email="dev@translate.org.za",
+        license="GNU General Public License (GPL)",
         url="http://pootle.translatehouse.org",
         download_url="http://sourceforge.net/projects/translate/files/Pootle/",
 
