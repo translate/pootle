@@ -56,7 +56,7 @@
           <ul class="checks">
           {% for check in unit.get_qualitychecks.iterator %}
           <li class="check">
-            <a lang="en" href="http://translate.sourceforge.net/wiki/toolkit/pofilter_tests#{{ check.name }}" target="_blank">{{ check.display_name }}</a>
+            <a lang="en" href="http://docs.translatehouse.org/projects/translate-toolkit/en/latest/commands/pofilter_tests.html#{{ check.name }}" target="_blank">{{ check.display_name }}</a>
             {% if canreview %}
             <a title="{% trans "Remove quality check" %}" class="js-reject-check"
               data-check-id="{{ check.id }}"><i class="icon-block.png"></i></a>
