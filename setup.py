@@ -49,9 +49,7 @@ classifiers = [
     "Operating System :: Unix",
 ]
 
-INSTALL_CONFIG_DIR = '/etc/pootle'
 INSTALL_DATA_DIR = 'share/pootle'
-INSTALL_DOC_DIR = 'share/doc/pootle'
 INSTALL_WORKING_DIR = '/var/lib/pootle'
 
 ###############################################################################
@@ -202,44 +200,38 @@ class PootleBuildMo(DistutilsBuild):
 
 
 class PootleInstall(DistutilsInstall):
+
     def run(self):
         DistutilsInstall.run(self)
-        self.update_install_dirs_py()
+        self.update_settings_dirs()
 
-    def update_install_dirs_py(self):
-        # Get the right target location of install_dirs.py, depending on
+    def update_settings_dirs(self):
+        # Get the right target location of settings.py, depending on
         # whether --root or --prefix was specified
-        install_dirs_py_path = path.abspath(path.join(self.install_lib, 'pootle', 'install_dirs.py'))
+        settings_path = path.abspath(os.path.join(self.install_lib, 'pootle',
+                                                  'settings.py'))
 
-        if not path.isfile(install_dirs_py_path):
-            raise Exception('install_dirs.py file should exist, but does not. o_O (%s)' % (install_dirs_py_path))
-        conf_dir = path.abspath(path.join(self.install_base, INSTALL_CONFIG_DIR))
-        data_dir = path.abspath(path.join(self.install_base, INSTALL_DATA_DIR))
-        work_dir = path.abspath(path.join(self.install_base, INSTALL_WORKING_DIR))
+        if not path.isfile(settings_path):
+            raise Exception(
+                'settings.py file should exist, but does not (%s)' % (settings_path)
+            )
 
-        #if self.root:
-        #    # We use distutils.util.change_root, because INSTALL_CONFIG_DIR
-        #    # and INSTALL_WORKING_DIR are absolute paths and stays that way when
-        #    # used with os.path.join() as above. This also means that data_dir
-        #    # should be changed here if the value # of INSTALL_DATA_DIR becomes
-        #    # an absolute path.
-        #    conf_dir = util.change_root(self.root, INSTALL_CONFIG_DIR)
-        #    work_dir = util.change_root(self.root, INSTALL_WORKING_DIR)
+        data_dir = path.abspath(os.path.join(self.install_base,
+                                             INSTALL_DATA_DIR))
+        work_dir = path.abspath(os.path.join(self.install_base,
+                                             INSTALL_WORKING_DIR))
 
         # Replace directory variables in settings.py to reflect the current installation
-        lines = open(install_dirs_py_path).readlines()
-        config_re = re.compile(r'^CONFIG_DIR\s*=')
+        lines = open(settings_path).readlines()
         datadir_re = re.compile(r'^DATA_DIR\s*=')
         workdir_re = re.compile(r'^WORKING_DIR\s*=')
 
         for i in range(len(lines)):
-            if config_re.match(lines[i]):
-                lines[i] = "CONFIG_DIR = '%s'\n" % (conf_dir)
-            elif datadir_re.match(lines[i]):
+            if datadir_re.match(lines[i]):
                 lines[i] = "DATA_DIR = '%s'\n" % (data_dir)
             elif workdir_re.match(lines[i]):
                 lines[i] = "WORKING_DIR = '%s'\n" % (work_dir)
-        open(install_dirs_py_path, 'w').write(''.join(lines))
+        open(settings_path, 'w').write(''.join(lines))
 
 
 ###############################################################################
