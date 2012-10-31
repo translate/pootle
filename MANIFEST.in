@@ -1,15 +1,9 @@
-graft html
-graft local_apps/pootle_app/templates
-graft local_apps/pootle_language/templates
-graft local_apps/pootle_notifications/templates
-graft local_apps/pootle_project/templates
-graft local_apps/pootle_store/templates
-graft local_apps/pootle_terminology/templates
-graft local_apps/pootle_translationproject/templates
-graft po
-graft mo
-graft templates
-include dbs/README
-include COPYING CREDITS ChangeLog INSTALL
-include *.py
-include MANIFEST.in
+include CREDITS INSTALL README.rst
+include requirements/base.txt
+recursive-include pootle/static *
+recursive-include pootle/templates *
+recursive-include pootle/apps/*/templates *
+global-exclude tests.py
+exclude pootle/strings.py
+exclude pootle/static/generate_sprite.sh
+prune pootle/static/images/sprite/
