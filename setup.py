@@ -178,7 +178,10 @@ if __name__ == '__main__':
         version=pootle_version,
         license="GNU General Public License (GPL)",
         description="An online collaborative localization tool.",
-        long_description=open('README.rst').read(),
+        long_description=open(
+            os.path.join(os.path.dirname(__file__), 'README.rst')
+        ).read(),
+
         author="Translate.org.za",
         author_email="dev@translate.org.za",
         url="http://pootle.translatehouse.org",
