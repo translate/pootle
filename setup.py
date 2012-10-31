@@ -138,6 +138,26 @@ def list_tree(target_base, root):
     return tree
 
 
+def parse_requirements(file_name):
+    """Parses a pip requirements file and returns a list of packages.
+
+    Use the result of this function in the ``install_requires`` field.
+    Copied from cburgmer/pdfserver.
+    """
+    requirements = []
+    for line in open(file_name, 'r').read().split('\n'):
+        if re.match(r'(\s*#)|(\s*$)', line):
+            continue
+        if re.match(r'\s*-e\s+', line):
+            requirements.append(re.sub(r'\s*-e\s+.*#egg=(.*)$', r'\1', line))
+        elif re.match(r'\s*-f\s+', line):
+            pass
+        else:
+            requirements.append(line)
+
+    return requirements
+
+
 ###############################################################################
 # CLASSES
 ###############################################################################
@@ -236,7 +256,13 @@ if __name__ == '__main__':
         author_email="dev@translate.org.za",
         url="http://pootle.translatehouse.org",
         download_url="http://sourceforge.net/projects/translate/files/Pootle/",
-        install_requires=["translate-toolkit>=1.5.0", "Django>=1.0"],
+
+        install_requires=parse_requirements('requirements/base.txt'),
+        # Remove this once Translate Toolkit is available on PyPi
+        dependency_links=[
+            'http://github.com/translate/translate/tarball/master#egg=translate-1.10'
+        ],
+
         platforms=["any"],
         classifiers=classifiers,
         cmdclass={'install': PootleInstall, 'build_mo': PootleBuildMo},
