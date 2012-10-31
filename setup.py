@@ -20,8 +20,8 @@
 
 import glob
 import os
-import os.path as path
 import re
+
 from distutils.command.build import build as DistutilsBuild
 from distutils.command.install import install as DistutilsInstall
 
@@ -63,8 +63,8 @@ def list_tree(target_base, root):
         if headlen < 0:
             headlen = len(dirpath) - len(root)
         dirpath = dirpath[headlen:]
-        tree.append((path.join(target_base, dirpath),
-                     [path.join(dirpath, f) for f in files]))
+        tree.append((os.path.join(target_base, dirpath),
+                     [os.path.join(dirpath, f) for f in files]))
 
     return tree
 
@@ -95,6 +95,7 @@ def parse_requirements(file_name):
 
 
 class PootleBuildMo(DistutilsBuild):
+
     def build_mo(self):
         """Compile .mo files from available .po files"""
         import subprocess
@@ -102,17 +103,18 @@ class PootleBuildMo(DistutilsBuild):
         from translate.storage import factory
 
         print "Preparing localization files"
-        pootle_po = glob.glob(path.join('pootle', 'locale', '*', 'pootle.po'))
-        pootle_js_po = glob.glob(path.join('pootle', 'locale', '*',
+        pootle_po = glob.glob(os.path.join('pootle', 'locale', '*',
+                                           'pootle.po'))
+        pootle_js_po = glob.glob(os.path.join('pootle', 'locale', '*',
                                            'pootle_js.po'))
         for po_filename in pootle_po + pootle_js_po:
-            lang = path.split(path.split(po_filename)[0])[1]
-            lang_dir = path.join('pootle', 'locale', lang, 'LC_MESSAGES')
+            lang = os.path.split(os.path.split(po_filename)[0])[1]
+            lang_dir = os.path.join('pootle', 'locale', lang, 'LC_MESSAGES')
 
             if po_filename in pootle_po:
-                mo_filename = path.join(lang_dir, 'django.mo')
+                mo_filename = os.path.join(lang_dir, 'django.mo')
             else:
-                mo_filename = path.join(lang_dir, 'djangojs.mo')
+                mo_filename = os.path.join(lang_dir, 'djangojs.mo')
 
             try:
                 store = factory.getobject(po_filename)
@@ -121,7 +123,7 @@ class PootleBuildMo(DistutilsBuild):
                 print "skipping %s, probably invalid header: %s" % (lang, e)
 
             try:
-                if not path.exists(lang_dir):
+                if not os.path.exists(lang_dir):
                     os.makedirs(lang_dir)
                 print "compiling %s language" % lang
                 subprocess.Popen(['msgfmt', '-c', '--strict', '-o', mo_filename, po_filename])
@@ -141,17 +143,17 @@ class PootleInstall(DistutilsInstall):
     def update_settings_dirs(self):
         # Get the right target location of settings.py, depending on
         # whether --root or --prefix was specified
-        settings_path = path.abspath(os.path.join(self.install_lib, 'pootle',
+        settings_path = os.path.abspath(os.path.join(self.install_lib, 'pootle',
                                                   'settings.py'))
 
-        if not path.isfile(settings_path):
+        if not os.path.isfile(settings_path):
             raise Exception(
                 'settings.py file should exist, but does not (%s)' % (settings_path)
             )
 
-        data_dir = path.abspath(os.path.join(self.install_base,
+        data_dir = os.path.abspath(os.path.join(self.install_base,
                                              INSTALL_DATA_DIR))
-        work_dir = path.abspath(os.path.join(self.install_base,
+        work_dir = os.path.abspath(os.path.join(self.install_base,
                                              INSTALL_WORKING_DIR))
 
         # Replace directory variables in settings.py to reflect the current installation
