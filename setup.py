@@ -23,7 +23,6 @@ import os
 import re
 
 from distutils.command.build import build as DistutilsBuild
-from distutils.command.install import install as DistutilsInstall
 
 from setuptools import find_packages, setup
 
@@ -49,23 +48,9 @@ classifiers = [
     "Operating System :: Unix",
 ]
 
-INSTALL_WORKING_DIR = '/var/lib/pootle'
-
 ###############################################################################
 # HELPER FUNCTIONS
 ###############################################################################
-
-def list_tree(target_base, root):
-    tree = []
-    headlen = -1
-    for dirpath, dirs, files in os.walk(root):
-        if headlen < 0:
-            headlen = len(dirpath) - len(root)
-        dirpath = dirpath[headlen:]
-        tree.append((os.path.join(target_base, dirpath),
-                     [os.path.join(dirpath, f) for f in files]))
-
-    return tree
 
 
 def parse_requirements(file_name):
@@ -133,36 +118,6 @@ class PootleBuildMo(DistutilsBuild):
         self.build_mo()
 
 
-class PootleInstall(DistutilsInstall):
-
-    def run(self):
-        DistutilsInstall.run(self)
-        self.update_settings_dirs()
-
-    def update_settings_dirs(self):
-        # Get the right target location of settings.py, depending on
-        # whether --root or --prefix was specified
-        settings_path = os.path.abspath(os.path.join(self.install_lib, 'pootle',
-                                                  'settings.py'))
-
-        if not os.path.isfile(settings_path):
-            raise Exception(
-                'settings.py file should exist, but does not (%s)' % (settings_path)
-            )
-
-        work_dir = os.path.abspath(os.path.join(self.install_base,
-                                             INSTALL_WORKING_DIR))
-
-        # Replace directory variables in settings.py to reflect the current installation
-        lines = open(settings_path).readlines()
-        workdir_re = re.compile(r'^WORKING_DIR\s*=')
-
-        for i in range(len(lines)):
-            if workdir_re.match(lines[i]):
-                lines[i] = "WORKING_DIR = '%s'\n" % (work_dir)
-        open(settings_path, 'w').write(''.join(lines))
-
-
 setup(
     name="Pootle",
     version=pootle_version,
@@ -189,15 +144,8 @@ setup(
     zip_safe=False,
     packages = find_packages(exclude=['deploy*']),
     include_package_data = True,
-    data_files = [
-        (os.path.join(INSTALL_WORKING_DIR, 'dbs'), []),
-        (os.path.join(INSTALL_WORKING_DIR, 'repos'), []),
-    ] + list_tree(INSTALL_WORKING_DIR, 'po') +
-        list_tree(INSTALL_DATA_DIR, 'templates') +
-        list_tree(INSTALL_DATA_DIR, 'static'),
 
     cmdclass={
-        'install': PootleInstall,
         'build_mo': PootleBuildMo
     },
 )
