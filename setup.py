@@ -49,7 +49,6 @@ classifiers = [
     "Operating System :: Unix",
 ]
 
-INSTALL_DATA_DIR = 'share/pootle'
 INSTALL_WORKING_DIR = '/var/lib/pootle'
 
 ###############################################################################
@@ -151,20 +150,15 @@ class PootleInstall(DistutilsInstall):
                 'settings.py file should exist, but does not (%s)' % (settings_path)
             )
 
-        data_dir = os.path.abspath(os.path.join(self.install_base,
-                                             INSTALL_DATA_DIR))
         work_dir = os.path.abspath(os.path.join(self.install_base,
                                              INSTALL_WORKING_DIR))
 
         # Replace directory variables in settings.py to reflect the current installation
         lines = open(settings_path).readlines()
-        datadir_re = re.compile(r'^DATA_DIR\s*=')
         workdir_re = re.compile(r'^WORKING_DIR\s*=')
 
         for i in range(len(lines)):
-            if datadir_re.match(lines[i]):
-                lines[i] = "DATA_DIR = '%s'\n" % (data_dir)
-            elif workdir_re.match(lines[i]):
+            if workdir_re.match(lines[i]):
                 lines[i] = "WORKING_DIR = '%s'\n" % (work_dir)
         open(settings_path, 'w').write(''.join(lines))
 
