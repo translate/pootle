@@ -131,6 +131,11 @@ setup(
     packages=find_packages(exclude=['deploy*']),
     include_package_data=True,
 
+    entry_points={
+        'console_scripts': [
+            'pootle = pootle.manage:main',
+        ],
+    },
     cmdclass={
         'build_mo': PootleBuildMo
     },
