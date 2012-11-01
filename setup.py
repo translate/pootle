@@ -29,30 +29,6 @@ from setuptools import find_packages, setup
 from pootle.__version__ import sver as pootle_version
 
 
-###############################################################################
-# CONSTANTS
-###############################################################################
-
-classifiers = [
-    "Development Status :: 5 - Production/Stable",
-    "Environment :: Web Environment",
-    "Intended Audience :: Developers",
-    "Intended Audience :: End Users/Desktop",
-    "Intended Audience :: Information Technology",
-    "License :: OSI Approved :: GNU General Public License (GPL)",
-    "Programming Language :: Python",
-    "Topic :: Software Development :: Localization",
-    "Topic :: Text Processing :: Linguistic"
-    "Operating System :: OS Independent",
-    "Operating System :: Microsoft :: Windows",
-    "Operating System :: Unix",
-]
-
-###############################################################################
-# HELPER FUNCTIONS
-###############################################################################
-
-
 def parse_requirements(file_name):
     """Parses a pip requirements file and returns a list of packages.
 
@@ -71,11 +47,6 @@ def parse_requirements(file_name):
             requirements.append(line)
 
     return requirements
-
-
-###############################################################################
-# CLASSES
-###############################################################################
 
 
 class PootleBuildMo(DistutilsBuild):
@@ -140,7 +111,20 @@ setup(
     ],
 
     platforms=["any"],
-    classifiers=classifiers,
+    classifiers=[
+        "Development Status :: 5 - Production/Stable",
+        "Environment :: Web Environment",
+        "Intended Audience :: Developers",
+        "Intended Audience :: End Users/Desktop",
+        "Intended Audience :: Information Technology",
+        "License :: OSI Approved :: GNU General Public License (GPL)",
+        "Programming Language :: Python",
+        "Topic :: Software Development :: Localization",
+        "Topic :: Text Processing :: Linguistic"
+        "Operating System :: OS Independent",
+        "Operating System :: Microsoft :: Windows",
+        "Operating System :: Unix",
+    ],
     zip_safe=False,
     packages=find_packages(exclude=['deploy*']),
     include_package_data=True,
