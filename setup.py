@@ -114,16 +114,18 @@ setup(
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Environment :: Web Environment",
+        "Framework :: Django",
         "Intended Audience :: Developers",
         "Intended Audience :: End Users/Desktop",
         "Intended Audience :: Information Technology",
         "License :: OSI Approved :: GNU General Public License (GPL)",
-        "Programming Language :: Python",
-        "Topic :: Software Development :: Localization",
-        "Topic :: Text Processing :: Linguistic"
         "Operating System :: OS Independent",
         "Operating System :: Microsoft :: Windows",
         "Operating System :: Unix",
+        "Programming Language :: JavaScript",
+        "Programming Language :: Python",
+        "Topic :: Software Development :: Localization",
+        "Topic :: Text Processing :: Linguistic"
     ],
     zip_safe=False,
     packages=find_packages(exclude=['deploy*']),
