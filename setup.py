@@ -142,8 +142,8 @@ setup(
     platforms=["any"],
     classifiers=classifiers,
     zip_safe=False,
-    packages = find_packages(exclude=['deploy*']),
-    include_package_data = True,
+    packages=find_packages(exclude=['deploy*']),
+    include_package_data=True,
 
     cmdclass={
         'build_mo': PootleBuildMo
