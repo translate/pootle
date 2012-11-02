@@ -59,7 +59,7 @@
             <a lang="en" href="http://docs.translatehouse.org/projects/translate-toolkit/en/latest/commands/pofilter_tests.html#{{ check.name }}" target="_blank">{{ check.display_name }}</a>
             {% if canreview %}
             <a title="{% trans "Remove quality check" %}" class="js-reject-check"
-              data-check-id="{{ check.id }}"><i class="icon-block.png"></i></a>
+              data-check-id="{{ check.id }}"><i class="icon-block"></i></a>
             {% endif %}
           </li>
           {% endfor %}
@@ -213,12 +213,12 @@
               {% if canreview %}
               <a accesskey="a" class="suggestion-action js-suggestion-accept"
                 data-sugg-id="{{ sugg.id }}">
-                <i class="icon-accept.png" dir="{% locale_dir %}"
+                <i class="icon-accept" dir="{% locale_dir %}"
                   title="{% trans 'Accept suggestion' %}"></i>
               </a>
               <a accesskey="r" class="suggestion-action js-suggestion-reject"
                 data-sugg-id="{{ sugg.id }}">
-                <i class="icon-reject.png" dir="{% locale_dir %}"
+                <i class="icon-reject" dir="{% locale_dir %}"
                   title="{% trans 'Reject suggestion' %}"></i>
               </a>
               {% else %}
