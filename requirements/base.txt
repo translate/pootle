@@ -5,6 +5,9 @@ django-voting
 South
 webassets
 
+# Required by webassets, isn't shipped in Python < 2.7
+argparse
+
 # Libraries
 cssmin
 lxml>=2.1.4
