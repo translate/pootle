@@ -10,5 +10,4 @@ recursive-include pootle/templates *
 recursive-include pootle/apps/*/templates *
 global-exclude tests.py
 exclude pootle/strings.py
-exclude pootle/static/generate_sprite.sh
 prune pootle/static/images/sprite/
