@@ -130,8 +130,8 @@
     $(document).on("click", ".js-suggestion-accept", this.acceptSuggestion);
     $(document).on("click", ".js-vote-clear", this.clearVote);
     $(document).on("click", ".js-vote-up", this.voteUp);
-    $(document).on("click", "#show-timeline", this.showTimeline);
-    $(document).on("click", "#hide-timeline", this.hideTimeline);
+    $(document).on("click", "#js-show-timeline", this.showTimeline);
+    $(document).on("click", "#js-hide-timeline", this.hideTimeline);
     $(document).on("click", "#translate-checks-block .js-reject-check", this.rejectCheck);
 
     /* Filtering */
@@ -1627,9 +1627,9 @@
 
     // The results might already be there from earlier:
     if ($("#timeline-results").length) {
-      $("#hide-timeline").show();
+      $("#js-hide-timeline").show();
       $("#timeline-results").slideDown(1000, 'easeOutQuad');
-      $("#show-timeline").hide();
+      $("#js-show-timeline").hide();
       return;
     }
 
@@ -1649,18 +1649,16 @@
       success: function (data) {
         var uid = data.uid;
 
-        if (data.timeline) {
-          if (uid == PTL.editor.activeUid) {
-            if ($("#translator-comment").length) {
-              $(data.timeline).hide().appendTo("#translator-comment")
-                              .slideDown(1000, 'easeOutQuad');
-            } else {
-              $(data.timeline).hide().prependTo("#extras-container")
-                              .slideDown(1000, 'easeOutQuad');
-            }
-            $("#show-timeline").hide();
-            $("#hide-timeline").show();
+        if (data.timeline && uid === PTL.editor.activeUid) {
+          if ($("#translator-comment").length) {
+            $(data.timeline).hide().appendTo("#translator-comment")
+                            .slideDown(1000, 'easeOutQuad');
+          } else {
+            $(data.timeline).hide().prependTo("#extras-container")
+                            .slideDown(1000, 'easeOutQuad');
           }
+          $("#js-show-timeline").hide();
+          $("#js-hide-timeline").show();
         }
       },
       beforeSend: function () {
@@ -1675,9 +1673,9 @@
 
  /* Hide the timeline panel */
   hideTimeline: function (e) {
-    $("#hide-timeline").hide();
+    $("#js-hide-timeline").hide();
     $("#timeline-results").slideUp(1000, 'easeOutQuad');
-    $("#show-timeline").show();
+    $("#js-show-timeline").show();
   },
 
 
