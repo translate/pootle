@@ -2069,69 +2069,6 @@ div#search[dir="rtl"] .togglesearch
     margin-left: 8px;
 }
 
-.translations-nav
-{
-    clear: both;
-    margin-top: 1em;
-}
-
-.translations-nav:after
-{
-    content: ".";
-    display: block;
-    height: 0;
-    width: 0;
-    clear: both;
-    visibility: hidden;
-}
-
-.translations-nav li
-{
-    float: left;
-    padding: 0 0 0 9px;
-}
-
-html[dir="rtl"] .translations-nav li
-{
-    float: right;
-    padding: 0 9px 0 0;
-}
-
-.translations-nav li:after
-{
-    content:  "|";
-    margin: 0 0 0 10px;
-}
-
-html[dir="rtl"] .translations-nav li:after
-{
-    content:  "|";
-    margin: 0 10px 0 0;
-}
-
-.translations-nav li:last-child:after,
-html[dir="rtl"] .translations-nav li:last-child:after
-{
-    content: '';
-    margin: 0;
-}
-
-.translations-nav a:link
-{
-    color: #807970;
-}
-
-.translations-nav a:visited
-{
-    color: #807970;
-}
-
-.translations-nav .important
-{
-    font-weight: bold;
-}
-
-
 /*
  * RSS ALERTS
  */
