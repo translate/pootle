@@ -742,21 +742,6 @@ button.close
     color: #c33;
 }
 
-.hide
-{
-    display: none;
-}
-
-.invisible
-{
-    visibility: hidden;
-}
-
-.affix
-{
-    position: fixed;
-}
-
 p.help,
 span.help_text
 {
@@ -2133,6 +2118,21 @@ html[dir="rtl"] .pull-right
 .danger
 {
     color: #b94a48;
+}
+
+.hide
+{
+    display: none;
+}
+
+.invisible
+{
+    visibility: hidden;
+}
+
+.affix
+{
+    position: fixed;
 }
 
 
