@@ -44,7 +44,8 @@ def view(request):
                       'traduction',
                       'traduire',
                       ],
-        'pootle_version': _("Pootle %(pootle_ver)s is powered by Translate Toolkit %(toolkit_ver)s",
+        'pootle_version': _("Pootle %(pootle_ver)s is powered by Translate "
+                            "Toolkit %(toolkit_ver)s",
                             {'pootle_ver': pootleversion.sver,
                              'toolkit_ver': toolkitversion.sver}),
         'version_details': "\n".join([
