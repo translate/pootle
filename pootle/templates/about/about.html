@@ -1,10 +1,10 @@
-{% extends "base.html" %}
+{% extends "about/base.html" %}
 {% load i18n %}
 
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block title %}
-{{ block.super }} » {% trans "About This Pootle Server" %}
+{% trans "This Pootle Server" %} | {{ block.super }}
 {% endblock %}
 
 {% block breadcrumbs %}

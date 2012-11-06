@@ -55,4 +55,5 @@ def view(request):
         ]),
     }
 
-    return render_to_response('index/about.html', data, context_instance=RequestContext(request))
+    return render_to_response('about/about.html', data,
+                              context_instance=RequestContext(request))

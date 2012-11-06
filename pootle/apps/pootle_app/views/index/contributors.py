@@ -138,8 +138,5 @@ def view(request):
 
     data = {'contributors': contributors}
 
-    return render_to_response(
-        'index/contributors.html',
-        data,
-        context_instance=RequestContext(request)
-    )
+    return render_to_response('about/contributors.html', data,
+                              context_instance=RequestContext(request))
