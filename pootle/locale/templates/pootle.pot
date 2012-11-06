@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-22 08:57+0000\n"
+"POT-Creation-Date: 2012-11-06 17:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -175,10 +175,10 @@ msgstr ""
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: apps/legalpages/templates/legalpages/admin/form.html:15
-#: apps/pootle_app/templates/admin/admin_general_settings.html:31
+#: apps/pootle_app/templates/admin/admin_general_settings.html:29
 #: apps/pootle_app/templates/admin/general_settings_form.html:15
-#: templates/profiles/edit_personal.html:35
-#: templates/profiles/edit_profile.html:27
+#: templates/profiles/edit_personal.html:33
+#: templates/profiles/edit_profile.html:25
 msgid "Save"
 msgstr ""
 
@@ -188,7 +188,7 @@ msgid "URL or content must be provided."
 msgstr ""
 
 #: apps/legalpages/models.py:31
-#: apps/legalpages/templates/legalpages/admin/list.html:23
+#: apps/legalpages/templates/legalpages/admin/list.html:21
 msgid "Active"
 msgstr ""
 
@@ -238,9 +238,9 @@ msgstr ""
 msgid "Legal Page created."
 msgstr ""
 
-#: apps/legalpages/templates/legalpages/admin/edit.html:5
-#: apps/legalpages/templates/legalpages/admin/edit.html:11
-#: apps/legalpages/templates/legalpages/admin/edit.html:18
+#: apps/legalpages/templates/legalpages/admin/edit.html:4
+#: apps/legalpages/templates/legalpages/admin/edit.html:9
+#: apps/legalpages/templates/legalpages/admin/edit.html:16
 msgid "Edit Legal Page"
 msgstr ""
 
@@ -249,30 +249,30 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: apps/legalpages/templates/legalpages/admin/list.html:5
-#: apps/legalpages/templates/legalpages/admin/list.html:11
+#: apps/legalpages/templates/legalpages/admin/list.html:4
+#: apps/legalpages/templates/legalpages/admin/list.html:9
 #: templates/admin_profile_menu.html:9
 msgid "Legal Pages"
 msgstr ""
 
-#: apps/legalpages/templates/legalpages/admin/list.html:18
+#: apps/legalpages/templates/legalpages/admin/list.html:16
 msgid "Existing Legal Pages"
 msgstr ""
 
-#: apps/legalpages/templates/legalpages/admin/list.html:23
+#: apps/legalpages/templates/legalpages/admin/list.html:21
 msgid "Inactive"
 msgstr ""
 
-#: apps/legalpages/templates/legalpages/admin/list.html:23
+#: apps/legalpages/templates/legalpages/admin/list.html:21
 #: apps/pootle_app/templates/admin/edit_links.html:2
 msgid "Edit"
 msgstr ""
 
-#: apps/legalpages/templates/legalpages/admin/list.html:25
+#: apps/legalpages/templates/legalpages/admin/list.html:23
 msgid "No pages yet."
 msgstr ""
 
-#: apps/legalpages/templates/legalpages/admin/list.html:32
+#: apps/legalpages/templates/legalpages/admin/list.html:30
 msgid "Add a new Legal Page"
 msgstr ""
 
@@ -294,7 +294,7 @@ msgstr ""
 
 #: apps/pootle_app/forms.py:37
 #: apps/pootle_language/templates/language/language_index.html:42
-#: apps/pootle_project/templates/project/project.html:48
+#: apps/pootle_project/templates/project/project.html:46
 #: apps/pootle_translationproject/templates/translation_project/overview.html:101
 msgid "Description"
 msgstr ""
@@ -356,7 +356,7 @@ msgstr ""
 #. Translators: The number of suggestions pending review
 #: apps/pootle_app/templates/top_contributers_table.html:12
 #: apps/pootle_app/views/language/view.py:58
-#: apps/pootle_store/templates/store/translate.html:61
+#: apps/pootle_store/templates/store/translate.html:59
 msgid "Suggestions"
 msgstr ""
 
@@ -365,7 +365,7 @@ msgid "Reviews"
 msgstr ""
 
 #: apps/pootle_app/templates/top_contributers_table.html:14
-#: apps/pootle_app/templates/admin/dashboard.html:23
+#: apps/pootle_app/templates/admin/dashboard.html:19
 msgid "Submissions"
 msgstr ""
 
@@ -376,7 +376,7 @@ msgstr ""
 #: apps/pootle_app/templates/translation_summary_legend.html:4
 #: apps/pootle_app/views/language/view.py:42 apps/pootle_misc/stats.py:99
 #: apps/pootle_store/util.py:47
-#: apps/pootle_store/templates/store/translate.html:57
+#: apps/pootle_store/templates/store/translate.html:55
 msgid "Translated"
 msgstr ""
 
@@ -388,7 +388,7 @@ msgstr ""
 #: apps/pootle_app/views/index/index.py:111
 #: apps/pootle_app/views/language/view.py:48 apps/pootle_misc/stats.py:123
 #: apps/pootle_project/views.py:298 apps/pootle_store/util.py:45
-#: apps/pootle_store/templates/store/translate.html:59
+#: apps/pootle_store/templates/store/translate.html:57
 msgid "Untranslated"
 msgstr ""
 
@@ -397,44 +397,44 @@ msgstr ""
 msgid "Save Changes"
 msgstr ""
 
-#: apps/pootle_app/templates/admin/admin_general_languages.html:5
-#: apps/pootle_app/templates/admin/admin_general_languages.html:11
+#: apps/pootle_app/templates/admin/admin_general_languages.html:4
+#: apps/pootle_app/templates/admin/admin_general_languages.html:9
 #: apps/pootle_app/templates/index/index.html:37
 #: apps/pootle_profile/models.py:72 templates/admin_profile_menu.html:6
 msgid "Languages"
 msgstr ""
 
-#: apps/pootle_app/templates/admin/admin_general_languages.html:14
+#: apps/pootle_app/templates/admin/admin_general_languages.html:12
 msgid ""
 "Here you can add, edit, and delete all the available languages in this "
 "Pootle server."
 msgstr ""
 
-#: apps/pootle_app/templates/admin/admin_general_permissions.html:5
-#: apps/pootle_app/templates/admin/admin_general_permissions.html:11
+#: apps/pootle_app/templates/admin/admin_general_permissions.html:4
+#: apps/pootle_app/templates/admin/admin_general_permissions.html:9
 #: apps/pootle_app/views/admin/permissions.py:60
-#: apps/pootle_language/templates/language/language_admin.html:6
-#: apps/pootle_language/templates/language/language_admin.html:10
-#: apps/pootle_project/templates/project/admin_permissions.html:8
-#: apps/pootle_project/templates/project/admin_permissions.html:12
-#: apps/pootle_translationproject/templates/translation_project/admin_permissions.html:6
-#: apps/pootle_translationproject/templates/translation_project/admin_permissions.html:10
+#: apps/pootle_language/templates/language/language_admin.html:5
+#: apps/pootle_language/templates/language/language_admin.html:8
+#: apps/pootle_project/templates/project/admin_permissions.html:7
+#: apps/pootle_project/templates/project/admin_permissions.html:10
+#: apps/pootle_translationproject/templates/translation_project/admin_permissions.html:5
+#: apps/pootle_translationproject/templates/translation_project/admin_permissions.html:8
 #: templates/admin_profile_menu.html:8 templates/language_menu.html:6
 #: templates/project_menu.html:7 templates/tp_menu.html:8
-#: templates/profiles/profile_detail.html:41
+#: templates/profiles/profile_detail.html:47
 msgid "Permissions"
 msgstr ""
 
-#: apps/pootle_app/templates/admin/admin_general_permissions.html:14
+#: apps/pootle_app/templates/admin/admin_general_permissions.html:12
 msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
 msgstr ""
 
-#: apps/pootle_app/templates/admin/admin_general_permissions.html:18
-#: apps/pootle_language/templates/language/language_admin.html:19
-#: apps/pootle_project/templates/project/admin_permissions.html:28
-#: apps/pootle_translationproject/templates/translation_project/admin_permissions.html:19
+#: apps/pootle_app/templates/admin/admin_general_permissions.html:16
+#: apps/pootle_language/templates/language/language_admin.html:17
+#: apps/pootle_project/templates/project/admin_permissions.html:26
+#: apps/pootle_translationproject/templates/translation_project/admin_permissions.html:17
 msgid ""
 "The user “nobody” refers to any user that is not logged in (an anonymous, "
 "unidentified user). The user “default” refers to the rights that all logged "
@@ -442,98 +442,98 @@ msgid ""
 "them."
 msgstr ""
 
-#: apps/pootle_app/templates/admin/admin_general_projects.html:5
-#: apps/pootle_app/templates/admin/admin_general_projects.html:11
+#: apps/pootle_app/templates/admin/admin_general_projects.html:4
+#: apps/pootle_app/templates/admin/admin_general_projects.html:9
 #: apps/pootle_app/templates/index/index.html:66
 #: apps/pootle_notifications/templates/notices.html:19
 #: apps/pootle_notifications/templates/notices.html:33
 #: apps/pootle_profile/models.py:73
-#: apps/pootle_project/templates/project/projects.html:8
-#: apps/pootle_project/templates/project/projects.html:12
-#: apps/pootle_project/templates/project/projects.html:18
+#: apps/pootle_project/templates/project/projects.html:7
+#: apps/pootle_project/templates/project/projects.html:10
+#: apps/pootle_project/templates/project/projects.html:16
 #: templates/admin_profile_menu.html:7 templates/base.html:97
-#: templates/project_base.html:6 templates/project_base.html.py:10
+#: templates/project_base.html:5 templates/project_base.html.py:8
 msgid "Projects"
 msgstr ""
 
-#: apps/pootle_app/templates/admin/admin_general_projects.html:14
+#: apps/pootle_app/templates/admin/admin_general_projects.html:12
 msgid ""
 "Here you can add, edit, and delete all the available projects in this Pootle "
 "server."
 msgstr ""
 
-#: apps/pootle_app/templates/admin/admin_general_settings.html:5
-#: apps/pootle_app/templates/admin/admin_general_settings.html:11
+#: apps/pootle_app/templates/admin/admin_general_settings.html:4
+#: apps/pootle_app/templates/admin/admin_general_settings.html:9
 msgid "General Settings"
 msgstr ""
 
-#: apps/pootle_app/templates/admin/admin_general_settings.html:14
+#: apps/pootle_app/templates/admin/admin_general_settings.html:12
 msgid "Configure here the general settings for your site."
 msgstr ""
 
-#: apps/pootle_app/templates/admin/admin_general_users.html:5
-#: apps/pootle_app/templates/admin/admin_general_users.html:11
-#: apps/pootle_app/templates/admin/dashboard.html:29
+#: apps/pootle_app/templates/admin/admin_general_users.html:4
+#: apps/pootle_app/templates/admin/admin_general_users.html:9
+#: apps/pootle_app/templates/admin/dashboard.html:25
 #: templates/admin_profile_menu.html:5
 #: templates/profiles/profile_detail.html:8
-#: templates/profiles/profile_detail.html:16
+#: templates/profiles/profile_detail.html:18
 msgid "Users"
 msgstr ""
 
-#: apps/pootle_app/templates/admin/admin_general_users.html:14
+#: apps/pootle_app/templates/admin/admin_general_users.html:12
 msgid ""
 "Here you can add, edit, and delete all the available users in this Pootle "
 "server."
 msgstr ""
 
-#: apps/pootle_app/templates/admin/dashboard.html:17
+#: apps/pootle_app/templates/admin/dashboard.html:13
 msgid "Server Statistics"
 msgstr ""
 
-#: apps/pootle_app/templates/admin/dashboard.html:26
+#: apps/pootle_app/templates/admin/dashboard.html:22
 msgid "Pending suggestions"
 msgstr ""
 
-#: apps/pootle_app/templates/admin/dashboard.html:35
+#: apps/pootle_app/templates/admin/dashboard.html:31
 msgid "More..."
 msgstr ""
 
-#: apps/pootle_app/templates/admin/dashboard.html:43
+#: apps/pootle_app/templates/admin/dashboard.html:39
 msgid "Support"
 msgstr ""
 
-#: apps/pootle_app/templates/admin/dashboard.html:46
+#: apps/pootle_app/templates/admin/dashboard.html:42
 msgid ""
 "Pootle is developed by Translate.org.za and a community of passionate "
 "localization experts. We want Pootle to help your localization work reach "
 "its full potential."
 msgstr ""
 
-#: apps/pootle_app/templates/admin/dashboard.html:47
+#: apps/pootle_app/templates/admin/dashboard.html:43
 msgid "You will find the following helpful for support:"
 msgstr ""
 
-#: apps/pootle_app/templates/admin/dashboard.html:49
+#: apps/pootle_app/templates/admin/dashboard.html:45
 msgid "The Pootle documentation"
 msgstr ""
 
-#: apps/pootle_app/templates/admin/dashboard.html:50
+#: apps/pootle_app/templates/admin/dashboard.html:46
 msgid "The Pootle mailing list"
 msgstr ""
 
-#: apps/pootle_app/templates/admin/dashboard.html:51
+#: apps/pootle_app/templates/admin/dashboard.html:47
 msgid "(commercial support)"
 msgstr ""
 
-#: apps/pootle_app/templates/admin/dashboard.html:59
+#: apps/pootle_app/templates/admin/dashboard.html:55
 msgid "Dependency Checks"
 msgstr ""
 
-#: apps/pootle_app/templates/admin/dashboard.html:68
+#: apps/pootle_app/templates/admin/dashboard.html:64
 msgid "Optional"
 msgstr ""
 
-#: apps/pootle_app/templates/admin/dashboard.html:76
+#: apps/pootle_app/templates/admin/dashboard.html:72
 msgid "Optimizations"
 msgstr ""
 
@@ -545,32 +545,9 @@ msgstr ""
 msgid "Pootle Alerts"
 msgstr ""
 
-#: apps/pootle_app/templates/index/about.html:7
-msgid "About This Pootle Server"
-msgstr ""
-
-#: apps/pootle_app/templates/index/about.html:12 templates/base.html:165
-msgid "About this Pootle Server"
-msgstr ""
-
-#: apps/pootle_app/templates/index/about.html:15
-msgid ""
-"This site is running Pootle &mdash; powerful web software to empower teams "
-"to do translation and translation management. This community tool is Free "
-"Software, and any team can use it and contribute to the Pootle community. "
-"Read more on the <a href=\"http://translate.sourceforge.net/\"><i class="
-"\"icon-external-link\"></i> project website</a>."
-msgstr ""
-
-#: apps/pootle_app/templates/index/contributors.html:7
-#: apps/pootle_app/templates/index/contributors.html:12
-#: templates/base.html:166
-msgid "Contributors"
-msgstr ""
-
 #: apps/pootle_app/templates/index/index.html:20
 #: apps/pootle_language/templates/language/language_index.html:52
-#: apps/pootle_project/templates/project/project.html:59
+#: apps/pootle_project/templates/project/project.html:57
 #: apps/pootle_translationproject/templates/translation_project/overview.html:111
 msgid "No description set."
 msgstr ""
@@ -582,20 +559,20 @@ msgstr ""
 
 #: apps/pootle_app/templates/index/index.html:43
 #: apps/pootle_app/templates/index/index.html:72
-#: apps/pootle_project/templates/project/projects.html:24
+#: apps/pootle_project/templates/project/projects.html:22
 msgid "Overall Completion"
 msgstr ""
 
 #: apps/pootle_app/templates/index/index.html:44
 #: apps/pootle_app/templates/index/index.html:73
 #: apps/pootle_language/templates/language/language_index.html:21
-#: apps/pootle_project/templates/project/project.html:28
-#: apps/pootle_project/templates/project/projects.html:25
+#: apps/pootle_project/templates/project/project.html:26
+#: apps/pootle_project/templates/project/projects.html:23
 msgid "Last Activity"
 msgstr ""
 
 #: apps/pootle_app/templates/index/index.html:71
-#: apps/pootle_project/templates/project/projects.html:23
+#: apps/pootle_project/templates/project/projects.html:21
 msgid "Project"
 msgstr ""
 
@@ -608,37 +585,37 @@ msgstr ""
 msgid "Subscribe to the RSS feed."
 msgstr ""
 
-#: apps/pootle_app/templates/index/login.html:5
-#: apps/pootle_app/templates/index/login.html:9
-#: apps/pootle_app/templates/index/login.html:25
+#: apps/pootle_app/templates/index/login.html:4
+#: apps/pootle_app/templates/index/login.html:7
+#: apps/pootle_app/templates/index/login.html:23
 msgid "Login"
 msgstr ""
 
-#: apps/pootle_app/templates/index/login.html:14
+#: apps/pootle_app/templates/index/login.html:12
 msgid "Login to Pootle"
 msgstr ""
 
-#: apps/pootle_app/templates/index/login.html:20
+#: apps/pootle_app/templates/index/login.html:18
 msgid "Your username and password didn't match. Please try again."
 msgstr ""
 
-#: apps/pootle_app/templates/index/login.html:32
+#: apps/pootle_app/templates/index/login.html:30
 msgid "Lost your Password?"
 msgstr ""
 
-#: apps/pootle_app/templates/index/login.html:35
-#: templates/registration/password_reset_form.html:32
+#: apps/pootle_app/templates/index/login.html:33
+#: templates/registration/password_reset_form.html:30
 msgid "Don't have an account yet?"
 msgstr ""
 
-#: apps/pootle_app/templates/index/login.html:36
-#: templates/registration/password_reset_form.html:33
+#: apps/pootle_app/templates/index/login.html:34
+#: templates/registration/password_reset_form.html:31
 msgid "Register."
 msgstr ""
 
 #: apps/pootle_app/views/admin/adminusers.py:48
 #: templates/user_profile_menu.html:7
-#: templates/registration/registration_form.html:32
+#: templates/registration/registration_form.html:30
 msgid "Password"
 msgstr ""
 
@@ -776,7 +753,7 @@ msgid ""
 msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:199
-#: templates/profiles/profile_detail.html:41
+#: templates/profiles/profile_detail.html:47
 msgid "Files"
 msgstr ""
 
@@ -831,7 +808,7 @@ msgstr ""
 msgid "There are errors in the form. Please review the problems below."
 msgstr ""
 
-#: apps/pootle_app/views/index/about.py:48
+#: apps/pootle_app/views/index/about.py:47
 #, python-format
 msgid "Pootle %(pootle_ver)s is powered by Translate Toolkit %(toolkit_ver)s"
 msgstr ""
@@ -913,7 +890,7 @@ msgstr ""
 
 #: apps/pootle_app/views/language/view.py:45 apps/pootle_misc/stats.py:111
 #: apps/pootle_store/forms.py:193
-#: apps/pootle_store/templates/store/translate.html:60
+#: apps/pootle_store/templates/store/translate.html:58
 msgid "Fuzzy"
 msgstr ""
 
@@ -955,7 +932,7 @@ msgid "Need Translation"
 msgstr ""
 
 #: apps/pootle_app/views/language/view.py:120
-#: apps/pootle_translationproject/views.py:260
+#: apps/pootle_translationproject/views.py:268
 msgid "You do not have rights to access this translation project."
 msgstr ""
 
@@ -1023,7 +1000,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: apps/pootle_language/views.py:148 apps/pootle_project/views.py:160
-#: apps/pootle_translationproject/views.py:338
+#: apps/pootle_translationproject/views.py:346
 msgid "No description yet."
 msgstr ""
 
@@ -1031,7 +1008,7 @@ msgstr ""
 msgid "You do not have rights to administer this language."
 msgstr ""
 
-#: apps/pootle_language/templates/language/language_admin.html:17
+#: apps/pootle_language/templates/language/language_admin.html:15
 msgid "Below you can add, edit, and delete the permissions for this language."
 msgstr ""
 
@@ -1538,7 +1515,7 @@ msgstr ""
 msgid "No news yet."
 msgstr ""
 
-#: apps/pootle_notifications/templates/notices.html:24
+#: apps/pootle_notifications/templates/notices.html:14
 #: apps/pootle_notifications/templates/notices.html:37
 #: templates/language_menu.html:4 templates/project_menu.html:4
 #: templates/tp_menu.html:4
@@ -1658,17 +1635,17 @@ msgstr ""
 msgid "Update from templates"
 msgstr ""
 
-#: apps/pootle_project/templates/project/admin_permissions.html:26
+#: apps/pootle_project/templates/project/admin_permissions.html:24
 msgid "Below you can add, edit, and delete the permissions for this project."
 msgstr ""
 
-#: apps/pootle_project/templates/project/project_admin.html:8
-#: apps/pootle_project/templates/project/project_admin.html:12
+#: apps/pootle_project/templates/project/project_admin.html:7
+#: apps/pootle_project/templates/project/project_admin.html:10
 #: templates/project_menu.html:6
 msgid "Administrate"
 msgstr ""
 
-#: apps/pootle_project/templates/project/project_admin.html:26
+#: apps/pootle_project/templates/project/project_admin.html:24
 msgid "Here you can add, edit, or delete the languages for this project."
 msgstr ""
 
@@ -1810,64 +1787,64 @@ msgstr ""
 msgid "The suggestion or vote is not valid any more."
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:6 templates/tp_menu.html:5
+#: apps/pootle_store/templates/store/translate.html:5 templates/tp_menu.html:5
 msgid "Translate"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:29
+#: apps/pootle_store/templates/store/translate.html:27
 msgid "Pootle's editor requires JavaScript"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:30
+#: apps/pootle_store/templates/store/translate.html:28
 msgid ""
 "Please enable JavaScript in your browser preferences and reload the page."
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:53
+#: apps/pootle_store/templates/store/translate.html:51
 msgid "Filter by:"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:56
+#: apps/pootle_store/templates/store/translate.html:54
 msgid "All"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:58
+#: apps/pootle_store/templates/store/translate.html:56
 msgid "Incomplete"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:62
+#: apps/pootle_store/templates/store/translate.html:60
 msgid "My Suggestions"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:63
+#: apps/pootle_store/templates/store/translate.html:61
 msgid "Checks"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:71
+#: apps/pootle_store/templates/store/translate.html:69
 msgid "Previous unit"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:71
+#: apps/pootle_store/templates/store/translate.html:69
 msgid ""
 "Go to the previous unit (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+Page&nbsp;Up<br/>First page: Ctrl+Shift+Home"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:73
+#: apps/pootle_store/templates/store/translate.html:71
 msgid ""
 "Current page number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:75
+#: apps/pootle_store/templates/store/translate.html:73
 msgid "Total pages"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:77
+#: apps/pootle_store/templates/store/translate.html:75
 msgid "Next unit"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:77
+#: apps/pootle_store/templates/store/translate.html:75
 msgid ""
 "Go to the next unit (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
 "+Page&nbsp;Down<br/>Last page: Ctrl+Shift+End"
@@ -1989,8 +1966,8 @@ msgstr ""
 msgid "Comment: "
 msgstr ""
 
-#: apps/pootle_store/templates/unit/timeline.html:5
-#: apps/pootle_store/templates/unit/timeline.html:16
+#: apps/pootle_store/templates/unit/timeline.html:4
+#: apps/pootle_store/templates/unit/timeline.html:14
 msgid "Previous Work"
 msgstr ""
 
@@ -2109,7 +2086,7 @@ msgid "Here you can manage the terms in the terminology files."
 msgstr ""
 
 #: apps/pootle_terminology/templates/terminology/stores.html:14
-#: apps/pootle_translationproject/views.py:775
+#: apps/pootle_translationproject/views.py:783
 msgid "File"
 msgstr ""
 
@@ -2154,7 +2131,7 @@ msgid "Download file"
 msgstr ""
 
 #: apps/pootle_translationproject/actions.py:95
-#: apps/pootle_translationproject/actions.py:214
+#: apps/pootle_translationproject/actions.py:215
 msgid "Translate offline"
 msgstr ""
 
@@ -2190,7 +2167,7 @@ msgstr ""
 msgid "Delete this file..."
 msgstr ""
 
-#: apps/pootle_translationproject/actions.py:216
+#: apps/pootle_translationproject/actions.py:217
 msgid "Manage"
 msgstr ""
 
@@ -2201,47 +2178,47 @@ msgid ""
 "information or instructions. Allowed markup: %s"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:454
-#: apps/pootle_translationproject/models.py:537
+#: apps/pootle_translationproject/models.py:455
+#: apps/pootle_translationproject/models.py:538
 msgid "You do not have rights to update from version control here"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:519
+#: apps/pootle_translationproject/models.py:520
 #, python-format
 msgid "Updated project <em>%(project)s</em> from version control"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:522
-#: apps/pootle_translationproject/models.py:548
-msgid "Working copy"
-msgstr ""
-
 #: apps/pootle_translationproject/models.py:523
 #: apps/pootle_translationproject/models.py:549
-msgid "Remote copy"
+msgid "Working copy"
 msgstr ""
 
 #: apps/pootle_translationproject/models.py:524
 #: apps/pootle_translationproject/models.py:550
+msgid "Remote copy"
+msgstr ""
+
+#: apps/pootle_translationproject/models.py:525
+#: apps/pootle_translationproject/models.py:551
 msgid "Merged copy"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:545
+#: apps/pootle_translationproject/models.py:546
 #, python-format
 msgid "Updated file <em>%(filename)s</em> from version control"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:559
+#: apps/pootle_translationproject/models.py:560
 #, python-format
 msgid "Failed to update <em>%(filename)s</em> from version control"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:601
+#: apps/pootle_translationproject/models.py:602
 #, python-format
 msgid "Committed file: %(filename)s"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:609
+#: apps/pootle_translationproject/models.py:610
 #, python-format
 msgid "Failed to commit file: %(error)s"
 msgstr ""
@@ -2266,85 +2243,93 @@ msgstr ""
 msgid "Symbolic link hasn't been removed from the filesystem."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:190
-msgid "Files have been deleted."
+#: apps/pootle_translationproject/views.py:191
+msgid "Directory and its containing files have been deleted."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:192
-msgid "Error while trying to delete files."
+#: apps/pootle_translationproject/views.py:194
+msgid "File has been deleted."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:360
+#: apps/pootle_translationproject/views.py:197
+msgid "Error while trying to delete directory."
+msgstr ""
+
+#: apps/pootle_translationproject/views.py:200
+msgid "Error while trying to delete file."
+msgstr ""
+
+#: apps/pootle_translationproject/views.py:368
 msgid "You do not have the right to create ZIP archives."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:455
+#: apps/pootle_translationproject/views.py:463
 #, python-format
 msgid "Invalid/insecure file name: %s"
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:463
+#: apps/pootle_translationproject/views.py:471
 #, python-format
 msgid ""
 "Invalid GNU-style file name: %(local_filename)s. It must match '%(langcode)s."
 "%(filetype)s'."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:490
+#: apps/pootle_translationproject/views.py:498
 msgid "Error while extracting archive"
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:674
+#: apps/pootle_translationproject/views.py:682
 msgid "You do not have rights to overwrite files here."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:678
+#: apps/pootle_translationproject/views.py:686
 msgid "You do not have rights to upload new files here."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:682
-#: apps/pootle_translationproject/views.py:686
+#: apps/pootle_translationproject/views.py:690
+#: apps/pootle_translationproject/views.py:694
 msgid "You do not have rights to upload files here."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:717
+#: apps/pootle_translationproject/views.py:725
 msgid "Update all from version control"
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:734
+#: apps/pootle_translationproject/views.py:742
 msgid "Upload"
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:747
+#: apps/pootle_translationproject/views.py:755
 msgid "Overwrite the current file if it exists"
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:751
+#: apps/pootle_translationproject/views.py:759
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:756
+#: apps/pootle_translationproject/views.py:764
 msgid "Add all new translations as suggestions"
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:786
 #: apps/pootle_translationproject/views.py:794
+#: apps/pootle_translationproject/views.py:802
 msgid "Upload to"
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:789
-#: apps/pootle_translationproject/views.py:798
+#: apps/pootle_translationproject/views.py:797
+#: apps/pootle_translationproject/views.py:806
 msgid ""
 "Optionally select the file you want to merge with. If not specified, the "
 "uploaded file's name is used."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:808
+#: apps/pootle_translationproject/views.py:816
 msgid "Upload File"
 msgstr ""
 
-#: apps/pootle_translationproject/templates/translation_project/admin_permissions.html:17
+#: apps/pootle_translationproject/templates/translation_project/admin_permissions.html:15
 msgid ""
 "Below you can add, edit, and delete the permissions for this translation "
 "project."
@@ -2461,38 +2446,38 @@ msgstr ""
 msgid "Incorrect"
 msgstr ""
 
-#: templates/403.html:5 templates/403.html.py:9 templates/403.html.py:14
+#: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"
 msgstr ""
 
-#: templates/403.html:18
+#: templates/403.html:16
 msgid "You don't have permission to access this page."
 msgstr ""
 
-#: templates/404.html:5 templates/404.html.py:9 templates/404.html.py:14
+#: templates/404.html:4 templates/404.html.py:7 templates/404.html.py:12
 msgid "Page Not Found"
 msgstr ""
 
-#: templates/404.html:15
+#: templates/404.html:13
 msgid "We're sorry, but the requested page could not be found."
 msgstr ""
 
-#: templates/500.html:5 templates/500.html.py:9 templates/500.html.py:14
+#: templates/500.html:4 templates/500.html.py:7 templates/500.html.py:12
 msgid "Server Error"
 msgstr ""
 
-#: templates/500.html:15
+#: templates/500.html:13
 msgid "An error has occurred. Thank you for your patience."
 msgstr ""
 
-#: templates/500.html:22
+#: templates/500.html:20
 #, python-format
 msgid ""
 "If you need assistance, you may refer to this error as <strong>%(ref)s</"
 "strong>."
 msgstr ""
 
-#: templates/admin_profile_base.html:5 templates/admin_profile_base.html:9
+#: templates/admin_profile_base.html:4 templates/admin_profile_base.html:7
 msgid "Administration"
 msgstr ""
 
@@ -2548,7 +2533,7 @@ msgstr ""
 msgid "Zoom in (Ctrl+Shift++)"
 msgstr ""
 
-#: templates/base.html:99 templates/profiles/profile_detail.html:34
+#: templates/base.html:99 templates/profiles/profile_detail.html:40
 msgid "Admin"
 msgstr ""
 
@@ -2556,9 +2541,9 @@ msgstr ""
 msgid "Log Out"
 msgstr ""
 
-#: templates/base.html:105 templates/registration/registration_form.html:5
-#: templates/registration/registration_form.html:9
-#: templates/registration/registration_form.html:53
+#: templates/base.html:105 templates/registration/registration_form.html:4
+#: templates/registration/registration_form.html:7
+#: templates/registration/registration_form.html:51
 msgid "Register"
 msgstr ""
 
@@ -2574,14 +2559,23 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
-#: templates/base.html:163 templates/contact_form/contact_form.html:5
-#: templates/contact_form/contact_form.html:9
-#: templates/contact_form/contact_form.html:14
+#: templates/base.html:163 templates/contact_form/contact_form.html:4
+#: templates/contact_form/contact_form.html:7
+#: templates/contact_form/contact_form.html:12
 msgid "Contact Us"
 msgstr ""
 
-#: templates/captcha-xhr.html:14 templates/captcha.html:5
-#: templates/captcha.html.py:9
+#: templates/base.html:165
+msgid "About this Pootle Server"
+msgstr ""
+
+#: templates/base.html:166 templates/about/contributors.html:6
+#: templates/about/contributors.html:9
+msgid "Contributors"
+msgstr ""
+
+#: templates/captcha-xhr.html:14 templates/captcha.html:4
+#: templates/captcha.html.py:7
 msgid "Are You Human?"
 msgstr ""
 
@@ -2632,7 +2626,7 @@ msgstr ""
 msgid "Manage project permissions"
 msgstr ""
 
-#: templates/tp_base_terminology.html:5 templates/tp_base_terminology.html:9
+#: templates/tp_base_terminology.html:4 templates/tp_base_terminology.html:7
 msgid "Manage Terminology"
 msgstr ""
 
@@ -2660,7 +2654,7 @@ msgstr ""
 msgid "Administrate your project permissions"
 msgstr ""
 
-#: templates/user_profile_base.html:5 templates/user_profile_base.html.py:9
+#: templates/user_profile_base.html:4 templates/user_profile_base.html.py:7
 msgid "My Account"
 msgstr ""
 
@@ -2684,8 +2678,8 @@ msgstr ""
 msgid "Change your personal information"
 msgstr ""
 
-#: templates/user_profile_menu.html:6 templates/profiles/edit_personal.html:5
-#: templates/profiles/edit_personal.html:9
+#: templates/user_profile_menu.html:6 templates/profiles/edit_personal.html:4
+#: templates/profiles/edit_personal.html:7
 msgid "Profile"
 msgstr ""
 
@@ -2693,21 +2687,34 @@ msgstr ""
 msgid "Change your password"
 msgstr ""
 
-#: templates/admin/base_site.html:4 templates/admin/base_site.html.py:7
-msgid "Django administration"
+#: templates/about/about.html:6 templates/about/about.html.py:9
+msgid "This Pootle Server"
 msgstr ""
 
-#: templates/contact_form/contact_form.html:19
+#: templates/about/about.html:15
+msgid ""
+"This site is running Pootle &mdash; powerful web software to empower teams "
+"to do translation and translation management. This community tool is Free "
+"Software, and any team can use it and contribute to the Pootle community. "
+"Read more on the <a href=\"http://translate.sourceforge.net/\"><i class="
+"\"icon-external-link\"></i> project website</a>."
+msgstr ""
+
+#: templates/about/base.html:4 templates/about/base.html.py:7
+msgid "About"
+msgstr ""
+
+#: templates/contact_form/contact_form.html:17
 msgid "Send"
 msgstr ""
 
-#: templates/contact_form/contact_form_sent.html:6
-#: templates/contact_form/contact_form_sent.html:10
-#: templates/contact_form/contact_form_sent.html:15
+#: templates/contact_form/contact_form_sent.html:5
+#: templates/contact_form/contact_form_sent.html:8
+#: templates/contact_form/contact_form_sent.html:13
 msgid "Message Sent"
 msgstr ""
 
-#: templates/contact_form/contact_form_sent.html:16
+#: templates/contact_form/contact_form_sent.html:14
 msgid "Thank you for your feedback."
 msgstr ""
 
@@ -2716,52 +2723,52 @@ msgstr ""
 msgid " message by %(name)s"
 msgstr ""
 
-#: templates/profiles/edit_personal.html:14
+#: templates/profiles/edit_personal.html:12
 msgid ""
 "Here you can change your personal details. This information will be used in "
 "the header of the translation files."
 msgstr ""
 
-#: templates/profiles/edit_personal.html:20
+#: templates/profiles/edit_personal.html:18
 msgid "First Name"
 msgstr ""
 
-#: templates/profiles/edit_personal.html:25
+#: templates/profiles/edit_personal.html:23
 msgid "Last Name"
 msgstr ""
 
-#: templates/profiles/edit_personal.html:30
+#: templates/profiles/edit_personal.html:28
 msgid "Email address"
 msgstr ""
 
-#: templates/profiles/edit_profile.html:5
-#: templates/profiles/edit_profile.html:9
+#: templates/profiles/edit_profile.html:4
+#: templates/profiles/edit_profile.html:7
 msgid "Translation Settings"
 msgstr ""
 
-#: templates/profiles/edit_profile.html:14
+#: templates/profiles/edit_profile.html:12
 msgid ""
 "Here you can configure the settings related to the translation interface as "
 "well as your language preferences."
 msgstr ""
 
-#: templates/profiles/profile_detail.html:25
+#: templates/profiles/profile_detail.html:31
 msgid "Quick Links"
 msgstr ""
 
-#: templates/profiles/profile_detail.html:49
+#: templates/profiles/profile_detail.html:55
 msgid "No languages or projects selected. Choose yours now."
 msgstr ""
 
-#: templates/profiles/profile_detail.html:51
+#: templates/profiles/profile_detail.html:57
 msgid "This user has not selected languages or projects yet."
 msgstr ""
 
-#: templates/profiles/profile_detail.html:61
+#: templates/profiles/profile_detail.html:67
 msgid "User Statistics"
 msgstr ""
 
-#: templates/profiles/profile_detail.html:65
+#: templates/profiles/profile_detail.html:71
 msgid "You can set or change your avatar image at www.gravatar.com"
 msgstr ""
 
@@ -2770,7 +2777,7 @@ msgid "Profiles list"
 msgstr ""
 
 #: templates/profiles/profile_list.html:11
-#: templates/registration/registration_form.html:22
+#: templates/registration/registration_form.html:20
 msgid "Username"
 msgstr ""
 
@@ -2782,13 +2789,13 @@ msgstr ""
 msgid "Last name"
 msgstr ""
 
-#: templates/registration/activate.html:6
-#: templates/registration/activate.html:10
-#: templates/registration/activate.html:15
+#: templates/registration/activate.html:5
+#: templates/registration/activate.html:8
+#: templates/registration/activate.html:13
 msgid "Account Activated"
 msgstr ""
 
-#: templates/registration/activate.html:16
+#: templates/registration/activate.html:14
 #, python-format
 msgid ""
 "The account has been activated for username \"%(account)s\". You can now "
@@ -2836,104 +2843,104 @@ msgstr ""
 msgid "Pootle registration"
 msgstr ""
 
-#: templates/registration/password_change_done.html:6
-#: templates/registration/password_change_done.html:10
-#: templates/registration/password_change_done.html:15
+#: templates/registration/password_change_done.html:5
+#: templates/registration/password_change_done.html:8
+#: templates/registration/password_change_done.html:13
 msgid "Password Changed"
 msgstr ""
 
-#: templates/registration/password_change_done.html:16
+#: templates/registration/password_change_done.html:14
 msgid "Your password was changed successfully."
 msgstr ""
 
-#: templates/registration/password_change_form.html:5
-#: templates/registration/password_change_form.html:9
+#: templates/registration/password_change_form.html:4
+#: templates/registration/password_change_form.html:7
 msgid "Change Password"
 msgstr ""
 
-#: templates/registration/password_change_form.html:14
+#: templates/registration/password_change_form.html:12
 msgid ""
 "Please enter your old password, for security's sake, and then enter your new "
 "password twice so we can verify you typed it in correctly."
 msgstr ""
 
-#: templates/registration/password_change_form.html:23
+#: templates/registration/password_change_form.html:21
 msgid "Old password"
 msgstr ""
 
-#: templates/registration/password_change_form.html:28
+#: templates/registration/password_change_form.html:26
 msgid "New password"
 msgstr ""
 
-#: templates/registration/password_change_form.html:33
+#: templates/registration/password_change_form.html:31
 msgid "Confirm password"
 msgstr ""
 
-#: templates/registration/password_change_form.html:38
+#: templates/registration/password_change_form.html:36
 msgid "Change My Password"
 msgstr ""
 
-#: templates/registration/password_reset_complete.html:5
-#: templates/registration/password_reset_complete.html:9
+#: templates/registration/password_reset_complete.html:4
+#: templates/registration/password_reset_complete.html:7
 msgid "Password Reset"
 msgstr ""
 
-#: templates/registration/password_reset_complete.html:14
+#: templates/registration/password_reset_complete.html:12
 msgid "Password Reset Complete."
 msgstr ""
 
-#: templates/registration/password_reset_complete.html:16
+#: templates/registration/password_reset_complete.html:14
 #, python-format
 msgid ""
 "Your password has been set. You may go ahead and <a href=\"%(login_url)s"
 "\">log in</a> now."
 msgstr ""
 
-#: templates/registration/password_reset_confirm.html:6
-#: templates/registration/password_reset_confirm.html:10
-#: templates/registration/password_reset_done.html:6
-#: templates/registration/password_reset_done.html:10
-#: templates/registration/password_reset_done.html:15
-#: templates/registration/password_reset_form.html:5
-#: templates/registration/password_reset_form.html:9
-#: templates/registration/password_reset_form.html:14
+#: templates/registration/password_reset_confirm.html:5
+#: templates/registration/password_reset_confirm.html:8
+#: templates/registration/password_reset_done.html:5
+#: templates/registration/password_reset_done.html:8
+#: templates/registration/password_reset_done.html:13
+#: templates/registration/password_reset_form.html:4
+#: templates/registration/password_reset_form.html:7
+#: templates/registration/password_reset_form.html:12
 msgid "Reset Password"
 msgstr ""
 
-#: templates/registration/password_reset_confirm.html:16
+#: templates/registration/password_reset_confirm.html:14
 msgid "Enter New Password."
 msgstr ""
 
-#: templates/registration/password_reset_confirm.html:18
+#: templates/registration/password_reset_confirm.html:16
 msgid ""
 "Please enter your new password twice so we can verify you typed it in "
 "correctly."
 msgstr ""
 
-#: templates/registration/password_reset_confirm.html:23
+#: templates/registration/password_reset_confirm.html:21
 msgid "New Password"
 msgstr ""
 
-#: templates/registration/password_reset_confirm.html:28
+#: templates/registration/password_reset_confirm.html:26
 msgid "Confirm Password"
 msgstr ""
 
-#: templates/registration/password_reset_confirm.html:33
-#: templates/registration/password_reset_form.html:26
+#: templates/registration/password_reset_confirm.html:31
+#: templates/registration/password_reset_form.html:24
 msgid "Reset My Password"
 msgstr ""
 
-#: templates/registration/password_reset_confirm.html:37
+#: templates/registration/password_reset_confirm.html:35
 msgid "Password Reset Failed."
 msgstr ""
 
-#: templates/registration/password_reset_confirm.html:39
+#: templates/registration/password_reset_confirm.html:37
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
 
-#: templates/registration/password_reset_done.html:17
+#: templates/registration/password_reset_done.html:15
 msgid ""
 "We've e-mailed you instructions for setting your password to the e-mail "
 "address you submitted. You should receive it shortly."
@@ -2959,47 +2966,47 @@ msgstr ""
 msgid "Thank you for using Pootle!"
 msgstr ""
 
-#: templates/registration/password_reset_form.html:16
+#: templates/registration/password_reset_form.html:14
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
 
-#: templates/registration/password_reset_form.html:21
-#: templates/registration/registration_form.html:27
+#: templates/registration/password_reset_form.html:19
+#: templates/registration/registration_form.html:25
 msgid "Email Address"
 msgstr ""
 
-#: templates/registration/registration_complete.html:6
-#: templates/registration/registration_complete.html:10
-#: templates/registration/registration_complete.html:15
+#: templates/registration/registration_complete.html:5
+#: templates/registration/registration_complete.html:8
+#: templates/registration/registration_complete.html:13
 msgid "Registration Complete"
 msgstr ""
 
-#: templates/registration/registration_complete.html:16
+#: templates/registration/registration_complete.html:14
 msgid "Please check your email to activate your account."
 msgstr ""
 
-#: templates/registration/registration_form.html:14
+#: templates/registration/registration_form.html:12
 msgid "Register a New Pootle Account"
 msgstr ""
 
-#: templates/registration/registration_form.html:15
+#: templates/registration/registration_form.html:13
 msgid "Fill in the following form to get started translating."
 msgstr ""
 
-#: templates/registration/registration_form.html:37
+#: templates/registration/registration_form.html:35
 msgid "Password (again)"
 msgstr ""
 
-#: templates/registration/registration_form.html:44
+#: templates/registration/registration_form.html:42
 msgid "Make sure to read the following:"
 msgstr ""
 
-#: templates/registration/registration_form.html:58
+#: templates/registration/registration_form.html:56
 msgid "Already have an account?"
 msgstr ""
 
-#: templates/registration/registration_form.html:59
+#: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr ""

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-22 08:57+0000\n"
+"POT-Creation-Date: 2012-11-06 17:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: static/js/common.js:124
+msgid "Are you sure you want to continue?"
+msgstr ""
+
+#: static/js/common.js:125
+msgid "This operation cannot be undone."
+msgstr ""
 
 #: static/js/editor.js:402 static/js/editor.js.c:1434
 msgid "No results."
@@ -60,11 +68,11 @@ msgstr ""
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
 #. '%' symbol to denote a percentage is being used.
-#: static/js/editor.js:1703
+#: static/js/editor.js:1701
 #, c-format
 msgid "%s% match"
 msgstr ""
 
-#: static/js/editor.js:1744
+#: static/js/editor.js:1743
 msgid "amaGama server"
 msgstr ""
