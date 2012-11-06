@@ -1,9 +1,7 @@
 {% extends "base.html"  %}
 {% load i18n baseurl %}
 
-{% block title %}
-{{ block.super }} » {% trans "My Account" %}
-{% endblock %}
+{% block title %}{% trans "My Account" %} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}<li><a href="{% filter l %}/accounts/{{ user.username }}/{% endfilter %}">{% trans "My Account" %}</a></li>

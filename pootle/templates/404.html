@@ -1,9 +1,7 @@
 {% extends "base.html" %}
 {% load i18n baseurl %}
 
-{% block title %}
-{{ block.super }} » {% trans "Page Not Found" %}
-{% endblock %}
+{% block title %}{% trans "Page Not Found" %} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}<li>{% trans "Page Not Found" %}</li>

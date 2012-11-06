@@ -1,9 +1,7 @@
 {% extends "base.html" %}
 {% load i18n baseurl locale %}
 
-{% block title %}
-{{ block.super }} » {% trans "Login" %}
-{% endblock %}
+{% block title %}{% trans "Login" %} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}<li>{% trans "Login" %}</li>

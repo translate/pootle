@@ -2,9 +2,7 @@
 
 {% load i18n baseurl %}
 
-{% block title %}
-{{ block.super }} » {% trans "Registration Complete" %}
-{% endblock %}
+{% block title %}{% trans "Registration Complete" %} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}<li>{% trans "Registration Complete" %}</li>

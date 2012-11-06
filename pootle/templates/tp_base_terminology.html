@@ -1,9 +1,7 @@
 {% extends "tp_base.html"  %}
 {% load i18n %}
 
-{% block title %}
-{{ block.super }} » {% trans "Manage Terminology" %}
-{% endblock %}
+{% block title %}{% trans "Manage Terminology" %} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}<li>{% trans "Manage Terminology" %}</li>

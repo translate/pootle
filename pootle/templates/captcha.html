@@ -1,9 +1,7 @@
 {% extends "base.html" %}
 {% load i18n baseurl %}
 
-{% block title %}
-{{ block.super }} » {% trans "Are You Human?" %}
-{% endblock %}
+{% block title %}{% trans "Are You Human?" %} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}<li>{% trans "Are You Human?" %}</li>

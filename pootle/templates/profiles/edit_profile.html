@@ -1,9 +1,7 @@
 {% extends "user_profile_base_extended.html"  %}
 {% load assets i18n baseurl %}
  
-{% block title %}
-{{ block.super }} » {% trans "Translation Settings" %}
-{% endblock %}
+{% block title %}{% trans "Translation Settings" %} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}<li>{% trans "Translation Settings" %}</li>

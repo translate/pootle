@@ -2,9 +2,7 @@
 {% load i18n assets render_pager baseurl cache locale search store_tags translation_project_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block title %}
-{{ block.super }} » {% trans "Translate" %}
-{% endblock %}
+{% block title %}{% trans "Translate" %} | {{ block.super }}{% endblock %}
 
 {% block body_id %}tptranslate{% endblock %}
 

@@ -2,9 +2,7 @@
 {% load i18n baseurl cleanhtml assets %}
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block title %}
-{{ block.super }} » {{ project.name }}
-{% endblock %}
+{% block title %}{{ project.name }} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}<li><a href="{%filter l%}/projects/{{ project.code }}/{%endfilter%}">{{ project.name }}</a></li>

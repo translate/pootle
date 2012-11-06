@@ -4,9 +4,7 @@
 
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block title %}
-{{ block.super }} » {{ project.name }} » {% trans "Administrate" %}
-{% endblock %}
+{% block title %}{% trans "Administrate" %} | {{ project.name }} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}<li><a href="{% filter l %}/projects/{{ project.code }}/{% endfilter %}">{{ project.name }}</a></li><li>{% trans "Administrate" %}</li>

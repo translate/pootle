@@ -4,9 +4,7 @@
 
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block title %}
-{{ block.super }}: {% trans "Projects" %}
-{% endblock %}
+{% block title %}{% trans "Projects" %} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}<li>{% trans "Projects" %}</li>

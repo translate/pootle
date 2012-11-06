@@ -2,9 +2,7 @@
 
 {% load baseurl i18n %}
 
-{% block title %}
-{{ block.super }} » {{ language.name }}
-{% endblock %}
+{% block title %}{{ language.name }} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}<li><a href="{% filter l %}/{{ language.code }}/{% endfilter %}">{{ language.name }}</a></li>

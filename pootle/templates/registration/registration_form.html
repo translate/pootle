@@ -1,9 +1,7 @@
 {% extends "base.html" %}
 {% load i18n baseurl cache legalpages locale %}
 
-{% block title %}
-{{ block.super }} » {% trans "Register" %}
-{% endblock %}
+{% block title %}{% trans "Register" %} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}<li>{% trans "Register" %}</li>

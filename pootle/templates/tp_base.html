@@ -2,10 +2,7 @@
 
 {% load i18n baseurl cache %}
 
-{% block title %}
-    {{ block.super }} » 
-    {{ language.localname }} » {{ translation_project.project }}
-{% endblock %}
+{% block title %}{{ translation_project.project }} | {{ language.localname }} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}

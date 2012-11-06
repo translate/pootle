@@ -2,9 +2,7 @@
 
 {% load assets i18n baseurl %}
 
-{% block title %}
-{{ block.super }} » {% trans "Permissions" %}
-{% endblock %}
+{% block title %}{% trans "Permissions" %} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}<li>{% trans "Permissions" %}</li>

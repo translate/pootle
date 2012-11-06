@@ -11,17 +11,17 @@ approach for this.
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block title %}
-    {{ block.super }} »
+    {% trans "News" %}
     {% if directory.is_language %}
         {{ directory.language.name }}
     {% else %}
         {% if directory.is_project %}
-            {% trans "Projects" %} » {{ directory.project.fullname }}
+            {{ directory.project.fullname }} | {% trans "Projects" %}
         {% else %}
-            {{ navitems.0.path.language.text }} » {{ navitems.0.path.project.text }}
+            {{ navitems.0.path.project.text }} | {{ navitems.0.path.language.text }}
         {% endif %}
     {% endif %}
-    » {% trans "News" %}
+    {{ block.super }}
 {% endblock %}
 
 {% block breadcrumbs %}

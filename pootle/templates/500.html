@@ -1,9 +1,7 @@
 {% extends "base.html" %}
 {% load i18n baseurl %}
 
-{% block title %}
-{{ block.super }} » {% trans "Server Error" %}
-{% endblock %}
+{% block title %}{% trans "Server Error" %} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}<li>{% trans "Server Error" %}</li>

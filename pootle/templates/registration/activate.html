@@ -2,9 +2,7 @@
 
 {% load i18n baseurl %}
 
-{% block title %}
-{{ block.super }} » {% trans "Account Activated" %}
-{% endblock %}
+{% block title %}{% trans "Account Activated" %} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}<li>{% trans "Account Activated" %}</li>

@@ -4,12 +4,6 @@
 
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block title %}
-{{ block.super }}
-{% endblock %}
-
-{% block breadcrumbs %}{{ block.super }}{% endblock %}
-
 {% block css %}
 {{ block.super }}
 {% assets "css_admin" %}

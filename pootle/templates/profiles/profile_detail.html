@@ -5,7 +5,7 @@
     {% if user == profile.user %}
         {{ block.super }}
     {% else %}
-        {{ settings.TITLE }} » {% trans "Users" %} » {{ profile.user }}
+        {{ profile.user }} | {% trans "Users" %} | {{ settings.TITLE }}
     {% endif %}
 {% endblock %}
 

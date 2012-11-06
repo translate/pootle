@@ -1,9 +1,7 @@
 {% extends "user_profile_base_extended.html"  %}
 {% load i18n %}
  
-{% block title %}
-{{ block.super }} » {% trans "Profile" %}
-{% endblock %}
+{% block title %}{% trans "Profile" %} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}<li>{% trans "Profile" %}</li>

@@ -1,9 +1,7 @@
 {% extends "base.html" %}
 {% load i18n baseurl assets %}
 
-{% block title %}
-{{ block.super }} » {% trans "Previous Work" %}
-{% endblock %}
+{% block title %}{% trans "Previous Work" %} | {{ block.super }}{% endblock %}
 
 {% block css %}
 {{ block.super }}

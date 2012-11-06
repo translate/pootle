@@ -1,9 +1,7 @@
 {% extends "base.html"  %}
 {% load i18n assets baseurl %}
 
-{% block title %}
-{{ block.super }} » {% trans "Administration" %}
-{% endblock %}
+{% block title %}{% trans "Administration" %} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}<li><a class="admin" href='{{ "/admin/"|l }}'>{% trans "Administration" %}</a></li>

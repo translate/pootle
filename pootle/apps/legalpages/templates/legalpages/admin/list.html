@@ -1,9 +1,7 @@
 {% extends "admin_profile_base.html" %}
 {% load i18n %}
 
-{% block title %}
-{{ block.super }} » {% trans "Legal Pages" %}
-{% endblock %}
+{% block title %}{% trans "Legal Pages" %} | {{ block.super }}{% endblock %}
 
 {% block body_id %}adminlegalpages{% endblock %}
 
