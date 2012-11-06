@@ -9,6 +9,8 @@
     {% endif %}
 {% endblock %}
 
+{% block body_id %}dashboard{% endblock %}
+
 {% block breadcrumbs %}
     {% if user == profile.user %}
         {{ block.super }}
@@ -17,7 +19,11 @@
     {% endif %}
 {% endblock %}
 
-{% block body_id %}dashboard{% endblock %}
+{% block header_tabs_block %}
+{% if user == profile.user %}
+  {{ block.super }}
+{% endif %}
+{% endblock %}
 
 {% block content %}
 <div class="module first" lang="{{ LANGUAGE_CODE }}">
