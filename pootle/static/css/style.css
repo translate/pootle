@@ -705,64 +705,6 @@ button.close
   opacity: 1;
 }
 
-/* Form messages */
-
-.form.message
-{
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e5f3f8', endColorstr='#cde7f1');
-    background: -webkit-gradient(linear, left top, left bottom, from(#ffd), to(#ffa));
-    background: -moz-linear-gradient(top,  #e5f3f8,  #cde7f1);
-}
-
-.form.success
-{
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeffdd', endColorstr='#ccff99');
-    background: -webkit-gradient(linear, left top, left bottom, from(#efd), to(#cf9));
-    background: -moz-linear-gradient(top,  #efd,  #cf9);
-}
-
-.form.error
-{
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffeeee', endColorstr='#ffcccc');
-    background: -webkit-gradient(linear, left top, left bottom, from(#fee), to(#fcc));
-    background: -moz-linear-gradient(top,  #fee,  #fcc);
-}
-
-.form p.info
-{
-    margin: 0.3em 0;
-}
-
-.form .success {
-    color: #390;
-}
-
-.form .error
-{
-    color: #c33;
-}
-
-p.help,
-span.help_text
-{
-    font-size: 85%;
-    font-style: italic;
-}
-
-/* FORM ERROR LISTS */
-
-ul.errorlist
-{
-    margin: 0;
-    padding: 0;
-}
-
-.errorlist li
-{
-    color: #c33;
-    margin-top: 0.2em;
-}
-
 
 /*
  * PAGE BODY
@@ -1126,6 +1068,65 @@ html[dir="rtl"] .input-append .btn:last-child
        -moz-border-radius: 3px 0 0 3px;
             border-radius: 3px 0 0 3px;
 }
+
+/* Form messages */
+
+.form.message
+{
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e5f3f8', endColorstr='#cde7f1');
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffd), to(#ffa));
+    background: -moz-linear-gradient(top,  #e5f3f8,  #cde7f1);
+}
+
+.form.success
+{
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeffdd', endColorstr='#ccff99');
+    background: -webkit-gradient(linear, left top, left bottom, from(#efd), to(#cf9));
+    background: -moz-linear-gradient(top,  #efd,  #cf9);
+}
+
+.form.error
+{
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffeeee', endColorstr='#ffcccc');
+    background: -webkit-gradient(linear, left top, left bottom, from(#fee), to(#fcc));
+    background: -moz-linear-gradient(top,  #fee,  #fcc);
+}
+
+.form p.info
+{
+    margin: 0.3em 0;
+}
+
+.form .success {
+    color: #390;
+}
+
+.form .error
+{
+    color: #c33;
+}
+
+p.help,
+span.help_text
+{
+    font-size: 85%;
+    font-style: italic;
+}
+
+/* FORM ERROR LISTS */
+
+ul.errorlist
+{
+    margin: 0;
+    padding: 0;
+}
+
+.errorlist li
+{
+    color: #c33;
+    margin-top: 0.2em;
+}
+
 
 
 /*
