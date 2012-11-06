@@ -123,7 +123,7 @@ h1, h2, h3, h4, h5, h6
 {
     font-weight: normal;
     font-size: 100%;
-    color: #666;
+    color: #999;
 }
 
 h1
@@ -787,19 +787,10 @@ html[dir="rtl"] .module.first
     float: right;
 }
 
-.module .hd h2, 
-.module-primary .hd h2,
-.module .hd h3,
-.module .hd h4
-{
-    color: #999;
-}
-
 .module .hd h2,
 .module-primary .hd h2
 {
     margin: 1em 0.5em 0;
-    color: #999;
     border-bottom: 1px solid #eee;
 }
 
@@ -845,7 +836,6 @@ html[dir="rtl"] .module .hd h3 span
 .module .bd h2, 
 .module-primary .bd h2
 {
-    color: #999;
     margin-bottom: 0.5em;
 }
 
@@ -947,6 +937,7 @@ html[dir="rtl"] .form
 
 .form h2
 {
+    color: #666;
     margin-bottom: 0.5em;
 }
 
@@ -1200,7 +1191,6 @@ ul.errorlist
 #about h2,
 #about h3
 {
-    color: #999;
     border-bottom: 1px solid #eee;
 }
 
@@ -1301,7 +1291,6 @@ div.settings-container
 
 .settings-container h2
 {
-    color: #999;
     margin: 1em 0 0.5em;
 }
 
