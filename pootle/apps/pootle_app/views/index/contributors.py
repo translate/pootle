@@ -31,7 +31,7 @@ from pootle_translationproject.models import TranslationProject
 
 
 def view(request):
-    """render a nested list like this::
+    """Render a nested list like this::
 
         contributors = [
           ('french', [
