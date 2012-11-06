@@ -1,9 +1,7 @@
-{% extends "base.html" %}
+{% extends "about/base.html" %}
 {% load i18n baseurl locale %}
 
-{% block title %}
-{{ block.super }} » {% trans "Contact Us" %}
-{% endblock %}
+{% block title %}{% trans "Contact Us" %} | {{ block.super }}{% endblock %}
  
 {% block breadcrumbs %}
 {{ block.super }}<li>{% trans "Contact Us" %}</li>

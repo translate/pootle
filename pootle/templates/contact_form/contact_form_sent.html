@@ -1,10 +1,8 @@
-{% extends "base.html"  %}
+{% extends "about/base.html"  %}
 
 {% load i18n baseurl %}
 
-{% block title %}
-{{ block.super }} » {% trans "Message Sent" %}
-{% endblock %}
+{% block title %}{% trans "Message Sent" %} | {{ block.super }}{% endblock %}
  
 {% block breadcrumbs %}
 {{ block.super }}<li>{% trans "Message Sent" %}</li>
