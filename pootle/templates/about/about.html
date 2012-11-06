@@ -3,9 +3,7 @@
 
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block title %}
-{% trans "This Pootle Server" %} | {{ block.super }}
-{% endblock %}
+{% block title %}{% trans "This Pootle Server" %} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}<li>{% trans "This Pootle Server" %}</li>

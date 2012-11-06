@@ -3,9 +3,7 @@
 
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block title %}
-{% trans "Contributors" %} | {{ block.super }}
-{% endblock %}
+{% block title %}{% trans "Contributors" %} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}<li>{% trans "Contributors" %}</li>
