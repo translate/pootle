@@ -121,8 +121,8 @@ $(function ($) {
   });
   $("#overview-actions").on("click", ".js-overview-actions-delete-path",
     function (e) {
-      return confirm(gettext("Are you sure you want to continue?\n" +
-                             "This operation cannot be undone."));
+      return confirm(gettext("Are you sure you want to continue?") + "\n"
+                     gettext("This operation cannot be undone."));
   });
 
   /* Generic toggle */
