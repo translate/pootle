@@ -20,14 +20,13 @@
 
 import sys
 
-from django.utils.translation import ugettext as _
+import django
 
+from django.conf import settings
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.conf import settings
+from django.utils.translation import ugettext as _
 
-# get versions
-import django
 from translate import __version__ as toolkitversion
 from pootle import __version__ as pootleversion
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -18,17 +18,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+from django.conf import settings
 from django.contrib.auth.models import User
-from pootle_statistics.models import Submission
-from pootle_translationproject.models import TranslationProject
-from pootle_project.models import Project
-from pootle_language.models import Language
-from pootle_app.models import Suggestion
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.conf import settings
 
-# get versions
+from pootle_app.models import Suggestion
+from pootle_language.models import Language
+from pootle_project.models import Project
+from pootle_statistics.models import Submission
+from pootle_translationproject.models import TranslationProject
 
 
 def view(request):
