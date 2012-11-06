@@ -40,7 +40,6 @@ VERSION=`egrep "^ver" __version__.py | sed "s,.*(\(.*\)),\1,g" | sed "s,[ ],,g" 
 pushd . 2>&1 > /dev/null
 cd $basedir
 verbosity="-v $verbosity"
-mkdir -p locale
 
 ./manage.py makemessages $verbosity -e ".py" -e ".txt" -e ".html" -l templates
 ./manage.py makemessages $verbosity -d djangojs -l templates
@@ -55,5 +54,4 @@ sed -i "s/$PACKAGE_VERSION_PLACEHOLDER/$PACKAGE $VERSION/" $DJANGO_JS_POT
 mv $DJANGO_POT $POOTLE_POT
 mv $DJANGO_JS_POT $POOTLE_JS_POT
 
-rm -rf locale
 popd  2>&1  >  /dev/null
