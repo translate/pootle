@@ -1,6 +1,10 @@
-{% extends "base.html" %}
+{% extends "about/base.html" %}
 
-{% block title %}{{ block.super }} » {{ lp.title }}{% endblock title %}
+{% block title %}{{ lp.title }} | {{ block.super }}{% endblock title %}
+
+{% block breadcrumbs %}
+{{ block.super }}<li>{{ lp.title }}</li>
+{% endblock %}
 
 {% block content %}
 {% include "legalpages/legalpage_body.html" %}
