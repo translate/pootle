@@ -7,10 +7,12 @@
 {{ block.super }} » {% trans "Contributors" %}
 {% endblock %}
 
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Contributors" %}</li>
+{% endblock %}
+
 {% block content %}
 <div id="about">
-  <h2>{% trans "Contributors" %}</h2>
-
   <div id="contributors">
     <ul>
       {% for language, projects in contributors %}
