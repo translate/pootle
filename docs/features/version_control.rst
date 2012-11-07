@@ -45,10 +45,10 @@ Preparation
 
 .. note::
    .. versionchanged:: 2.2
-      :setting:`VCS_DIRECTORY` for separate version control was introduced.
-      Previously your :setting:`PODIRECTORY` contained your files from version
-      control. Separation allows Pootle to work reliably on Distributed Version
-      Control Systems (Git, Mercurial, etc).
+      :setting:`VCS_DIRECTORY` was introduced for separating version control
+      directories.  Previously your :setting:`PODIRECTORY` contained your files
+      from version control. Separation allows Pootle to work reliably on
+      Distributed Version Control Systems (Git, Mercurial, etc).
 
 .. note:: The setup of version control has to be done outside of Pootle admin
    interface.
