@@ -83,10 +83,10 @@ An example layout::
                        fr.po
                        pt_BR.po
 
-Here :setting:`VCS_DIRECORY` is ``.../po`` and :setting:`PODIRECTORY` is
-``.../repos``.  The directory ``.../repos/project1`` contains a clean checkout
-of the translations form version control.  This is where Pootle will perform
-any version control actions such as updates and commits.
+Here :setting:`VCS_DIRECORY` is ``.../repos`` and :setting:`PODIRECTORY` is
+``.../po``.  The directory ``.../repos/project1`` contains a clean checkout of
+the translations form version control.  This is where Pootle will perform any
+version control actions such as updates and commits.
 
 The :setting:`VCS_DIRECTORY` should never contain uncommitted changes. Pootle
 will bring in changes from the upstream VCS and rely on it succeeding without
