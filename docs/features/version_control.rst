@@ -47,8 +47,11 @@ Preparation
    .. versionchanged:: 2.2
       :setting:`VCS_DIRECTORY` for separate version control was introduced.
       Previously your :setting:`PODIRECTORY` contained your files from version
-      control. Separation allows more reliable merging for Distributed Version
-      Control Systems such as Git.
+      control. Separation allows Pootle to work reliably on Distributed Version
+      Control Systems (Git, Mercurial, etc).
+
+.. note:: The setup of version control has to be done outside of Pootle admin
+   interface.
 
 To have any sort of integration with version control from within Pootle, it is
 necessary to construct the correct file system structure in the
@@ -64,23 +67,31 @@ normal operation of Pootle, and the :setting:`VCS_DIRECTORY` contains "clean"
 versions (with no uncommitted changes) that enables the version control
 integration. The meta files for the version control system (*CVS/*, *.svn/*,
 *.hg*, *.git*, etc.) therefore should be present in :setting:`VCS_DIRECTORY`
-for Pootle to perform the integration. Here is an example layout::
+for Pootle to perform the integration.
 
-    pootle/pootle/po/project/de.po
-    pootle/pootle/po/project/fr.po
-    pootle/pootle/po/project/pt_BR.po
-    ...
-    pootle/pootle/repos/project/.svn/
-    pootle/pootle/repos/project/de.po
-    pootle/pootle/repos/project/fr.po
-    pootle/pootle/repos/project/pt_BR.po
-    ...
+An example layout::
 
-This has to be done outside of Pootle.
+    .../po/
+           project1/
+                    de.po
+                    fr.po
+                    pt_BR.po
+
+    .../repos/
+              project1/
+                       de.po
+                       fr.po
+                       pt_BR.po
+
+Here :setting:`VCS_DIRECORY` is ``.../po`` and :setting:`PODIRECTORY` is
+``.../repos``.  The directory ``.../repos/project1`` contains a clean checkout
+of the translations form version control.  This is where Pootle will perform
+any version control actions such as updates and commits.
 
 The :setting:`VCS_DIRECTORY` should never contain uncommitted changes. Pootle
 will bring in changes from the upstream VCS and rely on it succeeding without
 conflicts.
+
 
 
 .. _version_control#example:
