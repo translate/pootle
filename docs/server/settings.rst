@@ -369,6 +369,8 @@ Translation environment configuration settings.
 ``VCS_DIRECTORY``
   Default: ``working_path('repos')``
 
+  .. versionadded:: 2.2
+
   The directory where version control clones/checkouts are kept.
 
 Deprecated settings
