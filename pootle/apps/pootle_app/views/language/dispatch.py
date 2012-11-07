@@ -20,6 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.core.urlresolvers import get_script_prefix
+from pootle_misc.baseurl import l
 
 
 def translate(path_obj, state=None, check=None, suggestions=False):
@@ -48,11 +49,11 @@ def translate(path_obj, state=None, check=None, suggestions=False):
 
 
 def open_language(code):
-    return '/%s/' % code
+    return l('/%s/' % code)
 
 
 def open_translation_project(language_code, project_code):
-    return '/%s/%s/' % (language_code, project_code)
+    return l('/%s/%s/' % (language_code, project_code))
 
 
 def download_zip(path_obj):
@@ -62,16 +63,16 @@ def download_zip(path_obj):
         current_folder = path_obj.parent.pootle_path
     # FIXME: ugly URL, django.core.urlresolvers.reverse() should work
     archive_name = "%sexport/zip" % current_folder
-    return archive_name
+    return l(archive_name)
 
 
 def export(pootle_path, format):
-    return '%s/export/%s' % (pootle_path, format)
+    return l('%s/export/%s' % (pootle_path, format))
 
 
 def commit(path_obj):
-    return  path_obj.pootle_path + '/commit'
+    return  l(path_obj.pootle_path + '/commit')
 
 
 def update(path_obj):
-    return  path_obj.pootle_path + '/update'
+    return  l(path_obj.pootle_path + '/update')
