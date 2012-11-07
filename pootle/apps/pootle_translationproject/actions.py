@@ -25,6 +25,7 @@ from django.utils.translation import ugettext as _
 
 from pootle_app.models.permissions import check_permission
 from pootle_app.views.language import dispatch
+from pootle_misc.baseurl import l
 from pootle_misc.versioncontrol import hasversioning
 
 
@@ -81,7 +82,7 @@ def download_source(request, path_obj):
 
     return {
         'icon': 'icon-download',
-        'href': href or '%s/download/' % path_obj.pootle_path,
+        'href': href or l('%s/download/' % path_obj.pootle_path),
         'text': text,
         'tooltip': tooltip,
     }
