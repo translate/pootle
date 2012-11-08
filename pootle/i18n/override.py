@@ -19,19 +19,20 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-"""overrides and support functions for enabling Live Translation and
-arbitrary locale support"""
+"""Overrides and support functions for enabling Live Translation and
+arbitrary locale support."""
 
 import locale
 import os
 
 from django.utils import translation
-from django.utils.translation import trans_real
 from django.utils.functional import lazy
+from django.utils.translation import trans_real
+
+from translate.lang import data
 
 from pootle.i18n import gettext
 
-from translate.lang import data
 
 def find_languages(locale_path):
     """generates supported languages list from mo directory"""
@@ -61,7 +62,7 @@ def supported_langs():
 
 
 def lang_choices():
-    """generated locale choices for drop down lists in forms"""
+    """Generated locale choices for drop down lists in forms."""
     choices = []
     for code, name in supported_langs():
         name = data.tr_lang(translation.to_locale('en'))(name)
@@ -73,6 +74,7 @@ def lang_choices():
             # is used inside an option tag.
             name = u"%s | \u202d%s" % (tr_name, name)
         choices.append((code, name))
+
     choices.sort(cmp=locale.strcoll, key=lambda choice: unicode(choice[1]))
     return choices
 
@@ -82,17 +84,21 @@ def get_lang_from_session(request, supported):
         lang_code = request.session.get('django_language', None)
         if lang_code and lang_code in supported:
             return lang_code
+
     return None
+
 
 def get_lang_from_cookie(request, supported):
     """See if the user's browser sent a cookie with a her preferred
     language."""
     from django.conf import settings
     lang_code = request.COOKIES.get(settings.LANGUAGE_COOKIE_NAME)
+
     if lang_code and lang_code in supported:
         return lang_code
     else:
         return None
+
 
 def get_lang_from_prefs(request, supported):
     """If the current user is logged in, get her profile model object
@@ -103,6 +109,7 @@ def get_lang_from_prefs(request, supported):
         # and if the user's ui lang is set, and the ui lang exists
         if profile.ui_lang and profile.ui_lang in supported:
             return profile.ui_lang
+
     return None
 
 
@@ -149,8 +156,8 @@ def get_language_from_request(request, check_path=False):
 
 
 def translation_dummy(language):
-    """return dumy translation object to please django's l10n while
-    Live Translation is enabled"""
+    """Return dummy translation object to please Django's l10n while
+    Live Translation is enabled."""
 
     t = trans_real._translations.get(language, None)
     if t is not None:
@@ -165,8 +172,9 @@ def translation_dummy(language):
     trans_real._translations[language] = dummytrans
     return dummytrans
 
+
 def override_gettext(real_translation):
-    """replace django's translation functions with safe versions"""
+    """Replace Django's translation functions with safe versions."""
     translation.gettext = real_translation.gettext
     translation.ugettext = real_translation.ugettext
     translation.ngettext = real_translation.ngettext
@@ -176,7 +184,8 @@ def override_gettext(real_translation):
     translation.ngettext_lazy = lazy(real_translation.ngettext, str)
     translation.ungettext_lazy = lazy(real_translation.ungettext, unicode)
 
+
 def get_language_bidi():
-    """override for django's get_language_bidi that's aware of more
-    RTL languages"""
+    """Override for django's get_language_bidi that's aware of more
+    RTL languages."""
     return gettext.language_dir(translation.get_language()) == 'rtl'
