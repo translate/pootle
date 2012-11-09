@@ -3,7 +3,7 @@
 Keyboard shortcuts
 ******************
 
-.. versionadded:: 2.2
+.. versionadded:: 2.5
 
 
 .. _shortcuts#global:

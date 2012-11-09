@@ -70,7 +70,7 @@ Changes made to the base template are likely to work fine, but changes to
 details will need individual inspection to see if they can apply
 cleanly or have to be reimplemented on the new version of Pootle.
 
-Since Pootle 2.2 customisation of style sheets and templates have become much
-easier to seperate from the standard code.  If you are migrating to Pootle 2.2+
+Since Pootle 2.5 customisation of style sheets and templates have become much
+easier to seperate from the standard code.  If you are migrating to Pootle 2.5+
 then use this opportunity to move your code to the correct customisation
 locations.

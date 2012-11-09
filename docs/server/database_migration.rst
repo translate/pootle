@@ -60,7 +60,7 @@ The steps to migrate between databases are as follows:
 
 .. note::
 
-    Pootle 2.1 and 2.2 database can be very large. Dumping and loading data
+    Pootle 2.1 and 2.5 database can be very large. Dumping and loading data
     will take long and will require lots of RAM. If you have a 2.0 install
-    it is better to migrate the database first and then upgrade to 2.2, since
+    it is better to migrate the database first and then upgrade to 2.5, since
     the 2.0 database is relatively small.

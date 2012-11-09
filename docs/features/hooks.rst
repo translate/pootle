@@ -11,7 +11,7 @@ Hooks are Python scripts and can do things like checking or converting
 formats before commit.
 
 .. note:: See `bug 2559 <http://bugs.locamotion.org/show_bug.cgi?id=2559>`_ tracking changes
-   needed for hooks to run on Pootle 2.2
+   needed for hooks to run on Pootle 2.5.
 
 
 .. _hooks#implementing:

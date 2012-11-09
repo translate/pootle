@@ -238,7 +238,7 @@ no longer have matching files on the filesystem will be deleted.
 update_from_vcs
 ^^^^^^^^^^^^^^^
 
-.. versionadded:: 2.2
+.. versionadded:: 2.5
 
 This command updates the specified files from their :doc:`Version Control
 System(s) <../features/version_control>`. It supports the parameters
@@ -254,7 +254,7 @@ the web front-end.
 commit_to_vcs
 ^^^^^^^^^^^^^
 
-.. versionadded:: 2.2
+.. versionadded:: 2.5
 
 This command commits the specified files to their :doc:`Version Control
 System(s) <../features/version_control>`. It supports the parameters
@@ -271,7 +271,7 @@ be committed without review without anybody knowing.
 list_languages
 ^^^^^^^^^^^^^^
 
-.. versionadded:: 2.2
+.. versionadded:: 2.5
 
 This command prints all the language codes on the server. This might be useful
 for automation.
@@ -282,7 +282,7 @@ for automation.
 list_projects
 ^^^^^^^^^^^^^
 
-.. versionadded:: 2.2
+.. versionadded:: 2.5
 
 This command prints all the project codes on the server. This might be useful
 for automation.
@@ -293,7 +293,7 @@ for automation.
 latest_change_id
 ^^^^^^^^^^^^^^^^
 
-.. versionadded:: 2.2
+.. versionadded:: 2.5
 
 This command prints the ID of the latest change (submission) made on the
 server. This is mostly useful in combination with other commands that operate

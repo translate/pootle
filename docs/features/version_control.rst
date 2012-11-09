@@ -44,7 +44,7 @@ Preparation
 -----------
 
 .. note::
-   .. versionchanged:: 2.2
+   .. versionchanged:: 2.5
       :setting:`VCS_DIRECTORY` was introduced for separating version control
       directories.  Previously your :setting:`PODIRECTORY` contained your files
       from version control. Separation allows Pootle to work reliably on
@@ -235,7 +235,7 @@ commits for this repository.
 Adding
 ------
 
-.. versionadded:: 2.2
+.. versionadded:: 2.5
 
 When a language is initialized from templates, Pootle will check if it is
 inside a version control checkout/clone. If it is, it will add the new files as

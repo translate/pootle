@@ -369,7 +369,7 @@ Translation environment configuration settings.
 ``VCS_DIRECTORY``
   Default: ``working_path('repos')``
 
-  .. versionadded:: 2.2
+  .. versionadded:: 2.5
 
   The directory where version control clones/checkouts are kept.
 
@@ -381,7 +381,7 @@ Deprecated settings
 ``ENABLE_ALT_SRC``
   Defaut: ``True``
 
-  .. deprecated:: 2.2
+  .. deprecated:: 2.5
 
   Display alternate source languages in the translation interface.
 

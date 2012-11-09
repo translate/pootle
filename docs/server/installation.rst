@@ -62,7 +62,7 @@ Prerequisite Software
 ==========================  =====================  ======================================================================  ================================================================
  Package                     Best version           Website                                                                 Notes
 ==========================  =====================  ======================================================================  ================================================================
- Pootle                      2.2 or later           http://sourceforge.net/projects/translate/files/Pootle/ 
+ Pootle                      2.5 or later           http://sourceforge.net/projects/translate/files/Pootle/ 
  Django                      1.3 or later           https://www.djangoproject.com/download/
  Translate Toolkit           Latest version         http://sourceforge.net/projects/translate/files/Translate%20Toolkit/
  Python                      Latest 2.x version     http://www.python.org/                                                  At least version 2.4

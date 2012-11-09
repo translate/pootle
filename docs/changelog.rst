@@ -11,7 +11,7 @@ If you are upgrading Pootle, you might want to see some tips to ensure your
 :ref:`upgrade goes smoothly <upgrading>`
 
 
-Version 2.2.0
+Version 2.5.0
 -------------
 
 Not released yet.
