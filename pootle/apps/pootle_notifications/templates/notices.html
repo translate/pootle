@@ -11,7 +11,7 @@ approach for this.
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block title %}
-    {% trans "News" %}
+    {% trans "News" %} |
     {% if directory.is_language %}
         {{ directory.language.name }}
     {% else %}
@@ -21,7 +21,7 @@ approach for this.
             {{ navitems.0.path.project.text }} | {{ navitems.0.path.language.text }}
         {% endif %}
     {% endif %}
-    {{ block.super }}
+    | {{ block.super }}
 {% endblock %}
 
 {% block breadcrumbs %}
