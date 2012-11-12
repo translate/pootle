@@ -58,12 +58,9 @@ def view(request, path):
     proj = None
     lang = None
     if not directory.is_language() and not directory.is_project():
-        try:
-            translation_project = directory.translation_project
-            lang = translation_project.language
-            proj = translation_project.project
-        except:
-            pass
+        translation_project = directory.translation_project
+        lang = translation_project.language
+        proj = translation_project.project
     else:
         if directory.is_language():
             lang = directory.language
@@ -86,14 +83,11 @@ def view(request, path):
         template_vars['notices'] = Notice.objects.filter(directory=directory).select_related('directory')[:30]
 
     if not directory.is_language() and not directory.is_project():
-        try:
-            request.translation_project = directory.translation_project
-            template_vars['navitems'] = [navbar_dict.make_directory_navbar_dict(request, directory)]
-            template_vars['translation_project'] = request.translation_project
-            template_vars['language'] = request.translation_project.language
-            template_vars['project'] = request.translation_project.project
-        except:
-            pass
+        request.translation_project = directory.translation_project
+        template_vars['navitems'] = [navbar_dict.make_directory_navbar_dict(request, directory)]
+        template_vars['translation_project'] = request.translation_project
+        template_vars['language'] = request.translation_project.language
+        template_vars['project'] = request.translation_project.project
 
     return render_to_response('notices.html', template_vars, context_instance=RequestContext(request))
 
