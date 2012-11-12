@@ -46,7 +46,8 @@ def view(request, path):
 
     directory = get_object_or_404(Directory, pootle_path=pootle_path)
 
-    request.permissions = get_matching_permissions(get_profile(request.user), directory)
+    request.permissions = get_matching_permissions(get_profile(request.user),
+                                                   directory)
 
     if not check_permission('view', request):
         raise PermissionDenied
@@ -71,8 +72,10 @@ def view(request, path):
 
 
     if check_permission('administrate', request):
-        # Thus, form is only set for the template if the user has 'administrate' permission
-        template_vars['form'] = handle_form(request, directory, proj, lang, template_vars)
+        # Thus, form is only set for the template if the user has
+        # 'administrate' permission
+        template_vars['form'] = handle_form(request, directory, proj, lang,
+                                            template_vars)
         template_vars['title'] = directory_to_title(directory)
     else:
         template_vars['form'] = None
@@ -89,12 +92,13 @@ def view(request, path):
         template_vars['language'] = request.translation_project.language
         template_vars['project'] = request.translation_project.project
 
-    return render_to_response('notices.html', template_vars, context_instance=RequestContext(request))
+    return render_to_response('notices.html', template_vars,
+                              context_instance=RequestContext(request))
+
 
 def directory_to_title(directory):
-    """figures out if directory refers to a Language or
-    TranslationProject and returns appropriate string for use in
-    titles"""
+    """Figures out if directory refers to a Language or TranslationProject and
+    returns appropriate string for use in titles."""
 
     if directory.is_language():
         trans_vars = {
@@ -145,7 +149,7 @@ def form_factory(current_directory):
                 initial=True,
         )
 
-        #project selection
+        # Project selection
         if current_directory.is_language() or is_root:
             project_all = forms.BooleanField(
                     label=_('All Projects'),
@@ -157,7 +161,7 @@ def form_factory(current_directory):
                     required=False,
             )
 
-        #language selection
+        # Language selection
         if current_directory.is_project() or is_root:
             language_all = forms.BooleanField(
                     label=_('All Languages'),
@@ -283,7 +287,8 @@ def handle_form(request, current_directory, current_project, current_language, t
         from_email = DEFAULT_FROM_EMAIL
 
         # Send the email to the list of people
-        send_mail(email_header, message, from_email, to_list_emails, fail_silently=True)
+        send_mail(email_header, message, from_email, to_list_emails,
+                  fail_silently=True)
 
     if not template_vars['notices_published']:
         template_vars['notices_published'] = None
