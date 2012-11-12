@@ -49,7 +49,7 @@ class ErrorPagesMiddleware(object):
 
 
     def process_exception(self, request, exception):
-        msg = unicode(exception)
+        msg = unicode(str(exception), 'utf-8')
         if isinstance(exception, Http404):
             if request.is_ajax():
                 return self._ajax_error(404, msg)
