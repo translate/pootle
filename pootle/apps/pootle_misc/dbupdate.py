@@ -471,7 +471,7 @@ def staggered_update(db_buildversion, tt_buildversion):
         logging.info("Associating stores with translation projects")
         for store in Store.objects.iterator():
             try:
-                store.translation_project = store.parent.get_translationproject()
+                store.translation_project = store.parent.translation_project
                 store.save()
             except Exception, e:
                 logging.warning(u"Something broke while upgrading %s:\n%s",

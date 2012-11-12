@@ -59,7 +59,7 @@ def view(request, path):
     lang = None
     if not directory.is_language() and not directory.is_project():
         try:
-            translation_project = directory.get_translationproject()
+            translation_project = directory.translation_project
             lang = translation_project.language
             proj = translation_project.project
         except:
@@ -87,7 +87,7 @@ def view(request, path):
 
     if not directory.is_language() and not directory.is_project():
         try:
-            request.translation_project = directory.get_translationproject()
+            request.translation_project = directory.translation_project
             template_vars['navitems'] = [navbar_dict.make_directory_navbar_dict(request, directory)]
             template_vars['translation_project'] = request.translation_project
             template_vars['language'] = request.translation_project.language
