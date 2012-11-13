@@ -96,11 +96,14 @@ def get_quality_check_failures(path_obj, path_stats, include_url=True):
         keys.sort(reverse=True)
 
         for i, category in enumerate(keys):
+            checks.append({
+                'checks': []
+            })
+
             if category != Category.NO_CATEGORY:
-                checks.append({
+                checks[i].update({
                     'name': category,
                     'display_name': unicode(category_names[category]),
-                    'checks': []
                 })
 
             cat_keys = property_stats[category].keys()
