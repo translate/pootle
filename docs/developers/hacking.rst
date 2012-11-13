@@ -153,10 +153,14 @@ With all the dependencies installed within the virtual environment, Pootle is
 almost ready to run. In development environments you probably want to use
 settings that vastly differ from those used in production servers.
 
-Head over the :ref:`settings` section in the documentation to learn more about
-how settings work in Pootle. Our recommendation is to create a file named
-*90-dev-local.conf* in the *settings* directory and keeping there the
-customizations made for development-purposes.
+For that purpose there is a sample configuration file with settings adapted for
+development scenarios, *pootle/settings/90-dev-local.conf.sample*. Copy this
+file and rename it by removing the *.sample* extension and you're good to go.
+
+.. note::
+
+  To learn more about how settings work in Pootle head over the :ref:`settings`
+  section in the documentation.
 
 Finally, just move to the directory where the ``manage.py`` script resides and
 run the development server.

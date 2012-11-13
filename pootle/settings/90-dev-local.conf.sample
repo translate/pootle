@@ -1,0 +1,152 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""Sample development configuration file.
+
+This file includes settings that are suited for hacking Pootle. For further
+customizations, you can find the defaults in the ``*.conf`` files.
+
+In order for this configuration changes to take effect, bear in mind that you
+need to change the extension of this file from ``.conf.sample`` to ``.conf``.
+"""
+
+#
+# Base
+#
+
+# General Django debugging settings
+
+# Enable Django debug mode
+# https://docs.djangoproject.com/en/dev/ref/settings/#debug
+DEBUG = True
+
+# Whether to debug template rendering
+# https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
+TEMPLATE_DEBUG = DEBUG
+
+
+#
+# Backends
+#
+
+# Database backend settings
+DATABASES = {
+    'default': {
+        # Although has issues with locking, SQLite is handy for development
+        'ENGINE': 'django.db.backends.sqlite3',
+        # Database name or path to database file if using sqlite3.
+        'NAME': working_path('dbs/pootle.db'),
+        # Not used with sqlite3.
+        'USER': '',
+        # Not used with sqlite3.
+        'PASSWORD': '',
+        # Set to empty string for localhost. Not used with sqlite3.
+        'HOST': '',
+        # Set to empty string for default. Not used with sqlite3.
+        'PORT': '',
+    }
+}
+
+
+#
+# Cache Backend settings
+#
+# Use local memory caching for development
+# https://docs.djangoproject.com/en/dev/topics/cache/#local-memory-caching
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'pootle-cache',
+    }
+}
+
+
+#
+# Site
+#
+
+# Mail server settings
+#
+# By default Pootle uses the SMTP server on localhost. If the server is not
+# configured for sending emails, uncomment and use these settings to setup an
+# external outgoing SMTP server.
+
+# Example for Google as an external SMTP server
+#EMAIL_HOST_USER = 'USER@YOUR_DOMAIN.com'
+#EMAIL_HOST_PASSWORD = 'YOUR_PASSWORD'
+#EMAIL_HOST = 'smtp.gmail.com'
+#EMAIL_PORT = 587
+#EMAIL_USE_TLS = True
+
+
+#
+# Applications
+#
+
+#
+# webassets
+#
+# Enable debugging assets.
+#
+# When this is set, the templates will generate one script/link tag per each
+# JavaScript/CSS file instead of putting them in bundles.
+# Further details:
+#   http://elsdoerfer.name/docs/webassets/django/settings.html
+ASSETS_DEBUG = True
+
+# Controls whether bundles should be automatically built and rebuilt. If set to
+# ``False`` you'll need to manually generate the bundles with ``manage.py
+# assets build``.
+ASSETS_AUTO_BUILD = True
+
+
+#
+# Django extensions
+#
+INSTALLED_APPS += ['django_extensions']
+
+
+#
+# Django debug toolbar
+#
+# Check its README for further configuration options:
+# https://github.com/django-debug-toolbar/django-debug-toolbar/blob/master/README.rst
+INSTALLED_APPS += ['debug_toolbar']
+
+MIDDLEWARE_CLASSES += [
+  'debug_toolbar.middleware.DebugToolbarMiddleware',
+]
+
+DEBUG_TOOLBAR_CONFIG = {
+    'INTERCEPT_REDIRECTS': False,
+    'HIDE_DJANGO_SQL': True,
+}
+
+
+#
+# Translation
+#
+
+# The directory where the translation files are kept
+PODIRECTORY = working_path('po')
+
+# The directory where version control clones/checkouts are kept
+VCS_DIRECTORY = working_path('repos')
+
+# Two-tuple defining the markup filter to apply in certain textareas
+# ('textile', 'markdown', 'restructuredtext', None).
+MARKUP_FILTER = (None, {})
+
+# Suggestions through Machine Translation services (service name, API key).
+MT_BACKENDS = [
+#        ('APERTIUM', ''),
+#        ('GOOGLE_TRANSLATE', ''),
+]
+
+# Web-based lookup
+LOOKUP_BACKENDS = [
+#        'wikipedia',
+]
+
+# URL for the amaGama TM server.
+AMAGAMA_URL = 'http://amagama.locamotion.org/tmserver/'
