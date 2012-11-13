@@ -21,6 +21,7 @@
 import random
 import re
 
+from lxml.etree import ParserError
 from lxml.html.clean import clean_html
 
 from django import template
@@ -66,10 +67,17 @@ def fancy_spaces(text):
         return match.group()[0] + fancy_space * (len(match.group()) - 1)
     return WHITESPACE_RE.sub(replace, text)
 
+
 def clean_wrapper(text):
-    """wrapper around lxml's html cleaner that returns SafeStrings for
-    immediate rendering in templates"""
-    return mark_safe(clean_html(text))
+    """Wrapper around lxml's html cleaner that returns SafeStrings for
+    immediate rendering in templates.
+    """
+    try:
+        clean_text = clean_html(text)
+    except ParserError:
+        clean_text = u""
+
+    return mark_safe(clean_text)
 
 
 PUNCTUATION_RE = general.PunctuationPlaceable().regex
