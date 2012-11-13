@@ -31,7 +31,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
-from django.utils.encoding import iri_to_uri
+from django.utils.encoding import force_unicode, iri_to_uri
 from django.utils.translation import ugettext_lazy as _
 
 from pootle_app.lib import view_handler
@@ -343,7 +343,8 @@ def edit_settings(request, translation_project):
         else:
             the_html = u"".join([
                 u'<p class="placeholder muted">',
-                _(u"No description yet."), u"</p>"
+                force_unicode(_(u"No description yet.")),
+                u"</p>"
             ])
 
         response["description_html"] = the_html
