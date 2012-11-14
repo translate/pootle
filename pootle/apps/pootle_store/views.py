@@ -255,8 +255,8 @@ def get_search_step_query(translation_project, form, units_queryset):
     dbids = cache.get(cache_key)
     if dbids is None:
         searchparts = []
-        # Split the search expression into single words. Otherwise xapian and
-        # lucene would interprete the whole string as an "OR" combination of
+        # Split the search expression into single words. Otherwise Xapian and
+        # Lucene would interpret the whole string as an "OR" combination of
         # words instead of the desired "AND".
         for word in words:
             # Generate a list for the query based on the selected fields
