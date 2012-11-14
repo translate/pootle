@@ -1,0 +1,2329 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Zuza Software Foundation (Translate.org.za)
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-08-03 02:17+0200\n"
+"PO-Revision-Date: 2011-10-24 11:51+0200\n"
+"Last-Translator: afshin <afshin.meh@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ach\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Pootle 2.1.6\n"
+
+#: strings.py:8
+msgid ""
+"Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
+msgstr ""
+"Mak piny '' Juki'', onyo ciki'' ikum Mac, wek oyer madwong maloyo acel. "
+"sdfsdfsdf"
+
+#: strings.py:9
+msgid "Enter a valid e-mail address."
+msgstr "Ket e-mail address matiyo. "
+
+#: strings.py:10
+msgid ""
+"That e-mail address doesn't have an associated user account. Are you sure "
+"you've registered?"
+msgstr ""
+"E-mail address nono pe tye ki akaunti marwate ki pa latic kwede. Imoko ni "
+"yin ityeko cone?"
+
+#: strings.py:11
+msgid "This field is required."
+msgstr "Dyer bar man mite."
+
+#: strings.py:12
+#, python-format
+msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
+msgstr "Nen ni mano welle tye maromo %(max)d kite (it has %(length)d)."
+
+#: strings.py:13
+msgid "Save and add another"
+msgstr "Gwoki ki imed mukene"
+
+#: strings.py:14
+msgid "Save and continue editing"
+msgstr "Gwoki ki imede ki yubu ne"
+
+#: strings.py:15
+msgid "Add"
+msgstr "Med"
+
+#: strings.py:16
+msgid "Change"
+msgstr "Lok"
+
+#. l10n: This is a constructed string that might end up saying "Add language" or "Add project". If you need to translate that differently, you might want to try to translate it as "Add an entry to the %(name)s table" or "Add an object of type "%(name)s".
+#: strings.py:19
+#, python-format
+msgid "Add %(name)s"
+msgstr "Med %(name)s"
+
+#. l10n: This link takes the user to the page where the currently configured option is displayed (such as a project or language)
+#: strings.py:22
+msgid "View on site"
+msgstr "Nen odoco idyer bar"
+
+#: strings.py:24
+msgid "first name"
+msgstr "nying me acel"
+
+#: strings.py:25
+msgid "last name"
+msgstr "nying ma ogiko"
+
+#: strings.py:26
+msgid "e-mail address"
+msgstr "e-mail address"
+
+#: strings.py:27
+msgid "active"
+msgstr "Kiti"
+
+#. l10n: Please translate this simply as "Administrator". This string is needed by Django, but 'superuser' is very technical and should be avoided.
+#: strings.py:30
+msgid "superuser status"
+msgstr "Kit pa latic kwede mangene"
+
+#. l10n: The language from which translation will happen
+#: strings.py:33 local_apps/pootle_app/views/admin/adminprojects.py:43
+#: local_apps/pootle_project/models.py:64
+msgid "Source Language"
+msgstr "Ka ma leb gu aa iye"
+
+#: strings.py:35
+msgid "Android strings"
+msgstr "Tol pa Android"
+
+#: external_apps/contact_form_i18n/forms.py:143
+msgid "Your name"
+msgstr "Nyingi"
+
+#: external_apps/contact_form_i18n/forms.py:146
+msgid "Your email address"
+msgstr "E-mail address mamegi"
+
+#: external_apps/contact_form_i18n/forms.py:148
+msgid "Your message"
+msgstr "Kwena mamegi"
+
+# ----------------------------------------
+# 
+# 
+#: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:17
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] "Tim ber iyub bal matye piny kany."
+msgstr[1] "Tim ber i yub bal matye piny kany."
+
+#: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:23
+msgid "The settings have been saved."
+msgstr "Gityeko gwoko ter weng woko."
+
+#: external_apps/djblets/siteconfig/templates/siteconfig/settings.html:54
+#: local_apps/pootle_app/templates/admin/admin_general_settings.html:29
+#: templates/profiles/edit_personal.html:34
+#: templates/profiles/edit_profile.html:25
+msgid "Save"
+msgstr "Gwoki"
+
+#: external_apps/registration/forms.py:36
+msgid "username"
+msgstr "Nying pa latic kwede"
+
+#: external_apps/registration/forms.py:39
+msgid "email address"
+msgstr "email address"
+
+#: external_apps/registration/forms.py:41
+msgid "password"
+msgstr "I cwil me donyo"
+
+#: external_apps/registration/forms.py:43
+msgid "password (again)"
+msgstr "i cwil me donyo (again)"
+
+#: external_apps/registration/forms.py:55
+msgid "This username is already taken. Please choose another."
+msgstr "Nying pa latic man gutyeko tero woko. Tim ber iyer mukene."
+
+#: external_apps/registration/forms.py:67
+msgid "You must type the same password each time"
+msgstr "Myero ico icwil me donyo acel enoni icawa weng ma imito donyo "
+
+#: external_apps/registration/forms.py:90
+msgid "I have read and agree to the Terms of Service"
+msgstr "An dong atyeko kwano ki ayee cik me tic"
+
+#: external_apps/registration/forms.py:107
+msgid ""
+"This email address is already in use. Please supply a different email "
+"address."
+msgstr ""
+"Email address man gutyeko tic kwede woko. Tim ber imi email address mapat."
+
+#: external_apps/registration/forms.py:133
+msgid ""
+"Registration using free email addresses is prohibited. Please supply a "
+"different email address."
+msgstr ""
+"Coye itic ki email address me nono gutyeko gengo ne woko. Tim ber ipok email "
+"address mapat."
+
+#: external_apps/registration/models.py:218
+msgid "user"
+msgstr "Latic kwede"
+
+#: external_apps/registration/models.py:219
+msgid "activation key"
+msgstr "Kipunggua ma kitikiti"
+
+#: external_apps/registration/models.py:224
+msgid "registration profile"
+msgstr "ngec mamako coye pa dano"
+
+#: external_apps/registration/models.py:225
+msgid "registration profiles"
+msgstr "kwone ngec mapatpat mamako coye pa dano"
+
+#: local_apps/pootle_app/admin.py:41
+msgid "Language code does not follow the ISO convention"
+msgstr "Ngec ikum leb man pe lube ki cikke me ISO"
+
+#: local_apps/pootle_app/admin.py:67
+msgid "Project code may only contain letters, numbers and _"
+msgstr "Ngec ikom purujek man romo bedo ki nukta, namba ki _"
+
+#: local_apps/pootle_app/admin.py:79
+msgid "Advanced Options"
+msgstr "Ngec mukene me rwom ma lamal"
+
+#: local_apps/pootle_app/forms.py:28
+msgid "Title"
+msgstr "Wie maditu"
+
+#: local_apps/pootle_app/forms.py:29
+msgid "The name for this Pootle server"
+msgstr "Nying me Lagab ngec me Pootle man"
+
+#: local_apps/pootle_app/forms.py:34
+msgid "Description"
+msgstr "Tito ne kore kikore"
+
+#: local_apps/pootle_app/forms.py:35
+msgid ""
+"The description and instructions shown on the front page and about page. Be "
+"sure to use valid HTML."
+msgstr ""
+"Ngec ma kimiyo i pot karatac me acaki ki mamako tic kwede.Po me tic ki HTML "
+"matye atira."
+
+#: local_apps/pootle_app/management/__init__.py:72
+msgid "Can view a translation project"
+msgstr "Twero me neno purujek me gonyo leb."
+
+# SERVER-LAPOK TIC
+#: local_apps/pootle_app/management/__init__.py:74
+msgid "Can make a suggestion for a translation"
+msgstr "Twero miyo tam mamako gonyo leb."
+
+#: local_apps/pootle_app/management/__init__.py:76
+msgid "Can submit a translation"
+msgstr "Twero cwalo leb ma kiloko."
+
+#: local_apps/pootle_app/management/__init__.py:78
+msgid "Can overwrite translations on uploading files"
+msgstr "Twero coyo ngec ikom loko leb mamako keto fail manyen"
+
+#: local_apps/pootle_app/management/__init__.py:80
+msgid "Can review translations"
+msgstr "Twero neno odoco leb ma kiloko"
+
+#: local_apps/pootle_app/management/__init__.py:82
+msgid "Can download archives of translation projects"
+msgstr "Twero golo purujek me loko leb pi kare mukato angec"
+
+#: local_apps/pootle_app/management/__init__.py:84
+msgid "Can administrate a translation project"
+msgstr "Twero telo wi lutic i purujek me loko leb"
+
+#: local_apps/pootle_app/management/__init__.py:86
+msgid "Can commit to version control"
+msgstr "Twero cung ikom alokaloka me leb"
+
+#: local_apps/pootle_app/models/suggestion.py:33
+msgid "Pending"
+msgstr "Pwod tye ka gem"
+
+#: local_apps/pootle_app/models/suggestion.py:34
+msgid "Accepted"
+msgstr "Kityeko yee woko"
+
+#: local_apps/pootle_app/models/suggestion.py:35
+msgid "Rejected"
+msgstr "Kikwero woko"
+
+#: local_apps/pootle_app/templates/top_contributers_table.html:7
+msgid "Top Contributors"
+msgstr "Lu mii tam muloyo"
+
+#: local_apps/pootle_app/templates/translation_summary_legend.html:6
+#: local_apps/pootle_app/views/language/view.py:39
+msgid "Translated"
+msgstr "Kiloko woko"
+
+#: local_apps/pootle_app/templates/translation_summary_legend.html:7
+msgid "Needs review"
+msgstr "Mito anena odoco"
+
+#: local_apps/pootle_app/templates/translation_summary_legend.html:8
+#: local_apps/pootle_app/views/index/index.py:114
+#: local_apps/pootle_app/views/language/view.py:45
+#: local_apps/pootle_project/views.py:111
+#: local_apps/pootle_project/views.py:198
+msgid "Untranslated"
+msgstr "Ma pwod peya kiloko"
+
+#: local_apps/pootle_app/templates/admin/admin_general_languages.html:5
+#: local_apps/pootle_app/templates/admin/admin_general_languages.html:11
+#: local_apps/pootle_app/views/admin/adminlanguages.py:30
+#: local_apps/pootle_app/views/index/index.py:106
+#: local_apps/pootle_profile/models.py:66 templates/admin_profile_menu.html:8
+msgid "Languages"
+msgstr "Leb"
+
+#: local_apps/pootle_app/templates/admin/admin_general_languages.html:14
+msgid ""
+"Here you can add, edit, and delete all the available languages in this "
+"Pootle server."
+msgstr ""
+"Ki kany, iromo medo, loko, ki yweyo woko leb weng manonge i lagab tic man me "
+"Pootle."
+
+#: local_apps/pootle_app/templates/admin/admin_general_permissions.html:5
+#: local_apps/pootle_app/templates/admin/admin_general_permissions.html:11
+#: local_apps/pootle_app/views/admin/permissions.py:64
+#: local_apps/pootle_language/templates/language/language_admin.html:6
+#: local_apps/pootle_project/templates/project/admin_permissions.html:8
+#: local_apps/pootle_translationproject/templates/translation_project/tp_admin_permissions.html:6
+#: templates/admin_profile_menu.html:10 templates/language_menu.html:10
+#: templates/project_menu.html:11 templates/tp_menu.html:12
+#: templates/profiles/profile_detail.html:44
+msgid "Permissions"
+msgstr "Twero"
+
+#: local_apps/pootle_app/templates/admin/admin_general_permissions.html:14
+msgid ""
+"Here you can add, edit, and delete the default permissions in this Pootle "
+"server."
+msgstr ""
+"Ki kany itwero medo, loko, ki yweyo woko twero me acaki matye iyi lagab tic "
+"man me Pootle. "
+
+#: local_apps/pootle_app/templates/admin/admin_general_permissions.html:18
+#: local_apps/pootle_language/templates/language/language_admin.html:16
+#: local_apps/pootle_project/templates/project/admin_permissions.html:21
+#: local_apps/pootle_translationproject/templates/translation_project/tp_admin_permissions.html:15
+msgid ""
+"The user “nobody” refers to any user that is not logged in (an anonymous, "
+"unidentified user). The user “default” refers to the rights that all logged "
+"in users will have by default, unless other specific rights were assigned to "
+"them."
+msgstr ""
+"Latic ma kilwongo ni \"Pe ngat mo\" obedo dano mo keken ma pe ocone me donyo( "
+"dano ma pe ngene,ma pe kiromo tito anga ma en obedo).Twero ma kibino miyo "
+"bot lutic ki Pootle weng ma ocone aye kilwongo ni twero me tic ki \"default\"."
+
+#: local_apps/pootle_app/templates/admin/admin_general_projects.html:5
+#: local_apps/pootle_app/templates/admin/admin_general_projects.html:11
+#: local_apps/pootle_app/views/admin/adminprojects.py:47
+#: local_apps/pootle_app/views/index/index.py:108
+#: local_apps/pootle_profile/models.py:67
+#: local_apps/pootle_project/views.py:192
+#: local_apps/pootle_project/templates/project/projects.html:9
+#: templates/admin_profile_menu.html:9 templates/project_base.html:6
+msgid "Projects"
+msgstr "Purujek"
+
+#: local_apps/pootle_app/templates/admin/admin_general_projects.html:14
+msgid ""
+"Here you can add, edit, and delete all the available projects in this Pootle "
+"server."
+msgstr ""
+"Ki kany itwero medo, loko, ki ywe woko purujek weng mapatpat matye i lagab "
+"tic man me Pootle. "
+
+#: local_apps/pootle_app/templates/admin/admin_general_settings.html:5
+#: local_apps/pootle_app/templates/admin/admin_general_settings.html:11
+msgid "General Settings"
+msgstr "Tera Lung"
+
+#: local_apps/pootle_app/templates/admin/admin_general_settings.html:14
+msgid "Configure here the general settings for your site."
+msgstr "Nong kikany yuba me lumuku pi gang kal mamegi. "
+
+#: local_apps/pootle_app/templates/admin/admin_general_users.html:5
+#: local_apps/pootle_app/templates/admin/admin_general_users.html:11
+#: local_apps/pootle_app/templates/admin/dashboard.html:29
+#: local_apps/pootle_app/views/admin/adminusers.py:32
+#: templates/admin_profile_menu.html:7
+#: templates/profiles/profile_detail.html:8
+msgid "Users"
+msgstr "Lutic kwede"
+
+#: local_apps/pootle_app/templates/admin/admin_general_users.html:14
+msgid ""
+"Here you can add, edit, and delete all the available users in this Pootle "
+"server."
+msgstr ""
+"Kany itwero medo, loko, ki yweyo ducu woko lutic ma gitye i lagab tic me "
+"Pootle man."
+
+#: local_apps/pootle_app/templates/admin/dashboard.html:5
+#: local_apps/pootle_app/templates/admin/dashboard.html:11
+#: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
+#: templates/profiles/profile_detail.html:6
+#: templates/profiles/profile_detail.html:16
+msgid "Dashboard"
+msgstr "Wi nyim motoka i yie"
+
+#: local_apps/pootle_app/templates/admin/dashboard.html:17
+msgid "Server Statistics"
+msgstr "Namba me ngec pa lagab tic"
+
+#: local_apps/pootle_app/templates/admin/dashboard.html:23
+#: local_apps/pootle_app/views/language/view.py:41
+msgid "Translated words"
+msgstr "Nyig lok ma kiloko woko"
+
+#: local_apps/pootle_app/templates/admin/dashboard.html:26
+msgid "Pending suggestions"
+msgstr "Tam amia ma otyeko kuru"
+
+#: local_apps/pootle_app/templates/admin/dashboard.html:34
+msgid "Active users"
+msgstr "Lutic ma kiti"
+
+#: local_apps/pootle_app/templates/admin/dashboard.html:37
+msgid "Active projects"
+msgstr "Purujek ma kiti"
+
+#: local_apps/pootle_app/templates/admin/dashboard.html:40
+msgid "Active languages"
+msgstr "Leb ma kiti"
+
+#: local_apps/pootle_app/templates/admin/dashboard.html:43
+#: local_apps/pootle_translationproject/views.py:175
+#: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:6
+#: templates/tp_menu.html:13 templates/profiles/profile_detail.html:44
+msgid "Files"
+msgstr "Fail"
+
+#: local_apps/pootle_app/templates/admin/dashboard.html:46
+msgid "Translated strings"
+msgstr "Tol ma kiloko woko"
+
+#: local_apps/pootle_app/templates/admin/dashboard.html:49
+#: local_apps/pootle_app/views/top_stats.py:43
+#: local_apps/pootle_app/views/top_stats.py:66
+#: local_apps/pootle_app/views/top_stats.py:89
+#: local_apps/pootle_app/views/top_stats.py:112
+msgid "Submissions"
+msgstr "Cwalo"
+
+#: local_apps/pootle_app/templates/admin/dashboard.html:54
+msgid "More..."
+msgstr "Madwong..."
+
+#: local_apps/pootle_app/templates/admin/dashboard.html:62
+msgid "Support"
+msgstr "Cwak tere"
+
+#: local_apps/pootle_app/templates/admin/dashboard.html:65
+msgid ""
+"Pootle is developed by Translate.org.za and a community of passionate "
+"localization experts. We want Pootle to help your localization work reach "
+"its full potential."
+msgstr ""
+"Pootle gityeko dongo ne ki Translate.org.za ki miti pa lwak ma ludiro me "
+"loko. Wan wa mito ni Pootle gukony tic me loko leb opong mamwonya atika."
+
+#: local_apps/pootle_app/templates/admin/dashboard.html:66
+msgid "You will find the following helpful for support:"
+msgstr "Ibi nongo cwak ma guryeyo konyo atika ."
+
+#: local_apps/pootle_app/templates/admin/dashboard.html:68
+msgid "The Pootle documentation"
+msgstr "Caden pi coc acoya me Pootle"
+
+#: local_apps/pootle_app/templates/admin/dashboard.html:69
+msgid "The Pootle mailing list"
+msgstr "Nying ma gi cano pi nongo mail i pootle"
+
+#: local_apps/pootle_app/templates/admin/dashboard.html:70
+msgid "(commercial support)"
+msgstr "(cwak pi kwena me cato wil)"
+
+#: local_apps/pootle_app/templates/admin/dashboard.html:78
+msgid "Dependency Checks"
+msgstr "Roto ma jenge"
+
+#: local_apps/pootle_app/templates/admin/dashboard.html:87
+msgid "Optional"
+msgstr "Magiyero ayera"
+
+#: local_apps/pootle_app/templates/admin/dashboard.html:95
+msgid "Optimizations"
+msgstr "Tic kwede odoco"
+
+#: local_apps/pootle_app/templates/admin/rss_widget.html:5
+msgid "Pootle Alerts"
+msgstr "Bedo atera pa pootle"
+
+#: local_apps/pootle_app/templates/index/about.html:7
+msgid "About"
+msgstr "Makwako"
+
+#: local_apps/pootle_app/templates/index/about.html:18
+msgid "About Pootle"
+msgstr "Makwako pootle"
+
+#: local_apps/pootle_app/templates/index/about.html:19
+msgid ""
+"This site is running Pootle &mdash; powerful web software to empower teams "
+"to do translation and translation management. This community tool is Free "
+"Software, and any team can use it and contribute to the Pootle community. "
+"Read more on the <a href=\"http://translate.sourceforge.net/\">project "
+"website</a>."
+msgstr ""
+"Pootle &mdash tye ka ngwec idi bar man; Web software matek pi tegoro tiim ma "
+"weko guloko ki kit me loyo loko leb.Gi tic pa lwak man obedo software me "
+"nono., ki tiim mo keken twero tic kwede ki jogo bot lwak pa pootle. Kwan "
+"mapol ikum <a href=\"http://translate.sourceforge.net/\">project website</a>."
+
+#: local_apps/pootle_app/templates/index/index.html:26
+#: local_apps/pootle_project/views.py:144
+msgid "Language"
+msgstr "Leb"
+
+#: local_apps/pootle_app/templates/index/index.html:27
+#: local_apps/pootle_app/templates/index/index.html:62
+#: local_apps/pootle_project/templates/project/projects.html:23
+msgid "Overall Completion"
+msgstr "Ma otyeko tum weng woko"
+
+#: local_apps/pootle_app/templates/index/index.html:28
+#: local_apps/pootle_app/templates/index/index.html:63
+#: local_apps/pootle_language/templates/language/language_index.html:23
+#: local_apps/pootle_project/templates/project/project.html:36
+#: local_apps/pootle_project/templates/project/projects.html:24
+msgid "Last Activity"
+msgstr "Tic ma ogiko"
+
+#: local_apps/pootle_app/templates/index/index.html:61
+#: local_apps/pootle_project/templates/project/projects.html:22
+msgid "Project"
+msgstr "Purujek"
+
+#: local_apps/pootle_app/templates/index/index.html:90
+#: local_apps/pootle_notifications/templates/notices.html:80
+msgid "Latest News"
+msgstr "Lok angeya manyen"
+
+#: local_apps/pootle_app/templates/index/index.html:93
+msgid "Subscribe to the RSS feed."
+msgstr "Coye ikom RSS feed."
+
+#: local_apps/pootle_app/templates/index/login.html:5
+#: local_apps/pootle_app/templates/index/login.html:22
+msgid "Login"
+msgstr "Dony iyie"
+
+#: local_apps/pootle_app/templates/index/login.html:10
+msgid "Login to Pootle"
+msgstr "Dony iyi pootle"
+
+#: local_apps/pootle_app/templates/index/login.html:16
+msgid "Your username and password didn't match. Please try again."
+msgstr "Nyingi ma itiyo kwede ki icwil me donyo pe orwate. Tim ber item doki."
+
+#: local_apps/pootle_app/templates/index/login.html:26
+msgid "Lost your Password?"
+msgstr "Ityeko rwenyo woko icwil me donyo mamegi?"
+
+#: local_apps/pootle_app/templates/index/login.html:30
+msgid "Don't have an account yet?"
+msgstr "Pwod pe itye ki akaunt?"
+
+#: local_apps/pootle_app/templates/index/login.html:31
+msgid "Register."
+msgstr "Coye."
+
+#: local_apps/pootle_app/templates/language/item_block.html:12
+#: local_apps/pootle_app/templates/language/item_summary.html:9
+msgid "Error"
+msgstr "Bal"
+
+#: local_apps/pootle_app/templates/language/item_summary.html:32
+msgid "Complete"
+msgstr "Tyeko"
+
+#: local_apps/pootle_app/views/top_stats.py:41
+#: local_apps/pootle_app/views/top_stats.py:64
+#: local_apps/pootle_app/views/top_stats.py:87
+#: local_apps/pootle_app/views/top_stats.py:110
+msgid "Suggestions"
+msgstr "Tam amia"
+
+#: local_apps/pootle_app/views/top_stats.py:42
+#: local_apps/pootle_app/views/top_stats.py:65
+#: local_apps/pootle_app/views/top_stats.py:88
+#: local_apps/pootle_app/views/top_stats.py:111
+msgid "Reviews"
+msgstr "Neno odoco"
+
+#: local_apps/pootle_app/views/admin/adminusers.py:52
+#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
+#: templates/registration/registration_form.html:25
+msgid "Password"
+msgstr "Icwil me donyo"
+
+#: local_apps/pootle_app/views/admin/dashboard.py:45
+#, python-format
+msgid "Translate Toolkit version %s installed."
+msgstr "Lok cik pa bokci me gwoko jami tic%s kiketo."
+
+#: local_apps/pootle_app/views/admin/dashboard.py:48
+#, python-format
+msgid ""
+"Translate Toolkit version %(installed)s installed. Pootle requires version %"
+"(required)s."
+msgstr ""
+"Lok cik pa Bokci me gwoko jami tic %(installed)s kiketo. Pootle mito cik "
+"manyen %(required)s."
+
+#: local_apps/pootle_app/views/admin/dashboard.py:54
+#, python-format
+msgid "Django version %s is installed."
+msgstr "Cik pa Django %s kityeko keto."
+
+#: local_apps/pootle_app/views/admin/dashboard.py:57
+#, python-format
+msgid ""
+"Django version %s is installed, but a higher version is highly recommended."
+msgstr "Cik pa Django %s kityeko keto, ento cik me rwom mamalo kityeko miyo tam."
+
+#: local_apps/pootle_app/views/admin/dashboard.py:63
+#, python-format
+msgid "lxml version %s is installed."
+msgstr "cik pa lxml %s kityeko keto."
+
+#: local_apps/pootle_app/views/admin/dashboard.py:66
+#, python-format
+msgid ""
+"lxml version %(installed)s is installed. Pootle requires version %(required)"
+"s for XML format support."
+msgstr ""
+"cik pa lxml %(installed)s kityeko keto. pootle mito cik %(required)s pi kit "
+"me cwak pa XML."
+
+#: local_apps/pootle_app/views/admin/dashboard.py:69
+msgid "lxml is not installed. Pootle requires lxml for XML format support."
+msgstr "lxml pe kityeko keto.Pootle mite lxml pi XML pi cwak pa XML."
+
+#: local_apps/pootle_app/views/admin/dashboard.py:80
+msgid ""
+"Can't find the unzip command. Uploading archives is faster if \"unzip\" is "
+"available."
+msgstr ""
+"Pe romo nongo cike me gonyo jib.Keto katatac pa stori ma okato tye oyoto ka "
+"''gonyi''tye dong bene."
+
+#: local_apps/pootle_app/views/admin/dashboard.py:84
+msgid ""
+"Can't find the ISO codes package. Pootle uses ISO codes to translate "
+"language names."
+msgstr ""
+"Pe romo nongo coc ma kicoko pi ISO. Pootle tiyo ki coc me loko nying leb."
+
+#: local_apps/pootle_app/views/admin/dashboard.py:88
+msgid ""
+"Can't find the aeidon package. Pootle requires Gaupol or aeidon to support "
+"subtitle formats."
+msgstr ""
+"Pe romo nongo aeidon ma kicoko. Pootle mito Gaupol onyo aeidon wek ocwak kit "
+"pa coc ma itere."
+
+#: local_apps/pootle_app/views/admin/dashboard.py:92
+msgid ""
+"Can't find python-levenshtein package. Updating from templates is faster "
+"with python-levenshtein."
+msgstr ""
+"pe romo nongo nyalo-levenshtein ma kicoko. miyo ngec manyen i aa ki gin ma "
+"kiyiko ma lapor ma cacal tye madwir ki nyalo-elevenshtein. "
+
+#: local_apps/pootle_app/views/admin/dashboard.py:96
+msgid ""
+"No text indexing engine found. Searching is faster if an indexing engine "
+"like Xapian or Lucene is installed."
+msgstr ""
+"Kite me yenyo nyig coc pe tye. Yeny bedo madwir ka giyeny calo Xapian nyo "
+"Lucene kityeko keto."
+
+#: local_apps/pootle_app/views/admin/dashboard.py:106
+msgid ""
+"Using the default sqlite3 database engine. SQLite is only suitable for small "
+"installations with a small number of users. Pootle will perform better with "
+"the MySQL database engine."
+msgstr ""
+"Tye katic ki lagwok sqlite3 kite mabino kede. SQLite tye ka pi ket matino pi "
+"lutic manok keken. Pootle obitiyo maber makato ki lagwok me MySQL. "
+
+#: local_apps/pootle_app/views/admin/dashboard.py:108
+msgid ""
+"Using the default sqlite3 database engine. SQLite is only suitable for small "
+"installations with a small number of users. Pootle will perform better with "
+"the MySQL database engine, but you need to install python-MySQLdb first."
+msgstr ""
+"Tye katic ki lagwok sqlite3 kite mabino kede. SQLite tye ka pi ket matino pi "
+"lutic manok keken. Pootle obitiyo maber makato ki lagwok me MySQL, ento "
+"myero kong iket Python-MySQLdb."
+
+#: local_apps/pootle_app/views/admin/dashboard.py:116
+msgid ""
+"Pootle is configured to use memcached as a caching backend, but can't "
+"connect to the memcached server. Caching is currently disabled."
+msgstr ""
+"Pootle tye ma giketo me tic ki memcacheed calo kagwoko me geye, ento pe "
+"twero kube ki kagwok pa lapok tic. Gwok kumbedi pe tye katic."
+
+#: local_apps/pootle_app/views/admin/dashboard.py:120
+msgid ""
+"For optimal performance, use django.contrib.sessions.backends.cached_db as "
+"the session engine."
+msgstr ""
+"Pi tic ma itwero timo ka imito, ti ki "
+"django.contrib.sessions.backends.cached_db calo layeny madwong pi kit tic "
+"man"
+
+#: local_apps/pootle_app/views/admin/dashboard.py:122
+msgid ""
+"For optimal performance, use django.contrib.sessions.backends.cache as the "
+"session engine."
+msgstr ""
+"Pi tic ma itwero timo ka imito, tii ki django.contrib.sessions.cache calo "
+"layeny madwong pi kit tic man"
+
+#: local_apps/pootle_app/views/admin/dashboard.py:126
+msgid ""
+"Pootle is configured to use memcached as caching backend, but Python support "
+"for memcached is not installed. Caching is currently disabled."
+msgstr ""
+"Pootle tye magiyiko me tic ki jami ma gigwoko calo kagwoko mi ingeye, ento "
+"Python konyo pi ka ami ma gigwoko me kiketo. Gwoko kityeko kwanyo woko "
+"kumbedi."
+
+#: local_apps/pootle_app/views/admin/dashboard.py:129
+msgid "For optimal performance, use memcached as the caching backend."
+msgstr "Pi tic ma itwero time ka imito, tii ki gi gwoko calo tic ma ingeye."
+
+#: local_apps/pootle_app/views/admin/dashboard.py:133
+msgid "For optimal performance, use Apache as the webserver."
+msgstr "Pi ticere ka imito, tii ki Apache calo lagab tic."
+
+#: local_apps/pootle_app/views/admin/dashboard.py:136
+msgid ""
+"The \"from\" address used to send registration emails is not specified. Also "
+"review the mail server settings."
+msgstr ""
+"Kakube man onongo gitiyo kede me keto waraga ma pe giyiko yore. Nen bene "
+"kite me yiko kite pa lagab tic."
+
+#: local_apps/pootle_app/views/admin/dashboard.py:139
+msgid ""
+"No contact address is specified. The contact form will allow users to "
+"contact the server administrators."
+msgstr ""
+"Kagwoko kite me nwongere pe ki yeko yore. Ka coyo kite me nwongere man bino "
+"weko lutic kubere ki lugwok lagab tic."
+
+#: local_apps/pootle_app/views/admin/dashboard.py:143
+msgid ""
+"Running in debug mode. Debug mode is only needed when developing Pootle. For "
+"optimal performance, disable debugging mode."
+msgstr ""
+"Tye kan tic iyi kite me yubo. Kite me yubere mere obedo gin acel keken "
+"mamite pi yiko Pootle. Pi tic ma itwero timo ka imito, mi kite me yubo pe "
+"tii."
+
+#: local_apps/pootle_app/views/admin/dashboard.py:147
+msgid ""
+"Running in live translation mode. Live translation is useful as a tool to "
+"learn about Pootle and localization, but has high impact on performance."
+msgstr ""
+"Tye ka tic ikite ma nwongo tye katic liling. Kite me tic liling ber cal "
+"gitic pi pwonyere ikom Pootle kede yore me gonyo, ento tye ki teko madwong "
+"ikum yore me ticere."
+
+#: local_apps/pootle_app/views/admin/permissions.py:49
+#: local_apps/pootle_app/views/admin/permissions.py:51
+msgid "Project Members"
+msgstr "Lumemba me purujek"
+
+#: local_apps/pootle_app/views/admin/permissions.py:53
+msgid "Language Members"
+msgstr "Lumemba me leb"
+
+#: local_apps/pootle_app/views/admin/permissions.py:54
+msgid "All Users"
+msgstr "Lutic kwede weng"
+
+#: local_apps/pootle_app/views/admin/util.py:38
+msgid "You do not have rights to administer Pootle."
+msgstr "Ipe ki twero me loyo Pootle."
+
+#: local_apps/pootle_app/views/admin/util.py:50
+#, python-format
+msgid "You do not have rights to administer %s."
+msgstr "Ipe ki twero me loyo %s."
+
+#: local_apps/pootle_app/views/admin/util.py:129
+msgid "No files in this project."
+msgstr "Karatac ikum purujek man peke."
+
+#: local_apps/pootle_app/views/admin/util.py:164
+msgid "There are errors in the form. Please review the problems below."
+msgstr "Bal tye ikum karatac me miyo ngec man. Nen peki ma piny kany."
+
+#: local_apps/pootle_app/views/admin/util.py:184 templates/base.html:51
+#: templates/base.html.py:56
+msgid "Home"
+msgstr "Gang"
+
+#: local_apps/pootle_app/views/admin/util.py:186
+msgid "Save Changes"
+msgstr "Gwok alokaloka"
+
+#: local_apps/pootle_app/views/index/about.py:48
+#, python-format
+msgid "Pootle %(pootle_ver)s is powered by Translate Toolkit %(toolkit_ver)s"
+msgstr ""
+"Pootle %(pootle_ver)s tye ki twero ki lok bokci me gwoko jami tic %"
+"(toolkit_ver)s"
+
+#: local_apps/pootle_app/views/index/index.py:64
+#: local_apps/pootle_app/views/language/item_dict.py:268
+#: local_apps/pootle_language/views.py:62
+#: local_apps/pootle_project/views.py:69
+#, python-format
+msgid "%(percentage)d%% complete"
+msgstr "%(percentage)d%% otyeko woko"
+
+#: local_apps/pootle_app/views/index/index.py:112
+#: local_apps/pootle_project/views.py:109
+#: local_apps/pootle_project/views.py:196
+msgid "Translations are complete"
+msgstr "Loko leb dong otyeko woko"
+
+#: local_apps/pootle_app/views/index/index.py:113
+#: local_apps/pootle_project/views.py:110
+#: local_apps/pootle_project/views.py:197
+msgid "Translations need to be checked (they are marked fuzzy)"
+msgstr "Loko leb mito arota (gin guketo alama fuzzy)"
+
+# %d fail
+# %d fail mapol
+#: local_apps/pootle_app/views/language/item_dict.py:38
+#, python-format
+msgid "%d file"
+msgid_plural "%d files"
+msgstr[0] "%d fail"
+msgstr[1] "%d fail"
+
+#: local_apps/pootle_app/views/language/item_dict.py:40
+#, python-format
+msgid "%(translated)d/%(total)d words (%(translatedpercent)d%%) translated"
+msgstr "%(translated)d/%(total)d words (%(translatedpercent)d%%) kiloko woko"
+
+#: local_apps/pootle_app/views/language/item_dict.py:46
+#, python-format
+msgid "%(translated)d/%(total)d strings"
+msgstr "%(translated)d/%(total)d tol"
+
+# Singular
+# %(checks)d coc (%(checkspercent)d%%) pe olare
+# 
+# plural
+# %(checks)d coc
+# (%(checkspercent)d%%) pe olare
+#: local_apps/pootle_app/views/language/item_dict.py:76
+#, python-format
+msgid "%(checks)d string (%(checkspercent)d%%) failed"
+msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
+msgstr[0] "%(checks)d tol (%(checkspercent)d%%) pe olare"
+msgstr[1] "%(checks)d tol (%(checkspercent)d%%) pe olare"
+
+#: local_apps/pootle_app/views/language/item_dict.py:94
+msgid "Review Suggestions"
+msgstr "Nen tam amia odoco"
+
+#: local_apps/pootle_app/views/language/item_dict.py:96
+msgid "View Suggestions"
+msgstr "Nen tam amia"
+
+#: local_apps/pootle_app/views/language/item_dict.py:107
+msgid "Quick Translate"
+msgstr "Lok me oyoto"
+
+#: local_apps/pootle_app/views/language/item_dict.py:109
+msgid "View Untranslated"
+msgstr "Nen ma pe kiloko"
+
+#: local_apps/pootle_app/views/language/item_dict.py:120
+msgid "Translate All"
+msgstr "Lok gin Weng"
+
+#: local_apps/pootle_app/views/language/item_dict.py:124
+msgid "Manage Glossary"
+msgstr "Loo agiki ne"
+
+#: local_apps/pootle_app/views/language/item_dict.py:133
+msgid "ZIP of directory"
+msgstr "Jib pa lanyut"
+
+#: local_apps/pootle_app/views/language/item_dict.py:142
+msgid "Translate offline"
+msgstr "Lok ma pe i lain"
+
+#: local_apps/pootle_app/views/language/item_dict.py:143
+#: local_apps/pootle_app/views/language/item_dict.py:146
+msgid "Download XLIFF file for offline translation"
+msgstr "Kwany karatac me XLIFF ma pe tye i yintanet"
+
+#: local_apps/pootle_app/views/language/item_dict.py:145
+msgid "Download XLIFF"
+msgstr "Kwany XLIFF"
+
+#: local_apps/pootle_app/views/language/item_dict.py:157
+msgid "Export"
+msgstr "Cwal woko"
+
+#: local_apps/pootle_app/views/language/item_dict.py:158
+msgid "Export translations"
+msgstr "Cwal loko woko"
+
+#: local_apps/pootle_app/views/language/item_dict.py:160
+msgid "Download"
+msgstr "Goli"
+
+#: local_apps/pootle_app/views/language/item_dict.py:161
+msgid "Download file"
+msgstr "Gol fail"
+
+#: local_apps/pootle_app/views/language/item_dict.py:172
+msgid "Commit to VCS"
+msgstr "Ket iyi VCS"
+
+#: local_apps/pootle_app/views/language/item_dict.py:182
+msgid "Update from VCS"
+msgstr "Ngec ni aa i VCS"
+
+#: local_apps/pootle_app/views/language/item_dict.py:244
+#, python-format
+msgid "%d word needs attention"
+msgid_plural "%d words need attention"
+msgstr[0] "%d nyig lok mito bedo atera"
+msgstr[1] "%d nyig lok mito bedo atera"
+
+#: local_apps/pootle_app/views/language/item_dict.py:248
+#, python-format
+msgid "%d word untranslated"
+msgid_plural "%d words untranslated"
+msgstr[0] "%d nyig lok mape kigonyo"
+msgstr[1] "%d nyig lok mape kigonyo"
+
+#: local_apps/pootle_app/views/language/item_dict.py:249
+#, python-format
+msgid "%d word needs review"
+msgid_plural "%d words need review"
+msgstr[0] "%d nyig lok mito anena odoco"
+msgstr[1] "%d nyig lok mito anena odoco"
+
+#: local_apps/pootle_app/views/language/item_dict.py:275
+#: local_apps/pootle_language/views.py:67
+#: local_apps/pootle_project/views.py:74
+#, python-format
+msgid "Error reading %d file"
+msgid_plural "Error reading %d files"
+msgstr[0] "Bal i kwano %d fail"
+msgstr[1] "Bal i kwano %d fail"
+
+#: local_apps/pootle_app/views/language/navbar_dict.py:53
+#: local_apps/pootle_project/views.py:104 templates/base.html:59
+#: templates/profiles/profile_detail.html:35
+msgid "Admin"
+msgstr "Laloc"
+
+#: local_apps/pootle_app/views/language/view.py:38
+msgid "Name"
+msgstr "Nying"
+
+#: local_apps/pootle_app/views/language/view.py:40
+msgid "Translated percentage"
+msgstr "Pacenti magigonyo"
+
+#: local_apps/pootle_app/views/language/view.py:42
+#: local_apps/pootle_store/forms.py:164
+msgid "Fuzzy"
+msgstr "Niango tek"
+
+#: local_apps/pootle_app/views/language/view.py:43
+msgid "Fuzzy percentage"
+msgstr "Pacenti matere niango tek"
+
+#: local_apps/pootle_app/views/language/view.py:44
+msgid "Fuzzy words"
+msgstr "Nyig lok matere niango tek"
+
+#: local_apps/pootle_app/views/language/view.py:46
+msgid "Untranslated percentage"
+msgstr "Pacenti ma pe kigonyo tere"
+
+#: local_apps/pootle_app/views/language/view.py:47
+msgid "Untranslated words"
+msgstr "Nyig lok ma pe kigonyo tere"
+
+#: local_apps/pootle_app/views/language/view.py:48
+msgid "Total"
+msgstr "Lung"
+
+#: local_apps/pootle_app/views/language/view.py:49
+msgid "Total Words"
+msgstr "Nyig lok lung"
+
+#. l10n: noun. The graphical representation of translation status
+#: local_apps/pootle_app/views/language/view.py:51
+msgid "Progress"
+msgstr "Rwom me tic"
+
+#: local_apps/pootle_app/views/language/view.py:52
+msgid "Summary"
+msgstr "Macegocego"
+
+#: local_apps/pootle_app/views/language/view.py:84
+#: local_apps/pootle_translationproject/models.py:363
+msgid "You do not have rights to commit files here"
+msgstr "Ipe kitwero me keto fail man kany"
+
+#: local_apps/pootle_app/views/language/view.py:94
+msgid "You do not have rights to update files here"
+msgstr "Ipe kitwero me miyo ngec me fail man kany"
+
+#: local_apps/pootle_language/models.py:39
+msgid ""
+"ISO 639 language code for the language, possibly followed by an underscore "
+"(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
+"articles/language-tags/\">More information</a>"
+msgstr ""
+"Ngec pa dul me ISO 636 mamako leb me tic eno ni,ma ikare mukene nongo "
+"alama(_) ma olubu kacel ki ngec mamako lobo moni ni malube ki dul cik me ISO "
+"3166.<a href='''http://www.w3.org/international/articles/language-"
+"tags/'''>Ngec mukene</a>"
+
+#: local_apps/pootle_language/models.py:40
+#: local_apps/pootle_project/models.py:58
+msgid "Code"
+msgstr "Dul coc me icwil"
+
+#: local_apps/pootle_language/models.py:41
+#: local_apps/pootle_project/models.py:59
+msgid "Full Name"
+msgstr "Nying Lung"
+
+#: local_apps/pootle_language/models.py:43
+msgid "Enter any special characters that users might find difficult to type"
+msgstr "Dony kite mo keken mamwonya wek lutic kwede gunwong tek ne me gono"
+
+#: local_apps/pootle_language/models.py:44
+msgid "Special Characters"
+msgstr "Kite mo mamwonya"
+
+#: local_apps/pootle_language/models.py:46
+msgid ""
+"For more information, visit <a href=\"http://translate.sourceforge.net/wiki/"
+"l10n/pluralforms\">our wiki page</a> on plural forms."
+msgstr ""
+"Pi ngec mukene mapol, lim <a "
+"href=\"http://translate.sourceforge.net/wiki/l10n/pluralforms\">Wiki karatac "
+"mamegwa</a> i fom mapol."
+
+#: local_apps/pootle_language/models.py:47
+msgid "Unknown"
+msgstr "Pe ngene"
+
+#: local_apps/pootle_language/models.py:48
+msgid "Number of Plurals"
+msgstr "Namba mapol"
+
+#: local_apps/pootle_language/models.py:50
+msgid "Plural Equation"
+msgstr "Ikwejon "
+
+#: local_apps/pootle_language/views.py:90
+#, python-format
+msgid "%(projects)d project, %(average)d%% translated"
+msgid_plural "%(projects)d projects, %(average)d%% translated"
+msgstr[0] "%(projects)d purujek, %(average)d%% ma kigonyo tere"
+msgstr[1] "%(projects)d purujek, %(average)d%% ma kigonyo tere"
+
+#: local_apps/pootle_language/views.py:108
+msgid "You do not have rights to administer this language."
+msgstr "I pe ki twero me loyo leb man."
+
+#: local_apps/pootle_language/templates/language/language_admin.html:13
+msgid "Below you can add, edit, and delete the permissions for this language."
+msgstr "Piny kany itwero medo ne, yik ki iywe twero pa leb man."
+
+#: local_apps/pootle_misc/dbinit.py:68
+msgid "Pootle: Install"
+msgstr "Pootle: keti"
+
+#: local_apps/pootle_misc/dbinit.py:69
+#, python-format
+msgid ""
+"Error: \"%s\" while attempting to access the Pootle database, will try to "
+"initialize database."
+msgstr ""
+"Bal: ''%s'' ka itemo me donyo iyi database me pootle, bi temo yiko database."
+
+#: local_apps/pootle_misc/dbinit.py:75
+msgid "Creating database tables..."
+msgstr "Cweyo meja me database..."
+
+#: local_apps/pootle_misc/dbinit.py:82
+msgid "Creating default languages, projects and admin user"
+msgstr "Cweyo leb ma tye iye, purujek ki luloc ma tiyo kwede"
+
+#: local_apps/pootle_misc/dbinit.py:90
+msgid "Calculating translation statistics, this will take a few minutes"
+msgstr "Tic ki diiro i kom loko cura. Man tero dakika manok."
+
+#: local_apps/pootle_misc/dbinit.py:96
+#, python-format
+msgid "%(language)s is %(percent)d%% complete"
+msgstr "%(language)s tye %(percent)d%% ma kityeko"
+
+#: local_apps/pootle_misc/dbinit.py:103
+#, python-format
+msgid "Project %(project)s is %(percent)d%% complete"
+msgstr "Purujek %(project)s tye %(percent)d%% ma kityeko"
+
+#: local_apps/pootle_misc/dbinit.py:111
+msgid "Done calculating statistics for default languages and projects"
+msgstr "Tyeko tic diiro ikom cura me leb ma tye ki purujek"
+
+#: local_apps/pootle_misc/dbinit.py:119
+msgid ""
+"Initialized database, you will be redirected to the front page in 10 seconds"
+msgstr "Cak database, gi bi nwoyo nyuti karatac ma i nyime i ceken 10"
+
+#: local_apps/pootle_misc/dbupdate.py:71
+msgid "Pootle: Update"
+msgstr "Pootle: Manyen"
+
+#: local_apps/pootle_misc/dbupdate.py:72
+#, python-format
+msgid ""
+"Database tables are currently at build version %d. Pootle will now update "
+"the database."
+msgstr ""
+"Meca pa database onyo ni tye i gedo me cik anyen%. Pootle romo dong miyo "
+"ngec manyen pa database."
+
+#: local_apps/pootle_misc/dbupdate.py:78
+msgid "Creating missing database tables..."
+msgstr "Cweyo meca pa database ma orem woko..."
+
+#: local_apps/pootle_misc/dbupdate.py:86
+msgid "Fixing permission table..."
+msgstr "Rido twero me meja..."
+
+#: local_apps/pootle_misc/dbupdate.py:101
+msgid "Updating existing database tables..."
+msgstr "Tye ka mino ngec manyen ikum meca pa database..."
+
+#: local_apps/pootle_misc/dbupdate.py:130
+msgid ""
+"Pootle will now import all the translations into the database. It could take "
+"a long time."
+msgstr ""
+"Pootle bi kelo leb ma kiloko weng dwoko iyi database.Amaro tero kare ma lac."
+
+#: local_apps/pootle_misc/dbupdate.py:141
+#, python-format
+msgid "Imported %(count)d suggestion from %(store)s"
+msgid_plural "Imported %(count)d suggestions from %(store)s"
+msgstr[0] "Gukelo iyie %(count)d tam amia ki %(store)s"
+msgstr[1] "Gukelo iyie %(count)d tam amia ki %(s"
+
+#: local_apps/pootle_misc/dbupdate.py:149
+#, python-format
+msgid "Failed to import suggestions from %s"
+msgstr "Pe olare me kelo iyie tam amia ki %s"
+
+#: local_apps/pootle_misc/dbupdate.py:159
+#, python-format
+msgid "Imported %(count)d unit from %(store)s"
+msgid_plural "Imported %(count)d units from %(store)s"
+msgstr[0] "Gukelo iyie %(count)d yunit ki %(store)s"
+msgstr[1] "Gukelo iyie %(count)d yunit ki %(store)s"
+
+#: local_apps/pootle_misc/dbupdate.py:165
+#, python-format
+msgid "Failed to import units from %s"
+msgstr "Pe olare me kelo iyie yunit ki %s"
+
+#: local_apps/pootle_misc/dbupdate.py:172
+msgid "All translations are now imported."
+msgstr "Alokaloka weng aman dong kityeko kelo iyie woko."
+
+#: local_apps/pootle_misc/dbupdate.py:180
+msgid ""
+"Pootle initialized the database. You will be redirected to the front page in "
+"10 seconds."
+msgstr ""
+"Pootle otyeko yiko lacok jami. gubino medo nyuti ni oo ipot karatac me acaki "
+"iceken 10."
+
+# Yin myero <a href="%(login_link)s">login</a> wek idony ipot karatac man.
+# 
+#: local_apps/pootle_misc/middleware/errorpages.py:47
+#, python-format
+msgid "You need to <a href=\"%(login_link)s\">login</a> to access this page."
+msgstr ""
+"Yin myero <a href=\"%(login_link)s\">login</a> wek idony ipot karatac man."
+
+#: local_apps/pootle_misc/middleware/errorpages.py:63
+#, python-format
+msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
+msgstr "Bal me donyo %(filename)s, Filesystem bal ma kicwalo: %(errormsg)s"
+
+#: local_apps/pootle_misc/templatetags/render_pager.py:32
+msgid "First"
+msgstr "Me acel"
+
+#: local_apps/pootle_misc/templatetags/render_pager.py:33
+#: local_apps/pootle_store/templates/unit/edit.html:111
+msgid "Previous"
+msgstr "Mukato"
+
+#: local_apps/pootle_misc/templatetags/render_pager.py:48
+#: local_apps/pootle_store/templates/unit/edit.html:112
+msgid "Next"
+msgstr "Malubo kore"
+
+#: local_apps/pootle_misc/templatetags/render_pager.py:49
+#, python-format
+msgid "Last (%d)"
+msgstr "Agiki (%d)"
+
+#: local_apps/pootle_notifications/models.py:28
+msgid "Message"
+msgstr "Kwena"
+
+#. l10n: The date that the news item was written
+#: local_apps/pootle_notifications/models.py:30
+msgid "Added"
+msgstr "Kimedo"
+
+#: local_apps/pootle_notifications/views.py:81
+#, python-format
+msgid "News for %(language)s"
+msgstr "Lok angea me %(language)s"
+
+#: local_apps/pootle_notifications/views.py:83
+#, python-format
+msgid "News for %(project)s"
+msgstr "Lok angea me %(project)s"
+
+#: local_apps/pootle_notifications/views.py:89
+#, python-format
+msgid "News for the %(project)s project in %(language)s"
+msgstr "Lok angea me %(project)s purujek iyi %(language)s"
+
+#: local_apps/pootle_notifications/views.py:90
+#, python-format
+msgid "News for %(path)s"
+msgstr "Lok angea me %(path)s"
+
+#: local_apps/pootle_notifications/views.py:116
+msgid "View News Item"
+msgstr "Nen gi lok angea"
+
+#: local_apps/pootle_notifications/templates/latest_news_snippet.html:9
+#: local_apps/pootle_notifications/templates/notices.html:88
+msgid "No news yet."
+msgstr "Lok angea pwud pe."
+
+#: local_apps/pootle_notifications/templates/notices.html:21
+#: local_apps/pootle_notifications/templates/notices.html:24
+#: templates/language_menu.html:8 templates/project_menu.html:8
+#: templates/tp_menu.html:8
+msgid "News"
+msgstr "Lok angea"
+
+#: local_apps/pootle_notifications/templates/notices.html:75
+msgid "Publish"
+msgstr "Mi ngeye bot lwak"
+
+#: local_apps/pootle_profile/models.py:64
+msgid "Number of Rows"
+msgstr "Namba me arii"
+
+#: local_apps/pootle_profile/models.py:68
+#: local_apps/pootle_profile/views.py:76
+msgid "Interface Language"
+msgstr "Lanyut leb"
+
+#: local_apps/pootle_profile/models.py:69
+msgid "Alternative Source Languages"
+msgstr "Ka ma leb mukene oaa iye"
+
+#: local_apps/pootle_profile/models.py:96
+msgid "Suggestions Accepted"
+msgstr "Ki ye tam amia"
+
+#: local_apps/pootle_profile/models.py:97
+msgid "Suggestions Pending"
+msgstr "Tam amia pwudi"
+
+#: local_apps/pootle_profile/models.py:98
+msgid "Suggestions Reviewed"
+msgstr "Tam amia kineno odoco"
+
+#: local_apps/pootle_profile/models.py:99
+msgid "Submissions Made"
+msgstr "Gutyeko miyo ne"
+
+#: local_apps/pootle_profile/views.py:66
+msgid "Default"
+msgstr "Ka ma oaa iye"
+
+#: local_apps/pootle_project/models.py:43
+msgid ""
+"A short code for the project. This should only contain ASCII characters, "
+"numbers, and the underscore (_) character."
+msgstr ""
+"Nyig coc macek pa purujek. Man myero obed ki kite pa ASCCll, namba, ki ma "
+"itere(_) kitemere."
+
+#: local_apps/pootle_project/models.py:44
+msgid ""
+"A description of this project. This is useful to give more information or "
+"instructions. This field should be valid HTML."
+msgstr ""
+"Lok ikum purujek man. Man pire tek atika me miyo ngec mapol onyo nyutu. "
+"dibar man myero obed matiyo HTML."
+
+#: local_apps/pootle_project/models.py:53
+msgid "Automatic detection (slower)"
+msgstr "kwedo ne matiye pire kene kene(slower)"
+
+#: local_apps/pootle_project/models.py:54
+msgid "GNU style: files named by language code"
+msgstr "Kit me GNU: fail ma kimiyo nyinge ki nyig leb coc"
+
+#: local_apps/pootle_project/models.py:55
+msgid "Non-GNU: Each language in its own directory"
+msgstr "Peke-GNU: Leb acelacel ki lanyute pire kene"
+
+#: local_apps/pootle_project/models.py:61
+msgid "Quality Checks"
+msgstr "Rwom me roto ne"
+
+#: local_apps/pootle_project/models.py:62
+msgid "File Type"
+msgstr "Kit fail"
+
+#: local_apps/pootle_project/models.py:63
+msgid "Project Tree Style"
+msgstr "Kit pa yat me purujek"
+
+#: local_apps/pootle_project/models.py:65
+msgid "Ignore Files"
+msgstr "Caa woko Fail"
+
+# %(languages)d leb, %(average)d%% kiloko woko
+# 
+# %(languages)d languages, %(average)d%% kiloko woko
+#: local_apps/pootle_project/views.py:99
+#, python-format
+msgid "%(languages)d language, %(average)d%% translated"
+msgid_plural "%(languages)d languages, %(average)d%% translated"
+msgstr[0] "%(languages)d leb, %(average)d%% ma kigonyo tere"
+msgstr[1] "%(languages)d leb, %(average)d%% ma kigonyo tere"
+
+#: local_apps/pootle_project/views.py:132
+#: local_apps/pootle_project/views.py:174
+msgid "You do not have rights to administer this project."
+msgstr "Ipe ki twero me loyo purujek man."
+
+#: local_apps/pootle_project/views.py:138
+msgid "Update from templates"
+msgstr "Ngec manyen ni aa ikum gin ma kingolo me yiko mapol "
+
+#: local_apps/pootle_project/views.py:141
+msgid "Initialize"
+msgstr "Caki"
+
+#: local_apps/pootle_project/templates/project/admin_permissions.html:19
+msgid "Below you can add, edit, and delete the permissions for this project."
+msgstr "Tere kany itwero medo ne, yubu, ki ijwa twero pa purujek man."
+
+#: local_apps/pootle_project/templates/project/project_admin.html:8
+#: templates/project_menu.html:10 templates/tp_base_admin.html:8
+msgid "Administrate"
+msgstr "Loo woko"
+
+#: local_apps/pootle_project/templates/project/project_admin.html:19
+msgid "Here you can add, edit, or delete the languages for this project."
+msgstr "Itwero medo kany, yubu, onyo jwano leb pa purujek man."
+
+#: local_apps/pootle_store/filetypes.py:29
+msgid "Gettext PO"
+msgstr "Gettext PO"
+
+#: local_apps/pootle_store/filetypes.py:32
+msgid "XLIFF"
+msgstr "XLIFF"
+
+#: local_apps/pootle_store/filetypes.py:37
+msgid "Qt ts"
+msgstr "Qt ts"
+
+#: local_apps/pootle_store/filetypes.py:42
+msgid "TMX"
+msgstr "TMX"
+
+#: local_apps/pootle_store/filetypes.py:47
+msgid "TBX"
+msgstr "TBX"
+
+#: local_apps/pootle_store/filetypes.py:52
+msgid "Haiku catkeys"
+msgstr "Haiku catkeys"
+
+#: local_apps/pootle_store/filetypes.py:58
+msgid "Java Properties"
+msgstr "Jami pa Java"
+
+#. l10n: Don't translate "strings" unless you are sure these files have
+#. another name in your language
+#: local_apps/pootle_store/filetypes.py:63
+msgid "OS X Strings"
+msgstr "OS X Strings"
+
+#: local_apps/pootle_store/filetypes.py:67
+msgid "PHP arrays"
+msgstr "PHP maki cano atir ki arii ma mwonya"
+
+#: local_apps/pootle_store/filetypes.py:70
+msgid "Subtitles: srt"
+msgstr "Wie matino: srt"
+
+#: local_apps/pootle_store/filetypes.py:71
+msgid "Subtitles: sub"
+msgstr "Wie matino: sub"
+
+#: local_apps/pootle_store/filetypes.py:72
+msgid "Subtitles: ssa"
+msgstr "Wie matino: ssa"
+
+#: local_apps/pootle_store/filetypes.py:73
+msgid "Subtitles: ass"
+msgstr "Wie matino: ass"
+
+#: local_apps/pootle_store/forms.py:82
+#: local_apps/pootle_store/templatetags/store_tags.py:119
+#: local_apps/pootle_store/templatetags/store_tags.py:126
+#: local_apps/pootle_store/templatetags/store_tags.py:138
+#: local_apps/pootle_store/templatetags/store_tags.py:140
+#, python-format
+msgid "Plural Form %d"
+msgstr "Mapol %d"
+
+#: local_apps/pootle_store/forms.py:168
+msgid "Translator comment"
+msgstr "Tam pa lagony leb"
+
+#: local_apps/pootle_store/models.py:558
+msgid "Path"
+msgstr "Yoo tyen"
+
+#: local_apps/pootle_store/views.py:245
+msgid "No more matching strings to review."
+msgstr "Pe tye tol mukene ma orwate pi anena."
+
+#: local_apps/pootle_store/views.py:247
+msgid "No more matching strings to translate."
+msgstr "Pe tye tol mukene ma orwate pi aloka."
+
+#: local_apps/pootle_store/views.py:250
+msgid "No matching strings to review."
+msgstr "Pe tye tol ma orwate pi anena."
+
+#: local_apps/pootle_store/views.py:252
+msgid "No matching strings to translate."
+msgstr "Pe tye tol ma orwate pi aloka."
+
+#: local_apps/pootle_store/views.py:387
+#, python-format
+msgid "checking %s"
+msgstr "Roto %s"
+
+#: local_apps/pootle_store/templates/store/translate.html:7
+#: local_apps/pootle_store/templates/store/translate_end.html:7
+#: local_apps/pootle_translationproject/templates/translation_project/tp_translate.html:6
+#: templates/tp_menu.html:9
+msgid "Translate"
+msgstr "Loki"
+
+#: local_apps/pootle_store/templates/store/translate_table.html:11
+msgid "Original"
+msgstr "Orijinol"
+
+#: local_apps/pootle_store/templates/store/translate_table.html:12
+#: local_apps/pootle_terminology/templates/terminology/manage.html:21
+msgid "Translation"
+msgstr "Ma ki loko"
+
+#: local_apps/pootle_store/templates/store/translate_table.html:17
+msgid "Edit translation"
+msgstr "Yubu en ma ki loko"
+
+#: local_apps/pootle_store/templates/unit/edit.html:15
+msgid "Terminology"
+msgstr "Nyig lok ma dongo"
+
+#: local_apps/pootle_store/templates/unit/edit.html:30
+msgid "Possible issues with the translation"
+msgstr "Lok ma twere kwede me aloka"
+
+#: local_apps/pootle_store/templates/unit/edit.html:30
+msgid "Failing Checks"
+msgstr "Rota Makwero"
+
+#: local_apps/pootle_store/templates/unit/edit.html:37
+msgid "Remove quality check"
+msgstr "Kwany woko rota me rwom amalu"
+
+#: local_apps/pootle_store/templates/unit/edit.html:73
+#: local_apps/pootle_store/templates/unit/edit.html:87
+msgid "Copy into translation"
+msgstr "Loki ma aloka"
+
+#: local_apps/pootle_store/templates/unit/edit.html:94
+#: local_apps/pootle_terminology/templates/terminology/manage.html:33
+msgid "Submit"
+msgstr "Cwal"
+
+#: local_apps/pootle_store/templates/unit/edit.html:97
+msgid "Suggest"
+msgstr "Mi tam"
+
+#: local_apps/pootle_store/templates/unit/edit.html:111
+msgid "Go to the previous unit"
+msgstr "Wot iyunit ma okato"
+
+#: local_apps/pootle_store/templates/unit/edit.html:112
+msgid "Go to the next unit"
+msgstr "Wot iyunit malubu kore"
+
+#: local_apps/pootle_store/templates/unit/edit.html:130
+msgid "Add Comment"
+msgstr "Med tami"
+
+#: local_apps/pootle_store/templates/unit/edit.html:148
+msgid "Accept suggestion"
+msgstr "Ye tam amia"
+
+#: local_apps/pootle_store/templates/unit/edit.html:149
+msgid "Reject suggestion"
+msgstr "Kwer woko tam amia"
+
+#: local_apps/pootle_store/templates/unit/edit.html:154
+msgid "Remove suggestion"
+msgstr "Kwany woko tam amia"
+
+#: local_apps/pootle_store/templates/unit/view.html:38
+#: local_apps/pootle_terminology/templates/terminology/term_edit.html:27
+msgid "Translator Comments"
+msgstr "Tam amia pa lagony telok"
+
+#: local_apps/pootle_store/templatetags/store_tags.py:73
+#, python-format
+msgid "Suggestion %(i)d by %(user)s:"
+msgstr " Tam amia %(i)d ibot %(latic kwede)s:"
+
+#: local_apps/pootle_store/templatetags/store_tags.py:77
+#, python-format
+msgid "Suggestion by %(user)s"
+msgstr "Tam amia ibot %(latic kwede)s"
+
+#: local_apps/pootle_store/templatetags/store_tags.py:85
+#, python-format
+msgid "Words Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
+msgstr "Nyig lok ma giloko: %(kiloko woko)d/%(lung)d - %(kiloko wokopacenti)d%%"
+
+#: local_apps/pootle_store/templatetags/store_tags.py:93
+#, python-format
+msgid "Strings Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
+msgstr "Tol ma kiloko: %(ki loko woko)d/%(total)d - %(ki loko wokopacenti)d%%"
+
+#: local_apps/pootle_store/templatetags/store_tags.py:104
+msgid "Singular"
+msgstr "Acel keken"
+
+#: local_apps/pootle_store/templatetags/store_tags.py:104
+msgid "Plural"
+msgstr "Mapol"
+
+#: local_apps/pootle_terminology/templates/terminology/extract.html:6
+msgid "Regenerate Glossary"
+msgstr "Nwo yubu lanyut macek mamwonya"
+
+#: local_apps/pootle_terminology/templates/terminology/extract.html:7
+msgid ""
+"Are you sure you want to regenerate the glossary? Any existing terms and "
+"their translations will be deleted."
+msgstr ""
+"Ateni imito nwoyo yubu lanyut macek mamwonya? Cik mo meken ki gonyo ma megi "
+"ki bi jwayo woko."
+
+#: local_apps/pootle_terminology/templates/terminology/extract.html:8
+msgid "Extract"
+msgstr "Goli"
+
+#: local_apps/pootle_terminology/templates/terminology/manage.html:9
+msgid "You can regenerate the glossary from scratch."
+msgstr "Itwero medo nwoyo yubu macek mamwonya ni aa ka ma ogware."
+
+#: local_apps/pootle_terminology/templates/terminology/manage.html:20
+msgid "Term"
+msgstr "Cik"
+
+#: local_apps/pootle_terminology/templates/terminology/manage.html:22
+msgid "Delete"
+msgstr "Kwany oko"
+
+#: local_apps/pootle_terminology/templates/terminology/manage.html:43
+msgid "Glossary is Empty"
+msgstr "Coc ma kiyubu macek tye nono"
+
+#: local_apps/pootle_terminology/templates/terminology/manage.html:44
+msgid "Generate Glossary"
+msgstr "Nwoyo yubu coc macek"
+
+#: local_apps/pootle_terminology/templates/terminology/term_edit.html:10
+msgid "Description..."
+msgstr "Lok iye..."
+
+#: local_apps/pootle_terminology/templates/terminology/term_edit.html:15
+msgid "Details..."
+msgstr "Korekikore..."
+
+#: local_apps/pootle_translationproject/forms.py:28
+msgid "Source Text"
+msgstr "Ka ma coc oaa iye"
+
+#: local_apps/pootle_translationproject/forms.py:29
+msgid "Target Text"
+msgstr "Taget me Coc"
+
+#: local_apps/pootle_translationproject/forms.py:30
+msgid "Comments"
+msgstr "Miyo tam"
+
+#: local_apps/pootle_translationproject/forms.py:31
+msgid "Locations"
+msgstr "Kabedo "
+
+#: local_apps/pootle_translationproject/models.py:320
+#: local_apps/pootle_translationproject/models.py:346
+msgid "You do not have rights to update from version control here"
+msgstr "Ipe ki twero me miyo ngec ni aa ikum gengo cik manyen kany"
+
+#: local_apps/pootle_translationproject/models.py:335
+#, python-format
+msgid "Updated project \"%s\" from version control"
+msgstr "Purujek ma kimiyo iye ngec ''%s'' ni aa ikum gengo cik kany"
+
+#: local_apps/pootle_translationproject/models.py:350
+#, python-format
+msgid "Updated file %s from version control"
+msgstr "Fail makimiyo iye ngec %s ni aa ikum gengo cik manyen"
+
+#: local_apps/pootle_translationproject/models.py:356
+#, python-format
+msgid "Failed to update %s from version control"
+msgstr "Otyeko kwero miyo ngec woko %s ni aa ki gengo cik manyen"
+
+#: local_apps/pootle_translationproject/views.py:83
+msgid "You do not have rights to access translation mode."
+msgstr "I pe ki twero me tic ki kite me gonyo"
+
+#: local_apps/pootle_translationproject/views.py:119
+msgid "You do not have rights to access review mode."
+msgstr "I pe ki twero me tic ki kite me neno ni"
+
+#: local_apps/pootle_translationproject/views.py:218
+msgid "You do not have rights to access this translation project."
+msgstr "Ipe kitwero me donyo ipurujek man me aloka."
+
+#: local_apps/pootle_translationproject/views.py:230
+msgid "You do not have the right to create ZIP archives."
+msgstr "Ipe kitwero me yweyo JIP me ka gwok pa jami macon tye iye."
+
+#: local_apps/pootle_translationproject/views.py:273
+#, python-format
+msgid "Invalid/insecure file name: %s"
+msgstr "Pe tiyo/pe ogwokere nying fail: %s"
+
+#: local_apps/pootle_translationproject/views.py:279
+#, python-format
+msgid ""
+"Invalid GNU-style file name: %(local_filename)s. It must match '%(langcode)s."
+"%(filetype)s'."
+msgstr ""
+"Pe tiyo GNU-cital nying fail: %(local_filename)s. myero rwate '%(langcode)s. "
+"%(filetype)s'."
+
+#: local_apps/pootle_translationproject/views.py:300
+msgid "Error while extracting archive"
+msgstr "Bal obedo tye ikare me golo jami macon"
+
+#: local_apps/pootle_translationproject/views.py:438
+msgid "You do not have rights to overwrite files here."
+msgstr "Ipe kitwero me nwoyo coyo fail kany."
+
+#: local_apps/pootle_translationproject/views.py:440
+msgid "You do not have rights to upload new files here."
+msgstr "Ipe ki twero me cwalo fail manyen kany."
+
+#: local_apps/pootle_translationproject/views.py:442
+#: local_apps/pootle_translationproject/views.py:444
+msgid "You do not have rights to upload files here."
+msgstr "Ipe kitwero me cwalo fail kany."
+
+#: local_apps/pootle_translationproject/views.py:463
+msgid "Update all from version control"
+msgstr "Cwal ngec weng ni aa lageng pa cik manyen"
+
+#: local_apps/pootle_translationproject/views.py:478
+msgid "Upload"
+msgstr "Cwali"
+
+#: local_apps/pootle_translationproject/views.py:485
+msgid ""
+"Merge the file with the current file and turn conflicts into suggestions"
+msgstr "Rib fail kwede fail matime kombedi ki wir lweny idwok iyi tam amia"
+
+#: local_apps/pootle_translationproject/views.py:486
+msgid "Add all new translations as suggestions"
+msgstr "Med loka manyen ducu calo tam amia"
+
+#: local_apps/pootle_translationproject/views.py:488
+msgid "Overwrite the current file if it exists"
+msgstr "Nwo coyo fail matye cite ka nonge"
+
+#: local_apps/pootle_translationproject/views.py:492
+msgid "File"
+msgstr "Fail"
+
+#: local_apps/pootle_translationproject/views.py:495
+msgid "Upload to"
+msgstr "Cwal iye"
+
+#: local_apps/pootle_translationproject/views.py:496
+msgid ""
+"Optionally select the file you want to merge with. If not specified, the "
+"uploaded file's name is used."
+msgstr ""
+"Ope ki gi me atima yer fail ma imito ribo kwede. ka pe tye ada, nying fail "
+"ma kicwalo kityeko tic kwede woko."
+
+#: local_apps/pootle_translationproject/views.py:501
+msgid "Upload File"
+msgstr "Cwal Fail"
+
+#: local_apps/pootle_translationproject/templates/translation_project/search.html:8
+msgid "Search"
+msgstr "Yeny"
+
+#: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:11
+msgid "Here you can manage the files in this translation project."
+msgstr "Iromo loyo fail ipurujek man me loko leb."
+
+#: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:14
+msgid "Update files from templates"
+msgstr "Mi ngec pa fail ikum gin ma kingolo ni aa ikum nyonyo matek"
+
+#: local_apps/pootle_translationproject/templates/translation_project/tp_admin_files.html:15
+msgid "Rescan project files"
+msgstr "Nwo lwoko fail pa purujek"
+
+#: local_apps/pootle_translationproject/templates/translation_project/tp_admin_permissions.html:13
+msgid ""
+"Below you can add, edit, and delete the permissions for this translation "
+"project."
+msgstr "Iromo medo piny kany, yubi, ki jwa twero me loko purujek man."
+
+#: local_apps/pootle_translationproject/templates/translation_project/tp_review.html:6
+#: templates/tp_menu.html:10
+msgid "Review"
+msgstr "Nen odoco"
+
+#: local_apps/pootle_translationproject/templatetags/translation_project_tags.py:40
+msgid "Advanced search"
+msgstr "Yeny me rwom mamalo"
+
+#: pootle/settings.py:42
+msgid "Pootle Demo"
+msgstr "Lanyut me Pootle"
+
+#. l10n: Change the language code (en) to your language code, and replace ltr with rtl if you language is written from right to left.
+#: pootle/settings.py:45
+msgid ""
+"<div dir=\"ltr\" lang=\"en\">\n"
+"<h2 class=\"title\">This is a demo installation of Pootle.</h2>\n"
+"<p class=\"about\">You can also visit the official <a href=\"http://pootle."
+"locamotion.org\">Pootle server</a>. The server administrator has not "
+"provided contact information or a description of this server. If you are the "
+"administrator for this server, edit this description in your preference file "
+"or in the administration interface.</p>\n"
+"</div>"
+msgstr ""
+"<div dir=\"ltr\" lang=\"en\">\n"
+"<h2 class=\"title\">Man aye obedo lanyut me aketa pa Pootle.</h2>\n"
+"<p class=\"about\">Iromo dang limo moka pa dano matye ki twero<a "
+"href=\"http://pootle.locamotion.org\">Lagab tic pa pootle</a>. Laloc pa lagab "
+"tic pe ya otyeko poko ngec me kube onyo lok ikum lagab tic man.Ka cite yin "
+"ibedo laloc me lagab tic man, yub lok man malube ki miti pa fail onyo lakub "
+"laloc.</p>\n"
+"</div>"
+
+#: pootle/middleware/captcha.py:123
+msgid "Time to answer has expired"
+msgstr "Kare me gamo okato woko"
+
+#: pootle/middleware/captcha.py:141
+msgid "Enter a number"
+msgstr "Ket namba"
+
+#: pootle/middleware/captcha.py:156
+msgid "Incorrect"
+msgstr "Pe tye kakare"
+
+#: templates/403.html:5 templates/403.html.py:10
+msgid "Permission Denied"
+msgstr "Kityeko kwero twero"
+
+#: templates/403.html:14
+msgid "You don't have permission to access this page."
+msgstr "Ipe kitwero me donyo ipot karatac man."
+
+#: templates/404.html:5 templates/404.html.py:10
+msgid "Page Not Found"
+msgstr "Pot karatac pe ononge"
+
+#: templates/404.html:11
+msgid "We're sorry, but the requested page could not be found."
+msgstr "Okwao kica, pi pot karatac ma nongo gikwao pe romo ononge."
+
+#: templates/500.html:5 templates/500.html.py:10
+msgid "Server Error"
+msgstr "Bal pa lagab tic"
+
+#: templates/500.html:11
+msgid "An error has occurred. Thank you for your patience."
+msgstr "Bal otyeko timee. wapwoyo jalo kare wu."
+
+#: templates/admin_profile_base.html:5 templates/admin_profile_base.html:10
+msgid "Administration"
+msgstr "Loc"
+
+#: templates/admin_profile_menu.html:5
+msgid "Information and statistics about this Pootle server"
+msgstr "Ngec ki namba ngec ma kicoko makwako lagab tic me pootle man"
+
+#: templates/admin_profile_menu.html:5
+msgid "Info"
+msgstr "Ngec"
+
+#: templates/admin_profile_menu.html:6
+msgid "Configure the general settings for your site"
+msgstr "Can tera lung pi gang kal mamegi"
+
+#: templates/admin_profile_menu.html:6
+msgid "General"
+msgstr "Ducu"
+
+#: templates/admin_profile_menu.html:7
+msgid "Manage the users"
+msgstr "Loo lutic kwede"
+
+#: templates/admin_profile_menu.html:8
+msgid "Manage the languages"
+msgstr "Loo leb"
+
+#: templates/admin_profile_menu.html:9
+msgid "Manage the projects"
+msgstr "Loo purujek"
+
+#: templates/admin_profile_menu.html:10
+msgid "Manage the default permissions"
+msgstr "Loo twero me keto itic"
+
+#: templates/base.html:49
+msgid "skip to navigation"
+msgstr "Kal bot layeny"
+
+#: templates/base.html:57 templates/base.html.py:117 templates/docs.html:5
+msgid "Help"
+msgstr "Kony"
+
+#: templates/base.html:62 templates/user_profile_base.html:5
+#: templates/user_profile_base.html:10
+msgid "My Account"
+msgstr "Akaunti mega"
+
+#: templates/base.html:63
+msgid "Log Out"
+msgstr "Dony woko"
+
+#: templates/base.html:66 templates/registration/registration_form.html:4
+#: templates/registration/registration_form.html:35
+msgid "Register"
+msgstr "Coye"
+
+#: templates/base.html:68
+msgid "Log In"
+msgstr "Dony Iyie"
+
+#: templates/base.html:119 templates/contact_form/contact_form.html:4
+#: templates/contact_form/contact_form.html:8
+msgid "Contact Us"
+msgstr "Kubere kwed wa"
+
+#: templates/base.html:121
+msgid "About this Pootle Server"
+msgstr "Makwako lagab tic me pootle man"
+
+#: templates/captcha.html:5 templates/captcha.html.py:14
+msgid "Are You Human?"
+msgstr "I bedo Dano?"
+
+#: templates/captcha.html:15
+msgid ""
+"To protect the server against attacks we have to verify that submissions are "
+"made by human users."
+msgstr ""
+"Me gwoko lagab tic ikum aranyi myero wa mok atika ni gin acwala man kiyiko "
+"ki ma dano tiyo kwede."
+
+#: templates/captcha.html:16
+msgid "Please answer this question:"
+msgstr "Tim ber igam lapeny man."
+
+#: templates/captcha.html:20
+msgid "Confirm"
+msgstr "Mok ada"
+
+#: templates/language_menu.html:7
+msgid "Language main page"
+msgstr "Leb pot karatac maditu"
+
+#: templates/language_menu.html:7 templates/project_menu.html:7
+#: templates/tp_menu.html:7
+msgid "Overview"
+msgstr "Lok wiewie"
+
+#: templates/language_menu.html:8
+msgid "Language news"
+msgstr "Lok angea me leb"
+
+#: templates/language_menu.html:10
+msgid "Administrate your language permissions"
+msgstr "Loo twere pa leb meri"
+
+#: templates/project_menu.html:7
+msgid "Project main page"
+msgstr "Pot karatac me purujek maditere"
+
+#: templates/project_menu.html:8
+msgid "Project news"
+msgstr "Lok angea me purujek"
+
+#: templates/project_menu.html:10
+msgid "Administrate your project"
+msgstr "Loo purujek meri"
+
+#: templates/project_menu.html:11
+msgid "Manage project permissions"
+msgstr "Loo twero pa purujek"
+
+#: templates/tp_base_terminology.html:5
+msgid "Manage Terminology"
+msgstr "Ti kwede leb me tic maber"
+
+#: templates/tp_menu.html:7
+msgid "Translation project main page"
+msgstr "Pot karatac maloyone ma gibiloko"
+
+#: templates/tp_menu.html:8
+msgid "Translation project news"
+msgstr "Lok angea pi purujek me loko leb"
+
+#: templates/tp_menu.html:9
+msgid "Translate this project"
+msgstr "Lok purujek man"
+
+#: templates/tp_menu.html:10
+msgid "Quality checks and review suggestions"
+msgstr "Maroto berere kwede neno tam amia"
+
+#: templates/tp_menu.html:12
+msgid "Administrate your project permissions"
+msgstr "Loo twero me purujek meri."
+
+#: templates/tp_menu.html:13
+msgid "Administrate your project files"
+msgstr "Loo fail pa purujek meri"
+
+#: templates/user_profile_menu.html:6 templates/user_profile_menu.html:16
+msgid "Overview of your account"
+msgstr "Manwonge iyi akaunti mameri"
+
+#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
+msgid "Configure your translation preferences"
+msgstr "Ter gin aloka ma iyero"
+
+#: templates/user_profile_menu.html:7 templates/user_profile_menu.html:17
+msgid "Settings"
+msgstr "Tero"
+
+#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
+msgid "Change your personal information"
+msgstr "Lok woko ngec lok mamegi"
+
+#: templates/user_profile_menu.html:8 templates/user_profile_menu.html:18
+#: templates/profiles/edit_personal.html:5
+#: templates/profiles/edit_personal.html:11
+msgid "Profile"
+msgstr "Lok madongo"
+
+#: templates/user_profile_menu.html:9 templates/user_profile_menu.html:19
+msgid "Change your password"
+msgstr "Lok icwili mamegi me donyo"
+
+#: templates/admin/base_site.html:4 templates/admin/base_site.html.py:7
+msgid "Django administration"
+msgstr "Loc pa Django"
+
+#: templates/contact_form/contact_form.html:12
+msgid "Send"
+msgstr "cwali"
+
+#: templates/contact_form/contact_form_sent.html:5
+#: templates/contact_form/contact_form_sent.html:9
+msgid "Message Sent"
+msgstr "Gicwalo lok angea woko"
+
+#: templates/contact_form/contact_form_subject.txt:2
+#, python-format
+msgid " message by %(name)s"
+msgstr "Won kwena %(name)s"
+
+#: templates/profiles/edit_personal.html:14
+msgid ""
+"Here you can change your personal details. This information will be used in "
+"the header of the translation files."
+msgstr ""
+"Ki-kany itwero loko lok kikomi. Lok man gibitio kwede icoc mamalo me pail me "
+"loko leb magi."
+
+#: templates/profiles/edit_personal.html:19
+msgid "First Name"
+msgstr "Nying me acel"
+
+#: templates/profiles/edit_personal.html:24
+msgid "Last Name"
+msgstr "Nying me agiki"
+
+#: templates/profiles/edit_personal.html:29
+msgid "Email address"
+msgstr "Email address"
+
+#: templates/profiles/edit_profile.html:5
+#: templates/profiles/edit_profile.html:11
+msgid "Translation Settings"
+msgstr "Teer me Gonyo telok"
+
+#: templates/profiles/edit_profile.html:14
+msgid ""
+"Here you can configure the settings related to the translation interface as "
+"well as your language preferences."
+msgstr ""
+"Iromo cano teer megi marwate dok ikum lok aloka maber calo leb meri ma "
+"imito."
+
+#: templates/profiles/profile_detail.html:25
+msgid "Quick Links"
+msgstr "Kakube me oyoto"
+
+#: templates/profiles/profile_detail.html:53
+msgid "No languages or projects selected. Choose yours now."
+msgstr "Lebe bene peke onyo purujek makiyero. yer meri  icaa ni."
+
+#: templates/profiles/profile_detail.html:55
+msgid "This user has not selected languages or projects yet."
+msgstr "Latic man pwod pe oyero leb onyo purujek."
+
+#: templates/profiles/profile_detail.html:65
+msgid "User Statistics"
+msgstr "Cura pa Latic kwede"
+
+#: templates/profiles/profile_list.html:7
+msgid "Profiles list"
+msgstr "Nying makwako lok kom dano"
+
+#: templates/profiles/profile_list.html:11
+#: templates/registration/registration_form.html:15
+msgid "Username"
+msgstr "Nying pa latic kwede"
+
+#: templates/profiles/profile_list.html:12
+msgid "First name"
+msgstr "Nying me acaki"
+
+#: templates/profiles/profile_list.html:13
+msgid "Last name"
+msgstr "Nying me agiki"
+
+#: templates/registration/activate.html:5
+#: templates/registration/activate.html:9
+msgid "Account Activated"
+msgstr "Akaunti mamegi dong kitero woko."
+
+#: templates/registration/activate.html:10
+#, python-format
+msgid ""
+"The account has been activated for username \"%(account)s\". You can now "
+"proceed to log in."
+msgstr ""
+"Akaunti man dong tye ma ki tero me cako tic pi latic ma nyinge\"o/o "
+"akaunt\".Ki kany, dong itwero donyo iie."
+
+#: templates/registration/activation_email.txt:2
+msgid "A Pootle account has been created for you using this email address."
+msgstr ""
+"Kityeko dong yabu pi in akaunt me Pootle kun kitiyo ki nying me email man."
+
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
+msgstr "Me yabu akaunti mamegi, lub lakub man."
+
+#: templates/registration/activation_email.txt:6
+msgid "Your activation code is:"
+msgstr "Layab ma megi aye obedo:"
+
+#: templates/registration/activation_email.txt:9
+msgid ""
+"This message is sent to verify that the email address is in fact correct. If "
+"you did not want to register an account, you may simply ignore the message."
+msgstr ""
+"Ngec man kicwalo me moko ka ada email man tye atira.Ka ce onongo pe imito "
+"yabu akaunti, iromo cayo onyo jalo ngec man. "
+
+#: templates/registration/activation_email_subject.txt:2
+msgid "Pootle registration"
+msgstr "Coye me Pootle"
+
+#: templates/registration/password_change_done.html:5
+#: templates/registration/password_change_done.html:15
+msgid "Password Changed"
+msgstr "Kiloko Icwil me donyo"
+
+#: templates/registration/password_change_done.html:16
+msgid "Your password was changed successfully."
+msgstr "Kityeko loko icwil woko labongo peko."
+
+#: templates/registration/password_change_form.html:5
+#: templates/registration/password_change_form.html:11
+msgid "Change Password"
+msgstr "Lok nying ma icwil me donyo iyi akaunti woko."
+
+#: templates/registration/password_change_form.html:15
+msgid ""
+"Please enter your old password, for security's sake, and then enter your new "
+"password twice so we can verify you typed it in correctly."
+msgstr ""
+"Timber ico icwili me donyo iyi akaunti ni macone,me gengo bal,ci dok ico "
+"nyingi me donyo ma okane manyeni kiryo , wek wange kace icoyo maber."
+
+#: templates/registration/password_change_form.html:23
+msgid "Old password"
+msgstr "Nyingi ma icwil okane me donyo macone "
+
+#: templates/registration/password_change_form.html:28
+msgid "New password"
+msgstr "Nyingi ma icwil okane me donyo manyen"
+
+#: templates/registration/password_change_form.html:33
+msgid "Confirm password"
+msgstr "Mok icwil me donyo."
+
+#: templates/registration/password_change_form.html:38
+msgid "Change My Password"
+msgstr "Lok icwil mamera me donyo nio."
+
+#: templates/registration/password_reset_complete.html:4
+msgid "Password Reset"
+msgstr "Tero icwil nitit."
+
+#: templates/registration/password_reset_complete.html:8
+msgid "Password Reset Complete."
+msgstr "Tero icwil nitit dong otyeko tum."
+
+#: templates/registration/password_reset_complete.html:10
+#, python-format
+msgid ""
+"Your password has been set. You may go ahead and <a href=\"%(login_url)s"
+"\">log in</a> now."
+msgstr ""
+"Icwil meri kityeko Tero woko. Itwero mede kun <a href=\"0/0(login_url)s\">dony "
+"iyie</a> kumbedi dong."
+
+#: templates/registration/password_reset_confirm.html:5
+#: templates/registration/password_reset_done.html:5
+#: templates/registration/password_reset_done.html:9
+#: templates/registration/password_reset_form.html:5
+#: templates/registration/password_reset_form.html:9
+msgid "Reset Password"
+msgstr "Ter icwil me donyo nitit."
+
+#: templates/registration/password_reset_confirm.html:10
+msgid "Enter New Password."
+msgstr "Ket icwil manyen me donyo."
+
+#: templates/registration/password_reset_confirm.html:12
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+msgstr ""
+"Tim ber iket icwil meri manyen me donyo ni kiryo wek wange kace icoyo maber."
+
+#: templates/registration/password_reset_confirm.html:16
+msgid "New Password"
+msgstr "I cwil me donyo Manyen"
+
+#: templates/registration/password_reset_confirm.html:21
+msgid "Confirm Password"
+msgstr "Mok Icwil me donyo."
+
+#: templates/registration/password_reset_confirm.html:26
+#: templates/registration/password_reset_form.html:20
+msgid "Reset My Password"
+msgstr "Ter icwil mera me donyo nitit."
+
+#: templates/registration/password_reset_confirm.html:30
+msgid "Password Reset Failed."
+msgstr "Tero icwil me donyo ni pe olare."
+
+#: templates/registration/password_reset_confirm.html:32
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used. Please request a new password reset."
+msgstr ""
+"Lakub me teero icwil me donyo ni nongo pe twero tic, pien kine mukene dong "
+"kitiyo kwede woko.Tim ber ileg me wek ki cak teero manyenne."
+
+#: templates/registration/password_reset_done.html:11
+msgid ""
+"We've e-mailed you instructions for setting your password to the e-mail "
+"address you submitted. You should receive it shortly."
+msgstr ""
+"Wacwalo ngec mamite pi cako teero icwil me donyo ni, i email ma imiyo botwa "
+"ni. Ibino nongo ne ma cokcoki. "
+
+#: templates/registration/password_reset_email.html:2
+#, python-format
+msgid ""
+"You're receiving this e-mail because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr ""
+"Itye ka nongo e-mail man malube ki kwac ma oa kiboti pi icwil me donyo ii "
+"akaunti ni manonge i 0/0(site_name)s"
+
+#: templates/registration/password_reset_email.html:4
+msgid "Please go to the following page and choose a new password:"
+msgstr "Tim ber iciti ipot karatac man ci iyer icwil me donyo ni manyen."
+
+#: templates/registration/password_reset_email.html:8
+#, python-format
+msgid "Your username is %(user)s."
+msgstr "Nyingi me tic en aye 0/0(latic kede)s."
+
+#: templates/registration/password_reset_email.html:10
+msgid "Thank you for using Pootle!"
+msgstr "Wapwoyo tic ki Pootle!"
+
+#: templates/registration/password_reset_form.html:11
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll e-mail "
+"instructions for setting a new one."
+msgstr ""
+"Wi owil oo ki nyingi ma okane me donyo? Coo e-mail piny kenyo, ci wa bino "
+"cwali ngec mamite pi yabu manyene."
+
+#: templates/registration/password_reset_form.html:15
+#: templates/registration/registration_form.html:20
+msgid "Email Address"
+msgstr "Email Address"
+
+#: templates/registration/registration_complete.html:5
+#: templates/registration/registration_complete.html:9
+msgid "Registration Complete"
+msgstr "Coye otyeko tum"
+
+#: templates/registration/registration_complete.html:10
+msgid "Please check your email to activate your account."
+msgstr "Tim ber irot email mamegi me yabu akaunti."
+
+#: templates/registration/registration_form.html:8
+msgid "Register a New Pootle Account"
+msgstr "Coo akaunt manyen me Pootle"
+
+#: templates/registration/registration_form.html:9
+msgid "Fill in the following form to get started translating."
+msgstr "Pong ii fom makimiyo ni wek icak loko leb."
+
+#: templates/registration/registration_form.html:30
+msgid "Password (again)"
+msgstr "I cwil me donyo(again)"
+
+#: templates/registration/registration_form.html:40
+msgid "Already have an account?"
+msgstr "Itye dong ki akaunt?"
+
+#: templates/registration/registration_form.html:41
+msgid "Log In."
+msgstr "Dony iyie."
