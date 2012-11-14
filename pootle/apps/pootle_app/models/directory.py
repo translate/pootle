@@ -90,12 +90,10 @@ class Directory(models.Model):
         return max_column(Unit.objects.filter(store__pootle_path__startswith=self.pootle_path), 'mtime', None)
 
     def _get_stores(self):
-        """queryset with all descending stores"""
+        """Queryset with all descending stores."""
         from pootle_store.models import Store
         return Store.objects.filter(pootle_path__startswith=self.pootle_path)
-
     stores = property(_get_stores)
-
 
     @cached_property
     def path(self):
@@ -107,9 +105,9 @@ class Directory(models.Model):
         """
         return u'/'.join(self.pootle_path.split(u'/')[3:])
 
-
     def get_or_make_subdir(self, child_name):
-        child_dir, created = Directory.objects.get_or_create(name=child_name, parent=self)
+        child_dir, created = Directory.objects.get_or_create(name=child_name,
+                                                             parent=self)
         return child_dir
 
     def __unicode__(self):

@@ -88,27 +88,33 @@ def get_or_make_language_dir(project_dir, language, file_style, make_dirs):
     else:
         return os.path.join(project_dir, matching_language_dirs[0])
 
+
 def get_language_dir(project_dir, language, file_style, make_dirs):
     language_dir = os.path.join(project_dir, language.code)
     if not os.path.exists(language_dir):
-        return get_or_make_language_dir(project_dir, language, file_style, make_dirs)
+        return get_or_make_language_dir(project_dir, language, file_style,
+                                        make_dirs)
     else:
         return language_dir
 
 
-def get_translation_project_dir(language, project_dir, file_style, make_dirs=False):
-    """returns the base directory containing po files for the project
+def get_translation_project_dir(language, project_dir, file_style,
+                                make_dirs=False):
+    """Returns the base directory containing translations files for the
+    project.
 
-    If make_dirs is True, then we will create project and language
-    directories as necessary.
+    :param make_dirs: if ``True``, project and language directories will be
+                      created as necessary.
     """
     if file_style == 'gnu':
         return project_dir
     else:
         return get_language_dir(project_dir, language, file_style, make_dirs)
 
+
 def is_hidden_file(path):
     return path[0] == '.'
+
 
 def split_files_and_dirs(ignored_files, ext, real_dir, file_filter):
     files = []
@@ -116,11 +122,14 @@ def split_files_and_dirs(ignored_files, ext, real_dir, file_filter):
     for child_path in [child_path for child_path in os.listdir(real_dir)
                        if child_path not in ignored_files and not is_hidden_file(child_path)]:
         full_child_path = os.path.join(real_dir, child_path)
-        if os.path.isfile(full_child_path) and full_child_path.endswith(ext) and file_filter(full_child_path):
+        if (os.path.isfile(full_child_path) and
+            full_child_path.endswith(ext) and file_filter(full_child_path)):
             files.append(child_path)
         elif os.path.isdir(full_child_path):
             dirs.append(child_path)
+
     return files, dirs
+
 
 def add_items(fs_items, db_items, create_db_item):
     """Add/remove the database items to correspond to the filesystem.
@@ -156,16 +165,19 @@ def add_items(fs_items, db_items, create_db_item):
     return items, new_items
 
 
-def add_files(translation_project, ignored_files, ext, relative_dir, db_dir, file_filter=lambda _x: True):
+def add_files(translation_project, ignored_files, ext, relative_dir, db_dir,
+              file_filter=lambda _x: True):
     from pootle_misc import versioncontrol
     has_versioning = versioncontrol.hasversioning(relative_dir)
     podir_path = versioncontrol.to_podir_path(relative_dir)
     vcs_path = versioncontrol.to_vcs_path(relative_dir)
 
     if has_versioning:
-        # bring the tree in the podirectory up to date with the tree in the VCS
-        vcs_files, vcs_dirs = split_files_and_dirs(ignored_files, ext, vcs_path, file_filter)
-        files, dirs = split_files_and_dirs(ignored_files, ext, podir_path, file_filter)
+        # Bring the tree in the podirectory up to date with the tree in the VCS
+        vcs_files, vcs_dirs = split_files_and_dirs(ignored_files, ext,
+                                                   vcs_path, file_filter)
+        files, dirs = split_files_and_dirs(ignored_files, ext, podir_path,
+                                           file_filter)
 
         vcs_file_set = set(vcs_files)
         vcs_dir_set = set(vcs_dirs)
@@ -194,9 +206,9 @@ def add_files(translation_project, ignored_files, ext, relative_dir, db_dir, fil
 
         file_set = vcs_file_set
         dir_set = vcs_dir_set
-
     else:
-        files, dirs = split_files_and_dirs(ignored_files, ext, podir_path, file_filter)
+        files, dirs = split_files_and_dirs(ignored_files, ext, podir_path,
+                                           file_filter)
         file_set = set(files)
         dir_set = set(dirs)
 
@@ -213,13 +225,16 @@ def add_files(translation_project, ignored_files, ext, relative_dir, db_dir, fil
 
     for db_subdir in db_subdirs:
         fs_subdir = os.path.join(relative_dir, db_subdir.name)
-        _files, _new_files = add_files(translation_project, ignored_files, ext, fs_subdir, db_subdir, file_filter)
+        _files, _new_files = add_files(translation_project, ignored_files, ext,
+                                       fs_subdir, db_subdir, file_filter)
         files += _files
         new_files += _new_files
+
     return files, new_files
 
+
 def find_lang_postfix(filename):
-    """finds the language code at end of a filename"""
+    """Finds the language code at end of a filename."""
     name = os.path.splitext(os.path.basename(filename))[0]
     if LANGCODE_RE.match(name):
         return name
@@ -229,13 +244,16 @@ def find_lang_postfix(filename):
         return match.groups()[0]
 
     for code in Language.objects.values_list('code', flat=True):
-        if name.endswith('-'+code) or name.endswith('_'+code) or name.endswith('.'+code) or \
-               name.lower().endswith('-'+code.lower()) or name.endswith('_'+code) or name.endswith('.'+code):
+        if (name.endswith('-'+code) or name.endswith('_'+code) or
+            name.endswith('.'+code) or
+            name.lower().endswith('-'+code.lower()) or
+            name.endswith('_'+code) or name.endswith('.'+code)):
             return code
 
+
 def translation_project_should_exist(language, project):
-    """tests if there are translation files corresponding to given
-    language and project"""
+    """Tests if there are translation files corresponding to given
+    language and project."""
     if project.get_treestyle() == "gnu":
         # GNU style projects are tricky
 

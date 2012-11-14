@@ -334,7 +334,7 @@ class TranslationProject(models.Model):
                                       newstats=newstats)
 
     def scan_files(self):
-        """Returns a list of po files for the project and language"""
+        """Returns a list of translation files for the project and language."""
         projects = [p.strip() for p in self.project.ignoredfiles.split(',')]
         ignored_files = set(projects)
         ext = os.extsep + self.project.localfiletype
