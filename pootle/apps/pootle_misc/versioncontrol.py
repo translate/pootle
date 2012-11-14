@@ -30,6 +30,7 @@ from pootle_store.util import relative_real_path
 
 
 def to_vcs_path(path):
+    # FIXME: this is ignoring symlinks!
     path = relative_real_path(path)
     return os.path.join(settings.VCS_DIRECTORY, path)
 
