@@ -20,6 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.db import models
+from django.utils.encoding import force_unicode
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 
@@ -78,10 +79,18 @@ class Submission(models.Model):
                              unicode(self.submitter))
 
     def as_html(self):
-        snippet = u'%(time)s (<a href="%(profile_url)s">%(submitter)s</a>)' % {
-                    'time': self.creation_time.strftime("%Y-%m-%d %H:%M"),
+        # Sadly we may not have submitter information in all the situations yet
+        if self.submitter:
+            submitter_info = u'<a href="%(profile_url)s">%(submitter)s</a>' % {
                     'profile_url': self.submitter.get_absolute_url(),
                     'submitter': unicode(self.submitter),
+                }
+        else:
+            submitter_info = _("Unknown submitter")
+
+        snippet = u'%(time)s (%(submitter_info)s)' % {
+                    'time': self.creation_time.strftime("%Y-%m-%d %H:%M"),
+                    'submitter_info': submitter_info,
                 }
 
         return mark_safe(snippet)
