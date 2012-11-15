@@ -616,7 +616,7 @@ def timeline(request, unit):
 
         t = loader.get_template('unit/xhr-timeline.html')
         c = RequestContext(request, context)
-        json['timeline'] = t.render(c)
+        json['timeline'] = t.render(c).replace('\n', '')
 
         response = simplejson.dumps(json)
         return HttpResponse(response, mimetype="application/json")
