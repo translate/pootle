@@ -18,17 +18,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.core.exceptions import PermissionDenied
 from django.contrib.syndication.views import Feed
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 
-from pootle_misc.baseurl import l
 from pootle_app.models import Directory
-from pootle_app.models.permissions import get_matching_permissions, check_permission
-from pootle_profile.models import get_profile
-
+from pootle_app.models.permissions import (check_permission,
+                                           get_matching_permissions)
+from pootle_misc.baseurl import l
 from pootle_notifications.models import Notice
 from pootle_notifications.views import directory_to_title
+from pootle_profile.models import get_profile
 
 
 class NoticeFeed(Feed):
