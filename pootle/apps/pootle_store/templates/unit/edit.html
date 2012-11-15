@@ -1,3 +1,4 @@
+{% load url from future %}
 {% load i18n baseurl store_tags cleanhtml cache profile_tags locale %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
@@ -167,7 +168,7 @@
         <a id="js-hide-timeline" class="hide">{% trans 'Hide Timeline' %}</a>
         {% if cantranslate %}
         <div id="editor-comment" class="hide">
-          <form id="comment-form" action="{% url pootle_store.views.comment unit.id %}" method="post">
+          <form id="comment-form" action="{% url 'pootle_store.views.comment' unit.id %}" method="post">
             <p>{{ comment_form.translator_comment }}</p>
             <p><input type="submit" value="{% trans 'Submit' %}" /></p>
           </form>

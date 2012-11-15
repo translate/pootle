@@ -1,9 +1,10 @@
 {% extends "base.html" %}
+{% load url from future %}
 {% load i18n baseurl notification_tags cleanhtml assets progressbar %}
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block extra_head %}
-<link rel="alternate" type="application/rss+xml" href="{% url pootle_notifications__feed "" %}" />
+<link rel="alternate" type="application/rss+xml" href="{% url 'pootle_notifications__feed' "" %}" />
 {% endblock %}
 
 {% block header_block %}{% endblock %}

@@ -1,5 +1,6 @@
 {% extends "base.html"  %}
 
+{% load url from future %}
 {% load i18n baseurl cache %}
 
 {% block title %}{{ translation_project.project }} | {{ language.localname }} | {{ block.super }}{% endblock %}
@@ -12,7 +13,7 @@
 {% endblock %}
 
 {% block extra_head %}
-<link rel="alternate" type="application/rss+xml" href="{% url pootle_notifications__feed feed_path %}" />
+<link rel="alternate" type="application/rss+xml" href="{% url 'pootle_notifications__feed' feed_path %}" />
 {% endblock %}
 
 {% block tabs %}

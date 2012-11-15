@@ -1,4 +1,5 @@
 {% extends "admin_profile_base.html" %}
+{% load url from future %}
 {% load i18n %}
 
 {% block title %}{% trans "Legal Pages" %} | {{ block.super }}{% endblock %}
@@ -18,7 +19,7 @@
     <div class="bd">
       <ul>
       {% for lp in legalpages %}
-        <li>{{ lp.title }} ({% if lp.active %}{% trans "Active" %}{% else %}{% trans "Inactive" %}{% endif %}) — <a href="{% url legalpages.views.admin_page lp.id %}">{% trans "Edit" %}</a></li>
+        <li>{{ lp.title }} ({% if lp.active %}{% trans "Active" %}{% else %}{% trans "Inactive" %}{% endif %}) — <a href="{% url 'legalpages.views.admin_page' lp.id %}">{% trans "Edit" %}</a></li>
       {% empty %}
         <li>{% trans "No pages yet." %}</li>
       {% endfor %}

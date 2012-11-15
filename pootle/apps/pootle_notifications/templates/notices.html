@@ -6,6 +6,7 @@ two templates into one. For the future we have to take a different
 approach for this.
 {% endcomment %}
 
+{% load url from future %}
 {% load i18n baseurl cleanhtml assets %}
 
 {% get_current_language as LANGUAGE_CODE %}
@@ -38,7 +39,7 @@ approach for this.
 {% endblock %}
 
 {% block extra_head %}
-<link rel="alternate" type="application/rss+xml" title="{{ title }}" href="{% url pootle_notifications__feed path %}" />
+<link rel="alternate" type="application/rss+xml" title="{{ title }}" href="{% url 'pootle_notifications__feed' path %}" />
 {% endblock %}
 
 {% block body_id %}{% if directory.is_language %}languagenews{% else %}tpnews{% endif %}{% endblock %}

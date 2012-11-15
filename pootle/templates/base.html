@@ -1,3 +1,4 @@
+{% load url from future %}
 {% load i18n assets baseurl cache legalpages locale profile_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
@@ -162,8 +163,8 @@
           {% if settings.CAN_CONTACT %}
           <li><a href='{{ "/contact/"|l }}'>{% trans "Contact Us" %}</a></li>
           {% endif %}
-          <li><a href='{% url pootle_app.views.index.about.view %}'>{% trans "About this Pootle Server" %}</a></li>
-          <li><a href='{% url pootle_app.views.index.contributors.view %}'>{% trans "Contributors" %}</a></li>
+          <li><a href='{% url 'pootle_app.views.index.about.view' %}'>{% trans "About this Pootle Server" %}</a></li>
+          <li><a href='{% url 'pootle_app.views.index.contributors.view' %}'>{% trans "Contributors" %}</a></li>
           {% cache settings.CACHE_TIMEOUT legalpages LANGUAGE_CODE %}
           {% get_legalpages as legalpages %}
           {% for lp in legalpages %}
@@ -176,7 +177,7 @@
     </div>
     {% block scripts %}
     {% block scripts_extra %}{% endblock %}
-    <script type="text/javascript" src="{% url django.views.i18n.javascript_catalog %}"></script>
+    <script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' %}"></script>
     {% endblock scripts %}
     {% endblock body %}
   </body>
