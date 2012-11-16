@@ -19,17 +19,21 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import logging
+import sys
 
-from django.core.management.base import BaseCommand, NoArgsCommand
 from optparse import make_option
 
-from pootle_translationproject.models import TranslationProject
+from django.core.management.base import BaseCommand, NoArgsCommand
+
 from pootle_language.models import Language
 from pootle_project.models import Project
+from pootle_store.models import Store
+from pootle_translationproject.models import TranslationProject
+
 
 class PootleCommand(NoArgsCommand):
-    """base class for handling recursive pootle store management commands"""
-    option_list = NoArgsCommand.option_list + (
+    """Base class for handling recursive pootle store management commands."""
+    shared_option_list = (
         make_option('--directory', dest='directory',
                     help='directory to refresh relative to po directory'),
         make_option('--project', action='append', dest='projects',
@@ -39,6 +43,7 @@ class PootleCommand(NoArgsCommand):
         make_option('--path-prefix', action='store', dest='path',
                     help='path prefix relative to translation project of files to refresh'),
         )
+    option_list = NoArgsCommand.option_list + shared_option_list
 
     def do_translation_project(self, tp, pootle_path, **options):
         if hasattr(self, "handle_translation_project"):
@@ -143,6 +148,37 @@ class PootleCommand(NoArgsCommand):
                 if tp == template_tp:
                     continue
                 self.do_translation_project(tp, path, **options)
+
+
+class ModifiedSinceMixin(object):
+    option_modified_since = (
+        make_option('--modified-since', action='store', dest='modified_since',
+                default=0, type=int,
+                help="only process translations newer than CHANGE_ID "
+                     "(as given by latest_change_id)"),
+        )
+
+    def __init__(self, *args, **kwargs):
+        super(ModifiedSinceMixin, self).__init__(*args, **kwargs)
+        self.__class__.option_list += self.__class__.option_modified_since
+
+    def handle_noargs(self, **options):
+        change_id = options.get('modified_since', 0)
+
+        if change_id == 0:
+            options.pop('modified_since')
+        elif change_id < 0:
+            logging.error(u"Identifiers must be positive integers.")
+            sys.exit(1)
+        else:
+            from pootle_statistics.models import Submission
+            latest_change_id = Submission.objects.select_related("").latest().id
+            if change_id > latest_change_id:
+                logging.warning(u"The given identifier is higher than the "
+                                u"maximum known change id.\nAborting.")
+                sys.exit(1)
+
+        return super(ModifiedSinceMixin, self).handle_noargs(**options)
 
 
 class BaseRunCommand(BaseCommand):
