@@ -779,6 +779,19 @@ class Store(models.Model, base.TranslationStore):
     def get_mtime(self):
         return max_column(self.unit_set.all(), 'mtime', None)
 
+    @classmethod
+    def _get_mtime_from_header(cls, store):
+        mtime = None
+        from translate.storage import poheader
+        if isinstance(store, poheader.poheader):
+            try:
+                mtime = store.parseheader().get('X-POOTLE-MTIME', None)
+                if mtime:
+                    mtime = datetime.datetime.fromtimestamp(float(mtime))
+            except Exception, e:
+                logging.debug("failed to parse mtime: %s", e)
+        return mtime
+
     def _get_abs_real_path(self):
         if self.file:
             return self.file.path
@@ -1322,19 +1335,12 @@ class Store(models.Model, base.TranslationStore):
         self.state = LOCKED
         self.save()
 
-        try:
-            from translate.storage import poheader
-            if suggestions and isinstance(newfile, poheader.poheader):
-                try:
-                    mtime = newfile.parseheader().get('X-POOTLE-MTIME', None)
-                    if mtime:
-                        mtime = datetime.datetime.fromtimestamp(float(mtime))
-                except Exception, e:
-                    logging.debug("failed to parse mtime: %s", e)
-                    mtime = None
-            else:
-                mtime = None
+        if suggestions:
+            mtime = self._get_mtime_from_header(newfile)
+        else:
+            mtime = None
 
+        try:
             self.require_dbid_index(update=True, obsolete=True)
             old_ids = set(self.dbid_index.keys())
             if issubclass(self.translation_project.project.get_file_class(),
