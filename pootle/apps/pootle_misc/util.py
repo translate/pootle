@@ -27,6 +27,15 @@ from django.http import HttpResponseBadRequest
 from django.utils import simplejson
 from django.utils.encoding import iri_to_uri
 
+# We host a copy of the timezone helpers in Django 1.4+ for the sake of Django
+# 1.3:
+try:
+    from django.utils import tzinfo
+    from django.utils import timezone
+except ImportError:
+    from pootle_misc import tzinfo
+    from pootle_misc import timezone
+
 
 def getfromcache(function, timeout=settings.OBJECT_CACHE_TIMEOUT):
     def _getfromcache(instance, *args, **kwargs):
