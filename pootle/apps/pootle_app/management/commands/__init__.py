@@ -150,6 +150,17 @@ class PootleCommand(NoArgsCommand):
                 self.do_translation_project(tp, path, **options)
 
 
+class NoArgsCommandMixin(NoArgsCommand):
+    """Intermediary class to allow multiple inheritance from
+    :class:`NoArgsCommand` and mixins that implement :func:`handle_noargs`.
+    Classes derived from this will provide the implementation for
+    :func:`handle_noargs`.
+    """
+
+    def handle_noargs(self, **options):
+        pass
+
+
 class ModifiedSinceMixin(object):
     option_modified_since = (
         make_option('--modified-since', action='store', dest='modified_since',
@@ -178,7 +189,7 @@ class ModifiedSinceMixin(object):
                                 u"maximum known change id.\nAborting.")
                 sys.exit(1)
 
-        return super(ModifiedSinceMixin, self).handle_noargs(**options)
+        super(ModifiedSinceMixin, self).handle_noargs(**options)
 
 
 class BaseRunCommand(BaseCommand):

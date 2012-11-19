@@ -21,19 +21,35 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
-from django.core.management.base import BaseCommand
-
+from pootle_app.management.commands import (NoArgsCommandMixin,
+                                            ModifiedSinceMixin)
 from pootle_language.models import Language
 
-class Command(BaseCommand):
 
-    def handle(self, *args, **options):
-        list_languages()
+class Command(ModifiedSinceMixin, NoArgsCommandMixin):
 
+    def handle_noargs(self, **options):
+        super(Command, self).handle_noargs(**options)
+        self.list_languages(**options)
 
-def list_languages():
-    """List all languages on the server."""
-    for lang in Language.objects.all():
-        if lang.code == 'templates':
-            continue
-        print lang.code
+    def list_languages(self, **options):
+        """List all languages on the server."""
+        change_id = options.get('modified_since', 0)
+
+        if change_id:
+            from pootle_translationproject.models import TranslationProject
+            langs = TranslationProject.objects \
+                                      .filter(submission__id__gte=change_id) \
+                                      .select_related('project') \
+                                      .distinct() \
+                                      .values('language__code')
+
+            for lang in langs:
+                lang_code = lang['language__code']
+                if lang_code != 'templates':
+                    print lang_code
+        else:
+            for lang in Language.objects.all():
+                if lang.code == 'templates':
+                    continue
+                print lang.code

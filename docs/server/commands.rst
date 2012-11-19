@@ -279,6 +279,9 @@ list_languages
 This command prints all the language codes on the server. This might be useful
 for automation.
 
+Accepts the ``--modified-since`` parameter to list only those languages
+modified since the change id given by :ref:`commands#latest_change_id`.
+
 
 .. _commands#list_projects:
 
@@ -289,6 +292,9 @@ list_projects
 
 This command prints all the project codes on the server. This might be useful
 for automation.
+
+Accepts the ``--modified-since`` parameter to list only those projects
+modified since the change id given by :ref:`commands#latest_change_id`.
 
 
 .. _commands#latest_change_id:

@@ -21,16 +21,31 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
-from django.core.management.base import BaseCommand
-
+from pootle_app.management.commands import (NoArgsCommandMixin,
+                                            ModifiedSinceMixin)
 from pootle_project.models import Project
 
-class Command(BaseCommand):
-    def handle(self, *args, **options):
-        list_projects()
 
+class Command(ModifiedSinceMixin, NoArgsCommandMixin):
 
-def list_projects():
-    """List all projects on the server."""
-    for lang in Project.objects.all():
-        print lang.code
+    def handle_noargs(self, **options):
+        super(Command, self).handle_noargs(**options)
+        self.list_projects(**options)
+
+    def list_projects(self, **options):
+        """List all projects on the server."""
+        change_id = options.get('modified_since', 0)
+
+        if change_id:
+            from pootle_translationproject.models import TranslationProject
+            projects = TranslationProject.objects \
+                                         .filter(submission__id__gte=change_id) \
+                                         .select_related('project') \
+                                         .distinct() \
+                                         .values('project__code')
+
+            for project in projects:
+                print project['project__code']
+        else:
+            for project in Project.objects.all():
+                print project.code
