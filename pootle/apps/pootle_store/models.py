@@ -787,7 +787,9 @@ class Store(models.Model, base.TranslationStore):
             try:
                 mtime = store.parseheader().get('X-POOTLE-MTIME', None)
                 if mtime:
-                    mtime = datetime.datetime.fromtimestamp(float(mtime))
+                    from django.utils.tzinfo import FixedOffset
+                    tz = FixedOffset(120) # Africa/Johanesburg - pre-2.1 default
+                    mtime = datetime.datetime.fromtimestamp(float(mtime), tz)
             except Exception, e:
                 logging.debug("failed to parse mtime: %s", e)
         return mtime
