@@ -785,11 +785,11 @@ class Store(models.Model, base.TranslationStore):
         from translate.storage import poheader
         if isinstance(store, poheader.poheader):
             try:
-                mtime = store.parseheader().get('X-POOTLE-MTIME', None)
-                if mtime:
+                _mtime = store.parseheader().get('X-POOTLE-MTIME', None)
+                if _mtime:
                     from pootle_misc.util import tzinfo
                     tz = tzinfo.FixedOffset(120) # Africa/Johanesburg - pre-2.1 default
-                    mtime = datetime.datetime.fromtimestamp(float(mtime), tz)
+                    mtime = datetime.datetime.fromtimestamp(float(_mtime), tz)
             except Exception, e:
                 logging.debug("failed to parse mtime: %s", e)
         return mtime
