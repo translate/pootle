@@ -39,7 +39,8 @@ from pootle_app.lib.util import RelatedManager
 from pootle_misc.aggregate import group_by_count_extra, max_column
 from pootle_misc.baseurl import l
 from pootle_misc.checks import check_names
-from pootle_misc.util import cached_property, getfromcache, deletefromcache
+from pootle_misc.util import (cached_property, getfromcache, deletefromcache,
+                              tzinfo, timezone)
 from pootle_store.fields import (TranslationStoreField, MultiStringField,
                                  PLURAL_PLACEHOLDER, SEPARATOR)
 from pootle_store.filetypes import factory_classes, is_monolingual
@@ -787,7 +788,6 @@ class Store(models.Model, base.TranslationStore):
             try:
                 _mtime = store.parseheader().get('X-POOTLE-MTIME', None)
                 if _mtime:
-                    from pootle_misc.util import tzinfo
                     tz = tzinfo.FixedOffset(120) # Africa/Johanesburg - pre-2.1 default
                     mtime = datetime.datetime.fromtimestamp(float(_mtime), tz)
             except Exception, e:
@@ -860,7 +860,7 @@ class Store(models.Model, base.TranslationStore):
             #FIXME: we can't tell stale locks if store has no units at all
             return
 
-        delta = mtime.now() - mtime
+        delta = timezone.now() - mtime
         if delta.days or delta.seconds > 2 * 60 * 60:
             logging.warning("found stale lock in %s, something went wrong with a previous operation on the store", self.pootle_path)
             # lock been around for too long, assume it is stale
@@ -1033,7 +1033,7 @@ class Store(models.Model, base.TranslationStore):
             # Unlock store
             self.state = old_state
             if update_structure and update_translation and not conservative:
-                self.sync_time = datetime.datetime.now()
+                self.sync_time = timezone.now()
             self.save()
 
 
@@ -1136,7 +1136,7 @@ class Store(models.Model, base.TranslationStore):
             self.update_store_header(profile=profile)
             self.file.savestore()
 
-        self.sync_time = datetime.datetime.now()
+        self.sync_time = timezone.now()
         self.save()
 
     def get_file_class(self):
@@ -1415,7 +1415,7 @@ class Store(models.Model, base.TranslationStore):
         if isinstance(disk_store, poheader.poheader):
             mtime = self.get_mtime()
             if mtime is None:
-                mtime = datetime.datetime.now()
+                mtime = timezone.now()
             if profile is None:
                 try:
                     submit = self.translation_project.submission_set.filter(creation_time=mtime).latest()
