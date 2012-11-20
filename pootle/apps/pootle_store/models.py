@@ -788,8 +788,13 @@ class Store(models.Model, base.TranslationStore):
             try:
                 _mtime = store.parseheader().get('X-POOTLE-MTIME', None)
                 if _mtime:
-                    tz = tzinfo.FixedOffset(120) # Africa/Johanesburg - pre-2.1 default
-                    mtime = datetime.datetime.fromtimestamp(float(_mtime), tz)
+                    mtime = datetime.datetime.fromtimestamp(float(_mtime))
+                    if settings.USE_TZ:
+                        # Africa/Johanesburg - pre-2.1 default
+                        tz = tzinfo.FixedOffset(120)
+                        mtime = timezone.make_aware(mtime, tz)
+                    else:
+                        mtime -= datetime.timedelta(hours=2)
             except Exception, e:
                 logging.debug("failed to parse mtime: %s", e)
         return mtime
@@ -956,8 +961,9 @@ class Store(models.Model, base.TranslationStore):
             return
 
         disk_mtime = datetime.datetime.fromtimestamp(self.file.getpomtime()[0])
-        tz = timezone.get_default_timezone()
-        disk_mtime = timezone.make_aware(disk_mtime, tz)
+        if settings.USE_TZ:
+            tz = timezone.get_default_timezone()
+            disk_mtime = timezone.make_aware(disk_mtime, tz)
         if only_newer and disk_mtime <= self.sync_time:
             # the file on disk wasn't changed synce the last sync
             return
