@@ -32,7 +32,7 @@ for your database system.
 
 If you are upgrading from a version of Pootle that uses *localsettings.py* then
 you want to move all your customized settings from *localsettings.py* into
-the *settings/90-local.conf* file in your new Poole version.
+the *settings/90-local.conf* file in your new Pootle version.
 
 You might want to look for any new settings that are available in the new
 version that you might want to configure. For example, the setting
