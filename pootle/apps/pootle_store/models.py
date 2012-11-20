@@ -956,6 +956,8 @@ class Store(models.Model, base.TranslationStore):
             return
 
         disk_mtime = datetime.datetime.fromtimestamp(self.file.getpomtime()[0])
+        tz = timezone.get_default_timezone()
+        disk_mtime = timezone.make_aware(disk_mtime, tz)
         if only_newer and disk_mtime <= self.sync_time:
             # the file on disk wasn't changed synce the last sync
             return
