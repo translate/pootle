@@ -102,6 +102,12 @@ Site-specific settings.
 Configuration settings for applications used by Pootle.
 
 
+.. setting:: CUSTOM_TEMPLATE_CONTEXT
+
+Custom template context dictionary. The values will be available in the
+templates as `` {{ custom.<key> }}``.
+
+
 .. setting:: EMAIL_SEND_HTML
 
 ``EMAIL_SEND_HTML``

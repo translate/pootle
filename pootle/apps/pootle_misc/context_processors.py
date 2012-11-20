@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2009-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -22,8 +22,9 @@ from django.conf import settings
 
 from pootle.__version__ import sver
 
+
 def pootle_context(request):
-    """exposes settings to templates"""
+    """Exposes settings to templates."""
     #FIXME: maybe we should expose relevant settings only?
     context = {
         'settings': {
@@ -36,5 +37,7 @@ def pootle_context(request):
             'CACHE_TIMEOUT': settings.CACHE_MIDDLEWARE_SECONDS,
             'DEBUG': settings.DEBUG,
         },
+        'custom': settings.CUSTOM_TEMPLATE_CONTEXT,
     }
+
     return context
