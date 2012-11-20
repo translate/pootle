@@ -18,8 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-import datetime
-
 from django import template
 from django.core.exceptions import  ObjectDoesNotExist
 #FIXME: _loader is probably not a stable API for the future, but seems like
@@ -31,7 +29,7 @@ from django.utils.translation import ugettext as _, ungettext
 from translate.misc.multistring import multistring
 
 from pootle_misc.templatetags.cleanhtml import fancy_escape, fancy_highlight
-from pootle_misc.util import add_percentages
+from pootle_misc.util import add_percentages, timezone
 from pootle_store.fields import list_empty
 
 
@@ -207,7 +205,7 @@ def timedelta(date):
 
     Adapted from http://djangosnippets.org/snippets/2275/
     """
-    delta = datetime.datetime.now() - date
+    delta = timezone.now() - date
 
     num_years = delta.days / 365
     if (num_years > 0):
