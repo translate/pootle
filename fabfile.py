@@ -86,8 +86,7 @@ def _install_requirements():
 def _update_requirements():
     """Updates dependencies installed via pip"""
     with prefix('source %(env_path)s/bin/activate' % env):
-        run('pip freeze --local | awk \'BEGIN{FS="=="}{print $1}\' | '
-            'xargs pip install -U' % env)
+        run('pip install -U -r %(project_repo_path)s/requirements/deploy.txt' % env)
 
 
 def bootstrap():
