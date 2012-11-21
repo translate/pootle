@@ -25,7 +25,7 @@ import shutil
 
 from translate.lang import data as langdata
 
-from pootle_app.models.directory  import Directory
+from pootle_app.models.directory import Directory
 from pootle_language.models import Language
 from pootle_store.models import Store, PARSED
 from pootle_store.util import absolute_real_path

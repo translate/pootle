@@ -53,12 +53,12 @@ def get_supported_formats():
     except ImportError:
         pass
     try:
-        from translate.storage.csvl10n  import csvfile
+        from translate.storage.csvl10n import csvfile
         formats.append(('csv', _('Excel CSV'), csvfile, 'bilingual'))
     except ImportError:
         pass
     try:
-        from translate.storage.mozilla_lang  import LangStore
+        from translate.storage.mozilla_lang import LangStore
         formats.append(('lang', _('Mozilla .lang'), LangStore, 'bilingual'))
     except ImportError:
         pass

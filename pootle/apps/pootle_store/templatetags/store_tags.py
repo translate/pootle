@@ -19,7 +19,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django import template
-from django.core.exceptions import  ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist
 #FIXME: _loader is probably not a stable API for the future, but seems like
 # the best way to go for now:
 from django.template.loaders.app_directories import _loader

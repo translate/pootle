@@ -24,8 +24,8 @@ import traceback
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.core.mail import mail_admins
-from django.http import  (Http404, HttpResponse, HttpResponseForbidden,
-                          HttpResponseServerError)
+from django.http import (Http404, HttpResponse, HttpResponseForbidden,
+                         HttpResponseServerError)
 from django.template import RequestContext
 from django.template.loader import render_to_string
 from django.utils import simplejson
