@@ -464,7 +464,6 @@ class TranslationProject(models.Model):
         new_file_set = set(new_files)
 
         from pootle.scripts import hooks
-        from pootle_misc import versioncontrol
 
         # Go through all stores except any pootle-terminology.* ones
         for store in self.stores.exclude(file="").iterator():
