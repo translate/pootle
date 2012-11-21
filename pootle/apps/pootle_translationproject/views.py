@@ -210,13 +210,10 @@ class ProjectIndexView(view_handler.View):
 
     def GET(self, template_vars, request, translation_project, directory,
             store=None):
-        user_profile = get_profile(request.user)
-        tp_dir = translation_project.directory
         can_edit = check_permission('administrate', request)
 
         project = translation_project.project
         language = translation_project.language
-        is_terminology = project.is_terminology
 
         path_obj = store or directory
 
