@@ -985,8 +985,11 @@ class Store(models.Model, base.TranslationStore):
         if settings.USE_TZ:
             tz = timezone.get_default_timezone()
             disk_mtime = timezone.make_aware(disk_mtime, tz)
+
         if only_newer and disk_mtime <= self.sync_time:
-            # the file on disk wasn't changed synce the last sync
+            # The file on disk wasn't changed since the last sync
+            logging.debug(u"File didn't change since last sync, skipping %s",
+                          self.pootle_path)
             return
 
         if store is None:
