@@ -140,13 +140,15 @@ class StoreTuple(object):
         self.mod_info = mod_info
         self.realpath = realpath
 
-class TranslationStoreFieldFile(FieldFile):
-    """FieldFile is the File-like object of a FileField, that is found in a
-    TranslationStoreField."""
 
+class TranslationStoreFieldFile(FieldFile):
+    """FieldFile is the file-like object of a FileField, that is found in a
+    TranslationStoreField."""
     from translate.misc.lru import LRUCachingDict
     from django.conf import settings
-    _store_cache = LRUCachingDict(settings.PARSE_POOL_SIZE, settings.PARSE_POOL_CULL_FREQUENCY)
+
+    _store_cache = LRUCachingDict(settings.PARSE_POOL_SIZE,
+                                  settings.PARSE_POOL_CULL_FREQUENCY)
 
     def getpomtime(self):
         file_stat = os.stat(self.realpath)
@@ -157,13 +159,13 @@ class TranslationStoreFieldFile(FieldFile):
     filename = property(_get_filename)
 
     def _get_realpath(self):
-        """return realpath resolving symlinks if neccessary"""
+        """Return realpath resolving symlinks if necessary."""
         if not hasattr(self, "_realpath"):
             self._realpath = os.path.realpath(self.path)
         return self._realpath
 
     def _get_cached_realpath(self):
-        """get real path from cache before attempting to check for symlinks"""
+        """Get real path from cache before attempting to check for symlinks."""
         if not hasattr(self, "_store_tuple"):
             return self._get_realpath()
         else:
@@ -187,14 +189,18 @@ class TranslationStoreFieldFile(FieldFile):
                     # if file is modified act as if it doesn't exist in cache
                     raise KeyError
             except KeyError:
-                logging.debug(u"cache miss for %s", self.path)
+                logging.debug(u"Cache miss for %s", self.path)
                 from translate.storage import factory
                 from pootle_store.filetypes import factory_classes
-                self._store_tuple = StoreTuple(factory.getobject(self.path, ignore=self.field.ignore, classes=factory_classes),
-                                               mod_info, self.realpath)
-                self._store_cache[self.path] = self._store_tuple
-                translation_file_updated.send(sender=self, path=self.path)
 
+                store_obj = factory.getobject(self.path,
+                                              ignore=self.field.ignore,
+                                              classes=factory_classes)
+                self._store_tuple = StoreTuple(store_obj, mod_info,
+                                               self.realpath)
+                self._store_cache[self.path] = self._store_tuple
+
+                translation_file_updated.send(sender=self, path=self.path)
 
     def _touch_store_cache(self):
         """Update stored mod_info without reparsing file."""
@@ -206,7 +212,6 @@ class TranslationStoreFieldFile(FieldFile):
         else:
             #FIXME: do we really need that?
             self._update_store_cache()
-
 
     def _delete_store_cache(self):
         """Remove translation store from cache."""

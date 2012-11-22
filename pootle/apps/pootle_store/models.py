@@ -740,15 +740,29 @@ class Store(models.Model, base.TranslationStore):
         ordering = ['pootle_path']
         unique_together = ('parent', 'name')
 
-    file = TranslationStoreField(upload_to="fish", max_length=255, storage=fs, db_index=True, null=False, editable=False)
-    pending = TranslationStoreField(ignore='.pending', upload_to="fish", max_length=255, storage=fs, editable=False) # deprecated
-    tm = TranslationStoreField(ignore='.tm', upload_to="fish", max_length=255, storage=fs, editable=False)
-    parent = models.ForeignKey('pootle_app.Directory', related_name='child_stores', db_index=True, editable=False)
-    translation_project = models.ForeignKey('pootle_translationproject.TranslationProject', related_name='stores', db_index=True, editable=False)
-    pootle_path = models.CharField(max_length=255, null=False, unique=True, db_index=True, verbose_name=_("Path"))
+    file = TranslationStoreField(upload_to="fish", max_length=255, storage=fs,
+            db_index=True, null=False, editable=False)
+
+    # Deprecated
+    pending = TranslationStoreField(ignore='.pending', upload_to="fish",
+            max_length=255, storage=fs, editable=False)
+    tm = TranslationStoreField(ignore='.tm', upload_to="fish", max_length=255,
+            storage=fs, editable=False)
+
+    parent = models.ForeignKey('pootle_app.Directory',
+            related_name='child_stores', db_index=True, editable=False)
+
+    translation_project_fk = 'pootle_translationproject.TranslationProject'
+    translation_project = models.ForeignKey(translation_project_fk,
+            related_name='stores', db_index=True, editable=False)
+
+    pootle_path = models.CharField(max_length=255, null=False, unique=True,
+            db_index=True, verbose_name=_("Path"))
     name = models.CharField(max_length=128, null=False, editable=False)
+
     sync_time = models.DateTimeField(default=datetime.datetime.min)
-    state = models.IntegerField(null=False, default=NEW, editable=False, db_index=True)
+    state = models.IntegerField(null=False, default=NEW, editable=False,
+            db_index=True)
 
     def natural_key(self):
         return (self.pootle_path,)
@@ -824,11 +838,12 @@ class Store(models.Model, base.TranslationStore):
         return l(self.pootle_path + '/translate/')
 
     def require_units(self):
-        """make sure file is parsed and units are created"""
+        """Make sure file is parsed and units are created."""
         if self.state < PARSED and self.unit_set.count() == 0:
-            if  self.file and is_monolingual(type(self.file.store)) and \
-                   not self.translation_project.is_template_project:
-                self.translation_project.update_from_templates(pootle_path=self.pootle_path)
+            if (self.file and is_monolingual(type(self.file.store)) and
+                not self.translation_project.is_template_project):
+                self.translation_project \
+                    .update_from_templates(pootle_path=self.pootle_path)
             else:
                 self.parse()
 
@@ -859,15 +874,18 @@ class Store(models.Model, base.TranslationStore):
     def clean_stale_lock(self):
         if self.state != LOCKED:
             return
-        mtime = max_column(self.unit_set.all(), 'mtime', None)
 
+        mtime = max_column(self.unit_set.all(), 'mtime', None)
         if mtime is None:
             #FIXME: we can't tell stale locks if store has no units at all
             return
 
         delta = timezone.now() - mtime
         if delta.days or delta.seconds > 2 * 60 * 60:
-            logging.warning("found stale lock in %s, something went wrong with a previous operation on the store", self.pootle_path)
+            logging.warning("Found stale lock in %s, something went wrong "
+                            "with a previous operation on the store",
+                            self.pootle_path)
+
             # lock been around for too long, assume it is stale
             if QualityCheck.objects.filter(unit__store=self).exists():
                 # there are quality checks, assume we are checked
@@ -875,6 +893,7 @@ class Store(models.Model, base.TranslationStore):
             else:
                 # there are units assumed we are parsed
                 self.state = PARSED
+
             return True
 
         return False
@@ -952,11 +971,13 @@ class Store(models.Model, base.TranslationStore):
             # file currently being updated
             #FIXME: Shall we idle wait for lock to be released first?
             # What about stale locks?
-            logging.info(u"attempted to update %s while locked", self.pootle_path)
+            logging.info(u"Attempted to update %s while locked",
+                         self.pootle_path)
             return
         elif self.state < PARSED:
             # file has not been parsed before
-            logging.debug(u"attempted to update unparsed file %s", self.pootle_path)
+            logging.debug(u"Attempted to update unparsed file %s",
+                          self.pootle_path)
             self.parse(store=store)
             return
 
@@ -1194,10 +1215,13 @@ class Store(models.Model, base.TranslationStore):
             return self._units
 
         self.require_units()
-        return self.unit_set.filter(state__gt=OBSOLETE).order_by('index').select_related('store__translation_project')
+        return self.unit_set.filter(state__gt=OBSOLETE).order_by('index') \
+                            .select_related('store__translation_project')
 
     def _set_units(self, value):
-        """null setter to avoid tracebacks if TranslationStore.__init__ is called"""
+        """Null setter to avoid tracebacks if :meth:`TranslationStore.__init__`
+        is called.
+        """
         pass
 
     units = property(_get_units, _set_units)
