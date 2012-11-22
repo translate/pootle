@@ -1323,7 +1323,7 @@ class Store(models.Model, base.TranslationStore):
         """Make sure each msgid is unique ; merge comments etc from duplicates
         into original."""
         if not newfile.units:
-                return
+            return
 
         monolingual = is_monolingual(type(newfile))
         self.clean_stale_lock()
