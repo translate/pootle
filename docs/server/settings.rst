@@ -110,7 +110,7 @@ Configuration settings for applications used by Pootle.
   .. versionadded:: 2.5
 
   Custom template context dictionary. The values will be available in the
-  templates as `` {{ custom.<key> }}``.
+  templates as ``{{ custom.<key> }}``.
 
 
 .. setting:: EMAIL_SEND_HTML
