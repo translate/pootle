@@ -285,12 +285,8 @@ def handle_form(request, current_directory, current_project,
                 #        _("Sent an email to %s", person.user.email)
                 #)
 
-        # The rest of the email settings
-        from_email = DEFAULT_FROM_EMAIL
-
         # Send the email to the recipients, ensuring addresses are hidden
-        send_mail(email_header, message, from_email, bcc=recipients,
-                  fail_silently=True)
+        send_mail(email_header, message, bcc=recipients, fail_silently=True)
 
     if not template_vars['notices_published']:
         template_vars['notices_published'] = None
