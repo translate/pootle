@@ -407,9 +407,8 @@ Deprecated settings
   Defaut: ``True``
 
   .. deprecated:: 2.5
-
-  Display alternate source languages in the translation interface.
-
-  .. note:: Alternate source languages are now on by default. This ensures
+     Alternate source languages are now on by default. This ensures
      that translators have access to as much useful information as possible
      when translating.
+
+  Display alternate source languages in the translation interface.
