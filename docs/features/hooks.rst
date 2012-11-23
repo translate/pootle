@@ -33,7 +33,7 @@ Available hooktypes
 +------------+---------------------------+---------+
 | Hooktype   | Arguments                 | Return  |
 +============+===========================+=========+
-| initalize  | projectdir, languagecodee |         |
+| initalize  | projectdir, languagecode  |         |
 +------------+---------------------------+---------+
 | precommit  | file, author, message     |         |
 +------------+---------------------------+---------+
