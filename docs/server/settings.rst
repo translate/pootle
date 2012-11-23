@@ -124,6 +124,18 @@ templates as `` {{ custom.<key> }}``.
     of the underlying system.
 
 
+.. setting:: FUZZY_MATCH_MAX_LENGTH
+
+``FUZZY_MATCH_MAX_LENGTH``
+  Default: ``70``
+
+  .. versionadded:: 2.5
+
+  Maximum character length to consider when doing fuzzy matching. The default
+  might not be enough for long texts. Please note this affects all fuzzy
+  matching operations, so bear in mind this might affect performance.
+
+
 .. setting:: MIN_AUTOTERMS
 
 ``MIN_AUTOTERMS``

@@ -866,7 +866,9 @@ class Store(models.Model, base.TranslationStore):
         """builds a TM matcher from current translations and obsolete units"""
         from translate.search import match
         #FIXME: should we cache this?
-        matcher = match.matcher(self, max_candidates=1, usefuzzy=True)
+        matcher = match.matcher(self, max_candidates=1,
+                                max_length=settings.FUZZY_MATCH_MAX_LENGTH,
+                                usefuzzy=True)
         matcher.extendtm(self.unit_set.filter(state=OBSOLETE))
         matcher.addpercentage = False
         return matcher
