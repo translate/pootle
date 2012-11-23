@@ -23,9 +23,10 @@ version upgrade at the same time as a database migration. Finish the database
 migration completely before upgrading Pootle (or the other way round).
 
 Always make backups of all your translation files (your whole *podirectory*),
-and your settings (*localsettings.py* or *settings/90-local.conf*).  With
-Pootle 2.1+ you can synchronize all translation files with the database
-using the ``syncdb`` :doc:`command <commands>` before you make your backups.
+and your settings (*localsettings.py* for Pootle <2.5, or
+*settings/90-local.conf*).  With Pootle 2.1+ you can synchronize all
+translation files with the database using the ``syncdb`` :doc:`command
+<commands>` before you make your backups.
 
 Make a backup of your complete database using the appropriate *dump* command
 for your database system.
