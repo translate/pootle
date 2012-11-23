@@ -23,7 +23,7 @@ from django.core.mail import get_connection
 from django.core.mail.message import EmailMessage
 
 
-def send_mail(subject, message, from_email, recipient_list=[],
+def send_mail(subject, message, from_email=None, recipient_list=[],
               bcc=[], cc=[], fail_silently=False, auth_user=None,
               auth_password=None, connection=None):
     """Wrapper around Django's :class:`~django.core.mail.message.EmailMessage`
