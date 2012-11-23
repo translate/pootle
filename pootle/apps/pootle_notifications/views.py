@@ -20,7 +20,6 @@
 
 from django.db.models import Q
 from django.core.exceptions import PermissionDenied
-from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
@@ -34,6 +33,7 @@ from pootle_app.models.permissions import (get_matching_permissions,
                                            check_profile_permission)
 from pootle_app.views.language import navbar_dict
 from pootle_language.models import Language
+from pootle_misc.mail import send_mail
 from pootle_notifications.models import Notice
 from pootle_project.models import Project
 from pootle_profile.models import get_profile, PootleProfile
@@ -271,14 +271,14 @@ def handle_form(request, current_directory, current_project, current_language, t
             to_list = to_list.exclude(suggestion=None)
             to_list = to_list.exclude(suggester=None)
 
-        to_list_emails = []
+        recipients = []
         for person in to_list:
             #Check if the User object here as permissions
             directory = form.cleaned_data['directory']
             if not check_profile_permission(person, 'view', directory):
                 continue
             if person.user.email != '':
-                to_list_emails.append(person.user.email)
+                recipients.append(person.user.email)
                 #template_vars['notices_published'].append(
                 #        _("Sent an email to %s", person.user.email)
                 #)
@@ -286,8 +286,8 @@ def handle_form(request, current_directory, current_project, current_language, t
         # The rest of the email settings
         from_email = DEFAULT_FROM_EMAIL
 
-        # Send the email to the list of people
-        send_mail(email_header, message, from_email, to_list_emails,
+        # Send the email to the recipients, ensuring addresses are hidden
+        send_mail(email_header, message, from_email, bcc=recipients,
                   fail_silently=True)
 
     if not template_vars['notices_published']:
