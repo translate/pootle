@@ -67,16 +67,15 @@ CACHES = {
 
 # Mail server settings
 #
-# By default Pootle uses the SMTP server on localhost. If the server is not
-# configured for sending emails, uncomment and use these settings to setup an
-# external outgoing SMTP server.
+# By using the 'console' email backend, any emails sent while in development
+# mode will be output to stdout.
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# Example for Google as an external SMTP server
-#EMAIL_HOST_USER = 'USER@YOUR_DOMAIN.com'
-#EMAIL_HOST_PASSWORD = 'YOUR_PASSWORD'
-#EMAIL_HOST = 'smtp.gmail.com'
-#EMAIL_PORT = 587
-#EMAIL_USE_TLS = True
+# Alternatively, you can run a local dummy SMTP server with
+#   python -m smtpd -n -c DebuggingServer localhost:1025
+# and use the following settings:
+#EMAIL_HOST = 'localhost'
+#EMAIL_PORT = 1025
 
 
 #
