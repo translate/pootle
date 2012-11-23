@@ -243,12 +243,6 @@ def handle_form(request, current_directory, current_project,
     if form.cleaned_data['publish_rss']:
         for d in publish_dirs:
             create_notice(request.user, message, d)
-        #template_vars['notices_published'].append(ungettext(
-        #        "Published %d news item",
-        #        "Published %d news items",
-        #        len(publish_dirs),
-        #        len(publish_dirs),
-        #))
 
     # E-mail
     if form.cleaned_data['send_email']:
@@ -275,15 +269,14 @@ def handle_form(request, current_directory, current_project,
 
         recipients = []
         for person in to_list:
-            #Check if the User object here as permissions
+            # Check if the User object here as permissions
             directory = form.cleaned_data['directory']
+
             if not check_profile_permission(person, 'view', directory):
                 continue
+
             if person.user.email != '':
                 recipients.append(person.user.email)
-                #template_vars['notices_published'].append(
-                #        _("Sent an email to %s", person.user.email)
-                #)
 
         # Send the email to the recipients, ensuring addresses are hidden
         send_mail(email_header, message, bcc=recipients, fail_silently=True)
