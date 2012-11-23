@@ -179,12 +179,11 @@ def form_factory(current_directory):
     return _NoticeForm
 
 
-def handle_form(request, current_directory, current_project, current_language, template_vars):
-    # Check if the user submitted the form
+def handle_form(request, current_directory, current_project,
+                current_language, template_vars):
     if request.method != 'POST':
         # Not a POST method. Return a default starting state of the form
-        form = form_factory(current_directory)()
-        return form
+        return form_factory(current_directory)()
 
     # Reconstruct the NoticeForm with the user data.
     form = form_factory(current_directory)(request.POST)
@@ -254,10 +253,12 @@ def handle_form(request, current_directory, current_project, current_language, t
     # E-mail
     if form.cleaned_data['send_email']:
         email_header = form.cleaned_data['email_header']
+
         if languages:
             lang_filter = Q(languages__in=languages)
         else:
             lang_filter = Q(languages__isnull=False)
+
         if projects:
             proj_filter = Q(projects__in=projects)
         else:
