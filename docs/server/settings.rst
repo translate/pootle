@@ -104,8 +104,13 @@ Configuration settings for applications used by Pootle.
 
 .. setting:: CUSTOM_TEMPLATE_CONTEXT
 
-Custom template context dictionary. The values will be available in the
-templates as `` {{ custom.<key> }}``.
+``CUSTOM_TEMPLATE_CONTEXT``
+  Default: ``{}``
+
+  .. versionadded:: 2.5
+
+  Custom template context dictionary. The values will be available in the
+  templates as `` {{ custom.<key> }}``.
 
 
 .. setting:: EMAIL_SEND_HTML
@@ -149,6 +154,8 @@ templates as `` {{ custom.<key> }}``.
 
 ``MARKUP_FILTER``
   Default: ``(None, {})``
+
+  .. versionadded:: 2.5
 
   Two-tuple defining the markup filter to apply in certain textareas.
 
