@@ -203,7 +203,7 @@ def handle_form(request, current_directory, current_project, current_language, t
         publish_dirs = [current_directory]
     elif current_language:
         languages = [current_language]
-        if form.cleaned_data['project_all'] == True:
+        if form.cleaned_data['project_all']:
             # The current language
             publish_dirs = [current_language.directory]
         else:
@@ -213,7 +213,7 @@ def handle_form(request, current_directory, current_project, current_language, t
             publish_dirs = [tp.directory for tp in translation_projects]
     elif current_project:
         projects = [current_project]
-        if form.cleaned_data['language_all'] == True:
+        if form.cleaned_data['language_all']:
             # The current project
             publish_dirs = [current_project.directory]
         else:
@@ -223,15 +223,15 @@ def handle_form(request, current_directory, current_project, current_language, t
             publish_dirs = [tp.directory for tp in translation_projects]
     else:
         # The form is top-level (server-wide)
-        if form.cleaned_data['project_all'] == True:
-            if form.cleaned_data['language_all'] == True:
+        if form.cleaned_data['project_all']:
+            if form.cleaned_data['language_all']:
                 # Publish at server root
                 publish_dirs = [current_directory]
             else:
                 # Certain languages
                 publish_dirs = [l.directory for l in languages]
         else:
-            if form.cleaned_data['language_all'] == True:
+            if form.cleaned_data['language_all']:
                 # Certain projects
                 publish_dirs = [p.directory for p in projects]
             else:
@@ -241,7 +241,7 @@ def handle_form(request, current_directory, current_project, current_language, t
                 publish_dirs = [tp.directory for tp in translation_projects]
 
     # RSS (notices)
-    if form.cleaned_data['publish_rss'] == True:
+    if form.cleaned_data['publish_rss']:
         for d in publish_dirs:
             create_notice(request.user, message, d)
         #template_vars['notices_published'].append(ungettext(
@@ -252,7 +252,7 @@ def handle_form(request, current_directory, current_project, current_language, t
         #))
 
     # E-mail
-    if form.cleaned_data['send_email'] == True:
+    if form.cleaned_data['send_email']:
         email_header = form.cleaned_data['email_header']
         if languages:
             lang_filter = Q(languages__in=languages)
@@ -265,8 +265,9 @@ def handle_form(request, current_directory, current_project, current_language, t
 
         to_list = PootleProfile.objects.filter(lang_filter, proj_filter)
         to_list = to_list.distinct()
+
         # Take into account 'only active users' flag from the form.
-        if form.cleaned_data['restrict_to_active_users'] == True:
+        if form.cleaned_data['restrict_to_active_users']:
             to_list = to_list.exclude(submission=None)
             to_list = to_list.exclude(suggestion=None)
             to_list = to_list.exclude(suggester=None)
