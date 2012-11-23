@@ -264,16 +264,19 @@ create a new database and database user:
    > GRANT ALL PRIVILEGES ON pootle.* TO pootle@localhost IDENTIFIED BY 'pootlepassword';
    > FLUSH PRIVILEGES;
 
-Next edit the */etc/pootle/localsettings.py* file (found under the main Pootle
-directory if running from checkout) and modify the ``DATABASE_*`` options to
-use your newly created database::
+Next edit the *settings/90-local.conf* file and modify the ``DATABASE``
+options to use your newly created database::
 
-    DATABASE_ENGINE = 'mysql'               # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-    DATABASE_NAME = 'pootle'                # Or path to database file if using sqlite3.
-    DATABASE_USER = 'pootle'                # Not used with sqlite3.
-    DATABASE_PASSWORD = 'pootlepassword'    # Not used with sqlite3.
-    DATABASE_HOST = ''                      # Set to empty string for localhost. Not used with sqlite3.
-    DATABASE_PORT = ''                      # Set to empty string for default. Not used with sqlite3.
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'pootle',
+            'USER': 'pootle',
+            'PASSWORD': 'pootlepassword',
+            'HOST': '',
+            'PORT': '',
+        }
+    }
 
 Database tables and initial data will be created on the first visit to Pootle.
 
@@ -283,9 +286,9 @@ Database tables and initial data will be created on the first visit to Pootle.
 Advanced settings
 -----------------
 
-Read through all the settings in *localsettings.py*  (or
-*/etc/pootle/localsettings.py*)  All the options are well documented.  If you
-have upgraded, you might want to compare your previous copy to the one
-distributed with the Pootle version for any new settings you might be
-interested in.  Many of these settings can improve performance drastically.
-Also consult the page about :doc:`Pootle optimization <optimization>`.
+Read through all the settings in *settings/\*.conf*, all the options are well
+documented.  Make any changes in *settings/90-local.conf*. If you have
+upgraded, you might want to compare your previous copy to the one distributed
+with the Pootle version for any new settings you might be interested in.  Many
+of these settings can improve performance drastically.  Also consult the page
+about :doc:`Pootle optimization <optimization>`.
