@@ -231,6 +231,7 @@ class ProjectIndexView(view_handler.View):
 
         path_stats = get_raw_stats(path_obj, include_suggestions=True)
         path_summary = get_path_summary(path_obj, path_stats)
+        actions = action_groups(request, path_obj, path_stats=path_stats)
 
         template_vars.update({
             'translation_project': translation_project,
@@ -243,7 +244,7 @@ class ProjectIndexView(view_handler.View):
             'stats_headings': get_stats_headings(),
             'topstats': gentopstats_translation_project(translation_project),
             'feed_path': directory.pootle_path[1:],
-            'action_groups': action_groups(request, path_obj),
+            'action_groups': actions,
             'can_edit': can_edit,
         })
 
