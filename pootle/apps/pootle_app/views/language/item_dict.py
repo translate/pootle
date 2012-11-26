@@ -26,7 +26,6 @@ from django.utils.translation import ungettext
 
 from pootle_app.views.language import dispatch
 from pootle_misc.stats import get_raw_stats
-from pootle_misc.util import add_percentages
 from pootle_store.models import Store
 
 

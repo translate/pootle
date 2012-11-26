@@ -27,7 +27,6 @@ from django.core.management.base import BaseCommand, NoArgsCommand
 
 from pootle_language.models import Language
 from pootle_project.models import Project
-from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
 
 
