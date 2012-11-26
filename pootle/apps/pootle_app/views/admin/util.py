@@ -100,9 +100,6 @@ def form_set_as_table(formset, link=None, linkfield='code'):
     def add_footer(result, fields, form):
         result.append('<tr>\n')
         for field in fields:
-            widget = form.fields[field].widget
-            widget_name = widget.__class__.__name__
-
             result.append('<td>')
 
             if form.fields[field].label is not None:
