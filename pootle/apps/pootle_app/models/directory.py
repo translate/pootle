@@ -26,7 +26,7 @@ from pootle_misc.baseurl import l
 from pootle_misc.util import cached_property, dictsum, getfromcache
 from pootle_store.models import Suggestion, Unit
 from pootle_store.util import (empty_quickstats, empty_completestats,
-                               statssum, completestatssum)
+                               statssum, completestatssum, suggestions_sum)
 
 
 class DirectoryManager(models.Manager):
