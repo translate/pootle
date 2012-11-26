@@ -331,7 +331,7 @@ Translation environment configuration settings.
 .. setting:: LOOKUP_BACKENDS
 
 ``LOOKUP_BACKENDS``
-  Default: ``[]`` (empty list)
+  Default: ``['wikipedia']`` (Wikipedia enabled)
 
   Enables backends for web-based lookups.
 
