@@ -25,8 +25,6 @@ from django.template import RequestContext
 from django.utils.translation import ugettext as _
 
 from pootle.i18n.gettext import tr_lang
-# XXX: shouldn't this be coming from django.conf.settings?
-from pootle.settings import DEFAULT_FROM_EMAIL
 from pootle_app.models import Directory
 from pootle_app.models.permissions import (get_matching_permissions,
                                            check_permission,
