@@ -37,6 +37,13 @@ except ImportError:
     from pootle_misc import timezone
 
 
+# Timezone aware minimum for datetime (if appropriate) (bug 2567)
+from datetime import datetime
+datetime_min = datetime.min
+if settings.USE_TZ:
+    datetime_min = timezone.make_aware(datetime_min, timezone.utc)
+
+
 def getfromcache(function, timeout=settings.OBJECT_CACHE_TIMEOUT):
     def _getfromcache(instance, *args, **kwargs):
         key = iri_to_uri(instance.pootle_path + ":" + function.__name__)

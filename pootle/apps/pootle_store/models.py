@@ -40,7 +40,7 @@ from pootle_misc.aggregate import group_by_count_extra, max_column
 from pootle_misc.baseurl import l
 from pootle_misc.checks import check_names
 from pootle_misc.util import (cached_property, getfromcache, deletefromcache,
-                              tzinfo, timezone)
+                              tzinfo, timezone, datetime_min)
 from pootle_store.fields import (TranslationStoreField, MultiStringField,
                                  PLURAL_PLACEHOLDER, SEPARATOR)
 from pootle_store.filetypes import factory_classes, is_monolingual
@@ -760,7 +760,7 @@ class Store(models.Model, base.TranslationStore):
             db_index=True, verbose_name=_("Path"))
     name = models.CharField(max_length=128, null=False, editable=False)
 
-    sync_time = models.DateTimeField(default=datetime.datetime.min)
+    sync_time = models.DateTimeField(default=datetime_min)
     state = models.IntegerField(null=False, default=NEW, editable=False,
             db_index=True)
 
