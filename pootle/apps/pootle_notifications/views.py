@@ -200,6 +200,8 @@ def handle_form(request, current_directory, current_project,
     if current_language and current_project:
         # The current translation project
         publish_dirs = [current_directory]
+        languages = [current_language]
+        projects = [current_project]
     elif current_language:
         languages = [current_language]
         if form.cleaned_data['project_all']:
