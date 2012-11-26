@@ -33,7 +33,7 @@ from pootle_misc.versioncontrol import hasversioning
 
 def directory(fn):
     """Decorator that returns links only for directory objects."""
-    def wrapper(request, path_obj):
+    def wrapper(request, path_obj, **kwargs):
         if not path_obj.is_dir:
             return
 
@@ -44,7 +44,7 @@ def directory(fn):
 
 def store(fn):
     """Decorator that returns links only for store objects."""
-    def wrapper(request, path_obj):
+    def wrapper(request, path_obj, **kwargs):
         if path_obj.is_dir:
             return
 
@@ -54,7 +54,7 @@ def store(fn):
 
 
 @directory
-def download_zip(request, path_obj):
+def download_zip(request, path_obj, **kwargs):
     if check_permission('archive', request):
         text = _('Download (.zip)')
         link = dispatch.download_zip(path_obj)
@@ -67,7 +67,7 @@ def download_zip(request, path_obj):
 
 
 @store
-def download_source(request, path_obj):
+def download_source(request, path_obj, **kwargs):
     href = None
     if path_obj.name.startswith("pootle-terminology"):
         text = _("Download XLIFF")
@@ -105,7 +105,7 @@ def download_xliff(request, path_obj):
     }
 
 
-def upload_zip(request, path_obj):
+def upload_zip(request, path_obj, **kwargs):
     if (check_permission('translate', request) or
         check_permission('suggest', request) or
         check_permission('overwrite', request)):
@@ -121,7 +121,7 @@ def upload_zip(request, path_obj):
 
 
 @store
-def update_from_vcs(request, path_obj):
+def update_from_vcs(request, path_obj, **kwargs):
     if (path_obj.abs_real_path and check_permission('commit', request) and
         hasversioning(path_obj.abs_real_path)):
         link = dispatch.update(path_obj)
@@ -135,7 +135,7 @@ def update_from_vcs(request, path_obj):
 
 
 @store
-def commit_to_vcs(request, path_obj):
+def commit_to_vcs(request, path_obj, **kwargs):
     if (path_obj.abs_real_path and check_permission('commit', request) and
         hasversioning(path_obj.abs_real_path)):
         link = dispatch.commit(path_obj)
@@ -148,7 +148,7 @@ def commit_to_vcs(request, path_obj):
         }
 
 
-def rescan_project_files(request, path_obj):
+def rescan_project_files(request, path_obj, **kwargs):
     if check_permission('administrate', request):
         tp = path_obj.translation_project
         link = reverse('tp.rescan', args=[tp.language.code, tp.project.code])
@@ -161,7 +161,7 @@ def rescan_project_files(request, path_obj):
         }
 
 
-def update_against_templates(request, path_obj):
+def update_against_templates(request, path_obj, **kwargs):
     if check_permission('administrate', request):
         tp = path_obj.translation_project
         link = reverse('tp.update_against_templates', args=[tp.language.code,
@@ -175,7 +175,7 @@ def update_against_templates(request, path_obj):
         }
 
 
-def delete_path_obj(request, path_obj):
+def delete_path_obj(request, path_obj, **kwargs):
     if check_permission('administrate', request):
         tp = path_obj.translation_project
         link = reverse('tp.delete_path_obj', args=[tp.language.code,
@@ -195,12 +195,12 @@ def delete_path_obj(request, path_obj):
         }
 
 
-def _gen_link_list(request, path_obj, link_funcs):
-    """Generates a list of links based on ``link_funcs``."""
+def _gen_link_list(request, path_obj, link_funcs, **kwargs):
+    """Generates a list of links based on :param:`link_funcs`."""
     links = []
 
     for link_func in link_funcs:
-        link = link_func(request, path_obj)
+        link = link_func(request, path_obj, **kwargs)
 
         if link is not None:
             links.append(link)
@@ -208,8 +208,14 @@ def _gen_link_list(request, path_obj, link_funcs):
     return links
 
 
-def action_groups(request, path_obj):
-    """Returns a list of action links grouped for the overview page."""
+def action_groups(request, path_obj, **kwargs):
+    """Returns a list of action links grouped for the overview page.
+
+    :param request: A :class:`~django.http.HttpRequest` object.
+    :param path_obj: A :class:`~pootle_app.models.Directory` or
+        :class:`~pootle_app.models.Store` object.
+    :param kwargs: Extra keyword arguments passed to the underlying functions.
+    """
     action_groups = []
 
     groups = [
@@ -221,7 +227,8 @@ def action_groups(request, path_obj):
     ]
 
     for group in groups:
-        action_links = _gen_link_list(request, path_obj, group['actions'])
+        action_links = _gen_link_list(request, path_obj, group['actions'],
+                                      **kwargs)
 
         if action_links:
             group['actions'] = action_links
