@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Pootle 2.2.0\n"
+"Project-Id-Version: Pootle 2.5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-06 17:34+0000\n"
+"POT-Creation-Date: 2012-11-26 17:51+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,14 +17,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: static/js/common.js:124
+#: assets/js/common.min.js:718 static/js/common.js:124
 msgid "Are you sure you want to continue?"
 msgstr ""
 
-#: static/js/common.js:125
+#: assets/js/common.min.js:719 static/js/common.js:125
 msgid "This operation cannot be undone."
 msgstr ""
 
+#: assets/js/editor.min.js:252 assets/js/editor.min.js.c:292
 #: static/js/editor.js:402 static/js/editor.js.c:1434
 msgid "No results."
 msgstr ""
@@ -32,47 +33,47 @@ msgstr ""
 #. Translators: Permalink to the current unit in the editor.
 #. The first '%s' is the permalink URL.
 #. The second '%s' is the unit number.
-#: static/js/editor.js:726
+#: assets/js/editor.min.js:263 static/js/editor.js:726
 #, c-format
 msgid "<a href=\"%s\">Unit %s</a>"
 msgstr ""
 
-#: static/js/editor.js:758
+#: assets/js/editor.min.js:265 static/js/editor.js:758
 msgid "Error while connecting to the server"
 msgstr ""
 
-#: static/js/editor.js:760
+#: assets/js/editor.min.js:265 static/js/editor.js:760
 msgid "Server error"
 msgstr ""
 
-#: static/js/editor.js:762
+#: assets/js/editor.min.js:265 static/js/editor.js:762
 msgid "The server seems down. Try again later."
 msgstr ""
 
-#: static/js/editor.js:769
+#: assets/js/editor.min.js:265 static/js/editor.js:769
 msgid "Unknown error"
 msgstr ""
 
-#: static/js/editor.js:1292
+#: assets/js/editor.min.js:290 static/js/editor.js:1292
 msgid "Congratulations, you walked through all items"
 msgstr ""
 
-#: static/js/editor.js:1309
+#: assets/js/editor.min.js:290 static/js/editor.js:1309
 msgid "You reached the beginning of the list"
 msgstr ""
 
-#: static/js/editor.js:1311
+#: assets/js/editor.min.js:290 static/js/editor.js:1311
 msgid "You reached the end of the list"
 msgstr ""
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
 #. '%' symbol to denote a percentage is being used.
-#: static/js/editor.js:1701
+#: assets/js/editor.min.js:304 static/js/editor.js:1701
 #, c-format
 msgid "%s% match"
 msgstr ""
 
-#: static/js/editor.js:1743
+#: assets/js/editor.min.js:308 static/js/editor.js:1743
 msgid "amaGama server"
 msgstr ""
