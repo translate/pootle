@@ -38,4 +38,5 @@ class Command(PootleCommand):
             try:
                 tp.update_file_from_version_control(store)
             except Exception, e:
-                logging.error(u"failed to run %s over %s:\n%s", self.name, store.pootle_path, e)
+                logging.error(u"Failed to run %s over %s:\n%s", self.name,
+                              store.pootle_path, e)
