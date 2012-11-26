@@ -32,7 +32,7 @@ def translate(path_obj, state=None, check=None, suggestions=False):
     # when the user clicks submit/skip/suggest on a translation
     # unit. But otherwise the store name is the last component of the
     # path name and we don't need to pass the 'store' GET variable.
-    path = "%s%s" % (get_script_prefix(), path_obj.pootle_path[1:])
+    path = path_obj.pootle_path
     if path.endswith('/'):
         path += 'translate.html'
     else:
@@ -45,7 +45,7 @@ def translate(path_obj, state=None, check=None, suggestions=False):
     elif suggestions:
         path += '#filter=suggestions'
 
-    return path
+    return l(path)
 
 
 def open_language(code):
