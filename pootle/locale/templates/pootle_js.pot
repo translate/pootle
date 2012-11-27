@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-26 17:51+0100\n"
+"POT-Creation-Date: 2012-11-27 15:51+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: assets/js/common.min.js:718 static/js/common.js:124
+#: assets/js/common.min.js:718 static/js/common.js:123
 msgid "Are you sure you want to continue?"
 msgstr ""
 
-#: assets/js/common.min.js:719 static/js/common.js:125
+#: assets/js/common.min.js:719 static/js/common.js:124
 msgid "This operation cannot be undone."
 msgstr ""
 
@@ -76,4 +76,12 @@ msgstr ""
 
 #: assets/js/editor.min.js:308 static/js/editor.js:1743
 msgid "amaGama server"
+msgstr ""
+
+#: static/js/common.js:89
+msgid "Expand details"
+msgstr ""
+
+#: static/js/common.js:89
+msgid "Collapse details"
 msgstr ""
