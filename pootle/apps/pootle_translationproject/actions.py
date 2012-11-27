@@ -53,41 +53,6 @@ def store(fn):
     return wrapper
 
 
-def translate_all(request, path_obj, **kwargs):
-    text = _('Translate all')
-    tooltip = _('Translate all the units independently of their status.')
-    href = dispatch.translate(path_obj)
-
-    return {
-        'icon': 'icon-translate-all',
-        'href': href,
-        'text': text,
-        'tooltip': tooltip,
-    }
-
-
-def translate_incomplete(request, path_obj, **kwargs):
-    path_stats = kwargs.get('path_stats', None)
-
-    if (not path_stats
-        or not (path_stats['untranslated']['words'] > 0
-                or path_stats['fuzzy']['words'] > 0)):
-        return
-
-    # Translators: This refers to the action of translating units that need
-    # attention, i.e. are untranslated or fuzzy.
-    text = _('Translate incomplete')
-    tooltip = _('Translate all the units that need attention.')
-    href = dispatch.translate(path_obj, state='incomplete')
-
-    return {
-        'icon': 'icon-translate-incomplete',
-        'href': href,
-        'text': text,
-        'tooltip': tooltip,
-    }
-
-
 @directory
 def download_zip(request, path_obj, **kwargs):
     if check_permission('archive', request):
@@ -256,8 +221,6 @@ def action_groups(request, path_obj, **kwargs):
     action_groups = []
 
     groups = [
-        {'group': 'translate-online', 'group_display': _("Translate online"),
-         'actions': [translate_all, translate_incomplete]},
         {'group': 'translate-offline', 'group_display': _("Translate offline"),
          'actions': [download_source, download_zip, upload_zip]},
         {'group': 'manage', 'group_display': _("Manage"),
