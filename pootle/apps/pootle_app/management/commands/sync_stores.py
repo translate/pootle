@@ -18,6 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+import logging
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from optparse import make_option
@@ -36,12 +37,27 @@ class Command(PootleCommand):
         )
     help = "Save new translations to disk manually."
 
+
+    def handle_noargs(self, **options):
+        change_id = options.get('modified_since', 0)
+        if change_id < 0:
+            raise ValueError("A negative change ID is not valid.")
+        from pootle_statistics.models import Submission
+        latest = Submission.objects.latest()
+        if change_id > latest.id:
+            logging.warning("Given change ID after the latest one.")
+            return
+
+        super(Command, self).handle_noargs(**options)
+
+
     def handle_all_stores(self, translation_project, **options):
         overwrite = options.get('overwrite', False)
         skip_missing = options.get('skip_missing', False)
         change_id = options.get('modified_since', 0)
         if change_id:
-            if not translation_project.submission_set.filter(id__gte=change_id).exists():
+            changes = translation_project.submission_set.filter(id__gte=change_id)
+            if not changes.exists():
                 # No change to this translation project since the given change ID
                 return
         translation_project.sync(
