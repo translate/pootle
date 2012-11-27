@@ -1089,12 +1089,13 @@ class Store(models.Model, base.TranslationStore):
             self.save()
 
     def sync(self, update_structure=False, update_translation=False,
-             conservative=True, create=False, profile=None, skip_missing=False):
+             conservative=True, create=False, profile=None, skip_missing=False,
+             modified_since=0):
         """Sync file with translations from DB."""
         if skip_missing and not self.file.exists():
             return
 
-        if conservative and self.sync_time >= self.get_mtime():
+        if not modified_since and conservative and self.sync_time >= self.get_mtime():
             return
 
         if not self.file:
@@ -1151,9 +1152,30 @@ class Store(models.Model, base.TranslationStore):
 
         monolingual = is_monolingual(type(disk_store))
 
+        modified_units = set()
         if update_translation:
-            shared_dbids = [self.dbid_index.get(uid) \
-                            for uid in old_ids & new_ids]
+            if modified_since:
+                from pootle_statistics.models import Submission
+                self_unit_ids = set(self.dbid_index.values())
+                try:
+                    modified_units = set(Submission.objects.filter(
+                            id__gte=modified_since,
+                            id__in=self_unit_ids,
+                    ).values_list('unit', flat=True).distinct())
+                except DatabaseError, e:
+                    # SQLite might barf with the IN operator over too many values
+                    modified_units = set(Submission.objects.filter(
+                            id__gte=modified_since,
+                    ).values_list('unit', flat=True).distinct())
+                    modified_units &= self_unit_ids
+
+            shared_dbids = set(self.dbid_index.get(uid) \
+                            for uid in old_ids & new_ids)
+
+            if modified_units:
+                shared_dbids &= modified_units
+
+            shared_dbids = list(shared_dbids)
             for unit in self.findid_bulk(shared_dbids):
                 # FIXME: use a better mechanism for handling states and
                 # different formats
