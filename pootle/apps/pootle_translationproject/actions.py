@@ -144,7 +144,8 @@ def upload_zip(request, path_obj, **kwargs):
     if (check_permission('translate', request) or
         check_permission('suggest', request) or
         check_permission('overwrite', request)):
-        text = _('Upload (.zip)')
+        text = _('Upload')
+        tooltip = _('Upload translation files or archives in .zip format')
         link = '#'
 
         return {
@@ -152,6 +153,7 @@ def upload_zip(request, path_obj, **kwargs):
             'class': 'js-overview-actions-upload',
             'href': link,
             'text': text,
+            'tooltip': tooltip,
         }
 
 
