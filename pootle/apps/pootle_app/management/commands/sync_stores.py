@@ -30,13 +30,21 @@ class Command(PootleCommand):
                     help="don't just save translations, but overwrite files to reflect state in database"),
         make_option('--skip-missing', action='store_true', dest='skip_missing', default=False,
                     help="ignore missing files on disk"),
+        make_option('--modified-since', action='store', dest='modified_since',
+                default=0, type=int,
+                help="only process translations newer than CHANGE_ID (as given by latest_change_id)"),
         )
     help = "Save new translations to disk manually."
 
     def handle_all_stores(self, translation_project, **options):
         overwrite = options.get('overwrite', False)
         skip_missing = options.get('skip_missing', False)
-        translation_project.sync(conservative=not overwrite, skip_missing=skip_missing)
+        change_id = options.get('modified_since', 0)
+        translation_project.sync(
+                conservative=not overwrite,
+                skip_missing=skip_missing,
+                modified_since=change_id,
+        )
 
     def handle_store(self, store, **options):
         overwrite = options.get('overwrite', False)
