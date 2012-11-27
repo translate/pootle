@@ -142,7 +142,7 @@ MT_BACKENDS = [
 # feature completely just comment all the lines to set an empty list [] to the
 # LOOKUP_BACKENDS setting.
 LOOKUP_BACKENDS = [
-#        'wikipedia',
+        'wikipedia',
 ]
 
 
