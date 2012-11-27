@@ -23,17 +23,15 @@ import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from optparse import make_option
 
-from pootle_app.management.commands import PootleCommand
+from pootle_app.management.commands import PootleCommand, ModifiedSinceMixin
 
-class Command(PootleCommand):
-    option_list = PootleCommand.option_list + (
+class Command(PootleCommand, ModifiedSinceMixin):
+    option_list = PootleCommand.option_list + \
+                  ModifiedSinceMixin.option_modified_since + (
         make_option('--overwrite', action='store_true', dest='overwrite', default=False,
                     help="don't just save translations, but overwrite files to reflect state in database"),
         make_option('--skip-missing', action='store_true', dest='skip_missing', default=False,
                     help="ignore missing files on disk"),
-        make_option('--modified-since', action='store', dest='modified_since',
-                default=0, type=int,
-                help="only process translations newer than CHANGE_ID (as given by latest_change_id)"),
         )
     help = "Save new translations to disk manually."
 
