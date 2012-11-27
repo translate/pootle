@@ -209,14 +209,20 @@ Translate Toolkit command :ref:`pot2po <toolkit:pot2po>` with special Pootle
 specific routines to update the database and file system to reflect the
 latest version of translation templates for each language in a project.
 
-When updating existing translated files under a given language the command
+During the process, translations existing in the database will first be synced
+to disk (only in bilingual formats), then they will be updated against the
+latest templates and after that the database will also be updated to reflect
+the latest changes.
+
+When updating existing translated files under a given language, the command
 will retain any existing translations, fuzzy matching is performed on strings
-with minor changes, unused translations will be marked as obsolete. New
+with minor changes, and unused translations will be marked as obsolete. New
 template files will initialize new untranslated files.
 
 It is unlikely you will ever need to run this command for all projects at once.
-Use the ``--directory`` command line option to be specific about the project or
-project/language pair you want to target.
+Use the ``--directory``, ``--project`` or ``--language`` command line options
+to be specific about the project, language or project/language pair you want to
+target.
 
 .. warning:: If the template files are corrupt translations might be lost.
    If you generate templates based on a script make sure they are in good
