@@ -18,6 +18,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+from django.core.urlresolvers import reverse
+from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext_lazy as _, ungettext
 
 from pootle_app.views.language import dispatch
@@ -136,13 +138,15 @@ def get_translation_stats(path_obj, path_stats):
 def get_path_summary(path_obj, path_stats):
     """Returns a list of sentences to be displayed for each ``path_obj``."""
     summary = []
+    incomplete = []
+    suggestions = []
 
     if path_obj.is_dir:
         summary.append(
             ungettext("This folder has %(num)d word, %(percentage)d%% of "
-                "which is translated",
+                "which is translated.",
                 "This folder has %(num)d words, %(percentage)d%% of "
-                "which are translated",
+                "which are translated.",
                 path_stats['total']['words']) % {
                     'num': path_stats['total']['words'],
                     'percentage': path_stats['translated']['percentage']
@@ -151,41 +155,66 @@ def get_path_summary(path_obj, path_stats):
     else:
         summary.append(
             ungettext("This file has %(num)d word, %(percentage)d%% of "
-                "which is translated",
+                "which is translated.",
                 "This file has %(num)d words, %(percentage)d%% of "
-                "which are translated",
+                "which are translated.",
                 path_stats['total']['words']) % {
                     'num': path_stats['total']['words'],
                     'percentage': path_stats['translated']['percentage']
                 }
         )
 
+    tp = path_obj.translation_project
+    project = tp.project
+    language = tp.language
+
+    # Build URL for getting more summary information for the current path
+    url_args = [language.code, project.code, path_obj.path]
+    if not path_obj.is_dir:
+        url_args.append(path_obj.name)
+    url_path_summary_more = reverse('tp.path_summary_more', args=url_args)
+
+    summary.append(u''.join([
+        ' <a id="js-path-summary" data-target="js-path-summary-more" '
+        'href="%s">' % url_path_summary_more,
+        force_unicode(_(u'Expand details')),
+        '</a>'
+    ]))
+
+
+    incomplete.append(u'<a class="path-incomplete" href="%(url)s">' % {
+        'url': dispatch.translate(path_obj, state='incomplete')
+    })
+
     if path_stats['untranslated']['words'] > 0 or path_stats['fuzzy']['words'] > 0:
         num_words = path_stats['untranslated']['words'] + path_stats['fuzzy']['words']
-        summary.append(
-            ungettext('<a class="path-incomplete" href="%(url)s">%(num)d '
-               'word needs translation</a>',
-               '<a class="path-incomplete" href="%(url)s">%(num)d words '
-               'need translation</a>',
-               num_words) % {
-                   'num': num_words,
-                   'url': dispatch.translate(path_obj, state='incomplete')
-               }
+        incomplete.append(
+            ungettext(u'Continue translation (%(num)d word left)',
+                      u'Continue translation (%(num)d words left)',
+                      num_words) % {
+                          'num': num_words,
+                      }
         )
+    else:
+        incomplete.append(force_unicode(_('Translation is complete')))
+
+    incomplete.append(u'</a>')
+
 
     if path_stats['suggestions'] > 0:
-        summary.append(
-            ungettext('<a class="path-incomplete" href="%(url)s">%(num)d '
-               'suggestion</a> needs review',
-               '<a class="path-incomplete" href="%(url)s">%(num)d '
-               'suggestions</a> need review',
-               path_stats['suggestions']) % {
-                   'num': path_stats['suggestions'],
-                   'url': dispatch.translate(path_obj, state='suggestions')
-               }
+        suggestions.append(u'<a class="path-incomplete" href="%(url)s">' % {
+            'url': dispatch.translate(path_obj, state='incomplete')
+        })
+        suggestions.append(
+            ungettext(u'Review suggestion (%(num)d left)',
+                      u'Review suggestions (%(num)d left)',
+                      path_stats['suggestions']) % {
+                          'num': path_stats['suggestions'],
+                      }
         )
+        suggestions.append(u'</a>')
 
-    return summary
+    return [u''.join(summary), u''.join(incomplete), u''.join(suggestions)]
 
 
 def stats_message_raw(version, stats):

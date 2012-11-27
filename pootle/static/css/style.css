@@ -1573,14 +1573,10 @@ div.small
     line-height: 1.8em;
 }
 
-a.path-incomplete
+.path-incomplete
 {
     font-weight: bold;
-}
-
-#path-summary-toggle
-{
-    text-align: right;
+    font-size: 1.2em;
 }
 
 

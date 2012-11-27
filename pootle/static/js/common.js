@@ -80,15 +80,14 @@ $(function ($) {
   $(document).on("click", "#js-path-summary", function (e) {
     e.preventDefault();
     var node = $("#" + $(this).data('target')),
-        icon = $(this),
+        $textNode = $(this),
         data = node.data();
 
     function hideShow() {
       node.slideToggle('slow', 'easeOutQuad', function () {
-        oldClass = data.collapsed ? 'icon-expand' : 'icon-collapse';
-        newClass = data.collapsed ? 'icon-collapse' : 'icon-expand';
-        icon.removeClass(oldClass).addClass(newClass);
         node.data('collapsed', !data.collapsed);
+        var newText = data.collapsed ? gettext('Expand details') : gettext('Collapse details');
+        $textNode.text(newText);
       });
     }
 

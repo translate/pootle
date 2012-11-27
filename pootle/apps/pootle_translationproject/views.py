@@ -223,12 +223,6 @@ class ProjectIndexView(view_handler.View):
 
         path_obj = store or directory
 
-        # Build URL for getting more summary information for the current path
-        url_args = [language.code, project.code, directory.path]
-        if store:
-            url_args.append(store.name)
-        url_path_summary_more = reverse('tp.path_summary_more', args=url_args)
-
         path_stats = get_raw_stats(path_obj, include_suggestions=True)
         path_summary = get_path_summary(path_obj, path_stats)
         actions = action_groups(request, path_obj, path_stats=path_stats)
@@ -239,7 +233,6 @@ class ProjectIndexView(view_handler.View):
             'language': language,
             'directory': directory,
             'path_summary': path_summary,
-            'url_path_summary_more': url_path_summary_more,
             'stats': path_stats,
             'stats_headings': get_stats_headings(),
             'topstats': gentopstats_translation_project(translation_project),

@@ -31,12 +31,6 @@
       {% endfor %}
     </ul>
     {% progressbar stats stats.total.words %}
-    <div id="path-summary-toggle">
-      <a id="js-path-summary" class="icon-expand"
-         data-target="js-path-summary-more"
-         title="{% trans "Detailed statistics" %}"
-         href="{{ url_path_summary_more }}"></a>
-    </div>
     <div id="js-path-summary-more" data-loaded="false" data-collapsed="true">
     </div>
   </div>
