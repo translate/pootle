@@ -40,17 +40,19 @@ class PootleCommand(NoArgsCommand):
         make_option('--language', action='append', dest='languages',
                     help='language to refresh'),
         make_option('--path-prefix', action='store', dest='path',
-                    help='path prefix relative to translation project of files to refresh'),
+                    help='path prefix relative to translation project of '
+                         'files to refresh'),
         )
     option_list = NoArgsCommand.option_list + shared_option_list
 
     def do_translation_project(self, tp, pootle_path, **options):
         if hasattr(self, "handle_translation_project"):
-            logging.info(u"running %s over %s", self.name, tp)
+            logging.info(u"Running %s over %s", self.name, tp)
             try:
                 self.handle_translation_project(tp, **options)
             except Exception, e:
-                logging.error(u"failed to run %s over %s:\n%s", self.name, tp, e)
+                logging.error(u"Failed to run %s over %s:\n%s",
+                              self.name, tp, e)
                 return
 
         if not pootle_path and hasattr(self, "handle_all_stores"):
@@ -58,24 +60,29 @@ class PootleCommand(NoArgsCommand):
             try:
                 self.handle_all_stores(tp, **options)
             except Exception, e:
-                logging.error(u"failed to run %s over %s's files\n%s", self.name, tp, e)
+                logging.error(u"Failed to run %s over %s's files\n%s",
+                              self.name, tp, e)
                 return
         elif hasattr(self, "handle_store"):
             store_query = tp.stores.all()
             if pootle_path:
                 pootle_path = tp.pootle_path + pootle_path
-                store_query = store_query.filter(pootle_path__startswith=pootle_path)
+                store_query = store_query.filter(
+                        pootle_path__startswith=pootle_path
+                )
             for store in store_query.iterator():
-                logging.info(u"running %s over %s", self.name, store.pootle_path)
+                logging.info(u"Running %s over %s",
+                             self.name, store.pootle_path)
                 try:
                     self.handle_store(store, **options)
                 except Exception, e:
-                    logging.error(u"failed to run %s over %s:\n%s", self.name, store.pootle_path, e)
+                    logging.error(u"Failed to run %s over %s:\n%s",
+                                  self.name, store.pootle_path, e)
 
     def handle_noargs(self, **options):
         # adjust debug level to the verbosity option
         verbosity = int(options.get('verbosity', 1))
-        debug_levels = {0:logging.ERROR, 1:logging.WARNING, 2:logging.DEBUG}
+        debug_levels = {0: logging.ERROR, 1: logging.WARNING, 2: logging.DEBUG}
         debug_level = debug_levels.get(verbosity, logging.DEBUG)
         logging.getLogger().setLevel(debug_level)
 
@@ -116,7 +123,8 @@ class PootleCommand(NoArgsCommand):
                 try:
                     self.handle_language(lang, **options)
                 except Exception, e:
-                    logging.error(u"failed to run %s over %s:\n%s", self.name, lang, e)
+                    logging.error(u"Failed to run %s over %s:\n%s",
+                                  self.name, lang, e)
 
         project_query = Project.objects.all()
         if projects:
@@ -128,7 +136,8 @@ class PootleCommand(NoArgsCommand):
                 try:
                     self.handle_project(project, **options)
                 except Exception, e:
-                    logging.error(u"failed to run %s over %s:\n%s", self.name, project, e)
+                    logging.error(u"Failed to run %s over %s:\n%s",
+                                  self.name, project, e)
                     continue
 
             template_tp = project.get_template_translationproject()
