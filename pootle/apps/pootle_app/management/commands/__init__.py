@@ -34,13 +34,13 @@ class PootleCommand(NoArgsCommand):
     """Base class for handling recursive pootle store management commands."""
     shared_option_list = (
         make_option('--directory', dest='directory',
-                    help='directory to refresh relative to po directory'),
+                    help='Directory to refresh relative to po directory'),
         make_option('--project', action='append', dest='projects',
-                    help='project to refresh'),
+                    help='Project to refresh'),
         make_option('--language', action='append', dest='languages',
-                    help='language to refresh'),
+                    help='Language to refresh'),
         make_option('--path-prefix', action='store', dest='path',
-                    help='path prefix relative to translation project of '
+                    help='Path prefix relative to translation project of '
                          'files to refresh'),
         )
     option_list = NoArgsCommand.option_list + shared_option_list
@@ -56,7 +56,7 @@ class PootleCommand(NoArgsCommand):
                 return
 
         if not pootle_path and hasattr(self, "handle_all_stores"):
-            logging.info(u"running %s over %s's files", self.name, tp)
+            logging.info(u"Running %s over %s's files", self.name, tp)
             try:
                 self.handle_all_stores(tp, **options)
             except Exception, e:
@@ -119,7 +119,7 @@ class PootleCommand(NoArgsCommand):
             if languages:
                 lang_query = lang_query.filter(code__in=languages)
             for lang in lang_query.iterator():
-                logging.info(u"running %s over %s", self.name, lang)
+                logging.info(u"Running %s over %s", self.name, lang)
                 try:
                     self.handle_language(lang, **options)
                 except Exception, e:
@@ -132,7 +132,7 @@ class PootleCommand(NoArgsCommand):
 
         for project in project_query.iterator():
             if hasattr(self, "handle_project"):
-                logging.info(u"running %s over %s", self.name, project)
+                logging.info(u"Running %s over %s", self.name, project)
                 try:
                     self.handle_project(project, **options)
                 except Exception, e:
@@ -173,7 +173,7 @@ class ModifiedSinceMixin(object):
     option_modified_since = (
         make_option('--modified-since', action='store', dest='modified_since',
                 default=0, type=int,
-                help="only process translations newer than CHANGE_ID "
+                help="Only process translations newer than CHANGE_ID "
                      "(as given by latest_change_id)"),
         )
 

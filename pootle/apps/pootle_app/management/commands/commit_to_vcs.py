@@ -31,7 +31,7 @@ class Command(PootleCommand):
     help = "Allow VCS-managed data to be committed manually."
     option_list = PootleCommand.option_list + (
         make_option('--user', default='admin',
-                    help="username to list in the commit message"),
+                    help="Username to list in the commit message"),
         )
 
     def handle_noargs(self, **options):
@@ -50,9 +50,9 @@ class Command(PootleCommand):
         """
         store_query = tp.stores.all()
         for store in store_query.iterator():
-            logging.info(u"running %s over %s", self.name, store.pootle_path)
+            logging.info(u"Running %s over %s", self.name, store.pootle_path)
             try:
                 tp.commit_file(self.user, store)
             except Exception, e:
-                logging.error(u"failed to run %s over %s:\n%s", self.name,
+                logging.error(u"Failed to run %s over %s:\n%s", self.name,
                               store.pootle_path, e)

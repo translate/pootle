@@ -28,10 +28,11 @@ from pootle_app.management.commands import PootleCommand, ModifiedSinceMixin
 class Command(PootleCommand, ModifiedSinceMixin):
     option_list = PootleCommand.option_list + \
                   ModifiedSinceMixin.option_modified_since + (
-        make_option('--overwrite', action='store_true', dest='overwrite', default=False,
-                    help="don't just save translations, but overwrite files to reflect state in database"),
+        make_option('--overwrite', action='store_true', dest='overwrite',
+                    default=False, help="Don't just save translations, but "
+                    "overwrite files to reflect state in database"),
         make_option('--skip-missing', action='store_true', dest='skip_missing', default=False,
-                    help="ignore missing files on disk"),
+                    help="Ignore missing files on disk"),
         )
     help = "Save new translations to disk manually."
 

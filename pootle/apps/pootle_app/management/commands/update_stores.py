@@ -28,9 +28,11 @@ from pootle_app.management.commands import PootleCommand
 class Command(PootleCommand):
     option_list = PootleCommand.option_list + (
         make_option('--keep', action='store_true', dest='keep', default=False,
-                    help="keep existing translations, just update untranslated units and add new units."),
+                    help="Keep existing translations, just update "
+                         "untranslated units and add new units."),
         make_option('--force', action='store_true', dest='force', default=False,
-                    help="unconditionally process all files (even if they appear unchanged)."),
+                    help="Unconditionally process all files (even if they "
+                         "appear unchanged)."),
         )
     help = "Update database stores from files."
 

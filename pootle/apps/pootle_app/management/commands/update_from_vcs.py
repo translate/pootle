@@ -34,7 +34,7 @@ class Command(PootleCommand):
         """
         store_query = tp.stores.all()
         for store in store_query.iterator():
-            logging.info(u"running %s over %s", self.name, store.pootle_path)
+            logging.info(u"Running %s over %s", self.name, store.pootle_path)
             try:
                 tp.update_file_from_version_control(store)
             except Exception, e:
