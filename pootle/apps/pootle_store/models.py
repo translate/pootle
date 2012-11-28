@@ -1095,7 +1095,8 @@ class Store(models.Model, base.TranslationStore):
         if skip_missing and not self.file.exists():
             return
 
-        if not modified_since and conservative and self.sync_time >= self.get_mtime():
+        if (not modified_since and conservative
+            and self.sync_time >= self.get_mtime()):
             return
 
         if not self.file:
