@@ -167,6 +167,10 @@ You must run this command before taking backups or running scripts that modify
 the translation files directly on the file system, otherwise you might miss out
 on translations that are in database but not yet saved to disk.
 
+When the ``--overwrite`` option is specified, the sync operation will not be
+conservative and ti will overwrite the existing files on disk, making units
+obsolete and updating the file's structure.
+
 With the ``--skip-missing`` option, files that are missing on disk will be
 ignored, and no new files will be created.
 
