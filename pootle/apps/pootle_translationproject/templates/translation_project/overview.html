@@ -122,7 +122,7 @@
     {% endif %}
 
     {% if language.description_html %}
-    <a class="overview-description-toggle js-toggle" href="#overview-description-language">{% blocktrans with language.name as language %}{{ language }} project information{% endblocktrans %}</a>
+    <a class="overview-description-toggle js-toggle" href="#overview-description-language">{% blocktrans with language.name as language %}{{ language }} language information{% endblocktrans %}</a>
     <div id="overview-description-language" class="markup-body hide">
       {{ language.description_html|clean }}
     </div>
