@@ -265,6 +265,8 @@ Pootle will take care to avoid version control conflicts, and will handle any
 conflicts on a string level, just like it would if the update was done through
 the web front-end.
 
+The command first syncs database contents to disk.
+
 
 .. _commands#commit_to_vcs:
 
