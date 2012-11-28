@@ -39,12 +39,14 @@ class Command(ModifiedSinceMixin, PootleCommand):
         overwrite = options.get('overwrite', False)
         skip_missing = options.get('skip_missing', False)
         change_id = options.get('modified_since', 0)
+
         if change_id:
             changes = translation_project.submission_set \
                                          .filter(id__gte=change_id)
             if not changes.exists():
                 # No change to this translation project since the given change ID
                 return
+
         translation_project.sync(
                 conservative=not overwrite,
                 skip_missing=skip_missing,
