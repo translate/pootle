@@ -187,14 +187,14 @@ class ModifiedSinceMixin(object):
         if change_id == 0:
             options.pop('modified_since')
         elif change_id < 0:
-            logging.error(u"Identifiers must be positive integers.")
+            logging.error(u"Change IDs must be positive integers.")
             sys.exit(1)
         else:
             from pootle_statistics.models import Submission
             latest_change_id = Submission.objects.latest().id
             if change_id > latest_change_id:
-                logging.warning(u"The given identifier is higher than the "
-                                u"maximum known change id.\nAborting.")
+                logging.warning(u"The given change ID is higher than the "
+                                u"latest known change.\nAborting.")
                 sys.exit(1)
 
         super(ModifiedSinceMixin, self).handle_noargs(**options)
