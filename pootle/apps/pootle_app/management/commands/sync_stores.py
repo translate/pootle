@@ -25,9 +25,8 @@ from optparse import make_option
 
 from pootle_app.management.commands import PootleCommand, ModifiedSinceMixin
 
-class Command(PootleCommand, ModifiedSinceMixin):
-    option_list = PootleCommand.option_list + \
-                  ModifiedSinceMixin.option_modified_since + (
+class Command(ModifiedSinceMixin, PootleCommand):
+    option_list = PootleCommand.option_list + (
         make_option('--overwrite', action='store_true', dest='overwrite',
                     default=False, help="Don't just save translations, but "
                     "overwrite files to reflect state in database"),
@@ -35,20 +34,6 @@ class Command(PootleCommand, ModifiedSinceMixin):
                     default=False, help="Ignore missing files on disk"),
         )
     help = "Save new translations to disk manually."
-
-
-    def handle_noargs(self, **options):
-        change_id = options.get('modified_since', 0)
-        if change_id < 0:
-            raise ValueError("A negative change ID is not valid.")
-        from pootle_statistics.models import Submission
-        latest = Submission.objects.latest()
-        if change_id > latest.id:
-            logging.warning("Given change ID after the latest one.")
-            return
-
-        super(Command, self).handle_noargs(**options)
-
 
     def handle_all_stores(self, translation_project, **options):
         overwrite = options.get('overwrite', False)
