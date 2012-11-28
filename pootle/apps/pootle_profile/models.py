@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008 Zuza Software Foundation
+# Copyright 2008-2012 Zuza Software Foundation
 #
 # This file is part of translate.
 #
@@ -21,12 +21,12 @@
 
 import locale
 
+from django.contrib.auth.models import User, UserManager, AnonymousUser
 from django.db import models
 from django.db.models import Q
-from django.contrib.auth.models import User, UserManager, AnonymousUser
+from django.db.models.signals import post_save
 from django.utils.html import simple_email_re as email_re
 from django.utils.translation import ugettext_lazy as _
-from django.db.models.signals import post_save
 
 from pootle.i18n.override import lang_choices
 from pootle_misc.baseurl import l
