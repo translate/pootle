@@ -31,8 +31,8 @@ class Command(PootleCommand, ModifiedSinceMixin):
         make_option('--overwrite', action='store_true', dest='overwrite',
                     default=False, help="Don't just save translations, but "
                     "overwrite files to reflect state in database"),
-        make_option('--skip-missing', action='store_true', dest='skip_missing', default=False,
-                    help="Ignore missing files on disk"),
+        make_option('--skip-missing', action='store_true', dest='skip_missing',
+                    default=False, help="Ignore missing files on disk"),
         )
     help = "Save new translations to disk manually."
 
@@ -55,7 +55,8 @@ class Command(PootleCommand, ModifiedSinceMixin):
         skip_missing = options.get('skip_missing', False)
         change_id = options.get('modified_since', 0)
         if change_id:
-            changes = translation_project.submission_set.filter(id__gte=change_id)
+            changes = translation_project.submission_set \
+                                         .filter(id__gte=change_id)
             if not changes.exists():
                 # No change to this translation project since the given change ID
                 return

@@ -58,14 +58,20 @@ class Command(PootleCommand):
             project.delete()
             return
 
-        lang_query = Language.objects.exclude(id__in=project.translationproject_set.values_list('language', flat=True))
+        lang_query = Language.objects.exclude(
+                id__in=project.translationproject_set \
+                              .values_list('language', flat=True)
+            )
         for language in lang_query.iterator():
             tp = create_translation_project(language, project)
             if tp:
                 logging.info(u"Created %s", tp)
 
     def handle_language(self, language, **options):
-        project_query = Project.objects.exclude(id__in=language.translationproject_set.values_list('project', flat=True))
+        project_query = Project.objects.exclude(
+                id__in=language.translationproject_set \
+                               .values_list('project', flat=True)
+            )
         for project in project_query.iterator():
             tp = create_translation_project(language, project)
             if tp:
@@ -76,4 +82,3 @@ class Command(PootleCommand):
         if clean and does_not_exists(translation_project.abs_real_path):
             logging.info(u"Deleting %s", translation_project)
             translation_project.delete()
-
