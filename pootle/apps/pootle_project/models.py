@@ -53,7 +53,7 @@ class Project(models.Model):
         ordering = ['code']
         db_table = 'pootle_app_project'
 
-    code_help_text = _('A short code for the project. This should only contain'
+    code_help_text = _('A short code for the project. This should only contain '
             'ASCII characters, numbers, and the underscore (_) character.')
     code = models.CharField(max_length=255, null=False, unique=True,
             db_index=True, verbose_name=_('Code'), help_text=code_help_text)

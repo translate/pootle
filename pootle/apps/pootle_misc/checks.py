@@ -69,6 +69,7 @@ check_names = {
     'startcaps': _(u"Starting capitalization"),
     'startpunc': _(u"Starting punctuation"),
     'startwhitespace': _(u"Starting whitespace"),
+    # Translators: This refers to tabulation characters
     'tabs': _(u"Tabs"),
     'unchanged': _(u"Unchanged"),
     'urls': _(u"URLs"),
