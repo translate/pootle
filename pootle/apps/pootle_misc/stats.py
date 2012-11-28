@@ -170,8 +170,6 @@ def get_path_summary(path_obj, path_stats):
 
     # Build URL for getting more summary information for the current path
     url_args = [language.code, project.code, path_obj.path]
-    if not path_obj.is_dir:
-        url_args.append(path_obj.name)
     url_path_summary_more = reverse('tp.path_summary_more', args=url_args)
 
     summary.append(u''.join([
