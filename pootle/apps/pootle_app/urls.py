@@ -19,7 +19,7 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from django.conf.urls.defaults import *
+from django.conf.urls.defaults import include, patterns
 
 urlpatterns = patterns('',
     (r'^admin',               include('pootle_app.views.admin.urls')),

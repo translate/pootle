@@ -11,7 +11,7 @@ hierarchy (for best results with the defaults, include it under
 """
 
 
-from django.conf.urls.defaults import *
+from django.conf.urls.defaults import patterns, url
 from django.views.generic.simple import direct_to_template
 
 from contact_form_i18n.views import contact_form
