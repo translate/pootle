@@ -201,7 +201,7 @@ def get_path_summary(path_obj, path_stats):
 
     if path_stats['suggestions'] > 0:
         suggestions.append(u'<a class="path-incomplete" href="%(url)s">' % {
-            'url': dispatch.translate(path_obj, state='incomplete')
+            'url': dispatch.translate(path_obj, state='suggestions')
         })
         suggestions.append(
             ungettext(u'Review suggestion (%(num)d left)',
