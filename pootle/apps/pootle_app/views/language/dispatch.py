@@ -26,12 +26,7 @@ from pootle_misc.baseurl import l
 def translate(path_obj, state=None, check=None, suggestions=False):
     # In Pootle, URLs ending in translate.html are used when the user
     # translates all files in a directory (for example, if the user is
-    # going through all fuzzy translations in a directory). If this is
-    # the case, we need to pass the current store name in the 'store'
-    # GET variable so that Pootle will know where to continue from
-    # when the user clicks submit/skip/suggest on a translation
-    # unit. But otherwise the store name is the last component of the
-    # path name and we don't need to pass the 'store' GET variable.
+    # going through all fuzzy translations in a directory).
     path = path_obj.pootle_path
     if path.endswith('/'):
         path += 'translate.html'
