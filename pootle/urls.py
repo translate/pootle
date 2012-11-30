@@ -32,8 +32,10 @@ urlpatterns = patterns('',
     (r'^jsi18n/$', 'django.views.i18n.javascript_catalog',
         {'packages': ('pootle',),}),
 
+    # XXX: Do we really want to let Django serve these files in production?
     # Direct download of translation files
-    (r'^export/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.PODIRECTORY}),
+    (r'^export/(?P<path>.*)$', 'django.views.static.serve',
+        {'document_root': settings.PODIRECTORY}),
 
     # External apps
     (r'^contact/', include('contact_form_i18n.urls')),
