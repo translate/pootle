@@ -25,7 +25,7 @@ from django.conf.urls.defaults import patterns, url
 urlpatterns = patterns('pootle_translationproject.views',
     # Admin views
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/((.*/)*)admin_permissions.html$',
-     'admin_permissions'),
+        'admin_permissions'),
 
     # Management actions
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/rescan/?$',
@@ -40,18 +40,18 @@ urlpatterns = patterns('pootle_translationproject.views',
 
     # XHR views
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/((.*/)*)edit_settings.html$',
-     'edit_settings'),
+        'edit_settings'),
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/summary/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'path_summary_more',
         name='tp.path_summary_more'),
 
     # Exporting files
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<file_path>.*)export/zip$',
-     'export_zip'),
+        'export_zip'),
 
     # Project-wide translation
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/translate.html$',
-     'translate'),
+        'translate'),
 
     # Overview
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',

@@ -25,9 +25,9 @@ import legalpages.urls
 
 urlpatterns = patterns('pootle_app.views.admin',
     (r'^/legalpages/', include(legalpages.urls.admin_patterns)),
-    (r'^/users.html$',       'adminusers.view'),
-    (r'^/languages.html$',   'adminlanguages.view'),
-    (r'^/projects.html$',    'adminprojects.view'),
+    (r'^/users.html$', 'adminusers.view'),
+    (r'^/languages.html$', 'adminlanguages.view'),
+    (r'^/projects.html$', 'adminprojects.view'),
     (r'^/permissions.html$', 'adminroot.view'),
     (r'^/general.html$', 'adminpages.view'),
     (r'^/edit_settings.html$', 'adminpages.edit_settings'),

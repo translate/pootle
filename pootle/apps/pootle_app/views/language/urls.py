@@ -23,11 +23,13 @@ from django.conf.urls.defaults import patterns
 
 urlpatterns = patterns('pootle_app.views.language.view',
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)translate.html$',
-     'translate'),
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)checks.html$', 'get_failing_checks_dir'),
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)view.html$', 'get_view_units_dir'),
+        'translate'),
+    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)checks.html$',
+        'get_failing_checks_dir'),
+    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)view.html$',
+        'get_view_units_dir'),
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<file_path>.*)/commit$',
-     'commit_file'),
+        'commit_file'),
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<file_path>.*)/update$',
-     'update_file'),
+        'update_file'),
 )
