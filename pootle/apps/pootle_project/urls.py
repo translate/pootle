@@ -22,14 +22,19 @@
 from django.conf.urls.defaults import patterns
 
 urlpatterns = patterns('pootle_project.views',
+    # Listing of all projects
     (r'^$',
         'projects_index'),
+
+    # Specific project
+    (r'^(?P<project_code>[^/]*)/?$',
+        'project_language_index'),
+
+    # Admin
+    (r'^(?P<project_code>[^/]*)/edit_settings.html?$',
+        'project_settings_edit'),
     (r'^(?P<project_code>[^/]*)/admin.html$',
         'project_admin'),
     (r'^(?P<project_code>[^/]*)/permissions.html$',
         'project_admin_permissions'),
-    (r'^(?P<project_code>[^/]*)/?$',
-        'project_language_index'),
-    (r'^(?P<project_code>[^/]*)/edit_settings.html?$',
-        'project_settings_edit'),
 )

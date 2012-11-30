@@ -22,22 +22,50 @@
 from django.conf.urls.defaults import patterns
 
 urlpatterns = patterns('pootle_store.views',
-    (r'^(?P<pootle_path>.*)/export/xlf/?$', 'export_as_xliff'),
-    (r'^(?P<pootle_path>.*)/export_store/(?P<filetype>.*)/?$', 'export_as_type'),
-    (r'^(?P<pootle_path>.*)/download/?$', 'download'),
-    (r'^(?P<pootle_path>.*)/translate/?$', 'translate'),
-    (r'^(?P<pootle_path>.*)/checks/?$', 'get_failing_checks_store'),
-    (r'^(?P<pootle_path>.*)/view/?$', 'get_view_units_store'),
-    (r'^(?P<pootle_path>.*)/view/limit/(?P<limit>[0-9]+)/?$', 'get_view_units_store'),
-    (r'^unit/context/(?P<uid>[0-9]+)/?$', 'get_more_context'),
-    (r'^unit/edit/(?P<uid>[0-9]+)/?$', 'get_edit_unit'),
-    (r'^unit/submit/(?P<uid>[0-9]+)/?$', 'submit'),
-    (r'^unit/suggest/(?P<uid>[0-9]+)/?$', 'suggest'),
-    (r'^unit/timeline/(?P<uid>[0-9]+)/?$', 'timeline'),
-    (r'^unit/comment/(?P<uid>[0-9]+)/?$', 'comment'),
-    (r'^suggestion/reject/(?P<uid>[0-9]+)/(?P<suggid>[0-9]+)/?$', 'reject_suggestion'),
-    (r'^suggestion/accept/(?P<uid>[0-9]+)/(?P<suggid>[0-9]+)/?$', 'accept_suggestion'),
-    (r'^vote/clear/(?P<voteid>[0-9]+)/?$', 'clear_vote'),
-    (r'^vote/up/(?P<uid>[0-9]+)/(?P<suggid>[0-9]+)/?$', 'vote_up'),
-    (r'^qualitycheck/reject/(?P<uid>[0-9]+)/(?P<checkid>[0-9]+)/?$', 'reject_qualitycheck'),
+    # Translation
+    (r'^(?P<pootle_path>.*)/translate/?$',
+        'translate'),
+
+    # Download and export
+    (r'^(?P<pootle_path>.*)/download/?$',
+        'download'),
+    (r'^(?P<pootle_path>.*)/export/xlf/?$',
+        'export_as_xliff'),
+    (r'^(?P<pootle_path>.*)/export_store/(?P<filetype>.*)/?$',
+        'export_as_type'),
+
+    # XHR
+    (r'^(?P<pootle_path>.*)/checks/?$',
+        'get_failing_checks_store'),
+
+    (r'^(?P<pootle_path>.*)/view/?$',
+        'get_view_units_store'),
+    (r'^(?P<pootle_path>.*)/view/limit/(?P<limit>[0-9]+)/?$',
+        'get_view_units_store'),
+
+    (r'^unit/context/(?P<uid>[0-9]+)/?$',
+        'get_more_context'),
+    (r'^unit/edit/(?P<uid>[0-9]+)/?$',
+        'get_edit_unit'),
+    (r'^unit/submit/(?P<uid>[0-9]+)/?$',
+        'submit'),
+    (r'^unit/suggest/(?P<uid>[0-9]+)/?$',
+        'suggest'),
+    (r'^unit/timeline/(?P<uid>[0-9]+)/?$',
+        'timeline'),
+    (r'^unit/comment/(?P<uid>[0-9]+)/?$',
+        'comment'),
+
+    (r'^suggestion/reject/(?P<uid>[0-9]+)/(?P<suggid>[0-9]+)/?$',
+        'reject_suggestion'),
+    (r'^suggestion/accept/(?P<uid>[0-9]+)/(?P<suggid>[0-9]+)/?$',
+        'accept_suggestion'),
+
+    (r'^vote/clear/(?P<voteid>[0-9]+)/?$',
+        'clear_vote'),
+    (r'^vote/up/(?P<uid>[0-9]+)/(?P<suggid>[0-9]+)/?$',
+        'vote_up'),
+
+    (r'^qualitycheck/reject/(?P<uid>[0-9]+)/(?P<checkid>[0-9]+)/?$',
+        'reject_qualitycheck'),
 )
