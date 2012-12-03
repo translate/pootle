@@ -48,7 +48,7 @@ class Command(PootleCommand):
                     default=False, help="Delete projects and translation "
                     "projects that ceased to exist (handle with care)."),
         )
-    help = "Detects new translation projects in the file system and "
+    help = "Detects new translation projects in the file system and " \
            "adds them to database."
 
     def handle_project(self, project, **options):
