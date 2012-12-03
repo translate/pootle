@@ -841,9 +841,9 @@ class UploadHandler(view_handler.Handler):
 
             # create a submission, doesn't fix stats but at least
             # shows up in last activity column
-            import datetime
+            from pootle_misc.util import timezone
             s = Submission(
-                    creation_time=datetime.datetime.utcnow(),
+                    creation_time=timezone.now(),
                     translation_project=translation_project,
                     submitter=get_profile(request.user),
                     type=SubmissionTypes.UPLOAD,

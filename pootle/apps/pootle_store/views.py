@@ -20,7 +20,6 @@
 
 import os
 import logging
-from datetime import datetime
 
 from django.conf import settings
 from django.core.cache import cache
@@ -46,7 +45,7 @@ from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.forms import make_search_form
 from pootle_misc.stats import get_raw_stats
 from pootle_misc.url_manip import ensure_uri, previous_view_url
-from pootle_misc.util import paginate, ajax_required, jsonify
+from pootle_misc.util import paginate, ajax_required, jsonify, timezone
 from pootle_profile.models import get_profile
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
@@ -654,7 +653,7 @@ def comment(request, unit):
     """
     # Update current unit instance's attributes
     unit.commented_by = request.profile
-    unit.commented_on = datetime.utcnow()
+    unit.commented_on = timezone.now()
 
     language = request.translation_project.language
     form = unit_comment_form_factory(language)(request.POST, instance=unit,
@@ -807,7 +806,7 @@ def submit(request, unit):
 
     # Update current unit instance's attributes
     unit.submitted_by = request.profile
-    unit.submitted_on = datetime.utcnow()
+    unit.submitted_on = timezone.now()
 
     form_class = unit_form_factory(language, snplurals, request)
     form = form_class(request.POST, instance=unit)
@@ -815,7 +814,7 @@ def submit(request, unit):
     if form.is_valid():
         if form.updated_fields:
             # Store creation time so that it is the same for all submissions
-            creation_time=datetime.utcnow()
+            creation_time=timezone.now()
             for field, old_value, new_value in form.updated_fields:
                 sub = Submission(
                         creation_time=creation_time,
@@ -965,7 +964,7 @@ def accept_suggestion(request, unit, suggid):
 
             # For now assume the target changed
             # TODO: check all fields for changes
-            creation_time=datetime.utcnow()
+            creation_time=timezone.now()
             sub = Submission(
                     creation_time=creation_time,
                     translation_project=translation_project,
