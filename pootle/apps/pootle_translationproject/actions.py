@@ -72,7 +72,7 @@ def download_source(request, path_obj, **kwargs):
     if path_obj.name.startswith("pootle-terminology"):
         text = _("Download XLIFF")
         tooltip = _("Download file in XLIFF format")
-        href = l('%s/export/xlf' % path_obj.pootle_path)
+        href = dispatch.export(path_obj.pootle_path, 'xlf')
     elif path_obj.translation_project.project.is_monolingual():
         text = _('Export')
         tooltip = _('Export translations')
@@ -82,7 +82,7 @@ def download_source(request, path_obj, **kwargs):
 
     return {
         'icon': 'icon-download',
-        'href': href or l('%s/download/' % path_obj.pootle_path),
+        'href': href or l('/download%s' % path_obj.pootle_path),
         'text': text,
         'tooltip': tooltip,
     }

@@ -27,20 +27,20 @@ urlpatterns = patterns('pootle_store.views',
         'translate'),
 
     # Download and export
-    (r'^(?P<pootle_path>.*)/download/?$',
+    (r'^download/(?P<pootle_path>.*)/?$',
         'download'),
-    (r'^(?P<pootle_path>.*)/export/xlf/?$',
+    (r'^export-file/xlf/(?P<pootle_path>.*)/?$',
         'export_as_xliff'),
-    (r'^(?P<pootle_path>.*)/export/(?P<filetype>.*)/?$',
+    (r'^export-file/(?P<filetype>.*)/(?P<pootle_path>.*)/?$',
         'export_as_type'),
 
     # XHR
-    (r'^(?P<pootle_path>.*)/checks/?$',
+    (r'^checks/(?P<pootle_path>.*)/?$',
         'get_failing_checks_store'),
 
-    (r'^(?P<pootle_path>.*)/view/?$',
+    (r'^view/(?P<pootle_path>.*)/?$',
         'get_view_units_store'),
-    (r'^(?P<pootle_path>.*)/view/limit/(?P<limit>[0-9]+)/?$',
+    (r'^view/(?P<limit>[0-9]+)/(?P<pootle_path>.*)/?$',
         'get_view_units_store'),
 
     (r'^unit/context/(?P<uid>[0-9]+)/?$',

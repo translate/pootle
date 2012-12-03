@@ -53,7 +53,7 @@ def download_zip(path_obj):
 
 
 def export(pootle_path, format):
-    return l('%s/export/%s' % (pootle_path, format))
+    return l('/export-file/%s%s' % (format, pootle_path))
 
 
 def commit(path_obj):

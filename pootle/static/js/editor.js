@@ -828,13 +828,13 @@
     var extraData, reqData, viewUrl,
         defaults = {async: false, limit: 0, page: this.currentPage,
                     pager: false, withUid: false},
-        urlStr = this.store ? this.store + '/view' : this.directory + 'view.html';
+        urlStr = this.store ? '/view' + this.store : this.directory + 'view.html';
     // Merge passed arguments with defaults
     opts = $.extend({}, defaults, opts);
 
     // Extend URL if needed
-    if (opts.limit != 0) {
-      urlStr = urlStr + '/limit/' + limit;
+    if (opts.limit != 0 && this.store) {
+      urlStr = urlStr.replace('/view', '/view/' + limit);
     }
     viewUrl = l(urlStr);
 
@@ -1374,7 +1374,7 @@
   /* Gets the failing check options for the current query */
   getCheckOptions: function () {
     var opts,
-        checksUrl = this.store ? l(this.store + '/checks/') : l(this.directory + "checks.html");
+        checksUrl = this.store ? l('/checks' + this.store) : l(this.directory + "checks.html");
 
     $.ajax({
       url: checksUrl,
