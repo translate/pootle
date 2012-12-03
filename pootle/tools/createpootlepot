@@ -41,7 +41,7 @@ pushd . 2>&1 > /dev/null
 cd $basedir
 verbosity="-v $verbosity"
 
-./manage.py makemessages $verbosity -e ".py" -e ".txt" -e ".html" -l templates
+./manage.py makemessages $verbosity -e py,txt,html,conf -l templates
 ./manage.py makemessages $verbosity -d djangojs -l templates
 
 # Header replacements
