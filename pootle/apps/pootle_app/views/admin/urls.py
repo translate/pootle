@@ -32,5 +32,5 @@ urlpatterns = patterns('pootle_app.views.admin',
     (r'^/general.html$', 'adminpages.view'),
     (r'^/edit_settings.html$', 'adminpages.edit_settings'),
     (r'^/stats/more/?$', 'dashboard.server_stats_more'),
-    (r'^/?|/index.html$', 'dashboard.view'),
+    (r'^/?$', 'dashboard.view'),
 )
