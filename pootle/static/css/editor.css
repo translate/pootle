@@ -785,25 +785,15 @@ li.check:hover
     background-color: #fff;
 }
 
-li.check > a {
+li.check > a
+{
     cursor: help;
 }
 
-#translate-checks-block img
+#translate-checks-block i
 {
-    vertical-align: top;
-    margin-top: -1px;
-    margin-bottom: -1px;
     cursor: pointer;
-
-    filter:alpha(opacity=50);
-    opacity: 0.5;
-}
-
-#translate-checks-block img:hover
-{
-    filter:alpha(opacity=100);
-    opacity: 1;
+    vertical-align: middle;
 }
 
 /* CONTROLS */
