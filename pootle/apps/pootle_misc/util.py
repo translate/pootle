@@ -43,6 +43,8 @@ datetime_min = datetime.min
 if settings.USE_TZ:
     datetime_min = timezone.make_aware(datetime_min, timezone.utc)
 
+from translate.misc.decorators import decorate
+
 
 def getfromcache(function, timeout=settings.OBJECT_CACHE_TIMEOUT):
     def _getfromcache(instance, *args, **kwargs):
@@ -122,6 +124,7 @@ def jsonify(json):
     return simplejson.dumps(json, indent=indent)
 
 
+@decorate
 def ajax_required(f):
     """
     AJAX request required decorator
@@ -138,6 +141,7 @@ def ajax_required(f):
         if not settings.DEBUG and not request.is_ajax():
             return HttpResponseBadRequest("This must be an AJAX request.")
         return f(request, *args, **kwargs)
+
     return wrapper
 
 
