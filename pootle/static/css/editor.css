@@ -23,9 +23,14 @@ textarea#view_unit
     box-shadow: 0px 0px 20px #d9d9d9;
     -moz-box-shadow: 0px 0px 20px #d9d9d9;
     -webkit-box-shadow: 0px 0px 20px #d9d9d9;
+
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e5f3f8', endColorstr='#cde7f1');
     background: -webkit-gradient(linear, left top, left bottom, from(#e5f3f8), to(#cde7f1));
-    background: -moz-linear-gradient(top,  #e5f3f8,  #cde7f1);
+    background: -webkit-linear-gradient(top,  #e5f3f8,  #cde7f1);
+    background:    -moz-linear-gradient(top,  #e5f3f8,  #cde7f1);
+    background:     -ms-linear-gradient(top,  #e5f3f8,  #cde7f1);
+    background:      -o-linear-gradient(top,  #e5f3f8,  #cde7f1);
+    background:         linear-gradient(top,  #e5f3f8,  #cde7f1);
 }
 
 /* Toolbar search */
@@ -820,40 +825,64 @@ li.check > a
 {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffee', endColorstr='#aaee77');
     background: -webkit-gradient(linear, left top, left bottom, from(#ffe), to(#ae7));
-    background: -moz-linear-gradient(top,  #ffe,  #ae7);
+    background: -webkit-linear-gradient(top,  #ffe,  #ae7);
+    background:    -moz-linear-gradient(top,  #ffe,  #ae7);
+    background:     -ms-linear-gradient(top,  #ffe,  #ae7);
+    background:      -o-linear-gradient(top,  #ffe,  #ae7);
+    background:         linear-gradient(top,  #ffe,  #ae7);
 }
 
 .translate-buttons-block input.submit:hover {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#bbff88');
     background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#bf8));
-    background: -moz-linear-gradient(top,  #fff,  #bf8);
+    background: -webkit-linear-gradient(top,  #fff,  #bf8);
+    background:    -moz-linear-gradient(top,  #fff,  #bf8);
+    background:     -ms-linear-gradient(top,  #fff,  #bf8);
+    background:      -o-linear-gradient(top,  #fff,  #bf8);
+    background:         linear-gradient(top,  #fff,  #bf8);
 }
 
 .translate-buttons-block input.submit:active
 {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#aaee77', endColorstr='#ffffee');
     background: -webkit-gradient(linear, left top, left bottom, from(#ae7), to(#ffe));
-    background: -moz-linear-gradient(top,  #ae7,  #ffe);
+    background: -webkit-linear-gradient(top,  #ae7,  #ffe);
+    background:    -moz-linear-gradient(top,  #ae7,  #ffe);
+    background:     -ms-linear-gradient(top,  #ae7,  #ffe);
+    background:      -o-linear-gradient(top,  #ae7,  #ffe);
+    background:         linear-gradient(top,  #ae7,  #ffe);
 }
 
 .buttons input[type="submit"].suggest
 {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffee', endColorstr='#eedd88');
     background: -webkit-gradient(linear, left top, left bottom, from(#ffe), to(#ed8));
-    background: -moz-linear-gradient(top,  #ffe,  #ed8);
+    background: -webkit-linear-gradient(top,  #ffe,  #ed8);
+    background:    -moz-linear-gradient(top,  #ffe,  #ed8);
+    background:     -ms-linear-gradient(top,  #ffe,  #ed8);
+    background:      -o-linear-gradient(top,  #ffe,  #ed8);
+    background:         linear-gradient(top,  #ffe,  #ed8);
 }
 
 .translate-buttons-block input.suggest:hover {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffee99');
     background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fe9));
-    background: -moz-linear-gradient(top,  #fff,  #fe9);
+    background: -webkit-linear-gradient(top,  #fff,  #fe9);
+    background:    -moz-linear-gradient(top,  #fff,  #fe9);
+    background:     -ms-linear-gradient(top,  #fff,  #fe9);
+    background:      -o-linear-gradient(top,  #fff,  #fe9);
+    background:         linear-gradient(top,  #fff,  #fe9);
 }
 
 .translate-buttons-block input.suggest:active
 {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eedd88', endColorstr='#ffffee');
     background: -webkit-gradient(linear, left top, left bottom, from(#ed8), to(#ffe));
-    background: -moz-linear-gradient(top,  #ed8,  #ffe);
+    background: -webkit-linear-gradient(top,  #ed8,  #ffe);
+    background:    -moz-linear-gradient(top,  #ed8,  #ffe);
+    background:     -ms-linear-gradient(top,  #ed8,  #ffe);
+    background:      -o-linear-gradient(top,  #ed8,  #ffe);
+    background:         linear-gradient(top,  #ed8,  #ffe);
 }
 
 .translate-buttons-block input.suggest
