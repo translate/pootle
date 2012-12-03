@@ -22,7 +22,7 @@ from django.conf.urls.defaults import patterns
 
 urlpatterns = patterns('pootle_app.views.index',
     (r'^robots.txt$', 'robots.view'),
-    (r'^/?$|^index.html$', 'index.view'),
+    (r'^/?$', 'index.view'),
     (r'^about/$', 'about.view'),
     (r'^about/contributors/$', 'contributors.view'),
 )
