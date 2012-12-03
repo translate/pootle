@@ -49,10 +49,6 @@ urlpatterns = patterns('pootle_translationproject.views',
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<file_path>.*)export/zip$',
         'export_zip'),
 
-    # Project-wide translation
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/translate.html$',
-        'translate'),
-
     # Overview
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'overview',

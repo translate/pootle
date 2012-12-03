@@ -59,7 +59,6 @@ from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_store.models import Store
 from pootle_store.util import absolute_real_path, relative_real_path
 from pootle_store.filetypes import factory_classes
-from pootle_store.views import translate_page
 from pootle_translationproject.actions import action_groups
 
 
@@ -856,9 +855,3 @@ class UploadHandler(view_handler.Handler):
                     oldstats=oldstats, newstats=newstats, archive=archive)
 
         return {'upload': self}
-
-
-@get_translation_project
-@set_request_context
-def translate(request, translation_project):
-    return translate_page(request, translation_project.units)
