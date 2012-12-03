@@ -147,17 +147,30 @@
           <div id="orig{{ unit.index }}" class="translate-translation" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
             <!-- Begin: Normal editing -->
             {{ form.target_f }}
-            {% if language.specialchars and cantranslate or cansuggest %}
-            <div class="editor-specialchars-block" lang="{{ language.code }}">
-              {% for specialchar in language.specialchars %}
-              {% if not specialchar.isspace %}
-              <a class="editor-specialchar js-editor-copytext"
-                 title="{% trans 'Click to insert this symbol into the editor' %}">{{ specialchar }}</a>
-              {% else %}
-              <span class="extraspace"> </span>
+            {% if language.specialchars or language.get_direction == "rtl" %}
+              {% if cantranslate or cansuggest %}
+              <div class="editor-specialchars-block" lang="{{ language.code }}">
+                {% if language.get_direction == "rtl" %}
+                  <a class="editor-specialchar js-editor-copytext" title="{% trans 'Insert RLM (Right-To-Left Mark) into the editor' %}" code="&#8207;">RLM</a>
+                  <a class="editor-specialchar js-editor-copytext" title="{% trans 'Insert LRM (Left-To-Right Mark) into the editor' %}" code="&#8206;">LRM</a>
+                  <a class="editor-specialchar js-editor-copytext" title="{% trans 'Insert RLE (Right-To-Left Embedding) into the editor' %}" code="&#8235;">RLE</a>
+                  <a class="editor-specialchar js-editor-copytext" title="{% trans 'Insert LRE (Left-To-Right Embedding) into the editor' %}" code="&#8234;">LRE</a>
+                  <a class="editor-specialchar js-editor-copytext" title="{% trans 'Insert RLO (Right-To-Left Override) into the editor' %}" code="&#8238;">RLO</a>
+                  <a class="editor-specialchar js-editor-copytext" title="{% trans 'Insert LRO (Left-To-Right Override) into the editor' %}" code="&#8237;">LRO</a>
+                  <a class="editor-specialchar js-editor-copytext" title="{% trans 'Insert PDF (Pop Directional Format ) into the editor' %}" code="&#8236;">PDF</a>
+                  <a class="editor-specialchar js-editor-copytext" title="{% trans 'Insert ZWJ (Zero Width Joiner) into the editor' %}" code="&#8205;">ZWJ</a>
+                  <a class="editor-specialchar js-editor-copytext" title="{% trans 'Insert ZWNJ (Zero Width Non Joiner) into the editor' %}" code="&#8204;">ZWNJ</a>
+                {% endif %}
+                {% for specialchar in language.specialchars %}
+                {% if not specialchar.isspace %}
+                <a class="editor-specialchar js-editor-copytext"
+                   title="{% trans 'Click to insert this symbol into the editor' %}">{{ specialchar }}</a>
+                {% else %}
+                <span class="extraspace"> </span>
+                {% endif %}
+                {% endfor %}
+              </div>
               {% endif %}
-              {% endfor %}
-            </div>
             {% endif %}
           </div>
         </form>
