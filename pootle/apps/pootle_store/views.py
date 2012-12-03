@@ -87,7 +87,9 @@ def get_store_context(permission_codes):
             if pootle_path[0] != '/':
                 pootle_path = '/' + pootle_path
             try:
-                store = Store.objects.select_related('translation_project', 'parent').get(pootle_path=pootle_path)
+                store = Store.objects.select_related('translation_project',
+                                                     'parent') \
+                                     .get(pootle_path=pootle_path)
             except Store.DoesNotExist:
                 raise Http404
 
@@ -108,7 +110,8 @@ def get_unit_context(permission_codes):
 
         def decorated_f(request, uid, *args, **kwargs):
             unit = get_object_or_404(
-                    Unit.objects.select_related("store__translation_project", "store__parent"),
+                    Unit.objects.select_related("store__translation_project",
+                                                "store__parent"),
                     id=uid,
             )
             _common_context(request, unit.store.translation_project, permission_codes)
@@ -142,7 +145,8 @@ def export_as_xliff(request, store):
 
     key = iri_to_uri("%s:export_as_xliff" % store.pootle_path)
     last_export = cache.get(key)
-    if not (last_export and last_export == store.get_mtime() and os.path.isfile(abs_export_path)):
+    if (not (last_export and last_export == store.get_mtime() and
+        os.path.isfile(abs_export_path))):
         from pootle_app.project_tree import ensure_target_dir_exists
         from translate.storage.poxliff import PoXliffFile
         from pootle_misc import ptempfile as tempfile
@@ -172,13 +176,15 @@ def export_as_type(request, store, filetype):
 
     key = iri_to_uri("%s:export_as_%s" % (store.pootle_path, filetype))
     last_export = cache.get(key)
-    if not (last_export and last_export == store.get_mtime() and os.path.isfile(abs_export_path)):
+    if (not (last_export and last_export == store.get_mtime() and
+        os.path.isfile(abs_export_path))):
         from pootle_app.project_tree import ensure_target_dir_exists
         from pootle_misc import ptempfile as tempfile
         import shutil
         ensure_target_dir_exists(abs_export_path)
         outputstore = store.convert(klass)
-        fd, tempstore = tempfile.mkstemp(prefix=store.name, suffix=os.path.extsep + filetype)
+        fd, tempstore = tempfile.mkstemp(prefix=store.name,
+                                         suffix=os.path.extsep + filetype)
         os.close(fd)
         outputstore.savefile(tempstore)
         shutil.move(tempstore, abs_export_path)
@@ -902,8 +908,9 @@ def reject_suggestion(request, unit, suggid):
             sugg = unit.suggestion_set.get(id=suggid)
         except ObjectDoesNotExist:
             raise Http404
-        if not check_permission('review', request) and \
-                   (not request.user.is_authenticated() or sugg and sugg.user != request.profile):
+        if (not check_permission('review', request) and
+            (not request.user.is_authenticated() or sugg and
+                 sugg.user != request.profile)):
             raise PermissionDenied(_("You do not have rights to access review mode."))
 
         success = unit.reject_suggestion(suggid)
