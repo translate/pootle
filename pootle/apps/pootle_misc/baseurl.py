@@ -46,7 +46,7 @@ def m(path):
 
 def s(path):
     """Filter URLs adding STATIC_URL prefix."""
-    return l(settings.STATIC_URL + path)
+    return settings.STATIC_URL + path
 
 
 def redirect(url, **kwargs):

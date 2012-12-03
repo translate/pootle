@@ -40,7 +40,7 @@
       return path;
     }
     function s(path) {
-      return l("{{ STATIC_URL }}" + path);
+      return "{{ STATIC_URL }}" + path;
     }
     $(function() {
       $("[title], [original-title]").tipsy({
