@@ -43,14 +43,6 @@ def translate(path_obj, state=None, check=None, suggestions=False):
     return l(path)
 
 
-def open_language(code):
-    return l('/%s/' % code)
-
-
-def open_translation_project(language_code, project_code):
-    return l('/%s/%s/' % (language_code, project_code))
-
-
 def download_zip(path_obj):
     if path_obj.is_dir:
         current_folder = path_obj.pootle_path

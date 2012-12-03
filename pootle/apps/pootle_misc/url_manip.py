@@ -23,32 +23,6 @@ import urlparse
 from django.core.urlresolvers import Resolver404, resolve
 
 
-def strip_trailing_slash(path):
-    """If path ends with a /, strip it and return the stripped version."""
-    if len(path) > 0 and path[-1] == '/':
-        return path[:-1]
-    else:
-        return path
-
-
-def url_split(path):
-    try:
-        slash_pos = strip_trailing_slash(path).rindex('/')
-        return path[:slash_pos+1], path[slash_pos+1:]
-    except ValueError:
-        return '', path
-
-
-def parent(url):
-    parent_part, _child_part = url_split(url)
-    return parent_part
-
-
-def basename(url):
-    _parent_part, child_part = url_split(url)
-    return child_part
-
-
 def ensure_uri(uri):
     """Ensure that we return a URI that the user can click on in an a tag."""
     if not uri:

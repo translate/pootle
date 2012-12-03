@@ -19,7 +19,7 @@ approach for this.
         {% if directory.is_project %}
             {{ directory.project.fullname }} | {% trans "Projects" %}
         {% else %}
-            {{ navitems.0.path.project.text }} | {{ navitems.0.path.language.text }}
+            {{ directory.translation_project.project.fullname }} | {{ directory.translation_project.language.fullname }}
         {% endif %}
     {% endif %}
     | {{ block.super }}

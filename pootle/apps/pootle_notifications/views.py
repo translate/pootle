@@ -29,7 +29,6 @@ from pootle_app.models import Directory
 from pootle_app.models.permissions import (get_matching_permissions,
                                            check_permission,
                                            check_profile_permission)
-from pootle_app.views.language import navbar_dict
 from pootle_language.models import Language
 from pootle_misc.mail import send_mail
 from pootle_notifications.models import Notice
@@ -85,7 +84,6 @@ def view(request, path):
 
     if not directory.is_language() and not directory.is_project():
         request.translation_project = directory.translation_project
-        template_vars['navitems'] = [navbar_dict.make_directory_navbar_dict(request, directory)]
         template_vars['translation_project'] = request.translation_project
         template_vars['language'] = request.translation_project.language
         template_vars['project'] = request.translation_project.project
