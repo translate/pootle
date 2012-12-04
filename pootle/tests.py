@@ -9,17 +9,20 @@ from django.http import QueryDict
 from django.core.management import call_command
 from django.contrib.auth.models import User
 
-from pootle_translationproject.models import scan_translation_projects, TranslationProject
+from pootle_translationproject.models import (scan_translation_projects,
+                                              TranslationProject)
 from pootle_store.models import fs
 
 
 def formset_dict(data):
-    """convert human readable POST dictionary into brain dead django formset dictionary"""
+    """convert human readable POST dictionary into brain dead django formset
+    dictionary"""
     new_data = {'form-TOTAL_FORMS': len(data), 'form-INITIAL_FORMS': 0}
     for i in range(len(data)):
         for key, value in data[i].iteritems():
             new_data["form-%d-%s" % (i, key)] = value
     return new_data
+
 
 class PootleTestCase(TestCase):
     """Base TestCase class, set's up a pootle environment with a
@@ -75,7 +78,6 @@ msgstr[1] ""
 ''')
         pofile.close()
 
-
     def _setup_test_users(self):
         nonpriv = User(username=u"nonpriv",
                        first_name="Non privileged test user",
@@ -98,11 +100,11 @@ msgstr[1] ""
     def tearDown(self):
         self._teardown_test_podir()
 
-
     def follow_redirect(self, response):
         """follow a redirect chain until a non-redirect response is received"""
         new_response = response
         while new_response.status_code in (301, 302, 303, 307):
-            scheme, netloc, path, query, fragment = urlparse.urlsplit(new_response['location'])
+            scheme, netloc, path, query, fragment = \
+                urlparse.urlsplit(new_response['location'])
             new_response = self.client.get(path, QueryDict(query))
         return new_response
