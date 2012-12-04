@@ -294,22 +294,27 @@ class Unit(models.Model, base.TranslationUnit):
     _target = property(_get_target, _set_target)
 
     def convert(self, unitclass):
-        """convert to a unit of type unitclass retaining as much
-        information from the database as the target format can support"""
+        """Convert to a unit of type :param:`unitclass` retaining as much
+        information from the database as the target format can support."""
         newunit = unitclass(self.source)
         newunit.target = self.target
         newunit.markfuzzy(self.isfuzzy())
+
         locations = self.getlocations()
         if locations:
             newunit.addlocations(locations)
+
         notes = self.getnotes(origin="developer")
         if notes:
             newunit.addnote(notes, origin="developer")
+
         notes = self.getnotes(origin="translator")
         if notes:
             newunit.addnote(notes, origin="translator")
+
         newunit.setid(self.getid())
         newunit.setcontext(self.getcontext())
+
         if hasattr(newunit, "addalttrans"):
             for suggestion in self.get_suggestions().iterator():
                 newunit.addalttrans(suggestion.target, origin=unicode(suggestion.user))
@@ -339,10 +344,15 @@ class Unit(models.Model, base.TranslationUnit):
         unit = self.store.file.store.units[self.index]
         if self.getid() == unit.getid():
             return unit
-        #FIXME: if we are here, file changed structure and we need to update indeces
-        logging.debug(u"incorrect unit index %d for %s in file %s", unit.index, unit, unit.store.file)
+
+        # FIXME: if we are here, file changed structure and we need to update
+        # indexes
+        logging.debug(u"Incorrect unit index %d for %s in file %s",
+                      unit.index, unit, unit.store.file)
+
         self.store.file.store.require_index()
         unit = self.store.file.store.findid(self.getid())
+
         return unit
 
     def sync(self, unit):
