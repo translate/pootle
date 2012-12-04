@@ -503,7 +503,7 @@ class Unit(models.Model, base.TranslationUnit):
 ##################### TranslationUnit ############################
 
     def getnotes(self, origin=None):
-        if origin == None:
+        if origin is None:
             notes = ''
             if self.translator_comment is not None:
                 notes += self.translator_comment

@@ -154,7 +154,7 @@ def cached_property(f):
         cache_key = '_cache__%s' % f.__name__
         value = getattr(self, cache_key, None)
 
-        if value == None:
+        if value is None:
             value = f(self)
             setattr(self, cache_key, value)
 

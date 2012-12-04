@@ -388,7 +388,7 @@ class TranslationProject(models.Model):
 
     def _has_index(self):
         return (self.non_db_state._indexing_enabled and
-                (self.non_db_state._index_initialized or self.indexer != None))
+                (self.non_db_state._index_initialized or self.indexer is not None))
 
     has_index = property(_has_index)
 
@@ -772,7 +772,7 @@ class TranslationProject(models.Model):
                sync.
         """
         #FIXME: leverage file updated signal to check if index needs updating
-        if indexer == None:
+        if indexer is None:
             return False
 
         # Check if the pomtime in the index == the latest pomtime
