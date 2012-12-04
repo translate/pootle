@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.db.models.signals      import post_save, pre_save
+from django.db.models.signals import post_save, pre_save
 from django.contrib.auth.models import User
 
 from pootle_language.models import Language
