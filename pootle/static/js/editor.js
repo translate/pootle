@@ -462,10 +462,7 @@
     // Determine which text we need
     selector = $(".tm-translation", this).ifExists() ||
                $(".suggestion-translation", this).ifExists() || $(this);
-    text = selector.text();
-    if (selector.attr('code') !== "") {
-      text = selector.attr('code');
-    }
+    text = selector.data('entity') || selector.text();
 
     element = $(PTL.editor.focused);
 

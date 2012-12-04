@@ -151,15 +151,33 @@
               {% if cantranslate or cansuggest %}
               <div class="editor-specialchars-block" lang="{{ language.code }}">
                 {% if language.get_direction == "rtl" %}
-                  <a class="editor-specialchar js-editor-copytext" title="{% trans 'Insert RLM (Right-To-Left Mark) into the editor' %}" code="&#8207;">RLM</a>
-                  <a class="editor-specialchar js-editor-copytext" title="{% trans 'Insert LRM (Left-To-Right Mark) into the editor' %}" code="&#8206;">LRM</a>
-                  <a class="editor-specialchar js-editor-copytext" title="{% trans 'Insert RLE (Right-To-Left Embedding) into the editor' %}" code="&#8235;">RLE</a>
-                  <a class="editor-specialchar js-editor-copytext" title="{% trans 'Insert LRE (Left-To-Right Embedding) into the editor' %}" code="&#8234;">LRE</a>
-                  <a class="editor-specialchar js-editor-copytext" title="{% trans 'Insert RLO (Right-To-Left Override) into the editor' %}" code="&#8238;">RLO</a>
-                  <a class="editor-specialchar js-editor-copytext" title="{% trans 'Insert LRO (Left-To-Right Override) into the editor' %}" code="&#8237;">LRO</a>
-                  <a class="editor-specialchar js-editor-copytext" title="{% trans 'Insert PDF (Pop Directional Format ) into the editor' %}" code="&#8236;">PDF</a>
-                  <a class="editor-specialchar js-editor-copytext" title="{% trans 'Insert ZWJ (Zero Width Joiner) into the editor' %}" code="&#8205;">ZWJ</a>
-                  <a class="editor-specialchar js-editor-copytext" title="{% trans 'Insert ZWNJ (Zero Width Non Joiner) into the editor' %}" code="&#8204;">ZWNJ</a>
+                <a class="editor-specialchar js-editor-copytext"
+                  title="{% trans 'Insert RLM (Right-To-Left Mark) into the editor' %}"
+                  data-entity="&#8207;">RLM</a>
+                <a class="editor-specialchar js-editor-copytext"
+                  title="{% trans 'Insert LRM (Left-To-Right Mark) into the editor' %}"
+                  data-entity="&#8206;">LRM</a>
+                <a class="editor-specialchar js-editor-copytext"
+                  title="{% trans 'Insert RLE (Right-To-Left Embedding) into the editor' %}"
+                  data-entity="&#8235;">RLE</a>
+                <a class="editor-specialchar js-editor-copytext"
+                  title="{% trans 'Insert LRE (Left-To-Right Embedding) into the editor' %}"
+                  data-entity="&#8234;">LRE</a>
+                <a class="editor-specialchar js-editor-copytext"
+                  title="{% trans 'Insert RLO (Right-To-Left Override) into the editor' %}"
+                  data-entity="&#8238;">RLO</a>
+                <a class="editor-specialchar js-editor-copytext"
+                  title="{% trans 'Insert LRO (Left-To-Right Override) into the editor' %}"
+                  data-entity="&#8237;">LRO</a>
+                <a class="editor-specialchar js-editor-copytext"
+                  title="{% trans 'Insert PDF (Pop Directional Format ) into the editor' %}"
+                  data-entity="&#8236;">PDF</a>
+                <a class="editor-specialchar js-editor-copytext"
+                  title="{% trans 'Insert ZWJ (Zero Width Joiner) into the editor' %}"
+                  data-entity="&#8205;">ZWJ</a>
+                <a class="editor-specialchar js-editor-copytext"
+                  title="{% trans 'Insert ZWNJ (Zero Width Non Joiner) into the editor' %}"
+                  data-entity="&#8204;">ZWNJ</a>
                 {% endif %}
                 {% for specialchar in language.specialchars %}
                 {% if not specialchar.isspace %}
