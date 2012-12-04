@@ -26,6 +26,7 @@ import logging
 from django.conf import settings
 from django.contrib.auth.models import User
 
+
 class LdapBackend(object):
     """
     This is a Django authentication module which implements LDAP
@@ -42,16 +43,25 @@ class LdapBackend(object):
         ldo.set_option(ldap.OPT_PROTOCOL_VERSION, 3)
 
         try:
-            ldo.simple_bind_s(settings.AUTH_LDAP_ANON_DN, settings.AUTH_LDAP_ANON_PASS)
+            ldo.simple_bind_s(settings.AUTH_LDAP_ANON_DN,
+                              settings.AUTH_LDAP_ANON_PASS)
 
-            result = ldo.search_s(settings.AUTH_LDAP_BASE_DN, ldap.SCOPE_SUBTREE, settings.AUTH_LDAP_FILTER % ldap.filter.escape_filter_chars(username), settings.AUTH_LDAP_FIELDS.values())
+            result = ldo.search_s(
+                settings.AUTH_LDAP_BASE_DN,
+                ldap.SCOPE_SUBTREE,
+                (settings.AUTH_LDAP_FILTER %
+                 ldap.filter.escape_filter_chars(username)),
+                settings.AUTH_LDAP_FIELDS.values()
+            )
 
             if len(result) != 1:
-                logger.debug("More or less than 1 matching account for (%s).  Failing LDAP auth." % (username))
+                logger.debug("More or less than 1 matching account for (%s).  "
+                             "Failing LDAP auth." % (username))
                 return None
 
         except ldap.INVALID_CREDENTIALS:
-            logger.error('Anonymous bind to LDAP server failed.  Please check the username and password.')
+            logger.error('Anonymous bind to LDAP server failed.  '
+                         'Please check the username and password.')
             return None
         except Exception, e:
             logger.error('Unknown LDAP error: ' + str(e))
@@ -65,19 +75,25 @@ class LdapBackend(object):
                 user = User.objects.get(username=username)
                 return user
             except User.DoesNotExist:
-                logger.info("First login for LDAP user (%s).  Creating new account." % username)
+                logger.info("First login for LDAP user (%s).  "
+                            "Creating new account." % username)
                 user = User(username=username, is_active=True)
-                user.password = 'LDAP_%s' % (User.objects.make_random_password(32))
+                user.password = ('LDAP_%s' %
+                                 (User.objects.make_random_password(32)))
                 for i in settings.AUTH_LDAP_FIELDS:
                     if i != 'dn' and len(settings.AUTH_LDAP_FIELDS[i]) > 0:
-                        setattr(user, i, result[0][1][settings.AUTH_LDAP_FIELDS[i]][0])
+                        setattr(user, i,
+                                result[0][1][settings.AUTH_LDAP_FIELDS[i]][0])
                 user.save()
                 return user
 
-        except (ldap.INVALID_CREDENTIALS, ldap.UNWILLING_TO_PERFORM):  # Bad e-mail or password
-            logger.debug("No account or bad credentials for (%s).  Failing LDAP auth." % (username))
+        # Bad e-mail or password
+        except (ldap.INVALID_CREDENTIALS, ldap.UNWILLING_TO_PERFORM):
+            logger.debug("No account or bad credentials for (%s).  "
+                         "Failing LDAP auth." %
+                         (username))
             return None
-        except Exception, e:  # No other exceptions are normal, so we raise this.
+        except Exception, e:  # No other exceptions are normal
             logger.error('Unknown LDAP error: ' + str(e))
             raise
 
