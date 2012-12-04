@@ -48,7 +48,7 @@ def required_depcheck():
         text = _('Translate Toolkit version %s installed.', version)
         state = 'tick'
     else:
-        text = _('Translate Toolkit version %(installed)s installed. Pootle requires at least version %(required)s.', 
+        text = _('Translate Toolkit version %(installed)s installed. Pootle requires at least version %(required)s.',
             {
                 'installed': version,
                 'required': ".".join(str(i) for i in depcheck.translate_required_ver)
