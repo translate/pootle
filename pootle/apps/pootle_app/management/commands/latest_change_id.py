@@ -30,5 +30,5 @@ class Command(NoArgsCommand):
     help = "Print the ID of the latest change made."
 
     def handle_noargs(self, **options):
-        last_change = Submission.objects.select_related("").latest()
-        print last_change.id
+        print Submission.objects.values_list('id', flat=True) \
+                                .select_related("").latest()
