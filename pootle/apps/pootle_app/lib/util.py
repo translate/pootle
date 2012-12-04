@@ -20,44 +20,8 @@
 
 """Some code helpers."""
 
-
-def lazy(result_name):
-    """This is used to create an attribute whose value is
-    lazily computed. The parameter names an object variable that
-    will be used to hold the lazily computed value. At the start,
-    this variable should hold the value undefined.
-
-    TODO: Replace this with a nice Python descriptor.
-
-    class Person(object):
-        def __init__(self):
-            self.name = 'John'
-            self.surname = 'Doe'
-
-        @lazy('_fullname')
-        def _get_fullname(self):
-            return self.name + ' ' + self.surname
-    """
-
-    def lazify(f):
-        def evaluator(self):
-            try:
-                return getattr(self, result_name)
-            except AttributeError:
-                result = f(self)
-                setattr(self, result_name, result)
-                return result
-        return evaluator
-    return lazify
-
-def lazy_property(name, getter):
-    def deleter(self):
-        delattr(self, name)
-
-    return property(lazy(name)(getter), None, deleter)
-
-
 from django.db import models
+
 class RelatedManager(models.Manager):
     """Model manager that always does full joins on relations, saves
     us lots of database queries later"""
