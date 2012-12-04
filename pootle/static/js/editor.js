@@ -1377,7 +1377,8 @@
   /* Gets the failing check options for the current query */
   getCheckOptions: function () {
     var opts,
-        checksUrl = this.store ? l(this.store + '/checks/') : l(this.directory + "checks.html");
+        checksUrl = this.store ? l('/checks' + this.store) :
+                                 l(this.directory + "checks.html");
 
     $.ajax({
       url: checksUrl,
