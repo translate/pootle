@@ -1029,7 +1029,6 @@ class Store(models.Model, base.TranslationStore):
                     if not unit.istranslated():
                         unit.delete()
                     elif not conservative:
-                        #FIXME: make obsolete instead?
                         unit.makeobsolete()
                         unit.save()
 
