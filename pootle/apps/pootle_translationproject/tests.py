@@ -610,4 +610,3 @@ Fuzzy
 '''
     ext = 'srt'
     nontrans_count = 0
-

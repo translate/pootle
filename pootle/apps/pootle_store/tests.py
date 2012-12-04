@@ -395,4 +395,3 @@ class XHRTestAdmin(XHRTestNobody):
     """
     username = 'admin'
     password = 'admin'
-

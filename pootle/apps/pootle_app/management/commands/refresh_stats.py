@@ -39,4 +39,3 @@ class Command(PootleCommand):
     def handle_store(self, store, **options):
         store.getcompletestats()
         store.getquickstats()
-
