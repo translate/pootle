@@ -2,6 +2,7 @@
 
 import logging
 
+
 def hook(project, hooktype, file, *args, **kwargs):
     """
     project should be the projectcode of any project.
@@ -22,13 +23,18 @@ def hook(project, hooktype, file, *args, **kwargs):
     logger = logging.getLogger('pootle.scripts.hooks')
     try:
         activehook = __import__(project, globals(), locals(), [])
-        if hasattr(activehook, hooktype) and callable(getattr(activehook, hooktype)):
-            logger.debug("Executing hook %s for project %s on file %s", hooktype, project, file)
+        if (hasattr(activehook, hooktype) and
+                callable(getattr(activehook, hooktype))):
+            logger.debug("Executing hook %s for project %s on file %s",
+                         hooktype, project, file)
             return getattr(activehook, hooktype)(file, *args, **kwargs)
         else:
-            logger.debug("Imported %s, but it is not a suitable %s hook", activehook.__file__, hooktype)
-            raise ImportError("Imported %s, but it is not a suitable %s hook" % (activehook.__file__, hooktype))
+            logger.debug("Imported %s, but it is not a suitable %s hook",
+                         activehook.__file__, hooktype)
+            raise ImportError("Imported %s, but it is not a suitable %s hook" %
+                              (activehook.__file__, hooktype))
     except ImportError, e:
         raise ImportError(e)
     except Exception, e:
-        logger.error("Exception in project (%s) hook (%s) for file (%s): %s" % (project, hooktype, file, e))
+        logger.error("Exception in project (%s) hook (%s) for file (%s): %s" %
+                     (project, hooktype, file, e))
