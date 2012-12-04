@@ -29,7 +29,7 @@ from pootle_app.lib.util import RelatedManager
 
 #: These are the values for the 'type' field of Submission
 class SubmissionTypes(object):
-    #None/0 = no information
+    # None/0 = no information
     NORMAL = 1  # Interactive web editing
     REVERT = 2  # Revert action on the web
     SUGG_ACCEPT = 3  # Accepting a suggestion
@@ -40,8 +40,8 @@ class SubmissionTypes(object):
 class SubmissionFields(object):
     SOURCE = 1  # pootle_store.models.Unit.source
     TARGET = 2  # pootle_store.models.Unit.target
-    STATE = 3  #pootle_store.models.Unit.state
-    COMMENT = 4  #pootle_store.models.Unit.translator_comment
+    STATE = 3  # pootle_store.models.Unit.state
+    COMMENT = 4  # pootle_store.models.Unit.translator_comment
 
     NAMES_MAP = {
         SOURCE: _("Source"),

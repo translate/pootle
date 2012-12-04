@@ -135,7 +135,7 @@ class MathCaptchaForm(forms.Form):
                     'sign': sign}
         except Exception, e:
             logging.info("Captcha error: %r" % e)
-            raise forms.ValidationError("Invalid captcha!") #l10n for bots? Rather not
+            raise forms.ValidationError("Invalid captcha!") # l10n for bots? Rather not
 
     def clean_captcha_answer(self):
         a = self.A_RE.match(self.cleaned_data.get('captcha_answer'))

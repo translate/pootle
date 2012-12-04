@@ -223,8 +223,8 @@ def unit_form_factory(language, snplurals=None, request=None):
             return value
 
         def clean_state(self):
-            old_state = self.instance.state    #integer
-            value = self.cleaned_data['state'] #boolean
+            old_state = self.instance.state    # integer
+            value = self.cleaned_data['state'] # boolean
             new_target = self.cleaned_data['target_f']
 
             new_state = None
