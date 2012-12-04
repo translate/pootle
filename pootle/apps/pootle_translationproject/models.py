@@ -697,7 +697,7 @@ class TranslationProject(models.Model):
             else:
                 return archivecontents.getvalue()
         finally:
-            if tempzipfile is not None and  os.path.exists(tempzipfile):
+            if tempzipfile is not None and os.path.exists(tempzipfile):
                 os.remove(tempzipfile)
             try:
                 archivecontents.close()
