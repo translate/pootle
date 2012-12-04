@@ -180,21 +180,25 @@ def get_path_summary(path_obj, path_stats):
     ]))
 
 
-    incomplete.append(u'<a class="path-incomplete" href="%(url)s">' % {
-        'url': dispatch.translate(path_obj, state='incomplete')
-    })
-
     if path_stats['untranslated']['words'] > 0 or path_stats['fuzzy']['words'] > 0:
         num_words = path_stats['untranslated']['words'] + path_stats['fuzzy']['words']
-        incomplete.append(
+        incomplete.extend([
+            u'<a class="path-incomplete" href="%(url)s">' % {
+                    'url': dispatch.translate(path_obj, state='incomplete')
+                },
             ungettext(u'Continue translation (%(num)d word left)',
                       u'Continue translation (%(num)d words left)',
                       num_words) % {
                           'num': num_words,
-                      }
-        )
+                      },
+        ])
     else:
-        incomplete.append(force_unicode(_('Translation is complete')))
+        incomplete.extend([
+            u'<a class="path-incomplete" href="%(url)s">' % {
+                    'url': dispatch.translate(path_obj, state='all')
+                },
+            force_unicode(_('Translation is complete')),
+        ])
 
     incomplete.append(u'</a>')
 
