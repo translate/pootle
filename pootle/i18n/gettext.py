@@ -49,7 +49,8 @@ def gettext(message, vars=None):
 
 
 def ungettext(singular, plural, number, vars=None):
-    return _format_translation(_trans.ungettext(singular, plural, number), vars)
+    return _format_translation(_trans.ungettext(singular, plural, number),
+                               vars)
 
 
 def ngettext(singular, plural, number, vars=None):

@@ -25,22 +25,27 @@ _translation_project_cache = {}
 
 def get_live_translation(language_code):
     from django.db import models
-    TranslationProject = models.get_model('pootle_translationproject', 'TranslationProject')
+    TranslationProject = models.get_model('pootle_translationproject',
+                                          'TranslationProject')
     global _translation_project_cache
 
     if not language_code in _translation_project_cache:
         try:
-            _translation_project_cache[language_code] = TranslationProject.objects.get(language__code=language_code, project__code="pootle")
+            _translation_project_cache[language_code] = \
+                TranslationProject.objects.get(language__code=language_code,
+                                               project__code="pootle")
         except TranslationProject.DoesNotExist:
             _translation_project_cache[language_code] = None
 
     return _translation_project_cache[language_code]
+
 
 def _dummy_translate(singular, plural, n):
     if plural is not None and n != 1:
         return plural
     else:
         return singular
+
 
 def _translate_message(singular, plural, n):
     locale = translation.to_locale(translation.get_language())
@@ -63,6 +68,7 @@ def _translate_message(singular, plural, n):
 
     return live_translation.translate_message(singular, plural, n)
 
+
 def translate_message(singular, plural=None, n=1, vars=None):
     translated = _translate_message(singular, plural, n)
     if vars is not None:
@@ -72,14 +78,18 @@ def translate_message(singular, plural=None, n=1, vars=None):
             pass
     return translated
 
+
 def ugettext(message, vars=None):
     return unicode(translate_message(message, vars=vars))
+
 
 def ungettext(singular, plural, n, vars=None):
     return unicode(translate_message(singular, plural, n, vars=vars))
 
+
 def gettext(message, vars=None):
     return str(translate_message(message, vars=vars))
+
 
 def ngettext(singular, plural, n, vars=None):
     return str(translate_message(singular, plural, n, vars=vars))

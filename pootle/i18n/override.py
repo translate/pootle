@@ -39,8 +39,10 @@ def find_languages(locale_path):
     dirs = os.listdir(locale_path)
     langs = []
     for lang in dirs:
-        if data.langcode_re.match(lang) and os.path.isdir(os.path.join(locale_path, lang)):
-            langs.append((trans_real.to_language(lang), data.languages.get(lang, (lang,))[0]))
+        if (data.langcode_re.match(lang) and
+                os.path.isdir(os.path.join(locale_path, lang))):
+            langs.append((trans_real.to_language(lang),
+                          data.languages.get(lang, (lang,))[0]))
     return langs
 
 
@@ -55,7 +57,8 @@ def supported_langs():
             # Language is never created before PootleProfile and all
             # ManyToMany relations work fine
             from pootle_language.models import Language
-            return [(trans_real.to_language(language.code), language.fullname) for language in Language.objects.exclude(code='template')]
+            return [(trans_real.to_language(language.code), language.fullname)
+                    for language in Language.objects.exclude(code='template')]
         except Exception:
             pass
     return settings.LANGUAGES
@@ -124,7 +127,8 @@ def get_lang_from_http_header(request, supported):
     for accept_lang, unused in trans_real.parse_accept_lang_header(accept):
         if accept_lang == '*':
             return None
-        normalized = data.normalize_code(data.simplify_to_common(accept_lang, supported))
+        normalized = data.normalize_code(data.simplify_to_common(accept_lang,
+                                                                 supported))
         if normalized in ['en-us', 'en']:
             return None
         if normalized in supported:
