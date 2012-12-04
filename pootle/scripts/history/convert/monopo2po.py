@@ -35,7 +35,7 @@ class amo2po:
             if engunit.isheader():
                 try:
                     thetargetfile.addunit(forunit)
-                except: # If there's no foreign header, use english header
+                except:  # If there's no foreign header, use english header
                     thetargetfile.addunit(newunit)
                 continue
 

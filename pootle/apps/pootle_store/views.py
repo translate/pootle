@@ -989,7 +989,7 @@ def clear_vote(request, voteid):
             from voting.models import Vote
             vote = Vote.objects.get(pk=voteid)
             if vote.user != request.user:
-                raise PermissionDenied("Users can only remove their own votes") # no i18n, will not go to UI
+                raise PermissionDenied("Users can only remove their own votes")  # no i18n, will not go to UI
             vote.delete()
         except ObjectDoesNotExist:
             raise Http404
@@ -1006,7 +1006,7 @@ def vote_up(request, unit, suggid):
         try:
             suggestion = unit.suggestion_set.get(id=suggid)
             from voting.models import Vote
-            Vote.objects.record_vote(suggestion, request.user, +1) # why can't it just return the vote object?
+            Vote.objects.record_vote(suggestion, request.user, +1)  # why can't it just return the vote object?
             json["voteid"] = Vote.objects.get_for_user(suggestion, request.user).id
         except ObjectDoesNotExist:
             raise Http404(_("The suggestion or vote is not valid any more."))

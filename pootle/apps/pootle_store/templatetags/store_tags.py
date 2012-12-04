@@ -52,17 +52,17 @@ def call_highlight(old, new):
 def _google_highlight_diffs(old, new):
     """Highlights the differences between old and new."""
 
-    textdiff = u"" # to store the final result
-    removed = u"" # the removed text that we might still want to add
+    textdiff = u""  # to store the final result
+    removed = u""  # the removed text that we might still want to add
     diff = differencer.diff_main(old, new)
     differencer.diff_cleanupSemantic(diff)
     for op, text in diff:
-        if op == 0: # equality
+        if op == 0:  # equality
             if removed:
                 textdiff += '<span class="diff-delete">%s</span>' % fancy_escape(removed)
                 removed = u""
             textdiff += fancy_escape(text)
-        elif op == 1: # insertion
+        elif op == 1:  # insertion
             if removed:
                 # this is part of a substitution, not a plain insertion. We
                 # will format this differently.
@@ -70,7 +70,7 @@ def _google_highlight_diffs(old, new):
                 removed = u""
             else:
                 textdiff += '<span class="diff-insert">%s</span>' % fancy_escape(text)
-        elif op == -1: # deletion
+        elif op == -1:  # deletion
             removed = text
     if removed:
         textdiff += '<span class="diff-delete">%s</span>' % fancy_escape(removed)

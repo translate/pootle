@@ -88,9 +88,9 @@ class View(object):
 
 class Handler(object):
 
-    Form = None # This should be implemented as an inner class
+    Form = None  # This should be implemented as an inner class
 
-    actions = [] # This should be all
+    actions = []  # This should be all
 
 
     @classmethod

@@ -74,10 +74,10 @@ class LdapBackend(object):
                 user.save()
                 return user
 
-        except (ldap.INVALID_CREDENTIALS, ldap.UNWILLING_TO_PERFORM): # Bad e-mail or password
+        except (ldap.INVALID_CREDENTIALS, ldap.UNWILLING_TO_PERFORM):  # Bad e-mail or password
             logger.debug("No account or bad credentials for (%s).  Failing LDAP auth." % (username))
             return None
-        except Exception, e: # No other exceptions are normal, so we raise this.
+        except Exception, e:  # No other exceptions are normal, so we raise this.
             logger.error('Unknown LDAP error: ' + str(e))
             raise
 

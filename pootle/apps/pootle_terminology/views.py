@@ -101,7 +101,7 @@ def extract(request, translation_project):
             #FIXME: what to do with score?
             unit.save()
             for suggestion in unit.pending_suggestions:
-                unit.add_suggestion(suggestion) # Touch=True which saves unit on every call
+                unit.add_suggestion(suggestion)  # Touch=True which saves unit on every call
 
         # unlock file
         store.state = oldstate
