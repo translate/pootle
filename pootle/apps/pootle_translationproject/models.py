@@ -205,16 +205,19 @@ class TranslationProject(models.Model):
         """Update all stores to reflect state on disk"""
         stores = self.stores.exclude(file='').filter(state__gte=PARSED)
         for store in stores.iterator():
-            store.update(update_translation=True, update_structure=\
-                    not conservative, conservative=conservative)
+            store.update(update_translation=True,
+                         update_structure=not conservative,
+                         conservative=conservative)
 
     def sync(self, conservative=True, skip_missing=False, modified_since=0):
         """Sync unsaved work on all stores to disk"""
         stores = self.stores.exclude(file='').filter(state__gte=PARSED)
         for store in stores.iterator():
-            store.sync(update_translation=True, update_structure=\
-                    not conservative, conservative=conservative, create=False,
-                    skip_missing=skip_missing, modified_since=modified_since)
+            store.sync(update_translation=True,
+                       update_structure=not conservative,
+                       conservative=conservative, create=False,
+                       skip_missing=skip_missing,
+                       modified_since=modified_since)
 
     @getfromcache
     def get_mtime(self):
