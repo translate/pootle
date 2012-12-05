@@ -988,7 +988,8 @@ class Store(models.Model, base.TranslationStore):
 
     @commit_on_success
     def update(self, update_structure=False, update_translation=False,
-               conservative=True, store=None, fuzzy=False, only_newer=False)
+               conservative=True, store=None, fuzzy=False, only_newer=False,
+               modified_since=0):
         """Update DB with units from file.
 
         :param update_structure: Whether to update store's structure by marking
@@ -1002,6 +1003,8 @@ class Store(models.Model, base.TranslationStore):
         :param fuzzy: Whether to perform fuzzy matching or not.
         :param only_newer: Whether to update only the files that changed on
             disk after the last sync.
+        :param modified_since: Don't update translations that have been
+            modified since the given change ID.
         """
         self.clean_stale_lock()
 
@@ -1082,10 +1085,35 @@ class Store(models.Model, base.TranslationStore):
                     if old_state >= CHECKED:
                         newunit.update_qualitychecks(created=True)
 
-            if update_translation:
-                common_dbids = [self.dbid_index.get(uid)
-                                for uid in old_ids & new_ids]
+            if update_translation or modified_since:
+                modified_units = set()
 
+                if modified_since:
+                    from pootle_statistics.models import Submission
+                    self_unit_ids = set(self.dbid_index.values())
+
+                    try:
+                        modified_units = set(Submission.objects.filter(
+                                id__gte=modified_since,
+                                unit__id__in=self_unit_ids,
+                        ).values_list('unit', flat=True).distinct())
+                    except DatabaseError, e:
+                        # SQLite might barf with the IN operator over too many
+                        # values
+                        modified_units = set(Submission.objects.filter(
+                                id__gte=modified_since,
+                        ).values_list('unit', flat=True).distinct())
+                        modified_units &= self_unit_ids
+
+                common_dbids = set(self.dbid_index.get(uid) \
+                                   for uid in old_ids & new_ids)
+
+                # If some units have been modified since a given change ID,
+                # keep them safe and avoid overwrites
+                if modified_units:
+                    common_dbids -= modified_units
+
+                common_dbids = list(common_dbids)
                 for unit in self.findid_bulk(common_dbids):
                     newunit = store.findid(unit.getid())
 

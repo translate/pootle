@@ -204,6 +204,13 @@ directly on the file system.
 it from overwriting any existing translation in the database, thus only
 updating new translations and discovering new files and strings.
 
+.. versionchanged:: 2.5
+
+Along with ``--keep`` the ``--modified-since`` option can be used to keep
+translations that have a change ID greater than the given value. This way some
+translated units can be updated from in-disk files while at preserving in-DB
+translations for other units that meet the given criterion.
+
 By default *update_stores* will only update files that appear to have changed
 on disk since the last synchronization with Pootle. To force all files to
 update, specify ``--force``.

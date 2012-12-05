@@ -32,7 +32,7 @@ from pootle_app.management.commands import PootleCommand, ModifiedSinceMixin
 class Command(ModifiedSinceMixin, PootleCommand):
     option_list = PootleCommand.option_list + (
         make_option('--keep', action='store_true', dest='keep', default=False,
-                    help="Keep existing translations, just update "
+                    help="Keep existing translations; just update "
                          "untranslated units and add new units."),
         make_option('--force', action='store_true', dest='force', default=False,
                     help="Unconditionally process all files (even if they "
@@ -57,6 +57,9 @@ class Command(ModifiedSinceMixin, PootleCommand):
     def handle_store(self, store, **options):
         keep = options.get('keep', False)
         force = options.get('force', False)
-        # update new translations
+        change_id = options.get('modified_since', 0)
+
+        # Update new translations
         store.update(update_translation=not keep, conservative=keep,
-                     update_structure=True, only_newer=not force)
+                     update_structure=True, only_newer=not force,
+                     modified_since=change_id)
