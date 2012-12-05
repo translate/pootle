@@ -174,6 +174,8 @@ obsolete and updating the file's structure.
 With the ``--skip-missing`` option, files that are missing on disk will be
 ignored, and no new files will be created.
 
+.. versionadded:: 2.5
+
 With the ``--modified-since`` option it is possible to give a change identifier
 (from the output of ``latest_change_id``) to specifically indicate which changes
 need to be synced to disk. This will override Pootle on what has/hasn't been
