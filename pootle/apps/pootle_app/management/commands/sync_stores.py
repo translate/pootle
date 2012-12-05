@@ -57,5 +57,22 @@ class Command(ModifiedSinceMixin, PootleCommand):
     def handle_store(self, store, **options):
         overwrite = options.get('overwrite', False)
         skip_missing = options.get('skip_missing', False)
+        change_id = options.get('modified_since', 0)
+
+        if change_id:
+            from pootle_statistics.models import Submission
+
+            pootle_path = store.pootle_path
+            has_changes = Submission.objects.filter(
+                    id__gte=change_id,
+                    unit__store__pootle_path=pootle_path,
+            ).exists()
+
+            if not has_changes:
+                logging.debug(u"File didn't change since %d, skipping %s",
+                              change_id, pootle_path)
+                return
+
         store.sync(update_translation=True, conservative=not overwrite,
-                   update_structure=overwrite, skip_missing=skip_missing)
+                   update_structure=overwrite, skip_missing=skip_missing,
+                   modified_since=change_id)
