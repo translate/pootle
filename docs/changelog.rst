@@ -40,6 +40,8 @@ Not released yet.
 - If you will be using Pootle with Django 1.3, you *have* to keep the timezone
   on ``UTC``, unless you are using PostgreSQL. Users of PostgreSQL or Django
   1.4 or later are free to set the time zone as they prefer.
+  Also make sure to use the minimum required South version when performing
+  database upgrades.
 
 
 Version 2.1.6
