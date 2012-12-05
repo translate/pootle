@@ -1206,7 +1206,7 @@ class Store(models.Model, base.TranslationStore):
                 try:
                     modified_units = set(Submission.objects.filter(
                             id__gte=modified_since,
-                            id__in=self_unit_ids,
+                            unit__id__in=self_unit_ids,
                     ).values_list('unit', flat=True).distinct())
                 except DatabaseError, e:
                     # SQLite might barf with the IN operator over too many values
