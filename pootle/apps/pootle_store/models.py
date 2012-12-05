@@ -87,9 +87,11 @@ class SuggestionManager(RelatedManager):
         return self.get(target_hash=target_hash, unit__unitid_hash=unitid_hash,
                  unit__store__pootle_path=pootle_path)
 
+
 class Suggestion(models.Model, base.TranslationUnit):
-    """suggested translation for unit, provided by users or
-    automatically generated after a merge"""
+    """Suggested translation for a :cls:`~pootle_store.models.Unit`, provided
+    by users or automatically generated after a merge.
+    """
     objects = SuggestionManager()
     class Meta:
         unique_together = ('unit', 'target_hash')
@@ -102,7 +104,8 @@ class Suggestion(models.Model, base.TranslationUnit):
     translator_comment_f = models.TextField(null=True, blank=True)
 
     def natural_key(self):
-        return (self.target_hash, self.unit.unitid_hash, self.unit.store.pootle_path)
+        return (self.target_hash, self.unit.unitid_hash,
+                self.unit.store.pootle_path)
     natural_key.dependencies = ['pootle_store.Unit', 'pootle_store.Store']
 
     def __unicode__(self):
@@ -130,7 +133,9 @@ class Suggestion(models.Model, base.TranslationUnit):
         self.translator_comment_f = value
         self._set_hash()
 
-    translator_comment = property(lambda self: self.translator_comment_f, _set_translator_comment)
+    translator_comment = property(lambda self: self.translator_comment_f,
+                                  _set_translator_comment)
+
 
 def delete_votes(sender, instance, **kwargs):
     # Since votes are linked by ContentType and not foreign keys, referential
@@ -147,23 +152,29 @@ post_delete.connect(delete_votes, sender=Suggestion)
 ############### Unit ####################
 
 def fix_monolingual(oldunit, newunit, monolingual=None):
-    """hackish workaround for monolingual files always having only source and no target.
+    """Hackish workaround for monolingual files always having only source and
+    no target.
 
-    we compare monolingual unit with corresponding bilingual unit, if
-    sources differ assume monolingual source is actually a translation"""
-
+    We compare monolingual unit with corresponding bilingual unit, if sources
+    differ assume monolingual source is actually a translation.
+    """
     if monolingual is None:
         monolingual = is_monolingual(type(newunit._store))
+
     if monolingual and newunit.source != oldunit.source:
         newunit.target = newunit.source
         newunit.source = oldunit.source
 
+
 def count_words(strings):
-    wordcount = 0
     from translate.storage import statsdb
+    wordcount = 0
+
     for string in strings:
         wordcount += statsdb.wordcount(string)
+
     return wordcount
+
 
 def stringcount(string):
     try:
@@ -171,9 +182,13 @@ def stringcount(string):
     except AttributeError:
         return 1
 
+
 class UnitManager(RelatedManager):
+
     def get_by_natural_key(self, unitid_hash, pootle_path):
-        return self.get(unitid_hash=unitid_hash, store__pootle_path=pootle_path)
+        return self.get(unitid_hash=unitid_hash,
+                        store__pootle_path=pootle_path)
+
 
 class Unit(models.Model, base.TranslationUnit):
     objects = UnitManager()
@@ -493,8 +508,8 @@ class Unit(models.Model, base.TranslationUnit):
         if not self.target:
             return
 
-        qc_failures = self.store.translation_project.checker. \
-                run_filters(self, categorised=True)
+        qc_failures = self.store.translation_project.checker \
+                                .run_filters(self, categorised=True)
 
         for name in qc_failures.iterkeys():
             if name == 'isfuzzy' or name in existing:
@@ -505,7 +520,6 @@ class Unit(models.Model, base.TranslationUnit):
 
             self.qualitycheck_set.create(name=name, message=message,
                                          category=category)
-
 
     def get_qualitychecks(self):
         return self.qualitycheck_set.filter(false_positive=False)
@@ -1037,8 +1051,8 @@ class Store(models.Model, base.TranslationStore):
             new_ids = set(store.getids())
 
             if update_structure:
-                obsolete_dbids = [self.dbid_index.get(uid) \
-                    for uid in old_ids - new_ids]
+                obsolete_dbids = [self.dbid_index.get(uid)
+                                  for uid in old_ids - new_ids]
                 for unit in self.findid_bulk(obsolete_dbids):
                     if not unit.istranslated():
                         unit.delete()
@@ -1117,8 +1131,8 @@ class Store(models.Model, base.TranslationStore):
         if skip_missing and not self.file.exists():
             return
 
-        if (not modified_since and conservative
-            and self.sync_time >= self.get_mtime()):
+        if (not modified_since and conservative and
+            self.sync_time >= self.get_mtime()):
             return
 
         if not self.file:
@@ -1443,7 +1457,7 @@ class Store(models.Model, base.TranslationStore):
                         newunit.update_qualitychecks(created=True)
 
             if obsoletemissing:
-                obsolete_dbids = [self.dbid_index.get(uid) \
+                obsolete_dbids = [self.dbid_index.get(uid)
                                   for uid in old_ids - new_ids]
                 for unit in self.findid_bulk(obsolete_dbids):
                     if unit.istranslated():
