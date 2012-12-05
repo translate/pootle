@@ -1197,8 +1197,9 @@ class Store(models.Model, base.TranslationStore):
 
         monolingual = is_monolingual(type(disk_store))
 
-        modified_units = set()
         if update_translation:
+            modified_units = set()
+
             if modified_since:
                 from pootle_statistics.models import Submission
                 self_unit_ids = set(self.dbid_index.values())
