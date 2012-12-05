@@ -968,23 +968,13 @@ class Store(models.Model, base.TranslationStore):
             self.save()
             return
 
-    def _remove_obsolete(self, source, store=None):
+    def _remove_obsolete(self, source):
+        """Removes an obsolete unit from the DB. This will usually be used
+        after fuzzy matching.
         """
-        removes an obsolete unit. from both database and filesystem store
-        this will usually be used after fuzzy matching
-        """
-        changed = False
-        #if store is None and self.file:
-        #    store = self.file.store
         obsolete_unit = self.findunit(source, obsolete=True)
         if obsolete_unit:
-            #if store:
-            #    st_obsolete = store.findid(obsolete_unit.getid())
-            #    if st_obsolete and st_obsolete.isobsolete():
-            #        del st_obsolete
-            #        changed = True
             obsolete_unit.delete()
-        return changed
 
     @commit_on_success
     def update(self, update_structure=False, update_translation=False,
@@ -1067,8 +1057,8 @@ class Store(models.Model, base.TranslationStore):
                         match_unit = newunit.fuzzy_translate(matcher)
                         if match_unit:
                             newunit.save()
-                            self._remove_obsolete(match_unit.source,
-                                                  store=store)
+                            self._remove_obsolete(match_unit.source)
+
                     if old_state >= CHECKED:
                         newunit.update_qualitychecks(created=True)
 
@@ -1093,7 +1083,7 @@ class Store(models.Model, base.TranslationStore):
                         match_unit = unit.fuzzy_translate(matcher)
                         if match_unit:
                             changed = True
-                            self._remove_obsolete(match_unit.source, store=store)
+                            self._remove_obsolete(match_unit.source)
 
                     if changed:
                         do_checks = unit._source_updated or unit._target_updated
