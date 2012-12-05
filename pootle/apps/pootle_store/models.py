@@ -1002,14 +1002,14 @@ class Store(models.Model, base.TranslationStore):
         self.clean_stale_lock()
 
         if self.state == LOCKED:
-            # file currently being updated
-            #FIXME: Shall we idle wait for lock to be released first?
+            # File currently being updated
+            # FIXME: Shall we idle wait for lock to be released first?
             # What about stale locks?
             logging.info(u"Attempted to update %s while locked",
                          self.pootle_path)
             return
         elif self.state < PARSED:
-            # file has not been parsed before
+            # File has not been parsed before
             logging.debug(u"Attempted to update unparsed file %s",
                           self.pootle_path)
             self.parse(store=store)
@@ -1042,11 +1042,16 @@ class Store(models.Model, base.TranslationStore):
                 matcher = self.get_matcher()
 
             monolingual = is_monolingual(type(store))
+
+            # Force a rebuild of the unit ID <-> DB ID index and get IDs for
+            # in-DB (old) and on-disk (new) stores
             self.require_dbid_index(update=True, obsolete=True)
             old_ids = set(self.dbid_index.keys())
             new_ids = set(store.getids())
 
             if update_structure:
+                # Remove old units or make them obsolete if they were already
+                # translated
                 obsolete_dbids = [self.dbid_index.get(uid)
                                   for uid in old_ids - new_ids]
                 for unit in self.findid_bulk(obsolete_dbids):
@@ -1056,15 +1061,20 @@ class Store(models.Model, base.TranslationStore):
                         unit.makeobsolete()
                         unit.save()
 
+                # Add new units to the store
                 new_units = (store.findid(uid) for uid in new_ids - old_ids)
                 for unit in new_units:
                     newunit = self.addunit(unit, unit.index)
+
+                    # Fuzzy match non-empty target strings
                     if fuzzy and not filter(None, newunit.target.strings):
                         match_unit = newunit.fuzzy_translate(matcher)
                         if match_unit:
                             newunit.save()
                             self._remove_obsolete(match_unit.source)
 
+                    # Update quality checks for the new unit in case they were
+                    # calculated for the store before
                     if old_state >= CHECKED:
                         newunit.update_qualitychecks(created=True)
 
@@ -1081,10 +1091,12 @@ class Store(models.Model, base.TranslationStore):
 
                     changed = unit.update(newunit)
 
+                    # Unit's index within the store might have changed
                     if update_structure and unit.index != newunit.index:
                         unit.index = newunit.index
                         changed = True
 
+                    # Fuzzy match non-empty target strings
                     if fuzzy and not filter(None, unit.target.strings):
                         match_unit = unit.fuzzy_translate(matcher)
                         if match_unit:
