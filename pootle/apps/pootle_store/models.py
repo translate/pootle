@@ -200,16 +200,20 @@ class Unit(models.Model, base.TranslationUnit):
     store = models.ForeignKey("pootle_store.Store", db_index=True)
     index = models.IntegerField(db_index=True)
     unitid = models.TextField(editable=False)
-    unitid_hash = models.CharField(max_length=32, db_index=True, editable=False)
+    unitid_hash = models.CharField(max_length=32, db_index=True,
+            editable=False)
 
     source_f = MultiStringField(null=True)
-    source_hash = models.CharField(max_length=32, db_index=True, editable=False)
+    source_hash = models.CharField(max_length=32, db_index=True,
+            editable=False)
     source_wordcount = models.SmallIntegerField(default=0, editable=False)
-    source_length = models.SmallIntegerField(db_index=True, default=0, editable=False)
+    source_length = models.SmallIntegerField(db_index=True, default=0,
+            editable=False)
 
     target_f = MultiStringField(null=True, blank=True)
     target_wordcount = models.SmallIntegerField(default=0, editable=False)
-    target_length = models.SmallIntegerField(db_index=True, default=0, editable=False)
+    target_length = models.SmallIntegerField(db_index=True, default=0,
+            editable=False)
 
     developer_comment = models.TextField(null=True, blank=True)
     translator_comment = models.TextField(null=True, blank=True)
@@ -223,14 +227,14 @@ class Unit(models.Model, base.TranslationUnit):
                                  db_index=True, editable=False)
 
     submitted_by = models.ForeignKey('pootle_profile.PootleProfile', null=True,
-                                     db_index=True, related_name='submitted')
+            db_index=True, related_name='submitted')
     submitted_on = models.DateTimeField(auto_now_add=True, db_index=True,
-                                        null=True)
+            null=True)
 
     commented_by = models.ForeignKey('pootle_profile.PootleProfile', null=True,
-                                     db_index=True, related_name='commented')
+            db_index=True, related_name='commented')
     commented_on = models.DateTimeField(auto_now_add=True, db_index=True,
-                                        null=True)
+            null=True)
 
 
     def natural_key(self):
@@ -1203,13 +1207,15 @@ class Store(models.Model, base.TranslationStore):
             if modified_since:
                 from pootle_statistics.models import Submission
                 self_unit_ids = set(self.dbid_index.values())
+
                 try:
                     modified_units = set(Submission.objects.filter(
                             id__gte=modified_since,
                             unit__id__in=self_unit_ids,
                     ).values_list('unit', flat=True).distinct())
                 except DatabaseError, e:
-                    # SQLite might barf with the IN operator over too many values
+                    # SQLite might barf with the IN operator over too many
+                    # values
                     modified_units = set(Submission.objects.filter(
                             id__gte=modified_since,
                     ).values_list('unit', flat=True).distinct())
