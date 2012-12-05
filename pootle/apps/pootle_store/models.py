@@ -1065,8 +1065,8 @@ class Store(models.Model, base.TranslationStore):
                 for unit in self.findid_bulk(common_dbids):
                     newunit = store.findid(unit.getid())
 
-                    if monolingual and not \
-                       self.translation_project.is_template_project:
+                    if (monolingual and not
+                        self.translation_project.is_template_project):
                         fix_monolingual(unit, newunit, monolingual)
 
                     changed = unit.update(newunit)
@@ -1080,19 +1080,18 @@ class Store(models.Model, base.TranslationStore):
                         if match_unit:
                             changed = True
                             self._remove_obsolete(match_unit.source, store=store)
+
                     if changed:
                         do_checks = unit._source_updated or unit._target_updated
                         unit.save()
                         if do_checks and old_state >= CHECKED:
                             unit.update_qualitychecks()
-
         finally:
             # Unlock store
             self.state = old_state
             if update_structure and update_translation and not conservative:
                 self.sync_time = timezone.now()
             self.save()
-
 
     def require_qualitychecks(self):
         """make sure quality checks are run"""
