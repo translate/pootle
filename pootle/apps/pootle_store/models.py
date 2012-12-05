@@ -974,9 +974,21 @@ class Store(models.Model, base.TranslationStore):
 
     @commit_on_success
     def update(self, update_structure=False, update_translation=False,
-               conservative=True, store=None, fuzzy=False, only_newer=False):
-        """Update DB with units from file."""
+               conservative=True, store=None, fuzzy=False, only_newer=False)
+        """Update DB with units from file.
 
+        :param update_structure: Whether to update store's structure by marking
+            common untranslated units as obsolete and adding new units.
+        :param update_translation: Whether to update existing translations or
+            not.
+        :param conservative: Keep existing translations by not marking them as
+            obsoletes. It has effect only if :param:`update_structure` is set.
+        :param store: The target :class:`~pootle_store.models.Store`. If unset,
+            the current file will be used as a target.
+        :param fuzzy: Whether to perform fuzzy matching or not.
+        :param only_newer: Whether to update only the files that changed on
+            disk after the last sync.
+        """
         self.clean_stale_lock()
 
         if self.state == LOCKED:
