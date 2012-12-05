@@ -20,12 +20,16 @@
 
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
-from optparse import make_option
+
 import logging
+import sys
 
-from pootle_app.management.commands import PootleCommand
+from optparse import make_option
 
-class Command(PootleCommand):
+from pootle_app.management.commands import PootleCommand, ModifiedSinceMixin
+
+
+class Command(ModifiedSinceMixin, PootleCommand):
     option_list = PootleCommand.option_list + (
         make_option('--keep', action='store_true', dest='keep', default=False,
                     help="Keep existing translations, just update "
@@ -35,6 +39,16 @@ class Command(PootleCommand):
                          "appear unchanged)."),
         )
     help = "Update database stores from files."
+
+    def handle_noargs(self, **options):
+        keep = options.get('keep', False)
+        change_id = options.get('modified_since', 0)
+
+        if (change_id and not keep):
+            logging.error(u"Both --keep and --modified-since must be set.")
+            sys.exit(1)
+
+        super(Command, self).handle_noargs(**options)
 
     def handle_translation_project(self, translation_project, **options):
         logging.info(u"Scanning for new files in %s", translation_project)
