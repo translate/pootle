@@ -41,7 +41,7 @@ version that you might want to configure. For example, the setting
 missing from a settings file from Pootle 2.0.
 
 When you start the new version of Pootle, you want to be sure that your
-*podirectory* and database settings are correct.
+:setting:`PODIRECTORY` and database settings are correct.
 
 Once you have the new code configured to run in your web server using the
 correct *settings/\*.conf*, **Pootle will perform the necessary upgrade when
