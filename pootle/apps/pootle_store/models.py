@@ -1059,10 +1059,10 @@ class Store(models.Model, base.TranslationStore):
                         newunit.update_qualitychecks(created=True)
 
             if update_translation:
-                shared_dbids = [self.dbid_index.get(uid) \
-                    for uid in old_ids & new_ids]
+                common_dbids = [self.dbid_index.get(uid)
+                                for uid in old_ids & new_ids]
 
-                for unit in self.findid_bulk(shared_dbids):
+                for unit in self.findid_bulk(common_dbids):
                     newunit = store.findid(unit.getid())
 
                     if monolingual and not \
@@ -1193,14 +1193,14 @@ class Store(models.Model, base.TranslationStore):
                     ).values_list('unit', flat=True).distinct())
                     modified_units &= self_unit_ids
 
-            shared_dbids = set(self.dbid_index.get(uid) \
-                            for uid in old_ids & new_ids)
+            common_dbids = set(self.dbid_index.get(uid) \
+                               for uid in old_ids & new_ids)
 
             if modified_units:
-                shared_dbids &= modified_units
+                common_dbids &= modified_units
 
-            shared_dbids = list(shared_dbids)
-            for unit in self.findid_bulk(shared_dbids):
+            common_dbids = list(common_dbids)
+            for unit in self.findid_bulk(common_dbids):
                 # FIXME: use a better mechanism for handling states and
                 # different formats
                 if monolingual and not unit.istranslated():
@@ -1453,9 +1453,9 @@ class Store(models.Model, base.TranslationStore):
                     else:
                         unit.delete()
 
-            shared_dbids = [self.dbid_index.get(uid) \
+            common_dbids = [self.dbid_index.get(uid)
                             for uid in old_ids & new_ids]
-            for oldunit in self.findid_bulk(shared_dbids):
+            for oldunit in self.findid_bulk(common_dbids):
                 newunit = newfile.findid(oldunit.getid())
 
                 if (monolingual and
