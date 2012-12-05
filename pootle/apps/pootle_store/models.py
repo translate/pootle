@@ -417,7 +417,13 @@ class Unit(models.Model, base.TranslationUnit):
         return changed
 
     def update(self, unit):
-        """Update in-DB translation from file."""
+        """Update in-DB translation from the given :param:`unit`.
+
+        :rtype: bool
+        :return: True if the new :param:`unit` differs from the current unit.
+            Two units differ when any of the fields differ (source, target,
+            translator/developer comments, locations, context, status...).
+        """
         changed = False
 
         if (self.source != unit.source or
