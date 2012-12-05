@@ -41,9 +41,10 @@ class Command(ModifiedSinceMixin, PootleCommand):
         change_id = options.get('modified_since', 0)
 
         if change_id:
-            changes = translation_project.submission_set \
-                                         .filter(id__gte=change_id)
-            if not changes.exists():
+            has_changes = translation_project.submission_set \
+                                             .filter(id__gte=change_id) \
+                                             .exists()
+            if not has_changes:
                 # No change to this translation project since the given change ID
                 return
 
