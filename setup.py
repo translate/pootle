@@ -61,7 +61,7 @@ class PootleBuildMo(DistutilsBuild):
         pootle_po = glob.glob(os.path.join('pootle', 'locale', '*',
                                            'pootle.po'))
         pootle_js_po = glob.glob(os.path.join('pootle', 'locale', '*',
-                                           'pootle_js.po'))
+                                              'pootle_js.po'))
         for po_filename in pootle_po + pootle_js_po:
             lang = os.path.split(os.path.split(po_filename)[0])[1]
             lang_dir = os.path.join('pootle', 'locale', lang, 'LC_MESSAGES')
@@ -81,7 +81,8 @@ class PootleBuildMo(DistutilsBuild):
                 if not os.path.exists(lang_dir):
                     os.makedirs(lang_dir)
                 print "compiling %s language" % lang
-                subprocess.Popen(['msgfmt', '-c', '--strict', '-o', mo_filename, po_filename])
+                subprocess.Popen(['msgfmt', '-c', '--strict',
+                                  '-o', mo_filename, po_filename])
             except Exception, e:
                 print "skipping %s, running msgfmt failed: %s" % (lang, e)
 

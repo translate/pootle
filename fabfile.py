@@ -26,9 +26,11 @@ from fabric.contrib.console import confirm
 from fabric.contrib.files import exists, upload_template
 from fabric.operations import require, run, sudo
 
+
 #
 # Deployment environments
 #
+
 
 def production():
     """Work on the production environment"""
@@ -47,6 +49,7 @@ def staging():
 #
 # Commands
 #
+
 
 def _init_directories():
     """Creates initial directories"""
@@ -93,8 +96,8 @@ def bootstrap():
     """Creates initial directories and virtualenv"""
     require('environment', provided_by=[production, staging])
 
-    if (exists('%(project_path)s' % env) and \
-        confirm('%(project_path)s already exists. Do you want to continue?' \
+    if (exists('%(project_path)s' % env) and
+        confirm('%(project_path)s already exists. Do you want to continue?'
                 % env, default=False)) or not exists('%(project_path)s' % env):
 
             print('Bootstrapping initial directories...')
@@ -182,7 +185,7 @@ def update_config():
 
         # Configure and install settings
         upload_template('deploy/%(environment)s/settings.conf' % env,
-                        '%(project_settings_path)s/90-%(environment)s-local.conf' \
+                        '%(project_settings_path)s/90-%(environment)s-local.conf'
                         % env, context=env)
 
 
