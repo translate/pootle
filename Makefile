@@ -8,3 +8,6 @@ all:
 
 sprite:
 		glue --sprite-namespace="" --namespace="" ${SPRITE_DIR} --css=${CSS_DIR} --img=${IMAGES_DIR}
+
+pot:
+		@${SRC_DIR}/tools/createpootlepot
