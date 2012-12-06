@@ -18,31 +18,30 @@
 #-o $basedir/po/pootle/templates/pootle.pot \
 #`find ../  -name "*.py" | sort`
 
-basedir=`dirname $0`/..
-verbosity=0
+SRC_DIR=$(readlink -f `dirname $0`/..)
 
 # Placeholders
 YEAR_COPYRIGHT_PLACEHOLDER="YEAR THE PACKAGE'S COPYRIGHT HOLDER"
 PACKAGE_VERSION_PLACEHOLDER="PACKAGE VERSION"
 
 # Filename constants
-DJANGO_POT="locale/templates/LC_MESSAGES/django.po"
-DJANGO_JS_POT="locale/templates/LC_MESSAGES/djangojs.po"
-POOTLE_POT="locale/templates/pootle.pot"
-POOTLE_JS_POT="locale/templates/pootle_js.pot"
+POT_DIR="$SRC_DIR/locale/templates"
+DJANGO_POT="$POT_DIR/LC_MESSAGES/django.po"
+DJANGO_JS_POT="$POT_DIR/LC_MESSAGES/djangojs.po"
+POOTLE_POT="$POT_DIR/pootle.pot"
+POOTLE_JS_POT="$POT_DIR/pootle_js.pot"
 
 # Header settings
 YEAR=`date +%Y`
 COPYRIGHT_HOLDER="Zuza Software Foundation (Translate.org.za)"
 PACKAGE="Pootle"
-VERSION=`egrep "^ver" __version__.py | sed "s,.*(\(.*\)),\1,g" | sed "s,[ ],,g" | sed "s/,/./g"`
+VERSION=`egrep "^ver" $SRC_DIR/__version__.py | sed "s,.*(\(.*\)),\1,g" | sed "s,[ ],,g" | sed "s/,/./g"`
 
 pushd . 2>&1 > /dev/null
-cd $basedir
-verbosity="-v $verbosity"
+cd $SRC_DIR
 
-./manage.py makemessages $verbosity -e py,txt,html,conf -l templates
-./manage.py makemessages $verbosity --ignore assets -d djangojs -l templates
+django-admin.py makemessages -e py,txt,html,conf -l templates
+django-admin.py makemessages --ignore assets -d djangojs -l templates
 
 # Header replacements
 sed -i "s/$YEAR_COPYRIGHT_PLACEHOLDER/$YEAR $COPYRIGHT_HOLDER/" $DJANGO_POT
