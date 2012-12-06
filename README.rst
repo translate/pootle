@@ -2,7 +2,7 @@
 Pootle: a web translation and translation management engine
 ===========================================================
 
-* Web: <http://translate.sourceforge.net/wiki/pootle/index>
+* Web: <http://pootle.translatehouse.org/>
 * Bugzilla: <http://bugs.locamotion.org/>
 * Mailing List: <https://lists.sourceforge.net/lists/listinfo/translate-pootle>
 * IRC: #pootle on irc.freenode.org
