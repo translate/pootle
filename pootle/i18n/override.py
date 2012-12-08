@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008 Zuza Software Foundation
+# Copyright 2008-2012 Zuza Software Foundation
 #
 # This file is part of translate.
 #
@@ -35,20 +35,23 @@ from pootle.i18n import gettext
 
 
 def find_languages(locale_path):
-    """generates supported languages list from mo directory"""
+    """Generates supported languages list from the :param:`locale_path`
+    directory.
+    """
     dirs = os.listdir(locale_path)
     langs = []
     for lang in dirs:
         if (data.langcode_re.match(lang) and
-                os.path.isdir(os.path.join(locale_path, lang))):
+            os.path.isdir(os.path.join(locale_path, lang))):
             langs.append((trans_real.to_language(lang),
                           data.languages.get(lang, (lang,))[0]))
     return langs
 
 
 def supported_langs():
-    """returns list of locales supported adapting to live translation
-    state"""
+    """Returns a list of locales supported adapting to live translation
+    state.
+    """
     from django.conf import settings
     if settings.LIVE_TRANSLATION:
         try:
@@ -92,8 +95,7 @@ def get_lang_from_session(request, supported):
 
 
 def get_lang_from_cookie(request, supported):
-    """See if the user's browser sent a cookie with a her preferred
-    language."""
+    """See if the user's browser sent a cookie with a preferred language."""
     from django.conf import settings
     lang_code = request.COOKIES.get(settings.LANGUAGE_COOKIE_NAME)
 
@@ -105,7 +107,8 @@ def get_lang_from_cookie(request, supported):
 
 def get_lang_from_prefs(request, supported):
     """If the current user is logged in, get her profile model object
-    and check whether she has set her preferred interface language."""
+    and check whether she has set her preferred interface language.
+    """
     # If the user is logged in
     if request.user.is_authenticated():
         profile = request.user.get_profile()
@@ -190,6 +193,6 @@ def override_gettext(real_translation):
 
 
 def get_language_bidi():
-    """Override for django's get_language_bidi that's aware of more
+    """Override for Django's get_language_bidi that's aware of more
     RTL languages."""
     return gettext.language_dir(translation.get_language()) == 'rtl'
