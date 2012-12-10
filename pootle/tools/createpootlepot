@@ -1,6 +1,10 @@
 #!/bin/bash
 
-SRC_DIR=$(readlink -f `dirname $0`/..)
+if [ "$(uname -s)" != "Darwin" ]; then
+	SRC_DIR=$(readlink -f `dirname $0`/..)
+else
+	SRC_DIR=$(stat -f %N `dirname $0`/..)
+fi
 
 # Placeholders
 YEAR_COPYRIGHT_PLACEHOLDER="YEAR THE PACKAGE'S COPYRIGHT HOLDER"
@@ -24,19 +28,19 @@ MSGID_BUGS_TO="translate-pootle@lists.sourceforge.net"
 pushd . 2>&1 > /dev/null
 cd $SRC_DIR
 
-django-admin.py makemessages -e py,txt,html,conf -l templates
-django-admin.py makemessages --ignore assets -d djangojs -l templates
+django-admin.py makemessages -v 0 -e py,txt,html,conf -l templates
+django-admin.py makemessages -v 0 --ignore assets -d djangojs -l templates
+popd  2>&1  >  /dev/null
 
 # Header replacements
-sed -i "" "s/$YEAR_COPYRIGHT_PLACEHOLDER/$YEAR $COPYRIGHT_HOLDER/" $DJANGO_POT
-sed -i "" "s/$PACKAGE_VERSION_PLACEHOLDER/$PACKAGE $VERSION/" $DJANGO_POT
-sed -i "" "s/$MSGID_BUGS_TO_PLACEHOLDER /$MSGID_BUGS_TO_PLACEHOLDER $MSGID_BUGS_TO/" $DJANGO_POT
+sed -i "" -e "s/$YEAR_COPYRIGHT_PLACEHOLDER/$YEAR $COPYRIGHT_HOLDER/" $DJANGO_POT
+sed -i "" -e "s/$PACKAGE_VERSION_PLACEHOLDER/$PACKAGE $VERSION/" $DJANGO_POT
+sed -i "" -e "s/$MSGID_BUGS_TO_PLACEHOLDER /$MSGID_BUGS_TO_PLACEHOLDER $MSGID_BUGS_TO/" $DJANGO_POT
 
-sed -i "" "s/$YEAR_COPYRIGHT_PLACEHOLDER/$YEAR $COPYRIGHT_HOLDER/" $DJANGO_JS_POT
-sed -i "" "s/$PACKAGE_VERSION_PLACEHOLDER/$PACKAGE $VERSION/" $DJANGO_JS_POT
-sed -i "" "s/$MSGID_BUGS_TO_PLACEHOLDER /$MSGID_BUGS_TO_PLACEHOLDER $MSGID_BUGS_TO/" $DJANGO_JS_POT
+sed -i "" -e "s/$YEAR_COPYRIGHT_PLACEHOLDER/$YEAR $COPYRIGHT_HOLDER/" $DJANGO_JS_POT
+sed -i "" -e "s/$PACKAGE_VERSION_PLACEHOLDER/$PACKAGE $VERSION/" $DJANGO_JS_POT
+sed -i "" -e "s/$MSGID_BUGS_TO_PLACEHOLDER /$MSGID_BUGS_TO_PLACEHOLDER $MSGID_BUGS_TO/" $DJANGO_JS_POT
 
 mv $DJANGO_POT $POOTLE_POT
 mv $DJANGO_JS_POT $POOTLE_JS_POT
 
-popd  2>&1  >  /dev/null
