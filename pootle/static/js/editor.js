@@ -1741,7 +1741,7 @@
 
         if (uid == PTL.editor.activeUid && data.length) {
           var filtered = PTL.editor.filterTMResults(data),
-              name = gettext("amaGama server"),
+              name = gettext("Similar translations"),
               tm = PTL.editor.tmpl.tm($, {data: {meta: PTL.editor.meta,
                                                  suggs: filtered,
                                                  name: name}}).join("");
