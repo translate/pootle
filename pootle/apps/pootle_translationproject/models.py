@@ -372,17 +372,20 @@ class TranslationProject(models.Model):
         return all_files, new_files
 
     def _get_indexer(self):
-        if self.non_db_state.indexer is None and \
-                self.non_db_state._indexing_enabled:
+        if (self.non_db_state.indexer is None and
+            self.non_db_state._indexing_enabled):
             try:
                 indexer = self.make_indexer()
+
                 if not self.non_db_state._index_initialized:
                     self.init_index(indexer)
                     self.non_db_state._index_initialized = True
-                self.non_db_state.indexer =  indexer
+
+                self.non_db_state.indexer = indexer
             except Exception, e:
                 logging.warning(u"Could not initialize indexer for %s in %s: "
-                        "%s", self.project.code, self.language.code, str(e))
+                                u"%s", self.project.code, self.language.code,
+                                str(e))
                 self.non_db_state._indexing_enabled = False
 
         return self.non_db_state.indexer
@@ -740,7 +743,7 @@ class TranslationProject(models.Model):
                     self.update_index(indexer, store)
                 except OSError, e:
                     # Broken link or permission problem?
-                    logging.error("Erorr indexing %s: %s", store, e)
+                    logging.error("Error indexing %s: %s", store, e)
             indexer.commit_transaction()
             indexer.flush(optimize=True)
         except Exception, e:

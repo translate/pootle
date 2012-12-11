@@ -230,34 +230,34 @@ def project_admin(request, project_code):
             model = TranslationProject
 
         def process_extra_fields(self):
-
             if self.instance.pk is not None:
-
                 if self.cleaned_data.get('initialize', None):
                     self.instance.initialize()
 
-                if self.cleaned_data.get('update', None) \
-                        or not self.instance.stores.count():
+                if (self.cleaned_data.get('update', None) or
+                    not self.instance.stores.count()):
                     self.instance.update_from_templates()
 
     queryset = TranslationProject.objects.filter(
             project=current_project).order_by('pootle_path')
 
-    model_args = {}
-    model_args['project'] = {'code': current_project.code,
-                             'name': current_project.fullname}
+    model_args = {
+        'project': {
+            'code': current_project.code,
+            'name': current_project.fullname,
+        }
+    }
 
     link = lambda instance: '<a href="%s">%s</a>' % (
             l(instance.pootle_path + 'admin_permissions.html'),
-            instance.language
+            instance.language,
     )
 
     return util.edit(request, 'project/project_admin.html', TranslationProject,
-            model_args, link, linkfield="language", queryset=queryset,
-            can_delete=True, form=TranslationProjectForm,
-            formset=TranslationProjectFormSet,
-            exclude=('description'),
-    )
+                     model_args, link, linkfield="language", queryset=queryset,
+                     can_delete=True, form=TranslationProjectForm,
+                     formset=TranslationProjectFormSet,
+                     exclude=('description',))
 
 
 def project_admin_permissions(request, project_code):
