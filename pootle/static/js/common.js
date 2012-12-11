@@ -131,4 +131,40 @@ $(function ($) {
     $(target).toggle();
   });
 
+  /* Cross-browser comparison function */
+  var strCmp = function (a, b) {
+    return a == b ? 0 : a < b ? -1 : 1;
+  };
+
+  /* Sorts language names within select elements */
+  var ids = ["id_languages", "id_alt_src_langs", "-language",
+             "-source_language"];
+
+  $.each(ids, function (i, id) {
+    var $selects = $("select[id$='" + id + "']");
+
+    $.each($selects, function (i, select) {
+      var $select = $(select);
+      var options = $("option", $select);
+
+      if (options.length) {
+        if (!$select.is("[multiple]")) {
+          var selected = $(":selected", $select);
+        }
+
+        var opsArray = $.makeArray(options);
+        opsArray.sort(function (a, b) {
+          return strCmp($(a).text(), $(b).text());
+        });
+
+        options.remove();
+        $select.append($(opsArray));
+
+        if (!$select.is("[multiple]")) {
+          $select.get(0).selectedIndex = $(opsArray).index(selected);
+        }
+      }
+    });
+  });
+
 });
