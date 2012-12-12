@@ -296,15 +296,21 @@ def get_step_query(request, units_queryset):
     """Narrows down unit query to units matching conditions in GET and POST."""
     if 'unitstates' in request.GET:
         unitstates = request.GET['unitstates'].split(',')
+
         if unitstates:
             state_queryset = units_queryset.none()
+
             for unitstate in unitstates:
                 if unitstate == 'untranslated':
-                    state_queryset = state_queryset | units_queryset.filter(state=UNTRANSLATED)
+                    state_queryset = state_queryset | \
+                                     units_queryset.filter(state=UNTRANSLATED)
                 elif unitstate == 'translated':
-                    state_queryset = state_queryset | units_queryset.filter(state=TRANSLATED)
+                    state_queryset = state_queryset | \
+                                     units_queryset.filter(state=TRANSLATED)
                 elif unitstate == 'fuzzy':
-                    state_queryset = state_queryset | units_queryset.filter(state=FUZZY)
+                    state_queryset = state_queryset | \
+                                     units_queryset.filter(state=FUZZY)
+
             units_queryset = state_queryset
 
     if 'checks' in request.GET:
@@ -320,14 +326,18 @@ def get_step_query(request, units_queryset):
 
     if 'matchnames' in request.GET:
         matchnames = request.GET['matchnames'].split(',')
+
         if matchnames:
             match_queryset = units_queryset.none()
+
             if 'hassuggestion' in matchnames:
                 #FIXME: is None the most efficient query
                 match_queryset = units_queryset.exclude(suggestion=None)
                 matchnames.remove('hassuggestion')
             elif 'ownsuggestion' in matchnames:
-                match_queryset = units_queryset.filter(suggestion__user=request.profile).distinct()
+                match_queryset = units_queryset.filter(
+                        suggestion__user=request.profile
+                    ).distinct()
                 matchnames.remove('ownsuggestion')
 
             units_queryset = match_queryset
@@ -335,8 +345,11 @@ def get_step_query(request, units_queryset):
     if 'search' in request.GET and 'sfields' in request.GET:
         # use the search form for validation only
         search_form = make_search_form(request.GET)
+
         if search_form.is_valid():
-            units_queryset = get_search_step_query(request.translation_project, search_form, units_queryset)
+            units_queryset = get_search_step_query(request.translation_project,
+                                                   search_form, units_queryset)
+
     return units_queryset
 
 
@@ -673,7 +686,7 @@ def comment(request, unit):
         json = {'comment': t.render(c)}
         rcode = 200
     else:
-        json = {'msg':  _("Comment submission failed.")}
+        json = {'msg': _("Comment submission failed.")}
         rcode = 400
 
     response = simplejson.dumps(json)
