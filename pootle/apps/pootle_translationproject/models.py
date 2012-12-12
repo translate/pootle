@@ -346,28 +346,36 @@ class TranslationProject(models.Model):
         if self.is_template_project:
             ext = os.extsep + self.project.get_template_filetype()
 
-        from pootle_app.project_tree import add_files, match_template_filename,\
-                direct_language_match_filename
+        from pootle_app.project_tree import (add_files, match_template_filename,
+                                             direct_language_match_filename)
         all_files = []
         new_files = []
 
         if self.file_style == 'gnu':
             if self.pootle_path.startswith('/templates/'):
-                all_files, new_files = add_files(self,
-                          ignored_files,
-                          ext,
-                          self.real_path,
-                          self.directory,
-                          lambda filename: match_template_filename(\
-                                  self.project, filename))
+                all_files, new_files = add_files(
+                        self,
+                        ignored_files,
+                        ext,
+                        self.real_path,
+                        self.directory,
+                        lambda filename: match_template_filename(self.project,
+                                                                 filename),
+                )
             else:
-                all_files, new_files = add_files(self, ignored_files, ext,\
-                        self.real_path, self.directory,
-                          lambda filename: direct_language_match_filename(\
-                                  self.language.code, filename))
+                all_files, new_files = add_files(
+                        self,
+                        ignored_files,
+                        ext,
+                        self.real_path,
+                        self.directory,
+                        lambda filename: direct_language_match_filename(
+                            self.language.code, filename
+                        ),
+                )
         else:
-            all_files, new_files = add_files(self, ignored_files, ext, \
-                    self.real_path, self.directory)
+            all_files, new_files = add_files(self, ignored_files, ext,
+                                             self.real_path, self.directory)
 
         return all_files, new_files
 
@@ -839,10 +847,13 @@ class TranslationProject(models.Model):
 
     ###########################################################################
 
-    is_terminology_project = property(lambda self: self.pootle_path.endswith(\
-            '/terminology/'))
-    is_template_project = property(lambda self: self == \
-            self.project.get_template_translationproject())
+    @property
+    def is_terminology_project(self):
+        return self.pootle_path.endswith('/terminology/')
+
+    @property
+    def is_template_project(self):
+        return self == self.project.get_template_translationproject()
 
     def gettermmatcher(self):
         """Returns the terminology matcher."""
