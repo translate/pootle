@@ -207,9 +207,30 @@ updating new translations and discovering new files and strings.
 .. versionchanged:: 2.5
 
 Along with ``--keep`` the ``--modified-since`` option can be used to keep
-translations that have a change ID greater than the given value. This way some
-translated units can be updated from in-disk files while at preserving in-DB
-translations for other units that meet the given criterion.
+translations that have a change ID **greater than** the given value. This way
+some translated units can be updated from in-disk files while at preserving
+in-DB translations for other units that meet the given criterion.
+
+To illustrate the results of these later options, have a look at the following
+table that emulates the behavior of ``manage.py update_stores
+--modified-since=5 --keep``:
+
+======================================== ============= ===============
+ File on disk                             DB before     DB after
+                                          (change ID)   (result)
+======================================== ============= ===============
+ New unit appeared in existing file       <none>        Unit added
+ Existing unit changed in existing file   <none>        Unit updated
+ Existing unit changed in existing file   2             Unit updated
+ Existing unit changed in existing file   5             Unit updated
+ Existing unit changed in existing file   8             Unit kept
+ New unit in a new file                   <none>        Unit added
+ Unit removed from the file               3             Unit removed
+ Unit removed from the file               10            Unit removed
+ File removed                             4             Units removed
+ File removed                             12            Units removed
+======================================== ============= ===============
+
 
 By default *update_stores* will only update files that appear to have changed
 on disk since the last synchronization with Pootle. To force all files to
