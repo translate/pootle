@@ -29,6 +29,7 @@ from django.http import (Http404, HttpResponse, HttpResponseForbidden,
 from django.template import RequestContext
 from django.template.loader import render_to_string
 from django.utils import simplejson
+from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext as _
 
 try:
@@ -49,7 +50,7 @@ class ErrorPagesMiddleware(object):
 
 
     def process_exception(self, request, exception):
-        msg = unicode(str(exception), 'utf-8')
+        msg = force_unicode(exception)
         if isinstance(exception, Http404):
             if request.is_ajax():
                 return self._ajax_error(404, msg)
