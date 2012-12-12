@@ -136,7 +136,6 @@ html_theme = 'sphinx-bootstrap'
 # further.  For a list of options available for each theme, see the
 # documentation.
 html_theme_options = {
-    'display_github': False,
     'nosidebar': True,
     'link_color': '#489b7',
     'link_color_hover': '#489b7',
