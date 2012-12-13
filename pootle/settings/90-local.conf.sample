@@ -22,6 +22,9 @@ need to change the extension of this file from ``.conf.sample`` to ``.conf``.
 # system time zone.
 TIME_ZONE = 'UTC'
 
+# Make this unique, and don't share it with anybody.
+SECRET_KEY = '%(default_key)r'
+
 
 #
 # Backends
