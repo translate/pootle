@@ -732,7 +732,7 @@ class UpdateHandler(view_handler.Handler):
                 hasversioning(request.translation_project.abs_real_path))
 
     def do_update(self, request, translation_project, directory, store):
-        translation_project.update_project(request)
+        translation_project.update_from_vcs(request)
         return {}
 
 

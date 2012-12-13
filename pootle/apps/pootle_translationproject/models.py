@@ -465,10 +465,10 @@ class TranslationProject(models.Model):
         newstats = store.getquickstats()
         return oldstats, remotestats, newstats
 
-    def update_project(self, request):
-        """Updates project translation files from version control,
-        retaining uncommitted translations"""
-
+    def update_from_vcs(self, request):
+        """Updates translation project's files from version control, retaining
+        uncommitted translations.
+        """
         if not check_permission("commit", request):
             raise PermissionDenied(_("You do not have rights to update from "\
                     "version control here"))
