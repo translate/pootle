@@ -826,7 +826,7 @@ class Store(models.Model, base.TranslationStore):
 
     @getfromcache
     def get_mtime(self):
-        return max_column(self.unit_set.all(), 'mtime', None)
+        return max_column(self.unit_set.all(), 'mtime', datetime_min)
 
     @classmethod
     def _get_mtime_from_header(cls, store):
