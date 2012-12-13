@@ -353,29 +353,24 @@ class TranslationProject(models.Model):
 
         if self.file_style == 'gnu':
             if self.pootle_path.startswith('/templates/'):
-                all_files, new_files = add_files(
-                        self,
-                        ignored_files,
-                        ext,
-                        self.real_path,
-                        self.directory,
-                        lambda filename: match_template_filename(self.project,
-                                                                 filename),
-                )
+                file_filter = lambda filename: match_template_filename(
+                                    self.project, filename,
+                              )
             else:
-                all_files, new_files = add_files(
-                        self,
-                        ignored_files,
-                        ext,
-                        self.real_path,
-                        self.directory,
-                        lambda filename: direct_language_match_filename(
-                            self.language.code, filename
-                        ),
-                )
+                file_filter = lambda filename: direct_language_match_filename(
+                                    self.language.code, filename
+                              )
         else:
-            all_files, new_files = add_files(self, ignored_files, ext,
-                                             self.real_path, self.directory)
+            file_filter = lambda filename: True
+
+        all_files, new_files = add_files(
+                self,
+                ignored_files,
+                ext,
+                self.real_path,
+                self.directory,
+                file_filter,
+        )
 
         return all_files, new_files
 
