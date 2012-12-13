@@ -1463,8 +1463,21 @@ class Store(models.Model, base.TranslationStore):
     @commit_on_success
     def mergefile(self, newfile, profile, allownewstrings, suggestions,
                   notranslate, obsoletemissing):
-        """Make sure each msgid is unique ; merge comments etc from duplicates
-        into original."""
+        """Merges :param:`newfile` with the current store.
+
+        :param newfile: The file that will be merged into the current store.
+        :param profile: A :cls:`~pootle_profile.models.PootleProfile` user
+            profile.
+        :param allownewstrings: Whether to add or not units from :param:`newfile` not
+            present in the current store.
+        :param suggestions: Try to add conflicting units as suggestions in case
+            the new file's modified time is unknown or older that the in-DB
+            unit).
+        :param notranslate: Don't translate/merge in-DB units but rather add
+            them as suggestions.
+        :param obsoletemissing: Whether to remove or not units present in the
+            current store but not in :param:`newfile`.
+        """
         if not newfile.units:
             return
 
