@@ -469,6 +469,7 @@ class TranslationProject(models.Model):
         """Updates translation project's files from version control, retaining
         uncommitted translations.
         """
+        # FIXME: Move this stuff to views!
         if not check_permission("commit", request):
             raise PermissionDenied(_("You do not have rights to update from "\
                     "version control here"))
@@ -506,8 +507,8 @@ class TranslationProject(models.Model):
             try:
                 logging.debug(u"Parsing version control copy of %s into db",
                               store.file.name)
-                store.update(update_structure=True, update_translation=True, \
-                        conservative=False)
+                store.update(update_structure=True, update_translation=True,
+                             conservative=False)
                 remotestats = store.getquickstats()
 
                 #FIXME: Try to avoid merging if file was not updated

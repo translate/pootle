@@ -144,7 +144,8 @@ def delete_votes(sender, instance, **kwargs):
     from voting.models import Vote
     from django.contrib.contenttypes.models import ContentType
     ctype = ContentType.objects.get_for_model(instance)
-    Vote.objects.filter(content_type=ctype, object_id=instance._get_pk_val()).delete()
+    Vote.objects.filter(content_type=ctype,
+                        object_id=instance._get_pk_val()).delete()
 
 post_delete.connect(delete_votes, sender=Suggestion)
 
@@ -271,14 +272,16 @@ class Unit(models.Model, base.TranslationUnit):
 
         super(Unit, self).save(*args, **kwargs)
 
-        if settings.AUTOSYNC and self.store.file and self.store.state >= PARSED and \
-               (self._target_updated or self._source_updated):
+        if (settings.AUTOSYNC and self.store.file and
+            self.store.state >= PARSED and
+            (self._target_updated or self._source_updated)):
             #FIXME: last translator information is lost
             self.sync(self.getorig())
             self.store.update_store_header()
             self.store.file.savestore()
 
-        if self.store.state >= CHECKED and (self._source_updated or self._target_updated):
+        if (self.store.state >= CHECKED and
+            (self._source_updated or self._target_updated)):
             #FIXME: are we sure only source and target affect quality checks?
             self.update_qualitychecks()
 
@@ -289,8 +292,6 @@ class Unit(models.Model, base.TranslationUnit):
         if self.store.state >= PARSED:
             # updated caches
             store = self.store
-            #translation_project = store.translation_project
-            #translation_project.update_index(translation_project.indexer, store, self.id)
             deletefromcache(store, ["getquickstats", "getcompletestats",
                                     "get_mtime", "get_suggestion_count"])
 
@@ -336,7 +337,8 @@ class Unit(models.Model, base.TranslationUnit):
 
         if hasattr(newunit, "addalttrans"):
             for suggestion in self.get_suggestions().iterator():
-                newunit.addalttrans(suggestion.target, origin=unicode(suggestion.user))
+                newunit.addalttrans(suggestion.target,
+                                    origin=unicode(suggestion.user))
 
         if self.isobsolete():
             newunit.makeobsolete()
@@ -396,9 +398,9 @@ class Unit(models.Model, base.TranslationUnit):
                 unit.target = self.target
                 changed = True
 
-        if unit.getnotes(origin="translator") != self.getnotes(origin="translator") or '':
-            unit.addnote(self.getnotes(origin="translator"),
-                         origin="translator", position="replace")
+        self_notes = self.getnotes(origin="translator")
+        if unit.getnotes(origin="translator") != self_notes or '':
+            unit.addnote(self_notes, origin="translator", position="replace")
             changed = True
 
         if unit.isfuzzy() != self.isfuzzy():
@@ -598,8 +600,10 @@ class Unit(models.Model, base.TranslationUnit):
                 self.state = UNTRANSLATED
 
     def hasplural(self):
-        return self.source is not None and (
-            len(self.source.strings) > 1 or hasattr(self.source, "plural") and self.source.plural)
+        return (self.source is not None and
+                (len(self.source.strings) > 1
+                or hasattr(self.source, "plural") and
+                self.source.plural))
 
     def isobsolete(self):
         return self.state == OBSOLETE
@@ -824,9 +828,6 @@ class Store(models.Model, base.TranslationStore):
                 unit.index = index + i
                 unit.save()
         if self.state >= PARSED:
-            #if self.translation_project:
-                # update search index
-                #self.translation_project.update_index(self.translation_project.indexer, self)
             # new units, let's flush cache
             deletefromcache(self, ["getquickstats", "getcompletestats",
                                    "get_mtime", "get_suggestion_count"])
@@ -1444,7 +1445,8 @@ class Store(models.Model, base.TranslationStore):
                                                    false_positive=False)
             return group_by_count_extra(queryset, 'name', 'category')
         except e:
-            logging.info(u"Error getting quality checks for %s\n%s", self.name, e)
+            logging.info(u"Error getting quality checks for %s\n%s",
+                         self.name, e)
             return {}
 
     @getfromcache
@@ -1468,8 +1470,8 @@ class Store(models.Model, base.TranslationStore):
         :param newfile: The file that will be merged into the current store.
         :param profile: A :cls:`~pootle_profile.models.PootleProfile` user
             profile.
-        :param allownewstrings: Whether to add or not units from :param:`newfile` not
-            present in the current store.
+        :param allownewstrings: Whether to add or not units from
+            :param:`newfile` not present in the current store.
         :param suggestions: Try to add conflicting units as suggestions in case
             the new file's modified time is unknown or older that the in-DB
             unit).
@@ -1582,34 +1584,42 @@ class Store(models.Model, base.TranslationStore):
                 mtime = timezone.now()
             if profile is None:
                 try:
-                    submit = self.translation_project.submission_set.filter(creation_time=mtime).latest()
+                    submit = self.translation_project.submission_set \
+                                 .filter(creation_time=mtime).latest()
                     if submit.submitter.user.username != 'nobody':
                         profile = submit.submitter
                 except ObjectDoesNotExist:
                     try:
-                        lastsubmit = self.translation_project.submission_set.latest()
+                        lastsubmit = self.translation_project.submission_set \
+                                                             .latest()
                         if lastsubmit.submitter.user.username != 'nobody':
                             profile = lastsubmit.submitter
                         mtime = min(lastsubmit.creation_time, mtime)
                     except ObjectDoesNotExist:
                         pass
 
-            po_revision_date = mtime.strftime('%Y-%m-%d %H:%M') + poheader.tzstring()
+            po_revision_date = mtime.strftime('%Y-%m-%d %H:%M') + \
+                               poheader.tzstring()
             from pootle.__version__ import sver as pootle_version
             x_generator = "Pootle %s" % pootle_version
-            headerupdates = {'PO_Revision_Date': po_revision_date,
-                             'X_Generator': x_generator,
-                             'X_POOTLE_MTIME': '%s.%d' % (mtime.strftime('%s'), mtime.microsecond),
-                             }
+            headerupdates = {
+                    'PO_Revision_Date': po_revision_date,
+                    'X_Generator': x_generator,
+                    'X_POOTLE_MTIME': '%s.%d' % (mtime.strftime('%s'),
+                                                 mtime.microsecond),
+                    }
             if profile and profile.user.is_authenticated():
-                headerupdates['Last_Translator'] = '%s <%s>' % (profile.user.first_name or profile.user.username, profile.user.email)
+                headerupdates['Last_Translator'] = '%s <%s>' % \
+                        (profile.user.first_name or profile.user.username,
+                         profile.user.email)
             else:
                 #FIXME: maybe insert settings.TITLE or domain here?
                 headerupdates['Last_Translator'] = 'Anonymous Pootle User'
             disk_store.updateheader(add=True, **headerupdates)
 
             if language.nplurals and language.pluralequation:
-                disk_store.updateheaderplural(language.nplurals, language.pluralequation)
+                disk_store.updateheaderplural(language.nplurals,
+                                              language.pluralequation)
 
 
 ############################## Pending Files #################################
@@ -1629,7 +1639,8 @@ class Store(models.Model, base.TranslationStore):
                 self.pending = None
                 self.save()
 
-        pending_name = os.extsep.join(self.file.name.split(os.extsep)[:-1] + ['po', 'pending'])
+        pending_name = os.extsep.join(self.file.name.split(os.extsep)[:-1] + \
+                       ['po', 'pending'])
         pending_path = os.path.join(settings.PODIRECTORY, pending_name)
 
         # check if pending file already exists, just in case it was
@@ -1645,7 +1656,8 @@ class Store(models.Model, base.TranslationStore):
         if not self.pending:
             return
 
-        for sugg in [sugg for sugg in self.pending.store.units if sugg.istranslatable() and sugg.istranslated()]:
+        for sugg in [sugg for sugg in self.pending.store.units
+                     if sugg.istranslatable() and sugg.istranslated()]:
             if not sugg.istranslatable() or not sugg.istranslated():
                 continue
             unit = self.findunit(sugg.source)
