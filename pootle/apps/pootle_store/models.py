@@ -646,36 +646,48 @@ class Unit(models.Model, base.TranslationUnit):
                 return match_unit
 
 
-    def merge(self, unit, overwrite=False, comments=True, authoritative=False):
+    def merge(self, merge_unit, overwrite=False, comments=True,
+              authoritative=False):
+        """Merges :param:`merge_unit` with the current unit.
+
+        :param merge_unit: The unit that will be merged into the current unit.
+        :param overwrite: Whether to replace the existing translation or not.
+        :param comments: Whether to merge translator comments or not.
+        :param authoritative: Not used. Kept for Toolkit API consistenty.
+        :return: True if the current unit has been changed.
+        """
         changed = False
+
         if comments:
-            notes = unit.getnotes(origin="translator")
+            notes = merge_unit.getnotes(origin="translator")
+
             if notes and self.translator_comment != notes:
                 self.translator_comment = notes
                 changed = True
 
-        if not bool(unit.target):
-            # no translation in new unit bail out
+        # No translation in merge_unit: bail out
+        if not bool(merge_unit.target):
             return changed
 
+        # Won't replace existing translation unless overwrite is True
         if bool(self.target) and not overwrite:
-            # won't replace existing translation unless overwrite is
-            # true
             return changed
 
-        if self.istranslated() and not unit.istranslated():
-            # current translation more trusted
+        # Current translation more trusted
+        if self.istranslated() and not merge_unit.istranslated():
             return changed
 
-        if self.target != unit.target:
-            self.target = unit.target
-            if self.source != unit.source:
+        if self.target != merge_unit.target:
+            self.target = merge_unit.target
+
+            if self.source != merge_unit.source:
                 self.markfuzzy()
             else:
-                self.markfuzzy(unit.isfuzzy())
+                self.markfuzzy(merge_unit.isfuzzy())
+
             changed = True
-        elif self.isfuzzy() != unit.isfuzzy():
-            self.markfuzzy(unit.isfuzzy())
+        elif self.isfuzzy() != merge_unit.isfuzzy():
+            self.markfuzzy(merge_unit.isfuzzy())
             changed = True
 
         return changed
