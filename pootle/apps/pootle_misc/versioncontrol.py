@@ -81,7 +81,9 @@ def add_files(path, files, message):
     #: list of (podir_path, vcs_path) tuples
     file_paths = [(to_podir_path(f), to_vcs_path(f)) for f in files]
     for podir_path, vcs_path in file_paths:
-        os.makedirs(os.path.dirname(vcs_path))
+        vcs_dir = os.path.dirname(vcs_path)
+        if not os.path.exists(vcs_dir):
+            os.makedirs(vcs_dir)
         shutil.copy(podir_path, vcs_path)
     output = vcs.add([to_vcs_path(f) for f in files], message)
     return output
