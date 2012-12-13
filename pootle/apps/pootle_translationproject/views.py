@@ -362,7 +362,8 @@ def edit_settings(request, translation_project):
 def export_zip(request, translation_project, file_path):
 
     if not check_permission("archive", request):
-        raise PermissionDenied(_('You do not have the right to create ZIP archives.'))
+        raise PermissionDenied(_('You do not have the right to create '
+                                 'ZIP archives.'))
 
     translation_project.sync()
     pootle_path = translation_project.pootle_path + (file_path or '')
@@ -464,7 +465,8 @@ def get_local_filename(translation_project, upload_filename):
     # whether something is GNU-style or not.
     if (translation_project.file_style == "gnu" and
         not translation_project.is_template_project):
-        if not direct_language_match_filename(translation_project.language.code, local_filename):
+        if not direct_language_match_filename(translation_project.language.code,
+                                              local_filename):
             raise ValueError(_("Invalid GNU-style file name: "
                                "%(local_filename)s. It must match "
                                "'%(langcode)s.%(filetype)s'.",
@@ -726,8 +728,8 @@ class UpdateHandler(view_handler.Handler):
 
     @classmethod
     def must_display(cls, request, *args, **kwargs):
-        return check_permission('commit', request) and \
-            hasversioning(request.translation_project.abs_real_path)
+        return (check_permission('commit', request) and
+                hasversioning(request.translation_project.abs_real_path))
 
     def do_update(self, request, translation_project, directory, store):
         translation_project.update_project(request)
