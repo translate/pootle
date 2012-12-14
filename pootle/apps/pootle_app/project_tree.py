@@ -28,7 +28,7 @@ from translate.lang import data as langdata
 from pootle_app.models.directory import Directory
 from pootle_language.models import Language
 from pootle_store.models import Store, PARSED
-from pootle_store.util import absolute_real_path
+from pootle_store.util import absolute_real_path, add_trailing_slash
 
 
 # case insensitive match for language codes
@@ -128,6 +128,23 @@ def split_files_and_dirs(ignored_files, ext, real_dir, file_filter):
         elif os.path.isdir(full_child_path):
             dirs.append(child_path)
 
+    return files, dirs
+
+
+def recursive_files_and_dirs(ignored_files, ext, real_dir, file_filter):
+    real_dir = add_trailing_slash(real_dir)
+    files = []
+    dirs = []
+    for _path, _dirs, _files in os.walk(real_dir, followlinks=True):
+        # Make it relative:
+        _path = _path[len(real_dir):]
+        files += [os.path.join(_path, f) for f in filter(file_filter, _files) \
+                    if f.endswith(ext) and f not in ignored_files]
+        # Edit _dirs in place to avoid further recursion into hidden directories
+        for d in _dirs:
+            if is_hidden_file(d):
+                _dirs.remove(d)
+        dirs += _dirs
     return files, dirs
 
 
