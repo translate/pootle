@@ -325,9 +325,9 @@ class TranslationProject(models.Model):
         project_path = self.project.get_real_path()
 
         if new_files and versioncontrol.hasversioning(project_path):
-            output = versioncontrol.add_files(project_path, \
+            output = versioncontrol.add_files(project_path,
                     [s.file.name for s in new_files],
-                    "New files added from %s based on templates" % \
+                    "New files added from %s based on templates" %
                             (settings.TITLE))
 
         if pootle_path is None:
@@ -457,8 +457,8 @@ class TranslationProject(models.Model):
             logging.error(u"Near fatal catastrophe, exception %s while merging "
                           u"%s with version control copy", e, store.file.name)
             working_copy.save()
-            store.update(update_structure=True, update_translation=True,\
-                    conservative=False)
+            store.update(update_structure=True, update_translation=True,
+                         conservative=False)
             raise
         try:
             hooks.hook(self.project.code, "postupdate", store.file.name)
@@ -712,7 +712,7 @@ class TranslationProject(models.Model):
                                       zipfile.ZIP_DEFLATED)
             for store in stores.iterator():
                 archive.write(store.abs_real_path.encode('utf-8'),
-                              store.abs_real_path[len(self.abs_real_path)+1:] \
+                              store.abs_real_path[len(self.abs_real_path)+1:]
                                    .encode('utf-8'))
             archive.close()
 
