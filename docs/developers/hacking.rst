@@ -59,7 +59,6 @@ For the impatients:
     (env-name) $ git clone https://github.com/translate/pootle.git
     (env-name) $ cd pootle
     (env-name) $ pip install -r requirements/dev.txt
-    (env-name) $ cd pootle
     (env-name) $ python manage.py runserver
 
 That will leave you with a Pootle development server up and running ready to
@@ -162,12 +161,10 @@ file and rename it by removing the *.sample* extension and you're good to go.
   To learn more about how settings work in Pootle head over the :ref:`settings`
   section in the documentation.
 
-Finally, just move to the directory where the ``manage.py`` script resides and
-run the development server.
+Finally, we just run the development server.
 
 .. code-block:: bash
 
-    (env-name) $ cd pootle
     (env-name) $ python manage.py runserver
 
 Now you can reach the development server in your browser. On your first visit,
