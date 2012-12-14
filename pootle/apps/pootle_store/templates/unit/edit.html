@@ -26,7 +26,7 @@
       <div class="comments sidebar">
         {% if unit.developer_comment %}
         <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Comments:" %}</div>
-        <div class="developer-comments" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}"{% if unit.locations %}title="{{ unit.locations }}"{% endif %}>{{ unit.developer_comment|urlize|linebreaks }}</div>
+        <div class="developer-comments" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}"{% if unit.locations %}title="{{ unit.locations }}"{% endif %}>{{ unit.developer_comment|urlize|url_target_blank|linebreaks }}</div>
         {% endif %}
         {% if unit.locations and not unit.developer_comment %}
         <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Locations:" %}</div>

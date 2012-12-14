@@ -116,7 +116,14 @@ def obfuscate(text):
     node = u'%s<span class="email hide">%s</span>' % (title, fallback)
     return mark_safe(node)
 
+
+def url_target_blank(text):
+    """Sets the target="_blank" for hyperlinks."""
+    return mark_safe(text.replace('<a ', '<a target="_blank" '))
+
+
 register = template.Library()
 register.filter('clean', stringfilter(clean_wrapper))
 register.filter('fancy_highlight', stringfilter(fancy_highlight))
 register.filter('obfuscate', stringfilter(obfuscate))
+register.filter('url_target_blank', stringfilter(url_target_blank))
