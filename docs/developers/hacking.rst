@@ -73,7 +73,7 @@ start hacking!
 Detailed setup
 ^^^^^^^^^^^^^^
 
-These are essentially the same steps as above but with further details an
+These are essentially the same steps as above but with further details and
 explanations.
 
 For installing the dependencies in an isolated environment, we will use
@@ -113,7 +113,7 @@ We could for example specify to use the Python 2.6 interpreter by passing the
 
 After running ``mkvirtualenv``, the newly created environment is activated. To
 activate and deactivate virtual environments simply run ``workon <env-name>``
-and ``deactive`` (this needs to be run in an active environment).
+and ``deactive``.
 
 Time to clone Pootle's source code repository. The main repository lives under
 `translate/pootle in GitHub <https://github.com/translate/pootle/>`_. If you
@@ -149,8 +149,8 @@ extras that will ease the development process.
 
 
 With all the dependencies installed within the virtual environment, Pootle is
-almost ready to run. In development environments you probably want to use
-settings that vastly differ from those used in production servers.
+almost ready to run. In development environments you will want to use settings
+that vastly differ from those used in production environments.
 
 For that purpose there is a sample configuration file with settings adapted for
 development scenarios, *pootle/settings/90-dev-local.conf.sample*. Copy this
@@ -161,7 +161,7 @@ file and rename it by removing the *.sample* extension and you're good to go.
   To learn more about how settings work in Pootle head over the :ref:`settings`
   section in the documentation.
 
-Finally, we just run the development server.
+Finally, just run the development server.
 
 .. code-block:: bash
 
@@ -169,9 +169,12 @@ Finally, we just run the development server.
 
 Now you can reach the development server in your browser. On your first visit,
 Pootle will create the database schema and will calculate stats, which might
-take a while on the first time. Once that is done, you can start the
-development server anytime by enabling the virtual environment and running the
-``manage.py runserver`` command.
+take a while on the first time.
+Alternatively, you can choose to run ``python manage.py initdb`` which will do
+the same but in a shell environment.
+
+Once all is done, you can start the development server anytime by enabling the
+virtual environment and running the ``manage.py runserver`` command.
 
 Happy hacking!!
 
@@ -181,7 +184,8 @@ Happy hacking!!
 Workflow
 --------
 
-Any time you want to fix a bug or work on a new feature, create a new local branch::
+Any time you want to fix a bug or work on a new feature, create a new local
+branch::
 
   $ git checkout -b <my_new_branch>
 
