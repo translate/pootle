@@ -618,7 +618,7 @@ def overwrite_file(request, relative_root_dir, django_file, upload_path):
                                         classes=factory_classes)
         # And save it...
         empty_store.save()
-        request.translation_project.scan_files()
+        request.translation_project.scan_files(vcs_sync=False)
         # Then we open this newly created file and merge the
         # uploaded file into it.
         store = Store.objects.get(file=upload_path)
@@ -819,7 +819,8 @@ class UploadHandler(view_handler.Handler):
             overwrite = self.form.cleaned_data['overwrite']
             upload_to = self.form.cleaned_data['upload_to']
             upload_to_dir = self.form.cleaned_data['upload_to_dir']
-            translation_project.scan_files()
+            # XXX Why do we scan here?
+            translation_project.scan_files(vcs_sync=False)
             oldstats = translation_project.getquickstats()
 
             # The URL relative to the URL of the translation project. Thus, if
@@ -835,7 +836,7 @@ class UploadHandler(view_handler.Handler):
                 upload_file(request, directory, django_file, overwrite,
                             store=upload_to)
 
-            translation_project.scan_files()
+            translation_project.scan_files(vcs_sync=False)
             newstats = translation_project.getquickstats()
 
             # create a submission, doesn't fix stats but at least

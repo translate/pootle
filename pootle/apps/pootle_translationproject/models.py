@@ -317,7 +317,7 @@ class TranslationProject(models.Model):
             convert_template(self, store, new_pootle_path, new_path,
                              monolingual)
 
-        all_files, new_files = self.scan_files()
+        all_files, new_files = self.scan_files(vcs_sync=False)
         #self.update(conservative=False)
 
         from pootle_misc import versioncontrol
@@ -336,8 +336,12 @@ class TranslationProject(models.Model):
             post_template_update.send(sender=self, oldstats=oldstats,
                                       newstats=newstats)
 
-    def scan_files(self):
-        """Returns a list of translation files for the project and language."""
+    def scan_files(self, vcs_sync=True):
+        """Scans the file system and returns a list of translation files.
+
+        :param vcs_sync: boolean on whether or not to synchronise the PO
+                         directory with the VCS checkout.
+        """
         projects = [p.strip() for p in self.project.ignoredfiles.split(',')]
         ignored_files = set(projects)
         ext = os.extsep + self.project.localfiletype
@@ -347,7 +351,9 @@ class TranslationProject(models.Model):
             ext = os.extsep + self.project.get_template_filetype()
 
         from pootle_app.project_tree import (add_files, match_template_filename,
-                                             direct_language_match_filename)
+                                             direct_language_match_filename,
+                                             sync_from_vcs)
+
         all_files = []
         new_files = []
 
@@ -362,6 +368,9 @@ class TranslationProject(models.Model):
                               )
         else:
             file_filter = lambda filename: True
+
+        if vcs_sync:
+            sync_from_vcs(ignored_files, ext, self.real_path, file_filter)
 
         all_files, new_files = add_files(
                 self,
