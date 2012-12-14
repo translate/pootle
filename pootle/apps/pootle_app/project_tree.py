@@ -132,6 +132,15 @@ def split_files_and_dirs(ignored_files, ext, real_dir, file_filter):
 
 
 def recursive_files_and_dirs(ignored_files, ext, real_dir, file_filter):
+    """Traverses :param:`real_dir` searching for files and directories.
+
+    :param ignored_files: List of files that will be ignored.
+    :param ext: Only files ending with this extension will be considered.
+    :param real_dir:
+    :param file_filter: Filtering function applied to the list of files found.
+    :return: A tuple of lists of files and directories found when traversing the
+        given path and after applying the given restrictions.
+    """
     real_dir = add_trailing_slash(real_dir)
     files = []
     dirs = []
