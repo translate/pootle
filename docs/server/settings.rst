@@ -74,7 +74,7 @@ Site-specific settings.
 ``CAN_CONTACT``
   Default: ``True``
 
-  Controls whether users will be able to use the contact form. The addres to
+  Controls whether users will be able to use the contact form. The address to
   receive messages is controlled by :setting:`CONTACT_EMAIL`.
 
 
