@@ -11,7 +11,7 @@ Free Software, and you can download it and run your own copy if you like.
 You can also help participate in the development in many ways (you don't have
 to be able to program).
 
-The Pootle project itself is hosted at http://translate.sourceforge.net where
+The Pootle project itself is hosted at http://pootle.translatehouse.org where
 you can find details about source code, mailing lists, etc.
 
 
