@@ -210,7 +210,7 @@ class BaseRunCommand(BaseCommand):
     hostport_option_list = (
         make_option('--host', action='store', dest='host', default='127.0.0.1',
             help='Hostname to listen on.'),
-        make_option('--port', action='store', dest='port', default=8080,
+        make_option('--port', action='store', dest='port', default=8000,
             type=int, help='The TCP port to listen on.'),
     )
 
