@@ -592,15 +592,28 @@ class TranslationProject(models.Model):
         store.sync(update_structure=False, update_translation=True,
                    conservative=True)
         stats = store.getquickstats()
-        author = user.username
+        username = user.username
 
         message = stats_message_raw("Commit from %s by user %s." % \
-                (settings.TITLE, author), stats)
+                (settings.TITLE, username), stats)
 
-        # Try to append email as well, since some VCS does not allow omitting
-        # it (ie. Git).
+        # Also provide the full author (user with email appended), since
+        # some VCS like to work with those (ie. Git).
         if user.is_authenticated() and len(user.email):
-            author += " <%s>" % user.email
+            author = username + " <%s>" % user.email
+        else:
+            author = username
+
+        commitdata = {
+            'server': settings.TITLE,
+            'user': username,
+            'author': author,
+            'translated': stats.get("translated", 0),
+            'total': stats.get("total", 0),
+            'fuzzy': stats.get("fuzzy", 0),
+            'project': self.project.fullname,
+            'language': self.language.name,
+        }
 
         from pootle.scripts import hooks
         try:
