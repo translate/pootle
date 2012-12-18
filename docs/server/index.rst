@@ -12,8 +12,7 @@ Installation
    :maxdepth: 2
 
    installation
-   apache
-   nginx
+   web
 
 
 .. _server-upgrading:
