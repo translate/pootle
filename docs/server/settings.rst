@@ -23,6 +23,7 @@ Pootle-specific settings in this document.
   configuration files or edit existing ones, take into account this behavior.
 
 
+.. _settings#available:
 
 Available settings
 ------------------
@@ -397,6 +398,9 @@ Translation environment configuration settings.
   .. versionadded:: 2.5
 
   The directory where version control clones/checkouts are kept.
+
+
+.. _settings#deprecated:
 
 Deprecated settings
 -------------------
