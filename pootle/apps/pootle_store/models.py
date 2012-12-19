@@ -1156,7 +1156,9 @@ class Store(models.Model, base.TranslationStore):
         finally:
             # Unlock store
             self.state = old_state
-            if update_structure and update_translation and not conservative:
+            if (update_structure and
+                ((update_translation and not conservative) or
+                 modified_since)):
                 self.sync_time = timezone.now()
             self.save()
 
