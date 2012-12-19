@@ -642,7 +642,7 @@ class TranslationProject(models.Model):
             pass
 
         from pootle_app.models.signals import post_vc_commit
-        post_vc_commit.send(sender=self, store=store, stats=stats, user=user,
+        post_vc_commit.send(sender=self, path_obj=store, stats=stats, user=user,
                             success=success)
 
         return success

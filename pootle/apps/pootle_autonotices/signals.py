@@ -155,10 +155,10 @@ def updated_from_version_control(sender, oldstats, remotestats, newstats,
     new_object(True, message, directory)
 
 
-def committed_to_version_control(sender, store, stats, user, success, **kwargs):
+def committed_to_version_control(sender, path_obj, stats, user, success, **kwargs):
     message = '<a href="%s">%s</a> committed <a href="%s">%s</a> to version control' % (
         user.get_absolute_url(), get_profile(user),
-        store.get_absolute_url(), store.pootle_path)
+        path_obj.get_absolute_url(), path_obj.pootle_path)
     message = stats_message_raw(message, stats)
     new_object(success, message, sender.directory)
 
