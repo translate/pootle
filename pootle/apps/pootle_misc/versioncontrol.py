@@ -74,7 +74,7 @@ def update_dir(path):
     vcs_object.update(needs_revert=False)
 
 
-def add_files(path, files, message):
+def add_files(path, files, message, author=None):
     vcs_path = to_vcs_path(path)
     path = to_podir_path(path)
     vcs = versioncontrol.get_versioned_object(vcs_path)
@@ -85,5 +85,5 @@ def add_files(path, files, message):
         if not os.path.exists(vcs_dir):
             os.makedirs(vcs_dir)
         shutil.copy(podir_path, vcs_path)
-    output = vcs.add([to_vcs_path(f) for f in files], message)
+    output = vcs.add([to_vcs_path(f) for f in files], message, author)
     return output
