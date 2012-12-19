@@ -170,7 +170,8 @@ def commit_dir_to_vcs(request, path_obj, **kwargs):
     if (path_obj.get_real_path() and check_permission('commit', request) and
             hasversioning(path_obj.get_real_path())):
         link = dispatch.commit_all(path_obj)
-        text = _('Commit to VCS')
+        # Translators: "all" here refers to all files and sub directories in a directory/project.
+        text = _('Commit all to VCS')
 
         return {
             'icon': 'icon-vcs-commit',
