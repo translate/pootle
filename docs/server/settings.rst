@@ -212,6 +212,8 @@ Configuration settings for applications used by Pootle.
   Enable spam prevention through a captcha.
 
 
+.. _settings#ldap:
+
 51-ldap.conf
 ^^^^^^^^^^^^
 

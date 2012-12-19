@@ -3,19 +3,115 @@
 Optimization
 ============
 
+This page lists extra optional software you can install to improve Pootle's
+performance. Some configuration tips are given too.
+
+
+.. _optimization#optional_software:
+
+Optional Software
+-----------------
+
+By installing optional software you can gain performance and extra features.
+
+
+Database Backends
+^^^^^^^^^^^^^^^^^
+
+You should really switch to a real database backend in production environments.
+Adjust the :setting:`DATABASES` setting accordingly.
+
+`MySQL-python <http://mysql-python.sourceforge.net/>`_
+  MySQL adapter for Python.
+
+`Psycopg2 <http://initd.org/psycopg/>`_
+  PostgreSQL adapter for Python.
+
+
+Caching
+^^^^^^^
+
+Fast and efficient caching avoids hitting the DB when it's not really needed.
+Adjust the :setting:`CACHES` setting accordingly.
+
+`python-memcached <http://www.tummy.com/Community/software/python-memcached/>`_
+  Efficient caching.
+
+
+Indexing Engines
+^^^^^^^^^^^^^^^^
+
+Installing an :doc:`indexing engine <indexing>` will speed-up searches. Pootle
+will automatically pick one from any of the available engines.
+
+`Xapian <http://xapian.org/docs/bindings/python/>`_
+  Python bindings for Xapian [#f1]_.
+
+`PyLucene <https://lucene.apache.org/pylucene/>`_
+  Python bindings for Lucene.
+
+
+.. rubric:: Note
+
+.. [#f1] Xapian versions before 1.0.13 are incompatible with Apache; Pootle will
+  detect Xapian version and disable indexing when running under *mod_wsgi* if
+  needed.
+
+  Checking for Xapian relies on the `xapian-check` command, which is found in
+  the `xapian-tools` package in Debian-based systems.
+
+
+Web Servers
+^^^^^^^^^^^
+
+You should really run Pootle behind a :ref:`real web server <web>`, at least to
+serve static content. For generating the dynamic content, you can also use
+alternative WSGI servers that might better suit your environment.
+
+`Apache <http://httpd.apache.org/>`_
+  Apache web server.
+
+`Nginx <http://nginx.org/>`_
+  Ngninx web server.
+
+`gunicorn <http://gunicorn.org/>`_
+  Python WSGI HTTP server.
+
+
+Speed-ups and Extras
+^^^^^^^^^^^^^^^^^^^^
+
+zip and unzip
+  Fast (un)compression of file archives.
+
+`python-levenshtein <http://sourceforge.net/projects/translate/files/python-Levenshtein/>`_
+  Provides speed-up when updating from templates.
+
+`iso-codes <http://packages.debian.org/unstable/source/iso-codes>`_
+  Enables translated language and country names.
+
+`raven <http://raven.readthedocs.org/>`_
+  Enables logging server exceptions to a `Sentry server
+  <http://sentry.readthedocs.org/en/latest/>`_. If installed and configured,
+  Pootle will automatically use the raven client.
+
+`python-ldap <http://www.python-ldap.org/>`_
+  Enables :ref:`LDAP authentication <authentication#ldap>`. Be sure to check the
+  :ref:`LDAP settings <settings#ldap>`.
+
+
+.. _optimization#tips:
+
+Tips
+----
+
 With a few extra steps, you can support more users and more data.  Here are
 some tips for performance tuning on your Pootle installation.
 
-- Ensure that Pootle runs under a webserver like :doc:`Apache <apache>`,
-  :doc:`Nginx <nginx>` or a `fastcgi server
-  <http://cleverdevil.org/computing/24/python-fastcgi-wsgi-and-lighttpd>`_. 
-
-   - If you really can't install under another web server, at least install
-     `cherrypy <http://www.cherrypy.org>`_ which Pootle will automatically use.
-     This will help a little bit with performance.
+- Ensure that Pootle runs under a proper :doc:`web server <web>`.
 
 - Be sure to use a proper database server like :ref:`MySQL
-  <installation#mysql>` instead of the default SQLite.  You can :doc:`migrate
+  <optimization#mysql>` instead of the default SQLite.  You can :doc:`migrate
   an existing installation <database_migration>` if you already have data you
   don't want to lose.
 
@@ -36,7 +132,7 @@ some tips for performance tuning on your Pootle installation.
 
 - Ensure that you have an :doc:`indexing engine <indexing>` installed with its
   Python bindings. This will improve the performance of searching in big
-  projects.  PyLucene should perform better, although it might be harder to
+  projects. PyLucene should perform better, although it might be harder to
   install.
 
 - Ensure that you have python-levenshtein installed. This will improve the
@@ -44,7 +140,7 @@ some tips for performance tuning on your Pootle installation.
 
 - Increase the cache timeout for users who are not logged in.
 
-- Increase your parse pool size if you have enough memory available.
+- Increase your :setting:`PARSE_POOL_SIZE` if you have enough memory available.
 
 - Enable ``'django.contrib.sessions.backends.cached_db'``.
 
@@ -56,10 +152,10 @@ some tips for performance tuning on your Pootle installation.
 .. _optimization#apache:
 
 Apache
-------
+^^^^^^
 
 For Apache, review your server settings so that you don't support too many or
-too few clients.  Supporting too many clients increase memory usage, and can
+too few clients. Supporting too many clients increases memory usage, and can
 actually reduce performance.
 
 No specific settings can be recommended, since this depends heavily on your
@@ -71,24 +167,29 @@ with values between 10 and 80.
 .. _optimization#mysql:
 
 MySQL
------
+^^^^^
+
+Using MySQL is well tested and recommended. You can :doc:`migrate your current
+database <database_migration>` if you already have data you don't want to lose.
 
 If using MySQL backend, for smaller installations it is suggested to go with
-MyISAM backend (which might result in smaller memory usage and better
-performance). If high concurrency is expected, InnoDB is suggested to avoid
-locking issues.
+`MyISAM backend
+<https://dev.mysql.com/doc/refman/5.6/en/myisam-storage-engine.html>`_ (which
+might result in smaller memory usage and better performance). If high
+concurrency is expected, `InnoDB
+<https://dev.mysql.com/doc/refman/5.6/en/innodb-storage-engine.html>`_ is
+suggested to avoid locking issues.
 
 
 .. _optimization#fast_po_implementation:
 
 Fast PO implementation
-----------------------
+^^^^^^^^^^^^^^^^^^^^^^
 
 If you want better performance for your PO based operations, you can try to
-enable the fast PO implementation available since Translate Toolkit 1.5.0.
-This implementation will be used if ``USECPO=2`` is available in the operating
-system environment variables.  Note that this is different from the Apache
-environment variables.
+enable the fast PO implementation. This implementation will be used if
+``USECPO=2`` is available in the operating system environment variables. Note
+that this is different from the web server's environment variables.
 
 Your PO files will have to have character encodings specified, and be perfectly
 valid PO files (no duplicate messages or other format errors). Be sure to test
