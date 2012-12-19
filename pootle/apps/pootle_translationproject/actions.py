@@ -150,6 +150,35 @@ def commit_to_vcs(request, path_obj, **kwargs):
         }
 
 
+@directory
+def update_dir_from_vcs(request, path_obj, **kwargs):
+    if (path_obj.get_real_path() and check_permission('commit', request) and
+            hasversioning(path_obj.get_real_path())):
+        link = dispatch.update_all(path_obj)
+        # Translators: "all" here refers to all files and sub directories in a directory/project.
+        text = _('Update all from VCS')
+
+        return {
+            'icon': 'icon-vcs-update',
+            'href': link,
+            'text': text,
+        }
+
+
+@directory
+def commit_dir_to_vcs(request, path_obj, **kwargs):
+    if (path_obj.get_real_path() and check_permission('commit', request) and
+            hasversioning(path_obj.get_real_path())):
+        link = dispatch.commit_all(path_obj)
+        text = _('Commit to VCS')
+
+        return {
+            'icon': 'icon-vcs-commit',
+            'href': link,
+            'text': text,
+        }
+
+
 def rescan_project_files(request, path_obj, **kwargs):
     if check_permission('administrate', request):
         tp = path_obj.translation_project
@@ -224,8 +253,11 @@ def action_groups(request, path_obj, **kwargs):
         {'group': 'translate-offline', 'group_display': _("Translate offline"),
          'actions': [download_source, download_zip, upload_zip]},
         {'group': 'manage', 'group_display': _("Manage"),
-         'actions': [update_from_vcs, commit_to_vcs, rescan_project_files,
-                     update_against_templates, delete_path_obj]},
+         'actions': [update_from_vcs, commit_to_vcs, update_dir_from_vcs,
+                     commit_dir_to_vcs, rescan_project_files,
+                     update_against_templates, delete_path_obj,
+                    ]
+        },
     ]
 
     for group in groups:

@@ -152,3 +152,29 @@ def update_file(request, translation_project, file_path):
     result = translation_project.update_file(request, store)
 
     return redirect(translation_project.directory.pootle_path)
+
+
+@get_translation_project
+@set_request_context
+def commit_all(request, translation_project, dir_path):
+    if not check_permission("commit", request):
+        raise PermissionDenied(_("You do not have rights to commit files here"))
+
+    pootle_path = translation_project.directory.pootle_path + dir_path
+    directory = get_object_or_404(Directory, pootle_path=pootle_path)
+    result = translation_project.commit_dir(request.user, directory, request)
+
+    return redirect(translation_project.directory.pootle_path)
+
+
+@get_translation_project
+@set_request_context
+def update_all(request, translation_project, dir_path):
+    if not check_permission("commit", request):
+        raise PermissionDenied(_("You do not have rights to update files here"))
+
+    pootle_path = translation_project.directory.pootle_path + dir_path
+    directory = get_object_or_404(Directory, pootle_path=pootle_path)
+    result = translation_project.update_dir(request, directory)
+
+    return redirect(translation_project.directory.pootle_path)
