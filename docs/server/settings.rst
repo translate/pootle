@@ -3,29 +3,38 @@
 Settings
 ========
 
-Pootle's settings are spread in several *.conf* files within the
-*pootle/settings/* directory. Files are split by category: project-level
-settings, settings that control database backends, translation options, etc.
+You will find all the Pootle-specific settings in this document.
 
-When customizing settings, **creating a 90-local.conf file is recommended**.
-This way, in case you deploy Pootle by cloning the git repository, the
-configuration file will be ignored by git. Moreover, all files ending in
-*-local.conf* will be ignored, so it's a good way for keeping separate
-configuration files for production, testing and development purposes.
+If you have upgraded, you might want to compare your previous copy to the one
+distributed with the Pootle version for any new settings you might be interested
+in.
 
-The git repository provides a sample *90-local.conf.sample* configuration file
-with the settings you are more likely to customize. You can find all the
-Pootle-specific settings in this document.
 
-.. note::
+.. _settings#customizing:
 
-  Each file is read in alphabetical order, so in case you intend to add new
-  configuration files or edit existing ones, take into account this behavior.
+Customizing Settings
+--------------------
+
+When starting Pootle with the ``pootle`` runner script, by default it will try
+to load custom settings from the *~/.pootle/pootle.conf* file. These settings
+will override the defaults set by Pootle.
+
+An alternative location for the settings file can be specified by setting the
+``-c </path/to/settings.conf/>`` flag when executing the runner. You can also
+set the ``POOTLE_SETTINGS`` environment variable to specify the path to the
+custom configuration file. The environment variable will take precedence over
+the command-line flag.
+
+If instead of an installation you deployed Pootle straight from the git
+repository, you can either set the ``POOTLE_SETTINGS`` environment variable or
+put a file under the *pootle/settings/* directory. Note that the files in this
+directory are read in alphabetical order, and  **creating a 90-local.conf file
+is recommended** (files ending in *-local.conf* will be ignored by git).
 
 
 .. _settings#available:
 
-Available settings
+Available Settings
 ------------------
 
 This is a list of Pootle-specific settings grouped by the file they're
@@ -402,7 +411,7 @@ Translation environment configuration settings.
 
 .. _settings#deprecated:
 
-Deprecated settings
+Deprecated Settings
 -------------------
 
 .. setting:: ENABLE_ALT_SRC
