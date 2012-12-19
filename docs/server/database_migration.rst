@@ -17,7 +17,7 @@ described on this page.
 Quick summary
 -------------
 
-Two :doc:`manage.py commands <commands>` are needed::
+Two :doc:`management commands <commands>` are needed::
 
     ./manage.py dumpdata -n > data.json
 
@@ -41,7 +41,7 @@ The steps to migrate between databases are as follows:
 
   #. Ensure that you have at least Django 1.2.0
 
-  #. Read about how to run :doc:`manage.py commands <commands>`
+  #. Read about how to run :doc:`management commands <commands>`
 
   #. Stop the Pootle server to avoid data changing while you migrate
 

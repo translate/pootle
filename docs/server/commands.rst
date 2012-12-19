@@ -18,7 +18,7 @@ If you run Pootle from a checkout (either directly from the
 release tarball) you can use the *manage.py* file found in the main Pootle
 directory *{checkout}/pootle*.
 
-For example, to get information about all available manage.py commands, run::
+For example, to get information about all available management commands, run::
 
     # ./manage.py help
 
