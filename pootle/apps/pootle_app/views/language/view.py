@@ -138,7 +138,7 @@ def commit_file(request, translation_project, file_path):
     store = get_object_or_404(Store, pootle_path=pootle_path)
     result = translation_project.commit_file(request.user, store, request)
 
-    return redirect(translation_project.directory.pootle_path)
+    return redirect(store.pootle_path)
 
 
 @get_translation_project
@@ -151,7 +151,7 @@ def update_file(request, translation_project, file_path):
     store = get_object_or_404(Store, pootle_path=pootle_path)
     result = translation_project.update_file(request, store)
 
-    return redirect(translation_project.directory.pootle_path)
+    return redirect(store.pootle_path)
 
 
 @get_translation_project
@@ -164,7 +164,7 @@ def commit_all(request, translation_project, dir_path):
     directory = get_object_or_404(Directory, pootle_path=pootle_path)
     result = translation_project.commit_dir(request.user, directory, request)
 
-    return redirect(translation_project.directory.pootle_path)
+    return redirect(directory.pootle_path)
 
 
 @get_translation_project
@@ -177,4 +177,4 @@ def update_all(request, translation_project, dir_path):
     directory = get_object_or_404(Directory, pootle_path=pootle_path)
     result = translation_project.update_dir(request, directory)
 
-    return redirect(translation_project.directory.pootle_path)
+    return redirect(directory.pootle_path)
