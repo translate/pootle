@@ -584,6 +584,78 @@ class TranslationProject(models.Model):
 
         self.scan_files()
 
+    def commit_dir(self, user, directory, request=None):
+        """Commits files under a directory to version control.
+
+        This does not do permission checking.
+        """
+        self.sync()
+        stats = self.getquickstats()
+        author = user.username
+
+        message = stats_message_raw("Commit from %s by user %s." % \
+                (settings.TITLE, author), stats)
+
+        # Try to append email as well, since some VCS does not allow omitting
+        # it (ie. Git).
+        if user.is_authenticated() and len(user.email):
+            author += " <%s>" % user.email
+
+        stores = list(self.stores.exclude(file=""))
+        filestocommit = []
+
+        from pootle.scripts import hooks
+        for store in stores:
+            try:
+                filestocommit.append(hooks.hook(self.project.code, "precommit",
+                                           store.file.name, author=author,
+                                           message=message)
+                                    )
+            except ImportError:
+                # Failed to import the hook - we're going to assume there just
+                # isn't a hook to import. That means we'll commit the original
+                # file.
+                filestocommit.append(store.file.name)
+
+        success = True
+        try:
+            from pootle_misc import versioncontrol
+            project_path = self.project.get_real_path()
+            versioncontrol.add_files(
+                    project_path,
+                    filestocommit,
+                    message,
+                    author,
+            )
+            if request is not None:
+                msg = _("Committed all files under %(path)s" % {
+                    'path': directory.pootle_path
+                })
+                messages.success(request, msg)
+        except Exception, e:
+            logging.error(u"Failed to commit: %s", e)
+
+            if request is not None:
+                msg = _("Failed to commit: %(error)s" % {'error': e})
+                messages.error(request, msg)
+
+            success = False
+
+        for store in stores:
+            try:
+                hooks.hook(self.project.code, "postcommit", store.file.name,
+                           success=success)
+            except:
+                #FIXME: We should not hide the exception - makes development
+                # impossible
+                pass
+
+        from pootle_app.models.signals import post_vc_commit
+        post_vc_commit.send(sender=self, path_obj=directory, stats=stats,
+                            user=user, success=success)
+
+        return success
+
     def commit_file(self, user, store, request=None):
         """Commits an individual file to version control.
 
