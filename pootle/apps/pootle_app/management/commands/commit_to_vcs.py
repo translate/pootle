@@ -48,11 +48,4 @@ class Command(PootleCommand):
 
         The translation project may be limited by language, filename, etc.
         """
-        store_query = tp.stores.all()
-        for store in store_query.iterator():
-            logging.info(u"Running %s over %s", self.name, store.pootle_path)
-            try:
-                tp.commit_file(self.user, store)
-            except Exception, e:
-                logging.error(u"Failed to run %s over %s:\n%s", self.name,
-                              store.pootle_path, e)
+        tp.commit_dir(self.user, tp.directory)
