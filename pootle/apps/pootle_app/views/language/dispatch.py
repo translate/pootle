@@ -62,3 +62,11 @@ def commit(path_obj):
 
 def update(path_obj):
     return  l(path_obj.pootle_path + '/update')
+
+
+def commit_all(path_obj):
+    return  l(path_obj.pootle_path + 'commit_all')
+
+
+def update_all(path_obj):
+    return  l(path_obj.pootle_path + 'update_all')
