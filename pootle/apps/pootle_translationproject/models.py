@@ -488,7 +488,12 @@ class TranslationProject(models.Model):
         from pootle.scripts import hooks
 
         # Go through all stores except any pootle-terminology.* ones
-        for store in self.stores.exclude(file="").iterator():
+        if directory.is_translationproject():
+            stores = self.stores.exclude(file="")
+        else:
+            stores = directory.stores.exclude(file="")
+
+        for store in stores.iterator():
             if store in new_file_set:
                 # these won't have to be merged, since they are new
                 remotestats = store.getquickstats()
@@ -601,7 +606,11 @@ class TranslationProject(models.Model):
         if user.is_authenticated() and len(user.email):
             author += " <%s>" % user.email
 
-        stores = list(self.stores.exclude(file=""))
+        if directory.is_translationproject():
+            stores = list(self.stores.exclude(file=""))
+        else:
+            stores = list(directory.stores.exclude(file=""))
+
         filestocommit = []
 
         from pootle.scripts import hooks
