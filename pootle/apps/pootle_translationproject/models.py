@@ -468,7 +468,7 @@ class TranslationProject(models.Model):
         newstats = store.getquickstats()
         return oldstats, remotestats, newstats
 
-    def update_from_vcs(self, request):
+    def update_dir(self, request, directory=None):
         """Updates translation project's files from version control, retaining
         uncommitted translations.
         """
