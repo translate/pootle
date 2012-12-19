@@ -277,7 +277,8 @@ def overview(request, translation_project, dir_path, filename=None):
     request.current_path = current_path
 
     view_obj = ProjectIndexView(forms=dict(upload=UploadHandler,
-                                           update=UpdateHandler))
+                                          )
+                               )
 
     return render_to_response("translation_project/overview.html",
                               view_obj(request, translation_project,
@@ -717,23 +718,6 @@ def upload_file(request, directory, django_file, overwrite, store=None):
                     suggestions=suggestions, notranslate=notranslate,
                     allownewstrings=allownewstrings,
                     obsoletemissing=allownewstrings)
-
-
-class UpdateHandler(view_handler.Handler):
-
-    actions = [('do_update', _('Update all from version control'))]
-
-    class Form(forms.Form):
-        pass
-
-    @classmethod
-    def must_display(cls, request, *args, **kwargs):
-        return (check_permission('commit', request) and
-                hasversioning(request.translation_project.abs_real_path))
-
-    def do_update(self, request, translation_project, directory, store):
-        translation_project.update_from_vcs(request)
-        return {}
 
 
 class UploadHandler(view_handler.Handler):
