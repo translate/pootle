@@ -3,41 +3,19 @@
 Management commands
 ===================
 
-The *manage.py* commands are administration commands provided by Django,
-Pootle or any external Django app being used with Pootle. How you run manage
-commands depends on how you installed Pootle.
+The management commands are administration commands provided by Django, Pootle
+or any external Django app being used with Pootle. You will usually run these
+commands by issueing ``pootle <command> [options]``.
 
+For example, to get information about all available management commands, you
+will run::
 
-.. _commands#running_from_checkout:
+    $ pootle help
 
-Running from checkout
----------------------
+.. note::
 
-If you run Pootle from a checkout (either directly from the
-`Pootle repository <https://github.com/translate/pootle>`_ or from a
-release tarball) you can use the *manage.py* file found in the main Pootle
-directory *{checkout}/pootle*.
-
-For example, to get information about all available management commands, run::
-
-    # ./manage.py help
-
-
-.. _commands#running_from_install:
-
-Running from install
---------------------
-
-If you run Pootle from an install (with *setup.py* or your operating system
-package) you will have to use the `django-admin` or `django-admin.py`
-command that comes with Django.
-
-Here is the same example::
-
-    # django-admin.py help --settings=pootle.settings
-
-Note since `django-admin.py` is a global command it needs to know where to
-find Pootle via the ``--settings=pootle.settings`` command line option.
+  If you run Pootle from a repository checkout you can use the *manage.py* file
+  found in the root of the repository.
 
 
 .. _commands#running:
@@ -122,12 +100,12 @@ pair.
 
 For example, to *refresh_stats* for the tutorial project only, run::
 
-    ./manage.py refresh_stats --project=tutorial
+    $ pootle refresh_stats --project=tutorial
 
 To only refresh a the Zulu and Basque language files within the tutorial
 project, run::
 
-    ./manage.py refresh_stats --project=tutorial --language=zu --language=eu
+    $ pootle refresh_stats --project=tutorial --language=zu --language=eu
 
 
 .. _commands#refresh_stats:
@@ -136,11 +114,11 @@ refresh_stats
 ^^^^^^^^^^^^^
 
 This command will go through all existing projects making sure calculated data
-is up to date. Running *refresh_stats* immediately after an install, upgrade
+is up to date. Running ``refresh_stats`` immediately after an install, upgrade
 or after adding a large number of files will make Pootle feel faster as it will
 require less on-demand calculation of expensive statistics.
 
-*refresh_stats* will do the following tasks:
+``refresh_stats`` will do the following tasks:
 
 - Update the statistics cache (this only useful if you are using memcached).
 
@@ -156,12 +134,12 @@ sync_stores
 ^^^^^^^^^^^
 
 This command will save all translations currently in the database to the file
-system, thereby bringing the files under the *po/* directory in sync with the
-Pootle database.
+system, thereby bringing the files under the :settings:`PODIRECTORY` directory
+in sync with the Pootle database.
 
 .. note:: For better performance Pootle keeps translations in database and
    doesn't save them to disk except on demand (before file downloads and
-   before major file level operations like version control update).
+   major file level operations like version control updates).
 
 You must run this command before taking backups or running scripts that modify
 the translation files directly on the file system, otherwise you might miss out
@@ -192,7 +170,7 @@ update_stores
 
 This command is the opposite of :ref:`commands#sync_stores`. It will update the
 strings in database to reflect what is on disk, as Pootle will not detect
-changes in the file system on it's own.
+changes in the file system on its own.
 
 It will also discover and import any new files added to existing languages
 within the projects.
@@ -200,7 +178,7 @@ within the projects.
 You must run this command after running scripts that modify translation files
 directly on the file system.
 
-*update_stores* has an extra command line option ``--keep`` that will prevent
+``update_stores`` has an extra command line option ``--keep`` that will prevent
 it from overwriting any existing translation in the database, thus only
 updating new translations and discovering new files and strings.
 
@@ -212,8 +190,8 @@ some translated units can be updated from in-disk files while at preserving
 in-DB translations for other units that meet the given criterion.
 
 To illustrate the results of these later options, have a look at the following
-table that emulates the behavior of ``manage.py update_stores
---modified-since=5 --keep``:
+table that emulates the behavior of ``pootle update_stores --modified-since=5
+--keep``:
 
 ======================================== ============= ===============
  File on disk                             DB before     DB after
@@ -232,7 +210,7 @@ table that emulates the behavior of ``manage.py update_stores
 ======================================== ============= ===============
 
 
-By default *update_stores* will only update files that appear to have changed
+By default, ``update_stores`` will only update files that appear to have changed
 on disk since the last synchronization with Pootle. To force all files to
 update, specify ``--force``.
 
@@ -245,7 +223,8 @@ update, specify ``--force``.
 update_from_templates
 ^^^^^^^^^^^^^^^^^^^^^
 
-This updates languages to match what is present in the translation templates.
+Updates languages to match what is present in the translation templates.
+
 This command is essentially an interface to the
 Translate Toolkit command :ref:`pot2po <toolkit:pot2po>` with special Pootle
 specific routines to update the database and file system to reflect the
@@ -292,8 +271,8 @@ update_from_vcs
 .. versionadded:: 2.5
 
 This command updates the specified files from their :doc:`Version Control
-System(s) <../features/version_control>`. It supports the parameters
-``--directory``, ``--project``, and ``--language``.
+System(s) <../features/version_control>`. It supports the ``--directory``,
+``--project``, and ``--language`` parameters.
 
 Pootle will take care to avoid version control conflicts, and will handle any
 conflicts on a string level, just like it would if the update was done through
@@ -310,8 +289,8 @@ commit_to_vcs
 .. versionadded:: 2.5
 
 This command commits the specified files to their :doc:`Version Control
-System(s) <../features/version_control>`. It supports the parameters
-``--directory``, ``--project``, and ``--language``.
+System(s) <../features/version_control>`. It supports the ``--directory``,
+``--project``, and ``--language`` parameters.
 
 A file needs to be up to date, otherwise the commit will fail. Files can be
 updated inside Pootle, or using the :ref:`commands#update_from_vcs` command.
@@ -361,7 +340,7 @@ with these IDs.
 
 .. _commands#manually_installing_pootle:
 
-Manually installing Pootle
+Manually Installing Pootle
 --------------------------
 
 These commands expose the database installation and upgrade process from the
@@ -373,19 +352,16 @@ command line.
 syncdb
 ^^^^^^
 
-Strictly speaking *syncdb* is a generic django *manage.py* command that creates
+Strictly speaking ``syncdb`` is a generic Django management command that creates
 empty database tables. It has been customized for Pootle to create everything
 required for a bare bones install. This includes database tables, default
-permissions, some default objects used internally by Pootle (like the "default"
-and "nobody" user profiles) and the special Terminology and :ref:`Templates
-languages <templates#the_templates_language>`.
+permissions, some default objects used internally by Pootle (like the
+*"default"* and *"nobody"* user profiles) and the special Terminology and
+:ref:`Templates languages <templates#the_templates_language>`.
 
-If you just run *syncdb* you will have a usable Pootle install but you will
+If you just run ``syncdb`` you will have a usable Pootle install but you will
 need to create all languages manually, and you will not have a tutorial project
 to play with.
-
-Use this command if you plan to upgrade from a Pootle 1.2 install or if you
-don't like having many languages by default.
 
 
 .. _commands#initdb:
@@ -393,15 +369,15 @@ don't like having many languages by default.
 initdb
 ^^^^^^
 
-This is Pootle's install process, it creates the default admin user, populates
-the language table with several languages with their correct fields,
-initializes several terminology projects, and creates the tutorial project.
+This is Pootle's install process, it creates the default *admin* user, populates
+the language table with several languages with their correct fields, initializes
+several terminology projects, and creates the tutorial project.
 
-*initdb* can only be run after *syncdb*.
+``initdb`` can only be run after :ref:`commands#syncdb`.
 
-.. note:: *initdb* will not import translations into the database, so the first
-   visit to Pootle after *initdb* will be very slow. **It is best to run
-   refresh_stats immediately after initdb**.
+.. note:: ``initdb`` will not import translations into the database, so the
+  first visit to Pootle after ``initdb`` will be very slow. **It is
+  best to run refresh_stats immediately after initdb**.
 
 
 .. _commands#updatedb:
@@ -412,7 +388,7 @@ updatedb
 This is a command line interface to Pootle's database scheme upgrade process.
 A database upgrade is usually triggered automatically on the first visit to a
 :doc:`new version of Pootle <upgrading>`, but for very large installs database
-upgrades can be too slow for the browser and it is best to run *updatedb*
+upgrades can be too slow for the browser and it is best to run ``updatedb``
 from the command line.
 
 
@@ -429,7 +405,7 @@ changepassword
 
 ::
 
-    ./manage.py changepassword <username>
+    $ pootle changepassword <username>
 
 This can be used to change the password of any user from the command line.
 
@@ -465,11 +441,11 @@ loaded. Useful if you know a bit of Python or the Django models syntax.
 
 .. _commands#running_in_cron:
 
-Running commands in cron
+Running Commands in cron
 ------------------------
 
-If you want to schedule certain actions on your Pootle server, using
-management commands with cron might be a solution.
+If you want to schedule certain actions on your Pootle server, using management
+commands with cron might be a solution.
 
 The management commands can perform certain batch commands which you might want
 to have executed periodically without user intervention.

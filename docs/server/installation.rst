@@ -1,118 +1,127 @@
 .. _installation:
 
-Installation
-============
+Quickstart
+==========
 
-System requirements
--------------------
+Want to try Pootle? This guide will guide you through installing Pootle and its
+requirements in a virtual environment.
+
+Before proceeding, consider installing these first:
+
+- At least Python 2.4
+- Django 1.3.x or 1.4.x
+- `python-pip <http://www.pip-installer.org/>`_
+
+If you only want to have a sneak peek of Pootle, the default configuration and
+the built-in server will suffice. But in case you want to deploy a real world
+server, :ref:`installing optional packages <optimization#optional_software>`,
+using a real database and :doc:`a proper web server <web>` is highly
+recommended.
+
+
+.. note::
+
+  The easiest way to test and install Pootle is by using pip. However,
+  installations can be done straight from git sources or be automated by using
+  fabric deployment scripts.
+
+
+.. _installation#hardware_requirements:
+
+Hardware Requirements
+---------------------
 
 Your Pootle installation will need to be flexible enough to handle the
-translation load.  The recommended hardware depends highly on the performance
-you expect, the number of users you want to support, and the number and size of
-the files you want to host.  If you want to host a lot of projects, e.g.
-multiple translations of large projects such as OpenOffice.org, Mozilla
-Firefox, GNOME or KDE we would recommend:
+translation load. The recommended hardware depends highly on the performance you
+expect, the number of users you want to support, and the number and size of the
+files you want to host.
 
-- At least 512MB RAM, but more will be highly beneficial
-
-- :doc:`System optimization <optimization>`
-
-But of course if you are simply hosting one language or a number of languages
-for a small localization project with only a few files on the server then you
-can use:
-
-- 256 MB of RAM, unless your web server might demand more
-
-- You will still benefit from the performance increase if you can
-  :doc:`optimize <optimization>` your system.
+Whatever hardware you have, you will still benefit from performance improvements
+if you can :doc:`optimize your system<optimization>`.
 
 Your disk space should always be enough to store your files and your Pootle
 database, with some extra space available.
 
-This guide describes how to install manually Pootle and its requirements in
-your machine.  There are also available :doc:`ready-to-run packages
-<ready-to-run_packages>` from BitNami.
+
+.. _installation#setup_environment:
+
+Setting up the Environment
+--------------------------
+
+In order to install Pootle you will first create a virtual environment. This
+allows you to keep track of dependencies without messing up with system
+packages. For that purpose you need to install the ``virtualenv`` package. You
+might already have it, but in case you haven't::
+
+  $ pip install virtualenv
+
+Now create a virtual environment on your location of choice by issuing the
+``virtualenv`` command::
+
+  $ virtualenv /var/www/pootle/env/
+
+This will copy the system's default Python interpreter into your environment.
+For activating the virtual environment you must run the ``activate`` script::
+
+  $ source /var/www/pootle/env/bin/activate
+
+Every time you activate this virtual environment, the Python interpreter will
+know where to look for libraries. Also notice the environment name will be
+prepended to the shell prompt.
 
 
-.. _installation#software_requirements:
+.. _installation#installing_pootle:
 
-Software requirements
----------------------
+Installing Pootle
+-----------------
 
-This section helps you choose the versions of software that you need, the
-dependencies and optional software.  These might be slightly different if you
-are installing e.g. Windows so please familiarize yourself with your target
-platform and installation options before downloading all the software.
+After creating the virtual environment, you can safely ask pip to grab and
+install Pootle by running::
+
+  (env) $ pip install pootle
+
+This will fetch and install the minimum set of required dependecies as well.
 
 .. note::
 
-    Pootle will display warnings and suggestions about missing dependencies on
-    the admin page.
+  If you run into trouble while installing the dependencies, it's likely that
+  you're missing some extra packages needed to build those third-party packages.
+  For example, `lxml <http://lxml.de/installation.html>`_ needs a C compiler.
 
-For GNU/Linux users most of the required and optional dependencies are
-available through the operating system's package manager or through Python's
-standard package management command *easy_install*
+If everything went well, you will now be able to access the ``pootle`` command
+line tool within your environment.
 
+::
 
-.. _installation#prerequisite_software:
-
-Prerequisite Software
-^^^^^^^^^^^^^^^^^^^^^
-
-==========================  =====================  ======================================================================  ================================================================
- Package                     Best version           Website                                                                 Notes
-==========================  =====================  ======================================================================  ================================================================
- Pootle                      2.5 or later           http://sourceforge.net/projects/translate/files/Pootle/ 
- Django                      1.3 or later           https://www.djangoproject.com/download/
- Translate Toolkit           Latest version         http://sourceforge.net/projects/translate/files/Translate%20Toolkit/
- Python                      Latest 2.x version     http://www.python.org/                                                  At least version 2.4
- lxml                        2.1.4 or later         http://pypi.python.org/pypi/lxml/                                       XLIFF support and HTML sanitation and cleanup for news items
- Python database bindings                           See the `optional software`_ list below
- South                                              http://south.aeracode.org/  \\ pip install South                        Required for upgrading between Pootle versions
- django-voting                                      http://code.google.com/p/django-voting/ \\ pip install django-voting
- webassets                   0.6 or later           https://github.com/miracle2k/webassets/ \\ pip install webassets         For bundling assets.
- cssmin                                             https://github.com/zacharyvoase/cssmin \\ pip install cssmin             Required for webassets.
-==========================  =====================  ======================================================================  ================================================================
+  (env) $ pootle --version
+  Pootle 2.5.0
+  Translate Toolkit 1.10
+  Django 1.4.3
 
 
-.. _installation#optional_software:
+.. _installation#initializing_the_configuration:
 
-Optional Software
-^^^^^^^^^^^^^^^^^
+Initializing the Configuration
+------------------------------
 
-================================  ==============  =====================================================================  ================================================================================================================
- Package                           Version         Website                                                                Reason                                                                                                           
-================================  ==============  =====================================================================  ================================================================================================================
- MySQLdb                                           http://mysql-python.sourceforge.net/                                   MySQL support for django
- MySQL_ [#f1]_                     4.1 or later                                                                           Database for storing Users, Projects and Language information
- python-memcache and memcached                     http://www.tummy.com/Community/software/python-memcached/              more efficient caching
- :doc:`Apache <apache>`                                                                                                   Web server (best way to run Pootle)
- Xapian [#f2]_                                     http://xapian.org/docs/bindings/python/                                :doc:`Indexing <indexing>` library to speed up searching
- PyLucene                                          http://pylucene.osafoundation.org/                                     Indexing library to speed up searching
- zip and unzip                                                                                                            Fast (un)compression of file archives
- iso-codes                         any             http://packages.debian.org/unstable/source/iso-codes                   Enables translated language and country names
- python-levenshtein                                http://sourceforge.net/projects/translate/files/python-Levenshtein/    Provides speed-up when updating from templates
- python-ldap                                       http://www.python-ldap.org/                                            If using :ref:`LDAP <authentication#ldap>` authentication
- sqlite [#f3]_                     version 3       http://www.sqlite.org/                                                 Database for translation statistics in Pootle 2.0. Optionally the Django database, but this isn't recommended.
- Version Control Software                                                                                                 :ref:`Version control <version_control>` integration
-================================  ==============  =====================================================================  ================================================================================================================
+Once Pootle has been installed, you will need to initialize a configuration file
+for it. This is as easy as running::
 
-.. rubric:: Notes
+  (env) $ pootle init
 
-.. [#f1] Django can use a number of database engines for it's backend database
-  but we have only tested with MySQL and the default SQLite. You are strongly
-  encouraged to use MySQL rather than SQLite for any non-trivial installation.
+By default it writes the configuration file at ``~/.pootle/pootle.conf`` but
+if you want you can pass an alternative path as an argument to the ``init``
+command.
 
-.. [#f2] Xapian versions before 1.0.13 are incompatible with Apache; Pootle
-  will detect Xapian version and disable indexing when running under
-  *mod_python* or *mod_wsgi* if needed.
+This default configuration is enough to initially experiment with Pootle but
+**it's highly discouraged and unsupported to use this configuration in a
+production environment**.
+Also, the default configuration uses SQLite, which shouldn't be used for
+anything more than testing purposes.
 
-  Checking for Xapian relies on the `xapian-check` command, which is found in
-  the `xapian-tools` package in Debian-based systems.
-
-.. [#f3] sqlite 3 support is built-in since Python 2.5, those using 2.4 will
-  also need to install the `python-sqlite2` package.  Since Pootle 2.1 this is
-  not required any more if using another database engine.
+The initial configuration includes the settings that you're most likely to
+change. For further customization, you can also check for the :ref:`full list of
+available settings<settings#available>`.
 
 
 .. _installation#running_pootle:
@@ -120,175 +129,69 @@ Optional Software
 Running Pootle
 --------------
 
-Pootle can be run directly from the directory of files. Although it can be
-installed in your system via the *setup.py* command, such a system-wide
-installation is never really required, and probably only relevant for
-distribution packagers.
+By default Pootle provides a built-in `CherryPy server
+<http://www.cherrypy.org/>`_ that will be enough for quickly testing the
+software. To run it, just issue::
 
-The recommended way to run Pootle is under a web server. This will provide the
-best performance. The built-in web server is sufficient for the first
-experiments, but ideally you should plan to have it running under a better
-server eventually.
+  (env) $ pootle start
 
-.. _installation#running_from_checkout_or_archive:
+And the server will start listening on port 8000. This can be accessed from your
+web browser at ``http://localhost:8000/``.
 
-Running from checkout or archive
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. note::
 
-Running from checkout is the easiest way to test Pootle, no need to install it
-or even configure, just change your directory to inside Pootle's directory
-(extracted from downloaded archive or checked out from Git), and then execute
-``PootleServer``.
+  On the very first request Pootle will take a few minutes to setup the database
+  and will scan all the default projects and translation files it ships.
+  Finally, it will redirect to the front page.
 
-For example if you have downloaded `Pootle-2.1.1.tar.bz2
-<http://sourceforge.net/projects/translate/files/Pootle/>`_ you would do::
+  If you prefer, you can run this process from the command-line by executing the
+  :ref:`syncdb <commands#syncdb>` and :ref:`initdb <commands#initdb>` management
+  commands::
 
-    tar xvf Pootle-2.1.1.tar.bz2
-    cd Pootle-2.1.1
-    ./PootleServer
-
-By default the Pootle server will listen on the 8080 port, and can be accessed
-from your web browser at *http://localhost:8080/*.
-
-On the very first request Pootle will take a few minutes to setup a Django
-database under the *dbs/* subdirectory and will scan all the default projects
-and translation files under the *po* directory. Finally, it will redirect to
-the front page.
+    $ pootle syncdb
+    $ pootle initdb
 
 
-.. _installation#installing_pootle:
+.. _installation#reverse_proxy:
 
-Installing Pootle
-^^^^^^^^^^^^^^^^^
-
-Although it is almost never necessary to install Pootle as a Python package, it
-is possible. This might be useful for packagers of Linux distributions, for
-example.
-
-To install Pootle just the run following command from within the Pootle
-directory::
-
-    cd Pootle-2.1.1
-    ./setup.py install
-
-To start Pootle simply run::
-
-    PootleServer
-
-You should be able to access the server at localhost on port 8080.
-
-If you need to run Pootle under a different port execute::
-
-    PootleServer --port=PORTNUMBER
-
-The first time you visit a new Pootle install it will take some time to setup
-its database and to recalculate statistics and search indexes for the default
-translation projects.
-
-By default *setup.py* will use the directory */var/lib/pootle* for
-translation files, databases and other working files Pootle might use. The user
-running will need to have write permissions on this directory and all its
-descendant files and subdirectories.
-
-To verify which version of Pootle and dependencies you have installed run::
-
-    [l10n@server]# PootleServer --version
-    Pootle 2.1.1
-    Translate Toolkit 1.8.0
-    Django 1.2.1
-
-
-.. _installation#auto_start_pootle:
-
-Auto start Pootle
-^^^^^^^^^^^^^^^^^
-
-Installation will prepare your system to start Pootle server automatically as a
-daemon. The only thing left to do is to enable the daemon for auto start.
-Therefor You have to modify */etc/default/pootle* file, which is read by
-*/etc/init.d/pootle* script. Look for the line starting with
-``POOTLE_ENABLE=`` and change value after equal sign to ``Yes``. Test results
-by issuing the following command (don't forget to switch user account to
-`pootle` before!): service pootle start
-
-If you have difficulty installing please email the `translate-pootle
-<https://lists.sourceforge.net/lists/listinfo/translate-pootle>`_ list with
-details of exactly what you did and what didn’t work. If possible, please
-include the output of ``PootleServer --version``.
-
-
-.. _installation#manually_updating_statistics:
-
-Manually updating statistics
-----------------------------
-
-.. versionchanged:: 2.1
-
-Files are not kept in sync any more.  If you need to perform manual work on the
-files, be sure to read the section on the :doc:`command line actions
-<commands>` to ensure that you and Pootle work with the same information.
-
-
-.. _installation#other_deployment_scenarios:
-
-Other deployment scenarios
+Setting up a Reverse Proxy
 --------------------------
 
-The easiest way to run Pootle is using ``PootleServer`` as described above,
-however installations with a large number of users are better off :doc:`running
-under apache <apache>`. You might also consider using :doc:`nginx` if you
-prefer it.
+By default the Pootle server runs on port 8000 and you will probably be
+interested on binding it to the usual port 80. Also, it's highly recommended to
+have all the static assets served by a proper web server, and setting up a web
+proxy is the simplest way to go.
 
-By default Pootle is configured to use SQLite for its main database, but using
-:ref:`installation#mysql` or PostgreSQL is strongly recommended rather than
-SQLite for real installations.  You can :doc:`migrate your database
-<database_migration>` to another database system if you already have valuable
-data.
+The :ref:`web` section has further information on setting up a web server that
+proxyes requests to the application server.
 
-
-.. _installation#mysql:
-
-MySQL
-^^^^^
-
-Using MySQL is well tested and recommended.  You can :doc:`migrate your current
-database <database_migration>` if you already have data you don't want to lose.
-
-To use a MySQL database for Pootle instead of the default SQLite you need to
-create a new database and database user:
-
-.. code-block:: mysql
-
-   $ mysql -u root -p
-   > CREATE DATABASE pootle CHARACTER SET = 'utf8';
-   > GRANT ALL PRIVILEGES ON pootle.* TO pootle@localhost IDENTIFIED BY 'pootlepassword';
-   > FLUSH PRIVILEGES;
-
-Next edit the *settings/90-local.conf* file and modify the ``DATABASE``
-options to use your newly created database::
-
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'pootle',
-            'USER': 'pootle',
-            'PASSWORD': 'pootlepassword',
-            'HOST': '',
-            'PORT': '',
-        }
-    }
-
-Database tables and initial data will be created on the first visit to Pootle.
+If you want to omit a reverse proxy and rather prefer to use a web server for
+serving both dynamic and static content, you can also setup such a scenario with
+:ref:`Apache and mod_wsgi <apache#mod_wsgi>` for example.
 
 
-.. _installation#advanced_settings:
+.. _installation#running_as_a_service:
 
-Advanced settings
------------------
+Running Pootle as a Service
+---------------------------
 
-Read through all the settings in *settings/\*.conf*, all the options are well
-documented.  Make any changes in *settings/90-local.conf*. If you have
-upgraded, you might want to compare your previous copy to the one distributed
-with the Pootle version for any new settings you might be interested in.  Many
-of these settings can improve performance drastically.  Also consult the page
-about :doc:`Pootle optimization <optimization>`.
+If you plan to run Pootle as a system service, you can use whatever software you
+are familiar with for that purpose. For example  `Supervisor
+<http://supervisord.org/>`_, `Circus <http://circus.io>`_ or `daemontools
+<http://cr.yp.to/daemontools.html>`_ might fit your needs.
+
+
+.. _installation#additional:
+
+Further Configuration and Tuning
+--------------------------------
+
+This has been a quickstart for getting you up and running. If you want to
+continue diving into Pootle, you should first consider :doc:`making some
+optimizations to your setup <optimization>` — don't forget to switch your
+database backend! After that you should also :doc:`adjust the application
+configuration <settings>` to better suit your specific needs.
+
+For additional scripting and improved management, Pootle also provides a set of
+:ref:`management commands <commands>` to ease the automation of common
+administration tasks.

@@ -134,7 +134,7 @@ setup(
 
     entry_points={
         'console_scripts': [
-            'pootle = pootle.manage:main',
+            'pootle = pootle.runner:main',
         ],
     },
     cmdclass={
