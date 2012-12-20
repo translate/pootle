@@ -6,6 +6,12 @@ SPRITE_DIR = ${IMAGES_DIR}/sprite
 
 all:
 
+build:
+		python manage.py collectstatic --noinput
+		python manage.py assets build
+		python setup.py build_mo
+		python setup.py sdist
+
 sprite:
 		glue --sprite-namespace="" --namespace="" ${SPRITE_DIR} --css=${CSS_DIR} --img=${IMAGES_DIR}
 
