@@ -23,7 +23,7 @@ need to change the extension of this file from ``.conf.sample`` to ``.conf``.
 TIME_ZONE = 'UTC'
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '%(default_key)r'
+SECRET_KEY = '%(default_key)s'
 
 
 #
