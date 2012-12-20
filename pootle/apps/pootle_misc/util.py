@@ -196,7 +196,7 @@ def apply_markup_filter(text):
     So, for example, to use Markdown with safe mode turned on (safe
     mode removes raw HTML), put this in your settings file::
 
-        MARKUP_FILTER = ('markdown', { 'safe_mode': True })
+        MARKUP_FILTER = ('markdown', { 'safe_mode': 'escape' })
 
     Currently supports Textile, Markdown and reStructuredText, using
     names identical to the template filters found in

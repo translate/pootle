@@ -169,7 +169,7 @@ Configuration settings for applications used by Pootle.
 
     MARKUP_FILTER = (None, {})
 
-    MARKUP_FILTER = ('markdown', {'safe_mode': True})
+    MARKUP_FILTER = ('markdown', {'safe_mode': 'escape'})
 
     MARKUP_FILTER = ('restructuredtext', {'settings_overrides': {
                                              'report_level': 'quiet',
