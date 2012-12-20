@@ -2,6 +2,7 @@ include CREDITS INSTALL README.rst
 include requirements/base.txt
 include pootle/dbs/README
 include pootle/repos/README
+recursive-include pootle/assets *
 recursive-include pootle/locale *
 recursive-include pootle/po *
 recursive-include pootle/settings *
@@ -10,4 +11,5 @@ recursive-include pootle/templates *
 recursive-include pootle/apps/*/templates *
 global-exclude tests.py
 exclude pootle/strings.py
+exclude pootle/settings/*-local.conf
 prune pootle/static/images/sprite/
