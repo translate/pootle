@@ -21,9 +21,9 @@ Configuration
 
 
 If you have no need for captchas, e.g. at a translation sprint, you might
-want to remove captcha support. To disable set :setting:`USE_CAPTCHA` in
-*settings/90-local.conf* to ``False``.  Restart your server for the setting
-to take effect.
+want to remove captcha support. To disable it, set :setting:`USE_CAPTCHA` in
+your configuration file to ``False``.  Restart your server for the setting to
+take effect.
 
 
 .. _captchas#customization:

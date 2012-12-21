@@ -8,10 +8,12 @@ Authentication backends
 LDAP authentication
 -------------------
 
-The different elements of the LDAP configuration are defined in your
-:file:`settings/51-ldap.conf` and :file:`settings/50-project.conf` files.
-Although most of it is explained in the settings files, below
-is a brief example of a working configuration.
+LDAP configuration can be enabled by appending the
+``'pootle.auth.ldap_backend.LdapBackend'`` to the list of
+:setting:`AUTHENTICATION_BACKENDS`. The settings page lists all the
+:ref:`configuration keys available for LDAP <settings#ldap>`.
+
+Below a brief example of a working configuration is showcased.
 
 The mail addresses are *john.doe@website.org*, the LDAP server is
 *your.ldapserver.org*. In this case, we need a specific user account to search
@@ -19,7 +21,6 @@ in our LDAP server, this user/password is *admin*/*pootle*. The LDAP accounts
 are based on the mail addresses: these are the uids. Finally, *John Doe* is
 part of the branch *employees* on the LDAP.
 
-:file:`settings/50-project.conf`::
 
     # Authenticate first with an LDAP system and then fall back to Django's
     # authentication system.
@@ -28,8 +29,6 @@ part of the branch *employees* on the LDAP.
         'pootle.auth.ldap_backend.LdapBackend',
         'django.contrib.auth.backends.ModelBackend',
     ]
-
-:file:`settings/51-ldap.conf`::
 
     # The LDAP server.  Format:  protocol://hostname:port
     AUTH_LDAP_SERVER = 'ldap://your.ldapserver.org:389'

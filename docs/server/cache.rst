@@ -31,8 +31,7 @@ Cache backends
 
 Django supports :ref:`multiple cache backends <django:setting-up-the-cache>`
 (methods of storing cache data). You can specify which backend to use
-by overriding the value of :setting:`CACHES` in the `settings/20-backends.conf`
-file in your `settings/90-local.conf` file.
+by overriding the value of :setting:`CACHES` in your configuration file.
 
 
 .. _cache#memcached:
