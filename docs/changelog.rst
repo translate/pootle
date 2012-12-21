@@ -35,7 +35,12 @@ Not released yet.
   editor.
 
 - Settings have been migrated from *localsettings.py* into *settings/\*.conf*
-  files. Your customizations go in *settings/90-local.conf*.
+  files. Your customizations now go in a :ref:`separate configuration file
+  <settings#customzing>` (or in *settings/90-local.conf* if running from a
+  repository clone).
+
+- The ``PootleServer`` script has been phased out in favor of a ``pootle``
+  runner script.
 
 - If you will be using Pootle with Django 1.3, you *have* to keep the timezone
   on ``UTC``, unless you are using PostgreSQL. Users of PostgreSQL or Django
