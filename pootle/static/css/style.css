@@ -551,9 +551,9 @@ html[dir="rtl"] #nav-main li
 
 .xhr-message span
 {
-    -moz-border-radius: 5px 5px 0 0;
     -webkit-border-radius: 5px 5px 0 0;
-    border-radius: 5px 5px 0 0;
+       -moz-border-radius: 5px 5px 0 0;
+            border-radius: 5px 5px 0 0;
     border: 1px solid #d9d9d9;
     border-bottom: 0px;
     line-height: 2em;
@@ -917,12 +917,12 @@ div#update p
     margin: 2em auto;
     padding: 1em;
     text-align: left;
-    -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
-    border-radius: 10px;
-    box-shadow: 0px 2px 5px #777;
-    -moz-box-shadow: 0px 2px 5px #777;
+       -moz-border-radius: 10px;
+            border-radius: 10px;
     -webkit-box-shadow: 0px 2px 5px #777;
+       -moz-box-shadow: 0px 2px 5px #777;
+            box-shadow: 0px 2px 5px #777;
 
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e5f3f8', endColorstr='#cde7f1');
     background: -webkit-gradient(linear, left top, left bottom, from(#e5f3f8), to(#cde7f1));
@@ -976,12 +976,12 @@ input[type="submit"]
     padding: 5px 10px;
     min-height: 16px;
     min-width: 110px;
-    -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    border-radius: 5px;
-    box-shadow: 0px 1px 2px #130f30;
-    -moz-box-shadow: 0px 1px 2px #130f30;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
     -webkit-box-shadow: 0px 0px 2px #130f30;
+       -moz-box-shadow: 0px 1px 2px #130f30;
+            box-shadow: 0px 1px 2px #130f30;
 
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#cccccc');
     background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc));
@@ -1490,9 +1490,9 @@ html[dir="rtl"] select#id_ui_lang option
 .item
 {
     padding: 1em;
-    -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
 }
 
 .item .title
@@ -1729,33 +1729,33 @@ ul.pager li span.current-link
 html[dir="ltr"] ul.pager li:first-child > *
 {
     padding-left: 1em;
-    -moz-border-radius: 1em 0 0 1em;
     -webkit-border-radius: 1em 0 0 1em;
-    border-radius: 1em 0 0 1em;
+       -moz-border-radius: 1em 0 0 1em;
+            border-radius: 1em 0 0 1em;
 }
 
 html[dir="ltr"] ul.pager li:last-child > *
 {
     padding-right: 1em;
-    -moz-border-radius: 0 1em 1em 0;
     -webkit-border-radius: 0 1em 1em 0;
-    border-radius: 0 1em 1em 0;
+       -moz-border-radius: 0 1em 1em 0;
+            border-radius: 0 1em 1em 0;
 }
 
 html[dir="rtl"] ul.pager li:first-child > *
 {
     padding-right: 1em;
-    -moz-border-radius: 0 1em 1em 0;
     -webkit-border-radius: 0 1em 1em 0;
-    border-radius: 0 1em 1em 0;
+       -moz-border-radius: 0 1em 1em 0;
+            border-radius: 0 1em 1em 0;
 }
 
 html[dir="rtl"] ul.pager li:last-child > *
 {
     padding-left: 1em;
-    -moz-border-radius: 1em 0 0 1em;
     -webkit-border-radius: 1em 0 0 1em;
-    border-radius: 1em 0 0 1em;
+       -moz-border-radius: 1em 0 0 1em;
+            border-radius: 1em 0 0 1em;
 }
 
 
