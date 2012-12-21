@@ -44,7 +44,7 @@ After a successful upgrade, consider clearing your cache. For users of
 memcached it is enough to restart memcached. For users of the default database
 cache, you can drop the `pootlecache` table and recreate it with::
 
-    ./manage.py createcachetable pootlecache
+    $ pootle createcachetable pootlecache
 
 
 .. _upgrading#custom_changes:
