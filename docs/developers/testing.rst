@@ -13,7 +13,7 @@ interpreted and expanded. You might also want to check the `testing guidelines
 
 Pootle's unit tests use the Django testing framekwork, and can be executed with::
 
-    ./manage.py test pootle_app
+    $ python manage.py test pootle_app
 
 Although you can run tests for all applications, several of the external
 applications are not passing their tests which renders this less useful.

@@ -153,11 +153,11 @@ Proxying with Nginx (FastCGI)
 
 Run Pootle as a FastCGI application::
 
-    $ python manage.py runfcgi host=127.0.0.1 port=8080
+    $ pootle runfcgi host=127.0.0.1 port=8080
 
 There are more possible parameters available. See::
 
-    $ python manage.py help runfcgi
+    $ pootle help runfcgi
 
 And add the following lines to your Nginx config file:
 

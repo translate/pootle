@@ -18,11 +18,11 @@ Quick Summary
 
 Two :doc:`management commands <commands>` are needed::
 
-    ./manage.py dumpdata -n > data.json
+    $ pootle dumpdata -n > data.json
 
 This saves all the content of the database as a JSON file::
 
-    ./manage.py loaddata ./data.json
+    $ pootle loaddata ./data.json
 
 This reads all the data in the JSON file and creates the corresponding database
 records.

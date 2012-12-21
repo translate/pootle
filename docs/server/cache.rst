@@ -105,4 +105,4 @@ Users of older versions need to create the cache tables manually if they would
 like to switch to the database cache backend using this :doc:`management command
 <commands>`::
 
-    ./manage.py createcachetable pootlecache
+    $ pootle createcachetable pootlecache
