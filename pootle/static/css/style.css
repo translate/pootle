@@ -994,6 +994,22 @@ input[type="submit"]
     color: #130f30;
 }
 
+input[type="submit"][disabled],
+input[type="submit"][disabled]:hover
+{
+    -webkit-box-shadow: none;
+       -moz-box-shadow: none;
+            box-shadow: none;
+
+    background-image: none;
+    background-color: #eee;
+
+    border: 1px solid #d9d9d9;
+
+    filter:alpha(opacity=65);
+    opacity: 0.65;
+}
+
 input.delete[type="submit"]
 {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffeeee', endColorstr='#ffcccc');

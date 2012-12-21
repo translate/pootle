@@ -125,7 +125,7 @@
     });
     $(document).on("click", "input.submit", this.submit);
     $(document).on("click", "input.suggest", this.suggest);
-    $(document).on("click", "input.previous, input.next", this.gotoPrevNext);
+    $(document).on("click", "#js-nav-prev, #js-nav-next", this.gotoPrevNext);
     $(document).on("click", ".js-suggestion-reject", this.rejectSuggestion);
     $(document).on("click", ".js-suggestion-accept", this.acceptSuggestion);
     $(document).on("click", ".js-vote-clear", this.clearVote);
@@ -187,10 +187,10 @@
       PTL.editor.toggleSuggestMode();
     });
     shortcut.add('ctrl+up', function () {
-      $("input.previous").trigger("click");
+      $("#js-nav-prev").trigger("click");
     });
     shortcut.add('ctrl+down', function () {
-      $("input.next").trigger("click");
+      $("#js-nav-next").trigger("click");
     });
     shortcut.add('ctrl+shift+home', function () {
       PTL.editor.gotoFirstPage();
@@ -1065,6 +1065,8 @@
                  this.buildRows(uids.after);
 
       this.reDraw(newTbody);
+
+      this.updateNavButtons(uids.before.length, uids.after.length);
     }
   },
 
@@ -1087,6 +1089,13 @@
       // We are ready, call the ready handlers
       $(tTable).trigger("editor_ready");
     }
+  },
+
+
+  /* Updates previous/next navigation button states */
+  updateNavButtons: function (hasBefore, hasAfter) {
+    $('#js-nav-prev').prop('disabled', !hasBefore);
+    $('#js-nav-next').prop('disabled', !hasAfter);
   },
 
 
@@ -1297,15 +1306,16 @@
   gotoPrevNext: function (e) {
     e.preventDefault();
     var current = PTL.editor.units[PTL.editor.activeUid],
-        prevNextMap = {previous: current.prev, next: current.next},
-        newUid = prevNextMap[$(e.target).attr("class")];
+        prevNextMap = {'js-nav-prev': current.prev,
+                       'js-nav-next': current.next},
+        newUid = prevNextMap[$(e.target).attr("id")];
 
     // Try loading the prev/next unit
     if (newUid != null) {
       var newHash = PTL.utils.updateHashPart("unit", parseInt(newUid), ["page"]);
       $.history.load(newHash);
     } else {
-      if ($(e.target).attr("class") == 'previous') {
+      if ($(e.target).attr("id") == 'js-nav-prev') {
         PTL.editor.displayError(gettext("You reached the beginning of the list"));
       } else {
         PTL.editor.displayError(gettext("You reached the end of the list"));
@@ -1770,7 +1780,7 @@
 
           // Go to the next unit if there are no more suggestions left
           if (!$("#suggestions div[id^=suggestion]").length) {
-            $("input.next").trigger("click");
+            $("#js-nav-next").trigger("click");
           }
         });
       }, "json");
@@ -1810,7 +1820,7 @@
 
           // Go to the next unit if there are no more suggestions left
           if (!$("#suggestions div[id^=suggestion]").length) {
-            $("input.next").trigger("click");
+            $("#js-nav-next").trigger("click");
           }
         });
       }, "json");
