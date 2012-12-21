@@ -45,7 +45,7 @@ getting an API key when necessary.
 
 .. _machine_translation#machine_translation_services:
 
-Available Machine Translation services
+Available Machine Translation Services
 --------------------------------------
 
 Supported Services:

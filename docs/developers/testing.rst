@@ -1,6 +1,6 @@
 .. _testing:
 
-Unit testing
+Unit Testing
 ============
 
 .. warning::

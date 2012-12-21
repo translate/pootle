@@ -1,11 +1,11 @@
 .. _authentication:
 
-Authentication backends
+Authentication Backends
 =======================
 
 .. _authentication#ldap:
 
-LDAP authentication
+LDAP Authentication
 -------------------
 
 LDAP configuration can be enabled by appending the

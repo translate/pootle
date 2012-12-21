@@ -1,4 +1,4 @@
-Pootle documentation
+Pootle Documentation
 ====================
 
 Pootle is an online tool that makes the process of translating so much simpler.

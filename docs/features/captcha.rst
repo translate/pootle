@@ -1,6 +1,6 @@
 .. _captchas:
 
-Captcha support
+Captcha Support
 ===============
 
 .. versionadded:: 2.0.5

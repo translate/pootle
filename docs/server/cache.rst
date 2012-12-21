@@ -1,7 +1,7 @@
 .. _cache:
 
 Caching System
-**************
+==============
 
 Pootle uses a caching system to improve performance. It is an essential part
 of :doc:`optimizing <optimization>` your Pootle installation. It is based on
@@ -26,7 +26,7 @@ Without a well functioning cache system, Pootle could be slow.
 
 .. _cache#cache_backends:
 
-Cache backends
+Cache Backends
 --------------
 
 Django supports :ref:`multiple cache backends <django:setting-up-the-cache>`
@@ -48,7 +48,7 @@ Memcached
         }
     }
 
-:ref:`Memcached <django:memcached>` is the recommended cache backend, it
+:ref:`Memcached <django:memcached>` is the **recommended cache backend**, it
 provides the best performance.  And works fine with multiprocessing servers
 like Apache. It requires the `python-memcached` package and a running
 memcached server. Due to extra dependencies it is not enabled by default.
