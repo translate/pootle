@@ -438,7 +438,9 @@ def staggered_update(db_buildversion, tt_buildversion):
     stdout = sys.stdout
     sys.stdout = sys.stderr
 
-    yield header(db_buildversion)
+    display_version = (db_buildversion != sys.maxint and db_buildversion or
+                                                         tt_buildversion)
+    yield header(display_version)
 
     # sys.maxint is set in siteconfig middleware if Toolkit is unchanged.
     # Otherwise, Toolkit build version changed.
