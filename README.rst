@@ -28,3 +28,9 @@ Resources
 * Bug Tracker: <http://bugs.locamotion.org/>
 * Mailing List: <https://lists.sourceforge.net/lists/listinfo/translate-pootle>
 * IRC: #pootle on irc.freenode.org
+
+Copying
+-------
+
+Pootle is released under the General Public License, version 2 or later. See
+the file LICENSE for details.
