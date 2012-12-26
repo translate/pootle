@@ -711,6 +711,7 @@ html[dir="rtl"] #target-item-gravatar
 {
     float: left;
     margin-left: 1%;
+    margin-bottom: -1px;
     width: 95%;
 }
 
