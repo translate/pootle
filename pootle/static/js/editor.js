@@ -1780,7 +1780,8 @@
 
           // Go to the next unit if there are no more suggestions left
           if (!$("#suggestions div[id^=suggestion]").length) {
-            $("#js-nav-next").trigger("click");
+            // Buttons might be disabled so we need to fake an event
+            PTL.editor.gotoPrevNext($.Event('click', {target: '#js-nav-next'}));
           }
         });
       }, "json");
@@ -1820,7 +1821,8 @@
 
           // Go to the next unit if there are no more suggestions left
           if (!$("#suggestions div[id^=suggestion]").length) {
-            $("#js-nav-next").trigger("click");
+            // Buttons might be disabled so we need to fake an event
+            PTL.editor.gotoPrevNext($.Event('click', {target: '#js-nav-next'}));
           }
         });
       }, "json");
