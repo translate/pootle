@@ -479,7 +479,7 @@ html[dir="rtl"] #nav-main li
 
 #nav-main a.admin
 {
-    color: #c30;
+    font-weight: bold;
 }
 
 #user
