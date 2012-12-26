@@ -902,7 +902,7 @@ div#update p
 
 .btn-search-fields
 {
-    background-color: #76b0bf;
+    background-color: #0489b7;
     padding: 2px 0;
     outline: 0;
 }
@@ -2019,7 +2019,7 @@ body#tpadminpermissions #tabs a.tpadminpermissions
 
 #search input[type=text]
 {
-    border: 1px solid #76b0bf;
+    border: 1px solid #0489b7;
     height: 12px;
     line-height: 16px;
     padding: 3px;
@@ -2037,9 +2037,9 @@ body#tpadminpermissions #tabs a.tpadminpermissions
 .search-fields
 {
     background-color: #fff;
-    border-bottom: 1px solid #76b0bf;
-    border-left: 1px solid #76b0bf;
-    border-right: 1px solid #76b0bf;
+    border-bottom: 1px solid #0489b7;
+    border-left: 1px solid #0489b7;
+    border-right: 1px solid #0489b7;
     overflow: auto;
     padding: 5px;
     position: absolute;
