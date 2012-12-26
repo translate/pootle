@@ -2,6 +2,11 @@
  * TRANSLATE PAGE
  */
 
+#tptranslate #content
+{
+    margin: 1em 0 0;
+}
+
 /* MAIN TOOLBAR */
 
 textarea#view_unit
