@@ -537,51 +537,6 @@ html[dir="rtl"] #nav-main li
  * MESSAGES
  */
 
-.xhr-message
-{
-    position: fixed;
-    height: 2em;
-    bottom: 47px; /* #toolbar height + 1 */
-    left: 50%;
-    width: 400px;
-    margin-left: -200px;
-    z-index: 1001;
-    text-align: center;
-}
-
-.xhr-message span
-{
-    -webkit-border-radius: 5px 5px 0 0;
-       -moz-border-radius: 5px 5px 0 0;
-            border-radius: 5px 5px 0 0;
-    border: 1px solid #d9d9d9;
-    border-bottom: 0px;
-    line-height: 2em;
-    padding: 0.5em 1em 0.5em 36px;
-}
-
-html[dir="rtl"] #xhr-activity span,
-html[dir="rtl"] #xhr-error span
-{
-    background-position: 85% center;
-    padding: 0.5em 36px 0.5em 1em;
-}
-
-#xhr-activity span,
-#xhr-error span
-{
-    background-position: 1em center;
-}
-
-#xhr-activity span
-{
-    background: url("../images/activity.gif") 1em center no-repeat #e5f3f8;
-}
-
-#xhr-error span
-{
-    background: url("../images/error.png") 1em center no-repeat #e5f3f8;
-}
 
 /* Alerts from Bootstrap */
 

@@ -60,7 +60,7 @@ body.zoom-out-1 #toolbar
     height: 42px;
 }
 
-body.zoom-out-1 .xhr-message
+body.zoom-out-1 .toolbar-message
 {
     bottom: 43px;
 }
@@ -71,7 +71,7 @@ body.zoom-out-2 #toolbar
     height: 36px;
 }
 
-body.zoom-out-2 .xhr-message
+body.zoom-out-2 .toolbar-message
 {
     bottom: 37px;
 }
@@ -138,9 +138,65 @@ body.zoom-out-2 #prevnext input[type="submit"]
 
 #translate-footer
 {
-    margin: 0 1em;
-    margin-bottom: 50px; /* this should be equlal or the height of the #toolbar */
+    margin: 0 0 46px; /* this should be equal to the height of the #toolbar */
 }
+
+
+/* EDITOR - GENERAL */
+
+#editor
+{
+    position: relative;
+}
+
+.editor-overlay
+{
+    background-color: rgba(255, 255, 255, 0.8);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    text-align: center;
+}
+
+.loader > div
+{
+    margin: 180px auto;
+}
+
+.editor-overlay > div.alert
+{
+    display: block;
+    margin: 180px auto 0;
+    width: 400px;
+}
+
+.toolbar-message
+{
+    position: fixed;
+    bottom: 46px; /* #toolbar height */
+    left: 50%;
+    width: 400px;
+    margin-left: -200px;
+    z-index: 1001;
+    text-align: center;
+}
+
+.toolbar-message > div
+{
+    -webkit-border-radius: 5px 5px 0 0;
+       -moz-border-radius: 5px 5px 0 0;
+            border-radius: 5px 5px 0 0;
+    border: 1px solid #d9d9d9;
+    border-bottom: 0px;
+    background-color: #f8f8f8;
+    padding: 0.5em 1em;
+    display: table;
+    margin: 0 auto;
+}
+
 
 /* TRANSLATE TABLE */
 

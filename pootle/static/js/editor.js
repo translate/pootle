@@ -159,6 +159,9 @@
         }
     });
 
+    /* Misc */
+    $(document).on("click", ".js-editor-msg-hide", this.hideMsg);
+
     /* Bind hotkeys */
     shortcut.add('ctrl+return', function () {
       if (PTL.editor.isSuggestMode()) {
@@ -399,7 +402,7 @@
 
   /* Things to do when no results are returned */
   noResults: function () {
-    PTL.editor.displayError(gettext("No results."));
+    PTL.editor.displayMsg(gettext("No results."));
     PTL.editor.reDraw(false);
     PTL.editor.updatePermalink(false);
   },
@@ -705,16 +708,6 @@
     }
   },
 
-  showActivity: function (force) {
-    if ($("#xhr-error").is(':hidden')) {
-      $("#xhr-activity").show();
-    }
-  },
-
-  hideActivity: function () {
-    $("#xhr-activity").hide();
-  },
-
   updatePermalink: function (opts) {
     if (opts !== false) {
       // FIXME: We need a completely different way for getting view URLs in JS
@@ -734,15 +727,37 @@
   },
 
   /*
-   * Error handling
+   * Indicators, messages, error handling
    */
 
-  /* Displays error messages returned in XHR requests */
+  showActivity: function (force) {
+    this.hideMsg();
+    $("#js-editor-act").spin().fadeIn(300);
+  },
+
+  hideActivity: function () {
+    $("#js-editor-act").spin(false).fadeOut(300);
+  },
+
+  /* Displays an informative message */
+  displayMsg: function (msg) {
+    this.hideActivity();
+    $("#js-editor-msg").show().find("span").html(msg).fadeIn(300);
+  },
+
+  hideMsg: function (msg) {
+    if ($("#js-editor-msg").is(":visible")) {
+      $("#js-editor-msg").fadeOut(300);
+    }
+  },
+
+  /* Displays error messages on top of the toolbar */
   displayError: function (msg) {
     if (msg) {
       this.hideActivity();
-      $("#xhr-error span").text(msg).parent().stop(true, true).fadeIn(300).delay(2000).fadeOut(3500);
-    }
+      $("#js-editor-error span").text(msg).parent().parent().stop(true, true)
+                                .fadeIn(300).delay(2000).fadeOut(3500);
+      }
   },
 
 
@@ -1065,6 +1080,9 @@
                  this.getEditUnit(uid) +
                  this.buildRows(uids.after);
 
+      // Hide any visible message
+      this.hideMsg();
+
       this.reDraw(newTbody);
 
       this.updateNavButtons(uids.before.length, uids.after.length);
@@ -1299,7 +1317,11 @@
       var newHash = PTL.utils.updateHashPart("unit", newUid, ["page"]);
       $.history.load(newHash);
     } else {
-      PTL.editor.displayError(gettext("Congratulations, you walked through all items"));
+      PTL.editor.displayMsg([
+          gettext("Congratulations, you walked through all strings."),
+          '<br /><a href="', l(PTL.editor.directory), '">',
+          gettext('Return to the overview page.'), '</a>'
+      ].join(""));
     }
   },
 
@@ -1317,9 +1339,13 @@
       $.history.load(newHash);
     } else {
       if ($(e.target).attr("id") == 'js-nav-prev') {
-        PTL.editor.displayError(gettext("You reached the beginning of the list"));
+        PTL.editor.displayMsg(gettext("You reached the beginning of the list"));
       } else {
-        PTL.editor.displayError(gettext("You reached the end of the list"));
+        PTL.editor.displayMsg([
+          gettext("You reached the end of the list."),
+          '<br /><a href="', l(PTL.editor.directory), '">',
+          gettext('Return to the overview page.'), '</a>'
+        ].join(""));
       }
     }
   },
@@ -1443,7 +1469,7 @@
 
         $("#filter-status").first().after(dropdown);
       } else { // No results
-        PTL.editor.displayError(gettext("No results."));
+        PTL.editor.displayMsg(gettext("No results."));
         $("#filter-status option[value=" + PTL.editor.filter + "]")
           .attr("selected", "selected");
       }
