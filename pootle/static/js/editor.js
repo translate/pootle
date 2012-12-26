@@ -763,6 +763,7 @@
     } else {
       // Since we use jquery-jsonp, we must differentiate between
       // the passed arguments
+      // FIXME: check for responseText instead of instanceof
       if (xhr instanceof XMLHttpRequest) {
         msg = $.parseJSON(xhr.responseText).msg;
       } else {
