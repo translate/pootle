@@ -61,7 +61,8 @@ $(function () {
 
   if ($('.js-edit-details').length) {
     var $metaDesc = $('.js-ctx-meta-desc'),
-        $editMetaDesc = $('.js-edit-ctx-meta-desc');
+        $editMetaDesc = $('.js-edit-ctx-meta-desc'),
+        editMetaSelector = '#js-admin-edit-meta';
 
     $metaDesc.on('click', '.js-edit-details', function (e) {
       e.preventDefault();
@@ -76,7 +77,7 @@ $(function () {
       $editMetaDesc.hide();
     });
 
-    $editMetaDesc.on('submit', '#js-admin-edit-meta', function (e) {
+    $editMetaDesc.on('submit', editMetaSelector, function (e) {
       e.preventDefault();
 
       $editMetaDesc.spin();
@@ -91,15 +92,13 @@ $(function () {
 
           $editMetaDesc.hide();
           $editMetaDesc.html(data.form);
-          $editMetaDesc.spin(false);
-          $editMetaDesc.css({opacity: 1});
 
           $metaDescContent.replaceWith(data.description_html);
           $metaDesc.show();
 
           $('.markup-body').filter(':not([dir])').bidi();
         },
-        error: function () {
+        complete: function (xhr) {
           $editMetaDesc.spin(false);
           $editMetaDesc.css({opacity: 1});
         },
