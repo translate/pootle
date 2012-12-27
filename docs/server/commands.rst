@@ -146,7 +146,7 @@ the translation files directly on the file system, otherwise you might miss out
 on translations that are in database but not yet saved to disk.
 
 When the ``--overwrite`` option is specified, the sync operation will not be
-conservative and it will overwrite the existing files on disk, making units
+conservative and it will overwrite the existing files on disk, making strings
 obsolete and updating the file's structure.
 
 With the ``--skip-missing`` option, files that are missing on disk will be
@@ -186,28 +186,28 @@ updating new translations and discovering new files and strings.
 
 Along with ``--keep`` the ``--modified-since`` option can be used to keep
 translations that have a change ID **greater than** the given value. This way
-some translated units can be updated from in-disk files while at preserving
-in-DB translations for other units that meet the given criterion.
+some translated strings can be updated from in-disk files while at preserving
+in-DB translations for other strings that meet the given criterion.
 
 To illustrate the results of these later options, have a look at the following
 table that emulates the behavior of ``pootle update_stores --modified-since=5
 --keep``:
 
-======================================== ============= ===============
- File on disk                             DB before     DB after
-                                          (change ID)   (result)
-======================================== ============= ===============
- New unit appeared in existing file       <none>        Unit added
- Existing unit changed in existing file   <none>        Unit updated
- Existing unit changed in existing file   2             Unit updated
- Existing unit changed in existing file   5             Unit updated
- Existing unit changed in existing file   8             Unit kept
- New unit in a new file                   <none>        Unit added
- Unit removed from the file               3             Unit removed
- Unit removed from the file               10            Unit removed
- File removed                             4             Units removed
- File removed                             12            Units removed
-======================================== ============= ===============
+========================================== ============= =================
+ File on disk                               DB before     DB after
+                                            (change ID)   (result)
+========================================== ============= =================
+ New string appeared in existing file       <none>        String added
+ Existing string changed in existing file   <none>        String updated
+ Existing string changed in existing file   2             String updated
+ Existing string changed in existing file   5             String updated
+ Existing string changed in existing file   8             String kept
+ New string in a new file                   <none>        String added
+ String removed from the file               3             String removed
+ String removed from the file               10            String removed
+ File removed                               4             Strings removed
+ File removed                               12            Strings removed
+========================================== ============= =================
 
 
 By default, ``update_stores`` will only update files that appear to have changed

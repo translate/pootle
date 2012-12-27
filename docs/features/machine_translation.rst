@@ -26,7 +26,7 @@ If the server administrator has enabled machine translation then an icon
 |icon:icon-web-translate| will be displayed for each source text (English or
 alternative source language) next to the Copy button. Clicking the relevant
 buttons will retrieve translation suggestions from the online services and
-will mark the current unit as fuzzy to indicate that review is required.
+will mark the current string as fuzzy to indicate that review is required.
 
 
 .. _machine_translation#how_to_enable_machine_translations:

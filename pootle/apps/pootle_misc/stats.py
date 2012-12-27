@@ -92,7 +92,7 @@ def get_translation_stats(path_obj, path_stats):
                  'num': path_stats['total']['words']},
             'percentage': _("%(num)d%%") % \
                 {'num': path_stats['total']['percentage']},
-            'units': _("(%(num)d units)") % \
+            'units': _("(%(num)d strings)") % \
                 {'num': path_stats['total']['units']}
         })
 
@@ -104,7 +104,7 @@ def get_translation_stats(path_obj, path_stats):
                  'num': path_stats['translated']['words']},
             'percentage': _("%(num)d%%") % \
                 {'num': path_stats['translated']['percentage']},
-            'units': _("(%(num)d units)") % \
+            'units': _("(%(num)d strings)") % \
                 {'num': path_stats['translated']['units']}
         })
 
@@ -116,7 +116,7 @@ def get_translation_stats(path_obj, path_stats):
                  'num': path_stats['fuzzy']['words']},
             'percentage': _("%(num)d%%") % \
                 {'num': path_stats['fuzzy']['percentage']},
-            'units': _("(%(num)d units)") % \
+            'units': _("(%(num)d strings)") % \
                 {'num': path_stats['fuzzy']['units']}
         })
 
@@ -128,7 +128,7 @@ def get_translation_stats(path_obj, path_stats):
                  'num': path_stats['untranslated']['words']},
             'percentage': _("%(num)d%%") % \
                 {'num': path_stats['untranslated']['percentage']},
-            'units': _("(%(num)d units)") % \
+            'units': _("(%(num)d strings)") % \
                 {'num': path_stats['untranslated']['units']}
         })
 
@@ -221,7 +221,7 @@ def get_path_summary(path_obj, path_stats):
 
 def stats_message_raw(version, stats):
     """Builds a message of statistics used in VCS actions."""
-    return "%s: %d of %d messages translated (%d fuzzy)." % \
+    return "%s: %d of %d strings translated (%d fuzzy)." % \
            (version, stats.get("translated", 0), stats.get("total", 0),
             stats.get("fuzzy", 0))
 
@@ -230,7 +230,7 @@ def stats_message(version, stats):
     """Builds a localized message of statistics used in VCS actions."""
     # Translators: 'type' is the type of VCS file: working, remote,
     # or merged copy.
-    return _(u"%(type)s: %(translated)d of %(total)d messages translated "
+    return _(u"%(type)s: %(translated)d of %(total)d strings translated "
              u"(%(fuzzy)d fuzzy)." % {
                  'type': version,
                  'translated': stats.get("translated", 0),
