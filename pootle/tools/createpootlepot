@@ -43,3 +43,8 @@ sed -i"" -e "s/$MSGID_BUGS_TO_PLACEHOLDER /$MSGID_BUGS_TO_PLACEHOLDER $MSGID_BUG
 
 mv $DJANGO_POT $POOTLE_POT
 mv $DJANGO_JS_POT $POOTLE_JS_POT
+
+# Revert if we only have a header change
+[ "$(git status --porcelain ${POT_DIR})" != "?? ${POT_DIR}/" ] && git checkout --quiet -- $(git difftool -y -x 'diff --unified=3 --ignore-matching-lines=POT-Creation --ignore-matching-lines=X-Generator -s' ${POT_DIR} |
+egrep "are identical$" |
+sed "s/^Files.*.\.pot and //;s/\(\.pot\).*/\1/") || echo "No header only changes, so no reverts needed"
