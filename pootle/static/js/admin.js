@@ -101,6 +101,11 @@ $(function () {
         complete: function (xhr) {
           $editMetaDesc.spin(false);
           $editMetaDesc.css({opacity: 1});
+
+          if (xhr.status === 400) {
+            var form = $.parseJSON(xhr.responseText).form;
+            $(editMetaSelector).parent().html(form);
+          }
         },
       });
     });
