@@ -827,7 +827,7 @@ def submit(request, unit):
     if form.is_valid():
         if form.updated_fields:
             # Store creation time so that it is the same for all submissions
-            creation_time=timezone.now()
+            creation_time = timezone.now()
             for field, old_value, new_value in form.updated_fields:
                 sub = Submission(
                         creation_time=creation_time,
@@ -977,7 +977,7 @@ def accept_suggestion(request, unit, suggid):
 
             # For now assume the target changed
             # TODO: check all fields for changes
-            creation_time=timezone.now()
+            creation_time = timezone.now()
             sub = Submission(
                     creation_time=creation_time,
                     translation_project=translation_project,
