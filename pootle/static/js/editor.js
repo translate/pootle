@@ -716,7 +716,7 @@
       // Translators: Permalink to the current unit in the editor.
       //    The first '%s' is the permalink URL.
       //    The second '%s' is the unit number.
-      var thePermalink = interpolate(gettext('<a href="%s">Unit %s</a>'),
+      var thePermalink = interpolate(gettext('<a href="%s">String %s</a>'),
                                      [l(urlStr + PTL.editor.activeUid),
                                       PTL.editor.activeUid]);
     } else {

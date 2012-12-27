@@ -13,6 +13,10 @@ Translation Unit
   At the simplest level contains a single **source** string (the original
   message) and a single **target** string (the translated message).
 
+  XLIFF refers to this as a unit, Gettext calls it a message or string.  Some
+  industry tools talk of segments.  To maintain consistency we refer to
+  **string** in the GUI and **unit** in the code.
+
   Monolingual formats (like .properties, OpenOffice SDF, DTD, HTML, etc.) only
   contain a source strings.
 

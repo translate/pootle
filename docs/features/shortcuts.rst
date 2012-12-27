@@ -51,17 +51,17 @@ Navigation
 +---------------------------+-----------------------------+
 | Action                    | Shortcut                    |
 +===========================+=============================+
-| Move to previous unit     | :kbd:`Ctrl+Up`              |
+| Move to previous string   | :kbd:`Ctrl+Up`              |
 +---------------------------+-----------------------------+
-| Move to next unit         | :kbd:`Ctrl+Down`            |
+| Move to next string       | :kbd:`Ctrl+Down`            |
 +---------------------------+-----------------------------+
-| Move to the first unit    | :kbd:`Ctrl+Shift+Home`      |
+| Move to the first string  | :kbd:`Ctrl+Shift+Home`      |
 +---------------------------+-----------------------------+
-| Move to the last unit     | :kbd:`Ctrl+Shift+End`       |
+| Move to the last string   | :kbd:`Ctrl+Shift+End`       |
 +---------------------------+-----------------------------+
-| Move 10 units up          | :kbd:`Ctrl+Shift+Page Up`   |
+| Move up 10 strings        | :kbd:`Ctrl+Shift+Page Up`   |
 +---------------------------+-----------------------------+
-| Move 10 units down        | :kbd:`Ctrl+Shift+Page Down` |
+| Move down 10 strings      | :kbd:`Ctrl+Shift+Page Down` |
 +---------------------------+-----------------------------+
 | Select search box         | :kbd:`Ctrl+Shift+S`         |
 +---------------------------+-----------------------------+

@@ -7,7 +7,7 @@ Pootle has the ability to display alternative source languages while
 translating. Thus, translators who know another language better than English
 can take part in the translation project. Also, it provides a way to
 disambiguate terminology by seeing how other languages have translated the
-same translation unit.
+same string.
 
 .. image:: ../_static/altsrc.png
 

@@ -53,7 +53,7 @@ view
   Limits access to project of language but does not limit it's visibility.
 
 :doc:`suggest <suggestions>`
-  The right to suggest a translation for a specific unit, also implies the
+  The right to suggest a translation for a specific string, also implies the
   right to upload file using suggest only method.
 
 review
@@ -61,7 +61,7 @@ review
   well as the right to reject false positive quality checks
 
 translate
-  The right to supply a translation for a specific unit or to replace the
+  The right to supply a translation for a specific string or to replace the
   existing one. This implies the right to upload files using the merge method.
 
 archive

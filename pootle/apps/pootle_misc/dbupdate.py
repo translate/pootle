@@ -394,18 +394,18 @@ def import_suggestions(store):
 
 def parse_store(store):
     try:
-        logging.info(u"Importing units from %s", store.real_path)
+        logging.info(u"Importing strings from %s", store.real_path)
         store.require_units()
         count = store.getquickstats()['total']
         text = u"""
         <li>%s</li>
-        """ % ungettext('Imported %(count)d unit from %(store)s',
-                        'Imported %(count)d units from %(store)s',
+        """ % ungettext('Imported %(count)d string from %(store)s',
+                        'Imported %(count)d strings from %(store)s',
                         count, {'count': count, 'store': store.pootle_path})
     except:
         text = u"""
         <li class="error">%s</li>
-        """ % _('Failed to import units from %s', store.pootle_path)
+        """ % _('Failed to import strings from %s', store.pootle_path)
 
     return text
 

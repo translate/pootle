@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.5.0\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2012-12-26 21:40+0100\n"
+"POT-Creation-Date: 2012-12-27 11:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1296,14 +1296,14 @@ msgstr ""
 
 #: apps/pootle_misc/dbupdate.py:402
 #, python-format
-msgid "Imported %(count)d unit from %(store)s"
-msgid_plural "Imported %(count)d units from %(store)s"
+msgid "Imported %(count)d string from %(store)s"
+msgid_plural "Imported %(count)d strings from %(store)s"
 msgstr[0] ""
 msgstr[1] ""
 
 #: apps/pootle_misc/dbupdate.py:408
 #, python-format
-msgid "Failed to import units from %s"
+msgid "Failed to import strings from %s"
 msgstr ""
 
 #: apps/pootle_misc/dbupdate.py:417
@@ -1363,7 +1363,7 @@ msgstr ""
 #: apps/pootle_misc/stats.py:95 apps/pootle_misc/stats.py:107
 #: apps/pootle_misc/stats.py:119 apps/pootle_misc/stats.py:131
 #, python-format
-msgid "(%(num)d units)"
+msgid "(%(num)d strings)"
 msgstr ""
 
 #: apps/pootle_misc/stats.py:146
@@ -1409,7 +1409,7 @@ msgstr[1] ""
 #: apps/pootle_misc/stats.py:233
 #, python-format
 msgid ""
-"%(type)s: %(translated)d of %(total)d messages translated (%(fuzzy)d fuzzy)."
+"%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d fuzzy)."
 msgstr ""
 
 #: apps/pootle_misc/middleware/errorpages.py:65
@@ -1828,12 +1828,12 @@ msgid "Checks"
 msgstr ""
 
 #: apps/pootle_store/templates/store/translate.html:83
-msgid "Previous unit"
+msgid "Previous string"
 msgstr ""
 
 #: apps/pootle_store/templates/store/translate.html:83
 msgid ""
-"Go to the previous unit (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
+"Go to the previous string (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+Page&nbsp;Up<br/>First page: Ctrl+Shift+Home"
 msgstr ""
 
@@ -1848,12 +1848,12 @@ msgid "Total pages"
 msgstr ""
 
 #: apps/pootle_store/templates/store/translate.html:89
-msgid "Next unit"
+msgid "Next string"
 msgstr ""
 
 #: apps/pootle_store/templates/store/translate.html:89
 msgid ""
-"Go to the next unit (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
+"Go to the next string (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
 "+Page&nbsp;Down<br/>Last page: Ctrl+Shift+End"
 msgstr ""
 
@@ -1909,7 +1909,7 @@ msgid "Submit"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:128
-msgid "Submit translation and go to the next unit (Ctrl+Enter)"
+msgid "Submit translation and go to the next string (Ctrl+Enter)"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:131
@@ -1918,7 +1918,7 @@ msgid "Suggest"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:131
-msgid "Suggest translation and go to the next unit (Ctrl+Enter)"
+msgid "Suggest translation and go to the next string (Ctrl+Enter)"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:137
