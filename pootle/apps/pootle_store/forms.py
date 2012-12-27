@@ -131,6 +131,7 @@ class HiddenMultiStringWidget(MultiStringWidget):
         # object where django expects a class
         return self
 
+
 class MultiStringFormField(forms.MultiValueField):
 
     def __init__(self, nplurals=1, attrs=None, textarea=True, *args, **kwargs):
@@ -143,6 +144,28 @@ class MultiStringFormField(forms.MultiValueField):
 
     def compress(self, data_list):
         return [unhighlight_whitespace(string) for string in data_list]
+
+
+class UnitStateField(forms.BooleanField):
+
+    def to_python(self, value):
+        """Returns a Python boolean object.
+
+        :return: ``False`` for any unknown :cls:`~pootle_store.models.Unit`
+            states and for the 'False' string.
+        """
+        if (value in ('False',) or
+            value not in (str(s) for s in (UNTRANSLATED, FUZZY, TRANSLATED))):
+            value = False
+        else:
+            value = bool(value)
+
+        value = super(forms.BooleanField, self).to_python(value)
+
+        if not value and self.required:
+            raise forms.ValidationError(self.error_messages['required'])
+
+        return value
 
 
 def unit_form_factory(language, snplurals=None, request=None):
@@ -189,9 +212,10 @@ def unit_form_factory(language, snplurals=None, request=None):
                                         required=False, textarea=False)
         target_f = MultiStringFormField(nplurals=tnplurals, required=False,
                                         attrs=target_attrs)
-        state = forms.BooleanField(required=False, label=_('Fuzzy'),
-                                   widget=forms.CheckboxInput(attrs=fuzzy_attrs,
-                                       check_test=lambda x: x == FUZZY))
+        state = UnitStateField(required=False, label=_('Fuzzy'),
+                               widget=forms.CheckboxInput(
+                                   attrs=fuzzy_attrs,
+                                   check_test=lambda x: x == FUZZY))
 
         def __init__(self, *args, **argv):
             super(UnitForm, self).__init__(*args, **argv)
@@ -223,8 +247,8 @@ def unit_form_factory(language, snplurals=None, request=None):
             return value
 
         def clean_state(self):
-            old_state = self.instance.state    # integer
-            value = self.cleaned_data['state']  # boolean
+            old_state = self.instance.state  # Integer
+            value = self.cleaned_data['state']  # Boolean
             new_target = self.cleaned_data['target_f']
 
             new_state = None
