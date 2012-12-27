@@ -134,7 +134,7 @@ sync_stores
 ^^^^^^^^^^^
 
 This command will save all translations currently in the database to the file
-system, thereby bringing the files under the :settings:`PODIRECTORY` directory
+system, thereby bringing the files under the :setting:`PODIRECTORY` directory
 in sync with the Pootle database.
 
 .. note:: For better performance Pootle keeps translations in database and
