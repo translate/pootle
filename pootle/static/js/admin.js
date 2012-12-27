@@ -88,12 +88,13 @@ $(function () {
         type: 'POST',
         data: $(this).serializeObject(),
         success: function (data) {
-          var $metaDescContent = $metaDesc.children().filter(':first');
+          var $metaDescContent = $metaDesc.children().filter(':first'),
+              theHtml = $('<div>').append(data.description_html);
 
           $editMetaDesc.hide();
           $editMetaDesc.html(data.form);
 
-          $metaDescContent.replaceWith(data.description_html);
+          $metaDescContent.replaceWith(theHtml);
           $metaDesc.show();
 
           $('.markup-body').filter(':not([dir])').bidi();
