@@ -51,11 +51,14 @@ def fancy_escape(text):
             '>': '&gt;',
             '\\': (escape_highlight % '\\\\'),
             }
+
         try:
             return submap[match.group()]
         except KeyError:
-            return html_highlight %  match.group()[1:-1]
+            return html_highlight % fancy_escape(match.group()[1:-1])
+
     return ESCAPE_RE.sub(replace, text)
+
 
 WHITESPACE_RE = re.compile('^ +| +$|[\r\n\t] +| {2,}')
 def fancy_spaces(text):

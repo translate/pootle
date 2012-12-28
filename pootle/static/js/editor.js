@@ -553,7 +553,10 @@
         replaced = submap[match];
 
         if (replaced == undefined) {
-          replaced = htmlHl.replace(/%s/, match.slice(1, match.length-1));
+          replaced = htmlHl.replace(
+              /%s/,
+              PTL.editor.fancyEscape(match.slice(1, match.length-1))
+          );
         }
 
         return replaced;
