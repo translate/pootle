@@ -117,7 +117,7 @@ def update_db():
     require('environment', provided_by=[production, staging])
 
     with settings(hide('stdout', 'stderr')):
-        with cd('%(project_repo_path)s/pootle' % env):
+        with cd('%(project_repo_path)s' % env):
             with prefix('source %(env_path)s/bin/activate' % env):
                 run('python manage.py updatedb')
 
@@ -140,7 +140,7 @@ def deploy_static():
     print('Collecting and building static files...')
 
     with settings(hide('stdout', 'stderr')):
-        with cd('%(project_repo_path)s/pootle' % env):
+        with cd('%(project_repo_path)s' % env):
             with prefix('source %(env_path)s/bin/activate' % env):
                 run('python manage.py collectstatic --noinput')
                 run('python manage.py assets build')
