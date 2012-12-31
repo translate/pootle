@@ -292,10 +292,6 @@ def projects_index(request):
     templatevars = {
         'projects': getprojects(request),
         'topstats': topstats,
-        'translationlegend': {'translated': _('Translations are complete'),
-                              'fuzzy': _('Translations need to be checked '
-                                         '(they are marked fuzzy)'),
-                              'untranslated': _('Untranslated')},
         }
 
     return render_to_response('project/projects.html', templatevars,

@@ -39,20 +39,8 @@ def get_stats_headings():
     """returns a dictionary of localised headings"""
     return {
         "name":                   _("Name"),
-        "translated":             _("Translated"),
-        "translatedpercentage":   _("Translated percentage"),
-        "translatedwords":        _("Translated words"),
-        "fuzzy":                  _("Fuzzy"),
-        "fuzzypercentage":        _("Fuzzy percentage"),
-        "fuzzywords":             _("Fuzzy words"),
-        "untranslated":           _("Untranslated"),
-        "untranslatedpercentage": _("Untranslated percentage"),
-        "untranslatedwords":      _("Untranslated words"),
-        "total":                  _("Total"),
-        "totalwords":             _("Total Words"),
         # Translators: noun. The graphical representation of translation status
         "progress":               _("Progress"),
-        "summary":                _("Summary"),
         "need_translation":       _("Need Translation"),
         # Translators: The number of suggestions pending review
         "suggestions": _("Suggestions"),

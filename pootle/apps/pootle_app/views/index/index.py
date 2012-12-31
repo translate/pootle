@@ -105,10 +105,6 @@ def view(request):
         'languages': languages,
         'projects': getprojects(request),
         'topstats': topstats,
-        'translationlegend': {'translated': _('Translations are complete'),
-                              'fuzzy': _("Translations need to be checked "
-                                         "(they are marked fuzzy)"),
-                              'untranslated': _('Untranslated')},
         'permissions': request.permissions,
         'can_edit': can_edit,
         }
