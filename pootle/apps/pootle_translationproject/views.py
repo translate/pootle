@@ -32,7 +32,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
 from django.utils.encoding import iri_to_uri
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy, ugettext as _
 
 from pootle_app.lib import view_handler
 from pootle_app.models.permissions import (get_matching_permissions,
@@ -721,7 +721,7 @@ def upload_file(request, directory, django_file, overwrite, store=None):
 
 class UploadHandler(view_handler.Handler):
 
-    actions = [('do_upload', _('Upload'))]
+    actions = [('do_upload', ugettext_lazy('Upload'))]
 
     @classmethod
     def must_display(cls, request, *args, **kwargs):
