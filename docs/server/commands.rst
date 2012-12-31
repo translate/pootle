@@ -315,6 +315,9 @@ for automation.
 Accepts the ``--modified-since`` parameter to list only those languages
 modified since the change id given by :ref:`commands#latest_change_id`.
 
+The option ``--project`` limits the output to one or more projects. Specify the
+option multiple times for more than one project.
+
 
 .. _commands#list_projects:
 

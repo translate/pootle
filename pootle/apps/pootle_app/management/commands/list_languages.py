@@ -21,34 +21,37 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
+from optparse import make_option
+
 from pootle_app.management.commands import (NoArgsCommandMixin,
                                             ModifiedSinceMixin)
-from pootle_language.models import Language
 
 
 class Command(ModifiedSinceMixin, NoArgsCommandMixin):
+    option_list = NoArgsCommandMixin.option_list + (
+            make_option('--project', action='append', dest='projects',
+                        help='Limit to PROJECTS'),
+    )
+    help = "List language codes."
 
     def handle_noargs(self, **options):
         super(Command, self).handle_noargs(**options)
         self.list_languages(**options)
 
     def list_languages(self, **options):
-        """List all languages on the server."""
+        """List all languages on the server or the given projects."""
         change_id = options.get('modified_since', 0)
+        projects = options.get('projects', [])
+
+        from pootle_translationproject.models import TranslationProject
+        tps = TranslationProject.objects.distinct()
+        tps = tps.exclude(language__code='templates').order_by('language__code')
 
         if change_id:
-            from pootle_translationproject.models import TranslationProject
-            langs = TranslationProject.objects \
-                                      .filter(submission__id__gt=change_id) \
-                                      .distinct() \
-                                      .values('language__code')
+            tps = tps.filter(submission__id__gt=change_id)
 
-            for lang in langs:
-                lang_code = lang['language__code']
-                if lang_code != 'templates':
-                    print lang_code
-        else:
-            for lang in Language.objects.all():
-                if lang.code == 'templates':
-                    continue
-                print lang.code
+        if projects:
+            tps = tps.filter(project__code__in=projects)
+
+        for lang in tps.values_list('language__code', flat=True):
+            print lang
