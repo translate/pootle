@@ -65,5 +65,5 @@ Navigation
 +---------------------------+-----------------------------+
 | Select search box         | :kbd:`Ctrl+Shift+S`         |
 +---------------------------+-----------------------------+
-| Select page number        | :kbd:`Ctrl+Shift+U`         |
+| Select page number        | :kbd:`Ctrl+Shift+N`         |
 +---------------------------+-----------------------------+

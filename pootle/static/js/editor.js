@@ -207,7 +207,7 @@
     shortcut.add('ctrl+shift+pagedown', function () {
       PTL.editor.gotoNextPage();
     });
-    shortcut.add('ctrl+shift+u', function () {
+    shortcut.add('ctrl+shift+n', function () {
       $("#item-number").focus().select();
     });
 
