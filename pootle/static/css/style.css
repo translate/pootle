@@ -838,6 +838,12 @@ html[dir="rtl"] .module .hd h3 span
     border: 1px solid #EEE;
 }
 
+html[dir="rtl"] .module.user-statistics div.avatar img
+{
+    right: auto;
+    left: 0;
+}
+
 /* UPLOAD FORM / UPDATE FROM VCS */
 
 div#upload p,
