@@ -485,7 +485,7 @@ class TranslationProject(models.Model):
                     }
             )
             if request:
-                msg = _("Failed to update from version control: %(error)s" % \
+                msg = _("Failed to update from version control: %(error)s",
                         {"error": e})
                 messages.error(request, msg)
             return
@@ -553,9 +553,8 @@ class TranslationProject(models.Model):
 
         if request:
             msg = [
-                _(u'Updated project <em>%(project)s</em> from version control' % {
-                    'project': self.fullname
-                }),
+                _(u'Updated project <em>%(project)s</em> from version control',
+                  {'project': self.fullname}),
                 stats_message(_(u"Working copy"), old_stats),
                 stats_message(_(u"Remote copy"), remote_stats),
                 stats_message(_(u"Merged copy"), new_stats)
@@ -575,9 +574,8 @@ class TranslationProject(models.Model):
                     self.update_file_from_version_control(store)
 
             msg = [
-                _(u'Updated file <em>%(filename)s</em> from version control' % {
-                    'filename': store.file.name
-                }),
+                _(u'Updated file <em>%(filename)s</em> from version control',
+                  {'filename': store.file.name}),
                 stats_message(_(u"Working copy"), old_stats),
                 stats_message(_(u"Remote copy"), remote_stats),
                 stats_message(_(u"Merged copy"), new_stats)
@@ -716,9 +714,8 @@ class TranslationProject(models.Model):
 
                 if request is not None:
                     msg = _("Committed file <em>%(filename)s</em> to version "
-                            "control" % {
-                        'filename': file
-                    })
+                            "control",
+                            {'filename': file})
                     messages.success(request, msg)
         except Exception, e:
             logging.error(u"Failed to commit file: %s", e)
