@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.5.0\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2012-12-27 11:07+0000\n"
+"POT-Creation-Date: 2012-12-31 14:17+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -217,12 +217,13 @@ msgstr ""
 msgid "If set, any references to this legal page will redirect to this URL"
 msgstr ""
 
-#: apps/legalpages/models.py:42
-msgid "slug"
+#. Translators: See http://en.wikipedia.org/wiki/Slug_%28web_publishing%29#Slug
+#: apps/legalpages/models.py:43
+msgid "Slug"
 msgstr ""
 
-#: apps/legalpages/models.py:43
-msgid "The page will be independently available in /about/<slug>/"
+#: apps/legalpages/models.py:44
+msgid "The page will be available at /about/<slug>/"
 msgstr ""
 
 #: apps/legalpages/models.py:46
@@ -235,7 +236,7 @@ msgid "Allowed markup: %s"
 msgstr ""
 
 #: apps/legalpages/views.py:67
-msgid "Legal Page created."
+msgid "Legal page created."
 msgstr ""
 
 #: apps/legalpages/templates/legalpages/admin/edit.html:4
@@ -273,7 +274,7 @@ msgid "No pages yet."
 msgstr ""
 
 #: apps/legalpages/templates/legalpages/admin/list.html:31
-msgid "Add a new Legal Page"
+msgid "New Legal Page"
 msgstr ""
 
 #: apps/pootle_app/admin.py:39
@@ -355,8 +356,8 @@ msgstr ""
 
 #. Translators: The number of suggestions pending review
 #: apps/pootle_app/templates/top_contributers_table.html:12
-#: apps/pootle_app/views/language/view.py:58
-#: apps/pootle_store/templates/store/translate.html:73
+#: apps/pootle_app/views/language/view.py:46
+#: apps/pootle_store/templates/store/translate.html:74
 msgid "Suggestions"
 msgstr ""
 
@@ -374,21 +375,21 @@ msgid "anonymous users"
 msgstr ""
 
 #: apps/pootle_app/templates/translation_summary_legend.html:4
-#: apps/pootle_app/views/language/view.py:42 apps/pootle_misc/stats.py:101
-#: apps/pootle_store/util.py:47
-#: apps/pootle_store/templates/store/translate.html:69
+#: apps/pootle_misc/stats.py:105 apps/pootle_store/util.py:47
+#: apps/pootle_store/templates/store/translate.html:70
 msgid "Translated"
 msgstr ""
 
 #: apps/pootle_app/templates/translation_summary_legend.html:5
-msgid "Needs review"
+#: apps/pootle_misc/stats.py:122 apps/pootle_store/forms.py:215
+#: apps/pootle_store/util.py:46
+#: apps/pootle_store/templates/store/translate.html:73
+msgid "Needs work"
 msgstr ""
 
 #: apps/pootle_app/templates/translation_summary_legend.html:6
-#: apps/pootle_app/views/index/index.py:111
-#: apps/pootle_app/views/language/view.py:48 apps/pootle_misc/stats.py:125
-#: apps/pootle_project/views.py:298 apps/pootle_store/util.py:45
-#: apps/pootle_store/templates/store/translate.html:71
+#: apps/pootle_misc/stats.py:139 apps/pootle_store/util.py:45
+#: apps/pootle_store/templates/store/translate.html:72
 msgid "Untranslated"
 msgstr ""
 
@@ -678,7 +679,7 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:107
 msgid ""
-"Can't find python-levenshtein package. Updating from templates is faster "
+"Can't find python-levenshtein package. Updating against templates is faster "
 "with python-levenshtein."
 msgstr ""
 
@@ -770,7 +771,6 @@ msgid "Translated strings"
 msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:203
-#: apps/pootle_app/views/language/view.py:44
 msgid "Translated words"
 msgstr ""
 
@@ -818,14 +818,6 @@ msgstr ""
 #: apps/pootle_language/views.py:66 apps/pootle_project/views.py:74
 #, python-format
 msgid "%(percentage)d%% complete"
-msgstr ""
-
-#: apps/pootle_app/views/index/index.py:108 apps/pootle_project/views.py:295
-msgid "Translations are complete"
-msgstr ""
-
-#: apps/pootle_app/views/index/index.py:109 apps/pootle_project/views.py:296
-msgid "Translations need to be checked (they are marked fuzzy)"
 msgstr ""
 
 #: apps/pootle_app/views/language/item_dict.py:37
@@ -884,65 +876,27 @@ msgstr[1] ""
 msgid "Name"
 msgstr ""
 
-#: apps/pootle_app/views/language/view.py:43
-msgid "Translated percentage"
-msgstr ""
-
-#: apps/pootle_app/views/language/view.py:45 apps/pootle_misc/stats.py:113
-#: apps/pootle_store/forms.py:192
-#: apps/pootle_store/templates/store/translate.html:72
-msgid "Fuzzy"
-msgstr ""
-
-#: apps/pootle_app/views/language/view.py:46
-msgid "Fuzzy percentage"
-msgstr ""
-
-#: apps/pootle_app/views/language/view.py:47
-msgid "Fuzzy words"
-msgstr ""
-
-#: apps/pootle_app/views/language/view.py:49
-msgid "Untranslated percentage"
-msgstr ""
-
-#: apps/pootle_app/views/language/view.py:50
-msgid "Untranslated words"
-msgstr ""
-
-#: apps/pootle_app/views/language/view.py:51 apps/pootle_misc/stats.py:89
-msgid "Total"
-msgstr ""
-
-#: apps/pootle_app/views/language/view.py:52
-msgid "Total Words"
-msgstr ""
-
 #. Translators: noun. The graphical representation of translation status
-#: apps/pootle_app/views/language/view.py:54
+#: apps/pootle_app/views/language/view.py:43
 msgid "Progress"
 msgstr ""
 
-#: apps/pootle_app/views/language/view.py:55
-msgid "Summary"
-msgstr ""
-
-#: apps/pootle_app/views/language/view.py:56
+#: apps/pootle_app/views/language/view.py:44
 msgid "Need Translation"
 msgstr ""
 
-#: apps/pootle_app/views/language/view.py:120
-#: apps/pootle_translationproject/views.py:264
+#: apps/pootle_app/views/language/view.py:108
+#: apps/pootle_translationproject/views.py:263
 msgid "You do not have rights to access this translation project."
 msgstr ""
 
-#: apps/pootle_app/views/language/view.py:135
-#: apps/pootle_app/views/language/view.py:161
+#: apps/pootle_app/views/language/view.py:123
+#: apps/pootle_app/views/language/view.py:149
 msgid "You do not have rights to commit files here"
 msgstr ""
 
-#: apps/pootle_app/views/language/view.py:148
-#: apps/pootle_app/views/language/view.py:174
+#: apps/pootle_app/views/language/view.py:136
+#: apps/pootle_app/views/language/view.py:162
 msgid "You do not have rights to update files here"
 msgstr ""
 
@@ -1002,7 +956,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: apps/pootle_language/views.py:148 apps/pootle_project/views.py:160
-#: apps/pootle_translationproject/views.py:343
+#: apps/pootle_translationproject/views.py:342
 msgid "No description yet."
 msgstr ""
 
@@ -1317,56 +1271,71 @@ msgid ""
 msgstr ""
 
 #: apps/pootle_misc/forms.py:97
-msgid "Search (Ctrl+Shift+S)<br/>Type in, then press Enter to search"
+msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr ""
 
-#: apps/pootle_misc/forms.py:104
+#: apps/pootle_misc/forms.py:103
 msgid "Source Text"
 msgstr ""
 
-#: apps/pootle_misc/forms.py:105
+#: apps/pootle_misc/forms.py:104
 msgid "Target Text"
 msgstr ""
 
-#: apps/pootle_misc/forms.py:106
+#: apps/pootle_misc/forms.py:105
 msgid "Comments"
 msgstr ""
 
-#: apps/pootle_misc/forms.py:107
+#: apps/pootle_misc/forms.py:106
 msgid "Locations"
 msgstr ""
 
-#: apps/pootle_misc/forms.py:120
+#: apps/pootle_misc/forms.py:119
 msgid "Source Terms"
 msgstr ""
 
-#: apps/pootle_misc/forms.py:121
+#: apps/pootle_misc/forms.py:120
 msgid "Target Terms"
 msgstr ""
 
-#: apps/pootle_misc/forms.py:122
+#: apps/pootle_misc/forms.py:121
 msgid "Definitions"
 msgstr ""
 
-#: apps/pootle_misc/stats.py:90 apps/pootle_misc/stats.py:102
-#: apps/pootle_misc/stats.py:114 apps/pootle_misc/stats.py:126
-#, python-format
-msgid "<a href=\"%(url)s\">%(num)d words</a>"
+#: apps/pootle_misc/stats.py:89
+msgid "Total"
 msgstr ""
 
-#: apps/pootle_misc/stats.py:93 apps/pootle_misc/stats.py:105
-#: apps/pootle_misc/stats.py:117 apps/pootle_misc/stats.py:129
+#: apps/pootle_misc/stats.py:90 apps/pootle_misc/stats.py:106
+#: apps/pootle_misc/stats.py:123 apps/pootle_misc/stats.py:140
+#, python-format
+msgid "<a href=\"%(url)s\">%(num)d word</a>"
+msgid_plural "<a href=\"%(url)s\">%(num)d words</a>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: apps/pootle_misc/stats.py:95 apps/pootle_misc/stats.py:112
+#: apps/pootle_misc/stats.py:129 apps/pootle_misc/stats.py:146
 #, python-format
 msgid "%(num)d%%"
 msgstr ""
 
-#: apps/pootle_misc/stats.py:95 apps/pootle_misc/stats.py:107
-#: apps/pootle_misc/stats.py:119 apps/pootle_misc/stats.py:131
+#: apps/pootle_misc/stats.py:97 apps/pootle_misc/stats.py:114
+#: apps/pootle_misc/stats.py:131
+#, python-format
+msgid "(%(num)d string)"
+msgid_plural "(%(num)d strings)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: apps/pootle_misc/stats.py:148
 #, python-format
 msgid "(%(num)d strings)"
-msgstr ""
+msgid_plural "(%(num)d strings)"
+msgstr[0] ""
+msgstr[1] ""
 
-#: apps/pootle_misc/stats.py:146
+#: apps/pootle_misc/stats.py:165
 #, python-format
 msgid "This folder has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
@@ -1374,7 +1343,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/pootle_misc/stats.py:157
+#: apps/pootle_misc/stats.py:177
 #, python-format
 msgid "This file has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
@@ -1382,22 +1351,22 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/pootle_misc/stats.py:178
+#: apps/pootle_misc/stats.py:199
 msgid "Expand details"
 msgstr ""
 
-#: apps/pootle_misc/stats.py:189
+#: apps/pootle_misc/stats.py:210
 #, python-format
 msgid "Continue translation (%(num)d word left)"
 msgid_plural "Continue translation (%(num)d words left)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/pootle_misc/stats.py:200
+#: apps/pootle_misc/stats.py:220
 msgid "Translation is complete"
 msgstr ""
 
-#: apps/pootle_misc/stats.py:211
+#: apps/pootle_misc/stats.py:231
 #, python-format
 msgid "Review suggestion (%(num)d left)"
 msgid_plural "Review suggestions (%(num)d left)"
@@ -1406,11 +1375,14 @@ msgstr[1] ""
 
 #. Translators: 'type' is the type of VCS file: working, remote,
 #. or merged copy.
-#: apps/pootle_misc/stats.py:233
+#: apps/pootle_misc/stats.py:252
 #, python-format
 msgid ""
+"%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d fuzzy)."
+msgid_plural ""
 "%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d fuzzy)."
-msgstr ""
+msgstr[0] ""
+msgstr[1] ""
 
 #: apps/pootle_misc/middleware/errorpages.py:65
 #, python-format
@@ -1482,11 +1454,11 @@ msgid "News for %(path)s"
 msgstr ""
 
 #: apps/pootle_notifications/views.py:138
-msgid "Publish on News feed"
+msgid "Publish on news feed"
 msgstr ""
 
 #: apps/pootle_notifications/views.py:140
-msgid "Send Email"
+msgid "Send email"
 msgstr ""
 
 #: apps/pootle_notifications/views.py:143
@@ -1635,7 +1607,8 @@ msgid "You do not have rights to administer this project."
 msgstr ""
 
 #: apps/pootle_project/views.py:212
-msgid "Update from templates"
+#: apps/pootle_translationproject/actions.py:201
+msgid "Update against templates"
 msgstr ""
 
 #: apps/pootle_project/templates/project/admin_permissions.html:24
@@ -1665,13 +1638,12 @@ msgid "State"
 msgstr ""
 
 #: apps/pootle_statistics/models.py:50
-#: apps/pootle_store/templates/unit/edit.html:224
 #: apps/pootle_store/templates/unit/xhr-comment.html:10
 msgid "Comment"
 msgstr ""
 
 #: apps/pootle_statistics/models.py:95
-msgid "Unknown submitter"
+msgid "anonymous user"
 msgstr ""
 
 #: apps/pootle_store/filetypes.py:29
@@ -1750,7 +1722,7 @@ msgstr ""
 msgid "Plural Form %d"
 msgstr ""
 
-#: apps/pootle_store/forms.py:272
+#: apps/pootle_store/forms.py:296
 msgid "Translator comment"
 msgstr ""
 
@@ -1760,10 +1732,6 @@ msgstr ""
 
 #: apps/pootle_store/util.py:44
 msgid "Obsolete"
-msgstr ""
-
-#: apps/pootle_store/util.py:46
-msgid "Needs work"
 msgstr ""
 
 #: apps/pootle_store/views.py:77
@@ -1811,47 +1779,48 @@ msgstr ""
 msgid "Filter by:"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:68
+#. Translators: This refers to "All strings"
+#: apps/pootle_store/templates/store/translate.html:69
 msgid "All"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:70
+#: apps/pootle_store/templates/store/translate.html:71
 msgid "Incomplete"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:74
-msgid "My Suggestions"
+#: apps/pootle_store/templates/store/translate.html:75
+msgid "My suggestions"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:75
+#: apps/pootle_store/templates/store/translate.html:76
 msgid "Checks"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:83
+#: apps/pootle_store/templates/store/translate.html:84
 msgid "Previous string"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:83
+#: apps/pootle_store/templates/store/translate.html:84
 msgid ""
 "Go to the previous string (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+Page&nbsp;Up<br/>First page: Ctrl+Shift+Home"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:85
+#: apps/pootle_store/templates/store/translate.html:86
 msgid ""
 "Current page number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:87
+#: apps/pootle_store/templates/store/translate.html:88
 msgid "Total pages"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:89
+#: apps/pootle_store/templates/store/translate.html:90
 msgid "Next string"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:89
+#: apps/pootle_store/templates/store/translate.html:90
 msgid ""
 "Go to the next string (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
 "+Page&nbsp;Down<br/>Last page: Ctrl+Shift+End"
@@ -1981,6 +1950,10 @@ msgstr ""
 msgid "Hide Timeline"
 msgstr ""
 
+#: apps/pootle_store/templates/unit/edit.html:224
+msgid "Comment:"
+msgstr ""
+
 #: apps/pootle_store/templates/unit/edit.html:231
 msgid "User suggestions"
 msgstr ""
@@ -2083,7 +2056,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: apps/pootle_store/templatetags/store_tags.py:234
-msgid "Few seconds ago"
+msgid "A few seconds ago"
 msgstr ""
 
 #: apps/pootle_terminology/views.py:156
@@ -2129,7 +2102,7 @@ msgid "Here you can manage the terms in the terminology files."
 msgstr ""
 
 #: apps/pootle_terminology/templates/terminology/stores.html:14
-#: apps/pootle_translationproject/views.py:766
+#: apps/pootle_translationproject/views.py:765
 msgid "File"
 msgstr ""
 
@@ -2183,7 +2156,7 @@ msgid "Download XLIFF file for offline translation"
 msgstr ""
 
 #: apps/pootle_translationproject/actions.py:112
-#: apps/pootle_translationproject/views.py:725
+#: apps/pootle_translationproject/views.py:724
 msgid "Upload"
 msgstr ""
 
@@ -2213,10 +2186,6 @@ msgstr ""
 msgid "Rescan project files"
 msgstr ""
 
-#: apps/pootle_translationproject/actions.py:201
-msgid "Update against templates"
-msgstr ""
-
 #: apps/pootle_translationproject/actions.py:218
 msgid "Delete this folder..."
 msgstr ""
@@ -2229,163 +2198,163 @@ msgstr ""
 msgid "Manage"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:106
+#: apps/pootle_translationproject/models.py:105
 #, python-format
 msgid ""
 "A description of this translation project. This is useful to give more "
 "information or instructions. Allowed markup: %s"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:477
-#: apps/pootle_translationproject/models.py:564
-msgid "You do not have rights to update from version control here"
+#: apps/pootle_translationproject/models.py:488
+#, python-format
+msgid "Failed to update from version control: %(error)s"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:546
+#: apps/pootle_translationproject/models.py:556
 #, python-format
 msgid "Updated project <em>%(project)s</em> from version control"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:549
-#: apps/pootle_translationproject/models.py:575
+#: apps/pootle_translationproject/models.py:558
+#: apps/pootle_translationproject/models.py:579
 msgid "Working copy"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:550
-#: apps/pootle_translationproject/models.py:576
+#: apps/pootle_translationproject/models.py:559
+#: apps/pootle_translationproject/models.py:580
 msgid "Remote copy"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:551
-#: apps/pootle_translationproject/models.py:577
+#: apps/pootle_translationproject/models.py:560
+#: apps/pootle_translationproject/models.py:581
 msgid "Merged copy"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:572
+#: apps/pootle_translationproject/models.py:577
 #, python-format
 msgid "Updated file <em>%(filename)s</em> from version control"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:586
+#: apps/pootle_translationproject/models.py:590
 #, python-format
-msgid "Failed to update <em>%(filename)s</em> from version control"
+msgid "Failed to update <em>%(filename)s</em> from version control: %(error)s"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:640
+#: apps/pootle_translationproject/models.py:649
 #, python-format
-msgid "Committed all files under %(path)s"
+msgid "Committed all files under <em>%(path)s</em> to version control"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:648
+#: apps/pootle_translationproject/models.py:658
 #, python-format
-msgid "Failed to commit: %(error)s"
+msgid "Failed to commit to version control: %(error)s"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:704
+#: apps/pootle_translationproject/models.py:716
 #, python-format
-msgid "Committed file: %(filename)s"
+msgid "Committed file <em>%(filename)s</em> to version control"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:712
+#: apps/pootle_translationproject/models.py:724
 #, python-format
-msgid "Failed to commit file: %(error)s"
+msgid "Failed to commit <em>%(filename)s</em> to version control: %(error)s"
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:98
+#: apps/pootle_translationproject/views.py:97
 msgid "Translation project files have been rescanned."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:103
+#: apps/pootle_translationproject/views.py:102
 msgid "Error while rescanning translation project files."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:120
+#: apps/pootle_translationproject/views.py:119
 msgid "Translation project has been updated against latest templates."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:125
+#: apps/pootle_translationproject/views.py:124
 msgid "Error while updating translation project against latest templates."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:190
+#: apps/pootle_translationproject/views.py:189
 msgid "Symbolic link hasn't been removed from the filesystem."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:194
+#: apps/pootle_translationproject/views.py:193
 msgid "Directory and its containing files have been deleted."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:197
+#: apps/pootle_translationproject/views.py:196
 msgid "File has been deleted."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:202
+#: apps/pootle_translationproject/views.py:201
 msgid "Error while trying to delete directory."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:205
+#: apps/pootle_translationproject/views.py:204
 msgid "Error while trying to delete file."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:366
+#: apps/pootle_translationproject/views.py:365
 msgid "You do not have the right to create ZIP archives."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:462
+#: apps/pootle_translationproject/views.py:461
 #, python-format
 msgid "Invalid/insecure file name: %s"
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:471
+#: apps/pootle_translationproject/views.py:470
 #, python-format
 msgid ""
 "Invalid GNU-style file name: %(local_filename)s. It must match '%(langcode)s."
 "%(filetype)s'."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:498
+#: apps/pootle_translationproject/views.py:497
 msgid "Error while extracting archive"
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:682
+#: apps/pootle_translationproject/views.py:681
 msgid "You do not have rights to overwrite files here."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:686
+#: apps/pootle_translationproject/views.py:685
 msgid "You do not have rights to upload new files here."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:690
-#: apps/pootle_translationproject/views.py:694
+#: apps/pootle_translationproject/views.py:689
+#: apps/pootle_translationproject/views.py:693
 msgid "You do not have rights to upload files here."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:738
+#: apps/pootle_translationproject/views.py:737
 msgid "Overwrite the current file if it exists"
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:742
+#: apps/pootle_translationproject/views.py:741
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:747
+#: apps/pootle_translationproject/views.py:746
 msgid "Add all new translations as suggestions"
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:777
-#: apps/pootle_translationproject/views.py:785
+#: apps/pootle_translationproject/views.py:776
+#: apps/pootle_translationproject/views.py:784
 msgid "Upload to"
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:780
-#: apps/pootle_translationproject/views.py:789
+#: apps/pootle_translationproject/views.py:779
+#: apps/pootle_translationproject/views.py:788
 msgid ""
 "Optionally select the file you want to merge with. If not specified, the "
 "uploaded file's name is used."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:799
+#: apps/pootle_translationproject/views.py:798
 msgid "Upload File"
 msgstr ""
 
@@ -2500,6 +2469,24 @@ msgstr ""
 
 #: middleware/captcha.py:158
 msgid "Incorrect"
+msgstr ""
+
+#: settings/10-base.conf:9
+msgid "Pootle Demo"
+msgstr ""
+
+#. Translators: Change the language code (en) to your language code, and replace
+#. ltr with rtl if you language is written from right to left.
+#: settings/10-base.conf:13
+msgid ""
+"<div dir=\"ltr\" lang=\"en\">\n"
+"<h2>This is a demo installation of Pootle.</h2>\n"
+"<p>You can also visit the official <a href=\"http://pootle.locamotion.org"
+"\">Pootle server</a>. The server administrator has not provided contact "
+"information or a description of this server. If you are the administrator "
+"for this server, edit this description in your preference file or in the "
+"administration interface.</p>\n"
+"</div>\n"
 msgstr ""
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
