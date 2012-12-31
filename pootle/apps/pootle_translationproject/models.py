@@ -35,7 +35,6 @@ from translate.storage.base import ParseError
 
 from pootle_app.lib.util import RelatedManager
 from pootle_app.models.directory import Directory
-from pootle_app.models.permissions import check_permission
 from pootle_language.models import Language
 from pootle_misc.aggregate import group_by_count_extra, max_column
 from pootle_misc.baseurl import l
@@ -472,10 +471,6 @@ class TranslationProject(models.Model):
         """Updates translation project's files from version control, retaining
         uncommitted translations.
         """
-        # FIXME: Move this stuff to views!
-        if not check_permission("commit", request):
-            raise PermissionDenied(_("You do not have rights to update from "
-                                     "version control here"))
         old_stats = self.getquickstats()
         remote_stats = {}
 
@@ -572,10 +567,6 @@ class TranslationProject(models.Model):
     def update_file(self, request, store):
         """Updates file from version control, retaining uncommitted
         translations"""
-        if not check_permission("commit", request):
-            raise PermissionDenied(_("You do not have rights to update from "
-                "version control here"))
-
         try:
             old_stats, remote_stats, new_stats = \
                     self.update_file_from_version_control(store)
