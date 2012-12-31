@@ -53,7 +53,6 @@ from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.stats import (get_raw_stats, get_translation_stats,
                                get_path_summary)
 from pootle_misc.util import jsonify, ajax_required
-from pootle_misc.versioncontrol import hasversioning
 from pootle_profile.models import get_profile
 from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_store.models import Store
