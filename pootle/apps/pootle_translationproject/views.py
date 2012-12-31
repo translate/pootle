@@ -115,7 +115,7 @@ def rescan_files(request, translation_project):
 @util.has_permission('administrate')
 def update_against_templates(request, translation_project):
     try:
-        translation_project.update_from_templates()
+        translation_project.update_against_templates()
 
         messages.success(request, _("Translation project has been updated "
                                     "against latest templates."))

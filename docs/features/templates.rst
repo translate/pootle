@@ -41,17 +41,17 @@ copy will be generated based on the templates files (in a manner similar to
 :ref:`<toolkit:pot2po>`).
 
 
-.. _templates#updating_from_templates:
+.. _templates#updating_against_templates:
 
-Updating from templates
------------------------
+Updating against templates
+--------------------------
 
 When the document or software being translated is updated, Pootle helps you
 retain old translation through the translation templates feature.
 
 The templates files should be replaced with new versions (i.e. upload the new
 versions to the templates language). Users with admin permission in the project
-can use the *Update from templates* checkbox in the project admin page to
+can use the *Update against templates* checkbox in the project admin page to
 update languages to the newer version.
 
 Users with admin permissions over a language can update this single language

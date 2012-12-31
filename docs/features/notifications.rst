@@ -29,7 +29,7 @@ relevant feeds. The events that generate notices include:
 
 - Project updated from version control
 
-- Project updated to from templates
+- Project updated to against templates
 
 - File committed to version control
 

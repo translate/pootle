@@ -281,7 +281,7 @@ class TranslationProject(models.Model):
         )
         return group_by_count_extra(query, 'name', 'category')
 
-    def update_from_templates(self, pootle_path=None):
+    def update_against_templates(self, pootle_path=None):
         """Update translation project from templates."""
 
         if self.is_template_project:

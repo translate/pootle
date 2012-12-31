@@ -24,7 +24,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from pootle_app.management.commands import PootleCommand
 
 class Command(PootleCommand):
-    help = "Mass update from templates."
+    help = "Mass update against templates."
 
     def handle_translation_project(self, translation_project, **options):
-        translation_project.update_from_templates()
+        translation_project.update_against_templates()

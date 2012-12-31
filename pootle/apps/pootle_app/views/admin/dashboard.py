@@ -104,7 +104,7 @@ def optional_depcheck():
 
     if not depcheck.test_levenshtein():
         optional.append({'dependency': 'levenshtein',
-                        'text': _("Can't find python-levenshtein package. Updating from templates is faster with python-levenshtein.")})
+                        'text': _("Can't find python-levenshtein package. Updating against templates is faster with python-levenshtein.")})
 
     if not depcheck.test_indexer():
         optional.append({'dependency': 'indexer',

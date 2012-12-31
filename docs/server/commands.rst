@@ -218,10 +218,10 @@ update, specify ``--force``.
    deleted from the database. Handle with care!
 
 
-.. _commands#update_from_templates:
+.. _commands#update_against_templates:
 
-update_from_templates
-^^^^^^^^^^^^^^^^^^^^^
+update_against_templates
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 Updates languages to match what is present in the translation templates.
 

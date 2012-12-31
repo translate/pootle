@@ -120,7 +120,7 @@ def unit_updated(sender, instance, raw=False, **kwargs):
 
 ##### TranslationProject Events #####
 
-def updated_from_template(sender, oldstats, newstats, **kwargs):
+def updated_against_template(sender, oldstats, newstats, **kwargs):
     if oldstats == newstats:
         # nothing changed, no need to report
         return

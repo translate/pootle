@@ -158,7 +158,7 @@ msgstr "2adim"
         """test initializing a new file from templates"""
         fr = Language.objects.get(code='fr')
         new_tp = self.project.translationproject_set.create(language=fr)
-        new_tp.update_from_templates()
+        new_tp.update_against_templates()
         store_count = new_tp.stores.count()
         self.assertEqual(store_count, 2)
         store = new_tp.stores.all()[0]
@@ -170,7 +170,7 @@ msgstr "2adim"
     def test_update(self):
         """test updating existing files to templates"""
         tp = self.project.translationproject_set.get(language__code='ar')
-        tp.update_from_templates()
+        tp.update_against_templates()
 
         store_count = tp.stores.count()
         self.assertEqual(store_count, 2)
@@ -418,7 +418,7 @@ X-Generator: Pootle Tests
         """test initializing a new file from templates"""
         fr = Language.objects.get(code='fr')
         new_tp = self.project.translationproject_set.create(language=fr)
-        new_tp.update_from_templates()
+        new_tp.update_against_templates()
         store_count = new_tp.stores.count()
         self.assertEqual(store_count, 1)
         store = new_tp.stores.all()[0]
@@ -438,7 +438,7 @@ X-Generator: Pootle Tests
     def test_update(self):
         """test updating existing files to templates"""
         tp = self.project.translationproject_set.get(language__code='ar')
-        tp.update_from_templates()
+        tp.update_against_templates()
 
         store_count = tp.stores.count()
         self.assertEqual(store_count, 1)

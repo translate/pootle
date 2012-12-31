@@ -38,7 +38,7 @@ from pootle_app.models.signals import post_vc_update, post_vc_commit
 from pootle_app.models.signals import post_template_update, post_file_upload
 post_vc_update.connect(signals.updated_from_version_control)
 post_vc_commit.connect(signals.committed_to_version_control)
-post_template_update.connect(signals.updated_from_template)
+post_template_update.connect(signals.updated_against_template)
 post_file_upload.connect(signals.file_uploaded)
 
 try:

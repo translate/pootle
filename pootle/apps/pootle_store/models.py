@@ -890,7 +890,7 @@ class Store(models.Model, base.TranslationStore):
             if (self.file and is_monolingual(type(self.file.store)) and
                 not self.translation_project.is_template_project):
                 self.translation_project \
-                    .update_from_templates(pootle_path=self.pootle_path)
+                    .update_against_templates(pootle_path=self.pootle_path)
             else:
                 self.parse()
 
