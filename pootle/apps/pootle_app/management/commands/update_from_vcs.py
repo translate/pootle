@@ -32,4 +32,4 @@ class Command(PootleCommand):
 
         The translation project may be limited by language, project etc.
         """
-        tp.update_dir(tp.directory)
+        tp.update_dir(directory=tp.directory)

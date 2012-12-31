@@ -467,7 +467,7 @@ class TranslationProject(models.Model):
         newstats = store.getquickstats()
         return oldstats, remotestats, newstats
 
-    def update_dir(self, request, directory=None):
+    def update_dir(self, request=None, directory=None):
         """Updates translation project's files from version control, retaining
         uncommitted translations.
         """
@@ -484,9 +484,10 @@ class TranslationProject(models.Model):
                      "error": e,
                     }
             )
-            msg = _("Failed to update from version control: %(error)s" % \
-                    {"error": e})
-            messages.error(request, msg)
+            if request:
+                msg = _("Failed to update from version control: %(error)s" % \
+                        {"error": e})
+                messages.error(request, msg)
             return
 
         all_files, new_files = self.scan_files()
@@ -549,16 +550,17 @@ class TranslationProject(models.Model):
 
         new_stats = self.getquickstats()
 
-        msg = [
-            _(u'Updated project <em>%(project)s</em> from version control' % {
-                'project': self.fullname
-            }),
-            stats_message(_(u"Working copy"), old_stats),
-            stats_message(_(u"Remote copy"), remote_stats),
-            stats_message(_(u"Merged copy"), new_stats)
-        ]
-        msg = u"<br/>".join([force_unicode(m) for m in msg])
-        messages.info(request, msg)
+        if request:
+            msg = [
+                _(u'Updated project <em>%(project)s</em> from version control' % {
+                    'project': self.fullname
+                }),
+                stats_message(_(u"Working copy"), old_stats),
+                stats_message(_(u"Remote copy"), remote_stats),
+                stats_message(_(u"Merged copy"), new_stats)
+            ]
+            msg = u"<br/>".join([force_unicode(m) for m in msg])
+            messages.info(request, msg)
 
         from pootle_app.models.signals import post_vc_update
         post_vc_update.send(sender=self, oldstats=old_stats,
