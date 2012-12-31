@@ -135,9 +135,9 @@ def form_factory(current_directory):
             initial=current_directory.pk,
             widget=forms.HiddenInput,
         )
-        publish_rss = forms.BooleanField(label=_('Publish on News feed'),
+        publish_rss = forms.BooleanField(label=_('Publish on news feed'),
                 required=False, initial=True)
-        send_email = forms.BooleanField(label=_('Send Email'), required=False)
+        send_email = forms.BooleanField(label=_('Send email'), required=False)
         email_header = forms.CharField(label=_('Title'), required=False)
         restrict_to_active_users = forms.BooleanField(
                 label=_('Email only to recently active users'),

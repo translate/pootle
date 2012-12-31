@@ -64,7 +64,7 @@ def admin(request):
         if form.is_valid():
             form.save()
             form = LegalPageForm()
-            msg = _("Legal Page created.")
+            msg = _("Legal page created.")
     else:
         form = LegalPageForm()
 

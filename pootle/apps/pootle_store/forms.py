@@ -212,7 +212,7 @@ def unit_form_factory(language, snplurals=None, request=None):
                                         required=False, textarea=False)
         target_f = MultiStringFormField(nplurals=tnplurals, required=False,
                                         attrs=target_attrs)
-        state = UnitStateField(required=False, label=_('Fuzzy'),
+        state = UnitStateField(required=False, label=_('Needs work'),
                                widget=forms.CheckboxInput(
                                    attrs=fuzzy_attrs,
                                    check_test=lambda x: x == FUZZY))

@@ -39,9 +39,9 @@ class LegalPage(models.Model):
     url = models.URLField(_("URL"), blank=True,
             help_text=_('If set, any references to this legal page will redirect ' \
                     'to this URL'))
-    slug = models.SlugField(_("slug"),
-            help_text=_('The page will be independently available in ' \
-                    '/about/<slug>/'))
+    # Translators: See http://en.wikipedia.org/wiki/Slug_%28web_publishing%29#Slug
+    slug = models.SlugField(_("Slug"),
+            help_text=_('The page will be available at /about/<slug>/'))
 
     body = models.TextField(_("Content"), blank=True,
             help_text=_('Allowed markup: %s', get_markup_filter_name()))

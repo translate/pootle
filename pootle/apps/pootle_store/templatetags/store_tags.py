@@ -231,4 +231,4 @@ def timedelta(date):
         return ungettext(u"%d minute ago",
                          u"%d minutes ago", num_minutes) % num_minutes
 
-    return _(u"Few seconds ago")
+    return _(u"A few seconds ago")

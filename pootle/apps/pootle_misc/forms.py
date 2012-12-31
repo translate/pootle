@@ -94,8 +94,7 @@ class SearchForm(forms.Form):
     """Normal search form for translation projects."""
     search = forms.CharField(widget=forms.TextInput(attrs={
         'size': '15',
-        'title': _("Search (Ctrl+Shift+S)<br/>Type in, then press Enter "
-                   "to search")
+        'title': _("Search (Ctrl+Shift+S)<br/>Type and press Enter to search")
     }))
     sfields = forms.MultipleChoiceField(
             required=False,

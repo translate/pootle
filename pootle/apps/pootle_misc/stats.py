@@ -87,48 +87,64 @@ def get_translation_stats(path_obj, path_stats):
     if path_stats['total']['units'] > 0:
         stats.append({
             'title': _("Total"),
-            'words': _('<a href="%(url)s">%(num)d words</a>') % \
+            'words': ungettext('<a href="%(url)s">%(num)d word</a>',
+                               '<a href="%(url)s">%(num)d words</a>',
+                               path_stats['total']['words']) % \
                 {'url': dispatch.translate(path_obj),
                  'num': path_stats['total']['words']},
             'percentage': _("%(num)d%%") % \
                 {'num': path_stats['total']['percentage']},
-            'units': _("(%(num)d strings)") % \
+            'units': ungettext("(%(num)d string)",
+                               "(%(num)d strings)",
+                               path_stats['total']['units']) % \
                 {'num': path_stats['total']['units']}
         })
 
     if path_stats['translated']['units'] > 0:
         stats.append({
             'title': _("Translated"),
-            'words': _('<a href="%(url)s">%(num)d words</a>') % \
+            'words': ungettext('<a href="%(url)s">%(num)d word</a>',
+                               '<a href="%(url)s">%(num)d words</a>',
+                               path_stats['translated']['words']) % \
                 {'url': dispatch.translate(path_obj, state='translated'),
                  'num': path_stats['translated']['words']},
             'percentage': _("%(num)d%%") % \
                 {'num': path_stats['translated']['percentage']},
-            'units': _("(%(num)d strings)") % \
+            'units': ungettext("(%(num)d string)",
+                               "(%(num)d strings)",
+                               path_stats['translated']['units']) % \
                 {'num': path_stats['translated']['units']}
         })
 
     if path_stats['fuzzy']['units'] > 0:
         stats.append({
-            'title': _("Fuzzy"),
-            'words': _('<a href="%(url)s">%(num)d words</a>') % \
+            'title': _("Needs work"),
+            'words': ungettext('<a href="%(url)s">%(num)d word</a>',
+                               '<a href="%(url)s">%(num)d words</a>',
+                               path_stats['fuzzy']['words']) % \
                 {'url': dispatch.translate(path_obj, state='fuzzy'),
                  'num': path_stats['fuzzy']['words']},
             'percentage': _("%(num)d%%") % \
                 {'num': path_stats['fuzzy']['percentage']},
-            'units': _("(%(num)d strings)") % \
+            'units': ungettext("(%(num)d string)",
+                               "(%(num)d strings)",
+                               path_stats['fuzzy']['units']) % \
                 {'num': path_stats['fuzzy']['units']}
         })
 
     if path_stats['untranslated']['units'] > 0:
         stats.append({
             'title': _("Untranslated"),
-            'words': _('<a href="%(url)s">%(num)d words</a>') % \
+            'words': ungettext('<a href="%(url)s">%(num)d word</a>',
+                               '<a href="%(url)s">%(num)d words</a>',
+                               path_stats['untranslated']['words']) % \
                 {'url': dispatch.translate(path_obj, state='untranslated'),
                  'num': path_stats['untranslated']['words']},
             'percentage': _("%(num)d%%") % \
                 {'num': path_stats['untranslated']['percentage']},
-            'units': _("(%(num)d strings)") % \
+            'units': ungettext("(%(num)d strings)",
+                               "(%(num)d strings)",
+                               path_stats['untranslated']['units']) % \
                 {'num': path_stats['untranslated']['units']}
         })
 
@@ -230,10 +246,14 @@ def stats_message(version, stats):
     """Builds a localized message of statistics used in VCS actions."""
     # Translators: 'type' is the type of VCS file: working, remote,
     # or merged copy.
-    return _(u"%(type)s: %(translated)d of %(total)d strings translated "
-             u"(%(fuzzy)d fuzzy)." % {
+    return ungettext(u"%(type)s: %(translated)d of %(total)d string translated "
+                            u"(%(fuzzy)d fuzzy).",
+                     u"%(type)s: %(translated)d of %(total)d strings translated "
+                            u"(%(fuzzy)d fuzzy).",
+                     stats.get("total", 0)) % \
+            {
                  'type': version,
                  'translated': stats.get("translated", 0),
                  'total': stats.get("total", 0),
                  'fuzzy': stats.get("fuzzy", 0)
-                })
+            }

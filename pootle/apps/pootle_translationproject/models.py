@@ -476,12 +476,24 @@ class TranslationProject(models.Model):
         if not check_permission("commit", request):
             raise PermissionDenied(_("You do not have rights to update from "
                                      "version control here"))
-
         old_stats = self.getquickstats()
         remote_stats = {}
 
         from pootle_misc import versioncontrol
-        versioncontrol.update_dir(self.real_path)
+        try:
+            versioncontrol.update_dir(self.real_path)
+        except IOError, e:
+            logging.error(u"Error during update of %(path)s:\n%(error)s",
+                    {
+                     "path": self.real_path,
+                     "error": e,
+                    }
+            )
+            msg = _("Failed to update from version control: %(error)s" % \
+                    {"error": e})
+            messages.error(request, msg)
+            return
+
         all_files, new_files = self.scan_files()
         new_file_set = set(new_files)
 
@@ -582,9 +594,14 @@ class TranslationProject(models.Model):
             from pootle_app.models.signals import post_vc_update
             post_vc_update.send(sender=self, oldstats=old_stats,
                 remotestats=remote_stats, newstats=new_stats)
-        except VersionControlError:
+        except VersionControlError, e:
             msg = _(u"Failed to update <em>%(filename)s</em> from "
-                    u"version control", {'filename': store.file.name})
+                    u"version control: %(error)s",
+                    {
+                        'filename': store.file.name,
+                        'error': e,
+                    }
+            )
             messages.error(request, msg)
 
         self.scan_files()
@@ -637,15 +654,18 @@ class TranslationProject(models.Model):
                     author,
             )
             if request is not None:
-                msg = _("Committed all files under %(path)s" % {
-                    'path': directory.pootle_path
-                })
+                msg = _("Committed all files under <em>%(path)s</em> to "
+                        "version control",
+                        {'path': directory.pootle_path}
+                )
                 messages.success(request, msg)
         except Exception, e:
             logging.error(u"Failed to commit: %s", e)
 
             if request is not None:
-                msg = _("Failed to commit: %(error)s" % {'error': e})
+                msg = _("Failed to commit to version control: %(error)s",
+                        {'error': e}
+                )
                 messages.error(request, msg)
 
             success = False
@@ -701,7 +721,8 @@ class TranslationProject(models.Model):
                 versioncontrol.commit_file(file, message=message, author=author)
 
                 if request is not None:
-                    msg = _("Committed file: %(filename)s" % {
+                    msg = _("Committed file <em>%(filename)s</em> to version "
+                            "control" % {
                         'filename': file
                     })
                     messages.success(request, msg)
@@ -709,7 +730,13 @@ class TranslationProject(models.Model):
             logging.error(u"Failed to commit file: %s", e)
 
             if request is not None:
-                msg = _("Failed to commit file: %(error)s" % {'error': e})
+                msg = _("Failed to commit <em>%(filename)s</em> to version "
+                        "control: %(error)s",
+                        {
+                            'filename': filename,
+                            'error': e,
+                        }
+                )
                 messages.error(request, msg)
 
             success = False

@@ -92,7 +92,7 @@ class Submission(models.Model):
                     'submitter': unicode(self.submitter),
                 }
         else:
-            submitter_info = _("Unknown submitter")
+            submitter_info = _("anonymous user")
 
         snippet = u'%(time)s (%(submitter_info)s)' % {
                     'time': self.creation_time.strftime("%Y-%m-%d %H:%M"),
