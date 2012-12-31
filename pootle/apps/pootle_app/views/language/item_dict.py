@@ -119,7 +119,7 @@ def make_generic_item(request, path_obj, action, include_suggestions=False,
             'href_todo': dispatch.translate(path_obj, state='incomplete'),
             'href_sugg': dispatch.translate(path_obj, state='suggestions'),
             'stats': stats,
-            'tooltip': _('%(percentage)d%% complete' %
+            'tooltip': _('%(percentage)d%% complete',
                          {'percentage': stats['translated']['percentage']}),
             'title': path_obj.name,
             'summary': get_item_stats(request, stats, path_obj, terminology),

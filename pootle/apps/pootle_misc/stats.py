@@ -89,15 +89,15 @@ def get_translation_stats(path_obj, path_stats):
             'title': _("Total"),
             'words': ungettext('<a href="%(url)s">%(num)d word</a>',
                                '<a href="%(url)s">%(num)d words</a>',
-                               path_stats['total']['words']) % \
-                {'url': dispatch.translate(path_obj),
-                 'num': path_stats['total']['words']},
-            'percentage': _("%(num)d%%") % \
-                {'num': path_stats['total']['percentage']},
+                               path_stats['total']['words'],
+                               {'url': dispatch.translate(path_obj),
+                                'num': path_stats['total']['words']}),
+            'percentage': _("%(num)d%%",
+                            {'num': path_stats['total']['percentage']}),
             'units': ungettext("(%(num)d string)",
                                "(%(num)d strings)",
-                               path_stats['total']['units']) % \
-                {'num': path_stats['total']['units']}
+                               path_stats['total']['units'],
+                               {'num': path_stats['total']['units']})
         })
 
     if path_stats['translated']['units'] > 0:
@@ -105,15 +105,16 @@ def get_translation_stats(path_obj, path_stats):
             'title': _("Translated"),
             'words': ungettext('<a href="%(url)s">%(num)d word</a>',
                                '<a href="%(url)s">%(num)d words</a>',
-                               path_stats['translated']['words']) % \
-                {'url': dispatch.translate(path_obj, state='translated'),
-                 'num': path_stats['translated']['words']},
-            'percentage': _("%(num)d%%") % \
-                {'num': path_stats['translated']['percentage']},
+                               path_stats['translated']['words'],
+                               {'url': dispatch.translate(path_obj,
+                                                          state='translated'),
+                                'num': path_stats['translated']['words']}),
+            'percentage': _("%(num)d%%",
+                            {'num': path_stats['translated']['percentage']}),
             'units': ungettext("(%(num)d string)",
                                "(%(num)d strings)",
-                               path_stats['translated']['units']) % \
-                {'num': path_stats['translated']['units']}
+                               path_stats['translated']['units'],
+                               {'num': path_stats['translated']['units']})
         })
 
     if path_stats['fuzzy']['units'] > 0:
@@ -121,15 +122,16 @@ def get_translation_stats(path_obj, path_stats):
             'title': _("Needs work"),
             'words': ungettext('<a href="%(url)s">%(num)d word</a>',
                                '<a href="%(url)s">%(num)d words</a>',
-                               path_stats['fuzzy']['words']) % \
-                {'url': dispatch.translate(path_obj, state='fuzzy'),
-                 'num': path_stats['fuzzy']['words']},
-            'percentage': _("%(num)d%%") % \
-                {'num': path_stats['fuzzy']['percentage']},
+                               path_stats['fuzzy']['words'],
+                               {'url': dispatch.translate(path_obj,
+                                                          state='fuzzy'),
+                                'num': path_stats['fuzzy']['words']}),
+            'percentage': _("%(num)d%%",
+                            {'num': path_stats['fuzzy']['percentage']}),
             'units': ungettext("(%(num)d string)",
                                "(%(num)d strings)",
-                               path_stats['fuzzy']['units']) % \
-                {'num': path_stats['fuzzy']['units']}
+                               path_stats['fuzzy']['units'],
+                               {'num': path_stats['fuzzy']['units']})
         })
 
     if path_stats['untranslated']['units'] > 0:
@@ -137,15 +139,16 @@ def get_translation_stats(path_obj, path_stats):
             'title': _("Untranslated"),
             'words': ungettext('<a href="%(url)s">%(num)d word</a>',
                                '<a href="%(url)s">%(num)d words</a>',
-                               path_stats['untranslated']['words']) % \
-                {'url': dispatch.translate(path_obj, state='untranslated'),
-                 'num': path_stats['untranslated']['words']},
-            'percentage': _("%(num)d%%") % \
-                {'num': path_stats['untranslated']['percentage']},
+                               path_stats['untranslated']['words'],
+                               {'url': dispatch.translate(path_obj,
+                                                          state='untranslated'),
+                                'num': path_stats['untranslated']['words']}),
+            'percentage': _("%(num)d%%",
+                            {'num': path_stats['untranslated']['percentage']}),
             'units': ungettext("(%(num)d strings)",
                                "(%(num)d strings)",
-                               path_stats['untranslated']['units']) % \
-                {'num': path_stats['untranslated']['units']}
+                               path_stats['untranslated']['units'],
+                               {'num': path_stats['untranslated']['units']})
         })
 
     return stats
@@ -163,10 +166,11 @@ def get_path_summary(path_obj, path_stats):
                 "which is translated.",
                 "This folder has %(num)d words, %(percentage)d%% of "
                 "which are translated.",
-                path_stats['total']['words']) % {
+                path_stats['total']['words'],
+                {
                     'num': path_stats['total']['words'],
                     'percentage': path_stats['translated']['percentage']
-                }
+                })
         )
     else:
         summary.append(
@@ -174,10 +178,11 @@ def get_path_summary(path_obj, path_stats):
                 "which is translated.",
                 "This file has %(num)d words, %(percentage)d%% of "
                 "which are translated.",
-                path_stats['total']['words']) % {
+                path_stats['total']['words'],
+                {
                     'num': path_stats['total']['words'],
                     'percentage': path_stats['translated']['percentage']
-                }
+                })
         )
 
     tp = path_obj.translation_project
@@ -204,9 +209,8 @@ def get_path_summary(path_obj, path_stats):
                 },
             ungettext(u'Continue translation (%(num)d word left)',
                       u'Continue translation (%(num)d words left)',
-                      num_words) % {
-                          'num': num_words,
-                      },
+                      num_words,
+                      {'num': num_words,}),
         ])
     else:
         incomplete.extend([
@@ -226,9 +230,8 @@ def get_path_summary(path_obj, path_stats):
         suggestions.append(
             ungettext(u'Review suggestion (%(num)d left)',
                       u'Review suggestions (%(num)d left)',
-                      path_stats['suggestions']) % {
-                          'num': path_stats['suggestions'],
-                      }
+                      path_stats['suggestions'],
+                      {'num': path_stats['suggestions'],})
         )
         suggestions.append(u'</a>')
 
@@ -250,10 +253,10 @@ def stats_message(version, stats):
                             u"(%(fuzzy)d fuzzy).",
                      u"%(type)s: %(translated)d of %(total)d strings translated "
                             u"(%(fuzzy)d fuzzy).",
-                     stats.get("total", 0)) % \
-            {
-                 'type': version,
-                 'translated': stats.get("translated", 0),
-                 'total': stats.get("total", 0),
-                 'fuzzy': stats.get("fuzzy", 0)
-            }
+                     stats.get("total", 0),
+                     {
+                          'type': version,
+                          'translated': stats.get("translated", 0),
+                          'total': stats.get("total", 0),
+                          'fuzzy': stats.get("fuzzy", 0)
+                     })
