@@ -1,5 +1,7 @@
 #!/bin/bash
 
+VERBOSITY=0
+
 if [ "$(uname -s)" != "Darwin" ]; then
 	SRC_DIR=$(readlink -f `dirname $0`/..)
 else
@@ -28,8 +30,8 @@ MSGID_BUGS_TO="translate-pootle@lists.sourceforge.net"
 pushd . 2>&1 > /dev/null
 cd $SRC_DIR
 
-django-admin.py makemessages -v 0 -e py,txt,html,conf -l templates
-django-admin.py makemessages -v 0 --ignore assets -d djangojs -l templates
+django-admin.py makemessages -v $VERBOSITY -e py,txt,html,conf -l templates
+django-admin.py makemessages -v $VERBOSITY --ignore assets -d djangojs -l templates
 popd  2>&1  >  /dev/null
 
 # Header replacements
