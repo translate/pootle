@@ -52,6 +52,13 @@ def commit_file(path, message, author):
     versioncontrol.commitfile(vcs_path, message=message, author=author)
 
 
+def copy_to_podir(path):
+    """Copy the given path from the VCS directory to the PO directory."""
+    vcs_path = to_vcs_path(path)
+    path = to_podir_path(path)
+    shutil.copy2(vcs_path, path)
+
+
 def update_file(path):
     vcs_path = to_vcs_path(path)
     path = to_podir_path(path)

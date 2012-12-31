@@ -517,6 +517,7 @@ class TranslationProject(models.Model):
             # keep a copy of working files in memory before updating
             working_copy = store.file.store
 
+            versioncontrol.copy_to_podir(store.file.name)
             store.file._delete_store_cache()
             store.file._update_store_cache()
 
