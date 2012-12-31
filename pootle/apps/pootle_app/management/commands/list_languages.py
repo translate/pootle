@@ -40,7 +40,6 @@ class Command(ModifiedSinceMixin, NoArgsCommandMixin):
             from pootle_translationproject.models import TranslationProject
             langs = TranslationProject.objects \
                                       .filter(submission__id__gt=change_id) \
-                                      .select_related('project') \
                                       .distinct() \
                                       .values('language__code')
 
