@@ -5,12 +5,12 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: pootle_js\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-27 15:51+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2012-12-30 15:51-0500\n"
+"Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
+"Language-Team: Irish\n"
 "Language: ga\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,16 +19,16 @@ msgstr ""
 
 #: assets/js/common.min.js:718 static/js/common.js:123
 msgid "Are you sure you want to continue?"
-msgstr ""
+msgstr "An bhfuil tú cinnte go dteastaíonn uait dul ar aghaidh?"
 
 #: assets/js/common.min.js:719 static/js/common.js:124
 msgid "This operation cannot be undone."
-msgstr ""
+msgstr "Ní féidir an oibríocht seo a chealú."
 
 #: assets/js/editor.min.js:252 assets/js/editor.min.js.c:292
 #: static/js/editor.js:402 static/js/editor.js.c:1434
 msgid "No results."
-msgstr ""
+msgstr "Gan torthaí."
 
 #. Translators: Permalink to the current unit in the editor.
 #. The first '%s' is the permalink URL.
@@ -36,35 +36,35 @@ msgstr ""
 #: assets/js/editor.min.js:263 static/js/editor.js:726
 #, c-format
 msgid "<a href=\"%s\">Unit %s</a>"
-msgstr ""
+msgstr "<a href=\"%s\">Teaghrán %s</a>"
 
 #: assets/js/editor.min.js:265 static/js/editor.js:758
 msgid "Error while connecting to the server"
-msgstr ""
+msgstr "Earráid agus ceangal á bhunú leis an bhfreastalaí"
 
 #: assets/js/editor.min.js:265 static/js/editor.js:760
 msgid "Server error"
-msgstr ""
+msgstr "Earráid fhreastalaí"
 
 #: assets/js/editor.min.js:265 static/js/editor.js:762
 msgid "The server seems down. Try again later."
-msgstr ""
+msgstr "Tá an freastalaí as feidhm. Déan iarracht eile ar ball."
 
 #: assets/js/editor.min.js:265 static/js/editor.js:769
 msgid "Unknown error"
-msgstr ""
+msgstr "Earráid anaithnid"
 
 #: assets/js/editor.min.js:290 static/js/editor.js:1292
 msgid "Congratulations, you walked through all items"
-msgstr ""
+msgstr "Comhghairdeas, shiúil tú trí na teaghráin go léir"
 
 #: assets/js/editor.min.js:290 static/js/editor.js:1309
 msgid "You reached the beginning of the list"
-msgstr ""
+msgstr "Shroich tú tús an liosta"
 
 #: assets/js/editor.min.js:290 static/js/editor.js:1311
 msgid "You reached the end of the list"
-msgstr ""
+msgstr "Shroich tú deireadh an liosta"
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
@@ -72,16 +72,16 @@ msgstr ""
 #: assets/js/editor.min.js:304 static/js/editor.js:1701
 #, c-format
 msgid "%s% match"
-msgstr ""
+msgstr "%s% comhoiriúnach"
 
 #: assets/js/editor.min.js:308 static/js/editor.js:1743
 msgid "amaGama server"
-msgstr ""
+msgstr "Freastalaí amaGama"
 
 #: static/js/common.js:89
 msgid "Expand details"
-msgstr ""
+msgstr "Taispeáin mionsonraí"
 
 #: static/js/common.js:89
 msgid "Collapse details"
-msgstr ""
+msgstr "Folaigh mionsonraí"
