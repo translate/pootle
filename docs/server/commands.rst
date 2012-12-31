@@ -223,6 +223,10 @@ update, specify ``--force``.
 update_against_templates
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. versionchanged:: 2.5
+
+  The name of the command has been renamed from ``update_from_templates``.
+
 Updates languages to match what is present in the translation templates.
 
 This command is essentially an interface to the

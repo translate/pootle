@@ -48,6 +48,9 @@ Not released yet.
   Also make sure to use the minimum required South version when performing
   database upgrades.
 
+- The ``update_from_templates`` management command has been renamed to
+  :ref:`commands#update_against_templates`.
+
 
 Version 2.1.6
 -------------
