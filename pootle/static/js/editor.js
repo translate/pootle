@@ -116,7 +116,7 @@
     /* Editor navigation/submission */
     $(document).on("editor_ready", "table.translate-table", this.ready);
     $(document).on("noResults", "table.translate-table", this.noResults);
-    $(document).on("click", "tr.view-row", this.gotoUnit);
+    $(document).on("click", "tr.view-row, tr.ctx-row", this.gotoUnit);
     $(document).on("keypress", "#item-number", function (e) {
         // Perform action only when the 'Enter' key is pressed
         if (e.keyCode == 13) {
@@ -1365,9 +1365,9 @@
 
     // Get clicked unit's uid from the row's id information and
     // try to load it
-    var m = $(this).attr("id").match(/row([0-9]+)/);
+    var m = $(this).attr("id").match(/(row|ctx)([0-9]+)/);
     if (m) {
-      var uid = parseInt(m[1]);
+      var uid = parseInt(m[2]);
       var newHash = PTL.utils.updateHashPart("unit", uid, ["page"]);
       $.history.load(newHash);
     }

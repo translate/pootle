@@ -268,6 +268,7 @@ tr.ctx-row,
 tr.view-row
 {
     font-size: 92%;
+    cursor: pointer;
 }
 
 tr.edit-ctx,
@@ -295,7 +296,6 @@ tr.view-row
 {
     border-top: 1px solid #fff;
     border-bottom: 1px solid #fff;
-    cursor: pointer;
 }
 
 tr.view-row:hover
