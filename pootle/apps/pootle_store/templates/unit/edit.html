@@ -134,12 +134,12 @@
             <input type="hidden" name="path" value="{{ store|l }}" />
             <input type="hidden" name="pootle_path" value="{{ store.pootle_path }}" />
             {% if cansuggest and cantranslate %}
-            <div class="switch-suggest-mode tiny" lang="{{ LANGUAGE_CODE }}" title="{% trans 'Toggle suggest mode (Ctrl+Shift+Space)' %}">
-              <div class="suggest"><a href="#">&harr; {% trans "Submit" %}</a></div>
-              <div class="submit"><a href="#">&harr; {% trans "Suggest" %}</a></div>
+            <div class="switch-suggest-mode tiny" lang="{{ LANGUAGE_CODE }}">
+                <div class="suggest"><a href="#" title="{% trans 'Switch to translation mode (Ctrl+Shift+Space)' %}">&harr; {% trans "Submit" %}</a></div>
+              <div class="submit"><a href="#" title="{% trans 'Switch to suggestion mode (Ctrl+Shift+Space)' %}">&harr; {% trans "Suggest" %}</a></div>
             </div>
             {% endif %}
-            <div class="translate-fuzzy-block" lang="{{ LANGUAGE_CODE }}" title="{% trans 'Toggle fuzzy state (Ctrl+Space)' %}">
+            <div class="translate-fuzzy-block" lang="{{ LANGUAGE_CODE }}" title="{% trans 'Mark this string as needing further work (Ctrl+Space)' %}">
               {{ form.state }} {{ form.state.label_tag }}
             </div>
           </div>
