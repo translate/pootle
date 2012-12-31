@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: pootle-terms\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-27 16:13+0200\n"
 "PO-Revision-Date: 2010-08-03 01:03+0200\n"
@@ -1234,7 +1234,7 @@ msgid "flip"
 msgstr "smeach"
 
 msgid "float (verb)"
-msgstr ""
+msgstr "snámh"
 
 msgid "flood"
 msgstr "líonadh"
