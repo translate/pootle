@@ -145,7 +145,7 @@ def get_translation_stats(path_obj, path_stats):
                                 'num': path_stats['untranslated']['words']}),
             'percentage': _("%(num)d%%",
                             {'num': path_stats['untranslated']['percentage']}),
-            'units': ungettext("(%(num)d strings)",
+            'units': ungettext("(%(num)d string)",
                                "(%(num)d strings)",
                                path_stats['untranslated']['units'],
                                {'num': path_stats['untranslated']['units']})
