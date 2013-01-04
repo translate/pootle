@@ -84,72 +84,34 @@ def get_translation_stats(path_obj, path_stats):
     """
     stats = []
 
-    if path_stats['total']['units'] > 0:
-        stats.append({
-            'title': _("Total"),
-            'words': ungettext('<a href="%(url)s">%(num)d word</a>',
-                               '<a href="%(url)s">%(num)d words</a>',
-                               path_stats['total']['words'],
-                               {'url': dispatch.translate(path_obj),
-                                'num': path_stats['total']['words']}),
-            'percentage': _("%(num)d%%",
-                            {'num': path_stats['total']['percentage']}),
-            'units': ungettext("(%(num)d string)",
-                               "(%(num)d strings)",
-                               path_stats['total']['units'],
-                               {'num': path_stats['total']['units']})
-        })
-
-    if path_stats['translated']['units'] > 0:
-        stats.append({
-            'title': _("Translated"),
-            'words': ungettext('<a href="%(url)s">%(num)d word</a>',
-                               '<a href="%(url)s">%(num)d words</a>',
-                               path_stats['translated']['words'],
-                               {'url': dispatch.translate(path_obj,
-                                                          state='translated'),
-                                'num': path_stats['translated']['words']}),
-            'percentage': _("%(num)d%%",
-                            {'num': path_stats['translated']['percentage']}),
-            'units': ungettext("(%(num)d string)",
-                               "(%(num)d strings)",
-                               path_stats['translated']['units'],
-                               {'num': path_stats['translated']['units']})
-        })
-
-    if path_stats['fuzzy']['units'] > 0:
-        stats.append({
-            'title': _("Needs work"),
-            'words': ungettext('<a href="%(url)s">%(num)d word</a>',
-                               '<a href="%(url)s">%(num)d words</a>',
-                               path_stats['fuzzy']['words'],
-                               {'url': dispatch.translate(path_obj,
-                                                          state='fuzzy'),
-                                'num': path_stats['fuzzy']['words']}),
-            'percentage': _("%(num)d%%",
-                            {'num': path_stats['fuzzy']['percentage']}),
-            'units': ungettext("(%(num)d string)",
-                               "(%(num)d strings)",
-                               path_stats['fuzzy']['units'],
-                               {'num': path_stats['fuzzy']['units']})
-        })
-
-    if path_stats['untranslated']['units'] > 0:
-        stats.append({
-            'title': _("Untranslated"),
+    def make_stats_dict(title, state):
+        return {
+            'title': title,
             'words': ungettext('<a href="%(url)s">%(num)d word</a>',
                                '<a href="%(url)s">%(num)d words</a>',
                                path_stats['untranslated']['words'],
                                {'url': dispatch.translate(path_obj,
-                                                          state='untranslated'),
-                                'num': path_stats['untranslated']['words']}),
+                                                          state=state),
+                                'num': path_stats[state]['words']}),
             'percentage': _("%(num)d%%",
-                            {'num': path_stats['untranslated']['percentage']}),
+                            {'num': path_stats[state]['percentage']}),
             'units': ungettext("(%(num)d string)",
                                "(%(num)d strings)",
-                               path_stats['untranslated']['units'],
-                               {'num': path_stats['untranslated']['units']})
-        })
+                               path_stats[state]['units'],
+                               {'num': path_stats[state]['units']})
+        }
+
+    if path_stats['total']['units'] > 0:
+        stats.append(make_stats_dict(_("Total"), 'total'))
+
+    if path_stats['translated']['units'] > 0:
+        stats.append(make_stats_dict(_("Translated"), 'translated'))
+
+    if path_stats['fuzzy']['units'] > 0:
+        stats.append(make_stats_dict(_("Needs work"), 'fuzzy'))
+
+    if path_stats['untranslated']['units'] > 0:
+        stats.append(make_stats_dict(_("Untranslated"), 'untranslated'))
 
     return stats
 
