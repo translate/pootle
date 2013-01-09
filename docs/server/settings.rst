@@ -151,6 +151,18 @@ Configuration settings for applications used by Pootle.
   matching operations, so bear in mind this might affect performance.
 
 
+.. setting:: FUZZY_MATCH_MIN_SIMILARITY
+
+``FUZZY_MATCH_MIN_SIMILARITY``
+  Default: ``75``
+
+  .. versionadded:: 2.5
+
+  Minimum similarity to consider when doing fuzzy matching. Please note this
+  affects all fuzzy matching operations, so bear in mind this might affect
+  performance.
+
+
 .. setting:: MIN_AUTOTERMS
 
 ``MIN_AUTOTERMS``
