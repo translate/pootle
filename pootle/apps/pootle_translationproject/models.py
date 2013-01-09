@@ -622,9 +622,9 @@ class TranslationProject(models.Model):
         from pootle.scripts import hooks
         for store in stores:
             try:
-                filestocommit.append(hooks.hook(self.project.code, "precommit",
-                                           store.file.name, author=author,
-                                           message=message)
+                filestocommit.extend(hooks.hook(self.project.code, "precommit",
+                                                store.file.name, author=author,
+                                                message=message)
                                     )
             except ImportError:
                 # Failed to import the hook - we're going to assume there just
