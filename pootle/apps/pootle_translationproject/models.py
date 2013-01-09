@@ -311,6 +311,15 @@ class TranslationProject(models.Model):
             if pootle_path is not None and new_pootle_path != pootle_path:
                 continue
 
+            relative_po_path = os.path.relpath(new_path, settings.PODIRECTORY)
+            try:
+                from pootle.scripts import hooks
+                if not hooks.hook(self.project.code, "pretemplateupdate", relative_po_path):
+                    continue
+            except:
+                # Assume hook is not present.
+                pass
+
             convert_template(self, store, new_pootle_path, new_path,
                              monolingual)
 
