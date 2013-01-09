@@ -437,6 +437,12 @@ class TranslationProject(models.Model):
             working_copy.save()
 
             raise VersionControlError
+
+        try:
+            hooks.hook(self.project.code, "postupdate", store.file.name)
+        except:
+            pass
+
         try:
             logging.debug(u"Parsing version control copy of %s into db",
                           store.file.name)
@@ -457,10 +463,6 @@ class TranslationProject(models.Model):
             store.update(update_structure=True, update_translation=True,
                          conservative=False)
             raise
-        try:
-            hooks.hook(self.project.code, "postupdate", store.file.name)
-        except:
-            pass
 
         newstats = store.getquickstats()
         return oldstats, remotestats, newstats
@@ -521,6 +523,11 @@ class TranslationProject(models.Model):
             store.file._update_store_cache()
 
             try:
+                hooks.hook(self.project.code, "postupdate", store.file.name)
+            except:
+                pass
+
+            try:
                 logging.debug(u"Parsing version control copy of %s into db",
                               store.file.name)
                 store.update(update_structure=True, update_translation=True,
@@ -541,10 +548,6 @@ class TranslationProject(models.Model):
                 store.update(update_structure=True, update_translation=True,
                              conservative=False)
                 raise
-            try:
-                hooks.hook(self.project.code, "postupdate", store.file.name)
-            except:
-                pass
 
             remote_stats = dictsum(remote_stats, remotestats)
 
