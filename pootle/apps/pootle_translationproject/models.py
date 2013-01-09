@@ -321,10 +321,41 @@ class TranslationProject(models.Model):
         project_path = self.project.get_real_path()
 
         if new_files and versioncontrol.hasversioning(project_path):
-            output = versioncontrol.add_files(project_path,
-                    [s.file.name for s in new_files],
-                    "New files added from %s based on templates" %
-                            (settings.TITLE))
+            from pootle.scripts import hooks
+            message = "New files added from %s based on templates" % \
+                      (settings.TITLE)
+
+            filestocommit = []
+            for new_file in new_files:
+                try:
+                    filestocommit.extend(hooks.hook(self.project.code,
+                                                    "precommit",
+                                                    new_file.file.name,
+                                                    author=None,
+                                                    message=message)
+                                         )
+                except ImportError:
+                    # Failed to import the hook - we're going to assume there
+                    # just isn't a hook to import. That means we'll commit the
+                    # original file.
+                    filestocommit.append(new_file.file.name)
+
+            success = True
+            try:
+                output = versioncontrol.add_files(project_path,
+                                                  filestocommit, message)
+            except Exception, e:
+                logging.error(u"Failed to add files: %s", e)
+                success = False
+
+            for new_file in new_files:
+                try:
+                    hooks.hook(self.project.code, "postcommit",
+                               new_file.file.name, success=success)
+                except:
+                    #FIXME: We should not hide the exception - makes
+                    # development impossible
+                    pass
 
         if pootle_path is None:
             newstats = self.getquickstats()
