@@ -412,8 +412,9 @@ class TranslationProject(models.Model):
         from pootle.scripts import hooks
         store.sync(update_translation=True)
 
+        filetoupdate = store.file.name
         try:
-            hooks.hook(self.project.code, "preupdate", store.file.name)
+            filetoupdate = hooks.hook(self.project.code, "preupdate", store.file.name)
         except:
             pass
 
@@ -424,7 +425,7 @@ class TranslationProject(models.Model):
         try:
             logging.debug(u"Updating %s from version control", store.file.name)
             from pootle_misc import versioncontrol
-            versioncontrol.update_file(store.file.name)
+            versioncontrol.update_file(filetoupdate)
             store.file._delete_store_cache()
             store.file._update_store_cache()
         except Exception, e:
@@ -506,15 +507,16 @@ class TranslationProject(models.Model):
                 continue
 
             store.sync(update_translation=True)
+            filetoupdate = store.file.name
             try:
-                hooks.hook(self.project.code, "preupdate", store.file.name)
+                filetoupdate = hooks.hook(self.project.code, "preupdate", store.file.name)
             except:
                 pass
 
             # keep a copy of working files in memory before updating
             working_copy = store.file.store
 
-            versioncontrol.copy_to_podir(store.file.name)
+            versioncontrol.copy_to_podir(filetoupdate)
             store.file._delete_store_cache()
             store.file._update_store_cache()
 
