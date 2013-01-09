@@ -915,6 +915,7 @@ class Store(models.Model, base.TranslationStore):
         #FIXME: should we cache this?
         matcher = match.matcher(self, max_candidates=1,
                                 max_length=settings.FUZZY_MATCH_MAX_LENGTH,
+                                min_similarity=settings.FUZZY_MATCH_MIN_SIMILARITY,
                                 usefuzzy=True)
         matcher.extendtm(self.unit_set.filter(state=OBSOLETE))
         matcher.addpercentage = False
