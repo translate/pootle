@@ -13,11 +13,14 @@ def hook(project, hooktype, file, *args, **kwargs):
         precommit should have "author" and "message" as arguments.
         postcommit should have "success" as arguments.
         preupdate and postupdate have no additional arguments.
+        pretemplateupdate has no additional arguments.
 
     Return value depends on the hooktype:
         precommit returns an array of strings indicating what files to commit.
         preupdate returns an array of strings indicating what files to update.
         postcommit and postupdate return unit.
+        pretemplateupdate returns a boolean indicating if the file should be
+                          updated from template.
 
     """
     logger = logging.getLogger('pootle.scripts.hooks')
