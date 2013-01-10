@@ -11,8 +11,7 @@ install:
   - pip install --use-mirrors Django==$DJANGO_VERSION
   - pip install -r requirements/base.txt --use-mirrors
 script:
-  - cd pootle
-  - ./manage.py assets rebuild
+  - ./manage.py assets build
   - ./manage.py collectstatic --noinput
   - ./manage.py runserver
 notifications:
