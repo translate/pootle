@@ -209,26 +209,26 @@ def timedelta(date):
 
     num_years = delta.days / 365
     if (num_years > 0):
-        return ungettext(u"%d year ago",
+        return ungettext(u"A year ago",
                          u"%d years ago", num_years, num_years)
 
     num_weeks = delta.days / 7
     if (num_weeks > 0):
-        return ungettext(u"%d week ago",
+        return ungettext(u"A week ago",
                          u"%d weeks ago", num_weeks, num_weeks)
 
     if (delta.days > 0):
-        return ungettext(u"%d day ago",
+        return ungettext(u"Yesterday",
                          u"%d days ago", delta.days, delta.days)
 
     num_hours = delta.seconds / 3600
     if (num_hours > 0):
-        return ungettext(u"%d hour ago",
+        return ungettext(u"An hour ago",
                          u"%d hours ago", num_hours, num_hours)
 
     num_minutes = delta.seconds / 60
     if (num_minutes > 0):
-        return ungettext(u"%d minute ago",
+        return ungettext(u"A minute ago",
                          u"%d minutes ago", num_minutes, num_minutes)
 
     return _(u"A few seconds ago")
