@@ -31,8 +31,8 @@ from pootle_app.models import Directory
 from pootle_app.models.permissions import check_profile_permission
 from pootle_misc.baseurl import redirect
 from pootle_profile.models import get_profile
-from pootle_profile.forms import (LangAuthenticationForm, PootleProfileForm,
-                                  UserForm)
+from pootle_profile.forms import (UserForm, lang_auth_form_factory,
+                                  pootle_profile_form_factory)
 
 
 def profile_edit(request):
@@ -44,8 +44,8 @@ def profile_edit(request):
     else:
         excluded = ('user', 'projects')
 
-    return edit_profile(request, form_class=PootleProfileForm,
-                        extra_form_args={'exclude_fields': excluded})
+    return edit_profile(request,
+                        form_class=pootle_profile_form_factory(excluded))
 
 
 @login_required
@@ -82,7 +82,7 @@ def login(request):
         return redirect_after_login(request)
     else:
         if request.POST:
-            form = LangAuthenticationForm(data=request.POST)
+            form = lang_auth_form_factory(request, data=request.POST)
 
             # Do login here
             if form.is_valid():
@@ -93,7 +93,7 @@ def login(request):
 
                 return redirect_after_login(request)
         else:
-            form = LangAuthenticationForm()
+            form = lang_auth_form_factory(request)
 
         context = {
             'form': form,

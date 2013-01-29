@@ -22,12 +22,12 @@ from django import forms
 from django.contrib import auth
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 
 from pootle_profile.models import PootleProfile
 
 
-def language_list():
+def language_list(request):
     """Returns the list of localised language names, with 'default'."""
     tr_default = _("Default")
 
@@ -42,30 +42,34 @@ def language_list():
     return choices
 
 
-class LangAuthenticationForm(AuthenticationForm):
+def lang_auth_form_factory(request, **kwargs):
 
-    language = forms.ChoiceField(label=_('Interface Language'),
-                                 choices=language_list(),
-                                 initial="", required=False)
+    class LangAuthenticationForm(AuthenticationForm):
+
+        language = forms.ChoiceField(label=_('Interface Language'),
+                                     choices=language_list(request),
+                                     initial="", required=False)
 
 
-    def clean(self):
-        username = self.cleaned_data.get('username')
-        password = self.cleaned_data.get('password')
+        def clean(self):
+            username = self.cleaned_data.get('username')
+            password = self.cleaned_data.get('password')
 
-        if username and password:
-            self.user_cache = auth.authenticate(username=username,
-                                                password=password)
+            if username and password:
+                self.user_cache = auth.authenticate(username=username,
+                                                    password=password)
 
-            if self.user_cache is None:
-                raise forms.ValidationError(
-                    _("Please enter a correct username and password. "
-                      "Note that both fields are case-sensitive.")
-                )
-            elif not self.user_cache.is_active:
-                raise forms.ValidationError(_("This account is inactive."))
+                if self.user_cache is None:
+                    raise forms.ValidationError(
+                        _("Please enter a correct username and password. "
+                          "Note that both fields are case-sensitive.")
+                    )
+                elif not self.user_cache.is_active:
+                    raise forms.ValidationError(_("This account is inactive."))
 
-        return self.cleaned_data
+            return self.cleaned_data
+
+    return LangAuthenticationForm(**kwargs)
 
 
 class UserForm(forms.ModelForm):
@@ -75,16 +79,19 @@ class UserForm(forms.ModelForm):
         fields = ('first_name', 'last_name', 'email')
 
 
-class PootleProfileForm(forms.ModelForm):
+def pootle_profile_form_factory(exclude_fields):
 
-    class Meta:
-        model = PootleProfile
+    class PootleProfileForm(forms.ModelForm):
 
+        class Meta:
+            model = PootleProfile
 
-    def __init__(self, *args, **kwargs):
-        self.exclude_fields = kwargs.pop('exclude_fields', ())
-        super(PootleProfileForm, self).__init__(*args, **kwargs)
+        def __init__(self, *args, **kwargs):
+            self.exclude_fields = exclude_fields
+            super(PootleProfileForm, self).__init__(*args, **kwargs)
 
-        # Delete the fields the user can't edit
-        for field in self.exclude_fields:
-            del self.fields[field]
+            # Delete the fields the user can't edit
+            for field in self.exclude_fields:
+                del self.fields[field]
+
+    return PootleProfileForm

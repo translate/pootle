@@ -18,8 +18,7 @@ from profiles import utils
 
 
 def create_profile(request, form_class=None, success_url=None,
-                   template_name='profiles/create_profile.html',
-                   extra_context=None):
+                   template_name='profiles/create_profile.html'):
     """
     Create a profile for the current user, if one doesn't already
     exist.
@@ -121,7 +120,7 @@ create_profile = login_required(create_profile)
 
 def edit_profile(request, form_class=None, success_url=None,
                  template_name='profiles/edit_profile.html',
-                 extra_context=None, extra_form_args={}):
+                 extra_context=None):
     """
     Edit the current user's profile.
     
@@ -193,12 +192,12 @@ def edit_profile(request, form_class=None, success_url=None,
         form_class = utils.get_profile_form()
     if request.method == 'POST':
         form = form_class(data=request.POST, files=request.FILES,
-                          instance=profile_obj, **extra_form_args)
+                          instance=profile_obj)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(success_url)
     else:
-        form = form_class(instance=profile_obj, **extra_form_args)
+        form = form_class(instance=profile_obj)
     
     if extra_context is None:
         extra_context = {}
