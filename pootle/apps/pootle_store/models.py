@@ -228,12 +228,12 @@ class Unit(models.Model, base.TranslationUnit):
                                  db_index=True, editable=False)
 
     submitted_by = models.ForeignKey('pootle_profile.PootleProfile', null=True,
-            db_index=True, related_name='submitted')
+            blank=True, db_index=True, related_name='submitted')
     submitted_on = models.DateTimeField(auto_now_add=True, db_index=True,
             null=True)
 
     commented_by = models.ForeignKey('pootle_profile.PootleProfile', null=True,
-            db_index=True, related_name='commented')
+            blank=True, db_index=True, related_name='commented')
     commented_on = models.DateTimeField(auto_now_add=True, db_index=True,
             null=True)
 
