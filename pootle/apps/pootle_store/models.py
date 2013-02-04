@@ -395,7 +395,6 @@ class Unit(models.Model, base.TranslationUnit):
                     unit.target = strings
                     changed = True
             else:
-                unit.rich_target = self.target
                 unit.target = self.target
                 changed = True
 
