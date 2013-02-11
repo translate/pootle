@@ -143,7 +143,14 @@
               <a href="{{ unit.submitted_by.get_absolute_url }}"><img src="{{ unit.submitted_by|gravatar:24 }}" alt="{{ unit.submitted_by.username }}" width="24" height="24" title="{{ unit.submitted_by.user }}" /></a>
             </div>
             {% endif %}
+
             {{ form.target_f }}
+
+            {% if unit.submitted_by and unit.submitted_on %}
+            <span class="unit-meta" title="{{ unit.submitted_on }}">
+              {{ unit.submitted_on|timedelta }}
+            </span>
+            {% endif %}
             {% if language.specialchars or language.get_direction == "rtl" %}
               {% if cantranslate or cansuggest %}
               <div class="editor-specialchars-block" lang="{{ language.code }}">
