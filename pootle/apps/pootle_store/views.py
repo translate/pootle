@@ -615,11 +615,9 @@ def timeline(request, unit):
 
         for item in values:
             # Only add submitter information for the whole entry group once
-            if 'submitter' not in entry_group:
-                entry_group['submitter'] = item.submitter
+            entry_group.setdefault('submitter', item.submitter)
 
-            if 'language' not in context:
-                context['language'] = item.translation_project.language
+            context.setdefault('language', item.translation_project.language)
 
             entry = {
                 'field': item.field,
