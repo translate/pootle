@@ -69,13 +69,6 @@
       {% endif %}
     </div>
     <div class="translate-middle">
-      <div id="target-item-gravatar">
-        {% if unit.submitted_by %}
-        <a href="{{ unit.submitted_by.get_absolute_url }}"><img src="{{ unit.submitted_by|gravatar:24 }}" alt="{{ unit.submitted_by.username }}" width="24" height="24" title="{{ unit.submitted_by.user }}" /></a>
-        {% else %}
-        <span class="invisible">placeholder</span>
-        {% endif %}
-      </div>
       <div id="target-item-content">
         <form action="" method="post" name="translate" id="translate">
           {{ form.id.as_hidden }}
@@ -145,7 +138,11 @@
           </div>
           <!-- Translation -->
           <div id="orig{{ unit.index }}" class="translate-translation" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
-            <!-- Begin: Normal editing -->
+            {% if unit.submitted_by %}
+            <div id="target-item-gravatar">
+              <a href="{{ unit.submitted_by.get_absolute_url }}"><img src="{{ unit.submitted_by|gravatar:24 }}" alt="{{ unit.submitted_by.username }}" width="24" height="24" title="{{ unit.submitted_by.user }}" /></a>
+            </div>
+            {% endif %}
             {{ form.target_f }}
             {% if language.specialchars or language.get_direction == "rtl" %}
               {% if cantranslate or cansuggest %}
@@ -212,13 +209,11 @@
       {% if unit.translator_comment %}
         <!-- Latest comment -->
         <div id="translator-comment" lang="{{ LANGUAGE_CODE }}">
+          {% if unit.commented_by %}
           <div class="extra-item-gravatar">
-            {% if unit.commented_by %}
             <a href="{{ unit.commented_by.get_absolute_url }}"><img src="{{ unit.commented_by|gravatar:24 }}" alt="{{ unit.commented_by.username }}" width="24" height="24" title="{{ unit.commented_by.user }}" /></a>
-            {% else %}
-            <span class="invisible">placeholder</span>
-            {% endif %}
           </div>
+          {% endif %}
           <div class="extra-item-content">
             <div class="extra-item">
               <span class="sidetitle">{% trans "Comment:" %}</span> {{ unit.translator_comment }}
@@ -232,13 +227,11 @@
         {% for sugg, score in suggestions %}
         <div id="suggestion-{{ sugg.id }}" class="extra-item-block">
           {% for i, target, diff, title in sugg|pluralize_diff_sugg %}
+          {% if sugg.user %}
           <div class="extra-item-gravatar">
-            {% if sugg.user %}
             <a href="{{ sugg.user.get_absolute_url }}"><img src="{{ sugg.user|gravatar:24 }}" alt="{{ sugg.user.username }}" width="24" height="24" title="{{ sugg.user }}" /></a>
-            {% else %}
-            <span class="invisible">placeholder</span>
-            {% endif %}
           </div>
+          {% endif %}
           <div class="extra-item-content">
             <div class="extra-item js-editor-copytext" data-action="overwrite">
               {% block votes %}{% endblock %}

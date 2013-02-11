@@ -536,7 +536,12 @@ td.translate-full textarea.translation
 
 .sidebar
 {
-    padding: 0 20px 1em;
+    padding: 0 30px 1em 20px;
+}
+
+html[dir="rtl"] .sidebar
+{
+    padding: 0 20px 1em 30px;
 }
 
 body.zoom-out-1 .sidebar
@@ -603,19 +608,6 @@ body.zoom-out-2 .sidebar
 #extras-container
 {
     margin-top: 1em;
-}
-
-#extras-bar,
-.extra-item-title
-{
-    margin-left: 5%;
-}
-
-html[dir="rtl"] #extras-bar,
-html[dir="rtl"] .extra-item-title
-{
-    margin-left: 0;
-    margin-right: 5%;
 }
 
 #extras-bar a
@@ -734,42 +726,34 @@ html[dir="rtl"] .suggestion-vote
     text-align: right;
 }
 
-
 .extra-item-gravatar,
 #target-item-gravatar
 {
+    position: absolute;
     float: left;
-    width: 4%;
+    margin-top: 4px;
+    margin-left: -30px;
 }
 
 html[dir="rtl"] .extra-item-gravatar,
 html[dir="rtl"] #target-item-gravatar
 {
-    float: right;
-}
-
-.extra-item-gravatar img,
-#target-item-gravatar img
-{
-    display: block;
-    margin: 4px auto;
+    margin-left: auto;
+    margin-right: -30px;
 }
 
 .extra-item-content,
 #target-item-content
 {
     float: left;
-    margin-left: 1%;
     margin-bottom: -1px;
-    width: 95%;
+    width: 100%;
 }
 
 html[dir="rtl"] .extra-item-content,
 html[dir="rtl"] #target-item-content
 {
     float: right;
-    margin-left: 0;
-    margin-right: 1%;
 }
 
 .timeline-extra

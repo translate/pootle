@@ -3,14 +3,12 @@
   <div class="extra-item-title">{% trans 'Timeline' %}</div>
   {% for entry_group in entries_group %}
   <div class="extra-item-block">
-    <div class="extra-item-gravatar">
-      {% if entry_group.submitter %}
-      <a href="{{ entry_group.submitter.get_absolute_url }}"><img src="{{ entry_group.submitter|gravatar:24 }}" alt="{{ entry_group.submitter.user.username }}" width="24" height="24" title="{{ entry_group.submitter }}" /></a>
-      {% else %}
-      <span class="invisible">placeholder</span>
-      {% endif %}
-    </div>
     <div class="extra-item-content">
+      {% if entry_group.submitter %}
+      <div class="extra-item-gravatar">
+        <a href="{{ entry_group.submitter.get_absolute_url }}"><img src="{{ entry_group.submitter|gravatar:24 }}" alt="{{ entry_group.submitter.user.username }}" width="24" height="24" title="{{ entry_group.submitter }}" /></a>
+      </div>
+      {% endif %}
       <div class="extra-item">
         <div class="timeline-entry" lang="{{ language.code }}"
              dir="{{ language.get_direction }}">
@@ -28,9 +26,6 @@
     </div>
   </div>
   {% empty %}
-  <div class="extra-item-gravatar">
-    <span class="invisible">placeholder</span>
-  </div>
   <div class="extra-item-content">
     {% trans "No results." %}
   </div>
