@@ -100,25 +100,6 @@ class MultiStringField(models.Field):
     def to_python(self, value):
         return to_python(value)
 
-        if not value:
-            return multistring("", encoding="UTF-8")
-        elif isinstance(value, multistring):
-            return value
-        elif isinstance(value, basestring):
-            strings = value.split(SEPARATOR)
-            if strings[-1] == PLURAL_PLACEHOLDER:
-                strings = strings[:-1]
-                plural = True
-            else:
-                plural = len(strings) > 1
-            ms = multistring(strings, encoding="UTF-8")
-            ms.plural = plural
-            return ms
-        elif isinstance(value, dict):
-            return multistring([val for key, val in sorted(value.items())], encoding="UTF-8")
-        else:
-            return multistring(value, encoding="UTF-8")
-
     def get_db_prep_value(self, value, *args, **kwargs):
         #FIXME: maybe we need to override get_db_prep_save instead?
         return to_db(value)
