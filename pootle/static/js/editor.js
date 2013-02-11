@@ -1692,7 +1692,7 @@
 
         if (data.timeline && uid === PTL.editor.activeUid) {
           if ($("#translator-comment").length) {
-            $(data.timeline).hide().appendTo("#translator-comment")
+            $(data.timeline).hide().insertAfter("#translator-comment")
                             .slideDown(1000, 'easeOutQuad');
           } else {
             $(data.timeline).hide().prependTo("#extras-container")
