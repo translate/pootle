@@ -393,6 +393,7 @@ div.translate-left
 
 div.translate-middle
 {
+    float: left;
     width: 50%;
     margin: 0 auto;
     position: relative;
@@ -626,7 +627,9 @@ html[dir="rtl"] .extra-item-meta
 
 /* EXTRAS: SUGGESTIONS, TM RESULTS, COMMENTS */
 
-#extras-container
+#timeline-results,
+#tm-results,
+#translator-comment
 {
     margin-top: 1em;
 }
@@ -751,7 +754,6 @@ html[dir="rtl"] .suggestion-vote
 #target-item-gravatar
 {
     position: absolute;
-    float: left;
     margin-top: 4px;
     margin-left: -30px;
 }
@@ -766,15 +768,8 @@ html[dir="rtl"] #target-item-gravatar
 .extra-item-content,
 #target-item-content
 {
-    float: left;
     margin-bottom: -1px;
     width: 100%;
-}
-
-html[dir="rtl"] .extra-item-content,
-html[dir="rtl"] #target-item-content
-{
-    float: right;
 }
 
 .timeline-extra
