@@ -19,9 +19,8 @@
           {% endfor %}
         </div>
       </div>
-      <div class="extra-item-meta" title="{{ entry_group.datetime_str }}">
-        {{ entry_group.datetime|timedelta }}
-      </div>
+      <time class="extra-item-meta js-relative-date" title="{{ entry_group.datetime_str}}"
+        datetime="{{ entry_group.datetime.isoformat }}">&nbsp;</time>
     </div>
   </div>
   {% empty %}

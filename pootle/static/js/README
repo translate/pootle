@@ -35,6 +35,11 @@ Directory contents
     This includes unit navigation, submission, suggestions' handling, copying
     functions, fuzzy/unfuzzy, and several other helper stuff.
 
+  - iso8601.js :
+    Date.parse with progressive enhancement for ISO 8601.
+
+    https://github.com/csnover/js-iso8601
+
   - json2.min.js :
     JavaScript library for encoding/decoding data to/from JSON format.
 

@@ -54,6 +54,41 @@
         params.push(encodeURIComponent(part) + '=' + encodeURIComponent(newVal));
       }
       return params.join('&');
+    },
+
+    /* Returns a string representing a relative datetime */
+    relativeDate: function (date) {
+      var fmt, count,
+          delta = Date.now() - date,
+          seconds = Math.round(Math.abs(delta) / 1000),
+          minutes = Math.round(seconds / 60),
+          hours = Math.round(minutes / 60),
+          days = Math.round(hours / 24),
+          weeks = Math.round(days / 7),
+          years = Math.round(days / 365);
+
+      if (years > 0) {
+        fmt = ngettext('A year ago', '%s years ago', years);
+        count = [years];
+      } else if (weeks > 0) {
+        fmt = ngettext('A week ago', '%s weeks ago', weeks);
+        count = [weeks];
+      } else if (days > 0) {
+        fmt = ngettext('Yesterday', '%s days ago', days);
+        count = [days];
+      } else if (hours > 0) {
+        fmt = ngettext('An hour ago', '%s hours ago', hours);
+        count = [hours];
+      } else if (minutes > 0) {
+        fmt = ngettext('A minute ago', '%s minutes ago', minutes);
+        count = [minutes];
+      }
+
+      if (fmt) {
+        return interpolate(fmt, count);
+      }
+
+      return gettext("A few seconds ago");
     }
   };
 

@@ -147,9 +147,8 @@
             {{ form.target_f }}
 
             {% if unit.submitted_by and unit.submitted_on %}
-            <span class="unit-meta" title="{{ unit.submitted_on }}">
-              {{ unit.submitted_on|timedelta }}
-            </span>
+            <time class="unit-meta js-relative-date" title="{{ unit.submitted_on }}"
+              datetime="{{ unit.submitted_on.isoformat }}">&nbsp;</time>
             {% endif %}
             {% if language.specialchars or language.get_direction == "rtl" %}
               {% if cantranslate or cansuggest %}

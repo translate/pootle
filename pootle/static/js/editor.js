@@ -262,6 +262,9 @@
       });
     });
 
+    // Update relative dates every minute
+    setInterval(PTL.editor.updateRelativeDates, 6e4);
+
     /* History support */
     setTimeout(function () {
       $.history.init(function (hash) {
@@ -393,6 +396,7 @@
     PTL.editor.isLoading = false;
     PTL.editor.hideActivity();
     PTL.editor.updatePermalink();
+    PTL.editor.updateRelativeDates();
 
     // clear any pending 'Loading...' indicator timer
     // as ajaxStop() is not fired in IE properly
@@ -727,6 +731,12 @@
     }
 
     $("#editor-permalink").html(thePermalink);
+  },
+
+  updateRelativeDates: function () {
+    $('.js-relative-date').each(function (i, e) {
+      $(e).text(PTL.utils.relativeDate(Date.parse($(e).attr('datetime'))));
+    });
   },
 
   /*
@@ -1698,6 +1708,9 @@
             $(data.timeline).hide().prependTo("#extras-container")
                             .slideDown(1000, 'easeOutQuad');
           }
+
+          PTL.editor.updateRelativeDates();
+
           $("#js-show-timeline").hide();
           $("#js-hide-timeline").show();
         }
