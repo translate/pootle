@@ -623,6 +623,7 @@ html[dir="rtl"] .extra-item-meta
 #tm-results,
 #translator-comment
 {
+    clear: both;
     margin-top: 1em;
 }
 
