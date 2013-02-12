@@ -224,12 +224,14 @@
           {% for sugg, score in suggestions %}
           <div id="suggestion-{{ sugg.id }}" class="extra-item-block">
             {% for i, target, diff, title in sugg|pluralize_diff_sugg %}
-            {% if sugg.user %}
-            <div class="extra-item-gravatar">
-              <a href="{{ sugg.user.get_absolute_url }}"><img src="{{ sugg.user|gravatar:24 }}" alt="{{ sugg.user.username }}" width="24" height="24" title="{{ sugg.user }}" /></a>
-            </div>
-            {% endif %}
             <div class="extra-item-content">
+              {% if sugg.user %}
+              <div class="extra-item-gravatar">
+                <a href="{{ sugg.user.get_absolute_url }}"><img src="{{ sugg.user|gravatar:24 }}"
+                  alt="{{ sugg.user.username }}" width="24" height="24"
+                  title="{{ sugg.user }}" /></a>
+              </div>
+              {% endif %}
               <div class="extra-item js-editor-copytext" data-action="overwrite">
                 {% block votes %}{% endblock %}
                 {% if canreview %}
