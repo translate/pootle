@@ -743,6 +743,12 @@ html[dir="rtl"] .suggestion-vote
     text-align: right;
 }
 
+#target-item-gravatar a
+{
+    filter:alpha(opacity=100);
+    opacity: 1;
+}
+
 .extra-item-gravatar,
 #target-item-gravatar
 {
