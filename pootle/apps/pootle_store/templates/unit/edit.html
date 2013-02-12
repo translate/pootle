@@ -212,57 +212,57 @@
       <!-- Latest comment, [timeline of changes], suggestions from users
            and Translation Memory -->
       <div id="extras-container">
-      {% if unit.translator_comment %}
+        {% if unit.translator_comment %}
         <!-- Latest comment -->
         <div id="translator-comment" lang="{{ LANGUAGE_CODE }}">
           {% include "unit/comment.html" %}
         </div>
-      {% endif %}
-      {% if suggestions %}
-      <div id="suggestions">
-        <div class="extra-item-title">{% trans 'User suggestions' %}</div>
-        {% for sugg, score in suggestions %}
-        <div id="suggestion-{{ sugg.id }}" class="extra-item-block">
-          {% for i, target, diff, title in sugg|pluralize_diff_sugg %}
-          {% if sugg.user %}
-          <div class="extra-item-gravatar">
-            <a href="{{ sugg.user.get_absolute_url }}"><img src="{{ sugg.user|gravatar:24 }}" alt="{{ sugg.user.username }}" width="24" height="24" title="{{ sugg.user }}" /></a>
-          </div>
-          {% endif %}
-          <div class="extra-item-content">
-            <div class="extra-item js-editor-copytext" data-action="overwrite">
-              {% block votes %}{% endblock %}
-              {% if canreview %}
-              <a accesskey="a" class="suggestion-action js-suggestion-accept"
-                data-sugg-id="{{ sugg.id }}">
-                <i class="icon-accept" dir="{% locale_dir %}"
-                  title="{% trans 'Accept suggestion' %}"></i>
-              </a>
-              <a accesskey="r" class="suggestion-action js-suggestion-reject"
-                data-sugg-id="{{ sugg.id }}">
-                <i class="icon-reject" dir="{% locale_dir %}"
-                  title="{% trans 'Reject suggestion' %}"></i>
-              </a>
-              {% else %}
-              {% if user.is_authenticated and profile == sugg.user %}
-              <a accesskey="r" class="suggestion-action js-suggestion-reject"
-                data-sugg-id="{{ sugg.id }}">
-                <i class="icon-reject" dir="{% locale_dir %}"
-                  title="{% trans 'Remove suggestion' %}"></i>
-              </a>
-              {% endif %}
-              {% endif %}
-
-              <div id="suggdiff-{{sugg.id}}-{{i}}" class="suggestion-translation" lang="{{ language.code }}" dir="{{ language.get_direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ diff }}</div>
+        {% endif %}
+        {% if suggestions %}
+        <div id="suggestions">
+          <div class="extra-item-title">{% trans 'User suggestions' %}</div>
+          {% for sugg, score in suggestions %}
+          <div id="suggestion-{{ sugg.id }}" class="extra-item-block">
+            {% for i, target, diff, title in sugg|pluralize_diff_sugg %}
+            {% if sugg.user %}
+            <div class="extra-item-gravatar">
+              <a href="{{ sugg.user.get_absolute_url }}"><img src="{{ sugg.user|gravatar:24 }}" alt="{{ sugg.user.username }}" width="24" height="24" title="{{ sugg.user }}" /></a>
             </div>
-            {% block suggestion_comment %}{% endblock %}
+            {% endif %}
+            <div class="extra-item-content">
+              <div class="extra-item js-editor-copytext" data-action="overwrite">
+                {% block votes %}{% endblock %}
+                {% if canreview %}
+                <a accesskey="a" class="suggestion-action js-suggestion-accept"
+                  data-sugg-id="{{ sugg.id }}">
+                  <i class="icon-accept" dir="{% locale_dir %}"
+                    title="{% trans 'Accept suggestion' %}"></i>
+                </a>
+                <a accesskey="r" class="suggestion-action js-suggestion-reject"
+                  data-sugg-id="{{ sugg.id }}">
+                  <i class="icon-reject" dir="{% locale_dir %}"
+                    title="{% trans 'Reject suggestion' %}"></i>
+                </a>
+                {% else %}
+                {% if user.is_authenticated and profile == sugg.user %}
+                <a accesskey="r" class="suggestion-action js-suggestion-reject"
+                  data-sugg-id="{{ sugg.id }}">
+                  <i class="icon-reject" dir="{% locale_dir %}"
+                    title="{% trans 'Remove suggestion' %}"></i>
+                </a>
+                {% endif %}
+                {% endif %}
+
+                <div id="suggdiff-{{sugg.id}}-{{i}}" class="suggestion-translation" lang="{{ language.code }}" dir="{{ language.get_direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ diff }}</div>
+              </div>
+              {% block suggestion_comment %}{% endblock %}
+            </div>
+            {% endfor %}
           </div>
           {% endfor %}
         </div>
-        {% endfor %}
+        {% endif %}
       </div>
-      {% endif %}
-    </div>
 
   </div>
 </td>
