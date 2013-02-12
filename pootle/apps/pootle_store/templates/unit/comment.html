@@ -1,0 +1,19 @@
+{% load i18n profile_tags %}
+<div class="extra-item-block">
+  <div class="extra-item-content">
+    {% if unit.commented_by %}
+    <div class="extra-item-gravatar">
+      <a href="{{ unit.commented_by.get_absolute_url }}"><img src="{{ unit.commented_by|gravatar:24 }}"
+        alt="{{ unit.commented_by.username }}" width="24" height="24"
+        title="{{ unit.commented_by.user }}" /></a>
+    </div>
+    {% endif %}
+    <div class="extra-item" lang="{{ language.code }}" dir="{{ language.get_direction }}">
+      <span class="sidetitle">{% trans "Comment:" %}</span> {{ unit.translator_comment }}
+    </div>
+    {% if unit.commented_by and unit.commented_on %}
+    <time class="extra-item-meta js-relative-date" title="{{ unit.commented_on }}"
+      datetime="{{ unit.commented_on.isoformat }}">&nbsp;</time>
+    {% endif %}
+  </div>
+</div>

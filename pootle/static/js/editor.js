@@ -1651,6 +1651,7 @@
       data: reqData,
       success: function (data) {
         $("#editor-comment").fadeOut(200);
+
         if ($("#translator-comment").length) {
           $(data.comment).hide().prependTo("#translator-comment").delay(200)
                          .animate({height: 'show'}, 1000, 'easeOutQuad');
@@ -1660,6 +1661,8 @@
           $(commentHtml).prependTo("#extras-container").delay(200)
                         .hide().animate({height: 'show'}, 1000, 'easeOutQuad');
         }
+
+        PTL.editor.updateRelativeDates();
       },
       error: PTL.editor.error
     });

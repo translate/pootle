@@ -680,11 +680,10 @@ def comment(request, unit):
         form.save()
 
         context = {
-            'comment': unit.translator_comment,
+            'unit': unit,
             'language': language,
-            'submitter': request.profile,
         }
-        t = loader.get_template('unit/xhr-comment.html')
+        t = loader.get_template('unit/comment.html')
         c = RequestContext(request, context)
 
         json = {'comment': t.render(c)}

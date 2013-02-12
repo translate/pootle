@@ -215,16 +215,7 @@
       {% if unit.translator_comment %}
         <!-- Latest comment -->
         <div id="translator-comment" lang="{{ LANGUAGE_CODE }}">
-          {% if unit.commented_by %}
-          <div class="extra-item-gravatar">
-            <a href="{{ unit.commented_by.get_absolute_url }}"><img src="{{ unit.commented_by|gravatar:24 }}" alt="{{ unit.commented_by.username }}" width="24" height="24" title="{{ unit.commented_by.user }}" /></a>
-          </div>
-          {% endif %}
-          <div class="extra-item-content">
-            <div class="extra-item">
-              <span class="sidetitle">{% trans "Comment:" %}</span> {{ unit.translator_comment }}
-            </div>
-          </div>
+          {% include "unit/comment.html" %}
         </div>
       {% endif %}
       {% if suggestions %}
