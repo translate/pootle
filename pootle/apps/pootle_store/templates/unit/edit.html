@@ -198,8 +198,10 @@
       </div>
       <div id="extras-bar">
         {% if cantranslate %}<a class="js-editor-comment" tabindex="15">{% trans "Add Comment" %}</a>{% endif %}
+        {% if unit.submission_set.count %}
         <a id="js-show-timeline" href='{{ "/unit/timeline/"|l }}{{ unit.id }}'>{% trans 'Show Timeline' %}</a>
         <a id="js-hide-timeline" class="hide">{% trans 'Hide Timeline' %}</a>
+        {% endif %}
         {% if cantranslate %}
         <div id="editor-comment" class="hide">
           <form id="comment-form" action="{% url 'pootle_store.views.comment' unit.id %}" method="post">
