@@ -718,7 +718,6 @@ class Unit(models.Model, base.TranslationUnit):
             return None
         return suggestion
 
-
     def accept_suggestion(self, suggid):
         try:
             suggestion = self.suggestion_set.get(id=suggid)
@@ -727,6 +726,9 @@ class Unit(models.Model, base.TranslationUnit):
 
         self.target = suggestion.target
         self.state = TRANSLATED
+
+        self.submitted_by = suggestion.user
+        self.submitted_on = timezone.now()
 
         # It is important to first delete the suggestion before calling
         # ``save``, otherwise the quality checks won't be properly updated
@@ -741,7 +743,6 @@ class Unit(models.Model, base.TranslationUnit):
             self.file.savestore()
 
         return True
-
 
     def reject_suggestion(self, suggid):
         try:
