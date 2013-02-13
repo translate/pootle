@@ -25,20 +25,29 @@ from django.utils.translation import ugettext_lazy as _
 from pootle_app.lib.util import RelatedManager
 
 class Suggestion(models.Model):
+
     class Meta:
         app_label = "pootle_app"
 
     objects = RelatedManager()
 
-    state_choices = [('pending', _('Pending')),
-                     ('accepted', _('Accepted')),
-                     ('rejected', _('Rejected')),
-                     ]
+    state_choices = [
+        ('pending', _('Pending')),
+        ('accepted', _('Accepted')),
+        ('rejected', _('Rejected')),
+    ]
 
-    creation_time       = models.DateTimeField(auto_now_add=True, db_index=True)
-    translation_project = models.ForeignKey('pootle_translationproject.TranslationProject', db_index=True)
-    suggester           = models.ForeignKey('pootle_profile.PootleProfile', null=True, related_name='suggester', db_index=True)
-    reviewer            = models.ForeignKey('pootle_profile.PootleProfile', null=True, related_name='reviewer', db_index=True)
-    review_time         = models.DateTimeField(null=True, db_index=True)
-    unit                = models.IntegerField(null=False, db_index=True)
-    state               = models.CharField(max_length=16, default='pending', null=False, choices=state_choices, db_index=True)
+    unit = models.IntegerField(null=False, db_index=True)
+    translation_project = models.ForeignKey(
+            'pootle_translationproject.TranslationProject', db_index=True,
+    )
+
+    state = models.CharField(max_length=16, default='pending', null=False,
+            choices=state_choices, db_index=True)
+
+    suggester = models.ForeignKey('pootle_profile.PootleProfile', null=True,
+            related_name='suggester', db_index=True)
+    creation_time = models.DateTimeField(auto_now_add=True, db_index=True)
+    reviewer = models.ForeignKey('pootle_profile.PootleProfile', null=True,
+            related_name='reviewer', db_index=True)
+    review_time = models.DateTimeField(null=True, db_index=True)
