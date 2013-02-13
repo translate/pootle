@@ -41,6 +41,7 @@ from pootle_misc.baseurl import l
 from pootle_misc.checks import check_names
 from pootle_misc.util import (cached_property, getfromcache, deletefromcache,
                               tzinfo, timezone, datetime_min)
+from pootle_statistics.models import SubmissionFields, SubmissionTypes
 from pootle_store.fields import (TranslationStoreField, MultiStringField,
                                  PLURAL_PLACEHOLDER, SEPARATOR)
 from pootle_store.filetypes import factory_classes, is_monolingual
@@ -535,6 +536,29 @@ class Unit(models.Model, base.TranslationUnit):
 
     def get_qualitychecks(self):
         return self.qualitycheck_set.filter(false_positive=False)
+
+    # FIXME: This is a hackish implementation needed due to the underlying
+    # lame model definitions
+    def get_reviewer(self):
+        """Retrieve reviewer information for the current unit.
+
+        :return: In case the current unit's status is an effect of accepting a
+            suggestion, the reviewer profile is returned.
+            Otherwise, returns ``None``, indicating that the current unit's
+            status is an effect of any other actions.
+        """
+        if self.submission_set.count():
+            # Find the latest submission changing either the target or the
+            # unit's state and return the reviewer attached to it in case the
+            # submission type was accepting a suggestion
+            last_submission = self.submission_set.filter(
+                    field__in=[SubmissionFields.TARGET, SubmissionFields.STATE]
+                ).latest()
+            if last_submission.type == SubmissionTypes.SUGG_ACCEPT:
+                return getattr(last_submission.from_suggestion, 'reviewer',
+                               None)
+
+        return None
 
 ##################### TranslationUnit ############################
 

@@ -564,13 +564,25 @@ body.zoom-out-2 .sidebar
     font-size: 85%;
 }
 
-.unit-meta,
+.unit-meta
+{
+    position: absolute;
+    right: 0;
+    text-align: right;
+}
+
+html[dir="rtl"] .unit-meta
+{
+    right: auto;
+    left: 0;
+    text-align: left;
+}
+
 .extra-item-meta
 {
     float: right;
 }
 
-html[dir="rtl"] .unit-meta,
 html[dir="rtl"] .extra-item-meta
 {
     float: left;
