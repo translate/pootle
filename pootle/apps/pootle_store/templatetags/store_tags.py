@@ -29,7 +29,7 @@ from django.utils.translation import ugettext as _, ungettext
 from translate.misc.multistring import multistring
 
 from pootle_misc.templatetags.cleanhtml import fancy_escape, fancy_highlight
-from pootle_misc.util import add_percentages, timezone
+from pootle_misc.util import timezone
 from pootle_store.fields import list_empty
 
 
@@ -104,25 +104,6 @@ except ImportError, e:
     from difflib import SequenceMatcher
     highlight_diffs = _difflib_highlight_diffs
 
-
-@register.filter('stat_summary')
-def stat_summary(store):
-    stats = add_percentages(store.getquickstats())
-    # The translated word counts
-    word_stats = _("Words Translated: %(translated)d/%(total)d - %(translatedpercent)d%%",
-                   {"translated": stats['translatedsourcewords'],
-                    "total": stats['totalsourcewords'],
-                    "translatedpercent": stats['translatedpercentage']})
-    word_stats = '<span class="word-statistics">%s</span>' % word_stats
-
-    # The translated unit counts
-    string_stats = _("Strings Translated: %(translated)d/%(total)d - %(translatedpercent)d%%",
-                          {"translated": stats['translated'],
-                           "total": stats['total'],
-                          "translatedpercent": stats['strtranslatedpercentage']})
-    string_stats = '<span class="string-statistics">%s</span>' % string_stats
-    # The whole string of stats
-    return mark_safe('%s &nbsp;&nbsp; %s' % (word_stats, string_stats))
 
 @register.filter('pluralize_source')
 def pluralize_source(unit):
