@@ -773,6 +773,7 @@ def get_edit_unit(request, unit):
         else:
             ctx_qty = int(request.COOKIES.get('ctxQty', 1))
             json['ctx'] = _filter_ctx_units(store.units, unit, ctx_qty)
+
     response = jsonify(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
 
@@ -923,21 +924,27 @@ def reject_suggestion(request, unit, suggid):
             sugg = unit.suggestion_set.get(id=suggid)
         except ObjectDoesNotExist:
             raise Http404
+
         if (not check_permission('review', request) and
             (not request.user.is_authenticated() or sugg and
                  sugg.user != request.profile)):
-            raise PermissionDenied(_("You do not have rights to access review mode."))
+            raise PermissionDenied(_("You do not have rights to access "
+                                     "review mode."))
 
         success = unit.reject_suggestion(suggid)
         if sugg is not None and success and request.profile != sugg.user:
-            #FIXME: we need a totally different model for tracking stats, this is just lame
-            suggstat, created = SuggestionStat.objects.get_or_create(translation_project=translation_project,
-                                                                     suggester=sugg.user,
-                                                                     state='pending',
-                                                                     unit=unit.id)
+            # FIXME: we need a totally different model for tracking stats, this
+            # is just lame
+            suggstat, created = SuggestionStat.objects.get_or_create(
+                    translation_project=translation_project,
+                    suggester=sugg.user,
+                    state='pending',
+                    unit=unit.id,
+            )
             suggstat.reviewer = request.profile
             suggstat.state = 'rejected'
             suggstat.save()
+
     response = jsonify(json)
     return HttpResponse(response, mimetype="application/json")
 
@@ -945,10 +952,12 @@ def reject_suggestion(request, unit, suggid):
 @ajax_required
 @get_unit_context('review')
 def accept_suggestion(request, unit, suggid):
-    json = {}
+    json = {
+        'udbid': unit.id,
+        'sugid': suggid,
+    }
     translation_project = request.translation_project
-    json["udbid"] = unit.id
-    json["sugid"] = suggid
+
     if request.POST.get('accept'):
         try:
             suggestion = unit.suggestion_set.get(id=suggid)
@@ -957,21 +966,29 @@ def accept_suggestion(request, unit, suggid):
 
         old_target = unit.target
         success = unit.accept_suggestion(suggid)
-        json['newtargets'] = [highlight_whitespace(target) for target in unit.target.strings]
+
+        json['newtargets'] = [highlight_whitespace(target)
+                              for target in unit.target.strings]
         json['newdiffs'] = {}
         for sugg in unit.get_suggestions():
-            json['newdiffs'][sugg.id] = [highlight_diffs(unit.target.strings[i], target) \
-                                         for i, target in enumerate(sugg.target.strings)]
+            json['newdiffs'][sugg.id] = \
+                    [highlight_diffs(unit.target.strings[i], target)
+                     for i, target in enumerate(sugg.target.strings)]
 
         if suggestion is not None and success:
             if suggestion.user:
-                translation_submitted.send(sender=translation_project, unit=unit, profile=suggestion.user)
-            #FIXME: we need a totally different model for tracking stats, this is just lame
+                translation_submitted.send(sender=translation_project,
+                                           unit=unit, profile=suggestion.user)
+
+            # FIXME: we need a totally different model for tracking stats, this
+            # is just lame
             if suggestion.user != request.profile:
-                suggstat, created = SuggestionStat.objects.get_or_create(translation_project=translation_project,
-                                                                     suggester=suggestion.user,
-                                                                     state='pending',
-                                                                     unit=unit.id)
+                suggstat, created = SuggestionStat.objects.get_or_create(
+                        translation_project=translation_project,
+                        suggester=suggestion.user,
+                        state='pending',
+                        unit=unit.id,
+                )
                 suggstat.reviewer = request.profile
                 suggstat.state = 'accepted'
                 suggstat.save()
@@ -993,6 +1010,7 @@ def accept_suggestion(request, unit, suggid):
                     new_value=unit.target,
             )
             sub.save()
+
     response = jsonify(json)
     return HttpResponse(response, mimetype="application/json")
 
