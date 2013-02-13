@@ -821,20 +821,21 @@ def submit(request, unit):
     else:
         snplurals = None
 
+    # Store current time so that it is the same for all submissions
+    current_time = timezone.now()
+
     # Update current unit instance's attributes
     unit.submitted_by = request.profile
-    unit.submitted_on = timezone.now()
+    unit.submitted_on = current_time
 
     form_class = unit_form_factory(language, snplurals, request)
     form = form_class(request.POST, instance=unit)
 
     if form.is_valid():
         if form.updated_fields:
-            # Store creation time so that it is the same for all submissions
-            creation_time = timezone.now()
             for field, old_value, new_value in form.updated_fields:
                 sub = Submission(
-                        creation_time=creation_time,
+                        creation_time=current_time,
                         translation_project=translation_project,
                         submitter=request.profile,
                         unit=unit,
