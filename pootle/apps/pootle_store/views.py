@@ -339,6 +339,11 @@ def get_step_query(request, units_queryset):
                         suggestion__user=request.profile
                     ).distinct()
                 matchnames.remove('ownsuggestion')
+            elif 'ownsubmission' in matchnames:
+                match_queryset = units_queryset.filter(
+                        submission__submitter=request.profile
+                    ).distinct()
+                matchnames.remove('ownsubmission')
 
             units_queryset = match_queryset
 

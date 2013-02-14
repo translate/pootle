@@ -832,6 +832,10 @@
         reqData.matchnames = 'ownsuggestion'
         break;
 
+      case "mysubmissions":
+        reqData.matchnames = 'ownsubmission';
+        break;
+
       case "all":
         break;
 
