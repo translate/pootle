@@ -84,14 +84,15 @@ def get_translation_stats(path_obj, path_stats):
     """
     stats = []
 
-    def make_stats_dict(title, state):
+    def make_stats_dict(title, state, filter_url=True):
+        filter_name = filter_url and state or None
         return {
             'title': title,
             'words': ungettext('<a href="%(url)s">%(num)d word</a>',
                                '<a href="%(url)s">%(num)d words</a>',
                                path_stats['untranslated']['words'],
                                {'url': dispatch.translate(path_obj,
-                                                          state=state),
+                                                          state=filter_name),
                                 'num': path_stats[state]['words']}),
             'percentage': _("%(num)d%%",
                             {'num': path_stats[state]['percentage']}),
@@ -102,7 +103,7 @@ def get_translation_stats(path_obj, path_stats):
         }
 
     if path_stats['total']['units'] > 0:
-        stats.append(make_stats_dict(_("Total"), 'total'))
+        stats.append(make_stats_dict(_("Total"), 'total', filter_url=False))
 
     if path_stats['translated']['units'] > 0:
         stats.append(make_stats_dict(_("Translated"), 'translated'))
