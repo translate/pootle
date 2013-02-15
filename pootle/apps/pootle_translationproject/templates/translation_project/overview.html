@@ -1,5 +1,5 @@
 {% extends "tp_base.html" %}
-{% load assets baseurl cache cleanhtml i18n locale progressbar search translation_project_tags %}
+{% load assets baseurl cache cleanhtml i18n locale progressbar search translation_project_tags common_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block body_id %}tpoverview{% endblock %}
@@ -41,7 +41,7 @@
   </div>
   <div class="bd">
     <div class="files-subfolders" lang="{{ LANGUAGE_CODE }}">
-      {% include "common/table.html" %}
+      {% display_table table %}
     </div>
   </div>
   {% endif %}

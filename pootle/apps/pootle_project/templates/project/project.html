@@ -1,5 +1,5 @@
 {% extends "project_base.html" %}
-{% load i18n baseurl cleanhtml assets %}
+{% load i18n baseurl cleanhtml assets common_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block title %}{{ project.name }} | {{ block.super }}{% endblock %}
@@ -17,7 +17,7 @@
   </div>
 
   <div class="bd">
-    {% include "common/table.html" %}
+    {% display_table table %}
   </div>
 
   {% include "translation_summary_legend.html" %}
