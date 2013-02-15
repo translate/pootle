@@ -290,16 +290,22 @@ def projects_index(request):
     """page listing all projects"""
     request.permissions = get_matching_permissions(get_profile(request.user),
                                                    Directory.objects.root)
-
     if not check_permission('view', request):
         raise PermissionDenied
 
-    topstats = gentopstats_root()
+    table_fields = ['project', 'progress', 'activity']
+    table = {
+        'id': 'projects',
+        'proportional': False,
+        'fields': table_fields,
+        'headings': get_table_headings(table_fields),
+        'items': getprojects(request),
+    }
 
     templatevars = {
-        'projects': getprojects(request),
-        'topstats': topstats,
-        }
+        'table': table,
+        'topstats': gentopstats_root(),
+    }
 
     return render_to_response('project/projects.html', templatevars,
                               RequestContext(request))

@@ -31,6 +31,16 @@ HEADING_CHOICES = [
         'display_name': _("Name"),
     },
     {
+        'id': 'project',
+        'class': 'stats',
+        'display_name': _("Project"),
+    },
+    {
+        'id': 'language',
+        'class': 'stats',
+        'display_name': _("Language"),
+    },
+    {
         'id': 'progress',
         'class': 'stats',
         # Translators: noun. The graphical representation of translation status

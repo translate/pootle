@@ -7,6 +7,17 @@
   {% endif %}
 </td>
 {% endif %}
+{% if 'language' in table.fields %}
+<td class="language">
+  <a href="{% filter l %}/{{ item.code }}/{% endfilter %}">{{ item.name }}</a>
+</td>
+{% endif %}
+{% if 'project' in table.fields %}
+<td class="project">
+  <a href="{% filter l %}/projects/{{ item.code }}/{% endfilter %}"
+    title="{{ item.description }}">{{ item.name }}</a>
+</td>
+{% endif %}
 {% if item.stats %}
 {% if 'progress' in table.fields %}
 <td class="stats-graph">

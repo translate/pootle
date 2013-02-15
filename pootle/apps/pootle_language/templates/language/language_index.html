@@ -1,5 +1,5 @@
 {% extends "language_base.html" %}
-{% load i18n baseurl cleanhtml assets %}
+{% load i18n baseurl cleanhtml assets common_tags %}
 
 {% get_current_language as LANGUAGE_CODE %}
 
@@ -12,7 +12,7 @@
   </div>
 
   <div class="bd">
-    {% include "common/table.html" %}
+    {% display_table table %}
     {% include "translation_summary_legend.html" %}
   </div>
 

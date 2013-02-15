@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load url from future %}
-{% load i18n baseurl notification_tags cleanhtml assets progressbar %}
+{% load i18n baseurl notification_tags cleanhtml assets common_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block extra_head %}
@@ -38,28 +38,9 @@
     <h2>{% trans "Languages" %}</h2>
   </div>
   <div class="bd">
-    <table class="sortable" id="js-stats-index-languages">
-      <tr>
-        <th id="js-stats-language">{% trans 'Language' %}</th>
-        <th id="js-stats-progress">{% trans 'Overall Completion' %}</th>
-        <th id="js-stats-activity">{% trans 'Last Activity' %}</th>
-      </tr>
-      {% for item in languages %}
-      {% if item.stats.total.words != 0 %}
-      <tr class="{% cycle 'even' 'odd' %}">
-        <td class="language"><a href="{% filter l %}/{{ item.code }}/{% endfilter %}">{{ item.name }}</a></td>
-        <td>
-          <div class="sortkey">{{ item.stats.translated.percentage }}</div>
-          {% progressbar item.stats %}
-        </td>
-        <td>{{ item.lastactivity }}</td>
-      </tr>
-      {% endif %}
-      {% endfor %}
-    </table>
+    {% display_table languages_table %}
+    {% include "translation_summary_legend.html" %}
   </div>
-
-  {% include "translation_summary_legend.html" %}
 </div>
 
 <div class="module" lang="{{ LANGUAGE_CODE }}">
@@ -67,23 +48,7 @@
     <h2>{% trans "Projects" %}</h2>
   </div>
   <div class="bd">
-    <table class="sortable" id="js-stats-index-projects">
-      <tr>
-        <th id="js-stats-project">{% trans 'Project' %}</th>
-        <th id="js-stats-progress">{% trans 'Overall Completion' %}</th>
-        <th id="js-stats-activity">{% trans 'Last Activity' %}</th>
-      </tr>
-      {% for item in projects %}
-      <tr class="{% cycle 'even' 'odd' %}">
-        <td class="project"><a href="{% filter l %}/projects/{{ item.code }}/{% endfilter %}" title="{{ item.description }}">{{ item.name }}</a></td>
-        <td>
-          <div class="sortkey">{{ item.stats.translated.percentage }}</div>
-          {% progressbar item.stats %}
-        </td>
-        <td>{{ item.lastactivity }}</td>
-      </tr>
-      {% endfor %}
-    </table>
+    {% display_table projects_table %}
   </div>
 </div>
 {% endblock content %}

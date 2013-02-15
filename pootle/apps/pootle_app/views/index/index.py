@@ -31,6 +31,7 @@ from pootle_app.models.permissions import (get_matching_permissions,
                                            check_permission)
 from pootle_app.views.top_stats import gentopstats_root
 from pootle_language.models import Language
+from pootle_misc.browser import get_table_headings
 from pootle_misc.stats import get_raw_stats
 from pootle_profile.models import get_profile
 from pootle_project.models import Project
@@ -87,8 +88,25 @@ def view(request):
                                                    Directory.objects.root)
     can_edit = request.user.is_superuser
 
-    topstats = gentopstats_root()
     languages = getlanguages(request)
+    languages_table_fields = ['language', 'progress', 'activity']
+    languages_table = {
+        'id': 'index-languages',
+        'proportional': False,
+        'fields': languages_table_fields,
+        'headings': get_table_headings(languages_table_fields),
+        'items': filter(lambda x: x['stats']['total']['words'] != 0, languages),
+    }
+
+    projects = getprojects(request)
+    projects_table_fields = ['project', 'progress', 'activity']
+    projects_table = {
+        'id': 'index-projects',
+        'proportional': False,
+        'fields': projects_table_fields,
+        'headings': get_table_headings(projects_table_fields),
+        'items': projects,
+    }
 
     templatevars = {
         'description': _(settings.DESCRIPTION),
@@ -102,15 +120,14 @@ def view(request):
             'traduction',
             'traduire',
             ],
-        'languages': languages,
-        'projects': getprojects(request),
-        'topstats': topstats,
+        'topstats': gentopstats_root(),
         'permissions': request.permissions,
         'can_edit': can_edit,
-        }
+        'languages_table': languages_table,
+        'projects_table': projects_table,
+    }
     visible_langs = [l for l in languages if l['stats']['total']['words'] != 0]
-    templatevars['moreprojects'] = (len(templatevars['projects']) >
-                                    len(visible_langs))
+    templatevars['moreprojects'] = (len(projects) > len(visible_langs))
 
     if can_edit:
         from pootle_misc.siteconfig import load_site_config

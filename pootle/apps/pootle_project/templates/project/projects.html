@@ -1,6 +1,5 @@
 {% extends "base.html" %}
-
-{% load i18n baseurl progressbar %}
+{% load i18n common_tags %}
 
 {% get_current_language as LANGUAGE_CODE %}
 
@@ -16,23 +15,7 @@
     <h2>{% trans "Projects" %}</h2>
   </div>
   <div class="bd">
-    <table class="sortable" id="js-stats-projects">
-      <tr>
-        <th id="js-stats-language" class="stats">{% trans 'Project' %}</th>
-        <th id="js-stats-progress" class="stats">{% trans 'Overall Completion' %}</th>
-        <th id="js-stats-activity" class="stats">{% trans 'Last Activity' %}</th>
-      </tr>
-      {% for item in projects %}
-      <tr class="{% cycle 'even' 'odd' %}">
-        <td class="project"><a href="{% filter l %}/projects/{{ item.code }}/{% endfilter %}" title="{{ item.description }}">{{ item.name }}</a></td>
-        <td>
-          <div class="sortkey">{{ item.stats.translated.percentage }}</div>
-          {% progressbar item.stats %}
-        </td>
-        <td>{{ item.lastactivity }}</td>
-      </tr>
-      {% endfor %}
-    </table>
+    {% display_table table %}
   </div>
 
   {% include "translation_summary_legend.html" %}
