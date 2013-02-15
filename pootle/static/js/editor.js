@@ -825,11 +825,11 @@
         break;
 
       case "suggestions":
-        reqData.matchnames = 'hassuggestion'
+        reqData.matchnames = 'hassuggestion';
         break;
 
       case "mysuggestions":
-        reqData.matchnames = 'ownsuggestion'
+        reqData.matchnames = 'ownsuggestion';
         break;
 
       case "mysubmissions":
