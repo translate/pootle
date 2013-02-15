@@ -24,34 +24,7 @@ similar pages."""
 from django.utils.translation import ugettext as _, ungettext
 
 from pootle_app.views.language import dispatch
-from pootle_misc.stats import get_raw_stats
-
-
-def stats_descriptions(quick_stats):
-    """Provides a dictionary with two textual descriptions of the work
-    outstanding.
-    """
-    total_words = quick_stats["total"]["words"]
-    untranslated = quick_stats["untranslated"]["words"]
-    fuzzy = quick_stats["fuzzy"]["words"]
-    todo_words = untranslated + fuzzy
-
-    todo_text = ungettext("%d word needs attention",
-                          "%d words need attention", todo_words, todo_words)
-
-    untranslated_tooltip = ungettext("%d word untranslated",
-                                     "%d words untranslated",
-                                     untranslated, untranslated)
-    fuzzy_tooltip = ungettext("%d word needs review",
-                              "%d words need review", fuzzy, fuzzy)
-    todo_tooltip = u"<br>".join([untranslated_tooltip, fuzzy_tooltip])
-
-    return {
-        'total_words': total_words,
-        'todo_words': todo_words,
-        'todo_text': todo_text,
-        'todo_tooltip': todo_tooltip,
-    }
+from pootle_misc.stats import get_raw_stats, stats_descriptions
 
 
 def make_generic_item(request, path_obj, action, include_suggestions=False):

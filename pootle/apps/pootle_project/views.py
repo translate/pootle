@@ -35,12 +35,12 @@ from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions
 from pootle_app.views.index.index import getprojects
 from pootle_app.views.language import dispatch
-from pootle_app.views.language.item_dict import stats_descriptions
 from pootle_app.views.top_stats import gentopstats_project, gentopstats_root
 from pootle_language.models import Language
 from pootle_misc.baseurl import l
 from pootle_misc.forms import LiberalModelChoiceField
-from pootle_misc.stats import get_raw_stats, get_stats_headings
+from pootle_misc.stats import (get_raw_stats, get_stats_headings,
+                               stats_descriptions)
 from pootle_misc.util import ajax_required, jsonify
 from pootle_profile.models import get_profile
 from pootle_project.models import Project

@@ -29,10 +29,10 @@ from pootle_app.models.permissions import (get_matching_permissions,
                                            check_permission)
 from pootle_app.views.admin.permissions import admin_permissions
 from pootle_app.views.language import dispatch
-from pootle_app.views.language.item_dict import stats_descriptions
 from pootle_app.views.top_stats import gentopstats_language
 from pootle_language.models import Language
-from pootle_misc.stats import get_raw_stats, get_stats_headings
+from pootle_misc.stats import (get_raw_stats, get_stats_headings,
+                               stats_descriptions)
 from pootle_misc.util import nice_percentage, jsonify, ajax_required
 from pootle_profile.models import get_profile
 from pootle_statistics.models import Submission

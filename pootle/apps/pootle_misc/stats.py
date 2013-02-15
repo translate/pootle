@@ -225,6 +225,33 @@ def stats_message(version, stats):
                      })
 
 
+def stats_descriptions(quick_stats):
+    """Provides a dictionary with two textual descriptions of the work
+    outstanding.
+    """
+    total_words = quick_stats["total"]["words"]
+    untranslated = quick_stats["untranslated"]["words"]
+    fuzzy = quick_stats["fuzzy"]["words"]
+    todo_words = untranslated + fuzzy
+
+    todo_text = ungettext("%d word needs attention",
+                          "%d words need attention", todo_words, todo_words)
+
+    untranslated_tooltip = ungettext("%d word untranslated",
+                                     "%d words untranslated",
+                                     untranslated, untranslated)
+    fuzzy_tooltip = ungettext("%d word needs review",
+                              "%d words need review", fuzzy, fuzzy)
+    todo_tooltip = u"<br>".join([untranslated_tooltip, fuzzy_tooltip])
+
+    return {
+        'total_words': total_words,
+        'todo_words': todo_words,
+        'todo_text': todo_text,
+        'todo_tooltip': todo_tooltip,
+    }
+
+
 def get_stats_headings():
     """Returns a dictionary of localized headings."""
     return {
