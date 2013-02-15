@@ -231,6 +231,9 @@ def get_stats_headings():
         "name": ugettext("Name"),
         # Translators: noun. The graphical representation of translation status
         "progress": ugettext("Progress"),
+        # Translators: Heading representing the total number of words of a file
+        # or directory
+        "total": ugettext("Total"),
         "need_translation": ugettext("Need Translation"),
         # Translators: The number of suggestions pending review
         "suggestions": ugettext("Suggestions"),

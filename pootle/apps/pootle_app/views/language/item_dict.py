@@ -88,10 +88,11 @@ def get_item_stats(request, stats, path_obj, terminology=False):
 def stats_descriptions(quick_stats):
     """Provides a dictionary with two textual descriptions of the work
     outstanding."""
-
+    total_words = quick_stats["total"]["words"]
     untranslated = quick_stats["untranslated"]["words"]
     fuzzy = quick_stats["fuzzy"]["words"]
     todo_words = untranslated + fuzzy
+
     todo_text = ungettext("%d word needs attention",
             "%d words need attention", todo_words, todo_words)
 
@@ -101,8 +102,9 @@ def stats_descriptions(quick_stats):
     todo_tooltip = u"<br>".join([untranslated_tooltip, fuzzy_tooltip])
 
     return {
-        'todo_text': todo_text,
+        'total_words': total_words,
         'todo_words': todo_words,
+        'todo_text': todo_text,
         'todo_tooltip': todo_tooltip,
     }
 
@@ -116,6 +118,7 @@ def make_generic_item(request, path_obj, action, include_suggestions=False,
         stats = get_raw_stats(path_obj, include_suggestions)
         info = {
             'href': action,
+            'href_all': dispatch.translate(path_obj),
             'href_todo': dispatch.translate(path_obj, state='incomplete'),
             'href_sugg': dispatch.translate(path_obj, state='suggestions'),
             'stats': stats,

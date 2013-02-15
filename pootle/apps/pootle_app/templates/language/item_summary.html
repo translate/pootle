@@ -13,6 +13,13 @@
   {% block progressbar %}{% progressbar item.stats %}{% endblock %}
 </td>
 <td class="stats-number">
+  {% if item.total_words > 0 %}
+  <a href="{{ item.href_all }}">{{ item.total_words }}</a>
+  {% else %}
+  <span class="muted">0</span>
+  {% endif %}
+</td>
+<td class="stats-number">
   {% if item.todo_words > 0 %}
   <a href="{{ item.href_todo }}" title="{{ item.todo_tooltip }}">{{ item.todo_words }}</a>
   {% else %}
