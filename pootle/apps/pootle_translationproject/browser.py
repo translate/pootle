@@ -79,3 +79,25 @@ def make_store_item(store, include_suggestions=False):
         'isfile': True,
     })
     return item
+
+
+def get_children(translation_project, directory):
+    """Returns a list of children directories and stores for this
+    ``directory``, and also the parent directory.
+
+    The elements of the list are dictionaries which keys are populated after
+    in the templates.
+    """
+    parent = []
+    parent_dir = directory.parent
+
+    if not (parent_dir.is_language() or parent_dir.is_project()):
+        parent = [{'title': u'..', 'href': parent_dir}]
+
+    directories = [make_directory_item(child_dir, include_suggestions=True)
+                   for child_dir in directory.child_dirs.iterator()]
+
+    stores = [make_store_item(child_store, include_suggestions=True)
+              for child_store in directory.child_stores.iterator()]
+
+    return parent + directories + stores

@@ -57,8 +57,7 @@ from pootle_store.models import Store
 from pootle_store.util import absolute_real_path, relative_real_path
 from pootle_store.filetypes import factory_classes
 from pootle_translationproject.actions import action_groups
-from pootle_translationproject.browser import (make_directory_item,
-                                               make_store_item)
+from pootle_translationproject.browser import get_children
 
 
 @get_translation_project
@@ -396,28 +395,6 @@ def export_zip(request, translation_project, file_path):
                   settings.OBJECT_CACHE_TIMEOUT)
 
     return redirect('/export/' + export_path)
-
-
-def get_children(translation_project, directory):
-    """Returns a list of children directories and stores for this
-    ``directory``, and also the parent directory.
-
-    The elements of the list are dictionaries which keys are populated after
-    in the templates.
-    """
-    parent = []
-    parent_dir = directory.parent
-
-    if not (parent_dir.is_language() or parent_dir.is_project()):
-        parent = [{'title': u'..', 'href': parent_dir}]
-
-    directories = [make_directory_item(child_dir, include_suggestions=True)
-                   for child_dir in directory.child_dirs.iterator()]
-
-    stores = [make_store_item(child_store, include_suggestions=True)
-              for child_store in directory.child_stores.iterator()]
-
-    return parent + directories + stores
 
 
 def unix_to_host_path(p):
