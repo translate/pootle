@@ -21,8 +21,7 @@
 """Helper functions for the rendering of several items on the index views and
 similar pages."""
 
-from django.utils.translation import ugettext as _
-from django.utils.translation import ungettext
+from django.utils.translation import ugettext as _, ungettext
 
 from pootle_app.views.language import dispatch
 from pootle_misc.stats import get_raw_stats
@@ -30,18 +29,21 @@ from pootle_misc.stats import get_raw_stats
 
 def stats_descriptions(quick_stats):
     """Provides a dictionary with two textual descriptions of the work
-    outstanding."""
+    outstanding.
+    """
     total_words = quick_stats["total"]["words"]
     untranslated = quick_stats["untranslated"]["words"]
     fuzzy = quick_stats["fuzzy"]["words"]
     todo_words = untranslated + fuzzy
 
     todo_text = ungettext("%d word needs attention",
-            "%d words need attention", todo_words, todo_words)
+                          "%d words need attention", todo_words, todo_words)
 
-    todo_tooltip = u""
-    untranslated_tooltip = ungettext("%d word untranslated", "%d words untranslated", untranslated, untranslated)
-    fuzzy_tooltip = ungettext("%d word needs review", "%d words need review", fuzzy, fuzzy)
+    untranslated_tooltip = ungettext("%d word untranslated",
+                                     "%d words untranslated",
+                                     untranslated, untranslated)
+    fuzzy_tooltip = ungettext("%d word needs review",
+                              "%d words need review", fuzzy, fuzzy)
     todo_tooltip = u"<br>".join([untranslated_tooltip, fuzzy_tooltip])
 
     return {
@@ -55,7 +57,9 @@ def stats_descriptions(quick_stats):
 def make_generic_item(request, path_obj, action, include_suggestions=False):
     """Template variables for each row in the table.
 
-    make_directory_item() and make_store_item() will add onto these variables."""
+    :func:`make_directory_item` and :func:`make_store_item` will add onto these
+    variables.
+    """
     try:
         stats = get_raw_stats(path_obj, include_suggestions)
         info = {
@@ -71,7 +75,9 @@ def make_generic_item(request, path_obj, action, include_suggestions=False):
 
         errors = stats.get('errors', 0)
         if errors:
-            info['errortooltip'] = ungettext('Error reading %d file', 'Error reading %d files', errors, errors)
+            info['errortooltip'] = ungettext('Error reading %d file',
+                                             'Error reading %d files',
+                                             errors, errors)
 
         info.update(stats_descriptions(stats))
     except IOError, e:
@@ -89,8 +95,9 @@ def make_directory_item(request, directory, include_suggestions=False):
     action = directory.pootle_path
     item = make_generic_item(request, directory, action, include_suggestions)
     item.update({
-            'icon': 'folder',
-            'isdir': True})
+        'icon': 'folder',
+        'isdir': True,
+    })
     return item
 
 
@@ -98,6 +105,7 @@ def make_store_item(request, store, include_suggestions=False):
     action = store.pootle_path
     item = make_generic_item(request, store, action, include_suggestions)
     item.update({
-            'icon': 'file',
-            'isfile': True})
+        'icon': 'file',
+        'isfile': True,
+    })
     return item
