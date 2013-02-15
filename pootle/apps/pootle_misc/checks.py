@@ -22,7 +22,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from translate.filters.decorators import Category
 
-from pootle_app.views.language import dispatch
+from pootle_misc import dispatch
 
 
 category_names = {

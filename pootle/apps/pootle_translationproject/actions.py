@@ -24,7 +24,7 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
 
 from pootle_app.models.permissions import check_permission
-from pootle_app.views.language import dispatch
+from pootle_misc import dispatch
 from pootle_misc.baseurl import l
 from pootle_misc.versioncontrol import hasversioning
 

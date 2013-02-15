@@ -22,7 +22,7 @@ from django.core.urlresolvers import reverse
 from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext_lazy as _, ugettext, ungettext
 
-from pootle_app.views.language import dispatch
+from pootle_misc import dispatch
 from pootle_misc.util import add_percentages
 
 
