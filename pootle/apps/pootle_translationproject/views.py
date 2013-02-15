@@ -245,8 +245,7 @@ class ProjectIndexView(view_handler.View):
             })
         else:
             template_vars.update({
-                'children': get_children(request, translation_project,
-                                         directory)
+                'children': get_children(translation_project, directory)
             })
 
         if can_edit:
@@ -399,7 +398,7 @@ def export_zip(request, translation_project, file_path):
     return redirect('/export/' + export_path)
 
 
-def get_children(request, translation_project, directory):
+def get_children(translation_project, directory):
     """Returns a list of children directories and stores for this
     ``directory``, and also the parent directory.
 
@@ -412,11 +411,10 @@ def get_children(request, translation_project, directory):
     if not (parent_dir.is_language() or parent_dir.is_project()):
         parent = [{'title': u'..', 'href': parent_dir}]
 
-    directories = [make_directory_item(request, child_dir,
-                                       include_suggestions=True)
+    directories = [make_directory_item(child_dir, include_suggestions=True)
                    for child_dir in directory.child_dirs.iterator()]
 
-    stores = [make_store_item(request, child_store, include_suggestions=True)
+    stores = [make_store_item(child_store, include_suggestions=True)
               for child_store in directory.child_stores.iterator()]
 
     return parent + directories + stores

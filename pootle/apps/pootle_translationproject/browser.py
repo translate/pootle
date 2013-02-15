@@ -24,7 +24,7 @@ from pootle_misc import dispatch
 from pootle_misc.stats import get_raw_stats, stats_descriptions
 
 
-def make_generic_item(request, path_obj, action, include_suggestions=False):
+def make_generic_item(path_obj, action, include_suggestions=False):
     """Template variables for each row in the table.
 
     :func:`make_directory_item` and :func:`make_store_item` will add onto these
@@ -61,9 +61,9 @@ def make_generic_item(request, path_obj, action, include_suggestions=False):
     return info
 
 
-def make_directory_item(request, directory, include_suggestions=False):
+def make_directory_item(directory, include_suggestions=False):
     action = directory.pootle_path
-    item = make_generic_item(request, directory, action, include_suggestions)
+    item = make_generic_item(directory, action, include_suggestions)
     item.update({
         'icon': 'folder',
         'isdir': True,
@@ -71,9 +71,9 @@ def make_directory_item(request, directory, include_suggestions=False):
     return item
 
 
-def make_store_item(request, store, include_suggestions=False):
+def make_store_item(store, include_suggestions=False):
     action = store.pootle_path
-    item = make_generic_item(request, store, action, include_suggestions)
+    item = make_generic_item(store, action, include_suggestions)
     item.update({
         'icon': 'file',
         'isfile': True,
