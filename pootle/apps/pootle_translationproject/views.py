@@ -47,6 +47,7 @@ from pootle_app.views.language.view import (get_translation_project,
                                             set_request_context)
 from pootle_app.views.top_stats import gentopstats_translation_project
 from pootle_misc.baseurl import redirect
+from pootle_misc.browser import get_children
 from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.stats import (get_raw_stats, get_stats_headings,
                                get_translation_stats, get_path_summary)
@@ -57,7 +58,6 @@ from pootle_store.models import Store
 from pootle_store.util import absolute_real_path, relative_real_path
 from pootle_store.filetypes import factory_classes
 from pootle_translationproject.actions import action_groups
-from pootle_translationproject.browser import get_children
 
 
 @get_translation_project
