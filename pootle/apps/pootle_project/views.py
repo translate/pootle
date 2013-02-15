@@ -38,9 +38,9 @@ from pootle_app.views.top_stats import gentopstats_project, gentopstats_root
 from pootle_language.models import Language
 from pootle_misc import dispatch
 from pootle_misc.baseurl import l
+from pootle_misc.browser import get_table_headings
 from pootle_misc.forms import LiberalModelChoiceField
-from pootle_misc.stats import (get_raw_stats, get_stats_headings,
-                               stats_descriptions)
+from pootle_misc.stats import (get_raw_stats, stats_descriptions)
 from pootle_misc.util import ajax_required, jsonify
 from pootle_profile.models import get_profile
 from pootle_project.models import Project
@@ -108,6 +108,15 @@ def project_language_index(request, project_code):
 
     topstats = gentopstats_project(project)
 
+    table_fields = ['name', 'progress', 'total', 'need-translation', 'activity']
+    table = {
+        'id': 'project',
+        'proportional': False,
+        'fields': table_fields,
+        'headings': get_table_headings(table_fields),
+        'items': items,
+    }
+
     templatevars = {
         'project': {
           'code': project.code,
@@ -118,10 +127,9 @@ def project_language_index(request, project_code):
                                languagecount, {"languages": languagecount,
                                                "average": average}),
         },
-        'languages': items,
         'topstats': topstats,
-        'statsheadings': get_stats_headings(),
         'can_edit': can_edit,
+        'table': table,
     }
 
     if can_edit:

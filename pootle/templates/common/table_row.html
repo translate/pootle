@@ -1,17 +1,24 @@
-{% load i18n baseurl progressbar locale %}
-
-{% block itemstats %}
+{% load i18n baseurl progressbar djblets_utils %}
+{% if 'name' in table.fields %}
 <td class="stats-name"{% if item.description %} title="{{ item.description|striptags }}"{% endif %}>
   <a href="{{ item.href|l }}">{% if item.icon %}<i class="icon-{{ item.icon }}"></i> {% endif %}<span>{{ item.title }}</span></a>
   {% if item.stats.errors %}
   <i class="icon-error"></i>
   {% endif %}
 </td>
+{% endif %}
 {% if item.stats %}
+{% if 'progress' in table.fields %}
 <td class="stats-graph">
   <div class="sortkey">{{ item.stats.translated.percentage }}</div>
-  {% block progressbar %}{% progressbar item.stats %}{% endblock %}
+  {% if table.proportional %}
+  {% progressbar item.stats stats.total.words %}
+  {% else %}
+  {% progressbar item.stats %}
+  {% endif %}
 </td>
+{% endif %}
+{% if 'total' in table.fields %}
 <td class="stats-number">
   {% if item.total_words > 0 %}
   <a href="{{ item.href_all }}">{{ item.total_words }}</a>
@@ -19,6 +26,8 @@
   <span class="muted">0</span>
   {% endif %}
 </td>
+{% endif %}
+{% if 'need-translation' in table.fields %}
 <td class="stats-number">
   {% if item.todo_words > 0 %}
   <a href="{{ item.href_todo }}" title="{{ item.todo_tooltip }}">{{ item.todo_words }}</a>
@@ -26,8 +35,17 @@
   <span class="muted">0</span>
   {% endif %}
 </td>
-{% block extra_columns %}{% endblock %}
-{% else %}
-<td></td><td></td><td></td>
 {% endif %}
-{% endblock itemstats %}
+{% if 'suggestions' in table.fields %}
+<td class="stats-number">
+  {% if item.stats.suggestions > 0 %}
+  <a href="{{ item.href_sugg }}">{{ item.stats.suggestions }}</a>
+  {% endif %}
+</td>
+{% endif %}
+{% if 'activity' in table.fields %}
+<td>{{ item.lastactivity }}</td>
+{% endif %}
+{% else %}
+{% for i in table.fields|range %}<td></td>{% endfor %}
+{% endif %}

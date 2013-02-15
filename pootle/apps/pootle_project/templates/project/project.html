@@ -17,25 +17,7 @@
   </div>
 
   <div class="bd">
-    <table class="sortable stats" id="js-stats-project" cellpadding="5" cellspacing="0">
-    <thead>
-      <tr>
-        <th id="js-stats-language" class="stats">{{ statsheadings.name }}</th>
-        <th id="js-stats-progress" class="stats">{{ statsheadings.progress }}</th>
-        <th id="js-stats-total" class="stats-number sorttable_numeric">{{ statsheadings.total }}</th>
-        <th id="js-stats-need-translation" class="stats-number sorttable_numeric">{{ statsheadings.need_translation }}</th>
-        <th id="js-stats-activity" class="stats">{{ statsheadings.last_activity }}</th>
-      </tr>
-    </thead>
-    <tbody class="stats">
-    {% for item in languages %}
-    <tr class="item {% cycle 'even' 'odd' %}">
-    {% include "language/item_summary.html" %}
-    <td>{{ item.lastactivity }}</td>
-    </tr>
-    {% endfor %}
-    </tbody>
-    </table>
+    {% include "common/table.html" %}
   </div>
 
   {% include "translation_summary_legend.html" %}

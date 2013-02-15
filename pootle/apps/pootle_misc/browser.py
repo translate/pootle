@@ -24,6 +24,49 @@ from pootle_misc import dispatch
 from pootle_misc.stats import get_raw_stats, stats_descriptions
 
 
+HEADING_CHOICES = [
+    {
+        'id': 'name',
+        'class': 'stats',
+        'display_name': _("Name"),
+    },
+    {
+        'id': 'progress',
+        'class': 'stats',
+        # Translators: noun. The graphical representation of translation status
+        'display_name': _("Progress"),
+    },
+    {
+        'id': 'total',
+        'class': 'stats-number sorttable_numeric',
+        # Translators: Heading representing the total number of words of a file
+        # or directory
+        'display_name': _("Total"),
+    },
+    {
+        'id': 'need-translation',
+        'class': 'stats-number sorttable_numeric',
+        'display_name': _("Need Translation"),
+    },
+    {
+        'id': 'suggestions',
+        'class': 'stats-number sorttable_numeric',
+        # Translators: The number of suggestions pending review
+        'display_name': _("Suggestions"),
+    },
+    {
+        'id': 'activity',
+        'class': 'stats',
+        'display_name': _("Last Activity"),
+    },
+]
+
+
+def get_table_headings(choices):
+    """Filters the list of available table headings to the given `choices`."""
+    return filter(lambda x: x['id'] in choices, HEADING_CHOICES)
+
+
 def make_generic_item(path_obj, action, include_suggestions=False):
     """Template variables for each row in the table.
 

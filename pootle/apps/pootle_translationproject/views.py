@@ -47,10 +47,10 @@ from pootle_app.views.language.view import (get_translation_project,
                                             set_request_context)
 from pootle_app.views.top_stats import gentopstats_translation_project
 from pootle_misc.baseurl import redirect
-from pootle_misc.browser import get_children
+from pootle_misc.browser import get_children, get_table_headings
 from pootle_misc.checks import get_quality_check_failures
-from pootle_misc.stats import (get_raw_stats, get_stats_headings,
-                               get_translation_stats, get_path_summary)
+from pootle_misc.stats import (get_raw_stats, get_translation_stats,
+                               get_path_summary)
 from pootle_misc.util import jsonify, ajax_required
 from pootle_profile.models import get_profile
 from pootle_statistics.models import Submission, SubmissionTypes
@@ -231,7 +231,6 @@ class ProjectIndexView(view_handler.View):
             'directory': directory,
             'path_summary': path_summary,
             'stats': path_stats,
-            'stats_headings': get_stats_headings(),
             'topstats': gentopstats_translation_project(translation_project),
             'feed_path': directory.pootle_path[1:],
             'action_groups': actions,
@@ -243,8 +242,16 @@ class ProjectIndexView(view_handler.View):
                 'store': store
             })
         else:
+            table_fields = ['name', 'progress', 'total', 'need-translation',
+                            'suggestions']
             template_vars.update({
-                'children': get_children(translation_project, directory)
+                'table': {
+                    'id': 'tp',
+                    'proportional': True,
+                    'fields': table_fields,
+                    'headings': get_table_headings(table_fields),
+                    'items': get_children(translation_project, directory),
+                }
             })
 
         if can_edit:

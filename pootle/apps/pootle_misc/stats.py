@@ -250,19 +250,3 @@ def stats_descriptions(quick_stats):
         'todo_text': todo_text,
         'todo_tooltip': todo_tooltip,
     }
-
-
-def get_stats_headings():
-    """Returns a dictionary of localized headings."""
-    return {
-        "name": ugettext("Name"),
-        # Translators: noun. The graphical representation of translation status
-        "progress": ugettext("Progress"),
-        # Translators: Heading representing the total number of words of a file
-        # or directory
-        "total": ugettext("Total"),
-        "need_translation": ugettext("Need Translation"),
-        # Translators: The number of suggestions pending review
-        "suggestions": ugettext("Suggestions"),
-        "last_activity": ugettext("Last Activity"),
-    }
