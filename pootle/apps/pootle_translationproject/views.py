@@ -405,9 +405,6 @@ def get_children(request, translation_project, directory):
     The elements of the list are dictionaries which keys are populated after
     in the templates.
     """
-
-    is_terminology = translation_project.project.is_terminology
-
     parent = []
     parent_dir = directory.parent
 
@@ -415,13 +412,11 @@ def get_children(request, translation_project, directory):
         parent = [{'title': u'..', 'href': parent_dir}]
 
     directories = [item_dict.make_directory_item(request, child_dir,
-                                                 include_suggestions=True,
-                                                 terminology=is_terminology)
+                                                 include_suggestions=True)
                    for child_dir in directory.child_dirs.iterator()]
 
     stores = [item_dict.make_store_item(request, child_store,
-                                        include_suggestions=True,
-                                        terminology=is_terminology)
+                                        include_suggestions=True)
               for child_store in directory.child_stores.iterator()]
 
     return parent + directories + stores

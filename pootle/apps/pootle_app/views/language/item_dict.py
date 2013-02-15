@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009-2012 Zuza Software Foundation
+# Copyright 2009-2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -26,63 +26,6 @@ from django.utils.translation import ungettext
 
 from pootle_app.views.language import dispatch
 from pootle_misc.stats import get_raw_stats
-from pootle_store.models import Store
-
-
-def get_item_summary(request, stats, path_obj):
-    translated_words = stats['translated']['words']
-    total_words = stats['total']['words']
-
-    # The translated word counts
-    word_stats = _("%(translated)d/%(total)d words (%(translatedpercent)d%%) translated",
-                   {"translated": translated_words,
-                    "total": total_words,
-                    "translatedpercent": stats['translated']['percentage']})
-
-    # The translated unit counts
-    string_stats_text = _("%(translated)d/%(total)d strings",
-                          {"translated": stats['translated']['units'],
-                           "total": stats['total']['units']})
-    string_stats = '<span class="string-statistics">[%s]</span>' % string_stats_text
-
-    # The whole string of stats
-    if not path_obj.is_dir:
-        summary = '%s %s' % (word_stats, string_stats)
-    else:
-        num_stores = Store.objects.filter(
-            pootle_path__startswith=path_obj.pootle_path
-        ).count()
-        file_stats = ungettext("%d file", "%d files", num_stores, num_stores)
-        summary = '%s %s %s' % (file_stats, word_stats, string_stats)
-
-    return summary
-
-def get_terminology_item_summary(request, stats, path_obj):
-    # The translated unit counts
-    string_stats_text = _("%(translated)d/%(total)d terms",
-                          {"translated": stats['translated']['units'],
-                           "total": stats['total']['units']})
-    string_stats = '<span class="string-statistics">%s</span>' % string_stats_text
-
-    # The whole string of stats
-    if not path_obj.is_dir:
-        summary = string_stats
-    else:
-        num_stores = Store.objects.filter(
-            pootle_path__startswith=path_obj.pootle_path
-        ).count()
-        file_stats = ungettext("%d file", "%d files", num_stores, num_stores)
-        summary = '%s %s' % (file_stats, string_stats)
-
-    return summary
-
-def get_item_stats(request, stats, path_obj, terminology=False):
-    if terminology:
-        summary = get_terminology_item_summary(request, stats, path_obj)
-    else:
-        summary = get_item_summary(request, stats, path_obj)
-
-    return {'summary': summary}
 
 
 def stats_descriptions(quick_stats):
@@ -109,8 +52,7 @@ def stats_descriptions(quick_stats):
     }
 
 
-def make_generic_item(request, path_obj, action, include_suggestions=False,
-                      terminology=False):
+def make_generic_item(request, path_obj, action, include_suggestions=False):
     """Template variables for each row in the table.
 
     make_directory_item() and make_store_item() will add onto these variables."""
@@ -125,7 +67,6 @@ def make_generic_item(request, path_obj, action, include_suggestions=False,
             'tooltip': _('%(percentage)d%% complete',
                          {'percentage': stats['translated']['percentage']}),
             'title': path_obj.name,
-            'summary': get_item_stats(request, stats, path_obj, terminology),
         }
 
         errors = stats.get('errors', 0)
@@ -144,22 +85,18 @@ def make_generic_item(request, path_obj, action, include_suggestions=False,
     return info
 
 
-def make_directory_item(request, directory, include_suggestions=False,
-                        terminology=False):
+def make_directory_item(request, directory, include_suggestions=False):
     action = directory.pootle_path
-    item = make_generic_item(request, directory, action, include_suggestions,
-                             terminology)
+    item = make_generic_item(request, directory, action, include_suggestions)
     item.update({
             'icon': 'folder',
             'isdir': True})
     return item
 
 
-def make_store_item(request, store, include_suggestions=False,
-                    terminology=False):
+def make_store_item(request, store, include_suggestions=False):
     action = store.pootle_path
-    item = make_generic_item(request, store, action, include_suggestions,
-                             terminology)
+    item = make_generic_item(request, store, action, include_suggestions)
     item.update({
             'icon': 'file',
             'isfile': True})
