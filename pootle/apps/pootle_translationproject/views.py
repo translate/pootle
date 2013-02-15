@@ -43,7 +43,6 @@ from pootle_app.project_tree import (ensure_target_dir_exists,
                                      direct_language_match_filename)
 from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
-from pootle_app.views.language import item_dict
 from pootle_app.views.language.view import (get_translation_project,
                                             set_request_context)
 from pootle_app.views.top_stats import gentopstats_translation_project
@@ -58,6 +57,8 @@ from pootle_store.models import Store
 from pootle_store.util import absolute_real_path, relative_real_path
 from pootle_store.filetypes import factory_classes
 from pootle_translationproject.actions import action_groups
+from pootle_translationproject.browser import (make_directory_item,
+                                               make_store_item)
 
 
 @get_translation_project
@@ -411,12 +412,11 @@ def get_children(request, translation_project, directory):
     if not (parent_dir.is_language() or parent_dir.is_project()):
         parent = [{'title': u'..', 'href': parent_dir}]
 
-    directories = [item_dict.make_directory_item(request, child_dir,
-                                                 include_suggestions=True)
+    directories = [make_directory_item(request, child_dir,
+                                       include_suggestions=True)
                    for child_dir in directory.child_dirs.iterator()]
 
-    stores = [item_dict.make_store_item(request, child_store,
-                                        include_suggestions=True)
+    stores = [make_store_item(request, child_store, include_suggestions=True)
               for child_store in directory.child_stores.iterator()]
 
     return parent + directories + stores

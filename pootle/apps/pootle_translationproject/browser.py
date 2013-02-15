@@ -18,12 +18,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-"""Helper functions for the rendering of several items on the index views and
-similar pages."""
-
 from django.utils.translation import ugettext as _, ungettext
 
-from pootle_app.views.language import dispatch
+from pootle_misc import dispatch
 from pootle_misc.stats import get_raw_stats, stats_descriptions
 
 
