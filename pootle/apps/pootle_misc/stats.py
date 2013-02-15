@@ -234,4 +234,5 @@ def get_stats_headings():
         "need_translation": ugettext("Need Translation"),
         # Translators: The number of suggestions pending review
         "suggestions": ugettext("Suggestions"),
+        "last_activity": ugettext("Last Activity"),
     }
