@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2012 Zuza Software Foundation
+# Copyright 2012-2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -20,7 +20,7 @@
 
 from django.core.urlresolvers import reverse
 from django.utils.encoding import force_unicode
-from django.utils.translation import ugettext_lazy as _, ungettext
+from django.utils.translation import ugettext_lazy as _, ugettext, ungettext
 
 from pootle_app.views.language import dispatch
 from pootle_misc.util import add_percentages
@@ -223,3 +223,15 @@ def stats_message(version, stats):
                           'total': stats.get("total", 0),
                           'fuzzy': stats.get("fuzzy", 0)
                      })
+
+
+def get_stats_headings():
+    """Returns a dictionary of localized headings."""
+    return {
+        "name": ugettext("Name"),
+        # Translators: noun. The graphical representation of translation status
+        "progress": ugettext("Progress"),
+        "need_translation": ugettext("Need Translation"),
+        # Translators: The number of suggestions pending review
+        "suggestions": ugettext("Suggestions"),
+    }

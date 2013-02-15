@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2012 Zuza Software Foundation
+# Copyright 2008-2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -33,18 +33,6 @@ from pootle_store.models import Store
 from pootle_store.views import (translate_page, get_failing_checks,
                                 get_view_units)
 from pootle_translationproject.models import TranslationProject
-
-
-def get_stats_headings():
-    """returns a dictionary of localised headings"""
-    return {
-        "name":                   _("Name"),
-        # Translators: noun. The graphical representation of translation status
-        "progress":               _("Progress"),
-        "need_translation":       _("Need Translation"),
-        # Translators: The number of suggestions pending review
-        "suggestions": _("Suggestions"),
-        }
 
 
 @decorate

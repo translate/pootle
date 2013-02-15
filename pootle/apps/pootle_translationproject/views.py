@@ -44,14 +44,13 @@ from pootle_app.project_tree import (ensure_target_dir_exists,
 from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
 from pootle_app.views.language import item_dict
-from pootle_app.views.language.view import (get_stats_headings,
-                                            get_translation_project,
+from pootle_app.views.language.view import (get_translation_project,
                                             set_request_context)
 from pootle_app.views.top_stats import gentopstats_translation_project
 from pootle_misc.baseurl import redirect
 from pootle_misc.checks import get_quality_check_failures
-from pootle_misc.stats import (get_raw_stats, get_translation_stats,
-                               get_path_summary)
+from pootle_misc.stats import (get_raw_stats, get_stats_headings,
+                               get_translation_stats, get_path_summary)
 from pootle_misc.util import jsonify, ajax_required
 from pootle_profile.models import get_profile
 from pootle_statistics.models import Submission, SubmissionTypes
