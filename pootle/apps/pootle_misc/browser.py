@@ -77,14 +77,14 @@ def get_table_headings(choices):
     return filter(lambda x: x['id'] in choices, HEADING_CHOICES)
 
 
-def make_generic_item(path_obj, action, include_suggestions=False):
+def make_generic_item(path_obj, action):
     """Template variables for each row in the table.
 
     :func:`make_directory_item` and :func:`make_store_item` will add onto these
     variables.
     """
     try:
-        stats = get_raw_stats(path_obj, include_suggestions)
+        stats = get_raw_stats(path_obj, include_suggestions=True)
         info = {
             'href': action,
             'href_all': dispatch.translate(path_obj),
@@ -114,9 +114,9 @@ def make_generic_item(path_obj, action, include_suggestions=False):
     return info
 
 
-def make_directory_item(directory, include_suggestions=False):
+def make_directory_item(directory):
     action = directory.pootle_path
-    item = make_generic_item(directory, action, include_suggestions)
+    item = make_generic_item(directory, action)
     item.update({
         'icon': 'folder',
         'isdir': True,
@@ -124,9 +124,9 @@ def make_directory_item(directory, include_suggestions=False):
     return item
 
 
-def make_store_item(store, include_suggestions=False):
+def make_store_item(store):
     action = store.pootle_path
-    item = make_generic_item(store, action, include_suggestions)
+    item = make_generic_item(store, action)
     item.update({
         'icon': 'file',
         'isfile': True,
@@ -147,10 +147,10 @@ def get_children(translation_project, directory):
     if not (parent_dir.is_language() or parent_dir.is_project()):
         parent = [{'title': u'..', 'href': parent_dir}]
 
-    directories = [make_directory_item(child_dir, include_suggestions=True)
+    directories = [make_directory_item(child_dir)
                    for child_dir in directory.child_dirs.iterator()]
 
-    stores = [make_store_item(child_store, include_suggestions=True)
+    stores = [make_store_item(child_store)
               for child_store in directory.child_stores.iterator()]
 
     return parent + directories + stores
