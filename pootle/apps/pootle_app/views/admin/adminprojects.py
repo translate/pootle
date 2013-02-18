@@ -19,13 +19,14 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from django.utils.translation import ugettext as _
 from django import forms
+from django.utils.translation import ugettext as _
 
 from pootle_app.views.admin import util
-from pootle_project.models import Project
 from pootle_language.models import Language
+from pootle_project.models import Project
 from pootle_store.models import Store
+
 
 @util.user_is_admin
 def view(request):
@@ -40,17 +41,22 @@ def view(request):
         class Meta:
             model = Project
 
-        source_language = forms.ModelChoiceField(label=_('Source Language'), initial=default_lang.pk,
-                                                 queryset=queryset)
+        source_language = forms.ModelChoiceField(label=_('Source Language'),
+                initial=default_lang.pk, queryset=queryset)
 
         def __init__(self, *args, **kwargs):
             super(ProjectForm, self).__init__(*args, **kwargs)
             if self.instance.id:
-                if Store.objects.filter(translation_project__project=self.instance).count():
+                has_stores = Store.objects.filter(
+                        translation_project__project=self.instance
+                    ).count
+                if has_stores:
                     self.fields['localfiletype'].widget.attrs['disabled'] = True
                     self.fields['localfiletype'].required = False
-                if self.instance.treestyle != 'auto' and self.instance.translationproject_set.count() and \
-                       self.instance.treestyle == self.instance._detect_treestyle():
+                if (self.instance.treestyle != 'auto' and
+                    self.instance.translationproject_set.count() and
+                    self.instance.treestyle ==
+                        self.instance._detect_treestyle()):
                     self.fields['treestyle'].widget.attrs['disabled'] = True
                     self.fields['treestyle'].required = False
 
