@@ -332,8 +332,8 @@
         }
 
         if (PTL.editor.filter == "search") {
-          $("#id_search").triggerHandler('focus');
           $("#id_search").val(PTL.editor.searchText);
+          $("#id_search").trigger('focus');
 
           // Set defaults if no fields have been specified
           if (!PTL.editor.searchFields.length) {

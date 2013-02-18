@@ -34,20 +34,12 @@
 
       /* Shortcuts */
       shortcut.add('ctrl+shift+s', function () {
-        PTL.search.$input.focus().select();
+        PTL.search.$input.focus();
       });
       shortcut.add('escape', function () {
         if (PTL.search.$input.attr("focused")) {
           PTL.search.$input.blur();
         }
-      });
-
-      /* Event handlers */
-      PTL.search.$input.focus(function() {
-        $(this).attr("focused", true);
-      });
-      PTL.search.$input.blur(function() {
-        $(this).attr("focused", "");
       });
 
       /* Search input text */
@@ -64,14 +56,18 @@
           initial = $label.hide().text().replace(':', '');
         }
 
-        input.focus(function () {
+        input.mouseup(function (e) {
+          e.preventDefault();
+        }).focus(function () {
           if (input.val() == initial && !search) {
             input.val('');
           }
+          input.data('focused', true).select();
         }).blur(function () {
           if (input.val() == '') {
             input.val(initial);
           }
+          input.data('focused', false);
         }).val(initial);
       });
 
