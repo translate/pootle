@@ -45,7 +45,7 @@ from pootle_statistics.models import SubmissionFields, SubmissionTypes
 from pootle_store.fields import (TranslationStoreField, MultiStringField,
                                  PLURAL_PLACEHOLDER, SEPARATOR)
 from pootle_store.filetypes import factory_classes, is_monolingual
-from pootle_store.util import (calculate_stats, empty_quickstats,
+from pootle_store.util import (calculate_stats, empty_quickstats, absolute_real_path,
                                OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED)
 
 
@@ -1226,10 +1226,10 @@ class Store(models.Model, base.TranslationStore):
 
                 storeclass = self.get_file_class()
                 store_path = os.path.join(
-                    self.translation_project.abs_real_path, self.name
+                    self.translation_project.real_path, self.name
                 )
                 store = self.convert(storeclass)
-                store.savefile(store_path)
+                store.savefile(absolute_real_path(store_path))
 
                 self.file = store_path
                 self.update_store_header(profile=profile)
@@ -1239,7 +1239,8 @@ class Store(models.Model, base.TranslationStore):
                 self.save()
             return
 
-        if conservative and self.translation_project.is_template_project:
+        if conservative and self.translation_project.is_template_project \
+           and not self.name.startswith("pootle-terminology"):
             # don't save to templates
             return
 
