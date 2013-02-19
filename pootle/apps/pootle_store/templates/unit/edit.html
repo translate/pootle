@@ -79,7 +79,7 @@
             {% for altunit in altsrcs %}
             <div class="source-language alternative">
               <div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
-                <div class="language-name">{{ altunit.store.translation_project.language.localname }}</div>
+                <div class="language-name">{{ altunit.store.translation_project.language.name }}</div>
                 {% if cansuggest or cantranslate %}
                 <div class="translate-toolbar">
                   <a class="icon-copy js-copyoriginal" title="{% trans 'Copy into translation' %}" accesskey="c"></a>
@@ -97,7 +97,7 @@
             <!-- Original -->
             <div class="source-language original">
               <div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
-                <div class="language-name">{{ source_language.localname }}</div>
+                <div class="language-name">{{ source_language.name }}</div>
                 {% if cansuggest or cantranslate %}
                 <div class="translate-toolbar">
                   {% if report_target %}

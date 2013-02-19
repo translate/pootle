@@ -94,7 +94,7 @@ def stats_language(language):
     text = u"""
     <li>%s</li>
     """ % _('%(language)s is %(percent)d%% complete',
-            {'language': language.localname(), 'percent': language.translated_percentage()})
+            {'language': language.name, 'percent': language.translated_percentage()})
     return text
 
 def stats_project(project):

@@ -191,7 +191,7 @@ class PootleProfile(models.Model):
                                                    language.directory)
             quicklinks.append({
                 'code': language.code,
-                'name': language.localname(),
+                'name': language.name,
                 'islangadmin': islangadmin,
                 'projects': langlinks
             })

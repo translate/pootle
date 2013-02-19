@@ -3,12 +3,12 @@
 {% load url from future %}
 {% load i18n baseurl cache %}
 
-{% block title %}{{ translation_project.project }} | {{ language.localname }} | {{ block.super }}{% endblock %}
+{% block title %}{{ translation_project.project }} | {{ language.name }} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}<li><a href='{{ "/projects/"|l }}'>{% trans "Projects" %}</a></li>
 {% cache settings.CACHE_TIMEOUT tp_bread directory.id LANGUAGE_CODE %}
-<li><a href="{{ translation_project.pootle_path|l }}">{{ translation_project.project }}</a></li><li><a href="{{ language.pootle_path|l }}">{{ language.localname }}</a></li>
+<li><a href="{{ translation_project.pootle_path|l }}">{{ translation_project.project }}</a></li><li><a href="{{ language.pootle_path|l }}">{{ language.name }}</a></li>
 {% endcache %}
 {% endblock %}
 

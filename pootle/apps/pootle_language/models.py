@@ -105,7 +105,7 @@ class Language(models.Model):
         return u'<%s: %s>' % (self.__class__.__name__, self.fullname)
 
     def __unicode__(self):
-        return u"%s - %s" % (self.localname(), self.code)
+        return u"%s - %s" % (self.name, self.code)
 
     @getfromcache
     def get_mtime(self):
