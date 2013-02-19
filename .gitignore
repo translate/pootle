@@ -16,6 +16,15 @@
 # /pootle/locale/*/LC_MESSAGES/
 /pootle/locale/*/LC_MESSAGES/
 
+# /pootle/po/
+/pootle/po/*/
+!/pootle/po/tutorial/
+!/pootle/po/templates/
+
+# /pootle/repos/
+/pootle/repos/*
+!/pootle/repos/README
+
 # /pootle/static/
 /pootle/static/.webassets-cache/
 /pootle/static/css/*.min.css
