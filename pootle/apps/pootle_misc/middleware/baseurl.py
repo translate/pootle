@@ -26,7 +26,7 @@ class BaseUrlMiddleware(object):
         domain = None
 
         if 'HTTP_HOST' in request.META:
-            domain = request.META['HTTP_HOST']
+            domain = request.get_host()
 
         if 'SCRIPT_NAME' in request.META:
             settings.SCRIPT_NAME = request.META['SCRIPT_NAME']
@@ -44,5 +44,5 @@ class BaseUrlMiddleware(object):
             # poison sites cache using detected domain
             from django.contrib.sites import models as sites_models
             sites_models.SITE_CACHE[settings.SITE_ID] = sites_models.Site(settings.SITE_ID,
-                                                                          request.META['HTTP_HOST'],
+                                                                          request.get_host(),
                                                                           settings.TITLE)
