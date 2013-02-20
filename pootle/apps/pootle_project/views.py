@@ -59,6 +59,7 @@ def get_last_action(translation_project):
 def make_language_item(request, translation_project):
     href = '/%s/%s/' % (translation_project.language.code,
                         translation_project.project.code)
+    href_all = dispatch.translate(translation_project)
     href_todo = dispatch.translate(translation_project, state='incomplete')
 
     project_stats = get_raw_stats(translation_project)
@@ -66,6 +67,7 @@ def make_language_item(request, translation_project):
     info = {
         'code': translation_project.language.code,
         'href': href,
+        'href_all': href_all,
         'href_todo': href_todo,
         'title': tr_lang(translation_project.language.fullname),
         'stats': project_stats,

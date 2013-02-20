@@ -49,6 +49,7 @@ def get_last_action(translation_project):
 def make_project_item(translation_project):
     project = translation_project.project
     href = translation_project.pootle_path
+    href_all = dispatch.translate(translation_project)
     href_todo = dispatch.translate(translation_project, state='incomplete')
 
     project_stats = get_raw_stats(translation_project)
@@ -56,6 +57,7 @@ def make_project_item(translation_project):
     info = {
         'code': project.code,
         'href': href,
+        'href_all': href_all,
         'href_todo': href_todo,
         'title': project.fullname,
         'description_html': project.description_html,
@@ -76,6 +78,7 @@ def make_project_item(translation_project):
     info.update(stats_descriptions(project_stats))
 
     return info
+
 
 def language_index(request, language_code):
     language = get_object_or_404(Language, code=language_code)
