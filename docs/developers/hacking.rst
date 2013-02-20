@@ -138,6 +138,7 @@ extras that will ease the development process.
 
 .. code-block:: bash
 
+    (env-name) $ cd pootle
     (env-name) $ pip install -r requirements/dev.txt
 
 .. note::
