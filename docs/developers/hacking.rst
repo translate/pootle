@@ -113,7 +113,7 @@ We could for example specify to use the Python 2.6 interpreter by passing the
 
 After running ``mkvirtualenv``, the newly created environment is activated. To
 activate and deactivate virtual environments simply run ``workon <env-name>``
-and ``deactive``.
+and ``deactivate``.
 
 Time to clone Pootle's source code repository. The main repository lives under
 `translate/pootle in GitHub <https://github.com/translate/pootle/>`_. If you
