@@ -131,11 +131,6 @@ $(function ($) {
     $(target).toggle();
   });
 
-  /* Cross-browser comparison function */
-  var strCmp = function (a, b) {
-    return a == b ? 0 : a < b ? -1 : 1;
-  };
-
   /* Sorts language names within select elements */
   var ids = ["id_languages", "id_alt_src_langs", "-language",
              "-source_language"];
@@ -154,7 +149,7 @@ $(function ($) {
 
         var opsArray = $.makeArray(options);
         opsArray.sort(function (a, b) {
-          return strCmp($(a).text(), $(b).text());
+          return PTL.utils.strCmp($(a).text(), $(b).text());
         });
 
         options.remove();

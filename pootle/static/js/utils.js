@@ -56,6 +56,11 @@
       return params.join('&');
     },
 
+    /* Cross-browser comparison function */
+    strCmp: function (a, b) {
+      return a == b ? 0 : a < b ? -1 : 1;
+    },
+
     /* Returns a string representing a relative datetime */
     relativeDate: function (date) {
       var fmt, count,
