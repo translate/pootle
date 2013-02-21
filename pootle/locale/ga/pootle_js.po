@@ -2,86 +2,88 @@
 # Copyright (C) 2012 Zuza Software Foundation (Translate.org.za)
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: pootle_js\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-27 15:51+0100\n"
-"PO-Revision-Date: 2012-12-30 15:51-0500\n"
-"Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
-"Language-Team: Irish\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
+"POT-Creation-Date: 2012-12-31 14:17+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ga\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 1.9.1-pre\n"
 
-#: assets/js/common.min.js:718 static/js/common.js:123
+#: static/js/common.js:89
+msgid "Expand details"
+msgstr ""
+
+#: static/js/common.js:89
+msgid "Collapse details"
+msgstr ""
+
+#: static/js/common.js:123
 msgid "Are you sure you want to continue?"
-msgstr "An bhfuil tú cinnte go dteastaíonn uait dul ar aghaidh?"
+msgstr ""
 
-#: assets/js/common.min.js:719 static/js/common.js:124
+#: static/js/common.js:124
 msgid "This operation cannot be undone."
-msgstr "Ní féidir an oibríocht seo a chealú."
+msgstr ""
 
-#: assets/js/editor.min.js:252 assets/js/editor.min.js.c:292
-#: static/js/editor.js:402 static/js/editor.js.c:1434
+#: static/js/editor.js:405 static/js/editor.js.c:1475
 msgid "No results."
-msgstr "Gan torthaí."
+msgstr ""
 
 #. Translators: Permalink to the current unit in the editor.
 #. The first '%s' is the permalink URL.
 #. The second '%s' is the unit number.
-#: assets/js/editor.min.js:263 static/js/editor.js:726
+#: static/js/editor.js:722
 #, c-format
-msgid "<a href=\"%s\">Unit %s</a>"
-msgstr "<a href=\"%s\">Teaghrán %s</a>"
+msgid "<a href=\"%s\">String %s</a>"
+msgstr ""
 
-#: assets/js/editor.min.js:265 static/js/editor.js:758
+#: static/js/editor.js:776
 msgid "Error while connecting to the server"
-msgstr "Earráid agus ceangal á bhunú leis an bhfreastalaí"
+msgstr ""
 
-#: assets/js/editor.min.js:265 static/js/editor.js:760
+#: static/js/editor.js:778
 msgid "Server error"
-msgstr "Earráid fhreastalaí"
+msgstr ""
 
-#: assets/js/editor.min.js:265 static/js/editor.js:762
+#: static/js/editor.js:780
 msgid "The server seems down. Try again later."
-msgstr "Tá an freastalaí as feidhm. Déan iarracht eile ar ball."
+msgstr ""
 
-#: assets/js/editor.min.js:265 static/js/editor.js:769
+#: static/js/editor.js:788
 msgid "Unknown error"
-msgstr "Earráid anaithnid"
+msgstr ""
 
-#: assets/js/editor.min.js:290 static/js/editor.js:1292
-msgid "Congratulations, you walked through all items"
-msgstr "Comhghairdeas, shiúil tú trí na teaghráin go léir"
+#: static/js/editor.js:1324
+msgid "Congratulations, you walked through all strings."
+msgstr ""
 
-#: assets/js/editor.min.js:290 static/js/editor.js:1309
+#: static/js/editor.js:1326 static/js/editor.js.c:1350
+msgid "Return to the overview page."
+msgstr ""
+
+#: static/js/editor.js:1345
 msgid "You reached the beginning of the list"
-msgstr "Shroich tú tús an liosta"
+msgstr ""
 
-#: assets/js/editor.min.js:290 static/js/editor.js:1311
-msgid "You reached the end of the list"
-msgstr "Shroich tú deireadh an liosta"
+#: static/js/editor.js:1348
+msgid "You reached the end of the list."
+msgstr ""
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
 #. '%' symbol to denote a percentage is being used.
-#: assets/js/editor.min.js:304 static/js/editor.js:1701
+#: static/js/editor.js:1742
 #, c-format
 msgid "%s% match"
-msgstr "%s% comhoiriúnach"
+msgstr ""
 
-#: assets/js/editor.min.js:308 static/js/editor.js:1743
-msgid "amaGama server"
-msgstr "Freastalaí amaGama"
-
-#: static/js/common.js:89
-msgid "Expand details"
-msgstr "Taispeáin mionsonraí"
-
-#: static/js/common.js:89
-msgid "Collapse details"
-msgstr "Folaigh mionsonraí"
+#: static/js/editor.js:1784
+msgid "Similar translations"
+msgstr ""
