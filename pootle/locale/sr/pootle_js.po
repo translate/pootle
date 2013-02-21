@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2012-12-31 14:17+0100\n"
+"POT-Creation-Date: 2013-02-21 17:19+0100\n"
 "PO-Revision-Date: 2013-02-11 22:15+0000\n"
 "Last-Translator: Rancher <theranchcowboy@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,74 +19,138 @@ msgstr ""
 "X-Generator: Pootle 2.5.0-beta1\n"
 "X-POOTLE-MTIME: 1360620910.0\n"
 
-#: static/js/common.js:89
+#: static/js/common.js:43
 msgid "Expand details"
 msgstr "Прошири детаље"
 
-#: static/js/common.js:89
+#: static/js/common.js:43
 msgid "Collapse details"
 msgstr "Скупи детаље"
 
-#: static/js/common.js:123
+#: static/js/common.js:77
 msgid "Are you sure you want to continue?"
 msgstr "Желите ли да наставите?"
 
-#: static/js/common.js:124
+#: static/js/common.js:78
 msgid "This operation cannot be undone."
 msgstr "Не могу да опозовем ову радњу."
 
-#: static/js/editor.js:405 static/js/editor.js.c:1475
+#: static/js/editor.js:409 static/js/editor.js.c:1489
 msgid "No results."
 msgstr "Нема резултата."
 
 #. Translators: Permalink to the current unit in the editor.
 #. The first '%s' is the permalink URL.
 #. The second '%s' is the unit number.
-#: static/js/editor.js:722
+#: static/js/editor.js:726
 #, c-format
 msgid "<a href=\"%s\">String %s</a>"
 msgstr "<a href=\"%s\">Ниска %s</a>"
 
-#: static/js/editor.js:776
+#: static/js/editor.js:786
 msgid "Error while connecting to the server"
 msgstr "Грешка при повезивању са сервером"
 
-#: static/js/editor.js:778
+#: static/js/editor.js:788
 msgid "Server error"
 msgstr "Грешка у серверу"
 
-#: static/js/editor.js:780
+#: static/js/editor.js:790
 msgid "The server seems down. Try again later."
 msgstr "Сервер је пао. Покушајте касније."
 
-#: static/js/editor.js:788
+#: static/js/editor.js:798
 msgid "Unknown error"
 msgstr "Непозната грешка"
 
-#: static/js/editor.js:1324
+#: static/js/editor.js:1338
 msgid "Congratulations, you walked through all strings."
 msgstr "Честитамо! Прешли сте све ниске."
 
-#: static/js/editor.js:1326 static/js/editor.js.c:1350
+#: static/js/editor.js:1340 static/js/editor.js.c:1364
 msgid "Return to the overview page."
 msgstr "Назад на страницу за преглед."
 
-#: static/js/editor.js:1345
+#: static/js/editor.js:1359
 msgid "You reached the beginning of the list"
 msgstr "Достигли сте почетак списка."
 
-#: static/js/editor.js:1348
+#: static/js/editor.js:1362
 msgid "You reached the end of the list."
 msgstr "Достигли сте крај списка."
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
 #. '%' symbol to denote a percentage is being used.
-#: static/js/editor.js:1742
+#: static/js/editor.js:1762
 #, c-format
 msgid "%s% match"
 msgstr "%s% резултат"
 
-#: static/js/editor.js:1784
+#: static/js/editor.js:1804
 msgid "Similar translations"
 msgstr "Слични преводи"
+
+#. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
+#: static/js/strings.js:7
+msgid "More"
+msgstr ""
+
+#. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
+#: static/js/strings.js:10
+msgid "Hide"
+msgstr ""
+
+#. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
+#: static/js/strings.js:13
+msgid "Less"
+msgstr ""
+
+#. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
+#: static/js/strings.js:16
+msgid "Show"
+msgstr ""
+
+#: static/js/utils.js:76
+#, c-format
+msgid "A year ago"
+msgid_plural "%s years ago"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: static/js/utils.js:79
+#, c-format
+msgid "A week ago"
+msgid_plural "%s weeks ago"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: static/js/utils.js:82
+#, c-format
+msgid "Yesterday"
+msgid_plural "%s days ago"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: static/js/utils.js:85
+#, c-format
+msgid "An hour ago"
+msgid_plural "%s hours ago"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: static/js/utils.js:88
+#, c-format
+msgid "A minute ago"
+msgid_plural "%s minutes ago"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: static/js/utils.js:96
+msgid "A few seconds ago"
+msgstr ""
