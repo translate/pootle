@@ -2,14 +2,13 @@
 # Copyright (C) 2012 Zuza Software Foundation (Translate.org.za)
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-27 15:51+0100\n"
-"PO-Revision-Date: 2012-12-06 21:21+0000\n"
-"Last-Translator: waffle <pal.nes@gmail.com>\n"
+"Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
+"POT-Creation-Date: 2012-12-31 14:17+0100\n"
+"PO-Revision-Date: 2013-01-26 20:12+0000\n"
+"Last-Translator: havarh <pootle@havar.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
@@ -17,68 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1354828905.0\n"
-
-#: assets/js/common.min.js:718 static/js/common.js:123
-msgid "Are you sure you want to continue?"
-msgstr "Er du sikker på at du vil fortsette?"
-
-#: assets/js/common.min.js:719 static/js/common.js:124
-msgid "This operation cannot be undone."
-msgstr "Denne operasjonen kan ikke omgjøres."
-
-#: assets/js/editor.min.js:252 assets/js/editor.min.js.c:292
-#: static/js/editor.js:402 static/js/editor.js.c:1434
-msgid "No results."
-msgstr "Ingen resultater."
-
-#. Translators: Permalink to the current unit in the editor.
-#. The first '%s' is the permalink URL.
-#. The second '%s' is the unit number.
-#: assets/js/editor.min.js:263 static/js/editor.js:726
-#, c-format
-msgid "<a href=\"%s\">Unit %s</a>"
-msgstr "<a href=\"%s\">Enhet %s</a>"
-
-#: assets/js/editor.min.js:265 static/js/editor.js:758
-msgid "Error while connecting to the server"
-msgstr "Feil ved tilkopling til tjeneren"
-
-#: assets/js/editor.min.js:265 static/js/editor.js:760
-msgid "Server error"
-msgstr "Tjenerfeil"
-
-#: assets/js/editor.min.js:265 static/js/editor.js:762
-msgid "The server seems down. Try again later."
-msgstr "Tjeneren virker frakoblet. Prøv igjen senere."
-
-#: assets/js/editor.min.js:265 static/js/editor.js:769
-msgid "Unknown error"
-msgstr "Ukjent feil"
-
-#: assets/js/editor.min.js:290 static/js/editor.js:1292
-msgid "Congratulations, you walked through all items"
-msgstr "Gratulerer, du gikk gjennom alle gjenstandene"
-
-#: assets/js/editor.min.js:290 static/js/editor.js:1309
-msgid "You reached the beginning of the list"
-msgstr "Du har nådd starten av listen"
-
-#: assets/js/editor.min.js:290 static/js/editor.js:1311
-msgid "You reached the end of the list"
-msgstr "Du har nådd slutten av listen"
-
-#. Translators: This is the quality match percentage of a TM result.
-#. '%s' will be replaced by a number, and you should keep the extra
-#. '%' symbol to denote a percentage is being used.
-#: assets/js/editor.min.js:304 static/js/editor.js:1701
-#, c-format
-msgid "%s% match"
-msgstr "%s% samsvar"
-
-#: assets/js/editor.min.js:308 static/js/editor.js:1743
-msgid "amaGama server"
-msgstr "amaGama server"
+"X-POOTLE-MTIME: 1359231125.0\n"
 
 #: static/js/common.js:89
 msgid "Expand details"
@@ -86,4 +24,81 @@ msgstr "Utvid detaljer"
 
 #: static/js/common.js:89
 msgid "Collapse details"
-msgstr "Kollaps detaljer"
+msgstr "Fold sammen detaljer"
+
+#: static/js/common.js:123
+msgid "Are you sure you want to continue?"
+msgstr "Er du sikker på at du vil fortsette?"
+
+#: static/js/common.js:124
+msgid "This operation cannot be undone."
+msgstr "Denne operasjonen kan ikke omgjøres."
+
+#: static/js/editor.js:405 static/js/editor.js.c:1475
+msgid "No results."
+msgstr "Ingen resultater."
+
+#. Translators: Permalink to the current unit in the editor.
+#. The first '%s' is the permalink URL.
+#. The second '%s' is the unit number.
+#: static/js/editor.js:722
+#, c-format
+msgid "<a href=\"%s\">String %s</a>"
+msgstr "<a href=\"%s\">Tekststreng %s</a>"
+
+#: static/js/editor.js:776
+msgid "Error while connecting to the server"
+msgstr "Feil ved tilkopling til tjeneren"
+
+#: static/js/editor.js:778
+msgid "Server error"
+msgstr "Tjenerfeil"
+
+#: static/js/editor.js:780
+msgid "The server seems down. Try again later."
+msgstr "Tjeneren virker frakoblet. Prøv igjen senere."
+
+#: static/js/editor.js:788
+msgid "Unknown error"
+msgstr "Ukjent feil"
+
+#: static/js/editor.js:1324
+msgid "Congratulations, you walked through all strings."
+msgstr "Gratulerer, du gikk gjennom alle tekststrengene."
+
+#: static/js/editor.js:1326 static/js/editor.js.c:1350
+msgid "Return to the overview page."
+msgstr "Tilbake til oversiktssiden."
+
+#: static/js/editor.js:1345
+msgid "You reached the beginning of the list"
+msgstr "Du har nådd starten av listen"
+
+#: static/js/editor.js:1348
+msgid "You reached the end of the list."
+msgstr "Du har nådd slutten av listen."
+
+#. Translators: This is the quality match percentage of a TM result.
+#. '%s' will be replaced by a number, and you should keep the extra
+#. '%' symbol to denote a percentage is being used.
+#: static/js/editor.js:1742
+#, c-format
+msgid "%s% match"
+msgstr "%s% treff"
+
+#: static/js/editor.js:1784
+msgid "Similar translations"
+msgstr "Lignende oversettelser"
+
+#, c-format
+#~ msgid "<a href=\"%s\">Unit %s</a>"
+#~ msgstr "<a href=\"%s\">Enhet %s</a>"
+
+#~ msgid "Congratulations, you walked through all items"
+#~ msgstr "Gratulerer, du gikk gjennom alle gjenstandene"
+
+#~ msgid "You reached the end of the list"
+#~ msgstr "Du har nådd slutten av listen"
+
+#~ msgid "amaGama server"
+#~ msgstr "amaGama server"

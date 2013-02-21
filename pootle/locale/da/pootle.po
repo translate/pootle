@@ -5,9 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-27 15:51+0100\n"
-"PO-Revision-Date: 2012-12-19 04:12+0000\n"
+"Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
+"POT-Creation-Date: 2012-12-31 14:17+0100\n"
+"PO-Revision-Date: 2013-02-10 08:11+0000\n"
 "Last-Translator: Aputsiaq Niels <aputtu@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-POOTLE-MTIME: 1355890321.0\n"
+"X-POOTLE-MTIME: 1360483907.0\n"
 
 #: strings.py:8
 msgid ""
@@ -212,7 +212,7 @@ msgid "Whether this page should be displayed on registration."
 msgstr "Om denne side skal vises ved tilmelding."
 
 #: apps/legalpages/models.py:38 apps/pootle_app/forms.py:30
-#: apps/pootle_notifications/views.py:143
+#: apps/pootle_notifications/views.py:141
 msgid "Title"
 msgstr "Titel"
 
@@ -226,13 +226,14 @@ msgstr ""
 "Hvis angivet, så vil enhver henvisning til denne juridiske side blive "
 "viderestillet til denne URL"
 
-#: apps/legalpages/models.py:42
-msgid "slug"
-msgstr "slug"
-
+#. Translators: See http://en.wikipedia.org/wiki/Slug_%28web_publishing%29#Slug
 #: apps/legalpages/models.py:43
-msgid "The page will be independently available in /about/<slug>/"
-msgstr "Denne side vil være tilgængelig, uafhængigt i /om/<slug>/"
+msgid "Slug"
+msgstr "Læsevenlig adresse/slug"
+
+#: apps/legalpages/models.py:44
+msgid "The page will be available at /about/<slug>/"
+msgstr "Denne side bliver tilgængelig på /om/<slug>/"
 
 #: apps/legalpages/models.py:46
 msgid "Content"
@@ -244,7 +245,7 @@ msgid "Allowed markup: %s"
 msgstr "Tilladt opmærkning: %s"
 
 #: apps/legalpages/views.py:67
-msgid "Legal Page created."
+msgid "Legal page created."
 msgstr "Oprettede juridisk side."
 
 #: apps/legalpages/templates/legalpages/admin/edit.html:4
@@ -282,8 +283,8 @@ msgid "No pages yet."
 msgstr "Endnu ingen sider."
 
 #: apps/legalpages/templates/legalpages/admin/list.html:31
-msgid "Add a new Legal Page"
-msgstr "Tilføj en ny juridisk side"
+msgid "New Legal Page"
+msgstr "Ny juridisk side"
 
 #: apps/pootle_app/admin.py:39
 msgid "Language code does not follow the ISO convention"
@@ -366,8 +367,8 @@ msgstr "Top bidragsydere"
 
 #. Translators: The number of suggestions pending review
 #: apps/pootle_app/templates/top_contributers_table.html:12
-#: apps/pootle_app/views/language/view.py:58
-#: apps/pootle_store/templates/store/translate.html:59
+#: apps/pootle_app/views/language/view.py:46
+#: apps/pootle_store/templates/store/translate.html:74
 msgid "Suggestions"
 msgstr "Forslag"
 
@@ -385,21 +386,21 @@ msgid "anonymous users"
 msgstr "anonyme brugere"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:4
-#: apps/pootle_app/views/language/view.py:42 apps/pootle_misc/stats.py:101
-#: apps/pootle_store/util.py:47
-#: apps/pootle_store/templates/store/translate.html:55
+#: apps/pootle_misc/stats.py:105 apps/pootle_store/util.py:47
+#: apps/pootle_store/templates/store/translate.html:70
 msgid "Translated"
 msgstr "Oversat"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:5
-msgid "Needs review"
-msgstr "Behøver review"
+#: apps/pootle_misc/stats.py:122 apps/pootle_store/forms.py:215
+#: apps/pootle_store/util.py:46
+#: apps/pootle_store/templates/store/translate.html:73
+msgid "Needs work"
+msgstr "Kræver en arbejdsindsats"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:6
-#: apps/pootle_app/views/index/index.py:111
-#: apps/pootle_app/views/language/view.py:48 apps/pootle_misc/stats.py:125
-#: apps/pootle_project/views.py:298 apps/pootle_store/util.py:45
-#: apps/pootle_store/templates/store/translate.html:57
+#: apps/pootle_misc/stats.py:139 apps/pootle_store/util.py:45
+#: apps/pootle_store/templates/store/translate.html:72
 msgid "Untranslated"
 msgstr "Ikke oversat"
 
@@ -411,7 +412,7 @@ msgstr "Gem ændringer"
 #: apps/pootle_app/templates/admin/admin_general_languages.html:4
 #: apps/pootle_app/templates/admin/admin_general_languages.html:9
 #: apps/pootle_app/templates/index/index.html:38
-#: apps/pootle_profile/models.py:72 templates/admin_profile_menu.html:6
+#: apps/pootle_profile/models.py:90 templates/admin_profile_menu.html:6
 msgid "Languages"
 msgstr "Sprog"
 
@@ -425,7 +426,7 @@ msgstr ""
 
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:4
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:9
-#: apps/pootle_app/views/admin/permissions.py:60
+#: apps/pootle_app/views/admin/permissions.py:101
 #: apps/pootle_language/templates/language/language_admin.html:5
 #: apps/pootle_language/templates/language/language_admin.html:8
 #: apps/pootle_project/templates/project/admin_permissions.html:7
@@ -466,7 +467,7 @@ msgstr ""
 #: apps/pootle_app/templates/index/index.html:67
 #: apps/pootle_notifications/templates/notices.html:20
 #: apps/pootle_notifications/templates/notices.html:34
-#: apps/pootle_profile/models.py:73
+#: apps/pootle_profile/models.py:93
 #: apps/pootle_project/templates/project/projects.html:7
 #: apps/pootle_project/templates/project/projects.html:10
 #: apps/pootle_project/templates/project/projects.html:16
@@ -673,6 +674,7 @@ msgstr ""
 "nyere version."
 
 #: apps/pootle_app/views/admin/dashboard.py:71
+#, python-format
 #, python-format, python-format
 msgid "lxml version %s is installed."
 msgstr "Version %s af lxml er installeret."
@@ -716,11 +718,11 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:107
 msgid ""
-"Can't find python-levenshtein package. Updating from templates is faster "
+"Can't find python-levenshtein package. Updating against templates is faster "
 "with python-levenshtein."
 msgstr ""
-"Kan ikke finde pakken python-levenshtein. Opdatering fra skabeloner sker "
-"hurtigere med python-levenshtein."
+"Pakken python-levenshtein blev ikke fundet. Opdatering op imod skabeloner "
+"sker hurtigere med python-levenshtein."
 
 #: apps/pootle_app/views/admin/dashboard.py:111
 msgid ""
@@ -836,7 +838,6 @@ msgid "Translated strings"
 msgstr "Oversatte tekststrenge"
 
 #: apps/pootle_app/views/admin/dashboard.py:203
-#: apps/pootle_app/views/language/view.py:44
 msgid "Translated words"
 msgstr "Oversatte ord"
 
@@ -844,16 +845,16 @@ msgstr "Oversatte ord"
 msgid "Active users"
 msgstr "Aktive brugere"
 
-#: apps/pootle_app/views/admin/permissions.py:46
-#: apps/pootle_app/views/admin/permissions.py:48
+#: apps/pootle_app/views/admin/permissions.py:61
+#: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Members"
 msgstr "Projekt-medlemmer"
 
-#: apps/pootle_app/views/admin/permissions.py:50
+#: apps/pootle_app/views/admin/permissions.py:74
 msgid "Language Members"
 msgstr "Sprog-medlemmer"
 
-#: apps/pootle_app/views/admin/permissions.py:51
+#: apps/pootle_app/views/admin/permissions.py:79
 msgid "All Users"
 msgstr "Alle brugere"
 
@@ -886,14 +887,6 @@ msgstr ""
 #, python-format
 msgid "%(percentage)d%% complete"
 msgstr "%(percentage)d%% færdig"
-
-#: apps/pootle_app/views/index/index.py:108 apps/pootle_project/views.py:295
-msgid "Translations are complete"
-msgstr "Oversættelser er færdige"
-
-#: apps/pootle_app/views/index/index.py:109 apps/pootle_project/views.py:296
-msgid "Translations need to be checked (they are marked fuzzy)"
-msgstr "Oversættelser behøver at blive tjekket (de er markeret uklare)"
 
 #: apps/pootle_app/views/language/item_dict.py:37
 #, python-format
@@ -951,63 +944,27 @@ msgstr[1] "Fejl ved læsning af %d filer"
 msgid "Name"
 msgstr "Navn"
 
-#: apps/pootle_app/views/language/view.py:43
-msgid "Translated percentage"
-msgstr "Procenttal for oversættelser"
-
-#: apps/pootle_app/views/language/view.py:45 apps/pootle_misc/stats.py:113
-#: apps/pootle_store/forms.py:193
-#: apps/pootle_store/templates/store/translate.html:58
-msgid "Fuzzy"
-msgstr "Uklar"
-
-#: apps/pootle_app/views/language/view.py:46
-msgid "Fuzzy percentage"
-msgstr "Uklar procenttal"
-
-#: apps/pootle_app/views/language/view.py:47
-msgid "Fuzzy words"
-msgstr "Uklare ord"
-
-#: apps/pootle_app/views/language/view.py:49
-msgid "Untranslated percentage"
-msgstr "Ikke oversat procenttal"
-
-#: apps/pootle_app/views/language/view.py:50
-msgid "Untranslated words"
-msgstr "Ikke oversatte ord"
-
-#: apps/pootle_app/views/language/view.py:51 apps/pootle_misc/stats.py:89
-msgid "Total"
-msgstr "Ialt"
-
-#: apps/pootle_app/views/language/view.py:52
-msgid "Total Words"
-msgstr "Ord ialt"
-
 #. Translators: noun. The graphical representation of translation status
-#: apps/pootle_app/views/language/view.py:54
+#: apps/pootle_app/views/language/view.py:43
 msgid "Progress"
 msgstr "Fremdrift"
 
-#: apps/pootle_app/views/language/view.py:55
-msgid "Summary"
-msgstr "Opsummering"
-
-#: apps/pootle_app/views/language/view.py:56
+#: apps/pootle_app/views/language/view.py:44
 msgid "Need Translation"
 msgstr "Kræver oversættelse"
 
-#: apps/pootle_app/views/language/view.py:120
-#: apps/pootle_translationproject/views.py:265
+#: apps/pootle_app/views/language/view.py:108
+#: apps/pootle_translationproject/views.py:263
 msgid "You do not have rights to access this translation project."
 msgstr "Du har ikke rettigheder til dette oversættelses projekt."
 
-#: apps/pootle_app/views/language/view.py:135
+#: apps/pootle_app/views/language/view.py:123
+#: apps/pootle_app/views/language/view.py:149
 msgid "You do not have rights to commit files here"
 msgstr "Du har ikke rettigheder til at commit'e filer her"
 
-#: apps/pootle_app/views/language/view.py:148
+#: apps/pootle_app/views/language/view.py:136
+#: apps/pootle_app/views/language/view.py:162
 msgid "You do not have rights to update files here"
 msgstr "Du har ikke rettigheder til at opdatere filer her"
 
@@ -1075,7 +1032,7 @@ msgstr[0] "%(projects)d projekt, %(average)d%% oversat"
 msgstr[1] "%(projects)d projecter, %(average)d%% oversat"
 
 #: apps/pootle_language/views.py:148 apps/pootle_project/views.py:160
-#: apps/pootle_translationproject/views.py:343
+#: apps/pootle_translationproject/views.py:342
 msgid "No description yet."
 msgstr "Endnu ingen beskrivelse."
 
@@ -1248,27 +1205,28 @@ msgstr "Begyndende punkttegn"
 msgid "Starting whitespace"
 msgstr "Begyndende blanktegn"
 
-#: apps/pootle_misc/checks.py:72
+#. Translators: This refers to tabulation characters
+#: apps/pootle_misc/checks.py:73
 msgid "Tabs"
 msgstr "Tabuleringer"
 
-#: apps/pootle_misc/checks.py:73
+#: apps/pootle_misc/checks.py:74
 msgid "Unchanged"
 msgstr "Uændret"
 
-#: apps/pootle_misc/checks.py:74
+#: apps/pootle_misc/checks.py:75
 msgid "URLs"
 msgstr "URL'er"
 
-#: apps/pootle_misc/checks.py:75
+#: apps/pootle_misc/checks.py:76
 msgid "Valid characters"
 msgstr "Gyldige tegn"
 
-#: apps/pootle_misc/checks.py:76
+#: apps/pootle_misc/checks.py:77
 msgid "Placeholders"
 msgstr "Pladsholdere"
 
-#: apps/pootle_misc/checks.py:77
+#: apps/pootle_misc/checks.py:78
 msgid "XML tags"
 msgstr "XML-mærker"
 
@@ -1379,15 +1337,15 @@ msgstr "Mislykkedes med import af forslag fra %s"
 
 #: apps/pootle_misc/dbupdate.py:402
 #, python-format
-msgid "Imported %(count)d unit from %(store)s"
-msgid_plural "Imported %(count)d units from %(store)s"
-msgstr[0] "Importerede %(count)d enhed fra %(store)s"
-msgstr[1] "Importerede %(count)d enheder fra %(store)s"
+msgid "Imported %(count)d string from %(store)s"
+msgid_plural "Imported %(count)d strings from %(store)s"
+msgstr[0] "Importerede %(count)d streng fra %(store)s"
+msgstr[1] "Importerede %(count)d strenge fra %(store)s"
 
 #: apps/pootle_misc/dbupdate.py:408
 #, python-format
-msgid "Failed to import units from %s"
-msgstr "Mislykkedes med import af enheder fra %s"
+msgid "Failed to import strings from %s"
+msgstr "Mislykkedes med import af strenge fra %s"
 
 #: apps/pootle_misc/dbupdate.py:417
 msgid "All translations are now imported."
@@ -1402,56 +1360,71 @@ msgstr ""
 "10 sekunder."
 
 #: apps/pootle_misc/forms.py:97
-msgid "Search (Ctrl+Shift+S)<br/>Type in, then press Enter to search"
-msgstr "Søg (Ctrl+Shift+S)<br/>Indtast, tryk dernæst Retur for at søge"
+msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
+msgstr "Søg (Ctrl+Shift+S)<br/>Indtast og tryk dernæst Retur for at søge"
 
-#: apps/pootle_misc/forms.py:104
+#: apps/pootle_misc/forms.py:103
 msgid "Source Text"
 msgstr "Kildetekst"
 
-#: apps/pootle_misc/forms.py:105
+#: apps/pootle_misc/forms.py:104
 msgid "Target Text"
 msgstr "Måltekst"
 
-#: apps/pootle_misc/forms.py:106
+#: apps/pootle_misc/forms.py:105
 msgid "Comments"
 msgstr "Kommentarer"
 
-#: apps/pootle_misc/forms.py:107
+#: apps/pootle_misc/forms.py:106
 msgid "Locations"
 msgstr "Placeringer"
 
-#: apps/pootle_misc/forms.py:120
+#: apps/pootle_misc/forms.py:119
 msgid "Source Terms"
 msgstr "Kildetermer"
 
-#: apps/pootle_misc/forms.py:121
+#: apps/pootle_misc/forms.py:120
 msgid "Target Terms"
 msgstr "Måltermer"
 
-#: apps/pootle_misc/forms.py:122
+#: apps/pootle_misc/forms.py:121
 msgid "Definitions"
 msgstr "Definitioner"
 
-#: apps/pootle_misc/stats.py:90 apps/pootle_misc/stats.py:102
-#: apps/pootle_misc/stats.py:114 apps/pootle_misc/stats.py:126
-#, python-format
-msgid "<a href=\"%(url)s\">%(num)d words</a>"
-msgstr "<a href=\"%(url)s\">%(num)d ord</a>"
+#: apps/pootle_misc/stats.py:89
+msgid "Total"
+msgstr "Ialt"
 
-#: apps/pootle_misc/stats.py:93 apps/pootle_misc/stats.py:105
-#: apps/pootle_misc/stats.py:117 apps/pootle_misc/stats.py:129
+#: apps/pootle_misc/stats.py:90 apps/pootle_misc/stats.py:106
+#: apps/pootle_misc/stats.py:123 apps/pootle_misc/stats.py:140
+#, python-format
+msgid "<a href=\"%(url)s\">%(num)d word</a>"
+msgid_plural "<a href=\"%(url)s\">%(num)d words</a>"
+msgstr[0] "<a href=\"%(url)s\">%(num)d ord</a>"
+msgstr[1] "<a href=\"%(url)s\">%(num)d ord</a>"
+
+#: apps/pootle_misc/stats.py:95 apps/pootle_misc/stats.py:112
+#: apps/pootle_misc/stats.py:129 apps/pootle_misc/stats.py:146
 #, python-format
 msgid "%(num)d%%"
 msgstr "%(num)d%%"
 
-#: apps/pootle_misc/stats.py:95 apps/pootle_misc/stats.py:107
-#: apps/pootle_misc/stats.py:119 apps/pootle_misc/stats.py:131
+#: apps/pootle_misc/stats.py:97 apps/pootle_misc/stats.py:114
+#: apps/pootle_misc/stats.py:131
 #, python-format
-msgid "(%(num)d units)"
-msgstr "(%(num)d elementer)"
+msgid "(%(num)d string)"
+msgid_plural "(%(num)d strings)"
+msgstr[0] "(%(num)d streng)"
+msgstr[1] "(%(num)d strenge)"
 
-#: apps/pootle_misc/stats.py:146
+#: apps/pootle_misc/stats.py:148
+#, python-format
+msgid "(%(num)d strings)"
+msgid_plural "(%(num)d strings)"
+msgstr[0] "(%(num)d strenge)"
+msgstr[1] "(%(num)d strenge)"
+
+#: apps/pootle_misc/stats.py:165
 #, python-format
 msgid "This folder has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
@@ -1459,7 +1432,7 @@ msgid_plural ""
 msgstr[0] "Denne mappe har %(num)d ord, hvoraf %(percentage)d%% er oversat."
 msgstr[1] "Denne mappe har %(num)d ord, hvoraf %(percentage)d%% er oversat."
 
-#: apps/pootle_misc/stats.py:157
+#: apps/pootle_misc/stats.py:177
 #, python-format
 msgid "This file has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
@@ -1467,22 +1440,22 @@ msgid_plural ""
 msgstr[0] "Denne fil har %(num)d ord, hvoraf %(percentage)d%% er oversatte."
 msgstr[1] "Denne fil har %(num)d ord, hvoraf %(percentage)d%% er oversatte."
 
-#: apps/pootle_misc/stats.py:180
+#: apps/pootle_misc/stats.py:199
 msgid "Expand details"
 msgstr "Udvid detaljer"
 
-#: apps/pootle_misc/stats.py:192
+#: apps/pootle_misc/stats.py:210
 #, python-format
 msgid "Continue translation (%(num)d word left)"
 msgid_plural "Continue translation (%(num)d words left)"
 msgstr[0] "Fortsæt med oversættelse (%(num)d ord tilbage)"
 msgstr[1] "Fortsæt med oversættelse (%(num)d ord tilbage)"
 
-#: apps/pootle_misc/stats.py:199
+#: apps/pootle_misc/stats.py:220
 msgid "Translation is complete"
 msgstr "Oversættelse er færdig"
 
-#: apps/pootle_misc/stats.py:209
+#: apps/pootle_misc/stats.py:231
 #, python-format
 msgid "Review suggestion (%(num)d left)"
 msgid_plural "Review suggestions (%(num)d left)"
@@ -1491,35 +1464,38 @@ msgstr[1] "Gennemgå forslag (%(num)d tilbage)"
 
 #. Translators: 'type' is the type of VCS file: working, remote,
 #. or merged copy.
-#: apps/pootle_misc/stats.py:231
+#: apps/pootle_misc/stats.py:252
 #, python-format
 msgid ""
-"%(type)s: %(translated)d of %(total)d messages translated (%(fuzzy)d fuzzy)."
-msgstr ""
-"%(type)s: %(translated)d af %(total)d beskeder er oversat (%(fuzzy)d "
-"uklare)."
+"%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d fuzzy)."
+msgid_plural ""
+"%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d fuzzy)."
+msgstr[0] ""
+"%(type)s: %(translated)d af %(total)d streng oversat (%(fuzzy)d uklare)."
+msgstr[1] ""
+"%(type)s: %(translated)d af %(total)d strenge oversatte (%(fuzzy)d uklare)."
 
-#: apps/pootle_misc/middleware/errorpages.py:64
+#: apps/pootle_misc/middleware/errorpages.py:65
 #, python-format
 msgid "You need to <a href=\"%(login_link)s\">login</a> to access this page."
 msgstr "Du skal <a href=\"%(login_link)s\">logge ind</a> for at tilgå denne side."
 
-#: apps/pootle_misc/middleware/errorpages.py:82
+#: apps/pootle_misc/middleware/errorpages.py:83
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
+"Fejl under tilgang af %(filename)s, filsystemet meldte fejlen: %(errormsg)s"
 
 #: apps/pootle_misc/templates/progressbar.html:3
-#, fuzzy, python-format
+#, python-format, python-format
 msgid "%(percent)s%% complete"
-msgstr "%(percentage)d%% færdig"
+msgstr "%(percentage)s%% færdig"
 
 #: apps/pootle_misc/templates/search.html:5
 msgid "Search"
 msgstr "Søg"
 
 #: apps/pootle_misc/templates/search.html:7
-#, fuzzy
 msgid "Advanced search"
 msgstr "Avanceret søgning"
 
@@ -1549,55 +1525,55 @@ msgstr "Besked"
 msgid "Added"
 msgstr "Tilføjet"
 
-#: apps/pootle_notifications/views.py:105
+#: apps/pootle_notifications/views.py:103
 #, python-format
 msgid "News for %(language)s"
 msgstr "Nyheder for %(language)s"
 
-#: apps/pootle_notifications/views.py:107
+#: apps/pootle_notifications/views.py:105
 #, python-format
 msgid "News for %(project)s"
 msgstr "Nyheder for %(project)s"
 
-#: apps/pootle_notifications/views.py:113
+#: apps/pootle_notifications/views.py:111
 #, python-format
 msgid "News for the %(project)s project in %(language)s"
 msgstr "Nyheder for projektet %(project)s i %(language)s"
 
-#: apps/pootle_notifications/views.py:114
+#: apps/pootle_notifications/views.py:112
 #, python-format
 msgid "News for %(path)s"
 msgstr "Nyheder for %(path)s"
 
-#: apps/pootle_notifications/views.py:140
-msgid "Publish on News feed"
+#: apps/pootle_notifications/views.py:138
+msgid "Publish on news feed"
 msgstr "Publicér i nyhedskilde"
 
-#: apps/pootle_notifications/views.py:142
-msgid "Send Email"
-msgstr "Send besked"
+#: apps/pootle_notifications/views.py:140
+msgid "Send email"
+msgstr "Send e-post"
 
-#: apps/pootle_notifications/views.py:145
+#: apps/pootle_notifications/views.py:143
 msgid "Email only to recently active users"
 msgstr "Send kun til nyligt aktive brugere "
 
-#: apps/pootle_notifications/views.py:153
+#: apps/pootle_notifications/views.py:151
 msgid "All Projects"
 msgstr "Alle projekter"
 
-#: apps/pootle_notifications/views.py:157
+#: apps/pootle_notifications/views.py:155
 msgid "Project Selection"
 msgstr "Valg af projekt"
 
-#: apps/pootle_notifications/views.py:165
+#: apps/pootle_notifications/views.py:163
 msgid "All Languages"
 msgstr "Alle sprog"
 
-#: apps/pootle_notifications/views.py:169
+#: apps/pootle_notifications/views.py:167
 msgid "Language Selection"
 msgstr "Sprogvalg"
 
-#: apps/pootle_notifications/views.py:295
+#: apps/pootle_notifications/views.py:293
 msgid "View News Item"
 msgstr "Vis nyhedselement"
 
@@ -1629,7 +1605,7 @@ msgstr "Udgiv"
 msgid "Default"
 msgstr "Standard"
 
-#: apps/pootle_profile/forms.py:47 apps/pootle_profile/models.py:74
+#: apps/pootle_profile/forms.py:47 apps/pootle_profile/models.py:96
 msgid "Interface Language"
 msgstr "Grænseflade sprog"
 
@@ -1637,37 +1613,37 @@ msgstr "Grænseflade sprog"
 msgid "This account is inactive."
 msgstr "Denne konto er inaktiv."
 
-#: apps/pootle_profile/models.py:70
+#: apps/pootle_profile/models.py:86
 msgid "Number of Rows"
 msgstr "Antal rækker"
 
-#: apps/pootle_profile/models.py:75
+#: apps/pootle_profile/models.py:100
 msgid "Alternative Source Languages"
 msgstr "Alternativ kildesprog"
 
-#: apps/pootle_profile/models.py:123
+#: apps/pootle_profile/models.py:150
 msgid "Suggestions Accepted"
 msgstr "Forslag accepteret"
 
-#: apps/pootle_profile/models.py:124
+#: apps/pootle_profile/models.py:154
 msgid "Suggestions Pending"
 msgstr "Forslag afventende"
 
-#: apps/pootle_profile/models.py:125
+#: apps/pootle_profile/models.py:158
 msgid "Suggestions Reviewed"
 msgstr "Forslag reviewed"
 
-#: apps/pootle_profile/models.py:126
+#: apps/pootle_profile/models.py:162
 msgid "Submissions Made"
 msgstr "Bidrag foretaget"
 
 #: apps/pootle_project/models.py:56
 msgid ""
-"A short code for the project. This should only containASCII characters, "
+"A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
 msgstr ""
-"En kort adresse for projektet. Denne bør kun indeholde ASCII-tegn, tal og "
-"bundtegn (_)."
+"En kort kode for projektet. Bør kun bestå af ASCII tegn, tal og tegnet "
+"understregning (_)."
 
 #: apps/pootle_project/models.py:64
 #, python-format
@@ -1715,29 +1691,28 @@ msgstr ""
 
 #: apps/pootle_project/models.py:102
 msgid "Report Target"
-msgstr ""
+msgstr "Destination for rapport"
 
 #: apps/pootle_project/views.py:117
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(languages)d sprog, %(average)d%% oversat"
+msgstr[1] "%(languages)d sprog, %(average)d%% oversat"
 
 #: apps/pootle_project/views.py:201 apps/pootle_project/views.py:269
-#, fuzzy
 msgid "You do not have rights to administer this project."
-msgstr "Du har ikke rettighederne til at administrere dette sprog."
+msgstr "Du har ikke rettigheder til at administrere dette sprog."
 
 #: apps/pootle_project/views.py:212
-msgid "Update from templates"
-msgstr "Opdatér fra skabelon"
+#: apps/pootle_translationproject/actions.py:201
+msgid "Update against templates"
+msgstr "Opdatér op imod skabeloner"
 
 #: apps/pootle_project/templates/project/admin_permissions.html:24
-#, fuzzy
 msgid "Below you can add, edit, and delete the permissions for this project."
 msgstr ""
-"Herunder kan du tilføje,redigere, og slette tilladelser for dette sprog."
+"Herunder kan du tilføje, redigere og slette rettighederne for dette projekt."
 
 #: apps/pootle_project/templates/project/project_admin.html:7
 #: apps/pootle_project/templates/project/project_admin.html:10
@@ -1751,26 +1726,24 @@ msgstr "Her kan du tilføje, redigere, eller slette sprog for dette projekt."
 
 #: apps/pootle_statistics/models.py:47
 msgid "Source"
-msgstr ""
+msgstr "Kilde"
 
 #: apps/pootle_statistics/models.py:48
 msgid "Target"
-msgstr ""
+msgstr "Destination"
 
 #: apps/pootle_statistics/models.py:49
 msgid "State"
-msgstr ""
+msgstr "Tilstand"
 
 #: apps/pootle_statistics/models.py:50
-#: apps/pootle_store/templates/unit/edit.html:193
 #: apps/pootle_store/templates/unit/xhr-comment.html:10
-#, fuzzy
 msgid "Comment"
-msgstr "Kommentarer"
+msgstr "Kommentar"
 
-#: apps/pootle_statistics/models.py:89
-msgid "Unknown submitter"
-msgstr ""
+#: apps/pootle_statistics/models.py:95
+msgid "anonymous user"
+msgstr "anonym bruger"
 
 #: apps/pootle_store/filetypes.py:29
 msgid "Gettext PO"
@@ -1820,25 +1793,25 @@ msgstr "OS X-strenge"
 
 #: apps/pootle_store/filetypes.py:85
 msgid "PHP arrays"
-msgstr ""
+msgstr "PHP-vektorer"
 
 #: apps/pootle_store/filetypes.py:88
 msgid "Subtitles: srt"
-msgstr ""
+msgstr "Undertekster: srt"
 
 #: apps/pootle_store/filetypes.py:89
 msgid "Subtitles: sub"
-msgstr ""
+msgstr "Undertekster: sub"
 
 #: apps/pootle_store/filetypes.py:90
 msgid "Subtitles: ssa"
-msgstr ""
+msgstr "Undertekster: ssa"
 
 #: apps/pootle_store/filetypes.py:91
 msgid "Subtitles: ass"
-msgstr ""
+msgstr "Undertekster: ass"
 
-#: apps/pootle_store/forms.py:96
+#: apps/pootle_store/forms.py:95
 #: apps/pootle_store/templatetags/store_tags.py:138
 #: apps/pootle_store/templatetags/store_tags.py:154
 #: apps/pootle_store/templatetags/store_tags.py:161
@@ -1848,48 +1821,43 @@ msgstr ""
 msgid "Plural Form %d"
 msgstr "Flertalsform %d"
 
-#: apps/pootle_store/forms.py:273
-#, fuzzy
+#: apps/pootle_store/forms.py:296
 msgid "Translator comment"
 msgstr "Oversætters kommentar"
 
-#: apps/pootle_store/models.py:760
+#: apps/pootle_store/models.py:810
 msgid "Path"
-msgstr ""
+msgstr "Sti"
 
 #: apps/pootle_store/util.py:44
 msgid "Obsolete"
-msgstr ""
-
-#: apps/pootle_store/util.py:46
-msgid "Needs work"
-msgstr ""
+msgstr "Udgået"
 
 #: apps/pootle_store/views.py:77
 msgid "Insufficient rights to this translation project."
 msgstr "Utilstrækkelige rettigheder for dette oversættelsesprojekt."
 
-#: apps/pootle_store/views.py:658
+#: apps/pootle_store/views.py:689
 msgid "Comment submission failed."
 msgstr "Afsendelse af kommentar mislykkedes."
 
-#: apps/pootle_store/views.py:778 apps/pootle_store/views.py:842
+#: apps/pootle_store/views.py:809 apps/pootle_store/views.py:873
 msgid "You do not have rights to access translation mode."
 msgstr "Du har ikke rettigheder til at tilgå oversættelsestilstand."
 
-#: apps/pootle_store/views.py:825
+#: apps/pootle_store/views.py:856
 msgid "Failed to process submission."
 msgstr "Behandling af det afsendte mislykkedes."
 
-#: apps/pootle_store/views.py:874
+#: apps/pootle_store/views.py:905
 msgid "Failed to process suggestion."
 msgstr "Behandlingen af forslag mislykkedes."
 
-#: apps/pootle_store/views.py:894
+#: apps/pootle_store/views.py:926
 msgid "You do not have rights to access review mode."
 msgstr "Du har ikke rettigheder til at tilgå tilstanden gennemgang."
 
-#: apps/pootle_store/views.py:993
+#: apps/pootle_store/views.py:1025
 msgid "The suggestion or vote is not valid any more."
 msgstr "Forslaget eller stemmeafgivning er ikke længere gyldig."
 
@@ -1907,70 +1875,74 @@ msgid ""
 msgstr ""
 "Slå venligst JavaScipt til i din browser-indstillinger, og genindlæs siden."
 
-#: apps/pootle_store/templates/store/translate.html:51
+#: apps/pootle_store/templates/store/translate.html:65
 msgid "Filter by:"
 msgstr "Filtrér efter:"
 
-#: apps/pootle_store/templates/store/translate.html:54
+#. Translators: This refers to "All strings"
+#: apps/pootle_store/templates/store/translate.html:69
 msgid "All"
 msgstr "Alle"
 
-#: apps/pootle_store/templates/store/translate.html:56
+#: apps/pootle_store/templates/store/translate.html:71
 msgid "Incomplete"
 msgstr "Ufuldstændig"
 
-#: apps/pootle_store/templates/store/translate.html:60
-#, fuzzy
-msgid "My Suggestions"
-msgstr "Forslag"
+#: apps/pootle_store/templates/store/translate.html:75
+msgid "My suggestions"
+msgstr "Mine forslag"
 
-#: apps/pootle_store/templates/store/translate.html:61
+#: apps/pootle_store/templates/store/translate.html:76
 msgid "Checks"
 msgstr "Tjek"
 
-#: apps/pootle_store/templates/store/translate.html:69
-msgid "Previous unit"
-msgstr "Forrige element"
+#: apps/pootle_store/templates/store/translate.html:84
+msgid "Previous string"
+msgstr "Forrige streng"
 
-#: apps/pootle_store/templates/store/translate.html:69
+#: apps/pootle_store/templates/store/translate.html:84
 msgid ""
-"Go to the previous unit (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
+"Go to the previous string (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+Page&nbsp;Up<br/>First page: Ctrl+Shift+Home"
 msgstr ""
+"Gå til forrige streng (Ctrl+Pil op)<br/><br/>I tillæg:<br/>Forrige side: "
+"Ctrl+Skift+Side&nbsp;Op<br/>Første side: Ctrl+Skift+Home"
 
-#: apps/pootle_store/templates/store/translate.html:71
+#: apps/pootle_store/templates/store/translate.html:86
 msgid ""
 "Current page number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
+"Nuværende sidenummer (Ctrl+Skift+U)<br/><br/>Indtast nummeret og tryk "
+"Retur<br/>for at gå til hvilken som helst position"
 
-#: apps/pootle_store/templates/store/translate.html:73
+#: apps/pootle_store/templates/store/translate.html:88
 msgid "Total pages"
-msgstr ""
+msgstr "Sider ialt"
 
-#: apps/pootle_store/templates/store/translate.html:75
-msgid "Next unit"
-msgstr "Næste element"
+#: apps/pootle_store/templates/store/translate.html:90
+msgid "Next string"
+msgstr "Næste streng"
 
-#: apps/pootle_store/templates/store/translate.html:75
+#: apps/pootle_store/templates/store/translate.html:90
 msgid ""
-"Go to the next unit (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
+"Go to the next string (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
 "+Page&nbsp;Down<br/>Last page: Ctrl+Shift+End"
 msgstr ""
+"Gå til næste streng (Ctrl+Pil ned)<br/><br/>I tillæg:<br/>Næste side: "
+"Ctrl+Skift+Side&nbsp;Ned<br/>Sidste side: Ctrl+Skift+Home"
 
 #: apps/pootle_store/templates/unit/edit.html:11
-#, fuzzy
 msgid "File:"
-msgstr "Gem"
+msgstr "Fil:"
 
 #: apps/pootle_store/templates/unit/edit.html:18
 msgid "Context:"
-msgstr ""
+msgstr "Kontekst:"
 
 #: apps/pootle_store/templates/unit/edit.html:28
-#, fuzzy
 msgid "Comments:"
-msgstr "Kommentarer"
+msgstr "Kommentarer:"
 
 #: apps/pootle_store/templates/unit/edit.html:32
 msgid "Locations:"
@@ -1978,11 +1950,11 @@ msgstr "Placeringer:"
 
 #: apps/pootle_store/templates/unit/edit.html:41
 msgid "Terminology:"
-msgstr ""
+msgstr "Terminologi:"
 
 #: apps/pootle_store/templates/unit/edit.html:43
-msgid "Click to insert the translated term into the editor"
-msgstr "Klik for at indsætte den oversatte term i redigeringen"
+msgid "Insert the translated term into the editor"
+msgstr "Indsæt den oversatte term i redigeringen"
 
 #: apps/pootle_store/templates/unit/edit.html:56
 msgid "Possible issues with the translation"
@@ -2007,13 +1979,13 @@ msgstr "Rapportér et problem med kildestrengen"
 
 #: apps/pootle_store/templates/unit/edit.html:128
 #: apps/pootle_store/templates/unit/edit.html:138
-#: apps/pootle_store/templates/unit/edit.html:173
+#: apps/pootle_store/templates/unit/edit.html:204
 msgid "Submit"
 msgstr "Send"
 
 #: apps/pootle_store/templates/unit/edit.html:128
-msgid "Submit translation and go to the next unit (Ctrl+Enter)"
-msgstr "Indsæt oversættelse og gå til næste element (Ctrl+Retur)"
+msgid "Submit translation and go to the next string (Ctrl+Enter)"
+msgstr "Send oversættelse og gå til næste streng (Ctrl+Retur)"
 
 #: apps/pootle_store/templates/unit/edit.html:131
 #: apps/pootle_store/templates/unit/edit.html:139
@@ -2021,8 +1993,8 @@ msgid "Suggest"
 msgstr "Foreslå"
 
 #: apps/pootle_store/templates/unit/edit.html:131
-msgid "Suggest translation and go to the next unit (Ctrl+Enter)"
-msgstr "Foreslå oversættelse og gå til næste element (Ctrl+Retur)"
+msgid "Suggest translation and go to the next string (Ctrl+Enter)"
+msgstr "Foreslå oversættelse og gå til næste streng (Ctrl+Retur)"
 
 #: apps/pootle_store/templates/unit/edit.html:137
 msgid "Toggle suggest mode (Ctrl+Shift+Space)"
@@ -2033,51 +2005,96 @@ msgid "Toggle fuzzy state (Ctrl+Space)"
 msgstr "Slå uklar-tilstand til eller fra (Ctrl+Mellemrum)"
 
 #: apps/pootle_store/templates/unit/edit.html:155
-msgid "Click to insert this symbol into the editor"
-msgstr ""
+msgid "Insert RLM (Right-To-Left Mark) into the editor"
+msgstr "Indsæt RLM (Right-To-Left Mark/Højre-til-venstre-mærke) i redigeringen"
 
-#: apps/pootle_store/templates/unit/edit.html:166
-msgid "Add Comment"
+#: apps/pootle_store/templates/unit/edit.html:158
+msgid "Insert LRM (Left-To-Right Mark) into the editor"
+msgstr "Indsæt LRM (Left-To-Right Mark/Venstre-til-højre-mærke) i redigeringen"
+
+#: apps/pootle_store/templates/unit/edit.html:161
+msgid "Insert RLE (Right-To-Left Embedding) into the editor"
 msgstr ""
+"Indsæt RLE (Right-To-Left Embedding/Højre-til-venstre indlejring) i "
+"redigeringsværktøjet"
+
+#: apps/pootle_store/templates/unit/edit.html:164
+msgid "Insert LRE (Left-To-Right Embedding) into the editor"
+msgstr ""
+"Indsæt LRE (Left-To-Right Embedding/Venstre-til-højre indlejring) i "
+"redigeringsværktøjet"
 
 #: apps/pootle_store/templates/unit/edit.html:167
+msgid "Insert RLO (Right-To-Left Override) into the editor"
+msgstr ""
+"Indsæt RLO (Right-To-Left Override/Højre-til-venstre tilsidesættelse) i "
+"redigeringsværktøjet"
+
+#: apps/pootle_store/templates/unit/edit.html:170
+msgid "Insert LRO (Left-To-Right Override) into the editor"
+msgstr ""
+"Indsæt LRO (Left-To-Right Override/Venstre-til-højre tilsidesættelse) i "
+"redigeringsværktøjet"
+
+#: apps/pootle_store/templates/unit/edit.html:173
+msgid "Insert PDF (Pop Directional Format ) into the editor"
+msgstr "Indsæt PDF (Pop Directional Format) i redigeringsværktøjet"
+
+#: apps/pootle_store/templates/unit/edit.html:176
+msgid "Insert ZWJ (Zero Width Joiner) into the editor"
+msgstr "Indsæt ZWJ (Zero Width Joiner) i redigeringsværktøjet"
+
+#: apps/pootle_store/templates/unit/edit.html:179
+msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
+msgstr "Indsæt ZWNJ (Zero Width Non Joiner) i redigeringsværktøjet"
+
+#: apps/pootle_store/templates/unit/edit.html:185
+msgid "Insert this symbol into the editor"
+msgstr "Indsæt dette symbol i redigeringsværktøjet"
+
+#: apps/pootle_store/templates/unit/edit.html:197
+msgid "Add Comment"
+msgstr "Tilføj kommentar"
+
+#: apps/pootle_store/templates/unit/edit.html:198
 msgid "Show Timeline"
-msgstr ""
+msgstr "Vis tidslinje"
 
-#: apps/pootle_store/templates/unit/edit.html:168
+#: apps/pootle_store/templates/unit/edit.html:199
 msgid "Hide Timeline"
-msgstr ""
+msgstr "Skjul tidslinje"
 
-#: apps/pootle_store/templates/unit/edit.html:200
-#, fuzzy
+#: apps/pootle_store/templates/unit/edit.html:224
+msgid "Comment:"
+msgstr "Kommentar:"
+
+#: apps/pootle_store/templates/unit/edit.html:231
 msgid "User suggestions"
-msgstr "Vis forslag"
+msgstr "Forslag fra brugere"
 
-#: apps/pootle_store/templates/unit/edit.html:218
+#: apps/pootle_store/templates/unit/edit.html:249
 msgid "Accept suggestion"
 msgstr "Acceptér forslag"
 
-#: apps/pootle_store/templates/unit/edit.html:223
+#: apps/pootle_store/templates/unit/edit.html:254
 msgid "Reject suggestion"
 msgstr "Afvis forslag"
 
-#: apps/pootle_store/templates/unit/edit.html:230
-#, fuzzy
+#: apps/pootle_store/templates/unit/edit.html:261
 msgid "Remove suggestion"
-msgstr "Afvis forslag"
+msgstr "Fjern forslag"
 
 #: apps/pootle_store/templates/unit/term_edit.html:21
 msgid "Your current vote. Click to remove this vote."
-msgstr ""
+msgstr "Din aktuelle stemme. Klik for at fjerne denne stemme."
 
 #: apps/pootle_store/templates/unit/term_edit.html:33
 msgid "Vote for this suggestion"
-msgstr ""
+msgstr "Stem for dette forslag"
 
 #: apps/pootle_store/templates/unit/term_edit.html:40
-#, fuzzy
 msgid "Comment: "
-msgstr "Kommentarer"
+msgstr "Kommentar:"
 
 #: apps/pootle_store/templates/unit/timeline.html:4
 #: apps/pootle_store/templates/unit/timeline.html:14
@@ -2149,38 +2166,40 @@ msgstr[1] "%d timer siden"
 #, python-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d minut siden"
+msgstr[1] "%d minutter siden"
 
 #: apps/pootle_store/templatetags/store_tags.py:234
-msgid "Few seconds ago"
-msgstr ""
+msgid "A few seconds ago"
+msgstr "Få sekunder siden"
 
 #: apps/pootle_terminology/views.py:156
 msgid "This term already exists in this file."
-msgstr ""
+msgstr "Denne term findes allerede i denne fil."
 
 #: apps/pootle_terminology/templates/terminology/extract.html:6
 msgid "Regenerate Glossary"
-msgstr ""
+msgstr "Opret ordliste påny"
 
 #: apps/pootle_terminology/templates/terminology/extract.html:7
 msgid ""
 "Are you sure you want to regenerate the glossary? Any existing terms and "
 "their translations will be deleted."
 msgstr ""
+"Er du sikker på at du vil oprette ordlisten påny? Alle eksisterende termer "
+"og deres oversættelser vil blive slettet."
 
 #: apps/pootle_terminology/templates/terminology/extract.html:11
 msgid "Extract"
-msgstr ""
+msgstr "Udpak"
 
 #: apps/pootle_terminology/templates/terminology/manage.html:22
 msgid "You can regenerate the glossary from scratch."
-msgstr ""
+msgstr "Du kan oprette ordlisten fra bunden af."
 
 #: apps/pootle_terminology/templates/terminology/manage.html:35
 msgid "Term"
-msgstr ""
+msgstr "Term"
 
 #: apps/pootle_terminology/templates/terminology/manage.html:36
 msgid "Translation"
@@ -2188,7 +2207,7 @@ msgstr "Oversættelse"
 
 #: apps/pootle_terminology/templates/terminology/manage.html:61
 msgid "Glossary is Empty"
-msgstr ""
+msgstr "Ordliste er tom"
 
 #: apps/pootle_terminology/templates/terminology/manage.html:62
 msgid "Generate Glossary"
@@ -2199,7 +2218,7 @@ msgid "Here you can manage the terms in the terminology files."
 msgstr "Her kan du håndtere termerne i terminologi-filerne."
 
 #: apps/pootle_terminology/templates/terminology/stores.html:14
-#: apps/pootle_translationproject/views.py:781
+#: apps/pootle_translationproject/views.py:765
 msgid "File"
 msgstr "Gem"
 
@@ -2243,25 +2262,25 @@ msgstr "Download"
 
 #: apps/pootle_translationproject/actions.py:81
 msgid "Download file"
-msgstr ""
+msgstr "Hent fil"
 
 #: apps/pootle_translationproject/actions.py:96
-#: apps/pootle_translationproject/actions.py:224
+#: apps/pootle_translationproject/actions.py:254
 msgid "Translate offline"
-msgstr ""
+msgstr "Oversætte frakoblet"
 
 #: apps/pootle_translationproject/actions.py:97
 msgid "Download XLIFF file for offline translation"
-msgstr ""
+msgstr "Hent XLIFF-fil for frakoblet oversættelse"
 
 #: apps/pootle_translationproject/actions.py:112
-#: apps/pootle_translationproject/views.py:740
+#: apps/pootle_translationproject/views.py:724
 msgid "Upload"
 msgstr "Upload"
 
 #: apps/pootle_translationproject/actions.py:113
 msgid "Upload translation files or archives in .zip format"
-msgstr ""
+msgstr "Overfør oversættelsefiler eller arkiver i .zip-format"
 
 #: apps/pootle_translationproject/actions.py:130
 msgid "Update from VCS"
@@ -2271,27 +2290,33 @@ msgstr "Opdater fra VCS"
 msgid "Commit to VCS"
 msgstr "Commit til VCS"
 
-#: apps/pootle_translationproject/actions.py:157
+#. Translators: "all" here refers to all files and sub directories in a directory/project.
+#: apps/pootle_translationproject/actions.py:159
+msgid "Update all from VCS"
+msgstr "Opdatér alle fra VCS"
+
+#. Translators: "all" here refers to all files and sub directories in a directory/project.
+#: apps/pootle_translationproject/actions.py:174
+msgid "Commit all to VCS"
+msgstr "Indsend alle til VCS"
+
+#: apps/pootle_translationproject/actions.py:187
 msgid "Rescan project files"
-msgstr ""
+msgstr "Skan projektfiler påny"
 
-#: apps/pootle_translationproject/actions.py:171
-msgid "Update against templates"
-msgstr ""
-
-#: apps/pootle_translationproject/actions.py:188
+#: apps/pootle_translationproject/actions.py:218
 msgid "Delete this folder..."
-msgstr ""
+msgstr "Slet denne mappe ..."
 
-#: apps/pootle_translationproject/actions.py:190
+#: apps/pootle_translationproject/actions.py:220
 msgid "Delete this file..."
-msgstr ""
+msgstr "Slet denne fil ..."
 
-#: apps/pootle_translationproject/actions.py:226
+#: apps/pootle_translationproject/actions.py:256
 msgid "Manage"
-msgstr ""
+msgstr "Håndtér"
 
-#: apps/pootle_translationproject/models.py:106
+#: apps/pootle_translationproject/models.py:105
 #, python-format
 msgid ""
 "A description of this translation project. This is useful to give more "
@@ -2300,192 +2325,209 @@ msgstr ""
 "En beskrivelse af dette oversættelsesprojekt. Dette er nyttigt til at give "
 "yderligere information eller instruktioner. Tilladt opmærkning: %s"
 
-#: apps/pootle_translationproject/models.py:455
-#: apps/pootle_translationproject/models.py:537
-msgid "You do not have rights to update from version control here"
-msgstr "Du har ikke rettigheder til at opdatere fra version control her"
+#: apps/pootle_translationproject/models.py:488
+#, python-format
+msgid "Failed to update from version control: %(error)s"
+msgstr "Mislykkedes med at opdatere fra versionskontrollen: %(error)s"
 
-#: apps/pootle_translationproject/models.py:519
+#: apps/pootle_translationproject/models.py:556
 #, python-format
 msgid "Updated project <em>%(project)s</em> from version control"
 msgstr "Opdaterede projektet <em>%(project)s</em> fra versionskontrol"
 
-#: apps/pootle_translationproject/models.py:522
-#: apps/pootle_translationproject/models.py:548
+#: apps/pootle_translationproject/models.py:558
+#: apps/pootle_translationproject/models.py:579
 msgid "Working copy"
 msgstr "Arbejdskopi"
 
-#: apps/pootle_translationproject/models.py:523
-#: apps/pootle_translationproject/models.py:549
+#: apps/pootle_translationproject/models.py:559
+#: apps/pootle_translationproject/models.py:580
 msgid "Remote copy"
 msgstr "Fjernt beliggende kopi"
 
-#: apps/pootle_translationproject/models.py:524
-#: apps/pootle_translationproject/models.py:550
+#: apps/pootle_translationproject/models.py:560
+#: apps/pootle_translationproject/models.py:581
 msgid "Merged copy"
 msgstr "Sammenflettet kopi"
 
-#: apps/pootle_translationproject/models.py:545
+#: apps/pootle_translationproject/models.py:577
 #, python-format
 msgid "Updated file <em>%(filename)s</em> from version control"
-msgstr ""
+msgstr "Opdaterede filen <em>%(project)s</em> fra versionskontrollen"
 
-#: apps/pootle_translationproject/models.py:559
+#: apps/pootle_translationproject/models.py:590
 #, python-format
-msgid "Failed to update <em>%(filename)s</em> from version control"
+msgid "Failed to update <em>%(filename)s</em> from version control: %(error)s"
 msgstr ""
+"Mislykkedes med at opdatere <em>%(filename)s</em> fra versionskontrollen: %"
+"(error)s"
 
-#: apps/pootle_translationproject/models.py:601
+#: apps/pootle_translationproject/models.py:649
 #, python-format
-msgid "Committed file: %(filename)s"
-msgstr ""
+msgid "Committed all files under <em>%(path)s</em> to version control"
+msgstr "Indsendte alle filer under <em>%(path)s</em> til versionskontrollen"
 
-#: apps/pootle_translationproject/models.py:609
+#: apps/pootle_translationproject/models.py:658
 #, python-format
-msgid "Failed to commit file: %(error)s"
-msgstr ""
+msgid "Failed to commit to version control: %(error)s"
+msgstr "Mislykkedes med at indsende til versionskontrollen: %(error)s"
 
-#: apps/pootle_translationproject/views.py:99
+#: apps/pootle_translationproject/models.py:716
+#, python-format
+msgid "Committed file <em>%(filename)s</em> to version control"
+msgstr "Indsendte filen <em>%(filename)s</em> til versionskontrollen"
+
+#: apps/pootle_translationproject/models.py:724
+#, python-format
+msgid "Failed to commit <em>%(filename)s</em> to version control: %(error)s"
+msgstr ""
+"Mislykkedes med at indsende <em>%(filename)s</em> til versionskontrollen: %"
+"(error)s"
+
+#: apps/pootle_translationproject/views.py:97
 msgid "Translation project files have been rescanned."
-msgstr ""
+msgstr "Filer i oversættelsesprojekt er blevet skannet påny."
 
-#: apps/pootle_translationproject/views.py:104
+#: apps/pootle_translationproject/views.py:102
 msgid "Error while rescanning translation project files."
-msgstr ""
+msgstr "Fejl under genskanning af filer for oversættelsesprojekt."
 
-#: apps/pootle_translationproject/views.py:121
+#: apps/pootle_translationproject/views.py:119
 msgid "Translation project has been updated against latest templates."
 msgstr ""
+"Oversættelsesprojektet er blevet opdateret op imod de seneste skabeloner."
 
-#: apps/pootle_translationproject/views.py:126
+#: apps/pootle_translationproject/views.py:124
 msgid "Error while updating translation project against latest templates."
 msgstr ""
+"Fejl under opdatering af oversættelsesprojekt op imod seneste skabeloner."
 
-#: apps/pootle_translationproject/views.py:191
+#: apps/pootle_translationproject/views.py:189
 msgid "Symbolic link hasn't been removed from the filesystem."
-msgstr ""
+msgstr "Symbolsk henvisning er ikke blevet fjernet fra filsystemet."
 
-#: apps/pootle_translationproject/views.py:195
+#: apps/pootle_translationproject/views.py:193
 msgid "Directory and its containing files have been deleted."
-msgstr ""
+msgstr "Kataloget og dets indeholdte filer er blevet slettet."
 
-#: apps/pootle_translationproject/views.py:198
+#: apps/pootle_translationproject/views.py:196
 msgid "File has been deleted."
-msgstr ""
+msgstr "Fil er blevet slettet."
 
-#: apps/pootle_translationproject/views.py:203
+#: apps/pootle_translationproject/views.py:201
 msgid "Error while trying to delete directory."
-msgstr ""
+msgstr "Fejl under forsøg å at slette kataloget."
 
-#: apps/pootle_translationproject/views.py:206
+#: apps/pootle_translationproject/views.py:204
 msgid "Error while trying to delete file."
-msgstr ""
+msgstr "Fejl under forsøg på at slette filen."
 
-#: apps/pootle_translationproject/views.py:366
+#: apps/pootle_translationproject/views.py:365
 msgid "You do not have the right to create ZIP archives."
-msgstr ""
+msgstr "Du har ikke rettigheder til at oprette ZIP-arkiver."
 
 #: apps/pootle_translationproject/views.py:461
 #, python-format
 msgid "Invalid/insecure file name: %s"
 msgstr "Invalid/usikker fil navn: %s"
 
-#: apps/pootle_translationproject/views.py:469
+#: apps/pootle_translationproject/views.py:470
 #, python-format
 msgid ""
 "Invalid GNU-style file name: %(local_filename)s. It must match '%(langcode)s."
 "%(filetype)s'."
 msgstr ""
+"Ugyldig GNU-stil for filnavn: %(local_filename)s. Den skal stemme overens "
+"med '%(langcode)s.%(filetype)s'."
 
-#: apps/pootle_translationproject/views.py:496
+#: apps/pootle_translationproject/views.py:497
 msgid "Error while extracting archive"
 msgstr "Fejl ved udpakning af arkiv"
 
-#: apps/pootle_translationproject/views.py:680
+#: apps/pootle_translationproject/views.py:681
 msgid "You do not have rights to overwrite files here."
 msgstr "Du har ikke rettigheder til at overskrive filer her."
 
-#: apps/pootle_translationproject/views.py:684
+#: apps/pootle_translationproject/views.py:685
 msgid "You do not have rights to upload new files here."
 msgstr "Du har ikke rettigheder til at oploade nye filer her."
 
-#: apps/pootle_translationproject/views.py:688
-#: apps/pootle_translationproject/views.py:692
+#: apps/pootle_translationproject/views.py:689
+#: apps/pootle_translationproject/views.py:693
 msgid "You do not have rights to upload files here."
 msgstr "Du har ikke rettigheder til at oploade filer her."
 
-#: apps/pootle_translationproject/views.py:723
-msgid "Update all from version control"
-msgstr "Opdater alt fra version control"
-
-#: apps/pootle_translationproject/views.py:753
+#: apps/pootle_translationproject/views.py:737
 msgid "Overwrite the current file if it exists"
 msgstr "Overskriv den nuværende fil hvis den findes"
 
-#: apps/pootle_translationproject/views.py:757
+#: apps/pootle_translationproject/views.py:741
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
 msgstr "Sammenkør filen med den nuværende fil og lav konflikter om til forslag"
 
-#: apps/pootle_translationproject/views.py:762
+#: apps/pootle_translationproject/views.py:746
 msgid "Add all new translations as suggestions"
 msgstr "Tilføj alle nye oversættelser som forslag"
 
-#: apps/pootle_translationproject/views.py:792
-#: apps/pootle_translationproject/views.py:800
+#: apps/pootle_translationproject/views.py:776
+#: apps/pootle_translationproject/views.py:784
 msgid "Upload to"
-msgstr ""
+msgstr "Overfør til"
 
-#: apps/pootle_translationproject/views.py:795
-#: apps/pootle_translationproject/views.py:804
+#: apps/pootle_translationproject/views.py:779
+#: apps/pootle_translationproject/views.py:788
 msgid ""
 "Optionally select the file you want to merge with. If not specified, the "
 "uploaded file's name is used."
 msgstr ""
+"Vælg eventuelt filen du ønsker at sammenflette med. Hvis intet angives, så "
+"vil navnet på den overførte fil blive anvendt."
 
-#: apps/pootle_translationproject/views.py:814
+#: apps/pootle_translationproject/views.py:798
 msgid "Upload File"
 msgstr "Send fil"
 
 #: apps/pootle_translationproject/templates/translation_project/admin_permissions.html:15
-#, fuzzy
 msgid ""
 "Below you can add, edit, and delete the permissions for this translation "
 "project."
 msgstr ""
-"Herunder kan du tilføje,redigere, og slette tilladelser for dette sprog."
+"Herunder kan du tilføje, redigere og slette rettighederne for dette "
+"oversættelsesprojekt."
 
 #: apps/pootle_translationproject/templates/translation_project/fileop_forms.html:23
-#, fuzzy
 msgid "Update from Version Control"
-msgstr "Opdater alt fra version control"
+msgstr "Opdatér fra versionkontrol"
 
 #: apps/pootle_translationproject/templates/translation_project/fileop_forms.html:24
 msgid ""
 "Use this option to update all the files in this area from version control."
 msgstr ""
+"Benyt dette tilvang for at opdatere alle filerne i dette område fra "
+"versionskontrollen."
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:40
 msgid "Files and Subfolders"
-msgstr ""
+msgstr "Filer og undermapper"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:70
 msgid "Actions"
-msgstr ""
+msgstr "Handlinger"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:118
 #, python-format
 msgid "%(project)s project information"
-msgstr ""
+msgstr "%(project)s projektinformation"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:125
 #, python-format
-msgid "%(language)s project information"
-msgstr ""
+msgid "%(language)s language information"
+msgstr "%(language)s sproginformation"
 
 #: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:4
 msgid "Translation Statistics"
-msgstr ""
+msgstr "Statistikker for oversættelse"
 
 #: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:23
 msgid "Failing Checks"
@@ -2493,7 +2535,7 @@ msgstr "Tjek som fejler"
 
 #: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:44
 msgid "Nothing to show"
-msgstr ""
+msgstr "Intet at vise"
 
 #: apps/registration/forms.py:36
 msgid "username"
@@ -2557,39 +2599,65 @@ msgstr "registrerings profiler"
 
 #: middleware/captcha.py:125
 msgid "Time to answer has expired"
-msgstr ""
+msgstr "Frist for besvarelse er udløbet"
 
 #: middleware/captcha.py:143
 msgid "Enter a number"
-msgstr ""
+msgstr "Angiv et tal"
 
 #: middleware/captcha.py:158
 msgid "Incorrect"
+msgstr "Forkert"
+
+#: settings/10-base.conf:9
+msgid "Pootle Demo"
+msgstr "Pootle Demo"
+
+#. Translators: Change the language code (en) to your language code, and replace
+#. ltr with rtl if you language is written from right to left.
+#: settings/10-base.conf:13
+msgid ""
+"<div dir=\"ltr\" lang=\"en\">\n"
+"<h2>This is a demo installation of Pootle.</h2>\n"
+"<p>You can also visit the official <a href=\"http://pootle.locamotion.org"
+"\">Pootle server</a>. The server administrator has not provided contact "
+"information or a description of this server. If you are the administrator "
+"for this server, edit this description in your preference file or in the "
+"administration interface.</p>\n"
+"</div>\n"
 msgstr ""
+"<div dir=\"ltr\" lang=\"da\">\n"
+"<h2>Dette er en demo-installation af Pootle.</h2>\n"
+"<p>Du kan også besøge den officielle <a href=\"http://pootle.locamotion.org"
+"\">Pootle-server</a>. Serverens administrator har ikke angivet "
+"kontaktinformationer eller en beskrivelse af denne server. Hvis du er "
+"administratoren af denne server, så redigér denne information i din pr"
+"æference-fil eller gennem administrationslaget.</p>\n"
+"</div>\n"
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"
-msgstr ""
+msgstr "Adgang nægtet"
 
 #: templates/403.html:16
 msgid "You don't have permission to access this page."
-msgstr ""
+msgstr "Du har ikke rettigheder til at tilgå denne side."
 
 #: templates/404.html:4 templates/404.html.py:7 templates/404.html.py:12
 msgid "Page Not Found"
-msgstr ""
+msgstr "Siden blev ikke fundet"
 
 #: templates/404.html:13
 msgid "We're sorry, but the requested page could not be found."
-msgstr ""
+msgstr "Vi beklager, men den forespurgte side blev ikke fundet."
 
 #: templates/500.html:4 templates/500.html.py:7 templates/500.html.py:12
 msgid "Server Error"
-msgstr ""
+msgstr "Serverfejl"
 
 #: templates/500.html:13
 msgid "An error has occurred. Thank you for your patience."
-msgstr ""
+msgstr "Der opstod en fejl. Tak for din tålmodighed."
 
 #: templates/500.html:20
 #, python-format
@@ -2597,6 +2665,8 @@ msgid ""
 "If you need assistance, you may refer to this error as <strong>%(ref)s</"
 "strong>."
 msgstr ""
+"Hvis du har brug for assistance, så kan du henvise til denne fejl som "
+"<strong>%(ref)s</strong>."
 
 #: templates/admin_profile_base.html:4 templates/admin_profile_base.html:7
 msgid "Administration"
@@ -2608,56 +2678,55 @@ msgstr "Information og statistik om denne Pootle-server"
 
 #: templates/admin_profile_menu.html:3
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: templates/admin_profile_menu.html:4
-#, fuzzy
 msgid "Configure the general settings for your site"
-msgstr "Konfigurer de generelle indstillinger for din site."
+msgstr "Konfigurer de generelle indstillinger for dit sted"
 
 #: templates/admin_profile_menu.html:4
 msgid "General"
-msgstr ""
+msgstr "Generelt"
 
 #: templates/admin_profile_menu.html:5
 msgid "Manage the users"
-msgstr ""
+msgstr "Administration af brugerne"
 
 #: templates/admin_profile_menu.html:6
 msgid "Manage the languages"
-msgstr ""
+msgstr "Administration af sprogene"
 
 #: templates/admin_profile_menu.html:7
 msgid "Manage the projects"
-msgstr ""
+msgstr "Administration af projekterne"
 
 #: templates/admin_profile_menu.html:8
 msgid "Manage the default permissions"
-msgstr ""
+msgstr "Administration af standard-rettighederne"
 
 #: templates/admin_profile_menu.html:9
 msgid "Manage Legal Pages"
-msgstr ""
+msgstr "Administration af juridiske sider"
 
 #: templates/base.html:82
 msgid "skip to navigation"
-msgstr ""
+msgstr "spring til navigation"
 
 #: templates/base.html:87
 msgid "Zoom out (Ctrl+Shift+-)"
-msgstr ""
+msgstr "Formindsk (Ctrl+Skift+-)"
 
 #: templates/base.html:88
 msgid "Reset zoom (Ctrl+Shift+0)"
-msgstr ""
+msgstr "Nulstilling forstørrelse (Ctrl+Skift+0)"
 
 #: templates/base.html:89
 msgid "Zoom in (Ctrl+Shift++)"
-msgstr ""
+msgstr "Gør større (Ctrl+Skift++)"
 
-#: templates/base.html:100 templates/profiles/profile_detail.html:40
-msgid "Admin"
-msgstr "Admin"
+#: templates/base.html:100
+msgid "ADMIN"
+msgstr "ADMIN"
 
 #: templates/base.html:103
 msgid "Log Out"
@@ -2673,52 +2742,49 @@ msgstr "Registrér"
 msgid "Log In"
 msgstr "Log ind"
 
-#: templates/base.html:139
-msgid "Loading..."
-msgstr ""
-
-#: templates/base.html:162
+#: templates/base.html:155
 msgid "Help"
-msgstr ""
+msgstr "Hjælp"
 
-#: templates/base.html:164 templates/contact_form/contact_form.html:4
+#: templates/base.html:157 templates/contact_form/contact_form.html:4
 #: templates/contact_form/contact_form.html:7
 #: templates/contact_form/contact_form.html:12
 msgid "Contact Us"
-msgstr ""
+msgstr "Kontakt os"
 
-#: templates/base.html:166
+#: templates/base.html:159
 msgid "About this Pootle Server"
 msgstr "Om denne Pootle-server"
 
-#: templates/base.html:167 templates/about/contributors.html:6
+#: templates/base.html:160 templates/about/contributors.html:6
 #: templates/about/contributors.html:9
-#, fuzzy
 msgid "Contributors"
-msgstr "Top bidragsydere"
+msgstr "Bidragsydere"
 
 #: templates/captcha-xhr.html:14 templates/captcha.html:4
 #: templates/captcha.html.py:7
 msgid "Are You Human?"
-msgstr ""
+msgstr "Er du et menneske?"
 
 #: templates/captcha-xhr.html:15
 msgid ""
 "To protect the server against attacks we have to verify that submissions are "
 "made by human users."
 msgstr ""
+"For at beskytte serveren med angreb, så er vi nødt til at sikre at bidrag er "
+"foretaget af rigtige personer."
 
 #: templates/captcha-xhr.html:16
 msgid "Please answer this question:"
-msgstr ""
+msgstr "Besvar venligst dette spørgsmål:"
 
 #: templates/captcha-xhr.html:20
 msgid "Confirm"
-msgstr ""
+msgstr "Bekræft"
 
 #: templates/language_menu.html:3
 msgid "Language main page"
-msgstr ""
+msgstr "Sprogets hovedside"
 
 #: templates/language_menu.html:3 templates/project_menu.html:3
 #: templates/tp_menu.html:4
@@ -2731,7 +2797,7 @@ msgstr "Sprognyheder"
 
 #: templates/language_menu.html:6
 msgid "Administrate your language permissions"
-msgstr ""
+msgstr "Administrér dine sprog-rettigheder"
 
 #: templates/project_menu.html:3
 msgid "Project main page"
@@ -2743,19 +2809,19 @@ msgstr "Projektnyheder"
 
 #: templates/project_menu.html:6
 msgid "Administrate your project"
-msgstr ""
+msgstr "Administrér dit projekt"
 
 #: templates/project_menu.html:7
 msgid "Manage project permissions"
-msgstr ""
+msgstr "Administration af projekt-rettigheder"
 
 #: templates/tp_base_terminology.html:4 templates/tp_base_terminology.html:7
 msgid "Manage Terminology"
-msgstr ""
+msgstr "Administration af terminologi"
 
 #: templates/tp_menu.html:4
 msgid "Translation project main page"
-msgstr ""
+msgstr "Hovedside for oversættelsesprojekt"
 
 #: templates/tp_menu.html:5
 msgid "Translation project news"
@@ -2763,19 +2829,19 @@ msgstr "Nyheder for oversættelsesprojekt"
 
 #: templates/tp_menu.html:6
 msgid "Translate this project"
-msgstr ""
+msgstr "Oversæt dette projekt"
 
 #: templates/tp_menu.html:8
 msgid "Manage terminology"
-msgstr ""
+msgstr "Administration af terminologi"
 
 #: templates/tp_menu.html:8
 msgid "Terminology"
-msgstr ""
+msgstr "Terminologi"
 
 #: templates/tp_menu.html:9
 msgid "Administrate your project permissions"
-msgstr ""
+msgstr "Administrér dine projekt-rettigheder"
 
 #: templates/user_profile_base.html:4 templates/user_profile_base.html.py:7
 msgid "My Account"
@@ -2787,41 +2853,48 @@ msgstr "Oversigt over din konto"
 
 #: templates/user_profile_menu.html:4
 msgid "Dashboard"
-msgstr ""
+msgstr "Instrumentbræt"
 
 #: templates/user_profile_menu.html:5
 msgid "Configure your translation preferences"
-msgstr ""
+msgstr "Tilpas dine præferencer for oversættelse "
 
 #: templates/user_profile_menu.html:5
 msgid "Settings"
-msgstr ""
+msgstr "Indstillinger"
 
 #: templates/user_profile_menu.html:6
 msgid "Change your personal information"
-msgstr ""
+msgstr "Tilpas dine personlige oplysninger"
 
 #: templates/user_profile_menu.html:6 templates/profiles/edit_personal.html:4
 #: templates/profiles/edit_personal.html:7
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: templates/user_profile_menu.html:7
 msgid "Change your password"
-msgstr ""
+msgstr "Skift din adgangskode"
 
 #: templates/about/about.html:6 templates/about/about.html.py:9
 msgid "This Pootle Server"
-msgstr ""
+msgstr "Denne Pootle-server"
 
-#: templates/about/about.html:15
+#. Translators: For better readability, make sure to leave an space after the closing </i> tag
+#: templates/about/about.html:16
 msgid ""
 "This site is running Pootle &mdash; powerful web software to empower teams "
 "to do translation and translation management. This community tool is Free "
 "Software, and any team can use it and contribute to the Pootle community. "
-"Read more on the <a href=\"http://translate.sourceforge.net/\"><i class="
+"Read more on the <a href=\"http://pootle.translatehouse.org/\"><i class="
 "\"icon-external-link\"></i> project website</a>."
 msgstr ""
+"Dette sted kører via Pootle &mdash; stærk webteknologi som styrker teams med "
+"deres oversættelser og administration af oversættelser. Dette fælles "
+"værktøj er Fri software, og ethvert team kan benytte det og bidrage til "
+"Pootle-fællesskabet. Læs mere på <a "
+"href=\"http://pootle.translatehouse.org/\"><i class=\"icon-external-"
+"link\"></i>projektet websted</a>."
 
 #: templates/about/base.html:4 templates/about/base.html.py:7
 msgid "About"
@@ -2829,38 +2902,38 @@ msgstr "Om"
 
 #: templates/contact_form/contact_form.html:17
 msgid "Send"
-msgstr ""
+msgstr "Send"
 
 #: templates/contact_form/contact_form_sent.html:5
 #: templates/contact_form/contact_form_sent.html:8
 #: templates/contact_form/contact_form_sent.html:13
 msgid "Message Sent"
-msgstr ""
+msgstr "Besked er afsendt"
 
 #: templates/contact_form/contact_form_sent.html:14
 msgid "Thank you for your feedback."
-msgstr ""
+msgstr "Tak for din tilbagemelding."
 
 #: templates/contact_form/contact_form_subject.txt:2
 #, python-format
 msgid " message by %(name)s"
-msgstr ""
+msgstr "besked fra %(name)s"
 
 #: templates/profiles/edit_personal.html:12
 msgid ""
 "Here you can change your personal details. This information will be used in "
 "the header of the translation files."
 msgstr ""
+"Her kan du ændre dine personlige detaljer. Denne information vil blive brugt "
+"i hovederne på oversættelsesfilerne."
 
 #: templates/profiles/edit_personal.html:18
-#, fuzzy
 msgid "First Name"
-msgstr "fornavn"
+msgstr "Fornavn"
 
 #: templates/profiles/edit_personal.html:23
-#, fuzzy
 msgid "Last Name"
-msgstr "efternavn"
+msgstr "Efternavn"
 
 #: templates/profiles/edit_personal.html:28
 msgid "Email address"
@@ -2869,37 +2942,43 @@ msgstr "Email adresse"
 #: templates/profiles/edit_profile.html:4
 #: templates/profiles/edit_profile.html:7
 msgid "Translation Settings"
-msgstr ""
+msgstr "Indstillinger for oversættelse"
 
 #: templates/profiles/edit_profile.html:12
 msgid ""
 "Here you can configure the settings related to the translation interface as "
 "well as your language preferences."
 msgstr ""
+"Her kan du tilpasse indstillinger som knytter sig til oversætter-"
+"brugerfladen, såvel som dine sprog-præferencer."
 
 #: templates/profiles/profile_detail.html:31
 msgid "Quick Links"
 msgstr "Hurtiglinks"
 
+#: templates/profiles/profile_detail.html:40
+msgid "Admin"
+msgstr "Admin"
+
 #: templates/profiles/profile_detail.html:55
 msgid "No languages or projects selected. Choose yours now."
-msgstr ""
+msgstr "Der er ikke valgt sprog eller projekter. Vælg dine nu."
 
 #: templates/profiles/profile_detail.html:57
 msgid "This user has not selected languages or projects yet."
-msgstr ""
+msgstr "Denne bruger har endnu ikke valgt sprog eller projekter."
 
 #: templates/profiles/profile_detail.html:67
 msgid "User Statistics"
-msgstr ""
+msgstr "Bruger-statistikker"
 
 #: templates/profiles/profile_detail.html:71
 msgid "You can set or change your avatar image at www.gravatar.com"
-msgstr ""
+msgstr "Du kan angive eller ændre dit avatar-billede på www.gravatar.com"
 
 #: templates/profiles/profile_list.html:7
 msgid "Profiles list"
-msgstr ""
+msgstr "Profilliste"
 
 #: templates/profiles/profile_list.html:11
 #: templates/registration/registration_form.html:20
@@ -2907,20 +2986,18 @@ msgid "Username"
 msgstr "Brugernavn"
 
 #: templates/profiles/profile_list.html:12
-#, fuzzy
 msgid "First name"
-msgstr "fornavn"
+msgstr "Fornavn"
 
 #: templates/profiles/profile_list.html:13
-#, fuzzy
 msgid "Last name"
-msgstr "efternavn"
+msgstr "Efternavn"
 
 #: templates/registration/activate.html:5
 #: templates/registration/activate.html:8
 #: templates/registration/activate.html:13
 msgid "Account Activated"
-msgstr ""
+msgstr "Konto er aktiveret"
 
 #: templates/registration/activate.html:14
 #, python-format
@@ -2928,10 +3005,12 @@ msgid ""
 "The account has been activated for username \"%(account)s\". You can now "
 "proceed to log in."
 msgstr ""
+"Kontoen er aktiveret for brugernavnet \"%(account)s\". Du kan nu fortsætte med "
+"at logge ind."
 
 #: templates/registration/activation_email.html:4
 msgid "Pootle Account Created!"
-msgstr ""
+msgstr "Pootle-konto oprettet!"
 
 #: templates/registration/activation_email.html:5
 #: templates/registration/activation_email.txt:2
@@ -2939,18 +3018,17 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "En Pootle konto er oprettet til dig med denne email-adresse."
 
 #: templates/registration/activation_email.html:6
-#, fuzzy
 msgid "To activation your account, follow this link:"
 msgstr "For at aktivere din konto, følg dette link:"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
-msgstr ""
+msgstr "Aktivér min Pootle-konto"
 
 #: templates/registration/activation_email.html:10
 #, python-format
 msgid "Your activation code is: <code>%(activation_key)s</code>"
-msgstr ""
+msgstr "Din aktiveringskode er: <code>%(activation_key)s</code>"
 
 #: templates/registration/activation_email.html:11
 #: templates/registration/activation_email.txt:9
@@ -2971,7 +3049,6 @@ msgid "Your activation code is:"
 msgstr "Din aktiveringskode er:"
 
 #: templates/registration/activation_email_subject.txt:2
-#, fuzzy
 msgid "Pootle registration"
 msgstr "Pootle-registrering"
 
@@ -2979,30 +3056,33 @@ msgstr "Pootle-registrering"
 #: templates/registration/password_change_done.html:8
 #: templates/registration/password_change_done.html:13
 msgid "Password Changed"
-msgstr ""
+msgstr "Adgangskode blev ændret"
 
 #: templates/registration/password_change_done.html:14
 msgid "Your password was changed successfully."
-msgstr ""
+msgstr "Ændringen af din adgangskode er gennemført."
 
 #: templates/registration/password_change_form.html:4
 #: templates/registration/password_change_form.html:7
 msgid "Change Password"
-msgstr ""
+msgstr "Skift adgangskode"
 
 #: templates/registration/password_change_form.html:12
 msgid ""
 "Please enter your old password, for security's sake, and then enter your new "
 "password twice so we can verify you typed it in correctly."
 msgstr ""
+"Indtast venligst din gamle adgangskode af sikkerhedsmæssige årsager, og "
+"indtast derefter din nye adgangskode to gange, så vi kan verificere at du "
+"indtastede det korrekt."
 
 #: templates/registration/password_change_form.html:21
 msgid "Old password"
-msgstr ""
+msgstr "Gammel adgangskode"
 
 #: templates/registration/password_change_form.html:26
 msgid "New password"
-msgstr ""
+msgstr "Ny adgangskode"
 
 #: templates/registration/password_change_form.html:31
 msgid "Confirm password"
@@ -3010,16 +3090,16 @@ msgstr "Bekræft kodeord"
 
 #: templates/registration/password_change_form.html:36
 msgid "Change My Password"
-msgstr ""
+msgstr "Skift min adgangskode"
 
 #: templates/registration/password_reset_complete.html:4
 #: templates/registration/password_reset_complete.html:7
 msgid "Password Reset"
-msgstr ""
+msgstr "Nulstilling af adgangskode"
 
 #: templates/registration/password_reset_complete.html:12
 msgid "Password Reset Complete."
-msgstr ""
+msgstr "Nulstilling af adgangskode er fuldført."
 
 #: templates/registration/password_reset_complete.html:14
 #, python-format
@@ -3027,6 +3107,8 @@ msgid ""
 "Your password has been set. You may go ahead and <a href=\"%(login_url)s"
 "\">log in</a> now."
 msgstr ""
+"Din adgangskode er blevet angivet. Du kan nu fortsætte og <a href=\"%"
+"(login_url)s\")logge ind</a>."
 
 #: templates/registration/password_reset_confirm.html:5
 #: templates/registration/password_reset_confirm.html:8
@@ -3037,47 +3119,53 @@ msgstr ""
 #: templates/registration/password_reset_form.html:7
 #: templates/registration/password_reset_form.html:12
 msgid "Reset Password"
-msgstr ""
+msgstr "Nulstil adgangskode"
 
 #: templates/registration/password_reset_confirm.html:14
 msgid "Enter New Password."
-msgstr ""
+msgstr "Indtast ny adgangskode."
 
 #: templates/registration/password_reset_confirm.html:16
 msgid ""
 "Please enter your new password twice so we can verify you typed it in "
 "correctly."
 msgstr ""
+"Indtast venligst din nye adgangskode to gange, så vi kan verificere, at du "
+"indtastede den korrekt."
 
 #: templates/registration/password_reset_confirm.html:21
 msgid "New Password"
-msgstr ""
+msgstr "Ny adgangskode"
 
 #: templates/registration/password_reset_confirm.html:26
-#, fuzzy
 msgid "Confirm Password"
-msgstr "Bekræft kodeord"
+msgstr "Bekræft adgangskode"
 
 #: templates/registration/password_reset_confirm.html:31
 #: templates/registration/password_reset_form.html:24
 msgid "Reset My Password"
-msgstr ""
+msgstr "Nulstil min adgangskode"
 
 #: templates/registration/password_reset_confirm.html:35
 msgid "Password Reset Failed."
-msgstr ""
+msgstr "Nulstilling af adgangskode mislykkedes."
 
 #: templates/registration/password_reset_confirm.html:37
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"Linket til nulstilling af adgangskoden var ugyldigt, måske fordi det "
+"allerede har været brugt. Vær venlig at anmode om en ny nulstilling af "
+"adgangskode."
 
 #: templates/registration/password_reset_done.html:15
 msgid ""
 "We've e-mailed you instructions for setting your password to the e-mail "
 "address you submitted. You should receive it shortly."
 msgstr ""
+"Vi har sendt dig instruktioner om, hvordan du angiver din adgangskode til e"
+"-post-adressen, du angav. Du bør modtage instruktionerne inden for kort tid."
 
 #: templates/registration/password_reset_email.html:3
 #, python-format
@@ -3085,25 +3173,29 @@ msgid ""
 "You're receiving this e-mail because you requested a password reset for your "
 "user account at %(site_name)s."
 msgstr ""
+"Du modtager denne besked, fordi du anmodede om nulstilling af adgangskode "
+"for din brugerkonto på %(site_name)s."
 
 #: templates/registration/password_reset_email.html:5
 msgid "Please go to the following page and choose a new password:"
-msgstr ""
+msgstr "Gå venligst til følgende side og vælg en ny adgangskode:"
 
 #: templates/registration/password_reset_email.html:9
 #, python-format
 msgid "Your username is %(user)s."
-msgstr ""
+msgstr "Dit brugernavn er %(user)s."
 
 #: templates/registration/password_reset_email.html:11
 msgid "Thank you for using Pootle!"
-msgstr ""
+msgstr "Tak for at du bruger Pootle!"
 
 #: templates/registration/password_reset_form.html:14
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
+"Glemt din adgangskode? Indtast din e-post-adresse herunder, og vi tilsender "
+"dig instruktioner om, hvordan du angiver en ny."
 
 #: templates/registration/password_reset_form.html:19
 #: templates/registration/registration_form.html:25
@@ -3114,7 +3206,7 @@ msgstr "Email-adresse"
 #: templates/registration/registration_complete.html:8
 #: templates/registration/registration_complete.html:13
 msgid "Registration Complete"
-msgstr ""
+msgstr "Tilmeldingen er fuldført"
 
 #: templates/registration/registration_complete.html:14
 msgid "Please check your email to activate your account."
@@ -3122,28 +3214,148 @@ msgstr "Tjek venligst din e-post for at aktivere din konto."
 
 #: templates/registration/registration_form.html:12
 msgid "Register a New Pootle Account"
-msgstr ""
+msgstr "Registrér en ny Pootle-konto"
 
 #: templates/registration/registration_form.html:13
 msgid "Fill in the following form to get started translating."
-msgstr ""
+msgstr "Udfyld den følgende formular for at komme i gang med at oversætte."
 
 #: templates/registration/registration_form.html:35
-#, fuzzy
 msgid "Password (again)"
-msgstr "adgangskode (igen)"
+msgstr "Adgangskode (igen)"
 
 #: templates/registration/registration_form.html:42
 msgid "Make sure to read the following:"
-msgstr ""
+msgstr "Sørg for at læse det følgende:"
 
 #: templates/registration/registration_form.html:56
 msgid "Already have an account?"
-msgstr ""
+msgstr "Har du allerede en konto?"
 
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "Log ind."
+
+#~ msgid "slug"
+#~ msgstr "slug"
+
+#~ msgid "The page will be independently available in /about/<slug>/"
+#~ msgstr "Denne side vil være tilgængelig, uafhængigt i /om/<slug>/"
+
+#~ msgid "Legal Page created."
+#~ msgstr "Oprettede juridisk side."
+
+#~ msgid "Add a new Legal Page"
+#~ msgstr "Tilføj en ny juridisk side"
+
+#~ msgid "Needs review"
+#~ msgstr "Behøver review"
+
+#~ msgid ""
+#~ "Can't find python-levenshtein package. Updating from templates is faster "
+#~ "with python-levenshtein."
+#~ msgstr ""
+#~ "Kan ikke finde pakken python-levenshtein. Opdatering fra skabeloner sker "
+#~ "hurtigere med python-levenshtein."
+
+#~ msgid "Translations are complete"
+#~ msgstr "Oversættelser er færdige"
+
+#~ msgid "Translations need to be checked (they are marked fuzzy)"
+#~ msgstr "Oversættelser behøver at blive tjekket (de er markeret uklare)"
+
+#~ msgid "Translated percentage"
+#~ msgstr "Procenttal for oversættelser"
+
+#~ msgid "Fuzzy"
+#~ msgstr "Uklar"
+
+#~ msgid "Fuzzy percentage"
+#~ msgstr "Uklar procenttal"
+
+#~ msgid "Fuzzy words"
+#~ msgstr "Uklare ord"
+
+#~ msgid "Untranslated percentage"
+#~ msgstr "Ikke oversat procenttal"
+
+#~ msgid "Untranslated words"
+#~ msgstr "Ikke oversatte ord"
+
+#~ msgid "Total Words"
+#~ msgstr "Ord ialt"
+
+#~ msgid "Summary"
+#~ msgstr "Opsummering"
+
+#, python-format
+#~ msgid "Imported %(count)d unit from %(store)s"
+#~ msgid_plural "Imported %(count)d units from %(store)s"
+#~ msgstr[0] "Importerede %(count)d enhed fra %(store)s"
+#~ msgstr[1] "Importerede %(count)d enheder fra %(store)s"
+
+#, python-format
+#~ msgid "Failed to import units from %s"
+#~ msgstr "Mislykkedes med import af enheder fra %s"
+
+#~ msgid "Search (Ctrl+Shift+S)<br/>Type in, then press Enter to search"
+#~ msgstr "Søg (Ctrl+Shift+S)<br/>Indtast, tryk dernæst Retur for at søge"
+
+#, python-format
+#~ msgid "<a href=\"%(url)s\">%(num)d words</a>"
+#~ msgstr "<a href=\"%(url)s\">%(num)d ord</a>"
+
+#, python-format
+#~ msgid "(%(num)d units)"
+#~ msgstr "(%(num)d elementer)"
+
+#, python-format
+#~ msgid ""
+#~ "%(type)s: %(translated)d of %(total)d messages translated (%(fuzzy)d fuzzy)."
+#~ msgstr ""
+#~ "%(type)s: %(translated)d af %(total)d beskeder er oversat (%(fuzzy)d "
+#~ "uklare)."
+
+#~ msgid "Publish on News feed"
+#~ msgstr "Publicér i nyhedskilde"
+
+#~ msgid "Send Email"
+#~ msgstr "Send besked"
+
+#~ msgid ""
+#~ "A short code for the project. This should only containASCII characters, "
+#~ "numbers, and the underscore (_) character."
+#~ msgstr ""
+#~ "En kort adresse for projektet. Denne bør kun indeholde ASCII-tegn, tal og "
+#~ "bundtegn (_)."
+
+#~ msgid "Update from templates"
+#~ msgstr "Opdatér fra skabelon"
+
+#, fuzzy
+#~ msgid "My Suggestions"
+#~ msgstr "Forslag"
+
+#~ msgid "Previous unit"
+#~ msgstr "Forrige element"
+
+#~ msgid "Next unit"
+#~ msgstr "Næste element"
+
+#~ msgid "Click to insert the translated term into the editor"
+#~ msgstr "Klik for at indsætte den oversatte term i redigeringen"
+
+#~ msgid "Submit translation and go to the next unit (Ctrl+Enter)"
+#~ msgstr "Indsæt oversættelse og gå til næste element (Ctrl+Retur)"
+
+#~ msgid "Suggest translation and go to the next unit (Ctrl+Enter)"
+#~ msgstr "Foreslå oversættelse og gå til næste element (Ctrl+Retur)"
+
+#~ msgid "You do not have rights to update from version control here"
+#~ msgstr "Du har ikke rettigheder til at opdatere fra version control her"
+
+#~ msgid "Update all from version control"
+#~ msgstr "Opdater alt fra version control"
 
 #~ msgid "About Pootle"
 #~ msgstr "Om Pootle"
@@ -3197,13 +3409,6 @@ msgstr "Log ind."
 #~ msgstr "ZIP af folder"
 
 #~ msgid ""
-#~ "A short code for the project. This should only contain ASCII characters, "
-#~ "numbers, and the underscore (_) character."
-#~ msgstr ""
-#~ "En kort kode for projektet. Bør kun bestå af ASCII tegn, tal og tegnet "
-#~ "understregning (_)."
-
-#~ msgid ""
 #~ "A description of this project. This is useful to give more information or "
 #~ "instructions. This field should be valid HTML."
 #~ msgstr ""
@@ -3238,9 +3443,6 @@ msgstr "Log ind."
 
 #~ msgid "Review"
 #~ msgstr "Vurdering"
-
-#~ msgid "Pootle Demo"
-#~ msgstr "Pootle Demo"
 
 #~ msgid "You do not have rights to suggest changes here"
 #~ msgstr "Du har ikke rettigheder til at foreslå ændringer her"

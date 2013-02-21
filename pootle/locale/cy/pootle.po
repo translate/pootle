@@ -2,13 +2,12 @@
 # Copyright (C) 2012 Zuza Software Foundation (Translate.org.za)
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-27 15:51+0100\n"
-"PO-Revision-Date: 2012-11-28 14:36+0000\n"
+"Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
+"POT-Creation-Date: 2012-12-31 14:17+0100\n"
+"PO-Revision-Date: 2013-01-16 15:18+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cy\n"
@@ -17,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n==2) ? 1 : 0;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1354113385.0\n"
+"X-POOTLE-MTIME: 1358349488.0\n"
 
 #: strings.py:8
 msgid ""
@@ -213,7 +212,7 @@ msgid "Whether this page should be displayed on registration."
 msgstr "P'un ai fydd y dudalen yn cael ei dangos wrth gofrestru."
 
 #: apps/legalpages/models.py:38 apps/pootle_app/forms.py:30
-#: apps/pootle_notifications/views.py:143
+#: apps/pootle_notifications/views.py:141
 msgid "Title"
 msgstr "Teitl"
 
@@ -227,13 +226,14 @@ msgstr ""
 "Os fydd wedi ei osod, bydd unrhyw gyfeiriad at y dudalen gyfreithiol yn caei "
 "ei ail anfon at yr URL yma"
 
-#: apps/legalpages/models.py:42
-msgid "slug"
-msgstr "bonyn"
-
+#. Translators: See http://en.wikipedia.org/wiki/Slug_%28web_publishing%29#Slug
 #: apps/legalpages/models.py:43
-msgid "The page will be independently available in /about/<slug>/"
-msgstr "Bydd y dudalen ar gael yn annibynnol yn /about/<slug>/"
+msgid "Slug"
+msgstr "Bonyn"
+
+#: apps/legalpages/models.py:44
+msgid "The page will be available at /about/<slug>/"
+msgstr "Bydd y dudalen ar gael yn /about/<slug>/"
 
 #: apps/legalpages/models.py:46
 msgid "Content"
@@ -245,8 +245,8 @@ msgid "Allowed markup: %s"
 msgstr "Tagio caniateir: %s"
 
 #: apps/legalpages/views.py:67
-msgid "Legal Page created."
-msgstr "Crëwyd Tudalen Gyfreithiol."
+msgid "Legal page created."
+msgstr "Crëwyd tudalen gyfreithiol."
 
 #: apps/legalpages/templates/legalpages/admin/edit.html:4
 #: apps/legalpages/templates/legalpages/admin/edit.html:9
@@ -283,8 +283,8 @@ msgid "No pages yet."
 msgstr "Dim tudalennau eto."
 
 #: apps/legalpages/templates/legalpages/admin/list.html:31
-msgid "Add a new Legal Page"
-msgstr "Ychwanegu Tudalen Gyfreithiol newydd"
+msgid "New Legal Page"
+msgstr "Tudalen Gyfreithiol Newydd"
 
 #: apps/pootle_app/admin.py:39
 msgid "Language code does not follow the ISO convention"
@@ -367,8 +367,8 @@ msgstr "Prif Gyfranwyr"
 
 #. Translators: The number of suggestions pending review
 #: apps/pootle_app/templates/top_contributers_table.html:12
-#: apps/pootle_app/views/language/view.py:58
-#: apps/pootle_store/templates/store/translate.html:59
+#: apps/pootle_app/views/language/view.py:46
+#: apps/pootle_store/templates/store/translate.html:74
 msgid "Suggestions"
 msgstr "Awgrymiadau"
 
@@ -386,21 +386,21 @@ msgid "anonymous users"
 msgstr "defnyddwyr anhysbys"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:4
-#: apps/pootle_app/views/language/view.py:42 apps/pootle_misc/stats.py:101
-#: apps/pootle_store/util.py:47
-#: apps/pootle_store/templates/store/translate.html:55
+#: apps/pootle_misc/stats.py:105 apps/pootle_store/util.py:47
+#: apps/pootle_store/templates/store/translate.html:70
 msgid "Translated"
 msgstr "Cyfieithwyd"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:5
-msgid "Needs review"
-msgstr "Angen adolygu"
+#: apps/pootle_misc/stats.py:122 apps/pootle_store/forms.py:215
+#: apps/pootle_store/util.py:46
+#: apps/pootle_store/templates/store/translate.html:73
+msgid "Needs work"
+msgstr "Angen gwaith"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:6
-#: apps/pootle_app/views/index/index.py:111
-#: apps/pootle_app/views/language/view.py:48 apps/pootle_misc/stats.py:125
-#: apps/pootle_project/views.py:298 apps/pootle_store/util.py:45
-#: apps/pootle_store/templates/store/translate.html:57
+#: apps/pootle_misc/stats.py:139 apps/pootle_store/util.py:45
+#: apps/pootle_store/templates/store/translate.html:72
 msgid "Untranslated"
 msgstr "Heb ei gyfieithu"
 
@@ -412,7 +412,7 @@ msgstr "Cadw Newidiadau"
 #: apps/pootle_app/templates/admin/admin_general_languages.html:4
 #: apps/pootle_app/templates/admin/admin_general_languages.html:9
 #: apps/pootle_app/templates/index/index.html:38
-#: apps/pootle_profile/models.py:72 templates/admin_profile_menu.html:6
+#: apps/pootle_profile/models.py:90 templates/admin_profile_menu.html:6
 msgid "Languages"
 msgstr "Ieithoedd"
 
@@ -426,7 +426,7 @@ msgstr ""
 
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:4
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:9
-#: apps/pootle_app/views/admin/permissions.py:60
+#: apps/pootle_app/views/admin/permissions.py:101
 #: apps/pootle_language/templates/language/language_admin.html:5
 #: apps/pootle_language/templates/language/language_admin.html:8
 #: apps/pootle_project/templates/project/admin_permissions.html:7
@@ -467,7 +467,7 @@ msgstr ""
 #: apps/pootle_app/templates/index/index.html:67
 #: apps/pootle_notifications/templates/notices.html:20
 #: apps/pootle_notifications/templates/notices.html:34
-#: apps/pootle_profile/models.py:73
+#: apps/pootle_profile/models.py:93
 #: apps/pootle_project/templates/project/projects.html:7
 #: apps/pootle_project/templates/project/projects.html:10
 #: apps/pootle_project/templates/project/projects.html:16
@@ -588,7 +588,7 @@ msgstr "Iaith"
 #: apps/pootle_app/templates/index/index.html:73
 #: apps/pootle_project/templates/project/projects.html:22
 msgid "Overall Completion"
-msgstr "Trosolwg Cwblhau"
+msgstr "Trosolwg"
 
 #: apps/pootle_app/templates/index/index.html:45
 #: apps/pootle_app/templates/index/index.html:74
@@ -717,11 +717,11 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:107
 msgid ""
-"Can't find python-levenshtein package. Updating from templates is faster "
+"Can't find python-levenshtein package. Updating against templates is faster "
 "with python-levenshtein."
 msgstr ""
-"Methu canfod pecyn python-levenshtein. Mae diweddaru o dempledi yn gynt gyda "
-"python-levenshtein."
+"Methu canfod y pecyn python-levenshtein. Mae diweddaru yn erbyn templedi yn "
+"gynt gyda python-levenshtein."
 
 #: apps/pootle_app/views/admin/dashboard.py:111
 msgid ""
@@ -837,7 +837,6 @@ msgid "Translated strings"
 msgstr "Llinynnau wedi eu cyfieithu"
 
 #: apps/pootle_app/views/admin/dashboard.py:203
-#: apps/pootle_app/views/language/view.py:44
 msgid "Translated words"
 msgstr "Geiriau wedi eu cyfieithu"
 
@@ -845,16 +844,16 @@ msgstr "Geiriau wedi eu cyfieithu"
 msgid "Active users"
 msgstr "Defnyddwyr gweithredool"
 
-#: apps/pootle_app/views/admin/permissions.py:46
-#: apps/pootle_app/views/admin/permissions.py:48
+#: apps/pootle_app/views/admin/permissions.py:61
+#: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Members"
 msgstr "Aelodau Project"
 
-#: apps/pootle_app/views/admin/permissions.py:50
+#: apps/pootle_app/views/admin/permissions.py:74
 msgid "Language Members"
 msgstr "Aelodau Iaith"
 
-#: apps/pootle_app/views/admin/permissions.py:51
+#: apps/pootle_app/views/admin/permissions.py:79
 msgid "All Users"
 msgstr "Pob Defnyddiwr"
 
@@ -888,14 +887,6 @@ msgstr ""
 #, python-format
 msgid "%(percentage)d%% complete"
 msgstr "%(percentage)d%% wedi ei gwblhau"
-
-#: apps/pootle_app/views/index/index.py:108 apps/pootle_project/views.py:295
-msgid "Translations are complete"
-msgstr "Cyfieithiadau wedi eu cwblhau"
-
-#: apps/pootle_app/views/index/index.py:109 apps/pootle_project/views.py:296
-msgid "Translations need to be checked (they are marked fuzzy)"
-msgstr "Cyfieithiadau angen eu gwirio (os wedi eu marcio'n fras)"
 
 #: apps/pootle_app/views/language/item_dict.py:37
 #, python-format
@@ -953,63 +944,27 @@ msgstr[1] "Gwall darllen %d ffeil"
 msgid "Name"
 msgstr "Enw"
 
-#: apps/pootle_app/views/language/view.py:43
-msgid "Translated percentage"
-msgstr "Canran wedi eu cyfieithu"
-
-#: apps/pootle_app/views/language/view.py:45 apps/pootle_misc/stats.py:113
-#: apps/pootle_store/forms.py:193
-#: apps/pootle_store/templates/store/translate.html:58
-msgid "Fuzzy"
-msgstr "Bras"
-
-#: apps/pootle_app/views/language/view.py:46
-msgid "Fuzzy percentage"
-msgstr "Canran bras"
-
-#: apps/pootle_app/views/language/view.py:47
-msgid "Fuzzy words"
-msgstr "Geiriau bras"
-
-#: apps/pootle_app/views/language/view.py:49
-msgid "Untranslated percentage"
-msgstr "Canran heb eu cyfieithu"
-
-#: apps/pootle_app/views/language/view.py:50
-msgid "Untranslated words"
-msgstr "Geiriau wedi eu cyfieithu"
-
-#: apps/pootle_app/views/language/view.py:51 apps/pootle_misc/stats.py:89
-msgid "Total"
-msgstr "Cyfanswm"
-
-#: apps/pootle_app/views/language/view.py:52
-msgid "Total Words"
-msgstr "Cyfanswm Geiriau"
-
 #. Translators: noun. The graphical representation of translation status
-#: apps/pootle_app/views/language/view.py:54
+#: apps/pootle_app/views/language/view.py:43
 msgid "Progress"
 msgstr "Cynnydd"
 
-#: apps/pootle_app/views/language/view.py:55
-msgid "Summary"
-msgstr "Crynodeb"
-
-#: apps/pootle_app/views/language/view.py:56
+#: apps/pootle_app/views/language/view.py:44
 msgid "Need Translation"
 msgstr "Angen Cyfieithu"
 
-#: apps/pootle_app/views/language/view.py:120
-#: apps/pootle_translationproject/views.py:265
+#: apps/pootle_app/views/language/view.py:108
+#: apps/pootle_translationproject/views.py:263
 msgid "You do not have rights to access this translation project."
 msgstr "Nid oes gennych hawl i gael mynediad i'r project cyfieithu hwn."
 
-#: apps/pootle_app/views/language/view.py:135
+#: apps/pootle_app/views/language/view.py:123
+#: apps/pootle_app/views/language/view.py:149
 msgid "You do not have rights to commit files here"
 msgstr "Nid oes gennych yr hawl i gyflwyno ffeiliau yma"
 
-#: apps/pootle_app/views/language/view.py:148
+#: apps/pootle_app/views/language/view.py:136
+#: apps/pootle_app/views/language/view.py:162
 msgid "You do not have rights to update files here"
 msgstr "Nid oes gennych yr hawl i ddiweddaru ffeiliau yma"
 
@@ -1078,7 +1033,7 @@ msgstr[0] "%(projects)d project, %(average)d%% wedi ei gyfieithu"
 msgstr[1] "%(projects)d project, %(average)d%% wedi ei gyfieithu"
 
 #: apps/pootle_language/views.py:148 apps/pootle_project/views.py:160
-#: apps/pootle_translationproject/views.py:343
+#: apps/pootle_translationproject/views.py:342
 msgid "No description yet."
 msgstr "Dim disgrifiad eto."
 
@@ -1251,27 +1206,28 @@ msgstr "Atalnodi cychwynnol"
 msgid "Starting whitespace"
 msgstr "Bwlch gwyn cychwynnol"
 
-#: apps/pootle_misc/checks.py:72
+#. Translators: This refers to tabulation characters
+#: apps/pootle_misc/checks.py:73
 msgid "Tabs"
 msgstr "Tabiau"
 
-#: apps/pootle_misc/checks.py:73
+#: apps/pootle_misc/checks.py:74
 msgid "Unchanged"
 msgstr "Heb ei newid"
 
-#: apps/pootle_misc/checks.py:74
+#: apps/pootle_misc/checks.py:75
 msgid "URLs"
 msgstr "URLau"
 
-#: apps/pootle_misc/checks.py:75
+#: apps/pootle_misc/checks.py:76
 msgid "Valid characters"
 msgstr "Nodau dilys"
 
-#: apps/pootle_misc/checks.py:76
+#: apps/pootle_misc/checks.py:77
 msgid "Placeholders"
 msgstr "Dalfannau"
 
-#: apps/pootle_misc/checks.py:77
+#: apps/pootle_misc/checks.py:78
 msgid "XML tags"
 msgstr "Tagiau XML"
 
@@ -1382,15 +1338,15 @@ msgstr "Wedi methu mewnforio awgrymiadau o %s"
 
 #: apps/pootle_misc/dbupdate.py:402
 #, python-format
-msgid "Imported %(count)d unit from %(store)s"
-msgid_plural "Imported %(count)d units from %(store)s"
-msgstr[0] "Wedi mewnforio %(count)d uned o %(store)s"
-msgstr[1] "Wedi mewnforio %(count)d uned o %(store)s"
+msgid "Imported %(count)d string from %(store)s"
+msgid_plural "Imported %(count)d strings from %(store)s"
+msgstr[0] "Wedi mewnforio %(count)d llinyn o %(store)s"
+msgstr[1] "Wedi mewnforio %(count)d llinyn o %(store)s"
 
 #: apps/pootle_misc/dbupdate.py:408
 #, python-format
-msgid "Failed to import units from %s"
-msgstr "Wedi methu mewnforio unedau o %s"
+msgid "Failed to import strings from %s"
+msgstr "Wedi methu mewnforio llinynnau o %s"
 
 #: apps/pootle_misc/dbupdate.py:417
 msgid "All translations are now imported."
@@ -1405,56 +1361,71 @@ msgstr ""
 "dudalen flaen ymhen 10 eiliad."
 
 #: apps/pootle_misc/forms.py:97
-msgid "Search (Ctrl+Shift+S)<br/>Type in, then press Enter to search"
+msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "Chwilio (Ctrl+Shift+S)<br/>Teipio, yna pwyso Enter i chwilio"
 
-#: apps/pootle_misc/forms.py:104
+#: apps/pootle_misc/forms.py:103
 msgid "Source Text"
 msgstr "Testun Ffynhonnell"
 
-#: apps/pootle_misc/forms.py:105
+#: apps/pootle_misc/forms.py:104
 msgid "Target Text"
 msgstr "Testun Targed"
 
-#: apps/pootle_misc/forms.py:106
+#: apps/pootle_misc/forms.py:105
 msgid "Comments"
 msgstr "Sylwadau"
 
-#: apps/pootle_misc/forms.py:107
+#: apps/pootle_misc/forms.py:106
 msgid "Locations"
 msgstr "Lleoliadau"
 
-#: apps/pootle_misc/forms.py:120
+#: apps/pootle_misc/forms.py:119
 msgid "Source Terms"
 msgstr "Termau Ffynhonnell"
 
-#: apps/pootle_misc/forms.py:121
+#: apps/pootle_misc/forms.py:120
 msgid "Target Terms"
 msgstr "Termau Targed"
 
-#: apps/pootle_misc/forms.py:122
+#: apps/pootle_misc/forms.py:121
 msgid "Definitions"
 msgstr "Diffiniadau"
 
-#: apps/pootle_misc/stats.py:90 apps/pootle_misc/stats.py:102
-#: apps/pootle_misc/stats.py:114 apps/pootle_misc/stats.py:126
-#, python-format
-msgid "<a href=\"%(url)s\">%(num)d words</a>"
-msgstr "<a href=\"%(url)s\">%(num)d gair</a>"
+#: apps/pootle_misc/stats.py:89
+msgid "Total"
+msgstr "Cyfanswm"
 
-#: apps/pootle_misc/stats.py:93 apps/pootle_misc/stats.py:105
-#: apps/pootle_misc/stats.py:117 apps/pootle_misc/stats.py:129
+#: apps/pootle_misc/stats.py:90 apps/pootle_misc/stats.py:106
+#: apps/pootle_misc/stats.py:123 apps/pootle_misc/stats.py:140
+#, python-format
+msgid "<a href=\"%(url)s\">%(num)d word</a>"
+msgid_plural "<a href=\"%(url)s\">%(num)d words</a>"
+msgstr[0] "<a href=\"%(url)s\">%(num)d gair</a>"
+msgstr[1] "<a href=\"%(url)s\">%(num)d gair</a>"
+
+#: apps/pootle_misc/stats.py:95 apps/pootle_misc/stats.py:112
+#: apps/pootle_misc/stats.py:129 apps/pootle_misc/stats.py:146
 #, python-format
 msgid "%(num)d%%"
 msgstr "%(num)d%%"
 
-#: apps/pootle_misc/stats.py:95 apps/pootle_misc/stats.py:107
-#: apps/pootle_misc/stats.py:119 apps/pootle_misc/stats.py:131
+#: apps/pootle_misc/stats.py:97 apps/pootle_misc/stats.py:114
+#: apps/pootle_misc/stats.py:131
 #, python-format
-msgid "(%(num)d units)"
-msgstr "(%(num)d uned)"
+msgid "(%(num)d string)"
+msgid_plural "(%(num)d strings)"
+msgstr[0] "(%(num)d llinyn)"
+msgstr[1] "(%(num)d llinyn)"
 
-#: apps/pootle_misc/stats.py:146
+#: apps/pootle_misc/stats.py:148
+#, python-format
+msgid "(%(num)d strings)"
+msgid_plural "(%(num)d strings)"
+msgstr[0] "(%(num)d llinyn)"
+msgstr[1] "(%(num)d llinyn)"
+
+#: apps/pootle_misc/stats.py:165
 #, python-format
 msgid "This folder has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
@@ -1466,7 +1437,7 @@ msgstr[1] ""
 "Mae gan y ffolder yma %(num)d gair, mae %(percentage)d%% ohonon wedi ei "
 "gyfieithu."
 
-#: apps/pootle_misc/stats.py:157
+#: apps/pootle_misc/stats.py:177
 #, python-format
 msgid "This file has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
@@ -1478,22 +1449,22 @@ msgstr[1] ""
 "Mae gan y ffeil yma %(num)d gair, mae %(percentage)d%% ohonon wedi ei "
 "gyfieithu."
 
-#: apps/pootle_misc/stats.py:180
+#: apps/pootle_misc/stats.py:199
 msgid "Expand details"
 msgstr "Ehangu manylion"
 
-#: apps/pootle_misc/stats.py:192
+#: apps/pootle_misc/stats.py:210
 #, python-format
 msgid "Continue translation (%(num)d word left)"
 msgid_plural "Continue translation (%(num)d words left)"
 msgstr[0] "Parhau i gyfieithu (%(num)d gair ar ôl)"
 msgstr[1] "Parhau i gyfieithu (%(num)d gair ar ôl)"
 
-#: apps/pootle_misc/stats.py:199
+#: apps/pootle_misc/stats.py:220
 msgid "Translation is complete"
 msgstr "Mae'r cyfieithiad wedi ei gwblhau"
 
-#: apps/pootle_misc/stats.py:209
+#: apps/pootle_misc/stats.py:231
 #, python-format
 msgid "Review suggestion (%(num)d left)"
 msgid_plural "Review suggestions (%(num)d left)"
@@ -1502,22 +1473,27 @@ msgstr[1] "Adolygu awgrymiadau (%(num)d ar ôl)"
 
 #. Translators: 'type' is the type of VCS file: working, remote,
 #. or merged copy.
-#: apps/pootle_misc/stats.py:231
+#: apps/pootle_misc/stats.py:252
 #, python-format
 msgid ""
-"%(type)s: %(translated)d of %(total)d messages translated (%(fuzzy)d fuzzy)."
-msgstr ""
-"%(type)s: %(translated)d o %(total)d neges wedi eu cyfieithu (%(fuzzy)d yn "
-"fras)."
+"%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d fuzzy)."
+msgid_plural ""
+"%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d fuzzy)."
+msgstr[0] ""
+"%(type)s: %(translated)d o %(total)d linynnau wedi eu cyfieithu (%(fuzzy)d "
+"bras)."
+msgstr[1] ""
+"%(type)s: %(translated)d o %(total)d linynnau wedi eu cyfieithu (%(fuzzy)d "
+"bras)."
 
-#: apps/pootle_misc/middleware/errorpages.py:64
+#: apps/pootle_misc/middleware/errorpages.py:65
 #, python-format
 msgid "You need to <a href=\"%(login_link)s\">login</a> to access this page."
 msgstr ""
 "Rhaid <a href=\"%(login_link)s\">mewngofnodi</a> i gael mynediad i'r dudalen "
 "hon."
 
-#: apps/pootle_misc/middleware/errorpages.py:82
+#: apps/pootle_misc/middleware/errorpages.py:83
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
@@ -1563,55 +1539,55 @@ msgstr "Neges"
 msgid "Added"
 msgstr "Ychwanegwyd"
 
-#: apps/pootle_notifications/views.py:105
+#: apps/pootle_notifications/views.py:103
 #, python-format
 msgid "News for %(language)s"
 msgstr "Newyddion %(language)s"
 
-#: apps/pootle_notifications/views.py:107
+#: apps/pootle_notifications/views.py:105
 #, python-format
 msgid "News for %(project)s"
-msgstr "Newyddion ar gyfer %(project)s"
+msgstr "Newyddion %(project)s"
 
-#: apps/pootle_notifications/views.py:113
+#: apps/pootle_notifications/views.py:111
 #, python-format
 msgid "News for the %(project)s project in %(language)s"
-msgstr "Newyddion project %(project)s yn %(language)s"
+msgstr "Newyddion project %(project)s %(language)s"
 
-#: apps/pootle_notifications/views.py:114
+#: apps/pootle_notifications/views.py:112
 #, python-format
 msgid "News for %(path)s"
-msgstr "Newyddion ar gyfer %(path)s"
+msgstr "Newyddion %(path)s"
+
+#: apps/pootle_notifications/views.py:138
+msgid "Publish on news feed"
+msgstr "Cyhoeddi ar y llif newyddion"
 
 #: apps/pootle_notifications/views.py:140
-msgid "Publish on News feed"
-msgstr "Cyhoeddi ar y llif Newyddion"
+msgid "Send email"
+msgstr "Anfon e-bost"
 
-#: apps/pootle_notifications/views.py:142
-msgid "Send Email"
-msgstr "Anfon E-bost"
-
-#: apps/pootle_notifications/views.py:145
+#: apps/pootle_notifications/views.py:143
 msgid "Email only to recently active users"
 msgstr "E-bost yn unig i ddefnyddwyr archifwyd yn ddiweddar"
 
-#: apps/pootle_notifications/views.py:153
+#: apps/pootle_notifications/views.py:151
 msgid "All Projects"
 msgstr "Pob Project"
 
-#: apps/pootle_notifications/views.py:157
+#: apps/pootle_notifications/views.py:155
 msgid "Project Selection"
 msgstr "Dewis Project"
 
-#: apps/pootle_notifications/views.py:165
+#: apps/pootle_notifications/views.py:163
 msgid "All Languages"
 msgstr "Pob Iaith"
 
-#: apps/pootle_notifications/views.py:169
+#: apps/pootle_notifications/views.py:167
 msgid "Language Selection"
 msgstr "Dewis Iaith"
 
-#: apps/pootle_notifications/views.py:295
+#: apps/pootle_notifications/views.py:293
 msgid "View News Item"
 msgstr "Gweld Eitem Newyddion"
 
@@ -1643,7 +1619,7 @@ msgstr "Cyhoeddi"
 msgid "Default"
 msgstr "Rhagosodedig"
 
-#: apps/pootle_profile/forms.py:47 apps/pootle_profile/models.py:74
+#: apps/pootle_profile/forms.py:47 apps/pootle_profile/models.py:96
 msgid "Interface Language"
 msgstr "Iaith Rhyngwyneb"
 
@@ -1651,36 +1627,36 @@ msgstr "Iaith Rhyngwyneb"
 msgid "This account is inactive."
 msgstr "Mae'r cyfrif yn anweithredol."
 
-#: apps/pootle_profile/models.py:70
+#: apps/pootle_profile/models.py:86
 msgid "Number of Rows"
 msgstr "Nifer o Resi"
 
-#: apps/pootle_profile/models.py:75
+#: apps/pootle_profile/models.py:100
 msgid "Alternative Source Languages"
 msgstr "Iaith Ffynhonnell Arall"
 
-#: apps/pootle_profile/models.py:123
+#: apps/pootle_profile/models.py:150
 msgid "Suggestions Accepted"
 msgstr "Awgrymiadau wedi eu Derbyn"
 
-#: apps/pootle_profile/models.py:124
+#: apps/pootle_profile/models.py:154
 msgid "Suggestions Pending"
 msgstr "Awgrymiadau dan Ystyriaeth"
 
-#: apps/pootle_profile/models.py:125
+#: apps/pootle_profile/models.py:158
 msgid "Suggestions Reviewed"
 msgstr "Awgrymiadau wedi eu Hadolygu"
 
-#: apps/pootle_profile/models.py:126
+#: apps/pootle_profile/models.py:162
 msgid "Submissions Made"
 msgstr "Cynigion wedi eu Cyflwyno"
 
 #: apps/pootle_project/models.py:56
 msgid ""
-"A short code for the project. This should only containASCII characters, "
+"A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
 msgstr ""
-"Darn byr o god i'r project. Dylai gynnwys nodau a rhifau ASCI a'r nod "
+"Cod byr ar gyfer y project. Dylai gynnwys nodau ASCII, rhifau a nodau "
 "tanlinellu (_) yn unig."
 
 #: apps/pootle_project/models.py:64
@@ -1743,8 +1719,9 @@ msgid "You do not have rights to administer this project."
 msgstr "Nid oes gennych hawl i weinyddu'r project hwn."
 
 #: apps/pootle_project/views.py:212
-msgid "Update from templates"
-msgstr "Diweddaru o dempledi"
+#: apps/pootle_translationproject/actions.py:201
+msgid "Update against templates"
+msgstr "Diweddaru yn erbyn templedi"
 
 #: apps/pootle_project/templates/project/admin_permissions.html:24
 msgid "Below you can add, edit, and delete the permissions for this project."
@@ -1777,14 +1754,13 @@ msgid "State"
 msgstr "Cyflwr"
 
 #: apps/pootle_statistics/models.py:50
-#: apps/pootle_store/templates/unit/edit.html:193
 #: apps/pootle_store/templates/unit/xhr-comment.html:10
 msgid "Comment"
 msgstr "Sylw"
 
-#: apps/pootle_statistics/models.py:89
-msgid "Unknown submitter"
-msgstr "Cyflwynydd anhysbys"
+#: apps/pootle_statistics/models.py:95
+msgid "anonymous user"
+msgstr "defnyddwyr anhysbys"
 
 #: apps/pootle_store/filetypes.py:29
 msgid "Gettext PO"
@@ -1852,7 +1828,7 @@ msgstr "Isdeitlau: ssa"
 msgid "Subtitles: ass"
 msgstr "Isdeitlau: ass"
 
-#: apps/pootle_store/forms.py:96
+#: apps/pootle_store/forms.py:95
 #: apps/pootle_store/templatetags/store_tags.py:138
 #: apps/pootle_store/templatetags/store_tags.py:154
 #: apps/pootle_store/templatetags/store_tags.py:161
@@ -1862,11 +1838,11 @@ msgstr "Isdeitlau: ass"
 msgid "Plural Form %d"
 msgstr "Ffurfiau Lluosog %d"
 
-#: apps/pootle_store/forms.py:273
+#: apps/pootle_store/forms.py:296
 msgid "Translator comment"
 msgstr "Sylw cyfieithydd"
 
-#: apps/pootle_store/models.py:760
+#: apps/pootle_store/models.py:810
 msgid "Path"
 msgstr "Llwybr"
 
@@ -1874,35 +1850,31 @@ msgstr "Llwybr"
 msgid "Obsolete"
 msgstr "Hen"
 
-#: apps/pootle_store/util.py:46
-msgid "Needs work"
-msgstr "Angen gwaith"
-
 #: apps/pootle_store/views.py:77
 msgid "Insufficient rights to this translation project."
 msgstr "Dim hawliau digonol i'r project cyfieithu."
 
-#: apps/pootle_store/views.py:658
+#: apps/pootle_store/views.py:689
 msgid "Comment submission failed."
 msgstr "Methodd cyflwyno sylwadau."
 
-#: apps/pootle_store/views.py:778 apps/pootle_store/views.py:842
+#: apps/pootle_store/views.py:809 apps/pootle_store/views.py:873
 msgid "You do not have rights to access translation mode."
 msgstr "Nid oes gennych hawl i gael mynediad i'r modd cyfieithu."
 
-#: apps/pootle_store/views.py:825
+#: apps/pootle_store/views.py:856
 msgid "Failed to process submission."
 msgstr "Methu prosesu'r cyflwyniad."
 
-#: apps/pootle_store/views.py:874
+#: apps/pootle_store/views.py:905
 msgid "Failed to process suggestion."
 msgstr "Methu prosesu'r awgrym."
 
-#: apps/pootle_store/views.py:894
+#: apps/pootle_store/views.py:926
 msgid "You do not have rights to access review mode."
 msgstr "Nid oes gennych hawl i gael mynediad i'r modd adolygu."
 
-#: apps/pootle_store/views.py:993
+#: apps/pootle_store/views.py:1025
 msgid "The suggestion or vote is not valid any more."
 msgstr "Nid yw'r awgrym neu bleidlais yn ddilys bellach."
 
@@ -1919,39 +1891,40 @@ msgid ""
 "Please enable JavaScript in your browser preferences and reload the page."
 msgstr "Galluogwch JavaScript yn newisiadau eich porwr ac ail-lwytho'r dudalen."
 
-#: apps/pootle_store/templates/store/translate.html:51
+#: apps/pootle_store/templates/store/translate.html:65
 msgid "Filter by:"
 msgstr "Hidlo yn ôl:"
 
-#: apps/pootle_store/templates/store/translate.html:54
+#. Translators: This refers to "All strings"
+#: apps/pootle_store/templates/store/translate.html:69
 msgid "All"
 msgstr "Popeth"
 
-#: apps/pootle_store/templates/store/translate.html:56
+#: apps/pootle_store/templates/store/translate.html:71
 msgid "Incomplete"
 msgstr "Anghyflawn"
 
-#: apps/pootle_store/templates/store/translate.html:60
-msgid "My Suggestions"
+#: apps/pootle_store/templates/store/translate.html:75
+msgid "My suggestions"
 msgstr "Fy Awgrymiadau"
 
-#: apps/pootle_store/templates/store/translate.html:61
+#: apps/pootle_store/templates/store/translate.html:76
 msgid "Checks"
 msgstr "Gwiro"
 
-#: apps/pootle_store/templates/store/translate.html:69
-msgid "Previous unit"
-msgstr "Uned flaenorol"
+#: apps/pootle_store/templates/store/translate.html:84
+msgid "Previous string"
+msgstr "Llinyn blaenorol"
 
-#: apps/pootle_store/templates/store/translate.html:69
+#: apps/pootle_store/templates/store/translate.html:84
 msgid ""
-"Go to the previous unit (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
+"Go to the previous string (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+Page&nbsp;Up<br/>First page: Ctrl+Shift+Home"
 msgstr ""
-"Mynd i'r uned flaenorol (Ctrl+Fyny)<br/><br/>Hefyd:<br/>Tudalen flaenorol: "
-"Ctrl+Shift+Page&nbsp;Down<br/>Tudalen gyntaf: Ctrl+Shift+Home"
+"Mynd i'r llinyn blaenorol (Ctrl+Up)<br/><br/>Hefyd:<br/>Tudalen flaenorol: "
+"Ctrl+Shift+Page&nbsp;Up<br/>Tudalen gyntaf: Ctrl+Shift+Home"
 
-#: apps/pootle_store/templates/store/translate.html:71
+#: apps/pootle_store/templates/store/translate.html:86
 msgid ""
 "Current page number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
@@ -1959,20 +1932,20 @@ msgstr ""
 "Rhif y dudalen gyfredol (Ctrl+Shift+U)<br/><br/>Teipio'r rhif ac yna pwyso "
 "Enter<br/>i fynd i unrhyw safle"
 
-#: apps/pootle_store/templates/store/translate.html:73
+#: apps/pootle_store/templates/store/translate.html:88
 msgid "Total pages"
 msgstr "Cyfanswm tudalennau"
 
-#: apps/pootle_store/templates/store/translate.html:75
-msgid "Next unit"
-msgstr "Uned nesaf"
+#: apps/pootle_store/templates/store/translate.html:90
+msgid "Next string"
+msgstr "Llinyn nesaf"
 
-#: apps/pootle_store/templates/store/translate.html:75
+#: apps/pootle_store/templates/store/translate.html:90
 msgid ""
-"Go to the next unit (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
+"Go to the next string (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
 "+Page&nbsp;Down<br/>Last page: Ctrl+Shift+End"
 msgstr ""
-"Mynd i'r uned nesaf (Ctrl+Lawr)<br/><br/>Hefyd:<br/>Tudalen nesaf: "
+"Mynd i'r llinyn blaenorol (Ctrl+Down)<br/><br/>Hefyd:<br/>Tudalen nesaf: "
 "Ctrl+Shift+Page&nbsp;Down<br/>Tudalen olaf: Ctrl+Shift+End"
 
 #: apps/pootle_store/templates/unit/edit.html:11
@@ -1996,8 +1969,8 @@ msgid "Terminology:"
 msgstr "Terminoleg:"
 
 #: apps/pootle_store/templates/unit/edit.html:43
-msgid "Click to insert the translated term into the editor"
-msgstr "Cliciwch i fewnosod y term wedi ei gyfieithu i'r golygydd"
+msgid "Insert the translated term into the editor"
+msgstr "Mewnosod y term wedi ei gyfieithu i'r golygydd"
 
 #: apps/pootle_store/templates/unit/edit.html:56
 msgid "Possible issues with the translation"
@@ -2022,13 +1995,13 @@ msgstr "Adrodd ar anhawster gyda'r llinyn ffynhonnell"
 
 #: apps/pootle_store/templates/unit/edit.html:128
 #: apps/pootle_store/templates/unit/edit.html:138
-#: apps/pootle_store/templates/unit/edit.html:173
+#: apps/pootle_store/templates/unit/edit.html:204
 msgid "Submit"
 msgstr "Cyflwyno"
 
 #: apps/pootle_store/templates/unit/edit.html:128
-msgid "Submit translation and go to the next unit (Ctrl+Enter)"
-msgstr "Cyflwyno cyfieithiad a symud ymlaen i'r uned nesaf (Ctrl+Enter)"
+msgid "Submit translation and go to the next string (Ctrl+Enter)"
+msgstr "Cyflwyno cyfieithiad a symud ymlaen i'r llinyn nesaf (Ctrl+Enter)"
 
 #: apps/pootle_store/templates/unit/edit.html:131
 #: apps/pootle_store/templates/unit/edit.html:139
@@ -2036,8 +2009,8 @@ msgid "Suggest"
 msgstr "Awgrymu"
 
 #: apps/pootle_store/templates/unit/edit.html:131
-msgid "Suggest translation and go to the next unit (Ctrl+Enter)"
-msgstr "Awgrymu cyfieithiad a mynd i'r uned nesaf (Ctrl+Enter)"
+msgid "Suggest translation and go to the next string (Ctrl+Enter)"
+msgstr "Awgrymu cyfieithiad a mynd i'r llinyn nesaf (Ctrl+Enter)"
 
 #: apps/pootle_store/templates/unit/edit.html:137
 msgid "Toggle suggest mode (Ctrl+Shift+Space)"
@@ -2048,34 +2021,74 @@ msgid "Toggle fuzzy state (Ctrl+Space)"
 msgstr "Toglo'r modd bras (Ctrl+Space)"
 
 #: apps/pootle_store/templates/unit/edit.html:155
-msgid "Click to insert this symbol into the editor"
-msgstr "Clicio i fewnosod y symbol i'r golygydd"
+msgid "Insert RLM (Right-To-Left Mark) into the editor"
+msgstr "Mewnosod RLM (Marc De i Chwith) i'r golygydd"
 
-#: apps/pootle_store/templates/unit/edit.html:166
+#: apps/pootle_store/templates/unit/edit.html:158
+msgid "Insert LRM (Left-To-Right Mark) into the editor"
+msgstr "Mewnosod LRM (Marc Chwith i'r Dde) i'r golygydd"
+
+#: apps/pootle_store/templates/unit/edit.html:161
+msgid "Insert RLE (Right-To-Left Embedding) into the editor"
+msgstr "Mewnosod RLE (Mewnblannu De i Chwith) i'r golygydd"
+
+#: apps/pootle_store/templates/unit/edit.html:164
+msgid "Insert LRE (Left-To-Right Embedding) into the editor"
+msgstr "Mewnosod LRE (Mewnblannu Chwith i'r Dde) i'r golygydd"
+
+#: apps/pootle_store/templates/unit/edit.html:167
+msgid "Insert RLO (Right-To-Left Override) into the editor"
+msgstr "Mewnosod RLO (Gwrthwneud De i Chwith) i'r golygydd"
+
+#: apps/pootle_store/templates/unit/edit.html:170
+msgid "Insert LRO (Left-To-Right Override) into the editor"
+msgstr "Mewnosod LRO (Gwrthwneud Chwith i'r Dde) i'r golygydd"
+
+#: apps/pootle_store/templates/unit/edit.html:173
+msgid "Insert PDF (Pop Directional Format ) into the editor"
+msgstr "Mewnosod PDF (Fformat Cyfeiriad Pop) i'r golygydd"
+
+#: apps/pootle_store/templates/unit/edit.html:176
+msgid "Insert ZWJ (Zero Width Joiner) into the editor"
+msgstr "Mewnosod ZWJ (Unwr Lled Sero) i'r golygydd"
+
+#: apps/pootle_store/templates/unit/edit.html:179
+msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
+msgstr "Mewnosod ZWNJ (Dim Unwr Lled Sero) i'r golygydd"
+
+#: apps/pootle_store/templates/unit/edit.html:185
+msgid "Insert this symbol into the editor"
+msgstr "Mewnosod y symbol i'r golygydd"
+
+#: apps/pootle_store/templates/unit/edit.html:197
 msgid "Add Comment"
 msgstr "Ychwanegu Sylw"
 
-#: apps/pootle_store/templates/unit/edit.html:167
+#: apps/pootle_store/templates/unit/edit.html:198
 msgid "Show Timeline"
 msgstr "Dangos Amserlen"
 
-#: apps/pootle_store/templates/unit/edit.html:168
+#: apps/pootle_store/templates/unit/edit.html:199
 msgid "Hide Timeline"
 msgstr "Cuddio Amserlen"
 
-#: apps/pootle_store/templates/unit/edit.html:200
+#: apps/pootle_store/templates/unit/edit.html:224
+msgid "Comment:"
+msgstr "Sylwadau:"
+
+#: apps/pootle_store/templates/unit/edit.html:231
 msgid "User suggestions"
 msgstr "Awgrymiadau defnyddwyr"
 
-#: apps/pootle_store/templates/unit/edit.html:218
+#: apps/pootle_store/templates/unit/edit.html:249
 msgid "Accept suggestion"
 msgstr "Derbyn yr awgrym"
 
-#: apps/pootle_store/templates/unit/edit.html:223
+#: apps/pootle_store/templates/unit/edit.html:254
 msgid "Reject suggestion"
 msgstr "Gwrthod yr awgrym"
 
-#: apps/pootle_store/templates/unit/edit.html:230
+#: apps/pootle_store/templates/unit/edit.html:261
 msgid "Remove suggestion"
 msgstr "Tynnu'r awgrym"
 
@@ -2169,7 +2182,7 @@ msgstr[0] "%d munud yn ôl"
 msgstr[1] "%d munud yn ôl"
 
 #: apps/pootle_store/templatetags/store_tags.py:234
-msgid "Few seconds ago"
+msgid "A few seconds ago"
 msgstr "Ychydig eiliadau yn ôl"
 
 #: apps/pootle_terminology/views.py:156
@@ -2217,7 +2230,7 @@ msgid "Here you can manage the terms in the terminology files."
 msgstr "Yma gallwch reoli termau yn y ffeiliau termau."
 
 #: apps/pootle_terminology/templates/terminology/stores.html:14
-#: apps/pootle_translationproject/views.py:781
+#: apps/pootle_translationproject/views.py:765
 msgid "File"
 msgstr "Ffeil"
 
@@ -2264,7 +2277,7 @@ msgid "Download file"
 msgstr "Llwytho ffeil i lawr"
 
 #: apps/pootle_translationproject/actions.py:96
-#: apps/pootle_translationproject/actions.py:224
+#: apps/pootle_translationproject/actions.py:254
 msgid "Translate offline"
 msgstr "Cyfieithu all-lein"
 
@@ -2273,7 +2286,7 @@ msgid "Download XLIFF file for offline translation"
 msgstr "Llwytho ffeil XLIFF i lawr ar gyfer cyfieithu all-lein"
 
 #: apps/pootle_translationproject/actions.py:112
-#: apps/pootle_translationproject/views.py:740
+#: apps/pootle_translationproject/views.py:724
 msgid "Upload"
 msgstr "Llwytho i fyny"
 
@@ -2289,27 +2302,33 @@ msgstr "Diweddaru o VCS"
 msgid "Commit to VCS"
 msgstr "Cyflwyno i VCS"
 
-#: apps/pootle_translationproject/actions.py:157
+#. Translators: "all" here refers to all files and sub directories in a directory/project.
+#: apps/pootle_translationproject/actions.py:159
+msgid "Update all from VCS"
+msgstr "Diweddaru'r cyfan o VCS"
+
+#. Translators: "all" here refers to all files and sub directories in a directory/project.
+#: apps/pootle_translationproject/actions.py:174
+msgid "Commit all to VCS"
+msgstr "Cyflwyno'r cyfan i VCS"
+
+#: apps/pootle_translationproject/actions.py:187
 msgid "Rescan project files"
 msgstr "Ailsganio ffeiliau project"
 
-#: apps/pootle_translationproject/actions.py:171
-msgid "Update against templates"
-msgstr "Diweddaru yn erbyn templedi"
-
-#: apps/pootle_translationproject/actions.py:188
+#: apps/pootle_translationproject/actions.py:218
 msgid "Delete this folder..."
 msgstr "Dileu'r ffolder..."
 
-#: apps/pootle_translationproject/actions.py:190
+#: apps/pootle_translationproject/actions.py:220
 msgid "Delete this file..."
 msgstr "Dileu'r ffeil..."
 
-#: apps/pootle_translationproject/actions.py:226
+#: apps/pootle_translationproject/actions.py:256
 msgid "Manage"
 msgstr "Rheoli"
 
-#: apps/pootle_translationproject/models.py:106
+#: apps/pootle_translationproject/models.py:105
 #, python-format
 msgid ""
 "A description of this translation project. This is useful to give more "
@@ -2318,88 +2337,99 @@ msgstr ""
 "Disgrifiad o'r project cyfieithu. Bydd yn ddefnyddiol ar gyfer rhannu "
 "gwybodaeth a chyfarwyddid. Tagio caniateir: %s"
 
-#: apps/pootle_translationproject/models.py:455
-#: apps/pootle_translationproject/models.py:537
-msgid "You do not have rights to update from version control here"
-msgstr "Nid oes gennych yr hawl i ddiweddaru o'r rheolaeth fersiwn yma"
+#: apps/pootle_translationproject/models.py:488
+#, python-format
+msgid "Failed to update from version control: %(error)s"
+msgstr "Methwyd â diweddaru o'r rheoli fersiwn: %(error)s"
 
-#: apps/pootle_translationproject/models.py:519
+#: apps/pootle_translationproject/models.py:556
 #, python-format
 msgid "Updated project <em>%(project)s</em> from version control"
 msgstr "Diweddarwyd project <em>%(project)s</em> o'r rheolaeth fersiwn"
 
-#: apps/pootle_translationproject/models.py:522
-#: apps/pootle_translationproject/models.py:548
+#: apps/pootle_translationproject/models.py:558
+#: apps/pootle_translationproject/models.py:579
 msgid "Working copy"
 msgstr "Copi gwaith"
 
-#: apps/pootle_translationproject/models.py:523
-#: apps/pootle_translationproject/models.py:549
+#: apps/pootle_translationproject/models.py:559
+#: apps/pootle_translationproject/models.py:580
 msgid "Remote copy"
 msgstr "Copi pell"
 
-#: apps/pootle_translationproject/models.py:524
-#: apps/pootle_translationproject/models.py:550
+#: apps/pootle_translationproject/models.py:560
+#: apps/pootle_translationproject/models.py:581
 msgid "Merged copy"
 msgstr "Copi cyfunwyd"
 
-#: apps/pootle_translationproject/models.py:545
+#: apps/pootle_translationproject/models.py:577
 #, python-format
 msgid "Updated file <em>%(filename)s</em> from version control"
 msgstr "Ffeil wedi ei diweddaru <em>%(filename)s</em> o'r rheoli fersiwn"
 
-#: apps/pootle_translationproject/models.py:559
+#: apps/pootle_translationproject/models.py:590
 #, python-format
-msgid "Failed to update <em>%(filename)s</em> from version control"
-msgstr "Wedi methu diweddaru ffeil <em>%(filename)s</em> o'r rheoli fersiwn"
+msgid "Failed to update <em>%(filename)s</em> from version control: %(error)s"
+msgstr ""
+"Methwyd diweddaru ffeil <em>%(filename)s</em> o'r rheoli fersiwn: %(error)s"
 
-#: apps/pootle_translationproject/models.py:601
+#: apps/pootle_translationproject/models.py:649
 #, python-format
-msgid "Committed file: %(filename)s"
-msgstr "Ffeil wedi ei chyflwyno: %(filename)s"
+msgid "Committed all files under <em>%(path)s</em> to version control"
+msgstr "Cyflwynwyd pob ffeil o dan <em>%(path)s</em> i'r rheoli fersiwn"
 
-#: apps/pootle_translationproject/models.py:609
+#: apps/pootle_translationproject/models.py:658
 #, python-format
-msgid "Failed to commit file: %(error)s"
-msgstr "Methwyd cyflwyno ffeil: %(error)s"
+msgid "Failed to commit to version control: %(error)s"
+msgstr "Methwyd cyflwyno i'r rheolydd fersiwn: %(error)s"
 
-#: apps/pootle_translationproject/views.py:99
+#: apps/pootle_translationproject/models.py:716
+#, python-format
+msgid "Committed file <em>%(filename)s</em> to version control"
+msgstr "Cyflwynwyd ffeil <em>%(filename)s</em> i'r rheoli fersiwn"
+
+#: apps/pootle_translationproject/models.py:724
+#, python-format
+msgid "Failed to commit <em>%(filename)s</em> to version control: %(error)s"
+msgstr "Methwyd cyflwyno <em>%(filename)s</em> i'r rheoli fersiwn: : %(error)s"
+
+#: apps/pootle_translationproject/views.py:97
 msgid "Translation project files have been rescanned."
 msgstr "Mae ffeiliau project cyfieithu wedi eu hailsganio."
 
-#: apps/pootle_translationproject/views.py:104
+#: apps/pootle_translationproject/views.py:102
 msgid "Error while rescanning translation project files."
 msgstr "Gwall wrth ailsganio ffeiliau project cyfieithu."
 
-#: apps/pootle_translationproject/views.py:121
+#: apps/pootle_translationproject/views.py:119
 msgid "Translation project has been updated against latest templates."
 msgstr "Mae'r project cyfieithu wedi ei ddiweddaru o'r templedi diweddaraf."
 
-#: apps/pootle_translationproject/views.py:126
+#: apps/pootle_translationproject/views.py:124
 msgid "Error while updating translation project against latest templates."
 msgstr "Gwall wrth ddiweddaru project cyfieithu o'r templedi diweddaraf."
 
-#: apps/pootle_translationproject/views.py:191
+#: apps/pootle_translationproject/views.py:189
 msgid "Symbolic link hasn't been removed from the filesystem."
 msgstr "Nid yw'r cysylltiad symbolaidd wedi ei dynnu o'r system ffeiliau."
 
-#: apps/pootle_translationproject/views.py:195
+#: apps/pootle_translationproject/views.py:193
 msgid "Directory and its containing files have been deleted."
 msgstr "Mae'r cyfarwyddiadur a'r ffeiliau o'i fewn wedi eu dileu."
 
-#: apps/pootle_translationproject/views.py:198
+#: apps/pootle_translationproject/views.py:196
 msgid "File has been deleted."
 msgstr "Mae'r ffeil wedi ei dileu."
 
-#: apps/pootle_translationproject/views.py:203
+#: apps/pootle_translationproject/views.py:201
 msgid "Error while trying to delete directory."
 msgstr "Gwall wrth geisio dileu cyfarwyddiadur."
 
-#: apps/pootle_translationproject/views.py:206
+#: apps/pootle_translationproject/views.py:204
 msgid "Error while trying to delete file."
 msgstr "Gwall wrth geisio dileu ffeil."
 
-#: apps/pootle_translationproject/views.py:366
+#: apps/pootle_translationproject/views.py:365
 msgid "You do not have the right to create ZIP archives."
 msgstr "Nid oes gennych hawl i greu archif ZIP."
 
@@ -2408,7 +2438,7 @@ msgstr "Nid oes gennych hawl i greu archif ZIP."
 msgid "Invalid/insecure file name: %s"
 msgstr "Enw ffeil annilys/anniogel: %s"
 
-#: apps/pootle_translationproject/views.py:469
+#: apps/pootle_translationproject/views.py:470
 #, python-format
 msgid ""
 "Invalid GNU-style file name: %(local_filename)s. It must match '%(langcode)s."
@@ -2417,47 +2447,43 @@ msgstr ""
 "Enw ffeil arddull GNU annilys: %(local_filename)s. Rhaid cydweddu a '%"
 "(langcode)s.%(filetype)s'."
 
-#: apps/pootle_translationproject/views.py:496
+#: apps/pootle_translationproject/views.py:497
 msgid "Error while extracting archive"
 msgstr "Gwall wrth echdynnu archif"
 
-#: apps/pootle_translationproject/views.py:680
+#: apps/pootle_translationproject/views.py:681
 msgid "You do not have rights to overwrite files here."
 msgstr "Nid oes gennych yr hawl i drosysgrifennu ffeiliau yma."
 
-#: apps/pootle_translationproject/views.py:684
+#: apps/pootle_translationproject/views.py:685
 msgid "You do not have rights to upload new files here."
 msgstr "Nid oes gennych yr hawl i lwytho ffeiliau i fyny yma."
 
-#: apps/pootle_translationproject/views.py:688
-#: apps/pootle_translationproject/views.py:692
+#: apps/pootle_translationproject/views.py:689
+#: apps/pootle_translationproject/views.py:693
 msgid "You do not have rights to upload files here."
 msgstr "Nid oes gennych yr hawl i lwytho ffeiliau i fyny yma."
 
-#: apps/pootle_translationproject/views.py:723
-msgid "Update all from version control"
-msgstr "Diweddaru popeth o'r rheolaeth fersiwn"
-
-#: apps/pootle_translationproject/views.py:753
+#: apps/pootle_translationproject/views.py:737
 msgid "Overwrite the current file if it exists"
 msgstr "Trosysgrifennu’r ffeil gyfredol os yw'n bodoli"
 
-#: apps/pootle_translationproject/views.py:757
+#: apps/pootle_translationproject/views.py:741
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
 msgstr "Cyfuno'r ffeil i'r ffeil gyfredol a throi gwrthdaro yn awgrym"
 
-#: apps/pootle_translationproject/views.py:762
+#: apps/pootle_translationproject/views.py:746
 msgid "Add all new translations as suggestions"
 msgstr "Ychwanegu pob cyfieithiad newydd fel awgrym"
 
-#: apps/pootle_translationproject/views.py:792
-#: apps/pootle_translationproject/views.py:800
+#: apps/pootle_translationproject/views.py:776
+#: apps/pootle_translationproject/views.py:784
 msgid "Upload to"
 msgstr "Llwytho i fyny i"
 
-#: apps/pootle_translationproject/views.py:795
-#: apps/pootle_translationproject/views.py:804
+#: apps/pootle_translationproject/views.py:779
+#: apps/pootle_translationproject/views.py:788
 msgid ""
 "Optionally select the file you want to merge with. If not specified, the "
 "uploaded file's name is used."
@@ -2465,7 +2491,7 @@ msgstr ""
 "Yn ddewisol, dewiswch y ffeil i gyfuno gyda hi. Os nad yw wedi ei bennu, "
 "bydd enw'r ffeil yn cael ei ddefnyddio."
 
-#: apps/pootle_translationproject/views.py:814
+#: apps/pootle_translationproject/views.py:798
 msgid "Upload File"
 msgstr "Llwytho ffeil i fyny"
 
@@ -2502,8 +2528,8 @@ msgstr "Gwybodaeth project %(project)s"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:125
 #, python-format
-msgid "%(language)s project information"
-msgstr "Gwybodaeth project %(language)s"
+msgid "%(language)s language information"
+msgstr "Gwybodaeth iaith %(language)s"
 
 #: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:4
 msgid "Translation Statistics"
@@ -2588,6 +2614,32 @@ msgstr "Rhowch rif"
 #: middleware/captcha.py:158
 msgid "Incorrect"
 msgstr "Anghywir"
+
+#: settings/10-base.conf:9
+msgid "Pootle Demo"
+msgstr "Enghraifft o Pootle"
+
+#. Translators: Change the language code (en) to your language code, and replace
+#. ltr with rtl if you language is written from right to left.
+#: settings/10-base.conf:13
+msgid ""
+"<div dir=\"ltr\" lang=\"en\">\n"
+"<h2>This is a demo installation of Pootle.</h2>\n"
+"<p>You can also visit the official <a href=\"http://pootle.locamotion.org"
+"\">Pootle server</a>. The server administrator has not provided contact "
+"information or a description of this server. If you are the administrator "
+"for this server, edit this description in your preference file or in the "
+"administration interface.</p>\n"
+"</div>\n"
+msgstr ""
+"<div dir=\"ltr\" lang=\"cy\">\n"
+"<h2>Enghraifft o Pootle yw hwn.</h2>\n"
+"<p>Gallwch hefyd ymweld â'r <a href=\"http://pootle.locamotion.org\">gweinydd "
+"Pootle swyddogol</a>. Nid yw gweinyddwr y gweinydd wedi darparu gwybodaeth "
+"cysylltu na disgrifiad o'r gweinydd hwn. Os chi yw gweinyddwr y gweinydd "
+"hwn, golygwch y disgrifiad hwn yn eich ffeil dewisiadau neu yn y rhyngwyneb "
+"gweinyddu.</p>\n"
+"</div>\n"
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"
@@ -2678,9 +2730,9 @@ msgstr "Ailosod chwyddo (Ctrl+Shift+0)"
 msgid "Zoom in (Ctrl+Shift++)"
 msgstr "Chwyddo mewn (Ctrl+Shift++)"
 
-#: templates/base.html:100 templates/profiles/profile_detail.html:40
-msgid "Admin"
-msgstr "Gweinyddwr"
+#: templates/base.html:100
+msgid "ADMIN"
+msgstr "ADMIN"
 
 #: templates/base.html:103
 msgid "Log Out"
@@ -2696,28 +2748,24 @@ msgstr "Cofrestru"
 msgid "Log In"
 msgstr "Mewngofnodi"
 
-#: templates/base.html:139
-msgid "Loading..."
-msgstr "Llwytho..."
-
-#: templates/base.html:162
+#: templates/base.html:155
 msgid "Help"
 msgstr "Cymorth"
 
-#: templates/base.html:164 templates/contact_form/contact_form.html:4
+#: templates/base.html:157 templates/contact_form/contact_form.html:4
 #: templates/contact_form/contact_form.html:7
 #: templates/contact_form/contact_form.html:12
 msgid "Contact Us"
 msgstr "Cysylltu â Ni"
 
-#: templates/base.html:166
+#: templates/base.html:159
 msgid "About this Pootle Server"
 msgstr "Ynghylch y gweinydd Pootle yma"
 
-#: templates/base.html:167 templates/about/contributors.html:6
+#: templates/base.html:160 templates/about/contributors.html:6
 #: templates/about/contributors.html:9
 msgid "Contributors"
-msgstr "Cyfrannwyr"
+msgstr "Cyfranwyr"
 
 #: templates/captcha-xhr.html:14 templates/captcha.html:4
 #: templates/captcha.html.py:7
@@ -2838,20 +2886,21 @@ msgstr "Newid eich cyfrinair"
 msgid "This Pootle Server"
 msgstr "Gweinydd Pootle yw hwn"
 
-#: templates/about/about.html:15
+#. Translators: For better readability, make sure to leave an space after the closing </i> tag
+#: templates/about/about.html:16
 msgid ""
 "This site is running Pootle &mdash; powerful web software to empower teams "
 "to do translation and translation management. This community tool is Free "
 "Software, and any team can use it and contribute to the Pootle community. "
-"Read more on the <a href=\"http://translate.sourceforge.net/\"><i class="
+"Read more on the <a href=\"http://pootle.translatehouse.org/\"><i class="
 "\"icon-external-link\"></i> project website</a>."
 msgstr ""
-"Mae'r wefan hon yn rhedeg Pootle &mdash; meddalwedd gwe bwerus i ymrymuso "
-"timau i gyfieithu ac i reoli cyfieithu. Mae'r offeryn cymunedol yma'n "
-"Feddalwedd Rhydd ac mae modd i unrhyw dim ei defnyddio a chyfrannu tuag at "
-"gymuned Pootle. Darllenwch ragor ar wefan y project yn <a "
-"href=\"http://translate.sourceforge.net/\"><i class=\"icon-external-"
-"link\"></i></a>."
+"Mae'r wefan hon yn rhedeg Pootle &mdash; meddalwedd gwe bwerus sy'n ymrymuso "
+"timau i gyfieithu a rheoli cyfieithu. Mae'r offeryn cymunedol yma yn "
+"Feddalwedd Rhydd a gall unrhyw dim ei defnyddio a chyfrannu tuag at gymuned "
+"Pootle. Mae rhagor i'w weld ar <a "
+"href=\"http://pootle.translatehouse.org/\"><i class=\"icon-external-link\"></i> "
+"wefan y project</a>."
 
 #: templates/about/base.html:4 templates/about/base.html.py:7
 msgid "About"
@@ -2912,6 +2961,10 @@ msgstr ""
 #: templates/profiles/profile_detail.html:31
 msgid "Quick Links"
 msgstr "Dolenni Cyflym"
+
+#: templates/profiles/profile_detail.html:40
+msgid "Admin"
+msgstr "Gweinyddwr"
 
 #: templates/profiles/profile_detail.html:55
 msgid "No languages or projects selected. Choose yours now."
@@ -3188,3 +3241,179 @@ msgstr "Cyfrif yn barod?"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "Mewngofnodi."
+
+#~ msgid "slug"
+#~ msgstr "bonyn"
+
+#~ msgid "The page will be independently available in /about/<slug>/"
+#~ msgstr "Bydd y dudalen ar gael yn annibynnol yn /about/<slug>/"
+
+#~ msgid "Legal Page created."
+#~ msgstr "Crëwyd Tudalen Gyfreithiol."
+
+#~ msgid "Add a new Legal Page"
+#~ msgstr "Ychwanegu Tudalen Gyfreithiol newydd"
+
+#~ msgid "Needs review"
+#~ msgstr "Angen adolygu"
+
+#~ msgid ""
+#~ "Can't find python-levenshtein package. Updating from templates is faster "
+#~ "with python-levenshtein."
+#~ msgstr ""
+#~ "Methu canfod pecyn python-levenshtein. Mae diweddaru o dempledi yn gynt gyda "
+#~ "python-levenshtein."
+
+#~ msgid "Translations are complete"
+#~ msgstr "Cyfieithiadau wedi eu cwblhau"
+
+#~ msgid "Translations need to be checked (they are marked fuzzy)"
+#~ msgstr "Cyfieithiadau angen eu gwirio (os wedi eu marcio'n fras)"
+
+#~ msgid "Translated percentage"
+#~ msgstr "Canran wedi eu cyfieithu"
+
+#~ msgid "Fuzzy"
+#~ msgstr "Bras"
+
+#~ msgid "Fuzzy percentage"
+#~ msgstr "Canran bras"
+
+#~ msgid "Fuzzy words"
+#~ msgstr "Geiriau bras"
+
+#~ msgid "Untranslated percentage"
+#~ msgstr "Canran heb eu cyfieithu"
+
+#~ msgid "Untranslated words"
+#~ msgstr "Geiriau wedi eu cyfieithu"
+
+#~ msgid "Total Words"
+#~ msgstr "Cyfanswm Geiriau"
+
+#~ msgid "Summary"
+#~ msgstr "Crynodeb"
+
+#, python-format
+#~ msgid "Imported %(count)d unit from %(store)s"
+#~ msgid_plural "Imported %(count)d units from %(store)s"
+#~ msgstr[0] "Wedi mewnforio %(count)d uned o %(store)s"
+#~ msgstr[1] "Wedi mewnforio %(count)d uned o %(store)s"
+
+#, python-format
+#~ msgid "Failed to import units from %s"
+#~ msgstr "Wedi methu mewnforio unedau o %s"
+
+#~ msgid "Search (Ctrl+Shift+S)<br/>Type in, then press Enter to search"
+#~ msgstr "Chwilio (Ctrl+Shift+S)<br/>Teipio, yna pwyso Enter i chwilio"
+
+#, python-format
+#~ msgid "<a href=\"%(url)s\">%(num)d words</a>"
+#~ msgstr "<a href=\"%(url)s\">%(num)d gair</a>"
+
+#, python-format
+#~ msgid "(%(num)d units)"
+#~ msgstr "(%(num)d uned)"
+
+#, python-format
+#~ msgid ""
+#~ "%(type)s: %(translated)d of %(total)d messages translated (%(fuzzy)d fuzzy)."
+#~ msgstr ""
+#~ "%(type)s: %(translated)d o %(total)d neges wedi eu cyfieithu (%(fuzzy)d yn "
+#~ "fras)."
+
+#~ msgid "Publish on News feed"
+#~ msgstr "Cyhoeddi ar y llif Newyddion"
+
+#~ msgid "Send Email"
+#~ msgstr "Anfon E-bost"
+
+#~ msgid ""
+#~ "A short code for the project. This should only containASCII characters, "
+#~ "numbers, and the underscore (_) character."
+#~ msgstr ""
+#~ "Darn byr o god i'r project. Dylai gynnwys nodau a rhifau ASCI a'r nod "
+#~ "tanlinellu (_) yn unig."
+
+#~ msgid "Update from templates"
+#~ msgstr "Diweddaru o dempledi"
+
+#~ msgid "Unknown submitter"
+#~ msgstr "Cyflwynydd anhysbys"
+
+#~ msgid "My Suggestions"
+#~ msgstr "Fy Awgrymiadau"
+
+#~ msgid "Previous unit"
+#~ msgstr "Uned flaenorol"
+
+#~ msgid ""
+#~ "Go to the previous unit (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
+#~ "+Shift+Page&nbsp;Up<br/>First page: Ctrl+Shift+Home"
+#~ msgstr ""
+#~ "Mynd i'r uned flaenorol (Ctrl+Fyny)<br/><br/>Hefyd:<br/>Tudalen flaenorol: "
+#~ "Ctrl+Shift+Page&nbsp;Down<br/>Tudalen gyntaf: Ctrl+Shift+Home"
+
+#~ msgid "Next unit"
+#~ msgstr "Uned nesaf"
+
+#~ msgid ""
+#~ "Go to the next unit (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
+#~ "+Page&nbsp;Down<br/>Last page: Ctrl+Shift+End"
+#~ msgstr ""
+#~ "Mynd i'r uned nesaf (Ctrl+Lawr)<br/><br/>Hefyd:<br/>Tudalen nesaf: "
+#~ "Ctrl+Shift+Page&nbsp;Down<br/>Tudalen olaf: Ctrl+Shift+End"
+
+#~ msgid "Click to insert the translated term into the editor"
+#~ msgstr "Cliciwch i fewnosod y term wedi ei gyfieithu i'r golygydd"
+
+#~ msgid "Submit translation and go to the next unit (Ctrl+Enter)"
+#~ msgstr "Cyflwyno cyfieithiad a symud ymlaen i'r uned nesaf (Ctrl+Enter)"
+
+#~ msgid "Suggest translation and go to the next unit (Ctrl+Enter)"
+#~ msgstr "Awgrymu cyfieithiad a mynd i'r uned nesaf (Ctrl+Enter)"
+
+#~ msgid "Click to insert this symbol into the editor"
+#~ msgstr "Clicio i fewnosod y symbol i'r golygydd"
+
+#~ msgid "Few seconds ago"
+#~ msgstr "Ychydig eiliadau yn ôl"
+
+#~ msgid "You do not have rights to update from version control here"
+#~ msgstr "Nid oes gennych yr hawl i ddiweddaru o'r rheolaeth fersiwn yma"
+
+#, python-format
+#~ msgid "Failed to update <em>%(filename)s</em> from version control"
+#~ msgstr "Wedi methu diweddaru ffeil <em>%(filename)s</em> o'r rheoli fersiwn"
+
+#, python-format
+#~ msgid "Committed file: %(filename)s"
+#~ msgstr "Ffeil wedi ei chyflwyno: %(filename)s"
+
+#, python-format
+#~ msgid "Failed to commit file: %(error)s"
+#~ msgstr "Methwyd cyflwyno ffeil: %(error)s"
+
+#~ msgid "Update all from version control"
+#~ msgstr "Diweddaru popeth o'r rheolaeth fersiwn"
+
+#, python-format
+#~ msgid "%(language)s project information"
+#~ msgstr "Gwybodaeth project %(language)s"
+
+#~ msgid "Loading..."
+#~ msgstr "Llwytho..."
+
+#~ msgid ""
+#~ "This site is running Pootle &mdash; powerful web software to empower teams "
+#~ "to do translation and translation management. This community tool is Free "
+#~ "Software, and any team can use it and contribute to the Pootle community. "
+#~ "Read more on the <a href=\"http://translate.sourceforge.net/\"><i class="
+#~ "\"icon-external-link\"></i> project website</a>."
+#~ msgstr ""
+#~ "Mae'r wefan hon yn rhedeg Pootle &mdash; meddalwedd gwe bwerus i ymrymuso "
+#~ "timau i gyfieithu ac i reoli cyfieithu. Mae'r offeryn cymunedol yma'n "
+#~ "Feddalwedd Rhydd ac mae modd i unrhyw dim ei defnyddio a chyfrannu tuag at "
+#~ "gymuned Pootle. Darllenwch ragor ar wefan y project yn <a "
+#~ "href=\"http://translate.sourceforge.net/\"><i class=\"icon-external-"
+#~ "link\"></i></a>."

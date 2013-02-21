@@ -5,17 +5,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-27 15:51+0100\n"
-"PO-Revision-Date: 2010-08-28 09:10+0200\n"
-"Last-Translator: borisliu <liulijun@263.net>\n"
+"Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
+"POT-Creation-Date: 2012-12-31 14:17+0100\n"
+"PO-Revision-Date: 2013-02-01 08:21+0000\n"
+"Last-Translator: Wei <contact@huwei.name>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.1.1\n"
+"X-Generator: Pootle 2.5.0-beta1\n"
+"X-POOTLE-MTIME: 1359706900.0\n"
 
 #: strings.py:8
 msgid ""
@@ -30,20 +31,20 @@ msgstr "请输入一个有效的电子邮件地址。"
 msgid ""
 "That e-mail address doesn't have an associated user account. Are you sure "
 "you've registered?"
-msgstr "这个电子邮件地址并未关联任何帐号。您确信您已经注册了吗？"
+msgstr "这个电子邮件地址无相关的用户帐号。您确信已经注册了吗？"
 
 #: strings.py:11
 msgid "This field is required."
-msgstr "此项必填。"
+msgstr "此字段为必填项。"
 
 #: strings.py:12
 #, python-format
 msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
-msgstr "请确认这个值最大有 %(max)d 个字符(它有 %(length)d)。"
+msgstr "请确认这个值最多包含 %(max)d 个字符(它有 %(length)d 个字符)。"
 
 #: strings.py:13
 msgid "Save and add another"
-msgstr "保存并添加下一个"
+msgstr "保存并添加另一个"
 
 #: strings.py:14
 msgid "Save and continue editing"
@@ -61,14 +62,14 @@ msgstr "更改"
 msgid ""
 "Please enter a correct username and password. Note that both fields are case-"
 "sensitive."
-msgstr ""
+msgstr "请输入一个正确的账户和密码。请注意两个区域都是大小写敏感的。"
 
 #. Translators: Email subject line. The variable is the server name shown
 #. on the top of each page
 #: strings.py:21
 #, python-format
 msgid "Password reset on %s"
-msgstr ""
+msgstr "%s 密码重设"
 
 #. Translators: This is a constructed string that might end up saying
 #. "Add language" or "Add project". If you need to translate that differently,
@@ -87,11 +88,11 @@ msgstr "在站点上查看"
 
 #: strings.py:33
 msgid "first name"
-msgstr "姓氏"
+msgstr "名"
 
 #: strings.py:34
 msgid "last name"
-msgstr "名字"
+msgstr "姓"
 
 #: strings.py:35
 msgid "e-mail address"
@@ -120,32 +121,32 @@ msgstr "Android 字符串"
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:51
 msgid "Privacy Policy"
-msgstr ""
+msgstr "隐私策略"
 
 #. Translators: Label that refers to the site's legal requirements
 #: strings.py:53
 msgid "Legal"
-msgstr ""
+msgstr "法律"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:55
 msgid "License"
-msgstr ""
+msgstr "许可"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:57
 msgid "Contributor License"
-msgstr ""
+msgstr "贡献者许可"
 
 #. Translators: Label that refers to the site's terms of use
 #: strings.py:59
 msgid "Terms of Use"
-msgstr ""
+msgstr "使用条款"
 
 #. Translators: Label that refers to the site's terms of service
 #: strings.py:61
 msgid "Terms of Service"
-msgstr ""
+msgstr "服务条款"
 
 #: apps/contact_form_i18n/forms.py:143
 msgid "Your name"
@@ -157,20 +158,20 @@ msgstr "您的电子邮件地址"
 
 #: apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr "您的消息"
+msgstr "Akismet 认为这个消息是垃圾邮件"
 
 #: apps/contact_form_i18n/forms.py:260
 msgid "Akismet thinks this message is spam"
-msgstr ""
+msgstr "Akismet 认为这条消息是垃圾邮件"
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] "请修正下列错误。"
+msgstr[0] "请改正下列错误。"
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
-msgstr "设定值已经保存。"
+msgstr "设置已经保存。"
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: apps/legalpages/templates/legalpages/admin/form.html:15
@@ -184,49 +185,50 @@ msgstr "保存"
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/legalpages/forms.py:42
 msgid "URL or content must be provided."
-msgstr ""
+msgstr "必须提供 URL 或内容。"
 
 #: apps/legalpages/models.py:31
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 msgid "Active"
-msgstr ""
+msgstr "活动的"
 
 #: apps/legalpages/models.py:32
 msgid "Whether this page is active or not."
-msgstr ""
+msgstr "这个页面是否活动。"
 
 #: apps/legalpages/models.py:34
 msgid "Display on registration"
-msgstr ""
+msgstr "注册时显示"
 
 #: apps/legalpages/models.py:35
 msgid "Whether this page should be displayed on registration."
-msgstr ""
+msgstr "注册时是否显示这个页面。"
 
 #: apps/legalpages/models.py:38 apps/pootle_app/forms.py:30
-#: apps/pootle_notifications/views.py:143
+#: apps/pootle_notifications/views.py:141
 msgid "Title"
 msgstr "标题"
 
 #: apps/legalpages/models.py:39
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: apps/legalpages/models.py:40
 msgid "If set, any references to this legal page will redirect to this URL"
-msgstr ""
+msgstr "如果设置，则任何与这个法律页面相关的指南都将会重定向到这个 URL"
 
-#: apps/legalpages/models.py:42
-msgid "slug"
-msgstr ""
-
+#. Translators: See http://en.wikipedia.org/wiki/Slug_%28web_publishing%29#Slug
 #: apps/legalpages/models.py:43
-msgid "The page will be independently available in /about/<slug>/"
-msgstr ""
+msgid "Slug"
+msgstr "Slug"
+
+#: apps/legalpages/models.py:44
+msgid "The page will be available at /about/<slug>/"
+msgstr "这个页面将在 /about/<slug>/ 可用"
 
 #: apps/legalpages/models.py:46
 msgid "Content"
-msgstr ""
+msgstr "内容"
 
 #: apps/legalpages/models.py:47
 #, python-format
@@ -234,14 +236,14 @@ msgid "Allowed markup: %s"
 msgstr ""
 
 #: apps/legalpages/views.py:67
-msgid "Legal Page created."
-msgstr ""
+msgid "Legal page created."
+msgstr "有效页面已创建。"
 
 #: apps/legalpages/templates/legalpages/admin/edit.html:4
 #: apps/legalpages/templates/legalpages/admin/edit.html:9
 #: apps/legalpages/templates/legalpages/admin/edit.html:16
 msgid "Edit Legal Page"
-msgstr ""
+msgstr "编辑有效页面"
 
 #: apps/legalpages/templates/legalpages/admin/form.html:17
 #: apps/pootle_terminology/templates/terminology/manage.html:37
@@ -252,7 +254,7 @@ msgstr "删除"
 #: apps/legalpages/templates/legalpages/admin/list.html:10
 #: templates/admin_profile_menu.html:9
 msgid "Legal Pages"
-msgstr ""
+msgstr "有效页面"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:17
 msgid "Existing Legal Pages"
@@ -260,7 +262,7 @@ msgstr ""
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 msgid "Inactive"
-msgstr ""
+msgstr "未激活"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 #: apps/pootle_app/templates/admin/edit_links.html:2
@@ -272,7 +274,7 @@ msgid "No pages yet."
 msgstr ""
 
 #: apps/legalpages/templates/legalpages/admin/list.html:31
-msgid "Add a new Legal Page"
+msgid "New Legal Page"
 msgstr ""
 
 #: apps/pootle_app/admin.py:39
@@ -281,7 +283,7 @@ msgstr "语言代码不符合 ISO 标准"
 
 #: apps/pootle_app/admin.py:65
 msgid "Project code may only contain letters, numbers and _"
-msgstr "项目代码只能包含字母、数字和_"
+msgstr "项目代码只能包含字母、数字和 _"
 
 #: apps/pootle_app/admin.py:77
 msgid "Advanced Options"
@@ -322,7 +324,7 @@ msgstr "可以覆盖上传文件中的翻译"
 
 #: apps/pootle_app/management/__init__.py:81
 msgid "Can review translations"
-msgstr "可以评审阅翻"
+msgstr "可以审阅翻译"
 
 #: apps/pootle_app/management/__init__.py:83
 msgid "Can download archives of translation projects"
@@ -338,7 +340,7 @@ msgstr "可以向版本控制系统提交"
 
 #: apps/pootle_app/models/suggestion.py:33
 msgid "Pending"
-msgstr "等候中"
+msgstr "待审"
 
 #: apps/pootle_app/models/suggestion.py:34
 msgid "Accepted"
@@ -354,8 +356,8 @@ msgstr "最大贡献者"
 
 #. Translators: The number of suggestions pending review
 #: apps/pootle_app/templates/top_contributers_table.html:12
-#: apps/pootle_app/views/language/view.py:58
-#: apps/pootle_store/templates/store/translate.html:59
+#: apps/pootle_app/views/language/view.py:46
+#: apps/pootle_store/templates/store/translate.html:74
 msgid "Suggestions"
 msgstr "建议"
 
@@ -370,24 +372,24 @@ msgstr "已提交项目"
 
 #: apps/pootle_app/templates/top_contributers_table.html:19
 msgid "anonymous users"
-msgstr ""
+msgstr "匿名用户"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:4
-#: apps/pootle_app/views/language/view.py:42 apps/pootle_misc/stats.py:101
-#: apps/pootle_store/util.py:47
-#: apps/pootle_store/templates/store/translate.html:55
+#: apps/pootle_misc/stats.py:105 apps/pootle_store/util.py:47
+#: apps/pootle_store/templates/store/translate.html:70
 msgid "Translated"
 msgstr "已翻译"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:5
-msgid "Needs review"
-msgstr "需要审阅"
+#: apps/pootle_misc/stats.py:122 apps/pootle_store/forms.py:215
+#: apps/pootle_store/util.py:46
+#: apps/pootle_store/templates/store/translate.html:73
+msgid "Needs work"
+msgstr "尚需工作"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:6
-#: apps/pootle_app/views/index/index.py:111
-#: apps/pootle_app/views/language/view.py:48 apps/pootle_misc/stats.py:125
-#: apps/pootle_project/views.py:298 apps/pootle_store/util.py:45
-#: apps/pootle_store/templates/store/translate.html:57
+#: apps/pootle_misc/stats.py:139 apps/pootle_store/util.py:45
+#: apps/pootle_store/templates/store/translate.html:72
 msgid "Untranslated"
 msgstr "未翻译"
 
@@ -399,7 +401,7 @@ msgstr "保存修改"
 #: apps/pootle_app/templates/admin/admin_general_languages.html:4
 #: apps/pootle_app/templates/admin/admin_general_languages.html:9
 #: apps/pootle_app/templates/index/index.html:38
-#: apps/pootle_profile/models.py:72 templates/admin_profile_menu.html:6
+#: apps/pootle_profile/models.py:90 templates/admin_profile_menu.html:6
 msgid "Languages"
 msgstr "语言"
 
@@ -411,7 +413,7 @@ msgstr "您可以在这个 Pootle 服务器上增加、编辑和删除所有的�
 
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:4
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:9
-#: apps/pootle_app/views/admin/permissions.py:60
+#: apps/pootle_app/views/admin/permissions.py:101
 #: apps/pootle_language/templates/language/language_admin.html:5
 #: apps/pootle_language/templates/language/language_admin.html:8
 #: apps/pootle_project/templates/project/admin_permissions.html:7
@@ -446,7 +448,7 @@ msgstr ""
 #: apps/pootle_app/templates/index/index.html:67
 #: apps/pootle_notifications/templates/notices.html:20
 #: apps/pootle_notifications/templates/notices.html:34
-#: apps/pootle_profile/models.py:73
+#: apps/pootle_profile/models.py:93
 #: apps/pootle_project/templates/project/projects.html:7
 #: apps/pootle_project/templates/project/projects.html:10
 #: apps/pootle_project/templates/project/projects.html:16
@@ -496,7 +498,7 @@ msgstr "待审阅的建议"
 
 #: apps/pootle_app/templates/admin/dashboard.html:31
 msgid "More..."
-msgstr "更多…"
+msgstr "更多..."
 
 #: apps/pootle_app/templates/admin/dashboard.html:39
 msgid "Support"
@@ -515,11 +517,11 @@ msgstr ""
 
 #: apps/pootle_app/templates/admin/dashboard.html:45
 msgid "The Pootle documentation"
-msgstr ""
+msgstr "Pootle 文档"
 
 #: apps/pootle_app/templates/admin/dashboard.html:46
 msgid "The Pootle mailing list"
-msgstr ""
+msgstr "Pootle 邮件列表"
 
 #: apps/pootle_app/templates/admin/dashboard.html:47
 msgid "(commercial support)"
@@ -539,11 +541,11 @@ msgstr "优化"
 
 #: apps/pootle_app/templates/admin/general_settings_form.html:16
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
-msgstr ""
+msgstr "Pootle 警告"
 
 #: apps/pootle_app/templates/index/index.html:21
 #: apps/pootle_language/templates/language/language_index.html:52
@@ -597,7 +599,7 @@ msgstr "登录到 Pootle"
 
 #: apps/pootle_app/templates/index/login.html:18
 msgid "Your username and password didn't match. Please try again."
-msgstr "您的用户名和密码不匹配。请继续尝试。"
+msgstr "您的用户名和密码不匹配。请重试。"
 
 #: apps/pootle_app/templates/index/login.html:30
 msgid "Lost your Password?"
@@ -622,7 +624,7 @@ msgstr "密码"
 #: apps/pootle_app/views/admin/dashboard.py:48
 #, python-format
 msgid "Translate Toolkit version %s installed."
-msgstr "版本 %s 的 Translate Toolkit 已经安装。"
+msgstr "%s 版本的 Translate Toolkit 已经安装。"
 
 #: apps/pootle_app/views/admin/dashboard.py:51
 #, python-format
@@ -634,13 +636,13 @@ msgstr ""
 #: apps/pootle_app/views/admin/dashboard.py:62
 #, python-format
 msgid "Django version %s is installed."
-msgstr "版本 %s 的 Django 已经安装。"
+msgstr "%s 版本的 Django 已经安装。"
 
 #: apps/pootle_app/views/admin/dashboard.py:65
 #, python-format
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
-msgstr ""
+msgstr "%s 版本的 Django 已安装， 但是我们强烈推荐安装更高的版本。"
 
 #: apps/pootle_app/views/admin/dashboard.py:71
 #, python-format
@@ -675,19 +677,19 @@ msgstr "无法找到 ISO 代码包。Pootle 使用 ISO 代码来翻译语言名�
 msgid ""
 "Can't find the aeidon package. Pootle requires Gaupol or aeidon to support "
 "subtitle formats."
-msgstr ""
+msgstr "无法找到 aeidon 软件包。Pootle 需要使用 Gaupol 或者 aeidon 来支持字幕格式。"
 
 #: apps/pootle_app/views/admin/dashboard.py:107
 msgid ""
-"Can't find python-levenshtein package. Updating from templates is faster "
+"Can't find python-levenshtein package. Updating against templates is faster "
 "with python-levenshtein."
-msgstr "无法找到 python-levenshtein 软件包。使用 python-levenshtein 从模板更新会更快。"
+msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:111
 msgid ""
 "No text indexing engine found. Searching is faster if an indexing engine "
 "like Xapian or Lucene is installed."
-msgstr "未发现文本索引引擎。安装 Xapian 或 Lucene 这样的索引引擎可以使搜索更快捷。"
+msgstr "未发现文本索引引擎。安装 Xapian 或 Lucene 这样的索引引擎可以加快搜索。"
 
 #: apps/pootle_app/views/admin/dashboard.py:121
 msgid ""
@@ -703,7 +705,7 @@ msgid ""
 "the MySQL database engine, but you need to install python-MySQLdb first."
 msgstr ""
 "使用缺省的 sqlite3 数据库引擎。SQLite 只适用于小型安装和少量用户。 Pootle 在使用 MySQL "
-"数据库引擎时性能更好，但您首先需要安装 python-MySQLdb。"
+"数据库引擎时性能更好，但您需要先安装 python-MySQLdb。"
 
 #: apps/pootle_app/views/admin/dashboard.py:131
 msgid ""
@@ -773,7 +775,6 @@ msgid "Translated strings"
 msgstr "已翻译的字符串"
 
 #: apps/pootle_app/views/admin/dashboard.py:203
-#: apps/pootle_app/views/language/view.py:44
 msgid "Translated words"
 msgstr "已翻译的单词"
 
@@ -781,16 +782,16 @@ msgstr "已翻译的单词"
 msgid "Active users"
 msgstr "活动的用户"
 
-#: apps/pootle_app/views/admin/permissions.py:46
-#: apps/pootle_app/views/admin/permissions.py:48
+#: apps/pootle_app/views/admin/permissions.py:61
+#: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Members"
 msgstr ""
 
-#: apps/pootle_app/views/admin/permissions.py:50
+#: apps/pootle_app/views/admin/permissions.py:74
 msgid "Language Members"
 msgstr ""
 
-#: apps/pootle_app/views/admin/permissions.py:51
+#: apps/pootle_app/views/admin/permissions.py:79
 msgid "All Users"
 msgstr ""
 
@@ -823,14 +824,6 @@ msgstr "Pootle %(pootle_ver)s 以 Translate Toolkit %(toolkit_ver)s 为基础"
 msgid "%(percentage)d%% complete"
 msgstr "%(percentage)d%% 已完成"
 
-#: apps/pootle_app/views/index/index.py:108 apps/pootle_project/views.py:295
-msgid "Translations are complete"
-msgstr "翻译已完成"
-
-#: apps/pootle_app/views/index/index.py:109 apps/pootle_project/views.py:296
-msgid "Translations need to be checked (they are marked fuzzy)"
-msgstr "需要被检查的翻译(它们被标记为模糊翻译)"
-
 #: apps/pootle_app/views/language/item_dict.py:37
 #, python-format
 msgid "%(translated)d/%(total)d words (%(translatedpercent)d%%) translated"
@@ -851,7 +844,7 @@ msgstr[0] "%d 个文件"
 #: apps/pootle_app/views/language/item_dict.py:62
 #, python-format
 msgid "%(translated)d/%(total)d terms"
-msgstr ""
+msgstr "%(translated)d/%(total)d 术语"
 
 #: apps/pootle_app/views/language/item_dict.py:95
 #, python-format
@@ -882,63 +875,27 @@ msgstr[0] "读取 %d 个文件出错"
 msgid "Name"
 msgstr "姓名"
 
-#: apps/pootle_app/views/language/view.py:43
-msgid "Translated percentage"
-msgstr "已翻译的百分比"
-
-#: apps/pootle_app/views/language/view.py:45 apps/pootle_misc/stats.py:113
-#: apps/pootle_store/forms.py:193
-#: apps/pootle_store/templates/store/translate.html:58
-msgid "Fuzzy"
-msgstr "模糊的"
-
-#: apps/pootle_app/views/language/view.py:46
-msgid "Fuzzy percentage"
-msgstr "模糊的百分比"
-
-#: apps/pootle_app/views/language/view.py:47
-msgid "Fuzzy words"
-msgstr "模糊的单词"
-
-#: apps/pootle_app/views/language/view.py:49
-msgid "Untranslated percentage"
-msgstr "未翻译的百分比"
-
-#: apps/pootle_app/views/language/view.py:50
-msgid "Untranslated words"
-msgstr "未翻译的单词"
-
-#: apps/pootle_app/views/language/view.py:51 apps/pootle_misc/stats.py:89
-msgid "Total"
-msgstr "总数"
-
-#: apps/pootle_app/views/language/view.py:52
-msgid "Total Words"
-msgstr "总单词数"
-
 #. Translators: noun. The graphical representation of translation status
-#: apps/pootle_app/views/language/view.py:54
+#: apps/pootle_app/views/language/view.py:43
 msgid "Progress"
 msgstr "进度"
 
-#: apps/pootle_app/views/language/view.py:55
-msgid "Summary"
-msgstr "概览"
-
-#: apps/pootle_app/views/language/view.py:56
+#: apps/pootle_app/views/language/view.py:44
 msgid "Need Translation"
-msgstr ""
+msgstr "需要翻译"
 
-#: apps/pootle_app/views/language/view.py:120
-#: apps/pootle_translationproject/views.py:265
+#: apps/pootle_app/views/language/view.py:108
+#: apps/pootle_translationproject/views.py:263
 msgid "You do not have rights to access this translation project."
 msgstr "您没有访问此项目的权限。"
 
-#: apps/pootle_app/views/language/view.py:135
+#: apps/pootle_app/views/language/view.py:123
+#: apps/pootle_app/views/language/view.py:149
 msgid "You do not have rights to commit files here"
 msgstr "你没有在此提交文件的权限"
 
-#: apps/pootle_app/views/language/view.py:148
+#: apps/pootle_app/views/language/view.py:136
+#: apps/pootle_app/views/language/view.py:162
 msgid "You do not have rights to update files here"
 msgstr "你没有在此更新文件的权限"
 
@@ -1001,7 +958,7 @@ msgid_plural "%(projects)d projects, %(average)d%% translated"
 msgstr[0] "%(projects)d 个项目, %(average)d%% 已翻译"
 
 #: apps/pootle_language/views.py:148 apps/pootle_project/views.py:160
-#: apps/pootle_translationproject/views.py:343
+#: apps/pootle_translationproject/views.py:342
 msgid "No description yet."
 msgstr ""
 
@@ -1071,15 +1028,15 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:46
 msgid "E-mail"
-msgstr ""
+msgstr "电子邮件"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Ending punctuation"
-msgstr ""
+msgstr "末尾标点符号"
 
 #: apps/pootle_misc/checks.py:48
 msgid "Ending whitespace"
-msgstr ""
+msgstr "末尾空白"
 
 #: apps/pootle_misc/checks.py:49
 msgid "Escapes"
@@ -1087,11 +1044,11 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:50
 msgid "File paths"
-msgstr ""
+msgstr "文件路径"
 
 #: apps/pootle_misc/checks.py:51
 msgid "Functions"
-msgstr ""
+msgstr "功能"
 
 #: apps/pootle_misc/checks.py:52
 msgid "GConf values"
@@ -1114,8 +1071,9 @@ msgid "Newlines"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:57
+#, fuzzy
 msgid "Number of plurals"
-msgstr ""
+msgstr "复数型个数"
 
 #: apps/pootle_misc/checks.py:58
 msgid "Don't translate words"
@@ -1126,8 +1084,9 @@ msgid "Numbers"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:60
+#, fuzzy
 msgid "Options"
-msgstr ""
+msgstr "可选项"
 
 #: apps/pootle_misc/checks.py:61
 msgid "printf()"
@@ -1173,27 +1132,28 @@ msgstr ""
 msgid "Starting whitespace"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:72
+#. Translators: This refers to tabulation characters
+#: apps/pootle_misc/checks.py:73
 msgid "Tabs"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:73
+#: apps/pootle_misc/checks.py:74
 msgid "Unchanged"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:74
+#: apps/pootle_misc/checks.py:75
 msgid "URLs"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:75
+#: apps/pootle_misc/checks.py:76
 msgid "Valid characters"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:76
+#: apps/pootle_misc/checks.py:77
 msgid "Placeholders"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:77
+#: apps/pootle_misc/checks.py:78
 msgid "XML tags"
 msgstr ""
 
@@ -1260,8 +1220,9 @@ msgid "Fixing permission table..."
 msgstr ""
 
 #: apps/pootle_misc/dbupdate.py:180 apps/pootle_misc/dbupdate.py:257
+#, fuzzy
 msgid "Updating existing database tables..."
-msgstr ""
+msgstr "正在创建数据库的数据表..."
 
 #: apps/pootle_misc/dbupdate.py:221
 msgid "Removing potentially incorrect cached stats, will be recalculated..."
@@ -1285,7 +1246,7 @@ msgstr ""
 #, python-format
 msgid "Imported %(count)d suggestion from %(store)s"
 msgid_plural "Imported %(count)d suggestions from %(store)s"
-msgstr[0] ""
+msgstr[0] "已从 %(store)s 中导入 %(count)d 项建议"
 
 #: apps/pootle_misc/dbupdate.py:390
 #, python-format
@@ -1294,13 +1255,13 @@ msgstr ""
 
 #: apps/pootle_misc/dbupdate.py:402
 #, python-format
-msgid "Imported %(count)d unit from %(store)s"
-msgid_plural "Imported %(count)d units from %(store)s"
+msgid "Imported %(count)d string from %(store)s"
+msgid_plural "Imported %(count)d strings from %(store)s"
 msgstr[0] ""
 
 #: apps/pootle_misc/dbupdate.py:408
 #, python-format
-msgid "Failed to import units from %s"
+msgid "Failed to import strings from %s"
 msgstr ""
 
 #: apps/pootle_misc/dbupdate.py:417
@@ -1315,111 +1276,125 @@ msgid ""
 msgstr "已初始化数据库，您将在 10 秒钟内被重定向到首页"
 
 #: apps/pootle_misc/forms.py:97
-msgid "Search (Ctrl+Shift+S)<br/>Type in, then press Enter to search"
+msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr ""
 
-#: apps/pootle_misc/forms.py:104
+#: apps/pootle_misc/forms.py:103
 msgid "Source Text"
 msgstr "源文本"
 
-#: apps/pootle_misc/forms.py:105
+#: apps/pootle_misc/forms.py:104
 msgid "Target Text"
 msgstr "目标文本"
 
-#: apps/pootle_misc/forms.py:106
+#: apps/pootle_misc/forms.py:105
 msgid "Comments"
 msgstr "注释"
 
-#: apps/pootle_misc/forms.py:107
+#: apps/pootle_misc/forms.py:106
 msgid "Locations"
 msgstr "定位"
 
-#: apps/pootle_misc/forms.py:120
+#: apps/pootle_misc/forms.py:119
 msgid "Source Terms"
-msgstr ""
+msgstr "源术语"
+
+#: apps/pootle_misc/forms.py:120
+msgid "Target Terms"
+msgstr "目标术语"
 
 #: apps/pootle_misc/forms.py:121
-msgid "Target Terms"
-msgstr ""
-
-#: apps/pootle_misc/forms.py:122
 msgid "Definitions"
 msgstr ""
 
-#: apps/pootle_misc/stats.py:90 apps/pootle_misc/stats.py:102
-#: apps/pootle_misc/stats.py:114 apps/pootle_misc/stats.py:126
-#, python-format
-msgid "<a href=\"%(url)s\">%(num)d words</a>"
-msgstr ""
+#: apps/pootle_misc/stats.py:89
+msgid "Total"
+msgstr "总数"
 
-#: apps/pootle_misc/stats.py:93 apps/pootle_misc/stats.py:105
-#: apps/pootle_misc/stats.py:117 apps/pootle_misc/stats.py:129
+#: apps/pootle_misc/stats.py:90 apps/pootle_misc/stats.py:106
+#: apps/pootle_misc/stats.py:123 apps/pootle_misc/stats.py:140
+#, python-format
+msgid "<a href=\"%(url)s\">%(num)d word</a>"
+msgid_plural "<a href=\"%(url)s\">%(num)d words</a>"
+msgstr[0] ""
+
+#: apps/pootle_misc/stats.py:95 apps/pootle_misc/stats.py:112
+#: apps/pootle_misc/stats.py:129 apps/pootle_misc/stats.py:146
 #, python-format
 msgid "%(num)d%%"
 msgstr ""
 
-#: apps/pootle_misc/stats.py:95 apps/pootle_misc/stats.py:107
-#: apps/pootle_misc/stats.py:119 apps/pootle_misc/stats.py:131
+#: apps/pootle_misc/stats.py:97 apps/pootle_misc/stats.py:114
+#: apps/pootle_misc/stats.py:131
 #, python-format
-msgid "(%(num)d units)"
-msgstr ""
+msgid "(%(num)d string)"
+msgid_plural "(%(num)d strings)"
+msgstr[0] ""
 
-#: apps/pootle_misc/stats.py:146
+#: apps/pootle_misc/stats.py:148
+#, python-format
+msgid "(%(num)d strings)"
+msgid_plural "(%(num)d strings)"
+msgstr[0] ""
+
+#: apps/pootle_misc/stats.py:165
 #, python-format
 msgid "This folder has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
 "This folder has %(num)d words, %(percentage)d%% of which are translated."
 msgstr[0] ""
 
-#: apps/pootle_misc/stats.py:157
+#: apps/pootle_misc/stats.py:177
 #, python-format
 msgid "This file has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
 "This file has %(num)d words, %(percentage)d%% of which are translated."
 msgstr[0] ""
 
-#: apps/pootle_misc/stats.py:180
+#: apps/pootle_misc/stats.py:199
 msgid "Expand details"
-msgstr ""
+msgstr "展开详情"
 
-#: apps/pootle_misc/stats.py:192
+#: apps/pootle_misc/stats.py:210
 #, python-format
 msgid "Continue translation (%(num)d word left)"
 msgid_plural "Continue translation (%(num)d words left)"
-msgstr[0] ""
+msgstr[0] "继续翻译 (%(num)d 单词剩余)"
 
-#: apps/pootle_misc/stats.py:199
+#: apps/pootle_misc/stats.py:220
 msgid "Translation is complete"
-msgstr ""
+msgstr "翻译已完成"
 
-#: apps/pootle_misc/stats.py:209
+#: apps/pootle_misc/stats.py:231
 #, python-format
 msgid "Review suggestion (%(num)d left)"
 msgid_plural "Review suggestions (%(num)d left)"
-msgstr[0] ""
+msgstr[0] "审阅建议 (%(num)d left)"
 
 #. Translators: 'type' is the type of VCS file: working, remote,
 #. or merged copy.
-#: apps/pootle_misc/stats.py:231
+#: apps/pootle_misc/stats.py:252
 #, python-format
 msgid ""
-"%(type)s: %(translated)d of %(total)d messages translated (%(fuzzy)d fuzzy)."
-msgstr ""
+"%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d fuzzy)."
+msgid_plural ""
+"%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d fuzzy)."
+msgstr[0] ""
 
-#: apps/pootle_misc/middleware/errorpages.py:64
+#: apps/pootle_misc/middleware/errorpages.py:65
 #, python-format
 msgid "You need to <a href=\"%(login_link)s\">login</a> to access this page."
 msgstr "您需要 <a href=\"%(login_link)s\">登录</a> 以访问本页。"
 
-#: apps/pootle_misc/middleware/errorpages.py:82
+#: apps/pootle_misc/middleware/errorpages.py:83
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr "访问 %(filename)s 出错， 文件系统返回错误：%(errormsg)s"
 
 #: apps/pootle_misc/templates/progressbar.html:3
-#, python-format
+#, fuzzy, python-format
 msgid "%(percent)s%% complete"
-msgstr ""
+msgstr "%(percentage)d%% 已完成"
 
 #: apps/pootle_misc/templates/search.html:5
 msgid "Search"
@@ -1456,55 +1431,57 @@ msgstr "消息"
 msgid "Added"
 msgstr "已添加"
 
-#: apps/pootle_notifications/views.py:105
+#: apps/pootle_notifications/views.py:103
 #, python-format
 msgid "News for %(language)s"
 msgstr "关于 %(language)s 的新闻"
 
-#: apps/pootle_notifications/views.py:107
+#: apps/pootle_notifications/views.py:105
 #, python-format
 msgid "News for %(project)s"
 msgstr ""
 
-#: apps/pootle_notifications/views.py:113
+#: apps/pootle_notifications/views.py:111
 #, python-format
 msgid "News for the %(project)s project in %(language)s"
 msgstr "关于 %(project)s 项目的 %(language)s 新闻"
 
-#: apps/pootle_notifications/views.py:114
+#: apps/pootle_notifications/views.py:112
 #, python-format
 msgid "News for %(path)s"
 msgstr "关于 %(path)s 的新闻"
 
+#: apps/pootle_notifications/views.py:138
+msgid "Publish on news feed"
+msgstr ""
+
 #: apps/pootle_notifications/views.py:140
-msgid "Publish on News feed"
+msgid "Send email"
 msgstr ""
 
-#: apps/pootle_notifications/views.py:142
-msgid "Send Email"
-msgstr ""
-
-#: apps/pootle_notifications/views.py:145
+#: apps/pootle_notifications/views.py:143
 msgid "Email only to recently active users"
 msgstr ""
 
-#: apps/pootle_notifications/views.py:153
+#: apps/pootle_notifications/views.py:151
+#, fuzzy
 msgid "All Projects"
-msgstr ""
+msgstr "所有的项目"
 
-#: apps/pootle_notifications/views.py:157
+#: apps/pootle_notifications/views.py:155
 msgid "Project Selection"
 msgstr ""
 
-#: apps/pootle_notifications/views.py:165
+#: apps/pootle_notifications/views.py:163
+#, fuzzy
 msgid "All Languages"
-msgstr ""
+msgstr "所有的语言"
 
-#: apps/pootle_notifications/views.py:169
+#: apps/pootle_notifications/views.py:167
 msgid "Language Selection"
 msgstr ""
 
-#: apps/pootle_notifications/views.py:295
+#: apps/pootle_notifications/views.py:293
 msgid "View News Item"
 msgstr "查看新闻条目"
 
@@ -1536,7 +1513,7 @@ msgstr "发布"
 msgid "Default"
 msgstr "缺省"
 
-#: apps/pootle_profile/forms.py:47 apps/pootle_profile/models.py:74
+#: apps/pootle_profile/forms.py:47 apps/pootle_profile/models.py:96
 msgid "Interface Language"
 msgstr "界面语言"
 
@@ -1544,35 +1521,35 @@ msgstr "界面语言"
 msgid "This account is inactive."
 msgstr ""
 
-#: apps/pootle_profile/models.py:70
+#: apps/pootle_profile/models.py:86
 msgid "Number of Rows"
 msgstr "行数"
 
-#: apps/pootle_profile/models.py:75
+#: apps/pootle_profile/models.py:100
 msgid "Alternative Source Languages"
 msgstr "可选源语言"
 
-#: apps/pootle_profile/models.py:123
+#: apps/pootle_profile/models.py:150
 msgid "Suggestions Accepted"
 msgstr "建议已被接受"
 
-#: apps/pootle_profile/models.py:124
+#: apps/pootle_profile/models.py:154
 msgid "Suggestions Pending"
-msgstr "建议正在等候中"
+msgstr "建议正在等待审阅"
 
-#: apps/pootle_profile/models.py:125
+#: apps/pootle_profile/models.py:158
 msgid "Suggestions Reviewed"
 msgstr "建议已审阅"
 
-#: apps/pootle_profile/models.py:126
+#: apps/pootle_profile/models.py:162
 msgid "Submissions Made"
 msgstr "已进行提交"
 
 #: apps/pootle_project/models.py:56
 msgid ""
-"A short code for the project. This should only containASCII characters, "
+"A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
-msgstr ""
+msgstr "项目的短代码。只允许包含 ASCII 字符、数字和下划线(_)。"
 
 #: apps/pootle_project/models.py:64
 #, python-format
@@ -1630,8 +1607,9 @@ msgid "You do not have rights to administer this project."
 msgstr "你还没有管理本语言的权限。"
 
 #: apps/pootle_project/views.py:212
-msgid "Update from templates"
-msgstr "从模板更新"
+#: apps/pootle_translationproject/actions.py:201
+msgid "Update against templates"
+msgstr ""
 
 #: apps/pootle_project/templates/project/admin_permissions.html:24
 #, fuzzy
@@ -1661,13 +1639,13 @@ msgid "State"
 msgstr ""
 
 #: apps/pootle_statistics/models.py:50
-#: apps/pootle_store/templates/unit/edit.html:193
 #: apps/pootle_store/templates/unit/xhr-comment.html:10
+#, fuzzy
 msgid "Comment"
-msgstr ""
+msgstr "注释"
 
-#: apps/pootle_statistics/models.py:89
-msgid "Unknown submitter"
+#: apps/pootle_statistics/models.py:95
+msgid "anonymous user"
 msgstr ""
 
 #: apps/pootle_store/filetypes.py:29
@@ -1736,7 +1714,7 @@ msgstr ""
 msgid "Subtitles: ass"
 msgstr ""
 
-#: apps/pootle_store/forms.py:96
+#: apps/pootle_store/forms.py:95
 #: apps/pootle_store/templatetags/store_tags.py:138
 #: apps/pootle_store/templatetags/store_tags.py:154
 #: apps/pootle_store/templatetags/store_tags.py:161
@@ -1746,12 +1724,12 @@ msgstr ""
 msgid "Plural Form %d"
 msgstr "复数形式 %d"
 
-#: apps/pootle_store/forms.py:273
+#: apps/pootle_store/forms.py:296
 #, fuzzy
 msgid "Translator comment"
 msgstr "译者注释"
 
-#: apps/pootle_store/models.py:760
+#: apps/pootle_store/models.py:810
 msgid "Path"
 msgstr "路径"
 
@@ -1759,35 +1737,31 @@ msgstr "路径"
 msgid "Obsolete"
 msgstr ""
 
-#: apps/pootle_store/util.py:46
-msgid "Needs work"
-msgstr ""
-
 #: apps/pootle_store/views.py:77
 msgid "Insufficient rights to this translation project."
 msgstr ""
 
-#: apps/pootle_store/views.py:658
+#: apps/pootle_store/views.py:689
 msgid "Comment submission failed."
 msgstr ""
 
-#: apps/pootle_store/views.py:778 apps/pootle_store/views.py:842
+#: apps/pootle_store/views.py:809 apps/pootle_store/views.py:873
 msgid "You do not have rights to access translation mode."
 msgstr "您没有访问翻译模式的权限。"
 
-#: apps/pootle_store/views.py:825
+#: apps/pootle_store/views.py:856
 msgid "Failed to process submission."
 msgstr ""
 
-#: apps/pootle_store/views.py:874
+#: apps/pootle_store/views.py:905
 msgid "Failed to process suggestion."
 msgstr ""
 
-#: apps/pootle_store/views.py:894
+#: apps/pootle_store/views.py:926
 msgid "You do not have rights to access review mode."
 msgstr "您没有访问评审模式的权限。"
 
-#: apps/pootle_store/views.py:993
+#: apps/pootle_store/views.py:1025
 msgid "The suggestion or vote is not valid any more."
 msgstr ""
 
@@ -1804,78 +1778,79 @@ msgid ""
 "Please enable JavaScript in your browser preferences and reload the page."
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:51
+#: apps/pootle_store/templates/store/translate.html:65
 msgid "Filter by:"
-msgstr ""
+msgstr "过滤以"
 
-#: apps/pootle_store/templates/store/translate.html:54
+#. Translators: This refers to "All strings"
+#: apps/pootle_store/templates/store/translate.html:69
 msgid "All"
-msgstr ""
+msgstr "全部"
 
-#: apps/pootle_store/templates/store/translate.html:56
+#: apps/pootle_store/templates/store/translate.html:71
 msgid "Incomplete"
-msgstr ""
+msgstr "未完成"
 
-#: apps/pootle_store/templates/store/translate.html:60
-msgid "My Suggestions"
-msgstr ""
+#: apps/pootle_store/templates/store/translate.html:75
+msgid "My suggestions"
+msgstr "我的建议"
 
-#: apps/pootle_store/templates/store/translate.html:61
+#: apps/pootle_store/templates/store/translate.html:76
 msgid "Checks"
-msgstr ""
+msgstr "检查"
 
-#: apps/pootle_store/templates/store/translate.html:69
-msgid "Previous unit"
-msgstr ""
+#: apps/pootle_store/templates/store/translate.html:84
+msgid "Previous string"
+msgstr "上一字符串"
 
-#: apps/pootle_store/templates/store/translate.html:69
+#: apps/pootle_store/templates/store/translate.html:84
 msgid ""
-"Go to the previous unit (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
+"Go to the previous string (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+Page&nbsp;Up<br/>First page: Ctrl+Shift+Home"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:71
+#: apps/pootle_store/templates/store/translate.html:86
 msgid ""
 "Current page number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:73
+#: apps/pootle_store/templates/store/translate.html:88
 msgid "Total pages"
-msgstr ""
+msgstr "整个页面"
 
-#: apps/pootle_store/templates/store/translate.html:75
-msgid "Next unit"
-msgstr ""
+#: apps/pootle_store/templates/store/translate.html:90
+msgid "Next string"
+msgstr "下一字符串"
 
-#: apps/pootle_store/templates/store/translate.html:75
+#: apps/pootle_store/templates/store/translate.html:90
 msgid ""
-"Go to the next unit (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
+"Go to the next string (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
 "+Page&nbsp;Down<br/>Last page: Ctrl+Shift+End"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:11
 msgid "File:"
-msgstr ""
+msgstr "文件："
 
 #: apps/pootle_store/templates/unit/edit.html:18
 msgid "Context:"
-msgstr ""
+msgstr "上下文："
 
 #: apps/pootle_store/templates/unit/edit.html:28
 msgid "Comments:"
-msgstr ""
+msgstr "注释："
 
 #: apps/pootle_store/templates/unit/edit.html:32
 msgid "Locations:"
-msgstr ""
+msgstr "位置："
 
 #: apps/pootle_store/templates/unit/edit.html:41
 msgid "Terminology:"
-msgstr ""
+msgstr "术语："
 
 #: apps/pootle_store/templates/unit/edit.html:43
-msgid "Click to insert the translated term into the editor"
+msgid "Insert the translated term into the editor"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:56
@@ -1897,17 +1872,17 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:111
 msgid "Report a problem with the source string"
-msgstr ""
+msgstr "报告源字符串错误"
 
 #: apps/pootle_store/templates/unit/edit.html:128
 #: apps/pootle_store/templates/unit/edit.html:138
-#: apps/pootle_store/templates/unit/edit.html:173
+#: apps/pootle_store/templates/unit/edit.html:204
 msgid "Submit"
 msgstr "提交"
 
 #: apps/pootle_store/templates/unit/edit.html:128
-msgid "Submit translation and go to the next unit (Ctrl+Enter)"
-msgstr ""
+msgid "Submit translation and go to the next string (Ctrl+Enter)"
+msgstr "提交翻译并转到下一条字符串(Ctrl+Enter)"
 
 #: apps/pootle_store/templates/unit/edit.html:131
 #: apps/pootle_store/templates/unit/edit.html:139
@@ -1915,8 +1890,8 @@ msgid "Suggest"
 msgstr "建议"
 
 #: apps/pootle_store/templates/unit/edit.html:131
-msgid "Suggest translation and go to the next unit (Ctrl+Enter)"
-msgstr ""
+msgid "Suggest translation and go to the next string (Ctrl+Enter)"
+msgstr "提交建议并转到下一条字符串(Ctrl+Enter)"
 
 #: apps/pootle_store/templates/unit/edit.html:137
 msgid "Toggle suggest mode (Ctrl+Shift+Space)"
@@ -1927,37 +1902,76 @@ msgid "Toggle fuzzy state (Ctrl+Space)"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:155
-msgid "Click to insert this symbol into the editor"
+msgid "Insert RLM (Right-To-Left Mark) into the editor"
 msgstr ""
 
-#: apps/pootle_store/templates/unit/edit.html:166
-msgid "Add Comment"
+#: apps/pootle_store/templates/unit/edit.html:158
+msgid "Insert LRM (Left-To-Right Mark) into the editor"
+msgstr ""
+
+#: apps/pootle_store/templates/unit/edit.html:161
+msgid "Insert RLE (Right-To-Left Embedding) into the editor"
+msgstr ""
+
+#: apps/pootle_store/templates/unit/edit.html:164
+msgid "Insert LRE (Left-To-Right Embedding) into the editor"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:167
+msgid "Insert RLO (Right-To-Left Override) into the editor"
+msgstr ""
+
+#: apps/pootle_store/templates/unit/edit.html:170
+msgid "Insert LRO (Left-To-Right Override) into the editor"
+msgstr ""
+
+#: apps/pootle_store/templates/unit/edit.html:173
+msgid "Insert PDF (Pop Directional Format ) into the editor"
+msgstr ""
+
+#: apps/pootle_store/templates/unit/edit.html:176
+msgid "Insert ZWJ (Zero Width Joiner) into the editor"
+msgstr ""
+
+#: apps/pootle_store/templates/unit/edit.html:179
+msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
+msgstr ""
+
+#: apps/pootle_store/templates/unit/edit.html:185
+msgid "Insert this symbol into the editor"
+msgstr ""
+
+#: apps/pootle_store/templates/unit/edit.html:197
+msgid "Add Comment"
+msgstr ""
+
+#: apps/pootle_store/templates/unit/edit.html:198
 msgid "Show Timeline"
 msgstr ""
 
-#: apps/pootle_store/templates/unit/edit.html:168
+#: apps/pootle_store/templates/unit/edit.html:199
 msgid "Hide Timeline"
 msgstr ""
 
-#: apps/pootle_store/templates/unit/edit.html:200
-msgid "User suggestions"
-msgstr ""
+#: apps/pootle_store/templates/unit/edit.html:224
+msgid "Comment:"
+msgstr "注释:"
 
-#: apps/pootle_store/templates/unit/edit.html:218
+#: apps/pootle_store/templates/unit/edit.html:231
+msgid "User suggestions"
+msgstr "用户建议"
+
+#: apps/pootle_store/templates/unit/edit.html:249
 msgid "Accept suggestion"
 msgstr "接受建议"
 
-#: apps/pootle_store/templates/unit/edit.html:223
+#: apps/pootle_store/templates/unit/edit.html:254
 msgid "Reject suggestion"
 msgstr "拒绝建议"
 
-#: apps/pootle_store/templates/unit/edit.html:230
-#, fuzzy
+#: apps/pootle_store/templates/unit/edit.html:261
 msgid "Remove suggestion"
-msgstr "拒绝建议"
+msgstr "移除建议"
 
 #: apps/pootle_store/templates/unit/term_edit.html:21
 msgid "Your current vote. Click to remove this vote."
@@ -1969,7 +1983,7 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/term_edit.html:40
 msgid "Comment: "
-msgstr ""
+msgstr "注释："
 
 #: apps/pootle_store/templates/unit/timeline.html:4
 #: apps/pootle_store/templates/unit/timeline.html:14
@@ -1987,17 +2001,17 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/xhr-timeline.html:35
 msgid "No results."
-msgstr ""
+msgstr "没有结果。"
 
 #: apps/pootle_store/templatetags/store_tags.py:112
 #, python-format
 msgid "Words Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
-msgstr ""
+msgstr "已翻译单词： %(translated)d/%(total)d - %(translatedpercent)d%%"
 
 #: apps/pootle_store/templatetags/store_tags.py:119
 #, python-format
 msgid "Strings Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
-msgstr ""
+msgstr "已翻译字符串：%(translated)d/%(total)d - %(translatedpercent)d%%"
 
 #: apps/pootle_store/templatetags/store_tags.py:132
 #: apps/pootle_store/templatetags/store_tags.py:134
@@ -2040,7 +2054,7 @@ msgid_plural "%d minutes ago"
 msgstr[0] ""
 
 #: apps/pootle_store/templatetags/store_tags.py:234
-msgid "Few seconds ago"
+msgid "A few seconds ago"
 msgstr ""
 
 #: apps/pootle_terminology/views.py:156
@@ -2086,7 +2100,7 @@ msgid "Here you can manage the terms in the terminology files."
 msgstr ""
 
 #: apps/pootle_terminology/templates/terminology/stores.html:14
-#: apps/pootle_translationproject/views.py:781
+#: apps/pootle_translationproject/views.py:765
 msgid "File"
 msgstr "文件"
 
@@ -2121,7 +2135,7 @@ msgstr ""
 
 #: apps/pootle_translationproject/actions.py:78
 msgid "Export translations"
-msgstr ""
+msgstr "导出翻译"
 
 #: apps/pootle_translationproject/actions.py:80
 msgid "Download"
@@ -2129,19 +2143,19 @@ msgstr "下载"
 
 #: apps/pootle_translationproject/actions.py:81
 msgid "Download file"
-msgstr ""
+msgstr "下载文件"
 
 #: apps/pootle_translationproject/actions.py:96
-#: apps/pootle_translationproject/actions.py:224
+#: apps/pootle_translationproject/actions.py:254
 msgid "Translate offline"
-msgstr ""
+msgstr "离线翻译"
 
 #: apps/pootle_translationproject/actions.py:97
 msgid "Download XLIFF file for offline translation"
 msgstr ""
 
 #: apps/pootle_translationproject/actions.py:112
-#: apps/pootle_translationproject/views.py:740
+#: apps/pootle_translationproject/views.py:724
 msgid "Upload"
 msgstr "上传"
 
@@ -2157,115 +2171,133 @@ msgstr "从 VCS 更新"
 msgid "Commit to VCS"
 msgstr "提交到 VCS"
 
-#: apps/pootle_translationproject/actions.py:157
+#. Translators: "all" here refers to all files and sub directories in a directory/project.
+#: apps/pootle_translationproject/actions.py:159
+#, fuzzy
+msgid "Update all from VCS"
+msgstr "从 VCS 更新"
+
+#. Translators: "all" here refers to all files and sub directories in a directory/project.
+#: apps/pootle_translationproject/actions.py:174
+#, fuzzy
+msgid "Commit all to VCS"
+msgstr "提交到 VCS"
+
+#: apps/pootle_translationproject/actions.py:187
 msgid "Rescan project files"
 msgstr ""
 
-#: apps/pootle_translationproject/actions.py:171
-msgid "Update against templates"
-msgstr ""
-
-#: apps/pootle_translationproject/actions.py:188
+#: apps/pootle_translationproject/actions.py:218
 msgid "Delete this folder..."
 msgstr ""
 
-#: apps/pootle_translationproject/actions.py:190
+#: apps/pootle_translationproject/actions.py:220
 msgid "Delete this file..."
 msgstr ""
 
-#: apps/pootle_translationproject/actions.py:226
+#: apps/pootle_translationproject/actions.py:256
 msgid "Manage"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:106
+#: apps/pootle_translationproject/models.py:105
 #, python-format
 msgid ""
 "A description of this translation project. This is useful to give more "
 "information or instructions. Allowed markup: %s"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:455
-#: apps/pootle_translationproject/models.py:537
-msgid "You do not have rights to update from version control here"
-msgstr "您没有权限在这里从版本控制树更新"
+#: apps/pootle_translationproject/models.py:488
+#, python-format
+msgid "Failed to update from version control: %(error)s"
+msgstr ""
 
-#: apps/pootle_translationproject/models.py:519
+#: apps/pootle_translationproject/models.py:556
 #, python-format
 msgid "Updated project <em>%(project)s</em> from version control"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:522
-#: apps/pootle_translationproject/models.py:548
+#: apps/pootle_translationproject/models.py:558
+#: apps/pootle_translationproject/models.py:579
 msgid "Working copy"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:523
-#: apps/pootle_translationproject/models.py:549
+#: apps/pootle_translationproject/models.py:559
+#: apps/pootle_translationproject/models.py:580
 msgid "Remote copy"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:524
-#: apps/pootle_translationproject/models.py:550
+#: apps/pootle_translationproject/models.py:560
+#: apps/pootle_translationproject/models.py:581
 msgid "Merged copy"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:545
+#: apps/pootle_translationproject/models.py:577
 #, python-format
 msgid "Updated file <em>%(filename)s</em> from version control"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:559
+#: apps/pootle_translationproject/models.py:590
 #, python-format
-msgid "Failed to update <em>%(filename)s</em> from version control"
+msgid "Failed to update <em>%(filename)s</em> from version control: %(error)s"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:601
+#: apps/pootle_translationproject/models.py:649
 #, python-format
-msgid "Committed file: %(filename)s"
+msgid "Committed all files under <em>%(path)s</em> to version control"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:609
+#: apps/pootle_translationproject/models.py:658
 #, python-format
-msgid "Failed to commit file: %(error)s"
+msgid "Failed to commit to version control: %(error)s"
+msgstr "提交到版本控制失败： %(error)s"
+
+#: apps/pootle_translationproject/models.py:716
+#, python-format
+msgid "Committed file <em>%(filename)s</em> to version control"
+msgstr "已将文件 <em>%(filename)s</em> 提交到版本控制"
+
+#: apps/pootle_translationproject/models.py:724
+#, python-format
+msgid "Failed to commit <em>%(filename)s</em> to version control: %(error)s"
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:99
+#: apps/pootle_translationproject/views.py:97
 msgid "Translation project files have been rescanned."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:104
+#: apps/pootle_translationproject/views.py:102
 msgid "Error while rescanning translation project files."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:121
+#: apps/pootle_translationproject/views.py:119
 msgid "Translation project has been updated against latest templates."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:126
+#: apps/pootle_translationproject/views.py:124
 msgid "Error while updating translation project against latest templates."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:191
+#: apps/pootle_translationproject/views.py:189
 msgid "Symbolic link hasn't been removed from the filesystem."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:195
+#: apps/pootle_translationproject/views.py:193
 msgid "Directory and its containing files have been deleted."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:198
+#: apps/pootle_translationproject/views.py:196
 msgid "File has been deleted."
-msgstr ""
+msgstr "文件已删除。"
 
-#: apps/pootle_translationproject/views.py:203
+#: apps/pootle_translationproject/views.py:201
 msgid "Error while trying to delete directory."
-msgstr ""
+msgstr "删除目录时出错。"
 
-#: apps/pootle_translationproject/views.py:206
+#: apps/pootle_translationproject/views.py:204
 msgid "Error while trying to delete file."
-msgstr ""
+msgstr "删除文件时出错。"
 
-#: apps/pootle_translationproject/views.py:366
+#: apps/pootle_translationproject/views.py:365
 msgid "You do not have the right to create ZIP archives."
 msgstr "您没有创建 ZIP 档案的权限。"
 
@@ -2274,73 +2306,68 @@ msgstr "您没有创建 ZIP 档案的权限。"
 msgid "Invalid/insecure file name: %s"
 msgstr "无效/不安全的文件名： %s"
 
-#: apps/pootle_translationproject/views.py:469
+#: apps/pootle_translationproject/views.py:470
 #, python-format
 msgid ""
 "Invalid GNU-style file name: %(local_filename)s. It must match '%(langcode)s."
 "%(filetype)s'."
 msgstr "无效的 GNU 风格文件名：%(local_filename)s。它必须符合'%(langcode)s.%(filetype)s'。"
 
-#: apps/pootle_translationproject/views.py:496
+#: apps/pootle_translationproject/views.py:497
 msgid "Error while extracting archive"
 msgstr "解压档案时发生错误"
 
-#: apps/pootle_translationproject/views.py:680
+#: apps/pootle_translationproject/views.py:681
 msgid "You do not have rights to overwrite files here."
 msgstr "你没有在此覆盖文件的权限。"
 
-#: apps/pootle_translationproject/views.py:684
+#: apps/pootle_translationproject/views.py:685
 msgid "You do not have rights to upload new files here."
 msgstr "你没有在此上传新文件的权限。"
 
-#: apps/pootle_translationproject/views.py:688
-#: apps/pootle_translationproject/views.py:692
+#: apps/pootle_translationproject/views.py:689
+#: apps/pootle_translationproject/views.py:693
 msgid "You do not have rights to upload files here."
 msgstr "你没有在此上传文件的权限。"
 
-#: apps/pootle_translationproject/views.py:723
-msgid "Update all from version control"
-msgstr "从版本控制中更新全部"
-
-#: apps/pootle_translationproject/views.py:753
+#: apps/pootle_translationproject/views.py:737
 msgid "Overwrite the current file if it exists"
 msgstr "如果存在即覆盖当前文件"
 
-#: apps/pootle_translationproject/views.py:757
+#: apps/pootle_translationproject/views.py:741
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
 msgstr "与当前文件进行合并，并将冲突项添加为建议"
 
-#: apps/pootle_translationproject/views.py:762
+#: apps/pootle_translationproject/views.py:746
 msgid "Add all new translations as suggestions"
 msgstr "将所有新的翻译添加为建议"
 
-#: apps/pootle_translationproject/views.py:792
-#: apps/pootle_translationproject/views.py:800
+#: apps/pootle_translationproject/views.py:776
+#: apps/pootle_translationproject/views.py:784
 msgid "Upload to"
-msgstr ""
+msgstr "上传至"
 
-#: apps/pootle_translationproject/views.py:795
-#: apps/pootle_translationproject/views.py:804
+#: apps/pootle_translationproject/views.py:779
+#: apps/pootle_translationproject/views.py:788
 msgid ""
 "Optionally select the file you want to merge with. If not specified, the "
 "uploaded file's name is used."
 msgstr ""
 
-#: apps/pootle_translationproject/views.py:814
+#: apps/pootle_translationproject/views.py:798
 msgid "Upload File"
 msgstr "上传文件"
 
 #: apps/pootle_translationproject/templates/translation_project/admin_permissions.html:15
-#, fuzzy
 msgid ""
 "Below you can add, edit, and delete the permissions for this translation "
 "project."
-msgstr "以下您可以为这个语言增加、编辑和删除相关权限。"
+msgstr "以下您可以为这个翻译项目增加、编辑和删除相关权限。"
 
 #: apps/pootle_translationproject/templates/translation_project/fileop_forms.html:23
 msgid "Update from Version Control"
-msgstr ""
+msgstr "从版本控制中更新"
 
 #: apps/pootle_translationproject/templates/translation_project/fileop_forms.html:24
 msgid ""
@@ -2353,7 +2380,7 @@ msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:70
 msgid "Actions"
-msgstr ""
+msgstr "操作"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:118
 #, python-format
@@ -2362,12 +2389,12 @@ msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:125
 #, python-format
-msgid "%(language)s project information"
+msgid "%(language)s language information"
 msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:4
 msgid "Translation Statistics"
-msgstr ""
+msgstr "翻译统计"
 
 #: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:23
 msgid "Failing Checks"
@@ -2443,6 +2470,24 @@ msgstr ""
 
 #: middleware/captcha.py:158
 msgid "Incorrect"
+msgstr ""
+
+#: settings/10-base.conf:9
+msgid "Pootle Demo"
+msgstr "Pootle 演示"
+
+#. Translators: Change the language code (en) to your language code, and replace
+#. ltr with rtl if you language is written from right to left.
+#: settings/10-base.conf:13
+msgid ""
+"<div dir=\"ltr\" lang=\"en\">\n"
+"<h2>This is a demo installation of Pootle.</h2>\n"
+"<p>You can also visit the official <a href=\"http://pootle.locamotion.org"
+"\">Pootle server</a>. The server administrator has not provided contact "
+"information or a description of this server. If you are the administrator "
+"for this server, edit this description in your preference file or in the "
+"administration interface.</p>\n"
+"</div>\n"
 msgstr ""
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
@@ -2532,9 +2577,9 @@ msgstr ""
 msgid "Zoom in (Ctrl+Shift++)"
 msgstr ""
 
-#: templates/base.html:100 templates/profiles/profile_detail.html:40
-msgid "Admin"
-msgstr "管理"
+#: templates/base.html:100
+msgid "ADMIN"
+msgstr ""
 
 #: templates/base.html:103
 msgid "Log Out"
@@ -2550,28 +2595,24 @@ msgstr "注册"
 msgid "Log In"
 msgstr "登录"
 
-#: templates/base.html:139
-msgid "Loading..."
-msgstr ""
-
-#: templates/base.html:162
+#: templates/base.html:155
 msgid "Help"
 msgstr "帮助"
 
-#: templates/base.html:164 templates/contact_form/contact_form.html:4
+#: templates/base.html:157 templates/contact_form/contact_form.html:4
 #: templates/contact_form/contact_form.html:7
 #: templates/contact_form/contact_form.html:12
 msgid "Contact Us"
 msgstr "联系我们"
 
-#: templates/base.html:166
+#: templates/base.html:159
 msgid "About this Pootle Server"
 msgstr "关于本 Pootle 服务器"
 
-#: templates/base.html:167 templates/about/contributors.html:6
+#: templates/base.html:160 templates/about/contributors.html:6
 #: templates/about/contributors.html:9
 msgid "Contributors"
-msgstr ""
+msgstr "贡献者"
 
 #: templates/captcha-xhr.html:14 templates/captcha.html:4
 #: templates/captcha.html.py:7
@@ -2680,7 +2721,7 @@ msgstr "修改您的个人信息"
 #: templates/user_profile_menu.html:6 templates/profiles/edit_personal.html:4
 #: templates/profiles/edit_personal.html:7
 msgid "Profile"
-msgstr "个人信息"
+msgstr "信息"
 
 #: templates/user_profile_menu.html:7
 msgid "Change your password"
@@ -2690,12 +2731,13 @@ msgstr "修改您的密码"
 msgid "This Pootle Server"
 msgstr ""
 
-#: templates/about/about.html:15
+#. Translators: For better readability, make sure to leave an space after the closing </i> tag
+#: templates/about/about.html:16
 msgid ""
 "This site is running Pootle &mdash; powerful web software to empower teams "
 "to do translation and translation management. This community tool is Free "
 "Software, and any team can use it and contribute to the Pootle community. "
-"Read more on the <a href=\"http://translate.sourceforge.net/\"><i class="
+"Read more on the <a href=\"http://pootle.translatehouse.org/\"><i class="
 "\"icon-external-link\"></i> project website</a>."
 msgstr ""
 
@@ -2705,22 +2747,22 @@ msgstr "关于"
 
 #: templates/contact_form/contact_form.html:17
 msgid "Send"
-msgstr ""
+msgstr "发送"
 
 #: templates/contact_form/contact_form_sent.html:5
 #: templates/contact_form/contact_form_sent.html:8
 #: templates/contact_form/contact_form_sent.html:13
 msgid "Message Sent"
-msgstr ""
+msgstr "发送了消息"
 
 #: templates/contact_form/contact_form_sent.html:14
 msgid "Thank you for your feedback."
-msgstr ""
+msgstr "感谢您的反馈。"
 
 #: templates/contact_form/contact_form_subject.txt:2
 #, python-format
 msgid " message by %(name)s"
-msgstr ""
+msgstr "%(name)s 的消息"
 
 #: templates/profiles/edit_personal.html:12
 msgid ""
@@ -2755,6 +2797,10 @@ msgstr "您可以像设置翻译偏好一样在这里配置与翻译界面相关
 msgid "Quick Links"
 msgstr "快速连接"
 
+#: templates/profiles/profile_detail.html:40
+msgid "Admin"
+msgstr "管理"
+
 #: templates/profiles/profile_detail.html:55
 msgid "No languages or projects selected. Choose yours now."
 msgstr "尚未选择语言或项目。现在请选择您想要的。"
@@ -2769,7 +2815,7 @@ msgstr "用户统计"
 
 #: templates/profiles/profile_detail.html:71
 msgid "You can set or change your avatar image at www.gravatar.com"
-msgstr ""
+msgstr "您可以在 www.gravatar.com 设置或修改您的头像"
 
 #: templates/profiles/profile_list.html:7
 msgid "Profiles list"
@@ -2803,7 +2849,7 @@ msgstr "用户名 \"%(account)s\" 的帐号已激活。您可以继续进行登�
 
 #: templates/registration/activation_email.html:4
 msgid "Pootle Account Created!"
-msgstr ""
+msgstr "Pootle 帐号已创建！"
 
 #: templates/registration/activation_email.html:5
 #: templates/registration/activation_email.txt:2
@@ -2812,16 +2858,16 @@ msgstr "已经使用这个电子邮件地址为您创建了一个 Pootle 帐户�
 
 #: templates/registration/activation_email.html:6
 msgid "To activation your account, follow this link:"
-msgstr ""
+msgstr "要激活您的帐户，请点击这个链接："
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
-msgstr ""
+msgstr "激活我的 Pootle 帐户"
 
 #: templates/registration/activation_email.html:10
 #, python-format
 msgid "Your activation code is: <code>%(activation_key)s</code>"
-msgstr ""
+msgstr "您的激活码是： <code>%(activation_key)s</code>"
 
 #: templates/registration/activation_email.html:11
 #: templates/registration/activation_email.txt:9
@@ -3000,7 +3046,7 @@ msgstr "密码(重复)"
 
 #: templates/registration/registration_form.html:42
 msgid "Make sure to read the following:"
-msgstr ""
+msgstr "请确认阅读以下内容："
 
 #: templates/registration/registration_form.html:56
 msgid "Already have an account?"
@@ -3009,6 +3055,53 @@ msgstr "已经拥有一个帐号？"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "登录。"
+
+#~ msgid "Needs review"
+#~ msgstr "需要审阅"
+
+#~ msgid ""
+#~ "Can't find python-levenshtein package. Updating from templates is faster "
+#~ "with python-levenshtein."
+#~ msgstr "无法找到 python-levenshtein 软件包。使用 python-levenshtein 从模板更新会更快。"
+
+#~ msgid "Translations are complete"
+#~ msgstr "翻译已完成"
+
+#~ msgid "Translations need to be checked (they are marked fuzzy)"
+#~ msgstr "需要被检查的翻译(它们被标记为模糊翻译)"
+
+#~ msgid "Translated percentage"
+#~ msgstr "已翻译的百分比"
+
+#~ msgid "Fuzzy"
+#~ msgstr "模糊的"
+
+#~ msgid "Fuzzy percentage"
+#~ msgstr "模糊的百分比"
+
+#~ msgid "Fuzzy words"
+#~ msgstr "模糊的单词"
+
+#~ msgid "Untranslated percentage"
+#~ msgstr "未翻译的百分比"
+
+#~ msgid "Untranslated words"
+#~ msgstr "未翻译的单词"
+
+#~ msgid "Total Words"
+#~ msgstr "总单词数"
+
+#~ msgid "Summary"
+#~ msgstr "概览"
+
+#~ msgid "Update from templates"
+#~ msgstr "从模板更新"
+
+#~ msgid "You do not have rights to update from version control here"
+#~ msgstr "您没有权限在这里从版本控制树更新"
+
+#~ msgid "Update all from version control"
+#~ msgstr "从版本控制中更新全部"
 
 #~ msgid "About Pootle"
 #~ msgstr "关于 Pootle"
@@ -3067,11 +3160,6 @@ msgstr "登录。"
 #~ msgstr "目录的 ZIP 文件"
 
 #~ msgid ""
-#~ "A short code for the project. This should only contain ASCII characters, "
-#~ "numbers, and the underscore (_) character."
-#~ msgstr "项目的短代码。只允许包含 ASCII 字符、数字和下划线(_)。"
-
-#~ msgid ""
 #~ "A description of this project. This is useful to give more information or "
 #~ "instructions. This field should be valid HTML."
 #~ msgstr "本项目的一个介绍。可以提供更多信息和指引。这个区域应当是标准 HTML。"
@@ -3111,9 +3199,6 @@ msgstr "登录。"
 
 #~ msgid "Review"
 #~ msgstr "审阅"
-
-#~ msgid "Pootle Demo"
-#~ msgstr "Pootle 演示"
 
 #~ msgid ""
 #~ "<div dir=\"ltr\" lang=\"en\">\n"

@@ -2,9 +2,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-27 15:51+0100\n"
-"PO-Revision-Date: 2012-12-29 15:16+0000\n"
+"Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
+"POT-Creation-Date: 2012-12-31 14:17+0100\n"
+"PO-Revision-Date: 2013-01-08 07:48+0000\n"
 "Last-Translator: Toni <toniher@softcatala.org>\n"
 "Language-Team: Softcatalà\n"
 "Language: ca\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1356794175.0\n"
+"X-POOTLE-MTIME: 1357631326.0\n"
 
 #: strings.py:8
 msgid ""
@@ -211,7 +211,7 @@ msgid "Whether this page should be displayed on registration."
 msgstr "Si la pàgina ha de mostrar-se en el registre."
 
 #: apps/legalpages/models.py:38 apps/pootle_app/forms.py:30
-#: apps/pootle_notifications/views.py:143
+#: apps/pootle_notifications/views.py:141
 msgid "Title"
 msgstr "Títol"
 
@@ -225,13 +225,14 @@ msgstr ""
 "Si es defineix, tota referència a la pàgina d'informació legal es redirigirà "
 "a aquest URL"
 
-#: apps/legalpages/models.py:42
-msgid "slug"
-msgstr "slug"
-
+#. Translators: See http://en.wikipedia.org/wiki/Slug_%28web_publishing%29#Slug
 #: apps/legalpages/models.py:43
-msgid "The page will be independently available in /about/<slug>/"
-msgstr "La pàgina serà disponible independentment a /about/<slug>/"
+msgid "Slug"
+msgstr "Slug"
+
+#: apps/legalpages/models.py:44
+msgid "The page will be available at /about/<slug>/"
+msgstr "La pàgina serà disponible a /about/<slug>/"
 
 #: apps/legalpages/models.py:46
 msgid "Content"
@@ -243,7 +244,7 @@ msgid "Allowed markup: %s"
 msgstr "Etiquetatge permès: %s"
 
 #: apps/legalpages/views.py:67
-msgid "Legal Page created."
+msgid "Legal page created."
 msgstr "S'ha creat una pàgina d'informació legal."
 
 #: apps/legalpages/templates/legalpages/admin/edit.html:4
@@ -281,8 +282,8 @@ msgid "No pages yet."
 msgstr "No hi ha cap pàgina encara."
 
 #: apps/legalpages/templates/legalpages/admin/list.html:31
-msgid "Add a new Legal Page"
-msgstr "Afegeix una pàgina d'informació legal nova"
+msgid "New Legal Page"
+msgstr "Pàgina nova d'informació legal"
 
 #: apps/pootle_app/admin.py:39
 msgid "Language code does not follow the ISO convention"
@@ -365,8 +366,8 @@ msgstr "Col·laboradors més actius"
 
 #. Translators: The number of suggestions pending review
 #: apps/pootle_app/templates/top_contributers_table.html:12
-#: apps/pootle_app/views/language/view.py:58
-#: apps/pootle_store/templates/store/translate.html:59
+#: apps/pootle_app/views/language/view.py:46
+#: apps/pootle_store/templates/store/translate.html:74
 msgid "Suggestions"
 msgstr "Suggeriments"
 
@@ -384,21 +385,21 @@ msgid "anonymous users"
 msgstr "usuaris anònims"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:4
-#: apps/pootle_app/views/language/view.py:42 apps/pootle_misc/stats.py:101
-#: apps/pootle_store/util.py:47
-#: apps/pootle_store/templates/store/translate.html:55
+#: apps/pootle_misc/stats.py:105 apps/pootle_store/util.py:47
+#: apps/pootle_store/templates/store/translate.html:70
 msgid "Translated"
 msgstr "Traduït"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:5
-msgid "Needs review"
-msgstr "Cal revisió"
+#: apps/pootle_misc/stats.py:122 apps/pootle_store/forms.py:215
+#: apps/pootle_store/util.py:46
+#: apps/pootle_store/templates/store/translate.html:73
+msgid "Needs work"
+msgstr "Cal revisar"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:6
-#: apps/pootle_app/views/index/index.py:111
-#: apps/pootle_app/views/language/view.py:48 apps/pootle_misc/stats.py:125
-#: apps/pootle_project/views.py:298 apps/pootle_store/util.py:45
-#: apps/pootle_store/templates/store/translate.html:57
+#: apps/pootle_misc/stats.py:139 apps/pootle_store/util.py:45
+#: apps/pootle_store/templates/store/translate.html:72
 msgid "Untranslated"
 msgstr "Per traduir"
 
@@ -410,7 +411,7 @@ msgstr "Desa els canvis"
 #: apps/pootle_app/templates/admin/admin_general_languages.html:4
 #: apps/pootle_app/templates/admin/admin_general_languages.html:9
 #: apps/pootle_app/templates/index/index.html:38
-#: apps/pootle_profile/models.py:72 templates/admin_profile_menu.html:6
+#: apps/pootle_profile/models.py:90 templates/admin_profile_menu.html:6
 msgid "Languages"
 msgstr "Llengües"
 
@@ -424,7 +425,7 @@ msgstr ""
 
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:4
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:9
-#: apps/pootle_app/views/admin/permissions.py:60
+#: apps/pootle_app/views/admin/permissions.py:101
 #: apps/pootle_language/templates/language/language_admin.html:5
 #: apps/pootle_language/templates/language/language_admin.html:8
 #: apps/pootle_project/templates/project/admin_permissions.html:7
@@ -465,7 +466,7 @@ msgstr ""
 #: apps/pootle_app/templates/index/index.html:67
 #: apps/pootle_notifications/templates/notices.html:20
 #: apps/pootle_notifications/templates/notices.html:34
-#: apps/pootle_profile/models.py:73
+#: apps/pootle_profile/models.py:93
 #: apps/pootle_project/templates/project/projects.html:7
 #: apps/pootle_project/templates/project/projects.html:10
 #: apps/pootle_project/templates/project/projects.html:16
@@ -674,6 +675,7 @@ msgstr ""
 "superior."
 
 #: apps/pootle_app/views/admin/dashboard.py:71
+#, python-format
 #, python-format, python-format
 msgid "lxml version %s is installed."
 msgstr "La versió %s del lxml està instal·lada."
@@ -717,11 +719,11 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:107
 msgid ""
-"Can't find python-levenshtein package. Updating from templates is faster "
+"Can't find python-levenshtein package. Updating against templates is faster "
 "with python-levenshtein."
 msgstr ""
-"No es pot trobar el paquet python-levenshtein. L'actualització des de les "
-"plantilles és més ràpida amb el python-levenshtein."
+"No es pot trobar el paquet python-levenshtein. Actualitzar a partir de les "
+"plantilles és més ràpid amb el python-levenshtein."
 
 #: apps/pootle_app/views/admin/dashboard.py:111
 msgid ""
@@ -840,7 +842,6 @@ msgid "Translated strings"
 msgstr "Cadenes traduïdes"
 
 #: apps/pootle_app/views/admin/dashboard.py:203
-#: apps/pootle_app/views/language/view.py:44
 msgid "Translated words"
 msgstr "Paraules traduïdes"
 
@@ -848,16 +849,16 @@ msgstr "Paraules traduïdes"
 msgid "Active users"
 msgstr "Usuaris actius"
 
-#: apps/pootle_app/views/admin/permissions.py:46
-#: apps/pootle_app/views/admin/permissions.py:48
+#: apps/pootle_app/views/admin/permissions.py:61
+#: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Members"
 msgstr "Membres del projecte"
 
-#: apps/pootle_app/views/admin/permissions.py:50
+#: apps/pootle_app/views/admin/permissions.py:74
 msgid "Language Members"
 msgstr "Membres de la llengua"
 
-#: apps/pootle_app/views/admin/permissions.py:51
+#: apps/pootle_app/views/admin/permissions.py:79
 msgid "All Users"
 msgstr "Tots els usuaris"
 
@@ -891,14 +892,6 @@ msgstr ""
 #, python-format
 msgid "%(percentage)d%% complete"
 msgstr "%(percentage)d%% complet"
-
-#: apps/pootle_app/views/index/index.py:108 apps/pootle_project/views.py:295
-msgid "Translations are complete"
-msgstr "Les traduccions són completes"
-
-#: apps/pootle_app/views/index/index.py:109 apps/pootle_project/views.py:296
-msgid "Translations need to be checked (they are marked fuzzy)"
-msgstr "Cal comprovar les traduccions (estan marcades com a dubtoses)"
 
 #: apps/pootle_app/views/language/item_dict.py:37
 #, python-format
@@ -956,63 +949,27 @@ msgstr[1] "S'ha produït un error en llegir %d fitxers"
 msgid "Name"
 msgstr "Nom"
 
-#: apps/pootle_app/views/language/view.py:43
-msgid "Translated percentage"
-msgstr "Percentatge de traduccions"
-
-#: apps/pootle_app/views/language/view.py:45 apps/pootle_misc/stats.py:113
-#: apps/pootle_store/forms.py:193
-#: apps/pootle_store/templates/store/translate.html:58
-msgid "Fuzzy"
-msgstr "Dubtosa"
-
-#: apps/pootle_app/views/language/view.py:46
-msgid "Fuzzy percentage"
-msgstr "Percentatge de dubtoses"
-
-#: apps/pootle_app/views/language/view.py:47
-msgid "Fuzzy words"
-msgstr "Paraules dubtoses"
-
-#: apps/pootle_app/views/language/view.py:49
-msgid "Untranslated percentage"
-msgstr "Percentatge sense traduir"
-
-#: apps/pootle_app/views/language/view.py:50
-msgid "Untranslated words"
-msgstr "Paraules sense traduir"
-
-#: apps/pootle_app/views/language/view.py:51 apps/pootle_misc/stats.py:89
-msgid "Total"
-msgstr "Total"
-
-#: apps/pootle_app/views/language/view.py:52
-msgid "Total Words"
-msgstr "Nombre total de paraules"
-
 #. Translators: noun. The graphical representation of translation status
-#: apps/pootle_app/views/language/view.py:54
+#: apps/pootle_app/views/language/view.py:43
 msgid "Progress"
 msgstr "Progrés"
 
-#: apps/pootle_app/views/language/view.py:55
-msgid "Summary"
-msgstr "Resum"
-
-#: apps/pootle_app/views/language/view.py:56
+#: apps/pootle_app/views/language/view.py:44
 msgid "Need Translation"
 msgstr "Cal traduir"
 
-#: apps/pootle_app/views/language/view.py:120
-#: apps/pootle_translationproject/views.py:265
+#: apps/pootle_app/views/language/view.py:108
+#: apps/pootle_translationproject/views.py:263
 msgid "You do not have rights to access this translation project."
 msgstr "No teniu permisos per accedir a aquest projecte de traducció."
 
-#: apps/pootle_app/views/language/view.py:135
+#: apps/pootle_app/views/language/view.py:123
+#: apps/pootle_app/views/language/view.py:149
 msgid "You do not have rights to commit files here"
 msgstr "No teniu permisos per confirmar els fitxers aquí"
 
-#: apps/pootle_app/views/language/view.py:148
+#: apps/pootle_app/views/language/view.py:136
+#: apps/pootle_app/views/language/view.py:162
 msgid "You do not have rights to update files here"
 msgstr "No teniu permisos per actualitzar fitxers"
 
@@ -1083,7 +1040,7 @@ msgstr[0] "%(projects)d projecte, %(average)d%% traduït"
 msgstr[1] "%(projects)d projectes, %(average)d%% traduït"
 
 #: apps/pootle_language/views.py:148 apps/pootle_project/views.py:160
-#: apps/pootle_translationproject/views.py:343
+#: apps/pootle_translationproject/views.py:342
 msgid "No description yet."
 msgstr "No hi ha cap descripció encara."
 
@@ -1257,27 +1214,28 @@ msgstr "Puntuació inicial"
 msgid "Starting whitespace"
 msgstr "Espai en blanc inicial"
 
-#: apps/pootle_misc/checks.py:72
+#. Translators: This refers to tabulation characters
+#: apps/pootle_misc/checks.py:73
 msgid "Tabs"
 msgstr "Tabulacions"
 
-#: apps/pootle_misc/checks.py:73
+#: apps/pootle_misc/checks.py:74
 msgid "Unchanged"
 msgstr "Sense canvis"
 
-#: apps/pootle_misc/checks.py:74
+#: apps/pootle_misc/checks.py:75
 msgid "URLs"
 msgstr "URL"
 
-#: apps/pootle_misc/checks.py:75
+#: apps/pootle_misc/checks.py:76
 msgid "Valid characters"
 msgstr "Caràcters vàlids"
 
-#: apps/pootle_misc/checks.py:76
+#: apps/pootle_misc/checks.py:77
 msgid "Placeholders"
 msgstr "Textos variables"
 
-#: apps/pootle_misc/checks.py:77
+#: apps/pootle_misc/checks.py:78
 msgid "XML tags"
 msgstr "Etiquetes XML"
 
@@ -1394,15 +1352,15 @@ msgstr "No s'han pogut importar els suggeriments de %s"
 
 #: apps/pootle_misc/dbupdate.py:402
 #, python-format
-msgid "Imported %(count)d unit from %(store)s"
-msgid_plural "Imported %(count)d units from %(store)s"
-msgstr[0] "S'ha importat %(count)d unitat de %(store)s"
-msgstr[1] "S'han importat %(count)d unitats de %(store)s"
+msgid "Imported %(count)d string from %(store)s"
+msgid_plural "Imported %(count)d strings from %(store)s"
+msgstr[0] "S'ha importat %(count)d cadena de %(store)s"
+msgstr[1] "S'han importat %(count)d cadenes de %(store)s"
 
 #: apps/pootle_misc/dbupdate.py:408
 #, python-format
-msgid "Failed to import units from %s"
-msgstr "No s'han pogut importar les unitats de %s"
+msgid "Failed to import strings from %s"
+msgstr "No s'han pogut importar les cadenes de %s"
 
 #: apps/pootle_misc/dbupdate.py:417
 msgid "All translations are now imported."
@@ -1417,57 +1375,71 @@ msgstr ""
 "10 segons."
 
 #: apps/pootle_misc/forms.py:97
-msgid "Search (Ctrl+Shift+S)<br/>Type in, then press Enter to search"
-msgstr ""
-"Cerca (Ctrl+Maj+S)<br/>Escriviu i a continuació premeu Retorn per cercar"
+msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
+msgstr "Cerca (Ctrl+Maj+S)<br/>Escriviu i premeu Retorn per cercar"
 
-#: apps/pootle_misc/forms.py:104
+#: apps/pootle_misc/forms.py:103
 msgid "Source Text"
 msgstr "Text d'origen"
 
-#: apps/pootle_misc/forms.py:105
+#: apps/pootle_misc/forms.py:104
 msgid "Target Text"
 msgstr "Text de destí"
 
-#: apps/pootle_misc/forms.py:106
+#: apps/pootle_misc/forms.py:105
 msgid "Comments"
 msgstr "Comentaris"
 
-#: apps/pootle_misc/forms.py:107
+#: apps/pootle_misc/forms.py:106
 msgid "Locations"
 msgstr "Ubicacions"
 
-#: apps/pootle_misc/forms.py:120
+#: apps/pootle_misc/forms.py:119
 msgid "Source Terms"
 msgstr "Termes d'origen"
 
-#: apps/pootle_misc/forms.py:121
+#: apps/pootle_misc/forms.py:120
 msgid "Target Terms"
 msgstr "Termes de destinació"
 
-#: apps/pootle_misc/forms.py:122
+#: apps/pootle_misc/forms.py:121
 msgid "Definitions"
 msgstr "Definicions"
 
-#: apps/pootle_misc/stats.py:90 apps/pootle_misc/stats.py:102
-#: apps/pootle_misc/stats.py:114 apps/pootle_misc/stats.py:126
-#, python-format
-msgid "<a href=\"%(url)s\">%(num)d words</a>"
-msgstr "<a href=\"%(url)s\">%(num)d paraules</a>"
+#: apps/pootle_misc/stats.py:89
+msgid "Total"
+msgstr "Total"
 
-#: apps/pootle_misc/stats.py:93 apps/pootle_misc/stats.py:105
-#: apps/pootle_misc/stats.py:117 apps/pootle_misc/stats.py:129
+#: apps/pootle_misc/stats.py:90 apps/pootle_misc/stats.py:106
+#: apps/pootle_misc/stats.py:123 apps/pootle_misc/stats.py:140
+#, python-format
+msgid "<a href=\"%(url)s\">%(num)d word</a>"
+msgid_plural "<a href=\"%(url)s\">%(num)d words</a>"
+msgstr[0] "<a href=\"%(url)s\">%(num)d paraula</a>"
+msgstr[1] "<a href=\"%(url)s\">%(num)d paraules</a>"
+
+#: apps/pootle_misc/stats.py:95 apps/pootle_misc/stats.py:112
+#: apps/pootle_misc/stats.py:129 apps/pootle_misc/stats.py:146
 #, python-format
 msgid "%(num)d%%"
 msgstr "%(num)d%%"
 
-#: apps/pootle_misc/stats.py:95 apps/pootle_misc/stats.py:107
-#: apps/pootle_misc/stats.py:119 apps/pootle_misc/stats.py:131
+#: apps/pootle_misc/stats.py:97 apps/pootle_misc/stats.py:114
+#: apps/pootle_misc/stats.py:131
 #, python-format
-msgid "(%(num)d units)"
-msgstr "(%(num)d unitats)"
+msgid "(%(num)d string)"
+msgid_plural "(%(num)d strings)"
+msgstr[0] "(%(num)d cadena)"
+msgstr[1] "(%(num)d cadenes)"
 
-#: apps/pootle_misc/stats.py:146
+#: apps/pootle_misc/stats.py:148
+#, python-format
+msgid "(%(num)d strings)"
+msgid_plural "(%(num)d strings)"
+msgstr[0] "(%(num)d cadena)"
+msgstr[1] "(%(num)d cadenes)"
+
+#: apps/pootle_misc/stats.py:165
 #, python-format
 msgid "This folder has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
@@ -1477,7 +1449,7 @@ msgstr[0] ""
 msgstr[1] ""
 "La carpeta té %(num)d paraules, %(percentage)d%% de la qual s'ha traduït."
 
-#: apps/pootle_misc/stats.py:157
+#: apps/pootle_misc/stats.py:177
 #, python-format
 msgid "This file has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
@@ -1485,22 +1457,22 @@ msgid_plural ""
 msgstr[0] "El fitxer té %(num)d paraula, %(percentage)d%% del qual s'ha traduït."
 msgstr[1] "El fitxer té %(num)d paraules, %(percentage)d%% del qual s'ha traduït."
 
-#: apps/pootle_misc/stats.py:180
+#: apps/pootle_misc/stats.py:199
 msgid "Expand details"
 msgstr "Mostra els detalls"
 
-#: apps/pootle_misc/stats.py:192
+#: apps/pootle_misc/stats.py:210
 #, python-format
 msgid "Continue translation (%(num)d word left)"
 msgid_plural "Continue translation (%(num)d words left)"
 msgstr[0] "Continua la traducció (queda %(num)d paraula)"
 msgstr[1] "Continua la traducció (queden %(num)d paraules)"
 
-#: apps/pootle_misc/stats.py:199
+#: apps/pootle_misc/stats.py:220
 msgid "Translation is complete"
 msgstr "La traducció és completa"
 
-#: apps/pootle_misc/stats.py:209
+#: apps/pootle_misc/stats.py:231
 #, python-format
 msgid "Review suggestion (%(num)d left)"
 msgid_plural "Review suggestions (%(num)d left)"
@@ -1509,22 +1481,26 @@ msgstr[1] "Revisa els suggeriments  (%(num)d left)"
 
 #. Translators: 'type' is the type of VCS file: working, remote,
 #. or merged copy.
-#: apps/pootle_misc/stats.py:231
+#: apps/pootle_misc/stats.py:252
 #, python-format
 msgid ""
-"%(type)s: %(translated)d of %(total)d messages translated (%(fuzzy)d fuzzy)."
-msgstr ""
-"%(type)s: %(translated)d de %(total)d missatges traduïts (%(fuzzy)d "
-"dubtosos)."
+"%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d fuzzy)."
+msgid_plural ""
+"%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d fuzzy)."
+msgstr[0] ""
+"%(type)s: %(translated)d de %(total)d cadena traduïda (%(fuzzy)d dubtosa)."
+msgstr[1] ""
+"%(type)s: %(translated)d de %(total)d cadenes traduïdes (%(fuzzy)d "
+"dubtoses)."
 
-#: apps/pootle_misc/middleware/errorpages.py:64
+#: apps/pootle_misc/middleware/errorpages.py:65
 #, python-format
 msgid "You need to <a href=\"%(login_link)s\">login</a> to access this page."
 msgstr ""
 "Cal que <a href=\"%(login_link)s\">inicieu una sessió</a> per accedir a "
 "aquesta pàgina."
 
-#: apps/pootle_misc/middleware/errorpages.py:82
+#: apps/pootle_misc/middleware/errorpages.py:83
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
@@ -1570,55 +1546,55 @@ msgstr "Missatge"
 msgid "Added"
 msgstr "Afegit"
 
-#: apps/pootle_notifications/views.py:105
+#: apps/pootle_notifications/views.py:103
 #, python-format
 msgid "News for %(language)s"
 msgstr "Notícies de %(language)s"
 
-#: apps/pootle_notifications/views.py:107
+#: apps/pootle_notifications/views.py:105
 #, python-format
 msgid "News for %(project)s"
 msgstr "Notícies de %(project)s"
 
-#: apps/pootle_notifications/views.py:113
+#: apps/pootle_notifications/views.py:111
 #, python-format
 msgid "News for the %(project)s project in %(language)s"
 msgstr "Notícies del projecte %(project)s en %(language)s"
 
-#: apps/pootle_notifications/views.py:114
+#: apps/pootle_notifications/views.py:112
 #, python-format
 msgid "News for %(path)s"
 msgstr "Notícies de %(path)s"
 
-#: apps/pootle_notifications/views.py:140
-msgid "Publish on News feed"
+#: apps/pootle_notifications/views.py:138
+msgid "Publish on news feed"
 msgstr "Publica al canal de notícies"
 
-#: apps/pootle_notifications/views.py:142
-msgid "Send Email"
-msgstr "Envia el correu"
+#: apps/pootle_notifications/views.py:140
+msgid "Send email"
+msgstr "Envia un correu"
 
-#: apps/pootle_notifications/views.py:145
+#: apps/pootle_notifications/views.py:143
 msgid "Email only to recently active users"
 msgstr "Envia correu només als usuaris actius més recents"
 
-#: apps/pootle_notifications/views.py:153
+#: apps/pootle_notifications/views.py:151
 msgid "All Projects"
 msgstr "Tots els projectes"
 
-#: apps/pootle_notifications/views.py:157
+#: apps/pootle_notifications/views.py:155
 msgid "Project Selection"
 msgstr "Selecció de projecte"
 
-#: apps/pootle_notifications/views.py:165
+#: apps/pootle_notifications/views.py:163
 msgid "All Languages"
 msgstr "Totes les llengües"
 
-#: apps/pootle_notifications/views.py:169
+#: apps/pootle_notifications/views.py:167
 msgid "Language Selection"
 msgstr "Selecció de llengua"
 
-#: apps/pootle_notifications/views.py:295
+#: apps/pootle_notifications/views.py:293
 msgid "View News Item"
 msgstr "Visualitza la notícia"
 
@@ -1650,7 +1626,7 @@ msgstr "Publica"
 msgid "Default"
 msgstr "Predeterminat"
 
-#: apps/pootle_profile/forms.py:47 apps/pootle_profile/models.py:74
+#: apps/pootle_profile/forms.py:47 apps/pootle_profile/models.py:96
 msgid "Interface Language"
 msgstr "Llengua de la interfície"
 
@@ -1658,37 +1634,37 @@ msgstr "Llengua de la interfície"
 msgid "This account is inactive."
 msgstr "El compte és inactiu."
 
-#: apps/pootle_profile/models.py:70
+#: apps/pootle_profile/models.py:86
 msgid "Number of Rows"
 msgstr "Nombre de files"
 
-#: apps/pootle_profile/models.py:75
+#: apps/pootle_profile/models.py:100
 msgid "Alternative Source Languages"
 msgstr "Llengües d'origen alternatives"
 
-#: apps/pootle_profile/models.py:123
+#: apps/pootle_profile/models.py:150
 msgid "Suggestions Accepted"
 msgstr "Suggeriments acceptats"
 
-#: apps/pootle_profile/models.py:124
+#: apps/pootle_profile/models.py:154
 msgid "Suggestions Pending"
 msgstr "Suggeriments pendents"
 
-#: apps/pootle_profile/models.py:125
+#: apps/pootle_profile/models.py:158
 msgid "Suggestions Reviewed"
 msgstr "Suggeriments revisats"
 
-#: apps/pootle_profile/models.py:126
+#: apps/pootle_profile/models.py:162
 msgid "Submissions Made"
 msgstr "Suggeriments fets"
 
 #: apps/pootle_project/models.py:56
 msgid ""
-"A short code for the project. This should only containASCII characters, "
+"A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
 msgstr ""
-"Un codi curt per al projecte. Només hauria de contenir caràcters ASCII, "
-"nombres i el caràcter de subratllat (_)."
+"Un codi curt per al projecte. Hauria de contenir només caràcters ASCII, "
+"nombres i el caràcter de guió baix (_)."
 
 #: apps/pootle_project/models.py:64
 #, python-format
@@ -1750,8 +1726,9 @@ msgid "You do not have rights to administer this project."
 msgstr "No teniu permisos per administrar aquest projecte."
 
 #: apps/pootle_project/views.py:212
-msgid "Update from templates"
-msgstr "Actualitza mitjançant les plantilles"
+#: apps/pootle_translationproject/actions.py:201
+msgid "Update against templates"
+msgstr "Actualitza de les plantilles"
 
 #: apps/pootle_project/templates/project/admin_permissions.html:24
 msgid "Below you can add, edit, and delete the permissions for this project."
@@ -1782,14 +1759,13 @@ msgid "State"
 msgstr "Estat"
 
 #: apps/pootle_statistics/models.py:50
-#: apps/pootle_store/templates/unit/edit.html:193
 #: apps/pootle_store/templates/unit/xhr-comment.html:10
 msgid "Comment"
 msgstr "Comentari"
 
-#: apps/pootle_statistics/models.py:89
-msgid "Unknown submitter"
-msgstr "Contribuïdor desconegut"
+#: apps/pootle_statistics/models.py:95
+msgid "anonymous user"
+msgstr "usuari anònim"
 
 #: apps/pootle_store/filetypes.py:29
 msgid "Gettext PO"
@@ -1857,7 +1833,7 @@ msgstr "Subtítols: ssa"
 msgid "Subtitles: ass"
 msgstr "Subtítols: ass"
 
-#: apps/pootle_store/forms.py:96
+#: apps/pootle_store/forms.py:95
 #: apps/pootle_store/templatetags/store_tags.py:138
 #: apps/pootle_store/templatetags/store_tags.py:154
 #: apps/pootle_store/templatetags/store_tags.py:161
@@ -1867,11 +1843,11 @@ msgstr "Subtítols: ass"
 msgid "Plural Form %d"
 msgstr "Formes de plural %d"
 
-#: apps/pootle_store/forms.py:273
+#: apps/pootle_store/forms.py:296
 msgid "Translator comment"
 msgstr "Comentari del traductor"
 
-#: apps/pootle_store/models.py:760
+#: apps/pootle_store/models.py:810
 msgid "Path"
 msgstr "Camí"
 
@@ -1879,35 +1855,31 @@ msgstr "Camí"
 msgid "Obsolete"
 msgstr "Obsolet"
 
-#: apps/pootle_store/util.py:46
-msgid "Needs work"
-msgstr "Cal revisar"
-
 #: apps/pootle_store/views.py:77
 msgid "Insufficient rights to this translation project."
 msgstr "Permisos insuficients per a aquest projecte de traducció."
 
-#: apps/pootle_store/views.py:658
+#: apps/pootle_store/views.py:689
 msgid "Comment submission failed."
 msgstr "Ha fallat la tramesa del comentari."
 
-#: apps/pootle_store/views.py:778 apps/pootle_store/views.py:842
+#: apps/pootle_store/views.py:809 apps/pootle_store/views.py:873
 msgid "You do not have rights to access translation mode."
 msgstr "No teniu permisos per modificar traduccions."
 
-#: apps/pootle_store/views.py:825
+#: apps/pootle_store/views.py:856
 msgid "Failed to process submission."
 msgstr "No s'ha pogut processar la tramesa."
 
-#: apps/pootle_store/views.py:874
+#: apps/pootle_store/views.py:905
 msgid "Failed to process suggestion."
 msgstr "No s'ha pogut processar el suggeriment."
 
-#: apps/pootle_store/views.py:894
+#: apps/pootle_store/views.py:926
 msgid "You do not have rights to access review mode."
 msgstr "No teniu permisos per modificar traduccions."
 
-#: apps/pootle_store/views.py:993
+#: apps/pootle_store/views.py:1025
 msgid "The suggestion or vote is not valid any more."
 msgstr "El suggeriment o el vot ja no és vàlid."
 
@@ -1926,39 +1898,40 @@ msgstr ""
 "Habiliteu el JavaScript a les preferències del navegador i recarregueu la "
 "pàgina."
 
-#: apps/pootle_store/templates/store/translate.html:51
+#: apps/pootle_store/templates/store/translate.html:65
 msgid "Filter by:"
 msgstr "Filtra per:"
 
-#: apps/pootle_store/templates/store/translate.html:54
+#. Translators: This refers to "All strings"
+#: apps/pootle_store/templates/store/translate.html:69
 msgid "All"
 msgstr "Tots"
 
-#: apps/pootle_store/templates/store/translate.html:56
+#: apps/pootle_store/templates/store/translate.html:71
 msgid "Incomplete"
 msgstr "Incomplets"
 
-#: apps/pootle_store/templates/store/translate.html:60
-msgid "My Suggestions"
+#: apps/pootle_store/templates/store/translate.html:75
+msgid "My suggestions"
 msgstr "Els meus suggeriments"
 
-#: apps/pootle_store/templates/store/translate.html:61
+#: apps/pootle_store/templates/store/translate.html:76
 msgid "Checks"
 msgstr "Comprovacions"
 
-#: apps/pootle_store/templates/store/translate.html:69
-msgid "Previous unit"
-msgstr "Unitat anterior"
+#: apps/pootle_store/templates/store/translate.html:84
+msgid "Previous string"
+msgstr "Cadena anterior"
 
-#: apps/pootle_store/templates/store/translate.html:69
+#: apps/pootle_store/templates/store/translate.html:84
 msgid ""
-"Go to the previous unit (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
+"Go to the previous string (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+Page&nbsp;Up<br/>First page: Ctrl+Shift+Home"
 msgstr ""
-"Aneu a la unitat anterior (Ctrl+Amunt)<br/><br/>També:<br/>Pàgina anterior: "
+"Vés a la cadena anterior (Ctrl+Amunt)<br/><br/>També:<br/>Pàgina anterior: "
 "Ctrl+Maj+Pàg&nbsp;Amunt<br/>Primera pàgina: Ctrl+Maj+Inici"
 
-#: apps/pootle_store/templates/store/translate.html:71
+#: apps/pootle_store/templates/store/translate.html:86
 msgid ""
 "Current page number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
@@ -1966,20 +1939,20 @@ msgstr ""
 "Número de pàgina actual (Ctrl+Maj+U)<br/><br/>Introduïu el número i premeu "
 "Retorn<br/>per anar a la posició"
 
-#: apps/pootle_store/templates/store/translate.html:73
+#: apps/pootle_store/templates/store/translate.html:88
 msgid "Total pages"
 msgstr "Total de pàgines"
 
-#: apps/pootle_store/templates/store/translate.html:75
-msgid "Next unit"
-msgstr "Unitat següent"
+#: apps/pootle_store/templates/store/translate.html:90
+msgid "Next string"
+msgstr "Cadena següent"
 
-#: apps/pootle_store/templates/store/translate.html:75
+#: apps/pootle_store/templates/store/translate.html:90
 msgid ""
-"Go to the next unit (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
+"Go to the next string (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
 "+Page&nbsp;Down<br/>Last page: Ctrl+Shift+End"
 msgstr ""
-"Vés a la unitat següent (Ctrl+Avall)<br/><br/>També:<br/>Pàgina següent: "
+"Vés a la cadena següent (Ctrl+Avall)<br/><br/>També:<br/>Pàgina següent: "
 "Ctrl+Maj+Pàg&nbsp;Avall<br/>Darrera pàgina: Ctrl+Maj+Fi"
 
 #: apps/pootle_store/templates/unit/edit.html:11
@@ -2003,8 +1976,8 @@ msgid "Terminology:"
 msgstr "Terminologia:"
 
 #: apps/pootle_store/templates/unit/edit.html:43
-msgid "Click to insert the translated term into the editor"
-msgstr "Feu clic per a inserir el terme traduït dins de l'editor"
+msgid "Insert the translated term into the editor"
+msgstr "Inseriu el terme traduït dins de l'editor"
 
 #: apps/pootle_store/templates/unit/edit.html:56
 msgid "Possible issues with the translation"
@@ -2029,13 +2002,13 @@ msgstr "Informa d'un problema amb la cadena d'origen"
 
 #: apps/pootle_store/templates/unit/edit.html:128
 #: apps/pootle_store/templates/unit/edit.html:138
-#: apps/pootle_store/templates/unit/edit.html:173
+#: apps/pootle_store/templates/unit/edit.html:204
 msgid "Submit"
 msgstr "Envia"
 
 #: apps/pootle_store/templates/unit/edit.html:128
-msgid "Submit translation and go to the next unit (Ctrl+Enter)"
-msgstr "Envia la traducció i vés a la unitat següent (Ctrl+Retorn)"
+msgid "Submit translation and go to the next string (Ctrl+Enter)"
+msgstr "Envia la traducció i vés a la cadena següent (Ctrl+Retorn)"
 
 #: apps/pootle_store/templates/unit/edit.html:131
 #: apps/pootle_store/templates/unit/edit.html:139
@@ -2043,8 +2016,8 @@ msgid "Suggest"
 msgstr "Suggereix"
 
 #: apps/pootle_store/templates/unit/edit.html:131
-msgid "Suggest translation and go to the next unit (Ctrl+Enter)"
-msgstr "Suggereix una traducció i vés a la unitat següent (Ctrl+Retorn)"
+msgid "Suggest translation and go to the next string (Ctrl+Enter)"
+msgstr "Suggereix una traducció i vés a la cadena següent (Ctrl+Retorn)"
 
 #: apps/pootle_store/templates/unit/edit.html:137
 msgid "Toggle suggest mode (Ctrl+Shift+Space)"
@@ -2055,34 +2028,74 @@ msgid "Toggle fuzzy state (Ctrl+Space)"
 msgstr "Commuta l'estat de dubtós (Ctrl+Espai)"
 
 #: apps/pootle_store/templates/unit/edit.html:155
-msgid "Click to insert this symbol into the editor"
-msgstr "Feu clic per inserir el símbol dins de l'editor"
+msgid "Insert RLM (Right-To-Left Mark) into the editor"
+msgstr "Inseriu una marca de dreta a esquerra (RLM) dins de l'editor"
 
-#: apps/pootle_store/templates/unit/edit.html:166
+#: apps/pootle_store/templates/unit/edit.html:158
+msgid "Insert LRM (Left-To-Right Mark) into the editor"
+msgstr "Inseriu una marca d'esquerra a dreta (LRM) dins de l'editor"
+
+#: apps/pootle_store/templates/unit/edit.html:161
+msgid "Insert RLE (Right-To-Left Embedding) into the editor"
+msgstr "Inseriu una incrustació dreta a esquerra (RLE) dins de l'editor"
+
+#: apps/pootle_store/templates/unit/edit.html:164
+msgid "Insert LRE (Left-To-Right Embedding) into the editor"
+msgstr "Inseriu una incrustació esquerra a dreta (LRE) dins de l'editor"
+
+#: apps/pootle_store/templates/unit/edit.html:167
+msgid "Insert RLO (Right-To-Left Override) into the editor"
+msgstr "Inseriu una sobreescriptura dreta a esquerra (RLO) dins de l'editor"
+
+#: apps/pootle_store/templates/unit/edit.html:170
+msgid "Insert LRO (Left-To-Right Override) into the editor"
+msgstr "Inseriu una sobreescriptura esquerra a dreta (LRO) dins de l'editor"
+
+#: apps/pootle_store/templates/unit/edit.html:173
+msgid "Insert PDF (Pop Directional Format ) into the editor"
+msgstr "Inseriu un format direccional de desapilament (PDF) dins de l'editor"
+
+#: apps/pootle_store/templates/unit/edit.html:176
+msgid "Insert ZWJ (Zero Width Joiner) into the editor"
+msgstr "Inseriu un vincle sense amplada (ZWJ) dins de l'editor"
+
+#: apps/pootle_store/templates/unit/edit.html:179
+msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
+msgstr "Inseriu un antivincle sense amplada (ZWNJ) dins de l'editor"
+
+#: apps/pootle_store/templates/unit/edit.html:185
+msgid "Insert this symbol into the editor"
+msgstr "Inseriu aquest símbol dins de l'editor"
+
+#: apps/pootle_store/templates/unit/edit.html:197
 msgid "Add Comment"
 msgstr "Afegeix un comentari"
 
-#: apps/pootle_store/templates/unit/edit.html:167
+#: apps/pootle_store/templates/unit/edit.html:198
 msgid "Show Timeline"
 msgstr "Mostra la línia temporal"
 
-#: apps/pootle_store/templates/unit/edit.html:168
+#: apps/pootle_store/templates/unit/edit.html:199
 msgid "Hide Timeline"
 msgstr "Amaga la línia temporal"
 
-#: apps/pootle_store/templates/unit/edit.html:200
+#: apps/pootle_store/templates/unit/edit.html:224
+msgid "Comment:"
+msgstr "Comentari:"
+
+#: apps/pootle_store/templates/unit/edit.html:231
 msgid "User suggestions"
 msgstr "Suggeriments de l'usuari"
 
-#: apps/pootle_store/templates/unit/edit.html:218
+#: apps/pootle_store/templates/unit/edit.html:249
 msgid "Accept suggestion"
 msgstr "Accepta el suggeriment"
 
-#: apps/pootle_store/templates/unit/edit.html:223
+#: apps/pootle_store/templates/unit/edit.html:254
 msgid "Reject suggestion"
 msgstr "Rebutja el suggeriment"
 
-#: apps/pootle_store/templates/unit/edit.html:230
+#: apps/pootle_store/templates/unit/edit.html:261
 msgid "Remove suggestion"
 msgstr "Suprimeix el suggeriment"
 
@@ -2172,7 +2185,7 @@ msgstr[0] "fa %d minut"
 msgstr[1] "fa %d minuts"
 
 #: apps/pootle_store/templatetags/store_tags.py:234
-msgid "Few seconds ago"
+msgid "A few seconds ago"
 msgstr "Fa uns pocs segons"
 
 #: apps/pootle_terminology/views.py:156
@@ -2220,7 +2233,7 @@ msgid "Here you can manage the terms in the terminology files."
 msgstr "Des d'aquí podeu gestionar els termes dels fitxers de terminologia."
 
 #: apps/pootle_terminology/templates/terminology/stores.html:14
-#: apps/pootle_translationproject/views.py:781
+#: apps/pootle_translationproject/views.py:765
 msgid "File"
 msgstr "Arxiu"
 
@@ -2265,7 +2278,7 @@ msgid "Download file"
 msgstr "Baixa el fitxer"
 
 #: apps/pootle_translationproject/actions.py:96
-#: apps/pootle_translationproject/actions.py:224
+#: apps/pootle_translationproject/actions.py:254
 msgid "Translate offline"
 msgstr "Tradueix fora de línia"
 
@@ -2274,7 +2287,7 @@ msgid "Download XLIFF file for offline translation"
 msgstr "Baixa el fitxer XLIFF per traduir fora de línia"
 
 #: apps/pootle_translationproject/actions.py:112
-#: apps/pootle_translationproject/views.py:740
+#: apps/pootle_translationproject/views.py:724
 msgid "Upload"
 msgstr "Puja"
 
@@ -2290,27 +2303,33 @@ msgstr "Actualitza del VCS"
 msgid "Commit to VCS"
 msgstr "Envia al VCS"
 
-#: apps/pootle_translationproject/actions.py:157
+#. Translators: "all" here refers to all files and sub directories in a directory/project.
+#: apps/pootle_translationproject/actions.py:159
+msgid "Update all from VCS"
+msgstr "Actualitza-ho tot del VCS"
+
+#. Translators: "all" here refers to all files and sub directories in a directory/project.
+#: apps/pootle_translationproject/actions.py:174
+msgid "Commit all to VCS"
+msgstr "Envia-ho tot al VCS"
+
+#: apps/pootle_translationproject/actions.py:187
 msgid "Rescan project files"
 msgstr "Torna a escanejar els fitxers del projecte"
 
-#: apps/pootle_translationproject/actions.py:171
-msgid "Update against templates"
-msgstr "Actualitza de les plantilles"
-
-#: apps/pootle_translationproject/actions.py:188
+#: apps/pootle_translationproject/actions.py:218
 msgid "Delete this folder..."
 msgstr "Suprimeix la carpeta…"
 
-#: apps/pootle_translationproject/actions.py:190
+#: apps/pootle_translationproject/actions.py:220
 msgid "Delete this file..."
 msgstr "Suprimeix el fitxer…"
 
-#: apps/pootle_translationproject/actions.py:226
+#: apps/pootle_translationproject/actions.py:256
 msgid "Manage"
 msgstr "Gestiona"
 
-#: apps/pootle_translationproject/models.py:106
+#: apps/pootle_translationproject/models.py:105
 #, python-format
 msgid ""
 "A description of this translation project. This is useful to give more "
@@ -2319,96 +2338,111 @@ msgstr ""
 "Una descripció del projecte de traducció. Això és útil per a oferir més "
 "informació o instruccions. Etiquetatge permès: %s"
 
-#: apps/pootle_translationproject/models.py:455
-#: apps/pootle_translationproject/models.py:537
-msgid "You do not have rights to update from version control here"
-msgstr "No teniu permisos per a actualitzar des del control de versions aquí"
+#: apps/pootle_translationproject/models.py:488
+#, python-format
+msgid "Failed to update from version control: %(error)s"
+msgstr "Ha fallat l'actualització del control de versions: %(error)s"
 
-#: apps/pootle_translationproject/models.py:519
+#: apps/pootle_translationproject/models.py:556
 #, python-format
 msgid "Updated project <em>%(project)s</em> from version control"
 msgstr ""
 "S'ha actualitzat el projecte <em>%(project))s</em> del control de versions"
 
-#: apps/pootle_translationproject/models.py:522
-#: apps/pootle_translationproject/models.py:548
+#: apps/pootle_translationproject/models.py:558
+#: apps/pootle_translationproject/models.py:579
 msgid "Working copy"
 msgstr "Còpia de treball"
 
-#: apps/pootle_translationproject/models.py:523
-#: apps/pootle_translationproject/models.py:549
+#: apps/pootle_translationproject/models.py:559
+#: apps/pootle_translationproject/models.py:580
 msgid "Remote copy"
 msgstr "Còpia remota"
 
-#: apps/pootle_translationproject/models.py:524
-#: apps/pootle_translationproject/models.py:550
+#: apps/pootle_translationproject/models.py:560
+#: apps/pootle_translationproject/models.py:581
 msgid "Merged copy"
 msgstr "Còpia fusionada"
 
-#: apps/pootle_translationproject/models.py:545
+#: apps/pootle_translationproject/models.py:577
 #, python-format
 msgid "Updated file <em>%(filename)s</em> from version control"
 msgstr "S'ha pujat el fitxer <em>%(filename)s</em> del control de versions"
 
-#: apps/pootle_translationproject/models.py:559
+#: apps/pootle_translationproject/models.py:590
 #, python-format
-msgid "Failed to update <em>%(filename)s</em> from version control"
+msgid "Failed to update <em>%(filename)s</em> from version control: %(error)s"
 msgstr ""
-"No s'ha pogut pujar el fitxer <em>%(filename)s</em> del control de versions"
+"No s'ha pogut actualitzar <em>%(filename)s</em> del control de versions: %"
+"(error)s"
 
-#: apps/pootle_translationproject/models.py:601
+#: apps/pootle_translationproject/models.py:649
 #, python-format
-msgid "Committed file: %(filename)s"
-msgstr "Fitxer confirmat: %(filename)s"
+msgid "Committed all files under <em>%(path)s</em> to version control"
+msgstr ""
+"S'han confirmat tots els fitxers sota <em>%(path)s</em> al control de "
+"versions"
 
-#: apps/pootle_translationproject/models.py:609
+#: apps/pootle_translationproject/models.py:658
 #, python-format
-msgid "Failed to commit file: %(error)s"
-msgstr "No s'ha pogut confirmar el fitxer: %(error)s"
+msgid "Failed to commit to version control: %(error)s"
+msgstr "Ha fallat la confirmació al control de versions: %(error)s"
 
-#: apps/pootle_translationproject/views.py:99
+#: apps/pootle_translationproject/models.py:716
+#, python-format
+msgid "Committed file <em>%(filename)s</em> to version control"
+msgstr "S'ha confirmat el fitxer <em>%(filename)s</em> al control de versions"
+
+#: apps/pootle_translationproject/models.py:724
+#, python-format
+msgid "Failed to commit <em>%(filename)s</em> to version control: %(error)s"
+msgstr ""
+"Ha fallat la confirmació de <em>%(filename)s</em> al control de versions: %"
+"(error)s"
+
+#: apps/pootle_translationproject/views.py:97
 msgid "Translation project files have been rescanned."
 msgstr "Els fitxers del projecte de traducció s'han tornat a escanejar."
 
-#: apps/pootle_translationproject/views.py:104
+#: apps/pootle_translationproject/views.py:102
 msgid "Error while rescanning translation project files."
 msgstr ""
 "S'ha produït un error en tornar a escanejar els fitxers del projecte de "
 "traducció."
 
-#: apps/pootle_translationproject/views.py:121
+#: apps/pootle_translationproject/views.py:119
 msgid "Translation project has been updated against latest templates."
 msgstr ""
 "El projectes de traducció s'ha actualitzat a partir de les últimes "
 "plantilles."
 
-#: apps/pootle_translationproject/views.py:126
+#: apps/pootle_translationproject/views.py:124
 msgid "Error while updating translation project against latest templates."
 msgstr ""
 "S'ha produït un error durant l'actualització del projecte amb les últimes "
 "plantilles."
 
-#: apps/pootle_translationproject/views.py:191
+#: apps/pootle_translationproject/views.py:189
 msgid "Symbolic link hasn't been removed from the filesystem."
 msgstr "L'enllaç simbòlic no s'ha suprimit del sistema de fitxers."
 
-#: apps/pootle_translationproject/views.py:195
+#: apps/pootle_translationproject/views.py:193
 msgid "Directory and its containing files have been deleted."
 msgstr "El directori i els seus fitxers han estat suprimits."
 
-#: apps/pootle_translationproject/views.py:198
+#: apps/pootle_translationproject/views.py:196
 msgid "File has been deleted."
 msgstr "S'ha suprimit el fitxer."
 
-#: apps/pootle_translationproject/views.py:203
+#: apps/pootle_translationproject/views.py:201
 msgid "Error while trying to delete directory."
 msgstr "S'ha produït un error en provar de suprimir el directori."
 
-#: apps/pootle_translationproject/views.py:206
+#: apps/pootle_translationproject/views.py:204
 msgid "Error while trying to delete file."
 msgstr "S'ha produït un error en provar de suprimir el fitxer."
 
-#: apps/pootle_translationproject/views.py:366
+#: apps/pootle_translationproject/views.py:365
 msgid "You do not have the right to create ZIP archives."
 msgstr "No tenir permisos per a crear arxius ZIP."
 
@@ -2417,7 +2451,7 @@ msgstr "No tenir permisos per a crear arxius ZIP."
 msgid "Invalid/insecure file name: %s"
 msgstr "El nom de fitxer no és vàlid / no és segur: %s"
 
-#: apps/pootle_translationproject/views.py:469
+#: apps/pootle_translationproject/views.py:470
 #, python-format
 msgid ""
 "Invalid GNU-style file name: %(local_filename)s. It must match '%(langcode)s."
@@ -2426,48 +2460,44 @@ msgstr ""
 "El nom del fitxer no és d'estil GNU vàlid: %(local_filename)s. Cal que "
 "coincideixi amb el «%(langcode)s.%(filetype)s»."
 
-#: apps/pootle_translationproject/views.py:496
+#: apps/pootle_translationproject/views.py:497
 msgid "Error while extracting archive"
 msgstr "S'ha produït un error en extreure l'arxiu"
 
-#: apps/pootle_translationproject/views.py:680
+#: apps/pootle_translationproject/views.py:681
 msgid "You do not have rights to overwrite files here."
 msgstr "No teniu permisos per sobreescriure fitxers aquí."
 
-#: apps/pootle_translationproject/views.py:684
+#: apps/pootle_translationproject/views.py:685
 msgid "You do not have rights to upload new files here."
 msgstr "No teniu permisos per penjar nous fitxers."
 
-#: apps/pootle_translationproject/views.py:688
-#: apps/pootle_translationproject/views.py:692
+#: apps/pootle_translationproject/views.py:689
+#: apps/pootle_translationproject/views.py:693
 msgid "You do not have rights to upload files here."
 msgstr "No teniu permisos per penjar aquí fitxers."
 
-#: apps/pootle_translationproject/views.py:723
-msgid "Update all from version control"
-msgstr "Actualitza-ho tot del control de versions"
-
-#: apps/pootle_translationproject/views.py:753
+#: apps/pootle_translationproject/views.py:737
 msgid "Overwrite the current file if it exists"
 msgstr "Sobreescriu el fitxer actual si aquest existeix"
 
-#: apps/pootle_translationproject/views.py:757
+#: apps/pootle_translationproject/views.py:741
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
 msgstr ""
 "Uneix el fitxer amb l'actual i transforma els conflictes en suggeriments"
 
-#: apps/pootle_translationproject/views.py:762
+#: apps/pootle_translationproject/views.py:746
 msgid "Add all new translations as suggestions"
 msgstr "Afegeix totes les noves traduccions com a suggeriments"
 
-#: apps/pootle_translationproject/views.py:792
-#: apps/pootle_translationproject/views.py:800
+#: apps/pootle_translationproject/views.py:776
+#: apps/pootle_translationproject/views.py:784
 msgid "Upload to"
 msgstr "Puja a"
 
-#: apps/pootle_translationproject/views.py:795
-#: apps/pootle_translationproject/views.py:804
+#: apps/pootle_translationproject/views.py:779
+#: apps/pootle_translationproject/views.py:788
 msgid ""
 "Optionally select the file you want to merge with. If not specified, the "
 "uploaded file's name is used."
@@ -2475,7 +2505,7 @@ msgstr ""
 "Opcionalment, seleccioneu el fitxer amb què voleu fusionar. Si no "
 "s'especifica, s'utilitzarà el nom del fitxer pujat."
 
-#: apps/pootle_translationproject/views.py:814
+#: apps/pootle_translationproject/views.py:798
 msgid "Upload File"
 msgstr "Penja un fitxer"
 
@@ -2513,8 +2543,8 @@ msgstr "Informació del projecte %(project)s"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:125
 #, python-format
-msgid "%(language)s project information"
-msgstr "Informació del projecte %(language)s"
+msgid "%(language)s language information"
+msgstr "Informació de la llengua %(language)s"
 
 #: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:4
 msgid "Translation Statistics"
@@ -2597,6 +2627,32 @@ msgstr "Introduïu un nombre"
 #: middleware/captcha.py:158
 msgid "Incorrect"
 msgstr "Incorrecte"
+
+#: settings/10-base.conf:9
+msgid "Pootle Demo"
+msgstr "Demostració de Pootle"
+
+#. Translators: Change the language code (en) to your language code, and replace
+#. ltr with rtl if you language is written from right to left.
+#: settings/10-base.conf:13
+msgid ""
+"<div dir=\"ltr\" lang=\"en\">\n"
+"<h2>This is a demo installation of Pootle.</h2>\n"
+"<p>You can also visit the official <a href=\"http://pootle.locamotion.org"
+"\">Pootle server</a>. The server administrator has not provided contact "
+"information or a description of this server. If you are the administrator "
+"for this server, edit this description in your preference file or in the "
+"administration interface.</p>\n"
+"</div>\n"
+msgstr ""
+"<div dir=\"ltr\" lang=\"ca\">\n"
+"<h2>Això és una instal·lació de demostració del Pootle.</h2>\n"
+"<p>Podeu visitar el <a href=\"http://pootle.locamotion.org\">servidor de "
+"Pootle</a> oficial. L'administrador no ha proporcionat cap informació de "
+"contacte del servidor. Si sou l'administrador del servidor, editeu la "
+"descripció en el fitxer de preferències o des de la interfície "
+"d'administració.</p>\n"
+"</div>\n"
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"
@@ -2687,9 +2743,9 @@ msgstr "Reinicia el zoom  (Ctrl+Maj+0)"
 msgid "Zoom in (Ctrl+Shift++)"
 msgstr "Apropa't (Ctrl+Maj++)"
 
-#: templates/base.html:100 templates/profiles/profile_detail.html:40
-msgid "Admin"
-msgstr "Administrador"
+#: templates/base.html:100
+msgid "ADMIN"
+msgstr "ADMIN"
 
 #: templates/base.html:103
 msgid "Log Out"
@@ -2705,25 +2761,21 @@ msgstr "Registre"
 msgid "Log In"
 msgstr "Inicia la sessió"
 
-#: templates/base.html:139
-msgid "Loading..."
-msgstr "S'està carregant..."
-
-#: templates/base.html:162
+#: templates/base.html:155
 msgid "Help"
 msgstr "Ajuda"
 
-#: templates/base.html:164 templates/contact_form/contact_form.html:4
+#: templates/base.html:157 templates/contact_form/contact_form.html:4
 #: templates/contact_form/contact_form.html:7
 #: templates/contact_form/contact_form.html:12
 msgid "Contact Us"
 msgstr "Contacteu-nos"
 
-#: templates/base.html:166
+#: templates/base.html:159
 msgid "About this Pootle Server"
 msgstr "Quant a aquest servidor Pootle"
 
-#: templates/base.html:167 templates/about/contributors.html:6
+#: templates/base.html:160 templates/about/contributors.html:6
 #: templates/about/contributors.html:9
 msgid "Contributors"
 msgstr "Col·laboradors "
@@ -2847,20 +2899,21 @@ msgstr "Canvia la contrasenya"
 msgid "This Pootle Server"
 msgstr "Aquest servidor Pootle"
 
-#: templates/about/about.html:15
+#. Translators: For better readability, make sure to leave an space after the closing </i> tag
+#: templates/about/about.html:16
 msgid ""
 "This site is running Pootle &mdash; powerful web software to empower teams "
 "to do translation and translation management. This community tool is Free "
 "Software, and any team can use it and contribute to the Pootle community. "
-"Read more on the <a href=\"http://translate.sourceforge.net/\"><i class="
+"Read more on the <a href=\"http://pootle.translatehouse.org/\"><i class="
 "\"icon-external-link\"></i> project website</a>."
 msgstr ""
-"Aquest lloc funciona gràcies al Pootle &mdash; una potent aplicació web que "
-"permet generar i gestionar traduccions en equip. Aquesta eina col·laborativa "
-"és programari lliure, i qualsevol equip pot utilitzar-la i contribuir a la "
-"comunitat del Pootle. Per a més informació, visiteu <a "
-"href=\"http://translate.sourceforge.net/\"><i class=\"icon-external-"
-"link\"></i>el lloc web del projecte</a>."
+"Això és un lloc web que funciona amb el Pootle &mdash;  un potent programari "
+"web que facilita la traducció en equips i la seva gestió. Aquesta eina "
+"comunitària és programari lliure i qualsevol equip pot utilitzar-lo i "
+"contribuir a la comunitat del Pootle. Llegiu-ne més al <a "
+"href=\"http://pootle.translatehouse.org/\"><i class=\"icon-external-"
+"link\"></i>lloc web del projecte</a>."
 
 #: templates/about/base.html:4 templates/about/base.html.py:7
 msgid "About"
@@ -2921,6 +2974,10 @@ msgstr ""
 #: templates/profiles/profile_detail.html:31
 msgid "Quick Links"
 msgstr "Enllaços ràpids"
+
+#: templates/profiles/profile_detail.html:40
+msgid "Admin"
+msgstr "Administrador"
 
 #: templates/profiles/profile_detail.html:55
 msgid "No languages or projects selected. Choose yours now."
@@ -3198,6 +3255,184 @@ msgstr "Ja hi teniu un compte?"
 msgid "Log In."
 msgstr "Inicia una sessió."
 
+#~ msgid "slug"
+#~ msgstr "slug"
+
+#~ msgid "The page will be independently available in /about/<slug>/"
+#~ msgstr "La pàgina serà disponible independentment a /about/<slug>/"
+
+#~ msgid "Legal Page created."
+#~ msgstr "S'ha creat una pàgina d'informació legal."
+
+#~ msgid "Add a new Legal Page"
+#~ msgstr "Afegeix una pàgina d'informació legal nova"
+
+#~ msgid "Needs review"
+#~ msgstr "Cal revisió"
+
+#~ msgid ""
+#~ "Can't find python-levenshtein package. Updating from templates is faster "
+#~ "with python-levenshtein."
+#~ msgstr ""
+#~ "No es pot trobar el paquet python-levenshtein. L'actualització des de les "
+#~ "plantilles és més ràpida amb el python-levenshtein."
+
+#~ msgid "Translations are complete"
+#~ msgstr "Les traduccions són completes"
+
+#~ msgid "Translations need to be checked (they are marked fuzzy)"
+#~ msgstr "Cal comprovar les traduccions (estan marcades com a dubtoses)"
+
+#~ msgid "Translated percentage"
+#~ msgstr "Percentatge de traduccions"
+
+#~ msgid "Fuzzy"
+#~ msgstr "Dubtosa"
+
+#~ msgid "Fuzzy percentage"
+#~ msgstr "Percentatge de dubtoses"
+
+#~ msgid "Fuzzy words"
+#~ msgstr "Paraules dubtoses"
+
+#~ msgid "Untranslated percentage"
+#~ msgstr "Percentatge sense traduir"
+
+#~ msgid "Untranslated words"
+#~ msgstr "Paraules sense traduir"
+
+#~ msgid "Total Words"
+#~ msgstr "Nombre total de paraules"
+
+#~ msgid "Summary"
+#~ msgstr "Resum"
+
+#, python-format
+#~ msgid "Imported %(count)d unit from %(store)s"
+#~ msgid_plural "Imported %(count)d units from %(store)s"
+#~ msgstr[0] "S'ha importat %(count)d unitat de %(store)s"
+#~ msgstr[1] "S'han importat %(count)d unitats de %(store)s"
+
+#, python-format
+#~ msgid "Failed to import units from %s"
+#~ msgstr "No s'han pogut importar les unitats de %s"
+
+#~ msgid "Search (Ctrl+Shift+S)<br/>Type in, then press Enter to search"
+#~ msgstr ""
+#~ "Cerca (Ctrl+Maj+S)<br/>Escriviu i a continuació premeu Retorn per cercar"
+
+#, python-format
+#~ msgid "<a href=\"%(url)s\">%(num)d words</a>"
+#~ msgstr "<a href=\"%(url)s\">%(num)d paraules</a>"
+
+#, python-format
+#~ msgid "(%(num)d units)"
+#~ msgstr "(%(num)d unitats)"
+
+#, python-format
+#~ msgid ""
+#~ "%(type)s: %(translated)d of %(total)d messages translated (%(fuzzy)d fuzzy)."
+#~ msgstr ""
+#~ "%(type)s: %(translated)d de %(total)d missatges traduïts (%(fuzzy)d "
+#~ "dubtosos)."
+
+#~ msgid "Publish on News feed"
+#~ msgstr "Publica al canal de notícies"
+
+#~ msgid "Send Email"
+#~ msgstr "Envia el correu"
+
+#~ msgid ""
+#~ "A short code for the project. This should only containASCII characters, "
+#~ "numbers, and the underscore (_) character."
+#~ msgstr ""
+#~ "Un codi curt per al projecte. Només hauria de contenir caràcters ASCII, "
+#~ "nombres i el caràcter de subratllat (_)."
+
+#~ msgid "Update from templates"
+#~ msgstr "Actualitza mitjançant les plantilles"
+
+#~ msgid "Unknown submitter"
+#~ msgstr "Contribuïdor desconegut"
+
+#~ msgid "My Suggestions"
+#~ msgstr "Els meus suggeriments"
+
+#~ msgid "Previous unit"
+#~ msgstr "Unitat anterior"
+
+#~ msgid ""
+#~ "Go to the previous unit (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
+#~ "+Shift+Page&nbsp;Up<br/>First page: Ctrl+Shift+Home"
+#~ msgstr ""
+#~ "Aneu a la unitat anterior (Ctrl+Amunt)<br/><br/>També:<br/>Pàgina anterior: "
+#~ "Ctrl+Maj+Pàg&nbsp;Amunt<br/>Primera pàgina: Ctrl+Maj+Inici"
+
+#~ msgid "Next unit"
+#~ msgstr "Unitat següent"
+
+#~ msgid ""
+#~ "Go to the next unit (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
+#~ "+Page&nbsp;Down<br/>Last page: Ctrl+Shift+End"
+#~ msgstr ""
+#~ "Vés a la unitat següent (Ctrl+Avall)<br/><br/>També:<br/>Pàgina següent: "
+#~ "Ctrl+Maj+Pàg&nbsp;Avall<br/>Darrera pàgina: Ctrl+Maj+Fi"
+
+#~ msgid "Click to insert the translated term into the editor"
+#~ msgstr "Feu clic per a inserir el terme traduït dins de l'editor"
+
+#~ msgid "Submit translation and go to the next unit (Ctrl+Enter)"
+#~ msgstr "Envia la traducció i vés a la unitat següent (Ctrl+Retorn)"
+
+#~ msgid "Suggest translation and go to the next unit (Ctrl+Enter)"
+#~ msgstr "Suggereix una traducció i vés a la unitat següent (Ctrl+Retorn)"
+
+#~ msgid "Click to insert this symbol into the editor"
+#~ msgstr "Feu clic per inserir el símbol dins de l'editor"
+
+#~ msgid "Few seconds ago"
+#~ msgstr "Fa uns pocs segons"
+
+#~ msgid "You do not have rights to update from version control here"
+#~ msgstr "No teniu permisos per a actualitzar des del control de versions aquí"
+
+#, python-format
+#~ msgid "Failed to update <em>%(filename)s</em> from version control"
+#~ msgstr ""
+#~ "No s'ha pogut pujar el fitxer <em>%(filename)s</em> del control de versions"
+
+#, python-format
+#~ msgid "Committed file: %(filename)s"
+#~ msgstr "Fitxer confirmat: %(filename)s"
+
+#, python-format
+#~ msgid "Failed to commit file: %(error)s"
+#~ msgstr "No s'ha pogut confirmar el fitxer: %(error)s"
+
+#~ msgid "Update all from version control"
+#~ msgstr "Actualitza-ho tot del control de versions"
+
+#, python-format
+#~ msgid "%(language)s project information"
+#~ msgstr "Informació del projecte %(language)s"
+
+#~ msgid "Loading..."
+#~ msgstr "S'està carregant..."
+
+#~ msgid ""
+#~ "This site is running Pootle &mdash; powerful web software to empower teams "
+#~ "to do translation and translation management. This community tool is Free "
+#~ "Software, and any team can use it and contribute to the Pootle community. "
+#~ "Read more on the <a href=\"http://translate.sourceforge.net/\"><i class="
+#~ "\"icon-external-link\"></i> project website</a>."
+#~ msgstr ""
+#~ "Aquest lloc funciona gràcies al Pootle &mdash; una potent aplicació web que "
+#~ "permet generar i gestionar traduccions en equip. Aquesta eina col·laborativa "
+#~ "és programari lliure, i qualsevol equip pot utilitzar-la i contribuir a la "
+#~ "comunitat del Pootle. Per a més informació, visiteu <a "
+#~ "href=\"http://translate.sourceforge.net/\"><i class=\"icon-external-"
+#~ "link\"></i>el lloc web del projecte</a>."
+
 #~ msgid "About Pootle"
 #~ msgstr "Quant al Pootle"
 
@@ -3263,13 +3498,6 @@ msgstr "Inicia una sessió."
 #~ msgstr "ZIP del directori"
 
 #~ msgid ""
-#~ "A short code for the project. This should only contain ASCII characters, "
-#~ "numbers, and the underscore (_) character."
-#~ msgstr ""
-#~ "Un codi curt per al projecte. Hauria de contenir només caràcters ASCII, "
-#~ "nombres i el caràcter de guió baix (_)."
-
-#~ msgid ""
 #~ "A description of this project. This is useful to give more information or "
 #~ "instructions. This field should be valid HTML."
 #~ msgstr ""
@@ -3311,9 +3539,6 @@ msgstr "Inicia una sessió."
 
 #~ msgid "Review"
 #~ msgstr "Revisa"
-
-#~ msgid "Pootle Demo"
-#~ msgstr "Demostració de Pootle"
 
 #~ msgid ""
 #~ "<div dir=\"ltr\" lang=\"en\">\n"

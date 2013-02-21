@@ -2,14 +2,13 @@
 # Copyright (C) 2012 Zuza Software Foundation (Translate.org.za)
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-27 15:51+0100\n"
-"PO-Revision-Date: 2012-12-03 09:28+0000\n"
-"Last-Translator: nebostic <nebostic@gmail.com>\n"
+"Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
+"POT-Creation-Date: 2012-12-31 14:17+0100\n"
+"PO-Revision-Date: 2013-02-11 22:15+0000\n"
+"Last-Translator: Rancher <theranchcowboy@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -18,73 +17,76 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1354526884.0\n"
+"X-POOTLE-MTIME: 1360620910.0\n"
 
-#: assets/js/common.min.js:718 static/js/common.js:123
+#: static/js/common.js:89
+msgid "Expand details"
+msgstr "Прошири детаље"
+
+#: static/js/common.js:89
+msgid "Collapse details"
+msgstr "Скупи детаље"
+
+#: static/js/common.js:123
 msgid "Are you sure you want to continue?"
-msgstr "Da li ste sigurni da želite da nastavite?"
+msgstr "Желите ли да наставите?"
 
-#: assets/js/common.min.js:719 static/js/common.js:124
+#: static/js/common.js:124
 msgid "This operation cannot be undone."
-msgstr ""
+msgstr "Не могу да опозовем ову радњу."
 
-#: assets/js/editor.min.js:252 assets/js/editor.min.js.c:292
-#: static/js/editor.js:402 static/js/editor.js.c:1434
+#: static/js/editor.js:405 static/js/editor.js.c:1475
 msgid "No results."
-msgstr ""
+msgstr "Нема резултата."
 
 #. Translators: Permalink to the current unit in the editor.
 #. The first '%s' is the permalink URL.
 #. The second '%s' is the unit number.
-#: assets/js/editor.min.js:263 static/js/editor.js:726
+#: static/js/editor.js:722
 #, c-format
-msgid "<a href=\"%s\">Unit %s</a>"
-msgstr ""
+msgid "<a href=\"%s\">String %s</a>"
+msgstr "<a href=\"%s\">Ниска %s</a>"
 
-#: assets/js/editor.min.js:265 static/js/editor.js:758
+#: static/js/editor.js:776
 msgid "Error while connecting to the server"
-msgstr ""
+msgstr "Грешка при повезивању са сервером"
 
-#: assets/js/editor.min.js:265 static/js/editor.js:760
+#: static/js/editor.js:778
 msgid "Server error"
-msgstr ""
+msgstr "Грешка у серверу"
 
-#: assets/js/editor.min.js:265 static/js/editor.js:762
+#: static/js/editor.js:780
 msgid "The server seems down. Try again later."
-msgstr ""
+msgstr "Сервер је пао. Покушајте касније."
 
-#: assets/js/editor.min.js:265 static/js/editor.js:769
+#: static/js/editor.js:788
 msgid "Unknown error"
-msgstr ""
+msgstr "Непозната грешка"
 
-#: assets/js/editor.min.js:290 static/js/editor.js:1292
-msgid "Congratulations, you walked through all items"
-msgstr ""
+#: static/js/editor.js:1324
+msgid "Congratulations, you walked through all strings."
+msgstr "Честитамо! Прешли сте све ниске."
 
-#: assets/js/editor.min.js:290 static/js/editor.js:1309
+#: static/js/editor.js:1326 static/js/editor.js.c:1350
+msgid "Return to the overview page."
+msgstr "Назад на страницу за преглед."
+
+#: static/js/editor.js:1345
 msgid "You reached the beginning of the list"
-msgstr ""
+msgstr "Достигли сте почетак списка."
 
-#: assets/js/editor.min.js:290 static/js/editor.js:1311
-msgid "You reached the end of the list"
-msgstr ""
+#: static/js/editor.js:1348
+msgid "You reached the end of the list."
+msgstr "Достигли сте крај списка."
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
 #. '%' symbol to denote a percentage is being used.
-#: assets/js/editor.min.js:304 static/js/editor.js:1701
+#: static/js/editor.js:1742
 #, c-format
 msgid "%s% match"
-msgstr ""
+msgstr "%s% резултат"
 
-#: assets/js/editor.min.js:308 static/js/editor.js:1743
-msgid "amaGama server"
-msgstr ""
-
-#: static/js/common.js:89
-msgid "Expand details"
-msgstr ""
-
-#: static/js/common.js:89
-msgid "Collapse details"
-msgstr ""
+#: static/js/editor.js:1784
+msgid "Similar translations"
+msgstr "Слични преводи"
