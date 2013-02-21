@@ -70,6 +70,9 @@ Directory contents
 
     https://github.com/fgnass/spin.js
 
+  - zoom.js :
+    Functions that control the page zoom.
+
   + bootstrap/
 
     - bootstrap-alert.js :

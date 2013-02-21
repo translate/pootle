@@ -27,7 +27,8 @@ js_common = Bundle(
     'js/jquery/jquery.easing.js', 'js/jquery/jquery.serializeObject.js',
     'js/bootstrap/bootstrap-alert.js', 'js/bootstrap/bootstrap-transition.js',
     'js/common.js', 'js/search.js', 'js/sorttable.js', 'js/spin.js',
-    'js/utils.js', 'js/shortcut.js',  # Leave shortcut.js as the last one
+    'js/utils.js', 'js/zoom.js',
+    'js/shortcut.js',  # Leave shortcut.js as the last one
     filters='rjsmin', output='js/common.min.js')
 register('js_common', js_common)
 

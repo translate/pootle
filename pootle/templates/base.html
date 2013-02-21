@@ -54,7 +54,6 @@
                      { csrfmiddlewaretoken: '{{ csrf_token }}' }) );
         }
       });
-      initZoom();
     });
     </script>
     {% endblock js %}
@@ -84,9 +83,12 @@
           <a href="{{ "/"|l }}" class="brand"><i class="logo"></i>{{ settings.TITLE }}</a>
 
           <div id="zoom">
-            <a id="zoom-out" title="{% trans "Zoom out (Ctrl+Shift+-)" %}" href="javascript:zoom(-1)">&ndash;</a>
-            <a id="zoom-reset" title="{% trans "Reset zoom (Ctrl+Shift+0)" %}" href="javascript:zoom(0)">T</a>
-            <a id="zoom-in" title="{% trans "Zoom in (Ctrl+Shift++)" %}" href="javascript:zoom(1)">+</a>
+            <a id="zoom-out" title="{% trans "Zoom out (Ctrl+Shift+-)" %}"
+              href="javascript:PTL.zoom.zoom(-1)">&ndash;</a>
+            <a id="zoom-reset" title="{% trans "Reset zoom (Ctrl+Shift+0)" %}"
+              href="javascript:PTL.zoom.zoom(0)">T</a>
+            <a id="zoom-in" title="{% trans "Zoom in (Ctrl+Shift++)" %}"
+              href="javascript:PTL.zoom.zoom(1)">+</a>
           </div>
           <ul id="nav-main">
             {% if user.is_authenticated %}
