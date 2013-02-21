@@ -149,6 +149,13 @@ Directory contents
 
       https://github.com/jaubourg/jquery-jsonp
 
+    - jquery.select2.js :
+      jQuery-based replacement for select boxes.
+
+      Using version 3.3.0.
+
+      https://github.com/ivaynberg/select2/
+
     - jquery.serializeObject.js :
       A method for serializing forms directly into objects.
 

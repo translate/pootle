@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009-2012 Zuza Software Foundation
+# Copyright 2009-2013 Zuza Software Foundation
 #
 # This file is part of translate.
 #
@@ -23,6 +23,7 @@ import os
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
+from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 
 from translate.filters import checks
@@ -32,7 +33,7 @@ from pootle_app.lib.util import RelatedManager
 from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 from pootle_misc.util import (getfromcache, get_markup_filter_name,
-                              apply_markup_filter)
+                              apply_markup_filter, cached_property)
 from pootle_store.filetypes import (filetype_choices, factory_classes,
                                     is_monolingual)
 from pootle_store.models import Unit
@@ -187,6 +188,17 @@ class Project(models.Model):
 
     def get_absolute_url(self):
         return l(self.pootle_path)
+
+    @cached_property
+    def languages(self):
+        """Returns a list of active :cls:`~pootle_languages.models.Language`
+        objects for this :cls:`~pootle_project.models.Project`.
+        """
+        from pootle_language.models import Language
+        # FIXME: we should better have a way to automatically cache models with
+        # built-in invalidation -- did I hear django-cache-machine?
+        return Language.objects.filter(Q(translationproject__project=self),
+                                       ~Q(code='templates'))
 
     def get_template_filetype(self):
         if self.localfiletype == 'po':

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2012 Zuza Software Foundation
+# Copyright 2008-2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -311,3 +311,26 @@ def projects_index(request):
 
     return render_to_response('project/projects.html', templatevars,
                               RequestContext(request))
+
+
+@ajax_required
+def list_languages(request, project_code):
+    """Returns the languages available in the `project_code` project."""
+    project = get_object_or_404(Project, code=project_code)
+    request.permissions = get_matching_permissions(
+            get_profile(request.user), project.directory
+    )
+    if not check_permission('view', request):
+        raise PermissionDenied
+
+    response = []
+    rcode = 200
+
+    for language in project.languages.iterator():
+        response.append({
+            'id': language.code,
+            'text': language.name,
+        })
+
+    return HttpResponse(jsonify(response), status=rcode,
+                        mimetype="application/json")

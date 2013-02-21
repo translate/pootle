@@ -25,6 +25,7 @@ js_common = Bundle(
     'js/jquery/jquery.cookie.js', 'js/jquery/jquery.bidi.js',
     'js/jquery/jquery.fancybox.js', 'js/jquery/jquery.utils.js',
     'js/jquery/jquery.easing.js', 'js/jquery/jquery.serializeObject.js',
+    'js/jquery/jquery.select2.js',
     'js/bootstrap/bootstrap-alert.js', 'js/bootstrap/bootstrap-transition.js',
     'js/common.js', 'js/search.js', 'js/sorttable.js', 'js/spin.js',
     'js/utils.js', 'js/zoom.js',
@@ -48,7 +49,7 @@ register('js_editor', js_editor)
 
 css_common = Bundle(
     'css/style.css', 'css/fancybox.css', 'css/tipsy.css',
-    'css/markup.css', 'css/sprite.css',
+    'css/markup.css', 'css/sprite.css', 'css/select2.css',
     filters='cssmin', output='css/common.min.css')
 register('css_common', css_common)
 

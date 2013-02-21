@@ -8,7 +8,11 @@
 {% block breadcrumbs %}
 {{ block.super }}<li><a href='{{ "/projects/"|l }}'>{% trans "Projects" %}</a></li>
 {% cache settings.CACHE_TIMEOUT tp_bread directory.id LANGUAGE_CODE %}
-<li><a href="{{ translation_project.pootle_path|l }}">{{ translation_project.project }}</a></li><li><a href="{{ language.pootle_path|l }}">{{ language.name }}</a></li>
+<li><a href="{% url 'project.overview' project.code %}" id="js-select-project"
+  data-code="{{ project.code }}">{{ project }}</a></li>
+<li><span id="js-select-language"
+data-url="{% url 'project.list_languages' project.code %}"
+data-code="{{ language.code }}">{{ language.name }}</span></li>
 {% endcache %}
 {% endblock %}
 

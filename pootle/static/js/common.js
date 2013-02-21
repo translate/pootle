@@ -5,6 +5,15 @@
   PTL.common = {
 
     init: function () {
+      var projectLangsSelector = '#js-select-language',
+          projectLangsUrl = $(projectLangsSelector).data('url');
+
+      PTL.utils.makeSelectableInput(projectLangsSelector, projectLangsUrl,
+        function (e) {
+          var langCode = $(this).val();
+          PTL.common.navigateToLang(langCode);
+      });
+
       /* Collapsing functionality */
       $(document).on("click", ".collapse", function (e) {
         e.preventDefault();
@@ -107,6 +116,22 @@
         });
       });
     },
+
+    /* Navigates to `langCode` while retaining the current context */
+    navigateToLang: function (langCode) {
+      var curProject = $('#js-select-project').data('code'),
+          curLanguage = $('#js-select-language').data('code'),
+          curUrl = window.location.toString();
+
+      if (langCode === curLanguage) {
+        return;
+      }
+
+      var newUrl = curUrl.replace(curLanguage + '/' + curProject,
+                                  langCode + '/' + curProject)
+                         .replace(/(\?|&)unit=\d+/, '');
+      window.location.href = newUrl;
+    }
 
   };
 

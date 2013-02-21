@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008 Zuza Software Foundation
+# Copyright 2008-2013 Zuza Software Foundation
 #
 # This file is part of translate.
 #
@@ -19,7 +19,7 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from django.conf.urls.defaults import patterns
+from django.conf.urls.defaults import patterns, url
 
 urlpatterns = patterns('pootle_project.views',
     # Listing of all projects
@@ -27,8 +27,10 @@ urlpatterns = patterns('pootle_project.views',
         'projects_index'),
 
     # Specific project
-    (r'^(?P<project_code>[^/]*)/?$',
-        'project_language_index'),
+    url(r'^(?P<project_code>[^/]*)/?$',
+        'project_language_index', name='project.overview'),
+    url(r'^(?P<project_code>[^/]*)/list-languages/?$',
+        'list_languages', name='project.list_languages'),
 
     # Admin
     (r'^(?P<project_code>[^/]*)/edit_settings.html?$',
