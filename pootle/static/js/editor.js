@@ -836,6 +836,10 @@
         reqData.matchnames = 'ownsubmission';
         break;
 
+      case "submissionsafterme":
+        reqData.matchnames = 'hassubmissionafterme';
+        break;
+
       case "all":
         break;
 

@@ -344,6 +344,11 @@ def get_step_query(request, units_queryset):
                         submission__submitter=request.profile
                     ).distinct()
                 matchnames.remove('ownsubmission')
+            elif 'hassubmissionafterme' in matchnames:
+                match_queryset = units_queryset.filter(
+                        submission__submitter=request.profile
+                    ).exclude(submitted_by=request.profile).distinct()
+                matchnames.remove('hassubmissionafterme')
 
             units_queryset = match_queryset
 
