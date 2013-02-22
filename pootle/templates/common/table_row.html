@@ -1,4 +1,4 @@
-{% load i18n baseurl progressbar djblets_utils %}
+{% load i18n baseurl progressbar %}
 {% if 'name' in table.fields %}
 <td class="stats-name"{% if item.description %} title="{{ item.description|striptags }}"{% endif %}>
   <a href="{{ item.href|l }}">{% if item.icon %}<i class="icon-{{ item.icon }}"></i> {% endif %}<span>{{ item.title }}</span></a>
@@ -58,5 +58,5 @@
 <td>{{ item.lastactivity }}</td>
 {% endif %}
 {% else %}
-{% for i in table.fields|range %}<td></td>{% endfor %}
+{% for i in table.fields %}<td></td>{% endfor %}
 {% endif %}
