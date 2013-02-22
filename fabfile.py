@@ -143,7 +143,7 @@ def deploy_static():
         with cd('%(project_repo_path)s' % env):
             with prefix('source %(env_path)s/bin/activate' % env):
                 run('mkdir -p pootle/assets')
-                run('python manage.py collectstatic --noinput')
+                run('python manage.py collectstatic --noinput --clear')
                 run('python manage.py assets build')
 
 

@@ -7,7 +7,7 @@ SPRITE_DIR = ${IMAGES_DIR}/sprite
 all:
 
 build:
-		python manage.py collectstatic --noinput
+		python manage.py collectstatic --noinput --clear
 		python manage.py assets build
 		python setup.py build_mo
 		python setup.py sdist
