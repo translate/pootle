@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.utils.translation import ugettext as _, ungettext
+from django.utils.translation import ugettext_lazy as _, ungettext
 
 from pootle_misc import dispatch
 from pootle_misc.stats import get_raw_stats, stats_descriptions
