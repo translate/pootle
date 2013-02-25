@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-21 17:19+0100\n"
-"PO-Revision-Date: 2013-01-02 12:27+0000\n"
+"PO-Revision-Date: 2013-02-22 00:57+0000\n"
 "Last-Translator: Luiz Fernando <elchevive@opensuse.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1357129669.0\n"
+"X-POOTLE-MTIME: 1361494650.0\n"
 
 #: static/js/common.js:43
 msgid "Expand details"
@@ -93,58 +93,58 @@ msgstr "Traduções similares"
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:7
 msgid "More"
-msgstr ""
+msgstr "Mais"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:10
 msgid "Hide"
-msgstr ""
+msgstr "Ocultar"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:13
 msgid "Less"
-msgstr ""
+msgstr "Menos"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:16
 msgid "Show"
-msgstr ""
+msgstr "Exibir"
 
 #: static/js/utils.js:76
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Um ano atrás"
+msgstr[1] "%s anos atrás"
 
 #: static/js/utils.js:79
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Uma semana atrás"
+msgstr[1] "%s semanas atrás"
 
 #: static/js/utils.js:82
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ontem"
+msgstr[1] "%s dias atrás"
 
 #: static/js/utils.js:85
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Uma hora atrás"
+msgstr[1] "%s horas atrás"
 
 #: static/js/utils.js:88
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Um minuto atrás"
+msgstr[1] "%s minutos atrás"
 
 #: static/js/utils.js:96
 msgid "A few seconds ago"
-msgstr ""
+msgstr "Alguns segundos atrás"

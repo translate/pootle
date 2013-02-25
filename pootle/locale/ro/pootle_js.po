@@ -48,6 +48,7 @@ msgstr "Nenhum resultado."
 #. The first '%s' is the permalink URL.
 #. The second '%s' is the unit number.
 #: static/js/editor.js:726
+#, c-format
 #, c-format, fuzzy
 msgid "<a href=\"%s\">String %s</a>"
 msgstr "<a href=\"%s\">Texto %s</a>"
@@ -96,6 +97,7 @@ msgstr "Você chegou ao final da lista."
 #. '%s' will be replaced by a number, and you should keep the extra
 #. '%' symbol to denote a percentage is being used.
 #: static/js/editor.js:1762
+#, c-format
 #, c-format, fuzzy
 msgid "%s% match"
 msgstr "%s% correspondência"

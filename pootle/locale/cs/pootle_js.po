@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-21 17:19+0100\n"
-"PO-Revision-Date: 2013-01-04 19:45+0000\n"
+"PO-Revision-Date: 2013-02-22 06:01+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1357328749.0\n"
+"X-POOTLE-MTIME: 1361512899.0\n"
 
 #: static/js/common.js:43
 msgid "Expand details"
@@ -93,66 +93,66 @@ msgstr "Obdobné překlady"
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:7
 msgid "More"
-msgstr ""
+msgstr "Více"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:10
 msgid "Hide"
-msgstr ""
+msgstr "Skrýt"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:13
 msgid "Less"
-msgstr ""
+msgstr "Méně"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:16
 msgid "Show"
-msgstr ""
+msgstr "Zobrazit"
 
 #: static/js/utils.js:76
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Před rokem"
+msgstr[1] "Před %s roky"
+msgstr[2] "Před %s roky"
 
 #: static/js/utils.js:79
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Před týdnem"
+msgstr[1] "Před %s týdny"
+msgstr[2] "Před %s týdny"
 
 #: static/js/utils.js:82
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Včera"
+msgstr[1] "Před %s dny"
+msgstr[2] "Před %s dny"
 
 #: static/js/utils.js:85
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Před hodinou"
+msgstr[1] "Před %s hodinami"
+msgstr[2] "Před %s hodinami"
 
 #: static/js/utils.js:88
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Před minutou"
+msgstr[1] "Před %s minutami"
+msgstr[2] "Před %s minutami"
 
 #: static/js/utils.js:96
 msgid "A few seconds ago"
-msgstr ""
+msgstr "Před pár sekundami"
 
 #, c-format
 #~ msgid "<a href=\"%s\">Unit %s</a>"

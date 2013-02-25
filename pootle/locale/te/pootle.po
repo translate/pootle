@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-21 17:18+0100\n"
-"PO-Revision-Date: 2010-08-04 04:29+0200\n"
+"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"PO-Revision-Date: 2013-02-24 17:30+0000\n"
 "Last-Translator: Veeven <veeven@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: te\n"
@@ -15,7 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.0-beta2\n"
+"X-Generator: Pootle 2.5.0-beta1\n"
+"X-POOTLE-MTIME: 1361727055.0\n"
 
 #: strings.py:8
 msgid ""
@@ -121,7 +122,7 @@ msgstr ""
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:51
 msgid "Privacy Policy"
-msgstr ""
+msgstr "గోప్యతా విధానం"
 
 #. Translators: Label that refers to the site's legal requirements
 #: strings.py:53
@@ -131,7 +132,7 @@ msgstr ""
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:55
 msgid "License"
-msgstr ""
+msgstr "లైసెన్సు"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:57
@@ -141,12 +142,12 @@ msgstr ""
 #. Translators: Label that refers to the site's terms of use
 #: strings.py:59
 msgid "Terms of Use"
-msgstr ""
+msgstr "వాడుక నియమాలు"
 
 #. Translators: Label that refers to the site's terms of service
 #: strings.py:61
 msgid "Terms of Service"
-msgstr ""
+msgstr "సేవా నియమాలు"
 
 #: apps/contact_form_i18n/forms.py:143
 msgid "Your name"
@@ -190,8 +191,9 @@ msgstr ""
 
 #: apps/legalpages/models.py:31
 #: apps/legalpages/templates/legalpages/admin/list.html:22
+#, fuzzy
 msgid "Active"
-msgstr ""
+msgstr "చేతనం"
 
 #: apps/legalpages/models.py:32
 msgid "Whether this page is active or not."
@@ -262,8 +264,9 @@ msgid "Existing Legal Pages"
 msgstr ""
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
+#, fuzzy
 msgid "Inactive"
-msgstr ""
+msgstr "చేతనం"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 #: apps/pootle_app/templates/admin/edit_links.html:2
@@ -272,7 +275,7 @@ msgstr "మార్చు"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:24
 msgid "No pages yet."
-msgstr ""
+msgstr "ఇంకా పేజీలు లేవు."
 
 #: apps/legalpages/templates/legalpages/admin/list.html:31
 msgid "New Legal Page"
@@ -373,7 +376,7 @@ msgstr ""
 
 #: apps/pootle_app/templates/top_contributers_table.html:19
 msgid "anonymous users"
-msgstr ""
+msgstr "అజ్ఞాత వాడుకరులు"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:4
 #: apps/pootle_misc/stats.py:109 apps/pootle_store/util.py:47
@@ -542,7 +545,7 @@ msgstr ""
 
 #: apps/pootle_app/templates/admin/general_settings_form.html:16
 msgid "Cancel"
-msgstr ""
+msgstr "రద్దుచేయి"
 
 #: apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
@@ -629,8 +632,8 @@ msgstr ""
 #: apps/pootle_app/views/admin/dashboard.py:75
 #, python-format
 msgid ""
-"lxml version %(installed)s is installed. Pootle requires at least version %"
-"(required)s."
+"lxml version %(installed)s is installed. Pootle requires at least version "
+"%(required)s."
 msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:82
@@ -916,7 +919,7 @@ msgstr "మొత్తం"
 
 #: apps/pootle_misc/browser.py:59
 msgid "Need Translation"
-msgstr ""
+msgstr "అనువాదం కావాల్సినవి"
 
 #: apps/pootle_misc/browser.py:70
 msgid "Last Activity"
@@ -940,7 +943,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:33
 msgid "No category"
-msgstr ""
+msgstr "వర్గం లేదు"
 
 #: apps/pootle_misc/checks.py:37
 msgid "Accelerators"
@@ -972,15 +975,16 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:44
 msgid "Double spaces"
-msgstr ""
+msgstr "రెండు ఖాళీలు"
 
 #: apps/pootle_misc/checks.py:45
 msgid "Repeated word"
-msgstr ""
+msgstr "పదం పునరావృతమైంది"
 
 #: apps/pootle_misc/checks.py:46
+#, fuzzy
 msgid "E-mail"
-msgstr ""
+msgstr "ఈమెయిల్"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Ending punctuation"
@@ -1024,7 +1028,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:57
 msgid "Number of plurals"
-msgstr ""
+msgstr "బహువచనాల సంఖ్య"
 
 #: apps/pootle_misc/checks.py:58
 msgid "Don't translate words"
@@ -1032,11 +1036,11 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:59
 msgid "Numbers"
-msgstr ""
+msgstr "సంఖ్యలు"
 
 #: apps/pootle_misc/checks.py:60
 msgid "Options"
-msgstr ""
+msgstr "ఎంపికలు"
 
 #: apps/pootle_misc/checks.py:61
 msgid "printf()"
@@ -1052,7 +1056,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:64
 msgid "Number of sentences"
-msgstr ""
+msgstr "వాక్యాల సంఖ్య"
 
 #: apps/pootle_misc/checks.py:65
 msgid "Short"
@@ -1245,28 +1249,30 @@ msgid "Locations"
 msgstr "ప్రాంతాలు"
 
 #: apps/pootle_misc/forms.py:119
+#, fuzzy
 msgid "Source Terms"
-msgstr ""
+msgstr "మూల పాఠ్యం"
 
 #: apps/pootle_misc/forms.py:120
+#, fuzzy
 msgid "Target Terms"
-msgstr ""
+msgstr "లక్ష్యిత పాఠ్యం"
 
 #: apps/pootle_misc/forms.py:121
 msgid "Definitions"
-msgstr ""
+msgstr "నిర్వచనాలు"
 
 #: apps/pootle_misc/stats.py:91
 #, python-format
 msgid "<a href=\"%(url)s\">%(num)d word</a>"
 msgid_plural "<a href=\"%(url)s\">%(num)d words</a>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<a href=\"%(url)s\">%(num)d పదం</a>"
+msgstr[1] "<a href=\"%(url)s\">%(num)d పదాలు</a>"
 
 #: apps/pootle_misc/stats.py:97
 #, python-format
 msgid "%(num)d%%"
-msgstr ""
+msgstr "%(num)d%%"
 
 #: apps/pootle_misc/stats.py:99
 #, python-format
@@ -1303,8 +1309,9 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: apps/pootle_misc/stats.py:183
+#, fuzzy
 msgid "Translation is complete"
-msgstr ""
+msgstr "అనువాదాలు పూర్తయ్యాయి"
 
 #: apps/pootle_misc/stats.py:194
 #, python-format
@@ -1359,7 +1366,7 @@ msgstr ""
 #: apps/pootle_misc/templates/progressbar.html:3
 #, python-format
 msgid "%(percent)s%% complete"
-msgstr ""
+msgstr "%(percent)s%% పూర్తి"
 
 #: apps/pootle_misc/templates/search.html:5
 msgid "Search"
@@ -1429,19 +1436,19 @@ msgstr ""
 
 #: apps/pootle_notifications/views.py:151
 msgid "All Projects"
-msgstr ""
+msgstr "అన్ని ప్రాజెక్టులు"
 
 #: apps/pootle_notifications/views.py:155
 msgid "Project Selection"
-msgstr ""
+msgstr "ప్రాజెక్టుల ఎంపిక"
 
 #: apps/pootle_notifications/views.py:163
 msgid "All Languages"
-msgstr ""
+msgstr "అన్ని భాషలు"
 
 #: apps/pootle_notifications/views.py:167
 msgid "Language Selection"
-msgstr ""
+msgstr "భాషల ఎంపిక"
 
 #: apps/pootle_notifications/views.py:293
 msgid "View News Item"
@@ -1601,11 +1608,11 @@ msgstr ""
 
 #: apps/pootle_statistics/models.py:50
 msgid "Comment"
-msgstr ""
+msgstr "వ్యాఖ్య"
 
 #: apps/pootle_statistics/models.py:95
 msgid "anonymous user"
-msgstr ""
+msgstr "అజ్ఞాత వాడుకరి"
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Gettext PO"
@@ -1699,27 +1706,27 @@ msgstr ""
 msgid "Insufficient rights to this translation project."
 msgstr ""
 
-#: apps/pootle_store/views.py:697
+#: apps/pootle_store/views.py:702
 msgid "Comment submission failed."
 msgstr ""
 
-#: apps/pootle_store/views.py:818 apps/pootle_store/views.py:883
+#: apps/pootle_store/views.py:823 apps/pootle_store/views.py:888
 msgid "You do not have rights to access translation mode."
 msgstr "ఇక్కడ అనువాదరీతిని చూసే అధికారం మీకు లేదు."
 
-#: apps/pootle_store/views.py:866
+#: apps/pootle_store/views.py:871
 msgid "Failed to process submission."
 msgstr ""
 
-#: apps/pootle_store/views.py:915
+#: apps/pootle_store/views.py:920
 msgid "Failed to process suggestion."
 msgstr ""
 
-#: apps/pootle_store/views.py:937
+#: apps/pootle_store/views.py:942
 msgid "You do not have rights to access review mode."
 msgstr "ఇక్కడ సమీక్షారీతిని చూసే అధికారం మీకు లేదు."
 
-#: apps/pootle_store/views.py:1052
+#: apps/pootle_store/views.py:1057
 msgid "The suggestion or vote is not valid any more."
 msgstr ""
 
@@ -1751,41 +1758,48 @@ msgstr ""
 
 #: apps/pootle_store/templates/store/translate.html:75
 msgid "My suggestions"
-msgstr ""
+msgstr "నా సలహాలు"
 
 #: apps/pootle_store/templates/store/translate.html:76
 msgid "My submissions"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:77
+#. Translators: This is a type of filtering criterion that
+#. selects the strings that have been submitted by me at some point
+#. in time but have been overwritten by other users.
+#: apps/pootle_store/templates/store/translate.html:80
+msgid "My overwritten submissions"
+msgstr ""
+
+#: apps/pootle_store/templates/store/translate.html:81
 msgid "Checks"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:85
+#: apps/pootle_store/templates/store/translate.html:89
 msgid "Previous string"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:85
+#: apps/pootle_store/templates/store/translate.html:89
 msgid ""
 "Go to the previous string (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+Page&nbsp;Up<br/>First page: Ctrl+Shift+Home"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:87
+#: apps/pootle_store/templates/store/translate.html:91
 msgid ""
 "Current page number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:89
+#: apps/pootle_store/templates/store/translate.html:93
 msgid "Total pages"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:91
+#: apps/pootle_store/templates/store/translate.html:95
 msgid "Next string"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:91
+#: apps/pootle_store/templates/store/translate.html:95
 msgid ""
 "Go to the next string (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
 "+Page&nbsp;Down<br/>Last page: Ctrl+Shift+End"
@@ -1793,27 +1807,30 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
-msgstr ""
+msgstr "వ్యాఖ్య:"
 
 #: apps/pootle_store/templates/unit/edit.html:11
+#, fuzzy
 msgid "File:"
-msgstr ""
+msgstr "ఫైలు"
 
 #: apps/pootle_store/templates/unit/edit.html:18
 msgid "Context:"
-msgstr ""
+msgstr "సందర్భం:"
 
 #: apps/pootle_store/templates/unit/edit.html:28
 msgid "Comments:"
-msgstr ""
+msgstr "వ్యాఖ్యలు:"
 
 #: apps/pootle_store/templates/unit/edit.html:32
+#, fuzzy
 msgid "Locations:"
-msgstr ""
+msgstr "ప్రాంతాలు"
 
 #: apps/pootle_store/templates/unit/edit.html:41
+#, fuzzy
 msgid "Terminology:"
-msgstr ""
+msgstr "పదజాలం"
 
 #: apps/pootle_store/templates/unit/edit.html:43
 msgid "Insert the translated term into the editor"
@@ -1930,7 +1947,7 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:233
 msgid "User suggestions"
-msgstr ""
+msgstr "వాడుకరి సలహాలు"
 
 #: apps/pootle_store/templates/unit/edit.html:251
 msgid "Accept suggestion"
@@ -1954,7 +1971,7 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/term_edit.html:40
 msgid "Comment: "
-msgstr ""
+msgstr "వ్యాఖ్య:"
 
 #: apps/pootle_store/templates/unit/timeline.html:4
 #: apps/pootle_store/templates/unit/timeline.html:14
@@ -1972,7 +1989,7 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/xhr-timeline.html:28
 msgid "No results."
-msgstr ""
+msgstr "ఫలితాలు లేవు."
 
 #: apps/pootle_store/templatetags/store_tags.py:113
 #: apps/pootle_store/templatetags/store_tags.py:115
@@ -2304,21 +2321,21 @@ msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:53
 msgid "Actions"
-msgstr ""
+msgstr "చర్యలు"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:101
 #, python-format
 msgid "%(project)s project information"
-msgstr ""
+msgstr "%(project)s ప్రాజెక్టు సమాచారం"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:108
 #, python-format
 msgid "%(language)s language information"
-msgstr ""
+msgstr "%(language)s భాష సమాచారం"
 
 #: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:4
 msgid "Translation Statistics"
-msgstr ""
+msgstr "అనువాద గణాంకాలు"
 
 #: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:23
 msgid "Failing Checks"
@@ -2400,6 +2417,24 @@ msgstr ""
 msgid "Incorrect"
 msgstr ""
 
+#: settings/10-base.conf:9
+msgid "Pootle Demo"
+msgstr "పూటిల్ డెమో"
+
+#. Translators: Change the language code (en) to your language code, and replace
+#. ltr with rtl if you language is written from right to left.
+#: settings/10-base.conf:13
+msgid ""
+"<div dir=\"ltr\" lang=\"en\">\n"
+"<h2>This is a demo installation of Pootle.</h2>\n"
+"<p>You can also visit the official <a href=\"http://pootle.locamotion.org"
+"\">Pootle server</a>. The server administrator has not provided contact "
+"information or a description of this server. If you are the administrator "
+"for this server, edit this description in your preference file or in the "
+"administration interface.</p>\n"
+"</div>\n"
+msgstr ""
+
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"
 msgstr "అనుమతిని నిరాకరించారు"
@@ -2432,9 +2467,8 @@ msgid ""
 msgstr ""
 
 #: templates/admin_profile_base.html:4 templates/admin_profile_base.html:7
-#, fuzzy
 msgid "Administration"
-msgstr "నిర్వహించు"
+msgstr "పరిపాలన"
 
 #: templates/admin_profile_menu.html:3
 msgid "Information and statistics about this Pootle server"
@@ -2551,7 +2585,7 @@ msgstr "భాష ప్రధాన పుట"
 #: templates/language_menu.html:3 templates/project_menu.html:3
 #: templates/tp_menu.html:4
 msgid "Overview"
-msgstr ""
+msgstr "అవలోకనం"
 
 #: templates/language_menu.html:4
 msgid "Language news"
@@ -2562,7 +2596,6 @@ msgid "Administrate your language permissions"
 msgstr ""
 
 #: templates/project_menu.html:3
-#, fuzzy
 msgid "Project main page"
 msgstr "ప్రాజెక్టు మొదటి పేజీ"
 
@@ -2770,7 +2803,7 @@ msgstr "ఈ ఈమెయిల్ చిరునామాని ఉపయోగ
 
 #: templates/registration/activation_email.html:6
 msgid "To activation your account, follow this link:"
-msgstr ""
+msgstr "మీ ఖాతాని చేతనం చేసుకోవడానికి, ఈ లింకుని అనుసరించండి:"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2810,7 +2843,7 @@ msgstr ""
 
 #: templates/registration/password_change_done.html:14
 msgid "Your password was changed successfully."
-msgstr ""
+msgstr "మీ సంకేతపదాన్ని విజయవంతంగా మార్చుకున్నారు."
 
 #: templates/registration/password_change_form.html:4
 #: templates/registration/password_change_form.html:7
@@ -2868,7 +2901,7 @@ msgstr ""
 
 #: templates/registration/password_reset_confirm.html:14
 msgid "Enter New Password."
-msgstr ""
+msgstr "కొత్త సంకేతపదాన్ని ఇవ్వండి."
 
 #: templates/registration/password_reset_confirm.html:16
 msgid ""
@@ -2993,9 +3026,6 @@ msgstr "ప్రవేశించండి."
 #, python-format
 #~ msgid "Strings Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
 #~ msgstr "అనువదించిన పదబంధాలు: %(translated)d/%(total)d - %(translatedpercent)d%%"
-
-#~ msgid "Pootle Demo"
-#~ msgstr "పూటిల్ డెమో"
 
 #~ msgid "Needs review"
 #~ msgstr "సమీక్షించాల్సినవి"

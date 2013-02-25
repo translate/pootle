@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-21 17:18+0100\n"
-"PO-Revision-Date: 2012-11-29 13:35+0000\n"
+"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"PO-Revision-Date: 2013-02-22 06:58+0000\n"
 "Last-Translator: Yaron <sh.yaron@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1354196133.0\n"
+"X-POOTLE-MTIME: 1361516308.0\n"
 
 #: strings.py:8
 msgid ""
@@ -223,11 +223,11 @@ msgstr "אם הוגדרה, כל ההפניות לעמוד מידע משפטי ז
 #. Translators: See http://en.wikipedia.org/wiki/Slug_%28web_publishing%29#Slug
 #: apps/legalpages/models.py:43
 msgid "Slug"
-msgstr ""
+msgstr "כינוי"
 
 #: apps/legalpages/models.py:44
 msgid "The page will be available at /about/<slug>/"
-msgstr ""
+msgstr "העמוד יהיה זמין תחת ‪/about/<כינוי>/"
 
 #: apps/legalpages/models.py:46
 msgid "Content"
@@ -240,7 +240,7 @@ msgstr "תחביר סומן מותר: %s"
 
 #: apps/legalpages/views.py:67
 msgid "Legal page created."
-msgstr ""
+msgstr "עמוד המידע המשפטי נוצר."
 
 #: apps/legalpages/templates/legalpages/admin/edit.html:4
 #: apps/legalpages/templates/legalpages/admin/edit.html:9
@@ -278,7 +278,7 @@ msgstr "אין עמודים עדיין."
 
 #: apps/legalpages/templates/legalpages/admin/list.html:31
 msgid "New Legal Page"
-msgstr ""
+msgstr "עמוד מידע משפטי חדש"
 
 #: apps/pootle_app/admin.py:39
 msgid "Language code does not follow the ISO convention"
@@ -641,8 +641,8 @@ msgstr "גרסת ה־lxml המותקנת היא %s."
 #: apps/pootle_app/views/admin/dashboard.py:75
 #, python-format
 msgid ""
-"lxml version %(installed)s is installed. Pootle requires at least version %"
-"(required)s."
+"lxml version %(installed)s is installed. Pootle requires at least version "
+"%(required)s."
 msgstr ""
 "גרסת ה־lxml המותקנת היא %(installed)s. ל־Pootle נדרשת גרסה %(required)s "
 "לפחות."
@@ -680,6 +680,8 @@ msgid ""
 "Can't find python-levenshtein package. Updating against templates is faster "
 "with python-levenshtein."
 msgstr ""
+"לא ניתן למצוא את החבילה python-levenshtein. העדכון מול התבניות מהיר יותר עם "
+"python-levenshtein."
 
 #: apps/pootle_app/views/admin/dashboard.py:111
 msgid ""
@@ -1257,13 +1259,13 @@ msgstr "יבוא הצעות מ־%s נכשל"
 #, python-format
 msgid "Imported %(count)d string from %(store)s"
 msgid_plural "Imported %(count)d strings from %(store)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "יובאה מחרוזת אחת מ־%(store)s"
+msgstr[1] "יובאו %(count)d מחרוזות מ־%(store)s"
 
 #: apps/pootle_misc/dbupdate.py:408
 #, python-format
 msgid "Failed to import strings from %s"
-msgstr ""
+msgstr "יבוא מחרוזות מ־%s נכשל"
 
 #: apps/pootle_misc/dbupdate.py:417
 msgid "All translations are now imported."
@@ -1277,7 +1279,7 @@ msgstr "מסד הנתונים אותחל על ידי Pootle. תתבצע העבר
 
 #: apps/pootle_misc/forms.py:97
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
-msgstr ""
+msgstr "חיפוש (Ctrl+Shift+S)<br/>יש להקליד, ואז ללחוץ על Enter כדי לחפש"
 
 #: apps/pootle_misc/forms.py:103
 msgid "Source Text"
@@ -1311,8 +1313,8 @@ msgstr "הגדרות"
 #, python-format
 msgid "<a href=\"%(url)s\">%(num)d word</a>"
 msgid_plural "<a href=\"%(url)s\">%(num)d words</a>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<a href=\"%(url)s\">מילה אחת</a>"
+msgstr[1] "<a href=\"%(url)s\">%(num)d מילים</a>"
 
 #: apps/pootle_misc/stats.py:97
 #, python-format
@@ -1323,8 +1325,8 @@ msgstr "%(num)d%%"
 #, python-format
 msgid "(%(num)d string)"
 msgid_plural "(%(num)d strings)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "(מחרוזת אחת)"
+msgstr[1] "(%(num)d מחרוזות)"
 
 #: apps/pootle_misc/stats.py:128
 #, python-format
@@ -1372,8 +1374,9 @@ msgid ""
 "%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d fuzzy)."
 msgid_plural ""
 "%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d fuzzy)."
-msgstr[0] ""
+msgstr[0] "%(type)s: תורגמה מחרוזת אחת מתוך %(total)d ‏(%(fuzzy)d fuzzy)."
 msgstr[1] ""
+"%(type)s: תורגמו %(translated)d מחרוזות מתוך %(total)d ‏(%(fuzzy)d fuzzy)."
 
 #: apps/pootle_misc/stats.py:237
 #, python-format
@@ -1467,11 +1470,11 @@ msgstr "חדשות עבור %(path)s"
 
 #: apps/pootle_notifications/views.py:138
 msgid "Publish on news feed"
-msgstr ""
+msgstr "פרסום בהזנת החדשות"
 
 #: apps/pootle_notifications/views.py:140
 msgid "Send email"
-msgstr ""
+msgstr "שליחת דוא״ל"
 
 #: apps/pootle_notifications/views.py:143
 msgid "Email only to recently active users"
@@ -1562,6 +1565,8 @@ msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
 msgstr ""
+"קוד קצר עבור המיזם. קוד זה אמור להיות מורכב מתווי ASCII, ספרות וקו תחתון (_) "
+"בלבד."
 
 #: apps/pootle_project/models.py:65
 #, python-format
@@ -1657,7 +1662,7 @@ msgstr "הערה"
 
 #: apps/pootle_statistics/models.py:95
 msgid "anonymous user"
-msgstr ""
+msgstr "משתמש אלמוני"
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Gettext PO"
@@ -1751,27 +1756,27 @@ msgstr "מיושן לגמרי"
 msgid "Insufficient rights to this translation project."
 msgstr "ההרשאות אינן מספיקות לצורך מיזם תרגום זה."
 
-#: apps/pootle_store/views.py:697
+#: apps/pootle_store/views.py:702
 msgid "Comment submission failed."
 msgstr "הגשת ההערה נכשלה."
 
-#: apps/pootle_store/views.py:818 apps/pootle_store/views.py:883
+#: apps/pootle_store/views.py:823 apps/pootle_store/views.py:888
 msgid "You do not have rights to access translation mode."
 msgstr "אין לך הרשאות לגשת למצב התרגום."
 
-#: apps/pootle_store/views.py:866
+#: apps/pootle_store/views.py:871
 msgid "Failed to process submission."
 msgstr "ההגשה נכשלה."
 
-#: apps/pootle_store/views.py:915
+#: apps/pootle_store/views.py:920
 msgid "Failed to process suggestion."
 msgstr "עיבוד ההצעה נכשל."
 
-#: apps/pootle_store/views.py:937
+#: apps/pootle_store/views.py:942
 msgid "You do not have rights to access review mode."
 msgstr "אין לך הרשאות לגשת למצב הסקירה."
 
-#: apps/pootle_store/views.py:1052
+#: apps/pootle_store/views.py:1057
 msgid "The suggestion or vote is not valid any more."
 msgstr "ההצעה או ההצבעה אינם זמינים עוד."
 
@@ -1803,27 +1808,36 @@ msgstr "לא שלם"
 
 #: apps/pootle_store/templates/store/translate.html:75
 msgid "My suggestions"
-msgstr ""
+msgstr "ההצעות שלי"
 
 #: apps/pootle_store/templates/store/translate.html:76
 msgid "My submissions"
+msgstr "ההגשות שלי"
+
+#. Translators: This is a type of filtering criterion that
+#. selects the strings that have been submitted by me at some point
+#. in time but have been overwritten by other users.
+#: apps/pootle_store/templates/store/translate.html:80
+msgid "My overwritten submissions"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:77
+#: apps/pootle_store/templates/store/translate.html:81
 msgid "Checks"
 msgstr "בדיקות"
 
-#: apps/pootle_store/templates/store/translate.html:85
+#: apps/pootle_store/templates/store/translate.html:89
 msgid "Previous string"
-msgstr ""
+msgstr "המחרוזת הקודמת"
 
-#: apps/pootle_store/templates/store/translate.html:85
+#: apps/pootle_store/templates/store/translate.html:89
 msgid ""
 "Go to the previous string (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+Page&nbsp;Up<br/>First page: Ctrl+Shift+Home"
 msgstr ""
+"מעבר למחרוזת הקודמת (Ctrl+למעלה)<br/><br/>כמו־כן:<br/>העמוד הקודם: "
+"Ctrl+Shift+Page&nbsp;Up<br/>העמוד הראשון: Ctrl+Shift+Home"
 
-#: apps/pootle_store/templates/store/translate.html:87
+#: apps/pootle_store/templates/store/translate.html:91
 msgid ""
 "Current page number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
@@ -1831,23 +1845,25 @@ msgstr ""
 "מספר העמוד הנוכחי (Ctrl+Shift+U)<br/><br/>נא להזין את המספר וללחוץ על "
 "Enter<br/>כדי לעבור לכל מקום שהוא"
 
-#: apps/pootle_store/templates/store/translate.html:89
+#: apps/pootle_store/templates/store/translate.html:93
 msgid "Total pages"
 msgstr "סך כל העמודים"
 
-#: apps/pootle_store/templates/store/translate.html:91
+#: apps/pootle_store/templates/store/translate.html:95
 msgid "Next string"
-msgstr ""
+msgstr "המחרוזת הבאה"
 
-#: apps/pootle_store/templates/store/translate.html:91
+#: apps/pootle_store/templates/store/translate.html:95
 msgid ""
 "Go to the next string (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
 "+Page&nbsp;Down<br/>Last page: Ctrl+Shift+End"
 msgstr ""
+"מעבר למחרוזת הבאה (Ctrl+למטה)<br/><br/>כמו־כן:<br/>העמוד הבא: "
+"Ctrl+Shift+Page&nbsp;Down<br/>העמוד האחרון: Ctrl+Shift+End"
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
-msgstr ""
+msgstr "הערה:"
 
 #: apps/pootle_store/templates/unit/edit.html:11
 msgid "File:"
@@ -1871,7 +1887,7 @@ msgstr "מינוח:"
 
 #: apps/pootle_store/templates/unit/edit.html:43
 msgid "Insert the translated term into the editor"
-msgstr ""
+msgstr "הוספת המונח המתורגם לעורך"
 
 #: apps/pootle_store/templates/unit/edit.html:56
 msgid "Possible issues with the translation"
@@ -1902,7 +1918,7 @@ msgstr "הגשה"
 
 #: apps/pootle_store/templates/unit/edit.html:121
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
-msgstr ""
+msgstr "הגשת התרגום ומעבר למחרוזת הבאה (Ctrl+Enter)"
 
 #: apps/pootle_store/templates/unit/edit.html:124
 #: apps/pootle_store/templates/unit/edit.html:132
@@ -1911,64 +1927,64 @@ msgstr "הצעה"
 
 #: apps/pootle_store/templates/unit/edit.html:124
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
-msgstr ""
+msgstr "הגשת הצעת התרגום ומעבר למחרוזת הבאה (Ctrl+Enter)"
 
 #: apps/pootle_store/templates/unit/edit.html:131
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
-msgstr ""
+msgstr "מעבר למצב תרגום (Ctrl+Shift+Space)"
 
 #: apps/pootle_store/templates/unit/edit.html:132
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
-msgstr ""
+msgstr "מעבר למצב הצעה (Ctrl+Shift+Space)"
 
 #: apps/pootle_store/templates/unit/edit.html:135
 msgid "Mark this string as needing further work (Ctrl+Space)"
-msgstr ""
+msgstr "סימון מחרוזת זו כדורשת עבודה נוספת (Ctrl+Space)"
 
 #: apps/pootle_store/templates/unit/edit.html:156
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
-msgstr ""
+msgstr "נסקר ע״י <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
 #: apps/pootle_store/templates/unit/edit.html:166
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
-msgstr ""
+msgstr "הוספת RLM (Right-To-Left Mark)‎ לעורך (חיוני לעברית)"
 
 #: apps/pootle_store/templates/unit/edit.html:169
 msgid "Insert LRM (Left-To-Right Mark) into the editor"
-msgstr ""
+msgstr "הוספת LRM (Left-To-Right Mark)‎ לעורך (חיוני לעברית)"
 
 #: apps/pootle_store/templates/unit/edit.html:172
 msgid "Insert RLE (Right-To-Left Embedding) into the editor"
-msgstr ""
+msgstr "הוספת RLE (Right-To-Left Embedding)‎ לעורך (חיוני לעברית)"
 
 #: apps/pootle_store/templates/unit/edit.html:175
 msgid "Insert LRE (Left-To-Right Embedding) into the editor"
-msgstr ""
+msgstr "הוספת LRE (Left-To-Right Embedding)‎ לעורך (חיוני לעברית)"
 
 #: apps/pootle_store/templates/unit/edit.html:178
 msgid "Insert RLO (Right-To-Left Override) into the editor"
-msgstr ""
+msgstr "הוספת ‎RLO (Right-To-Left Override)‎ לעורך (חיוני לעברית)"
 
 #: apps/pootle_store/templates/unit/edit.html:181
 msgid "Insert LRO (Left-To-Right Override) into the editor"
-msgstr ""
+msgstr "הוספת ‎LRO (Left-To-Right Override)‎ לעורך (חיוני לעברית)"
 
 #: apps/pootle_store/templates/unit/edit.html:184
 msgid "Insert PDF (Pop Directional Format ) into the editor"
-msgstr ""
+msgstr "הוספת PDF (Pop Directional Format )‎ לעורך (חיוני לעברית)"
 
 #: apps/pootle_store/templates/unit/edit.html:187
 msgid "Insert ZWJ (Zero Width Joiner) into the editor"
-msgstr ""
+msgstr "הוספת ZWJ (Zero Width Joiner)‎ לעורך (חיוני לעברית)"
 
 #: apps/pootle_store/templates/unit/edit.html:190
 msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
-msgstr ""
+msgstr "הוספת ZWNJ (Zero Width Non Joiner)‎ לעורך (חיוני לעברית)"
 
 #: apps/pootle_store/templates/unit/edit.html:196
 msgid "Insert this symbol into the editor"
-msgstr ""
+msgstr "הוספת סמל זה לעורך"
 
 #: apps/pootle_store/templates/unit/edit.html:208
 msgid "Add Comment"
@@ -2156,12 +2172,12 @@ msgstr "שמירה במערכת ניהול גרסאות"
 #. Translators: "all" here refers to all files and sub directories in a directory/project.
 #: apps/pootle_translationproject/actions.py:159
 msgid "Update all from VCS"
-msgstr ""
+msgstr "עדכון הכול ממערכת בקרת גרסאות"
 
 #. Translators: "all" here refers to all files and sub directories in a directory/project.
 #: apps/pootle_translationproject/actions.py:174
 msgid "Commit all to VCS"
-msgstr ""
+msgstr "שמירת הכול במערכת ניהול גרסאות"
 
 #: apps/pootle_translationproject/actions.py:187
 msgid "Rescan project files"
@@ -2191,7 +2207,7 @@ msgstr ""
 #: apps/pootle_translationproject/models.py:488
 #, python-format
 msgid "Failed to update from version control: %(error)s"
-msgstr ""
+msgstr "העדכון ממערכת בקרת הגרסאות נכשלה: %(error)s"
 
 #: apps/pootle_translationproject/models.py:556
 #, python-format
@@ -2221,27 +2237,27 @@ msgstr "הקובץ <em>%(filename)s</em> עודכן ממערכת בקרת הגר
 #: apps/pootle_translationproject/models.py:590
 #, python-format
 msgid "Failed to update <em>%(filename)s</em> from version control: %(error)s"
-msgstr ""
+msgstr "עדכון הקובץ <em>%(filename)s</em> ממערכת בקרת הגרסאות נכשל: %(error)s"
 
 #: apps/pootle_translationproject/models.py:649
 #, python-format
 msgid "Committed all files under <em>%(path)s</em> to version control"
-msgstr ""
+msgstr "כל הקבצים תחת <em>%(path)s</em> נשמרו במערכת בקרת הגרסאות"
 
 #: apps/pootle_translationproject/models.py:658
 #, python-format
 msgid "Failed to commit to version control: %(error)s"
-msgstr ""
+msgstr "השמירה למערכת בקרת הגרסאות נכשלה: %(error)s"
 
 #: apps/pootle_translationproject/models.py:716
 #, python-format
 msgid "Committed file <em>%(filename)s</em> to version control"
-msgstr ""
+msgstr "הקובץ <em>%(filename)s</em> נשמר למערכת בקרת הגרסאות"
 
 #: apps/pootle_translationproject/models.py:724
 #, python-format
 msgid "Failed to commit <em>%(filename)s</em> to version control: %(error)s"
-msgstr ""
+msgstr "שמירת הקובץ <em>%(filename)s</em> למערכת בקרת הגרסאות נכשל: %(error)s"
 
 #: apps/pootle_translationproject/views.py:96
 msgid "Translation project files have been rescanned."
@@ -2377,7 +2393,7 @@ msgstr "פרטי המיזם %(project)s"
 #: apps/pootle_translationproject/templates/translation_project/overview.html:108
 #, python-format
 msgid "%(language)s language information"
-msgstr ""
+msgstr "פרטי השפה ה%(language)s"
 
 #: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:4
 msgid "Translation Statistics"
@@ -2458,6 +2474,24 @@ msgstr "נא להזין מספר"
 #: middleware/captcha.py:158
 msgid "Incorrect"
 msgstr "שגוי"
+
+#: settings/10-base.conf:9
+msgid "Pootle Demo"
+msgstr "הדמית Pootle"
+
+#. Translators: Change the language code (en) to your language code, and replace
+#. ltr with rtl if you language is written from right to left.
+#: settings/10-base.conf:13
+msgid ""
+"<div dir=\"ltr\" lang=\"en\">\n"
+"<h2>This is a demo installation of Pootle.</h2>\n"
+"<p>You can also visit the official <a href=\"http://pootle.locamotion.org"
+"\">Pootle server</a>. The server administrator has not provided contact "
+"information or a description of this server. If you are the administrator "
+"for this server, edit this description in your preference file or in the "
+"administration interface.</p>\n"
+"</div>\n"
+msgstr ""
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"
@@ -2549,7 +2583,7 @@ msgstr "התקרבות (Ctrl+Shift++‎)"
 
 #: templates/base.html:102
 msgid "ADMIN"
-msgstr ""
+msgstr "מנהל"
 
 #: templates/base.html:105
 msgid "Log Out"
@@ -2712,6 +2746,11 @@ msgid ""
 "Read more on the <a href=\"http://pootle.translatehouse.org/\"><i class="
 "\"icon-external-link\"></i> project website</a>."
 msgstr ""
+"אתר זה מופעל על גבי Pootle &mdash; תכנית מבוססת תפעול דפדפן להפעלת צוותים "
+"לביצוע ולניהול של תרגומים. כלי קהילתי זה הינו חופשי וכל קבוצה רשאית להשתמש "
+"בו ולתרום לקהילה של Pootle. ניתן לקבל פרטים נוספים ב<a "
+"href=\"http://pootle.translatehouse.org/\"><i class=\"icon-external-"
+"link\"></i>אתר המיזם</a>."
 
 #: templates/about/base.html:4 templates/about/base.html.py:7
 msgid "About"
@@ -3106,9 +3145,6 @@ msgstr "כניסה."
 #~ msgid_plural "%d minutes ago"
 #~ msgstr[0] "לפני דקה"
 #~ msgstr[1] "לפני %d דקות"
-
-#~ msgid "Pootle Demo"
-#~ msgstr "הדמית Pootle"
 
 #~ msgid "slug"
 #~ msgstr "כינוי"

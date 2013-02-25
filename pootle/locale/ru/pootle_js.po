@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-21 17:19+0100\n"
-"PO-Revision-Date: 2013-02-12 17:16+0000\n"
-"Last-Translator: Garab <voron-tengu@mail.ru>\n"
+"PO-Revision-Date: 2013-02-22 06:43+0000\n"
+"Last-Translator: Oleg Koptev <koptev.oleg@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1360689411.0\n"
+"X-POOTLE-MTIME: 1361515429.0\n"
 
 #: static/js/common.js:43
 msgid "Expand details"
@@ -65,20 +65,19 @@ msgstr "Неизвестная ошибка"
 
 #: static/js/editor.js:1338
 msgid "Congratulations, you walked through all strings."
-msgstr ""
+msgstr "Поздравляем, вы просмотрели все строки."
 
 #: static/js/editor.js:1340 static/js/editor.js.c:1364
 msgid "Return to the overview page."
-msgstr ""
+msgstr "Вернуться на страницу обзора проекта."
 
 #: static/js/editor.js:1359
 msgid "You reached the beginning of the list"
 msgstr "Достигнуто начало списка"
 
 #: static/js/editor.js:1362
-#, fuzzy
 msgid "You reached the end of the list."
-msgstr "Достигнут конец списка"
+msgstr "Достигнут конец списка."
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
@@ -95,66 +94,66 @@ msgstr "Похожие переводы"
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:7
 msgid "More"
-msgstr ""
+msgstr "Ещё"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:10
 msgid "Hide"
-msgstr ""
+msgstr "Скрыть"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:13
 msgid "Less"
-msgstr ""
+msgstr "Меньше"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:16
 msgid "Show"
-msgstr ""
+msgstr "Показать"
 
 #: static/js/utils.js:76
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Год назад"
+msgstr[1] "%1 года назад"
+msgstr[2] "%1 лет назад"
 
 #: static/js/utils.js:79
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Неделю назад"
+msgstr[1] "%s недели назад"
+msgstr[2] "%s недель назад"
 
 #: static/js/utils.js:82
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Вчера"
+msgstr[1] "%s дня назад"
+msgstr[2] "%s дней назад"
 
 #: static/js/utils.js:85
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Час назад"
+msgstr[1] "%s часа назад"
+msgstr[2] "%s часов назад"
 
 #: static/js/utils.js:88
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Минуту назад"
+msgstr[1] "%s минуты назад"
+msgstr[2] "%s минут назад"
 
 #: static/js/utils.js:96
 msgid "A few seconds ago"
-msgstr ""
+msgstr "Несколько секунд назад"
 
 #, c-format
 #~ msgid "<a href=\"%s\">Unit %s</a>"

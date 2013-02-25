@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-21 17:18+0100\n"
-"PO-Revision-Date: 2013-01-10 06:11+0000\n"
+"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"PO-Revision-Date: 2013-02-23 13:18+0000\n"
 "Last-Translator: Jussi <jta_l10n@saunalahti.fi>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fi\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1357798297.0\n"
+"X-POOTLE-MTIME: 1361625534.0\n"
 
 #: strings.py:8
 msgid ""
@@ -657,8 +657,8 @@ msgstr "lxml versio %s on asennettu."
 #: apps/pootle_app/views/admin/dashboard.py:75
 #, python-format
 msgid ""
-"lxml version %(installed)s is installed. Pootle requires at least version %"
-"(required)s."
+"lxml version %(installed)s is installed. Pootle requires at least version "
+"%(required)s."
 msgstr ""
 "lxml versio %(installed)s on asennettu. Pootle vaatii vähintään version %"
 "(required)s."
@@ -1361,7 +1361,7 @@ msgid "This folder has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
 "This folder has %(num)d words, %(percentage)d%% of which are translated."
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "Kansiossa on %(num)d sanaa, joista %(percentage)d%% on käännetty."
 
 #: apps/pootle_misc/stats.py:140
 #, python-format
@@ -1369,7 +1369,7 @@ msgid "This file has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
 "This file has %(num)d words, %(percentage)d%% of which are translated."
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "Tiedostossa on %(num)d sanaa, joista %(percentage)d%% on käännetty."
 
 #: apps/pootle_misc/stats.py:162
 msgid "Expand details"
@@ -1787,29 +1787,29 @@ msgstr "Vanhentunut"
 msgid "Insufficient rights to this translation project."
 msgstr "Ei käyttöoikeuksia tähän käännösprojektiin."
 
-#: apps/pootle_store/views.py:697
+#: apps/pootle_store/views.py:702
 msgid "Comment submission failed."
 msgstr "Kommentin lähetys epäonnistui."
 
-#: apps/pootle_store/views.py:818 apps/pootle_store/views.py:883
+#: apps/pootle_store/views.py:823 apps/pootle_store/views.py:888
 msgid "You do not have rights to access translation mode."
 msgstr "Sinulla ei ole käännösoikeuksia."
 
-#: apps/pootle_store/views.py:866
+#: apps/pootle_store/views.py:871
 msgid "Failed to process submission."
 msgstr "Kommentin käsittely epäonnistui."
 
-#: apps/pootle_store/views.py:915
+#: apps/pootle_store/views.py:920
 msgid "Failed to process suggestion."
 msgstr "Ehdotuksen käsittely epäonnistui."
 
-#: apps/pootle_store/views.py:937
+#: apps/pootle_store/views.py:942
 msgid "You do not have rights to access review mode."
 msgstr "Sinulla ei ole tarkastusoikeuksia."
 
-#: apps/pootle_store/views.py:1052
+#: apps/pootle_store/views.py:1057
 msgid "The suggestion or vote is not valid any more."
-msgstr ""
+msgstr "Ehdotus tai ääni ei ole enää voimassa."
 
 #: apps/pootle_store/templates/store/translate.html:5 templates/tp_menu.html:6
 msgid "Translate"
@@ -1846,15 +1846,22 @@ msgstr "Omat ehdotukset"
 msgid "My submissions"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:77
+#. Translators: This is a type of filtering criterion that
+#. selects the strings that have been submitted by me at some point
+#. in time but have been overwritten by other users.
+#: apps/pootle_store/templates/store/translate.html:80
+msgid "My overwritten submissions"
+msgstr ""
+
+#: apps/pootle_store/templates/store/translate.html:81
 msgid "Checks"
 msgstr "Tarkistukset"
 
-#: apps/pootle_store/templates/store/translate.html:85
+#: apps/pootle_store/templates/store/translate.html:89
 msgid "Previous string"
 msgstr "Edellinen merkkijono"
 
-#: apps/pootle_store/templates/store/translate.html:85
+#: apps/pootle_store/templates/store/translate.html:89
 msgid ""
 "Go to the previous string (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+Page&nbsp;Up<br/>First page: Ctrl+Shift+Home"
@@ -1862,7 +1869,7 @@ msgstr ""
 "Siirry edelliseen merkkijonoon (Ctrl+Up)<br/><br/>Lisäksi:<br/>Edellinen "
 "sivu: Ctrl+Shift+Page&nbsp;Up<br/>Ensimmäinen sivu: Ctrl+Shift+Home"
 
-#: apps/pootle_store/templates/store/translate.html:87
+#: apps/pootle_store/templates/store/translate.html:91
 msgid ""
 "Current page number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
@@ -1870,15 +1877,15 @@ msgstr ""
 "Tämän sivun numero (Ctrl+Shift+U)<br/><br/>Syötä numero ja paina "
 "Enter<br/>siirtyäksesi mihin tahansa kohtaan"
 
-#: apps/pootle_store/templates/store/translate.html:89
+#: apps/pootle_store/templates/store/translate.html:93
 msgid "Total pages"
 msgstr "Sivuja yhteensä"
 
-#: apps/pootle_store/templates/store/translate.html:91
+#: apps/pootle_store/templates/store/translate.html:95
 msgid "Next string"
 msgstr "Seuraava merkkijono"
 
-#: apps/pootle_store/templates/store/translate.html:91
+#: apps/pootle_store/templates/store/translate.html:95
 msgid ""
 "Go to the next string (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
 "+Page&nbsp;Down<br/>Last page: Ctrl+Shift+End"
@@ -1956,11 +1963,11 @@ msgstr "Ehdota käännöstä ja siirry seuraavaan merkkijonoon (Ctrl+Enter)"
 
 #: apps/pootle_store/templates/unit/edit.html:131
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
-msgstr ""
+msgstr "Vaihda käännöstilaan (Ctrl+Shift+Space)"
 
 #: apps/pootle_store/templates/unit/edit.html:132
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
-msgstr ""
+msgstr "Vaihda ehdotustilaan (Ctrl+Shift+Space)"
 
 #: apps/pootle_store/templates/unit/edit.html:135
 msgid "Mark this string as needing further work (Ctrl+Space)"
@@ -1980,20 +1987,24 @@ msgid "Insert LRM (Left-To-Right Mark) into the editor"
 msgstr "Liitä LRM (vasemmalta oikealle -merkki) muokkaimeen"
 
 #: apps/pootle_store/templates/unit/edit.html:172
+#, fuzzy
 msgid "Insert RLE (Right-To-Left Embedding) into the editor"
-msgstr ""
+msgstr "Liitä RLM (oikealta vasemmalle -merkki) muokkaimeen"
 
 #: apps/pootle_store/templates/unit/edit.html:175
+#, fuzzy
 msgid "Insert LRE (Left-To-Right Embedding) into the editor"
-msgstr ""
+msgstr "Liitä LRM (vasemmalta oikealle -merkki) muokkaimeen"
 
 #: apps/pootle_store/templates/unit/edit.html:178
+#, fuzzy
 msgid "Insert RLO (Right-To-Left Override) into the editor"
-msgstr ""
+msgstr "Liitä RLM (oikealta vasemmalle -merkki) muokkaimeen"
 
 #: apps/pootle_store/templates/unit/edit.html:181
+#, fuzzy
 msgid "Insert LRO (Left-To-Right Override) into the editor"
-msgstr ""
+msgstr "Liitä LRM (vasemmalta oikealle -merkki) muokkaimeen"
 
 #: apps/pootle_store/templates/unit/edit.html:184
 msgid "Insert PDF (Pop Directional Format ) into the editor"
@@ -2175,7 +2186,7 @@ msgstr "Käännä yhteydettömässä tilassa"
 
 #: apps/pootle_translationproject/actions.py:97
 msgid "Download XLIFF file for offline translation"
-msgstr "Lataa XLIFF-tiedosto kääntääksesi yhteydettömässä tilassa."
+msgstr "Lataa XLIFF-tiedosto kääntääksesi yhteydettömässä tilassa"
 
 #: apps/pootle_translationproject/actions.py:112
 #: apps/pootle_translationproject/views.py:700
@@ -2270,11 +2281,12 @@ msgstr ""
 #, python-format
 msgid "Committed all files under <em>%(path)s</em> to version control"
 msgstr ""
+"Kaikki tiedostot kohteesta <em>%(path)s</em> toimitettiin versiohallintaan"
 
 #: apps/pootle_translationproject/models.py:658
 #, python-format
 msgid "Failed to commit to version control: %(error)s"
-msgstr ""
+msgstr "Toimitus versiohallintaan epäonnistui: %(error)s"
 
 #: apps/pootle_translationproject/models.py:716
 #, python-format
@@ -2510,6 +2522,32 @@ msgstr "Vastauksen pitää olla numero"
 #: middleware/captcha.py:158
 msgid "Incorrect"
 msgstr "Väärä vastaus"
+
+#: settings/10-base.conf:9
+msgid "Pootle Demo"
+msgstr "Pootlen kokeiluversio"
+
+#. Translators: Change the language code (en) to your language code, and replace
+#. ltr with rtl if you language is written from right to left.
+#: settings/10-base.conf:13
+msgid ""
+"<div dir=\"ltr\" lang=\"en\">\n"
+"<h2>This is a demo installation of Pootle.</h2>\n"
+"<p>You can also visit the official <a href=\"http://pootle.locamotion.org"
+"\">Pootle server</a>. The server administrator has not provided contact "
+"information or a description of this server. If you are the administrator "
+"for this server, edit this description in your preference file or in the "
+"administration interface.</p>\n"
+"</div>\n"
+msgstr ""
+"<div dir=\"ltr\" lang=\"fi\">\n"
+"<h2>Tämä on Pootlen esittelyasennus.</h2>\n"
+"<p>Voit tutustua myös viralliseen <a href=\"http://pootle.locamotion.org"
+"\">Pootle-palvelimeen</a>. Palvelimen ylläpitäjä ei ole lisännyt "
+"yhteystietoja tai kuvausta tälle palvelimelle. Jos olet tämän palvelimen "
+"ylläpitäjä, muokkaa tätä kuvausta asetustiedostosta tai hallintaliittymän "
+"kautta.</p>\n"
+"</div>\n"
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"
@@ -3180,28 +3218,6 @@ msgstr "Kirjaudu sisään."
 
 #~ msgid "A few seconds ago"
 #~ msgstr "Muutama sekunti sitten"
-
-#~ msgid "Pootle Demo"
-#~ msgstr "Pootlen kokeiluversio"
-
-#~ msgid ""
-#~ "<div dir=\"ltr\" lang=\"en\">\n"
-#~ "<h2>This is a demo installation of Pootle.</h2>\n"
-#~ "<p>You can also visit the official <a href=\"http://pootle.locamotion.org"
-#~ "\">Pootle server</a>. The server administrator has not provided contact "
-#~ "information or a description of this server. If you are the administrator "
-#~ "for this server, edit this description in your preference file or in the "
-#~ "administration interface.</p>\n"
-#~ "</div>\n"
-#~ msgstr ""
-#~ "<div dir=\"ltr\" lang=\"fi\">\n"
-#~ "<h2>Tämä on Pootlen esittelyasennus.</h2>\n"
-#~ "<p>Voit tutustua myös viralliseen <a href=\"http://pootle.locamotion.org"
-#~ "\">Pootle-palvelimeen</a>. Palvelimen ylläpitäjä ei ole lisännyt "
-#~ "yhteystietoja tai kuvausta tälle palvelimelle. Jos olet tämän palvelimen "
-#~ "ylläpitäjä, muokkaa tätä kuvausta asetustiedostosta tai hallintaliittymän "
-#~ "kautta.</p>\n"
-#~ "</div>\n"
 
 #~ msgid "Legal Page created."
 #~ msgstr "Lainopillinen sivu luotu."

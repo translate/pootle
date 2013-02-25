@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-21 17:18+0100\n"
-"PO-Revision-Date: 2013-01-07 20:30+0000\n"
+"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"PO-Revision-Date: 2013-02-22 06:11+0000\n"
 "Last-Translator: Cédric <cvalmary@yahoo.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: oc\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1357590637.0\n"
+"X-POOTLE-MTIME: 1361513491.0\n"
 
 #: strings.py:8
 msgid ""
@@ -663,8 +663,8 @@ msgstr "La version %s de lxml es installada."
 #: apps/pootle_app/views/admin/dashboard.py:75
 #, python-format
 msgid ""
-"lxml version %(installed)s is installed. Pootle requires at least version %"
-"(required)s."
+"lxml version %(installed)s is installed. Pootle requires at least version "
+"%(required)s."
 msgstr ""
 "La version %(installed)s de lxml es installada. Pootle exigís al minimum la "
 "version %(required)s."
@@ -1821,27 +1821,27 @@ msgstr "Obsolèt"
 msgid "Insufficient rights to this translation project."
 msgstr "Permissions insufisentas per aqueste projècte de traduccion."
 
-#: apps/pootle_store/views.py:697
+#: apps/pootle_store/views.py:702
 msgid "Comment submission failed."
 msgstr "Fracàs del mandadís del comentari."
 
-#: apps/pootle_store/views.py:818 apps/pootle_store/views.py:883
+#: apps/pootle_store/views.py:823 apps/pootle_store/views.py:888
 msgid "You do not have rights to access translation mode."
 msgstr "Avètz pas l'autorizacion d'utilizar lo mòde de traduccion."
 
-#: apps/pootle_store/views.py:866
+#: apps/pootle_store/views.py:871
 msgid "Failed to process submission."
 msgstr "Impossible d'enregistrar la traduccion."
 
-#: apps/pootle_store/views.py:915
+#: apps/pootle_store/views.py:920
 msgid "Failed to process suggestion."
 msgstr "Impossible d'enregistrar la suggestion."
 
-#: apps/pootle_store/views.py:937
+#: apps/pootle_store/views.py:942
 msgid "You do not have rights to access review mode."
 msgstr "Avètz pas l'autorizacion d'utilizar lo mòde de relectura."
 
-#: apps/pootle_store/views.py:1052
+#: apps/pootle_store/views.py:1057
 msgid "The suggestion or vote is not valid any more."
 msgstr "La suggestion o lo vòte es pas mai valable."
 
@@ -1879,17 +1879,24 @@ msgstr "Mas suggestions"
 
 #: apps/pootle_store/templates/store/translate.html:76
 msgid "My submissions"
+msgstr "Mas somissions"
+
+#. Translators: This is a type of filtering criterion that
+#. selects the strings that have been submitted by me at some point
+#. in time but have been overwritten by other users.
+#: apps/pootle_store/templates/store/translate.html:80
+msgid "My overwritten submissions"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:77
+#: apps/pootle_store/templates/store/translate.html:81
 msgid "Checks"
 msgstr "Contraròtles"
 
-#: apps/pootle_store/templates/store/translate.html:85
+#: apps/pootle_store/templates/store/translate.html:89
 msgid "Previous string"
 msgstr "Cadena precedenta"
 
-#: apps/pootle_store/templates/store/translate.html:85
+#: apps/pootle_store/templates/store/translate.html:89
 msgid ""
 "Go to the previous string (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+Page&nbsp;Up<br/>First page: Ctrl+Shift+Home"
@@ -1898,7 +1905,7 @@ msgstr ""
 "naut)<br/><br/>Tanben :<br/>Pagina precedenta : "
 "Ctrl+Maj+Flècha naut<br/>Primièra pagina : Ctrl+Maj+Origina"
 
-#: apps/pootle_store/templates/store/translate.html:87
+#: apps/pootle_store/templates/store/translate.html:91
 msgid ""
 "Current page number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
@@ -1906,15 +1913,15 @@ msgstr ""
 "Numèro de pagina actuala (Ctrl+Maj+U)<br/><br/>Picatz lo nombre e quichatz "
 "sus Entrada<br/>per vos plaçar a la posicion volguda"
 
-#: apps/pootle_store/templates/store/translate.html:89
+#: apps/pootle_store/templates/store/translate.html:93
 msgid "Total pages"
 msgstr "Nombre total de paginas"
 
-#: apps/pootle_store/templates/store/translate.html:91
+#: apps/pootle_store/templates/store/translate.html:95
 msgid "Next string"
 msgstr "Cadena seguenta"
 
-#: apps/pootle_store/templates/store/translate.html:91
+#: apps/pootle_store/templates/store/translate.html:95
 msgid ""
 "Go to the next string (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
 "+Page&nbsp;Down<br/>Last page: Ctrl+Shift+End"
@@ -1992,20 +1999,20 @@ msgstr "Suggerir la traduccion e passar a la cadena seguenta (Ctrl+Entrada)"
 
 #: apps/pootle_store/templates/unit/edit.html:131
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
-msgstr ""
+msgstr "Passar en mòde traduccion (Ctrl+Maj+Espaci)"
 
 #: apps/pootle_store/templates/unit/edit.html:132
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
-msgstr ""
+msgstr "Passar en mòde suggestion (Ctrl+Maj+Espaci)"
 
 #: apps/pootle_store/templates/unit/edit.html:135
 msgid "Mark this string as needing further work (Ctrl+Space)"
-msgstr ""
+msgstr "Precisar qu'aqueste cadena a besonh d'èsser repassada (Ctrl+Espaci)"
 
 #: apps/pootle_store/templates/unit/edit.html:156
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
-msgstr ""
+msgstr "repassat per <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
 #: apps/pootle_store/templates/unit/edit.html:166
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
@@ -2564,6 +2571,32 @@ msgstr "Entrar un nombre"
 #: middleware/captcha.py:158
 msgid "Incorrect"
 msgstr "Incorrècte"
+
+#: settings/10-base.conf:9
+msgid "Pootle Demo"
+msgstr "Demonstracion de Pootle"
+
+#. Translators: Change the language code (en) to your language code, and replace
+#. ltr with rtl if you language is written from right to left.
+#: settings/10-base.conf:13
+msgid ""
+"<div dir=\"ltr\" lang=\"en\">\n"
+"<h2>This is a demo installation of Pootle.</h2>\n"
+"<p>You can also visit the official <a href=\"http://pootle.locamotion.org"
+"\">Pootle server</a>. The server administrator has not provided contact "
+"information or a description of this server. If you are the administrator "
+"for this server, edit this description in your preference file or in the "
+"administration interface.</p>\n"
+"</div>\n"
+msgstr ""
+"<div dir=\"ltr\" lang=\"fr\">\n"
+"<h2>Aquò's una installacion de demostracion de Pootle.</h2>\n"
+"<p>Tanben podètz visitar lo <a href=\"http://pootle.locamotion.org\">servidor "
+"Pootle oficial</a>. L'administrator d'aqueste servidor a pas provesit cap "
+"d'informacions de contacte o de descripcion del servidor. Se sètz "
+"l'administrator, modificatz la descripcion dins lo fichièr de las "
+"preferéncias o dins l'interfàcia d'administracion.</p>\n"
+"</div>\n"
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"
@@ -3252,28 +3285,6 @@ msgstr "Connexion."
 
 #~ msgid "A few seconds ago"
 #~ msgstr "Fan qualques segondas"
-
-#~ msgid "Pootle Demo"
-#~ msgstr "Demonstracion de Pootle"
-
-#~ msgid ""
-#~ "<div dir=\"ltr\" lang=\"en\">\n"
-#~ "<h2>This is a demo installation of Pootle.</h2>\n"
-#~ "<p>You can also visit the official <a href=\"http://pootle.locamotion.org"
-#~ "\">Pootle server</a>. The server administrator has not provided contact "
-#~ "information or a description of this server. If you are the administrator "
-#~ "for this server, edit this description in your preference file or in the "
-#~ "administration interface.</p>\n"
-#~ "</div>\n"
-#~ msgstr ""
-#~ "<div dir=\"ltr\" lang=\"fr\">\n"
-#~ "<h2>Aquò's una installacion de demostracion de Pootle.</h2>\n"
-#~ "<p>Tanben podètz visitar lo <a href=\"http://pootle.locamotion.org\">servidor "
-#~ "Pootle oficial</a>. L'administrator d'aqueste servidor a pas provesit cap "
-#~ "d'informacions de contacte o de descripcion del servidor. Se sètz "
-#~ "l'administrator, modificatz la descripcion dins lo fichièr de las "
-#~ "preferéncias o dins l'interfàcia d'administracion.</p>\n"
-#~ "</div>\n"
 
 #~ msgid "Needs review"
 #~ msgstr "Necessita relectura"

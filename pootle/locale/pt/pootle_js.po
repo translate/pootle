@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-21 17:19+0100\n"
-"PO-Revision-Date: 2013-01-12 19:43+0000\n"
-"Last-Translator: aamrs_mansil <manuela.silva@sky.com>\n"
+"PO-Revision-Date: 2013-02-22 18:09+0000\n"
+"Last-Translator: Alexander Dupuy <alex.dupuy@mac.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1358019797.0\n"
+"X-POOTLE-MTIME: 1361556541.0\n"
 
 #: static/js/common.js:43
 msgid "Expand details"
@@ -32,7 +32,7 @@ msgstr "Tem a certeza de que deseja continuar?"
 
 #: static/js/common.js:78
 msgid "This operation cannot be undone."
-msgstr "Esta operação não pode ser terminada"
+msgstr "Esta operação não pode ser anulada."
 
 #: static/js/editor.js:409 static/js/editor.js.c:1489
 msgid "No results."
@@ -72,7 +72,7 @@ msgstr "Voltar à página Inicial."
 
 #: static/js/editor.js:1359
 msgid "You reached the beginning of the list"
-msgstr "Você chegou ao início da lista"
+msgstr "Chegou ao início da lista"
 
 #: static/js/editor.js:1362
 msgid "You reached the end of the list."
@@ -84,7 +84,7 @@ msgstr "Chegou ao fim da lista."
 #: static/js/editor.js:1762
 #, c-format
 msgid "%s% match"
-msgstr "Coincidência"
+msgstr "%s% correspondência"
 
 #: static/js/editor.js:1804
 msgid "Similar translations"
@@ -93,61 +93,61 @@ msgstr "Traduções similares"
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:7
 msgid "More"
-msgstr ""
+msgstr "Mais"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:10
 msgid "Hide"
-msgstr ""
+msgstr "Ocultar"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:13
 msgid "Less"
-msgstr ""
+msgstr "Menos"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:16
 msgid "Show"
-msgstr ""
+msgstr "Mostrar"
 
 #: static/js/utils.js:76
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "À um ano"
+msgstr[1] "À %s ano(s)"
 
 #: static/js/utils.js:79
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "À uma semana"
+msgstr[1] "À %s semana(s)"
 
 #: static/js/utils.js:82
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ontem"
+msgstr[1] "À %s dia(s)"
 
 #: static/js/utils.js:85
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "À uma hora atrás"
+msgstr[1] "À %s hora(s)"
 
 #: static/js/utils.js:88
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "À um minuto "
+msgstr[1] "À %s minuto(s)"
 
 #: static/js/utils.js:96
 msgid "A few seconds ago"
-msgstr ""
+msgstr "À alguns segundos"
 
 #, c-format
 #~ msgid "<a href=\"%s\">Unit %s</a>"

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-21 17:18+0100\n"
-"PO-Revision-Date: 2013-02-11 16:50+0000\n"
+"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"PO-Revision-Date: 2013-02-24 10:07+0000\n"
 "Last-Translator: Abduqadir Abliz <sahran.ug@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ug\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1360601436.0\n"
+"X-POOTLE-MTIME: 1361700451.0\n"
 
 #: strings.py:8
 msgid ""
@@ -82,7 +82,7 @@ msgstr "بۇ %s دىكى ئىم ئەسلىگە قايتۇرۇلدى"
 #: strings.py:27
 #, python-format
 msgid "Add %(name)s"
-msgstr "‫%(name)s قوش"
+msgstr "%(name)s قوش"
 
 #. Translators: This link takes the user to the page where the currently
 #. configured option is displayed (such as a project or language)
@@ -296,7 +296,7 @@ msgstr "ئالىي تاللانما"
 
 #: apps/pootle_app/forms.py:31
 msgid "The name for this Pootle server"
-msgstr "‏بۇ Pootle مۇلازىمىتىرنىڭ ئاتى"
+msgstr "‏بۇ Pootle مۇلازىمېتىرنىڭ ئاتى"
 
 #: apps/pootle_app/forms.py:37
 #: apps/pootle_language/templates/language/language_index.html:24
@@ -315,11 +315,11 @@ msgstr ""
 
 #: apps/pootle_app/management/__init__.py:73
 msgid "Can view a translation project"
-msgstr "تەرجىمە قۇرۇلۇشىنى كۆرگىلى بولىدۇ"
+msgstr "تەرجىمە قۇرۇلۇشىنى كۆرەلەيدۇ"
 
 #: apps/pootle_app/management/__init__.py:75
 msgid "Can make a suggestion for a translation"
-msgstr "تەرجىمىگە تەۋسىيە قىلغىلى بولىدۇ"
+msgstr "تەرجىمىگە تەۋسىيە قىلالايدۇ"
 
 #: apps/pootle_app/management/__init__.py:77
 msgid "Can submit a translation"
@@ -331,7 +331,7 @@ msgstr "يۈكلىگەن ھۆججەتتىكى تەرجىمىنى قاپلىۋې�
 
 #: apps/pootle_app/management/__init__.py:81
 msgid "Can review translations"
-msgstr "تەرجىمىنى كۆزدىن كۆچۈرەلەيدۇ"
+msgstr "تەرجىمىنى كۆزدىن كەچۈرەلەيدۇ"
 
 #: apps/pootle_app/management/__init__.py:83
 msgid "Can download archives of translation projects"
@@ -656,8 +656,8 @@ msgstr "lxml نىڭ %s نەشرى ئورنىتىلغان."
 #: apps/pootle_app/views/admin/dashboard.py:75
 #, python-format
 msgid ""
-"lxml version %(installed)s is installed. Pootle requires at least version %"
-"(required)s."
+"lxml version %(installed)s is installed. Pootle requires at least version "
+"%(required)s."
 msgstr ""
 "lxml نىڭ %(installed)s نەشرى ئورنىتىلغان. Pootle غا زۆرۈر بولغان نەشرى ئەڭ "
 "تۆۋەن بولغاندىمۇ %(required)s."
@@ -1370,7 +1370,7 @@ msgstr "تەپسىلاتىنى ياي"
 #, python-format
 msgid "Continue translation (%(num)d word left)"
 msgid_plural "Continue translation (%(num)d words left)"
-msgstr[0] "تەرجىمە داۋاملاشتۇر (%(num)d سۆز قالدى)"
+msgstr[0] "تەرجىمە داۋاملاشتۇرۇڭ (%(num)d سۆز قالدى)"
 
 #: apps/pootle_misc/stats.py:183
 msgid "Translation is complete"
@@ -1380,7 +1380,7 @@ msgstr "تەرجىمە تامام"
 #, python-format
 msgid "Review suggestion (%(num)d left)"
 msgid_plural "Review suggestions (%(num)d left)"
-msgstr[0] "تەكلىپلەرنى كۆزدىن كەچۈر (%(num)d قالدى)"
+msgstr[0] "تەكلىپلەرنى كۆزدىن كەچۈرۈڭ (%(num)d قالدى)"
 
 #. Translators: 'type' is the type of VCS file: working, remote,
 #. or merged copy.
@@ -1778,27 +1778,27 @@ msgstr "كېرەكسىز"
 msgid "Insufficient rights to this translation project."
 msgstr "بۇ تەرجىمە قۇرۇلۇشىنىڭ ھوقۇقى يېتەرلىك ئەمەس."
 
-#: apps/pootle_store/views.py:697
+#: apps/pootle_store/views.py:702
 msgid "Comment submission failed."
 msgstr "باھانى تاپشۇرالمىدى."
 
-#: apps/pootle_store/views.py:818 apps/pootle_store/views.py:883
+#: apps/pootle_store/views.py:823 apps/pootle_store/views.py:888
 msgid "You do not have rights to access translation mode."
 msgstr "سىزنىڭ تەرجىمە ھالىتىنى زىيارەت قىلىش ھوقۇقىڭىز يوق."
 
-#: apps/pootle_store/views.py:866
+#: apps/pootle_store/views.py:871
 msgid "Failed to process submission."
 msgstr "تاپشۇرۇشنى بىر تەرەپ قىلالمىدى."
 
-#: apps/pootle_store/views.py:915
+#: apps/pootle_store/views.py:920
 msgid "Failed to process suggestion."
 msgstr "تەكلىپنى بىر تەرەپ قىلالمىدى."
 
-#: apps/pootle_store/views.py:937
+#: apps/pootle_store/views.py:942
 msgid "You do not have rights to access review mode."
 msgstr "سىزنىڭ قايتا تەكشۈرۈش ھالىتىنى زىيارەت قىلىش ھوقۇقىڭىز يوق."
 
-#: apps/pootle_store/views.py:1052
+#: apps/pootle_store/views.py:1057
 msgid "The suggestion or vote is not valid any more."
 msgstr "تەكلىپ ياكى بىلەت ئىناۋەتسىز."
 
@@ -1827,7 +1827,7 @@ msgstr "ھەممىسى"
 
 #: apps/pootle_store/templates/store/translate.html:71
 msgid "Incomplete"
-msgstr "تاماملانمىدى"
+msgstr "چالا"
 
 #: apps/pootle_store/templates/store/translate.html:75
 msgid "My suggestions"
@@ -1835,17 +1835,24 @@ msgstr "تەۋسىيەلىرىم"
 
 #: apps/pootle_store/templates/store/translate.html:76
 msgid "My submissions"
-msgstr ""
+msgstr "تاپشۇرغانلىرىم"
 
-#: apps/pootle_store/templates/store/translate.html:77
+#. Translators: This is a type of filtering criterion that
+#. selects the strings that have been submitted by me at some point
+#. in time but have been overwritten by other users.
+#: apps/pootle_store/templates/store/translate.html:80
+msgid "My overwritten submissions"
+msgstr "قاپلىۋەتكەن تاپشۇرغانلىرىم"
+
+#: apps/pootle_store/templates/store/translate.html:81
 msgid "Checks"
 msgstr "تەكشۈرۈشلەر"
 
-#: apps/pootle_store/templates/store/translate.html:85
+#: apps/pootle_store/templates/store/translate.html:89
 msgid "Previous string"
 msgstr "ئالدىنقى تىزىق"
 
-#: apps/pootle_store/templates/store/translate.html:85
+#: apps/pootle_store/templates/store/translate.html:89
 msgid ""
 "Go to the previous string (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+Page&nbsp;Up<br/>First page: Ctrl+Shift+Home"
@@ -1853,7 +1860,7 @@ msgstr ""
 "ئالدىنقى ھەرپ تىزىقىغا يۆتكىلىدۇ (Ctrl+Up)<br/><br/>ھەمدە:<br/>ئالدىنقى "
 "بەت:Ctrl+Shift+Page&nbsp;Up<br/>بىرىنچى بەت: Ctrl+Shift+Home"
 
-#: apps/pootle_store/templates/store/translate.html:87
+#: apps/pootle_store/templates/store/translate.html:91
 msgid ""
 "Current page number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
@@ -1861,15 +1868,15 @@ msgstr ""
 "نۆۋەتتىكى بەت نومۇرى (Ctrl+Shift+U)<br/><br/>بەت نومۇرىنى كىرگۈزۈپ Enter  "
 "بېسىلسا<br/>خالىغان ئورۇنغا يۆتكىلەلەيدۇ"
 
-#: apps/pootle_store/templates/store/translate.html:89
+#: apps/pootle_store/templates/store/translate.html:93
 msgid "Total pages"
 msgstr "جەمئى بەت"
 
-#: apps/pootle_store/templates/store/translate.html:91
+#: apps/pootle_store/templates/store/translate.html:95
 msgid "Next string"
 msgstr "كېيىنكى تىزىق"
 
-#: apps/pootle_store/templates/store/translate.html:91
+#: apps/pootle_store/templates/store/translate.html:95
 msgid ""
 "Go to the next string (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
 "+Page&nbsp;Down<br/>Last page: Ctrl+Shift+End"
@@ -1947,20 +1954,20 @@ msgstr "تەرجىمە تەكلىپى بېرىپ، كېيىنكى ھەرپ تى�
 
 #: apps/pootle_store/templates/unit/edit.html:131
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
-msgstr ""
+msgstr "تەرجىمە ھالىتىگە ئالماشتۇر (Ctrl+Shift+Space)"
 
 #: apps/pootle_store/templates/unit/edit.html:132
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
-msgstr ""
+msgstr "تەكلىپ ھالىتىگە ئالماشتۇر (Ctrl+Shift+Space)"
 
 #: apps/pootle_store/templates/unit/edit.html:135
 msgid "Mark this string as needing further work (Ctrl+Space)"
-msgstr ""
+msgstr "بۇ ھەرپ تىزىقىغا يەنە ئىشلەش زۆرۈر دېگەن بەلگىنى سالىدۇ (Ctrl+Space)"
 
 #: apps/pootle_store/templates/unit/edit.html:156
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
-msgstr ""
+msgstr "كۆزدىن كەچۈرگۈچى <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
 #: apps/pootle_store/templates/unit/edit.html:166
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
@@ -2503,6 +2510,32 @@ msgstr "بىر سان كىرگۈزۈڭ"
 #: middleware/captcha.py:158
 msgid "Incorrect"
 msgstr "خاتا"
+
+#: settings/10-base.conf:9
+msgid "Pootle Demo"
+msgstr "Pootle ئۈلگە كۆرسەت"
+
+#. Translators: Change the language code (en) to your language code, and replace
+#. ltr with rtl if you language is written from right to left.
+#: settings/10-base.conf:13
+msgid ""
+"<div dir=\"ltr\" lang=\"en\">\n"
+"<h2>This is a demo installation of Pootle.</h2>\n"
+"<p>You can also visit the official <a href=\"http://pootle.locamotion.org"
+"\">Pootle server</a>. The server administrator has not provided contact "
+"information or a description of this server. If you are the administrator "
+"for this server, edit this description in your preference file or in the "
+"administration interface.</p>\n"
+"</div>\n"
+msgstr ""
+"<div dir=\"rtl\" lang=\"ug\">\n"
+"<h2>بۇ Pootle نىڭ كۆرگەزمە ئورنىتىشىدۇر.</h2>\n"
+"<p>سىز رەسمىي <a href=\"http://pootle.locamotion.org\">Pootle "
+"مۇلازىمېتىر</a>نى زىيارەت قىلالايسىز. مۇلازىمېتىر باشقۇرغۇچى ئالاقە ئۇچۇرى "
+"ياكى بۇ مۇلازىمېتىرنىڭ چۈشەندۈرۈش ئۇچۇرىنى تەمىنلىمىگەن. ئەگەر سىز بۇ "
+"مۇلازىمېتىرنىڭ باشقۇرغۇچىسى بولسىڭىز، مايىللىق ھۆججىتڭىز ياكى باشقۇرۇش "
+"ئارايۈزىدە بۇ چۈشەندۈرۈشنى تەھرىرلەڭ.</p>\n"
+"</div>\n"
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"
@@ -3170,28 +3203,6 @@ msgstr "تىزىمغا كىر"
 
 #~ msgid "A few seconds ago"
 #~ msgstr "بىر قانچە سېكۇنت ئىلگىرى"
-
-#~ msgid "Pootle Demo"
-#~ msgstr "Pootle ئۈلگە كۆرسەت"
-
-#~ msgid ""
-#~ "<div dir=\"ltr\" lang=\"en\">\n"
-#~ "<h2>This is a demo installation of Pootle.</h2>\n"
-#~ "<p>You can also visit the official <a href=\"http://pootle.locamotion.org"
-#~ "\">Pootle server</a>. The server administrator has not provided contact "
-#~ "information or a description of this server. If you are the administrator "
-#~ "for this server, edit this description in your preference file or in the "
-#~ "administration interface.</p>\n"
-#~ "</div>\n"
-#~ msgstr ""
-#~ "<div dir=\"rtl\" lang=\"ug\">\n"
-#~ "<h2>بۇ Pootle نىڭ كۆرگەزمە ئورنىتىشىدۇر.</h2>\n"
-#~ "<p>سىز رەسمىي <a href=\"http://pootle.locamotion.org\">Pootle "
-#~ "مۇلازىمېتىر</a>نى زىيارەت قىلالايسىز. مۇلازىمېتىر باشقۇرغۇچى ئالاقە ئۇچۇرى "
-#~ "ياكى بۇ مۇلازىمېتىرنىڭ چۈشەندۈرۈش ئۇچۇرىنى تەمىنلىمىگەن. ئەگەر سىز بۇ "
-#~ "مۇلازىمېتىرنىڭ باشقۇرغۇچىسى بولسىڭىز، مايىللىق ھۆججىتڭىز ياكى باشقۇرۇش "
-#~ "ئارايۈزىدە بۇ چۈشەندۈرۈشنى تەھرىرلەڭ.</p>\n"
-#~ "</div>\n"
 
 #~ msgid "The page will be independently available in /about/<slug>/"
 #~ msgstr "بۇ بەت /about/<slug>/ دا مۇستەقىل تۇرىدۇ"

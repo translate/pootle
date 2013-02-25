@@ -5,9 +5,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.1\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-21 17:18+0100\n"
-"PO-Revision-Date: 2013-01-01 18:42+0000\n"
-"Last-Translator: Johannes <Johannes.Ahlers@futura4retail.com>\n"
+"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"PO-Revision-Date: 2013-02-23 21:18+0000\n"
+"Last-Translator: real68er <sebastian@wallroth.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -15,18 +15,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1357065734.0\n"
+"X-POOTLE-MTIME: 1361654320.0\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
 msgstr ""
-"Halten Sie \"Strg\" oder die \"Kommandotaste\" beim Mac gedrückt, um mehr als "
+"Halte die \"Steuerungstaste (Kommandotaste\" beim Mac) gedrückt, um mehr als "
 "einen Eintrag auszuwählen."
 
 #: strings.py:9
 msgid "Enter a valid e-mail address."
-msgstr "Geben Sie eine gültige E-Mail Adresse an."
+msgstr "Geben Sie eine gültige E-Mail Adresse ein."
 
 #: strings.py:10
 msgid ""
@@ -49,7 +49,7 @@ msgstr ""
 
 #: strings.py:13
 msgid "Save and add another"
-msgstr "Speichern und neu hinzufügen"
+msgstr "Speichern und weitere hinzufügen"
 
 #: strings.py:14
 msgid "Save and continue editing"
@@ -68,7 +68,7 @@ msgid ""
 "Please enter a correct username and password. Note that both fields are case-"
 "sensitive."
 msgstr ""
-"Bitte geben Sie einen korrekten User und Kennwort ein. Bitte beachten Sie, "
+"Bitte geben Sie Benutzernamen und Passwort korrekt ein. Bitte beachten Sie, "
 "dass bei beiden Feldern die Groß-und-Kleinschreibung relevant ist."
 
 #. Translators: Email subject line. The variable is the server name shown
@@ -76,7 +76,7 @@ msgstr ""
 #: strings.py:21
 #, python-format
 msgid "Password reset on %s"
-msgstr "Das Kennwort für %s wurde zurück gesetzt."
+msgstr "Passwort zurückgesetzt auf %s"
 
 #. Translators: This is a constructed string that might end up saying
 #. "Add language" or "Add project". If you need to translate that differently,
@@ -113,7 +113,7 @@ msgstr "aktiv"
 #. needed by Django, but 'superuser' is very technical and should be avoided.
 #: strings.py:40
 msgid "superuser status"
-msgstr "Administrator-Status"
+msgstr "Superuser-Status"
 
 #. Translators: The language from which translation will happen
 #: strings.py:43 apps/pootle_app/views/admin/adminprojects.py:44
@@ -128,7 +128,7 @@ msgstr "Zeichenketten für Android"
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:51
 msgid "Privacy Policy"
-msgstr "Datenschutz"
+msgstr "Datenschutzrichtlinie"
 
 #. Translators: Label that refers to the site's legal requirements
 #: strings.py:53
@@ -143,7 +143,7 @@ msgstr "Lizenz"
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:57
 msgid "Contributor License"
-msgstr ""
+msgstr "Lizenzhinweise für Mitwirkende"
 
 #. Translators: Label that refers to the site's terms of use
 #: strings.py:59
@@ -153,7 +153,7 @@ msgstr "Nutzungsbedingungen"
 #. Translators: Label that refers to the site's terms of service
 #: strings.py:61
 msgid "Terms of Service"
-msgstr ""
+msgstr "Service-Bedingungen"
 
 #: apps/contact_form_i18n/forms.py:143
 msgid "Your name"
@@ -193,16 +193,16 @@ msgstr "Speichern"
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/legalpages/forms.py:42
 msgid "URL or content must be provided."
-msgstr "Es muss eine URL oder ein Inhalt angegeben werden."
+msgstr "URL oder Inhalt müssen bereitgestellt werden."
 
 #: apps/legalpages/models.py:31
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 msgid "Active"
-msgstr "aktiv"
+msgstr "Aktiv"
 
 #: apps/legalpages/models.py:32
 msgid "Whether this page is active or not."
-msgstr "Ist diese Seite aktiv."
+msgstr "Egal ob diese Seite aktiv ist oder nicht."
 
 #: apps/legalpages/models.py:34
 msgid "Display on registration"
@@ -210,7 +210,7 @@ msgstr "Anzeigen bei Registrierung"
 
 #: apps/legalpages/models.py:35
 msgid "Whether this page should be displayed on registration."
-msgstr "Soll diese Seite bei der Registrierung angezeigt werden."
+msgstr "Ob diese Seite bei der Registrierung angezeigt werden soll."
 
 #: apps/legalpages/models.py:38 apps/pootle_app/forms.py:30
 #: apps/pootle_notifications/views.py:141
@@ -225,13 +225,13 @@ msgstr "URL"
 #, fuzzy
 msgid "If set, any references to this legal page will redirect to this URL"
 msgstr ""
-"Jeder Verweis auf diese \"legal page\" wird an die hier konfigurierte URL "
-"weiter geleitet."
+"Wenn gesetzt, werden alle Verweise auf diese Seite mit rechtlichen Hinweisen "
+"an diese URL weiter geleitet"
 
 #. Translators: See http://en.wikipedia.org/wiki/Slug_%28web_publishing%29#Slug
 #: apps/legalpages/models.py:43
 msgid "Slug"
-msgstr ""
+msgstr "Sprechende URL"
 
 #: apps/legalpages/models.py:44
 msgid "The page will be available at /about/<slug>/"
@@ -249,13 +249,13 @@ msgstr "Erlaubter Aufschlag: %s"
 #: apps/legalpages/views.py:67
 #, fuzzy
 msgid "Legal page created."
-msgstr "Rechtliche Seite wurde angelegt."
+msgstr "Seite mit rechtlichen Hinweisen wurde angelegt."
 
 #: apps/legalpages/templates/legalpages/admin/edit.html:4
 #: apps/legalpages/templates/legalpages/admin/edit.html:9
 #: apps/legalpages/templates/legalpages/admin/edit.html:16
 msgid "Edit Legal Page"
-msgstr "Rechtliche Seite bearbeiten"
+msgstr "Seite mit rechtlichen Hinweisen bearbeiten"
 
 #: apps/legalpages/templates/legalpages/admin/form.html:17
 #: apps/pootle_terminology/templates/terminology/manage.html:37
@@ -266,15 +266,15 @@ msgstr "Löschen"
 #: apps/legalpages/templates/legalpages/admin/list.html:10
 #: templates/admin_profile_menu.html:9
 msgid "Legal Pages"
-msgstr "Rechtliche Seiten"
+msgstr "Seiten mit rechtlichen Hinweisen"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:17
 msgid "Existing Legal Pages"
-msgstr "Vorhandene rechtliche Seiten"
+msgstr "Vorhandene Seiten mit rechtlichen Hinweisen"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 msgid "Inactive"
-msgstr "inaktiv"
+msgstr "Inaktiv"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 #: apps/pootle_app/templates/admin/edit_links.html:2
@@ -287,7 +287,7 @@ msgstr "Keine Seiten vorhanden."
 
 #: apps/legalpages/templates/legalpages/admin/list.html:31
 msgid "New Legal Page"
-msgstr ""
+msgstr "Neue Seite mit rechtlichen Hinweisen"
 
 #: apps/pootle_app/admin.py:39
 msgid "Language code does not follow the ISO convention"
@@ -665,8 +665,8 @@ msgstr "lxml Version %s installiert."
 #: apps/pootle_app/views/admin/dashboard.py:75
 #, python-format
 msgid ""
-"lxml version %(installed)s is installed. Pootle requires at least version %"
-"(required)s."
+"lxml version %(installed)s is installed. Pootle requires at least version "
+"%(required)s."
 msgstr ""
 "lxml ist in Version %(installed)s installiert. Pootle benötigt mindestens "
 "die Version %(required)s."
@@ -1818,29 +1818,29 @@ msgstr "Überflüssig"
 msgid "Insufficient rights to this translation project."
 msgstr "Sie haben nicht genügend Rechte für dieses Übersetzungsprojekt."
 
-#: apps/pootle_store/views.py:697
+#: apps/pootle_store/views.py:702
 msgid "Comment submission failed."
 msgstr "Die Übertragung des Kommentars ist gescheitert."
 
-#: apps/pootle_store/views.py:818 apps/pootle_store/views.py:883
+#: apps/pootle_store/views.py:823 apps/pootle_store/views.py:888
 msgid "You do not have rights to access translation mode."
 msgstr ""
 "Sie haben keine Berechtigung hier auf den Übersetzungsmodus zuzugreifen."
 
-#: apps/pootle_store/views.py:866
+#: apps/pootle_store/views.py:871
 msgid "Failed to process submission."
 msgstr "Die Übertragung konnte nicht verarbeitet werden."
 
-#: apps/pootle_store/views.py:915
+#: apps/pootle_store/views.py:920
 msgid "Failed to process suggestion."
 msgstr "Der Vorschlag konnte nicht verarbeitet werden."
 
-#: apps/pootle_store/views.py:937
+#: apps/pootle_store/views.py:942
 msgid "You do not have rights to access review mode."
 msgstr ""
 "Sie haben keine Berechtigung hier auf den Begutachtungsmodus zuzugreifen."
 
-#: apps/pootle_store/views.py:1052
+#: apps/pootle_store/views.py:1057
 msgid "The suggestion or vote is not valid any more."
 msgstr "Der Vorschlag oder die Abstimmung sind nicht mehr gültig."
 
@@ -1880,21 +1880,28 @@ msgstr "Meine Vorschläge"
 msgid "My submissions"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:77
+#. Translators: This is a type of filtering criterion that
+#. selects the strings that have been submitted by me at some point
+#. in time but have been overwritten by other users.
+#: apps/pootle_store/templates/store/translate.html:80
+msgid "My overwritten submissions"
+msgstr ""
+
+#: apps/pootle_store/templates/store/translate.html:81
 msgid "Checks"
 msgstr "Prüfungen"
 
-#: apps/pootle_store/templates/store/translate.html:85
+#: apps/pootle_store/templates/store/translate.html:89
 msgid "Previous string"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:85
+#: apps/pootle_store/templates/store/translate.html:89
 msgid ""
 "Go to the previous string (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+Page&nbsp;Up<br/>First page: Ctrl+Shift+Home"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:87
+#: apps/pootle_store/templates/store/translate.html:91
 msgid ""
 "Current page number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
@@ -1902,15 +1909,15 @@ msgstr ""
 "Gege zu Seite (Strg+Shift+U)<br/><br/>Geben Sie die Seitenzahl ein und "
 "drücken dann Enter<br/>um auf die gewünschte Position zu wechseln"
 
-#: apps/pootle_store/templates/store/translate.html:89
+#: apps/pootle_store/templates/store/translate.html:93
 msgid "Total pages"
 msgstr "Seiten insgesamt"
 
-#: apps/pootle_store/templates/store/translate.html:91
+#: apps/pootle_store/templates/store/translate.html:95
 msgid "Next string"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:91
+#: apps/pootle_store/templates/store/translate.html:95
 msgid ""
 "Go to the next string (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
 "+Page&nbsp;Down<br/>Last page: Ctrl+Shift+End"
@@ -1990,20 +1997,22 @@ msgstr "Übersetzung vorschlagen und zum nächsten Eintrag Blättern (Strg+Enter
 
 #: apps/pootle_store/templates/unit/edit.html:131
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
-msgstr ""
+msgstr "In den Übersetzungs-Modus wechseln (Strg+Shift+Leertaste)"
 
 #: apps/pootle_store/templates/unit/edit.html:132
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
-msgstr ""
+msgstr "In den Vorschlags-Modus wechseln (Strg+Shift+Leertaste)"
 
 #: apps/pootle_store/templates/unit/edit.html:135
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr ""
+"Diese Zeichenkette markieren, da sie weiterer Bearbeitung bedarf "
+"(Strg+Leertaste)"
 
 #: apps/pootle_store/templates/unit/edit.html:156
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
-msgstr ""
+msgstr "von <a href=\"%(profile_url)s\">%(reviewer)s</a> geprüft"
 
 #: apps/pootle_store/templates/unit/edit.html:166
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
@@ -2271,7 +2280,7 @@ msgstr ""
 #: apps/pootle_translationproject/models.py:488
 #, python-format
 msgid "Failed to update from version control: %(error)s"
-msgstr ""
+msgstr "Aktualisierung aus der Versionskontrolle fehlgeschlagen: %(error)s"
 
 #: apps/pootle_translationproject/models.py:556
 #, python-format
@@ -2313,9 +2322,9 @@ msgid "Committed all files under <em>%(path)s</em> to version control"
 msgstr ""
 
 #: apps/pootle_translationproject/models.py:658
-#, python-format
+#, fuzzy, python-format
 msgid "Failed to commit to version control: %(error)s"
-msgstr ""
+msgstr "Aktualisierung aus der Versionskontrolle fehlgeschlagen: %(error)s"
 
 #: apps/pootle_translationproject/models.py:716
 #, python-format
@@ -2562,6 +2571,24 @@ msgstr "Geben Sie eine Zahl ein"
 #: middleware/captcha.py:158
 msgid "Incorrect"
 msgstr "Falsch"
+
+#: settings/10-base.conf:9
+msgid "Pootle Demo"
+msgstr "Pootle-Demo"
+
+#. Translators: Change the language code (en) to your language code, and replace
+#. ltr with rtl if you language is written from right to left.
+#: settings/10-base.conf:13
+msgid ""
+"<div dir=\"ltr\" lang=\"en\">\n"
+"<h2>This is a demo installation of Pootle.</h2>\n"
+"<p>You can also visit the official <a href=\"http://pootle.locamotion.org"
+"\">Pootle server</a>. The server administrator has not provided contact "
+"information or a description of this server. If you are the administrator "
+"for this server, edit this description in your preference file or in the "
+"administration interface.</p>\n"
+"</div>\n"
+msgstr ""
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"
@@ -3231,9 +3258,6 @@ msgstr "Anmelden."
 #, fuzzy
 #~ msgid "A few seconds ago"
 #~ msgstr "Vor ein paar Sekunden"
-
-#~ msgid "Pootle Demo"
-#~ msgstr "Pootle-Demo"
 
 #~ msgid "The page will be independently available in /about/<slug>/"
 #~ msgstr "Diese Seite wird unabhängig unter /about/<slug>/ verfügbar sein."

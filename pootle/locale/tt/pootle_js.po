@@ -2,7 +2,6 @@
 # Copyright (C) 2013 Zuza Software Foundation (Translate.org.za)
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"

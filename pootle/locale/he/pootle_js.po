@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-21 17:19+0100\n"
-"PO-Revision-Date: 2012-11-29 10:01+0000\n"
-"Last-Translator: amire80 <amir.aharoni@mail.huji.ac.il>\n"
+"PO-Revision-Date: 2013-02-22 06:37+0000\n"
+"Last-Translator: Yaron <sh.yaron@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1354183275.0\n"
+"X-POOTLE-MTIME: 1361515053.0\n"
 
 #: static/js/common.js:43
 msgid "Expand details"
@@ -44,7 +44,7 @@ msgstr "אין תוצאות."
 #: static/js/editor.js:726
 #, c-format
 msgid "<a href=\"%s\">String %s</a>"
-msgstr ""
+msgstr "<a href=\"%s\">מחרוזת %s</a>"
 
 #: static/js/editor.js:786
 msgid "Error while connecting to the server"
@@ -64,11 +64,11 @@ msgstr "שגיאה בלתי ידועה"
 
 #: static/js/editor.js:1338
 msgid "Congratulations, you walked through all strings."
-msgstr ""
+msgstr "ברכות, עברת על כל המחרוזות."
 
 #: static/js/editor.js:1340 static/js/editor.js.c:1364
 msgid "Return to the overview page."
-msgstr ""
+msgstr "חזרה לעמוד הסקירה."
 
 #: static/js/editor.js:1359
 msgid "You reached the beginning of the list"
@@ -76,7 +76,7 @@ msgstr "הגעת לתחילת הרשימה"
 
 #: static/js/editor.js:1362
 msgid "You reached the end of the list."
-msgstr ""
+msgstr "הגעת לסוף הרשימה."
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
@@ -88,66 +88,66 @@ msgstr "%s% התאמה"
 
 #: static/js/editor.js:1804
 msgid "Similar translations"
-msgstr ""
+msgstr "תרגומים דומים"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:7
 msgid "More"
-msgstr ""
+msgstr "יותר"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:10
 msgid "Hide"
-msgstr ""
+msgstr "הסתרה"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:13
 msgid "Less"
-msgstr ""
+msgstr "פחות"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:16
 msgid "Show"
-msgstr ""
+msgstr "הצגה"
 
 #: static/js/utils.js:76
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "לפני שנה"
+msgstr[1] "לפני %s שנים"
 
 #: static/js/utils.js:79
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "לפני שבוע"
+msgstr[1] "לפני %s שבועות"
 
 #: static/js/utils.js:82
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "אתמול"
+msgstr[1] "לפני %s ימים"
 
 #: static/js/utils.js:85
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "לפני שעה"
+msgstr[1] "לפני %s שעות"
 
 #: static/js/utils.js:88
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "לפני דקה"
+msgstr[1] "לפני %s דקות"
 
 #: static/js/utils.js:96
 msgid "A few seconds ago"
-msgstr ""
+msgstr "לפני מספר שניות"
 
 #, c-format
 #~ msgid "<a href=\"%s\">Unit %s</a>"

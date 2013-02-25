@@ -6,56 +6,61 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-21 17:18+0100\n"
-"PO-Revision-Date: 2010-07-30 09:16+0200\n"
-"Last-Translator: admin <>\n"
+"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"PO-Revision-Date: 2013-02-22 07:39+0000\n"
+"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.5.0-beta1\n"
+"X-POOTLE-MTIME: 1361518744.0\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
-msgstr ""
+msgstr "Tahan \"Control\" atau \"Command\" pada Mac, untuk memilih lebih dari satu."
 
 #: strings.py:9
 msgid "Enter a valid e-mail address."
-msgstr ""
+msgstr "Masukkan alamat surel yang valid."
 
 #: strings.py:10
 msgid ""
 "That e-mail address doesn't have an associated user account. Are you sure "
 "you've registered?"
 msgstr ""
+"Alamat surel tersebut tak memiliki akun pengguna yang terkait. Apakah Anda "
+"yakin sudah terdaftar?"
 
 #: strings.py:11
 msgid "This field is required."
-msgstr ""
+msgstr "Ruas ini perlu diisi."
 
 #: strings.py:12
 #, python-format
 msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
 msgstr ""
+"Pastikan bahwa nilai ini berisi paling banyak %(max)d karakter (sekarang %"
+"(length)d)."
 
 #: strings.py:13
 msgid "Save and add another"
-msgstr ""
+msgstr "Simpan dan tambah yang lain"
 
 #: strings.py:14
 msgid "Save and continue editing"
-msgstr ""
+msgstr "Simpan dan teruskan menyunting"
 
 #: strings.py:15
 msgid "Add"
-msgstr ""
+msgstr "Tambah"
 
 #: strings.py:16
 msgid "Change"
-msgstr ""
+msgstr "Ubah"
 
 #: strings.py:17 apps/pootle_profile/forms.py:64
 msgid ""
@@ -99,8 +104,9 @@ msgid "e-mail address"
 msgstr "Alamat Email"
 
 #: strings.py:36
+#, fuzzy
 msgid "active"
-msgstr ""
+msgstr "Aktifkan"
 
 #. Translators: Please translate this simply as "Administrator". This string is
 #. needed by Django, but 'superuser' is very technical and should be avoided.
@@ -189,8 +195,9 @@ msgstr ""
 
 #: apps/legalpages/models.py:31
 #: apps/legalpages/templates/legalpages/admin/list.html:22
+#, fuzzy
 msgid "Active"
-msgstr ""
+msgstr "Aktifkan"
 
 #: apps/legalpages/models.py:32
 msgid "Whether this page is active or not."
@@ -261,8 +268,9 @@ msgid "Existing Legal Pages"
 msgstr ""
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
+#, fuzzy
 msgid "Inactive"
-msgstr ""
+msgstr "Aktifkan"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 #: apps/pootle_app/templates/admin/edit_links.html:2
@@ -635,8 +643,8 @@ msgstr ""
 #: apps/pootle_app/views/admin/dashboard.py:75
 #, python-format
 msgid ""
-"lxml version %(installed)s is installed. Pootle requires at least version %"
-"(required)s."
+"lxml version %(installed)s is installed. Pootle requires at least version "
+"%(required)s."
 msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:82
@@ -987,8 +995,9 @@ msgid "Repeated word"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:46
+#, fuzzy
 msgid "E-mail"
-msgstr ""
+msgstr "Email"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Ending punctuation"
@@ -1031,8 +1040,9 @@ msgid "Newlines"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:57
+#, fuzzy
 msgid "Number of plurals"
-msgstr ""
+msgstr "Jumlah Jamak"
 
 #: apps/pootle_misc/checks.py:58
 msgid "Don't translate words"
@@ -1043,8 +1053,9 @@ msgid "Numbers"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:60
+#, fuzzy
 msgid "Options"
-msgstr ""
+msgstr "Opsi"
 
 #: apps/pootle_misc/checks.py:61
 msgid "printf()"
@@ -1423,16 +1434,18 @@ msgid "Email only to recently active users"
 msgstr ""
 
 #: apps/pootle_notifications/views.py:151
+#, fuzzy
 msgid "All Projects"
-msgstr ""
+msgstr "Semua proyek"
 
 #: apps/pootle_notifications/views.py:155
 msgid "Project Selection"
 msgstr ""
 
 #: apps/pootle_notifications/views.py:163
+#, fuzzy
 msgid "All Languages"
-msgstr ""
+msgstr "Semua bahasa"
 
 #: apps/pootle_notifications/views.py:167
 msgid "Language Selection"
@@ -1695,29 +1708,29 @@ msgstr ""
 msgid "Insufficient rights to this translation project."
 msgstr ""
 
-#: apps/pootle_store/views.py:697
+#: apps/pootle_store/views.py:702
 msgid "Comment submission failed."
 msgstr ""
 
-#: apps/pootle_store/views.py:818 apps/pootle_store/views.py:883
+#: apps/pootle_store/views.py:823 apps/pootle_store/views.py:888
 #, fuzzy
 msgid "You do not have rights to access translation mode."
 msgstr "Anda tidak mempunyai hak untuk mengubah terjemahan di sini"
 
-#: apps/pootle_store/views.py:866
+#: apps/pootle_store/views.py:871
 msgid "Failed to process submission."
 msgstr ""
 
-#: apps/pootle_store/views.py:915
+#: apps/pootle_store/views.py:920
 msgid "Failed to process suggestion."
 msgstr ""
 
-#: apps/pootle_store/views.py:937
+#: apps/pootle_store/views.py:942
 #, fuzzy
 msgid "You do not have rights to access review mode."
 msgstr "Anda tidak mempunyai hak untuk mengubah terjemahan di sini"
 
-#: apps/pootle_store/views.py:1052
+#: apps/pootle_store/views.py:1057
 msgid "The suggestion or vote is not valid any more."
 msgstr ""
 
@@ -1748,42 +1761,50 @@ msgid "Incomplete"
 msgstr ""
 
 #: apps/pootle_store/templates/store/translate.html:75
+#, fuzzy
 msgid "My suggestions"
-msgstr ""
+msgstr "Saran:"
 
 #: apps/pootle_store/templates/store/translate.html:76
 msgid "My submissions"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:77
+#. Translators: This is a type of filtering criterion that
+#. selects the strings that have been submitted by me at some point
+#. in time but have been overwritten by other users.
+#: apps/pootle_store/templates/store/translate.html:80
+msgid "My overwritten submissions"
+msgstr ""
+
+#: apps/pootle_store/templates/store/translate.html:81
 msgid "Checks"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:85
+#: apps/pootle_store/templates/store/translate.html:89
 msgid "Previous string"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:85
+#: apps/pootle_store/templates/store/translate.html:89
 msgid ""
 "Go to the previous string (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+Page&nbsp;Up<br/>First page: Ctrl+Shift+Home"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:87
+#: apps/pootle_store/templates/store/translate.html:91
 msgid ""
 "Current page number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:89
+#: apps/pootle_store/templates/store/translate.html:93
 msgid "Total pages"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:91
+#: apps/pootle_store/templates/store/translate.html:95
 msgid "Next string"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:91
+#: apps/pootle_store/templates/store/translate.html:95
 msgid ""
 "Go to the next string (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
 "+Page&nbsp;Down<br/>Last page: Ctrl+Shift+End"
@@ -1927,8 +1948,9 @@ msgid "Hide Timeline"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:233
+#, fuzzy
 msgid "User suggestions"
-msgstr ""
+msgstr "Lihat Saran"
 
 #: apps/pootle_store/templates/unit/edit.html:251
 msgid "Accept suggestion"
@@ -2402,6 +2424,24 @@ msgstr ""
 msgid "Incorrect"
 msgstr ""
 
+#: settings/10-base.conf:9
+msgid "Pootle Demo"
+msgstr "Demo Pootle"
+
+#. Translators: Change the language code (en) to your language code, and replace
+#. ltr with rtl if you language is written from right to left.
+#: settings/10-base.conf:13
+msgid ""
+"<div dir=\"ltr\" lang=\"en\">\n"
+"<h2>This is a demo installation of Pootle.</h2>\n"
+"<p>You can also visit the official <a href=\"http://pootle.locamotion.org"
+"\">Pootle server</a>. The server administrator has not provided contact "
+"information or a description of this server. If you are the administrator "
+"for this server, edit this description in your preference file or in the "
+"administration interface.</p>\n"
+"</div>\n"
+msgstr ""
+
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"
 msgstr ""
@@ -2778,8 +2818,9 @@ msgstr "Sebuah akun Pootle telah dibuat untuk Anda dengan menggunakan alamat ema
 "ini.\n"
 
 #: templates/registration/activation_email.html:6
+#, fuzzy
 msgid "To activation your account, follow this link:"
-msgstr ""
+msgstr "Untuk mengaktifkan akun anda, ikuti link ini:\n"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2992,9 +3033,6 @@ msgstr "Masuk"
 #~ msgid "%d file"
 #~ msgid_plural "%d files"
 #~ msgstr[0] "Tunggal%d berkasJamak%d berkas"
-
-#~ msgid "Pootle Demo"
-#~ msgstr "Demo Pootle"
 
 #~ msgid "Translated percentage"
 #~ msgstr "Persentase terjemahan"

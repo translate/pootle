@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-21 17:18+0100\n"
-"PO-Revision-Date: 2012-12-31 15:45+0000\n"
+"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"PO-Revision-Date: 2013-02-22 13:38+0000\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: eu\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1356968729.0\n"
+"X-POOTLE-MTIME: 1361540306.0\n"
 
 #: strings.py:8
 msgid ""
@@ -662,8 +662,8 @@ msgstr "lxml %s bertsioa instalatuta dago."
 #: apps/pootle_app/views/admin/dashboard.py:75
 #, python-format
 msgid ""
-"lxml version %(installed)s is installed. Pootle requires at least version %"
-"(required)s."
+"lxml version %(installed)s is installed. Pootle requires at least version "
+"%(required)s."
 msgstr ""
 "lxml %(installed)s bertsioa instalatuta. Gutxienez %(required)s bertsioa "
 "behar da."
@@ -772,8 +772,8 @@ msgid ""
 "The \"from\" address used to send registration emails is not specified. Also "
 "review the mail server settings."
 msgstr ""
-"Erregistroko e-postak bidaltzeko helbideko elektronikoa zehaztu gabe dago. "
-"Baita ere berrikusi posta-zerbitzariaren ezarpenak."
+"Erregistroko mezuak bidaltzeko erabiltzen den \"nork\" helbidea zehaztu gabe "
+"dago. Baita ere berrikusi posta-zerbitzariaren ezarpenak."
 
 #: apps/pootle_app/views/admin/dashboard.py:151
 msgid ""
@@ -1795,27 +1795,27 @@ msgstr "Zaharkitua"
 msgid "Insufficient rights to this translation project."
 msgstr "Baimenik nahikorik ez itzulpen-proiektu honetarako."
 
-#: apps/pootle_store/views.py:697
+#: apps/pootle_store/views.py:702
 msgid "Comment submission failed."
 msgstr "Huts egin du iruzkina bidaltzean."
 
-#: apps/pootle_store/views.py:818 apps/pootle_store/views.py:883
+#: apps/pootle_store/views.py:823 apps/pootle_store/views.py:888
 msgid "You do not have rights to access translation mode."
 msgstr "Ez daukazu itzulpen modua atzitzeko baimenik."
 
-#: apps/pootle_store/views.py:866
+#: apps/pootle_store/views.py:871
 msgid "Failed to process submission."
 msgstr "Huts egin du bidalketa prozesatzean."
 
-#: apps/pootle_store/views.py:915
+#: apps/pootle_store/views.py:920
 msgid "Failed to process suggestion."
 msgstr "Huts egin du gomendioa prozesatzean."
 
-#: apps/pootle_store/views.py:937
+#: apps/pootle_store/views.py:942
 msgid "You do not have rights to access review mode."
 msgstr "Ez daukazu berrikuspen modua atzitzeko baimenik."
 
-#: apps/pootle_store/views.py:1052
+#: apps/pootle_store/views.py:1057
 msgid "The suggestion or vote is not valid any more."
 msgstr "Gomendioa edo bozka dagoeneko ez da baliozkoa."
 
@@ -1851,17 +1851,24 @@ msgstr "Nire gomendioak"
 
 #: apps/pootle_store/templates/store/translate.html:76
 msgid "My submissions"
-msgstr ""
+msgstr "Nire bidalketak"
 
-#: apps/pootle_store/templates/store/translate.html:77
+#. Translators: This is a type of filtering criterion that
+#. selects the strings that have been submitted by me at some point
+#. in time but have been overwritten by other users.
+#: apps/pootle_store/templates/store/translate.html:80
+msgid "My overwritten submissions"
+msgstr "Nire gainidatzitako bidalketak"
+
+#: apps/pootle_store/templates/store/translate.html:81
 msgid "Checks"
 msgstr "Egiaztapenak"
 
-#: apps/pootle_store/templates/store/translate.html:85
+#: apps/pootle_store/templates/store/translate.html:89
 msgid "Previous string"
 msgstr "Aurreko katea"
 
-#: apps/pootle_store/templates/store/translate.html:85
+#: apps/pootle_store/templates/store/translate.html:89
 msgid ""
 "Go to the previous string (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+Page&nbsp;Up<br/>First page: Ctrl+Shift+Home"
@@ -1869,7 +1876,7 @@ msgstr ""
 "Joan aurreko katera (Ktrl+Gora)<br/><br/>Baita ere:<br/>Aurreko  orria: "
 "Ktrl+Shift+Orria&nbsp;Gora<br/>Lehen orria: Ktrl+Shift+Hasiera"
 
-#: apps/pootle_store/templates/store/translate.html:87
+#: apps/pootle_store/templates/store/translate.html:91
 msgid ""
 "Current page number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
@@ -1877,15 +1884,15 @@ msgstr ""
 "Uneko orri-zenbakia (Ktrl+Shift+U)<br/><br/>Idatzi zenbakia eta sakatu "
 "'Sartu'<br/>edozein posiziotara joateko"
 
-#: apps/pootle_store/templates/store/translate.html:89
+#: apps/pootle_store/templates/store/translate.html:93
 msgid "Total pages"
 msgstr "Orriak guztira"
 
-#: apps/pootle_store/templates/store/translate.html:91
+#: apps/pootle_store/templates/store/translate.html:95
 msgid "Next string"
 msgstr "Hurrengo katea"
 
-#: apps/pootle_store/templates/store/translate.html:91
+#: apps/pootle_store/templates/store/translate.html:95
 msgid ""
 "Go to the next string (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
 "+Page&nbsp;Down<br/>Last page: Ctrl+Shift+End"
@@ -1963,20 +1970,20 @@ msgstr "Gomendatu itzulpena eta joan hurrengo katera (Ktrl+Enter)"
 
 #: apps/pootle_store/templates/unit/edit.html:131
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
-msgstr ""
+msgstr "Aldatu itzulpeneko modura (Ktrl+Shift+Zuriunea)"
 
 #: apps/pootle_store/templates/unit/edit.html:132
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
-msgstr ""
+msgstr "Aldatu gomendatzeko modura (Ktrl+Shift+Zuriunea)"
 
 #: apps/pootle_store/templates/unit/edit.html:135
 msgid "Mark this string as needing further work (Ctrl+Space)"
-msgstr ""
+msgstr "Markatu kate hau lantzeke dagoela (Ktrl+Zuriunea)"
 
 #: apps/pootle_store/templates/unit/edit.html:156
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
-msgstr ""
+msgstr "<a href=\"%(profile_url)s\">%(reviewer)s</a> erabiltzaileak berrikusia"
 
 #: apps/pootle_store/templates/unit/edit.html:166
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
@@ -2521,6 +2528,32 @@ msgstr "Idatzi zenbaki bat"
 #: middleware/captcha.py:158
 msgid "Incorrect"
 msgstr "Okerra"
+
+#: settings/10-base.conf:9
+msgid "Pootle Demo"
+msgstr "Pootle Demoa"
+
+#. Translators: Change the language code (en) to your language code, and replace
+#. ltr with rtl if you language is written from right to left.
+#: settings/10-base.conf:13
+msgid ""
+"<div dir=\"ltr\" lang=\"en\">\n"
+"<h2>This is a demo installation of Pootle.</h2>\n"
+"<p>You can also visit the official <a href=\"http://pootle.locamotion.org"
+"\">Pootle server</a>. The server administrator has not provided contact "
+"information or a description of this server. If you are the administrator "
+"for this server, edit this description in your preference file or in the "
+"administration interface.</p>\n"
+"</div>\n"
+msgstr ""
+"<div dir=\"ltr\" lang=\"eu\">\n"
+"<h2 class=\"title\">Pootleren demo instalazioa da hau.</h2>\n"
+"<p class=\"about\"><a href=\"http://pootle.locamotion.org\">Pootle "
+"zerbitzari</a> ofiziala ere bisita dezakezu. Zerbitzariaren kudeatzaileak ez "
+"du harremanetarako informaziorik edo deskribapenik eman zerbitzari "
+"honentzat. Zerbitzariaren administratzailea bazara, editatu deskribapen hau "
+" zure hobespen-fitxategian edo kudeatzeko interfazean.</p>\n"
+"</div>"
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"
@@ -3190,28 +3223,6 @@ msgstr "Hasi saioa."
 
 #~ msgid "A few seconds ago"
 #~ msgstr "Duela segundo gutxi"
-
-#~ msgid "Pootle Demo"
-#~ msgstr "Pootle Demoa"
-
-#~ msgid ""
-#~ "<div dir=\"ltr\" lang=\"en\">\n"
-#~ "<h2>This is a demo installation of Pootle.</h2>\n"
-#~ "<p>You can also visit the official <a href=\"http://pootle.locamotion.org"
-#~ "\">Pootle server</a>. The server administrator has not provided contact "
-#~ "information or a description of this server. If you are the administrator "
-#~ "for this server, edit this description in your preference file or in the "
-#~ "administration interface.</p>\n"
-#~ "</div>\n"
-#~ msgstr ""
-#~ "<div dir=\"ltr\" lang=\"eu\">\n"
-#~ "<h2 class=\"title\">Pootleren demo instalazioa da hau.</h2>\n"
-#~ "<p class=\"about\"><a href=\"http://pootle.locamotion.org\">Pootle "
-#~ "zerbitzari</a> ofiziala ere bisita dezakezu. Zerbitzariaren kudeatzaileak ez "
-#~ "du harremanetarako informaziorik edo deskribapenik eman zerbitzari "
-#~ "honentzat. Zerbitzariaren administratzailea bazara, editatu deskribapen hau "
-#~ " zure hobespen-fitxategian edo kudeatzeko interfazean.</p>\n"
-#~ "</div>"
 
 #~ msgid "slug"
 #~ msgstr "slug-a"

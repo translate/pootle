@@ -6,16 +6,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-21 17:18+0100\n"
-"PO-Revision-Date: 2010-08-03 00:58+0200\n"
-"Last-Translator: Anonymous Pootle User\n"
+"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"PO-Revision-Date: 2013-02-23 14:59+0000\n"
+"Last-Translator: Fulup Jakez <fulup.jakez@ofis-bzh.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: br\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.5.0-beta1\n"
+"X-POOTLE-MTIME: 1361631567.0\n"
 
 #: strings.py:8
 msgid ""
@@ -24,7 +25,7 @@ msgstr ""
 
 #: strings.py:9
 msgid "Enter a valid e-mail address."
-msgstr ""
+msgstr "Merkit ur chomlec'h postel reizh."
 
 #: strings.py:10
 msgid ""
@@ -34,7 +35,7 @@ msgstr ""
 
 #: strings.py:11
 msgid "This field is required."
-msgstr ""
+msgstr "Ret eo leuniañ ar vaezienn-mañ."
 
 #: strings.py:12
 #, python-format
@@ -43,32 +44,34 @@ msgstr ""
 
 #: strings.py:13
 msgid "Save and add another"
-msgstr ""
+msgstr "Enrollañ hag ouzhpennañ unan all"
 
 #: strings.py:14
 msgid "Save and continue editing"
-msgstr ""
+msgstr "Enrollañ ha kenderc'hel da zegas kemmoù"
 
 #: strings.py:15
 msgid "Add"
-msgstr ""
+msgstr "Ouzhpennañ"
 
 #: strings.py:16
 msgid "Change"
-msgstr ""
+msgstr "Kemmañ"
 
 #: strings.py:17 apps/pootle_profile/forms.py:64
 msgid ""
 "Please enter a correct username and password. Note that both fields are case-"
 "sensitive."
 msgstr ""
+"Merkit un anv implijer hag ur ger-tremen reizh. Taolit pled e vez kemeret e "
+"kont ar pennlizherennoù en div vaezienn."
 
 #. Translators: Email subject line. The variable is the server name shown
 #. on the top of each page
 #: strings.py:21
 #, python-format
 msgid "Password reset on %s"
-msgstr ""
+msgstr "Adderaouekaat ar ger-tremen war %s"
 
 #. Translators: This is a constructed string that might end up saying
 #. "Add language" or "Add project". If you need to translate that differently,
@@ -77,102 +80,101 @@ msgstr ""
 #: strings.py:27
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Ouzhpennañ %(name)s"
 
 #. Translators: This link takes the user to the page where the currently
 #. configured option is displayed (such as a project or language)
 #: strings.py:31
 msgid "View on site"
-msgstr ""
+msgstr "Gwelet war al lec'hienn"
 
 #: strings.py:33
 msgid "first name"
-msgstr ""
+msgstr "anv-bihan"
 
 #: strings.py:34
 msgid "last name"
-msgstr ""
+msgstr "anv-familh"
 
 #: strings.py:35
-#, fuzzy
 msgid "e-mail address"
-msgstr "Chomlec'h postel"
+msgstr "chomlec'h postel"
 
 #: strings.py:36
 msgid "active"
-msgstr ""
+msgstr "oberiant"
 
 #. Translators: Please translate this simply as "Administrator". This string is
 #. needed by Django, but 'superuser' is very technical and should be avoided.
 #: strings.py:40
 msgid "superuser status"
-msgstr ""
+msgstr "statud merour"
 
 #. Translators: The language from which translation will happen
 #: strings.py:43 apps/pootle_app/views/admin/adminprojects.py:44
 #: apps/pootle_project/models.py:92
 msgid "Source Language"
-msgstr ""
+msgstr "Yezh orin"
 
 #: strings.py:45
 msgid "Android strings"
-msgstr ""
+msgstr "neudennadoù Android"
 
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:51
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Politikerezh prevezded"
 
 #. Translators: Label that refers to the site's legal requirements
 #: strings.py:53
 msgid "Legal"
-msgstr ""
+msgstr "Titouroù lezennel"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:55
 msgid "License"
-msgstr ""
+msgstr "Aotre-implijout"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:57
 msgid "Contributor License"
-msgstr ""
+msgstr "Aotre kemer perzh"
 
 #. Translators: Label that refers to the site's terms of use
 #: strings.py:59
 msgid "Terms of Use"
-msgstr ""
+msgstr "Termenoù implijout"
 
 #. Translators: Label that refers to the site's terms of service
 #: strings.py:61
 msgid "Terms of Service"
-msgstr ""
+msgstr "Termenoù implijout"
 
 #: apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr ""
+msgstr "Hoc'h anv"
 
 #: apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr ""
+msgstr "Ho chomlec'h postel"
 
 #: apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr ""
+msgstr "Ho kemennadenn"
 
 #: apps/contact_form_i18n/forms.py:260
 msgid "Akismet thinks this message is spam"
-msgstr ""
+msgstr "Ur postel strobus eo hemañ, gouez da Akismet"
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Reizhit ar fazi dindan."
+msgstr[1] "Reizhit ar fazioù dindan."
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
-msgstr ""
+msgstr "Enrollet eo bet an arventennoù ervat."
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: apps/legalpages/templates/legalpages/admin/form.html:15
@@ -181,25 +183,25 @@ msgstr ""
 #: templates/profiles/edit_personal.html:33
 #: templates/profiles/edit_profile.html:25
 msgid "Save"
-msgstr ""
+msgstr "Enrollañ"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/legalpages/forms.py:42
 msgid "URL or content must be provided."
-msgstr ""
+msgstr "Rekis eo merkañ un URL pe un endalc'had."
 
 #: apps/legalpages/models.py:31
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 msgid "Active"
-msgstr ""
+msgstr "Oberiant"
 
 #: apps/legalpages/models.py:32
 msgid "Whether this page is active or not."
-msgstr ""
+msgstr "Resisaat a ra ha bev eo ar bajenn pe get."
 
 #: apps/legalpages/models.py:34
 msgid "Display on registration"
-msgstr ""
+msgstr "Diskouez p'en em enskriver"
 
 #: apps/legalpages/models.py:35
 msgid "Whether this page should be displayed on registration."
@@ -229,7 +231,7 @@ msgstr ""
 
 #: apps/legalpages/models.py:46
 msgid "Content"
-msgstr ""
+msgstr "Endalc'had"
 
 #: apps/legalpages/models.py:47
 #, python-format
@@ -249,21 +251,21 @@ msgstr ""
 #: apps/legalpages/templates/legalpages/admin/form.html:17
 #: apps/pootle_terminology/templates/terminology/manage.html:37
 msgid "Delete"
-msgstr ""
+msgstr "Diverkañ"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:5
 #: apps/legalpages/templates/legalpages/admin/list.html:10
 #: templates/admin_profile_menu.html:9
 msgid "Legal Pages"
-msgstr ""
+msgstr "Pajennoù ar menegoù lezennel"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:17
 msgid "Existing Legal Pages"
-msgstr ""
+msgstr "Pajennoù menegoù lezennel a zo anezho"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 msgid "Inactive"
-msgstr ""
+msgstr "Dioberiant"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 #: apps/pootle_app/templates/admin/edit_links.html:2
@@ -272,15 +274,15 @@ msgstr "Aozañ"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:24
 msgid "No pages yet."
-msgstr ""
+msgstr "Pajenn ebet evit c'hoazh."
 
 #: apps/legalpages/templates/legalpages/admin/list.html:31
 msgid "New Legal Page"
-msgstr ""
+msgstr "Pajenn venegoù lezennel nevez"
 
 #: apps/pootle_app/admin.py:39
 msgid "Language code does not follow the ISO convention"
-msgstr ""
+msgstr "Ne glot ket kod ar yezh gant ar reolad ISO"
 
 #: apps/pootle_app/admin.py:65
 msgid "Project code may only contain letters, numbers and _"
@@ -288,11 +290,11 @@ msgstr ""
 
 #: apps/pootle_app/admin.py:77
 msgid "Advanced Options"
-msgstr ""
+msgstr "Dibarzhioù araokaet"
 
 #: apps/pootle_app/forms.py:31
 msgid "The name for this Pootle server"
-msgstr ""
+msgstr "Anv ar servijer Pootle-mañ"
 
 # resisaat
 #: apps/pootle_app/forms.py:37
@@ -342,11 +344,11 @@ msgstr ""
 
 #: apps/pootle_app/models/suggestion.py:35
 msgid "Pending"
-msgstr ""
+msgstr "O c'hortoz"
 
 #: apps/pootle_app/models/suggestion.py:36
 msgid "Accepted"
-msgstr ""
+msgstr "Degemeret"
 
 #: apps/pootle_app/models/suggestion.py:37
 msgid "Rejected"
@@ -360,23 +362,21 @@ msgstr ""
 #: apps/pootle_app/templates/top_contributers_table.html:12
 #: apps/pootle_misc/browser.py:65
 #: apps/pootle_store/templates/store/translate.html:74
-#, fuzzy
 msgid "Suggestions"
-msgstr "Kinnig :"
+msgstr "Kinnigoù"
 
 #: apps/pootle_app/templates/top_contributers_table.html:13
-#, fuzzy
 msgid "Reviews"
-msgstr "Adwelet"
+msgstr "Gwiriet"
 
 #: apps/pootle_app/templates/top_contributers_table.html:14
 #: apps/pootle_app/templates/admin/dashboard.html:19
 msgid "Submissions"
-msgstr ""
+msgstr "Kinnigoù"
 
 #: apps/pootle_app/templates/top_contributers_table.html:19
 msgid "anonymous users"
-msgstr ""
+msgstr "implijerien dianav"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:4
 #: apps/pootle_misc/stats.py:109 apps/pootle_store/util.py:47
@@ -389,7 +389,7 @@ msgstr "Troet"
 #: apps/pootle_store/util.py:46
 #: apps/pootle_store/templates/store/translate.html:73
 msgid "Needs work"
-msgstr ""
+msgstr "Da adwelet"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:6
 #: apps/pootle_misc/stats.py:115 apps/pootle_store/util.py:45
@@ -399,9 +399,8 @@ msgstr "Didro"
 
 #: apps/pootle_app/templates/admin/admin_general.html:15
 #: apps/pootle_terminology/templates/terminology/manage.html:50
-#, fuzzy
 msgid "Save Changes"
-msgstr "Enrollañ ar cheñchamantoù"
+msgstr "Enrollañ ar c'hemmoù"
 
 #: apps/pootle_app/templates/admin/admin_general_languages.html:4
 #: apps/pootle_app/templates/admin/admin_general_languages.html:9
@@ -429,7 +428,7 @@ msgstr ""
 #: templates/project_menu.html:7 templates/tp_menu.html:9
 #: templates/profiles/profile_detail.html:47
 msgid "Permissions"
-msgstr ""
+msgstr "Aotreoù"
 
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:12
 msgid ""
@@ -472,7 +471,7 @@ msgstr ""
 #: apps/pootle_app/templates/admin/admin_general_settings.html:4
 #: apps/pootle_app/templates/admin/admin_general_settings.html:9
 msgid "General Settings"
-msgstr ""
+msgstr "Arventennoù hollek"
 
 #: apps/pootle_app/templates/admin/admin_general_settings.html:12
 msgid "Configure here the general settings for your site."
@@ -499,11 +498,11 @@ msgstr ""
 
 #: apps/pootle_app/templates/admin/dashboard.html:22
 msgid "Pending suggestions"
-msgstr ""
+msgstr "Kinnigoù o c'hortoz"
 
 #: apps/pootle_app/templates/admin/dashboard.html:31
 msgid "More..."
-msgstr ""
+msgstr "Muioc'h..."
 
 #: apps/pootle_app/templates/admin/dashboard.html:39
 msgid "Support"
@@ -537,9 +536,8 @@ msgid "Dependency Checks"
 msgstr ""
 
 #: apps/pootle_app/templates/admin/dashboard.html:64
-#, fuzzy
 msgid "Optional"
-msgstr "Dibab"
+msgstr "Diret"
 
 #: apps/pootle_app/templates/admin/dashboard.html:72
 msgid "Optimizations"
@@ -581,22 +579,21 @@ msgstr "Emlugañ e Pootle"
 
 #: apps/pootle_app/templates/index/login.html:18
 msgid "Your username and password didn't match. Please try again."
-msgstr ""
+msgstr "Ne glot ket ho ker-tremen gant hoc'h anv implijer. Klaskit en-dro."
 
 #: apps/pootle_app/templates/index/login.html:30
 msgid "Lost your Password?"
-msgstr ""
+msgstr "Kollet ho ker-tremen ?"
 
 #: apps/pootle_app/templates/index/login.html:33
 #: templates/registration/password_reset_form.html:30
 msgid "Don't have an account yet?"
-msgstr ""
+msgstr "Kont ebet evit c'hoazh ?"
 
 #: apps/pootle_app/templates/index/login.html:34
 #: templates/registration/password_reset_form.html:31
-#, fuzzy
 msgid "Register."
-msgstr "Marilhañ"
+msgstr "En em enrollañ."
 
 #: apps/pootle_app/views/admin/adminusers.py:48
 #: templates/user_profile_menu.html:7
@@ -607,7 +604,7 @@ msgstr "Ger-tremen"
 #: apps/pootle_app/views/admin/dashboard.py:48
 #, python-format
 msgid "Translate Toolkit version %s installed."
-msgstr ""
+msgstr "Staliet eo stumm %s an Translate Toolkit."
 
 #: apps/pootle_app/views/admin/dashboard.py:51
 #, python-format
@@ -635,8 +632,8 @@ msgstr ""
 #: apps/pootle_app/views/admin/dashboard.py:75
 #, python-format
 msgid ""
-"lxml version %(installed)s is installed. Pootle requires at least version %"
-"(required)s."
+"lxml version %(installed)s is installed. Pootle requires at least version "
+"%(required)s."
 msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:82
@@ -740,20 +737,19 @@ msgstr ""
 #: apps/pootle_app/views/admin/dashboard.py:199
 #: templates/profiles/profile_detail.html:47
 msgid "Files"
-msgstr ""
+msgstr "Restroù"
 
 #: apps/pootle_app/views/admin/dashboard.py:200
 msgid "Active projects"
-msgstr ""
+msgstr "Raktresoù bev"
 
 #: apps/pootle_app/views/admin/dashboard.py:201
 msgid "Active languages"
-msgstr ""
+msgstr "Yezhoù oberiant"
 
 #: apps/pootle_app/views/admin/dashboard.py:202
-#, fuzzy
 msgid "Translated strings"
-msgstr "Treiñ Ma Neudennadoù"
+msgstr "Neudennadoù troet"
 
 #: apps/pootle_app/views/admin/dashboard.py:203
 msgid "Translated words"
@@ -761,35 +757,33 @@ msgstr "Gerioù troet"
 
 #: apps/pootle_app/views/admin/dashboard.py:204
 msgid "Active users"
-msgstr ""
+msgstr "Implijerien oberiant"
 
 #: apps/pootle_app/views/admin/permissions.py:61
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Members"
-msgstr ""
+msgstr "Izili ar raktres"
 
 #: apps/pootle_app/views/admin/permissions.py:74
 msgid "Language Members"
-msgstr ""
+msgstr "Izili evit ar yezh-mañ"
 
 #: apps/pootle_app/views/admin/permissions.py:79
 msgid "All Users"
-msgstr ""
+msgstr "An holl implijerien"
 
 #: apps/pootle_app/views/admin/util.py:40
-#, fuzzy
 msgid "You do not have rights to administer Pootle."
-msgstr "N'hoc'h eus ket ar gwir da verañ Pootle."
+msgstr "N'hoc'h eus ket gwirioù evit merañ Pootle."
 
 #: apps/pootle_app/views/admin/util.py:58
 #, python-format
-#, fuzzy
 msgid "You do not have rights to administer %s."
-msgstr "N'hoc'h eus ket ar gwir da verañ Pootle."
+msgstr "N'hoc'h eus ket gwirioù evit merañ %s."
 
 #: apps/pootle_app/views/admin/util.py:176
 msgid "No files in this project."
-msgstr ""
+msgstr "Restr ebet evit ar raktres-mañ."
 
 #: apps/pootle_app/views/admin/util.py:209
 msgid "There are errors in the form. Please review the problems below."
@@ -804,13 +798,12 @@ msgstr ""
 #: apps/pootle_misc/browser.py:94 apps/pootle_project/views.py:75
 #, python-format
 msgid "%(percentage)d%% complete"
-msgstr ""
+msgstr "%(dregantad)d%% echu"
 
 #: apps/pootle_app/views/language/view.py:96
 #: apps/pootle_translationproject/views.py:268
-#, fuzzy
 msgid "You do not have rights to access this translation project."
-msgstr "N'oc'h ket aotreet da gemmañ an troidigezhioù amañ"
+msgstr "N'oc'h ket aotreet da sellet ouzh ar raktres treiñ-mañ."
 
 #: apps/pootle_app/views/language/view.py:111
 #: apps/pootle_app/views/language/view.py:137
@@ -831,7 +824,7 @@ msgstr ""
 
 #: apps/pootle_language/models.py:53 apps/pootle_project/models.py:60
 msgid "Code"
-msgstr ""
+msgstr "Kod"
 
 #: apps/pootle_language/models.py:55 apps/pootle_project/models.py:63
 msgid "Full Name"
@@ -849,9 +842,8 @@ msgid "Enter any special characters that users might find difficult to type"
 msgstr ""
 
 #: apps/pootle_language/models.py:66
-#, fuzzy
 msgid "Special Characters"
-msgstr "(arouezennoù ispisial)"
+msgstr "Arouezennoù dibar"
 
 #: apps/pootle_language/models.py:69
 msgid ""
@@ -861,7 +853,7 @@ msgstr ""
 
 #: apps/pootle_language/models.py:73
 msgid "Unknown"
-msgstr ""
+msgstr "Dianav"
 
 #: apps/pootle_language/models.py:76
 msgid "Number of Plurals"
@@ -876,8 +868,8 @@ msgstr "Kevatalenn Liester"
 #, python-format
 msgid "Error reading %d file"
 msgid_plural "Error reading %d files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Fazi e-ser lenn %d restr"
+msgstr[1] "Fazi e-ser lenn %d restr"
 
 #: apps/pootle_language/views.py:115
 #, python-format
@@ -889,12 +881,11 @@ msgstr[1] ""
 #: apps/pootle_language/views.py:158 apps/pootle_project/views.py:169
 #: apps/pootle_translationproject/views.py:347
 msgid "No description yet."
-msgstr ""
+msgstr "Deskrivadur ebet evit c'hoazh."
 
 #: apps/pootle_language/views.py:181
-#, fuzzy
 msgid "You do not have rights to administer this language."
-msgstr "N'oc'h ket aotreet da verañ ar raktres-mañ."
+msgstr "N'oc'h ket aotreet da verañ ar yezh-mañ."
 
 #: apps/pootle_language/templates/language/language_admin.html:15
 msgid "Below you can add, edit, and delete the permissions for this language."
@@ -905,9 +896,8 @@ msgid "Name"
 msgstr "Anv"
 
 #: apps/pootle_misc/browser.py:36
-#, fuzzy
 msgid "Project"
-msgstr "Raktresoù"
+msgstr "Raktres"
 
 #: apps/pootle_misc/browser.py:41 apps/pootle_project/views.py:232
 msgid "Language"
@@ -916,7 +906,7 @@ msgstr "Yezh"
 #. Translators: noun. The graphical representation of translation status
 #: apps/pootle_misc/browser.py:47
 msgid "Progress"
-msgstr ""
+msgstr "Araokadur"
 
 #. Translators: Heading representing the total number of words of a file
 #. or directory
@@ -926,7 +916,7 @@ msgstr "Hollad"
 
 #: apps/pootle_misc/browser.py:59
 msgid "Need Translation"
-msgstr ""
+msgstr "Troidigezh rekis"
 
 #: apps/pootle_misc/browser.py:70
 msgid "Last Activity"
@@ -950,23 +940,23 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:33
 msgid "No category"
-msgstr ""
+msgstr "Hep rummad"
 
 #: apps/pootle_misc/checks.py:37
 msgid "Accelerators"
-msgstr ""
+msgstr "Buanaerioù"
 
 #: apps/pootle_misc/checks.py:38
 msgid "Acronyms"
-msgstr ""
+msgstr "Akronimoù"
 
 #: apps/pootle_misc/checks.py:39
 msgid "Blank"
-msgstr ""
+msgstr "Esaouenn"
 
 #: apps/pootle_misc/checks.py:40
 msgid "Brackets"
-msgstr ""
+msgstr "Krommelloù ha krochedoù"
 
 #: apps/pootle_misc/checks.py:41
 msgid "Compendium conflict"
@@ -986,11 +976,11 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:45
 msgid "Repeated word"
-msgstr ""
+msgstr "Gerioù adlavaret"
 
 #: apps/pootle_misc/checks.py:46
 msgid "E-mail"
-msgstr ""
+msgstr "Postel"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Ending punctuation"
@@ -1018,15 +1008,15 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:53
 msgid "Old KDE comment"
-msgstr ""
+msgstr "Notenn KDE gozh"
 
 #: apps/pootle_misc/checks.py:54
 msgid "Long"
-msgstr ""
+msgstr "Hed"
 
 #: apps/pootle_misc/checks.py:55
 msgid "Must translate words"
-msgstr ""
+msgstr "Da vezañ troet dre ret"
 
 #: apps/pootle_misc/checks.py:56
 msgid "Newlines"
@@ -1034,19 +1024,19 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:57
 msgid "Number of plurals"
-msgstr ""
+msgstr "Niver a liesterioù"
 
 #: apps/pootle_misc/checks.py:58
 msgid "Don't translate words"
-msgstr ""
+msgstr "Arabat treiñ ar gerioù-mañ"
 
 #: apps/pootle_misc/checks.py:59
 msgid "Numbers"
-msgstr ""
+msgstr "Niveroù"
 
 #: apps/pootle_misc/checks.py:60
 msgid "Options"
-msgstr ""
+msgstr "Dibarzhioù"
 
 #: apps/pootle_misc/checks.py:61
 msgid "printf()"
@@ -1099,11 +1089,11 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:74
 msgid "Unchanged"
-msgstr ""
+msgstr "Digemm"
 
 #: apps/pootle_misc/checks.py:75
 msgid "URLs"
-msgstr ""
+msgstr "URLoù"
 
 #: apps/pootle_misc/checks.py:76
 msgid "Valid characters"
@@ -1119,7 +1109,7 @@ msgstr ""
 
 #: apps/pootle_misc/dbinit.py:68
 msgid "Pootle: Install"
-msgstr ""
+msgstr "Pootle: Staliañ"
 
 #: apps/pootle_misc/dbinit.py:69
 #, python-format
@@ -1256,22 +1246,22 @@ msgstr "Lec'hiadurioù"
 
 #: apps/pootle_misc/forms.py:119
 msgid "Source Terms"
-msgstr ""
+msgstr "Mammenn an termenoù"
 
 #: apps/pootle_misc/forms.py:120
 msgid "Target Terms"
-msgstr ""
+msgstr "Termenoù pal"
 
 #: apps/pootle_misc/forms.py:121
 msgid "Definitions"
-msgstr ""
+msgstr "Termenadurioù"
 
 #: apps/pootle_misc/stats.py:91
 #, python-format
 msgid "<a href=\"%(url)s\">%(num)d word</a>"
 msgid_plural "<a href=\"%(url)s\">%(num)d words</a>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<a href=\"%(url)s\">%(num)d ger</a>"
+msgstr[1] "<a href=\"%(url)s\">%(num)d ger</a>"
 
 #: apps/pootle_misc/stats.py:97
 #, python-format
@@ -1282,8 +1272,8 @@ msgstr ""
 #, python-format
 msgid "(%(num)d string)"
 msgid_plural "(%(num)d strings)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "(%(num)d neudennad)"
+msgstr[1] "(%(num)d neudennad)"
 
 #: apps/pootle_misc/stats.py:128
 #, python-format
@@ -1314,7 +1304,7 @@ msgstr[1] ""
 
 #: apps/pootle_misc/stats.py:183
 msgid "Translation is complete"
-msgstr ""
+msgstr "Kaset eo bet an droidigezh da benn vat"
 
 #: apps/pootle_misc/stats.py:194
 #, python-format
@@ -1338,15 +1328,15 @@ msgstr[1] ""
 #, python-format
 msgid "%d word needs attention"
 msgid_plural "%d words need attention"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d ger zo da wiriañ"
+msgstr[1] "%d ger zo da wiriañ"
 
 #: apps/pootle_misc/stats.py:240
 #, python-format
 msgid "%d word untranslated"
 msgid_plural "%d words untranslated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d ger hep treiñ"
+msgstr[1] "%d ger hep treiñ"
 
 #: apps/pootle_misc/stats.py:243
 #, python-format
@@ -1368,52 +1358,51 @@ msgstr ""
 #: apps/pootle_misc/templates/progressbar.html:3
 #, python-format
 msgid "%(percent)s%% complete"
-msgstr ""
+msgstr "%(percent)s%% echu"
 
 #: apps/pootle_misc/templates/search.html:5
 msgid "Search"
 msgstr "Klask"
 
 #: apps/pootle_misc/templates/search.html:7
-#, fuzzy
 msgid "Advanced search"
-msgstr "Klask Pishoc'h"
+msgstr "Klask araokaet"
 
 #: apps/pootle_misc/templatetags/render_pager.py:32
 msgid "First"
-msgstr ""
+msgstr "Kentañ"
 
 #: apps/pootle_misc/templatetags/render_pager.py:34
 msgid "Previous"
-msgstr ""
+msgstr "Kent"
 
 #: apps/pootle_misc/templatetags/render_pager.py:50
 msgid "Next"
-msgstr ""
+msgstr "War-lerc'h"
 
 #: apps/pootle_misc/templatetags/render_pager.py:52
 #, python-format
 msgid "Last (%d)"
-msgstr ""
+msgstr "Diwezhañ (%d)"
 
 #: apps/pootle_notifications/models.py:31
 msgid "Message"
-msgstr ""
+msgstr "Kemennadenn"
 
 #. Translators: The date that the news item was written
 #: apps/pootle_notifications/models.py:33
 msgid "Added"
-msgstr ""
+msgstr "Ouzhpennet"
 
 #: apps/pootle_notifications/views.py:103
 #, python-format
 msgid "News for %(language)s"
-msgstr ""
+msgstr "Keleier evit %(language)s"
 
 #: apps/pootle_notifications/views.py:105
 #, python-format
 msgid "News for %(project)s"
-msgstr ""
+msgstr "Keleier evit %(project)s"
 
 #: apps/pootle_notifications/views.py:111
 #, python-format
@@ -1431,7 +1420,7 @@ msgstr ""
 
 #: apps/pootle_notifications/views.py:140
 msgid "Send email"
-msgstr ""
+msgstr "Kas ur postel"
 
 #: apps/pootle_notifications/views.py:143
 msgid "Email only to recently active users"
@@ -1439,7 +1428,7 @@ msgstr ""
 
 #: apps/pootle_notifications/views.py:151
 msgid "All Projects"
-msgstr ""
+msgstr "An holl raktresoù"
 
 #: apps/pootle_notifications/views.py:155
 msgid "Project Selection"
@@ -1447,11 +1436,11 @@ msgstr ""
 
 #: apps/pootle_notifications/views.py:163
 msgid "All Languages"
-msgstr ""
+msgstr "An holl yezhoù"
 
 #: apps/pootle_notifications/views.py:167
 msgid "Language Selection"
-msgstr ""
+msgstr "Dibab yezh"
 
 #: apps/pootle_notifications/views.py:293
 msgid "View News Item"
@@ -1498,9 +1487,8 @@ msgid "Number of Rows"
 msgstr ""
 
 #: apps/pootle_profile/models.py:100
-#, fuzzy
 msgid "Alternative Source Languages"
-msgstr "Yezh Treiñ all"
+msgstr "Yezhoù orin all"
 
 #: apps/pootle_profile/models.py:150
 msgid "Suggestions Accepted"
@@ -1576,7 +1564,6 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: apps/pootle_project/views.py:210 apps/pootle_project/views.py:278
-#, fuzzy
 msgid "You do not have rights to administer this project."
 msgstr "N'oc'h ket aotreet da verañ ar raktres-mañ."
 
@@ -1613,7 +1600,7 @@ msgstr ""
 
 #: apps/pootle_statistics/models.py:50
 msgid "Comment"
-msgstr ""
+msgstr "Evezhiadenn"
 
 #: apps/pootle_statistics/models.py:95
 msgid "anonymous user"
@@ -1696,9 +1683,8 @@ msgid "Plural Form %d"
 msgstr "Stumm Lies %d"
 
 #: apps/pootle_store/forms.py:296
-#, fuzzy
 msgid "Translator comment"
-msgstr "Evezhiadennoù an Troer"
+msgstr "Evezhiadenn a-berzh an troer"
 
 #: apps/pootle_store/models.py:835
 msgid "Path"
@@ -1712,29 +1698,27 @@ msgstr ""
 msgid "Insufficient rights to this translation project."
 msgstr ""
 
-#: apps/pootle_store/views.py:697
+#: apps/pootle_store/views.py:702
 msgid "Comment submission failed."
 msgstr ""
 
-#: apps/pootle_store/views.py:818 apps/pootle_store/views.py:883
-#, fuzzy
+#: apps/pootle_store/views.py:823 apps/pootle_store/views.py:888
 msgid "You do not have rights to access translation mode."
-msgstr "N'oc'h ket aotreet da gemmañ an troidigezhioù amañ"
+msgstr "N'oc'h ket aotreet da vont e mod treiñ."
 
-#: apps/pootle_store/views.py:866
+#: apps/pootle_store/views.py:871
 msgid "Failed to process submission."
 msgstr ""
 
-#: apps/pootle_store/views.py:915
+#: apps/pootle_store/views.py:920
 msgid "Failed to process suggestion."
 msgstr ""
 
-#: apps/pootle_store/views.py:937
-#, fuzzy
+#: apps/pootle_store/views.py:942
 msgid "You do not have rights to access review mode."
-msgstr "N'oc'h ket aotreet da gemmañ an troidigezhioù amañ"
+msgstr "N'oc'h ket aotreet d'ober gant ar mod adlenn."
 
-#: apps/pootle_store/views.py:1052
+#: apps/pootle_store/views.py:1057
 msgid "The suggestion or vote is not valid any more."
 msgstr ""
 
@@ -1766,41 +1750,48 @@ msgstr ""
 
 #: apps/pootle_store/templates/store/translate.html:75
 msgid "My suggestions"
-msgstr ""
+msgstr "Ma c'hinnigoù"
 
 #: apps/pootle_store/templates/store/translate.html:76
 msgid "My submissions"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:77
+#. Translators: This is a type of filtering criterion that
+#. selects the strings that have been submitted by me at some point
+#. in time but have been overwritten by other users.
+#: apps/pootle_store/templates/store/translate.html:80
+msgid "My overwritten submissions"
+msgstr ""
+
+#: apps/pootle_store/templates/store/translate.html:81
 msgid "Checks"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:85
+#: apps/pootle_store/templates/store/translate.html:89
 msgid "Previous string"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:85
+#: apps/pootle_store/templates/store/translate.html:89
 msgid ""
 "Go to the previous string (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+Page&nbsp;Up<br/>First page: Ctrl+Shift+Home"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:87
+#: apps/pootle_store/templates/store/translate.html:91
 msgid ""
 "Current page number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:89
+#: apps/pootle_store/templates/store/translate.html:93
 msgid "Total pages"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:91
+#: apps/pootle_store/templates/store/translate.html:95
 msgid "Next string"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:91
+#: apps/pootle_store/templates/store/translate.html:95
 msgid ""
 "Go to the next string (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
 "+Page&nbsp;Down<br/>Last page: Ctrl+Shift+End"
@@ -1808,7 +1799,7 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
-msgstr ""
+msgstr "Evezhiadenn : "
 
 #: apps/pootle_store/templates/unit/edit.html:11
 msgid "File:"
@@ -1820,11 +1811,11 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:28
 msgid "Comments:"
-msgstr ""
+msgstr "Evezhiadennoù :"
 
 #: apps/pootle_store/templates/unit/edit.html:32
 msgid "Locations:"
-msgstr ""
+msgstr "Lec'hiadurioù :"
 
 #: apps/pootle_store/templates/unit/edit.html:41
 msgid "Terminology:"
@@ -1945,7 +1936,7 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:233
 msgid "User suggestions"
-msgstr ""
+msgstr "Kinnigoù a-berzh an implijerien"
 
 #: apps/pootle_store/templates/unit/edit.html:251
 msgid "Accept suggestion"
@@ -1956,7 +1947,6 @@ msgid "Reject suggestion"
 msgstr "Disteuler ar c'hinnig"
 
 #: apps/pootle_store/templates/unit/edit.html:263
-#, fuzzy
 msgid "Remove suggestion"
 msgstr "Disteuler ar c'hinnig"
 
@@ -1970,7 +1960,7 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/term_edit.html:40
 msgid "Comment: "
-msgstr ""
+msgstr "Evezhiadenn : "
 
 #: apps/pootle_store/templates/unit/timeline.html:4
 #: apps/pootle_store/templates/unit/timeline.html:14
@@ -2054,9 +2044,8 @@ msgstr ""
 
 # resisaat
 #: apps/pootle_terminology/templates/terminology/term_edit.html:11
-#, fuzzy
 msgid "Description..."
-msgstr "Deskrivadur"
+msgstr "Deskrivadur..."
 
 #: apps/pootle_terminology/templates/terminology/term_edit.html:18
 msgid "Details..."
@@ -2261,20 +2250,17 @@ msgid "Error while extracting archive"
 msgstr ""
 
 #: apps/pootle_translationproject/views.py:657
-#, fuzzy
 msgid "You do not have rights to overwrite files here."
-msgstr "N'oc'h ket aotreet da frikañ restroù amañ"
+msgstr "N'oc'h ket aotreet da frikañ restroù amañ."
 
 #: apps/pootle_translationproject/views.py:661
-#, fuzzy
 msgid "You do not have rights to upload new files here."
-msgstr "N'oc'h ket aotreet da enporzhiañ restroù nevez amañ"
+msgstr "N'oc'h ket aotreet da enporzhiañ restroù nevez amañ."
 
 #: apps/pootle_translationproject/views.py:665
 #: apps/pootle_translationproject/views.py:669
-#, fuzzy
 msgid "You do not have rights to upload files here."
-msgstr "N'oc'h ket aotreet da enporzhiañ restroù amañ"
+msgstr "N'oc'h ket aotreet da enporzhiañ restroù amañ."
 
 #: apps/pootle_translationproject/views.py:713
 msgid "Overwrite the current file if it exists"
@@ -2352,19 +2338,16 @@ msgid "Nothing to show"
 msgstr ""
 
 #: apps/registration/forms.py:36
-#, fuzzy
 msgid "username"
-msgstr "Anv Implijer"
+msgstr "anv implijer"
 
 #: apps/registration/forms.py:39
-#, fuzzy
 msgid "email address"
-msgstr "Chomlec'h postel"
+msgstr "chomlec'h postel"
 
 #: apps/registration/forms.py:41
-#, fuzzy
 msgid "password"
-msgstr "Ger-tremen"
+msgstr "ger-tremen"
 
 #: apps/registration/forms.py:43
 msgid "password (again)"
@@ -2420,6 +2403,24 @@ msgstr ""
 
 #: middleware/captcha.py:158
 msgid "Incorrect"
+msgstr ""
+
+#: settings/10-base.conf:9
+msgid "Pootle Demo"
+msgstr "Diskouez petra eo pootle"
+
+#. Translators: Change the language code (en) to your language code, and replace
+#. ltr with rtl if you language is written from right to left.
+#: settings/10-base.conf:13
+msgid ""
+"<div dir=\"ltr\" lang=\"en\">\n"
+"<h2>This is a demo installation of Pootle.</h2>\n"
+"<p>You can also visit the official <a href=\"http://pootle.locamotion.org"
+"\">Pootle server</a>. The server administrator has not provided contact "
+"information or a description of this server. If you are the administrator "
+"for this server, edit this description in your preference file or in the "
+"administration interface.</p>\n"
+"</div>\n"
 msgstr ""
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
@@ -2541,7 +2542,6 @@ msgid "Contact Us"
 msgstr ""
 
 #: templates/base.html:161
-#, fuzzy
 msgid "About this Pootle Server"
 msgstr "Diwar-benn ar servijer Pootle-mañ"
 
@@ -2587,7 +2587,6 @@ msgid "Administrate your language permissions"
 msgstr ""
 
 #: templates/project_menu.html:3
-#, fuzzy
 msgid "Project main page"
 msgstr "Pajenn degemer ar raktres"
 
@@ -2632,7 +2631,6 @@ msgid "Administrate your project permissions"
 msgstr ""
 
 #: templates/user_profile_base.html:4 templates/user_profile_base.html.py:7
-#, fuzzy
 msgid "My Account"
 msgstr "Ma C'hont"
 
@@ -2717,7 +2715,6 @@ msgid "Last Name"
 msgstr ""
 
 #: templates/profiles/edit_personal.html:28
-#, fuzzy
 msgid "Email address"
 msgstr "Chomlec'h postel"
 
@@ -2763,7 +2760,7 @@ msgstr ""
 #: templates/profiles/profile_list.html:11
 #: templates/registration/registration_form.html:20
 msgid "Username"
-msgstr "Anv Implijer"
+msgstr "anv implijer"
 
 #: templates/profiles/profile_list.html:12
 msgid "First name"
@@ -2794,11 +2791,13 @@ msgstr ""
 #: templates/registration/activation_email.txt:2
 #, fuzzy
 msgid "A Pootle account has been created for you using this email address."
-msgstr "Krouet ez eus bet ur gont Pootle evidoc'h a ra gant ar chomlec'h postel-mañ.\n"
+msgstr ""
+"Krouet ez eus bet ur gont Pootle evidoc'h; ober a ra gant ar chomlec'h "
+"postel-mañ."
 
 #: templates/registration/activation_email.html:6
 msgid "To activation your account, follow this link:"
-msgstr ""
+msgstr "Da weredekaat ho kont, klikit war al liamm-mañ :"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2811,30 +2810,25 @@ msgstr ""
 
 #: templates/registration/activation_email.html:11
 #: templates/registration/activation_email.txt:9
-#, fuzzy
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message."
-msgstr "Kaset eo ar postel-mañ da wiriañ ha reizh eo ar chomlec'h postel e "
-"gwirionez. Mar ne fell ket deoc'h krouiñ ur gont, arabat ober netra gant ar "
-"gemennadenn.\n"
+msgstr ""
+"Kaset eo ar postel-mañ da wiriañ ha reizh eo ar chomlec'h postel e "
+"gwirionez. Mar ne fell ket deoc'h krouiñ ur gont, n'eo ket dav ober van ouzh "
+"ar gemennadenn-mañ."
 
 #: templates/registration/activation_email.txt:3
-#, fuzzy
 msgid "To activate your account, follow this link:"
-msgstr "Da weredekaat ho kont, klikit war al liamm-mañ :\n"
+msgstr "Da weredekaat ho kont, klikit war al liamm-mañ :"
 
 #: templates/registration/activation_email.txt:6
-#, fuzzy
 msgid "Your activation code is:"
-msgstr ""
-"Setu aze ho kod gweredekaat :\n"
-"%s\n"
+msgstr "Setu aze ho kod gweredekaat :"
 
 #: templates/registration/activation_email_subject.txt:2
-#, fuzzy
 msgid "Pootle registration"
-msgstr "Marilhañ Pootle"
+msgstr "enrolladur war Pootle"
 
 #: templates/registration/password_change_done.html:5
 #: templates/registration/password_change_done.html:8
@@ -2915,7 +2909,6 @@ msgid "New Password"
 msgstr ""
 
 #: templates/registration/password_reset_confirm.html:26
-#, fuzzy
 msgid "Confirm Password"
 msgstr "Kadarnaat ar ger-tremen"
 
@@ -3002,18 +2995,14 @@ msgid "Already have an account?"
 msgstr ""
 
 #: templates/registration/registration_form.html:57
-#, fuzzy
 msgid "Log In."
-msgstr "Emlugañ"
+msgstr "Kevreañ."
 
 #, python-format
 #~ msgid "%d file"
 #~ msgid_plural "%d files"
 #~ msgstr[0] "%d restr"
 #~ msgstr[1] "%d restr"
-
-#~ msgid "Pootle Demo"
-#~ msgstr "Diskouez petra eo pootle"
 
 #~ msgid "Translated percentage"
 #~ msgstr "Dregantad treiñ"

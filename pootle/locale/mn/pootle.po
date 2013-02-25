@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-21 17:18+0100\n"
-"PO-Revision-Date: 2010-04-10 18:32+0200\n"
+"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"PO-Revision-Date: 2013-02-22 07:34+0000\n"
 "Last-Translator: cris anderson <anderson861@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: mn\n"
@@ -15,7 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.5.0-beta1\n"
+"X-POOTLE-MTIME: 1361518470.0\n"
 
 #: strings.py:8
 msgid ""
@@ -155,11 +156,11 @@ msgstr ""
 
 #: apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr ""
+msgstr "Таны нэр"
 
 #: apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr ""
+msgstr "Таны имэйл хаяг"
 
 #: apps/contact_form_i18n/forms.py:148
 msgid "Your message"
@@ -196,7 +197,7 @@ msgstr ""
 #: apps/legalpages/models.py:31
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 msgid "Active"
-msgstr ""
+msgstr "Идэвхтэй"
 
 #: apps/legalpages/models.py:32
 msgid "Whether this page is active or not."
@@ -267,8 +268,9 @@ msgid "Existing Legal Pages"
 msgstr ""
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
+#, fuzzy
 msgid "Inactive"
-msgstr ""
+msgstr "идэвхтэй"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 #: apps/pootle_app/templates/admin/edit_links.html:2
@@ -367,7 +369,7 @@ msgstr "Шилдэг ажилтан"
 #: apps/pootle_misc/browser.py:65
 #: apps/pootle_store/templates/store/translate.html:74
 msgid "Suggestions"
-msgstr "Санлууд"
+msgstr "Саналууд"
 
 #: apps/pootle_app/templates/top_contributers_table.html:13
 msgid "Reviews"
@@ -499,9 +501,8 @@ msgid ""
 msgstr "Та энд Pootle серверийн бүх хэрэглэгчдийг нэмж, хасаж, засварлаж чадна."
 
 #: apps/pootle_app/templates/admin/dashboard.html:13
-#, fuzzy
 msgid "Server Statistics"
-msgstr "Хэрэглэгчийн статистик"
+msgstr "Серверийн Статистик"
 
 #: apps/pootle_app/templates/admin/dashboard.html:22
 msgid "Pending suggestions"
@@ -513,7 +514,7 @@ msgstr ""
 
 #: apps/pootle_app/templates/admin/dashboard.html:39
 msgid "Support"
-msgstr ""
+msgstr "Дэмжилт"
 
 #: apps/pootle_app/templates/admin/dashboard.html:42
 msgid ""
@@ -544,7 +545,7 @@ msgstr "Хамаарлыг шалгах"
 
 #: apps/pootle_app/templates/admin/dashboard.html:64
 msgid "Optional"
-msgstr "Сонголт"
+msgstr "Заавал бус"
 
 #: apps/pootle_app/templates/admin/dashboard.html:72
 msgid "Optimizations"
@@ -552,7 +553,7 @@ msgstr "Оновчлол"
 
 #: apps/pootle_app/templates/admin/general_settings_form.html:16
 msgid "Cancel"
-msgstr ""
+msgstr "Цуцлах"
 
 #: apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
@@ -634,15 +635,15 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:71
 #, python-format
-#, python-format, fuzzy
+#, python-format, python-format
 msgid "lxml version %s is installed."
-msgstr "Django %s хувилбар суусан."
+msgstr "lxml %s хувилбар суусан."
 
 #: apps/pootle_app/views/admin/dashboard.py:75
 #, python-format
 msgid ""
-"lxml version %(installed)s is installed. Pootle requires at least version %"
-"(required)s."
+"lxml version %(installed)s is installed. Pootle requires at least version "
+"%(required)s."
 msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:82
@@ -774,11 +775,11 @@ msgstr "Файлууд"
 
 #: apps/pootle_app/views/admin/dashboard.py:200
 msgid "Active projects"
-msgstr ""
+msgstr "Идэвхтэй төсөлүүд"
 
 #: apps/pootle_app/views/admin/dashboard.py:201
 msgid "Active languages"
-msgstr ""
+msgstr "Идэвхтэй хэлүүд"
 
 #: apps/pootle_app/views/admin/dashboard.py:202
 #, fuzzy
@@ -791,7 +792,7 @@ msgstr "Орчуулсан үгс"
 
 #: apps/pootle_app/views/admin/dashboard.py:204
 msgid "Active users"
-msgstr ""
+msgstr "Идэвхтэй хэрэглэгч"
 
 #: apps/pootle_app/views/admin/permissions.py:61
 #: apps/pootle_app/views/admin/permissions.py:67
@@ -993,11 +994,11 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:39
 msgid "Blank"
-msgstr ""
+msgstr "Хоосон"
 
 #: apps/pootle_misc/checks.py:40
 msgid "Brackets"
-msgstr ""
+msgstr "Хаалт"
 
 #: apps/pootle_misc/checks.py:41
 msgid "Compendium conflict"
@@ -1020,8 +1021,9 @@ msgid "Repeated word"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:46
+#, fuzzy
 msgid "E-mail"
-msgstr ""
+msgstr "Э-майл"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Ending punctuation"
@@ -1053,7 +1055,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:54
 msgid "Long"
-msgstr ""
+msgstr "Урт"
 
 #: apps/pootle_misc/checks.py:55
 msgid "Must translate words"
@@ -1064,8 +1066,9 @@ msgid "Newlines"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:57
+#, fuzzy
 msgid "Number of plurals"
-msgstr ""
+msgstr "Олон тооны хэлбэрийн тоо"
 
 #: apps/pootle_misc/checks.py:58
 msgid "Don't translate words"
@@ -1077,7 +1080,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:60
 msgid "Options"
-msgstr ""
+msgstr "Сонголт"
 
 #: apps/pootle_misc/checks.py:61
 msgid "printf()"
@@ -1213,8 +1216,9 @@ msgid "Fixing permission table..."
 msgstr ""
 
 #: apps/pootle_misc/dbupdate.py:180 apps/pootle_misc/dbupdate.py:257
+#, fuzzy
 msgid "Updating existing database tables..."
-msgstr ""
+msgstr "Өгөгдлийн сангийн хүснэгтүүдийг үүсгэж байна..."
 
 #: apps/pootle_misc/dbupdate.py:221
 msgid "Removing potentially incorrect cached stats, will be recalculated..."
@@ -1290,12 +1294,14 @@ msgid "Locations"
 msgstr "Байрлал"
 
 #: apps/pootle_misc/forms.py:119
+#, fuzzy
 msgid "Source Terms"
-msgstr ""
+msgstr "Эх бичвэр"
 
 #: apps/pootle_misc/forms.py:120
+#, fuzzy
 msgid "Target Terms"
-msgstr ""
+msgstr "Товлосон бичвэр"
 
 #: apps/pootle_misc/forms.py:121
 msgid "Definitions"
@@ -1348,8 +1354,9 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: apps/pootle_misc/stats.py:183
+#, fuzzy
 msgid "Translation is complete"
-msgstr ""
+msgstr "Орчуулгууд бүрэн дууссан"
 
 #: apps/pootle_misc/stats.py:194
 #, python-format
@@ -1405,15 +1412,15 @@ msgstr ""
 
 #: apps/pootle_misc/templates/progressbar.html:3
 #, python-format
+#, fuzzy, python-format
 msgid "%(percent)s%% complete"
-msgstr ""
+msgstr "%(percent)s%% дууссан"
 
 #: apps/pootle_misc/templates/search.html:5
 msgid "Search"
 msgstr "Хайх"
 
 #: apps/pootle_misc/templates/search.html:7
-#, fuzzy
 msgid "Advanced search"
 msgstr "Нарийвчилсан Хайлт"
 
@@ -1432,7 +1439,7 @@ msgstr "Дараах"
 #: apps/pootle_misc/templatetags/render_pager.py:52
 #, python-format
 msgid "Last (%d)"
-msgstr ""
+msgstr "Сүүлийн (%d)"
 
 #: apps/pootle_notifications/models.py:31
 msgid "Message"
@@ -1477,7 +1484,7 @@ msgstr ""
 
 #: apps/pootle_notifications/views.py:151
 msgid "All Projects"
-msgstr ""
+msgstr "Бүх төслүүд"
 
 #: apps/pootle_notifications/views.py:155
 msgid "Project Selection"
@@ -1485,11 +1492,11 @@ msgstr ""
 
 #: apps/pootle_notifications/views.py:163
 msgid "All Languages"
-msgstr ""
+msgstr "Бүх Хэл"
 
 #: apps/pootle_notifications/views.py:167
 msgid "Language Selection"
-msgstr ""
+msgstr "Хэл Сонголт"
 
 #: apps/pootle_notifications/views.py:293
 msgid "View News Item"
@@ -1615,9 +1622,8 @@ msgstr[0] "Нийт %(languages)d хэл, орчуулсан %(average)d%%"
 msgstr[1] "Нийт %(languages)d хэл, орчуулсан %(average)d%%"
 
 #: apps/pootle_project/views.py:210 apps/pootle_project/views.py:278
-#, fuzzy
 msgid "You do not have rights to administer this project."
-msgstr "Та энэ хэл зохион байгуулах эрхгүй."
+msgstr "Та энэ төсөл зохион байгуулах эрхгүй."
 
 #: apps/pootle_project/views.py:221
 #: apps/pootle_translationproject/actions.py:201
@@ -1625,7 +1631,6 @@ msgid "Update against templates"
 msgstr ""
 
 #: apps/pootle_project/templates/project/admin_permissions.html:24
-#, fuzzy
 msgid "Below you can add, edit, and delete the permissions for this project."
 msgstr "Доор та энэ хэлний хандах эрхийг нэмж, устгаж, засаж чадна."
 
@@ -1641,19 +1646,19 @@ msgstr "Та энд төслийн хэлийг нэмж, устгаж, заса
 
 #: apps/pootle_statistics/models.py:47
 msgid "Source"
-msgstr ""
+msgstr "Эх үүсвэр"
 
 #: apps/pootle_statistics/models.py:48
 msgid "Target"
-msgstr ""
+msgstr "Зорилго"
 
 #: apps/pootle_statistics/models.py:49
 msgid "State"
-msgstr ""
+msgstr "Төлөв"
 
 #: apps/pootle_statistics/models.py:50
 msgid "Comment"
-msgstr ""
+msgstr "Тайлбар"
 
 #: apps/pootle_statistics/models.py:95
 msgid "anonymous user"
@@ -1752,27 +1757,27 @@ msgstr ""
 msgid "Insufficient rights to this translation project."
 msgstr ""
 
-#: apps/pootle_store/views.py:697
+#: apps/pootle_store/views.py:702
 msgid "Comment submission failed."
 msgstr ""
 
-#: apps/pootle_store/views.py:818 apps/pootle_store/views.py:883
+#: apps/pootle_store/views.py:823 apps/pootle_store/views.py:888
 msgid "You do not have rights to access translation mode."
 msgstr "Танд орчуулгын горимд хандах эрх алга."
 
-#: apps/pootle_store/views.py:866
+#: apps/pootle_store/views.py:871
 msgid "Failed to process submission."
 msgstr ""
 
-#: apps/pootle_store/views.py:915
+#: apps/pootle_store/views.py:920
 msgid "Failed to process suggestion."
 msgstr ""
 
-#: apps/pootle_store/views.py:937
+#: apps/pootle_store/views.py:942
 msgid "You do not have rights to access review mode."
 msgstr "Танд хяналтын горимд хандах эрх алга."
 
-#: apps/pootle_store/views.py:1052
+#: apps/pootle_store/views.py:1057
 msgid "The suggestion or vote is not valid any more."
 msgstr ""
 
@@ -1803,42 +1808,50 @@ msgid "Incomplete"
 msgstr ""
 
 #: apps/pootle_store/templates/store/translate.html:75
+#, fuzzy
 msgid "My suggestions"
-msgstr ""
+msgstr "Санлууд"
 
 #: apps/pootle_store/templates/store/translate.html:76
 msgid "My submissions"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:77
+#. Translators: This is a type of filtering criterion that
+#. selects the strings that have been submitted by me at some point
+#. in time but have been overwritten by other users.
+#: apps/pootle_store/templates/store/translate.html:80
+msgid "My overwritten submissions"
+msgstr ""
+
+#: apps/pootle_store/templates/store/translate.html:81
 msgid "Checks"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:85
+#: apps/pootle_store/templates/store/translate.html:89
 msgid "Previous string"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:85
+#: apps/pootle_store/templates/store/translate.html:89
 msgid ""
 "Go to the previous string (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+Page&nbsp;Up<br/>First page: Ctrl+Shift+Home"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:87
+#: apps/pootle_store/templates/store/translate.html:91
 msgid ""
 "Current page number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:89
+#: apps/pootle_store/templates/store/translate.html:93
 msgid "Total pages"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:91
+#: apps/pootle_store/templates/store/translate.html:95
 msgid "Next string"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:91
+#: apps/pootle_store/templates/store/translate.html:95
 msgid ""
 "Go to the next string (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
 "+Page&nbsp;Down<br/>Last page: Ctrl+Shift+End"
@@ -1846,11 +1859,11 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
-msgstr ""
+msgstr "Тайлбар:"
 
 #: apps/pootle_store/templates/unit/edit.html:11
 msgid "File:"
-msgstr ""
+msgstr "Файл:"
 
 #: apps/pootle_store/templates/unit/edit.html:18
 msgid "Context:"
@@ -1858,11 +1871,11 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:28
 msgid "Comments:"
-msgstr ""
+msgstr "Тайлбарууд:"
 
 #: apps/pootle_store/templates/unit/edit.html:32
 msgid "Locations:"
-msgstr ""
+msgstr "Байршил:"
 
 #: apps/pootle_store/templates/unit/edit.html:41
 msgid "Terminology:"
@@ -1983,7 +1996,7 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:233
 msgid "User suggestions"
-msgstr ""
+msgstr "Хэрэглэгчийн санал"
 
 #: apps/pootle_store/templates/unit/edit.html:251
 msgid "Accept suggestion"
@@ -1994,9 +2007,8 @@ msgid "Reject suggestion"
 msgstr "Татгалзагдсан санал"
 
 #: apps/pootle_store/templates/unit/edit.html:263
-#, fuzzy
 msgid "Remove suggestion"
-msgstr "Татгалзагдсан санал"
+msgstr "Санал устгах"
 
 #: apps/pootle_store/templates/unit/term_edit.html:21
 msgid "Your current vote. Click to remove this vote."
@@ -2008,7 +2020,7 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/term_edit.html:40
 msgid "Comment: "
-msgstr ""
+msgstr "Тайлбар:"
 
 #: apps/pootle_store/templates/unit/timeline.html:4
 #: apps/pootle_store/templates/unit/timeline.html:14
@@ -2062,7 +2074,7 @@ msgstr ""
 
 #: apps/pootle_terminology/templates/terminology/manage.html:35
 msgid "Term"
-msgstr ""
+msgstr "Томъёо"
 
 #: apps/pootle_terminology/templates/terminology/manage.html:36
 msgid "Translation"
@@ -2090,17 +2102,16 @@ msgid "Once you upload files, you will be able to add, edit and delete terms."
 msgstr ""
 
 #: apps/pootle_terminology/templates/terminology/term_edit.html:11
-#, fuzzy
 msgid "Description..."
-msgstr "Тайлбар"
+msgstr "Тайлбар..."
 
 #: apps/pootle_terminology/templates/terminology/term_edit.html:18
 msgid "Details..."
-msgstr ""
+msgstr "Дэлгэрэнгүй..."
 
 #: apps/pootle_translationproject/actions.py:59
 msgid "Download (.zip)"
-msgstr ""
+msgstr "Татаж авах (.zip)"
 
 #: apps/pootle_translationproject/actions.py:73
 msgid "Download XLIFF"
@@ -2112,7 +2123,7 @@ msgstr ""
 
 #: apps/pootle_translationproject/actions.py:77
 msgid "Export"
-msgstr ""
+msgstr "Гаргах"
 
 #: apps/pootle_translationproject/actions.py:78
 msgid "Export translations"
@@ -2124,7 +2135,7 @@ msgstr "Татах"
 
 #: apps/pootle_translationproject/actions.py:81
 msgid "Download file"
-msgstr ""
+msgstr "Файлыг татаж авах"
 
 #: apps/pootle_translationproject/actions.py:96
 #: apps/pootle_translationproject/actions.py:254
@@ -2155,12 +2166,12 @@ msgstr "VCS рүү бичих"
 #. Translators: "all" here refers to all files and sub directories in a directory/project.
 #: apps/pootle_translationproject/actions.py:159
 msgid "Update all from VCS"
-msgstr ""
+msgstr "VCS-с шинэчлэх"
 
 #. Translators: "all" here refers to all files and sub directories in a directory/project.
 #: apps/pootle_translationproject/actions.py:174
 msgid "Commit all to VCS"
-msgstr ""
+msgstr "VCS рүү бичих"
 
 #: apps/pootle_translationproject/actions.py:187
 msgid "Rescan project files"
@@ -2350,8 +2361,9 @@ msgid ""
 msgstr "Доор та энэ хэлний хандах эрхийг нэмж, устгаж, засаж чадна."
 
 #: apps/pootle_translationproject/templates/translation_project/fileop_forms.html:23
+#, fuzzy
 msgid "Update from Version Control"
-msgstr ""
+msgstr "Бүгдийг хувилбарын удирдлагаас шинэчлэх"
 
 #: apps/pootle_translationproject/templates/translation_project/fileop_forms.html:24
 msgid ""
@@ -2364,7 +2376,7 @@ msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:53
 msgid "Actions"
-msgstr ""
+msgstr "Үйлдлүүд"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:101
 #, python-format
@@ -2454,6 +2466,24 @@ msgstr ""
 
 #: middleware/captcha.py:158
 msgid "Incorrect"
+msgstr "Буруу"
+
+#: settings/10-base.conf:9
+msgid "Pootle Demo"
+msgstr "Пүүтл Дэмо"
+
+#. Translators: Change the language code (en) to your language code, and replace
+#. ltr with rtl if you language is written from right to left.
+#: settings/10-base.conf:13
+msgid ""
+"<div dir=\"ltr\" lang=\"en\">\n"
+"<h2>This is a demo installation of Pootle.</h2>\n"
+"<p>You can also visit the official <a href=\"http://pootle.locamotion.org"
+"\">Pootle server</a>. The server administrator has not provided contact "
+"information or a description of this server. If you are the administrator "
+"for this server, edit this description in your preference file or in the "
+"administration interface.</p>\n"
+"</div>\n"
 msgstr ""
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
@@ -2497,7 +2527,7 @@ msgstr ""
 
 #: templates/admin_profile_menu.html:3
 msgid "Info"
-msgstr ""
+msgstr "Тухай"
 
 #: templates/admin_profile_menu.html:4
 msgid "Configure the general settings for your site"
@@ -2577,8 +2607,9 @@ msgstr "Энэ Пүүтл сэрвэрийн тухай"
 
 #: templates/base.html:162 templates/about/contributors.html:6
 #: templates/about/contributors.html:9
+#, fuzzy
 msgid "Contributors"
-msgstr ""
+msgstr "Шилдэг ажилтан"
 
 #: templates/captcha-xhr.html:14 templates/captcha.html:4
 #: templates/captcha.html.py:7
@@ -2597,7 +2628,7 @@ msgstr ""
 
 #: templates/captcha-xhr.html:20
 msgid "Confirm"
-msgstr ""
+msgstr "Батал"
 
 #: templates/language_menu.html:3
 msgid "Language main page"
@@ -2719,7 +2750,7 @@ msgstr ""
 #: templates/contact_form/contact_form_sent.html:8
 #: templates/contact_form/contact_form_sent.html:13
 msgid "Message Sent"
-msgstr ""
+msgstr "Mессежийг илгээсэн"
 
 #: templates/contact_form/contact_form_sent.html:14
 msgid "Thank you for your feedback."
@@ -2826,8 +2857,9 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "Энэ имэйл хаягаар Pootle данс үүслээ."
 
 #: templates/registration/activation_email.html:6
+#, fuzzy
 msgid "To activation your account, follow this link:"
-msgstr ""
+msgstr "Дансаа идэвхжүүлэхийн тулд дараах холбоосыг дагана уу:"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -3057,9 +3089,6 @@ msgstr "Нэвтрэх."
 #~ msgid_plural "%d files"
 #~ msgstr[0] "%d файл"
 #~ msgstr[1] "%d файлууд"
-
-#~ msgid "Pootle Demo"
-#~ msgstr "Пүүтл Дэмо"
 
 #~ msgid "Needs review"
 #~ msgstr "Хянах шаардлагатай"

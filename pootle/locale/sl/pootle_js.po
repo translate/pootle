@@ -7,34 +7,37 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-21 17:19+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2013-02-22 15:02+0000\n"
+"Last-Translator: Domen <dbc334@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.9.1-pre\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
+"X-Generator: Pootle 2.5.0-beta1\n"
+"X-POOTLE-MTIME: 1361545379.0\n"
 
 #: static/js/common.js:43
 msgid "Expand details"
-msgstr ""
+msgstr "Razširi podrobnosti"
 
 #: static/js/common.js:43
 msgid "Collapse details"
-msgstr ""
+msgstr "Skrči podrobnosti"
 
 #: static/js/common.js:77
 msgid "Are you sure you want to continue?"
-msgstr ""
+msgstr "Ste prepričani, da želite nadaljevati?"
 
 #: static/js/common.js:78
 msgid "This operation cannot be undone."
-msgstr ""
+msgstr "Dejanja ni mogoče razveljaviti."
 
 #: static/js/editor.js:409 static/js/editor.js.c:1489
 msgid "No results."
-msgstr ""
+msgstr "Ni najdenih zadetkov."
 
 #. Translators: Permalink to the current unit in the editor.
 #. The first '%s' is the permalink URL.
@@ -42,39 +45,39 @@ msgstr ""
 #: static/js/editor.js:726
 #, c-format
 msgid "<a href=\"%s\">String %s</a>"
-msgstr ""
+msgstr "<a href=\"%s\">Niz %s</a>"
 
 #: static/js/editor.js:786
 msgid "Error while connecting to the server"
-msgstr ""
+msgstr "Napaka pri povezovanju na strežnik"
 
 #: static/js/editor.js:788
 msgid "Server error"
-msgstr ""
+msgstr "Napaka strežnika"
 
 #: static/js/editor.js:790
 msgid "The server seems down. Try again later."
-msgstr ""
+msgstr "Kaže, da strežnik ne deluje. Poskusite znova pozneje."
 
 #: static/js/editor.js:798
 msgid "Unknown error"
-msgstr ""
+msgstr "Neznana napaka"
 
 #: static/js/editor.js:1338
 msgid "Congratulations, you walked through all strings."
-msgstr ""
+msgstr "Čestitamo, sprehodili ste se čez vse nize."
 
 #: static/js/editor.js:1340 static/js/editor.js.c:1364
 msgid "Return to the overview page."
-msgstr ""
+msgstr "Vrni se na začetno stran."
 
 #: static/js/editor.js:1359
 msgid "You reached the beginning of the list"
-msgstr ""
+msgstr "Dosegli ste začetek seznama"
 
 #: static/js/editor.js:1362
 msgid "You reached the end of the list."
-msgstr ""
+msgstr "Dosegli ste konec seznama."
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
@@ -82,67 +85,77 @@ msgstr ""
 #: static/js/editor.js:1762
 #, c-format
 msgid "%s% match"
-msgstr ""
+msgstr "%s-% ujemanje"
 
 #: static/js/editor.js:1804
 msgid "Similar translations"
-msgstr ""
+msgstr "Podobni prevodi"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:7
 msgid "More"
-msgstr ""
+msgstr "Več"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:10
 msgid "Hide"
-msgstr ""
+msgstr "Skrij"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:13
 msgid "Less"
-msgstr ""
+msgstr "Manj"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:16
 msgid "Show"
-msgstr ""
+msgstr "Pokaži"
 
 #: static/js/utils.js:76
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Pred %s letom"
+msgstr[1] "Pred %s letoma"
+msgstr[2] "Pred %s leti"
+msgstr[3] "Pred %s leti"
 
 #: static/js/utils.js:79
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Pred %s tednom"
+msgstr[1] "Pred %s tednoma"
+msgstr[2] "Pred %s tedni"
+msgstr[3] "Pred %s tedni"
 
 #: static/js/utils.js:82
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Včeraj"
+msgstr[1] "Predvčerajšnjim"
+msgstr[2] "Pred %s dnevi"
+msgstr[3] "Pred %s dnevi"
 
 #: static/js/utils.js:85
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Pred eno uro"
+msgstr[1] "Pred dvema urama"
+msgstr[2] "Pred %s urami"
+msgstr[3] "Pred %s urami"
 
 #: static/js/utils.js:88
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Pred minuto"
+msgstr[1] "Pred dvema minutama"
+msgstr[2] "Pred %s minutami"
+msgstr[3] "Pred %s minutami"
 
 #: static/js/utils.js:96
 msgid "A few seconds ago"
-msgstr ""
+msgstr "Pred nekaj sekundami"

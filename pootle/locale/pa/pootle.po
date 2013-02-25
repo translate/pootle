@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-21 17:18+0100\n"
-"PO-Revision-Date: 2010-08-03 17:56+0200\n"
+"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"PO-Revision-Date: 2013-02-22 05:58+0000\n"
 "Last-Translator: A S <apreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa\n"
@@ -15,8 +15,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.0-beta2\n"
+"X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
+"X-POOTLE-MTIME: 1361512681.0\n"
 
 #: strings.py:8
 msgid ""
@@ -32,6 +33,8 @@ msgid ""
 "That e-mail address doesn't have an associated user account. Are you sure "
 "you've registered?"
 msgstr ""
+"ਉਹ ਈਮੇਲ ਐਡਰੈਸ ਨਾਲ ਸਬੰਧਿਤ ਯੂਜ਼ਰ ਖਾਤਾ ਨਹੀਂ ਹੈ। ਕੀ ਤੁਹਾਨੂੰ ਪੱਕਾ ਹੈ ਕਿ ਤੁਸੀਂ "
+"ਰਜਿਸਟਰ ਹੋ?"
 
 #: strings.py:11
 msgid "This field is required."
@@ -69,7 +72,7 @@ msgstr ""
 #: strings.py:21
 #, python-format
 msgid "Password reset on %s"
-msgstr ""
+msgstr "%s ਉੱਤੇ ਪਾਸਵਰਡ ਮੁੜ-ਸੈੱਟ"
 
 #. Translators: This is a constructed string that might end up saying
 #. "Add language" or "Add project". If you need to translate that differently,
@@ -121,32 +124,32 @@ msgstr "ਐਡਰੋਇਡ ਲਾਈਨਾਂ"
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:51
 msgid "Privacy Policy"
-msgstr ""
+msgstr "ਪਰਾਈਵੇਸੀ ਪਾਲਸੀ"
 
 #. Translators: Label that refers to the site's legal requirements
 #: strings.py:53
 msgid "Legal"
-msgstr ""
+msgstr "ਕਾਨੂੰਨੀ"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:55
 msgid "License"
-msgstr ""
+msgstr "ਲਾਈਸੈਂਸ"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:57
 msgid "Contributor License"
-msgstr ""
+msgstr "ਯੋਗਦਾਨੀ ਲਾਈਸੈਂਸ"
 
 #. Translators: Label that refers to the site's terms of use
 #: strings.py:59
 msgid "Terms of Use"
-msgstr ""
+msgstr "ਵਰਤਣ ਲਈ ਸ਼ਰਤਾਂ"
 
 #. Translators: Label that refers to the site's terms of service
 #: strings.py:61
 msgid "Terms of Service"
-msgstr ""
+msgstr "ਸੇਵਾ ਦੀਆਂ ਸ਼ਰਤਾਂ"
 
 #: apps/contact_form_i18n/forms.py:143
 msgid "Your name"
@@ -191,7 +194,7 @@ msgstr ""
 #: apps/legalpages/models.py:31
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 msgid "Active"
-msgstr ""
+msgstr "ਸਰਗਰਮ"
 
 #: apps/legalpages/models.py:32
 msgid "Whether this page is active or not."
@@ -238,13 +241,13 @@ msgstr ""
 
 #: apps/legalpages/views.py:67
 msgid "Legal page created."
-msgstr ""
+msgstr "ਕਾਨੂੰਨੀ ਪੇਜ਼ ਬਣਾਇਆ।"
 
 #: apps/legalpages/templates/legalpages/admin/edit.html:4
 #: apps/legalpages/templates/legalpages/admin/edit.html:9
 #: apps/legalpages/templates/legalpages/admin/edit.html:16
 msgid "Edit Legal Page"
-msgstr ""
+msgstr "ਕਾਨੂੰਨੀ ਪੇਜ਼ ਸੋਧ"
 
 #: apps/legalpages/templates/legalpages/admin/form.html:17
 #: apps/pootle_terminology/templates/terminology/manage.html:37
@@ -255,15 +258,15 @@ msgstr "ਹਟਾਓ"
 #: apps/legalpages/templates/legalpages/admin/list.html:10
 #: templates/admin_profile_menu.html:9
 msgid "Legal Pages"
-msgstr ""
+msgstr "ਕਾਨੂੰਨੀ ਪੇਜ਼"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:17
 msgid "Existing Legal Pages"
-msgstr ""
+msgstr "ਮੌਜੂਦਾ ਕਾਨੂੰਨੀ ਪੇਜ਼"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 msgid "Inactive"
-msgstr ""
+msgstr "ਗ਼ੈਰ-ਸਰਗਰਮ"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 #: apps/pootle_app/templates/admin/edit_links.html:2
@@ -272,15 +275,15 @@ msgstr "ਸੋਧ"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:24
 msgid "No pages yet."
-msgstr ""
+msgstr "ਹਾਲੇ ਕੋਈ ਪੇਜ਼ ਨਹੀਂ।"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:31
 msgid "New Legal Page"
-msgstr ""
+msgstr "ਨਵਾਂ ਕਾਨੂੰਨੀ ਪੇਜ਼"
 
 #: apps/pootle_app/admin.py:39
 msgid "Language code does not follow the ISO convention"
-msgstr ""
+msgstr "ਭਾਸ਼ਾ ਕੋਡ ਆਈਸੋ (ISO) ਸਮਝੌਤੇ ਮੁਤਾਬਕ ਨਹੀਂ"
 
 #: apps/pootle_app/admin.py:65
 msgid "Project code may only contain letters, numbers and _"
@@ -373,20 +376,20 @@ msgstr "ਭੇਜੇ"
 
 #: apps/pootle_app/templates/top_contributers_table.html:19
 msgid "anonymous users"
-msgstr ""
+msgstr "ਅਗਿਆਤ ਯੂਜ਼ਰ"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:4
 #: apps/pootle_misc/stats.py:109 apps/pootle_store/util.py:47
 #: apps/pootle_store/templates/store/translate.html:70
 msgid "Translated"
-msgstr "ਅਨੁਵਾਦ"
+msgstr "ਅਨੁਵਾਦ ਹੋਏ"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:5
 #: apps/pootle_misc/stats.py:112 apps/pootle_store/forms.py:215
 #: apps/pootle_store/util.py:46
 #: apps/pootle_store/templates/store/translate.html:73
 msgid "Needs work"
-msgstr ""
+msgstr "ਕੰਮ ਦੀ ਲੋੜ"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:6
 #: apps/pootle_misc/stats.py:115 apps/pootle_store/util.py:45
@@ -481,7 +484,7 @@ msgstr ""
 #: templates/profiles/profile_detail.html:8
 #: templates/profiles/profile_detail.html:18
 msgid "Users"
-msgstr "ਉਪਭੋਗੀ"
+msgstr "ਯੂਜ਼ਰ"
 
 #: apps/pootle_app/templates/admin/admin_general_users.html:12
 msgid ""
@@ -490,9 +493,8 @@ msgid ""
 msgstr ""
 
 #: apps/pootle_app/templates/admin/dashboard.html:13
-#, fuzzy
 msgid "Server Statistics"
-msgstr "ਯੂਜ਼ਰ ਅੰਕੜੇ"
+msgstr "ਸਰਵਰ ਅੰਕੜੇ"
 
 #: apps/pootle_app/templates/admin/dashboard.html:22
 msgid "Pending suggestions"
@@ -543,7 +545,7 @@ msgstr "ਅਨੁਕੂਲਤਾ"
 
 #: apps/pootle_app/templates/admin/general_settings_form.html:16
 msgid "Cancel"
-msgstr ""
+msgstr "ਰੱਦ ਕਰੋ"
 
 #: apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
@@ -554,7 +556,7 @@ msgstr "ਪੋਟਲ ਚੇਤਾਵਨੀਆਂ"
 #: apps/pootle_project/templates/project/project.html:40
 #: apps/pootle_translationproject/templates/translation_project/overview.html:88
 msgid "No description set."
-msgstr ""
+msgstr "ਕੋਈ ਵੇਰਵਾ ਸੈੱਟ ਨਹੀਂ।"
 
 #: apps/pootle_app/templates/index/index.html:58
 #: apps/pootle_notifications/templates/notices.html:87
@@ -573,7 +575,7 @@ msgstr "ਲਾਗਇਨ"
 
 #: apps/pootle_app/templates/index/login.html:12
 msgid "Login to Pootle"
-msgstr "ਪੌਟਲੀ ਲਈ ਲਾਗਇਨ"
+msgstr "ਪੋਟਲ ਲਈ ਲਾਗਇਨ"
 
 #: apps/pootle_app/templates/index/login.html:18
 msgid "Your username and password didn't match. Please try again."
@@ -597,7 +599,7 @@ msgstr "ਰਜਿਸਟਰ ਕਰੋ।"
 #: templates/user_profile_menu.html:7
 #: templates/registration/registration_form.html:30
 msgid "Password"
-msgstr "ਗੁਪਤ-ਕੋਡ"
+msgstr "ਪਾਸਵਰਡ"
 
 #: apps/pootle_app/views/admin/dashboard.py:48
 #, python-format
@@ -630,8 +632,8 @@ msgstr ""
 #: apps/pootle_app/views/admin/dashboard.py:75
 #, python-format
 msgid ""
-"lxml version %(installed)s is installed. Pootle requires at least version %"
-"(required)s."
+"lxml version %(installed)s is installed. Pootle requires at least version "
+"%(required)s."
 msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:82
@@ -772,12 +774,12 @@ msgstr "ਸਭ ਯੂਜ਼ਰ"
 
 #: apps/pootle_app/views/admin/util.py:40
 msgid "You do not have rights to administer Pootle."
-msgstr ""
+msgstr "ਤੁਹਾਡੇ ਕੋਲ ਪਰਸ਼ਾਸ਼ਨ ਪੋਟਲ ਅਧਿਕਾਰ ਨਹੀਂ ਹਨ।"
 
 #: apps/pootle_app/views/admin/util.py:58
 #, python-format
 msgid "You do not have rights to administer %s."
-msgstr ""
+msgstr "ਤੁਹਾਡੇ ਕੋਲ ਪਰਸ਼ਾਸ਼ਕੀ %s ਅਧਿਕਾਰ ਨਹੀਂ ਹਨ"
 
 #: apps/pootle_app/views/admin/util.py:176
 msgid "No files in this project."
@@ -785,7 +787,7 @@ msgstr "ਇਸ ਪਰੋਜੈਕਟ 'ਚ ਕੋਈ ਫਾਇਲ ਨਹੀਂ �
 
 #: apps/pootle_app/views/admin/util.py:209
 msgid "There are errors in the form. Please review the problems below."
-msgstr ""
+msgstr "ਫਾਰਮ ਵਿੱਚ ਗਲਤੀਆਂ ਹਨ। ਅੱਗੇ ਦਿੱਤੀਆਂ ਸਮੱਸਿਆਵਾਂ ਦੀ ਪੜਤਾਲ ਕਰੋ ਜੀ।"
 
 #: apps/pootle_app/views/index/about.py:47
 #, python-format
@@ -805,15 +807,13 @@ msgstr "ਤੁਹਾਨੂੰ ਇਹ ਅਨੁਵਾਦ ਪਰੋਜੈਕਟ �
 
 #: apps/pootle_app/views/language/view.py:111
 #: apps/pootle_app/views/language/view.py:137
-#, fuzzy
 msgid "You do not have rights to commit files here"
-msgstr "ਤੁਹਾਨੂੰ ਇੱਥੇ ਤਬਦੀਲੀਆਂ ਦੇਣ ਲਈ ਅਧਿਕਾਰ ਨਹੀਂ ਹਨ"
+msgstr "ਤੁਹਾਨੂੰ ਇੱਥੇ ਫਾਇਲਾਂ ਕਮਿਟ ਕਰਨ ਦੇ ਅਧਿਕਾਰ ਨਹੀਂ ਹਨ।"
 
 #: apps/pootle_app/views/language/view.py:124
 #: apps/pootle_app/views/language/view.py:150
-#, fuzzy
 msgid "You do not have rights to update files here"
-msgstr "ਤੁਹਾਨੂੰ ਇੱਥੇ ਤਬਦੀਲੀਆਂ ਦੇਣ ਲਈ ਅਧਿਕਾਰ ਨਹੀਂ ਹਨ"
+msgstr "ਤੁਹਾਨੂੰ ਇੱਥੇ ਫਾਇਲਾਂ ਅੱਪਡੇਟ ਕਰਨ ਲਈ ਅਧਿਕਾਰ ਨਹੀਂ ਹਨ"
 
 #: apps/pootle_language/models.py:48
 msgid ""
@@ -868,8 +868,8 @@ msgstr "ਬਹੁਵਚਨ ਸਮੀਕਰਨ"
 #, python-format
 msgid "Error reading %d file"
 msgid_plural "Error reading %d files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d ਫਾਇਲ ਪੜ੍ਹਨ ਵਿੱਚ ਗਲਤੀ"
+msgstr[1] "%d ਫਾਇਲਾਂ ਪੜ੍ਹਨ ਵਿੱਚ ਗਲਤੀ"
 
 #: apps/pootle_language/views.py:115
 #, python-format
@@ -881,19 +881,19 @@ msgstr[1] "%(projects)d ਪਰੋਜੈਕਟ, %(average)d%% ਅਨੁਵਾਦ"
 #: apps/pootle_language/views.py:158 apps/pootle_project/views.py:169
 #: apps/pootle_translationproject/views.py:347
 msgid "No description yet."
-msgstr ""
+msgstr "ਹਾਲੇ ਕੋਈ ਵੇਰਵਾ ਨਹੀਂ ਹੈ।"
 
 #: apps/pootle_language/views.py:181
 msgid "You do not have rights to administer this language."
-msgstr ""
+msgstr "ਤੁਹਾਡੇ ਕੋਲ ਇਹ ਭਾਸ਼ਾ ਲਈ ਪਰਸ਼ਾਸ਼ਕੀ ਅਧਿਕਾਰ ਨਹੀਂ ਹਨ।"
 
 #: apps/pootle_language/templates/language/language_admin.html:15
 msgid "Below you can add, edit, and delete the permissions for this language."
-msgstr ""
+msgstr "ਹੇਠਾਂ ਤੁਹਾਨੂੰ ਇਹ ਭਾਸ਼ਾ ਲਈ ਸ਼ਾਮਿਲ ਕਰਨ, ਸੋਧਣ, ਅਤੇ ਹਟਾਉਣ ਅਧਿਕਾਰ ਹਨ।"
 
 #: apps/pootle_misc/browser.py:31
 msgid "Name"
-msgstr "ਨਾਂਂ"
+msgstr "ਨਾਂ"
 
 #: apps/pootle_misc/browser.py:36
 msgid "Project"
@@ -916,7 +916,7 @@ msgstr "ਕੁੱਲ"
 
 #: apps/pootle_misc/browser.py:59
 msgid "Need Translation"
-msgstr ""
+msgstr "ਅਨੁਵਾਦ ਦੀ ਲੋੜ"
 
 #: apps/pootle_misc/browser.py:70
 msgid "Last Activity"
@@ -924,11 +924,11 @@ msgstr "ਆਖਰੀ ਸਰਗਰਮੀ"
 
 #: apps/pootle_misc/checks.py:29
 msgid "Critical"
-msgstr ""
+msgstr "ਗੰਭੀਰ"
 
 #: apps/pootle_misc/checks.py:30
 msgid "Functional"
-msgstr ""
+msgstr "ਫੰਕਸ਼ਨਲ"
 
 #: apps/pootle_misc/checks.py:31
 msgid "Cosmetic"
@@ -936,15 +936,15 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:32
 msgid "Extraction"
-msgstr ""
+msgstr "ਖਿਲਾਰਨਾ"
 
 #: apps/pootle_misc/checks.py:33
 msgid "No category"
-msgstr ""
+msgstr "ਕੋਈ ਕੈਟਾਗਰੀ ਨਹੀਂ"
 
 #: apps/pootle_misc/checks.py:37
 msgid "Accelerators"
-msgstr ""
+msgstr "ਅਕਸਲੇਟਰ"
 
 #: apps/pootle_misc/checks.py:38
 msgid "Acronyms"
@@ -964,7 +964,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:42
 msgid "Translator credits"
-msgstr ""
+msgstr "ਅਨੁਵਾਦ ਮਾਣ"
 
 #: apps/pootle_misc/checks.py:43
 msgid "Double quotes"
@@ -980,7 +980,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:46
 msgid "E-mail"
-msgstr ""
+msgstr "ਈਮੇਲ"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Ending punctuation"
@@ -1024,19 +1024,19 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:57
 msgid "Number of plurals"
-msgstr ""
+msgstr "ਬਹੁਵਚਨਾਂ ਦੀ ਗਿਣਤੀ"
 
 #: apps/pootle_misc/checks.py:58
 msgid "Don't translate words"
-msgstr ""
+msgstr "ਸ਼ਬਦਾਂ ਦਾ ਅਨੁਵਾਦ ਨਾ ਕਰੋ"
 
 #: apps/pootle_misc/checks.py:59
 msgid "Numbers"
-msgstr ""
+msgstr "ਅੰਕ"
 
 #: apps/pootle_misc/checks.py:60
 msgid "Options"
-msgstr ""
+msgstr "ਚੋਣਾਂ"
 
 #: apps/pootle_misc/checks.py:61
 msgid "printf()"
@@ -1085,27 +1085,27 @@ msgstr ""
 #. Translators: This refers to tabulation characters
 #: apps/pootle_misc/checks.py:73
 msgid "Tabs"
-msgstr ""
+msgstr "ਟੈਬ"
 
 #: apps/pootle_misc/checks.py:74
 msgid "Unchanged"
-msgstr ""
+msgstr "ਨਾ-ਤਬਦੀਲ"
 
 #: apps/pootle_misc/checks.py:75
 msgid "URLs"
-msgstr ""
+msgstr "URL"
 
 #: apps/pootle_misc/checks.py:76
 msgid "Valid characters"
-msgstr ""
+msgstr "ਢੁੱਕਵੇਂ ਅੱਖਰ"
 
 #: apps/pootle_misc/checks.py:77
 msgid "Placeholders"
-msgstr ""
+msgstr "ਸਥਾਨਧਾਰਕ"
 
 #: apps/pootle_misc/checks.py:78
 msgid "XML tags"
-msgstr ""
+msgstr "XML ਟੈਗ"
 
 #: apps/pootle_misc/dbinit.py:68
 msgid "Pootle: Install"
@@ -1161,16 +1161,18 @@ msgid ""
 msgstr ""
 
 #: apps/pootle_misc/dbupdate.py:143
+#, fuzzy
 msgid "Creating missing database tables..."
-msgstr ""
+msgstr "ਡਾਟਾਬੇਸ ਟੇਬਲ ਬਣਾਇਆ ਜਾ ਰਿਹਾ ਹੈ..."
 
 #: apps/pootle_misc/dbupdate.py:154
 msgid "Fixing permission table..."
 msgstr ""
 
 #: apps/pootle_misc/dbupdate.py:180 apps/pootle_misc/dbupdate.py:257
+#, fuzzy
 msgid "Updating existing database tables..."
-msgstr ""
+msgstr "ਡਾਟਾਬੇਸ ਟੇਬਲ ਬਣਾਇਆ ਜਾ ਰਿਹਾ ਹੈ..."
 
 #: apps/pootle_misc/dbupdate.py:221
 msgid "Removing potentially incorrect cached stats, will be recalculated..."
@@ -1245,35 +1247,36 @@ msgid "Locations"
 msgstr "ਟਿਕਾਣੇ"
 
 #: apps/pootle_misc/forms.py:119
+#, fuzzy
 msgid "Source Terms"
-msgstr ""
+msgstr "ਸਰੋਤ ਟੈਕਸਟ"
 
 #: apps/pootle_misc/forms.py:120
 msgid "Target Terms"
-msgstr ""
+msgstr "ਟਾਰਗੇਟ ਸ਼ਬਦ"
 
 #: apps/pootle_misc/forms.py:121
 msgid "Definitions"
-msgstr ""
+msgstr "ਪਰਿਭਾਸ਼ਾ"
 
 #: apps/pootle_misc/stats.py:91
 #, python-format
 msgid "<a href=\"%(url)s\">%(num)d word</a>"
 msgid_plural "<a href=\"%(url)s\">%(num)d words</a>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<a href=\"%(url)s\">%(num)d ਸ਼ਬਦ</a>"
+msgstr[1] "<a href=\"%(url)s\">%(num)d ਸ਼ਬਦ</a>"
 
 #: apps/pootle_misc/stats.py:97
 #, python-format
 msgid "%(num)d%%"
-msgstr ""
+msgstr "%(num)d%%"
 
 #: apps/pootle_misc/stats.py:99
 #, python-format
 msgid "(%(num)d string)"
 msgid_plural "(%(num)d strings)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "(%(num)d ਲਾਈਨ)"
+msgstr[1] "(%(num)d ਲਾਈਨਾਂ)"
 
 #: apps/pootle_misc/stats.py:128
 #, python-format
@@ -1299,19 +1302,19 @@ msgstr ""
 #, python-format
 msgid "Continue translation (%(num)d word left)"
 msgid_plural "Continue translation (%(num)d words left)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ਅਨੁਵਾਦ ਜਾਰੀ ਰੱਖੋ (%(num)d ਸ਼ਬਦ ਬਾਕੀ)"
+msgstr[1] "ਅਨੁਵਾਦ ਜਾਰੀ ਰੱਖੋ (%(num)d ਸ਼ਬਦ ਬਾਕੀ)"
 
 #: apps/pootle_misc/stats.py:183
 msgid "Translation is complete"
-msgstr ""
+msgstr "ਅਨੁਵਾਦ ਪੂਰਾ ਹੋਇਆ"
 
 #: apps/pootle_misc/stats.py:194
 #, python-format
 msgid "Review suggestion (%(num)d left)"
 msgid_plural "Review suggestions (%(num)d left)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ਪੜਤਾਲ ਸੁਝਾਅ(%(num)d ਬਾਕੀ)"
+msgstr[1] "ਪੜਤਾਲ ਸੁਝਾਅ (%(num)d ਬਾਕੀ)"
 
 #. Translators: 'type' is the type of VCS file: working, remote,
 #. or merged copy.
@@ -1322,7 +1325,9 @@ msgid ""
 msgid_plural ""
 "%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d fuzzy)."
 msgstr[0] ""
+"%(type)s: %(total)d  ਲਾਈਨ ਵਿੱਚੋਂ %(translated)d ਅਨੁਵਾਦ (%(fuzzy)d ਅਸਪਸ਼ਟ) ਹੈ।"
 msgstr[1] ""
+"%(type)s: %(total)d  ਲਾਈਨਾਂ ਵਿੱਚੋਂ%(translated)d ਅਨੁਵਾਦ(%(fuzzy)d ਅਸਪਸ਼ਟ) ਹੈ।"
 
 #: apps/pootle_misc/stats.py:237
 #, python-format
@@ -1342,8 +1347,8 @@ msgstr[1] "%d ਸ਼ਬਦ ਗ਼ੈਰ-ਅਨੁਵਾਦ ਹਨ"
 #, python-format
 msgid "%d word needs review"
 msgid_plural "%d words need review"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d ਸ਼ਬਦ ਨੂੰ ਧਿਆਨ ਦੀ ਲੋੜ"
+msgstr[1] "%d ਸ਼ਬਦਾਂ ਨੂੰ ਧਿਆਨ ਦੇਣ ਦੀ ਲੋੜ"
 
 #: apps/pootle_misc/middleware/errorpages.py:65
 #, python-format
@@ -1358,14 +1363,13 @@ msgstr ""
 #: apps/pootle_misc/templates/progressbar.html:3
 #, python-format
 msgid "%(percent)s%% complete"
-msgstr ""
+msgstr "%(percent)s%% ਪੂਰਾ"
 
 #: apps/pootle_misc/templates/search.html:5
 msgid "Search"
 msgstr "ਖੋਜ"
 
 #: apps/pootle_misc/templates/search.html:7
-#, fuzzy
 msgid "Advanced search"
 msgstr "ਤਕਨੀਕੀ ਖੋਜ"
 
@@ -1408,7 +1412,7 @@ msgstr "%(project)s ਲਈ ਖ਼ਬਰਾਂ"
 #: apps/pootle_notifications/views.py:111
 #, python-format
 msgid "News for the %(project)s project in %(language)s"
-msgstr ""
+msgstr "%(language)s ਵਿੱਚ %(project)s ਪਰੋਜੈਕਟ ਲਈ ਨਿਊਜ਼"
 
 #: apps/pootle_notifications/views.py:112
 #, python-format
@@ -1421,27 +1425,27 @@ msgstr ""
 
 #: apps/pootle_notifications/views.py:140
 msgid "Send email"
-msgstr ""
+msgstr "ਈਮੇਲ ਭੇਜੋ"
 
 #: apps/pootle_notifications/views.py:143
 msgid "Email only to recently active users"
-msgstr ""
+msgstr "ਸਰਗਰਮ ਯੂਜ਼ਰ ਨੂੰ ਹੀ ਈਮੇਲ ਭੇਜੋ"
 
 #: apps/pootle_notifications/views.py:151
 msgid "All Projects"
-msgstr ""
+msgstr "ਸਭ ਪ੍ਰੋਜੈਕਟ"
 
 #: apps/pootle_notifications/views.py:155
 msgid "Project Selection"
-msgstr ""
+msgstr "ਪਰੋਜੈਕਟ ਚੋਣ"
 
 #: apps/pootle_notifications/views.py:163
 msgid "All Languages"
-msgstr ""
+msgstr "ਸਭ ਭਾਸ਼ਾਵਾਂ"
 
 #: apps/pootle_notifications/views.py:167
 msgid "Language Selection"
-msgstr ""
+msgstr "ਭਾਸ਼ਾ ਚੋਣ"
 
 #: apps/pootle_notifications/views.py:293
 msgid "View News Item"
@@ -1473,7 +1477,7 @@ msgstr "ਪਬਲਿਸ਼"
 
 #: apps/pootle_profile/forms.py:32
 msgid "Default"
-msgstr "ਭਾਸ਼ਾ"
+msgstr "ਮੂਲ"
 
 #: apps/pootle_profile/forms.py:49 apps/pootle_profile/models.py:96
 msgid "Interface Language"
@@ -1481,7 +1485,7 @@ msgstr "ਇੰਟਰਫੇਸ ਭਾਸ਼ਾ"
 
 #: apps/pootle_profile/forms.py:68
 msgid "This account is inactive."
-msgstr ""
+msgstr "ਇਹ ਖਾਤਾ ਨਾ-ਸਰਗਰਮ ਹੈ।"
 
 #: apps/pootle_profile/models.py:86
 msgid "Number of Rows"
@@ -1492,9 +1496,8 @@ msgid "Alternative Source Languages"
 msgstr "ਬਦਲਵੀ ਸਰੋਤ ਭਾਸ਼ਾ"
 
 #: apps/pootle_profile/models.py:150
-#, fuzzy
 msgid "Suggestions Accepted"
-msgstr "ਸੁਝਾਅ ਮਨਜ਼ੂਰ ਹੋਏ।"
+msgstr "ਸੁਝਾਅ ਮਨਜ਼ੂਰ ਹੋਏ"
 
 #: apps/pootle_profile/models.py:154
 msgid "Suggestions Pending"
@@ -1590,19 +1593,19 @@ msgstr ""
 
 #: apps/pootle_statistics/models.py:47
 msgid "Source"
-msgstr ""
+msgstr "ਸਰੋਤ"
 
 #: apps/pootle_statistics/models.py:48
 msgid "Target"
-msgstr ""
+msgstr "ਟਾਰਗੇਟ"
 
 #: apps/pootle_statistics/models.py:49
 msgid "State"
-msgstr ""
+msgstr "ਸਥਿਤੀ"
 
 #: apps/pootle_statistics/models.py:50
 msgid "Comment"
-msgstr ""
+msgstr "ਟਿੱਪਣੀ"
 
 #: apps/pootle_statistics/models.py:95
 msgid "anonymous user"
@@ -1685,9 +1688,8 @@ msgid "Plural Form %d"
 msgstr "ਬਹੁਵਚਨ ਰੂਪ %d"
 
 #: apps/pootle_store/forms.py:296
-#, fuzzy
 msgid "Translator comment"
-msgstr "ਅਨੁਵਾਦਕ ਟਿੱਪਣੀਆਂ"
+msgstr "ਅਨੁਵਾਦਕ ਟਿੱਪਣੀ"
 
 #: apps/pootle_store/models.py:835
 msgid "Path"
@@ -1695,35 +1697,34 @@ msgstr "ਪਾਥ"
 
 #: apps/pootle_store/util.py:44
 msgid "Obsolete"
-msgstr ""
+msgstr "ਬਰਤਰਫ਼"
 
 #: apps/pootle_store/views.py:77
 msgid "Insufficient rights to this translation project."
 msgstr ""
 
-#: apps/pootle_store/views.py:697
+#: apps/pootle_store/views.py:702
 msgid "Comment submission failed."
 msgstr ""
 
-#: apps/pootle_store/views.py:818 apps/pootle_store/views.py:883
+#: apps/pootle_store/views.py:823 apps/pootle_store/views.py:888
 #, fuzzy
 msgid "You do not have rights to access translation mode."
 msgstr "ਤੁਹਾਨੂੰ ਅਨੁੁਵਾਦ ਤਬਦੀਲ ਕਰਨ ਲਈ ਅਧਿਕਾਰ ਨਹੀਂ ਹੈ"
 
-#: apps/pootle_store/views.py:866
+#: apps/pootle_store/views.py:871
 msgid "Failed to process submission."
 msgstr ""
 
-#: apps/pootle_store/views.py:915
+#: apps/pootle_store/views.py:920
 msgid "Failed to process suggestion."
 msgstr ""
 
-#: apps/pootle_store/views.py:937
-#, fuzzy
+#: apps/pootle_store/views.py:942
 msgid "You do not have rights to access review mode."
-msgstr "ਤੁਹਾਨੂੰ ਅਨੁੁਵਾਦ ਤਬਦੀਲ ਕਰਨ ਲਈ ਅਧਿਕਾਰ ਨਹੀਂ ਹੈ"
+msgstr "ਤੁਹਾਨੂੰ ਪੜਤਾਲ ਮੋਡ ਵਰਤਣ ਲਈ ਅਧਿਕਾਰ ਨਹੀਂ ਹਨ।"
 
-#: apps/pootle_store/views.py:1052
+#: apps/pootle_store/views.py:1057
 msgid "The suggestion or vote is not valid any more."
 msgstr ""
 
@@ -1747,49 +1748,56 @@ msgstr ""
 #. Translators: This refers to "All strings"
 #: apps/pootle_store/templates/store/translate.html:69
 msgid "All"
-msgstr ""
+msgstr "ਸਭ"
 
 #: apps/pootle_store/templates/store/translate.html:71
 msgid "Incomplete"
-msgstr ""
+msgstr "ਅਧੂਰਾ"
 
 #: apps/pootle_store/templates/store/translate.html:75
 msgid "My suggestions"
-msgstr ""
+msgstr "ਮੇਰੇ ਸੁਝਾਅ"
 
 #: apps/pootle_store/templates/store/translate.html:76
 msgid "My submissions"
+msgstr "ਮੇਰੇ ਵਲੋਂ ਭੇਜੇ"
+
+#. Translators: This is a type of filtering criterion that
+#. selects the strings that have been submitted by me at some point
+#. in time but have been overwritten by other users.
+#: apps/pootle_store/templates/store/translate.html:80
+msgid "My overwritten submissions"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:77
+#: apps/pootle_store/templates/store/translate.html:81
 msgid "Checks"
-msgstr ""
+msgstr "ਜਾਂਚ"
 
-#: apps/pootle_store/templates/store/translate.html:85
+#: apps/pootle_store/templates/store/translate.html:89
 msgid "Previous string"
-msgstr ""
+msgstr "ਪਿਛਲੀ ਲਾਈਨ"
 
-#: apps/pootle_store/templates/store/translate.html:85
+#: apps/pootle_store/templates/store/translate.html:89
 msgid ""
 "Go to the previous string (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+Page&nbsp;Up<br/>First page: Ctrl+Shift+Home"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:87
+#: apps/pootle_store/templates/store/translate.html:91
 msgid ""
 "Current page number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
 
-#: apps/pootle_store/templates/store/translate.html:89
+#: apps/pootle_store/templates/store/translate.html:93
 msgid "Total pages"
-msgstr ""
+msgstr "ਕੁੱਲ ਪੇਜ਼"
 
-#: apps/pootle_store/templates/store/translate.html:91
+#: apps/pootle_store/templates/store/translate.html:95
 msgid "Next string"
-msgstr ""
+msgstr "ਅਗਲੀ ਲਾਈਨ"
 
-#: apps/pootle_store/templates/store/translate.html:91
+#: apps/pootle_store/templates/store/translate.html:95
 msgid ""
 "Go to the next string (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
 "+Page&nbsp;Down<br/>Last page: Ctrl+Shift+End"
@@ -1797,27 +1805,27 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
-msgstr ""
+msgstr "ਟਿੱਪਣੀ:"
 
 #: apps/pootle_store/templates/unit/edit.html:11
 msgid "File:"
-msgstr ""
+msgstr "ਫਾਇਲ:"
 
 #: apps/pootle_store/templates/unit/edit.html:18
 msgid "Context:"
-msgstr ""
+msgstr "ਪਰਸੰਗ:"
 
 #: apps/pootle_store/templates/unit/edit.html:28
 msgid "Comments:"
-msgstr ""
+msgstr "ਟਿੱਪਣੀਆਂ:"
 
 #: apps/pootle_store/templates/unit/edit.html:32
 msgid "Locations:"
-msgstr ""
+msgstr "ਟਿਕਾਣੇ:"
 
 #: apps/pootle_store/templates/unit/edit.html:41
 msgid "Terminology:"
-msgstr ""
+msgstr "ਸ਼ਬਦਾਵਲੀ:"
 
 #: apps/pootle_store/templates/unit/edit.html:43
 msgid "Insert the translated term into the editor"
@@ -1828,8 +1836,9 @@ msgid "Possible issues with the translation"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:56
+#, fuzzy
 msgid "Failing checks:"
-msgstr ""
+msgstr "ਚੈੱਕ ਫੇਲ੍ਹ ਹੋਇਆ"
 
 #: apps/pootle_store/templates/unit/edit.html:62
 msgid "Remove quality check"
@@ -1926,15 +1935,15 @@ msgstr "ਟਿੱਪਣੀ ਸ਼ਾਮਲ"
 
 #: apps/pootle_store/templates/unit/edit.html:210
 msgid "Show Timeline"
-msgstr ""
+msgstr "ਸਮਾਂ-ਲਕੀਰ ਵੇਖਾਓ"
 
 #: apps/pootle_store/templates/unit/edit.html:211
 msgid "Hide Timeline"
-msgstr ""
+msgstr "ਸਮਾਂ-ਲਕੀਰ ਓਹਲੇ"
 
 #: apps/pootle_store/templates/unit/edit.html:233
 msgid "User suggestions"
-msgstr ""
+msgstr "ਯੂਜ਼ਰ ਸੁਝਾਅ"
 
 #: apps/pootle_store/templates/unit/edit.html:251
 msgid "Accept suggestion"
@@ -1945,26 +1954,25 @@ msgid "Reject suggestion"
 msgstr "ਸੁਝਾਅ ਰੱਦ ਕਰੋ"
 
 #: apps/pootle_store/templates/unit/edit.html:263
-#, fuzzy
 msgid "Remove suggestion"
-msgstr "ਸੁਝਾਅ ਰੱਦ ਕਰੋ"
+msgstr "ਸੁਝਾਅ ਹਟਾਓ"
 
 #: apps/pootle_store/templates/unit/term_edit.html:21
 msgid "Your current vote. Click to remove this vote."
-msgstr ""
+msgstr "ਤੁਹਾਡਾ ਮੌਜੂਦਾ ਵੋਟ। ਇਹ ਵੋਟ ਹਟਾਉਣ ਲਈ ਕਲਿੱਕ ਕਰੋ।"
 
 #: apps/pootle_store/templates/unit/term_edit.html:33
 msgid "Vote for this suggestion"
-msgstr ""
+msgstr "ਇਹ ਸੁਝਾਅ ਲਈ ਵੋਟ"
 
 #: apps/pootle_store/templates/unit/term_edit.html:40
 msgid "Comment: "
-msgstr ""
+msgstr "ਟਿੱਪਣੀਆਂ: "
 
 #: apps/pootle_store/templates/unit/timeline.html:4
 #: apps/pootle_store/templates/unit/timeline.html:14
 msgid "Previous Work"
-msgstr ""
+msgstr "ਪਿਛਲਾ ਕੰਮ"
 
 #: apps/pootle_store/templates/unit/view.html:35
 #: apps/pootle_terminology/templates/terminology/term_edit.html:31
@@ -1973,11 +1981,11 @@ msgstr "ਅਨੁਵਾਦਕ ਟਿੱਪਣੀਆਂ"
 
 #: apps/pootle_store/templates/unit/xhr-timeline.html:3
 msgid "Timeline"
-msgstr ""
+msgstr "ਸਮਾਂ-ਲਕੀਰ"
 
 #: apps/pootle_store/templates/unit/xhr-timeline.html:28
 msgid "No results."
-msgstr ""
+msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ।"
 
 #: apps/pootle_store/templatetags/store_tags.py:113
 #: apps/pootle_store/templatetags/store_tags.py:115
@@ -1991,7 +1999,7 @@ msgstr "ਬਹੁਵਚਨ"
 
 #: apps/pootle_terminology/views.py:156
 msgid "This term already exists in this file."
-msgstr ""
+msgstr "ਇਹ ਮੱਦ ਇਹ ਫਾਇਲ ਵਿੱਚ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ।"
 
 #: apps/pootle_terminology/templates/terminology/extract.html:6
 msgid "Regenerate Glossary"
@@ -2041,9 +2049,8 @@ msgid "Once you upload files, you will be able to add, edit and delete terms."
 msgstr ""
 
 #: apps/pootle_terminology/templates/terminology/term_edit.html:11
-#, fuzzy
 msgid "Description..."
-msgstr "ਵੇਰਵਾ"
+msgstr "...ਵੇਰਵਾ"
 
 #: apps/pootle_terminology/templates/terminology/term_edit.html:18
 msgid "Details..."
@@ -2051,7 +2058,7 @@ msgstr "ਵੇਰਵਾ..."
 
 #: apps/pootle_translationproject/actions.py:59
 msgid "Download (.zip)"
-msgstr ""
+msgstr "ਡਾਊਨਲੋਡ (.zip)"
 
 #: apps/pootle_translationproject/actions.py:73
 msgid "Download XLIFF"
@@ -2059,7 +2066,7 @@ msgstr "XLIFF ਡਾਊਨਲੋਡ"
 
 #: apps/pootle_translationproject/actions.py:74
 msgid "Download file in XLIFF format"
-msgstr ""
+msgstr "XLIFF ਫਾਰਮੈਟ ਵਿੱਚ ਫਾਇਥ ਡਾਊਨਲੋਡ"
 
 #: apps/pootle_translationproject/actions.py:77
 msgid "Export"
@@ -2093,7 +2100,7 @@ msgstr "ਅੱਪਲੋਡ"
 
 #: apps/pootle_translationproject/actions.py:113
 msgid "Upload translation files or archives in .zip format"
-msgstr ""
+msgstr "ਅਨੁਵਾਦ ਕੀਤੀਆਂ ਫਾਇਲਾਂ ਜਾਂ .zip ਫਾਰਮੈਟ ਵਿੱਚ ਅਕਾਇਵ ਅੱਪਲੋਡ ਕਰੋ"
 
 #: apps/pootle_translationproject/actions.py:130
 msgid "Update from VCS"
@@ -2106,12 +2113,12 @@ msgstr "VCS ਵਿੱਚ ਕਮਿਟ"
 #. Translators: "all" here refers to all files and sub directories in a directory/project.
 #: apps/pootle_translationproject/actions.py:159
 msgid "Update all from VCS"
-msgstr ""
+msgstr "VCS ਤੋਂ ਸਭ ਅੱਪਡੇਟ"
 
 #. Translators: "all" here refers to all files and sub directories in a directory/project.
 #: apps/pootle_translationproject/actions.py:174
 msgid "Commit all to VCS"
-msgstr ""
+msgstr "VCS ਵਿੱਚ ਸਭ ਕਮਿਟ"
 
 #: apps/pootle_translationproject/actions.py:187
 msgid "Rescan project files"
@@ -2119,7 +2126,7 @@ msgstr "ਪਰੋਜੈਕਟ ਫਾਇਲਾਂ ਮੁੜ-ਸਕੈਨ ਕਰ�
 
 #: apps/pootle_translationproject/actions.py:218
 msgid "Delete this folder..."
-msgstr ""
+msgstr "...ਇਹ ਫੋਲਡਰ ਹਟਾਓ"
 
 #: apps/pootle_translationproject/actions.py:220
 msgid "Delete this file..."
@@ -2184,16 +2191,16 @@ msgstr ""
 #: apps/pootle_translationproject/models.py:716
 #, python-format
 msgid "Committed file <em>%(filename)s</em> to version control"
-msgstr ""
+msgstr "ਫਾਇਲ <em>%(filename)s</em> ਵਰਜਨ ਕੰਟਰੋਲ ਵਿੱਚ ਕਮਿਟ ਕੀਤੀ ਗਈ"
 
 #: apps/pootle_translationproject/models.py:724
 #, python-format
 msgid "Failed to commit <em>%(filename)s</em> to version control: %(error)s"
-msgstr ""
+msgstr "ਵਰਜਨ ਕੰਟਰੋਲ ਵਿੱਚ <em>%(filename)s</em> ਕਮਿਟ ਕਰਨ ਲਈ ਫੇਲ੍ਹ: %(error)s"
 
 #: apps/pootle_translationproject/views.py:96
 msgid "Translation project files have been rescanned."
-msgstr ""
+msgstr "ਅਨੁਵਾਦ ਪਰੋਜੈਕਟ ਫਾਇਲਾਂ ਨੂੰ ਮੁੜ-ਸਕੈਨ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ।"
 
 #: apps/pootle_translationproject/views.py:101
 msgid "Error while rescanning translation project files."
@@ -2297,34 +2304,35 @@ msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/fileop_forms.html:23
 msgid "Update from Version Control"
-msgstr ""
+msgstr "ਵਰਜਨ ਕੰਟਰੋਲ ਤੋਂ ਅੱਪਡੇਟ ਕਰੋ"
 
 #: apps/pootle_translationproject/templates/translation_project/fileop_forms.html:24
 msgid ""
 "Use this option to update all the files in this area from version control."
 msgstr ""
+"ਇਹ ਚੋਣ ਨੂੰ ਵਰਜਨ ਕੰਟਰੋਲ ਤੋਂ ਇਹ ਖੇਤਰ ਵਿੱਚ ਸਭ ਫਾਇਲਾਂ ਨੂੰ ਅੱਪਡੇਟ ਕਰਨ ਲਈ ਵਰਤੋਂ।"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:40
 msgid "Files and Subfolders"
-msgstr ""
+msgstr "ਫਾਇਲਾਂ ਤੇ ਸਭ-ਫੋਲਡਰ"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:53
 msgid "Actions"
-msgstr ""
+msgstr "ਕਾਰਵਾਈਆਂ"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:101
 #, python-format
 msgid "%(project)s project information"
-msgstr ""
+msgstr "%(project)s ਪਰੋਜੈਕਟ ਜਾਣਕਾਰੀ"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:108
 #, python-format
 msgid "%(language)s language information"
-msgstr ""
+msgstr "%(language)s ਭਾਸ਼ਾ ਜਾਣਕਾਰੀ"
 
 #: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:4
 msgid "Translation Statistics"
-msgstr ""
+msgstr "ਅਨੁਵਾਦ ਅੰਕੜੇ"
 
 #: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:23
 msgid "Failing Checks"
@@ -2332,7 +2340,7 @@ msgstr "ਚੈੱਕ ਫੇਲ੍ਹ ਹੋਇਆ"
 
 #: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:44
 msgid "Nothing to show"
-msgstr ""
+msgstr "ਵੇਖਾਉਣ ਲਈ ਕੁਝ ਨਹੀਂ"
 
 #: apps/registration/forms.py:36
 msgid "username"
@@ -2401,6 +2409,24 @@ msgstr "ਨੰਬਰ ਦਿਓ"
 #: middleware/captcha.py:158
 msgid "Incorrect"
 msgstr "ਗਲਤ"
+
+#: settings/10-base.conf:9
+msgid "Pootle Demo"
+msgstr "ਪੌਟਲੀ ਡੈਮੋ"
+
+#. Translators: Change the language code (en) to your language code, and replace
+#. ltr with rtl if you language is written from right to left.
+#: settings/10-base.conf:13
+msgid ""
+"<div dir=\"ltr\" lang=\"en\">\n"
+"<h2>This is a demo installation of Pootle.</h2>\n"
+"<p>You can also visit the official <a href=\"http://pootle.locamotion.org"
+"\">Pootle server</a>. The server administrator has not provided contact "
+"information or a description of this server. If you are the administrator "
+"for this server, edit this description in your preference file or in the "
+"administration interface.</p>\n"
+"</div>\n"
+msgstr ""
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"
@@ -2483,15 +2509,15 @@ msgstr ""
 
 #: templates/base.html:88
 msgid "Reset zoom (Ctrl+Shift+0)"
-msgstr ""
+msgstr "ਜ਼ੂਮ ਮੁੜ-ਸੈੱਟ (Ctrl+Shift+0)"
 
 #: templates/base.html:90
 msgid "Zoom in (Ctrl+Shift++)"
-msgstr ""
+msgstr "ਜ਼ੂਮ ਇਨ (Ctrl+Shift++)"
 
 #: templates/base.html:102
 msgid "ADMIN"
-msgstr ""
+msgstr "ਐਡਮਿਨ"
 
 #: templates/base.html:105
 msgid "Log Out"
@@ -2524,7 +2550,7 @@ msgstr "ਇਹ ਪੋਟਲ ਸਰਵਰ ਬਾਰੇ"
 #: templates/base.html:162 templates/about/contributors.html:6
 #: templates/about/contributors.html:9
 msgid "Contributors"
-msgstr ""
+msgstr "ਯੋਗਦਾਨੀ"
 
 #: templates/captcha-xhr.html:14 templates/captcha.html:4
 #: templates/captcha.html.py:7
@@ -2596,7 +2622,7 @@ msgstr "ਇਹ ਪਰੋਜੈਕਟ ਅਨੁਵਾਦ ਕਰੋ"
 
 #: templates/tp_menu.html:8
 msgid "Manage terminology"
-msgstr ""
+msgstr "ਸ਼ਬਦਾਵਲੀ ਪਰਬੰਧ"
 
 #: templates/tp_menu.html:8
 msgid "Terminology"
@@ -2736,7 +2762,7 @@ msgstr "ਪਰੋਫਾਇਲ ਲਿਸਟ"
 #: templates/profiles/profile_list.html:11
 #: templates/registration/registration_form.html:20
 msgid "Username"
-msgstr "ਉਪਭੋਗੀ ਨਾਂ"
+msgstr "ਯੂਜ਼ਰ ਨਾਂ"
 
 #: templates/profiles/profile_list.html:12
 msgid "First name"
@@ -2770,11 +2796,11 @@ msgstr ""
 
 #: templates/registration/activation_email.html:6
 msgid "To activation your account, follow this link:"
-msgstr ""
+msgstr "ਆਪਣਾ ਅਕਾਊਂਟ ਐਕਟੀਵੇਟ ਕਰਨ ਲਈ, ਇਹ ਲਿੰਕ ਖੋਲ੍ਹੋ:"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
-msgstr ""
+msgstr "ਆਪਣਾ ਪੋਟਲ ਅਕਾਊਂਟ ਸਰਗਰਮ(ਐਕਟੀਵੇਟ) ਕਰੋ"
 
 #: templates/registration/activation_email.html:10
 #, python-format
@@ -2873,6 +2899,7 @@ msgid ""
 "Please enter your new password twice so we can verify you typed it in "
 "correctly."
 msgstr ""
+"ਆਪਣਾ ਨਵਾਂ ਪਾਸਵਰਡ ਦੋ ਵਾਰ ਦਿਓ ਤਾਂ ਕਿ ਅਸੀਂ ਇਹ ਜਾਂਚ ਸਕੀਏ ਕਿ ਤੁਸੀਂ ਠੀਕ ਲਿਖਿਆ ਹੈ।"
 
 #: templates/registration/password_reset_confirm.html:21
 msgid "New Password"
@@ -2896,6 +2923,8 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"ਪਾਸਵਰਡ ਰੀ-ਸੈੱਟ ਲਿੰਕ ਗਲਤ ਹੈ, ਸੰਭਵ ਤੌਰ ਉੱਤੇ ਇਹ ਪਹਿਲਾਂ ਹੀ ਵਰਤਿਆ ਜਾ ਚੁੱਕਾ ਹੈ। "
+"ਨਵਾਂ ਪਾਸਵਰਡ ਰੀ-ਸੈੱਟ ਲਈ ਬੇਨਤੀ ਭੇਜੋ ਜੀ।"
 
 #: templates/registration/password_reset_done.html:15
 msgid ""
@@ -2928,11 +2957,13 @@ msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
+"ਆਪਣਾ ਪਾਸਵਰਡ ਭੁੱਲ ਗਏ? ਆਪਣਾ ਈਮੇਲ ਐਡਰੈੱਸ ਹੇਠਾਂ ਦਿਓ ਅਤੇ ਅਸੀਂ ਤੁਹਾਨੂੰ ਨਵੇਂ ਲਈ "
+"ਹਦਾਇਤਾਂ ਨਾਲ ਈਮੇਲ ਭੇਜ ਦੇਵਾਂਗੇ।"
 
 #: templates/registration/password_reset_form.html:19
 #: templates/registration/registration_form.html:25
 msgid "Email Address"
-msgstr "ਈ-ਮੇਲ ਸਿਰਨਾਵਾਂ"
+msgstr "ਈਮੇਲ ਸਿਰਨਾਵਾਂ"
 
 #: templates/registration/registration_complete.html:5
 #: templates/registration/registration_complete.html:8
@@ -2958,7 +2989,7 @@ msgstr "ਪਾਸਵਰਡ (ਮੁੜ)"
 
 #: templates/registration/registration_form.html:42
 msgid "Make sure to read the following:"
-msgstr ""
+msgstr "ਅੱਗੇ ਦਿੱਤੇ ਨੂੰ ਪੜ੍ਹਨਾ ਯਕੀਨੀ ਬਣਾਉ:"
 
 #: templates/registration/registration_form.html:56
 msgid "Already have an account?"
@@ -2993,9 +3024,6 @@ msgstr "ਲਾਗ ਇਨ ਕਰੋ।"
 #~ msgid "Strings Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
 #~ msgstr ""
 #~ "ਅਨੁਵਾਦ ਕੀਤੀਆਂ ਲਾਈਨਾਂ: %(translated)d/%(total)d - %(translatedpercent)d%%"
-
-#~ msgid "Pootle Demo"
-#~ msgstr "ਪੌਟਲੀ ਡੈਮੋ"
 
 #~ msgid "Needs review"
 #~ msgstr "ਪੜਤਾਲ ਦੀ ਲੋੜ"

@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-21 17:19+0100\n"
-"PO-Revision-Date: 2013-01-19 10:49+0000\n"
-"Last-Translator: Boden <Bodenchuk@bigmir.net>\n"
+"PO-Revision-Date: 2013-02-22 08:51+0000\n"
+"Last-Translator: Serhij Dubyk - Сергій Дубик <dubyk@library.lviv.ua>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1358592591.0\n"
+"X-POOTLE-MTIME: 1361523105.0\n"
 
 #: static/js/common.js:43
 msgid "Expand details"
-msgstr "Показати подробиці"
+msgstr "Розкрити подробиці"
 
 #: static/js/common.js:43
 msgid "Collapse details"
@@ -65,11 +65,11 @@ msgstr "Невідома помилка"
 
 #: static/js/editor.js:1338
 msgid "Congratulations, you walked through all strings."
-msgstr "Вітаємо, Ви пройшли усі записи"
+msgstr "Вітаємо, Ви переглянули усі рядки."
 
 #: static/js/editor.js:1340 static/js/editor.js.c:1364
 msgid "Return to the overview page."
-msgstr "Повернутися до сторінки перегляду."
+msgstr "Повернутися до оглядової сторінки."
 
 #: static/js/editor.js:1359
 msgid "You reached the beginning of the list"
@@ -94,22 +94,22 @@ msgstr "Схожі переклади"
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:7
 msgid "More"
-msgstr ""
+msgstr "Більше"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:10
 msgid "Hide"
-msgstr ""
+msgstr "Приховати"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:13
 msgid "Less"
-msgstr ""
+msgstr "Менше"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:16
 msgid "Show"
-msgstr ""
+msgstr "Показати"
 
 #: static/js/utils.js:76
 #, c-format

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-21 17:19+0100\n"
-"PO-Revision-Date: 2013-01-02 17:31+0000\n"
+"PO-Revision-Date: 2013-02-22 16:07+0000\n"
 "Last-Translator: Abduqadir Abliz <sahran.ug@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ug\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1357147909.0\n"
+"X-POOTLE-MTIME: 1361549268.0\n"
 
 #: static/js/common.js:43
 msgid "Expand details"
@@ -93,56 +93,56 @@ msgstr "ئوخشايدىغان تەرجىمىلەر"
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:7
 msgid "More"
-msgstr ""
+msgstr "تېخىمۇ كۆپ"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:10
 msgid "Hide"
-msgstr ""
+msgstr "يوشۇر"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:13
 msgid "Less"
-msgstr ""
+msgstr "تېخىمۇ ئاز"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:16
 msgid "Show"
-msgstr ""
+msgstr "كۆرسەت"
 
 #: static/js/utils.js:76
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] ""
+msgstr[0] "%s يىل ئىلگىرى"
 
 #: static/js/utils.js:79
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] ""
+msgstr[0] "%s ھەپتە ئىلگىرى"
 
 #: static/js/utils.js:82
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] ""
+msgstr[0] "%s كۈن ئىلگىرى"
 
 #: static/js/utils.js:85
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] ""
+msgstr[0] "%s سائەت ئىلگىرى"
 
 #: static/js/utils.js:88
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] ""
+msgstr[0] "%s مىنۇت ئىلگىرى"
 
 #: static/js/utils.js:96
 msgid "A few seconds ago"
-msgstr ""
+msgstr "بىر قانچە سېكۇنت ئىلگىرى"
 
 #, c-format
 #~ msgid "<a href=\"%s\">Unit %s</a>"

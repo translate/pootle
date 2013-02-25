@@ -1,40 +1,42 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2012 Zuza Software Foundation (Translate.org.za)
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Ibrahima SARR <ibrahima.sarr@pulaagu.com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-21 17:19+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2013-02-23 13:36+0000\n"
+"Last-Translator: Ibrahima SARR <ibrahima.sarr@pulaagu.com>\n"
+"Language-Team: FULA LOCALIZATION\n"
 "Language: ff\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.9.1-pre\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 2.5.0-beta1\n"
+"X-POOTLE-MTIME: 1361626568.0\n"
 
 #: static/js/common.js:43
 msgid "Expand details"
-msgstr ""
+msgstr "Wertu cariiɗe"
 
 #: static/js/common.js:43
 msgid "Collapse details"
-msgstr ""
+msgstr "Taggu cariiɗe"
 
 #: static/js/common.js:77
 msgid "Are you sure you want to continue?"
-msgstr ""
+msgstr "Aɗa yenanaa yiɗde jokkude?"
 
 #: static/js/common.js:78
 msgid "This operation cannot be undone."
-msgstr ""
+msgstr "Ngal baɗal waawaa firteede."
 
 #: static/js/editor.js:409 static/js/editor.js.c:1489
 msgid "No results."
-msgstr ""
+msgstr "Alaa jaltuɗe."
 
 #. Translators: Permalink to the current unit in the editor.
 #. The first '%s' is the permalink URL.
@@ -42,39 +44,39 @@ msgstr ""
 #: static/js/editor.js:726
 #, c-format
 msgid "<a href=\"%s\">String %s</a>"
-msgstr ""
+msgstr "<a href=\"%s\">Ɓoggol %s</a>"
 
 #: static/js/editor.js:786
 msgid "Error while connecting to the server"
-msgstr ""
+msgstr "Juumre waɗii tuma nde seŋotoo e sarworde"
 
 #: static/js/editor.js:788
 msgid "Server error"
-msgstr ""
+msgstr "Juumre sarworde"
 
 #: static/js/editor.js:790
 msgid "The server seems down. Try again later."
-msgstr ""
+msgstr "Sarworde maa taw ko suggunde. Eto kadi so ɓooyii."
 
 #: static/js/editor.js:798
 msgid "Unknown error"
-msgstr ""
+msgstr "Juumre nde heftinaaka"
 
 #: static/js/editor.js:1338
 msgid "Congratulations, you walked through all strings."
-msgstr ""
+msgstr "Hono maa ala, a gaynii ɓoggi fof."
 
 #: static/js/editor.js:1340 static/js/editor.js.c:1364
 msgid "Return to the overview page."
-msgstr ""
+msgstr "Rutto to hello jiimorde toh."
 
 #: static/js/editor.js:1359
 msgid "You reached the beginning of the list"
-msgstr ""
+msgstr "A yettiima fuɗɗoode doggol ngol"
 
 #: static/js/editor.js:1362
 msgid "You reached the end of the list."
-msgstr ""
+msgstr "A yettiima gasirde doggol ngol."
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
@@ -82,67 +84,62 @@ msgstr ""
 #: static/js/editor.js:1762
 #, c-format
 msgid "%s% match"
-msgstr ""
+msgstr "%s% nanndungol"
 
 #: static/js/editor.js:1804
 msgid "Similar translations"
-msgstr ""
+msgstr "Firooji nannduɗi"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:7
 msgid "More"
-msgstr ""
+msgstr "Goɗɗi"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:10
 msgid "Hide"
-msgstr ""
+msgstr "Suuɗ"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:13
 msgid "Less"
-msgstr ""
+msgstr "Ustu"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:16
 msgid "Show"
-msgstr ""
+msgstr "Hollu"
 
 #: static/js/utils.js:76
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Waɗii hitaandeWaɗii duuɓi %s"
 
 #: static/js/utils.js:79
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Waɗii yontereWaɗii jonte %s"
 
 #: static/js/utils.js:82
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "HaŋkiWaɗii balɗe %s"
 
 #: static/js/utils.js:85
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Waɗii waktuWaɗii waktuuji %s"
 
 #: static/js/utils.js:88
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Waɗii hojomWaɗii hojomaaji %s"
 
 #: static/js/utils.js:96
 msgid "A few seconds ago"
-msgstr ""
+msgstr "Waɗii majaali seeɗa"
