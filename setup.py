@@ -75,16 +75,16 @@ class PootleBuildMo(DistutilsBuild):
                 store = factory.getobject(po_filename)
                 gettext.c2py(store.getheaderplural()[1])
             except Exception, e:
-                print "skipping %s, probably invalid header: %s" % (lang, e)
+                print "WARNING: %s, has invalid plural header: %s" % (lang, e)
 
             try:
                 if not os.path.exists(lang_dir):
                     os.makedirs(lang_dir)
-                print "compiling %s language" % lang
+                print "COMPILING: %s language" % lang
                 subprocess.Popen(['msgfmt', '-c', '--strict',
                                   '-o', mo_filename, po_filename])
             except Exception, e:
-                print "skipping %s, running msgfmt failed: %s" % (lang, e)
+                print "SKIPPING: %s, running msgfmt failed: %s" % (lang, e)
 
     def run(self):
         self.build_mo()
