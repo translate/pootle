@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 0.11\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-01-31 13:22+0000\n"
 "Last-Translator: Ákos <nagy.akos@libreoffice.ro>\n"
 "Language-Team: Romanian\n"
@@ -2954,7 +2954,8 @@ msgstr ""
 "S-a creat un cont Pootle pentru dvs folosind adresa de e-mail introdusă."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
 msgstr "Pentru a activa contul dvs urmaţi această legătură:"
 
 #: templates/registration/activation_email.html:8
@@ -2974,10 +2975,6 @@ msgid ""
 msgstr ""
 "Acest mesaj este trimis pentru a verifica dacă adresa de e-mail este "
 "corectă. Dacă nu doriţi să vă înregistraţi, ignoraţi acest mesajul."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "Pentru a activa contul dvs urmaţi această legătură:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -3168,6 +3165,9 @@ msgstr "Aveți deja un cont?"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "Autentificare."
+
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "Pentru a activa contul dvs urmaţi această legătură:"
 
 #~ msgid "Overall Completion"
 #~ msgstr "Statistici generale"

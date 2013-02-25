@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-02-23 01:04+0000\n"
 "Last-Translator: Alexander Dupuy <alex.dupuy@mac.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2982,8 +2982,9 @@ msgstr ""
 "Se ha creado una cuenta Pootle usando esta dirección de correo electrónico."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
-msgstr "Para activar su cuenta, siga este enlace:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
+msgstr "Para activar su cuenta, siga el siguiente enlace:"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -3003,10 +3004,6 @@ msgstr ""
 "Este mensaje se envía para verificar que la dirección de correo electrónico "
 "es correcta. Si no desea registrar una cuenta, simplemente ignore este "
 "mensaje."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "Para activar su cuenta, siga el siguiente enlace:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -3199,6 +3196,9 @@ msgstr "¿Ya tiene una cuenta?"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "Iniciar sesión."
+
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "Para activar su cuenta, siga este enlace:"
 
 #~ msgid "Overall Completion"
 #~ msgstr "Terminación global"

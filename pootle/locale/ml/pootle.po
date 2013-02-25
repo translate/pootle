@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2010-08-03 01:09+0200\n"
 "Last-Translator: Anonymous Pootle User\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2822,8 +2822,10 @@ msgstr "ഈ ഈ-മെയ്‍ല്‍ വിലാസത്തിലേക്
 "ഉണ്ടാക്കിയിരിക്കുന്നു.\n"
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
-msgstr ""
+#: templates/registration/activation_email.txt:3
+#, fuzzy
+msgid "To activate your account, follow this link:"
+msgstr "നിങ്ങളുടെ അക്കൌണ്ട് സജീവമാക്കുവാന്‍ ഈ കണ്ണിയില്‍ പോകുക:\n"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2842,11 +2844,6 @@ msgid ""
 "you did not want to register an account, you may simply ignore the message."
 msgstr "ഈ-മെയില്‍ വിലാസം ശരിക്കുള്ളതാണോ എന്നെറിയാന്‍ അയച്ച സന്ദേശം ആണിത്. "
 "രജിസ്റ്റര്‍ ചെയ്യുവാന്‍ ആഗ്രഹം ഇല്ല എങ്കില്‍, ഇതിനെ പറ്റി മറന്നേക്കൂ. \n"
-
-#: templates/registration/activation_email.txt:3
-#, fuzzy
-msgid "To activate your account, follow this link:"
-msgstr "നിങ്ങളുടെ അക്കൌണ്ട് സജീവമാക്കുവാന്‍ ഈ കണ്ണിയില്‍ പോകുക:\n"
 
 #: templates/registration/activation_email.txt:6
 #, fuzzy

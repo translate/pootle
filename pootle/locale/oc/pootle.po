@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-02-22 06:11+0000\n"
 "Last-Translator: Cédric <cvalmary@yahoo.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2989,7 +2989,8 @@ msgstr ""
 "adreça electronica."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
 msgstr "Per activar vòstre compte d'utilizaire, dobrissètz aqueste ligam :"
 
 #: templates/registration/activation_email.html:8
@@ -3010,10 +3011,6 @@ msgstr ""
 "Aqueste messatge es mandat per verificar vòstra adreça electronica. Se "
 "volètz pas crear un compte d'utilizaire, podètz simplament ignorar aqueste "
 "messatge."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "Per activar vòstre compte d'utilizaire, dobrissètz aqueste ligam :"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -3211,6 +3208,9 @@ msgstr "Avètz ja un compte ?"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "Connexion."
+
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "Per activar vòstre compte d'utilizaire, dobrissètz aqueste ligam :"
 
 #~ msgid "Overall Completion"
 #~ msgstr "Avançament general"

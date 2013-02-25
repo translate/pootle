@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-02-22 18:41+0000\n"
 "Last-Translator: DiGro <th.groskamp@quicknet.nl>\n"
 "Language-Team: TOMTT (Tom's One-Man Translation Team)\n"
@@ -2958,8 +2958,9 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "Er werd een Pootle account voor u aangemaakt met dit e-mailadres."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
-msgstr "Volg deze link om uw account te activeren:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
+msgstr "Volg de volgende link om uw account te activeren:"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2978,10 +2979,6 @@ msgid ""
 msgstr ""
 "Dit bericht werd gestuurd om na te gaan of het e-mailadres wel klopt. Als u "
 "geen account wenst te registreren, kunt u dit bericht gewoon negeren."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "Volg de volgende link om uw account te activeren:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -3176,6 +3173,9 @@ msgstr "Hebt u al een account?"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "Aanmelden."
+
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "Volg deze link om uw account te activeren:"
 
 #~ msgid "Overall Completion"
 #~ msgstr "Totaal ingevuld"

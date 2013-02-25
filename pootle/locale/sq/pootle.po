@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2010-08-03 01:16+0200\n"
 "Last-Translator: Anonymous Pootle User\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
@@ -2819,8 +2819,10 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "Një profil Pootle u krijua për ju duke përdorur këtë adresë email.\n"
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
-msgstr ""
+#: templates/registration/activation_email.txt:3
+#, fuzzy
+msgid "To activate your account, follow this link:"
+msgstr "Për të aktivizuar profilin, ndiq këtë lidhje:\n"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2840,11 +2842,6 @@ msgid ""
 msgstr "Ky mesazh është dërguar për të verifikuar që adresa email është me të "
 "vërtetë korrekte. Nëse nuk dëshironi të regjistroni një profil, thjesht "
 "shpërfillni këtë mesazh.\n"
-
-#: templates/registration/activation_email.txt:3
-#, fuzzy
-msgid "To activate your account, follow this link:"
-msgstr "Për të aktivizuar profilin, ndiq këtë lidhje:\n"
 
 #: templates/registration/activation_email.txt:6
 #, fuzzy

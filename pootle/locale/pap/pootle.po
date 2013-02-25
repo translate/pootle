@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2010-07-30 08:37+0200\n"
 "Last-Translator: admin <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2859,8 +2859,10 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "Un Pootle account a wordu kreá pa abo usando e email adres aki.\n"
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
-msgstr ""
+#: templates/registration/activation_email.txt:3
+#, fuzzy
+msgid "To activate your account, follow this link:"
+msgstr "Pa aktiva bo account, usa e link aki:\n"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2880,11 +2882,6 @@ msgid ""
 msgstr "E mensage aki ta wordu enviá pa verifika ku e email adres ta enberdad "
 "korekto. Si bo no ke registra un account, bo por simpelmente ignora e "
 "mensage aki.\n"
-
-#: templates/registration/activation_email.txt:3
-#, fuzzy
-msgid "To activate your account, follow this link:"
-msgstr "Pa aktiva bo account, usa e link aki:\n"
 
 #: templates/registration/activation_email.txt:6
 #, fuzzy

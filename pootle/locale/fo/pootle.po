@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2010-08-26 19:10+0200\n"
 "Last-Translator: Gunleif <fo.umseting@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2875,8 +2875,9 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "Ein pootle konta er gjørd til tín við hesari t-post addressu."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
-msgstr ""
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
+msgstr "Fyri at gera konta tína virkna, fylg hesari leinkju:"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2895,10 +2896,6 @@ msgid ""
 msgstr ""
 "Hesi boðini eru send tær, fyri at vátta at t-post addressan veruliga passar. "
 "Um tí ikki ynskir at stovna eina kontu, so kanst tú bara lata sum einki."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "Fyri at gera konta tína virkna, fylg hesari leinkju:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"

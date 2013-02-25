@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-02-22 16:13+0000\n"
 "Last-Translator: Rivo <rivozangov@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2793,7 +2793,8 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "Sul on tekitatud Pootle'i konto selle emaili aadressiga."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
 msgstr "Konto aktiviseerimiseks ava see link:"
 
 #: templates/registration/activation_email.html:8
@@ -2814,10 +2815,6 @@ msgstr ""
 "See kiri on saadetud ainult kontrolliks, et kas see emaili aadress on "
 "korrektne. Kui sa ei tahtnud registreerida kontot siis lihtsalt ignoreeri "
 "seda kirja."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "Konto aktiviseerimiseks ava see link:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -2994,6 +2991,9 @@ msgstr "Sul juba on konto?"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "Logi sisse."
+
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "Konto aktiviseerimiseks ava see link:"
 
 #, python-format
 #~ msgid "%d file"

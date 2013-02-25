@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2010-09-03 16:53+0200\n"
 "Last-Translator: Mohomodou  <mh@bollag-areal.ch>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2856,8 +2856,9 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "Pootle kontu foo teeyandi war bataga aderesoo woo goyandiyan se."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
-msgstr ""
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
+msgstr "Ka war kontoo dirandi, hanga doboo woo:"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2877,10 +2878,6 @@ msgstr ""
 "Batagaa woo kaŋ sanbandi ka korošĩ wala bataga aderesoo ga boori nda cumi. "
 "Nda war mana baa ka maa-hantum kontu ga, war ga hin ka alhabaryaa muray cee "
 "foo."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "Ka war kontoo dirandi, hanga doboo woo:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-02-25 02:49+0000\n"
 "Last-Translator: Yinghua <wantinghard@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -624,6 +624,7 @@ msgid ""
 msgstr "%s 版本的 Django 已安装， 但是我们强烈推荐安装更高的版本。"
 
 #: apps/pootle_app/views/admin/dashboard.py:71
+#, python-format
 #, python-format, python-format
 msgid "lxml version %s is installed."
 msgstr "版本为 %s 的 lxml 已经安装。"
@@ -1205,6 +1206,7 @@ msgid "Failed to import suggestions from %s"
 msgstr "未能从 %s 中导入建议"
 
 #: apps/pootle_misc/dbupdate.py:402
+#, python-format
 #, python-format, python-format
 msgid "Imported %(count)d string from %(store)s"
 msgid_plural "Imported %(count)d strings from %(store)s"
@@ -1347,6 +1349,7 @@ msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr "访问 %(filename)s 出错， 文件系统返回错误：%(errormsg)s"
 
 #: apps/pootle_misc/templates/progressbar.html:3
+#, python-format
 #, python-format, python-format
 msgid "%(percent)s%% complete"
 msgstr "%(percent)s%% 已完成"
@@ -2131,6 +2134,7 @@ msgid ""
 msgstr "此翻译项目的描述。用于给出更多信息或说明。允许的标记：%s"
 
 #: apps/pootle_translationproject/models.py:488
+#, python-format
 #, python-format, python-format
 msgid "Failed to update from version control: %(error)s"
 msgstr "从版本控制系统更新失败： %(error)s"
@@ -2156,6 +2160,7 @@ msgid "Merged copy"
 msgstr "合并的副本"
 
 #: apps/pootle_translationproject/models.py:577
+#, python-format
 #, python-format, python-format
 msgid "Updated file <em>%(filename)s</em> from version control"
 msgstr "已从版本控制系统更新了文件 <em>%(filename)s</em>"
@@ -2789,7 +2794,8 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "已经使用这个电子邮件地址为您创建了一个 Pootle 帐户。"
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
 msgstr "要激活您的帐户，请点击这个链接："
 
 #: templates/registration/activation_email.html:8
@@ -2807,10 +2813,6 @@ msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message."
 msgstr "发送本信息是为了验证电子邮件地址是否确切。如果您不想注册帐号，只需简单忽略本信息即可。"
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "要激活您的帐户，请点击这个链接："
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -2987,6 +2989,9 @@ msgstr "已经拥有一个帐号？"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "登录。"
+
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "要激活您的帐户，请点击这个链接："
 
 #~ msgid "Overall Completion"
 #~ msgstr "整体进度"

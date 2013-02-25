@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-02-23 22:20+0000\n"
 "Last-Translator: Stefán Freyr <stefan.freyr@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -250,6 +250,7 @@ msgid "Content"
 msgstr "Efni"
 
 #: apps/legalpages/models.py:47
+#, python-format
 #, fuzzy, python-format
 msgid "Allowed markup: %s"
 msgstr "Leyfðar merkingar: %s"
@@ -2930,8 +2931,9 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "Pottle aðgangur hefur verið búinn til fyrir þig á þetta netfang."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
-msgstr "Til að virkja aðganginn, farðu á þessa slóð:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
+msgstr "Til að virkja þennan aðgang, fylgdu þessari slóð:"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2950,10 +2952,6 @@ msgid ""
 msgstr ""
 "Þessi skilaboð eru send til að staðfesta að póstfang þitt sé rétt. Ef þú "
 "vildir ekki skrá aðgang, getur þú hunsað þessi skilaboð."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "Til að virkja þennan aðgang, fylgdu þessari slóð:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -3147,6 +3145,9 @@ msgstr "Ertu þegar með reikning?"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "Innskráning."
+
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "Til að virkja aðganginn, farðu á þessa slóð:"
 
 #~ msgid "Overall Completion"
 #~ msgstr "Heildarþýðing"

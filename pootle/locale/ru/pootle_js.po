@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-21 17:19+0100\n"
+"POT-Creation-Date: 2013-02-25 07:44+0000\n"
 "PO-Revision-Date: 2013-02-22 06:43+0000\n"
 "Last-Translator: Oleg Koptev <koptev.oleg@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,7 +35,7 @@ msgstr "Желаете продолжить?"
 msgid "This operation cannot be undone."
 msgstr "Это действие не может быть отменено."
 
-#: static/js/editor.js:409 static/js/editor.js.c:1489
+#: static/js/editor.js:409 static/js/editor.js.c:1493
 msgid "No results."
 msgstr "Нет результатов."
 
@@ -63,31 +63,31 @@ msgstr "Кажется, сервер не работает. Попробуйте
 msgid "Unknown error"
 msgstr "Неизвестная ошибка"
 
-#: static/js/editor.js:1338
+#: static/js/editor.js:1342
 msgid "Congratulations, you walked through all strings."
 msgstr "Поздравляем, вы просмотрели все строки."
 
-#: static/js/editor.js:1340 static/js/editor.js.c:1364
+#: static/js/editor.js:1344 static/js/editor.js.c:1368
 msgid "Return to the overview page."
 msgstr "Вернуться на страницу обзора проекта."
 
-#: static/js/editor.js:1359
+#: static/js/editor.js:1363
 msgid "You reached the beginning of the list"
 msgstr "Достигнуто начало списка"
 
-#: static/js/editor.js:1362
+#: static/js/editor.js:1366
 msgid "You reached the end of the list."
 msgstr "Достигнут конец списка."
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
 #. '%' symbol to denote a percentage is being used.
-#: static/js/editor.js:1762
+#: static/js/editor.js:1766
 #, c-format
 msgid "%s% match"
 msgstr "Cовпадение %s%"
 
-#: static/js/editor.js:1804
+#: static/js/editor.js:1808
 msgid "Similar translations"
 msgstr "Похожие переводы"
 

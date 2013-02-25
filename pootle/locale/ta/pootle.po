@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-02-23 15:32+0000\n"
 "Last-Translator: Suresh <sureshiim@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,6 +40,7 @@ msgid "This field is required."
 msgstr "இக்கட்டம் அவசியம்."
 
 #: strings.py:12
+#, python-format
 #, python-format, python-format
 msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
 msgstr ""
@@ -84,6 +85,7 @@ msgstr "%s க்கு கடவுச்சொல்லை மாற்றி�
 #. you might want to try to translate it as "Add an entry to the %(name)s table"
 #. or "Add an object of type "%(name)s".
 #: strings.py:27
+#, python-format
 #, python-format, python-format
 msgid "Add %(name)s"
 msgstr "%(பெயர்)களை சேர்"
@@ -1291,6 +1293,7 @@ msgid "Failed to import suggestions from %s"
 msgstr "இறக்குமதிசெய்யப்படாத பரிந்துரைகளிலிருந்து %s"
 
 #: apps/pootle_misc/dbupdate.py:402
+#, python-format
 #, fuzzy, python-format
 msgid "Imported %(count)d string from %(store)s"
 msgid_plural "Imported %(count)d strings from %(store)s"
@@ -1298,6 +1301,7 @@ msgstr[0] "இறக்குமதிசெய்யப்பட்ட %(count)
 msgstr[1] "இறக்குமதிசெய்யப்பட்ட %(count)d பிரிவுகளிலிருந்து %(store)s"
 
 #: apps/pootle_misc/dbupdate.py:408
+#, python-format
 #, fuzzy, python-format
 msgid "Failed to import strings from %s"
 msgstr "இறக்குமதிசெய்யப்படாத பிரிவுகளிலிருந்து %s"
@@ -2947,7 +2951,8 @@ msgstr ""
 "உருவாக்கப்பட்டுள்ளது."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
 msgstr "உமது கணக்கை செயலாக்க இவ்விணைப்பை தொடரவும்:"
 
 #: templates/registration/activation_email.html:8
@@ -2969,10 +2974,6 @@ msgid ""
 msgstr ""
 "உமது மின்மடலை சரிபார்க்க இத்தகவல் அனுப்ப பட்டது. உமக்கு பதிவு செய்ய "
 "விருப்பம் இல்லையேல், இத்தகவலை புறக்கணிக்கவும்."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "உமது கணக்கை செயலாக்க இவ்விணைப்பை தொடரவும்:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -3162,6 +3163,9 @@ msgstr "ஏற்கனவே கணக்கு உள்ளதா?"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "தொடங்கு/ உள்ளீடு"
+
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "உமது கணக்கை செயலாக்க இவ்விணைப்பை தொடரவும்:"
 
 #~ msgid "Overall Completion"
 #~ msgstr "இறுதி முடிவு"

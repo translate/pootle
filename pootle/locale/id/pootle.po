@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-02-22 07:39+0000\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2818,8 +2818,9 @@ msgstr "Sebuah akun Pootle telah dibuat untuk Anda dengan menggunakan alamat ema
 "ini.\n"
 
 #: templates/registration/activation_email.html:6
+#: templates/registration/activation_email.txt:3
 #, fuzzy
-msgid "To activation your account, follow this link:"
+msgid "To activate your account, follow this link:"
 msgstr "Untuk mengaktifkan akun anda, ikuti link ini:\n"
 
 #: templates/registration/activation_email.html:8
@@ -2840,11 +2841,6 @@ msgid ""
 msgstr "Pesan ini dikirimkan untuk memverifikasi bahwa alamat email Anda adalah "
 "benar. Jika Anda tidak ingin mendaftar akun, Anda dapat mengabaikan pesan "
 "ini.\n"
-
-#: templates/registration/activation_email.txt:3
-#, fuzzy
-msgid "To activate your account, follow this link:"
-msgstr "Untuk mengaktifkan akun anda, ikuti link ini:\n"
 
 #: templates/registration/activation_email.txt:6
 #, fuzzy
@@ -3027,6 +3023,10 @@ msgstr ""
 #, fuzzy
 msgid "Log In."
 msgstr "Masuk"
+
+#, fuzzy
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "Untuk mengaktifkan akun anda, ikuti link ini:\n"
 
 #, python-format
 #, python-format, fuzzy

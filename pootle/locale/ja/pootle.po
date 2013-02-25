@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-02-22 06:25+0000\n"
 "Last-Translator: Masahiko <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2808,7 +2808,8 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "Pootle のアカウントがこのメール アドレスで作成されました。"
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
 msgstr "アカウントを有効にするには、次のリンクをクリックしてください:"
 
 #: templates/registration/activation_email.html:8
@@ -2826,10 +2827,6 @@ msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message."
 msgstr "このメッセージは、メール アドレスが本当に正しいか確認するためのものです。アカウントを登録したくない場合は、このメッセージを無視してください。"
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "アカウントを有効にするには、次のリンクをクリックしてください:"
 
 # \n の改行コードは英文どおりに入れておいた方がいいと思いました。
 #: templates/registration/activation_email.txt:6
@@ -3007,6 +3004,9 @@ msgstr "アカウント登録はお済みですか?"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "ログイン"
+
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "アカウントを有効にするには、次のリンクをクリックしてください:"
 
 #~ msgid "Overall Completion"
 #~ msgstr "完成度"

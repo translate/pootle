@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-02-22 15:53+0000\n"
 "Last-Translator: mbouzada <mbouzada@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2955,7 +2955,8 @@ msgstr ""
 "electrónico."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
 msgstr "Para activar a súa conta, siga esta ligazón:"
 
 #: templates/registration/activation_email.html:8
@@ -2976,10 +2977,6 @@ msgstr ""
 "Esta mensaxe mándaselle para verificar que o enderezo de correo electrónico "
 "é realmente correcto. Se vostede non quere rexistrar unha conta, pode "
 "ignorar simplemente esta mensaxe."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "Para activar a súa conta, siga esta ligazón:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -3171,6 +3168,9 @@ msgstr "Ten xa unha conta?"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "Iniciar a sesión."
+
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "Para activar a súa conta, siga esta ligazón:"
 
 #~ msgid "Overall Completion"
 #~ msgstr "Completado global"

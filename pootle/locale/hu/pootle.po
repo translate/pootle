@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-02-04 16:31+0000\n"
 "Last-Translator: Ákos <nagy.akos@libreoffice.ro>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2961,8 +2961,8 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "A megadott e-mail címmel elkészült a Pootle-felhasználó."
 
 #: templates/registration/activation_email.html:6
-#, fuzzy
-msgid "To activation your account, follow this link:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
 msgstr "A felhasználó aktiválásához kattintson erre a hivatkozásra:"
 
 #: templates/registration/activation_email.html:8
@@ -2982,10 +2982,6 @@ msgid ""
 msgstr ""
 "Ezt az üzenetet az email-cím ellenőrzése céljából küldtük. Ha nem akar "
 "regisztrálni, akkor csak hagyja figyelmen kívül ezt a levelet."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "A felhasználó aktiválásához kattintson erre a hivatkozásra:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -3179,6 +3175,10 @@ msgstr "Regisztrált már?"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "Jelentkezzen be."
+
+#, fuzzy
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "A felhasználó aktiválásához kattintson erre a hivatkozásra:"
 
 #~ msgid "Overall Completion"
 #~ msgstr "Átfogó statisztika"

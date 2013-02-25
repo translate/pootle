@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.1\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-02-23 21:18+0000\n"
 "Last-Translator: real68er <sebastian@wallroth.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2322,6 +2322,7 @@ msgid "Committed all files under <em>%(path)s</em> to version control"
 msgstr ""
 
 #: apps/pootle_translationproject/models.py:658
+#, python-format
 #, fuzzy, python-format
 msgid "Failed to commit to version control: %(error)s"
 msgstr "Aktualisierung aus der Versionskontrolle fehlgeschlagen: %(error)s"
@@ -2970,7 +2971,8 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "Es wurde ein Pootle-Account mit dieser Email-Adresse erstellt."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
 msgstr "Um Ihren Account zu aktivieren, folgen Sie diesem Link:"
 
 #: templates/registration/activation_email.html:8
@@ -2991,10 +2993,6 @@ msgstr ""
 "Diese Nachricht wurde zur Verfikation Ihrer Emailadresse versendet. Wenn die "
 "Registrierung nicht von Ihnen beabsichtigt war, ignorieren Sie diese Email "
 "einfach."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "Um Ihren Account zu aktivieren, folgen Sie diesem Link:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -3188,6 +3186,9 @@ msgstr "Haben sie bereits ein Konto?"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "Anmelden."
+
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "Um Ihren Account zu aktivieren, folgen Sie diesem Link:"
 
 #~ msgid "Overall Completion"
 #~ msgstr "Gesamte Fertigstellung"

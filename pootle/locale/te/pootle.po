@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-02-24 17:30+0000\n"
 "Last-Translator: Veeven <veeven@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2802,7 +2802,8 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "ఈ ఈమెయిల్ చిరునామాని ఉపయోగించి మీకోసం ఓ పూటిల్ ఖాతాని తెరిచాం."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
 msgstr "మీ ఖాతాని చేతనం చేసుకోవడానికి, ఈ లింకుని అనుసరించండి:"
 
 #: templates/registration/activation_email.html:8
@@ -2822,10 +2823,6 @@ msgid ""
 msgstr ""
 "ఈమెయిలు చిరునామా సరైనదేనని నిర్ధారించుకోడానికి ఈ సందేశాన్ని పంపించాము. మీరు "
 "ఖాతాని నమోదు చేసుకోవద్దనుకుంటే, మీ సందేశాన్ని పట్టించుకోకండి."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "మీ ఖాతాని చేతనం చేసుకోవడానికి, ఈ లింకుని అనుసరించండి:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -3004,6 +3001,9 @@ msgstr "ఇప్పటికే ఖాతా ఉందా?"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "ప్రవేశించండి."
+
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "మీ ఖాతాని చేతనం చేసుకోవడానికి, ఈ లింకుని అనుసరించండి:"
 
 #, python-format
 #~ msgid "%(translated)d/%(total)d words (%(translatedpercent)d%%) translated"

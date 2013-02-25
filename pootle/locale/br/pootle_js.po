@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-21 17:19+0100\n"
+"POT-Creation-Date: 2013-02-25 07:44+0000\n"
 "PO-Revision-Date: 2013-02-23 14:46+0000\n"
 "Last-Translator: Fulup Jakez <fulup.jakez@ofis-bzh.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,7 +34,7 @@ msgstr "Ha sur oc'h e fell deoc'h kenderc'hel ?"
 msgid "This operation cannot be undone."
 msgstr "N'haller ket dizober an oberiadenn-mañ."
 
-#: static/js/editor.js:409 static/js/editor.js.c:1489
+#: static/js/editor.js:409 static/js/editor.js.c:1493
 msgid "No results."
 msgstr "Disoc'h ebet."
 
@@ -62,31 +62,31 @@ msgstr "Boud eo ar servijer evit doare. Klask en-dro diwezhatoc'h."
 msgid "Unknown error"
 msgstr "Fazi dianav"
 
-#: static/js/editor.js:1338
+#: static/js/editor.js:1342
 msgid "Congratulations, you walked through all strings."
 msgstr "Gourc'hemennoù, aet dre an holl neudennadoù."
 
-#: static/js/editor.js:1340 static/js/editor.js.c:1364
+#: static/js/editor.js:1344 static/js/editor.js.c:1368
 msgid "Return to the overview page."
 msgstr "Distreiñ da rakweladenn ar bajenn."
 
-#: static/js/editor.js:1359
+#: static/js/editor.js:1363
 msgid "You reached the beginning of the list"
 msgstr "E penn-kentañ ar roll emaoc'h"
 
-#: static/js/editor.js:1362
+#: static/js/editor.js:1366
 msgid "You reached the end of the list."
 msgstr "E traoñ ar roll emaoc'h."
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
 #. '%' symbol to denote a percentage is being used.
-#: static/js/editor.js:1762
+#: static/js/editor.js:1766
 #, c-format
 msgid "%s% match"
 msgstr "%s% kenglotañ"
 
-#: static/js/editor.js:1804
+#: static/js/editor.js:1808
 msgid "Similar translations"
 msgstr "Troidigezhioù damheñvel"
 

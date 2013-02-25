@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-02-22 06:58+0000\n"
 "Last-Translator: Yaron <sh.yaron@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2869,8 +2869,9 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "נוצר חשבון ב־Pootle עבורך בעזרת כתובת דוא״ל זו."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
-msgstr "על מנת להפעיל את חשבונך, עליך לעקוב אחר קישור זה:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
+msgstr "על מנת להפעיל את חשבונך, עליך להפעיל קישור זה:"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2889,10 +2890,6 @@ msgid ""
 msgstr ""
 "הודעה זו נשלחה כדי לוודא שכתובת הדוא״ל שלך נכונה. אם לא רצית לרשום חשבון, "
 "ניתן פשוט להתעלם מהודעה זו."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "על מנת להפעיל את חשבונך, עליך להפעיל קישור זה:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -3080,6 +3077,9 @@ msgstr "כבר יש לך חשבון?"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "כניסה."
+
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "על מנת להפעיל את חשבונך, עליך לעקוב אחר קישור זה:"
 
 #~ msgid "Overall Completion"
 #~ msgstr "מצב השלמה כללי"

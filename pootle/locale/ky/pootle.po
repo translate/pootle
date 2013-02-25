@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2010-07-30 08:56+0200\n"
 "Last-Translator: admin <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2805,8 +2805,10 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "Бул электрондук даректи колдонуу менен Pootle катоосу түзүлдү.\n"
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
-msgstr ""
+#: templates/registration/activation_email.txt:3
+#, fuzzy
+msgid "To activate your account, follow this link:"
+msgstr "Каттоону жандандыруу үчүн, төмөнкү шилтемени караңыз:\n"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2826,11 +2828,6 @@ msgid ""
 msgstr "Бул кабар электрондук даректин бар экендигин текшерүү максатында жөнөтүлдү. "
 "Эгер сиз катталууну каалабасаңыз, анда бул кабарды карабай койсоңуз деле "
 "болот.\n"
-
-#: templates/registration/activation_email.txt:3
-#, fuzzy
-msgid "To activate your account, follow this link:"
-msgstr "Каттоону жандандыруу үчүн, төмөнкү шилтемени караңыз:\n"
 
 #: templates/registration/activation_email.txt:6
 #, fuzzy

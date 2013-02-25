@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2012-05-25 00:17+0000\n"
 "Last-Translator: zvona9 <zvona9@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2887,8 +2887,9 @@ msgstr ""
 "adrese."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
-msgstr ""
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
+msgstr "Kako biste aktivirali Vaš korisnički račun, slijedite ovaj link:"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2907,10 +2908,6 @@ msgid ""
 msgstr ""
 "Ova je poruka poslana kako bi potvrdili točnost adrese e-pošte. Ako ne "
 "želite registrirati račun, možete jednostavno ignorirati poruku."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "Kako biste aktivirali Vaš korisnički račun, slijedite ovaj link:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"

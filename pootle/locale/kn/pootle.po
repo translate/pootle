@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2010-07-07 23:28+0200\n"
 "Last-Translator: admin <>\n"
 "Language-Team: Shankar Gowda MBN <kn@li.org>\n"
@@ -2821,8 +2821,10 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "ಪೂಟಲ್ ನಲ್ಲಿ ನಮ್ಮ ವಿದ್ಯುನ್ಮಾಮ ಅಂಚೆಯ ವಿಳಾಸವನ್ನು ಸೇಪಡೀಸಲಾಗಿದೆ.\n"
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
-msgstr ""
+#: templates/registration/activation_email.txt:3
+#, fuzzy
+msgid "To activate your account, follow this link:"
+msgstr "ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು, ಈ ಸಂಬಂಧ ಕೊಂಡಿಯನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ:\n"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2841,11 +2843,6 @@ msgid ""
 "you did not want to register an account, you may simply ignore the message."
 msgstr "ಈ ಸಂದೇಶವು ಸತ್ಯಶೊಧನೆಗೆ ಪ್ರಮಾನಿಸಲು ನಿಮ್ಮ ವಿದ್ಯುನ್ಮಾಮ ಅಂಚೆಗೆ ಕಳುಹಿಸಲಾಗಿದೆ. "
 "ನಿಮ್ಮ ಖಾತೆಯನ್ನು ನೋಂದಾವಣಿ ಮಾಡುತ್ತಿದ್ದರೆ, ಈ ಸಂದೇಶವನ್ನು ಅಲಕ್ಷಿಯ ಮಾಡಬಹುದು.\n"
-
-#: templates/registration/activation_email.txt:3
-#, fuzzy
-msgid "To activate your account, follow this link:"
-msgstr "ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು, ಈ ಸಂಬಂಧ ಕೊಂಡಿಯನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ:\n"
 
 #: templates/registration/activation_email.txt:6
 #, fuzzy

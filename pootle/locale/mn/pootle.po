@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-02-22 07:34+0000\n"
 "Last-Translator: cris anderson <anderson861@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2857,8 +2857,8 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "Энэ имэйл хаягаар Pootle данс үүслээ."
 
 #: templates/registration/activation_email.html:6
-#, fuzzy
-msgid "To activation your account, follow this link:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
 msgstr "Дансаа идэвхжүүлэхийн тулд дараах холбоосыг дагана уу:"
 
 #: templates/registration/activation_email.html:8
@@ -2878,10 +2878,6 @@ msgid ""
 msgstr ""
 "Энэ зурвас мэдээ таны имэйл хаягийг батламжлахаар илгээгдлээ. Хэрвээ та "
 "бүртгүүлэхийг эс хүсвэл энэхүү Имэйлийг үл хэрэгсэнэ үү."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "Дансаа идэвхжүүлэхийн тулд дараах холбоосыг дагана уу:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -3072,6 +3068,10 @@ msgstr "Танд данс бий юу?"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "Нэвтрэх."
+
+#, fuzzy
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "Дансаа идэвхжүүлэхийн тулд дараах холбоосыг дагана уу:"
 
 #~ msgid "Overall Completion"
 #~ msgstr "Нийт гүйцэтгэл"

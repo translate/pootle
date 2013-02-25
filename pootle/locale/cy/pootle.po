@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-02-22 12:59+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2949,8 +2949,9 @@ msgstr ""
 "e-bost hwn."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
-msgstr "I weithredu eich cyfrif dilynwch y ddolen hon:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
+msgstr "I ysgogi eich cyfrif, dilynwch y ddolen:"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2969,10 +2970,6 @@ msgid ""
 msgstr ""
 "Mae'r neges hon wedi ei hanfon i ddilysu fod y cyfeiriad e-bost yn gywir. Os "
 "nad ydych am gofrestru cyfrif, gallwch anwybyddu'r neges."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "I ysgogi eich cyfrif, dilynwch y ddolen:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -3164,6 +3161,9 @@ msgstr "Cyfrif yn barod?"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "Mewngofnodi."
+
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "I weithredu eich cyfrif dilynwch y ddolen hon:"
 
 #~ msgid "Overall Completion"
 #~ msgstr "Trosolwg"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-02-24 10:07+0000\n"
 "Last-Translator: Abduqadir Abliz <sahran.ug@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2920,7 +2920,8 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "بۇ ئېلخەت ئادرېسىنى ئىشلىتىپ سىزگە Pootle ھېساباتىدىن بىرى قۇرۇلدى."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
 msgstr "ھېساباتىڭىزنى ئاكتىپلاشتا بۇ ئۇلانمىنى چېكىڭ:"
 
 #: templates/registration/activation_email.html:8
@@ -2940,10 +2941,6 @@ msgid ""
 msgstr ""
 "بۇ ئۇچۇرنى ئەۋەتىشنىڭ مەقسىتى ئېلخەت ئادرېسىنىڭ توغرىلىقىنى جەزملەش. ئەگەر "
 "ھېسابات تىزىملاتمىسىڭىز بۇ ئۇچۇرنى ئېتىبارغا ئالماڭ."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "ھېساباتىڭىزنى ئاكتىپلاشتا بۇ ئۇلانمىنى چېكىڭ:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -3133,6 +3130,9 @@ msgstr "ھېساباتتىن بىرسى بار؟"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "تىزىمغا كىر"
+
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "ھېساباتىڭىزنى ئاكتىپلاشتا بۇ ئۇلانمىنى چېكىڭ:"
 
 #~ msgid "Overall Completion"
 #~ msgstr "ئومۇمىي تاماملىنىشى"

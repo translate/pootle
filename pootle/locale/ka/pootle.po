@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2010-08-04 14:21+0200\n"
 "Last-Translator: Gia <giasher@telenet.ge>\n"
 "Language-Team: Georgian <www.gia.ge>\n"
@@ -2841,8 +2841,9 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "შეიქმნა Pootle ანგარიში შეიქმნა თქვენი ელფოსტის ამ მისამართისთვის."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
-msgstr ""
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
+msgstr "თქვენი ანგარიშის გასააქტივებლად მიჰყევით ამ ბმას:"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2861,10 +2862,6 @@ msgid ""
 msgstr ""
 "გამოგზავნილია წერილი თქვენი ელფოსტის მისამართის გადასამოწმებლად. თუ არ გსურთ "
 "ანგარიშის რეგისტრაცია, უბრალოდ ნუ უპასუხებთ წერილს."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "თქვენი ანგარიშის გასააქტივებლად მიჰყევით ამ ბმას:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-02-23 13:39+0000\n"
 "Last-Translator: df910105 <df910105@yahoo.com.tw>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2816,8 +2816,8 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "已用此電郵地址為您建立 Pootle 帳號。"
 
 #: templates/registration/activation_email.html:6
-#, fuzzy
-msgid "To activation your account, follow this link:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
 msgstr "請點選以下連結以啟用您的帳號："
 
 #: templates/registration/activation_email.html:8
@@ -2835,10 +2835,6 @@ msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message."
 msgstr "這則訊息是為了確認電郵地址正確無誤。若您不想註冊帳號，請忽略此訊息。"
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "請點選以下連結以啟用您的帳號："
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -3015,6 +3011,10 @@ msgstr "已經有帳號了？"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "登入。"
+
+#, fuzzy
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "請點選以下連結以啟用您的帳號："
 
 #~ msgid "Overall Completion"
 #~ msgstr "整體完成度"

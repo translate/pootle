@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-02-23 14:59+0000\n"
 "Last-Translator: Fulup Jakez <fulup.jakez@ofis-bzh.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2796,7 +2796,8 @@ msgstr ""
 "postel-mañ."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
 msgstr "Da weredekaat ho kont, klikit war al liamm-mañ :"
 
 #: templates/registration/activation_email.html:8
@@ -2817,10 +2818,6 @@ msgstr ""
 "Kaset eo ar postel-mañ da wiriañ ha reizh eo ar chomlec'h postel e "
 "gwirionez. Mar ne fell ket deoc'h krouiñ ur gont, n'eo ket dav ober van ouzh "
 "ar gemennadenn-mañ."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "Da weredekaat ho kont, klikit war al liamm-mañ :"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -2997,6 +2994,9 @@ msgstr ""
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "Kevreañ."
+
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "Da weredekaat ho kont, klikit war al liamm-mañ :"
 
 #, python-format
 #~ msgid "%d file"

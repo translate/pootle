@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-02-22 08:55+0000\n"
 "Last-Translator: Serhij Dubyk - Сергій Дубик <dubyk@library.lviv.ua>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2956,8 +2956,8 @@ msgstr ""
 "системі Pootle."
 
 #: templates/registration/activation_email.html:6
-#, fuzzy
-msgid "To activation your account, follow this link:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
 msgstr "Щоб активувати Ваш обліковий запис, перейдіть за цим посиланням:"
 
 #: templates/registration/activation_email.html:8
@@ -2978,10 +2978,6 @@ msgstr ""
 "Цей лист було надіслано з метою перевірки працездатності адреси електронної "
 "пошти. Якщо Ви не збиралися реєструвати обліковий запис, просто проігноруйте "
 "цей лист."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "Щоб активувати Ваш обліковий запис, перейдіть за цим посиланням:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -3169,6 +3165,10 @@ msgstr "Вже є обліковий запис?"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "Вхід."
+
+#, fuzzy
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "Щоб активувати Ваш обліковий запис, перейдіть за цим посиланням:"
 
 #~ msgid "Overall Completion"
 #~ msgstr "Завершено загалом"

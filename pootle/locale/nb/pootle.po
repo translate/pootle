@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-02-22 16:56+0000\n"
 "Last-Translator: jinx <fenderbass@c2i.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2246,6 +2246,7 @@ msgid "Manage"
 msgstr "Håndter"
 
 #: apps/pootle_translationproject/models.py:105
+#, python-format
 #, fuzzy, python-format
 msgid ""
 "A description of this translation project. This is useful to give more "
@@ -2255,11 +2256,13 @@ msgstr ""
 "info eller instruksjoner. Tillatt merking: %s"
 
 #: apps/pootle_translationproject/models.py:488
+#, python-format
 #, fuzzy, python-format
 msgid "Failed to update from version control: %(error)s"
 msgstr "Mislykket oppdatering fra version control: %(feil)"
 
 #: apps/pootle_translationproject/models.py:556
+#, python-format
 #, fuzzy, python-format
 msgid "Updated project <em>%(project)s</em> from version control"
 msgstr "Oppdatert prosjekt <em>%(prosjekt(er)</em> fra version control"
@@ -2300,11 +2303,13 @@ msgid "Failed to commit to version control: %(error)s"
 msgstr ""
 
 #: apps/pootle_translationproject/models.py:716
+#, python-format
 #, fuzzy, python-format
 msgid "Committed file <em>%(filename)s</em> to version control"
 msgstr "Sendt inn fil <em>%(filnavn)</em> til version control"
 
 #: apps/pootle_translationproject/models.py:724
+#, python-format
 #, fuzzy, python-format
 msgid "Failed to commit <em>%(filename)s</em> to version control: %(error)s"
 msgstr "Lyktes ikke å sende <em>%filnavn</em> til version control: %(feil)"
@@ -2922,7 +2927,8 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "En Pootle-konto har blitt opprettet for deg med denne e-postadressen."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
 msgstr "For å aktivere kontoen din, følg denne linken:"
 
 #: templates/registration/activation_email.html:8
@@ -2930,6 +2936,7 @@ msgid "Activate my Pootle account"
 msgstr "Aktiver min Pootle konto"
 
 #: templates/registration/activation_email.html:10
+#, python-format
 #, fuzzy, python-format
 msgid "Your activation code is: <code>%(activation_key)s</code>"
 msgstr "Din aktiveringskode er: <code>%(activation_key)s</code>"
@@ -2943,10 +2950,6 @@ msgstr ""
 "Denne meldingen er sendt for å verifisere at epostadressen faktisk er "
 "korrekt. Hvis du ikke ønsker å registrere en konto, kan du ganske enkelt "
 "overse denne meldingen."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "For å aktivere kontoen din, følg denne linken:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -3138,6 +3141,9 @@ msgstr "Har du allerede en konto?"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "Logg inn."
+
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "For å aktivere kontoen din, følg denne linken:"
 
 #~ msgid "Overall Completion"
 #~ msgstr "Ferdiggjort totalt"

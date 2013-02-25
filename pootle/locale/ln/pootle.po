@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2010-08-03 01:08+0200\n"
 "Last-Translator: Anonymous Pootle User\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2820,8 +2820,10 @@ msgstr ""
 " "
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
-msgstr ""
+#: templates/registration/activation_email.txt:3
+#, fuzzy
+msgid "To activate your account, follow this link:"
+msgstr "Mpo okamwisa eteni oyo, fina awa:\n"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2841,11 +2843,6 @@ msgid ""
 msgstr "Mokanda oyo etindamelaki yo kaka mpo na koyeba soki adresi ya mikanda na yo "
 "ezali ya solo. Soki olingi komikomisa te mpo na kozwa eteni moko, okoki kaka "
 "kokipe na mokanda oyo te. \n"
-
-#: templates/registration/activation_email.txt:3
-#, fuzzy
-msgid "To activate your account, follow this link:"
-msgstr "Mpo okamwisa eteni oyo, fina awa:\n"
 
 #: templates/registration/activation_email.txt:6
 #, fuzzy

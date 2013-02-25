@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.1\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-01-14 19:57+0000\n"
 "Last-Translator: astur <ivarela@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2894,8 +2894,8 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "Creóse una cuenta Pootle usando estes señes de corréu electrónicu."
 
 #: templates/registration/activation_email.html:6
-#, fuzzy
-msgid "To activation your account, follow this link:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
 msgstr "P'activar la to cuenta, sigui esti enllaz:"
 
 #: templates/registration/activation_email.html:8
@@ -2915,10 +2915,6 @@ msgid ""
 msgstr ""
 "Esti mensaxe unvíase pa verificar que les señes de corréu electrónicu son "
 "correutes. Si nun quies rexistrar una cuenta ignora esti mensaxe."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "P'activar la to cuenta, sigui esti enllaz:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -3109,6 +3105,10 @@ msgstr "¿Yá tienes una cuenta?"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "Aniciar Sesión."
+
+#, fuzzy
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "P'activar la to cuenta, sigui esti enllaz:"
 
 #~ msgid "Overall Completion"
 #~ msgstr "Progresu global"

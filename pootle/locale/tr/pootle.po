@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-02-22 13:56+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2926,7 +2926,8 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "Bu eposta adresi kullanılarak sizin için Pootle hesabı oluşturulmuştur."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
 msgstr "Hesabınızı etkinleştirmek için bu bağlantıyı takip edin:"
 
 #: templates/registration/activation_email.html:8
@@ -2947,10 +2948,6 @@ msgstr ""
 "Bu ileti, eposta adresinin gerçekliğini doğrulamak için gönderilmiştir. Eğer "
 "bir hesaba kayıt olmak istemiyorsanız, basitçe iletiyi dikkate "
 "almayabilirsiniz."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "Hesabınızı etkinleştirmek için bu bağlantıyı takip edin:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -3141,6 +3138,9 @@ msgstr "Zaten hesabınız var mı?"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "Oturum Aç."
+
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "Hesabınızı etkinleştirmek için bu bağlantıyı takip edin:"
 
 #~ msgid "Overall Completion"
 #~ msgstr "Tüm Tamamlama"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-02-22 20:27+0000\n"
 "Last-Translator: Rimas <rq@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
@@ -1465,6 +1465,7 @@ msgstr ""
 "Nepavyko pasiekti failo %(filename)s. Failų sistemos klaida: %(errormsg)s"
 
 #: apps/pootle_misc/templates/progressbar.html:3
+#, python-format
 #, python-format, python-format
 msgid "%(percent)s%% complete"
 msgstr "%(percent)s%% užbaigta"
@@ -2933,8 +2934,9 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "Naudojant šį Jūsų el. pašto adresą, buvo sukurta „Pootle“ paskyra."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
-msgstr "Norėdami aktyvinti paskyrą, atverkite šį saitą:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
+msgstr "Norėdami aktyvuoti paskyrą, atverkite šį saitą:"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2954,10 +2956,6 @@ msgstr ""
 "Šis pranešimas yra išsiųstas, siekiant patikrinti, ar šis el. pašto adresas "
 "tikrai priklauso juo užsiregistravusiam asmeniui. Jeigu Jūs nenorėjote "
 "sukurti paskyros, tuomet tiesiog ignoruokite šį laišką."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "Norėdami aktyvuoti paskyrą, atverkite šį saitą:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -3148,6 +3146,9 @@ msgstr "Jau turite paskyrą?"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "Prisijunkite."
+
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "Norėdami aktyvinti paskyrą, atverkite šį saitą:"
 
 #~ msgid "Overall Completion"
 #~ msgstr "Bendras užbaigtumas"

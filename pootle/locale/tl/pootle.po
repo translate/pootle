@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2010-08-03 01:20+0200\n"
 "Last-Translator: Anonymous Pootle User\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2822,8 +2822,10 @@ msgstr "May Pootle account na ginawa para sa iyo na gumagamit ng email address n
 "ito.\n"
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
-msgstr ""
+#: templates/registration/activation_email.txt:3
+#, fuzzy
+msgid "To activate your account, follow this link:"
+msgstr "Upang paganahin ang iyong account, sundan ang link na ito:\n"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2843,11 +2845,6 @@ msgid ""
 msgstr "Ang mensaheng ito ay ipinadala upang beripikahin na tama ang email address. "
 "Kung hindi mo ibig na magrehistro ng account, maaaring huwag mo na pansinin "
 "ang mensaheng ito.\n"
-
-#: templates/registration/activation_email.txt:3
-#, fuzzy
-msgid "To activate your account, follow this link:"
-msgstr "Upang paganahin ang iyong account, sundan ang link na ito:\n"
 
 #: templates/registration/activation_email.txt:6
 #, fuzzy

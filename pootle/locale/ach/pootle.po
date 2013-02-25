@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2011-10-24 11:51+0200\n"
 "Last-Translator: afshin <afshin.meh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2878,8 +2878,9 @@ msgstr ""
 "Kityeko dong yabu pi in akaunt me Pootle kun kitiyo ki nying me email man."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
-msgstr ""
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
+msgstr "Me yabu akaunti mamegi, lub lakub man."
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2898,10 +2899,6 @@ msgid ""
 msgstr ""
 "Ngec man kicwalo me moko ka ada email man tye atira.Ka ce onongo pe imito "
 "yabu akaunti, iromo cayo onyo jalo ngec man. "
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "Me yabu akaunti mamegi, lub lakub man."
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"

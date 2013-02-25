@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.1\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2010-08-10 13:13+0200\n"
 "Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2884,8 +2884,9 @@ msgstr ""
 "obubaka."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
-msgstr ""
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
+msgstr "Okuzuukusa akawunta yo, goberera omukutu guno:"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2904,10 +2905,6 @@ msgid ""
 msgstr ""
 "Obubaka buno buwerezeddwa okukakasa nti endagiriro wofunira obubaka ntuufu. "
 "Singa tewayagadde kuwandiisa akawunta, osobola okuziimuula bubaka bwofunye."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "Okuzuukusa akawunta yo, goberera omukutu guno:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"

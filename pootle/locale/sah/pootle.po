@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2012-02-03 01:09+0200\n"
 "Last-Translator: Nikolay <halan@ya.ru>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2853,8 +2853,9 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "Бу эл. почтаҕа Pootle-га бэлиэтэниллибит аат сигэннэ."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
-msgstr ""
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
+msgstr "Бэлиэтэниллибит ааты бигэргэтэргэ бу сигэннэн тиий:"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2873,10 +2874,6 @@ msgid ""
 msgstr ""
 "Бу сурук эл. аадырыс үлэлиирин тургутаары ыытыллыбыт. Өскө эн бэлиэтэниэххин "
 "баҕарбатах буоллаххына бу суругу таах хаалларан кэбис."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "Бэлиэтэниллибит ааты бигэргэтэргэ бу сигэннэн тиий:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"

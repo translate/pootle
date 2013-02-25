@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-02-22 16:27+0000\n"
 "Last-Translator: Vadim Kutchin <kutchin@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -1295,6 +1295,7 @@ msgid "Failed to import suggestions from %s"
 msgstr "Ошибка импортирования предложений переводов из %s"
 
 #: apps/pootle_misc/dbupdate.py:402
+#, python-format
 #, python-format, python-format
 msgid "Imported %(count)d string from %(store)s"
 msgid_plural "Imported %(count)d strings from %(store)s"
@@ -1303,6 +1304,7 @@ msgstr[1] "Импортировано %(count)d блока из %(store)s"
 msgstr[2] "Импортировано %(count)d блоков из %(store)s"
 
 #: apps/pootle_misc/dbupdate.py:408
+#, python-format
 #, python-format, python-format
 msgid "Failed to import strings from %s"
 msgstr "Ошибка импортирования блоков из %s"
@@ -2969,8 +2971,9 @@ msgstr ""
 "Для указанного адреса электронной почты была создана учётная запись Pootle."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
-msgstr "Чтобы активировать учётную запись, перейдите по ссылке:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
+msgstr "Чтобы активировать учётную запись, перейдите по этой ссылке:"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2990,10 +2993,6 @@ msgstr ""
 "Это письмо было отправлено с целью проверки работоспособности адреса "
 "электронной почты. Если вы не собирались регистрировать учётную запись, "
 "просто проигнорируйте это письмо."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "Чтобы активировать учётную запись, перейдите по этой ссылке:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -3180,6 +3179,9 @@ msgstr "Уже есть учётная запись?"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "Войти."
+
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "Чтобы активировать учётную запись, перейдите по ссылке:"
 
 #~ msgid "Overall Completion"
 #~ msgstr "Всего закончено"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2011-06-30 21:52+0200\n"
 "Last-Translator: Jojoo <jojoo.imbeah@suuch.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2865,8 +2865,9 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "Wɔde emel adrɛs yi ayɛ Pootle akawnt am wo."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
-msgstr ""
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
+msgstr "Sɛ wo pɛ sɛ wo kenyan wo akawnt a, di link yi so:"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2885,10 +2886,6 @@ msgid ""
 msgstr ""
 "Wɔsoma nkrato yi de hwɛ sɛ emel adres no di mu a. Sɛ nna wo mmpɛ sɛ wo bɛbue "
 "akwant a, ɛnnkasa nkrato yi ho."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "Sɛ wo pɛ sɛ wo kenyan wo akawnt a, di link yi so:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2012-12-01 10:43+0000\n"
 "Last-Translator: lizardman <borislav_zlatanov@yahoo.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2843,8 +2843,9 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "Създаден е Pootle акаунт, използвайки този електронен адрес."
 
 #: templates/registration/activation_email.html:6
+#: templates/registration/activation_email.txt:3
 #, fuzzy
-msgid "To activation your account, follow this link:"
+msgid "To activate your account, follow this link:"
 msgstr "За да активирате профила, щракнете на тази препратка:\n"
 
 #: templates/registration/activation_email.html:8
@@ -2865,11 +2866,6 @@ msgid ""
 msgstr ""
 "Бе изпратено съобщение, за проверка  на електронната поща. Ако не желаете да "
 "се регистрирате, моля игнорирайте съобщението."
-
-#: templates/registration/activation_email.txt:3
-#, fuzzy
-msgid "To activate your account, follow this link:"
-msgstr "За да активирате профила, щракнете на тази препратка:\n"
 
 #: templates/registration/activation_email.txt:6
 #, fuzzy
@@ -3052,6 +3048,10 @@ msgstr ""
 #, fuzzy
 msgid "Log In."
 msgstr "Влизане в системата"
+
+#, fuzzy
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "За да активирате профила, щракнете на тази препратка:\n"
 
 #, python-format
 #~ msgid "%d file"

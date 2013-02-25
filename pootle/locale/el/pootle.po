@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2012-12-31 19:03+0000\n"
 "Last-Translator: Dimitris <dmtrs32@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2969,8 +2969,10 @@ msgstr ""
 "διεύθυνση αλληλογραφίας."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
-msgstr "Για ενεργοποίηση του λογαριασμού σας, ακολουθήστε αυτόν τον σύνδεσμο:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
+msgstr ""
+"Για να ενεργοποιήσετε τον λογαριασμό σας, ακολουθήστε αυτόν τον σύνδεσμο:"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2990,11 +2992,6 @@ msgstr ""
 "Αυτό το μήνυμα στάλθηκε για να επιβεβαιώσει ότι αυτή η διεύθυνση "
 "αλληλογραφίας είναι πράγματι σωστή. Αν δεν θέλετε να δημιουργήσετε "
 "λογαριασμό, απλά αγνοήστε αυτό το μήνυμα."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr ""
-"Για να ενεργοποιήσετε τον λογαριασμό σας, ακολουθήστε αυτόν τον σύνδεσμο:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -3192,6 +3189,9 @@ msgstr "Έχετε ήδη έναν λογαριασμό;"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "Σύνδεση."
+
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "Για ενεργοποίηση του λογαριασμού σας, ακολουθήστε αυτόν τον σύνδεσμο:"
 
 #~ msgid "Overall Completion"
 #~ msgstr "Γενική ολοκλήρωση"

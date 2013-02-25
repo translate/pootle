@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2010-08-04 19:31+0200\n"
 "Last-Translator: alaa <alaa@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2912,8 +2912,9 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "تم انشاء حساب لك باستخدام هذا البريد الآلكتروني."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
-msgstr ""
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
+msgstr "لتنشيط حسابك، اتّبع هذا الرابط:"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2932,10 +2933,6 @@ msgid ""
 msgstr ""
 "أرسلت هذه الرسالة للتأكد من أن هذا العنوان البريدي صحيح. إذا لم تكن ترغب في "
 "تسجيل حساب، بإمكانك تجاهل هذه الرسالة."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "لتنشيط حسابك، اتّبع هذا الرابط:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"

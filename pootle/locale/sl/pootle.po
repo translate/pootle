@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenOffice.org\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-02-23 20:35+0000\n"
 "Last-Translator: miles <miles@filmsi.net>\n"
 "Language-Team: Slovenščina <users@sl.openoffice.org>\n"
@@ -2974,8 +2974,9 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "Pootle račun s tem e-poštnim naslovom je bil ustvarjen za vas."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
-msgstr "Da aktivirate vaš račun, sledite tej povezavi:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
+msgstr "Da bi aktivirali vaš račun, sledite tej povezavi:"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2994,10 +2995,6 @@ msgid ""
 msgstr ""
 "To sporočilo je poslano, da preverimo pravilnost e-poštnega naslova. Če "
 "niste želeli registrirati računa, lahko sporočilo enostavno prezrete."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "Da bi aktivirali vaš račun, sledite tej povezavi:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -3188,6 +3185,9 @@ msgstr "Že imate račun?"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "Prijavite se."
+
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "Da aktivirate vaš račun, sledite tej povezavi:"
 
 #~ msgid "Overall Completion"
 #~ msgstr "Skupno končano"

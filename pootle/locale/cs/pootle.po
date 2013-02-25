@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-02-22 13:57+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2959,7 +2959,8 @@ msgstr ""
 "S využitím této e-mailové adresy byl pro vás založen účet na Pootle serveru."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
 msgstr "Pro aktivaci účtu klikněte na následující odkaz:"
 
 #: templates/registration/activation_email.html:8
@@ -2980,10 +2981,6 @@ msgstr ""
 "Tato zpráva byla poslána pro ověření, že zadaná e-mailová adresa je správná. "
 "Pokud jste si nechtěli účet zaregistrovat, můžete tuto zprávu jednoduše "
 "ignorovat."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "Pro aktivaci účtu klikněte na následující odkaz:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -3174,6 +3171,9 @@ msgstr "Už máte účet?"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "Přihlaste se."
+
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "Pro aktivaci účtu klikněte na následující odkaz:"
 
 #~ msgid "Overall Completion"
 #~ msgstr "Celkový stav"

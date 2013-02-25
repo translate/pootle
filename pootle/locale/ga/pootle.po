@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2012-10-09 18:56+0200\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish\n"
@@ -2876,8 +2876,9 @@ msgstr ""
 "Cruthaíodh cuntas Pootle duit ag baint feidhm as an seoladh ríomhphoist seo."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
-msgstr ""
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
+msgstr "Chun do chuntas a ghníomhachtú, lean an nasc seo:"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2897,10 +2898,6 @@ msgstr ""
 "Seoltar an teachtaireacht seo chun deimhniú go bhfuil an seoladh ríomhphoist "
 "ceart. Mura dteastaíonn uait cuntas a chlárú, ná bac leis an "
 "teachtaireacht."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "Chun do chuntas a ghníomhachtú, lean an nasc seo:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"

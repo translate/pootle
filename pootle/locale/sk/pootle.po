@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2010-08-27 00:56+0200\n"
 "Last-Translator: kimd <kimeckun@gmail.com>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
@@ -2881,8 +2881,9 @@ msgstr ""
 "Pootle."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
-msgstr ""
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
+msgstr "Účet aktivujte kliknutím na nasledujúci odkaz:"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2901,10 +2902,6 @@ msgid ""
 msgstr ""
 "Táto emailová správa bola odoslaná za účelom overenia platnosti adresy. Ak "
 "ste si neželali vytvoriť účet, jednoducho ju ignorujte."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "Účet aktivujte kliknutím na nasledujúci odkaz:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"

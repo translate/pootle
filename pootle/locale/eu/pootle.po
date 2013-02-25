@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"POT-Creation-Date: 2013-02-25 07:46+0000\n"
 "PO-Revision-Date: 2013-02-22 13:38+0000\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2937,8 +2937,9 @@ msgid "A Pootle account has been created for you using this email address."
 msgstr "Pootle kontu bat sortu da zuretzat helbide elektroniko hau erabiliz."
 
 #: templates/registration/activation_email.html:6
-msgid "To activation your account, follow this link:"
-msgstr "Zure kontua gaitzeko, jarraitu ondoko esteka:"
+#: templates/registration/activation_email.txt:3
+msgid "To activate your account, follow this link:"
+msgstr "Zure kontua gaitzeko, jarraitu ondoko lotura:"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2957,10 +2958,6 @@ msgid ""
 msgstr ""
 "Helbide elektronikoa benetan baliozkoa dela egiaztatzeko bidaltzen da mezu "
 "hau. Ez bazenuen izena eman nahi, besterik gabe ezikusi mezu hau."
-
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "Zure kontua gaitzeko, jarraitu ondoko lotura:"
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
@@ -3149,6 +3146,9 @@ msgstr "Kontua baduzula?"
 #: templates/registration/registration_form.html:57
 msgid "Log In."
 msgstr "Hasi saioa."
+
+#~ msgid "To activation your account, follow this link:"
+#~ msgstr "Zure kontua gaitzeko, jarraitu ondoko esteka:"
 
 #~ msgid "Overall Completion"
 #~ msgstr "Aurrerapen orokorra"
