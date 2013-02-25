@@ -1,7 +1,7 @@
 {% extends "base.html"  %}
 
 {% load url from future %}
-{% load i18n baseurl cache %}
+{% load i18n baseurl cache common_tags %}
 
 {% block title %}{{ translation_project.project }} | {{ language.name }} | {{ block.super }}{% endblock %}
 
@@ -9,10 +9,8 @@
 {{ block.super }}<li><a href='{{ "/projects/"|l }}'>{% trans "Projects" %}</a></li>
 {% cache settings.CACHE_TIMEOUT tp_bread directory.id LANGUAGE_CODE %}
 <li><a href="{% url 'project.overview' project.code %}" id="js-select-project"
-  data-code="{{ project.code }}">{{ project }}</a></li>
-<li><span id="js-select-language"
-data-url="{% url 'project.list_languages' project.code %}"
-data-code="{{ language.code }}">{{ language.name }}</span></li>
+  data-initial-code="{{ project.code }}">{{ project }}</a></li>
+<li><noscript>{{ language.name }}</noscript>{% display_select 'language' project.languages language.code %}</li>
 {% endcache %}
 {% endblock %}
 

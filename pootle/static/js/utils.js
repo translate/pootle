@@ -98,37 +98,17 @@
 
     /* Converts the elements matched by `selector` into selectable inputs.
      *
-     * `url` will be queried to retrieve the select choices.
      * `onChange` function will be fired when the select choice changes.
      */
-    makeSelectableInput: function (selector, url, onChange) {
+    makeSelectableInput: function (selector, onChange) {
       // XXX: Check if this works with multiple selects per page
-      var ajaxCache,
-          $el = $(selector);
+      var $el = $(selector);
 
       if (!$el.length) {
         return;
       }
 
-      $el.select2({
-        initSelection: function (el, callback) {
-          var $el = $(el);
-          callback({id: $el.data('code'), text: $el.text()});
-        },
-        query: function (query) {
-          if (ajaxCache) {
-            query.callback(ajaxCache);
-          } else {
-            $.ajax({
-              url: url,
-              success: function (res) {
-                ajaxCache = {results: res};
-                query.callback(ajaxCache);
-              },
-            });
-          }
-        }
-      });
+      $el.select2();
 
       $el.on('change', onChange);
     }

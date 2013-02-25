@@ -5,10 +5,7 @@
   PTL.common = {
 
     init: function () {
-      var projectLangsSelector = '#js-select-language',
-          projectLangsUrl = $(projectLangsSelector).data('url');
-
-      PTL.utils.makeSelectableInput(projectLangsSelector, projectLangsUrl,
+      PTL.utils.makeSelectableInput('#js-select-language',
         function (e) {
           var langCode = $(this).val();
           PTL.common.navigateToLang(langCode);
@@ -119,8 +116,8 @@
 
     /* Navigates to `langCode` while retaining the current context */
     navigateToLang: function (langCode) {
-      var curProject = $('#js-select-project').data('code'),
-          curLanguage = $('#js-select-language').data('code'),
+      var curProject = $('#js-select-project').data('initial-code'),
+          curLanguage = $('#js-select-language').data('initial-code'),
           curUrl = window.location.toString();
 
       if (langCode === curLanguage) {

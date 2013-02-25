@@ -29,8 +29,6 @@ urlpatterns = patterns('pootle_project.views',
     # Specific project
     url(r'^(?P<project_code>[^/]*)/?$',
         'project_language_index', name='project.overview'),
-    url(r'^(?P<project_code>[^/]*)/list-languages/?$',
-        'list_languages', name='project.list_languages'),
 
     # Admin
     (r'^(?P<project_code>[^/]*)/edit_settings.html?$',
