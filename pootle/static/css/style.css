@@ -1633,6 +1633,11 @@ table.sortable th
     cursor: pointer;
 }
 
+table.sortable th i
+{
+  vertical-align: middle;
+}
+
 table.sortable th.sorttable_nosort
 {
     cursor: default;

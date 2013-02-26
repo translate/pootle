@@ -107,7 +107,7 @@ sorttable = {
             this.className = this.className.replace('sorttable_sorted',
                                                     'sorttable_sorted_reverse');
             this.removeChild(document.getElementById('sorttable_sortfwdind'));
-            sortrevind = document.createElement('img');
+            sortrevind = document.createElement('i');
             sortrevind.id = "sorttable_sortrevind";
             sortrevind.className = "icon-desc";
             this.appendChild(sortrevind);
@@ -125,7 +125,7 @@ sorttable = {
             this.className = this.className.replace('sorttable_sorted_reverse',
                                                     'sorttable_sorted');
             this.removeChild(document.getElementById('sorttable_sortrevind'));
-            sortfwdind = document.createElement('img');
+            sortfwdind = document.createElement('i');
             sortfwdind.id = "sorttable_sortfwdind";
             sortfwdind.className = "icon-asc";
             this.appendChild(sortfwdind);
@@ -187,7 +187,7 @@ sorttable = {
     if (sortrevind) { sortrevind.parentNode.removeChild(sortrevind); }
 
     th.className += ' sorttable_sorted';
-    sortfwdind = document.createElement('img');
+    sortfwdind = document.createElement('i');
     sortfwdind.id = "sorttable_sortfwdind";
     sortfwdind.className = "icon-asc";
     th.appendChild(sortfwdind);
