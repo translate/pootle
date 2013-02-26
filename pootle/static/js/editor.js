@@ -307,8 +307,8 @@
         }
 
         if ('search' in params) {
-          // Note that currently the search, if provided along with the other filters,
-          // would override them
+          // Note that currently the search, if provided along with the other
+          // filters, would override them
           PTL.editor.filter = "search";
           PTL.editor.searchText = params['search'];
           if ('sfields' in params) {
@@ -1635,7 +1635,8 @@
         text = $("#id_search").val();
 
     if (text) {
-      var parsed = PTL.search.parse(text);
+      var remember = true,
+          parsed = PTL.search.parse(text, remember);
       newHash = "search=" + parsed;
     } else {
       newHash = PTL.utils.updateHashPart("filter", "all", ["search", "sfields"]);

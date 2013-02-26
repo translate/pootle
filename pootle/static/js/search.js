@@ -105,9 +105,11 @@
     },
 
     /* Parses search text to detect any given fields */
-    parse: function (text) {
+    parse: function (text, remember) {
       var searchFields = [],
-          parsed = text;
+          parsed = text,
+          // Won't remember field choices unless explicitely told so
+          remember = remember === undefined ? false : remember;
 
       // Check if there are fields specified within the search text
       if (this.searchRE.test(text)) {
@@ -146,7 +148,7 @@
       }
 
       // If any options have been chosen, append them to the resulting URL
-      if (searchFields.length) {
+      if (searchFields.length && remember) {
         parsed += "&sfields=" + searchFields.join(',');
       }
 
