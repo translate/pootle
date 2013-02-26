@@ -72,11 +72,36 @@
       });
 
       /* Dropdown toggling */
-      PTL.search.$fieldsToggle.click(function (event) {
+      var toggleFields = function (event) {
         event.preventDefault();
+
         PTL.search.$fields.slideToggle();
         PTL.search.$iconToggle.toggleClass("icon-down icon-up");
+      };
+
+      /* Event handlers */
+      PTL.search.$fieldsToggle.click(toggleFields);
+      PTL.search.$input.click(function (e) {
+        if (PTL.search.isOpen()) {
+          return;
+        }
+        toggleFields(e);
       });
+
+      /* Necessary to detect clicks out of PTL.search.$fields */
+      $(document).mouseup(function (e) {
+        if (PTL.search.isOpen() &&
+            e.target !== PTL.search.$fieldsToggle.get(0) &&
+            e.target !== PTL.search.$input.get(0) &&
+            !PTL.search.$fields.find(e.target).length) {
+          toggleFields(e);
+        }
+      });
+    },
+
+    /* Returns true if the search drop-down is open */
+    isOpen: function () {
+      return this.$fields.is(':visible');
     },
 
     /* Parses search text to detect any given fields */

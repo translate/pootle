@@ -2,7 +2,8 @@
 <div id="search">
   <form action="{{ search_action }}" method="get" id="searchform">
     <div class="input-append">
-      <label class="js-input-hint hide" for="id_search">{% trans "Search" %}</label>{{ search_form.search }}
+      <label class="js-input-hint hide" for="id_search">{% trans "Search" %}</label>
+      {{ search_form.search }}
       <button type="button" class="btn btn-search-fields js-search-fields-toggle"
         title="{% trans "Advanced search" %}">
         <i class="icon-down"></i>
