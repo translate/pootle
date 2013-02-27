@@ -153,10 +153,10 @@
 
     /* Search */
     $(document).on("keypress", "#id_search", function (e) {
-        if (e.keyCode == 13) {
-          e.preventDefault();
-          PTL.editor.search();
-        }
+      if (e.keyCode == 13) {
+        e.preventDefault();
+        PTL.editor.search();
+      }
     });
 
     /* Misc */
