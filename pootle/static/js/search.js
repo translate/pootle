@@ -59,12 +59,12 @@
         input.mouseup(function (e) {
           e.preventDefault();
         }).focus(function () {
-          if (input.val() == initial && !search) {
+          if (input.val() === initial && !search) {
             input.val('');
           }
           input.data('focused', true).select();
         }).blur(function () {
-          if (input.val() == '') {
+          if (input.val() === '') {
             input.val(initial);
           }
           input.data('focused', false);
