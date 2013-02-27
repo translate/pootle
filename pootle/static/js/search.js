@@ -7,8 +7,6 @@
     init: function (options) {
       /* Reusable selectors */
       this.$fields = $(".js-search-fields");
-      this.$fieldsToggle = $(".js-search-fields-toggle");
-      this.$iconToggle = this.$fieldsToggle.find("i");
       this.$input = $("#id_search");
 
       /* Default settings */
@@ -74,13 +72,10 @@
       /* Dropdown toggling */
       var toggleFields = function (event) {
         event.preventDefault();
-
         PTL.search.$fields.slideToggle();
-        PTL.search.$iconToggle.toggleClass("icon-down icon-up");
       };
 
       /* Event handlers */
-      PTL.search.$fieldsToggle.click(toggleFields);
       PTL.search.$input.click(function (e) {
         if (PTL.search.isOpen()) {
           return;
@@ -91,7 +86,6 @@
       /* Necessary to detect clicks out of PTL.search.$fields */
       $(document).mouseup(function (e) {
         if (PTL.search.isOpen() &&
-            e.target !== PTL.search.$fieldsToggle.get(0) &&
             e.target !== PTL.search.$input.get(0) &&
             !PTL.search.$fields.find(e.target).length) {
           toggleFields(e);

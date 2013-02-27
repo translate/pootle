@@ -866,13 +866,6 @@ div#update p
     padding: 4px 10px;
 }
 
-.btn-search-fields
-{
-    background-color: #0489b7;
-    padding: 2px 0;
-    outline: 0;
-}
-
 
 /*
  * FORMS
@@ -1035,32 +1028,6 @@ html[dir="rtl"] .form-horizontal.form-actions input
 {
     margin-right: inherit;
     margin-left: 1em;
-}
-
-.input-append
-{
-    font-size: 0;
-    white-space: nowrap;
-}
-
-.input-append input,
-.input-append .btn
-{
-    vertical-align: top;
-}
-
-.input-append .btn:last-child
-{
-    -webkit-border-radius: 0 3px 3px 0;
-       -moz-border-radius: 0 3px 3px 0;
-            border-radius: 0 3px 3px 0;
-}
-
-html[dir="rtl"] .input-append .btn:last-child
-{
-    -webkit-border-radius: 3px 0 0 3px;
-       -moz-border-radius: 3px 0 0 3px;
-            border-radius: 3px 0 0 3px;
 }
 
 /* Form messages */
@@ -1983,40 +1950,102 @@ body#tpadminpermissions #tabs a.tpadminpermissions
     margin: 6px 0;
 }
 
-#search[dir="rtl"]
+html[dir="rtl"] #search
 {
     float: left;
 }
 
-#search input[type=text]
+#search-form
 {
-    border: 1px solid #0489b7;
-    height: 12px;
+    position: relative;
+    padding: 2px;
+}
+
+#search-form,
+.search-fields
+{
+    background-color: #fff;
+    border: 1px solid #d9d9d9;
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+}
+
+.search-wrapper
+{
+    font-size: 0;
+    white-space: nowrap;
+}
+
+.search-wrapper input[type="text"],
+.search-wrapper .btn
+{
+    vertical-align: middle;
+}
+
+#search-form input[type="text"]
+{
+    border: 0 none;
+    height: 16px;
     line-height: 16px;
-    padding: 3px;
+    padding: 0px 4px;
     width: 145px;
     background-color: #fff;
     color: #d9d9d9;
     font-size: 12px;
+    outline: 0;
 }
 
-#search input[type=text]:focus
+#search-form input[type="text"]:focus
 {
     color: #130f30;
 }
 
-.search-fields
+.btn-search
 {
     background-color: #fff;
-    border-bottom: 1px solid #0489b7;
-    border-left: 1px solid #0489b7;
-    border-right: 1px solid #0489b7;
-    overflow: auto;
+    padding: 0;
+    outline: 0;
+}
+
+.search-fields
+{
     padding: 5px;
     position: absolute;
+    top: 25px;
     z-index: 2000;
-    display: none;
-    width: 141px;
+    width: 165px;
+    outline: 0;
+}
+
+.search-fields:after,
+.search-fields:before
+{
+    bottom: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.search-fields:after
+{
+    border-color: rgba(255, 255, 255, 0);
+    border-bottom-color: #fff;
+    border-width: 5px;
+    left: 50%;
+    margin-left: -5px;
+}
+
+.search-fields:before
+{
+    border-color: rgba(217, 217, 217, 0);
+    border-bottom-color: #d9d9d9;
+    border-width: 6px;
+    left: 50%;
+    margin-left: -6px;
 }
 
 .search-fields li
@@ -2030,17 +2059,6 @@ body#tpadminpermissions #tabs a.tpadminpermissions
     vertical-align: top;
 }
 
-.togglesearch
-{
-    cursor: pointer;
-    vertical-align: top;
-}
-
-/* Fix for Opera + RTL */
-div#search[dir="rtl"] .togglesearch
-{
-    margin-left: -5px;
-}
 
 /* FILENAMES, STATS */
 

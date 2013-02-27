@@ -152,6 +152,10 @@
     $(document).on("submit", "#comment-form", this.comment);
 
     /* Search */
+    $(document).on("submit", "#search-form", function (e) {
+      e.preventDefault();
+      PTL.editor.search()
+    });
     $(document).on("keypress", "#id_search", function (e) {
       if (e.keyCode == 13) {
         e.preventDefault();
