@@ -37,7 +37,7 @@
         PTL.search.$input.focus();
       });
       shortcut.add('escape', function () {
-        if (PTL.search.$input.attr("focused")) {
+        if (PTL.search.$input.data('focused')) {
           PTL.search.$input.blur();
         }
       });
