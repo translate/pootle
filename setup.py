@@ -114,7 +114,7 @@ class PootleBuildMo(DistutilsBuild):
                     if not os.path.exists(mo_path):
                         os.makedirs(mo_path)
                     print "COMPILING: %s language" % lang
-                    subprocess.Popen(['msgfmt', '-c', '--strict',
+                    subprocess.Popen(['msgfmt', '--strict',
                                       '-o', mo_filename, po_filename])
                 except Exception, e:
                     print "SKIPPING: %s, running msgfmt failed: %s" % (lang, e)
