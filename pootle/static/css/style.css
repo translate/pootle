@@ -1959,6 +1959,10 @@ html[dir="rtl"] #search
 {
     position: relative;
     padding: 2px;
+
+    -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.075) inset;
+       -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.075) inset;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.075) inset;
 }
 
 #search-form,
