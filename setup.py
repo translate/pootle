@@ -111,12 +111,14 @@ class PootleBuildMo(DistutilsBuild):
                 except Exception, e:
                     log.warn("%s, has invalid plural header: %s", lang, e)
 
+                if not os.path.exists(mo_path):
+                    os.makedirs(mo_path)
                 try:
-                    if not os.path.exists(mo_path):
-                        os.makedirs(mo_path)
                     log.info("compling %s", lang)
-                    subprocess.Popen(['msgfmt', '--strict',
-                                      '-o', mo_filename, po_filename])
+                    subprocess.check_output(['msgfmt', '--strict',
+                                      '-o', mo_filename, po_filename], stderr=subprocess.STDOUT)
+                except subprocess.CalledProcessError, e:
+                    log.error("error in %s:\n%s", lang, e.output)
                 except Exception, e:
                     log.warn("skipping %s, running msgfmt failed: %s", lang, e)
 
