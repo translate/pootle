@@ -105,6 +105,10 @@ class PootleBuildMo(DistutilsBuild):
                 po_filename = os.path.join(po_path, po)
                 mo_filename = os.path.join(mo_path, mo)
 
+                if not os.path.exists(po_filename):
+                    log.warn("%s: missing file %s", lang, po_filename)
+                    continue
+
                 if not os.path.exists(mo_path):
                     os.makedirs(mo_path)
                 try:
