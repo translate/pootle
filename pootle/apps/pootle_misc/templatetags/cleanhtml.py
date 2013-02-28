@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2012 Zuza Software Foundation
+# Copyright 2008-2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -30,6 +30,9 @@ from django.utils.html import escape, simple_email_re as email_re
 from django.utils.safestring import mark_safe
 
 from translate.storage.placeables import general
+
+
+register = template.Library()
 
 
 ESCAPE_RE = re.compile('<[^<]*?>|\\\\|\r\n|[\r\n\t&<>]')
@@ -71,7 +74,9 @@ def fancy_spaces(text):
     return WHITESPACE_RE.sub(replace, text)
 
 
-def clean_wrapper(text):
+@register.filter
+@stringfilter
+def clean(text):
     """Wrapper around lxml's html cleaner that returns SafeStrings for
     immediate rendering in templates.
     """
@@ -94,10 +99,14 @@ def fancy_punctuation_chars(text):
     return PUNCTUATION_RE.sub(replace, text)
 
 
+@register.filter
+@stringfilter
 def fancy_highlight(text):
     return mark_safe(fancy_punctuation_chars(fancy_spaces(fancy_escape(text))))
 
 
+@register.filter
+@stringfilter
 def obfuscate(text):
     """Obfuscates the given text in case it is an email address.
     Based on the implementation used in addons.mozilla.org"""
@@ -120,13 +129,8 @@ def obfuscate(text):
     return mark_safe(node)
 
 
+@register.filter
+@stringfilter
 def url_target_blank(text):
     """Sets the target="_blank" for hyperlinks."""
     return mark_safe(text.replace('<a ', '<a target="_blank" '))
-
-
-register = template.Library()
-register.filter('clean', stringfilter(clean_wrapper))
-register.filter('fancy_highlight', stringfilter(fancy_highlight))
-register.filter('obfuscate', stringfilter(obfuscate))
-register.filter('url_target_blank', stringfilter(url_target_blank))
