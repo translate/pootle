@@ -22,7 +22,8 @@ import glob
 import os
 import re
 
-from distutils.command.build import build as DistutilsBuild
+from distutils.command.build import (build as DistutilsBuild,
+                                     DistutilsOptionError)
 
 from setuptools import find_packages, setup
 
@@ -51,40 +52,72 @@ def parse_requirements(file_name):
 
 class PootleBuildMo(DistutilsBuild):
 
+    description = "compile Gettext PO files into MO"
+    user_options = [
+        ('all', None,
+         "compile all language (don't use LINGUAS file)"),
+        ('lang=', 'l',
+         "specify a language to compile"),
+    ]
+    boolean_options = ['all']
+
+    po_path_base = os.path.join('pootle', 'locale')
+    _langs = []
+
+    def initialize_options(self):
+        self.all = False
+        self.lang = None
+
+    def finalize_options(self):
+        if self.all and self.lang is not None:
+            raise DistutilsOptionError(
+                "Can't use --all and --lang together"
+            )
+        if self.lang is not None:
+            self._langs = [self.lang]
+        elif self.all:
+            for lang in os.listdir(self.po_path_base):
+                if (os.path.isdir(os.path.join(self.po_path_base, lang)) and
+                    lang != "templates"):
+                    self._langs.append(lang)
+        else:
+            for lang in open(os.path.join('pootle', 'locale', 'LINGUAS')):
+                self._langs.append(lang.rstrip())
+
     def build_mo(self):
         """Compile .mo files from available .po files"""
         import subprocess
         import gettext
         from translate.storage import factory
 
-        print "Preparing localization files"
-        pootle_po = glob.glob(os.path.join('pootle', 'locale', '*',
-                                           'pootle.po'))
-        pootle_js_po = glob.glob(os.path.join('pootle', 'locale', '*',
-                                              'pootle_js.po'))
-        for po_filename in pootle_po + pootle_js_po:
-            lang = os.path.split(os.path.split(po_filename)[0])[1]
-            lang_dir = os.path.join('pootle', 'locale', lang, 'LC_MESSAGES')
+        for lang in self._langs:
+            lang = lang.rstrip()
 
-            if po_filename in pootle_po:
-                mo_filename = os.path.join(lang_dir, 'django.mo')
-            else:
-                mo_filename = os.path.join(lang_dir, 'djangojs.mo')
+            po_path = os.path.join('pootle', 'locale', lang)
+            mo_path = os.path.join('pootle', 'locale', lang, 'LC_MESSAGES')
 
-            try:
-                store = factory.getobject(po_filename)
-                gettext.c2py(store.getheaderplural()[1])
-            except Exception, e:
-                print "WARNING: %s, has invalid plural header: %s" % (lang, e)
+            if not os.path.exists(mo_path):
+                os.makedirs(mo_path)
 
-            try:
-                if not os.path.exists(lang_dir):
-                    os.makedirs(lang_dir)
-                print "COMPILING: %s language" % lang
-                subprocess.Popen(['msgfmt', '-c', '--strict',
-                                  '-o', mo_filename, po_filename])
-            except Exception, e:
-                print "SKIPPING: %s, running msgfmt failed: %s" % (lang, e)
+            for po, mo in (('pootle.po', 'django.mo'),
+                                     ('pootle_js.po', 'djangojs.mo')):
+                po_filename = os.path.join(po_path, po)
+                mo_filename = os.path.join(mo_path, mo)
+
+                try:
+                    store = factory.getobject(po_filename)
+                    gettext.c2py(store.getheaderplural()[1])
+                except Exception, e:
+                    print "WARNING: %s, has invalid plural header: %s" % (lang, e)
+
+                try:
+                    if not os.path.exists(mo_path):
+                        os.makedirs(mo_path)
+                    print "COMPILING: %s language" % lang
+                    subprocess.Popen(['msgfmt', '-c', '--strict',
+                                      '-o', mo_filename, po_filename])
+                except Exception, e:
+                    print "SKIPPING: %s, running msgfmt failed: %s" % (lang, e)
 
     def run(self):
         self.build_mo()
