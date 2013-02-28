@@ -72,7 +72,7 @@
       /* Dropdown toggling */
       var toggleFields = function (event) {
         event.preventDefault();
-        PTL.search.$fields.slideToggle();
+        PTL.search.$fields.toggle();
       };
 
       /* Event handlers */
