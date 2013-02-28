@@ -74,20 +74,6 @@ def fancy_spaces(text):
     return WHITESPACE_RE.sub(replace, text)
 
 
-@register.filter
-@stringfilter
-def clean(text):
-    """Wrapper around lxml's html cleaner that returns SafeStrings for
-    immediate rendering in templates.
-    """
-    try:
-        clean_text = clean_html(text)
-    except ParserError:
-        clean_text = u""
-
-    return mark_safe(clean_text)
-
-
 PUNCTUATION_RE = general.PunctuationPlaceable().regex
 def fancy_punctuation_chars(text):
     """Wraps punctuation chars found in the ``text`` around tags."""
@@ -103,6 +89,20 @@ def fancy_punctuation_chars(text):
 @stringfilter
 def fancy_highlight(text):
     return mark_safe(fancy_punctuation_chars(fancy_spaces(fancy_escape(text))))
+
+
+@register.filter
+@stringfilter
+def clean(text):
+    """Wrapper around lxml's html cleaner that returns SafeStrings for
+    immediate rendering in templates.
+    """
+    try:
+        clean_text = clean_html(text)
+    except ParserError:
+        clean_text = u""
+
+    return mark_safe(clean_text)
 
 
 @register.filter
