@@ -78,8 +78,7 @@ class LdapBackend(object):
                 logger.info("First login for LDAP user (%s).  "
                             "Creating new account." % username)
                 user = User(username=username, is_active=True)
-                user.password = ('LDAP_%s' %
-                                 (User.objects.make_random_password(32)))
+                user.set_unusable_password()
                 for i in settings.AUTH_LDAP_FIELDS:
                     if i != 'dn' and len(settings.AUTH_LDAP_FIELDS[i]) > 0:
                         setattr(user, i,
