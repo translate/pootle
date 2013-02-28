@@ -2129,6 +2129,12 @@ html[dir="rtl"] .pull-right
     float: left;
 }
 
+.hr
+{
+    border-top: 1px solid #eee;
+    padding: 1em 0 0;
+}
+
 .muted
 {
     color: #999;
