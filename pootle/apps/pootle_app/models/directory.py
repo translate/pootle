@@ -30,10 +30,12 @@ from pootle_store.util import (empty_quickstats, empty_completestats,
 
 
 class DirectoryManager(models.Manager):
+
     def get_query_set(self):
         # ForeignKey fields with null=True are not selected by
         # select_related unless explicitly specified
-        return super(DirectoryManager, self).get_query_set().select_related('parent')
+        return super(DirectoryManager, self).get_query_set() \
+                                            .select_related('parent')
 
     def _get_root(self):
         return self.get(pootle_path='/')
@@ -43,15 +45,18 @@ class DirectoryManager(models.Manager):
         return self.get(pootle_path='/projects/')
     projects = property(_get_projects)
 
+
 class Directory(models.Model):
+
     class Meta:
         ordering = ['name']
         app_label = "pootle_app"
 
     is_dir = True
 
-    name        = models.CharField(max_length=255, null=False)
-    parent      = models.ForeignKey('Directory', related_name='child_dirs', null=True, db_index=True)
+    name = models.CharField(max_length=255, null=False)
+    parent = models.ForeignKey('Directory', related_name='child_dirs',
+            null=True, db_index=True)
     pootle_path = models.CharField(max_length=255, null=False, db_index=True)
 
     objects = DirectoryManager()
@@ -87,7 +92,9 @@ class Directory(models.Model):
 
     @getfromcache
     def get_mtime(self):
-        return max_column(Unit.objects.filter(store__pootle_path__startswith=self.pootle_path), 'mtime', None)
+        return max_column(Unit.objects.filter(
+            store__pootle_path__startswith=self.pootle_path
+        ), 'mtime', None)
 
     def _get_stores(self):
         """Queryset with all descending stores."""
@@ -155,7 +162,9 @@ class Directory(models.Model):
 
 
     def trail(self, only_dirs=True):
-        """return list of ancestor directories excluding TranslationProject and above"""
+        """Returns a list of ancestor directories excluding
+        :cls:`~pootle_translationproject.models.TranslationProject` and above.
+        """
         path_parts = self.pootle_path.split('/')
         parents = []
         if only_dirs:
@@ -167,8 +176,11 @@ class Directory(models.Model):
         for i in xrange(start, len(path_parts)):
             path = '/'.join(path_parts[:i]) + '/'
             parents.append(path)
+
         if parents:
-            return Directory.objects.filter(pootle_path__in=parents).order_by('pootle_path')
+            return Directory.objects.filter(pootle_path__in=parents) \
+                                    .order_by('pootle_path')
+
         return Directory.objects.none()
 
     def get_suggestion_count(self):
@@ -181,13 +193,16 @@ class Directory(models.Model):
         return self.pootle_path.count('/') == 2
 
     def is_project(self):
-        return self.pootle_path.startswith('/projects/') and self.pootle_path.count('/') == 3
+        return (self.pootle_path.startswith('/projects/') and
+                self.pootle_path.count('/') == 3)
 
     def is_translationproject(self):
         """does this directory point at a translation project"""
-        return self.pootle_path.count('/') == 3 and not self.pootle_path.startswith('/projects/')
+        return (self.pootle_path.count('/') == 3 and not
+                self.pootle_path.startswith('/projects/'))
 
-    is_template_project = property(lambda self: self.pootle_path.startswith('/templates/'))
+    is_template_project = property(lambda self: self.pootle_path
+                                                    .startswith('/templates/'))
 
     @cached_property
     def translation_project(self):
@@ -215,5 +230,6 @@ class Directory(models.Model):
             return translation_project.real_path
 
         if translation_project:
-            path_prefix = self.pootle_path[len(translation_project.pootle_path)-1:-1]
+            tp_path = translation_project.pootle_path
+            path_prefix = self.pootle_path[len(tp_path)-1:-1]
             return translation_project.real_path + path_prefix
