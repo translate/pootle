@@ -22,6 +22,7 @@ import glob
 import os
 import re
 
+from distutils import log
 from distutils.command.build import (build as DistutilsBuild,
                                      DistutilsOptionError)
 
@@ -108,17 +109,16 @@ class PootleBuildMo(DistutilsBuild):
                     store = factory.getobject(po_filename)
                     gettext.c2py(store.getheaderplural()[1])
                 except Exception, e:
-                    print "WARNING: %s, has invalid plural header: %s" % \
-                            (lang, e)
+                    log.warn("%s, has invalid plural header: %s", lang, e)
 
                 try:
                     if not os.path.exists(mo_path):
                         os.makedirs(mo_path)
-                    print "COMPILING: %s language" % lang
+                    log.info("compling %s", lang)
                     subprocess.Popen(['msgfmt', '--strict',
                                       '-o', mo_filename, po_filename])
                 except Exception, e:
-                    print "SKIPPING: %s, running msgfmt failed: %s" % (lang, e)
+                    log.warn("skipping %s, running msgfmt failed: %s", lang, e)
 
     def run(self):
         self.build_mo()
