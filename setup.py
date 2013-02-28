@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2012 Zuza Software Foundation
+# Copyright 2008-2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -100,7 +100,7 @@ class PootleBuildMo(DistutilsBuild):
                 os.makedirs(mo_path)
 
             for po, mo in (('pootle.po', 'django.mo'),
-                                     ('pootle_js.po', 'djangojs.mo')):
+                           ('pootle_js.po', 'djangojs.mo')):
                 po_filename = os.path.join(po_path, po)
                 mo_filename = os.path.join(mo_path, mo)
 
@@ -108,7 +108,8 @@ class PootleBuildMo(DistutilsBuild):
                     store = factory.getobject(po_filename)
                     gettext.c2py(store.getheaderplural()[1])
                 except Exception, e:
-                    print "WARNING: %s, has invalid plural header: %s" % (lang, e)
+                    print "WARNING: %s, has invalid plural header: %s" % \
+                            (lang, e)
 
                 try:
                     if not os.path.exists(mo_path):
