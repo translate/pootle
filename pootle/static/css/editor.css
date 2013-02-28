@@ -485,13 +485,6 @@ table td.translate-translation
 }
 
 .translate-locations,
-.developer-comments,
-.translate-context
-{
-    margin-bottom: 0.5em;
-}
-
-.translate-locations,
 .translate-context-value
 {
     font-size: 90%;
