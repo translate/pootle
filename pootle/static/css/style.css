@@ -1975,6 +1975,14 @@ html[dir="rtl"] #search
             border-radius: 3px;
 }
 
+#search-form.focused,
+.search-fields
+{
+    -webkit-box-shadow: 0 0 2px #d9d9d9;
+       -moz-box-shadow: 0 0 2px #d9d9d9;
+            box-shadow: 0 0 2px #d9d9d9;
+}
+
 .search-wrapper
 {
     font-size: 0;
