@@ -114,19 +114,21 @@ class PootleBuildMo(DistutilsBuild):
 
                 try:
                     log.info("compling %s", lang)
-                    subprocess.check_output(['msgfmt', '--strict',
-                                      '-o', mo_filename, po_filename], stderr=subprocess.STDOUT)
+                    subprocess.check_output([
+                        'msgfmt', '--strict', '-o', mo_filename, po_filename],
+                        stderr=subprocess.STDOUT)
                 except subprocess.CalledProcessError, e:
                     log.error("%s: msgfmt error:\n%s", lang, e.output)
                 except Exception, e:
-                    log.warn("%s: skipping, running msgfmt failed: %s", lang, e)
+                    log.warn("%s: skipping, running msgfmt failed: %s",
+                             lang, e)
 
                 try:
                     store = factory.getobject(po_filename)
                     gettext.c2py(store.getheaderplural()[1])
                 except Exception:
-                    log.warn("%s: invalid plural header in %s", lang, po_filename)
-
+                    log.warn("%s: invalid plural header in %s",
+                             lang, po_filename)
 
     def run(self):
         self.build_mo()
