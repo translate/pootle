@@ -6,6 +6,7 @@
 
     init: function (options) {
       /* Reusable selectors */
+      this.$form = $("#search-form");
       this.$fields = $(".js-search-fields");
       this.$input = $("#id_search");
 
@@ -35,7 +36,7 @@
         PTL.search.$input.focus();
       });
       shortcut.add('escape', function () {
-        if (PTL.search.$input.data('focused')) {
+        if (PTL.search.$form.hasClass('focused')) {
           PTL.search.$input.blur();
         }
       });
@@ -60,12 +61,13 @@
           if (input.val() === initial && !search) {
             input.val('');
           }
-          input.data('focused', true).select();
+          input.select();
+          PTL.search.$form.addClass('focused');
         }).blur(function () {
           if (input.val() === '') {
             input.val(initial);
           }
-          input.data('focused', false);
+          PTL.search.$form.removeClass('focused');
         }).val(initial);
       });
 
