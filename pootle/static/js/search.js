@@ -35,9 +35,10 @@
       shortcut.add('ctrl+shift+s', function () {
         PTL.search.$input.focus();
       });
-      shortcut.add('escape', function () {
+      shortcut.add('escape', function (e) {
         if (PTL.search.$form.hasClass('focused')) {
           PTL.search.$input.blur();
+          toggleFields(e);
         }
       });
 
