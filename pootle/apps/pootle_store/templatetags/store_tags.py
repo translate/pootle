@@ -18,6 +18,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+import re
+
 from django import template
 from django.core.exceptions import ObjectDoesNotExist
 #FIXME: _loader is probably not a stable API for the future, but seems like
@@ -157,6 +159,14 @@ def pluralize_diff_sugg(sugg):
         return forms
     else:
         return [(0, sugg.target, call_highlight(unit.target, sugg.target), None)]
+
+
+IMAGE_URL_RE = re.compile("(https?://[^\s]+\.(png|jpe?g|gif))")
+
+@register.filter
+def image_urls(text):
+    """Returns a list of image URLs extracted from `text`."""
+    return map(lambda x: x[0], IMAGE_URL_RE.findall(text))
 
 
 def do_include_raw(parser, token):

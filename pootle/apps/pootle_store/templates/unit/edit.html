@@ -27,6 +27,17 @@
         {% if unit.developer_comment %}
         <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Comments:" %}</div>
         <div class="developer-comments" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}"{% if unit.locations %}title="{{ unit.locations }}"{% endif %}>{{ unit.developer_comment|urlize|url_target_blank|linebreaks }}</div>
+        {% with image_urls=unit.developer_comment|image_urls %}
+          {% if image_urls %}
+          <div class="developer-images hr">
+          {% for image_url in image_urls %}
+            <a rel="developer-images" class="js-dev-img" href="{{ image_url }}">
+            <img rel="developer-images" class="fancybox" src="{{ image_url }}"/>
+            </a>
+          {% endfor %}
+          </div>
+          {% endif %}
+        {% endwith %}
         {% endif %}
         {% if unit.locations and not unit.developer_comment %}
         <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Locations:" %}</div>

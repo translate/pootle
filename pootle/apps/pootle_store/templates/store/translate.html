@@ -116,6 +116,7 @@
 {% endassets %}
 <script type="text/javascript">
 $(function() {
+  $('.js-dev-img').fancybox({nextEffect: 'none', prevEffect: 'none'});
   var options = {};
   {% if request.is_secure %}options.secure = true;{% endif %}
   {% if cansuggest or cantranslate %}

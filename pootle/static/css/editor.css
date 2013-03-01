@@ -478,10 +478,30 @@ table td.translate-translation
     word-break: break-word;
 }
 
+/* Force-wrap URLs */
+.comments p a,
+.developer-images a
+{
+    white-space: normal !important;
+}
+
 .sidetitle,
 .comments .developer-comments
 {
     display: inline;
+}
+
+.developer-comments + .developer-images
+{
+    margin-top: 1em;
+}
+
+.developer-images img
+{
+    width: 29%;
+    height: auto;
+    margin: 2px;
+    vertical-align: top;
 }
 
 .translate-locations,
