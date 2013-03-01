@@ -4,7 +4,7 @@ CSS_DIR = ${STATIC_DIR}/css
 IMAGES_DIR = ${STATIC_DIR}/images
 SPRITE_DIR = ${IMAGES_DIR}/sprite
 
-all:
+all: help
 
 build:
 		python manage.py collectstatic --noinput --clear
@@ -17,3 +17,19 @@ sprite:
 
 pot:
 		@${SRC_DIR}/tools/createpootlepot
+
+mo:
+	python setup.py build_mo
+
+mo-all:
+	python setup.py build_mo --all
+
+help:
+	@echo "Help"
+	@echo "----"
+	@echo
+	@echo "  build - create sdist with required prep"
+	@echo "  sprite - create CSS sprite"
+	@echo "  pot - update the POT translations templates"
+	@echo "  mo - build MO files for languages listed in 'pootle/locale/LINGUAS'"
+	@echo "  mo-all - build MO files for all languages (only use for testing)"
