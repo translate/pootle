@@ -47,7 +47,7 @@ html[dir="rtl"] #toolbar #search
 #toolbar .search-fields
 {
     top: auto;
-    bottom: 25px;
+    bottom: 30px;
 }
 
 #toolbar .search-fields:after,
