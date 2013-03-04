@@ -18,6 +18,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+import os
+
 from django.conf import settings
 from django.utils.translation import ugettext as _
 from django.shortcuts import render_to_response
@@ -108,6 +110,7 @@ def extract(request, translation_project):
         if store.state < PARSED:
             store.state = PARSED
         store.save()
+        store.sync(create=True)
 
         template_vars['store'] = store
         template_vars['termcount'] = len(termunits)
@@ -159,9 +162,11 @@ def manage_store(request, template_vars, language, term_store):
 
             return value
 
-    return util.edit(request, 'terminology/manage.html', Unit, template_vars, None, None,
-                     queryset=term_store.units, can_delete=True, form=TermUnitForm,
-                     exclude=['state', 'target_f', 'id', 'translator_comment'])
+    res = util.edit(request, 'terminology/manage.html', Unit, template_vars, None, None,
+                    queryset=term_store.units, can_delete=True, form=TermUnitForm,
+                    exclude=['state', 'target_f', 'id', 'translator_comment'])
+    term_store.sync(create=True, update_structure=True, update_translation=True)
+    return res
 
 @get_translation_project
 @util.has_permission('administrate')
