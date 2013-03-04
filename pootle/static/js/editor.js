@@ -118,10 +118,10 @@
     $(document).on("noResults", "table.translate-table", this.noResults);
     $(document).on("click", "tr.view-row, tr.ctx-row", this.gotoUnit);
     $(document).on("keypress", "#item-number", function (e) {
-        // Perform action only when the 'Enter' key is pressed
-        if (e.which === 13) {
-          PTL.editor.gotoPage(parseInt($("#item-number").val()));
-        }
+      // Perform action only when the 'Enter' key is pressed
+      if (e.which === 13) {
+        PTL.editor.gotoPage(parseInt($("#item-number").val()));
+      }
     });
     $(document).on("click", "input.submit", this.submit);
     $(document).on("click", "input.suggest", this.suggest);
