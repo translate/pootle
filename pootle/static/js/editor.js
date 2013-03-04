@@ -116,7 +116,7 @@
     /* Editor navigation/submission */
     $(document).on("editor_ready", "table.translate-table", this.ready);
     $(document).on("noResults", "table.translate-table", this.noResults);
-    $(document).on("click", "tr.view-row, tr.ctx-row", this.gotoUnit);
+    $(document).on("mouseup", "tr.view-row, tr.ctx-row", this.gotoUnit);
     $(document).on("keypress", "#item-number", function (e) {
       // Perform action only when the 'Enter' key is pressed
       if (e.which === 13) {
@@ -935,9 +935,14 @@
 
           PTL.editor.pagesGot[page] = [];
 
+          var urlStr = PTL.editor.store ?
+                         PTL.editor.store + '/translate/#unit=' :
+                         PTL.editor.directory + 'translate.html#unit=';
+
           // Copy retrieved units to the client
           $.each(data.units, function () {
             PTL.editor.units[this.id] = this;
+            PTL.editor.units[this.id]['url'] = l(urlStr + this.id);
             PTL.editor.pagesGot[page].push(this.id);
           });
 
@@ -984,9 +989,13 @@
         cls = "even",
         even = true,
         rows = "";
+        urlStr = PTL.editor.store ?
+                   PTL.editor.store + '/translate/#unit=' :
+                   PTL.editor.directory + 'translate.html#unit=';
 
     for (i=0; i<units.length; i++) {
       unit = units[i];
+      unit['url'] = l(urlStr + unit.id);
 
       // Build context row i
       rows += '<tr id="ctx' + unit.id + '" class="ctx-row ' + extraCls +
@@ -1379,6 +1388,15 @@
   /* Loads the editor with a specific unit */
   gotoUnit: function (e) {
     e.preventDefault();
+
+    // Ctrl + click / Alt + click / Cmd + click / Middle click opens a new tab
+    if (e.ctrlKey || e.altKey || e.metaKey || e.which === 2) {
+      var $el = e.target.nodeName !== 'TD' ?
+                  $(e.target).parents('td') :
+                  $(e.target);
+      window.open($el.data('target'), '_blank');
+      return;
+    }
 
     // Don't load anything if we're just selecting text
     if (PTL.editor.getSelectedText() != "") {

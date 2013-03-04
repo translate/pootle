@@ -1,11 +1,13 @@
-<td dir="${meta.source_dir}" class="translate-original" rowspan="1" colspan="1">
+<td dir="${meta.source_dir}" class="translate-original" rowspan="1" colspan="1"
+  data-target="${unit.url}">
   <div class="translate-original translate-view" id="orig${unit.id}">
     {{each(i, source) unit.source}}
     <div lang="${meta.source_lang}" dir="${meta.source_dir}" class="translation-text"{{if source.title}} title="${ source.title }"{{/if}}>{{html PTL.editor.fancyHl(source.text) }}</div>
     {{/each}}
   </div>
 </td>
-<td dir="${meta.target_dir}" class="translate-translation{{if unit.isfuzzy}} fuzzy-unit{{/if}}" rowspan="1" colspan="1">
+<td dir="${meta.target_dir}" class="translate-translation{{if unit.isfuzzy}} fuzzy-unit{{/if}}"
+  rowspan="1" colspan="1" data-target="${unit.url}">
   <div dir="${meta.target_dir}" class="translate-translation translate-view" id="trans${unit.id}">
     {{each(i, target) unit.target}}
     <div lang="${meta.target_lang}" class="translation-text" dir="${meta.target_dir}"{{if target.title}} title="${ target.title }"{{/if}}>{{html PTL.editor.fancyHl(target.text) }}</div>
