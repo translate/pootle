@@ -119,7 +119,7 @@
     $(document).on("click", "tr.view-row, tr.ctx-row", this.gotoUnit);
     $(document).on("keypress", "#item-number", function (e) {
         // Perform action only when the 'Enter' key is pressed
-        if (e.keyCode == 13) {
+        if (e.which === 13) {
           PTL.editor.gotoPage(parseInt($("#item-number").val()));
         }
     });
@@ -157,7 +157,7 @@
       PTL.editor.search()
     });
     $(document).on("keypress", "#id_search", function (e) {
-      if (e.keyCode == 13) {
+      if (e.which === 13) {
         e.preventDefault();
         PTL.editor.search();
       }
