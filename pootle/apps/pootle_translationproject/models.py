@@ -840,15 +840,15 @@ class TranslationProject(models.Model):
         logging.debug(u"Loading indexer for %s", self.pootle_path)
         indexdir = os.path.join(self.abs_real_path, self.index_directory)
         from translate.search import indexing
-        index = indexing.get_indexer(indexdir)
-        index.set_field_analyzers({
-            "pofilename": index.ANALYZER_EXACT,
-            "itemno": index.ANALYZER_EXACT,
-            "pomtime": index.ANALYZER_EXACT,
-            "dbid": index.ANALYZER_EXACT,
+        indexer = indexing.get_indexer(indexdir)
+        indexer.set_field_analyzers({
+            "pofilename": indexer.ANALYZER_EXACT,
+            "itemno": indexer.ANALYZER_EXACT,
+            "pomtime": indexer.ANALYZER_EXACT,
+            "dbid": indexer.ANALYZER_EXACT,
         })
 
-        return index
+        return indexer
 
     def init_index(self, indexer):
         """Initializes the search index."""
