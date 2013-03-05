@@ -874,7 +874,7 @@ class TranslationProject(models.Model):
         """Updates the index with the contents of store (limit to
         ``unitid`` if given).
 
-        There are three reasons for calling this function:
+        There are two reasons for calling this function:
 
             1. Creating a new instance of :cls:`TranslationProject`
                (see :meth:`TranslationProject.init_index`)
@@ -883,7 +883,7 @@ class TranslationProject(models.Model):
             2. Translating a unit via the web interface
                -> (re)index only the specified unit(s)
 
-        The argument L{item} should be None for 1.
+        The argument ``unitid`` should be None for 1.
 
         Known problems:
 
