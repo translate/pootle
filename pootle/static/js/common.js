@@ -126,7 +126,7 @@
 
       var newUrl = curUrl.replace(curLanguage + '/' + curProject,
                                   langCode + '/' + curProject)
-                         .replace(/(\?|&)unit=\d+/, '');
+                         .replace(/(\#|&)unit=\d+/, '');
       window.location.href = newUrl;
     }
 
