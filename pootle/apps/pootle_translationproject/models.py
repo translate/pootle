@@ -842,11 +842,11 @@ class TranslationProject(models.Model):
         from translate.search import indexing
         index = indexing.get_indexer(indexdir)
         index.set_field_analyzers({
-                        "pofilename": index.ANALYZER_EXACT,
-                        "itemno": index.ANALYZER_EXACT,
-                        "pomtime": index.ANALYZER_EXACT,
-                        "dbid": index.ANALYZER_EXACT,
-                        })
+            "pofilename": index.ANALYZER_EXACT,
+            "itemno": index.ANALYZER_EXACT,
+            "pomtime": index.ANALYZER_EXACT,
+            "dbid": index.ANALYZER_EXACT,
+        })
 
         return index
 
@@ -933,11 +933,12 @@ class TranslationProject(models.Model):
 
         addlist = []
         for unit in units.iterator():
-            doc = {"pofilename": store.pootle_path,
-                   "pomtime": pomtime,
-                   "itemno": str(unit.index),
-                   "dbid": str(unit.id),
-                   }
+            doc = {
+                "pofilename": store.pootle_path,
+                "pomtime": pomtime,
+                "itemno": str(unit.index),
+                "dbid": str(unit.id),
+            }
 
             if unit.hasplural():
                 orig = "\n".join(unit.source.strings)
@@ -946,10 +947,12 @@ class TranslationProject(models.Model):
                 orig = unit.source
                 trans = unit.target
 
-            doc["source"] = orig
-            doc["target"] = trans
-            doc["notes"] = unit.getnotes()
-            doc["locations"] = unit.getlocations()
+            doc.update({
+                "source": orig,
+                "target": trans,
+                "notes": unit.getnotes(),
+                "locations": unit.getlocations(),
+            })
             addlist.append(doc)
 
         if addlist:
