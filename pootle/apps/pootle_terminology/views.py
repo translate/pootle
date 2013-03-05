@@ -159,9 +159,13 @@ def manage_store(request, template_vars, language, term_store):
 
             return value
 
-    return util.edit(request, 'terminology/manage.html', Unit, template_vars, None, None,
-                     queryset=term_store.units, can_delete=True, form=TermUnitForm,
-                     exclude=['state', 'target_f', 'id', 'translator_comment'])
+    return util.edit(request, 'terminology/manage.html', Unit, template_vars,
+                     None, None, queryset=term_store.units, can_delete=True,
+                     form=TermUnitForm, exclude=['state', 'target_f', 'id',
+                        'translator_comment', 'submitted_by', 'commented_by'])
+    #TODO 'submitted_by' and 'commented_by' had to be excluded in order to get
+    # terminology editing working. When the schema can be changed again this
+    # exclusion should be removed and change the schema accordingly.
 
 @get_translation_project
 @util.has_permission('administrate')
