@@ -7,16 +7,16 @@ SPRITE_DIR = ${IMAGES_DIR}/sprite
 all: help
 
 build:
-		python manage.py collectstatic --noinput --clear
-		python manage.py assets build
-		python setup.py build_mo
-		python setup.py sdist
+	python manage.py collectstatic --noinput --clear
+	python manage.py assets build
+	python setup.py build_mo
+	python setup.py sdist
 
 sprite:
-		glue --sprite-namespace="" --namespace="" ${SPRITE_DIR} --css=${CSS_DIR} --img=${IMAGES_DIR}
+	glue --sprite-namespace="" --namespace="" ${SPRITE_DIR} --css=${CSS_DIR} --img=${IMAGES_DIR}
 
 pot:
-		@${SRC_DIR}/tools/createpootlepot
+	@${SRC_DIR}/tools/createpootlepot
 
 mo:
 	python setup.py build_mo
