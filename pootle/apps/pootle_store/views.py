@@ -113,7 +113,8 @@ def get_unit_context(permission_codes):
                                                 "store__parent"),
                     id=uid,
             )
-            _common_context(request, unit.store.translation_project, permission_codes)
+            _common_context(request, unit.store.translation_project,
+                            permission_codes)
             request.unit = unit
             request.store = unit.store
             request.directory = unit.store.parent
@@ -166,11 +167,13 @@ def export_as_type(request, store, filetype):
     """Export given file to xliff for offline translation."""
     from pootle_store.filetypes import factory_classes, is_monolingual
     klass = factory_classes.get(filetype, None)
-    if not klass or is_monolingual(klass) or store.pootle_path.endswith(filetype):
+    if (not klass or is_monolingual(klass) or
+        store.pootle_path.endswith(filetype)):
         raise ValueError
 
     path, ext = os.path.splitext(store.real_path)
-    export_path = os.path.join('POOTLE_EXPORT', path + os.path.extsep + filetype)
+    export_path = os.path.join('POOTLE_EXPORT',
+                               path + os.path.extsep + filetype)
     abs_export_path = absolute_real_path(export_path)
 
     key = iri_to_uri("%s:export_as_%s" % (store.pootle_path, filetype))
@@ -202,23 +205,35 @@ def get_alt_src_langs(request, profile, translation_project):
     project = translation_project.project
     source_language = project.source_language
 
-    langs = profile.alt_src_langs.exclude(id__in=(language.id, source_language.id)).filter(translationproject__project=project)
+    langs = profile.alt_src_langs.exclude(
+            id__in=(language.id, source_language.id)
+        ).filter(translationproject__project=project)
 
     if not profile.alt_src_langs.count():
         from pootle_language.models import Language
         accept = request.META.get('HTTP_ACCEPT_LANGUAGE', '')
+
         for accept_lang, unused in parse_accept_lang_header(accept):
             if accept_lang == '*':
                 continue
-            normalized = to_locale(data.normalize_code(data.simplify_to_common(accept_lang)))
+
+            simplified = data.simplify_to_common(accept_lang)
+            normalized = to_locale(data.normalize_code(simplified))
             code = to_locale(accept_lang)
-            if normalized in ('en', 'en_US', source_language.code, language.code) or \
-                   code in ('en', 'en_US', source_language.code, language.code):
+            if (normalized in
+                    ('en', 'en_US', source_language.code, language.code) or
+                code in ('en', 'en_US', source_language.code, language.code)):
                 continue
-            langs = Language.objects.filter(code__in=(normalized, code), translationproject__project=project)
+
+            langs = Language.objects.filter(
+                code__in=(normalized, code),
+                translationproject__project=project,
+            )
             if langs.count():
                 break
+
     return langs
+
 
 def get_non_indexed_search_step_query(form, units_queryset):
     words = form.cleaned_data['search'].split()
@@ -240,8 +255,12 @@ def get_non_indexed_search_step_query(form, units_queryset):
         translator_subresult = units_queryset
         developer_subresult = units_queryset
         for word in words:
-            translator_subresult = translator_subresult.filter(translator_comment__icontains=word)
-            developer_subresult = developer_subresult.filter(developer_comment__icontains=word)
+            translator_subresult = translator_subresult.filter(
+                translator_comment__icontains=word,
+            )
+            developer_subresult = developer_subresult.filter(
+                developer_comment__icontains=word,
+            )
         result = result | translator_subresult | developer_subresult
 
     if 'locations' in form.cleaned_data['sfields']:
@@ -257,18 +276,26 @@ def get_search_step_query(translation_project, form, units_queryset):
     """Narrows down units query to units matching search string."""
 
     if translation_project.indexer is None:
-        logging.debug(u"No indexer for %s, using database search", translation_project)
+        logging.debug(u"No indexer for %s, using database search",
+                      translation_project)
         return get_non_indexed_search_step_query(form, units_queryset)
 
     logging.debug(u"Found %s indexer for %s, using indexed search",
-                  translation_project.indexer.INDEX_DIRECTORY_NAME, translation_project)
+                  translation_project.indexer.INDEX_DIRECTORY_NAME,
+                  translation_project)
 
     word_querylist = []
     words = form.cleaned_data['search'].split()
     fields = form.cleaned_data['sfields']
-    paths = units_queryset.order_by().values_list('store__pootle_path', flat=True).distinct()
-    path_querylist = [('pofilename', pootle_path) for pootle_path in paths.iterator()]
-    cache_key = "search:%s" % str(hash((repr(path_querylist), translation_project.get_mtime(), repr(words), repr(fields))))
+    paths = units_queryset.order_by() \
+                          .values_list('store__pootle_path', flat=True) \
+                          .distinct()
+    path_querylist = [('pofilename', pootle_path)
+                      for pootle_path in paths.iterator()]
+    cache_key = "search:%s" % str(hash((repr(path_querylist),
+                                        translation_project.get_mtime(),
+                                        repr(words),
+                                        repr(fields))))
 
     dbids = cache.get(cache_key)
     if dbids is None:
@@ -279,16 +306,19 @@ def get_search_step_query(translation_project, form, units_queryset):
         for word in words:
             # Generate a list for the query based on the selected fields
             word_querylist = [(field, word) for field in fields]
-            textquery = translation_project.indexer.make_query(word_querylist, False)
+            textquery = translation_project.indexer.make_query(word_querylist,
+                                                               False)
             searchparts.append(textquery)
 
-        pathquery = translation_project.indexer.make_query(path_querylist, False)
+        pathquery = translation_project.indexer.make_query(path_querylist,
+                                                           False)
         searchparts.append(pathquery)
         limitedquery = translation_project.indexer.make_query(searchparts, True)
 
         result = translation_project.indexer.search(limitedquery, ['dbid'])
         dbids = [int(item['dbid'][0]) for item in result[:999]]
         cache.set(cache_key, dbids, settings.OBJECT_CACHE_TIMEOUT)
+
     return units_queryset.filter(id__in=dbids)
 
 
@@ -1034,7 +1064,8 @@ def clear_vote(request, voteid):
             from voting.models import Vote
             vote = Vote.objects.get(pk=voteid)
             if vote.user != request.user:
-                raise PermissionDenied("Users can only remove their own votes")  # no i18n, will not go to UI
+                # No i18n, will not go to UI
+                raise PermissionDenied("Users can only remove their own votes")
             vote.delete()
         except ObjectDoesNotExist:
             raise Http404
@@ -1051,8 +1082,10 @@ def vote_up(request, unit, suggid):
         try:
             suggestion = unit.suggestion_set.get(id=suggid)
             from voting.models import Vote
-            Vote.objects.record_vote(suggestion, request.user, +1)  # why can't it just return the vote object?
-            json["voteid"] = Vote.objects.get_for_user(suggestion, request.user).id
+            # Why can't it just return the vote object?
+            Vote.objects.record_vote(suggestion, request.user, +1)
+            json["voteid"] = Vote.objects.get_for_user(suggestion,
+                                                       request.user).id
         except ObjectDoesNotExist:
             raise Http404(_("The suggestion or vote is not valid any more."))
     response = jsonify(json)
