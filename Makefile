@@ -6,19 +6,22 @@ CSS_DIR = ${STATIC_DIR}/css
 IMAGES_DIR = ${STATIC_DIR}/images
 SPRITE_DIR = ${IMAGES_DIR}/sprite
 
+.PHONY: all build sprite pot mo mo-all help docs
+
 all: help
 
-build:
+build: docs mo
 	mkdir -p ${ASSETS_DIR}
 	python manage.py collectstatic --noinput --clear
 	python manage.py assets build
-	python setup.py build_mo
+	python setup.py sdist
+
+docs:
 	# Make sure that the submodule with docs theme is pulled and up-to-date.
 	git submodule update --init
 	# The following creates the HTML docs.
 	# NOTE: cd and make should to be in the same line.
 	cd ${DOCS_DIR}; make html
-	python setup.py sdist
 
 sprite:
 	glue --sprite-namespace="" --namespace="" ${SPRITE_DIR} --css=${CSS_DIR} --img=${IMAGES_DIR}
