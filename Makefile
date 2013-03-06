@@ -1,5 +1,6 @@
 SRC_DIR = pootle
 STATIC_DIR = ${SRC_DIR}/static
+ASSETS_DIR = ${SRC_DIR}/assets
 CSS_DIR = ${STATIC_DIR}/css
 IMAGES_DIR = ${STATIC_DIR}/images
 SPRITE_DIR = ${IMAGES_DIR}/sprite
@@ -7,6 +8,7 @@ SPRITE_DIR = ${IMAGES_DIR}/sprite
 all: help
 
 build:
+	mkdir -p ${ASSETS_DIR}
 	python manage.py collectstatic --noinput --clear
 	python manage.py assets build
 	python setup.py build_mo
