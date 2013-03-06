@@ -25,11 +25,6 @@
 /pootle/repos/*
 !/pootle/repos/README
 
-# /pootle/static/
-/pootle/static/.webassets-cache/
-/pootle/static/css/*.min.css
-/pootle/static/js/*.min.js
-
 # /pootle/settings/
 /pootle/settings/*-local.conf
 
