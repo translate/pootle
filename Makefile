@@ -1,4 +1,5 @@
 SRC_DIR = pootle
+DOCS_DIR = docs
 STATIC_DIR = ${SRC_DIR}/static
 ASSETS_DIR = ${SRC_DIR}/assets
 CSS_DIR = ${STATIC_DIR}/css
@@ -12,6 +13,11 @@ build:
 	python manage.py collectstatic --noinput --clear
 	python manage.py assets build
 	python setup.py build_mo
+	# Make sure that the submodule with docs theme is pulled and up-to-date.
+	git submodule update --init
+	# The following creates the HTML docs.
+	# NOTE: cd and make should to be in the same line.
+	cd ${DOCS_DIR}; make html
 	python setup.py sdist
 
 sprite:
