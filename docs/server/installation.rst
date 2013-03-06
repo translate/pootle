@@ -80,7 +80,7 @@ install Pootle by running::
 
   (env) $ pip install pootle
 
-This will fetch and install the minimum set of required dependecies as well.
+This will fetch and install the minimum set of required dependencies as well.
 
 .. note::
 
