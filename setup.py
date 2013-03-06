@@ -113,7 +113,7 @@ class PootleBuildMo(DistutilsBuild):
                     os.makedirs(mo_path)
 
                 try:
-                    log.info("compling %s", lang)
+                    log.info("compiling %s", lang)
                     subprocess.check_output([
                         'msgfmt', '--strict', '-o', mo_filename, po_filename],
                         stderr=subprocess.STDOUT)
