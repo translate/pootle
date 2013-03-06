@@ -23,8 +23,8 @@ import os
 import re
 
 from distutils import log
-from distutils.command.build import (build as DistutilsBuild,
-                                     DistutilsOptionError)
+from distutils.command.build import build as DistutilsBuild
+from distutils.errors import DistutilsOptionError
 
 from setuptools import find_packages, setup
 
