@@ -112,13 +112,11 @@ class PootleBuildMo(DistutilsBuild):
                 if not os.path.exists(mo_path):
                     os.makedirs(mo_path)
 
+                log.info("compiling %s", lang)
                 try:
-                    log.info("compiling %s", lang)
-                    subprocess.check_output([
+                    subprocess.call([
                         'msgfmt', '--strict', '-o', mo_filename, po_filename],
                         stderr=subprocess.STDOUT)
-                except subprocess.CalledProcessError, e:
-                    log.error("%s: msgfmt error:\n%s", lang, e.output)
                 except Exception, e:
                     log.warn("%s: skipping, running msgfmt failed: %s",
                              lang, e)
