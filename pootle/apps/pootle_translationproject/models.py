@@ -843,7 +843,6 @@ class TranslationProject(models.Model):
         indexer = indexing.get_indexer(indexdir)
         indexer.set_field_analyzers({
             "pofilename": indexer.ANALYZER_EXACT,
-            "itemno": indexer.ANALYZER_EXACT,
             "pomtime": indexer.ANALYZER_EXACT,
             "dbid": indexer.ANALYZER_EXACT,
         })
@@ -936,7 +935,6 @@ class TranslationProject(models.Model):
             doc = {
                 "pofilename": store.pootle_path,
                 "pomtime": pomtime,
-                "itemno": str(unit.index),
                 "dbid": str(unit.id),
             }
 
