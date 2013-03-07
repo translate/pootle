@@ -810,35 +810,35 @@ html[dir="rtl"] .module .hd h3 span
 
 /* USER STATISTICS MODULE */
 
-.module.user-statistics table
+.user-statistics table
 {
     width: auto;
 }
 
-.module.user-statistics table th,
-.module.user-statistics table td
+.user-statistics table th,
+.user-statistics table td
 {
     padding: 0 0 10px;
 }
 
-.module.user-statistics table th
+.user-statistics table th
 {
     padding-right: 2em;
 }
 
-.module.user-statistics div.avatar
+.user-statistics div.avatar
 {
     position: relative;
 }
 
-.module.user-statistics div.avatar img
+.user-statistics div.avatar img
 {
     position: absolute;
     right: 0;
     border: 1px solid #EEE;
 }
 
-html[dir="rtl"] .module.user-statistics div.avatar img
+html[dir="rtl"] .user-statistics div.avatar img
 {
     right: auto;
     left: 0;
