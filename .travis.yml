@@ -12,7 +12,10 @@ install:
   - pip install -r requirements/build.txt --use-mirrors
 script:
   - make build
-  - ./manage.py runserver
+  - ./manage.py runserver &
+  - TESTPID=$!
+  - sleep 100
+  - kill -2 $TESTPID
 notifications:
   email:
     on_failure: change
