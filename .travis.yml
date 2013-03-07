@@ -5,16 +5,17 @@ python:
   - 2.6
   - 2.7
 env:
-  - DJANGO_VERSION=1.3.3
-  - DJANGO_VERSION=1.4.1
+  - DJANGO_VERSION=1.3.7
+  - DJANGO_VERSION=1.4.5
 install:
   - pip install --use-mirrors Django==$DJANGO_VERSION
-  - pip install -r requirements/base.txt --use-mirrors
+  - pip install -r requirements/build.txt --use-mirrors
 script:
-  - ./manage.py collectstatic --noinput
-  - ./manage.py assets build
-  - ./setup.py build_mo
-  - ./manage.py runserver
+  - make build
+  - ./manage.py runserver &
+  - TESTPID=$!
+  - sleep 100
+  - kill -2 $TESTPID
 notifications:
   email:
     on_failure: change

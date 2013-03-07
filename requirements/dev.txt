@@ -1,7 +1,6 @@
--r base.txt
+-r build.txt
 
 django-extensions
-sphinx
 glue>=0.2.8.1
 
 -e git://github.com/django-debug-toolbar/django-debug-toolbar.git#egg=django-debug-toolbar
