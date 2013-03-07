@@ -125,11 +125,6 @@ class PootleProfile(models.Model):
         return 'http://www.gravatar.com/avatar/%s?s=%d&d=mm' % \
             (self.get_email_hash, size)
 
-    def _get_status(self):
-        #FIXME: what's this for?
-        return "Foo"
-
-    status = property(_get_status)
     isopen = property(lambda self: True)
 
     def _get_pootle_user(self):
