@@ -6,18 +6,20 @@ CSS_DIR = ${STATIC_DIR}/css
 IMAGES_DIR = ${STATIC_DIR}/images
 SPRITE_DIR = ${IMAGES_DIR}/sprite
 
-.PHONY: all build sprite pot mo mo-all help docs
+.PHONY: all build sprite pot mo mo-all help docs assets
 
 all: help
 
-build: docs mo
+build: docs mo assets
+	python setup.py sdist
+
+assets:
 	mkdir -p ${ASSETS_DIR}
 	# NOTE: all files in ASSETS_DIR should be removed using rm -rf because
 	# collectstatic does not have a --clear option on Django 1.3.x.
 	rm -rf ${ASSETS_DIR}/*
 	python manage.py collectstatic --noinput
 	python manage.py assets build
-	python setup.py sdist
 
 docs:
 	# Make sure that the submodule with docs theme is pulled and up-to-date.
