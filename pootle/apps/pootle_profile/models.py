@@ -65,9 +65,7 @@ User.objects.__class__ = PootleUserManager
 class PootleProfileManager(models.Manager):
     def get_query_set(self):
         return super(PootleProfileManager, self).get_query_set() \
-                                                .select_related(
-                'languages', 'projects', 'alt_src_langs'
-            )
+                                                .select_related('alt_src_langs')
 
     def get_by_natural_key(self, username):
         return self.get(user__username=username)
@@ -85,12 +83,15 @@ class PootleProfile(models.Model):
     unit_rows = models.SmallIntegerField(default=9,
             verbose_name=_("Number of Rows"))
     input_height = models.SmallIntegerField(default=5, editable=False)
+
+    # TODO: Remove these two fields once bug 2652 has been fixed
     languages = models.ManyToManyField('pootle_language.Language', blank=True,
             limit_choices_to=~Q(code='templates'),
             related_name="user_languages", verbose_name=_("Languages"),
             db_index=True)
     projects = models.ManyToManyField('pootle_project.Project', blank=True,
             db_index=True, verbose_name=_("Projects"))
+
     ui_lang = models.CharField(max_length=50, blank=True, null=True,
             choices=(choice for choice in lang_choices()),
             verbose_name=_('Interface Language'))
@@ -159,40 +160,6 @@ class PootleProfile(models.Model):
         })
 
         return userstatistics
-
-    def getquicklinks(self):
-        """Gets a set of quick links to user's project-languages."""
-        from pootle_app.models.permissions import check_profile_permission
-        projects = self.projects.all()
-        quicklinks = []
-        for language in self.languages.iterator():
-            langlinks = []
-            if projects.count():
-                tps = language.translationproject_set.filter(
-                        project__in=self.projects.iterator()
-                    ).iterator()
-                for translation_project in tps:
-                    isprojectadmin = check_profile_permission(
-                            self, 'administrate', translation_project.directory
-                        )
-
-                    langlinks.append({
-                        'code': translation_project.project.code,
-                        'name': translation_project.project.fullname,
-                        'isprojectadmin': isprojectadmin,
-                    })
-
-            islangadmin = check_profile_permission(self, 'administrate',
-                                                   language.directory)
-            quicklinks.append({
-                'code': language.code,
-                'name': language.name,
-                'islangadmin': islangadmin,
-                'projects': langlinks
-            })
-            quicklinks.sort(cmp=locale.strcoll, key=lambda dict: dict['name'])
-
-        return quicklinks
 
 
 def create_pootle_profile(sender, instance, **kwargs):

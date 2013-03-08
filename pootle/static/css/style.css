@@ -810,6 +810,12 @@ html[dir="rtl"] .module .hd h3 span
 
 /* USER STATISTICS MODULE */
 
+.user-statistics
+{
+    width: 100%;
+    float: none;
+}
+
 .user-statistics table
 {
     width: auto;

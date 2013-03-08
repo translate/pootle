@@ -36,13 +36,10 @@ from pootle_profile.forms import (UserForm, lang_auth_form_factory,
 
 
 def profile_edit(request):
-    can_view = check_profile_permission(get_profile(request.user), "view",
-                                        Directory.objects.root)
-
-    if can_view:
-        excluded = ('user',)
-    else:
-        excluded = ('user', 'projects')
+    # TODO: Remove 'languages' and 'projects' once the fields have been
+    # removed from the model
+    # FIXME: better to whitelist fields rather than blacklisting them
+    excluded = ('user', 'languages', 'projects')
 
     return edit_profile(request,
                         form_class=pootle_profile_form_factory(excluded))
