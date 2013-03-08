@@ -1,42 +1,39 @@
-Pootle is a full featured web application with many possible methods for
+Pootle is a full featured online tool with several possible methods for
 installation. This file gives a few brief instructions to get started, but more
-complete documentation exists online at
-  http://translate.sourceforge.net/wiki/pootle/installation
+complete documentation exists online at:
+
+  http://docs.translatehouse.org/projects/pootle/en/latest/server/index.html
 
 Pootle depends on a few Python packages, and can optionally use several others
 for an optimal feature set and performance. Although a minimal installation
 might be enough for initial experimentation, this might not provide the best
 security, features or performance.
 
-Although Pootle can be installed like most Python packages, the easiest way is
-to simply run it from the extracted archive. Any of the Python packages that
-Pootle depends on (like the Translate Toolkit) can be copied into the directory
-containing manage.py and should be detected automatically. Of course they can
-also be installed using their setup.py sripts, or easy_install or pip - as you
-prefer. Examples below all use the package's own setup.py script.
+For the impatients with a working Python 2 installation with pip and
+virtualenv, this is a good start:
 
-For the impatient with a working Python 2 installation with pip, this command is
-a good start:
-   pip install django webassets cssmin django-voting lxml South translate-toolkit python-memcached
-   tar xvf Pootle-......tar.gz
-   cd Pootle-.......
-   ./PootleServer
+  $ mkvirtualenv pootleenv
+  (pootleenv)$ pip install Pootle-......tar.gz
+  (pootleenv)$ pootle init
+  (pootleenv)$ pootle start
 
-For a more thorough explanation, view the address mentioned above.
+For a more thorough explanation, visit the address mentioned above.
 
 
 Security note
 -------------
 The simple method shown above for running Pootle does not use a web server that
-is considered safe for production purposes. The recommended way is to run it
-under a web server like apache.
+is considered safe, flexible or to have a good performance for production
+purposes. More information:
+
+  http://docs.translatehouse.org/projects/pootle/en/latest/server/web.html
 
 
 Performance note
 ----------------
 The simple method shown above for running Pootle does not configure it for
-optimal performance. For best performance, a proper database server is
-recommended rather than the default SQLite database, for example. Some
-performance related information might be displayed on the admin page if Pootle
-detects anything non-optimal. More information:
-  http://translate.sourceforge.net/wiki/pootle/optimisation
+optimal performance. More information:
+
+  http://docs.translatehouse.org/projects/pootle/en/latest/server/optimization.html
+
+
