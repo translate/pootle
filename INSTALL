@@ -17,6 +17,9 @@ virtualenv, this is a good start:
   (pootleenv)$ pootle init
   (pootleenv)$ pootle start
 
+On your first visit, Pootle will create the database schema and will calculate
+stats, which might take a while.
+
 For a more thorough explanation, visit the address mentioned above.
 
 
