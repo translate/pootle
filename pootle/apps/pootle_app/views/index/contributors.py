@@ -42,9 +42,9 @@ def view(request):
           ('spanish', [
             ('Project 1', ['User 1', 'User2', ...]),
             ('Project 2', ['User 1', 'UserX', ...]),
-            ]
-
-        }
+            ...
+            ]),
+        ]
     """
 
     exclude_project_names = getattr(
