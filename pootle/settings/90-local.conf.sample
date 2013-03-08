@@ -28,7 +28,7 @@ SECRET_KEY = '%(default_key)s'
 # A list of strings representing the host/domain names that this Pootle server
 # can serve. This is a Django's security measure. More details at
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 #
