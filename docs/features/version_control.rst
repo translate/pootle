@@ -20,7 +20,7 @@ Supported systems
  `CVS`_                            Supported
  `Subversion`_                     Supported
  `Darcs`_                          Supported
- `git`_                            Supported
+ `Git`_                            Supported
  `Bazaar`_                         Supported
  `Mercurial`_                      Supported
 ================================  =============================
