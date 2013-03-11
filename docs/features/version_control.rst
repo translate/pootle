@@ -150,10 +150,19 @@ clone/checkout for the project.
 If you use symlinks, ensure that the resulting structure under
 :setting:`VCS_DIRECTORY` corresponds to the structure under :setting:`PODIRECTORY`
 
+
+.. _version_control#working:
+
+Working with VCS integrated projects
+------------------------------------
+Once you have added a project with VCS integration to Pootle, if you have the
+necessary privileges, you will be able to perform the different version control
+functions from the actions section on the translation project overview page.
+
 .. _version_control#updating:
 
 Updating
---------
+^^^^^^^^
 
 If you want to update the Pootle copy of the translations with the version that
 is currently in version control, a contributor with the 'update' right can
@@ -174,7 +183,7 @@ a translator with *review* rights.
 .. _version_control#committing:
 
 Committing
-----------
+^^^^^^^^^^
 
 You can commit translation files from within Pootle.  In the case where
 authentication is required to submit the translation to version control
@@ -202,7 +211,7 @@ privileges, they will see a "submit" link next to each file.
 .. _version_control#authentication:
 
 Version Control Authentication
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+++++++++++++++++++++++++++++++
 
 To access the repository of version controlled files (especially for
 submitting), it is necessary to configure a non-interactive authentication.
@@ -245,7 +254,7 @@ commits for this repository.
 .. _version_control#adding:
 
 Adding
-------
+^^^^^^
 
 .. versionadded:: 2.5
 
