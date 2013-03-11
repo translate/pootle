@@ -71,17 +71,17 @@ for Pootle to perform the integration.
 
 An example layout::
 
-    .../po/
-              project1/
-                       de.po
-                       fr.po
-                       pt_BR.po
-
-    .../repos/
-              project1/
-                       de.po
-                       fr.po
-                       pt_BR.po
+    .../
+    |-- po
+    |   `-- project1
+    |       |-- de.po
+    |       |-- fr.po
+    |       `-- pt_BR.po
+    `-- repos
+        `-- project1
+            |-- de.po
+            |-- fr.po
+            `-- pt_BR.po
 
 Here :setting:`VCS_DIRECTORY` is ``.../repos`` and :setting:`PODIRECTORY` is
 ``.../po``.  The directory ``.../repos/project1`` contains a clean checkout of
