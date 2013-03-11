@@ -72,10 +72,10 @@ for Pootle to perform the integration.
 An example layout::
 
     .../po/
-           project1/
-                    de.po
-                    fr.po
-                    pt_BR.po
+              project1/
+                       de.po
+                       fr.po
+                       pt_BR.po
 
     .../repos/
               project1/
