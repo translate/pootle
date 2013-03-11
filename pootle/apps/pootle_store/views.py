@@ -973,7 +973,7 @@ def reject_suggestion(request, unit, suggid):
                                      "review mode."))
 
         success = unit.reject_suggestion(suggid)
-        if sugg is not None and success and request.profile != sugg.user:
+        if sugg is not None and success:
             # FIXME: we need a totally different model for tracking stats, this
             # is just lame
             suggstat, created = SuggestionStat.objects.get_or_create(
@@ -1023,18 +1023,15 @@ def accept_suggestion(request, unit, suggid):
 
             # FIXME: we need a totally different model for tracking stats, this
             # is just lame
-            if suggestion.user != request.profile:
-                suggstat, created = SuggestionStat.objects.get_or_create(
-                        translation_project=translation_project,
-                        suggester=suggestion.user,
-                        state='pending',
-                        unit=unit.id,
-                )
-                suggstat.reviewer = request.profile
-                suggstat.state = 'accepted'
-                suggstat.save()
-            else:
-                suggstat = None
+            suggstat, created = SuggestionStat.objects.get_or_create(
+                    translation_project=translation_project,
+                    suggester=suggestion.user,
+                    state='pending',
+                    unit=unit.id,
+            )
+            suggstat.reviewer = request.profile
+            suggstat.state = 'accepted'
+            suggstat.save()
 
             # For now assume the target changed
             # TODO: check all fields for changes
