@@ -20,7 +20,7 @@ Supported systems
  `CVS`_                            Supported
  `Subversion`_                     Supported
  `Darcs`_                          Supported
- `git`_                            Supported
+ `Git`_                            Supported
  `Bazaar`_                         Supported
  `Mercurial`_                      Supported
 ================================  =============================
@@ -71,17 +71,17 @@ for Pootle to perform the integration.
 
 An example layout::
 
-    .../po/
-              project1/
-                       de.po
-                       fr.po
-                       pt_BR.po
-
-    .../repos/
-              project1/
-                       de.po
-                       fr.po
-                       pt_BR.po
+    .../
+    |-- po
+    |   `-- project1
+    |       |-- de.po
+    |       |-- fr.po
+    |       `-- pt_BR.po
+    `-- repos
+        `-- project1
+            |-- de.po
+            |-- fr.po
+            `-- pt_BR.po
 
 Here :setting:`VCS_DIRECTORY` is ``.../repos`` and :setting:`PODIRECTORY` is
 ``.../po``.  The directory ``.../repos/project1`` contains a clean checkout of
@@ -109,6 +109,18 @@ directory is now one of your projects registered on the server, the version
 control functions should appear for all users with the necessary privileges.
 Look for the functions under the actions on the overview page.
 
+.. note:: The summary of steps to add a new project which will use a VCS are:
+   
+   #. Create a local copy of the repository in :setting:`VCS_DIRECTORY` (for
+      example using ``svn checkout`` in Subversion, or ``git clone`` in Git),
+   #. Copy the newly created directory, which holds the translation files for
+      the new project, from :setting:`VCS_DIRECTORY` to :setting:`PODIRECTORY`,
+   #. Add the project via the administration panel. Remember that the project
+      code should match the project directory name both in
+      :setting:`VCS_DIRECTORY` and :setting:`PODIRECTORY`.
+   
+   The project will be automatically imported by Pootle.
+
 
 .. _version_control#how_to_treat_special_directory_layouts:
 
@@ -120,8 +132,8 @@ There exists some conventions for directories.
 ========================  =========================================
  Convention                Directory structure                       
 ========================  =========================================
- Standard convention       `po/project_name/language_code/files.po`
- GNU convention            `po/project_name/language_code.po`
+ Standard convention       :setting:`PODIRECTORY`/project_name/language_code/files.po
+ GNU convention            :setting:`PODIRECTORY`/project_name/language_code.po
 ========================  =========================================
 
 Is the directory structure for the language files of your project different
@@ -136,12 +148,22 @@ under :setting:`VCS_DIRECTORY` for this project must be outside of the
 clone/checkout for the project.
 
 If you use symlinks, ensure that the resulting structure under
-:setting:`VCS_DIRECTORY` corresponds to the structure under :setting:`PODIRECTORY`
+:setting:`VCS_DIRECTORY` corresponds to the structure under
+:setting:`PODIRECTORY`.
+
+
+.. _version_control#working:
+
+Working with VCS integrated projects
+------------------------------------
+Once you have added a project with VCS integration to Pootle, if you have the
+necessary privileges, you will be able to perform the different version control
+functions from the actions section on the translation project overview page.
 
 .. _version_control#updating:
 
 Updating
---------
+^^^^^^^^
 
 If you want to update the Pootle copy of the translations with the version that
 is currently in version control, a contributor with the 'update' right can
@@ -162,7 +184,7 @@ a translator with *review* rights.
 .. _version_control#committing:
 
 Committing
-----------
+^^^^^^^^^^
 
 You can commit translation files from within Pootle.  In the case where
 authentication is required to submit the translation to version control
@@ -190,7 +212,7 @@ privileges, they will see a "submit" link next to each file.
 .. _version_control#authentication:
 
 Version Control Authentication
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+++++++++++++++++++++++++++++++
 
 To access the repository of version controlled files (especially for
 submitting), it is necessary to configure a non-interactive authentication.
@@ -233,7 +255,7 @@ commits for this repository.
 .. _version_control#adding:
 
 Adding
-------
+^^^^^^
 
 .. versionadded:: 2.5
 
