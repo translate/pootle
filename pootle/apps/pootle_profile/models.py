@@ -29,8 +29,11 @@ from django.utils.html import simple_email_re as email_re
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.i18n.override import lang_choices
+from pootle_language.models import Language
 from pootle_misc.baseurl import l
 from pootle_misc.util import cached_property
+from pootle_statistics.models import Submission, SubmissionTypes
+from pootle_translationproject.models import TranslationProject
 
 from translate.misc.hash import md5_f
 
@@ -138,28 +141,119 @@ class PootleProfile(models.Model):
     def get_unit_rows(self):
         return min(max(self.unit_rows, 5), 49)
 
-    def getuserstatistics(self):
-        """Get user statistics for user statistics links."""
-        userstatistics = []
+    @property
+    def contributions(self):
+        """Get user contributions grouped by language and project.
 
-        userstatistics.append({
-            'text': _('Suggestions Accepted'),
-            'count': self.suggester.filter(state='accepted').count()
-        })
-        userstatistics.append({
-            'text': _('Suggestions Pending'),
-            'count': self.suggester.filter(state='pending').count()
-        })
-        userstatistics.append({
-            'text': _('Suggestions Reviewed'),
-            'count': self.reviewer.count()
-        })
-        userstatistics.append({
-            'text': _('Submissions Made'),
-            'count': self.submission_set.count()
-        })
+        :return: List of tuples containing the following information::
 
-        return userstatistics
+            [
+              ('Language 1', [
+                  ('Project 1', {
+                      'suggestions': {
+                        'pending': {
+                          'count': 0,
+                          'url': 'foo/bar',
+                        },
+                        'accepted': {
+                          'count': 3,
+                          'url': 'baz/blah',
+                        },
+                        'rejected': {
+                          'count': 5,
+                          'url': 'bar/baz',
+                        },
+                      },
+                      'submissions': {
+                        'total': {
+                          'count': 145,
+                          'url': 'bar/blah',
+                        },
+                        'overwritten': {
+                          'count': 8,
+                          'url': 'bar/foo',
+                        },
+                      },
+                  }),
+                  ('Project 2', {
+                      ...
+                  }),
+              ]),
+              ('LanguageN', [
+                  ('Project N', {
+                      ...
+                  }),
+                  ('Project N+1', {
+                      ...
+                  }),
+              ]),
+            ]
+        """
+        # TODO: optimize — we need a schema that helps reduce the number
+        # of needed queries for these kind of data retrievals
+        contributions = []
+
+        languages = Language.objects.filter(
+                translationproject__submission__submitter=self.user,
+            ).distinct()
+
+        for language in languages:
+            translation_projects = TranslationProject.objects.filter(
+                    language=language,
+                    submission__submitter=self.user,
+                ).distinct()
+
+            tp_user_stats = []
+            # Retrieve tp-specific stats for this user
+            for tp in translation_projects:
+                tp_stats = {
+                    'suggestions': {
+                        'pending': {
+                            'count': self.suggester
+                                         .filter(translation_project=tp,
+                                                 state='pending')
+                                         .count(),
+                            },
+                        'accepted': {
+                            'count': self.suggester
+                                          .filter(translation_project=tp,
+                                                  state='accepted')
+                                          .count(),
+                            },
+                        'rejected': {
+                            'count': self.suggester
+                                          .filter(translation_project=tp,
+                                                  state='rejected')
+                                          .count(),
+                            },
+                    },
+                    'submissions': {
+                        'total': {
+                            'count': Submission.objects
+                                               .filter(
+                                                   submitter=self,
+                                                   translation_project=tp,
+                                                   type=SubmissionTypes.NORMAL,
+                                                ).count(),
+                            },
+                        'overwritten': {
+                            'count': Submission.objects
+                                               .filter(
+                                                   submitter=self,
+                                                   translation_project=tp,
+                                                   type=SubmissionTypes.NORMAL,
+                                               ).exclude(
+                                                   unit__submitted_by=self,
+                                               ).count(),
+                            },
+                    },
+                }
+
+                tp_user_stats.append((tp, tp_stats))
+
+            contributions.append((language, tp_user_stats))
+
+        return contributions
 
 
 def create_pootle_profile(sender, instance, **kwargs):

@@ -18,21 +18,54 @@
 {% endblock %}
 
 {% block content %}
-<div class="module user-statistics" lang="{{ LANGUAGE_CODE }}">
+<div id="user-profile" class="module" lang="{{ LANGUAGE_CODE }}">
   <div class="hd">
-    <h2>{% trans "User Statistics" %}</h2>
+    <h2>{% trans "Contributions" %}</h2>
   </div>
   <div class="bd">
-    <div class="avatar">
-        <img src="{{ profile|gravatar:100 }}" width="100" height="100"{% if user == profile.user %} title="{% trans "You can set or change your avatar image at www.gravatar.com" %}"{% endif %} />
+    <div id="user-meta-wrapper">
+      <div id="user-meta">
+        <img src="{{ profile|gravatar:150 }}" width="150" height="150"{% if user == profile.user %} title="{% trans "You can set or change your avatar image at www.gravatar.com" %}"{% endif %} />
+        <div class="user-name">{{ profile.user.username }}</div>
+      </div>
     </div>
-    <table>
-      {% for stat in profile.getuserstatistics %}
-      <tr>
-        <th scope="row">{{ stat.text }}</th><td class="stats-number">{{ stat.count }}</td>
-      </tr>
-      {% endfor %}
-    </table>
+    <div id="user-contributions-wrapper">
+      <div id="user-contributions">
+        {% with contributions=profile.contributions %}
+        {% if contributions %}
+        {% for language, tp_user_stats in contributions %}
+        <h3><a href="{{ language.get_absolute_url }}">{{ language.fullname }}</a></h3>
+        <table id="user-contributions-{{ language.code }}" class="stats">
+            <thead>
+              <tr>
+                <th>{% trans "Project" %}</th>
+                <th class="number">{% trans "Suggestions Pending" %}</th>
+                <th class="number">{% trans "Accepted" %}</th>
+                <th class="number">{% trans "Rejected" %}</th>
+                <th class="number">{% trans "Submissions" %}</th>
+                <th class="number">{% trans "Overwritten" %}</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for tp, stats in tp_user_stats %}
+              <tr class="item {% cycle 'even' 'odd' %}">
+                <td><a href="{{ tp.get_absolute_url }}">{{ tp.project }}</a></td>
+                <td class="number">{{ stats.suggestions.pending.count }}</td>
+                <td class="number">{{ stats.suggestions.accepted.count }}</td>
+                <td class="number">{{ stats.suggestions.rejected.count }}</td>
+                <td class="number">{{ stats.submissions.total.count }}</td>
+                <td class="number">{{ stats.submissions.overwritten.count }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        {% endfor %}
+        {% else %}
+        <h3>{% trans "This user doesn't have any contributions yet." %}</h3>
+        {% endif %}
+        {% endwith %}
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}

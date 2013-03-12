@@ -808,47 +808,76 @@ html[dir="rtl"] .module .hd h3 span
     font-size: 100%;
 }
 
-/* USER STATISTICS MODULE */
+/* USER PROFILES */
 
-.user-statistics
+#user-profile
 {
-    width: 100%;
     float: none;
+    width: 100%;
 }
 
-.user-statistics table
+#user-contributions-wrapper
 {
-    width: auto;
+    margin-right: 220px;
 }
 
-.user-statistics table th,
-.user-statistics table td
+html[dir="rtl"] #user-contributions-wrapper
 {
-    padding: 0 0 10px;
+    margin-right: auto;
+    margin-left: 220px;
 }
 
-.user-statistics table th
+#user-contributions
 {
-    padding-right: 2em;
+    float: left;
+    width: 100%;
 }
 
-.user-statistics div.avatar
+html[dir="rtl"] #user-contributions
 {
-    position: relative;
+    float: right;
 }
 
-.user-statistics div.avatar img
+#user-contributions table
 {
-    position: absolute;
-    right: 0;
-    border: 1px solid #EEE;
+    margin-top: 0.5em;
+    margin-bottom: 1.5em;
 }
 
-html[dir="rtl"] .user-statistics div.avatar img
+#user-contributions table td
 {
-    right: auto;
-    left: 0;
+    padding: 5px;
+    width: 16.6%;
 }
+
+#user-meta-wrapper
+{
+    float: right;
+    width: 200px;
+}
+
+html[dir="rtl"] #user-meta-wrapper
+{
+    float: left;
+}
+
+#user-meta
+{
+    margin: 0 20px;
+}
+
+#user-meta img
+{
+    border: 1px solid #eee;
+    padding: 5px;
+}
+
+#user-meta .user-name
+{
+    font-size: 140%;
+    line-height: 2;
+}
+
 
 /* UPLOAD FORM / UPDATE FROM VCS */
 
@@ -1422,10 +1451,11 @@ table.topcontributors td
 td.stats-number
 {
     padding-right: 26px !important; /* magic number to put padding between right and left aligned column, and to right-align heading with number */
-    text-align: right;
 }
 
-th.stats-number
+table.stats .number,
+th.stats-number,
+td.stats-number
 {
     text-align: right;
 }
@@ -1458,54 +1488,6 @@ html[dir="rtl"] select#id_ui_lang option
 .item h2
 {
     font-size: 100%;
-}
-
-div.item-statistics
-{
-    margin-top: 1em;
-}
-
-div.item-statistics dl,
-div.checks dl
-{
-    margin: 0;
-}
-
-div.item-statistics dl dt
-{
-    clear: left;
-    float: left;
-    text-align: right;
-    width: 100px;
-}
-
-html[dir="rtl"] div.item-statistics dl dt
-{
-    clear: right;
-    float: right;
-    text-align: left;
-}
-
-div.checks
-{
-    margin: .3em 0 1em;
-}
-
-div.checks dl dt
-{
-    display: inline-block;
-    width: 18%;
-}
-
-div.item-statistics dl dd
-{
-    line-height: inherit;
-    margin: 0 0 0 110px;
-}
-
-html[dir="rtl"] div.item-statistics dl dd
-{
-    margin: 0 110px 0 0;
 }
 
 /* Expanded checks */
@@ -1595,7 +1577,8 @@ div.graph[dir="rtl"] div.translated
 /* SORTABLE */
 
 table.sortable th,
-table tfoot
+table tfoot,
+#user-contributions table th
 {
     color: #999;
     font-size: 85%;
