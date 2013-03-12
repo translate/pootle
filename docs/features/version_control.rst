@@ -148,7 +148,8 @@ under :setting:`VCS_DIRECTORY` for this project must be outside of the
 clone/checkout for the project.
 
 If you use symlinks, ensure that the resulting structure under
-:setting:`VCS_DIRECTORY` corresponds to the structure under :setting:`PODIRECTORY`
+:setting:`VCS_DIRECTORY` corresponds to the structure under
+:setting:`PODIRECTORY`.
 
 
 .. _version_control#working:
