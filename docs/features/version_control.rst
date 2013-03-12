@@ -109,6 +109,18 @@ directory is now one of your projects registered on the server, the version
 control functions should appear for all users with the necessary privileges.
 Look for the functions under the actions on the overview page.
 
+.. note:: The summary of steps to add a new project which will use a VCS are:
+   
+   #. Create a local copy of the repository in :setting:`VCS_DIRECTORY` (for
+      example using ``svn checkout`` in Subversion, or ``git clone`` in Git),
+   #. Copy the newly created directory, which holds the translation files for
+      the new project, from :setting:`VCS_DIRECTORY` to :setting:`PODIRECTORY`,
+   #. Add the project via the administration panel. Remember that the project
+      code should match the project directory name both in
+      :setting:`VCS_DIRECTORY` and :setting:`PODIRECTORY`.
+   
+   The project will be automatically imported by Pootle.
+
 
 .. _version_control#how_to_treat_special_directory_layouts:
 
