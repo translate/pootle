@@ -2,21 +2,13 @@
 {% load i18n baseurl profile_tags %}
 
 {% block title %}
-    {% if user == profile.user %}
-        {{ block.super }}
-    {% else %}
-        {{ profile.user }} | {% trans "Users" %} | {{ settings.TITLE }}
-    {% endif %}
+{{ profile.user }} | {% trans "Users" %} | {{ settings.TITLE }}
 {% endblock %}
 
 {% block body_id %}dashboard{% endblock %}
 
 {% block breadcrumbs %}
-    {% if user == profile.user %}
-        {{ block.super }}
-    {% else %}
-        <li>{% trans "Users" %}</li><li>{{ profile.user }}</li>
-    {% endif %}
+<li>{% trans "Users" %}</li><li>{{ profile.user }}</li>
 {% endblock %}
 
 {% block header_tabs_block %}

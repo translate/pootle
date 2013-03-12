@@ -3,9 +3,7 @@
 
 {% block title %}{% trans "My Account" %} | {{ block.super }}{% endblock %}
 
-{% block breadcrumbs %}
-{{ block.super }}<li><a href="{% filter l %}/accounts/{{ user.username }}/{% endfilter %}">{% trans "My Account" %}</a></li>
-{% endblock %}
+{% block breadcrumbs %}<li>{% trans "My Account" %}</li>{% endblock %}
 
 {% block tabs %}
 {% include "user_profile_menu.html" %}
