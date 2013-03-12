@@ -132,8 +132,8 @@ There exists some conventions for directories.
 ========================  =========================================
  Convention                Directory structure                       
 ========================  =========================================
- Standard convention       `po/project_name/language_code/files.po`
- GNU convention            `po/project_name/language_code.po`
+ Standard convention       :setting:`PODIRECTORY`/project_name/language_code/files.po
+ GNU convention            :setting:`PODIRECTORY`/project_name/language_code.po
 ========================  =========================================
 
 Is the directory structure for the language files of your project different
