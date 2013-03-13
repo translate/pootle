@@ -1,12 +1,13 @@
-==================================
-Making a Translate Toolkit Release
-==================================
+=======================
+Making a Pootle Release
+=======================
 
 Summary
 =======
-#. Git clone git@github.com:translate/translate.git translate-release
+#. Git clone git@github.com:translate/pootle.git pootle-release
 #. Create release notes
 #. Up version number
+#. Update translations
 #. make build
 #. Test install and other tests
 #. Tag the release
@@ -22,6 +23,8 @@ Other possible steps
 --------------------
 We need to check and document these if needed:
 
+- Pre-release checks
+- Translations
 - Build docs: we need to check if e need to build the docs for the release
 - Change URLs to point to the correct docs: do we want to change URLs to point
   to the $version docs rather then 'latest'
@@ -38,21 +41,21 @@ We work from a clean checkout to esnure that everything you are adding to the
 build is what is in VC and doesn't contain any of your uncommitted changes.  It
 also ensure that someone else could relicate your process. ::
 
-    git clone git@github.com:translate/translate.git translate-release
+    git clone git@github.com:translate/pootle.git pootle-release
 
 Create release notes
 --------------------
 The release notes will be used in these places:
 
-- Toolkit website - `download page
-  <http://toolkit.translatehouse.org/download.html>`_ (used in gh-pages)
+- Pootle website - `download page
+  <http://pootle.translatehouse.org/download.html>`_ (used in gh-pages)
 - Sourceforge download - README.rst (used to give user info)
 - Email announcements - text version
 
 We create our release notes in reStructured Text, since we use that elsewhere
 and since it can be rendered well in some of our key sites.
 
-First we need to create a log of changes in the Toolkit::
+First we need to create a log of changes in Pootle::
 
     git diff N-1 HEAD > release/RELEASE-NOTES-$version.rst
 
@@ -80,7 +83,7 @@ Up version numbers
 ------------------
 Update the version number in:
 
-- ``translate/__version__.py``
+- ``pootle/__version__.py``
 - ``docs/conf.py```
 
 In ``__version__.py``, bump the build number if anybody used the toolkit with
@@ -107,12 +110,33 @@ release of a ``$MINOR`` version will always have a ``$MICRO`` of ``.0``. So
 ``1.10.0`` and never just ``1.10``.
 
 
+Update translations
+-------------------
+Update the translations from the `Pootle server
+<http://pootle.locamotion.org/projects/pootle>`_
+
+#. Download all translations::
+
+      # On pootle.locamotion.org
+      ./manage.py sync_stores --project=pootle
+      
+      # On your computer
+      scp -rp $user@pootle.locamotion.org/$location pootle/locales
+
+#. Update ``pootle/locale/LINGUAS`` to list the languages we would like to
+   ship. While we package all PO files, this is an indication of which ones we
+   want packagers to use.  The requirements is roughly 100% translated with no
+   obvious variable errors.
+
+
 Build the package
 -----------------
 Building is the first step to testing that things work.  From your clean
 checkout run::
 
+    make mo-all # if we are shipping an pre-release
     make build
+
 
 This will create a tarball in ``dist/`` which you can use for further testing.
 
@@ -125,7 +149,7 @@ Test install and other tests
 The easiest way to test is in a virtualenv.  You can install the new toolkit
 using::
 
-    pip install path/to/dist/translate-toolkit-$version.tar.bz2
+    pip install path/to/dist/Pootle-$version.tar.bz2
 
 This will allow you test installation of the software.
 
@@ -133,7 +157,7 @@ You can then proceed with other tests such as checking
 
 #. Documentation is available
 #. Converters and scripts are installed and run correctly
-#. Meta information about the package is correct. See pypy section of reviewing
+#. Meta information about the package is correct. See pypi section of reviewing
    meta data.
 
 
@@ -142,7 +166,7 @@ Tag the release
 You should only tag once you are happy with your release as there are some
 things that we can't undo. ::
 
-    git tag -a 1.10.0 -m "Tag version 1.10.0"
+    git tag -a 2.5.0 -m "Tag version 2.5.0"
     git push --tags
 
 
@@ -163,8 +187,8 @@ Publish the package on the `Python Package Index
    actually ready.
 
 Review the meta data. This is stored in ``setup.py``, use ``./setup.py --help``
-to se some options to display meta-data. The actual descriptions are taken from
-``translate/__init__.py``.
+to se some options to display meta-data. The actual long description is taken
+from ``README.rst``.
 
 To test before publishing run::
 
@@ -182,17 +206,17 @@ Publishing files to the Translate Sourceforge project.
 .. note:: You need to have release permissions on sourceforge to perform this
    step.
 
-- http://sourceforge.net/projects/translate/files/Translate%20Toolkit/
+- http://sourceforge.net/projects/translate/files/Pootle/
 
 You will need:
 
 - Tarball of the release
 - Release notes in reStructured Text
 
-#. Create a new folder in the `Translate Toolkit
-   <https://sourceforge.net/projects/translate/files/Translate%20Toolkit/>`_
+#. Create a new folder in the `Pootle
+   <https://sourceforge.net/projects/translate/files/Pootle/>`_
    release folder using the 'Add Folder' button.  The folder must have the same
-   as the release name e.g.  ``1.10.0-rc1``.  Mark this as being for staging
+   as the release name e.g.  ``2.5.0-rc1``.  Mark this as being for staging
    for the moment.
 #. ``make publish-sourceforge`` will give you the command to upload your
    tarball and ``README.rst``.
@@ -202,8 +226,8 @@ You will need:
    #. Click on the info icon for ``README.rst`` and tick "Exclude Stats" to
       exlude the README from stats counting.
 
-#. Check that the README.rst for the parent ``Translate Toolkit`` folder is
-   still appropriate, this is the text from ``translate/__info__.py``.
+#. Check that the README.rst for the parent ``Pootle`` folder is
+   still appropriate, this is the text from ``/README.rst``.
 #. Check all links for ``README.rst`` files, new release and parent.
 
 
