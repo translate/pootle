@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-01-08 07:48+0000\n"
+"PO-Revision-Date: 2013-02-27 07:27+0000\n"
 "Last-Translator: Toni <toniher@softcatala.org>\n"
 "Language-Team: Softcatalà\n"
 "Language: ca\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1357631326.0\n"
+"X-POOTLE-MTIME: 1361950039.0\n"
 
 #: strings.py:8
 msgid ""
@@ -520,7 +520,7 @@ msgstr "Suggeriments pendents"
 
 #: apps/pootle_app/templates/admin/dashboard.html:31
 msgid "More..."
-msgstr "Més…"
+msgstr "Més..."
 
 #: apps/pootle_app/templates/admin/dashboard.html:39
 msgid "Support"
@@ -663,7 +663,7 @@ msgid ""
 "lxml version %(installed)s is installed. Pootle requires at least version "
 "%(required)s."
 msgstr ""
-"És instal·lada la versió %(installed)s  de l'lxml. El Pootle necessita com a "
+"És instal·lada la versió %(installed)s de l'lxml. El Pootle necessita com a "
 "mínim la versió %(required)s."
 
 #: apps/pootle_app/views/admin/dashboard.py:82
@@ -1204,7 +1204,7 @@ msgstr ""
 
 #: apps/pootle_misc/dbinit.py:75
 msgid "Creating database tables..."
-msgstr "S'estan creant les taules de la base de dades…"
+msgstr "S'estan creant les taules de la base de dades..."
 
 #: apps/pootle_misc/dbinit.py:82
 msgid "Creating default languages, projects and admin user"
@@ -1254,31 +1254,31 @@ msgstr ""
 
 #: apps/pootle_misc/dbupdate.py:143
 msgid "Creating missing database tables..."
-msgstr "S'estan creant les taules de la base de dades que hi manquen…"
+msgstr "S'estan creant les taules de la base de dades que hi manquen..."
 
 #: apps/pootle_misc/dbupdate.py:154
 msgid "Fixing permission table..."
-msgstr "S'està reparant la taula de permisos…"
+msgstr "S'està reparant la taula de permisos..."
 
 #: apps/pootle_misc/dbupdate.py:180 apps/pootle_misc/dbupdate.py:257
 msgid "Updating existing database tables..."
-msgstr "S'estan actualitzant les taules de la base de dades existents…"
+msgstr "S'estan actualitzant les taules de la base de dades existents..."
 
 #: apps/pootle_misc/dbupdate.py:221
 msgid "Removing potentially incorrect cached stats, will be recalculated..."
 msgstr ""
 "S'estan suprimint les estadístiques emmagatzemades potencialment "
-"incorrectes. A continuació es tornaran a calcular…"
+"incorrectes. A continuació es tornaran a calcular..."
 
 #: apps/pootle_misc/dbupdate.py:238
 msgid "Reparsing Qt ts files..."
-msgstr "S'estan tornant a analitzar els fitxers ts de Qt…"
+msgstr "S'estan tornant a analitzar els fitxers ts de Qt..."
 
 #: apps/pootle_misc/dbupdate.py:338 apps/pootle_misc/dbupdate.py:350
 msgid "Removing quality checks, will be recalculated on demand..."
 msgstr ""
 "S'estan suprimint les comprovacions de qualitat, es tornaran a calcular en "
-"demanar-se…"
+"demanar-se..."
 
 #: apps/pootle_misc/dbupdate.py:363
 msgid ""
@@ -1412,8 +1412,8 @@ msgstr "La traducció és completa"
 #, python-format
 msgid "Review suggestion (%(num)d left)"
 msgid_plural "Review suggestions (%(num)d left)"
-msgstr[0] "Revisa el suggeriment  (%(num)d left)"
-msgstr[1] "Revisa els suggeriments  (%(num)d left)"
+msgstr[0] "Revisa el suggeriment (%(num)d left)"
+msgstr[1] "Revisa els suggeriments (%(num)d left)"
 
 #. Translators: 'type' is the type of VCS file: working, remote,
 #. or merged copy.
@@ -1613,7 +1613,7 @@ msgstr "Suggeriments revisats"
 
 #: apps/pootle_profile/models.py:162
 msgid "Submissions Made"
-msgstr "Suggeriments fets"
+msgstr "Enviaments fets"
 
 #: apps/pootle_project/models.py:57
 msgid ""
@@ -1817,7 +1817,7 @@ msgstr "Permisos insuficients per a aquest projecte de traducció."
 
 #: apps/pootle_store/views.py:702
 msgid "Comment submission failed."
-msgstr "Ha fallat la tramesa del comentari."
+msgstr "Ha fallat l'enviament del comentari."
 
 #: apps/pootle_store/views.py:823 apps/pootle_store/views.py:888
 msgid "You do not have rights to access translation mode."
@@ -1825,7 +1825,7 @@ msgstr "No teniu permisos per modificar traduccions."
 
 #: apps/pootle_store/views.py:871
 msgid "Failed to process submission."
-msgstr "No s'ha pogut processar la tramesa."
+msgstr "No s'ha pogut processar l'enviament."
 
 #: apps/pootle_store/views.py:920
 msgid "Failed to process suggestion."
@@ -1873,14 +1873,14 @@ msgstr "Els meus suggeriments"
 
 #: apps/pootle_store/templates/store/translate.html:76
 msgid "My submissions"
-msgstr ""
+msgstr "Els meus enviaments"
 
 #. Translators: This is a type of filtering criterion that
 #. selects the strings that have been submitted by me at some point
 #. in time but have been overwritten by other users.
 #: apps/pootle_store/templates/store/translate.html:80
 msgid "My overwritten submissions"
-msgstr ""
+msgstr "Els meus enviaments sobreescrits"
 
 #: apps/pootle_store/templates/store/translate.html:81
 msgid "Checks"
@@ -1992,20 +1992,20 @@ msgstr "Suggereix una traducció i vés a la cadena següent (Ctrl+Retorn)"
 
 #: apps/pootle_store/templates/unit/edit.html:131
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
-msgstr ""
+msgstr "Canvia al mode de traducció (Ctrl+Maj+Espai)"
 
 #: apps/pootle_store/templates/unit/edit.html:132
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
-msgstr ""
+msgstr "Canvia al mode de suggeriments (Ctrl+Maj+Espai)"
 
 #: apps/pootle_store/templates/unit/edit.html:135
 msgid "Mark this string as needing further work (Ctrl+Space)"
-msgstr ""
+msgstr "Marca que aquesta cadena necessita més treball (Ctrl+Espai)"
 
 #: apps/pootle_store/templates/unit/edit.html:156
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
-msgstr ""
+msgstr "revisat per <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
 #: apps/pootle_store/templates/unit/edit.html:166
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
@@ -2174,7 +2174,7 @@ msgstr "Descripció..."
 
 #: apps/pootle_terminology/templates/terminology/term_edit.html:18
 msgid "Details..."
-msgstr "Detalls…"
+msgstr "Detalls..."
 
 #: apps/pootle_translationproject/actions.py:59
 msgid "Download (.zip)"
@@ -2246,11 +2246,11 @@ msgstr "Torna a escanejar els fitxers del projecte"
 
 #: apps/pootle_translationproject/actions.py:218
 msgid "Delete this folder..."
-msgstr "Suprimeix la carpeta…"
+msgstr "Suprimeix la carpeta..."
 
 #: apps/pootle_translationproject/actions.py:220
 msgid "Delete this file..."
-msgstr "Suprimeix el fitxer…"
+msgstr "Suprimeix el fitxer..."
 
 #: apps/pootle_translationproject/actions.py:256
 msgid "Manage"
@@ -2274,7 +2274,7 @@ msgstr "Ha fallat l'actualització del control de versions: %(error)s"
 #, python-format
 msgid "Updated project <em>%(project)s</em> from version control"
 msgstr ""
-"S'ha actualitzat el projecte <em>%(project))s</em> del control de versions"
+"S'ha actualitzat el projecte <em>%(project)s</em> del control de versions"
 
 #: apps/pootle_translationproject/models.py:558
 #: apps/pootle_translationproject/models.py:579
@@ -2664,7 +2664,7 @@ msgstr "Allunya't (Ctrl+Maj+-)"
 
 #: templates/base.html:88
 msgid "Reset zoom (Ctrl+Shift+0)"
-msgstr "Reinicia el zoom  (Ctrl+Maj+0)"
+msgstr "Reinicia el zoom (Ctrl+Maj+0)"
 
 #: templates/base.html:90
 msgid "Zoom in (Ctrl+Shift++)"
@@ -2705,7 +2705,7 @@ msgstr "Quant a aquest servidor Pootle"
 #: templates/base.html:162 templates/about/contributors.html:6
 #: templates/about/contributors.html:9
 msgid "Contributors"
-msgstr "Col·laboradors "
+msgstr "Col·laboradors"
 
 #: templates/captcha-xhr.html:14 templates/captcha.html:4
 #: templates/captcha.html.py:7
@@ -2916,7 +2916,7 @@ msgstr "L'usuari no ha seleccionat cap llengua o projecte encara."
 
 #: templates/profiles/profile_detail.html:67
 msgid "User Statistics"
-msgstr "Estadístiques de l`usuari/a"
+msgstr "Estadístiques de l’usuari/a"
 
 #: templates/profiles/profile_detail.html:71
 msgid "You can set or change your avatar image at www.gravatar.com"

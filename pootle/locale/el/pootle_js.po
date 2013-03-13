@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:44+0000\n"
-"PO-Revision-Date: 2012-12-31 19:00+0000\n"
+"PO-Revision-Date: 2013-03-13 11:40+0000\n"
 "Last-Translator: Dimitris <dmtrs32@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: el\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1356980418.0\n"
+"X-POOTLE-MTIME: 1363174839.0\n"
 
 #: static/js/common.js:43
 msgid "Expand details"
@@ -72,7 +72,7 @@ msgstr "Επιστροφή στην σελίδα επισκόπησης."
 
 #: static/js/editor.js:1363
 msgid "You reached the beginning of the list"
-msgstr "Φτάσατε την αρχή της λίστας"
+msgstr "Φτάσατε στην αρχή της λίστας"
 
 #: static/js/editor.js:1366
 msgid "You reached the end of the list."
@@ -93,61 +93,61 @@ msgstr "Παρόμοιες μεταφράσεις"
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:7
 msgid "More"
-msgstr ""
+msgstr "Περισσότερα"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:10
 msgid "Hide"
-msgstr ""
+msgstr "Απόκρυψη"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:13
 msgid "Less"
-msgstr ""
+msgstr "Λιγότερα"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:16
 msgid "Show"
-msgstr ""
+msgstr "Εμφάνιση"
 
 #: static/js/utils.js:76
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ένα χρόνο πριν"
+msgstr[1] "%s χρόνια πριν"
 
 #: static/js/utils.js:79
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Μια βδομάδα πριν"
+msgstr[1] "%s βδομάδες πριν"
 
 #: static/js/utils.js:82
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Χθες"
+msgstr[1] "%s ημέρες πριν"
 
 #: static/js/utils.js:85
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Μια ώρα πριν"
+msgstr[1] "%s ώρες πριν"
 
 #: static/js/utils.js:88
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ένα λεπτό πριν"
+msgstr[1] "%s λεπτά πριν"
 
 #: static/js/utils.js:96
 msgid "A few seconds ago"
-msgstr ""
+msgstr "Λίγα δευτερόλεπτα πριν"
 
 #, c-format
 #~ msgid "<a href=\"%s\">Unit %s</a>"

@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:44+0000\n"
-"PO-Revision-Date: 2013-01-02 13:55+0000\n"
-"Last-Translator: Toni <toniher@softcatala.org>\n"
+"PO-Revision-Date: 2013-02-27 07:19+0000\n"
+"Last-Translator: ellibrecomoelchaval <el.libre@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: ca@valencia\n"
+"Language: ca-XV\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1357134920.0\n"
+"X-POOTLE-MTIME: 1361949571.0\n"
 
 #: static/js/common.js:43
 msgid "Expand details"
@@ -55,9 +55,8 @@ msgid "Server error"
 msgstr "Error del servidor"
 
 #: static/js/editor.js:790
-#, fuzzy
 msgid "The server seems down. Try again later."
-msgstr "Sembla que el servidor no funciona. Proveu-ho més tard."
+msgstr "Pareix que el servidor no funciona. Proveu-ho més tard."
 
 #: static/js/editor.js:798
 msgid "Unknown error"
@@ -94,61 +93,61 @@ msgstr "Traduccions semblants"
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:7
 msgid "More"
-msgstr ""
+msgstr "Més"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:10
 msgid "Hide"
-msgstr ""
+msgstr "Amaga"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:13
 msgid "Less"
-msgstr ""
+msgstr "Menys"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:16
 msgid "Show"
-msgstr ""
+msgstr "Mostra"
 
 #: static/js/utils.js:76
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Fa un any"
+msgstr[1] "Fa %s anys"
 
 #: static/js/utils.js:79
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Fa 1 setmana"
+msgstr[1] "Fa %s setmanes"
 
 #: static/js/utils.js:82
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ahir"
+msgstr[1] "Fa %s dies"
 
 #: static/js/utils.js:85
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Fa una hora"
+msgstr[1] "Fa %s hores"
 
 #: static/js/utils.js:88
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Fa un minut"
+msgstr[1] "Fa %s minuts"
 
 #: static/js/utils.js:96
 msgid "A few seconds ago"
-msgstr ""
+msgstr "Fa uns quants segons"
 
 #, c-format
 #~ msgid "<a href=\"%s\">Unit %s</a>"

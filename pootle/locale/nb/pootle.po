@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-02-22 16:56+0000\n"
+"PO-Revision-Date: 2013-02-27 16:32+0000\n"
 "Last-Translator: jinx <fenderbass@c2i.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1361552164.0\n"
+"X-POOTLE-MTIME: 1361982726.0\n"
 
 #: strings.py:8
 msgid ""
@@ -1353,11 +1353,11 @@ msgid "%(num)d%%"
 msgstr "%(num)d%%"
 
 #: apps/pootle_misc/stats.py:99
-#, python-format
+#, fuzzy, python-format
 msgid "(%(num)d string)"
 msgid_plural "(%(num)d strings)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "(%(num)d streng)"
+msgstr[1] "(%(num)d strenger)"
 
 #: apps/pootle_misc/stats.py:128
 #, python-format
@@ -1400,13 +1400,14 @@ msgstr[1] "Gjennomgå forslag (%(num)d left)"
 #. Translators: 'type' is the type of VCS file: working, remote,
 #. or merged copy.
 #: apps/pootle_misc/stats.py:215
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d fuzzy)."
 msgid_plural ""
 "%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d fuzzy)."
-msgstr[0] ""
+msgstr[0] "%(type)s: %(oversatt)d av %(totalt)d oversatt streng (%(fuzzy)d fuzzy)."
 msgstr[1] ""
+"%(type)s: %(oversatt)d av %(totalt)d oversatte strenger(%(fuzzy)d fuzzy)."
 
 #: apps/pootle_misc/stats.py:237
 #, python-format
@@ -1508,7 +1509,6 @@ msgid "Publish on news feed"
 msgstr "Publiser i nyhetskilde"
 
 #: apps/pootle_notifications/views.py:140
-#, fuzzy
 msgid "Send email"
 msgstr "Send e-post"
 
@@ -1666,7 +1666,7 @@ msgstr "Du har ikke rettigheter til å administrere dette prosjektet."
 #: apps/pootle_project/views.py:221
 #: apps/pootle_translationproject/actions.py:201
 msgid "Update against templates"
-msgstr ""
+msgstr "Oppdater mot mal"
 
 #: apps/pootle_project/templates/project/admin_permissions.html:24
 msgid "Below you can add, edit, and delete the permissions for this project."
@@ -1701,9 +1701,8 @@ msgid "Comment"
 msgstr "Kommentar"
 
 #: apps/pootle_statistics/models.py:95
-#, fuzzy
 msgid "anonymous user"
-msgstr "anonyme brukere"
+msgstr "anonym bruker"
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Gettext PO"
@@ -1799,7 +1798,7 @@ msgstr "Manglende rettigheter til dette oversettelsesprosjektet."
 
 #: apps/pootle_store/views.py:702
 msgid "Comment submission failed."
-msgstr ""
+msgstr "Sending av kommentar mislykket."
 
 #: apps/pootle_store/views.py:823 apps/pootle_store/views.py:888
 msgid "You do not have rights to access translation mode."
@@ -1807,11 +1806,11 @@ msgstr "Du har ikke rettigheter til å få tilgang til oversettelsemodus."
 
 #: apps/pootle_store/views.py:871
 msgid "Failed to process submission."
-msgstr ""
+msgstr "Lyktes ikke å sende inn."
 
 #: apps/pootle_store/views.py:920
 msgid "Failed to process suggestion."
-msgstr ""
+msgstr "Klarte ikke å behandle forslag."
 
 #: apps/pootle_store/views.py:942
 msgid "You do not have rights to access review mode."
@@ -1837,7 +1836,6 @@ msgstr ""
 "på nytt."
 
 #: apps/pootle_store/templates/store/translate.html:65
-#, fuzzy
 msgid "Filter by:"
 msgstr "Filtrer ved"
 
@@ -1855,9 +1853,8 @@ msgid "My suggestions"
 msgstr "Mine forslag"
 
 #: apps/pootle_store/templates/store/translate.html:76
-#, fuzzy
 msgid "My submissions"
-msgstr "Mine framlegg"
+msgstr "Mine innlegg"
 
 #. Translators: This is a type of filtering criterion that
 #. selects the strings that have been submitted by me at some point
@@ -1896,7 +1893,7 @@ msgstr "Totalt antall sider"
 
 #: apps/pootle_store/templates/store/translate.html:95
 msgid "Next string"
-msgstr ""
+msgstr "Neste streng"
 
 #: apps/pootle_store/templates/store/translate.html:95
 msgid ""
@@ -1905,9 +1902,8 @@ msgid ""
 msgstr ""
 
 #: apps/pootle_store/templates/unit/comment.html:12
-#, fuzzy
 msgid "Comment:"
-msgstr "Kommentarer:"
+msgstr "Kommentar:"
 
 #: apps/pootle_store/templates/unit/edit.html:11
 msgid "File:"
@@ -1930,17 +1926,17 @@ msgid "Terminology:"
 msgstr "Terminologi:"
 
 #: apps/pootle_store/templates/unit/edit.html:43
-#, fuzzy
 msgid "Insert the translated term into the editor"
-msgstr "Klikk for å kopiere den oversette termen til teksteditor"
+msgstr "Kopier den oversatte termen til teksteditor"
 
 #: apps/pootle_store/templates/unit/edit.html:56
 msgid "Possible issues with the translation"
 msgstr "Mulige problemer med oversettelsen"
 
 #: apps/pootle_store/templates/unit/edit.html:56
+#, fuzzy
 msgid "Failing checks:"
-msgstr ""
+msgstr "Sjekkliste:"
 
 #: apps/pootle_store/templates/unit/edit.html:62
 msgid "Remove quality check"
@@ -1984,28 +1980,28 @@ msgstr "Bytt til forslagsmodus (Ctrl+Shift+Space)"
 
 #: apps/pootle_store/templates/unit/edit.html:135
 msgid "Mark this string as needing further work (Ctrl+Space)"
-msgstr ""
+msgstr "Merk denne strengen med at den trenger mer arbeid (Ctrl+Space)"
 
 #: apps/pootle_store/templates/unit/edit.html:156
-#, python-format
+#, fuzzy, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
-msgstr ""
+msgstr "gjennomgått av <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
 #: apps/pootle_store/templates/unit/edit.html:166
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
-msgstr ""
+msgstr "Sett RLM (Right-To-Left Mark) inn i tekstbehandlingen"
 
 #: apps/pootle_store/templates/unit/edit.html:169
 msgid "Insert LRM (Left-To-Right Mark) into the editor"
-msgstr ""
+msgstr "Sett LRM (Left-To-Right Mark) inn i tekstbehandlingen"
 
 #: apps/pootle_store/templates/unit/edit.html:172
 msgid "Insert RLE (Right-To-Left Embedding) into the editor"
-msgstr ""
+msgstr "Sett RLE (Right-To-Left Embedding) inn i tekstbehandlingen"
 
 #: apps/pootle_store/templates/unit/edit.html:175
 msgid "Insert LRE (Left-To-Right Embedding) into the editor"
-msgstr ""
+msgstr "Sett LRE (Left-To-Right Embedding) inn i tekstbehandlingen"
 
 #: apps/pootle_store/templates/unit/edit.html:178
 msgid "Insert RLO (Right-To-Left Override) into the editor"
@@ -2198,7 +2194,7 @@ msgstr ""
 
 #: apps/pootle_translationproject/actions.py:97
 msgid "Download XLIFF file for offline translation"
-msgstr ""
+msgstr "Last ned XLIFF-fil for å oversette offline"
 
 #: apps/pootle_translationproject/actions.py:112
 #: apps/pootle_translationproject/views.py:700
@@ -2207,7 +2203,7 @@ msgstr "Last opp"
 
 #: apps/pootle_translationproject/actions.py:113
 msgid "Upload translation files or archives in .zip format"
-msgstr ""
+msgstr "Last opp oversatte filer eller arkiver i .zip format"
 
 #: apps/pootle_translationproject/actions.py:130
 msgid "Update from VCS"
@@ -2246,8 +2242,7 @@ msgid "Manage"
 msgstr "Håndter"
 
 #: apps/pootle_translationproject/models.py:105
-#, python-format
-#, fuzzy, python-format
+#, python-format, python-format
 msgid ""
 "A description of this translation project. This is useful to give more "
 "information or instructions. Allowed markup: %s"
@@ -2270,27 +2265,27 @@ msgstr "Oppdatert prosjekt <em>%(prosjekt(er)</em> fra version control"
 #: apps/pootle_translationproject/models.py:558
 #: apps/pootle_translationproject/models.py:579
 msgid "Working copy"
-msgstr ""
+msgstr "Arbeidskopi"
 
 #: apps/pootle_translationproject/models.py:559
 #: apps/pootle_translationproject/models.py:580
 msgid "Remote copy"
-msgstr ""
+msgstr "Ekstern kopi"
 
 #: apps/pootle_translationproject/models.py:560
 #: apps/pootle_translationproject/models.py:581
 msgid "Merged copy"
-msgstr ""
+msgstr "Flette kopi"
 
 #: apps/pootle_translationproject/models.py:577
-#, python-format
+#, fuzzy, python-format
 msgid "Updated file <em>%(filename)s</em> from version control"
-msgstr ""
+msgstr "Sendt inn fil <em>%(filnavn)</em> til version control"
 
 #: apps/pootle_translationproject/models.py:590
-#, python-format
+#, fuzzy, python-format
 msgid "Failed to update <em>%(filename)s</em> from version control: %(error)s"
-msgstr ""
+msgstr "Lyktes ikke å sende <em>%filnavn</em> til version control: %(feil)"
 
 #: apps/pootle_translationproject/models.py:649
 #, python-format
@@ -2298,9 +2293,9 @@ msgid "Committed all files under <em>%(path)s</em> to version control"
 msgstr ""
 
 #: apps/pootle_translationproject/models.py:658
-#, python-format
+#, fuzzy, python-format
 msgid "Failed to commit to version control: %(error)s"
-msgstr ""
+msgstr "Mislykket oppdatering fra version control: %(feil)"
 
 #: apps/pootle_translationproject/models.py:716
 #, python-format
@@ -2401,7 +2396,7 @@ msgstr "Legg til alle ny oversettelser som forslag"
 #: apps/pootle_translationproject/views.py:752
 #: apps/pootle_translationproject/views.py:760
 msgid "Upload to"
-msgstr ""
+msgstr "Last opp til"
 
 #: apps/pootle_translationproject/views.py:755
 #: apps/pootle_translationproject/views.py:764
@@ -2409,6 +2404,8 @@ msgid ""
 "Optionally select the file you want to merge with. If not specified, the "
 "uploaded file's name is used."
 msgstr ""
+"Velg fil du vil flette med. Hvis du ikke velger, vil navnet på den "
+"opplastede filen bli brukt."
 
 #: apps/pootle_translationproject/views.py:774
 msgid "Upload File"
@@ -2427,9 +2424,11 @@ msgid "Update from Version Control"
 msgstr "Oppdatere alt fra versjonskontroll"
 
 #: apps/pootle_translationproject/templates/translation_project/fileop_forms.html:24
+#, fuzzy
 msgid ""
 "Use this option to update all the files in this area from version control."
 msgstr ""
+"Bruk denne for å oppdatere alle filer i dette området fra version control."
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:40
 msgid "Files and Subfolders"
@@ -2454,8 +2453,9 @@ msgid "Translation Statistics"
 msgstr "Oversettelsesstatistikk"
 
 #: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:23
+#, fuzzy
 msgid "Failing Checks"
-msgstr ""
+msgstr "Sjekkliste"
 
 #: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:44
 msgid "Nothing to show"
@@ -2531,7 +2531,7 @@ msgstr "Angi et tall"
 
 #: middleware/captcha.py:158
 msgid "Incorrect"
-msgstr ""
+msgstr "Feil"
 
 #: settings/10-base.conf:9
 msgid "Pootle Demo"
@@ -2550,6 +2550,14 @@ msgid ""
 "administration interface.</p>\n"
 "</div>\n"
 msgstr ""
+"<div dir=\"ltr\" lang=\"en\">\n"
+"<h2>Dette er en demoversjon av Pootle.</h2>\n"
+"<p>Du kan også besøke den offisielle<a "
+"href=\"http://pootle.locamotion.org\">Pootle serveren</a>. Server admin har "
+"ikke gitt kontaktinfo eller beskrivelse av denne serveren. Hvis du er admin "
+"for denne serveren, kan du redigere denne beskrivelsen i preferencefilen "
+"eller i admin-grensesnittet.</p>\n"
+"</div>\n"
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"
@@ -2576,11 +2584,13 @@ msgid "An error has occurred. Thank you for your patience."
 msgstr "En feil har skjedd. Takk for din tålmodighet."
 
 #: templates/500.html:20
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "If you need assistance, you may refer to this error as <strong>%(ref)s</"
 "strong>."
 msgstr ""
+"Hvis du trenger hjelp, kan du vise til denne feilen som <strong>%"
+"(ref)s</strong>."
 
 #: templates/admin_profile_base.html:4 templates/admin_profile_base.html:7
 msgid "Administration"
@@ -2588,11 +2598,11 @@ msgstr "Administrasjon"
 
 #: templates/admin_profile_menu.html:3
 msgid "Information and statistics about this Pootle server"
-msgstr ""
+msgstr "Informasjon og statistikk om denne Pootle serveren"
 
 #: templates/admin_profile_menu.html:3
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: templates/admin_profile_menu.html:4
 msgid "Configure the general settings for your site"
@@ -2627,12 +2637,13 @@ msgid "skip to navigation"
 msgstr "hopp over til navigering"
 
 #: templates/base.html:86
+#, fuzzy
 msgid "Zoom out (Ctrl+Shift+-)"
-msgstr ""
+msgstr "Zoom inn (Ctrl+Shift++)"
 
 #: templates/base.html:88
 msgid "Reset zoom (Ctrl+Shift+0)"
-msgstr ""
+msgstr "Start zoom på nytt (Ctrl+Shift+0)"
 
 #: templates/base.html:90
 msgid "Zoom in (Ctrl+Shift++)"
@@ -2731,7 +2742,7 @@ msgstr "Behandle prosjekttilatelser"
 
 #: templates/tp_base_terminology.html:4 templates/tp_base_terminology.html:7
 msgid "Manage Terminology"
-msgstr ""
+msgstr "Behandlingsterminologi"
 
 #: templates/tp_menu.html:4
 msgid "Translation project main page"
@@ -2747,12 +2758,11 @@ msgstr "Oversett dette prosjektet"
 
 #: templates/tp_menu.html:8
 msgid "Manage terminology"
-msgstr ""
+msgstr "Behandlingsterminologi"
 
 #: templates/tp_menu.html:8
-#, fuzzy
 msgid "Terminology"
-msgstr "Terminologi:"
+msgstr "Terminologi"
 
 #: templates/tp_menu.html:9
 msgid "Administrate your project permissions"
@@ -2793,7 +2803,7 @@ msgstr "Endre passord"
 
 #: templates/about/about.html:6 templates/about/about.html.py:9
 msgid "This Pootle Server"
-msgstr ""
+msgstr "Denne Pootle serveren"
 
 #. Translators: For better readability, make sure to leave an space after the closing </i> tag
 #: templates/about/about.html:16
@@ -2804,6 +2814,12 @@ msgid ""
 "Read more on the <a href=\"http://pootle.translatehouse.org/\"><i class="
 "\"icon-external-link\"></i> project website</a>."
 msgstr ""
+"Denne nettsiden benytter Pootle og &mdash; kraftig nettsoftware for å gi "
+"oversetterteam mulighet til å gjøre oversettelser og håndtere dem. Dette "
+"verktøyet er fri software, og alle team kan benytte den og bidra til Pootle-"
+"samarbeidet. Les mer på prosjektets <a "
+"href=\"http://pootle.translatehouse.org/\"><i class=\"icon-external-link\"></i> "
+"nettside</a>."
 
 #: templates/about/base.html:4 templates/about/base.html.py:7
 msgid "About"
@@ -2811,13 +2827,13 @@ msgstr "Om"
 
 #: templates/contact_form/contact_form.html:17
 msgid "Send"
-msgstr ""
+msgstr "Send"
 
 #: templates/contact_form/contact_form_sent.html:5
 #: templates/contact_form/contact_form_sent.html:8
 #: templates/contact_form/contact_form_sent.html:13
 msgid "Message Sent"
-msgstr ""
+msgstr "Melding sendt"
 
 #: templates/contact_form/contact_form_sent.html:14
 msgid "Thank you for your feedback."
@@ -2936,10 +2952,9 @@ msgid "Activate my Pootle account"
 msgstr "Aktiver min Pootle konto"
 
 #: templates/registration/activation_email.html:10
-#, python-format
-#, fuzzy, python-format
+#, python-format, python-format
 msgid "Your activation code is: <code>%(activation_key)s</code>"
-msgstr "Din aktiveringskode er: <code>%(activation_key)s</code>"
+msgstr "Din aktiveringskode er: <code>%(aktiveringstast)er</code>"
 
 #: templates/registration/activation_email.html:11
 #: templates/registration/activation_email.txt:9

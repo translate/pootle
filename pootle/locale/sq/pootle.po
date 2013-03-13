@@ -5,68 +5,74 @@ msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2010-08-03 01:16+0200\n"
-"Last-Translator: Anonymous Pootle User\n"
+"PO-Revision-Date: 2013-03-09 12:11+0000\n"
+"Last-Translator: dushku <nandidushku@yahoo.com>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "Language: sq\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.5.0-beta1\n"
+"X-POOTLE-MTIME: 1362831104.0\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
 msgstr ""
+"Mbani shtypur \"Control\" ose \"Command\" ne MAC per te zgjedhur me shume se Nje"
 
 #: strings.py:9
 msgid "Enter a valid e-mail address."
-msgstr ""
+msgstr "Futni nje E-mail Adrese te regullt"
 
 #: strings.py:10
 msgid ""
 "That e-mail address doesn't have an associated user account. Are you sure "
 "you've registered?"
 msgstr ""
+"Kjo E-mail Adres nuk ka lidhje me Llogarine eperdoruesit. Jeni te sigurt qe "
+"jeni regjistruar?"
 
 #: strings.py:11
 msgid "This field is required."
-msgstr ""
+msgstr "Kjo fushe eshte e domosdoshme"
 
 #: strings.py:12
 #, python-format
 msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
-msgstr ""
+msgstr "Sigurohu qe kjo vlere te kete %(max)d karaktere (ajo ka %(gjatesi)d)."
 
 #: strings.py:13
 msgid "Save and add another"
-msgstr ""
+msgstr "Ruaj dhe shto nje tjeter"
 
 #: strings.py:14
 msgid "Save and continue editing"
-msgstr ""
+msgstr "Ruaj dhe vazhdo ndryshimin"
 
 #: strings.py:15
 msgid "Add"
-msgstr ""
+msgstr "Shto"
 
 #: strings.py:16
 msgid "Change"
-msgstr ""
+msgstr "Ndrysho"
 
 #: strings.py:17 apps/pootle_profile/forms.py:64
 msgid ""
 "Please enter a correct username and password. Note that both fields are case-"
 "sensitive."
 msgstr ""
+"Ju lutemi  jepni perdoruesin dhe fjalkalimin. Shenim te dyja keto fusha jane "
+"ndjeshme Germe e madhe/ te vogla  "
 
 #. Translators: Email subject line. The variable is the server name shown
 #. on the top of each page
 #: strings.py:21
 #, python-format
 msgid "Password reset on %s"
-msgstr ""
+msgstr "Fjalekalimi kthehet nga fillimi ne %s"
 
 #. Translators: This is a constructed string that might end up saying
 #. "Add language" or "Add project". If you need to translate that differently,
@@ -75,102 +81,102 @@ msgstr ""
 #: strings.py:27
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Shto %(Emra)s"
 
 #. Translators: This link takes the user to the page where the currently
 #. configured option is displayed (such as a project or language)
 #: strings.py:31
 msgid "View on site"
-msgstr ""
+msgstr "Shfaq ne faqe"
 
 #: strings.py:33
 msgid "first name"
-msgstr ""
+msgstr "Emri"
 
 #: strings.py:34
 msgid "last name"
-msgstr ""
+msgstr "Mbiemri"
 
 #: strings.py:35
-#, fuzzy
 msgid "e-mail address"
-msgstr "Adresa email"
+msgstr "Adresa e e-mailit"
 
 #: strings.py:36
 msgid "active"
-msgstr ""
+msgstr "Veprues"
 
 #. Translators: Please translate this simply as "Administrator". This string is
 #. needed by Django, but 'superuser' is very technical and should be avoided.
 #: strings.py:40
 msgid "superuser status"
-msgstr ""
+msgstr " Gjendja Superpërdoruesit"
 
 #. Translators: The language from which translation will happen
 #: strings.py:43 apps/pootle_app/views/admin/adminprojects.py:44
 #: apps/pootle_project/models.py:92
 msgid "Source Language"
-msgstr ""
+msgstr "Gjuha Burimit"
 
 #: strings.py:45
 msgid "Android strings"
-msgstr ""
+msgstr "Android stringë"
 
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:51
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Regullat e Sekretit"
 
 #. Translators: Label that refers to the site's legal requirements
 #: strings.py:53
 msgid "Legal"
-msgstr ""
+msgstr "Ligjore"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:55
 msgid "License"
-msgstr ""
+msgstr "Licensë"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:57
 msgid "Contributor License"
-msgstr ""
+msgstr "Leje e kontribuesit"
 
 #. Translators: Label that refers to the site's terms of use
 #: strings.py:59
 msgid "Terms of Use"
-msgstr ""
+msgstr "Kushtet e perdorimit"
 
 #. Translators: Label that refers to the site's terms of service
 #: strings.py:61
 msgid "Terms of Service"
-msgstr ""
+msgstr "Kushtete e Servisit"
 
 #: apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr ""
+msgstr "Emri juaj"
 
 #: apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr ""
+msgstr "Adresa juaj e E-mailit"
 
 #: apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr ""
+msgstr "Mesazhi juaj"
 
 #: apps/contact_form_i18n/forms.py:260
 msgid "Akismet thinks this message is spam"
-msgstr ""
+msgstr "Akismet mendon ky mesazh eshte spam"
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
 msgstr[0] ""
+"Ju lutem korigjo gabimin e meposhtem.Ju lutem korigjo gabimet e meposhteme."
 msgstr[1] ""
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
-msgstr ""
+msgstr "Te dhenat jane ruajtur"
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: apps/legalpages/templates/legalpages/admin/form.html:15
@@ -179,29 +185,29 @@ msgstr ""
 #: templates/profiles/edit_personal.html:33
 #: templates/profiles/edit_profile.html:25
 msgid "Save"
-msgstr ""
+msgstr "Ruaj"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/legalpages/forms.py:42
 msgid "URL or content must be provided."
-msgstr ""
+msgstr "URL ose permbajtja mund te permbaj"
 
 #: apps/legalpages/models.py:31
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 msgid "Active"
-msgstr ""
+msgstr "Veprues"
 
 #: apps/legalpages/models.py:32
 msgid "Whether this page is active or not."
-msgstr ""
+msgstr "Nese kjo faqe eshte aktive ose jo"
 
 #: apps/legalpages/models.py:34
 msgid "Display on registration"
-msgstr ""
+msgstr "Trego  regjistrimin"
 
 #: apps/legalpages/models.py:35
 msgid "Whether this page should be displayed on registration."
-msgstr ""
+msgstr "Nëse kjo faqe duhet të shfaqet në regjistrim."
 
 #: apps/legalpages/models.py:38 apps/pootle_app/forms.py:30
 #: apps/pootle_notifications/views.py:141
@@ -210,58 +216,59 @@ msgstr "Titulli"
 
 #: apps/legalpages/models.py:39
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: apps/legalpages/models.py:40
 msgid "If set, any references to this legal page will redirect to this URL"
 msgstr ""
+"Nëse caktuar, çdo referenca në këtë faqe ligjor do të përcjellim në këtë URL"
 
 #. Translators: See http://en.wikipedia.org/wiki/Slug_%28web_publishing%29#Slug
 #: apps/legalpages/models.py:43
 msgid "Slug"
-msgstr ""
+msgstr "fishë"
 
 #: apps/legalpages/models.py:44
 msgid "The page will be available at /about/<slug>/"
-msgstr ""
+msgstr "Kjo faqe do te jete e vlefshme ne /about/<fishë>/"
 
 #: apps/legalpages/models.py:46
 msgid "Content"
-msgstr ""
+msgstr "Përmbajtje"
 
 #: apps/legalpages/models.py:47
 #, python-format
 msgid "Allowed markup: %s"
-msgstr ""
+msgstr "Lejojet te shenuarat :%s"
 
 #: apps/legalpages/views.py:67
 msgid "Legal page created."
-msgstr ""
+msgstr "Faqja ligjore eshte krijuar"
 
 #: apps/legalpages/templates/legalpages/admin/edit.html:4
 #: apps/legalpages/templates/legalpages/admin/edit.html:9
 #: apps/legalpages/templates/legalpages/admin/edit.html:16
 msgid "Edit Legal Page"
-msgstr ""
+msgstr "Ndrysho faqen ligjore"
 
 #: apps/legalpages/templates/legalpages/admin/form.html:17
 #: apps/pootle_terminology/templates/terminology/manage.html:37
 msgid "Delete"
-msgstr ""
+msgstr "Fshije"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:5
 #: apps/legalpages/templates/legalpages/admin/list.html:10
 #: templates/admin_profile_menu.html:9
 msgid "Legal Pages"
-msgstr ""
+msgstr "Faqet Ligjore"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:17
 msgid "Existing Legal Pages"
-msgstr ""
+msgstr "Faqet ekzistuese ligjore"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 msgid "Inactive"
-msgstr ""
+msgstr "Jo aktiv"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 #: apps/pootle_app/templates/admin/edit_links.html:2
@@ -270,27 +277,27 @@ msgstr "Ndrysho"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:24
 msgid "No pages yet."
-msgstr ""
+msgstr "Akoma pa faqe"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:31
 msgid "New Legal Page"
-msgstr ""
+msgstr "Faqe ligjore e re"
 
 #: apps/pootle_app/admin.py:39
 msgid "Language code does not follow the ISO convention"
-msgstr ""
+msgstr "Kodi i gjuhes nuk ndjek standartet ISO"
 
 #: apps/pootle_app/admin.py:65
 msgid "Project code may only contain letters, numbers and _"
-msgstr ""
+msgstr "projekti i kodit mund te permbaj germa, numra dhe_"
 
 #: apps/pootle_app/admin.py:77
 msgid "Advanced Options"
-msgstr ""
+msgstr "Opsione të Avancuara"
 
 #: apps/pootle_app/forms.py:31
 msgid "The name for this Pootle server"
-msgstr ""
+msgstr "Emri per kete Pootle server"
 
 #: apps/pootle_app/forms.py:37
 #: apps/pootle_language/templates/language/language_index.html:24
@@ -304,78 +311,76 @@ msgid ""
 "The description and instructions shown on the front page and about page. Be "
 "sure to use valid HTML."
 msgstr ""
+"Përshkrimin dhe udhëzimet e treguar në faqen e parë dhe rreth faqe. Të jetë "
+"i sigurt për të përdorur HTML vlefshme."
 
 #: apps/pootle_app/management/__init__.py:73
 msgid "Can view a translation project"
-msgstr ""
+msgstr "Mund te shikohet nje perkthim projekti"
 
 #: apps/pootle_app/management/__init__.py:75
 msgid "Can make a suggestion for a translation"
-msgstr ""
+msgstr "Mund te bej sygjerime per perkthimin"
 
 #: apps/pootle_app/management/__init__.py:77
 msgid "Can submit a translation"
-msgstr ""
+msgstr "Mund te dergoni perkthimin"
 
 #: apps/pootle_app/management/__init__.py:79
 msgid "Can overwrite translations on uploading files"
-msgstr ""
+msgstr "Mund te mbishkruaj perkthimin ne skedaret e ngarkuar"
 
 #: apps/pootle_app/management/__init__.py:81
 msgid "Can review translations"
-msgstr ""
+msgstr "Mund te rishikoj perkthimin"
 
 #: apps/pootle_app/management/__init__.py:83
 msgid "Can download archives of translation projects"
-msgstr ""
+msgstr "Mund shkarkoj arkivin e projekteve te perkthyera"
 
 #: apps/pootle_app/management/__init__.py:85
 msgid "Can administrate a translation project"
-msgstr ""
+msgstr "mund te administroj nje projekt te perkthyer"
 
 #: apps/pootle_app/management/__init__.py:87
 msgid "Can commit to version control"
-msgstr ""
+msgstr "Mund ta bashkoj ne vresionin e kontrolluar"
 
 #: apps/pootle_app/models/suggestion.py:35
 msgid "Pending"
-msgstr ""
+msgstr "Në pritje"
 
 #: apps/pootle_app/models/suggestion.py:36
-#, fuzzy
 msgid "Accepted"
-msgstr "Prano"
+msgstr "U pranua"
 
 #: apps/pootle_app/models/suggestion.py:37
-#, fuzzy
 msgid "Rejected"
-msgstr "Refuzo"
+msgstr "Refuzuar"
 
 #: apps/pootle_app/templates/top_contributers_table.html:8
 msgid "Top Contributors"
-msgstr ""
+msgstr "Maja e Kontribuesve"
 
 #. Translators: The number of suggestions pending review
 #: apps/pootle_app/templates/top_contributers_table.html:12
 #: apps/pootle_misc/browser.py:65
 #: apps/pootle_store/templates/store/translate.html:74
-#, fuzzy
 msgid "Suggestions"
-msgstr "Propozimi:"
+msgstr "Propozime"
 
 #: apps/pootle_app/templates/top_contributers_table.html:13
-#, fuzzy
 msgid "Reviews"
 msgstr "Rishiko"
 
 #: apps/pootle_app/templates/top_contributers_table.html:14
 #: apps/pootle_app/templates/admin/dashboard.html:19
 msgid "Submissions"
-msgstr ""
+msgstr "Pranimet"
 
 #: apps/pootle_app/templates/top_contributers_table.html:19
 msgid "anonymous users"
-msgstr ""
+msgstr "perdorues i panjohur"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:4
 #: apps/pootle_misc/stats.py:109 apps/pootle_store/util.py:47
@@ -388,7 +393,7 @@ msgstr "Përkthyer"
 #: apps/pootle_store/util.py:46
 #: apps/pootle_store/templates/store/translate.html:73
 msgid "Needs work"
-msgstr ""
+msgstr "Nevojitet pune"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:6
 #: apps/pootle_misc/stats.py:115 apps/pootle_store/util.py:45
@@ -398,7 +403,6 @@ msgstr "Papërkthyer"
 
 #: apps/pootle_app/templates/admin/admin_general.html:15
 #: apps/pootle_terminology/templates/terminology/manage.html:50
-#, fuzzy
 msgid "Save Changes"
 msgstr "Ruaj ndryshimet"
 
@@ -414,6 +418,8 @@ msgid ""
 "Here you can add, edit, and delete all the available languages in this "
 "Pootle server."
 msgstr ""
+"Këtu ju mund të shtoni, modifikoni, dhe fshini të gjitha gjuhët në "
+"dispozicion në këtë server Pootle"
 
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:4
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:9
@@ -428,13 +434,15 @@ msgstr ""
 #: templates/project_menu.html:7 templates/tp_menu.html:9
 #: templates/profiles/profile_detail.html:47
 msgid "Permissions"
-msgstr ""
+msgstr "Lejet"
 
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:12
 msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
 msgstr ""
+"Ketu you mund te shtoni, ndryshoni dhe fshini leje te percaktuara in kete "
+"Pootle server"
 
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:16
 #: apps/pootle_language/templates/language/language_admin.html:17
@@ -446,6 +454,10 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
+"Përdoruesi \"askush\" i referohet çdo përdorues që nuk është regjistruar në "
+"(një anonim, përdorues i paidentifikuar).Përdorues \"i perzgjedhur\" i "
+"referohet të drejtave që të gjithë përdoruesit e regjistruar në do të ketë "
+"si parazgjedhje, përveç të drejtave të tjera të veçanta janë caktuar për ta."
 
 #: apps/pootle_app/templates/admin/admin_general_projects.html:4
 #: apps/pootle_app/templates/admin/admin_general_projects.html:9
@@ -467,15 +479,17 @@ msgid ""
 "Here you can add, edit, and delete all the available projects in this Pootle "
 "server."
 msgstr ""
+"Këtu ju mund të shtoni, modifikoni, dhe fshini të gjitha projektet në "
+"dispozicion në këtë server Pootle"
 
 #: apps/pootle_app/templates/admin/admin_general_settings.html:4
 #: apps/pootle_app/templates/admin/admin_general_settings.html:9
 msgid "General Settings"
-msgstr ""
+msgstr "Parametrat e Përgjithshëm"
 
 #: apps/pootle_app/templates/admin/admin_general_settings.html:12
 msgid "Configure here the general settings for your site."
-msgstr ""
+msgstr "Konfiguro ketu Parametrar e Pergjithshme per faqen tuaj"
 
 #: apps/pootle_app/templates/admin/admin_general_users.html:4
 #: apps/pootle_app/templates/admin/admin_general_users.html:9
@@ -491,22 +505,24 @@ msgid ""
 "Here you can add, edit, and delete all the available users in this Pootle "
 "server."
 msgstr ""
+"Këtu ju mund të shtoni, modifikoni, dhe fshini të perdoruesit ne dispozicion "
+"në këtë server Pootle"
 
 #: apps/pootle_app/templates/admin/dashboard.html:13
 msgid "Server Statistics"
-msgstr ""
+msgstr "Statistikat e Sereverit"
 
 #: apps/pootle_app/templates/admin/dashboard.html:22
 msgid "Pending suggestions"
-msgstr ""
+msgstr "Sygjerime te pa mbaruara"
 
 #: apps/pootle_app/templates/admin/dashboard.html:31
 msgid "More..."
-msgstr ""
+msgstr "Me shume"
 
 #: apps/pootle_app/templates/admin/dashboard.html:39
 msgid "Support"
-msgstr ""
+msgstr "Asistencë"
 
 #: apps/pootle_app/templates/admin/dashboard.html:42
 msgid ""
@@ -514,88 +530,89 @@ msgid ""
 "localization experts. We want Pootle to help your localization work reach "
 "its full potential."
 msgstr ""
+"Pootle është zhvilluar nga Translate.org.za dhe një komuniteti ekspertësh të "
+"vendndodhjes pasionuar. Ne duam Pootle për të ndihmuar në lokalizimin punën "
+"tuaj të arrijë potencialin e saj të plotë."
 
 #: apps/pootle_app/templates/admin/dashboard.html:43
 msgid "You will find the following helpful for support:"
-msgstr ""
+msgstr "Ju do të gjeni ne vazhdim ndihmen e dobishme te suportit:"
 
 #: apps/pootle_app/templates/admin/dashboard.html:45
 msgid "The Pootle documentation"
-msgstr ""
+msgstr "Dokumentat e Pootli-t"
 
 #: apps/pootle_app/templates/admin/dashboard.html:46
 msgid "The Pootle mailing list"
-msgstr ""
+msgstr "Lista e E-mailit ne Pootle "
 
 #: apps/pootle_app/templates/admin/dashboard.html:47
 msgid "(commercial support)"
-msgstr ""
+msgstr "(mbështetja komerciale)"
 
 #: apps/pootle_app/templates/admin/dashboard.html:55
 msgid "Dependency Checks"
-msgstr ""
+msgstr "Verifikimet e varësisë"
 
 #: apps/pootle_app/templates/admin/dashboard.html:64
-#, fuzzy
 msgid "Optional"
-msgstr "Opsioni"
+msgstr "Opsionale"
 
 #: apps/pootle_app/templates/admin/dashboard.html:72
 msgid "Optimizations"
-msgstr ""
+msgstr "Vlera me e mire"
 
 #: apps/pootle_app/templates/admin/general_settings_form.html:16
 msgid "Cancel"
-msgstr ""
+msgstr "Anullo"
 
 #: apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
-msgstr ""
+msgstr "Njoftime te Pootle"
 
 #: apps/pootle_app/templates/index/index.html:21
 #: apps/pootle_language/templates/language/language_index.html:34
 #: apps/pootle_project/templates/project/project.html:40
 #: apps/pootle_translationproject/templates/translation_project/overview.html:88
 msgid "No description set."
-msgstr ""
+msgstr "Asnjë përshkrim vene"
 
 #: apps/pootle_app/templates/index/index.html:58
 #: apps/pootle_notifications/templates/notices.html:87
 msgid "Latest News"
-msgstr ""
+msgstr "Lajmet e fundit"
 
 #: apps/pootle_app/templates/index/index.html:61
 msgid "Subscribe to the RSS feed."
-msgstr ""
+msgstr "Regjistrohu ne ushqyesit RSS "
 
 #: apps/pootle_app/templates/index/login.html:4
 #: apps/pootle_app/templates/index/login.html:7
 #: apps/pootle_app/templates/index/login.html:23
 msgid "Login"
-msgstr "Identifikimi"
+msgstr "Hyrja"
 
 #: apps/pootle_app/templates/index/login.html:12
 msgid "Login to Pootle"
-msgstr "Hyrja në Pootle"
+msgstr "Hyrje në Pootle"
 
 #: apps/pootle_app/templates/index/login.html:18
 msgid "Your username and password didn't match. Please try again."
-msgstr ""
+msgstr "Përdoruesi dhe Fjalëkalimi nuk perputhen. Julutem provo perseri"
 
 #: apps/pootle_app/templates/index/login.html:30
 msgid "Lost your Password?"
-msgstr ""
+msgstr "Keni humbur Fjalëkalimi"
 
 #: apps/pootle_app/templates/index/login.html:33
 #: templates/registration/password_reset_form.html:30
 msgid "Don't have an account yet?"
-msgstr ""
+msgstr "Nuk keni akoma llogari?"
 
 #: apps/pootle_app/templates/index/login.html:34
 #: templates/registration/password_reset_form.html:31
-#, fuzzy
 msgid "Register."
-msgstr "Regjistrimi"
+msgstr "Regjistrohuni"
 
 #: apps/pootle_app/views/admin/adminusers.py:48
 #: templates/user_profile_menu.html:7
@@ -606,7 +623,7 @@ msgstr "Fjalëkalimi"
 #: apps/pootle_app/views/admin/dashboard.py:48
 #, python-format
 msgid "Translate Toolkit version %s installed."
-msgstr ""
+msgstr "Vegla e perkthimit version %s eshte instaluar"
 
 #: apps/pootle_app/views/admin/dashboard.py:51
 #, python-format
@@ -614,22 +631,25 @@ msgid ""
 "Translate Toolkit version %(installed)s installed. Pootle requires at least "
 "version %(required)s."
 msgstr ""
+"Vegla e Perkthimit version %(instaluar)s eshte instaluar. Pootle kerkon nje "
+"version te fundit %(kerkohet)s"
 
 #: apps/pootle_app/views/admin/dashboard.py:62
 #, python-format
 msgid "Django version %s is installed."
-msgstr ""
+msgstr "Django Version %s eshte instaluar."
 
 #: apps/pootle_app/views/admin/dashboard.py:65
 #, python-format
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
 msgstr ""
+"Django version %s eshte instaluar, por nje version me i lart rekomandohet."
 
 #: apps/pootle_app/views/admin/dashboard.py:71
 #, python-format
 msgid "lxml version %s is installed."
-msgstr ""
+msgstr "lxml version %s eshte instaluar."
 
 #: apps/pootle_app/views/admin/dashboard.py:75
 #, python-format
@@ -637,40 +657,52 @@ msgid ""
 "lxml version %(installed)s is installed. Pootle requires at least version "
 "%(required)s."
 msgstr ""
+"lxml version %s(instaluar) eshte instaluar. Pootle kerkon te pakten "
+"versionin% (i kerkuar)s."
 
 #: apps/pootle_app/views/admin/dashboard.py:82
 msgid "lxml is not installed. Pootle requires lxml."
-msgstr ""
+msgstr "lxml version %s nuk eshte instaluar. Pootle kerkon lxml."
 
 #: apps/pootle_app/views/admin/dashboard.py:95
 msgid ""
 "Can't find the unzip command. Uploading archives is faster if \"unzip\" is "
 "available."
 msgstr ""
+"Nuk mund te gjej komande zberthimi. Dergimi i arkives eshte me i shpejte "
+"n,q,s \"unzip\"eshte i vlefshem."
 
 #: apps/pootle_app/views/admin/dashboard.py:99
 msgid ""
 "Can't find the ISO codes package. Pootle uses ISO codes to translate "
 "language names."
 msgstr ""
+"Nuk mund te gjej paketat e kodit ISO. Pootle perdor koded ISO te perkthej "
+"emrat e gjuhes."
 
 #: apps/pootle_app/views/admin/dashboard.py:103
 msgid ""
 "Can't find the aeidon package. Pootle requires Gaupol or aeidon to support "
 "subtitle formats."
 msgstr ""
+"Nuk mund te gjej paketat aedidon. Pootle kerkon Gaupol or aedion per te "
+"sherbyer formatin e nentitujve."
 
 #: apps/pootle_app/views/admin/dashboard.py:107
 msgid ""
 "Can't find python-levenshtein package. Updating against templates is faster "
 "with python-levenshtein."
 msgstr ""
+"Nuk mund te gjej pytho-levebshtein pakete. Perditeso perseri formen eshte me "
+"i shpejte me python-levenshtein."
 
 #: apps/pootle_app/views/admin/dashboard.py:111
 msgid ""
 "No text indexing engine found. Searching is faster if an indexing engine "
 "like Xapian or Lucene is installed."
 msgstr ""
+"Nuk eshte gjetur ansnje tekst motor tregues. kerkimi eshte me i shpejte ne "
+"tregues n.q.s motor si Xapain ose Lucene jane instaluar. "
 
 #: apps/pootle_app/views/admin/dashboard.py:121
 msgid ""
@@ -678,6 +710,9 @@ msgid ""
 "installations with a small number of users. Pootle will perform better with "
 "the MySQL database engine."
 msgstr ""
+"Perdor si te perzgjedhur sqlite3 motor databaze. Sqlite eshte  i "
+"pershtateshem vetem per instalime te vogla me nje numer te vogel "
+"perdoruesish. Pootle do te pershtatet mire dhe me MySQL motor databaze.  "
 
 #: apps/pootle_app/views/admin/dashboard.py:123
 msgid ""
@@ -685,72 +720,97 @@ msgid ""
 "installations with a small number of users. Pootle will perform better with "
 "the MySQL database engine, but you need to install python-MySQLdb first."
 msgstr ""
+"Perdor si te perzgjedhur sqlite3 motor databaze. SQLite eshte i "
+"pershtateshem vetem per instalime te vogla me nje numer te vogel "
+"perdoruesish. Pootle do te pershtatet mire dhe me MySQL motor databaze, por "
+"ju nevojitet te instaloni python-MyAQLdb me pare."
 
 #: apps/pootle_app/views/admin/dashboard.py:131
+#, fuzzy
 msgid ""
 "Pootle is configured to use memcached as a caching backend, but can't "
 "connect to the memcached server. Caching is currently disabled."
 msgstr ""
+"Pootle është konfiguruar për të përdorur memcached si një backend caching, "
+"por nuk mund të lidheni me serverin memcached. Caching është i aktivizuar "
+"aktualisht."
 
 #: apps/pootle_app/views/admin/dashboard.py:134
 msgid ""
 "For optimal performance, use django.contrib.sessions.backends.cached_db as "
 "the session engine."
 msgstr ""
+"Për performancën me te mire, përdorni "
+"django.contrib.sessions.backends.cached_db si motor seancë."
 
 #: apps/pootle_app/views/admin/dashboard.py:138
+#, fuzzy
 msgid ""
 "Pootle is configured to use memcached as caching backend, but Python support "
 "for memcached is not installed. Caching is currently disabled."
 msgstr ""
+"Pootle është konfiguruar për të përdorur memcached si një backend caching, "
+"por Python suport memcached nuk eshte instaluar . Caching është aktualisht "
+"jo aktiv."
 
 #: apps/pootle_app/views/admin/dashboard.py:141
+#, fuzzy
 msgid "For optimal performance, use memcached as the caching backend."
-msgstr ""
+msgstr "Per performancen me te mire, perdor memcached as the caching backend."
 
 #: apps/pootle_app/views/admin/dashboard.py:145
 msgid "For optimal performance, use Apache as the webserver."
-msgstr ""
+msgstr "Per performancen me te mire, perdor Apache si webserver."
 
 #: apps/pootle_app/views/admin/dashboard.py:148
 msgid ""
 "The \"from\" address used to send registration emails is not specified. Also "
 "review the mail server settings."
 msgstr ""
+"\"Nga\" Adresa përdoret për të dërguar email regjistrimi nuk është e "
+"specifikuar. Gjithashtu rishikojë parametrat serverin e postës."
 
 #: apps/pootle_app/views/admin/dashboard.py:151
 msgid ""
 "No contact address is specified. The contact form will allow users to "
 "contact the server administrators."
 msgstr ""
+"Nuk është e specifikuar adresa kontaktit. Kontakt formë do të lejojë "
+"përdoruesve për të kontaktuar administratorët server."
 
 #: apps/pootle_app/views/admin/dashboard.py:155
 msgid ""
 "Running in debug mode. Debug mode is only needed when developing Pootle. For "
 "optimal performance, disable debugging mode."
 msgstr ""
+"Ekzekutimi ne menyren gjetja dhe korrigjimi i gabimeve. menyren gjetja dhe "
+"korrigjimi i gabimeve është e nevojshme vetëm kur zhvillimin Pootle. Për "
+"performancën me te mire, mos aktivizo menyren gjetjes dhe korrigjimi te "
+"gabimeve"
 
 #: apps/pootle_app/views/admin/dashboard.py:159
 msgid ""
 "Running in live translation mode. Live translation is useful as a tool to "
 "learn about Pootle and localization, but has high impact on performance."
 msgstr ""
+"Ekzekutimi ne menyren e perkthimit ne kohe reale. Perkthimit ne kohe reale "
+"eshte nje vegel e vlefshme te mesosh reth Pootle dhe lokalizimeve, por ka "
+"ndikim të lartë në performancën. "
 
 #: apps/pootle_app/views/admin/dashboard.py:199
 #: templates/profiles/profile_detail.html:47
 msgid "Files"
-msgstr ""
+msgstr "Skedaret"
 
 #: apps/pootle_app/views/admin/dashboard.py:200
 msgid "Active projects"
-msgstr ""
+msgstr "Projekte aktive"
 
 #: apps/pootle_app/views/admin/dashboard.py:201
 msgid "Active languages"
-msgstr ""
+msgstr "Gjuhet e vlefshme"
 
 #: apps/pootle_app/views/admin/dashboard.py:202
-#, fuzzy
 msgid "Translated strings"
 msgstr "Përkthe frazat e mia"
 
@@ -760,81 +820,79 @@ msgstr "Fjalë të përkthyera"
 
 #: apps/pootle_app/views/admin/dashboard.py:204
 msgid "Active users"
-msgstr ""
+msgstr "Perdorues te Vlefshem"
 
 #: apps/pootle_app/views/admin/permissions.py:61
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Members"
-msgstr ""
+msgstr "Anëtarët e projektit"
 
 #: apps/pootle_app/views/admin/permissions.py:74
 msgid "Language Members"
-msgstr ""
+msgstr "Anëtarët të Gjuhës"
 
 #: apps/pootle_app/views/admin/permissions.py:79
 msgid "All Users"
-msgstr ""
+msgstr "Të gjithë përdoruesit"
 
 #: apps/pootle_app/views/admin/util.py:40
-#, fuzzy
 msgid "You do not have rights to administer Pootle."
-msgstr "Nuk keni të drejtë të administroni pootle."
+msgstr "Nuk keni të drejtë të administroni Pootle."
 
 #: apps/pootle_app/views/admin/util.py:58
 #, python-format
-#, fuzzy
 msgid "You do not have rights to administer %s."
-msgstr "Nuk keni të drejtë të administroni pootle."
+msgstr "Nuk keni të drejtë të administroni  %s."
 
 #: apps/pootle_app/views/admin/util.py:176
 msgid "No files in this project."
-msgstr ""
+msgstr "Asnje skedare ne kete projekt."
 
 #: apps/pootle_app/views/admin/util.py:209
 msgid "There are errors in the form. Please review the problems below."
-msgstr ""
+msgstr "Ka gabime në formë. Ju lutemi të shqyrtojë problemet më poshtë."
 
 #: apps/pootle_app/views/index/about.py:47
 #, python-format
 msgid "Pootle %(pootle_ver)s is powered by Translate Toolkit %(toolkit_ver)s"
 msgstr ""
+"Pootle %(pootle_ver)s është prodhuar nga Vegla e Përkthimit %(toolkit_ver)s"
 
 #: apps/pootle_app/views/index/index.py:55 apps/pootle_language/views.py:67
 #: apps/pootle_misc/browser.py:94 apps/pootle_project/views.py:75
 #, python-format
 msgid "%(percentage)d%% complete"
-msgstr ""
+msgstr "% (përqindje) d%% përfunduar"
 
 #: apps/pootle_app/views/language/view.py:96
 #: apps/pootle_translationproject/views.py:268
-#, fuzzy
 msgid "You do not have rights to access this translation project."
-msgstr "Nuk keni të drejta të mjaftueshme për të ndryshuar përkthimet këtu"
+msgstr "Nuk keni të drejta të mjaftueshme për të ndryshuar përkthimet këtu."
 
 #: apps/pootle_app/views/language/view.py:111
 #: apps/pootle_app/views/language/view.py:137
 msgid "You do not have rights to commit files here"
-msgstr "Nuk keni të drejta të mjaftueshme për të ngarkuar file këtu"
+msgstr "Nuk keni të drejta të dorëzoni kartela këtu"
 
 #: apps/pootle_app/views/language/view.py:124
 #: apps/pootle_app/views/language/view.py:150
 msgid "You do not have rights to update files here"
-msgstr "Nuk keni të drejta të mjaftueshme për të përditësuar file këtu"
+msgstr "Nuk keni të drejta të përditësoni kartela këtu"
 
 #: apps/pootle_language/models.py:48
 msgid ""
 "ISO 639 language code for the language, possibly followed by an underscore "
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
 "articles/language-tags/\">More information</a>"
-msgstr ""
+msgstr "Nuk keni të drejta të përditësoni kartela këtu"
 
 #: apps/pootle_language/models.py:53 apps/pootle_project/models.py:60
 msgid "Code"
-msgstr ""
+msgstr "Kodi"
 
 #: apps/pootle_language/models.py:55 apps/pootle_project/models.py:63
 msgid "Full Name"
-msgstr "Emri i plotë"
+msgstr "Emri i Plotë"
 
 #: apps/pootle_language/models.py:57
 #, python-format
@@ -842,80 +900,89 @@ msgid ""
 "A description of this language. This is useful to give more information or "
 "instructions. Allowed markup: %s"
 msgstr ""
+"Në përshkrimin e kësaj gjuhe. Kjo është e dobishme për të dhënë më shumë "
+"informacion ose udhëzime. Markup lejuar:% s"
 
 #: apps/pootle_language/models.py:63
 msgid "Enter any special characters that users might find difficult to type"
 msgstr ""
+"Shkruani ndonjë karaktere speciale që përdoruesit mund të shtype me "
+"vështiësi"
 
 #: apps/pootle_language/models.py:66
-#, fuzzy
 msgid "Special Characters"
-msgstr "(shkronja speciale)"
+msgstr ""
+"Për më shumë informacion, vizitoni<a "
+"href=\"http://translate.sourceforge.net/wiki/l10n/pluralforms\"> faqen tonë në "
+"wiki </ a> në forma shumës."
 
 #: apps/pootle_language/models.py:69
 msgid ""
 "For more information, visit <a href=\"http://translate.sourceforge.net/wiki/"
 "l10n/pluralforms\">our wiki page</a> on plural forms."
 msgstr ""
+"Për më shumë informacion, vizitoni <a "
+"href=\"http://translate.sourceforge.net/wiki/l10n/pluralforms\">faqen tonë në "
+"wiki </ a> në format e shumësit."
 
 #: apps/pootle_language/models.py:73
 msgid "Unknown"
-msgstr ""
+msgstr "E panjohur"
 
 #: apps/pootle_language/models.py:76
 msgid "Number of Plurals"
-msgstr "Numri i shumësve"
+msgstr "Numri i Shumësave"
 
 #: apps/pootle_language/models.py:78
 msgid "Plural Equation"
-msgstr "Formula e shumësit"
+msgstr "Formula e Shumësit"
 
 #: apps/pootle_language/views.py:74 apps/pootle_misc/browser.py:101
 #: apps/pootle_project/views.py:82
 #, python-format
 msgid "Error reading %d file"
 msgid_plural "Error reading %d files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Gabim gjatë leximit të% d skedarit"
+msgstr[1] "Gabim gjatë leximit të% d skedareve"
 
 #: apps/pootle_language/views.py:115
 #, python-format
 msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(projekte)d Projekti, %(mesatare) d%% përkthyer"
+msgstr[1] "%(projekte) d projekteve,% (mesatare) d%% përkthyer"
 
 #: apps/pootle_language/views.py:158 apps/pootle_project/views.py:169
 #: apps/pootle_translationproject/views.py:347
 msgid "No description yet."
-msgstr ""
+msgstr "Asnjë përshkrim akoma."
 
 #: apps/pootle_language/views.py:181
-#, fuzzy
 msgid "You do not have rights to administer this language."
 msgstr "Nuk keni të drejta të mjaftueshme për të administruar këtë projekt."
 
 #: apps/pootle_language/templates/language/language_admin.html:15
 msgid "Below you can add, edit, and delete the permissions for this language."
 msgstr ""
+"Më poshtë ju mund të shtoni, modifikoni, dhe fshini te drejtat për këtë "
+"gjuhë."
 
 #: apps/pootle_misc/browser.py:31
 msgid "Name"
-msgstr "Emri"
+msgstr "Emër"
 
 #: apps/pootle_misc/browser.py:36
-#, fuzzy
 msgid "Project"
-msgstr "Projekte"
+msgstr "Projekt"
 
 #: apps/pootle_misc/browser.py:41 apps/pootle_project/views.py:232
 msgid "Language"
-msgstr "Gjuha"
+msgstr "Gjuhë"
 
 #. Translators: noun. The graphical representation of translation status
 #: apps/pootle_misc/browser.py:47
 msgid "Progress"
-msgstr ""
+msgstr "Ecuria"
 
 #. Translators: Heading representing the total number of words of a file
 #. or directory
@@ -925,63 +992,63 @@ msgstr "Gjithsej"
 
 #: apps/pootle_misc/browser.py:59
 msgid "Need Translation"
-msgstr ""
+msgstr "Nevojitet Përkthim."
 
 #: apps/pootle_misc/browser.py:70
 msgid "Last Activity"
-msgstr ""
+msgstr "Aktiviteti i Fundit"
 
 #: apps/pootle_misc/checks.py:29
 msgid "Critical"
-msgstr ""
+msgstr "Kritike"
 
 #: apps/pootle_misc/checks.py:30
 msgid "Functional"
-msgstr ""
+msgstr "Funksional"
 
 #: apps/pootle_misc/checks.py:31
 msgid "Cosmetic"
-msgstr ""
+msgstr "kozmetik"
 
 #: apps/pootle_misc/checks.py:32
 msgid "Extraction"
-msgstr ""
+msgstr "ekstraktim"
 
 #: apps/pootle_misc/checks.py:33
 msgid "No category"
-msgstr ""
+msgstr "Pa kategori"
 
 #: apps/pootle_misc/checks.py:37
 msgid "Accelerators"
-msgstr ""
+msgstr "Përshpejtues"
 
 #: apps/pootle_misc/checks.py:38
 msgid "Acronyms"
-msgstr ""
+msgstr "Akronim"
 
 #: apps/pootle_misc/checks.py:39
 msgid "Blank"
-msgstr ""
+msgstr "Bosh"
 
 #: apps/pootle_misc/checks.py:40
 msgid "Brackets"
-msgstr ""
+msgstr "Kllapat"
 
 #: apps/pootle_misc/checks.py:41
 msgid "Compendium conflict"
-msgstr ""
+msgstr "konflikti përmbledhje"
 
 #: apps/pootle_misc/checks.py:42
 msgid "Translator credits"
-msgstr ""
+msgstr "Të dhëna mbi përkthyesin"
 
 #: apps/pootle_misc/checks.py:43
 msgid "Double quotes"
-msgstr ""
+msgstr "Vlera te njeta"
 
 #: apps/pootle_misc/checks.py:44
 msgid "Double spaces"
-msgstr ""
+msgstr "Hapësirë dyfishe"
 
 #: apps/pootle_misc/checks.py:45
 msgid "Repeated word"
@@ -989,39 +1056,39 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:46
 msgid "E-mail"
-msgstr ""
+msgstr "E-mail"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Ending punctuation"
-msgstr ""
+msgstr "Mbarini i pikëzimit "
 
 #: apps/pootle_misc/checks.py:48
 msgid "Ending whitespace"
-msgstr ""
+msgstr "Mbarimi i hapësirave të bardha"
 
 #: apps/pootle_misc/checks.py:49
 msgid "Escapes"
-msgstr ""
+msgstr "Largohu"
 
 #: apps/pootle_misc/checks.py:50
 msgid "File paths"
-msgstr ""
+msgstr "Vendi i Skedarit"
 
 #: apps/pootle_misc/checks.py:51
 msgid "Functions"
-msgstr ""
+msgstr "Funksionet"
 
 #: apps/pootle_misc/checks.py:52
 msgid "GConf values"
-msgstr ""
+msgstr "Vlerat e G Konf "
 
 #: apps/pootle_misc/checks.py:53
 msgid "Old KDE comment"
-msgstr ""
+msgstr "Komente te Vjetra KDE"
 
 #: apps/pootle_misc/checks.py:54
 msgid "Long"
-msgstr ""
+msgstr "I gjatë"
 
 #: apps/pootle_misc/checks.py:55
 msgid "Must translate words"
@@ -1032,8 +1099,9 @@ msgid "Newlines"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:57
+#, fuzzy
 msgid "Number of plurals"
-msgstr ""
+msgstr "Numri i shumësve"
 
 #: apps/pootle_misc/checks.py:58
 msgid "Don't translate words"
@@ -1044,81 +1112,82 @@ msgid "Numbers"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:60
+#, fuzzy
 msgid "Options"
-msgstr ""
+msgstr "Opsioni"
 
 #: apps/pootle_misc/checks.py:61
 msgid "printf()"
-msgstr ""
+msgstr "Shtyp()"
 
 #: apps/pootle_misc/checks.py:62
 msgid "Punctuation spacing"
-msgstr ""
+msgstr "Hapësira shenjat e pikësimit"
 
 #: apps/pootle_misc/checks.py:63
 msgid "Pure punctuation"
-msgstr ""
+msgstr "Shenjat e pikësimit të pastër"
 
 #: apps/pootle_misc/checks.py:64
 msgid "Number of sentences"
-msgstr ""
+msgstr "Numri i fjalive"
 
 #: apps/pootle_misc/checks.py:65
 msgid "Short"
-msgstr ""
+msgstr "I shkurtër"
 
 #: apps/pootle_misc/checks.py:66
 msgid "Simple capitalization"
-msgstr ""
+msgstr "Thjeshtë shkronjat e mëdha"
 
 #: apps/pootle_misc/checks.py:67
 msgid "Simple plural(s)"
-msgstr ""
+msgstr "Thjeshtë Shumësi(s)"
 
 #: apps/pootle_misc/checks.py:68
 msgid "Single quotes"
-msgstr ""
+msgstr "Vlera te vetme"
 
 #: apps/pootle_misc/checks.py:69
 msgid "Starting capitalization"
-msgstr ""
+msgstr "Duke filluar shkrim me germa të mëdha"
 
 #: apps/pootle_misc/checks.py:70
 msgid "Starting punctuation"
-msgstr ""
+msgstr "Duke filluar pikëzimin "
 
 #: apps/pootle_misc/checks.py:71
 msgid "Starting whitespace"
-msgstr ""
+msgstr "Duke filluar hapësirat e bardha"
 
 #. Translators: This refers to tabulation characters
 #: apps/pootle_misc/checks.py:73
 msgid "Tabs"
-msgstr ""
+msgstr "Tabelat"
 
 #: apps/pootle_misc/checks.py:74
 msgid "Unchanged"
-msgstr ""
+msgstr "E Pa ndryshuar"
 
 #: apps/pootle_misc/checks.py:75
 msgid "URLs"
-msgstr ""
+msgstr "URL t"
 
 #: apps/pootle_misc/checks.py:76
 msgid "Valid characters"
-msgstr ""
+msgstr "Kataktere të vlefshme"
 
 #: apps/pootle_misc/checks.py:77
 msgid "Placeholders"
-msgstr ""
+msgstr "Vendmbajtëset"
 
 #: apps/pootle_misc/checks.py:78
 msgid "XML tags"
-msgstr ""
+msgstr "XML tags"
 
 #: apps/pootle_misc/dbinit.py:68
 msgid "Pootle: Install"
-msgstr ""
+msgstr "Pootle: Instalo"
 
 #: apps/pootle_misc/dbinit.py:69
 #, python-format
@@ -1137,30 +1206,31 @@ msgstr ""
 
 #: apps/pootle_misc/dbinit.py:90
 msgid "Calculating translation statistics, this will take a few minutes"
-msgstr ""
+msgstr "Llogaritja statistikave të përkthimit, kjo do të marrë pak minuta"
 
 #: apps/pootle_misc/dbinit.py:96
 #, python-format
 msgid "%(language)s is %(percent)d%% complete"
-msgstr ""
+msgstr "% (gjuha) s është% (për qind)% d% e plotë"
 
 #: apps/pootle_misc/dbinit.py:103
 #, python-format
 msgid "Project %(project)s is %(percent)d%% complete"
-msgstr ""
+msgstr "% Projekt (projekti) s është (për qind)% d%% e plotë"
 
 #: apps/pootle_misc/dbinit.py:111
 msgid "Done calculating statistics for default languages and projects"
-msgstr ""
+msgstr "U bë llogaritja e statistikave për gjuhën e përzgjedhur dhe projekteve"
 
 #: apps/pootle_misc/dbinit.py:119
 msgid ""
 "Initialized database, you will be redirected to the front page in 10 seconds"
 msgstr ""
+"Nisja bazës së të dhënave, ju do të ridrejtuar në faqen e parë në 10 sekonda"
 
 #: apps/pootle_misc/dbupdate.py:132
 msgid "Pootle: Update"
-msgstr ""
+msgstr "Pootle: Rifresko"
 
 #: apps/pootle_misc/dbupdate.py:133
 #, python-format
@@ -1168,14 +1238,16 @@ msgid ""
 "Database tables are currently at build version %d. Pootle will now update "
 "the database."
 msgstr ""
+"Tabelat e bazës së të dhënave janë aktualisht të ndërtuar në versionin% d . "
+"Pootle tani do të rifreskoj bazën e të dhënave."
 
 #: apps/pootle_misc/dbupdate.py:143
 msgid "Creating missing database tables..."
-msgstr ""
+msgstr "Krijimi i tabelave te humbura te bazës së të dhënave..."
 
 #: apps/pootle_misc/dbupdate.py:154
 msgid "Fixing permission table..."
-msgstr ""
+msgstr "Rregullimi i te drejtave ne tabela....."
 
 #: apps/pootle_misc/dbupdate.py:180 apps/pootle_misc/dbupdate.py:257
 msgid "Updating existing database tables..."
@@ -1209,41 +1281,43 @@ msgstr[1] ""
 #: apps/pootle_misc/dbupdate.py:390
 #, python-format
 msgid "Failed to import suggestions from %s"
-msgstr ""
+msgstr "Dështoi importimi i sygjerimeve nga% s"
 
 #: apps/pootle_misc/dbupdate.py:402
 #, python-format
 msgid "Imported %(count)d string from %(store)s"
 msgid_plural "Imported %(count)d strings from %(store)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Importuara %(count)d  nga% (dyqan) s"
+msgstr[1] "Importuara %(count)d stringa nga% (dyqan) s"
 
 #: apps/pootle_misc/dbupdate.py:408
 #, python-format
 msgid "Failed to import strings from %s"
-msgstr ""
+msgstr "Dështuan të importojë stringat nga% s"
 
 #: apps/pootle_misc/dbupdate.py:417
 msgid "All translations are now imported."
-msgstr ""
+msgstr "Të gjitha përkthimet janë importuar tani."
 
 #: apps/pootle_misc/dbupdate.py:427
 msgid ""
 "Pootle initialized the database. You will be redirected to the front page in "
 "10 seconds."
 msgstr ""
+"Pootle nisur bazën e të dhënave. Ju do të ridrejtoheni në faqen e parë në 10 "
+"sekonda."
 
 #: apps/pootle_misc/forms.py:97
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
-msgstr ""
+msgstr "Kërko (Ctrl + Shift + S) <br/> lloji dhe shtypni Enter për të kërkuar"
 
 #: apps/pootle_misc/forms.py:103
 msgid "Source Text"
-msgstr "Teksti orgjinal"
+msgstr "Teksti Burim"
 
 #: apps/pootle_misc/forms.py:104
 msgid "Target Text"
-msgstr "Teksti i përkthyer"
+msgstr "Teksti i përzgjedhur"
 
 #: apps/pootle_misc/forms.py:105
 msgid "Comments"
@@ -1251,38 +1325,38 @@ msgstr "Komente"
 
 #: apps/pootle_misc/forms.py:106
 msgid "Locations"
-msgstr "Pozicione"
+msgstr "Vendndodhja"
 
 #: apps/pootle_misc/forms.py:119
 msgid "Source Terms"
-msgstr ""
+msgstr "Termi orgjinal"
 
 #: apps/pootle_misc/forms.py:120
 msgid "Target Terms"
-msgstr ""
+msgstr "Termat objetktiv"
 
 #: apps/pootle_misc/forms.py:121
 msgid "Definitions"
-msgstr ""
+msgstr "Përcaktimet"
 
 #: apps/pootle_misc/stats.py:91
 #, python-format
 msgid "<a href=\"%(url)s\">%(num)d word</a>"
 msgid_plural "<a href=\"%(url)s\">%(num)d words</a>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "href=\"%(url)s\"> <a% (num) d fjala </ a>"
+msgstr[1] "href=\"%(url)s\"> <a% (num) d fjalët </ a>"
 
 #: apps/pootle_misc/stats.py:97
 #, python-format
 msgid "%(num)d%%"
-msgstr ""
+msgstr "<% (num) d%%"
 
 #: apps/pootle_misc/stats.py:99
 #, python-format
 msgid "(%(num)d string)"
 msgid_plural "(%(num)d strings)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "((num) d% stringë)"
+msgstr[1] "((num) d% stringat)"
 
 #: apps/pootle_misc/stats.py:128
 #, python-format
@@ -1290,7 +1364,10 @@ msgid "This folder has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
 "This folder has %(num)d words, %(percentage)d%% of which are translated."
 msgstr[0] ""
+"Kjo dosje ka %(num)d fjalë ,% (përqindje) d%% e të cilave është e përkthyer."
 msgstr[1] ""
+"Kjo dosje ka %(num)d fjalësh,% (përqindje) d%% e të cilave janë të "
+"përkthyera."
 
 #: apps/pootle_misc/stats.py:140
 #, python-format
@@ -1298,29 +1375,32 @@ msgid "This file has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
 "This file has %(num)d words, %(percentage)d%% of which are translated."
 msgstr[0] ""
+"Kjo skedë ka %(num)d fjalë ,% (përqindje) d%% e të cilave është e përkthyer."
 msgstr[1] ""
+"Kjo skedë ka %(num)d fjalësh,% (përqindje) d%% e të cilave janë të "
+"përkthyera."
 
 #: apps/pootle_misc/stats.py:162
 msgid "Expand details"
-msgstr ""
+msgstr "Hap detajet"
 
 #: apps/pootle_misc/stats.py:173
 #, python-format
 msgid "Continue translation (%(num)d word left)"
 msgid_plural "Continue translation (%(num)d words left)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vazhdo përkthimin (%(num)d fjala majtas)"
+msgstr[1] "Vazhdo përkthim (%(num)d fjalësh majtas)"
 
 #: apps/pootle_misc/stats.py:183
 msgid "Translation is complete"
-msgstr ""
+msgstr "Përkthimi është i plotë"
 
 #: apps/pootle_misc/stats.py:194
 #, python-format
 msgid "Review suggestion (%(num)d left)"
 msgid_plural "Review suggestions (%(num)d left)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Rishiko Sugjerimi (%(num)d majtas)"
+msgstr[1] "Rishiko Sugjerimet (%(num)d majtas)"
 
 #. Translators: 'type' is the type of VCS file: working, remote,
 #. or merged copy.
@@ -1351,49 +1431,52 @@ msgstr[1] ""
 #, python-format
 msgid "%d word needs review"
 msgid_plural "%d words need review"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "% d fjalë ka nevojë për rishikim"
+msgstr[1] "% d fjalëve kanë nevojë për rishikim"
 
 #: apps/pootle_misc/middleware/errorpages.py:65
 #, python-format
 msgid "You need to <a href=\"%(login_link)s\">login</a> to access this page."
 msgstr ""
+"Ju duhet të jepni Kredencilalet <a href=\"%(login_link)s\"> </ a> për të hyrë "
+"në këtë faqe."
 
 #: apps/pootle_misc/middleware/errorpages.py:83
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
+"Gabim veprimi % (Emri i file )s, File i sistemit i dërgoi  gabimin:% "
+"(errormsg) s"
 
 #: apps/pootle_misc/templates/progressbar.html:3
 #, python-format
 msgid "%(percent)s%% complete"
-msgstr ""
+msgstr "(për qind)%%% s përfunduar"
 
 #: apps/pootle_misc/templates/search.html:5
 msgid "Search"
 msgstr "Kërko"
 
 #: apps/pootle_misc/templates/search.html:7
-#, fuzzy
 msgid "Advanced search"
 msgstr "Kërkim i detajuar"
 
 #: apps/pootle_misc/templatetags/render_pager.py:32
 msgid "First"
-msgstr ""
+msgstr "E Para"
 
 #: apps/pootle_misc/templatetags/render_pager.py:34
 msgid "Previous"
-msgstr ""
+msgstr "Paraardhës"
 
 #: apps/pootle_misc/templatetags/render_pager.py:50
 msgid "Next"
-msgstr ""
+msgstr "Vazhdo"
 
 #: apps/pootle_misc/templatetags/render_pager.py:52
 #, python-format
 msgid "Last (%d)"
-msgstr ""
+msgstr "I fundit (%d)"
 
 #: apps/pootle_notifications/models.py:31
 msgid "Message"
@@ -1426,75 +1509,75 @@ msgstr ""
 
 #: apps/pootle_notifications/views.py:138
 msgid "Publish on news feed"
-msgstr ""
+msgstr "Publiko ne Ushquesin Lajmeve ."
 
 #: apps/pootle_notifications/views.py:140
 msgid "Send email"
-msgstr ""
+msgstr "Dërgo E-mail"
 
 #: apps/pootle_notifications/views.py:143
 msgid "Email only to recently active users"
-msgstr ""
+msgstr "E-mail vetem për Përdoruesit e fundit  Aktiv "
 
 #: apps/pootle_notifications/views.py:151
 msgid "All Projects"
-msgstr ""
+msgstr "Të gjithë projektet"
 
 #: apps/pootle_notifications/views.py:155
 msgid "Project Selection"
-msgstr ""
+msgstr "Zgjedhje  Projekti"
 
 #: apps/pootle_notifications/views.py:163
 msgid "All Languages"
-msgstr ""
+msgstr "Të gjitha gjuhët"
 
 #: apps/pootle_notifications/views.py:167
 msgid "Language Selection"
-msgstr ""
+msgstr "Përzgjedhja e Gjuhës"
 
 #: apps/pootle_notifications/views.py:293
 msgid "View News Item"
-msgstr ""
+msgstr "Shfaq Artikullin e Lajmeve"
 
 #: apps/pootle_notifications/templates/latest_news_snippet.html:9
 #: apps/pootle_notifications/templates/notices.html:98
 msgid "No news yet."
-msgstr ""
+msgstr "Pa lajme akoma"
 
 #: apps/pootle_notifications/templates/notices.html:15
 #: apps/pootle_notifications/templates/notices.html:38
 #: templates/language_menu.html:4 templates/project_menu.html:4
 #: templates/tp_menu.html:5
 msgid "News"
-msgstr ""
+msgstr "Lajme"
 
 #: apps/pootle_notifications/templates/notices.html:64
 msgid "Publish News"
-msgstr ""
+msgstr "Shfaq lajmet"
 
 #: apps/pootle_notifications/templates/notices.html:68
 msgid "Successfully published the following news"
-msgstr ""
+msgstr "Publikuar me sukses lajmet e mëposhtëm"
 
 #: apps/pootle_notifications/templates/notices.html:81
 msgid "Publish"
-msgstr ""
+msgstr "Publikuesi"
 
 #: apps/pootle_profile/forms.py:32
 msgid "Default"
-msgstr "E prezgjedhur"
+msgstr "E prëzgjedhur"
 
 #: apps/pootle_profile/forms.py:49 apps/pootle_profile/models.py:96
 msgid "Interface Language"
-msgstr ""
+msgstr " Gjuha e nderfaqes"
 
 #: apps/pootle_profile/forms.py:68
 msgid "This account is inactive."
-msgstr ""
+msgstr "Llogaria eshte jo aktive."
 
 #: apps/pootle_profile/models.py:86
 msgid "Number of Rows"
-msgstr ""
+msgstr "Numri i Rreshtave"
 
 #: apps/pootle_profile/models.py:100
 #, fuzzy
@@ -1536,7 +1619,7 @@ msgstr ""
 
 #: apps/pootle_project/models.py:80
 msgid "File Type"
-msgstr "Lloji i file"
+msgstr "Lloj Kartele"
 
 #: apps/pootle_project/models.py:84
 msgid "Automatic detection (slower)"
@@ -1611,8 +1694,9 @@ msgid "State"
 msgstr ""
 
 #: apps/pootle_statistics/models.py:50
+#, fuzzy
 msgid "Comment"
-msgstr ""
+msgstr "Komente"
 
 #: apps/pootle_statistics/models.py:95
 msgid "anonymous user"
@@ -1692,7 +1776,7 @@ msgstr ""
 #: apps/pootle_store/templatetags/store_tags.py:156
 #, python-format
 msgid "Plural Form %d"
-msgstr "Forma e shumësit %d"
+msgstr "Formë Shumësit %d"
 
 #: apps/pootle_store/forms.py:296
 #, fuzzy
@@ -1739,7 +1823,7 @@ msgstr ""
 
 #: apps/pootle_store/templates/store/translate.html:5 templates/tp_menu.html:6
 msgid "Translate"
-msgstr "Përkthe"
+msgstr "Përktheni"
 
 #: apps/pootle_store/templates/store/translate.html:27
 msgid "Pootle's editor requires JavaScript"
@@ -1764,8 +1848,9 @@ msgid "Incomplete"
 msgstr ""
 
 #: apps/pootle_store/templates/store/translate.html:75
+#, fuzzy
 msgid "My suggestions"
-msgstr ""
+msgstr "Propozimi:"
 
 #: apps/pootle_store/templates/store/translate.html:76
 msgid "My submissions"
@@ -1813,8 +1898,9 @@ msgid ""
 msgstr ""
 
 #: apps/pootle_store/templates/unit/comment.html:12
+#, fuzzy
 msgid "Comment:"
-msgstr ""
+msgstr "Komente"
 
 #: apps/pootle_store/templates/unit/edit.html:11
 msgid "File:"
@@ -1825,12 +1911,14 @@ msgid "Context:"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:28
+#, fuzzy
 msgid "Comments:"
-msgstr ""
+msgstr "Komente"
 
 #: apps/pootle_store/templates/unit/edit.html:32
+#, fuzzy
 msgid "Locations:"
-msgstr ""
+msgstr "Pozicione"
 
 #: apps/pootle_store/templates/unit/edit.html:41
 msgid "Terminology:"
@@ -1874,7 +1962,7 @@ msgstr ""
 #: apps/pootle_store/templates/unit/edit.html:124
 #: apps/pootle_store/templates/unit/edit.html:132
 msgid "Suggest"
-msgstr "Propozo"
+msgstr "Sugjeroni"
 
 #: apps/pootle_store/templates/unit/edit.html:124
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
@@ -1950,8 +2038,9 @@ msgid "Hide Timeline"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:233
+#, fuzzy
 msgid "User suggestions"
-msgstr ""
+msgstr "Shiko propozimet"
 
 #: apps/pootle_store/templates/unit/edit.html:251
 msgid "Accept suggestion"
@@ -1975,8 +2064,9 @@ msgid "Vote for this suggestion"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/term_edit.html:40
+#, fuzzy
 msgid "Comment: "
-msgstr ""
+msgstr "Komente"
 
 #: apps/pootle_store/templates/unit/timeline.html:4
 #: apps/pootle_store/templates/unit/timeline.html:14
@@ -2283,7 +2373,7 @@ msgstr "Nuk keni të drejta të mjaftueshme për të ngarkuar file këtu"
 
 #: apps/pootle_translationproject/views.py:713
 msgid "Overwrite the current file if it exists"
-msgstr "Mbishkruaj file aktual nëse ekziston"
+msgstr "Mbishkruaje kartelën e tanishme, në pastë"
 
 #: apps/pootle_translationproject/views.py:717
 msgid ""
@@ -2308,7 +2398,7 @@ msgstr ""
 
 #: apps/pootle_translationproject/views.py:774
 msgid "Upload File"
-msgstr "Ngarko file"
+msgstr "Ngarkoni Kartelë"
 
 #: apps/pootle_translationproject/templates/translation_project/admin_permissions.html:15
 msgid ""
@@ -2545,7 +2635,7 @@ msgstr "Dil jashtë"
 #: templates/registration/registration_form.html:7
 #: templates/registration/registration_form.html:51
 msgid "Register"
-msgstr "Regjistrimi"
+msgstr "Regjistrohuni"
 
 #: templates/base.html:110
 #, fuzzy
@@ -2756,11 +2846,11 @@ msgstr ""
 
 #: templates/profiles/profile_detail.html:31
 msgid "Quick Links"
-msgstr "Lidhje të shpejta"
+msgstr "Lidhje të Shpejta"
 
 #: templates/profiles/profile_detail.html:40
 msgid "Admin"
-msgstr "Administrim"
+msgstr "Admin"
 
 #: templates/profiles/profile_detail.html:55
 msgid "No languages or projects selected. Choose yours now."
@@ -2785,7 +2875,7 @@ msgstr ""
 #: templates/profiles/profile_list.html:11
 #: templates/registration/registration_form.html:20
 msgid "Username"
-msgstr "Emri i përdoruesit"
+msgstr "Emër përdoruesit"
 
 #: templates/profiles/profile_list.html:12
 msgid "First name"
@@ -2814,15 +2904,13 @@ msgstr ""
 
 #: templates/registration/activation_email.html:5
 #: templates/registration/activation_email.txt:2
-#, fuzzy
 msgid "A Pootle account has been created for you using this email address."
-msgstr "Një profil Pootle u krijua për ju duke përdorur këtë adresë email.\n"
+msgstr "Një profil Pootle u krijua për ju duke përdorur këtë adresë emaili."
 
 #: templates/registration/activation_email.html:6
 #: templates/registration/activation_email.txt:3
-#, fuzzy
 msgid "To activate your account, follow this link:"
-msgstr "Për të aktivizuar profilin, ndiq këtë lidhje:\n"
+msgstr "Për të aktivizuar profilin, ndiq këtë lidhje:"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
@@ -2835,20 +2923,17 @@ msgstr ""
 
 #: templates/registration/activation_email.html:11
 #: templates/registration/activation_email.txt:9
-#, fuzzy
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message."
-msgstr "Ky mesazh është dërguar për të verifikuar që adresa email është me të "
+msgstr ""
+"Ky mesazh është dërguar për të verifikuar që adresa email është me të "
 "vërtetë korrekte. Nëse nuk dëshironi të regjistroni një profil, thjesht "
-"shpërfillni këtë mesazh.\n"
+"shpërfillni këtë mesazh."
 
 #: templates/registration/activation_email.txt:6
-#, fuzzy
 msgid "Your activation code is:"
-msgstr ""
-"Kodi juaj i aktivizimit është:\n"
-"%s\n"
+msgstr "Kodi juaj i aktivizimit është:"
 
 #: templates/registration/activation_email_subject.txt:2
 #, fuzzy
@@ -2988,7 +3073,7 @@ msgstr ""
 #: templates/registration/password_reset_form.html:19
 #: templates/registration/registration_form.html:25
 msgid "Email Address"
-msgstr "Adresa email"
+msgstr "Adresa Email"
 
 #: templates/registration/registration_complete.html:5
 #: templates/registration/registration_complete.html:8

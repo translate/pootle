@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-02-22 16:13+0000\n"
-"Last-Translator: Rivo <rivozangov@gmail.com>\n"
+"PO-Revision-Date: 2013-03-09 14:36+0000\n"
+"Last-Translator: AivoK <aivoke@hot.ee>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1361549634.0\n"
+"X-POOTLE-MTIME: 1362839793.0\n"
 
 #: strings.py:8
 msgid ""
@@ -478,8 +478,9 @@ msgid "General Settings"
 msgstr "Üldseaded"
 
 #: apps/pootle_app/templates/admin/admin_general_settings.html:12
+#, fuzzy
 msgid "Configure here the general settings for your site."
-msgstr ""
+msgstr "Määra oma saidi üldised seaded"
 
 #: apps/pootle_app/templates/admin/admin_general_users.html:4
 #: apps/pootle_app/templates/admin/admin_general_users.html:9
@@ -876,11 +877,11 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: apps/pootle_language/views.py:115
-#, python-format
+#, fuzzy, python-format
 msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(projects)d projekt, tõlgitud %(average)d%%"
+msgstr[1] "%(projects)d projekti, tõlgitud %(average)d%%"
 
 #: apps/pootle_language/views.py:158 apps/pootle_project/views.py:169
 #: apps/pootle_translationproject/views.py:347
@@ -1079,8 +1080,9 @@ msgid "Starting capitalization"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:70
+#, fuzzy
 msgid "Starting punctuation"
-msgstr ""
+msgstr "Lõpupunkt"
 
 #: apps/pootle_misc/checks.py:71
 msgid "Starting whitespace"
@@ -1165,8 +1167,9 @@ msgid ""
 msgstr ""
 
 #: apps/pootle_misc/dbupdate.py:143
+#, fuzzy
 msgid "Creating missing database tables..."
-msgstr ""
+msgstr "Olemasolevate andmebaasi tabelite uuendamine..."
 
 #: apps/pootle_misc/dbupdate.py:154
 msgid "Fixing permission table..."
@@ -1249,12 +1252,14 @@ msgid "Locations"
 msgstr "Asukohad"
 
 #: apps/pootle_misc/forms.py:119
+#, fuzzy
 msgid "Source Terms"
-msgstr ""
+msgstr "Lähtetekst"
 
 #: apps/pootle_misc/forms.py:120
+#, fuzzy
 msgid "Target Terms"
-msgstr ""
+msgstr "Sihttekst"
 
 #: apps/pootle_misc/forms.py:121
 msgid "Definitions"
@@ -1280,20 +1285,20 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: apps/pootle_misc/stats.py:128
-#, python-format
+#, fuzzy, python-format
 msgid "This folder has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
 "This folder has %(num)d words, %(percentage)d%% of which are translated."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Antud kaustas on %(num)d sõna, millest tõlgitud on %(percentage)d%%."
+msgstr[1] "Antud kaustas on %(num)d sõna, millest tõlgitud on %(percentage)d%%."
 
 #: apps/pootle_misc/stats.py:140
-#, python-format
+#, fuzzy, python-format
 msgid "This file has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
 "This file has %(num)d words, %(percentage)d%% of which are translated."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Antud failis on %(num)d sõna, millest tõlgitud on %(percentage)d%%."
+msgstr[1] "Antud failis on %(num)d sõna, millest tõlgitud on %(percentage)d%%."
 
 #: apps/pootle_misc/stats.py:162
 msgid "Expand details"
@@ -1360,9 +1365,9 @@ msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
 
 #: apps/pootle_misc/templates/progressbar.html:3
-#, python-format
+#, fuzzy, python-format
 msgid "%(percent)s%% complete"
-msgstr ""
+msgstr "%(percentage)d%% valmis"
 
 #: apps/pootle_misc/templates/search.html:5
 msgid "Search"
@@ -2627,8 +2632,9 @@ msgid "Terminology"
 msgstr "Terminoloogia"
 
 #: templates/tp_menu.html:9
+#, fuzzy
 msgid "Administrate your project permissions"
-msgstr ""
+msgstr "Halda oma keele õiguseid"
 
 #: templates/user_profile_base.html:4 templates/user_profile_base.html.py:7
 msgid "My Account"

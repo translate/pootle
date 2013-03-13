@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-02-23 12:08+0000\n"
+"PO-Revision-Date: 2013-02-25 21:22+0000\n"
 "Last-Translator: MR. <Garcia.Evanescence@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fa\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1361621339.0\n"
+"X-POOTLE-MTIME: 1361827339.0\n"
 
 #: strings.py:8
 msgid ""
@@ -531,49 +531,52 @@ msgid ""
 "localization experts. We want Pootle to help your localization work reach "
 "its full potential."
 msgstr ""
+"اسکریپت Pootle به دست Translate.org.za و انجمن کارشناسان بومی سازی سودایی "
+"ساخته شده است. ما می‌خواهیم تا Pootle با همه‌ی توانش به شما در بومی‌سازی "
+"کارتان کمک کند."
 
 #: apps/pootle_app/templates/admin/dashboard.html:43
 msgid "You will find the following helpful for support:"
-msgstr ""
+msgstr "نوشته‌ی زیر برای کمک به شما سودمند خواهد بود:"
 
 #: apps/pootle_app/templates/admin/dashboard.html:45
 msgid "The Pootle documentation"
-msgstr ""
+msgstr "مستنداتِ Pootle"
 
 #: apps/pootle_app/templates/admin/dashboard.html:46
 msgid "The Pootle mailing list"
-msgstr ""
+msgstr "فهرست پستیِ Pootle"
 
 #: apps/pootle_app/templates/admin/dashboard.html:47
 msgid "(commercial support)"
-msgstr ""
+msgstr "(پشتیبانی بازرگانی)"
 
 #: apps/pootle_app/templates/admin/dashboard.html:55
 msgid "Dependency Checks"
-msgstr "بررسی‌های وابستگی‌ها"
+msgstr "بررسی‌های وابستگی"
 
 #: apps/pootle_app/templates/admin/dashboard.html:64
 msgid "Optional"
-msgstr "اختیاری"
+msgstr "دل بخواهی"
 
 #: apps/pootle_app/templates/admin/dashboard.html:72
 msgid "Optimizations"
-msgstr "بهینه‌سازی"
+msgstr "بهینه سازی‌ها"
 
 #: apps/pootle_app/templates/admin/general_settings_form.html:16
 msgid "Cancel"
-msgstr ""
+msgstr "لغو"
 
 #: apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
-msgstr ""
+msgstr "هشدارهای Pootle"
 
 #: apps/pootle_app/templates/index/index.html:21
 #: apps/pootle_language/templates/language/language_index.html:34
 #: apps/pootle_project/templates/project/project.html:40
 #: apps/pootle_translationproject/templates/translation_project/overview.html:88
 msgid "No description set."
-msgstr ""
+msgstr "توضیحی داده نشده است."
 
 #: apps/pootle_app/templates/index/index.html:58
 #: apps/pootle_notifications/templates/notices.html:87
@@ -582,7 +585,7 @@ msgstr "آخرین اخبار"
 
 #: apps/pootle_app/templates/index/index.html:61
 msgid "Subscribe to the RSS feed."
-msgstr "عضویت در خوراک RSS"
+msgstr "اشتراک در خوراک RSS."
 
 #: apps/pootle_app/templates/index/login.html:4
 #: apps/pootle_app/templates/index/login.html:7
@@ -592,25 +595,25 @@ msgstr "ورود"
 
 #: apps/pootle_app/templates/index/login.html:12
 msgid "Login to Pootle"
-msgstr "ورود به پوتل"
+msgstr "ورود به Pootle"
 
 #: apps/pootle_app/templates/index/login.html:18
 msgid "Your username and password didn't match. Please try again."
-msgstr "نام کاربری و گذرواژه‌تان با هم نخواند. لطفاً دوباره تلاش کنید."
+msgstr "نام کاربری و گذرواژتان با هم همخوانی ندارند. دوباره تلاش کنید."
 
 #: apps/pootle_app/templates/index/login.html:30
 msgid "Lost your Password?"
-msgstr "گذرواژه‌تان را از دست داده‌اید؟"
+msgstr "گذرواژتان را فراموش کرده‌اید؟"
 
 #: apps/pootle_app/templates/index/login.html:33
 #: templates/registration/password_reset_form.html:30
 msgid "Don't have an account yet?"
-msgstr "هنوز حساب ندارید؟"
+msgstr "حساب کاربری ندارید؟"
 
 #: apps/pootle_app/templates/index/login.html:34
 #: templates/registration/password_reset_form.html:31
 msgid "Register."
-msgstr "ثبت نام."
+msgstr "نام‌نویسی کنید."
 
 #: apps/pootle_app/views/admin/adminusers.py:48
 #: templates/user_profile_menu.html:7
@@ -621,7 +624,7 @@ msgstr "گذرواژه"
 #: apps/pootle_app/views/admin/dashboard.py:48
 #, python-format
 msgid "Translate Toolkit version %s installed."
-msgstr "Translate Toolkit نسخهٔ %s نصب است."
+msgstr "نگارش %s ابزار برگردان (Translate Toolkit) نصب شده است."
 
 #: apps/pootle_app/views/admin/dashboard.py:51
 #, python-format
@@ -629,22 +632,25 @@ msgid ""
 "Translate Toolkit version %(installed)s installed. Pootle requires at least "
 "version %(required)s."
 msgstr ""
+"نگارش %(installed)s ابزار برگردان (Translate Toolkit) نصب شده است. Pootle به "
+"نگارش %(required)s نیاز دارد."
 
 #: apps/pootle_app/views/admin/dashboard.py:62
 #, python-format
 msgid "Django version %s is installed."
-msgstr ""
+msgstr "نگارش %s نرم‌افزار Django نصب شده است."
 
 #: apps/pootle_app/views/admin/dashboard.py:65
 #, python-format
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
 msgstr ""
+"نگارش %s نرم‌افزار Django نصب شده، ولی نصب نگارش بالاتر آن پیشنهاد می‌شود."
 
 #: apps/pootle_app/views/admin/dashboard.py:71
 #, python-format
 msgid "lxml version %s is installed."
-msgstr ""
+msgstr "نگارش %s نرم‌افزار lxml نصب شده است."
 
 #: apps/pootle_app/views/admin/dashboard.py:75
 #, python-format
@@ -652,34 +658,43 @@ msgid ""
 "lxml version %(installed)s is installed. Pootle requires at least version "
 "%(required)s."
 msgstr ""
+"نگارش %(installed)s نرم‌افزار lxml نصب شده است. Pootle به نگارش %(required)s "
+"نیاز دارد."
 
 #: apps/pootle_app/views/admin/dashboard.py:82
 msgid "lxml is not installed. Pootle requires lxml."
-msgstr ""
+msgstr "نرم‌افزار lxml نصب نشده است. Pootle نیازمند lxml می‌باشد."
 
 #: apps/pootle_app/views/admin/dashboard.py:95
 msgid ""
 "Can't find the unzip command. Uploading archives is faster if \"unzip\" is "
 "available."
 msgstr ""
+"دستور uznip پیدا نشد. اگر \"unzip\" موجود باشد آپلود بایگانی‌ها تندتر می‌شود."
 
 #: apps/pootle_app/views/admin/dashboard.py:99
 msgid ""
 "Can't find the ISO codes package. Pootle uses ISO codes to translate "
 "language names."
 msgstr ""
+"بسته‌ی کد ISO پیدا نشد. Pootle برای ترجمه‌ی نام زبان‌ها از کد ISO استفاده "
+"می‌کند."
 
 #: apps/pootle_app/views/admin/dashboard.py:103
 msgid ""
 "Can't find the aeidon package. Pootle requires Gaupol or aeidon to support "
 "subtitle formats."
 msgstr ""
+"بسته‌ی aeidon پیدا نشد. Pootle برای پشتیبانی از فرمت زیرنویس‌ها نیازمند "
+"Gaupol یا aeidon می‌باشد."
 
 #: apps/pootle_app/views/admin/dashboard.py:107
 msgid ""
 "Can't find python-levenshtein package. Updating against templates is faster "
 "with python-levenshtein."
 msgstr ""
+"بسته‌ی python-levenshtein پیدا نشد. آپلود در برابر الگوها با python-"
+"levenshtein تندتر می‌شود."
 
 #: apps/pootle_app/views/admin/dashboard.py:111
 msgid ""
@@ -1116,8 +1131,9 @@ msgid "Unchanged"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:75
+#, fuzzy
 msgid "URLs"
-msgstr ""
+msgstr "URL"
 
 #: apps/pootle_misc/checks.py:76
 msgid "Valid characters"
@@ -1625,8 +1641,9 @@ msgid "Comment"
 msgstr "نظرات"
 
 #: apps/pootle_statistics/models.py:95
+#, fuzzy
 msgid "anonymous user"
-msgstr ""
+msgstr "کاربر ناشناس"
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Gettext PO"
@@ -1834,8 +1851,9 @@ msgid "File:"
 msgstr "پرونده‌ها"
 
 #: apps/pootle_store/templates/unit/edit.html:18
+#, fuzzy
 msgid "Context:"
-msgstr ""
+msgstr "محتوا"
 
 #: apps/pootle_store/templates/unit/edit.html:28
 #, fuzzy
@@ -2799,8 +2817,9 @@ msgid "This user has not selected languages or projects yet."
 msgstr ""
 
 #: templates/profiles/profile_detail.html:67
+#, fuzzy
 msgid "User Statistics"
-msgstr ""
+msgstr "آمار سرور"
 
 #: templates/profiles/profile_detail.html:71
 msgid "You can set or change your avatar image at www.gravatar.com"

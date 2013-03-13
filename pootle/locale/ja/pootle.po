@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-02-22 06:25+0000\n"
+"PO-Revision-Date: 2013-03-05 14:05+0000\n"
 "Last-Translator: Masahiko <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ja\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1361514338.0\n"
+"X-POOTLE-MTIME: 1362492352.0\n"
 
 #: strings.py:8
 msgid ""
@@ -1619,7 +1619,7 @@ msgstr "匿名ユーザ"
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Gettext PO"
-msgstr "匿名ユーザー"
+msgstr "Gettext PO"
 
 #: apps/pootle_store/filetypes.py:35
 msgid "XLIFF"
@@ -1765,14 +1765,14 @@ msgstr "自分の提案"
 
 #: apps/pootle_store/templates/store/translate.html:76
 msgid "My submissions"
-msgstr "自分の投稿"
+msgstr "自分の上書き投稿"
 
 #. Translators: This is a type of filtering criterion that
 #. selects the strings that have been submitted by me at some point
 #. in time but have been overwritten by other users.
 #: apps/pootle_store/templates/store/translate.html:80
 msgid "My overwritten submissions"
-msgstr ""
+msgstr "自分の上書き投稿"
 
 #: apps/pootle_store/templates/store/translate.html:81
 msgid "Checks"
@@ -2436,6 +2436,12 @@ msgid ""
 "administration interface.</p>\n"
 "</div>\n"
 msgstr ""
+"<div dir=\"ltr\" lang=\"ja\">\n"
+"<h2>これは Pootle のデモサイトです。</h2>\n"
+"<p>公式の <a href=\"http://pootle.locamotion.org\">Pootle サーバ</a> も利用できます。サーバの管理者"
+"が、問い合わせ情報やサーバの説明を提供していません。あなたがこのサーバの管理者である場合は、この説明を設定ファイル内の記述か管理者向けインタフェースから"
+"編集してください。</p>\n"
+"</div>\n"
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"
@@ -2526,7 +2532,7 @@ msgstr "拡大 (Ctrl+Shift++)"
 
 #: templates/base.html:102
 msgid "ADMIN"
-msgstr "管理者"
+msgstr "ADMIN"
 
 #: templates/base.html:105
 msgid "Log Out"
