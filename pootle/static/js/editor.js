@@ -819,7 +819,7 @@
 
       case "checks":
         if (this.checks.length) {
-         reqData.checks = this.checks.join(",");
+          reqData.checks = this.checks.join(",");
         }
         break;
 
