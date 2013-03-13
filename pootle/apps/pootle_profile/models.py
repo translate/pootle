@@ -30,6 +30,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from pootle.i18n.override import lang_choices
 from pootle_language.models import Language
+from pootle_misc import dispatch
 from pootle_misc.baseurl import l
 from pootle_misc.util import cached_property
 from pootle_statistics.models import Submission, SubmissionTypes
@@ -246,6 +247,7 @@ class PootleProfile(models.Model):
         # TODO: optimize — we need a schema that helps reduce the number
         # of needed queries for these kind of data retrievals
         contributions = []
+        username = self.user.username
 
         languages = Language.objects.filter(
                 translationproject__submission__submitter=self.user,
@@ -264,20 +266,36 @@ class PootleProfile(models.Model):
                     'suggestions': {
                         'pending': {
                             'count': self.pending_suggestion_count(tp),
+                            'url': dispatch.translate(tp, 'user-suggestions',
+                                                      user=username),
                         },
                         'accepted': {
                             'count': self.accepted_suggestion_count(tp),
+                            'url': dispatch.translate(
+                                tp, 'user-suggestions-accepted',
+                                user=username
+                            ),
                         },
                         'rejected': {
                             'count': self.rejected_suggestion_count(tp),
+                            'url': dispatch.translate(
+                                tp, 'user-suggestions-rejected',
+                                user=username
+                            ),
                         },
                     },
                     'submissions': {
                         'total': {
                             'count': self.total_submission_count(tp),
+                            'url': dispatch.translate(tp, 'user-submissions',
+                                                      user=username),
                         },
                         'overwritten': {
                             'count': self.overwritten_submission_count(tp),
+                            'url': dispatch.translate(
+                                tp, 'user-submissions-overwritten',
+                                user=username
+                            ),
                         },
                     },
                 }
