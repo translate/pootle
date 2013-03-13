@@ -141,6 +141,60 @@ class PootleProfile(models.Model):
     def get_unit_rows(self):
         return min(max(self.unit_rows, 5), 49)
 
+    def pending_suggestion_count(self, tp):
+        """Returns the number of pending suggestions for the user in the given
+        translation project.
+
+        :param tp: a :cls:`TranslationProject` object.
+        """
+        return self.suggester.filter(translation_project=tp,
+                                     state='pending').count()
+
+    def accepted_suggestion_count(self, tp):
+        """Returns the number of accepted suggestions for the user in the given
+        translation project.
+
+        :param tp: a :cls:`TranslationProject` object.
+        """
+        return self.suggester.filter(translation_project=tp,
+                                     state='accepted').count()
+
+    def rejected_suggestion_count(self, tp):
+        """Returns the number of rejected suggestions for the user in the given
+        translation project.
+
+        :param tp: a :cls:`TranslationProject` object.
+        """
+        return self.suggester.filter(translation_project=tp,
+                                     state='rejected').count()
+
+    def total_submission_count(self, tp):
+        """Returns the number of submissions the current user has done from the
+        editor in the given translation project.
+
+        :param tp: a :cls:`TranslationProject` object.
+        """
+        return Submission.objects.filter(
+            submitter=self,
+            translation_project=tp,
+            type=SubmissionTypes.NORMAL,
+        ).count()
+
+    def overwritten_submission_count(self, tp):
+        """Returns the number of submissions the current user has done from the
+        editor and have been overwritten by other users in the given
+        translation project.
+
+        :param tp: a :cls:`TranslationProject` object.
+        """
+        return Submission.objects.filter(
+            submitter=self,
+            translation_project=tp,
+            type=SubmissionTypes.NORMAL,
+        ).exclude(
+            unit__submitted_by=self,
+        ).count()
+
     @property
     def contributions(self):
         """Get user contributions grouped by language and project.
@@ -209,43 +263,22 @@ class PootleProfile(models.Model):
                 tp_stats = {
                     'suggestions': {
                         'pending': {
-                            'count': self.suggester
-                                         .filter(translation_project=tp,
-                                                 state='pending')
-                                         .count(),
-                            },
+                            'count': self.pending_suggestion_count(tp),
+                        },
                         'accepted': {
-                            'count': self.suggester
-                                          .filter(translation_project=tp,
-                                                  state='accepted')
-                                          .count(),
-                            },
+                            'count': self.accepted_suggestion_count(tp),
+                        },
                         'rejected': {
-                            'count': self.suggester
-                                          .filter(translation_project=tp,
-                                                  state='rejected')
-                                          .count(),
-                            },
+                            'count': self.rejected_suggestion_count(tp),
+                        },
                     },
                     'submissions': {
                         'total': {
-                            'count': Submission.objects
-                                               .filter(
-                                                   submitter=self,
-                                                   translation_project=tp,
-                                                   type=SubmissionTypes.NORMAL,
-                                                ).count(),
-                            },
+                            'count': self.total_submission_count(tp),
+                        },
                         'overwritten': {
-                            'count': Submission.objects
-                                               .filter(
-                                                   submitter=self,
-                                                   translation_project=tp,
-                                                   type=SubmissionTypes.NORMAL,
-                                               ).exclude(
-                                                   unit__submitted_by=self,
-                                               ).count(),
-                            },
+                            'count': self.overwritten_submission_count(tp),
+                        },
                     },
                 }
 
