@@ -2,8 +2,7 @@ include CREDITS INSTALL LICENSE README.rst
 include requirements/base.txt
 include pootle/dbs/README
 include pootle/repos/README
-recursive-exclude docs/ *
-recursive-include docs/_build/html *
+recursive-include docs *
 recursive-include pootle/assets *
 recursive-include pootle/locale *
 prune pootle/locale/*/.translation_index
