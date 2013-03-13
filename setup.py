@@ -148,10 +148,6 @@ setup(
     download_url="http://sourceforge.net/projects/translate/files/Pootle/",
 
     install_requires=parse_requirements('requirements/base.txt'),
-    # Remove this once Translate Toolkit is available on PyPi
-    dependency_links=[
-        'http://github.com/translate/translate/tarball/master#egg=translate-toolkit-1.10'
-    ],
 
     platforms=["any"],
     classifiers=[
