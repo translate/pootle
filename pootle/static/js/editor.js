@@ -829,19 +829,10 @@
         break;
 
       case "suggestions":
-        reqData.matchnames = 'hassuggestion';
-        break;
-
-      case "mysuggestions":
-        reqData.matchnames = 'ownsuggestion';
-        break;
-
-      case "mysubmissions":
-        reqData.matchnames = 'ownsubmission';
-        break;
-
-      case "submissionsafterme":
-        reqData.matchnames = 'hassubmissionafterme';
+      case "my-suggestions":
+      case "my-submissions":
+      case "my-overwritten-submissions":
+        reqData.filter = this.filter;
         break;
 
       case "all":

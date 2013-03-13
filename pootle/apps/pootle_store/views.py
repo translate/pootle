@@ -354,31 +354,31 @@ def get_step_query(request, units_queryset):
 
             units_queryset = checks_queryset
 
-    if 'matchnames' in request.GET:
-        matchnames = request.GET['matchnames'].split(',')
+    if 'filter' in request.GET:
+        unit_filter = request.GET['filter'].split(',')
 
-        if matchnames:
+        if unit_filter:
             match_queryset = units_queryset.none()
 
-            if 'hassuggestion' in matchnames:
+            if 'suggestions' in unit_filter:
                 #FIXME: is None the most efficient query
                 match_queryset = units_queryset.exclude(suggestion=None)
-                matchnames.remove('hassuggestion')
-            elif 'ownsuggestion' in matchnames:
+                unit_filter.remove('suggestions')
+            elif 'my-suggestions' in unit_filter:
                 match_queryset = units_queryset.filter(
                         suggestion__user=request.profile
                     ).distinct()
-                matchnames.remove('ownsuggestion')
-            elif 'ownsubmission' in matchnames:
+                unit_filter.remove('my-suggestions')
+            elif 'my-submissions' in unit_filter:
                 match_queryset = units_queryset.filter(
                         submission__submitter=request.profile
                     ).distinct()
-                matchnames.remove('ownsubmission')
-            elif 'hassubmissionafterme' in matchnames:
+                unit_filter.remove('my-submissions')
+            elif 'my-overwritten-submissions' in unit_filter:
                 match_queryset = units_queryset.filter(
                         submission__submitter=request.profile
                     ).exclude(submitted_by=request.profile).distinct()
-                matchnames.remove('hassubmissionafterme')
+                unit_filter.remove('my-overwritten-submissions')
 
             units_queryset = match_queryset
 
@@ -602,7 +602,7 @@ def get_view_units_store(request, store, limit=0):
 
 def _is_filtered(request):
     """Checks if unit list is filtered."""
-    return ('unitstates' in request.GET or 'matchnames' in request.GET or
+    return ('unitstates' in request.GET or 'filter' in request.GET or
             'checks' in request.GET or ('search' in request.GET and
             'sfields' in request.GET))
 
