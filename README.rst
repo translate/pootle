@@ -1,10 +1,9 @@
-
 Pootle
 ======
 
-Pootle is an online translation and localization tool.  It tries to lower the
-barrier of entry,  but also provides tools to enable teams to work towards
-higher quality while welcoming newcomers.
+`Pootle <http://pootle.translatehouse.org/>`_ is an online translation and
+localization tool.  It tries to lower the barrier of entry,  but also provides
+tools to enable teams to work towards higher quality while welcoming newcomers.
 
 
 Pootle is a Server
@@ -22,12 +21,13 @@ translation and later uploaded again.
 Resources
 ---------
 
-* Web: <http://pootle.translatehouse.org/>
-* Documentation: <http://docs.translatehouse.org/projects/pootle/>
-* Translations: <http://pootle.locamotion.org/projects/pootle/>
-* Bug Tracker: <http://bugs.locamotion.org/>
-* Mailing List: <https://lists.sourceforge.net/lists/listinfo/translate-pootle>
-* IRC: #pootle on irc.freenode.org
+- `Pootle Website <http://pootle.translatehouse.org/>`_
+- `Documentation <http://docs.translatehouse.org/projects/pootle/>`_
+- `Translations <http://pootle.locamotion.org/projects/pootle/>`_
+- `Bug Tracker <http://bugs.locamotion.org/>`_
+- `Mailing List
+  <https://lists.sourceforge.net/lists/listinfo/translate-pootle>`_
+- IRC: `#pootle on irc.freenode.org <irc://irc.freenode.net/#pootle>`_
 
 Copying
 -------
