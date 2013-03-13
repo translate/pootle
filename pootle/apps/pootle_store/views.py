@@ -355,30 +355,26 @@ def get_step_query(request, units_queryset):
             units_queryset = checks_queryset
 
     if 'filter' in request.GET:
-        unit_filter = request.GET['filter'].split(',')
+        unit_filter = request.GET['filter']
 
         if unit_filter:
             match_queryset = units_queryset.none()
 
-            if 'suggestions' in unit_filter:
+            if unit_filter == 'suggestions':
                 #FIXME: is None the most efficient query
                 match_queryset = units_queryset.exclude(suggestion=None)
-                unit_filter.remove('suggestions')
-            elif 'my-suggestions' in unit_filter:
+            elif unit_filter == 'my-suggestions':
                 match_queryset = units_queryset.filter(
                         suggestion__user=request.profile
                     ).distinct()
-                unit_filter.remove('my-suggestions')
-            elif 'my-submissions' in unit_filter:
+            elif unit_filter == 'my-submissions':
                 match_queryset = units_queryset.filter(
                         submission__submitter=request.profile
                     ).distinct()
-                unit_filter.remove('my-submissions')
-            elif 'my-overwritten-submissions' in unit_filter:
+            elif unit_filter == 'my-overwritten-submissions':
                 match_queryset = units_queryset.filter(
                         submission__submitter=request.profile
                     ).exclude(submitted_by=request.profile).distinct()
-                unit_filter.remove('my-overwritten-submissions')
 
             units_queryset = match_queryset
 
