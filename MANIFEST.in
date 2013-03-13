@@ -6,6 +6,7 @@ recursive-exclude docs/ *
 recursive-include docs/_build/html *
 recursive-include pootle/assets *
 recursive-include pootle/locale *
+prune pootle/locale/*/.translation_index
 recursive-include pootle/po *
 recursive-include pootle/settings *
 recursive-include pootle/static *
