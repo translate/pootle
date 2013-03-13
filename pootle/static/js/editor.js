@@ -26,6 +26,7 @@
     this.pagesGot = {};
     this.filter = "all";
     this.checks = [];
+    this.user = null;
     this.ctxGap = 0;
     this.ctxQty = parseInt($.cookie('ctxQty')) || 1;
     this.ctxStep= 1;
@@ -308,6 +309,11 @@
           // Set current state
           PTL.editor.filter = a.shift();
           PTL.editor.checks = (PTL.editor.filter == "checks") ? a : [];
+        }
+
+        if ('user' in params && PTL.editor.filter.indexOf('user-') === 0) {
+          PTL.editor.user = params['user'];
+          // TODO: expand UI options
         }
 
         if ('search' in params) {
@@ -829,9 +835,9 @@
         break;
 
       case "suggestions":
-      case "my-suggestions":
-      case "my-submissions":
-      case "my-overwritten-submissions":
+      case "user-suggestions":
+      case "user-submissions":
+      case "user-submissions-overwritten":
         reqData.filter = this.filter;
         break;
 
@@ -845,6 +851,10 @@
       default:
         reqData.unitstates = this.filter;
         break;
+    }
+
+    if (this.user) {
+      reqData.user = this.user;
     }
 
     return reqData;

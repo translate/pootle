@@ -22,6 +22,7 @@ import os
 import logging
 
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from django.http import HttpResponse, Http404
@@ -356,6 +357,14 @@ def get_step_query(request, units_queryset):
 
     if 'filter' in request.GET:
         unit_filter = request.GET['filter']
+        username = request.GET.get('user', None)
+
+        user = request.profile.user
+        if username:
+            try:
+                user = User.objects.get(username=username)
+            except User.DoesNotExist:
+                pass
 
         if unit_filter:
             match_queryset = units_queryset.none()
@@ -363,18 +372,18 @@ def get_step_query(request, units_queryset):
             if unit_filter == 'suggestions':
                 #FIXME: is None the most efficient query
                 match_queryset = units_queryset.exclude(suggestion=None)
-            elif unit_filter == 'my-suggestions':
+            elif unit_filter == 'user-suggestions':
                 match_queryset = units_queryset.filter(
-                        suggestion__user=request.profile
+                        suggestion__user=user
                     ).distinct()
-            elif unit_filter == 'my-submissions':
+            elif unit_filter == 'user-submissions':
                 match_queryset = units_queryset.filter(
-                        submission__submitter=request.profile
+                        submission__submitter=user
                     ).distinct()
-            elif unit_filter == 'my-overwritten-submissions':
+            elif unit_filter == 'user-submissions-overwritten':
                 match_queryset = units_queryset.filter(
-                        submission__submitter=request.profile
-                    ).exclude(submitted_by=request.profile).distinct()
+                        submission__submitter=user
+                    ).exclude(submitted_by=user).distinct()
 
             units_queryset = match_queryset
 
@@ -599,8 +608,8 @@ def get_view_units_store(request, store, limit=0):
 def _is_filtered(request):
     """Checks if unit list is filtered."""
     return ('unitstates' in request.GET or 'filter' in request.GET or
-            'checks' in request.GET or ('search' in request.GET and
-            'sfields' in request.GET))
+            'checks' in request.GET or 'user' in request.GET or
+            ('search' in request.GET and 'sfields' in request.GET))
 
 
 @ajax_required
