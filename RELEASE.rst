@@ -188,7 +188,7 @@ Publish the package on the `Python Package Index
 
 Review the meta data. This is stored in ``setup.py``, use ``./setup.py --help``
 to se some options to display meta-data. The actual long description is taken
-from ``README.rst``.
+from ``/README.rst``.
 
 To test before publishing run::
 
@@ -236,7 +236,7 @@ Release documentation
 We need a tagged release before we can do this.  The docs are published on Read
 The Docs.
 
-- https://readthedocs.org/dashboard/translate-toolkit/versions/
+- https://readthedocs.org/dashboard/pootle/versions/
 
 Use the admin pages to flag a version that should be published
 
@@ -245,8 +245,8 @@ Use the admin pages to flag a version that should be published
    latest version.
 
 
-Update translate website
-------------------------
+Update Pootle website
+---------------------
 We use github pages for the website. First we need to checkout the pages::
 
     git checkout gh-pages
@@ -282,5 +282,5 @@ Some possible cleanup tasks:
 
 - Remove any RC builds from the sourceforge download pages (maybe?).
 - Checkin any release notes and such (or maybe do that before tagging).
-- Remove your translate-release checkout.
+- Remove your pootle-release checkout.
 - Update and fix these release notes.
