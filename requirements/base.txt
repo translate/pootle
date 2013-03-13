@@ -13,4 +13,6 @@ cssmin
 lxml>=2.1.4
 
 # Translate Toolkit
--e git://github.com/translate/translate.git#egg=translate-toolkit
+translate-toolkit>=1.10.0
+# If you want to use Translate Toolkit 'master'
+#-e git://github.com/translate/translate.git#egg=translate-toolkit
