@@ -141,11 +141,11 @@ setup(
         os.path.join(os.path.dirname(__file__), 'README.rst')
     ).read(),
 
-    author="Translate.org.za",
+    author="Translate",
     author_email="dev@translate.org.za",
     license="GNU General Public License (GPL)",
     url="http://pootle.translatehouse.org",
-    download_url="http://sourceforge.net/projects/translate/files/Pootle/",
+    download_url="http://sourceforge.net/projects/translate/files/Pootle/" + pootle_version,
 
     install_requires=parse_requirements('requirements/base.txt'),
 
