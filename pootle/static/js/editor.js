@@ -311,9 +311,31 @@
           PTL.editor.checks = (PTL.editor.filter == "checks") ? a : [];
         }
 
+        // Only accept the user parameter for 'user-*' filters
         if ('user' in params && PTL.editor.filter.indexOf('user-') === 0) {
-          PTL.editor.user = params['user'];
-          // TODO: expand UI options
+          var user;
+          PTL.editor.user = user = params['user'];
+
+          var newOpts = [],
+              values = {
+            'user-suggestions':
+              // Translators: '%s' is a username
+              interpolate(gettext("%s's suggestions"), [user]),
+            'user-submissions':
+              // Translators: '%s' is a username
+              interpolate(gettext("%s's submissions"), [user]),
+            'user-submissions-overwritten':
+              // Translators: '%s' is a username
+              interpolate(gettext("%s's overwritten submissions"), [user]),
+          };
+          for (var key in values) {
+            newOpts.push([
+              '<option value="', key, '" data-user="', user, '" class="',
+              'js-user-filter' ,'">', values[key], '</option>'
+            ].join(''));
+          }
+          $(".js-user-filter").remove();
+          $('#filter-status select').append(newOpts.join(''))
         }
 
         if ('search' in params) {
@@ -358,6 +380,7 @@
             }
           });
         }
+
         // re-enable normal event handling
         PTL.editor.preventNavigation = false;
 
@@ -1488,7 +1511,9 @@
   filterStatus: function () {
     // this function can be executed in different contexts,
     // so using the full selector here
-    var filterBy = $("#filter-status option:selected").val();
+    var $selected = $("#filter-status option:selected"),
+        filterBy = $selected.val(),
+        isUserFilter = $selected.data('user');
 
     // Filtering by failing checks
     if (filterBy == "checks") {
@@ -1521,6 +1546,12 @@
       $("#filter-checks").remove();
       if (!PTL.editor.preventNavigation) {
         var newHash = "filter=" + filterBy;
+        if (PTL.editor.user && isUserFilter) {
+          newHash += '&user=' + PTL.editor.user;
+        } else {
+          PTL.editor.user = null;
+          $(".js-user-filter").remove();
+        }
         $.history.load(newHash);
       }
     }
