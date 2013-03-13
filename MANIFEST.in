@@ -3,6 +3,8 @@ include requirements/base.txt
 include pootle/dbs/README
 include pootle/repos/README
 recursive-include docs *
+recursive-exclude docs/_themes/.git *
+exclude docs/_themes/.gitignore
 recursive-include pootle/assets *
 recursive-include pootle/locale *
 prune pootle/locale/*/.translation_index
