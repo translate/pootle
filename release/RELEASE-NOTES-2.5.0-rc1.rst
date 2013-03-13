@@ -1,0 +1,121 @@
+===================================
+Welcome to the new Pootle 2.5.0-rc1
+===================================
+
+At Translate we're pretty proud of this baby. Many changes have gone into 2.5.0
+which follows on from 2.1.6 released more then two years ago. So many changes
+that it's quite hard to list them all.
+
+Why so long? Well we had the `Egyptian revolution
+<https://www.google.co.uk/search?q=%23freealaa&tbm=isch>`_, a complete change
+in UI, and a load of features we wanted you to enjoy.  It took much longer to
+stabalise it for you to enjoy.
+
+Pootle 2.5.0 has been in production with many users, so although it is a new
+official release, we've had many people running their production server off
+this code.  This includes `LibreOffice
+<https://translations.documentfoundation.org/>`_, `Mozilla
+<http://mozilla.locamotion.org/>`_ and `Evernote
+<http://translate.evernote.com/pootle/>`_. So you are in good company.
+
+Requirements
+============
+- Django 1.3 or 1.4
+- `Translate Toolkit <http://toolkit.translatehouse.org/download.html>`_ >=
+  1.10.0
+- lxml (now a runtime requirement)
+
+Installation and Upgrade
+========================
+- `Installation
+  <http://docs.translatehouse.org/projects/pootle/en/latest/server/installation.html>`_
+- `Upgrade
+  <http://docs.translatehouse.org/projects/pootle/en/latest/server/upgrading.html>`_
+
+Changes
+=======
+
+The are by no means extensive, check the git log for more details
+
+User Experience
+---------------
+We undertook a major UI rework – we now have a clean new translation interface,
+and overview page.
+
+In the editor:
+
+- We follow a new approach when you edit translations, you will see a list of
+  units that meet some criterion.
+- Translation Memory is displayed for the current unit – results are from the
+  `Amagama <http://amagama.translatehouse.org/>`_ server.
+- Filters are easily accessible while you translate, so you can quickly change
+  these within the translation interface.
+- Context rows are provided in the translation interface when you are filtering
+  and these can be hidden or expanded.
+- A timeline is provided for a unit. This provides a history of the changes in
+  translation text, state changes, translator and dates of changes.
+- Gravatars give credit to translators and suggesters.
+
+In the overview page:
+
+- The overview page allows you to drill down into certain types of units
+  matching a translation state or with an error.
+- It is now easier to see what work needs attentions, as we highlight next
+  actions for your project.
+- With editable project and language descriptions you can supply description
+  for projects. These are editable using Markdown, reStructuredi or HTML.
+- News alerts can now be sent via email to project participants.
+- The overview page provides an expanded checks page that highlights all
+  failing checks.
+- Checks are classified into categories so that more urgent ones are
+  highlighted to translators
+
+
+Version Control
+---------------
+- Update the whole project at once avoiding slow file by file updates
+- A separate `VCS_DIRECTORY
+  <http://docs.translatehouse.org/projects/pootle/en/latest/server/settings.html#std:setting-VCS_DIRECTORY>`_
+  for VCS checkout is where Pootle now does all VC related work this ensures
+  that we can work well with DVCS like Git.
+- Detect new and removed files after a VCS update
+- Management commands for VCS actions [Stuart Prescott]
+- Add new files to VCS after updating from templates
+
+Commands
+--------
+- `list_languages
+  <http://docs.translatehouse.org/projects/pootle/en/latest/server/commands.html#list-languages>`_
+- `list_projects
+  <http://docs.translatehouse.org/projects/pootle/en/latest/server/commands.html#list-projects>`_
+- `latest_change_id
+  <http://docs.translatehouse.org/projects/pootle/en/latest/server/commands.html#latest-change-id>`_
+- --modified-since flag for `update_stores
+  <http://docs.translatehouse.org/projects/pootle/en/latest/server/commands.html#update-stores>`_
+  and `sync_stores
+  <http://docs.translatehouse.org/projects/pootle/en/latest/server/commands.html#sync-stores>`_
+- `commit_to_vcs
+  <http://docs.translatehouse.org/projects/pootle/en/latest/server/commands.html#commit-to-vcs>`_
+- `update_from_vcs
+  <http://docs.translatehouse.org/projects/pootle/en/latest/server/commands.html#update-from-vcs>`_
+
+Infrastructure
+--------------
+- All documentation is now on `Read The Docs
+  <http://docs.translatehouse.org/projects/pootle/en/latest/>`_
+- We have a `new website <http://pootle.translatehouse.org/>`_ for Pootle
+- We're using Travis for `Continuous Integration
+  <https://travis-ci.org/translate/pootle>`_
+- All our `code <https://github.com/translate/pootle>`_ is now on Github
+
+...and of course, loads of bugs where fixed
+
+Credits
+=======
+The following people have made Pootle 2.5.0 possible:
+
+Julen Ruiz Aizpuru, Friedel Wolff, Alaa Abd el Fattah, Igor Afanasyev,
+Dwayne Bailey, Leandro Regueiro, Claude Paroz, Chris Oelmueller,
+Taras Semenenko, Kevin Scannell, Christian Hitz, Thomas Kinnen,
+Alexander Dupuy, khagaroth, dvinella, Stuart Prescott, Roman Imankulov,
+Peter Bengtsson, Nagy Akos, Michael Tänzer, Gregory Oschwaldi & Andy Nicholson.
