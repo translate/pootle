@@ -22,7 +22,7 @@
 from pootle_misc.baseurl import l
 
 
-def translate(path_obj, state=None, check=None):
+def translate(path_obj, state=None, check=None, user=None):
     # In Pootle, URLs ending in translate.html are used when the user
     # translates all files in a directory (for example, if the user is
     # going through all fuzzy translations in a directory).
@@ -34,6 +34,8 @@ def translate(path_obj, state=None, check=None):
 
     if state:
         path += '#filter=%s' % state
+        if user:
+            path += '&user=%s' % user
     elif check:
         path += '#filter=checks,%s' % check
 
