@@ -51,4 +51,5 @@ _site/
 
 # Build stuff
 dist/
+build/
 Pootle.egg-info/
