@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:44+0000\n"
-"PO-Revision-Date: 2013-01-04 10:22+0000\n"
+"PO-Revision-Date: 2013-03-03 16:53+0000\n"
 "Last-Translator: Ákos <nagy.akos@libreoffice.ro>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
@@ -17,159 +17,144 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1357129669.0\n"
+"X-POOTLE-MTIME: 1362329587.0\n"
 
 #: static/js/common.js:43
-#, fuzzy
 msgid "Expand details"
-msgstr "Expandir detalhes"
+msgstr "Deschide detaliile"
 
 #: static/js/common.js:43
-#, fuzzy
 msgid "Collapse details"
-msgstr "Minimizar detalhes"
+msgstr "Ascunde detaliile"
 
 #: static/js/common.js:77
-#, fuzzy
 msgid "Are you sure you want to continue?"
-msgstr "Tem certeza de que quer continuar?"
+msgstr "Sigur doriți să continuați?"
 
 #: static/js/common.js:78
 #, fuzzy
 msgid "This operation cannot be undone."
-msgstr "Esta operação não pode ser desfeita."
+msgstr "Această acțiune este ireversibilă."
 
 #: static/js/editor.js:409 static/js/editor.js.c:1493
-#, fuzzy
 msgid "No results."
-msgstr "Nenhum resultado."
+msgstr "Niciun rezultat."
 
 #. Translators: Permalink to the current unit in the editor.
 #. The first '%s' is the permalink URL.
 #. The second '%s' is the unit number.
 #: static/js/editor.js:726
-#, c-format
-#, c-format, fuzzy
+#, c-format, c-format
 msgid "<a href=\"%s\">String %s</a>"
-msgstr "<a href=\"%s\">Texto %s</a>"
+msgstr "<a href=\"%s\">Text %s</a>"
 
 #: static/js/editor.js:786
-#, fuzzy
 msgid "Error while connecting to the server"
-msgstr "Ocorreu um erro ao conectar no servidor."
+msgstr "Eroare în timpul conectări la server"
 
 #: static/js/editor.js:788
-#, fuzzy
 msgid "Server error"
-msgstr "Erro no servidor"
+msgstr "Eroare server"
 
 #: static/js/editor.js:790
-#, fuzzy
 msgid "The server seems down. Try again later."
-msgstr "O servidor parece desligado. Tente novamente mais tarde."
+msgstr "Se pare că serverul este oprit. Încercați mai târziu."
 
 #: static/js/editor.js:798
-#, fuzzy
 msgid "Unknown error"
-msgstr "Erro desconhecido"
+msgstr "Eroare necunoscută"
 
 #: static/js/editor.js:1342
-#, fuzzy
 msgid "Congratulations, you walked through all strings."
-msgstr "Parabéns, você percorreu todos os textos."
+msgstr "Congratulații, ați terminat cu toate textele."
 
 #: static/js/editor.js:1344 static/js/editor.js.c:1368
-#, fuzzy
 msgid "Return to the overview page."
-msgstr "Retornar à página de resumo."
+msgstr "Întoarcere la pagina generală."
 
 #: static/js/editor.js:1363
-#, fuzzy
 msgid "You reached the beginning of the list"
-msgstr "Você chegou ao início da lista"
+msgstr "Ați ajuns la începutul liste de traduceri."
 
 #: static/js/editor.js:1366
-#, fuzzy
 msgid "You reached the end of the list."
-msgstr "Você chegou ao final da lista."
+msgstr "Ați ajuns la sfârșitul liste de traduceri."
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
 #. '%' symbol to denote a percentage is being used.
 #: static/js/editor.js:1766
-#, c-format
-#, c-format, fuzzy
+#, c-format, c-format
 msgid "%s% match"
-msgstr "%s% correspondência"
+msgstr "%s% potrivri"
 
 #: static/js/editor.js:1808
-#, fuzzy
 msgid "Similar translations"
-msgstr "Traduções similares"
+msgstr "Traduceri similare"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:7
 msgid "More"
-msgstr ""
+msgstr "Mai mult"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:10
 msgid "Hide"
-msgstr ""
+msgstr "Ascunde"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:13
 msgid "Less"
-msgstr ""
+msgstr "Mai puțin"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:16
 msgid "Show"
-msgstr ""
+msgstr "Arată"
 
 #: static/js/utils.js:76
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Acum un an"
+msgstr[1] "Acum %s ani"
+msgstr[2] "Acum %s ani"
 
 #: static/js/utils.js:79
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Acum o săptămână"
+msgstr[1] "Acum %s sătpămâni"
+msgstr[2] "Acum %s sătpămâni"
 
 #: static/js/utils.js:82
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Ieri"
+msgstr[1] "Acum %s zile"
+msgstr[2] "Acum %s zile"
 
 #: static/js/utils.js:85
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Acum o oră"
+msgstr[1] "Acum %s ore"
+msgstr[2] "Acum %s ore"
 
 #: static/js/utils.js:88
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Acum un minut"
+msgstr[1] "Acum %s minute"
+msgstr[2] "Acum %s minute"
 
 #: static/js/utils.js:96
 msgid "A few seconds ago"
-msgstr ""
+msgstr "Acum câteva secunde"
 
 #, c-format
 #~ msgid "<a href=\"%s\">Unit %s</a>"

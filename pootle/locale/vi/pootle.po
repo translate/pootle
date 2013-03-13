@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2010-08-04 12:18+0200\n"
-"Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
+"PO-Revision-Date: 2013-03-04 05:52+0000\n"
+"Last-Translator: Nguyen Duc Quan <quan.nguyenduc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.1.0-beta2\n"
+"X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
+"X-POOTLE-MTIME: 1362376343.0\n"
 
 #: strings.py:8
 msgid ""
@@ -65,14 +66,14 @@ msgstr "Đổi"
 msgid ""
 "Please enter a correct username and password. Note that both fields are case-"
 "sensitive."
-msgstr ""
+msgstr "Hãy nhập tên & mật khẩu. Lưu ý rằng có phân biệt chữ hoa-thường."
 
 #. Translators: Email subject line. The variable is the server name shown
 #. on the top of each page
 #: strings.py:21
 #, python-format
 msgid "Password reset on %s"
-msgstr ""
+msgstr "Đặt lại Password cho %s"
 
 #. Translators: This is a constructed string that might end up saying
 #. "Add language" or "Add project". If you need to translate that differently,
@@ -192,8 +193,9 @@ msgstr ""
 
 #: apps/legalpages/models.py:31
 #: apps/legalpages/templates/legalpages/admin/list.html:22
+#, fuzzy
 msgid "Active"
-msgstr ""
+msgstr "hoạt động"
 
 #: apps/legalpages/models.py:32
 msgid "Whether this page is active or not."
@@ -264,8 +266,9 @@ msgid "Existing Legal Pages"
 msgstr ""
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
+#, fuzzy
 msgid "Inactive"
-msgstr ""
+msgstr "hoạt động"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 #: apps/pootle_app/templates/admin/edit_links.html:2
@@ -1042,8 +1045,9 @@ msgid "Repeated word"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:46
+#, fuzzy
 msgid "E-mail"
-msgstr ""
+msgstr "Địa chỉ thư"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Ending punctuation"
@@ -1086,8 +1090,9 @@ msgid "Newlines"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:57
+#, fuzzy
 msgid "Number of plurals"
-msgstr ""
+msgstr "Tổng số cách số nhiều"
 
 #: apps/pootle_misc/checks.py:58
 msgid "Don't translate words"
@@ -1098,8 +1103,9 @@ msgid "Numbers"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:60
+#, fuzzy
 msgid "Options"
-msgstr ""
+msgstr "Vẫn tùy chọn"
 
 #: apps/pootle_misc/checks.py:61
 msgid "printf()"
@@ -1273,15 +1279,15 @@ msgid "Failed to import suggestions from %s"
 msgstr "Đã không nhập được các sự góp ý từ %s"
 
 #: apps/pootle_misc/dbupdate.py:402
-#, python-format
+#, fuzzy, python-format
 msgid "Imported %(count)d string from %(store)s"
 msgid_plural "Imported %(count)d strings from %(store)s"
-msgstr[0] ""
+msgstr[0] "Đã nhập %(count)d đơn vị từ %(store)s"
 
 #: apps/pootle_misc/dbupdate.py:408
-#, python-format
+#, fuzzy, python-format
 msgid "Failed to import strings from %s"
-msgstr ""
+msgstr "Đã không nhập được các đơn vị từ %s"
 
 #: apps/pootle_misc/dbupdate.py:417
 msgid "All translations are now imported."
@@ -1316,12 +1322,14 @@ msgid "Locations"
 msgstr "Vị trí"
 
 #: apps/pootle_misc/forms.py:119
+#, fuzzy
 msgid "Source Terms"
-msgstr ""
+msgstr "Chuỗi nguồn"
 
 #: apps/pootle_misc/forms.py:120
+#, fuzzy
 msgid "Target Terms"
-msgstr ""
+msgstr "Chuỗi đích"
 
 #: apps/pootle_misc/forms.py:121
 msgid "Definitions"
@@ -1369,8 +1377,9 @@ msgid_plural "Continue translation (%(num)d words left)"
 msgstr[0] ""
 
 #: apps/pootle_misc/stats.py:183
+#, fuzzy
 msgid "Translation is complete"
-msgstr ""
+msgstr "Các chuỗi đã được dịch xong"
 
 #: apps/pootle_misc/stats.py:194
 #, python-format
@@ -1421,9 +1430,9 @@ msgstr ""
 "(errormsg)s"
 
 #: apps/pootle_misc/templates/progressbar.html:3
-#, python-format
+#, fuzzy, python-format
 msgid "%(percent)s%% complete"
-msgstr ""
+msgstr "%(percentage)d%% hoàn toàn"
 
 #: apps/pootle_misc/templates/search.html:5
 msgid "Search"
@@ -1492,16 +1501,18 @@ msgid "Email only to recently active users"
 msgstr ""
 
 #: apps/pootle_notifications/views.py:151
+#, fuzzy
 msgid "All Projects"
-msgstr ""
+msgstr "Mọi dự án"
 
 #: apps/pootle_notifications/views.py:155
 msgid "Project Selection"
 msgstr ""
 
 #: apps/pootle_notifications/views.py:163
+#, fuzzy
 msgid "All Languages"
-msgstr ""
+msgstr "Mọi ngôn ngữ"
 
 #: apps/pootle_notifications/views.py:167
 msgid "Language Selection"
@@ -1669,8 +1680,9 @@ msgid "State"
 msgstr ""
 
 #: apps/pootle_statistics/models.py:50
+#, fuzzy
 msgid "Comment"
-msgstr ""
+msgstr "Ghi chú"
 
 #: apps/pootle_statistics/models.py:95
 msgid "anonymous user"
@@ -1820,8 +1832,9 @@ msgid "Incomplete"
 msgstr ""
 
 #: apps/pootle_store/templates/store/translate.html:75
+#, fuzzy
 msgid "My suggestions"
-msgstr ""
+msgstr "Góp ý"
 
 #: apps/pootle_store/templates/store/translate.html:76
 msgid "My submissions"
@@ -1869,28 +1882,33 @@ msgid ""
 msgstr ""
 
 #: apps/pootle_store/templates/unit/comment.html:12
+#, fuzzy
 msgid "Comment:"
-msgstr ""
+msgstr "Ghi chú"
 
 #: apps/pootle_store/templates/unit/edit.html:11
+#, fuzzy
 msgid "File:"
-msgstr ""
+msgstr "Tập tin"
 
 #: apps/pootle_store/templates/unit/edit.html:18
 msgid "Context:"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:28
+#, fuzzy
 msgid "Comments:"
-msgstr ""
+msgstr "Ghi chú"
 
 #: apps/pootle_store/templates/unit/edit.html:32
+#, fuzzy
 msgid "Locations:"
-msgstr ""
+msgstr "Vị trí"
 
 #: apps/pootle_store/templates/unit/edit.html:41
+#, fuzzy
 msgid "Terminology:"
-msgstr ""
+msgstr "Thuật ngữ"
 
 #: apps/pootle_store/templates/unit/edit.html:43
 msgid "Insert the translated term into the editor"
@@ -1901,8 +1919,9 @@ msgid "Possible issues with the translation"
 msgstr "Vấn đề có thể gặp trong bản dịch"
 
 #: apps/pootle_store/templates/unit/edit.html:56
+#, fuzzy
 msgid "Failing checks:"
-msgstr ""
+msgstr "Sai kiểm tra"
 
 #: apps/pootle_store/templates/unit/edit.html:62
 msgid "Remove quality check"
@@ -2006,8 +2025,9 @@ msgid "Hide Timeline"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:233
+#, fuzzy
 msgid "User suggestions"
-msgstr ""
+msgstr "Xem chuỗi góp"
 
 #: apps/pootle_store/templates/unit/edit.html:251
 msgid "Accept suggestion"
@@ -2030,8 +2050,9 @@ msgid "Vote for this suggestion"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/term_edit.html:40
+#, fuzzy
 msgid "Comment: "
-msgstr ""
+msgstr "Ghi chú"
 
 #: apps/pootle_store/templates/unit/timeline.html:4
 #: apps/pootle_store/templates/unit/timeline.html:14
@@ -2178,13 +2199,15 @@ msgstr "Gài vào VCS"
 
 #. Translators: "all" here refers to all files and sub directories in a directory/project.
 #: apps/pootle_translationproject/actions.py:159
+#, fuzzy
 msgid "Update all from VCS"
-msgstr ""
+msgstr "Cập nhật từ VCS"
 
 #. Translators: "all" here refers to all files and sub directories in a directory/project.
 #: apps/pootle_translationproject/actions.py:174
+#, fuzzy
 msgid "Commit all to VCS"
-msgstr ""
+msgstr "Gài vào VCS"
 
 #: apps/pootle_translationproject/actions.py:187
 msgid "Rescan project files"
@@ -2377,8 +2400,9 @@ msgstr ""
 "dự án thông dịch này."
 
 #: apps/pootle_translationproject/templates/translation_project/fileop_forms.html:23
+#, fuzzy
 msgid "Update from Version Control"
-msgstr ""
+msgstr "Cập nhật tất cả từ kho điều khiển phiên bản"
 
 #: apps/pootle_translationproject/templates/translation_project/fileop_forms.html:24
 msgid ""
@@ -2625,8 +2649,9 @@ msgstr "Giới thiệu về trình phục vụ Pootle này"
 
 #: templates/base.html:162 templates/about/contributors.html:6
 #: templates/about/contributors.html:9
+#, fuzzy
 msgid "Contributors"
-msgstr ""
+msgstr "Người đóng góp tốt nhất"
 
 #: templates/captcha-xhr.html:14 templates/captcha.html:4
 #: templates/captcha.html.py:7
@@ -2699,8 +2724,9 @@ msgid "Translate this project"
 msgstr "Dịch dự án này"
 
 #: templates/tp_menu.html:8
+#, fuzzy
 msgid "Manage terminology"
-msgstr ""
+msgstr "Quản lý thuật ngữ"
 
 #: templates/tp_menu.html:8
 msgid "Terminology"

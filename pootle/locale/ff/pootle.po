@@ -7,14 +7,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-02-23 13:18+0000\n"
+"PO-Revision-Date: 2013-02-25 20:14+0200\n"
 "Last-Translator: Ibrahima SARR <ibrahima.sarr@pulaagu.com>\n"
 "Language-Team: FULA LOCALIZATION\n"
 "Language: ff\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
+"X-Generator: Virtaal 0.7.1\n"
 "X-POOTLE-MTIME: 1361625515.0\n"
 
 #: strings.py:8
@@ -1835,7 +1835,7 @@ msgstr "Naatnanɗe am"
 #. in time but have been overwritten by other users.
 #: apps/pootle_store/templates/store/translate.html:80
 msgid "My overwritten submissions"
-msgstr ""
+msgstr "Naatnanɗe am binnditaaɗi"
 
 #: apps/pootle_store/templates/store/translate.html:81
 msgid "Checks"
@@ -2517,6 +2517,14 @@ msgid ""
 "administration interface.</p>\n"
 "</div>\n"
 msgstr ""
+"<div dir=\"ltr\" lang=\"ff\">\n"
+"<h2>Ndee loowannde Pootle ko Ƴeewndol.</h2>\n"
+"<p>Aɗa waawi kadi yillaade <a href=\"http://pootle.locamotion.org\">carwol "
+"Pootle </a> keftinaaɗo oo. Jiiloowo carwol ngol hokkiraani jokkondire mum "
+"walla cifagol ngon-ɗoo carwol. So tawii ko aan woni jiiloowo ngol carwol, "
+"taƴto ngol cifagol e fiilde maa cubaaɗe walla e daartorgal yiilirde "
+"ndee.</p>\n"
+"</div>"
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"

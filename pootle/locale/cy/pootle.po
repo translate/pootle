@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-02-22 12:59+0000\n"
+"PO-Revision-Date: 2013-02-27 13:28+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cy\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n==2) ? 1 : 0;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1361537963.0\n"
+"X-POOTLE-MTIME: 1361971736.0\n"
 
 #: strings.py:8
 msgid ""
@@ -402,7 +402,7 @@ msgstr "Angen gwaith"
 #: apps/pootle_misc/stats.py:115 apps/pootle_store/util.py:45
 #: apps/pootle_store/templates/store/translate.html:72
 msgid "Untranslated"
-msgstr "Heb ei gyfieithu"
+msgstr "Heb gyfieithu"
 
 #: apps/pootle_app/templates/admin/admin_general.html:15
 #: apps/pootle_terminology/templates/terminology/manage.html:50
@@ -998,7 +998,7 @@ msgstr "Gweithred Ddiwethaf"
 
 #: apps/pootle_misc/checks.py:29
 msgid "Critical"
-msgstr "Gritigol"
+msgstr "Pwysig"
 
 #: apps/pootle_misc/checks.py:30
 msgid "Functional"
@@ -1163,7 +1163,7 @@ msgstr "Tabiau"
 
 #: apps/pootle_misc/checks.py:74
 msgid "Unchanged"
-msgstr "Heb ei newid"
+msgstr "Heb eu newid"
 
 #: apps/pootle_misc/checks.py:75
 msgid "URLs"
@@ -1866,14 +1866,14 @@ msgstr "Fy Awgrymiadau"
 
 #: apps/pootle_store/templates/store/translate.html:76
 msgid "My submissions"
-msgstr ""
+msgstr "Fy nghyflwyniadau"
 
 #. Translators: This is a type of filtering criterion that
 #. selects the strings that have been submitted by me at some point
 #. in time but have been overwritten by other users.
 #: apps/pootle_store/templates/store/translate.html:80
 msgid "My overwritten submissions"
-msgstr ""
+msgstr "Fy nghyflwyniadau gafodd eu tros ysgrifennu"
 
 #: apps/pootle_store/templates/store/translate.html:81
 msgid "Checks"
@@ -1985,7 +1985,7 @@ msgstr "Awgrymu cyfieithiad a mynd i'r llinyn nesaf (Ctrl+Enter)"
 
 #: apps/pootle_store/templates/unit/edit.html:131
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
-msgstr ""
+msgstr "Newid i'r modd cyfieithu (Ctrl+Shift+Space)"
 
 #: apps/pootle_store/templates/unit/edit.html:132
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
@@ -1993,12 +1993,12 @@ msgstr "Newid i'r modd awgrymu (Ctrl+Shift+Space)"
 
 #: apps/pootle_store/templates/unit/edit.html:135
 msgid "Mark this string as needing further work (Ctrl+Space)"
-msgstr ""
+msgstr "Marcio'r llinyn fel un sydd angen rhagor o waith  (Ctrl+Space)"
 
 #: apps/pootle_store/templates/unit/edit.html:156
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
-msgstr ""
+msgstr "adolygwyd gan <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
 #: apps/pootle_store/templates/unit/edit.html:166
 msgid "Insert RLM (Right-To-Left Mark) into the editor"

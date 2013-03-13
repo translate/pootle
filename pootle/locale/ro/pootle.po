@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 0.11\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-01-31 13:22+0000\n"
+"PO-Revision-Date: 2013-03-03 16:38+0000\n"
 "Last-Translator: Ákos <nagy.akos@libreoffice.ro>\n"
 "Language-Team: Romanian\n"
 "Language: ro\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1359638531.0\n"
+"X-POOTLE-MTIME: 1362328690.0\n"
 
 #: strings.py:8
 msgid ""
@@ -1871,14 +1871,14 @@ msgstr "Sugestiile mele"
 
 #: apps/pootle_store/templates/store/translate.html:76
 msgid "My submissions"
-msgstr ""
+msgstr "Traducerea mea"
 
 #. Translators: This is a type of filtering criterion that
 #. selects the strings that have been submitted by me at some point
 #. in time but have been overwritten by other users.
 #: apps/pootle_store/templates/store/translate.html:80
 msgid "My overwritten submissions"
-msgstr ""
+msgstr "Traducerea mea suprascrisă"
 
 #: apps/pootle_store/templates/store/translate.html:81
 msgid "Checks"
@@ -1990,20 +1990,20 @@ msgstr "Trimiteți sugestia și treceți la textul următor (Ctrl+Enter)"
 
 #: apps/pootle_store/templates/unit/edit.html:131
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
-msgstr ""
+msgstr "Schimbare la modul de traducere (Ctrl+Shift+Space)"
 
 #: apps/pootle_store/templates/unit/edit.html:132
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
-msgstr ""
+msgstr "Schimbare la modul de sugerare (Ctrl+Shift+Space)"
 
 #: apps/pootle_store/templates/unit/edit.html:135
 msgid "Mark this string as needing further work (Ctrl+Space)"
-msgstr ""
+msgstr "Marchează acest text pentru revizualizare (Ctrl+Space)"
 
 #: apps/pootle_store/templates/unit/edit.html:156
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
-msgstr ""
+msgstr "revizualizat de <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
 #: apps/pootle_store/templates/unit/edit.html:166
 msgid "Insert RLM (Right-To-Left Mark) into the editor"

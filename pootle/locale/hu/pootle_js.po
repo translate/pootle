@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:44+0000\n"
-"PO-Revision-Date: 2013-01-04 10:23+0000\n"
+"PO-Revision-Date: 2013-03-03 16:44+0000\n"
 "Last-Translator: Ákos <nagy.akos@libreoffice.ro>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hu\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1357294994.0\n"
+"X-POOTLE-MTIME: 1362329073.0\n"
 
 #: static/js/common.js:43
 msgid "Expand details"
@@ -69,8 +69,9 @@ msgid "Congratulations, you walked through all strings."
 msgstr "Gratulálunk, befejezte az összes fordítást"
 
 #: static/js/editor.js:1344 static/js/editor.js.c:1368
+#, fuzzy
 msgid "Return to the overview page."
-msgstr ""
+msgstr "Vissza az összefoglaló oldalra."
 
 #: static/js/editor.js:1363
 msgid "You reached the beginning of the list"
@@ -101,56 +102,56 @@ msgstr ""
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:10
 msgid "Hide"
-msgstr ""
+msgstr "Elrejt"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:13
 msgid "Less"
-msgstr ""
+msgstr "Kevesebb"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:16
 msgid "Show"
-msgstr ""
+msgstr "Megjelenítés"
 
 #: static/js/utils.js:76
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Egy éve"
+msgstr[1] "%s éve"
 
 #: static/js/utils.js:79
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Egy hete"
+msgstr[1] "%s hete"
 
 #: static/js/utils.js:82
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tegnap"
+msgstr[1] "%s napja"
 
 #: static/js/utils.js:85
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Egy órája"
+msgstr[1] "%s órája"
 
 #: static/js/utils.js:88
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Egy perce"
+msgstr[1] "%s perce"
 
 #: static/js/utils.js:96
 msgid "A few seconds ago"
-msgstr ""
+msgstr "Pár másodperce"
 
 #, c-format
 #~ msgid "<a href=\"%s\">Unit %s</a>"

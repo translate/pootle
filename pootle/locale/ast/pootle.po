@@ -6,8 +6,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.1\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-01-14 19:57+0000\n"
-"Last-Translator: astur <ivarela@softastur.org>\n"
+"PO-Revision-Date: 2013-03-11 14:56+0000\n"
+"Last-Translator: Xandru <xandru@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ast\n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1358193469.0\n"
+"X-POOTLE-MTIME: 1363013804.0\n"
 
 #: strings.py:8
 msgid ""
@@ -140,17 +140,17 @@ msgstr ""
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:57
 msgid "Contributor License"
-msgstr ""
+msgstr "Llicencia de collaboración"
 
 #. Translators: Label that refers to the site's terms of use
 #: strings.py:59
 msgid "Terms of Use"
-msgstr ""
+msgstr "Termos d'usu"
 
 #. Translators: Label that refers to the site's terms of service
 #: strings.py:61
 msgid "Terms of Service"
-msgstr ""
+msgstr "Términos de Serviciu"
 
 #: apps/contact_form_i18n/forms.py:143
 msgid "Your name"
@@ -166,7 +166,7 @@ msgstr "El to mensaxe"
 
 #: apps/contact_form_i18n/forms.py:260
 msgid "Akismet thinks this message is spam"
-msgstr ""
+msgstr "Akismet camienta qu'esti mensaxe ye corréu puxarra"
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
@@ -190,7 +190,7 @@ msgstr "Guardar"
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/legalpages/forms.py:42
 msgid "URL or content must be provided."
-msgstr ""
+msgstr "Ties d'apurrir URL o'l conteníu."
 
 #: apps/legalpages/models.py:31
 #: apps/legalpages/templates/legalpages/admin/list.html:22
@@ -200,15 +200,15 @@ msgstr "activar"
 
 #: apps/legalpages/models.py:32
 msgid "Whether this page is active or not."
-msgstr ""
+msgstr "Diz si la páxina ta activa o non."
 
 #: apps/legalpages/models.py:34
 msgid "Display on registration"
-msgstr ""
+msgstr "Amosar nel rexistru"
 
 #: apps/legalpages/models.py:35
 msgid "Whether this page should be displayed on registration."
-msgstr ""
+msgstr "Diz si la páxina se debería amosar nel rexistru."
 
 #: apps/legalpages/models.py:38 apps/pootle_app/forms.py:30
 #: apps/pootle_notifications/views.py:141
@@ -217,11 +217,13 @@ msgstr "Títulu"
 
 #: apps/legalpages/models.py:39
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: apps/legalpages/models.py:40
 msgid "If set, any references to this legal page will redirect to this URL"
 msgstr ""
+"Si s'afita, toles referencies a la páxina d'información llegal son "
+"redirixíes a esta URL "
 
 #. Translators: See http://en.wikipedia.org/wiki/Slug_%28web_publishing%29#Slug
 #: apps/legalpages/models.py:43
@@ -282,7 +284,7 @@ msgstr ""
 
 #: apps/legalpages/templates/legalpages/admin/list.html:31
 msgid "New Legal Page"
-msgstr ""
+msgstr "Nueva Páxina Llegal"
 
 #: apps/pootle_app/admin.py:39
 msgid "Language code does not follow the ISO convention"
@@ -377,11 +379,11 @@ msgstr "Revisiones"
 #: apps/pootle_app/templates/top_contributers_table.html:14
 #: apps/pootle_app/templates/admin/dashboard.html:19
 msgid "Submissions"
-msgstr "Unvios"
+msgstr "Unvíos"
 
 #: apps/pootle_app/templates/top_contributers_table.html:19
 msgid "anonymous users"
-msgstr ""
+msgstr "usuarios anónimos"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:4
 #: apps/pootle_misc/stats.py:109 apps/pootle_store/util.py:47
@@ -394,7 +396,7 @@ msgstr "Traducíu"
 #: apps/pootle_store/util.py:46
 #: apps/pootle_store/templates/store/translate.html:73
 msgid "Needs work"
-msgstr ""
+msgstr "Pa revisar"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:6
 #: apps/pootle_misc/stats.py:115 apps/pootle_store/util.py:45
@@ -538,7 +540,7 @@ msgstr ""
 
 #: apps/pootle_app/templates/admin/dashboard.html:43
 msgid "You will find the following helpful for support:"
-msgstr "Darréu, ayudes y sofitu:"
+msgstr "Pue ayudate la información que vien darréu:"
 
 #: apps/pootle_app/templates/admin/dashboard.html:45
 msgid "The Pootle documentation"
@@ -566,7 +568,7 @@ msgstr "Optimizaciones"
 
 #: apps/pootle_app/templates/admin/general_settings_form.html:16
 msgid "Cancel"
-msgstr ""
+msgstr "Encaboxar"
 
 #: apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
@@ -577,7 +579,7 @@ msgstr "Alertes de Pootle"
 #: apps/pootle_project/templates/project/project.html:40
 #: apps/pootle_translationproject/templates/translation_project/overview.html:88
 msgid "No description set."
-msgstr ""
+msgstr "Nun hai descripción afitada."
 
 #: apps/pootle_app/templates/index/index.html:58
 #: apps/pootle_notifications/templates/notices.html:87
@@ -633,11 +635,13 @@ msgid ""
 "Translate Toolkit version %(installed)s installed. Pootle requires at least "
 "version %(required)s."
 msgstr ""
+"Translate ToolKit versión %(installed)s instaláu. Pootle requier polo menos "
+"la versión %(required)s."
 
 #: apps/pootle_app/views/admin/dashboard.py:62
 #, python-format
 msgid "Django version %s is installed."
-msgstr "Django instaláu versión %s."
+msgstr "Django versión %s ta instaláu."
 
 #: apps/pootle_app/views/admin/dashboard.py:65
 #, python-format
@@ -1187,7 +1191,7 @@ msgstr "Creando les tables de la base de datos..."
 
 #: apps/pootle_misc/dbinit.py:82
 msgid "Creating default languages, projects and admin user"
-msgstr "Creando los idiomes por defeutu, proyeutos y alministrador"
+msgstr "Creando los idiomes por defeutu, proyeutos y usuariu alministrador"
 
 #: apps/pootle_misc/dbinit.py:90
 msgid "Calculating translation statistics, this will take a few minutes"
@@ -1908,8 +1912,9 @@ msgid "Locations:"
 msgstr "Allugamientos"
 
 #: apps/pootle_store/templates/unit/edit.html:41
+#, fuzzy
 msgid "Terminology:"
-msgstr ""
+msgstr "Terminoloxía"
 
 #: apps/pootle_store/templates/unit/edit.html:43
 msgid "Insert the translated term into the editor"
@@ -2212,8 +2217,9 @@ msgid "Rescan project files"
 msgstr ""
 
 #: apps/pootle_translationproject/actions.py:218
+#, fuzzy
 msgid "Delete this folder..."
-msgstr ""
+msgstr "Desaniciar esti ficheru..."
 
 #: apps/pootle_translationproject/actions.py:220
 msgid "Delete this file..."

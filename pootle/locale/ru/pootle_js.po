@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:44+0000\n"
-"PO-Revision-Date: 2013-02-22 06:43+0000\n"
-"Last-Translator: Oleg Koptev <koptev.oleg@gmail.com>\n"
+"PO-Revision-Date: 2013-03-10 23:29+0000\n"
+"Last-Translator: Garab <voron-tengu@mail.ru>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1361515429.0\n"
+"X-POOTLE-MTIME: 1362958174.0\n"
 
 #: static/js/common.js:43
 msgid "Expand details"
@@ -65,7 +65,7 @@ msgstr "Неизвестная ошибка"
 
 #: static/js/editor.js:1342
 msgid "Congratulations, you walked through all strings."
-msgstr "Поздравляем, вы просмотрели все строки."
+msgstr "Поздравляем, вы достигли последней строки."
 
 #: static/js/editor.js:1344 static/js/editor.js.c:1368
 msgid "Return to the overview page."
