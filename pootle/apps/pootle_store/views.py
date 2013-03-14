@@ -324,7 +324,7 @@ def get_search_step_query(translation_project, form, units_queryset):
 
 
 def get_step_query(request, units_queryset):
-    """Narrows down unit query to units matching conditions in GET and POST."""
+    """Narrows down unit query to units matching conditions in GET."""
     if 'unitstates' in request.GET:
         unitstates = request.GET['unitstates'].split(',')
 
