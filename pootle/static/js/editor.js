@@ -320,7 +320,7 @@
               values = {
             'user-suggestions':
               // Translators: '%s' is a username
-              interpolate(gettext("%s's suggestions"), [user]),
+              interpolate(gettext("%s's pending suggestions"), [user]),
             'user-suggestions-accepted':
               // Translators: '%s' is a username
               interpolate(gettext("%s's accepted suggestions"), [user]),
