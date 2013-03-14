@@ -376,6 +376,25 @@ def get_step_query(request, units_queryset):
                 match_queryset = units_queryset.filter(
                         suggestion__user=user
                     ).distinct()
+            elif unit_filter == 'user-suggestions-accepted':
+                # FIXME: Oh, this is pretty lame, we need a completely
+                # different way to model suggestions
+                unit_ids = SuggestionStat.objects.filter(
+                        suggester=user,
+                        state='accepted',
+                    ).values_list('unit', flat=True)
+                match_queryset = units_queryset.filter(
+                        id__in=unit_ids,
+                    ).distinct()
+            elif unit_filter == 'user-suggestions-rejected':
+                # FIXME: Oh, this is as lame as above
+                unit_ids = SuggestionStat.objects.filter(
+                        suggester=user,
+                        state='rejected',
+                    ).values_list('unit', flat=True)
+                match_queryset = units_queryset.filter(
+                        id__in=unit_ids,
+                    ).distinct()
             elif unit_filter == 'user-submissions':
                 match_queryset = units_queryset.filter(
                         submission__submitter=user

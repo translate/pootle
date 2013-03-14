@@ -321,6 +321,12 @@
             'user-suggestions':
               // Translators: '%s' is a username
               interpolate(gettext("%s's suggestions"), [user]),
+            'user-suggestions-accepted':
+              // Translators: '%s' is a username
+              interpolate(gettext("%s's accepted suggestions"), [user]),
+            'user-suggestions-rejected':
+              // Translators: '%s' is a username
+              interpolate(gettext("%s's rejected suggestions"), [user]),
             'user-submissions':
               // Translators: '%s' is a username
               interpolate(gettext("%s's submissions"), [user]),
@@ -859,6 +865,8 @@
 
       case "suggestions":
       case "user-suggestions":
+      case "user-suggestions-accepted":
+      case "user-suggestions-rejected":
       case "user-submissions":
       case "user-submissions-overwritten":
         reqData.filter = this.filter;
