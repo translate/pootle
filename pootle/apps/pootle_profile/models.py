@@ -251,12 +251,14 @@ class PootleProfile(models.Model):
 
         languages = Language.objects.filter(
                 translationproject__submission__submitter=self.user,
+                translationproject__submission__type=SubmissionTypes.NORMAL,
             ).distinct()
 
         for language in languages:
             translation_projects = TranslationProject.objects.filter(
                     language=language,
                     submission__submitter=self.user,
+                    submission__type=SubmissionTypes.NORMAL,
                 ).distinct()
 
             tp_user_stats = []
