@@ -1439,8 +1439,14 @@
     // try to load it
     var m = $(this).attr("id").match(/(row|ctx)([0-9]+)/);
     if (m) {
-      var uid = parseInt(m[2]);
-      var newHash = PTL.utils.updateHashPart("unit", uid, ["page"]);
+      var newHash,
+          type = m[1],
+          uid = parseInt(m[2]);
+      if (type === 'row') {
+        newHash = PTL.utils.updateHashPart("unit", uid, ["page"]);
+      } else {
+        newHash = 'unit=' + encodeURIComponent(uid);
+      }
       $.history.load(newHash);
     }
   },
