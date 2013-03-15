@@ -1177,10 +1177,29 @@
   },
 
 
+  /* Updates a button in `selector` to the `disable` state */
+  updateNavButton: function (selector, disable) {
+    var $el = $(selector);
+
+    // Avoid unnecessary actions
+    if ($el.is(':disabled') && disable || $el.is(':enabled') && !disable) {
+      return;
+    }
+
+    if (disable) {
+      $el.data('title', $el.attr('title'));
+      $el.removeAttr('title');
+    } else {
+      $el.attr('title', $el.data('title'));
+    }
+    $el.prop('disabled', disable);
+  },
+
+
   /* Updates previous/next navigation button states */
   updateNavButtons: function (hasBefore, hasAfter) {
-    $('#js-nav-prev').prop('disabled', !hasBefore);
-    $('#js-nav-next').prop('disabled', !hasAfter);
+    this.updateNavButton('#js-nav-prev', !hasBefore);
+    this.updateNavButton('#js-nav-next', !hasAfter);
   },
 
 
