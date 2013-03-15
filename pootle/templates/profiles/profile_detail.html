@@ -50,11 +50,13 @@
             {% for tp, stats in tp_user_stats %}
               <tr class="item {% cycle 'even' 'odd' %}">
                 <td><a href="{{ tp.get_absolute_url }}">{{ tp.project }}</a></td>
-                <td class="number"><a href="{{ stats.suggestions.pending.url }}">{{ stats.suggestions.pending.count }}</a></td>
-                <td class="number"><a href="{{ stats.suggestions.accepted.url }}">{{ stats.suggestions.accepted.count }}</a></td>
-                <td class="number"><a href="{{ stats.suggestions.rejected.url }}">{{ stats.suggestions.rejected.count }}</a></td>
-                <td class="number"><a href="{{ stats.submissions.total.url }}">{{ stats.submissions.total.count }}</a></td>
-                <td class="number"><a href="{{ stats.submissions.overwritten.url }}">{{ stats.submissions.overwritten.count }}</a></td>
+                {% for stat_item in stats %}
+                {% if stat_item.count != 0 %}
+                <td class="number"><a href="{{ stat_item.url }}">{{ stat_item.count }}</a></td>
+                {% else %}
+                <td></td>
+                {% endif %}
+                {% endfor %}
               </tr>
             {% endfor %}
             </tbody>

@@ -204,43 +204,34 @@ class PootleProfile(models.Model):
 
             [
               ('Language 1', [
-                  ('Project 1', {
-                      'suggestions': {
-                        'pending': {
-                          'count': 0,
-                          'url': 'foo/bar',
-                        },
-                        'accepted': {
-                          'count': 3,
-                          'url': 'baz/blah',
-                        },
-                        'rejected': {
-                          'count': 5,
-                          'url': 'bar/baz',
-                        },
+                  ('Project 1', [
+                      {
+                        'id': 'foo-bar',
+                        'count': 0,
+                        'url': 'foo/bar',
                       },
-                      'submissions': {
-                        'total': {
-                          'count': 145,
-                          'url': 'bar/blah',
-                        },
-                        'overwritten': {
-                          'count': 8,
-                          'url': 'bar/foo',
-                        },
+                      {
+                        'id': 'bar-foo',
+                        'count': 3,
+                        'url': 'baz/blah',
                       },
-                  }),
-                  ('Project 2', {
+                      {
+                        'id': 'baz-blah',
+                        'count': 5,
+                        'url': 'bar/baz',
+                      },
+                  ]),
+                  ('Project 2', [
                       ...
-                  }),
+                  ]),
               ]),
               ('LanguageN', [
-                  ('Project N', {
+                  ('Project N', [
                       ...
-                  }),
-                  ('Project N+1', {
+                  ]),
+                  ('Project N+1', [
                       ...
-                  }),
+                  ]),
               ]),
             ]
         """
@@ -264,43 +255,44 @@ class PootleProfile(models.Model):
             tp_user_stats = []
             # Retrieve tp-specific stats for this user
             for tp in translation_projects:
-                tp_stats = {
-                    'suggestions': {
-                        'pending': {
-                            'count': self.pending_suggestion_count(tp),
-                            'url': dispatch.translate(tp, 'user-suggestions',
-                                                      user=username),
-                        },
-                        'accepted': {
-                            'count': self.accepted_suggestion_count(tp),
-                            'url': dispatch.translate(
-                                tp, 'user-suggestions-accepted',
-                                user=username
-                            ),
-                        },
-                        'rejected': {
-                            'count': self.rejected_suggestion_count(tp),
-                            'url': dispatch.translate(
-                                tp, 'user-suggestions-rejected',
-                                user=username
-                            ),
-                        },
+                tp_stats = [
+                    {
+                        'id': 'suggestions-pending',
+                        'count': self.pending_suggestion_count(tp),
+                        'url': dispatch.translate(tp, 'user-suggestions',
+                                                  user=username),
                     },
-                    'submissions': {
-                        'total': {
-                            'count': self.total_submission_count(tp),
-                            'url': dispatch.translate(tp, 'user-submissions',
-                                                      user=username),
-                        },
-                        'overwritten': {
-                            'count': self.overwritten_submission_count(tp),
-                            'url': dispatch.translate(
-                                tp, 'user-submissions-overwritten',
-                                user=username
-                            ),
-                        },
+                    {
+                        'id': 'suggestions-accepted',
+                        'count': self.accepted_suggestion_count(tp),
+                        'url': dispatch.translate(
+                            tp, 'user-suggestions-accepted',
+                            user=username,
+                        ),
                     },
-                }
+                    {
+                        'id': 'suggestions-rejected',
+                        'count': self.rejected_suggestion_count(tp),
+                        'url': dispatch.translate(
+                            tp, 'user-suggestions-rejected',
+                            user=username,
+                        ),
+                    },
+                    {
+                        'id': 'submissions-total',
+                        'count': self.total_submission_count(tp),
+                        'url': dispatch.translate(tp, 'user-submissions',
+                                                  user=username),
+                    },
+                    {
+                        'id': 'submissions-overwritten',
+                        'count': self.overwritten_submission_count(tp),
+                        'url': dispatch.translate(
+                            tp, 'user-submissions-overwritten',
+                            user=username,
+                        ),
+                    },
+                ]
 
                 tp_user_stats.append((tp, tp_stats))
 
