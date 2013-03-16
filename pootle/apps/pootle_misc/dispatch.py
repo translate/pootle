@@ -57,16 +57,16 @@ def export(pootle_path, format):
 
 
 def commit(path_obj):
-    return  l(path_obj.pootle_path + '/commit')
+    return l(path_obj.pootle_path + '/commit')
 
 
 def update(path_obj):
-    return  l(path_obj.pootle_path + '/update')
+    return l(path_obj.pootle_path + '/update')
 
 
 def commit_all(path_obj):
-    return  l(path_obj.pootle_path + 'commit_all')
+    return l(path_obj.pootle_path + 'commit_all')
 
 
 def update_all(path_obj):
-    return  l(path_obj.pootle_path + 'update_all')
+    return l(path_obj.pootle_path + 'update_all')
