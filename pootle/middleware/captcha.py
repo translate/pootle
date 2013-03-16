@@ -38,6 +38,7 @@ from django.utils.translation import ugettext as _
 from django.utils import simplejson
 from django.conf import settings
 
+
 # MathCaptchaForm Copyright (c) 2007, Dima Dogadaylo (www.mysoftparade.com)
 # Copied from http://djangosnippets.org/snippets/506/
 # GPL compatible According to djangosnippets terms and conditions
@@ -58,9 +59,10 @@ class MathCaptchaForm(forms.Form):
     A_RE = re.compile("^(\d+)$")
 
     captcha_answer = forms.CharField(max_length=2, required=True,
-        widget=forms.TextInput(attrs={'size': '2'}), label='')
+                                     widget=forms.TextInput(attrs={'size': '2'}),
+                                     label='')
     captcha_token = forms.CharField(max_length=200, required=True,
-        widget=forms.HiddenInput())
+                                    widget=forms.HiddenInput())
 
     def __init__(self, *args, **kwargs):
         """Initalise captcha_question and captcha_token for the form."""
@@ -73,8 +75,8 @@ class MathCaptchaForm(forms.Form):
         """Generate new question and valid token
         for it, reset previous answer if any."""
         q, a = self._generate_captcha()
-        expires = time.time() +\
-        getattr(settings, 'CAPTCHA_EXPIRES_SECONDS', 60*60)
+        expires = time.time() + \
+            getattr(settings, 'CAPTCHA_EXPIRES_SECONDS', 60*60)
         token = self._make_token(q, a, expires)
         self.initial['captcha_token'] = token
         self._plain_question = q
@@ -91,12 +93,13 @@ class MathCaptchaForm(forms.Form):
                 _reset()
 
     def _generate_captcha(self):
-        """Generate question and return it along with correct answer."""
+        """Generate question and return it along with correct
+        answer."""
         a, b = randint(1, 9), randint(1, 9)
         return ("%s+%s" % (a, b), a+b)
 
     def _make_token(self, q, a, expires):
-        data = base64.urlsafe_b64encode(\
+        data = base64.urlsafe_b64encode(
             simplejson.dumps({'q': q, 'expires': expires}))
         return self._sign(q, a, expires) + data
 
@@ -116,7 +119,7 @@ class MathCaptchaForm(forms.Form):
         nonexisted classes, that makes life of spambots a bit harder because
         form of question is vary from request to request."""
         digits = self._plain_question.split('+')
-        return "+".join(['<span class="captcha-random-%s">%s</span>' %\
+        return "+".join(['<span class="captcha-random-%s">%s</span>' %
                          (randint(1, 9), d) for d in digits])
 
     def clean_captcha_token(self):
@@ -135,7 +138,8 @@ class MathCaptchaForm(forms.Form):
                     'sign': sign}
         except Exception, e:
             logging.info("Captcha error: %r" % e)
-            raise forms.ValidationError("Invalid captcha!")  # l10n for bots? Rather not
+            # l10n for bots? Rather not
+            raise forms.ValidationError("Invalid captcha!")
 
     def clean_captcha_answer(self):
         a = self.A_RE.match(self.cleaned_data.get('captcha_answer'))
@@ -183,7 +187,8 @@ class CaptchaMiddleware:
         if request.user.is_authenticated():
             if ('target_f_0' not in request.POST or
                 'translator_comment' not in request.POST or
-                ('submit' not in request.POST and 'suggest' not in request.POST)):
+                ('submit' not in request.POST and
+                 'suggest' not in request.POST)):
                 return
 
             # We are in translate page. Users introducing new URLs in the
@@ -203,7 +208,8 @@ class CaptchaMiddleware:
             except KeyError:
                 source_urls = 0
 
-            if comment_urls == 0 and (target_urls == 0 or target_urls == source_urls):
+            if (comment_urls == 0 and
+                (target_urls == 0 or target_urls == source_urls)):
                 return
 
         if 'captcha_answer' in request.POST:
