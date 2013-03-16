@@ -13,6 +13,7 @@ Summary
 #. Tag the release
 #. Publish on PyPI
 #. Upload to Sourceforge
+#. Add product version to Bugzilla
 #. Release documentation
 #. Update translate website
 #. Unstage sourceforge
@@ -229,6 +230,13 @@ You will need:
 #. Check that the README.rst for the parent ``Pootle`` folder is
    still appropriate, this is the text from ``/README.rst``.
 #. Check all links for ``README.rst`` files, new release and parent.
+
+
+Add product version to Bugzilla
+-------------------------------
+We need to allow users to report issues against the released version.
+
+In the Administration interface, products add a product version.
 
 
 Release documentation
