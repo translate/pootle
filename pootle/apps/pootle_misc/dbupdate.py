@@ -218,8 +218,8 @@ def update_tables_21000():
 def update_stats_21060():
     text = """
     <p>%s</p>
-    """ %_('Removing potentially incorrect cached stats, will be '
-           'recalculated...')
+    """ % _('Removing potentially incorrect cached stats, will be '
+            'recalculated...')
     logging.info('Flushing cached stats')
 
     for tp in TranslationProject.objects.filter(stores__unit__state=OBSOLETE) \
@@ -235,7 +235,7 @@ def update_stats_21060():
 def update_ts_tt_12008():
     text = """
     <p>%s</p>
-    """ %_('Reparsing Qt ts files...')
+    """ % _ ('Reparsing Qt ts files...')
     logging.info('Reparsing Qt ts')
 
     for store in Store.objects \
