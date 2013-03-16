@@ -173,7 +173,7 @@ def get_path_summary(path_obj, path_stats):
             ungettext(u'Continue translation (%(num)d word left)',
                       u'Continue translation (%(num)d words left)',
                       num_words,
-                      {'num': num_words,}),
+                      {'num': num_words, }),
         ])
     else:
         incomplete.extend([
@@ -194,7 +194,7 @@ def get_path_summary(path_obj, path_stats):
             ungettext(u'Review suggestion (%(num)d left)',
                       u'Review suggestions (%(num)d left)',
                       path_stats['suggestions'],
-                      {'num': path_stats['suggestions'],})
+                      {'num': path_stats['suggestions'], })
         )
         suggestions.append(u'</a>')
 
