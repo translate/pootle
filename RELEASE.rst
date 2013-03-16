@@ -177,7 +177,7 @@ Publish the package on the `Python Package Index
 <https://pypi.python.org/pypi>`_ (PyPI)
 
 - `Submitting Packages to the Package Index
-  <http://wiki.python.org/moin/CheeseShopTutorial#Submitting_Packages_to_the_Package_Index>`
+  <http://wiki.python.org/moin/CheeseShopTutorial#Submitting_Packages_to_the_Package_Index>`_
 
 .. note:: You need a username and password on https://pypi.python.org and have
    rights to the project before you can proceed with this step.
