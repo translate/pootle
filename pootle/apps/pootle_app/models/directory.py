@@ -147,7 +147,7 @@ class Directory(models.Model):
         dir_result = completestatssum(self.child_dirs.iterator())
 
         stats = {}
-        for cat in set(file_result)|set(dir_result):
+        for cat in set(file_result) | set(dir_result):
             stats[cat] = dictsum(file_result.get(cat, {}),
                                  dir_result.get(cat, {}))
 

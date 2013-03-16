@@ -101,7 +101,7 @@ def completestatssum(queryset, empty_stats=empty_completestats):
         try:
             item_totals = item.getcompletestats()
 
-            for cat in set(item_totals)|set(totals):
+            for cat in set(item_totals) | set(totals):
                 totals[cat] = dictsum(totals.get(cat, {}),
                                       item_totals.get(cat, {}))
         except:
