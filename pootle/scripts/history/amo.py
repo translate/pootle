@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
-# Verbatim script for managing the addons.mozilla.org project.  More information at
-# https://wiki.mozilla.org/Verbatim
+# Verbatim script for managing the addons.mozilla.org project.  More
+# information at https://wiki.mozilla.org/Verbatim
 #
 # Authors:
 # Wil Clouser <clouserw@mozilla.com>
@@ -29,36 +29,46 @@ def _getfiles(file):
     sourcefile = os.path.join(os.path.split(os.path.split(os.path.split(file)[0])[0])[0], "en_US", "LC_MESSAGES", "messages.po")
     return (combinedfile, mainfile, sourcefile)
 
+
 def initialize(projectdir, languagecode):
     """The first parameter is the path to the project directory, including
     locale.  It's up to this script to know any internal structure of the
     directory"""
 
     logger = logging.getLogger('scripts.amo')
-    logger.info("Initializing language %s of project %s" % (languagecode, os.path.basename(projectdir)))
+    logger.info("Initializing language %s of project %s" %
+                (languagecode, os.path.basename(projectdir)))
 
     # extract project root from projectdir
-    projectroot = os.path.join(settings.PODIRECTORY, os.path.split(projectdir)[0])
+    projectroot = os.path.join(settings.PODIRECTORY,
+                               os.path.split(projectdir)[0])
 
     # Find the files we're working with
-    mainfile     = os.path.join(projectroot, languagecode, 'LC_MESSAGES', 'messages.po')
-    combinedfile = os.path.join(projectroot, languagecode, 'LC_MESSAGES', 'messages-combined.po')
-    sourcefile   = os.path.join(projectroot, 'en_US', 'LC_MESSAGES', 'messages.po')
+    mainfile = os.path.join(projectroot, languagecode,
+                            'LC_MESSAGES', 'messages.po')
+    combinedfile = os.path.join(projectroot, languagecode,
+                                'LC_MESSAGES', 'messages-combined.po')
+    sourcefile = os.path.join(projectroot, 'en_US',
+                              'LC_MESSAGES', 'messages.po')
 
     # Build our combined file
-    monopo2po.convertpo(open(sourcefile, "r"), open(combinedfile, "w"), open(mainfile, "r"))
+    monopo2po.convertpo(open(sourcefile, "r"),
+                        open(combinedfile, "w"),
+                        open(mainfile, "r"))
 
     # build .po files from the .thtml files in /pages/
     _init_pages(projectroot, languagecode)
 
+
 def _init_pages(projectroot, languagecode):
-    """Initialize localizable pages
-    Does not do any merging. Reads in the en-US templates and makes .po files from it."""
+    """Initialize localizable pages Does not do any merging. Reads in the en-US
+    templates and makes .po files from it."""
     logger = logging.getLogger('scripts.amo')
 
     # we need TidyLib to import pages
     if not tidy:
-        logger.debug("Cannot import pages without utidylib (http://utidylib.berlios.de/).")
+        logger.debug("Cannot import pages without utidylib "
+                     "(http://utidylib.berlios.de/).")
         return
 
     enus_dir = os.path.join(projectroot, 'en_US', 'pages')
@@ -81,6 +91,7 @@ def _init_pages(projectroot, languagecode):
         template.close()
         output.close()
 
+
 def _tidy_page(path):
     """Read a page, run it through tidy, and create a temporary output file.
     returns a temporary file object containing the results"""
@@ -96,7 +107,7 @@ def _tidy_page(path):
         'indent': 'no',            # don't prettily indent output to make parsing easier
         'tidy-mark': 'no',         # no creator meta-tag
         'force-output': 'yes',     # some output is better than none, I hope
-        }
+    }
 
     # unicode files make utidylib cry :( so we need to be creative
     # http://developer.berlios.de/bugs/?func=detailbug&bug_id=14186&group_id=1810
@@ -139,6 +150,7 @@ def precommit(committedfile, author, message):
         return [mainfile]
     return []
 
+
 def postcommit(committedfile, success):
     if os.path.basename(committedfile) == "messages.po":
         logger = logging.getLogger('scripts.amo')
@@ -147,8 +159,12 @@ def postcommit(committedfile, success):
         (combinedfile, mainfile, sourcefile) = _getfiles(committedfile)
 
         # Recreate messages-combined.po
-        logger.debug("Converting amo %s to %s with template %s" % (sourcefile, combinedfile, mainfile))
-        monopo2po.convertpo(open(sourcefile, "r"), open(combinedfile, "w"), open(mainfile, "r"))
+        logger.debug("Converting amo %s to %s with template %s" %
+                     (sourcefile, combinedfile, mainfile))
+        monopo2po.convertpo(open(sourcefile, "r"),
+                            open(combinedfile, "w"),
+                            open(mainfile, "r"))
+
 
 def preupdate(updatedfile):
     if os.path.basename(updatedfile) == "messages-combined.po":
@@ -162,6 +178,7 @@ def preupdate(updatedfile):
         return mainfile
     return ""
 
+
 def postupdate(updatedfile):
     logger = logging.getLogger('scripts.amo')
 
@@ -169,5 +186,8 @@ def postupdate(updatedfile):
     (combinedfile, mainfile, sourcefile) = _getfiles(updatedfile)
 
     # Create the new messages-combined.po file
-    logger.debug("Converting amo %s to %s with template %s" % (sourcefile, combinedfile, mainfile))
-    monopo2po.convertpo(open(sourcefile, "r"), open(combinedfile, "w"), open(mainfile, "r"))
+    logger.debug("Converting amo %s to %s with template %s" %
+                 (sourcefile, combinedfile, mainfile))
+    monopo2po.convertpo(open(sourcefile, "r"),
+                        open(combinedfile, "w"),
+                        open(mainfile, "r"))
