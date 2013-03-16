@@ -55,7 +55,7 @@ def contact_form(request, form_class=ContactForm,
 
     ``form``
         The form instance.
-    
+
     **Template:**
 
     The value of the ``template_name`` keyword argument, or
@@ -70,7 +70,7 @@ def contact_form(request, form_class=ContactForm,
     # perform the reverse lookup we need access to contact_form/urls.py,
     # but contact_form/urls.py in turn imports from this module.
     #
-    
+
     if success_url is None:
         success_url = reverse('contact_form_sent')
     if request.method == 'POST':
@@ -86,7 +86,7 @@ def contact_form(request, form_class=ContactForm,
     context = RequestContext(request)
     for key, value in extra_context.items():
         context[key] = callable(value) and value() or value
-    
+
     return render_to_response(template_name,
                               { 'form': form },
                               context_instance=context)
