@@ -28,7 +28,7 @@ from django.conf import settings
 ##########################
 # test core dependencies #
 ##########################
-translate_required_ver = (1, 8, 0)
+translate_required_ver = (1, 10, 0)
 def test_translate():
     try:
         from translate.__version__ import ver, sver
