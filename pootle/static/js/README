@@ -152,7 +152,7 @@ Directory contents
     - jquery.select2.js :
       jQuery-based replacement for select boxes.
 
-      Using version 3.3.0.
+      Using version 6a29e594b6 (prior to 3.4) from the master branch.
 
       https://github.com/ivaynberg/select2/
 

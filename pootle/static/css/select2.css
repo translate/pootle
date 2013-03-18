@@ -1,5 +1,5 @@
 /*
-Version: 3.3.0 Timestamp: Tue Feb  5 18:33:54 PST 2013
+Version: @@ver@@ Timestamp: @@timestamp@@
 */
 .select2-container {
     position: relative;
@@ -98,7 +98,11 @@ Version: 3.3.0 Timestamp: Tue Feb  5 18:33:54 PST 2013
     left: 0;
     top: 0;
     z-index: 9998;
+    background-color: #fff;
     opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* works in IE 8 */
+        filter: "alpha(opacity=0)"; /* expected to work in IE 8 */
+        filter: alpha(opacity=0); /* IE 4-7 */
 }
 
 .select2-drop {
@@ -299,6 +303,15 @@ Version: 3.3.0 Timestamp: Tue Feb  5 18:33:54 PST 2013
     padding: 3px 7px 4px;
     margin: 0;
     cursor: pointer;
+
+    min-height: 1em;
+
+    -webkit-touch-callout: none;
+      -webkit-user-select: none;
+       -khtml-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
 }
 
 .select2-results .select2-highlighted {
@@ -539,6 +552,12 @@ disabled look for disabled choices in the results dropdown
 }
 
 .select2-offscreen {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
     position: absolute;
-    left: -10000px;
+    width: 1px;
 }
