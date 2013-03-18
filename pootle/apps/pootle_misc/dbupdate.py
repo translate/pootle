@@ -235,7 +235,7 @@ def update_stats_21060():
 def update_ts_tt_12008():
     text = """
     <p>%s</p>
-    """ % _ ('Reparsing Qt ts files...')
+    """ % _('Reparsing Qt ts files...')
     logging.info('Reparsing Qt ts')
 
     for store in Store.objects \
