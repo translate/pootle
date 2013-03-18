@@ -49,9 +49,20 @@ def previous_view_url(request, view_names):
     :param view_names: List of view names to look for.
     """
     referer_url = request.META.get('HTTP_REFERER', '')
+    script_name = request.META.get('SCRIPT_NAME', '/')
+
+    view_path = urlparse.urlparse(referer_url)[2]
+    if script_name != '/':
+        try:
+            index = view_path.index(script_name)
+            # Just in case check if it matches at the beginning
+            if index == 0:
+                view_path = view_path[len(script_name):]
+        except (ValueError, IndexError):
+            pass
 
     try:
-        view, args, kwargs = resolve(urlparse.urlparse(referer_url)[2])
+        view, args, kwargs = resolve(view_path)
     except Resolver404:
         return ''
 
