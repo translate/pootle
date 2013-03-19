@@ -26,15 +26,24 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from django.core.management.base import NoArgsCommand
 
 from pootle_misc import siteconfig
-from pootle_misc.middleware.siteconfig import (DEFAULT_BUILDVERSION,
-                                               DEFAULT_TT_BUILDVERSION)
 from pootle.__version__ import build as code_buildversion
 
 from translate.__version__ import build as code_tt_buildversion
 
+
+#: Build version referring to Pootle version 2.0.
+#: We'll assume db represents version 2.0 if no build version is stored.
+DEFAULT_BUILDVERSION = 20000
+
+#: Build version referring to Translate Toolkit version 1.7.0.
+#: We'll assume db represents version 1.7.0 if no build version is stored.
+DEFAULT_TT_BUILDVERSION = 12005
+
+
 class Command(NoArgsCommand):
     def handle_noargs(self, **options):
         update_db()
+
 
 def update_db():
     # Get current database build versions
