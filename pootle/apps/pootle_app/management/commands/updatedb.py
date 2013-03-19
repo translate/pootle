@@ -49,7 +49,8 @@ def update_db():
     # Get current database build versions
     config = siteconfig.load_site_config()
     db_buildversion = config.get('BUILDVERSION', DEFAULT_BUILDVERSION)
-    db_tt_buildversion = int(config.get('TT_BUILDVERSION', DEFAULT_TT_BUILDVERSION))
+    db_tt_buildversion = int(config.get('TT_BUILDVERSION',
+                                        DEFAULT_TT_BUILDVERSION))
 
     if (db_buildversion < code_buildversion or
         db_tt_buildversion < code_tt_buildversion):
