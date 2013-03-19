@@ -165,7 +165,7 @@ def form_factory(current_directory):
             )
             language_selection = forms.ModelMultipleChoiceField(
                     label=_("Language Selection"),
-                    queryset=Language.objects.all(),
+                    queryset=current_directory.project.languages,
                     required=False,
             )
 
