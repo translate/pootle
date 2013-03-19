@@ -359,10 +359,11 @@ def get_step_query(request, units_queryset):
         unit_filter = request.GET['filter']
         username = request.GET.get('user', None)
 
-        user = request.profile.user
+        profile = request.profile
         if username:
             try:
                 user = User.objects.get(username=username)
+                profile = user.get_profile()
             except User.DoesNotExist:
                 pass
 
@@ -374,13 +375,13 @@ def get_step_query(request, units_queryset):
                 match_queryset = units_queryset.exclude(suggestion=None)
             elif unit_filter == 'user-suggestions':
                 match_queryset = units_queryset.filter(
-                        suggestion__user=user
+                        suggestion__user=profile,
                     ).distinct()
             elif unit_filter == 'user-suggestions-accepted':
                 # FIXME: Oh, this is pretty lame, we need a completely
                 # different way to model suggestions
                 unit_ids = SuggestionStat.objects.filter(
-                        suggester=user,
+                        suggester=profile,
                         state='accepted',
                     ).values_list('unit', flat=True)
                 match_queryset = units_queryset.filter(
@@ -389,7 +390,7 @@ def get_step_query(request, units_queryset):
             elif unit_filter == 'user-suggestions-rejected':
                 # FIXME: Oh, this is as lame as above
                 unit_ids = SuggestionStat.objects.filter(
-                        suggester=user,
+                        suggester=profile,
                         state='rejected',
                     ).values_list('unit', flat=True)
                 match_queryset = units_queryset.filter(
@@ -397,12 +398,12 @@ def get_step_query(request, units_queryset):
                     ).distinct()
             elif unit_filter == 'user-submissions':
                 match_queryset = units_queryset.filter(
-                        submission__submitter=user
+                        submission__submitter=profile,
                     ).distinct()
             elif unit_filter == 'user-submissions-overwritten':
                 match_queryset = units_queryset.filter(
-                        submission__submitter=user
-                    ).exclude(submitted_by=user).distinct()
+                        submission__submitter=profile,
+                    ).exclude(submitted_by=profile).distinct()
 
             units_queryset = match_queryset
 
