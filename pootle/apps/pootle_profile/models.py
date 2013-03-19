@@ -250,7 +250,7 @@ class PootleProfile(models.Model):
                     language=language,
                     submission__submitter=self,
                     submission__type=SubmissionTypes.NORMAL,
-                ).distinct()
+                ).distinct().order_by('project__fullname')
 
             tp_user_stats = []
             # Retrieve tp-specific stats for this user
