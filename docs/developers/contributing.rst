@@ -135,7 +135,7 @@ alternatives or by writing full sections.
 `Pootle's documentation
 <http://docs.translatehouse.org/projects/pootle/en/latest/>`_ is written using
 `reStructuredText <http://docutils.sourceforge.net/rst.html>`_ and `Sphinx
-<http://sphinx.pocoo.org/>`_.
+<http://sphinx-doc.org/>`_.
 
 If you intend to build the documentation yourself (it's converted from reST to
 HTML using Sphinx), you may want to :ref:`setup a development environment

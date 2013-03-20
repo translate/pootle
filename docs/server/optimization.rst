@@ -34,8 +34,8 @@ Caching
 Fast and efficient caching avoids hitting the DB when it's not really needed.
 Adjust the :setting:`CACHES` setting accordingly.
 
-`python-memcached <http://www.tummy.com/Community/software/python-memcached/>`_
-  Efficient caching.
+`python-memcached <http://www.tummy.com/software/python-memcached/>`_ Efficient
+caching.
 
 
 Indexing Engines
