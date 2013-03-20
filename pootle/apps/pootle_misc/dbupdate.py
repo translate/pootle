@@ -33,11 +33,8 @@ import sys
 
 from django.core.management import call_command
 
-from pootle.i18n.gettext import ungettext, ugettext as _
 from pootle_app.models import Directory
 from pootle_language.models import Language
-from pootle_misc.dbinit import (stats_start, stats_language, stats_project,
-                                stats_end)
 from pootle_misc.util import deletefromcache
 from pootle_project.models import Project
 from pootle_store.models import Store, QualityCheck, CHECKED, PARSED
@@ -92,67 +89,14 @@ def save_pootle_version(build=None):
     logging.info("Database now at Pootle build %d" % build)
 
 
-def header(db_buildversion):
-    text = """
-    <?xml version="1.0" encoding="UTF-8"?>
-    <!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-    <html>
-    <head>
-    <title>%(title)s</title>
-    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
-    <style type="text/css">
-    body
-    {
-        background-color: #ffffff;
-        color: #000000;
-        font-family: Georgia, serif;
-        margin: 40px auto;
-        width: 740px;
-    }
-    h1
-    {
-        font-size: 185%%;
-    }
-    ul
-    {
-        list-style-type: square;
-    }
-    .error
-    {
-        background-color: inherit;
-        color: #d54e21;
-        font-weight: bold;
-    }
-    </style>
-    </head>
-    <body>
-    <h1>%(title)s</h1>
-    <p class="error">%(msg)s</p>
-    """ % {
-        'title': _('Pootle: Update'),
-        'msg': _('Database tables are currently at build version %d. '
-                 'Pootle will now update the database.', db_buildversion)
-    }
-
-    return text
-
-
 def syncdb():
-    text = u"""
-    <p>%s</p>
-    """ % _('Creating missing database tables...')
     logging.info("Creating missing database tables")
 
     call_command('syncdb', interactive=False)
 
-    return text
-
 
 def update_permissions_20030():
-    text = """
-    <p>%s</p>
-    """ % _('Fixing permission table...')
-    logging.info("Fixing permission table")
+    logging.info("Fixing permissions table")
 
     from django.contrib.auth.models import Permission
     from django.contrib.contenttypes.models import ContentType
@@ -171,13 +115,8 @@ def update_permissions_20030():
 
     save_pootle_version(20030)
 
-    return text
-
 
 def update_tables_21000():
-    text = u"""
-    <p>%s</p>
-    """ % _('Updating existing database tables...')
     logging.info("Updating existing database tables")
 
     from south.db import db
@@ -210,16 +149,10 @@ def update_tables_21000():
     field.default = en.id
     db.add_column(table_name, field.name, field)
     db.create_index(table_name, (field.name + '_id',))
-
     # We shouldn't do save_pootle_version(21000) yet - more to do below
-    return text
 
 
 def update_stats_21060():
-    text = """
-    <p>%s</p>
-    """ % _('Removing potentially incorrect cached stats, will be '
-            'recalculated...')
     logging.info('Flushing cached stats')
 
     for tp in TranslationProject.objects.filter(stores__unit__state=OBSOLETE) \
@@ -229,13 +162,9 @@ def update_stats_21060():
 
     # There's no need to save the schema version here as it will already be
     # saved by :func:`update_tables_22000`
-    return text
 
 
 def update_ts_tt_12008():
-    text = """
-    <p>%s</p>
-    """ % _('Reparsing Qt ts files...')
     logging.info('Reparsing Qt ts')
 
     for store in Store.objects \
@@ -248,13 +177,8 @@ def update_ts_tt_12008():
 
     save_toolkit_version(12008)
 
-    return text
-
 
 def update_tables_22000(flush_checks):
-    text = u"""
-    <p>%s</p>
-    """ % _('Updating existing database tables...')
     logging.info("Updating existing database tables")
 
     from south.db import db
@@ -333,42 +257,23 @@ def update_tables_22000(flush_checks):
             store.save()
 
     if flush_checks:
-        text += """
-        <p>%s</p>
-        """ % _('Removing quality checks, will be recalculated on demand...')
         logging.info("Fixing quality checks")
         flush_quality_checks()
 
     save_pootle_version(22000)
 
-    return text
-
 
 def update_toolkit_version():
-    text = """
-    <p>%s</p>
-    """ % _('Removing quality checks, will be recalculated on demand...')
     logging.info("New Translate Toolkit version, flushing quality checks")
 
     flush_quality_checks()
     save_toolkit_version()
 
-    return text
-
-
-def parse_start():
-    text = u"""
-    <p>%s</p>
-    <ul>
-    """ % _('Pootle will now import all the translations into the database. '
-            'It could take a long time.')
-
-    return text
-
 
 def import_suggestions(store):
     try:
-        logging.info(u"Importing suggestions for %s if any.", store.real_path)
+        logging.info(u"Importing suggestions for %s (if any)",
+                     store.real_path)
         store.import_pending()
 
         try:
@@ -377,19 +282,11 @@ def import_suggestions(store):
             count = store.get_suggestion_count()
 
         if count:
-            text = u"""
-            <li>%s</li>
-            """ % ungettext('Imported %(count)d suggestion from %(store)s',
-                            'Imported %(count)d suggestions from %(store)s',
-                            count, {'count': count, 'store': store.pootle_path})
-        else:
-            text = ""
+            logging.info(u"Imported suggestions (%d) from %s",
+                         store.real_path, count)
     except:
-        text = u"""
-        <li class="error">%s</li>
-        """ % _('Failed to import suggestions from %s', store.pootle_path)
-
-    return text
+        logging.info(u"Failed to import suggestions from %s",
+                     store.real_path)
 
 
 def parse_store(store):
@@ -397,64 +294,26 @@ def parse_store(store):
         logging.info(u"Importing strings from %s", store.real_path)
         store.require_units()
         count = store.getquickstats()['total']
-        text = u"""
-        <li>%s</li>
-        """ % ungettext('Imported %(count)d string from %(store)s',
-                        'Imported %(count)d strings from %(store)s',
-                        count, {'count': count, 'store': store.pootle_path})
+        logging.info(u"Imported strings (%d) from %s",
+                     store.real_path, count)
     except:
-        text = u"""
-        <li class="error">%s</li>
-        """ % _('Failed to import strings from %s', store.pootle_path)
-
-    return text
+        logging.info(u"Failed to import strings from %s", store.real_path)
 
 
-def parse_end():
-    text = u"""
-    </ul>
-    <p>%s</p>
-    """ % _('All translations are now imported.')
-
-    return text
-
-
-def footer():
-    text = """
-    <p>%(endmsg)s</p>
-    <div><script>setTimeout("location.reload()", 10000)</script></div>
-    </body></html>
-    """ % {'endmsg': _('Pootle initialized the database. You will be '
-                       'redirected to the front page in 10 seconds.')}
-
-    return text
-
-
-def staggered_update(db_buildversion, tt_buildversion):
+def staggered_update(db_buildversion, tt_buildversion, tt_version_changed):
     """Update pootle database, while displaying a progress report for each
     step."""
-    # django's syncdb command prints progress reports to stdout, but
-    # mod_wsgi doesn't like stdout, so we reroute to stderr
-    stdout = sys.stdout
-    sys.stdout = sys.stderr
-
-    display_version = (db_buildversion != sys.maxint and db_buildversion or
-                                                         tt_buildversion)
-    yield header(display_version)
-
-    # sys.maxint is set in siteconfig middleware if Toolkit is unchanged.
-    # Otherwise, Toolkit build version changed.
-    needs_toolkit_upgrade = (tt_buildversion != sys.maxint and
+    needs_toolkit_upgrade = (tt_version_changed and
                              db_buildversion >= 21040)
 
     ############## version specific updates ############
 
     if db_buildversion < 20030:
-        yield update_permissions_20030()
+        update_permissions_20030()
 
     if db_buildversion < 21000:
         try:
-            yield update_tables_21000()
+            update_tables_21000()
         except Exception, e:
             logging.warning(u"Something broke while upgrading database "
                             u"tables:\n%s", e)
@@ -481,62 +340,61 @@ def staggered_update(db_buildversion, tt_buildversion):
 
     # Build missing tables
     try:
-        yield syncdb()
+        syncdb()
     except Exception, e:
-        logging.warning(u"something broke while creating new database tables:"
+        logging.warning(u"Something broke while creating new database tables:"
                         u"\n%s", e)
 
     if db_buildversion < 21000:
-        yield parse_start()
+        logging.info(u"Importing translations into the database. This can "
+                     u"take a while")
         for store in Store.objects.iterator():
             try:
-                yield parse_store(store)
-                yield import_suggestions(store)
+                parse_store(store)
+                import_suggestions(store)
             except Exception, e:
                 logging.warning(u"Something broke while parsing %s:\n%s",
                                 store, e)
 
-        yield parse_end()
+        logging.info(u"All translations are now imported")
         save_pootle_version(21000)
 
     if db_buildversion < 22000:
         flush_checks = not needs_toolkit_upgrade
-        yield update_tables_22000(flush_checks)
+        update_tables_22000(flush_checks)
 
     # Since :func:`update_stats_21060` works with the :cls:`TranslationProject`
     # model, this has to go after upgrading the DB tables, otherwise the model
     # and DB table definitions don't match.
     if db_buildversion < 21060:
-        yield update_stats_21060()
+        update_stats_21060()
 
     if tt_buildversion < 12008:
-        yield update_ts_tt_12008()
+        update_ts_tt_12008()
 
     if needs_toolkit_upgrade:
         # Let's clear stale quality checks data. We can only do that safely if
         # the db schema is already up to date.
-        yield update_toolkit_version()
-    elif tt_buildversion != sys.maxint:
+        update_toolkit_version()
+    elif tt_version_changed:
         # only need to update the toolkit version, not do the upgrade
         save_toolkit_version()
 
+    logging.info(u"Calculating translation statistics, this will take "
+                 u"a few minutes")
+
     # First time to visit the front page all stats for projects and
-    # languages will be calculated which can take forever, since users
+    # languages will be calculated which can take forever. Since users
     # don't like webpages that take forever let's precalculate the
-    # stats here (copied from dbinit)
-    yield stats_start()
-
+    # stats here
+    from pootle_language.models import Language
     for language in Language.objects.iterator():
-        yield stats_language(language)
+        logging.info(u"Language %s is %d%% complete", language.name,
+                     language.translated_percentage())
 
+    from pootle_project.models import Project
     for project in Project.objects.iterator():
-        yield stats_project(project)
+        logging.info(u"Project %s is %d%% complete", project.fullname,
+                     project.translated_percentage())
 
-    yield stats_end()
-
-    yield footer()
-
-    # Bring back stdout
-    sys.stdout = stdout
-
-    return
+    logging.info(u"Done calculating statistics")

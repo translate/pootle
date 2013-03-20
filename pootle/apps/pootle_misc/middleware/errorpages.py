@@ -70,6 +70,18 @@ class ErrorPagesMiddleware(object):
 
             return HttpResponseForbidden(render_to_string('403.html', templatevars,
                                       RequestContext(request)))
+        elif (exception.__class__.__name__ in
+                ('OperationalError', 'ProgrammingError', 'DatabaseError')):
+            # HACKISH: Since exceptions thrown by different databases do
+            # not share the same class heirarchy (DBAPI2 sucks) we have to
+            # check the class name instead. Since python uses duck typing
+            # I will call this
+            # poking-the-duck-until-it-quacks-like-a-duck-test
+            return HttpResponseServerError(
+                    render_to_string('db_error.html', {'exception': msg},
+                                     RequestContext(request))
+                )
+
         else:
             #FIXME: implement better 500
             tb = traceback.format_exc()

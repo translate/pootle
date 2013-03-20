@@ -30,15 +30,9 @@ You might want to look for any new :ref:`available settings
 <settings#available>` in the new version that you might want to configure.
 
 Once you have the new code configured to run in your web server using the
-correct settings file, **Pootle will perform the necessary upgrade when
-the first page is requested**.
-
-.. note::
-
-    For certain upgrades this automated upgrade might take a long time. In such
-    cases you might prefer to perform the upgrade from the command line before
-    taking the server live.  Do this with the :ref:`updatedb management
-    command <commands#updatedb>`.
+correct settings file, you will be ready to run the database upgrade
+procedure by using the :ref:`updatedb management command
+<commands#updatedb>`.
 
 After a successful upgrade, consider clearing your cache. For users of
 memcached it is enough to restart memcached. For users of the default database

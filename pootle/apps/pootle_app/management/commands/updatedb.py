@@ -59,13 +59,15 @@ def update_db():
             logging.info("Upgrading Pootle database from schema version "
                          "%d to %d", db_buildversion, code_buildversion)
 
+        tt_version_changed = False
         if db_tt_buildversion < code_tt_buildversion:
+            tt_version_changed = True
             logging.info("Upgrading TT database from schema version %d to %d",
                          db_tt_buildversion, code_tt_buildversion)
 
         from pootle_misc.dbupdate import staggered_update
-        for i in staggered_update(db_buildversion, db_tt_buildversion):
-            pass
+        staggered_update(db_buildversion, db_tt_buildversion,
+                         tt_version_changed)
 
         logging.info("Database upgrade done, current schema versions:\n"
                      "- Pootle: %d\n- Translate Toolkit: %d",

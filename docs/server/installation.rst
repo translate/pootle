@@ -124,6 +124,20 @@ change. For further customization, you can also check for the :ref:`full list of
 available settings<settings#available>`.
 
 
+.. _installation#setting_up_the_database:
+
+Setting Up the Database
+-----------------------
+
+Before your run Pootle for the first time, you need to create the schema
+for the database and populate it with initial data. This is done by
+executing the :ref:`syncdb <commands#syncdb>` and :ref:`initdb
+<commands#initdb>` management commands::
+
+  $ pootle syncdb --noinput
+  $ pootle initdb
+
+
 .. _installation#running_pootle:
 
 Running Pootle
@@ -137,19 +151,6 @@ software. To run it, just issue::
 
 And the server will start listening on port 8000. This can be accessed from your
 web browser at ``http://localhost:8000/``.
-
-.. note::
-
-  On the very first request Pootle will take a few minutes to setup the database
-  and will scan all the default projects and translation files it ships.
-  Finally, it will redirect to the front page.
-
-  If you prefer, you can run this process from the command-line by executing the
-  :ref:`syncdb <commands#syncdb>` and :ref:`initdb <commands#initdb>` management
-  commands::
-
-    $ pootle syncdb
-    $ pootle initdb
 
 
 .. _installation#reverse_proxy:
