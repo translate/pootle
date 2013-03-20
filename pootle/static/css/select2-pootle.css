@@ -1,0 +1,112 @@
+/*
+    Pootle customizations for Select2 styles.
+*/
+
+
+/* Customizations for breadcrumbs selects */
+
+.select2-container
+{
+    top: -2px; /* needed because of the border */
+}
+
+.select2-container .select2-choice
+{
+    border: 1px solid #d9d9d9;
+
+    -webkit-border-radius: 2px;
+       -moz-border-radius: 2px;
+            border-radius: 2px;
+}
+
+.breadcrumb .select2-container .select2-choice
+{
+    border: 1px solid transparent;
+}
+
+.select2-container:hover .select2-choice
+{
+    border: 1px solid #d9d9d9;
+}
+
+.select2-container.select2-drop-above .select2-choice
+{
+    border-bottom-color: #d9d9d9;
+    -webkit-border-radius:0 0 2px 2px;
+       -moz-border-radius:0 0 2px 2px;
+            border-radius:0 0 2px 2px;
+}
+
+.select2-drop
+{
+    border: 1px solid #d9d9d9;
+    border-top: 0;
+         -o-box-shadow: 0 4px 5px rgba(0, 0, 0, .15);
+}
+
+.select2-drop.select2-drop-above
+{
+    border-top: 1px solid #d9d9d9;
+         -o-box-shadow: 0 -4px 5px rgba(0, 0, 0, .15);
+}
+
+.select2-container .select2-choice div
+{
+    border-left: 1px solid #d9d9d9;
+    -webkit-border-radius: 0 2px 2px 0;
+       -moz-border-radius: 0 2px 2px 0;
+            border-radius: 0 2px 2px 0;
+}
+
+.breadcrumb .select2-container .select2-choice div
+{
+    border-left: 1px solid transparent;
+}
+
+.select2-search input
+{
+    border: 1px solid #d9d9d9;
+}
+
+.select2-container-active .select2-choice,
+.select2-container-active .select2-choices
+{
+    border: 1px solid #0489b7;
+         -o-box-shadow: 0 0 5px rgba(0,0,0,.3);
+}
+
+.breadcrumb .select2-dropdown-open .select2-choice,
+.select2-dropdown-open .select2-choice
+{
+    border: 1px solid #d9d9d9;
+    border-bottom-color: transparent;
+         -o-box-shadow: 0 1px 0 #fff inset;
+}
+
+.select2-results .select2-highlighted
+{
+    background: #0489b7;
+}
+
+.select2-container-multi .select2-choices
+{
+    border: 1px solid #d9d9d9;
+}
+
+.select2-container-multi.select2-container-active .select2-choices
+{
+    border: 1px solid #0489b7;
+         -o-box-shadow: 0 0 5px rgba(0,0,0,.3);
+}
+
+.select2-container-multi .select2-choices .select2-search-field input
+{
+    height: 15px;
+         -o-box-shadow: none;
+}
+
+.select2-container-multi .select2-choices .select2-search-choice
+{
+    border: 1px solid #d9d9d9;
+}
+
