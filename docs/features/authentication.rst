@@ -21,6 +21,7 @@ in our LDAP server, this user/password is *admin*/*pootle*. The LDAP accounts
 are based on the mail addresses: these are the uids. Finally, *John Doe* is
 part of the branch *employees* on the LDAP.
 
+.. code-block:: python
 
     # Authenticate first with an LDAP system and then fall back to Django's
     # authentication system.
