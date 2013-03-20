@@ -100,7 +100,7 @@ Released on August 17th 2010.
 - Pending files are not used for suggestions any more, and will also be
   migrated to the database during upgrade.
 
-- New settings are available in `localsettings.py` - compare your
+- New settings are available in `localsettings.py` -- compare your
   existing one to the new one.
 
 - Pootle 1 installations can easily migrate everything excluding project
@@ -252,7 +252,7 @@ Terminology
 
 Translation Memory
   Pootle can now aid translators by means of a translation memory. The
-  suggestions are not generated realtime - it is done on the server by
+  suggestions are not generated realtime -- it is done on the server by
   means of a commandline program (`updatetm`). Files with an appended `.tm`
   will be generated and read by Pootle to supply the suggestions. For more
   information see `updatetm`.

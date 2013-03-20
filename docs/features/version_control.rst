@@ -262,7 +262,7 @@ Adding
 When a language is initialized from templates, Pootle will check if it is
 inside a version control checkout/clone. If it is, it will add the new files as
 initialized from the templates, and commit these initial versions. The same is
-done when updating against templates at a later stage - if this introduced any new
+done when updating against templates at a later stage -- if this introduced any new
 files, these will be added to the configured version control system.
 
 A typical commit message when adding from Pootle will look something like
