@@ -26,7 +26,7 @@ Not released yet.
   configuration.
 
 - Static files are bundled into assets by using `django-assets
-  <http://elsdoerfer.name/docs/webassets/django/index.html>`_.
+  <http://elsdoerfer.name/docs/django-assets/>`_.
 
 - Several features from translation projects have been merged into the
   *Overview* tab, including quality check failures and directory- and
