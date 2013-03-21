@@ -231,8 +231,11 @@ def project_admin(request, project_code):
         language = LiberalModelChoiceField(
                 label=_("Language"),
                 queryset=Language.objects.exclude(
-                    translationproject__project=current_project)
-                )
+                    translationproject__project=current_project),
+                widget=forms.Select(attrs={
+                    'class': 'js-select2 select2-language',
+                }),
+        )
 
         class Meta:
             prefix = "existing_language"

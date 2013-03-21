@@ -146,3 +146,66 @@
     border: 1px solid #d9d9d9;
 }
 
+
+
+/* Width specification for several selects */
+
+/* Styles for "multiple" selects */
+.select2-multiple
+{
+    width: 30em;
+    min-width: 30em;
+    max-width: 30em;
+}
+
+/* Styles for other selects */
+.select2-nplurals
+{
+    width: 8em;
+    min-width: 8em;
+    max-width: 12em;
+}
+
+.select2-checkstyle
+{
+    width: 14em;
+    min-width: 14em;
+    max-width: 20em;
+}
+
+.select2-localfiletype
+{
+    width: 16em;
+    min-width: 16em;
+    max-width: 20em;
+}
+
+.select2-treestyle
+{
+    width: 26em;
+    min-width: 26em;
+    max-width: 30em;
+}
+
+.select2-language
+{
+    width: 21em;
+    min-width: 21em;
+    max-width: 30em;
+}
+
+.select2-username,
+.select2-filter-status
+{
+    width: 20em;
+    min-width: 20em;
+    max-width: 20em;
+}
+
+.select2-filter-checks
+{
+    width: 24em;
+    min-width: 24em;
+    max-width: 30em;
+}
+

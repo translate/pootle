@@ -56,6 +56,10 @@ def form_factory(current_directory):
                     label=_("Project Selection"),
                     queryset=Project.objects.all(),
                     required=False,
+                    widget=forms.SelectMultiple(attrs={
+                        'class': 'js-select2 select2-multiple',
+                        'data-placeholder': _('Select one or more projects'),
+                    }),
             )
 
         # Language selection
@@ -68,6 +72,10 @@ def form_factory(current_directory):
                     label=_("Language Selection"),
                     queryset=current_directory.project.languages,
                     required=False,
+                    widget=forms.SelectMultiple(attrs={
+                        'class': 'js-select2 select2-multiple',
+                        'data-placeholder': _('Select one or more languages'),
+                    }),
             )
 
         class Meta:

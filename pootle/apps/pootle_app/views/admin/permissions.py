@@ -109,11 +109,18 @@ def admin_permissions(request, current_directory, template, context):
                 querysets=querysets,
                 queryset=PootleProfile.objects.all(),
                 required=True,
+                widget=forms.Select(attrs={
+                    'class': 'js-select2 select2-username',
+                }),
         )
         positive_permissions = PermissionFormField(
                 label=_('Permissions'),
                 queryset=permission_queryset,
                 required=False,
+                widget=forms.SelectMultiple(attrs={
+                    'class': 'js-select2 select2-multiple',
+                    'data-placeholder': _('Select one or more permissions'),
+                }),
         )
 
     link = lambda instance: unicode(instance.profile)

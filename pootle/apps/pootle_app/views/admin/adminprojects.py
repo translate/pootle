@@ -59,6 +59,14 @@ def view(request):
                         self.instance._detect_treestyle()):
                     self.fields['treestyle'].widget.attrs['disabled'] = True
                     self.fields['treestyle'].required = False
+            self.fields['checkstyle'].widget.attrs['class'] = \
+                "js-select2 select2-checkstyle"
+            self.fields['localfiletype'].widget.attrs['class'] = \
+                "js-select2 select2-localfiletype"
+            self.fields['treestyle'].widget.attrs['class'] = \
+                "js-select2 select2-treestyle"
+            self.fields['source_language'].widget.attrs['class'] = \
+                "js-select2 select2-language"
 
         def clean_localfiletype(self):
             value = self.cleaned_data.get('localfiletype', None)
