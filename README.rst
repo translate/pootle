@@ -17,6 +17,14 @@ Pootle.  It allows a team to manage their files, permissions, projects, and
 also allows for translation on-line.  Files can be downloaded for offline
 translation and later uploaded again.
 
+Installation can be done via pip::
+
+  pip install pootle
+
+But don't forget to read the `quickstart guide
+<http://docs.translatehouse.org/projects/pootle/en/latest/server/installation.html>`_
+for the important details.
+
 
 Resources
 ---------
