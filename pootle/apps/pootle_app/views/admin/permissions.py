@@ -105,6 +105,7 @@ def admin_permissions(request, current_directory, template, context):
                 widget=forms.HiddenInput,
         )
         profile = GroupedModelChoiceField(
+                label=_('Username'),
                 querysets=querysets,
                 queryset=PootleProfile.objects.all(),
                 required=True,
