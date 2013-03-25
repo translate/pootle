@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 # Verbatim script for managing the SUMO (support.mozilla.com) project.  More information at
 # https://wiki.mozilla.org/Verbatim
