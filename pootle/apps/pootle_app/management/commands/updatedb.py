@@ -76,3 +76,9 @@ def update_db():
         logging.info("No database upgrades required, current schema "
                      "versions:\n- Pootle: %d\n- Translate Toolkit: %d",
                      db_buildversion, db_tt_buildversion)
+
+    logging.info("If you are trying to upgrade Pootle from version 2.5\n"
+                 "or older, now you need to run `./manage.py migrate`.\n"
+                 "More information is available online at\n"
+                 "http://docs.translatehouse.org/projects/pootle/en/"
+                 "latest/server/upgrading.html")
