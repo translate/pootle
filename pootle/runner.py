@@ -128,6 +128,10 @@ def run_app(project, default_settings_path, settings_template,
         sys.exit(2)
 
     if command == 'init':
+        noinput = '--noinput' in command_args
+        if noinput:
+            command_args.remove('--noinput')
+
         # Determine which config file to write
         try:
             import re
@@ -141,12 +145,14 @@ def run_app(project, default_settings_path, settings_template,
 
         if os.path.exists(config_path):
             resp = None
+            if noinput:
+                resp = 'n'
             while resp not in ('Y', 'n'):
                 resp = raw_input('File already exists at %r, overwrite? [nY] ' \
                                  % config_path)
-                if resp == 'n':
-                    print "Aborted!"
-                    return
+            if resp == 'n':
+                print "File already exists, not overwriting."
+                return
 
         try:
             init_settings(config_path, settings_template)
