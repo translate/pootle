@@ -22,9 +22,11 @@ import re
 
 from django import template
 from django.core.exceptions import ObjectDoesNotExist
-#FIXME: _loader is probably not a stable API for the future, but seems like
-# the best way to go for now:
-from django.template.loaders.app_directories import _loader
+try:
+    from django.template.loaders.app_directories import _loader as Loader
+except ImportError:
+    # Django 1.5+
+    from django.template.loaders.app_directories import Loader
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _, ungettext
 
@@ -183,7 +185,7 @@ def do_include_raw(parser, token):
     if template_name[0] in ('"', "'") and template_name[-1] == template_name[0]:
         template_name = template_name[1:-1]
 
-    source, path = _loader.load_template_source(template_name)
+    source, path = Loader.load_template_source(template_name)
 
     return template.TextNode(source)
 register.tag("include_raw", do_include_raw)
