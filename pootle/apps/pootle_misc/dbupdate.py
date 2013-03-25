@@ -29,7 +29,6 @@ When adding new fields in models, take into account the following:
 """
 
 import logging
-import sys
 
 from django.core.management import call_command
 
@@ -191,7 +190,6 @@ def update_tables_22000(flush_checks):
     field.default = u''
     db.add_column(table_name, field.name, field)
 
-    from pootle_language.models import Language
     table_name = Language._meta.db_table
     field = Language._meta.get_field('description')
     field.default = u''
@@ -201,7 +199,6 @@ def update_tables_22000(flush_checks):
     field.default = u''
     db.add_column(table_name, field.name, field)
 
-    from pootle_translationproject.models import TranslationProject
     table_name = TranslationProject._meta.db_table
     field = TranslationProject._meta.get_field('description')
     field.default = u''
@@ -211,7 +208,6 @@ def update_tables_22000(flush_checks):
     field.default = u''
     db.add_column(table_name, field.name, field)
 
-    from pootle_project.models import Project
     table_name = Project._meta.db_table
     field = Project._meta.get_field('report_target')
     field.default = u''
@@ -387,12 +383,10 @@ def staggered_update(db_buildversion, tt_buildversion, tt_version_changed):
     # languages will be calculated which can take forever. Since users
     # don't like webpages that take forever let's precalculate the
     # stats here
-    from pootle_language.models import Language
     for language in Language.objects.iterator():
         logging.info(u"Language %s is %d%% complete", language.name,
                      language.translated_percentage())
 
-    from pootle_project.models import Project
     for project in Project.objects.iterator():
         logging.info(u"Project %s is %d%% complete", project.fullname,
                      project.translated_percentage())
