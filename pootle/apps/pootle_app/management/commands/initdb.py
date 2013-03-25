@@ -45,7 +45,6 @@ def create_default_db():
     except:
         if transaction.is_dirty():
             transaction.rollback()
-        transaction.leave_transaction_management()
         raise
     finally:
         if transaction.is_managed():
