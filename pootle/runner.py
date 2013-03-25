@@ -18,6 +18,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+import base64
+import re
 import os
 import sys
 
@@ -45,7 +47,6 @@ def init_settings(settings_filepath, template_filename):
 
     fp = open(settings_filepath, 'w')
 
-    import base64
     output = open(template_filename).read()
     output = output % {
             'default_key': base64.b64encode(os.urandom(KEY_LENGTH)),
@@ -130,7 +131,6 @@ def run_app(project, default_settings_path, settings_template,
     if command == 'init':
         # Determine which config file to write
         try:
-            import re
             config_path = command_args[0]
             # Remove possible initial dashes
             config_path = re.sub('^-+', '', config_path)
