@@ -30,7 +30,7 @@ from pootle_translationproject.models import create_translation_project
 from pootle_language.models import Language
 from pootle_project.models import Project
 
-def does_not_exists(path):
+def does_not_exist(path):
     if os.path.exists(path):
         return False
 
@@ -53,7 +53,7 @@ class Command(PootleCommand):
 
     def handle_project(self, project, **options):
         clean = options.get('clean', False)
-        if clean and does_not_exists(project.get_real_path()):
+        if clean and does_not_exist(project.get_real_path()):
             logging.info(u"Deleting %s", project)
             project.delete()
             return
@@ -79,6 +79,6 @@ class Command(PootleCommand):
 
     def handle_translation_project(self, translation_project, **options):
         clean = options.get('clean', False)
-        if clean and does_not_exists(translation_project.abs_real_path):
+        if clean and does_not_exist(translation_project.abs_real_path):
             logging.info(u"Deleting %s", translation_project)
             translation_project.delete()
