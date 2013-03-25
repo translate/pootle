@@ -32,7 +32,7 @@ from pootle_app.models.permissions import (get_matching_permissions,
 from pootle_language.models import Language
 from pootle_misc.mail import send_mail
 from pootle_notifications.models import Notice
-from pootle_project.models import Project
+from pootle_notifications.forms import form_factory
 from pootle_profile.models import get_profile, PootleProfile
 from pootle_translationproject.models import TranslationProject
 
@@ -122,57 +122,6 @@ def create_notice(creator, message, directory):
     new_notice.directory = directory
     new_notice.save()
     return new_notice
-
-
-def form_factory(current_directory):
-    from django.forms import ModelForm
-    from django import forms
-    is_root = current_directory.pootle_path == '/'
-
-    class _NoticeForm(ModelForm):
-        directory = forms.ModelChoiceField(
-            queryset=Directory.objects.filter(pk=current_directory.pk),
-            initial=current_directory.pk,
-            widget=forms.HiddenInput,
-        )
-        publish_rss = forms.BooleanField(label=_('Publish on news feed'),
-                required=False, initial=True)
-        send_email = forms.BooleanField(label=_('Send email'), required=False)
-        email_header = forms.CharField(label=_('Title'), required=False)
-        restrict_to_active_users = forms.BooleanField(
-                label=_('Email only to recently active users'),
-                required=False,
-                initial=True,
-        )
-
-        # Project selection
-        if current_directory.is_language() or is_root:
-            project_all = forms.BooleanField(
-                    label=_('All Projects'),
-                    required=False,
-            )
-            project_selection = forms.ModelMultipleChoiceField(
-                    label=_("Project Selection"),
-                    queryset=Project.objects.all(),
-                    required=False,
-            )
-
-        # Language selection
-        if current_directory.is_project() or is_root:
-            language_all = forms.BooleanField(
-                    label=_('All Languages'),
-                    required=False,
-            )
-            language_selection = forms.ModelMultipleChoiceField(
-                    label=_("Language Selection"),
-                    queryset=current_directory.project.languages,
-                    required=False,
-            )
-
-        class Meta:
-            model = Notice
-
-    return _NoticeForm
 
 
 def handle_form(request, current_directory, current_project,
