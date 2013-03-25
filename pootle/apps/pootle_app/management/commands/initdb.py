@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2009-2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -36,18 +36,17 @@ def create_default_db():
     You can tweak the methods called or their implementation elsewhere in the
     file. This provides some sane default to get things working."""
     try:
-        try:
-            transaction.enter_transaction_management()
-            transaction.managed(True)
+        transaction.enter_transaction_management()
+        transaction.managed(True)
 
-            create_default_projects()
-            create_default_languages()
-            create_default_admin()
-        except:
-            if transaction.is_dirty():
-                transaction.rollback()
-            transaction.leave_transaction_management()
-            raise
+        create_default_projects()
+        create_default_languages()
+        create_default_admin()
+    except:
+        if transaction.is_dirty():
+            transaction.rollback()
+        transaction.leave_transaction_management()
+        raise
     finally:
         if transaction.is_managed():
             if transaction.is_dirty():
