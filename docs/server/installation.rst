@@ -112,6 +112,8 @@ for it. This is as easy as running::
 By default it writes the configuration file at ``~/.pootle/pootle.conf`` but
 if you want you can pass an alternative path as an argument to the ``init``
 command.
+If the desired path exists, you will be prompted for whether to overwrite the
+old configuration. Passing the ``--noinput`` flag assumes a negative answer.
 
 This default configuration is enough to initially experiment with Pootle but
 **it's highly discouraged and unsupported to use this configuration in a
