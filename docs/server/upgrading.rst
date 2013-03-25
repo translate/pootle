@@ -16,8 +16,8 @@ that you have all the dependencies for the newer version.
 
 Always make backups of all your translation files (your whole
 :setting:`PODIRECTORY`) and your custom settings file. You can synchronize all
-your translation files with the database using the :ref:`syncdb mangament
-command <commands#syncdb>` before you make your backups.
+your translation files with the database using the :ref:`sync_stores
+management command <commands#sync_stores>` before you make your backups.
 
 Make a backup of your complete database using the appropriate *dump* command
 for your database system.
