@@ -55,6 +55,6 @@ details will need individual inspection to see if they can apply
 cleanly or have to be reimplemented on the new version of Pootle.
 
 Since Pootle 2.5 :doc:`customization of style sheets and templates
-<customization>` have become much easier to seperate from the standard code.  If
-you are migrating to Pootle 2.5+ then use this opportunity to move your code to
-the correct customization locations.
+<../developers/customization>` have become much easier to seperate from
+the standard code.  If you are migrating to Pootle 2.5+ then use this
+opportunity to move your code to the correct customization locations.
