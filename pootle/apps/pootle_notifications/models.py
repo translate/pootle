@@ -23,12 +23,15 @@ import locale
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle_misc.baseurl import l
 
 
 class Notice(models.Model):
     directory = models.ForeignKey('pootle_app.Directory', db_index=True)
-    message = models.TextField(_('Message'))
+    message_help_text = _('A message body for this news item. Allowed markup:'
+                          ' %s', get_markup_filter_name())
+    message = MarkupField(_('Message'), help_text=message_help_text)
     # Translators: The date that the news item was written
     added = models.DateTimeField(_('Added'), auto_now_add=True, null=True, db_index=True)
 
