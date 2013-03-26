@@ -456,7 +456,7 @@ disabled look for disabled choices in the results dropdown
 }
 
 .select2-container-multi .select2-choices .select2-search-field input.select2-active {
-    background: #fff url('select2-spinner.gif') no-repeat 100% !important;
+    background: #fff url('../images/select2-spinner.gif') no-repeat 100% !important;
 }
 
 .select2-default {
