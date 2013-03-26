@@ -31,6 +31,12 @@ import syspath_override
 #: Length for the generated :setting:`SECRET_KEY`
 KEY_LENGTH = 50
 
+#: Default path for the settings file
+DEFAULT_SETTINGS_PATH = '~/.pootle/pootle.conf'
+
+#: Template that will be used to initialize settings from
+SETTINGS_TEMPLATE_FILENAME = 'settings/90-local.conf.sample'
+
 
 def init_settings(settings_filepath, template_filename):
     """Initializes a sample settings file for new installations.
@@ -197,10 +203,10 @@ def run_app(project, default_settings_path, settings_template,
 
 def main():
     src_dir = os.path.abspath(os.path.dirname(__file__))
-    settings_template = os.path.join(src_dir, 'settings/90-local.conf.sample')
+    settings_template = os.path.join(src_dir, SETTINGS_TEMPLATE_FILENAME)
 
     run_app(project='pootle',
-            default_settings_path='~/.pootle/pootle.conf',
+            default_settings_path=DEFAULT_SETTINGS_PATH,
             settings_template=settings_template,
             django_settings_module='pootle.settings')
 
