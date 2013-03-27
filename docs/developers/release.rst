@@ -59,24 +59,29 @@ Examples
 Understanding the number and release train with some examples:
 
 *Django 1.5* is the latest version of Django:
+
 - Pootle is named ``2.5`` and should support *Django 1.5*.
 - Pootle ``2.5.0`` is released as the first time based release.
 - Next time based release would be ``2.5.1``.
 
 A secuity issue is detected in Pootle ``2.5.0``
+
 - The first security release ``2.5.0.1`` is made
 - Next time based release is still ``2.5.1``
 
 *Django 1.6* is released:
+
 - Current Pootle release is ``2.5.4``, next Pootle release will be ``2.6.0``
 - When ``2.6.0`` is out we will support Pootle ``2.6.0`` and ``2.5.4``, all
   previous versions will be unsupported.
 
 A security issue is discovered which impacts all our supported time based
 releases:
+
 - We release ``2.6.0.1`` and ``2.5.4.1``
 
 Time based release ``2.6.1`` is released six months after ``2.6.0``
+
 - We now support ``2.6.1`` and ``2.6.0``
 - Support is dropped for ``2.5.4`` which is now a year old.
 
