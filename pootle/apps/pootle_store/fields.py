@@ -84,7 +84,8 @@ def to_python(value):
         ms.plural = plural
         return ms
     elif isinstance(value, dict):
-        return multistring([val for key, val in sorted(value.items())], encoding="UTF-8")
+        return multistring([val for key, val in sorted(value.items())],
+                           encoding="UTF-8")
     else:
         return multistring(value, encoding="UTF-8")
 
@@ -107,9 +108,11 @@ class MultiStringField(models.Field):
         return to_db(value)
 
     def get_db_prep_lookup(self, lookup_type, value, *args, **kwargs):
-        if lookup_type in ('exact', 'iexact') or not isinstance(value, basestring):
+        if (lookup_type in ('exact', 'iexact') or
+            not isinstance(value, basestring)):
             value = self.get_db_prep_value(value)
-        return super(MultiStringField, self).get_db_prep_lookup(lookup_type, value, *args, **kwargs)
+        return super(MultiStringField, self) \
+                .get_db_prep_lookup(lookup_type, value, *args, **kwargs)
 
 add_introspection_rules(
         [],
@@ -171,7 +174,8 @@ class TranslationStoreFieldFile(FieldFile):
         """Add translation store to dictionary cache, replace old cached
         version if needed."""
         mod_info = self.getpomtime()
-        if not hasattr(self, "_store_tuple") or self._store_tuple.mod_info != mod_info:
+        if (not hasattr(self, "_store_tuple") or
+            self._store_tuple.mod_info != mod_info):
             try:
                 self._store_tuple = self._store_cache[self.path]
                 if self._store_tuple.mod_info != mod_info:
