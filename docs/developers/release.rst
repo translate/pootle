@@ -32,9 +32,9 @@ The principles above extended into these rules.
 #. Older time based releases are no longer supported.
 #. Pootle should run on Django N and N-1.
 #. *master* is always releasable.
-#. One month before a time-based release is a stability period in which schema
-   changes are avoided.
 #. All schema related and major changes are made in feature branches.
+#. One month before a time-based release, when *master* is in a stabilising
+   period, schema and feature changes should not landed on *master*.
 
 
 Version numbering
