@@ -292,6 +292,7 @@ intersphinx_mapping = {
     'django': ('http://docs.djangoproject.com/en/dev',
         'http://docs.djangoproject.com/en/dev/_objects'),
     'toolkit': ('http://docs.translatehouse.org/projects/translate-toolkit/en/latest/', None),
+    'south':  ('http://south.readthedocs.org/en/latest/', None),
 }
 
 # -- Options for Gettext -------------------------------------------------
