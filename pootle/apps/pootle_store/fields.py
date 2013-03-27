@@ -26,6 +26,8 @@ import os
 from django.db import models
 from django.db.models.fields.files import FieldFile, FileField
 
+from south.modelsinspector import add_introspection_rules
+
 from translate.misc.multistring import multistring
 
 from pootle_store.signals import translation_file_updated
@@ -108,6 +110,12 @@ class MultiStringField(models.Field):
         if lookup_type in ('exact', 'iexact') or not isinstance(value, basestring):
             value = self.get_db_prep_value(value)
         return super(MultiStringField, self).get_db_prep_lookup(lookup_type, value, *args, **kwargs)
+
+add_introspection_rules(
+        [],
+        ["^pootle_store\.fields\.MultiStringField"],
+    )
+
 
 ################# File ###############################
 
@@ -234,6 +242,11 @@ class TranslationStoreFieldFile(FieldFile):
         if save:
             super(TranslationStoreFieldFile, self).delete(save)
 
+add_introspection_rules(
+        [],
+        ["^pootle_store\.fields\.TranslationStoreFieldFile"],
+    )
+
 
 class TranslationStoreField(FileField):
     """This is the field class to represent a FileField in a model that
@@ -246,3 +259,13 @@ class TranslationStoreField(FileField):
         determine file format for parsing, useful for .pending files"""
         self.ignore = ignore
         super(TranslationStoreField, self).__init__(**kwargs)
+
+add_introspection_rules([
+    (
+        [TranslationStoreField],
+        [],
+        {
+            'ignore': ['ignore', {'default': None}],
+        },
+    ),
+], ["^pootle_store\.fields\.TranslationStoreField"])
