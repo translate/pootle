@@ -64,7 +64,7 @@ Understanding the number and release train with some examples:
 - Pootle ``2.5.0`` is released as the first time based release.
 - Next time based release would be ``2.5.1``.
 
-A secuity issue is detected in Pootle ``2.5.0``
+A security issue is detected in Pootle ``2.5.0``
 
 - The first security release ``2.5.0.1`` is made
 - Next time based release is still ``2.5.1``
