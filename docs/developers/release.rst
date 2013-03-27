@@ -1,6 +1,6 @@
 .. _release-process:
 
-Release process
+Release Process
 ===============
 
 This document describes the release process Pootle follows starting from
@@ -37,7 +37,7 @@ The principles above extended into these rules.
    period, schema and feature changes should not landed on *master*.
 
 
-Version numbering
+Version Numbering
 -----------------
 
 A Pootle version number consists of ``Major-Minor-Point-Bugfix`` as in
@@ -86,7 +86,7 @@ Time-based release ``2.6.1`` is released six months after ``2.6.0``
 - Support is dropped for ``2.5.4`` which is now a year old.
 
 
-The release train: point releases every six months
+The Release Train: Point Releases Every Six Months
 --------------------------------------------------
 
 Within the priciple that *master* is always deployable we aim to ensure a
@@ -107,7 +107,7 @@ merged until the next release train starts.
 Security fixes are applied anytime in the release train.
 
 
-Branching strategy
+Branching Strategy
 ------------------
 
 The next Pootle version is always baked in the *master* branch. Exceptions are
