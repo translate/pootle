@@ -44,8 +44,8 @@ A Pootle version number consists of ``Major-Minor-Point-Bugfix`` as in
 ``2.5.0`` or ``2.6.1.2``
 
 Pootle's minor number is changed to indicate the latest version of Django that
-is supported.  Thus when the latest version of Django is released and Pootle
-gains support for this version then the Pootle minor number will change.
+is supported.  Thus when the latest version of Django is released, and Pootle
+gains support for this version, then the Pootle minor number will change.
 
 Every six months, when a new release train is ready to be shipped, Pootle's
 point version will be incremented.
