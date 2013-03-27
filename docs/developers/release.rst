@@ -111,8 +111,8 @@ Branching strategy
 ------------------
 
 The next Pootle version is always baked in the *master* branch. Exceptions are
-security fixes which are committed in *master* and cherry-picked to the current
-release branches.
+security fixes which are committed in *master* and cherry-picked to the
+currently supported time-based release branches.
 
 A new time-based release is made off of *master*, incrementing the point
 version.  Every time a new release happens, a new branch is created. These
