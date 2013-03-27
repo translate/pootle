@@ -289,7 +289,8 @@ texinfo_documents = [
 
 intersphinx_mapping = {
     'python': ('http://docs.python.org/2.7', None),
-    'django': ('http://django.readthedocs.org/en/latest/', None),
+    'django': ('http://docs.djangoproject.com/en/dev',
+        'http://docs.djangoproject.com/en/dev/_objects'),
     'toolkit': ('http://docs.translatehouse.org/projects/translate-toolkit/en/latest/', None),
 }
 
