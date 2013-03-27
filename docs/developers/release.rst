@@ -90,7 +90,8 @@ The release train: point releases every six months
 --------------------------------------------------
 
 Within the priciple that *master* is always deployable we aim to ensure a
-period of stability to allow easier release in the month prior to a release.
+period of stability to allow easier release in the month prior to a time-based
+release.
 
 First-Fifth month
   All major work and features are allowed, strings may be broken.
