@@ -93,11 +93,11 @@ Within the priciple that *master* is always deployable we aim to ensure a
 period of stability to allow easier release in the month prior to a release.
 
 First-Fifth month
-  All major work and features are allowed.
+  All major work and features are allowed, strings may be broken.
 
 Sixth month
   Feature work that doesn't change the DB schema, bug fixes, refinements and
-  translations.
+  translations. Strings are frozen.
 
 If for some reason there's feature work that changes the schema during month
 six of the release train, the feature will go in its own branch and won't be
