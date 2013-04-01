@@ -200,6 +200,22 @@
     shortcut.add('ctrl+down', function () {
       $("#js-nav-next").trigger("click");
     });
+
+    shortcut.add('ctrl+,', function () {
+      $("#js-nav-prev").trigger("click");
+    });
+    shortcut.add('ctrl+.', function () {
+      $("#js-nav-next").trigger("click");
+    });
+    
+    if (navigator.platform.toUpperCase().indexOf('MAC') >= 0) {
+      var next_hint = $("#js-nav-next").attr("title");
+      var prev_hint = $("#js-nav-prev").attr("title");
+
+      $("#js-nav-next").attr("title", next_hint.replace('Ctrl+Down', 'Ctrl+.'));
+      $("#js-nav-prev").attr("title", prev_hint.replace('Ctrl+Up', 'Ctrl+,'));
+    }
+    
     shortcut.add('ctrl+shift+home', function () {
       PTL.editor.gotoFirstPage();
     });
