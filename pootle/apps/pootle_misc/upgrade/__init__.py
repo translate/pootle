@@ -154,24 +154,26 @@ def is_upgrade_function(mod, func):
 
 
 def get_upgrade_functions(mod, old_buildversion, new_buildversion):
-    """Returns a list of the upgrade functions to be executed.
+    """Returns a list of tuples of the upgrade functions to be executed
+    and their respective build numbers.
 
     :param mod: Module which contains the upgrade functions. You'll
         probably want to use `sys.modules[__name__]` when calling.
     :param old_buildversion: Old build version to use as a threshold.
     :param new_buildversion: New build version to use as a threshold.
     """
-    # Gather module's function names and filter those that need to be
-    # executed for the given build version.
-    fns = [f.__name__ for f in mod.__dict__.itervalues()
-                      if is_upgrade_function(mod, f)]
-    filtered_fns = filter(
-        lambda x: filter_upgrade_functions(x, old_buildversion,
+    # Gather module's functions and their build versions and filter those
+    # that need to be executed for the given build version.
+    functions = [(f, buildversion_for_fn(f.__name__))
+                    for f in mod.__dict__.itervalues()
+                    if is_upgrade_function(mod, f)]
+    filtered_functions = filter(
+        lambda x: filter_upgrade_functions(x[1], old_buildversion,
                                            new_buildversion),
-        fns,
+        functions,
     )
 
-    return sorted(filtered_fns)
+    return sorted(filtered_functions, cmp=lambda x,y: cmp(x[1], y[1]))
 
 
 def run_upgrade(old_ptl_buildversion=None, new_ptl_buildversion=None,
@@ -188,9 +190,42 @@ def run_upgrade(old_ptl_buildversion=None, new_ptl_buildversion=None,
         the source code.
     """
     if old_ptl_buildversion and new_ptl_buildversion:
-        from .pootle import upgrade
-        upgrade(old_ptl_buildversion, new_ptl_buildversion)
+        upgrade('pootle', old_ptl_buildversion, new_ptl_buildversion)
 
     if old_tt_buildversion and new_tt_buildversion:
-        from .ttk import upgrade
-        upgrade(old_ptl_buildversion, new_ptl_buildversion)
+        upgrade('ttk', old_ptl_buildversion, new_ptl_buildversion)
+
+
+def upgrade(product, old_buildversion, new_buildversion):
+    """Upgrades to the latest build version and executes any needed actions.
+
+    :param product: Product that needs to be upgraded. It must be a valid
+        module name in this package.
+    :param old_buildversion: Old build version that was stored in the DB
+        at the time of running the upgrade command.
+    :param new_buildversion: New build version as stored in the source code.
+    """
+    import sys
+    from django.utils.importlib import import_module
+
+    save_version_function = {
+            'pootle': save_pootle_version,
+            'ttk': save_toolkit_version,
+        }
+
+    product_module = '.'.join((__name__, product))
+    import_module(''.join(('.', product)), __name__)
+
+    upgrade_functions = get_upgrade_functions(sys.modules[product_module],
+                                              old_buildversion,
+                                              new_buildversion)
+
+    logging.debug('Will run the following upgrade functions: %r',
+                  [uf[0].__name__ for uf in upgrade_functions])
+
+    for upgrade_function, upgrade_buildversion in upgrade_functions:
+        upgrade_function()
+        # TODO: Call `save_xxx_version` here, removing this task from
+        # `upgrade_to_yyy` functions
+
+    save_version_function[product](new_buildversion)

@@ -41,27 +41,3 @@ def upgrade_to_12008():
                      conservative=False)
 
     save_toolkit_version(12008)
-
-
-def upgrade(old_buildversion, new_buildversion):
-    """Upgrades to the latest build version and executes any needed actions.
-
-    :param old_buildversion: Old build version that was stored in the DB
-        at the time of running the upgrade command.
-    :param new_buildversion: New build version as stored in the source code.
-    """
-    import sys
-    from . import get_upgrade_functions
-
-    filtered_fns = get_upgrade_functions(sys.modules[__name__],
-                                         old_buildversion, new_buildversion)
-
-    logging.debug('Will run the following upgrade functions: %r',
-                  filtered_fns)
-
-    for upgrade_fn in filtered_fns:
-        globals()[upgrade_fn]()
-        # TODO: Call `save_xxx_version` here, removing this task from
-        # `upgrade_to_yyy` functions
-
-    save_toolkit_version(new_buildversion)
