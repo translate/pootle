@@ -3,42 +3,112 @@
 Upgrading
 =========
 
-Pootle can easily be upgraded to newer versions.  Here are some tips to make
-the process easier.
+Here are some points to take into account while performing Pootle
+upgrades.
 
-Familiarize yourself with :doc:`important changes <../changelog>` in Pootle
-over the versions.  If you are upgrading to Pootle 2.x from Pootle 1.x, have a
-look at the :doc:`database_migration` page first, although some of the issues
-on this page could still be relevant.
 
-Check the :doc:`installation` instructions for the newer version, and ensure
-that you have all the dependencies for the newer version.
+.. _upgrading#checklist:
 
-Always make backups of all your translation files (your whole
-:setting:`PODIRECTORY`) and your custom settings file. You can synchronize all
-your translation files with the database using the :ref:`sync_stores
-management command <commands#sync_stores>` before you make your backups.
+Checklist
+---------
 
-Make a backup of your complete database using the appropriate *dump* command
-for your database system.
+Before upgrading Pootle to a newer version, make sure to go through this
+checklist.
 
-If you are upgrading from a version of Pootle that uses *localsettings.py* then
-you want to make sure your configuration file is read when Pootle starts. For
-more information, read the :ref:`settings#customizing` section.
+* Familiarize yourself with :doc:`important changes <../changelog>` in
+  Pootle over the versions.  If you are upgrading to Pootle 2.x from
+  Pootle 1.x, have a look at the :doc:`database_migration` page first,
+  although some of the issues on this page could still be relevant.
 
-You might want to look for any new :ref:`available settings
-<settings#available>` in the new version that you might want to configure.
+* Check the :doc:`installation` instructions for the newer version, and
+  ensure that you have all the dependencies for the newer version.
 
-Once you have the new code configured to run in your web server using the
-correct settings file, you will be ready to run the database upgrade
-procedure by using the :ref:`updatedb management command
-<commands#updatedb>`.
+* Always make backups of all your translation files (your whole
+  :setting:`PODIRECTORY`) and your custom settings file. You can
+  synchronize all your translation files with the database using the
+  :ref:`sync_stores management command <commands#sync_stores>` before you
+  make your backups.
 
-After a successful upgrade, consider clearing your cache. For users of
-memcached it is enough to restart memcached. For users of the default database
-cache, you can drop the `pootlecache` table and recreate it with::
+* Make a backup of your complete database using the appropriate *dump*
+  command for your database system.
+
+* If you are upgrading from a version of Pootle that uses
+  *localsettings.py* then you want to make sure your configuration file is
+  read when Pootle starts. For more information, read the
+  :ref:`settings#customizing` section.
+
+* You might want to look for any new :ref:`available settings
+  <settings#available>` in the new version that you might want to
+  configure.
+
+* After a successful upgrade, consider clearing your cache. For users of
+  memcached it is enough to restart memcached. For users of the default
+  database cache, you can drop the `pootlecache` table and recreate it
+  with::
 
     $ pootle createcachetable pootlecache
+
+
+.. _upgrading#database:
+
+Performing the Database Upgrade
+-------------------------------
+
+.. versionchanged:: 2.5.1
+
+Once you have the new code configured to in your server using the correct
+settings file, you will be ready to run the database schema and data
+upgrade procedure.
+
+.. warning::
+
+  Always do make database backups before running any upgrades.
+
+.. note::
+
+  If you are upgrading from a Pootle version older than 2.5, you will need
+  an extra step at the beginning: use the :ref:`updatedb command
+  <commands#updatedb>` first to upgrade the database schema to the state
+  of Pootle 2.5.
+
+  This is necessary due to the changes made to the schema migration
+  mechanisms after the 2.5 release.
+
+In the first step, the syncdb command will create any missing database
+tables that don't require any migrations.
+
+.. code-block:: bash
+
+  $ pootle syncdb
+
+
+.. note::
+
+  At this point in time, and due to Pootle's transtioning to South, you
+  will need to run a fake migration action in order to let South know
+  which is your current database schema.
+
+  You can execute the fake migration by running the following:
+
+  .. code-block:: bash
+
+    $ pootle migrate --all --fake 0001
+
+The second step will perform any pending schema migrations. You can read
+more about the :ref:`migrate command <south:commands>` in South's
+documentation.
+
+.. code-block:: bash
+
+  $ pootle migrate
+
+Lastly, the :ref:`upgrade command <commands#upgrade>` will perform any
+extra operations needed by Pootle to finish the upgrade and will record
+the current code build versions for Pootle and the Translate Toolkit.
+
+.. code-block:: bash
+
+  $ pootle upgrade
 
 
 .. _upgrading#custom_changes:
