@@ -28,57 +28,37 @@ from django.core.management.base import NoArgsCommand
 from pootle_misc import siteconfig
 from pootle.__version__ import build as code_buildversion
 
-from translate.__version__ import build as code_tt_buildversion
-
-
-#: Build version referring to Pootle version 2.0.
-#: We'll assume db represents version 2.0 if no build version is stored.
-DEFAULT_BUILDVERSION = 20000
-
-#: Build version referring to Translate Toolkit version 1.7.0.
-#: We'll assume db represents version 1.7.0 if no build version is stored.
-DEFAULT_TT_BUILDVERSION = 12005
-
 
 class Command(NoArgsCommand):
+
     def handle_noargs(self, **options):
-        update_db()
+        config = siteconfig.load_site_config()
+        db_buildversion = config.get('BUILDVERSION', None)
 
+        if db_buildversion and db_buildversion < code_buildversion:
+            logging.info('Upgrading Pootle database from schema version '
+                         '%d to %d', db_buildversion, code_buildversion)
 
-def update_db():
-    # Get current database build versions
-    config = siteconfig.load_site_config()
-    db_buildversion = config.get('BUILDVERSION', DEFAULT_BUILDVERSION)
-    db_tt_buildversion = int(config.get('TT_BUILDVERSION',
-                                        DEFAULT_TT_BUILDVERSION))
+            from pootle_misc.upgrade.schema import staggered_update
+            staggered_update(db_buildversion)
 
-    if (db_buildversion < code_buildversion or
-        db_tt_buildversion < code_tt_buildversion):
+            logging.info('Database upgrade done.')
+        elif db_buildversion:
+            logging.info('No database upgrades required.')
 
-        if db_buildversion < code_buildversion:
-            logging.info("Upgrading Pootle database from schema version "
-                         "%d to %d", db_buildversion, code_buildversion)
+        if db_buildversion:
+            new_buildversion = max(db_buildversion, code_buildversion)
+            logging.info('Current schema version: %d', new_buildversion)
+        else:
+            # Oh, the admin tried to run updatedb but there is no
+            # BUILDVERSION recorded in its Pootle installation. That means
+            # it's not a legacy installation.
+            logging.info('Your installation is newer than Pootle 2.5.\n'
+                         'You do not need to run this.')
 
-        tt_version_changed = False
-        if db_tt_buildversion < code_tt_buildversion:
-            tt_version_changed = True
-            logging.info("Upgrading TT database from schema version %d to %d",
-                         db_tt_buildversion, code_tt_buildversion)
-
-        from pootle_misc.dbupdate import staggered_update
-        staggered_update(db_buildversion, db_tt_buildversion,
-                         tt_version_changed)
-
-        logging.info("Database upgrade done, current schema versions:\n"
-                     "- Pootle: %d\n- Translate Toolkit: %d",
-                     code_buildversion, code_tt_buildversion)
-    else:
-        logging.info("No database upgrades required, current schema "
-                     "versions:\n- Pootle: %d\n- Translate Toolkit: %d",
-                     db_buildversion, db_tt_buildversion)
-
-    logging.info("If you are trying to upgrade Pootle from version 2.5\n"
-                 "or older, now you need to run `./manage.py migrate`.\n"
-                 "More information is available online at\n"
-                 "http://docs.translatehouse.org/projects/pootle/en/"
-                 "latest/server/upgrading.html")
+        logging.info('THIS UPGRADE SCRIPT HAS BEEN DEPRECATED!')
+        logging.info(
+            'If you are trying to upgrade Pootle from version 2.5\n'
+            'or older, please read the upgrade instructions at\n'
+            'http://docs.translatehouse.org/projects/pootle/en/latest/server/upgrading.html'
+        )
