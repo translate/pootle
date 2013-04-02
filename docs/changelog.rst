@@ -11,6 +11,21 @@ If you are upgrading Pootle, you might want to see some tips to ensure your
 :ref:`upgrade goes smoothly <upgrading>`
 
 
+Version 2.5.1
+-------------
+
+Not released yet.
+
+- The database schema upgrade procedure has been redefined, and the
+  :ref:`commands#updatedb` management command has been phased out in favor
+  of South's own :ref:`migrate command <south:commands>`.
+  Post schema upgrade actions have been moved to the
+  :ref:`commands#upgrade` command.
+
+  For detailed instructions, read the :ref:`upgrading` section of the
+  documentation.
+
+
 Version 2.5.0
 -------------
 

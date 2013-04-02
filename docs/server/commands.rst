@@ -392,11 +392,40 @@ several terminology projects, and creates the tutorial project.
 updatedb
 ^^^^^^^^
 
-This is a command line interface to Pootle's database scheme upgrade process.
-A database upgrade is usually triggered automatically on the first visit to a
-:doc:`new version of Pootle <upgrading>`, but for very large installs database
-upgrades can be too slow for the browser and it is best to run ``updatedb``
-from the command line.
+.. versionchanged:: 2.5.1
+
+This is a command line interface to Pootle's database schema upgrade
+process.
+
+This will only perform schema upgrades from Pootle versions older than 2.5
+up to version 2.5. For newer versions South's :ref:`migrate command
+<south:commands>` must be used.
+
+For detailed instructions on upgrading, read the :ref:`upgrading` section
+of the documentation.
+
+
+.. _commands#upgrade:
+
+upgrade
+^^^^^^^^
+
+.. versionadded:: 2.5.1
+
+Performs post schema upgrade actions that are necessary to leave all the
+bits in place. It also serves as a trigger for any changes needed by
+Translate Toolkit version upgrades.
+
+Optionally, the command accepts the ``--calculate-stats`` flag, which will
+calculate full translation statistics after doing the upgrade.
+
+Also, the ``--flush-checks`` flag forces flushing the existing quality
+checks. This is useful when new quality checks have been added or existing
+ones have been updated, but take into account that **this operation is
+very expensive**.
+
+For detailed instructions on upgrading, read the :ref:`upgrading` section
+of the documentation.
 
 
 .. _commands#useful_django_commands:

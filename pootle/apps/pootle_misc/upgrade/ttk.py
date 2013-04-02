@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2009 Zuza Software Foundation
+# Copyright 2013 Zuza Software Foundation
 #
-# This file is part of the Translate Toolkit.
+# This file is part of Pootle.
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,8 +18,20 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-"""This file contains the version of Pootle."""
+"""Translate Toolkit version-specific upgrade actions."""
 
-build = 25100
-sver = "2.5.1-alpha1"
-ver = (2, 5, 1)
+import logging
+
+
+def upgrade_to_12008():
+    from pootle_store.models import Store, PARSED
+
+    logging.info('Reparsing Qt ts')
+
+    for store in Store.objects \
+                      .filter(state__gt=PARSED,
+                              translation_project__project__localfiletype='ts',
+                              file__iendswith='.ts').iterator():
+        store.sync(update_translation=True)
+        store.update(update_structure=True, update_translation=True,
+                     conservative=False)
