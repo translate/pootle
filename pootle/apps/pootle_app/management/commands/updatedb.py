@@ -25,8 +25,8 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from django.core.management.base import NoArgsCommand
 
+from pootle_app.management.commands.upgrade import DEFAULT_POOTLE_BUILDVERSION
 from pootle_misc import siteconfig
-from pootle.__version__ import build as code_buildversion
 
 
 class Command(NoArgsCommand):
@@ -35,9 +35,10 @@ class Command(NoArgsCommand):
         config = siteconfig.load_site_config()
         db_buildversion = config.get('BUILDVERSION', None)
 
-        if db_buildversion and db_buildversion < code_buildversion:
+        if db_buildversion and db_buildversion < DEFAULT_POOTLE_BUILDVERSION:
             logging.info('Upgrading Pootle database from schema version '
-                         '%d to %d', db_buildversion, code_buildversion)
+                         '%d to %d', db_buildversion,
+                         DEFAULT_POOTLE_BUILDVERSION)
 
             from pootle_misc.upgrade.schema import staggered_update
             staggered_update(db_buildversion)
@@ -47,7 +48,8 @@ class Command(NoArgsCommand):
             logging.info('No database upgrades required.')
 
         if db_buildversion:
-            new_buildversion = max(db_buildversion, code_buildversion)
+            new_buildversion = max(db_buildversion,
+                                   DEFAULT_POOTLE_BUILDVERSION)
             logging.info('Current schema version: %d', new_buildversion)
         else:
             # Oh, the admin tried to run updatedb but there is no
