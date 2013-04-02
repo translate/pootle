@@ -27,13 +27,11 @@
 
     // converts pageZoom value to an appropriate class name string
     zoomClassName: function () {
-      var zoomStatus='';
+      var zoomStatus = '';
       if (this.pageZoom < 0) {
         zoomStatus = ['zoom-out-', (this.pageZoom * -1)].join('');
-      } else {
-        if (this.pageZoom > 0) {
+      } else if (this.pageZoom > 0) {
           zoomStatus = ['zoom-in-', this.pageZoom].join('');
-        }
       }
       return zoomStatus;
     },
