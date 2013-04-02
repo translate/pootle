@@ -20,11 +20,7 @@
 
 """Translate Toolkit version-specific upgrade actions."""
 
-from __future__ import absolute_import
-
 import logging
-
-from . import save_toolkit_version
 
 
 def upgrade_to_12008():
@@ -39,5 +35,3 @@ def upgrade_to_12008():
         store.sync(update_translation=True)
         store.update(update_structure=True, update_translation=True,
                      conservative=False)
-
-    save_toolkit_version(12008)

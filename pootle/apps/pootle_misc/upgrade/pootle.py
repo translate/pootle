@@ -24,8 +24,6 @@ from __future__ import absolute_import
 
 import logging
 
-from . import save_pootle_version
-
 
 def upgrade_to_20030():
     """Post-upgrade actions for upgrades to 20030."""
@@ -45,8 +43,6 @@ def upgrade_to_20030():
 
     contenttype.name = 'pootle'
     contenttype.save()
-
-    save_pootle_version(20030)
 
 
 def import_suggestions(store):
@@ -119,8 +115,6 @@ def upgrade_to_21000():
 
     logging.info(u'All translations are now imported')
 
-    save_pootle_version(21000)
-
 
 def upgrade_to_21060():
     """Post-upgrade actions for upgrades to 21060."""
@@ -135,8 +129,6 @@ def upgrade_to_21060():
                                         .distinct().iterator():
         deletefromcache(tp, ["getquickstats", "getcompletestats",
                              "get_mtime", "has_suggestions"])
-
-    save_pootle_version(21060)
 
 
 def upgrade_to_22000():
@@ -154,5 +146,3 @@ def upgrade_to_22000():
         if last_sync:
             store.sync_time = last_sync
             store.save()
-
-    save_pootle_version(22000)

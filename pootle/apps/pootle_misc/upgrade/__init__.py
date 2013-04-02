@@ -50,7 +50,7 @@ def save_toolkit_version(build=None):
 
     save_version(build, prefix='tt')
 
-    logging.info("Database now at Toolkit build %d" % build)
+    logging.info("Database now at Toolkit build %d" % int(build))
 
 
 def save_pootle_version(build=None):
@@ -60,7 +60,7 @@ def save_pootle_version(build=None):
 
     save_version(build, prefix='pootle')
 
-    logging.info("Database now at Pootle build %d" % build)
+    logging.info("Database now at Pootle build %d" % int(build))
 
 
 def save_legacy_pootle_version(build=None):
@@ -225,7 +225,6 @@ def upgrade(product, old_buildversion, new_buildversion):
 
     for upgrade_function, upgrade_buildversion in upgrade_functions:
         upgrade_function()
-        # TODO: Call `save_xxx_version` here, removing this task from
-        # `upgrade_to_yyy` functions
+        save_version_function[product](upgrade_buildversion)
 
     save_version_function[product](new_buildversion)
