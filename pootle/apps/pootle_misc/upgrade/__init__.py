@@ -125,6 +125,11 @@ def flush_quality_checks():
             store.save()
 
 
+def buildversion_for_fn(fn):
+    """Returns the build version string for the `fn` function name."""
+    return fn.rsplit('_', 1)[-1]
+
+
 def filter_upgrade_functions(fn, old_buildversion, new_buildversion):
     """Determines if a upgrade function should be run or not.
 
@@ -132,10 +137,10 @@ def filter_upgrade_functions(fn, old_buildversion, new_buildversion):
     :param old_buildversion: Old build version to use as a threshold.
     :param new_buildversion: New build version to use as a threshold.
     """
-    function_buildversion = fn.rsplit('_', 1)[-1]
     try:
-        return (int(function_buildversion) > int(old_buildversion) and
-                int(function_buildversion) <= int(new_buildversion))
+        function_buildversion = int(buildversion_for_fn(fn))
+        return (function_buildversion > int(old_buildversion) and
+                function_buildversion <= int(new_buildversion))
     except ValueError:
         return False
 
