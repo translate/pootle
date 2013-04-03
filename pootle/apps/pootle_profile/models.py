@@ -121,7 +121,10 @@ class PootleProfile(models.Model):
 
     @cached_property
     def get_email_hash(self):
-        return md5_f(self.user.email).hexdigest()
+        try:
+            return md5_f(self.user.email).hexdigest()
+        except UnicodeEncodeError:
+            return None
 
     def gravatar_url(self, size=80):
         if not self.get_email_hash:
