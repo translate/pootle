@@ -88,11 +88,10 @@ approach for this.
           </p>
         </form>
       </div>
-    {% else %}
-      <h2>{% trans "Latest News" %}</h2>
     {% endif %}
 
     <div class="news-feed{% if form %}-with-form{% endif %}">
+      <h2>{% trans "Latest News" %}</h2>
       {% for notice in notices %}
         <div class="datetime"><small>{{ notice.get_date }}</small></div>
         <div class="newsitem">{{ notice.message|safe|linebreaks|clean }}</div>
