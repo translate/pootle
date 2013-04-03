@@ -69,7 +69,6 @@ approach for this.
       <h2>{{ title }}</h2>
       <div class="form news">
         <h2>{% trans "Publish News" %}</h2>
-        <p>{{ success }}</p>
 
         {% if notices_published %}
           <h3>{% trans "Successfully published the following news" %}</h3>
@@ -90,7 +89,7 @@ approach for this.
         </form>
       </div>
     {% else %}
-      <h2>{% trans "Latest News" %} {{ name }}</h2>
+      <h2>{% trans "Latest News" %}</h2>
     {% endif %}
 
     <div class="news-feed{% if form %}-with-form{% endif %}">
