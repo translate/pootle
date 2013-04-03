@@ -118,7 +118,7 @@ def upgrade_to_21000():
 
 def upgrade_to_21060():
     """Post-upgrade actions for upgrades to 21060."""
-    from ..utils import deletefromcache
+    from ..util import deletefromcache
 
     from pootle_store.models import OBSOLETE
     from pootle_translationproject.models import TranslationProject
