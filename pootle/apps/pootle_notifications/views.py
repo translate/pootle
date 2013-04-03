@@ -240,7 +240,8 @@ def handle_form(request, current_directory, current_project,
     # RSS (notices)
     if form.cleaned_data['publish_rss']:
         for d in publish_dirs:
-            create_notice(request.user, message, d)
+            new_notice = create_notice(request.user, message, d)
+            template_vars['notices_published'].append(new_notice)
 
     # E-mail
     if form.cleaned_data['send_email']:
