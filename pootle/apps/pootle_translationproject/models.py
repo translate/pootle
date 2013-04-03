@@ -257,10 +257,11 @@ class TranslationProject(models.Model):
 
         errors = self.require_units()
 
-        tp_obsolete_units = Unit.objects \
-                                .filter(store__translation_project=self,
-                                        state__gt=OBSOLETE)
-        stats = calculate_stats(tp_obsolete_units)
+        tp_not_obsolete_units = Unit.objects.filter(
+                store__translation_project=self,
+                state__gt=OBSOLETE,
+            )
+        stats = calculate_stats(tp_not_obsolete_units)
         stats['errors'] = errors
 
         return stats
