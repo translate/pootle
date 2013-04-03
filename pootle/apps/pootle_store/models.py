@@ -23,6 +23,8 @@ import logging
 import os
 import re
 
+from hashlib import md5
+
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import FileSystemStorage
@@ -32,7 +34,6 @@ from django.db.transaction import commit_on_success
 from django.utils.translation import ugettext_lazy as _
 
 from translate.filters.decorators import Category
-from translate.misc.hash import md5_f
 from translate.storage import base
 
 from pootle_app.lib.util import RelatedManager
@@ -119,7 +120,7 @@ class Suggestion(models.Model, base.TranslationUnit):
             string = self.target_f + SEPARATOR + string
         else:
             string = self.target_f
-        self.target_hash = md5_f(string.encode("utf-8")).hexdigest()
+        self.target_hash = md5(string.encode("utf-8")).hexdigest()
 
     def _get_target(self):
         return self.target_f
@@ -259,7 +260,7 @@ class Unit(models.Model, base.TranslationUnit):
     def save(self, *args, **kwargs):
         if self._source_updated:
             # update source related fields
-            self.source_hash = md5_f(self.source_f.encode("utf-8")).hexdigest()
+            self.source_hash = md5(self.source_f.encode("utf-8")).hexdigest()
             self.source_wordcount = count_words(self.source_f.strings)
             self.source_length = len(self.source_f)
 
@@ -494,7 +495,7 @@ class Unit(models.Model, base.TranslationUnit):
 
         if self.unitid != unit.getid():
             self.unitid = unicode(unit.getid()) or unicode(unit.source)
-            self.unitid_hash = md5_f(self.unitid.encode("utf-8")).hexdigest()
+            self.unitid_hash = md5(self.unitid.encode("utf-8")).hexdigest()
             changed = True
 
         if hasattr(unit, 'getalttrans'):
@@ -592,7 +593,7 @@ class Unit(models.Model, base.TranslationUnit):
 
     def setid(self, value):
         self.unitid = value
-        self.unitid_hash = md5_f(self.unitid.encode("utf-8")).hexdigest()
+        self.unitid_hash = md5(self.unitid.encode("utf-8")).hexdigest()
 
     def getlocations(self):
         if self.locations is None:
@@ -1411,7 +1412,7 @@ class Store(models.Model, base.TranslationStore):
             return super(Store, self).findunits(source)
 
         # find using hash instead of index
-        source_hash = md5_f(source.encode("utf-8")).hexdigest()
+        source_hash = md5(source.encode("utf-8")).hexdigest()
         units = self.unit_set.filter(source_hash=source_hash)
         if obsolete:
             units = units.filter(state=OBSOLETE)
@@ -1429,7 +1430,7 @@ class Store(models.Model, base.TranslationStore):
         if hasattr(self, "id_index"):
             return self.id_index.get(id, None)
 
-        unitid_hash = md5_f(id.encode("utf-8")).hexdigest()
+        unitid_hash = md5(id.encode("utf-8")).hexdigest()
         try:
             return self.units.get(unitid_hash=unitid_hash)
         except Unit.DoesNotExist:

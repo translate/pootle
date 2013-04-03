@@ -21,6 +21,8 @@
 
 import locale
 
+from hashlib import md5
+
 from django.contrib.auth.models import User, UserManager, AnonymousUser
 from django.db import models
 from django.db.models import Q
@@ -35,8 +37,6 @@ from pootle_misc.baseurl import l
 from pootle_misc.util import cached_property
 from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_translationproject.models import TranslationProject
-
-from translate.misc.hash import md5_f
 
 
 class PootleUserManager(UserManager):
@@ -122,7 +122,7 @@ class PootleProfile(models.Model):
     @cached_property
     def get_email_hash(self):
         try:
-            return md5_f(self.user.email).hexdigest()
+            return md5(self.user.email).hexdigest()
         except UnicodeEncodeError:
             return None
 
