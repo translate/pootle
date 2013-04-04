@@ -240,7 +240,8 @@ def handle_form(request, current_directory, current_project,
     # RSS (notices)
     if form.cleaned_data['publish_rss']:
         for d in publish_dirs:
-            create_notice(request.user, message, d)
+            new_notice = create_notice(request.user, message, d)
+            template_vars['notices_published'].append(new_notice)
 
     # E-mail
     if form.cleaned_data['send_email']:
@@ -278,9 +279,6 @@ def handle_form(request, current_directory, current_project,
 
         # Send the email to the recipients, ensuring addresses are hidden
         send_mail(email_header, message, bcc=recipients, fail_silently=True)
-
-    if not template_vars['notices_published']:
-        template_vars['notices_published'] = None
 
     form = form_factory(current_directory)()
 
