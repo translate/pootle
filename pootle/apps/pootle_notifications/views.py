@@ -280,9 +280,6 @@ def handle_form(request, current_directory, current_project,
         # Send the email to the recipients, ensuring addresses are hidden
         send_mail(email_header, message, bcc=recipients, fail_silently=True)
 
-    if not template_vars['notices_published']:
-        template_vars['notices_published'] = None
-
     form = form_factory(current_directory)()
 
     return form
