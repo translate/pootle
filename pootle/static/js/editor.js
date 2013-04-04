@@ -194,24 +194,50 @@
     shortcut.add('ctrl+shift+space', function () {
       PTL.editor.toggleSuggestMode();
     });
+
     shortcut.add('ctrl+up', function () {
       $("#js-nav-prev").trigger("click");
     });
+    shortcut.add('ctrl+,', function () {
+      $("#js-nav-prev").trigger("click");
+    });
+    
     shortcut.add('ctrl+down', function () {
       $("#js-nav-next").trigger("click");
     });
+    shortcut.add('ctrl+.', function () {
+      $("#js-nav-next").trigger("click");
+    });
+    
     shortcut.add('ctrl+shift+home', function () {
       PTL.editor.gotoFirstPage();
     });
     shortcut.add('ctrl+shift+end', function () {
       PTL.editor.gotoLastPage();
     });
+    
     shortcut.add('ctrl+shift+pageup', function () {
+      PTL.editor.gotoPrevPage();
+    });
+    shortcut.add('ctrl+shift+,', function () {
       PTL.editor.gotoPrevPage();
     });
     shortcut.add('ctrl+shift+pagedown', function () {
       PTL.editor.gotoNextPage();
     });
+    shortcut.add('ctrl+shift+.', function () {
+      PTL.editor.gotoNextPage();
+    });
+
+    if (navigator.platform.toUpperCase().indexOf('MAC') >= 0) {
+      $("#js-nav-next").attr("title", 
+        gettext("Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/>Last page: Ctrl+Shift+End")
+      );
+      $("#js-nav-prev").attr("title", 
+        gettext("Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl+Shift+,<br/>First page: Ctrl+Shift+Home")
+      );
+    }
+    
     shortcut.add('ctrl+shift+n', function () {
       $("#item-number").focus().select();
     });
