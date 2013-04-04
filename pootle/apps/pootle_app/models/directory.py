@@ -125,15 +125,16 @@ class Directory(models.Model):
 
     @getfromcache
     def getquickstats(self):
-        """calculate aggregate stats for all directory based on stats
-        of all descenging stores and dirs"""
+        """Calculate aggregate stats for all directory based on stats
+        of all descending stores and dirs."""
         if self.is_template_project:
             #FIXME: Hackish return empty_stats to avoid messing up
             # with project and language stats
             return empty_quickstats
+
         #FIXME: can we replace this with a quicker path query?
         file_result = statssum(self.child_stores.iterator())
-        dir_result  = statssum(self.child_dirs.iterator())
+        dir_result = statssum(self.child_dirs.iterator())
         stats = dictsum(file_result, dir_result)
         return stats
 

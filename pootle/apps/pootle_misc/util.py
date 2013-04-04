@@ -70,9 +70,11 @@ def deletefromcache(sender, functions, **kwargs):
     # clean store and directory cache
     while path_parts:
         for func in functions:
-            cache.delete(path + ":"+func)
+            cache.delete(path + ":" + func)
+
         path_parts = path_parts[:-1]
         path = "/".join(path_parts) + "/"
+
 
 def dictsum(x, y):
     return dict((n, x.get(n, 0)+y.get(n, 0)) for n in set(x) | set(y))
