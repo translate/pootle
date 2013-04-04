@@ -7,7 +7,7 @@ approach for this.
 {% endcomment %}
 
 {% load url from future %}
-{% load i18n baseurl cleanhtml assets %}
+{% load i18n baseurl cleanhtml assets cache common_tags %}
 
 {% get_current_language as LANGUAGE_CODE %}
 
@@ -33,6 +33,13 @@ approach for this.
     {% if directory.is_project %}
         <li><a href='{{ "/projects/"|l }}'>{% trans "Projects" %}</a></li>
         <li><a href="{% filter l %}/projects/{{ directory.project.code }}/{% endfilter %}">{{ directory.project.fullname }}</a></li>
+    {% endif %}
+    {% if directory.is_translationproject %}
+      <li><a href='{{ "/projects/"|l }}'>{% trans "Projects" %}</a></li>
+      {% cache settings.CACHE_TIMEOUT tp_bread directory.id LANGUAGE_CODE %}
+        <li><a href="{% url 'project.overview' project.code %}" id="js-select-project" data-initial-code="{{ project.code }}">{{ project }}</a></li>
+        <li><noscript>{{ language.name }}</noscript>{% display_select 'language' project.languages language.code %}</li>
+      {% endcache %}
     {% endif %}
 {% endif %}
 <li>{% trans "News" %}</li>
