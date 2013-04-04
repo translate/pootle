@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% comment %}
-Oh yeah, I know, this template code is horrible, and actually there are
-two templates into one. For the future we have to take a different
-approach for this.
+Oh yeah, I know, this template code is horrible, and actually there are three
+templates in one (news page for: project, language and translation project). In
+the future we have to take a different approach for this.
 {% endcomment %}
 
 {% load url from future %}
@@ -12,27 +12,27 @@ approach for this.
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block title %}
-    {% trans "News" %} |
-    {% if directory.is_language %}
-        {{ directory.language.name }}
+  {% trans "News" %} |
+  {% if directory.is_language %}
+    {{ directory.language.name }}
+  {% else %}
+    {% if directory.is_project %}
+      {{ directory.project.fullname }} | {% trans "Projects" %}
     {% else %}
-        {% if directory.is_project %}
-            {{ directory.project.fullname }} | {% trans "Projects" %}
-        {% else %}
-            {{ directory.translation_project.project.fullname }} | {{ directory.translation_project.language.fullname }}
-        {% endif %}
+      {{ directory.translation_project.project.fullname }} | {{ directory.translation_project.language.fullname }}
     {% endif %}
-    | {{ block.super }}
+  {% endif %}
+  | {{ block.super }}
 {% endblock %}
 
 {% block breadcrumbs %}
-{{ block.super }}
-{% if directory.is_language %}
+  {{ block.super }}
+  {% if directory.is_language %}
     <li><a href="{% filter l %}/{{ directory.language.code }}/{% endfilter %}">{{ directory.language.name }}</a></li>
-{% else %}
+  {% else %}
     {% if directory.is_project %}
-        <li><a href='{{ "/projects/"|l }}'>{% trans "Projects" %}</a></li>
-        <li><a href="{% filter l %}/projects/{{ directory.project.code }}/{% endfilter %}">{{ directory.project.fullname }}</a></li>
+      <li><a href='{{ "/projects/"|l }}'>{% trans "Projects" %}</a></li>
+      <li><a href="{% filter l %}/projects/{{ directory.project.code }}/{% endfilter %}">{{ directory.project.fullname }}</a></li>
     {% endif %}
     {% if directory.is_translationproject %}
       <li><a href='{{ "/projects/"|l }}'>{% trans "Projects" %}</a></li>
@@ -41,86 +41,80 @@ approach for this.
         <li><noscript>{{ language.name }}</noscript>{% display_select 'language' project.languages language.code %}</li>
       {% endcache %}
     {% endif %}
-{% endif %}
-<li>{% trans "News" %}</li>
+  {% endif %}
+  <li>{% trans "News" %}</li>
 {% endblock %}
 
 {% block extra_head %}
-<link rel="alternate" type="application/rss+xml" title="{{ title }}" href="{% url 'pootle_notifications__feed' path %}" />
+  <link rel="alternate" type="application/rss+xml" title="{{ title }}" href="{% url 'pootle_notifications__feed' path %}" />
 {% endblock %}
 
 {% block body_id %}{% if directory.is_language %}languagenews{% else %}tpnews{% endif %}{% endblock %}
 
 {% block tabs %}
-{% if directory.is_language %}
+  {% if directory.is_language %}
     {% include "language_menu.html" %}
-{% else %}
+  {% else %}
     {% if directory.is_project %}
-        {% include "project_menu.html" %}
+      {% include "project_menu.html" %}
     {% else %}
-        {% include "tp_menu.html" %}
+      {% include "tp_menu.html" %}
     {% endif %}
-{% endif %}
+  {% endif %}
 {% endblock %}
 
 {% block content %}
-<div class="settings-container" lang="{{ LANGUAGE_CODE }}">
+  <div class="settings-container" lang="{{ LANGUAGE_CODE }}">
     {% if form %}
-        <h2>{{ title }}</h2>
-        <div class="form news">
+      <h2>{{ title }}</h2>
+      <div class="form news">
         <h2>{% trans "Publish News" %}</h2>
-        <p>{{ success }}</p>
 
         {% if notices_published %}
-            <h3>{% trans "Successfully published the following news" %}</h3>
-            <div name="publishednotice">
+          <h3>{% trans "Successfully published the following news" %}</h3>
+          <div name="publishednotice">
             {% for np in notices_published %}
-                <p> {{ np }} </p>
+              <p>{{ np }}</p>
             {% endfor %}
-            </div>
-            <hr/>
+          </div>
+          <hr />
         {% endif %}
 
         <form method="post" action="">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <p class="buttons">
-                <input type="submit" class="news-publish" value="{% trans "Publish" %}" />
-            </p>
+          {% csrf_token %}
+          {{ form.as_p }}
+          <p class="buttons">
+            <input type="submit" class="news-publish" value="{% trans "Publish" %}" />
+          </p>
         </form>
-        </div>
-
-    {% else %}
-        <h2>{% trans "Latest News" %} {{ name }}</h2>
+      </div>
     {% endif %}
 
     <div class="news-feed{% if form %}-with-form{% endif %}">
-        {% if notices %}
-            {% for notice in notices %}
-                <div class="datetime"><small>{{ notice.get_date }}</small></div>
-                <div class="newsitem">{{ notice.message|safe|linebreaks|clean }}</div>
-                <div class="newsitem-sep"></div>
-            {% endfor %}
-        {% else %}
-            <p>{% trans "No news yet." %}</p>
-        {% endif %}
+      <h2>{% trans "Latest News" %}</h2>
+      {% for notice in notices %}
+        <div class="datetime"><small>{{ notice.get_date }}</small></div>
+        <div class="newsitem">{{ notice.message|safe|linebreaks|clean }}</div>
+        <div class="newsitem-sep"></div>
+      {% empty %}
+        <p>{% trans "No news yet." %}</p>
+      {% endfor %}
     </div>
-</div>
+  </div>
 {% endblock %}
 
 {% block scripts_extra %}
-{% if user.is_superuser or request.permissions.administrate %}
-  {% assets "js_admin" %}
-    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
-  {% endassets %}
-{% endif %}
-<script type="text/javascript">
-$(function() {
-  $(".newsitem address, .newsitem blockcode, .newsitem blockquote, .newsitem :header, .newsitem p, .newsitem pre, .newsitem li, .newsitem dt, .newsitem dd, .newsitem ul, .newsitem ol, .newsitem dl").filter(":not([dir])").bidi();
-{% if user.is_superuser or request.permissions.administrate %}
-  noticeFormInit();
-{% endif %}
-});
-</script>
-
+  {% if user.is_superuser or request.permissions.administrate %}
+    {% assets "js_admin" %}
+      <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+  {% endif %}
+  <script type="text/javascript">
+  $(function() {
+    $(".newsitem address, .newsitem blockcode, .newsitem blockquote, .newsitem :header, .newsitem p, .newsitem pre, .newsitem li, .newsitem dt, .newsitem dd, .newsitem ul, .newsitem ol, .newsitem dl").filter(":not([dir])").bidi();
+  {% if user.is_superuser or request.permissions.administrate %}
+    noticeFormInit();
+  {% endif %}
+  });
+  </script>
 {% endblock %}
