@@ -18,14 +18,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-
-from django.core.mail import get_connection
+from django.core.mail import get_connection, EmailMultiAlternatives
 from django.core.mail.message import EmailMessage
 
 
 def send_mail(subject, message, from_email=None, recipient_list=[],
               bcc=[], cc=[], fail_silently=False, auth_user=None,
-              auth_password=None, connection=None):
+              auth_password=None, connection=None, html_message=False):
     """Wrapper around Django's :class:`~django.core.mail.message.EmailMessage`
     that accepts more fields than the defaults offered by
     :func:`~django.core.mail.send_mail`.
@@ -46,9 +45,21 @@ def send_mail(subject, message, from_email=None, recipient_list=[],
     :param connection: An e-mail backend instance. Useful to reuse the same
                        connection for multiple messages. If unset, a new
                        connection will be created.
+    :param html_message: Tells if `message` is formatted using HTML.
     """
     connection = connection or get_connection(username=auth_user,
                                               password=auth_password,
                                               fail_silently=fail_silently)
-    return EmailMessage(subject, message, from_email, recipient_list,
-                        bcc=bcc, cc=cc, connection=connection).send()
+    if html_message:
+        from lxml.html import fromstring, tostring
+        # Get a plain text version of the HTML formatted message.
+        text_content = tostring(fromstring(message), method='text')
+        email_msg = EmailMultiAlternatives(subject, text_content, from_email,
+                                           recipient_list, bcc=bcc, cc=cc,
+                                           connection=connection)
+        # Attach the HTML formatted message.
+        email_msg.attach_alternative(message, "text/html")
+        return email_msg.send()
+    else:
+        return EmailMessage(subject, message, from_email, recipient_list,
+                            bcc=bcc, cc=cc, connection=connection).send()
