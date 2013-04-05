@@ -27,31 +27,36 @@
 
     // converts pageZoom value to an appropriate class name string
     zoomClassName: function () {
+      var zoomStatus = '';
       if (this.pageZoom < 0) {
-        return "zoom-out-" + (this.pageZoom * -1);
+        zoomStatus = ['zoom-out-', (this.pageZoom * -1)].join('');
       } else if (this.pageZoom > 0) {
-        return "zoom-in-" + this.pageZoom;
-      } else {
-        return "";
+        zoomStatus = ['zoom-in-', this.pageZoom].join('');
       }
+      return zoomStatus;
     },
 
     // Changes zoom and updates class name of a document body
     zoom: function (v) {
       var oldClassName = this.zoomClassName();
+      if (v === -1 && this.pageZoom === -2) {
+        // Minimum zoom level reached
+        return;
+      }
 
-      if (v == -1) {
-        if (this.pageZoom == -2) {
-          return; // minimum zoom level reached
-        }
-        this.pageZoom--;
-      } else if (v == 1) {
-        if (this.pageZoom == 2) {
-          return; // maximum zoom level reached
-        }
-        this.pageZoom++;
-      } else if (v == 0) {
+      if (v === 1 && this.pageZoom === 2) {
+        // Maximum zoom level reached
+        return;
+      }
+
+      if (v === 0) {
+        // Reset zoom
         this.pageZoom = 0;
+      } else {
+        // v value:
+        //  -1 : zoom out
+        //  +1 : zoom in
+        this.pageZoom += v;
       }
 
       $.cookie('pageZoom', this.pageZoom, {path: '/'});
@@ -59,6 +64,6 @@
       $(document.body).removeClass(oldClassName).addClass(this.zoomClassName());
     }
 
-  }
+  };
 
 })(jQuery);
