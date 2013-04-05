@@ -18,8 +18,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.db.models import Q
 from django.core.exceptions import PermissionDenied
+from django.db.models import Q
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
@@ -29,10 +29,9 @@ from pootle_app.models import Directory
 from pootle_app.models.permissions import (get_matching_permissions,
                                            check_permission,
                                            check_profile_permission)
-from pootle_language.models import Language
 from pootle_misc.mail import send_mail
-from pootle_notifications.models import Notice
 from pootle_notifications.forms import form_factory
+from pootle_notifications.models import Notice
 from pootle_profile.models import get_profile, PootleProfile
 from pootle_translationproject.models import TranslationProject
 
@@ -40,53 +39,49 @@ from pootle_translationproject.models import TranslationProject
 def view(request, path):
     #FIXME: why do we have leading and trailing slashes in pootle_path?
     pootle_path = '/%s' % path
-
     directory = get_object_or_404(Directory, pootle_path=pootle_path)
 
+    # Set permissions on request in order to allow check them later using
+    # different functions.
     request.permissions = get_matching_permissions(get_profile(request.user),
                                                    directory)
 
-    if not check_permission('view', request):
-        raise PermissionDenied
+    if request.GET.get('all', False):
+        criteria = {
+            'directory__pootle_path__startswith': directory.pootle_path,
+        }
+    else:
+        criteria = {
+            'directory': directory,
+        }
 
-    template_vars = {'path': path,
-                     'directory': directory}
+    template_vars = {
+        'path': path,
+        'directory': directory,
+        'title': directory_to_title(directory),
+        'notices': Notice.objects.filter(**criteria) \
+                                 .select_related('directory')[:30],
+    }
 
     # Find language and project defaults, passed to handle_form
     proj = None
     lang = None
     if not directory.is_language() and not directory.is_project():
-        translation_project = directory.translation_project
-        lang = translation_project.language
-        proj = translation_project.project
-    else:
-        if directory.is_language():
-            lang = directory.language
-            proj = None
-        if directory.is_project():
-            lang = None
-            proj = directory.project
-
+        trans_proj = directory.translation_project
+        lang = trans_proj.language
+        proj = trans_proj.project
+        template_vars.update({
+            'language': lang,
+            'project': proj,
+        })
+    elif directory.is_language():
+        lang = directory.language
+    elif directory.is_project():
+        proj = directory.project
 
     if check_permission('administrate', request):
-        # Thus, form is only set for the template if the user has
-        # 'administrate' permission
         template_vars['form'] = handle_form(request, directory, proj, lang,
                                             template_vars)
-        template_vars['title'] = directory_to_title(directory)
-    else:
-        template_vars['form'] = None
-
-    if request.GET.get('all', False):
-        template_vars['notices'] = Notice.objects.filter(directory__pootle_path__startswith=directory.pootle_path).select_related('directory')[:30]
-    else:
-        template_vars['notices'] = Notice.objects.filter(directory=directory).select_related('directory')[:30]
-
-    if not directory.is_language() and not directory.is_project():
-        request.translation_project = directory.translation_project
-        template_vars['translation_project'] = request.translation_project
-        template_vars['language'] = request.translation_project.language
-        template_vars['project'] = request.translation_project.project
 
     return render_to_response('notices.html', template_vars,
                               context_instance=RequestContext(request))
@@ -94,38 +89,68 @@ def view(request, path):
 
 def directory_to_title(directory):
     """Figures out if directory refers to a Language or TranslationProject and
-    returns appropriate string for use in titles."""
-
+    returns appropriate string for use in titles.
+    """
     if directory.is_language():
         trans_vars = {
             'language': tr_lang(directory.language.fullname),
-            }
+        }
         return _('News for %(language)s', trans_vars)
     elif directory.is_project():
-        return _('News for %(project)s', {'project': directory.project.fullname})
+        trans_vars = {
+            'project': directory.project.fullname,
+        }
+        return _('News for %(project)s', trans_vars)
     elif directory.is_translationproject():
         trans_vars = {
             'language': tr_lang(directory.translationproject.language.fullname),
             'project': directory.translationproject.project.fullname,
-            }
+        }
         return _('News for the %(project)s project in %(language)s', trans_vars)
-    return _('News for %(path)s',
-             {'path': directory.pootle_path})
+    return _('News for %(path)s', {'path': directory.pootle_path})
 
 
 def create_notice(creator, message, directory):
     profile = get_profile(creator)
     if not check_profile_permission(profile, 'administrate', directory):
         raise PermissionDenied
-    new_notice = Notice()
-    new_notice.message = message
-    new_notice.directory = directory
+    new_notice = Notice(directory=directory, message=message)
     new_notice.save()
     return new_notice
 
 
-def handle_form(request, current_directory, current_project,
-                current_language, template_vars):
+def get_recipients(languages, projects, restrict_to_active_users, directory):
+    if languages:
+        lang_filter = Q(languages__in=languages)
+    else:
+        lang_filter = Q(languages__isnull=False)
+
+    if projects:
+        proj_filter = Q(projects__in=projects)
+    else:
+        proj_filter = Q(projects__isnull=False)
+
+    to_list = PootleProfile.objects.filter(lang_filter, proj_filter)
+
+    # Take into account 'only active users' flag from the form.
+    if restrict_to_active_users:
+        to_list = to_list.exclude(submission=None).exclude(suggestion=None) \
+                                                  .exclude(suggester=None)
+
+    recipients = []
+    for person in to_list:
+        # Check if the User profile has permissions in the directory.
+        if not check_profile_permission(person, 'view', directory):
+            continue
+
+        if person.user.email:
+            recipients.append(person.user.email)
+
+    return recipients
+
+
+def handle_form(request, current_directory, current_project, current_language,
+                template_vars):
     if request.method != 'POST':
         # Not a POST method. Return a default starting state of the form
         return form_factory(current_directory)()
@@ -195,37 +220,10 @@ def handle_form(request, current_directory, current_project,
     # E-mail
     if form.cleaned_data['send_email']:
         email_header = form.cleaned_data['email_header']
-
-        if languages:
-            lang_filter = Q(languages__in=languages)
-        else:
-            lang_filter = Q(languages__isnull=False)
-
-        if projects:
-            proj_filter = Q(projects__in=projects)
-        else:
-            proj_filter = Q(projects__isnull=False)
-
-        to_list = PootleProfile.objects.filter(lang_filter, proj_filter)
-        to_list = to_list.distinct()
-
-        # Take into account 'only active users' flag from the form.
-        if form.cleaned_data['restrict_to_active_users']:
-            to_list = to_list.exclude(submission=None)
-            to_list = to_list.exclude(suggestion=None)
-            to_list = to_list.exclude(suggester=None)
-
-        recipients = []
-        for person in to_list:
-            # Check if the User object here as permissions
-            directory = form.cleaned_data['directory']
-
-            if not check_profile_permission(person, 'view', directory):
-                continue
-
-            if person.user.email != '':
-                recipients.append(person.user.email)
-
+        recipients = get_recipients(languages, projects,
+            form.cleaned_data['restrict_to_active_users'],
+            form.cleaned_data['directory']
+        )
         # Send the email to the recipients, ensuring addresses are hidden
         send_mail(email_header, message, bcc=recipients, fail_silently=True)
 
@@ -237,9 +235,8 @@ def handle_form(request, current_directory, current_project,
 def view_notice_item(request, path, notice_id):
     notice = get_object_or_404(Notice, id=notice_id)
     template_vars = {
-            "title": _("View News Item"),
-            "notice_message": notice.message,
-            }
-
+        "title": _("View News Item"),
+        "notice_message": notice.message,
+    }
     return render_to_response('viewnotice.html', template_vars,
                               context_instance=RequestContext(request))
