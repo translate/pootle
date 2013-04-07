@@ -31,6 +31,7 @@ Online translation editor
    alternative_source_language
    characters
    checks
+   translation_memory
    machine_translation
    offline
    searching
