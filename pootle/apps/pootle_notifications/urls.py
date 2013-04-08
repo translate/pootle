@@ -21,6 +21,7 @@
 from django.conf.urls import patterns, url
 
 from pootle_notifications import feeds
+from pootle_notifications.views import NoticeFormPreview
 
 
 urlpatterns = patterns('pootle_notifications',
@@ -28,9 +29,9 @@ urlpatterns = patterns('pootle_notifications',
     url(r'^(?P<path>.*)notices/rss.xml$',
         feeds.NoticeFeed(),
         name="pootle_notifications__feed"),
-
-    (r'^(?P<path>.*)notices/?$',
-        'views.view'),
+    url(r'^(?P<path>.*)notices/?$',
+        NoticeFormPreview(),
+        name="pootle_notifications__index"),
     (r'^(?P<path>.*)notices/(?P<notice_id>[0-9]+)/?$',
         'views.view_notice_item'),
 )

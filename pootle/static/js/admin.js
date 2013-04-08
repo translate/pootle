@@ -119,11 +119,11 @@ $(function () {
  * to the user's selections.
  */
 function toggleEmailFields() {
-  $('#id_email_header').toggle();
-  $("label[for='id_email_header']").toggle();
+  $('.js-news-form #id_email_header').toggle();
+  $(".js-news-form label[for='id_email_header']").toggle();
 
-  $('#id_restrict_to_active_users').toggle();
-  $("label[for='id_restrict_to_active_users']").toggle();
+  $('.js-news-form #id_restrict_to_active_users').toggle();
+  $(".js-news-form label[for='id_restrict_to_active_users']").toggle();
 
 };
 
@@ -134,41 +134,41 @@ function noticeFormInit() {
   toggleEmailFields();
 
   /* Install a toggle hide/show on the 'Send Email' check button */
-  $('#id_send_email').change(function()  {
+  $('.js-news-form #id_send_email').change(function()  {
     toggleEmailFields();
   });
 
   /* Install a toggle hide/show on the 'All Projects' check button */
-  $('#id_project_all').change(function()  {
-    if ($('#id_project_all').is(':checked')) {
+  $('.js-news-form #id_project_all').change(function()  {
+    if ($('.js-news-form #id_project_all').is(':checked')) {
       // if selected..
-      $('#id_project_selection option').prop('selected', true);
+      $('.js-news-form #id_project_selection option').prop('selected', true);
       // then hide..
-      $('#id_project_selection').hide();
-      $("label[for='id_project_selection']").hide();
+      $('.js-news-form #id_project_selection').hide();
+      $(".js-news-form label[for='id_project_selection']").hide();
     } else {
       // else, unselect all...
-      $('#id_project_selection option').prop('selected', false );
+      $('.js-news-form #id_project_selection option').prop('selected', false );
       // then show
-      $('#id_project_selection').show();
-      $("label[for='id_project_selection']").show();
+      $('.js-news-form #id_project_selection').show();
+      $(".js-news-form label[for='id_project_selection']").show();
     }
   });
 
   /* Install a toggle hide/show on the 'All Languages' check button */
-  $('#id_language_all').change(function()  {
-    if ($('#id_language_all').is(':checked')) {
+  $('.js-news-form #id_language_all').change(function()  {
+    if ($('.js-news-form #id_language_all').is(':checked')) {
       // if selected...
-      $('#id_language_selection option').prop('selected', true);
+      $('.js-news-form #id_language_selection option').prop('selected', true);
       // then hide...
-      $('#id_language_selection').hide();
-      $("label[for='id_language_selection']").hide();
+      $('.js-news-form #id_language_selection').hide();
+      $(".js-news-form label[for='id_language_selection']").hide();
     } else {
       // else, unselect all...
-      $('#id_language_selection option').prop('selected', false );
+      $('.js-news-form #id_language_selection option').prop('selected', false );
       // then show
-      $('#id_language_selection').show();
-      $("label[for='id_language_selection']").show();
+      $('.js-news-form #id_language_selection').show();
+      $(".js-news-form label[for='id_language_selection']").show();
     }
   });
 

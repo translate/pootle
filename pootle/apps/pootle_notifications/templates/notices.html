@@ -79,11 +79,12 @@ the future we have to take a different approach for this.
           <hr />
         {% endif %}
 
-        <form method="post" action="">
+        <form method="post" action="" class="js-news-form">
           {% csrf_token %}
+          <input type="hidden" name="{{ stage_field }}" value="1" />
           {{ form.as_p }}
           <p class="buttons">
-            <input type="submit" class="news-publish" value="{% trans "Publish" %}" />
+            <input type="submit" class="news-publish" value="{% trans "Preview" %}" />
           </p>
         </form>
       </div>

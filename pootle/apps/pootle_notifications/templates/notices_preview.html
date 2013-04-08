@@ -1,0 +1,37 @@
+{% extends "notices.html" %}
+{% load i18n baseurl cleanhtml assets %}
+
+
+{% block content %}
+  <div class="settings-container" lang="{{ LANGUAGE_CODE }}">
+    <h2>Preview your submission</h2>
+
+    <div class="newsitem">{{ preview_message|safe|linebreaks|clean }}</div>
+
+    <form action="" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="{{ stage_field }}" value="2" />
+      <input type="hidden" name="{{ hash_field }}" value="{{ hash_value }}" />
+      {% for field in form %}
+        {{ field.as_hidden }}
+      {% endfor %}
+      <p class="buttons">
+        <input type="submit" class="news-publish" value="{% trans "Publish" %}" />
+      </p>
+    </form>
+
+    <div class="form news">
+      <h2>{% trans "Or make changes" %}</h2>
+
+      <form method="post" action="" class="js-news-form">
+        {% csrf_token %}
+        <input type="hidden" name="{{ stage_field }}" value="1" />
+        {{ form.as_p }}
+        <p class="buttons">
+          <input type="submit" class="news-publish" value="{% trans "Preview" %}" />
+        </p>
+      </form>
+    </div>
+
+  </div>
+{% endblock %}
