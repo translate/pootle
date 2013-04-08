@@ -16,16 +16,16 @@
     },
 
     decodeURIParameter: function(s) {
-      return decodeURIComponent(s.replace(/\+/g, " "));
+      return decodeURIComponent(s.replace(/\+/g, ' '));
     },
 
     getParsedHash: function (h) {
-      var params = new Object();
+      var params = {}, e;
       var r = /([^&;=]+)=?([^&;]*)/g;
-      if (h == undefined) {
+      if (h === undefined) {
         h = this.getHash();
       }
-      var e;
+
       while (e = r.exec(h)) {
         params[this.decodeURIParameter(e[1])] = this.decodeURIParameter(e[2]);
       }
@@ -34,31 +34,30 @@
 
     /* Updates current URL's hash */
     updateHashPart: function (part, newVal, removeArray) {
-      var params = new Array();
       var r = /([^&;=]+)=?([^&;]*)/g;
-      var h = this.getHash();
-      var e, ok;
+      var params = [], h = this.getHash(), e, ok, p;
       while (e = r.exec(h)) {
-        var p = this.decodeURIParameter(e[1]);
-        if (p == part) {
+        p = this.decodeURIParameter(e[1]);
+        if (p === part) {
           // replace with the given value
-          params.push(e[1] + '=' + encodeURIComponent(newVal));
+          params.push([e[1], encodeURIComponent(newVal)].join('='));
           ok = true;
-        } else if ($.inArray(p, removeArray) == -1) {
+        } else if ($.inArray(p, removeArray) === -1) {
           // use the parameter as is
-          params.push(e[1] + '=' + e[2]);
+          params.push([e[1], e[2]].join('='));
         }
       }
       // if there was no old parameter, push the param at the end
       if (!ok) {
-        params.push(encodeURIComponent(part) + '=' + encodeURIComponent(newVal));
+        params.push([encodeURIComponent(part),
+          encodeURIComponent(newVal)].join('='));
       }
       return params.join('&');
     },
 
     /* Cross-browser comparison function */
     strCmp: function (a, b) {
-      return a == b ? 0 : a < b ? -1 : 1;
+      return a === b ? 0 : a < b ? -1 : 1;
     },
 
     /* Returns a string representing a relative datetime */
@@ -93,7 +92,7 @@
         return interpolate(fmt, count);
       }
 
-      return gettext("A few seconds ago");
+      return gettext('A few seconds ago');
     },
 
     /* Converts the elements matched by `selector` into selectable inputs.
@@ -120,10 +119,10 @@
     var size = 0, key;
     for (key in obj) {
       if (obj.hasOwnProperty(key)) {
-        size++;
+        size += 1;
       }
     }
     return size;
   };
 
-})(jQuery);
+}(jQuery));
