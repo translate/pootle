@@ -19,7 +19,6 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.core.exceptions import PermissionDenied
-from django.db.models import Q
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
@@ -119,18 +118,8 @@ def create_notice(creator, message, directory):
     return new_notice
 
 
-def get_recipients(languages, projects, restrict_to_active_users, directory):
-    if languages:
-        lang_filter = Q(languages__in=languages)
-    else:
-        lang_filter = Q(languages__isnull=False)
-
-    if projects:
-        proj_filter = Q(projects__in=projects)
-    else:
-        proj_filter = Q(projects__isnull=False)
-
-    to_list = PootleProfile.objects.filter(lang_filter, proj_filter)
+def get_recipients(restrict_to_active_users, directory):
+    to_list = PootleProfile.objects.all()
 
     # Take into account 'only active users' flag from the form.
     if restrict_to_active_users:
@@ -220,7 +209,7 @@ def handle_form(request, current_directory, current_project, current_language,
     # E-mail
     if form.cleaned_data['send_email']:
         email_header = form.cleaned_data['email_header']
-        recipients = get_recipients(languages, projects,
+        recipients = get_recipients(
             form.cleaned_data['restrict_to_active_users'],
             form.cleaned_data['directory']
         )
