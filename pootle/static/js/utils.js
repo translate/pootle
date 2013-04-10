@@ -63,13 +63,13 @@
     /* Returns a string representing a relative datetime */
     relativeDate: function (date) {
       var fmt, count,
-        delta = Date.now() - date,
-        seconds = Math.round(Math.abs(delta) / 1000),
-        minutes = Math.round(seconds / 60),
-        hours = Math.round(minutes / 60),
-        days = Math.round(hours / 24),
-        weeks = Math.round(days / 7),
-        years = Math.round(days / 365);
+          delta = Date.now() - date,
+          seconds = Math.round(Math.abs(delta) / 1000),
+          minutes = Math.round(seconds / 60),
+          hours = Math.round(minutes / 60),
+          days = Math.round(hours / 24),
+          weeks = Math.round(days / 7),
+          years = Math.round(days / 365);
 
       if (years > 0) {
         fmt = ngettext('A year ago', '%s years ago', years);
