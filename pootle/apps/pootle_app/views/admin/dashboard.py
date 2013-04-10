@@ -21,24 +21,23 @@
 
 import locale
 
+from django.contrib.auth.models import User
+from django.core.cache import cache
 from django.http import HttpResponse
-from django.utils.translation import ugettext as _
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.core.cache import cache
 from django.utils import simplejson
-
-from django.contrib.auth.models import User
+from django.utils.translation import ugettext as _
 
 from pootle import depcheck
-
+from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.views.admin.util import user_is_admin
 from pootle_misc.aggregate import sum_column
-from pootle_app.models import Suggestion as SuggestionStat
-from pootle_store.models import Unit, Suggestion
 from pootle_profile.models import PootleProfile
-from pootle_store.util import TRANSLATED
 from pootle_statistics.models import Submission
+from pootle_store.models import Unit, Suggestion
+from pootle_store.util import TRANSLATED
+
 
 def required_depcheck():
     required = []
@@ -48,12 +47,12 @@ def required_depcheck():
         text = _('Translate Toolkit version %s installed.', version)
         state = 'tick'
     else:
-        text = _('Translate Toolkit version %(installed)s installed. Pootle requires at least version %(required)s.',
-            {
-                'installed': version,
-                'required': ".".join(str(i) for i in depcheck.translate_required_ver)
-            }
-        )
+        trans_vars = {
+            'installed': version,
+            'required': ".".join(str(i) for i in depcheck.translate_required_ver)
+        }
+        text = _("Translate Toolkit version %(installed)s installed. Pootle "
+                 "requires at least version %(required)s.", trans_vars)
         state = 'error'
     required.append({'dependency': 'translate', 'state': state, 'text': text})
 
@@ -62,7 +61,8 @@ def required_depcheck():
         text = _('Django version %s is installed.', version)
         state = 'tick'
     else:
-        text = _('Django version %s is installed, but a higher version is highly recommended.', version)
+        text = _("Django version %s is installed, but a higher version is "
+                 "highly recommended.", version)
         state = 'error'
     required.append({'dependency': 'django', 'state': state, 'text': text})
 
@@ -72,11 +72,11 @@ def required_depcheck():
         state = 'tick'
     elif version is not None:
         required_ver = ".".join(str(i) for i in depcheck.lxml_required_ver)
-        text = _('lxml version %(installed)s is installed. Pootle requires '
-                 'at least version %(required)s.', {
+        text = _("lxml version %(installed)s is installed. Pootle requires at "
+                 "least version %(required)s.", {
                      'installed': version,
                      'required': required_ver,
-                })
+                 })
         state = 'error'
     else:
         text = _('lxml is not installed. Pootle requires lxml.')
@@ -91,24 +91,35 @@ def optional_depcheck():
     optional = []
 
     if not depcheck.test_unzip():
-        optional.append({'dependency': 'unzip',
-                         'text': _('Can\'t find the unzip command. Uploading archives is faster if "unzip" is available.')})
-
+        optional.append({
+            'dependency': 'unzip',
+            'text': _('Can\'t find the unzip command. Uploading archives is '
+                      'faster if "unzip" is available.')
+        })
     if not depcheck.test_iso_codes():
-        optional.append({'dependency': 'iso-codes',
-                           'text': _("Can't find the ISO codes package. Pootle uses ISO codes to translate language names.")})
-
+        optional.append({
+            'dependency': 'iso-codes',
+            'text': _("Can't find the ISO codes package. Pootle uses ISO codes"
+                      " to translate language names.")
+        })
     if not depcheck.test_gaupol():
-        optional.append({'dependency': 'gaupol',
-                         'text': _("Can't find the aeidon package. Pootle requires Gaupol or aeidon to support subtitle formats.")})
-
+        optional.append({
+            'dependency': 'gaupol',
+            'text': _("Can't find the aeidon package. Pootle requires Gaupol "
+                      "or aeidon to support subtitle formats.")
+        })
     if not depcheck.test_levenshtein():
-        optional.append({'dependency': 'levenshtein',
-                        'text': _("Can't find python-levenshtein package. Updating against templates is faster with python-levenshtein.")})
-
+        optional.append({
+            'dependency': 'levenshtein',
+            'text': _("Can't find python-levenshtein package. Updating against"
+                      " templates is faster with python-levenshtein.")
+        })
     if not depcheck.test_indexer():
-        optional.append({'dependency': 'indexer',
-                         'text': _("No text indexing engine found. Searching is faster if an indexing engine like Xapian or Lucene is installed.")})
+        optional.append({
+            'dependency': 'indexer',
+            'text': _("No text indexing engine found. Searching is faster if "
+                      "an indexing engine like Xapian or Lucene is installed.")
+        })
 
     return optional
 
@@ -118,51 +129,88 @@ def optimal_depcheck():
 
     if not depcheck.test_db():
         if depcheck.test_mysqldb():
-            text = _("Using the default sqlite3 database engine. SQLite is only suitable for small installations with a small number of users. Pootle will perform better with the MySQL database engine.")
+            text = _("Using the default sqlite3 database engine. SQLite is "
+                     "only suitable for small installations with a small "
+                     "number of users. Pootle will perform better with the "
+                     "MySQL database engine.")
         else:
-            text = _("Using the default sqlite3 database engine. SQLite is only suitable for small installations with a small number of users. Pootle will perform better with the MySQL database engine, but you need to install python-MySQLdb first.")
+            text = _("Using the default sqlite3 database engine. SQLite is "
+                     "only suitable for small installations with a small "
+                     "number of users. Pootle will perform better with the "
+                     "MySQL database engine, but you need to install "
+                     "python-MySQLdb first.")
         optimal.append({'dependency': 'db', 'text': text})
 
     if depcheck.test_cache():
         if depcheck.test_memcache():
             if not depcheck.test_memcached():
                 # memcached configured but connection failing
-                optimal.append({'dependency': 'cache',
-                                'text': _("Pootle is configured to use memcached as a caching backend, but can't connect to the memcached server. Caching is currently disabled.")})
+                optimal.append({
+                    'dependency': 'cache',
+                    'text': _("Pootle is configured to use memcached as a "
+                              "caching backend, but can't connect to the "
+                              "memcached server. Caching is currently "
+                              "disabled.")
+                })
             else:
                 if not depcheck.test_session():
-                    text = _('For optimal performance, use django.contrib.sessions.backends.cached_db as the session engine.')
+                    text = _("For optimal performance, use django.contrib."
+                             "sessions.backends.cached_db as the session "
+                             "engine.")
                     optimal.append({'dependency': 'session', 'text': text})
         else:
-            optimal.append({'dependency': 'cache',
-                            'text': _('Pootle is configured to use memcached as caching backend, but Python support for memcached is not installed. Caching is currently disabled.')})
+            optimal.append({
+                'dependency': 'cache',
+                'text': _("Pootle is configured to use memcached as caching "
+                          "backend, but Python support for memcached is not "
+                          "installed. Caching is currently disabled.")
+            })
     else:
-        optimal.append({'dependency': 'cache',
-                        'text': _('For optimal performance, use memcached as the caching backend.')})
+        optimal.append({
+            'dependency': 'cache',
+            'text': _("For optimal performance, use memcached as the caching "
+                      "backend.")
+        })
 
     if not depcheck.test_webserver():
-        optimal.append({'dependency': 'webserver',
-                        'text': _("For optimal performance, use Apache as the webserver.")})
+        optimal.append({
+            'dependency': 'webserver',
+            'text': _("For optimal performance, use Apache as the webserver.")
+        })
     if not depcheck.test_from_email():
-        optimal.append({'dependency': 'from_email',
-                        'text': _('The "from" address used to send registration emails is not specified. Also review the mail server settings.')})
+        optimal.append({
+            'dependency': 'from_email',
+            'text': _('The "from" address used to send registration emails is '
+                      'not specified. Also review the mail server settings.')
+        })
     if not depcheck.test_contact_email():
-        optimal.append({'dependency': 'contact_email',
-                        'text': _("No contact address is specified. The contact form will allow users to contact the server administrators.")})
-
+        optimal.append({
+            'dependency': 'contact_email',
+            'text': _("No contact address is specified. The contact form will "
+                      "allow users to contact the server administrators.")
+        })
     if not depcheck.test_debug():
-        optimal.append({'dependency': 'debug',
-                        'text': _('Running in debug mode. Debug mode is only needed when developing Pootle. For optimal performance, disable debugging mode.')})
-
+        optimal.append({
+            'dependency': 'debug',
+            'text': _("Running in debug mode. Debug mode is only needed when "
+                      "developing Pootle. For optimal performance, disable "
+                      "debugging mode.")
+        })
     if not depcheck.test_livetranslation():
-        optimal.append({'dependency': 'livetranslation',
-                       'text': _("Running in live translation mode. Live translation is useful as a tool to learn about Pootle and localization, but has high impact on performance.")})
+        optimal.append({
+            'dependency': 'livetranslation',
+            'text': _("Running in live translation mode. Live translation is "
+                      "useful as a tool to learn about Pootle and "
+                      "localization, but has high impact on performance.")
+        })
 
     return optimal
+
 
 def _format_numbers(dict):
     for k in dict.keys():
         dict[k] = locale.format("%d", dict[k], grouping=True)
+
 
 def server_stats():
     result = cache.get("server_stats")
@@ -176,6 +224,7 @@ def server_stats():
         cache.set("server_stats", result, 86400)
     _format_numbers(result)
     return result
+
 
 @user_is_admin
 def server_stats_more(request):
@@ -196,17 +245,20 @@ def server_stats_more(request):
                                        PootleProfile.objects.exclude(suggester=None)).order_by().count()
         cache.set("server_stats_more", result, 86400)
     _format_numbers(result)
-    stat_strings = {'store_count': _('Files'),
-                    'project_count': _('Active projects'),
-                    'language_count': _('Active languages'),
-                    'string_count': _('Translated strings'),
-                    'word_count': _('Translated words'),
-                    'user_active_count': _('Active users')}
+    stat_strings = {
+        'store_count': _('Files'),
+        'project_count': _('Active projects'),
+        'language_count': _('Active languages'),
+        'string_count': _('Translated strings'),
+        'word_count': _('Translated words'),
+        'user_active_count': _('Active users')
+    }
     response = []
     for k in result.keys():
         response.append((stat_strings[k], result[k]))
     response = simplejson.dumps(response)
     return HttpResponse(response, mimetype="application/json")
+
 
 @user_is_admin
 def view(request):
@@ -215,5 +267,6 @@ def view(request):
         'required': required_depcheck(),
         'optional': optional_depcheck(),
         'optimal': optimal_depcheck(),
-        }
-    return render_to_response("admin/dashboard.html", template_vars, context_instance=RequestContext(request))
+    }
+    return render_to_response("admin/dashboard.html", template_vars,
+                              context_instance=RequestContext(request))

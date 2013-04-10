@@ -166,7 +166,12 @@ def cached_property(f):
 
 
 def get_markup_filter_name():
-    """Returns the configured markup filter's name as a string."""
+    """Returns the configured markup filter's name as a string.
+
+    This returns instead the HTML markup filter name in the following cases:
+
+        * There is no markup filter set.
+    """
     try:
         markup_filter = settings.MARKUP_FILTER[0]
         if markup_filter is None:
@@ -206,16 +211,20 @@ def apply_markup_filter(text):
 
     Borrowed from http://djangosnippets.org/snippets/104/
     """
-    markup_func_name, markup_kwargs = settings.MARKUP_FILTER
+    markup_filter_name, markup_kwargs = settings.MARKUP_FILTER
 
     # No processing is needed.
-    if markup_func_name is None or not text.strip():
+    if markup_filter_name is None or not text.strip():
         return text
 
-    if markup_func_name not in ('textile', 'markdown', 'restructuredtext'):
-        raise ValueError("'%s' is not a valid value for the first element of MARKUP_FILTER; acceptable values are 'textile', 'markdown', 'restructuredtext' and None" % markup_func_name)
+    if markup_filter_name not in ('textile', 'markdown', 'restructuredtext'):
+        raise ValueError("'%s' is not a valid value for the first element of "
+                         "MARKUP_FILTER; acceptable values are 'textile', "
+                         "'markdown', 'restructuredtext' and None" %
+                         markup_filter_name)
 
-    if markup_func_name == 'textile':
+    # Process the text using the markup filter set in settings.
+    if markup_filter_name == 'textile':
         import textile
         if 'encoding' not in markup_kwargs:
             markup_kwargs.update(encoding=settings.DEFAULT_CHARSET)
@@ -223,11 +232,11 @@ def apply_markup_filter(text):
             markup_kwargs.update(output=settings.DEFAULT_CHARSET)
         return textile.textile(text, **markup_kwargs)
 
-    elif markup_func_name == 'markdown':
+    elif markup_filter_name == 'markdown':
         import markdown
         return markdown.markdown(text, **markup_kwargs)
 
-    elif markup_func_name == 'restructuredtext':
+    elif markup_filter_name == 'restructuredtext':
         from docutils import core
         if 'settings_overrides' not in markup_kwargs:
             markup_kwargs.update(settings_overrides=getattr(settings, "RESTRUCTUREDTEXT_FILTER_SETTINGS", {}))

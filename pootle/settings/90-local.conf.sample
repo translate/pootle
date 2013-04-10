@@ -118,18 +118,20 @@ CAN_CONTACT = True
 PODIRECTORY = working_path('po')
 
 # Two-tuple defining the markup filter to apply in certain textareas.
+#
 # - Accepted values for the first element are 'textile', 'markdown',
-#   'restructuredtext' and None
-# - The second element should be a dictionary of keyword arguments that
-#   will be passed to the markup function
+#   'restructuredtext' and None.
+# - The second element should be a dictionary of keyword arguments that will be
+#   passed to the markup function.
 #
 # Examples:
-#   MARKUP_FILTER = (None, {})
-#   MARKUP_FILTER = ('markdown', {'safe_mode': 'escape'})
-#   MARKUP_FILTER = ('restructuredtext', {'settings_overrides': {
-#                                            'report_level': 'quiet',
-#                                            }
-#                                        })
+#    MARKUP_FILTER = (None, {})
+#    MARKUP_FILTER = ('markdown', {'safe_mode': 'escape'})
+#    MARKUP_FILTER = ('restructuredtext', {
+#                         'settings_overrides': {
+#                             'report_level': 'quiet',
+#                         }
+#                     })
 MARKUP_FILTER = (None, {})
 
 # Set the backends you want to use to enable translation suggestions through
