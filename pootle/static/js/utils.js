@@ -100,7 +100,7 @@
      *
      * `onChange` function will be fired when the select choice changes.
      */
-    makeSelectableInput: function (selector, onChange) {
+    makeSelectableInput: function (selector, options, onChange) {
       // XXX: Check if this works with multiple selects per page
       var $el = $(selector);
 
@@ -108,7 +108,7 @@
         return;
       }
 
-      $el.select2();
+      $el.select2(options);
 
       $el.on('change', onChange);
     }
