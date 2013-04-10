@@ -185,6 +185,9 @@ def get_markup_filter():
 
         * The MARKUP_FILTER option is improperly set.
 
+        * The markup filter name set can't be used because the required
+          package isn't installed.
+
         * The markup filter name set is not one of the acceptable markup
           filter names.
     """
@@ -192,7 +195,13 @@ def get_markup_filter():
         markup_filter, markup_kwargs = settings.MARKUP_FILTER
         if markup_filter is None:
             return (None, "unset")
-        elif markup_filter not in ('textile', 'markdown', 'restructuredtext'):
+        elif markup_filter == 'textile':
+            import textile
+        elif markup_filter == 'markdown':
+            import markdown
+        elif markup_filter == 'restructuredtext':
+            import docutils
+        else:
             raise ValueError()
     except AttributeError:
         logging.error("MARKUP_FILTER is missing. Falling back to HTML.")
@@ -200,6 +209,10 @@ def get_markup_filter():
     except IndexError:
         logging.error("MARKUP_FILTER is misconfigured. Falling back to HTML.")
         return (None, "misconfigured")
+    except ImportError:
+        logging.warning("Can't find the package which provides '%s' markup "
+                        "support. Falling back to HTML.", markup_filter)
+        return (None, "uninstalled")
     except ValueError:
         logging.error("Invalid value '%s' in MARKUP_FILTER. Falling back to "
                       "HTML." % markup_filter)

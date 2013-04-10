@@ -21,6 +21,7 @@
 
 import locale
 
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.cache import cache
 from django.http import HttpResponse
@@ -33,6 +34,7 @@ from pootle import depcheck
 from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.views.admin.util import user_is_admin
 from pootle_misc.aggregate import sum_column
+from pootle_misc.util import get_markup_filter
 from pootle_profile.models import PootleProfile
 from pootle_statistics.models import Submission
 from pootle_store.models import Unit, Suggestion
@@ -120,6 +122,27 @@ def optional_depcheck():
             'text': _("No text indexing engine found. Searching is faster if "
                       "an indexing engine like Xapian or Lucene is installed.")
         })
+
+    filter_name, filter_args = get_markup_filter()
+    if filter_name is None:
+        text = None
+        if filter_args == 'missing':
+            text = _("MARKUP_FILTER is missing. Falling back to HTML.")
+        elif filter_args == 'misconfigured':
+            text = _("MARKUP_FILTER is misconfigured. Falling back to HTML.")
+        elif filter_args == 'uninstalled':
+            text = _("Can't find the package which provides '%s' markup "
+                     "support. Falling back to HTML.",
+                     settings.MARKUP_FILTER[0])
+        elif filter_args == 'invalid':
+            text = _("Invalid value '%s' in MARKUP_FILTER. Falling back to "
+                     "HTML.", settings.MARKUP_FILTER[0])
+
+        if text is not None:
+            optional.append({
+                'dependency': filter_args + '-markup',
+                'text': text
+            })
 
     return optional
 
