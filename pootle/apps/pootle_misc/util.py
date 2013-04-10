@@ -169,7 +169,7 @@ def get_markup_filter_name():
         markup_filter = settings.MARKUP_FILTER[0]
         if markup_filter is None:
             markup_filter = u'HTML'
-    except AttributeError, IndexError:
+    except (AttributeError, IndexError):
         markup_filter = u'HTML'
 
     return markup_filter
