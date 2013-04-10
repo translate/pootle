@@ -173,16 +173,25 @@ def get_markup_filter_name():
         * There is no markup filter set.
 
         * The MARKUP_FILTER option is improperly set.
+
+        * The markup filter name set is not one of the acceptable markup
+          filter names.
     """
     try:
         markup_filter = settings.MARKUP_FILTER[0]
         if markup_filter is None:
             markup_filter = u'HTML'
+        elif markup_filter not in ('textile', 'markdown', 'restructuredtext'):
+            raise ValueError()
     except AttributeError:
         logging.error("MARKUP_FILTER is missing. Falling back to HTML.")
         markup_filter = u'HTML'
     except IndexError:
         logging.error("MARKUP_FILTER is misconfigured. Falling back to HTML.")
+        markup_filter = u'HTML'
+    except ValueError:
+        logging.error("Invalid value '%s' in MARKUP_FILTER. Falling back to "
+                      "HTML." % markup_filter)
         markup_filter = u'HTML'
 
     return markup_filter
@@ -217,17 +226,13 @@ def apply_markup_filter(text):
 
     Borrowed from http://djangosnippets.org/snippets/104/
     """
-    markup_filter_name, markup_kwargs = settings.MARKUP_FILTER
+    markup_filter_name = get_markup_filter_name()
 
     # No processing is needed.
-    if markup_filter_name is None or not text.strip():
+    if markup_filter_name == u'HTML' or not text.strip():
         return text
 
-    if markup_filter_name not in ('textile', 'markdown', 'restructuredtext'):
-        raise ValueError("'%s' is not a valid value for the first element of "
-                         "MARKUP_FILTER; acceptable values are 'textile', "
-                         "'markdown', 'restructuredtext' and None" %
-                         markup_filter_name)
+    markup_kwargs = settings.MARKUP_FILTER[1]
 
     # Process the text using the markup filter set in settings.
     if markup_filter_name == 'textile':
