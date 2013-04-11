@@ -58,7 +58,7 @@ class LegalPage(models.Model):
         if self.url:
             return self.url
 
-        return reverse('legalpages.views.legalpage', args=[self.slug])
+        return reverse('staticpages.views.legalpage', args=[self.slug])
 
     def save(self, *args, **kwargs):
         """Applies a markup filter to populate `body_html` upon saving."""

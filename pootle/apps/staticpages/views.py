@@ -19,13 +19,16 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
+from __future__ import absolute_import
+
 from django.shortcuts import get_object_or_404, redirect, render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 
-from legalpages.forms import LegalPageForm
-from legalpages.models import LegalPage
 from pootle_app.views.admin.util import user_is_admin
+
+from .forms import LegalPageForm
+from .models import LegalPage
 
 
 @user_is_admin
@@ -37,18 +40,18 @@ def admin_page(request, page_id):
 
         if '_delete' in request.POST:
             lp.delete()
-            return redirect('legalpages.views.admin')
+            return redirect('staticpages.views.admin')
 
         form = LegalPageForm(request.POST, instance=lp)
 
         if form.is_valid():
             form.save()
-            return redirect('legalpages.views.admin')
+            return redirect('staticpages.views.admin')
 
     else:
         form = LegalPageForm(instance=lp)
 
-    return render_to_response('legalpages/admin/edit.html',
+    return render_to_response('staticpages/admin/edit.html',
             {'form': form, 'show_delete': True},
             RequestContext(request))
 
@@ -70,7 +73,7 @@ def admin(request):
 
     lps = LegalPage.objects.all()
 
-    return render_to_response('legalpages/admin/list.html',
+    return render_to_response('staticpages/admin/list.html',
             {'legalpages': lps, 'form': form, 'message': msg,
              'show_delete': False},
             RequestContext(request))
@@ -83,9 +86,9 @@ def legalpage(request, slug):
     if lp.url:
         return redirect(lp.url)
 
-    template_name = 'legalpages/legalpage.html'
+    template_name = 'staticpages/legalpage.html'
     if 'HTTP_X_FANCYBOX' in request.META:
-        template_name = 'legalpages/legalpage_body.html'
+        template_name = 'staticpages/legalpage_body.html'
 
     return render_to_response(template_name, {'lp': lp},
             RequestContext(request))

@@ -44,7 +44,7 @@ urlpatterns = patterns(
 
     # Pootle URLs
     (r'', include('pootle_app.urls')),
-    (r'^about/', include('legalpages.urls')),
+    (r'^about/', include('staticpages.urls')),
     (r'^projects/', include('pootle_project.urls')),
     (r'', include('pootle_notifications.urls')),
     (r'', include('pootle_terminology.urls')),

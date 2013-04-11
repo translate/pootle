@@ -4,34 +4,34 @@
 
 {% block title %}{% trans "Legal Pages" %} | {{ block.super }}{% endblock %}
 
-{% block body_id %}adminlegalpages{% endblock %}
+{% block body_id %}adminstaticpages{% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}<li>{% trans "Legal Pages" %}</li>
 {% endblock %}
 
 {% block section_body %}
-<div class="legalpages settings-container centered">
-  <div class="legalpages-list module first">
+<div class="staticpages settings-container centered">
+  <div class="staticpages-list module first">
     <div class="hd">
       <h2>{% trans "Existing Legal Pages" %}</h2>
     </div>
     <div class="bd">
       <ul>
       {% for lp in legalpages %}
-        <li>{{ lp.title }} ({% if lp.active %}{% trans "Active" %}{% else %}{% trans "Inactive" %}{% endif %}) — <a href="{% url 'legalpages.views.admin_page' lp.id %}">{% trans "Edit" %}</a></li>
+        <li>{{ lp.title }} ({% if lp.active %}{% trans "Active" %}{% else %}{% trans "Inactive" %}{% endif %}) — <a href="{% url 'staticpages.views.admin_page' lp.id %}">{% trans "Edit" %}</a></li>
       {% empty %}
         <li>{% trans "No pages yet." %}</li>
       {% endfor %}
       </ul>
     </div>
   </div>
-  <div class="legalpages-edit module">
+  <div class="staticpages-edit module">
     <div class="hd">
       <h2>{% trans "New Legal Page" %}</h2>
     </div>
     <div class="bd">
-    {% include "legalpages/admin/form.html" %}
+    {% include "staticpages/admin/form.html" %}
     </div>
   </div>
 </div>

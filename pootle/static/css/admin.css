@@ -31,27 +31,27 @@ div#depchecks ul li.error
 /* ADMIN GENERAL SETTINGS */
 
 textarea#id_DESCRIPTION,
-.legalpages-form textarea
+.staticpages-form textarea
 {
     width: 100%;
 }
 
-/* LEGAL PAGES */
+/* STATIC PAGES */
 
-.legalpages-list li
+.staticpages-list li
 {
     margin: 0 1em;
     list-style-type: square;
 }
 
-.legalpages-form input[type="checkbox"]
+.staticpages-form input[type="checkbox"]
 {
     display: inline;
     float: left;
     margin: 0 .25em;
 }
 
-html[dir="rtl"] .legalpages-form input[type="checkbox"]
+html[dir="rtl"] .staticpages-form input[type="checkbox"]
 {
     float: right;
 }

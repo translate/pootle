@@ -21,10 +21,10 @@
 
 from django.conf.urls.defaults import include, patterns
 
-import legalpages.urls
+import staticpages.urls
 
 urlpatterns = patterns('pootle_app.views.admin',
-    (r'^/legalpages/', include(legalpages.urls.admin_patterns)),
+    (r'^/pages/', include(staticpages.urls.admin_patterns)),
     (r'^/users.html$', 'adminusers.view'),
     (r'^/languages.html$', 'adminlanguages.view'),
     (r'^/projects.html$', 'adminprojects.view'),

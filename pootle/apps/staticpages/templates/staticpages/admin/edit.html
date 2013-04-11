@@ -3,20 +3,20 @@
 
 {% block title %}{% trans "Edit Legal Page" %} | {{ block.super }}{% endblock %}
 
-{% block body_id %}adminlegalpages{% endblock %}
+{% block body_id %}adminstaticpages{% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}<li>{% trans "Edit Legal Page" %}</li>
 {% endblock %}
 
 {% block section_body %}
-<div class="legalpages settings-container centered">
-  <div class="legalpages-edit">
+<div class="staticpages settings-container centered">
+  <div class="staticpages-edit">
     <div class="hd">
       <h2>{% trans "Edit Legal Page" %}</h2>
     </div>
     <div class="bd">
-    {% include "legalpages/admin/form.html" %}
+    {% include "staticpages/admin/form.html" %}
     </div>
   </div>
 </div>

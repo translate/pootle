@@ -19,27 +19,13 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from django.forms import ModelForm, ValidationError
-from django.utils.translation import ugettext_lazy as _
+from django.conf.urls.defaults import patterns
 
-from legalpages.models import LegalPage
+urlpatterns = patterns('',
+    (r'^(?P<slug>[^/]+)/$', 'staticpages.views.legalpage'),
+)
 
-
-class LegalPageForm(ModelForm):
-
-    class Meta:
-        model = LegalPage
-
-
-    def clean(self):
-        cleaned_data = super(LegalPageForm, self).clean()
-
-        url = cleaned_data.get('url')
-        body = cleaned_data.get('body')
-
-        if url == '' and body == '':
-            # Translators: 'URL' and 'content' refer to form fields.
-            msg = _('URL or content must be provided.')
-            raise ValidationError(msg)
-
-        return cleaned_data
+admin_patterns = patterns('',
+    (r'^$', 'staticpages.views.admin'),
+    (r'^(?P<page_id>\d+)/?$', 'staticpages.views.admin_page'),
+)
