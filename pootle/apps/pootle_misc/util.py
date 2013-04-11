@@ -171,6 +171,8 @@ def get_markup_filter_name():
     This returns instead the HTML markup filter name in the following cases:
 
         * There is no markup filter set.
+
+        * The MARKUP_FILTER option is improperly set.
     """
     try:
         markup_filter = settings.MARKUP_FILTER[0]
@@ -191,7 +193,7 @@ def apply_markup_filter(text):
     ``MARKUP_FILTER``, which should be a 2-tuple:
 
         * The first element should be the name of a markup filter --
-          e.g.,"markdown" -- to apply. If no markup filter is desired,
+          e.g., "markdown" -- to apply. If no markup filter is desired,
           set this to None.
 
         * The second element should be a dictionary of keyword
