@@ -6,6 +6,7 @@
 
     init: function () {
       PTL.utils.makeSelectableInput('#js-select-language',
+        {},
         function (e) {
           var langCode = $(this).val();
           PTL.common.navigateToLang(langCode);
