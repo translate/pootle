@@ -166,9 +166,20 @@ def cached_property(f):
 
 
 def get_markup_filter_name():
-    """Returns the configured markup filter's name as a string.
+    """Returns a nice version for the current markup filter's name."""
+    name, args = get_markup_filter()
+    return {
+        'textile': u'Textile',
+        'markdown': u'Markdown',
+        'restructuredtext': u'reStructuredText',
+    }.get(name, u'HTML')
 
-    This returns instead the HTML markup filter name in the following cases:
+
+def get_markup_filter():
+    """Returns the configured filter as a tuple with name and args.
+
+    In the following case this function returns (None, message) instead,
+    where message tells the reason why not a markup filter is returned:
 
         * There is no markup filter set.
 
@@ -178,23 +189,23 @@ def get_markup_filter_name():
           filter names.
     """
     try:
-        markup_filter = settings.MARKUP_FILTER[0]
+        markup_filter, markup_kwargs = settings.MARKUP_FILTER
         if markup_filter is None:
-            markup_filter = u'HTML'
+            return (None, "unset")
         elif markup_filter not in ('textile', 'markdown', 'restructuredtext'):
             raise ValueError()
     except AttributeError:
         logging.error("MARKUP_FILTER is missing. Falling back to HTML.")
-        markup_filter = u'HTML'
+        return (None, "missing")
     except IndexError:
         logging.error("MARKUP_FILTER is misconfigured. Falling back to HTML.")
-        markup_filter = u'HTML'
+        return (None, "misconfigured")
     except ValueError:
         logging.error("Invalid value '%s' in MARKUP_FILTER. Falling back to "
                       "HTML." % markup_filter)
-        markup_filter = u'HTML'
+        return (None, "invalid")
 
-    return markup_filter
+    return (markup_filter, markup_kwargs)
 
 
 def apply_markup_filter(text):
@@ -226,13 +237,11 @@ def apply_markup_filter(text):
 
     Borrowed from http://djangosnippets.org/snippets/104/
     """
-    markup_filter_name = get_markup_filter_name()
+    markup_filter_name, markup_kwargs = get_markup_filter()
 
     # No processing is needed.
-    if markup_filter_name == u'HTML' or not text.strip():
+    if markup_filter_name is None or not text.strip():
         return text
-
-    markup_kwargs = settings.MARKUP_FILTER[1]
 
     # Process the text using the markup filter set in settings.
     if markup_filter_name == 'textile':
