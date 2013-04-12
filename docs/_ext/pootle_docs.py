@@ -22,6 +22,7 @@
 
 
 def setup(app):
+    # django :setting: role for intersphinx cross-references
     app.add_crossref_type(
         directivename = "setting",
         rolename = "setting",
