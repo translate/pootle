@@ -32,7 +32,7 @@ class AbstractPage(models.Model):
             help_text=_('Whether this page is active or not.'))
 
     # Translators: See http://en.wikipedia.org/wiki/Slug_%28web_publishing%29#Slug
-    slug = models.SlugField(_("Slug"),
+    slug = models.SlugField(_("Slug"), default='',
             help_text=_('The page will be available at /about/<slug>/'))
 
     # TODO: make title and body localizable fields
