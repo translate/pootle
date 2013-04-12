@@ -31,15 +31,14 @@ class AbstractPage(models.Model):
     active = models.BooleanField(_('Active'),
             help_text=_('Whether this page is active or not.'))
 
-    # TODO: make title and body localizable fields
-    title = models.CharField(_("Title"), max_length=100)
     # Translators: See http://en.wikipedia.org/wiki/Slug_%28web_publishing%29#Slug
     slug = models.SlugField(_("Slug"),
             help_text=_('The page will be available at /about/<slug>/'))
 
+    # TODO: make title and body localizable fields
+    title = models.CharField(_("Title"), max_length=100)
     body = models.TextField(_("Content"), blank=True,
             help_text=_('Allowed markup: %s', get_markup_filter_name()))
-
     body_html = models.TextField(editable=False, blank=True)
 
     class Meta:
