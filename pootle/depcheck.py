@@ -158,15 +158,11 @@ def test_memcache():
         import memcache
         return True
     except ImportError:
-        # Since Django 1.3.0 there is support for pylibmc as well
-        import django
-        if django.VERSION >= (1, 3, 0, '', 0):
-            try:
-                import pylibmc
-                return True
-            except ImportError:
-                return False
-        return False
+        try:
+            import pylibmc
+            return True
+        except ImportError:
+            return False
 
 
 def test_memcached():
