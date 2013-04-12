@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2012 Zuza Software Foundation
+# Copyright 2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -26,19 +26,13 @@ from django.utils.translation import ugettext_lazy as _
 from pootle_misc.util import get_markup_filter_name, apply_markup_filter
 
 
-class LegalPage(models.Model):
+class AbstractPage(models.Model):
 
     active = models.BooleanField(_('Active'),
             help_text=_('Whether this page is active or not.'))
 
-    display_on_register = models.BooleanField(_('Display on registration'),
-            help_text=_('Whether this page should be displayed on registration.'))
-
     # TODO: make title and body localizable fields
     title = models.CharField(_("Title"), max_length=100)
-    url = models.URLField(_("URL"), blank=True,
-            help_text=_('If set, any references to this legal page will redirect ' \
-                    'to this URL'))
     # Translators: See http://en.wikipedia.org/wiki/Slug_%28web_publishing%29#Slug
     slug = models.SlugField(_("Slug"),
             help_text=_('The page will be available at /about/<slug>/'))
@@ -48,8 +42,26 @@ class LegalPage(models.Model):
 
     body_html = models.TextField(editable=False, blank=True)
 
+    class Meta:
+        abstract = True
+
     def __unicode__(self):
         return self.slug
+
+    def save(self, *args, **kwargs):
+        """Applies a markup filter to populate `body_html` upon saving."""
+        self.body_html = apply_markup_filter(self.body)
+        super(AbstractPage, self).save(*args, **kwargs)
+
+
+class LegalPage(AbstractPage):
+
+    display_on_register = models.BooleanField(_('Display on registration'),
+            help_text=_('Whether this page should be displayed on registration.'))
+
+    url = models.URLField(_("URL"), blank=True,
+            help_text=_('If set, any references to this legal page will '
+                        'redirect to this URL'))
 
     def localized_title(self):
         return _(self.title)
@@ -59,8 +71,3 @@ class LegalPage(models.Model):
             return self.url
 
         return reverse('staticpages.views.legalpage', args=[self.slug])
-
-    def save(self, *args, **kwargs):
-        """Applies a markup filter to populate `body_html` upon saving."""
-        self.body_html = apply_markup_filter(self.body)
-        super(LegalPage, self).save(*args, **kwargs)
