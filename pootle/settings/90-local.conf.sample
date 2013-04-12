@@ -124,6 +124,9 @@ PODIRECTORY = working_path('po')
 # - The second element should be a dictionary of keyword arguments that will be
 #   passed to the markup function.
 #
+# IMPORTANT: If you want to use one of these markup filters you must install on
+# your own the required packages.
+#
 # Examples:
 #    MARKUP_FILTER = (None, {})
 #    MARKUP_FILTER = ('markdown', {'safe_mode': 'escape'})

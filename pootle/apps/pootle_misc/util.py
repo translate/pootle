@@ -166,22 +166,59 @@ def cached_property(f):
 
 
 def get_markup_filter_name():
-    """Returns the configured markup filter's name as a string.
+    """Returns a nice version for the current markup filter's name."""
+    name, args = get_markup_filter()
+    return {
+        'textile': u'Textile',
+        'markdown': u'Markdown',
+        'restructuredtext': u'reStructuredText',
+    }.get(name, u'HTML')
 
-    This returns instead the HTML markup filter name in the following cases:
+
+def get_markup_filter():
+    """Returns the configured filter as a tuple with name and args.
+
+    In the following case this function returns (None, message) instead,
+    where message tells the reason why not a markup filter is returned:
 
         * There is no markup filter set.
 
         * The MARKUP_FILTER option is improperly set.
+
+        * The markup filter name set can't be used because the required
+          package isn't installed.
+
+        * The markup filter name set is not one of the acceptable markup
+          filter names.
     """
     try:
-        markup_filter = settings.MARKUP_FILTER[0]
+        markup_filter, markup_kwargs = settings.MARKUP_FILTER
         if markup_filter is None:
-            markup_filter = u'HTML'
-    except (AttributeError, IndexError):
-        markup_filter = u'HTML'
+            return (None, "unset")
+        elif markup_filter == 'textile':
+            import textile
+        elif markup_filter == 'markdown':
+            import markdown
+        elif markup_filter == 'restructuredtext':
+            import docutils
+        else:
+            raise ValueError()
+    except AttributeError:
+        logging.error("MARKUP_FILTER is missing. Falling back to HTML.")
+        return (None, "missing")
+    except IndexError:
+        logging.error("MARKUP_FILTER is misconfigured. Falling back to HTML.")
+        return (None, "misconfigured")
+    except ImportError:
+        logging.warning("Can't find the package which provides '%s' markup "
+                        "support. Falling back to HTML.", markup_filter)
+        return (None, "uninstalled")
+    except ValueError:
+        logging.error("Invalid value '%s' in MARKUP_FILTER. Falling back to "
+                      "HTML." % markup_filter)
+        return (None, "invalid")
 
-    return markup_filter
+    return (markup_filter, markup_kwargs)
 
 
 def apply_markup_filter(text):
@@ -213,17 +250,11 @@ def apply_markup_filter(text):
 
     Borrowed from http://djangosnippets.org/snippets/104/
     """
-    markup_filter_name, markup_kwargs = settings.MARKUP_FILTER
+    markup_filter_name, markup_kwargs = get_markup_filter()
 
     # No processing is needed.
     if markup_filter_name is None or not text.strip():
         return text
-
-    if markup_filter_name not in ('textile', 'markdown', 'restructuredtext'):
-        raise ValueError("'%s' is not a valid value for the first element of "
-                         "MARKUP_FILTER; acceptable values are 'textile', "
-                         "'markdown', 'restructuredtext' and None" %
-                         markup_filter_name)
 
     # Process the text using the markup filter set in settings.
     if markup_filter_name == 'textile':
