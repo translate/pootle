@@ -38,7 +38,7 @@ from pootle_app.models.directory import Directory
 from pootle_language.models import Language
 from pootle_misc.aggregate import group_by_count_extra, max_column
 from pootle_misc.baseurl import l
-from pootle_misc.stats import stats_message, stats_message_raw
+from pootle_misc.stats import stats_message
 from pootle_misc.util import (getfromcache, dictsum, deletefromcache,
                               get_markup_filter_name, apply_markup_filter)
 from pootle_project.models import Project
@@ -324,11 +324,24 @@ class TranslationProject(models.Model):
         from pootle_misc import versioncontrol
         project_path = self.project.get_real_path()
 
+        new_filenames = [s.file.name for s in new_files]
+        commitdata = {
+            'server': settings.TITLE,
+            'project': self.project.fullname,
+            'language': self.language.name,
+            'filenames': ', '.join(new_filenames),
+        }
+        #TODO for when template projects support quickstats: 'total'
+
+        default_message = u"New files added from %(server)s based on templates"
+
+        try:
+            message = settings.VCS_INIT_MESSAGE % commitdata
+        except (KeyError, TypeError):
+            message = default_message % commitdata
+
         if new_files and versioncontrol.hasversioning(project_path):
-            output = versioncontrol.add_files(project_path,
-                    [s.file.name for s in new_files],
-                    "New files added from %s based on templates" %
-                            (settings.TITLE))
+            versioncontrol.add_files(project_path, new_filenames, message)
 
         if pootle_path is None:
             newstats = self.getquickstats()
@@ -686,15 +699,32 @@ class TranslationProject(models.Model):
         store.sync(update_structure=False, update_translation=True,
                    conservative=True)
         stats = store.getquickstats()
-        author = user.username
+        username = user.username
 
-        message = stats_message_raw("Commit from %s by user %s." % \
-                (settings.TITLE, author), stats)
-
-        # Try to append email as well, since some VCS does not allow omitting
-        # it (ie. Git).
+        # Also provide the full author (user with email appended), since
+        # some VCS like to work with those (ie. Git).
         if user.is_authenticated() and len(user.email):
-            author += " <%s>" % user.email
+            author = username + " <%s>" % user.email
+        else:
+            author = username
+
+        commitdata = {
+            'server': settings.TITLE,
+            'user': username,
+            'author': author,
+            'translated': stats.get("translated", 0),
+            'total': stats.get("total", 0),
+            'fuzzy': stats.get("fuzzy", 0),
+            'project': self.project.fullname,
+            'language': self.language.name,
+        }
+
+        default_message = u"Update from %(server)s"
+
+        try:
+            message = settings.VCS_COMMIT_MESSAGE % commitdata
+        except (KeyError, TypeError):
+            message = default_message % commitdata
 
         from pootle.scripts import hooks
         try:

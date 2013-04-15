@@ -413,6 +413,44 @@ Translation environment configuration settings.
   The directory where the translation files are kept.
 
 
+.. setting:: VCS_COMMIT_MESSAGE
+
+``VCS_COMMIT_MESSAGE``
+  Default:
+  ::
+    %(server)s: %(project)s (%(language)s)
+
+    %(filename)s: %(translated)d of %(total)d messages translated, %(fuzzy)d fuzzy.
+
+  .. versionadded:: 2.5
+
+  The template for creating commit messages when committing translations
+  to version control.
+
+  Available placeholder variables:
+  ``server``, ``user``, ``author`` (user with email appended),
+  ``translated`` (numerical), ``fuzzy`` (numerical), ``total`` (numerical),
+  ``project``, ``language``, ``filename``.
+
+
+.. setting:: VCS_INIT_MESSAGE
+
+``VCS_INIT_MESSAGE``
+  Default:
+  ::
+    %(server)s: Initialized %(project)s (%(language)s)
+
+    New files: %(filenames)s
+
+  .. versionadded:: 2.5
+
+  The template for creating commit messages when initializing a language
+  under version control from templates.
+
+  Available placeholder variables:
+  ``server``, ``project``, ``language``, ``filenames``.
+
+
 .. setting:: VCS_DIRECTORY
 
 ``VCS_DIRECTORY``

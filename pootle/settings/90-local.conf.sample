@@ -117,6 +117,24 @@ CAN_CONTACT = True
 # The directory where the translation files are kept
 PODIRECTORY = working_path('po')
 
+# The template for creating commit messages when committing translations
+# to version control. Variables that will be replaced:
+# 'server', 'user', 'author' (user + email),
+# 'translated', 'fuzzy', 'total' (treat these three as numerical),
+# 'project', 'language', 'filename'.
+VCS_COMMIT_MESSAGE = u"""\
+%(server)s: %(project)s (%(language)s)
+
+%(filename)s: %(translated)d of %(total)d messages translated, %(fuzzy)d fuzzy."""
+
+# The template for creating commit messages when initializing a language
+# under version control from templates. Variables that will be replaced:
+# 'server', 'project', 'language', 'filenames'.
+VCS_INIT_MESSAGE = u"""\
+%(server)s: Initialized %(project)s (%(language)s)
+
+New files: %(filenames)s"""
+
 # Two-tuple defining the markup filter to apply in certain textareas.
 #
 # - Accepted values for the first element are 'textile', 'markdown',
