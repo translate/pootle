@@ -1,7 +1,7 @@
 Pootle API
 ~~~~~~~~~~
 
-Motviation
+Motivation
 ==========
 #. Mozilla wants to be able to get status and contribution information from
    Pootle; what needs to be done, what has someone contributed.
@@ -20,8 +20,8 @@ Use Cases
 
 **Mozilla related**
 
-* Mozilla wants to be able to retreive the contributions from a given
-  translator to display in it telephone directory.
+* Mozilla wants to be able to retrieve the contributions from a given
+  translator to display them in its telephone directory.
 * Mozilla wants to be able to report work that still needs to be done.
 
 **Solas related**
@@ -56,7 +56,7 @@ Projects should be defined in a .ttk folder or in the api
 
 .. Should we call get and put, push and pull to match DVCS semantics?
 
-* get (pull) -- retreive translations from Pootle [#saas]_ [#solas]_
+* get (pull) -- retrieve translations from Pootle [#saas]_ [#solas]_
 * put (push) -- publish translations to Pootle [#saas]_ [#solas]_
 * list -- list languages [#solas]_ [#saas]_
 
@@ -132,7 +132,7 @@ Using Virtaal:
 Some ideas:
 
 * Ability to list public Pootle servers
-* Ability to dril into projects
+* Ability to drill into projects
 * Request a language
 * See list of files and completion like a catalog manager
 * Perform translations
