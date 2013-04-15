@@ -2274,4 +2274,4 @@
 
   }; // PTL.editor
 
-})(jQuery);
+}(jQuery));

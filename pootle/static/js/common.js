@@ -133,7 +133,7 @@
 
   };
 
-})(jQuery);
+}(jQuery));
 
 $(function ($) {
   PTL.zoom.init();
