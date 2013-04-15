@@ -103,16 +103,15 @@ class MultiStringField(models.Field):
     def to_python(self, value):
         return to_python(value)
 
-    def get_db_prep_value(self, value, *args, **kwargs):
-        #FIXME: maybe we need to override get_db_prep_save instead?
+    def get_prep_value(self, value):
         return to_db(value)
 
-    def get_db_prep_lookup(self, lookup_type, value, *args, **kwargs):
+    def get_prep_lookup(self, lookup_type, value):
         if (lookup_type in ('exact', 'iexact') or
             not isinstance(value, basestring)):
-            value = self.get_db_prep_value(value)
+            value = self.get_prep_value(value)
         return super(MultiStringField, self) \
-                .get_db_prep_lookup(lookup_type, value, *args, **kwargs)
+                .get_prep_lookup(lookup_type, value)
 
 add_introspection_rules(
         [],
