@@ -487,20 +487,32 @@
    * Text utils
    */
 
+  /* Escape unsafe regular expression symbols:
+   * ! $ & ( ) * + - . : < = > ? [ \ ] ^ { | }
+   *
+   * Special characters can be written as
+   * Regular Expression class:
+   * [!$&(-+\-.:<-?\[-^{-}]
+   */
   escapeUnsafeRegexSymbols: function (s) {
-    var i, r = "\\.+*?[^]$(){}=!<>¦:";
-    for (i = 0; i < r.length; i++) {
-      s = s.replace(new RegExp("\\" + r.charAt(i),"g"), "\\" + r.charAt(i));
-    }
-    return s;
+    // Replace doesn't modify original variable and it recreates a
+    // new string with special characters escaped.
+    return s.replace(/[!$&(-+\-.:<-?\[-^{-}]/g, '\\$&');
   },
 
+  /* Make regular expression using every word
+   * in input string
+   */
   makeRegexForMultipleWords: function (s) {
-    var i, w = s.split(' ');
-    for (i = 0; i < w.length; i++) {
-      w[i] = this.escapeUnsafeRegexSymbols(w[i]);
-    }
-    return '(' + w.join("|") + ')';
+    // This function has these steps:
+    // 1) escape unsafe regular expression symbols;
+    // 2) trim ' ' (whitespaces) to avoid multiple
+    //    '|' at the beginning and at the end;
+    // 3) replace ' ' (one or more whitespaces) with '|'. In this
+    //    way every word can be searched by regular expression;
+    // 4) add brackets.
+    return ['(', escapeUnsafeRegexSymbols(s).trim().replace(/( +)/g,
+      '|'), ')'].join('');
   },
 
   /* Highlights search results */
