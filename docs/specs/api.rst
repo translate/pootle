@@ -45,19 +45,19 @@ Abilities required
 
 Projects should be defined in a .ttk folder or in the api
 
-* init (create) -- create a project [#saas]_ [#solas]_
+* init (create) -- create a project [#solas]_ [#saas]_
 * rm (delete) - remove a project [#solas]_
 * add -- add language(s) to a project [#solas]_  [#saas]_
 * drop -- drop language(s) from a project [#solas]_  [#saas]_
 * assign - assign a translator to a language with certain rights [#solas]_  [#saas]_
 * remove - remove a translator from a project [#solas]_  [#saas]_
 * describe - change meta data for a project [#solas]_  [#saas]_
-* statistics -- get statistics for a project: languages, avg completion, etc. [#solas]_ [#moz]_  [#saas]_
+* statistics -- get statistics for a project: languages, avg completion, etc. [#moz]_ [#solas]_  [#saas]_
 
 .. Should we call get and put, push and pull to match DVCS semantics?
 
-* get (pull) -- retrieve translations from Pootle [#saas]_ [#solas]_
-* put (push) -- publish translations to Pootle [#saas]_ [#solas]_
+* get (pull) -- retrieve translations from Pootle [#solas]_ [#saas]_
+* put (push) -- publish translations to Pootle [#solas]_ [#saas]_
 * list -- list languages [#solas]_ [#saas]_
 
 **User related**
@@ -67,7 +67,7 @@ Projects should be defined in a .ttk folder or in the api
 * delete -- delete a user from the server (must think about how we keep historic
   data) [#solas]_
 * statistics - data for that user within given dates: projects, translations,
-  suggestions, etc [#solas]_ [#moz]_
+  suggestions, etc [#moz]_ [#solas]_
 
 **File related**
 
@@ -103,14 +103,16 @@ We'll use `tastypie <http://tastypieapi.org/>`_ to handle the RESTful API.
 Zero stage
 ----------
 Initial tastypie implementation that puts in all the infrastructure for the
-API.  Including updates to requirements/ documentation etc.
+API. Including updates to ``requirements/``, documentation, etc.
+
+API version will be ``0.9`` until stabilised.
 
 Basic API implementation for list_languages and a command line tool that could
 call it.
 
 First stage
 -----------
-provide stats for Mozilla in terms of translations contributed. Provide a
+Provide stats for Mozilla in terms of translations contributed. Provide a
 linkable badge for users to brag about translations that makes use of this API.
 
 Second stage
@@ -120,16 +122,14 @@ allowing all actions from a ``pootle-cli`` tool.  This will allow us to iron
 out issues and easily test error reporting and failures. When it passes that
 would mean that we can safely expose this to external tools.
 
-Third approach
+Third stage
 --------------
 Actual Pootle <--> Solas interaction.  So expose the API and give feedback to
 the team on collaboration.
 
-Fourth approach
+Fourth stage
 ---------------
-Using Virtaal:
-
-Some ideas:
+Using Virtaal. Some ideas:
 
 * Ability to list public Pootle servers
 * Ability to drill into projects
