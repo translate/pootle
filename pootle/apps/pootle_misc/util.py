@@ -118,12 +118,16 @@ def add_percentages(quick_stats):
     return quick_stats
 
 
-def jsonify(json):
+def jsonify(obj):
+    """Serialize Python `obj` object into a JSON string."""
+    # FIXME: Use a custom encoder to avoid calling force_unicode on
+    # certain objects.
+    # https://docs.djangoproject.com/en/1.4/topics/serialization/#id2
     if settings.DEBUG:
         indent = 4
     else:
         indent = None
-    return simplejson.dumps(json, indent=indent)
+    return simplejson.dumps(obj, indent=indent)
 
 
 @decorate
