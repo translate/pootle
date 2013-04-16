@@ -24,7 +24,7 @@ Running WSGI servers
 --------------------
 
 There are multiple ways to run Pootle, and some of they rely on running WSGI
-servers that can be reverse proxyed to a proper HTTP web server such as nginx
+servers that can be reverse proxied to a proper HTTP web server such as nginx
 or lighttpd.
 
 The Translate Toolkit offers a bundled CherryPy server but there are many more
