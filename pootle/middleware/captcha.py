@@ -18,20 +18,20 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-import re
 import base64
-import time
 import logging
+import re
+import time
 from hashlib import sha1
 from random import randint
 
+from django import forms
+from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import loader, RequestContext
-from django import forms
-from django.utils.translation import ugettext as _
 from django.utils import simplejson
-from django.conf import settings
+from django.utils.translation import ugettext as _
 
 
 # MathCaptchaForm Copyright (c) 2007, Dima Dogadaylo (www.mysoftparade.com)
