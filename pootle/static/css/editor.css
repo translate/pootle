@@ -768,28 +768,12 @@ html[dir="rtl"] .suggestion-vote
     background-color: #f1f7e4;
 }
 
-.suggestion-original,
-#tm-results .suggestion-translation
-{
-    display: inline-block;
-}
-
 .suggestion-original
 {
     font-weight: bolder;
     color: #130f30;
     padding-right: 1em;
-}
-
-#suggestion[dir="rtl"] .suggestion-original
-{
-    padding-right: auto;
-    padding-left: 1em;
-}
-
-.suggestion-translation[dir="rtl"]
-{
-    text-align: right;
+    float: left;
 }
 
 #target-item-gravatar a
