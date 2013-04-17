@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2004-2012 Zuza Software Foundation
+# Copyright 2004-2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -25,7 +25,10 @@ from django.core.cache import cache
 from django.core.paginator import Paginator
 from django.http import HttpResponseBadRequest
 from django.utils import simplejson
-from django.utils.encoding import iri_to_uri
+from django.utils.encoding import force_unicode, iri_to_uri
+from django.utils.functional import Promise
+
+from pootle.core.markup import Markup
 
 # We host a copy of the timezone helpers in Django 1.4+ for the sake of Django
 # 1.3:
@@ -118,16 +121,29 @@ def add_percentages(quick_stats):
     return quick_stats
 
 
+class PootleJSONEncoder(simplejson.JSONEncoder):
+    """Custom JSON encoder for Pootle.
+
+    This is mostly implemented to avoid calling `force_unicode` all the
+    time on certain types of objects.
+    https://docs.djangoproject.com/en/1.4/topics/serialization/#id2
+    """
+
+    def default(self, obj):
+        if isinstance(obj, Promise) or isinstance(obj, Markup):
+            return force_unicode(obj)
+
+        return super(PootleEncoder, self).default(obj)
+
+
 def jsonify(obj):
     """Serialize Python `obj` object into a JSON string."""
-    # FIXME: Use a custom encoder to avoid calling force_unicode on
-    # certain objects.
-    # https://docs.djangoproject.com/en/1.4/topics/serialization/#id2
     if settings.DEBUG:
         indent = 4
     else:
         indent = None
-    return simplejson.dumps(obj, indent=indent)
+
+    return simplejson.dumps(obj, indent=indent, cls=PootleJSONEncoder)
 
 
 @decorate

@@ -34,7 +34,7 @@ from .filters import apply_markup_filter
 from .widgets import MarkupTextarea
 
 
-__all__ = ('MarkupField',)
+__all__ = ('Markup', 'MarkupField',)
 
 
 logger = logging.getLogger('pootle.markup')
