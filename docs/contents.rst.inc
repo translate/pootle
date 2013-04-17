@@ -11,6 +11,7 @@ perspectives, including user's, server administrator's, and developer's view.
    features/index
    server/index
    developers/index
+   api/index
 
 
 .. _notes:
