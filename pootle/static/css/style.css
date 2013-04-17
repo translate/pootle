@@ -1246,6 +1246,11 @@ ul.errorlist
     padding-left: 25px;
 }
 
+html[dir="rtl"] #contributors ul li
+{
+    padding-right: 25px;
+}
+
 #contributors ul li.lang
 {
     font-weight: bold;
