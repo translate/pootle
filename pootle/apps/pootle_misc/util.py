@@ -28,8 +28,6 @@ from django.utils import simplejson, timezone, tzinfo
 from django.utils.encoding import force_unicode, iri_to_uri
 from django.utils.functional import Promise
 
-from pootle.core.markup import Markup
-
 # Timezone aware minimum for datetime (if appropriate) (bug 2567)
 from datetime import datetime
 datetime_min = datetime.min
@@ -37,6 +35,8 @@ if settings.USE_TZ:
     datetime_min = timezone.make_aware(datetime_min, timezone.utc)
 
 from translate.misc.decorators import decorate
+
+from pootle.core.markup import Markup
 
 
 def getfromcache(function, timeout=settings.OBJECT_CACHE_TIMEOUT):
