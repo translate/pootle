@@ -68,7 +68,7 @@
   </div>
   {% endif %}
 
-  {% if translation_project.description_html or project.description_html or language.description_html or can_edit %}
+  {% if translation_project.description or project.description or language.description or can_edit %}
   <div class="hd">
     <h2>{% trans "Description" %}</h2>
   </div>
@@ -77,8 +77,8 @@
 
     <div id="overview-description-tp"
       class="markup-body{% if can_edit %} js-ctx-meta-desc{% endif %}">
-    {% if translation_project.description_html %}
-      {{ translation_project.description_html|clean }}
+    {% if translation_project.description %}
+      {{ translation_project.description }}
     {% else %}
       <p class="placeholder muted">{% trans "No description set." %}</p>
     {% endif %}
@@ -92,17 +92,17 @@
     </div>
   {% endif %}
 
-    {% if project.description_html %}
+    {% if project.description %}
     <a class="overview-description-toggle js-toggle" href="#overview-description-project">{% blocktrans with project.fullname as project %}{{ project }} project information{% endblocktrans %}</a>
     <div id="overview-description-project" class="markup-body hide">
-      {{ project.description_html|clean }}
+      {{ project.description }}
     </div>
     {% endif %}
 
-    {% if language.description_html %}
+    {% if language.description %}
     <a class="overview-description-toggle js-toggle" href="#overview-description-language">{% blocktrans with language.name as language %}{{ language }} language information{% endblocktrans %}</a>
     <div id="overview-description-language" class="markup-body hide">
-      {{ language.description_html|clean }}
+      {{ language.description }}
     </div>
     {% endif %}
 

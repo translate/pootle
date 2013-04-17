@@ -123,7 +123,7 @@ def project_language_index(request, project_code):
         'project': {
           'code': project.code,
           'name': project.fullname,
-          'description_html': project.description_html,
+          'description': project.description,
           'summary': ungettext('%(languages)d language, %(average)d%% translated',
                                '%(languages)d languages, %(average)d%% translated',
                                languagecount, {"languages": languagecount,
@@ -161,15 +161,15 @@ def project_settings_edit(request, project_code):
         form.save()
         rcode = 200
 
-        if project.description_html:
-            the_html = project.description_html
+        if project.description:
+            the_html = project.description
         else:
             the_html = u"".join([
                 u'<p class="placeholder muted">',
                 _(u"No description yet."), u"</p>"
             ])
 
-        response["description_html"] = the_html
+        response["description"] = the_html
 
     context = {
         "form": form,

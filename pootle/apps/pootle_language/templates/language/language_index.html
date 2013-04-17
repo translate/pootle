@@ -19,7 +19,7 @@
 </div>
 
 <div class="module">
-  {% if language.description_html or can_edit %}
+  {% if language.description or can_edit %}
   <div class="hd">
     <h2>{% trans "Description" %}</h2>
   </div>
@@ -28,8 +28,8 @@
 
     <div id="overview-description-language"
       class="markup-body{% if can_edit %} js-ctx-meta-desc{% endif %}">
-    {% if language.description_html %}
-      {{ language.description_html|clean }}
+    {% if language.description %}
+      {{ language.description }}
     {% else %}
       <p class="placeholder muted">{% trans "No description set." %}</p>
     {% endif %}

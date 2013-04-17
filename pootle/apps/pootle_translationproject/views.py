@@ -339,8 +339,8 @@ def edit_settings(request, translation_project):
         form.save()
         rcode = 200
 
-        if translation_project.description_html:
-            the_html = translation_project.description_html
+        if translation_project.description:
+            the_html = translation_project.description
         else:
             the_html = u"".join([
                 u'<p class="placeholder muted">',
@@ -348,7 +348,7 @@ def edit_settings(request, translation_project):
                 u"</p>"
             ])
 
-        response["description_html"] = the_html
+        response["description"] = the_html
 
     context = {
         "form": form,

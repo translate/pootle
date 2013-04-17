@@ -33,8 +33,7 @@ from django.utils.translation import ugettext_lazy as _
 from translate.misc.lru import LRUCachingDict
 from translate.storage.base import ParseError
 
-from pootle.core.markup import (apply_markup_filter,
-                                get_markup_filter_name)
+from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle_app.lib.util import RelatedManager
 from pootle_app.models.directory import Directory
 from pootle_language.models import Language
@@ -106,8 +105,7 @@ class TranslationProject(models.Model):
     description_help_text = _('A description of this translation project. '
             'This is useful to give more information or instructions. '
             'Allowed markup: %s', get_markup_filter_name())
-    description = models.TextField(blank=True, help_text=description_help_text)
-    description_html = models.TextField(editable=False, blank=True)
+    description = MarkupField(blank=True, help_text=description_help_text)
 
     language = models.ForeignKey(Language, db_index=True)
     project = models.ForeignKey(Project, db_index=True)
@@ -134,9 +132,6 @@ class TranslationProject(models.Model):
         self.directory = self.language.directory \
                                       .get_or_make_subdir(self.project.code)
         self.pootle_path = self.directory.pootle_path
-
-        # Apply markup filter
-        self.description_html = apply_markup_filter(self.description)
 
         super(TranslationProject, self).save(*args, **kwargs)
 

@@ -89,7 +89,7 @@ $(function () {
         data: $(this).serializeObject(),
         success: function (data) {
           var $metaDescContent = $metaDesc.children().filter(':first'),
-              theHtml = $('<div>').append(data.description_html);
+              theHtml = $('<div>').append(data.description);
 
           $editMetaDesc.hide();
           $editMetaDesc.html(data.form);

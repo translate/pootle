@@ -60,7 +60,7 @@ def make_project_item(translation_project):
         'href_all': href_all,
         'href_todo': href_todo,
         'title': project.fullname,
-        'description_html': project.description_html,
+        'description': project.description,
         'stats': project_stats,
         'lastactivity': get_last_action(translation_project),
         'isproject': True,
@@ -111,7 +111,7 @@ def language_index(request, language_code):
         'language': {
           'code': language.code,
           'name': tr_lang(language.fullname),
-          'description_html': language.description_html,
+          'description': language.description,
           'summary': ungettext('%(projects)d project, %(average)d%% translated',
                                '%(projects)d projects, %(average)d%% translated',
                                projectcount, {
@@ -150,15 +150,15 @@ def language_settings_edit(request, language_code):
         form.save()
         rcode = 200
 
-        if language.description_html:
-            the_html = language.description_html
+        if language.description:
+            the_html = language.description
         else:
             the_html = u"".join([
                 u'<p class="placeholder muted">',
                 _(u"No description yet."), u"</p>"
             ])
 
-        response["description_html"] = the_html
+        response["description"] = the_html
 
     context = {
         "form": form,

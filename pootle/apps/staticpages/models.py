@@ -23,8 +23,7 @@ from django.db import models
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 
-from pootle.core.markup import (apply_markup_filter,
-                                get_markup_filter_name)
+from pootle.core.markup import get_markup_filter_name, MarkupField
 
 
 class AbstractPage(models.Model):
@@ -38,20 +37,14 @@ class AbstractPage(models.Model):
 
     # TODO: make title and body localizable fields
     title = models.CharField(_("Title"), max_length=100)
-    body = models.TextField(_("Content"), blank=True,
+    body = MarkupField(_("Content"), blank=True,
             help_text=_('Allowed markup: %s', get_markup_filter_name()))
-    body_html = models.TextField(editable=False, blank=True)
 
     class Meta:
         abstract = True
 
     def __unicode__(self):
         return self.slug
-
-    def save(self, *args, **kwargs):
-        """Applies a markup filter to populate `body_html` upon saving."""
-        self.body_html = apply_markup_filter(self.body)
-        super(AbstractPage, self).save(*args, **kwargs)
 
 
 class LegalPage(AbstractPage):

@@ -66,7 +66,7 @@ def edit_settings(request):
             u"<div>", form.cleaned_data['DESCRIPTION'], "</div>"
         ])
 
-        response["description_html"] = the_html
+        response["description"] = the_html
 
     context = {
         "form": form,

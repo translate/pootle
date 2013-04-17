@@ -21,8 +21,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from pootle.core.markup import (apply_markup_filter,
-                                get_markup_filter_name)
+from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.i18n.gettext import tr_lang, language_dir
 from pootle_app.lib.util import RelatedManager
 from pootle_misc.aggregate import max_column
@@ -58,8 +57,7 @@ class Language(models.Model):
     description_help_text = _('A description of this language. '
             'This is useful to give more information or instructions. '
             'Allowed markup: %s', get_markup_filter_name())
-    description = models.TextField(blank=True, help_text=description_help_text)
-    description_html = models.TextField(editable=False, blank=True)
+    description = MarkupField(blank=True, help_text=description_help_text)
 
     specialchars_help_text = _('Enter any special characters that users '
             'might find difficult to type')
@@ -91,9 +89,6 @@ class Language(models.Model):
         # create corresponding directory object
         from pootle_app.models.directory import Directory
         self.directory = Directory.objects.root.get_or_make_subdir(self.code)
-
-        # Apply markup filter
-        self.description_html = apply_markup_filter(self.description)
 
         super(Language, self).save(*args, **kwargs)
 

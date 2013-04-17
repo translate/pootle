@@ -24,7 +24,7 @@
 </div>
 
 <div class="module">
-  {% if project.description_html or can_edit %}
+  {% if project.description or can_edit %}
   <div class="hd">
     <h2>{% trans "Description" %}</h2>
   </div>
@@ -34,8 +34,8 @@
 
     <div id="overview-description-project"
       class="markup-body{% if can_edit %} js-ctx-meta-desc{% endif %}">
-    {% if project.description_html %}
-      {{ project.description_html|clean }}
+    {% if project.description %}
+      {{ project.description }}
     {% else %}
       <p class="placeholder muted">{% trans "No description set." %}</p>
     {% endif %}
