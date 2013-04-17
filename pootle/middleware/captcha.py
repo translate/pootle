@@ -19,15 +19,10 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import re
-try:
-    import hashlib
-    sha_f = hashlib.sha1
-except ImportError:
-    import sha
-    sha_f = sha.new
 import base64
 import time
 import logging
+from hashlib import sha1
 from random import randint
 
 from django.http import HttpResponse
@@ -107,7 +102,7 @@ class MathCaptchaForm(forms.Form):
         plain = [getattr(settings, 'SITE_URL', ''), settings.SECRET_KEY,
                  q, a, expires]
         plain = "".join([str(p) for p in plain])
-        return sha_f(plain).hexdigest()
+        return sha1(plain).hexdigest()
 
     @property
     def plain_question(self):
