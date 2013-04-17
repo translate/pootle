@@ -226,6 +226,8 @@ class CaptchaMiddleware:
         }
 
         if request.is_ajax():
+            # FIXME: pass the callback as part of the request, this is a
+            # nightmare to maintain otherwise
             js_function = None
             if '/submit/' in request.path:
                 js_function = 'submit'
