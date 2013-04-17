@@ -27,13 +27,13 @@ try:
 except ImportError:
     # Django 1.5+
     from django.template.loaders.app_directories import Loader
+from django.utils import timezone
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _, ungettext
 
 from translate.misc.multistring import multistring
 
 from pootle_misc.templatetags.cleanhtml import fancy_escape, fancy_highlight
-from pootle_misc.util import timezone
 from pootle_store.fields import list_empty
 
 

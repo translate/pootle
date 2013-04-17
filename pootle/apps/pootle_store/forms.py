@@ -22,12 +22,12 @@
 import re
 
 from django import forms
+from django.utils import timezone
 from django.utils.translation import get_language, ugettext as _
 
 from translate.misc.multistring import multistring
 
 from pootle_app.models.permissions import check_permission
-from pootle_misc.util import timezone
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 from pootle_store.models import Unit

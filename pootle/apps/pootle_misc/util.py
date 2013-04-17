@@ -24,21 +24,11 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.paginator import Paginator
 from django.http import HttpResponseBadRequest
-from django.utils import simplejson
+from django.utils import simplejson, timezone, tzinfo
 from django.utils.encoding import force_unicode, iri_to_uri
 from django.utils.functional import Promise
 
 from pootle.core.markup import Markup
-
-# We host a copy of the timezone helpers in Django 1.4+ for the sake of Django
-# 1.3:
-try:
-    from django.utils import tzinfo
-    from django.utils import timezone
-except ImportError:
-    from pootle_misc import tzinfo
-    from pootle_misc import timezone
-
 
 # Timezone aware minimum for datetime (if appropriate) (bug 2567)
 from datetime import datetime

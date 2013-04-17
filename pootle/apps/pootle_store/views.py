@@ -30,7 +30,7 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
 from django.utils.translation import to_locale, ugettext as _
 from django.utils.translation.trans_real import parse_accept_lang_header
-from django.utils import simplejson
+from django.utils import simplejson, timezone
 from django.utils.encoding import iri_to_uri
 from django.views.decorators.cache import never_cache
 
@@ -46,7 +46,7 @@ from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.forms import make_search_form
 from pootle_misc.stats import get_raw_stats
 from pootle_misc.url_manip import ensure_uri, previous_view_url
-from pootle_misc.util import paginate, ajax_required, jsonify, timezone
+from pootle_misc.util import paginate, ajax_required, jsonify
 from pootle_profile.models import get_profile
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)

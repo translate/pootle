@@ -802,7 +802,7 @@ class UploadHandler(view_handler.Handler):
 
             # create a submission, doesn't fix stats but at least
             # shows up in last activity column
-            from pootle_misc.util import timezone
+            from django.utils import timezone
             s = Submission(
                     creation_time=timezone.now(),
                     translation_project=translation_project,

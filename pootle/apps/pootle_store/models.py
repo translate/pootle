@@ -31,6 +31,7 @@ from django.core.files.storage import FileSystemStorage
 from django.db import models, DatabaseError, IntegrityError
 from django.db.models.signals import post_delete
 from django.db.transaction import commit_on_success
+from django.utils import timezone, tzinfo
 from django.utils.translation import ugettext_lazy as _
 
 from translate.filters.decorators import Category
@@ -41,7 +42,7 @@ from pootle_misc.aggregate import group_by_count_extra, max_column
 from pootle_misc.baseurl import l
 from pootle_misc.checks import check_names
 from pootle_misc.util import (cached_property, getfromcache, deletefromcache,
-                              tzinfo, timezone, datetime_min)
+                              datetime_min)
 from pootle_statistics.models import SubmissionFields, SubmissionTypes
 from pootle_store.fields import (TranslationStoreField, MultiStringField,
                                  PLURAL_PLACEHOLDER, SEPARATOR)
