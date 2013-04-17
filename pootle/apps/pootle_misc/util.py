@@ -20,6 +20,8 @@
 
 import logging
 
+from functools import wraps
+
 from django.conf import settings
 from django.core.cache import cache
 from django.core.paginator import Paginator
@@ -33,8 +35,6 @@ from datetime import datetime
 datetime_min = datetime.min
 if settings.USE_TZ:
     datetime_min = timezone.make_aware(datetime_min, timezone.utc)
-
-from translate.misc.decorators import decorate
 
 from pootle.core.markup import Markup
 
@@ -136,7 +136,7 @@ def jsonify(obj):
     return simplejson.dumps(obj, indent=indent, cls=PootleJSONEncoder)
 
 
-@decorate
+@wraps
 def ajax_required(f):
     """
     AJAX request required decorator

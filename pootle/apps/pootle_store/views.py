@@ -21,6 +21,8 @@
 import os
 import logging
 
+from functools import wraps
+
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.cache import cache
@@ -35,7 +37,6 @@ from django.utils.encoding import iri_to_uri
 from django.views.decorators.cache import never_cache
 
 from translate.lang import data
-from translate.misc.decorators import decorate
 
 from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.models.permissions import (get_matching_permissions,
@@ -80,7 +81,7 @@ def _common_context(request, translation_project, permission_codes):
 
 def get_store_context(permission_codes):
 
-    @decorate
+    @wraps
     def wrap_f(f):
 
         def decorated_f(request, pootle_path, *args, **kwargs):
@@ -105,7 +106,7 @@ def get_store_context(permission_codes):
 
 
 def get_unit_context(permission_codes):
-    @decorate
+    @wraps
     def wrap_f(f):
 
         def decorated_f(request, uid, *args, **kwargs):

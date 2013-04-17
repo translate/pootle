@@ -18,11 +18,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+from functools import wraps
+
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext as _
-
-from translate.misc.decorators import decorate
 
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import (get_matching_permissions,
@@ -35,7 +35,7 @@ from pootle_store.views import (translate_page, get_failing_checks,
 from pootle_translationproject.models import TranslationProject
 
 
-@decorate
+@wraps
 def get_translation_project(f):
     def decorated_f(request, language_code, project_code, *args, **kwargs):
         translation_project = get_object_or_404(
@@ -49,7 +49,7 @@ def get_translation_project(f):
     return decorated_f
 
 
-@decorate
+@wraps
 def set_request_context(f):
     def decorated_f(request, translation_project, *args, **kwargs):
         # For now, all permissions in a translation project are
