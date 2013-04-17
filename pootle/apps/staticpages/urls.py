@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2012 Zuza Software Foundation
+# Copyright 2012-2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -22,7 +22,7 @@
 from django.conf.urls.defaults import patterns
 
 urlpatterns = patterns('',
-    (r'^(?P<slug>[^/]+)/$', 'staticpages.views.legalpage'),
+    (r'^(?P<virtual_path>.+)/$', 'staticpages.views.legalpage'),
 )
 
 admin_patterns = patterns('',

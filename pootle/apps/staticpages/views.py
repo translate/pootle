@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2012 Zuza Software Foundation
+# Copyright 2012-2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -79,9 +79,10 @@ def admin(request):
             RequestContext(request))
 
 
-def legalpage(request, slug):
+def legalpage(request, virtual_path):
     """The actual Legal Page."""
-    lp = get_object_or_404(LegalPage, active=True, slug=slug)
+    lp = get_object_or_404(LegalPage, active=True,
+                           virtual_path=virtual_path)
 
     if lp.url:
         return redirect(lp.url)

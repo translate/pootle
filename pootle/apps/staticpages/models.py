@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2013 Zuza Software Foundation
+# Copyright 2012-2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -31,9 +31,9 @@ class AbstractPage(models.Model):
     active = models.BooleanField(_('Active'),
             help_text=_('Whether this page is active or not.'))
 
-    # Translators: See http://en.wikipedia.org/wiki/Slug_%28web_publishing%29#Slug
-    slug = models.SlugField(_("Slug"), default='',
-            help_text=_('The page will be available at /about/<slug>/'))
+    virtual_path = models.CharField(_("Virtual Path"), max_length=100,
+            default='',
+            help_text=_('The page will be available at /about/<path>/'))
 
     # TODO: make title and body localizable fields
     title = models.CharField(_("Title"), max_length=100)
@@ -44,7 +44,7 @@ class AbstractPage(models.Model):
         abstract = True
 
     def __unicode__(self):
-        return self.slug
+        return self.virtual_path
 
 
 class LegalPage(AbstractPage):
@@ -63,4 +63,5 @@ class LegalPage(AbstractPage):
         if self.url:
             return self.url
 
-        return reverse('staticpages.views.legalpage', args=[self.slug])
+        return reverse('staticpages.views.legalpage',
+                       args=[self.virtual_path])
