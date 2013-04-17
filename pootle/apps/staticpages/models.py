@@ -23,7 +23,8 @@ from django.db import models
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 
-from pootle_misc.util import get_markup_filter_name, apply_markup_filter
+from pootle.core.markup import (apply_markup_filter,
+                                get_markup_filter_name)
 
 
 class AbstractPage(models.Model):

@@ -29,11 +29,12 @@ from django.utils.translation import ugettext_lazy as _
 from translate.filters import checks
 from translate.lang.data import langcode_re
 
+from pootle.core.markup import (apply_markup_filter,
+                                get_markup_filter_name)
 from pootle_app.lib.util import RelatedManager
 from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
-from pootle_misc.util import (getfromcache, get_markup_filter_name,
-                              apply_markup_filter, cached_property)
+from pootle_misc.util import getfromcache, cached_property
 from pootle_store.filetypes import (filetype_choices, factory_classes,
                                     is_monolingual)
 from pootle_store.models import Unit

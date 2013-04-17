@@ -31,10 +31,10 @@ from django.utils import simplejson
 from django.utils.translation import ugettext as _
 
 from pootle import depcheck
+from pootle.core.markup import get_markup_filter
 from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.views.admin.util import user_is_admin
 from pootle_misc.aggregate import sum_column
-from pootle_misc.util import get_markup_filter
 from pootle_profile.models import PootleProfile
 from pootle_statistics.models import Submission
 from pootle_store.models import Unit, Suggestion

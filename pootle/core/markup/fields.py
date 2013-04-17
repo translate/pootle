@@ -30,8 +30,7 @@ from django.utils.safestring import mark_safe
 
 from south.modelsinspector import add_introspection_rules
 
-from pootle_misc.util import apply_markup_filter
-
+from .filters import apply_markup_filter
 from .widgets import MarkupTextarea
 
 
