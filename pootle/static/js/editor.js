@@ -379,6 +379,9 @@
     var maxheight = $(window).height() * 0.3;
     $('textarea.expanding').TextAreaExpander('10', maxheight);
 
+    // set direction of the comment body
+    $('.extra-item-comment').filter(':not([dir])').bidi();
+
     // Focus on the first textarea, if any
     if ($(".focusthis").get(0)) {
       $(".focusthis").get(0).focus();
