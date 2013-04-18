@@ -28,7 +28,7 @@ sys.path.insert(0, os.path.abspath('.'))
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions # coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['pootle_docs', 'sphinx.ext.intersphinx']
+extensions = ['pootle_docs', 'sphinx.ext.extlinks', 'sphinx.ext.intersphinx']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -293,6 +293,17 @@ intersphinx_mapping = {
         'http://docs.djangoproject.com/en/dev/_objects'),
     'toolkit': ('http://docs.translatehouse.org/projects/translate-toolkit/en/latest/', None),
     'south':  ('http://south.readthedocs.org/en/latest/', None),
+}
+
+
+# -- Options for External links -------------------------------------------------
+
+extlinks = {
+    # :role: (URL, prefix)
+    'bug': ('http://bugs.locamotion.org/show_bug.cgi?id=%s', 'bug '),
+    'man': ('http://linux.die.net/man/1/%s', ''),
+    'wiki': ('http://translate.sourceforge.net/wiki/%s', ''),
+    'wp': ('http://en.wikipedia.org/wiki/%s', ''),
 }
 
 # -- Options for Gettext -------------------------------------------------
