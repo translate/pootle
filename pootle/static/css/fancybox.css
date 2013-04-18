@@ -53,8 +53,8 @@
 
 .fancybox-image, .fancybox-iframe {
 	display: block;
-	width: 100%;
-	height: 100%;
+	width: 100% !important;
+	height: 100% !important;;
 	border: 0;
 	padding: 0;
 	margin: 0;
@@ -96,6 +96,11 @@
 	height: 36px;
 	cursor: pointer;
 	z-index: 1004;
+}
+
+html[dir="rtl"] .fancybox-close {
+	right: auto;
+	left: -18px;
 }
 
 .fancybox-nav {
@@ -142,12 +147,11 @@
 }
 
 .fancybox-tmp {
-	position: absolute;
-	top: -9999px;
-	left: -9999px;
-	padding: 0;
-	overflow: visible;
-	visibility: hidden;
+	position: absolute !important;
+	height: 1px; width: 1px;
+	overflow: hidden;
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px);
 }
 
 /* Overlay helper */
