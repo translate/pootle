@@ -839,6 +839,21 @@ html[dir="rtl"] .timeline-extra
     font-size: 100%;
 }
 
+.timeline-field-body
+{
+    unicode-bidi: embed;
+}
+
+.timeline-arrow:before
+{
+    content: "→";
+}
+
+html[dir="rtl"] .timeline-arrow:before
+{
+    content: "←";
+}
+
 #editor-comment
 {
     margin: 10px 0;

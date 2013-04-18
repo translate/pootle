@@ -1849,6 +1849,7 @@
 
           PTL.common.updateRelativeDates();
 
+          $('.timeline-field-body').filter(':not([dir])').bidi();
           $("#js-show-timeline").hide();
           $("#js-hide-timeline").show();
         }
