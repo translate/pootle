@@ -20,6 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.db import models
+from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 
@@ -32,7 +33,7 @@ class AbstractPage(models.Model):
             help_text=_('Whether this page is active or not.'))
 
     virtual_path = models.CharField(_("Virtual Path"), max_length=100,
-            default='',
+            default='', unique=True,
             help_text=_('The page will be available at /about/<path>/'))
 
     # TODO: make title and body localizable fields
@@ -45,6 +46,14 @@ class AbstractPage(models.Model):
 
     def __unicode__(self):
         return self.virtual_path
+
+    def clean(self):
+        # Fail validation if the current virtual path exists in other
+        # page models
+        pages = [p.objects.filter(virtual_path=self.virtual_path).exists()
+                 for p in AbstractPage.__subclasses__()]
+        if True in pages:
+            raise ValidationError(_(u'Virtual path already in use.'))
 
 
 class LegalPage(AbstractPage):
