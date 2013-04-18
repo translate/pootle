@@ -511,7 +511,7 @@
     // 3) replace ' ' (one or more whitespaces) with '|'. In this
     //    way every word can be searched by regular expression;
     // 4) add brackets.
-    return ['(', escapeUnsafeRegexSymbols(s).trim().replace(/( +)/g,
+    return ['(', PTL.editor.escapeUnsafeRegexSymbols(s).trim().replace(/( +)/g,
       '|'), ')'].join('');
   },
 
