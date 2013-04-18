@@ -81,9 +81,9 @@ def _common_context(request, translation_project, permission_codes):
 
 def get_store_context(permission_codes):
 
-    @wraps
     def wrap_f(f):
 
+        @wraps(f)
         def decorated_f(request, pootle_path, *args, **kwargs):
             if pootle_path[0] != '/':
                 pootle_path = '/' + pootle_path
@@ -106,9 +106,10 @@ def get_store_context(permission_codes):
 
 
 def get_unit_context(permission_codes):
-    @wraps
+
     def wrap_f(f):
 
+        @wraps(f)
         def decorated_f(request, uid, *args, **kwargs):
             unit = get_object_or_404(
                     Unit.objects.select_related("store__translation_project",

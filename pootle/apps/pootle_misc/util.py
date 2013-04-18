@@ -136,7 +136,6 @@ def jsonify(obj):
     return simplejson.dumps(obj, indent=indent, cls=PootleJSONEncoder)
 
 
-@wraps
 def ajax_required(f):
     """
     AJAX request required decorator
@@ -149,6 +148,7 @@ def ajax_required(f):
     Taken from:
     http://djangosnippets.org/snippets/771/
     """
+    @wraps(f)
     def wrapper(request, *args, **kwargs):
         if not settings.DEBUG and not request.is_ajax():
             return HttpResponseBadRequest("This must be an AJAX request.")

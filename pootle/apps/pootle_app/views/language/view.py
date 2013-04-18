@@ -35,8 +35,9 @@ from pootle_store.views import (translate_page, get_failing_checks,
 from pootle_translationproject.models import TranslationProject
 
 
-@wraps
 def get_translation_project(f):
+
+    @wraps(f)
     def decorated_f(request, language_code, project_code, *args, **kwargs):
         translation_project = get_object_or_404(
             TranslationProject,
@@ -49,8 +50,9 @@ def get_translation_project(f):
     return decorated_f
 
 
-@wraps
 def set_request_context(f):
+
+    @wraps(f)
     def decorated_f(request, translation_project, *args, **kwargs):
         # For now, all permissions in a translation project are
         # relative to the root of that translation project.
