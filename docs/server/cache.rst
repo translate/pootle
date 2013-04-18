@@ -5,7 +5,7 @@ Caching System
 
 Pootle uses a caching system to improve performance. It is an essential part
 of :doc:`optimizing <optimization>` your Pootle installation. It is based on
-:ref:`Django's caching system<django:django-s-cache-framework>`, and is used
+:ref:`Django's caching system <django:django-cache-framework>`, and is used
 for various things:
 
 - To serve cached (possibly slightly outdated) versions of most pages to
