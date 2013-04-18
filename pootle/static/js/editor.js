@@ -454,6 +454,8 @@
 
     // set direction of the comment body
     $('.extra-item-comment').filter(':not([dir])').bidi();
+    // set direction of the suggestion body
+    $('.suggestion-translation-body').filter(':not([dir])').bidi();
 
     // Focus on the first textarea, if any
     if ($(".focusthis").get(0)) {
