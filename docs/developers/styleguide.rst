@@ -10,11 +10,55 @@ Python and documentation
 ------------------------
 
 For Python code and documentation Pootle follows the
-:ref:`Translate Styleguide <toolkit:styleguide>`.
+:ref:`Translate Styleguide <toolkit:styleguide>` adding some extra
+clarifications listed in this document.
 
 - :ref:`Python style conventions <toolkit:styleguide-general>`
 
 - :ref:`Documentation style conventions <toolkit:styleguide-docs>`
+
+
+Pootle-specific Python guidelines
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Pootle has specific conventions for Python coding style.
+
+Imports:
+  Like in `Python import conventions 
+  <http://docs.translatehouse.org/projects/translate-toolkit/en/latest/development/styleguide.html#styleguide-imports>`_
+  in Translate styleguide, but imports should be grouped in the following order:
+
+  1) Python standard library imports
+  2) Third party imports (Including Translate Toolkit ones)
+  3) Django imports
+  4) Django external apps imports
+  5) Pootle apps imports
+
+  Check `Python import conventions
+  <http://docs.translatehouse.org/projects/translate-toolkit/en/latest/development/styleguide.html#styleguide-imports>`_
+  in Translate styleguide for other conventions that the imports must follow.
+
+  .. code-block:: python
+
+    import re
+    import sys.path as sys_path
+    import time
+    from datetime import timedelta
+    from os import path
+
+    from lxml.html import fromstring
+    from translate.storage import versioncontrol
+
+    from django.contrib.auth.models import User
+    from django.db import models
+    from django.db.models import Q
+    from django.db.models.signals import post_save
+
+    from profiles.views import edit_profile
+    from tastypie.models import ApiKey
+
+    from pootle_language.models import Language
+    from pootle_translationproject.models import TranslationProject
 
 
 Pootle-specific markup
