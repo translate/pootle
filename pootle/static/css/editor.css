@@ -804,6 +804,11 @@ html[dir="rtl"] #target-item-gravatar
     width: 100%;
 }
 
+.extra-item-comment
+{
+    unicode-bidi: embed;
+}
+
 .timeline-extra
 {
     position:absolute;

@@ -8,8 +8,9 @@
         title="{{ unit.commented_by.user }}" /></a>
     </div>
     {% endif %}
-    <div class="extra-item" lang="{{ language.code }}" dir="{{ language.get_direction }}">
-      <span class="sidetitle">{% trans "Comment:" %}</span> {{ unit.translator_comment }}
+    <div class="extra-item">
+      <span class="sidetitle">{% trans "Comment:" %}</span>
+      <span class="extra-item-comment">{{ unit.translator_comment }}</span>
     </div>
     {% if unit.commented_by and unit.commented_on %}
     <time class="extra-item-meta js-relative-date" title="{{ unit.commented_on }}"
