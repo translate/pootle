@@ -719,6 +719,11 @@ html[dir="rtl"] .suggestion-vote
     float: left;
 }
 
+.suggestion-translation-body
+{
+    unicode-bidi: embed;
+}
+
 .extra-item-block:hover .suggestion-action img,
 .extra-item-block:hover .suggestion-vote img
 {
