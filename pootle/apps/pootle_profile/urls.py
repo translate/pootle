@@ -20,7 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.conf import settings
-from django.conf.urls.defaults import include, patterns
+from django.conf.urls import include, patterns
 
 
 urlpatterns = patterns('pootle_profile.views',

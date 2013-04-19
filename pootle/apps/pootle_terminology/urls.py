@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.conf.urls.defaults import patterns
+from django.conf.urls import patterns
 
 urlpatterns = patterns('pootle_terminology.views',
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/terminology_extract.html',
