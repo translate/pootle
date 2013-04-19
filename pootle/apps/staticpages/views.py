@@ -59,22 +59,19 @@ def admin_page(request, page_id):
 @user_is_admin
 def admin(request):
     """Lists available pages in the administration."""
-    msg = ''
-
     if request.method == 'POST':
         form = LegalPageForm(request.POST)
 
         if form.is_valid():
             form.save()
             form = LegalPageForm()
-            msg = _("Legal page created.")
     else:
         form = LegalPageForm()
 
     lps = LegalPage.objects.all()
 
     return render_to_response('staticpages/admin/list.html',
-            {'legalpages': lps, 'form': form, 'message': msg,
+            {'legalpages': lps, 'form': form,
              'show_delete': False},
             RequestContext(request))
 
