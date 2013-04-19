@@ -251,7 +251,6 @@ Naming
     separated using dashes. As an example, rather use ``.tm-results`` and not
     ``.TM_results``.
 
-.. _Translate Styleguide: http://readthedocs.org/docs/translate-toolkit/en/latest/styleguide.html
 .. _1: http://javascript.crockford.com/code.html
 .. _2: http://drupal.org/node/172169
 .. _3: http://docs.jquery.com/JQuery_Core_Style_Guidelines

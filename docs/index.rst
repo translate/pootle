@@ -10,7 +10,7 @@ Pootle is built using the powerful API of the *Translate Toolkit* and the
 their own documentation.
 
 - `Translate Toolkit Documentation
-  <http://translate.readthedocs.org/projects/translate-toolkit/en/latest/>`_
+  <http://docs.translatehouse.org/projects/translate-toolkit/en/latest/>`_
 
 - `Django Documentation <https://docs.djangoproject.com/>`_
 
