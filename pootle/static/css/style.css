@@ -887,12 +887,60 @@ div#update p
  * BUTTONS
  */
 
-.btn
+.btn,
+a.btn,
+input[type="submit"]
 {
     border: 0;
+    outline: 0;
     cursor: pointer;
     display: inline-block;
     padding: 4px 10px;
+    text-align: center;
+
+    min-height: 16px;
+    min-width: 110px;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 2px #130f30;
+       -moz-box-shadow: 0px 1px 2px #130f30;
+            box-shadow: 0px 1px 2px #130f30;
+
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#cccccc');
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc));
+    background: -webkit-linear-gradient(top,  #fff,  #ccc);
+    background:    -moz-linear-gradient(top,  #fff,  #ccc);
+    background:     -ms-linear-gradient(top,  #fff,  #ccc);
+    background:      -o-linear-gradient(top,  #fff,  #ccc);
+    background:         linear-gradient(top,  #fff,  #ccc);
+
+    color: #130f30;
+}
+
+.btn:hover,
+input[type="submit"]:hover
+{
+    text-decoration: none;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dddddd');
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));
+    background: -webkit-linear-gradient(top,  #fff,  #ddd);
+    background:    -moz-linear-gradient(top,  #fff,  #ddd);
+    background:     -ms-linear-gradient(top,  #fff,  #ddd);
+    background:      -o-linear-gradient(top,  #fff,  #ddd);
+    background:         linear-gradient(top,  #fff,  #ddd);
+}
+
+.btn:active,
+input[type="submit"]:active
+{
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cccccc', endColorstr='#ffffff');
+    background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#fff));
+    background: -webkit-linear-gradient(top,  #ccc,  #fff);
+    background:    -moz-linear-gradient(top,  #ccc,  #fff);
+    background:     -ms-linear-gradient(top,  #ccc,  #fff);
+    background:      -o-linear-gradient(top,  #ccc,  #fff);
+    background:         linear-gradient(top,  #ccc,  #fff);
 }
 
 
@@ -958,30 +1006,7 @@ html[dir="rtl"] .form .buttons
     text-align: left;
 }
 
-input[type="submit"]
-{
-    border: 0;
-    padding: 5px 10px;
-    min-height: 16px;
-    min-width: 110px;
-    -webkit-border-radius: 5px;
-       -moz-border-radius: 5px;
-            border-radius: 5px;
-    -webkit-box-shadow: 0px 0px 2px #130f30;
-       -moz-box-shadow: 0px 1px 2px #130f30;
-            box-shadow: 0px 1px 2px #130f30;
-
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#cccccc');
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc));
-    background: -webkit-linear-gradient(top,  #fff,  #ccc);
-    background:    -moz-linear-gradient(top,  #fff,  #ccc);
-    background:     -ms-linear-gradient(top,  #fff,  #ccc);
-    background:      -o-linear-gradient(top,  #fff,  #ccc);
-    background:         linear-gradient(top,  #fff,  #ccc);
-
-    color: #130f30;
-}
-
+.disabled,
 input[type="submit"][disabled],
 input[type="submit"][disabled]:hover
 {
@@ -1017,27 +1042,6 @@ body.zoom-out-1 input[type="submit"]
 body.zoom-out-2 input[type="submit"]
 {
     min-width: 90px;
-}
-
-input[type="submit"]:hover {
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dddddd');
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));
-    background: -webkit-linear-gradient(top,  #fff,  #ddd);
-    background:    -moz-linear-gradient(top,  #fff,  #ddd);
-    background:     -ms-linear-gradient(top,  #fff,  #ddd);
-    background:      -o-linear-gradient(top,  #fff,  #ddd);
-    background:         linear-gradient(top,  #fff,  #ddd);
-}
-
-input[type="submit"]:active
-{
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cccccc', endColorstr='#ffffff');
-    background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#fff));
-    background: -webkit-linear-gradient(top,  #ccc,  #fff);
-    background:    -moz-linear-gradient(top,  #ccc,  #fff);
-    background:     -ms-linear-gradient(top,  #ccc,  #fff);
-    background:      -o-linear-gradient(top,  #ccc,  #fff);
-    background:         linear-gradient(top,  #ccc,  #fff);
 }
 
 .formlink
@@ -1995,9 +1999,20 @@ html[dir="rtl"] #search
 
 .btn-search
 {
-    background-color: #fff;
     padding: 0;
-    outline: 0;
+
+    min-width: inherit;
+    min-height: inherit;
+    background: transparent;
+    border: 0 none;
+
+    -webkit-box-shadow: none;
+       -moz-box-shadow: none;
+            box-shadow: none;
+
+    -webkit-border-radius: 0;
+       -moz-border-radius: 0;
+            border-radius: 0;
 }
 
 .search-fields
