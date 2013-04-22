@@ -162,17 +162,20 @@ file and rename it by removing the *.sample* extension and you're good to go.
   To learn more about how settings work in Pootle head over the :ref:`settings`
   section in the documentation.
 
+Once the configuration is in place, you'll need to setup the database
+schema and add initial data.
+
+.. code-block:: bash
+
+    (env-name) $ python manage.py syncdb --noinput
+    (env-name) $ python manage.py migrate
+    (env-name) $ python manage.py initdb
+
 Finally, just run the development server.
 
 .. code-block:: bash
 
     (env-name) $ python manage.py runserver
-
-Now you can reach the development server in your browser. On your first visit,
-Pootle will create the database schema and will calculate stats, which might
-take a while on the first time.
-Alternatively, you can choose to run ``python manage.py initdb`` which will do
-the same but in a shell environment.
 
 Once all is done, you can start the development server anytime by enabling the
 virtual environment and running the ``manage.py runserver`` command.
