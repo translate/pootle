@@ -1475,9 +1475,6 @@ html[dir="rtl"] select#id_ui_lang option
 .item
 {
     padding: 1em;
-    -webkit-border-radius: 5px;
-       -moz-border-radius: 5px;
-            border-radius: 5px;
 }
 
 .item .title
