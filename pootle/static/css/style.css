@@ -745,27 +745,25 @@ html[dir="rtl"] .module.first
     float: right;
 }
 
-.module .hd h2,
-.module-primary .hd h2
+.hd h2
 {
     margin: 1em 0.5em 0;
     border-bottom: 1px solid #eee;
 }
 
-html[dir="rtl"] .module .hd h2,
-html[dir="rtl"] .module-primary .hd h2
+html[dir="rtl"] .hd h2
 {
     margin-left: 0;
     margin-right: 0.5em;
 }
 
-.module .hd h3
+.hd h3
 {
     border-top: 1px solid #eee;
     margin: 1em 0 0 0;
 }
 
-.module .hd h3 span
+.hd h3 span
 {
     position: relative;
     top: -10px;
@@ -773,37 +771,33 @@ html[dir="rtl"] .module-primary .hd h2
     background-color: #fff;
 }
 
-html[dir="rtl"] .module .hd h3 span
+html[dir="rtl"] .hd h3 span
 {
     padding-right: 0;
     padding-left: 5px;
 }
 
-.module .bd,
-.module-primary .bd
+.bd
 {
     margin: 1em;
 }
 
-.module .nomargin,
-.module-primary .nomargin
+.nomargin
 {
     margin: 0;
 }
 
-.module .bd h2, 
-.module-primary .bd h2
+.bd h2,
 {
     margin-bottom: 0.5em;
 }
 
-.module .bd h3, 
-.module-primary .bd h3
+.bd h3
 {
     font-size: 120%;
 }
 
-.module .bd h4
+.bd h4
 {
     font-size: 100%;
 }
