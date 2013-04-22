@@ -1,0 +1,25 @@
+{% extends "admin_profile_base.html" %}
+{% load url from future %}
+{% load i18n %}
+
+{% block title %}{% trans "Add Legal Page" %} | {{ block.super }}{% endblock %}
+
+{% block body_id %}adminstaticpages{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Add Legal Page" %}</li>
+{% endblock %}
+
+{% block section_body %}
+<div class="staticpages settings-container centered">
+  <div class="staticpages-edit">
+    <div class="hd">
+      <h2>{% trans "Add Legal Page" %}</h2>
+    </div>
+    <div class="bd">
+    {% url 'legalpages.create' as create_lp %}
+    {% include 'staticpages/admin/form.html' with form_action=create_lp%}
+    </div>
+  </div>
+</div>
+{% endblock %}

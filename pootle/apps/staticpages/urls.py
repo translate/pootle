@@ -19,13 +19,26 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from django.conf.urls import patterns
+from django.conf.urls import patterns, url
+
+from .views import (AdminTemplateView, LegalPageCreateView,
+                    LegalPageUpdateView)
 
 urlpatterns = patterns('',
-    (r'^(?P<virtual_path>.+)/$', 'staticpages.views.legalpage'),
+    url(r'^(?P<virtual_path>.+)/$',
+        'staticpages.views.legalpage',
+        name='staticpages.display'),
 )
 
 admin_patterns = patterns('',
-    (r'^$', 'staticpages.views.admin'),
-    (r'^(?P<page_id>\d+)/?$', 'staticpages.views.admin_page'),
+    url(r'^$',
+        AdminTemplateView.as_view(),
+        name='staticpages.admin'),
+
+    url(r'^legal/add/?$',
+        LegalPageCreateView.as_view(),
+        name='legalpages.create'),
+    url(r'^legal/(?P<pk>\d+)/?$',
+        LegalPageUpdateView.as_view(),
+        name='legalpages.edit'),
 )

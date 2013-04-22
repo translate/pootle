@@ -22,58 +22,50 @@
 from __future__ import absolute_import
 
 from django.shortcuts import get_object_or_404, redirect, render_to_response
+from django.core.urlresolvers import reverse_lazy
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
+from django.views.generic import CreateView, TemplateView, UpdateView
 
-from pootle_app.views.admin.util import user_is_admin
+from pootle.core.views import SuperuserRequiredMixin
 
 from .forms import LegalPageForm
 from .models import LegalPage
 
 
-@user_is_admin
-def admin_page(request, page_id):
-    """Administration view."""
-    lp = get_object_or_404(LegalPage, id=page_id)
+class AdminTemplateView(SuperuserRequiredMixin, TemplateView):
 
-    if request.method == 'POST':
+    template_name = 'staticpages/admin/list.html'
 
-        if '_delete' in request.POST:
-            lp.delete()
-            return redirect('staticpages.views.admin')
-
-        form = LegalPageForm(request.POST, instance=lp)
-
-        if form.is_valid():
-            form.save()
-            return redirect('staticpages.views.admin')
-
-    else:
-        form = LegalPageForm(instance=lp)
-
-    return render_to_response('staticpages/admin/edit.html',
-            {'form': form, 'show_delete': True},
-            RequestContext(request))
+    def get_context_data(self, **kwargs):
+        ctx = super(AdminTemplateView, self).get_context_data(**kwargs)
+        ctx.update({
+            'legalpages': LegalPage.objects.all(),
+        })
+        return ctx
 
 
-@user_is_admin
-def admin(request):
-    """Lists available pages in the administration."""
-    if request.method == 'POST':
-        form = LegalPageForm(request.POST)
+class LegalPageCreateView(SuperuserRequiredMixin, CreateView):
 
-        if form.is_valid():
-            form.save()
-            form = LegalPageForm()
-    else:
-        form = LegalPageForm()
+    form_class = LegalPageForm
+    model = LegalPage
+    success_url = reverse_lazy('staticpages.admin')
+    template_name = 'staticpages/admin/legalpage_create.html'
 
-    lps = LegalPage.objects.all()
 
-    return render_to_response('staticpages/admin/list.html',
-            {'legalpages': lps, 'form': form,
-             'show_delete': False},
-            RequestContext(request))
+class LegalPageUpdateView(SuperuserRequiredMixin, UpdateView):
+
+    form_class = LegalPageForm
+    model = LegalPage
+    success_url = reverse_lazy('staticpages.admin')
+    template_name = 'staticpages/admin/legalpage_update.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(LegalPageUpdateView, self).get_context_data(**kwargs)
+        ctx.update({
+            'show_delete': True,
+        })
+        return ctx
 
 
 def legalpage(request, virtual_path):

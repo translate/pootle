@@ -38,12 +38,6 @@ textarea#id_DESCRIPTION,
 
 /* STATIC PAGES */
 
-.staticpages-list li
-{
-    margin: 0 1em;
-    list-style-type: square;
-}
-
 .staticpages-form input[type="checkbox"]
 {
     display: inline;
