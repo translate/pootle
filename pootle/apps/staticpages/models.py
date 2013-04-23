@@ -41,8 +41,8 @@ class AbstractPage(models.Model):
     body = MarkupField(_("Content"), blank=True,
             help_text=_('Allowed markup: %s', get_markup_filter_name()))
 
-    url = models.URLField(_("URL"), blank=True,
-            help_text=_('If set, any references to this legal page will '
+    url = models.URLField(_("Redirect to URL"), blank=True,
+            help_text=_('If set, any references to this page will '
                         'redirect to this URL'))
 
     class Meta:
