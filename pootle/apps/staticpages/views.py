@@ -49,6 +49,13 @@ class PageModelMixin(object):
 
         return super(PageModelMixin, self).dispatch(request, *args, **kwargs)
 
+    def get_context_data(self, **kwargs):
+        ctx = super(PageModelMixin, self).get_context_data(**kwargs)
+        ctx.update({
+            'has_page_model': True,
+        })
+        return ctx
+
 
 class AdminTemplateView(SuperuserRequiredMixin, TemplateView):
 

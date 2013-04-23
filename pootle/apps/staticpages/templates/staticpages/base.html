@@ -7,5 +7,5 @@
 {% block body_id %}adminstaticpages{% endblock %}
 
 {% block breadcrumbs %}
-{{ block.super }}<li>{% trans "Static Pages" %}</li>
+{{ block.super }}<li>{% if has_page_model %}<a href="{% url 'staticpages.admin' %}">{% endif %}{% trans "Static Pages" %}{% if has_page_model %}</a>{% endif %}</li>
 {% endblock %}
