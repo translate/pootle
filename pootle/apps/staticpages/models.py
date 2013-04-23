@@ -51,6 +51,12 @@ class AbstractPage(models.Model):
     def __unicode__(self):
         return self.virtual_path
 
+    def get_absolute_url(self):
+        if self.url:
+            return self.url
+
+        return reverse('staticpages.display', args=[self.virtual_path])
+
     def clean(self):
         """Fail validation if:
 
@@ -71,12 +77,6 @@ class LegalPage(AbstractPage):
 
     def localized_title(self):
         return _(self.title)
-
-    def get_absolute_url(self):
-        if self.url:
-            return self.url
-
-        return reverse('staticpages.display', args=[self.virtual_path])
 
     def get_edit_url(self):
         return reverse('legalpages.edit', args=[self.pk])
