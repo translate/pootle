@@ -20,6 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.db import models
+from django.db.models import Q
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
@@ -67,7 +68,10 @@ class AbstractPage(models.Model):
             # Translators: 'URL' and 'content' refer to form fields.
             raise ValidationError(_('URL or content must be provided.'))
 
-        pages = [p.objects.filter(virtual_path=self.virtual_path).exists()
+        pages = [p.objects.filter(
+                     Q(virtual_path=self.virtual_path),
+                     ~Q(pk=self.pk),
+                 ).exists()
                  for p in AbstractPage.__subclasses__()]
         if True in pages:
             raise ValidationError(_(u'Virtual path already in use.'))
