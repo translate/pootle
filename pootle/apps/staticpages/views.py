@@ -31,7 +31,7 @@ from django.views.generic import CreateView, TemplateView, UpdateView
 
 from pootle.core.views import SuperuserRequiredMixin
 
-from .models import AbstractPage, LegalPage
+from .models import AbstractPage, LegalPage, StaticPage
 
 
 class PageModelMixin(object):
@@ -42,6 +42,7 @@ class PageModelMixin(object):
     def dispatch(self, request, *args, **kwargs):
         self.model = {
             'legal': LegalPage,
+            'static': StaticPage,
         }.get(kwargs.get('page_type', None))
 
         if self.model is None:
@@ -65,6 +66,7 @@ class AdminTemplateView(SuperuserRequiredMixin, TemplateView):
         ctx = super(AdminTemplateView, self).get_context_data(**kwargs)
         ctx.update({
             'legalpages': LegalPage.objects.all(),
+            'staticpages': StaticPage.objects.all(),
         })
         return ctx
 

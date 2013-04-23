@@ -11,5 +11,12 @@
     {% include 'staticpages/admin/_table.html' with object_list=legalpages %}
     <a class="btn" href="{% url 'staticpages.create' 'legal' %}">{% trans 'Add Legal Page' %}</a>
   </div>
+  <div class="hd">
+    <h2>{% trans "Static Pages" %}</h2>
+  </div>
+  <div class="bd">
+    {% include 'staticpages/admin/_table.html' with object_list=staticpages %}
+    <a class="btn" href="{% url 'staticpages.create' 'static' %}">{% trans 'Add Static Page' %}</a>
+  </div>
 </div>
 {% endblock %}

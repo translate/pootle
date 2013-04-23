@@ -84,3 +84,9 @@ class LegalPage(AbstractPage):
 
     def get_edit_url(self):
         return reverse('staticpages.edit', args=['legal', self.pk])
+
+
+class StaticPage(AbstractPage):
+
+    def get_edit_url(self):
+        return reverse('staticpages.edit', args=['static', self.pk])
