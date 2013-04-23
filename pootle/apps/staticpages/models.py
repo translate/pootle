@@ -69,9 +69,6 @@ class AbstractPage(models.Model):
 
 class LegalPage(AbstractPage):
 
-    display_on_register = models.BooleanField(_('Display on registration'),
-            help_text=_('Whether this page should be displayed on registration.'))
-
     def localized_title(self):
         return _(self.title)
 
