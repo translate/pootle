@@ -21,7 +21,8 @@
 
 from django.conf.urls import patterns, url
 
-from .views import AdminTemplateView, PageCreateView, PageUpdateView
+from .views import (AdminTemplateView, PageCreateView, PageDeleteView,
+                    PageUpdateView)
 
 urlpatterns = patterns('',
     url(r'^(?P<virtual_path>.+)/$',
@@ -40,4 +41,7 @@ admin_patterns = patterns('',
     url(r'^(?P<page_type>[^/]+)/(?P<pk>\d+)/?$',
         PageUpdateView.as_view(),
         name='staticpages.edit'),
+    url(r'^(?P<page_type>[^/]+)/(?P<pk>\d+)/delete/?$',
+        PageDeleteView.as_view(),
+        name='staticpages.delete'),
 )

@@ -27,7 +27,8 @@ from django.core.urlresolvers import reverse_lazy
 from django.http import Http404
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
-from django.views.generic import CreateView, TemplateView, UpdateView
+from django.views.generic import (CreateView, DeleteView, TemplateView,
+                                  UpdateView)
 
 from pootle.core.views import SuperuserRequiredMixin
 
@@ -87,8 +88,14 @@ class PageUpdateView(SuperuserRequiredMixin, PageModelMixin, UpdateView):
         ctx = super(PageUpdateView, self).get_context_data(**kwargs)
         ctx.update({
             'show_delete': True,
+            'page_type': self.page_type,
         })
         return ctx
+
+
+class PageDeleteView(SuperuserRequiredMixin, PageModelMixin, DeleteView):
+
+    success_url = reverse_lazy('staticpages.admin')
 
 
 def display_page(request, virtual_path):
