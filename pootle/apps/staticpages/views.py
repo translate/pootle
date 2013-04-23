@@ -21,8 +21,10 @@
 
 from __future__ import absolute_import
 
-from django.shortcuts import get_object_or_404, redirect, render_to_response
+from django.shortcuts import redirect, render_to_response
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse_lazy
+from django.http import Http404
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.views.generic import CreateView, TemplateView, UpdateView
@@ -30,7 +32,7 @@ from django.views.generic import CreateView, TemplateView, UpdateView
 from pootle.core.views import SuperuserRequiredMixin
 
 from .forms import LegalPageForm
-from .models import LegalPage
+from .models import AbstractPage, LegalPage
 
 
 class AdminTemplateView(SuperuserRequiredMixin, TemplateView):
@@ -68,17 +70,27 @@ class LegalPageUpdateView(SuperuserRequiredMixin, UpdateView):
         return ctx
 
 
-def legalpage(request, virtual_path):
-    """The actual Legal Page."""
-    lp = get_object_or_404(LegalPage, active=True,
-                           virtual_path=virtual_path)
+def page(request, virtual_path):
+    """Returns an active page defined in `virtual_path`."""
+    page = None
+    for page_model in AbstractPage.__subclasses__():
+        try:
+            page = page_model.objects.get(
+                    active=True,
+                    virtual_path=virtual_path,
+                )
+        except ObjectDoesNotExist:
+            pass
 
-    if lp.url:
-        return redirect(lp.url)
+    if page is None:
+        raise Http404
 
-    template_name = 'staticpages/legalpage.html'
+    if page.url:
+        return redirect(page.url)
+
+    template_name = 'staticpages/page.html'
     if 'HTTP_X_FANCYBOX' in request.META:
-        template_name = 'staticpages/legalpage_body.html'
+        template_name = 'staticpages/_body.html'
 
-    return render_to_response(template_name, {'lp': lp},
-            RequestContext(request))
+    return render_to_response(template_name, {'page': page},
+                              RequestContext(request))
