@@ -1,20 +1,15 @@
-{% extends "admin_profile_base.html" %}
+{% extends "staticpages/base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Edit Page" %} | {{ block.super }}{% endblock %}
-
-{% block body_id %}adminstaticpages{% endblock %}
+{% block title %}{{ object.title }} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
-{{ block.super }}<li>{% trans "Edit Page" %}</li>
+{{ block.super }}<li>{{ object.title }}</li>
 {% endblock %}
 
 {% block section_body %}
 <div class="staticpages settings-container centered">
   <div class="staticpages-edit">
-    <div class="hd">
-      <h2>{% trans "Edit Page" %}</h2>
-    </div>
     <div class="bd">
     {% include "staticpages/admin/_form.html" %}
     </div>
