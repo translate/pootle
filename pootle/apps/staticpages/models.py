@@ -48,8 +48,15 @@ class AbstractPage(models.Model):
         return self.virtual_path
 
     def clean(self):
-        # Fail validation if the current virtual path exists in other
-        # page models
+        """Fail validation if:
+
+        - URL and body are blank
+        - Current virtual path exists in other page models
+        """
+        if not self.url and not self.body:
+            # Translators: 'URL' and 'content' refer to form fields.
+            raise ValidationError(_('URL or content must be provided.'))
+
         pages = [p.objects.filter(virtual_path=self.virtual_path).exists()
                  for p in AbstractPage.__subclasses__()]
         if True in pages:

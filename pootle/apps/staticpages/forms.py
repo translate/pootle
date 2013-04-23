@@ -31,17 +31,3 @@ class LegalPageForm(ModelForm):
 
     class Meta:
         model = LegalPage
-
-
-    def clean(self):
-        cleaned_data = super(LegalPageForm, self).clean()
-
-        url = cleaned_data.get('url')
-        body = cleaned_data.get('body')
-
-        if url == '' and body == '':
-            # Translators: 'URL' and 'content' refer to form fields.
-            msg = _('URL or content must be provided.')
-            raise ValidationError(msg)
-
-        return cleaned_data
