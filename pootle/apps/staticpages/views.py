@@ -52,7 +52,7 @@ class PageModelMixin(object):
 
 class AdminTemplateView(SuperuserRequiredMixin, TemplateView):
 
-    template_name = 'staticpages/admin/list.html'
+    template_name = 'staticpages/admin/page_list.html'
 
     def get_context_data(self, **kwargs):
         ctx = super(AdminTemplateView, self).get_context_data(**kwargs)
@@ -65,13 +65,13 @@ class AdminTemplateView(SuperuserRequiredMixin, TemplateView):
 class PageCreateView(SuperuserRequiredMixin, PageModelMixin, CreateView):
 
     success_url = reverse_lazy('staticpages.admin')
-    template_name = 'staticpages/admin/legalpage_create.html'
+    template_name = 'staticpages/admin/page_create.html'
 
 
 class PageUpdateView(SuperuserRequiredMixin, PageModelMixin, UpdateView):
 
     success_url = reverse_lazy('staticpages.admin')
-    template_name = 'staticpages/admin/legalpage_update.html'
+    template_name = 'staticpages/admin/page_update.html'
 
     def get_context_data(self, **kwargs):
         ctx = super(PageUpdateView, self).get_context_data(**kwargs)
@@ -81,8 +81,8 @@ class PageUpdateView(SuperuserRequiredMixin, PageModelMixin, UpdateView):
         return ctx
 
 
-def page(request, virtual_path):
-    """Returns an active page defined in `virtual_path`."""
+def display_page(request, virtual_path):
+    """Displays an active page defined in `virtual_path`."""
     page = None
     for page_model in AbstractPage.__subclasses__():
         try:
@@ -99,7 +99,7 @@ def page(request, virtual_path):
     if page.url:
         return redirect(page.url)
 
-    template_name = 'staticpages/page.html'
+    template_name = 'staticpages/page_display.html'
     if 'HTTP_X_FANCYBOX' in request.META:
         template_name = 'staticpages/_body.html'
 
