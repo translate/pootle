@@ -17,8 +17,7 @@
       <h2>{% trans "Add Page" %}</h2>
     </div>
     <div class="bd">
-    {% url 'legalpages.create' as create_lp %}
-    {% include 'staticpages/admin/_form.html' with form_action=create_lp%}
+    {% include 'staticpages/admin/_form.html' %}
     </div>
   </div>
 </div>
