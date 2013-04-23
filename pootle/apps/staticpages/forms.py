@@ -31,3 +31,4 @@ class LegalPageForm(ModelForm):
 
     class Meta:
         model = LegalPage
+        fields = ['title', 'virtual_path', 'active', 'url', 'body']
