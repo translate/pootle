@@ -41,6 +41,10 @@ class AbstractPage(models.Model):
     body = MarkupField(_("Content"), blank=True,
             help_text=_('Allowed markup: %s', get_markup_filter_name()))
 
+    url = models.URLField(_("URL"), blank=True,
+            help_text=_('If set, any references to this legal page will '
+                        'redirect to this URL'))
+
     class Meta:
         abstract = True
 
@@ -67,10 +71,6 @@ class LegalPage(AbstractPage):
 
     display_on_register = models.BooleanField(_('Display on registration'),
             help_text=_('Whether this page should be displayed on registration.'))
-
-    url = models.URLField(_("URL"), blank=True,
-            help_text=_('If set, any references to this legal page will '
-                        'redirect to this URL'))
 
     def localized_title(self):
         return _(self.title)
