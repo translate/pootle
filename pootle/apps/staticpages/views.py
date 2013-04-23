@@ -31,8 +31,23 @@ from django.views.generic import CreateView, TemplateView, UpdateView
 
 from pootle.core.views import SuperuserRequiredMixin
 
-from .forms import LegalPageForm
 from .models import AbstractPage, LegalPage
+
+
+class PageModelMixin(object):
+    """Mixin used to set the view's page model according to the
+    `page_type` argument caught in a url pattern.
+    """
+
+    def dispatch(self, request, *args, **kwargs):
+        self.model = {
+            'legal': LegalPage,
+        }.get(kwargs.get('page_type', None))
+
+        if self.model is None:
+            raise Http404
+
+        return super(PageModelMixin, self).dispatch(request, *args, **kwargs)
 
 
 class AdminTemplateView(SuperuserRequiredMixin, TemplateView):
@@ -47,23 +62,19 @@ class AdminTemplateView(SuperuserRequiredMixin, TemplateView):
         return ctx
 
 
-class LegalPageCreateView(SuperuserRequiredMixin, CreateView):
+class PageCreateView(SuperuserRequiredMixin, PageModelMixin, CreateView):
 
-    form_class = LegalPageForm
-    model = LegalPage
     success_url = reverse_lazy('staticpages.admin')
     template_name = 'staticpages/admin/legalpage_create.html'
 
 
-class LegalPageUpdateView(SuperuserRequiredMixin, UpdateView):
+class PageUpdateView(SuperuserRequiredMixin, PageModelMixin, UpdateView):
 
-    form_class = LegalPageForm
-    model = LegalPage
     success_url = reverse_lazy('staticpages.admin')
     template_name = 'staticpages/admin/legalpage_update.html'
 
     def get_context_data(self, **kwargs):
-        ctx = super(LegalPageUpdateView, self).get_context_data(**kwargs)
+        ctx = super(PageUpdateView, self).get_context_data(**kwargs)
         ctx.update({
             'show_delete': True,
         })

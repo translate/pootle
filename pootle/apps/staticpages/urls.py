@@ -21,8 +21,7 @@
 
 from django.conf.urls import patterns, url
 
-from .views import (AdminTemplateView, LegalPageCreateView,
-                    LegalPageUpdateView)
+from .views import AdminTemplateView, PageCreateView, PageUpdateView
 
 urlpatterns = patterns('',
     url(r'^(?P<virtual_path>.+)/$',
@@ -35,10 +34,10 @@ admin_patterns = patterns('',
         AdminTemplateView.as_view(),
         name='staticpages.admin'),
 
-    url(r'^legal/add/?$',
-        LegalPageCreateView.as_view(),
-        name='legalpages.create'),
-    url(r'^legal/(?P<pk>\d+)/?$',
-        LegalPageUpdateView.as_view(),
-        name='legalpages.edit'),
+    url(r'^(?P<page_type>[^/]+)/add/?$',
+        PageCreateView.as_view(),
+        name='staticpages.create'),
+    url(r'^(?P<page_type>[^/]+)/(?P<pk>\d+)/?$',
+        PageUpdateView.as_view(),
+        name='staticpages.edit'),
 )

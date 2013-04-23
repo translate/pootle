@@ -17,7 +17,7 @@
   </div>
   <div class="bd">
     {% include 'staticpages/admin/_table.html' with object_list=legalpages %}
-    <a class="btn" href="{% url 'legalpages.create' %}">{% trans 'New Legal Page' %}</a>
+    <a class="btn" href="{% url 'staticpages.create' 'legal' %}">{% trans 'New Legal Page' %}</a>
   </div>
 </div>
 {% endblock %}
