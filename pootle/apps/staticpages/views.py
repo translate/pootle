@@ -40,10 +40,11 @@ class PageModelMixin(object):
     """
 
     def dispatch(self, request, *args, **kwargs):
+        self.page_type = kwargs.get('page_type', None)
         self.model = {
             'legal': LegalPage,
             'static': StaticPage,
-        }.get(kwargs.get('page_type', None))
+        }.get(self.page_type)
 
         if self.model is None:
             raise Http404
