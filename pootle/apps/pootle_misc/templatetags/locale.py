@@ -35,3 +35,9 @@ def locale_dir():
 def locale_align():
     """Returns current locale's default alignment."""
     return trans_real.get_language_bidi() and "right" or "left"
+
+
+@register.simple_tag
+def locale_reverse_align():
+    """Returns current locale's reverse alignment."""
+    return trans_real.get_language_bidi() and "left" or "right"
