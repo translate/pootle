@@ -35,7 +35,7 @@ class AbstractPage(models.Model):
 
     virtual_path = models.CharField(_("Virtual Path"), max_length=100,
             default='', unique=True,
-            help_text=_('The page will be available at /about/<path>/'))
+            help_text=_('The page will be available at /pages/<path>/'))
 
     # TODO: make title and body localizable fields
     title = models.CharField(_("Title"), max_length=100)

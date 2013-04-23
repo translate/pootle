@@ -2,18 +2,18 @@
 {% load url from future %}
 {% load i18n %}
 
-{% block title %}{% trans "Legal Pages" %} | {{ block.super }}{% endblock %}
+{% block title %}{% trans "Pages" %} | {{ block.super }}{% endblock %}
 
 {% block body_id %}adminstaticpages{% endblock %}
 
 {% block breadcrumbs %}
-{{ block.super }}<li>{% trans "Legal Pages" %}</li>
+{{ block.super }}<li>{% trans "Pages" %}</li>
 {% endblock %}
 
 {% block section_body %}
 <div class="staticpages settings-container centered">
   <div class="hd">
-    <h2>{% trans "Existing Legal Pages" %}</h2>
+    <h2>{% trans "Legal Pages" %}</h2>
   </div>
   <div class="bd">
     {% include 'staticpages/admin/_table.html' with object_list=legalpages %}
