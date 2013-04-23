@@ -19,16 +19,16 @@
 
     /* Initialize variables */
     this.units = {};
-    this.store = $("#editor").data("pootle-path");
-    this.directory = $("#editor").data("directory");
+    this.store = $('#editor').data('pootle-path');
+    this.directory = $('#editor').data('directory');
     this.currentPage = 1;
     this.currentNumPages = 0;
     this.pagesGot = {};
-    this.filter = "all";
+    this.filter = 'all';
     this.checks = [];
     this.user = null;
     this.ctxGap = 0;
-    this.ctxQty = parseInt($.cookie('ctxQty')) || 1;
+    this.ctxQty = parseInt($.cookie('ctxQty'), 10) || 1;
     this.ctxStep= 1;
     this.keepState = false;
     this.preventNavigation = false;
@@ -54,9 +54,9 @@
     this.differencer = new diff_match_patch();
 
     /* Compile templates */
-    this.tmpl = {vUnit: $.template($("#view_unit").html()),
-                 tm: $.template($("#tm_suggestions").html()),
-                 editCtx: $.template($("#editCtx").html())}
+    this.tmpl = {vUnit: $.template($('#view_unit').html()),
+                 tm: $.template($('#tm_suggestions').html()),
+                 editCtx: $.template($('#editCtx').html())}
 
     /* Initialize search */
     // TODO: pass the environment option to the init
@@ -67,13 +67,13 @@
      */
 
     /* Fuzzy / unfuzzy */
-    $(document).on("keyup blur", "textarea.translation", function () {
+    $(document).on('keyup blur', 'textarea.translation', function () {
       if (!PTL.editor.keepState &&
-          $(this).prop("defaultValue") != $(this).val()) {
+          $(this).prop('defaultValue') !== $(this).val()) {
         PTL.editor.ungoFuzzy();
       }
     });
-    $(document).on("click", "input.fuzzycheck", function () {
+    $(document).on('click', 'input.fuzzycheck', function () {
       if (PTL.editor.isFuzzy()) {
         PTL.editor.doFuzzyArea();
       } else {
@@ -82,36 +82,35 @@
     });
 
     /* Suggest / submit */
-    $(document).on("click", ".switch-suggest-mode a", function () {
+    $(document).on('click', '.switch-suggest-mode a', function () {
       PTL.editor.toggleSuggestMode();
       return false;
     });
 
     /* Update focus when appropriate */
-    $(document).on("focus", ".focusthis", function (e) {
+    $(document).on('focus', '.focusthis', function (e) {
       PTL.editor.focused = e.target;
     });
 
     /* Write TM results, special chars... into the currently focused element */
-    $(document).on("click", ".js-editor-copytext", this.copyText);
+    $(document).on('click', '.js-editor-copytext', this.copyText);
 
     /* Copy original translation */
-    $(document).on("click", ".js-copyoriginal", function () {
-      var sources = $(".translation-text", $(this).parent().parent().parent());
-      PTL.editor.copyOriginal(sources);
+    $(document).on('click', '.js-copyoriginal', function () {
+      PTL.editor.copyOriginal($('.translation-text',
+        $(this).parent().parent().parent()));
     });
 
     /* Copy suggestion */
-    $(document).on("click", "div.suggestion", function () {
+    $(document).on('click', 'div.suggestion', function () {
       // Don't copy if text has been selected
-      if (PTL.editor.getSelectedText() != "") {
+      if (PTL.editor.getSelectedText().length > 0) {
         return;
       }
-      if ($("#id_target_f_0").attr("disabled")) {
+      if ($('#id_target_f_0').attr('disabled')) {
         return;
       }
-      var sources = $(".suggestion-translation", this);
-      PTL.editor.copyOriginal(sources);
+      PTL.editor.copyOriginal($('.suggestion-translation', this));
     });
 
     /* Editor navigation/submission */
@@ -121,7 +120,7 @@
     $(document).on("keypress", "#item-number", function (e) {
       // Perform action only when the 'Enter' key is pressed
       if (e.which === 13) {
-        PTL.editor.gotoPage(parseInt($("#item-number").val()));
+        PTL.editor.gotoPage(parseInt($("#item-number").val(), 10));
       }
     });
     $(document).on("click", "input.submit", this.submit);
@@ -139,7 +138,7 @@
     $(document).on("change", "#filter-status select", this.filterStatus);
     $(document).on("change", "#filter-checks select", this.filterChecks);
     $(document).on("click", ".js-more-ctx", function () {
-      PTL.editor.moreContext(false)
+      PTL.editor.moreContext(false);
     });
     $(document).on("click", ".js-less-ctx", this.lessContext);
     $(document).on("click", ".js-show-ctx", this.showContext);
@@ -155,7 +154,7 @@
     /* Search */
     $(document).on("submit", "#search-form", function (e) {
       e.preventDefault();
-      PTL.editor.search()
+      PTL.editor.search();
     });
     $(document).on("keypress", "#id_search", function (e) {
       if (e.which === 13) {
@@ -313,7 +312,7 @@
         // Walk through known filtering criterias and apply them to the editor object
 
         if ('unit' in params) {
-          var uid = parseInt(params['unit']);
+          var uid = parseInt(params['unit'], 10);
 
           if (uid && !isNaN(uid)) {
             if (PTL.editor.activeUid != uid &&
@@ -328,7 +327,7 @@
             }
           }
         } else if ('page' in params) {
-          var p = parseInt(params['page']);
+          var p = parseInt(params['page'], 10);
 
           if (p && !isNaN(p) && p > 0) {
             pageNumber = p;
@@ -511,7 +510,7 @@
     // 3) replace ' ' (one or more whitespaces) with '|'. In this
     //    way every word can be searched by regular expression;
     // 4) add brackets.
-    return ['(', PTL.editor.escapeUnsafeRegexSymbols(s).trim().replace(/( +)/g,
+    return ['(', PTL.editor.escapeUnsafeRegexSymbols(s).trim().replace(/ +/g,
       '|'), ')'].join('');
   },
 
@@ -639,7 +638,7 @@
 
         replaced = submap[match];
 
-        if (replaced == undefined) {
+        if (replaced === undefined) {
           replaced = htmlHl.replace(
               /%s/,
               PTL.editor.fancyEscape(match.slice(1, match.length-1))
@@ -685,13 +684,13 @@
       op = v[0];
       text = v[1];
 
-      if (op == 0) {
+      if (op === 0) {
           if (removed) {
             textDiff += '<span class="diff-delete">' + PTL.editor.fancyEscape(removed) + '</span>'
             removed = "";
           }
           textDiff += PTL.editor.fancyEscape(text);
-      } else if (op == 1) {
+      } else if (op === 1) {
         if (removed) {
           // This is part of a substitution, not a plain insertion. We
           // will format this differently.
@@ -700,7 +699,7 @@
         } else {
           textDiff += '<span class="diff-insert">' + PTL.editor.fancyEscape(text) + '</span>';
         }
-      } else if (op == -1) {
+      } else if (op === -1) {
         removed = text;
       }
     });
@@ -1093,7 +1092,7 @@
   getUidsBeforeAfter: function (uid) {
     var howMuch, i, m, prevNextL, tu,
         uids = {before: [], after: []},
-        limit = parseInt((this.pager.per_page - 1) / 2),
+        limit = parseInt(((this.pager.per_page - 1) / 2), 10),
         current = this.units[uid],
         prevNext = {prev: "before", next: "after"};
 
@@ -1142,7 +1141,7 @@
 
     for (p in this.pagesGot) {
       // Ensure we work with integers
-      p = parseInt(p);
+      p = parseInt(p, 10);
 
       // First and last units in this page
       first = this.pagesGot[p][0];
@@ -1441,7 +1440,7 @@
   /* Loads the next unit */
   loadNext: function (uid) {
     // FIXME: we can reuse the 'gotoPrevNext' function below for this purpose
-    var newUid = parseInt(PTL.editor.units[uid].next);
+    var newUid = parseInt(PTL.editor.units[uid].next, 10);
     if (newUid) {
       var newHash = PTL.utils.updateHashPart("unit", newUid, ["page"]);
       $.history.load(newHash);
@@ -1464,7 +1463,7 @@
 
     // Try loading the prev/next unit
     if (newUid != null) {
-      var newHash = PTL.utils.updateHashPart("unit", parseInt(newUid), ["page"]);
+      var newHash = PTL.utils.updateHashPart("unit", parseInt(newUid, 10), ["page"]);
       $.history.load(newHash);
     } else {
       if (e.target.id == 'js-nav-prev') {
@@ -1504,7 +1503,7 @@
     if (m) {
       var newHash,
           type = m[1],
-          uid = parseInt(m[2]);
+          uid = parseInt(m[2], 10);
       if (type === 'row') {
         newHash = PTL.utils.updateHashPart("unit", uid, ["page"]);
       } else {
