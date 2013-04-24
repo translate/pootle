@@ -27,6 +27,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.markup import get_markup_filter_name, MarkupField
 
+from .managers import LiveManager
+
 
 class AbstractPage(models.Model):
 
@@ -45,6 +47,9 @@ class AbstractPage(models.Model):
     url = models.URLField(_("Redirect to URL"), blank=True,
             help_text=_('If set, any references to this page will '
                         'redirect to this URL'))
+
+    objects = models.Manager()
+    live = LiveManager()
 
     class Meta:
         abstract = True
