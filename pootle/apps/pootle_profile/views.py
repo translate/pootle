@@ -30,9 +30,10 @@ from profiles.views import edit_profile
 from pootle_app.models import Directory
 from pootle_app.models.permissions import check_profile_permission
 from pootle_misc.baseurl import redirect
-from pootle_profile.models import get_profile
-from pootle_profile.forms import (UserForm, lang_auth_form_factory,
-                                  pootle_profile_form_factory)
+
+from .models import get_profile
+from .forms import (UserForm, lang_auth_form_factory,
+                    pootle_profile_form_factory)
 
 
 def profile_edit(request):
