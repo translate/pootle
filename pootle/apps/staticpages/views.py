@@ -103,8 +103,7 @@ def display_page(request, virtual_path):
     page = None
     for page_model in AbstractPage.__subclasses__():
         try:
-            page = page_model.objects.get(
-                    active=True,
+            page = page_model.live.get(
                     virtual_path=virtual_path,
                 )
         except ObjectDoesNotExist:

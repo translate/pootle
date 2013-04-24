@@ -33,7 +33,7 @@ class LegalPageNode(template.Node):
         self.context_name = context_name
 
     def render(self, context):
-        lps = LegalPage.objects.filter(active=True)
+        lps = LegalPage.live.all()
 
         context[self.context_name] = lps
         return ''
