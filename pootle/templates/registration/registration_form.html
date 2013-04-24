@@ -37,7 +37,7 @@
         {{ form.password2.errors }}
     </p>
     {% cache settings.CACHE_TIMEOUT legalpages_reg LANGUAGE_CODE %}
-    {% get_legalpages as legalpages reg %}
+    {% get_legalpages as legalpages %}
     {% if legalpages %}
     <p>{% trans "Make sure to read the following:" %}</p>
     <ul>

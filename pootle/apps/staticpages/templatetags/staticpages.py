@@ -29,15 +29,11 @@ register = template.Library()
 
 class LegalPageNode(template.Node):
 
-    def __init__(self, context_name, on_register=False):
+    def __init__(self, context_name):
         self.context_name = context_name
-        self.on_register = on_register
 
     def render(self, context):
         lps = LegalPage.objects.filter(active=True)
-
-        if self.on_register:
-            lps = lps.filter(display_on_register=True)
 
         context[self.context_name] = lps
         return ''
@@ -50,12 +46,9 @@ def get_legalpages(parser, token):
     Populates the template context with them in a variable
     whose name is defined by the ``as`` clause.
 
-    An optional ``reg`` clause can be added at the end to retrieve
-    only the objects that have the ``display_on_register`` bit set.
-
     Syntax::
 
-        {% get_legalpages as context_name [reg]%}
+        {% get_legalpages as context_name %}
     """
 
     bits = token.split_contents()
@@ -63,16 +56,12 @@ def get_legalpages(parser, token):
                        "as context_name" %
                        dict(tag_name=bits[0]))
 
-    if len(bits) >= 3 and len(bits) <= 4:
+    if len(bits) == 3:
 
         if bits[1] != 'as':
             raise template.TemplateSyntaxError(syntax_message)
         context_name = bits[2]
 
-        on_register = False
-        if len(bits) == 4:
-            on_register = True
-
-        return LegalPageNode(context_name, on_register)
+        return LegalPageNode(context_name)
     else:
         raise template.TemplateSyntaxError(syntax_message)
