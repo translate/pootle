@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008 Zuza Software Foundation
+# Copyright 2008-2013 Zuza Software Foundation
 #
 # This file is part of translate.
 #
@@ -40,7 +40,10 @@ urlpatterns += patterns('django.contrib.auth.views',
 
 # Onle include registration urls if registration is enabled
 if settings.CAN_REGISTER:
-    urlpatterns += patterns('', (r'', include('registration.urls')))
+    urlpatterns += patterns('',
+        (r'^register/?$', 'pootle_profile.views.register'),
+        (r'', include('registration.urls')),
+    )
 
 urlpatterns += patterns('',
     (r'', include('profiles.urls')),

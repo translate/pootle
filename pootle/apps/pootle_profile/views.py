@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009-2012 Zuza Software Foundation
+# Copyright 2009-2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -26,14 +26,23 @@ from django.utils.encoding import iri_to_uri
 from django.utils.http import urlquote
 
 from profiles.views import edit_profile
+from registration.views import register as original_register
 
 from pootle_app.models import Directory
 from pootle_app.models.permissions import check_profile_permission
 from pootle_misc.baseurl import redirect
 
 from .models import get_profile
-from .forms import (UserForm, lang_auth_form_factory,
+from .forms import (RegistrationForm, UserForm, lang_auth_form_factory,
                     pootle_profile_form_factory)
+
+
+def register(request):
+    """User registration page.
+
+    Overrides `registration` app's view to use a custom form.
+    """
+    return original_register(request, form_class=RegistrationForm)
 
 
 def profile_edit(request):
