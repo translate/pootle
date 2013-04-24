@@ -10,8 +10,8 @@ Python and documentation
 ------------------------
 
 For Python code and documentation Pootle follows the
-:ref:`Translate Styleguide <toolkit:styleguide>` adding some extra
-clarifications listed in this document.
+:ref:`Translate Styleguide <toolkit:styleguide>` adding extra
+clarifications listed below.
 
 - :ref:`Python style conventions <toolkit:styleguide-general>`
 
@@ -59,6 +59,18 @@ Imports:
 
     from pootle_language.models import Language
     from pootle_translationproject.models import TranslationProject
+
+Order in models:
+  Model's inner classes and methods should keep the following order:
+
+  - Database fields
+  - Custom manager attributes
+  - ``class Meta``
+  - ``def __unicode__()``
+  - ``def __str__()``
+  - ``def save()``
+  - ``def get_absolute_url()``
+  - Any custom methods
 
 
 Pootle-specific markup
