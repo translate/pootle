@@ -17,7 +17,7 @@ def hook(project, hooktype, file, *args, **kwargs):
     Return value depends on the hooktype:
         precommit returns an array of strings indicating what files to commit.
         preupdate returns an array of strings indicating what files to update.
-        postcommit and postupdate return unit.
+        postcommit and postupdate return is not used.
         pretemplateupdate returns a boolean indicating if the file should be
                           updated from template.
 
