@@ -22,6 +22,9 @@
 import logging
 
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
+
+from lxml.html import rewrite_links
 
 
 __all__ = (
@@ -30,6 +33,36 @@ __all__ = (
 
 
 logger = logging.getLogger('pootle.markup')
+
+
+def rewrite_internal_link(link):
+    """Converts `link` into an internal link.
+
+    Any active static pages defined for a site can be linked by pointing
+    to its virtual path by starting the anchors with the `#/` sequence
+    (e.g. `#/the/virtual/path`).
+
+    Links pointing to non-existent pages will return `#`.
+    Links not starting with `#/` will be omitted.
+    """
+    if not link.startswith('#/'):
+        return link
+
+    from staticpages.models import AbstractPage
+
+    virtual_path = link[2:]
+    url = u'#'
+
+    for page_model in AbstractPage.__subclasses__():
+        try:
+            page = page_model.live.get(
+                    virtual_path=virtual_path,
+                )
+            url = page.get_absolute_url()
+        except ObjectDoesNotExist:
+            pass
+
+    return url
 
 
 def get_markup_filter_name():
@@ -118,28 +151,36 @@ def apply_markup_filter(text):
     """
     markup_filter_name, markup_kwargs = get_markup_filter()
 
-    # No processing is needed.
-    if markup_filter_name is None or not text.strip():
-        return text
+    html = text
 
-    # Process the text using the markup filter set in settings.
-    if markup_filter_name == 'textile':
-        import textile
-        if 'encoding' not in markup_kwargs:
-            markup_kwargs.update(encoding=settings.DEFAULT_CHARSET)
-        if 'output' not in markup_kwargs:
-            markup_kwargs.update(output=settings.DEFAULT_CHARSET)
-        return textile.textile(text, **markup_kwargs)
+    if markup_filter_name is not None and text.strip():
+        if markup_filter_name == 'textile':
+            import textile
+            if 'encoding' not in markup_kwargs:
+                markup_kwargs.update(encoding=settings.DEFAULT_CHARSET)
+            if 'output' not in markup_kwargs:
+                markup_kwargs.update(output=settings.DEFAULT_CHARSET)
 
-    elif markup_filter_name == 'markdown':
-        import markdown
-        return markdown.markdown(text, **markup_kwargs)
+            html = textile.textile(text, **markup_kwargs)
 
-    elif markup_filter_name == 'restructuredtext':
-        from docutils import core
-        if 'settings_overrides' not in markup_kwargs:
-            markup_kwargs.update(settings_overrides=getattr(settings, "RESTRUCTUREDTEXT_FILTER_SETTINGS", {}))
-        if 'writer_name' not in markup_kwargs:
-            markup_kwargs.update(writer_name='html4css1')
-        parts = core.publish_parts(source=text, **markup_kwargs)
-        return parts['html_body']
+        elif markup_filter_name == 'markdown':
+            import markdown
+            html = markdown.markdown(text, **markup_kwargs)
+
+        elif markup_filter_name == 'restructuredtext':
+            from docutils import core
+            if 'settings_overrides' not in markup_kwargs:
+                markup_kwargs.update(
+                    settings_overrides=getattr(
+                        settings,
+                        "RESTRUCTUREDTEXT_FILTER_SETTINGS",
+                        {},
+                    )
+                )
+            if 'writer_name' not in markup_kwargs:
+                markup_kwargs.update(writer_name='html4css1')
+
+            parts = core.publish_parts(source=text, **markup_kwargs)
+            html = parts['html_body']
+
+    return rewrite_links(html, rewrite_internal_link)
