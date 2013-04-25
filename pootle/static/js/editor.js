@@ -104,7 +104,7 @@
     /* Copy suggestion */
     $(document).on('click', 'div.suggestion', function () {
       // Don't copy if text has been selected
-      if (PTL.editor.getSelectedText().length > 0) {
+      if (PTL.editor.getSelectedText()) {
         return;
       }
       if ($('#id_target_f_0').attr('disabled')) {
@@ -114,49 +114,49 @@
     });
 
     /* Editor navigation/submission */
-    $(document).on("editor_ready", "table.translate-table", this.ready);
-    $(document).on("noResults", "table.translate-table", this.noResults);
-    $(document).on("mouseup", "tr.view-row, tr.ctx-row", this.gotoUnit);
-    $(document).on("keypress", "#item-number", function (e) {
+    $(document).on('editor_ready', 'table.translate-table', this.ready);
+    $(document).on('noResults', 'table.translate-table', this.noResults);
+    $(document).on('mouseup', 'tr.view-row, tr.ctx-row', this.gotoUnit);
+    $(document).on('keypress', '#item-number', function (e) {
       // Perform action only when the 'Enter' key is pressed
       if (e.which === 13) {
-        PTL.editor.gotoPage(parseInt($("#item-number").val(), 10));
+        PTL.editor.gotoPage(parseInt($('#item-number').val(), 10));
       }
     });
-    $(document).on("click", "input.submit", this.submit);
-    $(document).on("click", "input.suggest", this.suggest);
-    $(document).on("click", "#js-nav-prev, #js-nav-next", this.gotoPrevNext);
-    $(document).on("click", ".js-suggestion-reject", this.rejectSuggestion);
-    $(document).on("click", ".js-suggestion-accept", this.acceptSuggestion);
-    $(document).on("click", ".js-vote-clear", this.clearVote);
-    $(document).on("click", ".js-vote-up", this.voteUp);
-    $(document).on("click", "#js-show-timeline", this.showTimeline);
-    $(document).on("click", "#js-hide-timeline", this.hideTimeline);
-    $(document).on("click", "#translate-checks-block .js-reject-check", this.rejectCheck);
+    $(document).on('click', 'input.submit', this.submit);
+    $(document).on('click', 'input.suggest', this.suggest);
+    $(document).on('click', '#js-nav-prev, #js-nav-next', this.gotoPrevNext);
+    $(document).on('click', '.js-suggestion-reject', this.rejectSuggestion);
+    $(document).on('click', '.js-suggestion-accept', this.acceptSuggestion);
+    $(document).on('click', '.js-vote-clear', this.clearVote);
+    $(document).on('click', '.js-vote-up', this.voteUp);
+    $(document).on('click', '#js-show-timeline', this.showTimeline);
+    $(document).on('click', '#js-hide-timeline', this.hideTimeline);
+    $(document).on('click', '#translate-checks-block .js-reject-check', this.rejectCheck);
 
     /* Filtering */
-    $(document).on("change", "#filter-status select", this.filterStatus);
-    $(document).on("change", "#filter-checks select", this.filterChecks);
-    $(document).on("click", ".js-more-ctx", function () {
+    $(document).on('change', '#filter-status select', this.filterStatus);
+    $(document).on('change', '#filter-checks select', this.filterChecks);
+    $(document).on('click', '.js-more-ctx', function () {
       PTL.editor.moreContext(false);
     });
-    $(document).on("click", ".js-less-ctx", this.lessContext);
-    $(document).on("click", ".js-show-ctx", this.showContext);
-    $(document).on("click", ".js-hide-ctx", this.hideContext);
+    $(document).on('click', '.js-less-ctx', this.lessContext);
+    $(document).on('click', '.js-show-ctx', this.showContext);
+    $(document).on('click', '.js-hide-ctx', this.hideContext);
 
     /* Commenting */
-    $(document).on("click", ".js-editor-comment", function (e) {
+    $(document).on('click', '.js-editor-comment', function (e) {
       e.preventDefault();
-      $("#editor-comment").slideToggle("fast");
+      $('#editor-comment').slideToggle('fast');
     });
-    $(document).on("submit", "#comment-form", this.comment);
+    $(document).on('submit', '#comment-form', this.comment);
 
     /* Search */
-    $(document).on("submit", "#search-form", function (e) {
+    $(document).on('submit', '#search-form', function (e) {
       e.preventDefault();
       PTL.editor.search();
     });
-    $(document).on("keypress", "#id_search", function (e) {
+    $(document).on('keypress', '#id_search', function (e) {
       if (e.which === 13) {
         e.preventDefault();
         PTL.editor.search();
@@ -164,14 +164,14 @@
     });
 
     /* Misc */
-    $(document).on("click", ".js-editor-msg-hide", this.hideMsg);
+    $(document).on('click', '.js-editor-msg-hide', this.hideMsg);
 
     /* Bind hotkeys */
     shortcut.add('ctrl+return', function () {
       if (PTL.editor.isSuggestMode()) {
-        $("input.suggest").trigger("click");
+        $('input.suggest').trigger('click');
       } else {
-        $("input.submit").trigger("click");
+        $('input.submit').trigger('click');
       }
     });
     shortcut.add('ctrl+space', function (e) {
@@ -195,17 +195,17 @@
     });
 
     shortcut.add('ctrl+up', function () {
-      $("#js-nav-prev").trigger("click");
+      $('#js-nav-prev').trigger('click');
     });
     shortcut.add('ctrl+,', function () {
-      $("#js-nav-prev").trigger("click");
+      $('#js-nav-prev').trigger('click');
     });
 
     shortcut.add('ctrl+down', function () {
-      $("#js-nav-next").trigger("click");
+      $('#js-nav-next').trigger('click');
     });
     shortcut.add('ctrl+.', function () {
-      $("#js-nav-next").trigger("click");
+      $('#js-nav-next').trigger('click');
     });
 
     shortcut.add('ctrl+shift+home', function () {
@@ -229,22 +229,23 @@
     });
 
     if (navigator.platform.toUpperCase().indexOf('MAC') >= 0) {
-      $("#js-nav-next")
-        .attr("title",
-              gettext(["Go to the next string (Ctrl+.)<br/><br/>",
-                       "Also:<br/>Next page: Ctrl+Shift+.<br/>",
-                       "Last page: Ctrl+Shift+End"].join(''))
+      // Optimize string join with '<br/>' as separator
+      $('#js-nav-next')
+        .attr('title',
+              gettext(['Go to the next string (Ctrl+.)', '',
+                       'Also:', 'Next page: Ctrl+Shift+.',
+                       'Last page: Ctrl+Shift+End'].join('<br/>'))
       );
-      $("#js-nav-prev")
-        .attr("title",
-              gettext(["Go to the previous string (Ctrl+,)<br/><br/>",
-                       "Also:<br/>Previous page: Ctrl+Shift+,<br/>",
-                       "First page: Ctrl+Shift+Home"].join(''))
+      $('#js-nav-prev')
+        .attr('title',
+              gettext(['Go to the previous string (Ctrl+,)', '',
+                       'Also:', 'Previous page: Ctrl+Shift+,',
+                       'First page: Ctrl+Shift+Home'].join('<br/>'))
       );
     }
     
     shortcut.add('ctrl+shift+n', function () {
-      $("#item-number").focus().select();
+      $('#item-number').focus().select();
     });
 
     /* XHR activity indicator */
@@ -263,18 +264,17 @@
 
     /* Load MT backends */
     $.each(this.settings.mt, function () {
-      var backend = this.name;
-      var key = this.key;
+      var backend = this.name, key = this.key;
 
       $.ajax({
-        url: s('js/mt/' + backend + '.js'),
+        url: s(['js/mt/', backend, '.js'].join('')),
         async: false,
         dataType: 'script',
         success: function () {
           setTimeout(function () {
             PTL.editor.mt[backend].init(key);
           }, 0);
-          $(document).on("mt_ready", "table.translate-table",
+          $(document).on('mt_ready', 'table.translate-table',
                          PTL.editor.mt[backend].ready);
         }
       });
@@ -285,14 +285,14 @@
       var backend = this;
 
       $.ajax({
-        url: s('js/lookup/' + backend + '.js'),
+        url: s(['js/lookup/', backend, '.js'].join('')),
         async: false,
         dataType: 'script',
         success: function () {
           setTimeout(function () {
             PTL.editor.lookup[backend].init();
           }, 0);
-          $(document).on("lookup_ready", "table.translate-table",
+          $(document).on('lookup_ready', 'table.translate-table',
                          PTL.editor.lookup[backend].ready);
         }
       });
@@ -304,33 +304,32 @@
     /* History support */
     setTimeout(function () {
       $.history.init(function (hash) {
-        var params = PTL.utils.getParsedHash(hash);
-
-        var withUid = false;
-        var pageNumber = undefined;
+        var params = PTL.utils.getParsedHash(hash),
+          withUid = false, pageNumber = undefined,
+          tmpParamValue;
 
         // Walk through known filtering criterias and apply them to the editor object
 
-        if ('unit' in params) {
-          var uid = parseInt(params['unit'], 10);
+        if (params['unit']) {
+          tmpParamValue = parseInt(params['unit'], 10);
 
-          if (uid && !isNaN(uid)) {
-            if (PTL.editor.activeUid != uid &&
-                PTL.editor.units[uid] == undefined) {
-              PTL.editor.activeUid = uid;
+          if (tmpParamValue && !isNaN(tmpParamValue)) {
+            if (PTL.editor.activeUid !== tmpParamValue &&
+                PTL.editor.units[tmpParamValue] === undefined) {
+              PTL.editor.activeUid = tmpParamValue;
               withUid = true;
             } else {
               // if uid is already preloaded, just switch to it
-              PTL.editor.activeUid = uid;
-              PTL.editor.displayEditUnit(uid);
+              PTL.editor.activeUid = tmpParamValue;
+              PTL.editor.displayEditUnit(tmpParamValue);
               return;
             }
           }
-        } else if ('page' in params) {
-          var p = parseInt(params['page'], 10);
+        } else if (params['page']) {
+          tmpParamValue = parseInt(params['page'], 10);
 
-          if (p && !isNaN(p) && p > 0) {
-            pageNumber = p;
+          if (tmpParamValue && !isNaN(tmpParamValue) && tmpParamValue > 0) {
+            pageNumber = tmpParamValue;
           }
         }
 
@@ -2158,8 +2157,8 @@
   /* Normalizes language codes in order to use them in MT services */
   normalizeCode: function (locale) {
       var clean = locale.replace('_', '-')
-      var atIndex = locale.indexOf("@");
-      if (atIndex != -1) {
+      var atIndex = locale.indexOf('@');
+      if (atIndex !== -1) {
         clean = clean.slice(0, atIndex);
       }
       return clean;
@@ -2221,7 +2220,7 @@
           translation = translation.replace("[" + i + "]", value);
         }
 
-        areas.eq(j).val($("<div />").html(translation).text());
+        areas.eq(j).val($('<div />').html(translation).text());
         areas.eq(j).focus();
       });
     });
@@ -2237,9 +2236,9 @@
 
   /* Adds a new Lookup button in the editor toolbar */
   addLookupButton: function (container, aClass, tooltip) {
-    var btn = '<a class="translate-lookup iframe ' + aClass + '">';
-    btn += '<i class="icon-' + aClass + '" title="' + tooltip + '"></i></a>';
-    $(container).first().prepend(btn);
+    $(container).first().prepend(['<a class="translate-lookup iframe ',
+      aClass, '"><i class="icon-', aClass, '" title="', tooltip,
+      '"></i></a>'].join(''));
   },
 
   /* Goes through all source languages and adds a new lookup service button
@@ -2253,7 +2252,7 @@
 
     _this.addLookupButton(this,
       provider.buttonClassName,
-      provider.hint + ' (' + source.toUpperCase() + ')');
+      [provider.hint, ' (', source.toUpperCase(), ')'].join(''));
     });
   },
 
