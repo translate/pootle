@@ -12,8 +12,7 @@ def hook(project, hooktype, file, *args, **kwargs):
     Other arguments depend on the hooktype:
         precommit should have "author" and "message" as arguments.
         postcommit should have "success" as arguments.
-        preupdate and postupdate have no additional arguments.
-        pretemplateupdate has no additional arguments.
+        pretemplateupdate, preupdate, postupdate have no additional arguments.
 
     Return value depends on the hooktype:
         precommit returns an array of strings indicating what files to commit.
