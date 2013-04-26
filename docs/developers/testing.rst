@@ -21,8 +21,8 @@ Although you can run tests for all applications, several of the external
 applications are not passing their tests which renders this less useful.
 
 Tests could be run with ``py.test`` using `pytest-django`_ or alternately by
-adding a `django-pytest`_ app to Pootle (conceivably both could be done) - however
-this is not currently supported or implemented.
+adding a `django-pytest`_ app to Pootle (conceivably both could be done) --
+however this is not currently supported or implemented.
 
 .. _pytest-django: http://pypi.python.org/pypi/pytest-django/
 
