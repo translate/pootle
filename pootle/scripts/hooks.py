@@ -6,18 +6,20 @@ import logging
 def hook(project, hooktype, file, *args, **kwargs):
     """
     project should be the projectcode of any project.
-    hooktype should be precommit, postcommit, preupdate or postupdate.
-    file should be the absolute path of the file.
+    hooktype should be "initialize", "precommit", "postcommit",
+    "pretemplateupdate", "preupdate", or "postupdate".
+    file should be the absolute path of the file (project dir for initialize).
 
     Other arguments depend on the hooktype:
-        precommit should have "author" and "message" as arguments.
-        postcommit should have "success" as arguments.
+        initialize should have "languagecode" as an additional argument.
+        precommit should have "author" and "message" as additional arguments.
+        postcommit should have "success" as an additional argument.
         pretemplateupdate, preupdate, postupdate have no additional arguments.
 
     Return value depends on the hooktype:
         precommit returns an array of strings indicating what files to commit.
-        preupdate returns an array of strings indicating what files to update.
-        postcommit and postupdate return is not used.
+        preupdate returns the pathname of the file to update
+        initialize, postcommit, and postupdate return is not used.
         pretemplateupdate returns a boolean indicating if the file should be
                           updated from template.
 
