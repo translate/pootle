@@ -147,6 +147,9 @@ or *CVS/*) do not necessarily have to be below your :setting:`VCS_DIRECTORY`
 under :setting:`VCS_DIRECTORY` for this project must be outside of the
 clone/checkout for the project.
 
+You can use an :ref:`hooks#initialize` hook script to automate the creation of
+these symlinks whenever languages are added to your project.
+
 If you use symlinks, ensure that the resulting structure under
 :setting:`VCS_DIRECTORY` corresponds to the structure under
 :setting:`PODIRECTORY`.
