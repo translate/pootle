@@ -9,7 +9,7 @@ requirements in a virtual environment.
 Before proceeding, consider installing these first:
 
 - At least Python 2.4
-- Django 1.3.x or 1.4.x
+- At least Django 1.4.5
 - `python-pip <http://www.pip-installer.org/>`_
 
 If you only want to have a sneak peek of Pootle, the default configuration and
@@ -96,7 +96,7 @@ line tool within your environment.
   (env) $ pootle --version
   Pootle 2.5.0
   Translate Toolkit 1.10
-  Django 1.4.3
+  Django 1.4.5
 
 
 .. _installation#initializing_the_configuration:
