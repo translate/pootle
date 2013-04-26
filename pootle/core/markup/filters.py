@@ -151,9 +151,12 @@ def apply_markup_filter(text):
     """
     markup_filter_name, markup_kwargs = get_markup_filter()
 
+    if not text.strip():
+        return text
+
     html = text
 
-    if markup_filter_name is not None and text.strip():
+    if markup_filter_name is not None:
         if markup_filter_name == 'textile':
             import textile
             if 'encoding' not in markup_kwargs:
