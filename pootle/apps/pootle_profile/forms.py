@@ -81,7 +81,11 @@ def lang_auth_form_factory(request, **kwargs):
 
         language = forms.ChoiceField(label=_('Interface Language'),
                                      choices=language_list(request),
-                                     initial="", required=False)
+                                     initial="", required=False,
+                                     widget=forms.Select(attrs={
+                                         'class': 'js-select2 select2-language',
+                                     }),
+        )
 
 
         def clean(self):
@@ -126,5 +130,11 @@ def pootle_profile_form_factory(exclude_fields):
             # Delete the fields the user can't edit
             for field in self.exclude_fields:
                 del self.fields[field]
+            self.fields['ui_lang'].widget.attrs['class'] = \
+                "js-select2 select2-language"
+            self.fields['alt_src_langs'].widget.attrs['class'] = \
+                "js-select2 select2-multiple"
+            self.fields['alt_src_langs'].widget.attrs['data-placeholder'] = \
+                _('Select one or more languages')
 
     return PootleProfileForm

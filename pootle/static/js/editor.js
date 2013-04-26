@@ -1598,7 +1598,7 @@
       // If there are any failing checks, add them in a dropdown
       if (optGroups.length) {
         var dropdown = '<div id="filter-checks">';
-        dropdown += '<select name="filter-checks">';
+        dropdown += '<select id="js-select2-filter-checks" class="select2-filter-checks" name="filter-checks">';
         dropdown += '<option selected="selected" value="none">------</option>';
 
         $.each(optGroups, function () {
@@ -1612,6 +1612,9 @@
         dropdown += '</select></div>';
 
         $("#filter-status").first().after(dropdown);
+        $("#js-select2-filter-checks").select2({
+          width: "resolve"
+        });
       } else { // No results
         PTL.editor.displayMsg(gettext("No results."));
         $("#filter-status option[value=" + PTL.editor.filter + "]")
