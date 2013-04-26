@@ -311,6 +311,15 @@ class TranslationProject(models.Model):
             if pootle_path is not None and new_pootle_path != pootle_path:
                 continue
 
+            relative_po_path = os.path.relpath(new_path, settings.PODIRECTORY)
+            try:
+                from pootle.scripts import hooks
+                if not hooks.hook(self.project.code, "pretemplateupdate", relative_po_path):
+                    continue
+            except:
+                # Assume hook is not present.
+                pass
+
             convert_template(self, store, new_pootle_path, new_path,
                              monolingual)
 
@@ -321,10 +330,41 @@ class TranslationProject(models.Model):
         project_path = self.project.get_real_path()
 
         if new_files and versioncontrol.hasversioning(project_path):
-            output = versioncontrol.add_files(project_path,
-                    [s.file.name for s in new_files],
-                    "New files added from %s based on templates" %
-                            (settings.TITLE))
+            from pootle.scripts import hooks
+            message = "New files added from %s based on templates" % \
+                      (settings.TITLE)
+
+            filestocommit = []
+            for new_file in new_files:
+                try:
+                    filestocommit.extend(hooks.hook(self.project.code,
+                                                    "precommit",
+                                                    new_file.file.name,
+                                                    author=None,
+                                                    message=message)
+                                         )
+                except ImportError:
+                    # Failed to import the hook - we're going to assume there
+                    # just isn't a hook to import. That means we'll commit the
+                    # original file.
+                    filestocommit.append(new_file.file.name)
+
+            success = True
+            try:
+                output = versioncontrol.add_files(project_path,
+                                                  filestocommit, message)
+            except Exception, e:
+                logging.error(u"Failed to add files: %s", e)
+                success = False
+
+            for new_file in new_files:
+                try:
+                    hooks.hook(self.project.code, "postcommit",
+                               new_file.file.name, success=success)
+                except:
+                    #FIXME: We should not hide the exception - makes
+                    # development impossible
+                    pass
 
         if pootle_path is None:
             newstats = self.getquickstats()
@@ -412,8 +452,9 @@ class TranslationProject(models.Model):
         from pootle.scripts import hooks
         store.sync(update_translation=True)
 
+        filetoupdate = store.file.name
         try:
-            hooks.hook(self.project.code, "preupdate", store.file.name)
+            filetoupdate = hooks.hook(self.project.code, "preupdate", store.file.name)
         except:
             pass
 
@@ -424,7 +465,7 @@ class TranslationProject(models.Model):
         try:
             logging.debug(u"Updating %s from version control", store.file.name)
             from pootle_misc import versioncontrol
-            versioncontrol.update_file(store.file.name)
+            versioncontrol.update_file(filetoupdate)
             store.file._delete_store_cache()
             store.file._update_store_cache()
         except Exception, e:
@@ -436,6 +477,12 @@ class TranslationProject(models.Model):
             working_copy.save()
 
             raise VersionControlError
+
+        try:
+            hooks.hook(self.project.code, "postupdate", store.file.name)
+        except:
+            pass
+
         try:
             logging.debug(u"Parsing version control copy of %s into db",
                           store.file.name)
@@ -456,10 +503,6 @@ class TranslationProject(models.Model):
             store.update(update_structure=True, update_translation=True,
                          conservative=False)
             raise
-        try:
-            hooks.hook(self.project.code, "postupdate", store.file.name)
-        except:
-            pass
 
         newstats = store.getquickstats()
         return oldstats, remotestats, newstats
@@ -506,17 +549,23 @@ class TranslationProject(models.Model):
                 continue
 
             store.sync(update_translation=True)
+            filetoupdate = store.file.name
             try:
-                hooks.hook(self.project.code, "preupdate", store.file.name)
+                filetoupdate = hooks.hook(self.project.code, "preupdate", store.file.name)
             except:
                 pass
 
             # keep a copy of working files in memory before updating
             working_copy = store.file.store
 
-            versioncontrol.copy_to_podir(store.file.name)
+            versioncontrol.copy_to_podir(filetoupdate)
             store.file._delete_store_cache()
             store.file._update_store_cache()
+
+            try:
+                hooks.hook(self.project.code, "postupdate", store.file.name)
+            except:
+                pass
 
             try:
                 logging.debug(u"Parsing version control copy of %s into db",
@@ -539,10 +588,6 @@ class TranslationProject(models.Model):
                 store.update(update_structure=True, update_translation=True,
                              conservative=False)
                 raise
-            try:
-                hooks.hook(self.project.code, "postupdate", store.file.name)
-            except:
-                pass
 
             remote_stats = dictsum(remote_stats, remotestats)
 
@@ -622,9 +667,9 @@ class TranslationProject(models.Model):
         from pootle.scripts import hooks
         for store in stores:
             try:
-                filestocommit.append(hooks.hook(self.project.code, "precommit",
-                                           store.file.name, author=author,
-                                           message=message)
+                filestocommit.extend(hooks.hook(self.project.code, "precommit",
+                                                store.file.name, author=author,
+                                                message=message)
                                     )
             except ImportError:
                 # Failed to import the hook - we're going to assume there just
