@@ -12,6 +12,9 @@ argparse
 cssmin
 lxml>=2.1.4
 
+# For providing API
+django-tastypie
+
 # Translate Toolkit
 translate-toolkit>=1.10.0
 # If you want to use Translate Toolkit 'master'
