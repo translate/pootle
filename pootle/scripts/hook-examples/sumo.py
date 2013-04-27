@@ -3,9 +3,12 @@
 # Verbatim script for managing the SUMO (support.mozilla.com) project.  More information at
 # https://wiki.mozilla.org/Verbatim
 #
+# [Note that this is a historical example only, as SUMO no longer uses tiki.]
+#
 # Author: Wil Clouser <clouserw@mozilla.com>
 
 import os
+import logging
 
 from django.conf import settings
 
@@ -13,7 +16,7 @@ from translate.convert import tiki2po, po2tiki
 
 
 def initialize(projectdir, languagecode):
-    """The first paramater is the path to the project directory.  It's up to this
+    """The first parameter is the path to the project directory.  It's up to this
     script to know any internal structure of the directory"""
 
     # Temporary code - projectdirs come from pootle with sumo/ab_CD form; we need just the former part
@@ -28,7 +31,7 @@ def initialize(projectdir, languagecode):
     pofile   = os.path.join(projectroot, languagecode, 'language.po')
 
     # Build our combined file
-    print "Initializing %s to %s" % (tikifile, pofile)
+    logging.info(u"Initializing %s to %s", tikifile, pofile)
     tiki2po.converttiki(open(tikifile, "r"), open(pofile, "w"))
 
 def precommit(committedfile, author, message):
@@ -38,10 +41,10 @@ def precommit(committedfile, author, message):
         tikifile = os.path.join(os.path.dirname(committedfile), 'language.php')
 
         # Update tikifile with new strings
-        print "Converting po to tiki: %s to %s" % (committedfile, tikifile)
+        logging.info(u"Converting po to tiki: %s > %s", committedfile, tikifile)
         po2tiki.convertpo(open(committedfile, "r"), open(tikifile, "w"))
 
-        # We want to commit messages.php
+        # We want to commit language.php
         return [tikifile]
     return []
 
@@ -52,7 +55,7 @@ def postcommit(committedfile, success):
         tikifile = os.path.join(os.path.dirname(committedfile), 'language.php')
 
         # Recreate .po with any new strings in tikifile
-        print "Converting tiki to po:  %s to %s" % (tikifile, committedfile)
+        logging.info(u"Converting tiki to po: %s > %s", tikifile, committedfile)
         tiki2po.converttiki(open(tikifile, "r"), open(committedfile, "w"))
 
 def preupdate(updatedfile):
@@ -61,15 +64,17 @@ def preupdate(updatedfile):
         # Get the files we'll be using
         tikifile = os.path.join(os.path.dirname(updatedfile), 'language.php')
 
-        # We want to update messages.po
-        print "Updating %s" % tikifile
+        # We want to update language.php
+        logging.info(u"Updating %s", tikifile)
         return tikifile
     return ""
 
 def postupdate(updatedfile):
-    # Get the files we'll be using
-    pofile = os.path.join(os.path.dirname(updatedfile), 'language.po')
+    if os.path.basename(updatedfile) == "language.po":
 
-    # Recreate .po with any new strings in tikifile
-    print "Converting tiki to po:  %s to %s" % (pofile, updatedfile)
-    tiki2po.converttiki(open(updatedfile, "r"), open(pofile, "w"))
+        # Get the files we'll be using
+        tikifile = os.path.join(os.path.dirname(updatedfile), 'language.php')
+
+        # Recreate .po with any new strings in tikifile
+        logging.info(u"Converting tiki to po: %s > %s", tikifile, updatedfile)
+        tiki2po.converttiki(open(tikifile, "r"), open(updatedfile, "w"))

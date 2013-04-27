@@ -26,7 +26,7 @@ class amo2po:
                 forunit = unit
 
         for engunit in engfile.units:
-            # This removes the depricated strings:
+            # This removes the deprecated strings:
             if engunit.msgid == []:
                 continue
 
