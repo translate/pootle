@@ -1113,7 +1113,8 @@ html[dir="rtl"] .form-horizontal.form-actions input
 }
 
 p.help,
-span.help_text
+span.help_text,
+span.helptext
 {
     font-size: 85%;
     font-style: italic;
@@ -1151,7 +1152,7 @@ ul.errorlist
 }
 
 .news {
-    margin: 2em 0;
+    margin: 0;
     float: left;
 }
 
