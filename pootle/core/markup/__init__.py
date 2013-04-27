@@ -21,6 +21,13 @@
 
 from __future__ import absolute_import
 
-from .fields import *
-from .filters import *
-from .widgets import *
+# Python 2.5 (but not 2.6 or 2.7 - who knows about 3.x) gives the following
+# "SyntaxError: 'import *' not allowed with 'from .'" with a relative import *
+#from .fields import *
+#from .filters import *
+#from .widgets import *
+
+# Preserve Python 2.5 compatibility for now
+from pootle.core.markup.fields import *
+from pootle.core.markup.filters import *
+from pootle.core.markup.widgets import *
