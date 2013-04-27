@@ -55,8 +55,8 @@ Preparation
 
 To have any sort of integration with version control from within Pootle, it is
 necessary to construct the correct file system structure in the
-:setting:`VCS_DIRECTORY` as defined in the settings. The projects integrating
-with a version control system has to follow a layout that corresponds to the
+:setting:`VCS_DIRECTORY` as defined in the settings. Any projects integrating
+with a version control system have to follow a layout that corresponds to the
 :setting:`PODIRECTORY`. The :setting:`VCS_DIRECTORY` is *pootle/repos* by
 default and should contain one directory for each project on the server that is
 either a clone/checkout for the corresponding Pootle project, or a symlink (or
