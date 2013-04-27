@@ -16,6 +16,8 @@ Version 2.5.1
 
 Not released yet.
 
+- The minimum required Django version is 1.4.5.
+
 - The database schema upgrade procedure has been redefined, and the
   :ref:`commands#updatedb` management command has been phased out in favor
   of South's own :ref:`migrate command <south:commands>`.
