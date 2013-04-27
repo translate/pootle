@@ -56,6 +56,11 @@ Not released yet.
   <settings#customizing>` (or in *settings/90-local.conf* if running from a
   repository clone).
 
+- A new setting, :setting:`VCS_DIRECTORY` has been added, and VCS repositories
+  are located in that directory, separate from the translation files used for
+  editing and upload/download. The files in the VCS directory should never have
+  any uncommitted changes in them, except during commit operations themselves.
+
 - The ``PootleServer`` script has been phased out in favor of a ``pootle``
   runner script.
 
@@ -67,7 +72,6 @@ Not released yet.
 
 - The ``update_from_templates`` management command has been renamed to
   :ref:`commands#update_against_templates`.
-
 
 Version 2.1.6
 -------------
