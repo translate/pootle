@@ -18,20 +18,24 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.conf.urls import include, patterns
 from django.conf import settings
-
+from django.conf.urls import include, patterns
 from django.contrib import admin
-admin.autodiscover()
 
 from tastypie.api import Api
 
 from pootle_language.api import LanguageResource
+from pootle_project.api import ProjectResource
+from pootle_translationproject.api import TranslationProjectResource
 
+
+admin.autodiscover()
 
 API_VERSION = 'v1'
 pootle_api = Api(api_name=API_VERSION)
 pootle_api.register(LanguageResource())
+pootle_api.register(ProjectResource())
+pootle_api.register(TranslationProjectResource())
 
 urlpatterns = patterns(
     '',
