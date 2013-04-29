@@ -137,7 +137,7 @@ Naming
 
     .. code-block:: javascript
 
-      var $fields = $(".js-search-fields");
+      var $fields = $('.js-search-fields');
 
 Selectors
   - Prefix selectors that deal with JavaScript with ``js-``. This way it's
@@ -167,6 +167,16 @@ Control statements
 
   - Should have one space between the control keyword and opening
     parenthesis, to distinguish them from function calls.
+
+String
+  - A string literal should be wrapped in single quotes
+
+  - Should be used join method to concatenate pieces instead of ``+``
+    because it is usually faster put the pieces into an array and join them
+
+Number
+  - Should be specified radix parameter in parseInt function to eliminate
+    reader confusion and to guarantee predictable behavior
 
 Examples
   - ``if`` statements
