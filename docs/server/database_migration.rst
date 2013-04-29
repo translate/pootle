@@ -44,7 +44,7 @@ The steps to migrate between databases are as follows:
 
 #. Stop the Pootle server to avoid data changing while you migrate.
 
-#. Leave current settings in tact and dump the data using the ``dumpdata``
+#. Leave current settings intact and dump the data using the ``dumpdata``
    command, note the ``-n`` option is required.
 
 #. Create a new database for Pootle and change :ref:`your settings <settings>`

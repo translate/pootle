@@ -5,7 +5,7 @@ Management commands
 
 The management commands are administration commands provided by Django, Pootle
 or any external Django app being used with Pootle. You will usually run these
-commands by issueing ``pootle <command> [options]``.
+commands by issuing ``pootle <command> [options]``.
 
 For example, to get information about all available management commands, you
 will run::

@@ -18,7 +18,7 @@ will probably need to limit the number of characters, but hopefully we can find
 a reasonable compromise that will help many people.
 
 If you edit this page, please ensure that you use a browser that supports UTF-8
-encoding so that the existing text is kept in tact. Note that you might not be
+encoding so that the existing text is kept intact. Note that you might not be
 able to see all the characters on this page if you do not have the appropriate
 fonts installed. Please take care not to edit something inadvertently.
 
