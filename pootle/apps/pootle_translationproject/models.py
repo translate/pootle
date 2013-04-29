@@ -314,7 +314,8 @@ class TranslationProject(models.Model):
             relative_po_path = os.path.relpath(new_path, settings.PODIRECTORY)
             try:
                 from pootle.scripts import hooks
-                if not hooks.hook(self.project.code, "pretemplateupdate", relative_po_path):
+                if not hooks.hook(self.project.code, "pretemplateupdate",
+                                  relative_po_path):
                     continue
             except:
                 # Assume hook is not present.
@@ -454,7 +455,8 @@ class TranslationProject(models.Model):
 
         filetoupdate = store.file.name
         try:
-            filetoupdate = hooks.hook(self.project.code, "preupdate", store.file.name)
+            filetoupdate = hooks.hook(self.project.code, "preupdate",
+                                      store.file.name)
         except:
             pass
 
@@ -551,7 +553,8 @@ class TranslationProject(models.Model):
             store.sync(update_translation=True)
             filetoupdate = store.file.name
             try:
-                filetoupdate = hooks.hook(self.project.code, "preupdate", store.file.name)
+                filetoupdate = hooks.hook(self.project.code, "preupdate",
+                                          store.file.name)
             except:
                 pass
 
@@ -563,7 +566,8 @@ class TranslationProject(models.Model):
             store.file._update_store_cache()
 
             try:
-                hooks.hook(self.project.code, "postupdate", store.file.name)
+                hooks.hook(self.project.code, "postupdate",
+                           store.file.name)
             except:
                 pass
 
