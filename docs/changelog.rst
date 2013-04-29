@@ -25,11 +25,6 @@ Not released yet.
   :ref:`commands#upgrade` command. For detailed instructions, read the
   :ref:`upgrading` section of the documentation.
 
-- The :ref:`hooks` API has a small change - if a ``preupdate`` hook changes
-  the file to be updated (by returning a string other than the filename it
-  is passed) this updated filename, rather than the original one, will be
-  passed to the ``postupdate`` hook, if there is one.
-
 Version 2.5.0
 -------------
 
