@@ -169,14 +169,14 @@ Control statements
     parenthesis, to distinguish them from function calls.
 
 String
-  - A string literal should be wrapped in single quotes
+  - A string literal should be wrapped in single quotes.
 
-  - Should be used join method to concatenate pieces instead of ``+``
-    because it is usually faster put the pieces into an array and join them
+  - ``join`` should be used to concatenate pieces instead of ``+`` because
+    it is usually faster to put the pieces into an array and join them.
 
 Number
-  - Should be specified radix parameter in parseInt function to eliminate
-    reader confusion and to guarantee predictable behavior
+  - ``radix`` should be specified in the ``parseInt`` function to
+    eliminate reader confusion and to guarantee predictable behavior.
 
 Examples
   - ``if`` statements
