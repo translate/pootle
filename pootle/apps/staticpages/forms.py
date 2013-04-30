@@ -26,21 +26,6 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
 
-def add_page_field(form, page):
-    """Adds `page` as a required field to `form`."""
-    url = page.url and page.url or reverse('staticpages.display',
-                                           args=[page.virtual_path])
-    anchor = u'href="%s" class="fancybox"' % url
-    # Translators: The second '%s' is the title of a document
-    label = mark_safe(_("I have read and accept: <a %s>%s</a>",
-                        (anchor, page.title,)))
-
-    field_name = 'legal_%d' % page.pk
-    form.fields[field_name] = forms.BooleanField(label=label,
-                                                 required=True)
-    form.fields[field_name].widget.attrs['class'] = 'js-legalfield'
-
-
 def agreement_form_factory(pages, base_class=forms.Form):
     """Factory that builds an agreement form.
 
@@ -54,11 +39,25 @@ def agreement_form_factory(pages, base_class=forms.Form):
             super(AgreementForm, self).__init__(*args, **kwargs)
 
             for page in pages:
-                add_page_field(self, page)
+                self.add_page_field(page)
 
         def legal_fields(self):
             """Returns any fields added by legal pages."""
             return [field for field in self
                     if field.name.startswith('legal_')]
+
+        def add_page_field(self, page):
+            """Adds `page` as a required field to this form."""
+            url = page.url and page.url or reverse('staticpages.display',
+                                                   args=[page.virtual_path])
+            anchor = u'href="%s" class="fancybox"' % url
+            # Translators: The second '%s' is the title of a document
+            label = mark_safe(_("I have read and accept: <a %s>%s</a>",
+                                (anchor, page.title,)))
+
+            field_name = 'legal_%d' % page.pk
+            self.fields[field_name] = forms.BooleanField(label=label,
+                                                         required=True)
+            self.fields[field_name].widget.attrs['class'] = 'js-legalfield'
 
     return AgreementForm
