@@ -25,6 +25,7 @@ from django.core.urlresolvers import reverse
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
+from .models import Agreement
 
 def agreement_form_factory(pages, user, base_class=forms.Form):
     """Factory that builds an agreement form.
@@ -44,6 +45,21 @@ def agreement_form_factory(pages, user, base_class=forms.Form):
 
             for page in self._pages:
                 self.add_page_field(page)
+
+        def save(self):
+            """Saves user agreements."""
+            if hasattr(super(AgreementForm, self), 'save'):
+                # HACKISH: This is tightly coupled with `RegistrationForm`
+                # which returns the newly-registered user in its form's
+                # `save`. We should listen to the `user_registered` signal
+                # instead.
+                self._user = super(AgreementForm, self).save()
+
+            for page in self._pages:
+                agreement, created = Agreement.objects.get_or_create(
+                    user=self._user, document=page,
+                )
+                agreement.save()
 
         def legal_fields(self):
             """Returns any fields added by legal pages."""

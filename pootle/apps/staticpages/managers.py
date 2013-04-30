@@ -19,7 +19,7 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from django.db.models import Manager
+from django.db.models import F, Manager, Q
 
 
 class LiveManager(Manager):
@@ -27,3 +27,14 @@ class LiveManager(Manager):
     def get_query_set(self):
         return super(LiveManager, self).get_query_set() \
                                        .filter(active=True)
+
+    def pending_user_agreement(self, user, **kwargs):
+        """Filters active pages where the given `user` has pending
+        agreements.
+        """
+        # FIXME: This should be a method exclusive to a LegalPage manager
+        return self.get_query_set().filter(
+            Q(agreement__user=user,
+              modified_on__gt=F('agreement__agreed_on')) |
+            ~Q(agreement__user=user)
+        )

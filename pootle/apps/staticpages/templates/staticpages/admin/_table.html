@@ -8,6 +8,7 @@
         <th>{% trans "Page" %}</th>
         <th>{% trans "Virtual Path" %}</th>
         <th>{% trans "Redirect to URL" %}</th>
+        <th>{% trans "Last Edited" %}</th>
       </tr>
     </thead>
     <tbody>
@@ -17,6 +18,10 @@
         <td><a href="{{ page.get_edit_url }}">{{ page.title }}</a></td>
         <td><a href="{{ page.get_absolute_url }}">{{ page.virtual_path }}</a></td>
         <td>{% if page.url %}<a href="{{ page.url }}">{{ page.url }}</a>{% endif %}</td>
+        <td>
+          <time class="js-relative-date" title="{{ page.modified_on }}"
+            datetime="{{ page.modified_on.isoformat }}">&nbsp;</time>
+        </td>
       </tr>
     {% endfor %}
     </tbody>

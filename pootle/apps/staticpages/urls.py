@@ -25,6 +25,9 @@ from .views import (AdminTemplateView, PageCreateView, PageDeleteView,
                     PageUpdateView)
 
 urlpatterns = patterns('',
+    url(r'^legal/agreement/$',
+        'staticpages.views.legal_agreement',
+        name='staticpages.legal-agreement'),
     url(r'^(?P<virtual_path>.+)/$',
         'staticpages.views.display_page',
         name='staticpages.display'),

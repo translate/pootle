@@ -173,6 +173,20 @@ Configuration settings for applications used by Pootle.
   performance.
 
 
+.. setting:: LEGALPAGE_NOCHECK_PREFIXES
+
+``LEGALPAGE_NOCHECK_PREFIXES``
+  Default: ``('/accounts', '/admin', '/api', '/contact', '/django_admin',
+  '/jsi18n', '/pages', )``
+
+  .. versionadded:: 2.5.1
+
+  List of path prefixes where the ``LegalAgreementMiddleware`` will check
+  if the current logged-in user has agreed all the legal documents defined
+  for the Pootle instance. Don't change this unless you know what you're
+  doing.
+
+
 .. setting:: MIN_AUTOTERMS
 
 ``MIN_AUTOTERMS``

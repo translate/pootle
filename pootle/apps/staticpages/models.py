@@ -21,8 +21,10 @@
 
 from django.db import models
 from django.db.models import Q
+from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
+from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.markup import get_markup_filter_name, MarkupField
@@ -47,6 +49,10 @@ class AbstractPage(models.Model):
     url = models.URLField(_("Redirect to URL"), blank=True,
             help_text=_('If set, any references to this page will '
                         'redirect to this URL'))
+
+    # This will go away with bug 2830, but works fine for now
+    modified_on = models.DateTimeField(default=now, editable=False,
+                                       auto_now_add=True, auto_now=True)
 
     objects = models.Manager()
     live = LiveManager()
@@ -95,3 +101,15 @@ class StaticPage(AbstractPage):
 
     def get_edit_url(self):
         return reverse('staticpages.edit', args=['static', self.pk])
+
+
+class Agreement(models.Model):
+    """Tracks who agreed a specific legal document and when."""
+
+    user = models.ForeignKey(User)
+    document = models.ForeignKey(LegalPage)
+    agreed_on = models.DateTimeField(default=now, editable=False,
+                                     auto_now_add=True, auto_now=True)
+
+    class Meta:
+        unique_together = ('user', 'document',)
