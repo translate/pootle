@@ -1,0 +1,29 @@
+# 'hello' extension action localization.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: hello"
+"POT-Creation-Date: 2013-04-30 11:33-0400"
+"PO-Revision-Date: 2013-04-30 11:39-0400"
+"Language: fr"
+"MIME-Version: 1.0"
+"Content-Type: text/plain; charset=UTF-8"
+"Content-Transfer-Encoding: 8bit"
+
+#: hello.py:8
+msgid ""
+"Say hello to the user (in their own language)"
+msgstr "Dire bonjour à l'utilisateur (dans sa langue)"
+
+#: hello.py:14
+msgid "Hello, world!"
+msgstr "Bonjour tout le monde!"
+
+#: hello.py:16
+msgid "Other actions"
+msgstr "Autres actions"
+
+#: hello.py:16
+msgid "Say hello"
+msgstr "Dire bonjour"
