@@ -20,23 +20,23 @@ msgstr ""
 
 #: static/js/common.js:43
 msgid "Expand details"
-msgstr "Επέκταση λεπτομερειών"
+msgstr ""
 
 #: static/js/common.js:43
 msgid "Collapse details"
-msgstr "Σύμπτυξη λεπτομερειών"
+msgstr ""
 
 #: static/js/common.js:77
 msgid "Are you sure you want to continue?"
-msgstr "Είστε σίγουρος ότι θέλετε να συνεχίσετε;"
+msgstr ""
 
 #: static/js/common.js:78
 msgid "This operation cannot be undone."
-msgstr "Αυτή η λειτουργία δεν μπορεί να αναιρεθεί."
+msgstr ""
 
 #: static/js/editor.js:409 static/js/editor.js.c:1493
 msgid "No results."
-msgstr "Κανένα αποτέλεσμα."
+msgstr ""
 
 #. Translators: Permalink to the current unit in the editor.
 #. The first '%s' is the permalink URL.
@@ -48,19 +48,19 @@ msgstr ""
 
 #: static/js/editor.js:786
 msgid "Error while connecting to the server"
-msgstr "Σφάλμα κατά την σύνδεση με τον εξυπηρετητή"
+msgstr ""
 
 #: static/js/editor.js:788
 msgid "Server error"
-msgstr "Σφάλμα εξυπηρετητή"
+msgstr ""
 
 #: static/js/editor.js:790
 msgid "The server seems down. Try again later."
-msgstr "Ο εξυπηρετητής φαίνεται ανενεργός. Δοκιμάστε αργότερα."
+msgstr ""
 
 #: static/js/editor.js:798
 msgid "Unknown error"
-msgstr "Άγνωστο σφάλμα"
+msgstr ""
 
 #: static/js/editor.js:1342
 msgid "Congratulations, you walked through all strings."
@@ -72,7 +72,7 @@ msgstr ""
 
 #: static/js/editor.js:1363
 msgid "You reached the beginning of the list"
-msgstr "Φτάσατε την αρχή της λίστας"
+msgstr ""
 
 #: static/js/editor.js:1366
 msgid "You reached the end of the list."
@@ -84,7 +84,7 @@ msgstr ""
 #: static/js/editor.js:1766
 #, c-format
 msgid "%s% match"
-msgstr "%s% ταιριάζει"
+msgstr ""
 
 #: static/js/editor.js:1808
 msgid "Similar translations"
@@ -151,13 +151,13 @@ msgstr ""
 
 #, c-format
 #~ msgid "<a href=\"%s\">Unit %s</a>"
-#~ msgstr "<a href=\"%s\">Μονάδα %s</a>"
+#~ msgstr ""
 
 #~ msgid "Congratulations, you walked through all items"
-#~ msgstr "Συγχαρητήρια, διασχίσατε όλα τα στοιχεία"
+#~ msgstr ""
 
 #~ msgid "You reached the end of the list"
-#~ msgstr "Φτάσατε στο τέλος της λίστας"
+#~ msgstr ""
 
 #~ msgid "amaGama server"
-#~ msgstr "εξυπηρετητής amaGama"
+#~ msgstr ""
