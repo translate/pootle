@@ -39,3 +39,26 @@ def add_page_field(form, page):
     form.fields[field_name] = forms.BooleanField(label=label,
                                                  required=True)
     form.fields[field_name].widget.attrs['class'] = 'js-legalfield'
+
+
+def agreement_form_factory(pages, base_class=forms.Form):
+    """Factory that builds an agreement form.
+
+    :param pages: Legal pages that need to be accepted by users.
+    :param base_class: Base class for this form to inherit from.
+    :return: An `AgreementForm` class with `pages` as required checkboxes.
+    """
+    class AgreementForm(base_class):
+
+        def __init__(self, *args, **kwargs):
+            super(AgreementForm, self).__init__(*args, **kwargs)
+
+            for page in pages:
+                add_page_field(self, page)
+
+        def legal_fields(self):
+            """Returns any fields added by legal pages."""
+            return [field for field in self
+                    if field.name.startswith('legal_')]
+
+    return AgreementForm

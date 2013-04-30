@@ -24,29 +24,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
-from registration.forms import RegistrationForm as OriginalRegistrationForm
-
-from staticpages.forms import add_page_field
-from staticpages.models import LegalPage
-
 from .models import PootleProfile
-
-
-class RegistrationForm(OriginalRegistrationForm):
-    """Custom registration form that adds required checkboxes for any
-    legal documents defined in the server.
-    """
-
-    def __init__(self, *args, **kwargs):
-        super(RegistrationForm, self).__init__(*args, **kwargs)
-
-        # FIXME: We should handle caching in the manager
-        for lp in LegalPage.live.iterator():
-            add_page_field(self, lp)
-
-    def legal_fields(self):
-        """Returns any fields added by legal pages."""
-        return [field for field in self if field.name.startswith('legal_')]
 
 
 def language_list(request):
