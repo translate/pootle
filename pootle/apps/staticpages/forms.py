@@ -26,10 +26,11 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
 
-def agreement_form_factory(pages, base_class=forms.Form):
+def agreement_form_factory(pages, user, base_class=forms.Form):
     """Factory that builds an agreement form.
 
     :param pages: Legal pages that need to be accepted by users.
+    :param user: User bound to the agreement form.
     :param base_class: Base class for this form to inherit from.
     :return: An `AgreementForm` class with `pages` as required checkboxes.
     """
@@ -38,7 +39,10 @@ def agreement_form_factory(pages, base_class=forms.Form):
         def __init__(self, *args, **kwargs):
             super(AgreementForm, self).__init__(*args, **kwargs)
 
-            for page in pages:
+            self._pages = pages
+            self._user = user
+
+            for page in self._pages:
                 self.add_page_field(page)
 
         def legal_fields(self):

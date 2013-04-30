@@ -46,6 +46,7 @@ def register(request):
     Overrides `registration` app's view to use a custom form.
     """
     form_class = agreement_form_factory(LegalPage.live.all(),
+                                        request.user,
                                         base_class=RegistrationForm)
     return original_register(request, form_class=form_class)
 
