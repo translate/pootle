@@ -1,0 +1,32 @@
+#!/bin/bash
+if [ -z "${MODULE:=$1}" -o $# -gt 1 -o "${1#-}" != "$1" ]; then
+  echo 1>&2 "Usage: $0 MODULENAME"
+  exit 1
+fi
+MODULE=${MODULE%.py}
+
+set -e
+
+xgettext -d $MODULE --package-name=$MODULE -L python -a $MODULE.py
+
+sed < $MODULE.po > $MODULE.pot \
+    -e "s/SOME DESCRIPTIVE TITLE/'$MODULE' extension action localization/" \
+    -e "/^# Copyright/d" \
+    -e "/^# This file is distributed/d" \
+    -e "/^# FIRST AUTHOR/d" \
+    -e "/Report-Msgid-Bugs-To/d" \
+    -e "s/YEAR/"`date +%Y`"/" \
+    -e "s/-MO-/-"`date +%m`"-/" \
+    -e "s/-DA/-"`date +%d`"/" \
+    -e "s/HO:/"`date +%H`":/" \
+    -e "s/:MI+/:"`date +%M`"+/" \
+    -e "s/+ZONE/"`date +%z`"/" \
+    -e "/Last-Translator/d" \
+    -e "/Language-Team/d" \
+    -e "s/CHARSET/UTF-8/" \
+    -e 's/\\n"$/"/' \
+    -e 's/  *"$/"/' \
+    -e 's/^"  */"/' \
+    -e '/^""$/d'
+
+rm $MODULE.po

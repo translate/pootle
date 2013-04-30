@@ -55,8 +55,7 @@ class ProjectAction(ExtensionAction):
     """
 
     def __init__(self, **kwargs):
-        super(type(self), self).__init__(kwargs['category'],
-                                         kwargs['title'])
+        ExtensionAction.__init__(self, kwargs['category'], kwargs['title'])
 
         # register action on project page
         # register action on language page
@@ -70,8 +69,7 @@ class LanguageAction(ExtensionAction):
     """
 
     def __init__(self, **kwargs):
-        super(type(self), self).__init__(kwargs['category'],
-                                         kwargs['title'])
+        ExtensionAction.__init__(self, kwargs['category'], kwargs['title'])
 
         # register action on language page
         # register action on translationproject page
@@ -84,8 +82,7 @@ class TranslationProjectAction(ExtensionAction):
     """
 
     def __init__(self, **kwargs):
-        super(type(self), self).__init__(kwargs['category'],
-                                         kwargs['title'])
+        ExtensionAction.__init__(self, kwargs['category'], kwargs['title'])
 
         # register action on translationproject page
         # register action on store page
@@ -97,17 +94,16 @@ class StoreAction(ExtensionAction):
     """
 
     def __init__(self, **kwargs):
-        super(type(self), self).__init__(kwargs['category'],
-                                         kwargs['title'])
+        ExtensionAction.__init__(self, kwargs['category'], kwargs['title'])
 
         # register action on store page
 
 class CommandAction(object):
     """
-    This is an extension action that can be invoked from the command line; it
-    is intended to be used as a mixin for other extension actions; since you
-    can always write an standalone script for a command action that is not
-    available within the Pootle UI.
+    This is a class for extension actions that can be invoked from the command
+    line; it is intended to be used as a mixin for other extension actions;
+    since you can always write an standalone script for a command action that
+    is not available within the Pootle UI.
     """
 
     def __init__(self):
