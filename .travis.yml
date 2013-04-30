@@ -14,8 +14,8 @@ matrix:
     - python: 2.5
       env: DJANGO_VERSION=1.5
 install:
-  - pip install --use-mirrors Django==$DJANGO_VERSION --timeout=120
-  - pip install -r requirements/build.txt --use-mirrors --timeout=120
+  - pip install --use-mirrors Django==$DJANGO_VERSION --timeout=240
+  - pip install -r requirements/build.txt --use-mirrors --timeout=240
 script:
   - make build
   - ./manage.py runserver &
