@@ -3,12 +3,13 @@
 Extension Actions
 =================
 
-Pootle supports extension actions that can be used to add custom action links
-within the standard Pootle UI.
+.. note::
+    .. versionadded:: 2.5.1
 
-Extension actions are Python scripts and can do things like generating language
-packs for download or performing checks across several languages and returning
-a report.
+Pootle supports extension actions that can be used to add custom action links
+within the Pootle UI. Extension actions are Python scripts and can do things
+like generating language packs for download or performing checks across several
+languages and returning a report.
 
 .. _actions#implementing:
 
@@ -16,9 +17,9 @@ Implementing an extension action
 --------------------------------
 
 Extension actions are Python classes in module files stored in the
-*pootle/scripts/actions* directory.  The name of the module or classes is not
-important, but the class(es) defined in a module must be subclasses of the
-ExtensionAction class.
+*pootle/scripts/ext_actions* directory. The names of modules or classes are not
+important, but only classes derived from the subclasses of ExtensionAction will
+actually create extension actions.
 
 There are several subclasses of ExtensionAction defined, depending on the scope
 of the action.
@@ -45,7 +46,7 @@ they wish to.  The title of the extension action is the text of the link that
 is displayed to the right of the category label, and clicking on that link will
 invoke the action with the current project, language, and/or store.
 
-.. _actions#tooltips
+.. _actions#tooltips:
 
 Extension action tooltips
 -------------------------
@@ -55,7 +56,7 @@ text) for the link created.  Like all the other strings in an extension actions
 module, it too is implicitly internationalized, and can be localized by
 creating translation files and importing them into Pootle.
 
-.. _actions#localization
+.. _actions#localization:
 
 Localization of categories and titles
 -------------------------------------
@@ -72,6 +73,7 @@ using the ``i18n`` script located in the ``pootle/scripts/ext_actions``
 directory:
 
 .. code-block:: bash
+
     $ cd $POOTLE_HOME/pootle/scripts/ext_actions
     $ ls
     hello.py    i18n
@@ -79,8 +81,9 @@ directory:
     $ ls
     hello.pot   hello.py    i18n
  
-The generated *module***.pot** file is a translation template file that can be
-copied to a subdirectory for the language code, e.g. pootle/scripts/actions/fr
-and localized there using Pootle, Virtaal, or any other translation tool that
-works with PO files.
+The generated *module*.pot file is a translation template file that can be
+moved to a templates subdirectory (and copied to a language subdirectory as a PO
+file).  These directories would be ``pootle/scripts/locale/templates`` and e.g.
+``pootle/scripts/locale/fr``.  The PO file can be localized using Pootle,
+Virtaal, or any other translation tool that works with PO files.
 
