@@ -59,21 +59,7 @@
 <script type="text/javascript">
 $(function () {
   $("#id_username").focus();
-  var $legal = $('.js-legalfield');
-  if ($legal.length) {
-    function updateInputState($checkboxes, $input) {
-      if ($checkboxes.length === $checkboxes.filter(':checked').length) {
-        $input.removeAttr('disabled');
-      } else {
-        $input.attr('disabled', 'disabled');
-      }
-    }
-    var $input = $('input.register');
-    updateInputState($legal, $input);
-    $legal.change(function () {
-      updateInputState($legal, $input);
-    });
-  }
+  PTL.common.updateInputState('.js-legalfield', 'input.register');
 });
 </script>
 {% endblock scripts_extra %}

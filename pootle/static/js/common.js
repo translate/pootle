@@ -129,6 +129,27 @@
                                   langCode + '/' + curProject)
                          .replace(/(\#|&)unit=\d+/, '');
       window.location.href = newUrl;
+    },
+
+    /* Updates the disabled state of an input button according to the
+     * checked status of input checkboxes.
+     */
+    updateInputState: function (checkboxSelector, inputSelector) {
+      var $checkbox = $(checkboxSelector);
+      if ($checkbox.length) {
+        function updateInputState($checkboxes, $input) {
+          if ($checkboxes.length === $checkboxes.filter(':checked').length) {
+            $input.removeAttr('disabled');
+          } else {
+            $input.attr('disabled', 'disabled');
+          }
+        }
+        var $input = $(inputSelector);
+        updateInputState($checkbox, $input);
+        $checkbox.change(function () {
+          updateInputState($checkbox, $input);
+        });
+      }
     }
 
   };
