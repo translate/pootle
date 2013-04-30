@@ -150,6 +150,13 @@
           updateInputState($checkbox, $input);
         });
       }
+    },
+
+    /* Updates relative dates */
+    updateRelativeDates: function () {
+      $('.js-relative-date').each(function (i, e) {
+        $(e).text(PTL.utils.relativeDate(Date.parse($(e).attr('datetime'))));
+      });
     }
 
   };
