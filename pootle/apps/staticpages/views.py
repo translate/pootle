@@ -26,7 +26,6 @@ from django.core.urlresolvers import reverse_lazy
 from django.http import Http404
 from django.shortcuts import redirect, render_to_response
 from django.template import RequestContext
-from django.utils.translation import ugettext as _
 from django.views.generic import (CreateView, DeleteView, TemplateView,
                                   UpdateView)
 
