@@ -14,8 +14,18 @@ class ExtensionAction(object):
         self._title = title
 
     def __repr__(self):
-        return (type(self).__name__ + '(category="' + self.category +
-                '", title="' + self.title + '")')
+        """
+        >>> print ExtensionAction('cat', 'dog')
+        ExtensionAction("cat", "dog")
+        >>> print ProjectAction(title="dog", category="cat")
+        ProjectAction(category="cat", title="dog")
+        """
+        if type(self) is ExtensionAction:
+            return (type(self).__name__ + '("' + self.category + '", "' +
+            self.title + '")')
+        else:
+            return (type(self).__name__ + '(category="' + self.category +
+                    '", title="' + self.title + '")')
 
     @property
     def category(self):
@@ -55,6 +65,10 @@ class ProjectAction(ExtensionAction):
     """
 
     def __init__(self, **kwargs):
+        """
+        >>> print ProjectAction(category="cat", title="dog")
+        ProjectAction(category="cat", title="dog")
+        """
         ExtensionAction.__init__(self, kwargs['category'], kwargs['title'])
 
         # register action on project page
@@ -69,6 +83,10 @@ class LanguageAction(ExtensionAction):
     """
 
     def __init__(self, **kwargs):
+        """
+        >>> print LanguageAction(category="cat", title="dog")
+        LanguageAction(category="cat", title="dog")
+        """
         ExtensionAction.__init__(self, kwargs['category'], kwargs['title'])
 
         # register action on language page
@@ -82,6 +100,10 @@ class TranslationProjectAction(ExtensionAction):
     """
 
     def __init__(self, **kwargs):
+        """
+        >>> print TranslationProjectAction(category="cat", title="dog")
+        TranslationProjectAction(category="cat", title="dog")
+        """
         ExtensionAction.__init__(self, kwargs['category'], kwargs['title'])
 
         # register action on translationproject page
@@ -94,6 +116,10 @@ class StoreAction(ExtensionAction):
     """
 
     def __init__(self, **kwargs):
+        """
+        >>> print StoreAction(category="cat", title="dog")
+        StoreAction(category="cat", title="dog")
+        """
         ExtensionAction.__init__(self, kwargs['category'], kwargs['title'])
 
         # register action on store page
@@ -109,3 +135,7 @@ class CommandAction(object):
     def __init__(self):
         pass
         # register action as management command
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
