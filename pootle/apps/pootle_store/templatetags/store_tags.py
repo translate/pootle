@@ -178,7 +178,10 @@ def do_include_raw(parser, token):
     """
     bits = token.split_contents()
     if len(bits) != 2:
-        raise TemplateSyntaxError("%r tag takes one argument: the name of the template to be included" % bits[0])
+        raise template.TemplateSyntaxError(
+            "%r tag takes one argument: the name of the template "
+            "to be included" % bits[0]
+        )
 
     template_name = bits[1]
     if template_name[0] in ('"', "'") and template_name[-1] == template_name[0]:
