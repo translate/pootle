@@ -30,6 +30,11 @@ textarea#view_unit
             box-shadow: 0px 0px 20px #d9d9d9;
 }
 
+html[dir="rtl"] #toolbar
+{
+    text-align: right;
+}
+
 /* Toolbar search */
 
 #toolbar #search
@@ -714,6 +719,11 @@ html[dir="rtl"] .suggestion-vote
     float: left;
 }
 
+.suggestion-translation-body
+{
+    unicode-bidi: embed;
+}
+
 .extra-item-block:hover .suggestion-action img,
 .extra-item-block:hover .suggestion-vote img
 {
@@ -763,28 +773,12 @@ html[dir="rtl"] .suggestion-vote
     background-color: #f1f7e4;
 }
 
-.suggestion-original,
-#tm-results .suggestion-translation
-{
-    display: inline-block;
-}
-
 .suggestion-original
 {
     font-weight: bolder;
     color: #130f30;
     padding-right: 1em;
-}
-
-#suggestion[dir="rtl"] .suggestion-original
-{
-    padding-right: auto;
-    padding-left: 1em;
-}
-
-.suggestion-translation[dir="rtl"]
-{
-    text-align: right;
+    float: left;
 }
 
 #target-item-gravatar a
@@ -815,6 +809,11 @@ html[dir="rtl"] #target-item-gravatar
     width: 100%;
 }
 
+.extra-item-comment
+{
+    unicode-bidi: embed;
+}
+
 .timeline-extra
 {
     position:absolute;
@@ -838,6 +837,21 @@ html[dir="rtl"] .timeline-extra
 .timeline-field-3 .sidetitle
 {
     font-size: 100%;
+}
+
+.timeline-field-body
+{
+    unicode-bidi: embed;
+}
+
+.timeline-arrow:before
+{
+    content: "→";
+}
+
+html[dir="rtl"] .timeline-arrow:before
+{
+    content: "←";
 }
 
 #editor-comment
