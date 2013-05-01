@@ -1442,7 +1442,6 @@ td.stats-name .user-nobody
 
 html[dir="rtl"] td.language,
 html[dir="rtl"] td.stats-name,
-html[dir="rtl"] select#id_ui_lang option
 {
     text-align: right !important;
 }
