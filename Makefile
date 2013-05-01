@@ -18,10 +18,7 @@ build: docs mo assets
 
 assets:
 	mkdir -p ${ASSETS_DIR}
-	# NOTE: all files in ASSETS_DIR should be removed using rm -rf because
-	# collectstatic does not have a --clear option on Django 1.3.x.
-	rm -rf ${ASSETS_DIR}/*
-	python manage.py collectstatic --noinput
+	python manage.py collectstatic --noinput --clear
 	python manage.py assets build
 
 docs:

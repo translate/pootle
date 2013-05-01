@@ -143,10 +143,7 @@ def deploy_static():
         with cd('%(project_repo_path)s' % env):
             with prefix('source %(env_path)s/bin/activate' % env):
                 run('mkdir -p pootle/assets')
-                # TODO The rm command should be removed when support for Django
-                # 1.3 is dropped. Also add --clear to collectstatic command.
-                run('rm -rf pootle/assets/*')
-                run('python manage.py collectstatic --noinput')
+                run('python manage.py collectstatic --noinput --clear')
                 run('python manage.py assets build')
 
 
