@@ -414,7 +414,7 @@ def host_to_unix_path(p):
 
 def get_upload_path(translation_project, relative_root_dir, local_filename):
     """gets the path of a translation file being uploaded securely,
-    creating directories as neccessary"""
+    creating directories as necessary"""
     dir_path = os.path.join(translation_project.real_path,
                             unix_to_host_path(relative_root_dir))
 

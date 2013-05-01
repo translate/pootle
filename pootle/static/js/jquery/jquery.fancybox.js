@@ -723,7 +723,7 @@
 			F.isOpen = false;
 			F.current = F.coming;
 
-			//Build the neccessary markup
+			//Build the necessary markup
 			F.wrap = $(F.current.tpl.wrap).addClass('fancybox-' + (isMobile ? 'mobile' : 'desktop') + ' fancybox-tmp ' + F.current.wrapCSS).appendTo('body');
 			F.outer = $('.fancybox-outer', F.wrap).css('padding', F.current.padding + 'px');
 			F.inner = $('.fancybox-inner', F.wrap);
