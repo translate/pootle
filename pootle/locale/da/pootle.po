@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-02-22 09:09+0000\n"
+"PO-Revision-Date: 2013-03-19 20:27+0000\n"
 "Last-Translator: Aputsiaq Niels <aputtu@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-POOTLE-MTIME: 1361524180.0\n"
+"X-POOTLE-MTIME: 1363724873.0\n"
 
 #: strings.py:8
 msgid ""
@@ -1858,7 +1858,7 @@ msgstr "Mine bidrag"
 #. in time but have been overwritten by other users.
 #: apps/pootle_store/templates/store/translate.html:80
 msgid "My overwritten submissions"
-msgstr ""
+msgstr "Mine overskrevne bidrag"
 
 #: apps/pootle_store/templates/store/translate.html:81
 msgid "Checks"

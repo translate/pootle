@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-02-23 13:39+0000\n"
-"Last-Translator: df910105 <df910105@yahoo.com.tw>\n"
+"PO-Revision-Date: 2013-04-09 05:36+0000\n"
+"Last-Translator: threeruey <is83074@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1361626758.0\n"
+"X-POOTLE-MTIME: 1365485775.0\n"
 
 # PC鍵盤上顯示的是「Ctrl」，所以將原文Control改成Ctrl。
 #: strings.py:8
@@ -63,7 +63,7 @@ msgstr "變更"
 msgid ""
 "Please enter a correct username and password. Note that both fields are case-"
 "sensitive."
-msgstr ""
+msgstr "請輸入正確的使用者名稱和密碼。注意，這兩個欄位有區分大小寫。"
 
 #. Translators: Email subject line. The variable is the server name shown
 #. on the top of each page
@@ -1103,8 +1103,9 @@ msgid "Unchanged"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:75
+#, fuzzy
 msgid "URLs"
-msgstr ""
+msgstr "URL"
 
 #: apps/pootle_misc/checks.py:76
 msgid "Valid characters"
@@ -1821,8 +1822,9 @@ msgid "File:"
 msgstr "檔案"
 
 #: apps/pootle_store/templates/unit/edit.html:18
+#, fuzzy
 msgid "Context:"
-msgstr ""
+msgstr "內容"
 
 #: apps/pootle_store/templates/unit/edit.html:28
 #, fuzzy

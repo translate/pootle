@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:44+0000\n"
-"PO-Revision-Date: 2013-03-08 19:25+0000\n"
+"PO-Revision-Date: 2013-03-29 19:35+0000\n"
 "Last-Translator: dushku <nandidushku@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sq\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1362770728.0\n"
+"X-POOTLE-MTIME: 1364585730.0\n"
 
 #: static/js/common.js:43
 msgid "Expand details"
@@ -52,11 +52,11 @@ msgstr "Gabim kur lidhemi ne serverin"
 
 #: static/js/editor.js:788
 msgid "Server error"
-msgstr "Gabim i Serverit"
+msgstr "Gabim i serverit"
 
 #: static/js/editor.js:790
 msgid "The server seems down. Try again later."
-msgstr "Ky server duket i fikur. Provo me vone. "
+msgstr "Ky server duket i fikur. Provo me vone."
 
 #: static/js/editor.js:798
 msgid "Unknown error"
@@ -64,7 +64,7 @@ msgstr "Gabim i panjohur"
 
 #: static/js/editor.js:1342
 msgid "Congratulations, you walked through all strings."
-msgstr "Pergezime, ju  kaluat te gjithe stringat."
+msgstr "Pergezime, ju kaluat te gjithe stringat."
 
 #: static/js/editor.js:1344 static/js/editor.js.c:1368
 msgid "Return to the overview page."
@@ -76,7 +76,7 @@ msgstr "Ju aritet ne fillimin e listes"
 
 #: static/js/editor.js:1366
 msgid "You reached the end of the list."
-msgstr "Ju aritet ne fund te listes"
+msgstr "Ju aritet ne fund te listes."
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
@@ -114,36 +114,36 @@ msgstr "Shfaq"
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] "Nje vit më parë %s vite me pare"
-msgstr[1] ""
+msgstr[0] "Nje vit më parë "
+msgstr[1] "%s vite me pare"
 
 #: static/js/utils.js:79
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] "Nje javë më parë %s javë me parë"
-msgstr[1] ""
+msgstr[0] "Nje javë më parë "
+msgstr[1] "%s javë me parë"
 
 #: static/js/utils.js:82
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] "Dje%s ditë me parë"
-msgstr[1] ""
+msgstr[0] "Dje"
+msgstr[1] "%s ditë me parë"
 
 #: static/js/utils.js:85
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] "Një orë më parë%s orë më parë"
-msgstr[1] ""
+msgstr[0] "Një orë më parë"
+msgstr[1] "%s orë më parë"
 
 #: static/js/utils.js:88
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] "Nje minutë më parë%s minutë më parë"
-msgstr[1] ""
+msgstr[0] "Nje minutë më parë"
+msgstr[1] "%s minutë më parë"
 
 #: static/js/utils.js:96
 msgid "A few seconds ago"

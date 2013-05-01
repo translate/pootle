@@ -1,31 +1,34 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Zuza Software Foundation (Translate.org.za)
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Khaled Hosny <khaledhosny@eglug.org>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2010-08-04 19:31+0200\n"
-"Last-Translator: alaa <alaa@translate.org.za>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2013-04-18 08:32+0000\n"
+"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
+"Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
 "n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
-"X-Generator: Pootle 2.1.0-beta2\n"
+"X-Generator: Pootle 2.5.0-beta1\n"
+"X-POOTLE-MTIME: 1366273944.0\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
-msgstr "لتحديد أكثر من اختيار اضغط باستمرار على زر التحكم \"Control\"."
+msgstr ""
+"لتحديد أكثر من اختيار اضغط باستمرار على زر التحكم \"Control\" أو \"Command\" في "
+"ماك."
 
 #: strings.py:9
 msgid "Enter a valid e-mail address."
-msgstr "ادخل عنوان بريد إلكتروني ساري."
+msgstr "أدخل عنوان بريد إلكتروني سارٍ."
 
 #: strings.py:10
 msgid ""
@@ -35,20 +38,20 @@ msgstr "لم أجد حساب مستخدم مرتبط بالعنوان البري
 
 #: strings.py:11
 msgid "This field is required."
-msgstr "هذا الحقل ضروري."
+msgstr "هذه الخانة ضرورية."
 
 #: strings.py:12
 #, python-format
 msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
-msgstr "تأكد ألا يتعدي المدخل %(max)d حروف (القيمة الحالية طولها %(length)d)."
+msgstr "تأكد ألا يتجاوز المُدخل %(max)d حروف (القيمة الحالية طولها %(length)d)."
 
 #: strings.py:13
 msgid "Save and add another"
-msgstr "احفظ و انشء مدخل جديد"
+msgstr "احفظ و أنشئ مُدخلًا جديدًا"
 
 #: strings.py:14
 msgid "Save and continue editing"
-msgstr "احفظ و تابع التحرير"
+msgstr "احفظ و تابع التحرير"
 
 #: strings.py:15
 msgid "Add"
@@ -56,20 +59,22 @@ msgstr "أضف"
 
 #: strings.py:16
 msgid "Change"
-msgstr "عدل"
+msgstr "عدّل"
 
 #: strings.py:17 apps/pootle_profile/forms.py:64
 msgid ""
 "Please enter a correct username and password. Note that both fields are case-"
 "sensitive."
 msgstr ""
+"أدخِل رجاءً اسم مستخدم و كلمة سر صحيين. لاحظ أن كلا الخانتين حساستين "
+"للاختلاف بين الحروف الكبيرة و الصغيرة."
 
 #. Translators: Email subject line. The variable is the server name shown
 #. on the top of each page
 #: strings.py:21
 #, python-format
 msgid "Password reset on %s"
-msgstr ""
+msgstr "إعادة ضبط لكلمة السر على %s"
 
 #. Translators: This is a constructed string that might end up saying
 #. "Add language" or "Add project". If you need to translate that differently,
@@ -84,7 +89,7 @@ msgstr "أضف %(name)s"
 #. configured option is displayed (such as a project or language)
 #: strings.py:31
 msgid "View on site"
-msgstr "اعرض بالموقع"
+msgstr "اعرض في الموقع"
 
 #: strings.py:33
 msgid "first name"
@@ -100,7 +105,7 @@ msgstr "عنوان البريد الإلكتروني"
 
 #: strings.py:36
 msgid "active"
-msgstr "مفعل"
+msgstr "مُفَعّل"
 
 #. Translators: Please translate this simply as "Administrator". This string is
 #. needed by Django, but 'superuser' is very technical and should be avoided.
@@ -121,32 +126,32 @@ msgstr "نصوص أندرويد"
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:51
 msgid "Privacy Policy"
-msgstr ""
+msgstr "سياسة الخصوصية"
 
 #. Translators: Label that refers to the site's legal requirements
 #: strings.py:53
 msgid "Legal"
-msgstr ""
+msgstr "قانونيات"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:55
 msgid "License"
-msgstr ""
+msgstr "الرخصة"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:57
 msgid "Contributor License"
-msgstr ""
+msgstr "رخصة المساهمين"
 
 #. Translators: Label that refers to the site's terms of use
 #: strings.py:59
 msgid "Terms of Use"
-msgstr ""
+msgstr "بنود الاستخدام"
 
 #. Translators: Label that refers to the site's terms of service
 #: strings.py:61
 msgid "Terms of Service"
-msgstr ""
+msgstr "بنود الخدمة"
 
 #: apps/contact_form_i18n/forms.py:143
 msgid "Your name"
@@ -162,7 +167,7 @@ msgstr "الرسالة"
 
 #: apps/contact_form_i18n/forms.py:260
 msgid "Akismet thinks this message is spam"
-msgstr ""
+msgstr "يظُن Akismet أن هذه رسالة سخام"
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
@@ -190,24 +195,24 @@ msgstr "احفظ"
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/legalpages/forms.py:42
 msgid "URL or content must be provided."
-msgstr ""
+msgstr "يجب ملء خانة المسار أو المحتوى."
 
 #: apps/legalpages/models.py:31
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 msgid "Active"
-msgstr ""
+msgstr "مُفَعّلة"
 
 #: apps/legalpages/models.py:32
 msgid "Whether this page is active or not."
-msgstr ""
+msgstr "ما إذا كانت هذه الصفحة مُفعّلة أم لا."
 
 #: apps/legalpages/models.py:34
 msgid "Display on registration"
-msgstr ""
+msgstr "تُعرضُ عند التسجيل"
 
 #: apps/legalpages/models.py:35
 msgid "Whether this page should be displayed on registration."
-msgstr ""
+msgstr "ما إذا كانت هذه الصفحة تعرض عند التسجيل أم لا."
 
 #: apps/legalpages/models.py:38 apps/pootle_app/forms.py:30
 #: apps/pootle_notifications/views.py:141
@@ -216,39 +221,40 @@ msgstr "العنوان"
 
 #: apps/legalpages/models.py:39
 msgid "URL"
-msgstr ""
+msgstr "المسار"
 
 #: apps/legalpages/models.py:40
 msgid "If set, any references to this legal page will redirect to this URL"
 msgstr ""
+"إذا مُلئِت هذه الخانة فسيُحوّل أي مرجع لهذه الصفحة القانونية إلى هذا المسار"
 
 #. Translators: See http://en.wikipedia.org/wiki/Slug_%28web_publishing%29#Slug
 #: apps/legalpages/models.py:43
 msgid "Slug"
-msgstr ""
+msgstr "الاختصار"
 
 #: apps/legalpages/models.py:44
 msgid "The page will be available at /about/<slug>/"
-msgstr ""
+msgstr "ستتوفر هذه الصفحة في المسار ‪/about/<اختصار>/‬"
 
 #: apps/legalpages/models.py:46
 msgid "Content"
-msgstr ""
+msgstr "المحتوى"
 
 #: apps/legalpages/models.py:47
 #, python-format
 msgid "Allowed markup: %s"
-msgstr ""
+msgstr "الرَّقْم المتاح: %s"
 
 #: apps/legalpages/views.py:67
 msgid "Legal page created."
-msgstr ""
+msgstr "تم إنشاء الصفحة القانونية."
 
 #: apps/legalpages/templates/legalpages/admin/edit.html:4
 #: apps/legalpages/templates/legalpages/admin/edit.html:9
 #: apps/legalpages/templates/legalpages/admin/edit.html:16
 msgid "Edit Legal Page"
-msgstr ""
+msgstr "حرر الصفحة القانونية"
 
 #: apps/legalpages/templates/legalpages/admin/form.html:17
 #: apps/pootle_terminology/templates/terminology/manage.html:37
@@ -259,15 +265,15 @@ msgstr "احذف"
 #: apps/legalpages/templates/legalpages/admin/list.html:10
 #: templates/admin_profile_menu.html:9
 msgid "Legal Pages"
-msgstr ""
+msgstr "الصفحات القانونية"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:17
 msgid "Existing Legal Pages"
-msgstr ""
+msgstr "الصفحات القانونية الموجودة"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 msgid "Inactive"
-msgstr ""
+msgstr "غير مُفَعّلة"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 #: apps/pootle_app/templates/admin/edit_links.html:2
@@ -276,19 +282,19 @@ msgstr "حرّر"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:24
 msgid "No pages yet."
-msgstr ""
+msgstr "لا صفحات بعد."
 
 #: apps/legalpages/templates/legalpages/admin/list.html:31
 msgid "New Legal Page"
-msgstr ""
+msgstr "صفحة قانونية جديدة"
 
 #: apps/pootle_app/admin.py:39
 msgid "Language code does not follow the ISO convention"
-msgstr "يجب أن يتبع رمز اللغة قواعد ISO"
+msgstr "يجب أن يتبع رمز اللغة قواعد أيزو"
 
 #: apps/pootle_app/admin.py:65
 msgid "Project code may only contain letters, numbers and _"
-msgstr "يجب أن يحتوي رمز المشروع على حروف و أرقام و الشرطة المنخفضة _ فقط"
+msgstr "يجب أن يحتوي رمز المشروع على حروف و أرقام و الشرطة المنخفضة _ فقط"
 
 #: apps/pootle_app/admin.py:77
 msgid "Advanced Options"
@@ -310,7 +316,7 @@ msgid ""
 "The description and instructions shown on the front page and about page. Be "
 "sure to use valid HTML."
 msgstr ""
-"وصف و تعليمات تظهر على الصفحة الرئيسية و صفحة التعريف. تأكد من استخدام صيغة "
+"وصف و تعليمات تظهر على الصفحة الرئيسية و صفحة التعريف. تأكد من استخدام صيغة "
 "HTML صحيحة."
 
 #: apps/pootle_app/management/__init__.py:73
@@ -343,11 +349,11 @@ msgstr "يسمح له بإدارة مشاريع الترجمة"
 
 #: apps/pootle_app/management/__init__.py:87
 msgid "Can commit to version control"
-msgstr "يسمح له بالإرسال إلي نظم ادارة المراجعات"
+msgstr "يسمح له بالإرسال إلي نظم إدارة المراجعات"
 
 #: apps/pootle_app/models/suggestion.py:35
 msgid "Pending"
-msgstr "تحت المراجعة"
+msgstr "قيد المراجعة"
 
 #: apps/pootle_app/models/suggestion.py:36
 msgid "Accepted"
@@ -379,20 +385,20 @@ msgstr "مساهمات"
 
 #: apps/pootle_app/templates/top_contributers_table.html:19
 msgid "anonymous users"
-msgstr ""
+msgstr "مستخدمين غير مُسجّلين"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:4
 #: apps/pootle_misc/stats.py:109 apps/pootle_store/util.py:47
 #: apps/pootle_store/templates/store/translate.html:70
 msgid "Translated"
-msgstr "مُتَرجَم"
+msgstr "مُتَرجَمة"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:5
 #: apps/pootle_misc/stats.py:112 apps/pootle_store/forms.py:215
 #: apps/pootle_store/util.py:46
 #: apps/pootle_store/templates/store/translate.html:73
 msgid "Needs work"
-msgstr ""
+msgstr "تحتاج للعمل"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:6
 #: apps/pootle_misc/stats.py:115 apps/pootle_store/util.py:45
@@ -416,7 +422,7 @@ msgstr "اللغات"
 msgid ""
 "Here you can add, edit, and delete all the available languages in this "
 "Pootle server."
-msgstr "يمكنك اضافة و حذف و تعديل اللغات المتاحة."
+msgstr "يمكنك إضافة و حذف و تعديل اللغات المتاحة."
 
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:4
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:9
@@ -437,7 +443,7 @@ msgstr "الصلاحيات"
 msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
-msgstr "يمكنك اضافة و حذف و تعديل صلاحيات المستخدمين."
+msgstr "يمكنك إضافة و حذف و تعديل صلاحيات المستخدمين."
 
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:16
 #: apps/pootle_language/templates/language/language_admin.html:17
@@ -449,9 +455,9 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
-"يقصد بالمستخدم \"nobody\" أي زائر لم يلج أو يسجل بالموقع (أي مستخدم مجهول "
-"الهوية). أما المستخدم \"default\" فيشير الى الصلاحيات المبدأية التي تنطبق على "
-"أي عضو بالموقع بعد الولوج، الا في حال تواجد صلاحيات محدد خاصة بعضو بعينه."
+"يقصد بالمستخدم ”nobody“ أي زائر لم يلج أو يسجل بالموقع (أي مستخدم مجهول "
+"الهوية). أما المستخدم ”default“ فيشير إلى الصلاحيات المبدئية التي تنطبق على "
+"أي عضو بالموقع بعد الولوج، ما لم تُسنَد صلاحيات محددة إليه."
 
 #: apps/pootle_app/templates/admin/admin_general_projects.html:4
 #: apps/pootle_app/templates/admin/admin_general_projects.html:9
@@ -472,12 +478,12 @@ msgstr "المشاريع"
 msgid ""
 "Here you can add, edit, and delete all the available projects in this Pootle "
 "server."
-msgstr "يمكنك اضافة و حذف و تعديل المشاريع المتاحة."
+msgstr "يمكنك إضافة و حذف و تعديل المشاريع المتاحة."
 
 #: apps/pootle_app/templates/admin/admin_general_settings.html:4
 #: apps/pootle_app/templates/admin/admin_general_settings.html:9
 msgid "General Settings"
-msgstr "إعدادات عامة"
+msgstr "الإعدادات العامة"
 
 #: apps/pootle_app/templates/admin/admin_general_settings.html:12
 msgid "Configure here the general settings for your site."
@@ -496,7 +502,7 @@ msgstr "المستخدمون"
 msgid ""
 "Here you can add, edit, and delete all the available users in this Pootle "
 "server."
-msgstr "يمكنك اضافة و حذف و تعديل حسابات المستخدمين."
+msgstr "يمكنك إضافة و حذف و تعديل حسابات المستخدمين."
 
 #: apps/pootle_app/templates/admin/dashboard.html:13
 msgid "Server Statistics"
@@ -504,7 +510,7 @@ msgstr "إحصائيات الخادوم"
 
 #: apps/pootle_app/templates/admin/dashboard.html:22
 msgid "Pending suggestions"
-msgstr "مقترحات تحت المراجعة"
+msgstr "مقترحات قيد المراجعة"
 
 #: apps/pootle_app/templates/admin/dashboard.html:31
 msgid "More..."
@@ -512,7 +518,7 @@ msgstr "المزيد..."
 
 #: apps/pootle_app/templates/admin/dashboard.html:39
 msgid "Support"
-msgstr "للدعم الفني"
+msgstr "الدعم الفني"
 
 #: apps/pootle_app/templates/admin/dashboard.html:42
 msgid ""
@@ -520,9 +526,9 @@ msgid ""
 "localization experts. We want Pootle to help your localization work reach "
 "its full potential."
 msgstr ""
-"طور بوتِل بواسطة Translate.org.za و بالتعاون مع جماعة من خبراء الترجمة و "
-"الأقلمة المتحمسين. نتمنى أن يسعفكم بوتِل في الترجمة بكامل طاقتكم و اتمام "
-"عملكم على أكمل وجه."
+"تُطور بوتِل Translate.org.za بالتعاون مع جماعة من خبراء الترجمة و التوطين "
+"المتحمسين. نتمنى أن يسعفكم بوتِل في الترجمة بكامل طاقتكم و إتمام عملكم على "
+"أكمل وجه."
 
 #: apps/pootle_app/templates/admin/dashboard.html:43
 msgid "You will find the following helpful for support:"
@@ -554,7 +560,7 @@ msgstr "تحسينات"
 
 #: apps/pootle_app/templates/admin/general_settings_form.html:16
 msgid "Cancel"
-msgstr ""
+msgstr "ألغِ"
 
 #: apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
@@ -565,7 +571,7 @@ msgstr "تنويهات بوتِل"
 #: apps/pootle_project/templates/project/project.html:40
 #: apps/pootle_translationproject/templates/translation_project/overview.html:88
 msgid "No description set."
-msgstr ""
+msgstr "لا وصف."
 
 #: apps/pootle_app/templates/index/index.html:58
 #: apps/pootle_notifications/templates/notices.html:87
@@ -580,15 +586,15 @@ msgstr "تابع الأخبار عن طريق تلقيمة RSS."
 #: apps/pootle_app/templates/index/login.html:7
 #: apps/pootle_app/templates/index/login.html:23
 msgid "Login"
-msgstr "لُج"
+msgstr "لِج"
 
 #: apps/pootle_app/templates/index/login.html:12
 msgid "Login to Pootle"
-msgstr "لُج إلى بوتل"
+msgstr "لِج إلى بوتل"
 
 #: apps/pootle_app/templates/index/login.html:18
 msgid "Your username and password didn't match. Please try again."
-msgstr "اسم مستخدم و كلمة سر غير متطابقان. رجاء تأكد من صحتهما."
+msgstr "اسم المستخدم و كلمة السر غير متطابقان. رجاء تأكد من صحتهما."
 
 #: apps/pootle_app/templates/index/login.html:30
 msgid "Lost your Password?"
@@ -597,7 +603,7 @@ msgstr "أنسيت كلمة السر؟"
 #: apps/pootle_app/templates/index/login.html:33
 #: templates/registration/password_reset_form.html:30
 msgid "Don't have an account yet?"
-msgstr "لم تسجل بعد؟"
+msgstr "ألم تسجل بعد؟"
 
 #: apps/pootle_app/templates/index/login.html:34
 #: templates/registration/password_reset_form.html:31
@@ -613,7 +619,7 @@ msgstr "كلمة السر"
 #: apps/pootle_app/views/admin/dashboard.py:48
 #, python-format
 msgid "Translate Toolkit version %s installed."
-msgstr "الاصدارة %s من عدة الترجمة (Translate Toolkit) مثبتة."
+msgstr "الإصدارة %s من عدة الترجمة (Translate Toolkit) مُثبتة."
 
 #: apps/pootle_app/views/admin/dashboard.py:51
 #, python-format
@@ -621,23 +627,25 @@ msgid ""
 "Translate Toolkit version %(installed)s installed. Pootle requires at least "
 "version %(required)s."
 msgstr ""
+"الإصدارة %(installed)s من عدة الترجمة (Translate Toolkit) مُثبتة. يعتمد بوتل "
+"على الإصدارة %(required)s على الأقل."
 
 #: apps/pootle_app/views/admin/dashboard.py:62
 #, python-format
 msgid "Django version %s is installed."
-msgstr "الاصدارة %s من Django مثبتة."
+msgstr "الإصدارة %s من Django مُثبتة."
 
 #: apps/pootle_app/views/admin/dashboard.py:65
 #, python-format
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
-msgstr "الآصدارة %s من Django مثبتة، نقترح الترقية لأحدث إصدار."
+msgstr "الإصدارة %s من Django مُثبتة، يُنصح بشِدِّة الترقية لإصدار أحدث."
 
 #: apps/pootle_app/views/admin/dashboard.py:71
 #, python-format
 #, python-format,
 msgid "lxml version %s is installed."
-msgstr "الاصدارة %s من lxml مثبتة."
+msgstr "الإصدارة %s من lxml مثبتة."
 
 #: apps/pootle_app/views/admin/dashboard.py:75
 #, python-format
@@ -645,10 +653,12 @@ msgid ""
 "lxml version %(installed)s is installed. Pootle requires at least version "
 "%(required)s."
 msgstr ""
+"الإصدارة %(installed)s من lxml مُثبتة. يعتمد بوتل على الإصدارة %(required)s "
+"على الأقل."
 
 #: apps/pootle_app/views/admin/dashboard.py:82
 msgid "lxml is not installed. Pootle requires lxml."
-msgstr ""
+msgstr "‏lxml غير مُثبّتة. يعتمد بوتل على lxml."
 
 #: apps/pootle_app/views/admin/dashboard.py:95
 msgid ""
@@ -662,7 +672,7 @@ msgid ""
 "Can't find the ISO codes package. Pootle uses ISO codes to translate "
 "language names."
 msgstr ""
-"حزمة أكواد أيزو (ISO codes) غير موجودة. بوتل يعتمد عليها في ترجمة أسماء "
+"حزمة أكواد أيزو (ISO codes) غير موجودة. يعتمد بوتل عليها في ترجمة أسماء "
 "اللغات."
 
 #: apps/pootle_app/views/admin/dashboard.py:103
@@ -678,13 +688,15 @@ msgid ""
 "Can't find python-levenshtein package. Updating against templates is faster "
 "with python-levenshtein."
 msgstr ""
+"مكتبة python-levenshtein غير موجودة. تحديث الملفات من القوالب أسرع بكثير في "
+"وجودها."
 
 #: apps/pootle_app/views/admin/dashboard.py:111
 msgid ""
 "No text indexing engine found. Searching is faster if an indexing engine "
 "like Xapian or Lucene is installed."
 msgstr ""
-"لم أجد أي محرك بحثي للنصوص. تعمل خاصية البحث بكفاءة و سرعة أعلى في حالة وجود "
+"لم أجد أي محرك بحثي للنصوص. تعمل خاصية البحث بكفاءة و سرعة أعلى في حالة وجود "
 "محرك بحثي مثل زابيان (Xapian) أو لوسين (Lucene)."
 
 #: apps/pootle_app/views/admin/dashboard.py:121
@@ -711,7 +723,7 @@ msgid ""
 "Pootle is configured to use memcached as a caching backend, but can't "
 "connect to the memcached server. Caching is currently disabled."
 msgstr ""
-"بوتل معد لإستخدام خابئة memcached لكنه لم يمكن الاتصال بخادوم memcached. "
+"بوتل معد لاستخدام خابئة memcached لكنه لم يمكن الاتصال بخادوم memcached. "
 "التخبئة (caching) موقوفة مؤقتا."
 
 #: apps/pootle_app/views/admin/dashboard.py:134
@@ -727,7 +739,7 @@ msgid ""
 "Pootle is configured to use memcached as caching backend, but Python support "
 "for memcached is not installed. Caching is currently disabled."
 msgstr ""
-"بوتل معد لاستخدام خابئة memcached لكن دعم بايثون لmemcached غير متاح. "
+"بوتل معد لاستخدام خابئة memcached لكن دعم بيثون ل‍memcached غير متاح. "
 "التخبئة موقوفة لحين تثبيت python-memcached."
 
 #: apps/pootle_app/views/admin/dashboard.py:141
@@ -743,15 +755,15 @@ msgid ""
 "The \"from\" address used to send registration emails is not specified. Also "
 "review the mail server settings."
 msgstr ""
-"رجاء تحديد عنوان بريد الكتروني ليرسل منه رسائل التسجيل للمستخدمين. راجع أيضا "
-"اعدادات خادوم البريد."
+"رجاء تحديد عنوان بريد إلكتروني ليرسل منه رسائل التسجيل للمستخدمين. راجع أيضا "
+"إعدادات خادوم البريد."
 
 #: apps/pootle_app/views/admin/dashboard.py:151
 msgid ""
 "No contact address is specified. The contact form will allow users to "
 "contact the server administrators."
 msgstr ""
-"رجاء تحديد عنوان بريد الكتروني للاتصال. ليتمكن المستخدمين من استخدام استمارة "
+"رجاء تحديد عنوان بريد إلكتروني للاتصال. ليتمكن المستخدمين من استخدام استمارة "
 "الاتصال في التواصل مع مديري الخادوم."
 
 #: apps/pootle_app/views/admin/dashboard.py:155
@@ -759,15 +771,15 @@ msgid ""
 "Running in debug mode. Debug mode is only needed when developing Pootle. For "
 "optimal performance, disable debugging mode."
 msgstr ""
-"بوتل يعمل في طور البرمجة (debug mode). هذا الطور مطلوب فقط أثناء تطوير بوتل "
-"و له تأثير سلبي على الأداء."
+"يعمل بوتل في طور التدقيق (debug mode). هذا الطور مطلوب فقط أثناء تطوير بوتل "
+"و له تأثير سلبي على الأداء."
 
 #: apps/pootle_app/views/admin/dashboard.py:159
 msgid ""
 "Running in live translation mode. Live translation is useful as a tool to "
 "learn about Pootle and localization, but has high impact on performance."
 msgstr ""
-"بوتل يعمل في طور الترجمة الفورية. الترجمة الفورية مفيدة في تعلم بوتل و ترجمة "
+"يعمل بوتل في طور الترجمة الفورية. الترجمة الفورية مفيدة في تعلم بوتل و ترجمة "
 "البرمجيات بشكل عام لكن لها تأثير سلبي على الأداء."
 
 #: apps/pootle_app/views/admin/dashboard.py:199
@@ -785,7 +797,7 @@ msgstr "اللغات النشطة"
 
 #: apps/pootle_app/views/admin/dashboard.py:202
 msgid "Translated strings"
-msgstr "مقاطع مترجمة"
+msgstr "المقاطع المترجمة"
 
 #: apps/pootle_app/views/admin/dashboard.py:203
 msgid "Translated words"
@@ -793,7 +805,7 @@ msgstr "الكلمات المترجمة"
 
 #: apps/pootle_app/views/admin/dashboard.py:204
 msgid "Active users"
-msgstr "الأعضاء الناشطين"
+msgstr "الأعضاء النشطين"
 
 #: apps/pootle_app/views/admin/permissions.py:61
 #: apps/pootle_app/views/admin/permissions.py:67
@@ -828,7 +840,7 @@ msgstr "بالاستمارة أخطاء. رجاء مراجعة المشاكل ا
 #: apps/pootle_app/views/index/about.py:47
 #, python-format
 msgid "Pootle %(pootle_ver)s is powered by Translate Toolkit %(toolkit_ver)s"
-msgstr "بوتل الاصدار %(pootle_ver)s يعمل بعدة الترجمة الاصدار %(toolkit_ver)s"
+msgstr "بوتل الإصدار %(pootle_ver)s يعمل بعدة الترجمة الإصدار %(toolkit_ver)s"
 
 #: apps/pootle_app/views/index/index.py:55 apps/pootle_language/views.py:67
 #: apps/pootle_misc/browser.py:94 apps/pootle_project/views.py:75
@@ -844,7 +856,7 @@ msgstr "لا يحق لك زيارة مشروع الترجمة هذا."
 #: apps/pootle_app/views/language/view.py:111
 #: apps/pootle_app/views/language/view.py:137
 msgid "You do not have rights to commit files here"
-msgstr "لا تملك صلاحية لايداع ملفات هنا"
+msgstr "لا تملك صلاحية إيداع ملفات هنا"
 
 #: apps/pootle_app/views/language/view.py:124
 #: apps/pootle_app/views/language/view.py:150
@@ -857,14 +869,14 @@ msgid ""
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
 "articles/language-tags/\">More information</a>"
 msgstr ""
-"رمز اللغة بحسب نظام أيزو 639 لعنونة اللغات، يمكن أن يتبع بشرطة منخفضة (_) و "
-"رمز البلد بحسب نظام أيزو 3166. <a "
+"رمز اللغة بحسب نظام أيزو 639 لعنونة اللغات، يمكن أن يتبع بشرطة منخفضة (_) "
+"و رمز البلد بحسب نظام أيزو 3166. <a "
 "href=\"http://www.w3.org/International/articles/language-tags/\">لمزيد من "
 "المعلومات</a>"
 
 #: apps/pootle_language/models.py:53 apps/pootle_project/models.py:60
 msgid "Code"
-msgstr "رمز"
+msgstr "الرمز"
 
 #: apps/pootle_language/models.py:55 apps/pootle_project/models.py:63
 msgid "Full Name"
@@ -876,10 +888,11 @@ msgid ""
 "A description of this language. This is useful to give more information or "
 "instructions. Allowed markup: %s"
 msgstr ""
+"وصف اللغة. يمكن إضافة معلومات أو تعليمات خاصة باللغة. الرَّقْم المتاح: %s"
 
 #: apps/pootle_language/models.py:63
 msgid "Enter any special characters that users might find difficult to type"
-msgstr "قائمة بحروف خاصة باللغة يصعب ادخالها عن طريق لوحة المفاتيح"
+msgstr "قائمة بحروف خاصة باللغة يصعب إدخالها عن طريق لوحة المفاتيح"
 
 #: apps/pootle_language/models.py:66
 msgid "Special Characters"
@@ -904,35 +917,35 @@ msgstr "عدد الجموع"
 
 #: apps/pootle_language/models.py:78
 msgid "Plural Equation"
-msgstr "معادلة الجمع"
+msgstr "معادلة الجموع"
 
 #: apps/pootle_language/views.py:74 apps/pootle_misc/browser.py:101
 #: apps/pootle_project/views.py:82
 #, python-format
 msgid "Error reading %d file"
 msgid_plural "Error reading %d files"
-msgstr[0] "خطأ أثناء قراءة %d ملف"
-msgstr[1] "خطأ أثناء قراءة %d ملف"
-msgstr[2] "خطأ أثناء قراءة %d ملف"
-msgstr[3] "خطأ أثناء قراءة %d ملفات"
-msgstr[4] "خطأ أثناء قراءة %d ملف"
-msgstr[5] "خطأ أثناء قراءة %d ملف"
+msgstr[0] "عُطل أثناء قراءة %d ملف"
+msgstr[1] "عُطل أثناء قراءة ملف واحد"
+msgstr[2] "عُطل أثناء قراءة ملفين"
+msgstr[3] "عُطل أثناء قراءة %d ملفات"
+msgstr[4] "عُطل أثناء قراءة %d ملفًا"
+msgstr[5] "عُطل أثناء قراءة %d ملف"
 
 #: apps/pootle_language/views.py:115
 #, python-format
 msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
-msgstr[0] "مشروع واحد، مترجم بنسبة %(average)d٪"
-msgstr[1] "لا مشاريع"
+msgstr[0] "لا مشاريع"
+msgstr[1] "مشروع واحد، مترجم بنسبة %(average)d٪"
 msgstr[2] "مشروعان، مترجمان بنسبة %(average)d٪"
 msgstr[3] "%(projects)d مشاريع، مترجمة بنسبة %(average)d٪"
-msgstr[4] "%(projects)d مشروعا، مترجم بنسبة %(average)d٪"
-msgstr[5] "%(projects)d مشروع، مترجم بنسبة %(average)d٪"
+msgstr[4] "%(projects)d مشروعًا، مترجمة بنسبة %(average)d٪"
+msgstr[5] "%(projects)d مشروع، مترجمة بنسبة %(average)d٪"
 
 #: apps/pootle_language/views.py:158 apps/pootle_project/views.py:169
 #: apps/pootle_translationproject/views.py:347
 msgid "No description yet."
-msgstr ""
+msgstr "لا وصف حتى الآن."
 
 #: apps/pootle_language/views.py:181
 msgid "You do not have rights to administer this language."
@@ -940,7 +953,7 @@ msgstr "ليست لك حقوق إدارة هذه اللغة."
 
 #: apps/pootle_language/templates/language/language_admin.html:15
 msgid "Below you can add, edit, and delete the permissions for this language."
-msgstr "يمكنك اضافة و حذف و تعديل صلاحيات المستخدمين الخاصة بتلك اللغة."
+msgstr "يمكنك إضافة و حذف و تعديل صلاحيات المستخدمين الخاصة بتلك اللغة."
 
 #: apps/pootle_misc/browser.py:31
 msgid "Name"
@@ -967,7 +980,7 @@ msgstr "المجموع الكلي"
 
 #: apps/pootle_misc/browser.py:59
 msgid "Need Translation"
-msgstr ""
+msgstr "يحتاج للترجمة"
 
 #: apps/pootle_misc/browser.py:70
 msgid "Last Activity"
@@ -975,188 +988,188 @@ msgstr "أحدث نشاط"
 
 #: apps/pootle_misc/checks.py:29
 msgid "Critical"
-msgstr ""
+msgstr "حرِج"
 
 #: apps/pootle_misc/checks.py:30
 msgid "Functional"
-msgstr ""
+msgstr "وظِيفي"
 
 #: apps/pootle_misc/checks.py:31
 msgid "Cosmetic"
-msgstr ""
+msgstr "تجميلي"
 
 #: apps/pootle_misc/checks.py:32
 msgid "Extraction"
-msgstr ""
+msgstr "استخلاص"
 
 #: apps/pootle_misc/checks.py:33
 msgid "No category"
-msgstr ""
+msgstr "لا فِئة"
 
 #: apps/pootle_misc/checks.py:37
 msgid "Accelerators"
-msgstr ""
+msgstr "المسرِّعات"
 
 #: apps/pootle_misc/checks.py:38
 msgid "Acronyms"
-msgstr ""
+msgstr "الاختصارات"
 
 #: apps/pootle_misc/checks.py:39
 msgid "Blank"
-msgstr ""
+msgstr "فارغ"
 
 #: apps/pootle_misc/checks.py:40
 msgid "Brackets"
-msgstr ""
+msgstr "الأقواس"
 
 #: apps/pootle_misc/checks.py:41
 msgid "Compendium conflict"
-msgstr ""
+msgstr "تعارض مع ذاكرة المصطلحات"
 
 #: apps/pootle_misc/checks.py:42
 msgid "Translator credits"
-msgstr ""
+msgstr "إشادات المترجمين"
 
 #: apps/pootle_misc/checks.py:43
 msgid "Double quotes"
-msgstr ""
+msgstr "علامات التنصيص المزدوجة"
 
 #: apps/pootle_misc/checks.py:44
 msgid "Double spaces"
-msgstr ""
+msgstr "تتالي المسافات"
 
 #: apps/pootle_misc/checks.py:45
 msgid "Repeated word"
-msgstr ""
+msgstr "تكرار الكلمات"
 
 #: apps/pootle_misc/checks.py:46
 msgid "E-mail"
-msgstr ""
+msgstr "بريد إلكتروني"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Ending punctuation"
-msgstr ""
+msgstr "علامات الترقيم النهائية"
 
 #: apps/pootle_misc/checks.py:48
 msgid "Ending whitespace"
-msgstr ""
+msgstr "المسافات النهائية"
 
 #: apps/pootle_misc/checks.py:49
 msgid "Escapes"
-msgstr ""
+msgstr "المُحيِّدات"
 
 #: apps/pootle_misc/checks.py:50
 msgid "File paths"
-msgstr ""
+msgstr "مسارات الملفات"
 
 #: apps/pootle_misc/checks.py:51
 msgid "Functions"
-msgstr ""
+msgstr "الدوال"
 
 #: apps/pootle_misc/checks.py:52
 msgid "GConf values"
-msgstr ""
+msgstr "قيم GConf"
 
 #: apps/pootle_misc/checks.py:53
 msgid "Old KDE comment"
-msgstr ""
+msgstr "تعليقات كِدي القديمة"
 
 #: apps/pootle_misc/checks.py:54
 msgid "Long"
-msgstr ""
+msgstr "طويلة"
 
 #: apps/pootle_misc/checks.py:55
 msgid "Must translate words"
-msgstr ""
+msgstr "كلمات يجب أن تُتَرجم"
 
 #: apps/pootle_misc/checks.py:56
 msgid "Newlines"
-msgstr ""
+msgstr "الأسطر الجديدة"
 
 #: apps/pootle_misc/checks.py:57
 msgid "Number of plurals"
-msgstr ""
+msgstr "عدد الجموع"
 
 #: apps/pootle_misc/checks.py:58
 msgid "Don't translate words"
-msgstr ""
+msgstr "كلمات يجب ألا تُتَرجم"
 
 #: apps/pootle_misc/checks.py:59
 msgid "Numbers"
-msgstr ""
+msgstr "الأعداد"
 
 #: apps/pootle_misc/checks.py:60
 msgid "Options"
-msgstr ""
+msgstr "الخيارات"
 
 #: apps/pootle_misc/checks.py:61
 msgid "printf()"
-msgstr ""
+msgstr "‪‪printf()‬‬"
 
 #: apps/pootle_misc/checks.py:62
 msgid "Punctuation spacing"
-msgstr ""
+msgstr "المسافات حول علامات الترقيم"
 
 #: apps/pootle_misc/checks.py:63
 msgid "Pure punctuation"
-msgstr ""
+msgstr "علامات ترقيم فقط"
 
 #: apps/pootle_misc/checks.py:64
 msgid "Number of sentences"
-msgstr ""
+msgstr "عدد الجُمَل"
 
 #: apps/pootle_misc/checks.py:65
 msgid "Short"
-msgstr ""
+msgstr "قصيرة"
 
 #: apps/pootle_misc/checks.py:66
 msgid "Simple capitalization"
-msgstr ""
+msgstr "استخدام بسيط للحروف اللاتينية الكبيرة"
 
 #: apps/pootle_misc/checks.py:67
 msgid "Simple plural(s)"
-msgstr ""
+msgstr "جموع ساذجة"
 
 #: apps/pootle_misc/checks.py:68
 msgid "Single quotes"
-msgstr ""
+msgstr "علامات التنصيص المفردة"
 
 #: apps/pootle_misc/checks.py:69
 msgid "Starting capitalization"
-msgstr ""
+msgstr "حروف لاتينية كبيرة بادئة"
 
 #: apps/pootle_misc/checks.py:70
 msgid "Starting punctuation"
-msgstr ""
+msgstr "علامات الترقيم البادئة"
 
 #: apps/pootle_misc/checks.py:71
 msgid "Starting whitespace"
-msgstr ""
+msgstr "المسافات البادئة"
 
 #. Translators: This refers to tabulation characters
 #: apps/pootle_misc/checks.py:73
 msgid "Tabs"
-msgstr ""
+msgstr "الألسنة"
 
 #: apps/pootle_misc/checks.py:74
 msgid "Unchanged"
-msgstr ""
+msgstr "لم تتغيير"
 
 #: apps/pootle_misc/checks.py:75
 msgid "URLs"
-msgstr ""
+msgstr "المسارات"
 
 #: apps/pootle_misc/checks.py:76
 msgid "Valid characters"
-msgstr ""
+msgstr "الحروف المقبولة"
 
 #: apps/pootle_misc/checks.py:77
 msgid "Placeholders"
-msgstr ""
+msgstr "حافظات المكان"
 
 #: apps/pootle_misc/checks.py:78
 msgid "XML tags"
-msgstr ""
+msgstr "وسوم XML"
 
 #: apps/pootle_misc/dbinit.py:68
 msgid "Pootle: Install"
@@ -1168,27 +1181,27 @@ msgid ""
 "Error: \"%s\" while attempting to access the Pootle database, will try to "
 "initialize database."
 msgstr ""
-"خطأ: \"%s\" اثناء محاولة التواصل مع قاعدة بيانات بوتل، سأحاول تجهيز قاعدة "
+"عطل: \"%s\" أثناء محاولة التواصل مع قاعدة بيانات بوتل، سأحاول تجهيز قاعدة "
 "البيانات من جديد."
 
 #: apps/pootle_misc/dbinit.py:75
 msgid "Creating database tables..."
-msgstr "انشاء جداول قاعدة البيانات..."
+msgstr "يجري إنشاء جداول قاعدة البيانات..."
 
 #: apps/pootle_misc/dbinit.py:82
 msgid "Creating default languages, projects and admin user"
-msgstr "اضافة اللغات و المشاريع المبدئية و حساب مدير الموقع"
+msgstr "يجري إضافة اللغات و المشاريع المبدئية و حساب مدير الموقع"
 
 #: apps/pootle_misc/dbinit.py:90
 msgid "Calculating translation statistics, this will take a few minutes"
 msgstr ""
-"حساب احصائيات الترجمة للمشاريع و اللغات المبدئية، ستستغرق تلك الخطوة دقائق "
-"عديدة"
+"يجري حساب إحصائيات الترجمة للمشاريع و اللغات المبدئية، ستستغرق تلك الخطوة "
+"عِدّة دقائق"
 
 #: apps/pootle_misc/dbinit.py:96
 #, python-format
 msgid "%(language)s is %(percent)d%% complete"
-msgstr "%(language)s مكتملة الترجمة بنسبة %(percent)d٪"
+msgstr "‏%(language)s مكتملة الترجمة بنسبة %(percent)d٪"
 
 #: apps/pootle_misc/dbinit.py:103
 #, python-format
@@ -1197,12 +1210,12 @@ msgstr "مشروع %(project)s مكتمل الترجمة بنسبة %(percent)d�
 
 #: apps/pootle_misc/dbinit.py:111
 msgid "Done calculating statistics for default languages and projects"
-msgstr "تم حساب احصائيات كل اللغات و المشاريع"
+msgstr "تم حساب إحصائيات كل اللغات و المشاريع"
 
 #: apps/pootle_misc/dbinit.py:119
 msgid ""
 "Initialized database, you will be redirected to the front page in 10 seconds"
-msgstr "تم اعداد قاعدة البيانات، سيتم تحويلك للصفحة الرئيسية بعد 10 ثواني"
+msgstr "تم إعداد قاعدة البيانات، سيجري تحويلك للصفحة الرئيسية بعد 10 ثواني"
 
 #: apps/pootle_misc/dbupdate.py:132
 msgid "Pootle: Update"
@@ -1214,72 +1227,72 @@ msgid ""
 "Database tables are currently at build version %d. Pootle will now update "
 "the database."
 msgstr ""
-"جداول قاعدة البيانات الحالية مبنية على اصدار %d. سيقوم بوتِل بترقية قاعدة "
-"البيانات لأحدث اصدار."
+"جداول قاعدة البيانات الحالية مبنية على إصدار %d. سيُرقِّي بوتِل قاعدة "
+"البيانات لأحدث إصدار."
 
 #: apps/pootle_misc/dbupdate.py:143
 msgid "Creating missing database tables..."
-msgstr "انشاء الجداول الناقصة بقاعدة البيانات..."
+msgstr "يجري إنشاء الجداول الناقصة بقاعدة البيانات..."
 
 #: apps/pootle_misc/dbupdate.py:154
 msgid "Fixing permission table..."
-msgstr "اصلاح جداول الصلاحيات..."
+msgstr "يجري إصلاح جداول الصلاحيات..."
 
 #: apps/pootle_misc/dbupdate.py:180 apps/pootle_misc/dbupdate.py:257
 msgid "Updating existing database tables..."
-msgstr "ترقية الجداول القديمة..."
+msgstr "يجري ترقية الجداول القديمة..."
 
 #: apps/pootle_misc/dbupdate.py:221
 msgid "Removing potentially incorrect cached stats, will be recalculated..."
-msgstr ""
+msgstr "يجري إزالة وإعادة حساب الإحصائيات القديمة التي قد لا تكون صحيحة الآن..."
 
 #: apps/pootle_misc/dbupdate.py:238
 msgid "Reparsing Qt ts files..."
-msgstr ""
+msgstr "يجري إعادة قراءة ملفات ترجمات Qt..."
 
 #: apps/pootle_misc/dbupdate.py:338 apps/pootle_misc/dbupdate.py:350
 msgid "Removing quality checks, will be recalculated on demand..."
-msgstr ""
+msgstr "يجري إزالة فحوص الجودة، و سيُعاد حسابها حسب الحاجة..."
 
 #: apps/pootle_misc/dbupdate.py:363
 msgid ""
 "Pootle will now import all the translations into the database. It could take "
 "a long time."
 msgstr ""
-"سيقوم بوتل باستيراد كل المقاطع و الترجمات الموجودة الى قاعدة البيانات. قد "
+"سيستورد بوتل الآن كل المقاطع و الترجمات الموجودة إلى قاعدة البيانات. قد "
 "تستغرق تلك العملية وقتا طويلا."
 
 #: apps/pootle_misc/dbupdate.py:382
 #, python-format
 msgid "Imported %(count)d suggestion from %(store)s"
 msgid_plural "Imported %(count)d suggestions from %(store)s"
-msgstr[0] "استوردت مقترح من %(store)s"
-msgstr[1] "لا مقترحات في %(store)s"
-msgstr[2] "استوردت مقترحان من %(store)s"
-msgstr[3] "استوردت %(count)d مقترحات من %(store)s"
-msgstr[4] "استوردت %(count)d مقترحا من %(store)s"
-msgstr[5] "استوردت %(count)d مقترح من %(store)s"
+msgstr[0] "لا مقترحات في %(store)s"
+msgstr[1] "تم استيراد مقترح من %(store)s"
+msgstr[2] "تم استيراد مقترحين من %(store)s"
+msgstr[3] "تم استيراد %(count)d مقترحات من %(store)s"
+msgstr[4] "تم استيراد %(count)d مقترحا من %(store)s"
+msgstr[5] "تم استيراد %(count)d مقترح من %(store)s"
 
 #: apps/pootle_misc/dbupdate.py:390
 #, python-format
 msgid "Failed to import suggestions from %s"
-msgstr "فشلت في استيراد المقترحات من %s"
+msgstr "فشل استيراد المقترحات من %s"
 
 #: apps/pootle_misc/dbupdate.py:402
 #, python-format
 msgid "Imported %(count)d string from %(store)s"
 msgid_plural "Imported %(count)d strings from %(store)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "لا مقاطع في %(count)d"
+msgstr[1] "تم استيراد مقطع من %(store)s"
+msgstr[2] "تم استيراد مقطعين من %(store)s"
+msgstr[3] "تم استيراد %(count)d مقاطع من %(store)s"
+msgstr[4] "تم استيراد %(count)d مقطعًا من %(store)s"
+msgstr[5] "تم استيراد %(count)d مقطع من %(store)s"
 
 #: apps/pootle_misc/dbupdate.py:408
 #, python-format
 msgid "Failed to import strings from %s"
-msgstr ""
+msgstr "فشلت في استيراد المقاطع من %s"
 
 #: apps/pootle_misc/dbupdate.py:417
 msgid "All translations are now imported."
@@ -1289,11 +1302,11 @@ msgstr "تم استيراد كل الترجمات."
 msgid ""
 "Pootle initialized the database. You will be redirected to the front page in "
 "10 seconds."
-msgstr "تم اعداد قاعدة البيانات، سيتم تحويلك للصفحة الرئيسية بعد 10 ثواني"
+msgstr "تم إعداد قاعدة البيانات. سيجري تحويلك للصفحة الرئيسية بعد 10 ثواني."
 
 #: apps/pootle_misc/forms.py:97
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
-msgstr ""
+msgstr "ابحث ‪(Ctrl+Shift+S)‬<br/>اكتب ثم اضغط زر Enter"
 
 #: apps/pootle_misc/forms.py:103
 msgid "Source Text"
@@ -1305,104 +1318,108 @@ msgstr "النص المترجم"
 
 #: apps/pootle_misc/forms.py:105
 msgid "Comments"
-msgstr "تعليقات"
+msgstr "التعليقات"
 
 #: apps/pootle_misc/forms.py:106
 msgid "Locations"
-msgstr "أماكن"
+msgstr "الأماكن"
 
 #: apps/pootle_misc/forms.py:119
 msgid "Source Terms"
-msgstr ""
+msgstr "المصطلحات الأصلية"
 
 #: apps/pootle_misc/forms.py:120
 msgid "Target Terms"
-msgstr ""
+msgstr "المصطلحات المُترجمة"
 
 #: apps/pootle_misc/forms.py:121
 msgid "Definitions"
-msgstr ""
+msgstr "التعريفات"
 
 #: apps/pootle_misc/stats.py:91
 #, python-format
 msgid "<a href=\"%(url)s\">%(num)d word</a>"
 msgid_plural "<a href=\"%(url)s\">%(num)d words</a>"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "<a href=\"%(url)s\">لا كلمات</a>"
+msgstr[1] "<a href=\"%(url)s\">كلمة واحدة</a>"
+msgstr[2] "<a href=\"%(url)s\">كلمتين</a>"
+msgstr[3] "<a href=\"%(url)s\">%(num)d كلمات</a>"
+msgstr[4] "<a href=\"%(url)s\">%(num)d كلمة</a>"
+msgstr[5] "<a href=\"%(url)s\">%(num)d كلمة</a>"
 
 #: apps/pootle_misc/stats.py:97
 #, python-format
 msgid "%(num)d%%"
-msgstr ""
+msgstr "%(num)d٪"
 
 #: apps/pootle_misc/stats.py:99
 #, python-format
 msgid "(%(num)d string)"
 msgid_plural "(%(num)d strings)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "(لا مقاطع)"
+msgstr[1] "(مقطع واحد)"
+msgstr[2] "(مقطعان)"
+msgstr[3] "(%(num)d مقاطع)"
+msgstr[4] "(%(num)d مقطعًا)"
+msgstr[5] "(%(num)d مقطع)"
 
 #: apps/pootle_misc/stats.py:128
 #, python-format
 msgid "This folder has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
 "This folder has %(num)d words, %(percentage)d%% of which are translated."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "لا يحتوي هذا المجلد على أي كلمات."
+msgstr[1] "يحتوي هذا المجلد على كلمة واحدة، مُترجم منها ما نسبته %(percentage)d٪."
+msgstr[2] "يحتوي هذا المجلد على كلمتين، مُترجم منهما ما نسبته %(percentage)d٪."
 msgstr[3] ""
+"يحتوي هذا المجلد على %(num)d كلمات، مُترجم منها ما نسبته %(percentage)d٪."
 msgstr[4] ""
+"يحتوي هذا المجلد على %(num)d كلمة، مُترجم منها ما نسبته %(percentage)d٪."
 msgstr[5] ""
+"يحتوي هذا المجلد على %(num)d كلمة، مُترجم منها ما نسبته %(percentage)d٪."
 
 #: apps/pootle_misc/stats.py:140
 #, python-format
 msgid "This file has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
 "This file has %(num)d words, %(percentage)d%% of which are translated."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "لا يحتوي هذا الملف على أي كلمات."
+msgstr[1] "يحتوي هذا الملف على كلمة واحدة، مُترجم منها ما نسبته %(percentage)d٪."
+msgstr[2] "يحتوي هذا الملف على كلمتين، مُترجم منهما ما نسبته %(percentage)d٪."
 msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+"يحتوي هذا الملف على %(num)d كلمات، مُترجم منها ما نسبته %(percentage)d٪."
+msgstr[4] "يحتوي هذا الملف على %(num)d كلمة، مُترجم منها ما نسبته %(percentage)d٪."
+msgstr[5] "يحتوي هذا الملف على %(num)d كلمة، مُترجم منها ما نسبته %(percentage)d٪."
 
 #: apps/pootle_misc/stats.py:162
 msgid "Expand details"
-msgstr ""
+msgstr "اعرض التفاصيل"
 
 #: apps/pootle_misc/stats.py:173
 #, python-format
 msgid "Continue translation (%(num)d word left)"
 msgid_plural "Continue translation (%(num)d words left)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "اكتملت الترجمة"
+msgstr[1] "أكمل الترجمة (بقيَت كلمة واحدة)"
+msgstr[2] "أكمل الترجمة (بقيَ كلمتان)"
+msgstr[3] "أكمل الترجمة (بقيَ %(num)d كلمات)"
+msgstr[4] "أكمل الترجمة (بقيَ %(num)d كلمة)"
+msgstr[5] "أكمل الترجمة (بقيَ %(num)d كلمة)"
 
 #: apps/pootle_misc/stats.py:183
 msgid "Translation is complete"
-msgstr ""
+msgstr "اكتملت الترجمة"
 
 #: apps/pootle_misc/stats.py:194
 #, python-format
 msgid "Review suggestion (%(num)d left)"
 msgid_plural "Review suggestions (%(num)d left)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "لا مقترحات"
+msgstr[1] "راجع المقترحات (بقيَ واحدة)"
+msgstr[2] "راجع المقترحات (بقيَ اثنان)"
+msgstr[3] "راجع المقترحات (بقيَ %(num)d)"
+msgstr[4] "راجع المقترحات (بقيَ %(num)d)"
+msgstr[5] "راجع المقترحات (بقيَ %(num)d)"
 
 #. Translators: 'type' is the type of VCS file: working, remote,
 #. or merged copy.
@@ -1412,31 +1429,37 @@ msgid ""
 "%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d fuzzy)."
 msgid_plural ""
 "%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d fuzzy)."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "‏%(type)s: لا مقاطع مُترجمة من أصل %(total)d (%(fuzzy)d تحتاج للعمل)."
+msgstr[1] "‏%(type)s: مقطع واحد مُترجم من أصل %(total)d (%(fuzzy)d تحتاج للعمل)."
+msgstr[2] "‏%(type)s: مقطعين مُترجمين من أصل %(total)d (%(fuzzy)d تحتاج للعمل)."
 msgstr[3] ""
+"‏%(type)s: %(translated)d مقاطع مُترجمة من أصل %(total)d (%(fuzzy)d تحتاج "
+"للعمل)."
 msgstr[4] ""
+"‏%(type)s: %(translated)d مقطعًا مُترجمًا من أصل %(total)d (%(fuzzy)d تحتاج "
+"للعمل)."
 msgstr[5] ""
+"‏%(type)s: %(translated)d مقطع مُترجم من أصل %(total)d (%(fuzzy)d تحتاج "
+"للعمل)."
 
 #: apps/pootle_misc/stats.py:237
 #, python-format
 msgid "%d word needs attention"
 msgid_plural "%d words need attention"
-msgstr[0] "%d كلمة تستدعي مساهمتك"
-msgstr[1] "%d كلمة تستدعي مساهمتك"
-msgstr[2] "%d كلمة تستدعي مساهمتك"
+msgstr[0] "لا كلمات تستدعي مساهمتك"
+msgstr[1] "كلمة واحدة تستدعي مساهمتك"
+msgstr[2] "كلمتان تستدعيان مساهمتك"
 msgstr[3] "%d كلمات تستدعي مساهمتك"
 msgstr[4] "%d كلمة تستدعي مساهمتك"
-msgstr[5] "%d كلمة تستدعي مسامهمتك"
+msgstr[5] "%d كلمة تستدعي مساهمتك"
 
 #: apps/pootle_misc/stats.py:240
 #, python-format
 msgid "%d word untranslated"
 msgid_plural "%d words untranslated"
-msgstr[0] "%d كلمة غير مترجمة"
-msgstr[1] "%d كلمة غير مترجمة"
-msgstr[2] "%d كلمة غير مترجمة"
+msgstr[0] "لا كلمات غير مترجمة"
+msgstr[1] "كلمة واحدة غير مترجمة"
+msgstr[2] "كلمتان غير مترجمتان"
 msgstr[3] "%d كلمات غير مترجمة"
 msgstr[4] "%d كلمة غير مترجمة"
 msgstr[5] "%d كلمة غير مترجمة"
@@ -1445,9 +1468,9 @@ msgstr[5] "%d كلمة غير مترجمة"
 #, python-format
 msgid "%d word needs review"
 msgid_plural "%d words need review"
-msgstr[0] "%d كلمة تحتاج للمراجعة"
-msgstr[1] "%d كلمة تحتاج للمراجعة"
-msgstr[2] "%d كلمة تحتاج للمراجعة"
+msgstr[0] "لا كلمات تحتاج للمراجعة"
+msgstr[1] "كلمة واحدة تحتاج للمراجعة"
+msgstr[2] "كلمتان تحتاجان للمراجعة"
 msgstr[3] "%d كلمات تحتاج للمراجعة"
 msgstr[4] "%d كلمة تحتاج للمراجعة"
 msgstr[5] "%d كلمة تحتاج للمراجعة"
@@ -1461,13 +1484,13 @@ msgstr "<a href=\"%(login_link)s\">الولوج</a> ضروري للوصول لت
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
-"خطأ أثناء التعامل مع %(filename)s، أرسل نظام التشغيل الرسالة التالية: %"
+"عُطل أثناء التعامل مع %(filename)s، أرسل نظام التشغيل الرسالة التالية: %"
 "(errormsg)s"
 
 #: apps/pootle_misc/templates/progressbar.html:3
 #, python-format
 msgid "%(percent)s%% complete"
-msgstr ""
+msgstr "مكتمل بنسبة %(percent)s٪"
 
 #: apps/pootle_misc/templates/search.html:5
 msgid "Search"
@@ -1525,31 +1548,31 @@ msgstr "أخبار %(path)s"
 
 #: apps/pootle_notifications/views.py:138
 msgid "Publish on news feed"
-msgstr ""
+msgstr "انشر في تلقيمات الأخبار"
 
 #: apps/pootle_notifications/views.py:140
 msgid "Send email"
-msgstr ""
+msgstr "أرسل بريدًا"
 
 #: apps/pootle_notifications/views.py:143
 msgid "Email only to recently active users"
-msgstr ""
+msgstr "أرسل بريدًا للمستخدمين الناشطين مؤخرا فقط"
 
 #: apps/pootle_notifications/views.py:151
 msgid "All Projects"
-msgstr ""
+msgstr "كل المشاريع"
 
 #: apps/pootle_notifications/views.py:155
 msgid "Project Selection"
-msgstr ""
+msgstr "اختيار المشروع"
 
 #: apps/pootle_notifications/views.py:163
 msgid "All Languages"
-msgstr ""
+msgstr "كل اللغات"
 
 #: apps/pootle_notifications/views.py:167
 msgid "Language Selection"
-msgstr ""
+msgstr "اختيار اللغة"
 
 #: apps/pootle_notifications/views.py:293
 msgid "View News Item"
@@ -1569,15 +1592,15 @@ msgstr "الأخبار"
 
 #: apps/pootle_notifications/templates/notices.html:64
 msgid "Publish News"
-msgstr ""
+msgstr "انشر الأخبار"
 
 #: apps/pootle_notifications/templates/notices.html:68
 msgid "Successfully published the following news"
-msgstr ""
+msgstr "تم نشر الأخبار التالية"
 
 #: apps/pootle_notifications/templates/notices.html:81
 msgid "Publish"
-msgstr "أنشر"
+msgstr "انشر"
 
 #: apps/pootle_profile/forms.py:32
 msgid "Default"
@@ -1589,15 +1612,15 @@ msgstr "لغة واجهة المستخدم"
 
 #: apps/pootle_profile/forms.py:68
 msgid "This account is inactive."
-msgstr ""
+msgstr "هذا الحساب غير ناشط."
 
 #: apps/pootle_profile/models.py:86
 msgid "Number of Rows"
-msgstr "عدد المقاطع المعروضة"
+msgstr "عدد الصفوف"
 
 #: apps/pootle_profile/models.py:100
 msgid "Alternative Source Languages"
-msgstr "اللغات الإسترشادية"
+msgstr "اللغات الاسترشادية"
 
 #: apps/pootle_profile/models.py:150
 msgid "Suggestions Accepted"
@@ -1605,7 +1628,7 @@ msgstr "مقترحات قبلت"
 
 #: apps/pootle_profile/models.py:154
 msgid "Suggestions Pending"
-msgstr "مقترحات تحت الاعتبار"
+msgstr "مقترحات قيد الاعتبار"
 
 #: apps/pootle_profile/models.py:158
 msgid "Suggestions Reviewed"
@@ -1620,7 +1643,7 @@ msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
 msgstr ""
-"رمز للمشروع. يجب ألا يحتوى الا على حروف لاتينية وأرقام و الشرطة المنخفضة "
+"رمز للمشروع. يجب ألا يحتوى إلا على حروف لاتينية و أرقام و الشرطة المنخفضة "
 "(_)."
 
 #: apps/pootle_project/models.py:65
@@ -1629,10 +1652,11 @@ msgid ""
 "A description of this project. This is useful to give more information or "
 "instructions. Allowed markup: %s"
 msgstr ""
+"وصف المشروع. يمكن إضافة معلومات أو تعليمات خاصة باللغة. الرَّقْم المتاح: %s"
 
 #: apps/pootle_project/models.py:77
 msgid "Quality Checks"
-msgstr "اختبارات الجودة"
+msgstr "فحوص الجودة"
 
 #: apps/pootle_project/models.py:80
 msgid "File Type"
@@ -1640,7 +1664,7 @@ msgstr "نوع الملف"
 
 #: apps/pootle_project/models.py:84
 msgid "Automatic detection (slower)"
-msgstr "كشف تلقائي (بطيئ)"
+msgstr "كشف تلقائي (بطيء)"
 
 #: apps/pootle_project/models.py:85
 msgid "GNU style: files named by language code"
@@ -1648,7 +1672,7 @@ msgstr "نمط جنو: تسمى الملفات بحسب رمز اللغة"
 
 #: apps/pootle_project/models.py:86
 msgid "Non-GNU: Each language in its own directory"
-msgstr "نمط غير الجنو: لكل لغة دليل خاص بها"
+msgstr "نمط غير جنو: لكل لغة دليل خاص بها"
 
 #: apps/pootle_project/models.py:89
 msgid "Project Tree Style"
@@ -1656,23 +1680,23 @@ msgstr "نمط شجرة ملفات المشروع"
 
 #: apps/pootle_project/models.py:95
 msgid "Ignore Files"
-msgstr "ملفات متجاهلة"
+msgstr "ملفات متجاهَلة"
 
 #: apps/pootle_project/models.py:100
 msgid ""
 "A URL or an email address where issues with the source text can be reported."
-msgstr ""
+msgstr "موقع أو عنوان بريد إلكتروني حيث يمكن الإبلاغ عن المشاكل في النص الأصلي."
 
 #: apps/pootle_project/models.py:103
 msgid "Report Target"
-msgstr ""
+msgstr "مكان الإبلاغ"
 
 #: apps/pootle_project/views.py:127
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
-msgstr[0] "لغة واحدة، مترجمة بنسبة %(average)d٪"
-msgstr[1] "لا لغات"
+msgstr[0] "لا لغات"
+msgstr[1] "لغة واحدة، مترجمة بنسبة %(average)d٪"
 msgstr[2] "لغتان، مترجمتان بنسبة %(average)d٪"
 msgstr[3] "%(languages)d لغات، مترجمة بنسبة %(average)d٪"
 msgstr[4] "%(languages)d لغة، مترجمة بنسبة %(average)d٪"
@@ -1685,11 +1709,11 @@ msgstr "ليست لك حقوق إدارة هذا المشروع."
 #: apps/pootle_project/views.py:221
 #: apps/pootle_translationproject/actions.py:201
 msgid "Update against templates"
-msgstr ""
+msgstr "حدّث من القوالب"
 
 #: apps/pootle_project/templates/project/admin_permissions.html:24
 msgid "Below you can add, edit, and delete the permissions for this project."
-msgstr "يمكنك اضافة و حذف و تعديل صلاحيات المستخدمين الخاصة بذلك المشروع."
+msgstr "يمكنك إضافة و حذف و تعديل صلاحيات المستخدمين الخاصة بذلك المشروع."
 
 #: apps/pootle_project/templates/project/project_admin.html:7
 #: apps/pootle_project/templates/project/project_admin.html:10
@@ -1699,27 +1723,27 @@ msgstr "أدِر"
 
 #: apps/pootle_project/templates/project/project_admin.html:24
 msgid "Here you can add, edit, or delete the languages for this project."
-msgstr "يمكن اضافة و حذف لغات لذلك المشروع."
+msgstr "يمكن إضافة و حذف لغات لذلك المشروع."
 
 #: apps/pootle_statistics/models.py:47
 msgid "Source"
-msgstr ""
+msgstr "الأصل"
 
 #: apps/pootle_statistics/models.py:48
 msgid "Target"
-msgstr ""
+msgstr "الترجمة"
 
 #: apps/pootle_statistics/models.py:49
 msgid "State"
-msgstr ""
+msgstr "الحالة"
 
 #: apps/pootle_statistics/models.py:50
 msgid "Comment"
-msgstr ""
+msgstr "التعليق"
 
 #: apps/pootle_statistics/models.py:95
 msgid "anonymous user"
-msgstr ""
+msgstr "مستخدمين غير مُسجّل"
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Gettext PO"
@@ -1747,11 +1771,11 @@ msgstr "Haiku catkeys"
 
 #: apps/pootle_store/filetypes.py:65
 msgid "Excel CSV"
-msgstr ""
+msgstr "Excel CSV"
 
 #: apps/pootle_store/filetypes.py:71
 msgid "Mozilla .lang"
-msgstr ""
+msgstr "Mozilla .lang"
 
 #: apps/pootle_store/filetypes.py:81 apps/pootle_store/filetypes.py:85
 msgid "Java Properties"
@@ -1759,7 +1783,7 @@ msgstr "Java Properties"
 
 #: apps/pootle_store/filetypes.py:89
 msgid "Java Properties (UTF-8)"
-msgstr ""
+msgstr "Java Properties (UTF-8)"
 
 #. Translators: Don't translate "strings" unless you are sure these
 #. files have another name in your language
@@ -1769,7 +1793,7 @@ msgstr "OS X Strings"
 
 #: apps/pootle_store/filetypes.py:104
 msgid "PHP arrays"
-msgstr "مصفوفات بي اتش بي"
+msgstr "مصفوفات بي إتش بي"
 
 #: apps/pootle_store/filetypes.py:110
 msgid "Subtitles: srt"
@@ -1807,15 +1831,15 @@ msgstr "مسار"
 
 #: apps/pootle_store/util.py:44
 msgid "Obsolete"
-msgstr ""
+msgstr "مُلغى"
 
 #: apps/pootle_store/views.py:77
 msgid "Insufficient rights to this translation project."
-msgstr ""
+msgstr "ليست لك حقوق كافية في هذا المشروع."
 
 #: apps/pootle_store/views.py:702
 msgid "Comment submission failed."
-msgstr ""
+msgstr "فشل إيداع التعليق."
 
 #: apps/pootle_store/views.py:823 apps/pootle_store/views.py:888
 msgid "You do not have rights to access translation mode."
@@ -1823,11 +1847,11 @@ msgstr "لا تملك صلاحية الترجمة."
 
 #: apps/pootle_store/views.py:871
 msgid "Failed to process submission."
-msgstr ""
+msgstr "فشلت معالجة المُساهمة."
 
 #: apps/pootle_store/views.py:920
 msgid "Failed to process suggestion."
-msgstr ""
+msgstr "فشلت معالجة الاقتراح."
 
 #: apps/pootle_store/views.py:942
 msgid "You do not have rights to access review mode."
@@ -1835,7 +1859,7 @@ msgstr "لا تملك صلاحية مراجعة الترجمات هنا."
 
 #: apps/pootle_store/views.py:1057
 msgid "The suggestion or vote is not valid any more."
-msgstr ""
+msgstr "لم يعد الاقتراح أو التصويت ساريًا."
 
 #: apps/pootle_store/templates/store/translate.html:5 templates/tp_menu.html:6
 msgid "Translate"
@@ -1843,102 +1867,108 @@ msgstr "ترجم"
 
 #: apps/pootle_store/templates/store/translate.html:27
 msgid "Pootle's editor requires JavaScript"
-msgstr ""
+msgstr "يحتاج محرر بوتِل لجافاسكربت"
 
 #: apps/pootle_store/templates/store/translate.html:28
 msgid ""
 "Please enable JavaScript in your browser preferences and reload the page."
-msgstr ""
+msgstr "رجاءً تفعيل جافاسكربت في إعدادات المتصفّح ثم إعادة تحميل هذه الصفحة."
 
 #: apps/pootle_store/templates/store/translate.html:65
 msgid "Filter by:"
-msgstr ""
+msgstr "رشِّح حسب:"
 
 #. Translators: This refers to "All strings"
 #: apps/pootle_store/templates/store/translate.html:69
 msgid "All"
-msgstr ""
+msgstr "الكلّ"
 
 #: apps/pootle_store/templates/store/translate.html:71
 msgid "Incomplete"
-msgstr ""
+msgstr "غير المكتمل"
 
 #: apps/pootle_store/templates/store/translate.html:75
 msgid "My suggestions"
-msgstr ""
+msgstr "اقتراحاتي"
 
 #: apps/pootle_store/templates/store/translate.html:76
 msgid "My submissions"
-msgstr ""
+msgstr "مساهماتي"
 
 #. Translators: This is a type of filtering criterion that
 #. selects the strings that have been submitted by me at some point
 #. in time but have been overwritten by other users.
 #: apps/pootle_store/templates/store/translate.html:80
 msgid "My overwritten submissions"
-msgstr ""
+msgstr "مساهماتي التي استُبدلت"
 
 #: apps/pootle_store/templates/store/translate.html:81
 msgid "Checks"
-msgstr ""
+msgstr "الفحوص"
 
 #: apps/pootle_store/templates/store/translate.html:89
 msgid "Previous string"
-msgstr ""
+msgstr "المقطع السابق"
 
 #: apps/pootle_store/templates/store/translate.html:89
 msgid ""
 "Go to the previous string (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+Page&nbsp;Up<br/>First page: Ctrl+Shift+Home"
 msgstr ""
+"اذهب إلى المقطع السابق (Ctrl+Up)<br/><br/>و أيضا:<br/>الصفحة السابقة: "
+"Ctrl+Shift+Page Up<br/>الصفحة الأولى: Ctrl+Shift+Home"
 
 #: apps/pootle_store/templates/store/translate.html:91
 msgid ""
 "Current page number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
+"رقم الصفحة الحالية (Ctrl+Shift+U)<br/><br/>اكتب الرقم ثم اضغط زر "
+"Enter<br/>للانتقال إلى أي موضع"
 
 #: apps/pootle_store/templates/store/translate.html:93
 msgid "Total pages"
-msgstr ""
+msgstr "مجموع الصفحات"
 
 #: apps/pootle_store/templates/store/translate.html:95
 msgid "Next string"
-msgstr ""
+msgstr "المقطع التالي"
 
 #: apps/pootle_store/templates/store/translate.html:95
 msgid ""
 "Go to the next string (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
 "+Page&nbsp;Down<br/>Last page: Ctrl+Shift+End"
 msgstr ""
+"اذهب إلى المقطع التالي (Ctrl+Down)<br/><br/>و أيضا:<br/>الصفحة التالية: "
+"Ctrl+Shift+Page Down<br/>الصفحة الأخيرة: Ctrl+Shift+End"
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
-msgstr ""
+msgstr "تعليق:"
 
 #: apps/pootle_store/templates/unit/edit.html:11
 msgid "File:"
-msgstr ""
+msgstr "الملف:"
 
 #: apps/pootle_store/templates/unit/edit.html:18
 msgid "Context:"
-msgstr ""
+msgstr "السياق:"
 
 #: apps/pootle_store/templates/unit/edit.html:28
 msgid "Comments:"
-msgstr ""
+msgstr "التعليقات:"
 
 #: apps/pootle_store/templates/unit/edit.html:32
 msgid "Locations:"
-msgstr ""
+msgstr "الأماكن:"
 
 #: apps/pootle_store/templates/unit/edit.html:41
 msgid "Terminology:"
-msgstr ""
+msgstr "المصطلحات:"
 
 #: apps/pootle_store/templates/unit/edit.html:43
 msgid "Insert the translated term into the editor"
-msgstr ""
+msgstr "اكتب المصطلح المُترجَم في المحرر"
 
 #: apps/pootle_store/templates/unit/edit.html:56
 msgid "Possible issues with the translation"
@@ -1946,11 +1976,11 @@ msgstr "مشاكل محتملة بالترجمة"
 
 #: apps/pootle_store/templates/unit/edit.html:56
 msgid "Failing checks:"
-msgstr ""
+msgstr "فحوص بها مشاكل:"
 
 #: apps/pootle_store/templates/unit/edit.html:62
 msgid "Remove quality check"
-msgstr "تجاهل اختبار الجودة"
+msgstr "تجاهل فحص الجودة"
 
 #: apps/pootle_store/templates/unit/edit.html:85
 #: apps/pootle_store/templates/unit/edit.html:106
@@ -1959,7 +1989,7 @@ msgstr "انسخ النص الأصلي"
 
 #: apps/pootle_store/templates/unit/edit.html:104
 msgid "Report a problem with the source string"
-msgstr ""
+msgstr "أبلغ عن مشكلة بالنص الأصلي"
 
 #: apps/pootle_store/templates/unit/edit.html:121
 #: apps/pootle_store/templates/unit/edit.html:131
@@ -1969,7 +1999,7 @@ msgstr "أرسل"
 
 #: apps/pootle_store/templates/unit/edit.html:121
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
-msgstr ""
+msgstr "أرسل الترجمة و انتقل إلى المقطع التالي (Ctrl+Enter)"
 
 #: apps/pootle_store/templates/unit/edit.html:124
 #: apps/pootle_store/templates/unit/edit.html:132
@@ -1978,80 +2008,80 @@ msgstr "اقترح"
 
 #: apps/pootle_store/templates/unit/edit.html:124
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
-msgstr ""
+msgstr "اقترح الترجمة و انتقل إلى المقطع التالي (Ctrl+Enter)"
 
 #: apps/pootle_store/templates/unit/edit.html:131
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
-msgstr ""
+msgstr "انتقل إلى وضع الترجمة (Ctrl+Shift+Space)"
 
 #: apps/pootle_store/templates/unit/edit.html:132
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
-msgstr ""
+msgstr "انتقل إلى وضع الاقتراح (Ctrl+Shift+Space)"
 
 #: apps/pootle_store/templates/unit/edit.html:135
 msgid "Mark this string as needing further work (Ctrl+Space)"
-msgstr ""
+msgstr "علّم هذا المقطع لاحتياجه إلى المراجعة (Ctrl+Space)"
 
 #: apps/pootle_store/templates/unit/edit.html:156
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
-msgstr ""
+msgstr "راجعها <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
 #: apps/pootle_store/templates/unit/edit.html:166
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
-msgstr ""
+msgstr "أدخل علامة يمين إلى يسار في المحرر (RLM)"
 
 #: apps/pootle_store/templates/unit/edit.html:169
 msgid "Insert LRM (Left-To-Right Mark) into the editor"
-msgstr ""
+msgstr "أدخل علامة يسار إلى يمين في المحرر (LRM)"
 
 #: apps/pootle_store/templates/unit/edit.html:172
 msgid "Insert RLE (Right-To-Left Embedding) into the editor"
-msgstr ""
+msgstr "أدخل علامة غرس يمين إلى يسار في المحرر (RLE)"
 
 #: apps/pootle_store/templates/unit/edit.html:175
 msgid "Insert LRE (Left-To-Right Embedding) into the editor"
-msgstr ""
+msgstr "أدخل علامة غرس يسار إلى يمين في المحرر (LRE)"
 
 #: apps/pootle_store/templates/unit/edit.html:178
 msgid "Insert RLO (Right-To-Left Override) into the editor"
-msgstr ""
+msgstr "أدخل علامة تخطي يمين إلى يسار في المحرر (RLO)"
 
 #: apps/pootle_store/templates/unit/edit.html:181
 msgid "Insert LRO (Left-To-Right Override) into the editor"
-msgstr ""
+msgstr "أدخل علامة تخطي يسار إلى يمين في المحرر (LRO)"
 
 #: apps/pootle_store/templates/unit/edit.html:184
 msgid "Insert PDF (Pop Directional Format ) into the editor"
-msgstr ""
+msgstr "أدخل علامة إيقاف تنسيق الاتجاه (PDF) في المحرر"
 
 #: apps/pootle_store/templates/unit/edit.html:187
 msgid "Insert ZWJ (Zero Width Joiner) into the editor"
-msgstr ""
+msgstr "أدخل علامة واصل صفري العرض (ZWJ) في المحرر"
 
 #: apps/pootle_store/templates/unit/edit.html:190
 msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
-msgstr ""
+msgstr "أدخل علامة فاصل صفري العرض (ZWNJ) في المحرر"
 
 #: apps/pootle_store/templates/unit/edit.html:196
 msgid "Insert this symbol into the editor"
-msgstr ""
+msgstr "أدخل رمزًا في المحرر"
 
 #: apps/pootle_store/templates/unit/edit.html:208
 msgid "Add Comment"
-msgstr "أضف تنويه"
+msgstr "أضف ملاحظة"
 
 #: apps/pootle_store/templates/unit/edit.html:210
 msgid "Show Timeline"
-msgstr ""
+msgstr "أظهر التأريخ"
 
 #: apps/pootle_store/templates/unit/edit.html:211
 msgid "Hide Timeline"
-msgstr ""
+msgstr "أخفِ التأريخ"
 
 #: apps/pootle_store/templates/unit/edit.html:233
 msgid "User suggestions"
-msgstr ""
+msgstr "اقتراحات المستخدم"
 
 #: apps/pootle_store/templates/unit/edit.html:251
 msgid "Accept suggestion"
@@ -2067,20 +2097,20 @@ msgstr "احذف الاقتراح"
 
 #: apps/pootle_store/templates/unit/term_edit.html:21
 msgid "Your current vote. Click to remove this vote."
-msgstr ""
+msgstr "تصويتك الحاليّ. انقر هنا لإزالة التصويت."
 
 #: apps/pootle_store/templates/unit/term_edit.html:33
 msgid "Vote for this suggestion"
-msgstr ""
+msgstr "صوّت لهذا الاقتراح"
 
 #: apps/pootle_store/templates/unit/term_edit.html:40
 msgid "Comment: "
-msgstr ""
+msgstr "تعليق: "
 
 #: apps/pootle_store/templates/unit/timeline.html:4
 #: apps/pootle_store/templates/unit/timeline.html:14
 msgid "Previous Work"
-msgstr ""
+msgstr "العمل السابق"
 
 #: apps/pootle_store/templates/unit/view.html:35
 #: apps/pootle_terminology/templates/terminology/term_edit.html:31
@@ -2089,11 +2119,11 @@ msgstr "ملاحظات المترجم"
 
 #: apps/pootle_store/templates/unit/xhr-timeline.html:3
 msgid "Timeline"
-msgstr ""
+msgstr "التأريخ"
 
 #: apps/pootle_store/templates/unit/xhr-timeline.html:28
 msgid "No results."
-msgstr ""
+msgstr "لا نتائج."
 
 #: apps/pootle_store/templatetags/store_tags.py:113
 #: apps/pootle_store/templatetags/store_tags.py:115
@@ -2107,19 +2137,19 @@ msgstr "الجمع"
 
 #: apps/pootle_terminology/views.py:156
 msgid "This term already exists in this file."
-msgstr ""
+msgstr "هذا المصطلح موجود في هذا الملف من قبل."
 
 #: apps/pootle_terminology/templates/terminology/extract.html:6
 msgid "Regenerate Glossary"
-msgstr "أعد تخليق القاموس"
+msgstr "أعد توليد القاموس"
 
 #: apps/pootle_terminology/templates/terminology/extract.html:7
 msgid ""
 "Are you sure you want to regenerate the glossary? Any existing terms and "
 "their translations will be deleted."
 msgstr ""
-"هل أنت متأكد أنك ترغب في اعادة تخليق القاموس؟ ستحذف كل المصطلحات الموجودة "
-"حاليا و ترجماتها."
+"هل أنت متأكد أنك ترغب في إعادة توليد القاموس؟ ستحذف كل المصطلحات الموجودة "
+"حاليا و ترجماتها."
 
 #: apps/pootle_terminology/templates/terminology/extract.html:11
 msgid "Extract"
@@ -2127,7 +2157,7 @@ msgstr "استخلص المصطلحات"
 
 #: apps/pootle_terminology/templates/terminology/manage.html:22
 msgid "You can regenerate the glossary from scratch."
-msgstr "يمكنك اعادة تخليق القاموس من الصفر."
+msgstr "يمكنك إعادة توليد القاموس من الصفر."
 
 #: apps/pootle_terminology/templates/terminology/manage.html:35
 msgid "Term"
@@ -2143,11 +2173,11 @@ msgstr "القاموس خالي"
 
 #: apps/pootle_terminology/templates/terminology/manage.html:62
 msgid "Generate Glossary"
-msgstr "خلق القاموس"
+msgstr "ولّد القاموس"
 
 #: apps/pootle_terminology/templates/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."
-msgstr ""
+msgstr "تستطيع من هنا إدارة المصطلحات و قواميسها."
 
 #: apps/pootle_terminology/templates/terminology/stores.html:14
 #: apps/pootle_translationproject/views.py:741
@@ -2156,7 +2186,7 @@ msgstr "ملف"
 
 #: apps/pootle_terminology/templates/terminology/stores.html:29
 msgid "Once you upload files, you will be able to add, edit and delete terms."
-msgstr ""
+msgstr "بمجرد رفع الملفات ستستطيع إضافة و تحرير و حذف المصطلحات."
 
 #: apps/pootle_terminology/templates/terminology/term_edit.html:11
 msgid "Description..."
@@ -2168,31 +2198,31 @@ msgstr "تفاصيل..."
 
 #: apps/pootle_translationproject/actions.py:59
 msgid "Download (.zip)"
-msgstr ""
+msgstr "نزّل الملفّات"
 
 #: apps/pootle_translationproject/actions.py:73
 msgid "Download XLIFF"
-msgstr "نزل ملف XLIFF"
+msgstr "نزّل ملف XLIFF"
 
 #: apps/pootle_translationproject/actions.py:74
 msgid "Download file in XLIFF format"
-msgstr ""
+msgstr "نزّل الملف بنسق XLIFF"
 
 #: apps/pootle_translationproject/actions.py:77
 msgid "Export"
-msgstr "صدر"
+msgstr "صدّر"
 
 #: apps/pootle_translationproject/actions.py:78
 msgid "Export translations"
-msgstr "صدر الترجمات"
+msgstr "صدّر الترجمات"
 
 #: apps/pootle_translationproject/actions.py:80
 msgid "Download"
-msgstr "نزل الملف"
+msgstr "نزّل الملف"
 
 #: apps/pootle_translationproject/actions.py:81
 msgid "Download file"
-msgstr "نزل الملف"
+msgstr "نزّل الملف"
 
 #: apps/pootle_translationproject/actions.py:96
 #: apps/pootle_translationproject/actions.py:254
@@ -2201,16 +2231,16 @@ msgstr "ترجم خارج الشبكة"
 
 #: apps/pootle_translationproject/actions.py:97
 msgid "Download XLIFF file for offline translation"
-msgstr "نزل ملف XLIFF للترجمة خارج الشبكة"
+msgstr "نزّل ملف XLIFF للترجمة خارج الشبكة"
 
 #: apps/pootle_translationproject/actions.py:112
 #: apps/pootle_translationproject/views.py:700
 msgid "Upload"
-msgstr "إرفع"
+msgstr "ارفع"
 
 #: apps/pootle_translationproject/actions.py:113
 msgid "Upload translation files or archives in .zip format"
-msgstr ""
+msgstr "ارفع ملفات الترجمة أو أرشيفات بنسق ‪.zip‬"
 
 #: apps/pootle_translationproject/actions.py:130
 msgid "Update from VCS"
@@ -2218,17 +2248,17 @@ msgstr "حدث من نظام إدارة المراجعات"
 
 #: apps/pootle_translationproject/actions.py:144
 msgid "Commit to VCS"
-msgstr "ارسل الى نظام ادارة المراجعات"
+msgstr "أرسل إلى نظام إدارة المراجعات"
 
 #. Translators: "all" here refers to all files and sub directories in a directory/project.
 #: apps/pootle_translationproject/actions.py:159
 msgid "Update all from VCS"
-msgstr ""
+msgstr "حدث الكل من نظام إدارة المراجعات"
 
 #. Translators: "all" here refers to all files and sub directories in a directory/project.
 #: apps/pootle_translationproject/actions.py:174
 msgid "Commit all to VCS"
-msgstr ""
+msgstr "أرسل الكل إلى نظام إدارة المراجعات"
 
 #: apps/pootle_translationproject/actions.py:187
 msgid "Rescan project files"
@@ -2236,15 +2266,15 @@ msgstr "أعد مسح ملفات المشروع"
 
 #: apps/pootle_translationproject/actions.py:218
 msgid "Delete this folder..."
-msgstr ""
+msgstr "احذف هذا المجلد..."
 
 #: apps/pootle_translationproject/actions.py:220
 msgid "Delete this file..."
-msgstr ""
+msgstr "احذف هذا الملف..."
 
 #: apps/pootle_translationproject/actions.py:256
 msgid "Manage"
-msgstr ""
+msgstr "أدِر"
 
 #: apps/pootle_translationproject/models.py:105
 #, python-format
@@ -2252,101 +2282,104 @@ msgid ""
 "A description of this translation project. This is useful to give more "
 "information or instructions. Allowed markup: %s"
 msgstr ""
+"وصف مشروع الترجمة. يمكن إضافة معلومات أو تعليمات خاصة باللغة. الرَّقْم "
+"المتاح: %s"
 
 #: apps/pootle_translationproject/models.py:488
 #, python-format
 msgid "Failed to update from version control: %(error)s"
-msgstr ""
+msgstr "فشلت في التحديث من نظام إدارة المراجعات: %(error)s"
 
 #: apps/pootle_translationproject/models.py:556
 #, python-format
 msgid "Updated project <em>%(project)s</em> from version control"
-msgstr ""
+msgstr "تم تحديث مشروع <em>%(project)s</em> من نظام إدارة المراجعات"
 
 #: apps/pootle_translationproject/models.py:558
 #: apps/pootle_translationproject/models.py:579
 msgid "Working copy"
-msgstr ""
+msgstr "نسخة العمل"
 
 #: apps/pootle_translationproject/models.py:559
 #: apps/pootle_translationproject/models.py:580
 msgid "Remote copy"
-msgstr ""
+msgstr "النسخة البعيدة"
 
 #: apps/pootle_translationproject/models.py:560
 #: apps/pootle_translationproject/models.py:581
 msgid "Merged copy"
-msgstr ""
+msgstr "النسخة المدموجة"
 
 #: apps/pootle_translationproject/models.py:577
 #, python-format
 msgid "Updated file <em>%(filename)s</em> from version control"
-msgstr ""
+msgstr "تم تحديث ملف <em>%(filename)s</em> من نظام إدارة المراجعات"
 
 #: apps/pootle_translationproject/models.py:590
 #, python-format
 msgid "Failed to update <em>%(filename)s</em> from version control: %(error)s"
-msgstr ""
+msgstr "فشلت في تحديث <em>%(filename)s</em> من نظام إدارة المراجعات: %(error)s"
 
 #: apps/pootle_translationproject/models.py:649
 #, python-format
 msgid "Committed all files under <em>%(path)s</em> to version control"
 msgstr ""
+"تم إيداع كل الملفات في المسار <em>%(path)s</em> إلى نظام إدارة المراجعات"
 
 #: apps/pootle_translationproject/models.py:658
 #, python-format
 msgid "Failed to commit to version control: %(error)s"
-msgstr ""
+msgstr "فشلت في الإيداع إلى نظام إدارة المراجعات: %(error)s"
 
 #: apps/pootle_translationproject/models.py:716
 #, python-format
 msgid "Committed file <em>%(filename)s</em> to version control"
-msgstr ""
+msgstr "تم إيداع ملف <em>%(filename)s</em> إلى نظام إدارة المراجعات"
 
 #: apps/pootle_translationproject/models.py:724
 #, python-format
 msgid "Failed to commit <em>%(filename)s</em> to version control: %(error)s"
-msgstr ""
+msgstr "فشلت في إيداع <em>%(filename)s</em> إلى نظام إدارة المراجعات: %(error)s"
 
 #: apps/pootle_translationproject/views.py:96
 msgid "Translation project files have been rescanned."
-msgstr ""
+msgstr "تم إعادة مسح ملفات مشروع الترجمة."
 
 #: apps/pootle_translationproject/views.py:101
 msgid "Error while rescanning translation project files."
-msgstr ""
+msgstr "عُطل أثناء إعادة مسح ملفات مشروع الترجمة."
 
 #: apps/pootle_translationproject/views.py:118
 msgid "Translation project has been updated against latest templates."
-msgstr ""
+msgstr "تم تحديث مشروع الترجمة من أحدث قوالب."
 
 #: apps/pootle_translationproject/views.py:123
 msgid "Error while updating translation project against latest templates."
-msgstr ""
+msgstr "عُطل أثناء تحديث مشروع الترجمة من أحدث قوالب."
 
 #: apps/pootle_translationproject/views.py:188
 msgid "Symbolic link hasn't been removed from the filesystem."
-msgstr ""
+msgstr "لم تُحذف الوصلة الرمزية من نظام الملفات."
 
 #: apps/pootle_translationproject/views.py:192
 msgid "Directory and its containing files have been deleted."
-msgstr ""
+msgstr "حُذِف الدليل ومحتوياته من الملفات."
 
 #: apps/pootle_translationproject/views.py:195
 msgid "File has been deleted."
-msgstr ""
+msgstr "حُذِف الملف."
 
 #: apps/pootle_translationproject/views.py:200
 msgid "Error while trying to delete directory."
-msgstr ""
+msgstr "عُطل أثناء حذف الدليل."
 
 #: apps/pootle_translationproject/views.py:203
 msgid "Error while trying to delete file."
-msgstr ""
+msgstr "عُطل أثناء حذف الملف."
 
 #: apps/pootle_translationproject/views.py:370
 msgid "You do not have the right to create ZIP archives."
-msgstr "لا يحق لك تنزيل أراشيف ZIP."
+msgstr "لا يحق لك تنزيل أرشيفات ZIP."
 
 #: apps/pootle_translationproject/views.py:437
 #, python-format
@@ -2364,7 +2397,7 @@ msgstr ""
 
 #: apps/pootle_translationproject/views.py:473
 msgid "Error while extracting archive"
-msgstr "خطأ اثناء فك الأرشيف"
+msgstr "خطأ أثناء فك الأرشيف"
 
 #: apps/pootle_translationproject/views.py:657
 msgid "You do not have rights to overwrite files here."
@@ -2386,7 +2419,7 @@ msgstr "استبدل الملف الحالي إذا كان موجودا بالف
 #: apps/pootle_translationproject/views.py:717
 msgid ""
 "Merge the file with the current file and turn conflicts into suggestions"
-msgstr "ادمج الملف مع الملف الحالي وحول التعارضات إلى اقتراحات"
+msgstr "ادمج الملف مع الملف الحالي و حوّل التعارضات إلى اقتراحات"
 
 #: apps/pootle_translationproject/views.py:722
 msgid "Add all new translations as suggestions"
@@ -2395,7 +2428,7 @@ msgstr "أضف كل الترجمات الجديدة في صورة اقتراحا
 #: apps/pootle_translationproject/views.py:752
 #: apps/pootle_translationproject/views.py:760
 msgid "Upload to"
-msgstr "ارفع الى"
+msgstr "ارفع إلى"
 
 #: apps/pootle_translationproject/views.py:755
 #: apps/pootle_translationproject/views.py:764
@@ -2408,53 +2441,54 @@ msgstr ""
 
 #: apps/pootle_translationproject/views.py:774
 msgid "Upload File"
-msgstr "ارفع ملفا"
+msgstr "ارفع ملفًا"
 
 #: apps/pootle_translationproject/templates/translation_project/admin_permissions.html:15
 msgid ""
 "Below you can add, edit, and delete the permissions for this translation "
 "project."
 msgstr ""
-"يمكنك اضافة و حذف و تعديل صلاحيات المستخدمين الخاصة بمشروع الترجمة الحالي."
+"يمكنك إضافة و حذف و تعديل صلاحيات المستخدمين الخاصة بمشروع الترجمة الحالي."
 
 #: apps/pootle_translationproject/templates/translation_project/fileop_forms.html:23
 msgid "Update from Version Control"
-msgstr ""
+msgstr "حدث من نظام إدارة المراجعات"
 
 #: apps/pootle_translationproject/templates/translation_project/fileop_forms.html:24
 msgid ""
 "Use this option to update all the files in this area from version control."
 msgstr ""
+"استخدم هذا الخيار لتحديث كل الملفات في هذه المنطقة من نظام إدارة المراجعات."
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:40
 msgid "Files and Subfolders"
-msgstr ""
+msgstr "الملفات و المجلدات الفرعية"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:53
 msgid "Actions"
-msgstr ""
+msgstr "الإجراءات"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:101
 #, python-format
 msgid "%(project)s project information"
-msgstr ""
+msgstr "معلومات مشروع %(project)s"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:108
 #, python-format
 msgid "%(language)s language information"
-msgstr ""
+msgstr "معلومات اللغة %(language)s"
 
 #: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:4
 msgid "Translation Statistics"
-msgstr ""
+msgstr "إحصائيات الترجمة"
 
 #: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:23
 msgid "Failing Checks"
-msgstr "اختبارات الجودة"
+msgstr "فحوص بها مشاكل"
 
 #: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:44
 msgid "Nothing to show"
-msgstr ""
+msgstr "لا شيء لعرضه"
 
 #: apps/registration/forms.py:36
 msgid "username"
@@ -2478,7 +2512,7 @@ msgstr "هذا الاسم محجوز. من فضلك اختر اسم مستخدم
 
 #: apps/registration/forms.py:67
 msgid "You must type the same password each time"
-msgstr "كلمة السر غير متطابقة، من فضلك ادخلها مرتين متطابقتين"
+msgstr "كلمة السر غير متطابقة، من فضلك أدخلها مرتين متطابقتين"
 
 #: apps/registration/forms.py:90
 msgid "I have read and agree to the Terms of Service"
@@ -2488,7 +2522,7 @@ msgstr "مش هرفع قضية عليكم و حياة أمي"
 msgid ""
 "This email address is already in use. Please supply a different email "
 "address."
-msgstr "عنوان البريد الإكتروني مستخدم من قبل. من فضلك ادخل عنوان مختلف."
+msgstr "عنوان البريد الإلكتروني مستخدم من قبل. من فضلك أدخل عنوانًا مختلفًا."
 
 #: apps/registration/forms.py:133
 msgid ""
@@ -2541,6 +2575,13 @@ msgid ""
 "administration interface.</p>\n"
 "</div>\n"
 msgstr ""
+"<div dir=\"rtl\" lang=\"ar\">\n"
+"<h2>عرض تجريبي لبوتِل</h2>\n"
+"<p>يمكنك زيارة <a href=\"http://pootle.locamotion.org\">خادوم بوتِل</a> "
+"الرسمي. لم يقم مدير الموقع الحالي بإضافة أي معلومات عن هذه النسخة من بوتل أو "
+"بيانات اتصال. إذا كنت مدير الموقع يمكن استبدال هذا النص في صفحة "
+"الإدارة.</p>\n"
+"</div>\n"
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"
@@ -2552,19 +2593,19 @@ msgstr "ليس لديك صلاحية الوصول لتلك الصفحة."
 
 #: templates/404.html:4 templates/404.html.py:7 templates/404.html.py:12
 msgid "Page Not Found"
-msgstr "الصفحة في موجودة"
+msgstr "الصفحة غير موجودة"
 
 #: templates/404.html:13
 msgid "We're sorry, but the requested page could not be found."
-msgstr "نأسف لم نتمكن من ايجاد الصفحة المطلوبة."
+msgstr "نأسف لم نتمكن من إيجاد الصفحة المطلوبة."
 
 #: templates/500.html:4 templates/500.html.py:7 templates/500.html.py:12
 msgid "Server Error"
-msgstr "خطأ بالخادوم"
+msgstr "عُطل بالخادوم"
 
 #: templates/500.html:13
 msgid "An error has occurred. Thank you for your patience."
-msgstr "عفوا حدث خطأ. شكرا لتفهمكم."
+msgstr "عفوا حدث عُطل. شكرًا لتفهمكم."
 
 #: templates/500.html:20
 #, python-format
@@ -2572,6 +2613,8 @@ msgid ""
 "If you need assistance, you may refer to this error as <strong>%(ref)s</"
 "strong>."
 msgstr ""
+"إذا كنت بحاجة للمساعدة فيُمكنك الإشارة إلى العُطل بأنه <strong>%"
+"(ref)s</strong>."
 
 #: templates/admin_profile_base.html:4 templates/admin_profile_base.html:7
 msgid "Administration"
@@ -2579,7 +2622,7 @@ msgstr "إدارة"
 
 #: templates/admin_profile_menu.html:3
 msgid "Information and statistics about this Pootle server"
-msgstr "بيانات احصائية عن خادوم بوتِل هذا"
+msgstr "بيانات إحصائية عن خادوم بوتِل هذا"
 
 #: templates/admin_profile_menu.html:3
 msgid "Info"
@@ -2587,7 +2630,7 @@ msgstr "معلومات"
 
 #: templates/admin_profile_menu.html:4
 msgid "Configure the general settings for your site"
-msgstr "اضبط الاعدادات العامة للموقع"
+msgstr "اضبط الإعدادات العامة للموقع"
 
 #: templates/admin_profile_menu.html:4
 msgid "General"
@@ -2611,7 +2654,7 @@ msgstr "أدر الصلاحيات المبدئية"
 
 #: templates/admin_profile_menu.html:9
 msgid "Manage Legal Pages"
-msgstr ""
+msgstr "أدر الصفحات القانونية"
 
 #: templates/base.html:81
 msgid "skip to navigation"
@@ -2619,33 +2662,33 @@ msgstr "تخطي لروابط التصفح"
 
 #: templates/base.html:86
 msgid "Zoom out (Ctrl+Shift+-)"
-msgstr ""
+msgstr "بعّد ‪(Ctrl+Shift+-)‬"
 
 #: templates/base.html:88
 msgid "Reset zoom (Ctrl+Shift+0)"
-msgstr ""
+msgstr "ألغ التقريب (Ctrl+Shift+0)"
 
 #: templates/base.html:90
 msgid "Zoom in (Ctrl+Shift++)"
-msgstr ""
+msgstr "قرّب ‪(Ctrl+Shift++)‬"
 
 #: templates/base.html:102
 msgid "ADMIN"
-msgstr ""
+msgstr "أدِر"
 
 #: templates/base.html:105
 msgid "Log Out"
-msgstr "خروج"
+msgstr "اخرج"
 
 #: templates/base.html:108 templates/registration/registration_form.html:4
 #: templates/registration/registration_form.html:7
 #: templates/registration/registration_form.html:51
 msgid "Register"
-msgstr "سجل"
+msgstr "سجّل"
 
 #: templates/base.html:110
 msgid "Log In"
-msgstr "لج"
+msgstr "لِج"
 
 #: templates/base.html:157
 msgid "Help"
@@ -2659,33 +2702,33 @@ msgstr "اتصل بنا"
 
 #: templates/base.html:161
 msgid "About this Pootle Server"
-msgstr "عنْ خادم بوتل هذا"
+msgstr "عنْ خادوم بوتل هذا"
 
 #: templates/base.html:162 templates/about/contributors.html:6
 #: templates/about/contributors.html:9
 msgid "Contributors"
-msgstr ""
+msgstr "المساهمون"
 
 #: templates/captcha-xhr.html:14 templates/captcha.html:4
 #: templates/captcha.html.py:7
 msgid "Are You Human?"
-msgstr "هل أنت من أولاد أدم و حواء؟"
+msgstr "هل أنت من أولاد آدم و حواء؟"
 
 #: templates/captcha-xhr.html:15
 msgid ""
 "To protect the server against attacks we have to verify that submissions are "
 "made by human users."
 msgstr ""
-"لحماية الخادوم من السخام و البرمجيات الضارة علينا التأكد أن المساهمات مرسلة "
+"لحماية الخادوم من السخام و البرمجيات الضارة علينا التأكد أن المساهمات مرسلة "
 "من قبل مستخدمين بشر."
 
 #: templates/captcha-xhr.html:16
 msgid "Please answer this question:"
-msgstr "رجاء الاجابة على المسألة الحسابية التالية:"
+msgstr "رجاء الإجابة على المسألة الحسابية التالية:"
 
 #: templates/captcha-xhr.html:20
 msgid "Confirm"
-msgstr "أكد"
+msgstr "أكّد"
 
 #: templates/language_menu.html:3
 msgid "Language main page"
@@ -2722,7 +2765,7 @@ msgstr "أدر صلاحيات المشروع"
 
 #: templates/tp_base_terminology.html:4 templates/tp_base_terminology.html:7
 msgid "Manage Terminology"
-msgstr "ادر المصطلحات"
+msgstr "أدر المصطلحات"
 
 #: templates/tp_menu.html:4
 msgid "Translation project main page"
@@ -2738,7 +2781,7 @@ msgstr "ترجم هذا المشروع"
 
 #: templates/tp_menu.html:8
 msgid "Manage terminology"
-msgstr ""
+msgstr "أدر المصطلحات"
 
 #: templates/tp_menu.html:8
 msgid "Terminology"
@@ -2762,11 +2805,11 @@ msgstr "لوحة التحكم"
 
 #: templates/user_profile_menu.html:5
 msgid "Configure your translation preferences"
-msgstr "اضبط اعدادات الترجمة"
+msgstr "اضبط إعدادات الترجمة"
 
 #: templates/user_profile_menu.html:5
 msgid "Settings"
-msgstr "إعدادات"
+msgstr "الإعدادات"
 
 #: templates/user_profile_menu.html:6
 msgid "Change your personal information"
@@ -2779,11 +2822,11 @@ msgstr "ملف المستخدم"
 
 #: templates/user_profile_menu.html:7
 msgid "Change your password"
-msgstr "غير كلمة السر"
+msgstr "غيّر كلمة السر"
 
 #: templates/about/about.html:6 templates/about/about.html.py:9
 msgid "This Pootle Server"
-msgstr ""
+msgstr "خادوم بوتل هذا"
 
 #. Translators: For better readability, make sure to leave an space after the closing </i> tag
 #: templates/about/about.html:16
@@ -2794,6 +2837,11 @@ msgid ""
 "Read more on the <a href=\"http://pootle.translatehouse.org/\"><i class="
 "\"icon-external-link\"></i> project website</a>."
 msgstr ""
+"هذا الموقع يعمل ببوتل — برمجية وب متقدمة تهدف لتسهيل إدارة فريق ترجمة "
+"و تمكين العمل التشاركي و التعاون بين المترجمين. هذه برنامج حر مفتوح المصدر، "
+"يمكن لأي أحد أن يستخدمه و أن يساهم في إثراء مجتمع مستخدمي و مطوري بوتل. "
+"لمزيد من المعلومات طالع <a href=\"http://pootle.translatehouse.org/\"><i class"
+"=\"icon-external-link\"></i>صفحة المشروع</a>."
 
 #: templates/about/base.html:4 templates/about/base.html.py:7
 msgid "About"
@@ -2807,16 +2855,16 @@ msgstr "أرسل"
 #: templates/contact_form/contact_form_sent.html:8
 #: templates/contact_form/contact_form_sent.html:13
 msgid "Message Sent"
-msgstr "تم ارسال الرسالة"
+msgstr "تم إرسال الرسالة"
 
 #: templates/contact_form/contact_form_sent.html:14
 msgid "Thank you for your feedback."
-msgstr ""
+msgstr "شكرا على ملاحظاتك."
 
 #: templates/contact_form/contact_form_subject.txt:2
 #, python-format
 msgid " message by %(name)s"
-msgstr "رسالة من %(name)s"
+msgstr " رسالة من %(name)s"
 
 #: templates/profiles/edit_personal.html:12
 msgid ""
@@ -2827,7 +2875,7 @@ msgstr ""
 
 #: templates/profiles/edit_personal.html:18
 msgid "First Name"
-msgstr "الإسم"
+msgstr "الاسم"
 
 #: templates/profiles/edit_personal.html:23
 msgid "Last Name"
@@ -2846,7 +2894,7 @@ msgstr "إعدادات الترجمة"
 msgid ""
 "Here you can configure the settings related to the translation interface as "
 "well as your language preferences."
-msgstr "يمكنك ضبط واجهة الترجمة و تحديد اللغات التي تنوى متابعتها."
+msgstr "يمكنك ضبط واجهة الترجمة و تحديد اللغات التي تنوى متابعتها."
 
 #: templates/profiles/profile_detail.html:31
 msgid "Quick Links"
@@ -2854,15 +2902,15 @@ msgstr "وصلات سريعة"
 
 #: templates/profiles/profile_detail.html:40
 msgid "Admin"
-msgstr "إدارة"
+msgstr "المدير"
 
 #: templates/profiles/profile_detail.html:55
 msgid "No languages or projects selected. Choose yours now."
-msgstr "لم تختر أي لغات أو مشاريع بعد. حددهم في صفحة الاعدادات."
+msgstr "لم تختر أي لغات أو مشاريع بعد. حددهم في صفحة الإعدادات."
 
 #: templates/profiles/profile_detail.html:57
 msgid "This user has not selected languages or projects yet."
-msgstr "لم يختر المستخد أي لغات أو مشاريع بعد."
+msgstr "لم يختر المستخدم أي لغات أو مشاريع بعد."
 
 #: templates/profiles/profile_detail.html:67
 msgid "User Statistics"
@@ -2870,7 +2918,7 @@ msgstr "إحصائيات المستخدم"
 
 #: templates/profiles/profile_detail.html:71
 msgid "You can set or change your avatar image at www.gravatar.com"
-msgstr ""
+msgstr "يُمكنك تغيير أيقونتك من www.gravatar.com"
 
 #: templates/profiles/profile_list.html:7
 msgid "Profiles list"
@@ -2883,7 +2931,7 @@ msgstr "اسم المستخدم"
 
 #: templates/profiles/profile_list.html:12
 msgid "First name"
-msgstr "الإسم"
+msgstr "الاسم"
 
 #: templates/profiles/profile_list.html:13
 msgid "Last name"
@@ -2900,16 +2948,16 @@ msgstr "تم تفعيل حسابك"
 msgid ""
 "The account has been activated for username \"%(account)s\". You can now "
 "proceed to log in."
-msgstr "تم تفعيل حساب المستخدم \"%(account)s\". الآن يمكنك الدخول."
+msgstr "تم تفعيل حساب المستخدم \"%(account)s\". الآن يمكنك الولوج."
 
 #: templates/registration/activation_email.html:4
 msgid "Pootle Account Created!"
-msgstr ""
+msgstr "تم إنشاء حساب بوتل."
 
 #: templates/registration/activation_email.html:5
 #: templates/registration/activation_email.txt:2
 msgid "A Pootle account has been created for you using this email address."
-msgstr "تم انشاء حساب لك باستخدام هذا البريد الآلكتروني."
+msgstr "تم إنشاء حساب لك باستخدام هذا البريد الإلكتروني."
 
 #: templates/registration/activation_email.html:6
 #: templates/registration/activation_email.txt:3
@@ -2918,12 +2966,12 @@ msgstr "لتنشيط حسابك، اتّبع هذا الرابط:"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
-msgstr ""
+msgstr "نشّط حسابي"
 
 #: templates/registration/activation_email.html:10
 #, python-format
 msgid "Your activation code is: <code>%(activation_key)s</code>"
-msgstr ""
+msgstr "رمز التنشيط هو: <code>%(activation_key)s</code>"
 
 #: templates/registration/activation_email.html:11
 #: templates/registration/activation_email.txt:9
@@ -2936,7 +2984,7 @@ msgstr ""
 
 #: templates/registration/activation_email.txt:6
 msgid "Your activation code is:"
-msgstr "رمز التنشيط الخاص بك هو:"
+msgstr "رمز التنشيط هو:"
 
 #: templates/registration/activation_email_subject.txt:2
 msgid "Pootle registration"
@@ -2950,12 +2998,12 @@ msgstr "تم تغيير كلمة السر"
 
 #: templates/registration/password_change_done.html:14
 msgid "Your password was changed successfully."
-msgstr "تم بنجاح تغيير كلمة السر الخاصة بك."
+msgstr "تم تغيير كلمة السر الخاصة بك."
 
 #: templates/registration/password_change_form.html:4
 #: templates/registration/password_change_form.html:7
 msgid "Change Password"
-msgstr "غير كلمة السر"
+msgstr "غيّر كلمة السر"
 
 #: templates/registration/password_change_form.html:12
 msgid ""
@@ -2963,7 +3011,7 @@ msgid ""
 "password twice so we can verify you typed it in correctly."
 msgstr ""
 "للاحتياط أدخل كلمة السر الحالية، ثم أدخل كلمة السر الجديدة مرتين للتأكد من "
-"صحة ادخالها."
+"صحة إدخالها."
 
 #: templates/registration/password_change_form.html:21
 msgid "Old password"
@@ -2979,7 +3027,7 @@ msgstr "أكّد كلمة السر"
 
 #: templates/registration/password_change_form.html:36
 msgid "Change My Password"
-msgstr "غير كلمة السر"
+msgstr "غيّر كلمة السر"
 
 #: templates/registration/password_reset_complete.html:4
 #: templates/registration/password_reset_complete.html:7
@@ -3006,11 +3054,11 @@ msgstr "تم تغيير كلمة السر. الآن يمكنك <a href=\"%(login
 #: templates/registration/password_reset_form.html:7
 #: templates/registration/password_reset_form.html:12
 msgid "Reset Password"
-msgstr "أسترجع كلمة السر"
+msgstr "استرجع كلمة السر"
 
 #: templates/registration/password_reset_confirm.html:14
 msgid "Enter New Password."
-msgstr "ادخل كلمة سر جديدة."
+msgstr "أدخل كلمة سر جديدة."
 
 #: templates/registration/password_reset_confirm.html:16
 msgid ""
@@ -3020,7 +3068,7 @@ msgstr "من فضلك أدخل كلمة السر الجديدة مرتين لل�
 
 #: templates/registration/password_reset_confirm.html:21
 msgid "New Password"
-msgstr "كلمة سر جديدة"
+msgstr "كلمة السر الجديدة"
 
 #: templates/registration/password_reset_confirm.html:26
 msgid "Confirm Password"
@@ -3029,7 +3077,7 @@ msgstr "أكّد كلمة السر"
 #: templates/registration/password_reset_confirm.html:31
 #: templates/registration/password_reset_form.html:24
 msgid "Reset My Password"
-msgstr "أسترجع كلمة السر"
+msgstr "استرجع كلمة السر"
 
 #: templates/registration/password_reset_confirm.html:35
 msgid "Password Reset Failed."
@@ -3040,7 +3088,7 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
-"رابط استرجاع كلمة السر غير صحيح، ربما يكون قد استخدم بالفعل. حاول استرجاع "
+"رابط استرجاع كلمة السر غير صحيح، ربما يكون قد استُخدِم بالفعل. حاول استرجاع "
 "كلمة السر مرة أخرى."
 
 #: templates/registration/password_reset_done.html:15
@@ -3057,28 +3105,28 @@ msgid ""
 "You're receiving this e-mail because you requested a password reset for your "
 "user account at %(site_name)s."
 msgstr ""
-"أرسلت لك هذه الرسالة لأنك طلبت استرجاع كلمة السر الخاصة بحسابك على %"
+"أُرسلت لك هذه الرسالة لأنك طلبت استرجاع كلمة السر الخاصة بحسابك على %"
 "(site_name)s."
 
 #: templates/registration/password_reset_email.html:5
 msgid "Please go to the following page and choose a new password:"
-msgstr "اتبع الرابط التالي و اختر كلمة سر جديدة:"
+msgstr "اتبع الرابط التالي و اختر كلمة سر جديدة:"
 
 #: templates/registration/password_reset_email.html:9
 #, python-format
 msgid "Your username is %(user)s."
-msgstr "اسم المستخدم الخاص بك هو %(user)s."
+msgstr "اسم المستخدم هو %(user)s."
 
 #: templates/registration/password_reset_email.html:11
 msgid "Thank you for using Pootle!"
-msgstr "شكرا لاستخدامك بوتل!"
+msgstr "شكرًا لاستخدامك بوتل!"
 
 #: templates/registration/password_reset_form.html:14
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
-"نسيت كلمة السر؟ ادخل عنوان بريدك الإلكتروني و سنرسل لك تعليمات ضبط كلمة سر "
+"أنسيت كلمة السر؟ أدخل عنوان بريدك الإلكتروني و سنرسل لك تعليمات ضبط كلمة سر "
 "جديدة."
 
 #: templates/registration/password_reset_form.html:19
@@ -3090,7 +3138,7 @@ msgstr "عنوان البريد الإلكتروني"
 #: templates/registration/registration_complete.html:8
 #: templates/registration/registration_complete.html:13
 msgid "Registration Complete"
-msgstr "تم التسجيل بنجاح"
+msgstr "تم التسجيل"
 
 #: templates/registration/registration_complete.html:14
 msgid "Please check your email to activate your account."
@@ -3098,11 +3146,11 @@ msgstr "راجع بريدك الإلكتروني، ستصلك رسالة لتف�
 
 #: templates/registration/registration_form.html:12
 msgid "Register a New Pootle Account"
-msgstr "سجل حساب مستخدم جديد على بوتل"
+msgstr "سجّل حساب مستخدم جديد على بوتل"
 
 #: templates/registration/registration_form.html:13
 msgid "Fill in the following form to get started translating."
-msgstr "املئ الإستمارة التالي لتبدأ الترجمة."
+msgstr "املأ الاستمارة التالية لتبدأ الترجمة."
 
 #: templates/registration/registration_form.html:35
 msgid "Password (again)"
@@ -3110,15 +3158,15 @@ msgstr "كلمة السر (تأكيد)"
 
 #: templates/registration/registration_form.html:42
 msgid "Make sure to read the following:"
-msgstr ""
+msgstr "احرص على قراءة مايلي:"
 
 #: templates/registration/registration_form.html:56
 msgid "Already have an account?"
-msgstr "لديك حساب بالفعل؟"
+msgstr "ألديك حساب بالفعل؟"
 
 #: templates/registration/registration_form.html:57
 msgid "Log In."
-msgstr "ادخل."
+msgstr "لِج."
 
 #~ msgid "Overall Completion"
 #~ msgstr "مدى اكتمال الترجمة"
@@ -3223,8 +3271,8 @@ msgstr "ادخل."
 #~ "website</a>."
 #~ msgstr ""
 #~ "هذا الموقع يعمل ببوتل &mdash; برمجية وب متقدمة تهدف لتسهيل ادارة فريق ترجمة "
-#~ "و تمكين العمل التشاركي و التعاون بين المترجمين. هذه برنامج حر مفتوح المصدر، "
-#~ "يمكن لأي أحد أن يتسخدمه و أن يساهم في اثراء مجتمع مستخدمي و مطوري بوتل. "
+#~ "و تمكين العمل التشاركي و التعاون بين المترجمين. هذه برنامج حر مفتوح المصدر، "
+#~ "يمكن لأي أحد أن يتسخدمه و أن يساهم في اثراء مجتمع مستخدمي و مطوري بوتل. "
 #~ "لمزيد من المعلومات طالع <a href=\"http://translate.sourceforge.net/\">صفحة "
 #~ "المشروع</a>."
 
@@ -3381,7 +3429,7 @@ msgstr "ادخل."
 #~ "</div>"
 
 #~ msgid "Quality checks and review suggestions"
-#~ msgstr "اختبارات الجودة و مراجعة الترجمات المقترحة"
+#~ msgstr "اختبارات الجودة و مراجعة الترجمات المقترحة"
 
 #~ msgid "Administrate your project files"
 #~ msgstr "أدر ملفات المشروع"
@@ -3413,7 +3461,7 @@ msgstr "ادخل."
 #~ "also want to <a href=\"?scan_files=1\">rescan the project files</a> or <a "
 #~ "href=\"?template_update=1\">update the files from templates</a>."
 #~ msgstr ""
-#~ "يمكنك حذف ملفات مشروع الترجمة. كما يمكنك <a href=\"?scan_files=1\">اعادة مسح و "
+#~ "يمكنك حذف ملفات مشروع الترجمة. كما يمكنك <a href=\"?scan_files=1\">اعادة مسح و "
 #~ "اكتشاف الملفات</a> أو <a href=\"?template_update=1\">تحديث الملفات من قوالب "
 #~ "الترجمة</a>."
 

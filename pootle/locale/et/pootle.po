@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-03-09 14:36+0000\n"
+"PO-Revision-Date: 2013-03-14 18:53+0000\n"
 "Last-Translator: AivoK <aivoke@hot.ee>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: et\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1362839793.0\n"
+"X-POOTLE-MTIME: 1363287197.0\n"
 
 #: strings.py:8
 msgid ""
@@ -2617,7 +2617,7 @@ msgstr "Tõlkeprojekti peamine leht"
 
 #: templates/tp_menu.html:5
 msgid "Translation project news"
-msgstr ""
+msgstr "Tõlkeprojekti uudised"
 
 #: templates/tp_menu.html:6
 msgid "Translate this project"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 0.11\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-03-03 16:38+0000\n"
+"PO-Revision-Date: 2013-03-16 07:19+0000\n"
 "Last-Translator: Ákos <nagy.akos@libreoffice.ro>\n"
 "Language-Team: Romanian\n"
 "Language: ro\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1362328690.0\n"
+"X-POOTLE-MTIME: 1363418356.0\n"
 
 #: strings.py:8
 msgid ""
@@ -229,8 +229,8 @@ msgstr "URL"
 #: apps/legalpages/models.py:40
 msgid "If set, any references to this legal page will redirect to this URL"
 msgstr ""
-"Dacă setat, orice referință la această pagină legală va redirecționa către "
-"acest URL"
+"Dacă e selectat, orice referință la această pagină va redirecționată către "
+"URL-ul introdus:"
 
 #. Translators: See http://en.wikipedia.org/wiki/Slug_%28web_publishing%29#Slug
 #: apps/legalpages/models.py:43
