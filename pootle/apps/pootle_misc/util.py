@@ -26,7 +26,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.paginator import Paginator
 from django.http import HttpResponseBadRequest
-from django.utils import simplejson, timezone, tzinfo
+from django.utils import simplejson, timezone
 from django.utils.encoding import force_unicode, iri_to_uri
 from django.utils.functional import Promise
 

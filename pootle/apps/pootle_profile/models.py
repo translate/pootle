@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2012 Zuza Software Foundation
+# Copyright 2008-2013 Zuza Software Foundation
 #
 # This file is part of translate.
 #
@@ -18,8 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-
-import locale
 
 from hashlib import md5
 

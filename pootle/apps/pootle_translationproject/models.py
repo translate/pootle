@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009-2012 Zuza Software Foundation
+# Copyright 2009-2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -24,7 +24,6 @@ import os
 
 from django.conf import settings
 from django.contrib import messages
-from django.core.exceptions import PermissionDenied
 from django.db import models, IntegrityError
 from django.db.models.signals import post_save
 from django.utils.encoding import force_unicode

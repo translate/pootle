@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009-2012 Zuza Software Foundation
+# Copyright 2009-2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -27,9 +27,8 @@ try:
 except ImportError:
     # Django 1.5+
     from django.template.loaders.app_directories import Loader
-from django.utils import timezone
 from django.utils.safestring import mark_safe
-from django.utils.translation import ugettext as _, ungettext
+from django.utils.translation import ugettext as _
 
 from translate.misc.multistring import multistring
 

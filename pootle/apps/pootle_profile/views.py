@@ -29,13 +29,10 @@ from profiles.views import edit_profile
 from registration.forms import RegistrationForm
 from registration.views import register as original_register
 
-from pootle_app.models import Directory
-from pootle_app.models.permissions import check_profile_permission
 from pootle_misc.baseurl import redirect
 from staticpages.forms import agreement_form_factory
 from staticpages.models import LegalPage
 
-from .models import get_profile
 from .forms import (UserForm, lang_auth_form_factory,
                     pootle_profile_form_factory)
 
