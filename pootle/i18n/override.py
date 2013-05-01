@@ -31,6 +31,7 @@ from django.utils.translation import trans_real
 
 from translate.lang import data
 
+from pootle.i18n import bidi
 from pootle.i18n import gettext
 
 
@@ -62,19 +63,21 @@ def supported_langs():
             pass
     return settings.LANGUAGES
 
-
 def lang_choices():
     """Generated locale choices for drop down lists in forms."""
     choices = []
     for code, name in supported_langs():
         name = data.tr_lang(translation.to_locale('en'))(name)
         tr_name = data.tr_lang(translation.to_locale(code))(name)
+        # We have to use the bidi.insert_embeding() to ensure that brackets
+        # in the English part of the name is rendered correctly in an RTL
+        # layout like Arabic. We can't use markup because this is used
+        # inside an option tag.
         if tr_name != name:
-            # We have to use the LRO (left-to-right override) to ensure that
-            # brackets in the English part of the name is rendered correctly
-            # in an RTL layout like Arabic. We can't use markup because this
-            # is used inside an option tag.
-            name = u"%s | \u202d%s" % (tr_name, name)
+            name = u"%s | %s" % (bidi.insert_embeding(tr_name),
+                                 bidi.insert_embeding(name))
+        else:
+            name = bidi.insert_embeding(name)
         choices.append((code, name))
 
     choices.sort(cmp=locale.strcoll, key=lambda choice: unicode(choice[1]))

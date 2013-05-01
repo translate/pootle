@@ -28,11 +28,4 @@
 {% endblock %}
 
 {% block scripts_extra %}
-{% if LANGUAGE_BIDI %}
-<script type="text/javascript">
-$(function() {
-  $("select#id_ui_lang option").filter(":not([dir])").bidi();
-});
-</script>
-{% endif %}
 {% endblock %}
