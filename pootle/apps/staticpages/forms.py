@@ -19,13 +19,13 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-
 from django import forms
 from django.core.urlresolvers import reverse
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
 from .models import Agreement
+
 
 def agreement_form_factory(pages, user, base_class=forms.Form):
     """Factory that builds an agreement form.
