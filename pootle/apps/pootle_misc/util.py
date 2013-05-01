@@ -123,7 +123,7 @@ class PootleJSONEncoder(simplejson.JSONEncoder):
         if isinstance(obj, Promise) or isinstance(obj, Markup):
             return force_unicode(obj)
 
-        return super(PootleEncoder, self).default(obj)
+        return super(PootleJSONEncoder, self).default(obj)
 
 
 def jsonify(obj):
