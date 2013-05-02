@@ -27,6 +27,7 @@ from pootle_app.models.permissions import check_permission
 from pootle_misc import dispatch
 from pootle_misc.baseurl import l
 from pootle_misc.versioncontrol import hasversioning
+from pootle.scripts import actions
 
 
 # FIXME: Replace dispatch.* calls by django.core.urlresolvers.reverse
@@ -263,6 +264,16 @@ def action_groups(request, path_obj, **kwargs):
                     ]
         },
     ]
+
+    for ext in actions.ExtensionAction.instances():
+        group = ext.category.lower().replace(' ', '-')
+        for grp in groups:
+            if grp['group'] == group:
+                grp['actions'].append(ext.get_link_func())
+                break
+        else:
+            groups.append({'group': group, 'group_display': _(ext.category),
+                           'actions': ext.get_link_func()})
 
     for group in groups:
         action_links = _gen_link_list(request, path_obj, group['actions'],

@@ -1,15 +1,33 @@
 #!/usr/bin/env python
-"""
+# -*- coding: utf-8 -*-
+#
+# Copyright 2013 Zuza Software Foundation
+#
+# This file is part of Pootle.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-Dynamic loading and registration for user (administrator)-provided extension
-actions.
-
-"""
+""" Support for user (administrator)-provided extension actions. """
 
 import logging
 import os
 import pkgutil
 import sys
+
+from django.utils.translation import ugettext as _
+
+from pootle_misc.baseurl import l
 
 EXTDIR = 'ext_actions'
 
@@ -43,16 +61,16 @@ class ExtensionAction(object):
             if dirmod not in sys.modules:
                 __import__(dirmod)
 
-            for importer, package_name, _ in pkgutil.iter_modules([dirname]):
+            for importer, package_name, _x in pkgutil.iter_modules([dirname]):
                 full_package_name = '.'.join(dirname.split(os.path.sep) +
                                              [package_name])
                 if full_package_name not in sys.modules:
                     try:
                         importer.find_module(package_name).load_module(
                             full_package_name)
-                    except StandardError, e:
-                        logging.error("bad extension action module %s: %s",
-                                      package_name, repr(e))
+                    except StandardError:
+                        logging.exception("bad extension action module %s",
+                                          package_name)
                     else:
                         logging.info("loaded extension action module %s",
                                      full_package_name)
@@ -125,6 +143,22 @@ class ExtensionAction(object):
     def returnfile(self, stream):
         """Display link to a file containing results"""
         # display link to results file
+
+    def get_link_func(self):
+        """Return a link_func for use by pootle_translationproject.actions"""
+        def link_func(_request, path_obj, **_kwargs):
+            """
+            <<< print ExtensionAction('abc', 'def').get_link_func()('a',
+                    )
+            """
+            link = {'text': _(self.title),
+                    'href': l(path_obj.pootle_path + '/' + EXTDIR)}
+            if type(self).icon:
+                link['icon'] = type(self).icon
+            if type(self).__doc__:
+                link['tooltip'] = type(self).__doc__
+            return link
+        return link_func
 
 
 class ProjectAction(ExtensionAction):
