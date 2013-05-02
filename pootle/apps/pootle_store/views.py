@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2010-2012 Zuza Software Foundation
+# Copyright 2010-2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -354,7 +354,9 @@ def get_step_query(request, units_queryset):
         if unit_filter:
             match_queryset = units_queryset.none()
 
-            if unit_filter == 'translated':
+            if unit_filter == 'all':
+                match_queryset = units_queryset
+            elif unit_filter == 'translated':
                 match_queryset = units_queryset.filter(state=TRANSLATED)
             elif unit_filter == 'untranslated':
                 match_queryset = units_queryset.filter(state=UNTRANSLATED)
