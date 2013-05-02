@@ -1,8 +1,8 @@
-#
-# Example "hello, world" extension action
-#
+#!/usr/bin/env python
+""" Example "hello, world" extension action """
 
-from pootle.scripts.actions import *
+from pootle.scripts.actions import ProjectAction
+
 
 class HelloAction(ProjectAction):
     """
@@ -10,7 +10,8 @@ class HelloAction(ProjectAction):
     """
 
     def run(self, **kwargs):
-        super(type(self), self).run(**kwargs)
+        """Say hello when the user clicks the link"""
+        super(HelloAction, self).run(**kwargs)
         self.showoutput("Hello, world!")
 
-hello = HelloAction(category="Other actions", title="Say hello")
+HelloAction.hello = HelloAction(category="Other actions", title="Say hello")
