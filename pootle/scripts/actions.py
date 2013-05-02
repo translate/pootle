@@ -145,16 +145,22 @@ class ExtensionAction(object):
         # display link to results file
 
     def get_link_func(self):
-        """Return a link_func for use by pootle_translationproject.actions"""
+        """Return a link_func for use by pootle_translationproject.actions
+
+        >>> s = ExtensionAction('a', 'b')
+        >>> setattr(s, 'pootle_path', '/pootle')  # simulate path_obj
+        >>> d = s.get_link_func()('GET', s)
+        >>> assert d['text'] == u'b'
+        >>> assert d['href'] == '/pootle/' + EXTDIR
+        >>> assert 'tooltip' in d
+        >>> assert 'icon' not in d
+        """
         def link_func(_request, path_obj, **_kwargs):
-            """
-            <<< print ExtensionAction('abc', 'def').get_link_func()('a',
-                    )
-            """
+            """Curried link function with self bound from instance method"""
             link = {'text': _(self.title),
                     'href': l(path_obj.pootle_path + '/' + EXTDIR)}
-            if type(self).icon:
-                link['icon'] = type(self).icon
+            if getattr(self, 'icon', None):
+                link['icon'] = getattr(self, 'icon')
             if type(self).__doc__:
                 link['tooltip'] = type(self).__doc__
             return link
