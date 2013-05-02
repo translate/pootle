@@ -27,6 +27,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
+from django.db.models import Q
 from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
@@ -327,25 +328,6 @@ def get_search_step_query(translation_project, form, units_queryset):
 
 def get_step_query(request, units_queryset):
     """Narrows down unit query to units matching conditions in GET."""
-    if 'unitstates' in request.GET:
-        unitstates = request.GET['unitstates'].split(',')
-
-        if unitstates:
-            state_queryset = units_queryset.none()
-
-            for unitstate in unitstates:
-                if unitstate == 'untranslated':
-                    state_queryset = state_queryset | \
-                                     units_queryset.filter(state=UNTRANSLATED)
-                elif unitstate == 'translated':
-                    state_queryset = state_queryset | \
-                                     units_queryset.filter(state=TRANSLATED)
-                elif unitstate == 'fuzzy':
-                    state_queryset = state_queryset | \
-                                     units_queryset.filter(state=FUZZY)
-
-            units_queryset = state_queryset
-
     if 'checks' in request.GET:
         checks = request.GET['checks'].split(',')
 
@@ -372,7 +354,17 @@ def get_step_query(request, units_queryset):
         if unit_filter:
             match_queryset = units_queryset.none()
 
-            if unit_filter == 'suggestions':
+            if unit_filter == 'translated':
+                match_queryset = units_queryset.filter(state=TRANSLATED)
+            elif unit_filter == 'untranslated':
+                match_queryset = units_queryset.filter(state=UNTRANSLATED)
+            elif unit_filter == 'fuzzy':
+                match_queryset = units_queryset.filter(state=FUZZY)
+            elif unit_filter == 'incomplete':
+                match_queryset = units_queryset.filter(
+                    Q(state=UNTRANSLATED) | Q(state=FUZZY),
+                )
+            elif unit_filter == 'suggestions':
                 #FIXME: is None the most efficient query
                 match_queryset = units_queryset.exclude(suggestion=None)
             elif unit_filter == 'user-suggestions':
@@ -629,8 +621,8 @@ def get_view_units_store(request, store, limit=0):
 
 def _is_filtered(request):
     """Checks if unit list is filtered."""
-    return ('unitstates' in request.GET or 'filter' in request.GET or
-            'checks' in request.GET or 'user' in request.GET or
+    return ('filter' in request.GET or 'checks' in request.GET or
+            'user' in request.GET or
             ('search' in request.GET and 'sfields' in request.GET))
 
 

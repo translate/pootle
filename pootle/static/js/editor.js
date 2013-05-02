@@ -899,24 +899,11 @@
         reqData.sfields = this.searchFields;
         break;
 
-      case "suggestions":
-      case "user-suggestions":
-      case "user-suggestions-accepted":
-      case "user-suggestions-rejected":
-      case "user-submissions":
-      case "user-submissions-overwritten":
-        reqData.filter = this.filter;
-        break;
-
       case "all":
         break;
 
-      case "incomplete":
-        reqData.unitstates = "untranslated,fuzzy";
-        break;
-
       default:
-        reqData.unitstates = this.filter;
+        reqData.filter = this.filter;
         break;
     }
 
