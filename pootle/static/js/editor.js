@@ -415,6 +415,9 @@
               $(this).removeAttr("checked");
             }
           });
+
+          // Remove any possible applied checks
+          $('#filter-checks').remove();
         }
 
         // re-enable normal event handling
