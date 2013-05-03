@@ -5,13 +5,13 @@ python:
   - 2.6
   - 2.7
 env:
-  - DJANGO_VERSION=1.3.7
+  - DJANGO_VERSION=1.3
   - DJANGO_VERSION=1.4.5
 install:
   - pip install --use-mirrors Django==$DJANGO_VERSION
   - pip install -r requirements/build.txt --use-mirrors
 script:
-  - make build
+  - make build TAIL='|tail -40'
   - ./manage.py runserver &
   - TESTPID=$!
   - sleep 100
