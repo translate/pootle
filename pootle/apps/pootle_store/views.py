@@ -21,8 +21,6 @@
 import os
 import logging
 
-from functools import wraps
-
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.cache import cache
@@ -53,6 +51,7 @@ from pootle_profile.models import get_profile
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 
+from .decorators import get_store_context, get_unit_context
 from .models import Store, Unit
 from .forms import (unit_comment_form_factory, unit_form_factory,
                     highlight_whitespace)
@@ -61,73 +60,6 @@ from .templatetags.store_tags import (highlight_diffs, pluralize_source,
                                       pluralize_target)
 from .util import (UNTRANSLATED, FUZZY, TRANSLATED, STATES_MAP,
                    absolute_real_path, find_altsrcs, get_sugg_list)
-
-
-def _common_context(request, translation_project, permission_codes):
-    """Adds common context to request object and checks permissions."""
-    request.translation_project = translation_project
-    request.profile = get_profile(request.user)
-    request.permissions = get_matching_permissions(request.profile,
-                                                   translation_project.directory)
-    if not permission_codes:
-        # skip checking permissions
-        return
-
-    if isinstance(permission_codes, basestring):
-        permission_codes = [permission_codes]
-    for permission_code in permission_codes:
-        if not check_permission(permission_code, request):
-            raise PermissionDenied(_("Insufficient rights to this translation project."))
-
-
-def get_store_context(permission_codes):
-
-    def wrap_f(f):
-
-        @wraps(f)
-        def decorated_f(request, pootle_path, *args, **kwargs):
-            if pootle_path[0] != '/':
-                pootle_path = '/' + pootle_path
-            try:
-                store = Store.objects.select_related('translation_project',
-                                                     'parent') \
-                                     .get(pootle_path=pootle_path)
-            except Store.DoesNotExist:
-                raise Http404
-
-            _common_context(request, store.translation_project, permission_codes)
-            request.store = store
-            request.directory = store.parent
-
-            return f(request, store, *args, **kwargs)
-
-        return decorated_f
-
-    return wrap_f
-
-
-def get_unit_context(permission_codes):
-
-    def wrap_f(f):
-
-        @wraps(f)
-        def decorated_f(request, uid, *args, **kwargs):
-            unit = get_object_or_404(
-                    Unit.objects.select_related("store__translation_project",
-                                                "store__parent"),
-                    id=uid,
-            )
-            _common_context(request, unit.store.translation_project,
-                            permission_codes)
-            request.unit = unit
-            request.store = unit.store
-            request.directory = unit.store.parent
-
-            return f(request, unit, *args, **kwargs)
-
-        return decorated_f
-
-    return wrap_f
 
 
 @get_store_context('view')
