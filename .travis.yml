@@ -17,7 +17,7 @@ install:
   - pip install --use-mirrors Django==$DJANGO_VERSION --timeout=240
   - pip install -r requirements/build.txt --use-mirrors --timeout=240
 script:
-  - make build
+  - make build TAIL='|tail -40'
   - ./manage.py runserver &
   - TESTPID=$!
   - sleep 100
