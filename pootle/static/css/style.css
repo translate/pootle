@@ -2004,7 +2004,6 @@ html[dir="rtl"] #search
 
     min-width: inherit;
     min-height: inherit;
-    background: transparent;
     border: 0 none;
 
     -webkit-box-shadow: none;
@@ -2014,6 +2013,12 @@ html[dir="rtl"] #search
     -webkit-border-radius: 0;
        -moz-border-radius: 0;
             border-radius: 0;
+}
+
+.btn-search,
+.btn-search:hover
+{
+    background: transparent;
 }
 
 .search-fields
