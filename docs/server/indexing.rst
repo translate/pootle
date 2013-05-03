@@ -71,7 +71,7 @@ Xapian
   - For debian: ``apt-get install python-xapian xapian-tools``
 
 The Xapian tools packaged is required for the *xapian-check* command which
-is used to determines whether the Xapian version is compatable with Pootle.
+is used to determines whether the Xapian version is compatible with Pootle.
 
 
 .. _indexing#debugging:
