@@ -260,17 +260,6 @@ def get_search_step_query(translation_project, form, units_queryset):
 
 def get_step_query(request, units_queryset):
     """Narrows down unit query to units matching conditions in GET."""
-    if 'checks' in request.GET:
-        checks = request.GET['checks'].split(',')
-
-        if checks:
-            checks_queryset = units_queryset.filter(
-                qualitycheck__false_positive=False,
-                qualitycheck__name__in=checks
-            )
-
-            units_queryset = checks_queryset
-
     if 'filter' in request.GET:
         unit_filter = request.GET['filter']
         username = request.GET.get('user', None)
@@ -332,6 +321,15 @@ def get_step_query(request, units_queryset):
                 match_queryset = units_queryset.filter(
                         submission__submitter=profile,
                     ).exclude(submitted_by=profile).distinct()
+            elif unit_filter == 'checks' and 'checks' in request.GET:
+                checks = request.GET['checks'].split(',')
+
+                if checks:
+                    match_queryset = units_queryset.filter(
+                        qualitycheck__false_positive=False,
+                        qualitycheck__name__in=checks
+                    )
+
 
             units_queryset = match_queryset
 

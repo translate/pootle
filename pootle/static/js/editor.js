@@ -334,11 +334,16 @@
         }
 
         if ('filter' in params) {
-          var a = params['filter'].split(',');
+          var filterName = params['filter'];
 
           // Set current state
-          PTL.editor.filter = a.shift();
-          PTL.editor.checks = (PTL.editor.filter == "checks") ? a : [];
+          PTL.editor.filter = filterName;
+
+          if (filterName === 'checks' && 'checks' in params) {
+            PTL.editor.checks = params['checks'].split(',');
+          } else {
+            PTL.editor.checks = [];
+          }
         }
 
         // Only accept the user parameter for 'user-*' filters
@@ -892,6 +897,7 @@
     switch (this.filter) {
 
       case "checks":
+        reqData.filter = this.filter;
         if (this.checks.length) {
           reqData.checks = this.checks.join(",");
         }
@@ -1561,7 +1567,7 @@
     var filterBy = $("option:selected", this).val();
 
     if (filterBy != "none") {
-      var newHash = "filter=checks," + filterBy;
+      var newHash = "filter=checks&checks=" + encodeURIComponent(filterBy);
       $.history.load(newHash);
     }
   },
