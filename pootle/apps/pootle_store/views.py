@@ -52,15 +52,15 @@ from pootle_misc.util import paginate, ajax_required, jsonify
 from pootle_profile.models import get_profile
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
-from pootle_store.models import Store, Unit
-from pootle_store.forms import (unit_comment_form_factory, unit_form_factory,
-                                highlight_whitespace)
-from pootle_store.signals import translation_submitted
-from pootle_store.templatetags.store_tags import (highlight_diffs,
-                                                  pluralize_source,
-                                                  pluralize_target)
-from pootle_store.util import (UNTRANSLATED, FUZZY, TRANSLATED, STATES_MAP,
-                               absolute_real_path, find_altsrcs, get_sugg_list)
+
+from .models import Store, Unit
+from .forms import (unit_comment_form_factory, unit_form_factory,
+                    highlight_whitespace)
+from .signals import translation_submitted
+from .templatetags.store_tags import (highlight_diffs, pluralize_source,
+                                      pluralize_target)
+from .util import (UNTRANSLATED, FUZZY, TRANSLATED, STATES_MAP,
+                   absolute_real_path, find_altsrcs, get_sugg_list)
 
 
 def _common_context(request, translation_project, permission_codes):
