@@ -41,7 +41,7 @@ include `git <http://git-scm.org>`_ and a `Python interpreter
 <http://www.pip-installer.org/>`_. Consult the specifics for your operating
 system in order to get each package installed successfully.
 
-Once you have the minimums in place, you will need to install Pootle's
+Once you have the basic requirements in place, you will need to install Pootle's
 dependencies, which come in shape of Python packages. Instead of installing
 them system-wide, we recommend using `virtualenv <http://www.virtualenv.org>`_
 (and `virtualenvwrapper
@@ -50,7 +50,7 @@ management of multiple virtualenvs). This way you can install all the
 dependencies at specific versions without interfering with system-wide
 packages. You can test on different Python/Django versions in parallel as well.
 
-For the impatients:
+For the impatient:
 
 .. code-block:: bash
 
@@ -59,7 +59,10 @@ For the impatients:
     (env-name) $ git clone https://github.com/translate/pootle.git
     (env-name) $ cd pootle
     (env-name) $ pip install -r requirements/dev.txt
+    (env-name) $ python manage.py collectstatic --noinput
+    (env-name) $ python manage.py assets build
     (env-name) $ python manage.py runserver
+
 
 That will leave you with a Pootle development server up and running ready to
 start hacking!
@@ -170,6 +173,12 @@ schema and add initial data.
     (env-name) $ python manage.py syncdb --noinput
     (env-name) $ python manage.py migrate
     (env-name) $ python manage.py initdb
+
+You have to excute the following commands to manage static content such as images, CSS and Javascript files that are served by 
+the Pootle server.
+
+    (env-name) $ python manage.py collectstatic --noinput
+    (env-name) $ python manage.py assets build
 
 Finally, just run the development server.
 
