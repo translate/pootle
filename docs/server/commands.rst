@@ -381,11 +381,11 @@ This is Pootle's install process, it creates the default *admin* user, populates
 the language table with several languages with their correct fields, initializes
 several terminology projects, and creates the tutorial project.
 
-``initdb`` can only be run after :ref:`commands#syncdb`.
+``initdb`` can only be run after :ref:`commands#syncdb` and :ref:`commands#migrate`.
 
 .. note:: ``initdb`` will not import translations into the database, so the
   first visit to Pootle after ``initdb`` will be very slow. **It is
-  best to run refresh_stats immediately after initdb**.
+  best to run :ref:`commands#refresh_stats` immediately after initdb**.
 
 
 .. _commands#updatedb:
@@ -429,6 +429,26 @@ very expensive**.
 For detailed instructions on upgrading, read the :ref:`upgrading` section
 of the documentation.
 
+
+.. _commands#collectstatic:
+
+collectstatic
+^^^^^^^^^^^^^
+
+Running the Django admin :ref:`django:staticfiles#collectstatic` command finds
+and extracts static content such as images, CSS and JavaScript files used by 
+the Pootle server, so that they can be served separately from a static
+webserver.  Typically, this is run with the `--clear --noinput` options, to
+flush any existing static data and use default answers for the content finders.
+
+.. _commands#assets:
+
+assets
+^^^^^^
+
+Pootle uses the Django app `django-assets`_ interface of `webassets` to minify
+and bundle CSS and JavaScript; this app has a management command that is used
+to make these preparations using the command ``assets build``.
 
 .. _commands#useful_django_commands:
 
@@ -506,3 +526,7 @@ If you are running Pootle from a virtualenv, or if you set any custom
 bash script that creates the correct environment for your command to run from.
 Call this script then from cron. It shouldn't be necessary to specify the
 settings file for Pootle — it should automatically be detected.
+
+.. _django-assets: http://elsdoerfer.name/docs/django-assets/
+
+.. _webassets: http://elsdoerfer.name/docs/webassets/
