@@ -24,7 +24,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.db.transaction import commit_on_success
 
-from pootle_app.views.language.view import get_translation_project
+from pootle.core.decorators import get_translation_project
 from pootle_app.views.admin import util
 from pootle_store.models import Store, Unit, PARSED, LOCKED
 

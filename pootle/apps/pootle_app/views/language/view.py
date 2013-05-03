@@ -18,53 +18,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from functools import wraps
-
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext as _
 
+from pootle.core.decorators import (get_translation_project,
+                                    set_request_context)
 from pootle_app.models.directory import Directory
-from pootle_app.models.permissions import (get_matching_permissions,
-                                           check_permission)
+from pootle_app.models.permissions import check_permission
 from pootle_misc.baseurl import redirect
-from pootle_profile.models import get_profile
 from pootle_store.models import Store
 from pootle_store.views import (translate_page, get_failing_checks,
                                 get_view_units)
-from pootle_translationproject.models import TranslationProject
-
-
-def get_translation_project(f):
-
-    @wraps(f)
-    def decorated_f(request, language_code, project_code, *args, **kwargs):
-        translation_project = get_object_or_404(
-            TranslationProject,
-            language__code=language_code,
-            project__code=project_code
-        )
-
-        return f(request, translation_project, *args, **kwargs)
-
-    return decorated_f
-
-
-def set_request_context(f):
-
-    @wraps(f)
-    def decorated_f(request, translation_project, *args, **kwargs):
-        # For now, all permissions in a translation project are
-        # relative to the root of that translation project.
-        request.profile = get_profile(request.user)
-        request.permissions = get_matching_permissions(
-            request.profile, translation_project.directory
-        )
-        request.translation_project = translation_project
-
-        return f(request, translation_project, *args, **kwargs)
-
-    return decorated_f
 
 
 @get_translation_project

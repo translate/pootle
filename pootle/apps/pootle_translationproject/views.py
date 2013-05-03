@@ -34,6 +34,8 @@ from django.template import loader, RequestContext
 from django.utils.encoding import iri_to_uri
 from django.utils.translation import ugettext_lazy, ugettext as _
 
+from pootle.core.decorators import (get_translation_project,
+                                    set_request_context)
 from pootle_app.lib import view_handler
 from pootle_app.models.permissions import (get_matching_permissions,
                                            check_permission)
@@ -43,8 +45,6 @@ from pootle_app.project_tree import (ensure_target_dir_exists,
                                      direct_language_match_filename)
 from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
-from pootle_app.views.language.view import (get_translation_project,
-                                            set_request_context)
 from pootle_app.views.top_stats import gentopstats_translation_project
 from pootle_misc.baseurl import redirect
 from pootle_misc.browser import get_children, get_table_headings
