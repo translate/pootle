@@ -12,6 +12,20 @@ install:
   - pip install -r requirements/build.txt --use-mirrors
 script:
   - make build TAIL='|tail -40'
+  - ./manage.py --version
+  - ./manage.py syncdb --noinput
+  - ./manage.py initdb
+  - ./manage.py update_against_templates
+  - ./manage.py update_translation_projects --cleanup
+  - ./manage.py list_projects
+  - ./manage.py list_languages --project terminology
+  # need to get change id past 0 for *_stores to do anything interesting?
+  - ./manage.py sync_stores
+  - ./manage.py update_stores
+  # these get DoesNotExist exception if there are no changes
+  #- ./manage.py latest_change_id
+  #- ./manage.py list_languages --modified-since 0
+  - ./manage.py refresh_stats
   - ./manage.py runserver &
   - TESTPID=$!
   - sleep 100
