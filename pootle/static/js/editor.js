@@ -389,14 +389,14 @@
         // disable navigation on UI toolbar events to prevent data reload
         PTL.editor.preventNavigation = true;
 
-        $("#filter-status select [value='" + PTL.editor.filter + "']").attr("selected", "selected");
+        $('#filter-status select').select2('val', PTL.editor.filter);
         if (PTL.editor.filter == "checks") {
           // if the checks selector is empty (i.e. the 'change' event was not fired
           // because the selection did not change), force the update to populate the selector
           if (!$("#filter-checks").length) {
             PTL.editor.filterStatus();
           }
-          $("#filter-checks select [value='" + PTL.editor.checks[0] + "']").attr("selected", "selected");
+          $('#filter-checks select').select2('val', PTL.editor.checks[0]);
         }
 
         if (PTL.editor.filter == "search") {
@@ -1598,8 +1598,7 @@
         });
       } else { // No results
         PTL.editor.displayMsg(gettext("No results."));
-        $("#filter-status option[value=" + PTL.editor.filter + "]")
-          .attr("selected", "selected");
+        $('#filter-status select').select2(PTL.editor.filter);
       }
     } else { // Normal filtering options (untranslated, fuzzy...)
       $("#filter-checks").remove();
