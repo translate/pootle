@@ -172,7 +172,7 @@ class NoArgsCommandMixin(NoArgsCommand):
 class ModifiedSinceMixin(object):
     option_modified_since = (
         make_option('--modified-since', action='store', dest='modified_since',
-                default=0, type=int,
+                type=int,
                 help="Only process translations newer than CHANGE_ID "
                      "(as given by latest_change_id)"),
         )
@@ -182,10 +182,11 @@ class ModifiedSinceMixin(object):
         self.__class__.option_list += self.__class__.option_modified_since
 
     def handle_noargs(self, **options):
-        change_id = options.get('modified_since', 0)
+        change_id = options.get('modified_since', None)
 
-        if change_id == 0:
-            logging.info(u"Change ID is zero, ignoring altogether.")
+        if not change_id:
+            if change_id == 0:
+                logging.info(u"Change ID is zero, no modified-since filtering.")
             options.pop('modified_since')
         elif change_id < 0:
             logging.error(u"Change IDs must be positive integers.")
