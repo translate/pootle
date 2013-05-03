@@ -19,14 +19,15 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.conf import settings
-from django.utils.translation import ugettext as _
+from django.db.transaction import commit_on_success
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.db.transaction import commit_on_success
+from django.utils.translation import ugettext as _
 
 from pootle.core.decorators import get_translation_project
 from pootle_app.views.admin import util
 from pootle_store.models import Store, Unit, PARSED, LOCKED
+
 
 def create_termunit(term, unit, targets, locations, sourcenotes, transnotes, filecounts):
     termunit = Unit()
