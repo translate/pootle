@@ -328,7 +328,7 @@ def get_step_query(request, units_queryset):
                     match_queryset = units_queryset.filter(
                         qualitycheck__false_positive=False,
                         qualitycheck__name__in=checks
-                    )
+                    ).distinct()
 
 
             units_queryset = match_queryset
