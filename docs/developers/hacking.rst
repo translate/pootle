@@ -41,16 +41,16 @@ include `git <http://git-scm.org>`_ and a `Python interpreter
 <http://www.pip-installer.org/>`_. Consult the specifics for your operating
 system in order to get each package installed successfully.
 
-Once you have the minimums in place, you will need to install Pootle's
-dependencies, which come in shape of Python packages. Instead of installing
-them system-wide, we recommend using `virtualenv <http://www.virtualenv.org>`_
-(and `virtualenvwrapper
+Once you have the basic requirements in place, you will need to install
+Pootle's dependencies, which come in shape of Python packages. Instead of
+installing them system-wide, we recommend using `virtualenv
+<http://www.virtualenv.org>`_ (and `virtualenvwrapper
 <http://www.doughellmann.com/projects/virtualenvwrapper/>`_ for easing the
 management of multiple virtualenvs). This way you can install all the
 dependencies at specific versions without interfering with system-wide
 packages. You can test on different Python/Django versions in parallel as well.
 
-For the impatients:
+For the impatient:
 
 .. code-block:: bash
 
