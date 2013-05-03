@@ -23,7 +23,7 @@ will run::
 Running WSGI servers
 --------------------
 
-There are multiple ways to run Pootle, and some of they rely on running WSGI
+There are multiple ways to run Pootle, and some of them rely on running WSGI
 servers that can be reverse proxied to a proper HTTP web server such as nginx
 or lighttpd.
 
@@ -85,7 +85,7 @@ tasks. The tasks are all available through the web interface but on a project
 by project or file by file basis.
 
 All commands in this category accept a ``--directory`` command line option that
-expects a path relative to the *po/* directory to limit it's action to.
+limits its action to a path relative to the *po/* directory.
 
 .. versionchanged:: 2.1.2
 
@@ -397,9 +397,10 @@ updatedb
 This is a command line interface to Pootle's database schema upgrade
 process.
 
-This will only perform schema upgrades from Pootle versions older than 2.5
-up to version 2.5. For newer versions South's :ref:`migrate command
-<south:commands>` must be used.
+This will only perform schema upgrades to version 2.5 from Pootle versions
+older than 2.5. To upgrade to version 2.5.1 and later South's
+:ref:`migrate command <south:commands>` must be used, after upgrading
+to version 2.5.
 
 For detailed instructions on upgrading, read the :ref:`upgrading` section
 of the documentation.

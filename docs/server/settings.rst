@@ -468,7 +468,7 @@ Deprecated Settings
 .. setting:: ENABLE_ALT_SRC
 
 ``ENABLE_ALT_SRC``
-  Defaut: ``True``
+  Default: ``True``
 
   .. deprecated:: 2.5
      Alternate source languages are now on by default. This ensures
