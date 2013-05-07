@@ -824,7 +824,7 @@
       var thePermalink = '';
     }
 
-    $("#editor-permalink").html(thePermalink);
+    $("#js-editor-permalink").html(thePermalink);
   },
 
   /*
