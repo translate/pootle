@@ -62,7 +62,7 @@ from pootle_store.util import absolute_real_path, relative_real_path
 from pootle_store.filetypes import factory_classes
 from pootle_tagging.forms import TagForm
 from pootle_translationproject.actions import action_groups
-from pootle.scripts.actions import EXTDIR, ExtensionAction
+from pootle.scripts.actions import EXTDIR, TranslationProjectAction
 
 
 @get_translation_project
@@ -236,13 +236,13 @@ class ProjectIndexView(view_handler.View):
         running = request.GET.get(EXTDIR, '')
         if running:
             try:
-                action = ExtensionAction.lookup(running)
+                action = TranslationProjectAction.lookup(running)
             except KeyError:
                 pass
             else:
-                action.run(str(project), str(language),
-                           str(store) if store else '*')
-                action_output = action.output()
+                action.run(project=str(project), language=str(language),
+                           store=(str(store) if store else '*'))
+                action_output = action.output
 
         template_vars.update({
             'translation_project': translation_project,

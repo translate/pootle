@@ -24,7 +24,7 @@ import logging
 import os
 import pkgutil
 import sys
-import weakref
+from urllib import unquote_plus, urlencode
 
 from django.utils.translation import ugettext as _
 
@@ -153,39 +153,36 @@ class ExtensionAction(object):
 
         return cls._instances[cls]
 
-    #: Dictionary mapping ExtensionAction instance ids to instances
-    #: (WeakValueDictionary used to allow GC to reclaim instances)
-    _lookup = weakref.WeakValueDictionary()
+    @classmethod
+    def lookup(cls, title):
+        """Find ExtensionAction (sub)class instance by title
 
-    @staticmethod
-    def lookup(oid):
-        """Find ExtensionAction (sub)class instance by id
+        .. classmethod:: lookup(title)
 
-        .. staticmethod:: lookup(oid)
-
-        This will return the instance for the specified id or raise KeyError
+        This will return the instance for the specified title or raise KeyError
         if it is not (any longer) in use.
 
-        :param oid: Object id (as returned by id())
-        :type oid: int
-        :returns: The instance with the specified id
+        :param title: URL-encoded (quoted) title
+        :type title: str
+        :returns: The first instance matching the title
         :rtype: ExtensionAction
-        :raises: KeyError
+        :raises: KeyError if no instance with title is found
 
         """
-        return ExtensionAction._lookup[oid]
+        for ext in cls.instances():
+            if ext.title == unquote_plus(title):
+                return ext
+        raise KeyError
 
     def __init__(self, category, title):
         """
         >>> a = ExtensionAction('a', 'b')
         >>> assert a in a.instances()
         >>> assert a in a.instances(rescan=True)
-        >>> assert a is a.lookup(id(a))
         """
         self._category = category
         self._title = title
         self._output = ''
-        self._lookup[id(self)] = self
         for cls in type(self).__mro__:
             if cls is not object:
                 if cls not in self._instances:
@@ -247,7 +244,7 @@ class ExtensionAction(object):
 
     def showoutput(self, stream):
         """Display results of action in the current page"""
-        # display output on the current page
+        self._output = stream
 
     def newpage(self, stream):
         """Display results of action on a results page"""
@@ -260,20 +257,19 @@ class ExtensionAction(object):
     def get_link_func(self):
         """Return a link_func for use by pootle_translationproject.actions
 
-        >>> s = ExtensionAction('a', 'b')
+        >>> s = ExtensionAction('a', 'boyo!')
         >>> setattr(s, 'pootle_path', '/pootle/')  # simulate path_obj
         >>> d = s.get_link_func()('GET', s)
-        >>> assert d['text'] == u'b'
-        >>> assert d['href'].startswith('/pootle/')
-        >>> assert str(id(s)) in d['href']
+        >>> assert d['text'] == u'boyo!'
+        >>> assert s.lookup(d['href'][d['href'].find('=') + 1:]) == s
         >>> assert 'tooltip' in d
         >>> assert 'icon' not in d
         """
         def link_func(_request, path_obj, **_kwargs):
             """Curried link function with self bound from instance method"""
             link = {'text': _(self.title),
-                    'href': l(''.join([path_obj.pootle_path, '?', EXTDIR, '=',
-                                      str(id(self))]))}
+                    'href': l(''.join([path_obj.pootle_path, '?',
+                                      urlencode({EXTDIR: self.title})]))}
             if getattr(self, 'icon', None):
                 link['icon'] = getattr(self, 'icon')
             if type(self).__doc__:
