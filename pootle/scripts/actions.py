@@ -24,6 +24,7 @@ import logging
 import os
 import pkgutil
 import sys
+import weakref
 
 from django.utils.translation import ugettext as _
 
@@ -152,14 +153,39 @@ class ExtensionAction(object):
 
         return cls._instances[cls]
 
+    #: Dictionary mapping ExtensionAction instance ids to instances
+    #: (WeakValueDictionary used to allow GC to reclaim instances)
+    _lookup = weakref.WeakValueDictionary()
+
+    @staticmethod
+    def lookup(oid):
+        """Find ExtensionAction (sub)class instance by id
+
+        .. staticmethod:: lookup(oid)
+
+        This will return the instance for the specified id or raise KeyError
+        if it is not (any longer) in use.
+
+        :param oid: Object id (as returned by id())
+        :type oid: int
+        :returns: The instance with the specified id
+        :rtype: ExtensionAction
+        :raises: KeyError
+
+        """
+        return ExtensionAction._lookup[oid]
+
     def __init__(self, category, title):
         """
         >>> a = ExtensionAction('a', 'b')
         >>> assert a in a.instances()
         >>> assert a in a.instances(rescan=True)
+        >>> assert a is a.lookup(id(a))
         """
         self._category = category
         self._title = title
+        self._output = ''
+        self._lookup[id(self)] = self
         for cls in type(self).__mro__:
             if cls is not object:
                 if cls not in self._instances:
@@ -199,8 +225,23 @@ class ExtensionAction(object):
         """The (unlocalized) text for the action link."""
         return self._title
 
+    @property
+    def output(self):
+        """Text from the last call to show_output()."""
+        return self._output
+
     def run(self, project='*', language='*', store='*'):
-        """Run an extension action: this base class implementation just logs"""
+        """Run an extension action: this base class implementation just logs
+
+        .. method:: run([project='*', language='*', store='*'])
+
+        :param project: Name of project, e.g. 'tutorial' (or '*')
+        :param project: str
+        :param language: Language code, e.g. 'af' (or '*')
+        :param language: str
+        :param store: Store name (filename) (or '*')
+        :param store: str
+        """
         logging.warning("%s lacks run(): %s for proj %s lang %s store %s",
                         type(self), self.title, project, language, store)
 
@@ -223,14 +264,16 @@ class ExtensionAction(object):
         >>> setattr(s, 'pootle_path', '/pootle/')  # simulate path_obj
         >>> d = s.get_link_func()('GET', s)
         >>> assert d['text'] == u'b'
-        >>> assert d['href'] == '/pootle/' + EXTDIR
+        >>> assert d['href'].startswith('/pootle/')
+        >>> assert str(id(s)) in d['href']
         >>> assert 'tooltip' in d
         >>> assert 'icon' not in d
         """
         def link_func(_request, path_obj, **_kwargs):
             """Curried link function with self bound from instance method"""
             link = {'text': _(self.title),
-                    'href': l(path_obj.pootle_path + EXTDIR)}
+                    'href': l(''.join([path_obj.pootle_path, '?', EXTDIR, '=',
+                                      str(id(self))]))}
             if getattr(self, 'icon', None):
                 link['icon'] = getattr(self, 'icon')
             if type(self).__doc__:

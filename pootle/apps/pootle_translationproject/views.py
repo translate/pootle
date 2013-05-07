@@ -62,6 +62,7 @@ from pootle_store.util import absolute_real_path, relative_real_path
 from pootle_store.filetypes import factory_classes
 from pootle_tagging.forms import TagForm
 from pootle_translationproject.actions import action_groups
+from pootle.scripts.actions import EXTDIR, ExtensionAction
 
 
 @get_translation_project
@@ -231,6 +232,17 @@ class ProjectIndexView(view_handler.View):
         path_stats = get_raw_stats(path_obj, include_suggestions=True)
         path_summary = get_path_summary(path_obj, path_stats, latest_action)
         actions = action_groups(request, path_obj, path_stats=path_stats)
+        action_output = ''
+        running = request.GET.get(EXTDIR, '')
+        if running:
+            try:
+                action = ExtensionAction.lookup(running)
+            except KeyError:
+                pass
+            else:
+                action.run(str(project), str(language),
+                           str(store) if store else '*')
+                action_output = action.output()
 
         template_vars.update({
             'translation_project': translation_project,
@@ -242,6 +254,7 @@ class ProjectIndexView(view_handler.View):
             'topstats': gentopstats_translation_project(translation_project),
             'feed_path': directory.pootle_path[1:],
             'action_groups': actions,
+            'action_output': action_output,
             'can_edit': can_edit,
         })
 
