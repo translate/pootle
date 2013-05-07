@@ -29,51 +29,123 @@ from django.utils.translation import ugettext as _
 
 from pootle_misc.baseurl import l
 
+#: Module separator (period); this constant used to improve code readability
+DOT = '.'
+
+#: Subdirectory to scan for extension actions
 EXTDIR = 'ext_actions'
+
+#: Full (possibly relative) path of directory to scan for extension actions
+_EXTPATH = os.path.sep.join([os.path.dirname(__file__), EXTDIR])
+
+
+def _getmod():
+    """Get module (package) name and directory path for extension actions
+
+    .. function:: _getmod()
+
+    Uses __name__ for module name if it is useful (not '__main__').  Otherwise,
+    use __loader__ if defined, and if that fails, try path searching for
+    __file__ to try to guess the module name.  Fallback is to use the directory
+    name as the "module" with all '.' replaced with ',' to try to avoid
+    RuntimeWarning about missing parent module.
+
+    :returns: Extension package (module) name
+    :rtype: str
+
+    """
+
+    if __name__ != '__main__':
+        i = __name__.rfind(DOT)
+        if i > 0:
+            dirmod = __name__[:i + 1] + EXTDIR
+        else:
+            dirmod = EXTDIR
+    else:
+        try:
+            dirmod = DOT.join([__loader__.fullname,  # pylint: disable=E0602
+                              EXTDIR])
+        except NameError:
+            if not _EXTPATH.startswith(os.path.sep):
+                dirmod = _EXTPATH.replace(os.path.sep, DOT)
+            else:
+                # Find where __file__ may be loaded from (longest prefix first)
+                for path in sorted(sys.path, key=len, reverse=True):
+                    if (_EXTPATH.find(path) == 0 and
+                            path.rstrip(os.path.sep) !=
+                            _EXTPATH.rstrip(os.path.sep)):
+                        dirmod = DOT.join(_EXTPATH[len(path):]
+                                          .split(os.path.sep)).lstrip(DOT)
+                        break
+                else:
+                    # can't find module, return _EXTPATH without any dots
+                    return _EXTPATH.replace(DOT, ',')
+
+    # __import__(dirmod) may be needed to suppress "RuntimeWarning: Parent
+    # module ... not found" if imp.load_module() given name containing dot
+    if dirmod not in sys.modules:
+        try:
+            __import__(dirmod)
+        except ImportError:
+            # Fake it out so that we don't try again
+            sys.modules[dirmod] = None
+
+    return dirmod + DOT
+
+_EXTMOD = _getmod()
 
 
 class ExtensionAction(object):
     """User (administrator)-provided actions for execution in Pootle UI
 
-    This is an (abstract) base class for all extension actions, creating one
-    would not actually register any actions in the menu system - it exists
-    just to provide a place for any common code
+    .. class:: ExtensionAction(category, title)
+
+    This is an (abstract) base class for all extension actions; creating an
+    instance of this class will not register any actions in the UI.  It exists
+    just to provide a place for common code shared by most subclasses.
+
+    The initializer requires two arguments that are used for the category
+    (label on the left side of the "Actions" section) and title (link text).
+    If the subclass has a docstring, it is used for the tooltip - unlike
+    the category and title, the tooltip will be shared by all instances.
+
+    :param category: Unlocalized category (label) text, e.g. "Manage"
+    :type category: str
+    :param title: Unlocalized text for display as link text
+    :type title: str
 
     """
 
-    # Dictionary mapping ExtensionAction classes to lists of their instances
+    #: Dictionary mapping ExtensionAction classes to lists of their instances
     _instances = {}
 
     @classmethod
     def instances(cls, rescan=False):
         """Return all instances of this class
 
+        .. classmethod:: instances([rescan=False])
+
         This will attempt to load any classes the first time it is called
         (or any time that rescan=True).
 
+        :param rescan: Whether to (re)try loading any extension action modules
+        :type rescan: boolean
+        :returns: All instances of the class
+        :rtype: list(ExtensionAction)
+
         """
         if not ExtensionAction._instances or rescan:
-            dirname = os.path.sep.join([os.path.dirname(__file__), EXTDIR])
-
-            # __import__(dirmod) is needed to suppress RuntimeWarning:
-            # Parent module ... not found while handling absolute import
-            dirmod = '.'.join(dirname.split(os.path.sep))
-            if dirmod not in sys.modules:
-                __import__(dirmod)
-
-            for importer, package_name, _x in pkgutil.iter_modules([dirname]):
-                full_package_name = '.'.join(dirname.split(os.path.sep) +
-                                             [package_name])
-                if full_package_name not in sys.modules:
+            for importer, modname, _x in pkgutil.iter_modules([_EXTPATH]):
+                full_modname = _EXTMOD + modname
+                if full_modname not in sys.modules:
                     try:
-                        importer.find_module(package_name).load_module(
-                            full_package_name)
+                        importer.find_module(modname).load_module(full_modname)
                     except StandardError:
                         logging.exception("bad extension action module %s",
-                                          package_name)
+                                          modname)
                     else:
                         logging.info("loaded extension action module %s",
-                                     full_package_name)
+                                     full_modname)
 
         if cls not in ExtensionAction._instances:
             ExtensionAction._instances[cls] = []
@@ -148,7 +220,7 @@ class ExtensionAction(object):
         """Return a link_func for use by pootle_translationproject.actions
 
         >>> s = ExtensionAction('a', 'b')
-        >>> setattr(s, 'pootle_path', '/pootle')  # simulate path_obj
+        >>> setattr(s, 'pootle_path', '/pootle/')  # simulate path_obj
         >>> d = s.get_link_func()('GET', s)
         >>> assert d['text'] == u'b'
         >>> assert d['href'] == '/pootle/' + EXTDIR
@@ -158,11 +230,11 @@ class ExtensionAction(object):
         def link_func(_request, path_obj, **_kwargs):
             """Curried link function with self bound from instance method"""
             link = {'text': _(self.title),
-                    'href': l(path_obj.pootle_path + '/' + EXTDIR)}
+                    'href': l(path_obj.pootle_path + EXTDIR)}
             if getattr(self, 'icon', None):
                 link['icon'] = getattr(self, 'icon')
             if type(self).__doc__:
-                link['tooltip'] = type(self).__doc__
+                link['tooltip'] = ' '.join(type(self).__doc__.split())
             return link
         return link_func
 

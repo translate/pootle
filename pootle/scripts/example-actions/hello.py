@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 """ Example "hello, world" extension action """
 
-from pootle.scripts.actions import ProjectAction
+from pootle.scripts.actions import TranslationProjectAction
 
 
-class HelloAction(ProjectAction):
+class HelloAction(TranslationProjectAction):
     """
     Say hello to the user (in their own language)
     """

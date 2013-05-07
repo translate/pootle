@@ -265,7 +265,7 @@ def action_groups(request, path_obj, **kwargs):
         },
     ]
 
-    for ext in actions.ExtensionAction.instances():
+    for ext in actions.TranslationProjectAction.instances():
         group = ext.category.lower().replace(' ', '-')
         for grp in groups:
             if grp['group'] == group:
@@ -273,7 +273,7 @@ def action_groups(request, path_obj, **kwargs):
                 break
         else:
             groups.append({'group': group, 'group_display': _(ext.category),
-                           'actions': ext.get_link_func()})
+                           'actions': [ext.get_link_func()]})
 
     for group in groups:
         action_links = _gen_link_list(request, path_obj, group['actions'],
