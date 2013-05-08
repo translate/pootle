@@ -155,12 +155,13 @@ ignored, and no new files will be created.
 .. versionadded:: 2.5
 
 With the ``--modified-since`` option it is possible to give a change identifier
-(from the output of ``latest_change_id``) to specifically indicate which changes
-need to be synced to disk. This will override Pootle on what has/hasn't been
-synced to disk, and specifically those changes will be synced. Note that bulk
-changes (from uploads and version control actions) don't yet record fine-grained
-changes, and these will therefore not be synced to disk. However, these should
-already be on disk, since those actions always sync to disk anyway.
+(from the output of :ref:`commands#latest_change_id`) to specifically indicate
+which changes need to be synced to disk. This will override Pootle on what
+has/hasn't been synced to disk, and specifically those changes will be synced.
+Note that bulk changes (from uploads and version control actions) don't yet
+record fine-grained changes, and these will therefore not be synced to disk.
+However, these should already be on disk, since those actions always sync to
+disk anyway.
 
 
 .. _commands#update_stores:
