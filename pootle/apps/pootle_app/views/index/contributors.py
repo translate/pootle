@@ -23,6 +23,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
+from pootle.i18n.gettext import tr_lang
 from pootle_app.models import Suggestion
 from pootle_language.models import Language
 from pootle_project.models import Project
@@ -74,7 +75,7 @@ def view(request):
 
     language_names = {}  # language id -> name
     for language in Language.objects.all().values('id', 'fullname'):
-        language_names[language['id']] = language['fullname']
+        language_names[language['id']] = tr_lang(language['fullname'])
 
     project_names = {}  # project id -> name
     for project in (Project.objects
