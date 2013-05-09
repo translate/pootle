@@ -19,9 +19,12 @@
 {% endblock %}
 
 {% block content %}
-{% cache settings.CACHE_TIMEOUT translate_content directory.id store_id cantranslate cansuggest LANGUAGE_CODE %}
-<div id="editor" data-pootle-path="{{ store.pootle_path }}"
-    data-directory="{{ directory.pootle_path }}"
+{% cache settings.CACHE_TIMEOUT translate_content directory_id store_id cantranslate cansuggest LANGUAGE_CODE %}
+<div id="editor"
+    data-is-single-file="{{ is_single_file|yesno:"true,false" }}"
+    data-pootle-path="{{ pootle_path }}"
+    data-path="{{ path }}"
+    data-project="{{ project.code }}"
     data-target-language="{{ language.code }}">
     <noscript>
       <h1>{% trans "Pootle's editor requires JavaScript" %}</h1>

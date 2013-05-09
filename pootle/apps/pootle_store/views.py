@@ -355,8 +355,17 @@ def translate_page(request):
     profile = request.profile
 
     store = getattr(request, "store", None)
-    is_terminology = project.is_terminology or store and store.is_terminology
-    search_form = make_search_form(request=request, terminology=is_terminology)
+    directory = getattr(request, "directory", None)
+
+    is_single_file = store and True or False
+    path = is_single_file and store.path or directory.path
+    pootle_path = (is_single_file and store.pootle_path or
+                                      directory.pootle_path)
+
+    is_terminology = (project.is_terminology or store and
+                                                store.is_terminology)
+    search_form = make_search_form(request=request,
+                                   terminology=is_terminology)
 
     previous_overview_url = previous_view_url(request, ['overview'])
 
@@ -367,17 +376,21 @@ def translate_page(request):
         'search_form': search_form,
         'store': store,
         'store_id': store and store.id,
+        'directory': directory,
+        'directory_id': directory and directory.id,
+        'path': path,
+        'pootle_path': pootle_path,
+        'is_single_file': is_single_file,
         'language': language,
         'project': project,
         'translation_project': translation_project,
         'profile': profile,
         'source_language': translation_project.project.source_language,
-        'directory': getattr(request, "directory", None),
         'previous_overview_url': previous_overview_url,
         'MT_BACKENDS': settings.MT_BACKENDS,
         'LOOKUP_BACKENDS': settings.LOOKUP_BACKENDS,
         'AMAGAMA_URL': settings.AMAGAMA_URL,
-        }
+    }
 
     return render_to_response('store/translate.html', context,
                               context_instance=RequestContext(request))

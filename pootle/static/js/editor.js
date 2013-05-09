@@ -19,8 +19,11 @@
 
     /* Initialize variables */
     this.units = {};
-    this.store = $('#editor').data('pootle-path');
-    this.directory = $('#editor').data('directory');
+    this.isSingleFile = $('#editor').data('is-single-file');
+    this.path = $('#editor').data('path');
+    this.pootlePath = $('#editor').data('pootle-path');
+    this.targetLanguage = $('#editor').data('target-language');
+    this.project = $('#editor').data('project');
     this.currentPage = 1;
     this.currentNumPages = 0;
     this.pagesGot = {};
@@ -812,8 +815,9 @@
   updatePermalink: function (opts) {
     if (opts !== false) {
       // FIXME: We need a completely different way for getting view URLs in JS
-      var urlStr = this.store ? this.store + '/translate/#unit=' :
-                                this.directory + 'translate.html#unit=';
+      var post = this.isSingleFile ? '/translate/#unit=' :
+                                     'translate.html#unit=';
+      var urlStr = [this.pootlePath, post].join('');
       // Translators: Permalink to the current unit in the editor.
       //    The first '%s' is the permalink URL.
       //    The second '%s' is the unit number.
@@ -938,12 +942,13 @@
     var extraData, reqData, viewUrl,
         defaults = {async: false, limit: 0, page: this.currentPage,
                     pager: false, withUid: false},
-        urlStr = this.store ? '/view' + this.store : this.directory + 'view.html';
+        urlStr = this.isSingleFile ? '/view' + this.pootlePath :
+                                     this.pootlePath + 'view.html';
     // Merge passed arguments with defaults
     opts = $.extend({}, defaults, opts);
 
     // Extend URL if needed
-    if (opts.limit != 0 && this.store) {
+    if (opts.limit != 0 && this.isSingleFile) {
       urlStr = urlStr.replace('/view', '/view/' + limit);
     }
     viewUrl = l(urlStr);
@@ -1004,9 +1009,9 @@
 
           PTL.editor.pagesGot[page] = [];
 
-          var urlStr = PTL.editor.store ?
-                         PTL.editor.store + '/translate/#unit=' :
-                         PTL.editor.directory + 'translate.html#unit=';
+          var post = PTL.editor.isSingleFile ? '/translate/#unit=' :
+                                               'translate.html#unit=';
+          var urlStr = [PTL.editor.pootlePath, post].join('');
 
           // Copy retrieved units to the client
           $.each(data.units, function () {
@@ -1058,9 +1063,9 @@
         cls = "even",
         even = true,
         rows = "";
-        urlStr = PTL.editor.store ?
-                   PTL.editor.store + '/translate/#unit=' :
-                   PTL.editor.directory + 'translate.html#unit=';
+    var post = PTL.editor.isSingleFile ? '/translate/#unit=' :
+                                         'translate.html#unit=';
+    var urlStr = [PTL.editor.pootlePath, post].join('');
 
     for (i=0; i<units.length; i++) {
       unit = units[i];
@@ -1441,7 +1446,7 @@
     } else {
       PTL.editor.displayMsg([
           gettext("Congratulations, you walked through all strings."),
-          '<br /><a href="', l(PTL.editor.directory), '">',
+          '<br /><a href="', l(PTL.editor.pootlePath), '">',
           gettext('Return to the overview page.'), '</a>'
       ].join(""));
     }
@@ -1465,7 +1470,7 @@
       } else {
         PTL.editor.displayMsg([
           gettext("You reached the end of the list."),
-          '<br /><a href="', l(PTL.editor.directory), '">',
+          '<br /><a href="', l(PTL.editor.pootlePath), '">',
           gettext('Return to the overview page.'), '</a>'
         ].join(""));
       }
@@ -1548,8 +1553,8 @@
   /* Gets the failing check options for the current query */
   getCheckOptions: function () {
     var opts,
-        checksUrl = this.store ? l('/checks' + this.store) :
-                                 l(this.directory + "checks.html");
+        checksUrl = this.isSingleFile ? l('/checks' + this.pootlePath) :
+                                        l(this.pootlePath + "checks.html");
 
     $.ajax({
       url: checksUrl,
