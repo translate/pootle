@@ -19,12 +19,18 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from django.conf.urls import patterns
+from django.conf.urls import patterns, url
 
 urlpatterns = patterns('pootle_store.views',
     # Translation
     (r'^(?P<pootle_path>.*)/translate/?$',
         'translate'),
+
+    # Export list view
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
+        r'export-view/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
+        'export_view',
+        name='export-view'),
 
     # Download and export
     (r'^download/(?P<pootle_path>.*)/?$',

@@ -1,0 +1,60 @@
+{% load assets cleanhtml i18n locale store_tags %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
+<head>
+  <title>{% trans "Export View" %} | {{ project.fullname }} |
+    {{ language.localname }} | Pootle</title>
+  <link rel="stylesheet" type="text/css"
+    href="http://fonts.googleapis.com/css?family=Open+Sans">
+  {% assets "css_export_view" %}
+  <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
+  {% endassets %}
+</head>
+<body>
+  <table dir="{% locale_dir %}">
+    <caption>{{ project.fullname }} / {{ language.localname }}
+      {% if filter_name %} / {{ filter_name }}{% endif %}
+      {% if filter_extra %}<span>({{ filter_extra|join:', ' }})</span>{% endif %}
+    </caption>
+    <thead>
+      <tr lang="{{ LANGUAGE_CODE }}">
+        <th id="source">{% trans "Source" %}</th>
+        <th id="translation">{% trans "Translation" %}</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for path, units in unit_groups %}
+      <tr class="separator">
+        <th colspan="2">{{ path }}</th>
+      </tr>
+    {% for unit in units %}
+      <tr{% if unit.isfuzzy %} class="unit-fuzzy"{% endif %}>
+        <td>
+        {% for i, source, title in unit|pluralize_source %}
+          <div lang="{{ source_language.code }}"
+            dir="{{ source_language.get_direction }}">
+            {{ source|fancy_highlight }}
+          </div>
+        {% endfor %}
+        </td>
+        <td>
+        {% for i, target, title in unit|pluralize_target %}
+          <div dir="{{ language.get_direction }}" lang="{{ language.code }}">
+            {{ target|fancy_highlight }}
+          </div>
+        {% endfor %}
+        <div class="unit-number">
+          <a href="{{ unit.get_absolute_url }}">#{{ unit.id }}</a>
+        </div>
+        </td>
+      </tr>
+    {% endfor %}
+    {% empty %}
+      <tr class="empty">
+        <td colspan="2">{% trans "No strings." %}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>

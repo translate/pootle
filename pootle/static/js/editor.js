@@ -480,6 +480,7 @@
 
     PTL.editor.isLoading = false;
     PTL.editor.hideActivity();
+    PTL.editor.updateExportLink();
     PTL.editor.updatePermalink();
     PTL.common.updateRelativeDates();
 
@@ -810,6 +811,18 @@
     } else {
       this.doSuggestMode();
     }
+  },
+
+  updateExportLink: function () {
+    var urlStr = [
+          '', this.targetLanguage, this.project, 'export-view', this.path
+        ].join('/'),
+        urlStr = [urlStr, $.param(this.getReqData())].join('?'),
+        exportLink = [
+          '<a href="', l(urlStr), '">', gettext('Export View'), '</a>'
+        ].join('');
+
+    $("#js-editor-export").html(exportLink);
   },
 
   updatePermalink: function (opts) {
