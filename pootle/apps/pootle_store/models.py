@@ -305,6 +305,10 @@ class Unit(models.Model, base.TranslationUnit):
             deletefromcache(store, ["getquickstats", "getcompletestats",
                                     "get_mtime", "get_suggestion_count"])
 
+    def get_absolute_url(self):
+        return u"%s/translate/#unit=%s" % (l(self.store.pootle_path),
+                                           self.id)
+
     def get_mtime(self):
         return self.mtime
 
