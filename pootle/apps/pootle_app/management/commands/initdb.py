@@ -81,111 +81,22 @@ def create_default_languages():
     """Create the default languages. We afford this priviledge to languages
     with reasonably complete interface translations for Pootle."""
     from pootle_language.models import Language
+    from translate.lang import data
+    from translate.lang import factory
 
-    af = Language(code="af")
-    af.fullname = u"Afrikaans"
-    af.specialchars = u"ëïêôûáéíóúý"
-    af.nplurals = '2'
-    af.pluralequation = "(n != 1)"
-    af.save()
-
-    # Akan
-    ak = Language(code='ak')
-    ak.fullname = u'Akan'
-    ak.pluralequation = u'(n > 1)'
-    ak.specialchars = "ɛɔƐƆ"
-    ak.nplurals = u'2'
-    ak.save()
-
-    # Haitian Creole
-    ht = Language(code="ht")
-    ht.fullname = u'Haitian; Haitian Creole'
-    ht.nplurals = '2'
-    ht.pluralequation = '(n != 1)'
-    ht.save()
-
-    # Sesotho sa Leboa
-    # Northern Sotho
-    nso = Language(code="nso")
-    nso.fullname = u'Pedi; Sepedi; Northern Sotho'
-    nso.nplurals = '2'
-    nso.pluralequation = '(n != 1)'
-    nso.specialchars = "šŠ"
-    nso.save()
-
-    # Tshivenḓa
-    # Venda
-    ve = Language(code="ve")
-    ve.fullname = u'Venda'
-    ve.nplurals = '2'
-    ve.pluralequation = '(n != 1)'
-    ve.specialchars = "ḓṋḽṱ ḒṊḼṰ ṅṄ"
-    ve.save()
-
-    # Wolof
-    wo = Language(code="wo")
-    wo.fullname = u'Wolof'
-    wo.nplurals = '2'
-    wo.pluralequation = '(n != 1)'
-    wo.save()
-
-    # 简体中文
-    # Simplified Chinese (China mainland used below, but also used in Singapore and Malaysia)
-    zh_CN = Language(code="zh_CN")
-    zh_CN.fullname = u'Chinese (China)'
-    zh_CN.nplurals = '1'
-    zh_CN.pluralequation = '0'
-    zh_CN.specialchars = u"←→↔×÷©…—‘’“”【】《》"
-    zh_CN.save()
-
-    # 繁體中文
-    # Traditional Chinese (Hong Kong used below, but also used in Taiwan and Macau)
-    zh_HK = Language(code="zh_HK")
-    zh_HK.fullname = u'Chinese (Hong Kong)'
-    zh_HK.nplurals = '1'
-    zh_HK.pluralequation = '0'
-    zh_HK.specialchars = u"←→↔×÷©…—‘’“”「」『』【】《》"
-    zh_HK.save()
-
-    # 繁體中文
-    # Traditional Chinese (Taiwan used below, but also used in Hong Kong and Macau)
-    zh_TW = Language(code="zh_TW")
-    zh_TW.fullname = u'Chinese (Taiwan)'
-    zh_TW.nplurals = '1'
-    zh_TW.pluralequation = '0'
-    zh_TW.specialchars = u"←→↔×÷©…—‘’“”「」『』【】《》"
-    zh_TW.save()
-
-    ca_valencia = Language(code='ca@valencia')
-    ca_valencia.fullname = u'Catalan (Valencia)'
-    ca_valencia.nplurals = '2'
-    ca_valencia.pluralequation = '(n != 1)'
-    ca_valencia.save()
-
-    son = Language(code='son')
-    son.fullname = u'Songhai languages'
-    son.nplurals = '1'
-    son.pluralequation = '0'
-    son.specialchars = u'ɲŋšžãõẽĩƝŊŠŽÃÕẼĨ'
-    son.save()
-
-    lg = Language(code='lg')
-    lg.fullname = u'Ganda'
-    lg.save()
-
-    gd = Language(code='gd')
-    gd.fullname = u'Gaelic; Scottish Gaelic'
-    gd.nplurals = '4'
-    gd.pluralequation = '(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3'
-    gd.specialchars = u'àòùèìÀÈÌÒÙ'
-    gd.save()
+    default_languages = ("af", "ak", "ht", "nso", "ve", "wo", "zh_cn",
+            "zh_hk", "zh_tw", "ca_valencia", "son", "lg", "gd")
 
     # import languages from toolkit
-    from translate.lang import data
-    for code, props in data.languages.items():
+    for code in data.languages.keys():
         try:
-            lang, created = Language.objects.get_or_create(code=code, fullname=props[0],
-                                             nplurals=props[1], pluralequation=props[2])
+            tk_lang = factory.getlanguage(code)
+            lang, created = Language.objects.get_or_create(code=code, fullname=tk_lang.fullname,
+                                             nplurals=tk_lang.nplurals,
+                                             pluralequation=tk_lang.pluralequation,
+                                             specialchars=tk_lang.specialchars)
+            if code in default_languages:
+                lang.save()
         except:
             pass
 
