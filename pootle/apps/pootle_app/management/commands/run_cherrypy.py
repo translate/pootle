@@ -30,9 +30,9 @@ class Command(BaseRunCommand):
     help = "Runs Pootle with the CherryPy server."
 
     option_list = BaseRunCommand.option_list + (
-        make_option('--threads', action='store', dest='threads', default=1,
+        make_option('--threads', action='store', dest='threads', default=5,
             type=int,
-            help='Number of working threads. Default: 1'),
+            help='Number of working threads. Default: 5'),
         make_option('--name', action='store', dest='server_name', default='',
             help='Name of the worker process.'),
         make_option('--queue', action='store', dest='request_queue_size',
