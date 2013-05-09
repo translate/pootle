@@ -1592,21 +1592,29 @@
 
       // If there are any failing checks, add them in a dropdown
       if (optGroups.length) {
-        var dropdown = '<div id="filter-checks">';
-        dropdown += '<select id="js-select2-filter-checks" class="select2-filter-checks" name="filter-checks">';
-        dropdown += '<option selected="selected" value="none">------</option>';
+        var dropdown = [
+        '<div id="filter-checks">',
+          '<select id="js-select2-filter-checks" ',
+          'class="select2-filter-checks" name="filter-checks">',
+          '<option selected="selected" value="none">------</option>'
+        ]
 
         $.each(optGroups, function () {
-          dropdown += '<optgroup label="' + this.display_name + '">';
+          dropdown.push([
+            '<optgroup label="', this.display_name, '">'
+          ].join(''));
           $.each(this.checks, function () {
-            dropdown += '<option value="' + this.name + '">' + this.display_name + ' (' + this.count + ')</option>';
+            dropdown.push([
+              '<option value="', this.name, '">', this.display_name,
+              ' (', this.count, ')</option>'
+            ].join(''));
           });
-          dropdown += '</optgroup>';
+          dropdown.push('</optgroup>');
         });
 
-        dropdown += '</select></div>';
+        dropdown.push('</select></div>');
 
-        $("#filter-status").first().after(dropdown);
+        $("#filter-status").first().after(dropdown.join(''));
         $("#js-select2-filter-checks").select2({
           width: "resolve"
         });
