@@ -265,7 +265,12 @@ def action_groups(request, path_obj, **kwargs):
         },
     ]
 
-    for ext in actions.TranslationProjectAction.instances():
+    if path_obj.is_dir:
+        act = actions.TranslationProjectAction
+    else:
+        act = actions.StoreAction
+
+    for ext in act.instances():
         group = ext.category.lower().replace(' ', '-')
         for grp in groups:
             if grp['group'] == group:

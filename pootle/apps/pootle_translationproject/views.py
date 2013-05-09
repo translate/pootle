@@ -232,16 +232,22 @@ class ProjectIndexView(view_handler.View):
         path_stats = get_raw_stats(path_obj, include_suggestions=True)
         path_summary = get_path_summary(path_obj, path_stats, latest_action)
         actions = action_groups(request, path_obj, path_stats=path_stats)
+        action_error = ''
         action_output = ''
         running = request.GET.get(EXTDIR, '')
         if running:
+            if path_obj.is_dir:
+                act = TranslationProjectAction
+            else:
+                act = StoreAction
             try:
-                action = TranslationProjectAction.lookup(running)
+                action = act.lookup(running)
             except KeyError:
-                pass
+                action_error = _("Unable to find %s %s") % (act, running)
             else:
                 action.run(project=str(project), language=str(language),
                            store=(str(store) if store else '*'))
+                action_error = action.error
                 action_output = action.output
 
         template_vars.update({

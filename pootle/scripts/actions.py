@@ -37,7 +37,7 @@ DOT = '.'
 EXTDIR = 'ext_actions'
 
 #: Full (possibly relative) path of directory to scan for extension actions
-_EXTPATH = os.path.sep.join([os.path.dirname(__file__), EXTDIR])
+_EXTPATH = os.path.join(os.path.dirname(__file__), EXTDIR)
 
 
 def _getmod():
@@ -67,16 +67,15 @@ def _getmod():
             dirmod = DOT.join([__loader__.fullname,  # pylint: disable=E0602
                               EXTDIR])
         except NameError:
-            if not _EXTPATH.startswith(os.path.sep):
-                dirmod = _EXTPATH.replace(os.path.sep, DOT)
+            if not _EXTPATH.startswith(os.sep):
+                dirmod = _EXTPATH.replace(os.sep, DOT)
             else:
                 # Find where __file__ may be loaded from (longest prefix first)
                 for path in sorted(sys.path, key=len, reverse=True):
                     if (_EXTPATH.find(path) == 0 and
-                            path.rstrip(os.path.sep) !=
-                            _EXTPATH.rstrip(os.path.sep)):
+                            path.rstrip(os.sep) != _EXTPATH.rstrip(os.sep)):
                         dirmod = DOT.join(_EXTPATH[len(path):]
-                                          .split(os.path.sep)).lstrip(DOT)
+                                          .split(os.sep)).lstrip(DOT)
                         break
                 else:
                     # can't find module, return _EXTPATH without any dots
@@ -99,16 +98,33 @@ _EXTMOD = _getmod()
 class ExtensionAction(object):
     """User (administrator)-provided actions for execution in Pootle UI
 
-    .. class:: ExtensionAction(category, title)
+    .. class:: ExtensionAction(category, title, **kwargs)
 
     This is an (abstract) base class for all extension actions; creating an
-    instance of this class will not register any actions in the UI.  It exists
-    just to provide a place for common code shared by most subclasses.
+    instance of this class will not display any actions in the UI.  It exists
+    to provide a place for common code shared by most subclasses, and to
+    provide a common ancestor class that will always be the last one (before
+    ``object``) in the linearized chain of superclasses (MRO = method
+    resolution order).  Any class that inherits from ExtensionAction should
+    *only* inherit from ExtensionAction or its subclasses, and not any other
+    classes (this is necessary to ensure that ExtensionAction is immediately
+    before object in the MRO).
+
+    The initializer for any subclass of ExtensionAction must call __init__
+    via ``super(MySubClass, self).__init__(**kwargs)`` to ensure that all other
+    classes and mixins have their initializers called.  Do not use positional
+    parameters for this, but always make calls using a keyword argument dict
+    (**kwargs) or explicit keyword=value arguments.
+
+    Any subclass that wishes to have its instances tracked should define a
+    class attribute tracked and set it to True.
 
     The initializer requires two arguments that are used for the category
     (label on the left side of the "Actions" section) and title (link text).
     If the subclass has a docstring, it is used for the tooltip - unlike
     the category and title, the tooltip will be shared by all instances.
+
+    Other arguments are presumed to be intended for subclasses and are ignored.
 
     :param category: Unlocalized category (label) text, e.g. "Manage"
     :type category: str
@@ -174,17 +190,21 @@ class ExtensionAction(object):
                 return ext
         raise KeyError
 
-    def __init__(self, category, title):
+    def __init__(self, category, title, **kwargs):  # pylint: disable=W0613
         """
+        >>> setattr(ExtensionAction, 'tracked', True)
         >>> a = ExtensionAction('a', 'b')
+        >>> tb = ExtensionAction(title='ta', category='tb')
         >>> assert a in a.instances()
-        >>> assert a in a.instances(rescan=True)
+        >>> assert tb in a.instances(rescan=True)
         """
         self._category = category
         self._title = title
+        self._error = ''
         self._output = ''
+        logging.debug("%s.__init__ '%s'", type(self).__name__, title)
         for cls in type(self).__mro__:
-            if cls is not object:
+            if getattr(cls, 'tracked', False):
                 if cls not in self._instances:
                     ExtensionAction._instances[cls] = [self]
                 else:
@@ -195,16 +215,14 @@ class ExtensionAction(object):
     def __repr__(self):
         """
         >>> print ExtensionAction('cat', 'dog')
-        ExtensionAction("cat", "dog")
+        ExtensionAction(category="cat", title="dog")
         >>> print ProjectAction(title="dog", category="cat")
         ProjectAction(category="cat", title="dog")
+        >>> print eval(repr(ProjectAction(category="cat", title="dog")))
+        ProjectAction(category="cat", title="dog")
         """
-        if type(self) is ExtensionAction:
-            return (type(self).__name__ + '("' + self.category + '", "' +
-                    self.title + '")')
-        else:
-            return (type(self).__name__ + '(category="' + self.category +
-                    '", title="' + self.title + '")')
+        return (type(self).__name__ + '(category="' + self.category +
+                '", title="' + self.title + '")')
 
     @property
     def category(self):
@@ -223,8 +241,13 @@ class ExtensionAction(object):
         return self._title
 
     @property
+    def error(self):
+        """Text from the last call to set_error()."""
+        return self._error
+
+    @property
     def output(self):
-        """Text from the last call to show_output()."""
+        """Text from the last call to set_output()."""
         return self._output
 
     def run(self, project='*', language='*', store='*'):
@@ -242,22 +265,72 @@ class ExtensionAction(object):
         logging.warning("%s lacks run(): %s for proj %s lang %s store %s",
                         type(self), self.title, project, language, store)
 
-    def showoutput(self, stream):
-        """Display results of action in the current page"""
-        self._output = stream
+    def set_error(self, text):
+        """Set error output of action for display"""
+        self._error = text
 
-    def newpage(self, stream):
-        """Display results of action on a results page"""
-        # display output on a new results page
+    def set_output(self, text):
+        """Set output of action for display"""
+        self._output = text
 
-    def returnfile(self, stream):
-        """Display link to a file containing results"""
-        # display link to results file
+
+class ProjectAction(ExtensionAction):
+    """Project-level action
+
+    This is an extension action that operates on a project (across all
+    languages).
+
+    """
+
+    tracked = True
+
+    def __init__(self, **kwargs):
+        """
+        >>> print ProjectAction(category="cat", title="dog")
+        ProjectAction(category="cat", title="dog")
+        """
+        super(ProjectAction, self).__init__(**kwargs)
+
+
+class LanguageAction(ExtensionAction):
+    """Language global action
+
+    This is an extension action that operates on a language (across all
+    projects).
+
+    """
+
+    tracked = True
+
+    def __init__(self, **kwargs):
+        """
+        >>> print LanguageAction(category="cat", title="dog")
+        LanguageAction(category="cat", title="dog")
+        """
+        super(LanguageAction, self).__init__(**kwargs)
+
+
+class TranslationProjectAction(ExtensionAction):
+    """Project + Language action
+
+    This is an extension action that operates on a particular translation of
+    a project for a particular language.
+
+    """
+
+    tracked = True
+
+    def __init__(self, **kwargs):
+        """
+        >>> print TranslationProjectAction(category="cat", title="dog")
+        TranslationProjectAction(category="cat", title="dog")
+        """
+        super(TranslationProjectAction, self).__init__(**kwargs)
 
     def get_link_func(self):
         """Return a link_func for use by pootle_translationproject.actions
 
-        >>> s = ExtensionAction('a', 'boyo!')
+        >>> s = TranslationProjectAction(category='a', title='boyo!')
         >>> setattr(s, 'pootle_path', '/pootle/')  # simulate path_obj
         >>> d = s.get_link_func()('GET', s)
         >>> assert d['text'] == u'boyo!'
@@ -278,69 +351,6 @@ class ExtensionAction(object):
         return link_func
 
 
-class ProjectAction(ExtensionAction):
-    """Project-level action
-
-    This is an extension action that operates on a project (across all
-    languages).
-
-    """
-
-    def __init__(self, **kwargs):
-        """
-        >>> print ProjectAction(category="cat", title="dog")
-        ProjectAction(category="cat", title="dog")
-        """
-        ExtensionAction.__init__(self, kwargs['category'], kwargs['title'])
-        logging.debug("%s.__init__ %s", type(self).__name__, kwargs['title'])
-
-        # register action on project page
-        # register action on language page
-        # register action on translationproject page
-        # register action on store page
-
-
-class LanguageAction(ExtensionAction):
-    """Language global action
-
-    This is an extension action that operates on a language (across all
-    projects).
-
-    """
-
-    def __init__(self, **kwargs):
-        """
-        >>> print LanguageAction(category="cat", title="dog")
-        LanguageAction(category="cat", title="dog")
-        """
-        ExtensionAction.__init__(self, kwargs['category'], kwargs['title'])
-        logging.debug("%s.__init__ %s", type(self).__name__, kwargs['title'])
-
-        # register action on language page
-        # register action on translationproject page
-        # register action on store page
-
-
-class TranslationProjectAction(ExtensionAction):
-    """Project + Language action
-
-    This is an extension action that operates on a particular translation of
-    a project for a particular language.
-
-    """
-
-    def __init__(self, **kwargs):
-        """
-        >>> print TranslationProjectAction(category="cat", title="dog")
-        TranslationProjectAction(category="cat", title="dog")
-        """
-        ExtensionAction.__init__(self, kwargs['category'], kwargs['title'])
-        logging.debug("%s.__init__ %s", type(self).__name__, kwargs['title'])
-
-        # register action on translationproject page
-        # register action on store page
-
-
 class StoreAction(ExtensionAction):
     """Individual store (file) action
 
@@ -349,18 +359,66 @@ class StoreAction(ExtensionAction):
 
     """
 
+    tracked = True
+
     def __init__(self, **kwargs):
         """
         >>> print StoreAction(category="cat", title="dog")
         StoreAction(category="cat", title="dog")
         """
-        ExtensionAction.__init__(self, kwargs['category'], kwargs['title'])
-        logging.debug("%s.__init__ %s", type(self).__name__, kwargs['title'])
+        super(StoreAction, self).__init__(**kwargs)
 
-        # register action on store page
+    # This cannot be handled by making TranslationProjectAction a superclass,
+    # as we need to allow user extension classes to have both StoreAction and
+    # TranslationProjectAction (or just one of them) as superclasses to
+    # indicate which contexts are appropriate for the action.
+
+    get_link_func = TranslationProjectAction.get_link_func
 
 
-class CommandAction(object):
+class DownloadAction(ExtensionAction):
+    """
+    This is a class for extension actions that will return a file (stream)
+    for downloading when the user clicks on the link.  It is intended to be
+    used as a mixin for other extension actions, and *must* precede them in
+    the superclass inheritance list.
+    """
+
+    def __init__(self, **kwargs):
+        super(DownloadAction, self).__init__(**kwargs)
+        self.icon = 'icon-download'
+        self.dl_file = None
+
+    def set_download_file(self, filename):
+        """Set file for download"""
+        self.dl_file = filename
+
+    def get_link_func(self):
+        """Return a link_func for use by pootle_translationproject.actions
+
+        >>> setattr(DownloadAction, 'tracked', True)
+        >>> s = DownloadAction(category='c', title='d')
+        >>> setattr(s, 'pootle_path', '/pootle/')  # simulate path_obj
+        >>> d = s.get_link_func()('GET', s)
+        >>> assert d['text'] == u'd'
+        >>> assert s.lookup(d['href'][d['href'].find('=') + 1:]) == s
+        >>> assert 'tooltip' in d
+        >>> assert 'icon' in d
+        """
+        def link_func(_request, path_obj, **_kwargs):
+            """Curried link function with self bound from instance method"""
+            link = {'text': _(self.title),
+                    'href': l(''.join([path_obj.pootle_path, '?',
+                                      urlencode({EXTDIR: self.title})]))}
+            if getattr(self, 'icon', None):
+                link['icon'] = getattr(self, 'icon')
+            if type(self).__doc__:
+                link['tooltip'] = ' '.join(type(self).__doc__.split())
+            return link
+        return link_func
+
+
+class CommandAction(ExtensionAction):
     """Command-line action mixin
 
     This is a class for extension actions that can be invoked from the command
@@ -370,9 +428,10 @@ class CommandAction(object):
 
     """
 
+    tracked = True
+
     def __init__(self, **kwargs):
-        logging.debug("%s.__init__ %s", type(self).__name__, kwargs['title'])
-        # register action as management command
+        super(CommandAction, self).__init__(**kwargs)
 
     def parseargs(self, *args):
         """Parse command line arguments"""
