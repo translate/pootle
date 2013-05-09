@@ -19,6 +19,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import datetime
+import time
 import logging
 import os
 import re
@@ -1646,8 +1647,9 @@ class Store(models.Model, base.TranslationStore):
             headerupdates = {
                     'PO_Revision_Date': po_revision_date,
                     'X_Generator': x_generator,
-                    'X_POOTLE_MTIME': '%s.%d' % (mtime.strftime('%s'),
-                                                 mtime.microsecond),
+                    'X_POOTLE_MTIME': ('%s.%06d' %
+                                       (int(time.mktime(mtime.timetuple())),
+                                        mtime.microsecond)),
                     }
             if profile and profile.user.is_authenticated():
                 headerupdates['Last_Translator'] = '%s <%s>' % \
