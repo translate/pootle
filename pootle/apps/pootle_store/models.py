@@ -68,12 +68,13 @@ CHECKED = 2
 
 class QualityCheck(models.Model):
     """Database cache of results of qualitychecks on unit."""
-    objects = RelatedManager()
     name = models.CharField(max_length=64, db_index=True)
     unit = models.ForeignKey("pootle_store.Unit", db_index=True)
     category = models.IntegerField(null=False, default=Category.NO_CATEGORY)
     message = models.TextField()
     false_positive = models.BooleanField(default=False, db_index=True)
+
+    objects = RelatedManager()
 
     def __unicode__(self):
         return self.name
@@ -95,17 +96,17 @@ class Suggestion(models.Model, base.TranslationUnit):
     """Suggested translation for a :cls:`~pootle_store.models.Unit`, provided
     by users or automatically generated after a merge.
     """
-    objects = SuggestionManager()
-
-    class Meta:
-        unique_together = ('unit', 'target_hash')
-
     target_f = MultiStringField()
     target_hash = models.CharField(max_length=32, db_index=True)
     unit = models.ForeignKey('pootle_store.Unit')
     user = models.ForeignKey('pootle_profile.PootleProfile', null=True)
 
     translator_comment_f = models.TextField(null=True, blank=True)
+
+    objects = SuggestionManager()
+
+    class Meta:
+        unique_together = ('unit', 'target_hash')
 
     def natural_key(self):
         return (self.target_hash, self.unit.unitid_hash,
@@ -196,13 +197,6 @@ class UnitManager(RelatedManager):
 
 
 class Unit(models.Model, base.TranslationUnit):
-    objects = UnitManager()
-
-    class Meta:
-        ordering = ['store', 'index']
-        unique_together = ('store', 'unitid_hash')
-        get_latest_by = 'mtime'
-
     store = models.ForeignKey("pootle_store.Store", db_index=True)
     index = models.IntegerField(db_index=True)
     unitid = models.TextField(editable=False)
@@ -242,13 +236,16 @@ class Unit(models.Model, base.TranslationUnit):
     commented_on = models.DateTimeField(auto_now_add=True, db_index=True,
             null=True)
 
+    objects = UnitManager()
+
+    class Meta:
+        ordering = ['store', 'index']
+        unique_together = ('store', 'unitid_hash')
+        get_latest_by = 'mtime'
 
     def natural_key(self):
         return (self.unitid_hash, self.store.pootle_path)
     natural_key.dependencies = ['pootle_store.Store']
-
-    def get_mtime(self):
-        return self.mtime
 
     def __init__(self, *args, **kwargs):
         super(Unit, self).__init__(*args, **kwargs)
@@ -257,6 +254,14 @@ class Unit(models.Model, base.TranslationUnit):
         self._rich_target = None
         self._target_updated = False
         self._encoding = 'UTF-8'
+
+    def __unicode__(self):
+        # FIXME: consider using unit id instead?
+        return unicode(self.source)
+
+    def __str__(self):
+        unitclass = self.get_unit_class()
+        return str(self.convert(unitclass))
 
     def save(self, *args, **kwargs):
         if self._source_updated:
@@ -299,6 +304,9 @@ class Unit(models.Model, base.TranslationUnit):
             store = self.store
             deletefromcache(store, ["getquickstats", "getcompletestats",
                                     "get_mtime", "get_suggestion_count"])
+
+    def get_mtime(self):
+        return self.mtime
 
     def _get_source(self):
         return self.source_f
@@ -356,15 +364,6 @@ class Unit(models.Model, base.TranslationUnit):
         except ObjectDoesNotExist:
             from translate.storage import po
             return po.pounit
-
-    def __unicode__(self):
-        #FIXME: consider using unit id instead?
-        return unicode(self.source)
-
-    def __str__(self):
-        unitclass = self.get_unit_class()
-        return str(self.convert(unitclass))
-
 
     def getorig(self):
         unit = self.store.file.store.units[self.index]
@@ -804,20 +803,17 @@ fs = FileSystemStorage(location=settings.PODIRECTORY)
 # regexp to parse suggester name from msgidcomment
 suggester_regexp = re.compile(r'suggested by (.*) \[[-0-9]+\]')
 
+
 class StoreManager(RelatedManager):
     def get_by_natural_key(self, pootle_path):
         return self.get(pootle_path=pootle_path)
 
+
 class Store(models.Model, base.TranslationStore):
     """A model representing a translation store (i.e. a PO or XLIFF file)."""
-    objects = StoreManager()
     UnitClass = Unit
     Name = "Model Store"
     is_dir = False
-
-    class Meta:
-        ordering = ['pootle_path']
-        unique_together = ('parent', 'name')
 
     file = TranslationStoreField(upload_to="fish", max_length=255, storage=fs,
             db_index=True, null=False, editable=False)
@@ -843,9 +839,23 @@ class Store(models.Model, base.TranslationStore):
     state = models.IntegerField(null=False, default=NEW, editable=False,
             db_index=True)
 
+    objects = StoreManager()
+
+    class Meta:
+        ordering = ['pootle_path']
+        unique_together = ('parent', 'name')
+
     def natural_key(self):
         return (self.pootle_path,)
     natural_key.dependencies = ['pootle_app.Directory']
+
+    def __unicode__(self):
+        return unicode(self.pootle_path)
+
+    def __str__(self):
+        storeclass = self.get_file_class()
+        store = self.convert(storeclass)
+        return str(store)
 
     def save(self, *args, **kwargs):
         self.pootle_path = self.parent.pootle_path + self.name
@@ -860,6 +870,9 @@ class Store(models.Model, base.TranslationStore):
             # new units, let's flush cache
             deletefromcache(self, ["getquickstats", "getcompletestats",
                                    "get_mtime", "get_suggestion_count"])
+
+    def get_absolute_url(self):
+        return l(self.pootle_path + '/translate/')
 
     def delete(self, *args, **kwargs):
         super(Store, self).delete(*args, **kwargs)
@@ -909,9 +922,6 @@ class Store(models.Model, base.TranslationStore):
         `dir1/dir2/file.po`.
         """
         return u'/'.join(self.pootle_path.split(u'/')[3:])
-
-    def get_absolute_url(self):
-        return l(self.pootle_path + '/translate/')
 
     def require_units(self):
         """Make sure file is parsed and units are created."""
@@ -1352,14 +1362,6 @@ class Store(models.Model, base.TranslationStore):
         for unit in self.units.iterator():
             output.addunit(unit.convert(output.UnitClass))
         return output
-
-    def __unicode__(self):
-        return unicode(self.pootle_path)
-
-    def __str__(self):
-        storeclass = self.get_file_class()
-        store = self.convert(storeclass)
-        return str(store)
 
 ######################## TranslationStore #########################
 
