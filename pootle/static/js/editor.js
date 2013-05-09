@@ -914,7 +914,7 @@
 
       case "search":
         reqData.search = this.searchText;
-        reqData.sfields = this.searchFields;
+        reqData.sfields = this.searchFields.join(',');
         break;
 
       case "all":
