@@ -38,16 +38,79 @@ textarea#id_DESCRIPTION,
 
 /* STATIC PAGES */
 
-.staticpages-form input[type="checkbox"]
+.control-group
 {
-    display: inline;
-    float: left;
-    margin: 0 .25em;
+    clear: both;
+    margin-bottom: 1.5em;
+    line-height: 1.5;
 }
 
-html[dir="rtl"] .staticpages-form input[type="checkbox"]
+.control-group label
+{
+    float: left;
+    width: 140px;
+}
+
+html[dir="rtl"] .control-group label
 {
     float: right;
+}
+
+.control-group .controls
+{
+    position: relative;
+    margin-left: 180px;
+}
+
+html[dir="rtl"] .controls
+{
+    margin-left: auto;
+    margin-right: 180px;
+}
+
+.control-group .controls .radio-pre,
+.control-group .controls .help-pre
+{
+    position: absolute;
+}
+
+.control-group .controls .help-pre
+{
+    left: -4em;
+}
+
+html[dir="rtl"] .control-group .controls .help-pre
+{
+    left: auto;
+    right: -4em;
+}
+
+.control-group .controls .radio-pre
+{
+    left: -2em;
+}
+
+html[dir="rtl"] .control-group .controls .radio-pre
+{
+    left: auto;
+    right: -2em;
+}
+
+.control-group .controls input
+{
+    display: inline-block;
+}
+
+.control-group-separator
+{
+    margin-left: 2em;
+    margin-top: -1.5em;
+}
+
+html[dir="rtl"] .control-group-separator
+{
+    margin-left: auto;
+    margin-right: 2em;
 }
 
 /* ADMIN LANGUAGES, FILES */

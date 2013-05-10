@@ -40,11 +40,11 @@ class AbstractPage(models.Model):
 
     virtual_path = models.CharField(_("Virtual Path"), max_length=100,
             default='', unique=True,
-            help_text=_('The page will be available at /pages/<path>/'))
+            help_text='/pages/')
 
     # TODO: make title and body localizable fields
     title = models.CharField(_("Title"), max_length=100)
-    body = MarkupField(_("Content"), blank=True,
+    body = MarkupField(_("Display Content"), blank=True,
             help_text=_('Allowed markup: %s', get_markup_filter_name()))
 
     url = models.URLField(_("Redirect to URL"), blank=True,

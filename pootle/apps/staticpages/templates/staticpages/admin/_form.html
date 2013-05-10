@@ -10,16 +10,17 @@
 <form action="" method="post" class="staticpages-form">
   {% csrf_token %}
   {{ form.non_field_errors }}
-    {% for field in form %}
-    <p> {{ field.errors }}
-        {{ field.label_tag }}
-        {{ field }}
-        {% if field.help_text %}
-        <span class="help_text">{{ field.help_text }}</span>
-        {% endif %}
-    </p>
-    {% endfor %}
-    <p class="admin-buttons-block">
-      <input type="submit" class="save" value="{% trans 'Save' %}" />
-    </p>
+    {% include 'staticpages/admin/_field.html' with field=form.title %}
+    {% include 'staticpages/admin/_field.html' with field=form.virtual_path help_pre='True'%}
+    {% include 'staticpages/admin/_field.html' with field=form.active %}
+    {% include 'staticpages/admin/_field.html' with field=form.url %}
+    <div class="control-group-separator">
+      <span class="help_text">{% trans "or" %}</span>
+    </div>
+    {% include 'staticpages/admin/_field.html' with field=form.body %}
+    <div class="control-group">
+      <div class="controls">
+        <input type="submit" class="save" value="{% trans 'Save' %}" />
+      </div>
+    </div>
 </form>
