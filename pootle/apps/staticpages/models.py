@@ -21,6 +21,7 @@
 
 from django.db import models
 from django.db.models import Q
+from django.db.models.aggregates import Max
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
@@ -68,6 +69,15 @@ class AbstractPage(models.Model):
             return self.url
 
         return reverse('staticpages.display', args=[self.virtual_path])
+
+    @staticmethod
+    def max_pk():
+        """Returns the sum of all the highest PKs for each submodel."""
+        return reduce(
+            lambda x, y: x + y,
+            [int(p.objects.aggregate(Max('pk')).values()[0] or 0)
+             for p in AbstractPage.__subclasses__()],
+        )
 
     def clean(self):
         """Fail validation if:

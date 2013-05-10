@@ -27,6 +27,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.http import Http404
 from django.shortcuts import redirect, render_to_response
 from django.template import RequestContext
+from django.utils.translation import ugettext_lazy as _
 from django.views.generic import (CreateView, DeleteView, TemplateView,
                                   UpdateView)
 
@@ -78,6 +79,15 @@ class PageCreateView(SuperuserRequiredMixin, PageModelMixin, CreateView):
 
     success_url = reverse_lazy('staticpages.admin')
     template_name = 'staticpages/admin/page_create.html'
+
+    def get_initial(self):
+        initial = super(PageModelMixin, self).get_initial()
+        next_page_number = AbstractPage.max_pk() + 1
+        initial.update({
+            'title': _('Page Title'),
+            'virtual_path': _('page-%d', next_page_number),
+        })
+        return initial
 
 
 class PageUpdateView(SuperuserRequiredMixin, PageModelMixin, UpdateView):
