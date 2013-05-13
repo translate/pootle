@@ -64,11 +64,6 @@ css_editor = Bundle(
     filters='cssmin', output='css/editor.min.css')
 register('css_editor', css_editor)
 
-css_export_view = Bundle(
-    'css/export.css',
-    filters='cssmin', output='css/export.min.css')
-register('css_export_view', css_export_view)
-
 css_custom = Bundle(
     'css/custom/custom.css',
     filters='cssmin', output='css/custom/custom.min.css')
