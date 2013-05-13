@@ -115,6 +115,26 @@ def bootstrap(branch="master"):
         print('Aborting.')
 
 
+def syncdb():
+    """Runs `syncdb` to create the DB schema"""
+    require('environment', provided_by=[production, staging])
+
+    with settings(hide('stdout', 'stderr')):
+        with cd('%(project_repo_path)s' % env):
+            with prefix('source %(env_path)s/bin/activate' % env):
+                run('python manage.py syncdb --noinput')
+
+
+def initdb():
+    """Runs `initdb` to initialize the DB"""
+    require('environment', provided_by=[production, staging])
+
+    with settings(hide('stdout', 'stderr')):
+        with cd('%(project_repo_path)s' % env):
+            with prefix('source %(env_path)s/bin/activate' % env):
+                run('python manage.py initdb')
+
+
 def update_db():
     """Updates database schemas up to Pootle version 2.5"""
     require('environment', provided_by=[production, staging])
