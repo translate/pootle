@@ -65,7 +65,7 @@ def _init_virtualenv():
     """Creates initial virtualenv"""
     run('virtualenv -p %(python)s --no-site-packages %(env_path)s' % env)
     with prefix('source %(env_path)s/bin/activate' % env):
-        run('easy_install pip' % env)
+        run('easy_install pip')
 
 
 def _clone_repo():
