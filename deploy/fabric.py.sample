@@ -50,6 +50,15 @@ SETTINGS['project_settings_path'] = '%s/pootle/settings' % \
 
 
 #
+# Secret key
+#
+
+from base64 import b64encode
+from os import urandom
+SETTINGS['secret_key'] = b64encode(urandom(50))
+
+
+#
 # Virtualenv
 #
 
