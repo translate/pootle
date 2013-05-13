@@ -14,6 +14,7 @@ sed < $MODULE.po > $MODULE.pot \
     -e "/^# Copyright/d" \
     -e "/^# This file is distributed/d" \
     -e "/^# FIRST AUTHOR/d" \
+    -e '/^msgid "[^[:alpha:]][^[:alpha:]]*"$/{N;d;}' \
     -e "/Report-Msgid-Bugs-To/d" \
     -e "s/YEAR/"`date +%Y`"/" \
     -e "s/-MO-/-"`date +%m`"-/" \
@@ -24,9 +25,9 @@ sed < $MODULE.po > $MODULE.pot \
     -e "/Last-Translator/d" \
     -e "/Language-Team/d" \
     -e "s/CHARSET/UTF-8/" \
+    -e 's/^"_\\n"$/""/' \
     -e 's/\\n"$/"/' \
-    -e 's/  *"$/"/' \
     -e 's/^"  */"/' \
-    -e '/^""$/d'
+    -e '/^""$/d' \
 
 rm $MODULE.po

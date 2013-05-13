@@ -250,20 +250,28 @@ class ExtensionAction(object):
         """Text from the last call to set_output()."""
         return self._output
 
-    def run(self, project='*', language='*', store='*'):
-        """Run an extension action: this base class implementation just logs
+    def run(self, root, language='*', project='*', store='*',
+            **kwargs):  # pylint: disable=W0613
+        """Run an extension action: this class implementation just logs
 
-        .. method:: run([project='*', language='*', store='*'])
+        .. method:: run(root[, language='*', project='*', store='*', kwargs])
 
-        :param project: Name of project, e.g. 'tutorial' (or '*')
-        :param project: str
+        :param root: Absolute path of translations root directory (PODIR)
+        :type root: str
         :param language: Language code, e.g. 'af' (or '*')
-        :param language: str
+        :type language: str
+        :param project: Name of project, e.g. 'tutorial' (or '*')
+        :type project: str
         :param store: Store name (filename) (or '*')
-        :param store: str
+        :type store: str
+
+        Always pass arguments as keyword arguments, ordering is not preserved
+        for subclasses (and optional arguments may become required).
         """
-        logging.warning("%s lacks run(): %s for proj %s lang %s store %s",
-                        type(self), self.title, project, language, store)
+        logging.warning("%s lacks run(): %s for lang %s proj %s store %s "
+                        "(path %s)",
+                        type(self), self.title, language, project, store,
+                        '|'.join([root, language, project, store]))
 
     def set_error(self, text):
         """Set error output of action for display"""
@@ -327,6 +335,35 @@ class TranslationProjectAction(ExtensionAction):
         """
         super(TranslationProjectAction, self).__init__(**kwargs)
 
+    def run(self, root, tpdir, language, project,  # pylint: disable=R0913
+            store='*', style='', **kwargs):
+        """Run an extension action: this class implementation just logs
+
+        .. method:: run(root, tpdir, language, project[,
+                        store='*', style='', kwargs])
+
+        :param root: Absolute path of translations root directory (PODIR)
+        :type root: str
+        :param tpdir: Translation project directory path (relative to root)
+        :type tpdir: str
+        :param language: Language code, e.g. 'af'
+        :type language: str
+        :param project: Name of project, e.g. 'tutorial'
+        :type project: str
+        :param store: Store name (filename) (or '*') (relative to tpdir)
+        :type store: str
+        :param style: Project directory hierarchy style, e.g. 'gnu' (or '')
+        :type style: str
+        :param kwargs: Additional keyword arguments are allowed and ignored
+
+        Always pass arguments as keyword arguments, ordering is not preserved
+        for subclasses (and optional arguments may become required).
+        """
+        logging.warning("%s lacks run(): %s for lang %s proj %s store %s "
+                        "(path %s, %s style)",
+                        type(self), self.title, language, project, store,
+                        '|'.join([root, tpdir, store]), style or 'default')
+
     def get_link_func(self):
         """Return a link_func for use by pootle_translationproject.actions
 
@@ -368,12 +405,13 @@ class StoreAction(ExtensionAction):
         """
         super(StoreAction, self).__init__(**kwargs)
 
-    # This cannot be handled by making TranslationProjectAction a superclass,
+    # These cannot be handled by making TranslationProjectAction a superclass,
     # as we need to allow user extension classes to have both StoreAction and
     # TranslationProjectAction (or just one of them) as superclasses to
     # indicate which contexts are appropriate for the action.
 
     get_link_func = TranslationProjectAction.get_link_func
+    run = TranslationProjectAction.run
 
 
 class DownloadAction(ExtensionAction):
@@ -389,9 +427,12 @@ class DownloadAction(ExtensionAction):
         self.icon = 'icon-download'
         self.dl_file = None
 
-    def set_download_file(self, filename):
+    def set_download_file(self, tpdir, filename):
         """Set file for download"""
-        self.dl_file = filename
+        prefix = filename.find(tpdir)
+        if prefix >= 0:
+            filename = filename[prefix + len(tpdir) + 1:]
+        self.dl_file = filename.replace(os.sep, '/')
 
     def get_link_func(self):
         """Return a link_func for use by pootle_translationproject.actions

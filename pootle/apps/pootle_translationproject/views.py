@@ -58,11 +58,13 @@ from pootle_misc.util import jsonify, ajax_required
 from pootle_profile.models import get_profile
 from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_store.models import Store
-from pootle_store.util import absolute_real_path, relative_real_path
+from pootle_store.util import (absolute_real_path, relative_real_path,
+                               add_trailing_slash)
 from pootle_store.filetypes import factory_classes
 from pootle_tagging.forms import TagForm
 from pootle_translationproject.actions import action_groups
-from pootle.scripts.actions import EXTDIR, TranslationProjectAction
+from pootle.scripts.actions import (EXTDIR, StoreAction,
+                                    TranslationProjectAction)
 
 
 @get_translation_project
@@ -232,23 +234,79 @@ class ProjectIndexView(view_handler.View):
         path_stats = get_raw_stats(path_obj, include_suggestions=True)
         path_summary = get_path_summary(path_obj, path_stats, latest_action)
         actions = action_groups(request, path_obj, path_stats=path_stats)
-        action_error = ''
         action_output = ''
         running = request.GET.get(EXTDIR, '')
         if running:
-            if path_obj.is_dir:
-                act = TranslationProjectAction
-            else:
+            if store:
                 act = StoreAction
+            else:
+                act = TranslationProjectAction
             try:
                 action = act.lookup(running)
             except KeyError:
-                action_error = _("Unable to find %s %s") % (act, running)
+                messages.error(request,
+                               _("Unable to find %s %s") % (act, running))
             else:
-                action.run(project=str(project), language=str(language),
-                           store=(str(store) if store else '*'))
-                action_error = action.error
+                if not getattr(action, 'nosync', False):
+                    (store or translation_project).sync()
+                vcs_dir = unicode(settings.VCS_DIRECTORY)
+                po_dir = unicode(settings.PODIRECTORY)
+                tp_dir = directory.get_real_path()
+                store_fn = '*'
+                if store:
+                    tp_dir_slash = add_trailing_slash(tp_dir)
+                    if store.file.name.startswith(tp_dir_slash):
+                        # note: store_f used below in reverse() call
+                        store_f = store.file.name[len(tp_dir_slash):]
+                        store_fn = store_f.replace('/', os.sep)
+
+                try:
+                    action.run(root=po_dir, tpdir=tp_dir, project=project.code,
+                               language=language.code, store=store_fn,
+                               style=translation_project.file_style,
+                               vc_root=vcs_dir)
+                except StandardError:
+                    logging.exception("Exception running %s extension action",
+                                      action.title)
+                    if (action.error):
+                        messages.error(request, action.error)
+                    else:
+                        messages.error(request,
+                                       "Exception running '%s' - see logs" %
+                                       action.title)
+                else:
+                    if (action.error):
+                        messages.warning(request, action.error)
+
                 action_output = action.output
+                if getattr(action, 'dl_file', None):
+                    # FIXME - not working right
+                    #return HttpResponseRedirect(('/download%s' %
+                    #                             getattr(action, 'dl_file')))
+                    action_output += ''.join(['Download tarball from <a href="',
+                                              ('/download%s' %
+                                               getattr(action, 'dl_file')),
+                                              '">here</a>'])
+
+                if not action.output:
+                    if not store:
+                        overview_url = reverse('tp.overview',
+                                               args=[language.code,
+                                                     project.code, ''])
+                    else:
+                        slash = store_f.rfind('/')
+                        store_d = ''
+                        if slash > 0:
+                            store_d = store_f[:slash]
+                            store_f = store_f[slash + 1:]
+                        elif slash == 0:
+                            store_f = store_f[1:]
+                        overview_url = reverse('tp.overview',
+                                               args=[language.code,
+                                                     project.code,
+                                                     store_d, store_f])
+                    # FIXME - not working right
+                    #return HttpResponseRedirect(overview_url)
 
         template_vars.update({
             'translation_project': translation_project,
