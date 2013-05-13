@@ -115,6 +115,15 @@ def bootstrap(branch="master"):
         print('Aborting.')
 
 
+def create_db():
+    """Creates a new DB"""
+    require('environment', provided_by=[production, staging])
+
+    with settings(hide('stderr')):
+        sudo("mysql -u %(db_user)s -p -e 'CREATE DATABASE %(db_name)s DEFAULT "
+             "CHARACTER SET utf8 COLLATE utf8_general_ci;'" % env)
+
+
 def syncdb():
     """Runs `syncdb` to create the DB schema"""
     require('environment', provided_by=[production, staging])

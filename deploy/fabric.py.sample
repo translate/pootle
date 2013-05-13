@@ -33,6 +33,20 @@ SETTINGS['user'] = 'foobarbaz'
 
 
 #
+# Database
+#
+
+SETTINGS['db_name'] = 'pootle'
+# DB user will be used both for Pootle settings and for any command that needs
+# it, e.g. create_db.
+SETTINGS['db_user'] = 'pootle'
+# DB password will only be used to include it on Pootle settings. If the DB
+# password is required while running any command, e.g. create_db, a prompt will
+# be shown asking for it.
+SETTINGS['db_password'] = 'SET_DB_PASSWORD_HERE'
+
+
+#
 # Project
 #
 
