@@ -69,13 +69,13 @@ def _init_virtualenv():
 
 
 def _clone_repo():
-    """Clones the git repository"""
+    """Clones the Git repository"""
     run('git clone %(project_repo)s %(project_repo_path)s' % env)
 
 
 # TODO: Accept branches other than the default
 def _checkout_repo():
-    """Updates the git repository"""
+    """Updates the Git repository"""
     with cd(env.project_repo_path):
         run('git pull')
 
@@ -87,17 +87,17 @@ def _install_requirements():
 
 
 def _update_requirements():
-    """Updates dependencies installed via pip"""
+    """Updates dependencies defined in the requirements file"""
     with prefix('source %(env_path)s/bin/activate' % env):
         run('pip install -U -r %(project_repo_path)s/requirements/deploy.txt' % env)
 
 
 def bootstrap():
-    """Creates initial directories and virtualenv"""
+    """Bootstraps a Pootle deployment"""
     require('environment', provided_by=[production, staging])
 
     if (exists('%(project_path)s' % env) and
-        confirm('%(project_path)s already exists. Do you want to continue?'
+        confirm('\n%(project_path)s already exists. Do you want to continue?'
                 % env, default=False)) or not exists('%(project_path)s' % env):
 
             print('Bootstrapping initial directories...')
@@ -113,7 +113,7 @@ def bootstrap():
 
 
 def update_db():
-    """Updates database schemas"""
+    """Updates database schemas up to Pootle version 2.5"""
     require('environment', provided_by=[production, staging])
 
     with settings(hide('stdout', 'stderr')):
