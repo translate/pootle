@@ -20,11 +20,13 @@
 
 """Fabric deployment file."""
 
+from os.path import isfile
+
 from fabric.api import cd, env
 from fabric.context_managers import hide, prefix, settings
 from fabric.contrib.console import confirm
 from fabric.contrib.files import exists, upload_template
-from fabric.operations import require, run, sudo
+from fabric.operations import require, run, sudo, put, get
 
 
 #
@@ -152,6 +154,61 @@ def update_db():
         with cd('%(project_repo_path)s' % env):
             with prefix('source %(env_path)s/bin/activate' % env):
                 run('python manage.py updatedb')
+
+
+def load_db(dumpfile=None):
+    """Loads data from a SQL script to Pootle DB"""
+    require('environment', provided_by=[production, staging])
+
+    if dumpfile is not None:
+        if isfile(dumpfile):
+            remote_filename = '%(project_path)s/DB_backup_to_load.sql' % env
+
+            if (exists(remote_filename) and
+                confirm('\n%s already exists. Do you want to overwrite it?'
+                        % remote_filename,
+                        default=False)) or not exists(remote_filename):
+
+                print('\nLoading data into the DB...')
+
+                with settings(hide('stderr')):
+                    put(dumpfile, remote_filename, use_sudo=True)
+                    sudo('mysql -u %s -p %s < %s' % (env['db_user'],
+                                                     env['db_name'],
+                                                     remote_filename))
+            else:
+                print('\nAborting.')
+        else:
+            print('\nERROR: The file "%s" does not exist. Aborting.' % dumpfile)
+    else:
+        print('\nERROR: A dumpfile must be provided. Aborting.')
+
+
+def dump_db(dumpfile="pootle_DB_backup.sql"):
+    """Dumps the DB as a SQL script and downloads it"""
+    require('environment', provided_by=[production, staging])
+
+    if ((isfile(dumpfile) and confirm('\n%s already exists locally. Do you '
+        'want to overwrite it?' % dumpfile, default=False))
+        or not isfile(dumpfile)):
+
+        remote_filename = '%s/%s' % (env['project_path'], dumpfile)
+
+        if ((exists(remote_filename) and confirm('\n%s already exists. Do you '
+            'want to overwrite it?' % remote_filename, default=False))
+            or not exists(remote_filename)):
+
+            print('\nDumping DB...')
+
+            with settings(hide('stderr')):
+                sudo('mysqldump -u %s -p %s > %s' % (env['db_user'],
+                                                     env['db_name'],
+                                                     remote_filename))
+                get(remote_filename, '.')
+        else:
+            print('\nAborting.')
+    else:
+        print('\nAborting.')
 
 
 def update_code(branch="master"):
