@@ -57,7 +57,9 @@ def _init_directories():
         sudo('rm -rf %(project_path)s' % env)
 
     sudo('mkdir -p %(project_path)s' % env)
-    sudo('chown %(user)s:%(server_group)s %(project_path)s' % env)
+    sudo('mkdir -p %(translations_path)s' % env)
+    sudo('mkdir -p %(repos_path)s' % env)
+    sudo('chown -R %(user)s:%(server_group)s %(project_path)s' % env)
     run('mkdir -m g+w %(project_path)s/logs' % env)
 
 

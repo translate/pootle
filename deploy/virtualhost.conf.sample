@@ -24,8 +24,8 @@ WSGIPythonOptimize 1
         Allow from all
     </Directory>
 
-    Alias /export %(project_po_path)s
-    <Directory "%(project_po_path)s">
+    Alias /export %(translations_path)s
+    <Directory "%(translations_path)s">
         Order deny,allow
         Allow from all
     </Directory>
