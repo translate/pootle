@@ -73,11 +73,12 @@ def _clone_repo():
     run('git clone %(project_repo)s %(project_repo_path)s' % env)
 
 
-# TODO: Accept branches other than the default
-def _checkout_repo():
-    """Updates the Git repository"""
+def _checkout_repo(branch="master"):
+    """Updates the Git repository and checks out the specified branch"""
     with cd(env.project_repo_path):
+        run('git checkout master')
         run('git pull')
+        run('git checkout %s' % branch)
 
 
 def _install_requirements():
@@ -92,8 +93,8 @@ def _update_requirements():
         run('pip install -U -r %(project_repo_path)s/requirements/deploy.txt' % env)
 
 
-def bootstrap():
-    """Bootstraps a Pootle deployment"""
+def bootstrap(branch="master"):
+    """Bootstraps a Pootle deployment using the specified branch"""
     require('environment', provided_by=[production, staging])
 
     if (exists('%(project_path)s' % env) and
@@ -106,7 +107,7 @@ def bootstrap():
                 _init_directories()
                 _init_virtualenv()
                 _clone_repo()
-                _checkout_repo()
+                _checkout_repo(branch=branch)
                 _install_requirements()
     else:
         print('Aborting.')
@@ -122,14 +123,14 @@ def update_db():
                 run('python manage.py updatedb')
 
 
-def update_code():
+def update_code(branch="master"):
     """Updates the source code and its requirements"""
     require('environment', provided_by=[production, staging])
 
     print('Getting the latest code and dependencies...')
 
     with settings(hide('stdout', 'stderr')):
-        _checkout_repo()
+        _checkout_repo(branch=branch)
         _update_requirements()
 
 
@@ -147,14 +148,14 @@ def deploy_static():
                 run('python manage.py assets build')
 
 
-def deploy():
+def deploy(branch="master"):
     """Updates the code and installs the production site"""
     require('environment', provided_by=[production, staging])
 
     print('Deploying the site...')
 
     with settings(hide('stdout', 'stderr')):
-        update_code()
+        update_code(branch=branch)
         deploy_static()
         install_site()
 
