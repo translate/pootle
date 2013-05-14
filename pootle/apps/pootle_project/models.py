@@ -115,7 +115,8 @@ class Project(models.Model):
             os.makedirs(project_path)
 
         from pootle_app.models.directory import Directory
-        self.directory = Directory.objects.projects.get_or_make_subdir(self.code)
+        self.directory = Directory.objects.projects \
+                                          .get_or_make_subdir(self.code)
 
         super(Project, self).save(*args, **kwargs)
 
