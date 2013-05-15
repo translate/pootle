@@ -52,12 +52,18 @@ SETTINGS['db_password'] = 'SET_DB_PASSWORD_HERE'
 
 #: A meaningful name for your Pootle installation
 SETTINGS['project_name'] = 'pootle-staging'
-#: Change the first path part if your Apache websites are stored somewhere else
-SETTINGS['project_path'] = '/var/www/sites/%s' % SETTINGS['project_name']
-SETTINGS['project_repo_path'] = '%s/src' % SETTINGS['project_path']
-SETTINGS['project_repo'] = 'git://github.com/translate/pootle.git'
 #: This URL will be used in the VirtualHost section
 SETTINGS['project_url'] = 'my-pootle.foo.tld'
+#: Change the first path part if your Apache websites are stored somewhere else
+SETTINGS['project_path'] = '/var/www/sites/%s' % SETTINGS['project_name']
+
+
+#
+# The rest of the settings probably won't need any changes
+#
+
+SETTINGS['project_repo_path'] = '%s/src' % SETTINGS['project_path']
+SETTINGS['project_repo'] = 'git://github.com/translate/pootle.git'
 SETTINGS['project_settings_path'] = '%s/pootle/settings' % \
                                         SETTINGS['project_repo_path']
 SETTINGS['translations_path'] = '%s/translations' % SETTINGS['project_path']
