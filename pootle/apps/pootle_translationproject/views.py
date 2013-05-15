@@ -266,27 +266,34 @@ class ProjectIndexView(view_handler.View):
                                style=translation_project.file_style,
                                vc_root=vcs_dir)
                 except StandardError:
-                    logging.exception("Exception running %s extension action",
-                                      action.title)
+                    err = _("Exception while running '%s' extension action"
+                            ) % action.title
+                    logging.exception(err)
                     if (action.error):
                         messages.error(request, action.error)
                     else:
-                        messages.error(request,
-                                       "Exception running '%s' - see logs" %
-                                       action.title)
+                        messages.error(request, err)
                 else:
                     if (action.error):
                         messages.warning(request, action.error)
 
                 action_output = action.output
                 if getattr(action, 'dl_file', None):
-                    # FIXME - not working right
-                    #return HttpResponseRedirect(('/download%s' %
-                    #                             getattr(action, 'dl_file')))
-                    action_output += ''.join(['Download tarball from <a href="',
-                                              ('/download%s' %
-                                               getattr(action, 'dl_file')),
-                                              '">here</a>'])
+                    import shutil
+
+                    export_path = os.path.join('POOTLE_EXPORT', tp_dir,
+                                               getattr(action, 'dl_file'))
+                    abs_export_path = absolute_real_path(export_path)
+
+                    key = iri_to_uri("%s:export_action" % directory.pootle_path)
+
+                    ensure_target_dir_exists(abs_export_path)
+                    shutil.copyfile(getattr(action, 'dl_path'), abs_export_path)
+
+                    cache.set(key, translation_project.get_mtime(),
+                              settings.OBJECT_CACHE_TIMEOUT)
+
+                    return redirect('/export/' + export_path)
 
                 if not action.output:
                     if not store:

@@ -425,14 +425,16 @@ class DownloadAction(ExtensionAction):
     def __init__(self, **kwargs):
         super(DownloadAction, self).__init__(**kwargs)
         self.icon = 'icon-download'
+        self.dl_path = None
         self.dl_file = None
 
     def set_download_file(self, tpdir, filename):
         """Set file for download"""
+        self.dl_path = filename
         prefix = filename.find(tpdir)
         if prefix >= 0:
             filename = filename[prefix + len(tpdir) + 1:]
-        self.dl_file = filename.replace(os.sep, '/')
+        self.dl_file = filename
 
     def get_link_func(self):
         """Return a link_func for use by pootle_translationproject.actions
