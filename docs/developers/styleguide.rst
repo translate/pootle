@@ -242,6 +242,10 @@ Indenting
     the time the templating library doesn't easily allow this. So try not to
     extend too much the line length.
 
+Template naming
+  - If a template is intended to be included by other templates, start its
+    name with an underscore, e.g. *_included_template.html*.
+
 CSS
 ---
 
