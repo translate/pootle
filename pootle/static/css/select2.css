@@ -89,7 +89,6 @@ Version: @@ver@@ Timestamp: @@timestamp@@
 .select2-container .select2-choice span {
     margin-right: 26px;
     display: block;
-    overflow: hidden;
 
     white-space: nowrap;
 
