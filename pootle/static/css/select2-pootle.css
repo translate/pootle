@@ -209,3 +209,7 @@
     max-width: 30em;
 }
 
+.select2-container .select2-choice span {
+    overflow: visible;
+}
+
