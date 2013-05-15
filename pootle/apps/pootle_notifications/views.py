@@ -54,14 +54,6 @@ def view(request, path):
             'directory': directory,
         }
 
-    template_vars = {
-        'path': path,
-        'directory': directory,
-        'title': directory_to_title(directory),
-        'notices': Notice.objects.filter(**criteria) \
-                                 .select_related('directory')[:30],
-    }
-
     # Find language and project defaults, passed to handle_form
     proj = None
     lang = None
@@ -69,14 +61,20 @@ def view(request, path):
         trans_proj = directory.translation_project
         lang = trans_proj.language
         proj = trans_proj.project
-        template_vars.update({
-            'language': lang,
-            'project': proj,
-        })
     elif directory.is_language():
         lang = directory.language
     elif directory.is_project():
         proj = directory.project
+
+    template_vars = {
+        'path': path,
+        'directory': directory,
+        'title': directory_to_title(directory),
+        'notices': Notice.objects.filter(**criteria) \
+                                 .select_related('directory')[:30],
+        'language': lang,
+        'project': proj,
+    }
 
     if check_permission('administrate', request):
         template_vars['form'] = handle_form(request, directory, proj, lang,
