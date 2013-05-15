@@ -20,11 +20,13 @@
 
 """Fabric deployment file."""
 
+from os.path import isfile
+
 from fabric.api import cd, env
 from fabric.context_managers import hide, prefix, settings
 from fabric.contrib.console import confirm
 from fabric.contrib.files import exists, upload_template
-from fabric.operations import require, run, sudo
+from fabric.operations import require, run, sudo, put, get
 
 
 #
@@ -57,7 +59,9 @@ def _init_directories():
         sudo('rm -rf %(project_path)s' % env)
 
     sudo('mkdir -p %(project_path)s' % env)
-    sudo('chown %(user)s:%(server_group)s %(project_path)s' % env)
+    sudo('mkdir -p %(translations_path)s' % env)
+    sudo('mkdir -p %(repos_path)s' % env)
+    sudo('chown -R %(user)s:%(server_group)s %(project_path)s' % env)
     run('mkdir -m g+w %(project_path)s/logs' % env)
 
 
@@ -65,19 +69,20 @@ def _init_virtualenv():
     """Creates initial virtualenv"""
     run('virtualenv -p %(python)s --no-site-packages %(env_path)s' % env)
     with prefix('source %(env_path)s/bin/activate' % env):
-        run('easy_install pip' % env)
+        run('easy_install pip')
 
 
 def _clone_repo():
-    """Clones the git repository"""
+    """Clones the Git repository"""
     run('git clone %(project_repo)s %(project_repo_path)s' % env)
 
 
-# TODO: Accept branches other than the default
-def _checkout_repo():
-    """Updates the git repository"""
+def _checkout_repo(branch="master"):
+    """Updates the Git repository and checks out the specified branch"""
     with cd(env.project_repo_path):
+        run('git checkout master')
         run('git pull')
+        run('git checkout %s' % branch)
 
 
 def _install_requirements():
@@ -87,17 +92,17 @@ def _install_requirements():
 
 
 def _update_requirements():
-    """Updates dependencies installed via pip"""
+    """Updates dependencies defined in the requirements file"""
     with prefix('source %(env_path)s/bin/activate' % env):
         run('pip install -U -r %(project_repo_path)s/requirements/deploy.txt' % env)
 
 
-def bootstrap():
-    """Creates initial directories and virtualenv"""
+def bootstrap(branch="master"):
+    """Bootstraps a Pootle deployment using the specified branch"""
     require('environment', provided_by=[production, staging])
 
     if (exists('%(project_path)s' % env) and
-        confirm('%(project_path)s already exists. Do you want to continue?'
+        confirm('\n%(project_path)s already exists. Do you want to continue?'
                 % env, default=False)) or not exists('%(project_path)s' % env):
 
             print('Bootstrapping initial directories...')
@@ -106,14 +111,43 @@ def bootstrap():
                 _init_directories()
                 _init_virtualenv()
                 _clone_repo()
-                _checkout_repo()
+                _checkout_repo(branch=branch)
                 _install_requirements()
     else:
         print('Aborting.')
 
 
+def create_db():
+    """Creates a new DB"""
+    require('environment', provided_by=[production, staging])
+
+    with settings(hide('stderr')):
+        sudo("mysql -u %(db_user)s -p -e 'CREATE DATABASE %(db_name)s DEFAULT "
+             "CHARACTER SET utf8 COLLATE utf8_general_ci;'" % env)
+
+
+def syncdb():
+    """Runs `syncdb` to create the DB schema"""
+    require('environment', provided_by=[production, staging])
+
+    with settings(hide('stdout', 'stderr')):
+        with cd('%(project_repo_path)s' % env):
+            with prefix('source %(env_path)s/bin/activate' % env):
+                run('python manage.py syncdb --noinput')
+
+
+def initdb():
+    """Runs `initdb` to initialize the DB"""
+    require('environment', provided_by=[production, staging])
+
+    with settings(hide('stdout', 'stderr')):
+        with cd('%(project_repo_path)s' % env):
+            with prefix('source %(env_path)s/bin/activate' % env):
+                run('python manage.py initdb')
+
+
 def update_db():
-    """Updates database schemas"""
+    """Updates database schemas up to Pootle version 2.5"""
     require('environment', provided_by=[production, staging])
 
     with settings(hide('stdout', 'stderr')):
@@ -122,14 +156,69 @@ def update_db():
                 run('python manage.py updatedb')
 
 
-def update_code():
+def load_db(dumpfile=None):
+    """Loads data from a SQL script to Pootle DB"""
+    require('environment', provided_by=[production, staging])
+
+    if dumpfile is not None:
+        if isfile(dumpfile):
+            remote_filename = '%(project_path)s/DB_backup_to_load.sql' % env
+
+            if (exists(remote_filename) and
+                confirm('\n%s already exists. Do you want to overwrite it?'
+                        % remote_filename,
+                        default=False)) or not exists(remote_filename):
+
+                print('\nLoading data into the DB...')
+
+                with settings(hide('stderr')):
+                    put(dumpfile, remote_filename, use_sudo=True)
+                    sudo('mysql -u %s -p %s < %s' % (env['db_user'],
+                                                     env['db_name'],
+                                                     remote_filename))
+            else:
+                print('\nAborting.')
+        else:
+            print('\nERROR: The file "%s" does not exist. Aborting.' % dumpfile)
+    else:
+        print('\nERROR: A dumpfile must be provided. Aborting.')
+
+
+def dump_db(dumpfile="pootle_DB_backup.sql"):
+    """Dumps the DB as a SQL script and downloads it"""
+    require('environment', provided_by=[production, staging])
+
+    if ((isfile(dumpfile) and confirm('\n%s already exists locally. Do you '
+        'want to overwrite it?' % dumpfile, default=False))
+        or not isfile(dumpfile)):
+
+        remote_filename = '%s/%s' % (env['project_path'], dumpfile)
+
+        if ((exists(remote_filename) and confirm('\n%s already exists. Do you '
+            'want to overwrite it?' % remote_filename, default=False))
+            or not exists(remote_filename)):
+
+            print('\nDumping DB...')
+
+            with settings(hide('stderr')):
+                sudo('mysqldump -u %s -p %s > %s' % (env['db_user'],
+                                                     env['db_name'],
+                                                     remote_filename))
+                get(remote_filename, '.')
+        else:
+            print('\nAborting.')
+    else:
+        print('\nAborting.')
+
+
+def update_code(branch="master"):
     """Updates the source code and its requirements"""
     require('environment', provided_by=[production, staging])
 
     print('Getting the latest code and dependencies...')
 
     with settings(hide('stdout', 'stderr')):
-        _checkout_repo()
+        _checkout_repo(branch=branch)
         _update_requirements()
 
 
@@ -147,14 +236,14 @@ def deploy_static():
                 run('python manage.py assets build')
 
 
-def deploy():
+def deploy(branch="master"):
     """Updates the code and installs the production site"""
     require('environment', provided_by=[production, staging])
 
     print('Deploying the site...')
 
     with settings(hide('stdout', 'stderr')):
-        update_code()
+        update_code(branch=branch)
         deploy_static()
         install_site()
 

@@ -1,0 +1,51 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+# NOTE: consider adding other settings if necessary, for example settings for
+# cache or mail. Take a look at the settings in
+# pootle/settings/90-local.conf.sample
+
+
+DEBUG = False
+
+# Make this unique, and don't share it with anybody.
+SECRET_KEY = '%(secret_key)s'
+
+# A list of strings representing the host/domain names that this Pootle server
+# can serve. This is a Django's security measure. More details at
+# https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
+ALLOWED_HOSTS = ['%(project_url)s', '127.0.0.1', 'localhost']
+
+
+#
+# Backends
+#
+
+# Database backend settings
+DATABASES = {
+    'default': {
+        # Replace 'sqlite3' with 'postgresql_psycopg2', 'mysql' or 'oracle'.
+        'ENGINE': 'django.db.backends.mysql',
+        # Database name or path to database file if using sqlite3.
+        'NAME': '%(db_name)s',
+        # Not used with sqlite3.
+        'USER': '%(db_user)s',
+        # Not used with sqlite3.
+        'PASSWORD': '%(db_password)s',
+        # Set to empty string for localhost. Not used with sqlite3.
+        'HOST': '',
+        # Set to empty string for default. Not used with sqlite3.
+        'PORT': '',
+    }
+}
+
+
+#
+# Translation
+#
+
+# The directory where the translation files are kept
+PODIRECTORY = "%(translations_path)s"
+
+# The directory where version control clones/checkouts are kept
+VCS_DIRECTORY = "%(repos_path)s"

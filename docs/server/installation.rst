@@ -23,7 +23,7 @@ recommended.
 
   The easiest way to test and install Pootle is by using pip. However,
   installations can be done straight from git sources or be automated by using
-  fabric deployment scripts.
+  :ref:`fabric deployment scripts <fabric-deployment>`.
 
 
 .. _installation#hardware_requirements:

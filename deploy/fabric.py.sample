@@ -5,18 +5,17 @@
 #
 # This file is part of Pootle.
 #
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
+# This program is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation; either version 2 of the License, or (at your option) any later
+# version.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License along with
+# this program; if not, see <http://www.gnu.org/licenses/>.
 
 """Fabric settings file."""
 
@@ -24,7 +23,7 @@ SETTINGS = {}
 
 
 #
-# SSH connection
+# SSH connection for Fabric
 #
 
 #: List of hosts to work on
@@ -34,20 +33,50 @@ SETTINGS['user'] = 'foobarbaz'
 
 
 #
+# Database
+#
+
+SETTINGS['db_name'] = 'pootle'
+# DB user will be used both for Pootle settings and for any command that needs
+# it, e.g. create_db.
+SETTINGS['db_user'] = 'pootle'
+# DB password will only be used to include it on Pootle settings. If the DB
+# password is required while running any command, e.g. create_db, a prompt will
+# be shown asking for it.
+SETTINGS['db_password'] = 'SET_DB_PASSWORD_HERE'
+
+
+#
 # Project
 #
 
 #: A meaningful name for your Pootle installation
 SETTINGS['project_name'] = 'pootle-staging'
-#: Change the first path part if your Apache websites are stored somewhere else
-SETTINGS['project_path'] = '/var/www/sites/%s' % SETTINGS['project_name']
-SETTINGS['project_repo_path'] = '%s/src' % SETTINGS['project_path']
-SETTINGS['project_po_path'] = '%s/podirectory' % SETTINGS['project_path']
-SETTINGS['project_repo'] = 'git://github.com/translate/pootle.git'
 #: This URL will be used in the VirtualHost section
 SETTINGS['project_url'] = 'my-pootle.foo.tld'
+#: Change the first path part if your Apache websites are stored somewhere else
+SETTINGS['project_path'] = '/var/www/sites/%s' % SETTINGS['project_name']
+
+
+#
+# The rest of the settings probably won't need any changes
+#
+
+SETTINGS['project_repo_path'] = '%s/src' % SETTINGS['project_path']
+SETTINGS['project_repo'] = 'git://github.com/translate/pootle.git'
 SETTINGS['project_settings_path'] = '%s/pootle/settings' % \
                                         SETTINGS['project_repo_path']
+SETTINGS['translations_path'] = '%s/translations' % SETTINGS['project_path']
+SETTINGS['repos_path'] = '%s/repos' % SETTINGS['project_path']
+
+
+#
+# Secret key
+#
+
+from base64 import b64encode
+from os import urandom
+SETTINGS['secret_key'] = b64encode(urandom(50))
 
 
 #

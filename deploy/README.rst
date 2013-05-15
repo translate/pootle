@@ -8,6 +8,9 @@ the *fabfile* available in the repository for deploying Pootle servers.
 This *fabfile* will setup a Pootle server within a virtual environment,
 running in a Apache server with *mod_wsgi*.
 
+Please read the following docs for more information:
+http://docs.translatehouse.org/projects/pootle/en/latest/server/fabric_deployment.html
+
 The deployment is separated in two different environments:
 
 - Staging environment (*/deploy/staging/* directory)
