@@ -20,7 +20,9 @@
 
 from functools import wraps
 
-from django.shortcuts import get_object_or_404
+from django.core.urlresolvers import reverse
+from django.http import Http404
+from django.shortcuts import redirect
 
 from pootle_app.models.permissions import get_matching_permissions
 from pootle_profile.models import get_profile
@@ -33,15 +35,35 @@ def get_translation_project(f):
 
     If there's no match for a translation project, a 404 response is
     returned.
+    Alternatively, if a user made a explicit selection via the UI and
+    there's no match for a translation project, a redirect to
+    ``/language_code/`` or ``/projects/project_code/`` will be performed.
     """
-
     @wraps(f)
     def decorated_f(request, language_code, project_code, *args, **kwargs):
-        translation_project = get_object_or_404(
-            TranslationProject,
-            language__code=language_code,
-            project__code=project_code
-        )
+        try:
+            translation_project = TranslationProject.objects.get(
+                language__code=language_code,
+                project__code=project_code
+            )
+        except TranslationProject.DoesNotExist:
+            translation_project = None
+
+        if not translation_project:
+            user_choice = request.COOKIES.get('user-choice', None)
+            if user_choice and user_choice in ('language', 'project',):
+                url = {
+                    'language': reverse('language.overview',
+                                        args=[language_code]),
+                    'project': reverse('project.overview',
+                                       args=[project_code]),
+                }
+                response = redirect(url[user_choice])
+                response.delete_cookie('user-choice')
+
+                return response
+
+            raise Http404
 
         return f(request, translation_project, *args, **kwargs)
 
@@ -50,7 +72,6 @@ def get_translation_project(f):
 
 def set_request_context(f):
     """Sets up the request object with a common context."""
-
     @wraps(f)
     def decorated_f(request, translation_project, *args, **kwargs):
         # For now, all permissions in a translation project are

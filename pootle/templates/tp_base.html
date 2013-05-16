@@ -6,12 +6,7 @@
 {% block title %}{{ translation_project.project }} | {{ language.name }} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
-{{ block.super }}<li><a href='{{ "/projects/"|l }}'>{% trans "Projects" %}</a></li>
-{% cache settings.CACHE_TIMEOUT tp_bread directory.id LANGUAGE_CODE %}
-<li><a href="{% url 'project.overview' project.code %}" id="js-select-project"
-  data-initial-code="{{ project.code }}">{{ project }}</a></li>
-<li><noscript>{{ language.name }}</noscript>{% display_select 'language' project.languages language.code %}</li>
-{% endcache %}
+{{ block.super }}{% include 'common/_breadcrumbs.html' %}
 {% endblock %}
 
 {% block extra_head %}

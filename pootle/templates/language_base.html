@@ -1,11 +1,11 @@
 {% extends "base.html"  %}
 {% load url from future %}
-{% load baseurl i18n %}
+{% load i18n %}
 
 {% block title %}{{ language.name }} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
-{{ block.super }}<li><a href="{% filter l %}/{{ language.code }}/{% endfilter %}">{{ language.name }}</a></li>
+{{ block.super }}{% include 'common/_breadcrumbs.html' %}
 {% endblock %}
 
 {% block extra_head %}

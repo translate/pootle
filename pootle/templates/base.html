@@ -97,7 +97,6 @@
               <img src="{{ user.get_profile|gravatar:20 }}" />{{ user.username }}</a>
             </li>
             {% endif %}
-            <li><a href='{{ "/projects/"|l }}'>{% trans "Projects" %}</a></li>
             {% if user.is_superuser %}
             <li><a class="admin" href='{{ "/admin/"|l }}'>{% trans "ADMIN" %}</a></li>
             {% endif %}

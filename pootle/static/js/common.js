@@ -6,10 +6,26 @@
 
     init: function () {
       PTL.utils.makeSelectableInput('#js-select-language',
-        {},
+        {
+          allowClear: true,
+          placeholder: gettext("All Languages"),
+          width: 'off'
+        },
         function (e) {
-          var langCode = $(this).val();
-          PTL.common.navigateToLang(langCode);
+          var langCode = $(this).val(),
+              projectCode = $('#js-select-project').val();
+          PTL.common.navigateTo(langCode, projectCode);
+      });
+      PTL.utils.makeSelectableInput('#js-select-project',
+        {
+          allowClear: true,
+          placeholder: gettext("All Projects"),
+          width: 'off'
+        },
+        function (e) {
+          var projectCode = $(this).val(),
+              langCode = $('#js-select-language').val();
+          PTL.common.navigateTo(langCode, projectCode);
       });
 
       /* Collapsing functionality */
@@ -115,19 +131,44 @@
       });
     },
 
-    /* Navigates to `langCode` while retaining the current context */
-    navigateToLang: function (langCode) {
+    /* Navigates to `languageCode`, `projectCode` while retaining the
+     * current context when applicable */
+    navigateTo: function (languageCode, projectCode) {
       var curProject = $('#js-select-project').data('initial-code'),
           curLanguage = $('#js-select-language').data('initial-code'),
-          curUrl = window.location.toString();
+          curUrl = window.location.toString(),
+          newUrl = curUrl,
+          langChanged = languageCode !== curLanguage,
+          projChanged = projectCode !== curProject,
+          hasChanged = langChanged || projChanged;
 
-      if (langCode === curLanguage) {
+      if (!hasChanged) {
         return;
       }
 
-      var newUrl = curUrl.replace(curLanguage + '/' + curProject,
-                                  langCode + '/' + curProject)
-                         .replace(/(\#|&)unit=\d+/, '');
+      if (languageCode === '' && projectCode === '') {
+        newUrl = l('/');
+      } else if (languageCode === '' && projectCode !== '') {
+        newUrl = l(['', 'projects', projectCode].join('/'));
+      } else if (languageCode !== '' && projectCode === '') {
+        newUrl = l(['', languageCode].join('/'));
+      } else if (languageCode !== '' && projectCode !== '') {
+        if (projChanged) {
+          newUrl = l(['', languageCode, projectCode].join('/'));
+        } else if (langChanged) {
+          if (curLanguage === '') {
+            newUrl = curUrl.replace('projects/' + curProject,
+                                    languageCode + '/' + curProject);
+          } else {
+            newUrl = curUrl.replace(curLanguage + '/' + curProject,
+                                    languageCode + '/' + curProject)
+                           .replace(/(\#|&)unit=\d+/, '');
+          }
+        }
+        var changed = projChanged ? 'project' : 'language';
+        $.cookie('user-choice', changed, {path: '/'});
+      }
+
       window.location.href = newUrl;
     },
 

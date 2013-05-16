@@ -21,6 +21,7 @@
 
 import os
 
+from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.db.models import Q
@@ -44,6 +45,9 @@ class ProjectManager(RelatedManager):
 
     def get_by_natural_key(self, code):
         return self.get(code=code)
+
+
+CACHE_KEY = 'pootle-projects'
 
 
 class Project(models.Model):
@@ -120,6 +124,10 @@ class Project(models.Model):
 
         super(Project, self).save(*args, **kwargs)
 
+        # FIXME: far from ideal, should cache at the manager level instead
+        cache.delete(CACHE_KEY)
+        cache.set(CACHE_KEY, Project.objects.all(), 0)
+
     def delete(self, *args, **kwargs):
         directory = self.directory
 
@@ -159,6 +167,9 @@ class Project(models.Model):
         super(Project, self).delete(*args, **kwargs)
 
         directory.delete()
+
+        # FIXME: far from ideal, should cache at the manager level instead
+        cache.delete(CACHE_KEY)
 
     @getfromcache
     def get_mtime(self):

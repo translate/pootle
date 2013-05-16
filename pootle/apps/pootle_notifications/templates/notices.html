@@ -7,7 +7,7 @@ the future we have to take a different approach for this.
 {% endcomment %}
 
 {% load url from future %}
-{% load i18n baseurl cleanhtml assets cache common_tags %}
+{% load i18n cleanhtml assets cache common_tags %}
 
 {% get_current_language as LANGUAGE_CODE %}
 
@@ -26,23 +26,7 @@ the future we have to take a different approach for this.
 {% endblock %}
 
 {% block breadcrumbs %}
-  {{ block.super }}
-  {% if directory.is_language %}
-    <li><a href="{% filter l %}/{{ directory.language.code }}/{% endfilter %}">{{ directory.language.name }}</a></li>
-  {% else %}
-    {% if directory.is_project %}
-      <li><a href='{{ "/projects/"|l }}'>{% trans "Projects" %}</a></li>
-      <li><a href="{% filter l %}/projects/{{ directory.project.code }}/{% endfilter %}">{{ directory.project.fullname }}</a></li>
-    {% endif %}
-    {% if directory.is_translationproject %}
-      <li><a href='{{ "/projects/"|l }}'>{% trans "Projects" %}</a></li>
-      {% cache settings.CACHE_TIMEOUT tp_bread directory.id LANGUAGE_CODE %}
-        <li><a href="{% url 'project.overview' project.code %}" id="js-select-project" data-initial-code="{{ project.code }}">{{ project }}</a></li>
-        <li><noscript>{{ language.name }}</noscript>{% display_select 'language' project.languages language.code %}</li>
-      {% endcache %}
-    {% endif %}
-  {% endif %}
-  <li>{% trans "News" %}</li>
+{{ block.super }}{% include 'common/_breadcrumbs.html' %}
 {% endblock %}
 
 {% block extra_head %}

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009-2012 Zuza Software Foundation
+# Copyright 2009-2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -18,6 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+from django.core.cache import cache
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -37,9 +38,25 @@ class LanguageManager(RelatedManager):
         return self.get(code=code)
 
 
+class LiveLanguageManager(models.Manager):
+    """Manager that only considers `live` languages, i.e. languages other
+    than the special `Templates` language.
+
+    Note that this doesn't inherit from :cls:`RelatedManager`.
+    """
+    def get_query_set(self):
+        return super(LiveLanguageManager, self).get_query_set().filter(
+                ~models.Q(code='templates'),
+            )
+
+
+CACHE_KEY = 'pootle-languages'
+
+
 class Language(models.Model):
 
     objects = LanguageManager()
+    live = LiveLanguageManager()
 
     class Meta:
         ordering = ['code']
@@ -92,10 +109,17 @@ class Language(models.Model):
 
         super(Language, self).save(*args, **kwargs)
 
+        # FIXME: far from ideal, should cache at the manager level instead
+        cache.delete(CACHE_KEY)
+        cache.set(CACHE_KEY, Language.live.all(), 0)
+
     def delete(self, *args, **kwargs):
         directory = self.directory
         super(Language, self).delete(*args, **kwargs)
         directory.delete()
+
+        # FIXME: far from ideal, should cache at the manager level instead
+        cache.delete(CACHE_KEY)
 
     def __repr__(self):
         return u'<%s: %s>' % (self.__class__.__name__, self.fullname)

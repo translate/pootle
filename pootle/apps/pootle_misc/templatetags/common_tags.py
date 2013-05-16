@@ -29,12 +29,3 @@ def display_table(context, table):
         'table': table,
         'stats': context.get('stats', None)
     }
-
-
-@register.inclusion_tag('common/select.html', takes_context=True)
-def display_select(context, id, options, active_code):
-    return {
-        'id': id,
-        'options': options,
-        'active_code': active_code,
-    }

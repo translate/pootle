@@ -1,0 +1,22 @@
+<li>
+  <select id="js-select-language" data-initial-code="{{ language.code }}">
+    <option value=""></option>
+    {% for lang in ALL_LANGUAGES %}
+    <option value="{{ lang.code }}"
+      {% if lang.code == language.code %} selected="selected"{% endif%}>
+      {{ lang.localname }}
+    </option>
+    {% endfor %}
+  </select>
+</li>
+<li>
+  <select id="js-select-project" data-initial-code="{{ project.code }}">
+    <option value=""></option>
+    {% for proj in ALL_PROJECTS %}
+    <option value="{{ proj.code }}"
+      {% if proj.code == project.code %} selected="selected"{% endif %}>
+      {{ proj.fullname }}
+    </option>
+    {% endfor %}
+  </select>
+</li>

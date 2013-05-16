@@ -19,11 +19,12 @@
 # along with Pootle; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from django.conf.urls import patterns
+from django.conf.urls import patterns, url
 
 urlpatterns = patterns('pootle_language.views',
-    (r'^(?P<language_code>[^/]*)/$',
-        'language_index'),
+    url(r'^(?P<language_code>[^/]*)/$',
+        'language_index',
+        name='language.overview'),
 
     # Admin
     (r'^(?P<language_code>[^/]*)/edit_settings.html$',

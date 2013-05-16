@@ -19,8 +19,35 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.conf import settings
+from django.core.cache import cache
 
 from pootle.__version__ import sver
+from pootle_language.models import Language, CACHE_KEY as LANG_CACHE_KEY
+from pootle_project.models import Project, CACHE_KEY as PROJ_CACHE_KEY
+
+
+def _languages_context():
+    """Returns a common context for languages."""
+    languages = cache.get(LANG_CACHE_KEY)
+    if not languages:
+        languages = Language.live.all()
+        cache.set(LANG_CACHE_KEY, languages, settings.OBJECT_CACHE_TIMEOUT)
+
+    return {
+        'ALL_LANGUAGES': languages,
+    }
+
+
+def _projects_context():
+    """Returns a common context for projects."""
+    projects = cache.get(PROJ_CACHE_KEY)
+    if not projects:
+        projects = Project.objects.all()
+        cache.set(PROJ_CACHE_KEY, projects, settings.OBJECT_CACHE_TIMEOUT)
+
+    return {
+        'ALL_PROJECTS': projects,
+    }
 
 
 def pootle_context(request):
@@ -39,5 +66,8 @@ def pootle_context(request):
         },
         'custom': settings.CUSTOM_TEMPLATE_CONTEXT,
     }
+
+    context.update(_languages_context())
+    context.update(_projects_context())
 
     return context

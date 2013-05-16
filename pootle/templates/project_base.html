@@ -5,7 +5,7 @@
 {% block title %}{% trans "Projects" %} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
-{{ block.super }}<li><a href='{{ "/projects/"|l }}'>{% trans "Projects" %}</a></li>
+{{ block.super }}{% include 'common/_breadcrumbs.html' %}
 {% endblock %}
 
 {% block tabs %}

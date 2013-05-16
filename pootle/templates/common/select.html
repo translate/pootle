@@ -1,7 +1,0 @@
-<select id="js-select-{{ id }}" data-initial-code="{{ active_code }}"
-  class="hide">
-  {% for option in options %}
-  <option value="{{ option.code }}"
-    {% if option.code == active_code %} selected="selected"{% endif %}>{{ option.name }}</option>
-  {% endfor %}
-</select>

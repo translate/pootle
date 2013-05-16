@@ -6,10 +6,6 @@
 
 {% block title %}{% trans "Administrate" %} | {{ project.name }} | {{ block.super }}{% endblock %}
 
-{% block breadcrumbs %}
-{{ block.super }}<li><a href="{% filter l %}/projects/{{ project.code }}/{% endfilter %}">{{ project.name }}</a></li><li>{% trans "Administrate" %}</li>
-{% endblock %}
-
 {% block css %}
 {{ block.super }}
 {% assets "css_admin" %}
