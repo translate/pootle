@@ -193,9 +193,12 @@ class ModifiedSinceMixin(object):
             sys.exit(1)
         else:
             from pootle_statistics.models import Submission
-            latest_change_id = Submission.objects.values_list('id', flat=True) \
-                                                 .select_related('').latest()
-            if change_id > latest_change_id:
+            try:
+                latest = Submission.objects.values_list('id', flat=True) \
+                                           .select_related('').latest()
+            except Submission.DoesNotExist:
+                latest = 0
+            if change_id > latest:
                 logging.warning(u"The given change ID is higher than the "
                                 u"latest known change.\nAborting.")
                 sys.exit(1)
