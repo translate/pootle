@@ -22,18 +22,26 @@
 from django.db.models import F, Manager, Q
 
 
-class LiveManager(Manager):
+class PageManager(Manager):
 
-    def get_query_set(self):
-        return super(LiveManager, self).get_query_set() \
-                                       .filter(active=True)
+    def live(self, user=None, **kwargs):
+        """Filters active (live) pages.
+
+        :param user: Current active user. If omitted or the user doesn't
+            have administration privileges, only active pages will be
+            returned.
+        """
+        if user and user.is_superuser:
+            return self.get_query_set()
+        else:
+            return self.get_query_set().filter(active=True)
 
     def pending_user_agreement(self, user, **kwargs):
         """Filters active pages where the given `user` has pending
         agreements.
         """
         # FIXME: This should be a method exclusive to a LegalPage manager
-        return self.get_query_set().filter(
+        return self.live().filter(
             Q(agreement__user=user,
               modified_on__gt=F('agreement__agreed_on')) |
             ~Q(agreement__user=user)

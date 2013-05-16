@@ -21,7 +21,7 @@
 
 from __future__ import absolute_import
 
-from django.contrib import auth
+from django.contrib import auth, messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse_lazy
 from django.http import Http404
@@ -114,7 +114,7 @@ def display_page(request, virtual_path):
     page = None
     for page_model in AbstractPage.__subclasses__():
         try:
-            page = page_model.live.get(
+            page = page_model.objects.live(request.user).get(
                     virtual_path=virtual_path,
                 )
         except ObjectDoesNotExist:
@@ -126,17 +126,25 @@ def display_page(request, virtual_path):
     if page.url:
         return redirect(page.url)
 
+    if request.user.is_superuser and not page.active:
+        msg = _('This page is inactive and visible to administrators '
+                'only. You can activate it by <a href="%s">editing its '
+                'properties</a>', page.get_edit_url())
+        messages.warning(request, msg)
+
     template_name = 'staticpages/page_display.html'
     if 'HTTP_X_FANCYBOX' in request.META:
         template_name = 'staticpages/_body.html'
 
-    return render_to_response(template_name, {'page': page},
-                              RequestContext(request))
+    ctx = {
+        'page': page,
+    }
+    return render_to_response(template_name, ctx, RequestContext(request))
 
 
 def legal_agreement(request):
     """Displays the pending documents to be agreed by the current user."""
-    pending_pages = LegalPage.live.pending_user_agreement(request.user)
+    pending_pages = LegalPage.objects.pending_user_agreement(request.user)
     form_class = agreement_form_factory(pending_pages, request.user)
 
     if request.method == 'POST':

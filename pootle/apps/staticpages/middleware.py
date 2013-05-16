@@ -36,7 +36,7 @@ class LegalAgreementMiddleware(object):
                          settings.LEGALPAGE_NOCHECK_PREFIXES)
 
         if (request.user.is_authenticated() and not nocheck and
-            LegalPage.live.pending_user_agreement(request.user).exists()):
+            LegalPage.objects.pending_user_agreement(request.user).exists()):
             return redirect(
                 u'%s%s' % (reverse('staticpages.legal-agreement'),
                            get_next(request)),

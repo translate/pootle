@@ -30,7 +30,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.markup import get_markup_filter_name, MarkupField
 
-from .managers import LiveManager
+from .managers import PageManager
 
 
 class AbstractPage(models.Model):
@@ -55,8 +55,7 @@ class AbstractPage(models.Model):
     modified_on = models.DateTimeField(default=now, editable=False,
                                        auto_now_add=True, auto_now=True)
 
-    objects = models.Manager()
-    live = LiveManager()
+    objects = PageManager()
 
     class Meta:
         abstract = True
