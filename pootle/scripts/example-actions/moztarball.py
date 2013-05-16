@@ -97,8 +97,8 @@ def get_phases(root, vc_root, workdir, language, project):
 class MozillaTarballAction(DownloadAction, TranslationProjectAction):
     """Download Mozilla language properties tarball"""
 
-    def run(self, root, tpdir, language, project,  # pylint: disable=R0913
-            vc_root, **kwargs):
+    def run(self, path, root, tpdir,  # pylint: disable=R0913
+            language, project, vc_root, **kwargs):
         """Generate a Mozilla language properties tarball"""
 
         with tempdir() as podir:
@@ -132,7 +132,7 @@ class MozillaTarballAction(DownloadAction, TranslationProjectAction):
                     error += ("\n [tar killed by signal %d]\n" %
                               -process.returncode)
                 else:
-                    self.set_download_file(tpdir, tarfile)
+                    self.set_download_file(path, tarfile)
 
         self.set_output(output)
         self.set_error(error)

@@ -18,17 +18,77 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-""" Support for user (administrator)-provided extension actions. """
+"""Support for user (administrator)-provided extension actions.
+
+These are used by placing in an extension actions directory Python modules
+that define subclasses of the base class ExtensionAction and create instances
+of those subclasses.  Depending on their place in the inheritance hierarchy,
+these instances will show up as user-visible links in the Actions sections of
+various pages; when those links are followed, the run() method of the class
+will be invoked to perform the action.
+
+There can be multiple instances of a subclass, for example a download action
+subclass might generate different archive formats (zip, tar, etc.) based on
+the last part of the title for each instance.  Note that multiple instances
+of a subclass will share the same tooltip (since it is the class docstring).
+
+Besides multiple instances of a subclass, any extension action may be invoked
+at several points in the Pootle page hierarchy, so that if there is need to
+store data associated with those invocations using instance properties or
+attributes, they should be structured as dictionaries keyed on the path in
+the Pootle page hierarchy (pootle_path or path_obj).
+
+Here's an ASCII art diagram of the class inheritance hierarchy:
+
+                              +---------------+
+                              |ExtensionAction|
+                              +---------------+
+                               ^ ^ ^ ^     ^ ^
+    Tracked instance classes   | | | |     | |  Functional mixin classes
+                               | | | |     | |
+           +-------------+     | | | |     | |     +--------------+
+           |ProjectAction|-----+ | | |     | +-----|DownloadAction|
+           +-------------+       | | |     |       +--------------+
+                                 | | |     |
+          +--------------+       | | |     |       +-------------+
+          |LanguageAction|-------+ | |     +-------|CommandAction|
+          +--------------+         | |             +-------------+
+                                   | |
++------------------------+         | |
+|TranslationProjectAction|---------+ |
++------------------------+           |
+          ^                          |
+          |  +-----------+           |
+          |  |StoreAction|-----------+
+          |  +-----------+
+          |     ^
+          |     |
+          |     |
+       +-----------+
+       |HelloAction|
+       +-----------+
+
+http://www.asciiflow.com/#6089174316691145678/854915636
+
+"""
 
 import logging
 import os
 import pkgutil
+import shutil
 import sys
 from urllib import unquote_plus, urlencode
 
+from django.conf import settings
+from django.core.cache import cache
+from django.utils.encoding import iri_to_uri
 from django.utils.translation import ugettext as _
 
+from pootle_app.project_tree import ensure_target_dir_exists
 from pootle_misc.baseurl import l
+from pootle_store.util import absolute_real_path, relative_real_path
+
+logger = logging.getLogger(__name__)
 
 #: Module separator (period); this constant used to improve code readability
 DOT = '.'
@@ -42,8 +102,6 @@ _EXTPATH = os.path.join(os.path.dirname(__file__), EXTDIR)
 
 def _getmod():
     """Get module (package) name and directory path for extension actions
-
-    .. function:: _getmod()
 
     Uses __name__ for module name if it is useful (not '__main__').  Otherwise,
     use __loader__ if defined, and if that fails, try path searching for
@@ -158,11 +216,11 @@ class ExtensionAction(object):
                     try:
                         importer.find_module(modname).load_module(full_modname)
                     except StandardError:
-                        logging.exception("bad extension action module %s",
-                                          modname)
+                        logger.exception("bad extension action module %s",
+                                         modname)
                     else:
-                        logging.info("loaded extension action module %s",
-                                     full_modname)
+                        logger.info("loaded extension action module %s",
+                                    full_modname)
 
         if cls not in ExtensionAction._instances:
             ExtensionAction._instances[cls] = []
@@ -202,27 +260,42 @@ class ExtensionAction(object):
         self._title = title
         self._error = ''
         self._output = ''
-        logging.debug("%s.__init__ '%s'", type(self).__name__, title)
+        logger.debug("%s.__init__ '%s'", type(self).__name__, title)
         for cls in type(self).__mro__:
             if getattr(cls, 'tracked', False):
                 if cls not in self._instances:
                     ExtensionAction._instances[cls] = [self]
                 else:
                     ExtensionAction._instances[cls].append(self)
-                logging.debug("instances[%s] = %s",
-                              cls.__name__, ExtensionAction._instances[cls])
+                logger.debug("instances[%s] = %s",
+                             cls.__name__, ExtensionAction._instances[cls])
 
     def __repr__(self):
         """
-        >>> print ExtensionAction('cat', 'dog')
+        >>> ExtensionAction('cat', 'dog')
         ExtensionAction(category="cat", title="dog")
-        >>> print ProjectAction(title="dog", category="cat")
+        >>> ProjectAction(title="dog", category="cat")
         ProjectAction(category="cat", title="dog")
-        >>> print eval(repr(ProjectAction(category="cat", title="dog")))
+        >>> eval(repr(ProjectAction(category="cat", title="dog")))
         ProjectAction(category="cat", title="dog")
+        >>> ExtensionAction('cat', 'dog').run(path="foo", root="/root", \
+                                              language="foo")
         """
         return (type(self).__name__ + '(category="' + self.category +
                 '", title="' + self.title + '")')
+
+    def _query_url(self, pootle_path):
+        """Return relative URL for this action
+
+        This is the URL that will be used to perform the action (via GET) -
+        it is the pootle_path for the language, project, translationproject,
+        or store, with a query component like "?ext_actions=Say+hello" where
+        the value is the form-encoded title of the extension action instance.
+
+        >>> ExtensionAction(category='X', title='Do it')._query_url("foo/bar")
+        'foo/bar?ext_actions=Do+it'
+        """
+        return ''.join([pootle_path, '?', urlencode({EXTDIR: self.title})])
 
     @property
     def category(self):
@@ -250,12 +323,15 @@ class ExtensionAction(object):
         """Text from the last call to set_output()."""
         return self._output
 
-    def run(self, root, language='*', project='*', store='*',
-            **kwargs):  # pylint: disable=W0613
-        """Run an extension action: this class implementation just logs
+    def run(self, path, root,  # pylint: disable=R0913,W0613
+            language='*', project='*', store='*', **kwargs):
+        """Run an extension action: this class implementation just logs warning
 
-        .. method:: run(root[, language='*', project='*', store='*', kwargs])
+        .. method:: run(path, root[,
+                        language='*', project='*', store='*', kwargs])
 
+        :param path: Pootle path from URL
+        :type path: str
         :param root: Absolute path of translations root directory (PODIR)
         :type root: str
         :param language: Language code, e.g. 'af' (or '*')
@@ -268,10 +344,9 @@ class ExtensionAction(object):
         Always pass arguments as keyword arguments, ordering is not preserved
         for subclasses (and optional arguments may become required).
         """
-        logging.warning("%s lacks run(): %s for lang %s proj %s store %s "
-                        "(path %s)",
-                        type(self), self.title, language, project, store,
-                        '|'.join([root, language, project, store]))
+        logger.warning("%s lacks run(): %s for lang %s proj %s store %s "
+                       "(path %s)", type(self).__name__,
+                       self.title, language, project, store, path)
 
     def set_error(self, text):
         """Set error output of action for display"""
@@ -294,7 +369,7 @@ class ProjectAction(ExtensionAction):
 
     def __init__(self, **kwargs):
         """
-        >>> print ProjectAction(category="cat", title="dog")
+        >>> ProjectAction(category="cat", title="dog")
         ProjectAction(category="cat", title="dog")
         """
         super(ProjectAction, self).__init__(**kwargs)
@@ -312,7 +387,7 @@ class LanguageAction(ExtensionAction):
 
     def __init__(self, **kwargs):
         """
-        >>> print LanguageAction(category="cat", title="dog")
+        >>> LanguageAction(category="cat", title="dog")
         LanguageAction(category="cat", title="dog")
         """
         super(LanguageAction, self).__init__(**kwargs)
@@ -330,18 +405,23 @@ class TranslationProjectAction(ExtensionAction):
 
     def __init__(self, **kwargs):
         """
-        >>> print TranslationProjectAction(category="cat", title="dog")
+        >>> TranslationProjectAction(category="cat", title="dog")
         TranslationProjectAction(category="cat", title="dog")
+        >>> TranslationProjectAction(category='cat', title='dog').run( \
+                path="foo/bar", root="/root", tpdir="bar/foo", \
+                language="foo", project="bar")
         """
         super(TranslationProjectAction, self).__init__(**kwargs)
 
-    def run(self, root, tpdir, language, project,  # pylint: disable=R0913
-            store='*', style='', **kwargs):
-        """Run an extension action: this class implementation just logs
+    def run(self, path, root, tpdir,  # pylint: disable=R0913,W0613
+            language, project, store='*', style='nongnu', **kwargs):
+        """Run an extension action: this class implementation just logs warning
 
-        .. method:: run(root, tpdir, language, project[,
-                        store='*', style='', kwargs])
+        .. method:: run(path, root, tpdir, language, project[,
+                        store='*', style='nongnu', kwargs])
 
+        :param path: Pootle path from URL
+        :type path: str
         :param root: Absolute path of translations root directory (PODIR)
         :type root: str
         :param tpdir: Translation project directory path (relative to root)
@@ -352,17 +432,16 @@ class TranslationProjectAction(ExtensionAction):
         :type project: str
         :param store: Store name (filename) (or '*') (relative to tpdir)
         :type store: str
-        :param style: Project directory hierarchy style, e.g. 'gnu' (or '')
+        :param style: Project directory tree style, e.g. 'gnu' (or 'nongnu')
         :type style: str
         :param kwargs: Additional keyword arguments are allowed and ignored
 
         Always pass arguments as keyword arguments, ordering is not preserved
         for subclasses (and optional arguments may become required).
         """
-        logging.warning("%s lacks run(): %s for lang %s proj %s store %s "
-                        "(path %s, %s style)",
-                        type(self), self.title, language, project, store,
-                        '|'.join([root, tpdir, store]), style or 'default')
+        logger.warning("%s lacks run(): %s for lang %s proj %s store %s "
+                       "(path %s, %s style)", type(self).__name__,
+                       self.title, language, project, store, path, style)
 
     def get_link_func(self):
         """Return a link_func for use by pootle_translationproject.actions
@@ -373,15 +452,13 @@ class TranslationProjectAction(ExtensionAction):
         >>> assert d['text'] == u'boyo!'
         >>> assert s.lookup(d['href'][d['href'].find('=') + 1:]) == s
         >>> assert 'tooltip' in d
-        >>> assert 'icon' not in d
+        >>> assert 'icon' in d
         """
         def link_func(_request, path_obj, **_kwargs):
             """Curried link function with self bound from instance method"""
             link = {'text': _(self.title),
-                    'href': l(''.join([path_obj.pootle_path, '?',
-                                      urlencode({EXTDIR: self.title})]))}
-            if getattr(self, 'icon', None):
-                link['icon'] = getattr(self, 'icon')
+                    'href': l(self._query_url(path_obj.pootle_path)),
+                    'icon': getattr(self, 'icon', 'icon-vote-inactive')}
             if type(self).__doc__:
                 link['tooltip'] = ' '.join(type(self).__doc__.split())
             return link
@@ -400,8 +477,11 @@ class StoreAction(ExtensionAction):
 
     def __init__(self, **kwargs):
         """
-        >>> print StoreAction(category="cat", title="dog")
+        >>> StoreAction(category="cat", title="dog")
         StoreAction(category="cat", title="dog")
+        >>> StoreAction(category='cat', title='dog').run( \
+                path="foo/bar/baz", root="/root", tpdir="bar/foo", \
+                language="foo", project="bar", store="baz", style="gnu")
         """
         super(StoreAction, self).__init__(**kwargs)
 
@@ -410,8 +490,12 @@ class StoreAction(ExtensionAction):
     # TranslationProjectAction (or just one of them) as superclasses to
     # indicate which contexts are appropriate for the action.
 
+    # The __dict__ magic is not needed for Python 3.
     get_link_func = TranslationProjectAction.get_link_func
     run = TranslationProjectAction.run
+
+    get_link_func = TranslationProjectAction.__dict__['get_link_func']
+    run = TranslationProjectAction.__dict__['run']
 
 
 class DownloadAction(ExtensionAction):
@@ -424,17 +508,35 @@ class DownloadAction(ExtensionAction):
 
     def __init__(self, **kwargs):
         super(DownloadAction, self).__init__(**kwargs)
-        self.icon = 'icon-download'
-        self.dl_path = None
-        self.dl_file = None
+        self._dl_path = {}
 
-    def set_download_file(self, tpdir, filename):
-        """Set file for download"""
-        self.dl_path = filename
-        prefix = filename.find(tpdir)
-        if prefix >= 0:
-            filename = filename[prefix + len(tpdir) + 1:]
-        self.dl_file = filename
+    def set_download_file(self, path_obj, filepath):
+        """Set file for download
+        """
+        filename = relative_real_path(filepath)
+        export_path = os.path.join('POOTLE_EXPORT', filename)
+        abs_export_path = absolute_real_path(export_path)
+        try:
+            ensure_target_dir_exists(abs_export_path)
+            shutil.copyfile(filepath, abs_export_path)
+        except (IOError, OSError, shutil.Error), e:
+            msg = (_("Failed to copy download file to export directory %s") %
+                   abs_export_path)
+            logger.exception('%s', msg)
+            return ''.join(msg, ": ", str(e))
+        cache.set(self._cache_key(path_obj), path_obj.get_mtime(),
+                  settings.OBJECT_CACHE_TIMEOUT)
+        self._dl_path[path_obj.pootle_path] = export_path
+        return
+
+    def _cache_key(self, path_obj):
+        """Return cache key for download data"""
+        return iri_to_uri("%s:export_action" %
+                          self._query_url(path_obj.pootle_path))
+
+    def get_download(self, path_obj):
+        """Return export path of generated (cached) download"""
+        return self._dl_path.get(path_obj.pootle_path, None)
 
     def get_link_func(self):
         """Return a link_func for use by pootle_translationproject.actions
@@ -451,11 +553,20 @@ class DownloadAction(ExtensionAction):
         def link_func(_request, path_obj, **_kwargs):
             """Curried link function with self bound from instance method"""
             link = {'text': _(self.title),
-                    'href': l(''.join([path_obj.pootle_path, '?',
-                                      urlencode({EXTDIR: self.title})]))}
-            if getattr(self, 'icon', None):
-                link['icon'] = getattr(self, 'icon')
+                    'icon': getattr(self, 'icon', 'icon-download')}
+            export_path = self.get_download(path_obj)
+            if export_path:
+                abs_export_path = absolute_real_path(export_path)
+                last_export = cache.get(self._cache_key(path_obj))
+                if last_export and (last_export == path_obj.get_mtime() and
+                                    os.path.isfile(abs_export_path)):
+                    # valid and up-to-date cache file - link to that
+                    link['href'] = l("/export/" + export_path)
+            if 'href' not in link:
+                # no usable cache file, link to action query to generate it
+                link['href'] = l(self._query_url(path_obj.pootle_path))
             if type(self).__doc__:
+                # return docstring with normalized whitespace as tooltip
                 link['tooltip'] = ' '.join(type(self).__doc__.split())
             return link
         return link_func
@@ -486,4 +597,9 @@ class CommandAction(ExtensionAction):
 
 if __name__ == "__main__":
     import doctest
+
+    logger.setLevel(logging.ERROR)
+    logger.propagate = False
+    logger.addHandler(logging.StreamHandler())
+
     doctest.testmod()

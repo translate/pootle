@@ -249,8 +249,8 @@ class ProjectIndexView(view_handler.View):
             else:
                 if not getattr(action, 'nosync', False):
                     (store or translation_project).sync()
-                vcs_dir = unicode(settings.VCS_DIRECTORY)
-                po_dir = unicode(settings.PODIRECTORY)
+                vcs_dir = settings.VCS_DIRECTORY
+                po_dir = settings.PODIRECTORY
                 tp_dir = directory.get_real_path()
                 store_fn = '*'
                 if store:
@@ -260,9 +260,13 @@ class ProjectIndexView(view_handler.View):
                         store_f = store.file.name[len(tp_dir_slash):]
                         store_fn = store_f.replace('/', os.sep)
 
+                # clear possibly stale output/error (even from other path_obj)
+                action.set_output('')
+                action.set_error('')
                 try:
-                    action.run(root=po_dir, tpdir=tp_dir, project=project.code,
-                               language=language.code, store=store_fn,
+                    action.run(path=path_obj, root=po_dir, tpdir=tp_dir,
+                               project=project.code, language=language.code,
+                               store=store_fn,
                                style=translation_project.file_style,
                                vc_root=vcs_dir)
                 except StandardError:
@@ -278,24 +282,15 @@ class ProjectIndexView(view_handler.View):
                         messages.warning(request, action.error)
 
                 action_output = action.output
-                if getattr(action, 'dl_file', None):
-                    import shutil
+                if getattr(action, 'get_download', None):
+                    export_path = action.get_download(path_obj)
+                    if export_path:
+                        action_output += _("Download file generated - "
+                                           "Click twice on link to download it")
+                        # FIXME - not working right
+                        #return redirect('/export/' + export_path)
 
-                    export_path = os.path.join('POOTLE_EXPORT', tp_dir,
-                                               getattr(action, 'dl_file'))
-                    abs_export_path = absolute_real_path(export_path)
-
-                    key = iri_to_uri("%s:export_action" % directory.pootle_path)
-
-                    ensure_target_dir_exists(abs_export_path)
-                    shutil.copyfile(getattr(action, 'dl_path'), abs_export_path)
-
-                    cache.set(key, translation_project.get_mtime(),
-                              settings.OBJECT_CACHE_TIMEOUT)
-
-                    return redirect('/export/' + export_path)
-
-                if not action.output:
+                if not action_output:
                     if not store:
                         overview_url = reverse('tp.overview',
                                                args=[language.code,
