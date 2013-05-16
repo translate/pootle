@@ -91,7 +91,8 @@ Bugfix release, released on September 3rd 2010.
   still the preferred cache backend, but consider using the database cache
   if you are using the local memory backend and can't use memcached.
 
-- You can perform a database migration away from SQLite.
+- You can perform a :ref:`database migration away from SQLite
+  <database-migration>`.
 
 
 Version 2.1

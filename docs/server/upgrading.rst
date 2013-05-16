@@ -16,8 +16,10 @@ Before upgrading Pootle to a newer version, make sure to go through this
 checklist.
 
 * Familiarize yourself with :doc:`important changes <../changelog>` in
-  Pootle over the versions.  If you are upgrading to Pootle 2.x from
-  Pootle 1.x, have a look at the :doc:`database_migration` page first,
+  Pootle over the versions.
+
+* If you are upgrading from Pootle 1.x to Pootle 2.x, or from Pootle 2.0.x to
+  2.1.x (or later), have a look at the :doc:`database_migration` page first,
   although some of the issues on this page could still be relevant.
 
 * Check the :doc:`installation` instructions for the newer version, and
@@ -30,7 +32,8 @@ checklist.
   make your backups.
 
 * Make a backup of your complete database using the appropriate *dump*
-  command for your database system.
+  command for your database system. For example :command:`mysqldump` for MySQL,
+  or :command:`pg_dump` for PostgreSQL.
 
 * If you are upgrading from a version of Pootle that uses
   *localsettings.py* then you want to make sure your configuration file is
