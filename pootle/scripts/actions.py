@@ -523,11 +523,11 @@ class DownloadAction(ExtensionAction):
             msg = (_("Failed to copy download file to export directory %s") %
                    abs_export_path)
             logger.exception('%s', msg)
-            return ''.join(msg, ": ", str(e))
+            return ''.join([msg, ": ", str(e)])
         cache.set(self._cache_key(path_obj), path_obj.get_mtime(),
                   settings.OBJECT_CACHE_TIMEOUT)
         self._dl_path[path_obj.pootle_path] = export_path
-        return
+        return ''
 
     def _cache_key(self, path_obj):
         """Return cache key for download data"""

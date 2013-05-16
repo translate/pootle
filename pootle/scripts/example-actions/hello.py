@@ -15,8 +15,8 @@ class HelloAction(TranslationProjectAction, StoreAction):
         super(HelloAction, self).__init__(**kwargs)
         self.icon = 'icon-external-link'
 
-    def run(self, path, root, tpdir, language, project,  # pylint: disable=R0913
-            store='*', style='', **kwargs):
+    def run(self, path, root, tpdir,  # pylint: disable=R0913
+            language, project, store='*', style='', **kwargs):
         """Say hello when the user clicks the link"""
         filepath = os.path.join(root, tpdir, store)
         self.set_output(''.join(["Hello, world! "

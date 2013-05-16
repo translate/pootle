@@ -28,21 +28,24 @@ run the shell scripts that are provided in that Git repository.
 
 from __future__ import with_statement
 
-import contextlib
 import errno
 import logging
 import os
 import shutil
 import subprocess
+
+from contextlib import contextmanager
+from datetime import datetime
 from tempfile import mkdtemp
 
 from translate.convert import po2moz
 from pootle.scripts.actions import DownloadAction, TranslationProjectAction
 
-MOZ = "mozilla-l10n"
+MOZL10N = "mozilla-l10n"
+AURORA = "mozilla-aurora"
 
 
-@contextlib.contextmanager
+@contextmanager
 def tempdir():
     """Context manager for creating and deleting a temporary directory."""
     tmpdir = mkdtemp()
@@ -52,6 +55,19 @@ def tempdir():
         shutil.rmtree(tmpdir)
 
 
+def get_version(vc_root):
+    """Get Mozilla version from browser (since mobile has no version.txt)"""
+    vfile = os.path.join(vc_root, AURORA, 'browser', 'config', 'version.txt')
+    try:
+        with open(vfile) as vfh:
+            version = vfh.readline()
+    except IOError:
+        logging.exception("Unable to get version from %s", vfile)
+        return "aurora"
+
+    return version.strip()
+
+
 def get_phases(root, vc_root, workdir, language, project):
     """
     Create repository-layout tree of PO files from translations;
@@ -59,7 +75,7 @@ def get_phases(root, vc_root, workdir, language, project):
     and/or shutil.copyfile
     """
 
-    phasefile = os.path.join(vc_root, MOZ, ".ttk", project,
+    phasefile = os.path.join(vc_root, MOZL10N, ".ttk", project,
                              project + ".phaselist")
     tdirs = {}
     try:
@@ -108,31 +124,42 @@ class MozillaTarballAction(DownloadAction, TranslationProjectAction):
                 self.set_error(e)
                 return
 
-            templates = os.path.join(vc_root, MOZ, 'templates-en-US')
-
             with tempdir() as tardir:
                 po2moz.main(['--progress=none', '-l', language,
-                            '-t', templates,
+                            '-t', os.path.join(vc_root, MOZL10N,
+                                               'templates-en-US'),
                             '-i', os.path.join(podir, language),
                             '-o', os.path.join(tardir, language)])
 
-                tarfile = os.path.join(root, tpdir, language + ".tar")
+                process = subprocess.Popen(["git", "rev-parse",
+                                            "--short", "HEAD"],
+                                           stdout=subprocess.PIPE,
+                                           stderr=subprocess.PIPE,
+                                           cwd=os.path.join(vc_root, MOZL10N))
+                output = process.communicate()[0]
+                if not process.returncode == 0 or not output:
+                    output = "0000000"
 
-                process = subprocess.Popen(['tar', '-c', '-C', tardir,
-                                            '-f', tarfile, language],
+                tarfile = '-'.join([language, get_version(vc_root),
+                                    datetime.utcnow().strftime("%Y%m%dT%H%M"),
+                                    output.strip()])
+                tarfile = os.path.join(root, tpdir,
+                                       '.'.join([tarfile, 'tar', 'bz2']))
+
+                process = subprocess.Popen(['tar', '-cjf', tarfile, language],
                                            universal_newlines=True,
                                            close_fds=(os.name != 'nt'),
                                            stdout=subprocess.PIPE,
-                                           stderr=subprocess.PIPE)
+                                           stderr=subprocess.PIPE, cwd=tardir)
                 (output, error) = process.communicate()
                 if process.returncode > 0:
-                    error += ("\n [tar exited with status %d]\n" %
+                    error += (" [tar exited with status %d]\n" %
                               process.returncode)
                 elif process.returncode < 0:
-                    error += ("\n [tar killed by signal %d]\n" %
+                    error += (" [tar killed by signal %d]\n" %
                               -process.returncode)
                 else:
-                    self.set_download_file(path, tarfile)
+                    error += self.set_download_file(path, tarfile)
 
         self.set_output(output)
         self.set_error(error)
