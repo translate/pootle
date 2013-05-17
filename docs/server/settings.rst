@@ -253,6 +253,16 @@ Configuration settings for applications used by Pootle.
   The number of rows displayed in the top contributors table.
 
 
+.. setting:: USE_API
+
+``USE_API``
+  Default: ``False``
+
+  .. versionadded:: 2.5.1
+
+  Enable Pootle API.
+
+
 .. setting:: USE_CAPTCHA
 
 ``USE_CAPTCHA``

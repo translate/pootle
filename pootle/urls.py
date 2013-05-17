@@ -22,8 +22,6 @@ from django.conf import settings
 from django.conf.urls import include, patterns
 from django.contrib import admin
 
-from api_factory import api_factory
-
 
 admin.autodiscover()
 
@@ -43,10 +41,18 @@ urlpatterns = patterns(
     # External apps
     (r'^contact/', include('contact_form_i18n.urls')),
     (r'^accounts/', include('pootle_profile.urls')),
+)
 
-    # Pootle API URLs
-    (r'^api/', include(api_factory().urls)),
+if settings.USE_API:
+    from api_factory import api_factory
+    urlpatterns += patterns(
+        '',
+        # Pootle API URLs
+        (r'^api/', include(api_factory().urls)),
+    )
 
+urlpatterns += patterns(
+    '',
     # Pootle URLs
     (r'^pages/', include('staticpages.urls')),
     (r'', include('pootle_app.urls')),
