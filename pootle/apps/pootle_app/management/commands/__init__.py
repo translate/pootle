@@ -184,10 +184,10 @@ class ModifiedSinceMixin(object):
     def handle_noargs(self, **options):
         change_id = options.get('modified_since', None)
 
-        if not change_id:
+        if change_id is None or change_id == 0:
+            options.pop('modified_since')
             if change_id == 0:
                 logging.info(u"Change ID is zero, no modified-since filtering.")
-            options.pop('modified_since')
         elif change_id < 0:
             logging.error(u"Change IDs must be positive integers.")
             sys.exit(1)
