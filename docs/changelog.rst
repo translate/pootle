@@ -28,7 +28,7 @@ Not released yet.
 Version 2.5.0
 -------------
 
-Not released yet.
+Major release, released on May 18th 2013.
 
 - The minimum required Django version is 1.3.
 
