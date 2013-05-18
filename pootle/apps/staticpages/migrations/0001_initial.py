@@ -41,4 +41,4 @@ class Migration(SchemaMigration):
         }
     }
 
-    complete_apps = ['legalpages']
+    complete_apps = ['staticpages']
