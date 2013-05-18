@@ -23,5 +23,6 @@ Additional Notes
    :maxdepth: 1
 
    changelog
+   releases/index
    external_docs
    license
