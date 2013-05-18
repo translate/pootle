@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-02-22 13:56+0000\n"
+"PO-Revision-Date: 2013-05-10 14:50+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1361541416.0\n"
+"X-POOTLE-MTIME: 1368197424.0\n"
 
 #: strings.py:8
 msgid ""
@@ -1326,11 +1326,11 @@ msgstr "Yerleri"
 
 #: apps/pootle_misc/forms.py:119
 msgid "Source Terms"
-msgstr "Kaynak Şartlar"
+msgstr "Kaynak Terimler"
 
 #: apps/pootle_misc/forms.py:120
 msgid "Target Terms"
-msgstr "Hedef Şartlar"
+msgstr "Hedef Terimler"
 
 #: apps/pootle_misc/forms.py:121
 msgid "Definitions"
@@ -2835,15 +2835,15 @@ msgstr ""
 
 #: templates/profiles/edit_personal.html:18
 msgid "First Name"
-msgstr "Ad"
+msgstr "Adınız"
 
 #: templates/profiles/edit_personal.html:23
 msgid "Last Name"
-msgstr "Soyad"
+msgstr "Soyadınız"
 
 #: templates/profiles/edit_personal.html:28
 msgid "Email address"
-msgstr "Eposta adresi"
+msgstr "Eposta adresiniz"
 
 #: templates/profiles/edit_profile.html:4
 #: templates/profiles/edit_profile.html:7
@@ -2895,11 +2895,11 @@ msgstr "Kullanıcı Adı"
 
 #: templates/profiles/profile_list.html:12
 msgid "First name"
-msgstr "Ad"
+msgstr "Adınız"
 
 #: templates/profiles/profile_list.html:13
 msgid "Last name"
-msgstr "Soyad"
+msgstr "Soyadınız"
 
 #: templates/registration/activate.html:5
 #: templates/registration/activate.html:8
