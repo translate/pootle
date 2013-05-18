@@ -1843,7 +1843,7 @@ html[dir="rtl"] .breadcrumb li
 
 .breadcrumb li:first-child:before
 {
-    content: "";
+    content: normal;
     margin: 0;
 }
 
