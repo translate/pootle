@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:44+0000\n"
-"PO-Revision-Date: 2013-02-22 16:01+0000\n"
-"Last-Translator: Rivo <rivozangov@gmail.com>\n"
+"PO-Revision-Date: 2013-03-14 18:50+0000\n"
+"Last-Translator: AivoK <aivoke@hot.ee>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1361548881.0\n"
+"X-POOTLE-MTIME: 1363287009.0\n"
 
 #: static/js/common.js:43
 msgid "Expand details"
@@ -42,8 +42,7 @@ msgstr "Tulemused puuduvad."
 #. The first '%s' is the permalink URL.
 #. The second '%s' is the unit number.
 #: static/js/editor.js:726
-#, c-format
-#, c-format, fuzzy
+#, c-format, c-format
 msgid "<a href=\"%s\">String %s</a>"
 msgstr "<a href=\"%s\">String %s</a>"
 

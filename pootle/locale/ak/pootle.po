@@ -7,16 +7,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2011-06-30 21:52+0200\n"
-"Last-Translator: Jojoo <jojoo.imbeah@suuch.com>\n"
+"PO-Revision-Date: 2013-03-15 21:02+0000\n"
+"Last-Translator: Derrick Frimpong <flexyflame2006@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ak\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Pootle 2.1.6\n"
+"X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.5\n"
+"X-POOTLE-MTIME: 1363381340.0\n"
 
 #: strings.py:8
 msgid ""
@@ -192,8 +193,9 @@ msgstr ""
 
 #: apps/legalpages/models.py:31
 #: apps/legalpages/templates/legalpages/admin/list.html:22
+#, fuzzy
 msgid "Active"
-msgstr ""
+msgstr "si so"
 
 #: apps/legalpages/models.py:32
 msgid "Whether this page is active or not."
@@ -264,8 +266,9 @@ msgid "Existing Legal Pages"
 msgstr ""
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
+#, fuzzy
 msgid "Inactive"
-msgstr ""
+msgstr "si so"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 #: apps/pootle_app/templates/admin/edit_links.html:2
@@ -1076,8 +1079,9 @@ msgid "Newlines"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:57
+#, fuzzy
 msgid "Number of plurals"
-msgstr ""
+msgstr "Ɔdodow Nɔmba"
 
 #: apps/pootle_misc/checks.py:58
 msgid "Don't translate words"
@@ -1088,8 +1092,9 @@ msgid "Numbers"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:60
+#, fuzzy
 msgid "Options"
-msgstr ""
+msgstr "Ɔphyɛnal"
 
 #: apps/pootle_misc/checks.py:61
 msgid "printf()"
@@ -1217,7 +1222,7 @@ msgstr "Databes mpono wɔ vɛɛhyɛn %d. Pootle bɛto databes no so seiseiara."
 
 #: apps/pootle_misc/dbupdate.py:143
 msgid "Creating missing database tables..."
-msgstr "Rebɔ apono a wɔayera ama databes no..."
+msgstr "Rebɔ apono ama databes no..."
 
 #: apps/pootle_misc/dbupdate.py:154
 msgid "Fixing permission table..."
@@ -1260,16 +1265,16 @@ msgid "Failed to import suggestions from %s"
 msgstr "Krabea adwenkyerɛ fre %s no edi nkugu"
 
 #: apps/pootle_misc/dbupdate.py:402
-#, python-format
+#, fuzzy, python-format
 msgid "Imported %(count)d string from %(store)s"
 msgid_plural "Imported %(count)d strings from %(store)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Nkra %(count)d unite efri %(store)s"
+msgstr[1] "Nkra %(count)d aunite efri %(store)s"
 
 #: apps/pootle_misc/dbupdate.py:408
-#, python-format
+#, fuzzy, python-format
 msgid "Failed to import strings from %s"
-msgstr ""
+msgstr "Units impɔɔto no anyɛyie anfre %s"
 
 #: apps/pootle_misc/dbupdate.py:417
 msgid "All translations are now imported."
@@ -1304,12 +1309,14 @@ msgid "Locations"
 msgstr "Alokehyɛn"
 
 #: apps/pootle_misc/forms.py:119
+#, fuzzy
 msgid "Source Terms"
-msgstr ""
+msgstr "Tɛkst farebae"
 
 #: apps/pootle_misc/forms.py:120
+#, fuzzy
 msgid "Target Terms"
-msgstr ""
+msgstr "Tɛkst taagɛt"
 
 #: apps/pootle_misc/forms.py:121
 msgid "Definitions"
@@ -1362,8 +1369,9 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: apps/pootle_misc/stats.py:183
+#, fuzzy
 msgid "Translation is complete"
-msgstr ""
+msgstr "Asekyerɛ ewie"
 
 #: apps/pootle_misc/stats.py:194
 #, python-format
@@ -1419,9 +1427,9 @@ msgstr ""
 "somae: %(errormsg)s"
 
 #: apps/pootle_misc/templates/progressbar.html:3
-#, python-format
+#, fuzzy, python-format
 msgid "%(percent)s%% complete"
-msgstr ""
+msgstr "%(percentage)d%% awie"
 
 #: apps/pootle_misc/templates/search.html:5
 msgid "Search"
@@ -1490,16 +1498,18 @@ msgid "Email only to recently active users"
 msgstr ""
 
 #: apps/pootle_notifications/views.py:151
+#, fuzzy
 msgid "All Projects"
-msgstr ""
+msgstr "Nkɔsodwuma nyinara"
 
 #: apps/pootle_notifications/views.py:155
 msgid "Project Selection"
 msgstr ""
 
 #: apps/pootle_notifications/views.py:163
+#, fuzzy
 msgid "All Languages"
-msgstr ""
+msgstr "Akasa nyinara"
 
 #: apps/pootle_notifications/views.py:167
 msgid "Language Selection"
@@ -1555,7 +1565,7 @@ msgstr "Akasa a wo de Wɔn bedi dwuma sɛ wo Sɔɔs"
 
 #: apps/pootle_profile/models.py:150
 msgid "Suggestions Accepted"
-msgstr "Yɛgye Nsusui"
+msgstr "Nsusui agye atom"
 
 #: apps/pootle_profile/models.py:154
 msgid "Suggestions Pending"
@@ -1665,8 +1675,9 @@ msgid "State"
 msgstr ""
 
 #: apps/pootle_statistics/models.py:50
+#, fuzzy
 msgid "Comment"
-msgstr ""
+msgstr "Adwenkyerɛ nkyerɛmu"
 
 #: apps/pootle_statistics/models.py:95
 msgid "anonymous user"
@@ -1815,8 +1826,9 @@ msgid "Incomplete"
 msgstr ""
 
 #: apps/pootle_store/templates/store/translate.html:75
+#, fuzzy
 msgid "My suggestions"
-msgstr ""
+msgstr "Nsusui"
 
 #: apps/pootle_store/templates/store/translate.html:76
 msgid "My submissions"
@@ -1864,28 +1876,33 @@ msgid ""
 msgstr ""
 
 #: apps/pootle_store/templates/unit/comment.html:12
+#, fuzzy
 msgid "Comment:"
-msgstr ""
+msgstr "Adwenkyerɛ nkyerɛmu"
 
 #: apps/pootle_store/templates/unit/edit.html:11
+#, fuzzy
 msgid "File:"
-msgstr ""
+msgstr "Fael"
 
 #: apps/pootle_store/templates/unit/edit.html:18
 msgid "Context:"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:28
+#, fuzzy
 msgid "Comments:"
-msgstr ""
+msgstr "Adwenkyerɛ nkyerɛmu"
 
 #: apps/pootle_store/templates/unit/edit.html:32
+#, fuzzy
 msgid "Locations:"
-msgstr ""
+msgstr "Alokehyɛn"
 
 #: apps/pootle_store/templates/unit/edit.html:41
+#, fuzzy
 msgid "Terminology:"
-msgstr ""
+msgstr "Tɛminɔlɔgi"
 
 #: apps/pootle_store/templates/unit/edit.html:43
 msgid "Insert the translated term into the editor"
@@ -1896,8 +1913,9 @@ msgid "Possible issues with the translation"
 msgstr "Nsɛm nokware a ɛka nkyerɛkyerɛmu ho"
 
 #: apps/pootle_store/templates/unit/edit.html:56
+#, fuzzy
 msgid "Failing checks:"
-msgstr ""
+msgstr "Nkugu nhwehwɛmu"
 
 #: apps/pootle_store/templates/unit/edit.html:62
 msgid "Remove quality check"
@@ -2001,8 +2019,9 @@ msgid "Hide Timeline"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:233
+#, fuzzy
 msgid "User suggestions"
-msgstr ""
+msgstr "Hwɛ Nsusui"
 
 #: apps/pootle_store/templates/unit/edit.html:251
 msgid "Accept suggestion"
@@ -2025,8 +2044,9 @@ msgid "Vote for this suggestion"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/term_edit.html:40
+#, fuzzy
 msgid "Comment: "
-msgstr ""
+msgstr "Adwenkyerɛ nkyerɛmu"
 
 #: apps/pootle_store/templates/unit/timeline.html:4
 #: apps/pootle_store/templates/unit/timeline.html:14
@@ -2174,13 +2194,15 @@ msgstr "Kyerɛw kɔ VCS"
 
 #. Translators: "all" here refers to all files and sub directories in a directory/project.
 #: apps/pootle_translationproject/actions.py:159
+#, fuzzy
 msgid "Update all from VCS"
-msgstr ""
+msgstr "To so firi VCS"
 
 #. Translators: "all" here refers to all files and sub directories in a directory/project.
 #: apps/pootle_translationproject/actions.py:174
+#, fuzzy
 msgid "Commit all to VCS"
-msgstr ""
+msgstr "Kyerɛw kɔ VCS"
 
 #: apps/pootle_translationproject/actions.py:187
 msgid "Rescan project files"
@@ -2367,8 +2389,9 @@ msgid ""
 msgstr "Wobɛtumi a hwɛ fael no so ɛwɔ asekyerɛ asekyerɛ dwumadi yimu."
 
 #: apps/pootle_translationproject/templates/translation_project/fileop_forms.html:23
+#, fuzzy
 msgid "Update from Version Control"
-msgstr ""
+msgstr "To no nyinara so firi kɔntrol vɛɛhyɛn"
 
 #: apps/pootle_translationproject/templates/translation_project/fileop_forms.html:24
 msgid ""
@@ -2606,7 +2629,7 @@ msgstr "Mboa"
 #: templates/contact_form/contact_form.html:7
 #: templates/contact_form/contact_form.html:12
 msgid "Contact Us"
-msgstr "Frɛ Yɛn"
+msgstr "Ɛne yɛ nni nkitaho"
 
 #: templates/base.html:161
 msgid "About this Pootle Server"
@@ -2614,8 +2637,9 @@ msgstr "Fa Pootle Sɛɛva yi ho"
 
 #: templates/base.html:162 templates/about/contributors.html:6
 #: templates/about/contributors.html:9
+#, fuzzy
 msgid "Contributors"
-msgstr ""
+msgstr "Aboafo Titiriw"
 
 #: templates/captcha-xhr.html:14 templates/captcha.html:4
 #: templates/captcha.html.py:7
@@ -2636,7 +2660,7 @@ msgstr "Meserɛwo yi asɛnfua yi ano:"
 
 #: templates/captcha-xhr.html:20
 msgid "Confirm"
-msgstr "Gye to mu"
+msgstr "Gye tom"
 
 #: templates/language_menu.html:3
 msgid "Language main page"
@@ -2688,8 +2712,9 @@ msgid "Translate this project"
 msgstr "Kyerɛ nkɔsodwuma yi ase"
 
 #: templates/tp_menu.html:8
+#, fuzzy
 msgid "Manage terminology"
-msgstr ""
+msgstr "Yɛ Tɛmenɔlɔge no yie"
 
 #: templates/tp_menu.html:8
 msgid "Terminology"

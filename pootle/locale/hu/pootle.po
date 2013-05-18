@@ -6,8 +6,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-02-04 16:31+0000\n"
-"Last-Translator: Ákos <nagy.akos@libreoffice.ro>\n"
+"PO-Revision-Date: 2013-05-19 08:36+0000\n"
+"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1359995492.0\n"
+"X-POOTLE-MTIME: 1368952565.0\n"
 
 #: strings.py:8
 msgid ""
@@ -2322,19 +2322,19 @@ msgid "Committed all files under <em>%(path)s</em> to version control"
 msgstr ""
 
 #: apps/pootle_translationproject/models.py:658
-#, python-format
+#, fuzzy, python-format
 msgid "Failed to commit to version control: %(error)s"
-msgstr ""
+msgstr "Hiba a verziókövető rendszerből történő frissítés közben: %(error)s"
 
 #: apps/pootle_translationproject/models.py:716
-#, python-format
+#, fuzzy, python-format
 msgid "Committed file <em>%(filename)s</em> to version control"
-msgstr ""
+msgstr "<em>%(filename)s</em> fájl frissítése a verziókövető rendszerből"
 
 #: apps/pootle_translationproject/models.py:724
-#, python-format
+#, fuzzy, python-format
 msgid "Failed to commit <em>%(filename)s</em> to version control: %(error)s"
-msgstr ""
+msgstr "Hiba történt a(z) <em>%(filename)s</em> fájl frissítésekor: %(error)s"
 
 #: apps/pootle_translationproject/views.py:96
 msgid "Translation project files have been rescanned."

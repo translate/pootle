@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-02-22 07:34+0000\n"
-"Last-Translator: cris anderson <anderson861@gmail.com>\n"
+"PO-Revision-Date: 2013-04-12 05:28+0000\n"
+"Last-Translator: zorigoo03 <zr.go03@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: mn\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1361518470.0\n"
+"X-POOTLE-MTIME: 1365744525.0\n"
 
 #: strings.py:8
 msgid ""
@@ -68,14 +68,14 @@ msgstr "Өөрчлөх"
 msgid ""
 "Please enter a correct username and password. Note that both fields are case-"
 "sensitive."
-msgstr ""
+msgstr "zorigoo03"
 
 #. Translators: Email subject line. The variable is the server name shown
 #. on the top of each page
 #: strings.py:21
 #, python-format
 msgid "Password reset on %s"
-msgstr ""
+msgstr "zorigoo"
 
 #. Translators: This is a constructed string that might end up saying
 #. "Add language" or "Add project". If you need to translate that differently,
@@ -118,41 +118,41 @@ msgstr "захирагч"
 #: strings.py:43 apps/pootle_app/views/admin/adminprojects.py:44
 #: apps/pootle_project/models.py:92
 msgid "Source Language"
-msgstr ""
+msgstr "Монгол"
 
 #: strings.py:45
 msgid "Android strings"
-msgstr ""
+msgstr "Андройд утас"
 
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:51
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Хувийн ганцаарчилсан бодлого"
 
 #. Translators: Label that refers to the site's legal requirements
 #: strings.py:53
 msgid "Legal"
-msgstr ""
+msgstr "хууль эрх зүйн"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:55
 msgid "License"
-msgstr ""
+msgstr "Лиценз зөвшөөрөл"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:57
 msgid "Contributor License"
-msgstr ""
+msgstr "Хөрөнгө оруулагчийн зөвшөөрөл"
 
 #. Translators: Label that refers to the site's terms of use
 #: strings.py:59
 msgid "Terms of Use"
-msgstr ""
+msgstr "Хэрэглээний нөхцөл"
 
 #. Translators: Label that refers to the site's terms of service
 #: strings.py:61
 msgid "Terms of Service"
-msgstr ""
+msgstr "Үйлчилгээний нөхцөл"
 
 #: apps/contact_form_i18n/forms.py:143
 msgid "Your name"
@@ -164,7 +164,7 @@ msgstr "Таны имэйл хаяг"
 
 #: apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr ""
+msgstr "Таны мэдээлэл"
 
 #: apps/contact_form_i18n/forms.py:260
 msgid "Akismet thinks this message is spam"
@@ -192,7 +192,7 @@ msgstr "Хадгалах"
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/legalpages/forms.py:42
 msgid "URL or content must be provided."
-msgstr ""
+msgstr "URL эсвэл утгыг нь олгуулах"
 
 #: apps/legalpages/models.py:31
 #: apps/legalpages/templates/legalpages/admin/list.html:22
@@ -201,11 +201,11 @@ msgstr "Идэвхтэй"
 
 #: apps/legalpages/models.py:32
 msgid "Whether this page is active or not."
-msgstr ""
+msgstr "Энэ хуудас идэвхтэй болсон уу үгүй юу"
 
 #: apps/legalpages/models.py:34
 msgid "Display on registration"
-msgstr ""
+msgstr "Дэлгэцийн бүртгэл"
 
 #: apps/legalpages/models.py:35
 msgid "Whether this page should be displayed on registration."

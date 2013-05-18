@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-03-09 12:11+0000\n"
+"PO-Revision-Date: 2013-03-29 19:58+0000\n"
 "Last-Translator: dushku <nandidushku@yahoo.com>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "Language: sq\n"
@@ -14,13 +14,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1362831104.0\n"
+"X-POOTLE-MTIME: 1364587134.0\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
 msgstr ""
-"Mbani shtypur \"Control\" ose \"Command\" ne MAC per te zgjedhur me shume se Nje"
+"Mbani shtypur \"Control\" ose \"Command\" ne MAC, per te zgjedhur me shume se "
+"nje."
 
 #: strings.py:9
 msgid "Enter a valid e-mail address."
@@ -36,7 +37,7 @@ msgstr ""
 
 #: strings.py:11
 msgid "This field is required."
-msgstr "Kjo fushe eshte e domosdoshme"
+msgstr "Kjo fushe eshte e domosdoshme."
 
 #: strings.py:12
 #, python-format
@@ -64,8 +65,8 @@ msgid ""
 "Please enter a correct username and password. Note that both fields are case-"
 "sensitive."
 msgstr ""
-"Ju lutemi  jepni perdoruesin dhe fjalkalimin. Shenim te dyja keto fusha jane "
-"ndjeshme Germe e madhe/ te vogla  "
+"Ju lutemi jepni perdoruesin dhe fjalkalimin. Shenim te dyja keto fusha jane "
+"ndjeshme Germe e madhe/ te vogla.  "
 
 #. Translators: Email subject line. The variable is the server name shown
 #. on the top of each page
@@ -81,7 +82,7 @@ msgstr "Fjalekalimi kthehet nga fillimi ne %s"
 #: strings.py:27
 #, python-format
 msgid "Add %(name)s"
-msgstr "Shto %(Emra)s"
+msgstr "Shto %(emra)s"
 
 #. Translators: This link takes the user to the page where the currently
 #. configured option is displayed (such as a project or language)
@@ -91,11 +92,11 @@ msgstr "Shfaq ne faqe"
 
 #: strings.py:33
 msgid "first name"
-msgstr "Emri"
+msgstr "emri"
 
 #: strings.py:34
 msgid "last name"
-msgstr "Mbiemri"
+msgstr "mbiemri"
 
 #: strings.py:35
 msgid "e-mail address"
@@ -103,7 +104,7 @@ msgstr "Adresa e e-mailit"
 
 #: strings.py:36
 msgid "active"
-msgstr "Veprues"
+msgstr "veprues"
 
 #. Translators: Please translate this simply as "Administrator". This string is
 #. needed by Django, but 'superuser' is very technical and should be avoided.
@@ -726,7 +727,6 @@ msgstr ""
 "ju nevojitet te instaloni python-MyAQLdb me pare."
 
 #: apps/pootle_app/views/admin/dashboard.py:131
-#, fuzzy
 msgid ""
 "Pootle is configured to use memcached as a caching backend, but can't "
 "connect to the memcached server. Caching is currently disabled."
@@ -744,7 +744,6 @@ msgstr ""
 "django.contrib.sessions.backends.cached_db si motor seancë."
 
 #: apps/pootle_app/views/admin/dashboard.py:138
-#, fuzzy
 msgid ""
 "Pootle is configured to use memcached as caching backend, but Python support "
 "for memcached is not installed. Caching is currently disabled."
@@ -754,7 +753,6 @@ msgstr ""
 "jo aktiv."
 
 #: apps/pootle_app/views/admin/dashboard.py:141
-#, fuzzy
 msgid "For optimal performance, use memcached as the caching backend."
 msgstr "Per performancen me te mire, perdor memcached as the caching backend."
 
@@ -1052,7 +1050,7 @@ msgstr "Hapësirë dyfishe"
 
 #: apps/pootle_misc/checks.py:45
 msgid "Repeated word"
-msgstr ""
+msgstr " Përsëritet fjala"
 
 #: apps/pootle_misc/checks.py:46
 msgid "E-mail"
@@ -1092,29 +1090,28 @@ msgstr "I gjatë"
 
 #: apps/pootle_misc/checks.py:55
 msgid "Must translate words"
-msgstr ""
+msgstr "Mund te perkthehen fjalet"
 
 #: apps/pootle_misc/checks.py:56
 msgid "Newlines"
-msgstr ""
+msgstr "Rresht i ri"
 
 #: apps/pootle_misc/checks.py:57
-#, fuzzy
 msgid "Number of plurals"
 msgstr "Numri i shumësve"
 
 #: apps/pootle_misc/checks.py:58
 msgid "Don't translate words"
-msgstr ""
+msgstr "Mos i perkthe fjalet"
 
 #: apps/pootle_misc/checks.py:59
 msgid "Numbers"
-msgstr ""
+msgstr "Numrat"
 
 #: apps/pootle_misc/checks.py:60
 #, fuzzy
 msgid "Options"
-msgstr "Opsioni"
+msgstr "Mundësitë"
 
 #: apps/pootle_misc/checks.py:61
 msgid "printf()"
@@ -1195,14 +1192,16 @@ msgid ""
 "Error: \"%s\" while attempting to access the Pootle database, will try to "
 "initialize database."
 msgstr ""
+"Gabim: \"% s\" duke u përpjekur për të hyrë në bazën e të dhënave Pootle, do "
+"të përpiqet të inicializoj bazën e të dhënave."
 
 #: apps/pootle_misc/dbinit.py:75
 msgid "Creating database tables..."
-msgstr ""
+msgstr "Krijimi i tabelave te bazës së të dhënave.... "
 
 #: apps/pootle_misc/dbinit.py:82
 msgid "Creating default languages, projects and admin user"
-msgstr ""
+msgstr "Krijimi gjuhës se perzgjedhur, projektet dhe përdorues admin"
 
 #: apps/pootle_misc/dbinit.py:90
 msgid "Calculating translation statistics, this will take a few minutes"
@@ -1251,25 +1250,27 @@ msgstr "Rregullimi i te drejtave ne tabela....."
 
 #: apps/pootle_misc/dbupdate.py:180 apps/pootle_misc/dbupdate.py:257
 msgid "Updating existing database tables..."
-msgstr ""
+msgstr "Përditësimi tabelave ekzistuese bazës së të dhënave..."
 
 #: apps/pootle_misc/dbupdate.py:221
 msgid "Removing potentially incorrect cached stats, will be recalculated..."
-msgstr ""
+msgstr "Heqja potencialisht e të pasakta cached stats, do të rillogariten..."
 
 #: apps/pootle_misc/dbupdate.py:238
 msgid "Reparsing Qt ts files..."
-msgstr ""
+msgstr "Reparsing Qt ts files..."
 
 #: apps/pootle_misc/dbupdate.py:338 apps/pootle_misc/dbupdate.py:350
 msgid "Removing quality checks, will be recalculated on demand..."
-msgstr ""
+msgstr "Heqja e kontrolleve të cilësisë, do të rillogariten në kërkesën..."
 
 #: apps/pootle_misc/dbupdate.py:363
 msgid ""
 "Pootle will now import all the translations into the database. It could take "
 "a long time."
 msgstr ""
+"Pootle tani do të importojë gjitha përkthimet në bazën e të dhënave. Ajo "
+"mund të marrë një kohë të gjatë."
 
 #: apps/pootle_misc/dbupdate.py:382
 #, python-format
@@ -1505,7 +1506,7 @@ msgstr ""
 #: apps/pootle_notifications/views.py:112
 #, python-format
 msgid "News for %(path)s"
-msgstr ""
+msgstr "Lajme per %(pozicioni)s"
 
 #: apps/pootle_notifications/views.py:138
 msgid "Publish on news feed"
@@ -1580,31 +1581,32 @@ msgid "Number of Rows"
 msgstr "Numri i Rreshtave"
 
 #: apps/pootle_profile/models.py:100
-#, fuzzy
 msgid "Alternative Source Languages"
 msgstr "Gjuhë alternative burimi"
 
 #: apps/pootle_profile/models.py:150
 msgid "Suggestions Accepted"
-msgstr ""
+msgstr "Sugjerime Pranuar"
 
 #: apps/pootle_profile/models.py:154
 msgid "Suggestions Pending"
-msgstr ""
+msgstr "Sugjerime Pritje"
 
 #: apps/pootle_profile/models.py:158
 msgid "Suggestions Reviewed"
-msgstr ""
+msgstr "Sugjerime Rishikuara"
 
 #: apps/pootle_profile/models.py:162
 msgid "Submissions Made"
-msgstr ""
+msgstr "Parashtresat te Bera"
 
 #: apps/pootle_project/models.py:57
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
 msgstr ""
+"Një kod i shkurtër për projektin. Kjo duhet të përmbajë vetëm shkronja, "
+"numra, ASCII dhe underscore (_) karakter."
 
 #: apps/pootle_project/models.py:65
 #, python-format
@@ -1612,10 +1614,12 @@ msgid ""
 "A description of this project. This is useful to give more information or "
 "instructions. Allowed markup: %s"
 msgstr ""
+"Një përshkrim i këtij projekti. Kjo është e dobishme për të dhënë më shumë "
+"informacion ose udhëzime. Markup lejuar:% s"
 
 #: apps/pootle_project/models.py:77
 msgid "Quality Checks"
-msgstr ""
+msgstr "Verifikimet Cilësisë"
 
 #: apps/pootle_project/models.py:80
 msgid "File Type"
@@ -1654,22 +1658,22 @@ msgstr ""
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(gjuhët)d gjuhë, %(mesatare) d%% përkthyer"
+msgstr[1] "%(gjuhët)d gjuhët , %(mesatare) d%% përkthyer"
 
 #: apps/pootle_project/views.py:210 apps/pootle_project/views.py:278
-#, fuzzy
 msgid "You do not have rights to administer this project."
 msgstr "Nuk keni të drejta të mjaftueshme për të administruar këtë projekt."
 
 #: apps/pootle_project/views.py:221
 #: apps/pootle_translationproject/actions.py:201
 msgid "Update against templates"
-msgstr ""
+msgstr "Rifresko kundër shabllon"
 
 #: apps/pootle_project/templates/project/admin_permissions.html:24
 msgid "Below you can add, edit, and delete the permissions for this project."
 msgstr ""
+"Më poshtë ju mund të shtoni, modifikoni, dhe fshini lejet për këtë projekt."
 
 #: apps/pootle_project/templates/project/project_admin.html:7
 #: apps/pootle_project/templates/project/project_admin.html:10
@@ -1679,19 +1683,19 @@ msgstr "Administrimi"
 
 #: apps/pootle_project/templates/project/project_admin.html:24
 msgid "Here you can add, edit, or delete the languages for this project."
-msgstr ""
+msgstr "Këtu ju mund të shtoni, modifikoni, ose fshini gjuhë për këtë projekt."
 
 #: apps/pootle_statistics/models.py:47
 msgid "Source"
-msgstr ""
+msgstr "Burimi"
 
 #: apps/pootle_statistics/models.py:48
 msgid "Target"
-msgstr ""
+msgstr "Objektivi"
 
 #: apps/pootle_statistics/models.py:49
 msgid "State"
-msgstr ""
+msgstr "Gjendja"
 
 #: apps/pootle_statistics/models.py:50
 #, fuzzy
@@ -1746,27 +1750,27 @@ msgstr ""
 #. files have another name in your language
 #: apps/pootle_store/filetypes.py:98
 msgid "OS X Strings"
-msgstr ""
+msgstr "OS X Stringë"
 
 #: apps/pootle_store/filetypes.py:104
 msgid "PHP arrays"
-msgstr ""
+msgstr "PHP Rreshto"
 
 #: apps/pootle_store/filetypes.py:110
 msgid "Subtitles: srt"
-msgstr ""
+msgstr "Titra: srt"
 
 #: apps/pootle_store/filetypes.py:112
 msgid "Subtitles: sub"
-msgstr ""
+msgstr "Titra: sub"
 
 #: apps/pootle_store/filetypes.py:114
 msgid "Subtitles: ssa"
-msgstr ""
+msgstr "Titra: ssa"
 
 #: apps/pootle_store/filetypes.py:116
 msgid "Subtitles: ass"
-msgstr ""
+msgstr "Titra: ass"
 
 #: apps/pootle_store/forms.py:95
 #: apps/pootle_store/templatetags/store_tags.py:119
@@ -1779,17 +1783,16 @@ msgid "Plural Form %d"
 msgstr "Formë Shumësit %d"
 
 #: apps/pootle_store/forms.py:296
-#, fuzzy
 msgid "Translator comment"
 msgstr "Komente nga përkthyesi"
 
 #: apps/pootle_store/models.py:835
 msgid "Path"
-msgstr ""
+msgstr "Pozicioni"
 
 #: apps/pootle_store/util.py:44
 msgid "Obsolete"
-msgstr ""
+msgstr "që s'përdoret më"
 
 #: apps/pootle_store/views.py:77
 msgid "Insufficient rights to this translation project."
@@ -1833,43 +1836,44 @@ msgstr ""
 msgid ""
 "Please enable JavaScript in your browser preferences and reload the page."
 msgstr ""
+"Ju lutemi aktivizo JavaScript ne shfletuesin preferencat tuaja dhe "
+"ringarkoni faqe."
 
 #: apps/pootle_store/templates/store/translate.html:65
 msgid "Filter by:"
-msgstr ""
+msgstr "Filtri nga:"
 
 #. Translators: This refers to "All strings"
 #: apps/pootle_store/templates/store/translate.html:69
 msgid "All"
-msgstr ""
+msgstr "Te Gjitha"
 
 #: apps/pootle_store/templates/store/translate.html:71
 msgid "Incomplete"
-msgstr ""
+msgstr "E pambaruar"
 
 #: apps/pootle_store/templates/store/translate.html:75
-#, fuzzy
 msgid "My suggestions"
-msgstr "Propozimi:"
+msgstr "Propozimi im"
 
 #: apps/pootle_store/templates/store/translate.html:76
 msgid "My submissions"
-msgstr ""
+msgstr "parashtresat e mia"
 
 #. Translators: This is a type of filtering criterion that
 #. selects the strings that have been submitted by me at some point
 #. in time but have been overwritten by other users.
 #: apps/pootle_store/templates/store/translate.html:80
 msgid "My overwritten submissions"
-msgstr ""
+msgstr "Parashtresat e mia me mbishkrime"
 
 #: apps/pootle_store/templates/store/translate.html:81
 msgid "Checks"
-msgstr ""
+msgstr "Kontrollo"
 
 #: apps/pootle_store/templates/store/translate.html:89
 msgid "Previous string"
-msgstr ""
+msgstr "Stringë i mëparshëm"
 
 #: apps/pootle_store/templates/store/translate.html:89
 msgid ""
@@ -1916,25 +1920,24 @@ msgid "Comments:"
 msgstr "Komente"
 
 #: apps/pootle_store/templates/unit/edit.html:32
-#, fuzzy
 msgid "Locations:"
 msgstr "Pozicione"
 
 #: apps/pootle_store/templates/unit/edit.html:41
 msgid "Terminology:"
-msgstr ""
+msgstr "Terminollogjia"
 
 #: apps/pootle_store/templates/unit/edit.html:43
 msgid "Insert the translated term into the editor"
-msgstr ""
+msgstr "Fut termin përkthyer në editor"
 
 #: apps/pootle_store/templates/unit/edit.html:56
 msgid "Possible issues with the translation"
-msgstr ""
+msgstr "Çështjet e mundshme me të përkthimit"
 
 #: apps/pootle_store/templates/unit/edit.html:56
 msgid "Failing checks:"
-msgstr ""
+msgstr "Kontrollet dështuar:"
 
 #: apps/pootle_store/templates/unit/edit.html:62
 msgid "Remove quality check"
