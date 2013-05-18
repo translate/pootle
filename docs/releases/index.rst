@@ -7,4 +7,5 @@ Pootle releases.
 .. toctree::
    :maxdepth: 1
 
+   2.5.0
    2.5.0-rc1

@@ -6,7 +6,7 @@ These instructions are the guidelines for anyone making a Pootle commit.
 
 Summary
 =======
-#. Git clone git@github.com:translate/pootle.git pootle-release
+#. git clone git@github.com:translate/pootle.git pootle-release
 #. Create release notes
 #. Up version number
 #. Update translations
