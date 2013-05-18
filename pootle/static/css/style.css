@@ -2339,3 +2339,11 @@ html[dir="rtl"] span.email {
 span.email .i {
     display: none;
 }
+
+/*
+ * Fancybox Styles
+ */
+
+.fancybox-skin a:link {
+    background-color: transparent;
+}
