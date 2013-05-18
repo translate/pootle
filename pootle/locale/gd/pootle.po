@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2011-05-24 14:52+0200\n"
+"PO-Revision-Date: 2013-05-12 10:08+0000\n"
 "Last-Translator: Michael <fios@akerbeltz.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gd\n"
@@ -16,7 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
 "(n > 2 && n < 20) ? 2 : 3 ;\n"
-"X-Generator: Pootle 2.1.6\n"
+"X-Generator: Pootle 2.5.0-beta1\n"
+"X-POOTLE-MTIME: 1368353306.0\n"
 
 #: strings.py:8
 msgid ""
@@ -197,8 +198,9 @@ msgstr ""
 
 #: apps/legalpages/models.py:31
 #: apps/legalpages/templates/legalpages/admin/list.html:22
+#, fuzzy
 msgid "Active"
-msgstr ""
+msgstr "gnìomhach"
 
 #: apps/legalpages/models.py:32
 msgid "Whether this page is active or not."
@@ -269,8 +271,9 @@ msgid "Existing Legal Pages"
 msgstr ""
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
+#, fuzzy
 msgid "Inactive"
-msgstr ""
+msgstr "gnìomhach"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 #: apps/pootle_app/templates/admin/edit_links.html:2
@@ -599,11 +602,11 @@ msgstr "Fo-sgrìobh gun inbhir seo."
 #: apps/pootle_app/templates/index/login.html:7
 #: apps/pootle_app/templates/index/login.html:23
 msgid "Login"
-msgstr "Log a-steach"
+msgstr "Clàraich a-steach"
 
 #: apps/pootle_app/templates/index/login.html:12
 msgid "Login to Pootle"
-msgstr "Log a-steach ann am Pootle"
+msgstr "Clàraich a-steach ann am Pootle"
 
 #: apps/pootle_app/templates/index/login.html:18
 msgid "Your username and password didn't match. Please try again."
@@ -898,11 +901,13 @@ msgstr ""
 
 #: apps/pootle_language/views.py:74 apps/pootle_misc/browser.py:101
 #: apps/pootle_project/views.py:82
-#, python-format
-#, python-format, fuzzy
+#, python-format, python-format
 msgid "Error reading %d file"
 msgid_plural "Error reading %d files"
-msgstr[0] "Mearachd le leughadh an fhaidhle."
+msgstr[0] "Mearachd le leughadh %d fhaidhle"
+msgstr[1] "Mearachd le leughadh %d fhaidhle"
+msgstr[2] "Mearachd le leughadh %d faidhlichean"
+msgstr[3] "Mearachd le leughadh %d faidhle"
 
 #: apps/pootle_language/views.py:115
 #, python-format
@@ -1070,8 +1075,9 @@ msgid "Numbers"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:60
+#, fuzzy
 msgid "Options"
-msgstr ""
+msgstr "Roghnach"
 
 #: apps/pootle_misc/checks.py:61
 msgid "printf()"
@@ -1197,16 +1203,18 @@ msgid ""
 msgstr ""
 
 #: apps/pootle_misc/dbupdate.py:143
+#, fuzzy
 msgid "Creating missing database tables..."
-msgstr ""
+msgstr "A' cruthachadh faidhlichean an stòir-dhàta."
 
 #: apps/pootle_misc/dbupdate.py:154
 msgid "Fixing permission table..."
 msgstr ""
 
 #: apps/pootle_misc/dbupdate.py:180 apps/pootle_misc/dbupdate.py:257
+#, fuzzy
 msgid "Updating existing database tables..."
-msgstr ""
+msgstr "A' cruthachadh faidhlichean an stòir-dhàta."
 
 #: apps/pootle_misc/dbupdate.py:221
 msgid "Removing potentially incorrect cached stats, will be recalculated..."
@@ -1535,7 +1543,7 @@ msgstr "Foillsich"
 
 #: apps/pootle_profile/forms.py:32
 msgid "Default"
-msgstr "Bunaiteach"
+msgstr "Bun-roghainn"
 
 #: apps/pootle_profile/forms.py:49 apps/pootle_profile/models.py:96
 msgid "Interface Language"
@@ -1667,8 +1675,9 @@ msgid "State"
 msgstr ""
 
 #: apps/pootle_statistics/models.py:50
+#, fuzzy
 msgid "Comment"
-msgstr ""
+msgstr "Beachdan"
 
 #: apps/pootle_statistics/models.py:95
 msgid "anonymous user"
@@ -1818,8 +1827,9 @@ msgid "Incomplete"
 msgstr ""
 
 #: apps/pootle_store/templates/store/translate.html:75
+#, fuzzy
 msgid "My suggestions"
-msgstr ""
+msgstr "Molaidhean"
 
 #: apps/pootle_store/templates/store/translate.html:76
 msgid "My submissions"
@@ -1867,24 +1877,28 @@ msgid ""
 msgstr ""
 
 #: apps/pootle_store/templates/unit/comment.html:12
+#, fuzzy
 msgid "Comment:"
-msgstr ""
+msgstr "Beachdan"
 
 #: apps/pootle_store/templates/unit/edit.html:11
+#, fuzzy
 msgid "File:"
-msgstr ""
+msgstr "Faidhle"
 
 #: apps/pootle_store/templates/unit/edit.html:18
 msgid "Context:"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:28
+#, fuzzy
 msgid "Comments:"
-msgstr ""
+msgstr "Beachdan"
 
 #: apps/pootle_store/templates/unit/edit.html:32
+#, fuzzy
 msgid "Locations:"
-msgstr ""
+msgstr "Àite"
 
 #: apps/pootle_store/templates/unit/edit.html:41
 msgid "Terminology:"
@@ -2005,8 +2019,9 @@ msgid "Hide Timeline"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:233
+#, fuzzy
 msgid "User suggestions"
-msgstr ""
+msgstr "Seall na molaidhean"
 
 #: apps/pootle_store/templates/unit/edit.html:251
 msgid "Accept suggestion"
@@ -2030,7 +2045,7 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/term_edit.html:40
 msgid "Comment: "
-msgstr ""
+msgstr "Beachdan: "
 
 #: apps/pootle_store/templates/unit/timeline.html:4
 #: apps/pootle_store/templates/unit/timeline.html:14
@@ -2548,8 +2563,9 @@ msgid "Info"
 msgstr "Fiosrachadh"
 
 #: templates/admin_profile_menu.html:4
+#, fuzzy
 msgid "Configure the general settings for your site"
-msgstr ""
+msgstr "Rèitich roghainnean coitcheann airson na làraich agad."
 
 #: templates/admin_profile_menu.html:4
 msgid "General"
@@ -2626,8 +2642,9 @@ msgstr ""
 
 #: templates/base.html:162 templates/about/contributors.html:6
 #: templates/about/contributors.html:9
+#, fuzzy
 msgid "Contributors"
-msgstr ""
+msgstr "Na cuidichean as fhearr"
 
 #: templates/captcha-xhr.html:14 templates/captcha.html:4
 #: templates/captcha.html.py:7
@@ -3064,8 +3081,9 @@ msgid "Fill in the following form to get started translating."
 msgstr ""
 
 #: templates/registration/registration_form.html:35
+#, fuzzy
 msgid "Password (again)"
-msgstr ""
+msgstr "am faca-faire (a-rithist)"
 
 #: templates/registration/registration_form.html:42
 msgid "Make sure to read the following:"

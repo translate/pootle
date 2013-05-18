@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:44+0000\n"
-"PO-Revision-Date: 2013-03-03 16:53+0000\n"
+"PO-Revision-Date: 2013-03-13 17:48+0000\n"
 "Last-Translator: Ákos <nagy.akos@libreoffice.ro>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1362329587.0\n"
+"X-POOTLE-MTIME: 1363196888.0\n"
 
 #: static/js/common.js:43
 msgid "Expand details"
@@ -32,7 +32,6 @@ msgid "Are you sure you want to continue?"
 msgstr "Sigur doriți să continuați?"
 
 #: static/js/common.js:78
-#, fuzzy
 msgid "This operation cannot be undone."
 msgstr "Această acțiune este ireversibilă."
 
