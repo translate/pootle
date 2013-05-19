@@ -160,7 +160,7 @@ using::
 
 This will allow you test installation of the software.
 
-You can then proceed with other tests such as checking
+You can then proceed with other tests such as checking:
 
 #. Documentation is available
 #. Converters and scripts are installed and run correctly
