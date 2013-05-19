@@ -148,16 +148,3 @@ msgstr[1] ""
 #: static/js/utils.js:96
 msgid "A few seconds ago"
 msgstr ""
-
-#, c-format
-#~ msgid "<a href=\"%s\">Unit %s</a>"
-#~ msgstr "<a href=\"%s\">Μονάδα %s</a>"
-
-#~ msgid "Congratulations, you walked through all items"
-#~ msgstr "Συγχαρητήρια, διασχίσατε όλα τα στοιχεία"
-
-#~ msgid "You reached the end of the list"
-#~ msgstr "Φτάσατε στο τέλος της λίστας"
-
-#~ msgid "amaGama server"
-#~ msgstr "εξυπηρετητής amaGama"
