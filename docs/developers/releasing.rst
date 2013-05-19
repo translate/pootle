@@ -26,10 +26,10 @@ Other possible steps
 We need to check and document these if needed:
 
 - Pre-release checks
-- Translations
-- Build docs: we need to check if e need to build the docs for the release
+- Build docs: we need to check if we need to build the docs for the release
+  tarball.
 - Change URLs to point to the correct docs: do we want to change URLs to point
-  to the $version docs rather then 'latest'
+  to the $version docs rather then 'latest'?
 - Building on Windows, building for other Linux distros. We have produced 
 - Communicating to upstream packagers
 
@@ -59,9 +59,9 @@ and since it can be rendered well in some of our key sites.
 
 First we need to create a log of changes in Pootle::
 
-    git diff N-1 HEAD > release/RELEASE-NOTES-$version.rst
+    git diff N-1 HEAD > docs/release/$version.rst
 
-Edit this file.  You can use the commits as a guide to build up the release
+Edit this new file.  You can use the commits as a guide to build up the release
 notes.  You should remove all log messages before the release.
 
 .. note:: Since the release notes will be used in places that allow linking we
@@ -75,7 +75,7 @@ Read for grammar and spelling errors.
 .. note:: When writing the notes please remember:
 
    #. The voice is active. 'Translate has released a new version of the
-      toolkit', not 'A new version of the toolkit was release by Translate'.
+      toolkit', not 'A new version of the toolkit was released by Translate'.
    #. The connection to the users is human not distant.
    #. We speak in familiar terms e.g. "I know you've been waiting for this
       release" instead of formal.
@@ -128,7 +128,11 @@ Update the translations from the `Pootle server
 #. Update ``pootle/locale/LINGUAS`` to list the languages we would like to
    ship. While we package all PO files, this is an indication of which ones we
    want packagers to use.  The requirements is roughly 100% translated with no
-   obvious variable errors.
+   obvious variable errors. ::
+
+   .. code-block:: bash
+
+       $ make mo # Build all LINGUAS enabled languages
 
 
 Build the package
@@ -170,6 +174,9 @@ things that we can't undo. ::
 
     git tag -a 2.5.0 -m "Tag version 2.5.0"
     git push --tags
+
+If this is the final release then there should be a stable branch e.g.
+``stable/2.5.0``, so create one if it does not already exist.
 
 
 Publish on PyPI
@@ -216,9 +223,9 @@ You will need:
 - Release notes in reStructured Text
 
 #. Create a new folder in the `Pootle
-   <https://sourceforge.net/projects/translate/files/Pootle/>`_
-   release folder using the 'Add Folder' button.  The folder must have the same
-   as the release name e.g.  ``2.5.0-rc1``.  Mark this as being for staging
+   <https://sourceforge.net/projects/translate/files/Pootle/> Sourceforge
+   release folder`_ using the 'Add Folder' button.  The folder name must be the
+   same as the release name e.g. ``2.5.0-rc1``.  Mark this as being for staging
    for the moment.
 #. ``make publish-sourceforge`` will give you the command to upload your
    tarball and ``README.rst``.
@@ -228,24 +235,30 @@ You will need:
    #. Click on the info icon for ``README.rst`` and tick "Exclude Stats" to
       exlude the README from stats counting.
 
-#. Check that the README.rst for the parent ``Pootle`` folder is
-   still appropriate, this is the text from ``/README.rst``.
-#. Check all links for ``README.rst`` files, new release and parent.
+#. Final checks:
+
+   #. Check that the README.rst for the parent ``Pootle`` folder is still
+      appropriate, this text is the text from ``/README.rst``.
+   #. Check all the links in ``README.rst`` files for existing releases, new
+      release and the parent folders.
 
 
 Release documentation
 ---------------------
-We need a tagged release before we can do this.  The docs are published on Read
-The Docs.
+We need a tagged release or branch before we can do this.  The docs are
+published on Read The Docs.
 
 - https://readthedocs.org/dashboard/pootle/versions/
 
-Use the admin pages to flag a version that should be published
+Use the admin pages to flag a version that should be published.  When we have
+branched the stable release we use the branch rather then the tag i.e.
+``stable-2.5.0`` rather than ``2.5.0`` as that allows any fixes of
+documentation for the ``2.5.0`` release to be immediately available.
 
-.. note:: FIXME we might need to do this before publishing so that we can
-   update doc references to point to the tagged version as apposed to the
-   latest version.
+Change all references to docs in the Pootle code to point to the branched
+version as apposed to the latest version.
 
+.. FIXME we should do this with a config variable to be honest!
 
 Update Pootle website
 ---------------------
@@ -257,8 +270,12 @@ We use github pages for the website. First we need to checkout the pages::
    now), so we need to change the release notes .rst to .md, which mostly means
    changing URL links from '```xxx <link>`_``' to ``[xxx](link)``.
 #. Change $version as needed. See ``download.html``, ``_config.yml`` and
-   ``egrep -r $old_release *``
-#. ``git commit`` and ``git push`` - changes are quite quick so easy to review.
+   ``git grep $old_release``
+#. ``git commit`` and ``git push`` -- changes are quite quick so easy to
+   review.
+
+.. note:: FIXME it would be great if gh-pages accepted .rst, maybe it can if we
+   prerender just that page?
 
 
 Unstage on sourceforge
@@ -273,6 +290,7 @@ Let people know that there is a new version:
 #. Announce on mailing lists:
    Send the announcement to the translate-announce mailing lists on
    translate-announce@lists.sourceforge.net
+   translate-pootle@lists.sourceforge.net
 #. Adjust the #pootle channel notice. Use ``/topic`` to change the topic.
 #. Email important users
 #. Tweet about it
@@ -282,7 +300,12 @@ Cleanup
 -------
 Some possible cleanup tasks:
 
-- Remove any RC builds from the sourceforge download pages (maybe?).
+- Remove any RC builds from the sourceforge download pages and add redirects to
+  Sourceforge ``Pootle`` top level download page.
 - Checkin any release notes and such (or maybe do that before tagging).
 - Remove your pootle-release checkout.
-- Update and fix these release notes.
+- Update and change things based on what you learnt, don't wait:
+
+  - Update and fix these release notes and make sure they are on ``master``.
+  - Dicuss any changes that should be made or new things that could be added
+  - Add automation if you can
