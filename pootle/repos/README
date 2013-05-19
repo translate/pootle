@@ -5,4 +5,4 @@ This directory should never contain uncommitted changes. Pootle will bring in
 changes from the upstream VCS and rely on it succeeding without conflicts.
 
 More information:
-http://translate.readthedocs.org/projects/pootle/en/latest/features/version_control.html
+http://docs.translatehouse.org/projects/pootle/en/stable-2.5.0/features/version_control.html

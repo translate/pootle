@@ -2,7 +2,7 @@ Pootle is a full featured online tool with several possible methods for
 installation. This file gives a few brief instructions to get started, but more
 complete documentation exists online at:
 
-  http://docs.translatehouse.org/projects/pootle/en/latest/server/index.html
+  http://docs.translatehouse.org/projects/pootle/en/stable-2.5.0/server/index.html
 
 Pootle depends on a few Python packages, and can optionally use several others
 for an optimal feature set and performance. Although a minimal installation
@@ -29,7 +29,7 @@ The simple method shown above for running Pootle does not use a web server that
 is considered safe, flexible or to have a good performance for production
 purposes. More information:
 
-  http://docs.translatehouse.org/projects/pootle/en/latest/server/web.html
+  http://docs.translatehouse.org/projects/pootle/en/stable-2.5.0/server/web.html
 
 
 Performance note
@@ -37,6 +37,6 @@ Performance note
 The simple method shown above for running Pootle does not configure it for
 optimal performance. More information:
 
-  http://docs.translatehouse.org/projects/pootle/en/latest/server/optimization.html
+  http://docs.translatehouse.org/projects/pootle/en/stable-2.5.0/server/optimization.html
 
 
