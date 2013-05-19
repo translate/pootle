@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:44+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2013-05-01 08:09+0000\n"
+"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1354102244.0\n"
+"X-POOTLE-MTIME: 1367395798.0\n"
 
 #: static/js/common.js:43
 msgid "Expand details"
@@ -148,16 +148,3 @@ msgstr[1] ""
 #: static/js/utils.js:96
 msgid "A few seconds ago"
 msgstr ""
-
-#, c-format
-#~ msgid "<a href=\"%s\">Unit %s</a>"
-#~ msgstr ""
-
-#~ msgid "Congratulations, you walked through all items"
-#~ msgstr ""
-
-#~ msgid "You reached the end of the list"
-#~ msgstr ""
-
-#~ msgid "amaGama server"
-#~ msgstr ""
