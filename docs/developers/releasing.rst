@@ -222,11 +222,10 @@ You will need:
 - Tarball of the release
 - Release notes in reStructured Text
 
-#. Create a new folder in the `Pootle
-   <https://sourceforge.net/projects/translate/files/Pootle/> Sourceforge
-   release folder`_ using the 'Add Folder' button.  The folder name must be the
-   same as the release name e.g. ``2.5.0-rc1``.  Mark this as being for staging
-   for the moment.
+#. Create a new folder in the `Pootle Sourceforge release folder
+   <https://sourceforge.net/projects/translate/files/Pootle/>`_ using the 'Add
+   Folder' button.  The folder name must be the same as the release name e.g.
+   ``2.5.0-rc1``.  Mark this as being for staging for the moment.
 #. ``make publish-sourceforge`` will give you the command to upload your
    tarball and ``README.rst``.
 

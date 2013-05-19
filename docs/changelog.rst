@@ -36,7 +36,7 @@ Major release, released on May 18th 2013.
 
 - Settings have been migrated from *localsettings.py* into *settings/\*.conf*
   files. Your customizations now go in a :ref:`separate configuration file
-  <settings#customzing>` (or in *settings/90-local.conf* if running from a
+  <settings#customizing>` (or in *settings/90-local.conf* if running from a
   repository clone).
 
 - A new setting, :setting:`VCS_DIRECTORY` has been added, and VCS repositories
