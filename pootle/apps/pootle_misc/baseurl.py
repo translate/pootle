@@ -65,7 +65,7 @@ def get_next(request):
         next = request.GET.get(REDIRECT_FIELD_NAME, '')
 
         if not next:
-            next = request.path
+            next = request.path_info
     except AttributeError, e:
         next = ''
 
