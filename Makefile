@@ -14,19 +14,19 @@ FORMATS=--formats=bztar
 all: help
 
 build: docs mo assets
-	python setup.py sdist ${FORMATS}
+	python setup.py sdist ${FORMATS} ${TAIL}
 
 assets:
 	mkdir -p ${ASSETS_DIR}
-	python manage.py collectstatic --noinput --clear
-	python manage.py assets build
+	python manage.py collectstatic --noinput --clear ${TAIL}
+	python manage.py assets build ${TAIL}
 
 docs:
 	# Make sure that the submodule with docs theme is pulled and up-to-date.
 	git submodule update --init
 	# The following creates the HTML docs.
 	# NOTE: cd and make must be in the same line.
-	cd ${DOCS_DIR}; make html
+	cd ${DOCS_DIR}; make html ${TAIL}
 
 sprite:
 	glue --sprite-namespace="" --namespace="" ${SPRITE_DIR} --css=${CSS_DIR} --img=${IMAGES_DIR}
@@ -35,7 +35,7 @@ pot:
 	@${SRC_DIR}/tools/createpootlepot
 
 mo:
-	python setup.py build_mo
+	python setup.py build_mo ${TAIL}
 
 mo-all:
 	python setup.py build_mo --all
