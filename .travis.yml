@@ -9,7 +9,9 @@ env:
   - DJANGO_VERSION=1.4.5
 install:
   - pip install --use-mirrors Django==$DJANGO_VERSION
+  - case `python -V 2>&1` in *2.5*) pip install --use-mirrors 'Jinja2<2.7';;esac
   - pip install -r requirements/build.txt --use-mirrors
+  - python -V; pip freeze # print all installed versions for reference/posterity
 script:
   - make build TAIL='|tail -40'
   - ./manage.py --version
