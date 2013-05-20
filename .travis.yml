@@ -19,7 +19,7 @@ install:
   - pip install -r requirements/build.txt --use-mirrors --timeout=240
   - python -V; pip freeze # print all installed versions for reference/posterity
 script:
-  - make build TAIL='|tail -40'
+  - make build SHELL=/bin/bash TAIL='|tail -40; exit $$PIPESTATUS'
   - ./manage.py runserver &
   - TESTPID=$!
   - sleep 100
