@@ -34,5 +34,5 @@ script:
   - kill -2 $TESTPID
 notifications:
   email:
-    on_failure: change
+    on_failure: always
     on_success: change
