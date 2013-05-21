@@ -99,6 +99,8 @@ class AbstractPage(models.Model):
 
 class LegalPage(AbstractPage):
 
+    display_name = _('Legal Page')
+
     def localized_title(self):
         return _(self.title)
 
@@ -107,6 +109,8 @@ class LegalPage(AbstractPage):
 
 
 class StaticPage(AbstractPage):
+
+    display_name = _('Regular Page')
 
     def get_edit_url(self):
         return reverse('staticpages.edit', args=['static', self.pk])
