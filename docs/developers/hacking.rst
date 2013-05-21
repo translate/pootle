@@ -61,6 +61,18 @@ For the impatient:
     (env-name) $ pip install -r requirements/dev.txt
     (env-name) $ python manage.py runserver
 
+.. note::
+
+    If you are using Python 2.5, you must install Jinja2 before the rest of
+    the requirements, as the Sphinx documentation tool requires Jinja2, but
+    recent Jinja2 versions (2.7 and later) require Python 2.6 or higher:
+
+    .. code-block:: bash
+
+        (env-name) $ cd pootle
+        (env-name) $ pip install 'Jinja2<2.7'
+        (env-name) $ pip install -r requirements/dev.txt
+
 That will leave you with a Pootle development server up and running ready to
 start hacking!
 
