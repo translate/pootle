@@ -9,7 +9,7 @@ ago. So many changes that it's quite hard to list them all.
 Why so long? Well we had the `Egyptian revolution
 <https://www.google.co.uk/search?q=%23freealaa&tbm=isch>`_, a complete change
 in UI, and a load of features we wanted you to have.  It took much longer to
-stabalise it for you to enjoy.
+stabilise it for you to enjoy.
 
 Pootle 2.5.0 has been in production with many users, so although it is a new
 official release, we've had many people running their production server off
@@ -118,7 +118,7 @@ Infrastructure
   <https://travis-ci.org/translate/pootle>`_
 - All our `code <https://github.com/translate/pootle>`_ is now on Github
 
-...and of course, loads of bugs where fixed
+...and of course, loads of bugs were fixed
 
 Credits
 =======
