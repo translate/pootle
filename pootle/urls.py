@@ -43,7 +43,7 @@ urlpatterns = patterns(
     (r'^accounts/', include('pootle_profile.urls')),
 )
 
-if settings.USE_API:
+if settings.POOTLE_ENABLE_API:
     from api_factory import api_factory
     urlpatterns += patterns(
         '',

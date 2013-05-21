@@ -232,6 +232,16 @@ Configuration settings for applications used by Pootle.
   automatically extracted.
 
 
+.. setting:: POOTLE_ENABLE_API
+
+``POOTLE_ENABLE_API``
+  Default: ``False``
+
+  .. versionadded:: 2.5.1
+
+  Enable Pootle API.
+
+
 .. setting:: TASTYPIE_DEFAULT_FORMATS
 
 ``TASTYPIE_DEFAULT_FORMATS``
@@ -251,16 +261,6 @@ Configuration settings for applications used by Pootle.
   Default: ``5``
 
   The number of rows displayed in the top contributors table.
-
-
-.. setting:: USE_API
-
-``USE_API``
-  Default: ``False``
-
-  .. versionadded:: 2.5.1
-
-  Enable Pootle API.
 
 
 .. setting:: USE_CAPTCHA

@@ -72,6 +72,10 @@ Order in models:
   - ``def get_absolute_url()``
   - Any custom methods
 
+Settings naming:
+  Pootle specific settings must be named like ``POOTLE_*``, for example:
+  ``POOTLE_ENABLE_API``, ``POOTLE_VCS_DIRECTORY`` or ``POOTLE_MARKUP_FILTER``
+
 
 Pootle-specific markup
 ^^^^^^^^^^^^^^^^^^^^^^
