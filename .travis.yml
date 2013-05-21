@@ -5,18 +5,34 @@ python:
   - 2.6
   - 2.7
 env:
-  - DJANGO_VERSION=1.3.7
+  - DJANGO_VERSION=1.3
   - DJANGO_VERSION=1.4.5
 install:
   - pip install --use-mirrors Django==$DJANGO_VERSION
+  - case `python -V 2>&1` in *2.5*) pip install --use-mirrors 'Jinja2<2.7';;esac
   - pip install -r requirements/build.txt --use-mirrors
+  - python -V; pip freeze # print all installed versions for reference/posterity
 script:
-  - make build
-  - ./manage.py runserver &
+  - make build SHELL=/bin/bash TAIL='|tail -40; exit $$PIPESTATUS'
+  - ./manage.py --version
+  - ./manage.py syncdb --noinput
+  - ./manage.py initdb
+  - ./manage.py update_against_templates
+  - ./manage.py update_translation_projects --cleanup
+  - ./manage.py list_projects
+  - ./manage.py list_languages --project terminology
+  # need to get change id past 0 for *_stores to do anything interesting?
+  - ./manage.py sync_stores
+  - ./manage.py update_stores
+  # these get DoesNotExist exception if there are no changes
+  #- ./manage.py latest_change_id
+  #- ./manage.py list_languages --modified-since 0
+  - ./manage.py refresh_stats
+  - ./manage.py runserver --noreload &
   - TESTPID=$!
   - sleep 100
   - kill -2 $TESTPID
 notifications:
   email:
-    on_failure: change
+    on_failure: always
     on_success: change
