@@ -35,7 +35,7 @@ Installation and Upgrade
 Changes
 =======
 
-The are by no means extensive, check the git log for more details
+These are by no means exhaustive, check the git log for more details
 
 User Experience
 ---------------
@@ -76,7 +76,7 @@ Version Control
 - Update the whole project at once avoiding slow file by file updates
 - A separate `VCS_DIRECTORY
   <http://docs.translatehouse.org/projects/pootle/en/latest/server/settings.html#std:setting-VCS_DIRECTORY>`_
-  for VCS checkout is where Pootle now does all VC related work this ensures
+  for VCS checkout is where Pootle now does all VC related work -- this ensures
   that we can work well with DVCS like Git.
 - Detect new and removed files after a VCS update
 - Management commands for VCS actions [Stuart Prescott]
