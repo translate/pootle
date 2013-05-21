@@ -28,7 +28,7 @@ script:
   #- ./manage.py latest_change_id
   #- ./manage.py list_languages --modified-since 0
   - ./manage.py refresh_stats
-  - ./manage.py runserver &
+  - ./manage.py runserver --noreload &
   - TESTPID=$!
   - sleep 100
   - kill -2 $TESTPID
