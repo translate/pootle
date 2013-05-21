@@ -20,7 +20,7 @@
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
-from django.shortcuts import redirect
+from django.http import HttpResponseRedirect
 
 from pootle_misc.baseurl import get_next
 
@@ -37,7 +37,7 @@ class LegalAgreementMiddleware(object):
 
         if (request.user.is_authenticated() and not nocheck and
             LegalPage.objects.pending_user_agreement(request.user).exists()):
-            return redirect(
+            return HttpResponseRedirect(
                 u'%s%s' % (reverse('staticpages.legal-agreement'),
                            get_next(request)),
             )

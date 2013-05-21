@@ -25,13 +25,14 @@ from django.contrib import auth, messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse_lazy
 from django.http import Http404
-from django.shortcuts import redirect, render_to_response
+from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import (CreateView, DeleteView, TemplateView,
                                   UpdateView)
 
 from pootle.core.views import SuperuserRequiredMixin
+from pootle_misc.baseurl import redirect
 
 from .forms import agreement_form_factory
 from .models import AbstractPage, LegalPage, StaticPage
