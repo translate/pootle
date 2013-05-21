@@ -7,6 +7,7 @@ IMAGES_DIR = ${STATIC_DIR}/images
 SPRITE_DIR = ${IMAGES_DIR}/sprite
 VERSION=$(shell python setup.py --version)
 FULLNAME=$(shell python setup.py --fullname)
+SFUSERNAME=$(shell egrep -A5 sourceforge ~/.ssh/config | egrep -m1 User | cut -d" " -f2)
 FORMATS=--formats=bztar
 
 .PHONY: all build sprite pot mo mo-all help docs assets
@@ -49,8 +50,8 @@ test-publish-pypi:
 #scp -p dist/translate-toolkit-1.10.0.tar.bz2 jsmith@frs.sourceforge.net:/home/frs/project/translate/Translate\ Toolkit/1.10.0/
 publish-sourceforge:
 	@echo "We don't trust automation that much.  The following is the command you need to run"
-	@echo 'scp -p dist/${FULLNAME}.tar.bz2 jsmith@frs.sourceforge.net:"/home/frs/project/translate/Pootle/${VERSION}/"'
-	@echo 'scp -p release/RELEASE-NOTES-${VERSION}.rst jsmith@frs.sourceforge.net:"/home/frs/project/translate/Pootle/${VERSION}/README.rst"'
+	@echo 'scp -p dist/${FULLNAME}.tar.bz2 ${SFUSERNAME}@frs.sourceforge.net:"/home/frs/project/translate/Pootle/${VERSION}/"'
+	@echo 'scp -p release/RELEASE-NOTES-${VERSION}.rst ${SFUSERNAME}@frs.sourceforge.net:"/home/frs/project/translate/Pootle/${VERSION}/README.rst"'
 
 publish: publish-pypi publish-sourceforge
 
