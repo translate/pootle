@@ -29,11 +29,12 @@ from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.markup import get_markup_filter_name, MarkupField
+from pootle.core.mixins import DirtyFieldsMixin
 
 from .managers import PageManager
 
 
-class AbstractPage(models.Model):
+class AbstractPage(DirtyFieldsMixin, models.Model):
 
     active = models.BooleanField(_('Active'),
             help_text=_('Whether this page is active or not.'))
@@ -53,7 +54,7 @@ class AbstractPage(models.Model):
 
     # This will go away with bug 2830, but works fine for now
     modified_on = models.DateTimeField(default=now, editable=False,
-                                       auto_now_add=True, auto_now=True)
+                                       auto_now_add=True)
 
     objects = PageManager()
 
@@ -62,6 +63,15 @@ class AbstractPage(models.Model):
 
     def __unicode__(self):
         return self.virtual_path
+
+    def save(self):
+        # Update the `modified_on` timestamp only when specific
+        # fields change
+        dirty_fields = self.get_dirty_fields()
+        if any(field in dirty_fields for field in ('title', 'body', 'url')):
+            self.modified_on = now()
+
+        super(AbstractPage, self).save()
 
     def get_absolute_url(self):
         if self.url:
