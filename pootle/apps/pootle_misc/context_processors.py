@@ -42,7 +42,7 @@ def _projects_context():
     """Returns a common context for projects."""
     projects = cache.get(PROJ_CACHE_KEY)
     if not projects:
-        projects = Project.objects.all()
+        projects = Project.objects.order_by('fullname').all()
         cache.set(PROJ_CACHE_KEY, projects, settings.OBJECT_CACHE_TIMEOUT)
 
     return {

@@ -126,7 +126,7 @@ class Project(models.Model):
 
         # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
-        cache.set(CACHE_KEY, Project.objects.all(), 0)
+        cache.set(CACHE_KEY, Project.objects.order_by('fullname').all(), 0)
 
     def delete(self, *args, **kwargs):
         directory = self.directory
