@@ -97,11 +97,6 @@ def create_pootle_permission_sets():
         permission_set.positive_permissions = [view]
         permission_set.save()
 
-def create_root_directory():
-    """Create root Directory item."""
-    root, created = Directory.objects.get_or_create(name='')
-    projects, created = Directory.objects.get_or_create(name='projects', parent=root)
-
 def post_syncdb_handler(sender, created_models, **kwargs):
     try:
         # create default cache table
@@ -109,8 +104,6 @@ def post_syncdb_handler(sender, created_models, **kwargs):
     except:
         pass
 
-    if Directory in created_models:
-        create_root_directory()
     if PermissionSet in created_models:
         create_pootle_permissions()
         create_pootle_permission_sets()
