@@ -14,7 +14,7 @@ If you are upgrading Pootle, you might want to see some tips to ensure your
 Version 2.5.1
 -------------
 
-Not released yet.
+Not released yet. *Planned release date late November 2013*
 
 - The minimum required Django version is 1.4.5.
 
