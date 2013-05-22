@@ -1,0 +1,15 @@
+[
+    {
+        "pk": 1,
+        "model": "pootle_project.project",
+        "fields": {
+            "localfiletype": "po",
+            "code": "terminology",
+            "source_language": 2,
+            "treestyle": "auto",
+            "directory": 5,
+            "fullname": "Terminology",
+            "checkstyle": "terminology"
+        }
+    }
+]

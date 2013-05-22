@@ -102,16 +102,6 @@ def create_root_directory():
     root, created = Directory.objects.get_or_create(name='')
     projects, created = Directory.objects.get_or_create(name='projects', parent=root)
 
-def create_terminology_project():
-    """terminology project is used to display terminology suggestions while translating"""
-    en = require_english()
-    terminology, created = Project.objects.get_or_create(
-            code="terminology",
-            fullname=u"Terminology",
-            source_language=en,
-            checkstyle="terminology",
-    )
-
 def post_syncdb_handler(sender, created_models, **kwargs):
     try:
         # create default cache table
@@ -121,8 +111,6 @@ def post_syncdb_handler(sender, created_models, **kwargs):
 
     if Directory in created_models:
         create_root_directory()
-    if Project in created_models:
-        create_terminology_project()
     if PermissionSet in created_models:
         create_pootle_permissions()
         create_pootle_permission_sets()
