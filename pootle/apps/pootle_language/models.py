@@ -39,15 +39,20 @@ class LanguageManager(RelatedManager):
 
 
 class LiveLanguageManager(models.Manager):
-    """Manager that only considers `live` languages, i.e. languages other
-    than the special `Templates` language.
+    """Manager that only considers `live` languages.
+
+    A live language is any language other than the special `Templates`
+    language that have any project with translatable files and is not a
+    source language.
 
     Note that this doesn't inherit from :cls:`RelatedManager`.
     """
     def get_query_set(self):
         return super(LiveLanguageManager, self).get_query_set().filter(
                 ~models.Q(code='templates'),
-            )
+                translationproject__isnull=False,
+                project__isnull=True,
+            ).distinct()
 
 
 CACHE_KEY = 'pootle-languages'
