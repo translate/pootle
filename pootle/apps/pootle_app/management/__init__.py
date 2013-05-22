@@ -38,33 +38,6 @@ from pootle_misc import siteconfig
 from pootle.__version__ import build as code_buildversion
 from translate.__version__ import build as code_tt_buildversion
 
-def create_essential_users():
-    """Create default and nobody User instances required for pootle permission system"""
-    # The nobody user is used to represent an anonymous user in cases where
-    # we need to associate model information with such a user. An example is
-    # in the permission system: we need a way to store rights for anonymous
-    # users; thus we use the nobody user.
-    nobody, created = User.objects.get_or_create(username=u"nobody",
-                first_name=u"any anonymous user",
-                is_active=True)
-    if created:
-        nobody.set_unusable_password()
-        nobody.save()
-
-    # The default user represents any valid, non-anonymous user and is used to
-    # associate information any such user. An example is in the permission
-    # system: we need a way to store default rights for users. We use the
-    # default user for this.
-    #
-    # In a future version of Pootle we should think about using Django's
-    # groups to do better permissions handling.
-    default, created = User.objects.get_or_create(username=u"default",
-                 first_name=u"any authenticated user",
-                 is_active=True)
-    if created:
-        default.set_unusable_password()
-        default.save()
-
 def create_pootle_permissions():
     """define Pootle's directory level permissions"""
     pootle_content_type, created = ContentType.objects.get_or_create(app_label="pootle_app", model="directory")
@@ -157,8 +130,6 @@ def post_syncdb_handler(sender, created_models, **kwargs):
     except:
         pass
 
-    if PootleProfile in created_models:
-        create_essential_users()
     if Directory in created_models:
         create_root_directory()
     if Language in created_models:
