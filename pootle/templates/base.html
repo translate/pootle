@@ -54,6 +54,9 @@
                      { csrfmiddlewaretoken: '{{ csrf_token }}' }) );
         }
       });
+
+      $.fancybox.defaults.tpl.closeBtn =
+        '<a class="fancybox-item fancybox-close" href="javascript:;"></a>';
     });
     </script>
     {% endblock js %}
