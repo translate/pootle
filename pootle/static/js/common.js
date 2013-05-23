@@ -8,6 +8,8 @@
       PTL.utils.makeSelectableInput('#js-select-language',
         {
           allowClear: true,
+          dropdownAutoWidth: true,
+          dropdownCssClass: 'breadcrumb-dropdown',
           placeholder: gettext("All Languages"),
           width: 'off'
         },
@@ -19,6 +21,8 @@
       PTL.utils.makeSelectableInput('#js-select-project',
         {
           allowClear: true,
+          dropdownAutoWidth: true,
+          dropdownCssClass: 'breadcrumb-dropdown',
           placeholder: gettext("All Projects"),
           width: 'off'
         },
