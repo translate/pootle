@@ -28,95 +28,20 @@ run the shell scripts that are provided in that Git repository.
 
 from __future__ import with_statement
 
-import errno
 import logging
 import os
 import shutil
-import subprocess
-
-from contextlib import contextmanager
-from datetime import datetime
-from tempfile import mkdtemp
-
-from translate.convert import po2moz
 
 from pootle.scripts.actions import DownloadAction, TranslationProjectAction
 
+from moztarball import AURORA, tempdir, get_phases, merge_po2moz
 from buildxpi import build_xpi
-
-MOZL10N = "mozilla-l10n"
-AURORA = "mozilla-aurora"
-
-
-@contextmanager
-def tempdir():
-    """Context manager for creating and deleting a temporary directory."""
-    tmpdir = mkdtemp()
-    try:
-        yield tmpdir
-    finally:
-        shutil.rmtree(tmpdir)
-
-
-def get_version(vc_root):
-    """Get Mozilla version from browser (since mobile has no version.txt)"""
-    vfile = os.path.join(vc_root, AURORA, 'browser', 'config', 'version.txt')
-    try:
-        with open(vfile) as vfh:
-            version = vfh.readline()
-    except IOError:
-        logging.exception("Unable to get version from %s", vfile)
-        return "aurora"
-
-    return version.strip()
-
-
-def get_phases(root, vc_root, workdir, language, project):
-    """
-    Create repository-layout tree of PO files from translations;
-    (re)raises IOError, OSError, and/or shutil.Error from open, os.mkdirs,
-    and/or shutil.copyfile
-    """
-
-    phasefile = os.path.join(vc_root, MOZL10N, ".ttk", project,
-                             project + ".phaselist")
-    tdirs = {}
-    try:
-        with open(phasefile) as pfile:
-            for phase in [line.strip().split() for line in pfile]:
-                path = phase[1]
-                if path.startswith('./'):
-                    path = path[2:]
-                source = os.path.join(root, project, language, phase[0], path)
-                target = os.path.join(workdir, language, path)
-                tdir = target[:target.rfind(os.sep)]
-                if not tdir in tdirs:
-                    logging.debug("creating '%s' directory", tdir)
-                    try:
-                        os.makedirs(tdir)
-                    except OSError, e:
-                        if e.errno == errno.EEXIST and os.path.isdir(tdir):
-                            pass
-                        else:
-                            raise
-                    while tdir:
-                        tdirs[tdir] = True
-                        tdir = tdir[:tdir.rfind(os.sep)]
-                logging.debug("copying '%s' to '%s'", source, target)
-                try:
-                    shutil.copyfile(source, target)
-                except (shutil.Error, IOError):
-                    logging.exception("Cannot update %s", target)
-                    raise
-    except IOError:
-        logging.exception("Cannot get phases from %s", phasefile)
-        raise
 
 
 class MozillaLangpackAction(DownloadAction, TranslationProjectAction):
     """Download Mozilla language pack for Firefox"""
 
-    def run(self, path, root, tpdir,  # pylint: disable=R0913
+    def run(self, path, root, tpdir,  # pylint: disable=R0913,R0914,W0613
             language, project, vc_root, **kwargs):
         """Generate a Mozilla language pack XPI"""
 
@@ -128,28 +53,60 @@ class MozillaLangpackAction(DownloadAction, TranslationProjectAction):
                 return
 
             with tempdir() as l10ndir:
-                po2moz.main(['--progress=none', '-l', language,
-                            '-t', os.path.join(vc_root, MOZL10N,
-                                               'templates-en-US'),
-                            '-i', os.path.join(podir, language),
-                            '-o', os.path.join(l10ndir, language)])
+                try:
+                    merge_po2moz(vc_root, podir, l10ndir, language, project)
+                except (IOError, OSError), e:
+                    self.set_error(e)
+                    return
+
+                source = os.path.join(vc_root, AURORA),
 
                 with tempdir() as xpidir:
+
+                    def copyfile(filename):
+                        """Copy a file from VC source to XPI build directory"""
+                        sourcefile = os.path.join(source,
+                                                  'toolkit/locales/en-US',
+                                                  filename)
+                        if os.path.exists(sourcefile):
+                            destdir = os.path.join(xpidir, language, 'toolkit',
+                                                   os.path.dirname(filename))
+                            if not os.path.isdir(destdir):
+                                os.makedirs(destdir)
+                                shutil.copy2(sourcefile, destdir)
+                        else:
+                            logging.warning('unable to find %s', sourcefile)
+
+                    def copyfileifmissing(filename):
+                        """Copy a file only if needed."""
+                        destfile = os.path.join(xpidir, language, 'toolkit',
+                                                filename)
+                        if not os.path.exists(destfile):
+                            copyfile(filename)
+
                     try:
-                        xpifile = build_xpi(l10nbase=l10ndir,
-                                            srcdir=os.path.join(vc_root,
-                                                                AURORA),
+                        # from mozilla-l10n/.ttk/default/build.sh
+                        copyfileifmissing('chrome/mozapps/help/welcome.xhtml')
+                        copyfileifmissing('chrome/mozapps/help/help-toc.rdf')
+                        copyfile('browser/firefox-l10n.js')
+                        copyfile('browser/profile/chrome/'
+                                 'userChrome-example.css')
+                        copyfile('browser/profile/chrome/'
+                                 'userContent-example.css')
+                        copyfileifmissing('chrome/global/intl.css')
+                        # This one needs special approval but we need it
+                        # to pass and compile
+                        copyfileifmissing('browser/searchplugins/list.txt')
+
+                        xpifile = build_xpi(l10nbase=l10ndir, srcdir=source,
                                             outputdir=xpidir, lang=language,
                                             product='browser')
-                    except Exception, e:
+                    except StandardError, e:
                         self.set_error(e)
                         return
 
                 if xpifile:
-                    error += self.set_download_file(path, xpifile)
-
-        self.set_output(output)
-        self.set_error(error)
+                    self.set_error(self.set_download_file(path, xpifile))
 
 
 MozillaLangpackAction.moztar = MozillaLangpackAction(category="Other actions",
