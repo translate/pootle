@@ -102,7 +102,7 @@ def get_phases(srcdir, phasedir, workdir, language, project):
 
     phasefile = os.path.join(phasedir, MOZL10N, ".ttk", project,
                              project + ".phaselist")
-    tdirs = {}
+    tdirs = set()
     try:
         with open(phasefile) as pfile:
             for phase in [line.strip().split() for line in pfile]:
@@ -113,7 +113,7 @@ def get_phases(srcdir, phasedir, workdir, language, project):
                                       path)
                 target = os.path.join(workdir, language, path)
                 tdir = target[:target.rfind(os.sep)]
-                if not tdir in tdirs:
+                if tdir not in tdirs:
                     logging.debug("creating '%s' directory", tdir)
                     try:
                         os.makedirs(tdir)
@@ -123,7 +123,7 @@ def get_phases(srcdir, phasedir, workdir, language, project):
                         else:
                             raise
                     while tdir:
-                        tdirs[tdir] = True
+                        tdirs.add(tdir)
                         tdir = tdir[:tdir.rfind(os.sep)]
                 logging.debug("copying '%s' to '%s'", source, target)
                 try:
