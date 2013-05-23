@@ -10,6 +10,10 @@
     /* using Google Translate API v2 */
     url: "https://www.googleapis.com/language/translate/v2",
 
+    /* For a list of currently supported languages:
+     * https://developers.google.com/translate/v2/using_rest#language-params
+     * FIXME note that we seem not to use this list, but an API does exist to
+     * query if Google supports a given language */
     pairs: [{"source":"af","target":"af"},
             {"source":"sq","target":"sq"},
             {"source":"ar","target":"ar"},
