@@ -363,6 +363,13 @@ html[dir="rtl"] #nav-access
  * NAVBAR
  */
 
+.agreement #navbar,
+.agreement #footer
+{
+  /* Fancybox uses 80xx as z-index */
+  z-index: 9999;
+}
+
 #navbar
 {
     position: absolute;
@@ -513,6 +520,7 @@ html[dir="rtl"] #nav-main li
     text-align: center;
     margin-top: 3em;
     padding: 35px 0;
+    position: relative;
 }
 
 #footer a
@@ -1193,6 +1201,7 @@ ul.errorlist
  * DOCUMENTATION, LEGAL, CONTRIBUTORS
  */
 
+#agreement,
 #staticpage,
 #about
 {

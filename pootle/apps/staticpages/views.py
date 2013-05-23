@@ -24,15 +24,16 @@ from __future__ import absolute_import
 from django.contrib import auth, messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse_lazy
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.template import loader, RequestContext
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import (CreateView, DeleteView, TemplateView,
                                   UpdateView)
 
 from pootle.core.views import SuperuserRequiredMixin
 from pootle_misc.baseurl import redirect
+from pootle_misc.util import ajax_required, jsonify
 
 from .forms import agreement_form_factory
 from .models import AbstractPage, LegalPage, StaticPage
@@ -143,28 +144,34 @@ def display_page(request, virtual_path):
     return render_to_response(template_name, ctx, RequestContext(request))
 
 
+@ajax_required
 def legal_agreement(request):
     """Displays the pending documents to be agreed by the current user."""
     pending_pages = LegalPage.objects.pending_user_agreement(request.user)
     form_class = agreement_form_factory(pending_pages, request.user)
+
+    rcode = 200
+    agreed = False
 
     if request.method == 'POST':
         form = form_class(request.POST)
 
         if form.is_valid():
             # The user agreed, let's record the specific agreements
-            # and redirect to the next page
+            agreed = True
             form.save()
-
-            redirect_to = request.POST.get(auth.REDIRECT_FIELD_NAME, '/')
-            return redirect(redirect_to)
+        else:
+            rcode = 400
     else:
         form = form_class()
 
-    ctx = {
-        'form': form,
-        'next': request.GET.get(auth.REDIRECT_FIELD_NAME, ''),
-    }
+    response = {'agreed': agreed}
+    if not agreed:
+        ctx = {
+            'form': form,
+        }
+        template = loader.get_template('staticpages/agreement.html')
+        response['form'] = template.render(RequestContext(request, ctx))
 
-    return render_to_response('staticpages/agreement.html', ctx,
-                              RequestContext(request))
+    return HttpResponse(jsonify(response), status=rcode,
+                        mimetype='application/json')

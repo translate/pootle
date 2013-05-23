@@ -202,6 +202,31 @@
       $('.js-relative-date').each(function (i, e) {
         $(e).text(PTL.utils.relativeDate(Date.parse($(e).attr('datetime'))));
       });
+    },
+
+    submitAgreementForm: function () {
+      var $agreementBox = $('.js-agreement-box'),
+          $agreementForm = $('.js-agreement-form');
+      $agreementBox.spin();
+      $agreementBox.css({opacity: .5});
+
+      $.ajax({
+        url: $agreementForm.attr('action'),
+        type: 'POST',
+        data: $agreementForm.serializeObject(),
+        success: function (data) {
+          $.fancybox.close();
+        },
+        complete: function (xhr) {
+          $agreementBox.spin(false);
+          $agreementBox.css({opacity: 1});
+
+          if (xhr.status === 400) {
+            var form = $.parseJSON(xhr.responseText).form;
+            $agreementBox.parent().html(form);
+          }
+        }
+      });
     }
 
   };

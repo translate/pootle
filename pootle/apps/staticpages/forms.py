@@ -27,12 +27,14 @@ from django.utils.translation import ugettext_lazy as _
 from .models import Agreement
 
 
-def agreement_form_factory(pages, user, base_class=forms.Form):
+def agreement_form_factory(pages, user, base_class=forms.Form,
+                           anchor_class=''):
     """Factory that builds an agreement form.
 
     :param pages: Legal pages that need to be accepted by users.
     :param user: User bound to the agreement form.
     :param base_class: Base class for this form to inherit from.
+    :param anchor_class: Extra class(es) added to page links.
     :return: An `AgreementForm` class with `pages` as required checkboxes.
     """
     class AgreementForm(base_class):
@@ -70,10 +72,12 @@ def agreement_form_factory(pages, user, base_class=forms.Form):
             """Adds `page` as a required field to this form."""
             url = page.url and page.url or reverse('staticpages.display',
                                                    args=[page.virtual_path])
-            anchor = u'href="%s" class="fancybox"' % url
+            anchor_classes = u''.join(['js-agreement-popup', ' ',
+                                       anchor_class])
+            anchor_attrs = u'href="%s" class="%s"' % (url, anchor_classes,)
             # Translators: The second '%s' is the title of a document
             label = mark_safe(_("I have read and accept: <a %s>%s</a>",
-                                (anchor, page.title,)))
+                                (anchor_attrs, page.title,)))
 
             field_name = 'legal_%d' % page.pk
             self.fields[field_name] = forms.BooleanField(label=label,

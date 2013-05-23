@@ -1,17 +1,10 @@
-{% extends "base.html" %}
+{% load url from future %}
 {% load i18n %}
-
-{% block title %}{% trans "Legal Agreement" %} | {{ block.super }}{% endblock title %}
-
-{% block breadcrumbs %}
-{{ block.super }}<li>{% trans "Legal Agreement" %}</li>
-{% endblock %}
-
-{% block content %}
-<div id="agreement" class="form">
+<div id="agreement" class="form js-agreement-box">
   <h2>{% trans "Action Required" %}</h2>
   <p>{% trans "Before continuing, you must read and accept the following documents." %}</p>
-  <form method="post" action="">
+  <form method="post" action="{% url 'staticpages.legal-agreement' %}"
+    class="js-agreement-form">
     {% csrf_token %}
     {% for field in form %}
     <p>
@@ -23,16 +16,12 @@
     <p class="buttons">
       <input type="submit" name="continue" class="continue"
         value="{% trans "Continue" %}" />
-      <input type="hidden" name="next" value="{{ next }}" />
     </p>
   </form>
 </div>
-{% endblock content %}
 
-{% block scripts_extra %}
 <script type="text/javascript">
 $(function ($) {
   PTL.common.updateInputState('.js-legalfield', 'input.continue');
 });
 </script>
-{% endblock scripts_extra %}

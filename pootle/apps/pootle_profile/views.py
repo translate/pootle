@@ -44,7 +44,8 @@ def register(request):
     """
     form_class = agreement_form_factory(LegalPage.objects.live().all(),
                                         request.user,
-                                        base_class=RegistrationForm)
+                                        base_class=RegistrationForm,
+                                        anchor_class='fancybox')
     return original_register(request, form_class=form_class)
 
 

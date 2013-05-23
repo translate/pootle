@@ -24,6 +24,7 @@ from django.core.cache import cache
 from pootle.__version__ import sver
 from pootle_language.models import Language, CACHE_KEY as LANG_CACHE_KEY
 from pootle_project.models import Project, CACHE_KEY as PROJ_CACHE_KEY
+from staticpages.models import LegalPage
 
 
 def _languages_context():
@@ -50,6 +51,22 @@ def _projects_context():
     }
 
 
+def _agreement_context(request):
+    """Returns whether the agreement box should be displayed or not."""
+    request_path = request.META['PATH_INFO']
+    nocheck = filter(lambda x: request_path.startswith(x),
+                     settings.LEGALPAGE_NOCHECK_PREFIXES)
+    display_agreement = False
+
+    if (request.user.is_authenticated() and not nocheck and
+        LegalPage.objects.pending_user_agreement(request.user).exists()):
+        display_agreement = True
+
+    return {
+        'display_agreement': display_agreement,
+    }
+
+
 def pootle_context(request):
     """Exposes settings to templates."""
     #FIXME: maybe we should expose relevant settings only?
@@ -69,5 +86,7 @@ def pootle_context(request):
 
     context.update(_languages_context())
     context.update(_projects_context())
+
+    context.update(_agreement_context(request))
 
     return context
