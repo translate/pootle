@@ -59,7 +59,7 @@ class MozillaLangpackAction(DownloadAction, TranslationProjectAction):
                     self.set_error(e)
                     return
 
-                source = os.path.join(vc_root, AURORA),
+                source = os.path.join(vc_root, AURORA)
 
                 with tempdir() as xpidir:
 
