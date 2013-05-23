@@ -37,7 +37,7 @@ def translate(path_obj, state=None, check=None, user=None):
         if user:
             path += '&user=%s' % user
     elif check:
-        path += '#filter=checks,%s' % check
+        path += '#filter=checks&checks=%s' % check
 
     return l(path)
 
