@@ -51,11 +51,11 @@ following sections and make sure you have given the information required.
 Be verbose
 ^^^^^^^^^^
 
-Tell us exactly how came to see this bug. Don't say:
+Tell us exactly how came to see this bug. Don't say::
 
     Suggesting doesn't work
 
-Rather say:
+Rather say::
 
     In a translation project with proper permissions when I try to suggest I
     get a 404 error.
