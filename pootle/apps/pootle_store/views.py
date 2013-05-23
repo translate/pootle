@@ -300,7 +300,7 @@ def get_search_step_query(translation_project, form, units_queryset):
                   translation_project)
 
     word_querylist = []
-    words = form.cleaned_data['search'].split()
+    words = form.cleaned_data['search']
     fields = form.cleaned_data['sfields']
     paths = units_queryset.order_by() \
                           .values_list('store__pootle_path', flat=True) \
@@ -315,15 +315,10 @@ def get_search_step_query(translation_project, form, units_queryset):
     dbids = cache.get(cache_key)
     if dbids is None:
         searchparts = []
-        # Split the search expression into single words. Otherwise Xapian and
-        # Lucene would interpret the whole string as an "OR" combination of
-        # words instead of the desired "AND".
-        for word in words:
-            # Generate a list for the query based on the selected fields
-            word_querylist = [(field, word) for field in fields]
-            textquery = translation_project.indexer.make_query(word_querylist,
-                                                               False)
-            searchparts.append(textquery)
+        word_querylist = [(field, words) for field in fields]
+        textquery = translation_project.indexer.make_query(word_querylist,
+                                                           False)
+        searchparts.append(textquery)
 
         pathquery = translation_project.indexer.make_query(path_querylist,
                                                            False)
