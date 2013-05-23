@@ -104,9 +104,9 @@ def post_syncdb_handler(sender, created_models, **kwargs):
     except:
         pass
 
-    if PermissionSet in created_models:
-        create_pootle_permissions()
-        create_pootle_permission_sets()
+    #if PermissionSet in created_models:
+    #    create_pootle_permissions()
+    #    create_pootle_permission_sets()
 
     config = siteconfig.load_site_config()
     if not config.get('BUILDVERSION', None):
