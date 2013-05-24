@@ -31,6 +31,7 @@ from __future__ import with_statement
 import logging
 import os
 import shutil
+from subprocess import CalledProcessError
 
 from pootle.scripts.actions import DownloadAction, TranslationProjectAction
 
@@ -48,14 +49,14 @@ class MozillaLangpackAction(DownloadAction, TranslationProjectAction):
         with tempdir() as podir:
             try:
                 get_phases(root, vc_root, podir, language, project)
-            except (IOError, OSError, shutil.Error), e:
+            except (EnvironmentError, shutil.Error), e:
                 self.set_error(e)
                 return
 
             with tempdir() as l10ndir:
                 try:
                     merge_po2moz(vc_root, podir, l10ndir, language, project)
-                except (IOError, OSError), e:
+                except EnvironmentError, e:
                     self.set_error(e)
                     return
 
@@ -101,7 +102,7 @@ class MozillaLangpackAction(DownloadAction, TranslationProjectAction):
                         xpifile = build_xpi(l10nbase=l10ndir, srcdir=source,
                                             outputdir=xpidir, lang=language,
                                             product='browser')
-                    except StandardError, e:
+                    except (EnvironmentError, CalledProcessError), e:
                         self.set_error(e)
                         return
 

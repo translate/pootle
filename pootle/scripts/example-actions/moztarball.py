@@ -155,6 +155,8 @@ def merge_po2moz(templates, translations, output, language, project):
     :type language: str
     :param project: Project code (e.g. firefox or mobile)
     :type project: str
+    :raises: IOError
+    :raises: OSError
 
     """
     excludes = []
@@ -183,7 +185,7 @@ class MozillaTarballAction(DownloadAction, TranslationProjectAction):
         with tempdir() as podir:
             try:
                 get_phases(root, vc_root, podir, language, project)
-            except (IOError, OSError, shutil.Error), e:
+            except (EnvironmentError, shutil.Error), e:
                 self.set_error(e)
                 return
 
@@ -199,7 +201,7 @@ class MozillaTarballAction(DownloadAction, TranslationProjectAction):
             with tempdir() as tardir:
                 try:
                     merge_po2moz(vc_root, podir, tardir, language, project)
-                except (IOError, OSError), e:
+                except EnvironmentError, e:
                     self.set_error(e)
                     return
 
