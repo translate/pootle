@@ -73,7 +73,7 @@ class MozillaLangpackAction(DownloadAction, TranslationProjectAction):
                                                    os.path.dirname(filename))
                             if not os.path.isdir(destdir):
                                 os.makedirs(destdir)
-                                shutil.copy2(sourcefile, destdir)
+                            shutil.copy2(sourcefile, destdir)
                         else:
                             logging.warning('unable to find %s', sourcefile)
 
