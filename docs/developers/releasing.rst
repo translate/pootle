@@ -18,6 +18,7 @@ Summary
 #. Add product version to Bugzilla
 #. Release documentation
 #. Update translate website
+#. Update Pootle dashboard
 #. Unstage sourceforge
 #. Announce to the world
 #. Cleanup
@@ -284,6 +285,17 @@ We use github pages for the website. First we need to checkout the pages::
 .. note:: FIXME it would be great if gh-pages accepted .rst, maybe it can if we
    prerender just that page?
 
+
+Update Pootle dashboard
+-----------------------
+The dashboard used in Pootle's dashboard is updated in its own project:
+
+#. git clone git@github.com:translate/pootle-dashboard.git
+#. Edit index.html to contain the latest release info
+#. Add the same info in alerts.xml pointing to the release in RTD
+   ``release/$version.html``
+
+Do a ``git pull`` on the server to get the latest changes from the repo.
 
 Unstage on sourceforge
 ----------------------
