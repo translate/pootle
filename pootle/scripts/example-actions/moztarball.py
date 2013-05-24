@@ -45,6 +45,45 @@ MOZL10N = "mozilla-l10n"
 AURORA = "mozilla-aurora"
 
 
+def getLogger(name):  # pylint: disable=C0103
+    """Return a logger with a new method: debug_exception()
+
+    :param name: logger name (typically __name__)
+    :returns: logging.getLogger(name) with debug_exception method
+    :rtype: logging.Logger
+    """
+    import types
+
+    _logger = logging.getLogger(name)
+
+    # Monkey-patch the instance with additional method rather than create a
+    # subclass of Logger because the only way to create instances is via
+    # logging module factory function getLogger(), which lacks any way to
+    # create a subclass instead.  The Logger class itself could be monkey-
+    # patched with the additional method, but that seems too far-reaching,
+    # since it would apply to all Loggers everywhere.
+
+    def debug_exception(self, *args, **kwargs):
+        """Log ERROR, with exception traceback only if logging at DEBUG level.
+
+        This is useful when exceptions are probably not caused by programming
+        errors, but rather deployment ones (filesystem permissions or missing
+        files) - in most cases the function traceback is just a lot of noise
+        confusing the administrator who deployed the system, and you don't want
+        to show it.  When you do need it, just set the logging level to DEBUG.
+
+        """
+        e = 'exc_info'
+        if e not in kwargs:
+            kwargs[e] = self.getEffectiveLevel() == logging.DEBUG
+        self.error(*args, **kwargs)
+
+    _logger.debug_exception = types.MethodType(debug_exception, _logger)
+    return _logger
+
+logger = getLogger(__name__)
+
+
 @contextmanager
 def tempdir():
     """Context manager for creating and deleting a temporary directory."""
@@ -68,7 +107,7 @@ def get_version(vc_root):
         with open(vfile) as vfh:
             version = vfh.readline()
     except IOError:
-        logging.exception("Unable to get version from %s", vfile)
+        logger.exception("Unable to get version from %s", vfile)
         return "aurora"
 
     return version.strip()
@@ -114,7 +153,7 @@ def get_phases(srcdir, phasedir, workdir, language, project):
                 target = os.path.join(workdir, language, path)
                 tdir = target[:target.rfind(os.sep)]
                 if tdir not in tdirs:
-                    logging.debug("creating '%s' directory", tdir)
+                    logger.debug("creating '%s' directory", tdir)
                     try:
                         os.makedirs(tdir)
                     except OSError, e:
@@ -125,14 +164,14 @@ def get_phases(srcdir, phasedir, workdir, language, project):
                     while tdir:
                         tdirs.add(tdir)
                         tdir = tdir[:tdir.rfind(os.sep)]
-                logging.debug("copying '%s' to '%s'", source, target)
+                logger.debug("copying '%s' to '%s'", source, target)
                 try:
                     shutil.copyfile(source, target)
                 except (shutil.Error, IOError):
-                    logging.exception("Cannot update %s", target)
+                    logger.exception("Cannot update %s", target)
                     raise
     except IOError:
-        logging.exception("Cannot get phases from %s", phasefile)
+        logger.exception("Cannot get phases from %s", phasefile)
         raise
 
 
@@ -186,6 +225,7 @@ class MozillaTarballAction(DownloadAction, TranslationProjectAction):
             try:
                 get_phases(root, vc_root, podir, language, project)
             except (EnvironmentError, shutil.Error), e:
+                logger.debug_exception(e)
                 self.set_error(e)
                 return
 
@@ -202,6 +242,7 @@ class MozillaTarballAction(DownloadAction, TranslationProjectAction):
                 try:
                     merge_po2moz(vc_root, podir, tardir, language, project)
                 except EnvironmentError, e:
+                    logger.debug_exception(e)
                     self.set_error(e)
                     return
 

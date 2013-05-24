@@ -28,15 +28,16 @@ run the shell scripts that are provided in that Git repository.
 
 from __future__ import with_statement
 
-import logging
 import os
 import shutil
 from subprocess import CalledProcessError
 
 from pootle.scripts.actions import DownloadAction, TranslationProjectAction
 
-from moztarball import AURORA, tempdir, get_phases, merge_po2moz
+from moztarball import AURORA, getLogger, tempdir, get_phases, merge_po2moz
 from buildxpi import build_xpi
+
+logger = getLogger(__name__)
 
 
 class MozillaLangpackAction(DownloadAction, TranslationProjectAction):
@@ -50,6 +51,7 @@ class MozillaLangpackAction(DownloadAction, TranslationProjectAction):
             try:
                 get_phases(root, vc_root, podir, language, project)
             except (EnvironmentError, shutil.Error), e:
+                logger.debug_exception(e)
                 self.set_error(e)
                 return
 
@@ -57,6 +59,7 @@ class MozillaLangpackAction(DownloadAction, TranslationProjectAction):
                 try:
                     merge_po2moz(vc_root, podir, l10ndir, language, project)
                 except EnvironmentError, e:
+                    logger.debug_exception(e)
                     self.set_error(e)
                     return
 
@@ -71,11 +74,15 @@ class MozillaLangpackAction(DownloadAction, TranslationProjectAction):
                     if os.path.exists(sourcefile):
                         destdir = os.path.join(l10ndir, language,
                                                os.path.dirname(filename))
+                        basename = os.path.basename(filename)
                         if not os.path.isdir(destdir):
+                            logger.debug("creating '%s' directory", destdir)
                             os.makedirs(destdir)
+                        logger.debug("copying '%s' to '%s'", sourcefile,
+                                     os.path.join(destdir, basename))
                         shutil.copy2(sourcefile, destdir)
                     else:
-                        logging.warning('unable to find %s', sourcefile)
+                        logger.warning('unable to find %s', sourcefile)
 
                 def copyfileifmissing(filename):
                     """Copy a file only if needed."""
@@ -109,6 +116,7 @@ class MozillaLangpackAction(DownloadAction, TranslationProjectAction):
                                                                   xpifile))
 
                 except (EnvironmentError, CalledProcessError), e:
+                    logger.debug_exception(e)
                     self.set_error(e)
                     return
 
