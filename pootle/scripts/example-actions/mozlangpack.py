@@ -62,52 +62,55 @@ class MozillaLangpackAction(DownloadAction, TranslationProjectAction):
 
                 source = os.path.join(vc_root, AURORA)
 
-                with tempdir() as xpidir:
+                def copyfile(filename):
+                    """Copy a file from VC source to L10n build directory"""
+                    split = filename.find(os.sep)
+                    sourcefile = os.path.join(source, filename[:split],
+                                              'locales/en-US',
+                                              filename[split + 1:])
+                    if os.path.exists(sourcefile):
+                        destdir = os.path.join(l10ndir, language,
+                                               os.path.dirname(filename))
+                        if not os.path.isdir(destdir):
+                            os.makedirs(destdir)
+                        shutil.copy2(sourcefile, destdir)
+                    else:
+                        logging.warning('unable to find %s', sourcefile)
 
-                    def copyfile(filename):
-                        """Copy a file from VC source to XPI build directory"""
-                        sourcefile = os.path.join(source,
-                                                  'toolkit/locales/en-US',
-                                                  filename)
-                        if os.path.exists(sourcefile):
-                            destdir = os.path.join(xpidir, language, 'toolkit',
-                                                   os.path.dirname(filename))
-                            if not os.path.isdir(destdir):
-                                os.makedirs(destdir)
-                            shutil.copy2(sourcefile, destdir)
-                        else:
-                            logging.warning('unable to find %s', sourcefile)
+                def copyfileifmissing(filename):
+                    """Copy a file only if needed."""
+                    destfile = os.path.join(l10ndir, language, 'toolkit',
+                                            filename)
+                    if not os.path.exists(destfile):
+                        copyfile(filename)
 
-                    def copyfileifmissing(filename):
-                        """Copy a file only if needed."""
-                        destfile = os.path.join(xpidir, language, 'toolkit',
-                                                filename)
-                        if not os.path.exists(destfile):
-                            copyfile(filename)
+                try:
+                    # from mozilla-l10n/.ttk/default/build.sh
+                    copyfileifmissing('toolkit/chrome/mozapps/help/'
+                                      'welcome.xhtml')
+                    copyfileifmissing('toolkit/chrome/mozapps/help/'
+                                      'help-toc.rdf')
+                    copyfile('browser/firefox-l10n.js')
+                    copyfile('browser/profile/chrome/userChrome-example.css')
+                    copyfile('browser/profile/chrome/userContent-example.css')
+                    copyfileifmissing('toolkit/chrome/global/intl.css')
+                    # This one needs special approval but we need it
+                    # to pass and compile
+                    copyfileifmissing('browser/searchplugins/list.txt')
 
-                    try:
-                        # from mozilla-l10n/.ttk/default/build.sh
-                        copyfileifmissing('chrome/mozapps/help/welcome.xhtml')
-                        copyfileifmissing('chrome/mozapps/help/help-toc.rdf')
-                        copyfile('browser/firefox-l10n.js')
-                        copyfile('browser/profile/chrome/'
-                                 'userChrome-example.css')
-                        copyfile('browser/profile/chrome/'
-                                 'userContent-example.css')
-                        copyfileifmissing('chrome/global/intl.css')
-                        # This one needs special approval but we need it
-                        # to pass and compile
-                        copyfileifmissing('browser/searchplugins/list.txt')
+                    with tempdir() as xpidir:
 
                         xpifile = build_xpi(l10nbase=l10ndir, srcdir=source,
                                             outputdir=xpidir, lang=language,
                                             product='browser')
-                    except (EnvironmentError, CalledProcessError), e:
-                        self.set_error(e)
-                        return
 
-                if xpifile:
-                    self.set_error(self.set_download_file(path, xpifile))
+                        if xpifile:
+                            self.set_error(self.set_download_file(path,
+                                                                  xpifile))
+
+                except (EnvironmentError, CalledProcessError), e:
+                    self.set_error(e)
+                    return
 
 
 MozillaLangpackAction.moztar = MozillaLangpackAction(category="Other actions",
