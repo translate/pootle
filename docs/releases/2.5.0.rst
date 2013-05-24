@@ -2,6 +2,9 @@
 Welcome to the new Pootle 2.5.0
 ===============================
 
+2013-05-18
+----------
+
 Finally! Translate has a new baby and we're pretty proud of her. Many changes
 have gone into 2.5.0 which follows on from 2.1.6 released more then two years
 ago. So many changes that it's quite hard to list them all.

@@ -1,6 +1,10 @@
 Pootle 2.1.2 Released including security fix
 ============================================
 
+15 Nov 2010
+-----------
+
+
 http://sourceforge.net/projects/translate/files/Pootle/2.1.2/Pootle-2.1.2.tar.bz2
 
 This release includes an important security fix to a cross site scripting

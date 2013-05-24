@@ -1,6 +1,9 @@
 Pootle 2.1.3 released
 =====================
 
+26 Nov 2010
+-----------
+
 It's been less than three weeks since the we released Pootle 2.1.2 but we've
 fixed a couple of critical bugs affecting many users so it's time for another
 bug fix release. Please welcome `Pootle 2.1.3

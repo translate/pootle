@@ -1,5 +1,9 @@
 Pootle 2.1.6
 ============
+
+2011-04-13
+----------
+
 It's been 3 months since our last bug fix releases, it's about time we give you
 `Pootle <http://pootle.translatehouse.org/>`_ 2.1.6.
 
