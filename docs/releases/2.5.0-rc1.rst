@@ -2,8 +2,7 @@
 Welcome to the new Pootle 2.5.0-rc1
 ===================================
 
-2013-03-16
-----------
+*Released on 16 March 2013*
 
 At Translate we're pretty proud of this baby. Many changes have gone into 2.5.0
 which follows on from 2.1.6 released more then two years ago. So many changes

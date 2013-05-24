@@ -1,8 +1,7 @@
 Pootle 2.1.5 released
 =====================
 
-18 Jan 2011
------------
+*Released on 18 Jan 2011*
 
 A quick bug fix release to celebrate the new Year. Please welcome `Pootle 2.1.5
 <http://sourceforge.net/projects/translate/files/Pootle/2.1.5/>`_!
