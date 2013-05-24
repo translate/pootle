@@ -48,3 +48,4 @@ requirements or other constraints.
    api_suggestion
    api_translation_project
    api_unit
+   api_user

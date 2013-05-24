@@ -20,6 +20,7 @@
 from tastypie.api import Api
 
 from pootle_language.api import LanguageResource
+from pootle_profile.api import UserResource
 from pootle_project.api import ProjectResource
 from pootle_store.api import StoreResource, SuggestionResource, UnitResource
 from pootle_translationproject.api import TranslationProjectResource
@@ -34,4 +35,5 @@ def api_factory():
     pootle_api.register(SuggestionResource())
     pootle_api.register(TranslationProjectResource())
     pootle_api.register(UnitResource())
+    pootle_api.register(UserResource())
     return pootle_api
