@@ -20,13 +20,14 @@
 from tastypie import fields
 from tastypie.authentication import BasicAuthentication
 from tastypie.authorization import DjangoAuthorization
-from tastypie.resources import ModelResource
 
+from pootle.core.api import StatisticsModelResource
+from pootle_misc.stats import get_raw_stats
 from pootle_project.models import Project
 from pootle_translationproject.api import TranslationProjectResource
 
 
-class ProjectResource(ModelResource):
+class ProjectResource(StatisticsModelResource):
     source_language = fields.ForeignKey('pootle_language.api.LanguageResource',
                                         'source_language')
     translation_projects = fields.ToManyField(TranslationProjectResource,
@@ -48,5 +49,13 @@ class ProjectResource(ModelResource):
         ]
         list_allowed_methods = ['get', 'post']
         detail_allowed_methods = ['get', 'put', 'delete', 'patch']
+        # HTTP methods allowed for visiting /statistics/ URLs
+        statistics_allowed_methods = ['get']
         authorization = DjangoAuthorization()
         authentication = BasicAuthentication()
+
+    def retrieve_statistics(self, bundle):
+        """
+        Given a ``Bundle``, return the statistics for it.
+        """
+        return get_raw_stats(bundle.obj, include_suggestions=True)

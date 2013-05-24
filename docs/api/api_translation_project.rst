@@ -143,3 +143,56 @@ Delete a translation project
 :API versions: 1
 :Method: DELETE
 :Returns: HTTP 204 NO CONTENT response.
+
+
+.. _api-tp-resources#get-tp-statistics:
+
+Get statistics for a translation project
+========================================
+
+:URL: ``/translation-projects/<TRAP>/statistics/``
+:Description: Returns the translation project with the ``<TRAP>`` ID, including
+              an extra field with its statistics.
+:API versions: 1
+:Method: GET
+:Returns: Translation project with ``<TRAP>`` ID and its statistics.
+
+.. code-block:: json
+
+    {
+        "description": "",
+        "language": "/api/v1/languages/110/",
+        "pootle_path": "/fr/Firefox/",
+        "project": "/api/v1/projects/3/",
+        "real_path": "Firefox/fr",
+        "resource_uri": "/api/v1/translation-projects/65/",
+        "statistics": {
+            "errors": 0,
+            "fuzzy": {
+                "percentage": 4,
+                "units": 1,
+                "words": 7
+            },
+            "suggestions": 3,
+            "total": {
+                "percentage": 100,
+                "units": 39,
+                "words": 167
+            },
+            "translated": {
+                "percentage": 94,
+                "units": 37,
+                "words": 157
+            },
+            "untranslated": {
+                "percentage": 2,
+                "units": 1,
+                "words": 3
+            }
+        },
+        "stores": [
+            "/api/v1/stores/77/",
+            "/api/v1/stores/76/",
+            "/api/v1/stores/75/"
+        ]
+    }

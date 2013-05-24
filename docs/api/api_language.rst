@@ -130,3 +130,56 @@ Delete a language
 :API versions: 1
 :Method: DELETE
 :Returns: HTTP 204 NO CONTENT response.
+
+
+.. _api-language-resources#get-language-statistics:
+
+Get statistics for a language
+=============================
+
+:URL: ``/languages/<LANG>/statistics/``
+:Description: Returns the language with the ``<LANG>`` ID, including an extra
+              field with its statistics.
+:API versions: 1
+:Method: GET
+:Returns: Language with ``<LANG>`` ID and its statistics.
+
+.. code-block:: json
+
+    {
+        "code": "gl",
+        "description": "",
+        "fullname": "Galician",
+        "nplurals": 2,
+        "pluralequation": "(n != 1)",
+        "resource_uri": "/api/v1/languages/20/",
+        "specialchars": "",
+        "statistics": {
+            "errors": 0,
+            "fuzzy": {
+                "percentage": 1,
+                "units": 1,
+                "words": 1
+            },
+            "suggestions": 0,
+            "total": {
+                "percentage": 100,
+                "units": 1191,
+                "words": 1949
+            },
+            "translated": {
+                "percentage": 91,
+                "units": 1156,
+                "words": 1767
+            },
+            "untranslated": {
+                "percentage": 8,
+                "units": 34,
+                "words": 181
+            }
+        },
+        "translation_projects": [
+            "/api/v1/translation-projects/12/",
+            "/api/v1/translation-projects/81/"
+        ]
+    }

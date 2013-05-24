@@ -22,6 +22,8 @@ from tastypie.authentication import BasicAuthentication
 from tastypie.authorization import DjangoAuthorization
 from tastypie.resources import ModelResource
 
+from pootle.core.api import StatisticsModelResource
+from pootle_misc.stats import get_raw_stats
 from pootle_store.models import Store, Suggestion, Unit
 
 
@@ -71,7 +73,7 @@ class UnitResource(ModelResource):
         authentication = BasicAuthentication()
 
 
-class StoreResource(ModelResource):
+class StoreResource(StatisticsModelResource):
     translation_project = fields.ForeignKey(
         'pootle_translationproject.api.TranslationProjectResource',
         'translation_project')
@@ -92,5 +94,13 @@ class StoreResource(ModelResource):
             'units',
         ]
         list_allowed_methods = ['post']
+        # HTTP methods allowed for visiting /statistics/ URLs
+        statistics_allowed_methods = ['get']
         authorization = DjangoAuthorization()
         authentication = BasicAuthentication()
+
+    def retrieve_statistics(self, bundle):
+        """
+        Given a ``Bundle``, return the statistics for it.
+        """
+        return get_raw_stats(bundle.obj, include_suggestions=True)

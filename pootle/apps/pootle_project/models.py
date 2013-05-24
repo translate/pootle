@@ -37,8 +37,8 @@ from pootle_misc.baseurl import l
 from pootle_misc.util import getfromcache, cached_property
 from pootle_store.filetypes import (filetype_choices, factory_classes,
                                     is_monolingual)
-from pootle_store.models import Unit
-from pootle_store.util import absolute_real_path, statssum
+from pootle_store.models import Unit, Suggestion
+from pootle_store.util import absolute_real_path, statssum, OBSOLETE
 
 
 class ProjectManager(RelatedManager):
@@ -181,6 +181,18 @@ class Project(models.Model):
     @getfromcache
     def getquickstats(self):
         return statssum(self.translationproject_set.iterator())
+
+    @getfromcache
+    def get_suggestion_count(self):
+        """
+        Check if any unit in the stores for the translation project in this
+        project has suggestions.
+        """
+        criteria = {
+            'unit__store__translation_project__project': self,
+            'unit__state__gt': OBSOLETE,
+        }
+        return Suggestion.objects.filter(**criteria).count()
 
     def translated_percentage(self):
         qs = self.getquickstats()

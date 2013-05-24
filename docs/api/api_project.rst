@@ -142,3 +142,60 @@ Delete a project
 :API versions: 1
 :Method: DELETE
 :Returns: HTTP 204 NO CONTENT response.
+
+
+.. _api-project-resources#get-project-statistics:
+
+Get statistics for a project
+============================
+
+:URL: ``/projects/<PROJ>/statistics/``
+:Description: Returns the project with the ``<PROJ>`` ID, including an extra
+              field with its statistics.
+:API versions: 1
+:Method: GET
+:Returns: Project with ``<PROJ>`` ID and its statistics.
+
+.. code-block:: json
+
+    {
+        "checkstyle": "standard",
+        "code": "firefox",
+        "description": "",
+        "fullname": "Firefox 22 (Aurora)",
+        "ignoredfiles": "",
+        "localfiletype": "po",
+        "resource_uri": "/api/v1/projects/4/",
+        "source_language": "/api/v1/languages/2/",
+        "statistics": {
+            "errors": 0,
+            "fuzzy": {
+                "percentage": 1,
+                "units": 1,
+                "words": 7
+            },
+            "suggestions": 5,
+            "total": {
+                "percentage": 100,
+                "units": 289,
+                "words": 1309
+            },
+            "translated": {
+                "percentage": 99,
+                "units": 284,
+                "words": 1296
+            },
+            "untranslated": {
+                "percentage": 0,
+                "units": 4,
+                "words": 6
+            }
+        },
+        "translation_projects": [
+            "/api/v1/translation-projects/71/",
+            "/api/v1/translation-projects/72/",
+            "/api/v1/translation-projects/73/",
+            "/api/v1/translation-projects/74/"
+        ],
+        "treestyle": "nongnu"
+    }
