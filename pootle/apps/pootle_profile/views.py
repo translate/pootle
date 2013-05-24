@@ -110,7 +110,7 @@ def login(request):
 
         context = {
             'form': form,
-            'next': next 
+            'next': next,
             }
 
         return render_to_response("index/login.html", context,
