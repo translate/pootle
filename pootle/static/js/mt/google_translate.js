@@ -73,7 +73,7 @@
 
     init: function (apiKey) {
       /* Prepare URL for requests. */
-      this.url = PTL.editor.settings.secure == false ? this.url : this.url.replace("http", "https");
+      this.url = PTL.editor.settings.secure == true ? this.url : this.url.replace("http", "https");
       this.url += "?callback=?";
       /* Set API key */
       this.apiKey = apiKey;
