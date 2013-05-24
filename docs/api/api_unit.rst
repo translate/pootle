@@ -42,6 +42,78 @@ List units in a store
     }
 
 
+.. _api-unit-resources#list-units-matching-a-criteria:
+
+List units matching a criteria
+==============================
+
+:URL: ``/units/<UNIT>/?<CRITERIA>``
+:Description: Returns a unit list that match the ``<CRITERIA>``.
+:API versions: 1
+:Method: GET
+:Returns: Unit list that match a given ``<CRITERIA>``.
+
+``<CRITERIA>`` is a :wp:`query string <Query_string>` where the fields are `Django
+Field Lookups
+<https://docs.djangoproject.com/en/dev/ref/models/querysets/#field-lookups>`_.
+Some examples might help:
+
+* ``source_f`` field contains, case insensitive, *button*:
+  ``/units/?source_f__icontains=button``
+* ``target_f`` field starts with *window*:
+  ``/units/?target_f__startswith=window``
+* ``mtime`` field (modification datetime) is on the *May* month:
+  ``/units/?mtime__month=05``
+* Unit is translated: ``/units/?state=200``
+
+Multiple field lookups can be provided, even several lookups on the same field:
+
+``/units/?mtime__month=05&mtime__day=12&developer_comment__icontains=verb``
+
+.. note:: It is not possible to provide **OR** conditions using filters, nor
+   negate the filters.
+
++---------------------------+-----------------------------------+
+| Fields                    | Available filters (field lookups) |
++===========================+===================================+
+| * ``context``             | * exact                           |
+| * ``developer_comment``   | * iexact                          |
+| * ``locations``           | * contains                        |
+| * ``source_f``            | * icontains                       |
+| * ``target_f``            | * startswith                      |
+| * ``translator_comment``  | * istartswith                     |
+|                           | * endswith                        |
+|                           | * iendswith                       |
++---------------------------+-----------------------------------+
+| * ``commented_on``        | * year                            |
+| * ``mtime``               | * month                           |
+| * ``submitted_on``        | * day                             |
++---------------------------+-----------------------------------+
+| * ``state``               | * exact                           |
+| * ``store``               |                                   |
++---------------------------+-----------------------------------+
+
+The available states are:
+
+* **untranslated**: The unit is untranslated (empty)
+* **fuzzy**: The unit is fuzzy (typically means translation needs more work)
+* **translated**: The unit is fully translated
+* **obsolete**: The unit is no longer part of the store
+
+.. warning:: It is possible to get all the units in a given store by requesting
+   ``/units/?store=<STOR>`` but it is recommended to use the :ref:`List units
+   in a store <api-unit-resources#list-units-in-store>` method instead.
+
+   Filtering by store is only advisable when:
+
+   * You need to provide extra filters:
+
+     ``/units/?store=74&developer_comment__icontains=verb``
+
+   * You want to get all the data for those units with a single request,
+     despite the computational cost.
+
+
 .. _api-unit-resources#get-a-unit:
 
 Get a unit
