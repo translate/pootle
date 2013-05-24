@@ -1,0 +1,67 @@
+Pootle 2.1.2 Released including security fix
+============================================
+
+http://sourceforge.net/projects/translate/files/Pootle/2.1.2/Pootle-2.1.2.tar.bz2
+
+This release includes an important security fix to a cross site scripting
+vulnerability in the translate page. All users are encouraged to upgrade
+immediately.
+
+The release also includes many improvements to the support of monolingual
+translation formats (like subtitles files and Java properties) and to "GNU
+style" projects.
+
+We also bring you translations for five new language (Zulu, Greek, Danish,
+Acoli and Fulah) and six more translations are now 100% complete (Uighur,
+Chinese (China), Catalan, Asturian, Akan and Ganda).
+
+Highlighted fixed and improvements:
+
+* Fixed a PostgreSQL incompatibility bug.
+* Fixed a regression where plural units in Qt ts where not parsed correctly.
+* A new manage.py command update_translation_projects allows for detecting new
+  languages added to projects on the file system.
+* More flexible options to all manage.py commands allowing users to limit
+  commands to a set of projects and languages.
+* Pootle now supports GNU Style projects where filenames have a prefix
+  preceding language codes.
+* Pootle will ignore case differences when matching filenames to language
+  codes.
+* Improvements to fuzzy matching when updating monolingual projects from
+  templates.
+* Pootle will no longer modify templates files, translations to these files
+  will be stored in database only to avoid propagating these translations on
+  update from templates.
+* Users with administer permissions on a language or project now have all the
+  other rights implied automatically for that language or project.
+* Users with only suggest right will be able to upload files using the "suggest
+  only" merge method.
+* URLs in developer comments are now displayed as links.
+* Fixed bug that caused unnecessary diffs to PO files tracked in version
+  control.
+* Local terminology no longer blocks suggestions from the server-wide
+  terminology project.
+* Pootle is now less fascistic about what language codes should look like, but
+  users should try to stick to GNU locale names when possible.
+* Removed confusing initialize checkbox from Project admin page. No one knew
+  what it was for, those who do can uncomment a single line of code to bring it
+  back.
+
+Pootle 2.1.1 depends on at least version 1.8.0 of Translate Toolkit, and as
+always will benefit from fixes in any later versions. so always use the latest.
+
+This work was made possible by many volunteers and our funders:
+
+- ANLoc, funded by IDRC http://africanlocalisation.net/
+
+* `Feature list`_
+* `Download`_
+* `Installation instructions`_
+* `Bugs`_
+* `More information`_
+
+.. _Feature list: http://docs.translatehouse.org/projects/pootle/en/latest/features/index.html
+.. _Download: http://sourceforge.net/projects/translate/files/Pootle/2.1.2/
+.. _Installation instructions: http://docs.translatehouse.org/projects/pootle/en/latest/server/installation.html
+.. _Bugs: http://bugs.locamotion.org/
+.. _More information: http://pootle.translatehouse.org

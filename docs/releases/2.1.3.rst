@@ -1,0 +1,49 @@
+Pootle 2.1.3 released
+=====================
+
+It's been less than three weeks since the we released Pootle 2.1.2 but we've
+fixed a couple of critical bugs affecting many users so it's time for another
+bug fix release. Please welcome `Pootle 2.1.3
+<http://sourceforge.net/projects/translate/files/Pootle/2.1.3/>`_
+
+Pootle is a web based system for translation and translation management.
+
+This release includes a fix to a data loss bug, where recent translations are
+lost when updating from version control. Users who depend on version control
+support are encouraged to upgrade immediately.
+
+We've added support for CSV format. This will hopefully make it easier for less
+technical users to get their strings inside Pootle by exporting from
+spreadsheet or similar office software. But it should not be treated as a
+replacement for more solid formats like PO, Qt ts or XLIFF.
+
+By popular demand we've improved Java properties support to accept properties
+files in any encoding. including UTF-8.
+
+Improved format support depends on the recently release Translate Toolkit 1.8.1
+
+We also bring you translations for Chiga and Latvian.
+
+Apart from that, version 2.1.2 has many bug fixes. Here are the highlights:
+
+- Fix for database migration failing for some users
+- Fix for errors on upgrades for users who deleted the English language
+- Fix for errors on filenames with spaces and memcached
+- Many fixes to language detection in GNU Style projects
+- Various fixes to handling of escaped characters in translate page
+
+As always Pootle will benefit from fixes in any the latest versions of
+Translate Toolkit, the recently released 1.8.1 includes many fixes specifically
+for Pootle 2.1.3 so upgrading translate toolkit is highly recommended.
+
+* `Feature list`_
+* `Download`_
+* `Installation instructions`_
+* `Bugs`_
+* `More information`_
+
+.. _Feature list: http://docs.translatehouse.org/projects/pootle/en/latest/features/index.html
+.. _Download: http://sourceforge.net/projects/translate/files/Pootle/2.1.3/
+.. _Installation instructions: http://docs.translatehouse.org/projects/pootle/en/latest/server/installation.html
+.. _Bugs: http://bugs.locamotion.org/
+.. _More information: http://pootle.translatehouse.org

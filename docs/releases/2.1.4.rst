@@ -1,0 +1,37 @@
+Pootle 2.1.4 Released
+=====================
+
+We thought we'd wrap up the year with one more bug fix release, Please welcome
+`Pootle 2.1.4 <http://sourceforge.net/projects/translate/files/Pootle/2.1.4/>`_
+
+Pootle is a web based system for translation and translation management.
+
+This release fixes a nasty bug where quality checks failed to update on file
+uploads. the upgrade screen will flash on first visit after upgrade for a
+minute or two to correct this problem (might take longer if you used the
+quality checks feature extensively).
+
+Apart from that, version 2.1.4 has a handful of fixes. Here are the highlights:
+
+- Once and for all Qt ts plurals should now work correctly.
+- Fixed a bug where obsolete units could not be updated when uploading a new
+  version of the file.
+- Fixed a bug that affected some GNU/Linux systems causing server errors when
+  using Turkish Locale.
+- Fixed a bug in GNU style projects with a prefix where pt_BR would be detected
+  as Breton instead of Brazilian Portuguese
+
+As always Pootle will benefit from fixes and performance improvements in the
+latest versions of Translate Toolkit.
+
+* `Feature list`_
+* `Download`_
+* `Installation instructions`_
+* `Bugs`_
+* `More information`_
+
+.. _Feature list: http://docs.translatehouse.org/projects/pootle/en/latest/features/index.html
+.. _Download: http://sourceforge.net/projects/translate/files/Pootle/2.1.4/
+.. _Installation instructions: http://docs.translatehouse.org/projects/pootle/en/latest/server/installation.html
+.. _Bugs: http://bugs.locamotion.org/
+.. _More information: http://pootle.translatehouse.org

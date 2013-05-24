@@ -1,0 +1,42 @@
+Pootle 2.1.5 released
+=====================
+
+A quick bug fix release to celebrate the new Year. Please welcome `Pootle 2.1.5
+<http://sourceforge.net/projects/translate/files/Pootle/2.1.5/>`_!
+
+Pootle is a web based system for translation and translation management.
+
+This release fixes a couple of regressions introduced in the previous 2.1.4
+release. Including a build mistake where the files in the 2.1.4 tarball had
+very restrictive permissions.
+
+Apart from that, version 2.1.5 has a handful of fixes. Here are the highlights:
+
+- Fix regression causing update from templates to fail for GNU Style projects
+  with subdirectories.
+- Fix regression in handling obsolete units while committing to version control
+  (reported by Mozilla).
+- Clean stale file locks left in cases of external kills which running
+  expensive commands.
+- Fix security bug where project names would leak to users without view access
+  on the server via news summary on front page or profile edit form.
+- Fix a bug that prevented Project level permissions from overriding very
+  restrictive server wide permissions.
+
+As always Pootle will benefit from fixes and performance improvements in the
+latest versions of Translate Toolkit.
+
+* `Feature list`_
+* `Download`_
+* `Installation instructions`_
+* `Bugs`_
+* `More information`_
+
+Enjoy it,
+The Translate Team
+
+.. _Feature list: http://docs.translatehouse.org/projects/pootle/en/latest/features/index.html
+.. _Download: http://sourceforge.net/projects/translate/files/Pootle/2.1.5/
+.. _Installation instructions: http://docs.translatehouse.org/projects/pootle/en/latest/server/installation.html
+.. _Bugs: http://bugs.locamotion.org/
+.. _More information: http://pootle.translatehouse.org
