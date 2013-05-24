@@ -43,7 +43,7 @@ logger = getLogger(__name__)
 class MozillaLangpackAction(DownloadAction, TranslationProjectAction):
     """Download Mozilla language pack for Firefox"""
 
-    def run(self, path, root, tpdir,  # pylint: disable=R0913,R0914,W0613
+    def run(self, path, root, tpdir,  # pylint: disable=R0913,R0914
             language, project, vc_root, **kwargs):
         """Generate a Mozilla language pack XPI"""
 
@@ -112,8 +112,13 @@ class MozillaLangpackAction(DownloadAction, TranslationProjectAction):
                                             product='browser')
 
                         if xpifile:
+                            newname = os.path.join(root, tpdir,
+                                                   os.path.basename(xpifile))
+                            logger.debug("copying '%s' to '%s'",
+                                         xpifile, newname)
+                            shutil.move(xpifile, newname)
                             self.set_error(self.set_download_file(path,
-                                                                  xpifile))
+                                                                  newname))
 
                 except (EnvironmentError, CalledProcessError), e:
                     logger.debug_exception(e)
