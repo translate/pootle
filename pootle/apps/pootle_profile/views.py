@@ -94,6 +94,7 @@ def login(request):
     else:
         if request.POST:
             form = lang_auth_form_factory(request, data=request.POST)
+            next = request.POST.get(auth.REDIRECT_FIELD_NAME, '')
 
             # Do login here
             if form.is_valid():
@@ -105,10 +106,11 @@ def login(request):
                 return redirect_after_login(request)
         else:
             form = lang_auth_form_factory(request)
+            next = request.GET.get(auth.REDIRECT_FIELD_NAME, '')
 
         context = {
             'form': form,
-            'next': request.GET.get(auth.REDIRECT_FIELD_NAME, ''),
+            'next': next 
             }
 
         return render_to_response("index/login.html", context,
