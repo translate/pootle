@@ -1471,14 +1471,15 @@
     var current = PTL.editor.units[PTL.editor.activeUid],
         prevNextMap = {'js-nav-prev': current.prev,
                        'js-nav-next': current.next},
-        newUid = prevNextMap[e.target.id];
+        elementId = e.target.id || $(e.target)[0].id,
+        newUid = prevNextMap[elementId];
 
     // Try loading the prev/next unit
     if (newUid != null) {
       var newHash = PTL.utils.updateHashPart("unit", parseInt(newUid, 10), ["page"]);
       $.history.load(newHash);
     } else {
-      if (e.target.id == 'js-nav-prev') {
+      if (elementId === 'js-nav-prev') {
         PTL.editor.displayMsg(gettext("You reached the beginning of the list"));
       } else {
         PTL.editor.displayMsg([
