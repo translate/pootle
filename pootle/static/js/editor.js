@@ -336,6 +336,7 @@
           }
         }
 
+        PTL.editor.filter = 'all';
         if ('filter' in params) {
           var filterName = params['filter'];
 
