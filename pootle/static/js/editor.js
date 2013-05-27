@@ -1521,7 +1521,7 @@
       if (type === 'row') {
         newHash = PTL.utils.updateHashPart("unit", uid, ["page"]);
       } else {
-        newHash = 'unit=' + encodeURIComponent(uid);
+        newHash = ['unit=', encodeURIComponent(uid)].join('');
       }
       $.history.load(newHash);
     }
