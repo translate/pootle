@@ -22,15 +22,11 @@ from tastypie.authorization import DjangoAuthorization
 from tastypie.resources import ModelResource
 
 from pootle_language.models import Language
-from pootle_translationproject.models import TranslationProject
 
 
 class LanguageResource(ModelResource):
     class Meta:
-        tp_qs = TranslationProject.objects.distinct()
-        tp_qs = tp_qs.exclude(language__code='templates')
-        langs_qs = tp_qs.values_list('language__code', flat=True)
-        queryset = Language.objects.filter(code__in=langs_qs).order_by('code')
+        queryset = Language.objects.all()
         resource_name = 'languages'
         authorization = DjangoAuthorization()
         authentication = BasicAuthentication()
