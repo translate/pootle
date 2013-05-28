@@ -22,11 +22,28 @@ from tastypie.authentication import BasicAuthentication
 from tastypie.authorization import DjangoAuthorization
 from tastypie.resources import ModelResource
 
-from pootle_store.models import Store, Unit
+from pootle_store.models import Store, Suggestion, Unit
+
+
+class SuggestionResource(ModelResource):
+    unit = fields.ForeignKey('pootle_store.api.UnitResource', 'unit')
+
+    class Meta:
+        queryset = Suggestion.objects.all()
+        resource_name = 'suggestions'
+        fields = [
+            'target_f',
+            'translator_comment_f',
+            'unit',
+        ]
+        list_allowed_methods = ['post']
+        authorization = DjangoAuthorization()
+        authentication = BasicAuthentication()
 
 
 class UnitResource(ModelResource):
     store = fields.ForeignKey('pootle_store.api.StoreResource', 'store')
+    suggestions = fields.ToManyField(SuggestionResource, 'suggestion_set')
 
     class Meta:
         queryset = Unit.objects.all()
@@ -43,6 +60,7 @@ class UnitResource(ModelResource):
             'state',
             'store',
             'submitted_on',
+            'suggestions',
             'target_f',
             'target_length',
             'target_wordcount',

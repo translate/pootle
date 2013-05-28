@@ -45,5 +45,6 @@ requirements or other constraints.
    api_language
    api_project
    api_store
+   api_suggestion
    api_translation_project
    api_unit
