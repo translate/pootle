@@ -1,4 +1,4 @@
-.. _using_pootle_api:
+.. _using-pootle-api:
 
 Using Pootle API
 ****************
@@ -12,7 +12,7 @@ need to refer to `its documentation <http://django-tastypie.readthedocs.org/>`_
 as well.
 
 
-.. _using_pootle_api#how_to_perform_queries:
+.. _using-pootle-api#how-to-perform-queries:
 
 How to perform API queries
 ==========================
@@ -34,7 +34,7 @@ So the API can be queried using URLs like::
   http://pootle.locamotion.org/api/v1/translation-projects/65/
 
 
-.. _using_pootle_api#authentication:
+.. _using-pootle-api#authentication:
 
 Authentication
 ==============
@@ -52,7 +52,7 @@ used in Pootle.
 .. note:: Other authentication methods can be added in the future.
 
 
-.. _using_pootle_api#formats:
+.. _using-pootle-api#formats:
 
 Formats
 =======
@@ -62,7 +62,7 @@ the :ref:`formats supported <tastypie:settings.TASTYPIE_DEFAULT_FORMATS>` by
 Tastypie.
 
 
-.. _using_pootle_api#tools-libraries:
+.. _using-pootle-api#tools-libraries:
 
 Tools and libraries
 ===================
