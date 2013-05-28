@@ -22,6 +22,9 @@ Create a user
 :Returns: HTTP 201 response with the relative URL for the newly created user
           on its ``Location`` header.
 
+.. note:: The consumer must have the appropiate permissions in order to be able
+   to create new users.
+
 
 .. _api-user-resources#get-user:
 
@@ -33,6 +36,9 @@ Get a user
 :API versions: 1
 :Method: GET
 :Returns: User with ``<USER>`` ID.
+
+.. note:: The consumer will get the user data only if it is authenticated as
+   the user which is trying to get the data for.
 
 .. code-block:: json
 
@@ -63,6 +69,12 @@ Change a user
      fields)
    * **PUT** if the whole user is going to be changed
 
+.. note:: The consumer will only be able to change the data for a given user if
+   it:
+
+   * Is authenticated as the user which is trying to change the data for, and
+   * Has enough permissions to perform this action.
+
 
 .. _api-user-resources#delete-user:
 
@@ -74,6 +86,11 @@ Delete a user
 :API versions: 1
 :Method: DELETE
 :Returns: HTTP 204 NO CONTENT response.
+
+.. note:: The consumer will only be able to delete a given user if it:
+
+   * Is authenticated as the user which is trying to delete, and
+   * Has enough permissions to perform this action.
 
 
 .. _api-user-resources#get-user-statistics:
