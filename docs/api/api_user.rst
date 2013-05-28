@@ -74,3 +74,99 @@ Delete a user
 :API versions: 1
 :Method: DELETE
 :Returns: HTTP 204 NO CONTENT response.
+
+
+.. _api-user-resources#get-user-statistics:
+
+Get statistics for a user
+=========================
+
+:URL: ``/users/<USER>/statistics/``
+:Description: Returns the user with the ``<USER>`` ID, including an extra field
+              with its statistics.
+:API versions: 1
+:Method: GET
+:Returns: User with ``<USER>`` ID and its statistics.
+
+.. note:: If the consumer is authenticated as the same user for which the
+   statistics are shown, then some extra fields are included in the response.
+
+   This fields are the same ones that can be accessed when the consumer
+   :ref:`gets the data for a user <api-user-resources#get-user>`.
+
+.. code-block:: json
+
+    {
+        "resource_uri": "/api/v1/users/3/",
+        "statistics": [
+            [
+                "Portuguese (Brazil) - pt_BR",
+                [
+                    ["/pt_BR/Firefox/",
+                        [
+                            {
+                                "count": 2,
+                                "id": "suggestions-pending",
+                                "url": "/pt_BR/Firefox/translate.html#filter=user-suggestions&user=admin"
+                            },
+                            {
+                                "count": 0,
+                                "id": "suggestions-accepted",
+                                "url": "/pt_BR/Firefox/translate.html#filter=user-suggestions-accepted&user=admin"
+                            },
+                            {
+                                "count": 0,
+                                "id": "suggestions-rejected",
+                                "url": "/pt_BR/Firefox/translate.html#filter=user-suggestions-rejected&user=admin"
+                            },
+                            {
+                                "count": 10,
+                                "id": "submissions-total",
+                                "url": "/pt_BR/Firefox/translate.html#filter=user-submissions&user=admin"
+                            },
+                            {
+                                "count": 0,
+                                "id": "submissions-overwritten",
+                                "url": "/pt_BR/Firefox/translate.html#filter=user-submissions-overwritten&user=admin"
+                            }
+                        ]
+                    ]
+                ]
+            ],
+            [
+                "Russian - ru",
+                [
+                    ["/ru/LXDE/",
+                        [
+                            {
+                                "count": 0,
+                                "id": "suggestions-pending",
+                                "url": "/ru/LXDE/translate.html#filter=user-suggestions&user=admin"
+                            },
+                            {
+                                "count": 0,
+                                "id": "suggestions-accepted",
+                                "url": "/ru/LXDE/translate.html#filter=user-suggestions-accepted&user=admin"
+                            },
+                            {
+                                "count": 0,
+                                "id": "suggestions-rejected",
+                                "url": "/ru/LXDE/translate.html#filter=user-suggestions-rejected&user=admin"
+                            },
+                            {
+                                "count": 34,
+                                "id": "submissions-total",
+                                "url": "/ru/LXDE/translate.html#filter=user-submissions&user=admin"
+                            },
+                            {
+                                "count": 0,
+                                "id": "submissions-overwritten",
+                                "url": "/ru/LXDE/translate.html#filter=user-submissions-overwritten&user=admin"
+                            }
+                        ]
+                    ]
+                ]
+            ]
+        ],
+        "username": "admin"
+    }
