@@ -40,7 +40,7 @@ It might help to understand how Pootle developers evaluate new features:
 
 1. Is it generally useful i.e. will it be useful for a large number of people.
 2. Does it follow the ethos of Pootle e.g. does it keep the interface clean, is
-   it intuative and non-technical.
+   it intuitive and non-technical.
 3. How long would it take to implement?
    1. Does it require some fundamental changes to how Pootle works i.e. long, or
    2. Is this just a simple change of layout or a simple feature i.e. short.
@@ -62,8 +62,8 @@ you when reporting or requesting the feature.
      mockup for your feature?
 3. Did you have some discussion on the mailing list or on #pootle.
    * Drive-by feature requests usually don't get attention.  But if you have
-     build a case and some links to developers i.e. they know you then they wil
-     listen.  Proposing your idea in these forums could be helpful for your
+     built a case and some links to developers, i.e. they know you, then they
+     will listen. Proposing your idea in these forums could be helpful for your
      case.
 4. Can you code?
    * If you can code the feature yourself that will always win some acceptance.
