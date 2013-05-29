@@ -54,7 +54,9 @@ If you really do want your feature to succeed here are some options to help
 you when reporting or requesting the feature.
 
 1. Have you thought about this and provided a clear use case?
-   * Using a real use case would be good
+   * Using a real use case would be good.
+   * Make it clear why you think this feature is important, don't assume it is
+     obvious.
 2. Have you made some mockups of the UI?
    * Isn't it a bit unfair that you expect a volunteer coder to create the
      mockup for your feature?
