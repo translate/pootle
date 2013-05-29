@@ -44,7 +44,7 @@ class Command(ModifiedSinceMixin, PootleCommand):
         keep = options.get('keep', False)
         change_id = options.get('modified_since', 0)
 
-        if (change_id and not keep):
+        if change_id and not keep:
             logging.error(u"Both --keep and --modified-since must be set.")
             sys.exit(1)
 
