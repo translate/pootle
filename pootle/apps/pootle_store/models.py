@@ -1049,16 +1049,13 @@ class Store(models.Model, base.TranslationStore):
 
     @commit_on_success
     def update(self, update_structure=False, update_translation=False,
-               conservative=True, store=None, fuzzy=False, only_newer=False,
-               modified_since=0):
+               store=None, fuzzy=False, only_newer=False, modified_since=0):
         """Update DB with units from file.
 
         :param update_structure: Whether to update store's structure by marking
-            common untranslated units as obsolete and adding new units.
+            common DB units as obsolete and adding new units.
         :param update_translation: Whether to update existing translations or
             not.
-        :param conservative: Keep existing translations by not marking them as
-            obsoletes. It has effect only if :param:`update_structure` is set.
         :param store: The target :class:`~pootle_store.models.Store`. If unset,
             the current file will be used as a target.
         :param fuzzy: Whether to perform fuzzy matching or not.
@@ -1123,11 +1120,11 @@ class Store(models.Model, base.TranslationStore):
                 obsolete_dbids = [self.dbid_index.get(uid)
                                   for uid in old_ids - new_ids]
                 for unit in self.findid_bulk(obsolete_dbids):
-                    if not unit.istranslated():
-                        unit.delete()
-                    elif not conservative:
+                    if unit.istranslated():
                         unit.makeobsolete()
                         unit.save()
+                    else:
+                        unit.delete()
 
                 # Add new units to the store
                 new_units = (store.findid(uid) for uid in new_ids - old_ids)
@@ -1205,8 +1202,7 @@ class Store(models.Model, base.TranslationStore):
             # Unlock store
             self.state = old_state
             if (update_structure and
-                ((update_translation and not conservative) or
-                 modified_since)):
+                (update_translation or modified_since)):
                 self.sync_time = timezone.now()
             self.save()
 

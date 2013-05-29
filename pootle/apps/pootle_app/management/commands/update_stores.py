@@ -59,7 +59,5 @@ class Command(ModifiedSinceMixin, PootleCommand):
         force = options.get('force', False)
         change_id = options.get('modified_since', 0)
 
-        # Update new translations
-        store.update(update_translation=not keep, conservative=keep,
-                     update_structure=True, only_newer=not force,
-                     modified_since=change_id)
+        store.update(update_translation=not keep, update_structure=True,
+                     only_newer=not force, modified_since=change_id)

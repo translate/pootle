@@ -90,8 +90,7 @@ def rescan_files(request, translation_project):
 
         for store in translation_project.stores.exclude(file='').iterator():
             store.sync(update_translation=True)
-            store.update(update_structure=True, update_translation=True,
-                         conservative=False)
+            store.update(update_structure=True, update_translation=True)
 
         messages.success(request, _("Translation project files have been "
                                     "rescanned."))
@@ -578,8 +577,7 @@ def overwrite_file(request, relative_root_dir, django_file, upload_path):
             try:
                 #FIXME: we need a way to delay reparsing
                 store = Store.objects.get(file=upload_path)
-                store.update(update_structure=True, update_translation=True,
-                             conservative=False)
+                store.update(update_structure=True, update_translation=True)
             except Store.DoesNotExist:
                 # newfile, delay parsing
                 pass
@@ -602,7 +600,7 @@ def overwrite_file(request, relative_root_dir, django_file, upload_path):
         store = Store.objects.get(file=upload_path)
         #FIXME: maybe there is a faster way to do this?
         store.update(update_structure=True, update_translation=True,
-                     conservative=False, store=newstore)
+                     store=newstore)
         store.sync(update_structure=True, update_translation=True,
                    conservative=False)
 

@@ -33,5 +33,4 @@ def upgrade_to_12008():
                               translation_project__project__localfiletype='ts',
                               file__iendswith='.ts').iterator():
         store.sync(update_translation=True)
-        store.update(update_structure=True, update_translation=True,
-                     conservative=False)
+        store.update(update_structure=True, update_translation=True)

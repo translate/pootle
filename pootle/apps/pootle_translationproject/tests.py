@@ -475,7 +475,7 @@ X-Generator: Pootle Tests
         pofile.write(self.target_text)
         pofile.close()
 
-        store.update(update_structure=True, update_translation=True, conservative=False)
+        store.update(update_structure=True, update_translation=True)
         unit = store.findunit('obsolete')
         self.assertEqual(unit.target, u'2adim')
         self.assertFalse(unit.isobsolete())
@@ -562,7 +562,7 @@ new=%d new
         potfile.write(self.new_template_text)
         potfile.close()
         template_tp = self.project.translationproject_set.get(language__code='en')
-        template_tp.update(conservative=False)
+        template_tp.update()
 
     def test_plural(self):
         # monolingual files don't do plurals, suppress

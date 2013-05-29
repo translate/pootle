@@ -179,20 +179,26 @@ within the projects.
 You must run this command after running scripts that modify translation files
 directly on the file system.
 
-``update_stores`` has an extra command line option ``--keep`` that will prevent
-it from overwriting any existing translation in the database, thus only
-updating new translations and discovering new files and strings.
+``update_stores`` has an extra command line option ``--keep`` that will
+prevent it from overwriting any existing translation in the database, thus
+only updating new translations, removing obsolete strings and discovering
+new files and strings.
+
+.. versionchanged:: 2.5.1
+
+Note that ``--keep`` doesn't keep obsolete units around anymore, they are
+either deleted in case the string is untranslated or marked as obsolete in
+case the string was translated.
 
 .. versionchanged:: 2.5
 
-Along with ``--keep`` the ``--modified-since`` option can be used to keep
-translations that have a change ID **greater than** the given value. This way
-some translated strings can be updated from in-disk files while at preserving
-in-DB translations for other strings that meet the given criterion.
+Along with ``--keep``, the ``--modified-since`` option can be used to
+control the set of translations that will be updated: translations with a
+change ID **greater than** the given value will be kept.
 
-To illustrate the results of these later options, have a look at the following
-table that emulates the behavior of ``pootle update_stores --modified-since=5
---keep``:
+To illustrate the results of these two options, the following table
+emulates the behavior of a ``pootle update_stores --modified-since=5
+--keep`` run:
 
 ========================================== ============= =================
  File on disk                               DB before     DB after

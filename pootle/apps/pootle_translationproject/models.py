@@ -195,13 +195,12 @@ class TranslationProject(models.Model):
 
     non_db_state = property(_get_non_db_state)
 
-    def update(self, conservative=True):
+    def update(self):
         """Update all stores to reflect state on disk"""
         stores = self.stores.exclude(file='').filter(state__gte=PARSED)
         for store in stores.iterator():
             store.update(update_translation=True,
-                         update_structure=not conservative,
-                         conservative=conservative)
+                         update_structure=True)
 
     def sync(self, conservative=True, skip_missing=False, modified_since=0):
         """Sync unsaved work on all stores to disk"""
@@ -324,7 +323,6 @@ class TranslationProject(models.Model):
                              monolingual)
 
         all_files, new_files = self.scan_files(vcs_sync=False)
-        #self.update(conservative=False)
 
         from pootle_misc import versioncontrol
         project_path = self.project.get_real_path()
@@ -487,8 +485,7 @@ class TranslationProject(models.Model):
         try:
             logging.debug(u"Parsing version control copy of %s into db",
                           store.file.name)
-            store.update(update_structure=True, update_translation=True,
-                         conservative=False)
+            store.update(update_structure=True, update_translation=True)
             remotestats = store.getquickstats()
 
             #FIXME: try to avoid merging if file was not updated
@@ -501,8 +498,7 @@ class TranslationProject(models.Model):
             logging.error(u"Near fatal catastrophe, exception %s while merging "
                           u"%s with version control copy", e, store.file.name)
             working_copy.save()
-            store.update(update_structure=True, update_translation=True,
-                         conservative=False)
+            store.update(update_structure=True, update_translation=True)
             raise
 
         newstats = store.getquickstats()
@@ -573,8 +569,7 @@ class TranslationProject(models.Model):
             try:
                 logging.debug(u"Parsing version control copy of %s into db",
                               store.file.name)
-                store.update(update_structure=True, update_translation=True,
-                             conservative=False)
+                store.update(update_structure=True, update_translation=True)
                 remotestats = store.getquickstats()
 
                 #FIXME: Try to avoid merging if file was not updated
@@ -588,8 +583,7 @@ class TranslationProject(models.Model):
                               "merging %s with version control copy",
                               e, store.file.name)
                 working_copy.save()
-                store.update(update_structure=True, update_translation=True,
-                             conservative=False)
+                store.update(update_structure=True, update_translation=True)
                 raise
 
             remote_stats = dictsum(remote_stats, remotestats)
