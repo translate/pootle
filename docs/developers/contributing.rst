@@ -39,11 +39,15 @@ great new feature.
 It might help to understand how Pootle developers evaluate new features:
 
 1. Is it generally useful i.e. will it be useful for a large number of people.
+
 2. Does it follow the ethos of Pootle e.g. does it keep the interface clean, is
    it intuitive and non-technical.
+
 3. How long would it take to implement?
+
    1. Does it require some fundamental changes to how Pootle works i.e. long, or
    2. Is this just a simple change of layout or a simple feature i.e. short.
+
 4. Is this something a developer is passionate about?  Does this meet their
    itch or are they convinced it is a winning feature.
 
