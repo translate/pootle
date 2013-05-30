@@ -26,10 +26,20 @@ from pootle_translationproject.models import TranslationProject
 
 
 class TranslationProjectResource(ModelResource):
+    language = fields.ForeignKey('pootle_language.api.LanguageResource',
+                                 'language')
     project = fields.ForeignKey('pootle_project.api.ProjectResource', 'project')
 
     class Meta:
         queryset = TranslationProject.objects.all()
         resource_name = 'translation-projects'
+        fields = [
+            'description',
+            'language',
+            'pootle_path',
+            'project',
+            'real_path',
+        ]
+        list_allowed_methods = ['post']
         authorization = DjangoAuthorization()
         authentication = BasicAuthentication()
