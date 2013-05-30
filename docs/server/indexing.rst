@@ -73,6 +73,19 @@ Xapian
 The Xapian tools packaged is required for the *xapian-check* command which
 is used to determines whether the Xapian version is compatable with Pootle.
 
+.. note:: If you are deploying using a virtualenv and want to make use of
+   Xapian then you will need to, either:
+
+   #. Install your virtualenv with access to the system packages using the
+      `--system-site-packages
+      <http://www.virtualenv.org/en/latest/#the-system-site-packages-option>`_
+      option::
+
+        virtualenv --system-site-packages ENV
+
+   #. `Compile the Python bindings
+      <http://nomad.coop/blog/installing-xapian-in-virtualenv-django/>`_
+
 
 .. _indexing#debugging:
 
