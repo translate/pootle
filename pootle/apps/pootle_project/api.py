@@ -27,12 +27,25 @@ from pootle_translationproject.api import TranslationProjectResource
 
 
 class ProjectResource(ModelResource):
+    source_language = fields.ForeignKey('pootle_language.api.LanguageResource',
+                                        'source_language')
     translation_projects = fields.ToManyField(TranslationProjectResource,
                                               'translationproject_set')
 
     class Meta:
         queryset = Project.objects.all()
         resource_name = 'projects'
+        fields = [
+            'checkstyle',
+            'code',
+            'description',
+            'fullname',
+            'ignoredfiles',
+            'localfiletype',
+            'source_language',
+            'translation_projects',
+            'treestyle',
+        ]
         list_allowed_methods = ['get', 'post']
         detail_allowed_methods = ['get', 'put', 'delete', 'patch']
         authorization = DjangoAuthorization()
