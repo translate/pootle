@@ -11,6 +11,8 @@ WSGIPythonOptimize 1
     WSGIProcessGroup %(project_name)s
     WSGIScriptAlias / %(wsgi_file)s
 
+    Options -Indexes
+
     <Directory "%(project_path)s">
         WSGIProcessGroup %(project_name)s
         WSGIScriptReloading On
@@ -33,6 +35,7 @@ WSGIPythonOptimize 1
 
     <Location /export>
         SetOutputFilter DEFLATE
+        Options Indexes
     </Location>
 
 </VirtualHost>
