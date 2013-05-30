@@ -22,26 +22,26 @@ from tastypie.authentication import BasicAuthentication
 from tastypie.authorization import DjangoAuthorization
 from tastypie.resources import ModelResource
 
-from pootle_store.api import StoreResource
-from pootle_translationproject.models import TranslationProject
+from pootle_store.models import Store
 
 
-class TranslationProjectResource(ModelResource):
-    language = fields.ForeignKey('pootle_language.api.LanguageResource',
-                                 'language')
-    project = fields.ForeignKey('pootle_project.api.ProjectResource', 'project')
-    stores = fields.ToManyField(StoreResource, 'stores')
+class StoreResource(ModelResource):
+    translation_project = fields.ForeignKey(
+        'pootle_translationproject.api.TranslationProjectResource',
+        'translation_project')
 
     class Meta:
-        queryset = TranslationProject.objects.all()
-        resource_name = 'translation-projects'
+        queryset = Store.objects.all()
+        resource_name = 'stores'
         fields = [
-            'description',
-            'language',
+            'file',
+            'name',
+            'pending',
             'pootle_path',
-            'project',
-            'real_path',
-            'stores',
+            'state',
+            'sync_time',
+            'tm',
+            'translation_project',
         ]
         list_allowed_methods = ['post']
         authorization = DjangoAuthorization()
