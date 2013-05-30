@@ -42,5 +42,6 @@ requirements or other constraints.
 .. toctree::
    :maxdepth: 2
 
+   api_language
    api_project
    api_translation_project

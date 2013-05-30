@@ -17,16 +17,30 @@
 # You should have received a copy of the GNU General Public License along with
 # this program; if not, see <http://www.gnu.org/licenses/>.
 
+from tastypie import fields
 from tastypie.authentication import BasicAuthentication
 from tastypie.authorization import DjangoAuthorization
 from tastypie.resources import ModelResource
 
 from pootle_language.models import Language
+from pootle_translationproject.api import TranslationProjectResource
 
 
 class LanguageResource(ModelResource):
+    translation_projects = fields.ToManyField(TranslationProjectResource,
+                                              'translationproject_set')
+
     class Meta:
         queryset = Language.objects.all()
         resource_name = 'languages'
+        fields = [
+            'code',
+            'description',
+            'fullname',
+            'nplurals',
+            'pluralequation',
+            'specialchars',
+            'translation_projects',
+        ]
         authorization = DjangoAuthorization()
         authentication = BasicAuthentication()
