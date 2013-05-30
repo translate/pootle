@@ -68,7 +68,8 @@ Xapian
 - Install the `Python bindings for Xapian
   <http://xapian.org/docs/bindings/python/>`_
 
-  - For debian: ``apt-get install python-xapian xapian-tools``
+  - Debian: ``apt-get install python-xapian xapian-tools``
+  - `Other distributions and platforms <http://xapian.org/download>`_
 
 The Xapian tools packaged is required for the *xapian-check* command which
 is used to determines whether the Xapian version is compatible with Pootle.
