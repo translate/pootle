@@ -54,18 +54,25 @@ If you really do want your feature to succeed here are some options to help
 you when reporting or requesting the feature.
 
 1. Have you thought about this and provided a clear use case?
+
    * Using a real use case would be good.
    * Make it clear why you think this feature is important, don't assume it is
      obvious.
+
 2. Have you made some mockups of the UI?
+
    * Isn't it a bit unfair that you expect a volunteer coder to create the
      mockup for your feature?
+
 3. Did you have some discussion on the mailing list or on #pootle.
+
    * Drive-by feature requests usually don't get attention.  But if you have
      built a case and some links to developers, i.e. they know you, then they
      will listen. Proposing your idea in these forums could be helpful for your
      case.
+
 4. Can you code?
+
    * If you can code the feature yourself that will always win some acceptance.
      But realise that someone does need to review your code and your code still
      needs to meet the acceptance criterion. So discuss early.
