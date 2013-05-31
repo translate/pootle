@@ -129,7 +129,7 @@ Update the translations from the `Pootle server
 
 #. Update ``pootle/locale/LINGUAS`` to list the languages we would like to
    ship. While we package all PO files, this is an indication of which ones we
-   want packagers to use.  The requirements is roughly 100% translated with no
+   want packagers to use.  The requirement is roughly 100% translated with no
    obvious variable errors. ::
 
    .. code-block:: bash
