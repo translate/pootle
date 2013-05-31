@@ -21,14 +21,23 @@
 from django_assets import Bundle, register
 
 js_common = Bundle(
-    'js/jquery/jquery.js', 'js/jquery/jquery.tipsy.js',
-    'js/jquery/jquery.cookie.js', 'js/jquery/jquery.bidi.js',
-    'js/jquery/jquery.fancybox.js', 'js/jquery/jquery.utils.js',
-    'js/jquery/jquery.easing.js', 'js/jquery/jquery.serializeObject.js',
+    'js/jquery/jquery.js',
+    'js/jquery/jquery.tipsy.js',
+    'js/jquery/jquery.cookie.js',
+    'js/jquery/jquery.bidi.js',
+    'js/jquery/jquery.fancybox.js',
+    'js/jquery/jquery.utils.js',
+    'js/jquery/jquery.easing.js',
+    'js/jquery/jquery.serializeObject.js',
     'js/jquery/jquery.select2.js',
-    'js/bootstrap/bootstrap-alert.js', 'js/bootstrap/bootstrap-transition.js',
-    'js/common.js', 'js/search.js', 'js/sorttable.js', 'js/spin.js',
-    'js/utils.js', 'js/zoom.js',
+    'js/bootstrap/bootstrap-alert.js',
+    'js/bootstrap/bootstrap-transition.js',
+    'js/common.js',
+    'js/search.js',
+    'js/sorttable.js',
+    'js/spin.js',
+    'js/utils.js',
+    'js/zoom.js',
     'js/shortcut.js',  # Leave shortcut.js as the last one
     filters='rjsmin', output='js/common.min.%(version)s.js')
 register('js_common', js_common)
@@ -39,18 +48,29 @@ js_admin = Bundle(
 register('js_admin', js_admin)
 
 js_editor = Bundle(
-    'js/jquery/jquery.history.js', 'js/jquery/jquery.tmpl.js',
-    'js/jquery/jquery.textarea-expander.js', 'js/diff_match_patch.js',
-    'js/jquery/jquery.fieldselection.js', 'js/jquery/jquery.caret.js',
-    'js/jquery/jquery.highlightRegex.js', 'js/jquery/jquery.jsonp.js',
-    'js/iso8601.js', 'js/editor.js', 'js/json2.js',
+    'js/jquery/jquery.history.js',
+    'js/jquery/jquery.tmpl.js',
+    'js/jquery/jquery.textarea-expander.js',
+    'js/diff_match_patch.js',
+    'js/jquery/jquery.fieldselection.js',
+    'js/jquery/jquery.caret.js',
+    'js/jquery/jquery.highlightRegex.js',
+    'js/jquery/jquery.jsonp.js',
+    'js/iso8601.js',
+    'js/editor.js',
+    'js/json2.js',
     filters='rjsmin', output='js/editor.min.%(version)s.js')
 register('js_editor', js_editor)
 
 css_common = Bundle(
-    'css/style.css', 'css/fancybox.css', 'css/tipsy.css',
-    'css/markup.css', 'css/sprite.css', 'css/select2.css',
-    'css/select2-pootle.css', 'css/custom/custom.css',
+    'css/style.css',
+    'css/fancybox.css',
+    'css/tipsy.css',
+    'css/markup.css',
+    'css/sprite.css',
+    'css/select2.css',
+    'css/select2-pootle.css',
+    'css/custom/custom.css',
     filters='cssmin', output='css/common.min.%(version)s.css')
 register('css_common', css_common)
 
