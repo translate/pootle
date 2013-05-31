@@ -65,7 +65,7 @@ upgrade procedure.
 
 .. warning::
 
-  Always do make database backups before running any upgrades.
+  Always make database backups before running any upgrades.
 
 .. note::
 
