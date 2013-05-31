@@ -54,10 +54,10 @@ See below for details.
 Lucene
 ^^^^^^
 
-- Install the `PyLucene <http://pylucene.osafoundation.org/>`_ package
+- Install the `PyLucene <http://lucene.apache.org/pylucene/>`_ package
 
   - For debian: follow this `Howto
-    <https://systemausfall.org/wikis/howto/pyluceneondebian>`_
+    <https://systemausfall.org/wikis/howto/PyLuceneOnDebian>`_
 
 
 .. _indexing#xapian:
