@@ -5,8 +5,7 @@ Integration with Version Control Systems
 
 Pootle has the ability to integrate with version control systems (also called
 revision control systems). Read more on Wikipedia for a general overview of
-what a `Version Control System
-<https://en.wikipedia.org/wiki/Revision_control>`_ is.
+what a :wp:`Version Control System <Revision_control>` is.
 
 
 .. _version_control#supported_systems:
@@ -14,23 +13,16 @@ what a `Version Control System
 Supported systems
 -----------------
 
-================================  =============================
- System                            Status                        
-================================  =============================
- `CVS`_                            Supported
- `Subversion`_                     Supported
- `Darcs`_                          Supported
- `Git`_                            Supported
- `Bazaar`_                         Supported
- `Mercurial`_                      Supported
-================================  =============================
-
-.. _CVS: https://en.wikipedia.org/wiki/Concurrent_Versions_System
-.. _Subversion: https://en.wikipedia.org/wiki/Apache_Subversion
-.. _Darcs: https://en.wikipedia.org/wiki/Darcs
-.. _git: https://en.wikipedia.org/wiki/Git_(software)
-.. _Bazaar: https://en.wikipedia.org/wiki/Bazaar_(software)
-.. _Mercurial: https://en.wikipedia.org/wiki/Mercurial
+========================================  ===========
+ System                                    Status
+========================================  ===========
+ :wp:`CVS <Concurrent_Versions_System>`    Supported
+ :wp:`Subversion <Apache_Subversion>`      Supported
+ :wp:`Darcs`                               Supported
+ :wp:`Git <Git_(software)>`                Supported
+ :wp:`Bazaar <Bazaar_(software)>`          Supported
+ :wp:`Mercurial`                           Supported
+========================================  ===========
 
 It should be possible to add other systems fairly easily. Interested
 programmers can look at the `versioncontrol

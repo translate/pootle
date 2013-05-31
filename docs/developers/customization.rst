@@ -6,8 +6,8 @@ Customizing the look
 In some cases it might be desirable to customize the styling of Pootle to fit
 in with your other websites or other aspects of your identity. It might also be
 required to add a common header or footer for proper visual integration. Before
-you start editing the CSS of Pootle, have a look at our `styling guidelines for
-developers <http://translate.sourceforge.net/wiki/developers/styling>`_.
+you start editing the CSS of Pootle, have a look at our :wiki:`styling
+guidelines for developers <developers/styling>`.
 
 Custom changes are kept separate from the distributed files, so that upgrades
 are unlikely to affect your customizations.

@@ -8,7 +8,7 @@ Captcha Support
 With Pootle's flexible :doc:`permissions <permissions>` several ways of
 interacting with your translation community are possible.  If you have a very
 open Pootle server, you might want to ensure that spammers don't abuse it by
-enabling `captchas <http://en.wikipedia.org/wiki/CAPTCHA>`_.
+enabling :wp:`captchas <CAPTCHA>`.
 
 
 .. _captchas#configuration:
