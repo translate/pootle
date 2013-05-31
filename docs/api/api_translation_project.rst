@@ -28,16 +28,16 @@ List translation projects in a project
 .. code-block:: json
 
     {
-        checkstyle: "standard",
-        code: "firefox",
-        description: "",
-        fullname: "Firefox 22 (Aurora)",
-        id: 4,
-        ignoredfiles: "",
-        localfiletype: "po",
-        report_target: "",
-        resource_uri: "/api/v1/projects/4/",
-        translation_projects: [
+        "checkstyle": "standard",
+        "code": "firefox",
+        "description": "",
+        "fullname": "Firefox 22 (Aurora)",
+        "id": 4,
+        "ignoredfiles": "",
+        "localfiletype": "po",
+        "report_target": "",
+        "resource_uri": "/api/v1/projects/4/",
+        "translation_projects": [
             "/api/v1/translation-projects/71/",
             "/api/v1/translation-projects/72/",
             "/api/v1/translation-projects/73/",
@@ -49,6 +49,6 @@ List translation projects in a project
             "/api/v1/translation-projects/79/",
             "/api/v1/translation-projects/80/"
         ],
-        treestyle: "nongnu"
+        "treestyle": "nongnu"
     }
 
