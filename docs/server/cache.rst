@@ -5,8 +5,7 @@ Caching System
 
 Pootle uses a caching system to improve performance. It is an essential part
 of :doc:`optimizing <optimization>` your Pootle installation. It is based on
-:ref:`Django's caching system <django:django-cache-framework>`, and is used
-for various things:
+|Django's caching system|_, and is used for various things:
 
 - To serve cached (possibly slightly outdated) versions of most pages to
   anonymous users to reduce their impact on server performance.
@@ -29,9 +28,9 @@ Without a well functioning cache system, Pootle could be slow.
 Cache Backends
 --------------
 
-Django supports :ref:`multiple cache backends <django:setting-up-the-cache>`
-(methods of storing cache data). You can specify which backend to use
-by overriding the value of :setting:`CACHES` in your configuration file.
+Django supports |multiple cache backends|_ (methods of storing cache data).
+You can specify which backend to use by overriding the value of
+:setting:`CACHES` in your configuration file.
 
 
 .. _cache#memcached:
@@ -90,11 +89,10 @@ Database
         }
     }
 
-:ref:`Database caching <django:database-caching>` relies on a table in the
-main Pootle database for storing the cached data, which makes it suitable for
-multiprocessing servers, with the added benefit that the cached data remains
-intact after a server reboot (unlike memcached) but it is considerably
-slower than memcached.
+|Database caching|_ relies on a table in the main Pootle database for storing
+the cached data, which makes it suitable for multiprocessing servers, with the
+added benefit that the cached data remains intact after a server reboot
+(unlike memcached) but it is considerably slower than memcached.
 
 .. versionchanged:: 2.1.1
 
@@ -106,3 +104,15 @@ like to switch to the database cache backend using this :doc:`management command
 <commands>`::
 
     $ pootle createcachetable pootlecache
+
+.. _Django's caching system: http://docs.djangoproject.com/en/dev/topics/cache/
+.. |Django's caching system| replace:: *Django's caching system*
+
+.. _multiple cache backends: http://docs.djangoproject.com/en/dev/topics/cache/#setting-up-the-cache
+.. |multiple cache backends| replace:: *multiple cache backends*
+
+.. _Database caching: http://docs.djangoproject.com/en/dev/topics/cache/#database-caching
+.. |Database caching| replace:: *Database caching*
+
+.. we use | | here and above for italics like :ref: in normal links
+   (Django intersphinx objects do not include section titles, must use frags)

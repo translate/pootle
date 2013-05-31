@@ -391,8 +391,7 @@ several terminology projects, and creates the tutorial project.
 
 .. note:: ``initdb`` will not import translations into the database, so the
   first visit to Pootle after ``initdb`` will be very slow. **It is
-  best to run :ref:`commands#refresh_stats` immediately after initdb**.
-
+  best to run** :ref:`commands#refresh_stats` **immediately after initdb**.
 
 .. _commands#updatedb:
 
@@ -441,7 +440,7 @@ of the documentation.
 collectstatic
 ^^^^^^^^^^^^^
 
-Running the Django admin :ref:`django:staticfiles#collectstatic` command finds
+Running the Django admin :djadmin:`django:collectstatic` command finds
 and extracts static content such as images, CSS and JavaScript files used by 
 the Pootle server, so that they can be served separately from a static
 webserver.  Typically, this is run with the `--clear --noinput` options, to
