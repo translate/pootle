@@ -153,15 +153,15 @@ msgstr ""
 
 #: apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr "Lebitso la gago"
+msgstr ""
 
 #: apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr "Aterese ya gago ya email"
+msgstr ""
 
 #: apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr "Molatsa wa gago"
+msgstr ""
 
 #: apps/contact_form_i18n/forms.py:260
 msgid "Akismet thinks this message is spam"
