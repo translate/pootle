@@ -19,11 +19,11 @@ Not released yet. *Planned release date late November 2013*
 - The minimum required Django version is 1.4.5.
 
 - The database schema upgrade procedure has been redefined, and the
-  :ref:`commands#updatedb` management command has been phased out in favor
-  of South's own :ref:`migrate command <south:commands>`.
-  Post schema upgrade actions have been moved to the
-  :ref:`commands#upgrade` command. For detailed instructions, read the
-  :ref:`upgrading` section of the documentation.
+  :ref:`commands#updatedb` management command has been phased out in favor of
+  South's own :ref:`migrate command <south:commands>`.  Post schema upgrade
+  actions have been moved to the :ref:`commands#upgrade` command. For detailed
+  instructions, read the :doc:`upgrading <server/upgrading>` section of the
+  documentation.
 
 - css/custom/custom.css is now part of css_common bundle.
 
