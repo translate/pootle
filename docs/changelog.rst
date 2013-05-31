@@ -24,6 +24,7 @@ Not released yet. *Planned release date late November 2013*
   Post schema upgrade actions have been moved to the
   :ref:`commands#upgrade` command. For detailed instructions, read the
   :ref:`upgrading` section of the documentation.
+- css/custom/custom.css is now part of css_common bundle.
 
 Version 2.5.0
 -------------
