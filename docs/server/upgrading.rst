@@ -15,30 +15,30 @@ Checklist
 Before upgrading Pootle to a newer version, make sure to go through this
 checklist.
 
-* Familiarize yourself with :doc:`important changes <../changelog>` in
+* Familiarize yourself with :doc:`important changes </changelog>` in
   Pootle over the versions.
 
 * If you are upgrading from Pootle 1.x to Pootle 2.x, or from Pootle 2.0.x to
-  2.1.x (or later), have a look at the :doc:`database_migration` page first,
-  although some of the issues on this page could still be relevant.
+  2.1.x (or later), have a look at the :doc:`database migration
+  <database_migration>` page first, although some of the issues on this page
+  could still be relevant.
 
-* Check the :doc:`installation` instructions for the newer version, and
-  ensure that you have all the dependencies for the newer version.
+* Check the :doc:`installation <installation>` instructions for the newer
+  version, and ensure that you have all the dependencies for the newer version.
 
 * Always make backups of all your translation files (your whole
-  :setting:`PODIRECTORY`) and your custom settings file. You can
-  synchronize all your translation files with the database using the
-  :ref:`sync_stores management command <commands#sync_stores>` before you
-  make your backups.
+  :setting:`PODIRECTORY`) and your custom settings file. You can synchronize
+  all your translation files with the database using the :ref:`sync_stores
+  <commands#sync_stores>` command before you make your backups.
 
 * Make a backup of your complete database using the appropriate *dump*
   command for your database system. For example :command:`mysqldump` for MySQL,
   or :command:`pg_dump` for PostgreSQL.
 
-* If you are upgrading from a version of Pootle that uses
-  *localsettings.py* then you want to make sure your configuration file is
-  read when Pootle starts. For more information, read the
-  :ref:`settings#customizing` section.
+* If you are upgrading from a version of Pootle that uses *localsettings.py*
+  then you want to make sure your configuration file is read when Pootle
+  starts. For more information, read about :ref:`customizing settings
+  <settings#customizing>`.
 
 * You might want to look for any new :ref:`available settings
   <settings#available>` in the new version that you might want to
