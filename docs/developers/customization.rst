@@ -14,7 +14,7 @@ are unlikely to affect your customizations.
 
 .. _customization#building:
 
-Rebuilding assets after customisation
+Rebuilding assets after customization
 -------------------------------------
 
 .. warning::
