@@ -92,13 +92,15 @@ def download_source(request, path_obj, **kwargs):
 def download_xliff(request, path_obj):
     if path_obj.translation_project.project.localfiletype == 'xlf':
         return
+    if path_obj.name.startswith("pootle-terminology"):
+        return
 
-    text = _('Translate offline')
+    text = _("Download XLIFF")
     tooltip = _('Download XLIFF file for offline translation')
     href = dispatch.export(path_obj.pootle_path, 'xlf')
 
     return {
-        'icon': 'icon-translate-download',
+        'icon': 'icon-download',
         'href': href,
         'text': text,
         'tooltip': tooltip,
@@ -252,7 +254,8 @@ def action_groups(request, path_obj, **kwargs):
 
     groups = [
         {'group': 'translate-offline', 'group_display': _("Translate offline"),
-         'actions': [download_source, download_zip, upload_zip]},
+         'actions': [download_source, download_xliff,
+                     download_zip, upload_zip]},
         {'group': 'manage', 'group_display': _("Manage"),
          'actions': [update_from_vcs, commit_to_vcs, update_dir_from_vcs,
                      commit_dir_to_vcs, rescan_project_files,
