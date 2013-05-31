@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2012 Zuza Software Foundation
+# Copyright 2012-2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -25,7 +25,7 @@ js_common = Bundle(
     'js/jquery/jquery.tipsy.js',
     'js/jquery/jquery.cookie.js',
     'js/jquery/jquery.bidi.js',
-    'js/jquery/jquery.fancybox.js',
+    'js/jquery/jquery.magnific-popup.js',
     'js/jquery/jquery.utils.js',
     'js/jquery/jquery.easing.js',
     'js/jquery/jquery.serializeObject.js',
@@ -64,7 +64,7 @@ register('js_editor', js_editor)
 
 css_common = Bundle(
     'css/style.css',
-    'css/fancybox.css',
+    'css/magnific-popup.css',
     'css/tipsy.css',
     'css/markup.css',
     'css/sprite.css',

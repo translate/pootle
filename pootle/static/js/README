@@ -113,14 +113,6 @@ Directory contents
 
       http://gsgd.co.uk/sandbox/jquery/easing/
 
-    - jquery.fancybox.js :
-      Fancybox plugin for jQuery that adds the ability to display overlay
-      boxes with all sorts of content: images, HTML, AJAX data, ...
-
-      Using version 2.1.4.
-
-      http://fancyapps.com/fancybox/
-
     - jquery.fieldselection.js :
       jQuery plugin to retrieve or replace text selections within
       textareas.
@@ -148,6 +140,15 @@ Directory contents
       Using version 2.4.0.
 
       https://github.com/jaubourg/jquery-jsonp
+
+    - jquery.magnific-popup.js :
+      Lightbox overlay popups to display all sorts of content: images,
+      HTML, AJAX data, ...
+
+      Using patched version from julen/Magnific-Popup to support modal
+      dialogs.
+
+      http://dimsemenov.com/plugins/magnific-popup/
 
     - jquery.select2.js :
       jQuery-based replacement for select boxes.
