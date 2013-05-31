@@ -84,7 +84,7 @@ Speed-ups and Extras
 zip and unzip
   Fast (un)compression of file archives.
 
-`python-levenshtein <http://sourceforge.net/projects/translate/files/python-Levenshtein/>`_
+`python-Levenshtein <https://pypi.python.org/pypi/python-Levenshtein/>`_
   Provides speed-up when updating against templates.
 
 `iso-codes <http://packages.debian.org/unstable/source/iso-codes>`_
