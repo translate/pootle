@@ -50,7 +50,7 @@ register('js_editor', js_editor)
 css_common = Bundle(
     'css/style.css', 'css/fancybox.css', 'css/tipsy.css',
     'css/markup.css', 'css/sprite.css', 'css/select2.css',
-    'css/select2-pootle.css',
+    'css/select2-pootle.css', 'css/custom/custom.css',
     filters='cssmin', output='css/common.min.%(version)s.css')
 register('css_common', css_common)
 
@@ -63,8 +63,3 @@ css_editor = Bundle(
     'css/editor.css',
     filters='cssmin', output='css/editor.min.%(version)s.css')
 register('css_editor', css_editor)
-
-css_custom = Bundle(
-    'css/custom/custom.css',
-    filters='cssmin', output='css/custom/custom.min.%(version)s.css')
-register('css_custom', css_custom)
