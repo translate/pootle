@@ -87,6 +87,15 @@ is used to determines whether the Xapian version is compatible with Pootle.
    #. `Compile the Python bindings
       <http://nomad.coop/blog/installing-xapian-in-virtualenv-django/>`_
 
+   #. Symbolically link the Xapian bindings into your virtualenv, as follows on
+      an Ubuntu system:
+
+      .. code-block:: bash
+
+         $ mkdir ${ENV}/lib/python2.6/dist-packages
+         $ cd ${ENV}/lib/python2.6/dist-packages
+         $ ln -s /usr/lib/python2.6/dist-packages/xapian.py
+         $ ln -s /usr/lib/python2.6/dist-packages/_xapian.so
 
 .. _indexing#debugging:
 
