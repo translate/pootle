@@ -17,13 +17,15 @@ are unlikely to affect your customizations.
 Rebuilding assets after customisation
 -------------------------------------
 
-After doing any customization, please execute the following commands to collect
-and build static content such as images, CSS and JavaScript files that are served by
-Pootle server.
+.. warning::
 
-.. code-block:: bash
+   After doing any customization, please execute the following command to
+   collect and build static content such as images, CSS and JavaScript files
+   that are served by Pootle server.
 
-		$ make assets
+   .. code-block:: bash
+
+      $ make assets
 
 
 .. _customization#css:
