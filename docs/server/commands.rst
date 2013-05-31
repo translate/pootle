@@ -368,14 +368,27 @@ syncdb
 
 Strictly speaking ``syncdb`` is a generic Django management command that creates
 empty database tables. It has been customized for Pootle to create everything
-required for a bare bones install. This includes database tables, default
-permissions, some default objects used internally by Pootle (like the
-*"default"* and *"nobody"* user profiles) and the special Terminology and
-:ref:`Templates languages <templates#the_templates_language>`.
+required for a bare bones install for releases up to 2.5.0. This includes
+database tables, default permissions, some default objects used internally by
+Pootle (like the *"default"* and *"nobody"* user profiles) and the special
+Terminology and :ref:`Templates languages <templates#the_templates_language>`.
 
-If you just run ``syncdb`` you will have a usable Pootle install but you will
-need to create all languages manually, and you will not have a tutorial project
-to play with.
+For releases up to 2.5.0, if you just run ``syncdb`` you will have a usable
+Pootle install but you will need to create all languages manually, and you will
+not have a tutorial project to play with.  For releases after 2.5.0, ``syncdb``
+will leave the database schema out of date and unusable until you migrate to the
+latest database schema using the :ref:`commands#migrate` command.
+
+
+.. _commands#migrate:
+
+migrate
+^^^^^^^
+
+This is South's :ref:`migrate command <south:commands>`, and applies all needed
+migrations to bring the database up to the latest schema revision.  This is
+required for releases after 2.5.0, even if it is a fresh install, and you are
+not upgrading from a previous release.
 
 
 .. _commands#initdb:
