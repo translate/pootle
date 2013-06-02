@@ -110,9 +110,25 @@
   {% endif %}
 </div>
 
-<div class="hide">
-{% include "translation_project/fileop_forms.html" %}
+{% if upload %}
+<div id="upload" class="form hide" lang="{{ LANGUAGE_CODE }}">
+  <h2>{{ upload.form.title }}</h2>
+  <form action="" method="post" class="upload" id="uploadform"
+    name="uploadform" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {% for field in upload.form %}
+    <p {% if field.help_text %}title="{{ field.help_text }}"{% endif %}>
+      {{ field.label_tag }} {{ field }}
+      {{ field.errors }}
+    </p>
+    {% endfor %}
+    <p class="buttons">
+      {{ upload.render_submits }}
+    </p>
+</form>
 </div>
+{% endif %}
 {% endblock content %}
 
 {% block postcontent %}
