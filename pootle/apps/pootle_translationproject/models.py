@@ -41,7 +41,8 @@ from pootle_misc.baseurl import l
 from pootle_misc.stats import stats_message, stats_message_raw
 from pootle_misc.util import getfromcache, dictsum, deletefromcache
 from pootle_project.models import Project
-from pootle_store.models import Store, Unit, QualityCheck, PARSED, CHECKED
+from pootle_store.models import (Store, Suggestion, Unit, QualityCheck, PARSED,
+                                 CHECKED)
 from pootle_store.util import (absolute_real_path, calculate_stats,
                                empty_quickstats, empty_completestats,
                                relative_real_path, OBSOLETE, UNTRANSLATED)
@@ -274,6 +275,15 @@ class TranslationProject(models.Model):
             false_positive=False
         )
         return group_by_count_extra(query, 'name', 'category')
+
+    @getfromcache
+    def get_suggestion_count(self):
+        """
+        Check if any unit in the stores for this translation project has
+        suggestions.
+        """
+        return Suggestion.objects.filter(unit__store__translation_project=self,
+                                         unit__state__gt=OBSOLETE).count()
 
     def update_against_templates(self, pootle_path=None):
         """Update translation project from templates."""

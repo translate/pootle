@@ -17,20 +17,39 @@
 # You should have received a copy of the GNU General Public License along with
 # this program; if not, see <http://www.gnu.org/licenses/>.
 
+from tastypie import fields
 from tastypie.authentication import BasicAuthentication
 from tastypie.authorization import DjangoAuthorization
-from tastypie.resources import ModelResource
 
+from pootle.core.api import StatisticsModelResource
 from pootle_language.models import Language
-from pootle_translationproject.models import TranslationProject
+from pootle_misc.stats import get_raw_stats
+from pootle_translationproject.api import TranslationProjectResource
 
 
-class LanguageResource(ModelResource):
+class LanguageResource(StatisticsModelResource):
+    translation_projects = fields.ToManyField(TranslationProjectResource,
+                                              'translationproject_set')
+
     class Meta:
-        tp_qs = TranslationProject.objects.distinct()
-        tp_qs = tp_qs.exclude(language__code='templates')
-        langs_qs = tp_qs.values_list('language__code', flat=True)
-        queryset = Language.objects.filter(code__in=langs_qs).order_by('code')
+        queryset = Language.objects.all()
         resource_name = 'languages'
+        fields = [
+            'code',
+            'description',
+            'fullname',
+            'nplurals',
+            'pluralequation',
+            'specialchars',
+            'translation_projects',
+        ]
+        # HTTP methods allowed for visiting /statistics/ URLs
+        statistics_allowed_methods = ['get']
         authorization = DjangoAuthorization()
         authentication = BasicAuthentication()
+
+    def retrieve_statistics(self, bundle):
+        """
+        Given a ``Bundle``, return the statistics for it.
+        """
+        return get_raw_stats(bundle.obj, include_suggestions=True)

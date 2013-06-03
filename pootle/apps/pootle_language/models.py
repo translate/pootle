@@ -28,8 +28,8 @@ from pootle_app.lib.util import RelatedManager
 from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 from pootle_misc.util import getfromcache
-from pootle_store.models import Unit
-from pootle_store.util import statssum
+from pootle_store.models import Unit, Suggestion
+from pootle_store.util import statssum, OBSOLETE
 
 
 class LanguageManager(RelatedManager):
@@ -140,6 +140,18 @@ class Language(models.Model):
     @getfromcache
     def getquickstats(self):
         return statssum(self.translationproject_set.iterator())
+
+    @getfromcache
+    def get_suggestion_count(self):
+        """
+        Check if any unit in the stores for the translation project in this
+        language has suggestions.
+        """
+        criteria = {
+            'unit__store__translation_project__language': self,
+            'unit__state__gt': OBSOLETE,
+        }
+        return Suggestion.objects.filter(**criteria).count()
 
     def get_absolute_url(self):
         return l(self.pootle_path)

@@ -36,8 +36,15 @@ The Pootle API exposes a number of resources. Next you have a complete list of
 them with data about the accepted HTTP methods, result limits, authentication
 requirements or other constraints.
 
+.. note:: You might want to look at the :ref:`Glossary <glossary>` to fully
+   understand the API.
+
 .. toctree::
    :maxdepth: 2
 
+   api_language
+   api_project
+   api_store
+   api_suggestion
    api_translation_project
-
+   api_unit
