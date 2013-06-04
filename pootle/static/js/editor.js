@@ -69,6 +69,14 @@
      * Bind event handlers
      */
 
+    /* Captcha */
+    $(document).on('submit', '#captcha', function (e) {
+      e.preventDefault();
+      var fn = $(this).data('js-action');
+      PTL.editor[fn](e);
+      $.magnificPopup.close();
+    });
+
     /* Fuzzy / unfuzzy */
     $(document).on('keyup blur', 'textarea.translation', function () {
       if (!PTL.editor.keepState &&
@@ -1401,8 +1409,13 @@
       async: false,
       success: function (data) {
         if (data.captcha) {
-          $.fancybox(data.captcha);
-          $("#id_captcha_answer").focus();
+          $.magnificPopup.open({
+            items: {
+              src: data.captcha,
+              type: 'inline'
+            },
+            focus: '#id_captcha_answer'
+          });
         } else {
           // If it has been a successful submission, update the data
           // stored in the client
@@ -1440,8 +1453,13 @@
       async: false,
       success: function (data) {
         if (data.captcha) {
-          $.fancybox(data.captcha);
-          $("#id_captcha_answer").focus();
+          $.magnificPopup.open({
+            items: {
+              src: data.captcha,
+              type: 'inline'
+            },
+            focus: '#id_captcha_answer'
+          });
         } else {
           PTL.editor.loadNext(uid);
         }
@@ -2293,16 +2311,12 @@
       lookupText = sources.eq(0).text();
     }
     var url = providerCallback(lookupText, langFrom, langTo);
-    $.fancybox({
-            "href": url,
-            "type": "iframe",
-            "autoScale": false,
-            "transitionIn": 'none',
-            "transitionOut": 'fade',
-            "width": '75%',
-            "height": '75%'
+    $.magnificPopup.open({
+      items: {
+        src: url,
+        type: 'iframe'
+      },
     });
-    $("#fancybox-frame").css({'width': '100%', 'height': '100%'});
     linkObject.href = url;
     return false;
   }

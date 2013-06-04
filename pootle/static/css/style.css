@@ -363,13 +363,6 @@ html[dir="rtl"] #nav-access
  * NAVBAR
  */
 
-.agreement #navbar,
-.agreement #footer
-{
-  /* Fancybox uses 80xx as z-index */
-  z-index: 9999;
-}
-
 #navbar
 {
     position: absolute;
@@ -377,7 +370,6 @@ html[dir="rtl"] #nav-access
     right: 0;
     top: 0;
     margin-bottom: 0;
-    z-index: 999;
     overflow: visible;
 }
 
@@ -520,7 +512,6 @@ html[dir="rtl"] #nav-main li
     text-align: center;
     margin-top: 3em;
     padding: 35px 0;
-    position: relative;
 }
 
 #footer a
@@ -547,6 +538,25 @@ html[dir="rtl"] #nav-main li
 
 
 /*
+ * POPUPS
+ */
+
+.popup-inline
+{
+    background-color: #fff;
+    padding: 20px 30px;
+    max-width: 650px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.popup-ajax .mfp-content
+{
+    background-color: #fff;
+    width: 920px !important;
+}
+
+/*
  * MESSAGES
  */
 
@@ -559,7 +569,7 @@ html[dir="rtl"] #nav-main li
     width: 400px;
     left: 50%;
     margin-left: -200px;
-    z-index: 1001;
+    z-index: 101;
 }
 
 .alert
@@ -1201,7 +1211,6 @@ ul.errorlist
  * DOCUMENTATION, LEGAL, CONTRIBUTORS
  */
 
-#agreement,
 #staticpage,
 #about
 {
@@ -2040,7 +2049,7 @@ html[dir="rtl"] #search
     padding: 5px;
     position: absolute;
     top: 30px;
-    z-index: 2000;
+    z-index: 200;
     width: 165px;
     outline: 0;
 }

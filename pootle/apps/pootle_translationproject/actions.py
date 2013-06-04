@@ -113,11 +113,11 @@ def upload_zip(request, path_obj, **kwargs):
         check_permission('overwrite', request)):
         text = _('Upload')
         tooltip = _('Upload translation files or archives in .zip format')
-        link = '#'
+        link = '#upload'
 
         return {
             'icon': 'icon-upload',
-            'class': 'js-overview-actions-upload',
+            'class': 'js-popup-inline',
             'href': link,
             'text': text,
             'tooltip': tooltip,

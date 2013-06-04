@@ -45,7 +45,7 @@ def register(request):
     form_class = agreement_form_factory(LegalPage.objects.live().all(),
                                         request.user,
                                         base_class=RegistrationForm,
-                                        anchor_class='fancybox')
+                                        anchor_class='js-popup-ajax')
     return original_register(request, form_class=form_class)
 
 

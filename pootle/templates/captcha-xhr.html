@@ -1,13 +1,7 @@
 {% load i18n %}
-<script type="text/javascript">
-  $("input.accept").click(function(e) {
-    e.preventDefault();
-    PTL.editor.{{ js_function }}(e);
-    $.fancybox.close();
-  });
-</script>
-<div class="form" lang="{{ LANGUAGE_CODE }}">
-  <form method="post" action="" id="captcha">
+<div class="form popup-inline" lang="{{ LANGUAGE_CODE }}">
+  <form method="post" action="" id="captcha"
+    data-js-action="{{ js_function }}">
     {% for field, value in post_data.iteritems %}
       {% if field != "captcha" %}<input type="hidden" name="{{ field|escape }}" value="{{ value|escape }}" />{% endif %}
     {% endfor %}

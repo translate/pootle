@@ -42,11 +42,12 @@
         }
       });
 
-      /* Fancybox on links */
-      $(document).on("click", "a.fancybox", function (e) {
-        e.preventDefault();
-        $.fancybox({'href': $(e.target).attr('href'), 'type': 'ajax'});
+      /* Popups */
+      $('.js-popup-ajax').magnificPopup({
+        type: 'ajax',
+        mainClass: 'popup-ajax'
       });
+      $('.js-popup-inline').magnificPopup();
 
       /* Path summary */
       $(document).on("click", "#js-path-summary", function (e) {
@@ -85,11 +86,6 @@
       });
 
       /* Overview actions */
-      $("#overview-actions").on("click", ".js-overview-actions-upload",
-        function (e) {
-          e.preventDefault();
-          $.fancybox("#upload");
-      });
       $("#overview-actions").on("click", ".js-overview-actions-delete-path",
         function (e) {
           return confirm(gettext("Are you sure you want to continue?") + "\n" +
@@ -215,7 +211,7 @@
         type: 'POST',
         data: $agreementForm.serializeObject(),
         success: function (data) {
-          $.fancybox.close();
+          $.magnificPopup.close();
         },
         complete: function (xhr) {
           $agreementBox.spin(false);

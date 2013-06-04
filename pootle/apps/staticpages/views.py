@@ -135,7 +135,7 @@ def display_page(request, virtual_path):
         messages.warning(request, msg)
 
     template_name = 'staticpages/page_display.html'
-    if 'HTTP_X_FANCYBOX' in request.META:
+    if request.is_ajax():
         template_name = 'staticpages/_body.html'
 
     ctx = {

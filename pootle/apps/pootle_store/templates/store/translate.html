@@ -119,8 +119,14 @@
 <script type="text/javascript" src="{{ ASSET_URL }}"></script>
 {% endassets %}
 <script type="text/javascript">
+$(document).magnificPopup({
+  type: 'image',
+  delegate: '.js-dev-img',
+  gallery: {
+    enabled: true
+  }
+});
 $(function() {
-  $('.js-dev-img').fancybox({nextEffect: 'none', prevEffect: 'none'});
   var options = {};
   {% if request.is_secure %}options.secure = true;{% endif %}
   {% if cansuggest or cantranslate %}

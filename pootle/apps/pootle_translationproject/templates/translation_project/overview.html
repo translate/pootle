@@ -111,7 +111,7 @@
 </div>
 
 {% if upload %}
-<div id="upload" class="form hide" lang="{{ LANGUAGE_CODE }}">
+<div id="upload" class="form popup-inline mfp-hide" lang="{{ LANGUAGE_CODE }}">
   <h2>{{ upload.form.title }}</h2>
   <form action="" method="post" class="upload" id="uploadform"
     name="uploadform" enctype="multipart/form-data">
@@ -126,7 +126,7 @@
     <p class="buttons">
       {{ upload.render_submits }}
     </p>
-</form>
+  </form>
 </div>
 {% endif %}
 {% endblock content %}

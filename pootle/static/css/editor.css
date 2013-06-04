@@ -24,7 +24,7 @@ textarea#view_unit
     position: fixed;
     left: 0;
     bottom: 0;
-    z-index: 1000;
+    z-index: 100;
     -webkit-box-shadow: 0px 0px 20px #d9d9d9;
        -moz-box-shadow: 0px 0px 20px #d9d9d9;
             box-shadow: 0px 0px 20px #d9d9d9;
@@ -179,7 +179,7 @@ body.zoom-out-2 #prevnext input[type="submit"]
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 999;
+    z-index: 99;
     text-align: center;
 }
 
@@ -202,7 +202,7 @@ body.zoom-out-2 #prevnext input[type="submit"]
     left: 50%;
     width: 400px;
     margin-left: -200px;
-    z-index: 1001;
+    z-index: 101;
     text-align: center;
 }
 

@@ -41,36 +41,32 @@
     }
     {% if display_agreement %}
     PTL.common.displayAgreementPopup = function () {
-      $('body').addClass('agreement');
-      $.fancybox({
-        href: '{% url "staticpages.legal-agreement" %}',
-        type: 'ajax',
-        ajax: {
-          dataType: 'json'
+      $.magnificPopup.open({
+        items: {
+          src: '{% url "staticpages.legal-agreement" %}',
+          type: 'ajax'
         },
-        afterClose: function () {
-          $('body').removeClass('agreement');
-        },
-        afterLoad: function (current) {
-          this.content = current.content.form;
-        },
-        modal: true,
-        helpers: {
-          overlay: {
-            locked: false
+        callbacks: {
+          parseAjax: function (jqXHR) {
+            jqXHR.responseText = jQuery.parseJSON(jqXHR.responseText).form;
           }
         },
+        modal: true
       });
     };
 
     $(document).on('click', '.js-agreement-popup', function (e) {
       e.preventDefault();
-      $.fancybox({
-        href: $(e.target).attr('href'),
-        type: 'ajax',
-        afterClose: function () {
-          PTL.common.displayAgreementPopup();
+      $.magnificPopup.close();
+      $.magnificPopup.open({
+        items: {
+          src: this.href,
+          type: 'ajax'
         },
+        callbacks: {
+          afterClose: PTL.common.displayAgreementPopup
+        },
+        mainClass: 'popup-ajax'
       });
     });
     $(document).on('submit', '.js-agreement-form', function (e) {
@@ -91,9 +87,6 @@
                      { csrfmiddlewaretoken: '{{ csrf_token }}' }) );
         }
       });
-
-      $.fancybox.defaults.tpl.closeBtn =
-        '<a class="fancybox-item fancybox-close" href="javascript:;"></a>';
 
       {% if display_agreement %}
       PTL.common.displayAgreementPopup();
