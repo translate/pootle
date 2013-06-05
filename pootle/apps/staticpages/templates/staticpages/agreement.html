@@ -1,5 +1,5 @@
 {% load url from future %}
-{% load i18n %}
+{% load i18n locale %}
 <div id="agreement" class="form js-agreement-box">
   <h2>{% trans "Action Required" %}</h2>
   <p>{% trans "Before continuing, you must read and accept the following documents." %}</p>
@@ -14,6 +14,9 @@
     </p>
     {% endfor %}
     <p class="buttons">
+      <a href="{% url 'auth_logout' %}" class="pull-{% locale_align %}">
+        {% trans "No thanks. Log out" %}
+      </a>
       <input type="submit" name="continue" class="continue"
         value="{% trans "Continue" %}" />
     </p>
