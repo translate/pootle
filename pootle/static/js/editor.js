@@ -1658,7 +1658,7 @@
         });
       } else { // No results
         PTL.editor.displayMsg(gettext("No results."));
-        $('#filter-status select').select2(PTL.editor.filter);
+        $('#filter-status select').select2('val', PTL.editor.filter);
       }
     } else { // Normal filtering options (untranslated, fuzzy...)
       $("#filter-checks").remove();
