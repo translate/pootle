@@ -239,3 +239,13 @@ $(function ($) {
   // Hide the help messages for the Select2 multiple selects.
   $("select[multiple].js-select2").siblings("span.help_text").hide();
 });
+
+// We can't use `e.persisted` here. See bug 2949 for reference
+window.addEventListener('pageshow', function (e) {
+  var selectors = ['#js-select-language', '#js-select-project'];
+  for (var i=0; i<selectors.length; i++) {
+    var $el = $(selectors[i]),
+        initial = $el.data('initial-code');
+    $el.select2('val', initial);
+  }
+}, false);
