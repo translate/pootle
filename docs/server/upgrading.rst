@@ -18,10 +18,10 @@ checklist.
 * Familiarize yourself with :doc:`important changes </changelog>` in
   Pootle over the versions.
 
-* If you are upgrading from Pootle 1.x to Pootle 2.x, or from Pootle 2.0.x to
-  2.1.x (or later), have a look at the :doc:`database migration
-  <database_migration>` page first, although some of the issues on this page
-  could still be relevant.
+* If you want to change databases, which might be needed when upgrading from
+  Pootle 1.x to Pootle 2.x, or from Pootle 2.0.x to 2.1.x, then have a look at
+  the :doc:`database migration <database_migration>` page first, although some
+  of the issues on this page could still be relevant.
 
 * Check the :doc:`installation <installation>` instructions for the newer
   version, and ensure that you have all the dependencies for the newer version.
