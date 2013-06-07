@@ -25,7 +25,7 @@ Not released yet. *Planned release date late November 2013*
   instructions, read the :doc:`upgrading <server/upgrading>` section of the
   documentation.
 
-- css/custom/custom.css is now part of css_common bundle.
+- *css/custom/custom.css* is now served as part of the common bundle.
 
 Version 2.5.0
 -------------
