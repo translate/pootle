@@ -27,6 +27,11 @@ Not released yet. *Planned release date late November 2013*
 
 - *css/custom/custom.css* is now served as part of the common bundle.
 
+- The quality check for spell checking has been globally disabled. It
+  wasn't properly advertised nor documented, and it didn't perform well
+  enough to be considered useful.
+
+
 Version 2.5.0
 -------------
 

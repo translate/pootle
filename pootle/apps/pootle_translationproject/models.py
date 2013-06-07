@@ -171,8 +171,9 @@ class TranslationProject(models.Model):
         checkerclasses = [checks.projectcheckers.get(self.project.checkstyle,
                                                      checks.StandardChecker),
                           checks.StandardUnitChecker]
+        excluded_filters = ['hassuggestion', 'spellcheck']
         return checks.TeeChecker(checkerclasses=checkerclasses,
-                                 excludefilters=['hassuggestion'],
+                                 excludefilters=excluded_filters,
                                  errorhandler=self.filtererrorhandler,
                                  languagecode=self.language.code)
 
