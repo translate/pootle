@@ -10,10 +10,10 @@ Suggestion specific resources.
    API <using-pootle-api#how-to-perform-queries>`.
 
 
-.. _api-suggestion-resources#list-suggestions-for-an-unit:
+.. _api-suggestion-resources#list-suggestions-for-a-unit:
 
-List suggestions for an unit
-============================
+List suggestions for a unit
+===========================
 
 :Description: Returns the suggestion list for a given ``<UNIT>`` unit.
 :API versions: 1

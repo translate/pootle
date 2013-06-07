@@ -42,10 +42,10 @@ List units in a store
     }
 
 
-.. _api-unit-resources#get-an-unit:
+.. _api-unit-resources#get-a-unit:
 
-Get an unit
-===========
+Get a unit
+==========
 
 :URL: ``/units/<UNIT>/``
 :Description: Returns the unit with the ``<UNIT>`` ID.
@@ -80,10 +80,10 @@ Get an unit
     }
 
 
-.. _api-unit-resources#change-an-unit:
+.. _api-unit-resources#change-a-unit:
 
-Change an unit
-==============
+Change a unit
+=============
 
 :URL: ``/units/<UNIT>/``
 :Description: Changes the unit with the ``<UNIT>`` ID.

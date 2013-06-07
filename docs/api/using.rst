@@ -42,7 +42,7 @@ Authentication
 Pootle API requires authentication for accessing its API.
 
 The method used for authentication is :wp:`HTTP Basic Authentication
-<Basic_access_authentication>` which requires providing an username and a
+<Basic_access_authentication>` which requires providing a username and a
 password (the same ones used for Pootle login).
 
 Also it is necessary that the user has enough permissions to access the

@@ -55,7 +55,5 @@ class ProjectResource(StatisticsModelResource):
         authentication = BasicAuthentication()
 
     def retrieve_statistics(self, bundle):
-        """
-        Given a ``Bundle``, return the statistics for it.
-        """
+        """Retrieve the statistics for the current resource object."""
         return get_raw_stats(bundle.obj, include_suggestions=True)

@@ -27,14 +27,14 @@ from tastypie.utils import trailing_slash
 
 
 class StatisticsModelResource(ModelResource):
-    """
-    A ModelResource that provides support for /resource/pk/statistics/ URLs.
+    """A ModelResource that provides support for /resource/pk/statistics/ URLs.
 
     In order to use this class you must redefine the method
     ``StatisticsModelResource.retrieve_statistics`` and provide the attribute
     ``statistics_allowed_methods`` on its Meta class.
     """
     def prepend_urls(self):
+        """Returns a list of urlpatterns to be prepend to the default one."""
         return [
             url(r"^(?P<resource_name>%s)/(?P<%s>\w[\w/-]*)/statistics%s$" %
                 (self._meta.resource_name, self._meta.detail_uri_name,
@@ -43,34 +43,30 @@ class StatisticsModelResource(ModelResource):
         ]
 
     def dispatch_statistics(self, request, **kwargs):
-        """
-        A view for handling the various HTTP methods (GET/POST/PUT/DELETE) on
-        a single resource statistics.
+        """Handles the HTTP methods on a single resource statistics.
 
         Relies on ``Resource.dispatch`` for the heavy-lifting.
         """
         return self.dispatch('statistics', request, **kwargs)
 
     def get_statistics(self, request, **kwargs):
-        """
-        Calls ``Resource.get_detail``
+        """Just calls ``Resource.get_detail``
 
         This gets called in ``Resource.dispatch``
         """
         return self.get_detail(request, **kwargs)
 
     def retrieve_statistics(self, bundle):
-        """
-        This needs to be implemented in the subclass.
+        """Retrieve the statistics for the current resource object.
 
-        Given a ``Bundle``, return the statistics for it.
+        This must be implemented in the subclass.
         """
         raise NotImplementedError()
 
     def dehydrate(self, bundle):
-        """
-        A hook to allow a final manipulation of data once all fields/methods
-        have built out the dehydrated data.
+        """A hook to allow final manipulation of data.
+
+        It is run after all fields/methods have built out the dehydrated data.
 
         Useful if you need to access more than one dehydrated field or want to
         annotate on additional data.

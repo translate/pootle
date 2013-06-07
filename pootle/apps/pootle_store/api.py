@@ -100,7 +100,5 @@ class StoreResource(StatisticsModelResource):
         authentication = BasicAuthentication()
 
     def retrieve_statistics(self, bundle):
-        """
-        Given a ``Bundle``, return the statistics for it.
-        """
+        """Given a ``Bundle``, return the statistics for it."""
         return get_raw_stats(bundle.obj, include_suggestions=True)
