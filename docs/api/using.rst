@@ -67,9 +67,12 @@ Tastypie.
 Tools and libraries
 ===================
 
-There are several :ref:`libraries and programs <tastypie:ref-tools>` that are
-capable of interacting with Pootle API. For example here is an example script
-that uses Slumber to retrieve and print the list of used languages in Pootle.
+Translate is currently developing a `client for Pootle API
+<https://github.com/translate/pootle-client>`_, but there are several other
+:ref:`libraries and programs <tastypie:ref-tools>` capable of interacting with
+Pootle API. For example here is an example script that uses `Slumber
+<http://slumber.readthedocs.org/>`_ to retrieve and print the list of used
+languages in Pootle:
 
 .. code-block:: python
 
@@ -90,4 +93,3 @@ that uses Slumber to retrieve and print the list of used languages in Pootle.
 
 .. note:: Remember to `install Slumber <http://slumber.readthedocs.org/>`_ in
    order to run the previous code.
-

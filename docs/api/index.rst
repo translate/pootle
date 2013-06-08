@@ -37,7 +37,7 @@ them with data about the accepted HTTP methods, result limits, authentication
 requirements or other constraints.
 
 .. note:: You might want to look at the :ref:`Glossary <glossary>` to fully
-   understand the API.
+   understand the resource names used in the API.
 
 .. toctree::
    :maxdepth: 2
