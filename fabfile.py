@@ -122,8 +122,8 @@ def create_db():
     require('environment', provided_by=[production, staging])
 
     with settings(hide('stderr')):
-        sudo("mysql -u %(db_user)s -p -e 'CREATE DATABASE %(db_name)s DEFAULT "
-             "CHARACTER SET utf8 COLLATE utf8_general_ci;'" % env)
+        sudo("mysql -u %(db_user)s -p -e 'CREATE DATABASE `%(db_name)s` "
+             "DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;'" % env)
 
 
 def syncdb():
@@ -188,9 +188,9 @@ def dump_db(dumpfile="pootle_DB_backup.sql"):
     """Dumps the DB as a SQL script and downloads it"""
     require('environment', provided_by=[production, staging])
 
-    if ((isfile(dumpfile) and confirm('\n%s already exists locally. Do you '
-        'want to overwrite it?' % dumpfile, default=False))
-        or not isfile(dumpfile)):
+    if isfile(dumpfile) and confirm('\n%s already exists locally. Do you '
+                                    'want to overwrite it?' % dumpfile,
+                                    default=False):
 
         remote_filename = '%s/%s' % (env['project_path'], dumpfile)
 
