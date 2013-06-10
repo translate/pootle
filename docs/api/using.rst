@@ -39,17 +39,31 @@ So the API can be queried using URLs like::
 Authentication
 ==============
 
-Pootle API requires authentication for accessing its API.
+Pootle requires authentication for accessing its API.
 
 The method used for authentication is :wp:`HTTP Basic Authentication
 <Basic_access_authentication>` which requires providing a username and a
 password (the same ones used for Pootle login).
 
-Also it is necessary that the user has enough permissions to access the
-resources. The permissions used to perform this check are the same permissions
-used in Pootle.
-
 .. note:: Other authentication methods can be added in the future.
+
+
+.. _using-pootle-api#authorization:
+
+Authorization
+=============
+
+The Pootle API allows to interact with resources that represent some of the
+data handled internally by Pootle. In order to avoid all users access or alter
+data they are not meant to, the Pootle API checks if the visitor has enough
+permissions to perform the requested actions on the resources. The permissions
+used for these checks are the same permissions used in Pootle for regular
+users.
+
+For some particular resources some other checks can be done to allow or deny
+performing the requested action. For example the visitors can only see the
+:ref:`User resource <api-user-resources>` for the user that they used to log
+in the Pootle API.
 
 
 .. _using-pootle-api#formats:
