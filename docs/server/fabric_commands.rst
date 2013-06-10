@@ -419,6 +419,61 @@ Examples:
     $ fab production setup_db
 
 
+.. _fabric-commands#stage-feature:
+
+stage_feature
+-------------
+
+.. versionadded:: 2.5.1
+
+This command:
+
+- Alters some of the Fabric settings during runtime based on the parameters
+  provided to this command
+- Calls the :ref:`bootstrap <fabric-commands#bootstrap>` command providing
+  the specified branch, if any
+- Calls the :ref:`create_db <fabric-commands#create-db>` command
+- Copies the data in the specified source DB into the DB that will be used for
+  the deployed Pootle
+- Calls the :ref:`deploy_static <fabric-commands#deploy-static>` command
+- Calls the :ref:`install_site <fabric-commands#install-site>` command
+
+.. note:: While running it may ask for the remote server ``root`` password and
+   the specified ``db_user`` password.
+
+.. note:: This command is intended primarily for deploying ad-hoc Pootle
+   servers for easing the test of feature branches during Pootle development.
+
+.. warning:: This command might require changing the **source_db** field in the
+   :file:`deploy/ENVIRONMENT/fabric.py` file. Note that the database specified
+   on this field must exist.
+
+.. warning:: This command requires using the ``staging`` environment.
+
+Available options:
+
+``branch``
+  A specific branch to check out in the repository.
+
+  .. note:: This is a required option.
+
+``repo``
+  A repository URL to clone from.
+
+  This allows to checkout from a fork repository (not necessarily on GitHub)
+  and try new features developed on that repository. It must be an URL that the
+  ``git clone`` command is able to clone.
+
+  Default: ``git://github.com/translate/pootle.git``.
+
+Examples:
+
+.. code-block:: bash
+
+    $ fab staging stage_feature:branch=feature/extension-actions
+    $ fab staging stage_feature:branch=feature/extension-actions,repo=git://github.com/unho/pootle.git
+
+
 .. _fabric-commands#staging:
 
 staging

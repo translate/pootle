@@ -27,6 +27,7 @@ from fabric.context_managers import hide, prefix, settings
 from fabric.contrib.console import confirm
 from fabric.contrib.files import exists, upload_template
 from fabric.operations import require, run, sudo, put, get
+from fabric.utils import abort
 
 
 #
@@ -139,6 +140,51 @@ def bootstrap(branch="master"):
         print('Aborting.')
 
 
+def _reload_with_new_settings(branch=None,
+                              repo='git://github.com/translate/pootle.git'):
+    """Reload the current environment with new settings based on the parameters."""
+
+    if branch is None:
+        abort('No branch provided. Aborting.')
+
+    # Replace all occurrences of problematic characters with - character.
+    import re
+    hyphen_branch = re.sub(r'([^A-Za-z0-9.-])', "-", branch)
+
+    # Create new settings based on the provided parameters.
+    new_settings = {
+        'db_name': 'pootle-' + hyphen_branch,
+        'project_name': 'pootle-' + hyphen_branch,
+        'project_url': hyphen_branch + '.testing.locamotion.org',
+        'project_repo': repo,
+    }
+
+    # Reload the settings for the current environment.
+    import sys
+    current_env = getattr(sys.modules[__name__], env['environment'])
+    current_env(new_settings)  # current_env() can be staging() or production().
+
+
+def stage_feature(branch=None, repo='git://github.com/translate/pootle.git'):
+    """Deploys a Pootle server for testing a feature branch.
+
+    This copies the DB from a previous Pootle deployment.
+    """
+    require('environment', provided_by=[staging])
+
+    # Reload the current environment with new settings based on the
+    # provided parameters.
+    _reload_with_new_settings(branch, repo)
+
+    # Run the required commands to deploy a new Pootle instance based on a
+    # previous staging one and using the specified branch.
+    bootstrap(branch)
+    create_db()
+    _copy_db()
+    deploy_static()
+    install_site()
+
+
 def create_db():
     """Creates a new DB"""
     require('environment', provided_by=[production, staging])
@@ -179,6 +225,30 @@ def setup_db():
     syncdb()
     migratedb()
     initdb()
+
+
+def _copy_db():
+    """Copies the data in the source DB into the DB to use for deployment"""
+    require('environment', provided_by=[production, staging])
+
+    with settings(hide('stderr'), temp_dump='/tmp/temporary_DB_backup.sql'):
+        print('\nDumping DB data...')
+        run("mysqldump -u %(db_user)s %(db_password_opt)s %(source_db)s > "
+            "%(temp_dump)s"
+            " || { test root = '%(db_user)s' && exit $?; "
+            "echo 'Trying again, with MySQL root DB user'; "
+            "mysqldump -u root %(db_root_password_opt)s %(source_db)s > "
+            "%(temp_dump)s;}" % env)
+
+        print('\nLoading data into the DB...')
+        run("mysql -u %(db_user)s %(db_password_opt)s %(db_name)s < "
+            "%(temp_dump)s"
+            " || { test root = '%(db_user)s' && exit $?; "
+            "echo 'Trying again, with MySQL root DB user'; "
+            "mysql -u root %(db_root_password_opt)s %(db_name)s < "
+            "%(temp_dump)s;}" % env)
+
+        run('rm -f %(temp_dump)s' % env)
 
 
 def syncdb():
