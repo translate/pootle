@@ -49,25 +49,25 @@ html[dir="rtl"] #toolbar #search
     float: right;
 }
 
-#toolbar .search-fields
+#toolbar .search-container
 {
     top: auto;
     bottom: 30px;
 }
 
-#toolbar .search-fields:after,
-#toolbar .search-fields:before
+#toolbar .search-container:after,
+#toolbar .search-container:before
 {
     top: 100%;
 }
 
-#toolbar .search-fields:after
+#toolbar .search-container:after
 {
     border-top-color: #fff;
     border-bottom-color: transparent;
 }
 
-#toolbar .search-fields:before
+#toolbar .search-container:before
 {
     border-top-color: #d9d9d9;
     border-bottom-color: transparent;

@@ -1981,7 +1981,7 @@ html[dir="rtl"] #search
 }
 
 #search-form,
-.search-fields
+.search-container
 {
     background-color: #fff;
     border: 1px solid #d9d9d9;
@@ -1991,7 +1991,7 @@ html[dir="rtl"] #search
 }
 
 #search-form.focused,
-.search-fields
+.search-container
 {
     -webkit-box-shadow: 0 0 2px #d9d9d9;
        -moz-box-shadow: 0 0 2px #d9d9d9;
@@ -2051,7 +2051,7 @@ html[dir="rtl"] #search
     background: transparent;
 }
 
-.search-fields
+.search-container
 {
     padding: 5px;
     position: absolute;
@@ -2061,8 +2061,8 @@ html[dir="rtl"] #search
     outline: 0;
 }
 
-.search-fields:after,
-.search-fields:before
+.search-container:after,
+.search-container:before
 {
     bottom: 100%;
     border: solid transparent;
@@ -2073,7 +2073,7 @@ html[dir="rtl"] #search
     pointer-events: none;
 }
 
-.search-fields:after
+.search-container:after
 {
     border-color: rgba(255, 255, 255, 0);
     border-bottom-color: #fff;
@@ -2082,7 +2082,7 @@ html[dir="rtl"] #search
     margin-left: -5px;
 }
 
-.search-fields:before
+.search-container:before
 {
     border-color: rgba(217, 217, 217, 0);
     border-bottom-color: #d9d9d9;
@@ -2091,17 +2091,25 @@ html[dir="rtl"] #search
     margin-left: -6px;
 }
 
-.search-fields li
+.search-fields li,
+.search-options li
 {
     padding: 0.4em;
     font-size: 90%;
 }
 
-.search-fields li input
+.search-fields li input,
+.search-options li input
 {
     vertical-align: top;
 }
 
+.search-options
+{
+    margin-top: 5px;
+    padding-top: 5px;
+    border-top: 1px solid #d9d9d9;
+}
 
 /* FILENAMES, STATS */
 
