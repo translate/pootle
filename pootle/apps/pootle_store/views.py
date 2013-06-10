@@ -286,9 +286,42 @@ def get_non_indexed_search_step_query(form, units_queryset):
 
     return result
 
+def get_non_indexed_search_exact_query(form, units_queryset):
+    phrase = form.cleaned_data['search']
+    result = units_queryset.none()
+
+    if 'source' in form.cleaned_data['sfields']:
+        subresult = units_queryset.filter(source_f__contains=phrase)
+        result = result | subresult
+
+    if 'target' in form.cleaned_data['sfields']:
+        subresult = units_queryset.filter(target_f__contains=phrase)
+        result = result | subresult
+
+    if 'notes' in form.cleaned_data['sfields']:
+        translator_subresult = units_queryset
+        developer_subresult = units_queryset
+        translator_subresult = translator_subresult.filter(
+            translator_comment__contains=phrase,
+        )
+        developer_subresult = developer_subresult.filter(
+            developer_comment__contains=phrase,
+        )
+        result = result | translator_subresult | developer_subresult
+
+    if 'locations' in form.cleaned_data['sfields']:
+        subresult = units_queryset.filter(locations__contains=phrase)
+        result = result | subresult
+
+    return result
 
 def get_search_step_query(translation_project, form, units_queryset):
     """Narrows down units query to units matching search string."""
+
+    if 'exact' in form.cleaned_data['soptions']:
+        logging.debug(u"Using exact database search for %s",
+                      translation_project)
+        return get_non_indexed_search_exact_query(form, units_queryset)
 
     if translation_project.indexer is None:
         logging.debug(u"No indexer for %s, using database search",

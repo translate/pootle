@@ -8,8 +8,13 @@
         <i class="icon-search"></i>
       </button>
     </div>
-    <div class="search-fields js-search-fields hide">
-      {{ search_form.sfields }}
+    <div class="search-container js-search-container hide">
+      <div class="search-fields js-search-fields">
+        {{ search_form.sfields }}
+      </div>
+      <div class="search-options js-search-options">
+        {{ search_form.soptions }}
+      </div>
     </div>
   </form>
 </div>
