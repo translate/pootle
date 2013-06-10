@@ -114,7 +114,7 @@ There are two different deployment environments. Each one has a directory inside
 :file:`deploy/`:
 
 - Staging environment: :file:`deploy/staging/` directory
-- Production environment: :file:`/deploy/production/` directory
+- Production environment: :file:`deploy/production/` directory
 
 This way server administrators can separate their testing and real-world Pootle
 servers.
@@ -122,31 +122,37 @@ servers.
 For deploying a Pootle server using one of the environments it is necessary to
 put some configuration files in place:
 
-- :file:`/deploy/ENVIRONMENT/fabric.py` 
+- :file:`deploy/pootle.wsgi` 
+  WSGI script that will be used to run Pootle.
+
+- :file:`deploy/ENVIRONMENT/fabric.py` 
   Module with settings that will be used in Fabric.
 
-- :file:`/deploy/ENVIRONMENT/settings.conf`
+- :file:`deploy/ENVIRONMENT/settings.conf`
   Pootle-specific settings for the server (it will override the defaults). For
   example, include here the settings for connecting to the DB.
 
-- :file:`/deploy/ENVIRONMENT/virtualhost.conf`
+- :file:`deploy/ENVIRONMENT/virtualhost.conf`
   Apache VirtualHost configuration file.
 
 In the previous paths ``ENVIRONMENT`` is the directory name for the chosen
 environment.
 
-All the settings defined in the :file:`/deploy/ENVIRONMENT/fabric.py` module
+All the settings defined in the :file:`deploy/ENVIRONMENT/fabric.py` module
 will populate the Fabric ``env`` dictionary, making the configuration keys
-available in the :file:`/deploy/ENVIRONMENT/settings.conf` and
-:file:`/deploy/ENVIRONMENT/virtualhost.conf` files. You can use basic Python
+available in the :file:`deploy/ENVIRONMENT/settings.conf` and
+:file:`deploy/ENVIRONMENT/virtualhost.conf` files. You can use basic Python
 string formatting to access the configuration values.
 
-Sample configuration files are provided for reference under the :file:`/deploy/`
-directory. Put them in the desired environment directory, and adapt them to your
-needs before running any Fabric commands.
+.. note:: Sample configuration files are provided for reference under the
+   :file:`deploy/` directory. Put them in the desired environment directory,
+   and adapt them to your needs before running any Fabric commands.
 
 Check :file:`pootle/settings/90-local.conf.sample` to see settings that you
-might want to use in :file:`/deploy/ENVIRONMENT/settings.conf`.
+might want to use in :file:`deploy/ENVIRONMENT/settings.conf`.
+
+.. note:: If it is necessary you can adapt the :file:`deploy/pootle.wsgi` file
+   to meet your needs.
 
 Once you make all the necessary changes in the settings you are ready to run the
 Fabric commands.
@@ -204,8 +210,8 @@ How to run commands
 -------------------
 
 In order to run a Fabric command for Pootle it is necessary that the directory
-where the :file:`fabfile` lives is in the ``PYTHONPATH``. If not then add it
-using:
+where the :file:`fabfile.py` file is located is included in the ``PYTHONPATH``.
+If not then add it using:
 
 .. code-block:: bash
 
