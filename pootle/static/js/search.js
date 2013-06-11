@@ -133,7 +133,7 @@
       }
 
       return query;
-    },
+    }
   };
 
 }(jQuery));
