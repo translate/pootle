@@ -7,10 +7,10 @@ Pootle can be deployed using Fabric automation scripts. There are other methods
 to deploy Pootle, perhaps simpler, but this one is intended to perform automated
 deployments that ease its maintenance tasks and the upgrade to newer versions.
 
-The sample scripts bundled with Pootle allow to deploy a Pootle server within a
-virtual environment, running in a **Apache** server with *mod_wsgi* using
-**MySQL** as database server in **Debian** systems. This sample scripts can be
-changed to perform different deployments.
+The sample scripts bundled with Pootle allow you to deploy a Pootle server within
+a virtual environment, running in a **Apache** server with *mod_wsgi* using
+**MySQL** as database server on **Debian**-based systems. This sample scripts can
+be changed to perform different deployments.
 
 To see a comprehensive list of all Fabric commands available to deploy Pootle
 check the :ref:`Fabric commands reference <fabric-commands>`.
@@ -21,8 +21,8 @@ check the :ref:`Fabric commands reference <fabric-commands>`.
 Preparing the remote server
 ---------------------------
 
-Before performing an automated deployment using Fabric it is necessary that the
-server where Pootle is going to be deployed is ready to perform that deployment.
+Before performing an automated deployment using Fabric you need to make sure the
+server where Pootle is going to be deployed has the required software installed.
 
 
 .. _fabric-deployment#installing-required-software-on-the-remote-server:
@@ -30,17 +30,17 @@ server where Pootle is going to be deployed is ready to perform that deployment.
 Installing required software on the remote server
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Before proceeding, consider installing the following software first on the
+Before proceeding, install the following software (if absent) on the
 remote server:
 
-- At least Python 2.5
+- Python 2.5, 2.6, or 2.7
 - `python-pip <http://www.pip-installer.org/>`_
 - Git distributed version control system
 - Apache web server
 - MySQL database server
 - OpenSSH server
 
-.. note:: Currently only Debian like remote servers are supported.
+.. note:: Currently only Debian-based (e.g. Ubuntu) servers are supported.
 
 .. note:: If you run into trouble while installing the dependencies, it's likely
   that you're missing some extra packages needed to build those third-party
@@ -130,7 +130,7 @@ put some configuration files in place:
 
 - :file:`deploy/ENVIRONMENT/settings.conf`
   Pootle-specific settings for the server (it will override the defaults). For
-  example, include here the settings for connecting to the DB.
+  example, the settings for connecting to the DB will go here.
 
 - :file:`deploy/ENVIRONMENT/virtualhost.conf`
   Apache VirtualHost configuration file.
@@ -157,8 +157,8 @@ might want to use in :file:`deploy/ENVIRONMENT/settings.conf`.
 Once you make all the necessary changes in the settings you are ready to run the
 Fabric commands.
 
-.. note:: For security reasons, please make sure you change the settings in
-   order to not ressemble like the default ones.
+.. note:: For security, please make sure you change the ``db_password`` setting;
+   using the example one could make your server vulnerable to exploits.
 
 
 .. _fabric-deployment#bootstrap-environment:
