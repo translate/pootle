@@ -7,7 +7,9 @@
     init: function (options) {
       /* Reusable selectors */
       this.$form = $("#search-form");
+      this.$container = $(".js-search-container");
       this.$fields = $(".js-search-fields");
+      this.$options = $(".js-search-options");
       this.$input = $("#id_search");
 
       /* Default settings */
@@ -19,17 +21,6 @@
       if (options) {
         $.extend(this.settings, options);
       }
-
-      /* Regular expressions */
-      this.searchRE = /^in:.+|\sin:.+/i;
-
-      /* Valid search field options */
-      this.validFieldGroups = {
-        editor: ['source', 'target', 'notes', 'locations'],
-        terminology: ['source', 'target', 'notes']
-      };
-      this.validFields = this.validFieldGroups[this.settings['environment']] ||
-                         this.validFieldGroups[this.defaultEnv]
 
       /* Shortcuts */
       shortcut.add('ctrl+shift+s', function () {
@@ -75,7 +66,7 @@
       /* Dropdown toggling */
       var toggleFields = function (event) {
         event.preventDefault();
-        PTL.search.$fields.toggle();
+        PTL.search.$container.toggle();
       };
 
       /* Event handlers */
@@ -86,11 +77,11 @@
         toggleFields(e);
       });
 
-      /* Necessary to detect clicks out of PTL.search.$fields */
+      /* Necessary to detect clicks out of PTL.search.$container */
       $(document).mouseup(function (e) {
         if (PTL.search.isOpen() &&
             e.target !== PTL.search.$input.get(0) &&
-            !PTL.search.$fields.find(e.target).length) {
+            !PTL.search.$container.find(e.target).length) {
           toggleFields(e);
         }
       });
@@ -98,67 +89,52 @@
 
     /* Returns true if the search drop-down is open */
     isOpen: function () {
-      return this.$fields.is(':visible');
+      return this.$container.is(':visible');
     },
 
-    /* Parses search text to detect any given fields */
-    parse: function (text, remember) {
+    /* Builds search query hash string */
+    buildSearchQuery: function (text, remember) {
       var searchFields = [],
-          parsed = text,
+          searchOptions = [],
+          query = text,
           // Won't remember field choices unless explicitely told so
           remember = remember === undefined ? false : remember;
 
-      // Check if there are fields specified within the search text
-      if (this.searchRE.test(text)) {
-        var opt,
-            removeParts = [],
-            parts = text.split(" ");
-
-        $.each(parts, function (i, part) {
-          if (PTL.search.searchRE.test(part)) {
-            opt = part.split(":")[1];
-
-            // Only consider valid fields
-            if ($.inArray(opt, PTL.search.validFields) > -1) {
-              searchFields.push(opt);
-            }
-
-            // If it's an invalid field name, discard it from the search text
-            removeParts.push(i);
-          }
-        });
-
-        // Remove parsed fields from the original array.
-        // It has to be done in reverse order for not clashing with indexes.
-        $.each(removeParts.reverse(), function (i, j) {
-          parts.splice(j, 1);
-        });
-
-        // Join unparsed remaining text, as this will be the actual search text
-        parsed = encodeURIComponent(parts.join(" "));
-      } else {
-        parsed = encodeURIComponent(parsed);
-        // There were no fields specified within the text so we use the dropdown
-        PTL.search.$fields.find("input:checked").each(function () {
-          searchFields.push($(this).val());
-        });
-      }
+      query = encodeURIComponent(query);
+      // There were no fields specified within the text so we use the dropdown
+      PTL.search.$fields.find("input:checked").each(function () {
+        searchFields.push($(this).val());
+      });
+      PTL.search.$options.find("input:checked").each(function () {
+        searchOptions.push($(this).val());
+      });
 
       // If any options have been chosen, append them to the resulting URL
-      if (searchFields.length && remember) {
-        parsed += "&sfields=" + searchFields.join(',');
+      if (remember) {
+        if (searchFields.length) {
+          query += "&sfields=" + searchFields.join(',');
+        }
+        if (searchOptions.length) {
+          query += "&soptions=" + searchOptions.join(',');
+        }
       }
 
-      if (searchFields.length) {
+      if (searchFields.length || searchOptions.length) {
         // Remember field selection in a cookie
         var cookieName = "search-" + this.settings['environment'],
-            cookieData = JSON.stringify(searchFields);
-        $.cookie(cookieName, cookieData, {path: '/'});
+            cookieData = {};
+        if (searchFields.length) {
+          cookieData.sfields = searchFields;
+        }
+        if (searchOptions.length) {
+          cookieData.soptions = searchOptions;
+        }
+
+        $.cookie(cookieName, JSON.stringify(cookieData), {path: '/'});
       }
 
-      return parsed;
-    }
-
+      return query;
+    },
   };
 
 }(jQuery));

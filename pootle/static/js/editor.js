@@ -41,6 +41,7 @@
 
     /* Currently active search fields */
     this.searchFields = [];
+    this.searchOptions = [];
 
     /* Regular expressions */
     this.cpRE = /^(<[^>]+>|\[n\|t]|\W$^\n)*(\b|$)/gm;
@@ -399,6 +400,10 @@
           if ('sfields' in params) {
             PTL.editor.searchFields = params['sfields'].split(',');
           }
+          PTL.editor.searchOptions = [];
+          if ('soptions' in params) {
+             PTL.editor.searchOptions = params['soptions'].split(',');
+          }
         }
 
         // Update the filter UI to match the current filter
@@ -427,6 +432,14 @@
 
           $(".js-search-fields input").each(function () {
             if ($.inArray($(this).val(), PTL.editor.searchFields) >= 0) {
+              $(this).attr("checked", "checked");
+            } else {
+              $(this).removeAttr("checked");
+            }
+          });
+
+          $(".js-search-options input").each(function () {
+            if ($.inArray($(this).val(), PTL.editor.searchOptions) >= 0) {
               $(this).attr("checked", "checked");
             } else {
               $(this).removeAttr("checked");
@@ -554,7 +567,11 @@
       sel.push("tr.view-row " + selMap[field]);
     });
 
-    $(sel.join(", ")).highlightRegex(new RegExp(PTL.editor.makeRegexForMultipleWords(hl), "i"));
+    if (PTL.editor.searchOptions.indexOf('exact') >= 0 ) {
+      $(sel.join(", ")).highlightRegex(new RegExp(['(', PTL.editor.escapeUnsafeRegexSymbols(hl), ')'].join('')));
+    } else {
+      $(sel.join(", ")).highlightRegex(new RegExp(PTL.editor.makeRegexForMultipleWords(hl), "i"));
+    }
   },
 
   /* Highlights matching terms in the source text */
@@ -937,6 +954,7 @@
       case "search":
         reqData.search = this.searchText;
         reqData.sfields = this.searchFields;
+        reqData.soptions = this.searchOptions;
         break;
 
       case "all":
@@ -1808,10 +1826,10 @@
 
     if (text) {
       var remember = true,
-          parsed = PTL.search.parse(text, remember);
-      newHash = "search=" + parsed;
+          queryString = PTL.search.buildSearchQuery(text, remember);
+      newHash = "search=" + queryString;
     } else {
-      newHash = PTL.utils.updateHashPart("filter", "all", ["search", "sfields"]);
+      newHash = PTL.utils.updateHashPart("filter", "all", ["search", "sfields","soptions"]);
     }
     $.history.load(newHash);
   },

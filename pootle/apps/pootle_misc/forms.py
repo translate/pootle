@@ -75,14 +75,16 @@ def make_search_form(*args, **kwargs):
 
     if request is not None:
         env = terminology and "terminology" or "editor"
-        fields = request.COOKIES.get("search-%s" % env)
+        sparams_cookie = request.COOKIES.get("search-%s" % env)
 
-        if fields:
+        if sparams_cookie:
             import urllib
             from django.utils import simplejson
 
-            sfields = simplejson.loads(urllib.unquote(fields))
-            kwargs.update({'initial': {'sfields': sfields}})
+            initial_sparams = simplejson.loads(urllib.unquote(sparams_cookie))
+            if isinstance(initial_sparams, dict):
+                if initial_sparams.has_key('sfields'):
+                    kwargs.update({'initial': initial_sparams})
 
     if terminology:
         return TermSearchForm(*args, **kwargs)
@@ -96,6 +98,13 @@ class SearchForm(forms.Form):
         'size': '15',
         'title': _("Search (Ctrl+Shift+S)<br/>Type and press Enter to search")
     }))
+    soptions = forms.MultipleChoiceField(
+            required=False,
+            widget=forms.CheckboxSelectMultiple,
+            choices=(
+                ('exact', _('Exact Match')),
+            )
+    )
     sfields = forms.MultipleChoiceField(
             required=False,
             widget=forms.CheckboxSelectMultiple,
