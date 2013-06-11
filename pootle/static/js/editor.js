@@ -559,7 +559,8 @@
         selMap = {notes: "div.developer-comments",
                   locations: "div.translate-locations",
                   source: "td.translate-original, div.original div.translation-text",
-                  target: "td.translate-translation"};
+                  target: "td.translate-translation"},
+        hlRegex;
 
     // Build highlighting selector based on chosen search fields
     $.each(PTL.editor.searchFields, function (i, field) {
@@ -568,10 +569,13 @@
     });
 
     if (PTL.editor.searchOptions.indexOf('exact') >= 0 ) {
-      $(sel.join(", ")).highlightRegex(new RegExp(['(', PTL.editor.escapeUnsafeRegexSymbols(hl), ')'].join('')));
+      hlRegex = new RegExp([
+          '(', PTL.editor.escapeUnsafeRegexSymbols(hl), ')'
+        ].join(''));
     } else {
-      $(sel.join(", ")).highlightRegex(new RegExp(PTL.editor.makeRegexForMultipleWords(hl), "i"));
+      hlRegex = new RegExp(PTL.editor.makeRegexForMultipleWords(hl), "i");
     }
+    $(sel.join(", ")).highlightRegex(hlRegex);
   },
 
   /* Highlights matching terms in the source text */
