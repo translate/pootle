@@ -556,10 +556,12 @@
   hlSearch: function () {
     var hl = PTL.editor.filter == "search" ? PTL.editor.searchText : "",
         sel = [],
-        selMap = {notes: "div.developer-comments",
-                  locations: "div.translate-locations",
-                  source: "td.translate-original, div.original div.translation-text",
-                  target: "td.translate-translation"},
+        selMap = {
+          notes: 'div.developer-comments',
+          locations: 'div.translate-locations',
+          source: 'td.translate-original, div.original div.translation-text',
+          target: 'td.translate-translation'
+        },
         hlRegex;
 
     // Build highlighting selector based on chosen search fields
