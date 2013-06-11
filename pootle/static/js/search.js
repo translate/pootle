@@ -96,11 +96,10 @@
     buildSearchQuery: function (text, remember) {
       var searchFields = [],
           searchOptions = [],
-          query = text,
+          query = encodeURIComponent(text),
           // Won't remember field choices unless explicitely told so
           remember = remember === undefined ? false : remember;
 
-      query = encodeURIComponent(query);
       // There were no fields specified within the text so we use the dropdown
       PTL.search.$fields.find("input:checked").each(function () {
         searchFields.push($(this).val());
