@@ -41,6 +41,7 @@ from pootle_misc.baseurl import l
 from pootle_misc.stats import stats_message, stats_message_raw
 from pootle_misc.util import getfromcache, dictsum, deletefromcache
 from pootle_project.models import Project
+from pootle_statistics.models import Submission
 from pootle_store.models import (Store, Suggestion, Unit, QualityCheck, PARSED,
                                  CHECKED)
 from pootle_store.util import (absolute_real_path, calculate_stats,
@@ -213,6 +214,14 @@ class TranslationProject(models.Model):
                        conservative=conservative, create=False,
                        skip_missing=skip_missing,
                        modified_since=modified_since)
+
+    def get_latest_submission(self):
+        """Get the latest submission done in the Translation project"""
+        try:
+            sub = Submission.objects.filter(translation_project=self).latest()
+        except Submission.DoesNotExist:
+            return ''
+        return sub.get_as_action_bundle()
 
     @getfromcache
     def get_mtime(self):

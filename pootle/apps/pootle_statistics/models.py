@@ -24,6 +24,7 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
 from pootle_app.lib.util import RelatedManager
+from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
 
 
 #: These are the values for the 'type' field of Submission
@@ -83,6 +84,22 @@ class Submission(models.Model):
         return u"%s (%s)" % (self.creation_time.strftime("%Y-%m-%d %H:%M"),
                              unicode(self.submitter))
 
+    @classmethod
+    def get_latest_for_dir(cls, directory):
+        """Returns the latest submission, if any, for the given directory.
+
+        The submission is returned as an action bundle. An empty string is
+        returned if no submission exists for the given directory.
+        """
+        try:
+            criteria = {
+                'unit__store__pootle_path__startswith': directory.pootle_path,
+            }
+            sub = Submission.objects.filter(**criteria).latest()
+        except Submission.DoesNotExist:
+            return ''
+        return sub.get_as_action_bundle()
+
     def as_html(self):
         # Sadly we may not have submitter information in all the situations yet
         if self.submitter:
@@ -99,3 +116,54 @@ class Submission(models.Model):
                 }
 
         return mark_safe(snippet)
+
+    def get_as_action_bundle(self):
+        """Returns the submission as an action bundle.
+
+        The bundle contains only the data that is necessary for showing the
+        GitHub-like latest action message.
+        """
+
+        unit = None
+        if self.unit:
+            unit = {
+                'id': self.unit.pk,
+                'url': self.unit.get_absolute_url(),
+            }
+
+        action_bundle = {
+            "action": {
+                SubmissionTypes.REVERT: _('reverted translation for '
+                                          '<a href="%(url)s">string %(id)d</a>',
+                                          unit),
+                SubmissionTypes.REVERT: _('reverted translation for '
+                                          '<a href="%(url)s">string %(id)d</a>',
+                                          unit),
+                SubmissionTypes.SUGG_ACCEPT: _('accepted suggestion for '
+                                               '<a href="%(url)s">string %(id)d'
+                                               '</a>', unit),
+                SubmissionTypes.UPLOAD: _('uploaded file'),
+            }.get(self.type, ''),
+            "by_profile": self.submitter,
+            "date": self.creation_time,
+            "unit": self.unit,
+        }
+
+        #TODO Look how to detect submissions for "sent suggestion", "rejected
+        # suggestion"...
+
+        #TODO Fix bug 3011 and replace the following code with the appropiate
+        # one in the dictionary above.
+
+        if not action_bundle["action"]:
+            # If the action is unset, maybe the action is one of the following.
+            action_bundle["action"] = {
+                TRANSLATED: _('sent translation for <a href="%(url)s">string '
+                              '%(id)d</a>', unit),
+                FUZZY: _('sent "needs work" translation for <a href="%(url)s">'
+                         'string %(id)d</a>', unit),
+                UNTRANSLATED: _('removed translation for <a href="%(url)s">'
+                                'string %(id)d</a>', unit),
+            }.get(self.unit.state, "")
+
+        return action_bundle

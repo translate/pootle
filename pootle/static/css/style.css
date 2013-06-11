@@ -782,6 +782,27 @@ html[dir="rtl"] .hd h2
     margin-right: 0.5em;
 }
 
+.hd .last-action
+{
+    margin: 0.5em 0 0 1em;
+}
+
+html[dir="rtl"] .hd .last-action
+{
+    margin-left: 0;
+    margin-right: 1em;
+}
+
+.hd .last-action img
+{
+    vertical-align: middle;
+}
+
+.hd .last-action .extra-item-meta
+{
+    color: #999;
+}
+
 .hd h3
 {
     border-top: 1px solid #eee;
