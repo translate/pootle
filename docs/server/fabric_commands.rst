@@ -3,6 +3,10 @@
 Available Fabric commands
 =========================
 
+.. versionadded:: 2.5
+
+   Starting in this release, Pootle includes Fabric deployment scripts.
+
 The sample Fabric scripts provide several commands that you can use to easily
 deploy your Pootle site.
 
@@ -14,8 +18,6 @@ deploy your Pootle site.
 
 bootstrap
 ---------
-
-.. versionadded:: 2.5
 
 This command:
 
@@ -52,8 +54,6 @@ Examples:
 
 compile_translations
 --------------------
-
-.. versionadded:: 2.5
 
 This command:
 
@@ -97,8 +97,6 @@ Examples:
 deploy
 ------
 
-.. versionadded:: 2.5
-
 This command:
 
 - Calls the :ref:`update_code <fabric-commands#update-code>` command providing
@@ -132,8 +130,6 @@ Examples:
 deploy_static
 -------------
 
-.. versionadded:: 2.5
-
 This command:
 
 - Creates :file:`pootle/assets/` directory if not exists
@@ -152,8 +148,6 @@ Examples:
 
 disable_site
 ------------
-
-.. versionadded:: 2.5
 
 This command:
 
@@ -208,8 +202,6 @@ Examples:
 enable_site
 -----------
 
-.. versionadded:: 2.5
-
 This command:
 
 - Enables the Pootle site on Apache using the Apache :command:`a2ensite`
@@ -246,8 +238,6 @@ Examples:
 
 install_site
 ------------
-
-.. versionadded:: 2.5
 
 This command:
 
@@ -304,8 +294,6 @@ Examples:
 production
 ----------
 
-.. versionadded:: 2.5
-
 This command:
 
 - Sets up the configuration for the ``production`` environment in Fabric
@@ -328,8 +316,6 @@ environment for calling :command:`bootstrap` afterwards.
 
 staging
 -------
-
-.. versionadded:: 2.5
 
 This command:
 
@@ -371,8 +357,6 @@ Examples:
 touch
 -----
 
-.. versionadded:: 2.5
-
 This command:
 
 - Reloads daemon processes by touching the WSGI file
@@ -388,8 +372,6 @@ Examples:
 
 update_code
 -----------
-
-.. versionadded:: 2.5
 
 This command:
 
@@ -421,8 +403,6 @@ Examples:
 update_config
 -------------
 
-.. versionadded:: 2.5
-
 This command:
 
 - Will upload the configuration files included in the chosen environment to the
@@ -446,8 +426,6 @@ Examples:
 
 update_db
 ---------
-
-.. versionadded:: 2.5
 
 This command:
 
