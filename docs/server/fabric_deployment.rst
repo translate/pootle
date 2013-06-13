@@ -4,13 +4,13 @@ Automated deployment using Fabric
 =================================
 
 Pootle can be deployed using Fabric automation scripts. There are other methods
-to deploy Pootle, perhaps simpler, but this one is intended to perform automated
-deployments that ease its maintenance tasks and the upgrade to newer versions.
+to deploy Pootle, but using Fabric with these scripts allows automated
+deployments and simplifies maintenance tasks and the upgrade to newer versions.
 
-The sample scripts bundled with Pootle allow you to deploy a Pootle server within
-a virtual environment, running in a **Apache** server with *mod_wsgi* using
-**MySQL** as database server on **Debian**-based systems. This sample scripts can
-be changed to perform different deployments.
+The sample scripts bundled with Pootle allow you to deploy a Pootle server
+using a Python virtualenv, running on a **Apache** server with *mod_wsgi* using
+**MySQL** as database server on **Debian**-based systems. These sample scripts
+can be modified to perform different deployments.
 
 To see a comprehensive list of all Fabric commands available to deploy Pootle
 check the :ref:`Fabric commands reference <fabric-commands>`.
@@ -21,8 +21,8 @@ check the :ref:`Fabric commands reference <fabric-commands>`.
 Preparing the remote server
 ---------------------------
 
-Before performing an automated deployment using Fabric you need to make sure the
-server where Pootle is going to be deployed has the required software installed.
+Before performing an automated deployment using Fabric, make sure the
+server where Pootle is going to be deployed has the required software.
 
 
 .. _fabric-deployment#installing-required-software-on-the-remote-server:
@@ -39,13 +39,15 @@ remote server:
 - Apache web server
 - MySQL database server
 - OpenSSH server
+- C compiler (to install Pootle's Python dependencies - can be removed later)
 
 .. note:: Currently only Debian-based (e.g. Ubuntu) servers are supported.
 
-.. note:: If you run into trouble while installing the dependencies, it's likely
-  that you're missing some extra packages needed to build those third-party
-  packages. For example, `lxml <http://lxml.de/installation.html>`_ needs a C
-  compiler.
+.. note:: If you have problems installing the dependencies during the bootstrap
+   you are probably missing other packages needed to build those third-party
+   Python modules. For example, `lxml <http://lxml.de/installation.html>`_
+   needs development files for libxml2 and libxslt1 (as well as the C compiler
+   mentioned above).
 
 .. note:: Also consider :ref:`installing optional packages
    <optimization#optional_software>` for optimal performance.
@@ -65,8 +67,8 @@ Installation docs.
 Preparing Fabric deployment
 ---------------------------
 
-Before performing the deployment it is necessary to install some software on the
-local computer and set up the necessary settings to connect to the remote
+Before performing a deployment you will need to install some software on the
+local computer and configure the necessary settings to connect to the remote
 server.
 
 
@@ -77,9 +79,9 @@ Installing required software on the local computer
 
 The first step is to install the necessary software on the local computer.
 
-.. note:: We strongly recommend using a virtual environment. Check the
-   :ref:`Setting up the Environment <installation#setup_environment>` docs to
-   see how to set up a virtual environment.
+.. note:: We strongly recommend using a virtual environment (virtualenv). Check
+   the :ref:`Setting up the Environment <installation#setup_environment>` docs
+   for information about virtualenvs.
 
 .. code-block:: bash
 
@@ -97,8 +99,8 @@ files are:
 - :file:`fabfile.py`
 - Files inside the :file:`deploy/` directory
 
-So grab those files from `Pootle Github repository
-<https://github.com/translate/pootle>`_. The rest of Pootle files are not
+You can get those files from the `Pootle GitHub repository
+<https://github.com/translate/pootle>`_. The rest of the Pootle files are not
 necessary for this kind of deployment.
 
 
@@ -136,7 +138,7 @@ put some configuration files in place:
   Apache VirtualHost configuration file.
 
 In the previous paths ``ENVIRONMENT`` is the directory name for the chosen
-environment.
+environment (production or staging).
 
 All the settings defined in the :file:`deploy/ENVIRONMENT/fabric.py` module
 will populate the Fabric ``env`` dictionary, making the configuration keys
@@ -154,25 +156,54 @@ might want to use in :file:`deploy/ENVIRONMENT/settings.conf`.
 .. note:: If it is necessary you can adapt the :file:`deploy/pootle.wsgi` file
    to meet your needs.
 
-Once you make all the necessary changes in the settings you are ready to run the
+Once you make your changes to the settings you are ready to run the
 Fabric commands.
 
-.. note:: For security, please make sure you change the ``db_password`` setting;
-   using the example one could make your server vulnerable to exploits.
+.. note:: For security, please make sure you change the ``db_password`` setting
+   - using the example one could make your server vulnerable to exploits.
 
 
-.. _fabric-deployment#bootstrap-environment:
+.. _fabric-deployment#how-to-run-commands:
 
-Bootstraping the environment
-----------------------------
+How to run commands
+-------------------
+
+In order to run Fabric commands for Pootle it is necessary that the directory
+containing the :file:`fabfile.py` file and the ``deploy`` subdirectory be
+included in the ``PYTHONPATH``.  If it is not, then add it using:
 
 .. code-block:: bash
 
     $ export PYTHONPATH=`pwd`:$PYTHONPATH
-    $ fab production bootstrap:branch=stable/2.5.0  # Install Pootle
 
-.. note:: Exporting the ``PYTHONPATH`` won't be necessary if the current
-   directory already is on PYTHONPATH.
+The fabric commands need to know the type of environment in which
+they are going to work, e.g. if the deployment will be for the production
+environment. The Fabric commands for Pootle support two environments:
+``production`` and ``staging``. To select the environment for running a
+command just add it before the command like this:
+
+.. code-block:: bash
+
+    $ fab production bootstrap  # Use the 'production' environment
+    $ fab staging bootstrap     # Or use the 'staging' environment
+
+.. note:: It is necessary to :ref:`install Fabric 
+   <fabric-deployment#installing-required-software-on-the-local-computer>` in
+   order to be able to run the :command:`fab` command.
+
+
+.. _fabric-deployment#bootstrap-environment:
+
+Bootstrapping the environment
+-----------------------------
+
+You can install the Pootle software, configuration files, and directory tree(s)
+with the bootstrap command.
+
+.. code-block:: bash
+
+    $ export PYTHONPATH=`pwd`:$PYTHONPATH
+    $ fab production bootstrap:branch=stable/2.5.0  # Install Pootle 2.5
 
 
 .. _fabric-deployment#setting-up-the-database:
@@ -180,19 +211,21 @@ Bootstraping the environment
 Setting Up the Database
 -----------------------
 
-If updating a previous DB to last version schema:
+If updating a previous DB to the latest version of the schema:
 
 .. code-block:: bash
 
-    $ fab production update_db  # Updates DB schema to last version
+    $ fab production update_db  # Updates DB schema to latest version
 
-If creating a blank DB and populating with a DB backup:
+If creating a blank DB and populating with a (local) DB backup:
 
 .. code-block:: bash
 
     $ fab production create_db  # Creates Pootle DB on MySQL
-    $ fab production load_db:dumpfile=backup_mysql.sql # Populates the DB using a dump
+    $ fab production load_db:dumpfile=backup_mysql.sql # Populate DB from local dump
 
+.. note:: The dumpfile (for load_db and dump_db) is local to the system where
+   Fabric runs, and is automatically copied to/from the remote server.
 
 .. _fabric-deployment#enabling-the-web-server:
 
@@ -204,39 +237,20 @@ Enabling the web server
     $ fab production deploy:branch=stable/2.5.0
 
 
-.. _fabric-deployment#how-to-run-commands:
+.. _fabric-deployment#notes-on-fabric-commands
 
-How to run commands
--------------------
+Notes on Fabric commands
+------------------------
 
-In order to run a Fabric command for Pootle it is necessary that the directory
-where the :file:`fabfile.py` file is located is included in the ``PYTHONPATH``.
-If not then add it using:
+In addition to the basic Fabric command usage in the examples above, there are
+other advanced techniques that can be used.
 
-.. code-block:: bash
-
-    $ export PYTHONPATH=`pwd`:$PYTHONPATH
-
-The commands require some setup in order to know in which type of environment
-they are going to work. For example if the deploy would be on a production
-environment. Pootle includes two sample environments: ``production`` and
-``staging``. To set up the environment before running a command just add it
-before the command like in:
+Some commands accept options - the option name is followed by a colon (:) and
+the value for the option (with no spaces).
 
 .. code-block:: bash
 
-    $ fab production bootstrap  # Use the 'production' environment
-    $ fab staging bootstrap  # Or use the 'staging' environment
-
-.. note:: It is necessary to :ref:`install Fabric 
-   <fabric-deployment#installing-required-software-on-the-local-computer>` in
-   order to be able to run the :command:`fab` command.
-
-Some commands accept options:
-
-.. code-block:: bash
-
-    $ fab production bootstrap:branch=stable/2.5.0  # Call bootstrap providing a branch
+    $ fab production bootstrap:branch=stable/2.5.0  # Run bootstrap for a branch
 
 The previous call runs the :ref:`bootstrap <fabric-commands#bootstrap>` command
 providing the value ``stable/2.5.0`` for its :option:`branch` option.
@@ -256,6 +270,6 @@ that exact order.
 .. note:: If you want to know more about Fabric, please read `its documentation
    <http://docs.fabfile.org/en/latest/>`_.
 
-Check the :ref:`Fabric commands reference <fabric-commands>` to see a
-comprehensive list of all Fabric commands available to deploy Pootle with a
-detailed description for each command.
+See the :ref:`Fabric commands reference <fabric-commands>` for a
+comprehensive list of all Fabric commands available for deploying Pootle,
+with detailed descriptions of each command.

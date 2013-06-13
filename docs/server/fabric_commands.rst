@@ -21,19 +21,21 @@ bootstrap
 
 This command:
 
-- Creates the required directories, asking to remove them before if they already
+- Creates the required directories, asking to remove them first if they already
   exist
-- Creates a virtual environment and activates it
+- Creates a virtual environment (virtualenv) and activates it
 - Clones the Pootle repository from GitHub
 - Checks out the specified branch, using master if no branch is specified
 - Installs the deployment requirements as listed in :file:`requirements/`,
   including the base requirements as well
 
-.. note:: While running it may ask for the remote server ``root`` password.
+.. note:: While running it may ask for the remote server ``root`` password,
+   or more likely the ``sudo`` password, which is the standard password for the
+   remote user configured in the environment.
 
 .. note::
-   .. versionchanged:: 2.5.1 Added support for bootstraping from a given branch
-      on Pootle repository.
+   .. versionchanged:: 2.5.1 Added support for bootstrapping from a given
+      branch on Pootle repository.
 
 Available options:
 
@@ -78,12 +80,13 @@ This command:
 - Creates a new blank DB using the settings provided to Fabric in the chosen
   environment.
 
-.. note:: While running it may ask for the remote server ``root`` password and
-   the specified ``db_user`` password.
+.. note:: While running it may ask for the remote server ``root`` password or
+   the ``sudo`` password (standard password for the remote user configured in
+   the environment) as well as the specified ``db_user`` password.
 
-.. note:: This command will try to create a DB on MySQL, so it will fail if it
-   is not installed or if the settings don't provide data for creating the
-   database.
+.. note:: This command will try to create a DB on MySQL, which will fail if
+   MySQL is not installed or the settings don't provide configuration data for
+   creating the database.
 
 Examples:
 
@@ -104,7 +107,9 @@ This command:
 - Calls the :ref:`deploy_static <fabric-commands#deploy-static>` command
 - Calls the :ref:`install_site <fabric-commands#install-site>` command
 
-.. note:: While running it may ask for the remote server ``root`` password.
+.. note:: While running it may ask for the remote server ``root`` password or
+   the ``sudo`` password (standard password for the remote user configured in
+   the environment).
 
 .. note::
    .. versionchanged:: 2.5.1 Added support for deploying from a given branch
@@ -132,7 +137,7 @@ deploy_static
 
 This command:
 
-- Creates :file:`pootle/assets/` directory if not exists
+- Creates :file:`pootle/assets/` directory if it does not exist
 - Runs :ref:`collectstatic --noinput --clear <commands#collectstatic>` to
   collect the static files
 - Runs :ref:`assets build <commands#assets>` to create the assets
@@ -154,7 +159,9 @@ This command:
 - Disables the Pootle site on Apache using the Apache :command:`a2dissite`
   command
 
-.. note:: While running it may ask for the remote server ``root`` password.
+.. note:: While running it may ask for the remote server ``root`` password or
+   the ``sudo`` password (standard password for the remote user configured in
+   the environment).
 
 Examples:
 
@@ -175,8 +182,9 @@ This command:
 - Dumps the DB to the provided filename using the :command:`mysqldump` command
 - Downloads the dumpfile to the local computer
 
-.. note:: While running it may ask for the remote server ``root`` password and
-   the specified ``db_user`` password.
+.. note:: While running it may ask for the remote server ``root`` password or
+   the ``sudo`` password (standard password for the remote user configured in
+   the environment) as well as the specified ``db_user`` password.
 
 .. note:: This commands can be used to perform periodic backups, that can be
    imported later using the :ref:`load_db <fabric-commands#load-db>`
@@ -207,7 +215,9 @@ This command:
 - Enables the Pootle site on Apache using the Apache :command:`a2ensite`
   command
 
-.. note:: While running it may ask for the remote server ``root`` password.
+.. note:: While running it may ask for the remote server ``root`` password or
+   the ``sudo`` password (standard password for the remote user configured in
+   the environment).
 
 Examples:
 
@@ -244,7 +254,9 @@ This command:
 - Calls the :ref:`update_config <fabric-commands#update-config>` command
 - Calls the :ref:`enable_site <fabric-commands#enable-site>` command
 
-.. note:: While running it may ask for the remote server ``root`` password.
+.. note:: While running it may ask for the remote server ``root`` password or
+   the ``sudo`` password (standard password for the remote user configured in
+   the environment).
 
 Examples:
 
@@ -266,8 +278,9 @@ This command:
 - Imports it to the DB specified on Fabric settings using the :command:`mysql`
   command
 
-.. note:: While running it may ask for the remote server ``root`` password and
-   the specified ``db_user`` password.
+.. note:: While running it may ask for the remote server ``root`` password or
+   the ``sudo`` password (standard password for the remote user configured in
+   the environment) as well as the specified ``db_user`` password.
 
 .. note:: The DB to import to should be created before calling this command, for
    example using the :ref:`create_db <fabric-commands#create-db>` command.
@@ -413,7 +426,9 @@ This command:
   - Configure and install custom settings for Pootle using the provided
     :file:`settings.conf`
 
-.. note:: While running it may ask for the remote server ``root`` password.
+.. note:: While running it may ask for the remote server ``root`` password or
+   the ``sudo`` password (standard password for the remote user configured in
+   the environment).
 
 Examples:
 
