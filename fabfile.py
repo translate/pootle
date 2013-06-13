@@ -131,9 +131,19 @@ def create_db():
     """Creates a new DB"""
     require('environment', provided_by=[production, staging])
 
+    create_db_cmd = ("CREATE DATABASE `%(db_name)s` "
+                     "DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;"
+                     % env)
+    grant_db_cmd = ("GRANT ALL PRIVILEGES ON `%(db_name)s`.* TO `%(db_user)s`"
+                    "@localhost IDENTIFIED BY \"%(db_password)s\"; "
+                    "FLUSH PRIVILEGES;"
+                    % env)
+
     with settings(hide('stderr')):
-        sudo("mysql -u %(db_user)s -p -e 'CREATE DATABASE `%(db_name)s` "
-             "DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;'" % env)
+        sudo(("mysql -u %(db_user)s -p -e '" % env) + create_db_cmd +
+             ("' || { test root = '%(db_user)s' && exit $?; " % env) +
+             "echo 'Trying again, with MySQL root DB user'; "
+             "mysql -u root -p -e '" + create_db_cmd + grant_db_cmd + "';}")
 
 
 def syncdb():
@@ -191,7 +201,7 @@ def load_db(dumpfile=None):
         else:
             print('\nERROR: The file "%s" does not exist. Aborting.' % dumpfile)
     else:
-        print('\nERROR: A dumpfile must be provided. Aborting.')
+        print('\nERROR: A (local) dumpfile must be provided. Aborting.')
 
 
 def dump_db(dumpfile="pootle_DB_backup.sql"):
