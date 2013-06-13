@@ -140,10 +140,10 @@ def create_db():
                     % env)
 
     with settings(hide('stderr')):
-        sudo(("mysql -u %(db_user)s -p -e '" % env) + create_db_cmd +
-             ("' || { test root = '%(db_user)s' && exit $?; " % env) +
-             "echo 'Trying again, with MySQL root DB user'; "
-             "mysql -u root -p -e '" + create_db_cmd + grant_db_cmd + "';}")
+        run(("mysql -u %(db_user)s -p -e '" % env) + create_db_cmd +
+            ("' || { test root = '%(db_user)s' && exit $?; " % env) +
+            "echo 'Trying again, with MySQL root DB user'; "
+            "mysql -u root -p -e '" + create_db_cmd + grant_db_cmd + "';}")
 
 
 def syncdb():
@@ -192,10 +192,10 @@ def load_db(dumpfile=None):
                 print('\nLoading data into the DB...')
 
                 with settings(hide('stderr')):
-                    put(dumpfile, remote_filename, use_sudo=True)
-                    sudo('mysql -u %s -p %s < %s' % (env['db_user'],
-                                                     env['db_name'],
-                                                     remote_filename))
+                    put(dumpfile, remote_filename)
+                    run('mysql -u %s -p %s < %s' %
+                        (env['db_user'], env['db_name'], remote_filename))
+                    run('rm %s' % (remote_filename))
             else:
                 print('\nAborting.')
         else:
@@ -221,10 +221,10 @@ def dump_db(dumpfile="pootle_DB_backup.sql"):
             print('\nDumping DB...')
 
             with settings(hide('stderr')):
-                sudo('mysqldump -u %s -p %s > %s' % (env['db_user'],
-                                                     env['db_name'],
-                                                     remote_filename))
+                run('mysqldump -u %s -p %s > %s' %
+                    (env['db_user'], env['db_name'], remote_filename))
                 get(remote_filename, '.')
+                run('rm %s' % (remote_filename))
         else:
             print('\nAborting.')
     else:
