@@ -57,12 +57,19 @@ def _init_directories():
     """Creates initial directories"""
     if exists('%(project_path)s' % env):
         sudo('rm -rf %(project_path)s' % env)
+    if exists('%(translations_path)s' % env):
+        sudo('rm -rf %(translations_path)s' % env)
+    if exists('%(repos_path)s' % env):
+        sudo('rm -rf %(repos_path)s' % env)
 
     sudo('mkdir -p %(project_path)s' % env)
+    sudo('mkdir -p %(project_path)s/logs' % env)
     sudo('mkdir -p %(translations_path)s' % env)
     sudo('mkdir -p %(repos_path)s' % env)
-    sudo('chown -R %(user)s:%(server_group)s %(project_path)s' % env)
-    run('mkdir -m g+w %(project_path)s/logs' % env)
+    sudo('chmod -R g=u '
+         '%(project_path)s %(translations_path)s %(repos_path)s' % env)
+    sudo('chown -R %(user)s:%(server_group)s '
+         '%(project_path)s %(translations_path)s %(repos_path)s' % env)
 
 
 def _init_virtualenv():
@@ -83,18 +90,21 @@ def _checkout_repo(branch="master"):
         run('git checkout master')
         run('git pull')
         run('git checkout %s' % branch)
+    run('chmod -R go=u,go-w %(project_repo_path)s' % env)
 
 
 def _install_requirements():
     """Installs dependencies defined in the requirements file"""
     with prefix('source %(env_path)s/bin/activate' % env):
         run('pip install -r %(project_repo_path)s/requirements/deploy.txt' % env)
+    run('chmod -R go=u,go-w %(env_path)s' % env)
 
 
 def _update_requirements():
     """Updates dependencies defined in the requirements file"""
     with prefix('source %(env_path)s/bin/activate' % env):
         run('pip install -U -r %(project_repo_path)s/requirements/deploy.txt' % env)
+    run('chmod -R go=u,go-w %(env_path)s' % env)
 
 
 def bootstrap(branch="master"):
@@ -121,9 +131,19 @@ def create_db():
     """Creates a new DB"""
     require('environment', provided_by=[production, staging])
 
+    create_db_cmd = ("CREATE DATABASE `%(db_name)s` "
+                     "DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;"
+                     % env)
+    grant_db_cmd = ("GRANT ALL PRIVILEGES ON `%(db_name)s`.* TO `%(db_user)s`"
+                    "@localhost IDENTIFIED BY \"%(db_password)s\"; "
+                    "FLUSH PRIVILEGES;"
+                    % env)
+
     with settings(hide('stderr')):
-        sudo("mysql -u %(db_user)s -p -e 'CREATE DATABASE `%(db_name)s` "
-             "DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;'" % env)
+        sudo(("mysql -u %(db_user)s -p -e '" % env) + create_db_cmd +
+             ("' || { test root = '%(db_user)s' && exit $?; " % env) +
+             "echo 'Trying again, with MySQL root DB user'; "
+             "mysql -u root -p -e '" + create_db_cmd + grant_db_cmd + "';}")
 
 
 def syncdb():
@@ -181,7 +201,7 @@ def load_db(dumpfile=None):
         else:
             print('\nERROR: The file "%s" does not exist. Aborting.' % dumpfile)
     else:
-        print('\nERROR: A dumpfile must be provided. Aborting.')
+        print('\nERROR: A (local) dumpfile must be provided. Aborting.')
 
 
 def dump_db(dumpfile="pootle_DB_backup.sql"):
@@ -234,6 +254,7 @@ def deploy_static():
                 run('mkdir -p pootle/assets')
                 run('python manage.py collectstatic --noinput --clear')
                 run('python manage.py assets build')
+    run('chmod -R go=u,go-w %(project_repo_path)s' % env)
 
 
 def deploy(branch="master"):
