@@ -356,7 +356,7 @@ Translation environment configuration settings.
   Default: ``False``
 
   Set this to ``True`` if you want translation files to be updated
-  immediatly.
+  immediately.
 
   .. note::
 
