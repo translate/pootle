@@ -77,7 +77,7 @@
       /* Set API key */
       this.apiKey = apiKey;
       /* Set target language */
-      var targetLanguage = $("#editor").data("target-language");
+      var targetLanguage = PTL.editor.settings.targetLanguage;
       this.targetLang = PTL.editor.normalizeCode(targetLanguage);
       /* Bind event handler */
       $(document).on("click", ".google-translate", this.translate);

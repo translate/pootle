@@ -23,9 +23,7 @@
 <div id="editor"
     data-is-single-file="{{ is_single_file|yesno:"true,false" }}"
     data-pootle-path="{{ pootle_path }}"
-    data-path="{{ path }}"
-    data-project="{{ project.code }}"
-    data-target-language="{{ language.code }}">
+    data-path="{{ path }}">
     <noscript>
       <h1>{% trans "Pootle's editor requires JavaScript" %}</h1>
       <p>{% trans "Please enable JavaScript in your browser preferences and reload the page." %}</p>
@@ -128,6 +126,8 @@ $(document).magnificPopup({
 });
 $(function() {
   var options = {
+    project: '{{ project.code }}',
+    targetLanguage: '{{ language.code }}',
     tmUrl: '{{ AMAGAMA_URL }}'
   };
   {% if cansuggest or cantranslate %}

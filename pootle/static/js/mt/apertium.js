@@ -18,7 +18,7 @@
       $.getScript(_this.url, function () {
         /* Init variables */
         var _this = PTL.editor.mt.apertium,
-            targetLanguage = $("#editor").data("target-language");
+            targetLanguage = PTL.editor.settings.targetLanguage;
         _this.targetLang = PTL.editor.normalizeCode(targetLanguage);
 
         _this.pairs = $.cookie(_this.cookieName);

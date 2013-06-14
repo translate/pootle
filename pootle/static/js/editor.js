@@ -9,7 +9,9 @@
 
     /* Default settings */
     this.settings = {
-      mt: []
+      mt: [],
+      targetLanguage: null,
+      project: null
     };
     /* Merge given options with default settings */
     if (options) {
@@ -21,8 +23,6 @@
     this.isSingleFile = $('#editor').data('is-single-file');
     this.path = $('#editor').data('path');
     this.pootlePath = $('#editor').data('pootle-path');
-    this.targetLanguage = $('#editor').data('target-language');
-    this.project = $('#editor').data('project');
     this.currentPage = 1;
     this.currentNumPages = 0;
     this.pagesGot = {};
@@ -846,7 +846,10 @@
 
   updateExportLink: function () {
     var urlStr = [
-          '', this.targetLanguage, this.project, 'export-view', this.path
+          // FIXME: project and target language information should come
+          // from the current unit/store
+          '', this.settings.targetLanguage, this.settings.project,
+          'export-view', this.path
         ].join('/'),
         urlStr = [urlStr, $.param(this.getReqData())].join('?'),
         exportLink = [
