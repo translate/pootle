@@ -36,14 +36,26 @@ from fabric.operations import require, run, sudo, put, get
 
 def production():
     """Work on the production environment"""
-    from deploy.production import fabric
+
+    try:
+        from deploy.production import fabric
+    except ImportError:
+        print("Unable to load 'production' environment - is PYTHONPATH set?")
+        exit(1)
+        
     env.update(fabric.SETTINGS)
     env.environment = 'production'
 
 
 def staging():
     """Work on the staging environment"""
-    from deploy.staging import fabric
+
+    try:
+        from deploy.staging import fabric
+    except ImportError:
+        print("Unable to load 'staging' environment - is PYTHONPATH set?")
+        exit(1)
+
     env.update(fabric.SETTINGS)
     env.environment = 'staging'
 
