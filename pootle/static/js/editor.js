@@ -9,7 +9,6 @@
 
     /* Default settings */
     this.settings = {
-      secure: false,
       mt: []
     };
     /* Merge given options with default settings */

@@ -104,7 +104,7 @@
 {% endblock %}
 
 {% block scripts_extra %}
-{% cache settings.CACHE_TIMEOUT translate_scripts request.is_secure cansuggest cantranslate MT_BACKENDS LOOKUP_BACKENDS user.is_authenticated LANGUAGE_CODE settings.DEBUG %}
+{% cache settings.CACHE_TIMEOUT translate_scripts cansuggest cantranslate MT_BACKENDS LOOKUP_BACKENDS user.is_authenticated LANGUAGE_CODE settings.DEBUG %}
 {{ block.super }}
 <script id="view_unit" type="text/x-jquery-template">
 {% include_raw "unit/xhr-view.html" %}
@@ -128,7 +128,6 @@ $(document).magnificPopup({
 });
 $(function() {
   var options = {};
-  {% if request.is_secure %}options.secure = true;{% endif %}
   {% if cansuggest or cantranslate %}
   options.mt = [];
     {% for backend, apikey in MT_BACKENDS %}
