@@ -140,10 +140,12 @@ def create_db():
                     % env)
 
     with settings(hide('stderr')):
-        run(("mysql -u %(db_user)s -p -e '" % env) + create_db_cmd +
+        run(("mysql -u %(db_user)s %(db_password_opt)s -e '" % env) +
+            create_db_cmd +
             ("' || { test root = '%(db_user)s' && exit $?; " % env) +
             "echo 'Trying again, with MySQL root DB user'; "
-            "mysql -u root -p -e '" + create_db_cmd + grant_db_cmd + "';}")
+            "mysql -u root %(db_root_password_opt)s -e '" +
+            create_db_cmd + grant_db_cmd + "';}")
 
 
 def syncdb():
@@ -192,8 +194,9 @@ def load_db(dumpfile=None):
 
                 with settings(hide('stderr')):
                     put(dumpfile, remote_filename)
-                    run('mysql -u %s -p %s < %s' %
-                        (env['db_user'], env['db_name'], remote_filename))
+                    run('mysql -u %s %s %s < %s' %
+                        (env['db_user'], env['db_password_opt'],
+                         env['db_name'], remote_filename))
                     run('rm %s' % (remote_filename))
             else:
                 print('\nAborting.')
@@ -220,8 +223,9 @@ def dump_db(dumpfile="pootle_DB_backup.sql"):
             print('\nDumping DB...')
 
             with settings(hide('stderr')):
-                run('mysqldump -u %s -p %s > %s' %
-                    (env['db_user'], env['db_name'], remote_filename))
+                run('mysqldump -u %s %s %s > %s' %
+                    (env['db_user'], env['db_password_opt'],
+                     env['db_name'], remote_filename))
                 get(remote_filename, '.')
                 run('rm %s' % (remote_filename))
         else:
@@ -346,3 +350,22 @@ def compile_translations():
         with cd(env.project_repo_path):
             with prefix('source %(env_path)s/bin/activate' % env):
                 run('python setup.py build_mo')
+
+def mysql_conf():
+    """Sets up .my.cnf file for passwordless MySQL operation"""
+    require('environment', provided_by=[production, staging])
+
+    print('Setting up MySQL password configuration...')
+
+    conf_filename = '~/.my.cnf'
+
+    if (not exists(conf_filename) or
+        confirm('\n%s already exists. Do you want to overwrite it?'
+                % conf_filename, default=False)):
+
+        with settings(hide('stdout', 'stderr')):
+            upload_template('deploy/my.cnf' % env, conf_filename, context=env)
+            run('chmod 600 %s' % conf_filename)
+
+    else:
+        print('\nAborting.')

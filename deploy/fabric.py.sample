@@ -36,15 +36,36 @@ SETTINGS['user'] = 'foobarbaz'
 # Database
 #
 
+# DB name
 SETTINGS['db_name'] = 'pootle'
+
 # DB user will be used both for Pootle settings and for any command that needs
 # it, e.g. create_db.
 SETTINGS['db_user'] = 'pootle'
-# DB password will only be used to include it on Pootle settings. If the DB
-# password is required while running any command, e.g. create_db, a prompt will
-# be shown asking for it.
+
+# Password for db_user - included in Pootle settings, and ~user/.my.cnf if you
+# create that with mysql_conf().  If you don't enable the corresponding option
+# below, you will be prompted for a password for all database operations.
 SETTINGS['db_password'] = 'SET_DB_PASSWORD_HERE'
 
+# Password for root DB user - included in ~user/.my.cnf if you create that with
+# mysql_conf().  If you don't enable the corresponding option below, you will
+# be prompted for a password for database creation (only).
+SETTINGS['db_root_password'] = 'SET_ROOT_DB_PASSWORD_HERE'
+
+# Command option for DB password.  The default ('-p') option will prompt you
+# for the password.  The alternate ('' - i.e. empty) can be used to avoid
+# password prompting, but only after you have run mysql_conf(), e.g.
+# `fab settings mysql_conf` to set up user's .my.cnf file.
+SETTINGS['db_password_opt'] = '-p'
+#SETTINGS['db_password_opt'] = ''
+
+# Command option for root DB password.  The default ('-p') option will prompt
+# you for the password.  The alternate ('--defaults-group-suffix=_root') can be
+# used to avoid password prompting, but only after you have run mysql_conf(),
+# e.g. `fab settings mysql_conf` to set up user's .my.cnf file.
+SETTINGS['db_root_password_opt'] = '-p'
+#SETTINGS['db_root_password_opt'] = '--defaults-group-suffix=_root'
 
 #
 # Project
