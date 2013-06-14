@@ -82,7 +82,9 @@ This command:
 
 .. note:: While running it may ask for the remote server ``root`` password or
    the ``sudo`` password (standard password for the remote user configured in
-   the environment) as well as the specified ``db_user`` password.
+   the environment) as well as the specified ``db_user`` and/or database root
+   password.  See the :ref:`mysql_conf <fabric-commands#mysql-conf>` command
+   for a way to eliminate the need for database password prompting.
 
 .. note:: This command will try to create a DB on MySQL, which will fail if
    MySQL is not installed or the settings don't provide configuration data for
@@ -184,7 +186,9 @@ This command:
 
 .. note:: While running it may ask for the remote server ``root`` password or
    the ``sudo`` password (standard password for the remote user configured in
-   the environment) as well as the specified ``db_user`` password.
+   the environment) as well as the specified ``db_user`` and/or database root
+   password.  See the :ref:`mysql_conf <fabric-commands#mysql-conf>` command
+   for a way to eliminate the need for database password prompting.
 
 .. note:: This commands can be used to perform periodic backups, that can be
    imported later using the :ref:`load_db <fabric-commands#load-db>`
@@ -280,7 +284,9 @@ This command:
 
 .. note:: While running it may ask for the remote server ``root`` password or
    the ``sudo`` password (standard password for the remote user configured in
-   the environment) as well as the specified ``db_user`` password.
+   the environment) as well as the specified ``db_user`` and/or database root
+   password.  See the :ref:`mysql_conf <fabric-commands#mysql-conf>` command
+   for a way to eliminate the need for database password prompting.
 
 .. note:: The DB to import to should be created before calling this command, for
    example using the :ref:`create_db <fabric-commands#create-db>` command.
@@ -300,6 +306,27 @@ Examples:
 
     $ fab production create_db  # Remember to create the DB first
     $ fab production load_db:dumpfile=backup_mysql.sql
+
+
+.. _fabric-commands#mysql-conf:
+
+mysql_conf
+----------
+
+.. versionadded:: 2.5.1
+
+This command creates a :file:`.my.cnf` MySQL options file on the remote system
+with the password(s) for database access stored in them (the passwords are
+taken from the :file:`fabric.py` settings file).  Once you have done this, you
+can un-comment the alternate ``db_password_opt`` and ``db_root_password_opt``
+settings in :file:`fabric.py`, which will eliminate the need for password
+prompting on all MySQL operations.
+
+Examples:
+
+.. code-block:: bash
+
+    $ fab production mysql_conf
 
 
 .. _fabric-commands#production:
