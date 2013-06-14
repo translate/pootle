@@ -20,7 +20,7 @@
 
 """Fabric deployment file."""
 
-from os.path import isfile
+from os.path import isfile, isdir
 
 from fabric.api import cd, env
 from fabric.context_managers import hide, prefix, settings
@@ -251,9 +251,12 @@ def dump_db(dumpfile="pootle_DB_backup.sql"):
     """Dumps the DB as a SQL script and downloads it"""
     require('environment', provided_by=[production, staging])
 
-    if isfile(dumpfile) and confirm('\n%s already exists locally. Do you '
-                                    'want to overwrite it?' % dumpfile,
-                                    default=False):
+    if isdir(dumpfile):
+        print("dumpfile '%s' is a directory! Aborting." % dumpfile)
+
+    elif (not isfile(dumpfile) or
+          confirm('\n%s already exists locally. Do you want to overwrite it?'
+                  % dumpfile, default=False)):
 
         remote_filename = '%s/%s' % (env['project_path'], dumpfile)
 
