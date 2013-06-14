@@ -310,6 +310,25 @@ Examples:
     $ fab production load_db:dumpfile=backup_mysql.sql
 
 
+.. _fabric-commands#migratedb:
+
+migratedb
+---------
+
+.. versionadded:: 2.5.1
+
+This command:
+
+- Runs :ref:`migrate <commands#migrate>` to update the 2.5 or later database
+  schema to the latest version
+
+Examples:
+
+.. code-block:: bash
+
+    $ fab production migratedb
+
+
 .. _fabric-commands#mysql-conf:
 
 mysql_conf
@@ -352,6 +371,27 @@ Examples:
 
 In the previous example :command:`production` is called to set up the
 environment for calling :command:`bootstrap` afterwards.
+
+
+.. _fabric-commands#setup-db:
+
+setup_db
+--------
+
+.. versionadded:: 2.5.1
+
+This command:
+
+- Runs :ref:`syncdb --noinput <commands#syncdb>` to create the database schema
+- Runs :ref:`initdb <commands#initdb>` to populate the standard schema objects
+- Runs :ref:`migrate <commands#migrate>` to bring the database schema
+  up to the latest version
+
+Examples:
+
+.. code-block:: bash
+
+    $ fab production setup_db
 
 
 .. _fabric-commands#staging:
@@ -473,7 +513,8 @@ update_db
 
 This command:
 
-- Runs :ref:`updatedb <commands#updatedb>` to update DB schema
+- Runs :ref:`updatedb <commands#updatedb>` and :ref:`migrate
+  <commands#migrate>` to update the database schema to the latest version
 
 Examples:
 

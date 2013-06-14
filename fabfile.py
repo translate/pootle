@@ -148,6 +148,16 @@ def create_db():
             create_db_cmd + grant_db_cmd + "';}")
 
 
+def setup_db():
+    """Runs all the necessary steps to create the DB schema from scratch"""
+    require('environment', provided_by=[production, staging])
+
+    with settings(hide('stdout', 'stderr')):
+        syncdb()
+        initdb()
+        migratedb()
+
+
 def syncdb():
     """Runs `syncdb` to create the DB schema"""
     require('environment', provided_by=[production, staging])
@@ -168,7 +178,26 @@ def initdb():
                 run('python manage.py initdb')
 
 
+def migratedb():
+    """Runs `migrate` to bring the DB schema up to date"""
+    require('environment', provided_by=[production, staging])
+
+    with settings(hide('stdout', 'stderr')):
+        with cd('%(project_repo_path)s' % env):
+            with prefix('source %(env_path)s/bin/activate' % env):
+                run('python manage.py migrate')
+
+
 def update_db():
+    """Updates database schemas up to the latest version"""
+    require('environment', provided_by=[production, staging])
+
+    with settings(hide('stdout', 'stderr')):
+        _updatedb()
+        migratedb()
+
+
+def _updatedb():
     """Updates database schemas up to Pootle version 2.5"""
     require('environment', provided_by=[production, staging])
 

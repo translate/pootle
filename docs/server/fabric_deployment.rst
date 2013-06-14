@@ -250,11 +250,12 @@ alternate value for :setting:`db_password_opt` (and optionally
 Setting Up the Database
 -----------------------
 
-If updating a previous DB to the latest version of the schema:
+If creating a new database from scratch:
 
 .. code-block:: bash
 
-    $ fab production update_db  # Updates DB schema to latest version
+    $ fab production create_db  # Creates Pootle DB on MySQL
+    $ fab production setup_db   # Populates the initial DB and its schema
 
 If creating a blank database and populating with a (local) database backup:
 
@@ -265,6 +266,12 @@ If creating a blank database and populating with a (local) database backup:
 
 .. note:: The dumpfile (for load_db and dump_db) is local to the system where
    Fabric runs, and is automatically copied to/from the remote server.
+
+If updating a previous database to the latest version of the schema:
+
+.. code-block:: bash
+
+    $ fab production update_db  # Updates DB schema to latest version
 
 .. _fabric-deployment#enabling-the-web-server:
 
