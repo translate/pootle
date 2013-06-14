@@ -127,7 +127,9 @@ $(document).magnificPopup({
   }
 });
 $(function() {
-  var options = {};
+  var options = {
+    tmUrl: '{{ AMAGAMA_URL }}'
+  };
   {% if cansuggest or cantranslate %}
   options.mt = [];
     {% for backend, apikey in MT_BACKENDS %}
@@ -138,7 +140,6 @@ $(function() {
   {% for backend in LOOKUP_BACKENDS %}
     options.lookup.push("{{ backend|lower }}");
   {% endfor %}
-  options.tmUrl = '{{ AMAGAMA_URL }}';
   PTL.editor.init(options);
 });
 </script>
