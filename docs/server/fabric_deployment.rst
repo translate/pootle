@@ -132,7 +132,7 @@ put some configuration files in place:
 
 - :file:`deploy/ENVIRONMENT/settings.conf`
   Pootle-specific settings for the server (it will override the defaults). For
-  example, the settings for connecting to the DB will go here.
+  example, the settings for connecting to the database will go here.
 
 - :file:`deploy/ENVIRONMENT/virtualhost.conf`
   Apache VirtualHost configuration file.
@@ -256,7 +256,7 @@ If updating a previous DB to the latest version of the schema:
 
     $ fab production update_db  # Updates DB schema to latest version
 
-If creating a blank DB and populating with a (local) DB backup:
+If creating a blank database and populating with a (local) database backup:
 
 .. code-block:: bash
 

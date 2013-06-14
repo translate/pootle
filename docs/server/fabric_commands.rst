@@ -77,8 +77,8 @@ create_db
 
 This command:
 
-- Creates a new blank DB using the settings provided to Fabric in the chosen
-  environment.
+- Creates a new blank database using the settings provided to Fabric in the
+  chosen environment
 
 .. note:: While running it may ask for the remote server ``root`` password or
    the ``sudo`` password (standard password for the remote user configured in
@@ -86,9 +86,9 @@ This command:
    password.  See the :ref:`mysql_conf <fabric-commands#mysql-conf>` command
    for a way to eliminate the need for database password prompting.
 
-.. note:: This command will try to create a DB on MySQL, which will fail if
-   MySQL is not installed or the settings don't provide configuration data for
-   creating the database.
+.. note:: This command will try to create a database on MySQL, which will fail
+   if MySQL is not installed or the settings don't provide configuration data
+   for creating the database.
 
 Examples:
 
@@ -181,7 +181,8 @@ dump_db
 
 This command:
 
-- Dumps the DB to the provided filename using the :command:`mysqldump` command
+- Dumps the database to the provided filename using the :command:`mysqldump`
+  command
 - Downloads the dumpfile to the local computer
 
 .. note:: While running it may ask for the remote server ``root`` password or
@@ -197,7 +198,7 @@ This command:
 Available options:
 
 ``dumpfile``
-  The filename for the file to dump the DB to.
+  The filename for the file where the database will be dumped.
 
   Default: ``pootle_DB_backup.sql``.
 
@@ -239,7 +240,7 @@ initdb
 
 This command:
 
-- Runs :ref:`initdb <commands#initdb>` to initialize the DB
+- Runs :ref:`initdb <commands#initdb>` to initialize the database
 
 Examples:
 
@@ -279,8 +280,8 @@ load_db
 This command:
 
 - Uploads the given SQL dump file to the remote server
-- Imports it to the DB specified on Fabric settings using the :command:`mysql`
-  command
+- Imports it to the database specified on Fabric settings using the
+  :command:`mysql` command
 
 .. note:: While running it may ask for the remote server ``root`` password or
    the ``sudo`` password (standard password for the remote user configured in
@@ -288,15 +289,16 @@ This command:
    password.  See the :ref:`mysql_conf <fabric-commands#mysql-conf>` command
    for a way to eliminate the need for database password prompting.
 
-.. note:: The DB to import to should be created before calling this command, for
-   example using the :ref:`create_db <fabric-commands#create-db>` command.
+.. note:: You must first create the database you will import (e.g. using the
+   :ref:`create_db <fabric-commands#create-db>` command) before calling this
+   command,
 
 Available options:
 
 ``dumpfile``
   The SQL dump filename that will be uploaded to and imported into an existing
-  DB on the remote server. This file can be created using the :ref:`dump_db
-  <fabric-commands#dump-db>` command.
+  database on the remote server. This file can be created using the
+  :ref:`dump_db <fabric-commands#dump-db>` command.
 
   .. note:: This is a required option.
 
@@ -383,7 +385,7 @@ syncdb
 
 This command:
 
-- Runs :ref:`syncdb --noinput <commands#syncdb>` to create the DB schema
+- Runs :ref:`syncdb --noinput <commands#syncdb>` to create the database schema
 
 Examples:
 
