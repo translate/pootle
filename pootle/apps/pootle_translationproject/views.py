@@ -253,6 +253,16 @@ class ProjectIndexView(view_handler.View):
                 }
             })
 
+            # If current directory is the TP root directory.
+            if not directory.path:
+                template_vars.update({
+                    'latest_action': translation_project.get_latest_submission()
+                })
+            else:
+                template_vars.update({
+                    'latest_action': Submission.get_latest_for_dir(path_obj)
+                })
+
         if can_edit:
             from pootle_translationproject.forms import DescriptionForm
             template_vars['form'] = DescriptionForm(instance=translation_project)

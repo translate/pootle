@@ -1,5 +1,5 @@
 {% extends "tp_base.html" %}
-{% load assets baseurl cache cleanhtml i18n locale progressbar search translation_project_tags common_tags %}
+{% load assets baseurl cache cleanhtml i18n locale progressbar search translation_project_tags common_tags profile_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block body_id %}tpoverview{% endblock %}
@@ -33,6 +33,17 @@
   {% if table %}
   <div class="hd">
     <h2>{% trans "Files and Subfolders" %}</h2>
+    {% if latest_action %}
+    <div class="last-action">
+      <a href="{{ latest_action.by_profile.get_absolute_url }}">
+        <img src="{{ latest_action.by_profile|gravatar:20 }}" />
+        {{ latest_action.by_profile.user.username }}
+      </a>
+      {{ latest_action.action|safe }}
+      <time class="extra-item-meta js-relative-date" title="{{ latest_action.date }}"
+        datetime="{{ latest_action.date.isoformat }}">&nbsp;</time>
+    </div>
+    {% endif %}
   </div>
   <div class="bd">
     <div class="files-subfolders" lang="{{ LANGUAGE_CODE }}">
@@ -156,6 +167,10 @@ $(function() {
 
     return false;
   });
+
+  PTL.common.updateRelativeDates();
+  setInterval(PTL.common.updateRelativeDates, 6e4);
+
 {% if upload %}
   $("select#id_upload_to_dir").parent().hide();
   $("input#id_file").change(function() {
