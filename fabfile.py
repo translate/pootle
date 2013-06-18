@@ -20,7 +20,7 @@
 
 """Fabric deployment file."""
 
-from os.path import isfile
+from os.path import isfile, isdir
 
 from fabric.api import cd, env
 from fabric.context_managers import hide, prefix, settings
@@ -36,14 +36,26 @@ from fabric.operations import require, run, sudo, put, get
 
 def production():
     """Work on the production environment"""
-    from deploy.production import fabric
+
+    try:
+        from deploy.production import fabric
+    except ImportError:
+        print("Unable to load 'production' environment - is PYTHONPATH set?")
+        exit(1)
+        
     env.update(fabric.SETTINGS)
     env.environment = 'production'
 
 
 def staging():
     """Work on the staging environment"""
-    from deploy.staging import fabric
+
+    try:
+        from deploy.staging import fabric
+    except ImportError:
+        print("Unable to load 'staging' environment - is PYTHONPATH set?")
+        exit(1)
+
     env.update(fabric.SETTINGS)
     env.environment = 'staging'
 
@@ -111,9 +123,9 @@ def bootstrap(branch="master"):
     """Bootstraps a Pootle deployment using the specified branch"""
     require('environment', provided_by=[production, staging])
 
-    if (exists('%(project_path)s' % env) and
+    if (not exists('%(project_path)s' % env) or
         confirm('\n%(project_path)s already exists. Do you want to continue?'
-                % env, default=False)) or not exists('%(project_path)s' % env):
+                % env, default=False)):
 
             print('Bootstrapping initial directories...')
 
@@ -140,10 +152,22 @@ def create_db():
                     % env)
 
     with settings(hide('stderr')):
-        sudo(("mysql -u %(db_user)s -p -e '" % env) + create_db_cmd +
-             ("' || { test root = '%(db_user)s' && exit $?; " % env) +
-             "echo 'Trying again, with MySQL root DB user'; "
-             "mysql -u root -p -e '" + create_db_cmd + grant_db_cmd + "';}")
+        run(("mysql -u %(db_user)s %(db_password_opt)s -e '" % env) +
+            create_db_cmd +
+            ("' || { test root = '%(db_user)s' && exit $?; " % env) +
+            "echo 'Trying again, with MySQL root DB user'; "
+            "mysql -u root %(db_root_password_opt)s -e '" +
+            create_db_cmd + grant_db_cmd + "';}")
+
+
+def setup_db():
+    """Runs all the necessary steps to create the DB schema from scratch"""
+    require('environment', provided_by=[production, staging])
+
+    with settings(hide('stdout', 'stderr')):
+        syncdb()
+        initdb()
+        migratedb()
 
 
 def syncdb():
@@ -166,7 +190,26 @@ def initdb():
                 run('python manage.py initdb')
 
 
+def migratedb():
+    """Runs `migrate` to bring the DB schema up to date"""
+    require('environment', provided_by=[production, staging])
+
+    with settings(hide('stdout', 'stderr')):
+        with cd('%(project_repo_path)s' % env):
+            with prefix('source %(env_path)s/bin/activate' % env):
+                run('python manage.py migrate')
+
+
 def update_db():
+    """Updates database schemas up to the latest version"""
+    require('environment', provided_by=[production, staging])
+
+    with settings(hide('stdout', 'stderr')):
+        _updatedb()
+        migratedb()
+
+
+def _updatedb():
     """Updates database schemas up to Pootle version 2.5"""
     require('environment', provided_by=[production, staging])
 
@@ -184,18 +227,18 @@ def load_db(dumpfile=None):
         if isfile(dumpfile):
             remote_filename = '%(project_path)s/DB_backup_to_load.sql' % env
 
-            if (exists(remote_filename) and
+            if (not exists(remote_filename) or
                 confirm('\n%s already exists. Do you want to overwrite it?'
-                        % remote_filename,
-                        default=False)) or not exists(remote_filename):
+                        % remote_filename, default=False)):
 
                 print('\nLoading data into the DB...')
 
                 with settings(hide('stderr')):
-                    put(dumpfile, remote_filename, use_sudo=True)
-                    sudo('mysql -u %s -p %s < %s' % (env['db_user'],
-                                                     env['db_name'],
-                                                     remote_filename))
+                    put(dumpfile, remote_filename)
+                    run('mysql -u %s %s %s < %s' %
+                        (env['db_user'], env['db_password_opt'],
+                         env['db_name'], remote_filename))
+                    run('rm %s' % (remote_filename))
             else:
                 print('\nAborting.')
         else:
@@ -208,23 +251,27 @@ def dump_db(dumpfile="pootle_DB_backup.sql"):
     """Dumps the DB as a SQL script and downloads it"""
     require('environment', provided_by=[production, staging])
 
-    if isfile(dumpfile) and confirm('\n%s already exists locally. Do you '
-                                    'want to overwrite it?' % dumpfile,
-                                    default=False):
+    if isdir(dumpfile):
+        print("dumpfile '%s' is a directory! Aborting." % dumpfile)
+
+    elif (not isfile(dumpfile) or
+          confirm('\n%s already exists locally. Do you want to overwrite it?'
+                  % dumpfile, default=False)):
 
         remote_filename = '%s/%s' % (env['project_path'], dumpfile)
 
-        if ((exists(remote_filename) and confirm('\n%s already exists. Do you '
-            'want to overwrite it?' % remote_filename, default=False))
-            or not exists(remote_filename)):
+        if (not exists(remote_filename) or
+            confirm('\n%s already exists. Do you want to overwrite it?'
+                    % remote_filename, default=False)):
 
             print('\nDumping DB...')
 
             with settings(hide('stderr')):
-                sudo('mysqldump -u %s -p %s > %s' % (env['db_user'],
-                                                     env['db_name'],
-                                                     remote_filename))
+                run('mysqldump -u %s %s %s > %s' %
+                    (env['db_user'], env['db_password_opt'],
+                     env['db_name'], remote_filename))
                 get(remote_filename, '.')
+                run('rm %s' % (remote_filename))
         else:
             print('\nAborting.')
     else:
@@ -347,3 +394,22 @@ def compile_translations():
         with cd(env.project_repo_path):
             with prefix('source %(env_path)s/bin/activate' % env):
                 run('python setup.py build_mo')
+
+def mysql_conf():
+    """Sets up .my.cnf file for passwordless MySQL operation"""
+    require('environment', provided_by=[production, staging])
+
+    print('Setting up MySQL password configuration...')
+
+    conf_filename = '~/.my.cnf'
+
+    if (not exists(conf_filename) or
+        confirm('\n%s already exists. Do you want to overwrite it?'
+                % conf_filename, default=False)):
+
+        with settings(hide('stdout', 'stderr')):
+            upload_template('deploy/my.cnf' % env, conf_filename, context=env)
+            run('chmod 600 %s' % conf_filename)
+
+    else:
+        print('\nAborting.')

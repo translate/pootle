@@ -132,7 +132,7 @@ put some configuration files in place:
 
 - :file:`deploy/ENVIRONMENT/settings.conf`
   Pootle-specific settings for the server (it will override the defaults). For
-  example, the settings for connecting to the DB will go here.
+  example, the settings for connecting to the database will go here.
 
 - :file:`deploy/ENVIRONMENT/virtualhost.conf`
   Apache VirtualHost configuration file.
@@ -160,7 +160,15 @@ Once you make your changes to the settings you are ready to run the
 Fabric commands.
 
 .. note:: For security, please make sure you change the ``db_password`` setting
-   - using the example one could make your server vulnerable to exploits.
+   - using the example one could make your server vulnerable to exploits.  The
+   ``db_password`` setting is used both to properly configure Pootle, as well
+   as to set up the database user access for the deployment.
+
+   The ``db_root_password`` setting, on the other hand, is only used to
+   configure the MySQL options file, if you choose to do this, and is only
+   needed when creating the database (if the normal user does not have the
+   necessary permissions).  Leaving this with default setting will have no
+   security impact.
 
 
 .. _fabric-deployment#how-to-run-commands:
@@ -206,18 +214,50 @@ with the bootstrap command.
     $ fab production bootstrap:branch=stable/2.5.0  # Install Pootle 2.5
 
 
+.. _fabric-deployment#configuring-passwordless-access:
+
+Configuring passwordless access
+-------------------------------
+
+While it is not required, it is much easier to perform deployment operations
+without interactive prompts for login, sudo, or MySQL database passwords.
+
+You can eliminate the need for an SSH login password by adding your public SSH
+key(s) to the :file:`~/.ssh/authorized_hosts` file of the user on the remote
+server.
+
+You can eliminate the need for sudo passwords by adding a file (with
+permissions mode 440) containing ``username ALL = (ALL) NOPASSWD: ALL`` (where
+*username* is replaced with the user configured in the :file:`fabric.py`
+settings) to the :file:`/etc/sudoers.d/` directory.
+
+You can eliminate the need for MySQL passwords by configuring the database
+password(s) in the :file:`fabric.py` settings file, running the
+:ref:`mysql_conf <fabric-commands#mysql-conf>` fabric command to create a MySQL
+options file for the remote user:
+
+.. code-block:: bash
+
+    $ fab production mysql_conf  # Set up MySQL options file
+
+and then modifying the :file:`fabric.py` settings file to un-comment the
+alternate value for :setting:`db_password_opt` (and optionally
+:setting:`db_root_password_opt`, if :setting:`db_root_password` is configured).
+
+
 .. _fabric-deployment#setting-up-the-database:
 
 Setting Up the Database
 -----------------------
 
-If updating a previous DB to the latest version of the schema:
+If creating a new database from scratch:
 
 .. code-block:: bash
 
-    $ fab production update_db  # Updates DB schema to latest version
+    $ fab production create_db  # Creates Pootle DB on MySQL
+    $ fab production setup_db   # Populates the initial DB and its schema
 
-If creating a blank DB and populating with a (local) DB backup:
+If creating a blank database and populating with a (local) database backup:
 
 .. code-block:: bash
 
@@ -226,6 +266,12 @@ If creating a blank DB and populating with a (local) DB backup:
 
 .. note:: The dumpfile (for load_db and dump_db) is local to the system where
    Fabric runs, and is automatically copied to/from the remote server.
+
+If updating a previous database to the latest version of the schema:
+
+.. code-block:: bash
+
+    $ fab production update_db  # Updates DB schema to latest version
 
 .. _fabric-deployment#enabling-the-web-server:
 
@@ -237,7 +283,7 @@ Enabling the web server
     $ fab production deploy:branch=stable/2.5.0
 
 
-.. _fabric-deployment#notes-on-fabric-commands
+.. _fabric-deployment#notes-on-fabric-commands:
 
 Notes on Fabric commands
 ------------------------
