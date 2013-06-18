@@ -111,9 +111,9 @@ def bootstrap(branch="master"):
     """Bootstraps a Pootle deployment using the specified branch"""
     require('environment', provided_by=[production, staging])
 
-    if (exists('%(project_path)s' % env) and
+    if (not exists('%(project_path)s' % env) or
         confirm('\n%(project_path)s already exists. Do you want to continue?'
-                % env, default=False)) or not exists('%(project_path)s' % env):
+                % env, default=False)):
 
             print('Bootstrapping initial directories...')
 
@@ -184,10 +184,9 @@ def load_db(dumpfile=None):
         if isfile(dumpfile):
             remote_filename = '%(project_path)s/DB_backup_to_load.sql' % env
 
-            if (exists(remote_filename) and
+            if (not exists(remote_filename) or
                 confirm('\n%s already exists. Do you want to overwrite it?'
-                        % remote_filename,
-                        default=False)) or not exists(remote_filename):
+                        % remote_filename, default=False)):
 
                 print('\nLoading data into the DB...')
 
@@ -214,9 +213,9 @@ def dump_db(dumpfile="pootle_DB_backup.sql"):
 
         remote_filename = '%s/%s' % (env['project_path'], dumpfile)
 
-        if ((exists(remote_filename) and confirm('\n%s already exists. Do you '
-            'want to overwrite it?' % remote_filename, default=False))
-            or not exists(remote_filename)):
+        if (not exists(remote_filename) or
+            confirm('\n%s already exists. Do you want to overwrite it?'
+                    % remote_filename, default=False)):
 
             print('\nDumping DB...')
 
