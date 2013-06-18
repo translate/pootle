@@ -155,8 +155,8 @@ def create_db():
         run(("mysql -u %(db_user)s %(db_password_opt)s -e '" % env) +
             create_db_cmd +
             ("' || { test root = '%(db_user)s' && exit $?; " % env) +
-            "echo 'Trying again, with MySQL root DB user'; "
-            "mysql -u root %(db_root_password_opt)s -e '" +
+            "echo 'Trying again, with MySQL root DB user'; " +
+            ("mysql -u root %(db_root_password_opt)s -e '" % env) +
             create_db_cmd + grant_db_cmd + "';}")
 
 
