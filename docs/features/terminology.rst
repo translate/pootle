@@ -69,7 +69,7 @@ Generating terminology
 .. versionadded:: 2.1
 
 Project administrators can generate a list of frequently occurring terms from
-the *Translate* tab in the Pootle interface, which can help to quickly
+the *Terminology* tab in the Pootle interface, which can help to quickly
 standardize some frequently occurring terms.  It is also possible to add extra
 entries.  This is based on the :ref:`poterminology <toolkit:poterminology>`
 tool from the Translate Toolkit.
