@@ -27,7 +27,7 @@ SETTINGS = {}
 #
 
 #: List of hosts to work on
-SETTINGS['hosts'] = ['foo.bar.tld']
+SETTINGS['hosts'] = ['foo.example.com']
 #: Username to log in in the remote machine
 SETTINGS['user'] = 'foobarbaz'
 
@@ -53,7 +53,7 @@ SETTINGS['db_password'] = 'SET_DB_PASSWORD_HERE'
 #: A meaningful name for your Pootle installation
 SETTINGS['project_name'] = 'pootle-staging'
 #: This URL will be used in the VirtualHost section
-SETTINGS['project_url'] = 'my-pootle.foo.tld'
+SETTINGS['project_url'] = 'my-pootle.example.com'
 #: Change the first path part if your Apache websites are stored somewhere else
 SETTINGS['project_path'] = '/var/www/sites/%s' % SETTINGS['project_name']
 
