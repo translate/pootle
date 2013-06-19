@@ -122,12 +122,9 @@ def get_resource_context(permission_codes):
             resource_path = dir_path
             pootle_path = ctx_path + dir_path
 
-            if dir_path:
-                directory = Directory.objects.get(pootle_path=pootle_path)
-            else:
-                directory = translation_project.directory
-
+            directory = None
             store = None
+
             if filename:
                 pootle_path = pootle_path + filename
                 resource_path = resource_path + filename
@@ -137,8 +134,15 @@ def get_resource_context(permission_codes):
                         'translation_project',
                         'parent',
                     ).get(pootle_path=pootle_path)
+                    directory = store.parent
                 except Store.DoesNotExist:
                     raise Http404
+
+            if directory is None:
+                if dir_path:
+                    directory = Directory.objects.get(pootle_path=pootle_path)
+                else:
+                    directory = translation_project.directory
 
             _common_context(request, translation_project, permission_codes)
 
