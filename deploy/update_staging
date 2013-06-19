@@ -132,10 +132,17 @@ ssh $REMOTE "cd $SRC_DIR/.. && source env/bin/activate && (
  cd $REMOTE_PODIRECTORY/pootle
  podebug --errorlevel=traceback --rewrite=xxx templates/ xxx
  podebug --errorlevel=traceback --rewrite=unicode templates/ uni
-)"
+); sleep 10"
 
 log "Building UI languages"
 fab staging compile_translations
 
-log "Enabling site back on"
+sleep 10
+log "Enabling site again"
+fab staging enable_site
+
+# The sleep here and above are work arounds for sshd rate limiting (or
+# something like that) causing Connection Refused exceptions on fab commands.
+sleep 30
+log "Enabling site again (double-check)"
 fab staging enable_site
