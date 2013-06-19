@@ -23,7 +23,8 @@
 <div id="editor"
     data-is-single-file="{{ is_single_file|yesno:"true,false" }}"
     data-pootle-path="{{ pootle_path }}"
-    data-path="{{ path }}">
+    data-ctx-path="{{ ctx_path }}"
+    data-resource-path="{{ resource_path }}">
     <noscript>
       <h1>{% trans "Pootle's editor requires JavaScript" %}</h1>
       <p>{% trans "Please enable JavaScript in your browser preferences and reload the page." %}</p>

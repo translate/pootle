@@ -22,10 +22,6 @@
 from django.conf.urls import patterns, url
 
 urlpatterns = patterns('pootle_app.views.language.view',
-    # Translation
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)translate.html$',
-        'translate', name='translate-wide'),
-
     # XHR
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)checks.html$',
         'get_failing_checks_dir'),

@@ -22,8 +22,6 @@ from django.utils.translation import ugettext_lazy as _
 
 from translate.filters.decorators import Category
 
-from pootle_misc import dispatch
-
 
 category_names = {
     Category.CRITICAL: _("Critical"),
@@ -123,8 +121,9 @@ def get_quality_check_failures(path_obj, path_stats, include_url=True):
                     }
 
                     if include_url:
-                        check['url'] = dispatch.translate(path_obj,
-                                                          check=checkname)
+                        check['url'] = path_obj.get_translate_url(
+                                check=checkname,
+                            )
 
                     checks[i]['checks'].append(check)
     except IOError:
