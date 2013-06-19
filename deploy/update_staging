@@ -3,8 +3,10 @@
 # Exit cleanly on Ctrl-C
 trap 'exit 1' INT
 
-PODIRECTORY='/var/www/sites/pootle-staging/translations/'
+PODIRECTORY='/var/www/sites/pootle/translations/'
 PODIRECTORY_MOZ='/var/www/sites/mozilla/translations/'
+
+REMOTE_PODIRECTORY='/var/www/sites/pootle-staging/translations/'
 
 SRC_DIR='/var/www/sites/pootle-staging/src'
 
@@ -55,12 +57,14 @@ bzcat /var/backups/pootle_`date +%A`.sql.bz2 |
 (echo y; echo y) | fab staging load_db:production.sql
 rm -f production.sql
 
-#TODO: copy podirectory
+# Copy translation files
+ssh $REMOTE "rm -rf $REMOTE_PODIRECTORY/*"
+log "Copying Pootle translation files"
+scp -qpr $PODIRECTORY/* $REMOTE:$REMOTE_PODIRECTORY
 
 # Copy Firefox project from moz_pootle
 log "Copying Firefox translation files"
-ssh $REMOTE rm -rf $PODIRECTORY/firefox/
-scp -qpr $PODIRECTORY_MOZ/firefox/ $REMOTE:$PODIRECTORY
+scp -qpr $PODIRECTORY_MOZ/firefox/ $REMOTE:$REMOTE_PODIRECTORY
 
 # Update the database to the latest (even though updatedb is no longer needed,
 # and after production moves to 2.5.1, syncdb and migrate --fake aren't either)
@@ -119,9 +123,16 @@ CONTENT
 log "Collecting static files"
 fab staging deploy_static
 
-#log "Creating debug UI languages"
-ssh $REMOTE "cd $SRC_DIR/pootle && source ../../env/bin/activate && podebug --errorlevel=traceback --rewrite=xxx locale/templates/ po/xxx"
-ssh $REMOTE "cd $SRC_DIR/pootle && source ../../env/bin/activate && podebug --errorlevel=traceback --rewrite=unicode locale/templates/ po/uni"
+log "Creating debug UI languages"
+ssh $REMOTE "cd $SRC_DIR/.. && source env/bin/activate && (
+ cd $SRC_DIR/pootle
+ podebug --errorlevel=traceback --rewrite=xxx locale/templates/ po/xxx
+ podebug --errorlevel=traceback --rewrite=unicode locale/templates/ po/uni
+) && (
+ cd $REMOTE_PODIRECTORY/pootle
+ podebug --errorlevel=traceback --rewrite=xxx templates/ xxx
+ podebug --errorlevel=traceback --rewrite=unicode templates/ uni
+)"
 
 log "Building UI languages"
 fab staging compile_translations
