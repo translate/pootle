@@ -58,9 +58,9 @@ rm -f production.sql
 #TODO: copy podirectory
 
 # Copy Firefox project from moz_pootle
-#log "Copying Firefox translation files"
-#ssh $REMOTE rm -rf $PODIRECTORY/firefox/
-#scp -qpr $PODIRECTORY_MOZ/firefox/ $REMOTE:$PODIRECTORY
+log "Copying Firefox translation files"
+ssh $REMOTE rm -rf $PODIRECTORY/firefox/
+scp -qpr $PODIRECTORY_MOZ/firefox/ $REMOTE:$PODIRECTORY
 
 # Update the database to the latest (even though updatedb is no longer needed,
 # and after production moves to 2.5.1, syncdb and migrate --fake aren't either)
@@ -95,32 +95,33 @@ fab staging upgrade
 #c.save()
 #CONTENT
 
-## Create Firefox project *after* migrating the DB
-#ssh $REMOTE python - <<CONTENT
-#import os
-#os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
-#
-#from pootle import syspath_override
-#from pootle_app.management import require_english
-#from pootle_project.models import Project
-#
-#en = require_english()
-#
-#fx = Project(code=u"firefox", source_language=en)
-#fx.fullname = u"Mozilla Firefox"
-#fx.description = "Mozilla Firefox (Aurora)"
-#fx.checkstyle = "mozilla"
-#fx.localfiletype = "po"
-#fx.treestyle = "auto"
-#fx.save()
-#CONTENT
+# Create Firefox project *after* migrating the DB
+log "Creating Firefox project "
+ssh $REMOTE "cd $SRC_DIR && source ../env/bin/activate python -" <<CONTENT
+import os
+os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
+
+from pootle import syspath_override
+from pootle_app.management import require_english
+from pootle_project.models import Project
+
+en = require_english()
+
+fx = Project(code=u"firefox", source_language=en)
+fx.fullname = u"Mozilla Firefox"
+fx.description = "Mozilla Firefox (Aurora)"
+fx.checkstyle = "mozilla"
+fx.localfiletype = "po"
+fx.treestyle = "auto"
+fx.save()
+CONTENT
 
 log "Collecting static files"
 fab staging deploy_static
 
 #log "Creating debug UI languages"
-#ssh $REMOTE "cd $SRC_DIR && podebug --errorlevel=traceback --rewrite=xxx locale/templates/ po/xxx"
-#ssh $REMOTE "cd $SRC_DIR && podebug --errorlevel=traceback --rewrite=unicode locale/templates/ po/uni"
+ssh $REMOTE "cd $SRC_DIR/pootle && source ../../env/bin/activate && podebug --errorlevel=traceback --rewrite=xxx locale/templates/ po/xxx"
+ssh $REMOTE "cd $SRC_DIR/pootle && source ../../env/bin/activate && podebug --errorlevel=traceback --rewrite=unicode locale/templates/ po/uni"
 
 log "Building UI languages"
 fab staging compile_translations
