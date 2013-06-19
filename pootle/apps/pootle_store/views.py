@@ -495,7 +495,6 @@ def translate_page(request):
         'project': project,
         'translation_project': translation_project,
         'profile': profile,
-        'source_language': translation_project.project.source_language,
         'previous_overview_url': previous_overview_url,
         'MT_BACKENDS': settings.MT_BACKENDS,
         'LOOKUP_BACKENDS': settings.LOOKUP_BACKENDS,
