@@ -172,6 +172,31 @@ Examples:
     $ fab production disable_site
 
 
+.. _fabric-commands#drop-db:
+
+drop_db
+---------
+
+.. versionadded:: 2.5.1
+
+This command:
+
+- Drops a database (losing all data!) using the settings provided to
+  Fabric in the chosen environment
+
+.. note:: While running it may ask for the remote server ``root`` password or
+   the ``sudo`` password (standard password for the remote user configured in
+   the environment) as well as the specified ``db_user`` and/or database root
+   password.  See the :ref:`mysql_conf <fabric-commands#mysql-conf>` command
+   for a way to eliminate the need for database password prompting.
+
+Examples:
+
+.. code-block:: bash
+
+    $ fab production drop_db
+
+
 .. _fabric-commands#dump-db:
 
 dump_db
@@ -521,3 +546,27 @@ Examples:
 .. code-block:: bash
 
     $ fab production update_db
+
+
+.. _fabric-commands#upgrade:
+
+upgrade
+------
+
+.. versionadded:: 2.5.1
+
+This command:
+
+- Runs :ref:`upgrade <commands#upgrade>` to apply any special
+  post-schema-upgrade actions (including changes needed for updated Translate
+  Toolkit version).  This would typically be performed after running the
+  :ref:`update_code <fabric-commands#update_code>` command. If you haven't
+  just upgraded Pootle or the Translate Toolkit to a new release, this isn't
+  generally required, so there is no need to run it unless release notes or
+  other instructions direct you to do so.
+
+Examples:
+
+.. code-block:: bash
+
+    $ fab production upgrade

@@ -160,14 +160,25 @@ def create_db():
             create_db_cmd + grant_db_cmd + "';}")
 
 
+def drop_db():
+    """Drops the current DB - losing all data!"""
+    require('environment', provided_by=[production, staging])
+
+    if confirm('\nDropping the %s DB loses ALL its data! Are you sure?'
+               % (env['db_name']), default=False):
+        run("echo 'DROP DATABASE `%s`' | mysql -u %s %s" %
+            (env['db_name'], env['db_user'], env['db_password_opt']))
+    else:
+        print('Aborting.')
+
+
 def setup_db():
     """Runs all the necessary steps to create the DB schema from scratch"""
     require('environment', provided_by=[production, staging])
 
-    with settings(hide('stdout', 'stderr')):
-        syncdb()
-        initdb()
-        migratedb()
+    syncdb()
+    migratedb()
+    initdb()
 
 
 def syncdb():
@@ -191,22 +202,25 @@ def initdb():
 
 
 def migratedb():
-    """Runs `migrate` to bring the DB schema up to date"""
+    """Runs `migrate` to bring the DB up to date with the latest schema"""
     require('environment', provided_by=[production, staging])
 
     with settings(hide('stdout', 'stderr')):
         with cd('%(project_repo_path)s' % env):
             with prefix('source %(env_path)s/bin/activate' % env):
-                run('python manage.py migrate')
+                run('python manage.py migrate --noinput')
 
 
 def update_db():
-    """Updates database schemas up to the latest version"""
+    """Runs all the necessary (and probably some unnecessary) steps to
+    update DB to the latest schema version
+    """
     require('environment', provided_by=[production, staging])
 
-    with settings(hide('stdout', 'stderr')):
-        _updatedb()
-        migratedb()
+    _updatedb()
+    syncdb()
+    _migrate_fake()
+    migratedb()
 
 
 def _updatedb():
@@ -217,6 +231,28 @@ def _updatedb():
         with cd('%(project_repo_path)s' % env):
             with prefix('source %(env_path)s/bin/activate' % env):
                 run('python manage.py updatedb')
+
+
+def _migrate_fake():
+    """Runs `migrate --fake` to convert the DB to migrations"""
+    require('environment', provided_by=[production, staging])
+
+    with settings(hide('stdout', 'stderr')):
+        with cd('%(project_repo_path)s' % env):
+            with prefix('source %(env_path)s/bin/activate' % env):
+                # Don't fake (back to) initial migration if already converted
+                run(r"if ! python manage.py migrate --list | grep '(\*) 0001';"
+                    "then python manage.py migrate --all --fake 0001; fi")
+
+
+def upgrade():
+    """Runs `upgrade` to upgrade the DB for new Pootle/Translate Toolkit"""
+    require('environment', provided_by=[production, staging])
+
+    with settings(hide('stdout', 'stderr')):
+        with cd('%(project_repo_path)s' % env):
+            with prefix('source %(env_path)s/bin/activate' % env):
+                run('python manage.py upgrade')
 
 
 def load_db(dumpfile=None):

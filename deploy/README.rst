@@ -2,13 +2,14 @@
 Fabric deployment files
 =======================
 
-This directory contains sample files that can be used in combination with
-the *fabfile* available in the repository for deploying Pootle servers.
+This directory contains sample files that can be used for deploying Pootle
+servers in combination with the *fabfile* (``fabfile.py``) present at the
+top-level directory of the Pootle repository
 
-This *fabfile* will setup a Pootle server within a virtual environment,
-running in a Apache server with *mod_wsgi*.
+The *fabfile* will setup a Pootle server using a Python virtualenv,
+running in an Apache server with *mod_wsgi*.
 
-Please read the following docs for more information:
+Please read the following for more information:
 http://docs.translatehouse.org/projects/pootle/en/latest/server/fabric_deployment.html
 
 The deployment is separated in two different environments:
@@ -40,6 +41,17 @@ All the settings defined in the ``fabric.py`` module will populate the Fabric
 *settings.conf* and *virtualhost.conf* files. You can use basic Python string
 formatting to access the configuration values.
 
-Sample configuration files are provided for reference under the */deploy/*
-directory. Adapt them to your needs and put them in the right location before
-running any Fabric commands.
+Sample configuration files are provided for reference in this *deploy*
+directory. Adapt them to your needs and put them in the right location
+(*production* and *staging* subdirectories) before running any Fabric commands.
+
+
+Other scripts
+-------------
+
+Once you have your Fabric configuration set up and have created production and
+staging servers, you may be interested in automatically copying data from
+production to staging, for testing with live data.  The *update_staging* shell
+script is an example of how you can do this (you will probably want to comment
+out or delete many parts of the script that aren't relevant to your
+deployment).
