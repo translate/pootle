@@ -476,8 +476,9 @@ collectstatic
 Running the Django admin :djadmin:`django:collectstatic` command finds
 and extracts static content such as images, CSS and JavaScript files used by 
 the Pootle server, so that they can be served separately from a static
-webserver.  Typically, this is run with the `--clear --noinput` options, to
-flush any existing static data and use default answers for the content finders.
+webserver.  Typically, this is run with the :option:`--clear`
+:option:`--noinput` options, to flush any existing static data and use default
+answers for the content finders.
 
 .. _commands#assets:
 
@@ -486,7 +487,8 @@ assets
 
 Pootle uses the Django app `django-assets`_ interface of `webassets` to minify
 and bundle CSS and JavaScript; this app has a management command that is used
-to make these preparations using the command ``assets build``.
+to make these preparations using the command ``assets build``. This command is
+usually executed after the :ref:`collectstatic <commands#collectstatic>` one.
 
 .. _commands#useful_django_commands:
 

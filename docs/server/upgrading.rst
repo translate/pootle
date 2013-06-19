@@ -51,6 +51,9 @@ checklist.
 
     $ pootle createcachetable pootlecache
 
+* Finally run the :ref:`collectstatic <commands#collectstatic>` and
+  :ref:`assets build <commands#assets>` commands.
+
 
 .. _upgrading#database:
 
