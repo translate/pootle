@@ -403,6 +403,12 @@ the fact that the initial schema version already exists:
     $ pootle migrate --all --fake 0001
     $ pootle migrate
 
+.. warning:: Running ``pootle migrate --all --fake 0001`` a second time (after
+   you have run the normal migrate command) will create serious confusion and
+   cause future migrations to fail.  If this happens, you *might* be able to
+   recover by running ``pootle migrate --fake`` (if you have not installed any
+   update that added additional migrations).
+
 
 .. _commands#initdb:
 
@@ -420,6 +426,7 @@ several terminology projects, and creates the tutorial project.
   best to run** :ref:`commands#refresh_stats` **immediately after initdb**.
 
 .. _commands#updatedb:
+
 
 updatedb
 ^^^^^^^^
