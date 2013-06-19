@@ -160,6 +160,18 @@ def create_db():
             create_db_cmd + grant_db_cmd + "';}")
 
 
+def drop_db():
+    """Drops the current DB - losing all data!"""
+    require('environment', provided_by=[production, staging])
+
+    if confirm('\nDropping the %s DB loses ALL its data! Are you sure?'
+               % (env['db_name']), default=False):
+        run("echo 'DROP DATABASE `%s`' | mysql -u %s %s" %
+            (env['db_name'], env['db_user'], env['db_password_opt']))
+    else:
+        print('Aborting.')
+
+
 def setup_db():
     """Runs all the necessary steps to create the DB schema from scratch"""
     require('environment', provided_by=[production, staging])
@@ -217,6 +229,16 @@ def _updatedb():
         with cd('%(project_repo_path)s' % env):
             with prefix('source %(env_path)s/bin/activate' % env):
                 run('python manage.py updatedb')
+
+
+def upgrade():
+    """Runs `upgrade` to upgrade the DB for new Pootle/Translate Toolkit"""
+    require('environment', provided_by=[production, staging])
+
+    with settings(hide('stdout', 'stderr')):
+        with cd('%(project_repo_path)s' % env):
+            with prefix('source %(env_path)s/bin/activate' % env):
+                run('python manage.py upgrade')
 
 
 def load_db(dumpfile=None):

@@ -267,11 +267,13 @@ If creating a blank database and populating with a (local) database backup:
 .. note:: The dumpfile (for load_db and dump_db) is local to the system where
    Fabric runs, and is automatically copied to/from the remote server.
 
-If updating a previous database to the latest version of the schema:
+If updating a previous version database (possibly just loaded with load_db)
+to the latest version of the schema:
 
 .. code-block:: bash
 
     $ fab production update_db  # Updates DB schema to latest version
+    $ fab production upgrade    # Applies various non-schema cleanup & recovery
 
 .. _fabric-deployment#enabling-the-web-server:
 
