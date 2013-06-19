@@ -44,3 +44,14 @@ formatting to access the configuration values.
 Sample configuration files are provided for reference in this *deploy*
 directory. Adapt them to your needs and put them in the right location
 (*production* and *staging* subdirectories) before running any Fabric commands.
+
+
+Other scripts
+-------------
+
+Once you have your Fabric configuration set up and have created production and
+staging servers, you may be interested in automatically copying data from
+production to staging, for testing with live data.  The *update_staging* shell
+script is an example of how you can do this (you will probably want to comment
+out or delete many parts of the script that aren't relevant to your
+deployment).
