@@ -39,7 +39,6 @@ from pootle_app.views.admin.permissions import admin_permissions
 from pootle_app.views.index.index import getprojects
 from pootle_app.views.top_stats import gentopstats_project, gentopstats_root
 from pootle_language.models import Language
-from pootle_misc import dispatch
 from pootle_misc.baseurl import l
 from pootle_misc.browser import get_table_headings
 from pootle_misc.forms import LiberalModelChoiceField
@@ -63,8 +62,8 @@ def get_last_action(translation_project):
 def make_language_item(request, translation_project):
     href = '/%s/%s/' % (translation_project.language.code,
                         translation_project.project.code)
-    href_all = dispatch.translate(translation_project)
-    href_todo = dispatch.translate(translation_project, state='incomplete')
+    href_all = translation_project.get_translate_url()
+    href_todo = translation_project.get_translate_url(state='incomplete')
 
     project_stats = get_raw_stats(translation_project)
 

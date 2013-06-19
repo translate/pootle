@@ -23,8 +23,10 @@ from django.conf.urls import patterns, url
 
 urlpatterns = patterns('pootle_store.views',
     # Translation
-    (r'^(?P<pootle_path>.*)/translate/?$',
-        'translate'),
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
+        r'translate/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
+        'translate',
+        name='pootle-tp-translate'),
 
     # Export list view
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'

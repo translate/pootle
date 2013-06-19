@@ -57,7 +57,8 @@ from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 from pootle_tagging.forms import TagForm
 
-from .decorators import get_store_context, get_unit_context
+from .decorators import (get_resource_context, get_store_context,
+                         get_unit_context)
 from .models import Store, Unit
 from .forms import (unit_comment_form_factory, unit_form_factory,
                     highlight_whitespace)
@@ -454,7 +455,9 @@ def get_step_query(request, units_queryset):
     return units_queryset
 
 
-def translate_page(request):
+@get_translation_project
+@get_resource_context('view')
+def translate(request, translation_project, dir_path, filename):
     cantranslate = check_permission("translate", request)
     cansuggest = check_permission("suggest", request)
     canreview = check_permission("review", request)
@@ -464,13 +467,8 @@ def translate_page(request):
     project = translation_project.project
     profile = request.profile
 
-    store = getattr(request, "store", None)
-    directory = getattr(request, "directory", None)
-
-    is_single_file = store and True or False
-    path = is_single_file and store.path or directory.path
-    pootle_path = (is_single_file and store.pootle_path or
-                                      directory.pootle_path)
+    store = request.store
+    directory = request.directory
 
     is_terminology = (project.is_terminology or store and
                                                 store.is_terminology)
@@ -488,9 +486,10 @@ def translate_page(request):
         'store_id': store and store.id,
         'directory': directory,
         'directory_id': directory and directory.id,
-        'path': path,
-        'pootle_path': pootle_path,
-        'is_single_file': is_single_file,
+        'pootle_path': request.pootle_path,
+        'ctx_path': request.ctx_path,
+        'resource_path': request.resource_path,
+        'is_single_file': filename != '',
         'language': language,
         'project': project,
         'translation_project': translation_project,
@@ -503,11 +502,6 @@ def translate_page(request):
 
     return render_to_response('store/translate.html', context,
                               context_instance=RequestContext(request))
-
-
-@get_store_context('view')
-def translate(request, store):
-    return translate_page(request)
 
 #
 # Views used with XMLHttpRequest requests.

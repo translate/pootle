@@ -30,7 +30,6 @@ from pootle_app.models.permissions import (get_matching_permissions,
 from pootle_app.views.admin.permissions import admin_permissions
 from pootle_app.views.top_stats import gentopstats_language
 from pootle_language.models import Language
-from pootle_misc import dispatch
 from pootle_misc.browser import get_table_headings
 from pootle_misc.stats import (get_raw_stats, stats_descriptions)
 from pootle_misc.util import nice_percentage, jsonify, ajax_required
@@ -49,8 +48,8 @@ def get_last_action(translation_project):
 def make_project_item(translation_project):
     project = translation_project.project
     href = translation_project.pootle_path
-    href_all = dispatch.translate(translation_project)
-    href_todo = dispatch.translate(translation_project, state='incomplete')
+    href_all = translation_project.get_translate_url()
+    href_todo = translation_project.get_translate_url(state='incomplete')
 
     project_stats = get_raw_stats(translation_project)
 

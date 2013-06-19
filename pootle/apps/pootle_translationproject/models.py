@@ -26,6 +26,7 @@ from translate.storage.base import ParseError
 
 from django.conf import settings
 from django.contrib import messages
+from django.core.urlresolvers import reverse
 from django.db import models, IntegrityError
 from django.db.models.signals import post_save
 from django.utils.encoding import force_unicode
@@ -34,6 +35,7 @@ from django.utils.translation import ugettext_lazy as _
 from taggit.managers import TaggableManager
 
 from pootle.core.markup import get_markup_filter_name, MarkupField
+from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.lib.util import RelatedManager
 from pootle_app.models.directory import Directory
 from pootle_language.models import Language
@@ -148,6 +150,13 @@ class TranslationProject(models.Model):
 
     def get_absolute_url(self):
         return l(self.pootle_path)
+
+    def get_translate_url(self, **kwargs):
+        lang, proj, dir, fn = split_pootle_path(self.pootle_path)
+        return u''.join([
+            reverse('pootle-tp-translate', args=[lang, proj, dir, fn]),
+            get_editor_filter(**kwargs),
+        ])
 
     def natural_key(self):
         return (self.pootle_path,)

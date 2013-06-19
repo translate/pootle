@@ -28,20 +28,7 @@ from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import check_permission
 from pootle_misc.baseurl import redirect
 from pootle_store.models import Store
-from pootle_store.views import (translate_page, get_failing_checks,
-                                get_view_units)
-
-
-@get_translation_project
-@set_request_context
-def translate(request, translation_project, dir_path=None):
-    if dir_path:
-        pootle_path = translation_project.pootle_path + dir_path
-        request.directory = Directory.objects.get(pootle_path=pootle_path)
-    else:
-        request.directory = translation_project.directory
-
-    return translate_page(request)
+from pootle_store.views import get_failing_checks, get_view_units
 
 
 @get_translation_project

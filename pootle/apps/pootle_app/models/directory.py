@@ -18,7 +18,9 @@
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 from django.db import models
+from django.core.urlresolvers import reverse
 
+from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 from pootle_misc.util import cached_property, dictsum, getfromcache
@@ -70,8 +72,12 @@ class Directory(models.Model):
 
         super(Directory, self).save(*args, **kwargs)
 
-    def get_absolute_url(self):
-        return l(self.pootle_path)
+    def get_translate_url(self, **kwargs):
+        lang, proj, dir, fn = split_pootle_path(self.pootle_path)
+        return u''.join([
+            reverse('pootle-tp-translate', args=[lang, proj, dir, fn]),
+            get_editor_filter(**kwargs),
+        ])
 
     def get_relative(self, path):
         """Given a path of the form a/b/c, where the path is relative

@@ -30,6 +30,7 @@ from translate.storage import base
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import FileSystemStorage
+from django.core.urlresolvers import reverse
 from django.db import models, DatabaseError, IntegrityError
 from django.db.models.signals import post_delete
 from django.db.transaction import commit_on_success
@@ -38,6 +39,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from taggit.managers import TaggableManager
 
+from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.lib.util import RelatedManager
 from pootle_misc.aggregate import group_by_count_extra, max_column
 from pootle_misc.baseurl import l
@@ -309,6 +311,13 @@ class Unit(models.Model, base.TranslationUnit):
     def get_absolute_url(self):
         return u"%s/translate/#unit=%s" % (l(self.store.pootle_path),
                                            self.id)
+
+    def get_translate_url(self):
+        lang, proj, dir, fn = split_pootle_path(self.store.pootle_path)
+        return u''.join([
+            reverse('pootle-tp-translate', args=[lang, proj, dir, fn]),
+            '#unit=', unicode(self.id),
+        ])
 
     def get_mtime(self):
         return self.mtime
@@ -881,6 +890,13 @@ class Store(models.Model, base.TranslationStore):
 
     def get_absolute_url(self):
         return l(self.pootle_path + '/translate/')
+
+    def get_translate_url(self, **kwargs):
+        lang, proj, dir, fn = split_pootle_path(self.pootle_path)
+        return u''.join([
+            reverse('pootle-tp-translate', args=[lang, proj, dir, fn]),
+            get_editor_filter(**kwargs),
+        ])
 
     def delete(self, *args, **kwargs):
         super(Store, self).delete(*args, **kwargs)

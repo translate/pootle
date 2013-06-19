@@ -21,8 +21,9 @@
     /* Initialize variables */
     this.units = {};
     this.isSingleFile = $('#editor').data('is-single-file');
-    this.path = $('#editor').data('path');
     this.pootlePath = $('#editor').data('pootle-path');
+    this.ctxPath = $('#editor').data('ctx-path');
+    this.resourcePath = $('#editor').data('resource-path');
     this.currentPage = 1;
     this.currentNumPages = 0;
     this.pagesGot = {};
@@ -849,7 +850,7 @@
           // FIXME: project and target language information should come
           // from the current unit/store
           '', this.settings.targetLanguage, this.settings.project,
-          'export-view', this.path
+          'export-view', this.resourcePath
         ].join('/'),
         urlStr = [urlStr, $.param(this.getReqData())].join('?'),
         exportLink = [
@@ -862,15 +863,15 @@
   updatePermalink: function (opts) {
     if (opts !== false) {
       // FIXME: We need a completely different way for getting view URLs in JS
-      var post = this.isSingleFile ? '/translate/#unit=' :
-                                     'translate.html#unit=';
-      var urlStr = [this.pootlePath, post].join('');
+      var urlStr = [
+        this.ctxPath, 'translate/', this.resourcePath,
+        '#unit=', PTL.editor.activeUid
+      ].join('');
       // Translators: Permalink to the current unit in the editor.
       //    The first '%s' is the permalink URL.
       //    The second '%s' is the unit number.
       var thePermalink = interpolate(gettext('<a href="%s">String %s</a>'),
-                                     [l(urlStr + PTL.editor.activeUid),
-                                      PTL.editor.activeUid]);
+                                     [l(urlStr), PTL.editor.activeUid]);
     } else {
       var thePermalink = '';
     }
@@ -1057,9 +1058,10 @@
 
           PTL.editor.pagesGot[page] = [];
 
-          var post = PTL.editor.isSingleFile ? '/translate/#unit=' :
-                                               'translate.html#unit=';
-          var urlStr = [PTL.editor.pootlePath, post].join('');
+          var urlStr = [
+            PTL.editor.ctxPath, 'translate/', PTL.editor.resourcePath,
+            '#unit=',
+          ].join('');
 
           // Copy retrieved units to the client
           $.each(data.units, function () {
@@ -1110,10 +1112,11 @@
     var i, unit,
         cls = "even",
         even = true,
-        rows = "";
-    var post = PTL.editor.isSingleFile ? '/translate/#unit=' :
-                                         'translate.html#unit=';
-    var urlStr = [PTL.editor.pootlePath, post].join('');
+        rows = "",
+        urlStr = [
+          PTL.editor.ctxPath, 'translate/', PTL.editor.resourcePath,
+          '#unit=',
+        ].join('');
 
     for (i=0; i<units.length; i++) {
       unit = units[i];
