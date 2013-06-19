@@ -56,8 +56,7 @@ def get_last_action(translation_project):
 
 
 def make_language_item(request, translation_project):
-    href = '/%s/%s/' % (translation_project.language.code,
-                        translation_project.project.code)
+    href = translation_project.get_absolute_url()
     href_all = translation_project.get_translate_url()
     href_todo = translation_project.get_translate_url(state='incomplete')
 
