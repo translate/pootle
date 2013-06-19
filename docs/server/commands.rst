@@ -366,18 +366,20 @@ command line.
 syncdb
 ^^^^^^
 
-Strictly speaking ``syncdb`` is a generic Django management command that creates
+Originally, ``syncdb`` was a generic Django management command that creates
 empty database tables. It has been customized for Pootle to create everything
 required for a bare bones install for releases up to 2.5.0. This includes
 database tables, default permissions, some default objects used internally by
 Pootle (like the *"default"* and *"nobody"* user profiles) and the special
-Terminology and :ref:`Templates languages <templates#the_templates_language>`.
+:ref:`Terminology <terminology>` project and
+:ref:`Templates language <templates#the_templates_language>`.
 
 For releases up to 2.5.0, if you just run ``syncdb`` you will have a usable
 Pootle install but you will need to create all languages manually, and you will
 not have a tutorial project to play with.  For releases after 2.5.0, ``syncdb``
-will leave the database schema out of date and unusable until you migrate to the
-latest database schema using the :ref:`commands#migrate` command.
+is not sufficient to create the database schema; it will remain incomplete and
+unusable until you apply all migrations to the database schema by running the
+:ref:`commands#migrate` command.
 
 
 .. _commands#migrate:
@@ -385,10 +387,21 @@ latest database schema using the :ref:`commands#migrate` command.
 migrate
 ^^^^^^^
 
-This is South's :ref:`migrate command <south:commands>`, and applies all needed
-migrations to bring the database up to the latest schema revision.  This is
-required for releases after 2.5.0, even if it is a fresh install, and you are
+.. versionadded:: 2.5.1
+
+This is South's :ref:`migrate command <south:commands>`, which applies
+migrations to bring the database up to the latest schema revision.  It is
+required for releases after 2.5.0, even for a fresh install where you are
 not upgrading from a previous release.
+
+When upgrading from 2.5.0 (or earlier) to 2.5.1 (or later), before running
+migrate to apply migrations, you must run :ref:`commands#syncdb` to create the
+migration tables, and then a special form of :ref:`commands#migrate` to record
+the fact that the initial schema version already exists:
+
+    $ pootle syncdb
+    $ pootle migrate --all --fake 0001
+    $ pootle migrate
 
 
 .. _commands#initdb:
