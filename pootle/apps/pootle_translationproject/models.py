@@ -798,7 +798,7 @@ class TranslationProject(models.Model):
                 msg = _("Failed to commit <em>%(filename)s</em> to version "
                         "control: %(error)s",
                         {
-                            'filename': filename,
+                            'filename': store.file.name,
                             'error': e,
                         }
                 )
