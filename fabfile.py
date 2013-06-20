@@ -40,7 +40,7 @@ def production():
     try:
         from deploy.production import fabric
     except ImportError:
-        print("Unable to load 'production' environment - is PYTHONPATH set?")
+        print("Can't load 'production' environment; is PYTHONPATH exported?")
         exit(1)
         
     env.update(fabric.SETTINGS)
@@ -53,7 +53,7 @@ def staging():
     try:
         from deploy.staging import fabric
     except ImportError:
-        print("Unable to load 'staging' environment - is PYTHONPATH set?")
+        print("Can't load 'staging' environment; is PYTHONPATH exported?")
         exit(1)
 
     env.update(fabric.SETTINGS)
