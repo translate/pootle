@@ -21,6 +21,9 @@ WSGIPythonOptimize 1
     ExpiresByType text/css "access plus 10 years"
     ExpiresByType application/x-javascript "access plus 10 years"
 
+    # Optimal caching by proxies:
+    Header set Cache-Control "public"
+
     <Directory "%(project_path)s">
         WSGIProcessGroup %(project_name)s
         WSGIScriptReloading On
