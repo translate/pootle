@@ -1,0 +1,16 @@
+Django==1.4.5,
+django-voting==0.1
+South==0.7.6,
+django-assets==0.8
+cssmin==0.1.4
+lxml==2.1.4
+translate-toolkit==1.10.0
+#-e git://github.com/translate/translate.git#egg=translate-toolkit
+Sphinx==1.1
+# psycopg2==2.2
+python-Levenshtein==0.10.2
+python-memcached==1.40
+raven==1.7.5
+django-extensions==0.9
+glue==0.2.8.1
+-e git://github.com/django-debug-toolbar/django-debug-toolbar.git#egg=django-debug-toolbar

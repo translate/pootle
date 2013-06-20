@@ -1,6 +1,6 @@
 -r build.txt
 
-django-extensions
+django-extensions>=0.9
 glue>=0.2.8.1
 
 -e git://github.com/django-debug-toolbar/django-debug-toolbar.git#egg=django-debug-toolbar

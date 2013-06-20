@@ -1,0 +1,9 @@
+Django==1.4.5
+South==0.7.6
+argparse==1.2.1
+cssmin==0.1.4
+django-assets==0.8
+django-voting==0.1
+lxml==3.2.1
+translate-toolkit==1.10.0
+webassets==0.8
