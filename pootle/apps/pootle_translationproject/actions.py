@@ -23,6 +23,7 @@
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
 
+from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models.permissions import check_permission
 from pootle_misc import dispatch
 from pootle_misc.baseurl import l
@@ -129,7 +130,8 @@ def upload_zip(request, path_obj, **kwargs):
 def update_from_vcs(request, path_obj, **kwargs):
     if (path_obj.abs_real_path and check_permission('commit', request) and
         hasversioning(path_obj.abs_real_path)):
-        link = dispatch.update(path_obj)
+        link = reverse('pootle-vcs-update',
+                       args=split_pootle_path(path_obj.pootle_path))
         text = _('Update from VCS')
 
         return {
@@ -143,7 +145,8 @@ def update_from_vcs(request, path_obj, **kwargs):
 def commit_to_vcs(request, path_obj, **kwargs):
     if (path_obj.abs_real_path and check_permission('commit', request) and
         hasversioning(path_obj.abs_real_path)):
-        link = dispatch.commit(path_obj)
+        link = reverse('pootle-vcs-commit',
+                       args=split_pootle_path(path_obj.pootle_path))
         text = _('Commit to VCS')
 
         return {
@@ -157,7 +160,8 @@ def commit_to_vcs(request, path_obj, **kwargs):
 def update_dir_from_vcs(request, path_obj, **kwargs):
     if (path_obj.get_real_path() and check_permission('commit', request) and
             hasversioning(path_obj.get_real_path())):
-        link = dispatch.update_all(path_obj)
+        link = reverse('pootle-vcs-update',
+                       args=split_pootle_path(path_obj.pootle_path))
         # Translators: "all" here refers to all files and sub directories in a directory/project.
         text = _('Update all from VCS')
 
@@ -172,7 +176,8 @@ def update_dir_from_vcs(request, path_obj, **kwargs):
 def commit_dir_to_vcs(request, path_obj, **kwargs):
     if (path_obj.get_real_path() and check_permission('commit', request) and
             hasversioning(path_obj.get_real_path())):
-        link = dispatch.commit_all(path_obj)
+        link = reverse('pootle-vcs-commit',
+                       args=split_pootle_path(path_obj.pootle_path))
         # Translators: "all" here refers to all files and sub directories in a directory/project.
         text = _('Commit all to VCS')
 
