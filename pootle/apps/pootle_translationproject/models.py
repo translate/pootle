@@ -641,6 +641,7 @@ class TranslationProject(models.Model):
             old_stats, remote_stats, new_stats = \
                     self.update_file_from_version_control(store)
 
+            # FIXME: This belongs to views
             msg = [
                 _(u'Updated file <em>%(filename)s</em> from version control',
                   {'filename': store.file.name}),
@@ -655,6 +656,7 @@ class TranslationProject(models.Model):
             post_vc_update.send(sender=self, oldstats=old_stats,
                 remotestats=remote_stats, newstats=new_stats)
         except VersionControlError, e:
+            # FIXME: This belongs to views
             msg = _(u"Failed to update <em>%(filename)s</em> from "
                     u"version control: %(error)s",
                     {
@@ -713,6 +715,7 @@ class TranslationProject(models.Model):
                     message,
                     author,
             )
+            # FIXME: This belongs to views
             if request is not None:
                 msg = _("Committed all files under <em>%(path)s</em> to "
                         "version control",
@@ -722,6 +725,7 @@ class TranslationProject(models.Model):
         except Exception, e:
             logging.error(u"Failed to commit: %s", e)
 
+            # FIXME: This belongs to views
             if request is not None:
                 msg = _("Failed to commit to version control: %(error)s",
                         {'error': e}
@@ -780,6 +784,7 @@ class TranslationProject(models.Model):
             for file in filestocommit:
                 versioncontrol.commit_file(file, message=message, author=author)
 
+                # FIXME: This belongs to views
                 if request is not None:
                     msg = _("Committed file <em>%(filename)s</em> to version "
                             "control",
@@ -788,6 +793,7 @@ class TranslationProject(models.Model):
         except Exception, e:
             logging.error(u"Failed to commit file: %s", e)
 
+            # FIXME: This belongs to views
             if request is not None:
                 msg = _("Failed to commit <em>%(filename)s</em> to version "
                         "control: %(error)s",
