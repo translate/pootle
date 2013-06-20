@@ -58,13 +58,16 @@ bzcat /var/backups/pootle_`date +%A`.sql.bz2 |
 rm -f production.sql
 
 # Copy translation files
-ssh $REMOTE "rm -rf $REMOTE_PODIRECTORY/*"
+ssh $REMOTE "cd $REMOTE_PODIRECTORY && rm -rf *"
 log "Copying Pootle translation files"
 scp -qpr $PODIRECTORY/* $REMOTE:$REMOTE_PODIRECTORY
 
 # Copy Firefox project from moz_pootle
 log "Copying Firefox translation files"
 scp -qpr $PODIRECTORY_MOZ/firefox/ $REMOTE:$REMOTE_PODIRECTORY
+
+ssh $REMOTE "cd $REMOTE_PODIRECTORY &&
+  { chgrp -R www-data .; chmod -R g=u .; }"
 
 # Update the database to the latest (even though updatedb is no longer needed,
 # and after production moves to 2.5.1, syncdb and migrate --fake aren't either)
