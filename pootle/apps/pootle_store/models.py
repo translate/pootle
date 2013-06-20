@@ -309,8 +309,7 @@ class Unit(models.Model, base.TranslationUnit):
                                     "get_mtime", "get_suggestion_count"])
 
     def get_absolute_url(self):
-        return u"%s/translate/#unit=%s" % (l(self.store.pootle_path),
-                                           self.id)
+        return l(self.store.pootle_path)
 
     def get_translate_url(self):
         lang, proj, dir, fn = split_pootle_path(self.store.pootle_path)
@@ -886,7 +885,7 @@ class Store(models.Model, base.TranslationStore):
                                    "get_mtime", "get_suggestion_count"])
 
     def get_absolute_url(self):
-        return l(self.pootle_path + '/translate/')
+        return l(self.pootle_path)
 
     def get_translate_url(self, **kwargs):
         lang, proj, dir, fn = split_pootle_path(self.pootle_path)
