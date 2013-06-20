@@ -13,6 +13,14 @@ WSGIPythonOptimize 1
 
     Options -Indexes
 
+    ExpiresActive On
+
+    ExpiresByType image/jpg "access plus 2 hours"
+    ExpiresByType image/png "access plus 2 hours"
+
+    ExpiresByType text/css "access plus 10 years"
+    ExpiresByType application/x-javascript "access plus 10 years"
+
     <Directory "%(project_path)s">
         WSGIProcessGroup %(project_name)s
         WSGIScriptReloading On
