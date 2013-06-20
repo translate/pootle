@@ -34,19 +34,3 @@ def download_zip(path_obj):
 
 def export(pootle_path, format):
     return l('/export-file/%s%s' % (format, pootle_path))
-
-
-def commit(path_obj):
-    return l(path_obj.pootle_path + '/commit')
-
-
-def update(path_obj):
-    return l(path_obj.pootle_path + '/update')
-
-
-def commit_all(path_obj):
-    return l(path_obj.pootle_path + 'commit_all')
-
-
-def update_all(path_obj):
-    return l(path_obj.pootle_path + 'update_all')

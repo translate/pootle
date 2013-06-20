@@ -208,6 +208,44 @@ def delete_path_obj(request, translation_project, dir_path, filename=None):
     return HttpResponseRedirect(overview_url)
 
 
+@get_translation_project
+@set_request_context
+def vcs_commit(request, translation_project, dir_path, filename):
+    if not check_permission("commit", request):
+        raise PermissionDenied(_("You do not have rights to commit files here"))
+
+    current_path = translation_project.directory.pootle_path + dir_path
+
+    if filename:
+        current_path = current_path + filename
+        obj = get_object_or_404(Store, pootle_path=current_path)
+        result = translation_project.commit_file(request.user, obj, request)
+    else:
+        obj = get_object_or_404(Directory, pootle_path=current_path)
+        result = translation_project.commit_dir(request.user, obj, request)
+
+    return redirect(obj.get_absolute_url())
+
+
+@get_translation_project
+@set_request_context
+def vcs_update(request, translation_project, dir_path, filename):
+    if not check_permission("commit", request):
+        raise PermissionDenied(_("You do not have rights to update files here"))
+
+    current_path = translation_project.directory.pootle_path + dir_path
+
+    if filename:
+        current_path = current_path + filename
+        obj = get_object_or_404(Store, pootle_path=current_path)
+        result = translation_project.update_file(request, obj)
+    else:
+        obj = get_object_or_404(Directory, pootle_path=current_path)
+        result = translation_project.update_dir(request, obj)
+
+    return redirect(obj.get_absolute_url())
+
+
 class ProjectIndexView(view_handler.View):
 
     def GET(self, template_vars, request, translation_project, directory,

@@ -27,14 +27,4 @@ urlpatterns = patterns('pootle_app.views.language.view',
         'get_failing_checks_dir'),
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)view.html$',
         'get_view_units_dir'),
-
-    # VCS
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<file_path>.*)/commit$',
-        'commit_file'),
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<file_path>.*)/update$',
-        'update_file'),
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)commit_all$',
-        'commit_all'),
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)update_all$',
-        'update_all'),
 )
