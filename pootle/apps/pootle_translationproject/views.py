@@ -38,7 +38,7 @@ from django.utils.translation import ugettext as _
 from taggit.models import Tag
 
 from pootle.core.decorators import (get_translation_project,
-                                    set_request_context)
+                                    set_tp_request_context)
 from pootle.scripts.actions import (EXTDIR, StoreAction,
                                     TranslationProjectAction)
 from pootle_app.models.permissions import (get_matching_permissions,
@@ -69,7 +69,7 @@ from pootle_translationproject.forms import (DescriptionForm,
 
 
 @get_translation_project
-@set_request_context
+@set_tp_request_context
 @util.has_permission('administrate')
 def admin_permissions(request, translation_project):
     template_vars = {
@@ -85,7 +85,7 @@ def admin_permissions(request, translation_project):
 
 
 @get_translation_project
-@set_request_context
+@set_tp_request_context
 @util.has_permission('administrate')
 def rescan_files(request, translation_project):
     try:
@@ -111,7 +111,7 @@ def rescan_files(request, translation_project):
 
 
 @get_translation_project
-@set_request_context
+@set_tp_request_context
 @util.has_permission('administrate')
 def update_against_templates(request, translation_project):
     try:
@@ -132,7 +132,7 @@ def update_against_templates(request, translation_project):
 
 
 @get_translation_project
-@set_request_context
+@set_tp_request_context
 @util.has_permission('administrate')
 def delete_path_obj(request, translation_project, dir_path, filename=None):
     """Deletes the path objects under `dir_path` (+ `filename`) from the
@@ -211,7 +211,7 @@ def delete_path_obj(request, translation_project, dir_path, filename=None):
 
 
 @get_translation_project
-@set_request_context
+@set_tp_request_context
 def vcs_commit(request, translation_project, dir_path, filename):
     if not check_permission("commit", request):
         raise PermissionDenied(_("You do not have rights to commit files here"))
@@ -230,7 +230,7 @@ def vcs_commit(request, translation_project, dir_path, filename):
 
 
 @get_translation_project
-@set_request_context
+@set_tp_request_context
 def vcs_update(request, translation_project, dir_path, filename):
     if not check_permission("commit", request):
         raise PermissionDenied(_("You do not have rights to update files here"))
@@ -304,7 +304,7 @@ def _handle_upload_form(request, current_path, translation_project, directory):
 
 
 @get_translation_project
-@set_request_context
+@set_tp_request_context
 def overview(request, translation_project, dir_path, filename=None):
     if not check_permission("view", request):
         raise PermissionDenied(_("You do not have rights to access this "
@@ -611,7 +611,7 @@ def edit_settings(request, translation_project):
 
 
 @get_translation_project
-@set_request_context
+@set_tp_request_context
 def export_zip(request, translation_project, file_path):
 
     if not check_permission("archive", request):
