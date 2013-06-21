@@ -43,8 +43,9 @@ urlpatterns = patterns('pootle_store.views',
         'export_as_type'),
 
     # XHR
-    (r'^checks/(?P<pootle_path>.*)/?$',
-        'get_failing_checks_store'),
+    url(r'^xhr/checks/?$',
+        'get_failing_checks',
+        name='pootle-xhr-checks'),
 
     (r'^view/(?P<pootle_path>.*)/?$',
         'get_view_units_store'),

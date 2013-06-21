@@ -23,21 +23,8 @@ from django.utils.translation import ugettext as _
 
 from pootle.core.decorators import (get_translation_project,
                                     set_tp_request_context)
-from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import check_permission
-from pootle_store.views import get_failing_checks, get_view_units
-
-
-@get_translation_project
-@set_tp_request_context
-def get_failing_checks_dir(request, translation_project, dir_path):
-    if dir_path:
-        pootle_path = translation_project.pootle_path + dir_path
-        pathobj = Directory.objects.get(pootle_path=pootle_path)
-    else:
-        pathobj = translation_project
-
-    return get_failing_checks(request, pathobj)
+from pootle_store.views import get_view_units
 
 
 @get_translation_project
