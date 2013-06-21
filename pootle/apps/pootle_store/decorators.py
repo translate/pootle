@@ -35,11 +35,19 @@ from .models import Store, Unit
 def _common_context(request, translation_project, permission_codes):
     """Adds common context to request object and checks permissions."""
     request.translation_project = translation_project
+    _check_permissions(request, translation_project.directory,
+                       permission_codes)
+
+
+def _check_permissions(request, directory, permission_codes):
+    """Checks if the current user has enough permissions defined by
+    `permission_codes` in the current`directory`.
+    """
     request.profile = get_profile(request.user)
     request.permissions = get_matching_permissions(request.profile,
-                                                   translation_project.directory)
+                                                   directory)
+
     if not permission_codes:
-        # skip checking permissions
         return
 
     if isinstance(permission_codes, basestring):
@@ -47,7 +55,7 @@ def _common_context(request, translation_project, permission_codes):
     for permission_code in permission_codes:
         if not check_permission(permission_code, request):
             raise PermissionDenied(
-                _("Insufficient rights to this translation project."),
+                _("Insufficient rights to access this directory."),
             )
 
 
