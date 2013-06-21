@@ -49,8 +49,6 @@ urlpatterns = patterns('pootle_store.views',
 
     (r'^view/(?P<pootle_path>.*)/?$',
         'get_view_units_store'),
-    (r'^view/(?P<limit>[0-9]+)/(?P<pootle_path>.*)/?$',
-        'get_view_units_store'),
 
     (r'^unit/context/(?P<uid>[0-9]+)/?$',
         'get_more_context'),
