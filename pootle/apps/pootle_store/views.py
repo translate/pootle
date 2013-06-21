@@ -593,7 +593,7 @@ def _get_index_in_qs(qs, unit, store=False):
                 qs.filter(store__pootle_path__lt=store.pootle_path)).count()
 
 
-def get_view_units(request, units_queryset, store, limit=0):
+def get_view_units(request, units_queryset, store):
     """Gets source and target texts excluding the editing unit.
 
     :return: An object in JSON notation that contains the source and target
@@ -607,13 +607,7 @@ def get_view_units(request, units_queryset, store, limit=0):
     current_unit = None
     json = {}
 
-    try:
-        limit = int(limit)
-    except ValueError:
-        limit = None
-
-    if not limit:
-        limit = request.profile.get_unit_rows()
+    limit = request.profile.get_unit_rows()
 
     step_queryset = get_step_query(request, units_queryset)
 
@@ -657,14 +651,14 @@ def get_view_units(request, units_queryset, store, limit=0):
 
 @ajax_required
 @get_store_context('view')
-def get_view_units_store(request, store, limit=0):
+def get_view_units_store(request, store):
     """Gets source and target texts excluding the editing widget (store-level).
 
     :return: An object in JSON notation that contains the source and target
              texts for units that will be displayed before and after
              unit ``uid``.
     """
-    return get_view_units(request, store.units, store=True, limit=limit)
+    return get_view_units(request, store.units, store=True)
 
 
 def _is_filtered(request):

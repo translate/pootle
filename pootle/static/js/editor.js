@@ -989,17 +989,13 @@
   /* Gets the view units that refer to currentPage */
   getViewUnits: function (opts) {
     var extraData, reqData, viewUrl,
-        defaults = {async: false, limit: 0, page: this.currentPage,
+        defaults = {async: false, page: this.currentPage,
                     pager: false, withUid: false},
         urlStr = this.isSingleFile ? '/view' + this.pootlePath :
                                      this.pootlePath + 'view.html';
     // Merge passed arguments with defaults
     opts = $.extend({}, defaults, opts);
 
-    // Extend URL if needed
-    if (opts.limit != 0 && this.isSingleFile) {
-      urlStr = urlStr.replace('/view', '/view/' + limit);
-    }
     viewUrl = l(urlStr);
 
     // Extra request variables specific to this function
