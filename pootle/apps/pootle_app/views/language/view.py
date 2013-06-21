@@ -23,7 +23,7 @@ from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext as _
 
 from pootle.core.decorators import (get_translation_project,
-                                    set_request_context)
+                                    set_tp_request_context)
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import check_permission
 from pootle_misc.baseurl import redirect
@@ -32,7 +32,7 @@ from pootle_store.views import get_failing_checks, get_view_units
 
 
 @get_translation_project
-@set_request_context
+@set_tp_request_context
 def get_failing_checks_dir(request, translation_project, dir_path):
     if dir_path:
         pootle_path = translation_project.pootle_path + dir_path
@@ -44,7 +44,7 @@ def get_failing_checks_dir(request, translation_project, dir_path):
 
 
 @get_translation_project
-@set_request_context
+@set_tp_request_context
 def get_view_units_dir(request, translation_project, dir_path):
     if not check_permission("view", request):
         raise PermissionDenied(_("You do not have rights to access this "

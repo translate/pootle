@@ -39,7 +39,7 @@ from django.views.decorators.cache import never_cache
 from translate.lang import data
 
 from pootle.core.decorators import (get_translation_project,
-                                    set_request_context)
+                                    set_tp_request_context)
 from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.models.permissions import (get_matching_permissions,
                                            check_permission,
@@ -180,7 +180,7 @@ def get_filter_name(GET):
 
 
 @get_translation_project
-@set_request_context
+@set_tp_request_context
 def export_view(request, translation_project, dir_path, filename=None):
     """Displays a list of units with filters applied."""
     current_path = translation_project.directory.pootle_path + dir_path

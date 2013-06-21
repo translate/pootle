@@ -70,8 +70,10 @@ def get_translation_project(f):
     return decorated_f
 
 
-def set_request_context(f):
-    """Sets up the request object with a common context."""
+def set_tp_request_context(f):
+    """Sets up the request object with a common context for translation
+    projects.
+    """
     @wraps(f)
     def decorated_f(request, translation_project, *args, **kwargs):
         # For now, all permissions in a translation project are
