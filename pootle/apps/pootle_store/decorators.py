@@ -21,12 +21,14 @@
 from functools import wraps
 
 from django.core.exceptions import PermissionDenied
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404
 
+from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models import Directory
 from pootle_app.models.permissions import (check_permission,
                                            get_matching_permissions)
+from pootle_misc.util import jsonify
 from pootle_profile.models import get_profile
 
 from .models import Store, Unit
@@ -161,6 +163,60 @@ def get_resource_context(permission_codes):
             request.resource_path = resource_path
 
             return f(request, translation_project, dir_path, filename)
+
+        return decorated_f
+
+    return wrap_f
+
+
+def get_xhr_resource_context(permission_codes):
+    """Gets the resource context for a XHR view.
+
+    Note that the pootle path string (which includes language, project and
+    resource information) will be read from the `request.GET` dictionary,
+    not from the decorated function arguments.
+
+    :param permission_codes: Permissions codes to optionally check.
+    """
+    def wrap_f(f):
+        @wraps(f)
+        def decorated_f(request):
+            """Loads :cls:`pootle_app.models.Directory` and
+            :cls:`pootle_store.models.Store` models and populates the
+            request object.
+            """
+            pootle_path = request.GET.get('path', None)
+            if pootle_path is None:
+                response = {
+                    'msg': _('Arguments missing.'),
+                }
+                return HttpResponse(jsonify(response), status=400,
+                                    mimetype="application/json")
+
+            lang, proj, dir_path, filename = split_pootle_path(pootle_path)
+
+            store = None
+            if filename:
+                try:
+                    store = Store.objects.select_related(
+                        'parent',
+                    ).get(pootle_path=pootle_path)
+                    directory = store.parent
+                except Store.DoesNotExist:
+                    response = {
+                        'msg': _('Store does not exist.'),
+                    }
+                    return HttpResponse(jsonify(response), status=404,
+                                    mimetype="application/json")
+            else:
+                directory = Directory.objects.get(pootle_path=pootle_path)
+
+            _check_permissions(request, directory, permission_codes)
+
+            path_obj = store or directory
+            request.pootle_path = pootle_path
+
+            return f(request, path_obj)
 
         return decorated_f
 
