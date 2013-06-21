@@ -58,7 +58,7 @@ from pootle_statistics.models import (Submission, SubmissionFields,
 from pootle_tagging.forms import TagForm
 
 from .decorators import (get_resource_context, get_store_context,
-                         get_unit_context)
+                         get_unit_context, get_xhr_resource_context)
 from .models import Store, Unit
 from .forms import (unit_comment_form_factory, unit_form_factory,
                     highlight_whitespace)
@@ -884,24 +884,20 @@ def get_edit_unit(request, unit):
     return HttpResponse(response, status=rcode, mimetype="application/json")
 
 
-def get_failing_checks(request, pathobj):
+@ajax_required
+@get_xhr_resource_context('view')
+def get_failing_checks(request, path_obj):
     """Gets a list of failing checks for the current object.
 
     :return: JSON string with a list of failing check categories which
              include the actual checks that are failing.
     """
-    stats = get_raw_stats(pathobj)
-    failures = get_quality_check_failures(pathobj, stats, include_url=False)
+    stats = get_raw_stats(path_obj)
+    failures = get_quality_check_failures(path_obj, stats, include_url=False)
 
     response = jsonify(failures)
 
     return HttpResponse(response, mimetype="application/json")
-
-
-@ajax_required
-@get_store_context('view')
-def get_failing_checks_store(request, store):
-    return get_failing_checks(request, store)
 
 
 @ajax_required

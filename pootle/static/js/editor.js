@@ -1614,13 +1614,15 @@
 
   /* Gets the failing check options for the current query */
   getCheckOptions: function () {
-    var opts,
-        checksUrl = this.isSingleFile ? l('/checks' + this.pootlePath) :
-                                        l(this.pootlePath + "checks.html");
+    var checksUrl = l('/xhr/checks/'),
+        reqData = {
+          path: this.pootlePath
+        }, opts;
 
     $.ajax({
       url: checksUrl,
       async: false,
+      data: reqData,
       dataType: 'json',
       success: function (data) {
         opts = data;
