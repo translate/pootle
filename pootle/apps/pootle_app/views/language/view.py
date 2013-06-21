@@ -19,15 +19,12 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext as _
 
 from pootle.core.decorators import (get_translation_project,
                                     set_tp_request_context)
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import check_permission
-from pootle_misc.baseurl import redirect
-from pootle_store.models import Store
 from pootle_store.views import get_failing_checks, get_view_units
 
 
