@@ -41,8 +41,7 @@ def production(new_settings={}):
     try:
         from deploy.production import fabric
     except ImportError:
-        print("Can't load 'production' environment; is PYTHONPATH exported?")
-        exit(1)
+        abort("Can't load 'production' environment; is PYTHONPATH exported?")
 
     env.update(fabric.get_settings(new_settings))
     env.environment = 'production'
@@ -54,8 +53,7 @@ def staging(new_settings={}):
     try:
         from deploy.staging import fabric
     except ImportError:
-        print("Can't load 'staging' environment; is PYTHONPATH exported?")
-        exit(1)
+        abort("Can't load 'staging' environment; is PYTHONPATH exported?")
 
     env.update(fabric.get_settings(new_settings))
     env.environment = 'staging'
@@ -137,7 +135,7 @@ def bootstrap(branch="master"):
                 _checkout_repo(branch=branch)
                 _install_requirements()
     else:
-        print('Aborting.')
+        abort('Aborting.')
 
 
 def _reload_with_new_settings(branch=None,
@@ -215,7 +213,7 @@ def drop_db():
         run("echo 'DROP DATABASE `%s`' | mysql -u %s %s" %
             (env['db_name'], env['db_user'], env['db_password_opt']))
     else:
-        print('Aborting.')
+        abort('Aborting.')
 
 
 def setup_db():
@@ -346,11 +344,11 @@ def load_db(dumpfile=None):
                          env['db_name'], remote_filename))
                     run('rm %s' % (remote_filename))
             else:
-                print('\nAborting.')
+                abort('\nAborting.')
         else:
-            print('\nERROR: The file "%s" does not exist. Aborting.' % dumpfile)
+            abort('\nERROR: The file "%s" does not exist. Aborting.' % dumpfile)
     else:
-        print('\nERROR: A (local) dumpfile must be provided. Aborting.')
+        abort('\nERROR: A (local) dumpfile must be provided. Aborting.')
 
 
 def dump_db(dumpfile="pootle_DB_backup.sql"):
@@ -358,7 +356,7 @@ def dump_db(dumpfile="pootle_DB_backup.sql"):
     require('environment', provided_by=[production, staging])
 
     if isdir(dumpfile):
-        print("dumpfile '%s' is a directory! Aborting." % dumpfile)
+        abort("dumpfile '%s' is a directory! Aborting." % dumpfile)
 
     elif (not isfile(dumpfile) or
           confirm('\n%s already exists locally. Do you want to overwrite it?'
@@ -379,9 +377,9 @@ def dump_db(dumpfile="pootle_DB_backup.sql"):
                 get(remote_filename, '.')
                 run('rm %s' % (remote_filename))
         else:
-            print('\nAborting.')
+            abort('\nAborting.')
     else:
-        print('\nAborting.')
+        abort('\nAborting.')
 
 
 def update_code(branch="master"):
@@ -518,4 +516,4 @@ def mysql_conf():
             run('chmod 600 %s' % conf_filename)
 
     else:
-        print('\nAborting.')
+        abort('\nAborting.')
