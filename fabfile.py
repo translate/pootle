@@ -34,7 +34,7 @@ from fabric.operations import require, run, sudo, put, get
 #
 
 
-def production():
+def production(new_settings={}):
     """Work on the production environment"""
 
     try:
@@ -42,12 +42,12 @@ def production():
     except ImportError:
         print("Can't load 'production' environment; is PYTHONPATH exported?")
         exit(1)
-        
-    env.update(fabric.SETTINGS)
+
+    env.update(fabric.get_settings(new_settings))
     env.environment = 'production'
 
 
-def staging():
+def staging(new_settings={}):
     """Work on the staging environment"""
 
     try:
@@ -56,7 +56,7 @@ def staging():
         print("Can't load 'staging' environment; is PYTHONPATH exported?")
         exit(1)
 
-    env.update(fabric.SETTINGS)
+    env.update(fabric.get_settings(new_settings))
     env.environment = 'staging'
 
 
