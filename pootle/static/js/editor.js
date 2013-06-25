@@ -1367,7 +1367,7 @@
   getEditUnit: function (uid) {
     var editor, editCtxRowBefore, editCtxRowAfter, editCtxWidgets, hasData,
         eClass = "edit-row",
-        editUrl = l('/unit/edit/' + uid),
+        editUrl = l(['/xhr/units/', uid, '/edit/'].join('')),
         reqData = this.getReqData(),
         widget = '',
         ctx = {before: [], after: []};
@@ -1420,7 +1420,7 @@
         uid = PTL.editor.activeUid,
         form = $("#captcha").ifExists() || $("#translate");
 
-    submitUrl = l('/unit/submit/' + uid);
+    submitUrl = l(['/xhr/units/', uid].join(''));
 
     // Serialize data to be sent and get required attributes for the request
     reqData = form.serializeObject();
@@ -1464,7 +1464,7 @@
         uid = PTL.editor.activeUid,
         form = $("#captcha").ifExists() || $("#translate");
 
-    suggestUrl = l('/unit/suggest/' + uid);
+    suggestUrl = l(['/xhr/units/', uid, '/suggestions/'].join(''));
 
     // Serialize data to be sent and get required attributes for the request
     reqData = form.serializeObject();
@@ -1724,7 +1724,7 @@
 
   /* Gets more context units */
   moreContext: function (initial) {
-    var ctxUrl = l('/unit/context/' + PTL.editor.activeUid),
+    var ctxUrl = l(['/xhr/units/', PTL.editor.activeUid, '/context/'].join('')),
         reqData = {gap: PTL.editor.ctxGap};
 
     reqData.qty = initial ? PTL.editor.ctxQty : PTL.editor.ctxStep;
@@ -1897,7 +1897,7 @@
 
     var uid = PTL.editor.activeUid,
         node = $("#extras-container"),
-        timelineUrl = l("/unit/timeline/" + uid);
+        timelineUrl = l(['/xhr/units/', uid, '/timeline/'].join(''));
 
     // Always abort previous requests so we only get results for the
     // current unit
@@ -2026,7 +2026,8 @@
     var suggId = $(this).data("sugg-id"),
         element = $("#suggestion-" + suggId);
         uid = $('.translate-container #id_id').val(),
-        url = l('/suggestion/reject/') + uid + '/' + suggId;
+        url = l(['/xhr/units/', uid,
+                 '/suggestions/', suggId, '/reject/'].join(''));
 
     $.post(url, {'reject': 1},
       function (data) {
@@ -2049,7 +2050,8 @@
     var suggId = $(this).data("sugg-id"),
         element = $("#suggestion-" + suggId);
         uid = $('.translate-container #id_id').val(),
-        url = l('/suggestion/accept/') + uid + '/' + suggId;
+        url = l(['/xhr/units/', uid,
+                 '/suggestions/', suggId, '/accept/'].join(''));
 
     $.post(url, {'accept': 1},
       function (data) {
@@ -2088,7 +2090,7 @@
     e.stopPropagation(); //we don't want to trigger a click on the text below
     var element = $(this),
         voteId = element.data("vote-id"),
-        url = l('/vote/clear/') + voteId;
+        url = l(['/xhr/votes/', voteId, '/clear/'].join(''));
 
     element.fadeTo(200, 0.01); //instead of fadeOut that will cause layout changes
     $.ajax({
@@ -2113,7 +2115,8 @@
     e.stopPropagation();
     var element = $(this),
         suggId = element.siblings("[data-sugg-id]").data("sugg-id"),
-        url = l('/vote/up/') + PTL.editor.activeUid + '/' + suggId;
+        url = l(['/xhr/units/', PTL.editor.activeUid,
+                 '/suggestions/', suggId, '/votes/'].join(''));
 
     element.fadeTo(200, 0.01); //instead of fadeOut that will cause layout changes
     $.ajax({
@@ -2139,7 +2142,7 @@
     var element = $(this).parent(),
         checkId = $(this).data("check-id"),
         uid = $('.translate-container #id_id').val(),
-        url = l('/qualitycheck/reject/') + uid + '/' + checkId;
+        url = l(['/xhr/units/', uid, '/checks/', checkId, '/reject/'].join(''));
 
     $.post(url, {'reject': 1},
       function (data) {
