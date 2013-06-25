@@ -33,17 +33,6 @@
   {% if table %}
   <div class="hd">
     <h2>{% trans "Files and Subfolders" %}</h2>
-    {% if latest_action %}
-    <div class="last-action">
-      <a href="{{ latest_action.by_profile.get_absolute_url }}">
-        <img src="{{ latest_action.by_profile|gravatar:20 }}" />
-        {{ latest_action.by_profile.user.username }}
-      </a>
-      {{ latest_action.action|safe }}
-      <time class="extra-item-meta js-relative-date" title="{{ latest_action.date }}"
-        datetime="{{ latest_action.date.isoformat }}">&nbsp;</time>
-    </div>
-    {% endif %}
   </div>
   <div class="bd">
     <div class="files-subfolders" lang="{{ LANGUAGE_CODE }}">

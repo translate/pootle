@@ -221,7 +221,7 @@ class TranslationProject(models.Model):
             sub = Submission.objects.filter(translation_project=self).latest()
         except Submission.DoesNotExist:
             return ''
-        return sub.get_as_action_bundle()
+        return sub.get_submission_message()
 
     @getfromcache
     def get_mtime(self):
