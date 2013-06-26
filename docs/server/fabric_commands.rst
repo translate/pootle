@@ -530,6 +530,48 @@ Examples:
     $ fab production touch
 
 
+.. _fabric-commands#unstage-feature:
+
+unstage_feature
+---------------
+
+.. versionadded:: 2.5.1
+
+This command:
+
+- Alters some of the Fabric settings during runtime based on the parameters
+  provided to this command
+- Calls the :ref:`disable_site <fabric-commands#disable-site>` command
+- Calls the :ref:`drop_db <fabric-commands#drop-db>` command
+- Removes the configuration files created by the :ref:`update_config
+  <fabric-commands#update-config>` command
+- Removes the directories created during the deployment, including the ones
+  holding the translation files and the repositories for those translation
+  files
+
+.. note:: While running it may ask for the remote server ``root`` password and
+   the specified ``db_user`` password.
+
+.. note:: This command is intended for removing Pootle deployments performed
+   using the :ref:`stage_feature <fabric-commands#stage-feature>` command.
+
+.. warning:: This command requires using the ``staging`` environment.
+
+Available options:
+
+``branch``
+  The specific branch which was used to check out from the repository when
+  deploying Pootle.
+
+  .. note:: This is a required option.
+
+Examples:
+
+.. code-block:: bash
+
+    $ fab staging unstage_feature:branch=feature/extension-actions
+
+
 .. _fabric-commands#update-code:
 
 update_code

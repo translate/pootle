@@ -64,14 +64,19 @@ def staging(new_settings={}):
 #
 
 
-def _init_directories():
-    """Creates initial directories"""
+def _remove_directories():
+    """Removes initial directories"""
     if exists('%(project_path)s' % env):
         sudo('rm -rf %(project_path)s' % env)
     if exists('%(translations_path)s' % env):
         sudo('rm -rf %(translations_path)s' % env)
     if exists('%(repos_path)s' % env):
         sudo('rm -rf %(repos_path)s' % env)
+
+
+def _init_directories():
+    """Creates initial directories"""
+    _remove_directories()
 
     sudo('mkdir -p %(project_path)s' % env)
     sudo('mkdir -p %(project_path)s/logs' % env)
@@ -181,6 +186,21 @@ def stage_feature(branch=None, repo='git://github.com/translate/pootle.git'):
     _copy_db()
     deploy_static()
     install_site()
+
+
+def unstage_feature(branch=None):
+    """Remove a Pootle server deployed using the stage_feature command"""
+    require('environment', provided_by=[staging])
+
+    # Reload the current environment with new settings based on the
+    # provided parameters.
+    _reload_with_new_settings(branch)
+
+    # Run the commands for completely removing this Pootle install
+    disable_site()
+    drop_db()
+    _remove_config()
+    _remove_directories()
 
 
 def create_db():
@@ -449,6 +469,13 @@ def update_config():
         upload_template('deploy/%(environment)s/settings.conf' % env,
                         '%(project_settings_path)s/90-%(environment)s-local.conf'
                         % env, context=env)
+
+
+def _remove_config():
+    """Removes server configuration files"""
+    sudo('rm -rf %(vhost_file)s' % env)
+    run('rm -rf %(wsgi_file)s' % env)
+    run('rm -rf %(project_settings_path)s/90-%(environment)s-local.conf' % env)
 
 
 def enable_site():
