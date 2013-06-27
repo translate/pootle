@@ -26,7 +26,8 @@ from fabric.api import cd, env
 from fabric.context_managers import hide, prefix, settings
 from fabric.contrib.console import confirm
 from fabric.contrib.files import exists, upload_template
-from fabric.operations import require, run, sudo, put, get
+from fabric.operations import get, put, require, run, sudo
+from fabric.utils import abort
 
 
 #
@@ -34,29 +35,27 @@ from fabric.operations import require, run, sudo, put, get
 #
 
 
-def production():
+def production(new_settings={}):
     """Work on the production environment"""
 
     try:
         from deploy.production import fabric
     except ImportError:
-        print("Can't load 'production' environment; is PYTHONPATH exported?")
-        exit(1)
-        
-    env.update(fabric.SETTINGS)
+        abort("Can't load 'production' environment; is PYTHONPATH exported?")
+
+    env.update(fabric.get_settings(new_settings))
     env.environment = 'production'
 
 
-def staging():
+def staging(new_settings={}):
     """Work on the staging environment"""
 
     try:
         from deploy.staging import fabric
     except ImportError:
-        print("Can't load 'staging' environment; is PYTHONPATH exported?")
-        exit(1)
+        abort("Can't load 'staging' environment; is PYTHONPATH exported?")
 
-    env.update(fabric.SETTINGS)
+    env.update(fabric.get_settings(new_settings))
     env.environment = 'staging'
 
 
@@ -65,14 +64,19 @@ def staging():
 #
 
 
-def _init_directories():
-    """Creates initial directories"""
+def _remove_directories():
+    """Removes initial directories"""
     if exists('%(project_path)s' % env):
         sudo('rm -rf %(project_path)s' % env)
     if exists('%(translations_path)s' % env):
         sudo('rm -rf %(translations_path)s' % env)
     if exists('%(repos_path)s' % env):
         sudo('rm -rf %(repos_path)s' % env)
+
+
+def _init_directories():
+    """Creates initial directories"""
+    _remove_directories()
 
     sudo('mkdir -p %(project_path)s' % env)
     sudo('mkdir -p %(project_path)s/logs' % env)
@@ -136,7 +140,67 @@ def bootstrap(branch="master"):
                 _checkout_repo(branch=branch)
                 _install_requirements()
     else:
-        print('Aborting.')
+        abort('Aborting.')
+
+
+def _reload_with_new_settings(branch=None,
+                              repo='git://github.com/translate/pootle.git'):
+    """Reload the current environment with new settings based on the parameters."""
+
+    if branch is None:
+        abort('No branch provided. Aborting.')
+
+    # Replace all occurrences of problematic characters with - character.
+    import re
+    hyphen_branch = re.sub(r'([^A-Za-z0-9.-])', "-", branch)
+
+    # Create new settings based on the provided parameters.
+    new_settings = {
+        'db_name': 'pootle-' + hyphen_branch,
+        'project_name': 'pootle-' + hyphen_branch,
+        'project_url': hyphen_branch + '.testing.locamotion.org',
+        'project_repo': repo,
+    }
+
+    # Reload the settings for the current environment.
+    import sys
+    current_env = getattr(sys.modules[__name__], env['environment'])
+    current_env(new_settings)  # current_env() can be staging() or production().
+
+
+def stage_feature(branch=None, repo='git://github.com/translate/pootle.git'):
+    """Deploys a Pootle server for testing a feature branch.
+
+    This copies the DB from a previous Pootle deployment.
+    """
+    require('environment', provided_by=[staging])
+
+    # Reload the current environment with new settings based on the
+    # provided parameters.
+    _reload_with_new_settings(branch, repo)
+
+    # Run the required commands to deploy a new Pootle instance based on a
+    # previous staging one and using the specified branch.
+    bootstrap(branch)
+    create_db()
+    _copy_db()
+    deploy_static()
+    install_site()
+
+
+def unstage_feature(branch=None):
+    """Remove a Pootle server deployed using the stage_feature command"""
+    require('environment', provided_by=[staging])
+
+    # Reload the current environment with new settings based on the
+    # provided parameters.
+    _reload_with_new_settings(branch)
+
+    # Run the commands for completely removing this Pootle install
+    disable_site()
+    drop_db()
+    _remove_config()
+    _remove_directories()
 
 
 def create_db():
@@ -169,7 +233,7 @@ def drop_db():
         run("echo 'DROP DATABASE `%s`' | mysql -u %s %s" %
             (env['db_name'], env['db_user'], env['db_password_opt']))
     else:
-        print('Aborting.')
+        abort('Aborting.')
 
 
 def setup_db():
@@ -179,6 +243,30 @@ def setup_db():
     syncdb()
     migratedb()
     initdb()
+
+
+def _copy_db():
+    """Copies the data in the source DB into the DB to use for deployment"""
+    require('environment', provided_by=[production, staging])
+
+    with settings(hide('stderr'), temp_dump='/tmp/temporary_DB_backup.sql'):
+        print('\nDumping DB data...')
+        run("mysqldump -u %(db_user)s %(db_password_opt)s %(source_db)s > "
+            "%(temp_dump)s"
+            " || { test root = '%(db_user)s' && exit $?; "
+            "echo 'Trying again, with MySQL root DB user'; "
+            "mysqldump -u root %(db_root_password_opt)s %(source_db)s > "
+            "%(temp_dump)s;}" % env)
+
+        print('\nLoading data into the DB...')
+        run("mysql -u %(db_user)s %(db_password_opt)s %(db_name)s < "
+            "%(temp_dump)s"
+            " || { test root = '%(db_user)s' && exit $?; "
+            "echo 'Trying again, with MySQL root DB user'; "
+            "mysql -u root %(db_root_password_opt)s %(db_name)s < "
+            "%(temp_dump)s;}" % env)
+
+        run('rm -f %(temp_dump)s' % env)
 
 
 def syncdb():
@@ -276,11 +364,11 @@ def load_db(dumpfile=None):
                          env['db_name'], remote_filename))
                     run('rm %s' % (remote_filename))
             else:
-                print('\nAborting.')
+                abort('\nAborting.')
         else:
-            print('\nERROR: The file "%s" does not exist. Aborting.' % dumpfile)
+            abort('\nERROR: The file "%s" does not exist. Aborting.' % dumpfile)
     else:
-        print('\nERROR: A (local) dumpfile must be provided. Aborting.')
+        abort('\nERROR: A (local) dumpfile must be provided. Aborting.')
 
 
 def dump_db(dumpfile="pootle_DB_backup.sql"):
@@ -288,7 +376,7 @@ def dump_db(dumpfile="pootle_DB_backup.sql"):
     require('environment', provided_by=[production, staging])
 
     if isdir(dumpfile):
-        print("dumpfile '%s' is a directory! Aborting." % dumpfile)
+        abort("dumpfile '%s' is a directory! Aborting." % dumpfile)
 
     elif (not isfile(dumpfile) or
           confirm('\n%s already exists locally. Do you want to overwrite it?'
@@ -309,9 +397,9 @@ def dump_db(dumpfile="pootle_DB_backup.sql"):
                 get(remote_filename, '.')
                 run('rm %s' % (remote_filename))
         else:
-            print('\nAborting.')
+            abort('\nAborting.')
     else:
-        print('\nAborting.')
+        abort('\nAborting.')
 
 
 def update_code(branch="master"):
@@ -383,6 +471,13 @@ def update_config():
                         % env, context=env)
 
 
+def _remove_config():
+    """Removes server configuration files"""
+    sudo('rm -rf %(vhost_file)s' % env)
+    run('rm -rf %(wsgi_file)s' % env)
+    run('rm -rf %(project_settings_path)s/90-%(environment)s-local.conf' % env)
+
+
 def enable_site():
     """Enables the site"""
     require('environment', provided_by=[production, staging])
@@ -448,4 +543,4 @@ def mysql_conf():
             run('chmod 600 %s' % conf_filename)
 
     else:
-        print('\nAborting.')
+        abort('\nAborting.')
