@@ -75,6 +75,11 @@
     html[dir="rtl"] .unit-number {
       float: left;
     }
+    .unit-context {
+      font-size: 0.9em;
+      font-style: italic;
+      color: #666;
+    }
 
     .highlight-escape {
       color: #8e44ad;
@@ -110,6 +115,11 @@
             {{ source|fancy_highlight }}
           </div>
         {% endfor %}
+        {% if unit.getcontext %}
+        <div class="unit-context">
+          {{ unit.getcontext }}
+        </div>
+        {% endif %}
         </td>
         <td>
         {% for i, target, title in unit|pluralize_target %}
