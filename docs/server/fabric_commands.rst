@@ -599,7 +599,8 @@ Examples:
 
 .. code-block:: bash
 
-    $ fab production update_code
+    $ fab production update_code  # Call that will use the default 'master' branch
+    $ fab production update_code:branch=stable/2.5.0  # Call which provides a branch
 
 
 .. _fabric-commands#update-config:
