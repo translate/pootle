@@ -44,6 +44,10 @@
 *.swp
 *~
 
+# Emacs-generated
+.#*
+\#*#
+
 # Ignore stuff from the 'gh-pages' branch
 assets/
 _layouts/
