@@ -46,32 +46,83 @@ set ``MaxClients`` to something like ``20``, for example.
 Make sure Apache has read access to all of Pootle's files and write access to
 the :setting:`PODIRECTORY` directory.
 
+.. note:: Most of the paths present in the examples in this section are the
+   result of deploying Pootle using a Python virtualenv as told in the
+   :ref:`Setting up the Environment <installation#setup_environment>` section
+   from the :ref:`Quickstart installation <installation>` instructions.
+
+   If for any reason you have different paths, you will have to adjust the
+   examples before using them.
+
+   For example the path :file:`/var/www/pootle/env/lib/python2.7/site-packages/`
+   will be different if you have another Python version, or if the Python
+   virtualenv is located in any other place.
+
 A sample Apache configuration with mod_wsgi might look like this:
 
 .. code-block:: apache
 
-    # Point to the WSGI loader script
-    WSGIScriptAlias /pootle /var/www/pootle/wsgi.py
+    WSGIRestrictEmbedded On
+    WSGIPythonOptimize 1
 
-    # The following two optional lines enables "daemon mode" which limits the
-    # number of processes and therefore also keeps memory use more predictable
-    WSGIDaemonProcess pootle processes=2 threads=3 stack-size=1048576 maximum-requests=5000 inactivity-timeout=900 display-name=%{GROUP}
-    WSGIProcessGroup pootle
+    <VirtualHost *:80>
+        # Domain for the Pootle server. Use 'localhost' for local deployments.
+        ServerName my-pootle.example.com
 
-    # Directly serve static files like css and images, no need to go through
-    # mod_wsgi and django
-    Alias /pootle/assets /var/www/pootle/assets
-    <Directory /var/www/Pootle/assets>
-    Order deny,allow
-    Allow from all
-    </Directory>
+        # The following two optional lines enable the "daemon mode" which
+        # limits the number of processes and therefore also keeps memory use
+        # more predictable.
+        WSGIDaemonProcess pootle processes=2 threads=3 stack-size=1048576 maximum-requests=500 inactivity-timeout=300 display-name=%{GROUP} python-path=/var/www/pootle/env/lib/python2.7/site-packages
+        WSGIProcessGroup pootle
 
-    # Allow downloading translation files directly
-    Alias /pootle/export /var/www/pootle/po
-    <Directory /var/www/pootle/po>
-    Order deny,allow
-    Allow from all
-    </Directory>
+        # Point to the WSGI loader script.
+        WSGIScriptAlias / /var/www/pootle/wsgi.py
+
+        # Turn off directory listing by default.
+        Options -Indexes
+
+        # Set expiration for some types of files.
+        # This might require enabling the 'expires' module.
+        ExpiresActive On
+
+        ExpiresByType image/jpg "access plus 2 hours"
+        ExpiresByType image/png "access plus 2 hours"
+
+        ExpiresByType text/css "access plus 10 years"
+        ExpiresByType application/x-javascript "access plus 10 years"
+
+        # Optimal caching by proxies.
+        # This might require enabling the 'headers' module.
+        Header set Cache-Control "public"
+
+        # Directly serve static files like css and images, no need to go
+        # through mod_wsgi and Django. For high performance consider having a
+        # separate server.
+        Alias /assets /var/www/pootle/env/lib/python2.7/site-packages/pootle/assets
+        <Directory /var/www/pootle/env/lib/python2.7/site-packages/pootle/assets>
+            Order deny,allow
+            Allow from all
+        </Directory>
+
+        # Allow downloading translation files directly.
+        # This location must be the same in the Pootle 'PODIRECTORY' setting.
+        Alias /export /var/www/pootle/env/lib/python2.7/site-packages/pootle/po
+        <Directory /var/www/pootle/env/lib/python2.7/site-packages/pootle/po>
+            Order deny,allow
+            Allow from all
+        </Directory>
+
+        <Location /export>
+            # Compress before being sent to the client over the network.
+            # This might require enabling the 'deflate' module.
+            SetOutputFilter DEFLATE
+
+            # Enable directory listing.
+            Options Indexes
+        </Location>
+
+    </VirtualHost>
+
 
 You can find more information in the `Django docs about Apache and
 mod_wsgi <https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/modwsgi/>`_.
