@@ -308,12 +308,14 @@ html[dir="rtl"] ul.icons
 /* Hack to avoid ugly underlines in the space between icons and text */
 
 td.stats-name a:hover,
+.last-action > a:hover,
 .overview-actions-content a:hover
 {
     text-decoration: none;
 }
 
 td.stats-name a:hover > i + span,
+.last-action > a:hover > img + span,
 .overview-actions-content a:hover > i + span
 {
     text-decoration: underline;
@@ -782,23 +784,29 @@ html[dir="rtl"] .hd h2
     margin-right: 0.5em;
 }
 
-.hd .last-action
+.last-action
 {
-    margin: 0.5em 0 0 1em;
+    margin: 1em 0 1em 0;
+    padding: 0.5em;
+    background-color: #f8f8f8;
+    border: 1px solid #d9d9d9;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
 }
 
-html[dir="rtl"] .hd .last-action
+html[dir="rtl"] .last-action
 {
     margin-left: 0;
     margin-right: 1em;
 }
 
-.hd .last-action img
+.last-action img
 {
     vertical-align: middle;
 }
 
-.hd .last-action .extra-item-meta
+.last-action .extra-item-meta
 {
     color: #999;
 }

@@ -20,6 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.db import models
+from django.template.defaultfilters import escape, truncatechars
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
@@ -98,7 +99,7 @@ class Submission(models.Model):
             sub = Submission.objects.filter(**criteria).latest()
         except Submission.DoesNotExist:
             return ''
-        return sub.get_as_action_bundle()
+        return sub.get_submission_message()
 
     def as_html(self):
         # Sadly we may not have submitter information in all the situations yet
@@ -117,36 +118,35 @@ class Submission(models.Model):
 
         return mark_safe(snippet)
 
-    def get_as_action_bundle(self):
-        """Returns the submission as an action bundle.
+    def get_submission_message(self):
+        """Returns a message describing the submission.
 
-        The bundle contains only the data that is necessary for showing the
-        GitHub-like latest action message.
+        The message includes the user (with link to profile and gravatar), a
+        message describing the action performed, and when it was performed.
         """
 
         unit = None
-        if self.unit:
+        if self.unit is not None:
             unit = {
-                'id': self.unit.pk,
+                'source': escape(truncatechars(self.unit, 50)),
                 'url': self.unit.get_absolute_url(),
             }
 
         action_bundle = {
-            "action": {
-                SubmissionTypes.REVERT: _('reverted translation for '
-                                          '<a href="%(url)s">string %(id)d</a>',
-                                          unit),
-                SubmissionTypes.REVERT: _('reverted translation for '
-                                          '<a href="%(url)s">string %(id)d</a>',
-                                          unit),
-                SubmissionTypes.SUGG_ACCEPT: _('accepted suggestion for '
-                                               '<a href="%(url)s">string %(id)d'
-                                               '</a>', unit),
-                SubmissionTypes.UPLOAD: _('uploaded file'),
-            }.get(self.type, ''),
-            "by_profile": self.submitter,
+            "profile_url": self.submitter.get_absolute_url(),
+            "gravatar_url": self.submitter.gravatar_url(20),
+            "username": self.submitter.user.username,
             "date": self.creation_time,
-            "unit": self.unit,
+            "isoformat_date": self.creation_time.isoformat(),
+            "action": {
+                SubmissionTypes.REVERT: _('reverted translation for string <i>'
+                                          '<a href="%(url)s">%(source)s</a>'
+                                          '</i>', unit),
+                SubmissionTypes.SUGG_ACCEPT: _('accepted suggestion for string'
+                                               ' <i><a href="%(url)s">'
+                                               '%(source)s</a></i>', unit),
+                SubmissionTypes.UPLOAD: _('uploaded a file'),
+            }.get(self.type, ''),
         }
 
         #TODO Look how to detect submissions for "sent suggestion", "rejected
@@ -156,14 +156,33 @@ class Submission(models.Model):
         # one in the dictionary above.
 
         if not action_bundle["action"]:
-            # If the action is unset, maybe the action is one of the following.
-            action_bundle["action"] = {
-                TRANSLATED: _('sent translation for <a href="%(url)s">string '
-                              '%(id)d</a>', unit),
-                FUZZY: _('sent "needs work" translation for <a href="%(url)s">'
-                         'string %(id)d</a>', unit),
-                UNTRANSLATED: _('removed translation for <a href="%(url)s">'
-                                'string %(id)d</a>', unit),
-            }.get(self.unit.state, "")
+            try:
+                # If the action is unset, maybe the action is one of the
+                # following ones.
+                action_bundle["action"] = {
+                    TRANSLATED: _('submitted translation for string <i><a '
+                                  'href="%(url)s">%(source)s</a></i>', unit),
+                    FUZZY: _('submitted "needs work" translation for string '
+                             '<i><a href="%(url)s">%(source)s</a></i>',
+                             unit),
+                    UNTRANSLATED: _('removed translation for string <i><a '
+                                    'href="%(url)s">%(source)s</a></i>', unit),
+                }.get(self.unit.state, '')
+            except AttributeError:
+                return ''
 
-        return action_bundle
+        # If it is not possible to provide the action performed, then it is
+        # better to not return anything at all.
+        if not action_bundle["action"]:
+            return ''
+
+        return (u'<div class="last-action">'
+            '  <a href="%(profile_url)s">'
+            '    <img src="%(gravatar_url)s" />'
+            '    <span>%(username)s</span>'
+            '  </a>'
+            '  %(action)s'
+            '  <time class="extra-item-meta js-relative-date"'
+            '    title="%(date)s" datetime="%(isoformat_date)s">&nbsp;'
+            '  </time>'
+            '</div>' % action_bundle)

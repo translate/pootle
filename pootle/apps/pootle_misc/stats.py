@@ -117,7 +117,7 @@ def get_translation_stats(path_obj, path_stats):
     return stats
 
 
-def get_path_summary(path_obj, path_stats):
+def get_path_summary(path_obj, path_stats, latest_action):
     """Returns a list of sentences to be displayed for each ``path_obj``."""
     summary = []
     incomplete = []
@@ -198,7 +198,8 @@ def get_path_summary(path_obj, path_stats):
         )
         suggestions.append(u'</a>')
 
-    return [u''.join(summary), u''.join(incomplete), u''.join(suggestions)]
+    return [u''.join(summary), latest_action, u''.join(incomplete),
+            u''.join(suggestions)]
 
 
 def stats_message_raw(version, stats):

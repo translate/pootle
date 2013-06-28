@@ -219,8 +219,15 @@ class ProjectIndexView(view_handler.View):
 
         path_obj = store or directory
 
+        latest_action = ''
+        # If current directory is the TP root directory.
+        if not directory.path:
+            latest_action = translation_project.get_latest_submission()
+        elif store is None:  # If this is not a file.
+            latest_action = Submission.get_latest_for_dir(path_obj)
+
         path_stats = get_raw_stats(path_obj, include_suggestions=True)
-        path_summary = get_path_summary(path_obj, path_stats)
+        path_summary = get_path_summary(path_obj, path_stats, latest_action)
         actions = action_groups(request, path_obj, path_stats=path_stats)
 
         template_vars.update({
@@ -252,16 +259,6 @@ class ProjectIndexView(view_handler.View):
                     'items': get_children(translation_project, directory),
                 }
             })
-
-            # If current directory is the TP root directory.
-            if not directory.path:
-                template_vars.update({
-                    'latest_action': translation_project.get_latest_submission()
-                })
-            else:
-                template_vars.update({
-                    'latest_action': Submission.get_latest_for_dir(path_obj)
-                })
 
         if can_edit:
             from pootle_translationproject.forms import DescriptionForm
