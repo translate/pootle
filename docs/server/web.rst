@@ -46,32 +46,162 @@ set ``MaxClients`` to something like ``20``, for example.
 Make sure Apache has read access to all of Pootle's files and write access to
 the :setting:`PODIRECTORY` directory.
 
+.. note:: Most of the paths present in the examples in this section are the
+   result of deploying Pootle using a Python virtualenv as told in the
+   :ref:`Setting up the Environment <installation#setup_environment>` section
+   from the :ref:`Quickstart installation <installation>` instructions.
+
+   If for any reason you have different paths, you will have to adjust the
+   examples before using them.
+
+   For example the path :file:`/var/www/pootle/env/lib/python2.7/site-packages/`
+   will be different if you have another Python version, or if the Python
+   virtualenv is located in any other place.
+
+
+First it is necessary to create a WSGI loader script:
+
+.. code-block:: python
+
+    #!/usr/bin/env python
+    # -*- coding: utf-8 -*-
+
+    import os
+    import site
+    import sys
+
+    from django.core.wsgi import get_wsgi_application
+
+
+    # You probably will need to change these paths to match your deployment,
+    # most likely because of the Python version you are using.
+    ALLDIRS = [
+        '/var/www/pootle/env/lib/python2.7/site-packages',
+        '/var/www/pootle/env/lib/python2.7/site-packages/pootle/apps',
+    ]
+
+    # Remember original sys.path.
+    prev_sys_path = list(sys.path)
+
+    # Add each new site-packages directory.
+    for directory in ALLDIRS:
+        site.addsitedir(directory)
+
+    # Reorder sys.path so new directories at the front.
+    new_sys_path = []
+
+    for item in list(sys.path):
+        if item not in prev_sys_path:
+            new_sys_path.append(item)
+            sys.path.remove(item)
+
+    sys.path[:0] = new_sys_path
+
+    # Set the Pootle settings module as DJANGO_SETTINGS_MODULE.
+    os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
+
+    # Set the WSGI application.
+    def application(environ, start_response):
+        """Wrapper for Django's WSGIHandler().
+
+        This allows to get values specified by SetEnv in the Apache
+        configuration or interpose other changes to that environment, like
+        installing middleware.
+        """
+        try:
+            os.environ['POOTLE_SETTINGS'] = environ['POOTLE_SETTINGS']
+        except KeyError:
+            pass
+
+        _wsgi_application = get_wsgi_application()
+        return _wsgi_application(environ, start_response)
+
+
+Place it in :file:`/var/www/pootle/wsgi.py`. If you use a different location
+remember to update the Apache configuration accordingly.
+
 A sample Apache configuration with mod_wsgi might look like this:
 
 .. code-block:: apache
 
-    # Point to the WSGI loader script
-    WSGIScriptAlias /pootle /var/www/pootle/wsgi.py
+    WSGIRestrictEmbedded On
+    WSGIPythonOptimize 1
 
-    # The following two optional lines enables "daemon mode" which limits the
-    # number of processes and therefore also keeps memory use more predictable
-    WSGIDaemonProcess pootle processes=2 threads=3 stack-size=1048576 maximum-requests=5000 inactivity-timeout=900 display-name=%{GROUP}
-    WSGIProcessGroup pootle
+    <VirtualHost *:80>
+        # Domain for the Pootle server. Use 'localhost' for local deployments.
+        ServerName my-pootle.example.com
+ 
+        # Set the 'POOTLE_SETTINGS' environment variable pointing at your custom
+        # Pootle settings file.
+        #
+        # If you don't know which settings to include in this file you can use
+        # the file '90-local.conf.sample' as a starting point. This file can be
+        # found at '/var/www/pootle/env/lib/python2.7/site-packages/pootle/settings/'.
+        #
+        # Another way to specify your custom settings is to comment this
+        # directive and add a new '90-local.conf' file (by copying the file
+        # '90-local.conf.sample' and changing the desired settings) in
+        # '/var/www/pootle/env/lib/python2.7/site-packages/pootle/settings/'
+        # (default location for a pip-installed Pootle, having Python 2.7).
+        #
+        # This might require enabling the 'env' module.
+        SetEnv POOTLE_SETTINGS /var/www/pootle/your_custom_settings.conf
 
-    # Directly serve static files like css and images, no need to go through
-    # mod_wsgi and django
-    Alias /pootle/assets /var/www/pootle/assets
-    <Directory /var/www/Pootle/assets>
-    Order deny,allow
-    Allow from all
-    </Directory>
 
-    # Allow downloading translation files directly
-    Alias /pootle/export /var/www/pootle/po
-    <Directory /var/www/pootle/po>
-    Order deny,allow
-    Allow from all
-    </Directory>
+        # The following two optional lines enable the "daemon mode" which
+        # limits the number of processes and therefore also keeps memory use
+        # more predictable.
+        WSGIDaemonProcess pootle processes=2 threads=3 stack-size=1048576 maximum-requests=500 inactivity-timeout=300 display-name=%{GROUP} python-path=/var/www/pootle/env/lib/python2.7/site-packages
+        WSGIProcessGroup pootle
+
+        # Point to the WSGI loader script.
+        WSGIScriptAlias / /var/www/pootle/wsgi.py
+
+        # Turn off directory listing by default.
+        Options -Indexes
+
+        # Set expiration for some types of files.
+        # This might require enabling the 'expires' module.
+        ExpiresActive On
+
+        ExpiresByType image/jpg "access plus 2 hours"
+        ExpiresByType image/png "access plus 2 hours"
+
+        ExpiresByType text/css "access plus 10 years"
+        ExpiresByType application/x-javascript "access plus 10 years"
+
+        # Optimal caching by proxies.
+        # This might require enabling the 'headers' module.
+        Header set Cache-Control "public"
+
+        # Directly serve static files like css and images, no need to go
+        # through mod_wsgi and Django. For high performance consider having a
+        # separate server.
+        Alias /assets /var/www/pootle/env/lib/python2.7/site-packages/pootle/assets
+        <Directory /var/www/pootle/env/lib/python2.7/site-packages/pootle/assets>
+            Order deny,allow
+            Allow from all
+        </Directory>
+
+        # Allow downloading translation files directly.
+        # This location must be the same in the Pootle 'PODIRECTORY' setting.
+        Alias /export /var/www/pootle/env/lib/python2.7/site-packages/pootle/po
+        <Directory /var/www/pootle/env/lib/python2.7/site-packages/pootle/po>
+            Order deny,allow
+            Allow from all
+        </Directory>
+
+        <Location /export>
+            # Compress before being sent to the client over the network.
+            # This might require enabling the 'deflate' module.
+            SetOutputFilter DEFLATE
+
+            # Enable directory listing.
+            Options Indexes
+        </Location>
+
+    </VirtualHost>
+
 
 You can find more information in the `Django docs about Apache and
 mod_wsgi <https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/modwsgi/>`_.
