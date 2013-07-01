@@ -4,6 +4,7 @@ Django>=1.4.5,<1.5
 django-voting==0.1
 South>=0.7.6,<0.8
 django-assets>=0.8
+django-taggit>0.9.2
 
 # Required by webassets, isn't shipped in Python < 2.7
 argparse
