@@ -101,7 +101,20 @@ First it is necessary to create a WSGI loader script:
     os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
     # Set the WSGI application.
-    application = get_wsgi_application()
+    def application(environ, start_response):
+        """Wrapper for Django's WSGIHandler().
+
+        This allows to get values specified by SetEnv in the Apache
+        configuration or interpose other changes to that environment, like
+        installing middleware.
+        """
+        try:
+            os.environ['POOTLE_SETTINGS'] = environ['POOTLE_SETTINGS']
+        except KeyError:
+            pass
+
+        _wsgi_application = get_wsgi_application()
+        return _wsgi_application(environ, start_response)
 
 
 Place it in :file:`/var/www/pootle/wsgi.py`. If you use a different location
@@ -117,6 +130,23 @@ A sample Apache configuration with mod_wsgi might look like this:
     <VirtualHost *:80>
         # Domain for the Pootle server. Use 'localhost' for local deployments.
         ServerName my-pootle.example.com
+ 
+        # Set the 'POOTLE_SETTINGS' environment variable pointing at your custom
+        # Pootle settings file.
+        #
+        # If you don't know which settings to include in this file you can use
+        # the file '90-local.conf.sample' as a starting point. This file can be
+        # found at '/var/www/pootle/env/lib/python2.7/site-packages/pootle/settings/'.
+        #
+        # Another way to specify your custom settings is to comment this
+        # directive and add a new '90-local.conf' file (by copying the file
+        # '90-local.conf.sample' and changing the desired settings) in
+        # '/var/www/pootle/env/lib/python2.7/site-packages/pootle/settings/'
+        # (default location for a pip-installed Pootle, having Python 2.7).
+        #
+        # This might require enabling the 'env' module.
+        SetEnv POOTLE_SETTINGS /var/www/pootle/your_custom_settings.conf
+
 
         # The following two optional lines enable the "daemon mode" which
         # limits the number of processes and therefore also keeps memory use
