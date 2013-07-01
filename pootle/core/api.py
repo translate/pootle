@@ -17,10 +17,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program; if not, see <http://www.gnu.org/licenses/>.
 
-try:
-    from django.conf.urls import url
-except ImportError: # Django < 1.4
-    from django.conf.urls.defaults import url
+from django.conf.urls import url
 
 from tastypie.resources import ModelResource
 from tastypie.utils import trailing_slash
