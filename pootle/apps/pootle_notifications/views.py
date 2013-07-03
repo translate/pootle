@@ -127,7 +127,8 @@ def get_recipients(restrict_to_active_users, directory):
     recipients = []
     for person in to_list:
         # Check if the User profile has permissions in the directory.
-        if not check_profile_permission(person, 'view', directory):
+        if not check_profile_permission(person, 'view', directory,
+                                        check_default=False):
             continue
 
         if person.user.email:
