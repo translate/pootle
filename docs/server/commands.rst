@@ -8,7 +8,9 @@ or any external Django app being used with Pootle. You will usually run these
 commands by issuing ``pootle <command> [options]``.
 
 For example, to get information about all available management commands, you
-will run::
+will run:
+
+.. code-block:: bash
 
     $ pootle help
 
@@ -98,12 +100,16 @@ If you need to limit the commands to certain files or subdirectories you can
 use the ``--path-prefix`` option, path should be relative to project/language
 pair.
 
-For example, to *refresh_stats* for the tutorial project only, run::
+For example, to *refresh_stats* for the tutorial project only, run:
+
+.. code-block:: bash
 
     $ pootle refresh_stats --project=tutorial
 
 To only refresh a the Zulu and Basque language files within the tutorial
-project, run::
+project, run:
+
+.. code-block:: bash
 
     $ pootle refresh_stats --project=tutorial --language=zu --language=eu
 
@@ -399,6 +405,8 @@ migrate to apply migrations, you must run :ref:`commands#syncdb` to create the
 migration tables, and then a special form of :ref:`commands#migrate` to record
 the fact that the initial schema version already exists:
 
+.. code-block:: bash
+
     $ pootle syncdb
     $ pootle migrate --all --fake 0001
     $ pootle migrate
@@ -501,7 +509,7 @@ Useful Django commands
 changepassword
 ^^^^^^^^^^^^^^
 
-::
+.. code-block:: bash
 
     $ pootle changepassword <username>
 
