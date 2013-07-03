@@ -143,10 +143,11 @@ def bootstrap(branch="master"):
         abort('Aborting.')
 
 
-def _reload_with_new_settings(branch=None,
-                              repo='git://github.com/translate/pootle.git'):
-    """Reload the current environment with new settings based on the parameters."""
+def _reload_with_new_settings(branch=None, repo=None):
+    """Reload the current environment with new settings.
 
+     The new settings are based on the parameters.
+     """
     if branch is None:
         abort('No branch provided. Aborting.')
 
@@ -159,8 +160,10 @@ def _reload_with_new_settings(branch=None,
         'db_name': 'pootle-' + hyphen_branch,
         'project_name': 'pootle-' + hyphen_branch,
         'project_url': hyphen_branch + '.testing.locamotion.org',
-        'project_repo': repo,
     }
+
+    if repo is not None:
+        new_settings['project_repo'] = repo
 
     # Reload the settings for the current environment.
     import sys

@@ -464,8 +464,6 @@ Available options:
   and try new features developed on that repository. It must be an URL that the
   ``git clone`` command is able to clone.
 
-  Default: ``git://github.com/translate/pootle.git``.
-
 Examples:
 
 .. code-block:: bash
