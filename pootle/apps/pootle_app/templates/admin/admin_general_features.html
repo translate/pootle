@@ -1,0 +1,16 @@
+{% extends "admin_profile_base.html" %}
+{% load i18n baseurl %}
+
+{% block title %}{% trans "Features" %} | {{ block.super }}{% endblock %}
+
+{% block body_id %}adminfeatures{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Features" %}</li>
+{% endblock %}
+
+{% block section_description %}{% trans "Here you can add, edit, delete, enable and disable all the available feature switchers in this Pootle server." %}{% endblock %}
+
+{% block section_body %}
+{% include "admin/admin_general.html" %}
+{% endblock %}
