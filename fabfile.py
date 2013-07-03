@@ -189,6 +189,7 @@ def stage_feature(branch=None, repo='git://github.com/translate/pootle.git'):
     _copy_db()
     deploy_static()
     install_site()
+    print('\n\nSuccessfully deployed at:\n\n\thttp://%(project_url)s\n' % env)
 
 
 def unstage_feature(branch=None):
@@ -204,6 +205,7 @@ def unstage_feature(branch=None):
     drop_db()
     _remove_config()
     _remove_directories()
+    print('\nRemoved Pootle deploy for: http://%(project_url)s' % env)
 
 
 def create_db():
@@ -219,6 +221,7 @@ def create_db():
                     % env)
 
     with settings(hide('stderr')):
+        print('\nCreating DB...')
         run(("mysql -u %(db_user)s %(db_password_opt)s -e '" % env) +
             create_db_cmd +
             ("' || { test root = '%(db_user)s' && exit $?; " % env) +
@@ -233,6 +236,7 @@ def drop_db():
 
     if confirm('\nDropping the %s DB loses ALL its data! Are you sure?'
                % (env['db_name']), default=False):
+        print('\nDropping DB...')
         run("echo 'DROP DATABASE `%s`' | mysql -u %s %s" %
             (env['db_name'], env['db_user'], env['db_password_opt']))
     else:
