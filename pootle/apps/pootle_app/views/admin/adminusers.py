@@ -19,18 +19,23 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from django.utils.translation import ugettext as _
-from pootle_app.views.admin import util
-from django.contrib.auth.models import User
-
 from django import forms
+from django.contrib.auth.models import User
 from django.forms.models import BaseModelFormSet
+from django.utils.translation import ugettext as _
+
+from pootle_app.views.admin import util
+
 
 @util.user_is_admin
 def view(request):
+    fields = ('username', 'first_name', 'last_name', 'email', 'is_active',
+              'is_superuser')
+    queryset = User.objects.hide_defaults().order_by('username')
     return util.edit(request, 'admin/admin_general_users.html', User,
-               fields=('username', 'first_name', 'last_name', 'email', 'is_active', 'is_superuser'),
-               formset=BaseUserFormSet, queryset=User.objects.hide_defaults().order_by('username'), can_delete=True)
+                     fields=fields, formset=BaseUserFormSet, queryset=queryset,
+                     can_delete=True)
+
 
 class BaseUserFormSet(BaseModelFormSet):
     """This formset deals with user admininistration. We have to add a

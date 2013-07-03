@@ -23,8 +23,8 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import loader, RequestContext
 
-from pootle_app.views.admin.util import user_is_admin
 from pootle_app.forms import GeneralSettingsForm
+from pootle_app.views.admin.util import user_is_admin
 from pootle_misc.siteconfig import load_site_config
 from pootle_misc.util import jsonify, ajax_required
 
@@ -43,7 +43,7 @@ def view(request):
     template = 'admin/admin_general_settings.html'
     template_vars = {
         'form': setting_form,
-        }
+    }
     return render_to_response(template, template_vars,
                               context_instance=RequestContext(request))
 
