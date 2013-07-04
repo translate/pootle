@@ -385,7 +385,7 @@ This command:
 - Sets up the configuration for the ``production`` environment in Fabric
   settings
 
-.. note:: This commands is useless unless it is called before another command or
+.. note:: This command is useless unless it is called before another command or
    commands.
 
 Examples:
@@ -481,7 +481,7 @@ This command:
 
 - Sets up the configuration for the ``staging`` environment in Fabric settings
 
-.. note:: This commands is useless unless it is called before another command or
+.. note:: This command is useless unless it is called before another command or
    commands.
 
 Examples:
