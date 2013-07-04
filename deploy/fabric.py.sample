@@ -101,6 +101,7 @@ def get_settings(overrides={}):
     SETTINGS['project_repo_path'] = '%(project_path)s/src' % SETTINGS
     SETTINGS['project_repo'] = overrides.get('project_repo',
         'git://github.com/translate/pootle.git')
+    SETTINGS['repo_branch'] = overrides.get('repo_branch', 'master')
 
     SETTINGS['project_settings_path'] = ('%(project_repo_path)s/pootle/'
                                          'settings' % SETTINGS)

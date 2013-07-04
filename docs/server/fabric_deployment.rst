@@ -211,7 +211,7 @@ with the bootstrap command.
 .. code-block:: bash
 
     $ export PYTHONPATH=`pwd`:$PYTHONPATH
-    $ fab production bootstrap:branch=stable/2.5.0  # Install Pootle 2.5
+    $ fab production:branch=stable/2.5.0 bootstrap  # Install Pootle 2.5
 
 
 .. _fabric-deployment#configuring-passwordless-access:
@@ -282,7 +282,7 @@ Enabling the web server
 
 .. code-block:: bash
 
-    $ fab production deploy:branch=stable/2.5.0
+    $ fab production:branch=stable/2.5.0 deploy
 
 
 .. _fabric-deployment#notes-on-fabric-commands:
@@ -293,22 +293,37 @@ Notes on Fabric commands
 In addition to the basic Fabric command usage in the examples above, there are
 other advanced techniques that can be used.
 
-Some commands accept options - the option name is followed by a colon (:) and
-the value for the option (with no spaces).
+Some commands accept arguments - the argument name is followed by a colon (:)
+and the value for the argument (with no spaces).
+
+One possible use for arguments is to tweak the environment when setting it,
+before calling the commands:
 
 .. code-block:: bash
 
-    $ fab production bootstrap:branch=stable/2.5.0  # Run bootstrap for a branch
+    $ fab production:branch=stable/2.5.0 bootstrap  # Run bootstrap for a branch
 
-The previous call runs the :ref:`bootstrap <fabric-commands#bootstrap>` command
-providing the value ``stable/2.5.0`` for its :option:`branch` option.
+In the previous example :ref:`bootstrap <fabric-commands#bootstrap>` is run
+after setting the environment using :ref:`production
+<fabric-commands#production>` but changing the branch to work on, to be the
+value ``stable/2.5.0`` passed to the :option:`branch` argument.
 
-It is also possible to run several commands in a row with a single call.
+Besides the commands for setting the environment, there are some other commands
+that accept arguments:
+
+.. code-block:: bash
+
+    $ fab production load_db:dumpfile=backup_mysql.sql  # Call load_db providing a database dump to load
+
+The previous call runs the :ref:`load_db <fabric-commands#load-db>` command
+providing the value ``backup_mysql.sql`` for its :option:`dumpfile` argument.
+
+It is also possible to run several commands in a row with a single call:
 
 .. code-block:: bash
 
     $ # Run several commands in a row using a single call to fab
-    $ fab production bootstrap:branch=stable/2.5.0 create_db load_db:dumpfile=backup_mysql_2.5.0-rc1.sql
+    $ fab production:branch=stable/2.5.0 bootstrap create_db load_db:dumpfile=backup_mysql.sql
 
 The previous call will run :ref:`production <fabric-commands#production>`
 followed by :ref:`bootstrap <fabric-commands#bootstrap>`, :ref:`create_db
