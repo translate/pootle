@@ -37,7 +37,7 @@ This command:
    .. versionchanged:: 2.5.1 Added support for bootstrapping from a given
       branch on Pootle repository.
 
-Available options:
+Available arguments:
 
 ``branch``
   A specific branch to check out in the repository.
@@ -117,7 +117,7 @@ This command:
    .. versionchanged:: 2.5.1 Added support for deploying from a given branch
       on Pootle repository.
 
-Available options:
+Available arguments:
 
 ``branch``
   A specific branch to check out in the repository.
@@ -220,7 +220,7 @@ This command:
    imported later using the :ref:`load_db <fabric-commands#load-db>`
    command.
 
-Available options:
+Available arguments:
 
 ``dumpfile``
   The filename for the file where the database will be dumped.
@@ -318,14 +318,14 @@ This command:
    :ref:`create_db <fabric-commands#create-db>` command) before calling this
    command,
 
-Available options:
+Available arguments:
 
 ``dumpfile``
   The SQL dump filename that will be uploaded to and imported into an existing
   database on the remote server. This file can be created using the
   :ref:`dump_db <fabric-commands#dump-db>` command.
 
-  .. note:: This is a required option.
+  .. note:: This is a required argument.
 
 Examples:
 
@@ -450,12 +450,12 @@ This command:
 
 .. warning:: This command requires using the ``staging`` environment.
 
-Available options:
+Available arguments:
 
 ``branch``
   A specific branch to check out in the repository.
 
-  .. note:: This is a required option.
+  .. note:: This is a required argument.
 
 ``repo``
   A repository URL to clone from.
@@ -555,13 +555,13 @@ This command:
 
 .. warning:: This command requires using the ``staging`` environment.
 
-Available options:
+Available arguments:
 
 ``branch``
   The specific branch which was used to check out from the repository when
   deploying Pootle.
 
-  .. note:: This is a required option.
+  .. note:: This is a required argument.
 
 Examples:
 
@@ -586,7 +586,7 @@ This command:
    .. versionchanged:: 2.5.1 Added support for updating code from a given branch
       on Pootle repository.
 
-Available options:
+Available arguments:
 
 ``branch``
   A specific branch to check out in the repository.
