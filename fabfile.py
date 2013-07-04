@@ -76,6 +76,8 @@ def _remove_directories():
 
 def _init_directories():
     """Creates initial directories"""
+    print('\n\nCreating initial directories...')
+
     _remove_directories()
 
     sudo('mkdir -p %(project_path)s' % env)
@@ -90,6 +92,8 @@ def _init_directories():
 
 def _init_virtualenv():
     """Creates initial virtualenv"""
+    print('\n\nCreating virtualenv...')
+
     run('virtualenv -p %(python)s --no-site-packages %(env_path)s' % env)
     with prefix('source %(env_path)s/bin/activate' % env):
         run('easy_install pip')
@@ -97,11 +101,15 @@ def _init_virtualenv():
 
 def _clone_repo():
     """Clones the Git repository"""
+    print('\n\nCloning the repository...')
+
     run('git clone %(project_repo)s %(project_repo_path)s' % env)
 
 
 def _checkout_repo(branch="master"):
     """Updates the Git repository and checks out the specified branch"""
+    print('\n\nUpdating repository branch...')
+
     with cd(env.project_repo_path):
         run('git checkout master')
         run('git pull')
@@ -111,6 +119,8 @@ def _checkout_repo(branch="master"):
 
 def _install_requirements():
     """Installs dependencies defined in the requirements file"""
+    print('\n\nInstalling requirements...')
+
     with prefix('source %(env_path)s/bin/activate' % env):
         run('pip install -r %(project_repo_path)s/requirements/deploy.txt' % env)
     run('chmod -R go=u,go-w %(env_path)s' % env)
@@ -118,6 +128,8 @@ def _install_requirements():
 
 def _update_requirements():
     """Updates dependencies defined in the requirements file"""
+    print('\n\nUpdating requirements...')
+
     with prefix('source %(env_path)s/bin/activate' % env):
         run('pip install -U -r %(project_repo_path)s/requirements/deploy.txt' % env)
     run('chmod -R go=u,go-w %(env_path)s' % env)
@@ -130,9 +142,6 @@ def bootstrap(branch="master"):
     if (not exists('%(project_path)s' % env) or
         confirm('\n%(project_path)s already exists. Do you want to continue?'
                 % env, default=False)):
-
-            print('Bootstrapping initial directories...')
-
             with settings(hide('stdout', 'stderr')):
                 _init_directories()
                 _init_virtualenv()
@@ -140,7 +149,7 @@ def bootstrap(branch="master"):
                 _checkout_repo(branch=branch)
                 _install_requirements()
     else:
-        abort('Aborting.')
+        abort('\nAborting.')
 
 
 def _reload_with_new_settings(branch=None, repo=None):
@@ -149,7 +158,9 @@ def _reload_with_new_settings(branch=None, repo=None):
      The new settings are based on the parameters.
      """
     if branch is None:
-        abort('No branch provided. Aborting.')
+        abort('\nNo branch provided. Aborting.')
+
+    print('\n\nApplying new settings')
 
     # Replace all occurrences of problematic characters with - character.
     import re
@@ -205,7 +216,7 @@ def unstage_feature(branch=None):
     drop_db()
     _remove_config()
     _remove_directories()
-    print('\nRemoved Pootle deploy for: http://%(project_url)s' % env)
+    print('\n\nRemoved Pootle deployment for http://%(project_url)s' % env)
 
 
 def create_db():
@@ -220,8 +231,9 @@ def create_db():
                     "FLUSH PRIVILEGES;"
                     % env)
 
+    print('\n\nCreating DB...')
+
     with settings(hide('stderr')):
-        print('\nCreating DB...')
         run(("mysql -u %(db_user)s %(db_password_opt)s -e '" % env) +
             create_db_cmd +
             ("' || { test root = '%(db_user)s' && exit $?; " % env) +
@@ -234,13 +246,14 @@ def drop_db():
     """Drops the current DB - losing all data!"""
     require('environment', provided_by=[production, staging])
 
+    print('\n\nDropping DB...')
+
     if confirm('\nDropping the %s DB loses ALL its data! Are you sure?'
                % (env['db_name']), default=False):
-        print('\nDropping DB...')
         run("echo 'DROP DATABASE `%s`' | mysql -u %s %s" %
             (env['db_name'], env['db_user'], env['db_password_opt']))
     else:
-        abort('Aborting.')
+        abort('\nAborting.')
 
 
 def setup_db():
@@ -256,8 +269,11 @@ def _copy_db():
     """Copies the data in the source DB into the DB to use for deployment"""
     require('environment', provided_by=[production, staging])
 
+    print('\n\nCloning DB...')
+
     with settings(hide('stderr'), temp_dump='/tmp/temporary_DB_backup.sql'):
         print('\nDumping DB data...')
+
         run("mysqldump -u %(db_user)s %(db_password_opt)s %(source_db)s > "
             "%(temp_dump)s"
             " || { test root = '%(db_user)s' && exit $?; "
@@ -266,6 +282,7 @@ def _copy_db():
             "%(temp_dump)s;}" % env)
 
         print('\nLoading data into the DB...')
+
         run("mysql -u %(db_user)s %(db_password_opt)s %(db_name)s < "
             "%(temp_dump)s"
             " || { test root = '%(db_user)s' && exit $?; "
@@ -280,6 +297,8 @@ def syncdb():
     """Runs `syncdb` to create the DB schema"""
     require('environment', provided_by=[production, staging])
 
+    print('\n\nRunning `syncdb` command...')
+
     with settings(hide('stdout', 'stderr')):
         with cd('%(project_repo_path)s' % env):
             with prefix('source %(env_path)s/bin/activate' % env):
@@ -290,6 +309,8 @@ def initdb():
     """Runs `initdb` to initialize the DB"""
     require('environment', provided_by=[production, staging])
 
+    print('\n\nRunning `initdb` command...')
+
     with settings(hide('stdout', 'stderr')):
         with cd('%(project_repo_path)s' % env):
             with prefix('source %(env_path)s/bin/activate' % env):
@@ -299,6 +320,8 @@ def initdb():
 def migratedb():
     """Runs `migrate` to bring the DB up to date with the latest schema"""
     require('environment', provided_by=[production, staging])
+
+    print('\n\nRunning `migrate` command...')
 
     with settings(hide('stdout', 'stderr')):
         with cd('%(project_repo_path)s' % env):
@@ -322,6 +345,8 @@ def _updatedb():
     """Updates database schemas up to Pootle version 2.5"""
     require('environment', provided_by=[production, staging])
 
+    print('\n\nRunning `updatedb` command...')
+
     with settings(hide('stdout', 'stderr')):
         with cd('%(project_repo_path)s' % env):
             with prefix('source %(env_path)s/bin/activate' % env):
@@ -331,6 +356,8 @@ def _updatedb():
 def _migrate_fake():
     """Runs `migrate --fake` to convert the DB to migrations"""
     require('environment', provided_by=[production, staging])
+
+    print('\n\nRunning `migrate --fake` command...')
 
     with settings(hide('stdout', 'stderr')):
         with cd('%(project_repo_path)s' % env):
@@ -344,6 +371,8 @@ def upgrade():
     """Runs `upgrade` to upgrade the DB for new Pootle/Translate Toolkit"""
     require('environment', provided_by=[production, staging])
 
+    print('\n\nRunning `upgrade` command...')
+
     with settings(hide('stdout', 'stderr')):
         with cd('%(project_repo_path)s' % env):
             with prefix('source %(env_path)s/bin/activate' % env):
@@ -354,6 +383,8 @@ def load_db(dumpfile=None):
     """Loads data from a SQL script to Pootle DB"""
     require('environment', provided_by=[production, staging])
 
+    print('\n\nLoading data into the DB...')
+
     if dumpfile is not None:
         if isfile(dumpfile):
             remote_filename = '%(project_path)s/DB_backup_to_load.sql' % env
@@ -361,8 +392,6 @@ def load_db(dumpfile=None):
             if (not exists(remote_filename) or
                 confirm('\n%s already exists. Do you want to overwrite it?'
                         % remote_filename, default=False)):
-
-                print('\nLoading data into the DB...')
 
                 with settings(hide('stderr')):
                     put(dumpfile, remote_filename)
@@ -382,6 +411,8 @@ def dump_db(dumpfile="pootle_DB_backup.sql"):
     """Dumps the DB as a SQL script and downloads it"""
     require('environment', provided_by=[production, staging])
 
+    print('\n\nDumping DB...')
+
     if isdir(dumpfile):
         abort("dumpfile '%s' is a directory! Aborting." % dumpfile)
 
@@ -394,8 +425,6 @@ def dump_db(dumpfile="pootle_DB_backup.sql"):
         if (not exists(remote_filename) or
             confirm('\n%s already exists. Do you want to overwrite it?'
                     % remote_filename, default=False)):
-
-            print('\nDumping DB...')
 
             with settings(hide('stderr')):
                 run('mysqldump -u %s %s %s > %s' %
@@ -413,8 +442,6 @@ def update_code(branch="master"):
     """Updates the source code and its requirements"""
     require('environment', provided_by=[production, staging])
 
-    print('Getting the latest code and dependencies...')
-
     with settings(hide('stdout', 'stderr')):
         _checkout_repo(branch=branch)
         _update_requirements()
@@ -424,7 +451,7 @@ def deploy_static():
     """Runs `collectstatic` to collect all the static files"""
     require('environment', provided_by=[production, staging])
 
-    print('Collecting and building static files...')
+    print('\n\nCollecting static files and building assets...')
 
     with settings(hide('stdout', 'stderr')):
         with cd('%(project_repo_path)s' % env):
@@ -439,8 +466,6 @@ def deploy(branch="master"):
     """Updates the code and installs the production site"""
     require('environment', provided_by=[production, staging])
 
-    print('Deploying the site...')
-
     with settings(hide('stdout', 'stderr')):
         update_code(branch=branch)
         deploy_static()
@@ -451,8 +476,6 @@ def install_site():
     """Configures the server and enables the site"""
     require('environment', provided_by=[production, staging])
 
-    print('Configuring and installing site...')
-
     with settings(hide('stdout', 'stderr')):
         update_config()
         enable_site()
@@ -461,6 +484,8 @@ def install_site():
 def update_config():
     """Updates server configuration files"""
     require('environment', provided_by=[production, staging])
+
+    print('\n\nUpdating server configuration...')
 
     with settings(hide('stdout', 'stderr')):
 
@@ -480,6 +505,8 @@ def update_config():
 
 def _remove_config():
     """Removes server configuration files"""
+    print('\n\nRemoving server configuration...')
+
     sudo('rm -rf %(vhost_file)s' % env)
     run('rm -rf %(wsgi_file)s' % env)
     run('rm -rf %(project_settings_path)s/90-%(environment)s-local.conf' % env)
@@ -505,7 +532,7 @@ def _switch_site(enable):
     """Switches site's status to enabled or disabled"""
 
     action = "Enabling" if enable else "Disabling"
-    print('%s site...' % action)
+    print('\n\n%s site...' % action)
 
     env.apache_command = 'a2ensite' if enable else 'a2dissite'
     sudo('%(apache_command)s %(project_name)s' % env)
@@ -516,7 +543,7 @@ def touch():
     """Reloads daemon processes by touching the WSGI file"""
     require('environment', provided_by=[production, staging])
 
-    print('Running touch...')
+    print('\n\nRunning `touch`...')
 
     with settings(hide('stdout', 'stderr')):
         run('touch %(wsgi_file)s' % env)
@@ -526,7 +553,7 @@ def compile_translations():
     """Compiles PO translations"""
     require('environment', provided_by=[production, staging])
 
-    print('Compiling translations...')
+    print('\n\nCompiling translations...')
 
     with settings(hide('stdout', 'stderr')):
         with cd(env.project_repo_path):
@@ -537,7 +564,7 @@ def mysql_conf():
     """Sets up .my.cnf file for passwordless MySQL operation"""
     require('environment', provided_by=[production, staging])
 
-    print('Setting up MySQL password configuration...')
+    print('\n\nSetting up MySQL password configuration...')
 
     conf_filename = '~/.my.cnf'
 
