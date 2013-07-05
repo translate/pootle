@@ -208,7 +208,7 @@ This command:
 Available arguments:
 
 ``dumpfile``
-  The filename for the file where the database will be dumped.
+  The local filename for the file where the database will be dumped.
 
   Default: ``pootle_DB_backup.sql``.
 
@@ -306,9 +306,9 @@ This command:
 Available arguments:
 
 ``dumpfile``
-  The SQL dump filename that will be uploaded to and imported into an existing
-  database on the remote server. This file can be created using the
-  :ref:`dump_db <fabric-commands#dump-db>` command.
+  The local SQL dump filename that will be uploaded to the remote server and
+  imported into an existing database on the remote server. This file can be
+  created using the :ref:`dump_db <fabric-commands#dump-db>` command.
 
   .. note:: This is a required argument.
 

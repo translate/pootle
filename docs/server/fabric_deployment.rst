@@ -326,30 +326,36 @@ with the bootstrap command.
 Setting Up the Database
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-If creating a new database from scratch:
+When setting up the database there are several possible scenarios:
 
-.. code-block:: bash
+* If creating a new database from scratch:
 
-    $ fab production create_db  # Creates Pootle DB on MySQL
-    $ fab production setup_db   # Populates the initial DB and its schema
+  .. code-block:: bash
 
-If creating a blank database and populating with a (local) database backup:
+      $ fab production create_db  # Creates Pootle DB on MySQL
+      $ fab production setup_db   # Populates the initial DB and its schema
 
-.. code-block:: bash
+* If creating a blank database and populating with a (local) database backup:
 
-    $ fab production create_db  # Creates Pootle DB on MySQL
-    $ fab production load_db:dumpfile=backup_mysql.sql # Populate DB from local dump
+  .. code-block:: bash
 
-.. note:: The dumpfile (for load_db and dump_db) is local to the system where
-   Fabric runs, and is automatically copied to/from the remote server.
+      $ fab production create_db  # Creates Pootle DB on MySQL
+      $ fab production load_db:dumpfile=backup_mysql.sql # Populate DB from local dump
 
-If updating a previous version database (possibly just loaded with load_db)
-to the latest version of the schema:
+  .. note:: The :option:`dumpfile` (for :ref:`load_db
+     <fabric-commands#load-db>` and :ref:`dump_db <fabric-commands#dump-db>`)
+     is local to the system where Fabric runs, and is automatically copied
+     to/from the remote server.
 
-.. code-block:: bash
+* If updating a previous version database (possibly just loaded with
+  :ref:`load_db <fabric-commands#load-db>`) to the latest version of the
+  schema:
 
-    $ fab production update_db  # Updates DB schema to latest version
-    $ fab production upgrade    # Applies various non-schema cleanup & recovery
+  .. code-block:: bash
+
+      $ fab production update_db  # Updates DB schema to latest version
+      $ fab production upgrade    # Applies various non-schema cleanup & recovery
+
 
 .. _fabric-deployment#enabling-the-web-server:
 
