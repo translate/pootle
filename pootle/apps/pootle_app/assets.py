@@ -21,24 +21,24 @@
 from django_assets import Bundle, register
 
 js_common = Bundle(
-    'js/jquery/jquery.js',
-    'js/jquery/jquery.tipsy.js',
-    'js/jquery/jquery.cookie.js',
-    'js/jquery/jquery.bidi.js',
-    'js/jquery/jquery.magnific-popup.js',
-    'js/jquery/jquery.utils.js',
-    'js/jquery/jquery.easing.js',
-    'js/jquery/jquery.serializeObject.js',
-    'js/jquery/jquery.select2.js',
-    'js/bootstrap/bootstrap-alert.js',
-    'js/bootstrap/bootstrap-transition.js',
+    'js/vendor/jquery/jquery.js',
+    'js/vendor/jquery/jquery.tipsy.js',
+    'js/vendor/jquery/jquery.cookie.js',
+    'js/vendor/jquery/jquery.bidi.js',
+    'js/vendor/jquery/jquery.magnific-popup.js',
+    'js/vendor/jquery/jquery.utils.js',
+    'js/vendor/jquery/jquery.easing.js',
+    'js/vendor/jquery/jquery.serializeObject.js',
+    'js/vendor/jquery/jquery.select2.js',
+    'js/vendor/bootstrap/bootstrap-alert.js',
+    'js/vendor/bootstrap/bootstrap-transition.js',
     'js/common.js',
     'js/search.js',
-    'js/sorttable.js',
-    'js/spin.js',
     'js/utils.js',
     'js/zoom.js',
-    'js/shortcut.js',  # Leave shortcut.js as the last one
+    'js/vendor/sorttable.js',
+    'js/vendor/spin.js',
+    'js/vendor/shortcut.js',  # Leave shortcut.js as the last one
     filters='rjsmin', output='js/common.min.%(version)s.js')
 register('js_common', js_common)
 
@@ -48,17 +48,17 @@ js_admin = Bundle(
 register('js_admin', js_admin)
 
 js_editor = Bundle(
-    'js/jquery/jquery.history.js',
-    'js/jquery/jquery.tmpl.js',
-    'js/jquery/jquery.textarea-expander.js',
-    'js/diff_match_patch.js',
-    'js/jquery/jquery.fieldselection.js',
-    'js/jquery/jquery.caret.js',
-    'js/jquery/jquery.highlightRegex.js',
-    'js/jquery/jquery.jsonp.js',
-    'js/iso8601.js',
+    'js/vendor/jquery/jquery.history.js',
+    'js/vendor/jquery/jquery.tmpl.js',
+    'js/vendor/jquery/jquery.textarea-expander.js',
+    'js/vendor/diff_match_patch.js',
+    'js/vendor/jquery/jquery.fieldselection.js',
+    'js/vendor/jquery/jquery.caret.js',
+    'js/vendor/jquery/jquery.highlightRegex.js',
+    'js/vendor/jquery/jquery.jsonp.js',
+    'js/vendor/iso8601.js',
+    'js/vendor/json2.js',
     'js/editor.js',
-    'js/json2.js',
     filters='rjsmin', output='js/editor.min.%(version)s.js')
 register('js_editor', js_editor)
 

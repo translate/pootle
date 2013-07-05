@@ -19,173 +19,23 @@ Directory contents
     array.
 
   - common.js :
-    Common code that is included in every page. This includes:
-    - Code to handle the page zoom feature.
-
-  - diff_match_patch.js :
-    Google's Diff, Match, and Patch libraries for plain text.
-    It's used for suggestion's diff highlighting.
-
-    Version 20120106.
-
-    https://code.google.com/p/google-diff-match-patch/
+    Common code that is included in every page.
 
   - editor.js :
     Code that sets up the editor and handles all the actions involved there.
     This includes unit navigation, submission, suggestions' handling, copying
     functions, fuzzy/unfuzzy, and several other helper stuff.
 
-  - iso8601.js :
-    Date.parse with progressive enhancement for ISO 8601.
-
-    https://github.com/csnover/js-iso8601
-
-  - json2.min.js :
-    JavaScript library for encoding/decoding data to/from JSON format.
-
-    http://www.json.org/js.html
-
   - search.js :
     Search functionality, shared across pages.
-
-  - shortcut.js :
-    Small library to ease adding keyboard shortcuts.
-
-    http://www.openjs.com/scripts/events/keyboard_shortcuts/
-
-  - sorttable.js :
-    Sorts tables according to its values. Used in the homepage as well as on the
-    languages and projects listings. It has some customisations to support
-    zebra stripes once the sort is done (using jQuery). The icons used on the
-    table headings are custom code too. We also customized it to handle our tag
-    rows.
-    We may want to use a table sorter purely written in jQuery, such as
-    tablesorter (http://tablesorter.com/docs/).
-
-    http://www.kryogenix.org/code/browser/sorttable/
-
-  - spin.js :
-    A spinning activity indicator.
-
-    Version 1.2.7
-
-    https://github.com/fgnass/spin.js
 
   - zoom.js :
     Functions that control the page zoom.
 
-  + bootstrap/
+  + lookup/
 
-    - bootstrap-alert.js :
-      Dismiss functionality for all alert messages.
-
-      Version 2.1.1
-
-      https://github.com/twitter/bootstrap/blob/master/js/bootstrap-alert.js
-
-    - bootstrap-transition.js :
-      Transition support for bootstrap scripts.
-
-      Version 2.1.1
-
-      https://github.com/twitter/bootstrap/blob/master/js/bootstrap-transition.js
-
-  + jquery/
-
-    - jquery.js :
-      The jQuery library, version 1.8.2.
-
-      https://github.com/jquery/jquery
-
-    - jquery.bidi.js :
-      jQuery plugin used to automatically set line direction of news
-      item based on their content.
-
-      http://plugins.jquery.com/project/bidi
-
-    - jquery.caret.js :
-      jQuery plugin to write text on top of the selected text or just after
-      the caret position.
-
-      http://www.jquery-plugin.buss.hk/my-plugins/jquery-caret-plugin
-
-    - jquery.easing.js :
-      jQuery plugin that provides dfferent easing (animation) formulas.
-
-      http://gsgd.co.uk/sandbox/jquery/easing/
-
-    - jquery.fieldselection.js :
-      jQuery plugin to retrieve or replace text selections within
-      textareas.
-
-      http://laboratorium.0xab.cd/jquery/fieldselection/0.1.0/
-
-    - jquery.highlighRegex.js :
-      Plugin to highlight text on selected elements using regular expressions.
-
-      https://github.com/jbr/jQuery.highlightRegex
-
-    - jquery.history.js :
-      Plugin to handle AJAX history using hashes.
-
-      http://github.com/tkyk/jquery-history-plugin/
-
-    - jquery.jsonp.js :
-      Alternative solution to jQuery's JSONP support.
-
-      jQuery's JSONP support has some limitations (the abort method doesn't
-      really abort), and this plugin tries to address those issues.
-
-      These features may be implemented in jQuery core at some stage.
-
-      Using version 2.4.0.
-
-      https://github.com/jaubourg/jquery-jsonp
-
-    - jquery.magnific-popup.js :
-      Lightbox overlay popups to display all sorts of content: images,
-      HTML, AJAX data, ...
-
-      Using patched version from julen/Magnific-Popup to support modal
-      dialogs.
-
-      http://dimsemenov.com/plugins/magnific-popup/
-
-    - jquery.select2.js :
-      jQuery-based replacement for select boxes.
-
-      Using version f235a84aa8 (prior to 3.4) from the master branch.
-
-      https://github.com/ivaynberg/select2/
-
-    - jquery.serializeObject.js :
-      A method for serializing forms directly into objects.
-
-      Whereas jQuery’s built-in .serializeArray() method serializes a form
-      into an array, .serializeObject() serializes a form into an
-      (arguably more useful) object.
-
-      http://benalman.com/projects/jquery-misc-plugins/#serializeobject
-
-    - jquery.textarea-expander.js :
-      jQuery plugin used in the translate page textareas.
-
-      http://blogs.sitepointstatic.com/examples/tech/textarea-expander/jquery.textarea-expander.js
-
-    - jquery.tipsy.js :
-      Facebook-style tooltips for jQuery.
-
-      Using revision 9fe119e.
-
-      https://github.com/jaz303/tipsy
-
-    - jquery.tmpl.js :
-      jQuery templating engine.
-
-      http://github.com/nje/jquery-tmpl
-
-    - jquery.utils.js :
-      Custom utilities that extend jQuery's capabilities.
+    - wikipedia.js :
+      Wikipedia lookup backend.
 
   + mt/
 
@@ -195,3 +45,156 @@ Directory contents
     - google-translate.js :
       Script to load translation suggestions using the Google Translate service.
 
+  + vendor/
+
+    - diff_match_patch.js :
+      Google's Diff, Match, and Patch libraries for plain text.
+      It's used for suggestion's diff highlighting.
+
+      Version 20120106.
+
+      https://code.google.com/p/google-diff-match-patch/
+
+    - iso8601.js :
+      Date.parse with progressive enhancement for ISO 8601.
+
+      https://github.com/csnover/js-iso8601
+
+    - json2.min.js :
+      JavaScript library for encoding/decoding data to/from JSON format.
+
+      http://www.json.org/js.html
+
+    - shortcut.js :
+      Small library to ease adding keyboard shortcuts.
+
+      http://www.openjs.com/scripts/events/keyboard_shortcuts/
+
+    - sorttable.js :
+      Sorts tables according to its values. Used in the homepage as well as on the
+      languages and projects listings. It has some customisations to support
+      zebra stripes once the sort is done (using jQuery). The icons used on the
+      table headings are custom code too. We also customized it to handle our tag
+      rows.
+
+      http://www.kryogenix.org/code/browser/sorttable/
+
+    - spin.js :
+      A spinning activity indicator.
+
+      Version 1.2.7
+
+      https://github.com/fgnass/spin.js
+
+    + bootstrap/
+
+      - bootstrap-alert.js :
+        Dismiss functionality for all alert messages.
+
+        Version 2.1.1
+
+        https://github.com/twitter/bootstrap/blob/master/js/bootstrap-alert.js
+
+      - bootstrap-transition.js :
+        Transition support for bootstrap scripts.
+
+        Version 2.1.1
+
+        https://github.com/twitter/bootstrap/blob/master/js/bootstrap-transition.js
+
+    + jquery/
+
+      - jquery.js :
+        The jQuery library, version 1.8.2.
+
+        https://github.com/jquery/jquery
+
+      - jquery.bidi.js :
+        jQuery plugin used to automatically set line direction of news
+        item based on their content.
+
+        http://plugins.jquery.com/project/bidi
+
+      - jquery.caret.js :
+        jQuery plugin to write text on top of the selected text or just after
+        the caret position.
+
+        http://www.jquery-plugin.buss.hk/my-plugins/jquery-caret-plugin
+
+      - jquery.easing.js :
+        jQuery plugin that provides dfferent easing (animation) formulas.
+
+        http://gsgd.co.uk/sandbox/jquery/easing/
+
+      - jquery.fieldselection.js :
+        jQuery plugin to retrieve or replace text selections within
+        textareas.
+
+        http://laboratorium.0xab.cd/jquery/fieldselection/0.1.0/
+
+      - jquery.highlighRegex.js :
+        Plugin to highlight text on selected elements using regular expressions.
+
+        https://github.com/jbr/jQuery.highlightRegex
+
+      - jquery.history.js :
+        Plugin to handle AJAX history using hashes.
+
+        http://github.com/tkyk/jquery-history-plugin/
+
+      - jquery.jsonp.js :
+        Alternative solution to jQuery's JSONP support.
+
+        jQuery's JSONP support has some limitations (the abort method doesn't
+        really abort), and this plugin tries to address those issues.
+
+        These features may be implemented in jQuery core at some stage.
+
+        Using version 2.4.0.
+
+        https://github.com/jaubourg/jquery-jsonp
+
+      - jquery.magnific-popup.js :
+        Lightbox overlay popups to display all sorts of content: images,
+        HTML, AJAX data, ...
+
+        Using patched version from julen/Magnific-Popup to support modal
+        dialogs.
+
+        http://dimsemenov.com/plugins/magnific-popup/
+
+      - jquery.select2.js :
+        jQuery-based replacement for select boxes.
+
+        Using version f235a84aa8 (prior to 3.4) from the master branch.
+
+        https://github.com/ivaynberg/select2/
+
+      - jquery.serializeObject.js :
+        A method for serializing forms directly into objects.
+
+        Whereas jQuery’s built-in .serializeArray() method serializes a form
+        into an array, .serializeObject() serializes a form into an
+        (arguably more useful) object.
+
+        http://benalman.com/projects/jquery-misc-plugins/#serializeobject
+
+      - jquery.textarea-expander.js :
+        jQuery plugin used in the translate page textareas.
+
+        http://blogs.sitepointstatic.com/examples/tech/textarea-expander/jquery.textarea-expander.js
+
+      - jquery.tipsy.js :
+        Facebook-style tooltips for jQuery.
+
+        Using revision 9fe119e.
+
+        https://github.com/jaz303/tipsy
+
+      - jquery.tmpl.js :
+        jQuery templating engine.
+
+        http://github.com/nje/jquery-tmpl
+
+      - jquery.utils.js :
+        Custom utilities that extend jQuery's capabilities.
