@@ -47,6 +47,13 @@ Directory contents
 
   + vendor/
 
+    - backbone.js :
+      Library for providing structure to web applications.
+
+      Version 1.0.0
+
+      http://backbonejs.org
+
     - diff_match_patch.js :
       Google's Diff, Match, and Patch libraries for plain text.
       It's used for suggestion's diff highlighting.
@@ -84,6 +91,13 @@ Directory contents
       Version 1.2.7
 
       https://github.com/fgnass/spin.js
+
+    - underscore.js :
+      Utility library providing functional programming support.
+
+      Version 1.4.4
+
+      http://underscorejs.org/
 
     + bootstrap/
 
