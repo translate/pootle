@@ -200,18 +200,63 @@ command just add it before the command like this:
    order to be able to run the :command:`fab` command.
 
 
-.. _fabric-deployment#bootstrap-environment:
+.. _fabric-deployment#provide-arguments:
 
-Bootstrapping the environment
------------------------------
+Provide arguments
+^^^^^^^^^^^^^^^^^
 
-You can install the Pootle software, configuration files, and directory tree(s)
-with the bootstrap command.
+Some commands do accept arguments - the argument name is followed by a colon
+(:) and the value for the argument (with no spaces):
 
 .. code-block:: bash
 
-    $ export PYTHONPATH=`pwd`:$PYTHONPATH
-    $ fab production:branch=stable/2.5.0 bootstrap  # Install Pootle 2.5
+    $ fab production load_db:dumpfile=backup_mysql.sql  # Call load_db providing a database dump to load
+
+The previous call runs the :ref:`load_db <fabric-commands#load-db>` command
+providing the value ``backup_mysql.sql`` for its :option:`dumpfile` argument.
+
+
+.. _fabric-deployment#tweak-the-environment:
+
+Tweak the environment
+^^^^^^^^^^^^^^^^^^^^^
+
+One possible use for arguments is to tweak the environment when setting it,
+before calling the commands:
+
+.. code-block:: bash
+
+    $ fab production:branch=stable/2.5.0 bootstrap  # Run bootstrap for a branch
+
+In the previous example :ref:`bootstrap <fabric-commands#bootstrap>` is run
+after setting the environment using :ref:`production
+<fabric-commands#production>` but changing the branch to work on, to be the
+value ``stable/2.5.0`` passed to the :option:`branch` argument.
+
+
+.. _fabric-deployment#run-several-commands-in-a-row:
+
+Run several commands in a row
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+It is possible to run several commands in a row with a single call:
+
+.. code-block:: bash
+
+    $ # Run several commands in a row using a single call to fab
+    $ fab production:branch=stable/2.5.0 bootstrap create_db load_db:dumpfile=backup_mysql.sql
+
+The previous call will run :ref:`production <fabric-commands#production>`
+followed by :ref:`bootstrap <fabric-commands#bootstrap>`, :ref:`create_db
+<fabric-commands#create-db>` and :ref:`load_db <fabric-commands#load-db>`, in
+that exact order.
+
+.. note:: If you want to know more about Fabric, please read `its documentation
+   <http://docs.fabfile.org/en/latest/>`_.
+
+See the :ref:`Fabric commands reference <fabric-commands>` for a
+comprehensive list of all Fabric commands available for deploying Pootle,
+with detailed descriptions of each command.
 
 
 .. _fabric-deployment#configuring-passwordless-access:
@@ -245,10 +290,34 @@ alternate value for :setting:`db_password_opt` (and optionally
 :setting:`db_root_password_opt`, if :setting:`db_root_password` is configured).
 
 
+.. _fabric-deployment#typical-usage-example:
+
+Typical Usage Example
+---------------------
+
+A typical usage example is included here in order to provide a more easy to
+understand example on how to use this deployment method and the available
+commands.
+
+
+.. _fabric-deployment#bootstrap-environment:
+
+Bootstrapping the environment
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You can install the Pootle software, configuration files, and directory tree(s)
+with the bootstrap command.
+
+.. code-block:: bash
+
+    $ export PYTHONPATH=`pwd`:$PYTHONPATH
+    $ fab production:branch=stable/2.5.0 bootstrap  # Install Pootle 2.5
+
+
 .. _fabric-deployment#setting-up-the-database:
 
 Setting Up the Database
------------------------
+^^^^^^^^^^^^^^^^^^^^^^^
 
 If creating a new database from scratch:
 
@@ -278,61 +347,8 @@ to the latest version of the schema:
 .. _fabric-deployment#enabling-the-web-server:
 
 Enabling the web server
------------------------
+^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
     $ fab production:branch=stable/2.5.0 deploy
-
-
-.. _fabric-deployment#notes-on-fabric-commands:
-
-Notes on Fabric commands
-------------------------
-
-In addition to the basic Fabric command usage in the examples above, there are
-other advanced techniques that can be used.
-
-Some commands accept arguments - the argument name is followed by a colon (:)
-and the value for the argument (with no spaces).
-
-One possible use for arguments is to tweak the environment when setting it,
-before calling the commands:
-
-.. code-block:: bash
-
-    $ fab production:branch=stable/2.5.0 bootstrap  # Run bootstrap for a branch
-
-In the previous example :ref:`bootstrap <fabric-commands#bootstrap>` is run
-after setting the environment using :ref:`production
-<fabric-commands#production>` but changing the branch to work on, to be the
-value ``stable/2.5.0`` passed to the :option:`branch` argument.
-
-Besides the commands for setting the environment, there are some other commands
-that accept arguments:
-
-.. code-block:: bash
-
-    $ fab production load_db:dumpfile=backup_mysql.sql  # Call load_db providing a database dump to load
-
-The previous call runs the :ref:`load_db <fabric-commands#load-db>` command
-providing the value ``backup_mysql.sql`` for its :option:`dumpfile` argument.
-
-It is also possible to run several commands in a row with a single call:
-
-.. code-block:: bash
-
-    $ # Run several commands in a row using a single call to fab
-    $ fab production:branch=stable/2.5.0 bootstrap create_db load_db:dumpfile=backup_mysql.sql
-
-The previous call will run :ref:`production <fabric-commands#production>`
-followed by :ref:`bootstrap <fabric-commands#bootstrap>`, :ref:`create_db
-<fabric-commands#create-db>` and :ref:`load_db <fabric-commands#load-db>`, in
-that exact order.
-
-.. note:: If you want to know more about Fabric, please read `its documentation
-   <http://docs.fabfile.org/en/latest/>`_.
-
-See the :ref:`Fabric commands reference <fabric-commands>` for a
-comprehensive list of all Fabric commands available for deploying Pootle,
-with detailed descriptions of each command.
