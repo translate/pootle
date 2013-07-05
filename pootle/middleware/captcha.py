@@ -230,10 +230,10 @@ class CaptchaMiddleware:
             # FIXME: pass the callback as part of the request, this is a
             # nightmare to maintain otherwise
             js_function = None
-            if '/submit/' in request.path:
-                js_function = 'submit'
-            elif '/suggest/' in request.path:
+            if '/suggestions/' in request.path:
                 js_function = 'suggest'
+            elif '/xhr/units/' in request.path:
+                js_function = 'submit'
 
             ec['js_function'] = js_function
 
