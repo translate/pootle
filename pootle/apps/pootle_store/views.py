@@ -522,6 +522,32 @@ def _filter_ctx_units(units_qs, unit, how_many, gap=0):
 
     return result
 
+
+def _prepare_unit(unit):
+    """Constructs a dictionary with relevant `unit` data."""
+    source_unit = []
+    target_unit = []
+
+    for i, source, title in pluralize_source(unit):
+        unit_dict = {'text': source}
+        if title:
+            unit_dict["title"] = title
+        source_unit.append(unit_dict)
+
+    for i, target, title in pluralize_target(unit):
+        unit_dict = {'text': target}
+        if title:
+            unit_dict["title"] = title
+        target_unit.append(unit_dict)
+
+    return {
+        'id': unit.id,
+        'isfuzzy': unit.isfuzzy(),
+        'source': source_unit,
+        'target': target_unit,
+    }
+
+
 def _build_units_list(units, reverse=False):
     """Given a list/queryset of units, builds a list with the unit data
     contained in a dictionary ready to be returned as JSON.
@@ -530,34 +556,10 @@ def _build_units_list(units, reverse=False):
              having plural forms, a title for the plural form is also provided.
     """
     return_units = []
+
     for unit in iter(units):
-        source_unit = []
-        target_unit = []
-        for i, source, title in pluralize_source(unit):
-            unit_dict = {'text': source}
-            if title:
-                unit_dict["title"] = title
-            source_unit.append(unit_dict)
-        for i, target, title in pluralize_target(unit):
-            unit_dict = {'text': target}
-            if title:
-                unit_dict["title"] = title
-            target_unit.append(unit_dict)
-        prev = None
-        next = None
-        if return_units:
-            if reverse:
-                return_units[-1]['prev'] = unit.id
-                next = return_units[-1]['id']
-            else:
-                return_units[-1]['next'] = unit.id
-                prev = return_units[-1]['id']
-        return_units.append({'id': unit.id,
-                             'isfuzzy': unit.isfuzzy(),
-                             'prev': prev,
-                             'next': next,
-                             'source': source_unit,
-                             'target': target_unit})
+        return_units.append(_prepare_unit(unit))
+
     return return_units
 
 
