@@ -202,6 +202,7 @@ def stage_feature():
     bootstrap()
     create_db()
     _copy_db()
+    update_db()
     deploy_static()
     install_site()
     print('\n\nSuccessfully deployed at:\n\n\thttp://%(project_url)s\n' % env)

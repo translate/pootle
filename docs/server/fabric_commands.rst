@@ -476,6 +476,7 @@ This command:
 - Calls the :ref:`create_db <fabric-commands#create-db>` command
 - Copies the data in the specified source DB into the DB that will be used for
   the deployed Pootle
+- Calls the :ref:`update_db <fabric-commands#update-db>` command
 - Calls the :ref:`deploy_static <fabric-commands#deploy-static>` command
 - Calls the :ref:`install_site <fabric-commands#install-site>` command
 
