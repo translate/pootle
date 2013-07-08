@@ -91,7 +91,7 @@ def form_set_as_table(formset, link=None, linkfield='code'):
             if widget_name in ('CheckboxInput',):
                 result.append(form[field].as_widget())
                 result.append(form[field].label_tag())
-            elif form.fields[field].label is not None:
+            elif form.fields[field].label is not None and not widget.is_hidden:
                 result.append(unicode(form.fields[field].label))
 
             result.append('</th>\n')
@@ -100,10 +100,11 @@ def form_set_as_table(formset, link=None, linkfield='code'):
     def add_footer(result, fields, form):
         result.append('<tr>\n')
         for field in fields:
+            field_obj = form.fields[field]
             result.append('<td>')
 
-            if form.fields[field].label is not None:
-                result.append(unicode(form.fields[field].label))
+            if field_obj.label is not None and not field_obj.widget.is_hidden:
+                result.append(unicode(field_obj.label))
 
             result.append('</td>\n')
         result.append('</tr>\n')
