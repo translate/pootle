@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2009, 2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -20,13 +20,16 @@
 
 from django import template
 
+
 register = template.Library()
+
+
 @register.inclusion_tag('terminology/term_edit.html', takes_context=True)
 def render_term_edit(context, form):
-    unit = form.instance
-    template_vars = {'unit': unit,
-                     'form': form,
-                     'language': context['language'],
-                     'source_language': context['source_language'],
-                     }
+    template_vars = {
+        'unit': form.instance,
+        'form': form,
+        'language': context['language'],
+        'source_language': context['source_language'],
+    }
     return template_vars

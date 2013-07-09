@@ -209,9 +209,9 @@ def upgrade(product, old_buildversion, new_buildversion):
     from django.utils.importlib import import_module
 
     save_version_function = {
-            'pootle': save_pootle_version,
-            'ttk': save_toolkit_version,
-        }
+        'pootle': save_pootle_version,
+        'ttk': save_toolkit_version,
+    }
 
     product_module = '.'.join((__name__, product))
     import_module(''.join(('.', product)), __name__)
