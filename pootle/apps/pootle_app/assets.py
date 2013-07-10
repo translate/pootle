@@ -58,6 +58,10 @@ js_editor = Bundle(
     'js/vendor/jquery/jquery.jsonp.js',
     'js/vendor/iso8601.js',
     'js/vendor/json2.js',
+    'js/vendor/underscore.js',
+    'js/vendor/backbone.js',
+    'js/models.js',
+    'js/collections.js',
     'js/editor.js',
     filters='rjsmin', output='js/editor.min.%(version)s.js')
 register('js_editor', js_editor)

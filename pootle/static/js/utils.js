@@ -114,15 +114,4 @@
 
   };
 
-  /* Returns the number (size) of properties of a given object */
-  Object.size = function (obj) {
-    var size = 0, key;
-    for (key in obj) {
-      if (obj.hasOwnProperty(key)) {
-        size += 1;
-      }
-    }
-    return size;
-  };
-
 }(jQuery));

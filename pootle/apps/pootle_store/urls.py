@@ -47,8 +47,9 @@ urlpatterns = patterns('pootle_store.views',
         'get_failing_checks',
         name='pootle-xhr-checks'),
 
-    (r'^view/(?P<pootle_path>.*)/?$',
-        'get_view_units_store'),
+    url(r'^xhr/units/?$',
+        'get_view_units',
+        name='pootle-xhr-units'),
 
     url(r'^xhr/units/(?P<uid>[0-9]+)/?$',
         'submit',
