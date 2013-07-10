@@ -318,9 +318,9 @@
     setTimeout(function () {
       $.history.init(function (hash) {
         var params = PTL.utils.getParsedHash(hash),
-          withUid = 0,
-          pageNumber = undefined,
-          tmpParamValue;
+            withUid = 0,
+            pageNumber = undefined,
+            tmpParamValue;
 
         // Walk through known filtering criterias and apply them to the editor object
 
