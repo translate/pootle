@@ -243,7 +243,7 @@ select
 }
 
 legend
-{ 
+{
     background-color: inherit;
     color: #130f30;
 }
@@ -713,7 +713,7 @@ button.close
 
 /* TABLES */
 
-.module table, 
+.module table,
 .module-primary table
 {
     width: 100%;
@@ -736,8 +736,8 @@ html[dir="rtl"] td.username
     padding-right: 5px;
 }
 
-tr.even, 
-td.even, 
+tr.even,
+td.even,
 li.even
 {
     background: #f8f8f8;
@@ -1036,7 +1036,7 @@ html[dir="rtl"] .form
 }
 
 .form p,
-.form div.p 
+.form div.p
 {
     margin-top: 1em;
 }
@@ -1607,7 +1607,7 @@ div.small
 }
 
 
-/* 
+/*
  * Pretty Graphs, mostly from http://l10n.gnome.org/
  */
 

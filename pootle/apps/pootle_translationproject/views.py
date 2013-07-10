@@ -286,9 +286,7 @@ def overview(request, translation_project, dir_path, filename=None):
 
     request.current_path = current_path
 
-    view_obj = ProjectIndexView(forms=dict(upload=UploadHandler,
-                                          )
-                               )
+    view_obj = ProjectIndexView(forms={'upload': UploadHandler})
 
     return render_to_response("translation_project/overview.html",
                               view_obj(request, translation_project,

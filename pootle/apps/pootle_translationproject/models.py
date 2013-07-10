@@ -22,15 +22,15 @@ import gettext
 import logging
 import os
 
+from translate.misc.lru import LRUCachingDict
+from translate.storage.base import ParseError
+
 from django.conf import settings
 from django.contrib import messages
 from django.db import models, IntegrityError
 from django.db.models.signals import post_save
 from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext_lazy as _
-
-from translate.misc.lru import LRUCachingDict
-from translate.storage.base import ParseError
 
 from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle_app.lib.util import RelatedManager
