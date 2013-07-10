@@ -319,19 +319,21 @@ def get_non_indexed_search_exact_query(form, units_queryset):
 
     return result
 
-def get_search_step_query(translation_project, form, units_queryset):
+def get_search_step_query(form, units_queryset):
     """Narrows down units query to units matching search string."""
 
     if 'exact' in form.cleaned_data['soptions']:
-        logging.debug(u"Using exact database search for %s",
-                      translation_project)
+        logging.debug(u"Using exact database search")
         return get_non_indexed_search_exact_query(form, units_queryset)
 
+    '''
     if translation_project.indexer is None:
-        logging.debug(u"No indexer for %s, using database search",
-                      translation_project)
-        return get_non_indexed_search_step_query(form, units_queryset)
+       logging.debug(u"No indexer for %s, using database search",
+                     translation_project)
+    '''
+    return get_non_indexed_search_step_query(form, units_queryset)
 
+    '''
     logging.debug(u"Found %s indexer for %s, using indexed search",
                   translation_project.indexer.INDEX_DIRECTORY_NAME,
                   translation_project)
@@ -367,6 +369,7 @@ def get_search_step_query(translation_project, form, units_queryset):
         cache.set(cache_key, dbids, settings.OBJECT_CACHE_TIMEOUT)
 
     return units_queryset.filter(id__in=dbids)
+    '''
 
 
 def get_step_query(request, units_queryset):
@@ -449,8 +452,7 @@ def get_step_query(request, units_queryset):
         search_form = make_search_form(request.GET)
 
         if search_form.is_valid():
-            units_queryset = get_search_step_query(request.translation_project,
-                                                   search_form, units_queryset)
+            units_queryset = get_search_step_query(search_form, units_queryset)
 
     return units_queryset
 
@@ -551,6 +553,37 @@ def _prepare_unit(unit):
     }
 
 
+def _path_units_with_meta(path, units):
+    """Constructs a dictionary which contains a list of `units`
+    corresponding to `path` as well as its metadata.
+    """
+    meta = None
+    units_list = []
+
+    for unit in iter(units):
+        if meta is None:
+            # XXX: Watch out for the query count
+            store = unit.store
+            tp = store.translation_project
+            project = tp.project
+            meta = {
+                'source_lang': project.source_language.code,
+                'source_dir': project.source_language.get_direction(),
+                'target_lang': tp.language.code,
+                'target_dir': tp.language.get_direction(),
+                'project_style': project.checkstyle,
+            }
+
+        units_list.append(_prepare_unit(unit))
+
+    return {
+        path: {
+            'meta': meta,
+            'units': units_list,
+        },
+    }
+
+
 def _build_units_list(units, reverse=False):
     """Given a list/queryset of units, builds a list with the unit data
     contained in a dictionary ready to be returned as JSON.
@@ -573,94 +606,66 @@ def _build_pager_dict(pager):
     :return: A dictionary containing necessary pager information to build
              a pager.
     """
-    return {"number": pager.number,
+    return {"count": pager.paginator.count,
+            "number": pager.number,
             "num_pages": pager.paginator.num_pages,
             "per_page": pager.paginator.per_page
            }
 
 
-def _get_index_in_qs(qs, unit, store=False):
-    """Given a queryset ``qs``, returns the position (index) of the unit
-    ``unit`` within that queryset. ``store`` specifies if the queryset is
-    limited to a single store.
+@ajax_required
+@get_xhr_resource_context('view')
+def get_view_units(request, path_obj):
+    """Gets source and target texts and its metadata.
 
-    :return: Value representing the position of the unit ``unit``.
-    :rtype: int
+    :return: A JSON-encoded object containing the source and target texts
+        grouped by the store they belong to.
+
+        When the ``pager`` GET parameter is present, pager information
+        will be returned too.
     """
-    if store:
-        return qs.filter(index__lt=unit.index).count()
-    else:
-        store = unit.store
-        return (qs.filter(store=store, index__lt=unit.index) | \
-                qs.filter(store__pootle_path__lt=store.pootle_path)).count()
-
-
-def get_view_units(request, units_queryset, store):
-    """Gets source and target texts excluding the editing unit.
-
-    :return: An object in JSON notation that contains the source and target
-             texts for units that will be displayed before and after editing
-             unit.
-
-             If asked by using the ``meta`` and ``pager`` parameters,
-             metadata and pager information will be calculated and returned
-             too.
-    """
-    current_unit = None
-    json = {}
+    page = None
 
     limit = request.profile.get_unit_rows()
 
-    step_queryset = get_step_query(request, units_queryset)
+    is_store = not path_obj.is_dir
+    if is_store:
+        units_qs = path_obj.units
+    else:
+        units_qs = Unit.objects.filter(
+            store__pootle_path__startswith=request.pootle_path,
+        )
 
-    # Return metadata it has been explicitely requested
-    if request.GET.get('meta', False):
-        tp = request.translation_project
-        json["meta"] = {"source_lang": tp.project.source_language.code,
-                        "source_dir": tp.project.source_language.get_direction(),
-                        "target_lang": tp.language.code,
-                        "target_dir": tp.language.get_direction(),
-                        "project_style": tp.project.checkstyle}
+    step_queryset = get_step_query(request, units_qs)
 
     # Maybe we are trying to load directly a specific unit, so we have
     # to calculate its page number
     uid = request.GET.get('uid', None)
-    if uid:
-        current_unit = units_queryset.get(id=uid)
-        preceding = _get_index_in_qs(step_queryset, current_unit, store)
-        page = preceding / limit + 1
-    else:
-        page = None
+    if uid is not None:
+        try:
+            # XXX: Watch for performance, might want to drop into raw SQL
+            # at some stage
+            uid_list = list(step_queryset.values_list('id', flat=True))
+            preceding = uid_list.index(int(uid))
+            page = preceding / limit + 1
+        except ValueError:
+            pass  # uid wasn't a number or not present in the results
 
     pager = paginate(request, step_queryset, items=limit, page=page)
 
-    json["units"] = _build_units_list(pager.object_list)
+    unit_groups = []
+    for path, units in groupby(pager.object_list, lambda x: x.store.path):
+        unit_groups.append(_path_units_with_meta(path, units))
+
+    response = {
+        'unit_groups': unit_groups,
+    }
 
     # Return paging information if requested to do so
     if request.GET.get('pager', False):
-        json["pager"] = _build_pager_dict(pager)
-        if not current_unit:
-            try:
-                json["uid"] = json["units"][0]["id"]
-            except IndexError:
-                pass
-        else:
-            json["uid"] = current_unit.id
+        response['pager'] = _build_pager_dict(pager)
 
-    response = jsonify(json)
-    return HttpResponse(response, mimetype="application/json")
-
-
-@ajax_required
-@get_store_context('view')
-def get_view_units_store(request, store):
-    """Gets source and target texts excluding the editing widget (store-level).
-
-    :return: An object in JSON notation that contains the source and target
-             texts for units that will be displayed before and after
-             unit ``uid``.
-    """
-    return get_view_units(request, store.units, store=True)
+    return HttpResponse(jsonify(response), mimetype="application/json")
 
 
 def _is_filtered(request):
