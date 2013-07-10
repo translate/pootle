@@ -70,8 +70,6 @@ First it is necessary to create a WSGI loader script:
     import site
     import sys
 
-    from django.core.wsgi import get_wsgi_application
-
 
     # You probably will need to change these paths to match your deployment,
     # most likely because of the Python version you are using.
@@ -113,6 +111,7 @@ First it is necessary to create a WSGI loader script:
         except KeyError:
             pass
 
+        from django.core.wsgi import get_wsgi_application
         _wsgi_application = get_wsgi_application()
         return _wsgi_application(environ, start_response)
 
