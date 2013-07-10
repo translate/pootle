@@ -599,20 +599,6 @@ def _build_units_list(units, reverse=False):
     return return_units
 
 
-def _build_pager_dict(pager):
-    """Given a pager object ``pager``, retrieves all the information needed
-    to build a pager.
-
-    :return: A dictionary containing necessary pager information to build
-             a pager.
-    """
-    return {"count": pager.paginator.count,
-            "number": pager.number,
-            "num_pages": pager.paginator.num_pages,
-            "per_page": pager.paginator.per_page
-           }
-
-
 @ajax_required
 @get_xhr_resource_context('view')
 def get_view_units(request, path_obj):
@@ -661,9 +647,13 @@ def get_view_units(request, path_obj):
         'unit_groups': unit_groups,
     }
 
-    # Return paging information if requested to do so
     if request.GET.get('pager', False):
-        response['pager'] = _build_pager_dict(pager)
+        response['pager'] = {
+            'count': pager.paginator.count,
+            'number': pager.number,
+            'num_pages': pager.paginator.num_pages,
+            'per_page': pager.paginator.per_page,
+        }
 
     return HttpResponse(jsonify(response), mimetype="application/json")
 
