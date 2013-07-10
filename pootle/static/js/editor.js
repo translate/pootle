@@ -1412,7 +1412,7 @@
             PTL.editor.units.get(uid).target[i].text = PTL.editor.cleanEscape($(this).val());
           });
 
-          PTL.editor.loadNext();
+          PTL.editor.gotoNext();
         }
       },
       error: PTL.editor.error
@@ -1449,7 +1449,7 @@
             focus: '#id_captcha_answer'
           });
         } else {
-          PTL.editor.loadNext();
+          PTL.editor.gotoNext();
         }
       },
       error: PTL.editor.error
@@ -1458,19 +1458,9 @@
 
 
   /* Loads the next unit */
-  loadNext: function () {
-    // FIXME: we can reuse the 'gotoPrevNext' function below for this purpose
-    var next = PTL.editor.units.next();
-    if (next) {
-      var newHash = PTL.utils.updateHashPart("unit", next.id, ["page"]);
-      $.history.load(newHash);
-    } else {
-      PTL.editor.displayMsg([
-          gettext("Congratulations, you walked through all strings."),
-          '<br /><a href="', l(PTL.editor.pootlePath), '">',
-          gettext('Return to the overview page.'), '</a>'
-      ].join(""));
-    }
+  gotoNext: function () {
+    // Buttons might be disabled so we need to fake an event
+    PTL.editor.gotoPrevNext($.Event('click', {target: '#js-nav-next'}));
   },
 
 
@@ -2002,8 +1992,7 @@
 
           // Go to the next unit if there are no more suggestions left
           if (!$("#suggestions div[id^=suggestion]").length) {
-            // Buttons might be disabled so we need to fake an event
-            PTL.editor.gotoPrevNext($.Event('click', {target: '#js-nav-next'}));
+            PTL.editor.gotoNext();
           }
         });
       }, "json");
@@ -2044,8 +2033,7 @@
 
           // Go to the next unit if there are no more suggestions left
           if (!$("#suggestions div[id^=suggestion]").length) {
-            // Buttons might be disabled so we need to fake an event
-            PTL.editor.gotoPrevNext($.Event('click', {target: '#js-nav-next'}));
+            PTL.editor.gotoNext();
           }
         });
       }, "json");
