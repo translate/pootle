@@ -58,9 +58,9 @@
     this.differencer = new diff_match_patch();
 
     /* Compile templates */
-    this.tmpl = {vUnit: $.template($('#view_unit').html()),
-                 tm: $.template($('#tm_suggestions').html()),
-                 editCtx: $.template($('#editCtx').html())}
+    this.tmpl = {vUnit: _.template($('#view_unit').html()),
+                 tm: _.template($('#tm_suggestions').html()),
+                 editCtx: _.template($('#editCtx').html())}
 
     /* Initialize search */
     // TODO: pass the environment option to the init
@@ -1108,8 +1108,8 @@
 
       // Build row i
       rows += '<tr id="row' + _this + '" class="view-row ' + cls + '">';
-      rows += this.tmpl.vUnit($, {data: {meta: store,
-                                         unit: unit.toJSON()}}).join("");
+      rows += this.tmpl.vUnit({meta: store,
+                               unit: unit.toJSON()});
       rows += '</tr>';
 
       // Update odd/even class
@@ -1141,8 +1141,7 @@
       // Build context row i
       rows += '<tr id="ctx' + unit.id + '" class="ctx-row ' + extraCls +
               ' ' + cls + '">';
-      rows += this.tmpl.vUnit($, {data: {meta: store,
-                                         unit: unit}}).join("");
+      rows += this.tmpl.vUnit({meta: store, unit: unit});
       rows += '</tr>';
 
       // Update odd/even class
@@ -1660,12 +1659,10 @@
     var defaults = {hasData: false, replace: false};
     opts = $.extend({}, defaults, opts);
 
-    editCtxRowBefore = PTL.editor.tmpl.editCtx($, {data: {hasData: opts.hasData,
-                                                          extraCls: 'before'}})
-                                      .join("");
-    editCtxRowAfter = PTL.editor.tmpl.editCtx($, {data: {hasData: opts.hasData,
-                                                         extraCls: 'after'}})
-                                     .join("");
+    editCtxRowBefore = PTL.editor.tmpl.editCtx({hasData: opts.hasData,
+                                                extraCls: 'before'});
+    editCtxRowAfter = PTL.editor.tmpl.editCtx({hasData: opts.hasData,
+                                               extraCls: 'after'});
 
     if (opts.replace) {
       $("tr.edit-ctx.before").replaceWith(editCtxRowBefore);
@@ -1962,9 +1959,9 @@
         if (uid == PTL.editor.units.getCurrent().id && data.length) {
           var filtered = PTL.editor.filterTMResults(data),
               name = gettext("Similar translations"),
-              tm = PTL.editor.tmpl.tm($, {data: {meta: store.meta,
-                                                 suggs: filtered,
-                                                 name: name}}).join("");
+              tm = PTL.editor.tmpl.tm({meta: store.meta,
+                                       suggs: filtered,
+                                       name: name});
 
           $(tm).hide().appendTo("#extras-container")
                       .slideDown(1000, 'easeOutQuad');

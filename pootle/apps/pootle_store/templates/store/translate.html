@@ -104,13 +104,13 @@
 {% block scripts_extra %}
 {% cache settings.CACHE_TIMEOUT translate_scripts cansuggest cantranslate MT_BACKENDS LOOKUP_BACKENDS user.is_authenticated LANGUAGE_CODE settings.DEBUG %}
 {{ block.super }}
-<script id="view_unit" type="text/x-jquery-template">
+<script id="view_unit" type="text/template">
 {% include_raw "unit/xhr-view.html" %}
 </script>
-<script id="tm_suggestions" type="text/x-jquery-template">
+<script id="tm_suggestions" type="text/template">
 {% include_raw "unit/xhr-tm.html" %}
 </script>
-<script id="editCtx" type="text/x-jquery-template">
+<script id="editCtx" type="text/template">
 {% include_raw "unit/xhr-edit-ctx.html" %}
 </script>
 {% assets "js_editor" %}
