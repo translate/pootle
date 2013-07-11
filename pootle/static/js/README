@@ -204,10 +204,5 @@ Directory contents
 
         https://github.com/jaz303/tipsy
 
-      - jquery.tmpl.js :
-        jQuery templating engine.
-
-        http://github.com/nje/jquery-tmpl
-
       - jquery.utils.js :
         Custom utilities that extend jQuery's capabilities.
