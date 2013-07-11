@@ -1327,7 +1327,7 @@
 
   /* Loads the edit unit for the current active unit */
   getEditUnit: function () {
-    var editor, editCtxRowBefore, editCtxRowAfter, editCtxWidgets, hasData,
+    var editUnit, editCtxRowBefore, editCtxRowAfter, editCtxWidgets, hasData,
         eClass = "edit-row",
         currentUnit = this.units.getCurrent(),
         uid = currentUnit.id,
@@ -1364,14 +1364,14 @@
     editCtxRowBefore = editCtxWidgets[0];
     editCtxRowAfter = editCtxWidgets[1];
 
-    editor = (PTL.editor.filter !== 'all' ?
+    editUnit = (PTL.editor.filter !== 'all' ?
               editCtxRowBefore + this.buildCtxRows(ctx.before, "before") : '') +
              '<tr id="row' + uid + '" class="' + eClass + '">' +
              widget + '</tr>' +
              (PTL.editor.filter !== 'all' ?
               this.buildCtxRows(ctx.after, "after") + editCtxRowAfter : '');
 
-    return editor;
+    return editUnit;
   },
 
   /* Pushes translation submissions and moves to the next unit */
