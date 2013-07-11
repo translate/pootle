@@ -21,7 +21,6 @@
     /* Initialize variables */
     this.units = new PTL.collections.UnitCollection();
     this.stores = {};
-    this.isSingleFile = $('#editor').data('is-single-file');
     this.pootlePath = $('#editor').data('pootle-path');
     this.ctxPath = $('#editor').data('ctx-path');
     this.resourcePath = $('#editor').data('resource-path');
