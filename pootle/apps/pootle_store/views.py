@@ -491,7 +491,6 @@ def translate(request, translation_project, dir_path, filename):
         'pootle_path': request.pootle_path,
         'ctx_path': request.ctx_path,
         'resource_path': request.resource_path,
-        'is_single_file': filename != '',
         'language': language,
         'project': project,
         'translation_project': translation_project,
