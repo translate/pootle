@@ -13,10 +13,8 @@
       targetLanguage: null,
       project: null
     };
-    /* Merge given options with default settings */
-    if (options) {
-      $.extend(this.settings, options);
-    }
+
+    options && $.extend(this.settings, options);
 
     /* Initialize variables */
     this.units = new PTL.collections.UnitCollection();
