@@ -32,6 +32,8 @@ from django.db.models.signals import post_save
 from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext_lazy as _
 
+from taggit.managers import TaggableManager
+
 from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle_app.lib.util import RelatedManager
 from pootle_app.models.directory import Directory
@@ -114,6 +116,8 @@ class TranslationProject(models.Model):
     directory = models.OneToOneField(Directory, db_index=True, editable=False)
     pootle_path = models.CharField(max_length=255, null=False, unique=True,
             db_index=True, editable=False)
+    tags = TaggableManager(blank=True, verbose_name=_("Tags"),
+                           help_text=_("A comma-separated list of tags."))
 
     def natural_key(self):
         return (self.pootle_path,)

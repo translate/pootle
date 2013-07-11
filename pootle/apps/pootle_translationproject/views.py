@@ -57,6 +57,7 @@ from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_store.models import Store
 from pootle_store.util import absolute_real_path, relative_real_path
 from pootle_store.filetypes import factory_classes
+from pootle_tagging.forms import TagForm
 from pootle_translationproject.actions import action_groups
 
 
@@ -280,7 +281,11 @@ def overview(request, translation_project, dir_path, filename=None):
 
     request.current_path = current_path
 
-    view_obj = ProjectIndexView(forms={'upload': UploadHandler})
+    view_forms = {
+        'upload': UploadHandler,
+        'add_tag': AddTagHandler,
+    }
+    view_obj = ProjectIndexView(forms=view_forms)
 
     return render_to_response("translation_project/overview.html",
                               view_obj(request, translation_project,
@@ -820,3 +825,23 @@ class UploadHandler(view_handler.Handler):
                                   newstats=newstats, archive=archive)
 
         return {'upload': self}
+
+
+class AddTagHandler(view_handler.Handler):
+    actions = [('do_add_tag', ugettext_lazy('Add tag'))]
+
+    @classmethod
+    def must_display(cls, request, *args, **kwargs):
+        return check_permission('administrate', request)
+
+    def __init__(self, request, data=None, files=None):
+        self.Form = TagForm
+        super(AddTagHandler, self).__init__(request, data, files)
+
+    def do_add_tag(self, request, translation_project, directory, store):
+        if self.form.is_valid():
+            new_tag = self.form.save()
+            translation_project.tags.add(new_tag)
+            self.form = self.Form()
+
+        return {'add_tag': self}

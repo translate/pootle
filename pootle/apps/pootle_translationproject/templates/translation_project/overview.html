@@ -9,9 +9,16 @@
 {% block content %}
 <div class="module first">
   <div class="hd">
-    {% cache settings.CACHE_TIMEOUT path_trail path_obj.id %}
-    <h2><span><a href="{{ translation_project.pootle_path|l }}">{{ project.code }}</a> / {{ path_obj|trail:"/" }}</span></h2>
-    {% endcache %}
+    <h2>
+      {% cache settings.CACHE_TIMEOUT path_trail path_obj.id %}
+      <span><a href="{{ translation_project.pootle_path|l }}">{{ project.code }}</a> / {{ path_obj|trail:"/" }}</span>
+      {% endcache %}
+      {% if add_tag %}
+      <a href="#js-add-tag-dialog" class="js-popup-inline js-tags tags-add">
+        <i class="icon-tag-add"></i> {% trans "Add tag" %}
+      </a>
+      {% endif %}
+    </h2>
   </div>
   <div id="path-summary" class="bd">
     <ul>
@@ -22,6 +29,24 @@
     {% progressbar stats stats.total.words %}
     <div id="js-path-summary-more" data-loaded="false" data-collapsed="true">
     </div>
+  </div>
+
+  <div>
+    <br />
+    {% with template_tags=translation_project.tags.all %}
+    {% if template_tags %}
+    <ul class="js-tags tag-list">
+      {% for template_tag in template_tags %}
+      <li><span class="tag">{{ template_tag }}</span></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    <a href="" id="js-toggle-tags" class="hide tags-aside tags-toggle">
+      <i class="icon-tag"></i>
+      <span id="js-toggle-tags-text">{% trans "Hide tags" %}</span>
+    </a>
+    <br />
   </div>
 
   {% if table %}
@@ -119,6 +144,26 @@
     {% endfor %}
     <p class="buttons">
       {{ upload.render_submits }}
+    </p>
+  </form>
+</div>
+{% endif %}
+
+{% if add_tag %}
+<div id="js-add-tag-dialog" class="form popup-inline mfp-hide" lang="{{ LANGUAGE_CODE }}">
+  <h2>{% trans "Add tag" %}</h2>
+  <form action="" method="post" id="js-add-tag-form"
+    enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ add_tag.form.non_field_errors }}
+    {% for field in add_tag.form %}
+    <p {% if field.help_text %}title="{{ field.help_text }}"{% endif %}>
+      {{ field.label_tag }} {{ field }}
+      {{ field.errors }}
+    </p>
+    {% endfor %}
+    <p class="buttons">
+      {{ add_tag.render_submits }}
     </p>
   </form>
 </div>

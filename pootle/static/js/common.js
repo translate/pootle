@@ -129,6 +129,35 @@
           }
         });
       });
+
+      /* Toggle visibility of tagging related elements */
+      $("#js-toggle-tags").show();
+      $("#js-toggle-tags").click(function (event) {
+        event.preventDefault();
+        $(".js-tags").toggle();
+        if ($(".js-tags").is(":hidden")) {
+          $("#js-toggle-tags-text").text(gettext("Show tags"));
+        } else {
+          $("#js-toggle-tags-text").text(gettext("Hide tags"));
+        }
+      });
+
+      /* Set a slug for the tag before submitting the form */
+      $("#js-add-tag-form").on('submit', function (e) {
+        var tagname = $("#js-tag-form-name").val().toLowerCase();
+
+        // Replace invalid characters for slug with hyphens.
+        var tagslug = tagname.replace(/[^a-z0-9-]/g, "-");
+
+        // Replace groups of hyphens with a single hyphen.
+        tagslug = tagslug.replace(/-{2,}/g, "-");
+
+        // Remove leading and trailing hyphens.
+        tagslug = tagslug.replace(/^-|-$/g, "");
+
+        $("#js-tag-form-slug").val(tagslug);
+        return true;
+      });
     },
 
     /* Navigates to `languageCode`, `projectCode` while retaining the
