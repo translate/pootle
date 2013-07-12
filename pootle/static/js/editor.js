@@ -42,8 +42,6 @@
 
     /* Regular expressions */
     this.cpRE = /^(<[^>]+>|\[n\|t]|\W$^\n)*(\b|$)/gm;
-    this.escapeRE = /<[^<]*?>|\r\n|[\r\n\t&<>]/gm;
-    this.whitespaceRE = /^ +| +$|[\r\n\t] +| {2,}/gm;
 
     /* Timeline requests handler */
     this.timelineReq = null;
@@ -647,63 +645,6 @@
     return t;
   },
 
-  /* Cleans '\n' escape sequences and adds '\t' sequences */
-  cleanEscape: function (s) {
-    return s.replace(/\\t/g, "\t").replace(/\\n/g, "");
-  },
-
-
-  /* Fancy escapes to highlight parts of the text such as HTML tags */
-  fancyEscape: function (text) {
-
-    function replace(match) {
-        var replaced,
-            escapeHl= '<span class="highlight-escape">%s</span>',
-            htmlHl = '<span class="highlight-html">&lt;%s&gt;</span>',
-            submap = {
-              '\r\n': escapeHl.replace(/%s/, '\\r\\n') + '<br/>\n',
-              '\r': escapeHl.replace(/%s/, '\\r') + '<br/>\n',
-              '\n': escapeHl.replace(/%s/, '\\n') + '<br/>\n',
-              '\t': escapeHl.replace(/%s/, '\\t'),
-              '&': '&amp;',
-              '<': '&lt;',
-              '>': '&gt;'
-            };
-
-        replaced = submap[match];
-
-        if (replaced === undefined) {
-          replaced = htmlHl.replace(
-              /%s/,
-              PTL.editor.fancyEscape(match.slice(1, match.length-1))
-          );
-        }
-
-        return replaced;
-    }
-
-    return text.replace(this.escapeRE, replace);
-  },
-
-
-  /* Highlight spaces to make them easily visible */
-  fancySpaces: function (text) {
-
-    function replace(match) {
-        var spaceHl= '<span class="translation-space"> </span>';
-
-        return Array(match.length + 1).join(spaceHl);
-    }
-
-    return text.replace(this.whitespaceRE, replace);
-  },
-
-
-  /* Fancy highlight: fancy spaces + fancy escape */
-  fancyHl: function (text) {
-    return this.fancySpaces(this.fancyEscape(text));
-  },
-
 
   /* Does the actual diffing */
   doDiff: function (a, b) {
@@ -720,18 +661,18 @@
 
       if (op === 0) {
           if (removed) {
-            textDiff += '<span class="diff-delete">' + PTL.editor.fancyEscape(removed) + '</span>'
+            textDiff += '<span class="diff-delete">' + PTL.utils.fancyEscape(removed) + '</span>'
             removed = "";
           }
-          textDiff += PTL.editor.fancyEscape(text);
+          textDiff += PTL.utils.fancyEscape(text);
       } else if (op === 1) {
         if (removed) {
           // This is part of a substitution, not a plain insertion. We
           // will format this differently.
-          textDiff += '<span class="diff-replace">' + PTL.editor.fancyEscape(text) + '</span>';
+          textDiff += '<span class="diff-replace">' + PTL.utils.fancyEscape(text) + '</span>';
           removed = "";
         } else {
-          textDiff += '<span class="diff-insert">' + PTL.editor.fancyEscape(text) + '</span>';
+          textDiff += '<span class="diff-insert">' + PTL.utils.fancyEscape(text) + '</span>';
         }
       } else if (op === -1) {
         removed = text;
@@ -739,7 +680,7 @@
     });
 
     if (removed) {
-      textDiff += '<span class="diff-delete">' + PTL.editor.fancyEscape(removed) + '</span>';
+      textDiff += '<span class="diff-delete">' + PTL.utils.fancyEscape(removed) + '</span>';
     }
 
     return textDiff;
@@ -1891,7 +1832,7 @@
 
     for (var i=0; i<results.length && i<3; i++) {
       results[i].source = this.doDiff(source, results[i].source);
-      results[i].target = this.fancyHl(results[i].target);
+      results[i].target = PTL.utils.fancyHl(results[i].target);
       quality = Math.round(results[i].quality);
       // Translators: This is the quality match percentage of a TM result.
       // '%s' will be replaced by a number, and you should keep the extra
