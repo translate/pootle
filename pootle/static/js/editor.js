@@ -486,12 +486,9 @@
       $(".focusthis").get(0).focus();
     }
 
-    // Highlight stuff
     PTL.editor.hlSearch();
-    //PTL.editor.hlTerms(); // Disabled for now — it's annoying!
 
     if (PTL.editor.settings.tmUrl != '') {
-      // Start retrieving TM units from amaGama
       PTL.editor.getTMUnits();
     }
 
@@ -577,16 +574,6 @@
       hlRegex = new RegExp(PTL.editor.makeRegexForMultipleWords(hl), "i");
     }
     $(sel.join(", ")).highlightRegex(hlRegex);
-  },
-
-  /* Highlights matching terms in the source text */
-  hlTerms: function () {
-    var term;
-
-    $(".tm-original").each(function () {
-      term = $(this).text();
-      $("div.original .translation-text").highlightRegex(new RegExp(PTL.editor.escapeUnsafeRegexSymbols(term), "g"));
-    });
   },
 
 
