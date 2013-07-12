@@ -59,6 +59,7 @@ js_editor = Bundle(
     'js/vendor/json2.js',
     'js/vendor/underscore.js',
     'js/vendor/backbone.js',
+    'js/vendor/backbone-relational.js',
     'js/models.js',
     'js/collections.js',
     'js/editor.js',
