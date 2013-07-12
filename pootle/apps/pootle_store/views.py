@@ -526,26 +526,11 @@ def _filter_ctx_units(units_qs, unit, how_many, gap=0):
 
 def _prepare_unit(unit):
     """Constructs a dictionary with relevant `unit` data."""
-    source_unit = []
-    target_unit = []
-
-    for i, source, title in pluralize_source(unit):
-        unit_dict = {'text': source}
-        if title:
-            unit_dict["title"] = title
-        source_unit.append(unit_dict)
-
-    for i, target, title in pluralize_target(unit):
-        unit_dict = {'text': target}
-        if title:
-            unit_dict["title"] = title
-        target_unit.append(unit_dict)
-
     return {
         'id': unit.id,
         'isfuzzy': unit.isfuzzy(),
-        'source': source_unit,
-        'target': target_unit,
+        'source': [source[1] for source in pluralize_source(unit)],
+        'target': [target[1] for target in pluralize_target(unit)],
     }
 
 

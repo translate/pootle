@@ -3,9 +3,8 @@
   <div class="translate-original translate-view" id="orig<%= unit.id %>">
     <% _.each(unit.source, function (source, i) { %>
     <div lang="<%= unit.store.source_lang %>" dir="<%= unit.store.source_dir %>"
-      class="translation-text"<% if (source.title) { %>
-      title="<%= source.title %>"<% } %>>
-      <%= PTL.editor.fancyHl(source.text) %>
+      class="translation-text">
+      <%= PTL.editor.fancyHl(source) %>
     </div>
     <% }); %>
   </div>
@@ -17,9 +16,8 @@
     class="translate-translation translate-view" id="trans<%= unit.id %>">
     <% _.each(unit.target, function (target, i) { %>
     <div lang="<%= unit.store.target_lang %>" class="translation-text"
-      dir="<%= unit.store.target_dir %>"<% if (target.title) { %>
-      title="<%= target.title %>"<% } %>>
-      <%= PTL.editor.fancyHl(target.text) %>
+      dir="<%= unit.store.target_dir %>">
+      <%= PTL.editor.fancyHl(target) %>
     </div>
     <% }); %>
   </div>
