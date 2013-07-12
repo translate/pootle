@@ -1300,11 +1300,11 @@
   submit: function (e) {
     e.preventDefault();
 
-    var reqData, submitUrl,
-        uid = PTL.editor.units.getCurrent().id,
+    var reqData, submitUrl, translations,
+        unit = PTL.editor.units.getCurrent(),
         form = $("#captcha").ifExists() || $("#translate");
 
-    submitUrl = l(['/xhr/units/', uid].join(''));
+    submitUrl = l(['/xhr/units/', unit.id].join(''));
 
     // Serialize data to be sent and get required attributes for the request
     reqData = form.serializeObject();
@@ -1326,12 +1326,12 @@
             focus: '#id_captcha_answer'
           });
         } else {
-          // If it has been a successful submission, update the data
-          // stored in the client
-          PTL.editor.units.get(uid).isfuzzy = PTL.editor.isFuzzy();
-          $("textarea[id^=id_target_f_]").each(function (i) {
-            PTL.editor.units.get(uid).target[i].text = PTL.editor.cleanEscape($(this).val());
-          });
+          // FIXME: handle this via events
+          translations = $("textarea[id^=id_target_f_]").map(function (i, el) {
+            return $(el).val();
+          }).get();
+          unit.setTranslation(translations);
+          unit.set('isfuzzy', PTL.editor.isFuzzy());
 
           PTL.editor.gotoNext();
         }
@@ -1922,10 +1922,11 @@
   acceptSuggestion: function (e) {
     e.stopPropagation(); //we don't want to trigger a click on the text below
     var suggId = $(this).data("sugg-id"),
-        element = $("#suggestion-" + suggId);
-        uid = $('.translate-container #id_id').val(),
-        url = l(['/xhr/units/', uid,
-                 '/suggestions/', suggId, '/accept/'].join(''));
+        element = $("#suggestion-" + suggId),
+        unit = PTL.editor.units.getCurrent(),
+        url = l(['/xhr/units/', unit.id,
+                 '/suggestions/', suggId, '/accept/'].join('')),
+        translations;
 
     $.post(url, {'accept': 1},
       function (data) {
@@ -1941,11 +1942,12 @@
           });
         });
 
-        // As in submissions, save current unit's status in the client
-        $("textarea[id^=id_target_f_]").each(function (i) {
-          PTL.editor.units.get(uid).target[i].text = PTL.editor.cleanEscape($(this).val());
-        });
-        PTL.editor.units.get(uid).isfuzzy = false;
+        // FIXME: handle this via events
+        translations = $("textarea[id^=id_target_f_]").map(function (i, el) {
+          return $(el).val();
+        }).get();
+        unit.setTranslation(translations);
+        unit.set('isfuzzy', false);
 
         element.fadeOut(200, function () {
           $(this).remove();

@@ -2,7 +2,7 @@ window.PTL = window.PTL || {};
 
 PTL.models = PTL.models || {};
 
-(function (models) {
+(function (models, utils) {
 
 /*
  * PTL.models.Unit
@@ -17,7 +17,19 @@ models.Unit = Backbone.RelationalModel.extend({
     reverseRelation: {
       key: 'units'
     }
-  }]
+  }],
+
+  /*
+   * Sets the current unit's translation.
+   */
+  setTranslation: function (value) {
+    if (!_.isArray(value)) {
+      value = [value];
+    }
+    this.set('target', _.map(value, function (item) {
+      return utils.cleanEscape(item);
+    }));
+  }
 
 });
 
@@ -29,4 +41,4 @@ models.Unit = Backbone.RelationalModel.extend({
 models.Store = Backbone.RelationalModel.extend({});
 
 
-}(PTL.models));
+}(PTL.models, PTL.utils));
