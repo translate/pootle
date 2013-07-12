@@ -573,7 +573,7 @@ def mysql_conf():
                 % conf_filename, default=False)):
 
         with settings(hide('stdout', 'stderr')):
-            upload_template('deploy/my.cnf' % env, conf_filename, context=env)
+            upload_template('deploy/my.cnf', conf_filename, context=env)
             run('chmod 600 %s' % conf_filename)
 
     else:
