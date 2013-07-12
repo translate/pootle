@@ -1910,7 +1910,7 @@
         store = unit.get('store'),
         src = store.get('source_lang'),
         tgt = store.get('target_lang'),
-        sText = unit.get('source')[0].text,
+        sText = unit.get('source')[0],
         pStyle = store.get('project_style'),
         tmUrl = this.settings.tmUrl + src + "/" + tgt +
           "/unit/?source=" + encodeURIComponent(sText) + "&jsoncallback=?";
