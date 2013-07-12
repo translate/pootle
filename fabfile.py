@@ -144,14 +144,16 @@ def _clone_repo():
     run('git clone %(project_repo)s %(project_repo_path)s' % env)
 
 
-def _checkout_repo():
+def _update_repo():
     """Updates the Git repository and checks out the specified branch"""
     print('\n\nUpdating repository branch...')
 
     with cd(env.project_repo_path):
-        run('git checkout master')
-        run('git pull')
+        run('git fetch --all')
         run('git checkout %(repo_branch)s' % env)
+        # Reset the branch to be the origin one. This can avoid problems or
+        # merge commits when updating a branch that was forced update.
+        run('git reset --hard origin/%(repo_branch)s' % env)
     run('chmod -R go=u,go-w %(project_repo_path)s' % env)
 
 
@@ -184,7 +186,7 @@ def bootstrap():
                 _init_directories()
                 _init_virtualenv()
                 _clone_repo()
-                _checkout_repo()
+                _update_repo()
                 _install_requirements()
     else:
         abort('\nAborting.')
@@ -444,7 +446,7 @@ def update_code():
     require('environment', provided_by=[production, staging])
 
     with settings(hide('stdout', 'stderr')):
-        _checkout_repo()
+        _update_repo()
         _update_requirements()
 
 
