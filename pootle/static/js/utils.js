@@ -1,8 +1,11 @@
-(function ($) {
+window.PTL = window.PTL || {};
 
-  window.PTL = window.PTL || {};
+PTL.utils = (function ($) {
 
-  PTL.utils = {
+  var escapeRE = /<[^<]*?>|\r\n|[\r\n\t&<>]/gm,
+      whitespaceRE = /^ +| +$|[\r\n\t] +| {2,}/gm;
+
+  return {
 
     /* Gets current URL's hash */
     getHash: function (win) {
@@ -55,10 +58,70 @@
       return params.join('&');
     },
 
+
     /* Cross-browser comparison function */
     strCmp: function (a, b) {
       return a === b ? 0 : a < b ? -1 : 1;
     },
+
+
+    /* Cleans '\n' escape sequences and adds '\t' sequences */
+    cleanEscape: function (s) {
+      return s.replace(/\\t/g, "\t").replace(/\\n/g, "");
+    },
+
+
+    /* Fancy escapes to highlight parts of the text such as HTML tags */
+    fancyEscape: function (text) {
+
+      function replace(match) {
+          var replaced,
+              escapeHl= '<span class="highlight-escape">%s</span>',
+              htmlHl = '<span class="highlight-html">&lt;%s&gt;</span>',
+              submap = {
+                '\r\n': escapeHl.replace(/%s/, '\\r\\n') + '<br/>\n',
+                '\r': escapeHl.replace(/%s/, '\\r') + '<br/>\n',
+                '\n': escapeHl.replace(/%s/, '\\n') + '<br/>\n',
+                '\t': escapeHl.replace(/%s/, '\\t'),
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;'
+              };
+
+          replaced = submap[match];
+
+          if (replaced === undefined) {
+            replaced = htmlHl.replace(
+                /%s/,
+                PTL.utils.fancyEscape(match.slice(1, match.length-1))
+            );
+          }
+
+          return replaced;
+      }
+
+      return text.replace(escapeRE, replace);
+    },
+
+
+    /* Highlight spaces to make them easily visible */
+    fancySpaces: function (text) {
+
+      function replace(match) {
+          var spaceHl= '<span class="translation-space"> </span>';
+
+          return Array(match.length + 1).join(spaceHl);
+      }
+
+      return text.replace(whitespaceRE, replace);
+    },
+
+
+    /* Fancy highlight: fancy spaces + fancy escape */
+    fancyHl: function (text) {
+      return this.fancySpaces(this.fancyEscape(text));
+    },
+
 
     /* Returns a string representing a relative datetime */
     relativeDate: function (date) {
