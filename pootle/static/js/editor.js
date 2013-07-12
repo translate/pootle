@@ -1910,8 +1910,7 @@
         store = unit.get('store'),
         src = store.get('source_lang'),
         tgt = store.get('target_lang'),
-        // FIXME: use model's source attribute
-        sText = $($("input[id^=id_source_f_]").get(0)).val(),
+        sText = unit.get('source')[0].text,
         pStyle = store.get('project_style'),
         tmUrl = this.settings.tmUrl + src + "/" + tgt +
           "/unit/?source=" + encodeURIComponent(sText) + "&jsoncallback=?";
