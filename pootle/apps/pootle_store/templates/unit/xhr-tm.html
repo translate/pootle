@@ -4,10 +4,10 @@
   <div id="tm<%= i %>" class="extra-item-block" title="<%= sugg.qTitle %>">
     <div class="extra-item-content">
       <div class="extra-item js-editor-copytext" data-action="overwrite">
-        <div class="suggestion-original" lang="<%= meta.source_lang %>"
-          dir="<%= meta.source_dir %>"><%= sugg.source %></div>
-        <div class="suggestion-translation" lang="<%= meta.target_lang %>"
-          dir="<%= meta.target_dir %>"><%= sugg.target %></div>
+        <div class="suggestion-original" lang="<%= store.source_lang %>"
+          dir="<%= store.source_dir %>"><%= sugg.source %></div>
+        <div class="suggestion-translation" lang="<%= store.target_lang %>"
+          dir="<%= store.target_dir %>"><%= sugg.target %></div>
       </div>
     </div>
   </div>

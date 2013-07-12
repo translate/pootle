@@ -17,8 +17,7 @@
     options && $.extend(this.settings, options);
 
     /* Initialize variables */
-    this.units = new PTL.collections.UnitCollection();
-    this.stores = {};
+    this.units = new PTL.collections.UnitCollection;
     this.pootlePath = $('#editor').data('pootle-path');
     this.ctxPath = $('#editor').data('ctx-path');
     this.resourcePath = $('#editor').data('resource-path');
@@ -1023,7 +1022,6 @@
 
           // Clear old data and add new results
           PTL.editor.pagesGot = {};
-          PTL.editor.stores = {};
           PTL.editor.units.reset();
           PTL.editor.updatePager(data.pager);
         }
@@ -1058,16 +1056,17 @@
           for (i=0; i<data.unit_groups.length; i++) {
             unitGroup = data.unit_groups[i];
             $.each(unitGroup, function (pootlePath, group) {
-              PTL.editor.stores[pootlePath] = PTL.editor.stores[pootlePath] || [];
-              $.extend(PTL.editor.stores[pootlePath], {'meta': this.meta});
-              PTL.editor.units.set(group.units, {at: at, remove: false});
+              var storeData = $.extend({pootlePath: pootlePath}, group.meta),
+                  units = _.map(group.units, function (unit) {
+                    return $.extend(unit, {store: storeData});
+                  });
+              PTL.editor.units.set(units, {at: at, remove: false});
               at += group.units.length;
 
               // FIXME: can we avoid this?
               for (j=0; j<group.units.length; j++) {
                 unit = PTL.editor.units.get(group.units[j].id);
                 unit.set('url', l(urlStr + unit.id));
-                unit.set('store', pootlePath);
 
                 PTL.editor.pagesGot[page].push(unit.id);
               }
@@ -1102,12 +1101,11 @@
     for (i=0; i<uids.length; i++) {
       _this = uids[i].id || uids[i];
       unit = this.units.get(_this);
-      store = this.stores[unit.get('store')];
+      store = unit.get('store');
 
       // Build row i
       rows += '<tr id="row' + _this + '" class="view-row ' + cls + '">';
-      rows += this.tmpl.vUnit({meta: store,
-                               unit: unit.toJSON()});
+      rows += this.tmpl.vUnit({unit: unit.toJSON()});
       rows += '</tr>';
 
       // Update odd/even class
@@ -1123,7 +1121,6 @@
   buildCtxRows: function (units, extraCls) {
     var i, unit,
         currentUnit = this.units.getCurrent(),
-        store = this.stores[currentUnit.get('store')],
         cls = "even",
         even = true,
         rows = "",
@@ -1133,16 +1130,16 @@
         ].join('');
 
     for (i=0; i<units.length; i++) {
+      // FIXME: Please let's use proper models for context units
       unit = units[i];
       unit['url'] = l(urlStr + unit.id);
+      unit = $.extend({}, currentUnit.toJSON(), unit);
 
-      // Build context row i
       rows += '<tr id="ctx' + unit.id + '" class="ctx-row ' + extraCls +
               ' ' + cls + '">';
-      rows += this.tmpl.vUnit({meta: store, unit: unit});
+      rows += this.tmpl.vUnit({unit: unit});
       rows += '</tr>';
 
-      // Update odd/even class
       cls = even ? "odd" : "even";
       even = !even;
     }
@@ -1923,11 +1920,12 @@
   /* Gets TM suggestions from amaGama */
   getTMUnits: function () {
     var unit = this.units.getCurrent(),
-        store = this.stores[unit.get('store')],
-        src = store.meta.source_lang,
-        tgt = store.meta.target_lang,
+        store = unit.get('store'),
+        src = store.get('source_lang'),
+        tgt = store.get('target_lang'),
+        // FIXME: use model's source attribute
         sText = $($("input[id^=id_source_f_]").get(0)).val(),
-        pStyle = store.meta.project_style,
+        pStyle = store.get('project_style'),
         tmUrl = this.settings.tmUrl + src + "/" + tgt +
           "/unit/?source=" + encodeURIComponent(sText) + "&jsoncallback=?";
 
@@ -1937,7 +1935,7 @@
     }
 
     if (pStyle.length && pStyle != "standard") {
-        tmUrl += '&style=' + store.meta.project_style;
+        tmUrl += '&style=' + store.get('project_style');
     }
 
     // Always abort previous requests so we only get results for the
@@ -1957,7 +1955,7 @@
         if (uid == PTL.editor.units.getCurrent().id && data.length) {
           var filtered = PTL.editor.filterTMResults(data),
               name = gettext("Similar translations"),
-              tm = PTL.editor.tmpl.tm({meta: store.meta,
+              tm = PTL.editor.tmpl.tm({store: store.toJSON(),
                                        suggs: filtered,
                                        name: name});
 
