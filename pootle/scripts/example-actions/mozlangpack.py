@@ -108,8 +108,8 @@ class MozillaLangpackAction(DownloadAction, TranslationProjectAction):
                     with tempdir() as xpidir:
 
                         xpifile = build_xpi(l10nbase=l10ndir, srcdir=source,
-                                            outputdir=xpidir, lang=language,
-                                            product='browser')
+                                            outputdir=xpidir, langs=[language],
+                                            product='browser')[0]
 
                         if xpifile:
                             newname = os.path.join(root, tpdir,
