@@ -234,7 +234,7 @@ class ProjectIndexView(view_handler.View):
             'translation_project': translation_project,
             'project': project,
             'language': language,
-            'directory': directory,
+            'path_obj': path_obj,
             'path_summary': path_summary,
             'stats': path_stats,
             'topstats': gentopstats_translation_project(translation_project),
@@ -243,11 +243,7 @@ class ProjectIndexView(view_handler.View):
             'can_edit': can_edit,
         })
 
-        if store is not None:
-            template_vars.update({
-                'store': store
-            })
-        else:
+        if store is None:
             table_fields = ['name', 'progress', 'total', 'need-translation',
                             'suggestions']
             template_vars.update({
