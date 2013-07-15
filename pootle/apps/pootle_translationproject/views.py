@@ -285,10 +285,7 @@ class ProjectIndexView(view_handler.View):
                 if getattr(action, 'get_download', None):
                     export_path = action.get_download(path_obj)
                     if export_path:
-                        action_output += _("Download file generated - "
-                                           "Click twice on link to download it")
-                        # FIXME - not working right
-                        #return redirect('/export/' + export_path)
+                        return redirect('/export/' + export_path)
 
                 if not action_output:
                     if not store:
@@ -307,8 +304,7 @@ class ProjectIndexView(view_handler.View):
                                                args=[language.code,
                                                      project.code,
                                                      store_d, store_f])
-                    # FIXME - not working right
-                    #return HttpResponseRedirect(overview_url)
+                    return HttpResponseRedirect(overview_url)
 
         template_vars.update({
             'translation_project': translation_project,
@@ -350,7 +346,9 @@ class ProjectIndexView(view_handler.View):
                                               kwargs=url_kwargs),
             })
 
-        return template_vars
+        return render_to_response("translation_project/overview.html",
+                                  template_vars,
+                                  context_instance=RequestContext(request))
 
 
 @get_translation_project
@@ -377,10 +375,7 @@ def overview(request, translation_project, dir_path, filename=None):
     }
     view_obj = ProjectIndexView(forms=view_forms)
 
-    return render_to_response("translation_project/overview.html",
-                              view_obj(request, translation_project,
-                                       directory, store),
-                              context_instance=RequestContext(request))
+    return view_obj(request, translation_project, directory, store)
 
 
 @ajax_required
