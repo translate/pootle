@@ -22,7 +22,7 @@
 import os
 
 from django.core.cache import cache
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.db import models
 from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
@@ -48,6 +48,8 @@ class ProjectManager(RelatedManager):
 
 
 CACHE_KEY = 'pootle-projects'
+
+PROJECT_CODES_BLACKLIST = ('admin', 'translate',)
 
 
 class Project(models.Model):
@@ -127,6 +129,10 @@ class Project(models.Model):
         # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
         cache.set(CACHE_KEY, Project.objects.order_by('fullname').all(), 0)
+
+    def clean(self):
+        if self.code in PROJECT_CODES_BLACKLIST:
+            raise ValidationError(_('This project code cannot be used.'))
 
     def delete(self, *args, **kwargs):
         directory = self.directory
