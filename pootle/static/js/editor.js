@@ -959,7 +959,7 @@
           // Determine in which page we want to save units, as we may not
           // have specified it in the GET parameters — in that case, the
           // page number is specified within the response pager
-          if (opts.withUid > 0 && data.pager) {
+          if (data.pager) {
             var page = data.pager.number;
           } else {
             var page = opts.page;
