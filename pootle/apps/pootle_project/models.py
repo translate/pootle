@@ -20,7 +20,7 @@
 import os
 
 from django.core.cache import cache
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.db import models
 from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
@@ -40,6 +40,8 @@ from pootle_store.util import absolute_real_path, statssum, OBSOLETE
 
 
 CACHE_KEY = 'pootle-projects'
+
+PROJECT_CODES_BLACKLIST = ('admin', 'translate',)
 
 
 class ProjectManager(RelatedManager):
@@ -133,6 +135,10 @@ class Project(models.Model):
     def natural_key(self):
         return (self.code,)
     natural_key.dependencies = ['pootle_app.Directory']
+
+    def clean(self):
+        if self.code in PROJECT_CODES_BLACKLIST:
+            raise ValidationError(_('This project code cannot be used.'))
 
     def delete(self, *args, **kwargs):
         directory = self.directory
