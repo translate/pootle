@@ -79,7 +79,7 @@ def make_project_item(translation_project):
     return info
 
 
-def language_index(request, language_code):
+def overview(request, language_code):
     language = get_object_or_404(Language, code=language_code)
     request.permissions = get_matching_permissions(get_profile(request.user),
                                                    language.directory)
@@ -127,7 +127,7 @@ def language_index(request, language_code):
         from pootle_language.forms import DescriptionForm
         templatevars['form'] = DescriptionForm(instance=language)
 
-    return render_to_response("language/language_index.html", templatevars,
+    return render_to_response("language/overview.html", templatevars,
                               context_instance=RequestContext(request))
 
 @ajax_required

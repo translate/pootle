@@ -266,7 +266,7 @@ def ajax_add_tag_to_tp_in_project(request, project_code):
                                       context, RequestContext(request))
 
 
-def project_language_index(request, project_code):
+def overview(request, project_code):
     """Page listing all languages added to project."""
     project = get_object_or_404(Project, code=project_code)
     request.permissions = get_matching_permissions(get_profile(request.user),
@@ -289,7 +289,7 @@ def project_language_index(request, project_code):
                                           kwargs=url_kwargs),
         })
 
-    return render_to_response('project/project.html', templatevars,
+    return render_to_response('project/overview.html', templatevars,
                               context_instance=RequestContext(request))
 
 

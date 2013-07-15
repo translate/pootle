@@ -27,8 +27,8 @@ urlpatterns = patterns('pootle_project.views',
 
     # Specific project
     url(r'^(?P<project_code>[^/]*)/$',
-        'project_language_index',
-        name='project.overview'),
+        'overview',
+        name='pootle-project-overview'),
 
     # XHR views
     url(r'^(?P<project_code>[^/]*)/ajax-add-tag-to-tp/?$',
