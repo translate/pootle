@@ -241,8 +241,6 @@ def edit(request, template, model_class, model_args={},
         template_vars['source_language'] = model_args['source_language']
     if 'directory' in model_args:
         template_vars['directory'] = model_args['directory']
-    if 'navitems' in model_args:
-        template_vars["navitems"] = model_args['navitems']
     if 'feed_path' in model_args:
         template_vars["feed_path"] = model_args['feed_path']
 
