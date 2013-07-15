@@ -9,9 +9,7 @@
 
     /* Default settings */
     this.settings = {
-      mt: [],
-      targetLanguage: null,
-      project: null
+      mt: []
     };
 
     options && $.extend(this.settings, options);
@@ -773,10 +771,10 @@
   },
 
   updateExportLink: function () {
-    var urlStr = [
-          // FIXME: project and target language information should come
-          // from the current unit/store
-          '', this.settings.targetLanguage, this.settings.project,
+    var unit = this.units.getCurrent(),
+        store = unit.get('store'),
+        urlStr = [
+          '', store.get('target_lang'), store.get('project_code'),
           'export-view', this.resourcePath
         ].join('/'),
         urlStr = [urlStr, $.param(this.getReqData())].join('?'),
