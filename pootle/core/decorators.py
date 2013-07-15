@@ -53,9 +53,9 @@ def get_translation_project(f):
             user_choice = request.COOKIES.get('user-choice', None)
             if user_choice and user_choice in ('language', 'project',):
                 url = {
-                    'language': reverse('language.overview',
+                    'language': reverse('pootle-language-overview',
                                         args=[language_code]),
-                    'project': reverse('project.overview',
+                    'project': reverse('pootle-project-overview',
                                        args=[project_code]),
                 }
                 response = redirect(url[user_choice])

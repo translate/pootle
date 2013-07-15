@@ -84,7 +84,7 @@ def make_language_item(request, translation_project):
     return info
 
 
-def project_language_index(request, project_code):
+def overview(request, project_code):
     """page listing all languages added to project"""
     project = get_object_or_404(Project, code=project_code)
     request.permissions = get_matching_permissions(
@@ -136,7 +136,7 @@ def project_language_index(request, project_code):
         from pootle_project.forms import DescriptionForm
         templatevars['form'] = DescriptionForm(instance=project)
 
-    return render_to_response('project/project.html', templatevars,
+    return render_to_response('project/overview.html', templatevars,
                               context_instance=RequestContext(request))
 
 
