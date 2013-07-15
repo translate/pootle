@@ -285,7 +285,11 @@ class ProjectIndexView(view_handler.View):
                 if getattr(action, 'get_download', None):
                     export_path = action.get_download(path_obj)
                     if export_path:
-                        return redirect('/export/' + export_path)
+                        response = HttpResponse('/export/' + export_path)
+                        response['Content-Disposition'] = \
+                                'attachment; filename="%s"' %(
+                                        os.path.basename(export_path))
+                        return response
 
                 if not action_output:
                     if not store:
