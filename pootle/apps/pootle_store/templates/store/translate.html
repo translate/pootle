@@ -126,8 +126,6 @@ $(document).magnificPopup({
 });
 $(function() {
   var options = {
-    project: '{{ project.code }}',
-    targetLanguage: '{{ language.code }}',
     tmUrl: '{{ AMAGAMA_URL }}'
   };
   {% if cansuggest or cantranslate %}

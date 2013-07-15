@@ -555,6 +555,7 @@ def _path_units_with_meta(path, units):
                 'source_dir': project.source_language.get_direction(),
                 'target_lang': tp.language.code,
                 'target_dir': tp.language.get_direction(),
+                'project_code': project.code,
                 'project_style': project.checkstyle,
             }
 
