@@ -43,6 +43,7 @@ from pootle_misc.forms import LiberalModelChoiceField
 from pootle_misc.stats import get_raw_stats, stats_descriptions
 from pootle_misc.util import ajax_required, jsonify
 from pootle_profile.models import get_profile
+from pootle_project.forms import TranslationProjectTagForm
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
 from pootle_translationproject.models import TranslationProject
@@ -76,6 +77,8 @@ def make_language_item(request, translation_project):
         'title': tr_lang(translation_project.language.fullname),
         'stats': project_stats,
         'lastactivity': get_last_action(translation_project),
+        'tags': translation_project.tags.all(),
+        'pk': translation_project.pk,
         'tooltip': _('%(percentage)d%% complete', tooltip_dict),
     }
 
@@ -112,7 +115,7 @@ def get_project_base_template_vars(request, project, can_edit):
                         languagecount, summary_dict)
 
     table_fields = ['name', 'progress', 'total', 'need-translation',
-                    'activity']
+                    'activity', 'tags']
 
     template_vars = {
         'project': {
@@ -135,6 +138,21 @@ def get_project_base_template_vars(request, project, can_edit):
     return template_vars
 
 
+def handle_tp_tags_form(request, project):
+    if request.method == 'POST' and request.POST.get('slug', False):
+        tag_form = TranslationProjectTagForm(request.POST, project=project)
+
+        if tag_form.is_valid():
+            translation_project = tag_form.cleaned_data['translation_project']
+            new_tag = tag_form.save()
+            translation_project.tags.add(new_tag)
+            tag_form = TranslationProjectTagForm(project=project)
+    else:
+        tag_form = TranslationProjectTagForm(project=project)
+
+    return tag_form
+
+
 def project_language_index(request, project_code):
     """Page listing all languages added to project."""
     project = get_object_or_404(Project, code=project_code)
@@ -148,7 +166,10 @@ def project_language_index(request, project_code):
 
     if can_edit:
         from pootle_project.forms import DescriptionForm
-        templatevars['form'] = DescriptionForm(instance=project)
+        templatevars.update({
+            'form': DescriptionForm(instance=project),
+            'tag_form': handle_tp_tags_form(request, project),
+        })
 
     return render_to_response('project/project.html', templatevars,
                               context_instance=RequestContext(request))

@@ -69,6 +69,9 @@ HEADING_CHOICES = [
         'class': 'stats',
         'display_name': _("Last Activity"),
     },
+    # NOTE: 'tags' heading is not included here on purpose to avoid the
+    # creation of such column in the table. Tags are instead shown in a new row
+    # that keeps the same color scheme.
 ]
 
 

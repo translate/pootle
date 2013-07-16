@@ -199,6 +199,38 @@
           };
         }, "html");
       });
+
+      /* Launch the tag creation dialog for a TP in project overview */
+      $(document).on("click", ".js-project-add-tag-popup", function (event) {
+        event.preventDefault();
+        var tp = $(this).parent().prop("id");
+
+        // Make sure that the id retrieved is a correct one.
+        if (/^js-tag-tp-/.test(tp)) {
+          // Get translation project PK from the retrieved id.
+          tp = tp.split("-").pop();
+
+          // Set the translation project in the form.
+          $("#js-tags-tp option:selected").prop("selected", false);
+          $('#js-tags-tp option[value="' + tp + '"]').prop("selected", true);
+
+          // Open the dialog.
+          $(this).magnificPopup({
+            key: '#js-add-tag-dialog',
+            focus: '#js-tag-form-name',
+            callbacks: {
+              close: function() {
+                // If add tag dialog is closed, the form fields must be
+                // cleaned and the error messages must be removed.
+                $("#js-tag-form-name").val("");
+                $("#js-tag-form-slug").val("");
+                $("#js-add-tag-form .errorlist").remove();
+              }
+            }
+          });
+          $(this).magnificPopup('open');
+        }
+      });
     },
 
     /* Navigates to `languageCode`, `projectCode` while retaining the
