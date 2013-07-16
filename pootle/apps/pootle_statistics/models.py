@@ -54,6 +54,7 @@ class SubmissionFields(object):
 
 class Submission(models.Model):
     class Meta:
+        ordering = ["creation_time"]
         get_latest_by = "creation_time"
         db_table = 'pootle_app_submission'
 
