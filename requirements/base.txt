@@ -12,6 +12,9 @@ argparse
 cssmin>=0.1.4
 lxml>=2.1.4
 
+# Feature switcher
+django-waffle>=0.9.1
+
 # For providing API
 #django-tastypie
 

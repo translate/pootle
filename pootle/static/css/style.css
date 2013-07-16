@@ -1436,6 +1436,14 @@ div#settings
     color: #fff;
 }
 
+/* ADMIN FEATURE DISABLED FIELDS */
+.feature-non-editable
+{
+    border-style: none;
+    background-color: transparent;
+}
+
+
 /*
  * SUMMARIES
  */
@@ -1956,6 +1964,7 @@ body#admingeneral #tabs a.admingeneral,
 body#adminusers #tabs a.adminusers,
 body#adminlanguages #tabs a.adminlanguages,
 body#adminprojects #tabs a.adminprojects,
+body#adminfeatures #tabs a.adminfeatures,
 body#adminpermissions #tabs a.adminpermissions,
 body#adminstaticpages #tabs a.adminstaticpages,
 body#projectoverview #tabs a.projectoverview,
