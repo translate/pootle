@@ -217,6 +217,10 @@ def merge_po2moz(templates, translations, output, language, project):
 class MozillaTarballAction(DownloadAction, TranslationProjectAction):
     """Download Mozilla language properties tarball"""
 
+    def __init__(self, **kwargs):
+        super(MozillaTarballAction, self).__init__(**kwargs)
+        self._waffle_flag = 'download_moztarball'
+
     def run(self, path, root, tpdir,  # pylint: disable=R0913
             language, project, vc_root, **kwargs):
         """Generate a Mozilla language properties tarball"""

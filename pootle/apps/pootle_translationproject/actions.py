@@ -271,14 +271,15 @@ def action_groups(request, path_obj, **kwargs):
         act = actions.StoreAction
 
     for ext in act.instances():
-        group = ext.category.lower().replace(' ', '-')
-        for grp in groups:
-            if grp['group'] == group:
-                grp['actions'].append(ext.get_link_func())
-                break
-        else:
-            groups.append({'group': group, 'group_display': _(ext.category),
-                           'actions': [ext.get_link_func()]})
+        if ext.is_active(request):
+            group = ext.category.lower().replace(' ', '-')
+            for grp in groups:
+                if grp['group'] == group:
+                    grp['actions'].append(ext.get_link_func())
+                    break
+            else:
+                groups.append({'group': group, 'group_display': _(ext.category),
+                               'actions': [ext.get_link_func()]})
 
     for group in groups:
         action_links = _gen_link_list(request, path_obj, group['actions'],

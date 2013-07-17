@@ -249,66 +249,68 @@ class ProjectIndexView(view_handler.View):
             else:
                 if not getattr(action, 'nosync', False):
                     (store or translation_project).sync()
-                vcs_dir = settings.VCS_DIRECTORY
-                po_dir = settings.PODIRECTORY
-                tp_dir = directory.get_real_path()
-                store_fn = '*'
-                if store:
-                    tp_dir_slash = add_trailing_slash(tp_dir)
-                    if store.file.name.startswith(tp_dir_slash):
-                        # note: store_f used below in reverse() call
-                        store_f = store.file.name[len(tp_dir_slash):]
-                        store_fn = store_f.replace('/', os.sep)
+                if action.is_active(request):
+                    vcs_dir = settings.VCS_DIRECTORY
+                    po_dir = settings.PODIRECTORY
+                    tp_dir = directory.get_real_path()
+                    store_fn = '*'
+                    if store:
+                        tp_dir_slash = add_trailing_slash(tp_dir)
+                        if store.file.name.startswith(tp_dir_slash):
+                            # note: store_f used below in reverse() call
+                            store_f = store.file.name[len(tp_dir_slash):]
+                            store_fn = store_f.replace('/', os.sep)
 
-                # clear possibly stale output/error (even from other path_obj)
-                action.set_output('')
-                action.set_error('')
-                try:
-                    action.run(path=path_obj, root=po_dir, tpdir=tp_dir,
-                               project=project.code, language=language.code,
-                               store=store_fn,
-                               style=translation_project.file_style,
-                               vc_root=vcs_dir)
-                except StandardError:
-                    err = _("Exception while running '%s' extension action"
-                            ) % action.title
-                    logging.exception(err)
-                    if (action.error):
-                        messages.error(request, action.error)
+                    # clear possibly stale output/error (even from other
+                    # path_obj)
+                    action.set_output('')
+                    action.set_error('')
+                    try:
+                        action.run(path=path_obj, root=po_dir, tpdir=tp_dir,
+                                   project=project.code, language=language.code,
+                                   store=store_fn,
+                                   style=translation_project.file_style,
+                                   vc_root=vcs_dir)
+                    except StandardError:
+                        err = _("Exception while running '%s' extension action"
+                                ) % action.title
+                        logging.exception(err)
+                        if (action.error):
+                            messages.error(request, action.error)
+                        else:
+                            messages.error(request, err)
                     else:
-                        messages.error(request, err)
-                else:
-                    if (action.error):
-                        messages.warning(request, action.error)
+                        if (action.error):
+                            messages.warning(request, action.error)
 
-                action_output = action.output
-                if getattr(action, 'get_download', None):
-                    export_path = action.get_download(path_obj)
-                    if export_path:
-                        response = HttpResponse('/export/' + export_path)
-                        response['Content-Disposition'] = \
-                                'attachment; filename="%s"' %(
-                                        os.path.basename(export_path))
-                        return response
+                    action_output = action.output
+                    if getattr(action, 'get_download', None):
+                        export_path = action.get_download(path_obj)
+                        if export_path:
+                            response = HttpResponse('/export/' + export_path)
+                            response['Content-Disposition'] = \
+                                    'attachment; filename="%s"' %(
+                                            os.path.basename(export_path))
+                            return response
 
-                if not action_output:
-                    if not store:
-                        overview_url = reverse('tp.overview',
-                                               args=[language.code,
-                                                     project.code, ''])
-                    else:
-                        slash = store_f.rfind('/')
-                        store_d = ''
-                        if slash > 0:
-                            store_d = store_f[:slash]
-                            store_f = store_f[slash + 1:]
-                        elif slash == 0:
-                            store_f = store_f[1:]
-                        overview_url = reverse('tp.overview',
-                                               args=[language.code,
-                                                     project.code,
-                                                     store_d, store_f])
-                    return HttpResponseRedirect(overview_url)
+                    if not action_output:
+                        if not store:
+                            overview_url = reverse('tp.overview',
+                                                   args=[language.code,
+                                                         project.code, ''])
+                        else:
+                            slash = store_f.rfind('/')
+                            store_d = ''
+                            if slash > 0:
+                                store_d = store_f[:slash]
+                                store_f = store_f[slash + 1:]
+                            elif slash == 0:
+                                store_f = store_f[1:]
+                            overview_url = reverse('tp.overview',
+                                                   args=[language.code,
+                                                         project.code,
+                                                         store_d, store_f])
+                        return HttpResponseRedirect(overview_url)
 
         template_vars.update({
             'translation_project': translation_project,

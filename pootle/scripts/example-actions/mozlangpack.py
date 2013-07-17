@@ -43,6 +43,10 @@ logger = getLogger(__name__)
 class MozillaLangpackAction(DownloadAction, TranslationProjectAction):
     """Download Mozilla language pack for Firefox"""
 
+    def __init__(self, **kwargs):
+        super(MozillaLangpackAction, self).__init__(**kwargs)
+        self._waffle_flag = 'download_langpack'
+
     def run(self, path, root, tpdir,  # pylint: disable=R0913,R0914
             language, project, vc_root, **kwargs):
         """Generate a Mozilla language pack XPI"""

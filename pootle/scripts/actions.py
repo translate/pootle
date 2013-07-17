@@ -88,6 +88,8 @@ from pootle_app.project_tree import ensure_target_dir_exists
 from pootle_misc.baseurl import l
 from pootle_store.util import absolute_real_path, relative_real_path
 
+from waffle import flag_is_active
+
 logger = logging.getLogger(__name__)
 
 #: Module separator (period); this constant used to improve code readability
@@ -260,6 +262,7 @@ class ExtensionAction(object):
         self._title = title
         self._error = ''
         self._output = ''
+        self._waffle_flag = ''
         logger.debug("%s.__init__ '%s'", type(self).__name__, title)
         for cls in type(self).__mro__:
             if getattr(cls, 'tracked', False):
@@ -355,6 +358,12 @@ class ExtensionAction(object):
     def set_output(self, text):
         """Set output of action for display"""
         self._output = text
+
+    def is_active(self, request):
+        """Check if the action is active based on its waffle flag."""
+        if self._waffle_flag:
+            return flag_is_active(request, self._waffle_flag)
+        return True
 
 
 class ProjectAction(ExtensionAction):
