@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -22,52 +23,59 @@ from functools import wraps
 
 from django.core.urlresolvers import reverse
 from django.http import Http404
-from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404, redirect
 
 from pootle_app.models.permissions import get_matching_permissions
 from pootle_profile.models import get_profile
+from pootle_language.models import Language
+from pootle_project.models import Project
 from pootle_translationproject.models import TranslationProject
 
 
-def get_translation_project(f):
-    """Retrieves a :cls:`TranslationProject` matching `language_code` and
-    `project_code`.
+def get_path_obj(func):
+    @wraps(func)
+    def wrapped(request, *args, **kwargs):
+        language_code = kwargs.pop('language_code', None)
+        project_code = kwargs.pop('project_code', None)
 
-    If there's no match for a translation project, a 404 response is
-    returned.
-    Alternatively, if a user made a explicit selection via the UI and
-    there's no match for a translation project, a redirect to
-    ``/language_code/`` or ``/projects/project_code/`` will be performed.
-    """
-    @wraps(f)
-    def decorated_f(request, language_code, project_code, *args, **kwargs):
-        try:
-            translation_project = TranslationProject.objects.get(
-                language__code=language_code,
-                project__code=project_code
-            )
-        except TranslationProject.DoesNotExist:
-            translation_project = None
+        if language_code and project_code:
+            try:
+                translation_project = TranslationProject.objects.get(
+                    language__code=language_code,
+                    project__code=project_code
+                )
+            except TranslationProject.DoesNotExist:
+                translation_project = None
 
-        if not translation_project:
-            user_choice = request.COOKIES.get('user-choice', None)
-            if user_choice and user_choice in ('language', 'project',):
-                url = {
-                    'language': reverse('pootle-language-overview',
-                                        args=[language_code]),
-                    'project': reverse('pootle-project-overview',
-                                       args=[project_code]),
-                }
-                response = redirect(url[user_choice])
-                response.delete_cookie('user-choice')
+            if translation_project is None:
+                # Explicit selection via the UI: redirect either to
+                # ``/language_code/`` or ``/projects/project_code/``
+                user_choice = request.COOKIES.get('user-choice', None)
+                if user_choice and user_choice in ('language', 'project',):
+                    url = {
+                        'language': reverse('pootle-language-overview',
+                                            args=[language_code]),
+                        'project': reverse('pootle-project-overview',
+                                           args=[project_code]),
+                    }
+                    response = redirect(url[user_choice])
+                    response.delete_cookie('user-choice')
 
-                return response
+                    return response
 
-            raise Http404
+                raise Http404
 
-        return f(request, translation_project, *args, **kwargs)
+            return func(request, translation_project, *args, **kwargs)
 
-    return decorated_f
+        if language_code:
+            language = get_object_or_404(Language, code=language_code)
+            return func(request, language, *args, **kwargs)
+
+        if project_code:
+            project = get_object_or_404(Project, code=project_code)
+            return func(request, project, *args, **kwargs)
+
+    return wrapped
 
 
 def set_tp_request_context(f):

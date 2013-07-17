@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2012 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -37,7 +38,7 @@ from django.utils.translation import ugettext as _
 
 from taggit.models import Tag
 
-from pootle.core.decorators import (get_translation_project,
+from pootle.core.decorators import (get_path_obj,
                                     set_tp_request_context)
 from pootle.scripts.actions import (EXTDIR, StoreAction,
                                     TranslationProjectAction)
@@ -68,7 +69,7 @@ from pootle_translationproject.forms import (DescriptionForm,
                                              upload_form_factory)
 
 
-@get_translation_project
+@get_path_obj
 @set_tp_request_context
 @util.has_permission('administrate')
 def admin_permissions(request, translation_project):
@@ -84,7 +85,7 @@ def admin_permissions(request, translation_project):
                        template_vars)
 
 
-@get_translation_project
+@get_path_obj
 @set_tp_request_context
 @util.has_permission('administrate')
 def rescan_files(request, translation_project):
@@ -110,7 +111,7 @@ def rescan_files(request, translation_project):
     return HttpResponseRedirect(overview_url)
 
 
-@get_translation_project
+@get_path_obj
 @set_tp_request_context
 @util.has_permission('administrate')
 def update_against_templates(request, translation_project):
@@ -131,7 +132,7 @@ def update_against_templates(request, translation_project):
     return HttpResponseRedirect(overview_url)
 
 
-@get_translation_project
+@get_path_obj
 @set_tp_request_context
 @util.has_permission('administrate')
 def delete_path_obj(request, translation_project, dir_path, filename=None):
@@ -210,7 +211,7 @@ def delete_path_obj(request, translation_project, dir_path, filename=None):
     return HttpResponseRedirect(overview_url)
 
 
-@get_translation_project
+@get_path_obj
 @set_tp_request_context
 def vcs_commit(request, translation_project, dir_path, filename):
     if not check_permission("commit", request):
@@ -229,7 +230,7 @@ def vcs_commit(request, translation_project, dir_path, filename):
     return redirect(obj.get_absolute_url())
 
 
-@get_translation_project
+@get_path_obj
 @set_tp_request_context
 def vcs_update(request, translation_project, dir_path, filename):
     if not check_permission("commit", request):
@@ -303,7 +304,7 @@ def _handle_upload_form(request, current_path, translation_project, directory):
     return upload_form_class()
 
 
-@get_translation_project
+@get_path_obj
 @set_tp_request_context
 def overview(request, translation_project, dir_path, filename=None):
     if not check_permission("view", request):
@@ -477,7 +478,7 @@ def overview(request, translation_project, dir_path, filename=None):
 
 
 @ajax_required
-@get_translation_project
+@get_path_obj
 def ajax_remove_tag_from_tp(request, translation_project, tag_name):
     if not check_permission('administrate', request):
         raise PermissionDenied(_("You do not have rights to remove tags."))
@@ -504,7 +505,7 @@ def _add_tag(request, translation_project, tag):
 
 
 @ajax_required
-@get_translation_project
+@get_path_obj
 def ajax_add_tag_to_tp(request, translation_project):
     """Return an HTML snippet with the failed form or blank if valid."""
 
@@ -552,7 +553,7 @@ def ajax_add_tag_to_tp(request, translation_project):
 
 
 @ajax_required
-@get_translation_project
+@get_path_obj
 def path_summary_more(request, translation_project, dir_path, filename=None):
     """Returns an HTML snippet with more detailed summary information
        for the current path."""
@@ -577,7 +578,7 @@ def path_summary_more(request, translation_project, dir_path, filename=None):
 
 
 @ajax_required
-@get_translation_project
+@get_path_obj
 def edit_settings(request, translation_project):
     request.permissions = get_matching_permissions(get_profile(request.user),
             translation_project.directory)
@@ -610,7 +611,7 @@ def edit_settings(request, translation_project):
                         mimetype="application/json")
 
 
-@get_translation_project
+@get_path_obj
 @set_tp_request_context
 def export_zip(request, translation_project, file_path):
 
