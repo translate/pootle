@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -41,7 +42,7 @@ from pootle_store.util import absolute_real_path, statssum, OBSOLETE
 
 CACHE_KEY = 'pootle-projects'
 
-PROJECT_CODES_BLACKLIST = ('admin', 'translate',)
+RESERVED_PROJECT_CODES = ('admin', 'translate',)
 
 
 class ProjectManager(RelatedManager):
@@ -137,8 +138,10 @@ class Project(models.Model):
     natural_key.dependencies = ['pootle_app.Directory']
 
     def clean(self):
-        if self.code in PROJECT_CODES_BLACKLIST:
-            raise ValidationError(_('This project code cannot be used.'))
+        if self.code in RESERVED_PROJECT_CODES:
+            raise ValidationError(
+                _('"%s" cannot be used as a project code' % (self.code,))
+            )
 
     def delete(self, *args, **kwargs):
         directory = self.directory
