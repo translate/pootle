@@ -40,7 +40,7 @@ from pootle_misc import dispatch
 from pootle_misc.baseurl import l
 from pootle_misc.browser import get_table_headings
 from pootle_misc.forms import LiberalModelChoiceField
-from pootle_misc.stats import (get_raw_stats, stats_descriptions)
+from pootle_misc.stats import get_raw_stats, stats_descriptions
 from pootle_misc.util import ajax_required, jsonify
 from pootle_profile.models import get_profile
 from pootle_project.models import Project
@@ -64,6 +64,10 @@ def make_language_item(request, translation_project):
 
     project_stats = get_raw_stats(translation_project)
 
+    tooltip_dict = {
+        'percentage': project_stats['translated']['percentage']
+    }
+
     info = {
         'code': translation_project.language.code,
         'href': href,
@@ -72,32 +76,22 @@ def make_language_item(request, translation_project):
         'title': tr_lang(translation_project.language.fullname),
         'stats': project_stats,
         'lastactivity': get_last_action(translation_project),
-        'tooltip': _('%(percentage)d%% complete',
-                     {'percentage': project_stats['translated']['percentage']}),
+        'tooltip': _('%(percentage)d%% complete', tooltip_dict),
     }
 
     errors = project_stats.get('errors', 0)
 
     if errors:
-        info['errortooltip'] = ungettext('Error reading %d file', 'Error reading %d files', errors, errors)
+        info['errortooltip'] = ungettext('Error reading %d file',
+                                         'Error reading %d files', errors,
+                                         errors)
 
     info.update(stats_descriptions(project_stats))
 
     return info
 
 
-def project_language_index(request, project_code):
-    """page listing all languages added to project"""
-    project = get_object_or_404(Project, code=project_code)
-    request.permissions = get_matching_permissions(
-            get_profile(request.user), project.directory
-    )
-
-    if not check_permission('view', request):
-        raise PermissionDenied
-
-    can_edit = check_permission('administrate', request)
-
+def get_project_base_template_vars(request, project, can_edit):
     translation_projects = project.translationproject_set.all()
 
     items = [make_language_item(request, translation_project) \
@@ -106,33 +100,50 @@ def project_language_index(request, project_code):
 
     languagecount = len(translation_projects)
     project_stats = get_raw_stats(project)
-    average = project_stats['translated']['percentage']
 
-    topstats = gentopstats_project(project)
-
-    table_fields = ['name', 'progress', 'total', 'need-translation', 'activity']
-    table = {
-        'id': 'project',
-        'proportional': False,
-        'fields': table_fields,
-        'headings': get_table_headings(table_fields),
-        'items': items,
+    summary_dict = {
+        "languages": languagecount,
+        "average": project_stats['translated']['percentage'],
     }
 
-    templatevars = {
+    summary = ungettext('%(languages)d language, %(average)d%% translated',
+                        '%(languages)d languages, %(average)d%% translated',
+                        languagecount, summary_dict)
+
+    table_fields = ['name', 'progress', 'total', 'need-translation',
+                    'activity']
+
+    template_vars = {
         'project': {
-          'code': project.code,
-          'name': project.fullname,
-          'description': project.description,
-          'summary': ungettext('%(languages)d language, %(average)d%% translated',
-                               '%(languages)d languages, %(average)d%% translated',
-                               languagecount, {"languages": languagecount,
-                                               "average": average}),
+            'code': project.code,
+            'name': project.fullname,
+            'description': project.description,
+            'summary': summary,
         },
-        'topstats': topstats,
+        'topstats': gentopstats_project(project),
         'can_edit': can_edit,
-        'table': table,
+        'table': {
+            'id': 'project',
+            'proportional': False,
+            'fields': table_fields,
+            'headings': get_table_headings(table_fields),
+            'items': items,
+        },
     }
+
+    return template_vars
+
+
+def project_language_index(request, project_code):
+    """Page listing all languages added to project."""
+    project = get_object_or_404(Project, code=project_code)
+    request.permissions = get_matching_permissions(get_profile(request.user),
+                                                   project.directory)
+    if not check_permission('view', request):
+        raise PermissionDenied
+
+    can_edit = check_permission('administrate', request)
+    templatevars = get_project_base_template_vars(request, project, can_edit)
 
     if can_edit:
         from pootle_project.forms import DescriptionForm
@@ -145,9 +156,8 @@ def project_language_index(request, project_code):
 @ajax_required
 def project_settings_edit(request, project_code):
     project = get_object_or_404(Project, code=project_code)
-    request.permissions = get_matching_permissions(
-            get_profile(request.user), project.directory
-    )
+    request.permissions = get_matching_permissions(get_profile(request.user),
+                                                   project.directory)
     if not check_permission('administrate', request):
         raise PermissionDenied
 
@@ -166,7 +176,8 @@ def project_settings_edit(request, project_code):
         else:
             the_html = u"".join([
                 u'<p class="placeholder muted">',
-                _(u"No description yet."), u"</p>"
+                _(u"No description yet."),
+                u"</p>",
             ])
 
         response["description"] = the_html
@@ -189,14 +200,12 @@ class TranslationProjectFormSet(forms.models.BaseModelFormSet):
         result = super(TranslationProjectFormSet, self) \
                 .save_existing(form, instance, commit)
         form.process_extra_fields()
-
         return result
 
 
     def save_new(self, form, commit=True):
         result = super(TranslationProjectFormSet, self).save_new(form, commit)
         form.process_extra_fields()
-
         return result
 
 
@@ -207,8 +216,8 @@ def project_admin(request, project_code):
                                                    current_project.directory)
 
     if not check_permission('administrate', request):
-        raise PermissionDenied(_("You do not have rights to administer "
-                                 "this project."))
+        raise PermissionDenied(_("You do not have rights to administer this "
+                                 "project."))
 
     template_translation_project = current_project \
                                         .get_template_translationproject()
@@ -278,8 +287,8 @@ def project_admin_permissions(request, project_code):
                                                    project.directory)
 
     if not check_permission('administrate', request):
-        raise PermissionDenied(_("You do not have rights to administer "
-                                 "this project."))
+        raise PermissionDenied(_("You do not have rights to administer this "
+                                 "project."))
 
     template_vars = {
         "project": project,
@@ -299,16 +308,15 @@ def projects_index(request):
         raise PermissionDenied
 
     table_fields = ['project', 'progress', 'activity']
-    table = {
-        'id': 'projects',
-        'proportional': False,
-        'fields': table_fields,
-        'headings': get_table_headings(table_fields),
-        'items': getprojects(request),
-    }
 
     templatevars = {
-        'table': table,
+        'table': {
+            'id': 'projects',
+            'proportional': False,
+            'fields': table_fields,
+            'headings': get_table_headings(table_fields),
+            'items': getprojects(request),
+        },
         'topstats': gentopstats_root(),
     }
 

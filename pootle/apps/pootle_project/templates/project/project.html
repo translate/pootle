@@ -26,8 +26,6 @@
   </div>
 
   <div id="overview-description" class="bd">
-
-
     <div id="overview-description-project"
       class="markup-body{% if can_edit %} js-ctx-meta-desc{% endif %}">
     {% if project.description %}
@@ -37,14 +35,11 @@
     {% endif %}
     {% if can_edit %}
       {% include "admin/edit_links.html" %}
-    {% endif %}
     </div>
-  {% if can_edit %}
     <div class="settings-container js-edit-ctx-meta-desc" style="display:none;">
       {% include "admin/general_settings_form.html" with form_action="edit_settings.html" %}
+    {% endif %}
     </div>
-  {% endif %}
-
   </div>
   {% endif %}
 </div>
