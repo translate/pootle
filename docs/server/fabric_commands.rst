@@ -37,19 +37,12 @@ This command:
    .. versionchanged:: 2.5.1 Added support for bootstrapping from a given
       branch on Pootle repository.
 
-Available arguments:
-
-``branch``
-  A specific branch to check out in the repository.
-
-  Default: ``master``.
-
 Examples:
 
 .. code-block:: bash
 
     $ fab production bootstrap  # Call that will use the default 'master' branch
-    $ fab production bootstrap:branch=stable/2.5.0  # Call which provides a branch
+    $ fab production:branch=stable/2.5.0 bootstrap  # Call which provides a branch
 
 
 .. _fabric-commands#compile-translations:
@@ -104,8 +97,7 @@ deploy
 
 This command:
 
-- Calls the :ref:`update_code <fabric-commands#update-code>` command providing
-  the specified branch, if any
+- Calls the :ref:`update_code <fabric-commands#update-code>` command
 - Calls the :ref:`deploy_static <fabric-commands#deploy-static>` command
 - Calls the :ref:`install_site <fabric-commands#install-site>` command
 
@@ -117,19 +109,12 @@ This command:
    .. versionchanged:: 2.5.1 Added support for deploying from a given branch
       on Pootle repository.
 
-Available arguments:
-
-``branch``
-  A specific branch to check out in the repository.
-
-  Default: ``master``.
-
 Examples:
 
 .. code-block:: bash
 
     $ fab production deploy  # Call that will use the default 'master' branch
-    $ fab production deploy:branch=stable/2.5.0  # Call which provides a branch
+    $ fab production:branch=stable/2.5.0 deploy  # Call which provides a branch
 
 
 .. _fabric-commands#deploy-static:
@@ -223,7 +208,7 @@ This command:
 Available arguments:
 
 ``dumpfile``
-  The filename for the file where the database will be dumped.
+  The local filename for the file where the database will be dumped.
 
   Default: ``pootle_DB_backup.sql``.
 
@@ -321,9 +306,9 @@ This command:
 Available arguments:
 
 ``dumpfile``
-  The SQL dump filename that will be uploaded to and imported into an existing
-  database on the remote server. This file can be created using the
-  :ref:`dump_db <fabric-commands#dump-db>` command.
+  The local SQL dump filename that will be uploaded to the remote server and
+  imported into an existing database on the remote server. This file can be
+  created using the :ref:`dump_db <fabric-commands#dump-db>` command.
 
   .. note:: This is a required argument.
 
@@ -388,6 +373,35 @@ This command:
 .. note:: This command is useless unless it is called before another command or
    commands.
 
+.. note:: This command allows changing the settings. To do so just pass it any
+   of its arguments when calling it.
+
+   Note that some commands might require passing any or all of these arguments
+   to this command in order to overwrite the default settings before calling
+   those commands. For example the command :command:`stage_feature` requires
+   passing :option:`branch`, :option:`repo` and :option:`feature`.
+
+.. note::
+   .. versionchanged:: 2.5.1 Added support for altering the settings based on
+      the passed arguments.
+
+Available arguments:
+
+``branch``
+  A specific branch to check out in the repository.
+
+``repo``
+  A repository URL to clone from.
+
+  This allows to checkout from a fork repository (not necessarily on GitHub)
+  and try new features developed on that repository. It must be an URL that the
+  ``git clone`` command is able to clone.
+
+``feature``
+  Allows specifying if the deployment is for a feature-staging server. Such
+  servers are used by Pootle developers in order to allow quick test of new
+  features using a live Pootle server.
+
 Examples:
 
 .. code-block:: bash
@@ -396,6 +410,36 @@ Examples:
 
 In the previous example :command:`production` is called to set up the
 environment for calling :command:`bootstrap` afterwards.
+
+.. code-block:: bash
+
+    $ fab production:branch=feature/extension-actions bootstrap
+
+In the previous example :command:`production` is called to set up the
+environment for calling :command:`bootstrap` afterwards.
+
+The :option:`branch` argument overwrites the default branch in the settings,
+which are then used for all the subsequent commands (just :command:`bootstrap`
+in this example).
+
+.. code-block:: bash
+
+    $ fab production:branch=feature/extension-actions,repo=git://github.com/unho/pootle.git bootstrap
+
+In the previous example :command:`production` is called to set up the
+environment for calling :command:`bootstrap` afterwards.
+
+The :option:`branch` and :option:`repo` arguments overwrite the default
+settings, which are then used for all the subsequent commands (just
+:command:`bootstrap` in this example).
+
+.. code-block:: bash
+
+    $ fab production:branch=feature/extension-actions,repo=git://github.com/unho/pootle.git,feature=yes stage_feature
+
+This example is like the previous one, with the addition of the
+:option:`feature` argument that triggers the altering of several settings. That
+altering is necessary for working with feature-staging servers.
 
 
 .. _fabric-commands#setup-db:
@@ -428,13 +472,11 @@ stage_feature
 
 This command:
 
-- Alters some of the Fabric settings during runtime based on the parameters
-  provided to this command
-- Calls the :ref:`bootstrap <fabric-commands#bootstrap>` command providing
-  the specified branch, if any
+- Calls the :ref:`bootstrap <fabric-commands#bootstrap>` command
 - Calls the :ref:`create_db <fabric-commands#create-db>` command
 - Copies the data in the specified source DB into the DB that will be used for
   the deployed Pootle
+- Calls the :ref:`update_db <fabric-commands#update-db>` command
 - Calls the :ref:`deploy_static <fabric-commands#deploy-static>` command
 - Calls the :ref:`install_site <fabric-commands#install-site>` command
 
@@ -448,28 +490,16 @@ This command:
    :file:`deploy/ENVIRONMENT/fabric.py` file. Note that the database specified
    on this field must exist.
 
-.. warning:: This command requires using the ``staging`` environment.
-
-Available arguments:
-
-``branch``
-  A specific branch to check out in the repository.
-
-  .. note:: This is a required argument.
-
-``repo``
-  A repository URL to clone from.
-
-  This allows to checkout from a fork repository (not necessarily on GitHub)
-  and try new features developed on that repository. It must be an URL that the
-  ``git clone`` command is able to clone.
+.. warning:: This command requires using the ``staging`` environment passing to
+   it the :option:`feature` argument, the desired branch and optionally a
+   repository URL.
 
 Examples:
 
 .. code-block:: bash
 
-    $ fab staging stage_feature:branch=feature/extension-actions
-    $ fab staging stage_feature:branch=feature/extension-actions,repo=git://github.com/unho/pootle.git
+    $ fab staging:branch=feature/extension-actions,feature=yes stage_feature
+    $ fab staging:branch=feature/extension-actions,repo=git://github.com/unho/pootle.git,feature=yes stage_feature
 
 
 .. _fabric-commands#staging:
@@ -484,6 +514,35 @@ This command:
 .. note:: This command is useless unless it is called before another command or
    commands.
 
+.. note:: This command allows changing the settings. To do so just pass it any
+   of its arguments when calling it.
+
+   Note that some commands might require passing any or all of these arguments
+   to this command in order to overwrite the default settings before calling
+   those commands. For example the command :command:`stage_feature` requires
+   passing :option:`branch`, :option:`repo` and :option:`feature`.
+
+.. note::
+   .. versionchanged:: 2.5.1 Added support for altering the settings based on
+      the passed arguments.
+
+Available arguments:
+
+``branch``
+  A specific branch to check out in the repository.
+
+``repo``
+  A repository URL to clone from.
+
+  This allows to checkout from a fork repository (not necessarily on GitHub)
+  and try new features developed on that repository. It must be an URL that the
+  ``git clone`` command is able to clone.
+
+``feature``
+  Allows specifying if the deployment is for a feature-staging server. Such
+  servers are used by Pootle developers in order to allow quick test of new
+  features using a live Pootle server.
+
 Examples:
 
 .. code-block:: bash
@@ -492,6 +551,36 @@ Examples:
 
 In the previous example :command:`staging` is called to set up the environment
 for calling :command:`bootstrap` afterwards.
+
+.. code-block:: bash
+
+    $ fab staging:branch=feature/extension-actions bootstrap
+
+In the previous example :command:`staging` is called to set up the environment
+for calling :command:`bootstrap` afterwards.
+
+The :option:`branch` argument overwrites the default branch in the settings,
+which are then used for all the subsequent commands (just :command:`bootstrap`
+in this example).
+
+.. code-block:: bash
+
+    $ fab staging:branch=feature/extension-actions,repo=git://github.com/unho/pootle.git bootstrap
+
+In the previous example :command:`staging` is called to set up the environment
+for calling :command:`bootstrap` afterwards.
+
+The :option:`branch` and :option:`repo` arguments overwrite the default
+settings, which are then used for all the subsequent commands (just
+:command:`bootstrap` in this example).
+
+.. code-block:: bash
+
+    $ fab staging:branch=feature/extension-actions,repo=git://github.com/unho/pootle.git,feature=yes stage_feature
+
+This example is like the previous one, with the addition of the
+:option:`feature` argument that triggers the altering of several settings. That
+altering is necessary for working with feature-staging servers.
 
 
 .. _fabric-commands#syncdb:
@@ -537,8 +626,6 @@ unstage_feature
 
 This command:
 
-- Alters some of the Fabric settings during runtime based on the parameters
-  provided to this command
 - Calls the :ref:`disable_site <fabric-commands#disable-site>` command
 - Calls the :ref:`drop_db <fabric-commands#drop-db>` command
 - Removes the configuration files created by the :ref:`update_config
@@ -553,21 +640,14 @@ This command:
 .. note:: This command is intended for removing Pootle deployments performed
    using the :ref:`stage_feature <fabric-commands#stage-feature>` command.
 
-.. warning:: This command requires using the ``staging`` environment.
-
-Available arguments:
-
-``branch``
-  The specific branch which was used to check out from the repository when
-  deploying Pootle.
-
-  .. note:: This is a required argument.
+.. warning:: This command requires using the ``staging`` environment passing to
+   it the :option:`feature` argument and the desired branch.
 
 Examples:
 
 .. code-block:: bash
 
-    $ fab staging unstage_feature:branch=feature/extension-actions
+    $ fab staging:branch=feature/extension-actions,feature=yes unstage_feature
 
 
 .. _fabric-commands#update-code:
@@ -586,19 +666,12 @@ This command:
    .. versionchanged:: 2.5.1 Added support for updating code from a given branch
       on Pootle repository.
 
-Available arguments:
-
-``branch``
-  A specific branch to check out in the repository.
-
-  Default: ``master``.
-
 Examples:
 
 .. code-block:: bash
 
     $ fab production update_code  # Call that will use the default 'master' branch
-    $ fab production update_code:branch=stable/2.5.0  # Call which provides a branch
+    $ fab production:branch=stable/2.5.0 update_code  # Call which provides a branch
 
 
 .. _fabric-commands#update-config:

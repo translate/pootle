@@ -35,7 +35,7 @@ from fabric.utils import abort
 #
 
 
-def production(new_settings={}):
+def production(branch=None, repo=None, feature=None):
     """Work on the production environment"""
 
     try:
@@ -43,11 +43,14 @@ def production(new_settings={}):
     except ImportError:
         abort("Can't load 'production' environment; is PYTHONPATH exported?")
 
+    # Get new settings based on the provided parameters.
+    new_settings = _get_new_settings(branch, repo, feature)
+
     env.update(fabric.get_settings(new_settings))
     env.environment = 'production'
 
 
-def staging(new_settings={}):
+def staging(branch=None, repo=None, feature=None):
     """Work on the staging environment"""
 
     try:
@@ -55,8 +58,43 @@ def staging(new_settings={}):
     except ImportError:
         abort("Can't load 'staging' environment; is PYTHONPATH exported?")
 
+    # Get new settings based on the provided parameters.
+    new_settings = _get_new_settings(branch, repo, feature)
+
     env.update(fabric.get_settings(new_settings))
     env.environment = 'staging'
+
+
+def _get_new_settings(branch=None, repo=None, feature=None):
+    """Get a new settings dictionary based on the provided parameters."""
+
+    # If no branch is provided then don't return any new settings.
+    if branch is None:
+        return {}
+
+    # Create new settings based on the provided parameters.
+    new_settings = {
+        'repo_branch': branch,
+    }
+
+    # If a repository is specified.
+    if repo is not None:
+        new_settings['project_repo'] = repo
+
+    # If the flag for feature-staging server is specified.
+    if feature is not None:
+        # Replace all occurrences of problematic characters with - character.
+        # Basically this is all characters outside alphanumeric characters, dot
+        # and hyphen characters.
+        import re
+        hyphen_branch = re.sub(r'([^A-Za-z0-9.-])', "-", branch)
+
+        new_settings['db_name'] = 'pootle-' + hyphen_branch
+        new_settings['project_name'] = 'pootle-' + hyphen_branch
+        new_settings['project_url'] = hyphen_branch + '.testing.locamotion.org'
+
+    # Return the new settings.
+    return new_settings
 
 
 #
@@ -106,14 +144,16 @@ def _clone_repo():
     run('git clone %(project_repo)s %(project_repo_path)s' % env)
 
 
-def _checkout_repo(branch="master"):
+def _update_repo():
     """Updates the Git repository and checks out the specified branch"""
     print('\n\nUpdating repository branch...')
 
     with cd(env.project_repo_path):
-        run('git checkout master')
-        run('git pull')
-        run('git checkout %s' % branch)
+        run('git fetch --all')
+        run('git checkout %(repo_branch)s' % env)
+        # Reset the branch to be the origin one. This can avoid problems or
+        # merge commits when updating a branch that was forced update.
+        run('git reset --hard origin/%(repo_branch)s' % env)
     run('chmod -R go=u,go-w %(project_repo_path)s' % env)
 
 
@@ -135,8 +175,8 @@ def _update_requirements():
     run('chmod -R go=u,go-w %(env_path)s' % env)
 
 
-def bootstrap(branch="master"):
-    """Bootstraps a Pootle deployment using the specified branch"""
+def bootstrap():
+    """Bootstraps a Pootle deployment."""
     require('environment', provided_by=[production, staging])
 
     if (not exists('%(project_path)s' % env) or
@@ -146,70 +186,33 @@ def bootstrap(branch="master"):
                 _init_directories()
                 _init_virtualenv()
                 _clone_repo()
-                _checkout_repo(branch=branch)
+                _update_repo()
                 _install_requirements()
     else:
         abort('\nAborting.')
 
 
-def _reload_with_new_settings(branch=None, repo=None):
-    """Reload the current environment with new settings.
-
-     The new settings are based on the parameters.
-     """
-    if branch is None:
-        abort('\nNo branch provided. Aborting.')
-
-    print('\n\nApplying new settings')
-
-    # Replace all occurrences of problematic characters with - character.
-    import re
-    hyphen_branch = re.sub(r'([^A-Za-z0-9.-])', "-", branch)
-
-    # Create new settings based on the provided parameters.
-    new_settings = {
-        'db_name': 'pootle-' + hyphen_branch,
-        'project_name': 'pootle-' + hyphen_branch,
-        'project_url': hyphen_branch + '.testing.locamotion.org',
-    }
-
-    if repo is not None:
-        new_settings['project_repo'] = repo
-
-    # Reload the settings for the current environment.
-    import sys
-    current_env = getattr(sys.modules[__name__], env['environment'])
-    current_env(new_settings)  # current_env() can be staging() or production().
-
-
-def stage_feature(branch=None, repo='git://github.com/translate/pootle.git'):
+def stage_feature():
     """Deploys a Pootle server for testing a feature branch.
 
     This copies the DB from a previous Pootle deployment.
     """
     require('environment', provided_by=[staging])
 
-    # Reload the current environment with new settings based on the
-    # provided parameters.
-    _reload_with_new_settings(branch, repo)
-
     # Run the required commands to deploy a new Pootle instance based on a
     # previous staging one and using the specified branch.
-    bootstrap(branch)
+    bootstrap()
     create_db()
     _copy_db()
+    update_db()
     deploy_static()
     install_site()
     print('\n\nSuccessfully deployed at:\n\n\thttp://%(project_url)s\n' % env)
 
 
-def unstage_feature(branch=None):
+def unstage_feature():
     """Remove a Pootle server deployed using the stage_feature command"""
     require('environment', provided_by=[staging])
-
-    # Reload the current environment with new settings based on the
-    # provided parameters.
-    _reload_with_new_settings(branch)
 
     # Run the commands for completely removing this Pootle install
     disable_site()
@@ -438,12 +441,12 @@ def dump_db(dumpfile="pootle_DB_backup.sql"):
         abort('\nAborting.')
 
 
-def update_code(branch="master"):
+def update_code():
     """Updates the source code and its requirements"""
     require('environment', provided_by=[production, staging])
 
     with settings(hide('stdout', 'stderr')):
-        _checkout_repo(branch=branch)
+        _update_repo()
         _update_requirements()
 
 
@@ -462,12 +465,12 @@ def deploy_static():
     run('chmod -R go=u,go-w %(project_repo_path)s' % env)
 
 
-def deploy(branch="master"):
+def deploy():
     """Updates the code and installs the production site"""
     require('environment', provided_by=[production, staging])
 
     with settings(hide('stdout', 'stderr')):
-        update_code(branch=branch)
+        update_code()
         deploy_static()
         install_site()
 

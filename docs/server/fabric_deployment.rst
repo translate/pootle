@@ -200,115 +200,51 @@ command just add it before the command like this:
    order to be able to run the :command:`fab` command.
 
 
-.. _fabric-deployment#bootstrap-environment:
+.. _fabric-deployment#provide-arguments:
 
-Bootstrapping the environment
------------------------------
+Provide arguments
+^^^^^^^^^^^^^^^^^
 
-You can install the Pootle software, configuration files, and directory tree(s)
-with the bootstrap command.
-
-.. code-block:: bash
-
-    $ export PYTHONPATH=`pwd`:$PYTHONPATH
-    $ fab production bootstrap:branch=stable/2.5.0  # Install Pootle 2.5
-
-
-.. _fabric-deployment#configuring-passwordless-access:
-
-Configuring passwordless access
--------------------------------
-
-While it is not required, it is much easier to perform deployment operations
-without interactive prompts for login, sudo, or MySQL database passwords.
-
-You can eliminate the need for an SSH login password by adding your public SSH
-key(s) to the :file:`~/.ssh/authorized_hosts` file of the user on the remote
-server.
-
-You can eliminate the need for sudo passwords by adding a file (with
-permissions mode 440) containing ``username ALL = (ALL) NOPASSWD: ALL`` (where
-*username* is replaced with the user configured in the :file:`fabric.py`
-settings) to the :file:`/etc/sudoers.d/` directory.
-
-You can eliminate the need for MySQL passwords by configuring the database
-password(s) in the :file:`fabric.py` settings file, running the
-:ref:`mysql_conf <fabric-commands#mysql-conf>` fabric command to create a MySQL
-options file for the remote user:
+Some commands do accept arguments - the argument name is followed by a colon
+(:) and the value for the argument (with no spaces):
 
 .. code-block:: bash
 
-    $ fab production mysql_conf  # Set up MySQL options file
+    $ fab production load_db:dumpfile=backup_mysql.sql  # Call load_db providing a database dump to load
 
-and then modifying the :file:`fabric.py` settings file to un-comment the
-alternate value for :setting:`db_password_opt` (and optionally
-:setting:`db_root_password_opt`, if :setting:`db_root_password` is configured).
+The previous call runs the :ref:`load_db <fabric-commands#load-db>` command
+providing the value ``backup_mysql.sql`` for its :option:`dumpfile` argument.
 
 
-.. _fabric-deployment#setting-up-the-database:
+.. _fabric-deployment#tweak-the-environment:
 
-Setting Up the Database
------------------------
+Tweak the environment
+^^^^^^^^^^^^^^^^^^^^^
 
-If creating a new database from scratch:
-
-.. code-block:: bash
-
-    $ fab production create_db  # Creates Pootle DB on MySQL
-    $ fab production setup_db   # Populates the initial DB and its schema
-
-If creating a blank database and populating with a (local) database backup:
+One possible use for arguments is to tweak the environment when setting it,
+before calling the commands:
 
 .. code-block:: bash
 
-    $ fab production create_db  # Creates Pootle DB on MySQL
-    $ fab production load_db:dumpfile=backup_mysql.sql # Populate DB from local dump
+    $ fab production:branch=stable/2.5.0 bootstrap  # Run bootstrap for a branch
 
-.. note:: The dumpfile (for load_db and dump_db) is local to the system where
-   Fabric runs, and is automatically copied to/from the remote server.
-
-If updating a previous version database (possibly just loaded with load_db)
-to the latest version of the schema:
-
-.. code-block:: bash
-
-    $ fab production update_db  # Updates DB schema to latest version
-    $ fab production upgrade    # Applies various non-schema cleanup & recovery
-
-.. _fabric-deployment#enabling-the-web-server:
-
-Enabling the web server
------------------------
-
-.. code-block:: bash
-
-    $ fab production deploy:branch=stable/2.5.0
+In the previous example :ref:`bootstrap <fabric-commands#bootstrap>` is run
+after setting the environment using :ref:`production
+<fabric-commands#production>` but changing the branch to work on, to be the
+value ``stable/2.5.0`` passed to the :option:`branch` argument.
 
 
-.. _fabric-deployment#notes-on-fabric-commands:
+.. _fabric-deployment#run-several-commands-in-a-row:
 
-Notes on Fabric commands
-------------------------
+Run several commands in a row
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In addition to the basic Fabric command usage in the examples above, there are
-other advanced techniques that can be used.
-
-Some commands accept options - the option name is followed by a colon (:) and
-the value for the option (with no spaces).
-
-.. code-block:: bash
-
-    $ fab production bootstrap:branch=stable/2.5.0  # Run bootstrap for a branch
-
-The previous call runs the :ref:`bootstrap <fabric-commands#bootstrap>` command
-providing the value ``stable/2.5.0`` for its :option:`branch` option.
-
-It is also possible to run several commands in a row with a single call.
+It is possible to run several commands in a row with a single call:
 
 .. code-block:: bash
 
     $ # Run several commands in a row using a single call to fab
-    $ fab production bootstrap:branch=stable/2.5.0 create_db load_db:dumpfile=backup_mysql_2.5.0-rc1.sql
+    $ fab production:branch=stable/2.5.0 bootstrap create_db load_db:dumpfile=backup_mysql.sql
 
 The previous call will run :ref:`production <fabric-commands#production>`
 followed by :ref:`bootstrap <fabric-commands#bootstrap>`, :ref:`create_db
@@ -321,3 +257,111 @@ that exact order.
 See the :ref:`Fabric commands reference <fabric-commands>` for a
 comprehensive list of all Fabric commands available for deploying Pootle,
 with detailed descriptions of each command.
+
+
+.. _fabric-deployment#configuring-passwordless-access:
+
+Configuring passwordless access
+-------------------------------
+
+While it is not required, it is much easier to perform deployment operations
+without interactive prompts for login, sudo, or MySQL database passwords:
+
+* You can eliminate the need for an SSH login password by adding your public
+  SSH key(s) to the :file:`~/.ssh/authorized_hosts` file of the user on the
+  remote server.
+
+* You can eliminate the need for sudo passwords by adding in the
+  :file:`/etc/sudoers.d/` directory on the remote server, a file (with
+  permissions mode ``440``) containing the line:
+
+  ::
+
+     username ALL = (ALL) NOPASSWD: ALL
+
+  where *username* must be replaced with the user configured in the
+  :file:`fabric.py` settings file.
+
+* You can eliminate the need for MySQL passwords by configuring the database
+  password(s) in the :file:`fabric.py` settings file, running the
+  :ref:`mysql_conf <fabric-commands#mysql-conf>` fabric command to create a
+  MySQL options file for the remote user:
+
+  .. code-block:: bash
+
+      $ fab production mysql_conf  # Set up MySQL options file
+
+  and then modifying the :file:`fabric.py` settings file to un-comment the
+  alternate value for :setting:`db_password_opt` (and optionally
+  :setting:`db_root_password_opt`, if :setting:`db_root_password` is
+  configured).
+
+
+.. _fabric-deployment#typical-usage-example:
+
+Typical Usage Example
+---------------------
+
+A typical usage example is included here in order to provide a more easy to
+understand example on how to use this deployment method and the available
+commands.
+
+
+.. _fabric-deployment#bootstrap-environment:
+
+Bootstrapping the environment
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You can install the Pootle software, configuration files, and directory tree(s)
+with the bootstrap command.
+
+.. code-block:: bash
+
+    $ export PYTHONPATH=`pwd`:$PYTHONPATH
+    $ fab production:branch=stable/2.5.0 bootstrap  # Install Pootle 2.5
+
+
+.. _fabric-deployment#setting-up-the-database:
+
+Setting Up the Database
+^^^^^^^^^^^^^^^^^^^^^^^
+
+When setting up the database there are several possible scenarios:
+
+* If creating a new database from scratch:
+
+  .. code-block:: bash
+
+      $ fab production create_db  # Creates Pootle DB on MySQL
+      $ fab production setup_db   # Populates the initial DB and its schema
+
+* If creating a blank database and populating with a (local) database backup:
+
+  .. code-block:: bash
+
+      $ fab production create_db  # Creates Pootle DB on MySQL
+      $ fab production load_db:dumpfile=backup_mysql.sql # Populate DB from local dump
+
+  .. note:: The :option:`dumpfile` (for :ref:`load_db
+     <fabric-commands#load-db>` and :ref:`dump_db <fabric-commands#dump-db>`)
+     is local to the system where Fabric runs, and is automatically copied
+     to/from the remote server.
+
+* If updating a previous version database (possibly just loaded with
+  :ref:`load_db <fabric-commands#load-db>`) to the latest version of the
+  schema:
+
+  .. code-block:: bash
+
+      $ fab production update_db  # Updates DB schema to latest version
+      $ fab production upgrade    # Applies various non-schema cleanup & recovery
+
+
+.. _fabric-deployment#enabling-the-web-server:
+
+Enabling the web server
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+    $ fab production:branch=stable/2.5.0 deploy
