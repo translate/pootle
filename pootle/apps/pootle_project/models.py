@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
-# This file is part of translate.
+# This file is part of Pootle.
 #
-# translate is free software; you can redistribute it and/or modify
+# Pootle is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
@@ -49,7 +50,7 @@ class ProjectManager(RelatedManager):
 
 CACHE_KEY = 'pootle-projects'
 
-PROJECT_CODES_BLACKLIST = ('admin', 'translate',)
+RESERVED_PROJECT_CODES = ('admin', 'translate',)
 
 
 class Project(models.Model):
@@ -131,8 +132,10 @@ class Project(models.Model):
         cache.set(CACHE_KEY, Project.objects.order_by('fullname').all(), 0)
 
     def clean(self):
-        if self.code in PROJECT_CODES_BLACKLIST:
-            raise ValidationError(_('This project code cannot be used.'))
+        if self.code in RESERVED_PROJECT_CODES:
+            raise ValidationError(
+                _('"%s" cannot be used as a project code' % (self.code,))
+            )
 
     def delete(self, *args, **kwargs):
         directory = self.directory
