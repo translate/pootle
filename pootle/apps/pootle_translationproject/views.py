@@ -102,7 +102,7 @@ def rescan_files(request, translation_project):
 
     language = translation_project.language.code
     project = translation_project.project.code
-    overview_url = reverse('tp.overview', args=[language, project, ''])
+    overview_url = reverse('pootle-tp-overview', args=[language, project, ''])
 
     return HttpResponseRedirect(overview_url)
 
@@ -124,7 +124,7 @@ def update_against_templates(request, translation_project):
 
     language = translation_project.language.code
     project = translation_project.project.code
-    overview_url = reverse('tp.overview', args=[language, project, ''])
+    overview_url = reverse('pootle-tp-overview', args=[language, project, ''])
 
     return HttpResponseRedirect(overview_url)
 
@@ -203,7 +203,7 @@ def delete_path_obj(request, translation_project, dir_path, filename=None):
 
     language = translation_project.language.code
     project = translation_project.project.code
-    overview_url = reverse('tp.overview', args=[language, project, ''])
+    overview_url = reverse('pootle-tp-overview', args=[language, project, ''])
 
     return HttpResponseRedirect(overview_url)
 
