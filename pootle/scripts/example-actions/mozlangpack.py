@@ -28,6 +28,7 @@ run the shell scripts that are provided in that Git repository.
 
 from __future__ import with_statement
 
+import fcntl
 import os
 import shutil
 from subprocess import CalledProcessError
@@ -111,6 +112,13 @@ class MozillaLangpackAction(DownloadAction, TranslationProjectAction):
 
                     with tempdir() as xpidir:
 
+                        # Attempting to run build_xpi concurrently can fail,
+                        # so lock it
+                        lock_filename = os.path.join(source,
+                                                     ".langpack_action_lock")
+                        lock = open(lock_filename, "w")
+                        fcntl.flock(lock.fileno(), fcntl.LOCK_EX)
+
                         xpifile = build_xpi(l10nbase=l10ndir, srcdir=source,
                                             outputdir=xpidir, langs=[language],
                                             product='browser')[0]
@@ -123,6 +131,9 @@ class MozillaLangpackAction(DownloadAction, TranslationProjectAction):
                             shutil.move(xpifile, newname)
                             self.set_error(self.set_download_file(path,
                                                                   newname))
+
+                        fcntl.flock(lock.fileno(), fcntl.LOCK_UN)
+                        lock.close()
 
                 except (EnvironmentError, CalledProcessError), e:
                     logger.debug_exception(e)
