@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
-# This program is free software; you can redistribute it and/or modify
+# Pootle is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
@@ -27,6 +28,7 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
 from django.utils.translation import ugettext as _, ungettext
 
+from pootle.core.decorators import get_path_obj, permission_required
 from pootle.i18n.gettext import tr_lang
 from pootle_app.models import Directory
 from pootle_app.models.permissions import (get_matching_permissions,
@@ -84,16 +86,10 @@ def make_language_item(request, translation_project):
     return info
 
 
-def overview(request, project_code):
+@get_path_obj
+@permission_required('view')
+def overview(request, project):
     """page listing all languages added to project"""
-    project = get_object_or_404(Project, code=project_code)
-    request.permissions = get_matching_permissions(
-            get_profile(request.user), project.directory
-    )
-
-    if not check_permission('view', request):
-        raise PermissionDenied
-
     can_edit = check_permission('administrate', request)
 
     translation_projects = project.translationproject_set.all()
@@ -141,14 +137,9 @@ def overview(request, project_code):
 
 
 @ajax_required
-def project_settings_edit(request, project_code):
-    project = get_object_or_404(Project, code=project_code)
-    request.permissions = get_matching_permissions(
-            get_profile(request.user), project.directory
-    )
-    if not check_permission('administrate', request):
-        raise PermissionDenied
-
+@get_path_obj
+@permission_required('administrate')
+def project_settings_edit(request, project):
     from pootle_project.forms import DescriptionForm
     form = DescriptionForm(request.POST, instance=project)
 
@@ -198,16 +189,10 @@ class TranslationProjectFormSet(forms.models.BaseModelFormSet):
         return result
 
 
-def project_admin(request, project_code):
+@get_path_obj
+@permission_required('administrate')
+def project_admin(request, current_project):
     """adding and deleting project languages"""
-    current_project = Project.objects.get(code=project_code)
-    request.permissions = get_matching_permissions(get_profile(request.user),
-                                                   current_project.directory)
-
-    if not check_permission('administrate', request):
-        raise PermissionDenied(_("You do not have rights to administer "
-                                 "this project."))
-
     template_translation_project = current_project \
                                         .get_template_translationproject()
 
@@ -270,15 +255,9 @@ def project_admin(request, project_code):
                      exclude=('description',))
 
 
-def project_admin_permissions(request, project_code):
-    project = get_object_or_404(Project, code=project_code)
-    request.permissions = get_matching_permissions(get_profile(request.user),
-                                                   project.directory)
-
-    if not check_permission('administrate', request):
-        raise PermissionDenied(_("You do not have rights to administer "
-                                 "this project."))
-
+@get_path_obj
+@permission_required('view')
+def project_admin_permissions(request, project):
     template_vars = {
         "project": project,
         "directory": project.directory,
@@ -289,13 +268,9 @@ def project_admin_permissions(request, project_code):
                              "project/admin_permissions.html", template_vars)
 
 
+@permission_required('view')
 def projects_index(request):
     """page listing all projects"""
-    request.permissions = get_matching_permissions(get_profile(request.user),
-                                                   Directory.objects.root)
-    if not check_permission('view', request):
-        raise PermissionDenied
-
     table_fields = ['project', 'progress', 'activity']
     table = {
         'id': 'projects',

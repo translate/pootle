@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2010-2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -38,8 +39,7 @@ from django.views.decorators.cache import never_cache
 
 from translate.lang import data
 
-from pootle.core.decorators import (get_path_obj,
-                                    set_tp_request_context)
+from pootle.core.decorators import get_path_obj, permission_required
 from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.models.permissions import (get_matching_permissions,
                                            check_permission,
@@ -179,8 +179,9 @@ def get_filter_name(GET):
     return (filter_name, extra)
 
 
+# FIXME: this belongs to `pootle_translationproject`
 @get_path_obj
-@set_tp_request_context
+@permission_required('view')
 def export_view(request, translation_project, dir_path, filename=None):
     """Displays a list of units with filters applied."""
     current_path = translation_project.directory.pootle_path + dir_path

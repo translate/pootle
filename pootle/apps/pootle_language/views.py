@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2004-2010,2012 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
-# This file is part of translate.
+# This file is part of Pootle.
 #
-# This program is free software; you can redistribute it and/or modify
+# Pootle is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
@@ -24,6 +25,7 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
 from django.utils.translation import ugettext as _, ungettext
 
+from pootle.core.decorators import get_path_obj, permission_required
 from pootle.i18n.gettext import tr_lang
 from pootle_app.models.permissions import (get_matching_permissions,
                                            check_permission)
@@ -79,14 +81,9 @@ def make_project_item(translation_project):
     return info
 
 
-def overview(request, language_code):
-    language = get_object_or_404(Language, code=language_code)
-    request.permissions = get_matching_permissions(get_profile(request.user),
-                                                   language.directory)
-
-    if not check_permission("view", request):
-        raise PermissionDenied
-
+@get_path_obj
+@permission_required('view')
+def overview(request, language):
     can_edit = check_permission('administrate', request)
 
     projects = language.translationproject_set.order_by('project__fullname')
@@ -131,14 +128,9 @@ def overview(request, language_code):
                               context_instance=RequestContext(request))
 
 @ajax_required
-def language_settings_edit(request, language_code):
-    language = get_object_or_404(Language, code=language_code)
-    request.permissions = get_matching_permissions(
-            get_profile(request.user), language.directory
-    )
-    if not check_permission('administrate', request):
-        raise PermissionDenied
-
+@get_path_obj
+@permission_required('administrate')
+def language_settings_edit(request, language):
     from pootle_language.forms import DescriptionForm
     form = DescriptionForm(request.POST, instance=language)
 
@@ -179,6 +171,9 @@ def language_admin(request, language_code):
     if not check_permission('administrate', request):
         raise PermissionDenied(_("You do not have rights to administer this language."))
 
+@get_path_obj
+@permission_required('administrate')
+def language_admin(request, language):
     template_vars = {
         "language": language,
         "directory": language.directory,
