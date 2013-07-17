@@ -19,7 +19,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.core.exceptions import PermissionDenied
 from django.forms.models import modelformset_factory
 from django.forms.util import ErrorList
 from django.shortcuts import render_to_response
@@ -29,18 +28,6 @@ from django.utils.translation import ugettext as _
 
 from pootle_misc.baseurl import l
 from pootle_misc.util import paginate
-
-
-# XXX: Move to pootle_misc?
-def user_is_admin(f):
-    def decorated_f(request, *args, **kwargs):
-        if not request.user.is_superuser:
-            raise PermissionDenied(_("You do not have rights to administer "
-                                     "Pootle."))
-        else:
-            return f(request, *args, **kwargs)
-
-    return decorated_f
 
 
 def form_set_as_table(formset, link=None, linkfield='code'):

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2012 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of translate.
 #
@@ -31,9 +32,9 @@ from django.utils import simplejson
 from django.utils.translation import ugettext as _
 
 from pootle import depcheck
+from pootle.core.decorators import admin_required
 from pootle.core.markup import get_markup_filter
 from pootle_app.models import Suggestion as SuggestionStat
-from pootle_app.views.admin.util import user_is_admin
 from pootle_misc.aggregate import sum_column
 from pootle_profile.models import PootleProfile
 from pootle_statistics.models import Submission
@@ -249,7 +250,7 @@ def server_stats():
     return result
 
 
-@user_is_admin
+@admin_required
 def server_stats_more(request):
     result = cache.get("server_stats_more")
     if result is None:
@@ -283,7 +284,7 @@ def server_stats_more(request):
     return HttpResponse(response, mimetype="application/json")
 
 
-@user_is_admin
+@admin_required
 def view(request):
     template_vars = {
         'server_stats': server_stats(),
