@@ -498,7 +498,7 @@ def translate(request, translation_project, dir_path, filename):
         'AMAGAMA_URL': settings.AMAGAMA_URL,
     }
 
-    return render_to_response('store/translate.html', context,
+    return render_to_response('translation_project/translate.html', context,
                               context_instance=RequestContext(request))
 
 #
