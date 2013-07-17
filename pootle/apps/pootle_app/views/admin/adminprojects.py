@@ -24,13 +24,14 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext as _
 
+from pootle.core.decorators import admin_required
 from pootle_app.views.admin import util
 from pootle_language.models import Language
 from pootle_project.models import Project, RESERVED_PROJECT_CODES
 from pootle_store.models import Store
 
 
-@util.user_is_admin
+@admin_required
 def view(request):
     queryset = Language.objects.exclude(code='templates')
     try:

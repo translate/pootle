@@ -127,3 +127,15 @@ def permission_required(permission_codes):
             return func(request, *args, **kwargs)
         return _wrapped
     return wrapped
+
+
+def admin_required(func):
+    @wraps(func)
+    def wrapped(request, *args, **kwargs):
+        if not request.user.is_superuser:
+            raise PermissionDenied(
+                _("You do not have rights to administer Pootle.")
+            )
+        return func(request, *args, **kwargs)
+
+    return wrapped

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -20,15 +21,17 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 
+from pootle.core.decorators import admin_required
 from pootle_app.models.directory import Directory
-from pootle_app.views.admin.util import user_is_admin
 from pootle_app.views.admin.permissions import admin_permissions
 
-@user_is_admin
+@admin_required
 def view(request):
 
     directory = Directory.objects.root
     template_vars = {
         'directory': directory,
     }
-    return admin_permissions(request, directory, "admin/admin_general_permissions.html", template_vars)
+    return admin_permissions(request, directory,
+                             "admin/admin_general_permissions.html",
+                             template_vars)
