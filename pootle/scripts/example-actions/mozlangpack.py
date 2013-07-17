@@ -46,7 +46,8 @@ class MozillaBuildLangpackAction(TranslationProjectAction):
 
     def __init__(self, **kwargs):
         super(MozillaBuildLangpackAction, self).__init__(**kwargs)
-        self._waffle_flag = 'build_langpack'
+        self._set_flag(name='build_langpack',
+                       note='Build Mozilla language packs')
         self.icon = "icon-update-templates"
 
     def run(self, path, root, tpdir,  # pylint: disable=R0913,R0914
@@ -149,7 +150,8 @@ class MozillaDownloadLangpackAction(DownloadAction, TranslationProjectAction):
 
     def __init__(self, **kwargs):
         super(MozillaDownloadLangpackAction, self).__init__(**kwargs)
-        self._waffle_flag = 'download_langpack'
+        self._set_flag(name='download_langpack',
+                       note='Download Mozilla language packs')
         self.nosync = True
 
     def run(self, path, root, tpdir,  # pylint: disable=R0913,R0914

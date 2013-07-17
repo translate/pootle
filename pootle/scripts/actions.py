@@ -89,6 +89,7 @@ from pootle_misc.baseurl import l
 from pootle_store.util import absolute_real_path, relative_real_path
 
 from waffle import flag_is_active
+from waffle.models import Flag
 
 logger = logging.getLogger(__name__)
 
@@ -299,6 +300,13 @@ class ExtensionAction(object):
         'foo/bar?ext_actions=Do+it'
         """
         return ''.join([pootle_path, '?', urlencode({EXTDIR: self.title})])
+
+    def _set_flag(self, name, note=''):
+        """Set waffle flag used to control the action availability."""
+        self._waffle_flag = name
+        settings = {'note': note, 'superusers': False}
+        Flag.objects.get_or_create(name=self._waffle_flag,
+                                   defaults=settings)
 
     @property
     def category(self):
