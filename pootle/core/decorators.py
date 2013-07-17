@@ -127,22 +127,3 @@ def permission_required(permission_codes):
             return func(request, *args, **kwargs)
         return _wrapped
     return wrapped
-
-
-def set_tp_request_context(f):
-    """Sets up the request object with a common context for translation
-    projects.
-    """
-    @wraps(f)
-    def decorated_f(request, translation_project, *args, **kwargs):
-        # For now, all permissions in a translation project are
-        # relative to the root of that translation project.
-        request.profile = get_profile(request.user)
-        request.permissions = get_matching_permissions(
-            request.profile, translation_project.directory
-        )
-        request.translation_project = translation_project
-
-        return f(request, translation_project, *args, **kwargs)
-
-    return decorated_f
