@@ -21,15 +21,26 @@
 
 from functools import wraps
 
+from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect
+from django.utils.translation import ugettext as _
 
-from pootle_app.models.permissions import get_matching_permissions
+from pootle_app.models.directory import Directory
+from pootle_app.models.permissions import (check_permission,
+                                           get_matching_permissions)
 from pootle_profile.models import get_profile
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_translationproject.models import TranslationProject
+
+
+CLS2ATTR = {
+    'TranslationProject': 'translation_project',
+    'Project': 'project',
+    'Language': 'language',
+}
 
 
 def get_path_obj(func):
@@ -75,6 +86,46 @@ def get_path_obj(func):
             project = get_object_or_404(Project, code=project_code)
             return func(request, project, *args, **kwargs)
 
+    return wrapped
+
+
+def permission_required(permission_codes):
+    def wrapped(func):
+        @wraps(func)
+        def _wrapped(request, *args, **kwargs):
+            try:
+                path_obj = args[0]
+                directory = path_obj.directory
+
+                # HACKISH: some old code relies on
+                # `request.translation_project`, `request.language` etc.
+                # being set, so we need to set that too.
+                setattr(request, CLS2ATTR[path_obj.__class__.__name__],
+                        path_obj)
+            except IndexError:
+                # No path object given, use root directory
+                path_obj = None
+                directory = Directory.objects.root
+
+            request.profile = get_profile(request.user)
+            request.permissions = get_matching_permissions(request.profile,
+                                                           directory)
+
+            if not permission_codes:
+                return func(request, *args, **kwargs)
+
+            permission_codes_list = permission_codes
+            if isinstance(permission_codes, basestring):
+                permission_codes_list = [permission_codes]
+
+            for permission_code in permission_codes_list:
+                if not check_permission(permission_code, request):
+                    raise PermissionDenied(
+                        _("Insufficient rights to access this page."),
+                    )
+
+            return func(request, *args, **kwargs)
+        return _wrapped
     return wrapped
 
 
