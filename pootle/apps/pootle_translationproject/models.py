@@ -92,14 +92,16 @@ class TranslationProjectManager(RelatedManager):
         return self.get(pootle_path=pootle_path)
 
     def get_terminology_project(self, language_id):
-        #FIXME: the code below currently uses the same approach
-        # to determine the 'terminology' kind of a project as 'Project.is_terminology()',
+        #FIXME: the code below currently uses the same approach to determine
+        # the 'terminology' kind of a project as 'Project.is_terminology()',
         # which means it checks the value of 'checkstyle' field
         # (see pootle_project/models.py:240).
         #
-        # This should probably be replaced in the future with a dedicated project property.
+        # This should probably be replaced in the future with a dedicated
+        # project property.
         return self.get(language=language_id,
                         project__checkstyle='terminology')
+
 
 class TranslationProject(models.Model):
     _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE,
@@ -1047,7 +1049,8 @@ class TranslationProject(models.Model):
         else:
             # Get global terminology first
             try:
-                termproject = TranslationProject.objects.get_terminology_project(self.language_id)
+                termproject = TranslationProject.objects \
+                        .get_terminology_project(self.language_id)
                 mtime = termproject.get_mtime()
                 terminology_stores = termproject.stores.all()
             except TranslationProject.DoesNotExist:
