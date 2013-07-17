@@ -69,5 +69,5 @@ urlpatterns = patterns('pootle_translationproject.views',
     # Overview
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'overview',
-        name='tp.overview'),
+        name='pootle-tp-overview'),
 )

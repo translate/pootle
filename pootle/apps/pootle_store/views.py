@@ -50,7 +50,7 @@ from pootle_misc.baseurl import redirect
 from pootle_misc.checks import check_names, get_quality_check_failures
 from pootle_misc.forms import make_search_form
 from pootle_misc.stats import get_raw_stats
-from pootle_misc.url_manip import ensure_uri, previous_view_url
+from pootle_misc.url_manip import ensure_uri
 from pootle_misc.util import paginate, ajax_required, jsonify
 from pootle_profile.models import get_profile
 from pootle_statistics.models import (Submission, SubmissionFields,
@@ -477,8 +477,6 @@ def translate(request, translation_project, dir_path, filename):
     search_form = make_search_form(request=request,
                                    terminology=is_terminology)
 
-    previous_overview_url = previous_view_url(request, ['overview'])
-
     context = {
         'cantranslate': cantranslate,
         'cansuggest': cansuggest,
@@ -495,7 +493,6 @@ def translate(request, translation_project, dir_path, filename):
         'project': project,
         'translation_project': translation_project,
         'profile': profile,
-        'previous_overview_url': previous_overview_url,
         'MT_BACKENDS': settings.MT_BACKENDS,
         'LOOKUP_BACKENDS': settings.LOOKUP_BACKENDS,
         'AMAGAMA_URL': settings.AMAGAMA_URL,
