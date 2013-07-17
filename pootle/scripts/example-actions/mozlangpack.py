@@ -41,16 +41,17 @@ from buildxpi import build_xpi
 logger = getLogger(__name__)
 
 
-class MozillaLangpackAction(DownloadAction, TranslationProjectAction):
-    """Download Mozilla language pack for Firefox"""
+class MozillaBuildLangpackAction(TranslationProjectAction):
+    """Build Mozilla language pack for Firefox."""
 
     def __init__(self, **kwargs):
-        super(MozillaLangpackAction, self).__init__(**kwargs)
-        self._waffle_flag = 'download_langpack'
+        super(MozillaBuildLangpackAction, self).__init__(**kwargs)
+        self._waffle_flag = 'build_langpack'
+        self.icon = "icon-update-templates"
 
     def run(self, path, root, tpdir,  # pylint: disable=R0913,R0914
             language, project, vc_root, **kwargs):
-        """Generate a Mozilla language pack XPI"""
+        """Generate a Mozilla language pack XPI."""
 
         with tempdir() as podir:
             try:
@@ -124,13 +125,11 @@ class MozillaLangpackAction(DownloadAction, TranslationProjectAction):
                                             product='browser')[0]
 
                         if xpifile:
-                            newname = os.path.join(root, tpdir,
-                                                   os.path.basename(xpifile))
+                            xpiname = '%s-%s.xpi' %(project, language)
+                            newname = os.path.join(root, tpdir, xpiname)
                             logger.debug("copying '%s' to '%s'",
                                          xpifile, newname)
                             shutil.move(xpifile, newname)
-                            self.set_error(self.set_download_file(path,
-                                                                  newname))
 
                         fcntl.flock(lock.fileno(), fcntl.LOCK_UN)
                         lock.close()
@@ -141,5 +140,27 @@ class MozillaLangpackAction(DownloadAction, TranslationProjectAction):
                     return
 
 
-MozillaLangpackAction.moztar = MozillaLangpackAction(category="Other actions",
-                                                     title="Download langpack")
+MozillaBuildLangpackAction.moztar = MozillaBuildLangpackAction(
+                                            category="Mozilla",
+                                            title="Build langpack")
+
+class MozillaDownloadLangpackAction(DownloadAction, TranslationProjectAction):
+    """Download Mozilla language pack for Firefox."""
+
+    def __init__(self, **kwargs):
+        super(MozillaDownloadLangpackAction, self).__init__(**kwargs)
+        self._waffle_flag = 'download_langpack'
+        self.nosync = True
+
+    def run(self, path, root, tpdir,  # pylint: disable=R0913,R0914
+            language, project, vc_root, **kwargs):
+        """Download a Mozilla language pack XPI."""
+        xpifile = os.path.join(root, tpdir, '%s-%s.xpi' %(project, language))
+        if os.path.exists(xpifile):
+            self.set_error(self.set_download_file(path, xpifile))
+        else:
+            self.set_error("Language pack was not built.")
+
+MozillaDownloadLangpackAction.moztar = MozillaDownloadLangpackAction(
+                                            category="Mozilla",
+                                            title="Download langpack")
