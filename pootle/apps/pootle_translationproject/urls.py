@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2012 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -65,6 +66,12 @@ urlpatterns = patterns('pootle_translationproject.views',
     # Exporting files
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<file_path>.*)export/zip$',
         'export_zip'),
+
+    # Translation
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
+        r'translate/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
+        'translate',
+        name='pootle-tp-translate'),
 
     # Overview
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
