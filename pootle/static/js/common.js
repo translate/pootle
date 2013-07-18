@@ -134,12 +134,13 @@
       $("#js-toggle-tags").show();
       $("#js-toggle-tags").click(function (event) {
         event.preventDefault();
-        $(".js-tags").toggle();
-        if ($(".js-tags").is(":hidden")) {
-          $("#js-toggle-tags-text").text(gettext("Show tags"));
-        } else {
-          $("#js-toggle-tags-text").text(gettext("Hide tags"));
-        }
+        $(".js-tags").slideToggle('slow', 'easeOutQuad', function () {
+          if ($(".js-tags").is(":hidden")) {
+            $("#js-toggle-tags-text").text(gettext("Show tags"));
+          } else {
+            $("#js-toggle-tags-text").text(gettext("Hide tags"));
+          }
+        });
       });
 
       /* Launch the tag creation dialog in TP overview */
