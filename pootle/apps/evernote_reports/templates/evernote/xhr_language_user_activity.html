@@ -1,0 +1,69 @@
+{{if meta.user !== "" }}
+  <h2>Report for ${meta.user}, {{html PTL.reports.dateRangeString(meta.start, meta.end)}}</h2>
+
+{{if (typeof all_projects !== "undefined") && (Object.keys(all_projects).length > 0) }}
+{{each(lang, lang_data) results}}
+<div class="reports-lang">
+  <h3><a href="{{html l('/'+lang)}}">${lang_data.name}</a></h3>
+  <table class="stats">
+    <thead>
+    <tr>
+      <th>Dates</th>
+      {{each(i, project) all_projects}}
+      <th class="project">${project}</th>
+      {{/each}}    
+      <th class="project">Total</th>
+    </tr>
+    </thead>
+    {{html PTL.reports.resetRowStyle() }}
+    {{each lang_data.dates}}
+      <tr class="item {{html PTL.reports.cycleEvenOdd() }}{{if after_break}} after_break{{/if}}">
+        <td>{{html PTL.reports.formatDate(date) }}</td>
+        {{each(code, project) all_projects }}
+          <td class="number">
+          {{if projects[code]}}
+            <span title="Translated words (precise): ${projects[code].n1} Translated words (Pootle): ${projects[code].pootle_n1}">
+              ${projects[code].n1}
+            </span>
+          {{else}}
+            <span title="">&nbsp;</span>
+          {{/if}}
+          </td>
+        {{/each}}
+        <td class="total number">
+          <span title="Translated words (precise): ${total.n1} Translated words (Pootle): ${total.pootle_n1}">
+            ${total.n1}
+          </span>
+        </td>
+      </tr>
+    {{/each}}
+
+    <tr class="total">
+      <td>Total</td>
+      {{each(code, project) all_projects }}
+        <td class="number"> 
+        {{if lang_data.sums[code]}}
+          <span title="Translated words (precise): ${lang_data.sums[code].n1} Translated words (Pootle): ${lang_data.sums[code].pootle_n1}">
+            ${lang_data.sums[code].n1}
+          </span>
+        {{else}}
+          <span title="">&nbsp;</span>
+        {{/if}}
+        </td>
+      {{/each}}
+      <td class="total number">
+        <span title="Translated words (precise): ${lang_data.total.n1} Translated words (Pootle): ${lang_data.total.pootle_n1}">
+          ${lang_data.total.n1}
+        </span>
+      </td>
+    </tr>
+
+  </table>
+</div>
+{{/each}}
+{{else}}
+  <p class="noresults">No activity recorded during this period.</p>
+{{/if}}
+{{else}}
+  <p class="noresults">Please select a valid user.</p>
+{{/if}}

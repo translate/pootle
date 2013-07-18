@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2012 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -62,4 +63,6 @@ urlpatterns += patterns(
     (r'', include('pootle_store.urls')),
     (r'', include('pootle_translationproject.urls')),
     (r'', include('pootle_language.urls')),
+    # URLs added by Evernote
+    (r'^admin/reports/', include('evernote_reports.urls')),
 )
