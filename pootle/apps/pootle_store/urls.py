@@ -23,13 +23,6 @@
 from django.conf.urls import patterns, url
 
 urlpatterns = patterns('pootle_store.views',
-
-    # Export list view
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
-        r'export-view/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
-        'export_view',
-        name='export-view'),
-
     # Download and export
     (r'^download/(?P<pootle_path>.*)/?$',
         'download'),
