@@ -274,7 +274,8 @@ def _copy_db():
 
     print('\n\nCloning DB...')
 
-    with settings(hide('stderr'), temp_dump='/tmp/temporary_DB_backup.sql'):
+    with settings(hide('stderr'),
+                  temp_dump='%(project_path)s/temporary_DB_backup.sql' % env):
         print('\nDumping DB data...')
 
         run("mysqldump -u %(db_user)s %(db_password_opt)s %(source_db)s > "
