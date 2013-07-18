@@ -22,6 +22,7 @@
 import logging
 import os
 import StringIO
+from itertools import groupby
 
 from django import forms
 from django.conf import settings
@@ -40,6 +41,7 @@ from taggit.models import Tag
 
 from pootle.core.decorators import (get_path_obj, get_resource_context,
                                     permission_required)
+from pootle.core.helpers import get_filter_name
 from pootle.scripts.actions import (EXTDIR, StoreAction,
                                     TranslationProjectAction)
 from pootle_app.models.permissions import (get_matching_permissions,
@@ -63,10 +65,12 @@ from pootle_store.models import Store
 from pootle_store.util import (absolute_real_path, relative_real_path,
                                add_trailing_slash)
 from pootle_store.filetypes import factory_classes
+from pootle_store.views import get_step_query
 from pootle_tagging.forms import TagForm
-from pootle_translationproject.actions import action_groups
 from pootle_translationproject.forms import (DescriptionForm,
                                              upload_form_factory)
+
+from .actions import action_groups
 
 
 @get_path_obj
@@ -576,6 +580,41 @@ def translate(request, translation_project, dir_path, filename):
     }
 
     return render_to_response('translation_project/translate.html', context,
+                              context_instance=RequestContext(request))
+
+
+@get_path_obj
+@permission_required('view')
+def export_view(request, translation_project, dir_path, filename=None):
+    """Displays a list of units with filters applied."""
+    current_path = translation_project.directory.pootle_path + dir_path
+
+    if filename:
+        current_path = current_path + filename
+        store = get_object_or_404(Store, pootle_path=current_path)
+        units_qs = store.units
+    else:
+        store = None
+        units_qs = translation_project.units.filter(
+            store__pootle_path__startswith=current_path,
+        )
+
+    filter_name, filter_extra = get_filter_name(request.GET)
+
+    units = get_step_query(request, units_qs)
+    unit_groups = [(path, list(units)) for path, units in
+                   groupby(units, lambda x: x.store.path)]
+
+    ctx = {
+        'source_language': translation_project.project.source_language,
+        'language': translation_project.language,
+        'project': translation_project.project,
+        'unit_groups': unit_groups,
+        'filter_name': filter_name,
+        'filter_extra': filter_extra,
+    }
+
+    return render_to_response('translation_project/export_view.html', ctx,
                               context_instance=RequestContext(request))
 
 

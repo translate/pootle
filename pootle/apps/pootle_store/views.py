@@ -41,13 +41,12 @@ from django.views.decorators.cache import never_cache
 
 from taggit.models import Tag
 
-from pootle.core.decorators import get_path_obj, permission_required
 from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.models.permissions import (get_matching_permissions,
                                            check_permission,
                                            check_profile_permission)
 from pootle_misc.baseurl import redirect
-from pootle_misc.checks import check_names, get_quality_check_failures
+from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.forms import make_search_form
 from pootle_misc.stats import get_raw_stats
 from pootle_misc.url_manip import ensure_uri
@@ -140,82 +139,6 @@ def export_as_type(request, store, filetype):
 def download(request, store):
     store.sync(update_translation=True)
     return redirect('/export/' + store.real_path)
-
-
-def get_filter_name(GET):
-    """Gets current filter's human-readable name.
-
-    :param GET: A copy of ``request.GET``.
-    :return: Two-tuple with the filter name, and a list of extra arguments
-        passed to the current filter.
-    """
-    filter = extra = None
-
-    if 'filter' in GET:
-        filter = GET['filter']
-
-        if filter.startswith('user-'):
-            extra = [GET.get('user', _('User missing'))]
-        elif filter == 'checks' and 'checks' in GET:
-            extra = map(lambda check: check_names.get(check, check),
-                        GET['checks'].split(','))
-    elif 'search' in GET:
-        filter = 'search'
-
-        extra = [GET['search']]
-        if 'sfields' in GET:
-            extra.extend(GET['sfields'].split(','))
-
-    filter_name = {
-        'all': _('All'),
-        'translated': _('Translated'),
-        'untranslated': _('Untranslated'),
-        'fuzzy': _('Needs work'),
-        'incomplete': _('Incomplete'),
-        # Translators: This is the name of a filter
-        'search': _('Search'),
-        'checks': _('Checks'),
-        'user-submissions': _('Submissions'),
-        'user-submissions-overwritten': _('Overwritten submissions'),
-    }.get(filter)
-
-    return (filter_name, extra)
-
-
-# FIXME: this belongs to `pootle_translationproject`
-@get_path_obj
-@permission_required('view')
-def export_view(request, translation_project, dir_path, filename=None):
-    """Displays a list of units with filters applied."""
-    current_path = translation_project.directory.pootle_path + dir_path
-
-    if filename:
-        current_path = current_path + filename
-        store = get_object_or_404(Store, pootle_path=current_path)
-        units_qs = store.units
-    else:
-        store = None
-        units_qs = translation_project.units.filter(
-            store__pootle_path__startswith=current_path,
-        )
-
-    filter_name, filter_extra = get_filter_name(request.GET)
-
-    units = get_step_query(request, units_qs)
-    unit_groups = [(path, list(units)) for path, units in
-                   groupby(units, lambda x: x.store.path)]
-
-    ctx = {
-        'source_language': translation_project.project.source_language,
-        'language': translation_project.language,
-        'project': translation_project.project,
-        'unit_groups': unit_groups,
-        'filter_name': filter_name,
-        'filter_extra': filter_extra,
-    }
-
-    return render_to_response('store/list.html', ctx,
-                              context_instance=RequestContext(request))
 
 
 ####################### Translate Page ##############################
