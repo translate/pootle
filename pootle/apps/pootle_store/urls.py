@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of translate.
 #
@@ -22,11 +23,6 @@
 from django.conf.urls import patterns, url
 
 urlpatterns = patterns('pootle_store.views',
-    # Translation
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
-        r'translate/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
-        'translate',
-        name='pootle-tp-translate'),
 
     # Export list view
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'

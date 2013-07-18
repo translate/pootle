@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -106,64 +107,6 @@ def get_unit_context(permission_codes):
             request.directory = unit.store.parent
 
             return f(request, unit, *args, **kwargs)
-
-        return decorated_f
-
-    return wrap_f
-
-
-def get_resource_context(permission_codes):
-    """Gets the resource context for a translation project view.
-
-    :param permission_codes: Permissions codes to optionally check.
-    """
-    def wrap_f(f):
-        @wraps(f)
-        def decorated_f(request, translation_project, dir_path, filename):
-            """Loads :cls:`pootle_app.models.Directory` and
-            :cls:`pootle_store.models.Store` models and populates the
-            request object.
-
-            :param translation_project: A
-                :cls:`pootle_translationproject.models.TranslationProject`.
-            :param dir_path: Path relative to the translation project.
-            :param filename: Optional filename.
-            """
-            ctx_path = translation_project.directory.pootle_path
-            resource_path = dir_path
-            pootle_path = ctx_path + dir_path
-
-            directory = None
-            store = None
-
-            if filename:
-                pootle_path = pootle_path + filename
-                resource_path = resource_path + filename
-
-                try:
-                    store = Store.objects.select_related(
-                        'translation_project',
-                        'parent',
-                    ).get(pootle_path=pootle_path)
-                    directory = store.parent
-                except Store.DoesNotExist:
-                    raise Http404
-
-            if directory is None:
-                if dir_path:
-                    directory = Directory.objects.get(pootle_path=pootle_path)
-                else:
-                    directory = translation_project.directory
-
-            _common_context(request, translation_project, permission_codes)
-
-            request.store = store
-            request.directory = directory
-            request.pootle_path = pootle_path
-            request.ctx_path = ctx_path
-            request.resource_path = resource_path
-
-            return f(request, translation_project, dir_path, filename)
 
         return decorated_f
 

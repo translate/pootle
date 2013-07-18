@@ -33,6 +33,7 @@ from pootle_app.models.permissions import (check_permission,
 from pootle_profile.models import get_profile
 from pootle_language.models import Language
 from pootle_project.models import Project
+from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
 
 
@@ -85,6 +86,54 @@ def get_path_obj(func):
         if project_code:
             project = get_object_or_404(Project, code=project_code)
             return func(request, project, *args, **kwargs)
+
+    return wrapped
+
+
+def get_resource_context(func):
+    @wraps(func)
+    def wrapped(request, path_obj, dir_path, filename):
+        """Loads :cls:`pootle_app.models.Directory` and
+        :cls:`pootle_store.models.Store` models and populates the
+        request object.
+
+        :param path_obj: A path-like object object.
+        :param dir_path: Path relative to the root of `path_obj`.
+        :param filename: Optional filename.
+        """
+        ctx_path = path_obj.directory.pootle_path
+        resource_path = dir_path
+        pootle_path = ctx_path + dir_path
+
+        directory = None
+        store = None
+
+        if filename:
+            pootle_path = pootle_path + filename
+            resource_path = resource_path + filename
+
+            try:
+                store = Store.objects.select_related(
+                    'translation_project',
+                    'parent',
+                ).get(pootle_path=pootle_path)
+                directory = store.parent
+            except Store.DoesNotExist:
+                raise Http404
+
+        if directory is None:
+            if dir_path:
+                directory = Directory.objects.get(pootle_path=pootle_path)
+            else:
+                directory = path_obj.directory
+
+        request.store = store
+        request.directory = directory
+        request.pootle_path = pootle_path
+        request.ctx_path = ctx_path
+        request.resource_path = resource_path
+
+        return func(request, path_obj, dir_path, filename)
 
     return wrapped
 

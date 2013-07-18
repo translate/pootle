@@ -54,8 +54,8 @@ from pootle_profile.models import get_profile
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 
-from .decorators import (get_resource_context, get_store_context,
-                         get_unit_context, get_xhr_resource_context)
+from .decorators import (get_store_context, get_unit_context,
+                         get_xhr_resource_context)
 from .models import Store, Unit
 from .forms import (unit_comment_form_factory, unit_form_factory,
                     highlight_whitespace)
@@ -454,46 +454,6 @@ def get_step_query(request, units_queryset):
 
     return units_queryset
 
-
-@get_path_obj
-@get_resource_context('view')
-def translate(request, translation_project, dir_path, filename):
-    cantranslate = check_permission("translate", request)
-    cansuggest = check_permission("suggest", request)
-    canreview = check_permission("review", request)
-
-    translation_project = request.translation_project
-    language = translation_project.language
-    project = translation_project.project
-    profile = request.profile
-
-    store = request.store
-    directory = request.directory
-
-    is_terminology = (project.is_terminology or store and
-                                                store.is_terminology)
-    search_form = make_search_form(request=request,
-                                   terminology=is_terminology)
-
-    context = {
-        'cantranslate': cantranslate,
-        'cansuggest': cansuggest,
-        'canreview': canreview,
-        'search_form': search_form,
-        'pootle_path': request.pootle_path,
-        'ctx_path': request.ctx_path,
-        'resource_path': request.resource_path,
-        'language': language,
-        'project': project,
-        'translation_project': translation_project,
-        'profile': profile,
-        'MT_BACKENDS': settings.MT_BACKENDS,
-        'LOOKUP_BACKENDS': settings.LOOKUP_BACKENDS,
-        'AMAGAMA_URL': settings.AMAGAMA_URL,
-    }
-
-    return render_to_response('translation_project/translate.html', context,
-                              context_instance=RequestContext(request))
 
 #
 # Views used with XMLHttpRequest requests.
