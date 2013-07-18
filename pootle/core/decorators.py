@@ -100,8 +100,9 @@ def permission_required(permission_codes):
                 # HACKISH: some old code relies on
                 # `request.translation_project`, `request.language` etc.
                 # being set, so we need to set that too.
-                setattr(request, CLS2ATTR[path_obj.__class__.__name__],
-                        path_obj)
+                attr_name = CLS2ATTR.get(path_obj.__class__.__name__,
+                                         'path_obj')
+                setattr(request, attr_name, path_obj)
             except IndexError:
                 # No path object given, use root directory
                 path_obj = None
