@@ -204,10 +204,11 @@ def stage_feature():
     bootstrap()
     create_db()
     _copy_db()
+    # Upload custom settings before calling the update_db() command.
     update_config()
     update_db()
     deploy_static()
-    install_site()
+    enable_site()
     print('\n\nSuccessfully deployed at:\n\n\thttp://%(project_url)s\n' % env)
 
 
