@@ -109,7 +109,7 @@ def wordcount(string):
     # XML tags
     find_placeholders(chunks, re.compile('(<\/?[\w]+.*?>)', re.U))
     # Java format and it's escaped version
-    find_placeholders(chunks, re.compile('(\\\{\d+\\\}|\{\d+\})', re.U)
+    find_placeholders(chunks, re.compile('(\\\{\d+\\\}|\{\d+\})', re.U))
     # Template format
     find_placeholders(chunks, re.compile('(\$\{[\w\.\:]+\})', re.U))
     # Android format
