@@ -3,7 +3,7 @@
 #
 # Copyright 2013 Evernote Corporation
 
-from django.conf.urls.defaults import include, patterns
+from django.conf.urls import patterns
 
 urlpatterns = patterns('evernote_reports.views',
     (r'^$', 'evernote_reports', {}, 'evernote_reports'),
