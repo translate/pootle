@@ -3,10 +3,10 @@
 #
 # Copyright 2013 Evernote Corporation
 
+import json
 import unittest
 from util import diff_stat
 
-import json
 
 OLD = 'old'
 NEW = 'new'
@@ -35,17 +35,22 @@ class DiffStatTestCase(unittest.TestCase):
         self.old_words = old_words
         self.new_words = new_words
         self.expected = expected
-        
+
     def runTest(self):
         res = diff_stat(self.old_words, self.new_words)
         self.assertEqual(res, self.expected)
-            
-    
+
+
 def suite():
     suite = unittest.TestSuite()
-    suite.addTests(DiffStatTestCase(item[OLD].split(), item[NEW].split(), item[RES0]) for item in data)
-    suite.addTests(DiffStatTestCase(item[OLD], item[NEW], item[RES1]) for item in data)
-    
+    suite.addTests(
+        DiffStatTestCase(item[OLD].split(), item[NEW].split(), item[RES0])
+        for item in data
+    )
+    suite.addTests(
+        DiffStatTestCase(item[OLD], item[NEW], item[RES1]) for item in data
+    )
+
     return suite
 
 if __name__ == '__main__':

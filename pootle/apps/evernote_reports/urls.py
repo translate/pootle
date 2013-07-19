@@ -5,6 +5,7 @@
 
 from django.conf.urls import patterns
 
+
 urlpatterns = patterns('evernote_reports.views',
     (r'^$', 'evernote_reports', {}, 'evernote_reports'),
     (r'^activity/?$', 'user_date_prj_activity', {}, 'user_date_prj_activity'),
