@@ -48,7 +48,7 @@ configured as VCS_DIRECTORY in pootle.conf.
 
 .. code-block:: bash
 
-    $ VCS_DIRECTORY=/var/www/sites/pootle/repository
+    $ export VCS_DIRECTORY=/var/www/sites/pootle/repos
     $ cd $VCS_DIRECTORY
     $ git clone https://github.com/translate/mozilla-l10n.git
     $ hg clone http://hg.mozilla.org/releases/mozilla-aurora mozilla-aurora
@@ -64,7 +64,7 @@ pootle/scripts/ext_actions directory.
 
 .. code-block:: bash
 
-    $ POOTLE_SCRIPT_DIRECTORY=/var/www/sites/pootle/src/pootle/scripts
+    $ export POOTLE_SCRIPT_DIRECTORY=/var/www/sites/pootle/src/pootle/scripts
     $ cd $POOTLE_SCRIPT_DIRECTORY
     $ ln example-actions/moz*.py ext_actions/
     $ cp ~/env/src/translate-toolkit/tools/mozilla/buildxpi.py ext_actions/
