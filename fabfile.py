@@ -204,6 +204,7 @@ def stage_feature():
     bootstrap()
     create_db()
     _copy_db()
+    update_config()
     update_db()
     deploy_static()
     install_site()
