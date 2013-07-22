@@ -43,6 +43,7 @@ from pootle.scripts.actions import DownloadAction, TranslationProjectAction
 
 MOZL10N = "mozilla-l10n"
 AURORA = "mozilla-aurora"
+PROJECTS = ("firefox", "mobile")
 
 
 def getLogger(name):  # pylint: disable=C0103
@@ -213,8 +214,17 @@ def merge_po2moz(templates, translations, output, language, project):
                 # generate additional --exclude FOO arguments
                 [opt or arg for arg in excludes for opt in ('--exclude', 0)])
 
+class MozillaAction(TranslationProjectAction):
+    """Base class for common functionality of Mozilla actions."""
 
-class MozillaTarballAction(DownloadAction, TranslationProjectAction):
+    def is_active(self, request):
+        project = request.translation_project.project.code
+        if project not in PROJECTS:
+            return False
+        else:
+            return super(MozillaAction, self).is_active(request)
+
+class MozillaTarballAction(DownloadAction, MozillaAction):
     """Download Mozilla language properties tarball"""
 
     def __init__(self, **kwargs):

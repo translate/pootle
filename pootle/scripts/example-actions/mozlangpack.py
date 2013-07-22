@@ -33,15 +33,16 @@ import os
 import shutil
 from subprocess import CalledProcessError
 
-from pootle.scripts.actions import DownloadAction, TranslationProjectAction
+from pootle.scripts.actions import DownloadAction
 
-from moztarball import AURORA, getLogger, tempdir, get_phases, merge_po2moz
+from moztarball import (AURORA, MozillaAction, getLogger, tempdir, get_phases,
+                        merge_po2moz)
 from buildxpi import build_xpi
 
 logger = getLogger(__name__)
 
 
-class MozillaBuildLangpackAction(TranslationProjectAction):
+class MozillaBuildLangpackAction(MozillaAction):
     """Build Mozilla language pack for Firefox."""
 
     def __init__(self, **kwargs):
@@ -149,7 +150,7 @@ MozillaBuildLangpackAction.moztar = MozillaBuildLangpackAction(
                                             category="Mozilla",
                                             title="Build language pack")
 
-class MozillaDownloadLangpackAction(DownloadAction, TranslationProjectAction):
+class MozillaDownloadLangpackAction(DownloadAction, MozillaAction):
     """Download Mozilla language pack for Firefox."""
 
     def __init__(self, **kwargs):
