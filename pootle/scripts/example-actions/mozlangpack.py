@@ -46,8 +46,8 @@ class MozillaBuildLangpackAction(TranslationProjectAction):
 
     def __init__(self, **kwargs):
         super(MozillaBuildLangpackAction, self).__init__(**kwargs)
-        self._set_flag(name='build_langpack',
-                       note='Build Mozilla language packs')
+        self._set_flag(name='mozilla_admin',
+                       note='Actions for Mozilla translation coordinators')
         self.icon = "icon-update-templates"
 
     def run(self, path, root, tpdir,  # pylint: disable=R0913,R0914

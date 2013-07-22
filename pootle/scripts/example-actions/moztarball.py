@@ -219,8 +219,8 @@ class MozillaTarballAction(DownloadAction, TranslationProjectAction):
 
     def __init__(self, **kwargs):
         super(MozillaTarballAction, self).__init__(**kwargs)
-        self._set_flag(name='download_moztarball',
-                       note='Download Mozilla language properties tarball')
+        self._set_flag(name='mozilla_admin',
+                       note='Actions for Mozilla translation coordinators')
 
     def run(self, path, root, tpdir,  # pylint: disable=R0913
             language, project, vc_root, **kwargs):
