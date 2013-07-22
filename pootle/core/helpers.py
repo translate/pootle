@@ -18,9 +18,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+from django.conf import settings
 from django.utils.translation import ugettext as _
 
+from pootle_app.models.permissions import check_permission
 from pootle_misc.checks import check_names
+from pootle_misc.forms import make_search_form
 
 
 def get_filter_name(GET):
@@ -61,3 +64,29 @@ def get_filter_name(GET):
     }.get(filter)
 
     return (filter_name, extra)
+
+
+def get_translation_context(request, is_terminology=False):
+    """Returns a common context for translation views.
+
+    :param request: a :cls:`django.http.HttpRequest` object.
+    :param is_terminology: boolean indicating if the translation context
+        is relevant to a terminology project.
+    """
+    return {
+        'cantranslate': check_permission("translate", request),
+        'cansuggest': check_permission("suggest", request),
+        'canreview': check_permission("review", request),
+        'profile': request.profile,
+
+        'pootle_path': request.pootle_path,
+        'ctx_path': request.ctx_path,
+        'resource_path': request.resource_path,
+
+        'search_form': make_search_form(request=request,
+                                        terminology=is_terminology),
+
+        'MT_BACKENDS': settings.MT_BACKENDS,
+        'LOOKUP_BACKENDS': settings.LOOKUP_BACKENDS,
+        'AMAGAMA_URL': settings.AMAGAMA_URL,
+    }

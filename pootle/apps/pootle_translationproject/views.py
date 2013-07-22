@@ -41,7 +41,7 @@ from taggit.models import Tag
 
 from pootle.core.decorators import (get_path_obj, get_resource_context,
                                     permission_required)
-from pootle.core.helpers import get_filter_name
+from pootle.core.helpers import get_filter_name, get_translation_context
 from pootle.scripts.actions import (EXTDIR, StoreAction,
                                     TranslationProjectAction)
 from pootle_app.models.permissions import (get_matching_permissions,
@@ -55,7 +55,6 @@ from pootle_app.views.top_stats import gentopstats_translation_project
 from pootle_misc.baseurl import redirect
 from pootle_misc.browser import get_children, get_table_headings
 from pootle_misc.checks import get_quality_check_failures
-from pootle_misc.forms import make_search_form
 from pootle_misc.stats import (get_raw_stats, get_translation_stats,
                                get_path_summary)
 from pootle_misc.util import jsonify, ajax_required
@@ -546,38 +545,18 @@ def ajax_add_tag_to_tp(request, translation_project):
 @permission_required('view')
 @get_resource_context
 def translate(request, translation_project, dir_path, filename):
-    cantranslate = check_permission("translate", request)
-    cansuggest = check_permission("suggest", request)
-    canreview = check_permission("review", request)
-
     language = translation_project.language
     project = translation_project.project
-    profile = request.profile
 
-    store = request.store
-    directory = request.directory
-
-    is_terminology = (project.is_terminology or store and
-                                                store.is_terminology)
-    search_form = make_search_form(request=request,
-                                   terminology=is_terminology)
-
-    context = {
-        'cantranslate': cantranslate,
-        'cansuggest': cansuggest,
-        'canreview': canreview,
+    is_terminology = (project.is_terminology or request.store and
+                                                request.store.is_terminology)
+    context = get_translation_context(request, is_terminology=is_terminology)
+    context.update({
         'search_form': search_form,
-        'pootle_path': request.pootle_path,
-        'ctx_path': request.ctx_path,
-        'resource_path': request.resource_path,
         'language': language,
         'project': project,
         'translation_project': translation_project,
-        'profile': profile,
-        'MT_BACKENDS': settings.MT_BACKENDS,
-        'LOOKUP_BACKENDS': settings.LOOKUP_BACKENDS,
-        'AMAGAMA_URL': settings.AMAGAMA_URL,
-    }
+    })
 
     return render_to_response('translation_project/translate.html', context,
                               context_instance=RequestContext(request))
