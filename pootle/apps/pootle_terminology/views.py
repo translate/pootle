@@ -29,7 +29,8 @@ from pootle_app.views.admin import util
 from pootle_store.models import Store, Unit, PARSED, LOCKED
 
 
-def create_termunit(term, unit, targets, locations, sourcenotes, transnotes, filecounts):
+def create_termunit(term, unit, targets, locations, sourcenotes, transnotes,
+                    filecounts):
     termunit = Unit()
     termunit.source = term
     termunit.setid(term)
@@ -44,8 +45,10 @@ def create_termunit(term, unit, targets, locations, sourcenotes, transnotes, fil
     for sourcenote in sourcenotes:
         termunit.addnote(sourcenote, "developer")
     for filename, count in filecounts.iteritems():
-        termunit.addnote("(poterminology) %s (%d)\n" % (filename, count), 'translator')
+        termunit.addnote("(poterminology) %s (%d)\n" % (filename, count),
+                         'translator')
     return termunit
+
 
 def get_terminology_filename(translation_project):
     try:
@@ -59,32 +62,39 @@ def get_terminology_filename(translation_project):
         return 'pootle-terminology.po'
     return 'pootle-terminology.' + translation_project.project.localfiletype
 
+
 @commit_on_success
 @get_translation_project
 @util.has_permission('administrate')
 def extract(request, translation_project):
-    """generate glossary of common keywords and phrases from translation project"""
+    """Generate glossary of common keywords and phrases from translation
+    project.
+    """
     template_vars = {
         'translation_project': translation_project,
         'language': translation_project.language,
         'project': translation_project.project,
         'directory': translation_project.directory,
-
-        }
-    terminology_filename = get_terminology_filename(translation_project)
+    }
     if request.method == 'POST' and request.POST['extract']:
         from translate.tools.poterminology import TerminologyExtractor
-        extractor = TerminologyExtractor(accelchars=translation_project.checker.config.accelmarkers,
-                                         sourcelanguage=str(translation_project.project.source_language.code))
+        terminology_extractor_params = {
+            'accelchars': translation_project.checker.config.accelmarkers,
+            'sourcelanguage': str(translation_project.project.source_language.code),
+        }
+        extractor = TerminologyExtractor(**terminology_extractor_params)
         for store in translation_project.stores.iterator():
             if store.is_terminology:
                 continue
             extractor.processunits(store.units, store.pootle_path)
         terms = extractor.extract_terms(create_termunit=create_termunit)
         termunits = extractor.filter_terms(terms, nonstopmin=2)
-        store, created = Store.objects.get_or_create(parent=translation_project.directory,
-                                                     translation_project=translation_project,
-                                                     name=terminology_filename)
+        create_criteria = {
+            'parent': translation_project.directory,
+            'translation_project': translation_project,
+            'name': get_terminology_filename(translation_project),
+        }
+        store, created = Store.objects.get_or_create(**create_criteria)
         # lock file
         oldstate = store.state
         store.state = LOCKED
@@ -102,7 +112,8 @@ def extract(request, translation_project):
             #FIXME: what to do with score?
             unit.save()
             for suggestion in unit.pending_suggestions:
-                unit.add_suggestion(suggestion)  # Touch=True which saves unit on every call
+                # Touch=True which saves unit on every call
+                unit.add_suggestion(suggestion)
 
         # unlock file
         store.state = oldstate
@@ -113,8 +124,10 @@ def extract(request, translation_project):
         template_vars['store'] = store
         template_vars['termcount'] = len(termunits)
         from pootle_misc.baseurl import redirect
-        return redirect(translation_project.pootle_path + 'terminology_manage.html')
-    return render_to_response("terminology/extract.html", template_vars, context_instance=RequestContext(request))
+        return redirect(translation_project.pootle_path +
+                        'terminology_manage.html')
+    return render_to_response("terminology/extract.html", template_vars,
+                              context_instance=RequestContext(request))
 
 
 def manage_store(request, template_vars, language, term_store):
@@ -160,13 +173,14 @@ def manage_store(request, template_vars, language, term_store):
 
             return value
 
+    #TODO 'submitted_by' and 'commented_by' had to be excluded in order to get
+    # terminology editing working. When the schema can be changed again this
+    # exclusion should be removed and change the schema accordingly.
     return util.edit(request, 'terminology/manage.html', Unit, template_vars,
                      None, None, queryset=term_store.units, can_delete=True,
                      form=TermUnitForm, exclude=['state', 'target_f', 'id',
                         'translator_comment', 'submitted_by', 'commented_by'])
-    #TODO 'submitted_by' and 'commented_by' had to be excluded in order to get
-    # terminology editing working. When the schema can be changed again this
-    # exclusion should be removed and change the schema accordingly.
+
 
 @get_translation_project
 @util.has_permission('administrate')
@@ -177,13 +191,14 @@ def manage(request, translation_project, path=None):
         "project": translation_project.project,
         "source_language": translation_project.project.source_language,
         "directory": translation_project.directory,
-        }
+    }
     if translation_project.project.is_terminology:
         if path:
             try:
                 path = translation_project.pootle_path + path
                 store = Store.objects.get(pootle_path=path)
-                return manage_store(request, template_vars, translation_project.language, store)
+                return manage_store(request, template_vars,
+                                    translation_project.language, store)
             except Store.DoesNotExist:
                 # FIXME   flash message and show list?
                 pass
@@ -193,20 +208,25 @@ def manage(request, translation_project, path=None):
         if len(stores) == 1:
             # There is only one, and we're not going to offer file-level
             # activities, so let's just edit the one that is there.
-            return manage_store(request, template_vars, translation_project.language, stores[0])
+            return manage_store(request, template_vars,
+                                translation_project.language, stores[0])
         elif len(stores) > 1:
             for store in stores:
                 store.nice_name = store.pootle_path[len(translation_project.pootle_path):]
 
             template_vars['stores'] = stores
             return render_to_response("terminology/stores.html", template_vars,
-                                  context_instance=RequestContext(request))
+                                      context_instance=RequestContext(request))
 
     try:
-        terminology_filename = get_terminology_filename(translation_project)
-        term_store = Store.objects.get(pootle_path=translation_project.pootle_path + terminology_filename)
+        get_criteria = {
+            'pootle_path': (translation_project.pootle_path +
+                            get_terminology_filename(translation_project))
+        }
+        term_store = Store.objects.get(**get_criteria)
 
-        return manage_store(request, template_vars, translation_project.language, term_store)
+        return manage_store(request, template_vars,
+                            translation_project.language, term_store)
     except Store.DoesNotExist:
         return render_to_response("terminology/manage.html", template_vars,
                                   context_instance=RequestContext(request))

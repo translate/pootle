@@ -138,7 +138,8 @@ def form_set_as_table(formset, link=None, linkfield='code'):
                     result.append(form[field].as_hidden())
                 else:
                     link = l(link % form.initial[linkfield])
-                    result.append("<a href='"+link+"'>"+form.initial[linkfield]+"</a>")
+                    result.append("<a href='" + link + "'>" +
+                                  form.initial[linkfield] + "</a>")
                     result.append(form[field].as_hidden())
             else:
                 result.append(form[field].as_widget())
@@ -223,10 +224,10 @@ def edit(request, template, model_class, model_args={},
     formset, msg, objects = process_modelformset(request, model_class,
                                                  queryset=queryset, **kwargs)
     template_vars = {
-            "formset_text": mark_safe(form_set_as_table(formset, link, linkfield)),
-            "formset": formset,
-            "objects": objects,
-            "error_msg": msg,
+        "formset_text": mark_safe(form_set_as_table(formset, link, linkfield)),
+        "formset": formset,
+        "objects": objects,
+        "error_msg": msg,
     }
 
     #FIXME: this should be done through an extra context argument
