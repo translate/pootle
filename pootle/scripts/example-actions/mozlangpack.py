@@ -132,6 +132,10 @@ class MozillaBuildLangpackAction(TranslationProjectAction):
                                          xpifile, newname)
                             shutil.move(xpifile, newname)
 
+                        self.set_output(_("Building langpack finished, click "
+                                          "on the download link to download "
+                                          "it."))
+
                         fcntl.flock(lock.fileno(), fcntl.LOCK_UN)
                         lock.close()
 
