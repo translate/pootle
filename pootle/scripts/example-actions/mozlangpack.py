@@ -132,9 +132,9 @@ class MozillaBuildLangpackAction(TranslationProjectAction):
                                          xpifile, newname)
                             shutil.move(xpifile, newname)
 
-                        self.set_output(_("Building langpack finished, click "
-                                          "on the download link to download "
-                                          "it."))
+                        self.set_output(_("Finished building the language "
+                                          "pack, click on the download "
+                                          "link to download it."))
 
                         fcntl.flock(lock.fileno(), fcntl.LOCK_UN)
                         lock.close()
@@ -147,7 +147,7 @@ class MozillaBuildLangpackAction(TranslationProjectAction):
 
 MozillaBuildLangpackAction.moztar = MozillaBuildLangpackAction(
                                             category="Mozilla",
-                                            title="Build langpack")
+                                            title="Build language pack")
 
 class MozillaDownloadLangpackAction(DownloadAction, TranslationProjectAction):
     """Download Mozilla language pack for Firefox."""
@@ -169,4 +169,4 @@ class MozillaDownloadLangpackAction(DownloadAction, TranslationProjectAction):
 
 MozillaDownloadLangpackAction.moztar = MozillaDownloadLangpackAction(
                                             category="Mozilla",
-                                            title="Download langpack")
+                                            title="Download language pack")
