@@ -1,0 +1,72 @@
+#reports-container {
+	margin: 2em 0;
+}
+
+#reports-results {
+	margin-top: 1em;
+}
+
+#reports-results table {
+	margin-top: 0.5em;
+	margin-bottom: 1.5em;
+}
+
+#reports-results td {
+	padding: 5px;
+	width: 1%;
+}
+
+#reports-results .reports-lang th.project {
+	text-align: right;
+}
+#reports-results .reports-lang th {
+	color: #999;
+	text-align: left;
+	font-size: 85%;
+	padding: 5px;
+}
+
+#reports-calendar {
+	display: none;
+}
+
+#reports-params .dates li {
+	display: inline-block;
+	margin-right: 2em;
+}
+
+#reports-form,
+#reports-params {
+	display: inline-block;
+}
+
+#reports-form {
+	margin-right: 2em;
+}
+
+#reports-form input {
+	display: inline-block;
+}
+
+/* table row colors, see 'Table Row Colors.psd' */
+
+tr.even td.total {
+	background-color: #e2f4f8;
+}
+
+tr.odd td.total {
+	background-color: #ebf7fb;
+}
+
+tr.total {
+	background-color: #c0e4f0;
+}
+
+tr.total td.total {
+	font-weight: bold;
+	background-color: #aad6e5;
+}
+
+tr.after_break {
+	border-top: 1px dashed #c0e4f0;
+}
