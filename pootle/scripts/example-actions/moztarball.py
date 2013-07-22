@@ -276,5 +276,5 @@ class MozillaTarballAction(DownloadAction, TranslationProjectAction):
         self.set_error(error)
 
 
-MozillaTarballAction.moztar = MozillaTarballAction(category="Other actions",
+MozillaTarballAction.moztar = MozillaTarballAction(category="Mozilla",
                                                    title="Download tarball")
