@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2010 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -20,6 +21,7 @@
 
 import locale
 import logging
+import os
 
 from django.utils import translation
 from django.conf import settings
@@ -27,6 +29,13 @@ from django.conf import settings
 class SetLocale(object):
     """Sets python locale for each request."""
     def process_request(self, request):
+        # Under Windows, locale names are different and setlocale()
+        # with regular locale names will fail;
+        # so just set the default locale and quit early
+        if os.name == 'nt':
+            locale.setlocale(locale.LC_ALL, '')
+            return
+
         #FIXME: some languages like arabic don't have a language only
         # locale for no good reason. we need a function to pick default
         # locale for these
@@ -47,6 +56,13 @@ class SetLocale(object):
                 locale.setlocale(locale.LC_ALL, '')
 
     def process_response(self, request, response):
+        # Under Windows, locale names are different and setlocale()
+        # with regular locale names will fail;
+        # so just set the default locale and quit early
+        if os.name == 'nt':
+            locale.setlocale(locale.LC_ALL, '')
+            return response
+
         lang = translation.to_locale(settings.LANGUAGE_CODE)
         try:
             if lang == 'tr' or lang.startswith('tr_'):
@@ -58,6 +74,13 @@ class SetLocale(object):
         return response
 
     def process_exception(self, request, exception):
+        # Under Windows, locale names are different and setlocale()
+        # with regular locale names will fail;
+        # so just set the default locale and quit early
+        if os.name == 'nt':
+            locale.setlocale(locale.LC_ALL, '')
+            return
+
         lang = translation.to_locale(settings.LANGUAGE_CODE)
         try:
             if lang == 'tr' or lang.startswith('tr_'):
