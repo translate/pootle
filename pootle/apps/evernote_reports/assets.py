@@ -20,13 +20,17 @@
 
 from django_assets import Bundle, register
 
+
 js_reports = Bundle(
-    'js/jquery/jquery.history.js', 'js/jquery/jquery.tmpl.js',
-    'js/evernote/kalendae.js', 'js/evernote/reports.js',
+    'js/jquery/jquery.history.js',
+    'js/jquery/jquery.tmpl.js',
+    'js/evernote/kalendae.js',
+    'js/evernote/reports.js',
     filters='rjsmin', output='js/evernote/reports.min.js')
 register('js_evernote_reports', js_reports)
 
 css_reports = Bundle(
-    'css/evernote/reports.css', 'css/evernote/kalendae.css',
+    'css/evernote/reports.css',
+    'css/evernote/kalendae.css',
     filters='cssmin', output='css/evernote/reports.min.css')
 register('css_evernote_reports', css_reports)
