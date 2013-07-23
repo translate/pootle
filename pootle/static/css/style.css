@@ -777,8 +777,6 @@ button.close
     padding: 1px 0 0;
 }
 
-}
-
 #body:after
 {
     content: ".";
