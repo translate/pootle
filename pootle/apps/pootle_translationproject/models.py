@@ -369,8 +369,8 @@ class TranslationProject(models.Model):
 
             success = True
             try:
-                output = versioncontrol.add_files(project_path,
-                                                  filestocommit, message)
+                output = versioncontrol.add_files(project_path, filestocommit,
+                                                  message)
             except Exception, e:
                 logging.error(u"Failed to add files: %s", e)
                 success = False
@@ -666,8 +666,8 @@ class TranslationProject(models.Model):
         stats = self.getquickstats()
         author = user.username
 
-        message = stats_message_raw("Commit from %s by user %s." % \
-                (settings.TITLE, author), stats)
+        message = stats_message_raw("Commit from %s by user %s." %
+                                    (settings.TITLE, author), stats)
 
         # Try to append email as well, since some VCS does not allow omitting
         # it (ie. Git).
@@ -698,25 +698,18 @@ class TranslationProject(models.Model):
         try:
             from pootle_misc import versioncontrol
             project_path = self.project.get_real_path()
-            versioncontrol.add_files(
-                    project_path,
-                    filestocommit,
-                    message,
-                    author,
-            )
+            versioncontrol.add_files(project_path, filestocommit, message,
+                                     author)
             if request is not None:
                 msg = _("Committed all files under <em>%(path)s</em> to "
-                        "version control",
-                        {'path': directory.pootle_path}
-                )
+                        "version control", {'path': directory.pootle_path})
                 messages.success(request, msg)
         except Exception, e:
             logging.error(u"Failed to commit: %s", e)
 
             if request is not None:
                 msg = _("Failed to commit to version control: %(error)s",
-                        {'error': e}
-                )
+                        {'error': e})
                 messages.error(request, msg)
 
             success = False
@@ -812,7 +805,7 @@ class TranslationProject(models.Model):
                     self.language.code)
         except Exception, e:
             logging.error(u"Failed to initialize (%s): %s", self.language.code,
-                    e)
+                          e)
 
     ###########################################################################
 
