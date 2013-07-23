@@ -251,7 +251,12 @@ th.translate-translation
 
 tr.edit-row
 {
-    background-color: #f1f7f8;
+    /*background-color: #f1f7f8;*/
+}
+
+tr.edit-row.with-ctx
+{
+    background-color: #dbe3e4;
 }
 
 /* Context */
@@ -407,6 +412,7 @@ div.translate-container
     border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 5px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+    background-color: #f1f7f8;
 }
 
 div.translate-left,
