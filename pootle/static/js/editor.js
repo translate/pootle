@@ -1241,6 +1241,7 @@
     });
 
     eClass += currentUnit.get('isfuzzy') ? " fuzzy-unit" : "";
+    eClass += PTL.editor.filter !== 'all' ? " with-ctx" : "";
 
     hasData = ctx.before.length || ctx.after.length;
     editCtxWidgets = this.editCtxUI({hasData: hasData});
