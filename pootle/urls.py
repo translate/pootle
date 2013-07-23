@@ -55,7 +55,9 @@ if settings.POOTLE_ENABLE_API:
 urlpatterns += patterns(
     '',
     # URLs added by Evernote
+    (r'', include('evernote_auth.urls')),
     (r'^admin/reports/', include('evernote_reports.urls')),
+
     # Pootle URLs
     (r'^pages/', include('staticpages.urls')),
     (r'', include('pootle_app.urls')),

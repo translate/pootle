@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load i18n assets baseurl locale %}
+
+{% block title %}{% trans "We're almost there!" %} | {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "We're almost there!" %}</li>
+{% endblock %}
+
+{% block extra_head %}
+    {% assets "css_evernote_login" %}
+        <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
+    {% endassets %}
+    {% assets "js_evernote_login" %}
+        <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+{% endblock %}
+
+        
+{% block content %}
+    <div class="form question{% if form.errors %} hidden{% endif %}">
+    	<h2>Link with existing Pootle account</h2>
+
+        <p>If you already have an account at Pootle, please link
+        your accounts now to make sure you inherit all your existing
+        permissions.</p>
+
+        <p>If you didn't have an account at Pootle up to this point,
+        you can skip this step — this will create a new account
+        for you with the default permission set.</p>
+
+    	<p class="buttons">
+    		<button onclick="link_with_existing(); return false;">Link</button>
+    		<button onclick="document.location = '{% url evernote_create_login %}{{ request|get_next }}';">Skip this step</button>
+    	</p>
+    </div>
+            
+
+<div class="login{% if not form.errors %} hidden{% endif %}">
+    <div id="login" class="form" dir="{% locale_dir %}">
+    <h2>Provide your existing Pootle credentials</h2>
+    <form method="post" action='{% url evernote_login_link %}' name="loginform" id="loginform">
+    {% csrf_token %}
+    {% if form.errors %}
+        <div class="error">
+        {% trans "Your username and password didn't match. Please try again." %}
+        </div>
+    {% endif %}
+            <p>
+                {{form.username.label_tag}}:
+                {{form.username}}
+            </p>
+            <p>
+                {{form.password.label_tag}}:
+                {{form.password}}
+            </p>
+    <p class="buttons">
+        <input type="submit" class="login" name="login" value="{% trans 'Link now' %}" />
+        <input type="hidden" name="next" value="{{ next }}" />
+    </p>
+    </form>
+    </div>
+
+    <h2 class="formlink">
+      <a href='{{ "/accounts/password/reset/"|l }}'>{% trans "Lost your Password?" %}</a>
+    </h2>
+</div>
+
+{% endblock content %}
+
