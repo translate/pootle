@@ -258,6 +258,8 @@ Indenting
 
   - Put selectors and braces on their own lines.
 
+  - Right-align the CSS browser-prefixed properties.
+
   Good:
 
   .. code-block:: css
@@ -266,6 +268,9 @@ Indenting
     .foo-bar:hover
     {
         background-color: #eee;
+        -webkit-box-shadow: 0 1px 4px #d9d9d9;
+           -moz-box-shadow: 0 1px 4px #d9d9d9;
+                box-shadow: 0 1px 4px #d9d9d9;
     }
 
   Bad:
@@ -274,6 +279,9 @@ Indenting
 
     .foo-bar, .foo-bar:hover {
       background-color: #eee;
+      -webkit-box-shadow: 0 1px 4px #d9d9d9;
+      -moz-box-shadow: 0 1px 4px #d9d9d9;
+      box-shadow: 0 1px 4px #d9d9d9;
     }
 
 Naming
