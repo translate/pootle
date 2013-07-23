@@ -20,6 +20,7 @@
 
 from django_assets import Bundle, register
 
+
 js_login = Bundle(
     'js/login.js',
     filters='rjsmin', output='js/login.min.js')

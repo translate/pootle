@@ -20,8 +20,9 @@
 
 from django.conf import settings
 
+
 class NoCaptchaMiddleware:
-    """Middleware to block displaying a captcha question to verify POST 
+    """Middleware to block displaying a captcha question to verify POST
     submissions are made by humans when linking with evernote.
     """
     def process_request(self, request):
@@ -30,8 +31,8 @@ class NoCaptchaMiddleware:
 
         if (request.path.endswith('accounts/evernote/login/create') or
             request.path.endswith('accounts/evernote/login/create/')):
-            
+
             settings.SAVED_USE_CAPTCHA = settings.USE_CAPTCHA
             settings.USE_CAPTCHA = False
-             
+
             return

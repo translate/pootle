@@ -18,32 +18,31 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.conf.urls.defaults import include, patterns
+from django.conf.urls import patterns
 
 
 urlpatterns = patterns('evernote_auth.views',
-    (r'^accounts/evernote/login/link/?$','evernote_login_link', {}, 
+    (r'^accounts/evernote/login/link/?$','evernote_login_link', {},
         'evernote_login_link'),
-    
+
     (r'^accounts/evernote/login/?$', 'evernote_login', {}, 'evernote_login'),
-    (r'^accounts/evernote/create/login/?$', 'evernote_login', 
+    (r'^accounts/evernote/create/login/?$', 'evernote_login',
         {'create': '/create'}, 'evernote_create_login'),
-    
-    (r'^accounts/evernote/return/?$', 'sso_return_view', {}, 
+
+    (r'^accounts/evernote/return/?$', 'sso_return_view', {},
         'evernote_return'),
-    (r'^accounts/evernote/return/(?P<redirect_to>.*)/?$', 
+    (r'^accounts/evernote/return/(?P<redirect_to>.*)/?$',
         'sso_return_view', {}, 'evernote_return'),
-    
-    (r'^accounts/evernote/create/return/?$', 'sso_return_view', 
+
+    (r'^accounts/evernote/create/return/?$', 'sso_return_view',
         {'create': 1}, 'evernote_create_return'),
-    (r'^accounts/evernote/create/return/(?P<redirect_to>.*)/?$', 
+    (r'^accounts/evernote/create/return/(?P<redirect_to>.*)/?$',
         'sso_return_view', {'create': 1}, 'evernote_create_return'),
-    
-    (r'^accounts/evernote/link/?$', 'evernote_account_info', {}, 
+
+    (r'^accounts/evernote/link/?$', 'evernote_account_info', {},
         'evernote_account_link'),
-    (r'^accounts/evernote/link/disconnect/?$', 'evernote_account_disconnect', 
+    (r'^accounts/evernote/link/disconnect/?$', 'evernote_account_disconnect',
         {}, 'evernote_account_disconnect'),
-    
+
     (r'^accounts/register/?$', 'evernote_login')
 )
-

@@ -20,15 +20,15 @@
 
 from django.db import models
 
+
 class EvernoteAccountManager(models.Manager):
     def get_query_set(self):
         return super(EvernoteAccountManager, self) \
             .get_query_set() \
             .select_related(depth=1)
 
-class EvernoteAccount(models.Model):
-    objects = EvernoteAccountManager()
 
+class EvernoteAccount(models.Model):
     evernote_id = models.IntegerField(db_index=True)
     name = models.CharField(max_length=255, db_index=True)
     email = models.EmailField()
@@ -36,6 +36,8 @@ class EvernoteAccount(models.Model):
     user = models.OneToOneField('auth.User', related_name='evernote_account',
                                 unique=True)
     user_autocreated = models.BooleanField()
+
+    objects = EvernoteAccountManager()
 
     def __unicode__(self):
         return "Name: %s; E-mail: %s;" % (self.name, self.email)

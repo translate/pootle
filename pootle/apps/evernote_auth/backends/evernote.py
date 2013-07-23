@@ -18,19 +18,21 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.contrib.auth.models import User
 import itertools
 
+from django.contrib.auth.models import User
+
+
 class EvernoteBackend(object):
-    """
-    This is a Django authentication module which implements internal Evernote API for Evernote translation server.
+    """This is a Django authentication module which implements internal
+    Evernote API for Evernote translation server.
 
     To use this module, simply add it to the tuple AUTHENTICATION_BACKENDS
     in settings.py.
     """
 
     def authenticate(self, *args, **kwargs):
-        """Authenticate user using social credentials
+        """Authenticate user using social credentials.
 
         Authentication is made if this is the correct backend, backend
         verification is made by kwargs inspection for current backend
@@ -40,7 +42,7 @@ class EvernoteBackend(object):
         # response be passed in as a keyword argument, to make sure we
         # don't match the username/password calling conventions of
         # authenticate.
-        if not ('evernote_account' in kwargs):
+        if 'evernote_account' not in kwargs:
             return None
 
         ea = kwargs.get('evernote_account')
@@ -50,10 +52,10 @@ class EvernoteBackend(object):
                 username = ea.name
             else:
                 username = "%s@evernote" % ea.name
-                count = itertools.count(1) 
+                count = itertools.count(1)
                 while User.objects.filter(username=username).count() > 0:
                     username = "%s@evernote_%s" % (ea.name, count.next())
-                
+
             user = User(username=username, email=ea.email)
             user.set_password(User.objects.make_random_password())
             user.save()
