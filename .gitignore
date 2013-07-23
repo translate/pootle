@@ -38,6 +38,9 @@
 *.po.tm
 .translation_index
 
+# Temporary/local files
+~*
+
 # ViM-generated
 *.swn
 *.swo
