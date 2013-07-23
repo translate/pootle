@@ -11,6 +11,7 @@ argparse
 # Libraries
 cssmin>=0.1.4
 lxml>=2.1.4
+pyDes
 
 # For providing API
 #django-tastypie
