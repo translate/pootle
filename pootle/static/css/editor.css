@@ -261,6 +261,8 @@ tr.edit-ctx td
 {
     text-align: center;
     color: #d9d9d9;
+    padding: 0;
+    overflow: hidden;
 }
 
 tr.edit-ctx a
@@ -279,16 +281,20 @@ tr.edit-ctx a:hover
      opacity: 1;
 }
 
-tr.edit-ctx.before td
+tr.edit-ctx.before .edit-ctx-wrapper
 {
-    border-top: 1px solid #d9d9d9;
-    border-bottom: 1px dashed #d9d9d9;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2) inset;
+    padding: 10px 0 20px;
+    margin: 0 -20px -10px;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-tr.edit-ctx.after td
+tr.edit-ctx.after .edit-ctx-wrapper
 {
-    border-top: 1px dashed #d9d9d9;
-    border-bottom: 1px solid #d9d9d9;
+    box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.2) inset;
+    padding: 20px 0 10px;
+    margin: -10px -20px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 tr.ctx-row,
@@ -301,28 +307,17 @@ tr.view-row
 tr.edit-ctx,
 tr.ctx-row
 {
-    background-color: #f8fbfb;
+    background-color: #dbe3e4;
 }
 
 tr.ctx-row
 {
-    color: #777;/*#76a1b0;*/
+    color: #889294;
 }
 
-tr.ctx-row.before
+tr.ctx-row:hover
 {
-    border-bottom: 1px solid #fff;
-}
-
-tr.ctx-row.after
-{
-    border-top: 1px solid #fff;
-}
-
-tr.view-row
-{
-    border-top: 1px solid #fff;
-    border-bottom: 1px solid #fff;
+    background-color: #ccdadb;
 }
 
 tr.view-row:hover
@@ -403,6 +398,11 @@ body.zoom-out-2 div.sources .alternative .translation-text
 div.translate-container
 {
     position: relative;
+    margin: -5px 5px;
+    padding: 1em 0;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
 }
 
 div.translate-left,
@@ -411,19 +411,19 @@ div.translate-right
     margin-top: 1em;
 }
 
-
 div.translate-left
 {
-    float: left;
+    display: inline-block;
     width: 24.5%;
     clear: both;
 }
 
 div.translate-middle
 {
-    float: left;
+    display: inline-block;
+    vertical-align: top;
     width: 50%;
-    margin: 0 auto;
+    margin: 0.5em auto;
     position: relative;
 }
 
@@ -554,8 +554,6 @@ table td.translate-translation
 
 td.translate-focus
 {
-    border-top: 1px solid #d9d9d9;
-    border-bottom: 1px solid #d9d9d9;
     vertical-align: top;
 }
 
