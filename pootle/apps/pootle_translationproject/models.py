@@ -91,6 +91,15 @@ class TranslationProjectManager(RelatedManager):
         #FIXME: should we use Language and Project codes instead?
         return self.get(pootle_path=pootle_path)
 
+    def get_terminology_project(self, language_id):
+        #FIXME: the code below currently uses the same approach
+        # to determine the 'terminology' kind of a project as 'Project.is_terminology()',
+        # which means it checks the value of 'checkstyle' field
+        # (see pootle_project/models.py:240).
+        #
+        # This should probably be replaced in the future with a dedicated project property.  
+        return self.get(language=language_id, 
+                        project__checkstyle='terminology')
 
 class TranslationProject(models.Model):
     _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE,
@@ -1020,7 +1029,8 @@ class TranslationProject(models.Model):
 
     @property
     def is_terminology_project(self):
-        return self.pootle_path.endswith('/terminology/')
+        return self.project.checkstyle == 'terminology'
+        # was: self.pootle_path.endswith('/terminology/')
 
     @property
     def is_template_project(self):
@@ -1037,10 +1047,7 @@ class TranslationProject(models.Model):
         else:
             # Get global terminology first
             try:
-                termproject = TranslationProject.objects.get(
-                        language=self.language_id,
-                        project__code='terminology',
-                )
+                termproject = TranslationProject.objects.get_terminology_project(self.language_id)
                 mtime = termproject.get_mtime()
                 terminology_stores = termproject.stores.all()
             except TranslationProject.DoesNotExist:
