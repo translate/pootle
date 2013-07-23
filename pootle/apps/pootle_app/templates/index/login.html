@@ -16,22 +16,22 @@
     {% endassets %}
 {% endblock %}
 
-        
+
 {% block content %}
-    
+
     <div class="form evernote">
         <form method="get" action="{% url evernote_login %}">
-        {% csrf_token %}        
+        {% csrf_token %}
         <input type="submit" value="Login via Evernote"></input>
         <input type="hidden" name="next" value="{{ next }}" />
         </form>
     </div>
-    <h2 class="formlink pootle">{% trans "or" %}&nbsp; 
+    <h2 class="formlink pootle">{% trans "or" %}&nbsp;
         <a href="#" onclick="pootle_login(); return false;">
             {% trans "Login using your existing Pootle account" %}
         </a>
     </h2>
-    
+
 
 <div class="login{% if not form.errors %} hidden{% endif %}">
     <div id="login" class="form" dir="{% locale_dir %}">
@@ -64,4 +64,3 @@
     </h2>
 </div>
 {% endblock content %}
-
