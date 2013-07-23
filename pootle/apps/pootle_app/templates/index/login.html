@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n baseurl locale %}
+{% load i18n assets baseurl locale %}
 
 {% block title %}{% trans "Login" %} | {{ block.super }}{% endblock %}
 
@@ -7,39 +7,61 @@
 {{ block.super }}<li>{% trans "Login" %}</li>
 {% endblock %}
 
+{% block extra_head %}
+    {% assets "css_evernote_login" %}
+        <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
+    {% endassets %}
+    {% assets "js_evernote_login" %}
+        <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+{% endblock %}
+
+        
 {% block content %}
-<div id="login" class="form" dir="{% locale_dir %}">
-    <h2>{% trans 'Login to Pootle' %}</h2>
-    <form method="post" action='{{ "/accounts/login/"|l }}' 
-      name="loginform" id="loginform">
+    
+    <div class="form evernote">
+        <form method="get" action="{% url evernote_login %}">
+        {% csrf_token %}        
+        <input type="submit" value="Login via Evernote"></input>
+        <input type="hidden" name="next" value="{{ next }}" />
+        </form>
+    </div>
+    <h2 class="formlink pootle">{% trans "or" %}&nbsp; 
+        <a href="#" onclick="pootle_login(); return false;">
+            {% trans "Login using your existing Pootle account" %}
+        </a>
+    </h2>
+    
+
+<div class="login{% if not form.errors %} hidden{% endif %}">
+    <div id="login" class="form" dir="{% locale_dir %}">
+    <h2>Login</h2>
+    <form method="post" action='{{ "/accounts/login/"|l }}' name="loginform" id="loginform">
     {% csrf_token %}
     {% if form.errors %}
         <div class="error">
         {% trans "Your username and password didn't match. Please try again." %}
         </div>
     {% endif %}
-    {{ form.as_p }}
+            <p>
+                {{form.username.label_tag}}:
+                {{form.username}}
+            </p>
+            <p>
+                {{form.password.label_tag}}:
+                {{form.password}}
+            </p>
     <p class="buttons">
         <input type="submit" class="login" name="login" value="{% trans 'Login' %}" />
         <input type="hidden" name="next" value="{{ next }}" />
     </p>
     </form>
+    </div>
+    <h2 class="formlink evernote">
+        <a href='{{ "/accounts/password/reset/"|l }}'>
+            {% trans "Lost your Password?" %}
+        </a>
+    </h2>
 </div>
-
-<h2 class="formlink">
-  <a href='{{ "/accounts/password/reset/"|l }}'>{% trans "Lost your Password?" %}</a>
-</h2>
-{% if settings.CAN_REGISTER %}
-<h2 class="formlink">{% trans "Don't have an account yet?" %}
-    <a href='{{ "/accounts/register"|l }}' title="{% trans 'Register.' %}">{% trans 'Register.' %}</a>
-</h2>
-{% endif %}
 {% endblock content %}
 
-{% block scripts_extra %}
-<script type="text/javascript">
-$(function () {
-  $("#id_username").focus();
-});
-</script>
-{% endblock scripts_extra %}
