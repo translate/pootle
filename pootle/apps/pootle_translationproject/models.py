@@ -1043,10 +1043,7 @@ class TranslationProject(models.Model):
         terminology_stores = Store.objects.none()
         mtime = None
 
-        if self.is_terminology_project:
-            terminology_stores = self.stores.all()
-            mtime = self.get_mtime()
-        else:
+        if not self.is_terminology_project:
             # Get global terminology first
             try:
                 termproject = TranslationProject.objects \
