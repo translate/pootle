@@ -641,6 +641,7 @@ html[dir="rtl"] .extra-item-meta
 {
     margin: 0 0.5em 0.5em 0;
     padding: 0.1em 0.5em;
+    background-color: #ffc;
     border: 1px dotted #999;
     cursor: pointer;
     display: inline-block;
@@ -648,7 +649,7 @@ html[dir="rtl"] .extra-item-meta
 }
 
 .tm-unit:hover {
-    background-color: #fff;
+    background-color: #ff9;
 }
 
 .tm-original
