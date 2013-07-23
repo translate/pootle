@@ -21,16 +21,11 @@
 from django_assets import Bundle, register
 
 js_login = Bundle(
-    'js/evernote/login.js',
-    filters='rjsmin', output='js/evernote/login.min.js')
-register('js_evernote_login', js_login)
+    'js/login.js',
+    filters='rjsmin', output='js/login.min.js')
+register('js_login', js_login)
 
 css_login = Bundle(
-    'css/evernote/login.css',
-    filters='cssmin', output='css/evernote/login.min.css')
-register('css_evernote_login', css_login)
-
-css_common = Bundle(
-    'css/evernote/common.css',
-    filters='cssmin', output='css/evernote/common.min.css')
-register('css_evernote_common', css_common)
+    'css/login.css',
+    filters='cssmin', output='css/login.min.css')
+register('css_login', css_login)

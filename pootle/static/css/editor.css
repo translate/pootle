@@ -166,6 +166,15 @@ body.zoom-out-2 #prevnext input[type="submit"]
 
 /* EDITOR - GENERAL */
 
+/* for the translation content, use regular sans-serif to ensure the maximum
+Unicode ranges is supported, and that they all look the same */
+.translation-text,
+#tm-results .suggestion-original,
+#tm-results .suggestion-translation,
+#id_search {
+    font-family: sans-serif;
+}
+
 #editor
 {
     position: relative;
@@ -226,7 +235,7 @@ table.translate-table
 {
     width: 100%;
     table-layout: fixed;
-    margin-top: -1.5em;
+    margin-top: 0;
 }
 
 table.translate-table td
