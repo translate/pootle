@@ -4,29 +4,24 @@
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}" id="{% block html_id %}{% endblock %}">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>{% block title %}{{ settings.TITLE }}{% endblock title %}</title>
     {% block meta %}
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="description" content="{{ settings.DESCRIPTION|striptags }}" />
-    <meta name="viewport" content="width=device-width">
     <meta name="keywords" content="{{ keywords|join:", " }}" />
     <meta name="application-name" content="{{ settings.TITLE }}" />
-    <link rel="icon" href="{{ "images/app-32x32.png"|s }}" sizes="32x32" />
-    <link rel="icon" href="{{ "images/app-64x64.png"|s }}" sizes="64x64" />
     {% endblock meta %}
     {% block css %}
     {% assets "css_common" %}
-    <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
-    {% endassets %}
-    {% assets "css_evernote_common" %}
     <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
     {% endassets %}
     <!--[if IE]>
     <link rel="stylesheet" type="text/css" href="{{ "css/ie.css"|s }}" />
     <![endif]-->
     {% endblock css %}
+    {% assets "css_evernote_common" %}
+    <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
+    {% endassets %}
     {% block favicon %}
     <link rel="shortcut icon" href="/media/img/icon_48x48.png" />
     {% endblock favicon %}
@@ -158,12 +153,12 @@
       </div>
       <div class="navigation">
         <ul class="top_menu">
-          <li class="page_home"><a href="/">Home</a></li>
-          <li class="page_pootle"><a href="{{ "/"|l }}">Translate</a></li>
-          <li class="page_contact"><a href="/contact/">Contact Us</a></li>
+          <li class="page_home"><a href="/">Home</a></li><!--
+       --><li class="page_pootle"><a href="{{ "/"|l }}">Translate</a></li><!--
+       --><li class="page_contact"><a href="/contact/">Contact Us</a></li>
         </ul>
       </div>
-
+      
     {% block header_block %}
       {% block header_meta_block %}
       <div id="header-meta" class="header">
