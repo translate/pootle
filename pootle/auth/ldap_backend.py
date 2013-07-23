@@ -35,6 +35,9 @@ class LdapBackend(object):
     To use this module, simply add it to the tuple AUTHENTICATION_BACKENDS
     in settings.py.
     """
+
+    supports_inactive_users = True
+
     def authenticate(self, username=None, password=None):
 
         logger = logging.getLogger('pootle.auth.ldap')
