@@ -1,45 +1,55 @@
-
-.hidden {
+.hidden
+{
     display: none;
 }
 
 .form .buttons input[type="button"],
 .form .buttons button
- {
-	border: 0;
-	padding: 5px 10px;
-	min-height: 16px;
-	min-width: 110px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	-webkit-box-shadow: 0px 0px 2px #130f30;
-	-moz-box-shadow: 0px 1px 2px #130f30;
-	box-shadow: 0px 1px 2px #130f30;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#cccccc');
-	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc));
-	background: -webkit-linear-gradient(top, #fff, #ccc);
-	background: -moz-linear-gradient(top, #fff, #ccc);
-	background: -ms-linear-gradient(top, #fff, #ccc);
-	background: -o-linear-gradient(top, #fff, #ccc);
-	background: linear-gradient(top, #fff, #ccc);
-	color: #130f30;
+
+{
+    border: 0;
+    padding: 5px 10px;
+    min-height: 16px;
+    min-width: 110px;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 2px #130f30;
+       -moz-box-shadow: 0px 1px 2px #130f30;
+            box-shadow: 0px 1px 2px #130f30;
+
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#cccccc');
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc));
+    background: -webkit-linear-gradient(top, #fff, #ccc);
+    background:    -moz-linear-gradient(top, #fff, #ccc);
+    background:     -ms-linear-gradient(top, #fff, #ccc);
+    background:      -o-linear-gradient(top, #fff, #ccc);
+    background:         linear-gradient(top, #fff, #ccc);
+    color: #130f30;
 }
 
-.form.info span.label {
-	font-weight: bold;
+.form.info span.label
+{
+    font-weight: bold;
 }
 
-.form.evernote input[type="submit"] {
-	width: 100%;
-	padding: 20px;
-	font-size: 150%;
-	font-weight: bold;
+.form.evernote input[type="submit"]
+{
+    width: 100%;
+    padding: 20px;
+    font-size: 150%;
+    font-weight: bold;
+
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#5fc500');
     background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#5fc500));
-    background: -moz-linear-gradient(top,  #fff,  #5fc500);
+    background: -webkit-linear-gradient(top,  #fff 0%, #5fc500 100%);
+    background:    -moz-linear-gradient(top,  #fff,  #5fc500);
+    background:     -ms-linear-gradient(top,  #fff,  #5fc500);
+    background:      -o-linear-gradient(top,  #fff,  #5fc500);
+    background:         linear-gradient(top,  #fff,  #5fc500);
 }
 
-#nav-main {
-	visibility: hidden;
+#nav-main
+{
+    visibility: hidden;
 }
