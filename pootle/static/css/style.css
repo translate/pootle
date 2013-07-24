@@ -596,22 +596,25 @@ html[dir="rtl"] #nav-main li
 }
 
 /*
- * make footer to stick to bottom;
- * based on http://ryanfait.com/sticky-footer/
+ * Make footer stick to bottom
+ * Based on http://ryanfait.com/sticky-footer/
  */
 
-html, body {
+html, body
+{
     height: 100%; 
 }
 
-#wrapper {
+#wrapper
+{
     min-height: 100%;
     height: auto !important;
     height: 100%; 
     margin-bottom: -62px; /* #footer margin-top (20px) + #footer height (42px) */
 }
 
-#footer {
+#footer
+{
     margin-top: 20px;
     height: 42px;
     overflow: hidden;
