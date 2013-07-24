@@ -26,6 +26,7 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext as _
 
+from pootle.core.exceptions import Http400
 from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models import Directory
 from pootle_app.models.permissions import (check_permission,
@@ -131,11 +132,7 @@ def get_xhr_resource_context(permission_codes):
             """
             pootle_path = request.GET.get('path', None)
             if pootle_path is None:
-                response = {
-                    'msg': _('Arguments missing.'),
-                }
-                return HttpResponse(jsonify(response), status=400,
-                                    mimetype="application/json")
+                raise Http400(_('Arguments missing.'))
 
             lang, proj, dir_path, filename = split_pootle_path(pootle_path)
 
@@ -147,11 +144,7 @@ def get_xhr_resource_context(permission_codes):
                     ).get(pootle_path=pootle_path)
                     directory = store.parent
                 except Store.DoesNotExist:
-                    response = {
-                        'msg': _('Store does not exist.'),
-                    }
-                    return HttpResponse(jsonify(response), status=404,
-                                    mimetype="application/json")
+                    raise Http404(_('Store does not exist.'))
             else:
                 directory = Directory.objects.get(pootle_path=pootle_path)
 
