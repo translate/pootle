@@ -11,6 +11,8 @@
     <meta name="description" content="{{ settings.DESCRIPTION|striptags }}" />
     <meta name="keywords" content="{{ keywords|join:", " }}" />
     <meta name="application-name" content="{{ settings.TITLE }}" />
+    <link rel="icon" href="{{ "images/app-32x32.png"|s }}" sizes="32x32" />
+    <link rel="icon" href="{{ "images/app-64x64.png"|s }}" sizes="64x64" />
     {% endblock meta %}
     {% block css %}
     {% assets "css_common" %}
@@ -21,7 +23,7 @@
     <![endif]-->
     {% endblock css %}
     {% block favicon %}
-    <link rel="shortcut icon" href="/media/img/icon_48x48.png" />
+    <link rel="shortcut icon" href="{{ "favicon.ico"|s }}" />
     {% endblock favicon %}
     {% block js %}
     {% assets "js_common" %}
