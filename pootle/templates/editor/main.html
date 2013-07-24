@@ -1,4 +1,4 @@
-{% extends "tp_base.html" %}
+{% extends editor_extends %}
 {% load i18n %}
 
 {% block title %}{% trans "Translate" %} | {{ block.super }}{% endblock %}
@@ -8,7 +8,7 @@
 {% include 'editor/_css.html' %}
 {% endblock %}
 
-{% block body_id %}tptranslate{% endblock %}
+{% block body_id %}{{ editor_body_id }}{% endblock %}
 
 {% block search %}
 {% endblock %}
