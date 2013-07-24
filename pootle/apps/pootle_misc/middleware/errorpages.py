@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2012 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -37,6 +38,7 @@ try:
 except ImportError:
     sentry_exception_handler = None
 
+from pootle.core.exceptions import Http400
 from pootle_misc.baseurl import l, get_next
 
 
@@ -46,14 +48,17 @@ class ErrorPagesMiddleware(object):
     def _ajax_error(self, rcode, msg):
         json = {'msg': msg}
         response = simplejson.dumps(json)
-        return HttpResponse(response, status=rcode, mimetype="application/json")
-
+        return HttpResponse(response, status=rcode,
+                            mimetype="application/json")
 
     def process_exception(self, request, exception):
         msg = force_unicode(exception)
         if isinstance(exception, Http404):
             if request.is_ajax():
                 return self._ajax_error(404, msg)
+        elif isinstance(exception, Http400):
+            if request.is_ajax():
+                return self._ajax_error(400, msg)
         elif isinstance(exception, PermissionDenied):
             if request.is_ajax():
                 return self._ajax_error(403, msg)
