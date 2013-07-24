@@ -12,7 +12,8 @@
 {% block content %}
 <div id="about" lang="{{ LANGUAGE_CODE }}">
   <div class="documentation">
-    <p>Evernote Translation Server is based on open-source <a href="http://pootle.translatehouse.org/"><i class="icon-external-link"></i> Pootle</a> and <a href="http://toolkit.translatehouse.org/"><i class="icon-external-link"></i> Translate Toolkit</a> code.</p>
+    {# Translators: For better readability, make sure to leave an space after the closing </i> tag #}
+    <p>{% blocktrans %}Evernote Translation Server is based on open-source <a href="http://pootle.translatehouse.org/"><i class="icon-external-link"></i> Pootle</a> and <a href="http://toolkit.translatehouse.org/"><i class="icon-external-link"></i> Translate Toolkit</a> code.{% endblocktrans %}</p>
   </div>
 </div>
 {% endblock content%}
