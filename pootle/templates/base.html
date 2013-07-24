@@ -193,7 +193,8 @@
     {% block footer %}
     <div id="footer">
       <ul class="nav">
-        <li><a href='{% url 'pootle_app.views.index.about.view' %}'>{% trans "About Evernote Translation Server" %}</a></li>
+        <li><a href='{% url 'pootle_app.views.index.about.view' %}'>{% trans "About" %}</a></li>
+        <li><a href='{{ "/pages/tos/"|l }}'>{% trans "Terms and Conditions" %}</a></li>
       </ul>
     </div>
     {% endblock footer %}
