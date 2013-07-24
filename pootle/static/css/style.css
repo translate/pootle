@@ -822,7 +822,7 @@ button.close
 #body
 {
     margin: 0;
-    padding: 1px 0 0;
+    padding: 1px 0 3em;
 }
 
 #body:after
