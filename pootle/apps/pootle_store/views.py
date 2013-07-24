@@ -473,6 +473,7 @@ def get_view_units(request, path_obj):
 
     limit = request.profile.get_unit_rows()
 
+    # XXX: Is this portable away from translation projects?
     is_store = not path_obj.is_dir
     if is_store:
         units_qs = path_obj.units
