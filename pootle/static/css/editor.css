@@ -478,6 +478,15 @@ table td.translate-translation
     padding: 0.5em 5px;
 }
 
+table td.translate-original
+{
+    padding-left: 25px;
+}
+
+table td.translate-translation
+{
+    padding-right: 25px;
+}
 
 /* COMMENTS */
 
