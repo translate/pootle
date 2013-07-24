@@ -1,5 +1,10 @@
 {% extends "admin_profile_base.html" %}
-{% load i18n baseurl locale %}
+{% load url from future %}
+{% load i18n baseurl locale notification_tags %}
+
+{% block extra_head %}
+<link rel="alternate" type="application/rss+xml" href="{% url 'pootle_notifications__feed' "" %}" />
+{% endblock %}
 
 {% block body_id %}admindashboard{% endblock %}
 
@@ -33,6 +38,14 @@
       </tbody>
     </table>
   </div>
+
+  <div class="hd"><h2>{% trans 'Latest News' %}</h2></div>
+  <div class="bd latestnews">
+    {% render_latest_news "" 10 %}
+    <p class="subscribe"><a href="{% url 'pootle_notifications__feed' "" %}"><i class="icon-feed"></i> {% trans "Subscribe to the RSS feed." %}</a></p>
+  </div>
+</div>
+
 </div>
 <div id="depchecks" class="module" lang="{{ LANGUAGE_CODE }}">
   <div class="hd">

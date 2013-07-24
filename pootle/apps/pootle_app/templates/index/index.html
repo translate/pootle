@@ -1,13 +1,6 @@
 {% extends "base.html" %}
-{% load url from future %}
-{% load i18n baseurl notification_tags cleanhtml assets common_tags %}
+{% load i18n baseurl cleanhtml assets common_tags %}
 {% get_current_language as LANGUAGE_CODE %}
-
-{% block extra_head %}
-<link rel="alternate" type="application/rss+xml" href="{% url 'pootle_notifications__feed' "" %}" />
-{% endblock %}
-
-{% block header_block %}{% endblock %}
 
 {% block precontent %}
 {% if description or can_edit %}
@@ -54,14 +47,6 @@
 {% endblock content %}
 
 {% block postcontent %}
-<div class="module latestnews{% if moreprojects %} first{% endif %}" lang="{{ LANGUAGE_CODE }}">
-  <div class="hd"><h2>{% trans 'Latest News' %}</h2></div>
-  <div class="bd">
-    {% render_latest_news "" 5 %}
-    <p class="subscribe"><a href="{% url 'pootle_notifications__feed' "" %}"><i class="icon-feed"></i> {% trans "Subscribe to the RSS feed." %}</a></p>
-  </div>
-</div>
-
 {% include "top_contributers_table.html" %}
 {% endblock postcontent %}
 
