@@ -10,30 +10,25 @@
       this.tmpl = {results: $.template($("#language_user_activity").html()),};
 
       $(document).on("click", "#reports-show", function (e) {
-        PTL.reports.date_range = PTL.reports.calendar.getSelectedAsText();
         PTL.reports.user = $('#reports-user').val();
-
         PTL.reports.update();
       });
 
       $(document).on("click", "#current-month", function (e) {
-        PTL.reports.calendar.setSelected([
-          Kalendae.moment().date(1),
-          Kalendae.moment()
-        ]);
-        PTL.reports.date_range = PTL.reports.calendar.getSelectedAsText();
-
+        PTL.reports.date_range = [
+          moment().date(1),
+          moment()
+        ];
         PTL.reports.update();
 
         return false;
       });
 
       $(document).on("click", "#previous-month", function (e) {
-        PTL.reports.calendar.setSelected([
-          Kalendae.moment().subtract({M:1}).date(1),
-          Kalendae.moment().date(1).subtract('days', 1)
-        ]);
-        PTL.reports.date_range = PTL.reports.calendar.getSelectedAsText();
+        PTL.reports.date_range = [
+          moment().subtract({M:1}).date(1),
+          moment().date(1).subtract('days', 1)
+        ];
 
         PTL.reports.update();
 
@@ -48,14 +43,7 @@
         }
       });
 
-      this.calendar = new Kalendae({
-        attachTo: document.getElementById('reports-calendar'),
-        months:3,
-        mode:'range',
-        selected:[Kalendae.moment().date(1), Kalendae.moment()]
-      });
-
-      this.date_range = this.calendar.getSelectedAsText();
+      this.date_range = [moment().date(1), moment()]
       this.user = null;
 
       PTL.reports.currentRowIsEven = false;
@@ -67,7 +55,15 @@
           // Walk through known report criterias and apply them to the
           // reports object
           if ('start' in params && 'end' in params) {
-            PTL.reports.date_range = [params['start'], params['end']];
+            PTL.reports.date_range = [
+              moment(params['start']),
+              moment(params['end'])
+            ];
+          } else {
+            PTL.reports.date_range = [
+              moment().date(1),
+              moment()
+            ];
           }
 
           if ('user' in params) {
@@ -75,7 +71,6 @@
           }
 
           $('#reports-user').val(PTL.reports.user);
-          PTL.reports.calendar.setSelected(PTL.reports.date_range);
           PTL.reports.buildResults();
         }, {'unescape': true});
 
@@ -95,8 +90,8 @@
       if (PTL.reports.validate()) {
         var newHash = [
           'user=', PTL.reports.user,
-          '&start=', PTL.reports.date_range[0],
-          '&end=", PTL.reports.date_range[1]
+          '&start=', PTL.reports.date_range[0].format("YYYY-MM-DD"),
+          '&end=', PTL.reports.date_range[1].format("YYYY-MM-DD")
         ].join('');
         $.history.load(newHash);
       } else {
@@ -106,8 +101,8 @@
 
     buildResults: function () {
       var reqData = {
-        start: PTL.reports.date_range[0],
-        end: PTL.reports.date_range[1],
+        start: PTL.reports.date_range[0].format("YYYY-MM-DD"),
+        end: PTL.reports.date_range[1].format("YYYY-MM-DD"),
         user: PTL.reports.user
       };
 
@@ -130,8 +125,8 @@
 
     dateRangeString: function (d1, d2) {
       var res = '',
-          m1 = Kalendae.moment(d1),
-          m2 = Kalendae.moment(d2);
+          m1 = moment(d1),
+          m2 = moment(d2);
 
       if (m1.year() == m2.year()) {
         if (m1.month() == m2.month()) {
@@ -155,7 +150,7 @@
     },
 
     formatDate: function (d) {
-      var m = Kalendae.moment(d);
+      var m = moment(d);
       return m.format('MMM, D');
     },
 
