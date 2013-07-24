@@ -20,6 +20,7 @@
 
 import json
 import locale
+import os
 
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -252,7 +253,11 @@ def optimal_depcheck():
 
 def _format_numbers(dict):
     for k in dict.keys():
-        dict[k] = locale.format("%d", dict[k], grouping=True)
+        formatted_number = locale.format("%d", dict[k], grouping=True)
+        # Under Windows, formatted number must be converted to Unicode
+        if os.name == 'nt':
+            formatted_number = formatted_number.decode(locale.getpreferredencoding())
+        dict[k] = formatted_number
 
 
 def server_stats():
