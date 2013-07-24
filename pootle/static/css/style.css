@@ -782,7 +782,7 @@ button.close
 #body
 {
     margin: 0;
-    padding: 5px 0px;
+    padding: 1px 0 3em;
 }
 
 #body:after
