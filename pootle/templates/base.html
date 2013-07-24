@@ -189,14 +189,14 @@
         {% block extra_content %}{% endblock %}
       </div>
 
-      {% block footer %}
-      <div id="footer">
-        <ul class="nav">
-          <li><a href='{% url 'pootle_app.views.index.about.view' %}'>{% trans "About Evernote Translation Server" %}</a></li>
-        </ul>
-      </div>
-      {% endblock footer %}
     </div>
+    {% block footer %}
+    <div id="footer">
+      <ul class="nav">
+        <li><a href='{% url 'pootle_app.views.index.about.view' %}'>{% trans "About Evernote Translation Server" %}</a></li>
+      </ul>
+    </div>
+    {% endblock footer %}
     {% block scripts %}
     {% block scripts_extra %}{% endblock %}
     <script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' %}"></script>

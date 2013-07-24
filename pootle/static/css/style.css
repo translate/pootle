@@ -632,6 +632,30 @@ html[dir="rtl"] #nav-main li
     margin: 0;
 }
 
+/*
+ * make footer to stick to bottom;
+ * based on http://ryanfait.com/sticky-footer/
+ */
+
+html, body {
+    height: 100%; 
+}
+
+#wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%; 
+    margin-bottom: -62px; /* #footer margin-top (20px) + #footer height (42px) */
+}
+
+#footer {
+    margin-top: 20px;
+    height: 42px;
+    overflow: hidden;
+            box-sizing: border-box;
+       -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
 
 /*
  * POPUPS
