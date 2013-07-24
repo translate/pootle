@@ -3,19 +3,16 @@
 
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block title %}{% trans "This Pootle Server" %} | {{ block.super }}{% endblock %}
+{% block title %}{% trans "Evernote Translation Server" %} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
-{{ block.super }}<li>{% trans "This Pootle Server" %}</li>
+{{ block.super }}<li>{% trans "Evernote Translation Server" %}</li>
 {% endblock %}
 
 {% block content %}
 <div id="about" lang="{{ LANGUAGE_CODE }}">
   <div class="documentation">
-    {# Translators: For better readability, make sure to leave an space after the closing </i> tag #}
-    <p>{% blocktrans %}This site is running Pootle &mdash; powerful web software to empower teams to do translation and translation management. This community tool is Free Software, and any team can use it and contribute to the Pootle community. Read more on the <a href="http://pootle.translatehouse.org/"><i class="icon-external-link"></i> project website</a>.{% endblocktrans %}</p>
-    <p>{{ pootle_version }}</p>
-    <!-- {{ version_details }} -->
+    <p>Evernote Translation Server is based on open-source <a href="http://pootle.translatehouse.org/"><i class="icon-external-link"></i> Pootle</a> and <a href="http://toolkit.translatehouse.org/"><i class="icon-external-link"></i> Translate Toolkit</a> code.</p>
   </div>
 </div>
 {% endblock content%}
