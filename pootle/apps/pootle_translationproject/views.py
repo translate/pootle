@@ -337,7 +337,6 @@ def translate(request, translation_project, dir_path, filename):
                                                 request.store.is_terminology)
     context = get_translation_context(request, is_terminology=is_terminology)
     context.update({
-        'search_form': search_form,
         'language': language,
         'project': project,
         'translation_project': translation_project,
