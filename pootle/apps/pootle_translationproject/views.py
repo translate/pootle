@@ -555,9 +555,12 @@ def translate(request, translation_project, dir_path, filename):
         'language': language,
         'project': project,
         'translation_project': translation_project,
+
+        'editor_extends': 'tp_base.html',
+        'editor_body_id': 'tptranslate',
     })
 
-    return render_to_response('translation_project/translate.html', context,
+    return render_to_response('editor/main.html', context,
                               context_instance=RequestContext(request))
 
 
