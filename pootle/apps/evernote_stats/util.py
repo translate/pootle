@@ -18,23 +18,20 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import unicode_literals
-
 import re
 from difflib import SequenceMatcher
 
 
 ADDED, REMOVED = range(2)
 
-remove = re.compile("[\.]+", re.U) # dots
-
-delimiters = re.compile("[\W]+", re.U) # anything except a-z, A-Z and _
-delimiters_begin = re.compile("^[\W]+", re.U) # anything except a-z, A-Z and _
-delimiters_end = re.compile("[\W]+$", re.U) # anything except a-z, A-Z and _
+remove = re.compile(u"[\.]+", re.U) # dots
+delimiters = re.compile(u"[\W]+", re.U) # anything except a-z, A-Z and _
+delimiters_begin = re.compile(u"^[\W]+", re.U) # anything except a-z, A-Z and _
+delimiters_end = re.compile(u"[\W]+$", re.U) # anything except a-z, A-Z and _
 
 english_date = re.compile(
-    "(^|\W)(January|February|March|April|May|June|July|August|September|"
-    "October|November|December)\s+\d{1,2},\s+(?:\d{2})?\d{2}(\W|$)",
+    u"(^|\W)(January|February|March|April|May|June|July|August|September|"
+    u"October|November|December)\s+\d{1,2},\s+(?:\d{2})?\d{2}(\W|$)",
     re.U
 )
 
@@ -105,43 +102,43 @@ def wordcount(string):
     # FIXME: provide line continuations to fit lines below 80 chars
 
     # Escaped XML tags (used in some strings)
-    find_placeholders(chunks, re.compile('(&lt;\/?[\w]+.*?>)', re.U))
+    find_placeholders(chunks, re.compile(u'(&lt;\/?[\w]+.*?>)', re.U))
     # XML tags
-    find_placeholders(chunks, re.compile('(<\/?[\w]+.*?>)', re.U))
+    find_placeholders(chunks, re.compile(u'(<\/?[\w]+.*?>)', re.U))
     # Java format and it's escaped version
-    find_placeholders(chunks, re.compile('(\\\{\d+\\\}|\{\d+\})', re.U))
+    find_placeholders(chunks, re.compile(u'(\\\{\d+\\\}|\{\d+\})', re.U))
     # Template format
-    find_placeholders(chunks, re.compile('(\$\{[\w\.\:]+\})', re.U))
+    find_placeholders(chunks, re.compile(u'(\$\{[\w\.\:]+\})', re.U))
     # Android format
-    find_placeholders(chunks, re.compile('(%\d\$\w)', re.U))
+    find_placeholders(chunks, re.compile(u'(%\d\$\w)', re.U))
     # sprintf
-    find_placeholders(chunks, re.compile('(%[\d]*(?:.\d+)*(?:h|l|I|I32|I64)*[cdiouxefgns])', re.U))
+    find_placeholders(chunks, re.compile(u'(%[\d]*(?:.\d+)*(?:h|l|I|I32|I64)*[cdiouxefgns])', re.U))
     # Objective C style placeholders
-    find_placeholders(chunks, re.compile('(%@)', re.U))
+    find_placeholders(chunks, re.compile(u'(%@)', re.U))
     # Dollar sign placeholders
-    find_placeholders(chunks, re.compile('(\$[\w\d]+?\$)', re.U))
+    find_placeholders(chunks, re.compile(u'(\$[\w\d]+?\$)', re.U))
     # Percent sign placeholders
-    find_placeholders(chunks, re.compile('(\%[\w\d]+?\%)', re.U))
+    find_placeholders(chunks, re.compile(u'(\%[\w\d]+?\%)', re.U))
     # '{\n}' newline marker
-    find_placeholders(chunks, re.compile('(\{\\\n\})', re.U))
+    find_placeholders(chunks, re.compile(u'(\{\\\n\})', re.U))
     # Escaping sequences (\n, \r, \t)
-    find_placeholders(chunks, re.compile('(\\\+[rnt])', re.U))
+    find_placeholders(chunks, re.compile(u'(\\\+[rnt])', re.U))
     # XML entities
-    find_placeholders(chunks, re.compile('(&#\d+;|&\w+;)', re.U))
+    find_placeholders(chunks, re.compile(u'(&#\d+;|&\w+;)', re.U))
     # Product names
-    find_placeholders(chunks, re.compile('(Evernote International|Evernote Food|Evernote Hello|Evernote Clearly|Evernote Business|Skitch|Evernote®?|Food|^Hello$|Clearly)', re.U))
+    find_placeholders(chunks, re.compile(u'(Evernote International|Evernote Food|Evernote Hello|Evernote Clearly|Evernote Business|Skitch|Evernote®?|Food|^Hello$|Clearly)', re.U))
     # Shortcuts
-    find_placeholders(chunks, re.compile('(Ctrl\+\w$|Shift\+\w$|Alt\+\w$)', re.U))
+    find_placeholders(chunks, re.compile(u'(Ctrl\+\w$|Shift\+\w$|Alt\+\w$)', re.U))
     # Shortcut modifiers
-    find_placeholders(chunks, re.compile('(Ctrl\+$|Shift\+$|Alt\+$)', re.U))
+    find_placeholders(chunks, re.compile(u'(Ctrl\+$|Shift\+$|Alt\+$)', re.U))
     # Surrounding quotes (including ones around placeholders)
-    #find_placeholders($chunks, re.compile('(^["\']+|["\']+$)', re.U))
+    #find_placeholders($chunks, re.compile(u'(^["\']+|["\']+$)', re.U))
     # End punctuation after (or between) placeholders
-    #find_placeholders($chunks, re.compile('(^\.$)', re.U))
+    #find_placeholders($chunks, re.compile(u'(^\.$)', re.U))
 
     # Find patterns that are not counted as words in Trados
     # Hanging symbols (excluding a-z, _ and &)
-    find_placeholders(chunks, re.compile('(^[^\w\&]\s|\s[^\w\&]\s|\s[^\w\&]$|^[^\w\&]$)', re.U), 'dont-count')
+    find_placeholders(chunks, re.compile(u'(^[^\w\&]\s|\s[^\w\&]\s|\s[^\w\&]$|^[^\w\&]$)', re.U), 'dont-count')
 
     return _count_words(chunks)
 
@@ -154,18 +151,18 @@ def _count_words(aref):
         if chunk['translate']:
             s = chunk['string']
             # Replace the date with just the month name (i.e. count as a single word)
-            s = english_date.sub('\g<1>\g<2>\g<3>', s)
+            s = english_date.sub(u'\g<1>\g<2>\g<3>', s)
 
-            s = remove.sub('', s)
-            s = delimiters_begin.sub('', s)
-            s = delimiters_end.sub('', s)
+            s = remove.sub(u'', s)
+            s = delimiters_begin.sub(u'', s)
+            s = delimiters_end.sub(u'', s)
 
             a = delimiters.split(s);
 
-            if len(a) > 1 and a[-1] == '':
+            if len(a) > 1 and a[-1] == u'':
                 a.pop()
 
-            if len(a) == 1 and a[0] == '':
+            if len(a) == 1 and a[0] == u'':
                 a.pop()
 
             n += len(a);
