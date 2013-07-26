@@ -68,18 +68,18 @@ the Django template 'cycle' tag as set in the template that calls this one.
 Also the new row has only one column that spans to all available space.
 {% endcomment %}
 <td id="js-tag-tp-{{ item.pk }}" colspan="{{ table.headings|length }}">
+  {% if user.is_superuser or request.permissions.administrate %}
+  <a href="#js-add-tag-dialog" class="js-project-add-tag-popup js-tags tags-aside tags-add"
+    title="{% trans "Add a tag" %}">
+    <i class="icon-tag-add"></i>
+  </a>
+  {% endif %}
   {% if item.tags %}
   <ul class="js-tags tag-list">
     {% for tp_tag in item.tags %}
     <li><span class="tag">{{ tp_tag }}</span></li>
     {% endfor %}
   </ul>
-  {% endif %}
-  {% if user.is_superuser or request.permissions.administrate %}
-  <a href="#js-add-tag-dialog" class="js-project-add-tag-popup js-tags tags-aside tags-add"
-    title="{% trans "Add a tag" %}">
-    <i class="icon-tag-add"></i>
-  </a>
   {% endif %}
 </td>
 {% endif %}

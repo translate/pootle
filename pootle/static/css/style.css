@@ -2415,6 +2415,7 @@ span.email .i {
 .tag-list
 {
     list-style: none;
+    overflow: hidden;
 }
 
 .tag-list li,
@@ -2485,7 +2486,9 @@ html[dir="rtl"] .tag-list .tag
 a.tags-add
 {
     margin-left: .5em;
+    margin-bottom: -.3em;
     font-size: 12px;
+    overflow: hidden;
 }
 
 a.tags-toggle

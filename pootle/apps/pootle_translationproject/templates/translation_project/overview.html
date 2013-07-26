@@ -33,6 +33,10 @@
 
   <div>
     <br />
+    <a href="" id="js-toggle-tags" class="hide tags-aside tags-toggle">
+      <i class="icon-tag"></i>
+      <span id="js-toggle-tags-text">{% trans "Hide tags" %}</span>
+    </a>
     {% with template_tags=translation_project.tags.all %}
     {% if template_tags %}
     <ul class="js-tags tag-list">
@@ -42,10 +46,6 @@
     </ul>
     {% endif %}
     {% endwith %}
-    <a href="" id="js-toggle-tags" class="hide tags-aside tags-toggle">
-      <i class="icon-tag"></i>
-      <span id="js-toggle-tags-text">{% trans "Hide tags" %}</span>
-    </a>
     <br />
   </div>
 
