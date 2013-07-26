@@ -34,6 +34,7 @@ import shutil
 from subprocess import CalledProcessError
 
 from pootle.scripts.actions import DownloadAction
+from pootle_app.models.permissions import check_permission
 
 from moztarball import (AURORA, MozillaAction, getLogger, tempdir, get_phases,
                         merge_po2moz)
@@ -47,9 +48,13 @@ class MozillaBuildLangpackAction(MozillaAction):
 
     def __init__(self, **kwargs):
         super(MozillaBuildLangpackAction, self).__init__(**kwargs)
-        self._set_flag(name='mozilla_admin',
-                       note='Actions for Mozilla translation coordinators')
         self.icon = "icon-update-templates"
+
+    def is_active(self, request):
+        if not check_permission('administrate', request):
+            return False
+        else:
+            return super(MozillaBuildLangpackAction, self).is_active(request)
 
     def run(self, path, root, tpdir,  # pylint: disable=R0913,R0914
             language, project, vc_root, **kwargs):

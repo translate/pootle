@@ -40,6 +40,7 @@ from tempfile import mkdtemp
 
 from translate.convert import po2moz
 from pootle.scripts.actions import DownloadAction, TranslationProjectAction
+from pootle_app.models.permissions import check_permission
 
 MOZL10N = "mozilla-l10n"
 AURORA = "mozilla-aurora"
@@ -229,8 +230,12 @@ class MozillaTarballAction(DownloadAction, MozillaAction):
 
     def __init__(self, **kwargs):
         super(MozillaTarballAction, self).__init__(**kwargs)
-        self._set_flag(name='mozilla_admin',
-                       note='Actions for Mozilla translation coordinators')
+
+    def is_active(self, request):
+        if not check_permission('administrate', request):
+            return False
+        else:
+            return super(MozillaTarballAction, self).is_active(request)
 
     def run(self, path, root, tpdir,  # pylint: disable=R0913
             language, project, vc_root, **kwargs):
