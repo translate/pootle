@@ -145,7 +145,7 @@ $(function() {
     }
 
     var remember = true,
-        hash = "#search=" + PTL.search.parse(s, remember);
+        hash = "#search=" + PTL.search.buildSearchQuery(s, remember);
     window.location = this.action + hash;
 
     return false;
