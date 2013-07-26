@@ -33,6 +33,8 @@ import os
 import shutil
 from subprocess import CalledProcessError
 
+from django.conf import settings
+
 from pootle.scripts.actions import DownloadAction
 from pootle_app.models.permissions import check_permission
 
@@ -164,14 +166,27 @@ class MozillaDownloadLangpackAction(DownloadAction, MozillaAction):
                        note='Download Mozilla language packs')
         self.nosync = True
 
+    def is_active(self, request):
+        project = request.translation_project.project.code
+        language = request.translation_project.language.code
+        root = settings.PODIRECTORY
+        tpdir = request.translation_project.directory.get_real_path()
+        xpifile = os.path.join(root, tpdir, '%s-%s.xpi' %(project, language))
+        if not os.path.exists(xpifile):
+            return False
+        else:
+            return super(MozillaDownloadLangpackAction, self).is_active(request)
+
     def run(self, path, root, tpdir,  # pylint: disable=R0913,R0914
             language, project, vc_root, **kwargs):
         """Download a Mozilla language pack XPI."""
         xpifile = os.path.join(root, tpdir, '%s-%s.xpi' %(project, language))
+
+        # This check is redundant, but it does not hurt
         if os.path.exists(xpifile):
             self.set_error(self.set_download_file(path, xpifile))
         else:
-            self.set_error("Language pack was not built.")
+            self.set_error(_("Language pack was not built."))
 
 MozillaDownloadLangpackAction.moztar = MozillaDownloadLangpackAction(
                                             category="Mozilla",
