@@ -9,16 +9,13 @@
 {% block content %}
 <div class="module first">
   <div class="hd">
-    <h2>{{ project.summary }}</h2>
-  </div>
-
-  <div>
-    <br />
-    <a href="" id="js-toggle-tags" class="hide tags-aside tags-toggle">
-      <i class="icon-tag"></i>
-      <span id="js-toggle-tags-text">{% trans "Hide tags" %}</span>
-    </a>
-    <br />
+    <h2>
+      {{ project.summary }}
+      <a href="" id="js-toggle-tags" class="hide tags-aside tags-toggle">
+        <i class="icon-tag"></i>
+        <span id="js-toggle-tags-text">{% trans "Hide tags" %}</span>
+      </a>
+    </h2>
   </div>
 
   <div class="bd">

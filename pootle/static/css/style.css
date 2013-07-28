@@ -777,6 +777,7 @@ html[dir="rtl"] .module.first
     margin: 1em 0.5em 0;
     border-bottom: 1px solid #eee;
     clear:both;
+    line-height: 120%;
 }
 
 html[dir="rtl"] .hd h2
@@ -2433,13 +2434,12 @@ html[dir="rtl"] .tag-list .tag
 
 .tag-list .tag
 {
-    margin-left: 20px;
-    margin-bottom: 6px;
+    margin: 0px 10px 6px 10px;
     padding: 0 8px 0 5px;
     background: #ddd;
     height: 20px;
     line-height: 20px;
-    font-size: 10px;
+    font-size: x-small;
     color: #666;
     text-decoration: none;
     -webkit-border-bottom-right-radius: 4px;
@@ -2486,14 +2486,14 @@ html[dir="rtl"] .tag-list .tag
 a.tags-add
 {
     margin-left: .5em;
-    margin-bottom: -.3em;
     font-size: 12px;
     overflow: hidden;
+    float: right;
 }
 
 a.tags-toggle
 {
-    font-size: 82%;
+    font-size: x-small;
     text-decoration: none;
     filter:alpha(opacity=50);
     opacity: 0.5;
