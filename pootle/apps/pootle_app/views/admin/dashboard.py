@@ -256,7 +256,9 @@ def _format_numbers(dict):
         formatted_number = locale.format("%d", dict[k], grouping=True)
         # Under Windows, formatted number must be converted to Unicode
         if os.name == 'nt':
-            formatted_number = formatted_number.decode(locale.getpreferredencoding())
+            formatted_number = formatted_number.decode(
+                locale.getpreferredencoding()
+            )
         dict[k] = formatted_number
 
 
