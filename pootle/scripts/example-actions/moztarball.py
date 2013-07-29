@@ -230,12 +230,7 @@ class MozillaTarballAction(DownloadAction, MozillaAction):
 
     def __init__(self, **kwargs):
         super(MozillaTarballAction, self).__init__(**kwargs)
-
-    def is_active(self, request):
-        if not check_permission('administrate', request):
-            return False
-        else:
-            return super(MozillaTarballAction, self).is_active(request)
+        self.permission = "administrate"
 
     def run(self, path, root, tpdir,  # pylint: disable=R0913
             language, project, vc_root, **kwargs):

@@ -84,12 +84,10 @@ from django.core.cache import cache
 from django.utils.encoding import iri_to_uri
 from django.utils.translation import ugettext as _
 
+from pootle_app.models.permissions import check_permission
 from pootle_app.project_tree import ensure_target_dir_exists
 from pootle_misc.baseurl import l
 from pootle_store.util import absolute_real_path, relative_real_path
-
-from waffle import flag_is_active
-from waffle.models import Flag
 
 logger = logging.getLogger(__name__)
 
@@ -263,7 +261,7 @@ class ExtensionAction(object):
         self._title = title
         self._error = ''
         self._output = ''
-        self._waffle_flag = ''
+        self.permission = 'view'
         logger.debug("%s.__init__ '%s'", type(self).__name__, title)
         for cls in type(self).__mro__:
             if getattr(cls, 'tracked', False):
@@ -300,13 +298,6 @@ class ExtensionAction(object):
         'foo/bar?ext_actions=Do+it'
         """
         return ''.join([pootle_path, '?', urlencode({EXTDIR: self.title})])
-
-    def _set_flag(self, name, note=''):
-        """Set waffle flag used to control the action availability."""
-        self._waffle_flag = name
-        settings = {'note': note, 'superusers': False}
-        Flag.objects.get_or_create(name=self._waffle_flag,
-                                   defaults=settings)
 
     @property
     def category(self):
@@ -368,10 +359,8 @@ class ExtensionAction(object):
         self._output = text
 
     def is_active(self, request):
-        """Check if the action is active based on its waffle flag."""
-        if self._waffle_flag:
-            return flag_is_active(request, self._waffle_flag)
-        return True
+        """Check if the action is active."""
+        return check_permission(self.permission, request)
 
 
 class ProjectAction(ExtensionAction):
