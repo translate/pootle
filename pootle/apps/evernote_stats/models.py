@@ -74,6 +74,7 @@ def save_submission_stats(sender, **kwargs):
                 diff_stat(sub.old_value.split(), sub.new_value.split())
             ss.chars_added, ss.chars_removed = \
                 diff_stat(sub.old_value, sub.new_value)
+            ss.source_wordcount = wordcount(unit.source_f)
 
         ss.save()
     except:
