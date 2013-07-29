@@ -37,7 +37,7 @@ urlpatterns = patterns('pootle_store.views',
         name='pootle-xhr-checks'),
 
     url(r'^xhr/units/?$',
-        'get_view_units',
+        'get_units',
         name='pootle-xhr-units'),
 
     url(r'^xhr/units/(?P<uid>[0-9]+)/?$',

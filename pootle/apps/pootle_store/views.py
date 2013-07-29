@@ -460,7 +460,7 @@ def _build_units_list(units, reverse=False):
 
 @ajax_required
 @get_xhr_resource_context('view')
-def get_view_units(request, path_obj):
+def get_units(request, path_obj):
     """Gets source and target texts and its metadata.
 
     :return: A JSON-encoded object containing the source and target texts
