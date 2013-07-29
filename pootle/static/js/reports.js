@@ -35,6 +35,13 @@
         return false;
       });
 
+      $(document).on("change", "#reports-viewmode select", function (e) {
+        PTL.reports.setViewMode($(this).val());
+        PTL.reports.update();
+
+        return false;
+      });
+
       $(document).on("keypress", "#reports-user", function (e) {
         if (e.which === 13) {
           PTL.reports.user = $('#reports-user').val();
@@ -56,8 +63,8 @@
           // reports object
           if ('start' in params && 'end' in params) {
             PTL.reports.date_range = [
-              moment(params['start']),
-              moment(params['end'])
+              moment(params.start),
+              moment(params.end)
             ];
           } else {
             PTL.reports.date_range = [
@@ -66,16 +73,32 @@
             ];
           }
 
-          if ('user' in params) {
-            PTL.reports.user = params['user'];
+          if ('mode' in params) {
+            PTL.reports.setViewMode(params.mode);
+            delete params.mode;
+          } else {
+            PTL.reports.setViewMode('new');
           }
 
+          if ('user' in params) {
+            PTL.reports.user = params.user;
+          }
           $('#reports-user').val(PTL.reports.user);
-          PTL.reports.buildResults();
+
+          if (!PTL.reports.compareParams(params)) {
+            PTL.reports.buildResults();
+          }
+          PTL.reports.loadedHashParams = params;
         }, {'unescape': true});
 
       }, 1); // not sure why we had a 1000ms timeout here
 
+    },
+
+    setViewMode: function (mode) {
+      PTL.reports.mode = mode;
+      $("#reports-viewmode select").val(mode);
+      $("#reports-results").attr("class", mode);
     },
 
     validate: function () {
@@ -91,12 +114,27 @@
         var newHash = [
           'user=', PTL.reports.user,
           '&start=', PTL.reports.date_range[0].format("YYYY-MM-DD"),
-          '&end=', PTL.reports.date_range[1].format("YYYY-MM-DD")
+          '&end=', PTL.reports.date_range[1].format("YYYY-MM-DD"),
+          '&mode=', PTL.reports.mode
         ].join('');
         $.history.load(newHash);
       } else {
         alert('Wrong input data');
       }
+    },
+
+    compareParams: function (params) {
+      var result = true;
+
+      if (PTL.reports.loadedHashParams) {
+        for (var p in params) {
+          result &= params[p] == PTL.reports.loadedHashParams[p];
+        }
+      } else {
+        result = false;
+      }
+
+      return result;
     },
 
     buildResults: function () {

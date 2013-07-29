@@ -29,7 +29,7 @@ from django.template import RequestContext
 
 from pootle_app.views.admin.util import user_is_admin
 from pootle_misc.util import jsonify
-from pootle_statistics.models import Submission
+from pootle_statistics.models import Submission, SubmissionFields
 
 
 # Django field query aliases
@@ -46,6 +46,8 @@ REMOVED_WORDS = 'submissionstats__words_removed'
 # field aliases
 DATE = 'creation_time_date'
 
+STAT_FIELDS = ['n1', 'pootle_n1', 'added', 'removed']
+INITIAL_STATES = ['new', 'edit']
 
 @user_is_admin
 def evernote_reports(request, context={}):
@@ -85,20 +87,36 @@ def user_date_prj_activity(request):
     start = start.replace(hour=0, minute=0, second=0)
     end = end.replace(hour=23, minute=59, second=59)
 
-    json = {'total': {'n1': 0, 'pootle_n1': 0}}
+    def get_item_stats(r={}):
+        res = {}
+        for f in STAT_FIELDS:
+            res[f] = r[f] if (r.has_key(f) and r[f] is not None) else 0
+        return res
 
-    def add2total(total, n1, pootle_n1):
-        total['n1'] += n1
-        total['pootle_n1'] += pootle_n1
+    def create_total():
+        return {
+            INITIAL_STATES[0]: get_item_stats(),
+            INITIAL_STATES[1]: get_item_stats()
+        }
+
+    json = {'total': create_total()}
+
+    def aggregate(total, item):
+        for f in STAT_FIELDS:
+            total[f] += item[f]
+
+    def add2total(total, subtotal):
+        for t in ['new', 'edit']:
+            aggregate(total[t], subtotal[t])
 
     if user:
         rr = Submission.objects.filter(
                 submitter=user.pootleprofile,
-                submissionstats__initial_translation=True,
                 creation_time__gte=start,
-                creation_time__lte=end
+                creation_time__lte=end,
+                field=SubmissionFields.TARGET
             ).extra(select={DATE: "DATE(creation_time)"}) \
-             .values(LANG_CODE, LANG_NAME, PRJ_CODE, PRJ_NAME, DATE) \
+             .values(LANG_CODE, LANG_NAME, PRJ_CODE, PRJ_NAME, DATE, INITIAL) \
              .annotate(
                 pootle_n1=Sum(POOTLE_WORDCOUNT),
                 n1=Sum(SOURCE_WORDCOUNT),
@@ -116,26 +134,19 @@ def user_date_prj_activity(request):
         for r in rr:
             cur_lang = r[LANG_CODE]
             cur_prj = r[PRJ_CODE]
-
-            n1_cond = r.has_key('n1') and r['n1'] is not None
-            pootle_n1_cond = (r.has_key('pootle_n1') and
-                              r['pootle_n1'] is not None)
-            cur_n1 = r['n1'] if n1_cond else 0
-            cur_pootle_n1 = r['pootle_n1'] if pootle_n1_cond else 0
+            cur = get_item_stats(r)
 
             if cur_lang != saved_lang:
                 if saved_lang != None and lang_data != None:
-                    add2total(json['total'], lang_data['total']['n1'],
-                              lang_data['total']['pootle_n1'])
-                    add2total(lang_data['total'], res_date['total']['n1'],
-                              res_date['total']['pootle_n1'])
+                    add2total(lang_data['total'], res_date['total'])
+                    add2total(json['total'], lang_data['total'])
 
                 saved_lang = cur_lang
                 res[cur_lang] = {
                     'name': r[LANG_NAME],
                     'dates': [],
                     'sums': {},
-                    'total': {'n1': 0, 'pootle_n1': 0}
+                    'total': create_total()
                 }
 
                 lang_data = res[cur_lang]
@@ -146,8 +157,7 @@ def user_date_prj_activity(request):
             if saved_date != r[DATE]:
                 if saved_date is not None:
                     after_break = (r[DATE] - saved_date).days > 1
-                    add2total(lang_data['total'], res_date['total']['n1'],
-                              res_date['total']['pootle_n1'])
+                    add2total(lang_data['total'], res_date['total'])
 
                 else:
                     after_break = False
@@ -157,33 +167,40 @@ def user_date_prj_activity(request):
                     'date': datetime.strftime(saved_date, '%Y-%m-%d'),
                     'projects': {},
                     'after_break': after_break,
-                    'total': {'n1': 0, 'pootle_n1': 0}
+                    'total': create_total()
                 }
 
                 lang_data['dates'].append(res_date)
 
             if res_date is not None:
-                if sums.has_key(cur_prj):
-                    sums[cur_prj]['n1'] += cur_n1
-                    sums[cur_prj]['pootle_n1'] += cur_pootle_n1
+                if r[INITIAL]:
+                    states = INITIAL_STATES
                 else:
-                    sums[cur_prj] = {'n1': cur_n1, 'pootle_n1': cur_pootle_n1}
+                    states = INITIAL_STATES[::-1]
 
-                res_date['projects'].update({
-                    cur_prj: {
-                        'n1': cur_n1,
-                        'pootle_n1': cur_pootle_n1
+                if sums.has_key(cur_prj):
+                    aggregate(sums[cur_prj][states[0]], cur)
+                else:
+                    sums[cur_prj] = {
+                        states[0]: get_item_stats(cur),
+                        states[1]: get_item_stats()
                     }
-                })
-                add2total(res_date['total'], cur_n1, cur_pootle_n1)
 
+                if res_date['projects'].has_key(cur_prj):
+                    res_date['projects'][cur_prj].update({
+                        states[0]: get_item_stats(cur)
+                    })
+                else:
+                    res_date['projects'][cur_prj] = {
+                        states[0]: get_item_stats(cur)
+                    }
+
+                aggregate(res_date['total'][states[0]], cur)
                 projects[cur_prj] = r[PRJ_NAME]
 
         if lang_data is not None and res_date is not None:
-            add2total(lang_data['total'], res_date['total']['n1'],
-                      res_date['total']['pootle_n1'])
-            add2total(json['total'], lang_data['total']['n1'],
-                      lang_data['total']['pootle_n1'])
+            add2total(lang_data['total'], res_date['total'])
+            add2total(json['total'], lang_data['total'])
 
         json['all_projects'] = projects
         json['results'] = res

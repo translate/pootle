@@ -1,72 +1,111 @@
 #reports-container {
-	margin: 2em 0;
+    margin: 2em 0;
 }
 
 #reports-results {
-	margin-top: 1em;
+    margin-top: 1em;
 }
 
 #reports-results table {
-	margin-top: 0.5em;
-	margin-bottom: 1.5em;
+    margin-top: 0.5em;
+    margin-bottom: 1.5em;
 }
 
 #reports-results td {
-	padding: 5px;
-	width: 1%;
+    padding: 5px;
+    width: 1%;
 }
 
-#reports-results .reports-lang th.project {
-	text-align: right;
-}
+/*#reports-results .reports-lang th.project {
+    text-align: right;
+}*/
 #reports-results .reports-lang th {
-	color: #999;
-	text-align: left;
-	font-size: 85%;
-	padding: 5px;
+    color: #999;
+    text-align: left;
+    font-size: 85%;
+    padding: 5px;
 }
 
 #reports-calendar {
-	display: none;
+    display: none;
 }
 
 #reports-params .dates li {
-	display: inline-block;
-	margin-right: 2em;
+    display: inline-block;
+    margin-right: 2em;
 }
 
 #reports-form,
 #reports-params {
-	display: inline-block;
+    display: inline-block;
 }
 
 #reports-form {
-	margin-right: 2em;
+    margin-right: 2em;
 }
 
 #reports-form input {
-	display: inline-block;
+    display: inline-block;
 }
 
 /* table row colors, see 'Table Row Colors.psd' */
 
 tr.even td.total {
-	background-color: #e2f4f8;
+    background-color: #e2f4f8;
 }
 
 tr.odd td.total {
-	background-color: #ebf7fb;
+    background-color: #ebf7fb;
 }
 
 tr.total {
-	background-color: #c0e4f0;
+    background-color: #c0e4f0;
 }
 
 tr.total td.total {
-	font-weight: bold;
-	background-color: #aad6e5;
+    font-weight: bold;
+    background-color: #aad6e5;
 }
 
 tr.after_break {
-	border-top: 1px dashed #c0e4f0;
+    border-top: 1px dashed #c0e4f0;
+}
+
+#reports-results.new td .new {
+    display: inherit;
+}
+#reports-results.new td .edit {
+    display: none;
+}
+#reports-results.edit td .edit {
+    display: inherit;
+}
+#reports-results.edit td .new {
+    display: none;
+}
+#reports-params .selected {
+    font-size: 125%;
+    font-weight: bold;
+}
+#reports-results h2 {
+    display: inline-block;
+}
+#reports-viewmode {
+    display: inline-block;
+    padding-bottom: 10px;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+#reports-results.new .new-empty {
+    display: none;
+}
+#reports-results.new .edit-empty {
+    display: inherit;
+}
+#reports-results.edit .new-empty {
+    display: inherit;
+}
+#reports-results.edit .edit-empty {
+    display: none;
 }

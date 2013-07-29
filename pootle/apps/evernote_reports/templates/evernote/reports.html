@@ -7,7 +7,7 @@
 {% block css %}
 
 {{ block.super }}
-	
+
 <link rel="stylesheet" type="text/css" href="{{ '/admin/css/forms.css'|s }}" />
 <link rel="stylesheet" type="text/css" href="{{ '/admin/css/widgets.css'|s }}" />
 
@@ -39,28 +39,28 @@
 
 {% block section_body %}
 <div id="reports-container">
-	<div id="reports-form">
-		<input id="reports-user" type="text" placeholder="User"></input>
-		<button id="reports-show">{% trans 'Show' %}</button>
-	</div>
-	<div id="reports-params">
-		<!--
-		<div class="users"><div class="label">Previous users:</div>
-			<ul>
-			</ul>
-		</div>
-		-->
-		<div class="dates">
-			<ul>
-				<li>
-					<a id="previous-month" href="#">Previous month</a>
-				</li>
-				<li>
-					<a id="current-month" href="#">Current month</a>
-				</li>
-			<ul>
-		</div>
-	</div>
-	<div id="reports-results"></div>
+    <div id="reports-form">
+        <input id="reports-user" type="text" placeholder="User"></input>
+        <button id="reports-show">{% trans 'Show' %}</button>
+    </div>
+    <div id="reports-params">
+        <!--
+        <div class="users"><div class="label">Previous users:</div>
+            <ul>
+            </ul>
+        </div>
+        -->
+        <div class="dates">
+            <ul>
+                <li>
+                    <a id="previous-month" href="#">Previous month</a>
+                </li>
+                <li>
+                    <a id="current-month" href="#">Current month</a>
+                </li>
+            <ul>
+        </div>
+    </div>
+    <div id="reports-results"></div>
 </div>
 {% endblock %}

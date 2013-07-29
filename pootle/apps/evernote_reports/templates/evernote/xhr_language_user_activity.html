@@ -1,9 +1,16 @@
 {{if meta.user !== "" }}
   <h2>Report for ${meta.user}, {{html PTL.reports.dateRangeString(meta.start, meta.end)}}</h2>
-
+  {{if total.new.n1 || total.edit.pootle_n1 }}
+    <div id="reports-viewmode">
+      <select>
+        <option value="new">New translations</option>
+        <option value="edit">Edits</option>
+      </select>
+    </div>
+  {{/if}}
 {{if (typeof all_projects !== "undefined") && (Object.keys(all_projects).length > 0) }}
 {{each(lang, lang_data) results}}
-<div class="reports-lang">
+<div class="reports-lang{{if !lang_data.total.new.n1 }} new-empty{{/if}}{{if !lang_data.total.edit.pootle_n1 }} edit-empty{{/if}}">
   <h3><a href="{{html l('/'+lang)}}">${lang_data.name}</a></h3>
   <table class="stats">
     <thead>
@@ -11,7 +18,7 @@
       <th>Dates</th>
       {{each(i, project) all_projects}}
       <th class="project">${project}</th>
-      {{/each}}    
+      {{/each}}
       <th class="project">Total</th>
     </tr>
     </thead>
@@ -22,18 +29,32 @@
         {{each(code, project) all_projects }}
           <td class="number">
           {{if projects[code]}}
-            <span title="Translated words (precise): ${projects[code].n1} Translated words (Pootle): ${projects[code].pootle_n1}">
-              ${projects[code].n1}
-            </span>
+            {{if projects[code].new}}
+              <span class="new" title="Translated words (precise): ${projects[code].new.n1} Translated words (Pootle): ${projects[code].new.pootle_n1}">
+                ${projects[code].new.n1}
+              </span>
+            {{/if}}
+            {{if projects[code].edit}}
+              <span class="edit" title="">
+                ${projects[code].edit.pootle_n1}
+              </span>
+            {{/if}}
           {{else}}
             <span title="">&nbsp;</span>
           {{/if}}
           </td>
         {{/each}}
         <td class="total number">
-          <span title="Translated words (precise): ${total.n1} Translated words (Pootle): ${total.pootle_n1}">
-            ${total.n1}
-          </span>
+          {{if total.new.n1}}
+            <span class="new" title="Translated words (precise): ${total.new.n1} Translated words (Pootle): ${total.new.pootle_n1}">
+                ${total.new.n1}
+            </span>
+          {{/if}}
+          {{if total.edit.pootle_n1}}
+            <span class="edit">
+              ${total.edit.pootle_n1}
+            </span>
+          {{/if}}
         </td>
       </tr>
     {{/each}}
@@ -41,20 +62,32 @@
     <tr class="total">
       <td>Total</td>
       {{each(code, project) all_projects }}
-        <td class="number"> 
+        <td class="number">
         {{if lang_data.sums[code]}}
-          <span title="Translated words (precise): ${lang_data.sums[code].n1} Translated words (Pootle): ${lang_data.sums[code].pootle_n1}">
-            ${lang_data.sums[code].n1}
-          </span>
-        {{else}}
-          <span title="">&nbsp;</span>
+          {{if lang_data.sums[code].new.n1}}
+            <span class="new" title="Translated words (precise): ${lang_data.sums[code].new.n1} Translated words (Pootle): ${lang_data.sums[code].new.pootle_n1}">
+              ${lang_data.sums[code].new.n1}
+            </span>
+          {{/if}}
+          {{if lang_data.sums[code].edit.pootle_n1}}
+            <span class="edit">
+              ${lang_data.sums[code].edit.pootle_n1}
+            </span>
+          {{/if}}
         {{/if}}
         </td>
       {{/each}}
       <td class="total number">
-        <span title="Translated words (precise): ${lang_data.total.n1} Translated words (Pootle): ${lang_data.total.pootle_n1}">
-          ${lang_data.total.n1}
-        </span>
+        {{if lang_data.total.new.n1}}
+          <span class="new" title="Translated words (precise): ${lang_data.total.new.n1} Translated words (Pootle): ${lang_data.total.new.pootle_n1}">
+            ${lang_data.total.new.n1}
+          </span>
+        {{/if}}
+        {{if lang_data.total.edit.pootle_n1}}
+          <span class="edit">
+            ${lang_data.total.edit.pootle_n1}
+          </span>
+        {{/if}}
       </td>
     </tr>
 
