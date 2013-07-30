@@ -2524,12 +2524,17 @@ a.tags-toggle:hover
     opacity: 1;
 }
 
-a.tags-aside
+.tags-aside
 {
     float: right;
 }
 
-html[dir="rtl"] a.tags-aside
+html[dir="rtl"] .tags-aside
 {
     float: left;
+}
+
+.tags-filter-form
+{
+    margin-top: 2em;
 }

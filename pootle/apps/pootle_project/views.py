@@ -28,6 +28,8 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
 from django.utils.translation import ugettext as _, ungettext
 
+from taggit.models import Tag
+
 from pootle.i18n.gettext import tr_lang
 from pootle_app.models import Directory
 from pootle_app.models.permissions import (get_matching_permissions,
@@ -95,9 +97,45 @@ def make_language_item(request, translation_project):
     return info
 
 
+def handle_tags_filter_form(request, translation_projects):
+    """Handle the tags filter form, used for filtering TPs on project view."""
+    from django.contrib.contenttypes.models import ContentType
+
+    ct = ContentType.objects.get_for_model(TranslationProject)
+    criteria = {
+        "taggit_taggeditem_items__content_type": ct,
+        "taggit_taggeditem_items__object_id__in": translation_projects,
+    }
+    queryset = Tag.objects.filter(**criteria).distinct()
+
+    class TagsFilterForm(forms.Form):
+        filter_tags = forms.ModelMultipleChoiceField(queryset=queryset)
+
+    filter_tags = None
+
+    if request.method == 'POST' and request.POST.get('filter_tags', False):
+        tags_filter_form = TagsFilterForm(request.POST)
+        if tags_filter_form.is_valid():
+            filter_tags = tags_filter_form.cleaned_data['filter_tags']
+    else:
+        tags_filter_form = TagsFilterForm()
+
+    return filter_tags, tags_filter_form
+
+
 def get_project_base_template_vars(request, project, can_edit):
     """Get the base template vars for project overview view."""
     translation_projects = project.translationproject_set.all()
+
+    filters, tags_filter_form = handle_tags_filter_form(request,
+                                                        translation_projects)
+
+    if filters is not None:
+        for tag in filters:
+            # This looks pretty scary, but couldn't manage to get it working
+            # using Q objects in a single filter.
+            translation_projects = translation_projects.filter(tags__in=[tag])
+        translation_projects = translation_projects.distinct()
 
     items = [make_language_item(request, translation_project) \
             for translation_project in translation_projects.iterator()]
@@ -134,6 +172,7 @@ def get_project_base_template_vars(request, project, can_edit):
             'headings': get_table_headings(table_fields),
             'items': items,
         },
+        'tags_filter_form': tags_filter_form,
     }
 
     return template_vars

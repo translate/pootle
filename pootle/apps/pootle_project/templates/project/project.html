@@ -19,6 +19,20 @@
   </div>
 
   <div class="bd">
+    <form action="" method="post" class="tags-filter-form"
+      enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ tags_filter_form.non_field_errors }}
+      {% for field in tags_filter_form %}
+        {{ field }}
+        {{ field.errors }}
+      {% endfor %}
+      <input type="submit" value="{% trans "Filter" context "verb" %}"
+        title="{% trans "Filter the translation projects using this tags" %}" />
+    </form>
+  </div>
+
+  <div class="bd">
     {% display_table table %}
   </div>
 
