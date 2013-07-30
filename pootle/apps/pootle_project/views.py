@@ -92,6 +92,7 @@ def make_language_item(request, translation_project):
 
 
 def get_project_base_template_vars(request, project, can_edit):
+    """Get the base template vars for project overview view."""
     translation_projects = project.translationproject_set.all()
 
     items = [make_language_item(request, translation_project) \

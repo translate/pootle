@@ -134,7 +134,8 @@ def update_against_templates(request, translation_project):
 @util.has_permission('administrate')
 def delete_path_obj(request, translation_project, dir_path, filename=None):
     """Deletes the path objects under `dir_path` (+ `filename`) from the
-    filesystem, including `dir_path` in case it's not a translation project."""
+    filesystem, including `dir_path` in case it's not a translation project.
+    """
     current_path = translation_project.directory.pootle_path + dir_path
 
     try:
@@ -147,29 +148,29 @@ def delete_path_obj(request, translation_project, dir_path, filename=None):
             directory = get_object_or_404(Directory, pootle_path=current_path)
             stores_to_delete = directory.stores
 
-        # Delete stores in the current context from the DB and the filesystem
+        # Delete stores in the current context from the DB and the filesystem.
         for store in stores_to_delete:
-            # First from the FS
+            # First from the FS.
             if store.file:
                 store.file.storage.delete(store.file.name)
 
-            # From the DB after
+            # From the DB after.
             store.delete()
 
         if directory:
             directory_is_tp = directory.is_translationproject()
 
-            # First remove children directories from the DB
+            # First remove children directories from the DB.
             for child_dir in directory.child_dirs.iterator():
                 child_dir.delete()
 
             # Then the current directory (only if we are not in the root of the
-            # translation project)
+            # translation project).
             if not directory_is_tp:
                 directory.delete()
 
             # And finally all the directory tree from the filesystem (excluding
-            # the root of the translation project)
+            # the root of the translation project).
             try:
                 import shutil
                 po_dir = unicode(settings.PODIRECTORY)
@@ -455,23 +456,23 @@ def get_local_filename(translation_project, upload_filename):
 
 
 def unzip_external(request, directory, django_file, overwrite):
-    # Make a temporary directory to hold a zip file and its unzipped contents
+    # Make a temporary directory to hold a zip file and its unzipped contents.
     from pootle_misc import ptempfile as tempfile
     tempdir = tempfile.mkdtemp(prefix='pootle')
-    # Make a temporary file to hold the zip file
+    # Make a temporary file to hold the zip file.
     tempzipfd, tempzipname = tempfile.mkstemp(prefix='pootle', suffix='.zip')
     try:
-        # Dump the uploaded file to the temporary file
+        # Dump the uploaded file to the temporary file.
         try:
             os.write(tempzipfd, django_file.read())
         finally:
             os.close(tempzipfd)
-        # Unzip the temporary zip file
+        # Unzip the temporary zip file.
         import subprocess
         if subprocess.call(["unzip", tempzipname, "-d", tempdir]):
             import zipfile
             raise zipfile.BadZipfile(_("Error while extracting archive"))
-        # Enumerate the temporary directory...
+        # Enumerate the temporary directory.
         maybe_skip = True
         prefix = tempdir
         for basedir, dirs, files in os.walk(tempdir):
@@ -486,11 +487,11 @@ def unzip_external(request, directory, django_file, overwrite):
                 maybe_skip = False
 
             for fname in files:
-                # Read the contents of a file...
+                # Read the contents of a file.
                 fcontents = open(os.path.join(basedir, fname), 'rb').read()
                 newfile = StringIO.StringIO(fcontents)
                 newfile.name = os.path.basename(fname)
-                # Get the filesystem path relative to the temporary directory
+                # Get the filesystem path relative to the temporary directory.
                 subdir = host_to_unix_path(basedir[len(prefix)+len(os.sep):])
                 if subdir:
                     target_dir = directory.get_or_make_subdir(subdir)
@@ -498,15 +499,14 @@ def unzip_external(request, directory, django_file, overwrite):
                     target_dir = directory
                 # Construct a full UNIX path relative to the current
                 # translation project URL by attaching a UNIXified
-                # 'relative_host_dir' to the root relative path
-                # (i.e. the path from which the user is uploading the
-                # ZIP file.
+                # 'relative_host_dir' to the root relative path, i.e. the path
+                # from which the user is uploading the ZIP file.
                 try:
                     upload_file(request, target_dir, newfile, overwrite)
                 except ValueError, e:
                     logging.error(u"Error adding %s\t%s", fname, e)
     finally:
-        # Clean up temporary file and directory used in try-block
+        # Clean up temporary file and directory used in try-block.
         import shutil
         os.unlink(tempzipname)
         shutil.rmtree(tempdir)
@@ -547,7 +547,7 @@ def unzip_python(request, directory, django_file, overwrite):
 
 def upload_archive(request, directory, django_file, overwrite):
     # First we try to use "unzip" from the system, otherwise fall back to using
-    # the slower zipfile module
+    # the slower zipfile module.
     try:
         unzip_external(request, directory, django_file, overwrite)
     except:
@@ -557,18 +557,17 @@ def upload_archive(request, directory, django_file, overwrite):
 def overwrite_file(request, relative_root_dir, django_file, upload_path):
     """overwrite with uploaded file"""
     upload_dir = os.path.dirname(absolute_real_path(upload_path))
-    # Ensure that there is a directory into which we can dump the
-    # uploaded file.
+    # Ensure that there is a directory into which we can dump the uploaded
+    # file.
     if not os.path.exists(upload_dir):
         os.makedirs(upload_dir)
 
-    # Get the file extensions of the uploaded filename and the
-    # current translation project
+    # Get the file extensions of the uploaded filename and the current
+    # translation project.
     _upload_base, upload_ext = os.path.splitext(django_file.name)
     _local_base, local_ext = os.path.splitext(upload_path)
-    # If the extension of the uploaded file matches the extension
-    # used in this translation project, then we simply write the
-    # file to the disc.
+    # If the extension of the uploaded file matches the extension used in this
+    # translation project, then we simply write the file to the disk.
     if upload_ext == local_ext:
         outfile = open(absolute_real_path(upload_path), "wb")
         try:
@@ -588,16 +587,16 @@ def overwrite_file(request, relative_root_dir, django_file, upload_path):
         if not newstore.units:
             return
 
-        # If the extension of the uploaded file does not match the
-        # extension of the current translation project, we create
-        # an empty file (with the right extension)...
+        # If the extension of the uploaded file does not match the extension of
+        # the current translation project, we create an empty file (with the
+        # right extension).
         empty_store = factory.getobject(absolute_real_path(upload_path),
                                         classes=factory_classes)
-        # And save it...
+        # And save it.
         empty_store.save()
         request.translation_project.scan_files(vcs_sync=False)
-        # Then we open this newly created file and merge the
-        # uploaded file into it.
+        # Then we open this newly created file and merge the uploaded file into
+        # it.
         store = Store.objects.get(file=upload_path)
         #FIXME: maybe there is a faster way to do this?
         store.update(update_structure=True, update_translation=True,
@@ -631,11 +630,11 @@ def upload_file(request, directory, django_file, overwrite, store=None):
         django_file.mode = 1
 
     if store and store.file:
-        # uploading to an existing file
+        # Uploading to an existing file.
         pootle_path = store.pootle_path
         upload_path = store.real_path
     elif store:
-        # uploading to a virtual store
+        # Uploading to a virtual store.
         pootle_path = store.pootle_path
         upload_path = get_upload_path(translation_project, relative_root_dir,
                                       store.name)
@@ -643,7 +642,7 @@ def upload_file(request, directory, django_file, overwrite, store=None):
         local_filename = get_local_filename(translation_project,
                                             django_file.name)
         pootle_path = directory.pootle_path + local_filename
-        # The full filesystem path to 'local_filename'
+        # The full filesystem path to 'local_filename'.
         upload_path = get_upload_path(translation_project, relative_root_dir,
                                       local_filename)
         try:
@@ -682,7 +681,7 @@ def upload_file(request, directory, django_file, overwrite, store=None):
     newstore = factory.getobject(django_file, classes=factory_classes)
 
     #FIXME: are we sure this is what we want to do? shouldn't we
-    # diffrentiate between structure changing uploads and mere
+    # differentiate between structure changing uploads and mere
     # pretranslate uploads?
     suggestions = overwrite == 'merge'
     notranslate = overwrite == 'suggest'
@@ -732,7 +731,8 @@ class UploadHandler(view_handler.Handler):
         class DirectoryFormField(forms.ModelChoiceField):
 
             def label_from_instance(self, instance):
-                return instance.pootle_path[len(translation_project.pootle_path):]
+                tp_path_len = len(translation_project.pootle_path)
+                return instance.pootle_path[tp_path_len:]
 
 
         class UploadForm(forms.Form):
@@ -745,24 +745,31 @@ class UploadHandler(view_handler.Handler):
                 initial = 'suggest'
 
             overwrite = forms.ChoiceField(
-                    required=True, widget=forms.RadioSelect,
-                    label='', choices=choices, initial=initial)
+                required=True,
+                widget=forms.RadioSelect,
+                label='',
+                choices=choices,
+                initial=initial
+            )
             upload_to = StoreFormField(
-                    required=False, label=_('Upload to'),
-                    queryset=translation_project.stores.filter(
-                        pootle_path__startswith=request.current_path),
-                    help_text=_("Optionally select the file you want to "
-                                "merge with. If not specified, the uploaded "
-                                "file's name is used."))
-
+                required=False,
+                label=_('Upload to'),
+                queryset=translation_project.stores.filter(
+                    pootle_path__startswith=request.current_path),
+                help_text=_("Optionally select the file you want to merge "
+                            "with. If not specified, the uploaded file's name "
+                            "is used.")
+            )
             upload_to_dir = DirectoryFormField(
-                    required=False, label=_('Upload to'),
-                    queryset=Directory.objects.filter(
-                        pootle_path__startswith=translation_project.pootle_path).\
-                        exclude(pk=translation_project.directory.pk),
-                    help_text=_("Optionally select the file you want to "
-                                "merge with. If not specified, the uploaded "
-                                "file's name is used."))
+                required=False,
+                label=_('Upload to'),
+                queryset=Directory.objects.filter(
+                    pootle_path__startswith=translation_project.pootle_path).\
+                    exclude(pk=translation_project.directory.pk),
+                help_text=_("Optionally select the file you want to merge "
+                            "with. If not specified, the uploaded file's name "
+                            "is used.")
+            )
 
 
         self.Form = UploadForm
@@ -799,20 +806,20 @@ class UploadHandler(view_handler.Handler):
             translation_project.scan_files(vcs_sync=False)
             newstats = translation_project.getquickstats()
 
-            # create a submission, doesn't fix stats but at least
-            # shows up in last activity column
+            # Create a submission. Doesn't fix stats but at least shows up in
+            # last activity column.
             from django.utils import timezone
             s = Submission(
-                    creation_time=timezone.now(),
-                    translation_project=translation_project,
-                    submitter=get_profile(request.user),
-                    type=SubmissionTypes.UPLOAD,
-                    # the other fields are only relevant to unit-based changes
+                creation_time=timezone.now(),
+                translation_project=translation_project,
+                submitter=get_profile(request.user),
+                type=SubmissionTypes.UPLOAD,
+                # the other fields are only relevant to unit-based changes
             )
             s.save()
 
-            post_file_upload.send(
-                    sender=translation_project, user=request.user,
-                    oldstats=oldstats, newstats=newstats, archive=archive)
+            post_file_upload.send(sender=translation_project,
+                                  user=request.user, oldstats=oldstats,
+                                  newstats=newstats, archive=archive)
 
         return {'upload': self}
