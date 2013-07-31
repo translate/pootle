@@ -106,10 +106,16 @@ def handle_tags_filter_form(request, translation_projects):
         "taggit_taggeditem_items__content_type": ct,
         "taggit_taggeditem_items__object_id__in": translation_projects,
     }
-    queryset = Tag.objects.filter(**criteria).distinct()
 
     class TagsFilterForm(forms.Form):
-        filter_tags = forms.ModelMultipleChoiceField(queryset=queryset)
+        filter_tags = forms.ModelMultipleChoiceField(
+            queryset=Tag.objects.filter(**criteria).distinct(),
+            widget=forms.SelectMultiple(attrs={
+                'class': 'js-select2 select2-multiple',
+                'data-placeholder': _('Select one or more tags to use as '
+                                      'filter'),
+            }),
+        )
 
     filter_tags = None
 
