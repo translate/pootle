@@ -56,20 +56,7 @@
 {% if user.is_superuser or request.permissions.administrate %}
 <div id="js-add-tag-dialog" class="form popup-inline mfp-hide" lang="{{ LANGUAGE_CODE }}">
   <h2>{% trans "Add tag" %}</h2>
-  <form action="" method="post" id="js-add-tag-form"
-    enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ tag_form.non_field_errors }}
-    {% for field in tag_form %}
-    <p {% if field.help_text %}title="{{ field.help_text }}"{% endif %}>
-      {{ field.label_tag }} {{ field }}
-      {{ field.errors }}
-    </p>
-    {% endfor %}
-    <p class="buttons">
-      <input type="submit" value="{% trans "Add tag" %}" />
-    </p>
-  </form>
+  {% include "common/xhr_add_tag_to_tp_form.html" %}
 </div>
 {% endif %}
 {% endblock content %}

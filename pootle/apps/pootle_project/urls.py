@@ -30,9 +30,14 @@ urlpatterns = patterns('pootle_project.views',
         'project_language_index',
         name='project.overview'),
 
-    # Admin
+    # XHR views
+    url(r'^(?P<project_code>[^/]*)/ajax-add-tag-to-tp/?$',
+        'ajax_add_tag_to_tp_in_project',
+        name='project.ajax_add_tag_to_tp'),
     (r'^(?P<project_code>[^/]*)/edit_settings.html?$',
         'project_settings_edit'),
+
+    # Admin
     (r'^(?P<project_code>[^/]*)/admin.html$',
         'project_admin'),
     (r'^(?P<project_code>[^/]*)/permissions.html$',

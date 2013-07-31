@@ -22,6 +22,7 @@ import locale
 
 from django import forms
 from django.core.exceptions import PermissionDenied
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
@@ -138,19 +139,64 @@ def get_project_base_template_vars(request, project, can_edit):
     return template_vars
 
 
-def handle_tp_tags_form(request, project):
-    if request.method == 'POST' and request.POST.get('slug', False):
-        tag_form = TranslationProjectTagForm(request.POST, project=project)
+@ajax_required
+def ajax_add_tag_to_tp_in_project(request, project_code):
+    """Return an HTML snippet with the failed form or blank if valid."""
 
-        if tag_form.is_valid():
-            translation_project = tag_form.cleaned_data['translation_project']
-            new_tag = tag_form.save()
-            translation_project.tags.add(new_tag)
-            tag_form = TranslationProjectTagForm(project=project)
+    if not check_permission('administrate', request):
+        raise PermissionDenied(_("You do not have rights to add tags."))
+
+    if request.method != 'POST':
+        return HttpResponseNotAllowed(['POST'])
+
+    project = get_object_or_404(Project, code=project_code)
+
+    add_tag_form = TranslationProjectTagForm(request.POST, project=project)
+
+    if add_tag_form.is_valid():
+        translation_project = add_tag_form.cleaned_data['translation_project']
+        new_tag = add_tag_form.save()
+        translation_project.tags.add(new_tag)
+        return HttpResponse(status=201)
     else:
-        tag_form = TranslationProjectTagForm(project=project)
+        # If the form is invalid, perhaps it is because the tag already
+        # exists, so instead of creating the tag just retrieve it and add
+        # it to the translation project.
+        try:
+            # Try to retrieve the translation project.
+            kwargs = {
+                'pk': add_tag_form.data['translation_project'],
+            }
+            translation_project = TranslationProject.objects.get(**kwargs)
 
-    return tag_form
+            # Check if the tag is already added to the translation project, or
+            # try adding it.
+            criteria = {
+                'name': add_tag_form.data['name'],
+                'slug': add_tag_form.data['slug'],
+            }
+            if len(translation_project.tags.filter(**criteria)) == 1:
+                # If the tag is already applied to the translation project then
+                # avoid reloading the page.
+                return HttpResponse(status=204)
+            else:
+                # Else add the tag to the translation project.
+                tag = Tag.objects.get(**criteria)
+                translation_project.tags.add(tag)
+                return HttpResponse(status=201)
+        except Exception:
+            # If the form is invalid and the tag doesn't exist yet then display
+            # the form with the error messages.
+            url_kwargs = {
+                'project_code': project.code,
+            }
+            context = {
+                'add_tag_form': add_tag_form,
+                'add_tag_action_url': reverse('project.ajax_add_tag_to_tp',
+                                              kwargs=url_kwargs)
+            }
+            return render_to_response('common/xhr_add_tag_to_tp_form.html',
+                                      context, RequestContext(request))
 
 
 def project_language_index(request, project_code):
@@ -166,9 +212,14 @@ def project_language_index(request, project_code):
 
     if can_edit:
         from pootle_project.forms import DescriptionForm
+        url_kwargs = {
+            'project_code': project.code,
+        }
         templatevars.update({
             'form': DescriptionForm(instance=project),
-            'tag_form': handle_tp_tags_form(request, project),
+            'add_tag_form': TranslationProjectTagForm(project=project),
+            'add_tag_action_url': reverse('project.ajax_add_tag_to_tp',
+                                          kwargs=url_kwargs),
         })
 
     return render_to_response('project/project.html', templatevars,
