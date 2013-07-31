@@ -72,12 +72,14 @@ def agreement_form_factory(pages, user, base_class=forms.Form,
             """Adds `page` as a required field to this form."""
             url = page.url and page.url or reverse('staticpages.display',
                                                    args=[page.virtual_path])
-            anchor_classes = u''.join(['js-agreement-popup', ' ',
-                                       anchor_class])
-            anchor_attrs = u'href="%s" class="%s"' % (url, anchor_classes,)
-            # Translators: The second '%s' is the title of a document
-            label = mark_safe(_("I have read and accept: <a %s>%s</a>",
-                                (anchor_attrs, page.title,)))
+            label_params = {
+                'url': url,
+                'classes': u''.join(['js-agreement-popup', ' ', anchor_class]),
+                'title': page.title,
+            }
+            label = mark_safe(_('I have read and accept: <a href="%(url)s" '
+                                'class="%(classes)s">%(title)s</a>',
+                                label_params))
 
             field_name = 'legal_%d' % page.pk
             self.fields[field_name] = forms.BooleanField(label=label,
