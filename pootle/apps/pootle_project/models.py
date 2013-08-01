@@ -22,6 +22,7 @@ import os
 
 from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
@@ -136,6 +137,9 @@ class Project(models.Model):
     def natural_key(self):
         return (self.code,)
     natural_key.dependencies = ['pootle_app.Directory']
+
+    def get_translate_url(self, **kwargs):
+        return reverse('pootle-project-translate', args=[self.code])
 
     def clean(self):
         if self.code in RESERVED_PROJECT_CODES:
