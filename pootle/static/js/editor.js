@@ -57,7 +57,9 @@
 
     /* Initialize search */
     // TODO: pass the environment option to the init
-    PTL.search.init();
+    PTL.search.init({
+      onSubmit: this.search
+    });
 
     /*
      * Bind event handlers
@@ -155,18 +157,6 @@
       $('#editor-comment').slideToggle('fast');
     });
     $(document).on('submit', '#comment-form', this.comment);
-
-    /* Search */
-    $(document).on('submit', '#search-form', function (e) {
-      e.preventDefault();
-      PTL.editor.search();
-    });
-    $(document).on('keypress', '#id_search', function (e) {
-      if (e.which === 13) {
-        e.preventDefault();
-        PTL.editor.search();
-      }
-    });
 
     /* Misc */
     $(document).on('click', '.js-editor-msg-hide', this.hideMsg);
@@ -1699,7 +1689,9 @@
 
 
   /* Loads the search view */
-  search: function () {
+  search: function (e) {
+    e.preventDefault();
+
     var newHash,
         text = $("#id_search").val();
 
