@@ -198,6 +198,47 @@ class UnitManager(RelatedManager):
         return self.get(unitid_hash=unitid_hash,
                         store__pootle_path=pootle_path)
 
+    def get_for_path(self, pootle_path, profile, permission_code='view'):
+        """Returns units that fall below the `pootle_path` umbrella.
+
+        :param pootle_path: An internal pootle path.
+        :param profile: The user profile who is accessing the units.
+        :param permission_code: The permission code to check units for.
+        """
+        lang, proj, dir_path, filename = split_pootle_path(pootle_path)
+
+        units_qs = super(UnitManager, self).get_query_set().filter(
+            state__gt=OBSOLETE,
+        )
+
+        # /projects/<project_code>/translate/*
+        if lang is None and proj is not None:
+            units_qs = units_qs.extra(
+                where=[
+                    '(pootle_store_store.pootle_path LIKE %s AND'
+                    ' pootle_store_store.pootle_path NOT LIKE %s)'
+                ], params=[''.join(['/%/', proj ,'/%']), '/templates/%']
+            )
+        # /<lang_code>/<project_code>/translate/*
+        # /<lang_code>/translate/*
+        # /translate/*
+        else:
+            units_qs = units_qs.filter(
+                store__pootle_path__startswith=pootle_path,
+            )
+
+        # Only do permission checking for non-superusers
+        if not profile.user.is_superuser:
+            # XXX: Can we find a better query to check for permissions?
+            perms_lookup = {
+                'store__parent__permission_sets__profile': profile,
+                'store__parent__permission_sets__'
+                    'positive_permissions__codename': permission_code,
+            }
+            units_qs = units_qs.filter(**perms_lookup)
+
+        return units_qs
+
 
 class Unit(models.Model, base.TranslationUnit):
     store = models.ForeignKey("pootle_store.Store", db_index=True)
