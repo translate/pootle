@@ -152,22 +152,6 @@
 $(function() {
   PTL.search.init();
 
-  $("#search-form").submit(function (e) {
-    e.preventDefault();
-
-    var s = $(this.search).val();
-
-    if (!s) {
-      return false;
-    }
-
-    var remember = true,
-        hash = "#search=" + PTL.search.parse(s, remember);
-    window.location = this.action + hash;
-
-    return false;
-  });
-
   PTL.common.updateRelativeDates();
   setInterval(PTL.common.updateRelativeDates, 6e4);
 

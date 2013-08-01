@@ -15,7 +15,8 @@
       /* Default settings */
       this.defaultEnv = "editor";
       this.settings = {
-        environment: this.defaultEnv
+        environment: this.defaultEnv,
+        onSubmit: this.onSubmit
       };
       /* Merge given options with default settings */
       if (options) {
@@ -77,6 +78,13 @@
         toggleFields(e);
       });
 
+      this.$input.on('keypress', function (e) {
+        if (e.which === 13) {
+          PTL.search.$form.trigger('submit');
+        }
+      });
+      this.$form.on('submit', this.settings.onSubmit);
+
       /* Necessary to detect clicks out of PTL.search.$container */
       $(document).mouseup(function (e) {
         if (PTL.search.isOpen() &&
@@ -120,7 +128,7 @@
 
       if (searchFields.length || searchOptions.length) {
         // Remember field selection in a cookie
-        var cookieName = "search-" + this.settings['environment'],
+        var cookieName = "search-" + this.settings.environment,
             cookieData = {};
         if (searchFields.length) {
           cookieData.sfields = searchFields;
@@ -133,6 +141,22 @@
       }
 
       return query;
+    },
+
+    onSubmit: function (e) {
+      e.preventDefault();
+
+      var s = PTL.search.$input.val();
+
+      if (!s) {
+        return false;
+      }
+
+      var remember = true,
+          hash = "#search=" + PTL.search.buildSearchQuery(s, remember);
+      window.location = this.action + hash;
+
+      return false;
     }
   };
 
