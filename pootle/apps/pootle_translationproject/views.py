@@ -243,9 +243,9 @@ def vcs_update(request, translation_project, dir_path, filename):
     return redirect(obj.get_absolute_url())
 
 
-def _handle_upload_form(request, current_path, translation_project, directory):
+def _handle_upload_form(request, translation_project):
     """Process the upload form in TP overview."""
-    upload_form_class = upload_form_factory(request, current_path)
+    upload_form_class = upload_form_factory(request)
 
     if request.method == 'POST' and 'file' in request.FILES:
         upload_form = upload_form_class(request.POST, request.FILES)
@@ -267,12 +267,12 @@ def _handle_upload_form(request, current_path, translation_project, directory):
             # relative_root_dir == foo/bar.
             if django_file.name.endswith('.zip'):
                 archive = True
-                target_directory = upload_to_dir or directory
+                target_directory = upload_to_dir or request.directory
                 upload_archive(request, target_directory, django_file,
                                overwrite)
             else:
                 archive = False
-                upload_file(request, directory, django_file, overwrite,
+                upload_file(request, request.directory, django_file, overwrite,
                             store=upload_to)
 
             translation_project.scan_files(vcs_sync=False)
@@ -309,19 +309,13 @@ def goals_overview(*args, **kwargs):
 @get_goal
 def overview(request, translation_project, dir_path, filename=None,
              goal=None, in_goal_overview=False):
-    current_path = translation_project.directory.pootle_path + dir_path
 
     if filename:
-        current_path = current_path + filename
-        store = get_object_or_404(Store, pootle_path=current_path)
-        directory = store.parent
         ctx = {
-            'store_tags': store.tag_like_objects,
+            'store_tags': request.store.tag_like_objects,
         }
         template_name = "translation_projects/store_overview.html"
     else:
-        store = None
-        directory = get_object_or_404(Directory, pootle_path=current_path)
         ctx = {
             'tp_tags': translation_project.tag_like_objects,
         }
@@ -332,8 +326,7 @@ def overview(request, translation_project, dir_path, filename=None,
         check_permission('overwrite', request)):
 
         ctx.update({
-            'upload_form': _handle_upload_form(request, current_path,
-                                               translation_project, directory),
+            'upload_form': _handle_upload_form(request, translation_project),
         })
 
     can_edit = check_permission('administrate', request)
@@ -341,7 +334,7 @@ def overview(request, translation_project, dir_path, filename=None,
     project = translation_project.project
     language = translation_project.language
 
-    path_obj = store or directory
+    path_obj = request.store or request.directory
 
     #TODO enable again some actions when drilling down a goal.
     if goal is None:
@@ -354,7 +347,7 @@ def overview(request, translation_project, dir_path, filename=None,
 
     #TODO enable the following again when drilling down a goal.
     if running and goal is None:
-        if store:
+        if request.store:
             act = StoreAction
         else:
             act = TranslationProjectAction
@@ -365,17 +358,17 @@ def overview(request, translation_project, dir_path, filename=None,
                                       {'action': act, 'extdir': running})
         else:
             if not getattr(action, 'nosync', False):
-                (store or translation_project).sync()
+                (request.store or translation_project).sync()
             if action.is_active(request):
                 vcs_dir = settings.VCS_DIRECTORY
                 po_dir = settings.PODIRECTORY
-                tp_dir = directory.get_real_path()
+                tp_dir = request.directory.get_real_path()
                 store_fn = '*'
-                if store:
+                if request.store:
                     tp_dir_slash = add_trailing_slash(tp_dir)
-                    if store.file.name.startswith(tp_dir_slash):
+                    if request.store.file.name.startswith(tp_dir_slash):
                         # Note: store_f used below in reverse() call.
-                        store_f = store.file.name[len(tp_dir_slash):]
+                        store_f = request.store.file.name[len(tp_dir_slash):]
                         store_fn = store_f.replace('/', os.sep)
 
                 # Clear possibly stale output/error (even from other path_obj).
@@ -416,7 +409,7 @@ def overview(request, translation_project, dir_path, filename=None,
                         return response
 
                 if not action_output:
-                    if not store:
+                    if not request.store:
                         rev_args = [language.code, project.code, '']
                         overview_url = reverse('pootle-tp-overview',
                                                args=rev_args)
@@ -448,7 +441,7 @@ def overview(request, translation_project, dir_path, filename=None,
         'path_obj': path_obj,
         'resource_path': request.resource_path,
         'topstats': gentopstats_translation_project(translation_project),
-        'feed_path': directory.pootle_path[1:],
+        'feed_path': request.directory.pootle_path[1:],
         'action_groups': actions,
         'action_output': action_output,
         'can_edit': can_edit,
@@ -456,7 +449,7 @@ def overview(request, translation_project, dir_path, filename=None,
 
     tp_pootle_path = translation_project.pootle_path
 
-    if store is None:
+    if request.store is None:
         path_obj_goals = Goal.get_goals_for_path(path_obj.pootle_path)
         path_obj_has_goals = len(path_obj_goals) > 0
 
@@ -472,7 +465,7 @@ def overview(request, translation_project, dir_path, filename=None,
                     'proportional': False,
                     'fields': table_fields,
                     'headings': get_table_headings(table_fields),
-                    'parent': get_parent(directory),
+                    'parent': get_parent(request.directory),
                     'items': items,
                 },
                 'path_obj_has_goals': True,
@@ -488,8 +481,8 @@ def overview(request, translation_project, dir_path, filename=None,
                     'proportional': True,
                     'fields': table_fields,
                     'headings': get_table_headings(table_fields),
-                    'parent': get_goal_parent(directory, goal),
-                    'items': get_goal_children(directory, goal),
+                    'parent': get_goal_parent(request.directory, goal),
+                    'items': get_goal_children(request.directory, goal),
                 },
                 'goal': goal,
                 'goal_url': goal.get_drill_down_url_for_path(tp_pootle_path),
@@ -505,8 +498,8 @@ def overview(request, translation_project, dir_path, filename=None,
                     'proportional': True,
                     'fields': table_fields,
                     'headings': get_table_headings(table_fields),
-                    'parent': get_parent(directory),
-                    'items': get_children(directory),
+                    'parent': get_parent(request.directory),
+                    'items': get_children(request.directory),
                 },
                 'path_obj_has_goals': path_obj_has_goals,
             })
@@ -517,7 +510,7 @@ def overview(request, translation_project, dir_path, filename=None,
         })
 
     if can_edit:
-        if store is None:
+        if request.store is None:
             url_kwargs = {
                 'language_code': language.code,
                 'project_code': project.code,
