@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -18,11 +19,22 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.conf.urls import patterns
+from django.conf.urls import patterns, url
+
 
 urlpatterns = patterns('pootle_app.views.index',
-    (r'^robots.txt$', 'robots.view'),
-    (r'^/?$', 'index.view'),
-    (r'^about/$', 'about.view'),
-    (r'^about/contributors/$', 'contributors.view'),
+    url(r'^robots.txt$',
+        'robots.view',
+        name='pootle-robots'),
+
+    url(r'^/?$',
+        'index.view',
+        name='pootle-home'),
+
+    url(r'^about/$',
+        'about.view',
+        name='pootle-about'),
+    url(r'^about/contributors/$',
+        'contributors.view',
+        name='pootle-about-contributors'),
 )
