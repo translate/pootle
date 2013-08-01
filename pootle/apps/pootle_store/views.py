@@ -45,6 +45,7 @@ from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.models.permissions import (get_matching_permissions,
                                            check_permission,
                                            check_profile_permission)
+from pootle.core.exceptions import Http400
 from pootle_misc.baseurl import redirect
 from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.forms import make_search_form
@@ -462,8 +463,7 @@ def _build_units_list(units, reverse=False):
 
 
 @ajax_required
-@get_xhr_resource_context('view')
-def get_units(request, path_obj):
+def get_units(request):
     """Gets source and target texts and its metadata.
 
     :return: A JSON-encoded object containing the source and target texts
@@ -472,8 +472,13 @@ def get_units(request, path_obj):
         When the ``pager`` GET parameter is present, pager information
         will be returned too.
     """
+    pootle_path = request.GET.get('path', None)
+    if pootle_path is None:
+        raise Http400(_('Arguments missing.'))
+
     page = None
 
+    request.profile = get_profile(request.user)
     limit = request.profile.get_unit_rows()
 
     units_qs = Unit.objects.get_for_path(pootle_path, request.profile)
