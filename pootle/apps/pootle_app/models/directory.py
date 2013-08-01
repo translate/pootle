@@ -70,7 +70,7 @@ class Directory(models.Model):
         super(Directory, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
-        for store in self.stores:
+        for store in self.stores.iterator():
             store.delete()
 
         super(Directory, self).delete(*args, **kwargs)
