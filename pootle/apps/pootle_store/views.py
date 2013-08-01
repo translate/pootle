@@ -430,15 +430,7 @@ def get_units(request, path_obj):
 
     limit = request.profile.get_unit_rows()
 
-    # XXX: Is this portable away from translation projects?
-    is_store = not path_obj.is_dir
-    if is_store:
-        units_qs = path_obj.units
-    else:
-        units_qs = Unit.objects.filter(
-            store__pootle_path__startswith=request.pootle_path,
-        )
-
+    units_qs = Unit.objects.get_for_path(pootle_path, request.profile)
     step_queryset = get_step_query(request, units_qs)
 
     # Maybe we are trying to load directly a specific unit, so we have
