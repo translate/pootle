@@ -303,26 +303,15 @@ class ProjectIndexView(view_handler.View):
 
 @get_path_obj
 @permission_required('view')
+@get_resource_context
 def overview(request, translation_project, dir_path, filename=None):
-    current_path = translation_project.directory.pootle_path + dir_path
-
-    if filename:
-        current_path = current_path + filename
-        store = get_object_or_404(Store, pootle_path=current_path)
-        directory = store.parent
-    else:
-        directory = get_object_or_404(Directory, pootle_path=current_path)
-        store = None
-
-    request.current_path = current_path
-
     view_obj = ProjectIndexView(forms=dict(upload=UploadHandler,
                                           )
                                )
 
     return render_to_response("translation_project/overview.html",
                               view_obj(request, translation_project,
-                                       directory, store),
+                                       request.directory, request.store),
                               context_instance=RequestContext(request))
 
 
@@ -810,7 +799,7 @@ class UploadHandler(view_handler.Handler):
         class StoreFormField(forms.ModelChoiceField):
 
             def label_from_instance(self, instance):
-                return instance.pootle_path[len(request.current_path):]
+                return instance.pootle_path[len(request.pootle_path):]
 
 
         class DirectoryFormField(forms.ModelChoiceField):
@@ -834,7 +823,7 @@ class UploadHandler(view_handler.Handler):
             upload_to = StoreFormField(
                     required=False, label=_('Upload to'),
                     queryset=translation_project.stores.filter(
-                        pootle_path__startswith=request.current_path),
+                        pootle_path__startswith=request.pootle_path),
                     help_text=_("Optionally select the file you want to "
                                 "merge with. If not specified, the uploaded "
                                 "file's name is used."))
