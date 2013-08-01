@@ -2102,12 +2102,15 @@
 
   /* Normalizes language codes in order to use them in MT services */
   normalizeCode: function (locale) {
+    if (locale) {
       var clean = locale.replace('_', '-')
       var atIndex = locale.indexOf('@');
       if (atIndex !== -1) {
         clean = clean.slice(0, atIndex);
       }
       return clean;
+    }
+    return locale;
   },
 
   collectArguments: function (s) {
