@@ -36,6 +36,7 @@ from subprocess import CalledProcessError
 from django.conf import settings
 
 from pootle.scripts.actions import DownloadAction
+from pootle_store.util import absolute_real_path
 
 from moztarball import (AURORA, MozillaAction, getLogger, tempdir, get_phases,
                         merge_po2moz)
@@ -44,7 +45,7 @@ from buildxpi import build_xpi
 logger = getLogger(__name__)
 
 
-class MozillaBuildLangpackAction(MozillaAction):
+class MozillaBuildLangpackAction(MozillaAction, DownloadAction):
     """Build Mozilla language pack for Firefox."""
 
     def __init__(self, **kwargs):
@@ -133,6 +134,10 @@ class MozillaBuildLangpackAction(MozillaAction):
                             logger.debug("copying '%s' to '%s'",
                                          xpifile, newname)
                             shutil.move(xpifile, newname)
+                            self.set_error(self.set_download_file(path,
+                                                                  newname))
+                            os.remove(newname)
+
 
                         self.set_output(_("Finished building the language "
                                           "pack, click on the download "
@@ -162,10 +167,12 @@ class MozillaDownloadLangpackAction(DownloadAction, MozillaAction):
     def is_active(self, request):
         project = request.translation_project.project.code
         language = request.translation_project.language.code
-        root = settings.PODIRECTORY
         tpdir = request.translation_project.directory.get_real_path()
-        xpifile = os.path.join(root, tpdir, '%s-%s.xpi' %(project, language))
-        if not os.path.exists(xpifile):
+        xpi_file = os.path.join('POOTLE_EXPORT',
+                                tpdir,
+                                '%s-%s.xpi' %(project, language))
+        abs_xpi_file = absolute_real_path(xpi_file)
+        if not os.path.exists(abs_xpi_file):
             return False
         else:
             return super(MozillaDownloadLangpackAction, self).is_active(request)
@@ -173,13 +180,10 @@ class MozillaDownloadLangpackAction(DownloadAction, MozillaAction):
     def run(self, path, root, tpdir,  # pylint: disable=R0913,R0914
             language, project, vc_root, **kwargs):
         """Download a Mozilla language pack XPI."""
-        xpifile = os.path.join(root, tpdir, '%s-%s.xpi' %(project, language))
-
-        # This check is redundant, but it does not hurt
-        if os.path.exists(xpifile):
-            self.set_error(self.set_download_file(path, xpifile))
-        else:
-            self.set_error(_("Language pack was not built."))
+        xpi_file = os.path.join('POOTLE_EXPORT',
+                                tpdir,
+                                '%s-%s.xpi' %(project, language))
+        self._dl_path[path.pootle_path] = xpi_file
 
 MozillaDownloadLangpackAction.moztar = MozillaDownloadLangpackAction(
                                             category="Mozilla",

@@ -281,6 +281,7 @@ class MozillaTarballAction(DownloadAction, MozillaAction):
                               -process.returncode)
                 else:
                     error += self.set_download_file(path, tarfile)
+                    os.remove(tarfile)
 
         self.set_output(output)
         self.set_error(error)
