@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -156,6 +157,9 @@ class Language(models.Model):
 
     def get_absolute_url(self):
         return l(self.pootle_path)
+
+    def get_translate_url(self, **kwargs):
+        return reverse('pootle-language-translate', args=[self.code])
 
     def localname(self):
         """localized fullname"""
