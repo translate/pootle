@@ -77,14 +77,17 @@ def get_path_obj(func):
 
                 raise Http404
 
+            request.ctx_obj = translation_project
             return func(request, translation_project, *args, **kwargs)
 
         if language_code:
             language = get_object_or_404(Language, code=language_code)
+            request.ctx_obj = language
             return func(request, language, *args, **kwargs)
 
         if project_code:
             project = get_object_or_404(Project, code=project_code)
+            request.ctx_obj = project
             return func(request, project, *args, **kwargs)
 
     return wrapped
@@ -130,6 +133,7 @@ def get_resource_context(func):
         request.store = store
         request.directory = directory
         request.pootle_path = pootle_path
+        request.ctx_obj = store or directory
         request.ctx_path = ctx_path
         request.resource_path = resource_path
 
