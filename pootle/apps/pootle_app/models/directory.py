@@ -74,8 +74,22 @@ class Directory(models.Model):
 
     def get_translate_url(self, **kwargs):
         lang, proj, dir, fn = split_pootle_path(self.pootle_path)
+
+        if lang and proj:
+            pattern_name = 'pootle-tp-translate'
+            pattern_args = [lang, proj, dir, fn]
+        elif lang:
+            pattern_name = 'pootle-language-translate'
+            pattern_args = [lang]
+        elif proj:
+            pattern_name = 'pootle-project-translate'
+            pattern_args = [proj]
+        else:
+            pattern_name = 'pootle-translate'
+            pattern_args = []
+
         return u''.join([
-            reverse('pootle-tp-translate', args=[lang, proj, dir, fn]),
+            reverse(pattern_name, args=pattern_args),
             get_editor_filter(**kwargs),
         ])
 
