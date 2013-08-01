@@ -140,23 +140,24 @@ def get_resource_context(func):
 
 
 def permission_required(permission_codes):
+    """Checks for `permission_codes` in the current context.
+
+    To retrieve the proper context, the `get_path_obj` decorator must be
+    used along with this decorator.
+    """
     def wrapped(func):
         @wraps(func)
         def _wrapped(request, *args, **kwargs):
-            try:
-                path_obj = args[0]
-                directory = path_obj.directory
+            path_obj = args[0]
+            directory = (path_obj if isinstance(path_obj, Directory)
+                                  else path_obj.directory)
 
-                # HACKISH: some old code relies on
-                # `request.translation_project`, `request.language` etc.
-                # being set, so we need to set that too.
-                attr_name = CLS2ATTR.get(path_obj.__class__.__name__,
-                                         'path_obj')
-                setattr(request, attr_name, path_obj)
-            except IndexError:
-                # No path object given, use root directory
-                path_obj = None
-                directory = Directory.objects.root
+            # HACKISH: some old code relies on
+            # `request.translation_project`, `request.language` etc.
+            # being set, so we need to set that too.
+            attr_name = CLS2ATTR.get(path_obj.__class__.__name__,
+                                     'path_obj')
+            setattr(request, attr_name, path_obj)
 
             request.profile = get_profile(request.user)
             request.permissions = get_matching_permissions(request.profile,
