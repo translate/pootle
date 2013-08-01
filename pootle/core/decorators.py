@@ -52,14 +52,14 @@ def get_path_obj(func):
 
         if language_code and project_code:
             try:
-                translation_project = TranslationProject.objects.get(
+                path_obj = TranslationProject.objects.get(
                     language__code=language_code,
                     project__code=project_code
                 )
             except TranslationProject.DoesNotExist:
-                translation_project = None
+                path_obj = None
 
-            if translation_project is None:
+            if path_obj is None:
                 # Explicit selection via the UI: redirect either to
                 # ``/language_code/`` or ``/projects/project_code/``
                 user_choice = request.COOKIES.get('user-choice', None)
@@ -76,19 +76,16 @@ def get_path_obj(func):
                     return response
 
                 raise Http404
+        elif language_code:
+            path_obj = get_object_or_404(Language, code=language_code)
+        elif project_code:
+            path_obj = get_object_or_404(Project, code=project_code)
+        else:  # No arguments: treat it like the root directory
+            path_obj = Directory.objects.root
 
-            request.ctx_obj = translation_project
-            return func(request, translation_project, *args, **kwargs)
+        request.ctx_obj = path_obj
 
-        if language_code:
-            language = get_object_or_404(Language, code=language_code)
-            request.ctx_obj = language
-            return func(request, language, *args, **kwargs)
-
-        if project_code:
-            project = get_object_or_404(Project, code=project_code)
-            request.ctx_obj = project
-            return func(request, project, *args, **kwargs)
+        return func(request, path_obj, *args, **kwargs)
 
     return wrapped
 
