@@ -117,12 +117,6 @@ def optional_depcheck():
             'text': _("Can't find python-levenshtein package. Updating against"
                       " templates is faster with python-levenshtein.")
         })
-    if not depcheck.test_indexer():
-        optional.append({
-            'dependency': 'indexer',
-            'text': _("No text indexing engine found. Searching is faster if "
-                      "an indexing engine like Xapian or Lucene is installed.")
-        })
 
     filter_name, filter_args = get_markup_filter()
     if filter_name is None:

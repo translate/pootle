@@ -26,12 +26,6 @@ from pootle_app.management.commands import PootleCommand
 class Command(PootleCommand):
     help = "Allow stats and text indices to be refreshed manually."
 
-    def handle_translation_project(self, translation_project, **options):
-        # This will force the indexer of a TranslationProject to be
-        # initialized. The indexer will update the text index of the
-        # TranslationProject if it is out of date.
-        translation_project.indexer
-
     def handle_all_stores(self, translation_project, **options):
         translation_project.getcompletestats()
         translation_project.getquickstats()

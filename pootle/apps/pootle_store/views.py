@@ -247,50 +247,7 @@ def get_search_step_query(form, units_queryset):
         logging.debug(u"Using exact database search")
         return get_non_indexed_search_exact_query(form, units_queryset)
 
-    '''
-    if translation_project.indexer is None:
-       logging.debug(u"No indexer for %s, using database search",
-                     translation_project)
-    '''
     return get_non_indexed_search_step_query(form, units_queryset)
-
-    '''
-    logging.debug(u"Found %s indexer for %s, using indexed search",
-                  translation_project.indexer.INDEX_DIRECTORY_NAME,
-                  translation_project)
-
-    word_querylist = []
-    words = form.cleaned_data['search']
-    fields = form.cleaned_data['sfields']
-    paths = units_queryset.order_by() \
-                          .values_list('store__pootle_path', flat=True) \
-                          .distinct()
-    path_querylist = [('pofilename', pootle_path)
-                      for pootle_path in paths.iterator()]
-    cache_key = "search:%s" % str(hash((repr(path_querylist),
-                                        translation_project.get_mtime(),
-                                        repr(words),
-                                        repr(fields))))
-
-    dbids = cache.get(cache_key)
-    if dbids is None:
-        searchparts = []
-        word_querylist = [(field, words) for field in fields]
-        textquery = translation_project.indexer.make_query(word_querylist,
-                                                           False)
-        searchparts.append(textquery)
-
-        pathquery = translation_project.indexer.make_query(path_querylist,
-                                                           False)
-        searchparts.append(pathquery)
-        limitedquery = translation_project.indexer.make_query(searchparts, True)
-
-        result = translation_project.indexer.search(limitedquery, ['dbid'])
-        dbids = [int(item['dbid'][0]) for item in result[:999]]
-        cache.set(cache_key, dbids, settings.OBJECT_CACHE_TIMEOUT)
-
-    return units_queryset.filter(id__in=dbids)
-    '''
 
 
 def get_step_query(request, units_queryset):
