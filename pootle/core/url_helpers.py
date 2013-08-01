@@ -28,13 +28,26 @@ def split_pootle_path(pootle_path):
     :return: A tuple containing each part of a pootle_path`::
         (language code, project code, directory path, filename)
     """
+    slash_count = pootle_path.count('/')
     parts = pootle_path.split(u'/', 3)[1:]
 
-    # FIXME: check parts for IndexErrors
-    language_code = parts[0]
-    project_code = parts[1]
+    language_code = None
+    project_code = None
+    ctx = ''
 
-    dir_path, filename = os.path.split(parts[2])
+    # /<lang_code>/
+    if slash_count == 2:
+        language_code = parts[0]
+    # /projects/<project_code>/
+    elif slash_count == 3 and pootle_path.startswith('/projects/'):
+        project_code = parts[1]
+    # /<lang_code>/<project_code>/*
+    elif slash_count != 1:
+        language_code = parts[0]
+        project_code = parts[1]
+        ctx = parts[2]
+
+    dir_path, filename = os.path.split(ctx)
     if dir_path:
         dir_path = u'/'.join([dir_path, ''])  # Add trailing slash
 
