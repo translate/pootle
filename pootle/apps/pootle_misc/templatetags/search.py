@@ -40,7 +40,7 @@ def render_search(context, form=None, action=None):
         form = make_search_form(request=request, terminology=is_terminology)
 
     if action is None:
-        action = l('translate.html')
+        action = l('translate/')
 
     template_vars = {
         'search_form': form,
