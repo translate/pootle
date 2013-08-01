@@ -175,7 +175,7 @@ def get_alt_src_langs(request, profile, translation_project):
     return langs
 
 
-def get_non_indexed_search_step_query(form, units_queryset):
+def get_search_query(form, units_queryset):
     words = form.cleaned_data['search'].split()
     result = units_queryset.none()
 
@@ -211,7 +211,7 @@ def get_non_indexed_search_step_query(form, units_queryset):
 
     return result
 
-def get_non_indexed_search_exact_query(form, units_queryset):
+def get_search_exact_query(form, units_queryset):
     phrase = form.cleaned_data['search']
     result = units_queryset.none()
 
@@ -240,14 +240,14 @@ def get_non_indexed_search_exact_query(form, units_queryset):
 
     return result
 
+
 def get_search_step_query(form, units_queryset):
     """Narrows down units query to units matching search string."""
-
     if 'exact' in form.cleaned_data['soptions']:
         logging.debug(u"Using exact database search")
-        return get_non_indexed_search_exact_query(form, units_queryset)
+        return get_search_exact_query(form, units_queryset)
 
-    return get_non_indexed_search_step_query(form, units_queryset)
+    return get_search_query(form, units_queryset)
 
 
 def get_step_query(request, units_queryset):
