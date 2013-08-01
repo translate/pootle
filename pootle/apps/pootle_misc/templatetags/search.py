@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2012 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -29,8 +30,8 @@ register = template.Library()
 
 @register.inclusion_tag('search.html', takes_context=True)
 def render_search(context, form=None, action=None):
+    request = context['request']
     if form is None:
-        request = context['request']
 
         is_terminology = False
         tp = context.get('translation_project', None)
@@ -40,7 +41,7 @@ def render_search(context, form=None, action=None):
         form = make_search_form(request=request, terminology=is_terminology)
 
     if action is None:
-        action = l('translate/')
+        action = request.ctx_obj.get_translate_url()
 
     template_vars = {
         'search_form': form,
