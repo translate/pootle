@@ -135,6 +135,12 @@ class Directory(models.Model, TreeItem):
 
         super(Directory, self).save(*args, **kwargs)
 
+    def delete(self, *args, **kwargs):
+        for store in self.stores:
+            store.delete()
+
+        super(Directory, self).delete(*args, **kwargs)
+
     def get_absolute_url(self):
         return l(self.pootle_path)
 
