@@ -69,6 +69,12 @@ class Directory(models.Model):
 
         super(Directory, self).save(*args, **kwargs)
 
+    def delete(self, *args, **kwargs):
+        for store in self.stores.iterator():
+            store.delete()
+
+        super(Directory, self).delete(*args, **kwargs)
+
     def get_relative(self, path):
         """Given a path of the form a/b/c, where the path is relative
         to this directory, recurse the path and return the object
