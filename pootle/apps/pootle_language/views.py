@@ -26,6 +26,7 @@ from django.template import loader, RequestContext
 from django.utils.translation import ugettext as _, ungettext
 
 from pootle.core.decorators import get_path_obj, permission_required
+from pootle.core.helpers import get_translation_context
 from pootle.i18n.gettext import tr_lang
 from pootle_app.models.permissions import (get_matching_permissions,
                                            check_permission)
@@ -163,13 +164,30 @@ def language_settings_edit(request, language):
                         mimetype="application/json")
 
 
-def language_admin(request, language_code):
-    # Check if the user can access this view
-    language = get_object_or_404(Language, code=language_code)
-    request.permissions = get_matching_permissions(get_profile(request.user),
-                                                   language.directory)
-    if not check_permission('administrate', request):
-        raise PermissionDenied(_("You do not have rights to administer this language."))
+@get_path_obj
+@permission_required('view')
+def translate(request, language):
+    request.pootle_path = language.pootle_path
+    request.ctx_path = language.pootle_path
+    request.resource_path = ''
+
+    request.store = None
+    request.directory = language.directory
+
+    project = None
+
+    context = get_translation_context(request)
+    context.update({
+        'language': language,
+        'project': project,
+
+        'editor_extends': 'language_base.html',
+        'editor_body_id': 'languagetranslate',
+    })
+
+    return render_to_response('editor/main.html', context,
+                              context_instance=RequestContext(request))
+
 
 @get_path_obj
 @permission_required('administrate')

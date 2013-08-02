@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -29,6 +30,10 @@ urlpatterns = patterns('pootle_project.views',
     url(r'^(?P<project_code>[^/]*)/$',
         'overview',
         name='pootle-project-overview'),
+
+    url(r'^(?P<project_code>[^/]*)/translate/$',
+        'translate',
+        name='pootle-project-translate'),
 
     # XHR views
     url(r'^(?P<project_code>[^/]*)/ajax-add-tag-to-tp/?$',

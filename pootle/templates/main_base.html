@@ -1,0 +1,14 @@
+{% extends "base.html"  %}
+
+{% load url from future %}
+{% load i18n %}
+
+{% block title %}{% trans "Main" %} | {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}{% include 'common/_breadcrumbs.html' %}
+{% endblock %}
+
+{% block tabs %}
+{% include "_main_tabs.html" %}
+{% endblock %}
