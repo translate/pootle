@@ -1,10 +1,12 @@
 {% extends "project_base.html" %}
-{% load i18n baseurl cleanhtml assets common_tags %}
+{% load i18n baseurl cleanhtml assets common_tags search %}
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block title %}{{ project.name }} | {{ block.super }}{% endblock %}
 
 {% block body_id %}projectoverview{% endblock %}
+
+{% block search %}{% render_search %}{% endblock %}
 
 {% block content %}
 <div class="module first">
@@ -57,6 +59,8 @@
 {% block scripts_extra %}
 <script type="text/javascript">
 $(function() {
+  PTL.search.init();
+
   $("td.stats-name").filter(":not([dir])").bidi();
 });
 </script>

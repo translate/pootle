@@ -29,6 +29,7 @@ from django.template import loader, RequestContext
 from django.utils.translation import ugettext as _, ungettext
 
 from pootle.core.decorators import get_path_obj, permission_required
+from pootle.core.helpers import get_translation_context
 from pootle.i18n.gettext import tr_lang
 from pootle_app.models import Directory
 from pootle_app.models.permissions import (get_matching_permissions,
@@ -170,6 +171,32 @@ def project_settings_edit(request, project):
 
     return HttpResponse(jsonify(response), status=rcode,
                         mimetype="application/json")
+
+
+@get_path_obj
+@permission_required('view')
+def translate(request, project):
+    request.pootle_path = project.pootle_path
+    # TODO: support arbitrary resources
+    request.ctx_path = project.pootle_path
+    request.resource_path = ''
+
+    request.store = None
+    request.directory = project.directory
+
+    language = None
+
+    context = get_translation_context(request)
+    context.update({
+        'language': language,
+        'project': project,
+
+        'editor_extends': 'project_base.html',
+        'editor_body_id': 'projecttranslate',
+    })
+
+    return render_to_response('editor/main.html', context,
+                              context_instance=RequestContext(request))
 
 
 class TranslationProjectFormSet(forms.models.BaseModelFormSet):
