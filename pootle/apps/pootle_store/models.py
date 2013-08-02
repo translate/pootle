@@ -215,8 +215,8 @@ class UnitManager(RelatedManager):
         if lang is None and proj is not None:
             units_qs = units_qs.extra(
                 where=[
-                    '(pootle_store_store.pootle_path LIKE %s AND'
-                    ' pootle_store_store.pootle_path NOT LIKE %s)'
+                    '`pootle_store_store`.`pootle_path` LIKE %s',
+                    '`pootle_store_store`.`pootle_path` NOT LIKE %s',
                 ], params=[''.join(['/%/', proj ,'/%']), '/templates/%']
             )
         # /<lang_code>/<project_code>/translate/*
