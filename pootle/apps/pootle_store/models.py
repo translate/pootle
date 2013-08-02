@@ -19,10 +19,10 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import datetime
-import time
 import logging
 import os
 import re
+import time
 
 from hashlib import md5
 
