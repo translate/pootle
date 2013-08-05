@@ -142,9 +142,32 @@
         }
       });
 
-      /* Set a slug for the tag before submitting the form */
-      $("#js-add-tag-form").on('submit', function (e) {
+      /* Launch the tag creation dialog in TP overview */
+      $(".js-add-tag-popup").magnificPopup({
+        key: '#js-add-tag-dialog',
+        focus: '#js-tag-form-name',
+        callbacks: {
+          close: function() {
+            // If add tag dialog is closed, the form fields must be cleaned
+            // and the error messages must be removed.
+            $("#js-tag-form-name").val("");
+            $("#js-tag-form-slug").val("");
+            $("#js-add-tag-form .errorlist").remove();
+          }
+        }
+      });
+
+      /* Handle add tag form using AJAX */
+      $(document).on("submit", "#js-add-tag-form", function (event) {
+        // Avoid visiting form action.
+        event.preventDefault();
+
+        // Get tag name to generate a slug.
         var tagname = $("#js-tag-form-name").val().toLowerCase();
+
+        // Set the tag name to lowercase to allow specifying names with any
+        // case.
+        $("#js-tag-form-name").val(tagname);
 
         // Replace invalid characters for slug with hyphens.
         var tagslug = tagname.replace(/[^a-z0-9-]/g, "-");
@@ -155,8 +178,26 @@
         // Remove leading and trailing hyphens.
         tagslug = tagslug.replace(/^-|-$/g, "");
 
+        // Set the slug for the tag before submitting the form.
         $("#js-tag-form-slug").val(tagslug);
-        return true;
+
+        // Submit the form through AJAX.
+        var action = $("#js-add-tag-form").attr('action');
+        var formData = $("#js-add-tag-form").serializeObject();
+
+        $.post(action, formData, function (data, textStatus, jqXHR) {
+          if (jqXHR.status === 201) {
+            // Tag was added, so force reload current page from server (no
+            // browser cache).
+            location.reload(true);
+          } else if (jqXHR.status === 204) {
+            // Tag was already applied, so close the currently opened popup.
+            $.magnificPopup.close();
+          } else if (jqXHR.status === 200) {
+            // Form is invalid, so display it again with error messages.
+            $("#js-add-tag-form").replaceWith(data);
+          };
+        }, "html");
       });
     },
 

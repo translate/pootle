@@ -28,11 +28,14 @@ from django.contrib import messages
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import (HttpResponse, HttpResponseNotAllowed,
+                         HttpResponseRedirect)
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
 from django.utils.encoding import iri_to_uri
 from django.utils.translation import ugettext_lazy, ugettext as _
+
+from taggit.models import Tag
 
 from pootle.core.decorators import (get_translation_project,
                                     set_request_context)
@@ -257,7 +260,16 @@ class ProjectIndexView(view_handler.View):
 
         if can_edit:
             from pootle_translationproject.forms import DescriptionForm
-            template_vars['form'] = DescriptionForm(instance=translation_project)
+            url_kwargs = {
+                'language_code': language.code,
+                'project_code': project.code,
+            }
+            template_vars.update({
+                'form': DescriptionForm(instance=translation_project),
+                'add_tag_form': TagForm(),
+                'add_tag_action_url': reverse('tp.ajax_add_tag',
+                                              kwargs=url_kwargs),
+            })
 
         return template_vars
 
@@ -283,7 +295,6 @@ def overview(request, translation_project, dir_path, filename=None):
 
     view_forms = {
         'upload': UploadHandler,
-        'add_tag': AddTagHandler,
     }
     view_obj = ProjectIndexView(forms=view_forms)
 
@@ -291,6 +302,56 @@ def overview(request, translation_project, dir_path, filename=None):
                               view_obj(request, translation_project,
                                        directory, store),
                               context_instance=RequestContext(request))
+
+
+@ajax_required
+@get_translation_project
+def ajax_add_tag_to_tp(request, translation_project):
+    """Return an HTML snippet with the failed form or blank if valid."""
+
+    if not check_permission('administrate', request):
+        raise PermissionDenied(_("You do not have rights to add tags."))
+
+    if request.method != 'POST':
+        return HttpResponseNotAllowed(['POST'])
+
+    add_tag_form = TagForm(request.POST)
+
+    if add_tag_form.is_valid():
+        new_tag = add_tag_form.save()
+        translation_project.tags.add(new_tag)
+        return HttpResponse(status=201)
+    else:
+        # If the form is invalid, perhaps it is because the tag already exists,
+        # so check if the tag exists.
+        try:
+            criteria = {
+                'name': add_tag_form.data['name'],
+                'slug': add_tag_form.data['slug'],
+            }
+            if len(translation_project.tags.filter(**criteria)) == 1:
+                # If the tag is already applied to the translation project then
+                # avoid reloading the page.
+                return HttpResponse(status=204)
+            else:
+                # Else add the tag to the translation project.
+                tag = Tag.objects.get(**criteria)
+                translation_project.tags.add(tag)
+                return HttpResponse(status=201)
+        except Exception:
+            # If the form is invalid and the tag doesn't exist yet then display
+            # the form with the error messages.
+            url_kwargs = {
+                'language_code': translation_project.language.code,
+                'project_code': translation_project.project.code,
+            }
+            context = {
+                'add_tag_form': add_tag_form,
+                'add_tag_action_url': reverse('tp.ajax_add_tag',
+                                              kwargs=url_kwargs)
+            }
+            return render_to_response('common/xhr_add_tag_to_tp_form.html',
+                                      context, RequestContext(request))
 
 
 @ajax_required
@@ -825,23 +886,3 @@ class UploadHandler(view_handler.Handler):
                                   newstats=newstats, archive=archive)
 
         return {'upload': self}
-
-
-class AddTagHandler(view_handler.Handler):
-    actions = [('do_add_tag', ugettext_lazy('Add tag'))]
-
-    @classmethod
-    def must_display(cls, request, *args, **kwargs):
-        return check_permission('administrate', request)
-
-    def __init__(self, request, data=None, files=None):
-        self.Form = TagForm
-        super(AddTagHandler, self).__init__(request, data, files)
-
-    def do_add_tag(self, request, translation_project, directory, store):
-        if self.form.is_valid():
-            new_tag = self.form.save()
-            translation_project.tags.add(new_tag)
-            self.form = self.Form()
-
-        return {'add_tag': self}

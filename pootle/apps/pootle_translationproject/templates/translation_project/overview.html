@@ -13,8 +13,8 @@
       {% cache settings.CACHE_TIMEOUT path_trail path_obj.id %}
       <span><a href="{{ translation_project.pootle_path|l }}">{{ project.code }}</a> / {{ path_obj|trail:"/" }}</span>
       {% endcache %}
-      {% if add_tag %}
-      <a href="#js-add-tag-dialog" class="js-popup-inline js-tags tags-add">
+      {% if can_edit and add_tag_form %}
+      <a href="#js-add-tag-dialog" class="js-add-tag-popup js-tags tags-add">
         <i class="icon-tag-add"></i> {% trans "Add tag" %}
       </a>
       {% endif %}
@@ -149,23 +149,10 @@
 </div>
 {% endif %}
 
-{% if add_tag %}
+{% if can_edit and add_tag_form %}
 <div id="js-add-tag-dialog" class="form popup-inline mfp-hide" lang="{{ LANGUAGE_CODE }}">
   <h2>{% trans "Add tag" %}</h2>
-  <form action="" method="post" id="js-add-tag-form"
-    enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ add_tag.form.non_field_errors }}
-    {% for field in add_tag.form %}
-    <p {% if field.help_text %}title="{{ field.help_text }}"{% endif %}>
-      {{ field.label_tag }} {{ field }}
-      {{ field.errors }}
-    </p>
-    {% endfor %}
-    <p class="buttons">
-      {{ add_tag.render_submits }}
-    </p>
-  </form>
+  {% include "common/xhr_add_tag_to_tp_form.html" %}
 </div>
 {% endif %}
 {% endblock content %}

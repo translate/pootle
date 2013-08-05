@@ -44,6 +44,9 @@ urlpatterns = patterns('pootle_translationproject.views',
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/summary/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'path_summary_more',
         name='tp.path_summary_more'),
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/ajax-add-tag/?$',
+        'ajax_add_tag_to_tp',
+        name='tp.ajax_add_tag'),
 
     # Exporting files
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<file_path>.*)export/zip$',
