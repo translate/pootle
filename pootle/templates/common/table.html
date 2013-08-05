@@ -12,7 +12,7 @@ cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
   </thead>
   <tbody class="stats">
     {% for item in table.items %}
-    <tr class="item {% cycle 'even' 'odd' as rowcolor %}">
+    <tr class="item {% cycle 'even' 'odd' %}">
     {% include "common/_table_row.html" %}
     </tr>
     {% endfor %}

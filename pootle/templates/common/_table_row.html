@@ -57,32 +57,23 @@
 {% if 'activity' in table.fields %}
 <td>{{ item.lastactivity }}</td>
 {% endif %}
+{% else %}
+{% for i in table.fields %}<td></td>{% endfor %}
+{% endif %}
 {% if 'tags' in table.fields %}
-</tr>
-<tr class="item {{ rowcolor }}">{% comment %}Adding a new row is necessary
-since tags tend to 'eat' all the horizontal space.
-
-Thus is necessary to use 'rowcolor' to get the color scheme set for this row in
-the Django template 'cycle' tag as set in the template that calls this one.
-
-Also the new row has only one column that spans to all available space.
-{% endcomment %}
-<td id="js-tag-tp-{{ item.pk }}" colspan="{{ table.headings|length }}">
+<td id="js-tag-tp-hidden-{{ item.pk }}" class="hide tags-cell" colspan="{{ table.headings|length }}">
   {% if user.is_superuser or request.permissions.administrate %}
-  <a href="#js-add-tag-dialog" class="js-project-add-tag-popup js-tags tags-aside tags-add"
+  <a href="#js-add-tag-dialog" class="js-project-add-tag-popup js-tags-hidden tags-aside tags-add"
     title="{% trans "Add a tag" %}">
     <i class="icon-tag-add"></i>
   </a>
   {% endif %}
   {% if item.tags %}
-  <ul class="js-tags tag-list">
+  <ul class="js-tags-hidden tag-list">
     {% for tp_tag in item.tags %}
     <li><span class="tag">{{ tp_tag }}</span></li>
     {% endfor %}
   </ul>
   {% endif %}
 </td>
-{% endif %}
-{% else %}
-{% for i in table.fields %}<td></td>{% endfor %}
 {% endif %}
