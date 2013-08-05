@@ -275,24 +275,6 @@
       });
     });
 
-    /* Load lookup backends */
-    $.each(this.settings.lookup, function () {
-      var backend = this;
-
-      $.ajax({
-        url: s(['js/lookup/', backend, '.js'].join('')),
-        async: false,
-        dataType: 'script',
-        success: function () {
-          setTimeout(function () {
-            PTL.editor.lookup[backend].init();
-          }, 0);
-          $(document).on('lookup_ready', 'table.translate-table',
-                         PTL.editor.lookup[backend].ready);
-        }
-      });
-    });
-
     // Update relative dates every minute
     setInterval(PTL.common.updateRelativeDates, 6e4);
 
@@ -480,7 +462,6 @@
 
     // All is ready, let's call the ready functions of the MT backends
     $("table.translate-table").trigger("mt_ready");
-    $("table.translate-table").trigger("lookup_ready");
 
     PTL.editor.isLoading = false;
     PTL.editor.hideActivity();
@@ -2168,56 +2149,7 @@
 
     PTL.editor.goFuzzy();
     return false;
-  },
-
-
-  /*
-   * Lookup
-   */
-
-  /* Adds a new Lookup button in the editor toolbar */
-  addLookupButton: function (container, aClass, tooltip) {
-    $(container).first().prepend(['<a class="translate-lookup iframe ',
-      aClass, '"><i class="icon-', aClass, '" title="', tooltip,
-      '"></i></a>'].join(''));
-  },
-
-  /* Goes through all source languages and adds a new lookup service button
-   * in the editor toolbar if the language is supported
-   */
-  addLookupButtons: function (provider) {
-    var _this = this;
-    var sources = $(".translate-toolbar");
-    $(sources).each(function () {
-      var source = _this.normalizeCode($(this).parent().parent().find('.translation-text').attr("lang"));
-
-    _this.addLookupButton(this,
-      provider.buttonClassName,
-      [provider.hint, ' (', source.toUpperCase(), ')'].join(''));
-    });
-  },
-
-  lookup: function (linkObject, providerCallback) {
-    var areas = $("[id^=id_target_f_]");
-    var sources = $(linkObject).parent().parent().parent().find('.translation-text');
-    var langFrom = PTL.editor.normalizeCode(sources.eq(0).attr("lang"));
-    var langTo = PTL.editor.normalizeCode(areas.eq(0).attr("lang"));
-
-    var lookupText = PTL.editor.getSelectedText().toString();
-    if (!lookupText) {
-      lookupText = sources.eq(0).text();
-    }
-    var url = providerCallback(lookupText, langFrom, langTo);
-    $.magnificPopup.open({
-      items: {
-        src: url,
-        type: 'iframe'
-      },
-    });
-    linkObject.href = url;
-    return false;
   }
-
 
   }; // PTL.editor
 

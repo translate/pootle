@@ -399,16 +399,6 @@ Translation environment configuration settings.
   but it has high impact on performance.
 
 
-.. setting:: LOOKUP_BACKENDS
-
-``LOOKUP_BACKENDS``
-  Default: ``['wikipedia']`` (Wikipedia enabled)
-
-  Enables backends for web-based lookups.
-
-  Available options: ``wikipedia``.
-
-
 .. setting:: MT_BACKENDS
 
 ``MT_BACKENDS``

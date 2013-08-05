@@ -29,10 +29,6 @@ $(function() {
     options.mt.push({name: "{{ backend|lower }}", key: "{{ apikey }}"});
     {% endfor %}
   {% endif %}
-  options.lookup = [];
-  {% for backend in LOOKUP_BACKENDS %}
-    options.lookup.push("{{ backend|lower }}");
-  {% endfor %}
   PTL.editor.init(options);
 });
 </script>
