@@ -65,13 +65,10 @@ from pootle_translationproject.actions import action_groups
 @util.has_permission('administrate')
 def admin_permissions(request, translation_project):
 
-    language = translation_project.language
-    project = translation_project.project
-
     template_vars = {
         'translation_project': translation_project,
-        "project": project,
-        "language": language,
+        "project": translation_project.project,
+        "language": translation_project.language,
         "directory": translation_project.directory,
         "feed_path": translation_project.pootle_path[1:],
     }
