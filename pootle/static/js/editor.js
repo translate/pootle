@@ -1006,20 +1006,18 @@
   },
 
 
-  /* Builds view rows for units represented by 'uids' */
-  buildRows: function (uids) {
-    var _this, i, store, unit,
+  /* Builds view rows for `units` */
+  buildRows: function (units) {
+    var i, unit,
         cls = "even",
         even = true,
         rows = "";
 
-    for (i=0; i<uids.length; i++) {
-      _this = uids[i].id || uids[i];
-      unit = this.units.get(_this);
-      store = unit.get('store');
+    for (i=0; i<units.length; i++) {
+      unit = units[i];
 
       // Build row i
-      rows += '<tr id="row' + _this + '" class="view-row ' + cls + '">';
+      rows += '<tr id="row' + unit.id + '" class="view-row ' + cls + '">';
       rows += this.tmpl.vUnit({unit: unit.toJSON()});
       rows += '</tr>';
 
