@@ -500,8 +500,9 @@ def get_units(request):
     pager = paginate(request, step_queryset, items=limit, page=page)
 
     unit_groups = []
-    for path, units in groupby(pager.object_list, lambda x: x.store.path):
-        unit_groups.append(_path_units_with_meta(path, units))
+    units_by_path = groupby(pager.object_list, lambda x: x.store.pootle_path)
+    for pootle_path, units in units_by_path:
+        unit_groups.append(_path_units_with_meta(pootle_path, units))
 
     response = {
         'unit_groups': unit_groups,
