@@ -485,7 +485,6 @@
     PTL.editor.isLoading = false;
     PTL.editor.hideActivity();
     PTL.editor.updateExportLink();
-    PTL.editor.updatePermalink();
     PTL.common.updateRelativeDates();
 
     // clear any pending 'Loading...' indicator timer
@@ -498,7 +497,6 @@
   noResults: function () {
     PTL.editor.displayMsg(gettext("No results."));
     PTL.editor.reDraw(false);
-    PTL.editor.updatePermalink(false);
   },
 
 
@@ -775,25 +773,6 @@
     $("#js-editor-export").html(exportLink);
   },
 
-  updatePermalink: function (opts) {
-    if (opts !== false) {
-      // FIXME: We need a completely different way for getting view URLs in JS
-      var urlStr = [
-        this.ctxPath, 'translate/', this.resourcePath,
-        '#unit=', PTL.editor.units.getCurrent().id
-      ].join('');
-      // Translators: Permalink to the current unit in the editor.
-      //    The first '%s' is the permalink URL.
-      //    The second '%s' is the unit number.
-      var thePermalink = interpolate(gettext('<a href="%s">String %s</a>'),
-                                     [l(urlStr), PTL.editor.units.getCurrent().id]);
-    } else {
-      var thePermalink = '';
-    }
-
-    $("#js-editor-permalink").html(thePermalink);
-  },
-
   /*
    * Indicators, messages, error handling
    */
@@ -1006,27 +985,46 @@
   },
 
 
-  /* Builds view rows for `units` */
-  buildRows: function (units) {
-    var i, unit,
+  /* Builds a single row */
+  buildRow: function (unit, cls) {
+    return [
+      '<tr id="row', unit.id, '" class="view-row ', cls ,'">',
+        this.tmpl.vUnit({unit: unit.toJSON()}),
+      '</tr>'
+    ].join('');
+  },
+
+  /* Builds the editor rows */
+  buildRows: function () {
+    var unitGroups = this.getUnitGroups(),
+        groupSize = _.size(unitGroups),
+        currentUnit = this.units.getCurrent(),
         cls = "even",
         even = true,
-        rows = "";
+        rows = [],
+        i, unit;
 
-    for (i=0; i<units.length; i++) {
-      unit = units[i];
+    _.each(unitGroups, function (unitGroup) {
+      // Don't display a delimiter row if all units have the same origin
+      if (groupSize !== 1) {
+        rows.push('<tr class="delimiter-row"><td colspan="2"></td></tr>');
+      }
 
-      // Build row i
-      rows += '<tr id="row' + unit.id + '" class="view-row ' + cls + '">';
-      rows += this.tmpl.vUnit({unit: unit.toJSON()});
-      rows += '</tr>';
+      for (i=0; i<unitGroup.length; i++) {
+        unit = unitGroup[i];
 
-      // Update odd/even class
-      cls = even ? "odd" : "even";
-      even = !even;
-    }
+        if (unit.id === currentUnit.id) {
+          rows.push(this.getEditUnit());
+        } else {
+          rows.push(this.buildRow(unit, cls));
+        }
 
-    return rows;
+        cls = even ? "odd" : "even";
+        even = !even;
+      }
+    }, this);
+
+    return rows.join('');
   },
 
 
@@ -1061,33 +1059,30 @@
   },
 
 
-  /* Returns the pre/post units of the editing widget */
-  getWrappingUnits: function () {
+  /* Returns the unit groups for the current editor state */
+  getUnitGroups: function () {
     var limit = parseInt(((this.pager.per_page - 1) / 2), 10),
         unitCount = this.units.length,
         currentUnit = this.units.getCurrent(),
         curIndex = this.units.indexOf(currentUnit),
-        preBegin = curIndex - limit,
-        preEnd = curIndex,
-        postBegin = curIndex + 1,
-        postEnd = postBegin + limit;
+        begin = curIndex - limit,
+        end = curIndex + 1 + limit;
 
-    if (preBegin < 0) {
-      postEnd = postEnd + -preBegin;
-      preBegin = 0;
-    } else if (postEnd > unitCount) {
-      if (preBegin > postEnd - unitCount) {
-        preBegin = preBegin + -(postEnd - unitCount);
+    if (begin < 0) {
+      end = end + -begin;
+      begin = 0;
+    } else if (end > unitCount) {
+      if (begin > end - unitCount) {
+        begin = begin + -(end - unitCount);
       } else {
-        preBegin = 0;
+        begin = 0;
       }
-      postEnd = unitCount;
+      end = unitCount;
     }
 
-    return {
-      pre: this.units.slice(preBegin, preEnd),
-      post: this.units.slice(postBegin, postEnd)
-    };
+    return _.groupBy(this.units.slice(begin, end), function (unit) {
+      return unit.get('store').get('pootlePath');
+    }, this);
   },
 
 
@@ -1098,16 +1093,10 @@
       // so this will return units whenever it can
       this.fetchPages(true);
 
-      // Get the actual editing widget and the surrounding view rows
-      var wrappingUnits = this.getWrappingUnits(),
-          newTbody = this.buildRows(wrappingUnits.pre) +
-                     this.getEditUnit() +
-                     this.buildRows(wrappingUnits.post);
-
       // Hide any visible message
       this.hideMsg();
 
-      this.reDraw(newTbody);
+      this.reDraw(this.buildRows());
 
       this.updateNavButtons();
     }
