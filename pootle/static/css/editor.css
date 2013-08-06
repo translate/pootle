@@ -245,6 +245,11 @@ tr.edit-row
     background-color: #f1f7f8;
 }
 
+.delimiter-row
+{
+    background-color: #e5f3f8;
+}
+
 /* Context */
 
 tr.edit-ctx
@@ -411,6 +416,7 @@ div.translate-left
 {
     float: left;
     width: 24.5%;
+    clear: both;
 }
 
 div.translate-middle

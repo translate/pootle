@@ -651,6 +651,7 @@ def get_edit_unit(request, unit):
         'directory': directory,
         'profile': profile,
         'user': request.user,
+        'project': project,
         'language': language,
         'source_language': translation_project.project.source_language,
         'cantranslate': check_profile_permission(profile, "translate",
