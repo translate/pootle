@@ -137,8 +137,10 @@
         $(".js-tags").slideToggle('slow', 'easeOutQuad', function () {
           if ($(".js-tags").is(":hidden")) {
             $("#js-toggle-tags-text").text(gettext("Show tags"));
+            $.cookie('showtags', 'false', {path: '/'});
           } else {
             $("#js-toggle-tags-text").text(gettext("Hide tags"));
+            $.cookie('showtags', 'true', {path: '/'});
           }
         });
       });

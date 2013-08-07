@@ -320,6 +320,7 @@ sorttable = {
     for (var i=0; i<newrows.length; i++) {
        if ($(newrows[i]).children('.tags-cell').length == 1) {
           var $td = $(newrows[i]).children('.tags-cell').first().clone();
+          $td.children().addClass('js-tags');
           $td.attr('id', $td.attr('id').replace('-hidden', ''));
           $td.width(width);
           $td.show();
@@ -333,7 +334,12 @@ sorttable = {
     }
     delete newrows;
 
-    $('.js-tags-hidden:visible').addClass('js-tags')
+    if ($.cookie('showtags') == 'true') {
+      $('.js-tags').show();
+      $("#js-toggle-tags-text").text(gettext("Hide tags"));
+    } else {
+      $('.js-tags').hide();
+    }
   },
 
   reverse: function(tbody) {
