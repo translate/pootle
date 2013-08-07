@@ -4,17 +4,17 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 {% cache settings.CACHE_TIMEOUT unit_edit unit.id unit.mtime cantranslate cansuggest canreview report_target altsrcs profile.id LANGUAGE_CODE unit.get_terminology %}
 <td colspan="3" rowspan="1" class="translate-full translate-focus{% if unit.isfuzzy %} fuzzy-unit{% endif %}" dir="{% locale_dir %}">
+  <div class="unit-path">
+    <span class="pull-{% locale_align %}">
+      <p class="sidetitle" title="{{ unit.store.path }}">
+        {{ language.localname }} / {{ project }} / {{ unit.store.path }}
+      </p>
+    </span>
+    <span class="pull-{% locale_reverse_align %}">
+      {% blocktrans with url=unit.get_translate_url id=unit.id %}<a href="{{ url }}">String {{ id }}</a>{% endblocktrans %}
+    </span>
+  </div>
   <div class="translate-container">
-    <div class="unit-path">
-      <span class="pull-{% locale_align %}">
-        <p class="sidetitle" title="{{ unit.store.path }}">
-          {{ language.localname }} / {{ project }} / {{ unit.store.path }}
-        </p>
-      </span>
-      <span class="pull-{% locale_reverse_align %}">
-        {% blocktrans with url=unit.get_translate_url id=unit.id %}<a href="{{ url }}">String {{ id }}</a>{% endblocktrans %}
-      </span>
-    </div>
     <div class="translate-{% locale_align %}">
       {% if unit.getcontext and unit.locations != unit.context %}
       <!-- Context information and comments -->
