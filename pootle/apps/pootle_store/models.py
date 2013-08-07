@@ -1206,18 +1206,10 @@ class Store(models.Model, base.TranslationStore):
                     from pootle_statistics.models import Submission
                     self_unit_ids = set(self.dbid_index.values())
 
-                    try:
-                        modified_units = set(Submission.objects.filter(
-                                id__gt=modified_since,
-                                unit__id__in=self_unit_ids,
-                        ).values_list('unit', flat=True).distinct())
-                    except DatabaseError, e:
-                        # SQLite might barf with the IN operator over too many
-                        # values
-                        modified_units = set(Submission.objects.filter(
-                                id__gt=modified_since,
-                        ).values_list('unit', flat=True).distinct())
-                        modified_units &= self_unit_ids
+                    modified_units = set(Submission.objects.filter(
+                            id__gt=modified_since,
+                            unit__id__in=self_unit_ids,
+                    ).values_list('unit', flat=True).distinct())
 
                 common_dbids = set(self.dbid_index.get(uid) \
                                    for uid in old_ids & new_ids)
@@ -1351,18 +1343,10 @@ class Store(models.Model, base.TranslationStore):
                 from pootle_statistics.models import Submission
                 self_unit_ids = set(self.dbid_index.values())
 
-                try:
-                    modified_units = set(Submission.objects.filter(
-                            id__gt=modified_since,
-                            unit__id__in=self_unit_ids,
-                    ).values_list('unit', flat=True).distinct())
-                except DatabaseError, e:
-                    # SQLite might barf with the IN operator over too many
-                    # values
-                    modified_units = set(Submission.objects.filter(
-                            id__gt=modified_since,
-                    ).values_list('unit', flat=True).distinct())
-                    modified_units &= self_unit_ids
+                modified_units = set(Submission.objects.filter(
+                        id__gt=modified_since,
+                        unit__id__in=self_unit_ids,
+                ).values_list('unit', flat=True).distinct())
 
             common_dbids = set(self.dbid_index.get(uid) \
                                for uid in old_ids & new_ids)
