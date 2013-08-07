@@ -7,7 +7,9 @@
     init: function () {
 
       /* Compile templates */
-      this.tmpl = {results: $.template($("#language_user_activity").html()),};
+      this.tmpl = {
+        results: _.template($("#language_user_activity").html())
+      };
 
       $(document).on("click", "#reports-show", function (e) {
         PTL.reports.user = $('#reports-user').val();
@@ -151,9 +153,7 @@
         async: true,
         success: function (data) {
           $('#reports-results').empty();
-          $('#reports-results').html(
-            PTL.reports.tmpl.results($, {data: data}).join('')
-          );
+          $('#reports-results').html(PTL.reports.tmpl.results(data));
         },
         error: function (xhr, s) {
           alert('Error status: ' + xhr.status);

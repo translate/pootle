@@ -1,102 +1,106 @@
-{{if meta.user !== "" }}
-  <h2>Report for ${meta.user}, {{html PTL.reports.dateRangeString(meta.start, meta.end)}}</h2>
-  {{if total.new.n1 || total.edit.pootle_n1 }}
+<% if (meta.user !== "") { %>
+  <h2>Report for <%= meta.user %>, <%= PTL.reports.dateRangeString(meta.start, meta.end) %></h2>
+  <% if (total.new.n1 || total.edit.pootle_n1) { %>
     <div id="reports-viewmode">
       <select>
         <option value="new">New translations</option>
         <option value="edit">Edits</option>
       </select>
     </div>
-  {{/if}}
-{{if (typeof all_projects !== "undefined") && (Object.keys(all_projects).length > 0) }}
-{{each(lang, lang_data) results}}
-<div class="reports-lang{{if !lang_data.total.new.n1 }} new-empty{{/if}}{{if !lang_data.total.edit.pootle_n1 }} edit-empty{{/if}}">
-  <h3><a href="{{html l('/'+lang)}}">${lang_data.name}</a></h3>
+  <% } %>
+<% if ((typeof all_projects !== "undefined") && (_.size(all_projects) > 0)) { %>
+<% _.each(results, function(lang_data, lang) { %>
+<div class="reports-lang<% if (!lang_data.total.new.n1) { %> new-empty<% } %><% if (!lang_data.total.edit.pootle_n1) { %> edit-empty<% } %>">
+  <h3><a href="<%= l('/' + lang) %>"><%= lang_data.name %></a></h3>
   <table class="stats">
     <thead>
     <tr>
       <th>Dates</th>
-      {{each(i, project) all_projects}}
-      <th class="project">${project}</th>
-      {{/each}}
+      <% _.each(all_projects, function (project, i) { %>
+      <th class="project"><%= project %></th>
+      <% }); %>
       <th class="project">Total</th>
     </tr>
     </thead>
-    {{html PTL.reports.resetRowStyle() }}
-    {{each lang_data.dates}}
-      <tr class="item {{html PTL.reports.cycleEvenOdd() }}{{if after_break}} after_break{{/if}}">
-        <td>{{html PTL.reports.formatDate(date) }}</td>
-        {{each(code, project) all_projects }}
+    <%= PTL.reports.resetRowStyle()  %>
+    <% _.each(lang_data.dates, function (date) { %>
+      <tr class="item <%= PTL.reports.cycleEvenOdd() %><% if (date.after_break) { %> date.after_break<% } %>">
+        <td><%= PTL.reports.formatDate(date.date) %></td>
+        <% _.each(all_projects, function (project, code) { %>
           <td class="number">
-          {{if projects[code]}}
-            {{if projects[code].new}}
-              <span class="new" title="Translated words (precise): ${projects[code].new.n1} Translated words (Pootle): ${projects[code].new.pootle_n1}">
-                ${projects[code].new.n1}
+          <% if (date.projects[code]) { %>
+            <% if (date.projects[code].new) { %>
+            <span class="new" title="Translated words (precise): <%= date.projects[code].new.n1 %>
+              Translated words (Pootle): <%= date.projects[code].new.pootle_n1 %>">
+                <%= date.projects[code].new.n1 %>
               </span>
-            {{/if}}
-            {{if projects[code].edit}}
+            <% } %>
+            <% if (date.projects[code].edit) { %>
               <span class="edit" title="">
-                ${projects[code].edit.pootle_n1}
+                <%= date.projects[code].edit.pootle_n1 %>
               </span>
-            {{/if}}
-          {{else}}
+            <% } %>
+          <% } else { %>
             <span title="">&nbsp;</span>
-          {{/if}}
+          <% } %>
           </td>
-        {{/each}}
+        <% }); %>
         <td class="total number">
-          {{if total.new.n1}}
-            <span class="new" title="Translated words (precise): ${total.new.n1} Translated words (Pootle): ${total.new.pootle_n1}">
-                ${total.new.n1}
+          <% if (date.total.new.n1) { %>
+            <span class="new" title="Translated words (precise): <%= date.total.new.n1 %>
+              Translated words (Pootle): <%= date.total.new.pootle_n1 %>">
+                <%= date.total.new.n1 %>
             </span>
-          {{/if}}
-          {{if total.edit.pootle_n1}}
+          <% } %>
+          <% if (date.total.edit.pootle_n1) { %>
             <span class="edit">
-              ${total.edit.pootle_n1}
+              <%= date.total.edit.pootle_n1 %>
             </span>
-          {{/if}}
+          <% } %>
         </td>
       </tr>
-    {{/each}}
+    <% });%>
 
     <tr class="total">
       <td>Total</td>
-      {{each(code, project) all_projects }}
+      <% _.each(all_projects, function (project, code) { %>
         <td class="number">
-        {{if lang_data.sums[code]}}
-          {{if lang_data.sums[code].new.n1}}
-            <span class="new" title="Translated words (precise): ${lang_data.sums[code].new.n1} Translated words (Pootle): ${lang_data.sums[code].new.pootle_n1}">
-              ${lang_data.sums[code].new.n1}
+        <% if (lang_data.sums[code]) { %>
+          <% if (lang_data.sums[code].new.n1) { %>
+            <span class="new" title="Translated words (precise): <%= lang_data.sums[code].new.n1 %>
+              Translated words (Pootle): <%= lang_data.sums[code].new.pootle_n1 %>">
+              <%= lang_data.sums[code].new.n1 %>
             </span>
-          {{/if}}
-          {{if lang_data.sums[code].edit.pootle_n1}}
+          <% } %>
+          <% if (lang_data.sums[code].edit.pootle_n1) { %>
             <span class="edit">
-              ${lang_data.sums[code].edit.pootle_n1}
+              <%= lang_data.sums[code].edit.pootle_n1 %>
             </span>
-          {{/if}}
-        {{/if}}
+          <% } %>
+        <% } %>
         </td>
-      {{/each}}
+      <% }); %>
       <td class="total number">
-        {{if lang_data.total.new.n1}}
-          <span class="new" title="Translated words (precise): ${lang_data.total.new.n1} Translated words (Pootle): ${lang_data.total.new.pootle_n1}">
-            ${lang_data.total.new.n1}
+        <% if (lang_data.total.new.n1) { %>
+          <span class="new" title="Translated words (precise): <%= lang_data.total.new.n1 %>
+            Translated words (Pootle): <%= lang_data.total.new.pootle_n1 %>">
+            <%= lang_data.total.new.n1 %>
           </span>
-        {{/if}}
-        {{if lang_data.total.edit.pootle_n1}}
+        <% } %>
+        <% if (lang_data.total.edit.pootle_n1) { %>
           <span class="edit">
-            ${lang_data.total.edit.pootle_n1}
+            <%= lang_data.total.edit.pootle_n1 %>
           </span>
-        {{/if}}
+        <% } %>
       </td>
     </tr>
 
   </table>
 </div>
-{{/each}}
-{{else}}
+<% }); %>
+<% } else { %>
   <p class="noresults">No activity recorded during this period.</p>
-{{/if}}
-{{else}}
+<% } %>
+<% } else { %>
   <p class="noresults">Please select a valid user.</p>
-{{/if}}
+<% } %>
