@@ -28,7 +28,7 @@ def split_pootle_path(pootle_path):
         (language code, project code, directory path, filename)
     """
     slash_count = pootle_path.count(u'/')
-    parts = filter(None, pootle_path.split(u'/', 3))
+    parts = pootle_path.split(u'/', 3)[1:]
 
     language_code = None
     project_code = None
