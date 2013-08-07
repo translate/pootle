@@ -313,14 +313,20 @@ sorttable = {
     for (var i=0; i<tbody.rows.length; i++) {
       newrows[newrows.length] = tbody.rows[i];
     }
+    var width = 0;
+    if (newrows.length > 0)
+      width = $(newrows[0]).outerWidth() - $(newrows[0]).children().first().outerWidth();
+
     for (var i=0; i<newrows.length; i++) {
        if ($(newrows[i]).children('.tags-cell').length == 1) {
           var $td = $(newrows[i]).children('.tags-cell').first().clone();
           $td.attr('id', $td.attr('id').replace('-hidden', ''));
+          $td.width(width);
           $td.show();
 
           var $tr = $('<tr></tr>');
           $tr.addClass(newrows[i].className).addClass('tags-row');
+          $tr.append('<td></td>');
           $tr.append($td);
           $tr.insertAfter(newrows[i]);
        }
