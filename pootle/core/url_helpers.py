@@ -35,17 +35,18 @@ def split_pootle_path(pootle_path):
     project_code = None
     ctx = ''
 
-    # /<lang_code>/
-    if slash_count == 2:
-        language_code = parts[0]
-    # /projects/<project_code>/
-    elif slash_count == 3 and pootle_path.startswith('/projects/'):
-        project_code = parts[1]
-    # /<lang_code>/<project_code>/*
-    elif slash_count != 1:
-        language_code = parts[0]
-        project_code = parts[1]
-        ctx = parts[2]
+    if slash_count != 0:
+        # /<lang_code>/
+        if slash_count == 2:
+            language_code = parts[0]
+        # /projects/<project_code>/
+        elif slash_count == 3 and pootle_path.startswith('/projects/'):
+            project_code = parts[1]
+        # /<lang_code>/<project_code>/*
+        elif slash_count != 1:
+            language_code = parts[0]
+            project_code = parts[1]
+            ctx = parts[2]
 
     dir_path, filename = os.path.split(ctx)
     if dir_path:
