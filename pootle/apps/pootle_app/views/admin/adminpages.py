@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #  Copyright 2006-2012 Zuza Software Foundation
+#  Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -23,13 +24,13 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import loader, RequestContext
 
+from pootle.core.decorators import admin_required
 from pootle_app.forms import GeneralSettingsForm
-from pootle_app.views.admin.util import user_is_admin
 from pootle_misc.siteconfig import load_site_config
 from pootle_misc.util import jsonify, ajax_required
 
 
-@user_is_admin
+@admin_required
 def view(request):
     siteconfig = load_site_config()
     if request.POST:
@@ -49,7 +50,7 @@ def view(request):
 
 
 @ajax_required
-@user_is_admin
+@admin_required
 def edit_settings(request):
     """Saves the site's general settings."""
     siteconfig = load_site_config()

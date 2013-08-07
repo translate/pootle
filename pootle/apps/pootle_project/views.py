@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
-# This program is free software; you can redistribute it and/or modify
+# Pootle is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
@@ -27,6 +28,8 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
 from django.utils.translation import ugettext as _, ungettext
 
+from pootle.core.decorators import get_path_obj, permission_required
+from pootle.core.helpers import get_translation_context
 from pootle.i18n.gettext import tr_lang
 from pootle_app.models import Directory
 from pootle_app.models.permissions import (get_matching_permissions,
@@ -36,7 +39,6 @@ from pootle_app.views.admin.permissions import admin_permissions
 from pootle_app.views.index.index import getprojects
 from pootle_app.views.top_stats import gentopstats_project, gentopstats_root
 from pootle_language.models import Language
-from pootle_misc import dispatch
 from pootle_misc.baseurl import l
 from pootle_misc.browser import get_table_headings
 from pootle_misc.forms import LiberalModelChoiceField
@@ -57,10 +59,9 @@ def get_last_action(translation_project):
 
 
 def make_language_item(request, translation_project):
-    href = '/%s/%s/' % (translation_project.language.code,
-                        translation_project.project.code)
-    href_all = dispatch.translate(translation_project)
-    href_todo = dispatch.translate(translation_project, state='incomplete')
+    href = translation_project.get_absolute_url()
+    href_all = translation_project.get_translate_url()
+    href_todo = translation_project.get_translate_url(state='incomplete')
 
     project_stats = get_raw_stats(translation_project)
 
@@ -86,16 +87,10 @@ def make_language_item(request, translation_project):
     return info
 
 
-def project_language_index(request, project_code):
+@get_path_obj
+@permission_required('view')
+def overview(request, project):
     """page listing all languages added to project"""
-    project = get_object_or_404(Project, code=project_code)
-    request.permissions = get_matching_permissions(
-            get_profile(request.user), project.directory
-    )
-
-    if not check_permission('view', request):
-        raise PermissionDenied
-
     can_edit = check_permission('administrate', request)
 
     translation_projects = project.translationproject_set.all()
@@ -138,19 +133,14 @@ def project_language_index(request, project_code):
         from pootle_project.forms import DescriptionForm
         templatevars['form'] = DescriptionForm(instance=project)
 
-    return render_to_response('project/project.html', templatevars,
+    return render_to_response('project/overview.html', templatevars,
                               context_instance=RequestContext(request))
 
 
 @ajax_required
-def project_settings_edit(request, project_code):
-    project = get_object_or_404(Project, code=project_code)
-    request.permissions = get_matching_permissions(
-            get_profile(request.user), project.directory
-    )
-    if not check_permission('administrate', request):
-        raise PermissionDenied
-
+@get_path_obj
+@permission_required('administrate')
+def project_settings_edit(request, project):
     from pootle_project.forms import DescriptionForm
     form = DescriptionForm(request.POST, instance=project)
 
@@ -183,6 +173,32 @@ def project_settings_edit(request, project_code):
                         mimetype="application/json")
 
 
+@get_path_obj
+@permission_required('view')
+def translate(request, project):
+    request.pootle_path = project.pootle_path
+    # TODO: support arbitrary resources
+    request.ctx_path = project.pootle_path
+    request.resource_path = ''
+
+    request.store = None
+    request.directory = project.directory
+
+    language = None
+
+    context = get_translation_context(request)
+    context.update({
+        'language': language,
+        'project': project,
+
+        'editor_extends': 'project_base.html',
+        'editor_body_id': 'projecttranslate',
+    })
+
+    return render_to_response('editor/main.html', context,
+                              context_instance=RequestContext(request))
+
+
 class TranslationProjectFormSet(forms.models.BaseModelFormSet):
 
     def save_existing(self, form, instance, commit=True):
@@ -200,16 +216,10 @@ class TranslationProjectFormSet(forms.models.BaseModelFormSet):
         return result
 
 
-def project_admin(request, project_code):
+@get_path_obj
+@permission_required('administrate')
+def project_admin(request, current_project):
     """adding and deleting project languages"""
-    current_project = Project.objects.get(code=project_code)
-    request.permissions = get_matching_permissions(get_profile(request.user),
-                                                   current_project.directory)
-
-    if not check_permission('administrate', request):
-        raise PermissionDenied(_("You do not have rights to administer "
-                                 "this project."))
-
     template_translation_project = current_project \
                                         .get_template_translationproject()
 
@@ -272,15 +282,9 @@ def project_admin(request, project_code):
                      exclude=('description',))
 
 
-def project_admin_permissions(request, project_code):
-    project = get_object_or_404(Project, code=project_code)
-    request.permissions = get_matching_permissions(get_profile(request.user),
-                                                   project.directory)
-
-    if not check_permission('administrate', request):
-        raise PermissionDenied(_("You do not have rights to administer "
-                                 "this project."))
-
+@get_path_obj
+@permission_required('view')
+def project_admin_permissions(request, project):
     template_vars = {
         "project": project,
         "directory": project.directory,
@@ -291,13 +295,9 @@ def project_admin_permissions(request, project_code):
                              "project/admin_permissions.html", template_vars)
 
 
+@permission_required('view')
 def projects_index(request):
     """page listing all projects"""
-    request.permissions = get_matching_permissions(get_profile(request.user),
-                                                   Directory.objects.root)
-    if not check_permission('view', request):
-        raise PermissionDenied
-
     table_fields = ['project', 'progress', 'activity']
     table = {
         'id': 'projects',

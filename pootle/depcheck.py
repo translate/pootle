@@ -106,12 +106,6 @@ def test_levenshtein():
         return False
 
 
-def test_indexer():
-    from translate.search.indexing import _get_available_indexers
-    return [indexer.__module__.split('.')[-1]
-            for indexer in _get_available_indexers()]
-
-
 def test_gaupol():
     try:
         import aeidon

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008,2012 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -23,8 +24,12 @@ from django.conf.urls import patterns, url
 
 urlpatterns = patterns('pootle_language.views',
     url(r'^(?P<language_code>[^/]*)/$',
-        'language_index',
-        name='language.overview'),
+        'overview',
+        name='pootle-language-overview'),
+
+    url(r'^(?P<language_code>[^/]*)/translate/$',
+        'translate',
+        name='pootle-language-translate'),
 
     # Admin
     (r'^(?P<language_code>[^/]*)/edit_settings.html$',

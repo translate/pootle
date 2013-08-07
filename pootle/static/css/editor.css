@@ -259,6 +259,11 @@ tr.edit-row.with-ctx
     background-color: #dbe3e4;
 }
 
+.delimiter-row
+{
+    background-color: #e5f3f8;
+}
+
 /* Context */
 
 tr.edit-ctx
@@ -425,6 +430,7 @@ div.translate-left
 {
     display: inline-block;
     width: 24.5%;
+    clear: both;
 }
 
 div.translate-middle

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of translate.
 #
@@ -28,7 +29,12 @@ urlpatterns = patterns('pootle_project.views',
 
     # Specific project
     url(r'^(?P<project_code>[^/]*)/$',
-        'project_language_index', name='project.overview'),
+        'overview',
+        name='pootle-project-overview'),
+
+    url(r'^(?P<project_code>[^/]*)/translate/$',
+        'translate',
+        name='pootle-project-translate'),
 
     # Admin
     (r'^(?P<project_code>[^/]*)/edit_settings.html?$',

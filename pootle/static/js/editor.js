@@ -9,20 +9,16 @@
 
     /* Default settings */
     this.settings = {
-      mt: [],
-      targetLanguage: null,
-      project: null
+      mt: []
     };
-    /* Merge given options with default settings */
-    if (options) {
-      $.extend(this.settings, options);
-    }
+
+    options && $.extend(this.settings, options);
 
     /* Initialize variables */
-    this.units = {};
-    this.isSingleFile = $('#editor').data('is-single-file');
-    this.path = $('#editor').data('path');
+    this.units = new PTL.collections.UnitCollection;
     this.pootlePath = $('#editor').data('pootle-path');
+    this.ctxPath = $('#editor').data('ctx-path');
+    this.resourcePath = $('#editor').data('resource-path');
     this.currentPage = 1;
     this.currentNumPages = 0;
     this.pagesGot = {};
@@ -44,8 +40,6 @@
 
     /* Regular expressions */
     this.cpRE = /^(<[^>]+>|\[n\|t]|\W$^\n)*(\b|$)/gm;
-    this.escapeRE = /<[^<]*?>|\r\n|[\r\n\t&<>]/gm;
-    this.whitespaceRE = /^ +| +$|[\r\n\t] +| {2,}/gm;
 
     /* Timeline requests handler */
     this.timelineReq = null;
@@ -57,13 +51,15 @@
     this.differencer = new diff_match_patch();
 
     /* Compile templates */
-    this.tmpl = {vUnit: $.template($('#view_unit').html()),
-                 tm: $.template($('#tm_suggestions').html()),
-                 editCtx: $.template($('#editCtx').html())}
+    this.tmpl = {vUnit: _.template($('#view_unit').html()),
+                 tm: _.template($('#tm_suggestions').html()),
+                 editCtx: _.template($('#editCtx').html())}
 
     /* Initialize search */
     // TODO: pass the environment option to the init
-    PTL.search.init();
+    PTL.search.init({
+      onSubmit: this.search
+    });
 
     /*
      * Bind event handlers
@@ -161,18 +157,6 @@
       $('#editor-comment').slideToggle('fast');
     });
     $(document).on('submit', '#comment-form', this.comment);
-
-    /* Search */
-    $(document).on('submit', '#search-form', function (e) {
-      e.preventDefault();
-      PTL.editor.search();
-    });
-    $(document).on('keypress', '#id_search', function (e) {
-      if (e.which === 13) {
-        e.preventDefault();
-        PTL.editor.search();
-      }
-    });
 
     /* Misc */
     $(document).on('click', '.js-editor-msg-hide', this.hideMsg);
@@ -291,24 +275,6 @@
       });
     });
 
-    /* Load lookup backends */
-    $.each(this.settings.lookup, function () {
-      var backend = this;
-
-      $.ajax({
-        url: s(['js/lookup/', backend, '.js'].join('')),
-        async: false,
-        dataType: 'script',
-        success: function () {
-          setTimeout(function () {
-            PTL.editor.lookup[backend].init();
-          }, 0);
-          $(document).on('lookup_ready', 'table.translate-table',
-                         PTL.editor.lookup[backend].ready);
-        }
-      });
-    });
-
     // Update relative dates every minute
     setInterval(PTL.common.updateRelativeDates, 6e4);
 
@@ -316,8 +282,9 @@
     setTimeout(function () {
       $.history.init(function (hash) {
         var params = PTL.utils.getParsedHash(hash),
-          withUid = false, pageNumber = undefined,
-          tmpParamValue;
+            withUid = 0,
+            pageNumber = undefined,
+            tmpParamValue;
 
         // Walk through known filtering criterias and apply them to the editor object
 
@@ -325,15 +292,14 @@
           tmpParamValue = parseInt(params['unit'], 10);
 
           if (tmpParamValue && !isNaN(tmpParamValue)) {
-            if (PTL.editor.activeUid !== tmpParamValue &&
-                PTL.editor.units[tmpParamValue] === undefined) {
-              PTL.editor.activeUid = tmpParamValue;
-              withUid = true;
-            } else {
-              // if uid is already preloaded, just switch to it
-              PTL.editor.activeUid = tmpParamValue;
-              PTL.editor.displayEditUnit(tmpParamValue);
+            var current = PTL.editor.units.getCurrent(),
+                newUnit = PTL.editor.units.get(tmpParamValue);
+            if (newUnit && newUnit !== current) {
+              PTL.editor.units.setCurrent(newUnit);
+              PTL.editor.displayEditUnit();
               return;
+            } else {
+              withUid = tmpParamValue;
             }
           }
         } else if (params['page']) {
@@ -461,8 +427,10 @@
           // otherwise, when the page is reloaded, some pages will not yet be there
           PTL.editor.fetchPages(false);
 
-          // now we can safely render the table
-          PTL.editor.displayEditUnit(PTL.editor.activeUid);
+          if (PTL.editor.units.getCurrent() === undefined) {
+            PTL.editor.units.setFirstAsCurrent();
+          }
+          PTL.editor.displayEditUnit();
         }
 
       }, {'unescape': true});
@@ -486,23 +454,18 @@
       $(".focusthis").get(0).focus();
     }
 
-    // Highlight stuff
     PTL.editor.hlSearch();
-    //PTL.editor.hlTerms(); // Disabled for now — it's annoying!
 
     if (PTL.editor.settings.tmUrl != '') {
-      // Start retrieving TM units from amaGama
       PTL.editor.getTMUnits();
     }
 
     // All is ready, let's call the ready functions of the MT backends
     $("table.translate-table").trigger("mt_ready");
-    $("table.translate-table").trigger("lookup_ready");
 
     PTL.editor.isLoading = false;
     PTL.editor.hideActivity();
     PTL.editor.updateExportLink();
-    PTL.editor.updatePermalink();
     PTL.common.updateRelativeDates();
 
     // clear any pending 'Loading...' indicator timer
@@ -515,7 +478,6 @@
   noResults: function () {
     PTL.editor.displayMsg(gettext("No results."));
     PTL.editor.reDraw(false);
-    PTL.editor.updatePermalink(false);
   },
 
 
@@ -577,16 +539,6 @@
       hlRegex = new RegExp(PTL.editor.makeRegexForMultipleWords(hl), "i");
     }
     $(sel.join(", ")).highlightRegex(hlRegex);
-  },
-
-  /* Highlights matching terms in the source text */
-  hlTerms: function () {
-    var term;
-
-    $(".tm-original").each(function () {
-      term = $(this).text();
-      $("div.original .translation-text").highlightRegex(new RegExp(PTL.editor.escapeUnsafeRegexSymbols(term), "g"));
-    });
   },
 
 
@@ -660,63 +612,6 @@
     return t;
   },
 
-  /* Cleans '\n' escape sequences and adds '\t' sequences */
-  cleanEscape: function (s) {
-    return s.replace(/\\t/g, "\t").replace(/\\n/g, "");
-  },
-
-
-  /* Fancy escapes to highlight parts of the text such as HTML tags */
-  fancyEscape: function (text) {
-
-    function replace(match) {
-        var replaced,
-            escapeHl= '<span class="highlight-escape">%s</span>',
-            htmlHl = '<span class="highlight-html">&lt;%s&gt;</span>',
-            submap = {
-              '\r\n': escapeHl.replace(/%s/, '\\r\\n') + '<br/>\n',
-              '\r': escapeHl.replace(/%s/, '\\r') + '<br/>\n',
-              '\n': escapeHl.replace(/%s/, '\\n') + '<br/>\n',
-              '\t': escapeHl.replace(/%s/, '\\t'),
-              '&': '&amp;',
-              '<': '&lt;',
-              '>': '&gt;'
-            };
-
-        replaced = submap[match];
-
-        if (replaced === undefined) {
-          replaced = htmlHl.replace(
-              /%s/,
-              PTL.editor.fancyEscape(match.slice(1, match.length-1))
-          );
-        }
-
-        return replaced;
-    }
-
-    return text.replace(this.escapeRE, replace);
-  },
-
-
-  /* Highlight spaces to make them easily visible */
-  fancySpaces: function (text) {
-
-    function replace(match) {
-        var spaceHl= '<span class="translation-space"> </span>';
-
-        return Array(match.length + 1).join(spaceHl);
-    }
-
-    return text.replace(this.whitespaceRE, replace);
-  },
-
-
-  /* Fancy highlight: fancy spaces + fancy escape */
-  fancyHl: function (text) {
-    return this.fancySpaces(this.fancyEscape(text));
-  },
-
 
   /* Does the actual diffing */
   doDiff: function (a, b) {
@@ -733,18 +628,18 @@
 
       if (op === 0) {
           if (removed) {
-            textDiff += '<span class="diff-delete">' + PTL.editor.fancyEscape(removed) + '</span>'
+            textDiff += '<span class="diff-delete">' + PTL.utils.fancyEscape(removed) + '</span>'
             removed = "";
           }
-          textDiff += PTL.editor.fancyEscape(text);
+          textDiff += PTL.utils.fancyEscape(text);
       } else if (op === 1) {
         if (removed) {
           // This is part of a substitution, not a plain insertion. We
           // will format this differently.
-          textDiff += '<span class="diff-replace">' + PTL.editor.fancyEscape(text) + '</span>';
+          textDiff += '<span class="diff-replace">' + PTL.utils.fancyEscape(text) + '</span>';
           removed = "";
         } else {
-          textDiff += '<span class="diff-insert">' + PTL.editor.fancyEscape(text) + '</span>';
+          textDiff += '<span class="diff-insert">' + PTL.utils.fancyEscape(text) + '</span>';
         }
       } else if (op === -1) {
         removed = text;
@@ -752,7 +647,7 @@
     });
 
     if (removed) {
-      textDiff += '<span class="diff-delete">' + PTL.editor.fancyEscape(removed) + '</span>';
+      textDiff += '<span class="diff-delete">' + PTL.utils.fancyEscape(removed) + '</span>';
     }
 
     return textDiff;
@@ -845,11 +740,11 @@
   },
 
   updateExportLink: function () {
-    var urlStr = [
-          // FIXME: project and target language information should come
-          // from the current unit/store
-          '', this.settings.targetLanguage, this.settings.project,
-          'export-view', this.path
+    var unit = this.units.getCurrent(),
+        store = unit.get('store'),
+        urlStr = [
+          '', store.get('target_lang'), store.get('project_code'),
+          'export-view', this.resourcePath
         ].join('/'),
         urlStr = [urlStr, $.param(this.getReqData())].join('?'),
         exportLink = [
@@ -857,25 +752,6 @@
         ].join('');
 
     $("#js-editor-export").html(exportLink);
-  },
-
-  updatePermalink: function (opts) {
-    if (opts !== false) {
-      // FIXME: We need a completely different way for getting view URLs in JS
-      var post = this.isSingleFile ? '/translate/#unit=' :
-                                     'translate.html#unit=';
-      var urlStr = [this.pootlePath, post].join('');
-      // Translators: Permalink to the current unit in the editor.
-      //    The first '%s' is the permalink URL.
-      //    The second '%s' is the unit number.
-      var thePermalink = interpolate(gettext('<a href="%s">String %s</a>'),
-                                     [l(urlStr + PTL.editor.activeUid),
-                                      PTL.editor.activeUid]);
-    } else {
-      var thePermalink = '';
-    }
-
-    $("#js-editor-permalink").html(thePermalink);
   },
 
   /*
@@ -930,8 +806,7 @@
     } else {
       // Since we use jquery-jsonp, we must differentiate between
       // the passed arguments
-      // FIXME: check for responseText instead of instanceof
-      if (xhr instanceof XMLHttpRequest) {
+      if (xhr.hasOwnProperty('responseText')) {
         msg = $.parseJSON(xhr.responseText).msg;
       } else {
         msg = gettext("Unknown error");
@@ -987,30 +862,22 @@
 
   /* Gets the view units that refer to currentPage */
   getViewUnits: function (opts) {
-    var extraData, reqData, viewUrl,
-        defaults = {async: false, limit: 0, page: this.currentPage,
-                    pager: false, withUid: false},
-        urlStr = this.isSingleFile ? '/view' + this.pootlePath :
-                                     this.pootlePath + 'view.html';
+    var extraData, reqData,
+        defaults = {async: false, page: this.currentPage,
+                    pager: false, withUid: 0},
+        viewUrl = l('/xhr/units/');
     // Merge passed arguments with defaults
     opts = $.extend({}, defaults, opts);
 
-    // Extend URL if needed
-    if (opts.limit != 0 && this.isSingleFile) {
-      urlStr = urlStr.replace('/view', '/view/' + limit);
-    }
-    viewUrl = l(urlStr);
-
-    // Extra request variables specific to this function
-    extraData = {page: opts.page};
-    if (Object.size(this.meta) == 0) {
-      extraData.meta = true;
-    }
+    extraData = {
+      page: opts.page,
+      path: this.pootlePath
+    };
     if (opts.pager) {
       extraData.pager = opts.pager;
     }
-    if (opts.withUid) {
-      extraData.uid = this.activeUid;
+    if (opts.withUid > 0) {
+      extraData.uid = opts.withUid;
       // We don't know the page number beforehand —
       // delete the parameter as it's useless
       delete extraData.page
@@ -1023,33 +890,23 @@
       dataType: 'json',
       async: opts.async,
       success: function (data) {
-        // Fill in metadata information if we don't have it yet
-        if (Object.size(PTL.editor.meta) == 0 && data.meta) {
-          PTL.editor.meta = data.meta;
-        }
-
         // Receive pager in case we have asked for it
-        if (opts.pager) {
-          if (data.pager) {
-            PTL.editor.hasResults = true;
+        if (opts.pager && data.pager) {
+          // FIXME: can we get rid of this, please?
+          PTL.editor.hasResults = true;
 
-            // Clear old data and add new results
-            PTL.editor.pagesGot = {};
-            PTL.editor.units = {};
-            PTL.editor.updatePager(data.pager);
-            // PTL.editor.fetchPages(false);
-            if (data.uid) {
-              PTL.editor.activeUid = data.uid;
-            }
-          }
+          // Clear old data and add new results
+          PTL.editor.pagesGot = {};
+          PTL.editor.units.reset();
+          PTL.editor.updatePager(data.pager);
         }
 
         // Store view units in the client
-        if (data.units.length) {
+        if (data.unit_groups.length) {
           // Determine in which page we want to save units, as we may not
           // have specified it in the GET parameters — in that case, the
           // page number is specified within the response pager
-          if (opts.withUid && data.pager) {
+          if (data.pager) {
             var page = data.pager.number;
           } else {
             var page = opts.page;
@@ -1057,16 +914,46 @@
 
           PTL.editor.pagesGot[page] = [];
 
-          var post = PTL.editor.isSingleFile ? '/translate/#unit=' :
-                                               'translate.html#unit=';
-          var urlStr = [PTL.editor.pootlePath, post].join('');
+          // Calculate where to insert the new set of units
+          var pages = $.map(PTL.editor.pagesGot, function (value, key) {
+                return parseInt(key, 10);
+              }).sort(),
+              pageIndex = pages.indexOf(page),
+              at = PTL.editor.pager.per_page * pageIndex;
 
-          // Copy retrieved units to the client
-          $.each(data.units, function () {
-            PTL.editor.units[this.id] = this;
-            PTL.editor.units[this.id]['url'] = l(urlStr + this.id);
-            PTL.editor.pagesGot[page].push(this.id);
-          });
+          // FIXME: can we avoid this?
+          var urlStr = [
+            PTL.editor.ctxPath, 'translate/', PTL.editor.resourcePath,
+            '#unit=',
+          ].join('');
+
+          var i, j, unit, unitGroup;
+          for (i=0; i<data.unit_groups.length; i++) {
+            unitGroup = data.unit_groups[i];
+            $.each(unitGroup, function (pootlePath, group) {
+              var storeData = $.extend({pootlePath: pootlePath}, group.meta),
+                  units = _.map(group.units, function (unit) {
+                    return $.extend(unit, {store: storeData});
+                  });
+              PTL.editor.units.set(units, {at: at, remove: false});
+              at += group.units.length;
+
+              // FIXME: can we avoid this?
+              for (j=0; j<group.units.length; j++) {
+                unit = PTL.editor.units.get(group.units[j].id);
+                unit.set('url', l(urlStr + unit.id));
+
+                PTL.editor.pagesGot[page].push(unit.id);
+              }
+            });
+          }
+
+          if (opts.withUid) {
+            PTL.editor.units.setCurrent(opts.withUid);
+          } else if (data.pager) {
+            var firstInPage = PTL.editor.pagesGot[data.pager.number][0];
+            PTL.editor.units.setCurrent(firstInPage);
+          }
 
           PTL.editor.hasResults = true;
         } else {
@@ -1079,54 +966,72 @@
   },
 
 
-  /* Builds view rows for units represented by 'uids' */
-  buildRows: function (uids) {
-    var _this, i, unit,
+  /* Builds a single row */
+  buildRow: function (unit, cls) {
+    return [
+      '<tr id="row', unit.id, '" class="view-row ', cls ,'">',
+        this.tmpl.vUnit({unit: unit.toJSON()}),
+      '</tr>'
+    ].join('');
+  },
+
+  /* Builds the editor rows */
+  buildRows: function () {
+    var unitGroups = this.getUnitGroups(),
+        groupSize = _.size(unitGroups),
+        currentUnit = this.units.getCurrent(),
         cls = "even",
         even = true,
-        rows = "";
+        rows = [],
+        i, unit;
 
-    for (i=0; i<uids.length; i++) {
-      _this = uids[i].id || uids[i];
-      unit = this.units[_this];
+    _.each(unitGroups, function (unitGroup) {
+      // Don't display a delimiter row if all units have the same origin
+      if (groupSize !== 1) {
+        rows.push('<tr class="delimiter-row"><td colspan="2"></td></tr>');
+      }
 
-      // Build row i
-      rows += '<tr id="row' + _this + '" class="view-row ' + cls + '">';
-      rows += this.tmpl.vUnit($, {data: {meta: this.meta,
-                                         unit: unit}}).join("");
-      rows += '</tr>';
+      for (i=0; i<unitGroup.length; i++) {
+        unit = unitGroup[i];
 
-      // Update odd/even class
-      cls = even ? "odd" : "even";
-      even = !even;
-    }
+        if (unit.id === currentUnit.id) {
+          rows.push(this.getEditUnit());
+        } else {
+          rows.push(this.buildRow(unit, cls));
+        }
 
-    return rows;
+        cls = even ? "odd" : "even";
+        even = !even;
+      }
+    }, this);
+
+    return rows.join('');
   },
 
 
   /* Builds context rows for units passed as 'units' */
   buildCtxRows: function (units, extraCls) {
     var i, unit,
+        currentUnit = this.units.getCurrent(),
         cls = "even",
         even = true,
-        rows = "";
-    var post = PTL.editor.isSingleFile ? '/translate/#unit=' :
-                                         'translate.html#unit=';
-    var urlStr = [PTL.editor.pootlePath, post].join('');
+        rows = "",
+        urlStr = [
+          PTL.editor.ctxPath, 'translate/', PTL.editor.resourcePath,
+          '#unit=',
+        ].join('');
 
     for (i=0; i<units.length; i++) {
+      // FIXME: Please let's use proper models for context units
       unit = units[i];
       unit['url'] = l(urlStr + unit.id);
+      unit = $.extend({}, currentUnit.toJSON(), unit);
 
-      // Build context row i
       rows += '<tr id="ctx' + unit.id + '" class="ctx-row ' + extraCls +
               ' ' + cls + '">';
-      rows += this.tmpl.vUnit($, {data: {meta: this.meta,
-                                         unit: unit}}).join("");
+      rows += this.tmpl.vUnit({unit: unit});
       rows += '</tr>';
 
-      // Update odd/even class
       cls = even ? "odd" : "even";
       even = !even;
     }
@@ -1135,113 +1040,46 @@
   },
 
 
-  /* Gets uids that should be displayed before/after 'uid' */
-  getUidsBeforeAfter: function (uid) {
-    var howMuch, i, m, prevNextL, tu,
-        uids = {before: [], after: []},
-        limit = parseInt(((this.pager.per_page - 1) / 2), 10),
-        current = this.units[uid],
-        prevNext = {prev: "before", next: "after"};
+  /* Returns the unit groups for the current editor state */
+  getUnitGroups: function () {
+    var limit = parseInt(((this.pager.per_page - 1) / 2), 10),
+        unitCount = this.units.length,
+        currentUnit = this.units.getCurrent(),
+        curIndex = this.units.indexOf(currentUnit),
+        begin = curIndex - limit,
+        end = curIndex + 1 + limit;
 
-    for (m in prevNext) {
-      tu = current;
-
-      // Fill uids[before|after] with prev/next ids
-      for (i=0; i<limit; i++) {
-        if (tu[m] != undefined && tu[m] in this.units) {
-          var tu = this.units[tu[m]];
-          uids[prevNext[m]].push(tu.id);
-        }
+    if (begin < 0) {
+      end = end + -begin;
+      begin = 0;
+    } else if (end > unitCount) {
+      if (begin > end - unitCount) {
+        begin = begin + -(end - unitCount);
+      } else {
+        begin = 0;
       }
+      end = unitCount;
     }
 
-    // Only fill remaining rows if we have more units than the limit
-    if (Object.size(this.units) > limit) {
-      prevNextL = {prev: "after", next: "before"};
-
-      for (m in prevNext) {
-        // If we have less units that the limit, fill that in
-        if (uids[prevNextL[m]].length < limit) {
-          // Add (limit - length) units to uids[prevNext[m]]
-          howMuch = limit - uids[prevNextL[m]].length;
-          tu = this.units[uids[prevNext[m]][uids[prevNext[m]].length-1]];
-
-          for (i=0; i<howMuch; i++) {
-            if (tu[m] != undefined) {
-              var tu = this.units[tu[m]];
-              uids[prevNext[m]].push(tu.id);
-            }
-          }
-        }
-      }
-    }
-
-    uids.before.reverse();
-
-    return uids;
+    return _.groupBy(this.units.slice(begin, end), function (unit) {
+      return unit.get('store').get('pootlePath');
+    }, this);
   },
 
 
-  /* Checks and fixes the linking between units */
-  checkUnitsLinking: function () {
-    var first, last, lastInPrevPage, p, pnP;
-
-    for (p in this.pagesGot) {
-      // Ensure we work with integers
-      p = parseInt(p, 10);
-
-      // First and last units in this page
-      first = this.pagesGot[p][0];
-      last = this.pagesGot[p][this.pagesGot[p].length-1];
-      // Check linking to the previous unit from the first unit in this page
-      if (p > 1 && (!this.units[first].hasOwnProperty('prev') || this.units[first].prev == null)) {
-        // We can only set the linking if the previous page
-        // has already been fetched
-        pnP = p - 1;
-        if (pnP in this.pagesGot) {
-          lastInPrevPage = this.pagesGot[pnP][this.pagesGot[pnP].length-1];
-          $.extend(this.units[first], {prev: lastInPrevPage});
-        }
-      }
-
-      // Check linking to the next unit from the last unit in this page
-      if (p < this.pager.num_pages &&
-          (!this.units[last].hasOwnProperty('next') || this.units[last].next == null)) {
-        // We can only set the linking if the next page
-        // has already been fetched
-        pnP = p + 1;
-        if (pnP in this.pagesGot) {
-          $.extend(this.units[last], {next: this.pagesGot[pnP][0]});
-        }
-      }
-    }
-  },
-
-
-  /* Sets the edit view for unit 'uid' */
-  displayEditUnit: function (uid) {
-    var uids, newTbody;
-
-    // Ensure linking is correct before moving to a specific unit
-    this.checkUnitsLinking();
-
+  /* Sets the edit view for the current active unit */
+  displayEditUnit: function () {
     if (PTL.editor.hasResults) {
       // Fetch pages asynchronously — we already have the needed pages
       // so this will return units whenever it can
       this.fetchPages(true);
 
-      // Get the actual editing widget and the surrounding view rows
-      uids = this.getUidsBeforeAfter(uid);
-      newTbody = this.buildRows(uids.before) +
-                 this.getEditUnit(uid) +
-                 this.buildRows(uids.after);
-
       // Hide any visible message
       this.hideMsg();
 
-      this.reDraw(newTbody);
+      this.reDraw(this.buildRows());
 
-      this.updateNavButtons(uids.before.length, uids.after.length);
+      this.updateNavButtons();
     }
   },
 
@@ -1287,9 +1125,9 @@
 
 
   /* Updates previous/next navigation button states */
-  updateNavButtons: function (hasBefore, hasAfter) {
-    this.updateNavButton('#js-nav-prev', !hasBefore);
-    this.updateNavButton('#js-nav-next', !hasAfter);
+  updateNavButtons: function () {
+    this.updateNavButton('#js-nav-prev', !this.units.hasPrev());
+    this.updateNavButton('#js-nav-next', !this.units.hasNext());
   },
 
 
@@ -1364,11 +1202,13 @@
     return newPager;
   },
 
-  /* Loads the edit unit 'uid' */
-  getEditUnit: function (uid) {
-    var editor, editCtxRowBefore, editCtxRowAfter, editCtxWidgets, hasData,
+  /* Loads the edit unit for the current active unit */
+  getEditUnit: function () {
+    var editUnit, editCtxRowBefore, editCtxRowAfter, editCtxWidgets, hasData,
         eClass = "edit-row",
-        editUrl = l('/unit/edit/' + uid),
+        currentUnit = this.units.getCurrent(),
+        uid = currentUnit.id,
+        editUrl = l(['/xhr/units/', uid, '/edit/'].join('')),
         reqData = this.getReqData(),
         widget = '',
         ctx = {before: [], after: []};
@@ -1394,7 +1234,7 @@
       error: PTL.editor.error
     });
 
-    eClass += this.units[uid].isfuzzy ? " fuzzy-unit" : "";
+    eClass += currentUnit.get('isfuzzy') ? " fuzzy-unit" : "";
     eClass += PTL.editor.filter !== 'all' ? " with-ctx" : "";
 
     hasData = ctx.before.length || ctx.after.length;
@@ -1402,27 +1242,25 @@
     editCtxRowBefore = editCtxWidgets[0];
     editCtxRowAfter = editCtxWidgets[1];
 
-    editor = (PTL.editor.filter !== 'all' ?
+    editUnit = (PTL.editor.filter !== 'all' ?
               editCtxRowBefore + this.buildCtxRows(ctx.before, "before") : '') +
              '<tr id="row' + uid + '" class="' + eClass + '">' +
              widget + '</tr>' +
              (PTL.editor.filter !== 'all' ?
               this.buildCtxRows(ctx.after, "after") + editCtxRowAfter : '');
 
-    this.activeUid = uid;
-
-    return editor;
+    return editUnit;
   },
 
   /* Pushes translation submissions and moves to the next unit */
   submit: function (e) {
     e.preventDefault();
 
-    var reqData, submitUrl,
-        uid = PTL.editor.activeUid,
+    var reqData, submitUrl, translations,
+        unit = PTL.editor.units.getCurrent(),
         form = $("#captcha").ifExists() || $("#translate");
 
-    submitUrl = l('/unit/submit/' + uid);
+    submitUrl = l(['/xhr/units/', unit.id].join(''));
 
     // Serialize data to be sent and get required attributes for the request
     reqData = form.serializeObject();
@@ -1444,14 +1282,14 @@
             focus: '#id_captcha_answer'
           });
         } else {
-          // If it has been a successful submission, update the data
-          // stored in the client
-          PTL.editor.units[uid].isfuzzy = PTL.editor.isFuzzy();
-          $("textarea[id^=id_target_f_]").each(function (i) {
-            PTL.editor.units[uid].target[i].text = PTL.editor.cleanEscape($(this).val());
-          });
+          // FIXME: handle this via events
+          translations = $("textarea[id^=id_target_f_]").map(function (i, el) {
+            return $(el).val();
+          }).get();
+          unit.setTranslation(translations);
+          unit.set('isfuzzy', PTL.editor.isFuzzy());
 
-          PTL.editor.loadNext(uid);
+          PTL.editor.gotoNext();
         }
       },
       error: PTL.editor.error
@@ -1463,10 +1301,10 @@
     e.preventDefault();
 
     var reqData, suggestUrl,
-        uid = PTL.editor.activeUid,
+        uid = PTL.editor.units.getCurrent().id,
         form = $("#captcha").ifExists() || $("#translate");
 
-    suggestUrl = l('/unit/suggest/' + uid);
+    suggestUrl = l(['/xhr/units/', uid, '/suggestions/'].join(''));
 
     // Serialize data to be sent and get required attributes for the request
     reqData = form.serializeObject();
@@ -1488,41 +1326,32 @@
             focus: '#id_captcha_answer'
           });
         } else {
-          PTL.editor.loadNext(uid);
+          PTL.editor.gotoNext();
         }
       },
       error: PTL.editor.error
     });
   },
 
+
   /* Loads the next unit */
-  loadNext: function (uid) {
-    // FIXME: we can reuse the 'gotoPrevNext' function below for this purpose
-    var newUid = parseInt(PTL.editor.units[uid].next, 10);
-    if (newUid) {
-      var newHash = PTL.utils.updateHashPart("unit", newUid, ["page"]);
-      $.history.load(newHash);
-    } else {
-      PTL.editor.displayMsg([
-          gettext("Congratulations, you walked through all strings."),
-          '<br /><a href="', l(PTL.editor.pootlePath), '">',
-          gettext('Return to the overview page.'), '</a>'
-      ].join(""));
-    }
+  gotoNext: function () {
+    // Buttons might be disabled so we need to fake an event
+    PTL.editor.gotoPrevNext($.Event('click', {target: '#js-nav-next'}));
   },
+
 
   /* Loads the editor with the next unit */
   gotoPrevNext: function (e) {
     e.preventDefault();
-    var current = PTL.editor.units[PTL.editor.activeUid],
-        prevNextMap = {'js-nav-prev': current.prev,
-                       'js-nav-next': current.next},
+    var prevNextMap = {'js-nav-prev': 'prev',
+                       'js-nav-next': 'next'},
         elementId = e.target.id || $(e.target)[0].id,
-        newUid = prevNextMap[elementId];
+        newUnit = PTL.editor.units[prevNextMap[elementId]]();
 
     // Try loading the prev/next unit
-    if (newUid != null) {
-      var newHash = PTL.utils.updateHashPart("unit", parseInt(newUid, 10), ["page"]);
+    if (newUnit) {
+      var newHash = PTL.utils.updateHashPart("unit", newUnit.id, ["page"]);
       $.history.load(newHash);
     } else {
       if (elementId === 'js-nav-prev') {
@@ -1612,13 +1441,15 @@
 
   /* Gets the failing check options for the current query */
   getCheckOptions: function () {
-    var opts,
-        checksUrl = this.isSingleFile ? l('/checks' + this.pootlePath) :
-                                        l(this.pootlePath + "checks.html");
+    var checksUrl = l('/xhr/checks/'),
+        reqData = {
+          path: this.pootlePath
+        }, opts;
 
     $.ajax({
       url: checksUrl,
       async: false,
+      data: reqData,
       dataType: 'json',
       success: function (data) {
         opts = data;
@@ -1707,12 +1538,10 @@
     var defaults = {hasData: false, replace: false};
     opts = $.extend({}, defaults, opts);
 
-    editCtxRowBefore = PTL.editor.tmpl.editCtx($, {data: {hasData: opts.hasData,
-                                                          extraCls: 'before'}})
-                                      .join("");
-    editCtxRowAfter = PTL.editor.tmpl.editCtx($, {data: {hasData: opts.hasData,
-                                                         extraCls: 'after'}})
-                                     .join("");
+    editCtxRowBefore = PTL.editor.tmpl.editCtx({hasData: opts.hasData,
+                                                extraCls: 'before'});
+    editCtxRowAfter = PTL.editor.tmpl.editCtx({hasData: opts.hasData,
+                                               extraCls: 'after'});
 
     if (opts.replace) {
       $("tr.edit-ctx.before").replaceWith(editCtxRowBefore);
@@ -1724,7 +1553,7 @@
 
   /* Gets more context units */
   moreContext: function (initial) {
-    var ctxUrl = l('/unit/context/' + PTL.editor.activeUid),
+    var ctxUrl = l(['/xhr/units/', PTL.editor.units.getCurrent().id, '/context/'].join('')),
         reqData = {gap: PTL.editor.ctxGap};
 
     reqData.qty = initial ? PTL.editor.ctxQty : PTL.editor.ctxStep;
@@ -1829,7 +1658,9 @@
 
 
   /* Loads the search view */
-  search: function () {
+  search: function (e) {
+    e.preventDefault();
+
     var newHash,
         text = $("#id_search").val();
 
@@ -1895,9 +1726,9 @@
       return;
     }
 
-    var uid = PTL.editor.activeUid,
+    var uid = PTL.editor.units.getCurrent().id,
         node = $("#extras-container"),
-        timelineUrl = l("/unit/timeline/" + uid);
+        timelineUrl = l(['/xhr/units/', uid, '/timeline/'].join(''));
 
     // Always abort previous requests so we only get results for the
     // current unit
@@ -1911,7 +1742,7 @@
       success: function (data) {
         var uid = data.uid;
 
-        if (data.timeline && uid === PTL.editor.activeUid) {
+        if (data.timeline && uid === PTL.editor.units.getCurrent().id) {
           if ($("#translator-comment").length) {
             $(data.timeline).hide().insertAfter("#translator-comment")
                             .slideDown(1000, 'easeOutQuad');
@@ -1959,7 +1790,7 @@
 
     for (var i=0; i<results.length && i<3; i++) {
       results[i].source = this.doDiff(source, results[i].source);
-      results[i].target = this.fancyHl(results[i].target);
+      results[i].target = PTL.utils.fancyHl(results[i].target);
       quality = Math.round(results[i].quality);
       // Translators: This is the quality match percentage of a TM result.
       // '%s' will be replaced by a number, and you should keep the extra
@@ -1974,10 +1805,12 @@
 
   /* Gets TM suggestions from amaGama */
   getTMUnits: function () {
-    var src = this.meta.source_lang,
-        tgt = this.meta.target_lang,
-        sText = $($("input[id^=id_source_f_]").get(0)).val(),
-        pStyle = this.meta.project_style,
+    var unit = this.units.getCurrent(),
+        store = unit.get('store'),
+        src = store.get('source_lang'),
+        tgt = store.get('target_lang'),
+        sText = unit.get('source')[0],
+        pStyle = store.get('project_style'),
         tmUrl = this.settings.tmUrl + src + "/" + tgt +
           "/unit/?source=" + encodeURIComponent(sText) + "&jsoncallback=?";
 
@@ -1987,7 +1820,7 @@
     }
 
     if (pStyle.length && pStyle != "standard") {
-        tmUrl += '&style=' + this.meta.project_style;
+        tmUrl += '&style=' + store.get('project_style');
     }
 
     // Always abort previous requests so we only get results for the
@@ -1998,18 +1831,18 @@
 
     this.tmReq = $.jsonp({
       url: tmUrl,
-      callback: '_jsonp' + PTL.editor.activeUid,
+      callback: '_jsonp' + PTL.editor.units.getCurrent().id,
       dataType: 'jsonp',
       cache: true,
       success: function (data) {
         var uid = this.callback.slice(6);
 
-        if (uid == PTL.editor.activeUid && data.length) {
+        if (uid == PTL.editor.units.getCurrent().id && data.length) {
           var filtered = PTL.editor.filterTMResults(data),
               name = gettext("Similar translations"),
-              tm = PTL.editor.tmpl.tm($, {data: {meta: PTL.editor.meta,
-                                                 suggs: filtered,
-                                                 name: name}}).join("");
+              tm = PTL.editor.tmpl.tm({store: store.toJSON(),
+                                       suggs: filtered,
+                                       name: name});
 
           $(tm).hide().appendTo("#extras-container")
                       .slideDown(1000, 'easeOutQuad');
@@ -2026,7 +1859,8 @@
     var suggId = $(this).data("sugg-id"),
         element = $("#suggestion-" + suggId);
         uid = $('.translate-container #id_id').val(),
-        url = l('/suggestion/reject/') + uid + '/' + suggId;
+        url = l(['/xhr/units/', uid,
+                 '/suggestions/', suggId, '/reject/'].join(''));
 
     $.post(url, {'reject': 1},
       function (data) {
@@ -2035,8 +1869,7 @@
 
           // Go to the next unit if there are no more suggestions left
           if (!$("#suggestions div[id^=suggestion]").length) {
-            // Buttons might be disabled so we need to fake an event
-            PTL.editor.gotoPrevNext($.Event('click', {target: '#js-nav-next'}));
+            PTL.editor.gotoNext();
           }
         });
       }, "json");
@@ -2047,9 +1880,11 @@
   acceptSuggestion: function (e) {
     e.stopPropagation(); //we don't want to trigger a click on the text below
     var suggId = $(this).data("sugg-id"),
-        element = $("#suggestion-" + suggId);
-        uid = $('.translate-container #id_id').val(),
-        url = l('/suggestion/accept/') + uid + '/' + suggId;
+        element = $("#suggestion-" + suggId),
+        unit = PTL.editor.units.getCurrent(),
+        url = l(['/xhr/units/', unit.id,
+                 '/suggestions/', suggId, '/accept/'].join('')),
+        translations;
 
     $.post(url, {'accept': 1},
       function (data) {
@@ -2065,19 +1900,19 @@
           });
         });
 
-        // As in submissions, save current unit's status in the client
-        $("textarea[id^=id_target_f_]").each(function (i) {
-          PTL.editor.units[uid].target[i].text = PTL.editor.cleanEscape($(this).val());
-        });
-        PTL.editor.units[uid].isfuzzy = false;
+        // FIXME: handle this via events
+        translations = $("textarea[id^=id_target_f_]").map(function (i, el) {
+          return $(el).val();
+        }).get();
+        unit.setTranslation(translations);
+        unit.set('isfuzzy', false);
 
         element.fadeOut(200, function () {
           $(this).remove();
 
           // Go to the next unit if there are no more suggestions left
           if (!$("#suggestions div[id^=suggestion]").length) {
-            // Buttons might be disabled so we need to fake an event
-            PTL.editor.gotoPrevNext($.Event('click', {target: '#js-nav-next'}));
+            PTL.editor.gotoNext();
           }
         });
       }, "json");
@@ -2088,7 +1923,7 @@
     e.stopPropagation(); //we don't want to trigger a click on the text below
     var element = $(this),
         voteId = element.data("vote-id"),
-        url = l('/vote/clear/') + voteId;
+        url = l(['/xhr/votes/', voteId, '/clear/'].join(''));
 
     element.fadeTo(200, 0.01); //instead of fadeOut that will cause layout changes
     $.ajax({
@@ -2113,7 +1948,8 @@
     e.stopPropagation();
     var element = $(this),
         suggId = element.siblings("[data-sugg-id]").data("sugg-id"),
-        url = l('/vote/up/') + PTL.editor.activeUid + '/' + suggId;
+        url = l(['/xhr/units/', PTL.editor.units.getCurrent().id,
+                 '/suggestions/', suggId, '/votes/'].join(''));
 
     element.fadeTo(200, 0.01); //instead of fadeOut that will cause layout changes
     $.ajax({
@@ -2139,7 +1975,7 @@
     var element = $(this).parent(),
         checkId = $(this).data("check-id"),
         uid = $('.translate-container #id_id').val(),
-        url = l('/qualitycheck/reject/') + uid + '/' + checkId;
+        url = l(['/xhr/units/', uid, '/checks/', checkId, '/reject/'].join(''));
 
     $.post(url, {'reject': 1},
       function (data) {
@@ -2227,12 +2063,15 @@
 
   /* Normalizes language codes in order to use them in MT services */
   normalizeCode: function (locale) {
+    if (locale) {
       var clean = locale.replace('_', '-')
       var atIndex = locale.indexOf('@');
       if (atIndex !== -1) {
         clean = clean.slice(0, atIndex);
       }
       return clean;
+    }
+    return locale;
   },
 
   collectArguments: function (s) {
@@ -2298,56 +2137,7 @@
 
     PTL.editor.goFuzzy();
     return false;
-  },
-
-
-  /*
-   * Lookup
-   */
-
-  /* Adds a new Lookup button in the editor toolbar */
-  addLookupButton: function (container, aClass, tooltip) {
-    $(container).first().prepend(['<a class="translate-lookup iframe ',
-      aClass, '"><i class="icon-', aClass, '" title="', tooltip,
-      '"></i></a>'].join(''));
-  },
-
-  /* Goes through all source languages and adds a new lookup service button
-   * in the editor toolbar if the language is supported
-   */
-  addLookupButtons: function (provider) {
-    var _this = this;
-    var sources = $(".translate-toolbar");
-    $(sources).each(function () {
-      var source = _this.normalizeCode($(this).parent().parent().find('.translation-text').attr("lang"));
-
-    _this.addLookupButton(this,
-      provider.buttonClassName,
-      [provider.hint, ' (', source.toUpperCase(), ')'].join(''));
-    });
-  },
-
-  lookup: function (linkObject, providerCallback) {
-    var areas = $("[id^=id_target_f_]");
-    var sources = $(linkObject).parent().parent().parent().find('.translation-text');
-    var langFrom = PTL.editor.normalizeCode(sources.eq(0).attr("lang"));
-    var langTo = PTL.editor.normalizeCode(areas.eq(0).attr("lang"));
-
-    var lookupText = PTL.editor.getSelectedText().toString();
-    if (!lookupText) {
-      lookupText = sources.eq(0).text();
-    }
-    var url = providerCallback(lookupText, langFrom, langTo);
-    $.magnificPopup.open({
-      items: {
-        src: url,
-        type: 'iframe'
-      },
-    });
-    linkObject.href = url;
-    return false;
   }
-
 
   }; // PTL.editor
 

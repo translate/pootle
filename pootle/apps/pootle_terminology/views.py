@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2011 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -24,7 +25,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 
-from pootle.core.decorators import get_translation_project
+from pootle.core.decorators import get_path_obj, permission_required
 from pootle_app.views.admin import util
 from pootle_store.models import Store, Unit, PARSED, LOCKED
 
@@ -60,8 +61,8 @@ def get_terminology_filename(translation_project):
     return 'pootle-terminology.' + translation_project.project.localfiletype
 
 @commit_on_success
-@get_translation_project
-@util.has_permission('administrate')
+@get_path_obj
+@permission_required('administrate')
 def extract(request, translation_project):
     """generate glossary of common keywords and phrases from translation project"""
     template_vars = {
@@ -168,8 +169,8 @@ def manage_store(request, template_vars, language, term_store):
     # terminology editing working. When the schema can be changed again this
     # exclusion should be removed and change the schema accordingly.
 
-@get_translation_project
-@util.has_permission('administrate')
+@get_path_obj
+@permission_required('administrate')
 def manage(request, translation_project, path=None):
     template_vars = {
         "translation_project": translation_project,

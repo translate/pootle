@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009-2012 Zuza Software Foundation
+# Copyright 2009-2013 Zuza Software Foundation
 #
 # This file is part of translate.
 #
@@ -20,7 +20,9 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.db import models
+from django.core.urlresolvers import reverse
 
+from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 from pootle_misc.util import cached_property, dictsum, getfromcache
@@ -69,11 +71,26 @@ class Directory(models.Model):
 
         super(Directory, self).save(*args, **kwargs)
 
-    def delete(self, *args, **kwargs):
-        for store in self.stores.iterator():
-            store.delete()
+    def get_translate_url(self, **kwargs):
+        lang, proj, dir, fn = split_pootle_path(self.pootle_path)
 
-        super(Directory, self).delete(*args, **kwargs)
+        if lang and proj:
+            pattern_name = 'pootle-tp-translate'
+            pattern_args = [lang, proj, dir, fn]
+        elif lang:
+            pattern_name = 'pootle-language-translate'
+            pattern_args = [lang]
+        elif proj:
+            pattern_name = 'pootle-project-translate'
+            pattern_args = [proj]
+        else:
+            pattern_name = 'pootle-translate'
+            pattern_args = []
+
+        return u''.join([
+            reverse(pattern_name, args=pattern_args),
+            get_editor_filter(**kwargs),
+        ])
 
     def get_relative(self, path):
         """Given a path of the form a/b/c, where the path is relative

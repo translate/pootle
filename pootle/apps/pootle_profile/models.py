@@ -30,7 +30,6 @@ from django.utils.translation import ugettext_lazy as _
 
 from pootle.i18n.override import lang_choices
 from pootle_language.models import Language
-from pootle_misc import dispatch
 from pootle_misc.baseurl import l
 from pootle_misc.util import cached_property
 from pootle_statistics.models import Submission, SubmissionTypes
@@ -260,36 +259,36 @@ class PootleProfile(models.Model):
                     {
                         'id': 'suggestions-pending',
                         'count': self.pending_suggestion_count(tp),
-                        'url': dispatch.translate(tp, 'user-suggestions',
-                                                  user=username),
+                        'url': tp.get_translate_url('user-suggestions',
+                                                    user=username),
                     },
                     {
                         'id': 'suggestions-accepted',
                         'count': self.accepted_suggestion_count(tp),
-                        'url': dispatch.translate(
-                            tp, 'user-suggestions-accepted',
+                        'url': tp.get_translate_url(
+                            'user-suggestions-accepted',
                             user=username,
                         ),
                     },
                     {
                         'id': 'suggestions-rejected',
                         'count': self.rejected_suggestion_count(tp),
-                        'url': dispatch.translate(
-                            tp, 'user-suggestions-rejected',
+                        'url': tp.get_translate_url(
+                            'user-suggestions-rejected',
                             user=username,
                         ),
                     },
                     {
                         'id': 'submissions-total',
                         'count': self.total_submission_count(tp),
-                        'url': dispatch.translate(tp, 'user-submissions',
-                                                  user=username),
+                        'url': tp.get_translate_url('user-submissions',
+                                                      user=username),
                     },
                     {
                         'id': 'submissions-overwritten',
                         'count': self.overwritten_submission_count(tp),
-                        'url': dispatch.translate(
-                            tp, 'user-submissions-overwritten',
+                        'url': tp.get_translate_url(
+                            'user-submissions-overwritten',
                             user=username,
                         ),
                     },

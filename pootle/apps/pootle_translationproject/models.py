@@ -27,12 +27,14 @@ from translate.storage.base import ParseError
 
 from django.conf import settings
 from django.contrib import messages
+from django.core.urlresolvers import reverse
 from django.db import models, IntegrityError
 from django.db.models.signals import post_save
 from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.markup import get_markup_filter_name, MarkupField
+from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.lib.util import RelatedManager
 from pootle_app.models.directory import Directory
 from pootle_language.models import Language
@@ -57,10 +59,6 @@ class TranslationProjectNonDBState(object):
         # Terminology matcher
         self.termmatcher = None
         self.termmatchermtime = None
-
-        self._indexing_enabled = True
-        self._index_initialized = False
-        self.indexer = None
 
 
 def create_translation_project(language, project):
@@ -108,7 +106,6 @@ class TranslationProject(models.Model):
             settings.PARSE_POOL_CULL_FREQUENCY)
 
     objects = TranslationProjectManager()
-    index_directory = ".translation_index"
 
     class Meta:
         unique_together = ('language', 'project')
@@ -161,6 +158,13 @@ class TranslationProject(models.Model):
 
     def get_absolute_url(self):
         return l(self.pootle_path)
+
+    def get_translate_url(self, **kwargs):
+        lang, proj, dir, fn = split_pootle_path(self.pootle_path)
+        return u''.join([
+            reverse('pootle-tp-translate', args=[lang, proj, dir, fn]),
+            get_editor_filter(**kwargs),
+        ])
 
     fullname = property(lambda self: "%s [%s]" % (self.project.fullname,
                                                   self.language.name))
@@ -449,34 +453,6 @@ class TranslationProject(models.Model):
 
         return all_files, new_files
 
-    def _get_indexer(self):
-        if (self.non_db_state.indexer is None and
-            self.non_db_state._indexing_enabled):
-            try:
-                indexer = self.make_indexer()
-
-                if not self.non_db_state._index_initialized:
-                    self.init_index(indexer)
-                    self.non_db_state._index_initialized = True
-
-                self.non_db_state.indexer = indexer
-            except Exception, e:
-                logging.warning(u"Could not initialize indexer for %s in %s: "
-                                u"%s", self.project.code, self.language.code,
-                                str(e))
-                self.non_db_state._indexing_enabled = False
-
-        return self.non_db_state.indexer
-
-    indexer = property(_get_indexer)
-
-    def _has_index(self):
-        return (self.non_db_state._indexing_enabled and
-                (self.non_db_state._index_initialized or
-                 self.indexer is not None))
-
-    has_index = property(_has_index)
-
     def update_file_from_version_control(self, store):
         from pootle.scripts import hooks
         store.sync(update_translation=True)
@@ -643,6 +619,7 @@ class TranslationProject(models.Model):
             old_stats, remote_stats, new_stats = \
                     self.update_file_from_version_control(store)
 
+            # FIXME: This belongs to views
             msg = [
                 _(u'Updated file <em>%(filename)s</em> from version control',
                   {'filename': store.file.name}),
@@ -657,6 +634,7 @@ class TranslationProject(models.Model):
             post_vc_update.send(sender=self, oldstats=old_stats,
                 remotestats=remote_stats, newstats=new_stats)
         except VersionControlError, e:
+            # FIXME: This belongs to views
             msg = _(u"Failed to update <em>%(filename)s</em> from "
                     u"version control: %(error)s",
                     {
@@ -715,6 +693,7 @@ class TranslationProject(models.Model):
                     message,
                     author,
             )
+            # FIXME: This belongs to views
             if request is not None:
                 msg = _("Committed all files under <em>%(path)s</em> to "
                         "version control",
@@ -724,6 +703,7 @@ class TranslationProject(models.Model):
         except Exception, e:
             logging.error(u"Failed to commit: %s", e)
 
+            # FIXME: This belongs to views
             if request is not None:
                 msg = _("Failed to commit to version control: %(error)s",
                         {'error': e}
@@ -782,6 +762,7 @@ class TranslationProject(models.Model):
             for file in filestocommit:
                 versioncontrol.commit_file(file, message=message, author=author)
 
+                # FIXME: This belongs to views
                 if request is not None:
                     msg = _("Committed file <em>%(filename)s</em> to version "
                             "control",
@@ -790,11 +771,12 @@ class TranslationProject(models.Model):
         except Exception, e:
             logging.error(u"Failed to commit file: %s", e)
 
+            # FIXME: This belongs to views
             if request is not None:
                 msg = _("Failed to commit <em>%(filename)s</em> to version "
                         "control: %(error)s",
                         {
-                            'filename': filename,
+                            'filename': store.file.name,
                             'error': e,
                         }
                 )
@@ -896,136 +878,6 @@ class TranslationProject(models.Model):
                 archivecontents.close()
             except:
                 pass
-
-    ############################################################################
-
-    def make_indexer(self):
-        """Get an indexing object for this project.
-
-        Since we do not want to keep the indexing databases open for the
-        lifetime of the TranslationProject (it is cached!), it may NOT be
-        part of the Project object, but should be used via a short living
-        local variable.
-        """
-        logging.debug(u"Loading indexer for %s", self.pootle_path)
-        indexdir = os.path.join(self.abs_real_path, self.index_directory)
-        from translate.search import indexing
-        indexer = indexing.get_indexer(indexdir)
-        indexer.set_field_analyzers({
-            "pofilename": indexer.ANALYZER_EXACT,
-            "pomtime": indexer.ANALYZER_EXACT,
-            "dbid": indexer.ANALYZER_EXACT,
-        })
-
-        return indexer
-
-    def init_index(self, indexer):
-        """Initializes the search index."""
-        #FIXME: stop relying on pomtime so virtual files can be searchable?
-        try:
-            indexer.begin_transaction()
-            for store in self.stores.iterator():
-                try:
-                    self.update_index(indexer, store)
-                except OSError, e:
-                    # Broken link or permission problem?
-                    logging.error("Error indexing %s: %s", store, e)
-            indexer.commit_transaction()
-            indexer.flush(optimize=True)
-        except Exception, e:
-            logging.error(u"Error opening indexer for %s:\n%s", self, e)
-            try:
-                indexer.cancel_transaction()
-            except:
-                pass
-
-    def update_index(self, indexer, store, unitid=None):
-        """Updates the index with the contents of store (limit to
-        ``unitid`` if given).
-
-        There are two reasons for calling this function:
-
-            1. Creating a new instance of :cls:`TranslationProject`
-               (see :meth:`TranslationProject.init_index`)
-               -> Check if the index is up-to-date / rebuild the index if
-               necessary
-            2. Translating a unit via the web interface
-               -> (re)index only the specified unit(s)
-
-        The argument ``unitid`` should be None for 1.
-
-        Known problems:
-
-            1. This function should get called, when the po file changes
-               externally.
-
-               WARNING: You have to stop the pootle server before manually
-               changing po files, if you want to keep the index database in
-               sync.
-        """
-        #FIXME: leverage file updated signal to check if index needs updating
-        if indexer is None:
-            return False
-
-        # Check if the pomtime in the index == the latest pomtime
-        pomtime = str(hash(store.get_mtime()) ** 2)
-        pofilenamequery = indexer.make_query([("pofilename",
-                                               store.pootle_path)], True)
-        pomtimequery = indexer.make_query([("pomtime", pomtime)], True)
-        gooditemsquery = indexer.make_query([pofilenamequery, pomtimequery],
-                                            True)
-        gooditemsnum = indexer.get_query_result(gooditemsquery) \
-                              .get_matches_count()
-
-        # If there is at least one up-to-date indexing item, then the po file
-        # was not changed externally -> no need to update the database
-        units = None
-        if (gooditemsnum > 0) and (not unitid):
-            # Nothing to be done
-            return
-        elif unitid is not None:
-            # Update only specific item - usually translation via the web
-            # interface. All other items should still be up-to-date (even with
-            # an older pomtime).
-            # Delete the relevant item from the database
-            units = store.units.filter(id=unitid)
-            itemsquery = indexer.make_query([("dbid", str(unitid))], False)
-            indexer.delete_doc([pofilenamequery, itemsquery])
-        else:
-            # (item is None)
-            # The po file is not indexed - or it was changed externally
-            # delete all items of this file
-            logging.debug(u"Updating %s indexer for file %s", self.pootle_path,
-                    store.pootle_path)
-            indexer.delete_doc({"pofilename": store.pootle_path})
-            units = store.units
-
-        addlist = []
-        for unit in units.iterator():
-            doc = {
-                "pofilename": store.pootle_path,
-                "pomtime": pomtime,
-                "dbid": str(unit.id),
-            }
-
-            if unit.hasplural():
-                orig = "\n".join(unit.source.strings)
-                trans = "\n".join(unit.target.strings)
-            else:
-                orig = unit.source
-                trans = unit.target
-
-            doc.update({
-                "source": orig,
-                "target": trans,
-                "notes": unit.getnotes(),
-                "locations": unit.getlocations(),
-            })
-            addlist.append(doc)
-
-        if addlist:
-            for add_item in addlist:
-                indexer.index_document(add_item)
 
     ###########################################################################
 

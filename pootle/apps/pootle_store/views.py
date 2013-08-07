@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2010-2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -38,23 +39,23 @@ from django.views.decorators.cache import never_cache
 
 from translate.lang import data
 
-from pootle.core.decorators import (get_translation_project,
-                                    set_request_context)
 from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.models.permissions import (get_matching_permissions,
                                            check_permission,
                                            check_profile_permission)
+from pootle.core.exceptions import Http400
 from pootle_misc.baseurl import redirect
-from pootle_misc.checks import check_names, get_quality_check_failures
+from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.forms import make_search_form
 from pootle_misc.stats import get_raw_stats
-from pootle_misc.url_manip import ensure_uri, previous_view_url
+from pootle_misc.url_manip import ensure_uri
 from pootle_misc.util import paginate, ajax_required, jsonify
 from pootle_profile.models import get_profile
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 
-from .decorators import get_store_context, get_unit_context
+from .decorators import (get_store_context, get_unit_context,
+                         get_xhr_resource_context)
 from .models import Store, Unit
 from .forms import (unit_comment_form_factory, unit_form_factory,
                     highlight_whitespace)
@@ -138,81 +139,6 @@ def download(request, store):
     return redirect('/export/' + store.real_path)
 
 
-def get_filter_name(GET):
-    """Gets current filter's human-readable name.
-
-    :param GET: A copy of ``request.GET``.
-    :return: Two-tuple with the filter name, and a list of extra arguments
-        passed to the current filter.
-    """
-    filter = extra = None
-
-    if 'filter' in GET:
-        filter = GET['filter']
-
-        if filter.startswith('user-'):
-            extra = [GET.get('user', _('User missing'))]
-        elif filter == 'checks' and 'checks' in GET:
-            extra = map(lambda check: check_names.get(check, check),
-                        GET['checks'].split(','))
-    elif 'search' in GET:
-        filter = 'search'
-
-        extra = [GET['search']]
-        if 'sfields' in GET:
-            extra.extend(GET['sfields'].split(','))
-
-    filter_name = {
-        'all': _('All'),
-        'translated': _('Translated'),
-        'untranslated': _('Untranslated'),
-        'fuzzy': _('Needs work'),
-        'incomplete': _('Incomplete'),
-        # Translators: This is the name of a filter
-        'search': _('Search'),
-        'checks': _('Checks'),
-        'user-submissions': _('Submissions'),
-        'user-submissions-overwritten': _('Overwritten submissions'),
-    }.get(filter)
-
-    return (filter_name, extra)
-
-
-@get_translation_project
-@set_request_context
-def export_view(request, translation_project, dir_path, filename=None):
-    """Displays a list of units with filters applied."""
-    current_path = translation_project.directory.pootle_path + dir_path
-
-    if filename:
-        current_path = current_path + filename
-        store = get_object_or_404(Store, pootle_path=current_path)
-        units_qs = store.units
-    else:
-        store = None
-        units_qs = translation_project.units.filter(
-            store__pootle_path__startswith=current_path,
-        )
-
-    filter_name, filter_extra = get_filter_name(request.GET)
-
-    units = get_step_query(request, units_qs)
-    unit_groups = [(path, list(units)) for path, units in
-                   groupby(units, lambda x: x.store.path)]
-
-    ctx = {
-        'source_language': translation_project.project.source_language,
-        'language': translation_project.language,
-        'project': translation_project.project,
-        'unit_groups': unit_groups,
-        'filter_name': filter_name,
-        'filter_extra': filter_extra,
-    }
-
-    return render_to_response('store/list.html', ctx,
-                              context_instance=RequestContext(request))
-
-
 ####################### Translate Page ##############################
 
 def get_alt_src_langs(request, profile, translation_project):
@@ -250,7 +176,7 @@ def get_alt_src_langs(request, profile, translation_project):
     return langs
 
 
-def get_non_indexed_search_step_query(form, units_queryset):
+def get_search_query(form, units_queryset):
     words = form.cleaned_data['search'].split()
     result = units_queryset.none()
 
@@ -286,7 +212,7 @@ def get_non_indexed_search_step_query(form, units_queryset):
 
     return result
 
-def get_non_indexed_search_exact_query(form, units_queryset):
+def get_search_exact_query(form, units_queryset):
     phrase = form.cleaned_data['search']
     result = units_queryset.none()
 
@@ -315,54 +241,14 @@ def get_non_indexed_search_exact_query(form, units_queryset):
 
     return result
 
-def get_search_step_query(translation_project, form, units_queryset):
+
+def get_search_step_query(form, units_queryset):
     """Narrows down units query to units matching search string."""
-
     if 'exact' in form.cleaned_data['soptions']:
-        logging.debug(u"Using exact database search for %s",
-                      translation_project)
-        return get_non_indexed_search_exact_query(form, units_queryset)
+        logging.debug(u"Using exact database search")
+        return get_search_exact_query(form, units_queryset)
 
-    if translation_project.indexer is None:
-        logging.debug(u"No indexer for %s, using database search",
-                      translation_project)
-        return get_non_indexed_search_step_query(form, units_queryset)
-
-    logging.debug(u"Found %s indexer for %s, using indexed search",
-                  translation_project.indexer.INDEX_DIRECTORY_NAME,
-                  translation_project)
-
-    word_querylist = []
-    words = form.cleaned_data['search']
-    fields = form.cleaned_data['sfields']
-    paths = units_queryset.order_by() \
-                          .values_list('store__pootle_path', flat=True) \
-                          .distinct()
-    path_querylist = [('pofilename', pootle_path)
-                      for pootle_path in paths.iterator()]
-    cache_key = "search:%s" % str(hash((repr(path_querylist),
-                                        translation_project.get_mtime(),
-                                        repr(words),
-                                        repr(fields))))
-
-    dbids = cache.get(cache_key)
-    if dbids is None:
-        searchparts = []
-        word_querylist = [(field, words) for field in fields]
-        textquery = translation_project.indexer.make_query(word_querylist,
-                                                           False)
-        searchparts.append(textquery)
-
-        pathquery = translation_project.indexer.make_query(path_querylist,
-                                                           False)
-        searchparts.append(pathquery)
-        limitedquery = translation_project.indexer.make_query(searchparts, True)
-
-        result = translation_project.indexer.search(limitedquery, ['dbid'])
-        dbids = [int(item['dbid'][0]) for item in result[:999]]
-        cache.set(cache_key, dbids, settings.OBJECT_CACHE_TIMEOUT)
-
-    return units_queryset.filter(id__in=dbids)
+    return get_search_query(form, units_queryset)
 
 
 def get_step_query(request, units_queryset):
@@ -445,67 +331,10 @@ def get_step_query(request, units_queryset):
         search_form = make_search_form(request.GET)
 
         if search_form.is_valid():
-            units_queryset = get_search_step_query(request.translation_project,
-                                                   search_form, units_queryset)
+            units_queryset = get_search_step_query(search_form, units_queryset)
 
     return units_queryset
 
-
-def translate_page(request):
-    cantranslate = check_permission("translate", request)
-    cansuggest = check_permission("suggest", request)
-    canreview = check_permission("review", request)
-
-    translation_project = request.translation_project
-    language = translation_project.language
-    project = translation_project.project
-    profile = request.profile
-
-    store = getattr(request, "store", None)
-    directory = getattr(request, "directory", None)
-
-    is_single_file = store and True or False
-    path = is_single_file and store.path or directory.path
-    pootle_path = (is_single_file and store.pootle_path or
-                                      directory.pootle_path)
-
-    is_terminology = (project.is_terminology or store and
-                                                store.is_terminology)
-    search_form = make_search_form(request=request,
-                                   terminology=is_terminology)
-
-    previous_overview_url = previous_view_url(request, ['overview'])
-
-    context = {
-        'cantranslate': cantranslate,
-        'cansuggest': cansuggest,
-        'canreview': canreview,
-        'search_form': search_form,
-        'store': store,
-        'store_id': store and store.id,
-        'directory': directory,
-        'directory_id': directory and directory.id,
-        'path': path,
-        'pootle_path': pootle_path,
-        'is_single_file': is_single_file,
-        'language': language,
-        'project': project,
-        'translation_project': translation_project,
-        'profile': profile,
-        'source_language': translation_project.project.source_language,
-        'previous_overview_url': previous_overview_url,
-        'MT_BACKENDS': settings.MT_BACKENDS,
-        'LOOKUP_BACKENDS': settings.LOOKUP_BACKENDS,
-        'AMAGAMA_URL': settings.AMAGAMA_URL,
-    }
-
-    return render_to_response('store/translate.html', context,
-                              context_instance=RequestContext(request))
-
-
-@get_store_context('view')
-def translate(request, store):
-    return translate_page(request)
 
 #
 # Views used with XMLHttpRequest requests.
@@ -529,6 +358,49 @@ def _filter_ctx_units(units_qs, unit, how_many, gap=0):
 
     return result
 
+
+def _prepare_unit(unit):
+    """Constructs a dictionary with relevant `unit` data."""
+    return {
+        'id': unit.id,
+        'isfuzzy': unit.isfuzzy(),
+        'source': [source[1] for source in pluralize_source(unit)],
+        'target': [target[1] for target in pluralize_target(unit)],
+    }
+
+
+def _path_units_with_meta(path, units):
+    """Constructs a dictionary which contains a list of `units`
+    corresponding to `path` as well as its metadata.
+    """
+    meta = None
+    units_list = []
+
+    for unit in iter(units):
+        if meta is None:
+            # XXX: Watch out for the query count
+            store = unit.store
+            tp = store.translation_project
+            project = tp.project
+            meta = {
+                'source_lang': project.source_language.code,
+                'source_dir': project.source_language.get_direction(),
+                'target_lang': tp.language.code,
+                'target_dir': tp.language.get_direction(),
+                'project_code': project.code,
+                'project_style': project.checkstyle,
+            }
+
+        units_list.append(_prepare_unit(unit))
+
+    return {
+        path: {
+            'meta': meta,
+            'units': units_list,
+        },
+    }
+
+
 def _build_units_list(units, reverse=False):
     """Given a list/queryset of units, builds a list with the unit data
     contained in a dictionary ready to be returned as JSON.
@@ -537,138 +409,68 @@ def _build_units_list(units, reverse=False):
              having plural forms, a title for the plural form is also provided.
     """
     return_units = []
+
     for unit in iter(units):
-        source_unit = []
-        target_unit = []
-        for i, source, title in pluralize_source(unit):
-            unit_dict = {'text': source}
-            if title:
-                unit_dict["title"] = title
-            source_unit.append(unit_dict)
-        for i, target, title in pluralize_target(unit):
-            unit_dict = {'text': target}
-            if title:
-                unit_dict["title"] = title
-            target_unit.append(unit_dict)
-        prev = None
-        next = None
-        if return_units:
-            if reverse:
-                return_units[-1]['prev'] = unit.id
-                next = return_units[-1]['id']
-            else:
-                return_units[-1]['next'] = unit.id
-                prev = return_units[-1]['id']
-        return_units.append({'id': unit.id,
-                             'isfuzzy': unit.isfuzzy(),
-                             'prev': prev,
-                             'next': next,
-                             'source': source_unit,
-                             'target': target_unit})
+        return_units.append(_prepare_unit(unit))
+
     return return_units
 
 
-def _build_pager_dict(pager):
-    """Given a pager object ``pager``, retrieves all the information needed
-    to build a pager.
+@ajax_required
+def get_units(request):
+    """Gets source and target texts and its metadata.
 
-    :return: A dictionary containing necessary pager information to build
-             a pager.
+    :return: A JSON-encoded object containing the source and target texts
+        grouped by the store they belong to.
+
+        When the ``pager`` GET parameter is present, pager information
+        will be returned too.
     """
-    return {"number": pager.number,
-            "num_pages": pager.paginator.num_pages,
-            "per_page": pager.paginator.per_page
-           }
+    pootle_path = request.GET.get('path', None)
+    if pootle_path is None:
+        raise Http400(_('Arguments missing.'))
 
+    page = None
 
-def _get_index_in_qs(qs, unit, store=False):
-    """Given a queryset ``qs``, returns the position (index) of the unit
-    ``unit`` within that queryset. ``store`` specifies if the queryset is
-    limited to a single store.
+    request.profile = get_profile(request.user)
+    limit = request.profile.get_unit_rows()
 
-    :return: Value representing the position of the unit ``unit``.
-    :rtype: int
-    """
-    if store:
-        return qs.filter(index__lt=unit.index).count()
-    else:
-        store = unit.store
-        return (qs.filter(store=store, index__lt=unit.index) | \
-                qs.filter(store__pootle_path__lt=store.pootle_path)).count()
-
-
-def get_view_units(request, units_queryset, store, limit=0):
-    """Gets source and target texts excluding the editing unit.
-
-    :return: An object in JSON notation that contains the source and target
-             texts for units that will be displayed before and after editing
-             unit.
-
-             If asked by using the ``meta`` and ``pager`` parameters,
-             metadata and pager information will be calculated and returned
-             too.
-    """
-    current_unit = None
-    json = {}
-
-    try:
-        limit = int(limit)
-    except ValueError:
-        limit = None
-
-    if not limit:
-        limit = request.profile.get_unit_rows()
-
-    step_queryset = get_step_query(request, units_queryset)
-
-    # Return metadata it has been explicitely requested
-    if request.GET.get('meta', False):
-        tp = request.translation_project
-        json["meta"] = {"source_lang": tp.project.source_language.code,
-                        "source_dir": tp.project.source_language.get_direction(),
-                        "target_lang": tp.language.code,
-                        "target_dir": tp.language.get_direction(),
-                        "project_style": tp.project.checkstyle}
+    units_qs = Unit.objects.get_for_path(pootle_path, request.profile)
+    step_queryset = get_step_query(request, units_qs)
 
     # Maybe we are trying to load directly a specific unit, so we have
     # to calculate its page number
     uid = request.GET.get('uid', None)
-    if uid:
-        current_unit = units_queryset.get(id=uid)
-        preceding = _get_index_in_qs(step_queryset, current_unit, store)
-        page = preceding / limit + 1
-    else:
-        page = None
+    if uid is not None:
+        try:
+            # XXX: Watch for performance, might want to drop into raw SQL
+            # at some stage
+            uid_list = list(step_queryset.values_list('id', flat=True))
+            preceding = uid_list.index(int(uid))
+            page = preceding / limit + 1
+        except ValueError:
+            pass  # uid wasn't a number or not present in the results
 
     pager = paginate(request, step_queryset, items=limit, page=page)
 
-    json["units"] = _build_units_list(pager.object_list)
+    unit_groups = []
+    units_by_path = groupby(pager.object_list, lambda x: x.store.pootle_path)
+    for pootle_path, units in units_by_path:
+        unit_groups.append(_path_units_with_meta(pootle_path, units))
 
-    # Return paging information if requested to do so
+    response = {
+        'unit_groups': unit_groups,
+    }
+
     if request.GET.get('pager', False):
-        json["pager"] = _build_pager_dict(pager)
-        if not current_unit:
-            try:
-                json["uid"] = json["units"][0]["id"]
-            except IndexError:
-                pass
-        else:
-            json["uid"] = current_unit.id
+        response['pager'] = {
+            'count': pager.paginator.count,
+            'number': pager.number,
+            'num_pages': pager.paginator.num_pages,
+            'per_page': pager.paginator.per_page,
+        }
 
-    response = jsonify(json)
-    return HttpResponse(response, mimetype="application/json")
-
-
-@ajax_required
-@get_store_context('view')
-def get_view_units_store(request, store, limit=0):
-    """Gets source and target texts excluding the editing widget (store-level).
-
-    :return: An object in JSON notation that contains the source and target
-             texts for units that will be displayed before and after
-             unit ``uid``.
-    """
-    return get_view_units(request, store.units, store=True, limit=limit)
+    return HttpResponse(jsonify(response), mimetype="application/json")
 
 
 def _is_filtered(request):
@@ -849,6 +651,7 @@ def get_edit_unit(request, unit):
         'directory': directory,
         'profile': profile,
         'user': request.user,
+        'project': project,
         'language': language,
         'source_language': translation_project.project.source_language,
         'cantranslate': check_profile_permission(profile, "translate",
@@ -888,24 +691,20 @@ def get_edit_unit(request, unit):
     return HttpResponse(response, status=rcode, mimetype="application/json")
 
 
-def get_failing_checks(request, pathobj):
+@ajax_required
+@get_xhr_resource_context('view')
+def get_failing_checks(request, path_obj):
     """Gets a list of failing checks for the current object.
 
     :return: JSON string with a list of failing check categories which
              include the actual checks that are failing.
     """
-    stats = get_raw_stats(pathobj)
-    failures = get_quality_check_failures(pathobj, stats, include_url=False)
+    stats = get_raw_stats(path_obj)
+    failures = get_quality_check_failures(path_obj, stats, include_url=False)
 
     response = jsonify(failures)
 
     return HttpResponse(response, mimetype="application/json")
-
-
-@ajax_required
-@get_store_context('view')
-def get_failing_checks_store(request, store):
-    return get_failing_checks(request, store)
 
 
 @ajax_required

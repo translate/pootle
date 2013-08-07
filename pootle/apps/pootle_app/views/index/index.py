@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2012 Zuza Software Foundation
+# Copyright 2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -25,6 +26,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 
+from pootle.core.decorators import get_path_obj
 from pootle.i18n.gettext import tr_lang
 from pootle_app.models import Directory
 from pootle_app.models.permissions import (get_matching_permissions,
@@ -83,9 +85,10 @@ def getprojects(request):
     return get_items(request, Project, get_last_action, lambda name: name)
 
 
-def view(request):
+@get_path_obj
+def view(request, root_dir):
     request.permissions = get_matching_permissions(get_profile(request.user),
-                                                   Directory.objects.root)
+                                                   root_dir)
     can_edit = request.user.is_superuser
 
     languages = getlanguages(request)

@@ -1,35 +1,39 @@
-{% extends "language_base.html" %}
-{% load i18n baseurl cleanhtml assets common_tags %}
-
+{% extends "project_base.html" %}
+{% load i18n baseurl cleanhtml assets common_tags search %}
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block body_id %}languageoverview{% endblock %}
+{% block title %}{{ project.name }} | {{ block.super }}{% endblock %}
+
+{% block body_id %}projectoverview{% endblock %}
+
+{% block search %}{% render_search %}{% endblock %}
 
 {% block content %}
 <div class="module first">
   <div class="hd">
-    <h2>{{ language.summary }}</h2>
+    <h2>{{ project.summary }}</h2>
   </div>
 
   <div class="bd">
     {% display_table table %}
-    {% include "translation_summary_legend.html" %}
   </div>
 
+  {% include "translation_summary_legend.html" %}
 </div>
 
 <div class="module">
-  {% if language.description or can_edit %}
+  {% if project.description or can_edit %}
   <div class="hd">
     <h2>{% trans "Description" %}</h2>
   </div>
 
   <div id="overview-description" class="bd">
 
-    <div id="overview-description-language"
+
+    <div id="overview-description-project"
       class="markup-body{% if can_edit %} js-ctx-meta-desc{% endif %}">
-    {% if language.description %}
-      {{ language.description }}
+    {% if project.description %}
+      {{ project.description }}
     {% else %}
       <p class="placeholder muted">{% trans "No description set." %}</p>
     {% endif %}
@@ -55,6 +59,8 @@
 {% block scripts_extra %}
 <script type="text/javascript">
 $(function() {
+  PTL.search.init();
+
   $("td.stats-name").filter(":not([dir])").bidi();
 });
 </script>
