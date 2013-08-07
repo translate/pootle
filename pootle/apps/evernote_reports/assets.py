@@ -22,9 +22,9 @@ from django_assets import Bundle, register
 
 
 js_reports = Bundle(
-    'js/jquery/jquery.history.js',
-    'js/jquery/jquery.tmpl.js',
-    'js/moment.js',
+    'js/vendor/jquery/jquery.history.js',
+    'js/vendor/underscore.js',
+    'js/vendor/moment.js',
     'js/reports.js',
     filters='rjsmin', output='js/reports.min.js')
 register('js_reports', js_reports)
