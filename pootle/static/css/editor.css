@@ -409,6 +409,7 @@ div.translate-container
     border-radius: 5px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
     background-color: #f1f7f8;
+    clear: both;
 }
 
 div.translate-left,
@@ -421,7 +422,6 @@ div.translate-left
 {
     display: inline-block;
     width: 24.5%;
-    clear: both;
 }
 
 div.translate-middle
