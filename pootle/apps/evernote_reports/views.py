@@ -27,7 +27,7 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from pootle_app.views.admin.util import user_is_admin
+from pootle.core.decorators import admin_required
 from pootle_misc.util import jsonify
 from pootle_statistics.models import Submission, SubmissionFields
 
@@ -49,7 +49,8 @@ DATE = 'creation_time_date'
 STAT_FIELDS = ['n1', 'pootle_n1', 'added', 'removed']
 INITIAL_STATES = ['new', 'edit']
 
-@user_is_admin
+
+@admin_required
 def evernote_reports(request, context={}):
     cxt = context
     cxt.update({
