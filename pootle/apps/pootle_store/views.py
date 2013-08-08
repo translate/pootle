@@ -553,6 +553,8 @@ def get_units(request):
         except ValueError:
             pass  # uid wasn't a number or not present in the results.
 
+    # XXX: Black magic going on here. See issue #4 on Evernote for details.
+    step_queryset.query.sql_with_params()
     pager = paginate(request, step_queryset, items=limit, page=page)
 
     unit_groups = []
