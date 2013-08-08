@@ -147,6 +147,8 @@ def ajax_add_tag_to_tp_in_project(request, project_code):
         raise PermissionDenied(_("You do not have rights to add tags."))
 
     if request.method != 'POST':
+        from django.http import HttpResponseNotAllowed
+
         return HttpResponseNotAllowed(['POST'])
 
     project = get_object_or_404(Project, code=project_code)
