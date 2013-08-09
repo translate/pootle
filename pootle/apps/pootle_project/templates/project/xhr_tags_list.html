@@ -1,7 +1,7 @@
 {% load url from future %}
     {% for tp_tag in tp_tags %}
     <li>
-      <span class="tag">{{ tp_tag }}</span>
+      <span class="js-tag-item tag">{{ tp_tag }}</span>
       {% if user.is_superuser or request.permissions.administrate %}
       <a href="{% url 'project.ajax_remove_tag_from_tp' tp_id tp_tag.name %}"
         class="tag-remove"></a>

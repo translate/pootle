@@ -265,6 +265,70 @@
           $(this).magnificPopup('open');
         }
       });
+
+      /* Hide the "Filter" button in the tag filtering form */
+      $("#js-filter-form-button").hide();
+
+      /* Dynamic filtering using tags */
+      $("#js-tag-filtering").on("change", function (event) {
+        // If there are no tag filters.
+        if (event.val.length === 0) {
+          // If tags are not hidden.
+          if ($.cookie('showtags') === 'true') {
+            $("table#project tbody tr").show();
+          } else {
+            $("table#project tbody tr:not(.js-tags)").show();
+          };
+        } else {
+          // Get the filter tags names since Select2 only provides their keys.
+          var filterTags = [];
+
+          $.each(event.val, function (i, tagPK) {
+            filterTags.push($("#js-tag-filtering option[value='" + tagPK +
+                              "']").text());
+          });
+
+          // Iterate over all translation project rows, excluding the ones with
+          // tagging data.
+          var foundTags = [];
+
+          $("table#project tbody tr:not(.js-tags)").each(function () {
+            // Get all the tags applied to the current translation project.
+            $(this).find("ul.tag-list li").each(function () {
+              foundTags.push($(this).find(".js-tag-item").text());
+            });
+
+            // Get all the filter tags that the current translation project
+            // matches.
+            matchingFilters = $.grep(foundTags, function(element, index){
+              return $.inArray(element, filterTags) !== -1;
+            });
+
+            // If the current translation project matches all the filter tags.
+            if (matchingFilters.length === filterTags.length) {
+              // Show the current translation project.
+              $(this).show();
+
+              // If the tags are not hidden, then show the translation project
+              // tags row too.
+              if ($.cookie('showtags') === 'true') {
+                $(this).next().show();
+              };
+            } else {
+              // Hide the current translation project.
+              $(this).hide();
+
+              // If the tags are not hidden, then hide the translation project
+              // tags row too.
+              if ($.cookie('showtags') === 'true') {
+                $(this).next().hide();
+              };
+            };
+
+            foundTags = [];
+          });
+        };
+      });
     },
 
     /* Navigates to `languageCode`, `projectCode` while retaining the

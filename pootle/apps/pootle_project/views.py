@@ -111,6 +111,7 @@ def handle_tags_filter_form(request, translation_projects):
         filter_tags = forms.ModelMultipleChoiceField(
             queryset=Tag.objects.filter(**criteria).distinct(),
             widget=forms.SelectMultiple(attrs={
+                'id': 'js-tag-filtering',
                 'class': 'js-select2 select2-multiple',
                 'data-placeholder': _('Select one or more tags to use as '
                                       'filter'),

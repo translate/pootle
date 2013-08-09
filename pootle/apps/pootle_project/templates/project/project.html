@@ -27,7 +27,8 @@
         {{ field }}
         {{ field.errors }}
       {% endfor %}
-      <input type="submit" value="{% trans "Filter" context "verb" %}"
+      <input type="submit" id="js-filter-form-button"
+        value="{% trans "Filter" context "verb" %}"
         title="{% trans "Filter the translation projects using this tags" %}" />
     </form>
   </div>
