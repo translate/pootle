@@ -160,6 +160,27 @@
         }
       });
 
+      $(document).on("mouseenter", ".tag-list li", function () {
+        $(this).children('.tag-remove').show();
+      });
+
+      $(document).on("mouseleave", ".tag-list li", function () {
+        $(this).children('.tag-remove').hide();
+      });
+
+      $(document).on("click", ".tag-remove", function (event) {
+        event.preventDefault();
+
+        var $parent = $(this).parent()
+
+        $.post($(this).attr('href'), function (data, textStatus, jqXHR) {
+          if (jqXHR.status === 201) {
+            // Tag was removed, delete the DOM element.
+            $parent.remove();
+          };
+        }, "html");
+      });
+
       /* Handle add tag form using AJAX */
       $(document).on("submit", "#js-add-tag-form", function (event) {
         // Avoid visiting form action.

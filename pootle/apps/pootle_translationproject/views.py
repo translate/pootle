@@ -387,6 +387,18 @@ def overview(request, translation_project, dir_path, filename=None):
 
 @ajax_required
 @get_translation_project
+def ajax_remove_tag_from_tp(request, translation_project, tag):
+    if not check_permission('administrate', request):
+        raise PermissionDenied(_("You do not have rights to remove tags."))
+
+    if request.method != 'POST':
+        return HttpResponseNotAllowed(['POST'])
+
+    translation_project.tags.remove(tag)
+    return HttpResponse(status=201)
+
+@ajax_required
+@get_translation_project
 def ajax_add_tag_to_tp(request, translation_project):
     """Return an HTML snippet with the failed form or blank if valid."""
 

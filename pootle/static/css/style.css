@@ -2432,9 +2432,13 @@ html[dir="rtl"] .tag-list .tag
     float: right;
 }
 
-.tag-list .tag
+.tag-list li
 {
     margin: 0px 10px 6px 10px;
+}
+
+.tag-list .tag
+{
     padding: 0 8px 0 5px;
     background: #ddd;
     height: 20px;
@@ -2450,6 +2454,20 @@ html[dir="rtl"] .tag-list .tag
             border-top-right-radius: 4px;
     filter:alpha(opacity=50);
     opacity: 0.5;
+}
+
+.tag-list .tag-remove
+{
+    display: none;
+    width: 12px;
+    height: 13px;
+    position: absolute;
+    top: 3px;
+    left: -5px;
+    font-size: 1px;
+    outline: none;
+    background: url('../images/select2.png') right top no-repeat;
+    background-position: right -11px;
 }
 
 /* Style for the tag arrow (or triangle) */
