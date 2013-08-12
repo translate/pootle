@@ -54,6 +54,21 @@ def lang_auth_form_factory(request, **kwargs):
                                      }),
         )
 
+        def __init__(self, *args, **kwargs):
+            super(LangAuthenticationForm, self).__init__(*args, **kwargs)
+
+            #FIXME: Remove this code when support for Django 1.4.x is dropped.
+            # If the custom Pootle LDAP authentication backend is being used,
+            # longer usernames must be allowed to log in using long email
+            # addresses.
+            from django.conf import settings
+
+            if ('pootle.auth.ldap_backend.LdapBackend' in
+                settings.AUTHENTICATION_BACKENDS):
+
+                import django
+                if django.get_version() < '1.5':
+                    self.fields['username'].max_length = 75
 
         def clean(self):
             username = self.cleaned_data.get('username')
