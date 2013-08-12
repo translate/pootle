@@ -323,6 +323,7 @@ class ProjectIndexView(view_handler.View):
             'feed_path': directory.pootle_path[1:],
             'action_groups': actions,
             'action_output': action_output,
+            'tp_tags': translation_project.tags.all(),
             'can_edit': can_edit,
         })
 

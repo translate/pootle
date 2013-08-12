@@ -37,15 +37,13 @@
       <i class="icon-tag-add"></i> {% trans "Add tag" %}
     </a>
     {% endif %}
-    {% with template_tags=translation_project.tags.all %}
-    {% if template_tags %}
+    {% if tp_tags %}
     <ul class="js-tags tag-list">
-      {% for template_tag in template_tags %}
-      <li><span class="tag">{{ template_tag }}</span></li>
+      {% for tp_tag in tp_tags %}
+      <li><span class="tag">{{ tp_tag }}</span></li>
       {% endfor %}
     </ul>
     {% endif %}
-    {% endwith %}
     <br />
   </div>
 
