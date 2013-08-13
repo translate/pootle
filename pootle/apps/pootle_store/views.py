@@ -40,8 +40,7 @@ from django.views.decorators.cache import never_cache
 from translate.lang import data
 
 from pootle_app.models import Suggestion as SuggestionStat
-from pootle_app.models.permissions import (get_matching_permissions,
-                                           check_permission,
+from pootle_app.models.permissions import (check_permission,
                                            check_profile_permission)
 from pootle.core.exceptions import Http400
 from pootle_misc.baseurl import redirect
