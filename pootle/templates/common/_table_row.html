@@ -58,7 +58,7 @@
 <td>{{ item.lastactivity }}</td>
 {% endif %}
 {% else %}
-{% for i in table.fields %}<td></td>{% endfor %}
+{% for i in table.fields %}{% if not forloop.last %}<td></td>{% endif %}{% endfor %}
 {% endif %}
 {% if 'tags' in table.fields %}
 <td id="js-tag-tp-hidden-{{ item.pk }}" class="hide tags-cell" colspan="{{ table.headings|length }}">
