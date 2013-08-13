@@ -268,6 +268,8 @@ class Unit(models.Model, base.TranslationUnit):
     state = models.IntegerField(null=False, default=UNTRANSLATED, db_index=True)
 
     # Metadata
+    creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
+                                         editable=False, null=True)
     mtime = models.DateTimeField(auto_now=True, auto_now_add=True,
                                  db_index=True, editable=False)
 
