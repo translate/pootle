@@ -1,4 +1,5 @@
 {% load i18n baseurl progressbar %}
+{% load url from future %}
 {% if 'name' in table.fields %}
 <td class="stats-name"{% if item.description %} title="{{ item.description|striptags }}"{% endif %}>
   <a href="{{ item.href|l }}">{% if item.icon %}<i class="icon-{{ item.icon }}"></i> {% endif %}<span>{{ item.title }}</span></a>
@@ -71,7 +72,13 @@
   {% if item.tags %}
   <ul class="tag-list">
     {% for tp_tag in item.tags %}
-    <li><span class="tag">{{ tp_tag }}</span></li>
+    <li>
+      <span class="tag">{{ tp_tag }}</span>
+      {% if user.is_superuser or request.permissions.administrate %}
+      <a href="{% url 'project.ajax_remove_tag_from_tp' item.pk tp_tag.name %}"
+        class="tag-remove"></a>
+      {% endif %}
+    </li>
     {% endfor %}
   </ul>
   {% endif %}

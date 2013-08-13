@@ -23,7 +23,7 @@ import locale
 from django import forms
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotAllowed
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
 from django.utils.translation import ugettext as _, ungettext
@@ -140,6 +140,19 @@ def get_project_base_template_vars(request, project, can_edit):
 
 
 @ajax_required
+def ajax_remove_tag_from_tp_in_project(request, tp_id, tag):
+    if not check_permission('administrate', request):
+        raise PermissionDenied(_("You do not have rights to remove tags."))
+
+    if request.method != 'POST':
+        return HttpResponseNotAllowed(['POST'])
+
+    translation_project = get_object_or_404(TranslationProject, id=tp_id)
+    translation_project.tags.remove(tag)
+    return HttpResponse(status=201)
+
+
+@ajax_required
 def ajax_add_tag_to_tp_in_project(request, project_code):
     """Return an HTML snippet with the failed form or blank if valid."""
 
@@ -147,8 +160,6 @@ def ajax_add_tag_to_tp_in_project(request, project_code):
         raise PermissionDenied(_("You do not have rights to add tags."))
 
     if request.method != 'POST':
-        from django.http import HttpResponseNotAllowed
-
         return HttpResponseNotAllowed(['POST'])
 
     project = get_object_or_404(Project, code=project_code)
