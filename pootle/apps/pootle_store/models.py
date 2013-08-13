@@ -46,7 +46,8 @@ from pootle_misc.baseurl import l
 from pootle_misc.checks import check_names
 from pootle_misc.util import (cached_property, getfromcache, deletefromcache,
                               datetime_min)
-from pootle_statistics.models import SubmissionFields, SubmissionTypes
+from pootle_statistics.models import (SubmissionFields,
+                                      SubmissionTypes, Submission)
 from pootle_store.fields import (TranslationStoreField, MultiStringField,
                                  PLURAL_PLACEHOLDER, SEPARATOR)
 from pootle_store.filetypes import factory_classes, is_monolingual
@@ -1203,7 +1204,6 @@ class Store(models.Model, base.TranslationStore):
                 modified_units = set()
 
                 if modified_since:
-                    from pootle_statistics.models import Submission
                     self_unit_ids = set(self.dbid_index.values())
 
                     modified_units = set(Submission.objects.filter(
@@ -1222,6 +1222,7 @@ class Store(models.Model, base.TranslationStore):
                 common_dbids = list(common_dbids)
                 for unit in self.findid_bulk(common_dbids):
                     newunit = store.findid(unit.getid())
+                    old_target_f = unit.target_f
 
                     if (monolingual and not
                         self.translation_project.is_template_project):
@@ -1243,7 +1244,21 @@ class Store(models.Model, base.TranslationStore):
 
                     if changed:
                         do_checks = unit._source_updated or unit._target_updated
+                        create_submission = unit._target_updated
                         unit.save()
+                        if create_submission:
+                            sub = Submission(
+                                creation_time=timezone.now(),
+                                translation_project=self.translation_project,
+                                submitter=None,
+                                unit=unit,
+                                field=SubmissionFields.TARGET,
+                                type=None,
+                                old_value=old_target_f,
+                                new_value=unit.target_f
+                            )
+                            sub.save()
+
                         if do_checks and old_state >= CHECKED:
                             unit.update_qualitychecks()
         finally:
