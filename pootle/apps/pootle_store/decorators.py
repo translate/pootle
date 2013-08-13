@@ -37,6 +37,19 @@ from pootle_profile.models import get_profile
 from .models import Store, Unit
 
 
+def get_permission_message(permission_code):
+    """Returns a human-readable message when `permission_code` is not met
+    by the current context.
+    """
+    default_message = _("Insufficient rights to access this directory.")
+
+    return {
+        'suggest': _('Insufficient rights to access suggestion mode.'),
+        'translate': _('Insufficient rights to access translation mode.'),
+        'review': _('Insufficient rights to access review mode.'),
+    }.get(permission_code, default_message)
+
+
 def _common_context(request, translation_project, permission_codes):
     """Adds common context to request object and checks permissions."""
     request.translation_project = translation_project
@@ -59,9 +72,7 @@ def _check_permissions(request, directory, permission_codes):
         permission_codes = [permission_codes]
     for permission_code in permission_codes:
         if not check_permission(permission_code, request):
-            raise PermissionDenied(
-                _("Insufficient rights to access this directory."),
-            )
+            raise PermissionDenied(get_permission_message(permission_code))
 
 
 def get_store_context(permission_codes):

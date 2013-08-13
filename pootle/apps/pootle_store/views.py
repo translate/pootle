@@ -709,7 +709,7 @@ def get_failing_checks(request, path_obj):
 
 
 @ajax_required
-@get_unit_context('')
+@get_unit_context('translate')
 def submit(request, unit):
     """Processes translation submissions and stores them in the database.
 
@@ -717,11 +717,6 @@ def submit(request, unit):
              units for the unit next to unit ``uid``.
     """
     json = {}
-
-    cantranslate = check_permission("translate", request)
-    if not cantranslate:
-        raise PermissionDenied(_("You do not have rights to access "
-                                 "translation mode."))
 
     translation_project = request.translation_project
     language = translation_project.language
@@ -774,7 +769,7 @@ def submit(request, unit):
 
 
 @ajax_required
-@get_unit_context('')
+@get_unit_context('suggest')
 def suggest(request, unit):
     """Processes translation suggestions and stores them in the database.
 
@@ -782,11 +777,6 @@ def suggest(request, unit):
              units for the unit next to unit ``uid``.
     """
     json = {}
-
-    cansuggest = check_permission("suggest", request)
-    if not cansuggest:
-        raise PermissionDenied(_("You do not have rights to access "
-                                 "translation mode."))
 
     translation_project = request.translation_project
     language = translation_project.language
@@ -823,7 +813,7 @@ def suggest(request, unit):
 
 
 @ajax_required
-@get_unit_context('')
+@get_unit_context('review')
 def reject_suggestion(request, unit, suggid):
     json = {}
     translation_project = request.translation_project
@@ -836,9 +826,8 @@ def reject_suggestion(request, unit, suggid):
         except ObjectDoesNotExist:
             raise Http404
 
-        if (not check_permission('review', request) and
-            (not request.user.is_authenticated() or sugg and
-                 sugg.user != request.profile)):
+        if (not request.user.is_authenticated() or sugg and
+            sugg.user != request.profile):
             raise PermissionDenied(_("You do not have rights to access "
                                      "review mode."))
 
