@@ -101,9 +101,17 @@ class TagForm(forms.ModelForm):
           Also tag slugs can't have two or more consecutive hyphens, nor start
           nor end with hyphens.
         """
+        # Get the tag name.
+        tag_name = self.cleaned_data.get('name', "").lower()
+
+        # If there is no tag name, maybe because it failed to validate.
+        if not tag_name:
+            # Return any non-empty string to avoid showing an error message for
+            # the slug field.
+            return "slug"
+
         # Replace invalid characters for slug with hyphens.
-        test_slug = re.sub(r'[^a-z0-9-]', "-",
-                           self.cleaned_data['name'].lower())
+        test_slug = re.sub(r'[^a-z0-9-]', "-", tag_name)
 
         # Replace groups of hyphens with a single hyphen.
         test_slug = re.sub(r'-{2,}', "-", test_slug)
