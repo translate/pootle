@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -146,3 +147,46 @@ def upgrade_to_22000():
         if last_sync:
             store.sync_time = last_sync
             store.save()
+
+
+def upgrade_to_25101():
+    """New semantics for the `view` permission."""
+    from django.contrib.auth.models import Permission
+    from django.contrib.contenttypes.models import ContentType
+    from django.utils.translation import ugettext_noop as _
+
+    from pootle_app.models import Directory
+    from pootle_app.models.permissions import PermissionSet
+    from pootle_profile.models import PootleProfile
+
+    # Remove old `view` permission
+    Permission.objects.filter(codename='view').delete()
+
+    # Create new `view` permission
+    pootle_content_type = ContentType.objects.get(
+        app_label='pootle_app',
+        model='directory',
+    )
+    view = Permission.objects.create(
+        name=_(u'Can view a project'),
+        content_type=pootle_content_type,
+        codename='view',
+    )
+
+    # Attach `view` permission to the root directory for anonymous and
+    # default users
+    nobody = PootleProfile.objects.get(user__username='nobody')
+    default = PootleProfile.objects.get(user__username='default')
+
+    root = Directory.objects.root
+    permission_set = PermissionSet.objects.get(
+        profile=nobody,
+        directory=root,
+    )
+    permission_set.positive_permissions.add(view)
+
+    permission_set = PermissionSet.objects.get(
+        profile=default,
+        directory=root,
+    )
+    permission_set.positive_permissions.add(view)

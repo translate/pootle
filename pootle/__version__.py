@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2009 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of the Translate Toolkit.
 #
@@ -20,6 +21,6 @@
 
 """This file contains the version of Pootle."""
 
-build = 25100
+build = 25101
 sver = "2.5.1-alpha1"
 ver = (2, 5, 1)

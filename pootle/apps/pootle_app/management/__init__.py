@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of translate.
 #
@@ -70,8 +71,11 @@ def create_pootle_permissions():
     pootle_content_type, created = ContentType.objects.get_or_create(app_label="pootle_app", model="directory")
     pootle_content_type.name = 'pootle'
     pootle_content_type.save()
-    view, created = Permission.objects.get_or_create(name=_("Can view a translation project"),
-                                                     content_type=pootle_content_type, codename="view")
+    view, created = Permission.objects.get_or_create(
+        name=_("Can view a project"),
+        content_type=pootle_content_type,
+        codename='view',
+    )
     suggest, created = Permission.objects.get_or_create(name=_("Can make a suggestion for a translation"),
                                                content_type=pootle_content_type, codename="suggest")
     translate, created = Permission.objects.get_or_create(name=_("Can submit a translation"),
@@ -116,12 +120,12 @@ def create_pootle_permission_sets():
     #override with no permissions for templates language
     permission_set, created = PermissionSet.objects.get_or_create(profile=nobody, directory=templates)
     if created:
-        permission_set.positive_permissions = [view]
+        permission_set.positive_permissions = []
         permission_set.save()
 
     permission_set, created = PermissionSet.objects.get_or_create(profile=default, directory=templates)
     if created:
-        permission_set.positive_permissions = [view]
+        permission_set.positive_permissions = []
         permission_set.save()
 
 def require_english():

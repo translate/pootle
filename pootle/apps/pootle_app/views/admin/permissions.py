@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2012 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -38,15 +39,23 @@ class PermissionFormField(forms.ModelMultipleChoiceField):
 
 
 def admin_permissions(request, current_directory, template, context):
-    content_type = get_permission_contenttype()
-    permission_queryset = content_type.permission_set.exclude(
-            codename__in=[
-                'add_directory', 'change_directory', 'delete_directory',
-            ],
-    )
-
     project = context.get('project', None)
     language = context.get('language', None)
+
+    # FIXME: Shouldn't we just remove unused permissions from the DB?
+    excluded_permissions = [
+        'add_directory', 'change_directory', 'delete_directory',
+    ]
+    # Don't provide means to add `view` permissions under /<lang_code>/*
+    # In other words: only allow setting `view` permissions for the root
+    # and the `/projects/<code>/` directories
+    if language is not None:
+        excluded_permissions.append('view')
+
+    content_type = get_permission_contenttype()
+    permission_queryset = content_type.permission_set.exclude(
+        codename__in=excluded_permissions,
+    )
 
     base_queryset = PootleProfile.objects.filter(user__is_active=1).exclude(
             id__in=current_directory.permission_sets \
