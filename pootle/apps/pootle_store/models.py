@@ -1400,7 +1400,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 modified_units = set()
 
                 if modified_since:
-                    from pootle_statistics.models import Submission
                     self_unit_ids = set(self.dbid_index.values())
 
                     try:
@@ -1431,6 +1430,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                     # object
                     unit.store = self
                     newunit = store.findid(unit.getid())
+                    old_target_f = unit.target_f
 
                     if (monolingual and not
                         self.translation_project.is_template_project):
@@ -1451,7 +1451,20 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                             self._remove_obsolete(match_unit.source)
 
                     if changed:
+                        create_submission = unit._target_updated
                         unit.save()
+                        if create_submission:
+                            sub = Submission(
+                                creation_time=timezone.now(),
+                                translation_project=self.translation_project,
+                                submitter=None,
+                                unit=unit,
+                                field=SubmissionFields.TARGET,
+                                type=None,
+                                old_value=old_target_f,
+                                new_value=unit.target_f
+                            )
+                            sub.save()
         finally:
             # Unlock store
             self.state = old_state
