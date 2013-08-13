@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -20,6 +21,6 @@
 """This file contains the version of Pootle."""
 
 
-build = 25200
+build = 25201
 sver = "2.5.2-alpha1"
 ver = (2, 5, 2)

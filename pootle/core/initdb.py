@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -129,7 +130,7 @@ def create_pootle_permissions():
     # Create the permissions.
     permissions = [
         {
-            'name': _("Can view a translation project"),
+            'name': _("Can view a project"),
             'codename': "view",
         },
         {
@@ -210,13 +211,13 @@ def create_pootle_permission_sets():
     }
     permission_set, created = PermissionSet.objects.get_or_create(**criteria)
     if created:
-        permission_set.positive_permissions = [view]
+        permission_set.positive_permissions = []
         permission_set.save()
 
     criteria['profile'] = default
     permission_set, created = PermissionSet.objects.get_or_create(**criteria)
     if created:
-        permission_set.positive_permissions = [view]
+        permission_set.positive_permissions = []
         permission_set.save()
 
 
