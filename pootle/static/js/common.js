@@ -211,9 +211,18 @@
 
         $.post(action, formData, function (data, textStatus, jqXHR) {
           if (jqXHR.status === 201) {
-            // Tag was added, so force reload current page from server (no
-            // browser cache).
-            location.reload(true);
+            // Tag was added, replace the old tags list with the new one.
+
+            if ($("#js-tags-tp").length) {
+              // Project overview.
+              var tp = $("#js-tags-tp option:selected").val();
+              $('#js-tag-tp-' + tp + ' ul').html(data);
+              $('#js-tag-tp-hidden-' + tp + ' ul').html(data);
+              $.magnificPopup.close();
+            } else {
+              // Translation project overview.
+              location.reload(true);
+            }
           } else if (jqXHR.status === 204) {
             // Tag was already applied, so close the currently opened popup.
             $.magnificPopup.close();

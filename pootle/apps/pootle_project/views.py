@@ -197,6 +197,17 @@ def ajax_remove_tag_from_tp_in_project(request, tp_id, tag):
     return HttpResponse(status=201)
 
 
+def _add_tag(request, translation_project, tag):
+    translation_project.tags.add(tag)
+    context = {
+        'tp_tags': translation_project.tags.all(),
+        'tp_id': translation_project.pk,
+    }
+    response = render_to_response('project/xhr_tags_list.html',
+                                  context, RequestContext(request))
+    response.status_code = 201
+    return response
+
 @ajax_required
 def ajax_add_tag_to_tp_in_project(request, project_code):
     """Return an HTML snippet with the failed form or blank if valid."""
@@ -214,8 +225,7 @@ def ajax_add_tag_to_tp_in_project(request, project_code):
     if add_tag_form.is_valid():
         translation_project = add_tag_form.cleaned_data['translation_project']
         new_tag = add_tag_form.save()
-        translation_project.tags.add(new_tag)
-        return HttpResponse(status=201)
+        return _add_tag(request, translation_project, new_tag)
     else:
         # If the form is invalid, perhaps it is because the tag already
         # exists, so instead of creating the tag just retrieve it and add
@@ -240,8 +250,7 @@ def ajax_add_tag_to_tp_in_project(request, project_code):
             else:
                 # Else add the tag to the translation project.
                 tag = Tag.objects.get(**criteria)
-                translation_project.tags.add(tag)
-                return HttpResponse(status=201)
+                return _add_tag(request, translation_project, tag)
         except Exception:
             # If the form is invalid and the tag doesn't exist yet then display
             # the form with the error messages.
