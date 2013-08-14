@@ -1,5 +1,4 @@
 {% extends "tp_base.html" %}
-{% load url from future %}
 {% load assets baseurl cache cleanhtml i18n locale progressbar search translation_project_tags common_tags profile_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 
@@ -38,17 +37,9 @@
       <i class="icon-tag-add"></i> {% trans "Add tag" %}
     </a>
     {% endif %}
-    {% if tp_tags %}
     <ul class="js-tags tag-list">
-      {% for tp_tag in tp_tags %}
-      <li>
-        <span class="tag">{{ tp_tag }}</span>{% if can_edit %}
-        <a href="{% url 'tp.ajax_remove_tag' language.code project.code tp_tag.name %}"
-          class="tag-remove"></a>{% endif %}
-      </li>
-      {% endfor %}
+      {% include "translation_project/xhr_tags_list.html" %}
     </ul>
-    {% endif %}
     <br />
   </div>
 

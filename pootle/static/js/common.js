@@ -218,11 +218,12 @@
               var tp = $("#js-tags-tp option:selected").val();
               $('#js-tag-tp-' + tp + ' ul').html(data);
               $('#js-tag-tp-hidden-' + tp + ' ul').html(data);
-              $.magnificPopup.close();
             } else {
               // Translation project overview.
-              location.reload(true);
+              $('.tag-list').html(data);
             }
+
+            $.magnificPopup.close();
           } else if (jqXHR.status === 204) {
             // Tag was already applied, so close the currently opened popup.
             $.magnificPopup.close();
