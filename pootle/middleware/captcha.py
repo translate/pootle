@@ -174,9 +174,11 @@ class CaptchaMiddleware:
             return
 
         from django.core import urlresolvers
-        if urlresolvers.resolve(request.path) in ('login',
-                                                  'evernote_login',
-                                                  'evernote_create_login'):
+        r = urlresolvers.resolve(request.path_info)
+        if (hasattr(r, 'url_name') and
+            r.url_name in ('login',
+                           'evernote_login',
+                           'evernote_create_login')):
             # exclude login form
             return
 
