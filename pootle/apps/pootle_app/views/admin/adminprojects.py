@@ -97,6 +97,6 @@ def view(request):
             Project,
             link='/projects/%s/admin.html',
             form=ProjectForm,
-            exclude=('description', 'report_target'),
+            exclude=('description', 'report_target', 'ignoredfiles'),
             can_delete=True,
     )

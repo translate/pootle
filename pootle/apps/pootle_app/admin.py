@@ -82,7 +82,7 @@ class ProjectAdmin(admin.ModelAdmin):
         }),
         (_('Advanced Options'), {
             'classes': ('collapse',),
-            'fields': ('treestyle', 'ignoredfiles'),
+            'fields': ('treestyle', 'ignoredfiles', 'screenshot_search_prefix'),
         }),
     )
     form = MyProjectAdminForm

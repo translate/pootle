@@ -119,6 +119,9 @@ class Project(models.Model):
     report_target = models.CharField(max_length=512, blank=True,
             verbose_name=_("Report Target"), help_text=report_target_help_text)
 
+    screenshot_search_prefix = models.URLField(blank=True, null=True,
+            verbose_name=_('Screenshot Search Prefix'))
+
     def natural_key(self):
         return (self.code,)
     natural_key.dependencies = ['pootle_app.Directory']
