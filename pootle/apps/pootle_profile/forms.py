@@ -46,6 +46,7 @@ def lang_auth_form_factory(request, **kwargs):
 
     class LangAuthenticationForm(AuthenticationForm):
 
+        username = forms.CharField(label=_("Username"), max_length=75)
         language = forms.ChoiceField(label=_('Interface Language'),
                                      choices=language_list(request),
                                      initial="", required=False,
