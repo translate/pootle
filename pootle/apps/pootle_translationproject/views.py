@@ -58,10 +58,13 @@ from pootle_misc.util import jsonify, ajax_required
 from pootle_profile.models import get_profile
 from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_store.models import Store
-from pootle_store.util import absolute_real_path, relative_real_path
+from pootle_store.util import (absolute_real_path, relative_real_path,
+                               add_trailing_slash)
 from pootle_store.filetypes import factory_classes
 from pootle_tagging.forms import TagForm
 from pootle_translationproject.actions import action_groups
+from pootle.scripts.actions import (EXTDIR, StoreAction,
+                                    TranslationProjectAction)
 
 
 @get_translation_project
@@ -231,6 +234,83 @@ class ProjectIndexView(view_handler.View):
         path_stats = get_raw_stats(path_obj, include_suggestions=True)
         path_summary = get_path_summary(path_obj, path_stats, latest_action)
         actions = action_groups(request, path_obj, path_stats=path_stats)
+        action_output = ''
+        running = request.GET.get(EXTDIR, '')
+        if running:
+            if store:
+                act = StoreAction
+            else:
+                act = TranslationProjectAction
+            try:
+                action = act.lookup(running)
+            except KeyError:
+                messages.error(request,
+                               _("Unable to find %s %s") % (act, running))
+            else:
+                if not getattr(action, 'nosync', False):
+                    (store or translation_project).sync()
+                if action.is_active(request):
+                    vcs_dir = settings.VCS_DIRECTORY
+                    po_dir = settings.PODIRECTORY
+                    tp_dir = directory.get_real_path()
+                    store_fn = '*'
+                    if store:
+                        tp_dir_slash = add_trailing_slash(tp_dir)
+                        if store.file.name.startswith(tp_dir_slash):
+                            # note: store_f used below in reverse() call
+                            store_f = store.file.name[len(tp_dir_slash):]
+                            store_fn = store_f.replace('/', os.sep)
+
+                    # clear possibly stale output/error (even from other
+                    # path_obj)
+                    action.set_output('')
+                    action.set_error('')
+                    try:
+                        action.run(path=path_obj, root=po_dir, tpdir=tp_dir,
+                                   project=project.code, language=language.code,
+                                   store=store_fn,
+                                   style=translation_project.file_style,
+                                   vc_root=vcs_dir)
+                    except StandardError:
+                        err = _("Exception while running '%s' extension action"
+                                ) % action.title
+                        logging.exception(err)
+                        if (action.error):
+                            messages.error(request, action.error)
+                        else:
+                            messages.error(request, err)
+                    else:
+                        if (action.error):
+                            messages.warning(request, action.error)
+
+                    action_output = action.output
+                    if getattr(action, 'get_download', None):
+                        export_path = action.get_download(path_obj)
+                        if export_path:
+                            response = HttpResponse('/export/' + export_path)
+                            response['Content-Disposition'] = \
+                                    'attachment; filename="%s"' %(
+                                            os.path.basename(export_path))
+                            return response
+
+                    if not action_output:
+                        if not store:
+                            overview_url = reverse('tp.overview',
+                                                   args=[language.code,
+                                                         project.code, ''])
+                        else:
+                            slash = store_f.rfind('/')
+                            store_d = ''
+                            if slash > 0:
+                                store_d = store_f[:slash]
+                                store_f = store_f[slash + 1:]
+                            elif slash == 0:
+                                store_f = store_f[1:]
+                            overview_url = reverse('tp.overview',
+                                                   args=[language.code,
+                                                         project.code,
+                                                         store_d, store_f])
+                        return HttpResponseRedirect(overview_url)
 
         template_vars.update({
             'translation_project': translation_project,
@@ -242,6 +322,7 @@ class ProjectIndexView(view_handler.View):
             'topstats': gentopstats_translation_project(translation_project),
             'feed_path': directory.pootle_path[1:],
             'action_groups': actions,
+            'action_output': action_output,
             'can_edit': can_edit,
         })
 
@@ -271,7 +352,9 @@ class ProjectIndexView(view_handler.View):
                                               kwargs=url_kwargs),
             })
 
-        return template_vars
+        return render_to_response("translation_project/overview.html",
+                                  template_vars,
+                                  context_instance=RequestContext(request))
 
 
 @get_translation_project
@@ -298,10 +381,7 @@ def overview(request, translation_project, dir_path, filename=None):
     }
     view_obj = ProjectIndexView(forms=view_forms)
 
-    return render_to_response("translation_project/overview.html",
-                              view_obj(request, translation_project,
-                                       directory, store),
-                              context_instance=RequestContext(request))
+    return view_obj(request, translation_project, directory, store)
 
 
 @ajax_required

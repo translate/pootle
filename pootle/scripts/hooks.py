@@ -1,14 +1,20 @@
 #!/usr/bin/env python
+"""
+
+Dynamic loading of hooks for update and commit.
+
+"""
+
 
 import logging
 
 
-def hook(project, hooktype, file, *args, **kwargs):
+def hook(project, hooktype, path, *args, **kwargs):
     """
     project should be the projectcode of any project.
     hooktype should be "initialize", "precommit", "postcommit",
     "pretemplateupdate", "preupdate", or "postupdate".
-    file should be the absolute path of the file (project dir for initialize).
+    path should be the absolute path of the file (project dir for initialize).
 
     Other arguments depend on the hooktype:
         initialize should have "languagecode" as an additional argument.
@@ -30,8 +36,8 @@ def hook(project, hooktype, file, *args, **kwargs):
         if (hasattr(activehook, hooktype) and
                 callable(getattr(activehook, hooktype))):
             logger.debug("Executing hook %s for project %s on file %s",
-                         hooktype, project, file)
-            return getattr(activehook, hooktype)(file, *args, **kwargs)
+                         hooktype, project, path)
+            return getattr(activehook, hooktype)(path, *args, **kwargs)
         else:
             logger.debug("Imported %s, but it is not a suitable %s hook",
                          activehook.__file__, hooktype)
@@ -40,5 +46,5 @@ def hook(project, hooktype, file, *args, **kwargs):
     except ImportError, e:
         raise ImportError(e)
     except Exception, e:
-        logger.error("Exception in project (%s) hook (%s) for file (%s): %s" %
-                     (project, hooktype, file, e))
+        logger.error("Exception in project (%s) hook (%s) for file (%s): %s",
+                     project, hooktype, path, e)
