@@ -22,6 +22,7 @@
 
 import os
 
+from django.conf import settings
 from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.core.urlresolvers import reverse
@@ -43,15 +44,24 @@ from pootle_store.models import Unit, Suggestion
 from pootle_store.util import absolute_real_path, statssum, OBSOLETE
 
 
+# FIXME: Generate key dynamically
+CACHE_KEY = 'pootle-projects'
+
+RESERVED_PROJECT_CODES = ('admin', 'translate',)
+
+
 class ProjectManager(RelatedManager):
 
     def get_by_natural_key(self, code):
         return self.get(code=code)
 
+    def cached(self):
+        projects = cache.get(CACHE_KEY)
+        if not projects:
+            projects = self.order_by('fullname').all()
+            cache.set(CACHE_KEY, projects, settings.OBJECT_CACHE_TIMEOUT)
 
-CACHE_KEY = 'pootle-projects'
-
-RESERVED_PROJECT_CODES = ('admin', 'translate',)
+        return projects
 
 
 class Project(models.Model):
@@ -130,7 +140,6 @@ class Project(models.Model):
 
         # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
-        cache.set(CACHE_KEY, Project.objects.order_by('fullname').all(), 0)
 
     def get_translate_url(self, **kwargs):
         return reverse('pootle-project-translate', args=[self.code])
