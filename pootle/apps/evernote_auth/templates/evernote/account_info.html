@@ -1,6 +1,6 @@
 {% extends "user_profile_base_extended.html"  %}
 {% load baseurl i18n %}
- 
+
 {% block title %}{% trans "Evernote account" %} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
@@ -10,17 +10,17 @@
 {% block body_id %}evernote_account{% endblock %}
 
 {% block section_description %}
-{% if user.evernote_account %} 
+{% if user.evernote_account %}
 	<p>This Pootle account is linked with "<strong>{{ user.evernote_account.name }}</strong>" Evernote account.</p>
 {% else %}
 	<p>Here you can link this Pootle account with Evernote account — this will allow you to log in faster next time.</p>
-	
+
 {% endif %}
 {% endblock %}
 
 {% block section_body %}
-{% if user.evernote_account %} 
-	{% if user.evernote_account.user_autocreated %} 
+{% if user.evernote_account %}
+	{% if user.evernote_account.user_autocreated %}
 	<div class="disconnect-error">
 		<p>This Pootle account can't be unlinked from Evernote.</p>
 	</div>

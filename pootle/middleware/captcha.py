@@ -173,10 +173,10 @@ class CaptchaMiddleware:
             request.session.get('ishuman', False)):
             return
 
-        # FIXME: Can we replace the URL checks and just compare the names
-        # returned by urlresolvers.resolve(request.path)?
-        if (request.path.endswith('accounts/login') or
-            request.path.endswith('accounts/login/')):
+        from django.core import urlresolvers
+        if urlresolvers.resolve(request.path) in ('login',
+                                                  'evernote_login',
+                                                  'evernote_create_login'):
             # exclude login form
             return
 

@@ -20,7 +20,7 @@
 {% block content %}
 
     <div class="form evernote">
-        <form method="get" action="{% url evernote_login %}">
+        <form method="post" action="{% url evernote_login %}">
         {% csrf_token %}
         <input type="submit" value="Login via Evernote"></input>
         <input type="hidden" name="next" value="{{ next }}" />

@@ -24,7 +24,7 @@ from django.conf.urls import include, patterns
 
 
 urlpatterns = patterns('pootle_profile.views',
-    (r'^login/?$',    'login'),
+    (r'^login/?$',    'login', {}, 'login'),
     (r'^logout/?$',   'logout'),
     (r'^edit/?$', 'profile_edit'),
     (r'^personal/edit/?$',   'edit_personal_info'),
