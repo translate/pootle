@@ -16,7 +16,7 @@
     {% endassets %}
 {% endblock %}
 
-        
+
 {% block content %}
     <div class="form question{% if form.errors %} hidden{% endif %}">
     	<h2>Link with existing Pootle account</h2>
@@ -34,7 +34,7 @@
     		<button onclick="document.location = '{% url evernote_create_login %}{{ request|get_next }}';">Skip this step</button>
     	</p>
     </div>
-            
+
 
 <div class="login{% if not form.errors %} hidden{% endif %}">
     <div id="login" class="form" dir="{% locale_dir %}">
