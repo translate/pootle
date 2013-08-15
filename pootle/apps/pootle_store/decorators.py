@@ -54,22 +54,19 @@ def _common_context(request, translation_project, permission_codes):
                        permission_codes)
 
 
-def _check_permissions(request, directory, permission_codes):
+def _check_permissions(request, directory, permission_code):
     """Checks if the current user has enough permissions defined by
-    `permission_codes` in the current`directory`.
+    `permission_code` in the current`directory`.
     """
     request.profile = get_profile(request.user)
     request.permissions = get_matching_permissions(request.profile,
                                                    directory)
 
-    if not permission_codes:
+    if not permission_code:
         return
 
-    if isinstance(permission_codes, basestring):
-        permission_codes = [permission_codes]
-    for permission_code in permission_codes:
-        if not check_permission(permission_code, request):
-            raise PermissionDenied(get_permission_message(permission_code))
+    if not check_permission(permission_code, request):
+        raise PermissionDenied(get_permission_message(permission_code))
 
 
 def get_store_context(permission_codes):
