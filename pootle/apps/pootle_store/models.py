@@ -228,15 +228,13 @@ class UnitManager(RelatedManager):
             ], params=[units_path, '/templates/%']
         )
 
-        # Only do permission checking for non-superusers
+        # Non-superusers are limited to the projects they have access to
         if not profile.user.is_superuser:
-            # XXX: Can we find a better query to check for permissions?
-            perms_lookup = {
-                'store__parent__permission_sets__profile': profile,
-                'store__parent__permission_sets__'
-                    'positive_permissions__codename': permission_code,
-            }
-            units_qs = units_qs.filter(**perms_lookup)
+            from pootle_project.models import Project
+            visible_projects = Project.objects.accessible_by_user(profile.user)
+            units_qs = units_qs.filter(
+                store__translation_project__project__in=visible_projects,
+            )
 
         return units_qs
 
