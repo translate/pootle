@@ -139,8 +139,8 @@ def get_resource_context(func):
     return wrapped
 
 
-def permission_required(permission_codes):
-    """Checks for `permission_codes` in the current context.
+def permission_required(permission_code):
+    """Checks for `permission_code` in the current context.
 
     To retrieve the proper context, the `get_path_obj` decorator must be
     used along with this decorator.
@@ -163,18 +163,13 @@ def permission_required(permission_codes):
             request.permissions = get_matching_permissions(request.profile,
                                                            directory)
 
-            if not permission_codes:
+            if not permission_code:
                 return func(request, *args, **kwargs)
 
-            permission_codes_list = permission_codes
-            if isinstance(permission_codes, basestring):
-                permission_codes_list = [permission_codes]
-
-            for permission_code in permission_codes_list:
-                if not check_permission(permission_code, request):
-                    raise PermissionDenied(
-                        _("Insufficient rights to access this page."),
-                    )
+            if not check_permission(permission_code, request):
+                raise PermissionDenied(
+                    _("Insufficient rights to access this page."),
+                )
 
             return func(request, *args, **kwargs)
         return _wrapped
