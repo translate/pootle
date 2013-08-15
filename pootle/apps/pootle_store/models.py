@@ -214,19 +214,19 @@ class UnitManager(RelatedManager):
 
         # /projects/<project_code>/translate/*
         if lang is None and proj is not None:
-            units_qs = units_qs.extra(
-                where=[
-                    '`pootle_store_store`.`pootle_path` LIKE %s',
-                    '`pootle_store_store`.`pootle_path` NOT LIKE %s',
-                ], params=[''.join(['/%/', proj ,'/%']), '/templates/%']
-            )
+            units_path = ''.join(['/%/', proj ,'/%'])
         # /<lang_code>/<project_code>/translate/*
         # /<lang_code>/translate/*
         # /translate/*
         else:
-            units_qs = units_qs.filter(
-                store__pootle_path__startswith=pootle_path,
-            )
+            units_path = ''.join([pootle_path, '%'])
+
+        units_qs = units_qs.extra(
+            where=[
+                '`pootle_store_store`.`pootle_path` LIKE %s',
+                '`pootle_store_store`.`pootle_path` NOT LIKE %s',
+            ], params=[units_path, '/templates/%']
+        )
 
         # Only do permission checking for non-superusers
         if not profile.user.is_superuser:
