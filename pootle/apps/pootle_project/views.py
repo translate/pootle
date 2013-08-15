@@ -283,7 +283,7 @@ def project_admin(request, current_project):
 
 
 @get_path_obj
-@permission_required('view')
+@permission_required('administrate')
 def project_admin_permissions(request, project):
     template_vars = {
         "project": project,
