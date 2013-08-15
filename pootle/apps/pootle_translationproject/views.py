@@ -39,6 +39,8 @@ from taggit.models import Tag
 
 from pootle.core.decorators import (get_translation_project,
                                     set_request_context)
+from pootle.scripts.actions import (EXTDIR, StoreAction,
+                                    TranslationProjectAction)
 from pootle_app.lib import view_handler
 from pootle_app.models.permissions import (get_matching_permissions,
                                            check_permission)
@@ -63,15 +65,12 @@ from pootle_store.util import (absolute_real_path, relative_real_path,
 from pootle_store.filetypes import factory_classes
 from pootle_tagging.forms import TagForm
 from pootle_translationproject.actions import action_groups
-from pootle.scripts.actions import (EXTDIR, StoreAction,
-                                    TranslationProjectAction)
 
 
 @get_translation_project
 @set_request_context
 @util.has_permission('administrate')
 def admin_permissions(request, translation_project):
-
     template_vars = {
         'translation_project': translation_project,
         "project": translation_project.project,
@@ -79,7 +78,6 @@ def admin_permissions(request, translation_project):
         "directory": translation_project.directory,
         "feed_path": translation_project.pootle_path[1:],
     }
-
     return admin_perms(request, translation_project.directory,
                        "translation_project/admin_permissions.html",
                        template_vars)
@@ -198,8 +196,7 @@ def delete_path_obj(request, translation_project, dir_path, filename=None):
         else:
             messages.success(request, _("File has been deleted."))
     except Exception, e:
-        logging.error(u"Error while trying to delete %s: %s",
-                      current_path, e)
+        logging.error(u"Error while trying to delete %s: %s", current_path, e)
         if directory:
             messages.error(request, _("Error while trying to delete "
                                       "directory."))

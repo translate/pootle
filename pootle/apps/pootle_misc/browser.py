@@ -80,12 +80,13 @@ def get_table_headings(choices):
     return filter(lambda x: x['id'] in choices, HEADING_CHOICES)
 
 
-def make_generic_item(path_obj, action):
+def make_generic_item(path_obj):
     """Template variables for each row in the table.
 
     :func:`make_directory_item` and :func:`make_store_item` will add onto these
     variables.
     """
+    action = path_obj.pootle_path
     try:
         stats = get_raw_stats(path_obj, include_suggestions=True)
         info = {
@@ -109,17 +110,18 @@ def make_generic_item(path_obj, action):
     except IOError, e:
         info = {
             'href': action,
-            'title': path_obj.name,
             'errortooltip': e.strerror,
-            'data': {'errors': 1},
-            }
+            'data': {
+                'errors': 1,
+            },
+            'title': path_obj.name,
+        }
 
     return info
 
 
 def make_directory_item(directory):
-    action = directory.pootle_path
-    item = make_generic_item(directory, action)
+    item = make_generic_item(directory)
     item.update({
         'icon': 'folder',
         'isdir': True,
@@ -128,8 +130,7 @@ def make_directory_item(directory):
 
 
 def make_store_item(store):
-    action = store.pootle_path
-    item = make_generic_item(store, action)
+    item = make_generic_item(store)
     item.update({
         'icon': 'file',
         'isfile': True,
