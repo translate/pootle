@@ -130,7 +130,7 @@ class Submission(models.Model):
         if self.unit is not None:
             unit = {
                 'source': escape(truncatechars(self.unit, 50)),
-                'url': self.unit.get_absolute_url(),
+                'url': self.unit.get_translate_url(),
             }
 
         action_bundle = {
