@@ -123,10 +123,24 @@ def check_profile_permission(profile, permission_codename, directory,
 
 
 def check_permission(permission_codename, request):
-    """Check if the current user has the permission the perform
-    ``permission_codename``."""
+    """Check if the current user has `permission_codename`
+    permissions.
+    """
     if request.user.is_superuser:
         return True
+
+    # `view` permissions are project-centric, and we must treat them
+    # differently
+    if permission_codename == 'view':
+        project = None
+        if hasattr(request, 'translation_project'):
+            project = request.translation_project.project
+        elif hasattr(request, 'project'):
+            project = request.project
+
+        if project is not None:
+            from pootle_project.models import Project
+            return project in Project.objects.accessible_by_user(request.user)
 
     return ("administrate" in request.permissions or
             permission_codename in request.permissions)
