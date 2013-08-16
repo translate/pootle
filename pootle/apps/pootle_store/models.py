@@ -873,12 +873,6 @@ class Store(models.Model, base.TranslationStore):
     file = TranslationStoreField(upload_to="fish", max_length=255, storage=fs,
             db_index=True, null=False, editable=False)
 
-    # Deprecated
-    pending = TranslationStoreField(ignore='.pending', upload_to="fish",
-            max_length=255, storage=fs, editable=False)
-    tm = TranslationStoreField(ignore='.tm', upload_to="fish", max_length=255,
-            storage=fs, editable=False)
-
     parent = models.ForeignKey('pootle_app.Directory',
             related_name='child_stores', db_index=True, editable=False)
 
@@ -1714,67 +1708,3 @@ class Store(models.Model, base.TranslationStore):
             if language.nplurals and language.pluralequation:
                 disk_store.updateheaderplural(language.nplurals,
                                               language.pluralequation)
-
-
-############################## Pending Files #################################
-# The .pending files are deprecated since Pootle 2.1.0, but support for them
-# are kept here to be able to do migrations from older Pootle versions.
-
-    def init_pending(self):
-        """initialize pending translations file if needed"""
-        if self.pending:
-            # pending file already referenced in db, but does it
-            # really exist
-            if os.path.exists(self.pending.path):
-                # pending file exists
-                return
-            else:
-                # pending file doesn't exist anymore
-                self.pending = None
-                self.save()
-
-        pending_name = os.extsep.join(self.file.name.split(os.extsep)[:-1] + \
-                       ['po', 'pending'])
-        pending_path = os.path.join(settings.PODIRECTORY, pending_name)
-
-        # check if pending file already exists, just in case it was
-        # added outside of pootle
-        if os.path.exists(pending_path):
-            self.pending = pending_name
-            self.save()
-
-    @commit_on_success
-    def import_pending(self):
-        """import suggestions from legacy .pending files, into database"""
-        self.init_pending()
-        if not self.pending:
-            return
-
-        for sugg in [sugg for sugg in self.pending.store.units
-                     if sugg.istranslatable() and sugg.istranslated()]:
-            if not sugg.istranslatable() or not sugg.istranslated():
-                continue
-            unit = self.findunit(sugg.source)
-            if unit:
-                suggester = self.getsuggester_from_pending(sugg)
-                unit.add_suggestion(sugg.target, suggester, touch=False)
-                self.pending.store.units.remove(sugg)
-        if len(self.pending.store.units) >  1:
-            self.pending.savestore()
-        else:
-            self.pending.delete()
-            self.pending = None
-            self.save()
-
-    def getsuggester_from_pending(self, unit):
-        """returns who suggested the given item's suggitem if
-        recorded, else None"""
-        suggestedby = suggester_regexp.search(unit.msgidcomment)
-        if suggestedby:
-            username = suggestedby.group(1)
-            from pootle_profile.models import PootleProfile
-            try:
-                return PootleProfile.objects.get(user__username=username)
-            except PootleProfile.DoesNotExist:
-                pass
-        return None
