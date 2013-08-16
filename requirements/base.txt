@@ -13,9 +13,6 @@ cssmin>=0.1.4
 lxml>=2.1.4
 pyDes
 
-# For providing API
-#django-tastypie
-
 # Translate Toolkit
 translate-toolkit>=1.10.0
 # If you want to use Translate Toolkit 'master'

@@ -26,8 +26,7 @@ from django.contrib import admin
 
 admin.autodiscover()
 
-urlpatterns = patterns(
-    '',
+urlpatterns = patterns('',
     (r'^django_admin/', include(admin.site.urls)),
 
     # JavaScript i18n
@@ -42,18 +41,7 @@ urlpatterns = patterns(
     # External apps
     (r'^contact/', include('contact_form_i18n.urls')),
     (r'^accounts/', include('pootle_profile.urls')),
-)
 
-if settings.POOTLE_ENABLE_API:
-    from api_factory import api_factory
-    urlpatterns += patterns(
-        '',
-        # Pootle API URLs
-        (r'^api/', include(api_factory().urls)),
-    )
-
-urlpatterns += patterns(
-    '',
     # URLs added by Evernote
     (r'', include('evernote_auth.urls')),
     (r'^admin/reports/', include('evernote_reports.urls')),

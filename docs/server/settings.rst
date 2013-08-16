@@ -112,16 +112,6 @@ Site-specific settings.
 Configuration settings for applications used by Pootle.
 
 
-.. setting:: API_LIMIT_PER_PAGE
-
-``API_LIMIT_PER_PAGE``
-  Default: ``0``
-
-  .. versionadded:: 2.5.1
-
-  Number of records Pootle API will show in a list view. ``0`` means no limit.
-
-
 .. setting:: CUSTOM_TEMPLATE_CONTEXT
 
 ``CUSTOM_TEMPLATE_CONTEXT``
@@ -176,7 +166,7 @@ Configuration settings for applications used by Pootle.
 .. setting:: LEGALPAGE_NOCHECK_PREFIXES
 
 ``LEGALPAGE_NOCHECK_PREFIXES``
-  Default: ``('/accounts', '/admin', '/api', '/contact', '/django_admin',
+  Default: ``('/accounts', '/admin', '/contact', '/django_admin',
   '/jsi18n', '/pages', )``
 
   .. versionadded:: 2.5.1
@@ -230,29 +220,6 @@ Configuration settings for applications used by Pootle.
 
   When building the terminology, the maximum number of terms that will be
   automatically extracted.
-
-
-.. setting:: POOTLE_ENABLE_API
-
-``POOTLE_ENABLE_API``
-  Default: ``False``
-
-  .. versionadded:: 2.5.1
-
-  Enable Pootle API.
-
-
-.. setting:: TASTYPIE_DEFAULT_FORMATS
-
-``TASTYPIE_DEFAULT_FORMATS``
-  Default: ``['json']``
-
-  .. versionadded:: 2.5.1
-
-  List defining the allowed serialization formats for Pootle API. Check
-  :ref:`Tastypie docs <tastypie:settings.TASTYPIE_DEFAULT_FORMATS>` for all the
-  available formats and :ref:`its dependencies <tastypie:ref-tutorial>` (see in
-  Installation section).
 
 
 .. setting:: TOPSTAT_SIZE
