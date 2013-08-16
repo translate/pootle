@@ -23,6 +23,7 @@ from django.template.defaultfilters import stringfilter
 
 from pootle_misc.baseurl import l, m, s, abs_l, get_next
 
+
 register = template.Library()
 
 register.filter('l', stringfilter(l))

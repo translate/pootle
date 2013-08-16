@@ -27,20 +27,22 @@ from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.http import HttpResponseRedirect
 from django.utils.http import urlencode
 
+
 def l(path):
-    """ filter urls adding base_path prefix if required """
+    """Filter URLs adding base_path prefix if required."""
     if path and path.startswith('/'):
         base_url = getattr(settings, "SCRIPT_NAME", "")
-        #if not path.startswith(base_url):
         return base_url + path
     return path
 
+
 def abs_l(path):
-    """ filter paths adding full url prefix if required """
+    """Filter paths adding full URL prefix if required."""
     return settings.BASE_URL + path
 
+
 def m(path):
-    """ filter urls adding media url prefix if required """
+    """Filter URLs adding MEDIA_URL prefix if required."""
     return l(settings.MEDIA_URL + path)
 
 
@@ -63,7 +65,6 @@ def get_next(request):
     """Return a query string to use as a next URL."""
     try:
         next = request.GET.get(REDIRECT_FIELD_NAME, '')
-
         if not next:
             next = request.path_info
     except AttributeError, e:
