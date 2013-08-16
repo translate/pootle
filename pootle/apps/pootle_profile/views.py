@@ -34,10 +34,8 @@ from .forms import UserForm, pootle_profile_form_factory
 
 
 def profile_edit(request):
-    # TODO: Remove 'languages' and 'projects' once the fields have been
-    # removed from the model.
     # FIXME: better to whitelist fields rather than blacklisting them.
-    excluded = ('user', 'languages', 'projects', 'ui_lang')
+    excluded = ('user', 'ui_lang')
 
     return edit_profile(request,
                         form_class=pootle_profile_form_factory(excluded),
