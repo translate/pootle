@@ -190,10 +190,22 @@ class PermissionSet(models.Model):
 
     def save(self, *args, **kwargs):
         super(PermissionSet, self).save(*args, **kwargs)
-        key = iri_to_uri('Permissions:%s' % self.profile.user.username)
-        cache.delete(key)
+        # FIXME: can we use `post_save` signals or invalidate caches in
+        # model managers, please?
+        username = self.profile.user.username
+        keys = [
+            iri_to_uri('Permissions:%s' % username),
+            iri_to_uri('projects:accessible:%s' % username),
+        ]
+        cache.delete_many(keys)
 
     def delete(self, *args, **kwargs):
         super(PermissionSet, self).delete(*args, **kwargs)
-        key = iri_to_uri('Permissions:%s' % self.profile.user.username)
-        cache.delete(key)
+        # FIXME: can we use `post_delete` signals or invalidate caches in
+        # model managers, please?
+        username = self.profile.user.username
+        keys = [
+            iri_to_uri('Permissions:%s' % username),
+            iri_to_uri('projects:accessible:%s' % username),
+        ]
+        cache.delete_many(keys)
