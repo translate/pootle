@@ -12,7 +12,6 @@ Backends and storage
 .. toctree::
    :maxdepth: 2
 
-   authentication
    formats
    hooks
    statistics
