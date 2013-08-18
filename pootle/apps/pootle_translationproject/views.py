@@ -33,7 +33,7 @@ from django.http import (HttpResponse, HttpResponseNotAllowed,
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
 from django.utils.encoding import iri_to_uri
-from django.utils.translation import ugettext_lazy, ugettext as _
+from django.utils.translation import ugettext as _
 
 from taggit.models import Tag
 
@@ -41,7 +41,6 @@ from pootle.core.decorators import (get_translation_project,
                                     set_request_context)
 from pootle.scripts.actions import (EXTDIR, StoreAction,
                                     TranslationProjectAction)
-from pootle_app.lib import view_handler
 from pootle_app.models.permissions import (get_matching_permissions,
                                            check_permission)
 from pootle_app.models.signals import post_file_upload
@@ -65,7 +64,8 @@ from pootle_store.util import (absolute_real_path, relative_real_path,
 from pootle_store.filetypes import factory_classes
 from pootle_tagging.forms import TagForm
 from pootle_translationproject.actions import action_groups
-from pootle_translationproject.forms import DescriptionForm
+from pootle_translationproject.forms import (DescriptionForm,
+                                             upload_form_factory)
 
 
 @get_translation_project
@@ -210,148 +210,59 @@ def delete_path_obj(request, translation_project, dir_path, filename=None):
     return HttpResponseRedirect(overview_url)
 
 
-class ProjectIndexView(view_handler.View):
+def _handle_upload_form(request, current_path, translation_project, directory):
+    """Process the upload form in TP overview."""
+    upload_form_class = upload_form_factory(request, current_path)
 
-    def GET(self, template_vars, request, translation_project, directory,
-            store=None):
-        can_edit = check_permission('administrate', request)
+    if request.method == 'POST' and 'file' in request.FILES:
+        upload_form = upload_form_class(request.POST, request.FILES)
 
-        project = translation_project.project
-        language = translation_project.language
+        if not upload_form.is_valid():
+            return upload_form
+        else:
+            django_file = upload_form.cleaned_data['file']
+            overwrite = upload_form.cleaned_data['overwrite']
+            upload_to = upload_form.cleaned_data['upload_to']
+            upload_to_dir = upload_form.cleaned_data['upload_to_dir']
 
-        path_obj = store or directory
+            # XXX Why do we scan here?
+            translation_project.scan_files(vcs_sync=False)
+            oldstats = translation_project.getquickstats()
 
-        latest_action = ''
-        # If current directory is the TP root directory.
-        if not directory.path:
-            latest_action = translation_project.get_latest_submission()
-        elif store is None:  # If this is not a file.
-            latest_action = Submission.get_latest_for_dir(path_obj)
-
-        path_stats = get_raw_stats(path_obj, include_suggestions=True)
-        path_summary = get_path_summary(path_obj, path_stats, latest_action)
-        actions = action_groups(request, path_obj, path_stats=path_stats)
-        action_output = ''
-        running = request.GET.get(EXTDIR, '')
-        if running:
-            if store:
-                act = StoreAction
+            # The URL relative to the URL of the translation project. Thus, if
+            # directory.pootle_path == /af/pootle/foo/bar, then
+            # relative_root_dir == foo/bar.
+            if django_file.name.endswith('.zip'):
+                archive = True
+                target_directory = upload_to_dir or directory
+                upload_archive(request, target_directory, django_file,
+                               overwrite)
             else:
-                act = TranslationProjectAction
-            try:
-                action = act.lookup(running)
-            except KeyError:
-                messages.error(request, _("Unable to find %s %s") % (act,
-                                                                     running))
-            else:
-                if not getattr(action, 'nosync', False):
-                    (store or translation_project).sync()
-                if action.is_active(request):
-                    vcs_dir = settings.VCS_DIRECTORY
-                    po_dir = settings.PODIRECTORY
-                    tp_dir = directory.get_real_path()
-                    store_fn = '*'
-                    if store:
-                        tp_dir_slash = add_trailing_slash(tp_dir)
-                        if store.file.name.startswith(tp_dir_slash):
-                            # note: store_f used below in reverse() call
-                            store_f = store.file.name[len(tp_dir_slash):]
-                            store_fn = store_f.replace('/', os.sep)
+                archive = False
+                upload_file(request, directory, django_file, overwrite,
+                            store=upload_to)
 
-                    # clear possibly stale output/error (even from other
-                    # path_obj)
-                    action.set_output('')
-                    action.set_error('')
-                    try:
-                        action.run(path=path_obj, root=po_dir, tpdir=tp_dir,
-                                   project=project.code, language=language.code,
-                                   store=store_fn,
-                                   style=translation_project.file_style,
-                                   vc_root=vcs_dir)
-                    except StandardError:
-                        err = _("Exception while running '%s' extension action"
-                                ) % action.title
-                        logging.exception(err)
-                        if (action.error):
-                            messages.error(request, action.error)
-                        else:
-                            messages.error(request, err)
-                    else:
-                        if (action.error):
-                            messages.warning(request, action.error)
+            translation_project.scan_files(vcs_sync=False)
+            newstats = translation_project.getquickstats()
 
-                    action_output = action.output
-                    if getattr(action, 'get_download', None):
-                        export_path = action.get_download(path_obj)
-                        if export_path:
-                            response = HttpResponse('/export/' + export_path)
-                            response['Content-Disposition'] = \
-                                    'attachment; filename="%s"' %(
-                                            os.path.basename(export_path))
-                            return response
+            # Create a submission. Doesn't fix stats but at least shows up in
+            # last activity column.
+            from django.utils import timezone
+            s = Submission(
+                creation_time=timezone.now(),
+                translation_project=translation_project,
+                submitter=get_profile(request.user),
+                type=SubmissionTypes.UPLOAD,
+                # The other fields are only relevant to unit-based changes.
+            )
+            s.save()
 
-                    if not action_output:
-                        if not store:
-                            overview_url = reverse('tp.overview',
-                                                   args=[language.code,
-                                                         project.code, ''])
-                        else:
-                            slash = store_f.rfind('/')
-                            store_d = ''
-                            if slash > 0:
-                                store_d = store_f[:slash]
-                                store_f = store_f[slash + 1:]
-                            elif slash == 0:
-                                store_f = store_f[1:]
-                            overview_url = reverse('tp.overview',
-                                                   args=[language.code,
-                                                         project.code,
-                                                         store_d, store_f])
-                        return HttpResponseRedirect(overview_url)
+            post_file_upload.send(sender=translation_project,
+                                  user=request.user, oldstats=oldstats,
+                                  newstats=newstats, archive=archive)
 
-        template_vars.update({
-            'translation_project': translation_project,
-            'project': project,
-            'language': language,
-            'path_obj': path_obj,
-            'path_summary': path_summary,
-            'stats': path_stats,
-            'topstats': gentopstats_translation_project(translation_project),
-            'feed_path': directory.pootle_path[1:],
-            'action_groups': actions,
-            'action_output': action_output,
-            'tp_tags': translation_project.tags.all().order_by('name'),
-            'can_edit': can_edit,
-        })
-
-        if store is None:
-            table_fields = ['name', 'progress', 'total', 'need-translation',
-                            'suggestions']
-            template_vars.update({
-                'table': {
-                    'id': 'tp',
-                    'proportional': True,
-                    'fields': table_fields,
-                    'headings': get_table_headings(table_fields),
-                    'items': get_children(translation_project, directory),
-                }
-            })
-
-        if can_edit:
-            url_kwargs = {
-                'language_code': language.code,
-                'project_code': project.code,
-            }
-            template_vars.update({
-                'form': DescriptionForm(instance=translation_project),
-                'add_tag_form': TagForm(),
-                'add_tag_action_url': reverse('tp.ajax_add_tag',
-                                              kwargs=url_kwargs),
-            })
-
-        return render_to_response("translation_project/overview.html",
-                                  template_vars,
-                                  context_instance=RequestContext(request))
+    # Always return a blank upload form unless the upload form is not valid.
+    return upload_form_class()
 
 
 @get_translation_project
@@ -363,22 +274,159 @@ def overview(request, translation_project, dir_path, filename=None):
 
     current_path = translation_project.directory.pootle_path + dir_path
 
+    template_vars = {}
+
     if filename:
         current_path = current_path + filename
         store = get_object_or_404(Store, pootle_path=current_path)
         directory = store.parent
     else:
-        directory = get_object_or_404(Directory, pootle_path=current_path)
         store = None
+        directory = get_object_or_404(Directory, pootle_path=current_path)
 
-    request.current_path = current_path
+    if (check_permission('translate', request) or
+        check_permission('suggest', request) or
+        check_permission('overwrite', request)):
 
-    view_forms = {
-        'upload': UploadHandler,
-    }
-    view_obj = ProjectIndexView(forms=view_forms)
+        template_vars.update({
+            'upload_form': _handle_upload_form(request, current_path,
+                                               translation_project, directory),
+        })
 
-    return view_obj(request, translation_project, directory, store)
+    can_edit = check_permission('administrate', request)
+
+    project = translation_project.project
+    language = translation_project.language
+
+    path_obj = store or directory
+
+    latest_action = ''
+    # If current directory is the TP root directory.
+    if not directory.path:
+        latest_action = translation_project.get_latest_submission()
+    elif store is None:  # If this is not a file.
+        latest_action = Submission.get_latest_for_dir(path_obj)
+
+    path_stats = get_raw_stats(path_obj, include_suggestions=True)
+    path_summary = get_path_summary(path_obj, path_stats, latest_action)
+    actions = action_groups(request, path_obj, path_stats=path_stats)
+    action_output = ''
+    running = request.GET.get(EXTDIR, '')
+    if running:
+        if store:
+            act = StoreAction
+        else:
+            act = TranslationProjectAction
+        try:
+            action = act.lookup(running)
+        except KeyError:
+            messages.error(request, _("Unable to find %s %s") % (act, running))
+        else:
+            if not getattr(action, 'nosync', False):
+                (store or translation_project).sync()
+            if action.is_active(request):
+                vcs_dir = settings.VCS_DIRECTORY
+                po_dir = settings.PODIRECTORY
+                tp_dir = directory.get_real_path()
+                store_fn = '*'
+                if store:
+                    tp_dir_slash = add_trailing_slash(tp_dir)
+                    if store.file.name.startswith(tp_dir_slash):
+                        # Note: store_f used below in reverse() call.
+                        store_f = store.file.name[len(tp_dir_slash):]
+                        store_fn = store_f.replace('/', os.sep)
+
+                # Clear possibly stale output/error (even from other path_obj).
+                action.set_output('')
+                action.set_error('')
+                try:
+                    action.run(path=path_obj, root=po_dir, tpdir=tp_dir,
+                               project=project.code, language=language.code,
+                               store=store_fn,
+                               style=translation_project.file_style,
+                               vc_root=vcs_dir)
+                except StandardError:
+                    err = (_("Exception while running '%s' extension action") %
+                           action.title)
+                    logging.exception(err)
+                    if (action.error):
+                        messages.error(request, action.error)
+                    else:
+                        messages.error(request, err)
+                else:
+                    if (action.error):
+                        messages.warning(request, action.error)
+
+                action_output = action.output
+                if getattr(action, 'get_download', None):
+                    export_path = action.get_download(path_obj)
+                    if export_path:
+                        response = HttpResponse('/export/' + export_path)
+                        response['Content-Disposition'] = (
+                                'attachment; filename="%s"' %
+                                os.path.basename(export_path))
+                        return response
+
+                if not action_output:
+                    if not store:
+                        rev_args = [language.code, project.code, '']
+                        overview_url = reverse('tp.overview', args=rev_args)
+                    else:
+                        slash = store_f.rfind('/')
+                        store_d = ''
+                        if slash > 0:
+                            store_d = store_f[:slash]
+                            store_f = store_f[slash + 1:]
+                        elif slash == 0:
+                            store_f = store_f[1:]
+                        rev_args = [language.code, project.code, store_d,
+                                    store_f]
+                        overview_url = reverse('tp.overview', args=rev_args)
+                    return HttpResponseRedirect(overview_url)
+
+    template_vars.update({
+        'translation_project': translation_project,
+        'project': project,
+        'language': language,
+        'path_obj': path_obj,
+        'path_summary': path_summary,
+        'stats': path_stats,
+        'topstats': gentopstats_translation_project(translation_project),
+        'feed_path': directory.pootle_path[1:],
+        'action_groups': actions,
+        'action_output': action_output,
+        'tp_tags': translation_project.tags.all().order_by('name'),
+        'can_edit': can_edit,
+    })
+
+    if store is None:
+        table_fields = ['name', 'progress', 'total', 'need-translation',
+                        'suggestions']
+        template_vars.update({
+            'table': {
+                'id': 'tp',
+                'proportional': True,
+                'fields': table_fields,
+                'headings': get_table_headings(table_fields),
+                'items': get_children(translation_project, directory),
+            }
+        })
+
+    if can_edit:
+        url_kwargs = {
+            'language_code': language.code,
+            'project_code': project.code,
+        }
+        template_vars.update({
+            'form': DescriptionForm(instance=translation_project),
+            'add_tag_form': TagForm(),
+            'add_tag_action_url': reverse('tp.ajax_add_tag',
+                                          kwargs=url_kwargs),
+        })
+
+    return render_to_response("translation_project/overview.html",
+                              template_vars,
+                              context_instance=RequestContext(request))
 
 
 @ajax_required
@@ -845,135 +893,3 @@ def upload_file(request, directory, django_file, overwrite, store=None):
                     suggestions=suggestions, notranslate=notranslate,
                     allownewstrings=allownewstrings,
                     obsoletemissing=allownewstrings)
-
-
-class UploadHandler(view_handler.Handler):
-
-    actions = [('do_upload', ugettext_lazy('Upload'))]
-
-    @classmethod
-    def must_display(cls, request, *args, **kwargs):
-        return check_permission('translate', request) or \
-               check_permission('suggest', request) or \
-               check_permission('overwrite', request)
-
-    def __init__(self, request, data=None, files=None):
-        choices = []
-
-        if check_permission('overwrite', request):
-            choices.append(('overwrite',
-                _("Overwrite the current file if it exists")))
-
-        if check_permission('translate', request):
-            choices.append(('merge',
-                _("Merge the file with the current file and turn "
-                  "conflicts into suggestions")))
-
-        if check_permission('suggest', request):
-            choices.append(('suggest',
-                _("Add all new translations as suggestions")))
-
-        translation_project = request.translation_project
-
-
-        class StoreFormField(forms.ModelChoiceField):
-
-            def label_from_instance(self, instance):
-                return instance.pootle_path[len(request.current_path):]
-
-
-        class DirectoryFormField(forms.ModelChoiceField):
-
-            def label_from_instance(self, instance):
-                tp_path_len = len(translation_project.pootle_path)
-                return instance.pootle_path[tp_path_len:]
-
-
-        class UploadForm(forms.Form):
-
-            file = forms.FileField(required=True, label=_('File'))
-
-            if check_permission('translate', request):
-                initial = 'merge'
-            else:
-                initial = 'suggest'
-
-            overwrite = forms.ChoiceField(
-                required=True,
-                widget=forms.RadioSelect,
-                label='',
-                choices=choices,
-                initial=initial
-            )
-            upload_to = StoreFormField(
-                required=False,
-                label=_('Upload to'),
-                queryset=translation_project.stores.filter(
-                    pootle_path__startswith=request.current_path),
-                help_text=_("Optionally select the file you want to merge "
-                            "with. If not specified, the uploaded file's name "
-                            "is used.")
-            )
-            upload_to_dir = DirectoryFormField(
-                required=False,
-                label=_('Upload to'),
-                queryset=Directory.objects.filter(
-                    pootle_path__startswith=translation_project.pootle_path).\
-                    exclude(pk=translation_project.directory.pk),
-                help_text=_("Optionally select the file you want to merge "
-                            "with. If not specified, the uploaded file's name "
-                            "is used.")
-            )
-
-
-        self.Form = UploadForm
-
-        super(UploadHandler, self).__init__(request, data, files)
-
-        self.form.allow_overwrite = check_permission('overwrite', request)
-        self.form.title = _("Upload File")
-
-    def do_upload(self, request, translation_project, directory, store):
-
-        if self.form.is_valid() and 'file' in request.FILES:
-            django_file = self.form.cleaned_data['file']
-            overwrite = self.form.cleaned_data['overwrite']
-            upload_to = self.form.cleaned_data['upload_to']
-            upload_to_dir = self.form.cleaned_data['upload_to_dir']
-            # XXX Why do we scan here?
-            translation_project.scan_files(vcs_sync=False)
-            oldstats = translation_project.getquickstats()
-
-            # The URL relative to the URL of the translation project. Thus, if
-            # directory.pootle_path == /af/pootle/foo/bar, then
-            # relative_root_dir == foo/bar.
-            if django_file.name.endswith('.zip'):
-                archive = True
-                target_directory = upload_to_dir or directory
-                upload_archive(request, target_directory, django_file,
-                               overwrite)
-            else:
-                archive = False
-                upload_file(request, directory, django_file, overwrite,
-                            store=upload_to)
-
-            translation_project.scan_files(vcs_sync=False)
-            newstats = translation_project.getquickstats()
-
-            # Create a submission. Doesn't fix stats but at least shows up in
-            # last activity column.
-            from django.utils import timezone
-            s = Submission(
-                creation_time=timezone.now(),
-                translation_project=translation_project,
-                submitter=get_profile(request.user),
-                type=SubmissionTypes.UPLOAD,
-                # the other fields are only relevant to unit-based changes
-            )
-            s.save()
-
-            post_file_upload.send(sender=translation_project,
-                                  user=request.user, oldstats=oldstats,
-                                  newstats=newstats, archive=archive)
-
-        return {'upload': self}

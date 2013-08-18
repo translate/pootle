@@ -127,21 +127,20 @@
   {% endif %}
 </div>
 
-{% if upload %}
+{% if upload_form %}
 <div id="upload" class="form popup-inline mfp-hide" lang="{{ LANGUAGE_CODE }}">
-  <h2>{{ upload.form.title }}</h2>
-  <form action="" method="post" class="upload" id="uploadform"
-    name="uploadform" enctype="multipart/form-data">
+  <h2>{% trans "Upload File" %}</h2>
+  <form action="" method="post" class="upload" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.non_field_errors }}
-    {% for field in upload.form %}
+    {% for field in upload_form %}
     <p {% if field.help_text %}title="{{ field.help_text }}"{% endif %}>
       {{ field.label_tag }} {{ field }}
       {{ field.errors }}
     </p>
     {% endfor %}
     <p class="buttons">
-      {{ upload.render_submits }}
+      <input type="submit" value="{% trans 'Upload' %}" />
     </p>
   </form>
 </div>
@@ -184,7 +183,7 @@ $(function() {
   PTL.common.updateRelativeDates();
   setInterval(PTL.common.updateRelativeDates, 6e4);
 
-{% if upload %}
+{% if upload_form %}
   $("select#id_upload_to_dir").parent().hide();
   $("input#id_file").change(function() {
     if (/\.zip$/.test($(this).val())) {
