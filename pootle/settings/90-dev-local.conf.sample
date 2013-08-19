@@ -129,9 +129,6 @@ DEBUG_TOOLBAR_CONFIG = {
 # The directory where the translation files are kept
 PODIRECTORY = working_path('po')
 
-# The directory where version control clones/checkouts are kept
-VCS_DIRECTORY = working_path('repos')
-
 # Two-tuple defining the markup filter to apply in certain textareas.
 #
 # - Accepted values for the first element are 'textile', 'markdown',
