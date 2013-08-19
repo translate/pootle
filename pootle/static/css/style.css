@@ -2538,3 +2538,13 @@ html[dir="rtl"] .tags-aside
 {
     margin-top: 2em;
 }
+
+table.sortable .tags-row td
+{
+    padding: 0pt;
+}
+
+.tags-bd
+{
+    padding: 0pt 1em 0pt 1em;
+}
