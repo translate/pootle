@@ -128,6 +128,20 @@ A sample Apache configuration with mod_wsgi might look like this:
 
     <VirtualHost *:80>
         # Domain for the Pootle server. Use 'localhost' for local deployments.
+        #
+        # If you want to deploy on example.com/your-pootle/ rather than in
+        # my-pootle.example.com/ you will have to do the following changes to
+        # this sample Apache configuration:
+        #
+        # - Change the ServerName directive to:
+        #   ServerName example.com
+        # - Change the WSGIScriptAlias directive to (note that /your-pootle must
+        #   not end with a slash):
+        #   WSGIScriptAlias /your-pootle /var/www/pootle/wsgi.py
+        # - Change the Alias and Location directives for 'export', and the Alias
+        #   directive for 'assets' to include the '/your-pootle'.
+        # - Include the following setting in your custom Pootle settings:
+        #   STATIC_URL = '/your-pootle/assets/'
         ServerName my-pootle.example.com
  
         # Set the 'POOTLE_SETTINGS' environment variable pointing at your custom
