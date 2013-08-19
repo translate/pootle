@@ -64,15 +64,13 @@
       {% endif %}
       {% endwith %}
       <!-- Screenshot links -->
-      {% with unit.store.translation_project.project as p %}
-      {% if p.screenshot_search_prefix %}
+      {% if project.screenshot_search_prefix %}
       <div class="screenshot-link sidebar">
-        <a href="{{ p.screenshot_search_prefix }}#x={{ unit.source|urlencode }}" target="_blank">
+        <a href="{{ unit.get_screenshot_url }}" target="_blank">
           {% trans 'Screenshots...' %}
         </a>
       </div>
       {% endif %}
-      {% endwith %}
     </div>
     <div class="translate-{% if LANGUAGE_BIDI %}left{% else %}right{% endif %}">
       {% if unit.get_qualitychecks.count %}

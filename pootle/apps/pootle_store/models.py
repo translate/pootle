@@ -35,6 +35,7 @@ from django.db.models.signals import post_delete
 from django.db.transaction import commit_on_success
 from django.utils import timezone, tzinfo
 from django.utils.translation import ugettext_lazy as _
+from django.utils.http import urlquote
 
 from translate.filters.decorators import Category
 from translate.storage import base
@@ -359,6 +360,11 @@ class Unit(models.Model, base.TranslationUnit):
             reverse('pootle-tp-translate', args=[lang, proj, dir, fn]),
             '#unit=', unicode(self.id),
         ])
+
+    def get_screenshot_url(self):
+        prefix = self.store.translation_project.project.screenshot_search_prefix
+        if prefix:
+            return prefix + urlquote(self.source_f)
 
     def get_mtime(self):
         return self.mtime
