@@ -280,41 +280,6 @@ Using the ``--cleanup`` command line option, languages added to projects that
 no longer have matching files on the filesystem will be deleted.
 
 
-.. _commands#update_from_vcs:
-
-update_from_vcs
-^^^^^^^^^^^^^^^
-
-.. versionadded:: 2.5
-
-This command updates the specified files from their :doc:`Version Control
-System(s) <../features/version_control>`. It supports the ``--directory``,
-``--project``, and ``--language`` parameters.
-
-Pootle will take care to avoid version control conflicts, and will handle any
-conflicts on a string level, just like it would if the update was done through
-the web front-end.
-
-The command first syncs database contents to disk.
-
-
-.. _commands#commit_to_vcs:
-
-commit_to_vcs
-^^^^^^^^^^^^^
-
-.. versionadded:: 2.5
-
-This command commits the specified files to their :doc:`Version Control
-System(s) <../features/version_control>`. It supports the ``--directory``,
-``--project``, and ``--language`` parameters.
-
-A file needs to be up to date, otherwise the commit will fail. Files can be
-updated inside Pootle, or using the :ref:`commands#update_from_vcs` command.
-This is not done automatically, otherwise the merged version of the file will
-be committed without review without anybody knowing.
-
-
 .. _commands#list_languages:
 
 list_languages

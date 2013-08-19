@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2012 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -21,14 +22,16 @@
 import logging
 import os
 import re
-import shutil
+
+from django.conf import settings
 
 from translate.lang import data as langdata
 
 from pootle_app.models.directory import Directory
 from pootle_language.models import Language
 from pootle_store.models import Store, PARSED
-from pootle_store.util import absolute_real_path, add_trailing_slash
+from pootle_store.util import (absolute_real_path, add_trailing_slash,
+                               relative_real_path)
 
 
 #: Case insensitive match for language codes
@@ -216,8 +219,7 @@ def add_items(fs_items, db_items, create_db_item):
 
 def add_files(translation_project, ignored_files, ext, relative_dir, db_dir,
               file_filter=lambda _x: True):
-    from pootle_misc import versioncontrol
-    podir_path = versioncontrol.to_podir_path(relative_dir)
+    podir_path = to_podir_path(relative_dir)
     files, dirs = split_files_and_dirs(ignored_files, ext, podir_path,
                                        file_filter)
     file_set = set(files)
@@ -246,48 +248,9 @@ def add_files(translation_project, ignored_files, ext, relative_dir, db_dir,
     return files, new_files
 
 
-def sync_from_vcs(ignored_files, ext, relative_dir,
-                  file_filter=lambda _x: True):
-    """Recursively synchronise the PO directory from the VCS directory.
-
-    This brings over files from VCS, and removes files in PO directory that
-    were removed in VCS.
-    """
-    from pootle_misc import versioncontrol
-    if not versioncontrol.hasversioning(relative_dir):
-        return
-
-    podir_path = versioncontrol.to_podir_path(relative_dir)
-    vcs_path = versioncontrol.to_vcs_path(relative_dir)
-    vcs_files, vcs_dirs = recursive_files_and_dirs(ignored_files, ext,
-                                                   vcs_path, file_filter)
-    files, dirs = recursive_files_and_dirs(ignored_files, ext, podir_path,
-                                           file_filter)
-
-    vcs_file_set = set(vcs_files)
-    vcs_dir_set = set(vcs_dirs)
-    file_set = set(files)
-    dir_set = set(dirs)
-
-    for d in vcs_dir_set - dir_set:
-        new_path = os.path.join(podir_path, d)
-        os.makedirs(new_path)
-
-    # copy into podir
-    for f in vcs_file_set - file_set:
-        vcs_f = os.path.join(vcs_path, f)
-        new_path = os.path.join(podir_path, f)
-        shutil.copy2(vcs_f, new_path)
-
-    # remove from podir
-    #TODO: review this carefully, as we are now deleting stuff
-    for f in file_set - vcs_file_set:
-        remove_path = os.path.join(podir_path, f)
-        os.remove(remove_path)
-
-    for d in dir_set - vcs_dir_set:
-        remove_path = os.path.join(podir_path, d)
-        shutil.rmtree(remove_path)
+def to_podir_path(path):
+    path = relative_real_path(path)
+    return os.path.join(settings.PODIRECTORY, path)
 
 
 def find_lang_postfix(filename):

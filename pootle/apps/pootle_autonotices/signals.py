@@ -132,37 +132,6 @@ def updated_against_template(sender, oldstats, newstats, **kwargs):
     new_object(True, message, sender.directory)
 
 
-def updated_from_version_control(sender, oldstats, remotestats, newstats,
-                                 **kwargs):
-    if sender.is_template_project:
-        # add template news to project instead of translation project
-        directory = sender.project.directory
-    else:
-        directory = sender.directory
-
-    if oldstats == newstats:
-        # nothing changed, no need to report
-        return
-
-    message = 'Updated <a href="%s">%s</a> from version control <br />' % (
-        sender.get_absolute_url(), sender.fullname)
-    message += stats_message_raw("Before update", oldstats) + " <br />"
-
-    if not remotestats == newstats:
-        message += stats_message_raw("Remote copy", remotestats) + " <br />"
-
-    message += stats_message_raw("After update", newstats)
-    new_object(True, message, directory)
-
-
-def committed_to_version_control(sender, path_obj, stats, user, success, **kwargs):
-    message = '<a href="%s">%s</a> committed <a href="%s">%s</a> to version control' % (
-        user.get_absolute_url(), get_profile(user),
-        path_obj.get_absolute_url(), path_obj.pootle_path)
-    message = stats_message_raw(message, stats)
-    new_object(success, message, sender.directory)
-
-
 def file_uploaded(sender, oldstats, user, newstats, archive, **kwargs):
     if sender.is_template_project:
         # add template news to project instead of translation project

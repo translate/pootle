@@ -1,8 +1,0 @@
-This directory should contain the checkouts/clones (or symlinks to them) that
-correspond to the files in the po directory.
-
-This directory should never contain uncommitted changes. Pootle will bring in
-changes from the upstream VCS and rely on it succeeding without conflicts.
-
-More information:
-http://docs.translatehouse.org/projects/pootle/en/latest/features/version_control.html

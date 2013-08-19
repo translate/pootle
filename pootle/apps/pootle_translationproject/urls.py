@@ -39,16 +39,6 @@ urlpatterns = patterns('pootle_translationproject.views',
         'delete_path_obj',
         name='tp.delete_path_obj'),
 
-    # VCS
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
-        r'vcs-commit/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
-        'vcs_commit',
-        name='pootle-vcs-commit'),
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
-        r'vcs-update/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
-        'vcs_update',
-        name='pootle-vcs-update'),
-
     # XHR views
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/((.*/)*)edit_settings.html$',
         'edit_settings'),

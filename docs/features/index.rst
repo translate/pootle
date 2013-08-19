@@ -16,7 +16,6 @@ Backends and storage
    hooks
    statistics
    templates
-   version_control
 
 
 .. _features#editor:

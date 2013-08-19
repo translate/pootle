@@ -40,8 +40,7 @@ from pootle.core.decorators import (get_path_obj, get_resource_context,
                                     permission_required)
 from pootle.core.helpers import get_filter_name, get_translation_context
 from pootle_app.lib import view_handler
-from pootle_app.models.permissions import (get_matching_permissions,
-                                           check_permission)
+from pootle_app.models.permissions import check_permission
 from pootle_app.models.signals import post_file_upload
 from pootle_app.models import Directory
 from pootle_app.project_tree import (ensure_target_dir_exists,
@@ -205,38 +204,6 @@ def delete_path_obj(request, translation_project, dir_path, filename=None):
     overview_url = reverse('pootle-tp-overview', args=[language, project, ''])
 
     return HttpResponseRedirect(overview_url)
-
-
-@get_path_obj
-@permission_required('commit')
-def vcs_commit(request, translation_project, dir_path, filename):
-    current_path = translation_project.directory.pootle_path + dir_path
-
-    if filename:
-        current_path = current_path + filename
-        obj = get_object_or_404(Store, pootle_path=current_path)
-        result = translation_project.commit_file(request.user, obj, request)
-    else:
-        obj = get_object_or_404(Directory, pootle_path=current_path)
-        result = translation_project.commit_dir(request.user, obj, request)
-
-    return redirect(obj.get_absolute_url())
-
-
-@get_path_obj
-@permission_required('commit')
-def vcs_update(request, translation_project, dir_path, filename):
-    current_path = translation_project.directory.pootle_path + dir_path
-
-    if filename:
-        current_path = current_path + filename
-        obj = get_object_or_404(Store, pootle_path=current_path)
-        result = translation_project.update_file(request, obj)
-    else:
-        obj = get_object_or_404(Directory, pootle_path=current_path)
-        result = translation_project.update_dir(request, obj)
-
-    return redirect(obj.get_absolute_url())
 
 
 class ProjectIndexView(view_handler.View):
@@ -661,7 +628,7 @@ def overwrite_file(request, relative_root_dir, django_file, upload_path):
                                         classes=factory_classes)
         # And save it...
         empty_store.save()
-        request.translation_project.scan_files(vcs_sync=False)
+        request.translation_project.scan_files()
         # Then we open this newly created file and merge the
         # uploaded file into it.
         store = Store.objects.get(file=upload_path)
@@ -846,7 +813,7 @@ class UploadHandler(view_handler.Handler):
             upload_to = self.form.cleaned_data['upload_to']
             upload_to_dir = self.form.cleaned_data['upload_to_dir']
             # XXX Why do we scan here?
-            translation_project.scan_files(vcs_sync=False)
+            translation_project.scan_files()
             oldstats = translation_project.getquickstats()
 
             # The URL relative to the URL of the translation project. Thus, if
@@ -862,7 +829,7 @@ class UploadHandler(view_handler.Handler):
                 upload_file(request, directory, django_file, overwrite,
                             store=upload_to)
 
-            translation_project.scan_files(vcs_sync=False)
+            translation_project.scan_files()
             newstats = translation_project.getquickstats()
 
             # create a submission, doesn't fix stats but at least

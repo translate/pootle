@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -78,10 +79,6 @@ def scan_translation_projects():
     for language in Language.objects.iterator():
         for project in Project.objects.iterator():
             create_translation_project(language, project)
-
-
-class VersionControlError(Exception):
-    pass
 
 
 class TranslationProjectManager(RelatedManager):
@@ -357,47 +354,7 @@ class TranslationProject(models.Model):
             convert_template(self, store, new_pootle_path, new_path,
                              monolingual)
 
-        all_files, new_files = self.scan_files(vcs_sync=False)
-
-        from pootle_misc import versioncontrol
-        project_path = self.project.get_real_path()
-
-        if new_files and versioncontrol.hasversioning(project_path):
-            from pootle.scripts import hooks
-            message = "New files added from %s based on templates" % \
-                      (settings.TITLE)
-
-            filestocommit = []
-            for new_file in new_files:
-                try:
-                    filestocommit.extend(hooks.hook(self.project.code,
-                                                    "precommit",
-                                                    new_file.file.name,
-                                                    author=None,
-                                                    message=message)
-                                         )
-                except ImportError:
-                    # Failed to import the hook - we're going to assume there
-                    # just isn't a hook to import. That means we'll commit the
-                    # original file.
-                    filestocommit.append(new_file.file.name)
-
-            success = True
-            try:
-                output = versioncontrol.add_files(project_path,
-                                                  filestocommit, message)
-            except Exception, e:
-                logging.error(u"Failed to add files: %s", e)
-                success = False
-
-            for new_file in new_files:
-                try:
-                    hooks.hook(self.project.code, "postcommit",
-                               new_file.file.name, success=success)
-                except:
-                    #FIXME: We should not hide the exception - makes
-                    # development impossible
-                    pass
+        all_files, new_files = self.scan_files()
 
         if pootle_path is None:
             newstats = self.getquickstats()
@@ -406,11 +363,8 @@ class TranslationProject(models.Model):
             post_template_update.send(sender=self, oldstats=oldstats,
                                       newstats=newstats)
 
-    def scan_files(self, vcs_sync=True):
+    def scan_files(self):
         """Scans the file system and returns a list of translation files.
-
-        :param vcs_sync: boolean on whether or not to synchronise the PO
-                         directory with the VCS checkout.
         """
         projects = [p.strip() for p in self.project.ignoredfiles.split(',')]
         ignored_files = set(projects)
@@ -421,8 +375,7 @@ class TranslationProject(models.Model):
             ext = os.extsep + self.project.get_template_filetype()
 
         from pootle_app.project_tree import (add_files, match_template_filename,
-                                             direct_language_match_filename,
-                                             sync_from_vcs)
+                                             direct_language_match_filename)
 
         all_files = []
         new_files = []
@@ -439,9 +392,6 @@ class TranslationProject(models.Model):
         else:
             file_filter = lambda filename: True
 
-        if vcs_sync:
-            sync_from_vcs(ignored_files, ext, self.real_path, file_filter)
-
         all_files, new_files = add_files(
                 self,
                 ignored_files,
@@ -452,351 +402,6 @@ class TranslationProject(models.Model):
         )
 
         return all_files, new_files
-
-    def update_file_from_version_control(self, store):
-        from pootle.scripts import hooks
-        store.sync(update_translation=True)
-
-        filetoupdate = store.file.name
-        try:
-            filetoupdate = hooks.hook(self.project.code, "preupdate",
-                                      store.file.name)
-        except:
-            pass
-
-        # Keep a copy of working files in memory before updating
-        oldstats = store.getquickstats()
-        working_copy = store.file.store
-
-        try:
-            logging.debug(u"Updating %s from version control", store.file.name)
-            from pootle_misc import versioncontrol
-            versioncontrol.update_file(filetoupdate)
-            store.file._delete_store_cache()
-            store.file._update_store_cache()
-        except Exception, e:
-            # Something wrong, file potentially modified, bail out
-            # and replace with working copy
-            logging.error(u"Near fatal catastrophe, exception %s while "
-                          u"updating %s from version control",
-                          e, store.file.name)
-            working_copy.save()
-
-            raise VersionControlError
-
-        try:
-            hooks.hook(self.project.code, "postupdate", store.file.name)
-        except:
-            pass
-
-        try:
-            logging.debug(u"Parsing version control copy of %s into db",
-                          store.file.name)
-            store.update(update_structure=True, update_translation=True)
-            remotestats = store.getquickstats()
-
-            #FIXME: try to avoid merging if file was not updated
-            logging.debug(u"Merging %s with version control update",
-                          store.file.name)
-            store.mergefile(working_copy, None, allownewstrings=False,
-                            suggestions=True, notranslate=False,
-                            obsoletemissing=False)
-        except Exception, e:
-            logging.error(u"Near fatal catastrophe, exception %s while merging "
-                          u"%s with version control copy", e, store.file.name)
-            working_copy.save()
-            store.update(update_structure=True, update_translation=True)
-            raise
-
-        newstats = store.getquickstats()
-        return oldstats, remotestats, newstats
-
-    def update_dir(self, request=None, directory=None):
-        """Updates translation project's files from version control, retaining
-        uncommitted translations.
-        """
-        old_stats = self.getquickstats()
-        remote_stats = {}
-
-        from pootle_misc import versioncontrol
-        try:
-            versioncontrol.update_dir(self.real_path)
-        except IOError, e:
-            logging.error(u"Error during update of %(path)s:\n%(error)s",
-                    {
-                     "path": self.real_path,
-                     "error": e,
-                    }
-            )
-            if request:
-                msg = _("Failed to update from version control: %(error)s",
-                        {"error": e})
-                messages.error(request, msg)
-            return
-
-        all_files, new_files = self.scan_files()
-        new_file_set = set(new_files)
-
-        from pootle.scripts import hooks
-
-        # Go through all stores except any pootle-terminology.* ones
-        if directory.is_translationproject():
-            stores = self.stores.exclude(file="")
-        else:
-            stores = directory.stores.exclude(file="")
-
-        for store in stores.iterator():
-            if store in new_file_set:
-                # these won't have to be merged, since they are new
-                remotestats = store.getquickstats()
-                remote_stats = dictsum(remote_stats, remotestats)
-                continue
-
-            store.sync(update_translation=True)
-            filetoupdate = store.file.name
-            try:
-                filetoupdate = hooks.hook(self.project.code, "preupdate",
-                                          store.file.name)
-            except:
-                pass
-
-            # keep a copy of working files in memory before updating
-            working_copy = store.file.store
-
-            versioncontrol.copy_to_podir(filetoupdate)
-            store.file._delete_store_cache()
-            store.file._update_store_cache()
-
-            try:
-                hooks.hook(self.project.code, "postupdate",
-                           store.file.name)
-            except:
-                pass
-
-            try:
-                logging.debug(u"Parsing version control copy of %s into db",
-                              store.file.name)
-                store.update(update_structure=True, update_translation=True)
-                remotestats = store.getquickstats()
-
-                #FIXME: Try to avoid merging if file was not updated
-                logging.debug(u"Merging %s with version control update",
-                              store.file.name)
-                store.mergefile(working_copy, None, allownewstrings=False,
-                                suggestions=True, notranslate=False,
-                                obsoletemissing=False)
-            except Exception, e:
-                logging.error(u"Near fatal catastrophe, exception %s while "
-                              "merging %s with version control copy",
-                              e, store.file.name)
-                working_copy.save()
-                store.update(update_structure=True, update_translation=True)
-                raise
-
-            remote_stats = dictsum(remote_stats, remotestats)
-
-        new_stats = self.getquickstats()
-
-        if request:
-            msg = [
-                _(u'Updated project <em>%(project)s</em> from version control',
-                  {'project': self.fullname}),
-                stats_message(_(u"Working copy"), old_stats),
-                stats_message(_(u"Remote copy"), remote_stats),
-                stats_message(_(u"Merged copy"), new_stats)
-            ]
-            msg = u"<br/>".join([force_unicode(m) for m in msg])
-            messages.info(request, msg)
-
-        from pootle_app.models.signals import post_vc_update
-        post_vc_update.send(sender=self, oldstats=old_stats,
-                remotestats=remote_stats, newstats=new_stats)
-
-    def update_file(self, request, store):
-        """Updates file from version control, retaining uncommitted
-        translations"""
-        try:
-            old_stats, remote_stats, new_stats = \
-                    self.update_file_from_version_control(store)
-
-            # FIXME: This belongs to views
-            msg = [
-                _(u'Updated file <em>%(filename)s</em> from version control',
-                  {'filename': store.file.name}),
-                stats_message(_(u"Working copy"), old_stats),
-                stats_message(_(u"Remote copy"), remote_stats),
-                stats_message(_(u"Merged copy"), new_stats)
-            ]
-            msg = u"<br/>".join([force_unicode(m) for m in msg])
-            messages.info(request, msg)
-
-            from pootle_app.models.signals import post_vc_update
-            post_vc_update.send(sender=self, oldstats=old_stats,
-                remotestats=remote_stats, newstats=new_stats)
-        except VersionControlError, e:
-            # FIXME: This belongs to views
-            msg = _(u"Failed to update <em>%(filename)s</em> from "
-                    u"version control: %(error)s",
-                    {
-                        'filename': store.file.name,
-                        'error': e,
-                    }
-            )
-            messages.error(request, msg)
-
-        self.scan_files()
-
-    def commit_dir(self, user, directory, request=None):
-        """Commits files under a directory to version control.
-
-        This does not do permission checking.
-        """
-        self.sync()
-        stats = self.getquickstats()
-        author = user.username
-
-        message = stats_message_raw("Commit from %s by user %s." % \
-                (settings.TITLE, author), stats)
-
-        # Try to append email as well, since some VCS does not allow omitting
-        # it (ie. Git).
-        if user.is_authenticated() and len(user.email):
-            author += " <%s>" % user.email
-
-        if directory.is_translationproject():
-            stores = list(self.stores.exclude(file=""))
-        else:
-            stores = list(directory.stores.exclude(file=""))
-
-        filestocommit = []
-
-        from pootle.scripts import hooks
-        for store in stores:
-            try:
-                filestocommit.extend(hooks.hook(self.project.code, "precommit",
-                                                store.file.name, author=author,
-                                                message=message)
-                                    )
-            except ImportError:
-                # Failed to import the hook - we're going to assume there just
-                # isn't a hook to import. That means we'll commit the original
-                # file.
-                filestocommit.append(store.file.name)
-
-        success = True
-        try:
-            from pootle_misc import versioncontrol
-            project_path = self.project.get_real_path()
-            versioncontrol.add_files(
-                    project_path,
-                    filestocommit,
-                    message,
-                    author,
-            )
-            # FIXME: This belongs to views
-            if request is not None:
-                msg = _("Committed all files under <em>%(path)s</em> to "
-                        "version control",
-                        {'path': directory.pootle_path}
-                )
-                messages.success(request, msg)
-        except Exception, e:
-            logging.error(u"Failed to commit: %s", e)
-
-            # FIXME: This belongs to views
-            if request is not None:
-                msg = _("Failed to commit to version control: %(error)s",
-                        {'error': e}
-                )
-                messages.error(request, msg)
-
-            success = False
-
-        for store in stores:
-            try:
-                hooks.hook(self.project.code, "postcommit", store.file.name,
-                           success=success)
-            except:
-                #FIXME: We should not hide the exception - makes development
-                # impossible
-                pass
-
-        from pootle_app.models.signals import post_vc_commit
-        post_vc_commit.send(sender=self, path_obj=directory, stats=stats,
-                            user=user, success=success)
-
-        return success
-
-    def commit_file(self, user, store, request=None):
-        """Commits an individual file to version control.
-
-        This does not do permission checking.
-        """
-        store.sync(update_structure=False, update_translation=True,
-                   conservative=True)
-        stats = store.getquickstats()
-        author = user.username
-
-        message = stats_message_raw("Commit from %s by user %s." % \
-                (settings.TITLE, author), stats)
-
-        # Try to append email as well, since some VCS does not allow omitting
-        # it (ie. Git).
-        if user.is_authenticated() and len(user.email):
-            author += " <%s>" % user.email
-
-        from pootle.scripts import hooks
-        try:
-            filestocommit = hooks.hook(self.project.code, "precommit",
-                                       store.file.name, author=author,
-                                       message=message)
-        except ImportError:
-            # Failed to import the hook - we're going to assume there just
-            # isn't a hook to import. That means we'll commit the original
-            # file.
-            filestocommit = [store.file.name]
-
-        success = True
-        try:
-            from pootle_misc import versioncontrol
-            for file in filestocommit:
-                versioncontrol.commit_file(file, message=message, author=author)
-
-                # FIXME: This belongs to views
-                if request is not None:
-                    msg = _("Committed file <em>%(filename)s</em> to version "
-                            "control",
-                            {'filename': file})
-                    messages.success(request, msg)
-        except Exception, e:
-            logging.error(u"Failed to commit file: %s", e)
-
-            # FIXME: This belongs to views
-            if request is not None:
-                msg = _("Failed to commit <em>%(filename)s</em> to version "
-                        "control: %(error)s",
-                        {
-                            'filename': store.file.name,
-                            'error': e,
-                        }
-                )
-                messages.error(request, msg)
-
-            success = False
-
-        try:
-            hooks.hook(self.project.code, "postcommit", store.file.name,
-                       success=success)
-        except:
-            #FIXME: We should not hide the exception - makes development
-            # impossible
-            pass
-
-        from pootle_app.models.signals import post_vc_commit
-        post_vc_commit.send(sender=self, path_obj=store, stats=stats, user=user,
-                            success=success)
-
-        return success
 
     def initialize(self):
         try:
