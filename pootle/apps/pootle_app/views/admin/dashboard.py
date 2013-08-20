@@ -94,12 +94,6 @@ def required_depcheck():
 def optional_depcheck():
     optional = []
 
-    if not depcheck.test_unzip():
-        optional.append({
-            'dependency': 'unzip',
-            'text': _('Can\'t find the unzip command. Uploading archives is '
-                      'faster if "unzip" is available.')
-        })
     if not depcheck.test_iso_codes():
         optional.append({
             'dependency': 'iso-codes',

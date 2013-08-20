@@ -22,7 +22,7 @@
 from functools import wraps
 
 from django.core.exceptions import PermissionDenied
-from django.http import Http404, HttpResponse
+from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext as _
 
@@ -31,7 +31,6 @@ from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models import Directory
 from pootle_app.models.permissions import (check_permission,
                                            get_matching_permissions)
-from pootle_misc.util import jsonify
 from pootle_profile.models import get_profile
 
 from .models import Store, Unit
@@ -70,32 +69,6 @@ def _check_permissions(request, directory, permission_code):
 
     if not check_permission(permission_code, request):
         raise PermissionDenied(get_permission_message(permission_code))
-
-
-def get_store_context(permission_codes):
-
-    def wrap_f(f):
-
-        @wraps(f)
-        def decorated_f(request, pootle_path, *args, **kwargs):
-            if pootle_path[0] != '/':
-                pootle_path = '/' + pootle_path
-            try:
-                store = Store.objects.select_related('translation_project',
-                                                     'parent') \
-                                     .get(pootle_path=pootle_path)
-            except Store.DoesNotExist:
-                raise Http404
-
-            _common_context(request, store.translation_project, permission_codes)
-            request.store = store
-            request.directory = store.parent
-
-            return f(request, store, *args, **kwargs)
-
-        return decorated_f
-
-    return wrap_f
 
 
 def get_unit_context(permission_codes):

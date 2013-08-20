@@ -21,12 +21,9 @@
 """A set of singal handlers for generating automatic notifications on system
 events."""
 
-import logging
-
 from pootle_app.models import Directory
 from pootle_misc.stats import stats_message_raw
 from pootle_notifications.models import Notice
-from pootle_profile.models import get_profile
 from pootle_store.models import Unit
 
 
@@ -130,28 +127,3 @@ def updated_against_template(sender, oldstats, newstats, **kwargs):
     message += stats_message_raw("Before update", oldstats) + " <br />"
     message += stats_message_raw("After update", newstats) + " <br />"
     new_object(True, message, sender.directory)
-
-
-def file_uploaded(sender, oldstats, user, newstats, archive, **kwargs):
-    if sender.is_template_project:
-        # add template news to project instead of translation project
-        directory = sender.project.directory
-    else:
-        directory = sender.directory
-
-    if oldstats == newstats:
-        logging.debug("file uploaded but stats didn't change")
-        return
-
-    if archive:
-        message = '<a href="%s">%s</a> uploaded an archive to <a href="%s">%s</a> <br />' % (
-            get_profile(user).get_absolute_url(), get_profile(user),
-            sender.get_absolute_url(), sender.fullname)
-    else:
-        message = '<a href="%s">%s</a> uploaded a file to <a href="%s">%s</a> <br />' % (
-            get_profile(user).get_absolute_url(), get_profile(user),
-            sender.get_absolute_url(), sender.fullname)
-
-    message += stats_message_raw('Before upload', oldstats) + ' <br />'
-    message += stats_message_raw('After upload', newstats) + ' <br />'
-    new_object(True, message, directory)

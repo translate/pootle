@@ -78,16 +78,6 @@ def test_lxml():
 ##############################
 
 
-def test_unzip():
-    """test for unzip command"""
-    try:
-        subprocess.call('unzip', stdout=file(os.devnull),
-                        stderr=file(os.devnull))
-        return True
-    except:
-        return False
-
-
 def test_iso_codes():
     import gettext
     languages = (lang[0] for lang in settings.LANGUAGES)

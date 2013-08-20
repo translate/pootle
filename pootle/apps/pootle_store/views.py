@@ -19,31 +19,25 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-import os
 import logging
 from itertools import groupby
 
-from django.conf import settings
 from django.contrib.auth.models import User
-from django.core.cache import cache
 from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from django.db.models import Q
 from django.http import HttpResponse, Http404
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import render_to_response
 from django.template import loader, RequestContext
 from django.utils.translation import to_locale, ugettext as _
 from django.utils.translation.trans_real import parse_accept_lang_header
 from django.utils import simplejson, timezone
-from django.utils.encoding import iri_to_uri
 from django.views.decorators.cache import never_cache
 
 from translate.lang import data
 
 from pootle_app.models import Suggestion as SuggestionStat
-from pootle_app.models.permissions import (check_permission,
-                                           check_profile_permission)
+from pootle_app.models.permissions import check_profile_permission
 from pootle.core.exceptions import Http400
-from pootle_misc.baseurl import redirect
 from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.forms import make_search_form
 from pootle_misc.stats import get_raw_stats
@@ -53,92 +47,16 @@ from pootle_profile.models import get_profile
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 
-from .decorators import (get_store_context, get_unit_context,
-                         get_xhr_resource_context)
-from .models import Store, Unit
+from .decorators import get_unit_context, get_xhr_resource_context
+from .models import Unit
 from .forms import (unit_comment_form_factory, unit_form_factory,
                     highlight_whitespace)
 from .signals import translation_submitted
 from .templatetags.store_tags import (highlight_diffs, pluralize_source,
                                       pluralize_target)
 from .util import (UNTRANSLATED, FUZZY, TRANSLATED, STATES_MAP,
-                   absolute_real_path, find_altsrcs, get_sugg_list)
+                   find_altsrcs, get_sugg_list)
 
-
-@get_store_context('view')
-def export_as_xliff(request, store):
-    """Export given file to xliff for offline translation."""
-    path = store.real_path
-    if not path:
-        # bug 2106
-        project = request.translation_project.project
-        if project.get_treestyle() == "gnu":
-            path = "/".join(store.pootle_path.split(os.path.sep)[2:])
-        else:
-            parts = store.pootle_path.split(os.path.sep)[1:]
-            path = "%s/%s/%s" % (parts[1], parts[0], "/".join(parts[2:]))
-
-    path, ext = os.path.splitext(path)
-    export_path = "/".join(['POOTLE_EXPORT', path + os.path.extsep + 'xlf'])
-    abs_export_path = absolute_real_path(export_path)
-
-    key = iri_to_uri("%s:export_as_xliff" % store.pootle_path)
-    last_export = cache.get(key)
-    if (not (last_export and last_export == store.get_mtime() and
-        os.path.isfile(abs_export_path))):
-        from pootle_app.project_tree import ensure_target_dir_exists
-        from translate.storage.poxliff import PoXliffFile
-        from pootle_misc import ptempfile as tempfile
-        import shutil
-        ensure_target_dir_exists(abs_export_path)
-        outputstore = store.convert(PoXliffFile)
-        outputstore.switchfile(store.name, createifmissing=True)
-        fd, tempstore = tempfile.mkstemp(prefix=store.name, suffix='.xlf')
-        os.close(fd)
-        outputstore.savefile(tempstore)
-        shutil.move(tempstore, abs_export_path)
-        cache.set(key, store.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
-    return redirect('/export/' + export_path)
-
-
-@get_store_context('view')
-def export_as_type(request, store, filetype):
-    """Export given file to xliff for offline translation."""
-    from pootle_store.filetypes import factory_classes, is_monolingual
-    klass = factory_classes.get(filetype, None)
-    if (not klass or is_monolingual(klass) or
-        store.pootle_path.endswith(filetype)):
-        raise ValueError
-
-    path, ext = os.path.splitext(store.real_path)
-    export_path = os.path.join('POOTLE_EXPORT',
-                               path + os.path.extsep + filetype)
-    abs_export_path = absolute_real_path(export_path)
-
-    key = iri_to_uri("%s:export_as_%s" % (store.pootle_path, filetype))
-    last_export = cache.get(key)
-    if (not (last_export and last_export == store.get_mtime() and
-        os.path.isfile(abs_export_path))):
-        from pootle_app.project_tree import ensure_target_dir_exists
-        from pootle_misc import ptempfile as tempfile
-        import shutil
-        ensure_target_dir_exists(abs_export_path)
-        outputstore = store.convert(klass)
-        fd, tempstore = tempfile.mkstemp(prefix=store.name,
-                                         suffix=os.path.extsep + filetype)
-        os.close(fd)
-        outputstore.savefile(tempstore)
-        shutil.move(tempstore, abs_export_path)
-        cache.set(key, store.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
-    return redirect('/export/' + export_path)
-
-@get_store_context('view')
-def download(request, store):
-    store.sync(update_translation=True)
-    return redirect('/export/' + store.real_path)
-
-
-####################### Translate Page ##############################
 
 def get_alt_src_langs(request, profile, translation_project):
     language = translation_project.language

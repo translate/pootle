@@ -27,11 +27,9 @@ from translate.misc.lru import LRUCachingDict
 from translate.storage.base import ParseError
 
 from django.conf import settings
-from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.db import models, IntegrityError
 from django.db.models.signals import post_save
-from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.markup import get_markup_filter_name, MarkupField
@@ -41,8 +39,7 @@ from pootle_app.models.directory import Directory
 from pootle_language.models import Language
 from pootle_misc.aggregate import group_by_count_extra, max_column
 from pootle_misc.baseurl import l
-from pootle_misc.stats import stats_message, stats_message_raw
-from pootle_misc.util import getfromcache, dictsum, deletefromcache
+from pootle_misc.util import getfromcache, deletefromcache
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
 from pootle_store.models import (Store, Suggestion, Unit, QualityCheck, PARSED,
@@ -411,78 +408,6 @@ class TranslationProject(models.Model):
         except Exception, e:
             logging.error(u"Failed to initialize (%s): %s", self.language.code,
                     e)
-
-    ###########################################################################
-
-    def get_archive(self, stores, path=None):
-        """Returns an archive of the given files."""
-        import shutil
-        from pootle_misc import ptempfile as tempfile
-
-        tempzipfile = None
-
-        try:
-            # Using zip command line is fast
-            # The temporary file below is opened and immediately closed for
-            # security reasons
-            fd, tempzipfile = tempfile.mkstemp(prefix='pootle', suffix='.zip')
-            os.close(fd)
-
-            file_list = u" ".join(
-                store.abs_real_path[len(self.abs_real_path)+1:] \
-                for store in stores.iterator()
-            )
-            cmd = u"cd %(path)s ; zip -r - %(file_list)s > %(tmpfile)s" % {
-                    'path': self.abs_real_path,
-                    'file_list': file_list,
-                    'tmpfile': tempzipfile,
-            }
-            result = os.system(cmd.encode('utf-8'))
-
-            if result == 0:
-                if path is not None:
-                    shutil.move(tempzipfile, path)
-                    return
-                else:
-                    filedata = open(tempzipfile, "r").read()
-                    if filedata:
-                        return filedata
-        finally:
-            if tempzipfile is not None and os.path.exists(tempzipfile):
-                os.remove(tempzipfile)
-
-        # But if it doesn't work, we can do it from python
-        archivecontents = None
-        try:
-            if path is not None:
-                fd, tempzipfile = tempfile.mkstemp(prefix='pootle',
-                                                   suffix='.zip')
-                os.close(fd)
-                archivecontents = open(tempzipfile, "wb")
-            else:
-                import cStringIO
-                archivecontents = cStringIO.StringIO()
-
-            import zipfile
-            archive = zipfile.ZipFile(archivecontents, 'w',
-                                      zipfile.ZIP_DEFLATED)
-            for store in stores.iterator():
-                archive.write(store.abs_real_path.encode('utf-8'),
-                              store.abs_real_path[len(self.abs_real_path)+1:]
-                                   .encode('utf-8'))
-            archive.close()
-
-            if path is not None:
-                shutil.move(tempzipfile, path)
-            else:
-                return archivecontents.getvalue()
-        finally:
-            if tempzipfile is not None and os.path.exists(tempzipfile):
-                os.remove(tempzipfile)
-            try:
-                archivecontents.close()
-            except:
-                pass
 
     ###########################################################################
 

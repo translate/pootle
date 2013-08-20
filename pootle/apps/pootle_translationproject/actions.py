@@ -25,11 +25,7 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
 
 from pootle_app.models.permissions import check_permission
-from pootle_misc import dispatch
-from pootle_misc.baseurl import l
 
-
-# FIXME: Replace dispatch.* calls by django.core.urlresolvers.reverse
 
 def directory(fn):
     """Decorator that returns links only for directory objects."""
@@ -51,77 +47,6 @@ def store(fn):
         return fn(request, path_obj)
 
     return wrapper
-
-
-@directory
-def download_zip(request, path_obj, **kwargs):
-    if check_permission('archive', request):
-        text = _('Download (.zip)')
-        link = dispatch.download_zip(path_obj)
-
-        return {
-            'icon': 'icon-download',
-            'href': link,
-            'text': text,
-        }
-
-
-@store
-def download_source(request, path_obj, **kwargs):
-    href = None
-    if path_obj.name.startswith("pootle-terminology"):
-        text = _("Download XLIFF")
-        tooltip = _("Download file in XLIFF format")
-        href = dispatch.export(path_obj.pootle_path, 'xlf')
-    elif path_obj.translation_project.project.is_monolingual():
-        text = _('Export')
-        tooltip = _('Export translations')
-    else:
-        text = _('Download')
-        tooltip = _('Download file')
-
-    return {
-        'icon': 'icon-download',
-        'href': href or l('/download%s' % path_obj.pootle_path),
-        'text': text,
-        'tooltip': tooltip,
-    }
-
-
-@store
-def download_xliff(request, path_obj):
-    if path_obj.translation_project.project.localfiletype == 'xlf':
-        return
-    if path_obj.name.startswith("pootle-terminology"):
-        return
-
-    text = _("Download XLIFF")
-    tooltip = _('Download XLIFF file for offline translation')
-    href = dispatch.export(path_obj.pootle_path, 'xlf')
-
-    return {
-        'icon': 'icon-download',
-        'href': href,
-        'text': text,
-        'tooltip': tooltip,
-    }
-
-
-def upload_zip(request, path_obj, **kwargs):
-    if (check_permission('translate', request) or
-        check_permission('suggest', request) or
-        check_permission('overwrite', request)):
-        text = _('Upload')
-        tooltip = _('Upload translation files or archives in .zip format')
-        link = '#upload'
-
-        return {
-            'icon': 'icon-upload',
-            'class': 'js-popup-inline',
-            'href': link,
-            'text': text,
-            'tooltip': tooltip,
-        }
 
 
 def rescan_project_files(request, path_obj, **kwargs):
@@ -195,9 +120,6 @@ def action_groups(request, path_obj, **kwargs):
     action_groups = []
 
     groups = [
-        {'group': 'translate-offline', 'group_display': _("Translate offline"),
-         'actions': [download_source, download_xliff,
-                     download_zip, upload_zip]},
         {'group': 'manage', 'group_display': _("Manage"),
          'actions': [rescan_project_files, update_against_templates,
                      delete_path_obj]

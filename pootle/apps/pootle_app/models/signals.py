@@ -23,4 +23,3 @@
 from django.dispatch import Signal
 
 post_template_update = Signal(providing_args=["oldstats", "newstats"])
-post_file_upload = Signal(providing_args=["user", "oldstats", "newstats", "archive"])

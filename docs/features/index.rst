@@ -31,7 +31,6 @@ Online translation editor
    checks
    translation_memory
    machine_translation
-   offline
    searching
    shortcuts
    suggestions

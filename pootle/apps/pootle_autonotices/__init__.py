@@ -35,6 +35,5 @@ post_save.connect(signals.new_user, sender=User)
 post_save.connect(signals.new_translationproject, sender=TranslationProject)
 pre_save.connect(signals.unit_updated, sender=Unit)
 
-from pootle_app.models.signals import post_template_update, post_file_upload
+from pootle_app.models.signals import post_template_update
 post_template_update.connect(signals.updated_against_template)
-post_file_upload.connect(signals.file_uploaded)
