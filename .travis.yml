@@ -1,7 +1,6 @@
 # https://travis-ci.org/#!/translate/pootle
 language: python
 python:
-  - 2.5
   - 2.6
   - 2.7
 env:
@@ -9,13 +8,12 @@ env:
   - DJANGO_VERSION=1.4.5
 # when we do finally support Django 1.5 - it requires Python 2.6.5, so exclude
 # earlier versions (see https://docs.djangoproject.com/en/dev/faq/install/)
-matrix:
-  exclude:
-    - python: 2.5
-      env: DJANGO_VERSION=1.5
+#matrix:
+#  exclude:
+#    - python: 2.5
+#      env: DJANGO_VERSION=1.5
 install:
   - pip install --use-mirrors Django==$DJANGO_VERSION --timeout=240
-  - case `python -V 2>&1` in *2.5*) pip install -r requirements/py25.txt ;; esac
   - pip install -r requirements/build.txt --use-mirrors --timeout=240
   - python -V; pip freeze # print all installed versions for reference/posterity
 script:

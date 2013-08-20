@@ -18,7 +18,6 @@
 # this program; if not, see <http://www.gnu.org/licenses/>.
 
 import re
-from sys import version_info
 
 from django import forms
 from django.utils.translation import ugettext as _
@@ -83,12 +82,6 @@ class TagForm(forms.ModelForm):
 
         # Lowercase since all tags must be case insensitive.
         name = name.lower()
-
-        #FIXME: Remove this code when support for Django 1.4.x is dropped.
-        # If Python 2.5 is being used then django-taggit 0.9.3 is being used,
-        # and that version doesn't enforce tag names to be unique.
-        if version_info < (2, 6) and len(Tag.objects.filter(name=name)) > 0:
-            raise forms.ValidationError(_("Tag names must be unique!"))
 
         # Always return the cleaned data, whether you have changed it or not.
         return name
