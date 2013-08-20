@@ -388,17 +388,6 @@ Translation environment configuration settings.
   Pootle user to be able to read them.
 
 
-.. setting:: LIVE_TRANSLATION
-
-``LIVE_TRANSLATION``
-  Default: ``False``
-
-  Live translation means that the project called *Pootle* is used to provide
-  the localized versions of Pootle. Set this to ``True`` to enable live
-  translation of Pootle's UI. This is a good way to learn how to use Pootle,
-  but it has high impact on performance.
-
-
 .. setting:: LOOKUP_BACKENDS
 
 ``LOOKUP_BACKENDS``

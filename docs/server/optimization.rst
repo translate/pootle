@@ -122,8 +122,6 @@ some tips for performance tuning on your Pootle installation.
   also give better performance.  You can :doc:`upgrade <upgrading>` to newer
   versions of Pootle easily.
 
-- Ensure :setting:`LIVE_TRANSLATION` is disabled.
-
 - Ensure :setting:`DEBUG` mode is disabled.
 
 - Ensure that the ``zip`` and ``unzip`` commands are installed on your
