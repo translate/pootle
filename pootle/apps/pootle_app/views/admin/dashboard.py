@@ -4,21 +4,19 @@
 # Copyright 2008-2012 Zuza Software Foundation
 # Copyright 2013-2014 Evernote Corporation
 #
-# This file is part of translate.
+# This file is part of Pootle.
 #
-# translate is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
+# Pootle is free software; you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation; either version 2 of the License, or (at your option) any later
+# version.
 #
-# translate is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# Pootle is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with translate; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# You should have received a copy of the GNU General Public License along with
+# Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 import json
 import locale
@@ -51,7 +49,8 @@ def required_depcheck():
     else:
         trans_vars = {
             'installed': version,
-            'required': ".".join(str(i) for i in depcheck.translate_required_ver)
+            'required': ".".join([str(i) for i in
+                                  depcheck.translate_min_required_ver]),
         }
         text = _("Translate Toolkit version %(installed)s installed. Pootle "
                  "requires at least version %(required)s.", trans_vars)
@@ -83,12 +82,13 @@ def required_depcheck():
         text = _('lxml version %s is installed.', version)
         state = 'tick'
     elif version is not None:
-        required_ver = ".".join(str(i) for i in depcheck.lxml_required_ver)
+        trans_vars = {
+            'installed': version,
+            'required': ".".join([str(i) for i in
+                                  depcheck.lxml_min_required_ver]),
+        }
         text = _("lxml version %(installed)s is installed. Pootle requires at "
-                 "least version %(required)s.", {
-                     'installed': version,
-                     'required': required_ver,
-                 })
+                 "least version %(required)s.", trans_vars)
         state = 'error'
     else:
         text = _('lxml is not installed. Pootle requires lxml.')

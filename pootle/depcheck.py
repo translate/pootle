@@ -6,32 +6,36 @@
 #
 # This file is part of Pootle.
 #
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
+# Pootle is free software; you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation; either version 2 of the License, or (at your option) any later
+# version.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# Pootle is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License along with
+# Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 import sys
 
 from django.conf import settings
 
 
+translate_min_required_ver = (1, 10, 0)
+django_min_required_ver = (1, 6, 4)
+lxml_min_required_ver = (2, 1, 4, 0)
+
+
 ##########################
-# test core dependencies #
+# Test core dependencies #
 ##########################
-translate_required_ver = (1, 10, 0)
+
 def test_translate():
     try:
         from translate.__version__ import ver, sver
-        if ver >= translate_required_ver:
+        if ver >= translate_min_required_ver:
             return True, sver
         else:
             return False, sver
@@ -39,20 +43,18 @@ def test_translate():
         return None, None
 
 
-django_required_ver = (1, 6, 4)
 def test_django():
     from django import VERSION, get_version
-    if VERSION >= django_required_ver:
+    if VERSION >= django_min_required_ver:
         return True, get_version()
     else:
         return False, get_version()
 
 
-lxml_required_ver = (2, 1, 4, 0)
 def test_lxml():
     try:
         from lxml.etree import LXML_VERSION, __version__
-        if LXML_VERSION >= lxml_required_ver:
+        if LXML_VERSION >= lxml_min_required_ver:
             return True, __version__
         else:
             return False, __version__
@@ -61,7 +63,7 @@ def test_lxml():
 
 
 ##############################
-# test optional dependencies #
+# Test optional dependencies #
 ##############################
 
 
@@ -84,8 +86,9 @@ def test_levenshtein():
 
 
 ######################
-# test optimal setup #
+# Test optimal setup #
 ######################
+
 def test_mysqldb():
     try:
         import MySQLdb
@@ -95,7 +98,7 @@ def test_mysqldb():
 
 
 def test_db():
-    """test that we are not using sqlite3 as the django database"""
+    """Test that we are not using sqlite3 as the django database."""
     if getattr(settings, "DATABASES", None):
         return "sqlite" not in settings.DATABASES['default']['ENGINE']
     else:
@@ -103,7 +106,7 @@ def test_db():
 
 
 def test_cache():
-    """test if cache backend is memcached"""
+    """Test if cache backend is memcached."""
     #FIXME: maybe we shouldn't complain if cache is set to db or file?
     if getattr(settings, "CACHES", None):
         return "memcache" in settings.CACHES['default']['BACKEND']
@@ -124,13 +127,13 @@ def test_memcache():
 
 
 def test_memcached():
-    """test if we can connect to memcache server"""
+    """Test if we can connect to memcache server."""
     from django.core.cache import cache
     return cache._cache.servers[0].connect()
 
 
 def test_session():
-    """test that session backend is set to memcahce"""
+    """Test that session backend is set to memcache."""
     return settings.SESSION_ENGINE.split('.')[-1] in ('cache', 'cached_db')
 
 
@@ -139,7 +142,7 @@ def test_debug():
 
 
 def test_webserver():
-    """test that webserver is apache"""
+    """Test that webserver is apache."""
     return ('apache' in sys.modules or
             '_apache' in sys.modules or
             'mod_wsgi' in sys.modules)
