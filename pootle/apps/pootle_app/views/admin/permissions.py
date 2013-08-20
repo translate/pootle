@@ -42,10 +42,7 @@ def admin_permissions(request, current_directory, template, context):
     project = context.get('project', None)
     language = context.get('language', None)
 
-    # FIXME: Shouldn't we just remove unused permissions from the DB?
-    excluded_permissions = [
-        'add_directory', 'change_directory', 'delete_directory',
-    ]
+    excluded_permissions = []
     # Don't provide means to add `view` permissions under /<lang_code>/*
     # In other words: only allow setting `view` permissions for the root
     # and the `/projects/<code>/` directories

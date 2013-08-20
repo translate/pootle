@@ -80,16 +80,11 @@ def create_pootle_permissions():
                                                content_type=pootle_content_type, codename="suggest")
     translate, created = Permission.objects.get_or_create(name=_("Can submit a translation"),
                                                  content_type=pootle_content_type, codename="translate")
-    overwrite, created = Permission.objects.get_or_create(name=_("Can overwrite translations on uploading files"),
-                                                 content_type=pootle_content_type, codename="overwrite")
     review, created = Permission.objects.get_or_create(name=_("Can review translations"),
                                                        content_type=pootle_content_type, codename="review")
-    archive, created = Permission.objects.get_or_create(name=_("Can download archives of translation projects"),
-                                                        content_type=pootle_content_type, codename="archive")
     administrate, created = Permission.objects.get_or_create(name=_("Can administrate a translation project"),
                                                     content_type=pootle_content_type, codename="administrate")
-    commit, created = Permission.objects.get_or_create(name=_("Can commit to version control"),
-                                                       content_type=pootle_content_type, codename="commit")
+
 
 def create_pootle_permission_sets():
     """Create the default permission set for the anonymous (non-logged in) user
@@ -100,7 +95,6 @@ def create_pootle_permission_sets():
     view = get_pootle_permission('view')
     suggest = get_pootle_permission('suggest')
     translate = get_pootle_permission('translate')
-    archive = get_pootle_permission('archive')
 
     # Default permissions for tree root
     root = Directory.objects.root
@@ -111,7 +105,7 @@ def create_pootle_permission_sets():
 
     permission_set, created = PermissionSet.objects.get_or_create(profile=default, directory=root)
     if created:
-        permission_set.positive_permissions = [view, suggest, translate, archive]
+        permission_set.positive_permissions = [view, suggest, translate]
         permission_set.save()
 
     # Default permissions for templates language
