@@ -57,21 +57,9 @@ For the impatient:
     $ sudo pip install virtualenvwrapper
     $ mkvirtualenv <env-name>
     (env-name) $ git clone https://github.com/translate/pootle.git
-    (env-name) $ cd pootle/requirements
-    (env-name) $ case `python -V` in *2.5*) pip install -r py25.txt;; esac
-    (env-name) $ pip install -r dev.txt
-    (env-name) $ cd ..
+    (env-name) $ cd pootle
+    (env-name) $ pip install -r requirements/dev.txt
     (env-name) $ python manage.py runserver
-
-.. note::
-
-    If you are using Python 2.5, certain required packages have a maximum
-    version that supports that Python release.  Some are direct requirements
-    of Pootle (like South) and others are indirect requirements (Jinja2,
-    which is required by the Sphinx documentation building tool), so the only
-    reliable way to make sure that everything works properly is to preinstall
-    maximum versions before processing other Pootle requirements.  This can
-    be done easily by installing all packages in ``requirements/py25.txt``.
 
 That will leave you with a Pootle development server up and running ready to
 start hacking!
