@@ -44,7 +44,7 @@ from django.views.decorators.http import require_POST
 from taggit.models import Tag
 
 from pootle.core.exceptions import Http400
-from pootle.core.url_helpers import split_pootle_path
+from pootle.core.url_helpers import ensure_uri, split_pootle_path
 from pootle.core.decorators import (get_path_obj, get_resource_context,
                                     permission_required)
 from pootle_app.models import Suggestion as SuggestionStat
@@ -53,7 +53,6 @@ from pootle_app.models.permissions import (check_permission,
 from pootle_language.models import Language
 from pootle_misc.baseurl import redirect
 from pootle_misc.forms import make_search_form
-from pootle_misc.url_manip import ensure_uri
 from pootle_misc.util import ajax_required, jsonify, to_int
 from pootle_profile.models import get_profile
 from pootle_project.models import Project

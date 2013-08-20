@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -18,6 +19,7 @@
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 import os
+import urlparse
 
 
 def split_pootle_path(pootle_path):
@@ -71,3 +73,25 @@ def get_editor_filter(state=None, check=None, user=None, goal=None):
             filter_string += '&goal=%s' % goal
 
     return filter_string
+
+
+def ensure_uri(uri):
+    """Ensure that we return a URI that the user can click on in an a tag."""
+    if not uri:
+        return uri
+
+    scheme, netloc, path, query, fragment = urlparse.urlsplit(uri)
+
+    if scheme:
+        return uri
+
+    if u'@' in uri:
+        uri = u"mailto:%s" % uri
+    else:
+        # If we don't supply a protocol, browsers will interpret it as a
+        # relative URL, like
+        # http://pootle.locamotion.org/af/pootle/bugs.locamotion.org
+        # So let's assume http
+        uri = u"http://" + uri
+
+    return uri
