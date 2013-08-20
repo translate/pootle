@@ -151,7 +151,8 @@ class TranslationProject(models.Model):
                                "get_mtime", "get_suggestion_count"])
 
     def get_absolute_url(self):
-        return l(self.pootle_path)
+        lang, proj, dir, fn = split_pootle_path(self.pootle_path)
+        return reverse('pootle-tp-overview', args=[lang, proj, dir, fn])
 
     def get_translate_url(self, **kwargs):
         lang, proj, dir, fn = split_pootle_path(self.pootle_path)
