@@ -28,7 +28,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 from pootle.core.decorators import admin_required
-from pootle_misc.util import jsonify
+from pootle_misc.util import ajax_required, jsonify
 from pootle_statistics.models import Submission, SubmissionFields
 
 
@@ -64,6 +64,8 @@ def evernote_reports(request, context={}):
                               context_instance=RequestContext(request))
 
 
+@ajax_required
+@admin_required
 def user_date_prj_activity(request):
     user = request.GET.get('user', None)
 
