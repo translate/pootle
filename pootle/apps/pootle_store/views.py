@@ -38,10 +38,10 @@ from translate.lang import data
 from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.models.permissions import check_profile_permission
 from pootle.core.exceptions import Http400
+from pootle.core.url_helpers import ensure_uri
 from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.forms import make_search_form
 from pootle_misc.stats import get_raw_stats
-from pootle_misc.url_manip import ensure_uri
 from pootle_misc.util import paginate, ajax_required, jsonify
 from pootle_profile.models import get_profile
 from pootle_statistics.models import (Submission, SubmissionFields,
