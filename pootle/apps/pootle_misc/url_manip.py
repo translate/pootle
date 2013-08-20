@@ -20,8 +20,6 @@
 
 import urlparse
 
-from django.core.urlresolvers import Resolver404, resolve
-
 
 def ensure_uri(uri):
     """Ensure that we return a URI that the user can click on in an a tag."""

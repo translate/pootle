@@ -30,7 +30,7 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import FileSystemStorage
 from django.core.urlresolvers import reverse
-from django.db import models, DatabaseError, IntegrityError
+from django.db import models, IntegrityError
 from django.db.models.signals import post_delete
 from django.db.transaction import commit_on_success
 from django.utils import timezone, tzinfo

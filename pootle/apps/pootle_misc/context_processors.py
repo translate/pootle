@@ -19,7 +19,6 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.conf import settings
-from django.core.cache import cache
 
 from pootle.__version__ import sver
 from pootle_language.models import Language

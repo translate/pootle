@@ -19,7 +19,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.conf import settings
 from django.conf.urls import include, patterns
 from django.contrib import admin
 
