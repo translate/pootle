@@ -1640,13 +1640,11 @@ div.newsitem-sep
     margin: 1.5em 0 2em;
 }
 
-div#rss-alerts ul,
 div.latestnews ul
 {
     margin: 0 1em;
 }
 
-div#rss-alerts li,
 div.latestnews li
 {
     list-style-type: square;
@@ -2409,21 +2407,6 @@ html[dir="rtl"] #search
 {
     float: right;
     margin-left: 8px;
-}
-
-/*
- * RSS ALERTS
- */
-
-#rss-alerts div.bd div.centered
-{
-    width: 100%;
-    text-align: center;
-}
-
-#rss-alerts iframe
-{
-    height: 25em;
 }
 
 /*
