@@ -46,6 +46,4 @@ Administrative stuff
    :maxdepth: 2
 
    captcha
-   news
-   notifications
    permissions
