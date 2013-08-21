@@ -50,7 +50,7 @@ def test_sqlite():
         return False
 
 
-django_required_ver = (1, 3, 0)
+django_required_ver = (1, 4, 5)
 def test_django():
     from django import VERSION, get_version
     if VERSION >= django_required_ver:
