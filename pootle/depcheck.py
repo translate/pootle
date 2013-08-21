@@ -38,18 +38,6 @@ def test_translate():
         return None, None
 
 
-def test_sqlite():
-    try:
-        #TODO: work out if we need certain versions
-        try:
-            from sqlite3 import dbapi2
-        except ImportError:
-            from pysqlite2 import dbapi2
-        return True
-    except ImportError:
-        return False
-
-
 django_required_ver = (1, 4, 5)
 def test_django():
     from django import VERSION, get_version
