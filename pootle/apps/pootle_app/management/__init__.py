@@ -66,6 +66,15 @@ def create_essential_users():
         default.set_unusable_password()
         default.save()
 
+    # The system user represents a system, and is used to
+    # associate updates done by bulk commands as update_stores.
+    system, created = User.objects.get_or_create(username=u"system",
+                 first_name=u"system user",
+                 is_active=True)
+    if created:
+        system.set_unusable_password()
+        system.save()
+
 def create_pootle_permissions():
     """define Pootle's directory level permissions"""
     pootle_content_type, created = ContentType.objects.get_or_create(app_label="pootle_app", model="directory")

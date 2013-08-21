@@ -37,6 +37,7 @@ from django.db.transaction import commit_on_success
 from django.utils import timezone, tzinfo
 from django.utils.translation import ugettext_lazy as _
 from django.utils.http import urlquote
+from django.contrib.auth.models import User
 
 from translate.filters.decorators import Category
 from translate.storage import base
@@ -1200,6 +1201,7 @@ class Store(models.Model, base.TranslationStore):
                     common_dbids -= modified_units
 
                 common_dbids = list(common_dbids)
+                system = User.objects.get_system_user().get_profile()
                 for unit in self.findid_bulk(common_dbids):
                     newunit = store.findid(unit.getid())
                     old_target_f = unit.target_f
@@ -1226,7 +1228,7 @@ class Store(models.Model, base.TranslationStore):
                             sub = Submission(
                                 creation_time=timezone.now(),
                                 translation_project=self.translation_project,
-                                submitter=None,
+                                submitter=system,
                                 unit=unit,
                                 field=SubmissionFields.TARGET,
                                 type=None,
