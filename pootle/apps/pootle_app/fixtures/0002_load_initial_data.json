@@ -1,0 +1,47 @@
+[
+    {
+        "pk": 1,
+        "model": "pootle_app.directory",
+        "fields": {
+            "pootle_path": "/",
+            "name": "",
+            "parent": null
+        }
+    },
+    {
+        "pk": 2,
+        "model": "pootle_app.directory",
+        "fields": {
+            "pootle_path": "/projects/",
+            "name": "projects",
+            "parent": 1
+        }
+    },
+    {
+        "pk": 3,
+        "model": "pootle_app.directory",
+        "fields": {
+            "pootle_path": "/templates/",
+            "name": "templates",
+            "parent": 1
+        }
+    },
+    {
+        "pk": 4,
+        "model": "pootle_app.directory",
+        "fields": {
+            "pootle_path": "/en/",
+            "name": "en",
+            "parent": 1
+        }
+    },
+    {
+        "pk": 5,
+        "model": "pootle_app.directory",
+        "fields": {
+            "pootle_path": "/projects/terminology/",
+            "name": "terminology",
+            "parent": 2
+        }
+    }
+]

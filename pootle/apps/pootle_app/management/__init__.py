@@ -38,33 +38,6 @@ from pootle_misc import siteconfig
 from pootle.__version__ import build as code_buildversion
 from translate.__version__ import build as code_tt_buildversion
 
-def create_essential_users():
-    """Create default and nobody User instances required for pootle permission system"""
-    # The nobody user is used to represent an anonymous user in cases where
-    # we need to associate model information with such a user. An example is
-    # in the permission system: we need a way to store rights for anonymous
-    # users; thus we use the nobody user.
-    nobody, created = User.objects.get_or_create(username=u"nobody",
-                first_name=u"any anonymous user",
-                is_active=True)
-    if created:
-        nobody.set_unusable_password()
-        nobody.save()
-
-    # The default user represents any valid, non-anonymous user and is used to
-    # associate information any such user. An example is in the permission
-    # system: we need a way to store default rights for users. We use the
-    # default user for this.
-    #
-    # In a future version of Pootle we should think about using Django's
-    # groups to do better permissions handling.
-    default, created = User.objects.get_or_create(username=u"default",
-                 first_name=u"any authenticated user",
-                 is_active=True)
-    if created:
-        default.set_unusable_password()
-        default.save()
-
 def create_pootle_permissions():
     """define Pootle's directory level permissions"""
     pootle_content_type, created = ContentType.objects.get_or_create(app_label="pootle_app", model="directory")
@@ -124,32 +97,6 @@ def create_pootle_permission_sets():
         permission_set.positive_permissions = [view]
         permission_set.save()
 
-def require_english():
-    en, created = Language.objects.get_or_create(code="en", fullname=u"English",
-                                                 nplurals=2, pluralequation="(n != 1)")
-    return en
-
-def create_root_directory():
-    """Create root Directory item."""
-    root, created = Directory.objects.get_or_create(name='')
-    projects, created = Directory.objects.get_or_create(name='projects', parent=root)
-
-def create_template_language():
-    """template language is used to give users access to the untranslated template files"""
-    templates, created = Language.objects.get_or_create(code="templates", fullname=u'Templates')
-    require_english()
-
-
-def create_terminology_project():
-    """terminology project is used to display terminology suggestions while translating"""
-    en = require_english()
-    terminology, created = Project.objects.get_or_create(
-            code="terminology",
-            fullname=u"Terminology",
-            source_language=en,
-            checkstyle="terminology",
-    )
-
 def post_syncdb_handler(sender, created_models, **kwargs):
     try:
         # create default cache table
@@ -157,17 +104,9 @@ def post_syncdb_handler(sender, created_models, **kwargs):
     except:
         pass
 
-    if PootleProfile in created_models:
-        create_essential_users()
-    if Directory in created_models:
-        create_root_directory()
-    if Language in created_models:
-        create_template_language()
-    if Project in created_models:
-        create_terminology_project()
-    if PermissionSet in created_models:
-        create_pootle_permissions()
-        create_pootle_permission_sets()
+    #if PermissionSet in created_models:
+    #    create_pootle_permissions()
+    #    create_pootle_permission_sets()
 
     config = siteconfig.load_site_config()
     if not config.get('BUILDVERSION', None):

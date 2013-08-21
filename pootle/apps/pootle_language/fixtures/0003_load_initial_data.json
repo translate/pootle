@@ -1,0 +1,23 @@
+[
+    {
+        "pk": 1,
+        "model": "pootle_language.language",
+        "fields": {
+            "code": "templates",
+            "directory": 3,
+            "fullname": "Templates",
+            "nplurals": 0
+        }
+    },
+    {
+        "pk": 2,
+        "model": "pootle_language.language",
+        "fields": {
+            "pluralequation": "(n != 1)",
+            "code": "en",
+            "directory": 4,
+            "fullname": "English",
+            "nplurals": 2
+        }
+    }
+]

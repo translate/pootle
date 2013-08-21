@@ -1,0 +1,34 @@
+[
+    {
+        "pk": 1,
+        "model": "auth.user",
+        "fields": {
+            "username": "nobody",
+            "first_name": "any anonymous user",
+            "password": "!"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "auth.user",
+        "fields": {
+            "username": "default",
+            "first_name": "any authenticated user",
+            "password": "!"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "pootle_profile.pootleprofile",
+        "fields": {
+            "user": 1
+        }
+    },
+    {
+        "pk": 2,
+        "model": "pootle_profile.pootleprofile",
+        "fields": {
+            "user": 2
+        }
+    }
+]
