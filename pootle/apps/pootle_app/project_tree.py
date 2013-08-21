@@ -330,7 +330,7 @@ def read_original_target(target_path):
 
 
 def convert_template(translation_project, template_store, target_pootle_path,
-                     target_path, monolingual=False):
+                     target_path):
     """Run pot2po to update or initialize the file on `target_path` with
     `template_store`.
     """
@@ -345,13 +345,7 @@ def convert_template(translation_project, template_store, target_pootle_path,
     try:
         store = Store.objects.get(pootle_path=target_pootle_path)
 
-        if monolingual and store.state < PARSED:
-            #HACKISH: exploiting update from templates to parse monolingual files
-            store.update(store=template_file)
-            store.update(update_translation=True)
-            return
-
-        if not store.file or monolingual:
+        if not store.file:
             original_file = store
         else:
             original_file = store.file.store

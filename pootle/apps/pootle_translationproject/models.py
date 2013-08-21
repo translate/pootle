@@ -318,10 +318,7 @@ class TranslationProject(models.Model):
             template_translation_project == self):
             return
 
-        monolingual = self.project.is_monolingual()
-
-        if not monolingual:
-            self.sync()
+        self.sync()
 
         if pootle_path is None:
             oldstats = self.getquickstats()
@@ -349,8 +346,7 @@ class TranslationProject(models.Model):
                 # Assume hook is not present.
                 pass
 
-            convert_template(self, store, new_pootle_path, new_path,
-                             monolingual)
+            convert_template(self, store, new_pootle_path, new_path)
 
         all_files, new_files = self.scan_files()
 

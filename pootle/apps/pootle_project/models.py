@@ -41,8 +41,7 @@ from pootle_app.models.permissions import PermissionSet
 from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 from pootle_misc.util import getfromcache, cached_property
-from pootle_store.filetypes import (filetype_choices, factory_classes,
-                                    is_monolingual)
+from pootle_store.filetypes import filetype_choices, factory_classes
 from pootle_store.models import Unit, Suggestion
 from pootle_store.util import absolute_real_path, statssum, OBSOLETE
 
@@ -313,10 +312,6 @@ class Project(models.Model):
         """Returns the TranslationStore subclass required for parsing
         project files."""
         return factory_classes[self.localfiletype]
-
-    def is_monolingual(self):
-        """Returns ``True`` if this project is monolingual."""
-        return is_monolingual(self.get_file_class())
 
     def _get_is_terminology(self):
         """Returns ``True`` if this project is a terminology project."""

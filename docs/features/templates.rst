@@ -10,8 +10,7 @@ each language.
 
 Users familiar with Gettext know translation templates as POT files. For other
 bilingual formats (like XLIFF) untranslated files with the same extension will
-be used as templates. For :ref:`formats#monolingual` the files representing the
-source language are used as templates.
+be used as templates.
 
 
 .. _templates#the_templates_language:
@@ -26,8 +25,8 @@ If the templates language is absent from a project, Pootle will assume files
 under the project's source language are translation templates.
 
 Gettext PO projects should always use a templates project where POT files can
-be uploaded.  For simple projects (and most monolingual formats) it will be
-simpler to use the source language.
+be uploaded.  For simple projects it will be simpler to use the source
+language.
 
 
 .. _templates#starting_a_new_translation:

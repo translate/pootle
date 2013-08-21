@@ -54,10 +54,7 @@ def get_terminology_filename(translation_project):
         return translation_project.stores.filter(name__startswith='pootle-terminology.').values_list('name', flat=True)[0]
     except IndexError:
         pass
-    if translation_project.project.is_monolingual():
-        # terminology is a virtual store, so extension is not really important
-        # but to avoid confusion we will not use monolingual extensions
-        return 'pootle-terminology.po'
+
     return 'pootle-terminology.' + translation_project.project.localfiletype
 
 @commit_on_success

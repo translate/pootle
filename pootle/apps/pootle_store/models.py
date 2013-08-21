@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2012 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -51,7 +52,7 @@ from pootle_statistics.models import (SubmissionFields,
                                       SubmissionTypes, Submission)
 from pootle_store.fields import (TranslationStoreField, MultiStringField,
                                  PLURAL_PLACEHOLDER, SEPARATOR)
-from pootle_store.filetypes import factory_classes, is_monolingual
+from pootle_store.filetypes import factory_classes
 from pootle_store.util import (calculate_stats, empty_quickstats,
                                OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED)
 
@@ -161,20 +162,6 @@ post_delete.connect(delete_votes, sender=Suggestion)
 
 
 ############### Unit ####################
-
-def fix_monolingual(oldunit, newunit, monolingual=None):
-    """Hackish workaround for monolingual files always having only source and
-    no target.
-
-    We compare monolingual unit with corresponding bilingual unit, if sources
-    differ assume monolingual source is actually a translation.
-    """
-    if monolingual is None:
-        monolingual = is_monolingual(type(newunit._store))
-
-    if monolingual and newunit.source != oldunit.source:
-        newunit.target = newunit.source
-        newunit.source = oldunit.source
 
 
 def count_words(strings):
@@ -988,12 +975,7 @@ class Store(models.Model, base.TranslationStore):
     def require_units(self):
         """Make sure file is parsed and units are created."""
         if self.state < PARSED and self.unit_set.count() == 0:
-            if (self.file and is_monolingual(type(self.file.store)) and
-                not self.translation_project.is_template_project):
-                self.translation_project \
-                    .update_against_templates(pootle_path=self.pootle_path)
-            else:
-                self.parse()
+            self.parse()
 
     def require_dbid_index(self, update=False, obsolete=False):
         """build a quick mapping index between unit ids and database ids"""
@@ -1163,8 +1145,6 @@ class Store(models.Model, base.TranslationStore):
             if fuzzy:
                 matcher = self.get_matcher()
 
-            monolingual = is_monolingual(type(store))
-
             # Force a rebuild of the unit ID <-> DB ID index and get IDs for
             # in-DB (old) and on-disk (new) stores
             self.require_dbid_index(update=True, obsolete=True)
@@ -1223,10 +1203,6 @@ class Store(models.Model, base.TranslationStore):
                 for unit in self.findid_bulk(common_dbids):
                     newunit = store.findid(unit.getid())
                     old_target_f = unit.target_f
-
-                    if (monolingual and not
-                        self.translation_project.is_template_project):
-                        fix_monolingual(unit, newunit, monolingual)
 
                     changed = unit.update(newunit)
 
@@ -1349,8 +1325,6 @@ class Store(models.Model, base.TranslationStore):
                 disk_store.addunit(newunit)
                 file_changed = True
 
-        monolingual = is_monolingual(type(disk_store))
-
         if update_translation:
             modified_units = set()
 
@@ -1371,11 +1345,6 @@ class Store(models.Model, base.TranslationStore):
 
             common_dbids = list(common_dbids)
             for unit in self.findid_bulk(common_dbids):
-                # FIXME: use a better mechanism for handling states and
-                # different formats
-                if monolingual and not unit.istranslated():
-                    continue
-
                 match = disk_store.findid(unit.getid())
                 if match is not None:
                     changed = unit.sync(match)
@@ -1576,7 +1545,6 @@ class Store(models.Model, base.TranslationStore):
         if not newfile.units:
             return
 
-        monolingual = is_monolingual(type(newfile))
         self.clean_stale_lock()
 
         # Must be done before locking the file in case it wasn't already parsed
@@ -1610,8 +1578,7 @@ class Store(models.Model, base.TranslationStore):
             else:
                 new_ids = set(newfile.getids(self.name))
 
-            if ((not monolingual or
-                 self.translation_project.is_template_project) and
+            if (self.translation_project.is_template_project and
                 allownewstrings):
                 new_units = (newfile.findid(uid) for uid in new_ids - old_ids)
                 for unit in new_units:
@@ -1633,10 +1600,6 @@ class Store(models.Model, base.TranslationStore):
                             for uid in old_ids & new_ids]
             for oldunit in self.findid_bulk(common_dbids):
                 newunit = newfile.findid(oldunit.getid())
-
-                if (monolingual and
-                    not self.translation_project.is_template_project):
-                    fix_monolingual(oldunit, newunit, monolingual)
 
                 if newunit.istranslated():
                     if (notranslate or suggestions and
