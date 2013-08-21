@@ -38,7 +38,6 @@ from pootle_app.lib.util import RelatedManager
 from pootle_app.models.directory import Directory
 from pootle_language.models import Language
 from pootle_misc.aggregate import group_by_count_extra, max_column
-from pootle_misc.baseurl import l
 from pootle_misc.util import getfromcache, deletefromcache
 from pootle_project.models import Project
 from pootle_statistics.models import Submission

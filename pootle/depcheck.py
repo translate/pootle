@@ -18,9 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-import subprocess
 import sys
-import os
 
 from django.conf import settings
 

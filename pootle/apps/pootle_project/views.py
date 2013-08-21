@@ -30,7 +30,6 @@ from django.utils.translation import ugettext as _, ungettext
 from pootle.core.decorators import get_path_obj, permission_required
 from pootle.core.helpers import get_translation_context
 from pootle.i18n.gettext import tr_lang
-from pootle_app.models import Directory
 from pootle_app.models.permissions import check_permission
 from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions
