@@ -240,13 +240,6 @@ def optimal_depcheck():
                       "developing Pootle. For optimal performance, disable "
                       "debugging mode.")
         })
-    if not depcheck.test_livetranslation():
-        optimal.append({
-            'dependency': 'livetranslation',
-            'text': _("Running in live translation mode. Live translation is "
-                      "useful as a tool to learn about Pootle and "
-                      "localization, but has high impact on performance.")
-        })
 
     return optimal
 

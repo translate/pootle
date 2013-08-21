@@ -189,10 +189,6 @@ def test_webserver():
             'mod_wsgi' in sys.modules)
 
 
-def test_livetranslation():
-    return not settings.LIVE_TRANSLATION
-
-
 def test_from_email():
     return bool(settings.DEFAULT_FROM_EMAIL)
 
