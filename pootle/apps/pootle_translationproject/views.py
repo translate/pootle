@@ -222,6 +222,7 @@ def overview(request, translation_project, dir_path, filename=None):
         'project': project,
         'language': language,
         'path_obj': path_obj,
+        'resource_path': request.resource_path,
         'path_summary': path_summary,
         'stats': path_stats,
         'topstats': gentopstats_translation_project(translation_project),
