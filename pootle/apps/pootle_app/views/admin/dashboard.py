@@ -125,12 +125,6 @@ def optional_depcheck():
             'text': _("Can't find the ISO codes package. Pootle uses ISO codes"
                       " to translate language names.")
         })
-    if not depcheck.test_gaupol():
-        optional.append({
-            'dependency': 'gaupol',
-            'text': _("Can't find the aeidon package. Pootle requires Gaupol "
-                      "or aeidon to support subtitle formats.")
-        })
     if not depcheck.test_levenshtein():
         optional.append({
             'dependency': 'levenshtein',
