@@ -50,14 +50,6 @@ def test_translate():
         return None, None
 
 
-def test_sqlite():
-    try:
-        from sqlite3 import dbapi2
-        return True
-    except ImportError:
-        return False
-
-
 def test_django():
     from django import VERSION, get_version
     if VERSION >= DJANGO_MINIMUM_REQUIRED_VERSION:
