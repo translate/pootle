@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2012 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -23,8 +24,6 @@ import locale
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from pootle_misc.baseurl import l
-
 
 class Notice(models.Model):
     directory = models.ForeignKey('pootle_app.Directory', db_index=True)
@@ -34,9 +33,6 @@ class Notice(models.Model):
 
     def __unicode__(self):
         return self.message
-
-    def get_absolute_url(self):
-        return l(self.directory.pootle_path + 'notices/%d' % self.id)
 
     def get_date(self):
         return self.added.strftime(locale.nl_langinfo(locale.D_T_FMT))
