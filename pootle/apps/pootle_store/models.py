@@ -29,6 +29,7 @@ from translate.filters.decorators import Category
 from translate.storage import base
 
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import FileSystemStorage
 from django.core.urlresolvers import reverse
@@ -1420,6 +1421,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                     common_dbids -= modified_units
 
                 common_dbids = list(common_dbids)
+                system = User.objects.get_system_user().get_profile()
                 for unit in self.findid_bulk(common_dbids):
                     # Use the same (parent) object since units will accumulate
                     # the list of cache attributes to clear in the parent Store
@@ -1453,7 +1455,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                             sub = Submission(
                                 creation_time=timezone.now(),
                                 translation_project=self.translation_project,
-                                submitter=None,
+                                submitter=system,
                                 unit=unit,
                                 field=SubmissionFields.TARGET,
                                 type=None,

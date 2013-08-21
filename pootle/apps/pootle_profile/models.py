@@ -50,6 +50,11 @@ class PootleUserManager(UserManager):
                                              .select_related(depth=1) \
                                              .get(username='nobody')
 
+    def get_system_user(self):
+        return super(PootleUserManager, self).get_query_set() \
+                                             .select_related(depth=1) \
+                                             .get(username='system')
+
     def hide_defaults(self):
         return super(PootleUserManager, self).get_query_set().exclude(
                 username__in=('nobody', 'default')

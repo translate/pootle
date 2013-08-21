@@ -112,3 +112,9 @@ def upgrade_to_25201():
         directory=root,
     )
     permission_set.positive_permissions.add(view)
+
+
+def upgrade_to_25202():
+    from pootle.core.initdb import create_system_user
+
+    create_system_user()
