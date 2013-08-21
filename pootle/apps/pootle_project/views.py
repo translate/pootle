@@ -55,7 +55,7 @@ def get_last_action(translation_project):
         return ''
 
 
-def make_language_item(request, translation_project):
+def make_language_item(translation_project):
     href = translation_project.get_absolute_url()
     href_all = translation_project.get_translate_url()
     href_todo = translation_project.get_translate_url(state='incomplete')
@@ -92,8 +92,8 @@ def overview(request, project):
 
     translation_projects = project.translationproject_set.all()
 
-    items = [make_language_item(request, translation_project) \
-            for translation_project in translation_projects.iterator()]
+    items = [make_language_item(translation_project)
+             for translation_project in translation_projects.iterator()]
     items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
 
     languagecount = len(translation_projects)
