@@ -107,18 +107,6 @@ def test_indexer():
             for indexer in _get_available_indexers()]
 
 
-def test_gaupol():
-    try:
-        import aeidon
-        return True
-    except ImportError:
-        try:
-            import gaupol
-            return True
-        except ImportError:
-            return False
-
-
 ######################
 # Test optimal setup #
 ######################
