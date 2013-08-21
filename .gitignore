@@ -60,6 +60,3 @@ _site/
 dist/
 build/
 Pootle.egg-info/
-
-# Requirements generation
-.reqs
