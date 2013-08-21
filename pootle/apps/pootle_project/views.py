@@ -81,8 +81,8 @@ def get_project_base_template_vars(request, project, can_edit):
     """Get the base template vars for project overview view."""
     translation_projects = project.translationproject_set.all()
 
-    items = [make_language_item(translation_project) \
-            for translation_project in translation_projects.iterator()]
+    items = [make_language_item(translation_project)
+             for translation_project in translation_projects.iterator()]
     items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
 
     languagecount = len(translation_projects)

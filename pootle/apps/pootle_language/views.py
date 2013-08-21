@@ -57,7 +57,6 @@ def make_project_item(translation_project):
         'title': project.fullname,
         'description': project.description,
         'lastactivity': get_last_action(translation_project),
-        'isproject': True,
     }
 
     return info
