@@ -76,8 +76,6 @@ def sso_return_view(request, redirect_to='', create=0):
 
         if len(ea) == 0:
             if not create:
-                users = User.objects.filter(email=d['email'])
-
                 return redirect('/accounts/evernote/login/link?%s' %
                         urlencode({auth.REDIRECT_FIELD_NAME: redirect_to}))
 
