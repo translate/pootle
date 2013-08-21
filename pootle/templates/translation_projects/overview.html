@@ -12,12 +12,12 @@
   <div class="hd">
     <h2>
       {% if goal %}
-        {% cache settings.CACHE_TIMEOUT path_with_goal_trail path_obj.id goal.pk %}
-        <span><a href="{% url 'pootle-tp-overview' language.code project.code '' %}">{{ project.code }}</a> / <a href="{{ goal_url }}">{{ goal.name }}</a> / {{ path_obj|goal_trail:goal }}</span>
+        {% cache settings.CACHE_TIMEOUT path_with_goal_trail resource_obj.id goal.pk %}
+        <span><a href="{% url 'pootle-tp-overview' language.code project.code '' %}">{{ project.code }}</a> / <a href="{{ goal_url }}">{{ goal.name }}</a> / {{ resource_obj|goal_trail:goal }}</span>
         {% endcache %}
       {% else %}
-        {% cache settings.CACHE_TIMEOUT path_trail path_obj.id %}
-        <span><a href="{% url 'pootle-tp-overview' language.code project.code '' %}">{{ project.code }}</a> / {{ path_obj|trail:"/" }}</span>
+        {% cache settings.CACHE_TIMEOUT path_trail resource_obj.id %}
+        <span><a href="{% url 'pootle-tp-overview' language.code project.code '' %}">{{ project.code }}</a> / {{ resource_obj|trail:"/" }}</span>
         {% endcache %}
       {% endif %}
       <a href="" id="js-toggle-tags" class="hide tags-aside tags-toggle">
@@ -54,14 +54,14 @@
 
     <ul id="file-tabs">
       <li>
-        <a href="{% url 'pootle-tp-overview' language.code project.code path_obj.path %}"
+        <a href="{% url 'pootle-tp-overview' language.code project.code resource_obj.path %}"
           {% if table.id = 'tp-files'  %} class="selected-tab"{% endif %}
           title="{% trans 'Translation project files and folders' %}">
           {% trans "Files" %}</a>
       </li>
-      {% if path_obj_has_goals %}
+      {% if resource_obj_has_goals %}
       <li>
-        <a href="{% url 'pootle-tp-goals' language.code project.code path_obj.path %}"
+        <a href="{% url 'pootle-tp-goals' language.code project.code resource_obj.path %}"
           {% if table.id = 'tp-goals'  %} class="selected-tab"{% endif %}
           title="{% trans 'Administrate your project goals' %}">
           {% trans "Goals" %}</a>
