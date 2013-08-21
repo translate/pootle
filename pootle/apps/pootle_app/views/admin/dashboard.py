@@ -100,12 +100,6 @@ def optional_depcheck():
             'text': _("Can't find the ISO codes package. Pootle uses ISO codes"
                       " to translate language names.")
         })
-    if not depcheck.test_gaupol():
-        optional.append({
-            'dependency': 'gaupol',
-            'text': _("Can't find the aeidon package. Pootle requires Gaupol "
-                      "or aeidon to support subtitle formats.")
-        })
     if not depcheck.test_levenshtein():
         optional.append({
             'dependency': 'levenshtein',
@@ -208,13 +202,6 @@ def optimal_depcheck():
             'text': _("Running in debug mode. Debug mode is only needed when "
                       "developing Pootle. For optimal performance, disable "
                       "debugging mode.")
-        })
-    if not depcheck.test_livetranslation():
-        optimal.append({
-            'dependency': 'livetranslation',
-            'text': _("Running in live translation mode. Live translation is "
-                      "useful as a tool to learn about Pootle and "
-                      "localization, but has high impact on performance.")
         })
 
     return optimal

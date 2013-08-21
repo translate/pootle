@@ -82,19 +82,6 @@ def test_levenshtein():
         return False
 
 
-def test_gaupol():
-    try:
-        import aeidon
-        return True
-    except ImportError:
-        try:
-            import gaupol
-            return True
-        except ImportError:
-            pass
-        return False
-
-
 ######################
 # test optimal setup #
 ######################
@@ -155,10 +142,6 @@ def test_webserver():
     return ('apache' in sys.modules or
             '_apache' in sys.modules or
             'mod_wsgi' in sys.modules)
-
-
-def test_livetranslation():
-    return not settings.LIVE_TRANSLATION
 
 
 def test_from_email():
