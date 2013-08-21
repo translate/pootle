@@ -72,6 +72,58 @@ Order in models:
   - ``def get_absolute_url()``
   - Any custom methods
 
+URL patterns:
+  When writing the URL patterns:
+  
+  - URL patterns can be grouped by putting a blank line between the groups.
+  - On each URL pattern:
+
+    - Specify the URL pattern using the ``url()`` function, not a tuple.
+    - Each parameter must go on its own line in all cases, indenting them one
+      level to allow easily seeing the different URL patterns.
+    - In URLs:
+
+      - Use hyphens. Avoid underscores at all costs.
+      - To split long URLs use implicit string continuation. Note that URLs are
+        raw strings.
+
+    - URL pattern names must be named like ``pootle-{app}-{view}`` (except in
+      some cases, like URLs on *pootle_app* app):
+
+      - ``{app}`` is the app name, which sometimes can be shortened, e.g. using
+        **tp** to avoid the longish **translationproject**. If either a
+        shortened app name or a full one is being used, the chosen app name
+        must be used consistently across all the URL patterns for the app. The
+        only exception to this are AJAX URL patterns which can use a different
+        value for ``{app}``, that must be consistently used among all the AJAX
+        URL patterns in the app.
+      - ``{view}`` is a unique string which might consist on several words,
+        separated with hyphens, that might not match the name of the view that
+        the URL pattern handles.
+
+  .. code-block:: python
+
+    urlpatterns = patterns('pootle_project.views',
+        # Listing of all projects.
+        url(r'^$',
+            'projects_index'),
+
+        # Whatever URLs.
+        url(r'^incredibly-stupid/randomly-long-url-with-hyphens-that-is-split-'
+            r'and-continued-on-next-line.html$',
+            'whatever',
+            name='pootle-project-whatever'),
+
+        # Admin URLs.
+        url(r'^(?P<project_code>[^/]*)/admin.html$',
+            'project_admin'),
+        url(r'^(?P<project_code>[^/]*)/permissions.html$',
+            'project_admin_permissions',
+            name='pootle-project-admin-permissions'),
+    )
+
+
+
 Settings naming:
   Pootle specific settings must be named like ``POOTLE_*``, for example:
   ``POOTLE_ENABLE_API``, ``POOTLE_VCS_DIRECTORY`` or ``POOTLE_MARKUP_FILTER``
@@ -247,8 +299,16 @@ Indenting
     extend too much the line length.
 
 Template naming
-  - If a template is intended to be included by other templates, start its
-    name with an underscore, e.g. *_included_template.html*.
+  - If a template name consists on several words they must be joined using
+    underscores (never hyphens), e.g. *my_precious_template.html*
+
+  - If a template is being used in AJAX views, even if it is also used for
+    including it on other templates, the first word on its name must be `xhr`,
+    e.g. *xhr_tag_form.html*.
+
+  - If a template is intended to be included by other templates, and it is not
+    going to be used directly, start its name with an underscore, e.g.
+    *_included_template.html*.
 
 CSS
 ---
