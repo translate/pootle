@@ -29,10 +29,6 @@ the future we have to take a different approach for this.
 {{ block.super }}{% include 'common/_breadcrumbs.html' %}
 {% endblock %}
 
-{% block extra_head %}
-  <link rel="alternate" type="application/rss+xml" title="{{ title }}" href="{% url 'pootle_notifications__feed' path %}" />
-{% endblock %}
-
 {% block body_id %}{% if directory.is_language %}languagenews{% else %}tpnews{% endif %}{% endblock %}
 
 {% block tabs %}

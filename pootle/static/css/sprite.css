@@ -1,4 +1,4 @@
-/* glue: 0.3 hash: f423dab67a */
+/* glue: 0.3 hash: 366b45f30c */
 .bar-untranslated,
 .bar-translated,
 .bar-fuzzy,
@@ -18,7 +18,6 @@
 .icon-google-translate,
 .icon-folder,
 .icon-file,
-.icon-feed,
 .icon-error,
 .icon-copy,
 .icon-comment-user,
@@ -51,17 +50,16 @@
 .icon-google-translate{background-position:0px -68px;width:16px;height:16px;}
 .icon-folder{background-position:-16px -68px;width:16px;height:16px;}
 .icon-file{background-position:-32px -68px;width:16px;height:16px;}
-.icon-feed{background-position:-48px -68px;width:16px;height:16px;}
-.icon-error{background-position:-64px -68px;width:16px;height:16px;}
-.icon-copy{background-position:-80px -68px;width:16px;height:16px;}
-.icon-comment-user{background-position:-96px -68px;width:16px;height:16px;}
-.icon-comment-add{background-position:-112px -68px;width:16px;height:16px;}
-.icon-block{background-position:-128px -68px;width:16px;height:16px;}
-.icon-apertium{background-position:-144px -68px;width:16px;height:16px;}
-.icon-accept{background-position:-160px -68px;width:16px;height:16px;}
-.icon-upload{background-position:-176px -68px;width:14px;height:14px;}
-.icon-update-templates{background-position:0px -84px;width:14px;height:14px;}
-.icon-rescan-files{background-position:-14px -84px;width:14px;height:14px;}
-.icon-download{background-position:-28px -84px;width:14px;height:14px;}
-.icon-delete-path{background-position:-42px -84px;width:14px;height:14px;}
-.icon-external-link{background-position:-56px -84px;width:12px;height:12px;}
+.icon-error{background-position:-48px -68px;width:16px;height:16px;}
+.icon-copy{background-position:-64px -68px;width:16px;height:16px;}
+.icon-comment-user{background-position:-80px -68px;width:16px;height:16px;}
+.icon-comment-add{background-position:-96px -68px;width:16px;height:16px;}
+.icon-block{background-position:-112px -68px;width:16px;height:16px;}
+.icon-apertium{background-position:-128px -68px;width:16px;height:16px;}
+.icon-accept{background-position:-144px -68px;width:16px;height:16px;}
+.icon-upload{background-position:-160px -68px;width:14px;height:14px;}
+.icon-update-templates{background-position:-174px -68px;width:14px;height:14px;}
+.icon-rescan-files{background-position:0px -84px;width:14px;height:14px;}
+.icon-download{background-position:-14px -84px;width:14px;height:14px;}
+.icon-delete-path{background-position:-28px -84px;width:14px;height:14px;}
+.icon-external-link{background-position:-188px -68px;width:12px;height:12px;}
