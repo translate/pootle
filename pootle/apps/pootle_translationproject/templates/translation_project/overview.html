@@ -9,8 +9,8 @@
 {% block content %}
 <div class="module first">
   <div class="hd">
-    {% cache settings.CACHE_TIMEOUT path_trail path_obj.id %}
-    <h2><span><a href="{{ translation_project.pootle_path|l }}">{{ project.code }}</a> / {{ path_obj|trail:"/" }}</span></h2>
+    {% cache settings.CACHE_TIMEOUT path_trail resource_obj.id %}
+    <h2><span><a href="{{ translation_project.pootle_path|l }}">{{ project.code }}</a> / {{ resource_obj|trail:"/" }}</span></h2>
     {% endcache %}
   </div>
   <div id="path-summary" class="bd">

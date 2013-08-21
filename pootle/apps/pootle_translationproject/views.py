@@ -204,24 +204,24 @@ def overview(request, translation_project, dir_path, filename=None):
 
     directory = request.directory
     store = request.store
-    path_obj = store or directory
+    resource_obj = store or directory
 
     latest_action = ''
     # If current directory is the TP root directory.
     if not directory.path:
         latest_action = translation_project.get_latest_submission()
     elif store is None:  # If this is not a file.
-        latest_action = Submission.get_latest_for_dir(path_obj)
+        latest_action = Submission.get_latest_for_dir(resource_obj)
 
-    path_stats = get_raw_stats(path_obj, include_suggestions=True)
-    path_summary = get_path_summary(path_obj, path_stats, latest_action)
-    actions = action_groups(request, path_obj, path_stats=path_stats)
+    path_stats = get_raw_stats(resource_obj, include_suggestions=True)
+    path_summary = get_path_summary(resource_obj, path_stats, latest_action)
+    actions = action_groups(request, resource_obj, path_stats=path_stats)
 
     ctx = {
         'translation_project': translation_project,
         'project': project,
         'language': language,
-        'path_obj': path_obj,
+        'resource_obj': resource_obj,
         'resource_path': request.resource_path,
         'path_summary': path_summary,
         'stats': path_stats,
