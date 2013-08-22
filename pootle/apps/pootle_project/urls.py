@@ -46,8 +46,10 @@ urlpatterns = patterns('pootle_project.views',
         'project_settings_edit'),
 
     # Admin
-    (r'^(?P<project_code>[^/]*)/admin.html$',
-        'project_admin'),
-    (r'^(?P<project_code>[^/]*)/permissions.html$',
-        'project_admin_permissions'),
+    url(r'^(?P<project_code>[^/]*)/admin.html$',
+        'project_admin',
+        name='pootle-project-admin'),
+    url(r'^(?P<project_code>[^/]*)/permissions.html$',
+        'project_admin_permissions',
+        name='pootle-project-permissions'),
 )
