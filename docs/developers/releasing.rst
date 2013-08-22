@@ -114,6 +114,14 @@ release of a ``$MINOR`` version will always have a ``$MICRO`` of ``.0``. So
 ``1.10.0`` and never just ``1.10``.
 
 
+Update requirements versions
+----------------------------
+Update the minimum version number for the requirements in:
+
+- ``requirements/``
+- ``depcheck.py```
+
+
 Update translations
 -------------------
 Update the translations from the `Pootle server
