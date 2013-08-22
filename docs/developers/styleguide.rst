@@ -74,7 +74,7 @@ Order in models:
 
 URL patterns:
   When writing the URL patterns:
-  
+
   - URL patterns can be grouped by putting a blank line between the groups.
   - On each URL pattern:
 
