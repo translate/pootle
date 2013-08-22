@@ -118,8 +118,9 @@ def user_date_prj_activity(request):
                 creation_time__gte=start,
                 creation_time__lte=end,
                 field=SubmissionFields.TARGET
-            ).extra(select={DATE: "DATE(creation_time)"}) \
-             .values(LANG_CODE, LANG_NAME, PRJ_CODE, PRJ_NAME, DATE, INITIAL) \
+            ).extra(select={
+                DATE: "DATE(`pootle_app_submission`.`creation_time`)",
+            }).values(LANG_CODE, LANG_NAME, PRJ_CODE, PRJ_NAME, DATE, INITIAL) \
              .annotate(
                 pootle_n1=Sum(POOTLE_WORDCOUNT),
                 n1=Sum(SOURCE_WORDCOUNT),
