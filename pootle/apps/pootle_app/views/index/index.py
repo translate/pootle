@@ -88,8 +88,6 @@ def getprojects(request):
 def view(request, root_dir):
     request.permissions = get_matching_permissions(get_profile(request.user),
                                                    root_dir)
-    can_edit = request.user.is_superuser
-
     languages = getlanguages(request)
     languages_table_fields = ['language', 'progress', 'activity']
     languages_table = {
@@ -124,19 +122,11 @@ def view(request, root_dir):
             ],
         'topstats': gentopstats_root(),
         'permissions': request.permissions,
-        'can_edit': can_edit,
         'languages_table': languages_table,
         'projects_table': projects_table,
     }
     visible_langs = [l for l in languages if l['stats']['total']['words'] != 0]
     templatevars['moreprojects'] = (len(projects) > len(visible_langs))
-
-    if can_edit:
-        from pootle_misc.siteconfig import load_site_config
-        from pootle_app.forms import GeneralSettingsForm
-        siteconfig = load_site_config()
-        setting_form = GeneralSettingsForm(siteconfig)
-        templatevars['form'] = setting_form
 
     return render_to_response('index/index.html', templatevars,
                               RequestContext(request))
