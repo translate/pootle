@@ -28,6 +28,7 @@ import time
 from hashlib import md5
 
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import FileSystemStorage
 from django.core.urlresolvers import reverse
@@ -37,7 +38,6 @@ from django.db.transaction import commit_on_success
 from django.utils import timezone, tzinfo
 from django.utils.translation import ugettext_lazy as _
 from django.utils.http import urlquote
-from django.contrib.auth.models import User
 
 from translate.filters.decorators import Category
 from translate.storage import base
