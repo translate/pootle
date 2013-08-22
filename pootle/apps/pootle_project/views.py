@@ -208,6 +208,7 @@ def _add_tag(request, translation_project, tag):
     response.status_code = 201
     return response
 
+
 @ajax_required
 def ajax_add_tag_to_tp_in_project(request, project_code):
     """Return an HTML snippet with the failed form or blank if valid."""

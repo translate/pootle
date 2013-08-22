@@ -5,18 +5,17 @@
 #
 # This file is part of Pootle.
 #
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
+# Pootle is free software; you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation; either version 2 of the License, or (at your option) any later
+# version.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# Pootle is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License along with
+# Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 import gettext
 import logging
@@ -51,20 +50,6 @@ from pootle_store.util import (absolute_real_path, calculate_stats,
                                relative_real_path, OBSOLETE, UNTRANSLATED)
 
 
-class TranslationProjectNonDBState(object):
-
-    def __init__(self, parent):
-        self.parent = parent
-
-        # Terminology matcher
-        self.termmatcher = None
-        self.termmatchermtime = None
-
-        self._indexing_enabled = True
-        self._index_initialized = False
-        self.indexer = None
-
-
 def create_translation_project(language, project):
     from pootle_app import project_tree
     if project_tree.translation_project_should_exist(language, project):
@@ -88,6 +73,20 @@ class VersionControlError(Exception):
     pass
 
 
+class TranslationProjectNonDBState(object):
+
+    def __init__(self, parent):
+        self.parent = parent
+
+        # Terminology matcher
+        self.termmatcher = None
+        self.termmatchermtime = None
+
+        self._indexing_enabled = True
+        self._index_initialized = False
+        self.indexer = None
+
+
 class TranslationProjectManager(RelatedManager):
     def get_by_natural_key(self, pootle_path):
         #FIXME: should we use Language and Project codes instead?
@@ -95,19 +94,10 @@ class TranslationProjectManager(RelatedManager):
 
 
 class TranslationProject(models.Model):
-    _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE,
-            settings.PARSE_POOL_CULL_FREQUENCY)
-
-    objects = TranslationProjectManager()
-    index_directory = ".translation_index"
-
-    class Meta:
-        unique_together = ('language', 'project')
-        db_table = 'pootle_app_translationproject'
-
     description_help_text = _('A description of this translation project. '
-            'This is useful to give more information or instructions. '
-            'Allowed markup: %s', get_markup_filter_name())
+                              'This is useful to give more information or '
+                              'instructions. Allowed markup: %s',
+                              get_markup_filter_name())
     description = MarkupField(blank=True, help_text=description_help_text)
 
     language = models.ForeignKey(Language, db_index=True)
@@ -115,22 +105,28 @@ class TranslationProject(models.Model):
     real_path = models.FilePathField(editable=False)
     directory = models.OneToOneField(Directory, db_index=True, editable=False)
     pootle_path = models.CharField(max_length=255, null=False, unique=True,
-            db_index=True, editable=False)
+                                   db_index=True, editable=False)
+
     tags = TaggableManager(blank=True, verbose_name=_("Tags"),
                            help_text=_("A comma-separated list of tags."))
 
-    def natural_key(self):
-        return (self.pootle_path,)
-    natural_key.dependencies = ['pootle_app.Directory',
-            'pootle_language.Language', 'pootle_project.Project']
+    _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE,
+                                         settings.PARSE_POOL_CULL_FREQUENCY)
+    index_directory = ".translation_index"
+
+    objects = TranslationProjectManager()
+
+    class Meta:
+        unique_together = ('language', 'project')
+        db_table = 'pootle_app_translationproject'
 
     def __unicode__(self):
         return self.pootle_path
 
     def save(self, *args, **kwargs):
         created = self.id is None
-
         project_dir = self.project.get_real_path()
+
         from pootle_app.project_tree import get_translation_project_dir
         self.abs_real_path = get_translation_project_dir(self.language,
                 project_dir, self.file_style, make_dirs=True)
@@ -145,15 +141,22 @@ class TranslationProject(models.Model):
 
     def delete(self, *args, **kwargs):
         directory = self.directory
-
         super(TranslationProject, self).delete(*args, **kwargs)
-
         directory.delete()
         deletefromcache(self, ["getquickstats", "getcompletestats",
                                "get_mtime", "get_suggestion_count"])
 
     def get_absolute_url(self):
         return l(self.pootle_path)
+
+    def natural_key(self):
+        return (self.pootle_path,)
+    natural_key.dependencies = ['pootle_app.Directory',
+            'pootle_language.Language', 'pootle_project.Project']
+
+    ###########################################################################
+    # Properties                                                              #
+    ###########################################################################
 
     fullname = property(lambda self: "%s [%s]" % (self.project.fullname,
                                                   self.language.name))
@@ -163,12 +166,10 @@ class TranslationProject(models.Model):
 
     def _set_abs_real_path(self, value):
         self.real_path = relative_real_path(value)
-
     abs_real_path = property(_get_abs_real_path, _set_abs_real_path)
 
     def _get_treestyle(self):
         return self.project.get_treestyle()
-
     file_style = property(_get_treestyle)
 
     def _get_checker(self):
@@ -181,13 +182,7 @@ class TranslationProject(models.Model):
                                  excludefilters=excluded_filters,
                                  errorhandler=self.filtererrorhandler,
                                  languagecode=self.language.code)
-
     checker = property(_get_checker)
-
-    def filtererrorhandler(self, functionname, str1, str2, e):
-        logging.error(u"Error in filter %s: %r, %r, %s", functionname, str1,
-                      str2, e)
-        return False
 
     def _get_non_db_state(self):
         if not hasattr(self, "_non_db_state"):
@@ -199,18 +194,66 @@ class TranslationProject(models.Model):
                         TranslationProjectNonDBState(self)
 
         return self._non_db_state
-
     non_db_state = property(_get_non_db_state)
 
+    def _get_units(self):
+        self.require_units()
+        # FIXME: we rely on implicit ordering defined in the model. We might
+        # want to consider pootle_path as well
+        return Unit.objects.filter(store__translation_project=self,
+                                   state__gt=OBSOLETE).select_related('store')
+    units = property(_get_units)
+
+    @property
+    def is_terminology_project(self):
+        return self.pootle_path.endswith('/terminology/')
+
+    @property
+    def is_template_project(self):
+        return self == self.project.get_template_translationproject()
+
+    def _get_indexer(self):
+        if (self.non_db_state.indexer is None and
+            self.non_db_state._indexing_enabled):
+            try:
+                indexer = self.make_indexer()
+
+                if not self.non_db_state._index_initialized:
+                    self.init_index(indexer)
+                    self.non_db_state._index_initialized = True
+
+                self.non_db_state.indexer = indexer
+            except Exception, e:
+                logging.warning(u"Could not initialize indexer for %s in %s: "
+                                u"%s", self.project.code, self.language.code,
+                                str(e))
+                self.non_db_state._indexing_enabled = False
+
+        return self.non_db_state.indexer
+    indexer = property(_get_indexer)
+
+    def _has_index(self):
+        return (self.non_db_state._indexing_enabled and
+                (self.non_db_state._index_initialized or
+                 self.indexer is not None))
+    has_index = property(_has_index)
+
+    ###########################################################################
+
+    def filtererrorhandler(self, functionname, str1, str2, e):
+        logging.error(u"Error in filter %s: %r, %r, %s", functionname, str1,
+                      str2, e)
+        return False
+
     def update(self):
-        """Update all stores to reflect state on disk"""
+        """Update all stores to reflect state on disk."""
         stores = self.stores.exclude(file='').filter(state__gte=PARSED)
         for store in stores.iterator():
             store.update(update_translation=True,
                          update_structure=True)
 
     def sync(self, conservative=True, skip_missing=False, modified_since=0):
-        """Sync unsaved work on all stores to disk"""
+        """Sync unsaved work on all stores to disk."""
         stores = self.stores.exclude(file='').filter(state__gte=PARSED)
         for store in stores.iterator():
             store.sync(update_translation=True,
@@ -220,7 +263,7 @@ class TranslationProject(models.Model):
                        modified_since=modified_since)
 
     def get_latest_submission(self):
-        """Get the latest submission done in the Translation project"""
+        """Get the latest submission done in the Translation project."""
         try:
             sub = Submission.objects.filter(translation_project=self).latest()
         except Submission.DoesNotExist:
@@ -249,15 +292,6 @@ class TranslationProject(models.Model):
                 errors += 1
 
         return errors
-
-    def _get_units(self):
-        self.require_units()
-        # FIXME: we rely on implicit ordering defined in the model. We might
-        # want to consider pootle_path as well
-        return Unit.objects.filter(store__translation_project=self,
-                                   state__gt=OBSOLETE).select_related('store')
-
-    units = property(_get_units)
 
     @getfromcache
     def getquickstats(self):
@@ -409,7 +443,8 @@ class TranslationProject(models.Model):
         if self.is_template_project:
             ext = os.extsep + self.project.get_template_filetype()
 
-        from pootle_app.project_tree import (add_files, match_template_filename,
+        from pootle_app.project_tree import (add_files,
+                                             match_template_filename,
                                              direct_language_match_filename,
                                              sync_from_vcs)
 
@@ -441,34 +476,6 @@ class TranslationProject(models.Model):
         )
 
         return all_files, new_files
-
-    def _get_indexer(self):
-        if (self.non_db_state.indexer is None and
-            self.non_db_state._indexing_enabled):
-            try:
-                indexer = self.make_indexer()
-
-                if not self.non_db_state._index_initialized:
-                    self.init_index(indexer)
-                    self.non_db_state._index_initialized = True
-
-                self.non_db_state.indexer = indexer
-            except Exception, e:
-                logging.warning(u"Could not initialize indexer for %s in %s: "
-                                u"%s", self.project.code, self.language.code,
-                                str(e))
-                self.non_db_state._indexing_enabled = False
-
-        return self.non_db_state.indexer
-
-    indexer = property(_get_indexer)
-
-    def _has_index(self):
-        return (self.non_db_state._indexing_enabled and
-                (self.non_db_state._index_initialized or
-                 self.indexer is not None))
-
-    has_index = property(_has_index)
 
     def update_file_from_version_control(self, store):
         from pootle.scripts import hooks
@@ -766,24 +773,23 @@ class TranslationProject(models.Model):
         try:
             from pootle_misc import versioncontrol
             for file in filestocommit:
-                versioncontrol.commit_file(file, message=message, author=author)
+                versioncontrol.commit_file(file, message=message,
+                                           author=author)
 
                 if request is not None:
                     msg = _("Committed file <em>%(filename)s</em> to version "
-                            "control",
-                            {'filename': file})
+                            "control", {'filename': file})
                     messages.success(request, msg)
         except Exception, e:
             logging.error(u"Failed to commit file: %s", e)
 
             if request is not None:
+                msg_params = {
+                    'filename': filename,
+                    'error': e,
+                }
                 msg = _("Failed to commit <em>%(filename)s</em> to version "
-                        "control: %(error)s",
-                        {
-                            'filename': filename,
-                            'error': e,
-                        }
-                )
+                        "control: %(error)s", msg_params)
                 messages.error(request, msg)
 
             success = False
@@ -797,8 +803,8 @@ class TranslationProject(models.Model):
             pass
 
         from pootle_app.models.signals import post_vc_commit
-        post_vc_commit.send(sender=self, path_obj=store, stats=stats, user=user,
-                            success=success)
+        post_vc_commit.send(sender=self, path_obj=store, stats=stats,
+                            user=user, success=success)
 
         return success
 
@@ -883,7 +889,7 @@ class TranslationProject(models.Model):
             except:
                 pass
 
-    ############################################################################
+    ###########################################################################
 
     def make_indexer(self):
         """Get an indexing object for this project.
@@ -1015,14 +1021,6 @@ class TranslationProject(models.Model):
 
     ###########################################################################
 
-    @property
-    def is_terminology_project(self):
-        return self.pootle_path.endswith('/terminology/')
-
-    @property
-    def is_template_project(self):
-        return self == self.project.get_template_translationproject()
-
     def gettermmatcher(self):
         """Returns the terminology matcher."""
         terminology_stores = Store.objects.none()
@@ -1090,6 +1088,10 @@ class TranslationProject(models.Model):
         else:
             return singular
 
+
+###############################################################################
+# Signal handlers                                                             #
+###############################################################################
 
 def scan_languages(sender, instance, created=False, raw=False, **kwargs):
     if not created or raw:

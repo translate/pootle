@@ -3,21 +3,19 @@
 #
 # Copyright 2009-2013 Zuza Software Foundation
 #
-# This file is part of translate.
+# This file is part of Pootle.
 #
-# translate is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
+# Pootle is free software; you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation; either version 2 of the License, or (at your option) any later
+# version.
 #
-# translate is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# Pootle is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with translate; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# You should have received a copy of the GNU General Public License along with
+# Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 import os
 
@@ -41,30 +39,25 @@ from pootle_store.models import Unit, Suggestion
 from pootle_store.util import absolute_real_path, statssum, OBSOLETE
 
 
+CACHE_KEY = 'pootle-projects'
+
+
 class ProjectManager(RelatedManager):
 
     def get_by_natural_key(self, code):
         return self.get(code=code)
 
 
-CACHE_KEY = 'pootle-projects'
-
-
 class Project(models.Model):
-
-    objects = ProjectManager()
-
-    class Meta:
-        ordering = ['code']
-        db_table = 'pootle_app_project'
 
     code_help_text = _('A short code for the project. This should only contain '
             'ASCII characters, numbers, and the underscore (_) character.')
     code = models.CharField(max_length=255, null=False, unique=True,
-            db_index=True, verbose_name=_('Code'), help_text=code_help_text)
+                            db_index=True, verbose_name=_('Code'),
+                            help_text=code_help_text)
 
     fullname = models.CharField(max_length=255, null=False,
-            verbose_name=_("Full Name"))
+                                verbose_name=_("Full Name"))
 
     description_help_text = _('A description of this project. '
             'This is useful to give more information or instructions. '
@@ -76,38 +69,44 @@ class Project(models.Model):
     checkers.sort()
     checker_choices.extend([(checker, checker) for checker in checkers])
     checkstyle = models.CharField(max_length=50, default='standard',
-            null=False, choices=checker_choices,
-            verbose_name=_('Quality Checks'))
+                                  null=False, choices=checker_choices,
+                                  verbose_name=_('Quality Checks'))
 
-    localfiletype  = models.CharField(max_length=50, default="po",
-            choices=filetype_choices, verbose_name=_('File Type'))
+    localfiletype = models.CharField(max_length=50, default="po",
+                                     choices=filetype_choices,
+                                     verbose_name=_('File Type'))
 
     treestyle_choices = (
-            # TODO: check that the None is stored and handled correctly
-            ('auto', _('Automatic detection (slower)')),
-            ('gnu', _('GNU style: files named by language code')),
-            ('nongnu', _('Non-GNU: Each language in its own directory')),
+        # TODO: check that the None is stored and handled correctly
+        ('auto', _('Automatic detection (slower)')),
+        ('gnu', _('GNU style: files named by language code')),
+        ('nongnu', _('Non-GNU: Each language in its own directory')),
     )
     treestyle = models.CharField(max_length=20, default='auto',
-            choices=treestyle_choices, verbose_name=_('Project Tree Style'))
+                                 choices=treestyle_choices,
+                                 verbose_name=_('Project Tree Style'))
 
     source_language = models.ForeignKey('pootle_language.Language',
-            db_index=True, verbose_name=_('Source Language'))
+                                        db_index=True,
+                                        verbose_name=_('Source Language'))
 
     ignoredfiles = models.CharField(max_length=255, blank=True, null=False,
-            default="", verbose_name=_('Ignore Files'))
+                                    default="", verbose_name=_('Ignore Files'))
 
     directory = models.OneToOneField('pootle_app.Directory', db_index=True,
-            editable=False)
+                                     editable=False)
 
     report_target_help_text = _('A URL or an email address where issues '
             'with the source text can be reported.')
     report_target = models.CharField(max_length=512, blank=True,
-            verbose_name=_("Report Target"), help_text=report_target_help_text)
+                                     verbose_name=_("Report Target"),
+                                     help_text=report_target_help_text)
 
-    def natural_key(self):
-        return (self.code,)
-    natural_key.dependencies = ['pootle_app.Directory']
+    objects = ProjectManager()
+
+    class Meta:
+        ordering = ['code']
+        db_table = 'pootle_app_project'
 
     def __unicode__(self):
         return self.fullname
@@ -127,6 +126,13 @@ class Project(models.Model):
         # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
         cache.set(CACHE_KEY, Project.objects.order_by('fullname').all(), 0)
+
+    def get_absolute_url(self):
+        return l(self.pootle_path)
+
+    def natural_key(self):
+        return (self.code,)
+    natural_key.dependencies = ['pootle_app.Directory']
 
     def delete(self, *args, **kwargs):
         directory = self.directory
@@ -205,9 +211,6 @@ class Project(models.Model):
 
     def get_real_path(self):
         return absolute_real_path(self.code)
-
-    def get_absolute_url(self):
-        return l(self.pootle_path)
 
     @cached_property
     def languages(self):

@@ -1,23 +1,21 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009-2012 Zuza Software Foundation
+# Copyright 2009-2013 Zuza Software Foundation
 #
-# This file is part of translate.
+# This file is part of Pootle.
 #
-# translate is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
+# Pootle is free software; you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation; either version 2 of the License, or (at your option) any later
+# version.
 #
-# translate is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# Pootle is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with translate; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# You should have received a copy of the GNU General Public License along with
+# Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 from django.db import models
 
@@ -25,8 +23,8 @@ from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 from pootle_misc.util import cached_property, dictsum, getfromcache
 from pootle_store.models import Suggestion, Unit
-from pootle_store.util import (empty_quickstats, empty_completestats,
-                               statssum, completestatssum, suggestions_sum)
+from pootle_store.util import (empty_quickstats, empty_completestats, statssum,
+                               completestatssum, suggestions_sum)
 
 
 class DirectoryManager(models.Manager):
@@ -48,18 +46,21 @@ class DirectoryManager(models.Manager):
 
 class Directory(models.Model):
 
-    class Meta:
-        ordering = ['name']
-        app_label = "pootle_app"
-
     is_dir = True
 
     name = models.CharField(max_length=255, null=False)
     parent = models.ForeignKey('Directory', related_name='child_dirs',
-            null=True, db_index=True)
+                               null=True, db_index=True)
     pootle_path = models.CharField(max_length=255, null=False, db_index=True)
 
     objects = DirectoryManager()
+
+    class Meta:
+        ordering = ['name']
+        app_label = "pootle_app"
+
+    def __unicode__(self):
+        return self.pootle_path
 
     def save(self, *args, **kwargs):
         if self.parent is not None:
@@ -68,6 +69,9 @@ class Directory(models.Model):
             self.pootle_path = '/'
 
         super(Directory, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return l(self.pootle_path)
 
     def get_relative(self, path):
         """Given a path of the form a/b/c, where the path is relative
@@ -116,12 +120,6 @@ class Directory(models.Model):
         child_dir, created = Directory.objects.get_or_create(name=child_name,
                                                              parent=self)
         return child_dir
-
-    def __unicode__(self):
-        return self.pootle_path
-
-    def get_absolute_url(self):
-        return l(self.pootle_path)
 
     @getfromcache
     def getquickstats(self):
@@ -207,7 +205,7 @@ class Directory(models.Model):
 
     @cached_property
     def translation_project(self):
-        """Returns the translation project belonging to this directory."""
+        """Return the translation project belonging to this directory."""
         if self.is_language() or self.is_project():
             return None
         else:
