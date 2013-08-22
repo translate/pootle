@@ -3,7 +3,7 @@
 <div id="agreement" class="form js-agreement-box">
   <h2>{% trans "Action Required" %}</h2>
   <p>{% trans "Before continuing, you must read and accept the following documents." %}</p>
-  <form method="post" action="{% url 'staticpages.legal-agreement' %}"
+  <form method="post" action="{% url 'pootle-staticpages-legal-agreement' %}"
     class="js-agreement-form">
     {% csrf_token %}
     {% for field in form %}

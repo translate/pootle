@@ -77,7 +77,7 @@ class AbstractPage(DirtyFieldsMixin, models.Model):
         if self.url:
             return self.url
 
-        return reverse('staticpages.display', args=[self.virtual_path])
+        return reverse('pootle-staticpages-display', args=[self.virtual_path])
 
     @staticmethod
     def max_pk():
@@ -115,7 +115,7 @@ class LegalPage(AbstractPage):
         return _(self.title)
 
     def get_edit_url(self):
-        return reverse('staticpages.edit', args=['legal', self.pk])
+        return reverse('pootle-staticpages-edit', args=['legal', self.pk])
 
 
 class StaticPage(AbstractPage):
@@ -123,7 +123,7 @@ class StaticPage(AbstractPage):
     display_name = _('Regular Page')
 
     def get_edit_url(self):
-        return reverse('staticpages.edit', args=['static', self.pk])
+        return reverse('pootle-staticpages-edit', args=['static', self.pk])
 
 
 class Agreement(models.Model):

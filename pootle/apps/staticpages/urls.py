@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2012-2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -27,10 +28,10 @@ from .views import (AdminTemplateView, PageCreateView, PageDeleteView,
 urlpatterns = patterns('',
     url(r'^legal/agreement/$',
         'staticpages.views.legal_agreement',
-        name='staticpages.legal-agreement'),
+        name='pootle-staticpages-legal-agreement'),
     url(r'^(?P<virtual_path>.+)/$',
         'staticpages.views.display_page',
-        name='staticpages.display'),
+        name='pootle-staticpages-display'),
 )
 
 admin_patterns = patterns('',
@@ -40,11 +41,11 @@ admin_patterns = patterns('',
 
     url(r'^(?P<page_type>[^/]+)/add/?$',
         PageCreateView.as_view(),
-        name='staticpages.create'),
+        name='pootle-staticpages-create'),
     url(r'^(?P<page_type>[^/]+)/(?P<pk>\d+)/?$',
         PageUpdateView.as_view(),
-        name='staticpages.edit'),
+        name='pootle-staticpages-edit'),
     url(r'^(?P<page_type>[^/]+)/(?P<pk>\d+)/delete/?$',
         PageDeleteView.as_view(),
-        name='staticpages.delete'),
+        name='pootle-staticpages-delete'),
 )

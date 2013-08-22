@@ -32,8 +32,9 @@ urlpatterns = patterns('pootle_language.views',
         name='pootle-language-translate'),
 
     # Admin
-    (r'^(?P<language_code>[^/]*)/edit_settings.html$',
-        'language_settings_edit'),
+    url(r'^(?P<language_code>[^/]*)/edit_settings.html$',
+        'language_settings_edit',
+        name='pootle-language-edit-settings'),
     url(r'^(?P<language_code>[^/]*)/admin.html$',
         'language_admin',
         name='pootle-language-admin'),

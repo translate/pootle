@@ -25,26 +25,32 @@ from django.conf.urls import patterns, url
 
 urlpatterns = patterns('pootle_translationproject.views',
     # Admin views
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/((.*/)*)admin_permissions.html$',
-        'admin_permissions'),
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
+        r'((.*/)*)admin_permissions.html$',
+        'admin_permissions',
+        name='pootle-tp-admin-permissions'),
 
     # Management actions
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/rescan/?$',
         'rescan_files',
-        name='tp.rescan'),
+        name='pootle-tp-rescan'),
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/update/?$',
         'update_against_templates',
-        name='tp.update_against_templates'),
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/delete/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
+        name='pootle-tp-update-against-templates'),
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/delete/'
+        r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'delete_path_obj',
-        name='tp.delete_path_obj'),
+        name='pootle-tp-delete-path-obj'),
 
     # XHR views
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/((.*/)*)edit_settings.html$',
-        'edit_settings'),
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/summary/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
+        r'((.*/)*)edit_settings.html$',
+        'edit_settings',
+        name='pootle-tp-edit-settings'),
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/summary/'
+        r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'path_summary_more',
-        name='tp.path_summary_more'),
+        name='pootle-tp-summary'),
 
     # Translation
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
@@ -56,7 +62,7 @@ urlpatterns = patterns('pootle_translationproject.views',
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
         r'export-view/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'export_view',
-        name='export-view'),
+        name='pootle-tp-export-view'),
 
     # Overview
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
