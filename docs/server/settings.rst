@@ -166,8 +166,7 @@ Configuration settings for applications used by Pootle.
 .. setting:: LEGALPAGE_NOCHECK_PREFIXES
 
 ``LEGALPAGE_NOCHECK_PREFIXES``
-  Default: ``('/accounts', '/admin', '/contact', '/django_admin',
-  '/jsi18n', '/pages', )``
+  Default: ``('/accounts', '/admin', '/contact', '/jsi18n', '/pages', )``
 
   .. versionadded:: 2.5.1
 

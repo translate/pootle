@@ -20,14 +20,9 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.conf.urls import include, patterns
-from django.contrib import admin
 
-
-admin.autodiscover()
 
 urlpatterns = patterns('',
-    (r'^django_admin/', include(admin.site.urls)),
-
     # JavaScript i18n
     (r'^jsi18n/$', 'django.views.i18n.javascript_catalog',
      {'packages': ('pootle', ), }, ),
