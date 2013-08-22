@@ -1,6 +1,6 @@
 {% extends "admin_profile_base.html" %}
 
-{% load i18n assets store_tags translation_project_tags common_tags %}
+{% load i18n assets store_tags %}
 
 {% block body_id %}evernote_reports{% endblock %}
 
@@ -12,9 +12,7 @@
 {% endblock css %}
 
 {% block scripts_extra %}
-
 {{ block.super }}
-
 {% assets "js_reports" %}
 <script type="text/javascript" src="{{ ASSET_URL }}"></script>
 {% endassets %}
@@ -38,12 +36,6 @@
         <button id="reports-show">{% trans 'Show' %}</button>
     </div>
     <div id="reports-params">
-        <!--
-        <div class="users"><div class="label">Previous users:</div>
-            <ul>
-            </ul>
-        </div>
-        -->
         <div class="dates">
             <ul>
                 <li>
