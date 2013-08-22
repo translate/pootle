@@ -18,11 +18,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.conf.urls import patterns
+from django.conf.urls import patterns, url
 
 
 urlpatterns = patterns('evernote_reports.views',
-    (r'^$', 'evernote_reports', {}, 'evernote_reports'),
+    url(r'^$',
+        'evernote_reports',
+        name='evernote-reports'),
     (r'^activity/?$', 'user_date_prj_activity', {}, 'user_date_prj_activity'),
     (r'^users/?$', 'users', {}, 'users_for_evernote_reports'),
 )
