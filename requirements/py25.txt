@@ -1,3 +1,0 @@
-Jinja2<2.7
-South<0.8
-django-taggit==0.9.3
