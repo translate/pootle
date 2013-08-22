@@ -19,7 +19,7 @@
 
 from django.core.management import execute_manager
 
-from pootle import settings
+from pootle import settings, syspath_override
 
 
 def main():
