@@ -85,8 +85,6 @@ def getprojects(request):
 def view(request, root_dir):
     request.permissions = get_matching_permissions(get_profile(request.user),
                                                    root_dir)
-    can_edit = request.user.is_superuser
-
     languages = getlanguages(request)
     languages_table_fields = ['language', 'progress', 'activity']
     languages_table = {
@@ -122,19 +120,9 @@ def view(request, root_dir):
         ],
         'topstats': gentopstats_root(),
         'permissions': request.permissions,
-        'can_edit': can_edit,
         'languages_table': languages_table,
         'projects_table': projects_table,
         'resource_obj': request.resource_obj,
         'moreprojects': (len(projects) > len(languages))
     }
-
-    if can_edit:
-        from pootle_app.forms import GeneralSettingsForm
-        ctx.update({
-            'form': GeneralSettingsForm(siteconfig),
-            'form_action': reverse('pootle-admin-edit-settings'),
-        })
-
-    return render_to_response('home/home.html', ctx,
-                              RequestContext(request))
+    return render_to_response('home/home.html', ctx, RequestContext(request))

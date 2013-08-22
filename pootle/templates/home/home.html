@@ -8,29 +8,6 @@
 
 {% block search %}{% render_search %}{% endblock %}
 
-{% block precontent %}
-{% if description or can_edit %}
-  <div class="markup-body{% if can_edit %} js-ctx-meta-desc{% endif %}">
-    {% if description %}
-      {# The surrounding div tag is kept for convenience #}
-      <div>
-      {{ description|clean }}
-      </div>
-    {% else %}
-      <p class="placeholder muted">{% trans "No description set." %}</p>
-    {% endif %}
-    {% if can_edit %}
-      {% include "admin/_settings_edit.html" %}
-    {% endif %}
-  </div>
-{% endif %}
-{% if can_edit %}
-  <div class="settings-container js-edit-ctx-meta-desc" style="display:none;">
-    {% include "admin/_settings_form.html" %}
-  </div>
-{% endif %}
-{% endblock precontent %}
-
 {% block content %}
 <div class="module first" lang="{{ LANGUAGE_CODE }}">
   <div class="hd">
