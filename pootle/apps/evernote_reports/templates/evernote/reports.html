@@ -1,20 +1,14 @@
 {% extends "admin_profile_base.html" %}
 
-{% load i18n assets baseurl store_tags translation_project_tags common_tags %}
+{% load i18n assets store_tags translation_project_tags common_tags %}
 
 {% block body_id %}evernote_reports{% endblock %}
 
 {% block css %}
-
 {{ block.super }}
-
-<link rel="stylesheet" type="text/css" href="{{ '/admin/css/forms.css'|s }}" />
-<link rel="stylesheet" type="text/css" href="{{ '/admin/css/widgets.css'|s }}" />
-
 {% assets "css_reports" %}
 <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
 {% endassets %}
-
 {% endblock css %}
 
 {% block scripts_extra %}
