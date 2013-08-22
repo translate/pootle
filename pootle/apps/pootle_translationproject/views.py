@@ -533,7 +533,7 @@ def overview(request, translation_project, dir_path, filename=None,
 
         if goal is None:
             edit_form = DescriptionForm(instance=translation_project)
-            edit_form_action = reverse('pootle-tp-ajax-edit-settings',
+            edit_form_action = reverse('pootle-tp-edit-settings',
                                        args=[language.code, project.code])
         else:
             edit_form = GoalForm(instance=goal)
@@ -774,7 +774,7 @@ def edit_settings(request, translation_project):
                                        _(u"No description yet."))
     context = {
         "form": form,
-        "form_action": reverse('pootle-tp-ajax-edit-settings',
+        "form_action": reverse('pootle-tp-edit-settings',
                                args=[translation_project.language.code,
                                      translation_project.project.code]),
     }

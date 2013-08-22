@@ -24,7 +24,8 @@ from django.conf.urls import patterns, url
 urlpatterns = patterns('pootle_project.views',
     # Listing of all projects
     url(r'^$',
-        'projects_index'),
+        'projects_index',
+        name='pootle-project-list'),
 
     # Specific project
     url(r'^(?P<project_code>[^/]*)/$',
@@ -47,7 +48,8 @@ urlpatterns = patterns('pootle_project.views',
         'ajax_list_tags',
         name='pootle-project-ajax-list-tags'),
     url(r'^(?P<project_code>[^/]*)/edit_settings.html?$',
-        'project_settings_edit'),
+        'project_settings_edit',
+        name='pootle-project-edit-settings'),
 
     # Admin
     url(r'^(?P<project_code>[^/]*)/admin.html$',
