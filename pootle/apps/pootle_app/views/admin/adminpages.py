@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#  Copyright 2006-2012 Zuza Software Foundation
+#  Copyright 2006-2014 Zuza Software Foundation
 #  Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
@@ -20,6 +20,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program; if not, see <http://www.gnu.org/licenses/>.
 
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import loader, RequestContext
@@ -71,7 +72,7 @@ def edit_settings(request):
 
     context = {
         "form": form,
-        "form_action": "/admin/edit_settings.html"
+        "form_action": reverse('pootle-admin-edit-settings'),
     }
     t = loader.get_template('admin/general_settings_form.html')
     c = RequestContext(request, context)

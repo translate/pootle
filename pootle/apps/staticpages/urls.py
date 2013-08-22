@@ -35,7 +35,7 @@ urlpatterns = patterns('',
 admin_patterns = patterns('',
     url(r'^$',
         AdminTemplateView.as_view(),
-        name='staticpages.admin'),
+        name='pootle-staticpages'),
 
     url(r'^(?P<page_type>[^/]+)/add/?$',
         PageCreateView.as_view(),

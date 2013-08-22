@@ -6,7 +6,7 @@ $(function () {
     var node = $("#" + $(event.target).data('target'));
 
     $.ajax({
-      url: l('/admin/stats/more'),
+      url: l('/admin/more-stats/'),
       dataType: 'json',
       success: function (data) {
         var newstats = '';

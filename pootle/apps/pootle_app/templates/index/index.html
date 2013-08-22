@@ -31,7 +31,8 @@
 {% endif %}
 {% if can_edit %}
   <div class="settings-container js-edit-ctx-meta-desc" style="display:none;">
-    {% include "admin/general_settings_form.html" with form_action="/admin/edit_settings.html" %}
+    {% url 'pootle-admin-edit-settings' as edit_settings_url %}
+    {% include "admin/general_settings_form.html" with form_action=edit_settings_url %}
   </div>
 {% endif %}
 {% endblock precontent %}

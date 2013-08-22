@@ -1,10 +1,11 @@
-{% load i18n baseurl %}
+{% load url from future %}
+{% load i18n %}
 <ul id="tabs" class="admin">
-  <li><a href='{{ "/admin/"|l}}' class="admindashboard" title="{% trans 'Information and statistics about this Pootle server' %}">{% trans "Info" %}</a></li>
-  <li><a href='{{ "/admin/general.html"|l }}' class="admingeneral" title="{% trans 'Configure the general settings for your site' %}">{% trans "General" %}</a></li>
-  <li><a href='{{ "/admin/users.html"|l }}' class="adminusers" title="{% trans 'Manage the users' %}">{% trans "Users" %}</a></li>
-  <li><a href='{{ "/admin/languages.html"|l }}' class="adminlanguages" title="{% trans 'Manage the languages' %}">{% trans "Languages" %}</a></li>
-  <li><a href='{{ "/admin/projects.html"|l }}' class="adminprojects" title="{% trans 'Manage the projects' %}">{% trans "Projects" %}</a></li>
-  <li><a href='{{ "/admin/permissions.html"|l }}' class="adminpermissions" title="{% trans 'Manage the default permissions' %}">{% trans "Permissions" %}</a>
-  <li><a href='{{ "/admin/pages/"|l }}' class="adminstaticpages" title="{% trans 'Manage Static Pages' %}">{% trans "Static Pages" %}</a></li>
+  <li><a href="{% url 'pootle-admin' %}" class="admindashboard" title="{% trans 'Information and statistics about this Pootle server' %}">{% trans "Info" %}</a></li>
+  <li><a href="{% url 'pootle-admin-general' %}" class="admingeneral" title="{% trans 'Configure the general settings for your site' %}">{% trans "General" %}</a></li>
+  <li><a href="{% url 'pootle-admin-users' %}" class="adminusers" title="{% trans 'Manage the users' %}">{% trans "Users" %}</a></li>
+  <li><a href="{% url 'pootle-admin-languages' %}" class="adminlanguages" title="{% trans 'Manage the languages' %}">{% trans "Languages" %}</a></li>
+  <li><a href="{% url 'pootle-admin-projects' %}" class="adminprojects" title="{% trans 'Manage the projects' %}">{% trans "Projects" %}</a></li>
+  <li><a href="{% url 'pootle-admin-permissions' %}" class="adminpermissions" title="{% trans 'Manage the default permissions' %}">{% trans "Permissions" %}</a>
+  <li><a href="{% url 'pootle-staticpages' %}" class="adminstaticpages" title="{% trans 'Manage Static Pages' %}">{% trans "Static Pages" %}</a></li>
 </ul>

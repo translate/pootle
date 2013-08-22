@@ -4,6 +4,8 @@ import zipfile
 
 from translate.misc import wStringIO
 
+from django.core.urlresolvers import reverse
+
 from pootle.tests import PootleTestCase, formset_dict
 
 from pootle_project.models import Project
@@ -28,7 +30,7 @@ def unit_dict(pootle_path):
 class AnonTests(PootleTestCase):
     def test_admin_not_logged(self):
         """checks that admin pages are not accessible without login"""
-        response = self.client.get("/admin/")
+        response = self.client.get(reverse('pootle-admin'))
         self.assertContains(response, '', status_code=403)
 
     def test_missing_end_slash(self):
@@ -46,13 +48,13 @@ class AdminTests(PootleTestCase):
     def test_admin_rights(self):
         """checks that admin user can access admin pages"""
         response = self.client.get('/')
-        self.assertContains(response, "<a class=\"admin\" href='/admin/'>Admin</a>")
-        response = self.client.get('/admin/')
+        self.assertContains(response, "<a class=\"admin\" href='%s'>Admin</a>" % reverse('pootle-admin'))
+        response = self.client.get(reverse('pootle-admin'))
         self.assertContains(response, 'Dependency Checks')
 
     def test_add_project(self):
         """Checks that we can add a project successfully."""
-        response = self.client.get("/admin/projects.html")
+        response = self.client.get(reverse('pootle-admin-projects'))
         self.assertContains(response, "<a href='/projects/tutorial/admin.html'>tutorial</a>")
         self.assertContains(response, "<a href='/projects/terminology/admin.html'>terminology</a>")
         en = Language.objects.get(code='en')
@@ -65,7 +67,8 @@ class AdminTests(PootleTestCase):
             "treestyle": "gnu",
             }
 
-        response = self.client.post("/admin/projects.html", formset_dict([add_dict]))
+        response = self.client.post(reverse('pootle-admin-projects'),
+                                    formset_dict([add_dict]))
         self.assertContains(response, "<a href='/projects/testproject/admin.html'>testproject</a>")
 
         # check for the actual model
@@ -426,7 +429,7 @@ class NonprivTests(PootleTestCase):
 
     def test_non_admin_rights(self):
         """checks that non privileged users cannot access admin pages"""
-        response = self.client.get('/admin/')
+        response = self.client.get(reverse('pootle-admin'))
         self.assertContains(response, '', status_code=403)
 
     def test_upload_suggestions(self):

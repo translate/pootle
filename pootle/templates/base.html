@@ -158,7 +158,7 @@
             </li>
             {% endif %}
             {% if user.is_superuser %}
-            <li><a class="admin" href='{{ "/admin/"|l }}'>{% trans "ADMIN" %}</a></li>
+            <li><a class="admin" href="{% url 'pootle-admin' %}">{% trans "ADMIN" %}</a></li>
             {% endif %}
             {% if user.is_authenticated %}
             <li><a href='{{ "/accounts/logout/"|l }}'>{% trans "Log Out" %}</a></li>
