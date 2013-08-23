@@ -46,7 +46,7 @@ from pootle_store.models import (Store, Suggestion, Unit, QualityCheck, PARSED,
 from pootle_store.util import (absolute_real_path, calculate_stats,
                                empty_quickstats, empty_completestats,
                                relative_real_path, OBSOLETE, UNTRANSLATED)
-
+from pootle_misc.baseurl import l
 
 class TranslationProjectNonDBState(object):
 
@@ -150,8 +150,7 @@ class TranslationProject(models.Model):
                                "get_mtime", "get_suggestion_count"])
 
     def get_absolute_url(self):
-        lang, proj, dir, fn = split_pootle_path(self.pootle_path)
-        return reverse('pootle-tp-overview', args=[lang, proj, dir, fn])
+        return l(self.pootle_path)
 
     def get_translate_url(self, **kwargs):
         lang, proj, dir, fn = split_pootle_path(self.pootle_path)

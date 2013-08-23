@@ -20,7 +20,8 @@
 
 from django.utils.translation import ugettext_lazy as _, ungettext
 
-from pootle_misc.stats import get_raw_stats, stats_descriptions
+from .stats import get_raw_stats, stats_descriptions
+from .baseurl import l
 
 
 HEADING_CHOICES = [
@@ -85,7 +86,7 @@ def make_generic_item(path_obj, action):
     try:
         stats = get_raw_stats(path_obj, include_suggestions=True)
         info = {
-            'href': action,
+            'href': l(action),
             'href_all': path_obj.get_translate_url(),
             'href_todo': path_obj.get_translate_url(state='incomplete'),
             'href_sugg': path_obj.get_translate_url(state='suggestions'),
@@ -104,7 +105,7 @@ def make_generic_item(path_obj, action):
         info.update(stats_descriptions(stats))
     except IOError, e:
         info = {
-            'href': action,
+            'href': l(action),
             'title': path_obj.name,
             'errortooltip': e.strerror,
             'data': {'errors': 1},
@@ -144,7 +145,7 @@ def get_children(translation_project, directory):
     parent_dir = directory.parent
 
     if not (parent_dir.is_language() or parent_dir.is_project()):
-        parent = [{'title': u'..', 'href': parent_dir}]
+        parent = [{'title': u'..', 'href': l(parent_dir.pootle_path)}]
 
     directories = [make_directory_item(child_dir)
                    for child_dir in directory.child_dirs.iterator()]
