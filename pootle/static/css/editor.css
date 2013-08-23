@@ -2,7 +2,7 @@
  * TRANSLATE PAGE
  */
 
-#tptranslate #content
+#main-translate #content
 {
     margin: 1em 0 0;
 }
@@ -250,9 +250,14 @@ tr.edit-row.with-ctx
     background-color: #dbe3e4;
 }
 
-.delimiter-row
+.delimiter-row td
 {
-    background-color: #e5f3f8;
+    padding: 0;
+}
+
+.delimiter-row-content-wrapper
+{
+    border-bottom: 2px dotted rgba(0,0,0,0.4);
 }
 
 /* Context */
@@ -409,13 +414,58 @@ div.translate-container
     border-radius: 5px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
     background-color: #f1f7f8;
+    overflow: hidden;
     clear: both;
+}
+
+div.unit-path
+{
+    background: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 5px 20px;
+    color: rgba(255, 255, 255, 0.2);
+
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+div.unit-path li
+{
+    display: inline-block;
+    margin-right: 1em;
+}
+
+div.unit-path li:after
+{
+    content: '►';
+}
+
+div.unit-path li:last-child:after
+{
+    content: '';
+}
+
+div.unit-path li span.content-wrapper
+{
+    display: inline-block;
+    margin-right: 1em;
+    color: #fff;
+}
+
+div.unit-path li a
+{
+    color: #cff;
+    filter: alpha(opacity=80);
+    opacity: .8;
 }
 
 div.translate-left,
 div.translate-right
 {
-    margin-top: 1em;
+    margin-top: 2em;
 }
 
 div.translate-left
@@ -429,7 +479,7 @@ div.translate-middle
     display: inline-block;
     vertical-align: top;
     width: 50%;
-    margin: 0.5em auto;
+    margin: 1em auto 0.5em;
     position: relative;
 }
 
@@ -467,9 +517,10 @@ div.language-name
     color: #130f30;
 }
 
-div.alternative
+div.source-language.alternative
 {
     color: #777;
+    margin-bottom: 2em;
 }
 
 table td.translate-original,
@@ -1089,6 +1140,7 @@ table.suggest-mode .translate-buttons-block input.submit
 {
     text-align: center;
     font-style: italic;
+    white-space: nowrap;
 }
 
 .translate-fuzzy-block label
