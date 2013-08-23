@@ -320,7 +320,7 @@ class ProjectIndexView(view_handler.View):
             'feed_path': directory.pootle_path[1:],
             'action_groups': actions,
             'action_output': action_output,
-            'tp_tags': translation_project.tags.all(),
+            'tp_tags': translation_project.tags.all().order_by('name'),
             'can_edit': can_edit,
         })
 
@@ -397,7 +397,7 @@ def ajax_remove_tag_from_tp(request, translation_project, tag):
 def _add_tag(request, translation_project, tag):
     translation_project.tags.add(tag)
     context = {
-        'tp_tags': translation_project.tags.all(),
+        'tp_tags': translation_project.tags.all().order_by('name'),
         'language': translation_project.language,
         'project': translation_project.project,
         'can_edit': check_permission('administrate', request),

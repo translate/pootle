@@ -80,7 +80,7 @@ def make_language_item(request, translation_project):
         'title': tr_lang(translation_project.language.fullname),
         'stats': project_stats,
         'lastactivity': get_last_action(translation_project),
-        'tags': translation_project.tags.all(),
+        'tags': translation_project.tags.all().order_by('name'),
         'pk': translation_project.pk,
         'tooltip': _('%(percentage)d%% complete', tooltip_dict),
     }
@@ -200,7 +200,7 @@ def ajax_remove_tag_from_tp_in_project(request, tp_id, tag):
 def _add_tag(request, translation_project, tag):
     translation_project.tags.add(tag)
     context = {
-        'tp_tags': translation_project.tags.all(),
+        'tp_tags': translation_project.tags.all().order_by('name'),
         'tp_id': translation_project.pk,
     }
     response = render_to_response('project/xhr_tags_list.html',
