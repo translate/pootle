@@ -111,7 +111,6 @@ def overview(request, language):
                                    "projects": projectcount,
                                    "average": average}),
         },
-        'feed_path': '%s/' % language.code,
         'topstats': topstats,
         'can_edit': can_edit,
         'table': table,
@@ -192,6 +191,5 @@ def language_admin(request, language):
     template_vars = {
         "language": language,
         "directory": language.directory,
-        "feed_path": '%s/' % language.code,
     }
     return admin_permissions(request, language.directory, "language/language_admin.html", template_vars)

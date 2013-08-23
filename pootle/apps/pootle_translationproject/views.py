@@ -62,7 +62,6 @@ def admin_permissions(request, translation_project):
         "project": project,
         "language": language,
         "directory": translation_project.directory,
-        "feed_path": translation_project.pootle_path[1:],
     }
 
     return admin_perms(request, translation_project.directory,
@@ -227,7 +226,6 @@ def overview(request, translation_project, dir_path, filename=None):
         'path_summary': path_summary,
         'stats': path_stats,
         'topstats': gentopstats_translation_project(translation_project),
-        'feed_path': directory.pootle_path[1:],
         'action_groups': actions,
         'can_edit': can_edit,
     }

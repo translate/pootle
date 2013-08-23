@@ -207,8 +207,6 @@ def edit(request, template, model_class, model_args={},
         template_vars['source_language'] = model_args['source_language']
     if 'directory' in model_args:
         template_vars['directory'] = model_args['directory']
-    if 'feed_path' in model_args:
-        template_vars["feed_path"] = model_args['feed_path']
 
     return render_to_response(template, template_vars,
                               context_instance=RequestContext(request))

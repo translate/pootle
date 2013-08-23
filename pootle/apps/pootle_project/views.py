@@ -288,7 +288,6 @@ def project_admin_permissions(request, project):
     template_vars = {
         "project": project,
         "directory": project.directory,
-        "feed_path": project.pootle_path[1:],
     }
 
     return admin_permissions(request, project.directory,
