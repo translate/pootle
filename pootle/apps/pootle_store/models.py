@@ -198,12 +198,11 @@ class UnitManager(RelatedManager):
         return self.get(unitid_hash=unitid_hash,
                         store__pootle_path=pootle_path)
 
-    def get_for_path(self, pootle_path, profile, permission_code='view'):
+    def get_for_path(self, pootle_path, profile):
         """Returns units that fall below the `pootle_path` umbrella.
 
         :param pootle_path: An internal pootle path.
         :param profile: The user profile who is accessing the units.
-        :param permission_code: The permission code to check units for.
         """
         lang, proj, dir_path, filename = split_pootle_path(pootle_path)
 
@@ -226,16 +225,6 @@ class UnitManager(RelatedManager):
             units_qs = units_qs.filter(
                 store__pootle_path__startswith=pootle_path,
             )
-
-        # Only do permission checking for non-superusers
-        if not profile.user.is_superuser:
-            # XXX: Can we find a better query to check for permissions?
-            perms_lookup = {
-                'store__parent__permission_sets__profile': profile,
-                'store__parent__permission_sets__'
-                    'positive_permissions__codename': permission_code,
-            }
-            units_qs = units_qs.filter(**perms_lookup)
 
         return units_qs
 
