@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -21,10 +22,15 @@
 import re
 
 from django import forms
-from djblets.siteconfig.forms import SiteSettingsForm
 from django.utils.translation import ugettext_lazy as _
 
+from djblets.siteconfig.forms import SiteSettingsForm
+
 from pootle_misc.siteconfig import load_site_config
+
+
+LANGCODE_RE = re.compile("^[a-z]{2,}([_-][a-z]{2,})*(@[a-z0-9]+)?$",
+                         re.IGNORECASE)
 
 
 class GeneralSettingsForm(SiteSettingsForm):
@@ -37,7 +43,8 @@ class GeneralSettingsForm(SiteSettingsForm):
 
     DESCRIPTION = forms.CharField(
         label=_("Description"),
-        help_text=_("The description and instructions shown on the front page and about page. Be sure to use valid HTML."),
+        help_text=_('The description and instructions shown on the front '
+                    'page and about page. Be sure to use valid HTML.'),
         max_length=8192,
         required=True,
         widget=forms.Textarea,
@@ -51,7 +58,6 @@ class GeneralSettingsForm(SiteSettingsForm):
         load_site_config()
 
 
-LANGCODE_RE = re.compile("^[a-z]{2,}([_-][a-z]{2,})*(@[a-z0-9]+)?$", re.IGNORECASE)
 class MyLanguageAdminForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
@@ -60,7 +66,9 @@ class MyLanguageAdminForm(forms.ModelForm):
             "js-select2 select2-nplurals"
 
     def clean_code(self):
-        if not self.cleaned_data['code'] == 'templates' and not LANGCODE_RE.match(self.cleaned_data['code']):
-            raise forms.ValidationError(_('Language code does not follow the ISO convention'))
+        if (not self.cleaned_data['code'] == 'templates' and
+            not LANGCODE_RE.match(self.cleaned_data['code'])):
+            raise forms.ValidationError(
+                _('Language code does not follow the ISO convention')
+            )
         return self.cleaned_data["code"]
-
