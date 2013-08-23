@@ -166,9 +166,10 @@ def manage_store(request, template_vars, language, term_store):
     # terminology editing working. When the schema can be changed again this
     # exclusion should be removed and change the schema accordingly.
 
+
 @get_path_obj
 @permission_required('administrate')
-def manage(request, translation_project, path=None):
+def manage(request, translation_project):
     template_vars = {
         "translation_project": translation_project,
         "language": translation_project.language,
@@ -177,15 +178,6 @@ def manage(request, translation_project, path=None):
         "directory": translation_project.directory,
         }
     if translation_project.project.is_terminology:
-        if path:
-            try:
-                path = translation_project.pootle_path + path
-                store = Store.objects.get(pootle_path=path)
-                return manage_store(request, template_vars, translation_project.language, store)
-            except Store.DoesNotExist:
-                # FIXME   flash message and show list?
-                pass
-
         # which file should we edit?
         stores = list(Store.objects.filter(translation_project=translation_project))
         if len(stores) == 1:
