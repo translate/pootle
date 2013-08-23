@@ -256,14 +256,14 @@ class PootleProfile(models.Model):
                     {
                         'id': 'suggestions-pending',
                         'count': self.pending_suggestion_count(tp),
-                        'url': tp.get_translate_url('user-suggestions',
+                        'url': tp.get_translate_url(state='user-suggestions',
                                                     user=username),
                     },
                     {
                         'id': 'suggestions-accepted',
                         'count': self.accepted_suggestion_count(tp),
                         'url': tp.get_translate_url(
-                            'user-suggestions-accepted',
+                            state='user-suggestions-accepted',
                             user=username,
                         ),
                     },
@@ -271,21 +271,21 @@ class PootleProfile(models.Model):
                         'id': 'suggestions-rejected',
                         'count': self.rejected_suggestion_count(tp),
                         'url': tp.get_translate_url(
-                            'user-suggestions-rejected',
+                            state='user-suggestions-rejected',
                             user=username,
                         ),
                     },
                     {
                         'id': 'submissions-total',
                         'count': self.total_submission_count(tp),
-                        'url': tp.get_translate_url('user-submissions',
-                                                      user=username),
+                        'url': tp.get_translate_url(state='user-submissions',
+                                                    user=username),
                     },
                     {
                         'id': 'submissions-overwritten',
                         'count': self.overwritten_submission_count(tp),
                         'url': tp.get_translate_url(
-                            'user-submissions-overwritten',
+                            state='user-submissions-overwritten',
                             user=username,
                         ),
                     },
