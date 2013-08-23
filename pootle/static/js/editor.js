@@ -988,7 +988,7 @@
     _.each(unitGroups, function (unitGroup) {
       // Don't display a delimiter row if all units have the same origin
       if (groupSize !== 1) {
-        rows.push('<tr class="delimiter-row"><td colspan="2"></td></tr>');
+        rows.push('<tr class="delimiter-row"><td colspan="2"><div class="delimiter-row-content-wrapper"></div></td></tr>');
       }
 
       for (i=0; i<unitGroup.length; i++) {
