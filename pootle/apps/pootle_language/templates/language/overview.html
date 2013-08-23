@@ -9,47 +9,16 @@
 {% block search %}{% render_search %}{% endblock %}
 
 {% block content %}
-<div class="module first">
-  <div class="hd">
-    <h2>{{ language.summary }}</h2>
-  </div>
 
-  <div class="bd">
-    {% display_table table %}
-    {% include "translation_summary_legend.html" %}
-  </div>
-
+<div class="hd">
+  <h2>{{ language.summary }}</h2>
 </div>
 
-<div class="module">
-  {% if language.description or can_edit %}
-  <div class="hd">
-    <h2>{% trans "Description" %}</h2>
-  </div>
-
-  <div id="overview-description" class="bd">
-
-    <div id="overview-description-language"
-      class="markup-body{% if can_edit %} js-ctx-meta-desc{% endif %}">
-    {% if language.description %}
-      {{ language.description }}
-    {% else %}
-      <p class="placeholder muted">{% trans "No description set." %}</p>
-    {% endif %}
-    {% if can_edit %}
-      {% include "admin/edit_links.html" %}
-    {% endif %}
-    </div>
-  {% if can_edit %}
-    <div class="settings-container js-edit-ctx-meta-desc" style="display:none;">
-      {% url 'pootle-language-admin-settings' language.code as action_url %}
-      {% include "admin/general_settings_form.html" with form_action=action_url %}
-    </div>
-  {% endif %}
-
-  </div>
-  {% endif %}
+<div class="bd">
+  {% display_table table %}
+  {% include "translation_summary_legend.html" %}
 </div>
+
 {% endblock content %}
 
 {% block postcontent %}

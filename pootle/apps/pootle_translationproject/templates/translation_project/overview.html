@@ -8,123 +8,34 @@
 {% block search %}{% render_search %}{% endblock %}
 
 {% block content %}
-<div class="module first">
-  <div class="hd">
-    {% cache settings.CACHE_TIMEOUT path_trail resource_obj.id %}
-    <h2><span><a href="{{ translation_project.pootle_path|l }}">{{ project.code }}</a> / {{ resource_obj|trail:"/" }}</span></h2>
-    {% endcache %}
-  </div>
-  <div id="path-summary" class="bd">
-    <ul>
-      {% for summary_item in path_summary %}
-      <li>{{ summary_item|safe }}</li>
-      {% endfor %}
-    </ul>
-    {% progressbar stats stats.total.words %}
-    <div id="js-path-summary-more" data-loaded="false" data-collapsed="true">
-    </div>
-  </div>
 
-  {% if table %}
-  <div class="hd">
-    <h2>{% trans "Files and Subfolders" %}</h2>
+<div class="hd">
+  {% cache settings.CACHE_TIMEOUT path_trail resource_obj.id %}
+  <h2><span><a href="{{ translation_project.pootle_path|l }}">{{ project.code }}</a> / {{ resource_obj|trail:"/" }}</span></h2>
+  {% endcache %}
+</div>
+<div id="path-summary" class="bd">
+  <ul>
+    {% for summary_item in path_summary %}
+    <li>{{ summary_item|safe }}</li>
+    {% endfor %}
+  </ul>
+  {% progressbar stats stats.total.words %}
+  <div id="js-path-summary-more" data-loaded="false" data-collapsed="true">
   </div>
-  <div class="bd">
-    <div class="files-subfolders" lang="{{ LANGUAGE_CODE }}">
-      {% display_table table %}
-    </div>
-  </div>
-  {% endif %}
 </div>
 
-<div class="module">
-  {% if action_groups %}
-  <div class="hd">
-    <h2>{% trans "Actions" %}</h2>
-  </div>
-  <div id="overview-actions" class="bd">
-    {% for action_group in action_groups %}
-    <div id="overview-actions-{{ action_group.group }}"
-         class="overview-actions-container{% if forloop.first %} first{% endif %}">
-      <div class="overview-actions-group">{{ action_group.group_display }}</div>
-      <div class="overview-actions-content">
-        <ul>
-        {% for action in action_group.actions %}
-        <li class="{% cycle "odd" "even" %}">
-          <a href="{{ action.href }}" title="{{ action.tooltip }}"
-          {% if action.class %}class="{{ action.class }}"{% endif %}>
-          <i class="{{ action.icon }}"></i> <span>{{ action.text }}</span></a>
-        </li>
-        {% endfor %}
-        </ul>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-  {% endif %}
-
-  {% if translation_project.description or project.description or language.description or can_edit %}
-  <div class="hd">
-    <h2>{% trans "Description" %}</h2>
-  </div>
-
-  <div id="overview-description" class="bd">
-
-    <div id="overview-description-tp"
-      class="markup-body{% if can_edit %} js-ctx-meta-desc{% endif %}">
-    {% if translation_project.description %}
-      {{ translation_project.description }}
-    {% else %}
-      <p class="placeholder muted">{% trans "No description set." %}</p>
-    {% endif %}
-    {% if can_edit %}
-      {% include "admin/edit_links.html" %}
-    {% endif %}
-    </div>
-  {% if can_edit %}
-    <div class="settings-container js-edit-ctx-meta-desc" style="display:none;">
-      {% url 'pootle-tp-admin-settings' language.code project.code as action_url %}
-      {% include "admin/general_settings_form.html" with form_action=action_url %}
-    </div>
-  {% endif %}
-
-    {% if project.description %}
-    <a class="overview-description-toggle js-toggle" href="#overview-description-project">{% blocktrans with project.fullname as project %}{{ project }} project information{% endblocktrans %}</a>
-    <div id="overview-description-project" class="markup-body hide">
-      {{ project.description }}
-    </div>
-    {% endif %}
-
-    {% if language.description %}
-    <a class="overview-description-toggle js-toggle" href="#overview-description-language">{% blocktrans with language.name as language %}{{ language }} language information{% endblocktrans %}</a>
-    <div id="overview-description-language" class="markup-body hide">
-      {{ language.description }}
-    </div>
-    {% endif %}
-
-  </div>
-  {% endif %}
+{% if table %}
+<div class="hd">
+  <h2>{% trans "Files and Subfolders" %}</h2>
 </div>
-
-{% if upload %}
-<div id="upload" class="form popup-inline mfp-hide" lang="{{ LANGUAGE_CODE }}">
-  <h2>{{ upload.form.title }}</h2>
-  <form action="" method="post" class="upload" id="uploadform"
-    name="uploadform" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.non_field_errors }}
-    {% for field in upload.form %}
-    <p {% if field.help_text %}title="{{ field.help_text }}"{% endif %}>
-      {{ field.label_tag }} {{ field }}
-      {{ field.errors }}
-    </p>
-    {% endfor %}
-    <p class="buttons">
-      {{ upload.render_submits }}
-    </p>
-  </form>
+<div class="bd">
+  <div class="files-subfolders" lang="{{ LANGUAGE_CODE }}">
+    {% display_table table %}
+  </div>
 </div>
 {% endif %}
+
 {% endblock content %}
 
 {% block postcontent %}
