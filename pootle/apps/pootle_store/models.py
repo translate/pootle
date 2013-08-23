@@ -316,14 +316,6 @@ class Unit(models.Model, base.TranslationUnit):
 
         super(Unit, self).save(*args, **kwargs)
 
-        if (settings.AUTOSYNC and self.store.file and
-            self.store.state >= PARSED and
-            (self._target_updated or self._source_updated)):
-            #FIXME: last translator information is lost
-            self.sync(self.getorig())
-            self.store.update_store_header()
-            self.store.file.savestore()
-
         if (self.store.state >= CHECKED and
             (self._source_updated or self._target_updated)):
             #FIXME: are we sure only source and target affect quality checks?
@@ -811,12 +803,6 @@ class Unit(models.Model, base.TranslationUnit):
         # when saving the unit.
         suggestion.delete()
         self.save()
-
-        if settings.AUTOSYNC and self.file:
-            #FIXME: update alttrans
-            self.sync(self.getorig())
-            self.store.update_store_header(profile=suggestion.user)
-            self.file.savestore()
 
         return True
 
