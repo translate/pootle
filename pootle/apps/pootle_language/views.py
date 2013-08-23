@@ -18,6 +18,7 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
@@ -135,9 +136,10 @@ def language_settings_edit(request, language):
 
         response["description"] = the_html
 
+    action_url = reverse('pootle-language-admin-settings', args=[language.code])
     context = {
         "form": form,
-        "form_action": language.pootle_path + "edit_settings.html",
+        "form_action": action_url,
     }
     t = loader.get_template('admin/general_settings_form.html')
     c = RequestContext(request, context)

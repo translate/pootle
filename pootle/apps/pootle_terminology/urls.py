@@ -22,10 +22,11 @@ from django.conf.urls import patterns, url
 
 
 urlpatterns = patterns('pootle_terminology.views',
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
-        r'terminology_extract.html',
-        'extract'),
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
-        r'terminology_manage.html',
-        'manage'),
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)'
+        r'/terminology/extract/$',
+        'extract',
+        name='pootle-terminology-extract'),
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/terminology/',
+        'manage',
+        name='pootle-terminology-manage'),
 )

@@ -43,6 +43,7 @@ from translate.filters.decorators import Category
 from pootle.core.decorators import (get_path_obj, get_resource_context,
                                     permission_required)
 from pootle.core.helpers import get_filter_name, get_translation_context
+from pootle.core.url_helpers import split_pootle_path
 from pootle.scripts.actions import (EXTDIR, StoreAction,
                                     TranslationProjectAction)
 from pootle_app.models.permissions import check_permission
@@ -533,7 +534,7 @@ def overview(request, translation_project, dir_path, filename=None,
 
         if goal is None:
             edit_form = DescriptionForm(instance=translation_project)
-            edit_form_action = reverse('pootle-tp-edit-settings',
+            edit_form_action = reverse('pootle-tp-admin-settings',
                                        args=[language.code, project.code])
         else:
             edit_form = GoalForm(instance=goal)
@@ -772,11 +773,11 @@ def edit_settings(request, translation_project):
         else:
             response["description"] = (u'<p class="placeholder muted">%s</p>' %
                                        _(u"No description yet."))
+
+    path_args = split_pootle_path(translation_project.pootle_path)[:2]
     context = {
         "form": form,
-        "form_action": reverse('pootle-tp-edit-settings',
-                               args=[translation_project.language.code,
-                                     translation_project.project.code]),
+        "form_action": reverse('pootle-tp-admin-settings', args=path_args),
     }
     t = loader.get_template('admin/general_settings_form.html')
     c = RequestContext(request, context)

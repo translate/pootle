@@ -5,6 +5,6 @@
   <li><a href='{% url 'pootle-language-overview' language.code %}notices' class="languagenews" title="{% trans 'Language news' %}">{% trans "News" %}{% if user.is_superuser or request.permissions.administrate %} <span class="admin">+</span>{%endif%}</a></li>
   <li><a href='{% url 'pootle-language-translate' language.code %}' class="languagetranslate" title="{% trans 'Translate this language' %}">{% trans "Translate" %}</a></li>
   {% if user.is_superuser or request.permissions.administrate %}
-  <li><a href='{% url 'pootle-language-admin' language.code %}' class="languageadmin admintab" title="{% trans 'Administrate your language permissions' %}">{% trans "Permissions" %}</a></li>
+  <li><a href="{% url 'pootle-language-admin-permissions' language.code %}" class="languageadmin admintab" title="{% trans 'Administrate your language permissions' %}">{% trans "Permissions" %}</a></li>
   {% endif %}
 </ul>

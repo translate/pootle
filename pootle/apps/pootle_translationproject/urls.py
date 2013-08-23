@@ -25,10 +25,14 @@ from django.conf.urls import patterns, url
 
 urlpatterns = patterns('pootle_translationproject.views',
     # Admin views
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
-        r'((.*/)*)admin_permissions.html$',
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)'
+        r'/admin/permissions/',
         'admin_permissions',
         name='pootle-tp-admin-permissions'),
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)'
+        r'/admin/settings/$',
+        'edit_settings',
+        name='pootle-tp-admin-settings'),
 
     # Management actions
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/rescan/?$',
@@ -53,10 +57,6 @@ urlpatterns = patterns('pootle_translationproject.views',
         name='pootle-vcs-update'),
 
     # XHR views
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
-        r'edit_settings.html$',
-        'edit_settings',
-        name='pootle-tp-edit-settings'),
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/summary/'
         r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'path_summary',
@@ -101,7 +101,8 @@ urlpatterns = patterns('pootle_translationproject.views',
         name='pootle-tp-goal-drill-down'),
 
     # Overview
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
+        r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'overview',
         name='pootle-tp-overview'),
 

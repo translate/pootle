@@ -64,7 +64,8 @@
       {% include "admin/edit_links.html" %}
     </div>
     <div class="settings-container js-edit-ctx-meta-desc" style="display:none;">
-      {% include "admin/general_settings_form.html" with form_action="edit_settings.html" %}
+      {% url 'pootle-project-admin-settings' project.code as action_url %}
+      {% include "admin/general_settings_form.html" with form_action=action_url %}
     {% endif %}
     </div>
   </div>

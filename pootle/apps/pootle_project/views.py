@@ -32,6 +32,7 @@ from taggit.models import Tag
 
 from pootle.core.decorators import get_path_obj, permission_required
 from pootle.core.helpers import get_translation_context
+from pootle.core.url_helpers import split_pootle_path
 from pootle.i18n.gettext import tr_lang
 from pootle_app.models import Directory
 from pootle_app.models.permissions import check_permission
@@ -283,9 +284,10 @@ def project_settings_edit(request, project):
 
         response["description"] = the_html
 
+    action_url = reverse('pootle-project-admin-settings', args=[project.code])
     context = {
         "form": form,
-        "form_action": project.pootle_path + "edit_settings.html",
+        "form_action": action_url,
     }
     t = loader.get_template('admin/general_settings_form.html')
     c = RequestContext(request, context)
@@ -338,14 +340,14 @@ def project_admin(request, current_project):
         }
     }
 
-    link = lambda instance: '<a href="%s">%s</a>' % (
-            l(instance.pootle_path + 'admin_permissions.html'),
-            instance.language,
-    )
+    def generate_link(tp):
+        path_args = split_pootle_path(tp.pootle_path)[:2]
+        perms_url = reverse('pootle-tp-admin-permissions', args=path_args)
+        return '<a href="%s">%s</a>' % (perms_url, tp.language)
 
     return util.edit(request, 'project/project_admin.html', TranslationProject,
-                     model_args, link, linkfield="language", queryset=queryset,
-                     can_delete=True, form=tp_form_class,
+                     model_args, generate_link, linkfield="language",
+                     queryset=queryset, can_delete=True, form=tp_form_class,
                      formset=TranslationProjectFormSet,
                      exclude=('description',))
 
