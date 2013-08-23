@@ -27,6 +27,6 @@ from pootle_app.forms import MyLanguageAdminForm
 
 @admin_required
 def view(request):
-    return util.edit(request, 'admin/admin_general_languages.html', Language,
+    return util.edit(request, 'admin/languages.html', Language,
                      link='/%s/admin.html', form=MyLanguageAdminForm,
                      exclude='description', can_delete=True)

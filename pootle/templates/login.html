@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% load i18n assets baseurl locale %}
+
+{% block title %}{% trans "Login" %} | {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Login" %}</li>
+{% endblock %}
+
+{% block extra_head %}
+    {% assets "css_login" %}
+        <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
+    {% endassets %}
+    {% assets "js_login" %}
+        <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="form evernote">
+        <form method="post" action="{% url evernote_login %}">
+        {% csrf_token %}
+        <input type="submit" value="Login via Evernote"></input>
+        <input type="hidden" name="next" value="{{ next }}" />
+        </form>
+    </div>
+    <h2 class="formlink pootle">{% trans "or" %}&nbsp;
+        {# FIXME: Set the event handler in js and not in the markup #}
+        <a href="#" onclick="pootle_login(); return false;">
+            {% trans "Login using your existing Pootle account" %}
+        </a>
+    </h2>
+
+
+<div class="login{% if not form.errors %} hidden{% endif %}">
+    <div id="login" class="form" dir="{% locale_dir %}">
+    <h2>Login</h2>
+    <form method="post" action='{{ "/accounts/login/"|l }}' name="loginform" id="loginform">
+    {% csrf_token %}
+    {% if form.errors %}
+        <div class="error">
+        {% trans "Your username and password didn't match. Please try again." %}
+        </div>
+    {% endif %}
+            <p>
+                {{form.username.label_tag}}:
+                {{form.username}}
+            </p>
+            <p>
+                {{form.password.label_tag}}:
+                {{form.password}}
+            </p>
+    <p class="buttons">
+        <input type="submit" class="login" name="login" value="{% trans 'Login' %}" />
+        <input type="hidden" name="next" value="{{ next }}" />
+    </p>
+    </form>
+    </div>
+    <h2 class="formlink evernote">
+        <a href='{{ "/accounts/password/reset/"|l }}'>
+            {% trans "Lost your Password?" %}
+        </a>
+    </h2>
+</div>
+{% endblock content %}

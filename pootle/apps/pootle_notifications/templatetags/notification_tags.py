@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -27,10 +28,10 @@ from pootle_notifications.models import Notice
 
 register = template.Library()
 
-@register.inclusion_tag('latest_news_snippet.html', takes_context=True)
+
+@register.inclusion_tag('notifications/_latest.html', takes_context=True)
 def render_latest_news(context, path, num):
     try:
-
         directory = Directory.objects.get(pootle_path='/%s' % path)
         user = context['user']
         can_view = check_profile_permission(get_profile(user), "view", directory)

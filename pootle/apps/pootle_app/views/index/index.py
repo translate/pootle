@@ -128,5 +128,5 @@ def view(request, root_dir):
     visible_langs = [l for l in languages if l['stats']['total']['words'] != 0]
     templatevars['moreprojects'] = (len(projects) > len(visible_langs))
 
-    return render_to_response('index/index.html', templatevars,
+    return render_to_response('home/home.html', templatevars,
                               RequestContext(request))

@@ -1,0 +1,13 @@
+{% extends "layout.html"  %}
+
+{% load i18n baseurl %}
+
+{% block title %}{% trans "Projects" %} | {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}{% include 'core/_breadcrumbs.html' %}
+{% endblock %}
+
+{% block tabs %}
+{% include "projects/_tabs.html" %}
+{% endblock %}

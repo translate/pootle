@@ -54,7 +54,8 @@ def profile_edit(request):
     excluded = ('user',)
 
     return edit_profile(request,
-                        form_class=pootle_profile_form_factory(excluded))
+                        form_class=pootle_profile_form_factory(excluded),
+                        template_name='profiles/settings/profile.html')
 
 
 @login_required
@@ -71,7 +72,7 @@ def edit_personal_info(request):
 
     template_vars = {"form": user_form}
 
-    return render_to_response('profiles/edit_personal.html', template_vars,
+    return render_to_response('profiles/settings/personal.html', template_vars,
                               context_instance=RequestContext(request))
 
 
@@ -111,7 +112,7 @@ def login(request):
             'next': next,
             }
 
-        return render_to_response("index/login.html", context,
+        return render_to_response("login.html", context,
                                   context_instance=RequestContext(request))
 
 

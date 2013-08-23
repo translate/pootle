@@ -145,7 +145,8 @@ def extract(request, translation_project):
         path_args = split_pootle_path(translation_project.pootle_path)[:2]
         return redirect(reverse('pootle-terminology-manage', args=path_args))
 
-    return render_to_response("terminology/extract.html", ctx,
+    template_name = 'translation_projects/terminology/extract.html'
+    return render_to_response(template_name, ctx,
                               context_instance=RequestContext(request))
 
 
@@ -197,8 +198,9 @@ def manage_store(request, ctx, language, term_store):
     # exclusion should be removed and change the schema accordingly.
     excluded_fields = ['state', 'target_f', 'id', 'translator_comment',
                        'submitted_by', 'commented_by']
+    template_name = 'translation_projects/terminology/manage.html'
 
-    return util.edit(request, 'terminology/manage.html', Unit, ctx,
+    return util.edit(request, template_name, Unit, ctx,
                      None, None, queryset=term_store.units, can_delete=True,
                      form=TermUnitForm, exclude=excluded_fields)
 
@@ -230,8 +232,9 @@ def manage(request, translation_project):
                 store.nice_name = store.pootle_path[path_length:]
 
             ctx['stores'] = stores
-            return render_to_response("terminology/stores.html", ctx,
-                                  context_instance=RequestContext(request))
+            template_name = 'translation_projects/terminology/stores.html'
+            return render_to_response(template_name, ctx,
+                                      context_instance=RequestContext(request))
 
     try:
         terminology_filename = get_terminology_filename(translation_project)
@@ -242,5 +245,6 @@ def manage(request, translation_project):
         return manage_store(request, ctx, translation_project.language,
                             term_store)
     except Store.DoesNotExist:
-        return render_to_response("terminology/manage.html", ctx,
+        template_name = 'translation_projects/terminology/manage.html'
+        return render_to_response(template_name, ctx,
                                   context_instance=RequestContext(request))

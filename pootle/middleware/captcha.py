@@ -239,12 +239,12 @@ class CaptchaMiddleware:
 
             ec['js_function'] = js_function
 
-            t = loader.get_template('captcha-xhr.html')
+            t = loader.get_template('core/xhr_captcha.html')
             c = RequestContext(request, ec)
             json = {'captcha': t.render(c)}
 
             response = simplejson.dumps(json)
             return HttpResponse(response, mimetype="application/json")
         else:
-            return render_to_response('captcha.html', ec,
+            return render_to_response('core/captcha.html', ec,
                                       context_instance=RequestContext(request))

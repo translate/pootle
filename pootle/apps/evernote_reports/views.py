@@ -60,7 +60,7 @@ def evernote_reports(request, context={}):
         )
     })
 
-    return render_to_response('evernote/reports.html', cxt,
+    return render_to_response('admin/reports.html', cxt,
                               context_instance=RequestContext(request))
 
 

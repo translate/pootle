@@ -1,0 +1,52 @@
+{% extends "admin/base.html" %}
+
+{% load i18n assets store_tags %}
+
+{% block body_id %}evernote_reports{% endblock %}
+
+{% block css %}
+{{ block.super }}
+{% assets "css_reports" %}
+<link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
+{% endassets %}
+{% endblock css %}
+
+{% block scripts_extra %}
+{{ block.super }}
+{% assets "js_reports" %}
+<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+{% endassets %}
+
+<script id="language_user_activity" type="text/template">
+{% include_raw "admin/xhr_language_user_activity.html" %}
+</script>
+
+{% endblock scripts_extra %}
+
+{% block title %}{% trans "Reports" %} | {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Reports" %}</li>
+{% endblock %}
+
+{% block section_body %}
+<div id="reports-container">
+    <div id="reports-form">
+        <input id="reports-user" type="text" placeholder="User"></input>
+        <button id="reports-show">{% trans 'Show' %}</button>
+    </div>
+    <div id="reports-params">
+        <div class="dates">
+            <ul>
+                <li>
+                    <a id="previous-month" href="#">Previous month</a>
+                </li>
+                <li>
+                    <a id="current-month" href="#">Current month</a>
+                </li>
+            <ul>
+        </div>
+    </div>
+    <div id="reports-results"></div>
+</div>
+{% endblock %}

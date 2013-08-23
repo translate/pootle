@@ -183,14 +183,14 @@ def evernote_login_link(request):
             'next': request.REQUEST.get(auth.REDIRECT_FIELD_NAME, ''),
         }
 
-        return render_to_response("evernote/login_link.html", context,
+        return render_to_response("auth/link_with_evernote.html", context,
                                   context_instance=RequestContext(request))
 
 
 @login_required
 def evernote_account_info(request, context={}):
-    return render_to_response('evernote/account_info.html', context,
-                              context_instance=RequestContext(request))
+    return render_to_response('profiles/settings/evernote_account.html',
+                              context, context_instance=RequestContext(request))
 
 
 @login_required

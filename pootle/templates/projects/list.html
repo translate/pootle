@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% load i18n common_tags %}
+
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}{% trans "Projects" %} | {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}{% include 'core/_breadcrumbs.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="module first" lang="{{ LANGUAGE_CODE }}">
+  <div class="hd">
+    <h2>{% trans "Projects" %}</h2>
+  </div>
+  <div class="bd">
+    {% display_table table %}
+  </div>
+
+  {% include "core/_summary_legend.html" %}
+</div>
+{% endblock content %}
+
+{% block postcontent %}
+{% include "core/_top_contributors.html" %}
+{% endblock postcontent %}

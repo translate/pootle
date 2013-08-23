@@ -120,7 +120,7 @@ def overview(request, language):
         from pootle_language.forms import DescriptionForm
         templatevars['form'] = DescriptionForm(instance=language)
 
-    return render_to_response("language/overview.html", templatevars,
+    return render_to_response("languages/overview.html", templatevars,
                               context_instance=RequestContext(request))
 
 @ajax_required
@@ -152,7 +152,7 @@ def language_settings_edit(request, language):
         "form": form,
         "form_action": action_url,
     }
-    t = loader.get_template('admin/general_settings_form.html')
+    t = loader.get_template('admin/_settings_form.html')
     c = RequestContext(request, context)
     response['form'] = t.render(c)
 
@@ -177,7 +177,7 @@ def translate(request, language):
         'language': language,
         'project': project,
 
-        'editor_extends': 'language_base.html',
+        'editor_extends': 'languages/base.html',
         'editor_body_id': 'languagetranslate',
     })
 
@@ -192,4 +192,5 @@ def language_admin(request, language):
         "language": language,
         "directory": language.directory,
     }
-    return admin_permissions(request, language.directory, "language/language_admin.html", template_vars)
+    return admin_permissions(request, language.directory,
+                             'languages/admin/permissions.html', template_vars)

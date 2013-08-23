@@ -23,10 +23,10 @@ import re
 from django import template
 from django.core.exceptions import ObjectDoesNotExist
 try:
-    from django.template.loaders.app_directories import _loader as Loader
+    from django.template.loaders.filesystem import _loader as Loader
 except ImportError:
     # Django 1.5+
-    from django.template.loaders.app_directories import Loader
+    from django.template.loaders.filesystem import Loader
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 

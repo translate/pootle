@@ -65,7 +65,7 @@ def admin_permissions(request, translation_project):
     }
 
     return admin_perms(request, translation_project.directory,
-                       "translation_project/admin_permissions.html",
+                       "translation_projects/admin/permissions.html",
                        template_vars)
 
 
@@ -247,7 +247,7 @@ def overview(request, translation_project, dir_path, filename=None):
         from pootle_translationproject.forms import DescriptionForm
         ctx['form'] = DescriptionForm(instance=translation_project)
 
-    return render_to_response("translation_project/overview.html", ctx,
+    return render_to_response("translation_projects/overview.html", ctx,
                               context_instance=RequestContext(request))
 
 
@@ -266,7 +266,7 @@ def translate(request, translation_project, dir_path, filename):
         'project': project,
         'translation_project': translation_project,
 
-        'editor_extends': 'tp_base.html',
+        'editor_extends': 'translation_projects/base.html',
         'editor_body_id': 'tptranslate',
     })
 
@@ -305,7 +305,7 @@ def export_view(request, translation_project, dir_path, filename=None):
         'filter_extra': filter_extra,
     }
 
-    return render_to_response('translation_project/export_view.html', ctx,
+    return render_to_response('translation_projects/export_view.html', ctx,
                               context_instance=RequestContext(request))
 
 
@@ -335,7 +335,7 @@ def path_summary_more(request, translation_project, dir_path, filename=None):
         'trans_stats': translation_stats,
     }
 
-    return render_to_response('translation_project/xhr-path_summary.html',
+    return render_to_response('translation_projects/xhr_path_summary.html',
                               context, RequestContext(request))
 
 
@@ -370,7 +370,7 @@ def edit_settings(request, translation_project):
         "form": form,
         "form_action": action_url,
     }
-    t = loader.get_template('admin/general_settings_form.html')
+    t = loader.get_template('admin/_settings_form.html')
     c = RequestContext(request, context)
     response['form'] = t.render(c)
 

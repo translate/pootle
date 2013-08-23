@@ -1,0 +1,20 @@
+{% load i18n locale %}
+<table class="sortable stats" id="{{ table.id }}" cellpadding="5"
+cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
+  <thead>
+    <tr>
+      {% for th in table.headings %}
+      <th id="js-stats-{{ th.id }}" class="{{ th.class }}">
+        {{ th.display_name }}
+      </th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody class="stats">
+    {% for item in table.items %}
+    <tr class="item {% cycle 'even' 'odd' %}">
+    {% include "core/_table_row.html" %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

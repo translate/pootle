@@ -40,7 +40,7 @@ def add_widths(stats, progressbar_width):
         (stats['untranslated']['percentage'] * progressbar_width) / 100
 
 
-@register.inclusion_tag('progressbar.html', takes_context=True)
+@register.inclusion_tag('core/progressbar.html', takes_context=True)
 def progressbar(context, cur_stats, total_words=None):
     """Inclusion tag that populates the given ``cur_stats`` stats dictionary
     with the proper widths that the rendering progressbar should have.

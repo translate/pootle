@@ -131,7 +131,7 @@ def overview(request, project):
         from pootle_project.forms import DescriptionForm
         templatevars['form'] = DescriptionForm(instance=project)
 
-    return render_to_response('project/overview.html', templatevars,
+    return render_to_response('projects/overview.html', templatevars,
                               context_instance=RequestContext(request))
 
 
@@ -164,7 +164,7 @@ def project_settings_edit(request, project):
         "form": form,
         "form_action": action_url,
     }
-    t = loader.get_template('admin/general_settings_form.html')
+    t = loader.get_template('admin/_settings_form.html')
     c = RequestContext(request, context)
     response['form'] = t.render(c)
 
@@ -190,7 +190,7 @@ def translate(request, project):
         'language': language,
         'project': project,
 
-        'editor_extends': 'project_base.html',
+        'editor_extends': 'projects/base.html',
         'editor_body_id': 'projecttranslate',
     })
 
@@ -274,10 +274,10 @@ def project_admin(request, current_project):
         perms_url = reverse('pootle-tp-admin-permissions', args=path_args)
         return '<a href="%s">%s</a>' % (perms_url, tp.language)
 
-    return util.edit(request, 'project/project_admin.html', TranslationProject,
-                     model_args, generate_link, linkfield="language",
-                     queryset=queryset, can_delete=True,
-                     form=TranslationProjectForm,
+    return util.edit(request, 'projects/admin/languages.html',
+                     TranslationProject, model_args, generate_link,
+                     linkfield="language", queryset=queryset,
+                     can_delete=True, form=TranslationProjectForm,
                      formset=TranslationProjectFormSet,
                      exclude=('description',))
 
@@ -291,7 +291,7 @@ def project_admin_permissions(request, project):
     }
 
     return admin_permissions(request, project.directory,
-                             "project/admin_permissions.html", template_vars)
+                             "projects/admin/permissions.html", template_vars)
 
 
 @get_path_obj
@@ -312,5 +312,5 @@ def projects_index(request, root):
         'topstats': gentopstats_root(),
     }
 
-    return render_to_response('project/projects.html', templatevars,
+    return render_to_response('projects/list.html', templatevars,
                               RequestContext(request))
