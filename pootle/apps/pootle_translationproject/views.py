@@ -383,14 +383,14 @@ def overview(request, translation_project, dir_path, filename=None):
 
 @ajax_required
 @get_translation_project
-def ajax_remove_tag_from_tp(request, translation_project, tag):
+def ajax_remove_tag_from_tp(request, translation_project, tag_name):
     if not check_permission('administrate', request):
         raise PermissionDenied(_("You do not have rights to remove tags."))
 
     if request.method != 'POST':
         return HttpResponseNotAllowed(['POST'])
 
-    translation_project.tags.remove(tag)
+    translation_project.tags.remove(tag_name)
     return HttpResponse(status=201)
 
 

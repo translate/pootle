@@ -185,7 +185,7 @@ def get_project_base_template_vars(request, project, can_edit):
 
 
 @ajax_required
-def ajax_remove_tag_from_tp_in_project(request, tp_id, tag):
+def ajax_remove_tag_from_tp_in_project(request, tp_id, tag_name):
     if not check_permission('administrate', request):
         raise PermissionDenied(_("You do not have rights to remove tags."))
 
@@ -193,7 +193,7 @@ def ajax_remove_tag_from_tp_in_project(request, tp_id, tag):
         return HttpResponseNotAllowed(['POST'])
 
     translation_project = get_object_or_404(TranslationProject, id=tp_id)
-    translation_project.tags.remove(tag)
+    translation_project.tags.remove(tag_name)
     return HttpResponse(status=201)
 
 
