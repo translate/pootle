@@ -188,7 +188,7 @@ def manage_store(request, template_vars, language, term_store):
 
 @get_path_obj
 @permission_required('administrate')
-def manage(request, translation_project, path=None):
+def manage(request, translation_project):
     template_vars = {
         "translation_project": translation_project,
         "language": translation_project.language,
@@ -197,18 +197,9 @@ def manage(request, translation_project, path=None):
         "directory": translation_project.directory,
     }
     if translation_project.project.is_terminology:
-        if path:
-            try:
-                path = translation_project.pootle_path + path
-                store = Store.objects.get(pootle_path=path)
-                return manage_store(request, template_vars,
-                                    translation_project.language, store)
-            except Store.DoesNotExist:
-                # FIXME   flash message and show list?
-                pass
-
         # Which file should we edit?
-        stores = Store.objects.filter(translation_project=translation_project)
+        stores = list(Store.objects.filter(translation_project=translation_project))
+
         if len(stores) == 1:
             # There is only one, and we're not going to offer file-level
             # activities, so let's just edit the one that is there.

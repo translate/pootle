@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009, 2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -26,8 +27,5 @@ urlpatterns = patterns('pootle_terminology.views',
         'extract'),
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
         r'terminology_manage.html',
-        'manage'),
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
-        r'(?P<path>.*?)/terminology_manage.html',
         'manage'),
 )
