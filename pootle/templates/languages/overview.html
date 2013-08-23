@@ -9,46 +9,16 @@
 {% block search %}{% render_search %}{% endblock %}
 
 {% block content %}
-<div class="module first">
-  <div class="hd">
-    <h2 id="summary">{{ language.summary }}</h2>
-  </div>
 
-  <div class="bd">
-    {% display_table table %}
-    {% include "core/_summary_legend.html" %}
-  </div>
-
+<div class="hd">
+  <h2>{{ language.summary }}</h2>
 </div>
 
-<div class="module">
-  {% if language.description or can_edit %}
-  <div class="hd">
-    <h2>{% trans "Instruction" %}</h2>
-  </div>
-
-  <div id="overview-description" class="bd">
-
-    <div id="overview-description-language"
-      class="markup-body{% if can_edit %} js-ctx-meta-desc{% endif %}">
-    {% if language.description %}
-      {{ language.description }}
-    {% else %}
-      <p class="placeholder muted">{% trans "No description set." %}</p>
-    {% endif %}
-    {% if can_edit %}
-      {% include "admin/_settings_edit.html" %}
-    {% endif %}
-    </div>
-  {% if can_edit %}
-    <div class="settings-container js-edit-ctx-meta-desc" style="display:none;">
-      {% include "admin/_settings_form.html" %}
-    </div>
-  {% endif %}
-
-  </div>
-  {% endif %}
+<div class="bd">
+  {% display_table table %}
+  {% include "core/_summary_legend.html" %}
 </div>
+
 {% endblock content %}
 
 {% block postcontent %}
