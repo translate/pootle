@@ -93,7 +93,7 @@ def view(request):
 
     return util.edit(
             request,
-            'admin/admin_general_projects.html',
+            'admin/projects.html',
             Project,
             link='/projects/%s/admin.html',
             form=ProjectForm,

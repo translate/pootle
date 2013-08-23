@@ -670,14 +670,14 @@ def timeline(request, unit):
         # the unit on screen at the time of receiving this, so we add the uid.
         json = {'uid': unit.id}
 
-        t = loader.get_template('unit/xhr-timeline.html')
+        t = loader.get_template('editor/units/xhr_timeline.html')
         c = RequestContext(request, context)
         json['timeline'] = t.render(c).replace('\n', '')
 
         response = jsonify(json)
         return HttpResponse(response, mimetype="application/json")
     else:
-        return render_to_response('unit/timeline.html', context,
+        return render_to_response('editor/units/timeline.html', context,
                                   context_instance=RequestContext(request))
 
 
@@ -725,7 +725,7 @@ def comment(request, unit):
             'unit': unit,
             'language': language,
         }
-        t = loader.get_template('unit/comment.html')
+        t = loader.get_template('editor/units/xhr_comment.html')
         c = RequestContext(request, context)
 
         json = {'comment': t.render(c)}
@@ -795,9 +795,9 @@ def get_edit_unit(request, unit):
     }
 
     if translation_project.project.is_terminology or store.is_terminology:
-        t = loader.get_template('unit/term_edit.html')
+        t = loader.get_template('editor/units/term_edit.html')
     else:
-        t = loader.get_template('unit/edit.html')
+        t = loader.get_template('editor/units/edit.html')
     c = RequestContext(request, template_vars)
     json['editor'] = t.render(c)
 

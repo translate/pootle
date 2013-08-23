@@ -1,0 +1,82 @@
+{% extends "admin/base.html" %}
+{% load i18n baseurl locale %}
+
+{% block body_id %}admindashboard{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+{% endblock %}
+
+{% block section_body %}
+<div id="serverstats" class="module first" lang="{{ LANGUAGE_CODE }}">
+  <div class="hd">
+    <h2>{% trans "Server Statistics" %}</h2>
+  </div>
+  <div class="bd">
+    <table>
+      <tbody>
+        <tr>
+          <th scope="row">{% trans "Submissions" %}</th><td class="stats-number">{{ server_stats.submission_count }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{% trans "Pending suggestions" %}</th><td class="stats-number">{{ server_stats.pending_count }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{% trans "Users" %}</th><td class="stats-number">{{ server_stats.user_count }}</td>
+        </tr>
+      </tbody>
+      <tbody id="server-extra-stats"></tbody>
+      <tbody>
+        <tr>
+          <td colspan="2"><a class="slide tiny" data-target="server-extra-stats">{% trans "More..." %}</a></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div id="support" class="module" lang="{{ LANGUAGE_CODE }}">
+  <div class="hd">
+    <h2>{% trans "Support" %}</h2>
+  </div>
+  <div class="bd">
+      <p>{% trans "Pootle is developed by Translate.org.za and a community of passionate localization experts. We want Pootle to help your localization work reach its full potential." %}</p>
+      <p>{% trans "You will find the following helpful for support:" %}
+        <ul>
+            <li><a href="http://docs.translatehouse.org/projects/pootle/en/latest/">{% trans "The Pootle documentation" %}</a></li>
+            <li><a href="http://translate.sourceforge.net/wiki/developers/mailing_lists">{% trans "The Pootle mailing list" %}</a></li>
+            <li><a href="http://translatehouse.org/">Translate</a> {% trans "(commercial support)" %}</li>
+        </ul>
+      </p>
+  </div>
+</div>
+<div style="clear: {% locale_align %};"></div>
+<div id="depchecks" class="module first" lang="{{ LANGUAGE_CODE }}">
+  <div class="hd">
+    <h2>{% trans "Dependency Checks" %}</h2>
+  </div>
+  <div class="bd">
+    <ul id="required" class="icons">
+      {% for dep in required %}
+      <li class="{{ dep.dependency }}"><i class="icon-{{ dep.state }}"></i> {{ dep.text }}</li>
+      {% endfor %}
+    </ul>
+    {% if optional %}
+    <h3>{% trans "Optional" %}</h3>
+    <ul id="optional" class="icons">
+      {% for dep in optional %}
+      <li class="{{ dep.dependency }}"><i class="icon-warning"></i> {{ dep.text }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% if optimal %}
+    <h3>{% trans "Optimizations" %}</h3>
+    <ul id="optimal" class="icons">
+      {% for dep in optimal %}
+      <li class="{{ dep.dependency }}"><i class="icon-warning"></i> {{ dep.text }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+</div>
+{% include "admin/rss_widget.html" %}
+{% endblock %}

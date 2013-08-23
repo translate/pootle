@@ -43,7 +43,7 @@ def view(request, root_dir):
         'language': language,
         'project': project,
 
-        'editor_extends': 'main_base.html',
+        'editor_extends': 'home/base.html',
         'editor_body_id': 'main-translate',
     })
 

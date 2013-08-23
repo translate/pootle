@@ -1,0 +1,21 @@
+{% extends "layout.html"  %}
+
+{% load url from future %}
+{% load i18n baseurl cache common_tags %}
+
+{% block title %}{{ translation_project.project }} | {{ language.name }} | {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}{% include 'core/_breadcrumbs.html' %}
+{% endblock %}
+
+{% block extra_head %}
+<link rel="alternate" type="application/rss+xml" href="{% url 'pootle_notifications__feed' feed_path %}" />
+{% endblock %}
+
+{% block tabs %}
+{% include "translation_projects/_tabs.html" %}
+{% endblock %}
+
+{% block scripts_extra %}
+{% endblock %}

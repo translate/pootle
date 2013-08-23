@@ -1,0 +1,17 @@
+{% extends "layout.html"  %}
+{% load url from future %}
+{% load i18n %}
+
+{% block title %}{{ language.name }} | {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}{% include 'core/_breadcrumbs.html' %}
+{% endblock %}
+
+{% block extra_head %}
+<link rel="alternate" type="application/rss+xml" href="{% url 'pootle_notifications__feed' feed_path %}" />
+{% endblock %}
+
+{% block tabs %}
+{% include "languages/_tabs.html" %}
+{% endblock %}

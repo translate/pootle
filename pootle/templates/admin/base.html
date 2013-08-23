@@ -1,0 +1,33 @@
+{% extends "layout.html"  %}
+{% load i18n assets %}
+
+{% block title %}{% trans "Administration" %} | {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}<li><a class="admin" href="{% url 'pootle-admin' %}">{% trans "Administration" %}</a></li>
+{% endblock %}
+
+{% block css %}
+{{ block.super }}
+{% assets "css_admin" %}
+<link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
+{% endassets %}
+{% endblock css %}
+
+{% block tabs %}
+{% include "admin/_tabs.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="settings-container centered" lang="{{ LANGUAGE_CODE }}">
+    <p class="info">{% block section_description %}{% endblock %}</p>
+
+    {% block section_body %}{% endblock %}
+</div>
+{% endblock %}
+
+{% block scripts_extra %}
+{% assets "js_admin" %}
+<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+{% endassets %}
+{% endblock %}

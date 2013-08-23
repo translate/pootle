@@ -42,7 +42,7 @@ def view(request):
     else:
         setting_form = GeneralSettingsForm(siteconfig)
 
-    template = 'admin/admin_general_settings.html'
+    template = 'admin/settings.html'
     template_vars = {
         'form': setting_form,
     }

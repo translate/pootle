@@ -28,7 +28,7 @@ from pootle_misc.forms import make_search_form
 register = template.Library()
 
 
-@register.inclusion_tag('search.html', takes_context=True)
+@register.inclusion_tag('core/search.html', takes_context=True)
 def render_search(context, form=None, action=None):
     request = context['request']
 

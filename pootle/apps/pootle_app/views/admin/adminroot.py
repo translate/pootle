@@ -32,6 +32,5 @@ def view(request):
     template_vars = {
         'directory': directory,
     }
-    return admin_permissions(request, directory,
-                             "admin/admin_general_permissions.html",
+    return admin_permissions(request, directory, "admin/permissions.html",
                              template_vars)

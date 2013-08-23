@@ -133,5 +133,5 @@ def view(request, root_dir):
         setting_form = GeneralSettingsForm(siteconfig)
         templatevars['form'] = setting_form
 
-    return render_to_response('index/index.html', templatevars,
+    return render_to_response('home/home.html', templatevars,
                               RequestContext(request))

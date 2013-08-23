@@ -27,7 +27,7 @@ from translate.storage.placeables.interfaces import BasePlaceable
 from django import template
 from django.core.exceptions import ObjectDoesNotExist
 from django.template.defaultfilters import stringfilter
-from django.template.loaders.app_directories import Loader
+from django.template.loaders.filesystem import Loader
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 

@@ -34,8 +34,8 @@ def view(request):
     fields = ('username', 'first_name', 'last_name', 'email', 'is_active',
               'is_superuser')
     queryset = User.objects.hide_defaults().order_by('username')
-    return util.edit(request, 'admin/admin_general_users.html', User,
-                     fields=fields, formset=BaseUserFormSet, queryset=queryset,
+    return util.edit(request, 'admin/users.html', User, fields=fields,
+                     formset=BaseUserFormSet, queryset=queryset,
                      can_delete=True)
 
 
