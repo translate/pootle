@@ -49,7 +49,7 @@ from pootle_store.util import absolute_real_path, statssum, OBSOLETE
 # FIXME: Generate key dynamically
 CACHE_KEY = 'pootle-projects'
 
-RESERVED_PROJECT_CODES = ('admin', 'translate',)
+RESERVED_PROJECT_CODES = ('admin', 'translate', 'settings')
 
 
 class ProjectManager(RelatedManager):

@@ -20,13 +20,16 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.db.transaction import commit_on_success
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 
 from pootle.core.decorators import get_path_obj, permission_required
+from pootle.core.url_helpers import split_pootle_path
 from pootle_app.views.admin import util
+from pootle_misc.baseurl import redirect
 from pootle_store.models import Store, Unit, PARSED, LOCKED
 
 
@@ -110,8 +113,10 @@ def extract(request, translation_project):
 
         template_vars['store'] = store
         template_vars['termcount'] = len(termunits)
-        from pootle_misc.baseurl import redirect
-        return redirect(translation_project.pootle_path + 'terminology_manage.html')
+
+        path_args = split_pootle_path(translation_project.pootle_path)[:2]
+        return redirect(reverse('pootle-terminology-manage', args=path_args))
+
     return render_to_response("terminology/extract.html", template_vars, context_instance=RequestContext(request))
 
 

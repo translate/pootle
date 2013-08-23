@@ -22,6 +22,7 @@
 
 from django.conf.urls import patterns, url
 
+
 urlpatterns = patterns('pootle_language.views',
     url(r'^(?P<language_code>[^/]*)/$',
         'overview',
@@ -32,10 +33,10 @@ urlpatterns = patterns('pootle_language.views',
         name='pootle-language-translate'),
 
     # Admin
-    url(r'^(?P<language_code>[^/]*)/edit_settings.html$',
+    url(r'^(?P<language_code>[^/]*)/admin/settings/$',
         'language_settings_edit',
-        name='pootle-language-edit-settings'),
-    url(r'^(?P<language_code>[^/]*)/admin.html$',
+        name='pootle-language-admin-settings'),
+    url(r'^(?P<language_code>[^/]*)/admin/permissions/$',
         'language_admin',
-        name='pootle-language-admin'),
+        name='pootle-language-admin-permissions'),
 )

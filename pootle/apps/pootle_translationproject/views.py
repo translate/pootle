@@ -34,6 +34,7 @@ from django.utils.translation import ugettext as _
 from pootle.core.decorators import (get_path_obj, get_resource_context,
                                     permission_required)
 from pootle.core.helpers import get_filter_name, get_translation_context
+from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models.permissions import check_permission
 from pootle_app.models import Directory
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
@@ -365,9 +366,11 @@ def edit_settings(request, translation_project):
 
         response["description"] = the_html
 
+    path_args = split_pootle_path(translation_project.pootle_path)[:2]
+    action_url = reverse('pootle-tp-admin-settings', args=path_args)
     context = {
         "form": form,
-        "form_action": translation_project.pootle_path + "edit_settings.html",
+        "form_action": action_url,
     }
     t = loader.get_template('admin/general_settings_form.html')
     c = RequestContext(request, context)

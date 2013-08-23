@@ -1,5 +1,6 @@
 {% extends "tp_base.html" %}
 {% load assets baseurl cache cleanhtml i18n locale progressbar search translation_project_tags common_tags profile_tags %}
+{% load url from future %}
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block body_id %}tpoverview{% endblock %}
@@ -82,7 +83,8 @@
     </div>
   {% if can_edit %}
     <div class="settings-container js-edit-ctx-meta-desc" style="display:none;">
-      {% include "admin/general_settings_form.html" with form_action="edit_settings.html" %}
+      {% url 'pootle-tp-admin-settings' language.code project.code as action_url %}
+      {% include "admin/general_settings_form.html" with form_action=action_url %}
     </div>
   {% endif %}
 
