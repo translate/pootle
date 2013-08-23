@@ -2,9 +2,10 @@
  * TRANSLATE PAGE
  */
 
+#tptranslate #content
 #main-translate #content
 {
-    margin: 1em 0 0;
+    margin: 1em 0;
 }
 
 /* MAIN TOOLBAR */
