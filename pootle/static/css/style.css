@@ -2073,14 +2073,12 @@ html[dir="rtl"] .overview-description-toggle
 
 .header
 {
-    background-color: #f8f8f8;
     padding: 0 1.5em;
     border-bottom: 1px solid #d9d9d9;
 }
 
 #header-tabs
 {
-    margin-top: -1px;
     border-bottom: 1px solid #D9D9D9;
 }
 
@@ -2225,12 +2223,16 @@ body #file-tabs a.selected-tab
 #search
 {
     float: right;
-    margin: 6px 0;
+    margin: 4px 0 0;
 }
 
 html[dir="rtl"] #search
 {
     float: left;
+}
+
+#main-overview #search {
+    margin-top: -32px;
 }
 
 #search-form
@@ -2281,14 +2283,14 @@ html[dir="rtl"] #search
     padding: 0px 4px;
     width: 145px;
     background-color: #fff;
-    color: #d9d9d9;
+    color: #666;
     font-size: 12px;
     outline: 0;
 }
 
 #search-form input[type="text"]:focus
 {
-    color: #130f30;
+    color: #000;
 }
 
 .btn-search
