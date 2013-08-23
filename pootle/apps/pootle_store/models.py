@@ -471,14 +471,6 @@ class Unit(models.Model, base.TranslationUnit):
                 tmunit = TMUnit().create(self)
                 tmunit.save()
 
-        if (settings.AUTOSYNC and self.store.file and
-            self.store.state >= PARSED and
-            (self._target_updated or self._source_updated)):
-            #FIXME: last translator information is lost
-            self.sync(self.getorig())
-            self.store.update_store_header()
-            self.store.file.savestore()
-
         if self._source_updated or self._target_updated:
             self.update_qualitychecks()
 
@@ -969,12 +961,6 @@ class Unit(models.Model, base.TranslationUnit):
         self.store.flag_for_deletion(CachedMethods.SUGGESTIONS,
                                      CachedMethods.PATH_SUMMARY)
         self.save()
-
-        if settings.AUTOSYNC and self.file:
-            #FIXME: update alttrans
-            self.sync(self.getorig())
-            self.store.update_store_header(profile=suggestion.user)
-            self.file.savestore()
 
         return True
 

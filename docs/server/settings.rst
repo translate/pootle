@@ -350,24 +350,6 @@ Translation environment configuration settings.
   the trailing slash.
 
 
-.. setting:: AUTOSYNC
-
-``AUTOSYNC``
-  Default: ``False``
-
-  Set this to ``True`` if you want translation files to be updated
-  immediately.
-
-  .. note::
-
-    This negatively affects performance and should be avoided unless another
-    application needs direct access to the files.
-
-  .. warning::
-
-    This feature is not maintained anymore, use it at your own risk.
-
-
 .. setting:: EXPORTED_DIRECTORY_MODE
 
 ``EXPORTED_DIRECTORY_MODE``
