@@ -38,7 +38,7 @@
 $(function() {
   PTL.search.init();
 
-  $(".markup-body, li.newsitem, .newsitem address, .newsitem blockcode, .newsitem blockquote, .newsitem :header, .newsitem p, .newsitem pre, .newsitem li, .newsitem dt, .newsitem dd, .newsitem ul, .newsitem ol, .newsitem dl, td.language").filter(":not([dir])").bidi();
+  $("td.language").filter(":not([dir])").bidi();
 });
 </script>
 {% if user.is_superuser or request.permissions.administrate %}
