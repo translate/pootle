@@ -10,7 +10,7 @@
         <li><span class="content-wrapper">{{ language.localname }}</span></li>
         <li><span class="content-wrapper">{{ project }}</span></li>
         <li><span class="content-wrapper">{{ unit.store.path }}</span></li>
-        <li><span class="content-wrapper">{% blocktrans with url=unit.get_translate_url id=unit.id %}<a href="{{ url }}">String #{{ id }}</a>{% endblocktrans %}</span></li>
+        <li><span class="content-wrapper">{% blocktrans with url=unit.get_translate_url id=unit.id %}<a href="{{ url }}">Unit #{{ id }}</a>{% endblocktrans %}</span></li>
       </ul>
     </div>
     <div class="translate-{% locale_align %}">
