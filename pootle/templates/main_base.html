@@ -1,1 +1,5 @@
 {% extends "base.html"  %}
+
+{% block breadcrumbs %}
+{{ block.super }}{% include 'common/_breadcrumbs.html' %}
+{% endblock %}
