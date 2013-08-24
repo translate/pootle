@@ -436,7 +436,7 @@ div.unit-path
     top: 0;
     width: 100%;
     padding: 5px 20px;
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.4);
 
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
@@ -446,12 +446,12 @@ div.unit-path
 div.unit-path li
 {
     display: inline-block;
-    margin-right: 1em;
+    margin-right: 0.3em;
 }
 
 div.unit-path li:after
 {
-    content: '►';
+    content: '→';
 }
 
 div.unit-path li:last-child:after
@@ -462,7 +462,7 @@ div.unit-path li:last-child:after
 div.unit-path li span.content-wrapper
 {
     display: inline-block;
-    margin-right: 1em;
+    margin-right: 0.5em;
     color: #fff;
 }
 
