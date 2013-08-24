@@ -270,6 +270,10 @@ tr.edit-row.with-ctx
     border-bottom: 1px solid #ccc;
 }
 
+.delimiter-row:first-child .hd h2 {
+    margin-top: 0;
+}
+
 /* Context */
 
 tr.edit-ctx
@@ -537,6 +541,7 @@ table td.translate-original,
 table td.translate-translation
 {
     padding: 0.5em 5px;
+    width: 50%;
 }
 
 table td.translate-original
