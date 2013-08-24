@@ -8,8 +8,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>{% block title %}{{ settings.TITLE }}{% endblock title %}</title>
     {% block meta %}
-    <meta name="description" content="{{ settings.DESCRIPTION|striptags }}" />
-    <meta name="keywords" content="{{ keywords|join:", " }}" />
     <meta name="application-name" content="{{ settings.TITLE }}" />
     <link rel="icon" href="{{ "images/app-32x32.png"|s }}" sizes="32x32" />
     <link rel="icon" href="{{ "images/app-64x64.png"|s }}" sizes="64x64" />
