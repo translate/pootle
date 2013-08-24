@@ -20,6 +20,8 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
+from django.core.urlresolvers import reverse
+
 from pootle.core.decorators import admin_required
 from pootle_app.views.admin import util
 from pootle_language.models import Language
@@ -27,6 +29,12 @@ from pootle_app.forms import MyLanguageAdminForm
 
 @admin_required
 def view(request):
+
+    def generate_link(language):
+        perms_url = reverse('pootle-language-admin-permissions',
+                            args=[language.code])
+        return '<a href="%s">%s</a>' % (perms_url, language.code)
+
     return util.edit(request, 'admin/languages.html', Language,
-                     link='/%s/admin.html', form=MyLanguageAdminForm,
+                     link=generate_link, form=MyLanguageAdminForm,
                      exclude='description', can_delete=True)
