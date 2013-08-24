@@ -462,6 +462,9 @@ $(function ($) {
   $(".js-select2").select2({
     width: "resolve"
   });
+
+  $(".breadcrumb").css("visibility", "visible");
+
   // Hide the help messages for the Select2 multiple selects.
   $("select[multiple].js-select2").siblings("span.help_text").hide();
 

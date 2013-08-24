@@ -2046,6 +2046,7 @@ html[dir="rtl"] .overview-description-toggle
 {
     font-size: 18px;
     font-weight: normal;
+    visibility: hidden;
 }
 
 .breadcrumb li
