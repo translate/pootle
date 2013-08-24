@@ -19,7 +19,7 @@
 
 {% block content %}
     <div class="form question{% if form.errors %} hidden{% endif %}">
-    	<h2>Link with existing Pootle account</h2>
+      <h2>Link with existing Pootle account</h2>
 
         <p>If you already have an account at Pootle, please link
         your accounts now to make sure you inherit all your existing
@@ -29,12 +29,11 @@
         you can skip this step — this will create a new account
         for you with the default permission set.</p>
 
-    	<p class="buttons">
-    		<button onclick="link_with_existing(); return false;">Link</button>
-    		<button onclick="document.location = '{% url evernote_create_login %}{{ request|get_next }}';">Skip this step</button>
-    	</p>
+      <p class="buttons">
+        <button onclick="link_with_existing(); return false;">Link</button>
+        <button onclick="document.location = '{% url evernote_create_login %}{{ request|get_next }}';">Skip this step</button>
+      </p>
     </div>
-
 
 <div class="login{% if not form.errors %} hidden{% endif %}">
     <div id="login" class="form" dir="{% locale_dir %}">
@@ -65,5 +64,4 @@
       <a href='{{ "/accounts/password/reset/"|l }}'>{% trans "Lost your Password?" %}</a>
     </h2>
 </div>
-
 {% endblock content %}
