@@ -265,13 +265,15 @@ tr.edit-row.with-ctx
     padding: 0;
 }
 
-.delimiter-row .hd h2 {
+.delimiter-row .hd h2
+{
     margin: 1em 25px 0.5em;
     font-size: 1.7em;
     border-bottom: 1px solid #ccc;
 }
 
-.delimiter-row:first-child .hd h2 {
+.delimiter-row:first-child .hd h2
+{
     margin-top: 0;
 }
 
@@ -725,7 +727,8 @@ html[dir="rtl"] .extra-item-meta
     font-size: 90%;
 }
 
-.tm-unit:hover {
+.tm-unit:hover
+{
     background-color: #ff9;
 }
 
@@ -1084,7 +1087,8 @@ li.check > a
     background:         linear-gradient(top,  #ffe,  #ae7);
 }
 
-.translate-buttons-block input.submit:hover {
+.translate-buttons-block input.submit:hover
+{
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#bbff88');
     background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#bf8));
     background: -webkit-linear-gradient(top,  #fff,  #bf8);
@@ -1116,7 +1120,8 @@ li.check > a
     background:         linear-gradient(top,  #ffe,  #ed8);
 }
 
-.translate-buttons-block input.suggest:hover {
+.translate-buttons-block input.suggest:hover
+{
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffee99');
     background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fe9));
     background: -webkit-linear-gradient(top,  #fff,  #fe9);
