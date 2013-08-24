@@ -98,7 +98,7 @@
     {% block extra_head %}{% endblock %}
   </head>
 
-  <body id="{% block body_id %}{% endblock %}">
+  <body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}">
     {% block body %}
     <div id="wrapper">
       {% if messages %}

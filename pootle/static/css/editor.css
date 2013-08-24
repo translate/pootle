@@ -2,8 +2,7 @@
  * TRANSLATE PAGE
  */
 
-#tptranslate #content
-#main-translate #content
+body.translate #content
 {
     margin: 1em 0;
 }
@@ -266,7 +265,7 @@ tr.edit-row.with-ctx
 }
 
 .delimiter-row .hd h2 {
-    margin: 1em 0 0.5em;
+    margin: 1em 25px 0.5em;
     font-size: 1.7em;
     border-bottom: 1px solid #ccc;
 }
