@@ -9,7 +9,7 @@ LDAP Authentication
 -------------------
 
 LDAP configuration can be enabled by appending the
-``'pootle.auth.ldap_backend.LdapBackend'`` to the list of
+``'pootle.core.auth.ldap_backend.LdapBackend'`` to the list of
 :setting:`AUTHENTICATION_BACKENDS`. The settings page lists all the
 :ref:`configuration keys available for LDAP <settings#ldap>`.
 
@@ -27,7 +27,7 @@ part of the branch *employees* on the LDAP.
     # authentication system.
     AUTHENTICATION_BACKENDS = [
         #: Uncomment the following line for enabling LDAP authentication
-        'pootle.auth.ldap_backend.LdapBackend',
+        'pootle.core.auth.ldap_backend.LdapBackend',
         'django.contrib.auth.backends.ModelBackend',
     ]
 

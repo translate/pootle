@@ -277,8 +277,8 @@ Configuration settings for applications used by Pootle.
 ^^^^^^^^^^^^
 
 Optional LDAP configuration settings. To enable the LDAP authentication
-backend, you'll need to append ``'pootle.auth.ldap_backend.LdapBackend'`` to
-the list of ``AUTHENTICATION_BACKENDS``.
+backend, you'll need to append ``'pootle.core.auth.ldap_backend.LdapBackend'``
+to the list of ``AUTHENTICATION_BACKENDS``.
 
 
 .. setting:: AUTH_LDAP_ANON_DN

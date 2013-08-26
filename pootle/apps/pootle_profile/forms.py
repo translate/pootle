@@ -63,7 +63,7 @@ def lang_auth_form_factory(request, **kwargs):
             # addresses.
             from django.conf import settings
 
-            if ('pootle.auth.ldap_backend.LdapBackend' in
+            if ('pootle.core.auth.ldap_backend.LdapBackend' in
                 settings.AUTHENTICATION_BACKENDS):
 
                 import django

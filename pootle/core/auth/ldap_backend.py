@@ -1,23 +1,22 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Mozilla Corporation, Zuza Software Foundation
+# Copyright 2009 Mozilla Corporation
+# Copyright 2009, 2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
-# Pootle is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
+# Pootle is free software; you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation; either version 2 of the License, or (at your option) any later
+# version.
 #
-# Pootle is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# Pootle is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with Pootle; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# You should have received a copy of the GNU General Public License along with
+# Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 import ldap
 import ldap.filter
@@ -28,12 +27,10 @@ from django.contrib.auth.models import User
 
 
 class LdapBackend(object):
-    """
-    This is a Django authentication module which implements LDAP
-    authentication.
+    """Django authentication module which implements LDAP authentication.
 
-    To use this module, simply add it to the tuple AUTHENTICATION_BACKENDS
-    in settings.py.
+    To use this module, simply add it to the tuple AUTHENTICATION_BACKENDS in
+    settings.py.
     """
 
     #TODO Remove the following line when support for Django 1.4 is dropped.
@@ -60,12 +57,12 @@ class LdapBackend(object):
 
             if len(result) != 1:
                 logger.debug("More or less than 1 matching account for (%s).  "
-                             "Failing LDAP auth." % (username))
+                             "Failing LDAP auth." % username)
                 return None
 
         except ldap.INVALID_CREDENTIALS:
-            logger.error('Anonymous bind to LDAP server failed.  '
-                         'Please check the username and password.')
+            logger.error('Anonymous bind to LDAP server failed. Please check '
+                         'the username and password.')
             return None
         except Exception, e:
             logger.error('Unknown LDAP error: ' + str(e))
@@ -79,8 +76,8 @@ class LdapBackend(object):
                 user = User.objects.get(username=username)
                 return user
             except User.DoesNotExist:
-                logger.info("First login for LDAP user (%s).  "
-                            "Creating new account." % username)
+                logger.info("First login for LDAP user (%s). Creating new "
+                            "account." % username)
                 user = User(username=username, is_active=True)
                 user.set_unusable_password()
                 for i in settings.AUTH_LDAP_FIELDS:
@@ -92,9 +89,8 @@ class LdapBackend(object):
 
         # Bad e-mail or password
         except (ldap.INVALID_CREDENTIALS, ldap.UNWILLING_TO_PERFORM):
-            logger.debug("No account or bad credentials for (%s).  "
-                         "Failing LDAP auth." %
-                         (username))
+            logger.debug("No account or bad credentials for (%s). Failing "
+                         "LDAP auth." % username)
             return None
         except Exception, e:  # No other exceptions are normal
             logger.error('Unknown LDAP error: ' + str(e))
