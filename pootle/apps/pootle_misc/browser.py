@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -20,8 +21,8 @@
 
 from django.utils.translation import ugettext_lazy as _, ungettext
 
-from .stats import get_raw_stats, stats_descriptions
 from .baseurl import l
+from .stats import get_raw_stats, stats_descriptions
 
 
 HEADING_CHOICES = [
@@ -86,7 +87,7 @@ def make_generic_item(path_obj, action):
     try:
         stats = get_raw_stats(path_obj, include_suggestions=True)
         info = {
-            'href': l(action),
+            'href': action,
             'href_all': path_obj.get_translate_url(),
             'href_todo': path_obj.get_translate_url(state='incomplete'),
             'href_sugg': path_obj.get_translate_url(state='suggestions'),
@@ -105,7 +106,7 @@ def make_generic_item(path_obj, action):
         info.update(stats_descriptions(stats))
     except IOError, e:
         info = {
-            'href': l(action),
+            'href': action,
             'title': path_obj.name,
             'errortooltip': e.strerror,
             'data': {'errors': 1},
@@ -115,7 +116,7 @@ def make_generic_item(path_obj, action):
 
 
 def make_directory_item(directory):
-    action = directory.pootle_path
+    action = l(directory.pootle_path)
     item = make_generic_item(directory, action)
     item.update({
         'icon': 'folder',
@@ -125,7 +126,7 @@ def make_directory_item(directory):
 
 
 def make_store_item(store):
-    action = store.pootle_path
+    action = l(store.pootle_path)
     item = make_generic_item(store, action)
     item.update({
         'icon': 'file',
