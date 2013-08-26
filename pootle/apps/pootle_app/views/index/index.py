@@ -21,7 +21,6 @@
 
 import locale
 
-from django.conf import settings
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
@@ -109,17 +108,6 @@ def view(request, root_dir):
     }
 
     templatevars = {
-        'description': _(settings.DESCRIPTION),
-        'keywords': [
-            'Pootle',
-            'translate',
-            'translation',
-            'localisation',
-            'localization',
-            'l10n',
-            'traduction',
-            'traduire',
-            ],
         'topstats': gentopstats_root(),
         'permissions': request.permissions,
         'languages_table': languages_table,
