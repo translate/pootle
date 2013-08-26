@@ -1025,11 +1025,6 @@ def reject_suggestion(request, unit, suggid):
         except ObjectDoesNotExist:
             raise Http404
 
-        if (not request.user.is_authenticated() or sugg and
-            sugg.user != request.profile):
-            raise PermissionDenied(_("You do not have rights to access "
-                                     "review mode."))
-
         unit.reject_suggestion(sugg, request.translation_project,
                                request.profile)
 
