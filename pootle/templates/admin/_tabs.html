@@ -1,11 +1,11 @@
 {% load url from future %}
 {% load i18n %}
 <ul id="tabs" class="admin">
-  <li><a href="{% url 'pootle-admin' %}" class="admindashboard" title="{% trans 'Information and statistics about this Pootle server' %}">{% trans "Info" %}</a></li>
-  <li><a href="{% url 'pootle-admin-general' %}" class="admingeneral" title="{% trans 'Configure the general settings for your site' %}">{% trans "General" %}</a></li>
-  <li><a href="{% url 'pootle-admin-users' %}" class="adminusers" title="{% trans 'Manage the users' %}">{% trans "Users" %}</a></li>
-  <li><a href="{% url 'pootle-admin-languages' %}" class="adminlanguages" title="{% trans 'Manage the languages' %}">{% trans "Languages" %}</a></li>
-  <li><a href="{% url 'pootle-admin-projects' %}" class="adminprojects" title="{% trans 'Manage the projects' %}">{% trans "Projects" %}</a></li>
-  <li><a href="{% url 'pootle-admin-permissions' %}" class="adminpermissions" title="{% trans 'Manage the default permissions' %}">{% trans "Permissions" %}</a>
-  <li><a href="{% url 'pootle-staticpages' %}" class="adminstaticpages" title="{% trans 'Manage Static Pages' %}">{% trans "Static Pages" %}</a></li>
+  <li><a href="{% url 'pootle-admin' %}" class="admindashboard">{% trans "Info" %}</a></li>
+  <li><a href="{% url 'pootle-admin-general' %}" class="admingeneral">{% trans "General" %}</a></li>
+  <li><a href="{% url 'pootle-admin-users' %}" class="adminusers">{% trans "Users" %}</a></li>
+  <li><a href="{% url 'pootle-admin-languages' %}" class="adminlanguages">{% trans "Languages" %}</a></li>
+  <li><a href="{% url 'pootle-admin-projects' %}" class="adminprojects">{% trans "Projects" %}</a></li>
+  <li><a href="{% url 'pootle-admin-permissions' %}" class="adminpermissions">{% trans "Permissions" %}</a>
+  <li><a href="{% url 'pootle-staticpages' %}" class="adminstaticpages">{% trans "Static Pages" %}</a></li>
 </ul>
