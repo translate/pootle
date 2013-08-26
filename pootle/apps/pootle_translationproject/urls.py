@@ -34,18 +34,6 @@ urlpatterns = patterns('pootle_translationproject.views',
         'edit_settings',
         name='pootle-tp-admin-settings'),
 
-    # Management actions
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/rescan/?$',
-        'rescan_files',
-        name='pootle-tp-rescan'),
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/update/?$',
-        'update_against_templates',
-        name='pootle-tp-update-against-templates'),
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/delete/'
-        r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
-        'delete_path_obj',
-        name='pootle-tp-delete-path-obj'),
-
     # XHR views
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/summary/'
         r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
