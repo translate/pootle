@@ -143,7 +143,6 @@ def evernote_login(request, create=0):
 
 def evernote_login_link(request):
     """Logs the user in."""
-    settings.USE_CAPTCHA = settings.SAVED_USE_CAPTCHA
     redirect_to = request.REQUEST.get(auth.REDIRECT_FIELD_NAME, '')
 
     if request.user.is_authenticated():
