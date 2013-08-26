@@ -745,11 +745,6 @@ def reject_suggestion(request, unit, suggid):
         except ObjectDoesNotExist:
             raise Http404
 
-        if (not request.user.is_authenticated() or sugg and
-            sugg.user != request.profile):
-            raise PermissionDenied(_("You do not have rights to access "
-                                     "review mode."))
-
         success = unit.reject_suggestion(suggid)
         if sugg is not None and success:
             # FIXME: we need a totally different model for tracking stats, this
