@@ -1,4 +1,5 @@
-{% load i18n baseurl progressbar %}
+{% load progressbar %}
+{% load url from future %}
 {% if 'name' in table.fields %}
 <td class="stats-name"{% if item.description %} title="{{ item.description|striptags }}"{% endif %}>
   <a href="{{ item.href }}">{% if item.icon %}<i class="icon-{{ item.icon }}"></i> {% endif %}<span>{{ item.title }}</span></a>
@@ -9,12 +10,12 @@
 {% endif %}
 {% if 'language' in table.fields %}
 <td class="language">
-  <a href="{% filter l %}/{{ item.code }}/{% endfilter %}">{{ item.name }}</a>
+  <a href="{% url 'pootle-language-overview' item.code %}">{{ item.name }}</a>
 </td>
 {% endif %}
 {% if 'project' in table.fields %}
 <td class="project">
-  <a href="{% filter l %}/projects/{{ item.code }}/{% endfilter %}"
+  <a href="{% url 'pootle-project-overview' item.code %}"
     title="{{ item.description }}">{{ item.name }}</a>
 </td>
 {% endif %}
