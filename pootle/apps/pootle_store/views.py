@@ -46,6 +46,8 @@ from pootle_app.models.permissions import (get_matching_permissions,
                                            check_permission,
                                            check_profile_permission)
 from pootle.core.exceptions import Http400
+from pootle.core.url_helpers import split_pootle_path
+from pootle_language.models import Language
 from pootle_misc.baseurl import redirect
 from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.forms import make_search_form
@@ -53,9 +55,11 @@ from pootle_misc.stats import get_raw_stats
 from pootle_misc.url_manip import ensure_uri
 from pootle_misc.util import paginate, ajax_required, jsonify
 from pootle_profile.models import get_profile
+from pootle_project.models import Project
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 from pootle_tagging.forms import TagForm
+from pootle_translationproject.models import TranslationProject
 
 from .decorators import (get_store_context, get_unit_context,
                          get_xhr_resource_context)
@@ -244,57 +248,94 @@ def get_non_indexed_search_exact_query(form, units_queryset):
 
     return result
 
-def get_search_step_query(form, units_queryset):
+def get_search_step_query(request, form, units_queryset):
     """Narrows down units query to units matching search string."""
 
     if 'exact' in form.cleaned_data['soptions']:
         logging.debug(u"Using exact database search")
         return get_non_indexed_search_exact_query(form, units_queryset)
 
-    '''
-    if translation_project.indexer is None:
-       logging.debug(u"No indexer for %s, using database search",
-                     translation_project)
-    '''
-    return get_non_indexed_search_step_query(form, units_queryset)
+    path = request.GET.get('path', None)
+    if path is not None:
+        lang, proj, dir_path, filename = split_pootle_path(path)
 
-    '''
-    logging.debug(u"Found %s indexer for %s, using indexed search",
-                  translation_project.indexer.INDEX_DIRECTORY_NAME,
-                  translation_project)
+        translation_projects = []
+        # /<language_code>/<project_code>/
+        if lang is not None and proj is not None:
+            project = get_object_or_404(Project, code=proj)
+            language = get_object_or_404(Language, code=lang)
+            translation_projects = \
+                    TranslationProject.objects.filter(project=project,
+                                                      language=language)
+        # /projects/<project_code>/
+        elif lang is None and proj is not None:
+            project = get_object_or_404(Project, code=proj)
+            translation_projects = \
+                    TranslationProject.objects.filter(project=project)
+        # /<language_code>/
+        elif lang is not None and proj is None:
+            language = get_object_or_404(Language, code=lang)
+            translation_projects = \
+                    TranslationProject.objects.filter(language=language)
+        # /
+        elif lang is None and proj is None:
+            translation_projects = TranslationProject.objects.all()
 
-    word_querylist = []
-    words = form.cleaned_data['search']
-    fields = form.cleaned_data['sfields']
-    paths = units_queryset.order_by() \
-                          .values_list('store__pootle_path', flat=True) \
-                          .distinct()
-    path_querylist = [('pofilename', pootle_path)
-                      for pootle_path in paths.iterator()]
-    cache_key = "search:%s" % str(hash((repr(path_querylist),
-                                        translation_project.get_mtime(),
-                                        repr(words),
-                                        repr(fields))))
+        has_indexer = True
+        for translation_project in translation_projects:
+            if translation_project.indexer is None:
+                has_indexer = False
 
-    dbids = cache.get(cache_key)
-    if dbids is None:
-        searchparts = []
-        word_querylist = [(field, words) for field in fields]
-        textquery = translation_project.indexer.make_query(word_querylist,
-                                                           False)
-        searchparts.append(textquery)
+        if not has_indexer:
+            logging.debug(u"No indexer for one or more translation project,"
+                          u" using database search")
+            return get_non_indexed_search_step_query(form, units_queryset)
+        else:
+            alldbids = []
+            for translation_project in translation_projects:
+                logging.debug(u"Found %s indexer for %s, using indexed search",
+                              translation_project.indexer.INDEX_DIRECTORY_NAME,
+                              translation_project)
 
-        pathquery = translation_project.indexer.make_query(path_querylist,
-                                                           False)
-        searchparts.append(pathquery)
-        limitedquery = translation_project.indexer.make_query(searchparts, True)
+                word_querylist = []
+                words = form.cleaned_data['search']
+                fields = form.cleaned_data['sfields']
+                paths = units_queryset.order_by() \
+                                      .values_list('store__pootle_path',
+                                                   flat=True) \
+                                      .distinct()
+                path_querylist = [('pofilename', pootle_path)
+                                  for pootle_path in paths.iterator()]
+                cache_key = "search:%s" % str(hash((repr(path_querylist),
+                                                    translation_project.get_mtime(),
+                                                    repr(words),
+                                                    repr(fields))))
 
-        result = translation_project.indexer.search(limitedquery, ['dbid'])
-        dbids = [int(item['dbid'][0]) for item in result[:999]]
-        cache.set(cache_key, dbids, settings.OBJECT_CACHE_TIMEOUT)
+                dbids = cache.get(cache_key)
+                if dbids is None:
+                    searchparts = []
+                    word_querylist = [(field, words) for field in fields]
+                    textquery = \
+                            translation_project.indexer.make_query(word_querylist,
+                                                                   False)
+                    searchparts.append(textquery)
 
-    return units_queryset.filter(id__in=dbids)
-    '''
+                    pathquery = \
+                            translation_project.indexer.make_query(path_querylist,
+                                                                   False)
+                    searchparts.append(pathquery)
+                    limitedquery = \
+                            translation_project.indexer.make_query(searchparts,
+                                                                   True)
+
+                    result = translation_project.indexer.search(limitedquery,
+                                                                ['dbid'])
+                    dbids = [int(item['dbid'][0]) for item in result[:999]]
+                    cache.set(cache_key, dbids, settings.OBJECT_CACHE_TIMEOUT)
+
+                alldbids.extend(dbids)
+
+            return units_queryset.filter(id__in=alldbids)
 
 
 def get_step_query(request, units_queryset):
@@ -377,7 +418,8 @@ def get_step_query(request, units_queryset):
         search_form = make_search_form(request.GET)
 
         if search_form.is_valid():
-            units_queryset = get_search_step_query(search_form, units_queryset)
+            units_queryset = get_search_step_query(request, search_form,
+                                                   units_queryset)
 
     return units_queryset
 
