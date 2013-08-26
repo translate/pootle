@@ -450,6 +450,8 @@
       $(".focusthis").get(0).focus();
     }
 
+    PTL.editor.settings.targetLang = PTL.editor.normalizeCode($(".translate-translation textarea").attr("lang"));
+
     PTL.editor.hlSearch();
 
     if (PTL.editor.settings.tmUrl != '') {
@@ -2048,7 +2050,7 @@
    * in the editor toolbar if the language is supported
    */
   addMTButtons: function (provider) {
-    if (this.isSupportedTarget(provider.pairs, provider.targetLang)) {
+    if (this.isSupportedTarget(provider.pairs, PTL.editor.settings.targetLang)) {
       var _this = this;
       var sources = $(".translate-toolbar");
       $(sources).each(function () {
@@ -2056,7 +2058,7 @@
 
         var ok;
         if (provider.validatePairs) {
-          ok = _this.isSupportedPair(provider.pairs, source, provider.targetLang);
+          ok = _this.isSupportedPair(provider.pairs, source, PTL.editor.settings.targetLang);
         } else {
           ok = _this.isSupportedSource(provider.pairs, source);
         }
@@ -2064,7 +2066,7 @@
         if (ok) {
           _this.addMTButton(this,
             provider.buttonClassName,
-            provider.hint + ' (' + source.toUpperCase() + '&rarr;' + provider.targetLang.toUpperCase() + ')');
+            provider.hint + ' (' + source.toUpperCase() + '&rarr;' + PTL.editor.settings.targetLang.toUpperCase() + ')');
         }
       });
     }
