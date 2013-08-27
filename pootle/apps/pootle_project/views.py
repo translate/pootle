@@ -51,6 +51,7 @@ def get_last_action(translation_project):
         return ''
 
 
+
 @ajax_required
 @get_path_obj
 @permission_required('view')
@@ -174,6 +175,7 @@ def overview(request, project):
         href = tp.get_absolute_url()
         href_all = tp.get_translate_url()
         href_todo = tp.get_translate_url(state="incomplete")
+        href_sugg = tp.get_translate_url(state='suggestions')
 
         info = {
             'project': tp.project.code,
@@ -181,6 +183,7 @@ def overview(request, project):
             'href': href,
             'href_all': href_all,
             'href_todo': href_todo,
+            'href_sugg': href_sugg,
             'title': tr_lang(tp.language.fullname),
             'lastactivity': get_last_action(tp),
             'tags': tp.tag_like_objects,
@@ -199,7 +202,7 @@ def overview(request, project):
     summary = ungettext("%(langs)d language", "%(langs)d languages", langs,
                         {"langs": langs})
 
-    fields = ["name", "progress", "total", "need-translation", "activity", "tags"]
+    fields = ["name", "progress", "total", "need-translation", "suggestions", "activity", "tags"]
 
     ctx = {
         'resource_obj': request.resource_obj,

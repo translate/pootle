@@ -48,12 +48,14 @@ def make_project_item(translation_project):
     href = translation_project.get_absolute_url()
     href_all = translation_project.get_translate_url()
     href_todo = translation_project.get_translate_url(state='incomplete')
+    href_sugg = translation_project.get_translate_url(state='suggestions')
 
     info = {
         'code': translation_project.code,
         'href': href,
         'href_all': href_all,
         'href_todo': href_todo,
+        'href_sugg': href_sugg,
         'title': project.fullname,
         'description': project.description,
         'lastactivity': get_last_action(translation_project),
@@ -76,7 +78,7 @@ def overview(request, language):
 
     topstats = gentopstats_language(language)
 
-    table_fields = ['name', 'progress', 'total', 'need-translation', 'activity']
+    table_fields = ['name', 'progress', 'total', 'need-translation', 'suggestions', 'activity']
     table = {
         'id': 'language',
         'proportional': False,
