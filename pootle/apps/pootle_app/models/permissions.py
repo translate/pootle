@@ -141,6 +141,9 @@ def check_permission(permission_codename, request):
             project = request.translation_project.project
         elif hasattr(request, 'project'):
             project = request.project
+        else:
+            # always allow to view language page
+            return True
 
         if project is not None:
             from pootle_project.models import Project
