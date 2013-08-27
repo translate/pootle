@@ -1693,6 +1693,25 @@ td.stats-number
     text-align: right;
 }
 
+td.stats-number.need-translation a,
+td.stats-number.suggestions a
+{
+    display: inline-block;
+    background: #0489b7;
+    color: #fff;
+    padding: 0 0.5em;
+    margin-right: -0.5em;
+
+    -webkit-border-radius: 1em;
+       -moz-border-radius: 1em;
+            border-radius: 1em;
+}
+
+td.stats-number.suggestions a
+{
+    background: #bbaa66;
+}
+
 td.stats-name .user-nobody
 {
     font-style: italic;
