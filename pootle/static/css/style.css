@@ -871,7 +871,7 @@ html[dir="rtl"] .hd h2
     margin-right: 0.5em;
 }
 
-.last-action
+#tpoverview .last-action
 {
     margin: 1em 0 1em 0;
     padding: 0.5em;
@@ -880,6 +880,11 @@ html[dir="rtl"] .hd h2
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
+}
+
+#main-overview .last-action .action-text
+{
+    display: none;
 }
 
 html[dir="rtl"] .last-action

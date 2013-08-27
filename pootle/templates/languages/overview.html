@@ -38,6 +38,9 @@ $(function() {
     $("body").spin(false);
   });
 
+  PTL.common.updateRelativeDates();
+  setInterval(PTL.common.updateRelativeDates, 6e4);
+
   $("td.stats-name").filter(":not([dir])").bidi();
 });
 </script>
