@@ -38,6 +38,9 @@
 $(function() {
   PTL.search.init();
 
+  PTL.common.updateRelativeDates();
+  setInterval(PTL.common.updateRelativeDates, 6e4);
+
   $("td.language").filter(":not([dir])").bidi();
 });
 </script>
