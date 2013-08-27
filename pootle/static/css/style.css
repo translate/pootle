@@ -871,17 +871,6 @@ html[dir="rtl"] .hd h2
     margin-right: 0.5em;
 }
 
-#tpoverview .last-action
-{
-    margin: 1em 0 1em 0;
-    padding: 0.5em;
-    background-color: #f8f8f8;
-    border: 1px solid #d9d9d9;
-    border-radius: 3px;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-}
-
 #main-overview .last-action .action-text
 {
     display: none;

@@ -468,7 +468,7 @@ def overview(request, translation_project, dir_path, filename=None,
         elif goal in resource_obj_goals:
             # Then show the drill down view for the specified goal.
             table_fields = ['name', 'progress', 'total', 'need-translation',
-                            'suggestions']
+                            'suggestions', 'activity']
 
             ctx.update({
                 'table': {
@@ -486,7 +486,7 @@ def overview(request, translation_project, dir_path, filename=None,
         else:
             # Then show the files tab.
             table_fields = ['name', 'progress', 'total', 'need-translation',
-                            'suggestions']
+                            'suggestions', 'activity']
             ctx.update({
                 'table': {
                     'id': 'tp-files',
