@@ -20,8 +20,8 @@
   </thead>
   <tbody class="stats">
     {% for item in table.items %}
-    <tr class="item {% cycle 'even' 'odd' %}">
-    {% include "core/_table_row.html" %}
+    <tr class="item {% cycle 'even' 'odd' %}{% if 'total' in table.fields %}{% if item.total_words == 0 %} empty{% endif %}{% endif %}">
+      {% include "core/_table_row.html" %}
     </tr>
     {% endfor %}
   </tbody>
