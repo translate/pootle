@@ -1681,6 +1681,12 @@ table.topcontributors td
     padding: 5px 10px;
 }
 
+tr.item.empty
+{
+    filter:alpha(opacity=65);
+    opacity: 0.65;
+}
+
 td.stats-number
 {
     padding-right: 26px !important; /* magic number to put padding between right and left aligned column, and to right-align heading with number */
