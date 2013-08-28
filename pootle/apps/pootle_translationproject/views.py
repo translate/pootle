@@ -29,7 +29,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext as _, ungettext
 
 from pootle.core.decorators import (get_path_obj, get_resource_context,
                                     permission_required)
@@ -210,6 +210,10 @@ def overview(request, translation_project, dir_path, filename=None):
     path_summary = get_path_summary(resource_obj, path_stats)
     actions = action_groups(request, resource_obj, path_stats=path_stats)
 
+    # Build URL for getting more summary information for the current path
+    url_args = [language.code, project.code, resource_obj.path]
+    url_path_summary_more = reverse('pootle-tp-summary', args=url_args)
+
     ctx = {
         'translation_project': translation_project,
         'project': project,
@@ -221,6 +225,14 @@ def overview(request, translation_project, dir_path, filename=None):
         'topstats': gentopstats_translation_project(translation_project),
         'action_groups': actions,
         'can_edit': can_edit,
+        'url_path_summary_more': url_path_summary_more,
+        'summary': ungettext('%(num)d word, %(percentage)d%% translated',
+                '%(num)d words, %(percentage)d%% translated',
+                path_stats['total']['words'],
+                {
+                    'num': path_stats['total']['words'],
+                    'percentage': path_stats['translated']['percentage']
+                }),
     }
 
     if store is None:

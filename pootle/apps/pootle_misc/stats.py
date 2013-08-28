@@ -119,50 +119,8 @@ def get_translation_stats(path_obj, path_stats):
 
 def get_path_summary(path_obj, path_stats):
     """Returns a list of sentences to be displayed for each ``path_obj``."""
-    summary = []
     incomplete = []
     suggestions = []
-
-    if path_obj.is_dir:
-        summary.append(
-            ungettext("This folder has %(num)d word, %(percentage)d%% of "
-                "which is translated.",
-                "This folder has %(num)d words, %(percentage)d%% of "
-                "which are translated.",
-                path_stats['total']['words'],
-                {
-                    'num': path_stats['total']['words'],
-                    'percentage': path_stats['translated']['percentage']
-                })
-        )
-    else:
-        summary.append(
-            ungettext("This file has %(num)d word, %(percentage)d%% of "
-                "which is translated.",
-                "This file has %(num)d words, %(percentage)d%% of "
-                "which are translated.",
-                path_stats['total']['words'],
-                {
-                    'num': path_stats['total']['words'],
-                    'percentage': path_stats['translated']['percentage']
-                })
-        )
-
-    tp = path_obj.translation_project
-    project = tp.project
-    language = tp.language
-
-    # Build URL for getting more summary information for the current path
-    url_args = [language.code, project.code, path_obj.path]
-    url_path_summary_more = reverse('pootle-tp-summary', args=url_args)
-
-    summary.append(u''.join([
-        ' <a id="js-path-summary" data-target="js-path-summary-more" '
-        'href="%s">' % url_path_summary_more,
-        force_unicode(_(u'Expand details')),
-        '</a>'
-    ]))
-
 
     if path_stats['untranslated']['words'] > 0 or path_stats['fuzzy']['words'] > 0:
         num_words = path_stats['untranslated']['words'] + path_stats['fuzzy']['words']
@@ -198,8 +156,7 @@ def get_path_summary(path_obj, path_stats):
         )
         suggestions.append(u'</a>')
 
-    return [u''.join(summary), u''.join(incomplete),
-            u''.join(suggestions)]
+    return [u''.join(incomplete), u''.join(suggestions)]
 
 
 def stats_message_raw(version, stats):

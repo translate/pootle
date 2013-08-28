@@ -1783,6 +1783,12 @@ div.small
     font-size: 0.9em;
 }
 
+.path-summary-more {
+    margin: 0 1em;
+    padding: 1em 0;
+    display: none;
+}
+
 #path-summary ul
 {
     line-height: 1.8em;
@@ -2127,19 +2133,31 @@ ul.top_menu li.page_pootle
 .breadcrumb li
 {
     display: inline;
+    /*margin-right: 10px;*/
 }
 
 .breadcrumb li:before
 {
-    content: "/";
+    content: "/ ";
+    font-weight: normal;
     color: #999;
-    margin: 0 10px;
 }
 
 .breadcrumb li:first-child:before
 {
     content: normal;
-    margin: 0;
+}
+
+.breadcrumb li.file-path
+{
+    font-weight: normal;
+    font-size: 90%;
+    color: #999;
+}
+
+.breadcrumb li.file-path span
+{
+    color: #000;
 }
 
 /* select2 dropdown widgets in breadcrumbs */
