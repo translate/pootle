@@ -5,22 +5,30 @@
 
 {% block body_id %}tpoverview{% endblock %}
 
+{% block breadcrumbs %}
+  {{ block.super }}
+  {% cache settings.CACHE_TIMEOUT path_trail resource_obj.id %}
+  <li class="file-path"><a href="{% url 'pootle-tp-overview' language.code project.code '' %}">{{ project.code }}</a> / {{ resource_obj|trail:"/" }}</li>
+  {% endcache %}
+{% endblock %}
+
 {% block search %}{% render_search %}{% endblock %}
 
 {% block content %}
-
 <div class="hd">
-  {% cache settings.CACHE_TIMEOUT path_trail resource_obj.id %}
-  <h2><span><a href="{% url 'pootle-tp-overview' language.code project.code '' %}">{{ project.code }}</a> / {{ resource_obj|trail:"/" }}</span></h2>
-  {% endcache %}
+  <h2>
+    {{ summary }}
+    (<a id="js-path-summary" data-target="js-path-summary-more" href="{{ url_path_summary_more }}">{% trans "Expand details" %}</a>)
+  </h2>
+</div>
+
+<div id="js-path-summary-more" data-loaded="false" data-collapsed="true">
 </div>
 
 <div id="path-summary" class="bd">
   <ul id="path-summary-head"></ul>
   <div id="progressbar">
     {% include "core/_progressbar.html" %}
-  </div>
-  <div id="js-path-summary-more" data-loaded="false" data-collapsed="true">
   </div>
 </div>
 

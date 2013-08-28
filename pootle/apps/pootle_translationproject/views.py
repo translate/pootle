@@ -32,7 +32,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
 from django.utils.encoding import iri_to_uri
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext as _, ungettext
 from django.views.decorators.http import require_POST
 
 from taggit.models import Tag
@@ -427,6 +427,14 @@ def overview(request, translation_project, dir_path, filename=None,
     else:
         description = goal.description
 
+    # Build URL for getting more summary information for the current path
+    url_path_summary_more = reverse('pootle-xhr-summary-more')
+    total_words = request.resource_obj.get_total_wordcount()
+
+    translated_words = request.resource_obj.get_translated_wordcount()
+    max_words = max(total_words, 1)
+    translated_percentage = int(100.0 * translated_words / max_words)
+
     ctx.update({
         'resource_obj': request.resource_obj,
         'translation_project': translation_project,
@@ -440,6 +448,14 @@ def overview(request, translation_project, dir_path, filename=None,
         'action_groups': actions,
         'action_output': action_output,
         'can_edit': can_edit,
+        'url_path_summary_more': url_path_summary_more,
+        'summary': ungettext('%(num)d word, %(percentage)d%% translated',
+                '%(num)d words, %(percentage)d%% translated',
+                total_words,
+                {
+                    'num': total_words,
+                    'percentage': translated_percentage
+                }),
     })
 
     tp_pootle_path = translation_project.pootle_path
