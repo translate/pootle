@@ -264,7 +264,7 @@ def ajax_add_tag_to_tp_in_project(request, project_code):
                 'add_tag_action_url': reverse('project.ajax_add_tag_to_tp',
                                               kwargs=url_kwargs)
             }
-            return render_to_response('common/xhr_add_tag_to_tp_form.html',
+            return render_to_response('common/xhr_add_tag_form.html',
                                       context, RequestContext(request))
 
 

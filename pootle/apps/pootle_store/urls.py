@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008 Zuza Software Foundation
+# Copyright 2008-2013 Zuza Software Foundation
 #
 # This file is part of translate.
 #
@@ -74,4 +74,14 @@ urlpatterns = patterns('pootle_store.views',
 
     (r'^qualitycheck/reject/(?P<uid>[0-9]+)/(?P<checkid>[0-9]+)/?$',
         'reject_qualitycheck'),
+
+    # XHR for tags.
+    url(r'^ajax/tags/add/store/(?P<store_pk>[0-9]+)?$',
+        'ajax_add_tag_to_store',
+        name='pootle-store-ajax-add-tag'),
+
+    url(r'^ajax/tags/remove/(?P<tag_slug>[a-z0-9-]+)/store/'
+        r'(?P<store_pk>[0-9]+)?$',
+        'ajax_remove_tag_from_store',
+        name='pootle-store-ajax-remove-tag'),
 )
