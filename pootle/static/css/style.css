@@ -1789,17 +1789,12 @@ div.small
     display: none;
 }
 
-#path-summary ul
-{
-    line-height: 1.8em;
-}
-
-.path-incomplete
+#translate-actions
 {
     font-weight: bold;
     font-size: 1.2em;
+    line-height: 1.8em;
 }
-
 
 /*
  * Pretty Graphs, mostly from http://l10n.gnome.org/

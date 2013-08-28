@@ -42,7 +42,7 @@ from pootle_app.views.top_stats import gentopstats_translation_project
 from pootle_misc.browser import get_children, get_table_headings
 from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.stats import (get_raw_stats, get_translation_stats,
-                               get_path_summary)
+                               get_translate_actions)
 from pootle_misc.util import jsonify, ajax_required
 from pootle_statistics.models import Submission
 from pootle_store.models import Store
@@ -207,7 +207,7 @@ def overview(request, translation_project, dir_path, filename=None):
     resource_obj = store or directory
 
     path_stats = get_raw_stats(resource_obj, include_suggestions=True)
-    path_summary = get_path_summary(resource_obj, path_stats)
+    translate_actions = get_translate_actions(resource_obj, path_stats)
     actions = action_groups(request, resource_obj, path_stats=path_stats)
 
     # Build URL for getting more summary information for the current path
@@ -220,7 +220,7 @@ def overview(request, translation_project, dir_path, filename=None):
         'language': language,
         'resource_obj': resource_obj,
         'resource_path': request.resource_path,
-        'path_summary': path_summary,
+        'translate_actions': translate_actions,
         'stats': path_stats,
         'topstats': gentopstats_translation_project(translation_project),
         'action_groups': actions,

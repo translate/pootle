@@ -117,15 +117,15 @@ def get_translation_stats(path_obj, path_stats):
     return stats
 
 
-def get_path_summary(path_obj, path_stats):
-    """Returns a list of sentences to be displayed for each ``path_obj``."""
+def get_translate_actions(path_obj, path_stats):
+    """Returns a list of translation action links to be displayed for each ``path_obj``."""
     incomplete = []
     suggestions = []
 
     if path_stats['untranslated']['words'] > 0 or path_stats['fuzzy']['words'] > 0:
         num_words = path_stats['untranslated']['words'] + path_stats['fuzzy']['words']
         incomplete.extend([
-            u'<a class="path-incomplete" href="%(url)s">' % {
+            u'<a class="continue-translation" href="%(url)s">' % {
                     'url': path_obj.get_translate_url(state='incomplete')
                 },
             ungettext(u'Continue translation (%(num)d word left)',
@@ -145,7 +145,7 @@ def get_path_summary(path_obj, path_stats):
 
 
     if path_stats['suggestions'] > 0:
-        suggestions.append(u'<a class="path-incomplete" href="%(url)s">' % {
+        suggestions.append(u'<a class="review-suggestions" href="%(url)s">' % {
             'url': path_obj.get_translate_url(state='suggestions')
         })
         suggestions.append(

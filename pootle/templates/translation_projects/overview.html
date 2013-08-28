@@ -25,12 +25,13 @@
 <div class="path-summary-more" id="js-path-summary-more" data-loaded="false" data-collapsed="true">
 </div>
 
-<div id="path-summary" class="bd">
-  <ul>
-    {% for summary_item in path_summary %}
-    <li>{{ summary_item|safe }}</li>
-    {% endfor %}
-  </ul>
+<ul id="translate-actions" class="bd">
+  {% for action in translate_actions %}
+  <li>{{ action|safe }}</li>
+  {% endfor %}
+</ul>
+
+<div class="bd">
   {% progressbar stats stats.total.words %}
 </div>
 
