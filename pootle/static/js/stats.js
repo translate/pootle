@@ -91,7 +91,7 @@
         $pathSummary.append($('<li/>').append($incomplete));
       } else {
         var $incomplete = $("<a />", {
-          'class': 'path-incomplete',
+          'class': 'translation-complete',
           'href': data.pathsummary.translate_url,
           'text': gettext('Translation is complete'),
         });
