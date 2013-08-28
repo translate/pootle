@@ -138,7 +138,7 @@ def get_translate_actions(path_obj, path_stats):
             u'<a class="translation-complete" href="%(url)s">' % {
                     'url': path_obj.get_translate_url(state='all')
                 },
-            force_unicode(_('Translation is complete <span class="counter">view all</span>')),
+            force_unicode(_('Translation complete: <span class="counter">view all</span>')),
         ])
 
     incomplete.append(u'</a>')
