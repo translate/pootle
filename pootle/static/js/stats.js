@@ -80,33 +80,38 @@
       );
 
       if (incomplete > 0) {
-        var fmt = ngettext('Continue translation (%s word left)',
-                           'Continue translation (%s words left)', incomplete);
+        var fmt = ngettext('Continue translation: <span class="counter">%s word left</span>',
+                           'Continue translation: <span class="counter">%s words left</span>',
+                           incomplete);
         var $incomplete = $("<a />", {
           'class': 'continue-translation',
           'href': data.pathsummary.incomplete_url,
-          'text': interpolate(fmt, [incomplete]),
         });
+
+        $incomplete.html(interpolate(fmt, [incomplete]));
 
         $pathSummary.append($('<li/>').append($incomplete));
       } else {
         var $incomplete = $("<a />", {
           'class': 'translation-complete',
           'href': data.pathsummary.translate_url,
-          'text': gettext('Translation is complete'),
         });
+
+        $incomplete.html(gettext('Translation is complete <span class="counter">view all</span>'));
 
         $pathSummary.append($('<li/>').append($incomplete));
       }
 
       if (data.suggestions > 0) {
-        var fmt = ngettext('Review suggestion (%s left)',
-                           'Review suggestions (%s left)', data.suggestions);
+        var fmt = ngettext('Review suggestion: <span class="counter">%s left</span>',
+                           'Review suggestions: <span class="counter">%s left</span>',
+                           data.suggestions);
         var $suggestions = $("<a />", {
           'class': 'review-suggestions',
           'href': data.pathsummary.suggestions_url,
-          'text': interpolate(fmt, [data.suggestions]),
         });
+
+        $suggestions.html(interpolate(fmt, [data.suggestions]));
 
         $pathSummary.append($('<li/>').append($suggestions));
       }
@@ -157,7 +162,7 @@
               now = parseInt(Date.now() / 1000, 10);
           PTL.stats.updateProgressbar($('#progressbar'), data);
           PTL.stats.updateSummary($('#summary'), data);
-          PTL.stats.updatePathSummary($('#translate-actions'), data);
+          PTL.stats.updatePathSummary($('#js-translate-actions-list'), data);
 
           PTL.stats.updateAction($('#action-view-all'), data.total);
           PTL.stats.updateAction($('#action-continue'),

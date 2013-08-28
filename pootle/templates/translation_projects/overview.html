@@ -15,6 +15,10 @@
 {% block search %}{% render_search %}{% endblock %}
 
 {% block content %}
+<div id="translate-actions">
+  <ul id="js-translate-actions-list"></ul>
+</div>
+
 <div class="hd">
   <h2>
     {{ summary }}
@@ -24,8 +28,6 @@
 
 <div id="js-path-summary-more" data-loaded="false" data-collapsed="true">
 </div>
-
-<ul id="translate-actions" class="bd"></ul>
 
 <div class="bd">
   <div id="progressbar">
