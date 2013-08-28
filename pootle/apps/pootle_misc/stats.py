@@ -135,7 +135,7 @@ def get_translate_actions(path_obj, path_stats):
         ])
     else:
         incomplete.extend([
-            u'<a class="path-incomplete" href="%(url)s">' % {
+            u'<a class="translation-complete" href="%(url)s">' % {
                     'url': path_obj.get_translate_url(state='all')
                 },
             force_unicode(_('Translation is complete')),
