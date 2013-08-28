@@ -84,7 +84,7 @@ cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
       {% endif %}
       
       {% if 'activity' in table.fields %}
-      <td>{{ item.lastactivity }}</td>
+      <td class="last-activity">{{ item.lastactivity }}</td>
       {% endif %}
       
       {% else %}

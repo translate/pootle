@@ -63,7 +63,7 @@ def progressbar(context, cur_stats, total_words=None):
 
     cur_total_words = cur_stats['total']['words']
     if proportional:
-        progressbar_width = (200 * cur_total_words) / total_words
+        progressbar_width = (100 * cur_total_words) / total_words
     else:
         progressbar_width = 100
 

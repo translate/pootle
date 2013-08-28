@@ -26,17 +26,14 @@
 </div>
 
 <div class="hd">
-  <h2>
+  <h2 class="with-progressbar">
     {{ summary }}
     (<a id="js-path-summary" data-target="js-path-summary-more" href="{{ url_path_summary_more }}">{% trans "Expand details" %}</a>)
+    {% progressbar stats stats.total.words %}
   </h2>
 </div>
 
 <div class="path-summary-more" id="js-path-summary-more" data-loaded="false" data-collapsed="true">
-</div>
-
-<div class="bd">
-  {% progressbar stats stats.total.words %}
 </div>
 
 {% if table %}
