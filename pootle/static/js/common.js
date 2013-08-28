@@ -273,6 +273,9 @@
       $("#js-tag-filtering").on("change", function (event) {
         // If there are no tag filters.
         if (event.val.length === 0) {
+          // Remove the filtered table and show the original one.
+          $("table#project-filtered").remove();
+          $("table#project").show();
           // If tags are not hidden.
           if ($.cookie('showtags') === 'true') {
             $("table#project tbody tr").show();
@@ -292,7 +295,22 @@
           // tagging data.
           var foundTags = [];
 
-          $("table#project tbody tr:not(.js-tags)").each(function () {
+          $("table#project").hide();
+          $filtered = $("table#project").clone();
+          $filtered.attr("id", "project-filtered");
+
+          // Cleanup table sorting stuff, we will re-sort.
+          $filtered.find(".icon-ascdesc, .icon-asc, .icon-desc").remove();
+          $filtered.find("th").removeClass("sorttable_sorted");
+          $filtered.find("th").removeClass("sorttable_sorted_reverse");
+
+          // Remove tags rows, will be re-added when sorting.
+          $filtered.find(".tags-row").remove();
+
+          $filtered.insertBefore("table#project");
+          $filtered.show();
+
+          $("table#project-filtered tbody tr:not(.js-tags)").each(function () {
             // Get all the tags applied to the current translation project.
             $(this).find("ul.tag-list li").each(function () {
               foundTags.push($(this).find(".js-tag-item").text());
@@ -308,25 +326,16 @@
             if (matchingFilters.length === filterTags.length) {
               // Show the current translation project.
               $(this).show();
-
-              // If the tags are not hidden, then show the translation project
-              // tags row too.
-              if ($.cookie('showtags') === 'true') {
-                $(this).next().show();
-              };
             } else {
               // Hide the current translation project.
-              $(this).hide();
-
-              // If the tags are not hidden, then hide the translation project
-              // tags row too.
-              if ($.cookie('showtags') === 'true') {
-                $(this).next().hide();
-              };
+              $(this).remove();
             };
 
             foundTags = [];
           });
+
+          // Sort the filtered table.
+          sorttable.makeSortable($filtered.get(0));
         };
       });
     },
