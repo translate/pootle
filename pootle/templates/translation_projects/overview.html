@@ -20,19 +20,16 @@
 </div>
 
 <div class="hd">
-  <h2>
+  <h2 class="with-progressbar">
     {{ summary }}
     (<a id="js-path-summary" data-target="js-path-summary-more" href="{{ url_path_summary_more }}">{% trans "Expand details" %}</a>)
+    <div id="progressbar">
+      {% include "core/_progressbar.html" %}
+    </div>
   </h2>
 </div>
 
 <div id="js-path-summary-more" data-loaded="false" data-collapsed="true">
-</div>
-
-<div class="bd">
-  <div id="progressbar">
-    {% include "core/_progressbar.html" %}
-  </div>
 </div>
 
 {% if table %}

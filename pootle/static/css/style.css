@@ -284,14 +284,6 @@ pre, code, kbd, samp, tt
     vertical-align: text-top;
 }
 
-[class^="bar-"],
-[class*=" bar-"]
-{
-    display: inline-block;
-    position: absolute;
-    vertical-align: middle;
-}
-
 ul.icons
 {
     list-style-type: none;
@@ -1576,25 +1568,6 @@ div#settings
  * SUMMARIES
  */
 
-#summary-legend
-{
-    color: #888;
-    font-size: 85%;
-    font-style: italic;
-}
-
-#summary-legend li
-{
-    line-height: 16px;
-}
-
-#summary-legend [class^="bar-"],
-#summary-legend [class*=" bar-"]
-{
-    position: relative;
-    width: 32px;
-}
-
 div.newsitem-sep
 {
     border-bottom: 1px solid #ddd;
@@ -1648,6 +1621,11 @@ tr.item.empty
     opacity: 0.65;
 }
 
+td.stats-name
+{
+    white-space: nowrap;    
+}
+
 td.stats-number
 {
     padding-right: 26px !important; /* magic number to put padding between right and left aligned column, and to right-align heading with number */
@@ -1687,6 +1665,11 @@ td.stats-number.suggestions a
 td.stats-name .user-nobody
 {
     font-style: italic;
+}
+
+td.last-activity
+{
+    width: 100%;
 }
 
 html[dir="rtl"] td.language,
@@ -1761,7 +1744,8 @@ div.small
     font-size: 0.9em;
 }
 
-.path-summary-more {
+.path-summary-more
+{
     margin: 0 1em;
     padding: 1em 0;
     display: none;
@@ -1778,7 +1762,7 @@ div.small
     position: absolute;
     top: 0;
     right: 0;
-    margin-right: 1em;
+    margin-right: 1.5em;
 }
 
 #translate-actions li
@@ -1869,6 +1853,15 @@ table.graph .translated
 table.graph .fuzzy
 {
     background-color: #9c9;
+}
+
+h2.with-progressbar {
+    border-bottom: none;
+}
+
+h2.with-progressbar table.graph
+{
+    width: 100%;
 }
 
 /* PROGRESSBAR LEGEND */
@@ -2307,7 +2300,8 @@ html[dir="rtl"] #search
     float: left;
 }
 
-#main-overview #search {
+#main-overview #search
+{
     margin-top: -32px;
 }
 
