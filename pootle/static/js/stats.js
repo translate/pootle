@@ -97,7 +97,7 @@
           'href': data.pathsummary.translate_url,
         });
 
-        $incomplete.html(gettext('Translation is complete <span class="counter">view all</span>'));
+        $incomplete.html(gettext('Translation complete: <span class="counter">view all</span>'));
 
         $pathSummary.append($('<li/>').append($incomplete));
       }
