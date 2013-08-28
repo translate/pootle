@@ -355,8 +355,8 @@ class TranslationProject(models.Model, TreeItem):
         return [self.language, self.project]
 
     def _get_path_summary(self):
-        from pootle_misc.stats import get_path_summary
-        return get_path_summary(self.directory)
+        from pootle_misc.stats import get_translate_actions
+        return get_translate_actions(self.directory)
 
     ### /TreeItem
 

@@ -22,8 +22,8 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ungettext
 
 
-def get_path_summary(path_obj):
-    """Return a list of sentences to be displayed for each ``path_obj``."""
+def get_translate_actions(path_obj):
+    """Return a list of translation action links to be displayed for each ``path_obj``."""
     goals_summary = []
 
     # Build URL for getting more summary information for the current path.
@@ -43,7 +43,7 @@ def get_path_summary(path_obj):
                                                        state='incomplete')
             if goal_words > 0:
                 goals_summary.extend([
-                    u'<br /><a class="path-incomplete" href="%(url)s">' % {
+                    u'<br /><a class="continue-translation" href="%(url)s">' % {
                             'url': goal_url,
                         },
                     ungettext(u'Next most important goal (%(num)d word left)',

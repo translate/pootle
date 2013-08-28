@@ -83,7 +83,7 @@
         var fmt = ngettext('Continue translation (%s word left)',
                            'Continue translation (%s words left)', incomplete);
         var $incomplete = $("<a />", {
-          'class': 'path-incomplete',
+          'class': 'continue-translation',
           'href': data.pathsummary.incomplete_url,
           'text': interpolate(fmt, [incomplete]),
         });
@@ -103,7 +103,7 @@
         var fmt = ngettext('Review suggestion (%s left)',
                            'Review suggestions (%s left)', data.suggestions);
         var $suggestions = $("<a />", {
-          'class': 'path-incomplete',
+          'class': 'review-suggestions',
           'href': data.pathsummary.suggestions_url,
           'text': interpolate(fmt, [data.suggestions]),
         });
@@ -157,7 +157,7 @@
               now = parseInt(Date.now() / 1000, 10);
           PTL.stats.updateProgressbar($('#progressbar'), data);
           PTL.stats.updateSummary($('#summary'), data);
-          PTL.stats.updatePathSummary($('#path-summary-head'), data);
+          PTL.stats.updatePathSummary($('#translate-actions'), data);
 
           PTL.stats.updateAction($('#action-view-all'), data.total);
           PTL.stats.updateAction($('#action-continue'),
