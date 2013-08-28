@@ -51,11 +51,13 @@ from pootle_misc.util import (cached_property, getfromcache, deletefromcache,
                               datetime_min)
 from pootle_statistics.models import (SubmissionFields,
                                       SubmissionTypes, Submission)
+from pootle_app.models import Suggestion as SuggestionStat
 from pootle_store.fields import (TranslationStoreField, MultiStringField,
                                  PLURAL_PLACEHOLDER, SEPARATOR)
 from pootle_store.filetypes import factory_classes
 from pootle_store.util import (calculate_stats, empty_quickstats,
                                OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED)
+from .signals import translation_submitted
 
 
 #
@@ -786,31 +788,69 @@ class Unit(models.Model, base.TranslationUnit):
             return None
         return suggestion
 
-    def accept_suggestion(self, suggid):
-        try:
-            suggestion = self.suggestion_set.get(id=suggid)
-        except Suggestion.DoesNotExist:
-            return False
+    def accept_suggestion(self, suggestion, translation_project, reviewer):
+        if suggestion is not None:
+            old_target = self.target
+            self.target = suggestion.target
+            self.state = TRANSLATED
 
-        self.target = suggestion.target
-        self.state = TRANSLATED
+            suggestion_user = suggestion.user
+            self.submitted_by = suggestion_user
+            self.submitted_on = timezone.now()
 
-        self.submitted_by = suggestion.user
-        self.submitted_on = timezone.now()
+            # It is important to first delete the suggestion before calling
+            # ``save``, otherwise the quality checks won't be properly updated
+            # when saving the unit.
+            suggestion.delete()
+            self.save()
 
-        # It is important to first delete the suggestion before calling
-        # ``save``, otherwise the quality checks won't be properly updated
-        # when saving the unit.
-        suggestion.delete()
-        self.save()
+            # FIXME: we need a totally different model for tracking stats, this
+            # is just lame
+            suggstat, created = SuggestionStat.objects.get_or_create(
+                    translation_project=translation_project,
+                    suggester=suggestion_user,
+                    state='pending',
+                    unit=self.id,
+            )
+            suggstat.reviewer = reviewer
+            suggstat.state = 'accepted'
+            suggstat.save()
+
+            # For now assume the target changed
+            # TODO: check all fields for changes
+            creation_time = timezone.now()
+            sub = Submission(
+                    creation_time=creation_time,
+                    translation_project=translation_project,
+                    submitter=suggestion.user,
+                    from_suggestion=suggstat,
+                    unit=self,
+                    field=SubmissionFields.TARGET,
+                    type=SubmissionTypes.SUGG_ACCEPT,
+                    old_value=old_target,
+                    new_value=self.target,
+            )
+            sub.save()
+
+            if suggestion_user:
+                translation_submitted.send(sender=translation_project,
+                                           unit=self, profile=suggestion_user)
 
         return True
 
-    def reject_suggestion(self, suggid):
-        try:
-            suggestion = self.suggestion_set.get(id=suggid)
-        except Suggestion.DoesNotExist:
-            return False
+    def reject_suggestion(self, suggestion, translation_project, reviewer):
+        if suggestion is not None:
+            # FIXME: we need a totally different model for tracking stats, this
+            # is just lame
+            suggstat, created = SuggestionStat.objects.get_or_create(
+                    translation_project=translation_project,
+                    suggester=suggestion.user,
+                    state='pending',
+                    unit=self.id,
+            )
+            suggstat.reviewer = reviewer
+            suggstat.state = 'rejected'
+            suggstat.save()
 
         suggestion.delete()
         # Update timestamp

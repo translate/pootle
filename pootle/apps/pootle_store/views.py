@@ -745,19 +745,8 @@ def reject_suggestion(request, unit, suggid):
         except ObjectDoesNotExist:
             raise Http404
 
-        success = unit.reject_suggestion(suggid)
-        if sugg is not None and success:
-            # FIXME: we need a totally different model for tracking stats, this
-            # is just lame
-            suggstat, created = SuggestionStat.objects.get_or_create(
-                    translation_project=translation_project,
-                    suggester=sugg.user,
-                    state='pending',
-                    unit=unit.id,
-            )
-            suggstat.reviewer = request.profile
-            suggstat.state = 'rejected'
-            suggstat.save()
+        unit.reject_suggestion(sugg, request.translation_project,
+                               request.profile)
 
     response = jsonify(json)
     return HttpResponse(response, mimetype="application/json")
@@ -778,8 +767,7 @@ def accept_suggestion(request, unit, suggid):
         except ObjectDoesNotExist:
             raise Http404
 
-        old_target = unit.target
-        success = unit.accept_suggestion(suggid)
+        unit.accept_suggestion(suggestion, translation_project, request.profile)
 
         json['newtargets'] = [highlight_whitespace(target)
                               for target in unit.target.strings]
@@ -788,39 +776,6 @@ def accept_suggestion(request, unit, suggid):
             json['newdiffs'][sugg.id] = \
                     [highlight_diffs(unit.target.strings[i], target)
                      for i, target in enumerate(sugg.target.strings)]
-
-        if suggestion is not None and success:
-            if suggestion.user:
-                translation_submitted.send(sender=translation_project,
-                                           unit=unit, profile=suggestion.user)
-
-            # FIXME: we need a totally different model for tracking stats, this
-            # is just lame
-            suggstat, created = SuggestionStat.objects.get_or_create(
-                    translation_project=translation_project,
-                    suggester=suggestion.user,
-                    state='pending',
-                    unit=unit.id,
-            )
-            suggstat.reviewer = request.profile
-            suggstat.state = 'accepted'
-            suggstat.save()
-
-            # For now assume the target changed
-            # TODO: check all fields for changes
-            creation_time = timezone.now()
-            sub = Submission(
-                    creation_time=creation_time,
-                    translation_project=translation_project,
-                    submitter=suggestion.user,
-                    from_suggestion=suggstat,
-                    unit=unit,
-                    field=SubmissionFields.TARGET,
-                    type=SubmissionTypes.SUGG_ACCEPT,
-                    old_value=old_target,
-                    new_value=unit.target,
-            )
-            sub.save()
 
     response = jsonify(json)
     return HttpResponse(response, mimetype="application/json")
