@@ -15,6 +15,16 @@
 {% block search %}{% render_search %}{% endblock %}
 
 {% block content %}
+<div id="translate-actions">
+  <ul>
+    {% for action in translate_actions %}
+      {% if action %}
+        <li>{{ action|safe }}</li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>
+
 <div class="hd">
   <h2>
     {{ summary }}
@@ -24,12 +34,6 @@
 
 <div class="path-summary-more" id="js-path-summary-more" data-loaded="false" data-collapsed="true">
 </div>
-
-<ul id="translate-actions" class="bd">
-  {% for action in translate_actions %}
-  <li>{{ action|safe }}</li>
-  {% endfor %}
-</ul>
 
 <div class="bd">
   {% progressbar stats stats.total.words %}

@@ -128,8 +128,8 @@ def get_translate_actions(path_obj, path_stats):
             u'<a class="continue-translation" href="%(url)s">' % {
                     'url': path_obj.get_translate_url(state='incomplete')
                 },
-            ungettext(u'Continue translation (%(num)d word left)',
-                      u'Continue translation (%(num)d words left)',
+            ungettext(u'Continue translation: <span class="counter">%(num)d word left</span>',
+                      u'Continue translation: <span class="counter">%(num)d words left</span>',
                       num_words,
                       {'num': num_words, }),
         ])
@@ -138,7 +138,7 @@ def get_translate_actions(path_obj, path_stats):
             u'<a class="translation-complete" href="%(url)s">' % {
                     'url': path_obj.get_translate_url(state='all')
                 },
-            force_unicode(_('Translation is complete')),
+            force_unicode(_('Translation is complete <span class="counter">view all</span>')),
         ])
 
     incomplete.append(u'</a>')
@@ -149,8 +149,8 @@ def get_translate_actions(path_obj, path_stats):
             'url': path_obj.get_translate_url(state='suggestions')
         })
         suggestions.append(
-            ungettext(u'Review suggestion (%(num)d left)',
-                      u'Review suggestions (%(num)d left)',
+            ungettext(u'Review suggestion: <span class="counter">%(num)d left</span>',
+                      u'Review suggestions: <span class="counter">%(num)d left</span>',
                       path_stats['suggestions'],
                       {'num': path_stats['suggestions'], })
         )
