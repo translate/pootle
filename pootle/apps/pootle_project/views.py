@@ -111,6 +111,7 @@ def handle_tags_filter_form(request, translation_projects):
         filter_tags = forms.ModelMultipleChoiceField(
             queryset=Tag.objects.filter(**criteria).distinct(),
             widget=forms.SelectMultiple(attrs={
+                'id': 'js-tag-filtering',
                 'class': 'js-select2 select2-multiple',
                 'data-placeholder': _('Select one or more tags to use as '
                                       'filter'),
@@ -263,7 +264,7 @@ def ajax_add_tag_to_tp_in_project(request, project_code):
                 'add_tag_action_url': reverse('project.ajax_add_tag_to_tp',
                                               kwargs=url_kwargs)
             }
-            return render_to_response('common/xhr_add_tag_to_tp_form.html',
+            return render_to_response('common/xhr_add_tag_form.html',
                                       context, RequestContext(request))
 
 

@@ -274,15 +274,21 @@ def overview(request, translation_project, dir_path, filename=None):
 
     current_path = translation_project.directory.pootle_path + dir_path
 
-    template_vars = {}
-
     if filename:
         current_path = current_path + filename
         store = get_object_or_404(Store, pootle_path=current_path)
         directory = store.parent
+        template_vars = {
+            'store_tags': store.tags.all().order_by('name'),
+        }
+        template = "translation_project/store_overview.html"
     else:
         store = None
         directory = get_object_or_404(Directory, pootle_path=current_path)
+        template_vars = {
+            'tp_tags': translation_project.tags.all().order_by('name'),
+        }
+        template = "translation_project/overview.html"
 
     if (check_permission('translate', request) or
         check_permission('suggest', request) or
@@ -395,7 +401,6 @@ def overview(request, translation_project, dir_path, filename=None):
         'feed_path': directory.pootle_path[1:],
         'action_groups': actions,
         'action_output': action_output,
-        'tp_tags': translation_project.tags.all().order_by('name'),
         'can_edit': can_edit,
     })
 
@@ -413,19 +418,23 @@ def overview(request, translation_project, dir_path, filename=None):
         })
 
     if can_edit:
-        url_kwargs = {
-            'language_code': language.code,
-            'project_code': project.code,
-        }
+        if store is None:
+            url_kwargs = {
+                'language_code': language.code,
+                'project_code': project.code,
+            }
+            add_tag_action_url = reverse('tp.ajax_add_tag', kwargs=url_kwargs)
+        else:
+            add_tag_action_url = reverse('pootle-store-ajax-add-tag',
+                                         args=[path_obj.pk])
+
         template_vars.update({
             'form': DescriptionForm(instance=translation_project),
             'add_tag_form': TagForm(),
-            'add_tag_action_url': reverse('tp.ajax_add_tag',
-                                          kwargs=url_kwargs),
+            'add_tag_action_url': add_tag_action_url,
         })
 
-    return render_to_response("translation_project/overview.html",
-                              template_vars,
+    return render_to_response(template, template_vars,
                               context_instance=RequestContext(request))
 
 
@@ -500,8 +509,8 @@ def ajax_add_tag_to_tp(request, translation_project):
                 'add_tag_action_url': reverse('tp.ajax_add_tag',
                                               kwargs=url_kwargs)
             }
-            return render_to_response('common/xhr_add_tag_to_tp_form.html',
-                                      context, RequestContext(request))
+            return render_to_response('common/xhr_add_tag_form.html', context,
+                                      RequestContext(request))
 
 
 @ajax_required

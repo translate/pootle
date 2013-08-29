@@ -36,6 +36,8 @@ from django.db.transaction import commit_on_success
 from django.utils import timezone, tzinfo
 from django.utils.translation import ugettext_lazy as _
 
+from taggit.managers import TaggableManager
+
 from pootle_app.lib.util import RelatedManager
 from pootle_misc.aggregate import group_by_count_extra, max_column
 from pootle_misc.baseurl import l
@@ -841,6 +843,9 @@ class Store(models.Model, base.TranslationStore):
     sync_time = models.DateTimeField(default=datetime_min)
     state = models.IntegerField(null=False, default=NEW, editable=False,
             db_index=True)
+
+    tags = TaggableManager(blank=True, verbose_name=_("Tags"),
+                           help_text=_("A comma-separated list of tags."))
 
     objects = StoreManager()
 

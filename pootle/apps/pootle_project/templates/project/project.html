@@ -27,7 +27,8 @@
         {{ field }}
         {{ field.errors }}
       {% endfor %}
-      <input type="submit" value="{% trans "Filter" context "verb" %}"
+      <input type="submit" id="js-filter-form-button"
+        value="{% trans "Filter" context "verb" %}"
         title="{% trans "Filter the translation projects using this tags" %}" />
     </form>
   </div>
@@ -67,7 +68,7 @@
 {% if user.is_superuser or request.permissions.administrate %}
 <div id="js-add-tag-dialog" class="form popup-inline mfp-hide" lang="{{ LANGUAGE_CODE }}">
   <h2>{% trans "Add tag" %}</h2>
-  {% include "common/xhr_add_tag_to_tp_form.html" %}
+  {% include "common/xhr_add_tag_form.html" %}
 </div>
 {% endif %}
 {% endblock content %}

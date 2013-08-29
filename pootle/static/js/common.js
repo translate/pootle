@@ -265,6 +265,79 @@
           $(this).magnificPopup('open');
         }
       });
+
+      /* Hide the "Filter" button in the tag filtering form */
+      $("#js-filter-form-button").hide();
+
+      /* Dynamic filtering using tags */
+      $("#js-tag-filtering").on("change", function (event) {
+        // If there are no tag filters.
+        if (event.val.length === 0) {
+          // Remove the filtered table and show the original one.
+          $("table#project-filtered").remove();
+          $("table#project").show();
+          // If tags are not hidden.
+          if ($.cookie('showtags') === 'true') {
+            $("table#project tbody tr").show();
+          } else {
+            $("table#project tbody tr:not(.js-tags)").show();
+          };
+        } else {
+          // Get the filter tags names since Select2 only provides their keys.
+          var filterTags = [];
+
+          $.each(event.val, function (i, tagPK) {
+            filterTags.push($("#js-tag-filtering option[value='" + tagPK +
+                              "']").text());
+          });
+
+          // Iterate over all translation project rows, excluding the ones with
+          // tagging data.
+          var foundTags = [];
+
+          $("table#project").hide();
+          $filtered = $("table#project").clone();
+          $filtered.attr("id", "project-filtered");
+
+          // Cleanup table sorting stuff, we will re-sort.
+          $filtered.find(".icon-ascdesc, .icon-asc, .icon-desc").remove();
+          $filtered.find("th").removeClass("sorttable_sorted");
+          $filtered.find("th").removeClass("sorttable_sorted_reverse");
+
+          // Remove tags rows, will be re-added when sorting.
+          $filtered.find(".tags-row").remove();
+
+          $filtered.insertBefore("table#project");
+          $filtered.show();
+
+          $("table#project-filtered tbody tr:not(.js-tags)").each(function () {
+            // Get all the tags applied to the current translation project.
+            $(this).find("ul.tag-list li").each(function () {
+              foundTags.push($(this).find(".js-tag-item").text());
+            });
+
+            // Get all the filter tags that the current translation project
+            // matches.
+            matchingFilters = $.grep(foundTags, function(element, index){
+              return $.inArray(element, filterTags) !== -1;
+            });
+
+            // If the current translation project matches all the filter tags.
+            if (matchingFilters.length === filterTags.length) {
+              // Show the current translation project.
+              $(this).show();
+            } else {
+              // Hide the current translation project.
+              $(this).remove();
+            };
+
+            foundTags = [];
+          });
+
+          // Sort the filtered table.
+          sorttable.makeSortable($filtered.get(0));
+        };
+      });
     },
 
     /* Navigates to `languageCode`, `projectCode` while retaining the

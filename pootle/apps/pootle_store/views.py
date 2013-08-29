@@ -27,8 +27,9 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
+from django.core.urlresolvers import reverse
 from django.db.models import Q
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, HttpResponseNotAllowed, Http404
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
 from django.utils.translation import to_locale, ugettext as _
@@ -36,6 +37,8 @@ from django.utils.translation.trans_real import parse_accept_lang_header
 from django.utils import simplejson, timezone
 from django.utils.encoding import iri_to_uri
 from django.views.decorators.cache import never_cache
+
+from taggit.models import Tag
 
 from pootle.core.decorators import (get_translation_project,
                                     set_request_context)
@@ -52,6 +55,7 @@ from pootle_misc.util import paginate, ajax_required, jsonify
 from pootle_profile.models import get_profile
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
+from pootle_tagging.forms import TagForm
 
 from .decorators import get_store_context, get_unit_context
 from .models import Store, Unit
@@ -1176,3 +1180,76 @@ def reject_qualitycheck(request, unit, checkid):
 
     response = jsonify(json)
     return HttpResponse(response, mimetype="application/json")
+
+
+@ajax_required
+def ajax_remove_tag_from_store(request, tag_slug, store_pk):
+    if not check_permission('administrate', request):
+        raise PermissionDenied(_("You do not have rights to remove tags."))
+
+    if request.method != 'POST':
+        return HttpResponseNotAllowed(['POST'])
+
+    store = get_object_or_404(Store, pk=store_pk)
+    tag = get_object_or_404(Tag, slug=tag_slug)
+    store.tags.remove(tag)
+
+    return HttpResponse(status=201)
+
+
+def _add_tag(request, store, tag):
+    store.tags.add(tag)
+    context = {
+        'store_tags': store.tags.all().order_by('name'),
+        'path_obj': store,
+        'can_edit': check_permission('administrate', request),
+    }
+    response = render_to_response('store/xhr_tags_list.html', context,
+                                  RequestContext(request))
+    response.status_code = 201
+    return response
+
+
+@ajax_required
+def ajax_add_tag_to_store(request, store_pk):
+    """Return an HTML snippet with the failed form or blank if valid."""
+
+    if not check_permission('administrate', request):
+        raise PermissionDenied(_("You do not have rights to add tags."))
+
+    if request.method != 'POST':
+        return HttpResponseNotAllowed(['POST'])
+
+    store = get_object_or_404(Store, pk=store_pk)
+
+    add_tag_form = TagForm(request.POST)
+
+    if add_tag_form.is_valid():
+        new_tag = add_tag_form.save()
+        return _add_tag(request, store, new_tag)
+    else:
+        # If the form is invalid, perhaps it is because the tag already exists,
+        # so check if the tag exists.
+        try:
+            criteria = {
+                'name': add_tag_form.data['name'],
+                'slug': add_tag_form.data['slug'],
+            }
+            if len(store.tags.filter(**criteria)) == 1:
+                # If the tag is already applied to the store then avoid
+                # reloading the page.
+                return HttpResponse(status=204)
+            else:
+                # Else add the tag to the store.
+                tag = Tag.objects.get(**criteria)
+                return _add_tag(request, store, tag)
+        except Exception:
+            # If the form is invalid and the tag doesn't exist yet then display
+            # the form with the error messages.
+            context = {
+                'add_tag_form': add_tag_form,
+                'add_tag_action_url': reverse('pootle-store-ajax-add-tag',
+                                              args=[store.pk])
+            }
+            return render_to_response('common/xhr_add_tag_form.html', context,
+                                      RequestContext(request))
