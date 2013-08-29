@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
+# Copyright 2013 Evernote Corporation
 # Copyright 2009 Zuza Software Foundation
 #
 # This file is part of Pootle.
@@ -45,19 +46,13 @@ def does_not_exist(path):
 class Command(PootleCommand):
     option_list = PootleCommand.option_list + (
         make_option('--cleanup', action='store_true', dest='clean',
-                    default=False, help="Delete projects and translation "
-                    "projects that ceased to exist (handle with care)."),
+                    default=False, help="Delete translation projects"
+                    " that ceased to exist (handle with care)."),
         )
     help = "Detects new translation projects in the file system and " \
            "adds them to database."
 
     def handle_project(self, project, **options):
-        clean = options.get('clean', False)
-        if clean and does_not_exist(project.get_real_path()):
-            logging.info(u"Deleting %s", project)
-            project.delete()
-            return
-
         lang_query = Language.objects.exclude(
                 id__in=project.translationproject_set \
                               .values_list('language', flat=True)
