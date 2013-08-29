@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
-# This file is part of translate.
+# This file is part of Pootle.
 #
-# translate is free software; you can redistribute it and/or modify
+# Pootle is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
@@ -20,15 +21,17 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django import forms
+from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext as _
 
+from pootle.core.decorators import admin_required
 from pootle_app.views.admin import util
 from pootle_language.models import Language
-from pootle_project.models import Project
+from pootle_project.models import Project, RESERVED_PROJECT_CODES
 from pootle_store.models import Store
 
 
-@util.user_is_admin
+@admin_required
 def view(request):
     queryset = Language.objects.exclude(code='templates')
     try:
@@ -78,6 +81,14 @@ def view(request):
             value = self.cleaned_data.get('treestyle', None)
             if not value:
                 value = self.instance.treestyle
+            return value
+
+        def clean_code(self):
+            value = self.cleaned_data['code']
+            if value in RESERVED_PROJECT_CODES:
+                raise ValidationError(
+                    _('"%s" cannot be used as a project code' % (value,))
+                )
             return value
 
     return util.edit(

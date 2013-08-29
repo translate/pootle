@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -21,11 +22,16 @@
 from functools import wraps
 
 from django.core.exceptions import PermissionDenied
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404
+from django.utils.translation import ugettext as _
 
+from pootle.core.exceptions import Http400
+from pootle.core.url_helpers import split_pootle_path
+from pootle_app.models import Directory
 from pootle_app.models.permissions import (check_permission,
                                            get_matching_permissions)
+from pootle_misc.util import jsonify
 from pootle_profile.models import get_profile
 
 from .models import Store, Unit
@@ -34,11 +40,19 @@ from .models import Store, Unit
 def _common_context(request, translation_project, permission_codes):
     """Adds common context to request object and checks permissions."""
     request.translation_project = translation_project
+    _check_permissions(request, translation_project.directory,
+                       permission_codes)
+
+
+def _check_permissions(request, directory, permission_codes):
+    """Checks if the current user has enough permissions defined by
+    `permission_codes` in the current`directory`.
+    """
     request.profile = get_profile(request.user)
     request.permissions = get_matching_permissions(request.profile,
-                                                   translation_project.directory)
+                                                   directory)
+
     if not permission_codes:
-        # skip checking permissions
         return
 
     if isinstance(permission_codes, basestring):
@@ -46,7 +60,7 @@ def _common_context(request, translation_project, permission_codes):
     for permission_code in permission_codes:
         if not check_permission(permission_code, request):
             raise PermissionDenied(
-                _("Insufficient rights to this translation project."),
+                _("Insufficient rights to access this directory."),
             )
 
 
@@ -94,6 +108,52 @@ def get_unit_context(permission_codes):
             request.directory = unit.store.parent
 
             return f(request, unit, *args, **kwargs)
+
+        return decorated_f
+
+    return wrap_f
+
+
+def get_xhr_resource_context(permission_codes):
+    """Gets the resource context for a XHR view.
+
+    Note that the pootle path string (which includes language, project and
+    resource information) will be read from the `request.GET` dictionary,
+    not from the decorated function arguments.
+
+    :param permission_codes: Permissions codes to optionally check.
+    """
+    def wrap_f(f):
+        @wraps(f)
+        def decorated_f(request):
+            """Loads :cls:`pootle_app.models.Directory` and
+            :cls:`pootle_store.models.Store` models and populates the
+            request object.
+            """
+            pootle_path = request.GET.get('path', None)
+            if pootle_path is None:
+                raise Http400(_('Arguments missing.'))
+
+            lang, proj, dir_path, filename = split_pootle_path(pootle_path)
+
+            store = None
+            if filename:
+                try:
+                    store = Store.objects.select_related(
+                        'parent',
+                    ).get(pootle_path=pootle_path)
+                    directory = store.parent
+                except Store.DoesNotExist:
+                    raise Http404(_('Store does not exist.'))
+            else:
+                directory = Directory.objects.get(pootle_path=pootle_path)
+
+            _check_permissions(request, directory, permission_codes)
+
+            path_obj = store or directory
+            request.pootle_path = pootle_path
+
+            return f(request, path_obj)
 
         return decorated_f
 

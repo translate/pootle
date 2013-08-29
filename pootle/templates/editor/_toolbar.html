@@ -1,0 +1,41 @@
+{% load i18n locale search %}
+{% get_current_language as LANGUAGE_CODE %}
+<div id="toolbar">
+
+  <div class="toolbar pull-left">
+    {% render_search search_form %}
+
+    <div class="label">{% trans "Filter by:" %}</div>
+    <div id="filter-status">
+      <select class="js-select2 select2-filter-status" name="filter-status">
+        {# Translators: This refers to "All strings" #}
+        <option selected="selected" value="all">{% trans "All" %}</option>
+        <option value="translated">{% trans "Translated" %}</option>
+        <option value="incomplete">{% trans "Incomplete" %}</option>
+        <option value="untranslated">{% trans "Untranslated" %}</option>
+        <option value="fuzzy">{% trans "Needs work" %}</option>
+        <option value="suggestions">{% trans "Suggestions" %}</option>
+        <option value="user-suggestions">{% trans "My suggestions" %}</option>
+        <option value="user-submissions">{% trans "My submissions" %}</option>
+        {% comment %}Translators: This is a type of filtering criterion that
+        selects the strings that have been submitted by me at some point
+        in time but have been overwritten by other users.{% endcomment %}
+        <option value="user-submissions-overwritten">{% trans "My overwritten submissions" %}</option>
+        <option value="checks">{% trans "Checks" %}</option>
+      </select>
+    </div>
+    <div id="js-editor-export"></div>
+  </div>
+
+  <div class="toolbar pull-right">
+    <div id="prevnext" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
+      <input type="submit" id="js-nav-prev" name="back" accesskey="b" value="{% trans 'Previous string' %}" title="{% trans 'Go to the previous string (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl+Shift+Page&nbsp;Up<br/>First page: Ctrl+Shift+Home' %}" />
+      <span id="item-navigation">
+        <input id="item-number" type="text" value="1" size="1" title="{% trans 'Current page number (Ctrl+Shift+U)<br/><br/>Type in the number and press Enter<br/>to go to any position' %}" />
+        /
+        <span id="items-count" title="{% trans 'Total pages' %}"></span>
+      </span>
+      <input type="submit" id="js-nav-next" name="skip" accesskey="k" value="{% trans 'Next string' %}" title="{% trans 'Go to the next string (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift+Page&nbsp;Down<br/>Last page: Ctrl+Shift+End' %}" />
+    </div>
+  </div>
+</div>

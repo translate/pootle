@@ -226,7 +226,7 @@ table.translate-table
 {
     width: 100%;
     table-layout: fixed;
-    margin-top: -1.5em;
+    margin-top: -0.4em;
 }
 
 table.translate-table td
@@ -243,6 +243,11 @@ th.translate-translation
 tr.edit-row
 {
     background-color: #f1f7f8;
+}
+
+.delimiter-row
+{
+    background-color: #e5f3f8;
 }
 
 /* Context */
@@ -411,6 +416,7 @@ div.translate-left
 {
     float: left;
     width: 24.5%;
+    clear: both;
 }
 
 div.translate-middle

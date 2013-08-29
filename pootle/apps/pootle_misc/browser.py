@@ -20,7 +20,6 @@
 
 from django.utils.translation import ugettext_lazy as _, ungettext
 
-from pootle_misc import dispatch
 from pootle_misc.stats import get_raw_stats, stats_descriptions
 
 
@@ -91,9 +90,9 @@ def make_generic_item(path_obj):
         stats = get_raw_stats(path_obj, include_suggestions=True)
         info = {
             'href': action,
-            'href_all': dispatch.translate(path_obj),
-            'href_todo': dispatch.translate(path_obj, state='incomplete'),
-            'href_sugg': dispatch.translate(path_obj, state='suggestions'),
+            'href_all': path_obj.get_translate_url(),
+            'href_todo': path_obj.get_translate_url(state='incomplete'),
+            'href_sugg': path_obj.get_translate_url(state='suggestions'),
             'stats': stats,
             'tooltip': _('%(percentage)d%% complete',
                          {'percentage': stats['translated']['percentage']}),

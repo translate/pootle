@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -27,8 +28,12 @@ urlpatterns = patterns('pootle_project.views',
 
     # Specific project
     url(r'^(?P<project_code>[^/]*)/$',
-        'project_language_index',
-        name='project.overview'),
+        'overview',
+        name='pootle-project-overview'),
+
+    url(r'^(?P<project_code>[^/]*)/translate/$',
+        'translate',
+        name='pootle-project-translate'),
 
     # XHR views
     url(r'^(?P<project_code>[^/]*)/ajax-add-tag-to-tp/?$',
@@ -41,8 +46,10 @@ urlpatterns = patterns('pootle_project.views',
         'project_settings_edit'),
 
     # Admin
-    (r'^(?P<project_code>[^/]*)/admin.html$',
-        'project_admin'),
-    (r'^(?P<project_code>[^/]*)/permissions.html$',
-        'project_admin_permissions'),
+    url(r'^(?P<project_code>[^/]*)/admin.html$',
+        'project_admin',
+        name='pootle-project-admin'),
+    url(r'^(?P<project_code>[^/]*)/permissions.html$',
+        'project_admin_permissions',
+        name='pootle-project-permissions'),
 )

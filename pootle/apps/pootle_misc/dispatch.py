@@ -22,26 +22,6 @@
 from pootle_misc.baseurl import l
 
 
-def translate(path_obj, state=None, check=None, user=None):
-    # In Pootle, URLs ending in translate.html are used when the user
-    # translates all files in a directory (for example, if the user is
-    # going through all fuzzy translations in a directory).
-    path = path_obj.pootle_path
-    if path.endswith('/'):
-        path += 'translate.html'
-    else:
-        path += '/translate/'
-
-    if state:
-        path += '#filter=%s' % state
-        if user:
-            path += '&user=%s' % user
-    elif check:
-        path += '#filter=checks&checks=%s' % check
-
-    return l(path)
-
-
 def download_zip(path_obj):
     if path_obj.is_dir:
         current_folder = path_obj.pootle_path
@@ -54,19 +34,3 @@ def download_zip(path_obj):
 
 def export(pootle_path, format):
     return l('/export-file/%s%s' % (format, pootle_path))
-
-
-def commit(path_obj):
-    return l(path_obj.pootle_path + '/commit')
-
-
-def update(path_obj):
-    return l(path_obj.pootle_path + '/update')
-
-
-def commit_all(path_obj):
-    return l(path_obj.pootle_path + 'commit_all')
-
-
-def update_all(path_obj):
-    return l(path_obj.pootle_path + 'update_all')

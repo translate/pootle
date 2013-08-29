@@ -1,0 +1,31 @@
+{% extends editor_extends %}
+{% load i18n %}
+
+{% block title %}{% trans "Translate" %} | {{ block.super }}{% endblock %}
+
+{% block css %}
+{{ block.super }}
+{% include 'editor/_css.html' %}
+{% endblock %}
+
+{% block body_id %}{{ editor_body_id }}{% endblock %}
+
+{% block search %}
+{% endblock %}
+
+{% block content %}
+{% include 'editor/_editor.html' %}
+{% endblock %}
+
+{% block extra_content %}
+{% include 'editor/_toolbar.html' %}
+{% endblock %}
+
+{% block scripts_extra %}
+{{ block.super }}
+{% include 'editor/_scripts.html' %}
+{% endblock %}
+
+{% block footer %}
+<div id="translate-footer"></div>
+{% endblock footer %}

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2012 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of translate.
 #
@@ -18,7 +19,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.core.exceptions import PermissionDenied
 from django.forms.models import modelformset_factory
 from django.forms.util import ErrorList
 from django.shortcuts import render_to_response
@@ -26,41 +26,8 @@ from django.template import RequestContext
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 
-from pootle_app.models.permissions import (get_matching_permissions,
-                                           check_permission)
 from pootle_misc.baseurl import l
 from pootle_misc.util import paginate
-from pootle_profile.models import get_profile
-
-
-# XXX: Move to pootle_misc?
-def user_is_admin(f):
-    def decorated_f(request, *args, **kwargs):
-        if not request.user.is_superuser:
-            raise PermissionDenied(_("You do not have rights to administer "
-                                     "Pootle."))
-        else:
-            return f(request, *args, **kwargs)
-
-    return decorated_f
-
-
-def has_permission(permission_code):
-    def wrap_f(f):
-        def decorated_f(request, path_obj, *args, **kwargs):
-            profile = get_profile(request.user)
-            request.permissions = get_matching_permissions(profile,
-                                                           path_obj.directory)
-
-            if check_permission(permission_code, request):
-                return f(request, path_obj, *args, **kwargs)
-            else:
-                raise PermissionDenied(_("You do not have rights to "
-                                         "administer %s.", path_obj.fullname))
-
-        return decorated_f
-
-    return wrap_f
 
 
 def form_set_as_table(formset, link=None, linkfield='code'):
@@ -241,8 +208,6 @@ def edit(request, template, model_class, model_args={},
         template_vars['source_language'] = model_args['source_language']
     if 'directory' in model_args:
         template_vars['directory'] = model_args['directory']
-    if 'navitems' in model_args:
-        template_vars["navitems"] = model_args['navitems']
     if 'feed_path' in model_args:
         template_vars["feed_path"] = model_args['feed_path']
 

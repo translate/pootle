@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of translate.
 #
@@ -24,10 +25,11 @@ from django.contrib.auth.models import User
 from django.forms.models import BaseModelFormSet
 from django.utils.translation import ugettext as _
 
+from pootle.core.decorators import admin_required
 from pootle_app.views.admin import util
 
 
-@util.user_is_admin
+@admin_required
 def view(request):
     fields = ('username', 'first_name', 'last_name', 'email', 'is_active',
               'is_superuser')

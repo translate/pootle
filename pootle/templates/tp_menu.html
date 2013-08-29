@@ -1,9 +1,9 @@
 {% load url from future %}
 {% load i18n baseurl %}
 <ul id="tabs">
-  <li><a href='{% if previous_overview_url %}{{ previous_overview_url }}{% else %}{{ directory.pootle_path|l }}{% endif %}' class="tpoverview" title="{% trans 'Translation project main page' %}">{% trans "Overview" %}</a></li>
-  <li><a href='{{ directory.pootle_path|l }}notices' class="tpnews" title="{% trans 'Translation project news' %}">{% trans "News" %}{% if user.is_superuser or request.permissions.administrate %} <span class="admin">+</span>{%endif%}</a></li>
-  <li><a href='{% url 'translate-wide' language.code project.code directory.path %}' class="tptranslate" title="{% trans 'Translate this project' %}">{% trans "Translate" %}</a></li>
+  <li><a href='{% url 'pootle-tp-overview' language.code project.code resource_path %}' class="tpoverview" title="{% trans 'Translation project main page' %}">{% trans "Overview" %}</a></li>
+  <li><a href='{% url 'pootle-tp-overview' language.code project.code '' %}notices' class="tpnews" title="{% trans 'Translation project news' %}">{% trans "News" %}{% if user.is_superuser or request.permissions.administrate %} <span class="admin">+</span>{%endif%}</a></li>
+  <li><a href='{% url 'pootle-tp-translate' language.code project.code resource_path %}' class="tptranslate" title="{% trans 'Translate this project' %}">{% trans "Translate" %}</a></li>
   {% if user.is_superuser or request.permissions.administrate %}
   <li><a href='{{ translation_project.pootle_path|l }}terminology_manage.html' class="tpterminology admintab" title="{% trans 'Manage terminology' %}">{% trans "Terminology" %}</a></li>
   <li><a href='{{ translation_project.pootle_path|l }}admin_permissions.html' class="tpadminpermissions admintab" title="{% trans 'Administrate your project permissions' %}">{% trans "Permissions" %}</a></li>

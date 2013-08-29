@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -19,6 +20,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.core.cache import cache
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -155,6 +157,9 @@ class Language(models.Model):
 
     def get_absolute_url(self):
         return l(self.pootle_path)
+
+    def get_translate_url(self, **kwargs):
+        return reverse('pootle-language-translate', args=[self.code])
 
     def localname(self):
         """localized fullname"""

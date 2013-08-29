@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2010,2012 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of translate.
 #
@@ -19,11 +20,12 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
+from pootle.core.decorators import admin_required
 from pootle_app.views.admin import util
 from pootle_language.models import Language
 from pootle_app.admin import MyLanguageAdminForm
 
-@util.user_is_admin
+@admin_required
 def view(request):
     return util.edit(request, 'admin/admin_general_languages.html', Language,
                      link='/%s/admin.html', form=MyLanguageAdminForm,

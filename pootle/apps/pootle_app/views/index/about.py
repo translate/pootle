@@ -27,11 +27,11 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 
-from translate import __version__ as toolkitversion
-from pootle import __version__ as pootleversion
-
 
 def view(request):
+    from translate import __version__ as toolkitversion
+    from pootle import __version__ as pootleversion
+
     data = {
         'description': _(settings.DESCRIPTION),
         'keywords': ['Pootle',

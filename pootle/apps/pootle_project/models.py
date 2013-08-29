@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -20,7 +21,8 @@
 import os
 
 from django.core.cache import cache
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, ValidationError
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
@@ -40,6 +42,8 @@ from pootle_store.util import absolute_real_path, statssum, OBSOLETE
 
 
 CACHE_KEY = 'pootle-projects'
+
+RESERVED_PROJECT_CODES = ('admin', 'translate',)
 
 
 class ProjectManager(RelatedManager):
@@ -133,6 +137,15 @@ class Project(models.Model):
     def natural_key(self):
         return (self.code,)
     natural_key.dependencies = ['pootle_app.Directory']
+
+    def get_translate_url(self, **kwargs):
+        return reverse('pootle-project-translate', args=[self.code])
+
+    def clean(self):
+        if self.code in RESERVED_PROJECT_CODES:
+            raise ValidationError(
+                _('"%s" cannot be used as a project code' % (self.code,))
+            )
 
     def delete(self, *args, **kwargs):
         directory = self.directory

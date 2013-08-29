@@ -18,10 +18,10 @@
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 import datetime
-import time
 import logging
 import os
 import re
+import time
 from hashlib import md5
 
 from translate.filters.decorators import Category
@@ -30,6 +30,7 @@ from translate.storage import base
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import FileSystemStorage
+from django.core.urlresolvers import reverse
 from django.db import models, DatabaseError, IntegrityError
 from django.db.models.signals import post_delete
 from django.db.transaction import commit_on_success
@@ -38,6 +39,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from taggit.managers import TaggableManager
 
+from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.lib.util import RelatedManager
 from pootle_misc.aggregate import group_by_count_extra, max_column
 from pootle_misc.baseurl import l
@@ -196,6 +198,36 @@ class UnitManager(RelatedManager):
         return self.get(unitid_hash=unitid_hash,
                         store__pootle_path=pootle_path)
 
+    def get_for_path(self, pootle_path, profile):
+        """Returns units that fall below the `pootle_path` umbrella.
+
+        :param pootle_path: An internal pootle path.
+        :param profile: The user profile who is accessing the units.
+        """
+        lang, proj, dir_path, filename = split_pootle_path(pootle_path)
+
+        units_qs = super(UnitManager, self).get_query_set().filter(
+            state__gt=OBSOLETE,
+        )
+
+        # /projects/<project_code>/translate/*
+        if lang is None and proj is not None:
+            units_qs = units_qs.extra(
+                where=[
+                    '`pootle_store_store`.`pootle_path` LIKE %s',
+                    '`pootle_store_store`.`pootle_path` NOT LIKE %s',
+                ], params=[''.join(['/%/', proj ,'/%']), '/templates/%']
+            )
+        # /<lang_code>/<project_code>/translate/*
+        # /<lang_code>/translate/*
+        # /translate/*
+        else:
+            units_qs = units_qs.filter(
+                store__pootle_path__startswith=pootle_path,
+            )
+
+        return units_qs
+
 
 class Unit(models.Model, base.TranslationUnit):
     store = models.ForeignKey("pootle_store.Store", db_index=True)
@@ -307,8 +339,14 @@ class Unit(models.Model, base.TranslationUnit):
                                     "get_mtime", "get_suggestion_count"])
 
     def get_absolute_url(self):
-        return u"%s/translate/#unit=%s" % (l(self.store.pootle_path),
-                                           self.id)
+        return l(self.store.pootle_path)
+
+    def get_translate_url(self):
+        lang, proj, dir, fn = split_pootle_path(self.store.pootle_path)
+        return u''.join([
+            reverse('pootle-tp-translate', args=[lang, proj, dir, fn]),
+            '#unit=', unicode(self.id),
+        ])
 
     def get_mtime(self):
         return self.mtime
@@ -880,7 +918,14 @@ class Store(models.Model, base.TranslationStore):
                                    "get_mtime", "get_suggestion_count"])
 
     def get_absolute_url(self):
-        return l(self.pootle_path + '/translate/')
+        return l(self.pootle_path)
+
+    def get_translate_url(self, **kwargs):
+        lang, proj, dir, fn = split_pootle_path(self.pootle_path)
+        return u''.join([
+            reverse('pootle-tp-translate', args=[lang, proj, dir, fn]),
+            get_editor_filter(**kwargs),
+        ])
 
     def delete(self, *args, **kwargs):
         super(Store, self).delete(*args, **kwargs)

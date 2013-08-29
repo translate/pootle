@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2012 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -21,6 +22,7 @@
 import logging
 import os
 import StringIO
+from itertools import groupby
 
 from django import forms
 from django.conf import settings
@@ -37,8 +39,9 @@ from django.utils.translation import ugettext as _
 
 from taggit.models import Tag
 
-from pootle.core.decorators import (get_translation_project,
-                                    set_request_context)
+from pootle.core.decorators import (get_path_obj, get_resource_context,
+                                    permission_required)
+from pootle.core.helpers import get_filter_name, get_translation_context
 from pootle.scripts.actions import (EXTDIR, StoreAction,
                                     TranslationProjectAction)
 from pootle_app.models.permissions import (get_matching_permissions,
@@ -47,7 +50,6 @@ from pootle_app.models.signals import post_file_upload
 from pootle_app.models import Directory
 from pootle_app.project_tree import (ensure_target_dir_exists,
                                      direct_language_match_filename)
-from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
 from pootle_app.views.top_stats import gentopstats_translation_project
 from pootle_misc.baseurl import redirect
@@ -62,15 +64,16 @@ from pootle_store.models import Store
 from pootle_store.util import (absolute_real_path, relative_real_path,
                                add_trailing_slash)
 from pootle_store.filetypes import factory_classes
+from pootle_store.views import get_step_query
 from pootle_tagging.forms import TagForm
-from pootle_translationproject.actions import action_groups
 from pootle_translationproject.forms import (DescriptionForm,
                                              upload_form_factory)
 
+from .actions import action_groups
 
-@get_translation_project
-@set_request_context
-@util.has_permission('administrate')
+
+@get_path_obj
+@permission_required('administrate')
 def admin_permissions(request, translation_project):
     template_vars = {
         'translation_project': translation_project,
@@ -84,9 +87,8 @@ def admin_permissions(request, translation_project):
                        template_vars)
 
 
-@get_translation_project
-@set_request_context
-@util.has_permission('administrate')
+@get_path_obj
+@permission_required('administrate')
 def rescan_files(request, translation_project):
     try:
         translation_project.scan_files()
@@ -105,14 +107,13 @@ def rescan_files(request, translation_project):
 
     language = translation_project.language.code
     project = translation_project.project.code
-    overview_url = reverse('tp.overview', args=[language, project, ''])
+    overview_url = reverse('pootle-tp-overview', args=[language, project, ''])
 
     return HttpResponseRedirect(overview_url)
 
 
-@get_translation_project
-@set_request_context
-@util.has_permission('administrate')
+@get_path_obj
+@permission_required('administrate')
 def update_against_templates(request, translation_project):
     try:
         translation_project.update_against_templates()
@@ -126,14 +127,13 @@ def update_against_templates(request, translation_project):
 
     language = translation_project.language.code
     project = translation_project.project.code
-    overview_url = reverse('tp.overview', args=[language, project, ''])
+    overview_url = reverse('pootle-tp-overview', args=[language, project, ''])
 
     return HttpResponseRedirect(overview_url)
 
 
-@get_translation_project
-@set_request_context
-@util.has_permission('administrate')
+@get_path_obj
+@permission_required('administrate')
 def delete_path_obj(request, translation_project, dir_path, filename=None):
     """Deletes the path objects under `dir_path` (+ `filename`) from the
     filesystem, including `dir_path` in case it's not a translation project.
@@ -205,9 +205,41 @@ def delete_path_obj(request, translation_project, dir_path, filename=None):
 
     language = translation_project.language.code
     project = translation_project.project.code
-    overview_url = reverse('tp.overview', args=[language, project, ''])
+    overview_url = reverse('pootle-tp-overview', args=[language, project, ''])
 
     return HttpResponseRedirect(overview_url)
+
+
+@get_path_obj
+@permission_required('commit')
+def vcs_commit(request, translation_project, dir_path, filename):
+    current_path = translation_project.directory.pootle_path + dir_path
+
+    if filename:
+        current_path = current_path + filename
+        obj = get_object_or_404(Store, pootle_path=current_path)
+        result = translation_project.commit_file(request.user, obj, request)
+    else:
+        obj = get_object_or_404(Directory, pootle_path=current_path)
+        result = translation_project.commit_dir(request.user, obj, request)
+
+    return redirect(obj.get_absolute_url())
+
+
+@get_path_obj
+@permission_required('commit')
+def vcs_update(request, translation_project, dir_path, filename):
+    current_path = translation_project.directory.pootle_path + dir_path
+
+    if filename:
+        current_path = current_path + filename
+        obj = get_object_or_404(Store, pootle_path=current_path)
+        result = translation_project.update_file(request, obj)
+    else:
+        obj = get_object_or_404(Directory, pootle_path=current_path)
+        result = translation_project.update_dir(request, obj)
+
+    return redirect(obj.get_absolute_url())
 
 
 def _handle_upload_form(request, current_path, translation_project, directory):
@@ -265,13 +297,9 @@ def _handle_upload_form(request, current_path, translation_project, directory):
     return upload_form_class()
 
 
-@get_translation_project
-@set_request_context
+@get_path_obj
+@permission_required('view')
 def overview(request, translation_project, dir_path, filename=None):
-    if not check_permission("view", request):
-        raise PermissionDenied(_("You do not have rights to access this "
-                                 "translation project."))
-
     current_path = translation_project.directory.pootle_path + dir_path
 
     if filename:
@@ -395,6 +423,7 @@ def overview(request, translation_project, dir_path, filename=None):
         'project': project,
         'language': language,
         'path_obj': path_obj,
+        'resource_path': request.resource_path,
         'path_summary': path_summary,
         'stats': path_stats,
         'topstats': gentopstats_translation_project(translation_project),
@@ -439,7 +468,7 @@ def overview(request, translation_project, dir_path, filename=None):
 
 
 @ajax_required
-@get_translation_project
+@get_path_obj
 def ajax_remove_tag_from_tp(request, translation_project, tag_name):
     if not check_permission('administrate', request):
         raise PermissionDenied(_("You do not have rights to remove tags."))
@@ -466,7 +495,7 @@ def _add_tag(request, translation_project, tag):
 
 
 @ajax_required
-@get_translation_project
+@get_path_obj
 def ajax_add_tag_to_tp(request, translation_project):
     """Return an HTML snippet with the failed form or blank if valid."""
 
@@ -513,8 +542,66 @@ def ajax_add_tag_to_tp(request, translation_project):
                                       RequestContext(request))
 
 
+@get_path_obj
+@permission_required('view')
+@get_resource_context
+def translate(request, translation_project, dir_path, filename):
+    language = translation_project.language
+    project = translation_project.project
+
+    is_terminology = (project.is_terminology or request.store and
+                                                request.store.is_terminology)
+    context = get_translation_context(request, is_terminology=is_terminology)
+    context.update({
+        'language': language,
+        'project': project,
+        'translation_project': translation_project,
+
+        'editor_extends': 'tp_base.html',
+        'editor_body_id': 'tptranslate',
+    })
+
+    return render_to_response('editor/main.html', context,
+                              context_instance=RequestContext(request))
+
+
+@get_path_obj
+@permission_required('view')
+def export_view(request, translation_project, dir_path, filename=None):
+    """Displays a list of units with filters applied."""
+    current_path = translation_project.directory.pootle_path + dir_path
+
+    if filename:
+        current_path = current_path + filename
+        store = get_object_or_404(Store, pootle_path=current_path)
+        units_qs = store.units
+    else:
+        store = None
+        units_qs = translation_project.units.filter(
+            store__pootle_path__startswith=current_path,
+        )
+
+    filter_name, filter_extra = get_filter_name(request.GET)
+
+    units = get_step_query(request, units_qs)
+    unit_groups = [(path, list(units)) for path, units in
+                   groupby(units, lambda x: x.store.path)]
+
+    ctx = {
+        'source_language': translation_project.project.source_language,
+        'language': translation_project.language,
+        'project': translation_project.project,
+        'unit_groups': unit_groups,
+        'filter_name': filter_name,
+        'filter_extra': filter_extra,
+    }
+
+    return render_to_response('translation_project/export_view.html', ctx,
+                              context_instance=RequestContext(request))
+
+
 @ajax_required
-@get_translation_project
+@get_path_obj
 def path_summary_more(request, translation_project, dir_path, filename=None):
     """Returns an HTML snippet with more detailed summary information
        for the current path."""
@@ -539,14 +626,9 @@ def path_summary_more(request, translation_project, dir_path, filename=None):
 
 
 @ajax_required
-@get_translation_project
+@get_path_obj
+@permission_required('administrate')
 def edit_settings(request, translation_project):
-    request.permissions = get_matching_permissions(get_profile(request.user),
-            translation_project.directory)
-
-    if not check_permission('administrate', request):
-        raise PermissionDenied
-
     form = DescriptionForm(request.POST, instance=translation_project)
     response = {}
     rcode = 400
@@ -572,14 +654,9 @@ def edit_settings(request, translation_project):
                         mimetype="application/json")
 
 
-@get_translation_project
-@set_request_context
+@get_path_obj
+@permission_required('archive')
 def export_zip(request, translation_project, file_path):
-
-    if not check_permission("archive", request):
-        raise PermissionDenied(_('You do not have the right to create ZIP '
-                                 'archives.'))
-
     translation_project.sync()
     pootle_path = translation_project.pootle_path + (file_path or '')
 

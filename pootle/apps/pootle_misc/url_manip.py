@@ -40,33 +40,3 @@ def ensure_uri(uri):
         # So let's assume http
         uri = u"http://" + uri
     return uri
-
-
-def previous_view_url(request, view_names):
-    """Returns the previous request URL if it matches certain view(s).
-
-    :param request: Django's request object.
-    :param view_names: List of view names to look for.
-    """
-    referer_url = request.META.get('HTTP_REFERER', '')
-    script_name = request.META.get('SCRIPT_NAME', '/')
-
-    view_path = urlparse.urlparse(referer_url)[2]
-    if script_name != '/':
-        try:
-            index = view_path.index(script_name)
-            # Just in case check if it matches at the beginning
-            if index == 0:
-                view_path = view_path[len(script_name):]
-        except (ValueError, IndexError):
-            pass
-
-    try:
-        view, args, kwargs = resolve(view_path)
-    except Resolver404:
-        return ''
-
-    if view.__name__ in view_names:
-        return referer_url
-
-    return ''

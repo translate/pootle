@@ -26,6 +26,7 @@ from translate.storage.base import ParseError
 
 from django.conf import settings
 from django.contrib import messages
+from django.core.urlresolvers import reverse
 from django.db import models, IntegrityError
 from django.db.models.signals import post_save
 from django.utils.encoding import force_unicode
@@ -34,6 +35,7 @@ from django.utils.translation import ugettext_lazy as _
 from taggit.managers import TaggableManager
 
 from pootle.core.markup import get_markup_filter_name, MarkupField
+from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.lib.util import RelatedManager
 from pootle_app.models.directory import Directory
 from pootle_language.models import Language
@@ -148,6 +150,13 @@ class TranslationProject(models.Model):
 
     def get_absolute_url(self):
         return l(self.pootle_path)
+
+    def get_translate_url(self, **kwargs):
+        lang, proj, dir, fn = split_pootle_path(self.pootle_path)
+        return u''.join([
+            reverse('pootle-tp-translate', args=[lang, proj, dir, fn]),
+            get_editor_filter(**kwargs),
+        ])
 
     def natural_key(self):
         return (self.pootle_path,)
@@ -643,6 +652,7 @@ class TranslationProject(models.Model):
             old_stats, remote_stats, new_stats = \
                     self.update_file_from_version_control(store)
 
+            # FIXME: This belongs to views
             msg = [
                 _(u'Updated file <em>%(filename)s</em> from version control',
                   {'filename': store.file.name}),
@@ -657,6 +667,7 @@ class TranslationProject(models.Model):
             post_vc_update.send(sender=self, oldstats=old_stats,
                 remotestats=remote_stats, newstats=new_stats)
         except VersionControlError, e:
+            # FIXME: This belongs to views
             msg = _(u"Failed to update <em>%(filename)s</em> from "
                     u"version control: %(error)s",
                     {
@@ -711,6 +722,7 @@ class TranslationProject(models.Model):
             project_path = self.project.get_real_path()
             versioncontrol.add_files(project_path, filestocommit, message,
                                      author)
+            # FIXME: This belongs to views
             if request is not None:
                 msg = _("Committed all files under <em>%(path)s</em> to "
                         "version control", {'path': directory.pootle_path})
@@ -718,6 +730,7 @@ class TranslationProject(models.Model):
         except Exception, e:
             logging.error(u"Failed to commit: %s", e)
 
+            # FIXME: This belongs to views
             if request is not None:
                 msg = _("Failed to commit to version control: %(error)s",
                         {'error': e})
@@ -776,6 +789,7 @@ class TranslationProject(models.Model):
                 versioncontrol.commit_file(file, message=message,
                                            author=author)
 
+                # FIXME: This belongs to views
                 if request is not None:
                     msg = _("Committed file <em>%(filename)s</em> to version "
                             "control", {'filename': file})
@@ -783,6 +797,7 @@ class TranslationProject(models.Model):
         except Exception, e:
             logging.error(u"Failed to commit file: %s", e)
 
+            # FIXME: This belongs to views
             if request is not None:
                 msg_params = {
                     'filename': filename,
