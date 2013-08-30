@@ -915,7 +915,9 @@ html[dir="rtl"] .last-action
 
 .last-action img
 {
-    vertical-align: middle;
+    vertical-align: text-bottom;
+    width: 20px;
+    height: 20px;
 }
 
 .last-action .extra-item-meta
