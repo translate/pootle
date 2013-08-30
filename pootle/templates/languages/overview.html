@@ -1,4 +1,5 @@
 {% extends "languages/base.html" %}
+
 {% load i18n cleanhtml assets common_tags search %}
 {% load url from future %}
 
@@ -11,7 +12,12 @@
 {% block content %}
 
 <div class="hd">
-  <h2>{{ language.summary }}</h2>
+  <h2 class="with-progressbar">
+    {{ language.summary }}
+    <div id="progressbar">
+      {% include "core/_progressbar.html" %}
+    </div>
+  </h2>
 </div>
 
 <div class="bd">

@@ -12,8 +12,11 @@
 {% block content %}
 
 <div class="hd">
-  <h2>
+  <h2 class="with-progressbar">
     <div id="summary">{{ project.summary }}</div>
+    <div id="progressbar">
+      {% include "core/_progressbar.html" %}
+    </div>
   </h2>
 </div>
 
