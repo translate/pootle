@@ -907,6 +907,15 @@ html[dir="rtl"] .hd h2
     display: none;
 }
 
+/* When browser size is 1340px or less, show the smaller version of the last action message */
+@media screen and (max-width: 1340px)
+{
+    .last-action .action-text
+    {
+        display: none;
+    }
+}    
+
 html[dir="rtl"] .last-action
 {
     margin-left: 0;
@@ -1844,6 +1853,15 @@ table.graph
     background-color: #ccc;
     font-size: 1px;
 }
+
+/* When browser size is 900px or less, show the smaller version of the progressbar */
+@media screen and (max-width: 900px)
+{
+    table.graph
+    {
+        width: 100px;
+    }
+}    
 
 table.graph td
 {
