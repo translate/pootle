@@ -1,5 +1,5 @@
 {% extends "projects/base.html" %}
-{% load i18n baseurl cleanhtml assets common_tags search %}
+{% load i18n baseurl cleanhtml assets common_tags search progressbar %}
 {% load url from future %}
 {% get_current_language as LANGUAGE_CODE %}
 
@@ -11,7 +11,10 @@
 
 {% block content %}
 <div class="hd">
-  <h2>{{ project.summary }}</h2>
+  <h2 class="with-progressbar">
+    {{ project.summary }}
+    {% progressbar stats %}
+  </h2>
 </div>
 
 <div class="bd">

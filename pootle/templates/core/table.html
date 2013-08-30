@@ -45,11 +45,7 @@ cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
       {% if 'progress' in table.fields %}
       <td class="stats-graph">
         <div class="sortkey">{{ item.stats.translated.percentage }}</div>
-        {% if table.proportional %}
-        {% progressbar item.stats stats.total.words %}
-        {% else %}
         {% progressbar item.stats %}
-        {% endif %}
       </td>
       {% endif %}
 

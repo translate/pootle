@@ -90,7 +90,8 @@ def overview(request, language):
     items = (make_project_item(translate_project) for translate_project in projects.iterator())
 
     totals = language.getquickstats()
-    average = nice_percentage(totals['translatedsourcewords'] * 100.0 / max(totals['totalsourcewords'], 1))
+    translated = nice_percentage(totals['translatedsourcewords'] * 100.0 / max(totals['totalsourcewords'], 1))
+    fuzzy   = nice_percentage(totals['fuzzysourcewords'] * 100.0 / max(totals['totalsourcewords'], 1))
     topstats = gentopstats_language(language)
 
     table_fields = ['name', 'progress', 'total', 'need-translation', 'suggestions', 'activity']
@@ -107,13 +108,24 @@ def overview(request, language):
           'code': language.code,
           'name': tr_lang(language.fullname),
           'description': language.description,
-          'summary': ungettext('%(projects)d project, %(average)d%% translated',
-                               '%(projects)d projects, %(average)d%% translated',
+          'summary': ungettext('%(projects)d project, %(translated)d%% translated',
+                               '%(projects)d projects, %(translated)d%% translated',
                                projectcount, {
                                    "projects": projectcount,
-                                   "average": average}),
+                                   "translated": translated}),
         },
         'topstats': topstats,
+        'stats': {
+            'translated': {
+                'percentage': translated,
+            },
+            'fuzzy': {
+                'percentage': fuzzy,
+            },
+            'untranslated': {
+                'percentage': 100 - translated - fuzzy,
+            },
+        },
         'can_edit': can_edit,
         'table': table,
     }

@@ -101,7 +101,7 @@ def overview(request, project):
 
     languagecount = len(translation_projects)
     project_stats = get_raw_stats(project)
-    average = project_stats['translated']['percentage']
+    translated = project_stats['translated']['percentage']
 
     topstats = gentopstats_project(project)
 
@@ -119,12 +119,13 @@ def overview(request, project):
           'code': project.code,
           'name': project.fullname,
           'description': project.description,
-          'summary': ungettext('%(languages)d language, %(average)d%% translated',
-                               '%(languages)d languages, %(average)d%% translated',
+          'summary': ungettext('%(languages)d language, %(translated)d%% translated',
+                               '%(languages)d languages, %(translated)d%% translated',
                                languagecount, {"languages": languagecount,
-                                               "average": average}),
+                                               "translated": translated}),
         },
         'topstats': topstats,
+        'stats': project_stats,
         'can_edit': can_edit,
         'table': table,
     }
