@@ -154,7 +154,11 @@ def get_children(translation_project, directory):
     parent_dir = directory.parent
 
     if not (parent_dir.is_language() or parent_dir.is_project()):
-        parent = [{'title': u'..', 'href': l(parent_dir.pootle_path)}]
+        parent = [{
+            'icon': 'folder-parent',
+            'title': _("Back to parent folder"),
+            'href': l(parent_dir.pootle_path)
+        }]
 
     directories = [make_directory_item(child_dir)
                    for child_dir in directory.child_dirs.iterator()]

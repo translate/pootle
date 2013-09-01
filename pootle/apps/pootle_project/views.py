@@ -70,6 +70,7 @@ def make_language_item(translation_project):
         'href_all': href_all,
         'href_todo': href_todo,
         'href_sugg': href_sugg,
+        'icon': 'language',
         'title': tr_lang(translation_project.language.fullname),
         'stats': project_stats,
         'lastactivity': get_last_action(translation_project),

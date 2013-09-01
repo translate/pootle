@@ -60,6 +60,7 @@ def make_project_item(translation_project):
         'href_all': href_all,
         'href_todo': href_todo,
         'href_sugg': href_sugg,
+        'icon': 'project',
         'title': project.fullname,
         'description': project.description,
         'stats': project_stats,
