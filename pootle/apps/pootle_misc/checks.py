@@ -95,12 +95,10 @@ def get_quality_check_failures(path_obj, path_stats, include_url=True):
         keys.sort(reverse=True)
 
         for i, category in enumerate(keys):
-            checks.append({
-                'checks': []
-            })
+            group = []
 
             if category != Category.NO_CATEGORY:
-                checks[i].update({
+                group.update({
                     'name': category,
                     'display_name': unicode(category_names[category]),
                 })
@@ -108,8 +106,11 @@ def get_quality_check_failures(path_obj, path_stats, include_url=True):
             cat_keys = property_stats[category].keys()
             cat_keys.sort()
 
+            cat_total = 0
+
             for checkname in cat_keys:
                 checkcount = property_stats[category][checkname]
+                cat_total += checkcount
 
                 if total and checkcount:
                     check_display = unicode(check_names.get(checkname,
@@ -125,7 +126,13 @@ def get_quality_check_failures(path_obj, path_stats, include_url=True):
                                 check=checkname,
                             )
 
-                    checks[i]['checks'].append(check)
+                    group['checks'].append(check)
+
+            if cat_total:
+                checks.append({
+                    'checks': group
+                })
+
     except IOError:
         pass
 
