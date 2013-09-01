@@ -5,9 +5,9 @@
                             &lt;span class='legend untranslated'&gt;&lt;/span&gt;{% blocktrans with stats.untranslated.percentage as percent %}{{ percent }}% untranslated{% endblocktrans %}
                             ">
   <tr>
-    <td class="translated" style="width: {{ stats.translated.percentage }}%">&nbsp;</td>
-    <td class="fuzzy" style="width: {{ stats.fuzzy.percentage }}%">&nbsp;</td>
-    <td class="untranslated">&nbsp;</td>
+    <td class="translated" style="{% if stats.translated.percentage %}width: {{ stats.translated.percentage }}%{% else %}display: none{%endif%}"><span></span></td>
+    <td class="fuzzy" style="{% if stats.fuzzy.percentage %}width: {{ stats.fuzzy.percentage }}%{% else %}display: none{%endif%}"><span></span></td>
+    <td class="untranslated" style="{% if stats.untranslated.percentage %}width: {{ stats.untranslated.percentage }}%{% else %}display: none{%endif%}"><span></span></td>
   </tr>
 </table>
 {% endif %}
