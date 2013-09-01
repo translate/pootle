@@ -1630,6 +1630,12 @@ tr.item.empty
     opacity: 0.65;
 }
 
+table.stats td.language,
+table.stats td.project
+{
+    white-space: nowrap;
+}
+
 td.stats-name
 {
     white-space: nowrap;    
