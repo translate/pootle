@@ -115,6 +115,20 @@
 
         $pathSummary.append($('<li/>').append($suggestions));
       }
+
+      if (data.critical > 0) {
+        var fmt = ngettext('Fix critical error: <span class="counter">%s left</span>',
+                           'Fix critical errors: <span class="counter">%s left</span>',
+                           data.critical);
+        var $critical = $("<a />", {
+          'class': 'fix-errors',
+          'href': data.pathsummary.critical_url,
+        });
+
+        $critical.html(interpolate(fmt, [data.suggestions]));
+
+        $pathSummary.append($('<li/>').append($critical));
+      }
     },
 
     updateSummary: function ($summary, data) {

@@ -57,7 +57,9 @@ def get_translate_actions(path_obj):
             'summary_more_url': url_path_summary_more,
             'translate_url': path_obj.get_translate_url(state='all'),
             'incomplete_url': path_obj.get_translate_url(state='incomplete'),
-            'suggestions_url': path_obj.get_translate_url(state='suggestions')}
+            'suggestions_url': path_obj.get_translate_url(state='suggestions'),
+            'critical_url': path_obj.get_critical_url(),
+    }
 
 
 def stats_message_raw(version, total, translated, fuzzy):

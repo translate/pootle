@@ -1826,6 +1826,15 @@ div.small
     background-color: #ba6;
 }
 
+#translate-actions .fix-errors
+{
+    color: #c30;
+}
+
+#translate-actions .fix-errors .counter
+{
+    background-color: #c30;
+}
 
 /* PROGRESSBAR */
 
