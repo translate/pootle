@@ -129,8 +129,8 @@ def get_translate_actions(path_obj, path_stats, checks_stats):
             u'<a class="continue-translation" href="%(url)s">' % {
                     'url': path_obj.get_translate_url(state='incomplete')
                 },
-            ungettext(u'Continue translation: <span class="counter">%(num)d word left</span>',
-                      u'Continue translation: <span class="counter">%(num)d words left</span>',
+            ungettext(u'<span class="caption">Continue translation:</span> <span class="counter">%(num)d word left</span>',
+                      u'<span class="caption">Continue translation:</span> <span class="counter">%(num)d words left</span>',
                       num_words,
                       {'num': num_words, }),
         ])
@@ -139,7 +139,7 @@ def get_translate_actions(path_obj, path_stats, checks_stats):
             u'<a class="translation-complete" href="%(url)s">' % {
                     'url': path_obj.get_translate_url(state='all')
                 },
-            force_unicode(_('Translation complete: <span class="counter">view all</span>')),
+            force_unicode(_('<span class="caption">Translation complete:</span> <span class="counter">view all</span>')),
         ])
 
     incomplete.append(u'</a>')
@@ -150,8 +150,8 @@ def get_translate_actions(path_obj, path_stats, checks_stats):
             'url': path_obj.get_translate_url(state='suggestions')
         })
         suggestions.append(
-            ungettext(u'Review suggestion: <span class="counter">%(num)d left</span>',
-                      u'Review suggestions: <span class="counter">%(num)d left</span>',
+            ungettext(u'<span class="caption">Review suggestion:</span> <span class="counter">%(num)d left</span>',
+                      u'<span class="caption">Review suggestions:</span> <span class="counter">%(num)d left</span>',
                       path_stats['suggestions'],
                       {'num': path_stats['suggestions'], })
         )
@@ -171,8 +171,8 @@ def get_translate_actions(path_obj, path_stats, checks_stats):
 
         checks = ",".join(keys)
 
-        text = ungettext(u'Fix critical error: <span class="counter">%(num)d left</span>',
-                      u'Fix critical errors: <span class="counter">%(num)d left</span>',
+        text = ungettext(u'<span class="caption">Fix critical error:</span> <span class="counter">%(num)d left</span>',
+                      u'<span class="caption">Fix critical errors:</span> <span class="counter">%(num)d left</span>',
                       count,
                       {'num': count, })
 
