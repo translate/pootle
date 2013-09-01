@@ -52,7 +52,6 @@ from pootle_app.models import Directory
 from pootle_app.project_tree import (ensure_target_dir_exists,
                                      direct_language_match_filename)
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
-from pootle_app.views.top_stats import gentopstats_translation_project
 from pootle_misc.baseurl import redirect
 from pootle_misc.browser import (get_children, get_goal_children,
                                  get_table_headings, get_parent,
@@ -443,7 +442,6 @@ def overview(request, translation_project, dir_path, filename=None,
         'language': language,
         'resource_obj': resource_obj,
         'resource_path': request.resource_path,
-        'topstats': gentopstats_translation_project(translation_project),
         'feed_path': request.directory.pootle_path[1:],
         'action_groups': actions,
         'action_output': action_output,
