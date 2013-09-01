@@ -36,7 +36,6 @@ from pootle_app.models.permissions import check_permission
 from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions
 from pootle_app.views.index.index import getprojects
-from pootle_app.views.top_stats import gentopstats_project, gentopstats_root
 from pootle_language.models import Language
 from pootle_misc.baseurl import l
 from pootle_misc.browser import get_table_headings
@@ -104,8 +103,6 @@ def overview(request, project):
     project_stats = get_raw_stats(project)
     translated = project_stats['translated']['percentage']
 
-    topstats = gentopstats_project(project)
-
     table_fields = ['name', 'progress', 'total', 'need-translation', 'suggestions', 'activity']
     table = {
         'id': 'project',
@@ -125,7 +122,6 @@ def overview(request, project):
                                languagecount, {"languages": languagecount,
                                                "translated": translated}),
         },
-        'topstats': topstats,
         'stats': project_stats,
         'can_edit': can_edit,
         'table': table,
@@ -313,7 +309,6 @@ def projects_index(request, root):
 
     templatevars = {
         'table': table,
-        'topstats': gentopstats_root(),
     }
 
     return render_to_response('projects/list.html', templatevars,

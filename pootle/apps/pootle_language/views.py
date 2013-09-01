@@ -30,7 +30,6 @@ from pootle.core.helpers import get_translation_context
 from pootle.i18n.gettext import tr_lang
 from pootle_app.models.permissions import check_permission
 from pootle_app.views.admin.permissions import admin_permissions
-from pootle_app.views.top_stats import gentopstats_language
 from pootle_misc.browser import get_table_headings
 from pootle_misc.stats import (get_raw_stats, stats_descriptions)
 from pootle_misc.util import nice_percentage, jsonify, ajax_required
@@ -93,7 +92,6 @@ def overview(request, language):
     totals = language.getquickstats()
     translated = nice_percentage(totals['translatedsourcewords'] * 100.0 / max(totals['totalsourcewords'], 1))
     fuzzy   = nice_percentage(totals['fuzzysourcewords'] * 100.0 / max(totals['totalsourcewords'], 1))
-    topstats = gentopstats_language(language)
 
     table_fields = ['name', 'progress', 'total', 'need-translation', 'suggestions', 'activity']
     table = {
@@ -115,7 +113,6 @@ def overview(request, language):
                                    "projects": projectcount,
                                    "translated": translated}),
         },
-        'topstats': topstats,
         'stats': {
             'translated': {
                 'percentage': translated,
