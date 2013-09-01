@@ -60,3 +60,6 @@ _site/
 dist/
 build/
 Pootle.egg-info/
+
+# PyDev (Intellij) local configuration folder
+.idea
