@@ -1785,6 +1785,7 @@ div.small
 {
     white-space: pre;
     text-decoration: none;
+    color: #000;
 }
 
 #translate-actions ul
@@ -1801,7 +1802,6 @@ div.small
     display: inline-block;
     margin-left: 2em;
     font-size: 110%;
-    color: #000;
     font-weight: bold;
     text-align: center;
     line-height: 150%;
@@ -1829,19 +1829,24 @@ div.small
     background: #000 !important;
 }
 
-#translate-actions .translation-complete .counter
-{
-    background-color: #0489b7;
-}
-
-#translate-actions .continue-translation
+#translate-actions .translation-complete
 {
     color: #090;
 }
 
-#translate-actions .continue-translation .counter
+#translate-actions .translation-complete .counter
 {
     background-color: #090;
+}
+
+#translate-actions .continue-translation
+{
+    color: #0489b7;
+}
+
+#translate-actions .continue-translation .counter
+{
+    background-color: #0489b7;
 }
 
 #translate-actions .review-suggestions
