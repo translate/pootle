@@ -38,7 +38,6 @@ from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models.permissions import check_permission
 from pootle_app.models import Directory
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
-from pootle_app.views.top_stats import gentopstats_translation_project
 from pootle_misc.browser import get_children, get_table_headings
 from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.stats import (get_raw_stats, get_translation_stats,
@@ -222,7 +221,6 @@ def overview(request, translation_project, dir_path, filename=None):
         'resource_path': request.resource_path,
         'translate_actions': translate_actions,
         'stats': path_stats,
-        'topstats': gentopstats_translation_project(translation_project),
         'action_groups': actions,
         'can_edit': can_edit,
         'url_path_summary_more': url_path_summary_more,
