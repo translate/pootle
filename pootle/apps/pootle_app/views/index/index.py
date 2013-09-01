@@ -40,7 +40,7 @@ from pootle_project.models import Project
 from pootle_statistics.models import Submission
 
 
-def get_items(request, objects, get_last_action, name_func):
+def get_items(request, objects, get_last_action, name_func, icon):
     items = []
     if not check_permission('view', request):
         return items
@@ -48,6 +48,7 @@ def get_items(request, objects, get_last_action, name_func):
     for item in objects:
         items.append({
             'code': item.code,
+            'icon': icon,
             'name': name_func(item.fullname),
             'lastactivity': get_last_action(item),
         })
@@ -65,7 +66,8 @@ def getlanguages(request):
         except Submission.DoesNotExist:
             return ''
 
-    return get_items(request, Language.objects.all(), get_last_action, tr_lang)
+    return get_items(request, Language.objects.all(), get_last_action, tr_lang,
+                     'language')
 
 
 def getprojects(request):
@@ -78,7 +80,8 @@ def getprojects(request):
 
     objects = filter(lambda x: x.is_accessible_by(request.user),
                      Project.objects.all())
-    return get_items(request, objects, get_last_action, lambda name: name)
+    return get_items(request, objects, get_last_action, lambda name: name,
+                     'project')
 
 
 @get_path_obj
