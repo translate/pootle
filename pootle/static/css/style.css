@@ -1660,6 +1660,12 @@ tr.item.empty
     opacity: 0.65;
 }
 
+table.stats td.language,
+table.stats td.project
+{
+    white-space: nowrap;
+}
+
 td.stats-name
 {
     white-space: nowrap;    
@@ -1858,6 +1864,15 @@ table.graph
 @media screen and (max-width: 900px)
 {
     table.graph
+    {
+        width: 100px;
+    }
+}
+
+/* When browser size is 1600px or less, show the smaller version of the progressbar on the main page */
+@media screen and (max-width: 1600px)
+{
+    #main-overview table.graph
     {
         width: 100px;
     }
