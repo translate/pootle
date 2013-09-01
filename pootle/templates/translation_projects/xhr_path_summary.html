@@ -3,7 +3,7 @@
 <div class="hd">
   <h3><span>{% trans "Translation Statistics" %}</span></h3>
 </div>
-<div>
+<div class="bd">
   <table class="stats" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
     <tbody>
       {% for item in trans_stats %}
@@ -18,11 +18,12 @@
   </table>
 </div>
 {% endif %}
+
 {% if check_failures %}
 <div class="hd">
   <h3><span>{% trans "Failing Checks" %}</span></h3>
 </div>
-<div>
+<div class="bd">
 {% for failure_category in check_failures %}
   <h4>{{ failure_category.display_name }}</h4>
   <table id="check-{{ failure_category.name }}" class="checks">

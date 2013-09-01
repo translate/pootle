@@ -936,16 +936,8 @@ html[dir="rtl"] .last-action
 
 .hd h3
 {
-    border-top: 1px solid #eee;
-    margin: 1em 0 0 0;
-}
-
-.hd h3 span
-{
-    position: relative;
-    top: -10px;
-    padding-right: 5px;
-    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    margin: 1em 0 0;
 }
 
 html[dir="rtl"] .hd h3 span
@@ -976,7 +968,9 @@ html[dir="rtl"] .hd h3 span
 
 .bd h4
 {
-    font-size: 100%;
+    margin-top: 0.5em;
+    font-size: 110%;
+    font-weight: bold;    
 }
 
 /* USER PROFILES */
@@ -1676,6 +1670,11 @@ td.stats-number
     padding-right: 26px !important; /* magic number to put padding between right and left aligned column, and to right-align heading with number */
 }
 
+.path-summary-more td.stats-number
+{
+    padding-right: 3em !important;
+}
+
 table.stats .number,
 th.stats-number,
 td.stats-number
@@ -1756,7 +1755,7 @@ html[dir="rtl"] td.stats-name,
 {
     text-align: right;
     width: 5%;
-    padding-right: 5%;
+    padding-right: 3em;
 }
 
 html[dir="rtl"] .check-count
@@ -1785,9 +1784,20 @@ div.small
 
 .path-summary-more
 {
-    margin: 0 1em;
-    padding: 1em 0;
+    margin: 1em;
+    padding: 1em 2em;
     display: none;
+    border: 1px solid #d9d9d9;    
+    background: #f4f4f4;
+
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+}
+
+.path-summary-more table
+{
+    width: 40em;
 }
 
 #translate-actions
