@@ -117,10 +117,11 @@ def get_translation_stats(path_obj, path_stats):
     return stats
 
 
-def get_translate_actions(path_obj, path_stats):
+def get_translate_actions(path_obj, path_stats, checks_stats):
     """Returns a list of translation action links to be displayed for each ``path_obj``."""
     incomplete = []
     suggestions = []
+    result = []
 
     if path_stats['untranslated']['words'] > 0 or path_stats['fuzzy']['words'] > 0:
         num_words = path_stats['untranslated']['words'] + path_stats['fuzzy']['words']
@@ -142,7 +143,7 @@ def get_translate_actions(path_obj, path_stats):
         ])
 
     incomplete.append(u'</a>')
-
+    result.append(u''.join(incomplete));
 
     if path_stats['suggestions'] > 0:
         suggestions.append(u'<a class="review-suggestions" href="%(url)s">' % {
@@ -156,8 +157,33 @@ def get_translate_actions(path_obj, path_stats):
         )
         suggestions.append(u'</a>')
 
-    return [u''.join(incomplete), u''.join(suggestions)]
+        result.append(u''.join(suggestions));
 
+    # 100 is the value of 'CRITICAL' checks category in Translate Toolkit,
+    # see translate/filters/decorators.py, Category.CRITICAL
+    if 100L in checks_stats:
+        keys = checks_stats[100L].keys()
+        keys.sort()
+
+        count = 0;
+        for checkname in keys:
+            count += checks_stats[100L][checkname]
+
+        checks = ",".join(keys)
+
+        text = ungettext(u'Fix critical error: <span class="counter">%(num)d left</span>',
+                      u'Fix critical errors: <span class="counter">%(num)d left</span>',
+                      count,
+                      {'num': count, })
+
+        result.append(
+            u'<a class="fix-errors" href="%(url)s">%(text)s</a>' % {
+                'url': path_obj.get_translate_url(check=checks),
+                'text': text
+            }
+        )
+
+    return result;
 
 def stats_message_raw(version, stats):
     """Builds a message of statistics used in VCS actions."""

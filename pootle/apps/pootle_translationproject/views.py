@@ -206,7 +206,9 @@ def overview(request, translation_project, dir_path, filename=None):
     resource_obj = store or directory
 
     path_stats = get_raw_stats(resource_obj, include_suggestions=True)
-    translate_actions = get_translate_actions(resource_obj, path_stats)
+    checks_stats = resource_obj.getcompletestats()
+
+    translate_actions = get_translate_actions(resource_obj, path_stats, checks_stats)
     actions = action_groups(request, resource_obj, path_stats=path_stats)
 
     # Build URL for getting more summary information for the current path
