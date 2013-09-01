@@ -29,14 +29,14 @@ cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
 
       {% if 'language' in table.fields %}
       <td class="language">
-        <a href="{% url 'pootle-language-overview' item.code %}">{{ item.name }}</a>
+        <a href="{% url 'pootle-language-overview' item.code %}">{% if item.icon %}<i class="icon-{{ item.icon }}"></i> {% endif %}<span>{{ item.name }}</span></a>
       </td>
       {% endif %}
 
       {% if 'project' in table.fields %}
       <td class="project">
         <a href="{% url 'pootle-project-overview' item.code %}"
-          title="{{ item.description }}">{{ item.name }}</a>
+          title="{{ item.description }}">{% if item.icon %}<i class="icon-{{ item.icon }}"></i> {% endif %}<span>{{ item.name }}</span></a>
       </td>
       {% endif %}
 
