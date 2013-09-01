@@ -118,68 +118,64 @@ def get_translation_stats(path_obj, path_stats):
 
 
 def get_translate_actions(path_obj, path_stats, checks_stats):
-    """Returns a list of translation action links to be displayed for each ``path_obj``."""
-    incomplete = []
-    suggestions = []
+    """Returns a list of translation action links to be displayed for ``path_obj``."""
+
     result = []
+    complete = path_stats['untranslated']['words'] == 0 and path_stats['fuzzy']['words'] == 0
 
-    if path_stats['untranslated']['words'] > 0 or path_stats['fuzzy']['words'] > 0:
+    if not complete:
         num_words = path_stats['untranslated']['words'] + path_stats['fuzzy']['words']
-        incomplete.extend([
-            u'<a class="continue-translation" href="%(url)s">' % {
-                    'url': path_obj.get_translate_url(state='incomplete')
-                },
-            ungettext(u'<span class="caption">Continue translation:</span> <span class="counter">%(num)d word left</span>',
-                      u'<span class="caption">Continue translation:</span> <span class="counter">%(num)d words left</span>',
-                      num_words,
-                      {'num': num_words, }),
-        ])
-    else:
-        incomplete.extend([
-            u'<a class="translation-complete" href="%(url)s">' % {
-                    'url': path_obj.get_translate_url(state='all')
-                },
-            force_unicode(_('<span class="caption">Translation complete:</span> <span class="counter">view all</span>')),
-        ])
 
-    incomplete.append(u'</a>')
-    result.append(u''.join(incomplete));
+        result.append(
+            u'<a class="continue-translation" href="%(url)s">%(text)s</a>' % {
+                'url': path_obj.get_translate_url(state='incomplete'),
+                'text': ungettext(u'<span class="caption">Continue translation:</span> <span class="counter">%(num)d word left</span>',
+                                  u'<span class="caption">Continue translation:</span> <span class="counter">%(num)d words left</span>',
+                                  num_words,
+                                  {'num': num_words, }),
+            }
+        )
 
     if path_stats['suggestions'] > 0:
-        suggestions.append(u'<a class="review-suggestions" href="%(url)s">' % {
-            'url': path_obj.get_translate_url(state='suggestions')
-        })
-        suggestions.append(
-            ungettext(u'<span class="caption">Review suggestion:</span> <span class="counter">%(num)d left</span>',
-                      u'<span class="caption">Review suggestions:</span> <span class="counter">%(num)d left</span>',
-                      path_stats['suggestions'],
-                      {'num': path_stats['suggestions'], })
+        result.append(
+            u'<a class="review-suggestions" href="%(url)s">%(text)s</a>' % {
+                'url': path_obj.get_translate_url(state='suggestions'),
+                'text': ungettext(u'<span class="caption">Review suggestion:</span> <span class="counter">%(num)d left</span>',
+                                  u'<span class="caption">Review suggestions:</span> <span class="counter">%(num)d left</span>',
+                                  path_stats['suggestions'],
+                                  {'num': path_stats['suggestions'], })
+            }
         )
-        suggestions.append(u'</a>')
-
-        result.append(u''.join(suggestions));
 
     # 100 is the value of 'CRITICAL' checks category in Translate Toolkit,
     # see translate/filters/decorators.py, Category.CRITICAL
-    if 100L in checks_stats:
-        keys = checks_stats[100L].keys()
+    CRITICAL = 100L
+
+    if CRITICAL in checks_stats:
+        keys = checks_stats[CRITICAL].keys()
         keys.sort()
 
         count = 0;
         for checkname in keys:
-            count += checks_stats[100L][checkname]
+            count += checks_stats[CRITICAL][checkname]
 
         checks = ",".join(keys)
-
-        text = ungettext(u'<span class="caption">Fix critical error:</span> <span class="counter">%(num)d left</span>',
-                      u'<span class="caption">Fix critical errors:</span> <span class="counter">%(num)d left</span>',
-                      count,
-                      {'num': count, })
 
         result.append(
             u'<a class="fix-errors" href="%(url)s">%(text)s</a>' % {
                 'url': path_obj.get_translate_url(check=checks),
-                'text': text
+                'text': ungettext(u'<span class="caption">Fix critical error:</span> <span class="counter">%(num)d left</span>',
+                                  u'<span class="caption">Fix critical errors:</span> <span class="counter">%(num)d left</span>',
+                                  count,
+                                  {'num': count, })
+            }
+        )
+
+    if complete:
+        result.append(
+            u'<a class="translation-complete" href="%(url)s">%(text)s</a>' % {
+                'url': path_obj.get_translate_url(state='all'),
+                'text': _('<span class="caption">Translation complete:</span> <span class="counter">view all</span>')
             }
         )
 
