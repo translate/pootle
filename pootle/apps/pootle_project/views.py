@@ -32,7 +32,6 @@ from pootle.core.decorators import get_path_obj, permission_required
 from pootle.core.helpers import get_translation_context
 from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models.permissions import check_permission
-from pootle_app.views.top_stats import gentopstats_project, gentopstats_root
 from pootle_misc.browser import get_table_headings
 from pootle_misc.util import ajax_required, jsonify
 from pootle_project.forms import (TranslationProjectFormSet,
@@ -212,7 +211,6 @@ def overview(request, project):
             'description': project.description,
             'summary': summary,
         },
-        'topstats': gentopstats_project(project),
         'can_edit': check_permission("administrate", request),
         'table': {
             'id': 'project',
@@ -358,7 +356,6 @@ def projects_index(request, root):
             'headings': get_table_headings(fields),
             'items': getprojects(request),
         },
-        'topstats': gentopstats_root(),
     }
 
     return render(request, "projects/list.html", ctx)

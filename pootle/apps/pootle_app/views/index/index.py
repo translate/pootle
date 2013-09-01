@@ -31,7 +31,6 @@ from pootle.core.decorators import get_path_obj
 from pootle.i18n.gettext import tr_lang
 from pootle_app.models.permissions import (get_matching_permissions,
                                            check_permission)
-from pootle_app.views.top_stats import gentopstats_root
 from pootle_language.models import Language
 from pootle_misc.browser import get_table_headings
 from pootle_misc.siteconfig import load_site_config
@@ -121,7 +120,6 @@ def view(request, root_dir):
             'traduction',
             'traduire',
         ],
-        'topstats': gentopstats_root(),
         'permissions': request.permissions,
         'languages_table': languages_table,
         'projects_table': projects_table,

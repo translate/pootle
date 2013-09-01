@@ -29,7 +29,6 @@ from pootle.core.helpers import get_translation_context
 from pootle.i18n.gettext import tr_lang
 from pootle_app.models.permissions import check_permission
 from pootle_app.views.admin.permissions import admin_permissions
-from pootle_app.views.top_stats import gentopstats_language
 from pootle_misc.browser import get_table_headings
 from pootle_misc.util import jsonify, ajax_required
 from pootle_statistics.models import Submission
@@ -77,8 +76,6 @@ def overview(request, language):
     tp_count = len(user_tps)
     items = (make_project_item(tp) for tp in user_tps)
 
-    topstats = gentopstats_language(language)
-
     table_fields = ['name', 'progress', 'total', 'need-translation', 'suggestions', 'activity']
     table = {
         'id': 'language',
@@ -99,7 +96,6 @@ def overview(request, language):
                                tp_count, {"projects": tp_count}),
         },
         'feed_path': '%s/' % language.code,
-        'topstats': topstats,
         'can_edit': can_edit,
         'table': table,
     }
