@@ -91,15 +91,6 @@
         $incomplete.html(interpolate(fmt, [incomplete]));
 
         $pathSummary.append($('<li/>').append($incomplete));
-      } else {
-        var $incomplete = $("<a />", {
-          'class': 'translation-complete',
-          'href': data.pathsummary.translate_url,
-        });
-
-        $incomplete.html(gettext('<span class="caption">Translation complete:</span> <span class="counter">view all</span>'));
-
-        $pathSummary.append($('<li/>').append($incomplete));
       }
 
       if (data.suggestions > 0) {
@@ -128,6 +119,17 @@
         $critical.html(interpolate(fmt, [data.suggestions]));
 
         $pathSummary.append($('<li/>').append($critical));
+      }
+
+      if (incomplete === 0) {
+        var $incomplete = $("<a />", {
+          'class': 'translation-complete',
+          'href': data.pathsummary.translate_url,
+        });
+
+        $incomplete.html(gettext('<span class="caption">Translation complete:</span> <span class="counter">view all</span>'));
+
+        $pathSummary.append($('<li/>').append($incomplete));
       }
     },
 
