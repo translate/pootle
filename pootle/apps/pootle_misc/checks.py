@@ -95,7 +95,9 @@ def get_quality_check_failures(path_obj, path_stats, include_url=True):
         keys.sort(reverse=True)
 
         for i, category in enumerate(keys):
-            group = []
+            group = {
+                'checks': []
+            }
 
             if category != Category.NO_CATEGORY:
                 group.update({
@@ -129,9 +131,7 @@ def get_quality_check_failures(path_obj, path_stats, include_url=True):
                     group['checks'].append(check)
 
             if cat_total:
-                checks.append({
-                    'checks': group
-                })
+                checks.append(group)
 
     except IOError:
         pass
