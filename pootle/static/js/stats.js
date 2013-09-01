@@ -80,8 +80,8 @@
       );
 
       if (incomplete > 0) {
-        var fmt = ngettext('Continue translation: <span class="counter">%s word left</span>',
-                           'Continue translation: <span class="counter">%s words left</span>',
+        var fmt = ngettext('<span class="caption">Continue translation:</span> <span class="counter">%s word left</span>',
+                           '<span class="caption">Continue translation:</span> <span class="counter">%s words left</span>',
                            incomplete);
         var $incomplete = $("<a />", {
           'class': 'continue-translation',
@@ -97,14 +97,14 @@
           'href': data.pathsummary.translate_url,
         });
 
-        $incomplete.html(gettext('Translation complete: <span class="counter">view all</span>'));
+        $incomplete.html(gettext('<span class="caption">Translation complete:</span> <span class="counter">view all</span>'));
 
         $pathSummary.append($('<li/>').append($incomplete));
       }
 
       if (data.suggestions > 0) {
-        var fmt = ngettext('Review suggestion: <span class="counter">%s left</span>',
-                           'Review suggestions: <span class="counter">%s left</span>',
+        var fmt = ngettext('<span class="caption">Review suggestion:</span> <span class="counter">%s left</span>',
+                           '<span class="caption">Review suggestions:</span> <span class="counter">%s left</span>',
                            data.suggestions);
         var $suggestions = $("<a />", {
           'class': 'review-suggestions',
@@ -117,8 +117,8 @@
       }
 
       if (data.critical > 0) {
-        var fmt = ngettext('Fix critical error: <span class="counter">%s left</span>',
-                           'Fix critical errors: <span class="counter">%s left</span>',
+        var fmt = ngettext('<span class="caption">Fix critical error:</span> <span class="counter">%s left</span>',
+                           '<span class="caption">Fix critical errors:</span> <span class="counter">%s left</span>',
                            data.critical);
         var $critical = $("<a />", {
           'class': 'fix-errors',
