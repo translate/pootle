@@ -51,7 +51,6 @@ def get_last_action(translation_project):
         return ''
 
 
-
 @ajax_required
 @get_path_obj
 @permission_required('view')
@@ -184,6 +183,7 @@ def overview(request, project):
             'href_all': href_all,
             'href_todo': href_todo,
             'href_sugg': href_sugg,
+            'icon': 'language',
             'title': tr_lang(tp.language.fullname),
             'lastactivity': get_last_action(tp),
             'tags': tp.tag_like_objects,
