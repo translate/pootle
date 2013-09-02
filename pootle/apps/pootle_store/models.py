@@ -45,20 +45,22 @@ from pootle.core.managers import RelatedManager
 from pootle.core.mixins import CachedMethods, TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models import Suggestion as SuggestionStat
-from pootle_misc.aggregate import group_by_count, group_by_count_extra, max_column
+from pootle_misc.aggregate import (group_by_count, group_by_count_extra,
+                                   max_column)
 from pootle_misc.checks import check_names
-from pootle_misc.util import (cached_property, get_cached_value,
-                              deletefromcache, datetime_min)
+from pootle_misc.util import (cached_property, datetime_min, deletefromcache,
+                              get_cached_value)
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
-from pootle_store.fields import (TranslationStoreField, MultiStringField,
-                                 PLURAL_PLACEHOLDER, SEPARATOR)
-from pootle_store.filetypes import factory_classes, is_monolingual
-from pootle_store.util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED
 from pootle_tagging.models import ItemWithGoal
 
 from .caching import unit_delete_cache, unit_update_cache
+from .fields import (MultiStringField, TranslationStoreField,
+                     PLURAL_PLACEHOLDER, SEPARATOR)
+from .filetypes import factory_classes, is_monolingual
 from .signals import translation_submitted
+from .util import (action_log, FUZZY, OBSOLETE, TRANSLATED, UNIT_CREATED,
+                   UNIT_REMOVED, UNTRANSLATED)
 
 
 #
@@ -408,13 +410,38 @@ class Unit(models.Model, base.TranslationUnit):
         self._encoding = 'UTF-8'
 
     def delete(self, *args, **kwargs):
+        action_log(user='system', action=UNIT_REMOVED,
+            lang=self.store.translation_project.language.code,
+            unit=self.id,
+            translation='')
         unit_delete_cache(self)
 
         super(Unit, self).delete(*args, **kwargs)
 
     def save(self, *args, **kwargs):
+        if not hasattr(self, '_log_user'):
+            self._log_user = 'system'
+        if not self.id:
+            self._save_action = UNIT_CREATED
+
         unit_update_cache(self)
+
+        if self.id:
+            if hasattr(self, '_save_action'):
+                action_log(user=self._log_user, action=self._save_action,
+                    lang=self.store.translation_project.language.code,
+                    unit=self.id,
+                    translation=self.target_f
+                )
+        
         super(Unit, self).save(*args, **kwargs)
+
+        if self._save_action == UNIT_CREATED:
+            action_log(user=self._log_user, action=self._save_action,
+                lang=self.store.translation_project.language.code,
+                unit=self.id,
+                translation=self.target_f
+            )
 
         if self._source_updated or self._target_updated:
             # Add to TM
@@ -903,7 +930,6 @@ class Unit(models.Model, base.TranslationUnit):
         if suggestion is not None:
             old_target = self.target
             self.target = suggestion.target
-            self.state = TRANSLATED
 
             suggestion_user = suggestion.user
             self.submitted_by = suggestion_user
@@ -913,6 +939,7 @@ class Unit(models.Model, base.TranslationUnit):
             # ``save``, otherwise the quality checks won't be properly updated
             # when saving the unit.
             suggestion.delete()
+            self._log_user = reviewer
             self.store.flag_for_deletion(CachedMethods.SUGGESTIONS,
                                          CachedMethods.PATH_SUMMARY)
             self.save()
@@ -1147,6 +1174,15 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 unit.save()
         if self.state >= PARSED:
             self.update_cache()
+
+    def delete(self, *args, **kwargs):
+        for unit in self.unit_set.iterator():
+            action_log(user='system', action=UNIT_REMOVED,
+                lang=self.translation_project.language.code,
+                unit=unit.id,
+                Translation='')
+
+        super(Store, self).delete(*args, **kwargs)
 
     def get_absolute_url(self):
         lang, proj, dir, fn = split_pootle_path(self.pootle_path)

@@ -32,9 +32,12 @@ from pootle.core.mixins import CachedMethods
 from pootle_app.models.permissions import check_permission
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
-from pootle_store.models import Unit
-from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED
 from pootle_store.fields import PLURAL_PLACEHOLDER, to_db
+from pootle_store.models import Unit
+from pootle_store.util import (FUZZY, TRANSLATED, TRANSLATION_ADDED,
+                               TRANSLATION_DELETED, TRANSLATION_EDITED,
+                               UNTRANSLATED)
+
 
 ############## text cleanup and highlighting #########################
 
@@ -265,8 +268,11 @@ def unit_form_factory(language, snplurals=None, request=None):
 
             if new_target:
                 if old_state == UNTRANSLATED:
+                    self.instance._save_action = TRANSLATION_ADDED
                     self.instance.store \
                                  .flag_for_deletion(CachedMethods.TRANSLATED)
+                else:
+                    self.instance._save_action = TRANSLATION_EDITED
 
                 if is_fuzzy:
                     new_state = FUZZY
@@ -274,6 +280,8 @@ def unit_form_factory(language, snplurals=None, request=None):
                     new_state = TRANSLATED
             else:
                 new_state = UNTRANSLATED
+                if old_state > FUZZY:
+                    self.instance._save_action = TRANSLATION_DELETED
 
             if is_fuzzy != (old_state == FUZZY):
                 # when Unit toggles its FUZZY state the number of translated words
