@@ -43,6 +43,7 @@ from translate.filters.decorators import Category
 from translate.storage import base
 
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
+from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.lib.util import RelatedManager
 from pootle_misc.aggregate import group_by_count_extra, max_column
 from pootle_misc.baseurl import l
@@ -51,12 +52,15 @@ from pootle_misc.util import (cached_property, getfromcache, deletefromcache,
                               datetime_min)
 from pootle_statistics.models import (SubmissionFields,
                                       SubmissionTypes, Submission)
-from pootle_app.models import Suggestion as SuggestionStat
-from pootle_store.fields import (TranslationStoreField, MultiStringField,
+
+from .fields import (TranslationStoreField, MultiStringField,
                                  PLURAL_PLACEHOLDER, SEPARATOR)
-from pootle_store.filetypes import factory_classes
-from pootle_store.util import (calculate_stats, empty_quickstats,
-                               OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED)
+from .filetypes import factory_classes
+from .util import (calculate_stats, empty_quickstats,
+                               OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED,
+                               TRANSLATION_ADDED, TRANSLATION_EDITED,
+                               TRANSLATION_DELETED, UNIT_CREATED, UNIT_REMOVED,
+                               action_log)
 from .signals import translation_submitted
 
 
@@ -165,8 +169,6 @@ post_delete.connect(delete_votes, sender=Suggestion)
 
 
 ############### Unit ####################
-
-
 def count_words(strings):
     from translate.storage import statsdb
     wordcount = 0
@@ -175,7 +177,6 @@ def count_words(strings):
         wordcount += statsdb.wordcount(string)
 
     return wordcount
-
 
 def stringcount(string):
     try:
@@ -299,7 +300,20 @@ class Unit(models.Model, base.TranslationUnit):
         unitclass = self.get_unit_class()
         return str(self.convert(unitclass))
 
+    def delete(self, *args, **kwargs):
+        action_log(user='system', action=UNIT_REMOVED,
+            lang=self.store.translation_project.language.code,
+            unit=self.id,
+            translation='')
+
+        super(Unit, self).delete(*args, **kwargs)
+
     def save(self, *args, **kwargs):
+        if not hasattr(self, '_log_user'):
+            self._log_user = 'system'
+        if not self.id:
+            self._save_action = UNIT_CREATED
+
         if self._source_updated:
             # update source related fields
             self.source_hash = md5(self.source_f.encode("utf-8")).hexdigest()
@@ -313,10 +327,32 @@ class Unit(models.Model, base.TranslationUnit):
             if filter(None, self.target_f.strings):
                 if self.state == UNTRANSLATED:
                     self.state = TRANSLATED
-            elif self.state > FUZZY:
-                self.state = UNTRANSLATED
+                    if not hasattr(self, '_save_action'):
+                        self._save_action = TRANSLATION_ADDED
+                else:
+                    if not hasattr(self, '_save_action'):
+                        self._save_action = TRANSLATION_EDITED
+            else:
+                self._save_action = TRANSLATION_DELETED
+                if self.state > FUZZY:
+                    self.state = UNTRANSLATED
+
+        if self.id:
+            if hasattr(self, '_save_action'):
+                action_log(user=self._log_user, action=self._save_action,
+                    lang=self.store.translation_project.language.code,
+                    unit=self.id,
+                    translation=self.target_f
+                )
 
         super(Unit, self).save(*args, **kwargs)
+
+        if self._save_action == UNIT_CREATED:
+            action_log(user=self._log_user, action=self._save_action,
+                lang=self.store.translation_project.language.code,
+                unit=self.id,
+                translation=self.target_f
+            )
 
         if (self.store.state >= CHECKED and
             (self._source_updated or self._target_updated)):
@@ -792,7 +828,6 @@ class Unit(models.Model, base.TranslationUnit):
         if suggestion is not None:
             old_target = self.target
             self.target = suggestion.target
-            self.state = TRANSLATED
 
             suggestion_user = suggestion.user
             self.submitted_by = suggestion_user
@@ -802,6 +837,7 @@ class Unit(models.Model, base.TranslationUnit):
             # ``save``, otherwise the quality checks won't be properly updated
             # when saving the unit.
             suggestion.delete()
+            self._log_user = reviewer
             self.save()
 
             # FIXME: we need a totally different model for tracking stats, this
@@ -951,6 +987,11 @@ class Store(models.Model, base.TranslationStore):
         ])
 
     def delete(self, *args, **kwargs):
+        for unit in self.unit_set.iterator():
+            action_log(user='system', action=UNIT_REMOVED,
+                lang=self.translation_project.language.code,
+                unit=unit.id,
+                Translation='')
         super(Store, self).delete(*args, **kwargs)
         deletefromcache(self, ["getquickstats", "getcompletestats",
                                "get_mtime", "get_suggestion_count"])

@@ -33,6 +33,7 @@ from pootle_statistics.models import (Submission, SubmissionFields,
 from pootle_store.models import Unit
 from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED
 from pootle_store.fields import PLURAL_PLACEHOLDER, to_db
+from pootle_store.util import TRANSLATION_ADDED, TRANSLATION_EDITED, TRANSLATION_DELETED
 
 ############## text cleanup and highlighting #########################
 
@@ -253,13 +254,19 @@ def unit_form_factory(language, snplurals=None, request=None):
 
             new_state = None
             if new_target:
+                if old_state == UNTRANSLATED:
+                    self.instance._save_action = TRANSLATION_ADDED
+                else:
+                    self.instance._save_action = TRANSLATION_EDITED
+
                 if value:
                     new_state = FUZZY
                 else:
                     new_state = TRANSLATED
             else:
                 new_state = UNTRANSLATED
-
+                if old_state > FUZZY:
+                    self.instance._save_action = TRANSLATION_DELETED
 
             if old_state != new_state:
                 self.instance._state_updated = True

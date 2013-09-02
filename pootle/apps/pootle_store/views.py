@@ -669,7 +669,7 @@ def submit(request, unit):
                         new_value=new_value,
                 )
                 sub.save()
-
+            form.instance._log_user = request.profile
             form.save()
             translation_submitted.send(
                     sender=translation_project,
