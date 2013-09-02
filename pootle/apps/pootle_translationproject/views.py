@@ -299,6 +299,7 @@ def _handle_upload_form(request, current_path, translation_project, directory):
 
 @get_path_obj
 @permission_required('view')
+@get_resource_context
 def overview(request, translation_project, dir_path, filename=None):
     current_path = translation_project.directory.pootle_path + dir_path
 
