@@ -17,11 +17,15 @@
         <i class="icon-tag"></i>
         <span id="js-toggle-tags-text">{% trans "Show tags" %}</span>
       </a>
+      <a href="" id="js-toggle-filter" class="hide filter-aside filter-toggle"
+        title="{% trans "Show filtering" %}">
+        <i class="icon-filter"></i>
+      </a>
     </h2>
   </div>
 
-  <div class="bd">
-    <form action="" method="post" class="tags-filter-form"
+  <div class="tags-bd">
+    <form action="" method="post" class="js-filter tags-filter-form"
       enctype="multipart/form-data">
       {% csrf_token %}
       {{ tags_filter_form.non_field_errors }}

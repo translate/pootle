@@ -269,12 +269,35 @@
       /* Hide the "Filter" button in the tag filtering form */
       $("#js-filter-form-button").hide();
 
+      /* Toggle visibility of tags filter widget */
+      $("#js-toggle-filter").show();
+      if ($.cookie('showfilter') === 'true') {
+        $(".js-filter").show();
+        $("#js-toggle-filter").attr("title", gettext("Hide filtering"));
+      } else {
+        $(".js-filter").hide();
+        $("#js-toggle-filter").attr("title", gettext("Show filtering"));
+      }
+
+      $("#js-toggle-filter").click(function (event) {
+        event.preventDefault();
+        $(".js-filter").slideToggle('slow', 'easeOutQuad', function () {
+          if ($(".js-filter").is(":hidden")) {
+            $("#js-toggle-filter").attr("title", gettext("Show filtering"));
+            $.cookie('showfilter', 'false', {path: '/'});
+          } else {
+            $("#js-toggle-filter").attr("title", gettext("Hide filtering"));
+            $.cookie('showfilter', 'true', {path: '/'});
+          }
+        });
+      });
+
       /* Dynamic filtering using tags */
       $("#js-tag-filtering").on("change", function (event) {
         // If there are no tag filters.
         if (event.val.length === 0) {
           // Remove the filtered table and reattach the original one.
-          if ($filteredTable != undefined) {
+          if (typeof $filteredTable !== "undefined") {
             $filteredTable.remove();
             $projectTable.appendTo($projectTableParent);
 
