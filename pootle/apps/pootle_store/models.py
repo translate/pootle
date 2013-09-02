@@ -43,7 +43,6 @@ from translate.filters.decorators import Category
 from translate.storage import base
 
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
-from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.lib.util import RelatedManager
 from pootle_misc.aggregate import group_by_count_extra, max_column
 from pootle_misc.baseurl import l
@@ -347,7 +346,7 @@ class Unit(models.Model, base.TranslationUnit):
 
         super(Unit, self).save(*args, **kwargs)
 
-        if self._save_action == UNIT_CREATED:
+        if hasattr(self, '_save_action') and self._save_action == UNIT_CREATED:
             action_log(user=self._log_user, action=self._save_action,
                 lang=self.store.translation_project.language.code,
                 unit=self.id,
@@ -842,6 +841,8 @@ class Unit(models.Model, base.TranslationUnit):
 
             # FIXME: we need a totally different model for tracking stats, this
             # is just lame
+            from pootle_app.models import Suggestion as SuggestionStat
+
             suggstat, created = SuggestionStat.objects.get_or_create(
                     translation_project=translation_project,
                     suggester=suggestion_user,
@@ -878,6 +879,8 @@ class Unit(models.Model, base.TranslationUnit):
         if suggestion is not None:
             # FIXME: we need a totally different model for tracking stats, this
             # is just lame
+            from pootle_app.models import Suggestion as SuggestionStat
+
             suggstat, created = SuggestionStat.objects.get_or_create(
                     translation_project=translation_project,
                     suggester=suggestion.user,
