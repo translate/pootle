@@ -1530,7 +1530,7 @@ class Store(models.Model, base.TranslationStore):
                                                    unit__state__gt=UNTRANSLATED,
                                                    false_positive=False)
             return group_by_count_extra(queryset, 'name', 'category')
-        except e:
+        except Exception as e:
             logging.info(u"Error getting quality checks for %s\n%s",
                          self.name, e)
             return {}
