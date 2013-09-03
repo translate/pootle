@@ -44,6 +44,9 @@ from translate.storage import base
 
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.lib.util import RelatedManager
+from pootle_misc.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
+                             TRANSLATION_DELETED, UNIT_ADDED, UNIT_DELETED,
+                             STORE_ADDED, STORE_DELETED, action_log, store_log)
 from pootle_misc.aggregate import group_by_count_extra, max_column
 from pootle_misc.baseurl import l
 from pootle_misc.checks import check_names
@@ -53,13 +56,10 @@ from pootle_statistics.models import (SubmissionFields,
                                       SubmissionTypes, Submission)
 
 from .fields import (TranslationStoreField, MultiStringField,
-                                 PLURAL_PLACEHOLDER, SEPARATOR)
+                     PLURAL_PLACEHOLDER, SEPARATOR)
 from .filetypes import factory_classes
 from .util import (calculate_stats, empty_quickstats,
-                               OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED,
-                               TRANSLATION_ADDED, TRANSLATION_EDITED,
-                               TRANSLATION_DELETED, UNIT_CREATED, UNIT_REMOVED,
-                               action_log)
+                   OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED)
 from .signals import translation_submitted
 
 
@@ -300,7 +300,7 @@ class Unit(models.Model, base.TranslationUnit):
         return str(self.convert(unitclass))
 
     def delete(self, *args, **kwargs):
-        action_log(user='system', action=UNIT_REMOVED,
+        action_log(user='system', action=UNIT_DELETED,
             lang=self.store.translation_project.language.code,
             unit=self.id,
             translation='')
@@ -311,7 +311,7 @@ class Unit(models.Model, base.TranslationUnit):
         if not hasattr(self, '_log_user'):
             self._log_user = 'system'
         if not self.id:
-            self._save_action = UNIT_CREATED
+            self._save_action = UNIT_ADDED
 
         if self._source_updated:
             # update source related fields
@@ -330,7 +330,7 @@ class Unit(models.Model, base.TranslationUnit):
                         self._save_action = TRANSLATION_ADDED
                 else:
                     if not hasattr(self, '_save_action'):
-                        self._save_action = TRANSLATION_EDITED
+                        self._save_action = TRANSLATION_CHANGED
             else:
                 self._save_action = TRANSLATION_DELETED
                 if self.state > FUZZY:
@@ -346,7 +346,7 @@ class Unit(models.Model, base.TranslationUnit):
 
         super(Unit, self).save(*args, **kwargs)
 
-        if hasattr(self, '_save_action') and self._save_action == UNIT_CREATED:
+        if hasattr(self, '_save_action') and self._save_action == UNIT_ADDED:
             action_log(user=self._log_user, action=self._save_action,
                 lang=self.store.translation_project.language.code,
                 unit=self.id,
@@ -966,8 +966,15 @@ class Store(models.Model, base.TranslationStore):
         return str(store)
 
     def save(self, *args, **kwargs):
+        created = not self.id
+
         self.pootle_path = self.parent.pootle_path + self.name
         super(Store, self).save(*args, **kwargs)
+        if created:
+            store_log(user='system', action=STORE_ADDED,
+                path=self.pootle_path,
+                store=self.id)
+
         if hasattr(self, '_units'):
             index = self.max_index() + 1
             for i, unit in enumerate(self._units):
@@ -990,9 +997,14 @@ class Store(models.Model, base.TranslationStore):
         ])
 
     def delete(self, *args, **kwargs):
+        store_log(user='system', action=STORE_DELETED,
+            path=self.pootle_path,
+            store=self.id)
+
+        lang = self.translation_project.language.code
         for unit in self.unit_set.iterator():
-            action_log(user='system', action=UNIT_REMOVED,
-                lang=self.translation_project.language.code,
+            action_log(user='system', action=UNIT_DELETED,
+                lang=lang,
                 unit=unit.id,
                 Translation='')
         super(Store, self).delete(*args, **kwargs)

@@ -17,6 +17,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
+import sys
 
 from django.core.management import execute_manager
 
@@ -28,4 +29,6 @@ def main():
 
 
 if __name__ == "__main__":
+    from pootle_misc.log import cmd_log
+    cmd_log(*sys.argv)
     main()

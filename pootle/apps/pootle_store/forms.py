@@ -27,13 +27,14 @@ from django.utils.translation import get_language, ugettext as _
 
 from translate.misc.multistring import multistring
 
+from pootle_misc.log import (TRANSLATION_ADDED,
+                             TRANSLATION_CHANGED, TRANSLATION_DELETED)
 from pootle_app.models.permissions import check_permission
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 from pootle_store.models import Unit
 from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED
 from pootle_store.fields import PLURAL_PLACEHOLDER, to_db
-from pootle_store.util import TRANSLATION_ADDED, TRANSLATION_EDITED, TRANSLATION_DELETED
 
 ############## text cleanup and highlighting #########################
 
