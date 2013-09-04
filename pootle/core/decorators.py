@@ -110,7 +110,7 @@ def get_resource_context(func):
         directory = None
         store = None
 
-        if filename is not None:
+        if filename:
             pootle_path = pootle_path + filename
             resource_path = resource_path + filename
 
