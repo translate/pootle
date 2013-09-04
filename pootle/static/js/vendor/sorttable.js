@@ -74,6 +74,12 @@ sorttable = {
       delete sortbottomrows;
     }
 
+    // Remove stalled items in case we are working on an already makeSortable'd
+    // table.
+    $(table).find("tr.tags-row").remove();
+    $(table).find("th").removeClass("sorttable_sorted");
+    $(table).find("th").removeClass("sorttable_sorted_reverse");
+
     // work through each column and calculate its type
     headrow = table.tHead.rows[0].cells;
     for (var i=0; i<headrow.length; i++) {
@@ -91,10 +97,12 @@ sorttable = {
         headrow[i].sorttable_columnindex = i;
         headrow[i].sorttable_tbody = table.tBodies[0];
 
-        // Add unsorted icon
-        unsorted = document.createElement('i');
-        unsorted.className = "sorttable_unsorted icon-ascdesc";
-        headrow[i].appendChild(unsorted);
+        if ($(headrow[i]).find(".icon-ascdesc, .icon-asc, .icon-desc").length == 0) {
+          // Add unsorted icon
+          unsorted = document.createElement('i');
+          unsorted.className = "sorttable_unsorted icon-ascdesc";
+          headrow[i].appendChild(unsorted);
+        }
 
         dean_addEvent(headrow[i],"click", function(e) {
 
@@ -103,7 +111,7 @@ sorttable = {
           // Remove any tr of class "tags-row", as we will insert them with
           // insertTagsRows() after sorting, so that they don't interfere with
           // the sorting.
-          $("tr.tags-row").remove();
+          $(this).parents("table").find("tr.tags-row").remove();
 
           if (this.className.search(/\bsorttable_sorted\b/) != -1) {
             // if we're already sorted by this column, just 
@@ -154,10 +162,14 @@ sorttable = {
     }
 
     sorttable.insertTagsRows(table.tBodies[0]);
+    sorttable.applyStoredOrder(table.id);
 
+  },
+
+  applyStoredOrder: function (id) {
     // Custom:
     // Get this table's stored sort order and fire the column's click event
-    var columnSort = sorttable.getSortCookie(table.id);
+    var columnSort = sorttable.getSortCookie(id);
 
     if (columnSort !== null) {
       var th = document.getElementById(columnSort.columnId);
@@ -168,7 +180,6 @@ sorttable = {
         $(th).click();
       }
     }
-
   },
 
   doSort: function(th) {
@@ -334,6 +345,10 @@ sorttable = {
     }
     delete newrows;
 
+    sorttable.adjustTagsVisibility();
+  },
+
+  adjustTagsVisibility: function () {
     if ($.cookie('showtags') == 'true') {
       $('.js-tags').show();
       $("#js-toggle-tags-text").text(gettext("Hide tags"));

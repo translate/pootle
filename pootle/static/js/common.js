@@ -273,15 +273,16 @@
       $("#js-tag-filtering").on("change", function (event) {
         // If there are no tag filters.
         if (event.val.length === 0) {
-          // Remove the filtered table and show the original one.
-          $("table#project-filtered").remove();
-          $("table#project").show();
-          // If tags are not hidden.
-          if ($.cookie('showtags') === 'true') {
-            $("table#project tbody tr").show();
-          } else {
-            $("table#project tbody tr:not(.js-tags)").show();
-          };
+          // Remove the filtered table and reattach the original one.
+          if ($filteredTable != undefined) {
+            $filteredTable.remove();
+            $projectTable.appendTo($projectTableParent);
+
+            // Adjust tags visibility and sort order that might have been
+            // changed when the table was detached.
+            sorttable.adjustTagsVisibility();
+            sorttable.applyStoredOrder($projectTable.attr("id"));
+          }
         } else {
           // Get the filter tags names since Select2 only provides their keys.
           var filterTags = [];
@@ -295,22 +296,15 @@
           // tagging data.
           var foundTags = [];
 
-          $("table#project").hide();
-          $filtered = $("table#project").clone();
-          $filtered.attr("id", "project-filtered");
+          $projectTable = $("table#project");
+          $projectTableParent = $projectTable.parent();
+          $projectTable.detach();
 
-          // Cleanup table sorting stuff, we will re-sort.
-          $filtered.find(".icon-ascdesc, .icon-asc, .icon-desc").remove();
-          $filtered.find("th").removeClass("sorttable_sorted");
-          $filtered.find("th").removeClass("sorttable_sorted_reverse");
+          $filteredTable = $projectTable.clone();
+          $filteredTable.appendTo($projectTableParent);
+          $filteredTable.show();
 
-          // Remove tags rows, will be re-added when sorting.
-          $filtered.find(".tags-row").remove();
-
-          $filtered.insertBefore("table#project");
-          $filtered.show();
-
-          $("table#project-filtered tbody tr:not(.js-tags)").each(function () {
+          $("table#project tbody tr:not(.js-tags)").each(function () {
             // Get all the tags applied to the current translation project.
             $(this).find("ul.tag-list li").each(function () {
               foundTags.push($(this).find(".js-tag-item").text());
@@ -322,12 +316,9 @@
               return $.inArray(element, filterTags) !== -1;
             });
 
-            // If the current translation project matches all the filter tags.
-            if (matchingFilters.length === filterTags.length) {
-              // Show the current translation project.
-              $(this).show();
-            } else {
-              // Hide the current translation project.
+            // Remove the current translation project if it does not match all
+            // the filter tags.
+            if (matchingFilters.length !== filterTags.length) {
               $(this).remove();
             };
 
@@ -335,7 +326,7 @@
           });
 
           // Sort the filtered table.
-          sorttable.makeSortable($filtered.get(0));
+          sorttable.makeSortable($filteredTable.get(0));
         };
       });
     },
