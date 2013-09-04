@@ -48,14 +48,13 @@ def action_log(*args, **kwargs):
 
 
 def cmd_log(*args, **kwargs):
-    # FIXME is it possible to use parameters from django.conf.settings
+    import os
     from django.conf import settings
+
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'pootle.settings')
     fn = settings.LOGGING.get('handlers').get('log_action').get('filename')
     dft = settings.LOGGING.get('formatters').get('action').get('datefmt')
 
-    #import os
-    #fn = os.path.join(os.path.dirname(args[0]), 'log/action.log')
-    #dft = "%d/%b/%Y %H:%M:%S"
 
     logfile = open(fn, 'a')
     cmd = ' '.join(args)
