@@ -32,7 +32,8 @@ from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 from pootle_misc.util import getfromcache
 from pootle_store.models import Unit, Suggestion
-from pootle_store.util import statssum, OBSOLETE
+from pootle_store.util import statssum, sum_by_attr_name, OBSOLETE
+from pootle_store.decorators import pullmethodname
 
 
 # FIXME: Generate key dynamically
@@ -145,40 +146,42 @@ class Language(models.Model):
 
     @getfromcache
     def get_mtime(self):
-        return max_column(Unit.objects.filter(
-            store__translation_project__language=self), 'mtime', None)
+        return max([
+            item.get_mtime() for item in self.translationproject_set.iterator()
+        ])
 
     @getfromcache
     def getquickstats(self):
         return statssum(self.translationproject_set.iterator())
 
     @getfromcache
-    def get_total_stats(self):
-        return statssum_by_name(self.translationproject_set.iterator(), 'get_total_stats')
+    @pullmethodname
+    def get_total_wordcount(self, name=''):
+        return sum_by_attr_name(self.translationproject_set.iterator(), name)
 
     @getfromcache
-    def get_translated_stats(self):
-        return statssum_by_name(self.translationproject_set.iterator(), 'get_translated_stats')
+    @pullmethodname
+    def get_translated_wordcount(self, name=''):
+        return sum_by_attr_name(self.translationproject_set.iterator(), name)
 
     @getfromcache
-    def get_fuzzy_stats(self):
-        return statssum_by_name(self.translationproject_set.iterator(), 'get_fuzzy_stats')
+    @pullmethodname
+    def get_fuzzy_wordcount(self, name=''):
+        return sum_by_attr_name(self.translationproject_set.iterator(), name)
 
     @getfromcache
-    def get_untranslated_stats(self):
-        return statssum_by_name(self.translationproject_set.iterator(), 'get_untranslated_stats')
+    @pullmethodname
+    def get_untranslated_wordcount(self, name=''):
+        return sum_by_attr_name(self.translationproject_set.iterator(), name)
 
     @getfromcache
-    def get_suggestion_count(self):
+    @pullmethodname
+    def get_suggestion_count(self, name=''):
         """
         Check if any unit in the stores for the translation project in this
         language has suggestions.
         """
-        criteria = {
-            'unit__store__translation_project__language': self,
-            'unit__state__gt': OBSOLETE,
-        }
-        return Suggestion.objects.filter(**criteria).count()
+        return sum_by_attr_name(self.translationproject_set.iterator(), name)
 
     def get_absolute_url(self):
         return l(self.pootle_path)

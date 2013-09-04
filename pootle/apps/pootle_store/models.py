@@ -1565,28 +1565,24 @@ class Store(models.Model, base.TranslationStore):
 
 ############################### Stats ############################
     @getfromcache
-    @try_stats_wrap
-    def get_total_stats(self):
+    def get_total_wordcount(self):
     """calculate total wordcount statistics"""
-        return calculate_total(self.units)
+        return calc_total_wordcount(self.units)
 
     @getfromcache
-    @try_stats_wrap
-    def get_translated_stats(self):
+    def get_translated_wordcount(self):
     """calculate translated units statistics"""
-        return calculate_translated(self.units)
+        return calc_translated_wordcount(self.units)
 
     @getfromcache
-    @try_stats_wrap
-    def get_untranslated_stats(self):
+    def get_untranslated_wordcount(self):
     """calculate untranslated units statistics"""
-        return calculate_untranslated(self.units)
+        return calc_untranslated_wordcount(self.units)
 
     @getfromcache
-    @try_stats_wrap
-    def get_fuzzy_stats(self):
+    def get_fuzzy_wordcount(self):
     """calculate untranslated units statistics"""
-        return calculate_fuzzy(self.units)
+        return calc_fuzzy_wordcount(self.units)
 
     @getfromcache
     def getquickstats(self):

@@ -43,7 +43,9 @@ from pootle_misc.baseurl import l
 from pootle_misc.util import getfromcache, cached_property
 from pootle_store.filetypes import filetype_choices, factory_classes
 from pootle_store.models import Unit, Suggestion
-from pootle_store.util import absolute_real_path, statssum, OBSOLETE
+from pootle_store.util import (absolute_real_path, statssum,
+                               sum_by_attr_name, OBSOLETE)
+from pootle_store.decorators import pullmethodname
 
 
 # FIXME: Generate key dynamically
@@ -255,14 +257,33 @@ class Project(models.Model):
 
     @getfromcache
     def get_mtime(self):
-        project_units = Unit.objects.filter(
-                store__translation_project__project=self
-        )
-        return max_column(project_units, 'mtime', None)
+        return max([
+            item.get_mtime() for item in self.translationproject_set.iterator()
+        ])
 
     @getfromcache
     def getquickstats(self):
         return statssum(self.translationproject_set.iterator())
+
+    @getfromcache
+    @pullmethodname
+    def get_total_wordcount(self, name=''):
+        return sum_attr_by_name(self.translationproject_set.iterator(), name)
+
+    @getfromcache
+    @pullmethodname
+    def get_translated_wordcount(self, name=''):
+        return sum_attr_by_name(self.translationproject_set.iterator(), name)
+
+    @getfromcache
+    @pullmethodname
+    def get_fuzzy_wordcount(self, name=''):
+        return sum_attr_by_name(self.translationproject_set.iterator(), name)
+
+    @getfromcache
+    @pullmethodname
+    def get_untranslated_wordcount(self, name=''):
+        return sum_attr_by_name(self.translationproject_set.iterator(), name)
 
     @getfromcache
     def get_suggestion_count(self):

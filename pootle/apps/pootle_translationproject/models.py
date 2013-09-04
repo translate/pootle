@@ -232,10 +232,8 @@ class TranslationProject(models.Model):
             return ''
         return sub.get_submission_message()
 
-    @getfromcache
     def get_mtime(self):
-        tp_units = Unit.objects.filter(store__translation_project=self)
-        return max_column(tp_units, 'mtime', None)
+        return self.directory.get_mtime()
 
     def require_units(self):
         """Makes sure all stores are parsed"""
@@ -263,6 +261,18 @@ class TranslationProject(models.Model):
                                    state__gt=OBSOLETE).select_related('store')
 
     units = property(_get_units)
+
+    def get_total_wordcount(self):
+        return self.directory.get_total_wordcount()
+
+    def get_translated_wordcount(self):
+        return self.directory.get_translated_wordcount()
+
+    def get_fuzzy_wordcount(self):
+        return self.directory.get_fuzzy_wordcount()
+
+    def get_untranslated_wordcount(self):
+        return self.directory.get_untranslated_wordcount()
 
     @getfromcache
     def getquickstats(self):
@@ -295,14 +305,12 @@ class TranslationProject(models.Model):
         )
         return group_by_count_extra(query, 'name', 'category')
 
-    @getfromcache
     def get_suggestion_count(self):
         """
         Check if any unit in the stores for this translation project has
         suggestions.
         """
-        return Suggestion.objects.filter(unit__store__translation_project=self,
-                                         unit__state__gt=OBSOLETE).count()
+        return self.directory.get_suggestion_count()
 
     def update_against_templates(self, pootle_path=None):
         """Update translation project from templates."""

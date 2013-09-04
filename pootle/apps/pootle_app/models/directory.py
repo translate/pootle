@@ -28,7 +28,8 @@ from pootle_misc.baseurl import l
 from pootle_misc.util import cached_property, dictsum, getfromcache
 from pootle_store.models import Suggestion, Unit
 from pootle_store.util import (empty_quickstats, empty_completestats,
-                               statssum, completestatssum, suggestions_sum)
+                               statssum, completestatssum, suggestions_sum,
+                               sum_by_attr_name)
 
 
 class DirectoryManager(models.Manager):
@@ -115,9 +116,14 @@ class Directory(models.Model):
 
     @getfromcache
     def get_mtime(self):
-        return max_column(Unit.objects.filter(
-            store__pootle_path__startswith=self.pootle_path
-        ), 'mtime', None)
+        file_mtime = max([
+            item.get_mtime() for item in self.child_stores.iterator()
+        ])
+        dir_mtime = max([
+            item.get_mtime() for item in self.child_dirs.iterator()
+        ])
+
+        return max(file_mtime, dir_mtime)
 
     def _get_stores(self):
         """Queryset with all descending stores."""
@@ -147,13 +153,42 @@ class Directory(models.Model):
         return l(self.pootle_path)
 
     @getfromcache
-    def get_stats_by_name(self, name):
+    @pullmethodname
+    def get_total_wordcount(self, name):
+    """calculate total wordcount statistics"""
+        return self._get_sum_by_attr_name(name)
+
+    @getfromcache
+    @pullmethodname
+    def get_translated_wordcount(self):
+    """calculate translated units statistics"""
+        return self._get_sum_by_attr_name(name)
+
+    @getfromcache
+    @pullmethodname
+    def get_untranslated_wordcount(self):
+    """calculate untranslated units statistics"""
+        return self._get_sum_by_attr_name(name)
+
+    @getfromcache
+    @pullmethodname
+    def get_fuzzy_wordcount(self):
+    """calculate untranslated units statistics"""
+        return self._get_sum_by_attr_name(name)
+
+    @getfromcache
+    @pullmethodname
+    def get_suggestion_count(self):
+        """check if any child store has suggestions"""
+        return self._get_sum_by_attr_name(name)
+
+    def _get_sum_by_attr_name(self, name):
         if self.is_template_project:
-            return empty_stats[name]
-        file_result = statssum_by_name(self.child_stores.iterator(), name)
-        dir_result = statssum_by_name(self.child_dirs.iterator(), name)
-        stats = dictsum(file_result, dir_result)
-        return stats
+            return 0
+        file_result = sum_by_attr_name(self.child_stores.iterator(), name)
+        dir_result = sum_by_attr_name(self.child_dirs.iterator(), name)
+
+        return file_result + dir_result
 
     @getfromcache
     def getquickstats(self):
@@ -215,11 +250,6 @@ class Directory(models.Model):
                                     .order_by('pootle_path')
 
         return Directory.objects.none()
-
-    def get_suggestion_count(self):
-        """check if any child store has suggestions"""
-        return Suggestion.objects.filter(
-            unit__store__pootle_path__startswith=self.pootle_path).count()
 
     def is_language(self):
         """does this directory point at a language"""
