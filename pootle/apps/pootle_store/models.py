@@ -1564,6 +1564,29 @@ class Store(models.Model, base.TranslationStore):
             return self.file.store.header()
 
 ############################### Stats ############################
+    @getfromcache
+    @try_stats_wrap
+    def get_total_stats(self):
+    """calculate total wordcount statistics"""
+        return calculate_total(self.units)
+
+    @getfromcache
+    @try_stats_wrap
+    def get_translated_stats(self):
+    """calculate translated units statistics"""
+        return calculate_translated(self.units)
+
+    @getfromcache
+    @try_stats_wrap
+    def get_untranslated_stats(self):
+    """calculate untranslated units statistics"""
+        return calculate_untranslated(self.units)
+
+    @getfromcache
+    @try_stats_wrap
+    def get_fuzzy_stats(self):
+    """calculate untranslated units statistics"""
+        return calculate_fuzzy(self.units)
 
     @getfromcache
     def getquickstats(self):

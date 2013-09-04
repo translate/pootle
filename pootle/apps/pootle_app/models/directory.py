@@ -147,6 +147,15 @@ class Directory(models.Model):
         return l(self.pootle_path)
 
     @getfromcache
+    def get_stats_by_name(self, name):
+        if self.is_template_project:
+            return empty_stats[name]
+        file_result = statssum_by_name(self.child_stores.iterator(), name)
+        dir_result = statssum_by_name(self.child_dirs.iterator(), name)
+        stats = dictsum(file_result, dir_result)
+        return stats
+
+    @getfromcache
     def getquickstats(self):
         """Calculate aggregate stats for all directory based on stats
         of all descending stores and dirs."""

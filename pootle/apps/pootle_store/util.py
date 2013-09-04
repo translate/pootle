@@ -81,6 +81,41 @@ empty_quickstats = {'fuzzy': 0,
                     'untranslatedsourcewords': 0,
                     'errors': 0}
 
+empty_stats = {
+    'fuzzy': {
+        'fuzzy': 0,
+        'fuzzysourcewords': 0,
+        'errors': 0
+    },
+    'total': {
+        'total': 0,
+        'totalsourcewords': 0,
+        'errors': 0
+    },
+    'translated': {
+        'translated': 0,
+        'translatedsourcewords': 0,
+        'translatedtargetwords': 0,
+        'errors': 0
+    },
+    'untranslated': {
+        'untranslated': 0,
+        'untranslatedsourcewords': 0,
+        'errors': 0
+    }
+    'review': 0,
+    'errors': 0
+}
+
+def statssum_by_name(queryset, name):
+    totals = empty_stats[name]
+    for item in queryset:
+        try:
+            totals = dictsum(totals, getattr(item, name)())
+        except:
+            totals['errors'] += 1
+    return totals
+
 def statssum(queryset, empty_stats=empty_quickstats):
     totals = empty_stats
     for item in queryset:
@@ -106,6 +141,60 @@ def completestatssum(queryset, empty_stats=empty_completestats):
         except:
             totals[0]['errors'] += 1
     return totals
+
+def calculate_total(units):
+    total = sum_column(units,
+                       ['source_wordcount'], count=True)
+    result = {'errors': 0}
+
+    result['total'] = total['count']
+    if result['total'] == 0:
+        result['totalsourcewords'] = 0
+    else:
+        result['totalsourcewords'] = total['source_wordcount']
+
+    return result
+
+
+def calculate_untranslated(units):
+    untranslated = sum_column(units.filter(state=UNTRANSLATED),
+                              ['source_wordcount'], count=True)
+    result = {'errors': 0}
+
+    result['untranslated'] = untranslated['count']
+    if result['untranslated'] == 0:
+        result['untranslatedsourcewords'] = 0
+    else:
+        result['untranslatedsourcewords'] = untranslated['source_wordcount']
+
+    return result
+
+def calculate_fuzzy(units):
+    fuzzy = sum_column(units.filter(state=FUZZY),
+                       ['source_wordcount'], count=True)
+    result = {'errors': 0}
+
+    result['fuzzy'] = fuzzy['count']
+    if result['fuzzy'] == 0:
+        result['fuzzysourcewords'] = 0
+    else:
+        result['fuzzysourcewords'] = fuzzy['source_wordcount']
+
+def calculate_translated(units):
+    translated = sum_column(units.filter(state=TRANSLATED),
+                            ['source_wordcount', 'target_wordcount'],
+                            count=True)
+    result = {'errors': 0}
+
+    result['translated'] = translated['count']
+    if result['translated'] == 0:
+        result['translatedsourcewords'] = 0
+        result['translatedtargetwords'] = 0
+    else:
+        result['translatedsourcewords'] = translated['source_wordcount']
+        result['translatedtargetwords'] = translated['target_wordcount']
+
+    return result
 
 def calculate_stats(units):
     """Calculate translation statistics for a given `units` queryset."""

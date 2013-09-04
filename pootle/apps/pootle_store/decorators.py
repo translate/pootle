@@ -34,6 +34,7 @@ from pootle_app.models.permissions import (check_permission,
 from pootle_profile.models import get_profile
 
 from .models import Store, Unit
+from .util import empty_stats
 
 
 def get_permission_message(permission_code):
@@ -139,3 +140,24 @@ def get_xhr_resource_context(permission_codes):
         return decorated_f
 
     return wrap_f
+
+def try_stats_wrap(function):
+    def _wraptry(instance, *args, **kwargs):
+        try:
+            return function(instance, *args, **kwargs)
+        except IntegrityError:
+            logging.info(u"Duplicate IDs in %s", instance.abs_real_path)
+        except base.ParseError, e:
+            logging.info(u"Failed to parse %s\n%s", instance.abs_real_path, e)
+        except (IOError, OSError), e:
+            logging.info(u"Can't access %s\n%s", instance.abs_real_path, e)
+        stats = {}
+        stats.update(empty_stats[function.__name__])
+        stats['errors'] += 1
+
+        return stats
+
+    return _wraptry
+
+
+

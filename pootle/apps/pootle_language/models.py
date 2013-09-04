@@ -153,6 +153,22 @@ class Language(models.Model):
         return statssum(self.translationproject_set.iterator())
 
     @getfromcache
+    def get_total_stats(self):
+        return statssum_by_name(self.translationproject_set.iterator(), 'get_total_stats')
+
+    @getfromcache
+    def get_translated_stats(self):
+        return statssum_by_name(self.translationproject_set.iterator(), 'get_translated_stats')
+
+    @getfromcache
+    def get_fuzzy_stats(self):
+        return statssum_by_name(self.translationproject_set.iterator(), 'get_fuzzy_stats')
+
+    @getfromcache
+    def get_untranslated_stats(self):
+        return statssum_by_name(self.translationproject_set.iterator(), 'get_untranslated_stats')
+
+    @getfromcache
     def get_suggestion_count(self):
         """
         Check if any unit in the stores for the translation project in this
