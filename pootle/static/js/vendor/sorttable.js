@@ -173,11 +173,22 @@ sorttable = {
 
     if (columnSort !== null) {
       var th = document.getElementById(columnSort.columnId);
-      $(th).click();
+      var sorted = th.className.search(/\bsorttable_sorted\b/) != -1;
+      var sorted_reverse = th.className.search(/\bsorttable_sorted_reverse\b/) != -1;
 
-      // If the sorting order was descending, fire another click event
-      if (columnSort.order === "desc") {
+      if (sorted || sorted_reverse) {
+        // If already sorted, fire the event only if the other order is
+        // desired.
+        if (sorted && columnSort.order === "desc")
+          $(th).click();
+        else if (sorted_reverse && columnSort.order === "asc")
+          $(th).click();
+      } else {
         $(th).click();
+
+        // If the sorting order was descending, fire another click event
+        if (columnSort.order === "desc")
+          $(th).click();
       }
     }
   },
