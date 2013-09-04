@@ -72,6 +72,9 @@ class Directory(models.Model):
 
         super(Directory, self).save(*args, **kwargs)
 
+    def get_absolute_url(self):
+        return l(self.pootle_path)
+
     def get_translate_url(self, **kwargs):
         lang, proj, dir, fn = split_pootle_path(self.pootle_path)
 
