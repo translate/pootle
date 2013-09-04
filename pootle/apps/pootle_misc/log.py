@@ -49,13 +49,14 @@ def action_log(*args, **kwargs):
 
 def cmd_log(*args, **kwargs):
     # FIXME is it possible to use parameters from django.conf.settings
-    #fn = settings.LOGGING.get('handlers').get('action').get('filename')
-    #dft = settings.LOGGING.get('formatters').get('action').get('datefmt')
-    
-    import os
-    fn = os.path.join(os.path.dirname(args[0]), 'log/action.log')
-    dft = "%d/%b/%Y %H:%M:%S"
-    
+    from django.conf import settings
+    fn = settings.LOGGING.get('handlers').get('log_action').get('filename')
+    dft = settings.LOGGING.get('formatters').get('action').get('datefmt')
+
+    #import os
+    #fn = os.path.join(os.path.dirname(args[0]), 'log/action.log')
+    #dft = "%d/%b/%Y %H:%M:%S"
+
     logfile = open(fn, 'a')
     cmd = ' '.join(args)
 
@@ -64,7 +65,7 @@ def cmd_log(*args, **kwargs):
         'action': CMD_EXECUTED,
         'cmd': cmd
     }
-    
+
     from datetime import datetime
     now = datetime.now()
     d = {
@@ -72,7 +73,7 @@ def cmd_log(*args, **kwargs):
          'asctime': now.strftime(dft)
     }
     logfile.write("[%(asctime)s]\t%(message)s\n" % d)
-    logfile.close() 
+    logfile.close()
 
 
 def store_log(*args, **kwargs):
