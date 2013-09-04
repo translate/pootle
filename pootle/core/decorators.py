@@ -92,7 +92,7 @@ def get_path_obj(func):
 
 def get_resource_context(func):
     @wraps(func)
-    def wrapped(request, path_obj, dir_path, filename=None):
+    def wrapped(request, path_obj, dir_path, *args, **kwargs):
         """Loads :cls:`pootle_app.models.Directory` and
         :cls:`pootle_store.models.Store` models and populates the
         request object.
@@ -101,6 +101,8 @@ def get_resource_context(func):
         :param dir_path: Path relative to the root of `path_obj`.
         :param filename: Optional filename.
         """
+        filename = kwargs.get('filename', '')
+
         ctx_path = path_obj.directory.pootle_path
         resource_path = dir_path
         pootle_path = ctx_path + dir_path
