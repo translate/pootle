@@ -27,7 +27,6 @@ register = template.Library()
 def display_table(context, table):
     return {
         'table': table,
-        'stats': context.get('stats', None),
         'user': context.get('user', None),
         'request': context.get('request', None),
     }

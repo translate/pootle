@@ -39,6 +39,7 @@ from pootle.core.managers import RelatedManager
 from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
+from pootle_app.models.treeitem import TreeItem
 from pootle_language.models import Language
 from pootle_misc.aggregate import group_by_count_extra, max_column
 from pootle_misc.baseurl import l
@@ -97,7 +98,7 @@ class TranslationProjectManager(RelatedManager):
         return self.get(pootle_path=pootle_path)
 
 
-class TranslationProject(models.Model):
+class TranslationProject(models.Model, TreeItem):
     description = MarkupField(
         blank=True,
         help_text=_('A description of this translation project. This is '
@@ -312,10 +313,8 @@ class TranslationProject(models.Model):
             return ''
         return sub.get_submission_message()
 
-    @getfromcache
     def get_mtime(self):
-        tp_units = Unit.objects.filter(store__translation_project=self)
-        return max_column(tp_units, 'mtime', None)
+        return self.directory.get_mtime()
 
     def require_units(self):
         """Makes sure all stores are parsed"""
@@ -351,6 +350,12 @@ class TranslationProject(models.Model):
 
         return stats
 
+    def get_children(self):
+        return self.directory.get_children()
+
+    def get_name(self):
+        return self.pootle_path
+
     @getfromcache
     def getcompletestats(self):
         if self.is_template_project:
@@ -366,14 +371,12 @@ class TranslationProject(models.Model):
         )
         return group_by_count_extra(query, 'name', 'category')
 
-    @getfromcache
     def get_suggestion_count(self):
         """
         Check if any unit in the stores for this translation project has
         suggestions.
         """
-        return Suggestion.objects.filter(unit__store__translation_project=self,
-                                         unit__state__gt=OBSOLETE).count()
+        return self.directory.get_suggestion_count()
 
     def update_against_templates(self, pootle_path=None):
         """Update translation project from templates."""

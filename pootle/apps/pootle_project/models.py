@@ -38,13 +38,15 @@ from pootle.core.managers import RelatedManager
 from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.url_helpers import get_editor_filter
 from pootle_app.models.permissions import PermissionSet
+from pootle_app.models.treeitem import TreeItem
 from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 from pootle_misc.util import getfromcache, cached_property
 from pootle_store.filetypes import (filetype_choices, factory_classes,
                                     is_monolingual)
 from pootle_store.models import Unit, Suggestion
-from pootle_store.util import absolute_real_path, statssum, OBSOLETE
+from pootle_store.util import (absolute_real_path, statssum,
+                               sum_by_attr_name, OBSOLETE)
 
 
 # FIXME: Generate key dynamically
@@ -67,7 +69,7 @@ class ProjectManager(RelatedManager):
         return projects
 
 
-class Project(models.Model):
+class Project(models.Model, TreeItem):
 
     code = models.CharField(
         max_length=255,
@@ -328,27 +330,14 @@ class Project(models.Model):
             )
 
     @getfromcache
-    def get_mtime(self):
-        project_units = Unit.objects.filter(
-                store__translation_project__project=self
-        )
-        return max_column(project_units, 'mtime', None)
-
-    @getfromcache
     def getquickstats(self):
         return statssum(self.translationproject_set.iterator())
 
-    @getfromcache
-    def get_suggestion_count(self):
-        """
-        Check if any unit in the stores for the translation project in this
-        project has suggestions.
-        """
-        criteria = {
-            'unit__store__translation_project__project': self,
-            'unit__state__gt': OBSOLETE,
-        }
-        return Suggestion.objects.filter(**criteria).count()
+    def get_children(self):
+        self.translationproject_set.iterator()
+
+    def get_name(self):
+        self.code
 
     def translated_percentage(self):
         qs = self.getquickstats()

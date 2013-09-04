@@ -87,6 +87,11 @@ empty_quickstats = {
 }
 
 
+
+def sum_by_attr_name(queryset, name):
+    return sum([ getattr(item, name)() for item in queryset ])
+
+
 def statssum(queryset, empty_stats=empty_quickstats):
     totals = empty_stats
     for item in queryset:
@@ -119,6 +124,32 @@ def completestatssum(queryset, empty_stats=empty_completestats):
             totals[0]['errors'] += 1
     return totals
 
+
+def calc_total_wordcount(units):
+    total = sum_column(units,
+                       ['source_wordcount'], count=False)
+
+    return total['source_wordcount'] or 0
+
+
+def calc_untranslated_wordcount(units):
+    untranslated = sum_column(units.filter(state=UNTRANSLATED),
+                              ['source_wordcount'], count=False)
+
+    return untranslated['source_wordcount'] or 0
+
+def calc_fuzzy_wordcount(units):
+    fuzzy = sum_column(units.filter(state=FUZZY),
+                       ['source_wordcount'], count=False)
+
+    return fuzzy['source_wordcount'] or 0
+
+def calc_translated_wordcount(units):
+    translated = sum_column(units.filter(state=TRANSLATED),
+                            ['source_wordcount'],
+                            count=False)
+
+    return translated['source_wordcount'] or 0
 
 def calculate_stats(units):
     """Calculate translation statistics for a given `units` queryset."""

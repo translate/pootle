@@ -20,8 +20,6 @@
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _, ungettext
 
-from pootle_misc.stats import get_raw_stats, stats_descriptions
-
 
 HEADING_CHOICES = [
     {
@@ -92,35 +90,14 @@ def make_generic_item(path_obj):
     variables.
     """
     action = path_obj.pootle_path
-    try:
-        stats = get_raw_stats(path_obj, include_suggestions=True)
-        info = {
-            'href': action,
-            'href_all': path_obj.get_translate_url(),
-            'href_todo': path_obj.get_translate_url(state='incomplete'),
-            'href_sugg': path_obj.get_translate_url(state='suggestions'),
-            'stats': stats,
-            'tooltip': _('%(percentage)d%% complete',
-                         {'percentage': stats['translated']['percentage']}),
-            'title': path_obj.name,
-        }
-
-        errors = stats.get('errors', 0)
-        if errors:
-            info['errortooltip'] = ungettext('Error reading %d file',
-                                             'Error reading %d files',
-                                             errors, errors)
-
-        info.update(stats_descriptions(stats))
-    except IOError as e:
-        info = {
-            'href': action,
-            'errortooltip': e.strerror,
-            'data': {
-                'errors': 1,
-            },
-            'title': path_obj.name,
-        }
+    info = {
+        'href': action,
+        'href_all': path_obj.get_translate_url(),
+        'href_todo': path_obj.get_translate_url(state='incomplete'),
+        'href_sugg': path_obj.get_translate_url(state='suggestions'),
+        'title': path_obj.name,
+        'code': path_obj.name
+    }
 
     return info
 

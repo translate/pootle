@@ -28,11 +28,12 @@ from pootle.core.managers import RelatedManager
 from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.url_helpers import get_editor_filter
 from pootle.i18n.gettext import tr_lang, language_dir
+from pootle_app.models.treeitem import TreeItem
 from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 from pootle_misc.util import getfromcache
 from pootle_store.models import Unit, Suggestion
-from pootle_store.util import statssum, OBSOLETE
+from pootle_store.util import statssum, sum_by_attr_name, OBSOLETE
 
 
 # FIXME: Generate key dynamically
@@ -70,7 +71,7 @@ class LiveLanguageManager(models.Manager):
         return languages
 
 
-class Language(models.Model):
+class Language(models.Model, TreeItem):
 
     code = models.CharField(
         max_length=50,
@@ -190,26 +191,14 @@ class Language(models.Model):
         ])
 
     @getfromcache
-    def get_mtime(self):
-        return max_column(Unit.objects.filter(
-            store__translation_project__language=self), 'mtime', None)
-
-    @getfromcache
     def getquickstats(self):
         return statssum(self.translationproject_set.iterator())
 
-    @getfromcache
-    def get_suggestion_count(self):
-        """Check the number of suggestions for this language.
+    def get_children(self):
+        self.translationproject_set.iterator()
 
-        This checks all units in the stores for all the translation projects in
-        this language.
-        """
-        criteria = {
-            'unit__store__translation_project__language': self,
-            'unit__state__gt': OBSOLETE,
-        }
-        return Suggestion.objects.filter(**criteria).count()
+    def get_name(self):
+        self.code
 
     def translated_percentage(self):
         qs = self.getquickstats()

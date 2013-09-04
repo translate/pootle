@@ -93,7 +93,7 @@ def get_processed_stats(quick_stats):
         'suggestions': -1,
     }
 
-
+# TODO delete
 def get_raw_stats(path_obj, include_suggestions=False):
     """Return a dictionary of raw stats for `path_obj`.
 
@@ -293,7 +293,7 @@ def stats_message(version, stats):
                           'fuzzy': stats.get("fuzzy", 0)
                      })
 
-
+# TODO delete
 def stats_descriptions(quick_stats):
     """Provide a dictionary with two textual descriptions of the work
     outstanding.

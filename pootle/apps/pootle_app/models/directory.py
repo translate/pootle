@@ -25,7 +25,9 @@ from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 from pootle_misc.util import cached_property, dictsum, getfromcache
 from pootle_store.util import (empty_quickstats, empty_completestats, statssum,
-                               completestatssum, suggestions_sum)
+                               completestatssum, suggestions_sum,
+                               sum_by_attr_name)
+from pootle_app.models.treeitem import TreeItem
 
 
 class DirectoryManager(models.Manager):
@@ -49,7 +51,7 @@ class DirectoryManager(models.Manager):
         return self.get(pootle_path='/goals/')
 
 
-class Directory(models.Model):
+class Directory(models.Model, TreeItem):
 
     name = models.CharField(max_length=255, null=False)
     parent = models.ForeignKey(
@@ -173,16 +175,11 @@ class Directory(models.Model):
     def get_or_make_subdir(self, child_name):
         return Directory.objects.get_or_create(name=child_name, parent=self)[0]
 
-    @getfromcache
-    def get_mtime(self):
-        # Putting the next import at the top of the file causes circular import
-        # issues.
-        from pootle_store.models import Unit
-
-        units = Unit.objects.filter(
-            store__pootle_path__startswith=self.pootle_path
-        )
-        return max_column(units, 'mtime', None)
+    def get_children(self):
+        result = []
+        result.extend([item for item in self.child_stores.iterator()])
+        result.extend([item for item in self.child_dirs.iterator()])
+        return result
 
     @getfromcache
     def getquickstats(self):
@@ -245,15 +242,6 @@ class Directory(models.Model):
                                     .order_by('pootle_path')
 
         return Directory.objects.none()
-
-    def get_suggestion_count(self):
-        """Check if any child store has suggestions."""
-        # Putting the next import at the top of the file causes circular import
-        # issues.
-        from pootle_store.models import Suggestion
-
-        return Suggestion.objects.filter(
-            unit__store__pootle_path__startswith=self.pootle_path).count()
 
     def is_language(self):
         """Tell if this directory points at a language."""

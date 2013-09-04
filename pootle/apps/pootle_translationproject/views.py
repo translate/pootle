@@ -553,6 +553,20 @@ def overview(request, translation_project, dir_path, filename=None,
                               context_instance=RequestContext(request))
 
 
+@get_path_obj
+@permission_required('view')
+@get_resource_context
+def overview_stats(request, translation_project, dir_path, filename=None):
+    directory = request.directory
+    store = request.store
+    resource_obj = store or directory
+
+    stats = resource_obj.get_stats()
+
+    return HttpResponse(jsonify(stats), mimetype="application/json")
+
+
+
 @require_POST
 @ajax_required
 @get_path_obj
