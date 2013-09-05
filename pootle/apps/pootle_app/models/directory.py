@@ -141,6 +141,15 @@ class Directory(models.Model, TreeItem):
     def get_absolute_url(self):
         return l(self.pootle_path)
 
+    def get_name(self):
+        """Returns just the current directory
+
+        If the `pootle_path` of a :cls:`Directory` object `dir` is
+        `/af/project/dir1/dir2/`, `dir.get_name` will return
+        `dir2`.
+        """
+        return self.pootle_path.split(u'/')[-2]
+
     def get_children(self):
         result = []
         result.extend([item for item in self.child_stores.iterator()])
