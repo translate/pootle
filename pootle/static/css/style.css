@@ -2513,7 +2513,8 @@ a.tags-add
     float: right;
 }
 
-a.tags-toggle
+a.tags-toggle,
+a.filter-toggle
 {
     font-size: x-small;
     text-decoration: none;
@@ -2521,19 +2522,22 @@ a.tags-toggle
     opacity: 0.5;
 }
 
-a.tags-toggle:hover
+a.tags-toggle:hover,
+a.filter-toggle:hover
 {
     text-decoration: none;
     filter:alpha(opacity=100);
     opacity: 1;
 }
 
-.tags-aside
+.tags-aside,
+.filter-aside
 {
     float: right;
 }
 
-html[dir="rtl"] .tags-aside
+html[dir="rtl"] .tags-aside,
+html[dir="rtl"] .filter-aside
 {
     float: left;
 }
