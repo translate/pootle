@@ -47,8 +47,6 @@ from pootle_statistics.models import Submission
 from pootle_store.models import Store
 from pootle_store.views import get_step_query
 
-from .actions import action_groups
-
 
 @get_path_obj
 @permission_required('administrate')
@@ -205,11 +203,9 @@ def overview(request, translation_project, dir_path, filename=None):
     store = request.store
     resource_obj = store or directory
 
-    path_stats = get_raw_stats(resource_obj, include_suggestions=True)
-    checks_stats = resource_obj.getcompletestats()
-
-    translate_actions = get_translate_actions(resource_obj, path_stats, checks_stats)
-    actions = action_groups(request, resource_obj, path_stats=path_stats)
+    #checks_stats = resource_obj.getcompletestats()
+    #translate_actions = get_translate_actions(resource_obj, path_stats, checks_stats)
+    #TODO work via AJAX
 
     # Build URL for getting more summary information for the current path
     url_args = [language.code, project.code, resource_obj.path]
@@ -221,18 +217,8 @@ def overview(request, translation_project, dir_path, filename=None):
         'language': language,
         'resource_obj': resource_obj,
         'resource_path': request.resource_path,
-        'translate_actions': translate_actions,
-        'stats': path_stats,
-        'action_groups': actions,
         'can_edit': can_edit,
         'url_path_summary_more': url_path_summary_more,
-        'summary': ungettext('%(num)d word, %(percentage)d%% translated',
-                '%(num)d words, %(percentage)d%% translated',
-                path_stats['total']['words'],
-                {
-                    'num': path_stats['total']['words'],
-                    'percentage': path_stats['translated']['percentage']
-                }),
     }
 
     if store is None:
@@ -241,20 +227,26 @@ def overview(request, translation_project, dir_path, filename=None):
         ctx.update({
             'table': {
                 'id': 'tp',
-                'proportional': True,
                 'fields': table_fields,
                 'headings': get_table_headings(table_fields),
                 'items': get_children(translation_project, directory),
             }
         })
 
-    if can_edit:
-        from pootle_translationproject.forms import DescriptionForm
-        ctx['form'] = DescriptionForm(instance=translation_project)
-
     return render_to_response("translation_projects/overview.html", ctx,
                               context_instance=RequestContext(request))
 
+@get_path_obj
+@permission_required('view')
+@get_resource_context
+def overview_stats(request, translation_project, dir_path, filename=None):
+    directory = request.directory
+    store = request.store
+    resource_obj = store or directory
+
+    stats = resource_obj.get_stats()
+
+    return HttpResponse(jsonify(stats), mimetype="application/json")
 
 @get_path_obj
 @permission_required('view')
@@ -314,7 +306,7 @@ def export_view(request, translation_project, dir_path, filename=None):
                               context_instance=RequestContext(request))
 
 
-@ajax_required
+#@ajax_required
 @get_path_obj
 def path_summary_more(request, translation_project, dir_path, filename=None):
     """Returns an HTML snippet with more detailed summary information

@@ -21,10 +21,7 @@
 
 from django.utils.translation import ugettext_lazy as _, ungettext
 
-from pootle_statistics.models import Submission
-
 from .baseurl import l
-from .stats import get_raw_stats, stats_descriptions
 
 HEADING_CHOICES = [
     {
@@ -85,41 +82,17 @@ def make_generic_item(path_obj, action):
     :func:`make_directory_item` and :func:`make_store_item` will add onto these
     variables.
     """
-    try:
-        stats = get_raw_stats(path_obj, include_suggestions=True)
-        info = {
-            'href': action,
-            'href_all': path_obj.get_translate_url(),
-            'href_todo': path_obj.get_translate_url(state='incomplete'),
-            'href_sugg': path_obj.get_translate_url(state='suggestions'),
-            'stats': stats,
-            'tooltip': _('%(percentage)d%% complete',
-                         {'percentage': stats['translated']['percentage']}),
-            'title': path_obj.name,
-        }
-
-        errors = stats.get('errors', 0)
-        if errors:
-            info['errortooltip'] = ungettext('Error reading %d file',
-                                             'Error reading %d files',
-                                             errors, errors)
-
-        info.update(stats_descriptions(stats))
-    except IOError, e:
-        info = {
-            'href': action,
-            'title': path_obj.name,
-            'errortooltip': e.strerror,
-            'data': {'errors': 1},
-            }
+    info = {
+        'href': action,
+        'href_all': path_obj.get_translate_url(),
+        'href_todo': path_obj.get_translate_url(state='incomplete'),
+        'href_sugg': path_obj.get_translate_url(state='suggestions'),
+        'title': path_obj.name,
+        'code': path_obj.name
+    }
 
     return info
 
-def get_last_action(resource_obj):
-    try:
-        return Submission.get_latest_for_dir(resource_obj)
-    except Submission.DoesNotExist:
-        return ''
 
 def make_directory_item(directory):
     action = l(directory.pootle_path)
@@ -127,7 +100,6 @@ def make_directory_item(directory):
     item.update({
         'icon': 'folder',
         'isdir': True,
-        'lastactivity': get_last_action(directory),
     })
     return item
 
@@ -138,7 +110,6 @@ def make_store_item(store):
     item.update({
         'icon': 'file',
         'isfile': True,
-        'lastactivity': get_last_action(store),
     })
     return item
 

@@ -28,12 +28,12 @@ from django.utils.translation import ugettext_lazy as _
 from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.i18n.gettext import tr_lang, language_dir
 from pootle_app.lib.util import RelatedManager
+from pootle_app.models.treeitem import TreeItem
 from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 from pootle_misc.util import getfromcache
 from pootle_store.models import Unit, Suggestion
 from pootle_store.util import statssum, sum_by_attr_name, OBSOLETE
-from pootle_store.decorators import pullmethodname
 
 
 # FIXME: Generate key dynamically
@@ -71,7 +71,7 @@ class LiveLanguageManager(models.Manager):
         return languages
 
 
-class Language(models.Model):
+class Language(models.Model, TreeItem):
 
     objects = LanguageManager()
     live = LiveLanguageManager()
@@ -145,43 +145,14 @@ class Language(models.Model):
         return u"%s - %s" % (self.name, self.code)
 
     @getfromcache
-    def get_mtime(self):
-        return max([
-            item.get_mtime() for item in self.translationproject_set.iterator()
-        ])
-
-    @getfromcache
     def getquickstats(self):
         return statssum(self.translationproject_set.iterator())
 
-    @getfromcache
-    @pullmethodname
-    def get_total_wordcount(self, name=''):
-        return sum_by_attr_name(self.translationproject_set.iterator(), name)
+    def get_children(self):
+        self.translationproject_set.iterator()
 
-    @getfromcache
-    @pullmethodname
-    def get_translated_wordcount(self, name=''):
-        return sum_by_attr_name(self.translationproject_set.iterator(), name)
-
-    @getfromcache
-    @pullmethodname
-    def get_fuzzy_wordcount(self, name=''):
-        return sum_by_attr_name(self.translationproject_set.iterator(), name)
-
-    @getfromcache
-    @pullmethodname
-    def get_untranslated_wordcount(self, name=''):
-        return sum_by_attr_name(self.translationproject_set.iterator(), name)
-
-    @getfromcache
-    @pullmethodname
-    def get_suggestion_count(self, name=''):
-        """
-        Check if any unit in the stores for the translation project in this
-        language has suggestions.
-        """
-        return sum_by_attr_name(self.translationproject_set.iterator(), name)
+    def get_name(self):
+        self.code
 
     def get_absolute_url(self):
         return l(self.pootle_path)

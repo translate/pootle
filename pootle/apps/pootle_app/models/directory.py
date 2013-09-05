@@ -30,7 +30,7 @@ from pootle_store.models import Suggestion, Unit
 from pootle_store.util import (empty_quickstats, empty_completestats,
                                statssum, completestatssum, suggestions_sum,
                                sum_by_attr_name)
-
+from pootle_app.models.treeitem import TreeItem
 
 class DirectoryManager(models.Manager):
 
@@ -49,7 +49,7 @@ class DirectoryManager(models.Manager):
     projects = property(_get_projects)
 
 
-class Directory(models.Model):
+class Directory(models.Model, TreeItem):
 
     class Meta:
         ordering = ['name']
@@ -114,17 +114,6 @@ class Directory(models.Model):
         else:
             return self
 
-    @getfromcache
-    def get_mtime(self):
-        file_mtime = max([
-            item.get_mtime() for item in self.child_stores.iterator()
-        ])
-        dir_mtime = max([
-            item.get_mtime() for item in self.child_dirs.iterator()
-        ])
-
-        return max(file_mtime, dir_mtime)
-
     def _get_stores(self):
         """Queryset with all descending stores."""
         from pootle_store.models import Store
@@ -152,43 +141,11 @@ class Directory(models.Model):
     def get_absolute_url(self):
         return l(self.pootle_path)
 
-    @getfromcache
-    @pullmethodname
-    def get_total_wordcount(self, name):
-    """calculate total wordcount statistics"""
-        return self._get_sum_by_attr_name(name)
-
-    @getfromcache
-    @pullmethodname
-    def get_translated_wordcount(self):
-    """calculate translated units statistics"""
-        return self._get_sum_by_attr_name(name)
-
-    @getfromcache
-    @pullmethodname
-    def get_untranslated_wordcount(self):
-    """calculate untranslated units statistics"""
-        return self._get_sum_by_attr_name(name)
-
-    @getfromcache
-    @pullmethodname
-    def get_fuzzy_wordcount(self):
-    """calculate untranslated units statistics"""
-        return self._get_sum_by_attr_name(name)
-
-    @getfromcache
-    @pullmethodname
-    def get_suggestion_count(self):
-        """check if any child store has suggestions"""
-        return self._get_sum_by_attr_name(name)
-
-    def _get_sum_by_attr_name(self, name):
-        if self.is_template_project:
-            return 0
-        file_result = sum_by_attr_name(self.child_stores.iterator(), name)
-        dir_result = sum_by_attr_name(self.child_dirs.iterator(), name)
-
-        return file_result + dir_result
+    def get_children(self):
+        for item in self.child_stores.iterator():
+            yield item
+        for item in self.child_dirs.iterator():
+            yield item
 
     @getfromcache
     def getquickstats(self):

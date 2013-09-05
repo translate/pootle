@@ -16,20 +16,19 @@
 
 {% block content %}
 <div id="translate-actions">
-  <ul>
-    {% for action in translate_actions %}
-      {% if action %}
-        <li>{{ action|safe }}</li>
-      {% endif %}
-    {% endfor %}
-  </ul>
+  <!--ul>
+    { for action in translate_actions }
+      { if action }
+        <li>{ action|safe }</li>
+      { endif }
+    { endfor }
+  </ul-->
 </div>
 
 <div class="hd">
   <h2 class="with-progressbar">
-    {{ summary }}
     (<a id="js-path-summary" data-target="js-path-summary-more" href="{{ url_path_summary_more }}">{% trans "Expand details" %}</a>)
-    {% progressbar stats %}
+    <div id="progressbar"></div>
   </h2>
 </div>
 
@@ -51,9 +50,6 @@
 <script type="text/javascript">
 $(function() {
   PTL.search.init();
-
-  PTL.common.updateRelativeDates();
-  setInterval(PTL.common.updateRelativeDates, 6e4);
 });
 </script>
 {% if user.is_superuser or request.permissions.administrate %}

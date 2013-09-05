@@ -36,6 +36,7 @@ from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.lib.util import RelatedManager
 from pootle_app.models.directory import Directory
+from pootle_app.models.treeitem import TreeItem
 from pootle_language.models import Language
 from pootle_misc.aggregate import group_by_count_extra, max_column
 from pootle_misc.util import getfromcache, deletefromcache
@@ -94,7 +95,7 @@ class TranslationProjectManager(RelatedManager):
                         project__checkstyle='terminology')
 
 
-class TranslationProject(models.Model):
+class TranslationProject(models.Model, TreeItem):
     _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE,
             settings.PARSE_POOL_CULL_FREQUENCY)
 
@@ -262,17 +263,11 @@ class TranslationProject(models.Model):
 
     units = property(_get_units)
 
-    def get_total_wordcount(self):
-        return self.directory.get_total_wordcount()
+    def get_children(self):
+        return self.directory.get_children()
 
-    def get_translated_wordcount(self):
-        return self.directory.get_translated_wordcount()
-
-    def get_fuzzy_wordcount(self):
-        return self.directory.get_fuzzy_wordcount()
-
-    def get_untranslated_wordcount(self):
-        return self.directory.get_untranslated_wordcount()
+    def get_name(self):
+        return self.pootle_path
 
     @getfromcache
     def getquickstats(self):

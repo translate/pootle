@@ -95,7 +95,7 @@ def delete_path_obj(request, path_obj, **kwargs):
             'text': text,
         }
 
-
+# TODO delete
 def _gen_link_list(request, path_obj, link_funcs, **kwargs):
     """Generates a list of links based on :param:`link_funcs`."""
     links = []
@@ -108,7 +108,7 @@ def _gen_link_list(request, path_obj, link_funcs, **kwargs):
 
     return links
 
-
+# TODO delete
 def action_groups(request, path_obj, **kwargs):
     """Returns a list of action links grouped for the overview page.
 

@@ -24,7 +24,7 @@ from django.utils.translation import ugettext_lazy as _, ungettext
 
 from pootle_misc.util import add_percentages
 
-
+# TODO delete
 def get_raw_stats(path_obj, include_suggestions=False):
     """Returns a dictionary of raw stats for `path_obj`.
 
@@ -204,7 +204,7 @@ def stats_message(version, stats):
                           'fuzzy': stats.get("fuzzy", 0)
                      })
 
-
+# TODO delete
 def stats_descriptions(quick_stats):
     """Provides a dictionary with two textual descriptions of the work
     outstanding.

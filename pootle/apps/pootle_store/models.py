@@ -44,6 +44,7 @@ from translate.storage import base
 
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.lib.util import RelatedManager
+from pootle_app.models.treeitem import TreeItem
 from pootle_misc.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
                              TRANSLATION_DELETED, UNIT_ADDED, UNIT_DELETED,
                              STORE_ADDED, STORE_DELETED, action_log, store_log)
@@ -58,8 +59,9 @@ from pootle_statistics.models import (SubmissionFields,
 from .fields import (TranslationStoreField, MultiStringField,
                      PLURAL_PLACEHOLDER, SEPARATOR)
 from .filetypes import factory_classes
-from .util import (calculate_stats, empty_quickstats,
-                   OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED)
+from .util import (calc_total_wordcount, calc_translated_wordcount,
+                   calc_untranslated_wordcount, calc_fuzzy_wordcount,
+                   empty_quickstats, OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED)
 from .signals import translation_submitted
 
 
@@ -923,7 +925,7 @@ class StoreManager(RelatedManager):
         return self.get(pootle_path=pootle_path)
 
 
-class Store(models.Model, base.TranslationStore):
+class Store(models.Model, base.TranslationStore, TreeItem):
     """A model representing a translation store (i.e. a PO or XLIFF file)."""
     UnitClass = Unit
     Name = "Model Store"
@@ -1564,28 +1566,31 @@ class Store(models.Model, base.TranslationStore):
             return self.file.store.header()
 
 ############################### Stats ############################
+    def get_name(self):
+        return self.name
+
     @getfromcache
-    def get_total_wordcount(self):
-    """calculate total wordcount statistics"""
+    def get_total_wordcount(self, children=None, name=''):
+        """calculate total wordcount statistics"""
         return calc_total_wordcount(self.units)
 
     @getfromcache
-    def get_translated_wordcount(self):
-    """calculate translated units statistics"""
+    def get_translated_wordcount(self, children=None, name=''):
+        """calculate translated units statistics"""
         return calc_translated_wordcount(self.units)
 
     @getfromcache
-    def get_untranslated_wordcount(self):
-    """calculate untranslated units statistics"""
+    def get_untranslated_wordcount(self, children=None, name=''):
+        """calculate untranslated units statistics"""
         return calc_untranslated_wordcount(self.units)
 
     @getfromcache
-    def get_fuzzy_wordcount(self):
-    """calculate untranslated units statistics"""
+    def get_fuzzy_wordcount(self, children=None, name=''):
+        """calculate untranslated units statistics"""
         return calc_fuzzy_wordcount(self.units)
 
     @getfromcache
-    def getquickstats(self):
+    def getquickstats(self, children=None, name=''):
         """calculate translation statistics"""
         try:
             return calculate_stats(self.units)

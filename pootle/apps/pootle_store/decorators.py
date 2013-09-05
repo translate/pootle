@@ -34,7 +34,6 @@ from pootle_app.models.permissions import (check_permission,
 from pootle_profile.models import get_profile
 
 from .models import Store, Unit
-from .util import empty_stats
 
 
 def get_permission_message(permission_code):
@@ -140,11 +139,5 @@ def get_xhr_resource_context(permission_codes):
         return decorated_f
 
     return wrap_f
-
-
-def pullmethodname(function):
-    def _wrap(instance, *args, **kwargs):
-        return function(instance, function.__name__, *args, **kwargs)
-    return _wrap
 
 
