@@ -24,10 +24,11 @@ import locale
 from django import forms
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse, HttpResponseNotAllowed
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
 from django.utils.translation import ugettext as _, ungettext
+from django.views.decorators.http import require_POST
 
 from taggit.models import Tag
 
@@ -129,6 +130,7 @@ def handle_tags_filter_form(request, translation_projects):
 
     return filter_tags, tags_filter_form
 
+
 def get_project_base_template_vars(request, project, can_edit):
     """Get the base template vars for project overview view."""
     translation_projects = project.translationproject_set.all()
@@ -184,13 +186,11 @@ def get_project_base_template_vars(request, project, can_edit):
     return template_vars
 
 
+@require_POST
 @ajax_required
 @get_path_obj
 @permission_required('administrate')
 def ajax_remove_tag_from_tp_in_project(request, translation_project, tag_name):
-    if request.method != 'POST':
-        return HttpResponseNotAllowed(['POST'])
-
     translation_project.tags.remove(tag_name)
     return HttpResponse(status=201)
 
@@ -208,14 +208,12 @@ def _add_tag(request, translation_project, tag):
     return response
 
 
+@require_POST
 @ajax_required
 @get_path_obj
 @permission_required('administrate')
 def ajax_add_tag_to_tp_in_project(request, project):
     """Return an HTML snippet with the failed form or blank if valid."""
-
-    if request.method != 'POST':
-        return HttpResponseNotAllowed(['POST'])
 
     add_tag_form = TranslationProjectTagForm(request.POST, project=project)
 
@@ -287,6 +285,7 @@ def overview(request, project):
                               context_instance=RequestContext(request))
 
 
+@require_POST
 @ajax_required
 @get_path_obj
 @permission_required('administrate')

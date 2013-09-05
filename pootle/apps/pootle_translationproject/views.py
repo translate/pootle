@@ -30,12 +30,12 @@ from django.contrib import messages
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
-from django.http import (HttpResponse, HttpResponseNotAllowed,
-                         HttpResponseRedirect)
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
 from django.utils.encoding import iri_to_uri
 from django.utils.translation import ugettext as _
+from django.views.decorators.http import require_POST
 
 from taggit.models import Tag
 
@@ -467,13 +467,11 @@ def overview(request, translation_project, dir_path, filename=None):
                               context_instance=RequestContext(request))
 
 
+@require_POST
 @ajax_required
 @get_path_obj
 @permission_required('administrate')
 def ajax_remove_tag_from_tp(request, translation_project, tag_name):
-    if request.method != 'POST':
-        return HttpResponseNotAllowed(['POST'])
-
     translation_project.tags.remove(tag_name)
     return HttpResponse(status=201)
 
@@ -492,14 +490,12 @@ def _add_tag(request, translation_project, tag):
     return response
 
 
+@require_POST
 @ajax_required
 @get_path_obj
 @permission_required('administrate')
 def ajax_add_tag_to_tp(request, translation_project):
     """Return an HTML snippet with the failed form or blank if valid."""
-
-    if request.method != 'POST':
-        return HttpResponseNotAllowed(['POST'])
 
     add_tag_form = TagForm(request.POST)
 
@@ -621,6 +617,7 @@ def path_summary_more(request, translation_project, dir_path, filename=None):
                               context, RequestContext(request))
 
 
+@require_POST
 @ajax_required
 @get_path_obj
 @permission_required('administrate')

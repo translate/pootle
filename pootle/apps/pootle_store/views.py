@@ -30,7 +30,7 @@ from django.core.cache import cache
 from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db.models import Q
-from django.http import HttpResponse, HttpResponseNotAllowed, Http404
+from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
 from django.utils.translation import to_locale, ugettext as _
@@ -38,6 +38,7 @@ from django.utils.translation.trans_real import parse_accept_lang_header
 from django.utils import simplejson, timezone
 from django.utils.encoding import iri_to_uri
 from django.views.decorators.cache import never_cache
+from django.views.decorators.http import require_POST
 
 from taggit.models import Tag
 
@@ -659,6 +660,7 @@ def timeline(request, unit):
                                   context_instance=RequestContext(request))
 
 
+@require_POST
 @ajax_required
 @get_unit_context('translate')
 def comment(request, unit):
@@ -794,6 +796,7 @@ def get_failing_checks(request, path_obj):
     return HttpResponse(response, mimetype="application/json")
 
 
+@require_POST
 @ajax_required
 @get_unit_context('')
 def submit(request, unit):
@@ -859,6 +862,7 @@ def submit(request, unit):
     return HttpResponse(response, status=rcode, mimetype="application/json")
 
 
+@require_POST
 @ajax_required
 @get_unit_context('')
 def suggest(request, unit):
@@ -1065,13 +1069,11 @@ def reject_qualitycheck(request, unit, checkid):
     return HttpResponse(response, mimetype="application/json")
 
 
+@require_POST
 @ajax_required
 def ajax_remove_tag_from_store(request, tag_slug, store_pk):
     if not check_permission('administrate', request):
         raise PermissionDenied(_("You do not have rights to remove tags."))
-
-    if request.method != 'POST':
-        return HttpResponseNotAllowed(['POST'])
 
     store = get_object_or_404(Store, pk=store_pk)
     tag = get_object_or_404(Tag, slug=tag_slug)
@@ -1093,15 +1095,13 @@ def _add_tag(request, store, tag):
     return response
 
 
+@require_POST
 @ajax_required
 def ajax_add_tag_to_store(request, store_pk):
     """Return an HTML snippet with the failed form or blank if valid."""
 
     if not check_permission('administrate', request):
         raise PermissionDenied(_("You do not have rights to add tags."))
-
-    if request.method != 'POST':
-        return HttpResponseNotAllowed(['POST'])
 
     store = get_object_or_404(Store, pk=store_pk)
 
