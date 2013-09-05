@@ -1570,22 +1570,22 @@ class Store(models.Model, base.TranslationStore, TreeItem):
         return self.name
 
     @getfromcache
-    def get_total_wordcount(self, children=None, name=''):
+    def get_total_wordcount(self):
         """calculate total wordcount statistics"""
         return calc_total_wordcount(self.units)
 
     @getfromcache
-    def get_translated_wordcount(self, children=None, name=''):
+    def get_translated_wordcount(self):
         """calculate translated units statistics"""
         return calc_translated_wordcount(self.units)
 
     @getfromcache
-    def get_untranslated_wordcount(self, children=None, name=''):
+    def get_untranslated_wordcount(self):
         """calculate untranslated units statistics"""
         return calc_untranslated_wordcount(self.units)
 
     @getfromcache
-    def get_fuzzy_wordcount(self, children=None, name=''):
+    def get_fuzzy_wordcount(self):
         """calculate untranslated units statistics"""
         return calc_fuzzy_wordcount(self.units)
 

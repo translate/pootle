@@ -24,79 +24,90 @@ from pootle_misc.util import getfromcache
 from pootle_statistics.models import Submission
 
 
-def pullmethodname(function):
-    def _wrap(instance, *args, **kwargs):
-        arg_list = [ a for a in args ]
-        arg_list.append(function.__name__)
-        return function(instance, *arg_list, **kwargs)
-    return _wrap
-
-
 class TreeItem():
+    children = None
+    initialized = False
+
     def get_name(self):
+        """This method will be overridden in descendants"""
         return ''
 
     def get_children(self):
+        """This method will be overridden in descendants"""
         return None
 
-    def _get_children(self, children):
-        if children:
-            return children
-        else:
-            return self.get_children()
+    def initialize_children(self):
+        if not self.initialized:
+            self.children = self.get_children()
+            self.initialized = True
 
     @getfromcache
-    def get_mtime(self, children=None):
-        return max([
-            item.get_mtime() for item in self._get_children(children)
-        ])
-
-    @getfromcache
-    def get_total_wordcount(self, children=None):
+    def get_total_wordcount(self):
         """calculate total wordcount statistics"""
-        return self._get_sum_by_attr_name(children, 'get_total_wordcount')
+        self.initialize_children()
+        return self._sum('get_total_wordcount')
 
     @getfromcache
-    def get_translated_wordcount(self, children=None):
+    def get_translated_wordcount(self):
         """calculate translated units statistics"""
-        return self._get_sum_by_attr_name(children, 'get_translated_wordcount')
+        self.initialize_children()
+        return self._sum('get_translated_wordcount')
 
     @getfromcache
-    def get_untranslated_wordcount(self, children=None):
+    def get_untranslated_wordcount(self):
         """calculate untranslated units statistics"""
-        return self._get_sum_by_attr_name(children, 'get_untranslated_wordcount')
+        self.initialize_children()
+        return self._sum('get_untranslated_wordcount')
 
     @getfromcache
-    def get_fuzzy_wordcount(self, children=None):
+    def get_fuzzy_wordcount(self):
         """calculate untranslated units statistics"""
-        return self._get_sum_by_attr_name(children, 'get_fuzzy_wordcount')
+        self.initialize_children()
+        return self._sum('get_fuzzy_wordcount')
 
     @getfromcache
-    def get_suggestion_count(self, children=None):
+    def get_suggestion_count(self):
         """check if any child store has suggestions"""
-        return self._get_sum_by_attr_name(children, 'get_suggestion_count')
+        self.initialize_children()
+        return self._sum('get_suggestion_count')
 
-    def _get_sum_by_attr_name(self, children, name):
-        return sum([
-            getattr(item, name)() for item in self._get_children(children)
-        ])
-
-    def get_stats(self, with_children=True):
-        children = self.get_children()
-        result = {
-            'total': self.get_total_wordcount(children),
-            'fuzzy': self.get_fuzzy_wordcount(children),
-            'translated': self.get_translated_wordcount(children),
-            'untranslated': self.get_untranslated_wordcount(children),
-            'suggestions': self.get_suggestion_count(children),
-        }
-        if with_children:
-            result['children'] = {}
-            for item in children:
-                result['children'][item.get_name] = item.get_stats(False)
-
+    @getfromcache
     def get_last_action(self):
+        """get last action HTML snippet"""
+        self.initialize_children()
         try:
             return ''#Submission.get_latest_for_dir(resource_obj) TODO refactor
         except Submission.DoesNotExist:
             return ''
+
+    @getfromcache
+    def get_mtime(self):
+        """get latest modifiaction time"""
+        self.initialize_children()
+        return max([
+            item.get_mtime() for item in self.children
+        ])
+
+    def _sum(self, name):
+        return sum([
+            getattr(item, name)() or 0 for item in self.children
+        ])
+
+    def get_stats(self, include_children=True):
+        """get stats for self and - optionally - for children"""
+        self.initialize_children()
+
+        result = {
+            'total': self.get_total_wordcount(),
+            'fuzzy': self.get_fuzzy_wordcount(),
+            'translated': self.get_translated_wordcount(),
+            'untranslated': self.get_untranslated_wordcount(),
+            'suggestions': self.get_suggestion_count(),
+        }
+
+        if include_children:
+            result['children'] = {}
+            for item in self.children:
+                result['children'][item.get_name] = item.get_stats(False)
+
+        return result
