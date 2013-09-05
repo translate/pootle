@@ -142,10 +142,10 @@ class Directory(models.Model, TreeItem):
         return l(self.pootle_path)
 
     def get_children(self):
-        for item in self.child_stores.iterator():
-            yield item
-        for item in self.child_dirs.iterator():
-            yield item
+        result = []
+        result.extend([item for item in self.child_stores.iterator()])
+        result.extend([item for item in self.child_dirs.iterator()])
+        return result
 
     @getfromcache
     def getquickstats(self):

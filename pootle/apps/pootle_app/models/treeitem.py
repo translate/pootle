@@ -34,7 +34,27 @@ class TreeItem():
 
     def get_children(self):
         """This method will be overridden in descendants"""
-        return None
+        return []
+
+    def _get_total_wordcount(self):
+        """This method will be overridden in descendants"""
+        return 0
+
+    def _get_translated_wordcount(self):
+        """This method will be overridden in descendants"""
+        return 0
+
+    def _get_untranslated_wordcount(self):
+        """This method will be overridden in descendants"""
+        return 0
+
+    def _get_fuzzy_wordcount(self):
+        """This method will be overridden in descendants"""
+        return 0
+
+    def _get_suggestion_count(self):
+        """This method will be overridden in descendants"""
+        return 0
 
     def initialize_children(self):
         if not self.initialized:
@@ -45,31 +65,31 @@ class TreeItem():
     def get_total_wordcount(self):
         """calculate total wordcount statistics"""
         self.initialize_children()
-        return self._sum('get_total_wordcount')
+        return self._get_total_wordcount() + self._sum('_get_total_wordcount')
 
     @getfromcache
     def get_translated_wordcount(self):
         """calculate translated units statistics"""
         self.initialize_children()
-        return self._sum('get_translated_wordcount')
-
-    @getfromcache
-    def get_untranslated_wordcount(self):
-        """calculate untranslated units statistics"""
-        self.initialize_children()
-        return self._sum('get_untranslated_wordcount')
+        return self._get_translated_wordcount() + self._sum('_get_translated_wordcount')
 
     @getfromcache
     def get_fuzzy_wordcount(self):
         """calculate untranslated units statistics"""
         self.initialize_children()
-        return self._sum('get_fuzzy_wordcount')
+        return self._get_fuzzy_wordcount() + self._sum('_get_fuzzy_wordcount')
+
+    @getfromcache
+    def get_untranslated_wordcount(self):
+        """calculate untranslated units statistics"""
+        self.initialize_children()
+        return self._get_untranslated_wordcount() +  self._sum('_get_untranslated_wordcount')
 
     @getfromcache
     def get_suggestion_count(self):
         """check if any child store has suggestions"""
         self.initialize_children()
-        return self._sum('get_suggestion_count')
+        return self._get_suggestion_count() +  self._sum('_get_suggestion_count')
 
     @getfromcache
     def get_last_action(self):
@@ -82,7 +102,7 @@ class TreeItem():
 
     @getfromcache
     def get_mtime(self):
-        """get latest modifiaction time"""
+        """get latest modification time"""
         self.initialize_children()
         return max([
             item.get_mtime() for item in self.children
@@ -99,8 +119,8 @@ class TreeItem():
 
         result = {
             'total': self.get_total_wordcount(),
-            'fuzzy': self.get_fuzzy_wordcount(),
             'translated': self.get_translated_wordcount(),
+            'fuzzy': self.get_fuzzy_wordcount(),
             'untranslated': self.get_untranslated_wordcount(),
             'suggestions': self.get_suggestion_count(),
         }
@@ -108,6 +128,6 @@ class TreeItem():
         if include_children:
             result['children'] = {}
             for item in self.children:
-                result['children'][item.get_name] = item.get_stats(False)
+                result['children'][item.get_name()] = item.get_stats(False)
 
         return result
