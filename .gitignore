@@ -12,6 +12,7 @@
 
 # /pootle/dbs/
 /pootle/dbs/*.db
+/pootle/dbs/*.db-journal
 
 # /pootle/locale/*/LC_MESSAGES/
 /pootle/locale/*/LC_MESSAGES/
