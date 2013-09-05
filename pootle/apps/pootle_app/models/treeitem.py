@@ -95,7 +95,7 @@ class TreeItem():
         """get last action HTML snippet"""
         self.initialize_children()
         try:
-            return ''#Submission.get_latest_for_dir(resource_obj) TODO refactor
+            return '<!-- nothing yet -->' # Submission.get_latest_for_dir(resource_obj) # TODO refactor
         except Submission.DoesNotExist:
             return ''
 
@@ -122,6 +122,7 @@ class TreeItem():
             'fuzzy': self.get_fuzzy_wordcount(),
             'untranslated': self.get_untranslated_wordcount(),
             'suggestions': self.get_suggestion_count(),
+            'lastaction': self.get_last_action(),
         }
 
         if include_children:
