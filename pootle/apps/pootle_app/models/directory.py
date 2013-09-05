@@ -175,6 +175,11 @@ class Directory(models.Model, TreeItem):
     def get_or_make_subdir(self, child_name):
         return Directory.objects.get_or_create(name=child_name, parent=self)[0]
 
+    def get_name(self):
+        # TODO: refactor self.get_name() vs self.name in favor of the latter
+        # globally (in TreeItem and its descendants)
+        return self.name
+
     def get_children(self):
         result = []
         result.extend([item for item in self.child_stores.iterator()])
