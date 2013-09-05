@@ -100,6 +100,13 @@ tables that don't require any migrations.
 
     $ pootle migrate --all --fake 0001
 
+  Since the django-taggit app was not used before Pootle 2.5.1 release, it will
+  be necessary to unfake its migrations to allow a clean migration:
+
+  .. code-block:: bash
+
+    $ pootle migrate taggit --fake zero
+
 The second step will perform any pending schema migrations. You can read
 more about the :ref:`migrate command <south:commands>` in South's
 documentation.
