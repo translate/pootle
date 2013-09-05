@@ -69,7 +69,7 @@
   </a>
   {% endif %}
   <ul class="tag-list">
-    {% include "project/xhr_tags_list.html" with tp_tags=item.tags tp_id=item.pk %}
+    {% include "project/xhr_tags_list.html" with tp_tags=item.tags project=item.project language=item.language %}
   </ul>
 </td>
 {% endif %}

@@ -28,8 +28,7 @@ from django.utils.translation import ugettext as _, ungettext
 from pootle.core.decorators import get_path_obj, permission_required
 from pootle.core.helpers import get_translation_context
 from pootle.i18n.gettext import tr_lang
-from pootle_app.models.permissions import (get_matching_permissions,
-                                           check_permission)
+from pootle_app.models.permissions import check_permission
 from pootle_app.views.admin.permissions import admin_permissions
 from pootle_app.views.top_stats import gentopstats_language
 from pootle_language.models import Language

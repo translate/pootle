@@ -35,8 +35,7 @@ from pootle.core.decorators import get_path_obj, permission_required
 from pootle.core.helpers import get_translation_context
 from pootle.i18n.gettext import tr_lang
 from pootle_app.models import Directory
-from pootle_app.models.permissions import (get_matching_permissions,
-                                           check_permission)
+from pootle_app.models.permissions import check_permission
 from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions
 from pootle_app.views.index.index import getprojects
@@ -186,14 +185,12 @@ def get_project_base_template_vars(request, project, can_edit):
 
 
 @ajax_required
-def ajax_remove_tag_from_tp_in_project(request, tp_id, tag_name):
-    if not check_permission('administrate', request):
-        raise PermissionDenied(_("You do not have rights to remove tags."))
-
+@get_path_obj
+@permission_required('administrate')
+def ajax_remove_tag_from_tp_in_project(request, translation_project, tag_name):
     if request.method != 'POST':
         return HttpResponseNotAllowed(['POST'])
 
-    translation_project = get_object_or_404(TranslationProject, id=tp_id)
     translation_project.tags.remove(tag_name)
     return HttpResponse(status=201)
 
@@ -202,7 +199,8 @@ def _add_tag(request, translation_project, tag):
     translation_project.tags.add(tag)
     context = {
         'tp_tags': translation_project.tags.all().order_by('name'),
-        'tp_id': translation_project.pk,
+        'project': translation_project.project.code,
+        'language': translation_project.language.code,
     }
     response = render_to_response('project/xhr_tags_list.html',
                                   context, RequestContext(request))
@@ -211,16 +209,13 @@ def _add_tag(request, translation_project, tag):
 
 
 @ajax_required
-def ajax_add_tag_to_tp_in_project(request, project_code):
+@get_path_obj
+@permission_required('administrate')
+def ajax_add_tag_to_tp_in_project(request, project):
     """Return an HTML snippet with the failed form or blank if valid."""
-
-    if not check_permission('administrate', request):
-        raise PermissionDenied(_("You do not have rights to add tags."))
 
     if request.method != 'POST':
         return HttpResponseNotAllowed(['POST'])
-
-    project = get_object_or_404(Project, code=project_code)
 
     add_tag_form = TranslationProjectTagForm(request.POST, project=project)
 

@@ -42,8 +42,7 @@ from django.views.decorators.cache import never_cache
 from taggit.models import Tag
 
 from pootle_app.models import Suggestion as SuggestionStat
-from pootle_app.models.permissions import (get_matching_permissions,
-                                           check_permission,
+from pootle_app.models.permissions import (check_permission,
                                            check_profile_permission)
 from pootle.core.exceptions import Http400
 from pootle.core.url_helpers import split_pootle_path
