@@ -2,7 +2,7 @@
 {% load progressbar %}
 {% load url from future %}
 
-<table class="sortable stats" id="{{ table.id }}" cellpadding="5"
+<table class="sortable stats js-not-loaded" id="{{ table.id }}" cellpadding="5"
 cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
   <thead>
     <tr>
@@ -46,22 +46,22 @@ cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
 
       {% if 'total' in table.fields %}
       <td id="total-words-{{ item.code }}" class="stats-number total js-total">
-        <a href="{{ item.href_all }}"></a>
-        <span class="muted">0</span>
+        <a class="non-zero" href="{{ item.href_all }}"></a>
+        <span class="zero muted">0</span>
       </td>
       {% endif %}
 
       {% if 'need-translation' in table.fields %}
       <td id="need-translation-{{ item.code }}" class="stats-number need-translation js-need-translation">
-        <a href="{{ item.href_todo }}"></a>
-        <span class="muted">0</span>
+        <a class="non-zero" href="{{ item.href_todo }}"></a>
+        <span class="zero muted">0</span>
       </td>
       {% endif %}
 
       {% if 'suggestions' in table.fields %}
       <td id="suggestions-{{ item.code }}" class="stats-number suggestions js-suggestions">
-        <a href="{{ item.href_sugg }}"></a>
-        <span class="muted">0</span>
+        <a class="non-zero" href="{{ item.href_sugg }}"></a>
+        <span class="zero muted">0</span>
       </td>
       {% endif %}
 

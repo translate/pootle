@@ -41,31 +41,31 @@ HEADING_CHOICES = [
     },
     {
         'id': 'progress',
-        'class': 'stats',
+        'class': 'stats when-loaded',
         # Translators: noun. The graphical representation of translation status
         'display_name': _("Progress"),
     },
     {
         'id': 'total',
-        'class': 'stats-number sorttable_numeric',
+        'class': 'stats-number sorttable_numeric when-loaded',
         # Translators: Heading representing the total number of words of a file
         # or directory
         'display_name': _("Total"),
     },
     {
         'id': 'need-translation',
-        'class': 'stats-number sorttable_numeric',
+        'class': 'stats-number sorttable_numeric when-loaded',
         'display_name': _("Need Translation"),
     },
     {
         'id': 'suggestions',
-        'class': 'stats-number sorttable_numeric',
+        'class': 'stats-number sorttable_numeric when-loaded',
         # Translators: The number of suggestions pending review
         'display_name': _("Suggestions"),
     },
     {
         'id': 'activity',
-        'class': 'stats',
+        'class': 'stats when-loaded',
         'display_name': _("Last Activity"),
     },
 ]

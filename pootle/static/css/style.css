@@ -2637,6 +2637,27 @@ html[dir="rtl"] .pull-right
     padding: 1em 0 0;
 }
 
+table.stats span.muted
+{
+    /* by default, hide the zero placeholders */
+    display: none;
+}
+
+table.js-not-loaded span.zero,
+table.js-not-loaded span.non-zero,
+table.js-not-loaded th.when-loaded
+{
+    /* Hide placeholders and certain headers by default */
+    display: none;
+}
+
+table.stats td.zero span.zero,
+table.stats td.non-zero span.non-zero
+{
+    /* Show appropriate placeholders when 'zero' or 'non-zero' class is set */
+    display: inline;
+}
+
 .muted
 {
     color: #999;
