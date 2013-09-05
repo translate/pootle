@@ -284,9 +284,15 @@
         $(".js-filter").slideToggle('slow', 'easeOutQuad', function () {
           if ($(".js-filter").is(":hidden")) {
             $("#js-toggle-filter").attr("title", gettext("Show filtering"));
+            var e = jQuery.Event("change");
+            e.val = [];
+            $("#js-tag-filtering").trigger(e);
             $.cookie('showfilter', 'false', {path: '/'});
           } else {
             $("#js-toggle-filter").attr("title", gettext("Hide filtering"));
+            var e = jQuery.Event("change");
+            e.val = $("#js-tag-filtering").val() || [];
+            $("#js-tag-filtering").trigger(e);
             $.cookie('showfilter', 'true', {path: '/'});
           }
         });
