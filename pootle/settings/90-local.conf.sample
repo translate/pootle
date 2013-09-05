@@ -88,6 +88,37 @@ CACHES = {
     }
 }
 
+# The directory where the Pootle writes logs to
+
+# (these are the high-level logs of events on store/unit changes
+# and manage.py commands executed)
+
+LOGDIRECTORY = '/var/log/pootle'
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'action': {
+            'format' : "[%(asctime)s]\t%(message)s",
+            'datefmt' : "%Y-%m-%dT%H:%M:%S"
+        },
+    },
+    'handlers': {
+        # Log to a text file that can be rotated by logrotate
+        'log_action': {
+            'class': 'logging.handlers.WatchedFileHandler',
+            'filename': LOGDIRECTORY + '/pootle-activity.log',
+            'formatter':'action',
+        },
+    },
+    'loggers': {
+        'action': {
+            'handlers': ['log_action',],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}
 
 #
 # Site
