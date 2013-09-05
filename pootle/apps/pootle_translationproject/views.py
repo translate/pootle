@@ -44,8 +44,7 @@ from pootle.core.decorators import (get_path_obj, get_resource_context,
 from pootle.core.helpers import get_filter_name, get_translation_context
 from pootle.scripts.actions import (EXTDIR, StoreAction,
                                     TranslationProjectAction)
-from pootle_app.models.permissions import (get_matching_permissions,
-                                           check_permission)
+from pootle_app.models.permissions import check_permission
 from pootle_app.models.signals import post_file_upload
 from pootle_app.models import Directory
 from pootle_app.project_tree import (ensure_target_dir_exists,
