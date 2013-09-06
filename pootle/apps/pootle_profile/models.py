@@ -124,7 +124,10 @@ class PootleProfile(models.Model):
         if not self.get_email_hash:
             return ''
 
-        return 'http://www.gravatar.com/avatar/%s?s=%d&d=mm' % \
+        # do not specify http: scheme explicitly in the URL;
+        # this will automatically use 'http:' or 'https:'
+        # depending on whether the page is requested securely
+        return '//www.gravatar.com/avatar/%s?s=%d&d=mm' % \
             (self.get_email_hash, size)
 
     isopen = property(lambda self: True)
