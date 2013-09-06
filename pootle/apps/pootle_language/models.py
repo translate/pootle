@@ -107,7 +107,18 @@ class Language(models.Model):
         return (self.code,)
     natural_key.dependencies = ['pootle_app.Directory']
 
-    pootle_path = property(lambda self: '/%s/' % self.code)
+    ############################ Properties ###################################
+
+    @property
+    def pootle_path(self):
+        return '/%s/' % self.code
+
+    @property
+    def name(self):
+        """Localized fullname for the language."""
+        return tr_lang(self.fullname)
+
+    ############################ Methods ######################################
 
     def __repr__(self):
         return u'<%s: %s>' % (self.__class__.__name__, self.fullname)
@@ -160,11 +171,6 @@ class Language(models.Model):
             'unit__state__gt': OBSOLETE,
         }
         return Suggestion.objects.filter(**criteria).count()
-
-    def localname(self):
-        """localized fullname"""
-        return tr_lang(self.fullname)
-    name = property(localname)
 
     def get_direction(self):
         """returns language direction"""

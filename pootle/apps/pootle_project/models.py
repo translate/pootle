@@ -117,6 +117,19 @@ class Project(models.Model):
         return (self.code,)
     natural_key.dependencies = ['pootle_app.Directory']
 
+    ############################ Properties ###################################
+
+    @property
+    def pootle_path(self):
+        return "/projects/" + self.code + "/"
+
+    @property
+    def is_terminology(self):
+        """Returns ``True`` if this project is a terminology project."""
+        return self.checkstyle == 'terminology'
+
+    ############################ Methods ######################################
+
     def __unicode__(self):
         return self.fullname
 
@@ -219,10 +232,6 @@ class Project(models.Model):
         max_words = max(qs['totalsourcewords'], 1)
         return int(100.0 * qs['translatedsourcewords'] / max_words)
 
-    def _get_pootle_path(self):
-        return "/projects/" + self.code + "/"
-    pootle_path = property(_get_pootle_path)
-
     def get_real_path(self):
         return absolute_real_path(self.code)
 
@@ -251,11 +260,6 @@ class Project(models.Model):
     def is_monolingual(self):
         """Returns ``True`` if this project is monolingual."""
         return is_monolingual(self.get_file_class())
-
-    def _get_is_terminology(self):
-        """Returns ``True`` if this project is a terminology project."""
-        return self.checkstyle == 'terminology'
-    is_terminology = property(_get_is_terminology)
 
     def file_belongs_to_project(self, filename, match_templates=True):
         """Tests if ``filename`` matches project filetype (ie. extension).

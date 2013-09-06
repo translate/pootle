@@ -106,14 +106,18 @@ class PootleProfile(models.Model):
         return (self.user.username,)
     natural_key.dependencies = ['auth.User']
 
-    isopen = property(lambda self: True)
+    ############################ Properties ###################################
 
-    def _get_pootle_user(self):
+    @property
+    def isopen(self):
+        return True
+
+    @property
+    def pootle_user(self):
         if self.user_id is not None:
             return self.user
         else:
             return AnonymousUser()
-    pootle_user = property(_get_pootle_user)
 
     @property
     def contributions(self):
@@ -218,6 +222,8 @@ class PootleProfile(models.Model):
             contributions.append((language, tp_user_stats))
 
         return contributions
+
+    ############################ Methods ######################################
 
     def __unicode__(self):
         username = self.user.username

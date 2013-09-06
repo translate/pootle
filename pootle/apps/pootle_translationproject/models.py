@@ -127,25 +127,26 @@ class TranslationProject(models.Model):
     natural_key.dependencies = ['pootle_app.Directory',
             'pootle_language.Language', 'pootle_project.Project']
 
-    ###########################################################################
-    # Properties                                                              #
-    ###########################################################################
+    ############################ Properties ###################################
 
-    fullname = property(lambda self: "%s [%s]" % (self.project.fullname,
-                                                  self.language.name))
+    @property
+    def fullname(self):
+        return "%s [%s]" % (self.project.fullname, self.language.name)
 
-    def _get_abs_real_path(self):
+    @property
+    def abs_real_path(self):
         return absolute_real_path(self.real_path)
 
-    def _set_abs_real_path(self, value):
+    @abs_real_path.setter
+    def abs_real_path(self, value):
         self.real_path = relative_real_path(value)
-    abs_real_path = property(_get_abs_real_path, _set_abs_real_path)
 
-    def _get_treestyle(self):
+    @property
+    def file_style(self):
         return self.project.get_treestyle()
-    file_style = property(_get_treestyle)
 
-    def _get_checker(self):
+    @property
+    def checker(self):
         from translate.filters import checks
         checkerclasses = [checks.projectcheckers.get(self.project.checkstyle,
                                                      checks.StandardChecker),
@@ -155,9 +156,9 @@ class TranslationProject(models.Model):
                                  excludefilters=excluded_filters,
                                  errorhandler=self.filtererrorhandler,
                                  languagecode=self.language.code)
-    checker = property(_get_checker)
 
-    def _get_non_db_state(self):
+    @property
+    def non_db_state(self):
         if not hasattr(self, "_non_db_state"):
             try:
                 self._non_db_state = self._non_db_state_cache[self.id]
@@ -167,15 +168,14 @@ class TranslationProject(models.Model):
                         TranslationProjectNonDBState(self)
 
         return self._non_db_state
-    non_db_state = property(_get_non_db_state)
 
-    def _get_units(self):
+    @property
+    def units(self):
         self.require_units()
         # FIXME: we rely on implicit ordering defined in the model. We might
         # want to consider pootle_path as well
         return Unit.objects.filter(store__translation_project=self,
                                    state__gt=OBSOLETE).select_related('store')
-    units = property(_get_units)
 
     @property
     def is_terminology_project(self):
@@ -185,7 +185,8 @@ class TranslationProject(models.Model):
     def is_template_project(self):
         return self == self.project.get_template_translationproject()
 
-    def _get_indexer(self):
+    @property
+    def indexer(self):
         if (self.non_db_state.indexer is None and
             self.non_db_state._indexing_enabled):
             try:
@@ -203,15 +204,14 @@ class TranslationProject(models.Model):
                 self.non_db_state._indexing_enabled = False
 
         return self.non_db_state.indexer
-    indexer = property(_get_indexer)
 
-    def _has_index(self):
+    @property
+    def has_index(self):
         return (self.non_db_state._indexing_enabled and
                 (self.non_db_state._index_initialized or
                  self.indexer is not None))
-    has_index = property(_has_index)
 
-    ###########################################################################
+    ############################ Methods ######################################
 
     def __unicode__(self):
         return self.pootle_path

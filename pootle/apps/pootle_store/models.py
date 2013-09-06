@@ -117,22 +117,31 @@ class Suggestion(models.Model, base.TranslationUnit):
                 self.unit.store.pootle_path)
     natural_key.dependencies = ['pootle_store.Unit', 'pootle_store.Store']
 
-    def _get_target(self):
+    ############################ Properties ###################################
+
+    @property
+    def _target(self):
         return self.target_f
 
-    def _set_target(self, value):
+    @_target.setter
+    def _target(self, value):
         self.target_f = value
         self._set_hash()
 
-    _target = property(_get_target, _set_target)
-    _source = property(lambda self: self.unit._source)
+    @property
+    def _source(self):
+        return self.unit._source
 
-    def _set_translator_comment(self, value):
+    @property
+    def translator_comment(self):
+        return self.translator_comment_f
+
+    @translator_comment.setter
+    def translator_comment(self, value):
         self.translator_comment_f = value
         self._set_hash()
 
-    translator_comment = property(lambda self: self.translator_comment_f,
-                                  _set_translator_comment)
+    ############################ Methods ######################################
 
     def __unicode__(self):
         return unicode(self.target)
@@ -281,6 +290,28 @@ class Unit(models.Model, base.TranslationUnit):
         return (self.unitid_hash, self.store.pootle_path)
     natural_key.dependencies = ['pootle_store.Store']
 
+    ############################ Properties ###################################
+
+    @property
+    def _source(self):
+        return self.source_f
+
+    @_source.setter
+    def _source(self, value):
+        self.source_f = value
+        self._source_updated = True
+
+    @property
+    def _target(self):
+        return self.target_f
+
+    @_target.setter
+    def _target(self, value):
+        self.target_f = value
+        self._target_updated = True
+
+    ############################ Methods ######################################
+
     def __unicode__(self):
         # FIXME: consider using unit id instead?
         return unicode(self.source)
@@ -351,24 +382,6 @@ class Unit(models.Model, base.TranslationUnit):
 
     def get_mtime(self):
         return self.mtime
-
-    def _get_source(self):
-        return self.source_f
-
-    def _set_source(self, value):
-        self.source_f = value
-        self._source_updated = True
-
-    _source = property(_get_source, _set_source)
-
-    def _get_target(self):
-        return self.target_f
-
-    def _set_target(self, value):
-        self.target_f = value
-        self._target_updated = True
-
-    _target = property(_get_target, _set_target)
 
     def convert(self, unitclass):
         """Convert to a unit of type :param:`unitclass` retaining as much
@@ -897,6 +910,43 @@ class Store(models.Model, base.TranslationStore):
         return (self.pootle_path,)
     natural_key.dependencies = ['pootle_app.Directory']
 
+    ############################ Properties ###################################
+
+    @property
+    def abs_real_path(self):
+        if self.file:
+            return self.file.path
+
+    @property
+    def real_path(self):
+        return self.file.name
+
+    @property
+    def is_terminology(self):
+        """Is this a project specific terminology store?"""
+        #TODO: Consider if this should check if the store belongs to a
+        # terminology project. Probably not, in case this might be called over
+        # several files in a project.
+        return self.name.startswith('pootle-terminology')
+
+    @property
+    def units(self):
+        if hasattr(self, '_units'):
+            return self._units
+
+        self.require_units()
+        return self.unit_set.filter(state__gt=OBSOLETE).order_by('index') \
+                            .select_related('store__translation_project')
+
+    @units.setter
+    def units(self, value):
+        """Null setter to avoid tracebacks if :meth:`TranslationStore.__init__`
+        is called.
+        """
+        pass
+
+    ############################ Methods ######################################
+
     @classmethod
     def _get_mtime_from_header(cls, store):
         mtime = None
@@ -956,17 +1006,6 @@ class Store(models.Model, base.TranslationStore):
     @getfromcache
     def get_mtime(self):
         return max_column(self.unit_set.all(), 'mtime', datetime_min)
-
-    def _get_abs_real_path(self):
-        if self.file:
-            return self.file.path
-
-    abs_real_path = property(_get_abs_real_path)
-
-    def _get_real_path(self):
-        return self.file.name
-
-    real_path = property(_get_real_path)
 
     @cached_property
     def path(self):
@@ -1393,14 +1432,6 @@ class Store(models.Model, base.TranslationStore):
                 return factory_classes[ext]
         return factory_classes['po']
 
-    def _get_is_terminology(self):
-        """is this a project specific terminology store?"""
-        #TODO: Consider if this should check if the store belongs to a
-        # terminology project. Probably not, in case this might be called over
-        # several files in a project.
-        return self.name.startswith('pootle-terminology')
-    is_terminology = property(_get_is_terminology)
-
     def convert(self, fileclass):
         """export to fileclass"""
         logging.debug(u"Converting %s to %s", self.pootle_path, fileclass)
@@ -1417,22 +1448,6 @@ class Store(models.Model, base.TranslationStore):
     #################### TranslationStore #########################
 
     suggestions_in_format = True
-
-    def _get_units(self):
-        if hasattr(self, '_units'):
-            return self._units
-
-        self.require_units()
-        return self.unit_set.filter(state__gt=OBSOLETE).order_by('index') \
-                            .select_related('store__translation_project')
-
-    def _set_units(self, value):
-        """Null setter to avoid tracebacks if :meth:`TranslationStore.__init__`
-        is called.
-        """
-        pass
-
-    units = property(_get_units, _set_units)
 
     def max_index(self):
         """Largest unit index"""

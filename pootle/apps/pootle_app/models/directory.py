@@ -37,13 +37,13 @@ class DirectoryManager(models.Manager):
         return super(DirectoryManager, self).get_query_set() \
                                             .select_related('parent')
 
-    def _get_root(self):
+    @property
+    def root(self):
         return self.get(pootle_path='/')
-    root = property(_get_root)
 
-    def _get_projects(self):
+    @property
+    def projects(self):
         return self.get(pootle_path='/projects/')
-    projects = property(_get_projects)
 
 
 class Directory(models.Model):
@@ -60,6 +60,20 @@ class Directory(models.Model):
     class Meta:
         ordering = ['name']
         app_label = "pootle_app"
+
+    ############################ Properties ###################################
+
+    @property
+    def stores(self):
+        """Queryset with all descending stores."""
+        from pootle_store.models import Store
+        return Store.objects.filter(pootle_path__startswith=self.pootle_path)
+
+    @property
+    def is_template_project(self):
+        return self.pootle_path.startswith('/templates/')
+
+    ############################ Methods ######################################
 
     def __unicode__(self):
         return self.pootle_path
@@ -123,12 +137,6 @@ class Directory(models.Model):
             'store__pootle_path__startswith': self.pootle_path,
         }
         return max_column(Unit.objects.filter(**criteria), 'mtime', None)
-
-    def _get_stores(self):
-        """Queryset with all descending stores."""
-        from pootle_store.models import Store
-        return Store.objects.filter(pootle_path__startswith=self.pootle_path)
-    stores = property(_get_stores)
 
     @cached_property
     def path(self):
@@ -223,9 +231,6 @@ class Directory(models.Model):
         """does this directory point at a translation project"""
         return (self.pootle_path.count('/') == 3 and not
                 self.pootle_path.startswith('/projects/'))
-
-    is_template_project = property(lambda self: self.pootle_path
-                                                    .startswith('/templates/'))
 
     @cached_property
     def translation_project(self):

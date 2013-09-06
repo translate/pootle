@@ -3,7 +3,7 @@
 <html lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
 <head>
   <title>{% trans "Export View" %} | {{ project.fullname }} |
-    {{ language.localname }} | Pootle</title>
+    {{ language.name }} | Pootle</title>
   <style type="text/css">
     html {
       font-family: sans-serif;
@@ -91,7 +91,7 @@
 </head>
 <body>
   <table dir="{% locale_dir %}">
-    <caption>{{ project.fullname }} / {{ language.localname }}
+    <caption>{{ project.fullname }} / {{ language.name }}
       {% if filter_name %} / {{ filter_name }}{% endif %}
       {% if filter_extra %}<span>({{ filter_extra|join:', ' }})</span>{% endif %}
     </caption>

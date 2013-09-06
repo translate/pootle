@@ -5,7 +5,7 @@
     {% for lang in ALL_LANGUAGES %}
     <option value="{{ lang.code }}"
       {% if lang.code == language.code %} selected="selected"{% endif%}>
-      {{ lang.localname }}
+      {{ lang.name }}
     </option>
     {% endfor %}
   </select>
