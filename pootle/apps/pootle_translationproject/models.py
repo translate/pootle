@@ -137,6 +137,8 @@ class TranslationProject(models.Model, TreeItem):
     def code(self):
         return u'-'.join([self.language.code, self.project.code])
 
+    ############################ Properties ###################################
+
     @property
     def name(self):
         # TODO: See if `self.fullname` can be removed
@@ -145,14 +147,6 @@ class TranslationProject(models.Model, TreeItem):
     @property
     def fullname(self):
         return "%s [%s]" % (self.project.fullname, self.language.name)
-
-    @property
-    def is_terminology_project(self):
-        return self.project.checkstyle == 'terminology'
-
-    @property
-    def is_template_project(self):
-        return self == self.project.get_template_translationproject()
 
     @property
     def abs_real_path(self):
@@ -197,6 +191,16 @@ class TranslationProject(models.Model, TreeItem):
         # want to consider pootle_path as well
         return Unit.objects.filter(store__translation_project=self,
                                    state__gt=OBSOLETE).select_related('store')
+
+    @property
+    def is_terminology_project(self):
+        return self.project.checkstyle == 'terminology'
+
+    @property
+    def is_template_project(self):
+        return self == self.project.get_template_translationproject()
+
+    ############################ Methods ######################################
 
     def __unicode__(self):
         return self.pootle_path

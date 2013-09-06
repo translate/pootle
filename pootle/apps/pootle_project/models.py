@@ -287,6 +287,19 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
 
         return resources
 
+    ############################ Properties ###################################
+
+    @property
+    def pootle_path(self):
+        return "/projects/" + self.code + "/"
+
+    @property
+    def is_terminology(self):
+        """Returns ``True`` if this project is a terminology project."""
+        return self.checkstyle == 'terminology'
+
+    ############################ Methods ######################################
+
     def __unicode__(self):
         return self.fullname
 

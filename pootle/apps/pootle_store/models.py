@@ -166,6 +166,32 @@ class Suggestion(models.Model, base.TranslationUnit):
 
     objects = SuggestionManager()
 
+    ############################ Properties ###################################
+
+    @property
+    def _target(self):
+        return self.target_f
+
+    @_target.setter
+    def _target(self, value):
+        self.target_f = value
+        self._set_hash()
+
+    @property
+    def _source(self):
+        return self.unit._source
+
+    @property
+    def translator_comment(self, value):
+        return self.translator_comment_f
+
+    @translator_comment.setter
+    def translator_comment(self, value):
+        self.translator_comment_f = value
+        self._set_hash()
+
+    ############################ Methods ######################################
+
     def __unicode__(self):
         return unicode(self.target)
 
@@ -176,23 +202,6 @@ class Suggestion(models.Model, base.TranslationUnit):
         else:
             string = self.target_f
         self.target_hash = md5(string.encode("utf-8")).hexdigest()
-
-    def _get_target(self):
-        return self.target_f
-
-    def _set_target(self, value):
-        self.target_f = value
-        self._set_hash()
-
-    _target = property(_get_target, _set_target)
-    _source = property(lambda self: self.unit._source)
-
-    def _set_translator_comment(self, value):
-        self.translator_comment_f = value
-        self._set_hash()
-
-    translator_comment = property(lambda self: self.translator_comment_f,
-                                  _set_translator_comment)
 
 
 ############### Unit ####################
@@ -331,6 +340,8 @@ class Unit(models.Model, base.TranslationUnit):
         unique_together = ('store', 'unitid_hash')
         get_latest_by = 'mtime'
 
+    ############################ Properties ###################################
+
     @property
     def _source(self):
         return self.source_f
@@ -348,6 +359,8 @@ class Unit(models.Model, base.TranslationUnit):
     def _target(self, value):
         self.target_f = value
         self._target_updated = True
+
+    ############################ Methods ######################################
 
     def __unicode__(self):
         # FIXME: consider using unit id instead?
@@ -1270,6 +1283,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         ordering = ['pootle_path']
         unique_together = ('parent', 'name')
 
+    ############################ Properties ###################################
+
     @property
     def code(self):
         return self.name.replace('.', '-')
@@ -1282,6 +1297,32 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     @property
     def real_path(self):
         return self.file.name
+
+    @property
+    def is_terminology(self):
+        """is this a project specific terminology store?"""
+        #TODO: Consider if this should check if the store belongs to a
+        # terminology project. Probably not, in case this might be called over
+        # several files in a project.
+        return self.name.startswith('pootle-terminology')
+
+    @property
+    def units(self):
+        if hasattr(self, '_units'):
+            return self._units
+
+        self.require_units()
+        return self.unit_set.filter(state__gt=OBSOLETE).order_by('index') \
+                            .select_related('store__translation_project')
+
+    @units.setter
+    def units(self, value):
+        """Null setter to avoid tracebacks if :meth:`TranslationStore.__init__`
+        is called.
+        """
+        pass
+
+    ############################ Methods ######################################
 
     @property
     def file_mtime(self):
@@ -1808,14 +1849,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 return factory_classes[ext]
         return factory_classes['po']
 
-    def _get_is_terminology(self):
-        """is this a project specific terminology store?"""
-        #TODO: Consider if this should check if the store belongs to a
-        # terminology project. Probably not, in case this might be called over
-        # several files in a project.
-        return self.name.startswith('pootle-terminology')
-    is_terminology = property(_get_is_terminology)
-
     def convert(self, fileclass):
         """export to fileclass"""
         logging.debug(u"Converting %s to %s", self.pootle_path, fileclass)
@@ -1832,22 +1865,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 ######################## TranslationStore #########################
 
     suggestions_in_format = True
-
-    def _get_units(self):
-        if hasattr(self, '_units'):
-            return self._units
-
-        self.require_units()
-        return self.unit_set.filter(state__gt=OBSOLETE).order_by('index') \
-                            .select_related('store__translation_project')
-
-    def _set_units(self, value):
-        """Null setter to avoid tracebacks if :meth:`TranslationStore.__init__`
-        is called.
-        """
-        pass
-
-    units = property(_get_units, _set_units)
 
     def max_index(self):
         """Largest unit index"""

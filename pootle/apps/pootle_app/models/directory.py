@@ -108,6 +108,7 @@ class Directory(models.Model, TreeItem):
                     aux_dir = aux_dir.parent
 
                 return aux_dir.translationproject
+    ############################ Methods ######################################
 
     def __unicode__(self):
         return self.pootle_path

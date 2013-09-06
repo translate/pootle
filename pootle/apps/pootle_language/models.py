@@ -100,8 +100,6 @@ class Language(models.Model, TreeItem):
     directory = models.OneToOneField('pootle_app.Directory', db_index=True,
             editable=False)
 
-    pootle_path = property(lambda self: '/%s/' % self.code)
-
     objects = LanguageManager()
     live = LiveLanguageManager()
 
@@ -109,10 +107,18 @@ class Language(models.Model, TreeItem):
         ordering = ['code']
         db_table = 'pootle_app_language'
 
+    ############################ Properties ###################################
+
+    @property
+    def pootle_path(self):
+        return '/%s/' % self.code
+
     @property
     def name(self):
-        """localized fullname"""
+        """Localized fullname for the language."""
         return tr_lang(self.fullname)
+
+    ############################ Methods ######################################
 
     @property
     def direction(self):
