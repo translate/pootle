@@ -43,6 +43,9 @@ Not released yet. *Planned release date late November 2013*
   wasn't properly advertised nor documented, and it didn't perform well
   enough to be considered useful.
 
+- Pootle now supports tags that can be added to translation projects or
+  individual files, and supports filtering translation projects by their tags.
+
 
 Version 2.5.0
 -------------
