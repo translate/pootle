@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2012 Zuza Software Foundation
+# Copyright 2008-2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -67,7 +67,7 @@ def get_next(request):
         next = request.GET.get(REDIRECT_FIELD_NAME, '')
         if not next:
             next = request.path_info
-    except AttributeError, e:
+    except AttributeError as e:
         next = ''
 
     return u"?%s" % urlencode({REDIRECT_FIELD_NAME: next})

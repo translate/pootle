@@ -5,18 +5,17 @@
 #
 # This file is part of Pootle.
 #
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
+# Pootle is free software; you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation; either version 2 of the License, or (at your option) any later
+# version.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# Pootle is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License along with
+# Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 import os
 
@@ -68,28 +67,36 @@ def create_default_projects():
 
     en = require_english()
 
-    #pootle = Project(code=u"pootle", source_language=en)
-    #pootle.fullname = u"Pootle"
-    #pootle.description = ('<div dir="ltr" lang="en">Interface translations '
-    #                      'for Pootle. <br /> See the <a href="http://'
-    #                      'pootle.locamotion.org">official Pootle server</a> '
-    #                      'for the translations of Pootle.</div>')
-    #pootle.checkstyle = "standard"
-    #pootle.localfiletype = "po"
-    #pootle.treestyle = "auto"
+    #criteria = {
+    #    'code': u"pootle",
+    #    'source_language': en,
+    #    'fullname': u"Pootle",
+    #    'description': ('<div dir="ltr" lang="en">Interface translations for '
+    #                    'Pootle.<br />See the <a href="http://'
+    #                    'pootle.locamotion.org">official Pootle server</a> '
+    #                    'for the translations of Pootle.</div>')
+    #    'checkstyle': "standard",
+    #    'localfiletype': "po",
+    #    'treestyle': "auto",
+    #}
+    #pootle = Project(**criteria)
     #pootle.save()
 
-    tutorial = Project(code=u"tutorial", source_language=en)
-    tutorial.fullname = u"Tutorial"
-    tutorial.description = ('<div dir="ltr" lang="en">Tutorial project where '
-                            'users can play with Pootle and learn more about '
-                            'translation and localisation.<br />For more help '
-                            'on localisation, visit the <a href="http://'
-                            'translate.sourceforge.net/wiki/guide/start">'
-                            'localisation guide</a>.</div>')
-    tutorial.checkstyle = "standard"
-    tutorial.localfiletype = "po"
-    tutorial.treestyle = "auto"
+    criteria = {
+        'code': u"tutorial",
+        'source_language': en,
+        'fullname': u"Tutorial",
+        'description': ('<div dir="ltr" lang="en">Tutorial project where '
+                        'users can play with Pootle and learn more about '
+                        'translation and localisation.<br />For more help on '
+                        'localisation, visit the <a href="http://'
+                        'translate.sourceforge.net/wiki/guide/start">'
+                        'localisation guide</a>.</div>'),
+        'checkstyle': "standard",
+        'localfiletype': "po",
+        'treestyle': "auto",
+    }
+    tutorial = Project(**criteria)
     tutorial.save()
 
 
@@ -103,8 +110,8 @@ def create_default_languages():
 
     from pootle_language.models import Language
 
-    default_languages = ("af", "ak", "ht", "nso", "ve", "wo", "zh_cn",
-            "zh_hk", "zh_tw", "ca_valencia", "son", "lg", "gd")
+    default_languages = ("af", "ak", "ht", "nso", "ve", "wo", "zh_cn", "zh_hk",
+                         "zh_tw", "ca_valencia", "son", "lg", "gd")
 
     # import languages from toolkit
     for code in data.languages.keys():
@@ -131,11 +138,13 @@ def create_default_admin():
     install is not accessible with the default credentials. The users 'noboby'
     and 'default' should be left as is.
     """
-    admin = User(username=u"admin",
-                 first_name=u"Administrator",
-                 is_active=True,
-                 is_superuser=True,
-                 is_staff=True,
-    )
+    criteria = {
+        'username': u"admin",
+        'first_name': u"Administrator",
+        'is_active': True,
+        'is_superuser': True,
+        'is_staff': True,
+    }
+    admin = User(**criteria)
     admin.set_password("admin")
     admin.save()

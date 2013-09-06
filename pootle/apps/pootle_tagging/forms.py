@@ -123,13 +123,11 @@ class TagForm(forms.ModelForm):
         slug = self.cleaned_data['slug']
 
         if slug != test_slug:
-            raise forms.ValidationError(_("Tag slugs must be equal to the tag "
-                                          "name, but replacing with a hyphen "
-                                          "the single or multiple occurrences "
-                                          "of the following characters: "
-                                          "spaces, colons (:), hyphens (-), "
-                                          "underscores (_), slashes (/) or "
-                                          "periods (.)!"))
+            msg = _("Tag slugs must be equal to the tag name, but replacing "
+                    "with a hyphen the single or multiple occurrences of the "
+                    "following characters: spaces, colons (:), hyphens (-), "
+                    "underscores (_), slashes (/) or periods (.)!")
+            raise forms.ValidationError(msg)
 
         # Always return the cleaned data, whether you have changed it or not.
         return slug

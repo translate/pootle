@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2010 Zuza Software Foundation
+# Copyright 2010-2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -131,7 +131,7 @@ class MathCaptchaForm(forms.Form):
             return {'q': data['q'],
                     'expires': float(data['expires']),
                     'sign': sign}
-        except Exception, e:
+        except Exception as e:
             logging.info("Captcha error: %r" % e)
             # l10n for bots? Rather not
             raise forms.ValidationError("Invalid captcha!")

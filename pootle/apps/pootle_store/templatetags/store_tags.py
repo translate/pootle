@@ -20,6 +20,8 @@
 
 import re
 
+from translate.misc.multistring import multistring
+
 from django import template
 from django.core.exceptions import ObjectDoesNotExist
 try:
@@ -29,8 +31,6 @@ except ImportError:
     from django.template.loaders.app_directories import Loader
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
-
-from translate.misc.multistring import multistring
 
 from pootle_misc.templatetags.cleanhtml import fancy_escape, fancy_highlight
 from pootle_store.fields import list_empty
@@ -51,6 +51,7 @@ def call_highlight(old, new):
         return fancy_highlight(new)
     else:
         return highlight_diffs(old, new)
+
 
 def _google_highlight_diffs(old, new):
     """Highlights the differences between old and new."""
@@ -79,6 +80,7 @@ def _google_highlight_diffs(old, new):
         textdiff += '<span class="diff-delete">%s</span>' % fancy_escape(removed)
     return mark_safe(textdiff)
 
+
 def _difflib_highlight_diffs(old, new):
     """Highlights the differences between old and new. The differences
     are highlighted such that they show what would be required to
@@ -99,11 +101,12 @@ def _difflib_highlight_diffs(old, new):
             textdiff += '<span class="diff-replace">%s</span>' % fancy_escape(new[j1:j2])
     return mark_safe(textdiff)
 
+
 try:
     from translate.misc.diff_match_patch import diff_match_patch
     differencer = diff_match_patch()
     highlight_diffs = _google_highlight_diffs
-except ImportError, e:
+except ImportError as e:
     from difflib import SequenceMatcher
     highlight_diffs = _difflib_highlight_diffs
 
@@ -123,6 +126,7 @@ def pluralize_source(unit):
             return forms
     else:
         return [(0, unit.source, None)]
+
 
 @register.filter('pluralize_target')
 def pluralize_target(unit, nplurals=None):
@@ -147,6 +151,7 @@ def pluralize_target(unit, nplurals=None):
     else:
         return [(0, unit.target, None)]
 
+
 @register.filter('pluralize_diff_sugg')
 def pluralize_diff_sugg(sugg):
     unit = sugg.unit
@@ -163,6 +168,7 @@ def pluralize_diff_sugg(sugg):
 
 
 IMAGE_URL_RE = re.compile("(https?://[^\s]+\.(png|jpe?g|gif))")
+
 
 @register.filter
 def image_urls(text):

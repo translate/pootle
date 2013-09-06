@@ -34,6 +34,9 @@ from pootle_store.models import Unit, Suggestion
 from pootle_store.util import statssum, OBSOLETE
 
 
+CACHE_KEY = 'pootle-languages'
+
+
 class LanguageManager(RelatedManager):
 
     def get_by_natural_key(self, code):
@@ -57,17 +60,7 @@ class LiveLanguageManager(models.Manager):
             ).distinct()
 
 
-CACHE_KEY = 'pootle-languages'
-
-
 class Language(models.Model):
-
-    objects = LanguageManager()
-    live = LiveLanguageManager()
-
-    class Meta:
-        ordering = ['code']
-        db_table = 'pootle_app_language'
 
     code_help_text = _('ISO 639 language code for the language, possibly '
             'followed by an underscore (_) and an ISO 3166 country code. '
@@ -102,6 +95,13 @@ class Language(models.Model):
 
     directory = models.OneToOneField('pootle_app.Directory', db_index=True,
             editable=False)
+
+    objects = LanguageManager()
+    live = LiveLanguageManager()
+
+    class Meta:
+        ordering = ['code']
+        db_table = 'pootle_app_language'
 
     pootle_path = property(lambda self: '/%s/' % self.code)
 

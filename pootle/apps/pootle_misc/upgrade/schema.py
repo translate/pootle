@@ -30,11 +30,11 @@ import logging
 
 from django.core.management import call_command
 
-from . import save_legacy_pootle_version
-
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_store.models import Store
+
+from . import save_legacy_pootle_version
 
 
 def update_tables_21000():
@@ -151,7 +151,7 @@ def staggered_update(db_buildversion):
     if db_buildversion < 21000:
         try:
             update_tables_21000()
-        except Exception, e:
+        except Exception as e:
             logging.warning(u"Something broke while upgrading database "
                             u"tables:\n%s", e)
             #TODO: should we continue?
@@ -161,7 +161,7 @@ def staggered_update(db_buildversion):
         logging.info("Creating missing database tables")
 
         call_command('syncdb', interactive=False)
-    except Exception, e:
+    except Exception as e:
         logging.warning(u"Something broke while creating new database tables:"
                         u"\n%s", e)
 

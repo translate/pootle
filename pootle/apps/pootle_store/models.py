@@ -67,6 +67,7 @@ PARSED = 1
 # Quality checks run
 CHECKED = 2
 
+
 ############### Quality Check #############
 
 class QualityCheck(models.Model):
@@ -606,7 +607,7 @@ class Unit(models.Model, base.TranslationUnit):
 
         return None
 
-##################### TranslationUnit ############################
+    ################# TranslationUnit ############################
 
     def getnotes(self, origin=None):
         if origin is None:
@@ -766,7 +767,7 @@ class Unit(models.Model, base.TranslationUnit):
 
         return changed
 
-##################### Suggestions #################################
+    ################# Suggestions #################################
     def get_suggestions(self):
         return self.suggestion_set.select_related('user').all()
 
@@ -836,8 +837,8 @@ class Unit(models.Model, base.TranslationUnit):
             result = []
         return result
 
-###################### Store ###########################
 
+###################### Store ###########################
 
 # custom storage otherwise djago assumes all files are uploads headed to
 # media dir
@@ -951,7 +952,7 @@ class Store(models.Model, base.TranslationStore):
                         mtime = timezone.make_aware(mtime, tz)
                     else:
                         mtime -= datetime.timedelta(hours=2)
-            except Exception, e:
+            except Exception as e:
                 logging.debug("failed to parse mtime: %s", e)
         return mtime
 
@@ -1070,7 +1071,7 @@ class Store(models.Model, base.TranslationStore):
                     if unit.istranslatable():
                         try:
                             self.addunit(unit, index)
-                        except IntegrityError, e:
+                        except IntegrityError as e:
                             logging.warning(u'Data integrity error while '
                                             u'importing unit %s:\n%s',
                                             unit.getid(), e)
@@ -1203,7 +1204,7 @@ class Store(models.Model, base.TranslationStore):
                                 id__gt=modified_since,
                                 unit__id__in=self_unit_ids,
                         ).values_list('unit', flat=True).distinct())
-                    except DatabaseError, e:
+                    except DatabaseError as e:
                         # SQLite might barf with the IN operator over too many
                         # values
                         modified_units = set(Submission.objects.filter(
@@ -1348,7 +1349,7 @@ class Store(models.Model, base.TranslationStore):
                             id__gt=modified_since,
                             unit__id__in=self_unit_ids,
                     ).values_list('unit', flat=True).distinct())
-                except DatabaseError, e:
+                except DatabaseError as e:
                     # SQLite might barf with the IN operator over too many
                     # values
                     modified_units = set(Submission.objects.filter(
@@ -1412,7 +1413,7 @@ class Store(models.Model, base.TranslationStore):
             output.addunit(unit.convert(output.UnitClass))
         return output
 
-######################## TranslationStore #########################
+    #################### TranslationStore #########################
 
     suggestions_in_format = True
 
@@ -1503,7 +1504,7 @@ class Store(models.Model, base.TranslationStore):
         if self.file and hasattr(self.file.store, 'header'):
             return self.file.store.header()
 
-############################### Stats ############################
+    ########################### Stats ############################
 
     @getfromcache
     def getquickstats(self):
@@ -1512,9 +1513,9 @@ class Store(models.Model, base.TranslationStore):
             return calculate_stats(self.units)
         except IntegrityError:
             logging.info(u"Duplicate IDs in %s", self.abs_real_path)
-        except base.ParseError, e:
+        except base.ParseError as e:
             logging.info(u"Failed to parse %s\n%s", self.abs_real_path, e)
-        except (IOError, OSError), e:
+        except (IOError, OSError) as e:
             logging.info(u"Can't access %s\n%s", self.abs_real_path, e)
         stats = {}
         stats.update(empty_quickstats)
@@ -1542,7 +1543,7 @@ class Store(models.Model, base.TranslationStore):
                                          unit__state__gt=OBSOLETE).count()
 
 
-################################ Translation #############################
+    ############################ Translation #############################
 
     def getitem(self, item):
         """Returns a single unit based on the item number."""
@@ -1709,9 +1710,10 @@ class Store(models.Model, base.TranslationStore):
                                               language.pluralequation)
 
 
-############################## Pending Files #################################
-# The .pending files are deprecated since Pootle 2.1.0, but support for them
-# are kept here to be able to do migrations from older Pootle versions.
+    ########################## Pending Files #################################
+    # The .pending files are deprecated since Pootle 2.1.0, but support for
+    # them are kept here to be able to do migrations from older Pootle
+    # versions.
 
     def init_pending(self):
         """initialize pending translations file if needed"""

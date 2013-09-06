@@ -17,8 +17,8 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-from django.db import models
 from django.core.urlresolvers import reverse
+from django.db import models
 
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_misc.aggregate import max_column
@@ -101,8 +101,8 @@ class Directory(models.Model):
         to this directory, recurse the path and return the object
         (either a Directory or a Store) named 'c'.
 
-        This does not currently deal with .. path components."""
-
+        This does not currently deal with .. path components.
+        """
         from pootle_store.models import Store
 
         if path not in (None, ''):
@@ -119,9 +119,10 @@ class Directory(models.Model):
 
     @getfromcache
     def get_mtime(self):
-        return max_column(Unit.objects.filter(
-            store__pootle_path__startswith=self.pootle_path
-        ), 'mtime', None)
+        criteria = {
+            'store__pootle_path__startswith': self.pootle_path,
+        }
+        return max_column(Unit.objects.filter(**criteria), 'mtime', None)
 
     def _get_stores(self):
         """Queryset with all descending stores."""

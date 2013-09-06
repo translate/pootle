@@ -64,7 +64,7 @@ class LdapBackend(object):
             logger.error('Anonymous bind to LDAP server failed. Please check '
                          'the username and password.')
             return None
-        except Exception, e:
+        except Exception as e:
             logger.error('Unknown LDAP error: ' + str(e))
             return None
 
@@ -87,12 +87,12 @@ class LdapBackend(object):
                 user.save()
                 return user
 
-        # Bad e-mail or password
+        # Bad e-mail or password.
         except (ldap.INVALID_CREDENTIALS, ldap.UNWILLING_TO_PERFORM):
             logger.debug("No account or bad credentials for (%s). Failing "
                          "LDAP auth." % username)
             return None
-        except Exception, e:  # No other exceptions are normal
+        except Exception as e:  # No other exceptions are normal.
             logger.error('Unknown LDAP error: ' + str(e))
             raise
 

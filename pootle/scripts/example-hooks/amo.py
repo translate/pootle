@@ -17,10 +17,11 @@ try:
 except:
     pass
 
+from translate.convert import html2po
+
 from django.conf import settings
 
 from pootle.scripts.convert import monopo2po, po2monopo
-from translate.convert import html2po
 
 
 def _getfiles(file):
@@ -122,7 +123,7 @@ def _tidy_page(path):
         del tidy_options['show-body-only']
         try:
             parsed = tidy.parseString(content, **tidy_options)
-        except Exception, e:
+        except Exception as e:
             print e
         bodytag = re.compile("<body>(.*)</body>", re.IGNORECASE | re.DOTALL)
         if not bodytag.search(content):

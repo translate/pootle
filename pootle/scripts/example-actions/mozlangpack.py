@@ -26,8 +26,6 @@ run the shell scripts that are provided in that Git repository.
 
 """
 
-from __future__ import with_statement
-
 import fcntl
 import os
 import shutil
@@ -41,6 +39,7 @@ from pootle_store.util import absolute_real_path
 from moztarball import (AURORA, MozillaAction, getLogger, tempdir, get_phases,
                         merge_po2moz)
 from buildxpi import build_xpi
+
 
 logger = getLogger(__name__)
 
@@ -60,7 +59,7 @@ class MozillaBuildLangpackAction(MozillaAction, DownloadAction):
         with tempdir() as podir:
             try:
                 get_phases(root, vc_root, podir, language, project)
-            except (EnvironmentError, shutil.Error), e:
+            except (EnvironmentError, shutil.Error) as e:
                 logger.debug_exception(e)
                 self.set_error(e)
                 return
@@ -68,7 +67,7 @@ class MozillaBuildLangpackAction(MozillaAction, DownloadAction):
             with tempdir() as l10ndir:
                 try:
                     merge_po2moz(vc_root, podir, l10ndir, language, project)
-                except EnvironmentError, e:
+                except EnvironmentError as e:
                     logger.debug_exception(e)
                     self.set_error(e)
                     return
@@ -146,7 +145,7 @@ class MozillaBuildLangpackAction(MozillaAction, DownloadAction):
                         fcntl.flock(lock.fileno(), fcntl.LOCK_UN)
                         lock.close()
 
-                except (EnvironmentError, CalledProcessError), e:
+                except (EnvironmentError, CalledProcessError) as e:
                     logger.debug_exception(e)
                     self.set_error(e)
                     return
@@ -155,6 +154,7 @@ class MozillaBuildLangpackAction(MozillaAction, DownloadAction):
 MozillaBuildLangpackAction.moztar = MozillaBuildLangpackAction(
                                             category="Mozilla",
                                             title="Build language pack")
+
 
 class MozillaDownloadLangpackAction(DownloadAction, MozillaAction):
     """Download Mozilla language pack for Firefox."""
@@ -184,6 +184,7 @@ class MozillaDownloadLangpackAction(DownloadAction, MozillaAction):
                                 tpdir,
                                 '%s-%s.xpi' %(project, language))
         self._dl_path[path.pootle_path] = xpi_file
+
 
 MozillaDownloadLangpackAction.moztar = MozillaDownloadLangpackAction(
                                             category="Mozilla",

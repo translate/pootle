@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2012 Zuza Software Foundation
+# Copyright 2008-2013 Zuza Software Foundation
 # Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
@@ -98,7 +98,7 @@ def rescan_files(request, translation_project):
 
         messages.success(request, _("Translation project files have been "
                                     "rescanned."))
-    except Exception, e:
+    except Exception as e:
         logging.error(u"Error while rescanning translation project files: %s",
                       e)
         messages.error(request, _("Error while rescanning translation project "
@@ -118,7 +118,7 @@ def update_against_templates(request, translation_project):
         translation_project.update_against_templates()
         messages.success(request, _("Translation project has been updated "
                                     "against latest templates."))
-    except Exception, e:
+    except Exception as e:
         logging.error(u"Error while updating translation project against "
                       u"latest templates: %s", e)
         messages.error(request, _("Error while updating translation project "
@@ -194,7 +194,7 @@ def delete_path_obj(request, translation_project, dir_path, filename=None):
                                         "have been deleted."))
         else:
             messages.success(request, _("File has been deleted."))
-    except Exception, e:
+    except Exception as e:
         logging.error(u"Error while trying to delete %s: %s", current_path, e)
         if directory:
             messages.error(request, _("Error while trying to delete "
@@ -782,7 +782,7 @@ def unzip_external(request, directory, django_file, overwrite):
                 # from which the user is uploading the ZIP file.
                 try:
                     upload_file(request, target_dir, newfile, overwrite)
-                except ValueError, e:
+                except ValueError as e:
                     logging.error(u"Error adding %s\t%s", fname, e)
     finally:
         # Clean up temporary file and directory used in try-block.
@@ -818,7 +818,7 @@ def unzip_python(request, directory, django_file, overwrite):
                     newfile = StringIO.StringIO(archive.read(filename))
                     newfile.name = os.path.basename(filename)
                     upload_file(request, target_dir, newfile, overwrite)
-            except ValueError, e:
+            except ValueError as e:
                 logging.error(u"Error adding %s\t%s", filename, e)
     finally:
         archive.close()

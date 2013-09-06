@@ -26,21 +26,20 @@ run the shell scripts that are provided in that Git repository.
 
 """
 
-from __future__ import with_statement
-
 import errno
 import logging
 import os
 import shutil
 import subprocess
-
 from contextlib import contextmanager
 from datetime import datetime
 from tempfile import mkdtemp
 
 from translate.convert import po2moz
+
 from pootle.scripts.actions import DownloadAction, TranslationProjectAction
 from pootle_app.models.permissions import check_permission
+
 
 MOZL10N = "mozilla-l10n"
 AURORA = "mozilla-aurora"
@@ -82,6 +81,7 @@ def getLogger(name):  # pylint: disable=C0103
 
     _logger.debug_exception = types.MethodType(debug_exception, _logger)
     return _logger
+
 
 logger = getLogger(__name__)
 
@@ -158,7 +158,7 @@ def get_phases(srcdir, phasedir, workdir, language, project):
                     logger.debug("creating '%s' directory", tdir)
                     try:
                         os.makedirs(tdir)
-                    except OSError, e:
+                    except OSError as e:
                         if e.errno == errno.EEXIST and os.path.isdir(tdir):
                             pass
                         else:
@@ -215,6 +215,7 @@ def merge_po2moz(templates, translations, output, language, project):
                 # generate additional --exclude FOO arguments
                 [opt or arg for arg in excludes for opt in ('--exclude', 0)])
 
+
 class MozillaAction(TranslationProjectAction):
     """Base class for common functionality of Mozilla actions."""
 
@@ -224,6 +225,7 @@ class MozillaAction(TranslationProjectAction):
             return False
         else:
             return super(MozillaAction, self).is_active(request)
+
 
 class MozillaTarballAction(DownloadAction, MozillaAction):
     """Download Mozilla language properties tarball"""
@@ -239,7 +241,7 @@ class MozillaTarballAction(DownloadAction, MozillaAction):
         with tempdir() as podir:
             try:
                 get_phases(root, vc_root, podir, language, project)
-            except (EnvironmentError, shutil.Error), e:
+            except (EnvironmentError, shutil.Error) as e:
                 logger.debug_exception(e)
                 self.set_error(e)
                 return
@@ -256,7 +258,7 @@ class MozillaTarballAction(DownloadAction, MozillaAction):
             with tempdir() as tardir:
                 try:
                     merge_po2moz(vc_root, podir, tardir, language, project)
-                except EnvironmentError, e:
+                except EnvironmentError as e:
                     logger.debug_exception(e)
                     self.set_error(e)
                     return
