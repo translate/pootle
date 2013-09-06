@@ -28,17 +28,20 @@ Imports:
   <http://docs.translatehouse.org/projects/translate-toolkit/en/latest/development/styleguide.html#styleguide-imports>`_
   in Translate styleguide, but imports should be grouped in the following order:
 
-  1) Python standard library imports
-  2) Third party imports (Including Translate Toolkit ones)
-  3) Django imports
-  4) Django external apps imports
-  5) Pootle apps imports
+  1) Imports from __future__ library
+  2) Python standard library imports
+  3) Third party libraries imports (Including Translate Toolkit ones)
+  4) Django imports
+  5) Django external apps imports
+  6) Other Pootle apps imports
+  7) Current module (or app) imports
 
   Check `Python import conventions
   <http://docs.translatehouse.org/projects/translate-toolkit/en/latest/development/styleguide.html#styleguide-imports>`_
   in Translate styleguide for other conventions that the imports must follow.
 
   .. code-block:: python
+    from __future__ import absolute_import
 
     import re
     import sys.path as sys_path
@@ -57,20 +60,119 @@ Imports:
     from profiles.views import edit_profile
     from tastypie.models import ApiKey
 
+    from pootle.core.decorators import permission_required
     from pootle_language.models import Language
     from pootle_translationproject.models import TranslationProject
+
+    from .forms import GoalForm
+    from .models import Tag
 
 Order in models:
   Model's inner classes and methods should keep the following order:
 
   - Database fields
-  - Custom manager attributes
+  - Non database fields
+  - Default ``objects`` manager
+  - Custom manager attributes (i.e. other managers)
   - ``class Meta``
+  - ``def natural_key()`` (Because it is tightly related to model fields)
+  - Properties
+  - All ``@cached_property`` properties
+  - Any method decorated with ``@classmethod``
   - ``def __unicode__()``
   - ``def __str__()``
+  - Any other method starting with ``__`` (for example ``__init__()``)
   - ``def save()``
+  - ``def delete()``
   - ``def get_absolute_url()``
+  - ``def get_translate_url()``
   - Any custom methods
+
+Properties in models:
+  When writing properties:
+
+  - Try to avoid the use of ``lambda`` functions:
+
+    .. code-block:: python
+
+      # Good.
+      @property
+      def stores(self):
+          return self.child.stores
+
+      # Bad.
+      stores = property(lambda self: self.child.stores)
+
+  - Try to use ``@property`` instead of ``get_*`` or ``is_*`` functions that
+    don't require passing any parameter:
+
+    .. code-block:: python
+
+      # Good.
+      @property
+      def terminology(self):
+          ...
+
+      @property
+      def is_monolingual(self):
+          ...
+
+
+      # Also good.
+      def get_stores_for_language(self, language):
+          ...
+
+
+      # Bad.
+      def get_terminology(self):
+          ...
+
+      def is_monolingual(self):
+          ...
+
+
+  - Use ``@property`` instead of ``property(...)``:
+
+    .. code-block:: python
+
+      # Good.
+      @property
+      def units(self):
+          ...
+
+      # Bad.
+      def _get_units(self):
+          ...
+      units = property(_get_units)
+
+  - For properties with getter and setter or deleter try to use ``@property``
+    instead of ``property(...)`` as well:
+
+    .. code-block:: python
+
+      # Good.
+      @property
+      def x(self):
+          """I'm the 'x' property."""
+          return self._x
+
+      @x.setter
+      def x(self, value):  # Note: Method must be named 'x' too.
+          self._x = value
+
+      @x.deleter
+      def x(self):  # Note: Method must be named 'x' too.
+          del self._x
+
+
+      # Bad.
+      def getx(self):
+          return self._x
+      def setx(self, value):
+          self._x = value
+      def delx(self):
+          del self._x
+      x = property(getx, setx, delx, "I'm the 'x' property.")
 
 URL patterns:
   When writing the URL patterns:
@@ -99,7 +201,7 @@ URL patterns:
         URL patterns in the app.
       - ``{view}`` is a unique string which might consist on several words,
         separated with hyphens, that might not match the name of the view that
-        the URL pattern handles.
+        is handled by the URL pattern.
 
   .. code-block:: python
 
@@ -303,8 +405,8 @@ Template naming
     underscores (never hyphens), e.g. *my_precious_template.html*
 
   - If a template is being used in AJAX views, even if it is also used for
-    including it on other templates, the first word on its name must be `xhr`,
-    e.g. *xhr_tag_form.html*.
+    including it on other templates, its name must start with ``xhr_``, e.g.
+    *xhr_tag_form.html*.
 
   - If a template is intended to be included by other templates, and it is not
     going to be used directly, start its name with an underscore, e.g.
