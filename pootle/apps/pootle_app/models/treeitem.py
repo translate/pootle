@@ -23,7 +23,6 @@
 from pootle_misc.util import getfromcache
 from pootle_statistics.models import Submission
 
-
 class TreeItem():
     children = None
     initialized = False
@@ -65,31 +64,31 @@ class TreeItem():
     def get_total_wordcount(self):
         """calculate total wordcount statistics"""
         self.initialize_children()
-        return self._get_total_wordcount() + self._sum('_get_total_wordcount')
+        return self._get_total_wordcount() + self._sum('get_total_wordcount')
 
     @getfromcache
     def get_translated_wordcount(self):
         """calculate translated units statistics"""
         self.initialize_children()
-        return self._get_translated_wordcount() + self._sum('_get_translated_wordcount')
+        return self._get_translated_wordcount() + self._sum('get_translated_wordcount')
 
     @getfromcache
     def get_fuzzy_wordcount(self):
         """calculate untranslated units statistics"""
         self.initialize_children()
-        return self._get_fuzzy_wordcount() + self._sum('_get_fuzzy_wordcount')
+        return self._get_fuzzy_wordcount() + self._sum('get_fuzzy_wordcount')
 
     @getfromcache
     def get_untranslated_wordcount(self):
         """calculate untranslated units statistics"""
         self.initialize_children()
-        return self._get_untranslated_wordcount() +  self._sum('_get_untranslated_wordcount')
+        return self._get_untranslated_wordcount() +  self._sum('get_untranslated_wordcount')
 
     @getfromcache
     def get_suggestion_count(self):
         """check if any child store has suggestions"""
         self.initialize_children()
-        return self._get_suggestion_count() +  self._sum('_get_suggestion_count')
+        return self._get_suggestion_count() +  self._sum('get_suggestion_count')
 
     @getfromcache
     def get_last_action(self):
@@ -110,7 +109,7 @@ class TreeItem():
 
     def _sum(self, name):
         return sum([
-            getattr(item, name)() or 0 for item in self.children
+            getattr(item, name)() for item in self.children
         ])
 
     def get_stats(self, include_children=True):
