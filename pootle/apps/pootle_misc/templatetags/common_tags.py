@@ -19,6 +19,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django import template
+from django.template.defaultfilters import stringfilter
 
 register = template.Library()
 
@@ -30,3 +31,13 @@ def display_table(context, table):
         'user': context.get('user', None),
         'request': context.get('request', None),
     }
+
+@register.filter
+@stringfilter
+def makeid(value):
+    """
+    Replaces all '.' with '-'.
+    """
+    value = value.replace(u'.', u'-')
+
+    return value
