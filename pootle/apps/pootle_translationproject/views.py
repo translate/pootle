@@ -210,6 +210,7 @@ def overview(request, translation_project, dir_path, filename=None):
     # Build URL for getting more summary information for the current path
     url_args = [language.code, project.code, resource_obj.path]
     url_path_summary_more = reverse('pootle-tp-summary', args=url_args)
+    url_path_stats = reverse('pootle-tp-overview-stats', args=url_args)
 
     ctx = {
         'translation_project': translation_project,
@@ -219,6 +220,7 @@ def overview(request, translation_project, dir_path, filename=None):
         'resource_path': request.resource_path,
         'can_edit': can_edit,
         'url_path_summary_more': url_path_summary_more,
+        'url_path_stats': url_path_stats
     }
 
     if store is None:

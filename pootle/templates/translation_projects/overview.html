@@ -50,6 +50,8 @@
 <script type="text/javascript">
 $(function() {
   PTL.search.init();
+  PTL.stats.init({ url: "{{ url_path_stats }}" });
+  PTL.stats.load();
 });
 </script>
 {% if user.is_superuser or request.permissions.administrate %}
