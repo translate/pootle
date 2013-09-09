@@ -186,11 +186,16 @@
 
         {% block breadcrumbs_block %}
         <ul class="breadcrumb js-breadcrumb">
-        {% block breadcrumbs %}{% endblock %}
+          {% block breadcrumbs %}{% endblock %}
         </ul>
         {% endblock %}
       </div>
       {% endblock %}
+
+      <div class="header">
+        {% block header_content %}
+        {% endblock %}
+      </div>
 
       {% block header_tabs_block %}
       <div id="header-tabs" class="header">
