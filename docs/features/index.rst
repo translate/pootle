@@ -39,6 +39,7 @@ Online translation editor
    suggestions
    terminology
    actions
+   tags
 
 
 .. _features#admin:
