@@ -23,13 +23,10 @@ from django.db import models
 from django.core.urlresolvers import reverse
 
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
-from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 from pootle_misc.util import cached_property, dictsum, getfromcache
-from pootle_store.models import Suggestion, Unit
 from pootle_store.util import (empty_quickstats, empty_completestats,
-                               statssum, completestatssum, suggestions_sum,
-                               sum_by_attr_name)
+                               statssum, completestatssum, suggestions_sum)
 from pootle_app.models.treeitem import TreeItem
 
 class DirectoryManager(models.Manager):
