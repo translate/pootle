@@ -3,7 +3,7 @@
 {% load common_tags %}
 {% load url from future %}
 
-<table class="sortable stats js-not-loaded" id="{{ table.id }}" cellpadding="5"
+<table class="sortable stats" id="{{ table.id }}" cellpadding="5"
 cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
   <thead>
     <tr>
@@ -41,7 +41,9 @@ cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
       {% if 'progress' in table.fields %}
       <td class="stats-graph">
         <div id="translated-percentage-{{ item.code|makeid }}" class="sortkey"></div>
-        <div id="progressbar-{{ item.code|makeid }}"></div>
+        <div id="progressbar-{{ item.code|makeid }}">
+          {% include "core/progressbar.html" %}
+        </div>
       </td>
       {% endif %}
 

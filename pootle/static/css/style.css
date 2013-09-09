@@ -2643,9 +2643,9 @@ table.stats span.muted
     display: none;
 }
 
-table.js-not-loaded span.zero,
-table.js-not-loaded span.non-zero,
-table.js-not-loaded th.when-loaded
+body.js-not-loaded span.zero,
+body.js-not-loaded span.non-zero,
+body.js-not-loaded th.when-loaded
 {
     /* Hide placeholders and certain headers by default */
     display: none;

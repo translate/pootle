@@ -41,7 +41,7 @@ HEADING_CHOICES = [
     },
     {
         'id': 'progress',
-        'class': 'stats when-loaded',
+        'class': 'stats',
         # Translators: noun. The graphical representation of translation status
         'display_name': _("Progress"),
     },

@@ -4,6 +4,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block body_id %}tpoverview{% endblock %}
+{% block body_class %}{{ block.super }} js-not-loaded{% endblock %}
 
 {% block breadcrumbs %}
   {{ block.super }}
@@ -28,7 +29,9 @@
 <div class="hd">
   <h2 class="with-progressbar">
     (<a id="js-path-summary" data-target="js-path-summary-more" href="{{ url_path_summary_more }}">{% trans "Expand details" %}</a>)
-    <div id="progressbar"></div>
+    <div id="progressbar">
+      {% include "core/progressbar.html" %}
+    </div>
   </h2>
 </div>
 
