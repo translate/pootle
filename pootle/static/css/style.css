@@ -1936,11 +1936,12 @@ table.graph .fuzzy
     background-color: #9c9;
 }
 
-h2.with-progressbar {
-    border-bottom: none;
+#progressbar
+{
+    padding-bottom: 1.5em;
 }
 
-h2.with-progressbar table.graph
+#progressbar table.graph
 {
     width: 100%;
 }
