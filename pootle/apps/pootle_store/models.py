@@ -61,7 +61,7 @@ from .fields import (TranslationStoreField, MultiStringField,
 from .filetypes import factory_classes
 from .util import (calc_total_wordcount, calc_translated_wordcount,
                    calc_untranslated_wordcount, calc_fuzzy_wordcount,
-                   empty_quickstats, OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED)
+                   empty_quickstats, calculate_stats, OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED)
 from .signals import translation_submitted
 
 
