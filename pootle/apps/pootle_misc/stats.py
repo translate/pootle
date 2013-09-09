@@ -34,10 +34,10 @@ def get_raw_stats(path_obj, include_suggestions=False):
 
     Example::
 
-        {'translated': {'units': 0, 'percentage': 0, 'words': 0},
-         'fuzzy': {'units': 0, 'percentage': 0, 'words': 0},
-         'untranslated': {'units': 34, 'percentage': 100, 'words': 181},
-         'total': {'units': 34, 'percentage': 100, 'words': 181}
+        {'translated': {'percentage': 0, 'words': 0},
+         'fuzzy': {'percentage': 0, 'words': 0},
+         'untranslated': {'percentage': 100, 'words': 181},
+         'total': {'percentage': 100, 'words': 181}
          'suggestions': 4 }
     """
     quick_stats = add_percentages(path_obj.getquickstats())
