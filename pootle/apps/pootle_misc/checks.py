@@ -90,7 +90,7 @@ def get_quality_check_failures(path_obj, path_stats, include_url=True):
 
     try:
         property_stats = path_obj.getcompletestats()
-        total = path_stats['total']['units']
+        not_empty = path_stats['total']['words'] > 0
         keys = property_stats.keys()
         keys.sort(reverse=True)
 
@@ -114,7 +114,7 @@ def get_quality_check_failures(path_obj, path_stats, include_url=True):
                 checkcount = property_stats[category][checkname]
                 cat_total += checkcount
 
-                if total and checkcount:
+                if not_empty and checkcount:
                     check_display = unicode(check_names.get(checkname,
                                                             checkname))
                     check = {

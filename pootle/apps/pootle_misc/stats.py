@@ -46,22 +46,18 @@ def get_raw_stats(path_obj, include_suggestions=False):
         'total': {
             'words': quick_stats['totalsourcewords'],
             'percentage': 100,
-            'units': quick_stats['total'],
             },
         'translated': {
             'words': quick_stats['translatedsourcewords'],
             'percentage': quick_stats['translatedpercentage'],
-            'units': quick_stats['translated'],
             },
         'fuzzy': {
             'words': quick_stats['fuzzysourcewords'],
             'percentage': quick_stats['fuzzypercentage'],
-            'units': quick_stats['fuzzy'],
             },
         'untranslated': {
             'words': quick_stats['untranslatedsourcewords'],
             'percentage': quick_stats['untranslatedpercentage'],
-            'units': quick_stats['untranslated'],
             },
         'errors': quick_stats['errors'],
         'suggestions': -1,
@@ -89,29 +85,25 @@ def get_translation_stats(path_obj, path_stats):
             'title': title,
             'words': ungettext('<a href="%(url)s">%(num)d word</a>',
                                '<a href="%(url)s">%(num)d words</a>',
-                               path_stats['untranslated']['words'],
+                               path_stats[state]['words'],
                                {'url': path_obj.get_translate_url(
                                    state=filter_name,
                                 ),
-                                'num': path_stats[state]['words']}),
+                               'num': path_stats[state]['words']}),
             'percentage': _("%(num)d%%",
                             {'num': path_stats[state]['percentage']}),
-            'units': ungettext("(%(num)d string)",
-                               "(%(num)d strings)",
-                               path_stats[state]['units'],
-                               {'num': path_stats[state]['units']})
         }
 
-    if path_stats['total']['units'] > 0:
+    if path_stats['total']['words'] > 0:
         stats.append(make_stats_dict(_("Total"), 'total', filter_url=False))
 
-    if path_stats['translated']['units'] > 0:
+    if path_stats['translated']['words'] > 0:
         stats.append(make_stats_dict(_("Translated"), 'translated'))
 
-    if path_stats['fuzzy']['units'] > 0:
+    if path_stats['fuzzy']['words'] > 0:
         stats.append(make_stats_dict(_("Needs work"), 'fuzzy'))
 
-    if path_stats['untranslated']['units'] > 0:
+    if path_stats['untranslated']['words'] > 0:
         stats.append(make_stats_dict(_("Untranslated"), 'untranslated'))
 
     return stats
