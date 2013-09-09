@@ -1640,11 +1640,6 @@ td.stats-number
     padding-right: 26px !important; /* magic number to put padding between right and left aligned column, and to right-align heading with number */
 }
 
-.path-summary-more td.stats-number
-{
-    padding-right: 3em !important;
-}
-
 td.stats-percentage
 {
     display: none;
@@ -1756,24 +1751,6 @@ div.small
 .tiny
 {
     font-size: 0.9em;
-}
-
-.path-summary-more
-{
-    margin: 1em;
-    padding: 1em 2em;
-    display: none;
-    border: 1px solid #d9d9d9;    
-    background: #f4f4f4;
-
-    -webkit-border-radius: 5px;
-       -moz-border-radius: 5px;
-            border-radius: 5px;
-}
-
-.path-summary-more table
-{
-    width: 40em;
 }
 
 #translate-actions
@@ -1910,16 +1887,6 @@ table.graph .translated
 table.graph .fuzzy
 {
     background-color: #9c9;
-}
-
-#progressbar
-{
-    padding-bottom: 1.5em;
-}
-
-#progressbar table.graph
-{
-    width: 100%;
 }
 
 /* PROGRESSBAR LEGEND */
@@ -2200,6 +2167,47 @@ html[dir="rtl"] .overview-description-toggle
 {
     min-height: 50px;
     line-height: 2.7;
+}
+
+/*
+ * HEADER STATS
+ */
+
+#progressbar
+{
+    padding-bottom: 0.5em;
+}
+
+#progressbar table.graph
+{
+    width: 100%;
+}
+
+#top-stats {
+    padding-bottom: 1.5em;
+}
+
+.path-summary-more
+{
+    font-size: 80%;
+    padding: 0 2em;
+    display: none;
+    border: 1px solid #d9d9d9;    
+    background: #f4f4f4;
+
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+}
+
+.path-summary-more table
+{
+    width: 40em;
+}
+
+.path-summary-more td.stats-number
+{
+    padding-right: 3em !important;
 }
 
 /* Breadcrumbs */
