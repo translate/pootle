@@ -23,7 +23,6 @@ from django.db import models
 
 from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
-from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 from pootle_misc.util import cached_property
 
