@@ -48,7 +48,7 @@ def create_essential_users():
     # users; thus we use the nobody user.
     criteria = {
         'username': u"nobody",
-        'first_name: 'u"any anonymous user",
+        'first_name': u"any anonymous user",
         'is_active': True,
     }
     nobody, created = User.objects.get_or_create(**criteria)
@@ -65,7 +65,7 @@ def create_essential_users():
     # groups to do better permissions handling.
     criteria = {
         'username': u"default",
-        'first_name: 'u"any authenticated user",
+        'first_name': u"any authenticated user",
         'is_active': True,
     }
     default, created = User.objects.get_or_create(**criteria)
