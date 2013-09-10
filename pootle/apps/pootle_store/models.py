@@ -1593,7 +1593,7 @@ class Store(models.Model, base.TranslationStore, TreeItem):
             return None
 
         return {
-            'mtime': sub.unit.mtime.isoformat(),
+            'mtime': int(time.mktime(sub.unit.mtime.timetuple())),
             'snippet': sub.get_submission_message()
         }
 
