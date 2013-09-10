@@ -55,6 +55,10 @@ class TreeItem():
         """This method will be overridden in descendants"""
         return 0
 
+    def _get_last_action(self):
+        """This method will be overridden in descendants"""
+        return None
+
     def initialize_children(self):
         if not self.initialized:
             self.children = self.get_children()
@@ -82,22 +86,23 @@ class TreeItem():
     def get_untranslated_wordcount(self):
         """calculate untranslated units statistics"""
         self.initialize_children()
-        return self._get_untranslated_wordcount() +  self._sum('get_untranslated_wordcount')
+        return self._get_untranslated_wordcount() + self._sum('get_untranslated_wordcount')
 
     @getfromcache
     def get_suggestion_count(self):
         """check if any child store has suggestions"""
         self.initialize_children()
-        return self._get_suggestion_count() +  self._sum('get_suggestion_count')
+        return self._get_suggestion_count() + self._sum('get_suggestion_count')
 
     @getfromcache
     def get_last_action(self):
         """get last action HTML snippet"""
         self.initialize_children()
-        try:
-            return '<!-- nothing yet -->' # Submission.get_latest_for_dir(resource_obj) # TODO refactor
-        except Submission.DoesNotExist:
-            return ''
+
+        return max(
+            [ item.get_last_action() for item in self.children ],
+            key=lambda x: x.mtime if hasattr(x, 'mtime') else 0
+        )
 
     @getfromcache
     def get_mtime(self):

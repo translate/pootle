@@ -1,4 +1,4 @@
-{% load i18n baseurl progressbar %}
+{% load i18n baseurl %}
 {% if 'name' in table.fields %}
 <td class="stats-name"{% if item.description %} title="{{ item.description|striptags }}"{% endif %}>
   {% if item.href %}<a href="{{ item.href|l }}">{% endif %}

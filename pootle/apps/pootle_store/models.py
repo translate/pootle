@@ -48,7 +48,8 @@ from pootle_misc.baseurl import l
 from pootle_misc.checks import check_names
 from pootle_misc.util import (cached_property, getfromcache, deletefromcache,
                               datetime_min)
-from pootle_statistics.models import SubmissionFields, SubmissionTypes
+from pootle_statistics.models import (Submission, SubmissionFields,
+                                      SubmissionTypes)
 from pootle_store.fields import (TranslationStoreField, MultiStringField,
                                  PLURAL_PLACEHOLDER, SEPARATOR)
 from pootle_store.filetypes import factory_classes, is_monolingual
@@ -1142,10 +1143,6 @@ class Store(models.Model, base.TranslationStore, TreeItem):
             get_editor_filter(**kwargs),
         ])
 
-    @getfromcache
-    def get_mtime(self):
-        return max_column(self.unit_set.all(), 'mtime', datetime_min)
-
     def require_units(self):
         """Make sure file is parsed and units are created."""
         if self.state < PARSED and self.unit_set.count() == 0:
@@ -1668,6 +1665,22 @@ class Store(models.Model, base.TranslationStore, TreeItem):
     def _get_fuzzy_wordcount(self):
         """calculate untranslated units statistics"""
         return calc_fuzzy_wordcount(self.units)
+
+    @getfromcache
+    def get_mtime(self):
+        return max_column(self.unit_set.all(), 'mtime', datetime_min)
+
+    @getfromcache
+    def get_last_action(self):
+        try:
+            sub = Submission.objects.filter(unit__store=self).latest()
+        except Submission.DoesNotExist:
+            return None
+
+        return {
+            'mtime': sub.unit.mtime.isoformat(),
+            'snippet': sub.get_submission_message()
+        }
 
     @getfromcache
     def getquickstats(self, children=None, name=''):
