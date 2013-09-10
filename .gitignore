@@ -66,3 +66,7 @@ Pootle.egg-info/
 
 # local log direcotry
 log/
+
+# Eclipse PyDev projects
+.project
+.pydevproject
