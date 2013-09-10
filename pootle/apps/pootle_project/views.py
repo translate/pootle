@@ -197,8 +197,15 @@ def ajax_remove_tag_from_tp_in_project(request, translation_project, tag_name):
         translation_project.goals.remove(tag_name)
     else:
         translation_project.tags.remove(tag_name)
-
-    return HttpResponse(status=201)
+    context = {
+        'tp_tags': translation_project.tags.all().order_by('name'),
+        'project': translation_project.project.code,
+        'language': translation_project.language.code,
+    }
+    response = render_to_response('project/xhr_tags_list.html',
+                                  context, RequestContext(request))
+    response.status_code = 201
+    return response
 
 
 def _add_tag(request, translation_project, tag_like_object):

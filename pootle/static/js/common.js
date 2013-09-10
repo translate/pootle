@@ -175,8 +175,17 @@
 
         $.post($(this).attr('href'), function (data, textStatus, jqXHR) {
           if (jqXHR.status === 201) {
-            // Tag was removed, delete the DOM element.
-            $parent.remove();
+            // Tag was removed.
+
+            if ($("#js-tags-tp").length) {
+              // Project overview, replace the old tags list with the new one.
+              var id = $parent.parents("td").attr("id");
+              $("#" + id + " .tag-list").html(data);
+              $("#" + id + "-hidden .tag-list").html(data);
+            } else {
+              // Translation project overview, just delete the DOM element.
+              $parent.remove();
+            }
           };
         }, "html");
       });
@@ -217,7 +226,7 @@
               // Project overview.
               var tp = $("#js-tags-tp option:selected").val();
               $('#js-tag-tp-' + tp + ' ul').html(data);
-              $('#js-tag-tp-hidden-' + tp + ' ul').html(data);
+              $('#js-tag-tp-' + tp + '-hidden ul').html(data);
             } else {
               // Translation project overview.
               $('.tag-list').html(data);
