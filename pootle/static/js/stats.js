@@ -78,6 +78,12 @@
 
             $td = $table.find('#progressbar-' + code);
             update_progressbar($td, item);
+
+            if (item.lastaction) {
+              $td = $table.find('#last-activity-' + code);
+              $td.html(item.lastaction.snippet);
+              $td.find('.last-action .action-text').show();
+            }
           }
 
           $('body').removeClass('js-not-loaded');

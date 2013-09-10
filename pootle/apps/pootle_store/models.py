@@ -1013,10 +1013,6 @@ class Store(models.Model, base.TranslationStore, TreeItem):
         deletefromcache(self, ["getquickstats", "getcompletestats",
                                "get_mtime", "get_suggestion_count"])
 
-    @getfromcache
-    def get_mtime(self):
-        return max_column(self.unit_set.all(), 'mtime', datetime_min)
-
     @classmethod
     def _get_mtime_from_header(cls, store):
         mtime = None
@@ -1584,6 +1580,22 @@ class Store(models.Model, base.TranslationStore, TreeItem):
     def _get_fuzzy_wordcount(self):
         """calculate untranslated units statistics"""
         return calc_fuzzy_wordcount(self.units)
+
+    @getfromcache
+    def get_mtime(self):
+        return max_column(self.unit_set.all(), 'mtime', datetime_min)
+
+    @getfromcache
+    def get_last_action(self):
+        try:
+            sub = Submission.objects.filter(unit__store=self).latest()
+        except Submission.DoesNotExist:
+            return None
+
+        return {
+            'mtime': sub.unit.mtime.isoformat(),
+            'snippet': sub.get_submission_message()
+        }
 
     @getfromcache
     def getquickstats(self, children=None, name=''):
