@@ -14,10 +14,10 @@
 {% endblock %}
 
 {% block header_content %}
-  <div id="progressbar">
-    {% include "core/progressbar.html" %}
-  </div>
-  <div><a id="js-path-summary" data-target="js-path-summary-more" href="{{ url_path_summary_more }}">{% trans "Expand details" %}</a></div>
+  <a id="js-path-summary" data-target="js-path-summary-more" href="{{ url_path_summary_more }}">
+    <div id="progressbar">{% include "core/progressbar.html" %}</div>
+    <div class="label js-label">{% trans "Expand details" %}</div>
+  </a>
   <div class="path-summary-more" id="js-path-summary-more" data-loaded="false" data-collapsed="true"></div>
 
 {% endblock %}

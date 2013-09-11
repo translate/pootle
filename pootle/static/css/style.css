@@ -70,7 +70,6 @@ a,
 a:link
 {
     text-decoration: none;
-    background-color: inherit;
     color: #0489b7;
     cursor: pointer;
 }
@@ -81,11 +80,6 @@ a:visited
 }
 
 a:hover
-{
-    text-decoration: underline;
-}
-
-a:active
 {
     text-decoration: underline;
 }
@@ -2192,20 +2186,27 @@ html[dir="rtl"] .overview-description-toggle
  * HEADER STATS
  */
 
+#top-stats
+{
+    padding-bottom: 1em;
+}
+
+#top-stats .label
+{
+    margin-top: -1.1em;
+    width: 8em;
+    padding-bottom: 0.5em;
+}
+
+
 #progressbar
 {
-    padding-bottom: 0.5em;
+    margin-left: 8em;
 }
 
 #progressbar table.graph
 {
     width: 100%;
-}
-
-
-
-#top-stats {
-    padding-bottom: 1.5em;
 }
 
 .path-summary-more
