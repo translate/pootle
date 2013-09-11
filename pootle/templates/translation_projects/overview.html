@@ -47,6 +47,7 @@
 {{ block.super }}
 <script type="text/javascript">
 $(function() {
+  $("body").spin();
   PTL.search.init();
   PTL.stats.init({
       pootlePath: "{{ resource_obj.pootle_path }}",
