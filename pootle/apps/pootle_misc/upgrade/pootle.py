@@ -89,7 +89,7 @@ def upgrade_to_21000():
         # saving should force project to update it's directory property
         try:
             project.save()
-        except Exception, e:
+        except Exception as e:
             logging.info(u'Something broke while upgrading %s:\n%s',
                          project, e)
 
@@ -99,7 +99,7 @@ def upgrade_to_21000():
         try:
             store.translation_project = store.parent.translation_project
             store.save()
-        except Exception, e:
+        except Exception as e:
             logging.info(u'Something broke while upgrading %s:\n%s',
                          store.pootle_path, e)
 
@@ -110,7 +110,7 @@ def upgrade_to_21000():
         try:
             parse_store(store)
             import_suggestions(store)
-        except Exception, e:
+        except Exception as e:
             logging.info(u'Something broke while parsing %s:\n%s',
                          store, e)
 

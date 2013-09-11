@@ -38,7 +38,7 @@ def does_not_exist(path):
     try:
         os.stat(path)
         # what the hell?
-    except OSError, e:
+    except OSError as e:
         if e.errno == errno.ENOENT:
             # explicit no such file or directory
             return True

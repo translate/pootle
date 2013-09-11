@@ -66,7 +66,7 @@ def get_next(request):
 
         if not next:
             next = request.path_info
-    except AttributeError, e:
+    except AttributeError as e:
         next = ''
 
     return u"?%s" % urlencode({REDIRECT_FIELD_NAME: next})

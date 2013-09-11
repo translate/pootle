@@ -1030,7 +1030,7 @@ class Store(models.Model, base.TranslationStore):
                         mtime = timezone.make_aware(mtime, tz)
                     else:
                         mtime -= datetime.timedelta(hours=2)
-            except Exception, e:
+            except Exception as e:
                 logging.debug("failed to parse mtime: %s", e)
         return mtime
 
@@ -1144,7 +1144,7 @@ class Store(models.Model, base.TranslationStore):
                     if unit.istranslatable():
                         try:
                             self.addunit(unit, index)
-                        except IntegrityError, e:
+                        except IntegrityError as e:
                             logging.warning(u'Data integrity error while '
                                             u'importing unit %s:\n%s',
                                             unit.getid(), e)
@@ -1572,9 +1572,9 @@ class Store(models.Model, base.TranslationStore):
             return calculate_stats(self.units)
         except IntegrityError:
             logging.info(u"Duplicate IDs in %s", self.abs_real_path)
-        except base.ParseError, e:
+        except base.ParseError as e:
             logging.info(u"Failed to parse %s\n%s", self.abs_real_path, e)
-        except (IOError, OSError), e:
+        except (IOError, OSError) as e:
             logging.info(u"Can't access %s\n%s", self.abs_real_path, e)
         stats = {}
         stats.update(empty_quickstats)
@@ -1590,7 +1590,7 @@ class Store(models.Model, base.TranslationStore):
                                                    unit__state__gt=UNTRANSLATED,
                                                    false_positive=False)
             return group_by_count_extra(queryset, 'name', 'category')
-        except e:
+        except Exception as e:
             logging.info(u"Error getting quality checks for %s\n%s",
                          self.name, e)
             return {}

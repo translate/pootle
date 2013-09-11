@@ -151,7 +151,7 @@ def staggered_update(db_buildversion):
     if db_buildversion < 21000:
         try:
             update_tables_21000()
-        except Exception, e:
+        except Exception as e:
             logging.warning(u"Something broke while upgrading database "
                             u"tables:\n%s", e)
             #TODO: should we continue?
@@ -161,7 +161,7 @@ def staggered_update(db_buildversion):
         logging.info("Creating missing database tables")
 
         call_command('syncdb', interactive=False)
-    except Exception, e:
+    except Exception as e:
         logging.warning(u"Something broke while creating new database tables:"
                         u"\n%s", e)
 

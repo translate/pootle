@@ -105,7 +105,7 @@ def make_generic_item(path_obj, action):
                                              errors, errors)
 
         info.update(stats_descriptions(stats))
-    except IOError, e:
+    except IOError as e:
         info = {
             'href': action,
             'title': path_obj.name,

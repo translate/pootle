@@ -212,7 +212,7 @@ def add_items(fs_items, db_items, create_db_item):
         new_items.append(item)
         try:
             item.save()
-        except Exception, e:
+        except Exception as e:
             logging.error('Error while adding %s:\n%s', item, e)
     return items, new_items
 

@@ -246,10 +246,10 @@ class TranslationProject(models.Model):
             except IntegrityError:
                 logging.info(u"Duplicate IDs in %s", store.abs_real_path)
                 errors += 1
-            except ParseError, e:
+            except ParseError as e:
                 logging.info(u"Failed to parse %s\n%s", store.abs_real_path, e)
                 errors += 1
-            except (IOError, OSError), e:
+            except (IOError, OSError) as e:
                 logging.info(u"Can't access %s\n%s", store.abs_real_path, e)
                 errors += 1
 
@@ -401,7 +401,7 @@ class TranslationProject(models.Model):
             from pootle.scripts import hooks
             hooks.hook(self.project.code, "initialize", self.real_path,
                     self.language.code)
-        except Exception, e:
+        except Exception as e:
             logging.error(u"Failed to initialize (%s): %s", self.language.code,
                     e)
 

@@ -131,7 +131,7 @@ class MathCaptchaForm(forms.Form):
             return {'q': data['q'],
                     'expires': float(data['expires']),
                     'sign': sign}
-        except Exception, e:
+        except Exception as e:
             logging.info("Captcha error: %r" % e)
             # l10n for bots? Rather not
             raise forms.ValidationError("Invalid captcha!")

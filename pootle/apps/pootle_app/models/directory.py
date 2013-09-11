@@ -105,7 +105,7 @@ class Directory(models.Model):
             pootle_path = '%s%s' % (self.pootle_path, path)
             try:
                 return Directory.objects.get(pootle_path=pootle_path)
-            except Directory.DoesNotExist, e:
+            except Directory.DoesNotExist as e:
                 try:
                     return Store.objects.get(pootle_path=pootle_path)
                 except Store.DoesNotExist:

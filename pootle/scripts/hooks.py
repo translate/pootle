@@ -37,8 +37,8 @@ def hook(project, hooktype, file, *args, **kwargs):
                          activehook.__file__, hooktype)
             raise ImportError("Imported %s, but it is not a suitable %s hook" %
                               (activehook.__file__, hooktype))
-    except ImportError, e:
+    except ImportError as e:
         raise ImportError(e)
-    except Exception, e:
+    except Exception as e:
         logger.error("Exception in project (%s) hook (%s) for file (%s): %s" %
                      (project, hooktype, file, e))

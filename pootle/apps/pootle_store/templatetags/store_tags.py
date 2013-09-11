@@ -103,7 +103,7 @@ try:
     from translate.misc.diff_match_patch import diff_match_patch
     differencer = diff_match_patch()
     highlight_diffs = _google_highlight_diffs
-except ImportError, e:
+except ImportError as e:
     from difflib import SequenceMatcher
     highlight_diffs = _difflib_highlight_diffs
 
