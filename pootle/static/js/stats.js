@@ -265,7 +265,7 @@
     toggleChecks: function (e) {
       e.preventDefault();
       var node = $("#" + $(this).data('target')),
-          $textNode = $(this),
+          $textNode = $(this).find(".js-label"),
           data = node.data();
 
       function hideShow() {
