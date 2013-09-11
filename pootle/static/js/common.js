@@ -67,6 +67,7 @@
         if (data.loaded) {
           hideShow();
         } else {
+          $('body').spin();
           var url = $(this).attr('href');
           $.ajax({
             url: url,
@@ -75,11 +76,8 @@
               node.data('loaded', true);
               hideShow();
             },
-            beforeSend: function () {
-              node.spin();
-            },
             complete: function () {
-              node.spin(false);
+              $('body').spin(false);
             },
           });
         }
