@@ -201,7 +201,8 @@ def overview(request, project):
     summary = ungettext("%(langs)d language", "%(langs)d languages", langs,
                         {"langs": langs})
 
-    fields = ["name", "progress", "total", "need-translation", "suggestions", "activity", "tags"]
+    table_fields = ["name", "progress", "total", "need-translation",
+                    "suggestions", "activity", "tags"]
 
     ctx = {
         'resource_obj': request.resource_obj,
@@ -215,8 +216,8 @@ def overview(request, project):
         'table': {
             'id': 'project',
             'proportional': False,
-            'fields': fields,
-            'headings': get_table_headings(fields),
+            'fields': table_fields,
+            'headings': get_table_headings(table_fields),
             'items': items,
         },
     }

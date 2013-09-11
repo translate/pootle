@@ -2222,7 +2222,6 @@ html[dir="rtl"] .overview-description-toggle
 {
     float: left;
     display: inline;
-    /*margin-right: 10px;*/
 }
 
 html[dir="rtl"] .breadcrumb li

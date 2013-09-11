@@ -135,7 +135,8 @@ class Submission(models.Model):
 
         # Sadly we may not have submitter information in all the situations yet
         if self.submitter:
-            displayname = ('%s %s' % (self.submitter.user.first_name, self.submitter.user.last_name)).strip()
+            displayname = ('%s %s' % (self.submitter.user.first_name,
+                                      self.submitter.user.last_name)).strip()
             if not displayname:
                 displayname = self.submitter.user.username
         else:

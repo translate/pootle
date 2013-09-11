@@ -100,6 +100,7 @@ def make_generic_item(path_obj):
         'code': path_obj.code
     }
 
+
 def make_directory_item(directory):
     item = make_generic_item(directory)
     item.update({

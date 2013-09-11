@@ -76,7 +76,8 @@ def overview(request, language):
     tp_count = len(user_tps)
     items = (make_project_item(tp) for tp in user_tps)
 
-    table_fields = ['name', 'progress', 'total', 'need-translation', 'suggestions', 'activity']
+    table_fields = ['name', 'progress', 'total', 'need-translation',
+                    'suggestions', 'activity']
     table = {
         'id': 'language',
         'proportional': False,
