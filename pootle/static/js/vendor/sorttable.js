@@ -218,8 +218,6 @@ sorttable = {
       tb.appendChild(row_array[j][1]);
     }
 
-    sorttable.makeZebra();
-
     delete row_array;
   },
   
@@ -425,18 +423,6 @@ sorttable = {
         b++;
 
     } // while(swap)
-  },
-
-  /* Customisation for zebra tags */
-  makeZebra: function() {
-      var cls = "even",
-          even = true;
-      $("table.sortable > tbody > tr").each(function () {
-        $(this).addClass(cls);
-        cls = even ? "odd" : "even";
-        $(this).removeClass(cls);
-        even = !even;
-      });
   },
 
   /*

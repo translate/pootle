@@ -809,7 +809,8 @@ html[dir="rtl"] td.username
 tr.even,
 td.even,
 li.even,
-tr.view-row:nth-child(odd)
+tr.view-row:nth-child(odd),
+tr.item:nth-child(odd)
 {
     background: #f8f8f8;
 }
@@ -1540,7 +1541,7 @@ div#settings
     background-color: #e08566 !important;
 }
 
-.delete-selected.even
+.delete-selected:nth-child(even)
 {
     background-color: #d67f62 !important;
 }
