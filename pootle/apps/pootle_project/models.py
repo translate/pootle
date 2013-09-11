@@ -35,7 +35,6 @@ from django.utils.translation import ugettext_lazy as _
 from translate.filters import checks
 from translate.lang.data import langcode_re
 
-from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle_app.lib.util import RelatedManager
 from pootle_app.models.permissions import PermissionSet
 from pootle_misc.aggregate import max_column
@@ -136,11 +135,6 @@ class Project(models.Model):
 
     fullname = models.CharField(max_length=255, null=False,
             verbose_name=_("Full Name"))
-
-    description_help_text = _('A description of this project. '
-            'This is useful to give more information or instructions. '
-            'Allowed markup: %s', get_markup_filter_name())
-    description = MarkupField(blank=True, help_text=description_help_text)
 
     checker_choices = [('standard', 'standard')]
     checkers = list(checks.projectcheckers.keys())

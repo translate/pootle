@@ -30,9 +30,7 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models, IntegrityError
 from django.db.models.signals import post_save
-from django.utils.translation import ugettext_lazy as _
 
-from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.lib.util import RelatedManager
 from pootle_app.models.directory import Directory
@@ -103,11 +101,6 @@ class TranslationProject(models.Model):
     class Meta:
         unique_together = ('language', 'project')
         db_table = 'pootle_app_translationproject'
-
-    description_help_text = _('A description of this translation project. '
-            'This is useful to give more information or instructions. '
-            'Allowed markup: %s', get_markup_filter_name())
-    description = MarkupField(blank=True, help_text=description_help_text)
 
     language = models.ForeignKey(Language, db_index=True)
     project = models.ForeignKey(Project, db_index=True)

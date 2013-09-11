@@ -23,16 +23,14 @@ import locale
 
 from django import forms
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse
 from django.shortcuts import render_to_response
-from django.template import loader, RequestContext
+from django.template import RequestContext
 from django.utils.translation import ugettext as _, ungettext
 
 from pootle.core.decorators import get_path_obj, permission_required
 from pootle.core.helpers import get_translation_context
 from pootle.core.url_helpers import split_pootle_path
 from pootle.i18n.gettext import tr_lang
-from pootle_app.models.permissions import check_permission
 from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions
 from pootle_app.views.index.index import getprojects
@@ -40,7 +38,6 @@ from pootle_language.models import Language
 from pootle_misc.browser import get_table_headings
 from pootle_misc.forms import LiberalModelChoiceField
 from pootle_misc.stats import get_raw_stats, stats_descriptions
-from pootle_misc.util import ajax_required, jsonify
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
 from pootle_translationproject.models import TranslationProject
@@ -91,8 +88,6 @@ def make_language_item(translation_project):
 @permission_required('view')
 def overview(request, project):
     """page listing all languages added to project"""
-    can_edit = check_permission('administrate', request)
-
     translation_projects = project.translationproject_set.all()
 
     items = [make_language_item(translation_project)
@@ -117,60 +112,17 @@ def overview(request, project):
         'project': {
           'code': project.code,
           'name': project.fullname,
-          'description': project.description,
           'summary': ungettext('%(languages)d language, %(translated)d%% translated',
                                '%(languages)d languages, %(translated)d%% translated',
                                languagecount, {"languages": languagecount,
                                                "translated": translated}),
         },
         'stats': project_stats,
-        'can_edit': can_edit,
         'table': table,
     }
 
-    if can_edit:
-        from pootle_project.forms import DescriptionForm
-        templatevars['form'] = DescriptionForm(instance=project)
-
     return render_to_response('projects/overview.html', templatevars,
                               context_instance=RequestContext(request))
-
-
-@ajax_required
-@get_path_obj
-@permission_required('administrate')
-def project_settings_edit(request, project):
-    from pootle_project.forms import DescriptionForm
-    form = DescriptionForm(request.POST, instance=project)
-
-    response = {}
-    rcode = 400
-
-    if form.is_valid():
-        form.save()
-        rcode = 200
-
-        if project.description:
-            the_html = project.description
-        else:
-            the_html = u"".join([
-                u'<p class="placeholder muted">',
-                _(u"No description yet."), u"</p>"
-            ])
-
-        response["description"] = the_html
-
-    action_url = reverse('pootle-project-admin-settings', args=[project.code])
-    context = {
-        "form": form,
-        "form_action": action_url,
-    }
-    t = loader.get_template('admin/_settings_form.html')
-    c = RequestContext(request, context)
-    response['form'] = t.render(c)
-
-    return HttpResponse(jsonify(response), status=rcode,
-                        mimetype="application/json")
 
 
 @get_path_obj
@@ -279,8 +231,7 @@ def project_admin(request, current_project):
                      TranslationProject, model_args, generate_link,
                      linkfield="language", queryset=queryset,
                      can_delete=True, form=TranslationProjectForm,
-                     formset=TranslationProjectFormSet,
-                     exclude=('description',))
+                     formset=TranslationProjectFormSet)
 
 
 @get_path_obj

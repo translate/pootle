@@ -19,20 +19,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.core.urlresolvers import reverse
-from django.http import HttpResponse
 from django.shortcuts import render_to_response
-from django.template import loader, RequestContext
+from django.template import RequestContext
 from django.utils.translation import ugettext as _, ungettext
 
 from pootle.core.decorators import get_path_obj, permission_required
 from pootle.core.helpers import get_translation_context
 from pootle.i18n.gettext import tr_lang
-from pootle_app.models.permissions import check_permission
 from pootle_app.views.admin.permissions import admin_permissions
 from pootle_misc.browser import get_table_headings
 from pootle_misc.stats import (get_raw_stats, stats_descriptions)
-from pootle_misc.util import nice_percentage, jsonify, ajax_required
+from pootle_misc.util import nice_percentage
 from pootle_statistics.models import Submission
 
 
@@ -62,7 +59,6 @@ def make_project_item(translation_project):
         'href_sugg': href_sugg,
         'icon': 'project',
         'title': project.fullname,
-        'description': project.description,
         'stats': project_stats,
         'lastactivity': get_last_action(translation_project),
         'tooltip': _('%(percentage)d%% complete',
@@ -84,8 +80,6 @@ def make_project_item(translation_project):
 @get_path_obj
 @permission_required('view')
 def overview(request, language):
-    can_edit = check_permission('administrate', request)
-
     projects = language.translationproject_set.order_by('project__fullname')
     projectcount = len(projects)
     items = (make_project_item(translate_project) for translate_project in projects.iterator())
@@ -108,7 +102,6 @@ def overview(request, language):
         'language': {
           'code': language.code,
           'name': tr_lang(language.fullname),
-          'description': language.description,
           'summary': ungettext('%(projects)d project, %(translated)d%% translated',
                                '%(projects)d projects, %(translated)d%% translated',
                                projectcount, {
@@ -126,53 +119,11 @@ def overview(request, language):
                 'percentage': 100 - translated - fuzzy,
             },
         },
-        'can_edit': can_edit,
         'table': table,
     }
 
-    if can_edit:
-        from pootle_language.forms import DescriptionForm
-        templatevars['form'] = DescriptionForm(instance=language)
-
     return render_to_response("languages/overview.html", templatevars,
                               context_instance=RequestContext(request))
-
-
-@ajax_required
-@get_path_obj
-@permission_required('administrate')
-def language_settings_edit(request, language):
-    from pootle_language.forms import DescriptionForm
-    form = DescriptionForm(request.POST, instance=language)
-
-    response = {}
-    rcode = 400
-
-    if form.is_valid():
-        form.save()
-        rcode = 200
-
-        if language.description:
-            the_html = language.description
-        else:
-            the_html = u"".join([
-                u'<p class="placeholder muted">',
-                _(u"No description yet."), u"</p>"
-            ])
-
-        response["description"] = the_html
-
-    action_url = reverse('pootle-language-admin-settings', args=[language.code])
-    context = {
-        "form": form,
-        "form_action": action_url,
-    }
-    t = loader.get_template('admin/_settings_form.html')
-    c = RequestContext(request, context)
-    response['form'] = t.render(c)
-
-    return HttpResponse(jsonify(response), status=rcode,
-                        mimetype="application/json")
 
 
 @get_path_obj

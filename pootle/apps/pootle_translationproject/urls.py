@@ -29,10 +29,6 @@ urlpatterns = patterns('pootle_translationproject.views',
         r'/admin/permissions/',
         'admin_permissions',
         name='pootle-tp-admin-permissions'),
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)'
-        r'/admin/settings/$',
-        'edit_settings',
-        name='pootle-tp-admin-settings'),
 
     # XHR views
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/summary/'

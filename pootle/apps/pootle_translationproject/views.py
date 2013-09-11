@@ -22,23 +22,20 @@
 from itertools import groupby
 
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response
-from django.template import loader, RequestContext
-from django.utils.translation import ugettext as _, ungettext
+from django.template import RequestContext
+from django.utils.translation import ungettext
 
 from pootle.core.decorators import (get_path_obj, get_resource_context,
                                     permission_required)
 from pootle.core.helpers import get_filter_name, get_translation_context
-from pootle.core.url_helpers import split_pootle_path
-from pootle_app.models.permissions import check_permission
 from pootle_app.models import Directory
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
 from pootle_misc.browser import get_children, get_table_headings
 from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.stats import (get_raw_stats, get_translation_stats,
                                get_translate_actions)
-from pootle_misc.util import jsonify, ajax_required
+from pootle_misc.util import ajax_required
 from pootle_store.models import Store
 from pootle_store.views import get_step_query
 
@@ -65,8 +62,6 @@ def admin_permissions(request, translation_project):
 @permission_required('view')
 @get_resource_context
 def overview(request, translation_project, dir_path, filename=None):
-    can_edit = check_permission('administrate', request)
-
     project = translation_project.project
     language = translation_project.language
 
@@ -101,7 +96,6 @@ def overview(request, translation_project, dir_path, filename=None):
         'resource_path': request.resource_path,
         'translate_actions': translate_actions,
         'stats': path_stats,
-        'can_edit': can_edit,
         'url_path_summary_more': url_path_summary_more,
         'summary': summary_text,
     }
@@ -118,10 +112,6 @@ def overview(request, translation_project, dir_path, filename=None):
                 'items': get_children(translation_project, directory),
             }
         })
-
-    if can_edit:
-        from pootle_translationproject.forms import DescriptionForm
-        ctx['form'] = DescriptionForm(instance=translation_project)
 
     return render_to_response("translation_projects/overview.html", ctx,
                               context_instance=RequestContext(request))
@@ -213,42 +203,3 @@ def path_summary_more(request, translation_project, dir_path, filename=None):
 
     return render_to_response('translation_projects/xhr_path_summary.html',
                               context, RequestContext(request))
-
-
-@ajax_required
-@get_path_obj
-@permission_required('administrate')
-def edit_settings(request, translation_project):
-    from pootle_translationproject.forms import DescriptionForm
-    form = DescriptionForm(request.POST, instance=translation_project)
-
-    response = {}
-    rcode = 400
-
-    if form.is_valid():
-        form.save()
-        rcode = 200
-
-        if translation_project.description:
-            the_html = translation_project.description
-        else:
-            the_html = u"".join([
-                u'<p class="placeholder muted">',
-                _(u"No description yet."),
-                u"</p>"
-            ])
-
-        response["description"] = the_html
-
-    path_args = split_pootle_path(translation_project.pootle_path)[:2]
-    action_url = reverse('pootle-tp-admin-settings', args=path_args)
-    context = {
-        "form": form,
-        "form_action": action_url,
-    }
-    t = loader.get_template('admin/_settings_form.html')
-    c = RequestContext(request, context)
-    response['form'] = t.render(c)
-
-    return HttpResponse(jsonify(response), status=rcode,
-                        mimetype="application/json")

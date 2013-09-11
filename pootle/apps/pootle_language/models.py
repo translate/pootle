@@ -25,7 +25,6 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.i18n.gettext import tr_lang, language_dir
 from pootle_app.lib.util import RelatedManager
 from pootle_misc.aggregate import max_column
@@ -87,11 +86,6 @@ class Language(models.Model):
             db_index=True, verbose_name=_("Code"), help_text=code_help_text)
     fullname = models.CharField(max_length=255, null=False,
             verbose_name=_("Full Name"))
-
-    description_help_text = _('A description of this language. '
-            'This is useful to give more information or instructions. '
-            'Allowed markup: %s', get_markup_filter_name())
-    description = MarkupField(blank=True, help_text=description_help_text)
 
     specialchars_help_text = _('Enter any special characters that users '
             'might find difficult to type')

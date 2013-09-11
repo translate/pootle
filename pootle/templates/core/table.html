@@ -19,7 +19,7 @@ cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
     <tr class="item {% cycle 'even' 'odd' %}{% if 'total' in table.fields %}{% if item.total_words == 0 %} empty{% endif %}{% endif %}">
 
       {% if 'name' in table.fields %}
-      <td class="stats-name"{% if item.description %} title="{{ item.description|striptags }}"{% endif %}>
+      <td class="stats-name">
         <a href="{{ item.href }}">{% if item.icon %}<i class="icon-{{ item.icon }}"></i> {% endif %}<span>{{ item.title }}</span></a>
         {% if item.stats.errors %}
         <i class="icon-error"></i>
@@ -35,8 +35,7 @@ cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
 
       {% if 'project' in table.fields %}
       <td class="project">
-        <a href="{% url 'pootle-project-overview' item.code %}"
-          title="{{ item.description }}">{% if item.icon %}<i class="icon-{{ item.icon }}"></i> {% endif %}<span>{{ item.name }}</span></a>
+        <a href="{% url 'pootle-project-overview' item.code %}">{% if item.icon %}<i class="icon-{{ item.icon }}"></i> {% endif %}<span>{{ item.name }}</span></a>
       </td>
       {% endif %}
 
