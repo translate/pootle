@@ -83,7 +83,7 @@ CACHES = {
 
 # Logging
 
-LOGDIRECTORY = working_path('log/')
+POOTLE_LOG_DIRECTORY = working_path('log/')
 
 LOGGING = {
     'version': 1,
@@ -112,7 +112,7 @@ LOGGING = {
         # Log to a text file that can be rotated by logrotate
         'log_action': {
             'class': 'logging.handlers.WatchedFileHandler',
-            'filename': LOGDIRECTORY + '/pootle-activity.log',
+            'filename': POOTLE_LOG_DIRECTORY + '/pootle-activity.log',
             'formatter':'action',
         },
     },
