@@ -735,7 +735,6 @@ def suggest(request, unit):
 @get_unit_context('review')
 def reject_suggestion(request, unit, suggid):
     json = {}
-    translation_project = request.translation_project
 
     json["udbid"] = unit.id
     json["sugid"] = suggid
@@ -759,7 +758,6 @@ def accept_suggestion(request, unit, suggid):
         'udbid': unit.id,
         'sugid': suggid,
     }
-    translation_project = request.translation_project
 
     if request.POST.get('accept'):
         try:
@@ -767,7 +765,8 @@ def accept_suggestion(request, unit, suggid):
         except ObjectDoesNotExist:
             raise Http404
 
-        unit.accept_suggestion(suggestion, translation_project, request.profile)
+        unit.accept_suggestion(suggestion, request.translation_project,
+                               request.profile)
 
         json['newtargets'] = [highlight_whitespace(target)
                               for target in unit.target.strings]

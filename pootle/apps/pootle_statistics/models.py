@@ -126,7 +126,7 @@ class Submission(models.Model):
             if not displayname:
                 displayname = self.submitter.user.username
         else:
-            displayname = username = _("anonymous user")
+            displayname = _("anonymous user")
 
         action_bundle = {
             "profile_url": self.submitter.get_absolute_url(),
