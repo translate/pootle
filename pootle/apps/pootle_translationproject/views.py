@@ -39,7 +39,6 @@ from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.stats import (get_raw_stats, get_translation_stats,
                                get_translate_actions)
 from pootle_misc.util import jsonify, ajax_required
-from pootle_statistics.models import Submission
 from pootle_store.models import Store
 from pootle_store.views import get_step_query
 

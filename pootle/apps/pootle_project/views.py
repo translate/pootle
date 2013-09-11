@@ -37,7 +37,6 @@ from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions
 from pootle_app.views.index.index import getprojects
 from pootle_language.models import Language
-from pootle_misc.baseurl import l
 from pootle_misc.browser import get_table_headings
 from pootle_misc.forms import LiberalModelChoiceField
 from pootle_misc.stats import get_raw_stats, stats_descriptions
