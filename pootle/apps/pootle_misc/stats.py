@@ -171,7 +171,7 @@ def get_translate_actions(path_obj, path_stats, checks_stats):
             }
         )
 
-    return result;
+    return result
 
 def stats_message_raw(version, stats):
     """Builds a message of statistics used in VCS actions."""
