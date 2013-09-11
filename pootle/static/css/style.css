@@ -1695,6 +1695,11 @@ td.stats-name .user-nobody
     font-style: italic;
 }
 
+td.stats-name.folder
+{
+    font-weight: bold;
+}
+
 td.last-activity
 {
     width: 100%;
