@@ -270,11 +270,10 @@ def get_path_summary(path_obj, path_stats, latest_action):
             u''.join(suggestions)]
 
 
-def stats_message_raw(version, stats):
+def stats_message_raw(version, total, translated, fuzzy):
     """Build a message of statistics used in VCS actions."""
     return "%s: %d of %d strings translated (%d need review)." % \
-           (version, stats.get("translated", 0), stats.get("total", 0),
-            stats.get("fuzzy", 0))
+           (version, translated, total, fuzzy)
 
 
 def stats_message(version, stats):

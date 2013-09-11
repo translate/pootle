@@ -45,8 +45,7 @@ from pootle_misc.util import getfromcache, cached_property
 from pootle_store.filetypes import (filetype_choices, factory_classes,
                                     is_monolingual)
 from pootle_store.models import Unit, Suggestion
-from pootle_store.util import (absolute_real_path, statssum,
-                               sum_by_attr_name, OBSOLETE)
+from pootle_store.util import absolute_real_path, OBSOLETE
 
 
 # FIXME: Generate key dynamically
@@ -329,10 +328,6 @@ class Project(models.Model, TreeItem):
                 _('"%s" cannot be used as a project code' % (self.code,))
             )
 
-    @getfromcache
-    def getquickstats(self):
-        return statssum(self.translationproject_set.iterator())
-
     def get_children(self):
         self.translationproject_set.iterator()
 
@@ -340,9 +335,10 @@ class Project(models.Model, TreeItem):
         self.code
 
     def translated_percentage(self):
-        qs = self.getquickstats()
-        max_words = max(qs['totalsourcewords'], 1)
-        return int(100.0 * qs['translatedsourcewords'] / max_words)
+        total = self.get_total_wordcount()
+        translated = self.get_translated_wordcount()
+        max_words = max(total, 1)
+        return int(100.0 * translated / max_words)
 
     def get_real_path(self):
         return absolute_real_path(self.code)

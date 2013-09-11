@@ -54,8 +54,8 @@ from pootle_store.fields import (TranslationStoreField, MultiStringField,
                                  PLURAL_PLACEHOLDER, SEPARATOR)
 from pootle_store.filetypes import factory_classes, is_monolingual
 from pootle_store.util import (calc_total_wordcount, calc_translated_wordcount,
-                               calc_untranslated_wordcount, calculate_stats,
-                               calc_fuzzy_wordcount, empty_quickstats,
+                               calc_untranslated_wordcount
+                               calc_fuzzy_wordcount,
                                OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED)
 from pootle_tagging.models import ItemWithGoal
 
@@ -1681,22 +1681,6 @@ class Store(models.Model, base.TranslationStore, TreeItem):
             'mtime': int(time.mktime(sub.unit.mtime.timetuple())),
             'snippet': sub.get_submission_message()
         }
-
-    @getfromcache
-    def getquickstats(self, children=None, name=''):
-        """calculate translation statistics"""
-        try:
-            return calculate_stats(self.units)
-        except IntegrityError:
-            logging.info(u"Duplicate IDs in %s", self.abs_real_path)
-        except base.ParseError as e:
-            logging.info(u"Failed to parse %s\n%s", self.abs_real_path, e)
-        except (IOError, OSError) as e:
-            logging.info(u"Can't access %s\n%s", self.abs_real_path, e)
-        stats = {}
-        stats.update(empty_quickstats)
-        stats['errors'] += 1
-        return stats
 
     @getfromcache
     def getcompletestats(self):

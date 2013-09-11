@@ -50,8 +50,8 @@ from pootle_statistics.models import Submission
 from pootle_store.models import (Store, Suggestion, Unit, QualityCheck, PARSED,
                                  CHECKED)
 from pootle_store.util import (absolute_real_path, calculate_stats,
-                               empty_quickstats, empty_completestats,
-                               relative_real_path, OBSOLETE, UNTRANSLATED)
+                               empty_completestats, relative_real_path,
+                               OBSOLETE, UNTRANSLATED)
 from pootle_tagging.models import ItemWithGoal
 
 
@@ -333,22 +333,6 @@ class TranslationProject(models.Model, TreeItem):
                 errors += 1
 
         return errors
-
-    @getfromcache
-    def getquickstats(self):
-        if self.is_template_project:
-            return empty_quickstats
-
-        errors = self.require_units()
-
-        tp_not_obsolete_units = Unit.objects.filter(
-                store__translation_project=self,
-                state__gt=OBSOLETE,
-            )
-        stats = calculate_stats(tp_not_obsolete_units)
-        stats['errors'] = errors
-
-        return stats
 
     def get_children(self):
         return self.directory.get_children()

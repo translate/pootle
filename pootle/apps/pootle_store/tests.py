@@ -154,7 +154,8 @@ class StoreTests(PootleTestCase):
 
     def test_quickstats(self):
         statscache = statsdb.StatsCache()
-        dbstats = self.store.getquickstats()
+        #TODO: change tests to reflect new types of stats
+        dbstats = {} #self.store.getquickstats()
         filestats = statscache.filetotals(self.store.file.path)
 
         self.assertEqual(dbstats['total'], filestats['total'])

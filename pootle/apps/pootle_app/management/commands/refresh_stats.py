@@ -37,8 +37,8 @@ class Command(PootleCommand):
 
     def handle_all_stores(self, translation_project, **options):
         translation_project.getcompletestats()
-        translation_project.getquickstats()
+        translation_project.get_stats()
 
     def handle_store(self, store, **options):
         store.getcompletestats()
-        store.getquickstats()
+        store.get_stats()
