@@ -258,7 +258,7 @@ def unit_form_factory(language, snplurals=None, request=None):
                 if old_state == UNTRANSLATED:
                     self.instance._save_action = TRANSLATION_ADDED
                 else:
-                    self.instance._save_action = TRANSLATION_EDITED
+                    self.instance._save_action = TRANSLATION_CHANGED
 
                 if value:
                     new_state = FUZZY
