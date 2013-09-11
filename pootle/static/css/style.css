@@ -795,7 +795,8 @@ html[dir="rtl"] td.username
 
 tr.even,
 td.even,
-li.even
+li.even,
+tr.view-row:nth-child(odd)
 {
     background: #f8f8f8;
 }
