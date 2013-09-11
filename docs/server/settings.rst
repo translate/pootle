@@ -47,12 +47,6 @@ contained and ordered alphabetically.
 This file contains base configuration settings.
 
 
-.. setting:: DESCRIPTION
-
-``DESCRIPTION``
-  Description of the Pootle server.
-
-
 .. setting:: TITLE
 
 ``TITLE``

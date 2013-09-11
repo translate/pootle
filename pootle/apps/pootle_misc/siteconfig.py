@@ -28,7 +28,6 @@ from djblets.siteconfig.django_settings import apply_django_settings, generate_d
 
 settings_map = {
     # siteconfig key    settings.py key
-    'DESCRIPTION': 'DESCRIPTION',
     'TITLE':       'TITLE',
 }
 
