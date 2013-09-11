@@ -7,7 +7,7 @@
   <table class="stats" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
     <tbody>
       {% for item in trans_stats %}
-      <tr class="item">
+      <tr>
         <td class="stats-name">{{ item.title }}</td>
         <td class="stats-number">{{ item.words|safe }}</td>
         <td class="stats-number">{{ item.percentage }}</td>
