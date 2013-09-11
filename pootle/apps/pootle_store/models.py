@@ -1671,17 +1671,23 @@ class Store(models.Model, base.TranslationStore):
                 mtime = timezone.now()
             if profile is None:
                 try:
-                    submit = self.translation_project.submission_set \
-                                 .filter(creation_time=mtime).latest()
-                    if submit.submitter.user.username != 'nobody':
-                        profile = submit.submitter
+                    submission = self.translation_project.submission_set \
+                                     .filter(creation_time=mtime).latest()
+                    submitter = submission.submitter
+
+                    if submitter is not None:
+                        if submitter.user.username != 'nobody':
+                            profile = submitter
                 except ObjectDoesNotExist:
                     try:
-                        lastsubmit = self.translation_project.submission_set \
+                        submission = self.translation_project.submission_set \
                                                              .latest()
-                        if lastsubmit.submitter.user.username != 'nobody':
-                            profile = lastsubmit.submitter
-                        mtime = min(lastsubmit.creation_time, mtime)
+                        mtime = min(submission.creation_time, mtime)
+                        submitter = submission.submitter
+
+                        if submitter is not None:
+                            if submitter.user.username != 'nobody':
+                                profile = submitter
                     except ObjectDoesNotExist:
                         pass
 
@@ -1696,7 +1702,7 @@ class Store(models.Model, base.TranslationStore):
                                        (int(time.mktime(mtime.timetuple())),
                                         mtime.microsecond)),
                     }
-            if profile and profile.user.is_authenticated():
+            if profile is not None and profile.user.is_authenticated():
                 headerupdates['Last_Translator'] = '%s <%s>' % \
                         (profile.user.first_name or profile.user.username,
                          profile.user.email)
