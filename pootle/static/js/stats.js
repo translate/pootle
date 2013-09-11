@@ -8,7 +8,7 @@
       this.url = options.url;
     },
 
-    load: function() {
+    load: function(callback) {
       $.ajax({
         url: this.url,
         dataType: 'json',
@@ -90,6 +90,10 @@
           }
 
           $('body').removeClass('js-not-loaded');
+
+          if (callback) {
+            callback(data);
+          }
         }
       });
     }
