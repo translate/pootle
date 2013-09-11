@@ -848,6 +848,7 @@ html[dir="rtl"] td.username
 
 /* table row colors, see 'Table Row Colors.psd' */
 
+tr.view-row:nth-child(odd),
 tr.item:nth-child(odd)
 {
     background: #f5fbfd;
