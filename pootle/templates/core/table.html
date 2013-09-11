@@ -46,7 +46,7 @@ cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
 
       {% if 'progress' in table.fields %}
       <td class="stats-graph">
-        <div id="translated-percentage-{{ item.code }}" class="sortkey"></div>
+        <div id="translated-ratio-{{ item.code }}" class="sortkey"></div>
         <div id="progressbar-{{ item.code }}">
           {% include "core/progressbar.html" %}
         </div>
