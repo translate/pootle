@@ -1563,7 +1563,7 @@ class Store(models.Model, base.TranslationStore, TreeItem):
 
 ############################### Stats ############################
     def get_name(self):
-        return self.name
+        return self.name.replace('.', '-')
 
     def _get_total_wordcount(self):
         """calculate total wordcount statistics"""
@@ -1590,7 +1590,7 @@ class Store(models.Model, base.TranslationStore, TreeItem):
         try:
             sub = Submission.objects.filter(unit__store=self).latest()
         except Submission.DoesNotExist:
-            return None
+            return  {'mtime': 0, 'snippet': ''}
 
         return {
             'mtime': int(time.mktime(sub.unit.mtime.timetuple())),

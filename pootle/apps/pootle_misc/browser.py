@@ -88,7 +88,7 @@ def make_generic_item(path_obj, action):
         'href_todo': path_obj.get_translate_url(state='incomplete'),
         'href_sugg': path_obj.get_translate_url(state='suggestions'),
         'title': path_obj.name,
-        'code': path_obj.name
+        'code': path_obj.name.replace('.', '-')
     }
 
     return info
@@ -113,6 +113,18 @@ def make_store_item(store):
     })
     return item
 
+def get_parent(directory):
+    parent_dir = directory.parent
+
+    if not (parent_dir.is_language() or parent_dir.is_project()):
+        return {
+            'icon': 'folder-parent',
+            'title': _("Back to parent folder"),
+            'href': l(parent_dir.pootle_path)
+        }
+    else:
+        return None
+
 
 def get_children(translation_project, directory):
     """Returns a list of children directories and stores for this
@@ -121,15 +133,6 @@ def get_children(translation_project, directory):
     The elements of the list are dictionaries which keys are populated after
     in the templates.
     """
-    parent = []
-    parent_dir = directory.parent
-
-    if not (parent_dir.is_language() or parent_dir.is_project()):
-        parent = [{
-            'icon': 'folder-parent',
-            'title': _("Back to parent folder"),
-            'href': l(parent_dir.pootle_path)
-        }]
 
     directories = [make_directory_item(child_dir)
                    for child_dir in directory.child_dirs.iterator()]
@@ -137,4 +140,4 @@ def get_children(translation_project, directory):
     stores = [make_store_item(child_store)
               for child_store in directory.child_stores.iterator()]
 
-    return parent + directories + stores
+    return directories + stores

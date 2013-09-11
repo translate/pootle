@@ -12,11 +12,19 @@ cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
       </th>
       {% endfor %}
     </tr>
+    {% if table.parent %}
+      <tr class="item odd">
+        <td class="stats-name">
+          <a href="{{ table.parent.href }}">{% if table.parent.icon %}<i class="icon-{{ table.parent.icon }}"></i> {% endif %}<span>{{ table.parent.title }}</span></a>
+        </td>
+        <td></td><td></td><td></td><td></td><td></td>
+      </tr>
+    {% endif %}
   </thead>
   <tbody class="stats">
     {% for item in table.items %}
 
-    <tr class="item {% cycle 'even' 'odd' %}{% if 'total' in table.fields %}{% if item.total_words == 0 %} empty{% endif %}{% endif %}">
+    <tr class="item {% cycle 'even' 'odd' %}{% if 'total' in table.fields %}{% if item.total_words == 0 %} empty{% endif %}{% endif %} {% if not item.code %} {% endif %}">
 
       {% if 'name' in table.fields %}
       <td class="stats-name"{% if item.description %} title="{{ item.description|striptags }}"{% endif %}>
@@ -39,44 +47,36 @@ cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
 
       {% if 'progress' in table.fields %}
       <td class="stats-graph">
-        {% if item.code %}
-        <div id="translated-percentage-{{ item.code|makeid }}" class="sortkey"></div>
-        <div id="progressbar-{{ item.code|makeid }}">
+        <div id="translated-percentage-{{ item.code }}" class="sortkey"></div>
+        <div id="progressbar-{{ item.code }}">
           {% include "core/progressbar.html" %}
         </div>
-        {% endif %}
       </td>
       {% endif %}
 
       {% if 'total' in table.fields %}
-      <td id="total-words-{{ item.code|makeid }}" class="stats-number total js-total">
-        {% if item.code %}
+      <td id="total-words-{{ item.code }}" class="stats-number total js-total">
         <a class="non-zero" href="{{ item.href_all }}"></a>
         <span class="zero muted">0</span>
-        {% endif %}
       </td>
       {% endif %}
 
       {% if 'need-translation' in table.fields %}
-      <td id="need-translation-{{ item.code|makeid }}" class="stats-number need-translation js-need-translation">
-        {% if item.code %}
+      <td id="need-translation-{{ item.code }}" class="stats-number need-translation js-need-translation">
         <a class="non-zero" href="{{ item.href_todo }}"></a>
         <span class="zero muted">0</span>
-        {% endif %}
       </td>
       {% endif %}
 
       {% if 'suggestions' in table.fields %}
-      <td id="suggestions-{{ item.code|makeid }}" class="stats-number suggestions js-suggestions">
-        {% if item.code %}
+      <td id="suggestions-{{ item.code }}" class="stats-number suggestions js-suggestions">
         <a class="non-zero" href="{{ item.href_sugg }}"></a>
         <span class="zero muted">0</span>
-        {% endif %}
       </td>
       {% endif %}
 
       {% if 'activity' in table.fields %}
-      <td id="last-activity-{{ item.code|makeid }}" class="last-activity"></td>
+      <td id="last-activity-{{ item.code }}" class="last-activity"></td>
       {% endif %}
     </tr>
 

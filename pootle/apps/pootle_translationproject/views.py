@@ -38,7 +38,7 @@ from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models.permissions import check_permission
 from pootle_app.models import Directory
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
-from pootle_misc.browser import get_children, get_table_headings
+from pootle_misc.browser import get_children, get_table_headings, get_parent
 from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.stats import (get_raw_stats, get_translation_stats,
                                get_translate_actions)
@@ -231,6 +231,7 @@ def overview(request, translation_project, dir_path, filename=None):
                 'id': 'tp',
                 'fields': table_fields,
                 'headings': get_table_headings(table_fields),
+                'parent': get_parent(directory),
                 'items': get_children(translation_project, directory),
             }
         })
