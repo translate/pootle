@@ -99,7 +99,11 @@
     $(function() {
       $("[title], [original-title]").tipsy({
         gravity: $.fn.tipsy.autoBounds(150, 'n'),
-        html: true, fade: true, delayIn: 750, live: true});
+        html: true,
+        fade: true,
+        delayIn: 750,
+        opacity: 1,
+        live: true});
       $.ajaxSetup({ traditional: true });
       $.ajaxPrefilter(function (options, originalOptions) {
         if (options.type === 'post' || options.type === 'POST') {
