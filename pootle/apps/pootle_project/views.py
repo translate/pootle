@@ -446,7 +446,7 @@ def project_admin_permissions(request, project):
 
 @get_path_obj
 @permission_required('view')
-def projects_index(request, *args):  #HACKISH: @get_path_obj needs *args here.
+def projects_index(request, root):
     """page listing all projects"""
     table_fields = ['project', 'progress', 'activity']
 
