@@ -81,29 +81,30 @@ def get_translation_stats(path_obj, path_stats):
             'title': title,
             'words': ungettext('<a href="%(url)s">%(num)d word</a>',
                                '<a href="%(url)s">%(num)d words</a>',
-                               path_stats['untranslated']['words'],
+                               path_stats['untranslated'],
                                {'url': path_obj.get_translate_url(
                                    state=filter_name,
                                 ),
-                                'num': path_stats[state]['words']}),
+                                'num': path_stats[state]}),
             'percentage': _("%(num)d%%",
-                            {'num': path_stats[state]['percentage']}),
+                            {'num': nice_percentage(path_stats['total'] /
+                                                    path_stats[state] * 100)}),
             'units': ungettext("(%(num)d string)",
                                "(%(num)d strings)",
                                path_stats[state]['units'],
                                {'num': path_stats[state]['units']})
         }
 
-    if path_stats['total']['units'] > 0:
+    if path_stats['total'] > 0:
         stats.append(make_stats_dict(_("Total"), 'total', filter_url=False))
 
-    if path_stats['translated']['units'] > 0:
+    if path_stats['translated'] > 0:
         stats.append(make_stats_dict(_("Translated"), 'translated'))
 
-    if path_stats['fuzzy']['units'] > 0:
+    if path_stats['fuzzy'] > 0:
         stats.append(make_stats_dict(_("Needs work"), 'fuzzy'))
 
-    if path_stats['untranslated']['units'] > 0:
+    if path_stats['untranslated'] > 0:
         stats.append(make_stats_dict(_("Untranslated"), 'untranslated'))
 
     return stats

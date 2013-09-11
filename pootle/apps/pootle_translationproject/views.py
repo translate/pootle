@@ -349,7 +349,7 @@ def overview(request, translation_project, dir_path, filename=None,
     elif store is None:  # If this is not a file.
         latest_action = Submission.get_latest_for_dir(path_obj)
 
-    path_stats = get_raw_stats(path_obj, include_suggestions=True)
+    path_stats = path_obj.get_stats(False)
     path_summary = get_path_summary(path_obj, path_stats, latest_action)
 
     #TODO enable again some actions when drilling down a goal.
@@ -728,7 +728,7 @@ def path_summary_more(request, translation_project, dir_path, filename=None):
         directory = get_object_or_404(Directory, pootle_path=current_path)
 
     path_obj = store or directory
-    path_stats = get_raw_stats(path_obj)
+    path_stats = path_obj.get_stats(False)
     context = {
         'check_failures': get_quality_check_failures(path_obj, path_stats),
         'trans_stats': get_translation_stats(path_obj, path_stats),

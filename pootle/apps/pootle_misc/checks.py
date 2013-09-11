@@ -91,7 +91,7 @@ def get_quality_check_failures(path_obj, path_stats, include_url=True):
 
     try:
         property_stats = path_obj.getcompletestats()
-        total = path_stats['total']['units']
+        total = path_stats['total']
         keys = property_stats.keys()
         keys.sort(reverse=True)
 
