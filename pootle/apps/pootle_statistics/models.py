@@ -3,21 +3,19 @@
 #
 # Copyright 2009-2013 Zuza Software Foundation
 #
-# This file is part of translate.
+# This file is part of Pootle.
 #
-# translate is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
+# Pootle is free software; you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation; either version 2 of the License, or (at your option) any later
+# version.
 #
-# translate is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# Pootle is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with translate; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# You should have received a copy of the GNU General Public License along with
+# Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 from django.db import models
 from django.template.defaultfilters import escape, truncatechars
@@ -53,34 +51,37 @@ class SubmissionFields(object):
 
 
 class Submission(models.Model):
-    class Meta:
-        ordering = ["creation_time"]
-        get_latest_by = "creation_time"
-        db_table = 'pootle_app_submission'
-
-    objects = RelatedManager()
 
     creation_time = models.DateTimeField(db_index=True)
     translation_project = models.ForeignKey(
             'pootle_translationproject.TranslationProject', db_index=True
     )
     submitter = models.ForeignKey('pootle_profile.PootleProfile', null=True,
-            db_index=True)
+                                  db_index=True)
     from_suggestion = models.OneToOneField('pootle_app.Suggestion', null=True,
-            db_index=True)
+                                           db_index=True)
     unit = models.ForeignKey('pootle_store.Unit', blank=True, null=True,
-            db_index=True)
+                             db_index=True)
 
     #: The field in the unit that changed
     field = models.IntegerField(null=True, blank=True, db_index=True)
+
     # how did this submission come about? (one of the constants above)
     type = models.IntegerField(null=True, blank=True, db_index=True)
+
     # old_value and new_value can store string representations of multistrings
     # in the case where they store values for a unit's source or target. In
     # such cases, the strings might not be usable as is. Use the two helper
     # functions in pootle_store.fields to convert to and from this format.
     old_value = models.TextField(blank=True, default=u"")
     new_value = models.TextField(blank=True, default=u"")
+
+    objects = RelatedManager()
+
+    class Meta:
+        ordering = ["creation_time"]
+        get_latest_by = "creation_time"
+        db_table = 'pootle_app_submission'
 
     def __unicode__(self):
         return u"%s (%s)" % (self.creation_time.strftime("%Y-%m-%d %H:%M"),
