@@ -53,6 +53,9 @@
               $td.removeClass('non-zero');
             }
 
+            var ratio = item.total == 0 ? 1 : item.translated / item.total;
+            $table.find('#translated-ratio-' + code).text(ratio);
+
             $td = $table.find('#need-translation-' + code);
             var value = item.fuzzy + item.untranslated;
             if (value) {
