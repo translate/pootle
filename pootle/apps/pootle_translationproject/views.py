@@ -84,6 +84,16 @@ def overview(request, translation_project, dir_path, filename=None):
     url_args = [language.code, project.code, resource_obj.path]
     url_path_summary_more = reverse('pootle-tp-summary', args=url_args)
 
+    summary_text = ungettext(
+        '%(num)d word, %(percentage)d%% translated',
+        '%(num)d words, %(percentage)d%% translated',
+        path_stats['total']['words'],
+        {
+            'num': path_stats['total']['words'],
+            'percentage': path_stats['translated']['percentage']
+        }
+    )
+
     ctx = {
         'translation_project': translation_project,
         'project': project,
@@ -94,13 +104,7 @@ def overview(request, translation_project, dir_path, filename=None):
         'stats': path_stats,
         'can_edit': can_edit,
         'url_path_summary_more': url_path_summary_more,
-        'summary': ungettext('%(num)d word, %(percentage)d%% translated',
-                '%(num)d words, %(percentage)d%% translated',
-                path_stats['total']['words'],
-                {
-                    'num': path_stats['total']['words'],
-                    'percentage': path_stats['translated']['percentage']
-                }),
+        'summary': summary_text,
     }
 
     if store is None:

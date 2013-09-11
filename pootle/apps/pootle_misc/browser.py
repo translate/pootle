@@ -115,11 +115,13 @@ def make_generic_item(path_obj, action):
 
     return info
 
+
 def get_last_action(resource_obj):
     try:
         return Submission.get_latest_for_dir(resource_obj)
     except Submission.DoesNotExist:
         return ''
+
 
 def make_directory_item(directory):
     action = l(directory.pootle_path)

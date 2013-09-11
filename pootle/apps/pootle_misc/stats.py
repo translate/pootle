@@ -22,7 +22,7 @@ from django.core.urlresolvers import reverse
 from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext_lazy as _, ungettext
 
-from pootle_misc.util import add_percentages
+from .util import add_percentages
 
 
 def get_raw_stats(path_obj, include_suggestions=False):
@@ -121,18 +121,24 @@ def get_translate_actions(path_obj, path_stats, checks_stats):
     """Returns a list of translation action links to be displayed for ``path_obj``."""
 
     result = []
-    complete = path_stats['untranslated']['words'] == 0 and path_stats['fuzzy']['words'] == 0
+    complete = (path_stats['untranslated']['words'] == 0 and
+                path_stats['fuzzy']['words'] == 0)
 
     if not complete:
-        num_words = path_stats['untranslated']['words'] + path_stats['fuzzy']['words']
+        num_words = path_stats['untranslated']['words'] + \
+                    path_stats['fuzzy']['words']
 
         result.append(
             u'<a class="continue-translation" href="%(url)s">%(text)s</a>' % {
                 'url': path_obj.get_translate_url(state='incomplete'),
-                'text': ungettext(u'<span class="caption">Continue translation:</span> <span class="counter">%(num)d word left</span>',
-                                  u'<span class="caption">Continue translation:</span> <span class="counter">%(num)d words left</span>',
-                                  num_words,
-                                  {'num': num_words, }),
+                'text': ungettext(
+                    u'<span class="caption">Continue translation:</span> '
+                        u'<span class="counter">%(num)d word left</span>',
+                    u'<span class="caption">Continue translation:</span> '
+                        u'<span class="counter">%(num)d words left</span>',
+                    num_words,
+                    {'num': num_words, }
+                ),
             }
         )
 
@@ -140,10 +146,14 @@ def get_translate_actions(path_obj, path_stats, checks_stats):
         result.append(
             u'<a class="review-suggestions" href="%(url)s">%(text)s</a>' % {
                 'url': path_obj.get_translate_url(state='suggestions'),
-                'text': ungettext(u'<span class="caption">Review suggestion:</span> <span class="counter">%(num)d left</span>',
-                                  u'<span class="caption">Review suggestions:</span> <span class="counter">%(num)d left</span>',
-                                  path_stats['suggestions'],
-                                  {'num': path_stats['suggestions'], })
+                'text': ungettext(
+                    u'<span class="caption">Review suggestion:</span> '
+                        u'<span class="counter">%(num)d left</span>',
+                    u'<span class="caption">Review suggestions:</span> '
+                        u'<span class="counter">%(num)d left</span>',
+                    path_stats['suggestions'],
+                    {'num': path_stats['suggestions'], }
+                )
             }
         )
 
@@ -164,10 +174,14 @@ def get_translate_actions(path_obj, path_stats, checks_stats):
         result.append(
             u'<a class="fix-errors" href="%(url)s">%(text)s</a>' % {
                 'url': path_obj.get_translate_url(check=checks),
-                'text': ungettext(u'<span class="caption">Fix critical error:</span> <span class="counter">%(num)d left</span>',
-                                  u'<span class="caption">Fix critical errors:</span> <span class="counter">%(num)d left</span>',
-                                  count,
-                                  {'num': count, })
+                'text': ungettext(
+                    u'<span class="caption">Fix critical error:</span> '
+                        u'<span class="counter">%(num)d left</span>',
+                    u'<span class="caption">Fix critical errors:</span> '
+                        u'<span class="counter">%(num)d left</span>',
+                    count,
+                    {'num': count, }
+                )
             }
         )
 
@@ -175,11 +189,13 @@ def get_translate_actions(path_obj, path_stats, checks_stats):
         result.append(
             u'<a class="translation-complete" href="%(url)s">%(text)s</a>' % {
                 'url': path_obj.get_translate_url(state='all'),
-                'text': _('<span class="caption">Translation complete:</span> <span class="counter">view all</span>')
+                'text': _('<span class="caption">Translation complete:</span> '
+                          '<span class="counter">view all</span>')
             }
         )
 
-    return result;
+    return result
+
 
 def stats_message_raw(version, stats):
     """Builds a message of statistics used in VCS actions."""

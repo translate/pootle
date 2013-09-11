@@ -51,7 +51,8 @@ def make_project_item(translation_project):
     href_todo = translation_project.get_translate_url(state='incomplete')
     href_sugg = translation_project.get_translate_url(state='suggestions')
 
-    project_stats = get_raw_stats(translation_project, include_suggestions=True)
+    project_stats = get_raw_stats(translation_project,
+                                  include_suggestions=True)
 
     info = {
         'code': project.code,
@@ -93,7 +94,8 @@ def overview(request, language):
     translated = nice_percentage(totals['translatedsourcewords'] * 100.0 / max(totals['totalsourcewords'], 1))
     fuzzy   = nice_percentage(totals['fuzzysourcewords'] * 100.0 / max(totals['totalsourcewords'], 1))
 
-    table_fields = ['name', 'progress', 'total', 'need-translation', 'suggestions', 'activity']
+    table_fields = ['name', 'progress', 'total', 'need-translation',
+                    'suggestions', 'activity']
     table = {
         'id': 'language',
         'proportional': False,
@@ -134,6 +136,7 @@ def overview(request, language):
 
     return render_to_response("languages/overview.html", templatevars,
                               context_instance=RequestContext(request))
+
 
 @ajax_required
 @get_path_obj
