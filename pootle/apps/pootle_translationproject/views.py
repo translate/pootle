@@ -52,7 +52,8 @@ from pootle_app.views.admin.permissions import admin_permissions as admin_perms
 from pootle_app.views.top_stats import gentopstats_translation_project
 from pootle_misc.baseurl import redirect
 from pootle_misc.browser import (get_children, get_goal_children,
-                                 get_table_headings, make_goal_item)
+                                 get_table_headings, get_parent,
+                                 make_goal_item)
 from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.stats import (get_raw_stats, get_translation_stats,
                                get_path_summary)
@@ -481,6 +482,7 @@ def overview(request, translation_project, dir_path, filename=None,
                     'proportional': False,
                     'fields': table_fields,
                     'headings': get_table_headings(table_fields),
+                    'parent': get_parent(directory),
                     'items': items,
                 },
                 'path_obj_has_goals': True,
@@ -496,6 +498,7 @@ def overview(request, translation_project, dir_path, filename=None,
                     'proportional': True,
                     'fields': table_fields,
                     'headings': get_table_headings(table_fields),
+                    'parent': get_parent(directory),
                     'items': get_goal_children(directory, goal),
                 },
                 'goal': goal,
@@ -512,6 +515,7 @@ def overview(request, translation_project, dir_path, filename=None,
                     'proportional': True,
                     'fields': table_fields,
                     'headings': get_table_headings(table_fields),
+                    'parent': get_parent(directory),
                     'items': get_children(directory),
                 },
                 'path_obj_has_goals': path_obj_has_goals,

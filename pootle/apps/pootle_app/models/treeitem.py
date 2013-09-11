@@ -55,10 +55,6 @@ class TreeItem():
         """This method will be overridden in descendants"""
         return 0
 
-    def _get_last_action(self):
-        """This method will be overridden in descendants"""
-        return None
-
     def initialize_children(self):
         if not self.initialized:
             self.children = self.get_children()

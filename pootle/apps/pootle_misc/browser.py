@@ -96,7 +96,7 @@ def make_generic_item(path_obj):
         'href_todo': path_obj.get_translate_url(state='incomplete'),
         'href_sugg': path_obj.get_translate_url(state='suggestions'),
         'title': path_obj.name,
-        'code': path_obj.name
+        'code': path_obj.name.replace('.', '-')
     }
 
     return info
@@ -118,6 +118,18 @@ def make_store_item(store):
         'isfile': True,
     })
     return item
+
+def get_parent(directory):
+    parent_dir = directory.parent
+
+    if not (parent_dir.is_language() or parent_dir.is_project()):
+        return {
+            'icon': 'folder-parent',
+            'title': _("Back to parent folder"),
+            'href': l(parent_dir.pootle_path)
+        }
+    else:
+        return None
 
 
 def get_parent_item_list(directory):
@@ -149,7 +161,7 @@ def get_children(directory):
     stores = [make_store_item(child_store)
               for child_store in directory.child_stores.iterator()]
 
-    return parent + directories + stores
+    return directories + stores
 
 
 ################################ Goal specific ################################
