@@ -20,6 +20,8 @@
 
 from django.utils.translation import ugettext_lazy as _, ungettext
 
+from translate.filters.decorators import Category
+
 from .util import add_percentages
 
 
@@ -155,17 +157,13 @@ def get_translate_actions(path_obj, path_stats, checks_stats):
             }
         )
 
-    # 100 is the value of 'CRITICAL' checks category in Translate Toolkit,
-    # see translate/filters/decorators.py, Category.CRITICAL
-    CRITICAL = 100L
-
-    if CRITICAL in checks_stats:
-        keys = checks_stats[CRITICAL].keys()
+    if Category.CRITICAL in checks_stats:
+        keys = checks_stats[Category.CRITICAL].keys()
         keys.sort()
 
         count = 0;
         for checkname in keys:
-            count += checks_stats[CRITICAL][checkname]
+            count += checks_stats[Category.CRITICAL][checkname]
 
         checks = ",".join(keys)
 
