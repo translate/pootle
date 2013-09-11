@@ -2666,6 +2666,12 @@ body.js-not-loaded th.when-loaded
     display: none;
 }
 
+body.js-not-loaded table.graph
+{
+    filter:alpha(opacity=30);
+    opacity: 0.3;
+}
+
 table.stats td.zero span.zero,
 table.stats td.non-zero span.non-zero
 {
