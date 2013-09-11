@@ -22,7 +22,7 @@ from django.core.urlresolvers import reverse
 from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext_lazy as _, ungettext
 
-from pootle_misc.util import add_percentages
+from pootle_misc.util import add_percentages, nice_percentage
 
 # TODO delete
 def get_raw_stats(path_obj, include_suggestions=False):
@@ -85,25 +85,26 @@ def get_translation_stats(path_obj, path_stats):
             'title': title,
             'words': ungettext('<a href="%(url)s">%(num)d word</a>',
                                '<a href="%(url)s">%(num)d words</a>',
-                               path_stats[state]['words'],
+                               path_stats[state],
                                {'url': path_obj.get_translate_url(
                                    state=filter_name,
                                 ),
-                               'num': path_stats[state]['words']}),
+                               'num': path_stats[state]}),
             'percentage': _("%(num)d%%",
-                            {'num': path_stats[state]['percentage']}),
+                            {'num': nice_percentage(path_stats['total'] /
+                                                    path_stats[state] * 100)}),
         }
 
-    if path_stats['total']['words'] > 0:
+    if path_stats['total'] > 0:
         stats.append(make_stats_dict(_("Total"), 'total', filter_url=False))
 
-    if path_stats['translated']['words'] > 0:
+    if path_stats['translated'] > 0:
         stats.append(make_stats_dict(_("Translated"), 'translated'))
 
-    if path_stats['fuzzy']['words'] > 0:
+    if path_stats['fuzzy'] > 0:
         stats.append(make_stats_dict(_("Needs work"), 'fuzzy'))
 
-    if path_stats['untranslated']['words'] > 0:
+    if path_stats['untranslated'] > 0:
         stats.append(make_stats_dict(_("Untranslated"), 'untranslated'))
 
     return stats

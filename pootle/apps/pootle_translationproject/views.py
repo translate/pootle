@@ -326,7 +326,7 @@ def path_summary_more(request, translation_project, dir_path, filename=None):
 
     path_obj = store or directory
 
-    path_stats = get_raw_stats(path_obj)
+    path_stats = path_obj.get_stats(False)
     translation_stats = get_translation_stats(path_obj, path_stats)
     quality_checks = get_quality_check_failures(path_obj, path_stats)
 

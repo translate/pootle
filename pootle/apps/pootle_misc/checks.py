@@ -90,7 +90,7 @@ def get_quality_check_failures(path_obj, path_stats, include_url=True):
 
     try:
         property_stats = path_obj.getcompletestats()
-        not_empty = path_stats['total']['words'] > 0
+        not_empty = path_stats['total'] > 0
         keys = property_stats.keys()
         keys.sort(reverse=True)
 
