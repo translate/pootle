@@ -112,7 +112,8 @@ LOGGING = {
         # Log to a text file that can be rotated by logrotate
         'log_action': {
             'class': 'logging.handlers.WatchedFileHandler',
-            'filename': POOTLE_LOG_DIRECTORY + '/pootle-activity.log',
+            'filename': os.path.join(POOTLE_LOG_DIRECTORY,
+                                     'pootle-activity.log'),
             'formatter':'action',
         },
     },
