@@ -45,8 +45,8 @@ from pootle_statistics.models import Submission
 from pootle_store.models import (Store, Suggestion, Unit, QualityCheck, PARSED,
                                  CHECKED)
 from pootle_store.util import (absolute_real_path, calculate_stats,
-                               empty_quickstats, empty_completestats,
-                               relative_real_path, OBSOLETE, UNTRANSLATED)
+                               empty_completestats, relative_real_path,
+                               OBSOLETE, UNTRANSLATED)
 
 
 class TranslationProjectNonDBState(object):
@@ -270,22 +270,6 @@ class TranslationProject(models.Model, TreeItem):
         return self.pootle_path
 
     @getfromcache
-    def getquickstats(self):
-        if self.is_template_project:
-            return empty_quickstats
-
-        errors = self.require_units()
-
-        tp_not_obsolete_units = Unit.objects.filter(
-                store__translation_project=self,
-                state__gt=OBSOLETE,
-            )
-        stats = calculate_stats(tp_not_obsolete_units)
-        stats['errors'] = errors
-
-        return stats
-
-    @getfromcache
     def getcompletestats(self):
         if self.is_template_project:
             return empty_completestats
@@ -306,58 +290,6 @@ class TranslationProject(models.Model, TreeItem):
         suggestions.
         """
         return self.directory.get_suggestion_count()
-
-    def update_against_templates(self, pootle_path=None):
-        """Update translation project from templates."""
-
-        if self.is_template_project:
-            return
-
-        template_translation_project = self.project \
-                                           .get_template_translationproject()
-
-        if (template_translation_project is None or
-            template_translation_project == self):
-            return
-
-        self.sync()
-
-        if pootle_path is None:
-            oldstats = self.getquickstats()
-
-        from pootle_app.project_tree import (convert_template,
-                                             get_translated_name,
-                                             get_translated_name_gnu)
-
-        for store in template_translation_project.stores.iterator():
-            if self.file_style == 'gnu':
-                new_pootle_path, new_path = get_translated_name_gnu(self, store)
-            else:
-                new_pootle_path, new_path = get_translated_name(self, store)
-
-            if pootle_path is not None and new_pootle_path != pootle_path:
-                continue
-
-            relative_po_path = os.path.relpath(new_path, settings.PODIRECTORY)
-            try:
-                from pootle.scripts import hooks
-                if not hooks.hook(self.project.code, "pretemplateupdate",
-                                  relative_po_path):
-                    continue
-            except:
-                # Assume hook is not present.
-                pass
-
-            convert_template(self, store, new_pootle_path, new_path)
-
-        all_files, new_files = self.scan_files()
-
-        if pootle_path is None:
-            newstats = self.getquickstats()
-
-            from pootle_app.models.signals import post_template_update
-            post_template_update.send(sender=self, oldstats=oldstats,
-                                      newstats=newstats)
 
     def scan_files(self):
         """Scans the file system and returns a list of translation files.

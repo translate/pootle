@@ -33,7 +33,7 @@ from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 from pootle_misc.util import getfromcache
 from pootle_store.models import Unit, Suggestion
-from pootle_store.util import statssum, sum_by_attr_name, OBSOLETE
+from pootle_store.util import OBSOLETE
 
 
 # FIXME: Generate key dynamically
@@ -144,10 +144,6 @@ class Language(models.Model, TreeItem):
     def __unicode__(self):
         return u"%s - %s" % (self.name, self.code)
 
-    @getfromcache
-    def getquickstats(self):
-        return statssum(self.translationproject_set.iterator())
-
     def get_children(self):
         self.translationproject_set.iterator()
 
@@ -170,6 +166,6 @@ class Language(models.Model, TreeItem):
         return language_dir(self.code)
 
     def translated_percentage(self):
-        qs = self.getquickstats()
-        word_count = max(qs['totalsourcewords'], 1)
-        return int(100.0 * qs['translatedsourcewords'] / word_count)
+        total = max(self.get_total_wordcount(), 1)
+        translated = self.get_translated_wordcount()
+        return int(100.0 * translated / total)

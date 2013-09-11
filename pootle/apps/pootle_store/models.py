@@ -61,7 +61,7 @@ from .fields import (TranslationStoreField, MultiStringField,
 from .filetypes import factory_classes
 from .util import (calc_total_wordcount, calc_translated_wordcount,
                    calc_untranslated_wordcount, calc_fuzzy_wordcount,
-                   empty_quickstats, calculate_stats, OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED)
+                   OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED)
 from .signals import translation_submitted
 
 
@@ -1596,22 +1596,6 @@ class Store(models.Model, base.TranslationStore, TreeItem):
             'mtime': int(time.mktime(sub.unit.mtime.timetuple())),
             'snippet': sub.get_submission_message()
         }
-
-    @getfromcache
-    def getquickstats(self, children=None, name=''):
-        """calculate translation statistics"""
-        try:
-            return calculate_stats(self.units)
-        except IntegrityError:
-            logging.info(u"Duplicate IDs in %s", self.abs_real_path)
-        except base.ParseError, e:
-            logging.info(u"Failed to parse %s\n%s", self.abs_real_path, e)
-        except (IOError, OSError), e:
-            logging.info(u"Can't access %s\n%s", self.abs_real_path, e)
-        stats = {}
-        stats.update(empty_quickstats)
-        stats['errors'] += 1
-        return stats
 
     @getfromcache
     def getcompletestats(self):

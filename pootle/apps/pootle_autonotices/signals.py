@@ -97,33 +97,22 @@ def unit_updated(sender, instance, raw=False, **kwargs):
             return
 
         store = instance.store
-        stats = store.getquickstats()
+        total = store.get_total_wordcount()
+        translated = store.get_translated_wordcount()
+        fuzzy = store.get_fuzzy_wordcount()
 
-        if stats['total'] - stats['translated'] == 1:
+        if total - translated == 1:
             # by the end of this we will be 100%
             translation_project = store.translation_project
             directory = translation_project.directory
             message = '<a href="%s">%s</a> fully translated</a> <br />' % (
                     store.get_absolute_url(), store.name)
-            quickstats = translation_project.getquickstats()
-            quickstats['translated'] += 1
+
+            tp_total = translation_project.get_total_wordcount()
+            tp_translated = translation_project.get_translated_wordcount() + 1
 
             if dbcopy.isfuzzy():
-                quickstats['fuzzy'] -= 1
+                tp_fuzzy = translation_project.get_fuzzy_wordcount() - 1
 
-            message += stats_message_raw("Project now at", quickstats)
+            message += stats_message_raw("Project now at", tp_total, tp_translated, tp_fuzzy)
             new_object(True, message, directory)
-
-
-##### TranslationProject Events #####
-
-def updated_against_template(sender, oldstats, newstats, **kwargs):
-    if oldstats == newstats:
-        # nothing changed, no need to report
-        return
-
-    message = 'Updated <a href="%s">%s</a> to latest template <br />' % (
-        sender.get_absolute_url(), sender.fullname)
-    message += stats_message_raw("Before update", oldstats) + " <br />"
-    message += stats_message_raw("After update", newstats) + " <br />"
-    new_object(True, message, sender.directory)

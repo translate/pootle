@@ -173,11 +173,10 @@ def get_translate_actions(path_obj, path_stats, checks_stats):
 
     return result
 
-def stats_message_raw(version, stats):
+def stats_message_raw(version, total, translated, fuzzy):
     """Builds a message of statistics used in VCS actions."""
     return "%s: %d of %d strings translated (%d fuzzy)." % \
-           (version, stats.get("translated", 0), stats.get("total", 0),
-            stats.get("fuzzy", 0))
+           (version, translated, total, fuzzy)
 
 
 def stats_message(version, stats):
