@@ -307,6 +307,23 @@
         });
       });
 
+      $("#js-tag-filtering").select2({
+        multiple: true,
+        ajax: {
+          url: $("#js-tag-filtering").attr("data-ajaxurl"),
+          dataType: "json",
+          results: function (data, page) {
+            var ret = [];
+            $.each(data, function (i, tag) {
+              ret.push({ id: tag.pk, text: tag.fields.name });
+            });
+            return {
+              results: ret
+            };
+          },
+        },
+      });
+
       /* Dynamic filtering using tags */
       $("#js-tag-filtering").on("change", function (event) {
         // If there are no tag filters.
@@ -325,9 +342,8 @@
           // Get the filter tags names since Select2 only provides their keys.
           var filterTags = [];
 
-          $.each(event.val, function (i, tagPK) {
-            filterTags.push($("#js-tag-filtering option[value='" + tagPK +
-                              "']").text());
+          $.each($("#js-tag-filtering").select2('data'), function (i, tag) {
+            filterTags.push(tag.text);
           });
 
           // Iterate over all translation project rows, excluding the ones with

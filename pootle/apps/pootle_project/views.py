@@ -100,51 +100,9 @@ def make_language_item(translation_project):
     return info
 
 
-def handle_tags_filter_form(request, translation_projects):
-    """Handle the tags filter form, used for filtering TPs on project view."""
-    from django.contrib.contenttypes.models import ContentType
-
-    ct = ContentType.objects.get_for_model(TranslationProject)
-    criteria = {
-        "taggit_taggeditem_items__content_type": ct,
-        "taggit_taggeditem_items__object_id__in": translation_projects,
-    }
-
-    class TagsFilterForm(forms.Form):
-        filter_tags = forms.ModelMultipleChoiceField(
-            queryset=Tag.objects.filter(**criteria).distinct(),
-            widget=forms.SelectMultiple(attrs={
-                'id': 'js-tag-filtering',
-                'class': 'js-select2 select2-multiple',
-                'data-placeholder': _('Filter using one or more tags'),
-            }),
-        )
-
-    filter_tags = None
-
-    if request.method == 'POST' and request.POST.get('filter_tags', False):
-        tags_filter_form = TagsFilterForm(request.POST)
-        if tags_filter_form.is_valid():
-            filter_tags = tags_filter_form.cleaned_data['filter_tags']
-    else:
-        tags_filter_form = TagsFilterForm()
-
-    return filter_tags, tags_filter_form
-
-
 def get_project_base_template_vars(request, project, can_edit):
     """Get the base template vars for project overview view."""
     translation_projects = project.translationproject_set.all()
-
-    filters, tags_filter_form = handle_tags_filter_form(request,
-                                                        translation_projects)
-
-    if filters is not None:
-        for tag in filters:
-            # This looks pretty scary, but couldn't manage to get it working
-            # using Q objects in a single filter.
-            translation_projects = translation_projects.filter(tags__in=[tag])
-        translation_projects = translation_projects.distinct()
 
     items = [make_language_item(translation_project) \
             for translation_project in translation_projects.iterator()]
@@ -181,11 +139,28 @@ def get_project_base_template_vars(request, project, can_edit):
             'headings': get_table_headings(table_fields),
             'items': items,
         },
-        'tags_filter_form': tags_filter_form,
     }
 
     return template_vars
 
+
+@ajax_required
+@get_path_obj
+@permission_required('view')
+def ajax_list_tags(request, project):
+    from django.contrib.contenttypes.models import ContentType
+    from django.core import serializers
+
+    translation_projects = project.translationproject_set.all()
+    ct = ContentType.objects.get_for_model(TranslationProject)
+    criteria = {
+        "taggit_taggeditem_items__content_type": ct,
+        "taggit_taggeditem_items__object_id__in": translation_projects,
+    }
+
+    queryset = Tag.objects.filter(**criteria).distinct() #.values_list("id", "name")
+
+    return HttpResponse(serializers.serialize("json", queryset))
 
 @require_POST
 @ajax_required
