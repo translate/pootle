@@ -64,6 +64,9 @@ Not released yet. *Planned release date late November 2013*
 
 - Pootle allows custom scripts to be exposed in the Actions menu for a project.
 
+- The "view" permission is now project-centric, it can be set server-wide or
+  for projects, but not for individual language-project combinations.
+
 
 Version 2.5.0
 -------------
