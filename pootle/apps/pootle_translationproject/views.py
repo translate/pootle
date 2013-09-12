@@ -40,8 +40,7 @@ from pootle_app.models import Directory
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
 from pootle_misc.browser import get_children, get_table_headings, get_parent
 from pootle_misc.checks import get_quality_check_failures
-from pootle_misc.stats import (get_raw_stats, get_translation_stats,
-                               get_translate_actions)
+from pootle_misc.stats import get_translation_stats, get_translate_actions
 from pootle_misc.util import jsonify, ajax_required
 from pootle_statistics.models import Submission
 from pootle_store.models import Store
@@ -83,27 +82,6 @@ def rescan_files(request, translation_project):
                       e)
         messages.error(request, _("Error while rescanning translation project "
                                   "files."))
-
-    language = translation_project.language.code
-    project = translation_project.project.code
-    overview_url = reverse('pootle-tp-overview', args=[language, project, ''])
-
-    return HttpResponseRedirect(overview_url)
-
-
-@get_path_obj
-@permission_required('administrate')
-def update_against_templates(request, translation_project):
-    try:
-        translation_project.update_against_templates()
-
-        messages.success(request, _("Translation project has been updated "
-                                    "against latest templates."))
-    except Exception, e:
-        logging.error(u"Error while updating translation project against "
-                      u"latest templates: %s", e)
-        messages.error(request, _("Error while updating translation project "
-                                  "against latest templates."))
 
     language = translation_project.language.code
     project = translation_project.project.code

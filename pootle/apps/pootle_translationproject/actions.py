@@ -63,20 +63,6 @@ def rescan_project_files(request, path_obj, **kwargs):
         }
 
 
-def update_against_templates(request, path_obj, **kwargs):
-    if check_permission('administrate', request):
-        tp = path_obj.translation_project
-        link = reverse('pootle-tp-update-against-templates',
-                       args=[tp.language.code, tp.project.code])
-        text = _("Update against templates")
-
-        return {
-            'icon': 'icon-update-templates',
-            'href': link,
-            'text': text,
-        }
-
-
 def delete_path_obj(request, path_obj, **kwargs):
     if check_permission('administrate', request):
         tp = path_obj.translation_project
@@ -121,8 +107,7 @@ def action_groups(request, path_obj, **kwargs):
 
     groups = [
         {'group': 'manage', 'group_display': _("Manage"),
-         'actions': [rescan_project_files, update_against_templates,
-                     delete_path_obj]
+         'actions': [rescan_project_files, delete_path_obj]
         },
     ]
 

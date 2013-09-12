@@ -154,55 +154,6 @@ msgstr "2adim"
                 self.assertEqual(new_pootle_path, store.pootle_path)
                 self.assertEqual(new_path, store.abs_real_path)
 
-    def test_new(self):
-        """test initializing a new file from templates"""
-        fr = Language.objects.get(code='fr')
-        new_tp = self.project.translationproject_set.create(language=fr)
-        new_tp.update_against_templates()
-        store_count = new_tp.stores.count()
-        self.assertEqual(store_count, 2)
-        store = new_tp.stores.all()[0]
-        dbunit_count = store.units.count()
-        self.assertEqual(dbunit_count, 3)
-        stunit_count = len(store.file.store.units)
-        self.assertEqual(stunit_count, 4)
-
-    def test_update(self):
-        """test updating existing files to templates"""
-        tp = self.project.translationproject_set.get(language__code='ar')
-        tp.update_against_templates()
-
-        store_count = tp.stores.count()
-        self.assertEqual(store_count, 2)
-
-        store = tp.stores.all()[0]
-        dbunit_count = store.units.count()
-        self.assertEqual(dbunit_count, 3)
-
-        stunit_count = len(store.file.store.units)
-        self.assertEqual(stunit_count, 6)
-
-        unit = store.findid('Exact')
-        self.assertEqual(unit.target, u'Belzabt')
-        self.assertFalse(unit.isfuzzy())
-
-        unit = store.findid('Fuzzy')
-        self.assertEqual(unit.target, u'ta2riban')
-        self.assertTrue(unit.isfuzzy())
-
-        unit = store.findid('%d new')
-        self.assertFalse(unit.istranslated())
-
-        obsolete_count = store.unit_set.filter(state=OBSOLETE).count()
-        self.assertEqual(obsolete_count, 1)
-        unit = store.unit_set.get(state=OBSOLETE, unitid='obsolete')
-        self.assertEqual(unit.source, u'obsolete')
-        self.assertEqual(unit.target, u'2adim')
-        #for unit in store.file.store.units:
-        #    if unit.isobsolete():
-        #        unit.resurrect()
-        #        self.assertEqual(unit.source, u'obsolete')
-        #        self.assertEqual(unit.target, u'2adim')
 
 class PrefixGnuTests(GnuTests):
     """tests for Gnu style with prefix projects"""
@@ -414,71 +365,12 @@ X-Generator: Pootle Tests
         for tp in self.project.translationproject_set.iterator():
             tp.require_units()
 
-    def test_new(self):
-        """test initializing a new file from templates"""
-        fr = Language.objects.get(code='fr')
-        new_tp = self.project.translationproject_set.create(language=fr)
-        new_tp.update_against_templates()
-        store_count = new_tp.stores.count()
-        self.assertEqual(store_count, 1)
-        store = new_tp.stores.all()[0]
-        dbunit_count = store.units.count()
-        self.assertEqual(dbunit_count, self.unit_count)
-        stunit_count = len(store.file.store.units)
-        self.assertEqual(stunit_count, self.unit_count + self.nontrans_count)
-
-        unit = store.findunit('%d new')
-        self.assertTrue(unit)
 
     def test_plural(self):
         store = Store.objects.get(pootle_path='/en/testproj/test_en.'+self.ext)
         unit = store.findunit('%d new')
         self.assertTrue(unit.hasplural())
 
-    def test_update(self):
-        """test updating existing files to templates"""
-        tp = self.project.translationproject_set.get(language__code='ar')
-        tp.update_against_templates()
-
-        store_count = tp.stores.count()
-        self.assertEqual(store_count, 1)
-
-        store = tp.stores.all()[0]
-        dbunit_count = store.units.count()
-        self.assertEqual(dbunit_count, self.unit_count)
-
-        stunit_count = len(store.file.store.units)
-        self.assertEqual(stunit_count, self.unit_count + self.nontrans_count)
-
-        unit = store.findunit('Exact')
-        self.assertEqual(unit.target, u'Belzabt')
-        self.assertFalse(unit.isfuzzy())
-
-        unit = store.findunit('Fuzzy')
-        #sugg_count = unit.get_suggestions().count()
-        #self.assertEqual(sugg_count, 1)
-        #sugg = unit.get_suggestions()[0]
-        #self.assertEqual(sugg.target, u'ta2riban')
-        self.assertEqual(unit.target, u'ta2riban')
-        self.assertTrue(unit.isfuzzy())
-
-        unit = store.findunit('%d new')
-        self.assertFalse(unit.istranslated())
-
-        obsolete_count = store.unit_set.filter(state=OBSOLETE).count()
-        self.assertEqual(obsolete_count, 1)
-        unit = store.unit_set.filter(state=OBSOLETE)[0]
-        self.assertEqual(unit.source, u'obsolete')
-        self.assertEqual(unit.target, u'2adim')
-
-        pofile = open(store.abs_real_path, 'w')
-        pofile.write(self.target_text)
-        pofile.close()
-
-        store.update(update_structure=True, update_translation=True)
-        unit = store.findunit('obsolete')
-        self.assertEqual(unit.target, u'2adim')
-        self.assertFalse(unit.isobsolete())
 
 class CsvTests(XliffTests):
     """Tests for CSV projects"""

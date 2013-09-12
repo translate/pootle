@@ -224,11 +224,6 @@ def project_admin(request, current_project):
 
 
     class TranslationProjectForm(forms.ModelForm):
-
-        if template_translation_project is not None:
-            update = forms.BooleanField(required=False,
-                                        label=_("Update against templates"))
-
         #FIXME: maybe we can detect if initialize is needed to avoid
         # displaying it when not relevant
         #initialize = forms.BooleanField(required=False, label=_("Initialize"))
@@ -254,10 +249,6 @@ def project_admin(request, current_project):
             if self.instance.pk is not None:
                 if self.cleaned_data.get('initialize', None):
                     self.instance.initialize()
-
-                if (self.cleaned_data.get('update', None) or
-                    not self.instance.stores.count()):
-                    self.instance.update_against_templates()
 
     queryset = TranslationProject.objects.filter(
             project=current_project).order_by('pootle_path')
