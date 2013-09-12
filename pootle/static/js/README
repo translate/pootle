@@ -32,11 +32,6 @@ Directory contents
   - zoom.js :
     Functions that control the page zoom.
 
-  + lookup/
-
-    - wikipedia.js :
-      Wikipedia lookup backend.
-
   + mt/
 
     - apertium.js :
