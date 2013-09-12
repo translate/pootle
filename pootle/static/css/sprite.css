@@ -1,4 +1,4 @@
-/* glue: 0.3 hash: 35d1ba0e86 */
+/* glue: 0.3 hash: 7611039456 */
 .logo,
 .icon-desc,
 .icon-ascdesc,
@@ -25,11 +25,6 @@
 .icon-block,
 .icon-apertium,
 .icon-accept,
-.icon-upload,
-.icon-update-templates,
-.icon-rescan-files,
-.icon-download,
-.icon-delete-path,
 .icon-external-link{background-image:url('../images/sprite.png');background-repeat:no-repeat}
 .logo{background-position:0px 0px;width:52px;height:32px;}
 .icon-desc{background-position:0px -32px;width:21px;height:4px;}
@@ -57,9 +52,4 @@
 .icon-block{background-position:-16px -77px;width:16px;height:16px;}
 .icon-apertium{background-position:-32px -77px;width:16px;height:16px;}
 .icon-accept{background-position:-48px -77px;width:16px;height:16px;}
-.icon-upload{background-position:-64px -77px;width:14px;height:14px;}
-.icon-update-templates{background-position:-78px -77px;width:14px;height:14px;}
-.icon-rescan-files{background-position:-100px 0px;width:14px;height:14px;}
-.icon-download{background-position:-100px -14px;width:14px;height:14px;}
-.icon-delete-path{background-position:-100px -28px;width:14px;height:14px;}
-.icon-external-link{background-position:-100px -42px;width:12px;height:12px;}
+.icon-external-link{background-position:-84px -64px;width:12px;height:12px;}
