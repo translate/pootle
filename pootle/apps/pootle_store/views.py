@@ -439,9 +439,9 @@ def timeline(request, unit):
 
     for key, values in groupby(timeline, key=lambda x: x.creation_time):
         # Under Windows, the "nl_langinfo" method is not available
-        if "nl_langinfo" in vars(locale):
+        try:
             time_str = key.strftime(locale.nl_langinfo(locale.D_T_FMT))
-        else:
+        except NameError:
             time_str = key
         entry_group = {
             'datetime': key,
