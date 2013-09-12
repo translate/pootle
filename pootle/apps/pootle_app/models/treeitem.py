@@ -64,31 +64,36 @@ class TreeItem():
     def get_total_wordcount(self):
         """calculate total wordcount statistics"""
         self.initialize_children()
-        return self._get_total_wordcount() + self._sum('get_total_wordcount')
+        return (self._get_total_wordcount() +
+                self._sum('get_total_wordcount'))
 
     @getfromcache
     def get_translated_wordcount(self):
         """calculate translated units statistics"""
         self.initialize_children()
-        return self._get_translated_wordcount() + self._sum('get_translated_wordcount')
+        return (self._get_translated_wordcount() +
+                self._sum('get_translated_wordcount'))
 
     @getfromcache
     def get_fuzzy_wordcount(self):
         """calculate untranslated units statistics"""
         self.initialize_children()
-        return self._get_fuzzy_wordcount() + self._sum('get_fuzzy_wordcount')
+        return (self._get_fuzzy_wordcount() +
+                self._sum('get_fuzzy_wordcount'))
 
     @getfromcache
     def get_untranslated_wordcount(self):
         """calculate untranslated units statistics"""
         self.initialize_children()
-        return self._get_untranslated_wordcount() + self._sum('get_untranslated_wordcount')
+        return (self._get_untranslated_wordcount() +
+                self._sum('get_untranslated_wordcount'))
 
     @getfromcache
     def get_suggestion_count(self):
         """check if any child store has suggestions"""
         self.initialize_children()
-        return self._get_suggestion_count() + self._sum('get_suggestion_count')
+        return (self._get_suggestion_count() +
+                self._sum('get_suggestion_count'))
 
     @getfromcache
     def get_last_action(self):
@@ -96,7 +101,7 @@ class TreeItem():
         self.initialize_children()
 
         return max(
-            [ item.get_last_action() for item in self.children ],
+            [item.get_last_action() for item in self.children],
             key=lambda x: x.mtime if hasattr(x, 'mtime') else 0
         )
 

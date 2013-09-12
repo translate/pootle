@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -21,6 +22,7 @@
 from django import template
 from django.template.defaultfilters import stringfilter
 
+
 register = template.Library()
 
 
@@ -30,12 +32,9 @@ def display_table(context, table):
         'table': table,
     }
 
+
 @register.filter
 @stringfilter
 def makeid(value):
-    """
-    Replaces all '.' with '-'.
-    """
-    value = value.replace(u'.', u'-')
-
-    return value
+    """Replaces all '.' with '-'."""
+    return value.replace(u'.', u'-')
