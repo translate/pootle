@@ -1714,8 +1714,10 @@
     }
 
     var uid = PTL.editor.units.getCurrent().id,
-        node = $("#extras-container"),
+        node = $(".translate-container"),
         timelineUrl = l(['/xhr/units/', uid, '/timeline/'].join(''));
+
+    node.spin();
 
     // Always abort previous requests so we only get results for the
     // current unit
@@ -1744,9 +1746,6 @@
           $("#js-show-timeline").hide();
           $("#js-hide-timeline").show();
         }
-      },
-      beforeSend: function () {
-        node.spin();
       },
       complete: function () {
         node.spin(false);
