@@ -324,20 +324,23 @@
         },
       });
 
+      // Save a detached copy of the table that we will reuse when resetting
+      // filtering.
+      var $projectTable = $("table#project");
+      var $projectTableParent = $projectTable.parent();
+      $projectTable.attr("id", "project-detached").detach();
+      $projectTable.clone().attr("id", "project").appendTo($projectTableParent);
+
       /* Dynamic filtering using tags */
       $("#js-tag-filtering").on("change", function (event) {
         // If there are no tag filters.
         if (event.val.length === 0) {
           // Remove the filtered table and reattach the original one.
-          if (typeof $filteredTable !== "undefined") {
-            $filteredTable.remove();
-            $projectTable.appendTo($projectTableParent);
+          $("table#project").remove();
+          $projectTable.clone().attr("id", "project").appendTo($projectTableParent);
 
-            // Adjust tags visibility and sort order that might have been
-            // changed when the table was detached.
-            sorttable.adjustTagsVisibility();
-            sorttable.applyStoredOrder($projectTable.attr("id"));
-          }
+          // Sort the table.
+          sorttable.makeSortable($("table#project").get(0));
         } else {
           // Get the filter tags names since Select2 only provides their keys.
           var filterTags = [];
@@ -350,13 +353,9 @@
           // tagging data.
           var foundTags = [];
 
-          $projectTable = $("table#project");
-          $projectTableParent = $projectTable.parent();
-          $projectTable.detach();
-
-          $filteredTable = $projectTable.clone();
-          $filteredTable.appendTo($projectTableParent);
-          $filteredTable.show();
+          // Remove the filtered table and reattach the original one.
+          $("table#project").remove();
+          $projectTable.clone().attr("id", "project").appendTo($projectTableParent);
 
           $("table#project tbody tr:not(.js-tags)").each(function () {
             // Get all the tags applied to the current translation project.
@@ -380,7 +379,7 @@
           });
 
           // Sort the filtered table.
-          sorttable.makeSortable($filteredTable.get(0));
+          sorttable.makeSortable($("table#project").get(0));
         };
       });
     },
