@@ -31,7 +31,7 @@ from pootle.i18n.gettext import tr_lang
 from pootle_app.models.permissions import check_permission
 from pootle_app.views.admin.permissions import admin_permissions
 from pootle_misc.browser import get_table_headings
-from pootle_misc.stats import (get_raw_stats, stats_descriptions)
+from pootle_misc.stats import stats_descriptions
 from pootle_misc.util import nice_percentage, jsonify, ajax_required
 from pootle_statistics.models import Submission
 

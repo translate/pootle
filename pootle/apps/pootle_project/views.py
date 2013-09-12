@@ -40,7 +40,7 @@ from pootle_language.models import Language
 from pootle_misc.baseurl import l
 from pootle_misc.browser import get_table_headings
 from pootle_misc.forms import LiberalModelChoiceField
-from pootle_misc.stats import get_raw_stats, stats_descriptions
+from pootle_misc.stats import stats_descriptions
 from pootle_misc.util import ajax_required, jsonify
 from pootle_project.models import Project
 from pootle_statistics.models import Submission

@@ -31,7 +31,6 @@ from pootle_app.models.permissions import (get_matching_permissions,
                                            check_permission)
 from pootle_language.models import Language
 from pootle_misc.browser import get_table_headings
-from pootle_misc.stats import get_raw_stats
 from pootle_profile.models import get_profile
 from pootle_project.models import Project
 from pootle_statistics.models import Submission

@@ -18,55 +18,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.core.urlresolvers import reverse
-from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext_lazy as _, ungettext
 
-from pootle_misc.util import add_percentages, nice_percentage
-
-# TODO delete
-def get_raw_stats(path_obj, include_suggestions=False):
-    """Returns a dictionary of raw stats for `path_obj`.
-
-    :param path_obj: A Directory/Store object.
-    :param include_suggestions: Whether to include suggestion count in the
-                                output or not.
-
-    Example::
-
-        {'translated': {'percentage': 0, 'words': 0},
-         'fuzzy': {'percentage': 0, 'words': 0},
-         'untranslated': {'percentage': 100, 'words': 181},
-         'total': {'percentage': 100, 'words': 181}
-         'suggestions': 4 }
-    """
-    quick_stats = add_percentages(path_obj.getquickstats())
-
-    stats = {
-        'total': {
-            'words': quick_stats['totalsourcewords'],
-            'percentage': 100,
-            },
-        'translated': {
-            'words': quick_stats['translatedsourcewords'],
-            'percentage': quick_stats['translatedpercentage'],
-            },
-        'fuzzy': {
-            'words': quick_stats['fuzzysourcewords'],
-            'percentage': quick_stats['fuzzypercentage'],
-            },
-        'untranslated': {
-            'words': quick_stats['untranslatedsourcewords'],
-            'percentage': quick_stats['untranslatedpercentage'],
-            },
-        'errors': quick_stats['errors'],
-        'suggestions': -1,
-    }
-
-    if include_suggestions:
-        stats['suggestions'] = path_obj.get_suggestion_count()
-
-    return stats
+from pootle_misc.util import nice_percentage
 
 
 def get_translation_stats(path_obj, path_stats):
