@@ -52,7 +52,6 @@ from pootle_language.models import Language
 from pootle_misc.baseurl import redirect
 from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.forms import make_search_form
-from pootle_misc.stats import get_raw_stats
 from pootle_misc.url_manip import ensure_uri
 from pootle_misc.util import paginate, ajax_required, jsonify
 from pootle_profile.models import get_profile
@@ -889,7 +888,7 @@ def get_failing_checks(request, path_obj):
             raise Http404
         failures = goal.get_failing_checks_for_path(path_obj)
     else:
-        stats = get_raw_stats(path_obj)
+        stats = path_obj.get_stats()
         failures = get_quality_check_failures(path_obj, stats,
                                               include_url=False)
 
