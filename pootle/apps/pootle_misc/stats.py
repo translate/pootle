@@ -41,30 +41,6 @@ def nice_percentage(count, total):
     return int(round(percentage))
 
 
-# TODO delete
-def get_raw_stats(path_obj, include_suggestions=False):
-    """Return a dictionary of raw stats for `path_obj`.
-
-    :param path_obj: A Directory/Store object.
-    :param include_suggestions: Whether to include suggestion count in the
-                                output or not.
-
-    Example::
-
-        {'translated': {'units': 0, 'percentage': 0, 'words': 0},
-         'fuzzy': {'units': 0, 'percentage': 0, 'words': 0},
-         'untranslated': {'units': 34, 'percentage': 100, 'words': 181},
-         'total': {'units': 34, 'percentage': 100, 'words': 181}
-         'suggestions': 4 }
-    """
-    stats = get_processed_stats(add_percentages(path_obj.getquickstats()))
-
-    if include_suggestions:
-        stats['suggestions'] = path_obj.get_suggestion_count()
-
-    return stats
-
-
 def get_translation_stats(path_obj, path_stats):
     """Return a list of statistics for ``path_obj`` ready to be displayed.
 

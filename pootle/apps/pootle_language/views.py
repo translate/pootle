@@ -32,8 +32,7 @@ from pootle_app.views.admin.permissions import admin_permissions
 from pootle_app.views.top_stats import gentopstats_language
 from pootle_language.models import Language
 from pootle_misc.browser import get_table_headings
-from pootle_misc.stats import (get_raw_stats, nice_percentage,
-                               stats_descriptions)
+from pootle_misc.stats import nice_percentage, stats_descriptions
 from pootle_misc.util import jsonify, ajax_required
 from pootle_profile.models import get_profile
 from pootle_statistics.models import Submission

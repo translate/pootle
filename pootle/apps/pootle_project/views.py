@@ -42,7 +42,7 @@ from pootle_app.views.index.index import getprojects
 from pootle_app.views.top_stats import gentopstats_project, gentopstats_root
 from pootle_misc.baseurl import l
 from pootle_misc.browser import get_table_headings
-from pootle_misc.stats import get_raw_stats, stats_descriptions
+from pootle_misc.stats import stats_descriptions
 from pootle_misc.util import ajax_required, jsonify
 from pootle_profile.models import get_profile
 from pootle_project.forms import (TranslationProjectFormSet,
