@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -132,7 +133,8 @@ def unit_updated(sender, instance, raw=False, **kwargs):
             if dbcopy.isfuzzy():
                 tp_fuzzy = translation_project.get_fuzzy_wordcount() - 1
 
-            message += stats_message_raw("Project now at", tp_total, tp_translated, tp_fuzzy)
+            message += stats_message_raw("Project now at", tp_total,
+                                         tp_translated, tp_fuzzy)
             new_object(True, message, directory)
 
 
