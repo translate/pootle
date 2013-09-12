@@ -61,4 +61,4 @@ class Command(NoArgsCommand):
         logging.info('If you are trying to upgrade Pootle from version 2.5\n'
                      'or older, please read the upgrade instructions at\n'
                      'http://docs.translatehouse.org/projects/pootle/en/'
-                     'latest/server/upgrading.html'))
+                     'latest/server/upgrading.html')
