@@ -182,6 +182,10 @@
               var id = $parent.parents("td").attr("id");
               $("#" + id + " .tag-list").html(data);
               $("#" + id + "-hidden .tag-list").html(data);
+
+              // In the master table, too.
+              $projectTable.find("#" + id + " .tag-list").html(data);
+              $projectTable.find("#" + id + "-hidden .tag-list").html(data);
             } else {
               // Translation project overview, just delete the DOM element.
               $parent.remove();
@@ -227,6 +231,10 @@
               var tp = $("#js-tags-tp option:selected").val();
               $('#js-tag-tp-' + tp + ' ul').html(data);
               $('#js-tag-tp-' + tp + '-hidden ul').html(data);
+
+              // In the master table, too.
+              $projectTable.find('#js-tag-tp-' + tp + ' ul').html(data);
+              $projectTable.find('#js-tag-tp-' + tp + '-hidden ul').html(data);
             } else {
               // Translation project overview.
               $('.tag-list').html(data);
