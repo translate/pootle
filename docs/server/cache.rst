@@ -28,9 +28,9 @@ Without a well functioning cache system, Pootle could be slow.
 Cache Backends
 --------------
 
-Django supports |multiple cache backends|_ (methods of storing cache data).
-You can specify which backend to use by overriding the value of
-:setting:`CACHES` in your configuration file.
+Django supports :ref:`multiple cache backends <django:setting-up-the-cache>`
+(methods of storing cache data). You can specify which backend to use by
+overriding the value of :setting:`CACHES` in your configuration file.
 
 
 .. _cache#memcached:
@@ -38,7 +38,7 @@ You can specify which backend to use by overriding the value of
 Memcached
 ^^^^^^^^^
 
-::
+.. code-block:: python
 
     CACHES = {
         'default': {
@@ -58,7 +58,7 @@ memcached server. Due to extra dependencies it is not enabled by default.
 Memcached on Unix sockets
 """""""""""""""""""""""""
 
-::
+.. code-block:: python
 
     CACHES = {
         'default': {
@@ -70,9 +70,11 @@ Memcached on Unix sockets
 If you don't want Pootle using TCP/IP to access memcached then you can use Unix
 sockets.  This is often a situation in hardened installations using SELinux.
 
-You will need to ensure that memcached is running with the ``-s`` option. ::
+You will need to ensure that memcached is running with the ``-s`` option:
 
-    memcached -u nobody -s /path/to/memcached.sock -a 0777
+.. code-block:: bash
+
+    $ memcached -u nobody -s /path/to/memcached.sock -a 0777
 
 
 .. _cache#database:
@@ -80,7 +82,7 @@ You will need to ensure that memcached is running with the ``-s`` option. ::
 Database
 ^^^^^^^^
 
-::
+.. code-block:: python
 
     CACHES = {
         'default': {
@@ -89,10 +91,11 @@ Database
         }
     }
 
-|Database caching|_ relies on a table in the main Pootle database for storing
-the cached data, which makes it suitable for multiprocessing servers, with the
-added benefit that the cached data remains intact after a server reboot
-(unlike memcached) but it is considerably slower than memcached.
+:ref:`Database caching <django:database-caching>` relies on a table in the main
+Pootle database for storing the cached data, which makes it suitable for
+multiprocessing servers, with the added benefit that the cached data remains
+intact after a server reboot (unlike memcached) but it is considerably slower
+than memcached.
 
 .. versionchanged:: 2.1.1
 
@@ -100,19 +103,16 @@ This is the default cache backend. On new installs and upgrades the required
 database will be created.
 
 Users of older versions need to create the cache tables manually if they would
-like to switch to the database cache backend using this :doc:`management command
-<commands>`::
+like to switch to the database cache backend using this :doc:`management
+command <commands>`:
+
+.. code-block:: bash
 
     $ pootle createcachetable pootlecache
 
+
 .. _Django's caching system: http://docs.djangoproject.com/en/dev/topics/cache/
 .. |Django's caching system| replace:: *Django's caching system*
-
-.. _multiple cache backends: http://docs.djangoproject.com/en/dev/topics/cache/#setting-up-the-cache
-.. |multiple cache backends| replace:: *multiple cache backends*
-
-.. _Database caching: http://docs.djangoproject.com/en/dev/topics/cache/#database-caching
-.. |Database caching| replace:: *Database caching*
 
 .. we use | | here and above for italics like :ref: in normal links
    (Django intersphinx objects do not include section titles, must use frags)
