@@ -43,8 +43,9 @@
       });
 
       /* Popups */
-      $('.js-popup-ajax').magnificPopup({
+      $(document).magnificPopup({
         type: 'ajax',
+        delegate: '.js-popup-ajax',
         mainClass: 'popup-ajax'
       });
       $('.js-popup-inline').magnificPopup();

@@ -215,7 +215,10 @@
         <ul class="nav">
           <li><a href="http://docs.translatehouse.org/projects/pootle/">{% trans "Help" %}</a></li>
           {% if settings.CAN_CONTACT %}
-          <li><a href='{{ "/contact/"|l }}'>{% trans "Contact Us" %}</a></li>
+          <li>
+            <a class="js-popup-ajax"
+               href="{% url 'pootle-contact' %}">{% trans "Contact Us" %}</a>
+          </li>
           {% endif %}
           <li><a href="{% url 'pootle_app.views.index.about.view' %}">{% trans "About this Pootle Server" %}</a></li>
           <li><a href="{% url 'pootle_app.views.index.contributors.view' %}">{% trans "Contributors" %}</a></li>

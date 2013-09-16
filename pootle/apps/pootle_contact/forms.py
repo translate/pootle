@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2013-2014 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -17,12 +18,23 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
+from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 from contact_form.forms import ContactForm
 
+from pootle.core.forms import MathCaptchaForm
 
-class PootleContactForm(ContactForm):
+
+class PootleContactForm(MathCaptchaForm, ContactForm):
+
+    subject = forms.CharField(
+        max_length=100,
+        label=_(u'Summary'),
+        widget=forms.TextInput(
+            attrs={'placeholder': _('Please enter your message summary')}
+        ),
+    )
 
     def __init__(self, *args, **kwargs):
         super(PootleContactForm, self).__init__(*args, **kwargs)
@@ -38,6 +50,9 @@ class PootleContactForm(ContactForm):
         self.fields['body'].label = _(u'Message')
         body_placeholder = _('Please enter your message')
         self.fields['body'].widget.attrs['placeholder'] = body_placeholder
+
+        self.fields.keyOrder = ['name', 'email', 'subject', 'body',
+                                'captcha_answer', 'captcha_token']
 
     def from_email(self):
         # Pootle customization.

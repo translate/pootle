@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-from django.conf.urls import include, patterns, url
+from django.conf.urls import patterns, url
 
 from .views import PootleContactFormView
 
@@ -26,8 +26,4 @@ urlpatterns = patterns('',
     url(r'^$',
         PootleContactFormView.as_view(),
         name='pootle-contact'),
-
-    # Include original django-contact-form urls.
-    url(r'^',
-        include('contact_form.urls')),
 )

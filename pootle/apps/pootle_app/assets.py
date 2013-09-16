@@ -35,6 +35,7 @@ js_common = Bundle(
     'js/vendor/bootstrap/bootstrap-transition.js',
     'js/captcha.js',
     'js/common.js',
+    'js/contact.js',
     'js/search.js',
     'js/stats.js',
     'js/utils.js',
@@ -73,6 +74,7 @@ register('js_editor', js_editor)
 
 css_common = Bundle(
     'css/style.css',
+    'css/contact.css',
     'css/magnific-popup.css',
     'css/tipsy.css',
     'css/markup.css',

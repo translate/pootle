@@ -1,2 +1,1 @@
-{% load i18n %}[{{ settings.TITLE }}] 
-{% blocktrans %} message by {{ name }}{% endblocktrans %}
+[{{ settings.TITLE }}] {{ subject }}
