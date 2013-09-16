@@ -73,10 +73,6 @@ class PootleProfileManager(models.Manager):
 
 
 class PootleProfile(models.Model):
-    objects = PootleProfileManager()
-
-    class Meta:
-        db_table = 'pootle_app_pootleprofile'
 
     # This is the only required field
     user = models.OneToOneField(User, unique=True, db_index=True)
@@ -101,34 +97,14 @@ class PootleProfile(models.Model):
             related_name="user_alt_src_langs",
             verbose_name=_("Alternative Source Languages"))
 
+    objects = PootleProfileManager()
+
+    class Meta:
+        db_table = 'pootle_app_pootleprofile'
+
     def natural_key(self):
         return (self.user.username,)
     natural_key.dependencies = ['auth.User']
-
-    def __unicode__(self):
-        username = self.user.username
-
-        if email_re.match(username):
-            username = username.strip().rsplit('@', 1)[0]
-
-        return username
-
-    def get_absolute_url(self):
-        return l('/accounts/%s/' % self.user.username)
-
-    @cached_property
-    def get_email_hash(self):
-        try:
-            return md5(self.user.email).hexdigest()
-        except UnicodeEncodeError:
-            return None
-
-    def gravatar_url(self, size=80):
-        if not self.get_email_hash:
-            return ''
-
-        return 'http://www.gravatar.com/avatar/%s?s=%d&d=mm' % \
-            (self.get_email_hash, size)
 
     isopen = property(lambda self: True)
 
@@ -138,63 +114,6 @@ class PootleProfile(models.Model):
         else:
             return AnonymousUser()
     pootle_user = property(_get_pootle_user)
-
-    def get_unit_rows(self):
-        return min(max(self.unit_rows, 5), 49)
-
-    def pending_suggestion_count(self, tp):
-        """Returns the number of pending suggestions for the user in the given
-        translation project.
-
-        :param tp: a :cls:`TranslationProject` object.
-        """
-        return self.suggester.filter(translation_project=tp,
-                                     state='pending').count()
-
-    def accepted_suggestion_count(self, tp):
-        """Returns the number of accepted suggestions for the user in the given
-        translation project.
-
-        :param tp: a :cls:`TranslationProject` object.
-        """
-        return self.suggester.filter(translation_project=tp,
-                                     state='accepted').count()
-
-    def rejected_suggestion_count(self, tp):
-        """Returns the number of rejected suggestions for the user in the given
-        translation project.
-
-        :param tp: a :cls:`TranslationProject` object.
-        """
-        return self.suggester.filter(translation_project=tp,
-                                     state='rejected').count()
-
-    def total_submission_count(self, tp):
-        """Returns the number of submissions the current user has done from the
-        editor in the given translation project.
-
-        :param tp: a :cls:`TranslationProject` object.
-        """
-        return Submission.objects.filter(
-            submitter=self,
-            translation_project=tp,
-            type=SubmissionTypes.NORMAL,
-        ).count()
-
-    def overwritten_submission_count(self, tp):
-        """Returns the number of submissions the current user has done from the
-        editor and have been overwritten by other users in the given
-        translation project.
-
-        :param tp: a :cls:`TranslationProject` object.
-        """
-        return Submission.objects.filter(
-            submitter=self,
-            translation_project=tp,
-            type=SubmissionTypes.NORMAL,
-        ).exclude(
-            unit__submitted_by=self,
-        ).count()
 
     @property
     def contributions(self):
@@ -299,6 +218,88 @@ class PootleProfile(models.Model):
             contributions.append((language, tp_user_stats))
 
         return contributions
+
+    def __unicode__(self):
+        username = self.user.username
+
+        if email_re.match(username):
+            username = username.strip().rsplit('@', 1)[0]
+
+        return username
+
+    def get_absolute_url(self):
+        return l('/accounts/%s/' % self.user.username)
+
+    @cached_property
+    def get_email_hash(self):
+        try:
+            return md5(self.user.email).hexdigest()
+        except UnicodeEncodeError:
+            return None
+
+    def gravatar_url(self, size=80):
+        if not self.get_email_hash:
+            return ''
+
+        return 'http://www.gravatar.com/avatar/%s?s=%d&d=mm' % \
+            (self.get_email_hash, size)
+
+    def get_unit_rows(self):
+        return min(max(self.unit_rows, 5), 49)
+
+    def pending_suggestion_count(self, tp):
+        """Returns the number of pending suggestions for the user in the given
+        translation project.
+
+        :param tp: a :cls:`TranslationProject` object.
+        """
+        return self.suggester.filter(translation_project=tp,
+                                     state='pending').count()
+
+    def accepted_suggestion_count(self, tp):
+        """Returns the number of accepted suggestions for the user in the given
+        translation project.
+
+        :param tp: a :cls:`TranslationProject` object.
+        """
+        return self.suggester.filter(translation_project=tp,
+                                     state='accepted').count()
+
+    def rejected_suggestion_count(self, tp):
+        """Returns the number of rejected suggestions for the user in the given
+        translation project.
+
+        :param tp: a :cls:`TranslationProject` object.
+        """
+        return self.suggester.filter(translation_project=tp,
+                                     state='rejected').count()
+
+    def total_submission_count(self, tp):
+        """Returns the number of submissions the current user has done from the
+        editor in the given translation project.
+
+        :param tp: a :cls:`TranslationProject` object.
+        """
+        return Submission.objects.filter(
+            submitter=self,
+            translation_project=tp,
+            type=SubmissionTypes.NORMAL,
+        ).count()
+
+    def overwritten_submission_count(self, tp):
+        """Returns the number of submissions the current user has done from the
+        editor and have been overwritten by other users in the given
+        translation project.
+
+        :param tp: a :cls:`TranslationProject` object.
+        """
+        return Submission.objects.filter(
+            submitter=self,
+            translation_project=tp,
+            type=SubmissionTypes.NORMAL,
+        ).exclude(
+            unit__submitted_by=self,
+        ).count()
 
 
 def create_pootle_profile(sender, instance, **kwargs):

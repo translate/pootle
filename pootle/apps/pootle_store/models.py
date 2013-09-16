@@ -80,12 +80,12 @@ class QualityCheck(models.Model):
 
     objects = RelatedManager()
 
-    def __unicode__(self):
-        return self.name
-
     @property
     def display_name(self):
         return check_names.get(self.name, self.name)
+
+    def __unicode__(self):
+        return self.name
 
 
 ################# Suggestion ################
@@ -117,17 +117,6 @@ class Suggestion(models.Model, base.TranslationUnit):
                 self.unit.store.pootle_path)
     natural_key.dependencies = ['pootle_store.Unit', 'pootle_store.Store']
 
-    def __unicode__(self):
-        return unicode(self.target)
-
-    def _set_hash(self):
-        string = self.translator_comment_f
-        if string:
-            string = self.target_f + SEPARATOR + string
-        else:
-            string = self.target_f
-        self.target_hash = md5(string.encode("utf-8")).hexdigest()
-
     def _get_target(self):
         return self.target_f
 
@@ -144,6 +133,17 @@ class Suggestion(models.Model, base.TranslationUnit):
 
     translator_comment = property(lambda self: self.translator_comment_f,
                                   _set_translator_comment)
+
+    def __unicode__(self):
+        return unicode(self.target)
+
+    def _set_hash(self):
+        string = self.translator_comment_f
+        if string:
+            string = self.target_f + SEPARATOR + string
+        else:
+            string = self.target_f
+        self.target_hash = md5(string.encode("utf-8")).hexdigest()
 
 
 def delete_votes(sender, instance, **kwargs):
@@ -281,14 +281,6 @@ class Unit(models.Model, base.TranslationUnit):
         return (self.unitid_hash, self.store.pootle_path)
     natural_key.dependencies = ['pootle_store.Store']
 
-    def __init__(self, *args, **kwargs):
-        super(Unit, self).__init__(*args, **kwargs)
-        self._rich_source = None
-        self._source_updated = False
-        self._rich_target = None
-        self._target_updated = False
-        self._encoding = 'UTF-8'
-
     def __unicode__(self):
         # FIXME: consider using unit id instead?
         return unicode(self.source)
@@ -296,6 +288,14 @@ class Unit(models.Model, base.TranslationUnit):
     def __str__(self):
         unitclass = self.get_unit_class()
         return str(self.convert(unitclass))
+
+    def __init__(self, *args, **kwargs):
+        super(Unit, self).__init__(*args, **kwargs)
+        self._rich_source = None
+        self._source_updated = False
+        self._rich_target = None
+        self._target_updated = False
+        self._encoding = 'UTF-8'
 
     def save(self, *args, **kwargs):
         if self._source_updated:
@@ -855,9 +855,6 @@ class StoreManager(RelatedManager):
 
 class Store(models.Model, base.TranslationStore):
     """A model representing a translation store (i.e. a PO or XLIFF file)."""
-    UnitClass = Unit
-    Name = "Model Store"
-    is_dir = False
 
     file = TranslationStoreField(upload_to="fish", max_length=255, storage=fs,
             db_index=True, null=False, editable=False)
@@ -886,6 +883,10 @@ class Store(models.Model, base.TranslationStore):
     tags = TaggableManager(blank=True, verbose_name=_("Tags"),
                            help_text=_("A comma-separated list of tags."))
 
+    UnitClass = Unit
+    Name = "Model Store"
+    is_dir = False
+
     objects = StoreManager()
 
     class Meta:
@@ -895,6 +896,25 @@ class Store(models.Model, base.TranslationStore):
     def natural_key(self):
         return (self.pootle_path,)
     natural_key.dependencies = ['pootle_app.Directory']
+
+    @classmethod
+    def _get_mtime_from_header(cls, store):
+        mtime = None
+        from translate.storage import poheader
+        if isinstance(store, poheader.poheader):
+            try:
+                _mtime = store.parseheader().get('X-POOTLE-MTIME', None)
+                if _mtime:
+                    mtime = datetime.datetime.fromtimestamp(float(_mtime))
+                    if settings.USE_TZ:
+                        # Africa/Johanesburg - pre-2.1 default
+                        tz = tzinfo.FixedOffset(120)
+                        mtime = timezone.make_aware(mtime, tz)
+                    else:
+                        mtime -= datetime.timedelta(hours=2)
+            except Exception as e:
+                logging.debug("failed to parse mtime: %s", e)
+        return mtime
 
     def __unicode__(self):
         return unicode(self.pootle_path)
@@ -918,6 +938,11 @@ class Store(models.Model, base.TranslationStore):
             deletefromcache(self, ["getquickstats", "getcompletestats",
                                    "get_mtime", "get_suggestion_count"])
 
+    def delete(self, *args, **kwargs):
+        super(Store, self).delete(*args, **kwargs)
+        deletefromcache(self, ["getquickstats", "getcompletestats",
+                               "get_mtime", "get_suggestion_count"])
+
     def get_absolute_url(self):
         return l(self.pootle_path)
 
@@ -928,33 +953,9 @@ class Store(models.Model, base.TranslationStore):
             get_editor_filter(**kwargs),
         ])
 
-    def delete(self, *args, **kwargs):
-        super(Store, self).delete(*args, **kwargs)
-        deletefromcache(self, ["getquickstats", "getcompletestats",
-                               "get_mtime", "get_suggestion_count"])
-
     @getfromcache
     def get_mtime(self):
         return max_column(self.unit_set.all(), 'mtime', datetime_min)
-
-    @classmethod
-    def _get_mtime_from_header(cls, store):
-        mtime = None
-        from translate.storage import poheader
-        if isinstance(store, poheader.poheader):
-            try:
-                _mtime = store.parseheader().get('X-POOTLE-MTIME', None)
-                if _mtime:
-                    mtime = datetime.datetime.fromtimestamp(float(_mtime))
-                    if settings.USE_TZ:
-                        # Africa/Johanesburg - pre-2.1 default
-                        tz = tzinfo.FixedOffset(120)
-                        mtime = timezone.make_aware(mtime, tz)
-                    else:
-                        mtime -= datetime.timedelta(hours=2)
-            except Exception as e:
-                logging.debug("failed to parse mtime: %s", e)
-        return mtime
 
     def _get_abs_real_path(self):
         if self.file:

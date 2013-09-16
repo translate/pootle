@@ -54,8 +54,9 @@ class ProjectManager(RelatedManager):
 
 class Project(models.Model):
 
-    code_help_text = _('A short code for the project. This should only contain '
-            'ASCII characters, numbers, and the underscore (_) character.')
+    code_help_text = _('A short code for the project. This should only '
+                       'contain ASCII characters, numbers, and the underscore '
+                       '(_) character.')
     code = models.CharField(max_length=255, null=False, unique=True,
                             db_index=True, verbose_name=_('Code'),
                             help_text=code_help_text)
@@ -63,9 +64,9 @@ class Project(models.Model):
     fullname = models.CharField(max_length=255, null=False,
                                 verbose_name=_("Full Name"))
 
-    description_help_text = _('A description of this project. '
-            'This is useful to give more information or instructions. '
-            'Allowed markup: %s', get_markup_filter_name())
+    description_help_text = _('A description of this project. This is useful '
+                              'to give more information or instructions. '
+                              'Allowed markup: %s', get_markup_filter_name())
     description = MarkupField(blank=True, help_text=description_help_text)
 
     checker_choices = [('standard', 'standard')]
@@ -100,8 +101,8 @@ class Project(models.Model):
     directory = models.OneToOneField('pootle_app.Directory', db_index=True,
                                      editable=False)
 
-    report_target_help_text = _('A URL or an email address where issues '
-            'with the source text can be reported.')
+    report_target_help_text = _('A URL or an email address where issues with '
+                                'the source text can be reported.')
     report_target = models.CharField(max_length=512, blank=True,
                                      verbose_name=_("Report Target"),
                                      help_text=report_target_help_text)
@@ -111,6 +112,10 @@ class Project(models.Model):
     class Meta:
         ordering = ['code']
         db_table = 'pootle_app_project'
+
+    def natural_key(self):
+        return (self.code,)
+    natural_key.dependencies = ['pootle_app.Directory']
 
     def __unicode__(self):
         return self.fullname
@@ -130,22 +135,6 @@ class Project(models.Model):
         # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
         cache.set(CACHE_KEY, Project.objects.order_by('fullname').all(), 0)
-
-    def get_absolute_url(self):
-        return l(self.pootle_path)
-
-    def natural_key(self):
-        return (self.code,)
-    natural_key.dependencies = ['pootle_app.Directory']
-
-    def get_translate_url(self, **kwargs):
-        return reverse('pootle-project-translate', args=[self.code])
-
-    def clean(self):
-        if self.code in RESERVED_PROJECT_CODES:
-            raise ValidationError(
-                _('"%s" cannot be used as a project code' % (self.code,))
-            )
 
     def delete(self, *args, **kwargs):
         directory = self.directory
@@ -189,6 +178,18 @@ class Project(models.Model):
 
         # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
+
+    def get_absolute_url(self):
+        return l(self.pootle_path)
+
+    def get_translate_url(self, **kwargs):
+        return reverse('pootle-project-translate', args=[self.code])
+
+    def clean(self):
+        if self.code in RESERVED_PROJECT_CODES:
+            raise ValidationError(
+                _('"%s" cannot be used as a project code' % (self.code,))
+            )
 
     @getfromcache
     def get_mtime(self):

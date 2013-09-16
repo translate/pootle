@@ -122,42 +122,6 @@ class TranslationProject(models.Model):
         unique_together = ('language', 'project')
         db_table = 'pootle_app_translationproject'
 
-    def __unicode__(self):
-        return self.pootle_path
-
-    def save(self, *args, **kwargs):
-        created = self.id is None
-        project_dir = self.project.get_real_path()
-
-        from pootle_app.project_tree import get_translation_project_dir
-        self.abs_real_path = get_translation_project_dir(self.language,
-                project_dir, self.file_style, make_dirs=True)
-        self.directory = self.language.directory \
-                                      .get_or_make_subdir(self.project.code)
-        self.pootle_path = self.directory.pootle_path
-
-        super(TranslationProject, self).save(*args, **kwargs)
-
-        if created:
-            self.scan_files()
-
-    def delete(self, *args, **kwargs):
-        directory = self.directory
-        super(TranslationProject, self).delete(*args, **kwargs)
-        directory.delete()
-        deletefromcache(self, ["getquickstats", "getcompletestats",
-                               "get_mtime", "get_suggestion_count"])
-
-    def get_absolute_url(self):
-        return l(self.pootle_path)
-
-    def get_translate_url(self, **kwargs):
-        lang, proj, dir, fn = split_pootle_path(self.pootle_path)
-        return u''.join([
-            reverse('pootle-tp-translate', args=[lang, proj, dir, fn]),
-            get_editor_filter(**kwargs),
-        ])
-
     def natural_key(self):
         return (self.pootle_path,)
     natural_key.dependencies = ['pootle_app.Directory',
@@ -248,6 +212,42 @@ class TranslationProject(models.Model):
     has_index = property(_has_index)
 
     ###########################################################################
+
+    def __unicode__(self):
+        return self.pootle_path
+
+    def save(self, *args, **kwargs):
+        created = self.id is None
+        project_dir = self.project.get_real_path()
+
+        from pootle_app.project_tree import get_translation_project_dir
+        self.abs_real_path = get_translation_project_dir(self.language,
+                project_dir, self.file_style, make_dirs=True)
+        self.directory = self.language.directory \
+                                      .get_or_make_subdir(self.project.code)
+        self.pootle_path = self.directory.pootle_path
+
+        super(TranslationProject, self).save(*args, **kwargs)
+
+        if created:
+            self.scan_files()
+
+    def delete(self, *args, **kwargs):
+        directory = self.directory
+        super(TranslationProject, self).delete(*args, **kwargs)
+        directory.delete()
+        deletefromcache(self, ["getquickstats", "getcompletestats",
+                               "get_mtime", "get_suggestion_count"])
+
+    def get_absolute_url(self):
+        return l(self.pootle_path)
+
+    def get_translate_url(self, **kwargs):
+        lang, proj, dir, fn = split_pootle_path(self.pootle_path)
+        return u''.join([
+            reverse('pootle-tp-translate', args=[lang, proj, dir, fn]),
+            get_editor_filter(**kwargs),
+        ])
 
     def filtererrorhandler(self, functionname, str1, str2, e):
         logging.error(u"Error in filter %s: %r, %r, %s", functionname, str1,

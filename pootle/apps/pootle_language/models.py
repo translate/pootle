@@ -103,11 +103,17 @@ class Language(models.Model):
         ordering = ['code']
         db_table = 'pootle_app_language'
 
-    pootle_path = property(lambda self: '/%s/' % self.code)
-
     def natural_key(self):
         return (self.code,)
     natural_key.dependencies = ['pootle_app.Directory']
+
+    pootle_path = property(lambda self: '/%s/' % self.code)
+
+    def __repr__(self):
+        return u'<%s: %s>' % (self.__class__.__name__, self.fullname)
+
+    def __unicode__(self):
+        return u"%s - %s" % (self.name, self.code)
 
     def save(self, *args, **kwargs):
         # create corresponding directory object
@@ -128,11 +134,11 @@ class Language(models.Model):
         # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
 
-    def __repr__(self):
-        return u'<%s: %s>' % (self.__class__.__name__, self.fullname)
+    def get_absolute_url(self):
+        return l(self.pootle_path)
 
-    def __unicode__(self):
-        return u"%s - %s" % (self.name, self.code)
+    def get_translate_url(self, **kwargs):
+        return reverse('pootle-language-translate', args=[self.code])
 
     @getfromcache
     def get_mtime(self):
@@ -154,12 +160,6 @@ class Language(models.Model):
             'unit__state__gt': OBSOLETE,
         }
         return Suggestion.objects.filter(**criteria).count()
-
-    def get_absolute_url(self):
-        return l(self.pootle_path)
-
-    def get_translate_url(self, **kwargs):
-        return reverse('pootle-language-translate', args=[self.code])
 
     def localname(self):
         """localized fullname"""
