@@ -486,6 +486,12 @@ class Unit(models.Model, base.TranslationUnit):
     def get_mtime(self):
         return self.mtime
 
+    def is_accessible_by(self, user):
+        """Returns `True` if the current unit is accessible by `user`."""
+        from pootle_project.models import Project
+        visible_projects = Project.objects.accessible_by_user(user)
+        return self.store.translation_project.project in visible_projects
+
     def convert(self, unitclass):
         """Convert to a unit of type :param:`unitclass` retaining as much
         information from the database as the target format can support."""
