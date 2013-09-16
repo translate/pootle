@@ -28,7 +28,7 @@ urlpatterns = patterns('',
      {'packages': ('pootle', ), }, ),
 
     # External apps
-    (r'^contact/', include('contact_form_i18n.urls')),
+    (r'^contact/', include('evernote_contact.urls')),
     (r'^accounts/', include('pootle_profile.urls')),
 
     # URLs added by Evernote

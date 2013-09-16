@@ -4,6 +4,7 @@ Django>=1.4.8,<1.5
 django-voting==0.1
 South>=0.7.6,<0.8
 django-assets
+django-contact-form==1.0
 
 # Required by webassets, isn't shipped in Python < 2.7
 argparse

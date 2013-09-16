@@ -24,6 +24,9 @@ Directory contents
   - common.js :
     Common code that is included in every page.
 
+  - contact.js :
+    Contact form code.
+
   - editor.js :
     Code that sets up the editor and handles all the actions involved there.
     This includes unit navigation, submission, suggestions' handling, copying

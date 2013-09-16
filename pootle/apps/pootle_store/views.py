@@ -38,7 +38,6 @@ from translate.lang import data
 from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.models.permissions import check_profile_permission
 from pootle.core.exceptions import Http400
-from pootle.core.url_helpers import ensure_uri
 from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.forms import make_search_form
 from pootle_misc.stats import get_raw_stats
@@ -560,7 +559,6 @@ def get_edit_unit(request, unit):
     profile = request.profile
     alt_src_langs = get_alt_src_langs(request, profile, translation_project)
     project = translation_project.project
-    report_target = ensure_uri(project.report_target)
 
     suggestions = get_sugg_list(unit)
     template_vars = {
@@ -580,7 +578,6 @@ def get_edit_unit(request, unit):
         'canreview': check_profile_permission(profile, "review", directory),
         'altsrcs': find_altsrcs(unit, alt_src_langs, store=store,
                                 project=project),
-        'report_target': report_target,
         'suggestions': suggestions,
     }
 

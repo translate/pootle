@@ -426,7 +426,7 @@ div.translate-container
 {
     position: relative;
     margin: -5px 5px;
-    padding: 1em 0;
+    padding: 1em 0 0;
     border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 5px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
@@ -477,6 +477,12 @@ div.unit-path li a
     color: #cff;
     filter: alpha(opacity=80);
     opacity: .8;
+}
+
+.unit-footer
+{
+    font-size: 0.9em;
+    padding: 5px 20px;
 }
 
 div.translate-left,

@@ -1,21 +1,30 @@
-{% extends "about/base.html" %}
-{% load i18n baseurl locale %}
-
-{% block title %}{% trans "Contact Us" %} | {{ block.super }}{% endblock %}
- 
-{% block breadcrumbs %}
-{{ block.super }}<li>{% trans "Contact Us" %}</li>
-{% endblock %}
- 
-{% block content %}
-<div class="form" id="contact" dir="{% locale_dir %}">
-    <h2>{% trans "Contact Us" %}</h2>
-    <form method="post" action="" name="contactform" id="contactform">
+{% load i18n locale %}
+{% load url from future %}
+{% get_current_language as LANGUAGE_CODE %}
+<div id="contact" dir="{% locale_dir %}">
+  <div id="js-contact">
+    <h1>{% trans "Contact Us" %}</h1>
+    <p class="callout"><strong>{% blocktrans with contact_url='http://evernote.com/contact/support/' %}
+        If you've got a problem with Evernote software or account, please <a
+          href="{{ contact_url }}">contact Evernote Technical Support</a>
+        instead.{% endblocktrans %}</strong>
+        {% blocktrans %}We at localization team won't be able to assist you with
+        such technical issues, nor can we forward your requests to Technical
+        Support.{% endblocktrans %}</p>
+    <p>{% blocktrans %}Use the form below to contact our localization
+      managers. You need to fill all the fields.{% endblocktrans %}</p>
+    <form method="post" action="{% url 'pootle-contact' %}">
       {% csrf_token %}
       {{ form.as_p }}
       <p class="buttons">
-        <input type="submit" class="send" name="send" value="{% trans 'Send' %}" />
+        <input type="submit" name="send" id="js-contact-submit"
+               value="{% trans 'Send Message' %}" />
       </p>
     </form>
+  </div>
+  <div id="js-sent" class="hide">
+    <h1>{% trans "Thanks!" %}</h1>
+    <p>{% blocktrans %}We have received your message and will try to
+      respond as soon as possible.{% endblocktrans %}</p>
+  </div>
 </div>
-{% endblock %}

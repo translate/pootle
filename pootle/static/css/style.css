@@ -807,6 +807,20 @@ button.close
 }
 
 
+.callout
+{
+    background-color: rgba(255, 255, 224, 0.5);
+    padding: 1em;
+    -webkit-box-shadow: 0px 0 10px rgba(0, 0, 0, 0.3);
+       -moz-box-shadow: 0px 0 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 0 10px rgba(0, 0, 0, 0.3);
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+
 /*
  * PAGE BODY
  */
@@ -1339,7 +1353,7 @@ ul.errorlist
     margin-top: 1em;
 }
 
-.form .captcha .question
+.form .captcha label
 {
     font-size: 120%;
 }
@@ -2342,9 +2356,6 @@ body#evernote_reports #tabs a.evernote_reports
     color: #444;
     font-weight: bold;
 }
-
-
-
 
 .title a
 {

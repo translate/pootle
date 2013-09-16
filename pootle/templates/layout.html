@@ -152,8 +152,11 @@
       <div class="navigation">
         <ul class="top_menu">
           <li class="page_home"><a href="/">Home</a></li><!--
-       --><li class="page_pootle"><a href="{{ "/"|l }}">Translate</a></li><!--
-       --><li class="page_contact"><a href="/contact/">Contact Us</a></li>
+       --><li class="page_pootle"><a href="{{ "/"|l }}">Translate</a></li>
+          <li class="page_contact">
+            <a class="js-popup-ajax"
+               href="{% url 'pootle-contact' %}">{% trans "Contact Us" %}</a>
+          </li>
         </ul>
       </div>
 

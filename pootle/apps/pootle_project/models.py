@@ -165,11 +165,6 @@ class Project(models.Model):
     directory = models.OneToOneField('pootle_app.Directory', db_index=True,
             editable=False)
 
-    report_target_help_text = _('A URL or an email address where issues '
-            'with the source text can be reported.')
-    report_target = models.CharField(max_length=512, blank=True,
-            verbose_name=_("Report Target"), help_text=report_target_help_text)
-
     screenshot_search_prefix = models.URLField(blank=True, null=True,
             verbose_name=_('Screenshot Search Prefix'))
 

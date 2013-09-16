@@ -103,6 +103,6 @@ def view(request):
             Project,
             link=generate_link,
             form=ProjectForm,
-            exclude=('description', 'report_target', 'ignoredfiles'),
+            exclude=('description', 'ignoredfiles'),
             can_delete=True,
     )
