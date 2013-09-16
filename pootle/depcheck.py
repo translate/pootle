@@ -38,7 +38,7 @@ def test_translate():
         return None, None
 
 
-django_required_ver = (1, 4, 5)
+django_required_ver = (1, 4, 8)
 def test_django():
     from django import VERSION, get_version
     if VERSION >= django_required_ver:
