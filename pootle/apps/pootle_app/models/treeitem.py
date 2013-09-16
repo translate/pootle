@@ -20,7 +20,7 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59
 
-from pootle_misc.util import getfromcache
+from pootle_misc.util import getfromcache, dictsum
 from pootle_statistics.models import Submission
 
 class TreeItem():
@@ -54,6 +54,9 @@ class TreeItem():
     def _get_suggestion_count(self):
         """This method will be overridden in descendants"""
         return 0
+
+    def _get_checks(self):
+        return {}
 
     def initialize_children(self):
         if not self.initialized:
@@ -135,5 +138,14 @@ class TreeItem():
             result['children'] = {}
             for item in self.children:
                 result['children'][item.get_name()] = item.get_stats(False)
+
+        return result
+
+    @getfromcache
+    def get_checks(self):
+        result = self._get_checks()
+        self.initialize_children()
+        for item in self.children:
+            result = dictsum(result, item.get_checks())
 
         return result

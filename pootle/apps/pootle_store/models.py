@@ -43,7 +43,7 @@ from taggit.managers import TaggableManager
 from pootle.core.managers import RelatedManager
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.treeitem import TreeItem
-from pootle_misc.aggregate import group_by_count_extra, max_column
+from pootle_misc.aggregate import group_by_count, group_by_count_extra, max_column
 from pootle_misc.baseurl import l
 from pootle_misc.checks import check_names
 from pootle_misc.util import (cached_property, getfromcache, deletefromcache,
@@ -100,6 +100,21 @@ class SuggestionManager(RelatedManager):
     def get_by_natural_key(self, target_hash, unitid_hash, pootle_path):
         return self.get(target_hash=target_hash, unit__unitid_hash=unitid_hash,
                  unit__store__pootle_path=pootle_path)
+
+    @getfromcache
+    @classmethod
+    def get_check_categories(cls):
+        result = {}
+        cbc = QualityCheck.objects.order_by('category').distinct('category', 'name')
+
+        category = None
+        for check in cbc:
+            if category != check.category:
+                result[check.category] = []
+
+            result[check.category].append(check.name)
+
+        return result
 
 
 class Suggestion(models.Model, base.TranslationUnit):
@@ -1421,6 +1436,7 @@ class Store(models.Model, base.TranslationStore, TreeItem):
                 self.sync_time = timezone.now()
             self.save()
 
+    #TODO process cache for _get_checks
     def require_qualitychecks(self):
         """make sure quality checks are run"""
         if self.state < CHECKED:
@@ -1665,6 +1681,18 @@ class Store(models.Model, base.TranslationStore, TreeItem):
     def _get_fuzzy_wordcount(self):
         """calculate untranslated units statistics"""
         return calc_fuzzy_wordcount(self.units)
+
+    def _get_checks(self):
+        try:
+            self.require_qualitychecks()
+            queryset = QualityCheck.objects.filter(unit__store=self,
+                                                   unit__state__gt=UNTRANSLATED,
+                                                   false_positive=False)
+            return group_by_count(queryset, 'name')
+        except e:
+            logging.info(u"Error getting quality checks for %s\n%s",
+                         self.name, e)
+            return {}
 
     @getfromcache
     def get_mtime(self):

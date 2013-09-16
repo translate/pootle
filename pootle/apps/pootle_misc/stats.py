@@ -41,6 +41,25 @@ def nice_percentage(count, total):
     return int(round(percentage))
 
 
+def get_translation_states(path_obj):
+    states = []
+
+    def make_dict(state, title, filter_url=True):
+        filter_name = filter_url and state or None
+        return {
+            'state': state,
+            'title': title,
+            'url': path_obj.get_translate_url(state=filter_name)
+        }
+
+    states.append(make_dict('total', _("Total"), False))
+    states.append(make_dict('translated', _("Translated")))
+    states.append(make_dict('fuzzy', _("Fuzzy")))
+    states.append(make_dict('untranslated', _("Untranslated")))
+
+    return states
+
+
 def get_translation_stats(path_obj, path_stats):
     """Return a list of statistics for ``path_obj`` ready to be displayed.
 

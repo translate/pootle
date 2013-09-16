@@ -225,6 +225,23 @@ def vcs_commit(request, translation_project, dir_path, filename):
     return redirect(obj.get_absolute_url())
 
 
+
+@ajax_required
+@get_path_obj
+@permission_required('view')
+@get_resource_context
+def qualitycheck_stats(request, translation_project, dir_path, filename=None):
+    directory = request.directory
+    store = request.store
+    resource_obj = store or directory
+
+    qc_stats = {}
+    if resource_obj:
+        qc_stats = resource_obj.get_checks()
+
+    return HttpResponse(jsonify(qc_stats), mimetype="application/json")
+
+
 @get_path_obj
 @permission_required('commit')
 def vcs_update(request, translation_project, dir_path, filename):
@@ -730,7 +747,6 @@ def path_summary_more(request, translation_project, dir_path, filename=None):
     path_stats = path_obj.get_stats(False)
     context = {
         'check_failures': get_quality_check_failures(path_obj, path_stats),
-        'trans_stats': get_translation_stats(path_obj, path_stats),
     }
     return render_to_response('translation_project/xhr-path_summary.html',
                               context, RequestContext(request))

@@ -71,12 +71,42 @@ check_names = {
     # Translators: This refers to tabulation characters
     'tabs': _(u"Tabs"),
     'unchanged': _(u"Unchanged"),
+    'untranslated': _(u"Untranslated"),
     'urls': _(u"URLs"),
     'validchars': _(u"Valid characters"),
     'variables': _(u"Placeholders"),
     'xmltags': _(u"XML tags"),
 }
 
+excluded_filters = ['hassuggestion', 'spellcheck']
+
+def get_quality_check_categories(path_obj):
+    from translate.filters import checks
+
+    sc = checks.StandardChecker()
+    for filt in sc.defaultfilters:
+        if not filt in excluded_filters:
+            getattr(sc, filt)(u'',u'')
+
+    d = {}
+
+    for check, cat in sc.categories.items():
+        if not cat in d:
+            d[cat] = {
+                'code': cat,
+                'title': u"%s" % category_names[cat],
+                'checks': []
+            }
+        d[cat]['checks'].append({
+            'code': check,
+            'title': u"%s" % check_names[check],
+            'url': path_obj.get_translate_url(check=check)
+        })
+
+    result = sorted([item for code, item in d.items()], key=lambda x: x['code'],
+                    reverse=True)
+
+    return result
 
 def get_quality_check_failures(path_obj, path_stats, include_url=True):
     """Returns a list of the failed checks sorted by their importance.
