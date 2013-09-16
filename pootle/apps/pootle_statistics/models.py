@@ -24,7 +24,7 @@ from django.template.defaultfilters import escape, truncatechars
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
-from pootle_app.lib.util import RelatedManager
+from pootle.core.managers import RelatedManager
 from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
 
 

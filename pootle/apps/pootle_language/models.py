@@ -25,8 +25,8 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from pootle.core.managers import RelatedManager
 from pootle.i18n.gettext import tr_lang, language_dir
-from pootle_app.lib.util import RelatedManager
 from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 from pootle_misc.util import getfromcache

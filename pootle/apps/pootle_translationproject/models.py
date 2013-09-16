@@ -31,8 +31,8 @@ from django.core.urlresolvers import reverse
 from django.db import models, IntegrityError
 from django.db.models.signals import post_save
 
+from pootle.core.managers import RelatedManager
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
-from pootle_app.lib.util import RelatedManager
 from pootle_app.models.directory import Directory
 from pootle_language.models import Language
 from pootle_misc.aggregate import group_by_count_extra, max_column
