@@ -39,8 +39,8 @@ from pootle_app.models.permissions import check_permission
 from pootle_app.models import Directory
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
 from pootle_misc.browser import get_children, get_table_headings, get_parent
-from pootle_misc.checks import get_quality_check_failures
-from pootle_misc.stats import get_translation_stats, get_translate_actions
+from pootle_misc.checks import get_quality_check_categories, get_quality_check_failures
+from pootle_misc.stats import get_translation_states, get_translate_actions
 from pootle_misc.util import jsonify, ajax_required
 from pootle_statistics.models import Submission
 from pootle_store.models import Store
@@ -187,7 +187,7 @@ def overview(request, translation_project, dir_path, filename=None):
 
     # Build URL for getting more summary information for the current path
     url_args = [language.code, project.code, resource_obj.path]
-    url_path_summary_more = reverse('pootle-tp-summary', args=url_args)
+    url_path_checks = reverse('pootle-tp-qualitychecks', args=url_args)
     url_path_stats = reverse('pootle-tp-overview-stats', args=url_args)
 
     ctx = {
@@ -197,8 +197,10 @@ def overview(request, translation_project, dir_path, filename=None):
         'resource_obj': resource_obj,
         'resource_path': request.resource_path,
         'can_edit': can_edit,
-        'url_path_summary_more': url_path_summary_more,
-        'url_path_stats': url_path_stats
+        'url_path_checks': url_path_checks,
+        'url_path_stats': url_path_stats,
+        'translation_states': get_translation_states(resource_obj),
+        'check_categories': get_quality_check_categories(resource_obj),
     }
 
     if store is None:
@@ -216,7 +218,7 @@ def overview(request, translation_project, dir_path, filename=None):
 
     return render_to_response("translation_projects/overview.html", ctx,
                               context_instance=RequestContext(request))
-
+@ajax_required
 @get_path_obj
 @permission_required('view')
 @get_resource_context
@@ -228,6 +230,22 @@ def overview_stats(request, translation_project, dir_path, filename=None):
     stats = resource_obj.get_stats()
 
     return HttpResponse(jsonify(stats), mimetype="application/json")
+
+#@ajax_required
+@get_path_obj
+@permission_required('view')
+@get_resource_context
+def qualitycheck_stats(request, translation_project, dir_path, filename=None):
+    directory = request.directory
+    store = request.store
+    resource_obj = store or directory
+
+    qc_stats = {}
+    if resource_obj:
+        qc_stats = resource_obj.get_checks()
+
+    return HttpResponse(jsonify(qc_stats), mimetype="application/json")
+
 
 @get_path_obj
 @permission_required('view')
@@ -305,12 +323,10 @@ def path_summary_more(request, translation_project, dir_path, filename=None):
     path_obj = store or directory
 
     path_stats = path_obj.get_stats(False)
-    translation_stats = get_translation_stats(path_obj, path_stats)
     quality_checks = get_quality_check_failures(path_obj, path_stats)
 
     context = {
         'check_failures': quality_checks,
-        'trans_stats': translation_stats,
     }
 
     return render_to_response('translation_projects/xhr_path_summary.html',

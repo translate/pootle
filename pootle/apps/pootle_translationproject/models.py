@@ -40,6 +40,7 @@ from pootle_app.models.treeitem import TreeItem
 from pootle_language.models import Language
 from pootle_misc.aggregate import group_by_count_extra, max_column
 from pootle_misc.util import getfromcache, deletefromcache
+from pootle_misc.checks import excluded_filters
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
 from pootle_store.models import (Store, Suggestion, Unit, QualityCheck, PARSED,
@@ -182,7 +183,7 @@ class TranslationProject(models.Model, TreeItem):
         checkerclasses = [checks.projectcheckers.get(self.project.checkstyle,
                                                      checks.StandardChecker),
                           checks.StandardUnitChecker]
-        excluded_filters = ['hassuggestion', 'spellcheck']
+
         return checks.TeeChecker(checkerclasses=checkerclasses,
                                  excludefilters=excluded_filters,
                                  errorhandler=self.filtererrorhandler,

@@ -54,6 +54,11 @@ urlpatterns = patterns('pootle_translationproject.views',
         'overview_stats',
         name='pootle-tp-overview-stats'),
 
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/checks/'
+        r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
+        'qualitycheck_stats',
+        name='pootle-tp-qualitychecks'),
+
     # Translation
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
         r'translate/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',

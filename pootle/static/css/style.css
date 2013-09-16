@@ -1727,21 +1727,21 @@ html[dir="rtl"] td.stats-name,
 
 /* Expanded checks */
 
-.checks td
+.checks
 {
-    height: 100%;
-}
-
-.checks td a
-{
-    display: inline-block;
     height: 100%;
     width: 100%;
 }
 
+.check {
+    width: 50%;
+    float: left;
+}
+
 .check-name
 {
-    width: 22%;
+    width: 50%;
+    display: inline-block;
 }
 
 .check-count
@@ -1749,7 +1749,8 @@ html[dir="rtl"] td.stats-name,
     text-align: right;
     width: 5%;
     padding-right: 3em;
-}
+    display: inline-block;
+ }
 
 html[dir="rtl"] .check-count
 {
@@ -1757,7 +1758,7 @@ html[dir="rtl"] .check-count
     padding-left: 5%;
 }
 
-#check-100 td a
+#check-100 a
 {
     background-color: inherit;
     color: #c30;
