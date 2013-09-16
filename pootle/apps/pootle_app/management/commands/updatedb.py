@@ -20,13 +20,13 @@
 import logging
 import os
 
+# This must be run before importing Django.
+os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
+
 from django.core.management.base import NoArgsCommand
 
 from pootle_app.management.commands.upgrade import DEFAULT_POOTLE_BUILDVERSION
 from pootle_misc import siteconfig
-
-
-os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 
 class Command(NoArgsCommand):

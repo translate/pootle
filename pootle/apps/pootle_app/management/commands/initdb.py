@@ -19,12 +19,12 @@
 
 import os
 
+# This must be run before importing Django.
+os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
+
 from django.contrib.auth.models import User
 from django.core.management.base import NoArgsCommand
 from django.db import transaction
-
-
-os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 
 class Command(NoArgsCommand):

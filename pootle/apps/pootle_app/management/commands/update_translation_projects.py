@@ -23,13 +23,13 @@ import logging
 import os
 from optparse import make_option
 
+# This must be run before importing Django.
+os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
+
 from pootle_app.management.commands import PootleCommand
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_translationproject.models import create_translation_project
-
-
-os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 
 def does_not_exist(path):

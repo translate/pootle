@@ -23,13 +23,13 @@ from optparse import make_option
 
 from translate.__version__ import build as code_tt_buildversion
 
+# This must be run before importing Django.
+os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
+
 from django.core.management.base import BaseCommand
 
 from pootle.__version__ import build as code_ptl_buildversion
 from pootle_misc import siteconfig
-
-
-os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 
 #: Build version referring to Pootle version 2.5.
