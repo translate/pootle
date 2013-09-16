@@ -56,7 +56,9 @@ from pootle_misc.baseurl import redirect
 from pootle_misc.browser import (get_children, get_goal_children,
                                  get_table_headings, get_parent,
                                  get_goal_parent, make_goal_item)
-from pootle_misc.checks import get_quality_check_failures
+from pootle_misc.checks import (get_qualitycheck_schema,
+                                get_quality_check_failures)
+from pootle_misc.stats import get_translation_states
 from pootle_misc.util import jsonify, ajax_required
 from pootle_profile.models import get_profile
 from pootle_statistics.models import Submission, SubmissionTypes
@@ -442,6 +444,8 @@ def overview(request, translation_project, dir_path, filename=None,
         'action_output': action_output,
         'can_edit': can_edit,
         'url_path_summary_more': url_path_summary_more,
+        'translation_states': get_translation_states(resource_obj),
+        'check_categories': get_qualitycheck_schema(resource_obj),
     })
 
     tp_pootle_path = translation_project.pootle_path
@@ -615,6 +619,22 @@ def ajax_add_tag_to_tp(request, translation_project):
             }
             return render_to_response('core/xhr_add_tag_form.html', context,
                                       RequestContext(request))
+
+
+#@ajax_required
+@get_path_obj
+@permission_required('view')
+@get_resource_context
+def qualitycheck_stats(request, translation_project, dir_path, filename=None):
+    directory = request.directory
+    store = request.store
+    resource_obj = store or directory
+
+    qc_stats = {}
+    if resource_obj:
+        qc_stats = resource_obj.get_checks()
+
+    return HttpResponse(jsonify(qc_stats), mimetype="application/json")
 
 
 @get_path_obj

@@ -1727,6 +1727,7 @@ html[dir="rtl"] td.stats-name,
     text-align: right;
     width: 5%;
     padding-right: 3em;
+    display: inline-block;
 }
 
 html[dir="rtl"] .check-count
