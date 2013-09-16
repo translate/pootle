@@ -73,6 +73,33 @@ class Directory(models.Model):
     def is_template_project(self):
         return self.pootle_path.startswith('/templates/')
 
+    ############################ Cached properties ############################
+
+    @cached_property
+    def path(self):
+        """Returns just the path part omitting language and project codes.
+
+        If the `pootle_path` of a :cls:`Directory` object `dir` is
+        `/af/project/dir1/dir2/file.po`, `dir.path` will return
+        `dir1/dir2/file.po`.
+        """
+        return u'/'.join(self.pootle_path.split(u'/')[3:])
+
+    @cached_property
+    def translation_project(self):
+        """Return the translation project belonging to this directory."""
+        if self.is_language() or self.is_project():
+            return None
+        elif self.is_translationproject():
+            return self.translationproject
+        else:
+            aux_dir = self
+            while (not aux_dir.is_translationproject() and
+                   aux_dir.parent is not None):
+                aux_dir = aux_dir.parent
+
+            return aux_dir.translationproject
+
     ############################ Methods ######################################
 
     def __unicode__(self):
@@ -137,16 +164,6 @@ class Directory(models.Model):
             'store__pootle_path__startswith': self.pootle_path,
         }
         return max_column(Unit.objects.filter(**criteria), 'mtime', None)
-
-    @cached_property
-    def path(self):
-        """Returns just the path part omitting language and project codes.
-
-        If the `pootle_path` of a :cls:`Directory` object `dir` is
-        `/af/project/dir1/dir2/file.po`, `dir.path` will return
-        `dir1/dir2/file.po`.
-        """
-        return u'/'.join(self.pootle_path.split(u'/')[3:])
 
     def get_or_make_subdir(self, child_name):
         child_dir, created = Directory.objects.get_or_create(name=child_name,
@@ -231,22 +248,6 @@ class Directory(models.Model):
         """does this directory point at a translation project"""
         return (self.pootle_path.count('/') == 3 and not
                 self.pootle_path.startswith('/projects/'))
-
-    @cached_property
-    def translation_project(self):
-        """Return the translation project belonging to this directory."""
-        if self.is_language() or self.is_project():
-            return None
-        else:
-            if self.is_translationproject():
-                return self.translationproject
-            else:
-                aux_dir = self
-                while (not aux_dir.is_translationproject() and
-                       aux_dir.parent is not None):
-                    aux_dir = aux_dir.parent
-
-                return aux_dir.translationproject
 
     def get_real_path(self):
         """physical filesystem path for directory"""

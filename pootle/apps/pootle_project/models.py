@@ -128,6 +128,19 @@ class Project(models.Model):
         """Returns ``True`` if this project is a terminology project."""
         return self.checkstyle == 'terminology'
 
+    ############################ Cached properties ############################
+
+    @cached_property
+    def languages(self):
+        """Returns a list of active :cls:`~pootle_languages.models.Language`
+        objects for this :cls:`~pootle_project.models.Project`.
+        """
+        from pootle_language.models import Language
+        # FIXME: we should better have a way to automatically cache models with
+        # built-in invalidation -- did I hear django-cache-machine?
+        return Language.objects.filter(Q(translationproject__project=self),
+                                       ~Q(code='templates'))
+
     ############################ Methods ######################################
 
     def __unicode__(self):
@@ -234,17 +247,6 @@ class Project(models.Model):
 
     def get_real_path(self):
         return absolute_real_path(self.code)
-
-    @cached_property
-    def languages(self):
-        """Returns a list of active :cls:`~pootle_languages.models.Language`
-        objects for this :cls:`~pootle_project.models.Project`.
-        """
-        from pootle_language.models import Language
-        # FIXME: we should better have a way to automatically cache models with
-        # built-in invalidation -- did I hear django-cache-machine?
-        return Language.objects.filter(Q(translationproject__project=self),
-                                       ~Q(code='templates'))
 
     def get_template_filetype(self):
         if self.localfiletype == 'po':

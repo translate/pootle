@@ -945,6 +945,18 @@ class Store(models.Model, base.TranslationStore):
         """
         pass
 
+    ############################ Cached properties ############################
+
+    @cached_property
+    def path(self):
+        """Returns just the path part omitting language and project codes.
+
+        If the `pootle_path` of a :cls:`Store` object `store` is
+        `/af/project/dir1/dir2/file.po`, `store.path` will return
+        `dir1/dir2/file.po`.
+        """
+        return u'/'.join(self.pootle_path.split(u'/')[3:])
+
     ############################ Methods ######################################
 
     @classmethod
@@ -1006,16 +1018,6 @@ class Store(models.Model, base.TranslationStore):
     @getfromcache
     def get_mtime(self):
         return max_column(self.unit_set.all(), 'mtime', datetime_min)
-
-    @cached_property
-    def path(self):
-        """Returns just the path part omitting language and project codes.
-
-        If the `pootle_path` of a :cls:`Store` object `store` is
-        `/af/project/dir1/dir2/file.po`, `store.path` will return
-        `dir1/dir2/file.po`.
-        """
-        return u'/'.join(self.pootle_path.split(u'/')[3:])
 
     def require_units(self):
         """Make sure file is parsed and units are created."""

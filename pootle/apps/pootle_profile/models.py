@@ -223,6 +223,15 @@ class PootleProfile(models.Model):
 
         return contributions
 
+    ############################ Cached properties ############################
+
+    @cached_property
+    def get_email_hash(self):
+        try:
+            return md5(self.user.email).hexdigest()
+        except UnicodeEncodeError:
+            return None
+
     ############################ Methods ######################################
 
     def __unicode__(self):
@@ -235,13 +244,6 @@ class PootleProfile(models.Model):
 
     def get_absolute_url(self):
         return l('/accounts/%s/' % self.user.username)
-
-    @cached_property
-    def get_email_hash(self):
-        try:
-            return md5(self.user.email).hexdigest()
-        except UnicodeEncodeError:
-            return None
 
     def gravatar_url(self, size=80):
         if not self.get_email_hash:
