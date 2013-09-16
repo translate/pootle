@@ -22,7 +22,7 @@ Not released yet. *Planned release date late November 2013*
   number of ad-hoc patches on Pootle, so support for Python 2.5 on Pootle has
   been dropped.
 
-- The minimum required Django version is 1.4.5.
+- The minimum required Django version is 1.4.x.
 
 - The database schema upgrade procedure has been redefined, and the
   :ref:`commands#updatedb` management command has been phased out in favor of
