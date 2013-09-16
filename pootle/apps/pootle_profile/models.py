@@ -120,6 +120,12 @@ class PootleProfile(models.Model):
         except UnicodeEncodeError:
             return None
 
+    @property
+    def fullname(self):
+        # FIXME: "first name + last name" is just lame
+        return ('%s %s' % (self.user.first_name,
+                           self.user.last_name)).strip()
+
     def gravatar_url(self, size=80):
         if not self.get_email_hash:
             return ''
