@@ -145,9 +145,9 @@ class TranslationStoreFieldFile(FieldFile):
         file_stat = os.stat(self.realpath)
         return file_stat.st_mtime, file_stat.st_size
 
-    def _get_filename(self):
+    @property
+    def filename(self):
         return os.path.basename(self.name)
-    filename = property(_get_filename)
 
     def _get_realpath(self):
         """Return realpath resolving symlinks if necessary."""
@@ -155,15 +155,16 @@ class TranslationStoreFieldFile(FieldFile):
             self._realpath = os.path.realpath(self.path)
         return self._realpath
 
-    def _get_cached_realpath(self):
+    @property
+    def realpath(self):
         """Get real path from cache before attempting to check for symlinks."""
         if not hasattr(self, "_store_tuple"):
             return self._get_realpath()
         else:
             return self._store_tuple.realpath
-    realpath = property(_get_cached_realpath)
 
-    def _get_store(self):
+    @property
+    def store(self):
         """Get translation store from dictionary cache, populate if store not
         already cached."""
         self._update_store_cache()
@@ -218,8 +219,6 @@ class TranslationStoreFieldFile(FieldFile):
             pass
 
         translation_file_updated.send(sender=self, path=self.path)
-
-    store = property(_get_store)
 
     def exists(self):
         return os.path.exists(self.realpath)

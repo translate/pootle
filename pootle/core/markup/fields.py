@@ -48,15 +48,16 @@ class Markup(object):
         self.field_name = field_name
         self.cache_key = rendered_cache_key
 
-    def _get_raw(self):
+    @property
+    def raw(self):
         return self.instance.__dict__[self.field_name]
 
-    def _set_raw(self, value):
+    @raw.setter
+    def raw(self, value):
         setattr(self.instance, self.field_name, value)
 
-    raw = property(_get_raw, _set_raw)
-
-    def _get_rendered(self):
+    @property
+    def rendered(self):
         rendered = cache.get(self.cache_key)
 
         if not rendered:
@@ -66,8 +67,6 @@ class Markup(object):
                       settings.OBJECT_CACHE_TIMEOUT)
 
         return rendered
-
-    rendered = property(_get_rendered)
 
     def __unicode__(self):
         return mark_safe(self.rendered)
