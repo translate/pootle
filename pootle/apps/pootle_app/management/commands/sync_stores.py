@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2009, 2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -20,10 +20,13 @@
 
 import logging
 import os
-os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from optparse import make_option
 
+# This must be run before importing Django.
+os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
+
 from pootle_app.management.commands import PootleCommand, ModifiedSinceMixin
+
 
 class Command(ModifiedSinceMixin, PootleCommand):
     option_list = PootleCommand.option_list + (

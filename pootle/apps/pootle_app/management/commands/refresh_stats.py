@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2009, 2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -19,9 +19,12 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import os
+
+# This must be run before importing Django.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from pootle_app.management.commands import PootleCommand
+
 
 class Command(PootleCommand):
     help = "Allow stats and text indices to be refreshed manually."
