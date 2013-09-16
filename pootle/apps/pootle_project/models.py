@@ -138,13 +138,6 @@ class Project(models.Model, TreeItem):
         db_index=True,
         editable=False,
     )
-    report_target = models.CharField(
-        max_length=512,
-        blank=True,
-        verbose_name=_("Report Target"),
-        help_text=_('A URL or an email address where issues with the source '
-                    'text can be reported.'),
-    )
 
     objects = ProjectManager()
 

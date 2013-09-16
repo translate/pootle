@@ -30,7 +30,7 @@ class DescriptionForm(forms.ModelForm):
 
     class Meta:
         model = Project
-        fields = ("fullname", "description", "report_target")
+        fields = ("fullname", "description")
 
 
 class TranslationProjectTagForm(TagForm):

@@ -44,7 +44,7 @@ from django.views.decorators.http import require_POST
 from taggit.models import Tag
 
 from pootle.core.exceptions import Http400
-from pootle.core.url_helpers import ensure_uri, split_pootle_path
+from pootle.core.url_helpers import split_pootle_path
 from pootle.core.decorators import (get_path_obj, get_resource_context,
                                     permission_required)
 from pootle_app.models import Suggestion as SuggestionStat
@@ -769,7 +769,6 @@ def get_edit_unit(request, unit):
     profile = request.profile
     alt_src_langs = get_alt_src_langs(request, profile, translation_project)
     project = translation_project.project
-    report_target = ensure_uri(project.report_target)
 
     suggestions = get_sugg_list(unit)
     template_vars = {
@@ -789,7 +788,6 @@ def get_edit_unit(request, unit):
         'canreview': check_profile_permission(profile, "review", directory),
         'altsrcs': find_altsrcs(unit, alt_src_langs, store=store,
                                 project=project),
-        'report_target': report_target,
         'suggestions': suggestions,
     }
 

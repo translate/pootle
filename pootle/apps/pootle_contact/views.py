@@ -27,6 +27,17 @@ from pootle.core.views import AjaxResponseMixin
 from .forms import PootleContactForm
 
 
+BODY_TEMPLATE = '''
+Unit: %s
+
+Source: %s
+
+Current translation: %s
+
+Your question or comment:
+'''
+
+
 class PootleContactFormView(AjaxResponseMixin, ContactFormView):
     form_class = PootleContactForm
 
@@ -39,6 +50,31 @@ class PootleContactFormView(AjaxResponseMixin, ContactFormView):
                 'name': user.get_profile().fullname,
                 'email': user.email,
             })
+
+        report = self.request.GET.get('report', False)
+        if report:
+            try:
+                from pootle_store.models import Unit
+                uid = int(report)
+                try:
+                    unit = Unit.objects.select_related(
+                        'store__translation_project__project',
+                    ).get(id=uid)
+                    if unit.is_accessible_by(user):
+                        unit_absolute_url = self.request.build_absolute_uri(
+                                unit.get_translate_url()
+                            )
+                        initial.update({
+                            'body': BODY_TEMPLATE % (
+                                unit_absolute_url,
+                                unit.source,
+                                unit.target
+                            ),
+                        })
+                except Unit.DoesNotExist:
+                    pass
+            except ValueError:
+                pass
 
         return initial
 
