@@ -4,7 +4,7 @@ python:
   - 2.6
   - 2.7
 env:
-  - DJANGO_VERSION=1.4.5
+  - DJANGO_VERSION=1.4.8
 # When we do finally support Django 1.5 - it requires Python 2.6.5, so exclude
 # earlier versions (see https://docs.djangoproject.com/en/dev/faq/install/).
 #matrix:

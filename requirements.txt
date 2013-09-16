@@ -1,4 +1,4 @@
-Django==1.4.5
+Django==1.4.8
 South==0.7.6
 argparse==1.2.1
 cssmin==0.1.4
