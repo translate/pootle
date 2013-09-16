@@ -39,8 +39,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from taggit.managers import TaggableManager
 
+from pootle.core.managers import RelatedManager
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
-from pootle_app.lib.util import RelatedManager
 from pootle_misc.aggregate import group_by_count_extra, max_column
 from pootle_misc.baseurl import l
 from pootle_misc.checks import check_names

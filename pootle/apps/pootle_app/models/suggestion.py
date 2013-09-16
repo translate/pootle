@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2009, 2013 Zuza Software Foundation
 #
 # This file is part of translate.
 #
@@ -22,7 +22,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from pootle_app.lib.util import RelatedManager
+from pootle.core.managers import RelatedManager
 
 class Suggestion(models.Model):
 

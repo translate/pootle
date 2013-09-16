@@ -30,8 +30,8 @@ from django.utils.translation import ugettext_lazy as _
 from translate.filters import checks
 from translate.lang.data import langcode_re
 
+from pootle.core.managers import RelatedManager
 from pootle.core.markup import get_markup_filter_name, MarkupField
-from pootle_app.lib.util import RelatedManager
 from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 from pootle_misc.util import getfromcache, cached_property

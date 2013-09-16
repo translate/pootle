@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2012 Zuza Software Foundation
+# Copyright 2008-2013 Zuza Software Foundation
 #
 # This file is part of translate.
 #
@@ -26,7 +26,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.core.cache import cache
 from django.utils.encoding import iri_to_uri
 
-from pootle_app.lib.util import RelatedManager
+from pootle.core.managers import RelatedManager
 
 
 def get_permission_contenttype():
