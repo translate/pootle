@@ -18,6 +18,35 @@
     <div id="progressbar">{% include "core/progressbar.html" %}</div>
     <div class="label js-label">{% trans "Expand details" %}</div>
   </a>
+    <div id="translate-actions">
+      <ul>
+        <li id="action-continue" class="js-action">
+            <a class="continue-translation" href="{{ url_action_continue }}">
+                <span class="caption">{% trans 'Continue translation' %}</span>
+                <span class="counter">0</span>
+            </a>
+        </li>
+        <li id="action-review">
+            <a class="review-suggestions" href="{{ url_action_review }}">
+                <span class="caption">{% trans 'Review suggestions' %}</span>
+                <span class="counter">0</span>
+            </a>
+        </li>
+        <li id="action-fix-critical">
+            <a class="fix-errors" href="{{ url_action_fixcritical }}">
+                <span class="caption">{% trans 'Fix ctitical errors' %}</span>
+                <span class="counter">0</span>
+            </a>
+        </li>
+        <li id="action-view-all">
+            <a class="translation-complete" href="{{ url_action_view_all }}">
+                <span class="caption">{% trans 'View all' %}</span>
+                <span class="counter">0</span>
+            </a>
+        </li>
+      </ul>
+    </div>
+
   <div class="path-summary-more" id="js-path-summary-more" data-loaded="false" data-collapsed="true">
 
     <div class="hd">
@@ -63,15 +92,6 @@
 {% block search %}{% render_search %}{% endblock %}
 
 {% block content %}
-<div id="translate-actions">
-  <!--ul>
-    { for action in translate_actions }
-      { if action }
-        <li>{ action|safe }</li>
-      { endif }
-    { endfor }
-  </ul-->
-</div>
 
 {% if table %}
 <div class="bd">

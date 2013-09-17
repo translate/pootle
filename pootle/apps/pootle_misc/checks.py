@@ -21,6 +21,7 @@
 from django.utils.translation import ugettext_lazy as _
 
 from translate.filters.decorators import Category
+from translate.filters import checks
 
 
 category_names = {
@@ -79,17 +80,21 @@ check_names = {
 
 excluded_filters = ['hassuggestion', 'spellcheck']
 
-def get_quality_check_categories(path_obj):
-    from translate.filters import checks
 
+def get_qualitychecks():
     sc = checks.StandardChecker()
     for filt in sc.defaultfilters:
         if not filt in excluded_filters:
             getattr(sc, filt)(u'',u'')
 
-    d = {}
+    return sc.categories
 
-    for check, cat in sc.categories.items():
+
+def get_qualitycheck_schema(path_obj):
+    d = {}
+    checks = get_qualitychecks()
+
+    for check, cat in checks.items():
         if not cat in d:
             d[cat] = {
                 'code': cat,
@@ -106,6 +111,12 @@ def get_quality_check_categories(path_obj):
                     reverse=True)
 
     return result
+
+
+def get_qualitychecks_by_category(category):
+    checks = get_qualitychecks()
+    return filter(lambda x: checks[x] == category, checks)
+
 
 def get_quality_check_failures(path_obj, path_stats, include_url=True):
     """Returns a list of the failed checks sorted by their importance.

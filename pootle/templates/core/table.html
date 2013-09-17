@@ -74,6 +74,13 @@ cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
       </td>
       {% endif %}
 
+      {% if 'critical' in table.fields %}
+      <td id="critical-{{ item.code }}" class="stats-number critical js-critical">
+        <a class="non-zero" href="{{ item.href_critical }}"></a>
+        <span class="zero muted">0</span>
+      </td>
+      {% endif %}
+
       {% if 'activity' in table.fields %}
       <td id="last-activity-{{ item.code }}" class="last-activity"></td>
       {% endif %}

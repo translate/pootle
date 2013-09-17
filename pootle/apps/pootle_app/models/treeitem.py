@@ -20,8 +20,11 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59
 
-from pootle_misc.util import getfromcache, dictsum
-from pootle_statistics.models import Submission
+from translate.filters.decorators import Category
+
+from pootle_misc.util import getfromcache, getfromcachebyname, dictsum
+from pootle_misc.checks import get_qualitychecks_by_category, get_qualitychecks
+
 
 class TreeItem():
     children = None
@@ -43,10 +46,6 @@ class TreeItem():
         """This method will be overridden in descendants"""
         return 0
 
-    def _get_untranslated_wordcount(self):
-        """This method will be overridden in descendants"""
-        return 0
-
     def _get_fuzzy_wordcount(self):
         """This method will be overridden in descendants"""
         return 0
@@ -56,7 +55,16 @@ class TreeItem():
         return 0
 
     def _get_checks(self):
+        """This method will be overridden in descendants"""
         return {}
+
+    def _get_all_checks(self):
+        """This method will be overridden in descendants"""
+        return {}
+
+    def _get_check_by_name(self, name):
+        """This method will be overridden in descendants"""
+        return 0
 
     def initialize_children(self):
         if not self.initialized:
@@ -83,13 +91,6 @@ class TreeItem():
         self.initialize_children()
         return (self._get_fuzzy_wordcount() +
                 self._sum('get_fuzzy_wordcount'))
-
-    @getfromcache
-    def get_untranslated_wordcount(self):
-        """calculate untranslated units statistics"""
-        self.initialize_children()
-        return (self._get_untranslated_wordcount() +
-                self._sum('get_untranslated_wordcount'))
 
     @getfromcache
     def get_suggestion_count(self):
@@ -129,9 +130,9 @@ class TreeItem():
             'total': self.get_total_wordcount(),
             'translated': self.get_translated_wordcount(),
             'fuzzy': self.get_fuzzy_wordcount(),
-            'untranslated': self.get_untranslated_wordcount(),
             'suggestions': self.get_suggestion_count(),
             'lastaction': self.get_last_action(),
+            'critical': self.get_critical()
         }
 
         if include_children:
@@ -149,3 +150,39 @@ class TreeItem():
             result = dictsum(result, item.get_checks())
 
         return result
+
+    def get_all_checks(self):
+        result = {}
+
+        self.initialize_children()
+        for check in list(get_qualitychecks):
+            result[check] = self.get_checks_by_name(check)
+
+        return result
+
+    def get_critical(self):
+        check_stats = self.get_checks()
+
+        return sum(map(lambda x: check_stats[x] if x in check_stats else 0,
+                       get_qualitychecks_by_category(Category.CRITICAL)))
+
+    def get_critical1(self):
+        result = 0
+
+        for check in get_qualitychecks_by_category(Category.CRITICAL):
+            result += self.get_checks_by_name(check)
+
+        return result
+
+    @getfromcachebyname
+    def get_checks_by_name(self, name):
+        result = self._get_check_by_name(name)
+        self.initialize_children()
+        for item in self.children:
+            result += item.get_checks_by_name(name)
+
+        return result
+
+    def get_critical_url(self):
+        critical = ','.join(get_qualitychecks_by_category(Category.CRITICAL))
+        return self.get_translate_url(check=critical)

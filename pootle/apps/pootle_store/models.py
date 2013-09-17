@@ -60,8 +60,8 @@ from .fields import (TranslationStoreField, MultiStringField,
                      PLURAL_PLACEHOLDER, SEPARATOR)
 from .filetypes import factory_classes
 from .util import (calc_total_wordcount, calc_translated_wordcount,
-                   calc_untranslated_wordcount, calc_fuzzy_wordcount,
-                   OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED)
+                   calc_fuzzy_wordcount, OBSOLETE, UNTRANSLATED,
+                   FUZZY, TRANSLATED)
 from .signals import translation_submitted
 
 
@@ -1588,10 +1588,6 @@ class Store(models.Model, base.TranslationStore, TreeItem):
     def _get_translated_wordcount(self):
         """calculate translated units statistics"""
         return calc_translated_wordcount(self.units)
-
-    def _get_untranslated_wordcount(self):
-        """calculate untranslated units statistics"""
-        return calc_untranslated_wordcount(self.units)
 
     def _get_fuzzy_wordcount(self):
         """calculate untranslated units statistics"""

@@ -31,6 +31,8 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
 from django.utils.translation import ugettext as _, ungettext
 
+from translate.filters.decorators import Category
+
 from pootle.core.decorators import (get_path_obj, get_resource_context,
                                     permission_required)
 from pootle.core.helpers import get_filter_name, get_translation_context
@@ -39,10 +41,10 @@ from pootle_app.models.permissions import check_permission
 from pootle_app.models import Directory
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
 from pootle_misc.browser import get_children, get_table_headings, get_parent
-from pootle_misc.checks import get_quality_check_categories, get_quality_check_failures
-from pootle_misc.stats import get_translation_states, get_translate_actions
+from pootle_misc.checks import (get_qualitychecks_by_category,
+                                get_qualitycheck_schema)
+from pootle_misc.stats import get_translation_states
 from pootle_misc.util import jsonify, ajax_required
-from pootle_statistics.models import Submission
 from pootle_store.models import Store
 from pootle_store.views import get_step_query
 
@@ -185,10 +187,15 @@ def overview(request, translation_project, dir_path, filename=None):
     #translate_actions = get_translate_actions(resource_obj, path_stats, checks_stats)
     #TODO work via AJAX
 
-    # Build URL for getting more summary information for the current path
+    # Build URL for getting more information for the current path
     url_args = [language.code, project.code, resource_obj.path]
     url_path_checks = reverse('pootle-tp-qualitychecks', args=url_args)
     url_path_stats = reverse('pootle-tp-overview-stats', args=url_args)
+
+    url_action_continue = resource_obj.get_translate_url(state='incomplete')
+    url_action_fixcritical = resource_obj.get_critical_url()
+    url_action_review = resource_obj.get_translate_url(state='suggestions')
+    url_action_view_all = resource_obj.get_translate_url(state='all')
 
     ctx = {
         'translation_project': translation_project,
@@ -200,12 +207,16 @@ def overview(request, translation_project, dir_path, filename=None):
         'url_path_checks': url_path_checks,
         'url_path_stats': url_path_stats,
         'translation_states': get_translation_states(resource_obj),
-        'check_categories': get_quality_check_categories(resource_obj),
+        'check_categories': get_qualitycheck_schema(resource_obj),
+        'url_action_continue': url_action_continue,
+        'url_action_fixcritical': url_action_fixcritical,
+        'url_action_review': url_action_review,
+        'url_action_view_all': url_action_view_all
     }
 
     if store is None:
         table_fields = ['name', 'progress', 'total', 'need-translation',
-                        'suggestions', 'activity']
+                        'suggestions', 'critical', 'activity']
         ctx.update({
             'table': {
                 'id': 'tp',

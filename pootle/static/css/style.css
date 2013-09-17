@@ -1807,6 +1807,10 @@ div.small
     line-height: 150%;
 }
 
+body.js-not-loaded #translate-actions li {
+    display: none;
+}
+
 #translate-actions .caption:after
 {
     content: "\A"; /* force line break */
