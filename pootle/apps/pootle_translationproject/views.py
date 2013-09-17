@@ -428,7 +428,7 @@ def overview(request, translation_project, dir_path, filename=None,
     else:
         description = goal.description
 
-    # Build URL for getting more summary information for the current path
+    # Build URL for getting more information for the current path
     url_path_summary_more = reverse('pootle-xhr-summary-more')
 
     ctx.update({
@@ -473,7 +473,7 @@ def overview(request, translation_project, dir_path, filename=None,
         elif goal in resource_obj_goals:
             # Then show the drill down view for the specified goal.
             table_fields = ['name', 'progress', 'total', 'need-translation',
-                            'suggestions', 'activity']
+                            'suggestions', 'critical', 'activity']
 
             ctx.update({
                 'table': {
@@ -490,7 +490,7 @@ def overview(request, translation_project, dir_path, filename=None,
         else:
             # Then show the files tab.
             table_fields = ['name', 'progress', 'total', 'need-translation',
-                            'suggestions', 'activity']
+                            'suggestions', 'critical', 'activity']
             ctx.update({
                 'table': {
                     'id': 'tp-files',

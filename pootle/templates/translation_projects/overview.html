@@ -18,6 +18,11 @@
     <div id="progressbar">{% include "core/_progressbar.html" %}</div>
     <div class="label js-label">{% trans "Expand details" %}</div>
   </a>
+
+  <div id="translate-actions">
+    <ul id="js-translate-actions-list"></ul>
+  </div>
+
   <div class="path-summary-more" id="js-path-summary-more" data-loaded="false" data-collapsed="true">
 
     <div class="hd">
@@ -63,9 +68,6 @@
 {% block search %}{% render_search %}{% endblock %}
 
 {% block content %}
-<div id="translate-actions">
-  <ul id="js-translate-actions-list"></ul>
-</div>
 
 {% if table %}
 <div class="hd">
