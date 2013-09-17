@@ -45,6 +45,10 @@ class DirectoryManager(models.Manager):
     def projects(self):
         return self.get(pootle_path='/projects/')
 
+    @property
+    def goals(self):
+        return self.get(pootle_path='/goals/')
+
 
 class Directory(models.Model):
 

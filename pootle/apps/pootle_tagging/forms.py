@@ -24,6 +24,8 @@ from django.utils.translation import ugettext as _
 
 from taggit.models import Tag
 
+from .models import Goal, slugify_tag_name
+
 
 class TagForm(forms.ModelForm):
 
@@ -42,6 +44,18 @@ class TagForm(forms.ModelForm):
         super(TagForm, self).__init__(*args, **kwargs)
         self.fields['slug'].label = ''  # Blank label to don't see it.
 
+    def save(self, commit=True):
+        # If this form is saving a goal and not a tag, then replace the tag
+        # instance with a goal instance using the same values.
+        if self.instance.name.startswith("goal:"):
+            params = {
+                'name': self.instance.name,
+                'slug': self.instance.slug,
+            }
+            self.instance = Goal(**params)
+
+        return super(TagForm, self).save(commit)
+
     def clean_name(self):
         """Perform extra validations and normalizations on tag name.
 
@@ -57,6 +71,8 @@ class TagForm(forms.ModelForm):
             * period (.)
 
         * Tag names must be case insensitive (displayed as lowercase).
+        * Also if the name corresponds to a goal name it must be checked that
+          the name is not used for any existing goal.
         """
         name = self.cleaned_data['name']
 
@@ -84,6 +100,20 @@ class TagForm(forms.ModelForm):
         # Lowercase since all tags must be case insensitive.
         name = name.lower()
 
+        if name.startswith("goal:"):
+            raw_name = name.lstrip("goal:")
+
+            if raw_name != raw_name.lstrip(" -_/:."):
+                msg = _("Name cannot contain just after 'goal:' any of these "
+                        "characters: spaces, colons (:), hyphens (-), "
+                        "underscores (_), slashes (/) or periods (.)")
+                raise forms.ValidationError(msg)
+
+            if Goal.objects.filter(name=name):
+                msg = _("Already exists a goal with this name. Please pick "
+                        "another name.")
+                raise forms.ValidationError(msg)
+
         # Always return the cleaned data, whether you have changed it or not.
         return name
 
@@ -99,11 +129,13 @@ class TagForm(forms.ModelForm):
             * slash (/) or
             * period (.)
 
-          Also tag slugs can't have two or more consecutive hyphens, nor start
-          nor end with hyphens.
+        * Tag slugs can't have two or more consecutive hyphens, nor start nor
+          end with hyphens.
+        * Also if the slug corresponds to a goal slug it must be checked that
+          the slug is not used for any existing goal.
         """
         # Get the tag name.
-        tag_name = self.cleaned_data.get('name', "").lower()
+        tag_name = self.cleaned_data.get('name', "")
 
         # If there is no tag name, maybe because it failed to validate.
         if not tag_name:
@@ -111,14 +143,8 @@ class TagForm(forms.ModelForm):
             # the slug field.
             return "slug"
 
-        # Replace invalid characters for slug with hyphens.
-        test_slug = re.sub(r'[^a-z0-9-]', "-", tag_name)
-
-        # Replace groups of hyphens with a single hyphen.
-        test_slug = re.sub(r'-{2,}', "-", test_slug)
-
-        # Remove leading and trailing hyphens.
-        test_slug = test_slug.strip("-")
+        # Calculate the slug from the tag name.
+        test_slug = slugify_tag_name(tag_name)
 
         # Get the actual slug provided to the form.
         slug = self.cleaned_data['slug']
@@ -129,6 +155,10 @@ class TagForm(forms.ModelForm):
                     "following characters: spaces, colons (:), hyphens (-), "
                     "underscores (_), slashes (/) or periods (.)!")
             raise forms.ValidationError(msg)
+
+        if slug.startswith("goal-") and Goal.objects.filter(slug=slug):
+            raise forms.ValidationError(_("Already exists a goal with this "
+                                          "slug!"))
 
         # Always return the cleaned data, whether you have changed it or not.
         return slug

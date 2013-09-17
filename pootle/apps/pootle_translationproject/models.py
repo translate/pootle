@@ -20,6 +20,7 @@
 import gettext
 import logging
 import os
+from itertools import chain
 
 from translate.misc.lru import LRUCachingDict
 from translate.storage.base import ParseError
@@ -50,6 +51,7 @@ from pootle_store.models import (Store, Suggestion, Unit, QualityCheck, PARSED,
 from pootle_store.util import (absolute_real_path, calculate_stats,
                                empty_quickstats, empty_completestats,
                                relative_real_path, OBSOLETE, UNTRANSLATED)
+from pootle_tagging.models import ItemWithGoal
 
 
 def create_translation_project(language, project):
@@ -111,6 +113,9 @@ class TranslationProject(models.Model):
 
     tags = TaggableManager(blank=True, verbose_name=_("Tags"),
                            help_text=_("A comma-separated list of tags."))
+    goals = TaggableManager(blank=True, verbose_name=_("Goals"),
+                            through=ItemWithGoal,
+                            help_text=_("A comma-separated list of goals."))
 
     _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE,
                                          settings.PARSE_POOL_CULL_FREQUENCY)
@@ -128,6 +133,15 @@ class TranslationProject(models.Model):
             'pootle_language.Language', 'pootle_project.Project']
 
     ############################ Properties ###################################
+
+    @property
+    def tag_like_objects(self):
+        """Return the tag like objects applied to this translation project.
+
+        Tag like objects can be either tags or goals.
+        """
+        return list(chain(self.tags.all().order_by("name"),
+                          self.goals.all().order_by("name")))
 
     @property
     def fullname(self):

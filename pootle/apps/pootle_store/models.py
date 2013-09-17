@@ -23,6 +23,7 @@ import os
 import re
 import time
 from hashlib import md5
+from itertools import chain
 
 from translate.filters.decorators import Category
 from translate.storage import base
@@ -52,6 +53,7 @@ from pootle_store.fields import (TranslationStoreField, MultiStringField,
 from pootle_store.filetypes import factory_classes, is_monolingual
 from pootle_store.util import (calculate_stats, empty_quickstats,
                                OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED)
+from pootle_tagging.models import ItemWithGoal
 
 
 #
@@ -897,6 +899,9 @@ class Store(models.Model, base.TranslationStore):
 
     tags = TaggableManager(blank=True, verbose_name=_("Tags"),
                            help_text=_("A comma-separated list of tags."))
+    goals = TaggableManager(blank=True, verbose_name=_("Goals"),
+                            through=ItemWithGoal,
+                            help_text=_("A comma-separated list of goals."))
 
     UnitClass = Unit
     Name = "Model Store"
@@ -913,6 +918,15 @@ class Store(models.Model, base.TranslationStore):
     natural_key.dependencies = ['pootle_app.Directory']
 
     ############################ Properties ###################################
+
+    @property
+    def tag_like_objects(self):
+        """Return the tag like objects applied to this store.
+
+        Tag like objects can be either tags or goals.
+        """
+        return list(chain(self.tags.all().order_by("name"),
+                          self.goals.all().order_by("name")))
 
     @property
     def abs_real_path(self):

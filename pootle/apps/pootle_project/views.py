@@ -51,6 +51,7 @@ from pootle_profile.models import get_profile
 from pootle_project.forms import TranslationProjectTagForm
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
+from pootle_tagging.models import Goal
 from pootle_translationproject.models import TranslationProject
 
 
@@ -82,7 +83,7 @@ def make_language_item(translation_project):
         'title': tr_lang(translation_project.language.fullname),
         'stats': project_stats,
         'lastactivity': get_last_action(translation_project),
-        'tags': translation_project.tags.all().order_by('name'),
+        'tags': translation_project.tag_like_objects,
         'pk': translation_project.pk,
         'tooltip': _('%(percentage)d%% complete', tooltip_dict),
     }
@@ -192,14 +193,22 @@ def get_project_base_template_vars(request, project, can_edit):
 @get_path_obj
 @permission_required('administrate')
 def ajax_remove_tag_from_tp_in_project(request, translation_project, tag_name):
-    translation_project.tags.remove(tag_name)
+
+    if tag_name.startswith("goal:"):
+        translation_project.goals.remove(tag_name)
+    else:
+        translation_project.tags.remove(tag_name)
+
     return HttpResponse(status=201)
 
 
-def _add_tag(request, translation_project, tag):
-    translation_project.tags.add(tag)
+def _add_tag(request, translation_project, tag_like_object):
+    if isinstance(tag_like_object, Tag):
+        translation_project.tags.add(tag_like_object)
+    else:
+        translation_project.goals.add(tag_like_object)
     context = {
-        'tp_tags': translation_project.tags.all().order_by('name'),
+        'tp_tags': translation_project.tag_like_objects,
         'project': translation_project.project.code,
         'language': translation_project.language.code,
     }
@@ -220,8 +229,8 @@ def ajax_add_tag_to_tp_in_project(request, project):
 
     if add_tag_form.is_valid():
         translation_project = add_tag_form.cleaned_data['translation_project']
-        new_tag = add_tag_form.save()
-        return _add_tag(request, translation_project, new_tag)
+        new_tag_like_object = add_tag_form.save()
+        return _add_tag(request, translation_project, new_tag_like_object)
     else:
         # If the form is invalid, perhaps it is because the tag already
         # exists, so instead of creating the tag just retrieve it and add
@@ -233,8 +242,8 @@ def ajax_add_tag_to_tp_in_project(request, project):
             }
             translation_project = TranslationProject.objects.get(**kwargs)
 
-            # Check if the tag is already added to the translation project, or
-            # try adding it.
+            # Check if the tag (or goal) is already added to the translation
+            # project, or try adding it.
             criteria = {
                 'name': add_tag_form.data['name'],
                 'slug': add_tag_form.data['slug'],
@@ -243,13 +252,20 @@ def ajax_add_tag_to_tp_in_project(request, project):
                 # If the tag is already applied to the translation project then
                 # avoid reloading the page.
                 return HttpResponse(status=204)
+            elif len(translation_project.goals.filter(**criteria)) == 1:
+                # If the goal is already applied to the translation project
+                # then avoid reloading the page.
+                return HttpResponse(status=204)
             else:
-                # Else add the tag to the translation project.
-                tag = Tag.objects.get(**criteria)
-                return _add_tag(request, translation_project, tag)
+                # Else add the tag (or goal) to the translation project.
+                if criteria['name'].startswith("goal:"):
+                    tag_like_object = Goal.objects.get(**criteria)
+                else:
+                    tag_like_object = Tag.objects.get(**criteria)
+                return _add_tag(request, translation_project, tag_like_object)
         except Exception:
-            # If the form is invalid and the tag doesn't exist yet then display
-            # the form with the error messages.
+            # If the form is invalid and the tag (or goal) doesn't exist yet
+            # then display the form with the error messages.
             url_kwargs = {
                 'project_code': project.code,
             }
