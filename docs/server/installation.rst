@@ -152,6 +152,17 @@ web browser at ``http://localhost:8000/``.
     $ pootle initdb
 
 
+.. note::
+
+   If you are installing directly from the code then you must also build the
+   assets after running the previous commands:
+
+   .. code-block:: bash
+
+    $ pootle collectstatic --noinput
+    $ pootle assets build
+
+
 .. _installation#reverse_proxy:
 
 Setting up a Reverse Proxy
