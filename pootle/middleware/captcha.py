@@ -169,7 +169,6 @@ class CaptchaMiddleware:
     """
     def process_request(self, request):
         if (not settings.USE_CAPTCHA or not request.POST or
-            request.path.startswith('/api/') or
             request.session.get('ishuman', False)):
             return
 
@@ -184,9 +183,7 @@ class CaptchaMiddleware:
 
         if request.user.is_authenticated():
             if ('target_f_0' not in request.POST or
-                'translator_comment' not in request.POST or
-                ('submit' not in request.POST and
-                 'suggest' not in request.POST)):
+                'translator_comment' not in request.POST):
                 return
 
             # We are in translate page. Users introducing new URLs in the
