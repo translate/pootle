@@ -65,14 +65,6 @@
      * Bind event handlers
      */
 
-    /* Captcha */
-    $(document).on('submit', '#captcha', function (e) {
-      e.preventDefault();
-      var fn = $(this).data('js-action');
-      PTL.editor[fn](e);
-      $.magnificPopup.close();
-    });
-
     /* Fuzzy / unfuzzy */
     $(document).on('keyup blur', 'textarea.translation', function () {
       if (!PTL.editor.keepState &&
@@ -801,6 +793,8 @@
 
     if (xhr.status == 0) {
       msg = gettext("Error while connecting to the server");
+    } else if (xhr.status == 402) {
+      PTL.captcha.onError(xhr, 'PTL.editor.error');
     } else if (xhr.status == 500) {
       msg = gettext("Server error");
     } else if (s == "timeout") {
@@ -1264,13 +1258,17 @@
 
     var reqData, submitUrl, translations,
         unit = PTL.editor.units.getCurrent(),
-        form = $("#captcha").ifExists() || $("#translate");
+        form = $("#translate"),
+        captchaCallbacks = {
+          sfn: 'PTL.editor.processSubmission',
+          efn: 'PTL.editor.error'
+        };
 
     submitUrl = l(['/xhr/units/', unit.id].join(''));
 
     // Serialize data to be sent and get required attributes for the request
     reqData = form.serializeObject();
-    $.extend(reqData, PTL.editor.getReqData());
+    $.extend(reqData, PTL.editor.getReqData(), captchaCallbacks);
 
     $.ajax({
       url: submitUrl,
@@ -1278,29 +1276,24 @@
       data: reqData,
       dataType: 'json',
       async: false,
-      success: function (data) {
-        if (data.captcha) {
-          $.magnificPopup.open({
-            items: {
-              src: data.captcha,
-              type: 'inline'
-            },
-            focus: '#id_captcha_answer'
-          });
-        } else {
-          // FIXME: handle this via events
-          translations = $("textarea[id^=id_target_f_]").map(function (i, el) {
-            return $(el).val();
-          }).get();
-          unit.setTranslation(translations);
-          unit.set('isfuzzy', PTL.editor.isFuzzy());
-
-          PTL.editor.gotoNext();
-        }
-      },
+      success: PTL.editor.processSubmission,
       error: PTL.editor.error
     });
   },
+
+  processSubmission: function (data) {
+    // FIXME: handle this via events
+    translations = $("textarea[id^=id_target_f_]").map(function (i, el) {
+      return $(el).val();
+    }).get();
+
+    var unit = PTL.editor.units.getCurrent();
+    unit.setTranslation(translations);
+    unit.set('isfuzzy', PTL.editor.isFuzzy());
+
+    PTL.editor.gotoNext();
+  },
+
 
   /* Pushes translation suggestions and moves to the next unit */
   suggest: function (e) {
@@ -1308,13 +1301,17 @@
 
     var reqData, suggestUrl,
         uid = PTL.editor.units.getCurrent().id,
-        form = $("#captcha").ifExists() || $("#translate");
+        form = $("#translate"),
+        captchaCallbacks = {
+          sfn: 'PTL.editor.processSuggestion',
+          efn: 'PTL.editor.error'
+        };
 
     suggestUrl = l(['/xhr/units/', uid, '/suggestions/'].join(''));
 
     // Serialize data to be sent and get required attributes for the request
     reqData = form.serializeObject();
-    $.extend(reqData, PTL.editor.getReqData());
+    $.extend(reqData, PTL.editor.getReqData(), captchaCallbacks);
 
     $.ajax({
       url: suggestUrl,
@@ -1322,21 +1319,13 @@
       data: reqData,
       dataType: 'json',
       async: false,
-      success: function (data) {
-        if (data.captcha) {
-          $.magnificPopup.open({
-            items: {
-              src: data.captcha,
-              type: 'inline'
-            },
-            focus: '#id_captcha_answer'
-          });
-        } else {
-          PTL.editor.gotoNext();
-        }
-      },
+      success: PTL.editor.processSuggestion,
       error: PTL.editor.error
     });
+  },
+
+  processSuggestion: function () {
+    PTL.editor.gotoNext();
   },
 
 
