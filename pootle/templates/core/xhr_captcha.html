@@ -1,7 +1,6 @@
 {% load i18n %}
 <div class="form popup-inline" lang="{{ LANGUAGE_CODE }}">
-  <form method="post" action="" id="captcha"
-    data-js-action="{{ js_function }}">
+  <form method="post" action="{{ url }}" id="captcha">
     {% for field, value in post_data.iteritems %}
       {% if field != "captcha" %}<input type="hidden" name="{{ field|escape }}" value="{{ value|escape }}" />{% endif %}
     {% endfor %}

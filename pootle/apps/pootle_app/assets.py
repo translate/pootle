@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2012-2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -32,6 +33,7 @@ js_common = Bundle(
     'js/vendor/jquery/jquery.select2.js',
     'js/vendor/bootstrap/bootstrap-alert.js',
     'js/vendor/bootstrap/bootstrap-transition.js',
+    'js/captcha.js',
     'js/common.js',
     'js/search.js',
     'js/stats.js',

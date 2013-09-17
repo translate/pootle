@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2010-2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -230,31 +231,18 @@ class CaptchaMiddleware:
         else:
             form = MathCaptchaForm()
 
-        ec = {
+        template_name = 'core/captcha.html'
+        ctx = {
             'form': form,
             'url': request.path,
             'post_data': request.POST,
         }
 
-        if request.is_ajax():
-            # FIXME: pass the callback as part of the request, this is a
-            # nightmare to maintain otherwise.
-            js_function = None
-            if '/suggestions/' in request.path:
-                js_function = 'suggest'
-            elif '/xhr/units/' in request.path:
-                js_function = 'submit'
+        if (request.is_ajax() and ('sfn' in request.POST and
+                                   'efn' in request.POST)):
+            template_name = 'core/xhr_captcha.html'
 
-            ec['js_function'] = js_function
-
-            t = loader.get_template('core/xhr_captcha.html')
-            c = RequestContext(request, ec)
-            json_data = {
-                'captcha': t.render(c),
-            }
-
-            response = json.dumps(json_data)
-            return HttpResponse(response, mimetype="application/json")
-        else:
-            return render_to_response('core/captcha.html', ec,
+        response = render_to_response(template_name, ctx,
                                       context_instance=RequestContext(request))
+        response.status_code = 402  # (Ab)using 402 for captcha purposes.
+        return response
