@@ -139,6 +139,17 @@ executing the :ref:`syncdb <commands#syncdb>` and :ref:`initdb
   $ pootle syncdb --noinput
   $ pootle initdb
 
+.. _installation#building_static_assets:
+
+Building Static Assets
+----------------------
+
+Finally, you must collect static assets (:ref:`collectstatic <commands#collectstatic`)
+and build minified versions (:ref:`assets <commands#assets>`) in order for Pootle
+to run.
+
+  $ pootle collectstatic --noinput
+  $ pootle assets build
 
 .. _installation#running_pootle:
 
