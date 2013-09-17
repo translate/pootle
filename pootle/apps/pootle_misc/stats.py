@@ -22,7 +22,45 @@ from django.core.urlresolvers import reverse
 from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext_lazy as _, ungettext
 
-from pootle_misc.util import add_percentages
+
+def nice_percentage(percentage):
+    """Return an integer percentage, but avoid returning 0% or 100% if it might
+    be misleading.
+    """
+    # Let's try to be clever and make sure than anything above 0.0 and below
+    # 0.5 will show as at least 1%, and anything above 99.5% and less than 100%
+    # will show as 99%.
+    if 99 < percentage < 100:
+        return 99
+    if 0 < percentage < 1:
+        return 1
+    return int(round(percentage))
+
+
+def add_percentages(quick_stats):
+    """Add percentages onto the raw stats dictionary."""
+    trans_percent = nice_percentage(100.0 *
+                                    quick_stats['translatedsourcewords'] /
+                                    max(quick_stats['totalsourcewords'], 1))
+
+    fuzzy_percent = nice_percentage(100.0 * quick_stats['fuzzysourcewords'] /
+                                    max(quick_stats['totalsourcewords'], 1))
+
+    strtrans_percent = nice_percentage(100.0 * quick_stats['translated'] /
+                                       max(quick_stats['total'], 1))
+
+    strfuzzy_percent = nice_percentage(100.0 * quick_stats['fuzzy'] /
+                                       max(quick_stats['total'], 1))
+
+    quick_stats.update({
+        'translatedpercentage': trans_percent,
+        'fuzzypercentage':  fuzzy_percent,
+        'untranslatedpercentage': 100 - trans_percent - fuzzy_percent,
+        'strtranslatedpercentage': strtrans_percent,
+        'strfuzzypercentage': strfuzzy_percent,
+        'struntranslatedpercentage': 100 - strtrans_percent - strfuzzy_percent,
+    })
+    return quick_stats
 
 
 def get_raw_stats(path_obj, include_suggestions=False):
