@@ -157,6 +157,17 @@ executing the :ref:`syncdb <commands#syncdb>` and :ref:`initdb
   $ pootle initdb
 
 
+.. note::
+
+   If you are installing directly from the code then you must also build the
+   assets after running the previous commands:
+
+   .. code-block:: bash
+
+    $ pootle collectstatic --noinput
+    $ pootle assets build
+
+
 .. _installation#running_pootle:
 
 Running Pootle
