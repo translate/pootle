@@ -65,10 +65,9 @@ from pootle_store.util import (absolute_real_path, relative_real_path,
 from pootle_store.filetypes import factory_classes
 from pootle_store.views import get_step_query
 from pootle_tagging.forms import TagForm
-from pootle_translationproject.forms import (DescriptionForm,
-                                             upload_form_factory)
 
 from .actions import action_groups
+from .forms import DescriptionForm, upload_form_factory
 
 
 @get_path_obj

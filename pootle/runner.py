@@ -20,7 +20,6 @@
 
 import os
 import sys
-
 from optparse import OptionParser
 
 from django.core import management
@@ -162,7 +161,7 @@ def run_app(project, default_settings_path, settings_template,
 
         try:
             init_settings(config_path, settings_template)
-        except (IOError, OSError), e:
+        except (IOError, OSError) as e:
             raise e.__class__, 'Unable to write default settings file to %r' \
                                 % config_path
 
