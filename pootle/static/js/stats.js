@@ -103,6 +103,21 @@
         $tr.hide();
       }
     },
+    update_action: function ($action, count) {
+      $action.toggle(count > 0);
+      $action.find('.counter').text(count);
+    },
+    update_item_stats: function($td, count) {
+      if (count) {
+        $td.removeClass('zero');
+        $td.addClass('non-zero');
+        $td.find('a').html(count);
+      } else {
+        $td.find('a').html('');
+        $td.addClass('zero');
+        $td.removeClass('non-zero');
+      }
+    },
     load: function (callback) {
       $.ajax({
         url: this.url,
@@ -116,41 +131,17 @@
             var item = data.children[name],
                 code = name.replace(/\./g, '-'),
                 $td = $table.find('#total-words-' + code);
-            if (item.total) {
-              $td.removeClass('zero');
-              $td.addClass('non-zero');
-              $td.find('a').html(item.total);
-            } else {
-              $td.find('a').html('');
-              $td.addClass('zero');
-              $td.removeClass('non-zero');
-            }
+
+            PTL.stats.update_item_stats($td, item.total);
 
             var ratio = item.total === 0 ? 1 : item.translated / item.total;
             $table.find('#translated-ratio-' + code).text(ratio);
 
             $td = $table.find('#need-translation-' + code);
-            var value = item.fuzzy + item.untranslated;
-            if (value) {
-              $td.removeClass('zero');
-              $td.addClass('non-zero');
-              $td.find('a').html(value);
-            } else {
-              $td.find('a').html('');
-              $td.addClass('zero');
-              $td.removeClass('non-zero');
-            }
+            PTL.stats.update_item_stats($td, item.total - item.translated);
 
             $td = $table.find('#suggestions-' + code);
-            if (item.suggestions) {
-              $td.removeClass('zero');
-              $td.addClass('non-zero');
-              $td.find('a').html(item.suggestions);
-            } else {
-              $td.find('a').html('');
-              $td.addClass('zero');
-              $td.removeClass('non-zero');
-            }
+            PTL.stats.update_item_stats($td, item.suggestions);
 
             $td = $table.find('#progressbar-' + code);
             PTL.stats.update_progressbar($td, item);
@@ -160,14 +151,23 @@
               $td.html(item.lastaction.snippet);
               $td.find('.last-action .action-text').show();
             }
+
+            $td = $table.find('#critical-' + code);
+            PTL.stats.update_item_stats($td, item.critical);
           }
+
+          PTL.stats.update_action($('#action-view-all'), data.total);
+          PTL.stats.update_action($('#action-continue'), data.total - data.translated);
+          PTL.stats.update_action($('#action-fix-critical'), data.critical);
+          PTL.stats.update_action($('#action-review'), data.suggestions);
 
           $('body').removeClass('js-not-loaded');
 
           PTL.stats.update_translation_stats($('#stats-total'), data.total, data.total);
           PTL.stats.update_translation_stats($('#stats-translated'), data.total, data.translated);
           PTL.stats.update_translation_stats($('#stats-fuzzy'), data.total, data.fuzzy);
-          PTL.stats.update_translation_stats($('#stats-untranslated'), data.total, data.untranslated);
+          PTL.stats.update_translation_stats($('#stats-untranslated'), data.total,
+            data.total - data.translated - data.fuzzy);
 
           if (callback) {
             callback(data);

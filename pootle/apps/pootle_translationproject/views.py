@@ -38,6 +38,8 @@ from django.views.decorators.http import require_POST
 
 from taggit.models import Tag
 
+from translate.filters.decorators import Category
+
 from pootle.core.decorators import (get_path_obj, get_resource_context,
                                     permission_required)
 from pootle.core.helpers import get_filter_name, get_translation_context

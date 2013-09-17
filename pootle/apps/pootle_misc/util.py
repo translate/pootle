@@ -38,6 +38,16 @@ datetime_min = datetime.min
 if settings.USE_TZ:
     datetime_min = timezone.make_aware(datetime_min, timezone.utc)
 
+def getfromcachebyname(function, timeout=settings.OBJECT_CACHE_TIMEOUT):
+    def _getfromcache(instance, *args, **kwargs):
+        key = iri_to_uri(instance.pootle_path + ":" + args[0] + function.__name__)
+        result = cache.get(key)
+        if result is None:
+            logging.debug(u"cache miss for %s", key)
+            result = function(instance, *args, **kwargs)
+            cache.set(key, result, timeout)
+        return result
+    return _getfromcache
 
 def getfromcache(function, timeout=settings.OBJECT_CACHE_TIMEOUT):
     def _getfromcache(instance, *args, **kwargs):

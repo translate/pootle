@@ -68,6 +68,11 @@ HEADING_CHOICES = [
         'display_name': _("Suggestions"),
     },
     {
+        'id': 'critical',
+        'class': 'stats-number sorttable_numeric when-loaded',
+        'display_name': _("Critical"),
+    },
+    {
         'id': 'activity',
         'class': 'stats when-loaded',
         'display_name': _("Last Activity"),
@@ -95,6 +100,7 @@ def make_generic_item(path_obj):
         'href_all': path_obj.get_translate_url(),
         'href_todo': path_obj.get_translate_url(state='incomplete'),
         'href_sugg': path_obj.get_translate_url(state='suggestions'),
+        'href_critical': path_obj.get_critical_url(),
         'title': path_obj.name,
         'code': path_obj.name.replace('.', '-')
     }

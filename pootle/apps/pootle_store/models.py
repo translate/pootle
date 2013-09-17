@@ -54,9 +54,8 @@ from pootle_store.fields import (TranslationStoreField, MultiStringField,
                                  PLURAL_PLACEHOLDER, SEPARATOR)
 from pootle_store.filetypes import factory_classes, is_monolingual
 from pootle_store.util import (calc_total_wordcount, calc_translated_wordcount,
-                               calc_untranslated_wordcount
-                               calc_fuzzy_wordcount,
-                               OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED)
+                               calc_fuzzy_wordcount, OBSOLETE, UNTRANSLATED,
+                               FUZZY, TRANSLATED)
 from pootle_tagging.models import ItemWithGoal
 
 
@@ -1673,10 +1672,6 @@ class Store(models.Model, base.TranslationStore, TreeItem):
     def _get_translated_wordcount(self):
         """calculate translated units statistics"""
         return calc_translated_wordcount(self.units)
-
-    def _get_untranslated_wordcount(self):
-        """calculate untranslated units statistics"""
-        return calc_untranslated_wordcount(self.units)
 
     def _get_fuzzy_wordcount(self):
         """calculate untranslated units statistics"""
