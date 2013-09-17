@@ -23,10 +23,14 @@ from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext_lazy as _, ungettext
 
 
-def nice_percentage(percentage):
-    """Return an integer percentage, but avoid returning 0% or 100% if it might
-    be misleading.
+def nice_percentage(count, total):
+    """Return an integer percentage for count in respect to total.
+
+    Avoid returning 0% or 100% for percentages closer to them since it might be
+    misleading.
     """
+    percentage = 100.0 * count / max(total, 1)
+
     # Let's try to be clever and make sure than anything above 0.0 and below
     # 0.5 will show as at least 1%, and anything above 99.5% and less than 100%
     # will show as 99%.
@@ -39,18 +43,17 @@ def nice_percentage(percentage):
 
 def add_percentages(quick_stats):
     """Add percentages onto the raw stats dictionary."""
-    trans_percent = nice_percentage(100.0 *
-                                    quick_stats['translatedsourcewords'] /
-                                    max(quick_stats['totalsourcewords'], 1))
+    trans_percent = nice_percentage(quick_stats['translatedsourcewords'],
+                                    quick_stats['totalsourcewords'])
 
-    fuzzy_percent = nice_percentage(100.0 * quick_stats['fuzzysourcewords'] /
-                                    max(quick_stats['totalsourcewords'], 1))
+    fuzzy_percent = nice_percentage(quick_stats['fuzzysourcewords'],
+                                    quick_stats['totalsourcewords'])
 
-    strtrans_percent = nice_percentage(100.0 * quick_stats['translated'] /
-                                       max(quick_stats['total'], 1))
+    strtrans_percent = nice_percentage(quick_stats['translated'],
+                                       quick_stats['total'])
 
-    strfuzzy_percent = nice_percentage(100.0 * quick_stats['fuzzy'] /
-                                       max(quick_stats['total'], 1))
+    strfuzzy_percent = nice_percentage(quick_stats['fuzzy'],
+                                       quick_stats['total'])
 
     quick_stats.update({
         'translatedpercentage': trans_percent,
