@@ -9,7 +9,7 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         # Adding model 'LegalPage'
-        db.create_table('legalpages_legalpage', (
+        db.create_table('staticpages_legalpage', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('active', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('display_on_register', self.gf('django.db.models.fields.BooleanField')(default=False)),
@@ -19,16 +19,16 @@ class Migration(SchemaMigration):
             ('body', self.gf('django.db.models.fields.TextField')(blank=True)),
             ('body_html', self.gf('django.db.models.fields.TextField')(blank=True)),
         ))
-        db.send_create_signal('legalpages', ['LegalPage'])
+        db.send_create_signal('staticpages', ['LegalPage'])
 
 
     def backwards(self, orm):
         # Deleting model 'LegalPage'
-        db.delete_table('legalpages_legalpage')
+        db.delete_table('staticpages_legalpage')
 
 
     models = {
-        'legalpages.legalpage': {
+        'staticpages.legalpage': {
             'Meta': {'object_name': 'LegalPage'},
             'active': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'body': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
@@ -41,4 +41,4 @@ class Migration(SchemaMigration):
         }
     }
 
-    complete_apps = ['legalpages']
+    complete_apps = ['staticpages']
