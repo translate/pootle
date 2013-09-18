@@ -863,8 +863,8 @@ html[dir="rtl"] .hd h2
     display: none;
 }
 
-/* When browser size is 1340px or less, show the smaller version of the last action message */
-@media screen and (max-width: 1340px)
+/* When browser size is 1440px or less, show the smaller version of the last action message */
+@media screen and (max-width: 1440px)
 {
     .last-action .action-text
     {
