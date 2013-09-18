@@ -134,10 +134,14 @@ class Submission(models.Model):
                 'url': self.unit.get_absolute_url(),
             }
 
-        action_bundle = {
-            "profile_url": self.submitter.get_absolute_url(),
-            "gravatar_url": self.submitter.gravatar_url(20),
-            "username": self.submitter.user.username,
+        action_bundle = {}
+        if self.submitter is not None:
+            action_bundle.update({
+                "profile_url": self.submitter.get_absolute_url(),
+                "gravatar_url": self.submitter.gravatar_url(20),
+                "username": self.submitter.user.username,
+            })
+        action_bundle.update({
             "date": self.creation_time,
             "isoformat_date": self.creation_time.isoformat(),
             "action": {
@@ -149,7 +153,7 @@ class Submission(models.Model):
                                                '%(source)s</a></i>', unit),
                 SubmissionTypes.UPLOAD: _('uploaded a file'),
             }.get(self.type, ''),
-        }
+        })
 
         #TODO Look how to detect submissions for "sent suggestion", "rejected
         # suggestion"...
@@ -177,6 +181,16 @@ class Submission(models.Model):
         # better to not return anything at all.
         if not action_bundle["action"]:
             return ''
+
+        if not action_bundle["username"]:
+            action_bundle["uername"] = "anonymous user"
+            return (u'<div class="last-action">'
+                '    <span>%(username)s</span>'
+                '  %(action)s'
+                '  <time class="extra-item-meta js-relative-date"'
+                '    title="%(date)s" datetime="%(isoformat_date)s">&nbsp;'
+                '  </time>'
+                '</div>' % action_bundle)
 
         return (u'<div class="last-action">'
             '  <a href="%(profile_url)s">'
