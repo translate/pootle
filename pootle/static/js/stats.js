@@ -147,7 +147,7 @@
     },
 
     updateAction: function ($action, count) {
-      $action.toggle(count > 0);
+      $action.css('display', count > 0 ? 'inline-block' : 'none');
       $action.find('.counter').text(count);
     },
 
