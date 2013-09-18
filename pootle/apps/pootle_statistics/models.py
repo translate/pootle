@@ -153,13 +153,19 @@ class Submission(models.Model):
         }
 
         action_bundle["action"] = {
-            SubmissionTypes.REVERT: _('reverted translation for string <i>'
-                                      '<a href="%(url)s">%(source)s</a>'
-                                      '</i>', unit),
-            SubmissionTypes.SUGG_ACCEPT: _('accepted suggestion for string'
-                                           ' <i><a href="%(url)s">'
-                                           '%(source)s</a></i>', unit),
-            SubmissionTypes.UPLOAD: _('uploaded a file'),
+            SubmissionTypes.REVERT: _(
+                'reverted translation for '
+                '<i><a href="%(url)s">%(source)s</a></i>',
+                unit
+            ),
+            SubmissionTypes.SUGG_ACCEPT: _(
+                'accepted suggestion for '
+                '<i><a href="%(url)s">%(source)s</a></i>',
+                unit
+            ),
+            SubmissionTypes.UPLOAD: _(
+                'uploaded a file'
+            ),
         }.get(self.type, '')
 
         #TODO Look how to detect submissions for "sent suggestion", "rejected
@@ -173,18 +179,27 @@ class Submission(models.Model):
                 # If the action is unset, maybe the action is one of the
                 # following ones.
                 action_bundle["action"] = {
-                    TRANSLATED: _('submitted translation for string <i><a '
-                                  'href="%(url)s">%(source)s</a></i>', unit),
-                    FUZZY: _('submitted "needs work" translation for string '
-                             '<i><a href="%(url)s">%(source)s</a></i>',
-                             unit),
-                    UNTRANSLATED: _('removed translation for string <i><a '
-                                    'href="%(url)s">%(source)s</a></i>', unit),
+                    TRANSLATED: _(
+                        'translated '
+                        '<i><a href="%(url)s">%(source)s</a></i>',
+                        unit
+                    ),
+                    FUZZY: _(
+                        'pre-translated '
+                        '<i><a href="%(url)s">%(source)s</a></i>',
+                        unit
+                    ),
+                    UNTRANSLATED: _(
+                        'removed translation for '
+                        '<i><a href="%(url)s">%(source)s</a></i>',
+                        unit
+                    ),
                 }.get(self.unit.state, '')
             except AttributeError:
                 return ''
 
-        return mark_safe(u'<div class="last-action">'
+        return mark_safe(
+            u'<div class="last-action">'
             '  <a href="%(profile_url)s">'
             '    <img src="%(gravatar_url)s" />'
             '    <span title="%(username)s">%(displayname)s</span>'
@@ -193,4 +208,5 @@ class Submission(models.Model):
             '  <time class="extra-item-meta js-relative-date"'
             '    title="%(date)s" datetime="%(isoformat_date)s">&nbsp;'
             '  </time>'
-            '</div>' % action_bundle)
+            '</div>'
+            % action_bundle)
