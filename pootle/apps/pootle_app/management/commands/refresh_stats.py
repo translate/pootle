@@ -36,9 +36,10 @@ class Command(PootleCommand):
         translation_project.indexer
 
     def handle_all_stores(self, translation_project, **options):
-        translation_project.getcompletestats()
         translation_project.get_stats()
+        translation_project.get_checks()
+
 
     def handle_store(self, store, **options):
-        store.getcompletestats()
         store.get_stats()
+        store.get_checks()

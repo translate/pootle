@@ -50,7 +50,6 @@ from pootle_app.models.permissions import (check_permission,
                                            check_profile_permission)
 from pootle_language.models import Language
 from pootle_misc.baseurl import redirect
-from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.forms import make_search_form
 from pootle_misc.url_manip import ensure_uri
 from pootle_misc.util import paginate, ajax_required, jsonify
@@ -871,30 +870,6 @@ def get_tm_results(request, unit):
             results.append(result)
 
     return HttpResponse(jsonify(results), mimetype="application/json")
-
-
-@ajax_required
-@get_xhr_resource_context('view')
-def get_failing_checks(request, path_obj):
-    """Gets a list of failing checks for the current object.
-
-    :return: JSON string with a list of failing check categories which
-             include the actual checks that are failing.
-    """
-    if 'goal' in request.GET and request.GET['goal']:
-        try:
-            goal = Goal.objects.get(slug=request.GET['goal'])
-        except Goal.DoesNotExist:
-            raise Http404
-        failures = goal.get_failing_checks_for_path(path_obj)
-    else:
-        stats = path_obj.get_stats()
-        failures = get_quality_check_failures(path_obj, stats,
-                                              include_url=False)
-
-    response = jsonify(failures)
-
-    return HttpResponse(response, mimetype="application/json")
 
 
 @require_POST

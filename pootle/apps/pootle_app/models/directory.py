@@ -23,10 +23,7 @@ from django.db import models
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
-from pootle_misc.util import cached_property, dictsum, getfromcache
-from pootle_store.util import (empty_completestats,
-                               completestatssum, suggestions_sum,
-                               sum_by_attr_name)
+from pootle_misc.util import cached_property
 from pootle_app.models.treeitem import TreeItem
 
 
@@ -192,29 +189,6 @@ class Directory(models.Model, TreeItem):
 
     def get_cachekey(self):
         return self.pootle_path
-
-    @getfromcache
-    def getcompletestats(self):
-        if self.is_template_project:
-            return empty_completestats
-
-        file_result = completestatssum(self.child_stores.iterator())
-        dir_result = completestatssum(self.child_dirs.iterator())
-
-        stats = {}
-        for cat in set(file_result) | set(dir_result):
-            stats[cat] = dictsum(file_result.get(cat, {}),
-                                 dir_result.get(cat, {}))
-
-        return stats
-
-
-    @getfromcache
-    def get_suggestion_stats(self):
-        file_result = suggestions_sum(self.child_stores.iterator())
-        dir_result = suggestions_sum(self.child_dirs.iterator())
-        return file_result + dir_result
-
 
     def trail(self, only_dirs=True):
         """Return a list of ancestor directories excluding

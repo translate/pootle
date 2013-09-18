@@ -43,10 +43,10 @@ from taggit.managers import TaggableManager
 from pootle.core.managers import RelatedManager
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.treeitem import TreeItem
-from pootle_misc.aggregate import group_by_count, group_by_count_extra, max_column
+from pootle_misc.aggregate import group_by_count, max_column
 from pootle_misc.baseurl import l
 from pootle_misc.checks import check_names
-from pootle_misc.util import (cached_property, getfromcache, deletefromcache,
+from pootle_misc.util import (cached_property, deletefromcache,
                               datetime_min)
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
@@ -72,10 +72,6 @@ PARSED = 1
 # Quality checks run
 CHECKED = 2
 
-
-#
-# Cached functions
-#
 
 
 ############### Quality Check #############
@@ -1698,20 +1694,6 @@ class Store(models.Model, base.TranslationStore, TreeItem):
             'mtime': int(time.mktime(sub.unit.mtime.timetuple())),
             'snippet': sub.get_submission_message()
         }
-
-    @getfromcache
-    def getcompletestats(self):
-        """report result of quality checks"""
-        try:
-            self.require_qualitychecks()
-            queryset = QualityCheck.objects.filter(unit__store=self,
-                                                   unit__state__gt=UNTRANSLATED,
-                                                   false_positive=False)
-            return group_by_count_extra(queryset, 'name', 'category')
-        except Exception as e:
-            logging.info(u"Error getting quality checks for %s\n%s",
-                         self.name, e)
-            return {}
 
     def _get_suggestion_count(self):
         """Check if any unit in the store has suggestions"""

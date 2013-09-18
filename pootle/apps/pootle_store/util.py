@@ -26,7 +26,6 @@ from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
 from pootle_misc.aggregate import sum_column
-from pootle_misc.util import dictsum
 
 
 # Unit States
@@ -70,30 +69,6 @@ def absolute_real_path(p):
         return os.path.join(settings.PODIRECTORY, p)
     else:
         return p
-
-
-empty_completestats = {
-    0: {
-        u'isfuzzy': 0,
-        'errors': 0,
-    },
-}
-
-
-def completestatssum(queryset, empty_stats=empty_completestats):
-    totals = copy.deepcopy(empty_stats)
-
-    for item in queryset:
-        try:
-            item_totals = item.getcompletestats()
-
-            for cat in set(item_totals) | set(totals):
-                totals[cat] = dictsum(totals.get(cat, {}),
-                                      item_totals.get(cat, {}))
-        except:
-            totals[0]['errors'] += 1
-    return totals
-
 
 
 def calc_total_wordcount(units):
