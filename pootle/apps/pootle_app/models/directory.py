@@ -150,6 +150,12 @@ class Directory(models.Model, TreeItem):
         result.extend([item for item in self.child_dirs.iterator()])
         return result
 
+    def get_parent(self):
+        return self.parent
+
+    def get_cachekey(self):
+        return self.pootle_path
+
     @getfromcache
     def getcompletestats(self):
         if self.is_template_project:
