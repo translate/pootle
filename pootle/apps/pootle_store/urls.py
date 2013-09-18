@@ -24,10 +24,6 @@ from django.conf.urls import patterns, url
 
 urlpatterns = patterns('pootle_store.views',
     # XHR
-    url(r'^xhr/checks/?$',
-        'get_failing_checks',
-        name='pootle-xhr-checks'),
-
     url(r'^xhr/units/?$',
         'get_units',
         name='pootle-xhr-units'),

@@ -39,7 +39,6 @@ from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.models.permissions import check_profile_permission
 from pootle.core.exceptions import Http400
 from pootle.core.url_helpers import ensure_uri
-from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.forms import make_search_form
 from pootle_misc.util import paginate, ajax_required, jsonify
 from pootle_profile.models import get_profile
@@ -613,22 +612,6 @@ def get_edit_unit(request, unit):
 
     response = jsonify(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
-
-
-@ajax_required
-@get_xhr_resource_context('view')
-def get_failing_checks(request, path_obj):
-    """Gets a list of failing checks for the current object.
-
-    :return: JSON string with a list of failing check categories which
-             include the actual checks that are failing.
-    """
-    stats = path_obj.get_stats()
-    failures = get_quality_check_failures(path_obj, stats, include_url=False)
-
-    response = jsonify(failures)
-
-    return HttpResponse(response, mimetype="application/json")
 
 
 @ajax_required

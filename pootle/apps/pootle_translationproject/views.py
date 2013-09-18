@@ -29,9 +29,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
-from django.utils.translation import ugettext as _, ungettext
-
-from translate.filters.decorators import Category
+from django.utils.translation import ugettext as _
 
 from pootle.core.decorators import (get_path_obj, get_resource_context,
                                     permission_required)
@@ -41,8 +39,7 @@ from pootle_app.models.permissions import check_permission
 from pootle_app.models import Directory
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
 from pootle_misc.browser import get_children, get_table_headings, get_parent
-from pootle_misc.checks import (get_qualitychecks_by_category,
-                                get_qualitycheck_schema)
+from pootle_misc.checks import get_qualitycheck_schema
 from pootle_misc.stats import get_translation_states
 from pootle_misc.util import jsonify, ajax_required
 from pootle_store.models import Store
@@ -182,10 +179,6 @@ def overview(request, translation_project, dir_path, filename=None):
     directory = request.directory
     store = request.store
     resource_obj = store or directory
-
-    #checks_stats = resource_obj.getcompletestats()
-    #translate_actions = get_translate_actions(resource_obj, path_stats, checks_stats)
-    #TODO work via AJAX
 
     # Build URL for getting more information for the current path
     url_args = [language.code, project.code, resource_obj.path]

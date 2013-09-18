@@ -38,16 +38,13 @@ from pootle_app.lib.util import RelatedManager
 from pootle_app.models.directory import Directory
 from pootle_app.models.treeitem import TreeItem
 from pootle_language.models import Language
-from pootle_misc.aggregate import group_by_count_extra, max_column
-from pootle_misc.util import getfromcache, deletefromcache
+from pootle_misc.util import deletefromcache
 from pootle_misc.checks import excluded_filters
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
-from pootle_store.models import (Store, Suggestion, Unit, QualityCheck, PARSED,
-                                 CHECKED)
-from pootle_store.util import (absolute_real_path, calculate_stats,
-                               empty_completestats, relative_real_path,
-                               OBSOLETE, UNTRANSLATED)
+from pootle_store.models import (Store, Unit, PARSED)
+from pootle_store.util import (absolute_real_path, relative_real_path,
+                               OBSOLETE)
 
 
 class TranslationProjectNonDBState(object):
@@ -272,28 +269,6 @@ class TranslationProject(models.Model, TreeItem):
 
     def get_parent(self):
         return self.directory.get_parent()
-
-    @getfromcache
-    def getcompletestats(self):
-        if self.is_template_project:
-            return empty_completestats
-
-        for store in self.stores.filter(state__lt=CHECKED).iterator():
-            store.require_qualitychecks()
-
-        query = QualityCheck.objects.filter(
-            unit__store__translation_project=self,
-            unit__state__gt=UNTRANSLATED,
-            false_positive=False
-        )
-        return group_by_count_extra(query, 'name', 'category')
-
-    def get_suggestion_count(self):
-        """
-        Check if any unit in the stores for this translation project has
-        suggestions.
-        """
-        return self.directory.get_suggestion_count()
 
     def scan_files(self):
         """Scans the file system and returns a list of translation files.
