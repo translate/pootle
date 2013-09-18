@@ -1665,7 +1665,8 @@ td.stats-number
 
 table.stats .number,
 th.stats-number,
-td.stats-number
+td.stats-number,
+td.stats-percentage
 {
     text-align: right;
 }
@@ -1739,22 +1740,26 @@ html[dir="rtl"] td.stats-name,
     width: 100%;
 }
 
+.checks h4 {
+    padding: 1em 0 0.5em;
+    font-weight: normal;
+}
+
 .check {
-    width: 50%;
     float: left;
 }
 
 .check-name
 {
-    width: 50%;
+    width: 10em;
     display: inline-block;
 }
 
 .check-count
 {
     text-align: right;
-    width: 5%;
-    padding-right: 3em;
+    width: 3em;
+    padding-right: 6em;
     display: inline-block;
  }
 
@@ -2212,6 +2217,11 @@ body.js-not-loaded #translate-actions li {
     background: #000;
     color: #fff;
     font-weight: normal;
+}
+
+#translate-actions a:hover
+{
+    color: #000;
 }
 
 #translate-actions a:hover .counter
