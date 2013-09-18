@@ -1671,7 +1671,8 @@ td.stats-number
 }
 
 td.stats-number.need-translation a,
-td.stats-number.suggestions a
+td.stats-number.suggestions a,
+td.stats-number.critical a
 {
     display: inline-block;
     background: #0489b7;
@@ -1687,6 +1688,11 @@ td.stats-number.suggestions a
 td.stats-number.suggestions a
 {
     background: #bbaa66;
+}
+
+td.stats-number.critical a
+{
+    background: #c30;
 }
 
 td.stats-name .user-nobody
@@ -1774,103 +1780,6 @@ div.small
 .tiny
 {
     font-size: 0.9em;
-}
-
-#translate-actions
-{
-    position: relative;
-}
-
-#translate-actions a
-{
-    white-space: pre;
-    text-decoration: none;
-    color: #000;
-}
-
-#translate-actions ul
-{
-    list-style-type: none;
-    position: absolute;
-    top: -1.2em;
-    right: 0;
-    margin-right: 1.5em;
-}
-
-#translate-actions li
-{
-    display: inline-block;
-    margin-left: 2em;
-    font-size: 110%;
-    font-weight: bold;
-    text-align: center;
-    line-height: 150%;
-}
-
-body.js-not-loaded #translate-actions li {
-    display: none;
-}
-
-#translate-actions .caption:after
-{
-    content: "\A"; /* force line break */
-}
-
-#translate-actions .counter
-{
-    padding: 0.1em 0.9em;
-    margin-right: -0.5em;
-    -webkit-border-radius: 1em;
-    -moz-border-radius: 1em;
-    border-radius: 1em;
-    background: #000;
-    color: #fff;
-    font-weight: normal;
-}
-
-#translate-actions a:hover .counter
-{
-    background: #000 !important;
-}
-
-#translate-actions .translation-complete
-{
-    color: #090;
-}
-
-#translate-actions .translation-complete .counter
-{
-    background-color: #090;
-}
-
-#translate-actions .continue-translation
-{
-    color: #0489b7;
-}
-
-#translate-actions .continue-translation .counter
-{
-    background-color: #0489b7;
-}
-
-#translate-actions .review-suggestions
-{
-    color: #ba6;
-}
-
-#translate-actions .review-suggestions .counter
-{
-    background-color: #ba6;
-}
-
-#translate-actions .fix-errors
-{
-    color: #c30;
-}
-
-#translate-actions .fix-errors .counter
-{
-    background-color: #c30;
 }
 
 /* PROGRESSBAR */
@@ -2207,7 +2116,6 @@ html[dir="rtl"] .overview-description-toggle
     padding-bottom: 0.5em;
 }
 
-
 #progressbar
 {
     margin-left: 8em;
@@ -2238,6 +2146,102 @@ html[dir="rtl"] .overview-description-toggle
 .path-summary-more td.stats-number
 {
     padding-right: 3em !important;
+}
+
+/*
+ * HEADER ACTIONS
+ */
+
+#actions
+{
+    padding-bottom: 1em;
+}
+
+#translate-actions
+{
+    display: inline-block;
+    position: relative;
+    top: 4px;
+}
+
+#translate-actions a
+{
+    text-decoration: none;
+    color: #000;
+}
+
+#translate-actions ul
+{
+    display: inline-block;
+    list-style-type: none;
+}
+
+#translate-actions li
+{
+    display: inline-block;
+    margin-left: 2em;
+    font-weight: bold;
+}
+
+body.js-not-loaded #translate-actions li {
+    display: none;
+}
+
+#translate-actions .counter
+{
+    padding: 0.1em 0.9em;
+    margin-right: -0.5em;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    border-radius: 1em;
+    background: #000;
+    color: #fff;
+    font-weight: normal;
+}
+
+#translate-actions a:hover .counter
+{
+    background: #000 !important;
+}
+
+#translate-actions .translation-complete
+{
+    color: #090;
+}
+
+#translate-actions .translation-complete .counter
+{
+    background-color: #090;
+}
+
+#translate-actions .continue-translation
+{
+    color: #0489b7;
+}
+
+#translate-actions .continue-translation .counter
+{
+    background-color: #0489b7;
+}
+
+#translate-actions .review-suggestions
+{
+    color: #ba6;
+}
+
+#translate-actions .review-suggestions .counter
+{
+    background-color: #ba6;
+}
+
+#translate-actions .fix-errors
+{
+    color: #c30;
+}
+
+#translate-actions .fix-errors .counter
+{
+    background-color: #c30;
 }
 
 /* top menu */
@@ -2441,18 +2445,19 @@ body#evernote_reports #tabs a.evernote_reports
 
 #search
 {
-    float: right;
-    margin: 4px 0 0;
-}
-
-html[dir="rtl"] #search
-{
-    float: left;
+    display: inline-block;
 }
 
 #main-overview #search
 {
+    float: right;
+    margin: 4px 0 0;
     margin-top: -32px;
+}
+
+#main-overview[dir="rtl"] #search
+{
+    float: left;
 }
 
 #search-form
