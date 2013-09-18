@@ -104,7 +104,7 @@ def get_qualitycheck_schema(path_obj):
             }
         d[cat]['checks'].append({
             'code': check,
-            'title': u"%s" % check_names[check],
+            'title': u"%s" % check_names.get(check, check),
             'url': path_obj.get_translate_url(check=check)
         })
 
