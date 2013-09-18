@@ -2116,9 +2116,24 @@ html[dir="rtl"] .overview-description-toggle
     padding-bottom: 0.5em;
 }
 
+#top-stats a
+{
+    position: relative;
+}
+
+.icon-collapse-stats,
+.icon-expand-stats
+{
+    display: inline-block;
+    position: absolute;
+    top: -4px;
+    left: -1px;
+    z-index: 1;
+}
+
 #progressbar
 {
-    margin-left: 8em;
+    margin-left: 10px;
 }
 
 #progressbar table.graph
@@ -2133,9 +2148,9 @@ html[dir="rtl"] .overview-description-toggle
     border: 1px solid #d9d9d9;    
     background: #f4f4f4;
 
-    -webkit-border-radius: 5px;
-       -moz-border-radius: 5px;
-            border-radius: 5px;
+    -webkit-border-radius: 0 0 5px 5px;
+       -moz-border-radius: 0 0 5px 5px;
+            border-radius: 0 0 5px 5px;
 }
 
 .path-summary-more table

@@ -12,15 +12,16 @@
       $(document).on("click", "#js-path-summary", function (e) {
         e.preventDefault();
         var node = $("#" + $(this).data('target')),
-            $textNode = $(this).find(".js-label"),
+            $iconNode = $(this).find("#js-expand-icon"),
             data = node.data();
 
         function hideShow() {
-          node.slideToggle('slow', 'easeOutQuad', function () {
-            node.data('collapsed', !data.collapsed);
-            var newText = data.collapsed ? gettext('Expand details') : gettext('Collapse details');
-            $textNode.text(newText);
-          });
+          node.data('collapsed', !data.collapsed);
+          var newClass = data.collapsed ? 'icon-expand-stats' : 'icon-collapse-stats';
+          var newText = data.collapsed ? gettext('Expand details') : gettext('Collapse details');
+          $iconNode.attr('class', newClass);
+          $iconNode.attr('title', newText);
+          node.slideToggle('slow', 'easeOutQuad');
         }
 
         if (data.loaded) {

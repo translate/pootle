@@ -1,8 +1,10 @@
-/* glue: 0.3 hash: 35d1ba0e86 */
+/* glue: 0.3 hash: 5464d916d9 */
 .logo,
 .icon-desc,
 .icon-ascdesc,
 .icon-asc,
+.icon-expand-stats,
+.icon-collapse-stats,
 .icon-web-translate,
 .icon-warning,
 .icon-vote-inactive,
@@ -35,31 +37,33 @@
 .icon-desc{background-position:0px -32px;width:21px;height:4px;}
 .icon-ascdesc{background-position:0px -36px;width:21px;height:9px;}
 .icon-asc{background-position:-21px -32px;width:21px;height:4px;}
-.icon-web-translate{background-position:-52px 0px;width:16px;height:16px;}
-.icon-warning{background-position:-52px -16px;width:16px;height:16px;}
-.icon-vote-inactive{background-position:0px -45px;width:16px;height:16px;}
-.icon-vote-active{background-position:-16px -45px;width:16px;height:16px;}
-.icon-tick{background-position:-32px -45px;width:16px;height:16px;}
-.icon-search{background-position:-48px -45px;width:16px;height:16px;}
-.icon-report-bug{background-position:-68px 0px;width:16px;height:16px;}
-.icon-reject{background-position:-68px -16px;width:16px;height:16px;}
-.icon-project{background-position:-68px -32px;width:16px;height:16px;}
-.icon-language{background-position:0px -61px;width:16px;height:16px;}
-.icon-information{background-position:-16px -61px;width:16px;height:16px;}
-.icon-google-translate{background-position:-32px -61px;width:16px;height:16px;}
-.icon-folder{background-position:-48px -61px;width:16px;height:16px;}
-.icon-folder-parent{background-position:-64px -61px;width:16px;height:16px;}
-.icon-file{background-position:-84px 0px;width:16px;height:16px;}
-.icon-error{background-position:-84px -16px;width:16px;height:16px;}
-.icon-copy{background-position:-84px -32px;width:16px;height:16px;}
-.icon-comment-user{background-position:-84px -48px;width:16px;height:16px;}
-.icon-comment-add{background-position:0px -77px;width:16px;height:16px;}
-.icon-block{background-position:-16px -77px;width:16px;height:16px;}
-.icon-apertium{background-position:-32px -77px;width:16px;height:16px;}
-.icon-accept{background-position:-48px -77px;width:16px;height:16px;}
-.icon-upload{background-position:-64px -77px;width:14px;height:14px;}
-.icon-update-templates{background-position:-78px -77px;width:14px;height:14px;}
-.icon-rescan-files{background-position:-100px 0px;width:14px;height:14px;}
-.icon-download{background-position:-100px -14px;width:14px;height:14px;}
-.icon-delete-path{background-position:-100px -28px;width:14px;height:14px;}
-.icon-external-link{background-position:-100px -42px;width:12px;height:12px;}
+.icon-expand-stats{background-position:-52px 0px;width:17px;height:17px;}
+.icon-collapse-stats{background-position:-52px -17px;width:17px;height:17px;}
+.icon-web-translate{background-position:0px -45px;width:16px;height:16px;}
+.icon-warning{background-position:-16px -45px;width:16px;height:16px;}
+.icon-vote-inactive{background-position:-32px -45px;width:16px;height:16px;}
+.icon-vote-active{background-position:-48px -45px;width:16px;height:16px;}
+.icon-tick{background-position:-69px 0px;width:16px;height:16px;}
+.icon-search{background-position:-69px -16px;width:16px;height:16px;}
+.icon-report-bug{background-position:-69px -32px;width:16px;height:16px;}
+.icon-reject{background-position:0px -61px;width:16px;height:16px;}
+.icon-project{background-position:-16px -61px;width:16px;height:16px;}
+.icon-language{background-position:-32px -61px;width:16px;height:16px;}
+.icon-information{background-position:-48px -61px;width:16px;height:16px;}
+.icon-google-translate{background-position:-64px -61px;width:16px;height:16px;}
+.icon-folder{background-position:-85px 0px;width:16px;height:16px;}
+.icon-folder-parent{background-position:-85px -16px;width:16px;height:16px;}
+.icon-file{background-position:-85px -32px;width:16px;height:16px;}
+.icon-error{background-position:-85px -48px;width:16px;height:16px;}
+.icon-copy{background-position:0px -77px;width:16px;height:16px;}
+.icon-comment-user{background-position:-16px -77px;width:16px;height:16px;}
+.icon-comment-add{background-position:-32px -77px;width:16px;height:16px;}
+.icon-block{background-position:-48px -77px;width:16px;height:16px;}
+.icon-apertium{background-position:-64px -77px;width:16px;height:16px;}
+.icon-accept{background-position:-80px -77px;width:16px;height:16px;}
+.icon-upload{background-position:-101px 0px;width:14px;height:14px;}
+.icon-update-templates{background-position:-101px -14px;width:14px;height:14px;}
+.icon-rescan-files{background-position:-101px -28px;width:14px;height:14px;}
+.icon-download{background-position:-101px -42px;width:14px;height:14px;}
+.icon-delete-path{background-position:-101px -56px;width:14px;height:14px;}
+.icon-external-link{background-position:-101px -70px;width:12px;height:12px;}
