@@ -73,6 +73,11 @@ PARSED = 1
 CHECKED = 2
 
 
+#
+# Cached functions
+#
+
+
 ############### Quality Check #############
 
 class QualityCheck(models.Model):
@@ -99,21 +104,6 @@ class SuggestionManager(RelatedManager):
     def get_by_natural_key(self, target_hash, unitid_hash, pootle_path):
         return self.get(target_hash=target_hash, unit__unitid_hash=unitid_hash,
                  unit__store__pootle_path=pootle_path)
-
-    @getfromcache
-    @classmethod
-    def get_check_categories(cls):
-        result = {}
-        cbc = QualityCheck.objects.order_by('category').distinct('category', 'name')
-
-        category = None
-        for check in cbc:
-            if category != check.category:
-                result[check.category] = []
-
-            result[check.category].append(check.name)
-
-        return result
 
 
 class Suggestion(models.Model, base.TranslationUnit):
@@ -1665,6 +1655,12 @@ class Store(models.Model, base.TranslationStore, TreeItem):
     def get_name(self):
         return self.name.replace('.', '-')
 
+    def get_parent(self):
+        return self.parent
+
+    def get_cachekey(self):
+        return self.pootle_path
+
     def _get_total_wordcount(self):
         """calculate total wordcount statistics"""
         return calc_total_wordcount(self.units)
@@ -1689,12 +1685,10 @@ class Store(models.Model, base.TranslationStore, TreeItem):
                          self.name, e)
             return {}
 
-    @getfromcache
-    def get_mtime(self):
+    def _get_mtime(self):
         return max_column(self.unit_set.all(), 'mtime', datetime_min)
 
-    @getfromcache
-    def get_last_action(self):
+    def _get_last_action(self):
         try:
             sub = Submission.objects.filter(unit__store=self).latest()
         except Submission.DoesNotExist:
@@ -1719,8 +1713,7 @@ class Store(models.Model, base.TranslationStore, TreeItem):
                          self.name, e)
             return {}
 
-    @getfromcache
-    def get_suggestion_count(self):
+    def _get_suggestion_count(self):
         """Check if any unit in the store has suggestions"""
         return Suggestion.objects.filter(unit__store=self,
                                          unit__state__gt=OBSOLETE).count()

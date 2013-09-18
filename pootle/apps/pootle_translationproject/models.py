@@ -341,6 +341,9 @@ class TranslationProject(models.Model, TreeItem):
     def get_name(self):
         return self.pootle_path
 
+    def get_parent(self):
+        return self.directory.get_parent()
+
     @getfromcache
     def getcompletestats(self):
         if self.is_template_project:

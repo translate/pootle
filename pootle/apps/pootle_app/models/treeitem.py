@@ -22,6 +22,8 @@
 
 from translate.filters.decorators import Category
 
+from django.core.cache import cache
+
 from pootle_misc.util import getfromcache, getfromcachebyname, dictsum
 from pootle_misc.checks import get_qualitychecks_by_category, get_qualitychecks
 
@@ -37,6 +39,14 @@ class TreeItem():
     def get_children(self):
         """This method will be overridden in descendants"""
         return []
+
+    def get_parent(self):
+        """This method will be overridden in descendants"""
+        return None
+
+    def get_cachekey(self):
+        """This method will be overridden in descendants"""
+        return ''
 
     def _get_total_wordcount(self):
         """This method will be overridden in descendants"""
@@ -57,6 +67,14 @@ class TreeItem():
     def _get_checks(self):
         """This method will be overridden in descendants"""
         return {}
+
+    def _get_last_action(self):
+        """This method will be overridden in descendants"""
+        return {'mtime': 0, 'snippet': ''}
+
+    def _get_mtime(self):
+        """This method will be overridden in descendants"""
+        return 0
 
     def _get_all_checks(self):
         """This method will be overridden in descendants"""
@@ -105,6 +123,7 @@ class TreeItem():
         self.initialize_children()
 
         return max(
+            [self._get_last_action()] +
             [item.get_last_action() for item in self.children],
             key=lambda x: x.mtime if hasattr(x, 'mtime') else 0
         )
@@ -113,9 +132,10 @@ class TreeItem():
     def get_mtime(self):
         """get latest modification time"""
         self.initialize_children()
-        return max([
-            item.get_mtime() for item in self.children
-        ])
+        return max(
+            [self._get_mtime()] +
+            [item.get_mtime() for item in self.children]
+        )
 
     def _sum(self, name):
         return sum([
@@ -167,6 +187,7 @@ class TreeItem():
                        get_qualitychecks_by_category(Category.CRITICAL)))
 
     def get_critical1(self):
+        """Alter implementaion (pick up every check separately)"""
         result = 0
 
         for check in get_qualitychecks_by_category(Category.CRITICAL):
@@ -186,3 +207,11 @@ class TreeItem():
     def get_critical_url(self):
         critical = ','.join(get_qualitychecks_by_category(Category.CRITICAL))
         return self.get_translate_url(check=critical)
+
+    def deletefromcache(self, keys):
+        parent = self.get_parent()
+        if parent:
+            parent.flushcache(keys)
+        for key in keys:
+            cache.delete(self.get_cachekey() + ":" + key)
+
