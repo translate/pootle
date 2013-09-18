@@ -1906,22 +1906,33 @@ html[dir="rtl"] .breadcrumb li
 
 /* Tabs */
 
-#tabs
+#tabs,
+#file-tabs
 {
     height: 34px;
 }
 
-#tabs li
+
+#file-tabs
+{
+    border-bottom: 1px solid #d9d9d9;
+    
+}
+
+#tabs li,
+#file-tabs li
 {
     float: left;
 }
 
-html[dir="rtl"] #tabs li
+html[dir="rtl"] #tabs li,
+html[dir="rtl"] #file-tabs li
 {
     float: right;
 }
 
-#tabs a
+#tabs a,
+#file-tabs a
 {
     background-color: inherit;
     border: 1px solid transparent;
@@ -1934,7 +1945,8 @@ html[dir="rtl"] #tabs li
     text-decoration: none;
 }
 
-#tabs a:hover
+#tabs a:hover,
+#file-tabs a:hover
 {
     /* TODO: merge with active tabs */
     background-color: #fff !important;
@@ -1975,7 +1987,8 @@ body#tpoverview #tabs a.tpoverview,
 body#tpnews #tabs a.tpnews,
 body#tptranslate #tabs a.tptranslate,
 body#tpterminology #tabs a.tpterminology,
-body#tpadminpermissions #tabs a.tpadminpermissions
+body#tpadminpermissions #tabs a.tpadminpermissions,
+body #file-tabs a.selected-tab
 {
     background-color: #fff;
     border-color: #d9d9d9 #d9d9d9 #fff;

@@ -79,6 +79,12 @@ urlpatterns = patterns('pootle_translationproject.views',
         'export_view',
         name='export-view'),
 
+    # Goals
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
+        r'(?P<dir_path>(.*/)*)goals$',
+        'goals_overview',
+        name='pootle-tp-goals'),
+
     # Overview
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'overview',

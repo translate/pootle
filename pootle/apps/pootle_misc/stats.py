@@ -66,24 +66,9 @@ def add_percentages(quick_stats):
     return quick_stats
 
 
-def get_raw_stats(path_obj, include_suggestions=False):
-    """Returns a dictionary of raw stats for `path_obj`.
-
-    :param path_obj: A Directory/Store object.
-    :param include_suggestions: Whether to include suggestion count in the
-                                output or not.
-
-    Example::
-
-        {'translated': {'units': 0, 'percentage': 0, 'words': 0},
-         'fuzzy': {'units': 0, 'percentage': 0, 'words': 0},
-         'untranslated': {'units': 34, 'percentage': 100, 'words': 181},
-         'total': {'units': 34, 'percentage': 100, 'words': 181}
-         'suggestions': 4 }
-    """
-    quick_stats = add_percentages(path_obj.getquickstats())
-
-    stats = {
+def get_processed_stats(quick_stats):
+    """Return a processed dictionary of raw stats."""
+    return {
         'total': {
             'words': quick_stats['totalsourcewords'],
             'percentage': 100,
@@ -107,6 +92,24 @@ def get_raw_stats(path_obj, include_suggestions=False):
         'errors': quick_stats['errors'],
         'suggestions': -1,
     }
+
+
+def get_raw_stats(path_obj, include_suggestions=False):
+    """Returns a dictionary of raw stats for `path_obj`.
+
+    :param path_obj: A Directory/Store object.
+    :param include_suggestions: Whether to include suggestion count in the
+                                output or not.
+
+    Example::
+
+        {'translated': {'units': 0, 'percentage': 0, 'words': 0},
+         'fuzzy': {'units': 0, 'percentage': 0, 'words': 0},
+         'untranslated': {'units': 34, 'percentage': 100, 'words': 181},
+         'total': {'units': 34, 'percentage': 100, 'words': 181}
+         'suggestions': 4 }
+    """
+    stats = get_processed_stats(add_percentages(path_obj.getquickstats()))
 
     if include_suggestions:
         stats['suggestions'] = path_obj.get_suggestion_count()

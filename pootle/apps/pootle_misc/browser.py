@@ -39,6 +39,12 @@ HEADING_CHOICES = [
         'display_name': _("Language"),
     },
     {
+        'id': 'priority',
+        'class': 'stats-number sorttable_numeric',
+        # Translators: Heading representing the priority for a goal
+        'display_name': _("Priority"),
+    },
+    {
         'id': 'progress',
         'class': 'stats',
         # Translators: noun. The graphical representation of translation status
@@ -166,3 +172,38 @@ def get_children(directory):
               for child_store in directory.child_stores.iterator()]
 
     return parent + directories + stores
+
+
+################################ Goal specific ################################
+
+def make_goal_item(goal, pootle_path):
+    """Create the item row for a goal."""
+    try:
+        stats = goal.get_raw_stats_for_path(pootle_path)
+        info = {
+            'stats': stats,
+            'tooltip': _('%(percentage)d%% complete',
+                         {'percentage': stats['translated']['percentage']}),
+        }
+
+        errors = stats.get('errors', 0)
+        if errors:
+            msg = ungettext('Error reading %d file', 'Error reading %d files',
+                            errors, errors)
+            info['errortooltip'] = msg
+
+        info.update(stats_descriptions(stats))
+    except IOError as e:
+        info = {
+            'errortooltip': e.strerror,
+            'data': {
+                'errors': 1,
+            },
+        }
+
+    info.update({
+        'isdir': True,
+        'priority': goal.priority,
+        'title': goal.goal_name,
+    })
+    return info

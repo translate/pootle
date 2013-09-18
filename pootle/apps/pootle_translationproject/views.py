@@ -51,7 +51,8 @@ from pootle_app.project_tree import (ensure_target_dir_exists,
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
 from pootle_app.views.top_stats import gentopstats_translation_project
 from pootle_misc.baseurl import redirect
-from pootle_misc.browser import get_children, get_table_headings
+from pootle_misc.browser import (get_children, get_table_headings,
+                                 make_goal_item)
 from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.stats import (get_raw_stats, get_translation_stats,
                                get_path_summary)
@@ -295,10 +296,16 @@ def _handle_upload_form(request, current_path, translation_project, directory):
     return upload_form_class()
 
 
+def goals_overview(*args, **kwargs):
+    kwargs['in_goal_overview'] = True
+    return overview(*args, **kwargs)
+
+
 @get_path_obj
 @permission_required('view')
 @get_resource_context
-def overview(request, translation_project, dir_path, filename=None):
+def overview(request, translation_project, dir_path, filename=None,
+             in_goal_overview=False):
     current_path = translation_project.directory.pootle_path + dir_path
 
     if filename:
@@ -441,17 +448,39 @@ def overview(request, translation_project, dir_path, filename=None):
     })
 
     if store is None:
-        table_fields = ['name', 'progress', 'total', 'need-translation',
-                        'suggestions']
-        template_vars.update({
-            'table': {
-                'id': 'tp',
-                'proportional': True,
-                'fields': table_fields,
-                'headings': get_table_headings(table_fields),
-                'items': get_children(directory),
-            }
-        })
+        path_obj_goals = Goal.get_goals_for_path(path_obj.pootle_path)
+        path_obj_has_goals = len(path_obj_goals) > 0
+
+        if in_goal_overview and path_obj_has_goals:
+            # Then show the goals tab.
+            table_fields = ['name', 'progress', 'priority', 'total',
+                            'need-translation', 'suggestions']
+            items = [make_goal_item(path_obj_goal, path_obj.pootle_path)
+                     for path_obj_goal in path_obj_goals]
+            template_vars.update({
+                'table': {
+                    'id': 'tp-goals',
+                    'proportional': False,
+                    'fields': table_fields,
+                    'headings': get_table_headings(table_fields),
+                    'items': items,
+                },
+                'path_obj_has_goals': True,
+            })
+        else:
+            # Then show the files tab.
+            table_fields = ['name', 'progress', 'total', 'need-translation',
+                            'suggestions']
+            template_vars.update({
+                'table': {
+                    'id': 'tp-files',
+                    'proportional': True,
+                    'fields': table_fields,
+                    'headings': get_table_headings(table_fields),
+                    'items': get_children(directory),
+                },
+                'path_obj_has_goals': path_obj_has_goals,
+            })
 
     if can_edit:
         if store is None:

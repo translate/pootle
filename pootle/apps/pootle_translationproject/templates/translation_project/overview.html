@@ -1,4 +1,5 @@
 {% extends "tp_base.html" %}
+{% load url from future %}
 {% load assets baseurl cache cleanhtml i18n locale progressbar search translation_project_tags common_tags profile_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 
@@ -45,10 +46,25 @@
   </div>
 
   {% if table %}
-  <div class="hd">
-    <h2>{% trans "Files and Subfolders" %}</h2>
-  </div>
   <div class="bd">
+
+    <ul id="file-tabs">
+      <li>
+        <a href="{% url 'pootle-tp-overview' language.code project.code path_obj.path %}"
+          {% if table.id = 'tp-files'  %} class="selected-tab"{% endif %}
+          title="{% trans 'Translation project files and folders' %}">
+          {% trans "Files" %}</a>
+      </li>
+      {% if path_obj_has_goals %}
+      <li>
+        <a href="{% url 'pootle-tp-goals' language.code project.code path_obj.path %}"
+          {% if table.id = 'tp-goals'  %} class="selected-tab"{% endif %}
+          title="{% trans 'Administrate your project goals' %}">
+          {% trans "Goals" %}</a>
+      </li>
+      {% endif %}
+    </ul>
+
     <div class="files-subfolders" lang="{{ LANGUAGE_CODE }}">
       {% display_table table %}
     </div>
