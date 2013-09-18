@@ -2089,7 +2089,7 @@ html[dir="rtl"] .overview-description-toggle
 
 #top-stats
 {
-    padding-bottom: 1em;
+    padding-bottom: 1.5em;
 }
 
 #top-stats .label
@@ -2249,6 +2249,7 @@ body.js-not-loaded #translate-actions li {
     font-size: 18px;
     font-weight: normal;
     visibility: hidden;
+    margin-left: -5px;
 }
 
 .breadcrumb li
