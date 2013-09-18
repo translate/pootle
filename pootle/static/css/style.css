@@ -1717,6 +1717,10 @@ html[dir="rtl"] td.stats-name,
     width: 100%;
 }
 
+.checks a {
+    color: #c00;
+}
+
 .checks h4 {
     padding: 1em 0 0.5em;
     font-weight: normal;
@@ -1749,8 +1753,6 @@ html[dir="rtl"] .check-count
 
 #check-100 a
 {
-    background-color: inherit;
-    color: #c30;
     font-weight: bold;
 }
 
