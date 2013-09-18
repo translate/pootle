@@ -2106,7 +2106,7 @@ html[dir="rtl"] .overview-description-toggle
 
 #top-stats
 {
-    padding-bottom: 1em;
+    padding-bottom: 1.5em;
 }
 
 #top-stats .label
@@ -2311,12 +2311,12 @@ ul.top_menu li.page_pootle
     font-family: "Open Sans Condensed", "Open Sans", sans-serif;
     font-weight: bold;
     visibility: hidden;
+    margin-left: -5px;
 }
 
 .breadcrumb li
 {
     display: inline;
-    /*margin-right: 10px;*/
 }
 
 .breadcrumb li:before
