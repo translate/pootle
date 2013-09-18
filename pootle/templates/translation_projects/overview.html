@@ -113,6 +113,8 @@ $(function() {
       check_url: "{{ url_path_checks }}"
   });
   PTL.stats.load(function() {
+    PTL.common.updateRelativeDates();
+    setInterval(PTL.common.updateRelativeDates, 6e4);
     $("body").spin(false);
   });
 });
