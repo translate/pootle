@@ -88,6 +88,8 @@ class MathCaptchaForm(forms.Form):
             else:
                 _reset()
 
+        self.fields['captcha_answer'].label = mark_safe(self.knotty_question)
+
     def _generate_captcha(self):
         """Generate question and return it along with correct
         answer."""
