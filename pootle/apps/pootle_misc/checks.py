@@ -85,7 +85,9 @@ def get_qualitychecks():
     sc = checks.StandardChecker()
     for filt in sc.defaultfilters:
         if not filt in excluded_filters:
-            getattr(sc, filt)(u'',u'')
+            # don't use an empty string because of
+            # http://bugs.python.org/issue18190
+            getattr(sc, filt)(u'_', u'_')
 
     return sc.categories
 
