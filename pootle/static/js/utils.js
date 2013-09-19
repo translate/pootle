@@ -181,7 +181,7 @@ PTL.utils = (function ($) {
           namespaces = functionName.split("."),
           func = namespaces.pop();
 
-      for(var i = 0; i < namespaces.length; i++) {
+      for (var i=0; i<namespaces.length; i++) {
         context = context[namespaces[i]];
       }
 
