@@ -93,15 +93,11 @@
       set_td_width($td.find('td.untranslated'), untranslated);
     },
     update_translation_stats: function ($tr, total, value) {
-      if (value) {
-        $tr.find('.stats-number a').html(value);
-        $tr.find('.stats-percentage span').html(
-          PTL.stats.nice_percentage(value, total)
-        );
-        $tr.show();
-      } else {
-        $tr.hide();
-      }
+      $tr.find('.stats-number a').html(value);
+      $tr.find('.stats-percentage span').html(
+        PTL.stats.nice_percentage(value, total)
+      );
+      $tr.find('.stats-percentage').show();
     },
     update_action: function ($action, count) {
       $action.toggle(count > 0);
