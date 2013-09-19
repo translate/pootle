@@ -28,6 +28,7 @@ from django.utils.translation import get_language, ugettext as _
 from translate.misc.multistring import multistring
 
 from pootle_app.models.permissions import check_permission
+from pootle_app.models.treeitem import CACHE_LAST_ACTION, CACHE_FUZZY, CACHE_TRANSLATED
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 from pootle_store.models import Unit
@@ -258,17 +259,26 @@ def unit_form_factory(language, snplurals=None, request=None):
 
         def clean_state(self):
             old_state = self.instance.state  # Integer
-            value = self.cleaned_data['state']  # Boolean
+            is_fuzzy = self.cleaned_data['state']  # Boolean
             new_target = self.cleaned_data['target_f']
 
-            new_state = None
             if new_target:
-                if value:
+                if old_state == UNTRANSLATED:
+                    self.instance._save_action = TRANSLATION_ADDED
+                    self.instance.store.flag_for_deletion(CACHE_TRANSLATED, CACHE_LAST_ACTION)
+                else:
+                    self.instance._save_action = TRANSLATION_CHANGED
+                    self.instance.store.flag_for_deletion(CACHE_LAST_ACTION)
+
+                if is_fuzzy:
                     new_state = FUZZY
                 else:
                     new_state = TRANSLATED
             else:
                 new_state = UNTRANSLATED
+
+            if is_fuzzy != (old_state == FUZZY):
+                self.instance.store.flag_for_deletion(CACHE_FUZZY)
 
             if old_state != new_state:
                 self.instance._state_updated = True
