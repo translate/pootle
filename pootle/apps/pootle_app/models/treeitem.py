@@ -27,10 +27,22 @@ from django.core.cache import cache
 from pootle_misc.util import getfromcache, getfromcachebyname, dictsum
 from pootle_misc.checks import get_qualitychecks_by_category, get_qualitychecks
 
+#
+# Cached method names
+#
+
+CACHE_CHECKS = 'get_checks'
+CACHE_TOTAL = 'get_total_wordcount'
+CACHE_TRANSLATED = 'get_translated_wordcount'
+CACHE_FUZZY = 'get_fuzzy_wordcount'
+CACHE_LAST_ACTION = 'get_last_action'
+CACHE_SUGGESTIONS = 'get_suggestion_count'
+
 
 class TreeItem():
     children = None
     initialized = False
+    _flagged_for_deletion = []
 
     def get_name(self):
         """This method will be overridden in descendants"""
@@ -70,7 +82,7 @@ class TreeItem():
 
     def _get_last_action(self):
         """This method will be overridden in descendants"""
-        return {'mtime': 0, 'snippet': ''}
+        return {'id': 0 , 'mtime': 0, 'snippet': ''}
 
     def _get_mtime(self):
         """This method will be overridden in descendants"""
@@ -208,10 +220,18 @@ class TreeItem():
         critical = ','.join(get_qualitychecks_by_category(Category.CRITICAL))
         return self.get_translate_url(check=critical)
 
-    def deletefromcache(self, keys):
+    def _delete_from_cache(self, keys):
         parent = self.get_parent()
         if parent:
-            parent.flushcache(keys)
+            parent._delete_from_cache(keys)
         for key in keys:
             cache.delete(self.get_cachekey() + ":" + key)
+
+    def update_cache(self):
+        self._delete_from_cache(self._flagged_for_deletion)
+        self._flagged_for_deletion = []
+
+    def flag_for_deletion(self, *args):
+        for key in args:
+            self._flagged_for_deletion.append(key)
 

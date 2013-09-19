@@ -255,10 +255,10 @@ class Project(models.Model, TreeItem):
         cache.delete(CACHE_KEY)
 
     def get_children(self):
-        return self.translationproject_set.iterator()
+        self.translationproject_set.iterator()
 
     def get_name(self):
-        return self.code
+        self.code
 
     def translated_percentage(self):
         total = self.get_total_wordcount()
