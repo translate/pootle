@@ -978,8 +978,7 @@ class Store(models.Model, base.TranslationStore):
         super(Store, self).save(*args, **kwargs)
         if created:
             store_log(user='system', action=STORE_ADDED,
-                path=self.pootle_path,
-                store=self.id)
+                      path=self.pootle_path, store=self.id)
 
         if hasattr(self, '_units'):
             index = self.max_index() + 1
@@ -1004,8 +1003,7 @@ class Store(models.Model, base.TranslationStore):
 
     def delete(self, *args, **kwargs):
         store_log(user='system', action=STORE_DELETED,
-            path=self.pootle_path,
-            store=self.id)
+                  path=self.pootle_path, store=self.id)
 
         lang = self.translation_project.language.code
         for unit in self.unit_set.iterator():
