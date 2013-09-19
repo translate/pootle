@@ -28,6 +28,7 @@ from random import randint
 
 from django import forms
 from django.conf import settings
+from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 
 from pootle_misc.util import jsonify
@@ -93,6 +94,8 @@ class MathCaptchaForm(forms.Form):
                 self.data._mutable = False
             else:
                 _reset()
+
+        self.fields['captcha_answer'].label = mark_safe(self.knotty_question)
 
     def _generate_captcha(self):
         """Generate question and return it along with correct answer."""
