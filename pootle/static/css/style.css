@@ -1663,6 +1663,11 @@ td.stats-number
     padding-right: 26px !important; /* magic number to put padding between right and left aligned column, and to right-align heading with number */
 }
 
+td.stats-percentage
+{
+    display: none;
+}
+
 table.stats .number,
 th.stats-number,
 td.stats-number,
