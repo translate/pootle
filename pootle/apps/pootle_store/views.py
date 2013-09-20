@@ -1127,17 +1127,13 @@ def vote_up(request, unit, suggid):
 
 @ajax_required
 @get_unit_context('review')
-def reject_qualitycheck(request, unit, checkid):
+def reject_qualitycheck(request, unit, check_id):
     json = {}
     json["udbid"] = unit.id
-    json["checkid"] = checkid
+    json["checkid"] = check_id
     if request.POST.get('reject'):
         try:
-            check = unit.qualitycheck_set.get(id=checkid)
-            check.false_positive = True
-            check.save()
-            # update timestamp
-            unit.save()
+            unit.reject_qualitycheck(check_id)
         except ObjectDoesNotExist:
             raise Http404
 

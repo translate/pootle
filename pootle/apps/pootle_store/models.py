@@ -734,7 +734,7 @@ class Unit(models.Model, base.TranslationUnit):
 
         if len(existing):
             QualityCheck.objects.filter(unit=self, name__in=existing).delete()
-            self.store.flag_for_deletion('checks')
+            self.store.flag_for_deletion(CACHE_CHECKS)
 
     def get_qualitychecks(self):
         return self.qualitycheck_set.filter(false_positive=False)
@@ -988,6 +988,14 @@ class Unit(models.Model, base.TranslationUnit):
 
         return True
 
+    def reject_qualitycheck(self, check_id):
+        check = self.qualitycheck_set.get(id=check_id)
+        check.false_positive = True
+        check.save()
+        # update timestamp
+
+        self.store.flag_for_deletion(CACHE_CHECKS)
+        self.save()
 
     def get_terminology(self):
         """get terminology suggestions"""
