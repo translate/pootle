@@ -295,6 +295,9 @@ class Project(models.Model):
         """Returns `True` if the current project is accessible by
         `user`.
         """
+        if user.is_superuser:
+            return True
+
         return self in Project.objects.accessible_by_user(user)
 
     def get_template_filetype(self):
