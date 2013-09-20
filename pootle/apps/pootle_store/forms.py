@@ -257,10 +257,9 @@ def unit_form_factory(language, snplurals=None, request=None):
             if new_target:
                 if old_state == UNTRANSLATED:
                     self.instance._save_action = TRANSLATION_ADDED
-                    self.instance.store.flag_for_deletion(CACHE_TRANSLATED, CACHE_LAST_ACTION)
+                    self.instance.store.flag_for_deletion(CACHE_TRANSLATED)
                 else:
                     self.instance._save_action = TRANSLATION_CHANGED
-                    self.instance.store.flag_for_deletion(CACHE_LAST_ACTION)
 
                 if is_fuzzy:
                     new_state = FUZZY
