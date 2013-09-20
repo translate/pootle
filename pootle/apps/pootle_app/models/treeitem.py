@@ -42,7 +42,7 @@ CACHE_SUGGESTIONS = 'get_suggestion_count'
 class TreeItem():
     children = None
     initialized = False
-    _flagged_for_deletion = []
+    _flagged_for_deletion = set()
 
     def get_name(self):
         """This method will be overridden in descendants"""
