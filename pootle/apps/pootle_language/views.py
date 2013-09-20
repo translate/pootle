@@ -80,9 +80,12 @@ def make_project_item(translation_project):
 @get_path_obj
 @permission_required('view')
 def overview(request, language):
-    projects = language.translationproject_set.order_by('project__fullname')
-    projectcount = len(projects)
-    items = (make_project_item(translate_project) for translate_project in projects.iterator())
+    translation_projects = language.translationproject_set \
+                                   .order_by('project__fullname')
+    user_tps = filter(lambda x: x.is_accessible_by(request.user),
+                      translation_projects)
+    tp_count = len(user_tps)
+    items = (make_project_item(tp) for tp in user_tps)
 
     totals = language.getquickstats()
     translated = nice_percentage(totals['translatedsourcewords'] * 100.0 / max(totals['totalsourcewords'], 1))
@@ -104,8 +107,8 @@ def overview(request, language):
           'name': tr_lang(language.fullname),
           'summary': ungettext('%(projects)d project, %(translated)d%% translated',
                                '%(projects)d projects, %(translated)d%% translated',
-                               projectcount, {
-                                   "projects": projectcount,
+                               tp_count, {
+                                   "projects": tp_count,
                                    "translated": translated}),
         },
         'stats': {

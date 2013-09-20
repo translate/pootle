@@ -200,6 +200,12 @@ class TranslationProject(models.Model):
 
     non_db_state = property(_get_non_db_state)
 
+    def is_accessible_by(self, user):
+        """Returns `True` if the current translation project is accessible
+        by `user`.
+        """
+        return self.project in Project.objects.accessible_by_user(user)
+
     def update(self):
         """Update all stores to reflect state on disk"""
         stores = self.stores.exclude(file='').filter(state__gte=PARSED)
