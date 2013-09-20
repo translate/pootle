@@ -30,12 +30,11 @@ from django.utils.translation import trans_real
 
 from translate.lang import data
 
-from pootle.i18n import bidi
-from pootle.i18n import gettext
+from pootle.i18n import bidi, gettext
 
 
 def find_languages(locale_path):
-    """Generates supported languages list from the :param:`locale_path`
+    """Generate supported languages list from the :param:`locale_path`
     directory.
     """
     dirs = os.listdir(locale_path)
@@ -55,7 +54,7 @@ def supported_langs():
 
 
 def lang_choices():
-    """Generated locale choices for drop down lists in forms."""
+    """Generate locale choices for drop down lists in forms."""
     choices = []
     for code, name in supported_langs():
         name = data.tr_lang(translation.to_locale('en'))(name)
@@ -115,7 +114,8 @@ def get_lang_from_http_header(request, supported):
     the list, and for each entry, we check whether we have a matching
     pootle translation project. If so, we return it.
 
-    If nothing is found, return None."""
+    If nothing is found, return None.
+    """
     accept = request.META.get('HTTP_ACCEPT_LANGUAGE', '')
     for accept_lang, unused in trans_real.parse_accept_lang_header(accept):
         if accept_lang == '*':
@@ -139,7 +139,8 @@ def get_language_from_request(request, check_path=False):
     cookie, then the user's preferences (stored in the PootleProfile
     model) and finally by checking the HTTP language headers.
 
-    If all fails, try fall back to default language."""
+    If all fails, try fall back to default language.
+    """
     supported = dict(supported_langs())
     for lang_getter in (get_lang_from_session,
                         get_lang_from_cookie,

@@ -19,7 +19,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-"""A set of singal handlers for generating automatic notifications on system
+"""A set of signal handlers for generating automatic notifications on system
 events."""
 
 from pootle_app.models import Directory
@@ -38,8 +38,11 @@ def new_language(sender, instance, created=False, raw=False, **kwargs):
     if raw:
         return
 
-    message = 'New language <a href="%s">%s</a> created.' % (
-            instance.get_absolute_url(), instance.fullname)
+    args = {
+        'url': instance.get_absolute_url(),
+        'language': instance.fullname,
+    }
+    message = 'New language <a href="%(url)s">%(language)s</a> created.' % args
     new_object(created, message, instance.directory.parent)
 
 
@@ -47,8 +50,11 @@ def new_project(sender, instance, created=False, raw=False, **kwargs):
     if raw:
         return
 
-    message = 'New project <a href="%s">%s</a> created.' % (
-        instance.get_absolute_url(), instance.fullname)
+    args = {
+        'url': instance.get_absolute_url(),
+        'project': instance.fullname,
+    }
+    message = 'New project <a href="%(url)s">%(project)s</a> created.' % args
     new_object(created, message, parent=Directory.objects.root)
 
 
@@ -61,9 +67,11 @@ def new_user(sender, instance, created=False, raw=False, **kwargs):
     # installing Pootle
 
     try:
-        message = 'New user <a href="%s">%s</a> registered.' % (
-            instance.get_profile().get_absolute_url(),
-            instance.get_profile())
+        args = {
+            'url': instance.get_profile().get_absolute_url(),
+            'user': instance.get_profile(),
+        }
+        message = 'New user <a href="%(url)s">%(user)s</a> registered.' % args
         new_object(created, message, parent=Directory.objects.root)
     except:
         pass

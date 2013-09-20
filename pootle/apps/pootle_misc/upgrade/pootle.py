@@ -28,14 +28,16 @@ import logging
 
 def upgrade_to_20030():
     """Post-upgrade actions for upgrades to 20030."""
-    logging.info('Fixing permissions table')
-
     from django.contrib.auth.models import Permission
     from django.contrib.contenttypes.models import ContentType
 
-    contenttype, created = ContentType.objects \
-                                      .get_or_create(app_label="pootle_app",
-                                                     model="directory")
+    logging.info('Fixing permissions table')
+
+    criteria = {
+        'app_label': "pootle_app",
+        'model': "directory",
+    }
+    contenttype, created = ContentType.objects.get_or_create(**criteria)
 
     for permission in Permission.objects.filter(content_type__name='pootle') \
                                         .iterator():
@@ -61,8 +63,7 @@ def import_suggestions(store):
             logging.debug(u'Imported suggestions (%d) from %s',
                           store.real_path, count)
     except:
-        logging.debug(u'Failed to import suggestions from %s',
-                      store.real_path)
+        logging.debug(u'Failed to import suggestions from %s', store.real_path)
 
 
 def parse_store(store):
@@ -85,13 +86,14 @@ def upgrade_to_21000():
     logging.info('Creating project directories')
 
     Directory.objects.root.get_or_make_subdir('projects')
+
     for project in Project.objects.iterator():
-        # saving should force project to update it's directory property
+        # Saving should force project to update it's directory property.
         try:
             project.save()
         except Exception as e:
-            logging.info(u'Something broke while upgrading %s:\n%s',
-                         project, e)
+            logging.info(u'Something broke while upgrading %s:\n%s', project,
+                         e)
 
     logging.info('Associating stores with translation projects')
 
@@ -103,24 +105,22 @@ def upgrade_to_21000():
             logging.info(u'Something broke while upgrading %s:\n%s',
                          store.pootle_path, e)
 
-    logging.info('Importing translations into the database. '
-                 'This can take a while')
+    logging.info('Importing translations into the database. This can take a '
+                 'while.')
 
     for store in Store.objects.iterator():
         try:
             parse_store(store)
             import_suggestions(store)
         except Exception as e:
-            logging.info(u'Something broke while parsing %s:\n%s',
-                         store, e)
+            logging.info(u'Something broke while parsing %s:\n%s', store, e)
 
     logging.info(u'All translations are now imported')
 
 
 def upgrade_to_21060():
     """Post-upgrade actions for upgrades to 21060."""
-    from ..util import deletefromcache
-
+    from pootle_misc.util import deletefromcache
     from pootle_store.models import OBSOLETE
     from pootle_translationproject.models import TranslationProject
 
@@ -128,8 +128,8 @@ def upgrade_to_21060():
 
     for tp in TranslationProject.objects.filter(stores__unit__state=OBSOLETE) \
                                         .distinct().iterator():
-        deletefromcache(tp, ["getquickstats", "getcompletestats",
-                             "get_mtime", "has_suggestions"])
+        deletefromcache(tp, ["getquickstats", "getcompletestats", "get_mtime",
+                             "has_suggestions"])
 
 
 def upgrade_to_22000():
@@ -139,8 +139,8 @@ def upgrade_to_22000():
 
     from pootle_store.models import Store
 
-    # In previous versions, we cached the sync times, so let's see if we
-    # can recover some
+    # In previous versions, we cached the sync times, so let's see if we can
+    # recover some.
     for store in Store.objects.iterator():
         key = iri_to_uri("%s:sync" % store.pootle_path)
         last_sync = cache.get(key)

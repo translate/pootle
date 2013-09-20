@@ -20,6 +20,7 @@
 
 from django.conf import settings
 
+
 class BaseUrlMiddleware(object):
     def process_request(self, request):
         """calculate settings.BASEURL based on HTTP headers"""
@@ -43,6 +44,7 @@ class BaseUrlMiddleware(object):
             #wrong with the universe
             # poison sites cache using detected domain
             from django.contrib.sites import models as sites_models
-            sites_models.SITE_CACHE[settings.SITE_ID] = sites_models.Site(settings.SITE_ID,
-                                                                          request.get_host(),
-                                                                          settings.TITLE)
+
+            new_site = sites_models.Site(settings.SITE_ID, request.get_host(),
+                                         settings.TITLE)
+            sites_models.SITE_CACHE[settings.SITE_ID] = new_site
