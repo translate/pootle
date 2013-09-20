@@ -19,6 +19,7 @@
 
 from django.utils import translation
 
+
 _translation_project_cache = {}
 
 

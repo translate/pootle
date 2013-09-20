@@ -158,17 +158,15 @@ class Directory(models.Model):
         else:
             return self
 
+    def get_or_make_subdir(self, child_name):
+        return Directory.objects.get_or_create(name=child_name, parent=self)[0]
+
     @getfromcache
     def get_mtime(self):
         criteria = {
             'store__pootle_path__startswith': self.pootle_path,
         }
         return max_column(Unit.objects.filter(**criteria), 'mtime', None)
-
-    def get_or_make_subdir(self, child_name):
-        child_dir, created = Directory.objects.get_or_create(name=child_name,
-                                                             parent=self)
-        return child_dir
 
     @getfromcache
     def getquickstats(self):

@@ -27,9 +27,11 @@ def upgrade_to_12008():
 
     logging.info('Reparsing Qt ts')
 
-    for store in Store.objects \
-                      .filter(state__gt=PARSED,
-                              translation_project__project__localfiletype='ts',
-                              file__iendswith='.ts').iterator():
+    criteria = {
+        'state__gt': PARSED,
+        'translation_project__project__localfiletype': 'ts',
+        'file__iendswith': '.ts',
+    }
+    for store in Store.objects.filter(**criteria).iterator():
         store.sync(update_translation=True)
         store.update(update_structure=True, update_translation=True)

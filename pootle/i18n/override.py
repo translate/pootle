@@ -29,12 +29,11 @@ from django.utils.translation import trans_real
 
 from translate.lang import data
 
-from pootle.i18n import bidi
-from pootle.i18n import gettext
+from pootle.i18n import bidi, gettext
 
 
 def find_languages(locale_path):
-    """Generates supported languages list from the :param:`locale_path`
+    """Generate supported languages list from the :param:`locale_path`
     directory.
     """
     dirs = os.listdir(locale_path)
@@ -48,8 +47,7 @@ def find_languages(locale_path):
 
 
 def supported_langs():
-    """Returns a list of locales supported adapting to live translation
-    state.
+    """Return a list of locales supported adapting to live translation state.
     """
     from django.conf import settings
     if settings.LIVE_TRANSLATION:
@@ -61,8 +59,9 @@ def supported_langs():
             pass
     return settings.LANGUAGES
 
+
 def lang_choices():
-    """Generated locale choices for drop down lists in forms."""
+    """Generate locale choices for drop down lists in forms."""
     choices = []
     for code, name in supported_langs():
         name = data.tr_lang(translation.to_locale('en'))(name)
@@ -122,7 +121,8 @@ def get_lang_from_http_header(request, supported):
     the list, and for each entry, we check whether we have a matching
     pootle translation project. If so, we return it.
 
-    If nothing is found, return None."""
+    If nothing is found, return None.
+    """
     accept = request.META.get('HTTP_ACCEPT_LANGUAGE', '')
     for accept_lang, unused in trans_real.parse_accept_lang_header(accept):
         if accept_lang == '*':
@@ -146,7 +146,8 @@ def get_language_from_request(request, check_path=False):
     cookie, then the user's preferences (stored in the PootleProfile
     model) and finally by checking the HTTP language headers.
 
-    If all fails, try fall back to default language."""
+    If all fails, try fall back to default language.
+    """
     supported = dict(supported_langs())
     for lang_getter in (get_lang_from_session,
                         get_lang_from_cookie,
@@ -161,8 +162,8 @@ def get_language_from_request(request, check_path=False):
 
 def translation_dummy(language):
     """Return dummy translation object to please Django's l10n while
-    Live Translation is enabled."""
-
+    Live Translation is enabled.
+    """
     t = trans_real._translations.get(language, None)
     if t is not None:
         return t

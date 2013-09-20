@@ -17,11 +17,14 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-from django.utils.encoding import force_unicode
 from unicodedata import bidirectional
+
+from django.utils.encoding import force_unicode
+
 
 _strong_types = ("L", "R", "AL")
 _rtl_types = ("R", "AL")
+
 
 def get_base_direction(text):
     """Find the base direction of a text string according to the first character
@@ -48,6 +51,7 @@ def get_base_direction(text):
     else:
         # text composed of weak bidi characters
         return -1
+
 
 def insert_embeding(text):
     """Insert LRE (left-to-right embedding) or RLE (right-to-left

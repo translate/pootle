@@ -62,14 +62,17 @@ class ErrorPagesMiddleware(object):
             if request.is_ajax():
                 return self._ajax_error(403, msg)
 
-            templatevars = {}
-            templatevars['permission_error'] = msg
+            templatevars = {
+                'permission_error': msg,
+            }
 
             if not request.user.is_authenticated():
+                msg_args = {
+                    'login_link': "%s%s" % (l("/accounts/login/"),
+                                            get_next(request)),
+                }
                 login_msg = _('You need to <a href="%(login_link)s">login</a> '
-                              'to access this page.',
-                              {'login_link': "%s%s" % \
-                                (l("/accounts/login/"), get_next(request))})
+                              'to access this page.', msg_args)
                 templatevars["login_message"] = login_msg
 
             return HttpResponseForbidden(
@@ -95,29 +98,37 @@ class ErrorPagesMiddleware(object):
 
             if not settings.DEBUG:
                 try:
-                    templatevars = {}
-                    templatevars['exception'] = msg
+                    templatevars = {
+                        'exception': msg,
+                    }
                     if hasattr(exception, 'filename'):
+                        msg_args = {
+                            'filename': exception.filename,
+                            'errormsg': exception.strerror,
+                        }
                         msg = _('Error accessing %(filename)s, Filesystem '
-                                'sent error: %(errormsg)s', {
-                                    'filename': exception.filename,
-                                    'errormsg': exception.strerror
-                                })
+                                'sent error: %(errormsg)s', msg_args)
                         templatevars['fserror'] = msg
 
                     if sentry_exception_handler is None:
                         # Send email to admins with details about exception
-                        ip_type = (request.META.get('REMOTE_ADDR') in \
-                                settings.INTERNAL_IPS and 'internal' or 'EXTERNAL')
-                        subject = 'Error (%s IP): %s' % (ip_type, request.path)
+                        ip_type = (request.META.get('REMOTE_ADDR') in
+                                   settings.INTERNAL_IPS and 'internal' or
+                                   'EXTERNAL')
+                        msg_args = {
+                            'ip_type': ip_type,
+                            'path': request.path,
+                        }
+                        subject = 'Error (%(ip_type)s IP): %(path)s' % msg_args
 
                         try:
                             request_repr = repr(request)
                         except:
                             request_repr = "Request repr() unavailable"
 
-                        message = "%s\n\n%s\n\n%s" % (unicode(exception.args[0]),
-                                                      tb, request_repr)
+                        msg_args = (unicode(exception.args[0]), tb,
+                                    request_repr)
+                        message = "%s\n\n%s\n\n%s" % msg_args
                         mail_admins(subject, message, fail_silently=True)
                     else:
                         sentry_exception_handler(request=request)

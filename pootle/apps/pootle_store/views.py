@@ -63,9 +63,9 @@ from pootle_translationproject.models import TranslationProject
 
 from .decorators import (get_store_context, get_unit_context,
                          get_xhr_resource_context)
-from .models import Store, Unit
 from .forms import (unit_comment_form_factory, unit_form_factory,
                     highlight_whitespace)
+from .models import Store, Unit
 from .signals import translation_submitted
 from .templatetags.store_tags import (highlight_diffs, pluralize_source,
                                       pluralize_target)
