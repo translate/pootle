@@ -144,7 +144,7 @@ class Project(models.Model):
             null=False, choices=checker_choices,
             verbose_name=_('Quality Checks'))
 
-    localfiletype  = models.CharField(max_length=50, default="po",
+    localfiletype = models.CharField(max_length=50, default="po",
             choices=filetype_choices, verbose_name=_('File Type'))
 
     treestyle_choices = (
