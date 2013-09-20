@@ -137,12 +137,11 @@ def check_permission(permission_codename, request):
             path_obj = request.translation_project
         elif hasattr(request, 'project'):
             path_obj = request.project
-        else:
-            # always allow to view language page
-            return True
 
-        if path_obj is not None:
-            return path_obj.is_accessible_by(request.user)
+        if path_obj is None:
+            return True  # Always allow to view language pages
+
+        return path_obj.is_accessible_by(request.user)
 
     return ("administrate" in request.permissions or
             permission_codename in request.permissions)
