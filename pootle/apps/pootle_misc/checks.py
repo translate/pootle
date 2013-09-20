@@ -93,7 +93,7 @@ def get_qualitychecks():
     return sc.categories
 
 
-def get_qualitycheck_schema(path_obj):
+def get_qualitycheck_schema(path_obj=None):
     d = {}
     checks = get_qualitychecks()
 
@@ -107,7 +107,7 @@ def get_qualitycheck_schema(path_obj):
         d[cat]['checks'].append({
             'code': check,
             'title': u"%s" % check_names.get(check, check),
-            'url': path_obj.get_translate_url(check=check)
+            'url': path_obj.get_translate_url(check=check) if path_obj else ''
         })
 
     result = sorted([item for code, item in d.items()], key=lambda x: x['code'],
