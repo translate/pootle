@@ -628,7 +628,11 @@ class Unit(models.Model, base.TranslationUnit):
                                 .run_filters(self, categorised=True)
 
         for name in qc_failures.iterkeys():
-            if name == 'isfuzzy' or name in existing:
+            if name in existing:
+                existing.remove(name)
+                continue
+
+            if name in ('isfuzzy', 'untranslated'):
                 continue
 
             message = qc_failures[name]['message']
@@ -636,7 +640,7 @@ class Unit(models.Model, base.TranslationUnit):
 
             self.qualitycheck_set.create(name=name, message=message,
                                          category=category)
-            existing.remove(name)
+
             self.store.flag_for_deletion(CACHE_CHECKS)
 
         if len(existing):
