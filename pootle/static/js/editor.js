@@ -142,6 +142,7 @@
     $(document).on('click', '#translate-checks-block .js-reject-check', this.rejectCheck);
 
     /* Filtering */
+    $("#filter-checks").hide();
     $(document).on('change', '#filter-status select', this.filterStatus);
     $(document).on('change', '#filter-checks select', this.filterChecks);
     $(document).on('click', '.js-more-ctx', function () {
@@ -1442,17 +1443,12 @@
 
   /* Gets the failing check options for the current query */
   getCheckOptions: function () {
-    var checksUrl = l('/xhr/checks/'),
-        reqData = {
-          path: this.settings.pootlePath,
-          goal: this.goal
-        },
+    var checksUrl = this.settings.checksUrl,
         opts;
 
     $.ajax({
       url: checksUrl,
       async: false,
-      data: reqData,
       dataType: 'json',
       success: function (data) {
         opts = data;
@@ -1490,33 +1486,30 @@
     // Filtering by failing checks
     if (filterBy == "checks") {
       // Get actual failing checks
-      var optGroups = PTL.editor.getCheckOptions();
+      var checks = PTL.editor.getCheckOptions();
 
       // If there are any failing checks, add them in a dropdown
-      if (optGroups.length) {
-        var dropdown = [
-        '<div id="filter-checks">',
-          '<select id="js-select2-filter-checks" ',
-          'class="select2-filter-checks" name="filter-checks">',
-          '<option selected="selected" value="none">------</option>'
-        ]
+      if (checks !== undefined && Object.keys(checks).length) {
+        $("#filter-checks").show();
+        $("#filter-checks").find('optgroup').each(function (e) {
+          var empty = true,
+              $gr = $(this);
 
-        $.each(optGroups, function () {
-          dropdown.push([
-            '<optgroup label="', this.display_name, '">'
-          ].join(''));
-          $.each(this.checks, function () {
-            dropdown.push([
-              '<option value="', this.name, '">', this.display_name,
-              ' (', this.count, ')</option>'
-            ].join(''));
+          $gr.find('option').each(function (e) {
+            var $opt = $(this),
+                value = $opt.attr('value');
+
+            if (value in checks) {
+              empty = false;
+              $opt.text($opt.data('title') + '(' + checks[value] + ')');
+            } else {
+              $opt.remove();
+            }
           });
-          dropdown.push('</optgroup>');
+
+          if (empty) $gr.hide();
         });
-
-        dropdown.push('</select></div>');
-
-        $("#filter-status").first().after(dropdown.join(''));
+        $("#filter-checks").show();
         $("#js-select2-filter-checks").select2({
           width: "resolve"
         });
@@ -1525,7 +1518,7 @@
         $('#filter-status select').select2('val', PTL.editor.filter);
       }
     } else { // Normal filtering options (untranslated, fuzzy...)
-      $("#filter-checks").remove();
+      $("#filter-checks").hide();
       if (!PTL.editor.preventNavigation) {
         var newHash = "filter=" + filterBy;
         if (PTL.editor.user && isUserFilter) {

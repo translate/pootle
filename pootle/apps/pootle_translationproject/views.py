@@ -677,10 +677,17 @@ def ajax_add_tag_to_tp(request, translation_project):
 def translate(request, translation_project, dir_path, filename):
     language = translation_project.language
     project = translation_project.project
+    directory = request.directory
+    store = request.store
+    resource_obj = store or directory
 
     is_terminology = (project.is_terminology or request.store and
                                                 request.store.is_terminology)
     context = get_translation_context(request, is_terminology=is_terminology)
+
+    url_args = [language.code, project.code, resource_obj.path]
+    url_path_checks = reverse('pootle-tp-qualitychecks', args=url_args)
+
     context.update({
         'language': language,
         'project': project,
@@ -688,6 +695,8 @@ def translate(request, translation_project, dir_path, filename):
 
         'editor_extends': 'tp_base.html',
         'editor_body_id': 'tptranslate',
+        'url_path_checks': url_path_checks,
+        'check_categories': get_qualitycheck_schema(),
     })
 
     return render_to_response('editor/main.html', context,
