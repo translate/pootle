@@ -291,6 +291,12 @@ class Project(models.Model):
         return Language.objects.filter(Q(translationproject__project=self),
                                        ~Q(code='templates'))
 
+    def is_accessible_by(self, user):
+        """Returns `True` if the current project is accessible by
+        `user`.
+        """
+        return self in Project.objects.accessible_by_user(user)
+
     def get_template_filetype(self):
         if self.localfiletype == 'po':
             return 'pot'
