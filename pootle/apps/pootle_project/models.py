@@ -94,7 +94,7 @@ class ProjectManager(RelatedManager):
                 if root_permissions.count():
                     user_projects = self.cached()
 
-        cache.set(key, user_projects, settings.OBJECT_CACHE_TIMEOUT)
+            cache.set(key, user_projects, settings.OBJECT_CACHE_TIMEOUT)
 
         return user_projects
 
