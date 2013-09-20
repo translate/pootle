@@ -44,17 +44,12 @@ urlpatterns = patterns('pootle_translationproject.views',
         name='pootle-tp-delete-path-obj'),
 
     # XHR views
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/summary/'
-        r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
-        'path_summary_more',
-        name='pootle-tp-summary'),
-
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/stats/'
+    url(r'^stats/(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
         r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'overview_stats',
         name='pootle-tp-overview-stats'),
 
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/checks/'
+    url(r'^checks/(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
         r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'qualitycheck_stats',
         name='pootle-tp-qualitychecks'),
