@@ -354,6 +354,12 @@ class Project(models.Model):
     def get_real_path(self):
         return absolute_real_path(self.code)
 
+    def is_accessible_by(self, user):
+        """Returns `True` if the current project is accessible by
+        `user`.
+        """
+        return self in Project.objects.accessible_by_user(user)
+
     def get_template_filetype(self):
         if self.localfiletype == 'po':
             return 'pot'
