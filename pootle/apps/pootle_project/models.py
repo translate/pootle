@@ -64,61 +64,6 @@ class ProjectManager(RelatedManager):
 
         return projects
 
-    def for_username(self, username):
-        """Returns a list of projects available to `username`.
-
-        Checks for `view` permissions in project directories, and if no
-        explicit permissions are available, falls back to the root
-        directory for that user.
-        """
-        key = iri_to_uri('projects:accessible:%s' % username)
-        user_projects = cache.get(key, None)
-
-        if user_projects is None:
-            logging.debug(u'Cache miss for %s', key)
-            lookup_args = {
-                'directory__permission_sets__positive_permissions__codename':
-                    'view',
-                'directory__permission_sets__profile__user__username':
-                    username,
-            }
-            user_projects = self.cached().filter(**lookup_args)
-
-            # No explicit permissions for projects, let's examine the root
-            if not user_projects.count():
-                root_permissions = PermissionSet.objects.filter(
-                    directory__pootle_path='/',
-                    profile__user__username=username,
-                    positive_permissions__codename='view',
-                )
-                if root_permissions.count():
-                    user_projects = self.cached()
-
-            cache.set(key, user_projects, settings.OBJECT_CACHE_TIMEOUT)
-
-        return user_projects
-
-    def accessible_by_user(self, user):
-        """Returns a list of projects accessible by `user`.
-
-        First checks for `user`, and if no explicit `view` permissions
-        have been found, falls back to `default` (if logged-in) and
-        `nobody` users.
-        """
-        user_projects = []
-
-        check_usernames = ['nobody']
-        if user.is_authenticated():
-            check_usernames = [user.username, 'default', 'nobody']
-
-        for username in check_usernames:
-            user_projects = self.for_username(username)
-
-            if user_projects:
-                break
-
-        return user_projects
-
 
 class Project(models.Model):
 
@@ -171,6 +116,65 @@ class Project(models.Model):
     def natural_key(self):
         return (self.code,)
     natural_key.dependencies = ['pootle_app.Directory']
+
+    @classmethod
+    def for_username(self, username):
+        """Returns a list of project codes available to `username`.
+
+        Checks for `view` permissions in project directories, and if no
+        explicit permissions are available, falls back to the root
+        directory for that user.
+        """
+        key = iri_to_uri('projects:accessible:%s' % username)
+        user_projects = cache.get(key, None)
+
+        if user_projects is None:
+            logging.debug(u'Cache miss for %s', key)
+            lookup_args = {
+                'directory__permission_sets__positive_permissions__codename':
+                    'view',
+                'directory__permission_sets__profile__user__username':
+                    username,
+            }
+            user_projects = self.objects.cached().filter(**lookup_args) \
+                                                 .values_list('code', flat=True)
+
+            # No explicit permissions for projects, let's examine the root
+            if not user_projects.count():
+                root_permissions = PermissionSet.objects.filter(
+                    directory__pootle_path='/',
+                    profile__user__username=username,
+                    positive_permissions__codename='view',
+                )
+                if root_permissions.count():
+                    user_projects = self.objects.cached() \
+                                                .values_list('code', flat=True)
+
+            cache.set(key, user_projects, settings.OBJECT_CACHE_TIMEOUT)
+
+        return user_projects
+
+    @classmethod
+    def accessible_by_user(self, user):
+        """Returns a list of project codes accessible by `user`.
+
+        First checks for `user`, and if no explicit `view` permissions
+        have been found, falls back to `default` (if logged-in) and
+        `nobody` users.
+        """
+        user_projects = []
+
+        check_usernames = ['nobody']
+        if user.is_authenticated():
+            check_usernames = [user.username, 'default', 'nobody']
+
+        for username in check_usernames:
+            user_projects = self.for_username(username)
+
+            if user_projects:
+                break
+
+        return user_projects
 
     def __unicode__(self):
         return self.fullname
@@ -298,7 +302,7 @@ class Project(models.Model):
         if user.is_superuser:
             return True
 
-        return self in Project.objects.accessible_by_user(user)
+        return self.code in Project.accessible_by_user(user)
 
     def get_template_filetype(self):
         if self.localfiletype == 'po':

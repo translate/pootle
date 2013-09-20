@@ -207,7 +207,7 @@ class TranslationProject(models.Model):
         if user.is_superuser:
             return True
 
-        return self.project in Project.objects.accessible_by_user(user)
+        return self.project.code in Project.accessible_by_user(user)
 
     def update(self):
         """Update all stores to reflect state on disk"""

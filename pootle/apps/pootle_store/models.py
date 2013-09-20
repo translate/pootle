@@ -222,9 +222,9 @@ class UnitManager(RelatedManager):
         # Non-superusers are limited to the projects they have access to
         if not profile.user.is_superuser:
             from pootle_project.models import Project
-            visible_projects = Project.objects.accessible_by_user(profile.user)
+            user_projects = Project.accessible_by_user(profile.user)
             units_qs = units_qs.filter(
-                store__translation_project__project__in=visible_projects,
+                store__translation_project__project__code__in=user_projects,
             )
 
         return units_qs
@@ -410,8 +410,8 @@ class Unit(models.Model, base.TranslationUnit):
             return True
 
         from pootle_project.models import Project
-        visible_projects = Project.objects.accessible_by_user(user)
-        return self.store.translation_project.project in visible_projects
+        user_projects = Project.accessible_by_user(user)
+        return self.store.translation_project.project.code in user_projects
 
     def convert(self, unitclass):
         """Convert to a unit of type :param:`unitclass` retaining as much
