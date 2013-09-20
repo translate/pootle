@@ -283,6 +283,9 @@ class TranslationProject(models.Model):
         """Returns `True` if the current translation project is accessible
         by `user`.
         """
+        if user.is_superuser:
+            return True
+
         return self.project in Project.objects.accessible_by_user(user)
 
     def update(self):

@@ -488,6 +488,9 @@ class Unit(models.Model, base.TranslationUnit):
 
     def is_accessible_by(self, user):
         """Returns `True` if the current unit is accessible by `user`."""
+        if user.is_superuser:
+            return True
+
         from pootle_project.models import Project
         visible_projects = Project.objects.accessible_by_user(user)
         return self.store.translation_project.project in visible_projects
