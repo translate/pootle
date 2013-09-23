@@ -86,20 +86,6 @@
         }
       });
 
-      /* Overview actions */
-      $("#overview-actions").on("click", ".js-overview-actions-delete-path",
-        function (e) {
-          return confirm(gettext("Are you sure you want to continue?") + "\n" +
-                         gettext("This operation cannot be undone."));
-      });
-
-      /* Generic toggle */
-      $(document).on("click", ".js-toggle", function (e) {
-        e.preventDefault();
-        var target = $(this).attr("href") || $(this).data("target");
-        $(target).toggle();
-      });
-
       /* Sorts language names within select elements */
       var ids = ["id_languages", "id_alt_src_langs", "-language",
                  "-source_language"];
