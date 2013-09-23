@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2012 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -28,7 +29,8 @@ from django.utils.translation import get_language, ugettext as _
 from translate.misc.multistring import multistring
 
 from pootle_app.models.permissions import check_permission
-from pootle_app.models.treeitem import CACHE_LAST_ACTION, CACHE_FUZZY, CACHE_TRANSLATED
+from pootle_app.models.treeitem import (CACHE_LAST_ACTION, CACHE_FUZZY,
+                                        CACHE_TRANSLATED)
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 from pootle_store.models import Unit

@@ -6,7 +6,7 @@
 
     init: function (options) {
       this.url = options.url;
-      this.check_url = options.check_url;
+      this.checkUrl = options.check_url;
 
       /* Path summary */
       $(document).on("click", "#js-path-summary", function (e) {
@@ -28,14 +28,14 @@
         } else {
           $('body').spin();
           $.ajax({
-            url: PTL.stats.check_url,
+            url: PTL.stats.checkUrl,
             success: function (data) {
               node.hide();
-              node.find('.js-checks').each(function(e) {
+              node.find('.js-checks').each(function (e) {
                 var empty = true,
                     $cat = $(this);
 
-                $cat.find('.js-check').each(function(e) {
+                $cat.find('.js-check').each(function (e) {
                   var $check = $(this),
                       code = $(this).data('code');
                   if (code in data) {
@@ -61,16 +61,18 @@
       });
 
     },
-    nice_percentage: function(part, total) {
+
+    nice_percentage: function (part, total) {
       var percentage = total ? part / total * 100 : 0;
       if (99 < percentage && percentage < 100) {
-        return 99
+        return 99;
       }
       if (0 < percentage && percentage < 1) {
-        return 1
+        return 1;
       }
-      return Math.round(percentage)
+      return Math.round(percentage);
     },
+
     update_progressbar: function ($td, item) {
       var translated = PTL.stats.nice_percentage(item.translated, item.total),
           fuzzy = PTL.stats.nice_percentage(item.fuzzy, item.total),
@@ -92,6 +94,7 @@
       set_td_width($td.find('td.fuzzy'), fuzzy);
       set_td_width($td.find('td.untranslated'), untranslated);
     },
+
     update_translation_stats: function ($tr, total, value) {
       $tr.find('.stats-number a').html(value);
       $tr.find('.stats-percentage span').html(
@@ -99,11 +102,13 @@
       );
       $tr.find('.stats-percentage').show();
     },
+
     update_action: function ($action, count) {
       $action.toggle(count > 0);
       $action.find('.counter').text(count);
     },
-    update_item_stats: function($td, count) {
+
+    update_item_stats: function ($td, count) {
       if (count) {
         $td.removeClass('zero');
         $td.addClass('non-zero');
@@ -114,6 +119,7 @@
         $td.removeClass('non-zero');
       }
     },
+
     load: function (callback) {
       $.ajax({
         url: this.url,
@@ -153,17 +159,22 @@
           }
 
           PTL.stats.update_action($('#action-view-all'), data.total);
-          PTL.stats.update_action($('#action-continue'), data.total - data.translated);
+          PTL.stats.update_action($('#action-continue'),
+                                  data.total - data.translated);
           PTL.stats.update_action($('#action-fix-critical'), data.critical);
           PTL.stats.update_action($('#action-review'), data.suggestions);
 
           $('body').removeClass('js-not-loaded');
 
-          PTL.stats.update_translation_stats($('#stats-total'), data.total, data.total);
-          PTL.stats.update_translation_stats($('#stats-translated'), data.total, data.translated);
-          PTL.stats.update_translation_stats($('#stats-fuzzy'), data.total, data.fuzzy);
-          PTL.stats.update_translation_stats($('#stats-untranslated'), data.total,
-            data.total - data.translated - data.fuzzy);
+          PTL.stats.update_translation_stats($('#stats-total'),
+                                             data.total, data.total);
+          PTL.stats.update_translation_stats($('#stats-translated'),
+                                             data.total, data.translated);
+          PTL.stats.update_translation_stats($('#stats-fuzzy'),
+                                             data.total, data.fuzzy);
+          var untranslated = data.total - data.translated - data.fuzzy;
+          PTL.stats.update_translation_stats($('#stats-untranslated'),
+                                             data.total, untranslated);
 
           if (callback) {
             callback(data);
@@ -171,7 +182,8 @@
         }
       });
     },
-    load_checks: function(callback) {
+
+    load_checks: function (callback) {
       $.ajax({
         url: this.url,
         dataType: 'json',

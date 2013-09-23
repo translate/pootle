@@ -1560,7 +1560,8 @@ html[dir="rtl"] td.stats-name,
     width: 100%;
 }
 
-.check {
+.check
+{
     width: 50%;
     float: left;
 }
