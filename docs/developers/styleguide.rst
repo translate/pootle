@@ -26,21 +26,24 @@ Pootle has specific conventions for Python coding style.
 Imports:
   Like in `Python import conventions 
   <http://docs.translatehouse.org/projects/translate-toolkit/en/latest/development/styleguide.html#styleguide-imports>`_
-  in Translate styleguide, but imports should be grouped in the following order:
+  in Translate styleguide, but imports should be grouped in the following
+  order:
 
-  1) Imports from __future__ library
+  1) __future__ library imports
   2) Python standard library imports
   3) Third party libraries imports (Including Translate Toolkit ones)
   4) Django imports
   5) Django external apps imports
   6) Other Pootle apps imports
-  7) Current module (or app) imports
+  7) Current package (or app) imports, using explicit relative imports (See
+     `PEP 328 <http://www.python.org/dev/peps/pep-0328/#guido-s-decision>`_)
 
   Check `Python import conventions
   <http://docs.translatehouse.org/projects/translate-toolkit/en/latest/development/styleguide.html#styleguide-imports>`_
   in Translate styleguide for other conventions that the imports must follow.
 
   .. code-block:: python
+
     from __future__ import absolute_import
 
     import re
@@ -58,14 +61,16 @@ Imports:
     from django.db.models.signals import post_save
 
     from profiles.views import edit_profile
-    from tastypie.models import ApiKey
+    from tastypie import fields
 
     from pootle.core.decorators import permission_required
-    from pootle_language.models import Language
+    from pootle_store.models import (FUZZY, TRANSLATED, UNTRANSLATED, Store,
+                                     Unit, count_words)
     from pootle_translationproject.models import TranslationProject
 
     from .forms import GoalForm
     from .models import Tag
+
 
 Order in models:
   Model's inner classes and methods should keep the following order:
