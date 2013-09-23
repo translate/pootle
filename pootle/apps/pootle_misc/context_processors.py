@@ -48,7 +48,6 @@ def pootle_context(request):
     context = {
         'settings': {
             'TITLE': settings.TITLE,
-            'CAN_REGISTER': settings.CAN_REGISTER,
             'CAN_CONTACT': settings.CAN_CONTACT and settings.CONTACT_EMAIL,
             'SCRIPT_NAME': settings.SCRIPT_NAME,
             'POOTLE_VERSION': sver,

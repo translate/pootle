@@ -110,10 +110,6 @@ ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )
 
-# Set this to False to disable user registration, admins will still be
-# able to create user accounts.
-CAN_REGISTER = True
-
 # Mail settings
 
 # Address used for messages sent by Pootle.

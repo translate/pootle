@@ -91,15 +91,6 @@ Site-specific settings.
   receive messages is controlled by :setting:`CONTACT_EMAIL`.
 
 
-.. setting:: CAN_REGISTER
-
-``CAN_REGISTER``
-  Default: ``True``
-
-  Controls whether user registrations are allowed or not. If set to ``False``,
-  administrators will still be able to create new user accounts.
-
-
 .. setting:: CONTACT_EMAIL
 
 ``CONTACT_EMAIL``
@@ -124,22 +115,6 @@ Configuration settings for applications used by Pootle.
 
   Custom template context dictionary. The values will be available in the
   templates as ``{{ custom.<key> }}``.
-
-
-.. setting:: EMAIL_SEND_HTML
-
-``EMAIL_SEND_HTML``
-  Default: ``False``
-
-  By default Pootle sends only text emails. If your organization would prefer
-  to send mixed HTML/TEXT emails, set this to ``True``, and update
-  *activation_email.txt* and *activation_email.html* in the
-  *templates/registration/* directory.
-
-  .. note::
-
-    Password reset emails will still be sent in plain text. This is a limitation
-    of the underlying system.
 
 
 .. setting:: FUZZY_MATCH_MAX_LENGTH

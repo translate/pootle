@@ -26,27 +26,11 @@ from django.utils.encoding import iri_to_uri
 from django.utils.http import urlquote
 
 from profiles.views import edit_profile
-from registration.forms import RegistrationForm
-from registration.views import register as original_register
 
 from pootle_misc.baseurl import redirect
-from staticpages.forms import agreement_form_factory
-from staticpages.models import LegalPage
 
 from .forms import (UserForm, lang_auth_form_factory,
                     pootle_profile_form_factory)
-
-
-def register(request):
-    """User registration page.
-
-    Overrides `registration` app's view to use a custom form.
-    """
-    form_class = agreement_form_factory(LegalPage.objects.live().all(),
-                                        request.user,
-                                        base_class=RegistrationForm,
-                                        anchor_class='js-popup-ajax')
-    return original_register(request, form_class=form_class)
 
 
 def profile_edit(request):

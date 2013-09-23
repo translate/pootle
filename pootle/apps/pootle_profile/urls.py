@@ -38,13 +38,6 @@ urlpatterns += patterns('django.contrib.auth.views',
     (r'^password/reset/done/$', 'password_reset_done'),
 )
 
-# Only include registration urls if registration is enabled
-if settings.CAN_REGISTER:
-    urlpatterns += patterns('',
-        (r'^register/?$', 'pootle_profile.views.register'),
-        (r'', include('registration.urls')),
-    )
-
 urlpatterns += patterns('',
     (r'', include('profiles.urls')),
 )
