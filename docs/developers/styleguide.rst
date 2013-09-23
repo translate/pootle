@@ -23,22 +23,28 @@ Pootle-specific Python guidelines
 
 Pootle has specific conventions for Python coding style.
 
-Imports:
-  Like in `Python import conventions 
-  <http://docs.translatehouse.org/projects/translate-toolkit/en/latest/development/styleguide.html#styleguide-imports>`_
-  in Translate styleguide, but imports should be grouped in the following order:
 
-  1) Python standard library imports
-  2) Third party imports (Including Translate Toolkit ones)
-  3) Django imports
-  4) Django external apps imports
-  5) Pootle apps imports
+Imports
+~~~~~~~
 
-  Check `Python import conventions
-  <http://docs.translatehouse.org/projects/translate-toolkit/en/latest/development/styleguide.html#styleguide-imports>`_
-  in Translate styleguide for other conventions that the imports must follow.
+Like in `Python import conventions 
+<http://docs.translatehouse.org/projects/translate-toolkit/en/latest/development/styleguide.html#styleguide-imports>`_
+in Translate styleguide, but imports should be grouped in the following order:
 
-  .. code-block:: python
+1) __future__ library imports
+2) Python standard library imports
+3) Third party libraries imports (Including Translate Toolkit ones)
+4) Django imports
+5) Django external apps imports
+6) Other Pootle apps imports
+7) Current package (or app) imports, using explicit relative imports (See `PEP
+   328 <http://www.python.org/dev/peps/pep-0328/#guido-s-decision>`_)
+
+Check `Python import conventions
+<http://docs.translatehouse.org/projects/translate-toolkit/en/latest/development/styleguide.html#styleguide-imports>`_
+in Translate styleguide for other conventions that the imports must follow.
+
+.. code-block:: python
 
     import re
     import sys.path as sys_path
@@ -60,36 +66,52 @@ Imports:
     from pootle_language.models import Language
     from pootle_translationproject.models import TranslationProject
 
-Order in models:
-  Model's inner classes and methods should keep the following order:
-
-  - Database fields
-  - Custom manager attributes
-  - ``class Meta``
-  - ``def __unicode__()``
-  - ``def __str__()``
-  - ``def save()``
-  - ``def get_absolute_url()``
-  - Any custom methods
+    from .forms import GoalForm
+    from .models import Tag
 
 
-Fields in models and forms:
-  - If the field declaration fits in one line:
+Order in models
+~~~~~~~~~~~~~~~
 
-    - Put all the options on that line,
-    - Don't put a comma after the last option,
-    - The parenthesis that closes the field declaration goes just after the last
-      option.
+Model's inner classes and methods should keep the following order:
 
-  - If the field declaration spans to several lines:
+- Database fields
+- Non database fields
+- Default ``objects`` manager
+- Custom manager attributes (i.e. other managers)
+- ``class Meta``
+- ``def natural_key()`` (Because it is tightly related to model fields)
+- Properties
+- Any method decorated with ``@classmethod``
+- ``def __unicode__()``
+- ``def __str__()``
+- Any other method starting with ``__`` (for example ``__init__()``)
+- ``def save()``
+- ``def delete()``
+- ``def get_absolute_url()``
+- ``def get_translate_url()``
+- Any custom methods
 
-    - Each option goes on its own line (including the first one),
-    - The options are indented 4 spaces,
-    - The last option must have a comma after it,
-    - The closing parenthesis in the field declaration goes on its own line,
-      aligned with the first line in the field declaration.
 
-  .. code-block:: python
+Fields in models and forms
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- If the field declaration fits in one line:
+
+  - Put all the options on that line,
+  - Don't put a comma after the last option,
+  - The parenthesis that closes the field declaration goes just after the last
+    option.
+
+- If the field declaration spans to several lines:
+
+  - Each option goes on its own line (including the first one),
+  - The options are indented 4 spaces,
+  - The last option must have a comma after it,
+  - The closing parenthesis in the field declaration goes on its own line,
+    aligned with the first line in the field declaration.
+
+.. code-block:: python
 
     class SampleForm(forms.Form):
         # Field declaration that spans to several lines.
@@ -106,36 +128,38 @@ Fields in models and forms:
         project = forms.ModelChoiceField(Project, required=True)
 
 
-URL patterns:
-  When writing the URL patterns:
+URL patterns
+~~~~~~~~~~~~
 
-  - URL patterns can be grouped by putting a blank line between the groups.
-  - On each URL pattern:
+When writing the URL patterns:
 
-    - Specify the URL pattern using the ``url()`` function, not a tuple.
-    - Each parameter must go on its own line in all cases, indenting them one
-      level to allow easily seeing the different URL patterns.
-    - In URLs:
+- URL patterns can be grouped by putting a blank line between the groups.
+- On each URL pattern:
 
-      - Use hyphens. Avoid underscores at all costs.
-      - To split long URLs use implicit string continuation. Note that URLs are
-        raw strings.
+  - Specify the URL pattern using the ``url()`` function, not a tuple.
+  - Each parameter must go on its own line in all cases, indenting them one
+    level to allow easily seeing the different URL patterns.
+  - In URLs:
 
-    - URL pattern names must be named like ``pootle-{app}-{view}`` (except in
-      some cases, like URLs on *pootle_app* app):
+    - Use hyphens. Avoid underscores at all costs.
+    - To split long URLs use implicit string continuation. Note that URLs are
+      raw strings.
 
-      - ``{app}`` is the app name, which sometimes can be shortened, e.g. using
-        **tp** to avoid the longish **translationproject**. If either a
-        shortened app name or a full one is being used, the chosen app name
-        must be used consistently across all the URL patterns for the app. The
-        only exception to this are AJAX URL patterns which can use a different
-        value for ``{app}``, that must be consistently used among all the AJAX
-        URL patterns in the app.
-      - ``{view}`` is a unique string which might consist on several words,
-        separated with hyphens, that might not match the name of the view that
-        the URL pattern handles.
+  - URL pattern names must be named like ``pootle-{app}-{view}`` (except in
+    some cases, like URLs on *pootle_app* app):
 
-  .. code-block:: python
+    - ``{app}`` is the app name, which sometimes can be shortened, e.g. using
+      **tp** to avoid the longish **translationproject**. If either a shortened
+      app name or a full one is being used, the chosen app name must be used
+      consistently across all the URL patterns for the app. The only exception
+      to this are AJAX URL patterns which can use a different value for
+      ``{app}``, that must be consistently used among all the AJAX URL patterns
+      in the app.
+    - ``{view}`` is a unique string which might consist on several words,
+      separated with hyphens, that might not match the name of the view that is
+      handled by the URL pattern.
+
+.. code-block:: python
 
     urlpatterns = patterns('pootle_project.views',
         # Listing of all projects.
@@ -157,10 +181,11 @@ URL patterns:
     )
 
 
+Settings naming
+~~~~~~~~~~~~~~~
 
-Settings naming:
-  Pootle specific settings must be named like ``POOTLE_*``, for example:
-  ``POOTLE_ENABLE_API``, ``POOTLE_VCS_DIRECTORY`` or ``POOTLE_MARKUP_FILTER``
+Pootle specific settings must be named like ``POOTLE_*``, for example:
+``POOTLE_ENABLE_API``, ``POOTLE_VCS_DIRECTORY`` or ``POOTLE_MARKUP_FILTER``
 
 
 Pootle-specific markup
