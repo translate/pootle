@@ -20,9 +20,9 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59
 
-from translate.filters.decorators import Category
-
 from django.core.cache import cache
+
+from translate.filters.decorators import Category
 
 from pootle_misc.util import getfromcache, getfromcachebyname, dictsum
 from pootle_misc.checks import get_qualitychecks_by_category, get_qualitychecks

@@ -1745,16 +1745,19 @@ html[dir="rtl"] td.stats-name,
     width: 100%;
 }
 
-.checks a {
+.checks a
+{
     color: #c00;
 }
 
-.checks h4 {
+.checks h4
+{
     padding: 1em 0 0.5em;
     font-weight: normal;
 }
 
-.check {
+.check
+{
     float: left;
 }
 
@@ -2210,7 +2213,8 @@ html[dir="rtl"] .overview-description-toggle
     font-weight: bold;
 }
 
-body.js-not-loaded #translate-actions li {
+body.js-not-loaded #translate-actions li
+{
     display: none;
 }
 

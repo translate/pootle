@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2012 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -109,7 +110,8 @@ def get_qualitycheck_schema(path_obj=None):
             'url': path_obj.get_translate_url(check=check) if path_obj else ''
         })
 
-    result = sorted([item for code, item in d.items()], key=lambda x: x['code'],
+    result = sorted([item for code, item in d.items()],
+                    key=lambda x: x['code'],
                     reverse=True)
 
     return result

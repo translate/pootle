@@ -322,7 +322,8 @@ class Unit(models.Model, base.TranslationUnit):
         if self.get_qualitychecks():
             self.store.flag_for_deletion(CACHE_CHECKS)
 
-        # check if unit currently being deleted is the one referenced in last_action
+        # Check if unit currently being deleted is the one referenced in
+        # last_action
         la = self.store.get_last_action()
         if la.id == self.id:
             self.store.flag_for_deletion(CACHE_LAST_ACTION)
@@ -385,7 +386,7 @@ class Unit(models.Model, base.TranslationUnit):
                 translation=self.target_f
             )
 
-        if (self._source_updated or self._target_updated):
+        if self._source_updated or self._target_updated:
             self.update_qualitychecks()
 
         # done processing source/target update remove flag
@@ -1053,7 +1054,8 @@ class Store(models.Model, base.TranslationStore, TreeItem):
                 Translation='')
 
         self.flag_for_deletion(CACHE_TOTAL, CACHE_FUZZY, CACHE_TRANSLATED,
-            CACHE_SUGGESTIONS, CACHE_LAST_ACTION, CACHE_CHECKS)
+                               CACHE_SUGGESTIONS, CACHE_LAST_ACTION,
+                               CACHE_CHECKS)
         self.update_cache()
 
         super(Store, self).delete(*args, **kwargs)
