@@ -72,6 +72,40 @@ Order in models:
   - ``def get_absolute_url()``
   - Any custom methods
 
+
+Fields in models and forms:
+  - If the field declaration fits in one line:
+
+    - Put all the options on that line,
+    - Don't put a comma after the last option,
+    - The parenthesis that closes the field declaration goes just after the last
+      option.
+
+  - If the field declaration spans to several lines:
+
+    - Each option goes on its own line (including the first one),
+    - The options are indented 4 spaces,
+    - The last option must have a comma after it,
+    - The closing parenthesis in the field declaration goes on its own line,
+      aligned with the first line in the field declaration.
+
+  .. code-block:: python
+
+    class SampleForm(forms.Form):
+        # Field declaration that spans to several lines.
+        language = forms.ChoiceField(
+            label=_('Interface Language'),
+            initial="",
+            required=False,
+            widget=forms.Select(attrs={
+                'class': 'js-select2 select2-language',
+            }),
+            help_text=_('Default language for using on the user interface.'),
+        )
+        # One line field declaration.
+        project = forms.ModelChoiceField(Project, required=True)
+
+
 URL patterns:
   When writing the URL patterns:
 
