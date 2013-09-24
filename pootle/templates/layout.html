@@ -139,7 +139,7 @@
             {% if user.is_authenticated %}
             <li><a href='{{ "/accounts/logout/"|l }}'>{% trans "Log Out" %}</a></li>
             {% else %}
-            <li><a href="{{ "/accounts/login/"|l }}{{ request|get_next }}">{% trans "Log In" %}</a></li>
+            <li><a id="js-login" href="{{ "/accounts/login/"|l }}{{ request|get_next }}">{% trans "Log In" %}</a></li>
             {% endif %}
           </ul>
           {% block navbar_extra %}{% endblock %}

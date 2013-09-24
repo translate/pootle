@@ -32,6 +32,21 @@
           PTL.common.navigateTo(langCode, projectCode);
       });
 
+      // Append fragment identifiers for login redirects
+      $('#navbar').on('focus click', '#js-login', function (e) {
+        var $anchor = $(this),
+            currentURL = $anchor.attr('href'),
+            cleanURL = currentURL,
+            hashIndex = currentURL.indexOf(encodeURIComponent('#')),
+            newURL;
+
+        if (hashIndex !== -1) {
+          cleanURL = currentURL.slice(0, hashIndex);
+        }
+        newURL = [cleanURL, encodeURIComponent(window.location.hash)].join('');
+        $anchor.attr('href', newURL);
+      });
+
       /* Collapsing functionality */
       $(document).on("click", ".collapse", function (e) {
         e.preventDefault();
