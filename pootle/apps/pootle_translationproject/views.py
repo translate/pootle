@@ -19,25 +19,21 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from itertools import groupby
-
 from django.core.urlresolvers import reverse
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ungettext
 
 from pootle.core.decorators import (get_path_obj, get_resource_context,
                                     permission_required)
-from pootle.core.helpers import get_filter_name, get_translation_context
-from pootle_app.models import Directory
+from pootle.core.helpers import (get_export_view_context,
+                                 get_translation_context)
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
 from pootle_misc.browser import get_children, get_table_headings
 from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.stats import (get_raw_stats, get_translation_stats,
                                get_translate_actions)
 from pootle_misc.util import ajax_required
-from pootle_store.models import Store, Unit
-from pootle_store.views import get_step_query
 
 
 @get_path_obj
@@ -145,22 +141,12 @@ def translate(request, translation_project, dir_path, filename):
 @get_resource_context
 def export_view(request, translation_project, dir_path, filename=None):
     """Displays a list of units with filters applied."""
-    filter_name, filter_extra = get_filter_name(request.GET)
-
-    units_qs = Unit.objects.get_for_path(request.pootle_path,
-                                         request.profile)
-    units = get_step_query(request, units_qs)
-    unit_groups = [(path, list(units)) for path, units in
-                   groupby(units, lambda x: x.store.path)]
-
-    ctx = {
+    ctx = get_export_view_context(request)
+    ctx.update({
         'source_language': translation_project.project.source_language,
         'language': translation_project.language,
         'project': translation_project.project,
-        'unit_groups': unit_groups,
-        'filter_name': filter_name,
-        'filter_extra': filter_extra,
-    }
+    })
 
     return render_to_response('translation_projects/export_view.html', ctx,
                               context_instance=RequestContext(request))
