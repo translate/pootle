@@ -21,7 +21,6 @@
 import logging
 import os
 import StringIO
-from itertools import groupby
 
 from django import forms
 from django.conf import settings
@@ -42,7 +41,8 @@ from translate.filters.decorators import Category
 
 from pootle.core.decorators import (get_path_obj, get_resource_context,
                                     permission_required)
-from pootle.core.helpers import get_filter_name, get_translation_context
+from pootle.core.helpers import (get_export_view_context,
+                                 get_translation_context)
 from pootle.core.url_helpers import split_pootle_path
 from pootle.scripts.actions import (EXTDIR, StoreAction,
                                     TranslationProjectAction)
@@ -62,11 +62,10 @@ from pootle_misc.stats import get_path_summary
 from pootle_misc.util import jsonify, ajax_required
 from pootle_profile.models import get_profile
 from pootle_statistics.models import Submission, SubmissionTypes
-from pootle_store.models import Store, Unit
+from pootle_store.models import Store
 from pootle_store.util import (absolute_real_path, relative_real_path,
                                add_trailing_slash)
 from pootle_store.filetypes import factory_classes
-from pootle_store.views import get_step_query
 from pootle_tagging.decorators import get_goal
 from pootle_tagging.forms import GoalForm, TagForm
 from pootle_tagging.models import Goal
@@ -651,23 +650,13 @@ def translate(request, translation_project, dir_path, filename):
 @get_resource_context
 def export_view(request, translation_project, dir_path, filename=None):
     """Displays a list of units with filters applied."""
-    filter_name, filter_extra = get_filter_name(request.GET)
-
-    units_qs = Unit.objects.get_for_path(request.pootle_path,
-                                         request.profile)
-    units = get_step_query(request, units_qs)
-    unit_groups = [(path, list(units)) for path, units in
-                   groupby(units, lambda x: x.store.path)]
-
-    ctx = {
+    ctx = get_export_view_context(request)
+    ctx.update({
         'source_language': translation_project.project.source_language,
         'language': translation_project.language,
         'project': translation_project.project,
-        'unit_groups': unit_groups,
-        'filter_name': filter_name,
-        'filter_extra': filter_extra,
         'goal': request.GET.get('goal', ''),
-    }
+    })
 
     return render_to_response('translation_projects/export_view.html', ctx,
                               context_instance=RequestContext(request))
