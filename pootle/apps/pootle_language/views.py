@@ -24,7 +24,8 @@ from django.template import RequestContext
 from django.utils.translation import ugettext as _, ungettext
 
 from pootle.core.decorators import get_path_obj, permission_required
-from pootle.core.helpers import get_translation_context
+from pootle.core.helpers import (get_export_view_context,
+                                 get_translation_context)
 from pootle.i18n.gettext import tr_lang
 from pootle_app.views.admin.permissions import admin_permissions
 from pootle_misc.browser import get_table_headings
@@ -151,6 +152,30 @@ def translate(request, language):
     })
 
     return render_to_response('editor/main.html', context,
+                              context_instance=RequestContext(request))
+
+
+@get_path_obj
+@permission_required('view')
+def export_view(request, language):
+    """Displays a list of units with filters applied."""
+    request.pootle_path = language.pootle_path
+    request.ctx_path = language.pootle_path
+    request.resource_path = ''
+
+    request.store = None
+    request.directory = language.directory
+
+    project = None
+
+    ctx = get_export_view_context(request)
+    ctx.update({
+        'source_language': 'en',
+        'language': language,
+        'project': project,
+    })
+
+    return render_to_response('editor/export_view.html', ctx,
                               context_instance=RequestContext(request))
 
 

@@ -43,4 +43,8 @@ urlpatterns = patterns('pootle_app.views.index',
     url(r'^translate/$',
         'translate.view',
         name='pootle-translate'),
+
+    url(r'^export-view/$',
+        'export_view.view',
+        name='pootle-export-view'),
 )

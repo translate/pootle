@@ -148,7 +148,7 @@ def export_view(request, translation_project, dir_path, filename=None):
         'project': translation_project.project,
     })
 
-    return render_to_response('translation_projects/export_view.html', ctx,
+    return render_to_response('editor/export_view.html', ctx,
                               context_instance=RequestContext(request))
 
 

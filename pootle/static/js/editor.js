@@ -734,13 +734,9 @@
   },
 
   updateExportLink: function () {
-    var unit = this.units.getCurrent(),
-        store = unit.get('store'),
-        urlStr = [
-          '', store.get('target_lang'), store.get('project_code'),
-          'export-view', this.resourcePath
-        ].join('/'),
-        urlStr = [urlStr, $.param(this.getReqData())].join('?'),
+    var urlStr = window.location.href.replace('/translate/',
+                                              '/export-view/')
+                                     .replace('#', '?'),
         exportLink = [
           '<a href="', l(urlStr), '">', gettext('Export View'), '</a>'
         ].join('');

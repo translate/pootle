@@ -38,6 +38,10 @@ urlpatterns = patterns('pootle_project.views',
         'translate',
         name='pootle-project-translate'),
 
+    url(r'^(?P<project_code>[^/]*)/export-view/$',
+        'export_view',
+        name='pootle-project-export-view'),
+
     # Admin
     url(r'^(?P<project_code>[^/]*)/admin/languages/$',
         'project_admin',
