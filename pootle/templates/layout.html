@@ -168,7 +168,7 @@
             {% if settings.CAN_REGISTER %}
             <li><a href="{% url 'account_signup' %}">{% trans "Register" %}</a></li>
             {% endif %}
-            <li><a href="{% url 'account_login' %}{{ request|get_next }}">{% trans "Log In" %}</a></li>
+            <li><a id="js-login" href="{% url 'account_login' %}{{ request|get_next }}">{% trans "Log In" %}</a></li>
             {% endif %}
             <li>
               <select id="js-language-picker" default="{{ LANGUAGE_CODE }}"></select>
