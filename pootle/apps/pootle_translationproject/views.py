@@ -177,20 +177,11 @@ def export_view(request, translation_project, dir_path, filename=None):
 
 @ajax_required
 @get_path_obj
+@get_resource_context
 def path_summary_more(request, translation_project, dir_path, filename=None):
     """Returns an HTML snippet with more detailed summary information
        for the current path."""
-    current_path = translation_project.directory.pootle_path + dir_path
-
-    if filename:
-        current_path = current_path + filename
-        store = get_object_or_404(Store, pootle_path=current_path)
-        directory = store.parent
-    else:
-        directory = get_object_or_404(Directory, pootle_path=current_path)
-        store = None
-
-    path_obj = store or directory
+    path_obj = request.ctx_obj
 
     path_stats = get_raw_stats(path_obj)
     translation_stats = get_translation_stats(path_obj, path_stats)
