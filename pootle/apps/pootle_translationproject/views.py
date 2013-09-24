@@ -36,7 +36,7 @@ from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.stats import (get_raw_stats, get_translation_stats,
                                get_translate_actions)
 from pootle_misc.util import ajax_required
-from pootle_store.models import Store
+from pootle_store.models import Store, Unit
 from pootle_store.views import get_step_query
 
 
@@ -142,22 +142,13 @@ def translate(request, translation_project, dir_path, filename):
 
 @get_path_obj
 @permission_required('view')
+@get_resource_context
 def export_view(request, translation_project, dir_path, filename=None):
     """Displays a list of units with filters applied."""
-    current_path = translation_project.directory.pootle_path + dir_path
-
-    if filename:
-        current_path = current_path + filename
-        store = get_object_or_404(Store, pootle_path=current_path)
-        units_qs = store.units
-    else:
-        store = None
-        units_qs = translation_project.units.filter(
-            store__pootle_path__startswith=current_path,
-        )
-
     filter_name, filter_extra = get_filter_name(request.GET)
 
+    units_qs = Unit.objects.get_for_path(request.pootle_path,
+                                         request.profile)
     units = get_step_query(request, units_qs)
     unit_groups = [(path, list(units)) for path, units in
                    groupby(units, lambda x: x.store.path)]
