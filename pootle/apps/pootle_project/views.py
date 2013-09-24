@@ -29,7 +29,8 @@ from django.views.decorators.http import require_POST
 from taggit.models import Tag
 
 from pootle.core.decorators import get_path_obj, permission_required
-from pootle.core.helpers import get_translation_context
+from pootle.core.helpers import (get_export_view_context,
+                                 get_translation_context)
 from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models.permissions import check_permission
 from pootle_misc.browser import get_table_headings
@@ -296,6 +297,30 @@ def translate(request, project):
     })
 
     return render(request, "editor/main.html", ctx)
+
+
+@get_path_obj
+@permission_required('view')
+def export_view(request, project):
+    request.pootle_path = project.pootle_path
+    # TODO: support arbitrary resources
+    request.ctx_path = project.pootle_path
+    request.resource_path = ''
+
+    request.store = None
+    request.directory = project.directory
+
+    language = None
+
+    ctx = get_export_view_context(request)
+    ctx.update({
+        'source_language': 'en',
+        'language': language,
+        'project': project,
+    })
+
+    return render_to_response('editor/export_view.html', ctx,
+                              context_instance=RequestContext(request))
 
 
 @get_path_obj

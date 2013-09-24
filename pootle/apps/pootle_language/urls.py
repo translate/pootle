@@ -30,6 +30,10 @@ urlpatterns = patterns('pootle_language.views',
         'translate',
         name='pootle-language-translate'),
 
+    url(r'^(?P<language_code>[^/]*)/export-view/$',
+        'export_view',
+        name='pootle-language-export-view'),
+
     # Admin
     url(r'^(?P<language_code>[^/]*)/admin/settings/$',
         'language_settings_edit',

@@ -675,7 +675,7 @@ def export_view(request, translation_project, dir_path, filename=None):
         'goal': request.GET.get('goal', ''),
     })
 
-    return render_to_response('translation_projects/export_view.html', ctx,
+    return render_to_response('editor/export_view.html', ctx,
                               context_instance=RequestContext(request))
 
 
