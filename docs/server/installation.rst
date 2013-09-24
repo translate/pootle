@@ -51,19 +51,28 @@ Setting up the Environment
 In order to install Pootle you will first create a virtual environment. This
 allows you to keep track of dependencies without messing up with system
 packages. For that purpose you need to install the ``virtualenv`` package. You
-might already have it, but in case you haven't::
+might already have it, but in case you haven't:
+
+.. code-block:: bash
 
   $ pip install virtualenv
 
+
 Now create a virtual environment on your location of choice by issuing the
-``virtualenv`` command::
+``virtualenv`` command:
+
+.. code-block:: bash
 
   $ virtualenv /var/www/pootle/env/
 
+
 This will copy the system's default Python interpreter into your environment.
-For activating the virtual environment you must run the ``activate`` script::
+For activating the virtual environment you must run the ``activate`` script:
+
+.. code-block:: bash
 
   $ source /var/www/pootle/env/bin/activate
+
 
 Every time you activate this virtual environment, the Python interpreter will
 know where to look for libraries. Also notice the environment name will be
@@ -76,9 +85,12 @@ Installing Pootle
 -----------------
 
 After creating the virtual environment, you can safely ask pip to grab and
-install Pootle by running::
+install Pootle by running:
+
+.. code-block:: bash
 
   (env) $ pip install pootle
+
 
 This will fetch and install the minimum set of required dependencies as well.
 
@@ -91,7 +103,7 @@ This will fetch and install the minimum set of required dependencies as well.
 If everything went well, you will now be able to access the ``pootle`` command
 line tool within your environment.
 
-::
+.. code-block:: bash
 
   (env) $ pootle --version
   Pootle 2.5.0
@@ -105,9 +117,12 @@ Initializing the Configuration
 ------------------------------
 
 Once Pootle has been installed, you will need to initialize a configuration file
-for it. This is as easy as running::
+for it. This is as easy as running:
+
+.. code-block:: bash
 
   (env) $ pootle init
+
 
 By default it writes the configuration file at ``~/.pootle/pootle.conf`` but
 if you want you can pass an alternative path as an argument to the ``init``
@@ -134,7 +149,9 @@ Setting Up the Database
 Before your run Pootle for the first time, you need to create the schema
 for the database and populate it with initial data. This is done by
 executing the :ref:`syncdb <commands#syncdb>` and :ref:`initdb
-<commands#initdb>` management commands::
+<commands#initdb>` management commands:
+
+.. code-block:: bash
 
   $ pootle syncdb --noinput
   $ pootle initdb
@@ -147,9 +164,12 @@ Running Pootle
 
 By default Pootle provides a built-in `CherryPy server
 <http://www.cherrypy.org/>`_ that will be enough for quickly testing the
-software. To run it, just issue::
+software. To run it, just issue:
+
+.. code-block:: bash
 
   (env) $ pootle start
+
 
 And the server will start listening on port 8000. This can be accessed from your
 web browser at ``http://localhost:8000/``.
