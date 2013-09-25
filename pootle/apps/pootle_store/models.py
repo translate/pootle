@@ -42,9 +42,7 @@ from django.utils.http import urlquote
 from translate.filters.decorators import Category
 from translate.storage import base
 
-from pootle.core.mixins import (TreeItem, CACHE_CHECKS, CACHE_TOTAL,
-                                CACHE_LAST_ACTION, CACHE_FUZZY,
-                                CACHE_TRANSLATED, CACHE_SUGGESTIONS)
+from pootle.core.mixins import CachedMethods, TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.lib.util import RelatedManager
 from pootle_misc.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
@@ -309,24 +307,24 @@ class Unit(models.Model, base.TranslationUnit):
             lang=self.store.translation_project.language.code,
             unit=self.id,
             translation='')
-        self.store.flag_for_deletion(CACHE_TOTAL)
+        self.store.flag_for_deletion(CachedMethods.TOTAL)
 
         if self.state == FUZZY:
-            self.store.flag_for_deletion(CACHE_FUZZY)
+            self.store.flag_for_deletion(CachedMethods.FUZZY)
         elif self.state == TRANSLATED:
-            self.store.flag_for_deletion(CACHE_TRANSLATED)
+            self.store.flag_for_deletion(CachedMethods.TRANSLATED)
 
         if self.suggestion_set.count() > 0:
-            self.store.flag_for_deletion(CACHE_SUGGESTIONS)
+            self.store.flag_for_deletion(CachedMethods.SUGGESTIONS)
 
         if self.get_qualitychecks():
-            self.store.flag_for_deletion(CACHE_CHECKS)
+            self.store.flag_for_deletion(CachedMethods.CHECKS)
 
         # Check if unit currently being deleted is the one referenced in
         # last_action
         la = self.store.get_last_action()
         if la.id == self.id:
-            self.store.flag_for_deletion(CACHE_LAST_ACTION)
+            self.store.flag_for_deletion(CachedMethods.LAST_ACTION)
 
         super(Unit, self).delete(*args, **kwargs)
 
@@ -335,7 +333,7 @@ class Unit(models.Model, base.TranslationUnit):
             self._log_user = 'system'
         if not self.id:
             self._save_action = UNIT_ADDED
-            self.store.flag_for_deletion(CACHE_TOTAL)
+            self.store.flag_for_deletion(CachedMethods.TOTAL)
 
         if self._source_updated:
             # update source related fields
@@ -347,11 +345,11 @@ class Unit(models.Model, base.TranslationUnit):
             # update target related fields
             self.target_wordcount = count_words(self.target_f.strings)
             self.target_length = len(self.target_f)
-            self.store.flag_for_deletion(CACHE_LAST_ACTION)
+            self.store.flag_for_deletion(CachedMethods.LAST_ACTION)
             if filter(None, self.target_f.strings):
                 if self.state == UNTRANSLATED:
                     self.state = TRANSLATED
-                    self.store.flag_for_deletion(CACHE_TRANSLATED)
+                    self.store.flag_for_deletion(CachedMethods.TRANSLATED)
 
                     if not hasattr(self, '_save_action'):
                         self._save_action = TRANSLATION_ADDED
@@ -363,7 +361,7 @@ class Unit(models.Model, base.TranslationUnit):
                 # if it was TRANSLATED then set to UNTRANSLATED
                 if self.state > FUZZY:
                     self.state = UNTRANSLATED
-                    self.store.flag_for_deletion(CACHE_TRANSLATED)
+                    self.store.flag_for_deletion(CachedMethods.TRANSLATED)
 
         if self.id:
             if hasattr(self, '_save_action'):
@@ -378,7 +376,7 @@ class Unit(models.Model, base.TranslationUnit):
         if hasattr(self, '_save_action') and self._save_action == UNIT_ADDED:
             # just added FUZZY unit
             if self.state == FUZZY:
-                self.store.flag_for_deletion(CACHE_FUZZY)
+                self.store.flag_for_deletion(CachedMethods.FUZZY)
 
             action_log(user=self._log_user, action=self._save_action,
                 lang=self.store.translation_project.language.code,
@@ -642,11 +640,11 @@ class Unit(models.Model, base.TranslationUnit):
             self.qualitycheck_set.create(name=name, message=message,
                                          category=category)
 
-            self.store.flag_for_deletion(CACHE_CHECKS)
+            self.store.flag_for_deletion(CachedMethods.CHECKS)
 
         if len(existing):
             QualityCheck.objects.filter(unit=self, name__in=existing).delete()
-            self.store.flag_for_deletion(CACHE_CHECKS)
+            self.store.flag_for_deletion(CachedMethods.CHECKS)
 
     def get_qualitychecks(self):
         return self.qualitycheck_set.filter(false_positive=False)
@@ -730,7 +728,7 @@ class Unit(models.Model, base.TranslationUnit):
             return
 
         if value != (self.state == FUZZY):
-            self.store.flag_for_deletion(CACHE_FUZZY)
+            self.store.flag_for_deletion(CachedMethods.FUZZY)
 
         if value:
             self.state = FUZZY
@@ -852,7 +850,7 @@ class Unit(models.Model, base.TranslationUnit):
         suggestion.target = translation
         try:
             suggestion.save()
-            self.store.flag_for_deletion(CACHE_SUGGESTIONS)
+            self.store.flag_for_deletion(CachedMethods.SUGGESTIONS)
             if touch:
                 self.save()
         except:
@@ -874,7 +872,7 @@ class Unit(models.Model, base.TranslationUnit):
             # when saving the unit.
             suggestion.delete()
             self._log_user = reviewer
-            self.store.flag_for_deletion(CACHE_SUGGESTIONS)
+            self.store.flag_for_deletion(CachedMethods.SUGGESTIONS)
             self.save()
 
             # FIXME: we need a totally different model for tracking stats, this
@@ -930,7 +928,7 @@ class Unit(models.Model, base.TranslationUnit):
             suggstat.save()
 
         suggestion.delete()
-        self.store.flag_for_deletion(CACHE_SUGGESTIONS)
+        self.store.flag_for_deletion(CachedMethods.SUGGESTIONS)
         # Update timestamp
         self.save()
 
@@ -942,7 +940,7 @@ class Unit(models.Model, base.TranslationUnit):
         check.save()
         # update timestamp
 
-        self.store.flag_for_deletion(CACHE_CHECKS)
+        self.store.flag_for_deletion(CachedMethods.CHECKS)
         self.save()
 
     def get_terminology(self):
@@ -1053,9 +1051,12 @@ class Store(models.Model, base.TranslationStore, TreeItem):
                 unit=unit.id,
                 Translation='')
 
-        self.flag_for_deletion(CACHE_TOTAL, CACHE_FUZZY, CACHE_TRANSLATED,
-                               CACHE_SUGGESTIONS, CACHE_LAST_ACTION,
-                               CACHE_CHECKS)
+        self.flag_for_deletion(CachedMethods.TOTAL,
+                               CachedMethods.FUZZY,
+                               CachedMethods.TRANSLATED,
+                               CachedMethods.SUGGESTIONS,
+                               CachedMethods.LAST_ACTION,
+                               CachedMethods.CHECKS)
         self.update_cache()
 
         super(Store, self).delete(*args, **kwargs)

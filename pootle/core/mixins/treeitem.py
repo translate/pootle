@@ -20,10 +20,7 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59
 
-__all__ = (
-    'TreeItem', 'CACHE_CHECKS', 'CACHE_TOTAL', 'CACHE_TRANSLATED',
-    'CACHE_FUZZY', 'CACHE_LAST_ACTION', 'CACHE_SUGGESTIONS',
-)
+__all__ = ('TreeItem', 'CachedMethods',)
 
 from translate.filters.decorators import Category
 
@@ -32,16 +29,15 @@ from django.core.cache import cache
 from pootle_misc.util import getfromcache, getfromcachebyname, dictsum
 from pootle_misc.checks import get_qualitychecks_by_category, get_qualitychecks
 
-#
-# Cached method names
-#
 
-CACHE_CHECKS = 'get_checks'
-CACHE_TOTAL = 'get_total_wordcount'
-CACHE_TRANSLATED = 'get_translated_wordcount'
-CACHE_FUZZY = 'get_fuzzy_wordcount'
-CACHE_LAST_ACTION = 'get_last_action'
-CACHE_SUGGESTIONS = 'get_suggestion_count'
+class CachedMethods(object):
+    """Cached method names."""
+    CHECKS = 'get_checks'
+    TOTAL = 'get_total_wordcount'
+    TRANSLATED = 'get_translated_wordcount'
+    FUZZY = 'get_fuzzy_wordcount'
+    LAST_ACTION = 'get_last_action'
+    SUGGESTIONS = 'get_suggestion_count'
 
 
 class TreeItem(object):
