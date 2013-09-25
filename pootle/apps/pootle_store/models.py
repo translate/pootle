@@ -314,7 +314,7 @@ class Unit(models.Model, base.TranslationUnit):
         if self.state == FUZZY:
             self.store.flag_for_deletion(CACHE_FUZZY)
         elif self.state == TRANSLATED:
-            self.store.flag_for_deletion(self.CACHE_TRANSLATED)
+            self.store.flag_for_deletion(CACHE_TRANSLATED)
 
         if self.suggestion_set.count() > 0:
             self.store.flag_for_deletion(CACHE_SUGGESTIONS)
