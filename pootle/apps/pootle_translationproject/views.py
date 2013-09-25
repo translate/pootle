@@ -233,9 +233,7 @@ def vcs_commit(request, translation_project, dir_path, filename):
 @permission_required('view')
 @get_resource_context
 def qualitycheck_stats(request, translation_project, dir_path, filename=None):
-    directory = request.directory
-    store = request.store
-    resource_obj = store or directory
+    resource_obj = request.ctx_obj
 
     qc_stats = {}
     if resource_obj:
@@ -579,10 +577,7 @@ def overview(request, translation_project, dir_path, filename=None,
 @permission_required('view')
 @get_resource_context
 def overview_stats(request, translation_project, dir_path, filename=None):
-    directory = request.directory
-    store = request.store
-    resource_obj = store or directory
-
+    resource_obj = request.ctx_obj
     stats = resource_obj.get_stats()
 
     return HttpResponse(jsonify(stats), mimetype="application/json")
