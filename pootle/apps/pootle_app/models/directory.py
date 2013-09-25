@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -20,11 +21,11 @@
 from django.core.urlresolvers import reverse
 from django.db import models
 
+from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 from pootle_misc.util import cached_property
-from pootle_app.models.treeitem import TreeItem
 
 
 class DirectoryManager(models.Manager):

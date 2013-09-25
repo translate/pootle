@@ -41,10 +41,10 @@ from django.utils.translation import ugettext_lazy as _
 from taggit.managers import TaggableManager
 
 from pootle.core.managers import RelatedManager
+from pootle.core.mixins import (TreeItem, CACHE_CHECKS, CACHE_TOTAL,
+                                CACHE_LAST_ACTION, CACHE_FUZZY,
+                                CACHE_TRANSLATED, CACHE_SUGGESTIONS)
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
-from pootle_app.models.treeitem import (TreeItem, CACHE_CHECKS, CACHE_TOTAL,
-                                        CACHE_LAST_ACTION, CACHE_FUZZY,
-                                        CACHE_TRANSLATED, CACHE_SUGGESTIONS)
 from pootle_misc.aggregate import group_by_count, max_column
 from pootle_misc.baseurl import l
 from pootle_misc.checks import check_names

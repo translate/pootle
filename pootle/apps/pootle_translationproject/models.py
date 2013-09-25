@@ -37,9 +37,9 @@ from taggit.managers import TaggableManager
 
 from pootle.core.managers import RelatedManager
 from pootle.core.markup import get_markup_filter_name, MarkupField
+from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
-from pootle_app.models.treeitem import TreeItem
 from pootle_language.models import Language
 from pootle_misc.baseurl import l
 from pootle_misc.stats import stats_message, stats_message_raw

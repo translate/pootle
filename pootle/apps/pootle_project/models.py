@@ -36,9 +36,9 @@ from translate.lang.data import langcode_re
 
 from pootle.core.managers import RelatedManager
 from pootle.core.markup import get_markup_filter_name, MarkupField
+from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter
 from pootle_app.models.permissions import PermissionSet
-from pootle_app.models.treeitem import TreeItem
 from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 from pootle_misc.util import getfromcache, cached_property
