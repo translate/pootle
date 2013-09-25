@@ -393,11 +393,7 @@ def overview(request, translation_project, dir_path, filename=None):
                 if getattr(action, 'get_download', None):
                     export_path = action.get_download(path_obj)
                     if export_path:
-                        response = HttpResponse('/export/' + export_path)
-                        response['Content-Disposition'] = (
-                                'attachment; filename="%s"' %
-                                os.path.basename(export_path))
-                        return response
+                        return redirect('/export/' + export_path)
 
                 if not action_output:
                     if not store:
