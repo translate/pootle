@@ -41,9 +41,7 @@ from django.utils.translation import ugettext_lazy as _
 from taggit.managers import TaggableManager
 
 from pootle.core.managers import RelatedManager
-from pootle.core.mixins import (TreeItem, CACHE_CHECKS, CACHE_TOTAL,
-                                CACHE_LAST_ACTION, CACHE_FUZZY,
-                                CACHE_TRANSLATED, CACHE_SUGGESTIONS)
+from pootle.core.mixins import CachedMethods, TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_misc.aggregate import group_by_count, max_column
 from pootle_misc.baseurl import l
@@ -432,30 +430,30 @@ class Unit(models.Model, base.TranslationUnit):
         self._encoding = 'UTF-8'
 
     def delete(self, *args, **kwargs):
-        self.store.flag_for_deletion(CACHE_TOTAL)
+        self.store.flag_for_deletion(CachedMethods.TOTAL)
 
         if self.state == FUZZY:
-            self.store.flag_for_deletion(CACHE_FUZZY)
+            self.store.flag_for_deletion(CachedMethods.FUZZY)
         elif self.state == TRANSLATED:
-            self.store.flag_for_deletion(CACHE_TRANSLATED)
+            self.store.flag_for_deletion(CachedMethods.TRANSLATED)
 
         if self.suggestion_set.count() > 0:
-            self.store.flag_for_deletion(CACHE_SUGGESTIONS)
+            self.store.flag_for_deletion(CachedMethods.SUGGESTIONS)
 
         if self.get_qualitychecks():
-            self.store.flag_for_deletion(CACHE_CHECKS)
+            self.store.flag_for_deletion(CachedMethods.CHECKS)
 
         # Check if unit currently being deleted is the one referenced in
         # last_action
         la = self.store.get_last_action()
         if la.id == self.id:
-            self.store.flag_for_deletion(CACHE_LAST_ACTION)
+            self.store.flag_for_deletion(CachedMethods.LAST_ACTION)
 
         super(Unit, self).delete(*args, **kwargs)
 
     def save(self, *args, **kwargs):
         if not self.id:
-            self.store.flag_for_deletion(CACHE_TOTAL)
+            self.store.flag_for_deletion(CachedMethods.TOTAL)
 
         if self._source_updated:
             # update source related fields
@@ -467,15 +465,15 @@ class Unit(models.Model, base.TranslationUnit):
             # update target related fields
             self.target_wordcount = count_words(self.target_f.strings)
             self.target_length = len(self.target_f)
-            self.store.flag_for_deletion(CACHE_LAST_ACTION)
+            self.store.flag_for_deletion(CachedMethods.LAST_ACTION)
             if filter(None, self.target_f.strings):
                 if self.state == UNTRANSLATED:
                     self.state = TRANSLATED
-                    self.store.flag_for_deletion(CACHE_TRANSLATED)
+                    self.store.flag_for_deletion(CachedMethods.TRANSLATED)
             # if it was TRANSLATED then set to UNTRANSLATED
             elif self.state > FUZZY:
                 self.state = UNTRANSLATED
-                self.store.flag_for_deletion(CACHE_TRANSLATED)
+                self.store.flag_for_deletion(CachedMethods.TRANSLATED)
 
         super(Unit, self).save(*args, **kwargs)
 
@@ -735,11 +733,11 @@ class Unit(models.Model, base.TranslationUnit):
             self.qualitycheck_set.create(name=name, message=message,
                                          category=category)
 
-            self.store.flag_for_deletion(CACHE_CHECKS)
+            self.store.flag_for_deletion(CachedMethods.CHECKS)
 
         if len(existing):
             QualityCheck.objects.filter(unit=self, name__in=existing).delete()
-            self.store.flag_for_deletion(CACHE_CHECKS)
+            self.store.flag_for_deletion(CachedMethods.CHECKS)
 
     def get_qualitychecks(self):
         return self.qualitycheck_set.filter(false_positive=False)
@@ -823,7 +821,7 @@ class Unit(models.Model, base.TranslationUnit):
             return
 
         if value != (self.state == FUZZY):
-            self.store.flag_for_deletion(CACHE_FUZZY)
+            self.store.flag_for_deletion(CachedMethods.FUZZY)
 
         if value:
             self.state = FUZZY
@@ -945,7 +943,7 @@ class Unit(models.Model, base.TranslationUnit):
         suggestion.target = translation
         try:
             suggestion.save()
-            self.store.flag_for_deletion(CACHE_SUGGESTIONS)
+            self.store.flag_for_deletion(CachedMethods.SUGGESTIONS)
             if touch:
                 self.save()
         except:
@@ -969,7 +967,7 @@ class Unit(models.Model, base.TranslationUnit):
         # ``save``, otherwise the quality checks won't be properly updated
         # when saving the unit.
         suggestion.delete()
-        self.store.flag_for_deletion(CACHE_SUGGESTIONS)
+        self.store.flag_for_deletion(CachedMethods.SUGGESTIONS)
         self.save()
 
         if settings.AUTOSYNC and self.file:
@@ -987,7 +985,7 @@ class Unit(models.Model, base.TranslationUnit):
             return False
 
         suggestion.delete()
-        self.store.flag_for_deletion(CACHE_SUGGESTIONS)
+        self.store.flag_for_deletion(CachedMethods.SUGGESTIONS)
         # Update timestamp
         self.save()
 
@@ -999,7 +997,7 @@ class Unit(models.Model, base.TranslationUnit):
         check.save()
         # update timestamp
 
-        self.store.flag_for_deletion(CACHE_CHECKS)
+        self.store.flag_for_deletion(CachedMethods.CHECKS)
         self.save()
 
     def get_terminology(self):
@@ -1172,9 +1170,12 @@ class Store(models.Model, base.TranslationStore, TreeItem):
             self.update_cache()
 
     def delete(self, *args, **kwargs):
-        self.flag_for_deletion(CACHE_TOTAL, CACHE_FUZZY, CACHE_TRANSLATED,
-                               CACHE_SUGGESTIONS, CACHE_LAST_ACTION,
-                               CACHE_CHECKS)
+        self.flag_for_deletion(CachedMethods.TOTAL,
+                               CachedMethods.FUZZY,
+                               CachedMethods.TRANSLATED,
+                               CachedMethods.SUGGESTIONS,
+                               CachedMethods.LAST_ACTION,
+                               CachedMethods.CHECKS)
         self.update_cache()
 
         super(Store, self).delete(*args, **kwargs)
