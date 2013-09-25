@@ -393,7 +393,17 @@ def overview(request, translation_project, dir_path, filename=None):
                 if getattr(action, 'get_download', None):
                     export_path = action.get_download(path_obj)
                     if export_path:
-                        return redirect('/export/' + export_path)
+                        import mimetypes
+                        abs_path = absolute_real_path(export_path)
+                        filename = os.path.basename(export_path)
+                        mimetype, encoding = mimetypes.guess_type(filename)
+                        mimetype = mimetype or 'application/octet-stream'
+                        with open(abs_path, 'rb') as f:
+                            response = HttpResponse(f.read(),
+                                                    mimetype=mimetype)
+                        response['Content-Disposition'] = (
+                                'attachment; filename="%s"' % filename)
+                        return response
 
                 if not action_output:
                     if not store:
