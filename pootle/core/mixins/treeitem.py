@@ -44,7 +44,7 @@ CACHE_LAST_ACTION = 'get_last_action'
 CACHE_SUGGESTIONS = 'get_suggestion_count'
 
 
-class TreeItem():
+class TreeItem(object):
     children = None
     initialized = False
     _flagged_for_deletion = set()
