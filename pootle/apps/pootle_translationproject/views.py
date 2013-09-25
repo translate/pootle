@@ -619,7 +619,7 @@ def ajax_add_tag_to_tp(request, translation_project):
                                       RequestContext(request))
 
 
-#@ajax_required
+@ajax_required
 @get_path_obj
 @permission_required('view')
 @get_resource_context
