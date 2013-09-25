@@ -1047,9 +1047,7 @@ class Store(models.Model, base.TranslationStore, TreeItem):
         lang = self.translation_project.language.code
         for unit in self.unit_set.iterator():
             action_log(user='system', action=UNIT_DELETED,
-                lang=lang,
-                unit=unit.id,
-                Translation='')
+                       lang=lang, unit=unit.id, Translation='')
 
         self.flag_for_deletion(CachedMethods.TOTAL,
                                CachedMethods.FUZZY,
