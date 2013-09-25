@@ -222,6 +222,8 @@ def overview(request, translation_project, dir_path, filename=None):
 
     return render_to_response("translation_projects/overview.html", ctx,
                               context_instance=RequestContext(request))
+
+
 @ajax_required
 @get_path_obj
 @permission_required('view')
