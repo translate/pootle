@@ -408,7 +408,8 @@ def overview(request, translation_project, dir_path, filename=None):
                 if not action_output:
                     if not store:
                         rev_args = [language.code, project.code, '']
-                        overview_url = reverse('tp.overview', args=rev_args)
+                        overview_url = reverse('pootle-tp-overview',
+                                               args=rev_args)
                     else:
                         slash = store_f.rfind('/')
                         store_d = ''
@@ -419,7 +420,8 @@ def overview(request, translation_project, dir_path, filename=None):
                             store_f = store_f[1:]
                         rev_args = [language.code, project.code, store_d,
                                     store_f]
-                        overview_url = reverse('tp.overview', args=rev_args)
+                        overview_url = reverse('pootle-tp-overview',
+                                               args=rev_args)
                     return HttpResponseRedirect(overview_url)
 
     template_vars.update({
