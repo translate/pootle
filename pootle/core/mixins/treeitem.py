@@ -20,6 +20,11 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59
 
+__all__ = (
+    'TreeItem', 'CACHE_CHECKS', 'CACHE_TOTAL', 'CACHE_TRANSLATED',
+    'CACHE_FUZZY', 'CACHE_LAST_ACTION', 'CACHE_SUGGESTIONS',
+)
+
 from translate.filters.decorators import Category
 
 from django.core.cache import cache

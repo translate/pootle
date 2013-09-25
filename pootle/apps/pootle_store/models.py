@@ -42,11 +42,11 @@ from django.utils.http import urlquote
 from translate.filters.decorators import Category
 from translate.storage import base
 
+from pootle.core.mixins import (TreeItem, CACHE_CHECKS, CACHE_TOTAL,
+                                CACHE_LAST_ACTION, CACHE_FUZZY,
+                                CACHE_TRANSLATED, CACHE_SUGGESTIONS)
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.lib.util import RelatedManager
-from pootle_app.models.treeitem import (TreeItem, CACHE_CHECKS, CACHE_TOTAL,
-                                        CACHE_LAST_ACTION, CACHE_FUZZY,
-                                        CACHE_TRANSLATED, CACHE_SUGGESTIONS)
 from pootle_misc.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
                              TRANSLATION_DELETED, UNIT_ADDED, UNIT_DELETED,
                              STORE_ADDED, STORE_DELETED, action_log, store_log)
