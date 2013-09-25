@@ -237,7 +237,8 @@ def overview_stats(request, translation_project, dir_path, filename=None):
 
     return HttpResponse(jsonify(stats), mimetype="application/json")
 
-#@ajax_required
+
+@ajax_required
 @get_path_obj
 @permission_required('view')
 @get_resource_context
@@ -320,7 +321,7 @@ def export_view(request, translation_project, dir_path, filename=None):
                               context_instance=RequestContext(request))
 
 
-#@ajax_required
+@ajax_required
 @get_path_obj
 def path_summary_more(request, translation_project, dir_path, filename=None):
     """Returns an HTML snippet with more detailed summary information
