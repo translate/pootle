@@ -242,6 +242,8 @@ def overview_stats(request, translation_project, dir_path, filename=None):
 def qualitycheck_stats(request, translation_project, dir_path, filename=None):
     resource_obj = request.ctx_obj
 
+    # XXX: is there any situation where `resource_obj` could be falsy?
+    # I doubt so. Please re-check.
     qc_stats = {}
     if resource_obj:
         qc_stats = resource_obj.get_checks()
