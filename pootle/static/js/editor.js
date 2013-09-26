@@ -1498,7 +1498,9 @@
             }
           });
 
-          if (empty) $gr.hide();
+          if (empty) {
+            $gr.hide();
+          }
         });
         $("#filter-checks").show();
         $("#js-select2-filter-checks").select2({
