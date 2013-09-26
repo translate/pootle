@@ -45,7 +45,7 @@ from pootle_profile.models import get_profile
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 
-from .decorators import get_unit_context, get_xhr_resource_context
+from .decorators import get_unit_context
 from .models import Unit
 from .forms import (unit_comment_form_factory, unit_form_factory,
                     highlight_whitespace)
