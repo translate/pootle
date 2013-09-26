@@ -61,8 +61,7 @@ from pootle_tagging.forms import TagForm
 from pootle_tagging.models import Goal
 from pootle_translationproject.models import TranslationProject
 
-from .decorators import (get_store_context, get_unit_context,
-                         get_xhr_resource_context)
+from .decorators import get_store_context, get_unit_context
 from .forms import (unit_comment_form_factory, unit_form_factory,
                     highlight_whitespace)
 from .models import Store, TMUnit, Unit
