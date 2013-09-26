@@ -147,7 +147,7 @@ def get_resource_context(func):
         request.ctx_path = ctx_path
         request.resource_path = resource_path
 
-        return func(request, path_obj, dir_path, filename)
+        return func(request, path_obj, dir_path=dir_path, filename=filename)
 
     return wrapped
 
