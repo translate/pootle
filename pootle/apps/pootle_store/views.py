@@ -35,6 +35,8 @@ from django.views.decorators.cache import never_cache
 
 from translate.lang import data
 
+from pootle.core.decorators import (get_path_obj, get_resource_context,
+                                    permission_required)
 from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.models.permissions import check_profile_permission
 from pootle.core.exceptions import Http400
@@ -612,6 +614,27 @@ def get_edit_unit(request, unit):
 
     response = jsonify(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
+
+
+@ajax_required
+@get_path_obj
+@permission_required('view')
+@get_resource_context
+def get_qualitycheck_stats(request, path_obj, **kwargs):
+    qc_stats = path_obj.get_checks()
+
+    return HttpResponse(jsonify(qc_stats), mimetype="application/json")
+
+
+@ajax_required
+@get_path_obj
+@permission_required('view')
+@get_resource_context
+def get_overview_stats(request, path_obj, **kwargs):
+    resource_obj = request.ctx_obj
+    stats = resource_obj.get_stats()
+
+    return HttpResponse(jsonify(stats), mimetype="application/json")
 
 
 @ajax_required

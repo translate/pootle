@@ -109,8 +109,7 @@ $(function() {
   $("body").spin();
   PTL.search.init();
   PTL.stats.init({
-      url: "{{ url_path_stats }}",
-      check_url: "{{ url_path_checks }}"
+      pootlePath: "{{ resource_obj.pootle_path }}",
   });
   PTL.stats.load(function () {
     PTL.common.updateRelativeDates();

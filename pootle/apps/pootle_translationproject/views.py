@@ -180,11 +180,6 @@ def overview(request, translation_project, dir_path, filename=None):
     store = request.store
     resource_obj = request.ctx_obj
 
-    # Build URL for getting more information for the current path
-    url_args = [language.code, project.code, resource_obj.path]
-    url_path_checks = reverse('pootle-tp-qualitychecks', args=url_args)
-    url_path_stats = reverse('pootle-tp-overview-stats', args=url_args)
-
     url_action_continue = resource_obj.get_translate_url(state='incomplete')
     url_action_fixcritical = resource_obj.get_critical_url()
     url_action_review = resource_obj.get_translate_url(state='suggestions')
@@ -197,8 +192,6 @@ def overview(request, translation_project, dir_path, filename=None):
         'resource_obj': resource_obj,
         'resource_path': request.resource_path,
         'can_edit': can_edit,
-        'url_path_checks': url_path_checks,
-        'url_path_stats': url_path_stats,
         'translation_states': get_translation_states(resource_obj),
         'check_categories': get_qualitycheck_schema(resource_obj),
         'url_action_continue': url_action_continue,
@@ -224,33 +217,6 @@ def overview(request, translation_project, dir_path, filename=None):
                               context_instance=RequestContext(request))
 
 
-@ajax_required
-@get_path_obj
-@permission_required('view')
-@get_resource_context
-def overview_stats(request, translation_project, dir_path, filename=None):
-    resource_obj = request.ctx_obj
-    stats = resource_obj.get_stats()
-
-    return HttpResponse(jsonify(stats), mimetype="application/json")
-
-
-@ajax_required
-@get_path_obj
-@permission_required('view')
-@get_resource_context
-def qualitycheck_stats(request, translation_project, dir_path, filename=None):
-    resource_obj = request.ctx_obj
-
-    # XXX: is there any situation where `resource_obj` could be falsy?
-    # I doubt so. Please re-check.
-    qc_stats = {}
-    if resource_obj:
-        qc_stats = resource_obj.get_checks()
-
-    return HttpResponse(jsonify(qc_stats), mimetype="application/json")
-
-
 @get_path_obj
 @permission_required('view')
 @get_resource_context
@@ -265,9 +231,6 @@ def translate(request, translation_project, dir_path, filename):
                                                 request.store.is_terminology)
     context = get_translation_context(request, is_terminology=is_terminology)
 
-    url_args = [language.code, project.code, resource_obj.path]
-    url_path_checks = reverse('pootle-tp-qualitychecks', args=url_args)
-
     context.update({
         'language': language,
         'project': project,
@@ -275,7 +238,6 @@ def translate(request, translation_project, dir_path, filename):
 
         'editor_extends': 'translation_projects/base.html',
         'editor_body_id': 'tptranslate',
-        'url_path_checks': url_path_checks,
         'check_categories': get_qualitycheck_schema(),
     })
 

@@ -24,6 +24,13 @@ from django.conf.urls import patterns, url
 
 urlpatterns = patterns('pootle_store.views',
     # XHR
+    url(r'^xhr/stats/checks/?$',
+        'get_qualitycheck_stats',
+        name='pootle-xhr-stats-checks'),
+    url(r'^xhr/stats/overview/?$',
+        'get_overview_stats',
+        name='pootle-xhr-stats-overview'),
+
     url(r'^xhr/units/?$',
         'get_units',
         name='pootle-xhr-units'),

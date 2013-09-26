@@ -5,8 +5,7 @@
   PTL.stats = {
 
     init: function (options) {
-      this.url = options.url;
-      this.checkUrl = options.check_url;
+      this.pootlePath = options.pootlePath;
 
       /* Path summary */
       $(document).on("click", "#js-path-summary", function (e) {
@@ -28,8 +27,13 @@
           hideShow();
         } else {
           $('body').spin();
+          var url = l('/xhr/stats/checks/'),
+              reqData = {
+                path: PTL.stats.pootlePath
+              };
           $.ajax({
-            url: PTL.stats.checkUrl,
+            url: url,
+            data: reqData,
             success: function (data) {
               node.hide();
               node.find('.js-checks').each(function (e) {
@@ -122,8 +126,13 @@
     },
 
     load: function (callback) {
+      var url = l('/xhr/stats/overview/'),
+          reqData = {
+            path: this.pootlePath
+          };
       $.ajax({
-        url: this.url,
+        url: url,
+        data: reqData,
         dataType: 'json',
         async: true,
         success: function (data) {
