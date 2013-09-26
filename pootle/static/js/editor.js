@@ -1436,11 +1436,15 @@
 
   /* Gets the failing check options for the current query */
   getCheckOptions: function () {
-    var checksUrl = this.settings.checksUrl,
+    var checksUrl = l('/xhr/stats/checks/'),
+        reqData = {
+          path: this.pootlePath
+        },
         opts;
 
     $.ajax({
       url: checksUrl,
+      data: reqData,
       async: false,
       dataType: 'json',
       success: function (data) {
