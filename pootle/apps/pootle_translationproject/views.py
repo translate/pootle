@@ -227,23 +227,6 @@ def vcs_commit(request, translation_project, dir_path, filename):
     return redirect(obj.get_absolute_url())
 
 
-
-@ajax_required
-@get_path_obj
-@permission_required('view')
-@get_resource_context
-def qualitycheck_stats(request, translation_project, dir_path, filename=None):
-    resource_obj = request.ctx_obj
-
-    # XXX: is there any situation where `resource_obj` could be falsy?
-    # I doubt so. Please re-check.
-    qc_stats = {}
-    if resource_obj:
-        qc_stats = resource_obj.get_checks()
-
-    return HttpResponse(jsonify(qc_stats), mimetype="application/json")
-
-
 @get_path_obj
 @permission_required('commit')
 def vcs_update(request, translation_project, dir_path, filename):
@@ -575,17 +558,6 @@ def overview(request, translation_project, dir_path, filename=None,
                               context_instance=RequestContext(request))
 
 
-@get_path_obj
-@permission_required('view')
-@get_resource_context
-def overview_stats(request, translation_project, dir_path, filename=None):
-    resource_obj = request.ctx_obj
-    stats = resource_obj.get_stats()
-
-    return HttpResponse(jsonify(stats), mimetype="application/json")
-
-
-
 @require_POST
 @ajax_required
 @get_path_obj
@@ -682,9 +654,6 @@ def translate(request, translation_project, dir_path, filename):
                                                 request.store.is_terminology)
     context = get_translation_context(request, is_terminology=is_terminology)
 
-    url_args = [language.code, project.code, resource_obj.path]
-    url_path_checks = reverse('pootle-tp-qualitychecks', args=url_args)
-
     context.update({
         'language': language,
         'project': project,
@@ -692,7 +661,6 @@ def translate(request, translation_project, dir_path, filename):
 
         'editor_extends': 'tp_base.html',
         'editor_body_id': 'tptranslate',
-        'url_path_checks': url_path_checks,
         'check_categories': get_qualitycheck_schema(),
     })
 

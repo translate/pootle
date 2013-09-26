@@ -45,6 +45,8 @@ from taggit.models import Tag
 
 from pootle.core.exceptions import Http400
 from pootle.core.url_helpers import split_pootle_path
+from pootle.core.decorators import (get_path_obj, get_resource_context,
+                                    permission_required)
 from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.models.permissions import (check_permission,
                                            check_profile_permission)
@@ -669,6 +671,27 @@ def timeline(request, unit):
     else:
         return render_to_response('unit/timeline.html', context,
                                   context_instance=RequestContext(request))
+
+
+@ajax_required
+@get_path_obj
+@permission_required('view')
+@get_resource_context
+def get_qualitycheck_stats(request, path_obj, **kwargs):
+    qc_stats = request.ctx_obj.get_checks()
+
+    return HttpResponse(jsonify(qc_stats), mimetype="application/json")
+
+
+@ajax_required
+@get_path_obj
+@permission_required('view')
+@get_resource_context
+def get_overview_stats(request, path_obj, **kwargs):
+    resource_obj = request.ctx_obj
+    stats = resource_obj.get_stats()
+
+    return HttpResponse(jsonify(stats), mimetype="application/json")
 
 
 @require_POST
