@@ -35,6 +35,9 @@ from pootle_project.models import Project
 from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
 
+from .exceptions import Http400
+from .url_helpers import split_pootle_path
+
 
 CLS2ATTR = {
     'TranslationProject': 'translation_project',
@@ -46,8 +49,18 @@ CLS2ATTR = {
 def get_path_obj(func):
     @wraps(func)
     def wrapped(request, *args, **kwargs):
-        language_code = kwargs.pop('language_code', None)
-        project_code = kwargs.pop('project_code', None)
+        if request.is_ajax():
+            pootle_path = request.GET.get('path', None)
+            if pootle_path is None:
+                raise Http400(_('Arguments missing.'))
+
+            language_code, project_code, dir_path, filename = \
+                split_pootle_path(pootle_path)
+            kwargs['dir_path'] = dir_path
+            kwargs['filename'] = filename
+        else:
+            language_code = kwargs.pop('language_code', None)
+            project_code = kwargs.pop('project_code', None)
 
         if language_code and project_code:
             try:
@@ -58,7 +71,7 @@ def get_path_obj(func):
             except TranslationProject.DoesNotExist:
                 path_obj = None
 
-            if path_obj is None:
+            if path_obj is None and not request.is_ajax():
                 # Explicit selection via the UI: redirect either to
                 # ``/language_code/`` or ``/projects/project_code/``.
                 user_choice = request.COOKIES.get('user-choice', None)
