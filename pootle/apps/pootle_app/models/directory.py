@@ -115,6 +115,10 @@ class Directory(models.Model, TreeItem):
     def __unicode__(self):
         return self.pootle_path
 
+    @property
+    def code(self):
+        return self.name.replace('.', '-')
+
     def save(self, *args, **kwargs):
         if self.parent is not None:
             self.pootle_path = self.parent.pootle_path + self.name + '/'

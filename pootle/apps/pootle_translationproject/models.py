@@ -238,6 +238,10 @@ class TranslationProject(models.Model, TreeItem):
     ############################ Methods ######################################
 
     @cached_property
+    def code(self):
+        return self.project.code
+
+    @cached_property
     def name(self):
         return self.project.fullname
 

@@ -1149,6 +1149,10 @@ class Store(models.Model, base.TranslationStore, TreeItem):
                 logging.debug("failed to parse mtime: %s", e)
         return mtime
 
+    @property
+    def code(self):
+        return self.name.replace('.', '-')
+
     def __unicode__(self):
         return unicode(self.pootle_path)
 
