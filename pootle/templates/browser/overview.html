@@ -9,7 +9,9 @@
 
 {% block breadcrumbs %}
   {{ block.super }}
-  <li class="file-path"><a href="{% url 'pootle-tp-overview' language.code project.code '' %}">&lt; {% trans "root folder" %} &gt;</a> / {{ resource_obj|trail:"/" }}</li>
+  {% if resource_path %}
+    <li class="file-path"><a href="{% url 'pootle-tp-overview' language.code project.code '' %}">&lt; {% trans "root folder" %} &gt;</a> / {{ resource_obj|trail:"/" }}</li>
+  {% endif %}
 {% endblock %}
 
 {% block header_content %}
