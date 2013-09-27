@@ -238,7 +238,6 @@ def translate(request, translation_project, dir_path, filename):
 
         'editor_extends': 'translation_projects/base.html',
         'editor_body_id': 'tptranslate',
-        'check_categories': get_qualitycheck_schema(),
     })
 
     return render_to_response('editor/main.html', context,
