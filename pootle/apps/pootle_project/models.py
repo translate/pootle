@@ -32,6 +32,7 @@ from translate.lang.data import langcode_re
 
 from pootle.core.managers import RelatedManager
 from pootle.core.markup import get_markup_filter_name, MarkupField
+from pootle.core.url_helpers import get_editor_filter
 from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 from pootle_misc.util import getfromcache, cached_property
@@ -209,7 +210,10 @@ class Project(models.Model):
         return l(self.pootle_path)
 
     def get_translate_url(self, **kwargs):
-        return reverse('pootle-project-translate', args=[self.code])
+        return u''.join([
+            reverse('pootle-project-translate', args=[self.code]),
+            get_editor_filter(**kwargs),
+        ])
 
     def clean(self):
         if self.code in RESERVED_PROJECT_CODES:

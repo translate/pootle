@@ -26,6 +26,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.managers import RelatedManager
 from pootle.core.markup import get_markup_filter_name, MarkupField
+from pootle.core.url_helpers import get_editor_filter
 from pootle.i18n.gettext import tr_lang, language_dir
 from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
@@ -149,7 +150,10 @@ class Language(models.Model):
         return l(self.pootle_path)
 
     def get_translate_url(self, **kwargs):
-        return reverse('pootle-language-translate', args=[self.code])
+        return u''.join([
+            reverse('pootle-language-translate', args=[self.code]),
+            get_editor_filter(**kwargs),
+        ])
 
     @getfromcache
     def get_mtime(self):
