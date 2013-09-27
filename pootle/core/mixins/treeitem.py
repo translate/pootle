@@ -138,7 +138,7 @@ class TreeItem(object):
         return max(
             [self._get_last_action()] +
             [item.get_last_action() for item in self.children],
-            key=lambda x: x.mtime if hasattr(x, 'mtime') else 0
+            key=lambda x: x['mtime'] if 'mtime' in x else 0
         )
 
     @getfromcache
