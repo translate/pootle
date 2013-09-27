@@ -33,14 +33,13 @@ from django.utils.translation import ugettext as _
 
 from pootle.core.decorators import (get_path_obj, get_resource_context,
                                     permission_required)
-from pootle.core.helpers import get_filter_name, get_translation_context
+from pootle.core.helpers import (get_filter_name, get_overview_context,
+                                 get_translation_context)
 from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models.permissions import check_permission
 from pootle_app.models import Directory
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
 from pootle_misc.browser import get_children, get_table_headings, get_parent
-from pootle_misc.checks import get_qualitycheck_schema
-from pootle_misc.stats import get_translation_states
 from pootle_misc.util import jsonify, ajax_required
 from pootle_store.models import Store
 from pootle_store.views import get_step_query
@@ -178,30 +177,17 @@ def overview(request, translation_project, dir_path, filename=None):
 
     directory = request.directory
     store = request.store
-    resource_obj = request.ctx_obj
 
-    url_action_continue = resource_obj.get_translate_url(state='incomplete')
-    url_action_fixcritical = resource_obj.get_critical_url()
-    url_action_review = resource_obj.get_translate_url(state='suggestions')
-    url_action_view_all = resource_obj.get_translate_url(state='all')
-
-    ctx = {
+    ctx = get_overview_context(request)
+    ctx.update({
         'translation_project': translation_project,
         'project': project,
         'language': language,
-        'resource_obj': resource_obj,
-        'resource_path': request.resource_path,
         'can_edit': can_edit,
-        'translation_states': get_translation_states(resource_obj),
-        'check_categories': get_qualitycheck_schema(resource_obj),
-        'url_action_continue': url_action_continue,
-        'url_action_fixcritical': url_action_fixcritical,
-        'url_action_review': url_action_review,
-        'url_action_view_all': url_action_view_all,
 
         'browser_extends': 'translation_projects/base.html',
         'browser_body_id': 'tpoverview',
-    }
+    })
 
     if store is None:
         table_fields = ['name', 'progress', 'total', 'need-translation',

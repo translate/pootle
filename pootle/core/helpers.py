@@ -24,6 +24,7 @@ from django.utils.translation import ugettext as _
 from pootle_app.models.permissions import check_permission
 from pootle_misc.checks import check_names, get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
+from pootle_misc.stats import get_translation_states
 
 
 def get_filter_name(GET):
@@ -91,4 +92,30 @@ def get_translation_context(request, is_terminology=False):
         'MT_BACKENDS': settings.MT_BACKENDS,
         'LOOKUP_BACKENDS': settings.LOOKUP_BACKENDS,
         'AMAGAMA_URL': settings.AMAGAMA_URL,
+    }
+
+
+def get_overview_context(request):
+    """Returns a common context for overview browser pages.
+
+    :param request: a :cls:`django.http.HttpRequest` object.
+    """
+    resource_obj = request.ctx_obj
+
+    url_action_continue = resource_obj.get_translate_url(state='incomplete')
+    url_action_fixcritical = resource_obj.get_critical_url()
+    url_action_review = resource_obj.get_translate_url(state='suggestions')
+    url_action_view_all = resource_obj.get_translate_url(state='all')
+
+    return {
+        'resource_obj': resource_obj,
+        'resource_path': request.resource_path,
+
+        'translation_states': get_translation_states(resource_obj),
+        'check_categories': get_qualitycheck_schema(resource_obj),
+
+        'url_action_continue': url_action_continue,
+        'url_action_fixcritical': url_action_fixcritical,
+        'url_action_review': url_action_review,
+        'url_action_view_all': url_action_view_all,
     }
