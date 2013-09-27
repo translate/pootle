@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2011 Zuza Software Foundation
+# Copyright 2011, 2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -22,9 +22,11 @@ import tempfile
 
 from django.conf import settings
 
+
 def mkstemp(*args, **kwargs):
     """Wrap tempfile.mkstemp, setting the permissions of the created temporary
-    file as specified in settings (see bug 1983)."""
+    file as specified in settings (see bug 1983).
+    """
     fd, name = tempfile.mkstemp(*args, **kwargs)
     if hasattr(os, 'fchmod'):
         os.fchmod(fd, settings.EXPORTED_FILE_MODE)
@@ -32,9 +34,11 @@ def mkstemp(*args, **kwargs):
         os.chmod(name, settings.EXPORTED_FILE_MODE)
     return fd, name
 
+
 def mkdtemp(*args, **kwargs):
     """Wrap tempfile.mkdtemp, setting the permissions of the created temporary
-    file as specified in settings (see bug 1983)."""
+    file as specified in settings (see bug 1983).
+    """
     name = tempfile.mkdtemp(*args, **kwargs)
     os.chmod(name, settings.EXPORTED_DIRECTORY_MODE)
     return name

@@ -18,9 +18,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.utils.translation import ugettext_lazy as _
-
 from translate.filters.decorators import Category
+
+from django.utils.translation import ugettext_lazy as _
 
 
 category_names = {
@@ -30,6 +30,7 @@ category_names = {
     Category.EXTRACTION: _("Extraction"),
     Category.NO_CATEGORY: _("No category"),
 }
+
 
 check_names = {
     'accelerators': _(u"Accelerators"),
