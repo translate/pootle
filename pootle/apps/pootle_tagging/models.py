@@ -21,7 +21,9 @@ import re
 from itertools import chain
 
 from django.contrib.contenttypes.models import ContentType
+from django.core.cache import cache
 from django.db import models
+from django.utils.encoding import iri_to_uri
 from django.utils.translation import ugettext_lazy as _
 
 from taggit.models import TagBase, GenericTaggedItemBase
@@ -30,6 +32,8 @@ from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.url_helpers import split_pootle_path
 from pootle_misc.stats import add_percentages, get_processed_stats
 from pootle_store.util import statssum, suggestions_sum, OBSOLETE
+
+from .decorators import get_from_cache_for_path
 
 
 def slugify_tag_name(tag_name):
@@ -80,6 +84,10 @@ class Goal(TagBase):
         ordering = ["priority"]
 
     ############################ Properties ###################################
+
+    @property
+    def pootle_path(self):
+        return "/goals/" + self.slug + "/"
 
     @property
     def goal_name(self):
@@ -221,6 +229,66 @@ class Goal(TagBase):
     def slugify(self, tag, i=None):
         return slugify_tag_name(tag)
 
+    def delete_cache_for_path(self, translation_project, store):
+        """Delete this goal cache for a given path and upper directories.
+
+        The cache is deleted for the given path, for the directories between
+        the given path and the translation project, and for the translation
+        project itself.
+
+        If the goal is a 'project goal' then delete the cache for all the
+        translation projects in the same project for the specified translation
+        project.
+
+        :param translation_project: An instance of :class:`TranslationProject`.
+        :param store: An instance of :class:`Store`.
+        """
+        CACHED_FUNCTIONS = ["get_raw_stats_for_path"]
+
+        if self.project_goal:
+            # Putting the next imports at the top of the file causes circular
+            # import issues.
+            from pootle_store.models import Store
+            if translation_project.file_style == 'gnu':
+                from pootle_app.project_tree import (get_translated_name_gnu as
+                                                     get_translated_name)
+            else:
+                from pootle_app.project_tree import get_translated_name
+
+            # Delete the cached stats for all the translation projects in the
+            # same project.
+            tps = translation_project.project.translationproject_set.all()
+        else:
+            # Just delete the cached stats for the given translation project.
+            tps = [translation_project]
+
+        # For each TP get the pootle_path for all the directories in between
+        # the store and TP.
+        keys = []
+        for tp in tps:
+            if tp != translation_project:
+                store_path = get_translated_name(tp, store)[0]
+                try:
+                    tp_store = Store.objects.get(pootle_path=store_path)
+                except Store.DoesNotExist:
+                    # If there is no matching store in this TP then just jump
+                    # to the next TP.
+                    continue
+            else:
+                tp_store = store
+
+            # Note: Not including tp_store in path_objs since we still don't
+            # support including units in a goal.
+            path_objs = chain([tp], tp_store.parent.trail())
+
+            for path_obj in path_objs:
+                for function_name in CACHED_FUNCTIONS:
+                    keys.append(iri_to_uri(self.pootle_path + ":" +
+                                           path_obj.pootle_path + ":" +
+                                           function_name))
+        cache.delete_many(keys)
+
+    @get_from_cache_for_path
     def get_raw_stats_for_path(self, pootle_path):
         """Return a raw stats dictionary for this goal inside the given path.
 

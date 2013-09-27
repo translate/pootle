@@ -33,7 +33,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import FileSystemStorage
 from django.core.urlresolvers import reverse
 from django.db import models, DatabaseError, IntegrityError
-from django.db.models.signals import post_delete
+from django.db.models.signals import post_delete, post_save, pre_delete
 from django.db.transaction import commit_on_success
 from django.utils import timezone, tzinfo
 from django.utils.translation import ugettext_lazy as _
@@ -1813,3 +1813,19 @@ class Store(models.Model, base.TranslationStore):
             except PootleProfile.DoesNotExist:
                 pass
         return None
+
+
+################################ Signal handlers ##############################
+
+# NOTE: for some strange reason it was impossible to use m2m_changed signal.
+def flush_goal_stats_for_tp_cache(sender, instance, **kwargs):
+    """Flush goal stats for a TP if the goal is (un)applied to a store."""
+    # Make sure that the signal was sent when (un)applying a goal to a store.
+    if isinstance(instance.content_object, Store):
+        goal = instance.tag
+        store = instance.content_object
+        translation_project = instance.content_object.translation_project
+        goal.delete_cache_for_path(translation_project, store)
+
+post_save.connect(flush_goal_stats_for_tp_cache, sender=Store.goals.through)
+pre_delete.connect(flush_goal_stats_for_tp_cache, sender=Store.goals.through)
