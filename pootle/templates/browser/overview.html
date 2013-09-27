@@ -97,6 +97,8 @@ $(function () {
     $("body").spin(false);
   });
 
+  $("td.stats-name").filter(":not([dir])").bidi();
+
 {% if upload_form %}
   $("select#id_upload_to_dir").parent().hide();
   $("input#id_file").change(function() {
