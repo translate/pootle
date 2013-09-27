@@ -60,6 +60,10 @@ class Directory(models.Model, TreeItem):
 
     objects = DirectoryManager()
 
+    @property
+    def code(self):
+        return self.name.replace('.', '-')
+
     def save(self, *args, **kwargs):
         if self.parent is not None:
             self.pootle_path = self.parent.pootle_path + self.name + '/'

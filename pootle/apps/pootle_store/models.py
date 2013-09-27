@@ -1002,6 +1002,10 @@ class Store(models.Model, base.TranslationStore, TreeItem):
         return (self.pootle_path,)
     natural_key.dependencies = ['pootle_app.Directory']
 
+    @property
+    def code(self):
+        return self.name.replace('.', '-')
+
     def __unicode__(self):
         return unicode(self.pootle_path)
 

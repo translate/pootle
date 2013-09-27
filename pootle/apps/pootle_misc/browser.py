@@ -94,7 +94,7 @@ def make_generic_item(path_obj, action):
         'href_sugg': path_obj.get_translate_url(state='suggestions'),
         'href_critical': path_obj.get_critical_url(),
         'title': path_obj.name,
-        'code': path_obj.name.replace('.', '-')
+        'code': path_obj.code
     }
 
     return info

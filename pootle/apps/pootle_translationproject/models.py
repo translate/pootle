@@ -121,6 +121,10 @@ class TranslationProject(models.Model, TreeItem):
             'pootle_language.Language', 'pootle_project.Project']
 
     @cached_property
+    def code(self):
+        return self.project.code
+
+    @cached_property
     def name(self):
         return self.project.fullname
 
