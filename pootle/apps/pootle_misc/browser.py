@@ -117,6 +117,7 @@ def make_store_item(store):
     })
     return item
 
+
 def get_parent(directory):
     parent_dir = directory.parent
 
@@ -128,6 +129,15 @@ def get_parent(directory):
         }
     else:
         return None
+
+
+def make_translation_project_item(translation_project):
+    action = translation_project.get_absolute_url()
+    item = make_generic_item(translation_project, action)
+    item.update({
+        'icon': 'project',
+    })
+    return item
 
 
 def get_children(translation_project, directory):

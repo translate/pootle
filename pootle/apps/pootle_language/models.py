@@ -146,10 +146,10 @@ class Language(models.Model, TreeItem):
         return u"%s - %s" % (self.name, self.code)
 
     def get_children(self):
-        self.translationproject_set.iterator()
+        return self.translationproject_set.iterator()
 
     def get_name(self):
-        self.code
+        return self.code
 
     def get_absolute_url(self):
         return l(self.pootle_path)
