@@ -1,9 +1,9 @@
-{% extends "translation_projects/base.html" %}
+{% extends browser_extends %}
 {% load assets baseurl cache cleanhtml i18n locale search translation_project_tags common_tags profile_tags %}
 {% load url from future %}
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block body_id %}tpoverview{% endblock %}
+{% block body_id %}{{ browser_body_id }}{% endblock %}
 {% block body_class %}{{ block.super }} js-not-loaded{% endblock %}
 
 {% block breadcrumbs %}
@@ -16,7 +16,7 @@
 {% block header_content %}
   <a id="js-path-summary" data-target="js-path-summary-more" href="#">
     <i id="js-expand-icon" class="icon-expand-stats" title="{% trans "Expand details" %}"></i>
-    <div id="progressbar">{% include "core/progressbar.html" %}</div>
+    <div id="progressbar">{% include "browser/_progressbar.html" %}</div>
   </a>
 
   <div class="path-summary-more" id="js-path-summary-more" data-loaded="false" data-collapsed="true">

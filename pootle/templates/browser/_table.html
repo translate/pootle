@@ -48,7 +48,7 @@ cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
       <td class="stats-graph">
         <div id="translated-ratio-{{ item.code }}" class="sortkey"></div>
         <div id="progressbar-{{ item.code }}">
-          {% include "core/progressbar.html" %}
+          {% include "browser/_progressbar.html" %}
         </div>
       </td>
       {% endif %}

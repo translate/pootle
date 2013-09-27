@@ -197,7 +197,10 @@ def overview(request, translation_project, dir_path, filename=None):
         'url_action_continue': url_action_continue,
         'url_action_fixcritical': url_action_fixcritical,
         'url_action_review': url_action_review,
-        'url_action_view_all': url_action_view_all
+        'url_action_view_all': url_action_view_all,
+
+        'browser_extends': 'translation_projects/base.html',
+        'browser_body_id': 'tpoverview',
     }
 
     if store is None:
@@ -213,7 +216,7 @@ def overview(request, translation_project, dir_path, filename=None):
             }
         })
 
-    return render_to_response("translation_projects/overview.html", ctx,
+    return render_to_response("browser/overview.html", ctx,
                               context_instance=RequestContext(request))
 
 
