@@ -21,15 +21,16 @@
 
 import re
 
-from django.utils.translation import ugettext_lazy as _
-
 from translate.filters.decorators import Category, critical
 from translate.filters import checks
+
+from django.utils.translation import ugettext_lazy as _
 
 
 category_names = {
     Category.CRITICAL: _("Critical"),
 }
+
 
 check_names = {
     'accelerators': _(u"Accelerators"), # fixme duplicated

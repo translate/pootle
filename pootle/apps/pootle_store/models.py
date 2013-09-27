@@ -158,6 +158,8 @@ class Suggestion(models.Model, base.TranslationUnit):
                                   _set_translator_comment)
 
 
+################################ Signal handlers ##############################
+
 def delete_votes(sender, instance, **kwargs):
     # Since votes are linked by ContentType and not foreign keys, referential
     # integrity is not kept, and we have to ensure we remove any votes manually
