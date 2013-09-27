@@ -38,7 +38,7 @@ from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.lib.util import RelatedManager
 from pootle_app.models.directory import Directory
 from pootle_language.models import Language
-from pootle_misc.util import deletefromcache
+from pootle_misc.util import cached_property, deletefromcache
 from pootle_misc.checks import excluded_filters
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
@@ -119,6 +119,10 @@ class TranslationProject(models.Model, TreeItem):
         return (self.pootle_path,)
     natural_key.dependencies = ['pootle_app.Directory',
             'pootle_language.Language', 'pootle_project.Project']
+
+    @cached_property
+    def name(self):
+        return self.project.fullname
 
     def __unicode__(self):
         return self.pootle_path
