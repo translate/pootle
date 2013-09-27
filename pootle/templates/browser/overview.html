@@ -8,9 +8,11 @@
 
 {% block breadcrumbs %}
   {{ block.super }}
+  {% if resource_path %}
   {% cache settings.CACHE_TIMEOUT path_trail resource_obj.id %}
     <li class="file-path"><a href="{{ translation_project.pootle_path|l }}">&lt; {% trans "root folder" %} &gt;</a> / {{ resource_obj|trail:"/" }}</li>
   {% endcache %}
+  {% endif %}
 {% endblock %}
 
 {% block header_content %}
