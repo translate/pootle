@@ -105,7 +105,6 @@ def make_directory_item(directory):
     item = make_generic_item(directory)
     item.update({
         'icon': 'folder',
-        'isdir': True,
     })
     return item
 
@@ -114,7 +113,6 @@ def make_store_item(store):
     item = make_generic_item(store)
     item.update({
         'icon': 'file',
-        'isfile': True,
     })
     return item
 
