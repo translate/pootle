@@ -82,7 +82,8 @@ def get_translation_context(request, is_terminology=False):
 
         'pootle_path': request.pootle_path,
         'ctx_path': request.ctx_path,
-        'resource_path': request.resource_path,
+        'resource_path': (request.resource_path
+                          if hasattr(request, 'resource_path') else ''),
 
         'check_categories': get_qualitycheck_schema(),
 

@@ -173,7 +173,6 @@ def language_settings_edit(request, language):
 def translate(request, language):
     request.pootle_path = language.pootle_path
     request.ctx_path = language.pootle_path
-    request.resource_path = ''
 
     request.store = None
     request.directory = language.directory
