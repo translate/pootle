@@ -37,6 +37,7 @@ from translate.lang.data import langcode_re
 
 from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.mixins import TreeItem
+from pootle.core.url_helpers import get_editor_filter
 from pootle_app.lib.util import RelatedManager
 from pootle_app.models.permissions import PermissionSet
 from pootle_misc.aggregate import max_column
@@ -203,7 +204,10 @@ class Project(models.Model, TreeItem):
         cache.delete(CACHE_KEY)
 
     def get_translate_url(self, **kwargs):
-        return reverse('pootle-project-translate', args=[self.code])
+        return u''.join([
+            reverse('pootle-project-translate', args=[self.code]),
+            get_editor_filter(**kwargs),
+        ])
 
     def clean(self):
         if self.code in RESERVED_PROJECT_CODES:

@@ -27,6 +27,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.mixins import TreeItem
+from pootle.core.url_helpers import get_editor_filter
 from pootle.i18n.gettext import tr_lang, language_dir
 from pootle_app.lib.util import RelatedManager
 from pootle_misc.aggregate import max_column
@@ -154,7 +155,10 @@ class Language(models.Model, TreeItem):
         return l(self.pootle_path)
 
     def get_translate_url(self, **kwargs):
-        return reverse('pootle-language-translate', args=[self.code])
+        return u''.join([
+            reverse('pootle-language-translate', args=[self.code]),
+            get_editor_filter(**kwargs),
+        ])
 
     def localname(self):
         """localized fullname"""
