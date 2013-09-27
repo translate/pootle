@@ -312,7 +312,7 @@ def overview(request, translation_project, dir_path, filename=None,
         ctx = {
             'tp_tags': translation_project.tag_like_objects,
         }
-        template_name = "translation_projects/overview.html"
+        template_name = "browser/overview.html"
 
     if (check_permission('translate', request) or
         check_permission('suggest', request) or
@@ -444,6 +444,9 @@ def overview(request, translation_project, dir_path, filename=None,
         'url_path_summary_more': url_path_summary_more,
         'translation_states': get_translation_states(resource_obj),
         'check_categories': get_qualitycheck_schema(resource_obj),
+
+        'browser_extends': 'translation_projects/base.html',
+        'browser_body_id': 'tpoverview',
     })
 
     tp_pootle_path = translation_project.pootle_path
