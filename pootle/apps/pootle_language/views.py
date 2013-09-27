@@ -25,44 +25,14 @@ from django.template import loader, RequestContext
 from django.utils.translation import ugettext as _, ungettext
 
 from pootle.core.decorators import get_path_obj, permission_required
-from pootle.core.helpers import (get_export_view_context,
+from pootle.core.helpers import (get_export_view_context, get_overview_context,
                                  get_translation_context)
 from pootle.i18n.gettext import tr_lang
 from pootle_app.models.permissions import check_permission
 from pootle_app.views.admin.permissions import admin_permissions
-from pootle_misc.browser import get_table_headings
+from pootle_misc.browser import get_table_headings, make_project_item
 from pootle_misc.util import jsonify, ajax_required
 from pootle_statistics.models import Submission
-
-
-def get_last_action(translation_project):
-    try:
-        return Submission.objects.filter(
-            translation_project=translation_project).latest().as_html()
-    except Submission.DoesNotExist:
-        return ''
-
-
-def make_project_item(translation_project):
-    project = translation_project.project
-    href = translation_project.get_absolute_url()
-    href_all = translation_project.get_translate_url()
-    href_todo = translation_project.get_translate_url(state='incomplete')
-    href_sugg = translation_project.get_translate_url(state='suggestions')
-
-    info = {
-        'code': translation_project.code,
-        'href': href,
-        'href_all': href_all,
-        'href_todo': href_todo,
-        'href_sugg': href_sugg,
-        'icon': 'project',
-        'title': project.fullname,
-        'description': project.description,
-        'lastactivity': get_last_action(translation_project),
-    }
-
-    return info
 
 
 @get_path_obj
@@ -74,43 +44,41 @@ def overview(request, language):
                                    .order_by('project__fullname')
     user_tps = filter(lambda x: x.is_accessible_by(request.user),
                       translation_projects)
-    tp_count = len(user_tps)
     items = (make_project_item(tp) for tp in user_tps)
 
     table_fields = ['name', 'progress', 'total', 'need-translation',
-                    'suggestions', 'activity']
+                    'suggestions', 'critical', 'activity']
     table = {
         'id': 'language',
-        'proportional': False,
         'fields': table_fields,
         'headings': get_table_headings(table_fields),
         'items': items,
     }
 
-    templatevars = {
-        'resource_obj': request.resource_obj,
+    ctx = get_overview_context(request)
+    ctx.update({
         'language': {
           'code': language.code,
           'name': tr_lang(language.fullname),
           'description': language.description,
-          'summary': ungettext('%(projects)d project',
-                               '%(projects)d projects',
-                               tp_count, {"projects": tp_count}),
         },
         'feed_path': '%s/' % language.code,
         'can_edit': can_edit,
         'table': table,
-    }
+
+        'browser_extends': 'languages/base.html',
+        'browser_body_id': 'languageoverview',
+    })
 
     if can_edit:
         from pootle_language.forms import DescriptionForm
-        templatevars.update({
+        ctx.update({
             'form': DescriptionForm(instance=language),
             'form_action': reverse('pootle-language-admin-settings',
                                    args=[language.code]),
         })
 
-    return render_to_response("languages/overview.html", templatevars,
+    return render_to_response("browser/overview.html", ctx,
                               context_instance=RequestContext(request))
 
 
