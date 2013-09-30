@@ -96,6 +96,7 @@ def get_path_obj(func):
             path_obj = Directory.objects.root
 
         request.ctx_obj = path_obj
+        request.resource_obj = path_obj
 
         return func(request, path_obj, *args, **kwargs)
 
@@ -145,9 +146,11 @@ def get_resource_context(func):
         request.store = store
         request.directory = directory
         request.pootle_path = pootle_path
-        request.ctx_obj = store or directory
-        request.ctx_path = ctx_path
+
+        request.resource_obj = store or (directory if dir_path else path_obj)
         request.resource_path = resource_path
+        request.ctx_obj = path_obj or request.resource_obj
+        request.ctx_path = ctx_path
 
         return func(request, path_obj, dir_path=dir_path, filename=filename, *args, **kwargs)
 

@@ -688,8 +688,7 @@ def get_qualitycheck_stats(request, path_obj, **kwargs):
 @permission_required('view')
 @get_resource_context
 def get_overview_stats(request, path_obj, **kwargs):
-    resource_obj = request.ctx_obj
-    stats = resource_obj.get_stats()
+    stats = request.resource_obj.get_stats()
 
     return HttpResponse(jsonify(stats), mimetype="application/json")
 
