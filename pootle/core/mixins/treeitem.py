@@ -55,7 +55,7 @@ class TreeItem(object):
 
     def get_cachekey(self):
         """This method will be overridden in descendants"""
-        return ''
+        raise NotImplementedError('`get_cache_key()` not implemented')
 
     def _get_total_wordcount(self):
         """This method will be overridden in descendants"""
