@@ -146,7 +146,7 @@ class Language(models.Model, TreeItem):
         return u"%s - %s" % (self.name, self.code)
 
     def get_children(self):
-        return self.translationproject_set.iterator()
+        return self.translationproject_set.all()
 
     def get_name(self):
         return self.code
