@@ -193,9 +193,6 @@ class Language(models.Model, TreeItem):
     def get_children(self):
         return self.translationproject_set.all()
 
-    def get_name(self):
-        self.code
-
     def translated_percentage(self):
         total = max(self.get_total_wordcount(), 1)
         translated = self.get_translated_wordcount()

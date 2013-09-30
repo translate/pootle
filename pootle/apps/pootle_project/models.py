@@ -331,8 +331,6 @@ class Project(models.Model, TreeItem):
     def get_children(self):
         return self.translationproject_set.all()
 
-    def get_name(self):
-        self.code
 
     def translated_percentage(self):
         total = self.get_total_wordcount()
