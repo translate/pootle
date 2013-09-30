@@ -89,14 +89,9 @@ def get_table_headings(choices):
 
 
 def make_generic_item(path_obj):
-    """Template variables for each row in the table.
-
-    :func:`make_directory_item` and :func:`make_store_item` will add onto these
-    variables.
-    """
-    action = path_obj.pootle_path
+    """Template variables for each row in the table."""
     info = {
-        'href': action,
+        'href': path_obj.get_absolute_url(),
         'href_all': path_obj.get_translate_url(),
         'href_todo': path_obj.get_translate_url(state='incomplete'),
         'href_sugg': path_obj.get_translate_url(state='suggestions'),
