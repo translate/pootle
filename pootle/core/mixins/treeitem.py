@@ -45,10 +45,6 @@ class TreeItem(object):
     initialized = False
     _flagged_for_deletion = set()
 
-    def get_name(self):
-        """This method will be overridden in descendants"""
-        return ''
-
     def get_children(self):
         """This method will be overridden in descendants"""
         return []
@@ -171,7 +167,7 @@ class TreeItem(object):
         if include_children:
             result['children'] = {}
             for item in self.children:
-                result['children'][item.get_name()] = item.get_stats(False)
+                result['children'][item.code] = item.get_stats(False)
 
         return result
 

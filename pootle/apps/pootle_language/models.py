@@ -148,8 +148,6 @@ class Language(models.Model, TreeItem):
     def get_children(self):
         return self.translationproject_set.all()
 
-    def get_name(self):
-        return self.code
 
     def get_absolute_url(self):
         return l(self.pootle_path)

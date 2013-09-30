@@ -141,10 +141,6 @@ class Directory(models.Model, TreeItem):
     def get_absolute_url(self):
         return l(self.pootle_path)
 
-    def get_name(self):
-        # TODO: refactor self.get_name() vs self.name in favor of the latter
-        # globally (in TreeItem and its descendants)
-        return self.name
 
     def get_children(self):
         result = []

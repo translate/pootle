@@ -121,10 +121,6 @@ class TranslationProject(models.Model, TreeItem):
             'pootle_language.Language', 'pootle_project.Project']
 
     @cached_property
-    def code(self):
-        return self.project.code
-
-    @cached_property
     def name(self):
         return self.project.fullname
 
@@ -272,8 +268,9 @@ class TranslationProject(models.Model, TreeItem):
     def get_children(self):
         return self.directory.get_children()
 
-    def get_name(self):
-        return self.pootle_path
+    @cached_property
+    def code(self):
+        return u'-'.join([self.language.code, self.project.code])
 
     def get_parent(self):
         return self.directory.get_parent()
