@@ -343,6 +343,9 @@ class TranslationProject(models.Model, TreeItem):
     def code(self):
         return u'-'.join([self.language.code, self.project.code])
 
+    def get_cachekey(self):
+        return self.directory.pootle_path
+
     def get_parent(self):
         return self.directory.get_parent()
 

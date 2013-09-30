@@ -331,6 +331,8 @@ class Project(models.Model, TreeItem):
     def get_children(self):
         return self.translationproject_set.all()
 
+    def get_cachekey(self):
+        return self.directory.pootle_path
 
     def translated_percentage(self):
         total = self.get_total_wordcount()

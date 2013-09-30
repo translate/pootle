@@ -70,6 +70,8 @@ class LiveLanguageManager(models.Manager):
 
         return languages
 
+    def get_cachekey(self):
+        return self.directory.pootle_path
 
 class Language(models.Model, TreeItem):
 
