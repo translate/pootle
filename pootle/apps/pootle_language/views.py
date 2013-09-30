@@ -30,7 +30,7 @@ from pootle.core.helpers import get_overview_context, get_translation_context
 from pootle.i18n.gettext import tr_lang
 from pootle_app.models.permissions import check_permission
 from pootle_app.views.admin.permissions import admin_permissions
-from pootle_misc.browser import (make_translation_project_item,
+from pootle_misc.browser import (make_project_item,
                                  get_table_headings)
 from pootle_misc.stats import stats_descriptions
 from pootle_misc.util import nice_percentage, jsonify, ajax_required
@@ -43,7 +43,7 @@ def overview(request, language):
     can_edit = check_permission('administrate', request)
 
     projects = language.translationproject_set.order_by('project__fullname')
-    items = (make_translation_project_item(tp) for tp in projects.iterator())
+    items = (make_project_item(tp) for tp in projects.iterator())
 
     table_fields = ['name', 'progress', 'total', 'need-translation',
                     'suggestions', 'critical', 'activity']

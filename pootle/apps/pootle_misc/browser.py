@@ -131,7 +131,7 @@ def get_parent(directory):
         return None
 
 
-def make_translation_project_item(translation_project):
+def make_project_item(translation_project):
     action = translation_project.get_absolute_url()
     item = make_generic_item(translation_project, action)
     item.update({
