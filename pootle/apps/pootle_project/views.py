@@ -29,11 +29,11 @@ from django.views.decorators.http import require_POST
 from taggit.models import Tag
 
 from pootle.core.decorators import get_path_obj, permission_required
-from pootle.core.helpers import (get_export_view_context,
+from pootle.core.helpers import (get_export_view_context, get_overview_context,
                                  get_translation_context)
 from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models.permissions import check_permission
-from pootle_misc.browser import get_table_headings
+from pootle_misc.browser import get_table_headings, make_language_item
 from pootle_misc.util import ajax_required, jsonify
 from pootle_project.forms import (TranslationProjectFormSet,
                                   TranslationProjectTagForm, tp_form_factory)
@@ -41,14 +41,6 @@ from pootle_project.models import Project
 from pootle_statistics.models import Submission
 from pootle_tagging.models import Goal
 from pootle_translationproject.models import TranslationProject
-
-
-def get_last_action(translation_project):
-    try:
-        return Submission.objects.filter(
-            translation_project=translation_project).latest().as_html()
-    except Submission.DoesNotExist:
-        return ''
 
 
 @ajax_required
@@ -168,50 +160,22 @@ def ajax_add_tag_to_tp_in_project(request, project):
 def overview(request, project):
     """Page listing all languages added to project."""
     from locale import strcoll
-    from pootle.i18n.gettext import tr_lang
-
-    def _make_lang_item(tp):
-        href = tp.get_absolute_url()
-        href_all = tp.get_translate_url()
-        href_todo = tp.get_translate_url(state="incomplete")
-        href_sugg = tp.get_translate_url(state='suggestions')
-
-        info = {
-            'project': tp.project.code,
-            'code': tp.code,
-            'href': href,
-            'href_all': href_all,
-            'href_todo': href_todo,
-            'href_sugg': href_sugg,
-            'icon': 'language',
-            'title': tr_lang(tp.language.fullname),
-            'lastactivity': get_last_action(tp),
-            'tags': tp.tag_like_objects,
-            'pk': tp.pk,
-        }
-
-        return info
 
     translation_projects = project.translationproject_set.all()
 
-    items = [_make_lang_item(tp) for tp in translation_projects.iterator()]
+    items = [make_language_item(translation_project)
+             for translation_project in translation_projects.iterator()]
     items.sort(lambda x, y: strcoll(x['title'], y['title']))
 
-    langs = translation_projects.count()
+    table_fields = ['name', 'progress', 'total', 'need-translation',
+                    'suggestions', 'critical', 'activity']
 
-    summary = ungettext("%(langs)d language", "%(langs)d languages", langs,
-                        {"langs": langs})
-
-    table_fields = ["name", "progress", "total", "need-translation",
-                    "suggestions", "activity", "tags"]
-
-    ctx = {
-        'resource_obj': request.resource_obj,
+    ctx = get_overview_context(request)
+    ctx.update({
         'project': {
             'code': project.code,
             'name': project.fullname,
             'description': project.description,
-            'summary': summary,
         },
         'can_edit': check_permission("administrate", request),
         'table': {
@@ -221,7 +185,10 @@ def overview(request, project):
             'headings': get_table_headings(table_fields),
             'items': items,
         },
-    }
+
+        'browser_extends': 'projects/base.html',
+        'browser_body_id': 'projectoverview',
+    })
 
     if ctx['can_edit']:
         from pootle_project.forms import DescriptionForm
@@ -235,7 +202,7 @@ def overview(request, project):
             'add_tag_action_url': tag_action_url,
         })
 
-    return render(request, "projects/overview.html", ctx)
+    return render(request, 'browser/overview.html', ctx)
 
 
 @require_POST

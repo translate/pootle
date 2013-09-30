@@ -158,6 +158,10 @@ class Project(models.Model, TreeItem):
         return "/projects/" + self.code + "/"
 
     @property
+    def name(self):
+        return self.fullname
+
+    @property
     def is_terminology(self):
         """Returns ``True`` if this project is a terminology project."""
         return self.checkstyle == 'terminology'

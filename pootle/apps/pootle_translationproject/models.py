@@ -250,10 +250,6 @@ class TranslationProject(models.Model, TreeItem):
 
     ############################ Methods ######################################
 
-    @cached_property
-    def name(self):
-        return self.project.fullname
-
     def __unicode__(self):
         return self.pootle_path
 

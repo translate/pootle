@@ -131,9 +131,19 @@ def get_parent(directory):
 
 
 def make_project_item(translation_project):
-    item = make_generic_item(translation_project)
+    item = make_generic_item(translation_project.project)
     item.update({
         'icon': 'project',
+        'code': translation_project.code,
+    })
+    return item
+
+
+def make_language_item(translation_project):
+    item = make_generic_item(translation_project.language)
+    item.update({
+        'icon': 'language',
+        'code': translation_project.code,
     })
     return item
 
