@@ -29,7 +29,7 @@ from django.template import loader, RequestContext
 from django.utils.translation import ugettext as _, ungettext
 
 from pootle.core.decorators import get_path_obj, permission_required
-from pootle.core.helpers import get_translation_context
+from pootle.core.helpers import get_overview_context, get_translation_context
 from pootle.core.url_helpers import split_pootle_path
 from pootle.i18n.gettext import tr_lang
 from pootle_app.models.permissions import check_permission
@@ -38,53 +38,14 @@ from pootle_app.views.admin.permissions import admin_permissions
 from pootle_app.views.index.index import getprojects
 from pootle_language.models import Language
 from pootle_misc.baseurl import l
-from pootle_misc.browser import get_table_headings
+from pootle_misc.browser import (make_language_item,
+                                 get_table_headings)
 from pootle_misc.forms import LiberalModelChoiceField
 from pootle_misc.stats import stats_descriptions
 from pootle_misc.util import ajax_required, jsonify
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
 from pootle_translationproject.models import TranslationProject
-
-
-def get_last_action(translation_project):
-    try:
-        return Submission.objects.filter(
-            translation_project=translation_project).latest().as_html()
-    except Submission.DoesNotExist:
-        return ''
-
-
-def make_language_item(translation_project):
-    href = translation_project.get_absolute_url()
-    href_all = translation_project.get_translate_url()
-    href_todo = translation_project.get_translate_url(state='incomplete')
-    href_sugg = translation_project.get_translate_url(state='suggestions')
-
-    project_stats = get_raw_stats(translation_project, include_suggestions=True)
-
-    info = {
-        'code': translation_project.language.code,
-        'href': href,
-        'href_all': href_all,
-        'href_todo': href_todo,
-        'href_sugg': href_sugg,
-        'icon': 'language',
-        'title': tr_lang(translation_project.language.fullname),
-        'stats': project_stats,
-        'lastactivity': get_last_action(translation_project),
-        'tooltip': _('%(percentage)d%% complete',
-                     {'percentage': project_stats['translated']['percentage']}),
-    }
-
-    errors = project_stats.get('errors', 0)
-
-    if errors:
-        info['errortooltip'] = ungettext('Error reading %d file', 'Error reading %d files', errors, errors)
-
-    info.update(stats_descriptions(project_stats))
-
-    return info
 
 
 @get_path_obj
@@ -99,11 +60,8 @@ def overview(request, project):
              for translation_project in translation_projects.iterator()]
     items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
 
-    languagecount = len(translation_projects)
-    project_stats = get_raw_stats(project)
-    translated = project_stats['translated']['percentage']
-
-    table_fields = ['name', 'progress', 'total', 'need-translation', 'suggestions', 'activity']
+    table_fields = ['name', 'progress', 'total', 'need-translation',
+                    'suggestions', 'critical', 'activity']
     table = {
         'id': 'project',
         'proportional': False,
@@ -112,26 +70,25 @@ def overview(request, project):
         'items': items,
     }
 
-    templatevars = {
+    ctx = get_overview_context(request)
+    ctx.update({
         'project': {
           'code': project.code,
           'name': project.fullname,
           'description': project.description,
-          'summary': ungettext('%(languages)d language, %(translated)d%% translated',
-                               '%(languages)d languages, %(translated)d%% translated',
-                               languagecount, {"languages": languagecount,
-                                               "translated": translated}),
         },
-        'stats': project_stats,
         'can_edit': can_edit,
         'table': table,
-    }
+
+        'browser_extends': 'projects/base.html',
+        'browser_body_id': 'projectoverview',
+    })
 
     if can_edit:
         from pootle_project.forms import DescriptionForm
-        templatevars['form'] = DescriptionForm(instance=project)
+        ctx['form'] = DescriptionForm(instance=project)
 
-    return render_to_response('projects/overview.html', templatevars,
+    return render_to_response('browser/overview.html', ctx,
                               context_instance=RequestContext(request))
 
 

@@ -185,6 +185,10 @@ class Project(models.Model, TreeItem):
         return (self.code,)
     natural_key.dependencies = ['pootle_app.Directory']
 
+    @property
+    def name(self):
+        return self.fullname
+
     def __unicode__(self):
         return self.fullname
 

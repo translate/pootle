@@ -120,10 +120,6 @@ class TranslationProject(models.Model, TreeItem):
     natural_key.dependencies = ['pootle_app.Directory',
             'pootle_language.Language', 'pootle_project.Project']
 
-    @cached_property
-    def name(self):
-        return self.project.fullname
-
     def __unicode__(self):
         return self.pootle_path
 
