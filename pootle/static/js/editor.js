@@ -1663,7 +1663,7 @@
     }
 
     if (pStyle.length && pStyle != "standard") {
-        tmUrl += '&style=' + store.get('project_style');
+        tmUrl += '&style=' + pStyle;
     }
 
     // Always abort previous requests so we only get results for the
