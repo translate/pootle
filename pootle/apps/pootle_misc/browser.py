@@ -135,6 +135,7 @@ def make_project_item(translation_project):
     item.update({
         'icon': 'project',
         'code': translation_project.code,
+        'href': translation_project.get_absolute_url(),
     })
     return item
 
@@ -144,6 +145,7 @@ def make_language_item(translation_project):
     item.update({
         'icon': 'language',
         'code': translation_project.code,
+        'href': translation_project.get_absolute_url(),
     })
     return item
 
