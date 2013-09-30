@@ -101,7 +101,7 @@ def get_overview_context(request):
 
     :param request: a :cls:`django.http.HttpRequest` object.
     """
-    resource_obj = request.ctx_obj
+    resource_obj = request.resource_obj
 
     url_action_continue = resource_obj.get_translate_url(state='incomplete')
     url_action_fixcritical = resource_obj.get_critical_url()
