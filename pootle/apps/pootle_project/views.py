@@ -23,7 +23,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import loader, RequestContext
-from django.utils.translation import ugettext as _, ungettext
+from django.utils.translation import ugettext as _
 from django.views.decorators.http import require_POST
 
 from taggit.models import Tag
@@ -39,7 +39,6 @@ from pootle_misc.util import ajax_required, jsonify
 from pootle_project.forms import (TranslationProjectFormSet,
                                   TranslationProjectTagForm, tp_form_factory)
 from pootle_project.models import Project
-from pootle_statistics.models import Submission
 from pootle_tagging.models import Goal
 from pootle_translationproject.models import TranslationProject
 
