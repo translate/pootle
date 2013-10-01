@@ -67,7 +67,7 @@
 
     },
 
-    nice_percentage: function (part, total) {
+    nicePercentage: function (part, total) {
       var percentage = total ? part / total * 100 : 0;
       if (99 < percentage && percentage < 100) {
         return 99;
@@ -78,9 +78,9 @@
       return Math.round(percentage);
     },
 
-    update_progressbar: function ($td, item) {
-      var translated = PTL.stats.nice_percentage(item.translated, item.total),
-          fuzzy = PTL.stats.nice_percentage(item.fuzzy, item.total),
+    updateProgressbar: function ($td, item) {
+      var translated = PTL.stats.nicePercentage(item.translated, item.total),
+          fuzzy = PTL.stats.nicePercentage(item.fuzzy, item.total),
           untranslated = 100 - translated - fuzzy,
           $legend = $('<span>').html($td.find('script').text());
 
@@ -92,28 +92,28 @@
 
       $td.find('table').attr('title', $legend.html());
 
-      function set_td_width($td, w) {
+      function setTdWidth($td, w) {
         w === 0 ? $td.hide() : $td.css('width', w + '%').show();
       }
-      set_td_width($td.find('td.translated'), translated);
-      set_td_width($td.find('td.fuzzy'), fuzzy);
-      set_td_width($td.find('td.untranslated'), untranslated);
+      setTdWidth($td.find('td.translated'), translated);
+      setTdWidth($td.find('td.fuzzy'), fuzzy);
+      setTdWidth($td.find('td.untranslated'), untranslated);
     },
 
-    update_translation_stats: function ($tr, total, value) {
+    updateTranslationStats: function ($tr, total, value) {
       $tr.find('.stats-number a').html(value);
       $tr.find('.stats-percentage span').html(
-        PTL.stats.nice_percentage(value, total)
+        PTL.stats.nicePercentage(value, total)
       );
       $tr.find('.stats-percentage').show();
     },
 
-    update_action: function ($action, count) {
+    updateAction: function ($action, count) {
       $action.css('display', count > 0 ? 'inline-block' : 'none');
       $action.find('.counter').text(count);
     },
 
-    update_item_stats: function ($td, count) {
+    updateItemStats: function ($td, count) {
       if (count) {
         $td.removeClass('zero');
         $td.addClass('non-zero');
@@ -137,26 +137,26 @@
         async: true,
         success: function (data) {
           var $table = $('#content table.stats');
-          PTL.stats.update_progressbar($('#progressbar'), data);
+          PTL.stats.updateProgressbar($('#progressbar'), data);
 
           for (var name in data.children) {
             var item = data.children[name],
                 code = name.replace(/\./g, '-'),
                 $td = $table.find('#total-words-' + code);
 
-            PTL.stats.update_item_stats($td, item.total);
+            PTL.stats.updateItemStats($td, item.total);
 
             var ratio = item.total === 0 ? 1 : item.translated / item.total;
             $table.find('#translated-ratio-' + code).text(ratio);
 
             $td = $table.find('#need-translation-' + code);
-            PTL.stats.update_item_stats($td, item.total - item.translated);
+            PTL.stats.updateItemStats($td, item.total - item.translated);
 
             $td = $table.find('#suggestions-' + code);
-            PTL.stats.update_item_stats($td, item.suggestions);
+            PTL.stats.updateItemStats($td, item.suggestions);
 
             $td = $table.find('#progressbar-' + code);
-            PTL.stats.update_progressbar($td, item);
+            PTL.stats.updateProgressbar($td, item);
 
             if (item.lastaction) {
               $td = $table.find('#last-activity-' + code);
@@ -165,25 +165,25 @@
             }
 
             $td = $table.find('#critical-' + code);
-            PTL.stats.update_item_stats($td, item.critical);
+            PTL.stats.updateItemStats($td, item.critical);
           }
 
-          PTL.stats.update_action($('#action-view-all'), data.total);
-          PTL.stats.update_action($('#action-continue'),
+          PTL.stats.updateAction($('#action-view-all'), data.total);
+          PTL.stats.updateAction($('#action-continue'),
                                   data.total - data.translated);
-          PTL.stats.update_action($('#action-fix-critical'), data.critical);
-          PTL.stats.update_action($('#action-review'), data.suggestions);
+          PTL.stats.updateAction($('#action-fix-critical'), data.critical);
+          PTL.stats.updateAction($('#action-review'), data.suggestions);
 
           $('body').removeClass('js-not-loaded');
 
-          PTL.stats.update_translation_stats($('#stats-total'),
+          PTL.stats.updateTranslationStats($('#stats-total'),
                                              data.total, data.total);
-          PTL.stats.update_translation_stats($('#stats-translated'),
+          PTL.stats.updateTranslationStats($('#stats-translated'),
                                              data.total, data.translated);
-          PTL.stats.update_translation_stats($('#stats-fuzzy'),
+          PTL.stats.updateTranslationStats($('#stats-fuzzy'),
                                              data.total, data.fuzzy);
           var untranslated = data.total - data.translated - data.fuzzy;
-          PTL.stats.update_translation_stats($('#stats-untranslated'),
+          PTL.stats.updateTranslationStats($('#stats-untranslated'),
                                              data.total, untranslated);
 
           if (callback) {
