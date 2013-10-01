@@ -1587,7 +1587,8 @@ class Store(models.Model, base.TranslationStore, TreeItem):
         if self.file and hasattr(self.file.store, 'header'):
             return self.file.store.header()
 
-############################### Stats ############################
+    ### TreeItem
+
     def get_parent(self):
         return self.parent
 
@@ -1636,6 +1637,7 @@ class Store(models.Model, base.TranslationStore, TreeItem):
         return Suggestion.objects.filter(unit__store=self,
                                          unit__state__gt=OBSOLETE).count()
 
+    ### /TreeItem
 
 ################################ Translation #############################
 

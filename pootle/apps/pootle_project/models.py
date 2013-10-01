@@ -262,11 +262,15 @@ class Project(models.Model, TreeItem):
         # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
 
+    ### TreeItem
+
     def get_children(self):
         return self.translationproject_set.all()
 
     def get_cachekey(self):
         return self.directory.pootle_path
+
+    ### /TreeItem
 
     def translated_percentage(self):
         total = self.get_total_wordcount()

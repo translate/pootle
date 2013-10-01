@@ -141,6 +141,7 @@ class Directory(models.Model, TreeItem):
     def get_absolute_url(self):
         return l(self.pootle_path)
 
+    ### TreeItem
 
     def get_children(self):
         result = []
@@ -154,6 +155,8 @@ class Directory(models.Model, TreeItem):
 
     def get_cachekey(self):
         return self.pootle_path
+
+    ### /TreeItem
 
     def trail(self, only_dirs=True):
         """Returns a list of ancestor directories excluding

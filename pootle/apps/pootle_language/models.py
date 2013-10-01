@@ -145,12 +145,6 @@ class Language(models.Model, TreeItem):
     def __unicode__(self):
         return u"%s - %s" % (self.name, self.code)
 
-    def get_children(self):
-        return self.translationproject_set.all()
-
-    def get_cachekey(self):
-        return self.directory.pootle_path
-
     def get_absolute_url(self):
         return l(self.pootle_path)
 
@@ -159,6 +153,16 @@ class Language(models.Model, TreeItem):
             reverse('pootle-language-translate', args=[self.code]),
             get_editor_filter(**kwargs),
         ])
+
+    ### TreeItem
+
+    def get_children(self):
+        return self.translationproject_set.all()
+
+    def get_cachekey(self):
+        return self.directory.pootle_path
+
+    ### /TreeItem
 
     def localname(self):
         """localized fullname"""
