@@ -1588,9 +1588,6 @@ class Store(models.Model, base.TranslationStore, TreeItem):
             return self.file.store.header()
 
 ############################### Stats ############################
-    def get_name(self):
-        return self.name.replace('.', '-')
-
     def get_parent(self):
         return self.parent
 
