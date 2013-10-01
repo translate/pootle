@@ -31,19 +31,6 @@
       </td>
       {% endif %}
 
-      {% if 'language' in table.fields %}
-      <td class="language">
-        <a href="{% url 'pootle-language-overview' item.code %}"><i class="icon-{{ item.icon }}"></i> <span>{{ item.name }}</span></a>
-      </td>
-      {% endif %}
-
-      {% if 'project' in table.fields %}
-      <td class="project">
-        <a href="{% url 'pootle-project-overview' item.code %}"
-          title="{{ item.description }}"><i class="icon-{{ item.icon }}"></i> <span>{{ item.name }}</span></a>
-      </td>
-      {% endif %}
-
       {% if 'priority' in table.fields %}
       <td class="stats-number">
         <span class="zero muted">{{ item.priority }}</span>
