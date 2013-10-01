@@ -35,10 +35,10 @@ from pootle.i18n.gettext import tr_lang
 from pootle_app.models.permissions import check_permission
 from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions
-from pootle_app.views.index.index import getprojects
 from pootle_language.models import Language
 from pootle_misc.baseurl import l
 from pootle_misc.browser import (make_language_item,
+                                 make_project_list_item,
                                  get_table_headings)
 from pootle_misc.forms import LiberalModelChoiceField
 from pootle_misc.stats import stats_descriptions
@@ -245,19 +245,21 @@ def project_admin_permissions(request, project):
 @get_path_obj
 @permission_required('view')
 def projects_index(request, root):
-    """page listing all projects"""
-    table_fields = ['project', 'progress', 'activity']
+    """Page listing all projects"""
+    user_projects = Project.objects.accessible_by_user(request.user)
+    items = [make_project_list_item(project) for project in user_projects]
+
+    table_fields = ['name']
     table = {
         'id': 'projects',
-        'proportional': False,
         'fields': table_fields,
         'headings': get_table_headings(table_fields),
-        'items': getprojects(request),
+        'items': items,
     }
 
-    templatevars = {
+    ctx = {
         'table': table,
     }
 
-    return render_to_response('projects/list.html', templatevars,
+    return render_to_response('projects/list.html', ctx,
                               RequestContext(request))
