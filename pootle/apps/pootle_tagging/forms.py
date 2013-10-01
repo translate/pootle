@@ -26,12 +26,6 @@ from taggit.models import Tag
 
 
 class TagForm(forms.ModelForm):
-    slug = forms.SlugField(
-        label='',  # Blank label to don't see it.
-        widget=forms.HiddenInput(attrs={
-            'id': 'js-tag-form-slug',
-        }),
-    )
 
     class Meta:
         model = Tag
@@ -39,7 +33,14 @@ class TagForm(forms.ModelForm):
             'name': forms.TextInput(attrs={
                 'id': 'js-tag-form-name',
             }),
+            'slug': forms.HiddenInput(attrs={
+                'id': 'js-tag-form-slug',
+            }),
         }
+
+    def __init__(self, *args, **kwargs):
+        super(TagForm, self).__init__(*args, **kwargs)
+        self.fields['slug'].label = ''  # Blank label to don't see it.
 
     def clean_name(self):
         """Perform extra validations and normalizations on tag name.
