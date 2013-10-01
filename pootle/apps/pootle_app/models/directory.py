@@ -47,22 +47,61 @@ class DirectoryManager(models.Manager):
 
 class Directory(models.Model, TreeItem):
 
-    class Meta:
-        ordering = ['name']
-        app_label = "pootle_app"
-
-    is_dir = True
-
     name = models.CharField(max_length=255, null=False)
     parent = models.ForeignKey('Directory', related_name='child_dirs',
             null=True, db_index=True)
     pootle_path = models.CharField(max_length=255, null=False, db_index=True)
 
+    is_dir = True
+
     objects = DirectoryManager()
+
+    class Meta:
+        ordering = ['name']
+        app_label = "pootle_app"
 
     @property
     def code(self):
         return self.name.replace('.', '-')
+
+    @property
+    def stores(self):
+        """Queryset with all descending stores."""
+        from pootle_store.models import Store
+        return Store.objects.filter(pootle_path__startswith=self.pootle_path)
+
+    @property
+    def is_template_project(self):
+        return self.pootle_path.startswith('/templates/')
+
+    @cached_property
+    def translation_project(self):
+        """Returns the translation project belonging to this directory."""
+        if self.is_language() or self.is_project():
+            return None
+        else:
+            if self.is_translationproject():
+                return self.translationproject
+            else:
+                aux_dir = self
+                while (not aux_dir.is_translationproject() and
+                       aux_dir.parent is not None):
+                    aux_dir = aux_dir.parent
+
+                return aux_dir.translationproject
+
+    @cached_property
+    def path(self):
+        """Returns just the path part omitting language and project codes.
+
+        If the `pootle_path` of a :cls:`Directory` object `dir` is
+        `/af/project/dir1/dir2/file.po`, `dir.path` will return
+        `dir1/dir2/file.po`.
+        """
+        return u'/'.join(self.pootle_path.split(u'/')[3:])
+
+    def __unicode__(self):
+        return self.pootle_path
 
     def save(self, *args, **kwargs):
         if self.parent is not None:
@@ -71,6 +110,9 @@ class Directory(models.Model, TreeItem):
             self.pootle_path = '/'
 
         super(Directory, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return l(self.pootle_path)
 
     def get_translate_url(self, **kwargs):
         lang, proj, dir, fn = split_pootle_path(self.pootle_path)
@@ -93,6 +135,23 @@ class Directory(models.Model, TreeItem):
             get_editor_filter(**kwargs),
         ])
 
+    ### TreeItem
+
+    def get_children(self):
+        result = []
+        #FIXME: can we replace this with a quicker path query?
+        result.extend([item for item in self.child_stores.iterator()])
+        result.extend([item for item in self.child_dirs.iterator()])
+        return result
+
+    def get_parent(self):
+        return self.parent
+
+    def get_cachekey(self):
+        return self.pootle_path
+
+    ### /TreeItem
+
     def get_relative(self, path):
         """Given a path of the form a/b/c, where the path is relative
         to this directory, recurse the path and return the object
@@ -114,49 +173,10 @@ class Directory(models.Model, TreeItem):
         else:
             return self
 
-    def _get_stores(self):
-        """Queryset with all descending stores."""
-        from pootle_store.models import Store
-        return Store.objects.filter(pootle_path__startswith=self.pootle_path)
-    stores = property(_get_stores)
-
-    @cached_property
-    def path(self):
-        """Returns just the path part omitting language and project codes.
-
-        If the `pootle_path` of a :cls:`Directory` object `dir` is
-        `/af/project/dir1/dir2/file.po`, `dir.path` will return
-        `dir1/dir2/file.po`.
-        """
-        return u'/'.join(self.pootle_path.split(u'/')[3:])
-
     def get_or_make_subdir(self, child_name):
         child_dir, created = Directory.objects.get_or_create(name=child_name,
                                                              parent=self)
         return child_dir
-
-    def __unicode__(self):
-        return self.pootle_path
-
-    def get_absolute_url(self):
-        return l(self.pootle_path)
-
-    ### TreeItem
-
-    def get_children(self):
-        result = []
-        #FIXME: can we replace this with a quicker path query?
-        result.extend([item for item in self.child_stores.iterator()])
-        result.extend([item for item in self.child_dirs.iterator()])
-        return result
-
-    def get_parent(self):
-        return self.parent
-
-    def get_cachekey(self):
-        return self.pootle_path
-
-    ### /TreeItem
 
     def trail(self, only_dirs=True):
         """Returns a list of ancestor directories excluding
@@ -192,25 +212,6 @@ class Directory(models.Model, TreeItem):
         """does this directory point at a translation project"""
         return (self.pootle_path.count('/') == 3 and not
                 self.pootle_path.startswith('/projects/'))
-
-    is_template_project = property(lambda self: self.pootle_path
-                                                    .startswith('/templates/'))
-
-    @cached_property
-    def translation_project(self):
-        """Returns the translation project belonging to this directory."""
-        if self.is_language() or self.is_project():
-            return None
-        else:
-            if self.is_translationproject():
-                return self.translationproject
-            else:
-                aux_dir = self
-                while (not aux_dir.is_translationproject() and
-                       aux_dir.parent is not None):
-                    aux_dir = aux_dir.parent
-
-                return aux_dir.translationproject
 
     def get_real_path(self):
         """physical filesystem path for directory"""

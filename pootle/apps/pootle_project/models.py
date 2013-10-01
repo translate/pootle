@@ -125,12 +125,6 @@ class ProjectManager(RelatedManager):
 
 class Project(models.Model, TreeItem):
 
-    objects = ProjectManager()
-
-    class Meta:
-        ordering = ['code']
-        db_table = 'pootle_app_project'
-
     code_help_text = _('A short code for the project. This should only contain '
             'ASCII characters, numbers, and the underscore (_) character.')
     code = models.CharField(max_length=255, null=False, unique=True,
@@ -181,6 +175,12 @@ class Project(models.Model, TreeItem):
     screenshot_search_prefix = models.URLField(blank=True, null=True,
             verbose_name=_('Screenshot Search Prefix'))
 
+    objects = ProjectManager()
+
+    class Meta:
+        ordering = ['code']
+        db_table = 'pootle_app_project'
+
     def natural_key(self):
         return (self.code,)
     natural_key.dependencies = ['pootle_app.Directory']
@@ -188,6 +188,26 @@ class Project(models.Model, TreeItem):
     @property
     def name(self):
         return self.fullname
+
+    @property
+    def pootle_path(self):
+        return "/projects/" + self.code + "/"
+
+    @property
+    def is_terminology(self):
+        """Returns ``True`` if this project is a terminology project."""
+        return self.checkstyle == 'terminology'
+
+    @cached_property
+    def languages(self):
+        """Returns a list of active :cls:`~pootle_languages.models.Language`
+        objects for this :cls:`~pootle_project.models.Project`.
+        """
+        from pootle_language.models import Language
+        # FIXME: we should better have a way to automatically cache models with
+        # built-in invalidation -- did I hear django-cache-machine?
+        return Language.objects.filter(Q(translationproject__project=self),
+                                       ~Q(code='templates'))
 
     def __unicode__(self):
         return self.fullname
@@ -207,17 +227,14 @@ class Project(models.Model, TreeItem):
         # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
 
+    def get_absolute_url(self):
+        return l(self.pootle_path)
+
     def get_translate_url(self, **kwargs):
         return u''.join([
             reverse('pootle-project-translate', args=[self.code]),
             get_editor_filter(**kwargs),
         ])
-
-    def clean(self):
-        if self.code in RESERVED_PROJECT_CODES:
-            raise ValidationError(
-                _('"%s" cannot be used as a project code' % (self.code,))
-            )
 
     def delete(self, *args, **kwargs):
         directory = self.directory
@@ -262,6 +279,12 @@ class Project(models.Model, TreeItem):
         # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
 
+    def clean(self):
+        if self.code in RESERVED_PROJECT_CODES:
+            raise ValidationError(
+                _('"%s" cannot be used as a project code' % (self.code,))
+            )
+
     ### TreeItem
 
     def get_children(self):
@@ -278,26 +301,8 @@ class Project(models.Model, TreeItem):
         max_words = max(total, 1)
         return int(100.0 * translated / max_words)
 
-    def _get_pootle_path(self):
-        return "/projects/" + self.code + "/"
-    pootle_path = property(_get_pootle_path)
-
     def get_real_path(self):
         return absolute_real_path(self.code)
-
-    def get_absolute_url(self):
-        return l(self.pootle_path)
-
-    @cached_property
-    def languages(self):
-        """Returns a list of active :cls:`~pootle_languages.models.Language`
-        objects for this :cls:`~pootle_project.models.Project`.
-        """
-        from pootle_language.models import Language
-        # FIXME: we should better have a way to automatically cache models with
-        # built-in invalidation -- did I hear django-cache-machine?
-        return Language.objects.filter(Q(translationproject__project=self),
-                                       ~Q(code='templates'))
 
     def get_template_filetype(self):
         if self.localfiletype == 'po':
@@ -309,11 +314,6 @@ class Project(models.Model, TreeItem):
         """Returns the TranslationStore subclass required for parsing
         project files."""
         return factory_classes[self.localfiletype]
-
-    def _get_is_terminology(self):
-        """Returns ``True`` if this project is a terminology project."""
-        return self.checkstyle == 'terminology'
-    is_terminology = property(_get_is_terminology)
 
     def file_belongs_to_project(self, filename, match_templates=True):
         """Tests if ``filename`` matches project filetype (ie. extension).

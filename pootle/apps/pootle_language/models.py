@@ -74,13 +74,6 @@ class LiveLanguageManager(models.Manager):
 
 class Language(models.Model, TreeItem):
 
-    objects = LanguageManager()
-    live = LiveLanguageManager()
-
-    class Meta:
-        ordering = ['code']
-        db_table = 'pootle_app_language'
-
     code_help_text = _('ISO 639 language code for the language, possibly '
             'followed by an underscore (_) and an ISO 3166 country code. '
             '<a href="http://www.w3.org/International/articles/language-tags/">'
@@ -117,9 +110,27 @@ class Language(models.Model, TreeItem):
 
     pootle_path = property(lambda self: '/%s/' % self.code)
 
+    objects = LanguageManager()
+    live = LiveLanguageManager()
+
+    class Meta:
+        ordering = ['code']
+        db_table = 'pootle_app_language'
+
     def natural_key(self):
         return (self.code,)
     natural_key.dependencies = ['pootle_app.Directory']
+
+    @property
+    def name(self):
+        """localized fullname"""
+        return tr_lang(self.fullname)
+
+    def __unicode__(self):
+        return u"%s - %s" % (self.name, self.code)
+
+    def __repr__(self):
+        return u'<%s: %s>' % (self.__class__.__name__, self.fullname)
 
     def save(self, *args, **kwargs):
         # create corresponding directory object
@@ -139,12 +150,6 @@ class Language(models.Model, TreeItem):
         # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
 
-    def __repr__(self):
-        return u'<%s: %s>' % (self.__class__.__name__, self.fullname)
-
-    def __unicode__(self):
-        return u"%s - %s" % (self.name, self.code)
-
     def get_absolute_url(self):
         return l(self.pootle_path)
 
@@ -163,11 +168,6 @@ class Language(models.Model, TreeItem):
         return self.directory.pootle_path
 
     ### /TreeItem
-
-    def localname(self):
-        """localized fullname"""
-        return tr_lang(self.fullname)
-    name = property(localname)
 
     def get_direction(self):
         """returns language direction"""

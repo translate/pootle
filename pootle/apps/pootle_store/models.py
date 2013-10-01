@@ -286,13 +286,23 @@ class Unit(models.Model, base.TranslationUnit):
         return (self.unitid_hash, self.store.pootle_path)
     natural_key.dependencies = ['pootle_store.Store']
 
-    def __init__(self, *args, **kwargs):
-        super(Unit, self).__init__(*args, **kwargs)
-        self._rich_source = None
-        self._source_updated = False
-        self._rich_target = None
-        self._target_updated = False
-        self._encoding = 'UTF-8'
+    @property
+    def _source(self):
+        return self.source_f
+
+    @_source.setter
+    def _source(self, value):
+        self.source_f = value
+        self._source_updated = True
+
+    @property
+    def _target(self):
+        return self.target_f
+
+    @_target.setter
+    def _target(self, value):
+        self.target_f = value
+        self._target_updated = True
 
     def __unicode__(self):
         # FIXME: consider using unit id instead?
@@ -301,6 +311,14 @@ class Unit(models.Model, base.TranslationUnit):
     def __str__(self):
         unitclass = self.get_unit_class()
         return str(self.convert(unitclass))
+
+    def __init__(self, *args, **kwargs):
+        super(Unit, self).__init__(*args, **kwargs)
+        self._rich_source = None
+        self._source_updated = False
+        self._rich_target = None
+        self._target_updated = False
+        self._encoding = 'UTF-8'
 
     def delete(self, *args, **kwargs):
         action_log(user='system', action=UNIT_DELETED,
@@ -412,24 +430,6 @@ class Unit(models.Model, base.TranslationUnit):
 
     def get_mtime(self):
         return self.mtime
-
-    def _get_source(self):
-        return self.source_f
-
-    def _set_source(self, value):
-        self.source_f = value
-        self._source_updated = True
-
-    _source = property(_get_source, _set_source)
-
-    def _get_target(self):
-        return self.target_f
-
-    def _set_target(self, value):
-        self.target_f = value
-        self._target_updated = True
-
-    _target = property(_get_target, _set_target)
 
     def convert(self, unitclass):
         """Convert to a unit of type :param:`unitclass` retaining as much
@@ -1006,6 +1006,44 @@ class Store(models.Model, base.TranslationStore, TreeItem):
     def code(self):
         return self.name.replace('.', '-')
 
+    @property
+    def abs_real_path(self):
+        if self.file:
+            return self.file.path
+
+    @property
+    def real_path(self):
+        return self.file.name
+
+    @cached_property
+    def path(self):
+        """Returns just the path part omitting language and project codes.
+
+        If the `pootle_path` of a :cls:`Store` object `store` is
+        `/af/project/dir1/dir2/file.po`, `store.path` will return
+        `dir1/dir2/file.po`.
+        """
+        return u'/'.join(self.pootle_path.split(u'/')[3:])
+
+    @classmethod
+    def _get_mtime_from_header(cls, store):
+        mtime = None
+        from translate.storage import poheader
+        if isinstance(store, poheader.poheader):
+            try:
+                _mtime = store.parseheader().get('X-POOTLE-MTIME', None)
+                if _mtime:
+                    mtime = datetime.datetime.fromtimestamp(float(_mtime))
+                    if settings.USE_TZ:
+                        # Africa/Johanesburg - pre-2.1 default
+                        tz = tzinfo.FixedOffset(120)
+                        mtime = timezone.make_aware(mtime, tz)
+                    else:
+                        mtime -= datetime.timedelta(hours=2)
+            except Exception, e:
+                logging.debug("failed to parse mtime: %s", e)
+        return mtime
+
     def __unicode__(self):
         return unicode(self.pootle_path)
 
@@ -1033,16 +1071,6 @@ class Store(models.Model, base.TranslationStore, TreeItem):
         if self.state >= PARSED:
             self.update_cache()
 
-    def get_absolute_url(self):
-        return l(self.pootle_path)
-
-    def get_translate_url(self, **kwargs):
-        lang, proj, dir, fn = split_pootle_path(self.pootle_path)
-        return u''.join([
-            reverse('pootle-tp-translate', args=[lang, proj, dir, fn]),
-            get_editor_filter(**kwargs),
-        ])
-
     def delete(self, *args, **kwargs):
         store_log(user='system', action=STORE_DELETED,
             path=self.pootle_path,
@@ -1063,46 +1091,15 @@ class Store(models.Model, base.TranslationStore, TreeItem):
 
         super(Store, self).delete(*args, **kwargs)
 
+    def get_absolute_url(self):
+        return l(self.pootle_path)
 
-    @classmethod
-    def _get_mtime_from_header(cls, store):
-        mtime = None
-        from translate.storage import poheader
-        if isinstance(store, poheader.poheader):
-            try:
-                _mtime = store.parseheader().get('X-POOTLE-MTIME', None)
-                if _mtime:
-                    mtime = datetime.datetime.fromtimestamp(float(_mtime))
-                    if settings.USE_TZ:
-                        # Africa/Johanesburg - pre-2.1 default
-                        tz = tzinfo.FixedOffset(120)
-                        mtime = timezone.make_aware(mtime, tz)
-                    else:
-                        mtime -= datetime.timedelta(hours=2)
-            except Exception, e:
-                logging.debug("failed to parse mtime: %s", e)
-        return mtime
-
-    def _get_abs_real_path(self):
-        if self.file:
-            return self.file.path
-
-    abs_real_path = property(_get_abs_real_path)
-
-    def _get_real_path(self):
-        return self.file.name
-
-    real_path = property(_get_real_path)
-
-    @cached_property
-    def path(self):
-        """Returns just the path part omitting language and project codes.
-
-        If the `pootle_path` of a :cls:`Store` object `store` is
-        `/af/project/dir1/dir2/file.po`, `store.path` will return
-        `dir1/dir2/file.po`.
-        """
-        return u'/'.join(self.pootle_path.split(u'/')[3:])
+    def get_translate_url(self, **kwargs):
+        lang, proj, dir, fn = split_pootle_path(self.pootle_path)
+        return u''.join([
+            reverse('pootle-tp-translate', args=[lang, proj, dir, fn]),
+            get_editor_filter(**kwargs),
+        ])
 
     def require_units(self):
         """Make sure file is parsed and units are created."""

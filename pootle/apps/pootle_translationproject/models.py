@@ -94,14 +94,6 @@ class TranslationProjectManager(RelatedManager):
 
 
 class TranslationProject(models.Model, TreeItem):
-    _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE,
-            settings.PARSE_POOL_CULL_FREQUENCY)
-
-    objects = TranslationProjectManager()
-
-    class Meta:
-        unique_together = ('language', 'project')
-        db_table = 'pootle_app_translationproject'
 
     description_help_text = _('A description of this translation project. '
             'This is useful to give more information or instructions. '
@@ -115,10 +107,79 @@ class TranslationProject(models.Model, TreeItem):
     pootle_path = models.CharField(max_length=255, null=False, unique=True,
             db_index=True, editable=False)
 
+    _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE,
+            settings.PARSE_POOL_CULL_FREQUENCY)
+
+    objects = TranslationProjectManager()
+
+    class Meta:
+        unique_together = ('language', 'project')
+        db_table = 'pootle_app_translationproject'
+
     def natural_key(self):
         return (self.pootle_path,)
     natural_key.dependencies = ['pootle_app.Directory',
             'pootle_language.Language', 'pootle_project.Project']
+
+    @cached_property
+    def code(self):
+        return u'-'.join([self.language.code, self.project.code])
+
+    @property
+    def fullname(self):
+        return "%s [%s]" % (self.project.fullname, self.language.name)
+
+    @property
+    def is_terminology_project(self):
+        return self.project.checkstyle == 'terminology'
+
+    @property
+    def is_template_project(self):
+        return self == self.project.get_template_translationproject()
+
+    @property
+    def abs_real_path(self):
+        return absolute_real_path(self.real_path)
+
+    @abs_real_path.setter
+    def abs_real_path(self, value):
+        self.real_path = relative_real_path(value)
+
+    @property
+    def file_style(self):
+        return self.project.get_treestyle()
+
+    @property
+    def checker(self):
+        from translate.filters import checks
+        checkerclasses = [checks.projectcheckers.get(self.project.checkstyle,
+                                                     checks.StandardChecker),
+                          checks.StandardUnitChecker]
+
+        return checks.TeeChecker(checkerclasses=checkerclasses,
+                                 excludefilters=excluded_filters,
+                                 errorhandler=self.filtererrorhandler,
+                                 languagecode=self.language.code)
+
+    @property
+    def non_db_state(self):
+        if not hasattr(self, "_non_db_state"):
+            try:
+                self._non_db_state = self._non_db_state_cache[self.id]
+            except KeyError:
+                self._non_db_state = TranslationProjectNonDBState(self)
+                self._non_db_state_cache[self.id] = \
+                        TranslationProjectNonDBState(self)
+
+        return self._non_db_state
+
+    @property
+    def units(self):
+        self.require_units()
+        # FIXME: we rely on implicit ordering defined in the model. We might
+        # want to consider pootle_path as well
+        return Unit.objects.filter(store__translation_project=self,
+                                   state__gt=OBSOLETE).select_related('store')
 
     def __unicode__(self):
         return self.pootle_path
@@ -159,52 +220,10 @@ class TranslationProject(models.Model, TreeItem):
             get_editor_filter(**kwargs),
         ])
 
-    fullname = property(lambda self: "%s [%s]" % (self.project.fullname,
-                                                  self.language.name))
-
-    def _get_abs_real_path(self):
-        return absolute_real_path(self.real_path)
-
-    def _set_abs_real_path(self, value):
-        self.real_path = relative_real_path(value)
-
-    abs_real_path = property(_get_abs_real_path, _set_abs_real_path)
-
-    def _get_treestyle(self):
-        return self.project.get_treestyle()
-
-    file_style = property(_get_treestyle)
-
-    def _get_checker(self):
-        from translate.filters import checks
-        checkerclasses = [checks.projectcheckers.get(self.project.checkstyle,
-                                                     checks.StandardChecker),
-                          checks.StandardUnitChecker]
-
-        return checks.TeeChecker(checkerclasses=checkerclasses,
-                                 excludefilters=excluded_filters,
-                                 errorhandler=self.filtererrorhandler,
-                                 languagecode=self.language.code)
-
-    checker = property(_get_checker)
-
     def filtererrorhandler(self, functionname, str1, str2, e):
         logging.error(u"Error in filter %s: %r, %r, %s", functionname, str1,
                       str2, e)
         return False
-
-    def _get_non_db_state(self):
-        if not hasattr(self, "_non_db_state"):
-            try:
-                self._non_db_state = self._non_db_state_cache[self.id]
-            except KeyError:
-                self._non_db_state = TranslationProjectNonDBState(self)
-                self._non_db_state_cache[self.id] = \
-                        TranslationProjectNonDBState(self)
-
-        return self._non_db_state
-
-    non_db_state = property(_get_non_db_state)
 
     def update(self):
         """Update all stores to reflect state on disk"""
@@ -252,20 +271,7 @@ class TranslationProject(models.Model, TreeItem):
 
         return errors
 
-    def _get_units(self):
-        self.require_units()
-        # FIXME: we rely on implicit ordering defined in the model. We might
-        # want to consider pootle_path as well
-        return Unit.objects.filter(store__translation_project=self,
-                                   state__gt=OBSOLETE).select_related('store')
-
-    units = property(_get_units)
-
     ### TreeItem
-
-    @cached_property
-    def code(self):
-        return u'-'.join([self.language.code, self.project.code])
 
     def get_children(self):
         return self.directory.get_children()
@@ -328,15 +334,6 @@ class TranslationProject(models.Model, TreeItem):
                     e)
 
     ###########################################################################
-
-    @property
-    def is_terminology_project(self):
-        return self.project.checkstyle == 'terminology'
-        # was: self.pootle_path.endswith('/terminology/')
-
-    @property
-    def is_template_project(self):
-        return self == self.project.get_template_translationproject()
 
     def gettermmatcher(self):
         """Returns the terminology matcher."""
