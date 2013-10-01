@@ -336,18 +336,22 @@ class TranslationProject(models.Model, TreeItem):
 
         return errors
 
-    def get_children(self):
-        return self.directory.get_children()
+    ### TreeItem
 
     @cached_property
     def code(self):
         return u'-'.join([self.language.code, self.project.code])
+
+    def get_children(self):
+        return self.directory.get_children()
 
     def get_cachekey(self):
         return self.directory.pootle_path
 
     def get_parent(self):
         return self.directory.get_parent()
+
+    ### /TreeItem
 
     def update_against_templates(self, pootle_path=None):
         """Update translation project from templates."""

@@ -70,9 +70,6 @@ class LiveLanguageManager(models.Manager):
 
         return languages
 
-    def get_cachekey(self):
-        return self.directory.pootle_path
-
 class Language(models.Model, TreeItem):
 
     code = models.CharField(
@@ -192,8 +189,15 @@ class Language(models.Model, TreeItem):
             get_editor_filter(**kwargs),
         ])
 
+    ### TreeItem
+
     def get_children(self):
         return self.translationproject_set.all()
+
+    def get_cachekey(self):
+        return self.directory.pootle_path
+
+    ### /TreeItem
 
     def translated_percentage(self):
         total = max(self.get_total_wordcount(), 1)

@@ -328,11 +328,15 @@ class Project(models.Model, TreeItem):
                 _('"%s" cannot be used as a project code' % (self.code,))
             )
 
+    ### TreeItem
+
     def get_children(self):
         return self.translationproject_set.all()
 
     def get_cachekey(self):
         return self.directory.pootle_path
+
+    ### /TreeItem
 
     def translated_percentage(self):
         total = self.get_total_wordcount()

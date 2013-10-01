@@ -177,6 +177,7 @@ class Directory(models.Model, TreeItem):
     def get_or_make_subdir(self, child_name):
         return Directory.objects.get_or_create(name=child_name, parent=self)[0]
 
+    ### TreeItem
 
     def get_children(self):
         result = []
@@ -190,6 +191,8 @@ class Directory(models.Model, TreeItem):
 
     def get_cachekey(self):
         return self.pootle_path
+
+    ### /TreeItem
 
     def trail(self, only_dirs=True):
         """Return a list of ancestor directories excluding
