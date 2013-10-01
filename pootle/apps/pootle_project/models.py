@@ -154,12 +154,12 @@ class Project(models.Model, TreeItem):
     ############################ Properties ###################################
 
     @property
-    def pootle_path(self):
-        return "/projects/" + self.code + "/"
-
-    @property
     def name(self):
         return self.fullname
+
+    @property
+    def pootle_path(self):
+        return "/projects/" + self.code + "/"
 
     @property
     def is_terminology(self):

@@ -248,6 +248,12 @@ class TranslationProject(models.Model, TreeItem):
                 (self.non_db_state._index_initialized or
                  self.indexer is not None))
 
+    ############################ Cached properties ############################
+
+    @cached_property
+    def code(self):
+        return u'-'.join([self.language.code, self.project.code])
+
     ############################ Methods ######################################
 
     def __unicode__(self):
@@ -343,10 +349,6 @@ class TranslationProject(models.Model, TreeItem):
         return errors
 
     ### TreeItem
-
-    @cached_property
-    def code(self):
-        return u'-'.join([self.language.code, self.project.code])
 
     def get_children(self):
         return self.directory.get_children()

@@ -1079,6 +1079,10 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     ############################ Properties ###################################
 
     @property
+    def code(self):
+        return self.name.replace('.', '-')
+
+    @property
     def tag_like_objects(self):
         """Return the tag like objects applied to this store.
 
@@ -1152,10 +1156,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             except Exception as e:
                 logging.debug("failed to parse mtime: %s", e)
         return mtime
-
-    @property
-    def code(self):
-        return self.name.replace('.', '-')
 
     def __init__(self, *args, **kwargs):
         super(Store, self).__init__(*args, **kwargs)
