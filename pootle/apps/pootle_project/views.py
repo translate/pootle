@@ -33,7 +33,8 @@ from pootle.core.helpers import (get_export_view_context, get_overview_context,
                                  get_translation_context)
 from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models.permissions import check_permission
-from pootle_misc.browser import get_table_headings, make_language_item
+from pootle_misc.browser import (get_table_headings, make_language_item,
+                                 make_project_list_item)
 from pootle_misc.util import ajax_required, jsonify
 from pootle_project.forms import (TranslationProjectFormSet,
                                   TranslationProjectTagForm, tp_form_factory)
@@ -336,18 +337,19 @@ def project_admin_permissions(request, project):
 @get_path_obj
 @permission_required('view')
 def projects_index(request, root):
-    """page listing all projects"""
-    from pootle_app.views.index.index import getprojects
+    """Page listing all projects."""
+    user_accessible_projects = Project.accessible_by_user(request.user)
+    user_projects = Project.objects.filter(code__in=user_accessible_projects)
+    items = [make_project_list_item(project) for project in user_projects]
 
-    fields = ['project', 'progress', 'activity']
+    table_fields = ['name']
 
     ctx = {
         'table': {
             'id': 'projects',
-            'proportional': False,
-            'fields': fields,
-            'headings': get_table_headings(fields),
-            'items': getprojects(request),
+            'fields': table_fields,
+            'headings': get_table_headings(table_fields),
+            'items': items,
         },
     }
 

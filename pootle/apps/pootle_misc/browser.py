@@ -150,6 +150,15 @@ def make_language_item(translation_project):
     return item
 
 
+def make_project_list_item(project):
+    item = make_generic_item(project)
+    item.update({
+        'icon': 'project',
+        'title': project.fullname,
+    })
+    return item
+
+
 def get_children(directory):
     """Return a list of children directories and stores for this ``directory``,
     and also the parent directory.
