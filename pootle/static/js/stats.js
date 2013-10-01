@@ -190,17 +190,6 @@
           }
         }
       });
-    },
-
-    load_checks: function (callback) {
-      $.ajax({
-        url: this.url,
-        dataType: 'json',
-        async: true,
-        success: function (data) {
-          var $table = $('#top-stats table.stats');
-        }
-      });
     }
   };
 
