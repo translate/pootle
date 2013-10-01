@@ -174,7 +174,7 @@ def get_step_query(request, units_queryset):
         username = request.GET.get('user', None)
 
         profile = request.profile
-        if username:
+        if username is not None:
             try:
                 user = User.objects.get(username=username)
                 profile = user.get_profile()

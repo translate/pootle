@@ -57,14 +57,14 @@ def split_pootle_path(pootle_path):
 
 
 def get_editor_filter(state=None, check=None, user=None):
-    """Returns a filter string to be appended to a translation URL."""
+    """Return a filter string to be appended to a translation URL."""
     filter_string = ''
 
-    if state:
+    if state is not None:
         filter_string = '#filter=%s' % state
-        if user:
+        if user is not None:
             filter_string += '&user=%s' % user
-    elif check:
+    elif check is not None:
         filter_string = '#filter=checks&checks=%s' % check
 
     return filter_string
