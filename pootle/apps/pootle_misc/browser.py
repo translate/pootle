@@ -181,6 +181,11 @@ def make_goal_item(goal, pootle_path):
     try:
         stats = goal.get_raw_stats_for_path(pootle_path)
         info = {
+            'href_all': goal.get_translate_url_for_path(pootle_path),
+            'href_todo': goal.get_translate_url_for_path(pootle_path,
+                                                         state='incomplete'),
+            'href_sugg': goal.get_translate_url_for_path(pootle_path,
+                                                         state='suggestions'),
             'stats': stats,
             'tooltip': _('%(percentage)d%% complete',
                          {'percentage': stats['translated']['percentage']}),

@@ -94,6 +94,7 @@
     <caption>{{ project.fullname }} / {{ language.name }}
       {% if filter_name %} / {{ filter_name }}{% endif %}
       {% if filter_extra %}<span>({{ filter_extra|join:', ' }})</span>{% endif %}
+      {% if goal %} / {% trans "Goal" %} <span>({{ goal }})</span>{% endif %}
     </caption>
     <thead>
       <tr lang="{{ LANGUAGE_CODE }}">

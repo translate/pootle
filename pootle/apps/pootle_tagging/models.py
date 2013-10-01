@@ -20,8 +20,11 @@
 import re
 from itertools import chain
 
+from translate.filters.decorators import Category
+
 from django.contrib.contenttypes.models import ContentType
 from django.core.cache import cache
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.encoding import iri_to_uri
 from django.utils.translation import ugettext_lazy as _
@@ -29,9 +32,11 @@ from django.utils.translation import ugettext_lazy as _
 from taggit.models import TagBase, GenericTaggedItemBase
 
 from pootle.core.markup import get_markup_filter_name, MarkupField
-from pootle.core.url_helpers import split_pootle_path
+from pootle.core.url_helpers import get_editor_filter, split_pootle_path
+from pootle_misc.checks import category_names, check_names
 from pootle_misc.stats import add_percentages, get_processed_stats
-from pootle_store.util import statssum, suggestions_sum, OBSOLETE
+from pootle_store.util import (OBSOLETE, completestatssum, statssum,
+                               suggestions_sum)
 
 from .decorators import get_from_cache_for_path
 
@@ -169,6 +174,17 @@ class Goal(TagBase):
         super(Goal, self).delete(*args, **kwargs)
         directory.delete()
 
+    def get_translate_url_for_path(self, pootle_path, **kwargs):
+        """Return this goal's translate URL for the given path.
+
+        :param pootle_path: A string with a valid pootle path.
+        """
+        lang, proj, dir_path, fn = split_pootle_path(pootle_path)
+        return u''.join([
+            reverse('pootle-tp-translate', args=[lang, proj, dir_path, fn]),
+            get_editor_filter(goal=self.slug, **kwargs),
+        ])
+
     def get_stores_for_path(self, pootle_path):
         """Return the stores for this goal in the given pootle path.
 
@@ -298,7 +314,7 @@ class Goal(TagBase):
 
         :param pootle_path: A string with a valid pootle path.
         """
-        # Retrieve the stores for this goal in the TP.
+        # Retrieve the stores for this goal in the path.
         tp_stores_for_this_goal = self.get_stores_for_path(pootle_path)
 
         # Get and sum the stats for the stores.
@@ -309,6 +325,49 @@ class Goal(TagBase):
         stats['suggestions'] = suggestions_sum(tp_stores_for_this_goal)
 
         return stats
+
+    def get_failing_checks_for_path(self, pootle_path):
+        """Return a failed quality checks list sorted by importance.
+
+        :param pootle_path: A string with a valid pootle path.
+        """
+        checks = []
+        path_stats = self.get_raw_stats_for_path(pootle_path)
+        goal_stores_for_path = self.get_stores_for_path(pootle_path)
+        property_stats = completestatssum(goal_stores_for_path)
+        total = path_stats['total']['units']
+
+        keys = property_stats.keys()
+        keys.sort(reverse=True)
+
+        for i, category in enumerate(keys):
+            checks.append({
+                'checks': []
+            })
+
+            if category != Category.NO_CATEGORY:
+                checks[i].update({
+                    'name': category,
+                    'display_name': unicode(category_names[category]),
+                })
+
+            cat_keys = property_stats[category].keys()
+            cat_keys.sort()
+
+            for checkname in cat_keys:
+                checkcount = property_stats[category][checkname]
+
+                if total and checkcount:
+                    check_display = unicode(check_names.get(checkname,
+                                                            checkname))
+                    check = {
+                        'name': checkname,
+                        'display_name': check_display,
+                        'count': checkcount,
+                    }
+                    checks[i]['checks'].append(check)
+
+        return checks
 
 
 class ItemWithGoal(GenericTaggedItemBase):

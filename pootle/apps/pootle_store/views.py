@@ -414,6 +414,17 @@ def get_step_query(request, units_queryset):
 
             units_queryset = match_queryset
 
+    if 'goal' in request.GET:
+        try:
+            goal = Goal.objects.get(slug=request.GET['goal'])
+        except Goal.DoesNotExist:
+            pass
+        else:
+            pootle_path = (request.GET.get('path', '') or
+                           request.path.replace("/export-view/", "/", 1))
+            goal_stores = goal.get_stores_for_path(pootle_path)
+            units_queryset = units_queryset.filter(store__in=goal_stores)
+
     if 'search' in request.GET and 'sfields' in request.GET:
         # use the search form for validation only
         search_form = make_search_form(request.GET)
@@ -789,8 +800,16 @@ def get_failing_checks(request, path_obj):
     :return: JSON string with a list of failing check categories which
              include the actual checks that are failing.
     """
-    stats = get_raw_stats(path_obj)
-    failures = get_quality_check_failures(path_obj, stats, include_url=False)
+    if 'goal' in request.GET and request.GET['goal']:
+        try:
+            goal = Goal.objects.get(slug=request.GET['goal'])
+        except Goal.DoesNotExist:
+            raise Http404
+        failures = goal.get_failing_checks_for_path(path_obj.pootle_path)
+    else:
+        stats = get_raw_stats(path_obj)
+        failures = get_quality_check_failures(path_obj, stats,
+                                              include_url=False)
 
     response = jsonify(failures)
 

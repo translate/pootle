@@ -637,6 +637,7 @@ def export_view(request, translation_project, dir_path, filename=None):
         'unit_groups': unit_groups,
         'filter_name': filter_name,
         'filter_extra': filter_extra,
+        'goal': request.GET.get('goal', ''),
     }
 
     return render_to_response('translation_project/export_view.html', ctx,
