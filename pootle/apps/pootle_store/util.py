@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2004-2012 Zuza Software Foundation
+# Copyright 2004-2013 Zuza Software Foundation
 #
 # This file is part of translate.
 #
@@ -39,6 +39,7 @@ FUZZY = 50
 #: Unit is fully translated
 TRANSLATED = 200
 
+
 # Map for retrieving natural names for unit states
 STATES_MAP = {
     OBSOLETE: _("Obsolete"),
@@ -46,6 +47,7 @@ STATES_MAP = {
     FUZZY: _("Needs work"),
     TRANSLATED: _("Translated"),
 }
+
 
 def add_trailing_slash(path):
     """If path does not end with /, add it and return."""
@@ -70,17 +72,20 @@ def absolute_real_path(p):
         return p
 
 
-empty_quickstats = {'fuzzy': 0,
-                    'fuzzysourcewords': 0,
-                    'review': 0,
-                    'total': 0,
-                    'totalsourcewords': 0,
-                    'translated': 0,
-                    'translatedsourcewords': 0,
-                    'translatedtargetwords': 0,
-                    'untranslated': 0,
-                    'untranslatedsourcewords': 0,
-                    'errors': 0}
+empty_quickstats = {
+    'fuzzy': 0,
+    'fuzzysourcewords': 0,
+    'review': 0,
+    'total': 0,
+    'totalsourcewords': 0,
+    'translated': 0,
+    'translatedsourcewords': 0,
+    'translatedtargetwords': 0,
+    'untranslated': 0,
+    'untranslatedsourcewords': 0,
+    'errors': 0,
+}
+
 
 def statssum(queryset, empty_stats=empty_quickstats):
     totals = empty_stats
@@ -91,8 +96,14 @@ def statssum(queryset, empty_stats=empty_quickstats):
             totals['errors'] += 1
     return totals
 
-empty_completestats = {0: {u'isfuzzy': 0,
-                           'errors': 0} }
+
+empty_completestats = {
+    0: {
+        u'isfuzzy': 0,
+        'errors': 0,
+    },
+}
+
 
 def completestatssum(queryset, empty_stats=empty_completestats):
     totals = copy.deepcopy(empty_stats)
@@ -108,14 +119,14 @@ def completestatssum(queryset, empty_stats=empty_completestats):
             totals[0]['errors'] += 1
     return totals
 
+
 def calculate_stats(units):
     """Calculate translation statistics for a given `units` queryset."""
-    total = sum_column(units,
-                       ['source_wordcount'], count=True)
+    total = sum_column(units, ['source_wordcount'], count=True)
     untranslated = sum_column(units.filter(state=UNTRANSLATED),
                               ['source_wordcount'], count=True)
-    fuzzy = sum_column(units.filter(state=FUZZY),
-                       ['source_wordcount'], count=True)
+    fuzzy = sum_column(units.filter(state=FUZZY), ['source_wordcount'],
+                       count=True)
     translated = sum_column(units.filter(state=TRANSLATED),
                             ['source_wordcount', 'target_wordcount'],
                             count=True)
