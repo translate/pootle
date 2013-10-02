@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -18,6 +19,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+import datetime
 import logging
 import sys
 from optparse import make_option
@@ -87,7 +89,8 @@ class PootleCommand(NoArgsCommand):
         debug_levels = {
             0: logging.ERROR,
             1: logging.WARNING,
-            2: logging.DEBUG
+            2: logging.INFO,
+            3: logging.DEBUG
         }
         debug_level = debug_levels.get(verbosity, logging.DEBUG)
         logging.getLogger().setLevel(debug_level)
@@ -99,6 +102,10 @@ class PootleCommand(NoArgsCommand):
         TranslationStoreFieldFile._store_cache.cullsize = 2
         TranslationProject._non_db_state_cache.maxsize = 2
         TranslationProject._non_db_state_cache.cullsize = 2
+
+        # info start
+        start = datetime.datetime.now()
+        logging.info('Start running of %s', self.name)
 
         directory = options.get('directory', '')
         if directory:
@@ -170,6 +177,10 @@ class PootleCommand(NoArgsCommand):
                     except Exception as e:
                         logging.error(u"Failed to run %s over %s:\n%s",
                                       self.name, lang, e)
+
+        # info finish
+        end = datetime.datetime.now()
+        logging.info('All done for %s in %s', self.name, end - start)
 
 
 class NoArgsCommandMixin(NoArgsCommand):
