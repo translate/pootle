@@ -212,9 +212,6 @@ def overview(request, translation_project, dir_path, filename=None):
 def translate(request, translation_project, dir_path, filename):
     language = translation_project.language
     project = translation_project.project
-    directory = request.directory
-    store = request.store
-    resource_obj = store or directory
 
     is_terminology = (project.is_terminology or request.store and
                                                 request.store.is_terminology)
