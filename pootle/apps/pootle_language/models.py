@@ -29,10 +29,6 @@ from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter
 from pootle.i18n.gettext import tr_lang, language_dir
-from pootle_misc.aggregate import max_column
-from pootle_misc.util import getfromcache
-from pootle_store.models import Unit, Suggestion
-from pootle_store.util import OBSOLETE
 
 
 # FIXME: Generate key dynamically

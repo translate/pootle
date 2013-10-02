@@ -40,12 +40,10 @@ from pootle.core.mixins import TreeItem, CachedMethods
 from pootle.core.url_helpers import get_editor_filter
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import PermissionSet
-from pootle_misc.aggregate import max_column
-from pootle_misc.util import getfromcache, cached_property
-from pootle_store.filetypes import (filetype_choices, factory_classes,
+from pootle_misc.util import cached_property
+from pootle_store.filetypes import (factory_classes, filetype_choices,
                                     is_monolingual)
-from pootle_store.models import Unit, Suggestion
-from pootle_store.util import absolute_real_path, OBSOLETE
+from pootle_store.util import absolute_real_path
 
 
 # FIXME: Generate key dynamically
