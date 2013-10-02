@@ -621,7 +621,7 @@ def get_edit_unit(request, unit):
 @permission_required('view')
 @get_resource_context
 def get_qualitycheck_stats(request, path_obj, **kwargs):
-    qc_stats = request.ctx_obj.get_checks()
+    qc_stats = request.resource_obj.get_checks()
 
     return HttpResponse(jsonify(qc_stats), mimetype="application/json")
 
