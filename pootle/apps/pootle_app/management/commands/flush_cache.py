@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
 # Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
@@ -24,6 +23,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from pootle_app.management.commands import PootleCommand
 
+
 class Command(PootleCommand):
     help = "Flush stats cache."
 
@@ -32,4 +32,3 @@ class Command(PootleCommand):
 
     def handle_store(self, store, **options):
         store.flush_cache()
-
