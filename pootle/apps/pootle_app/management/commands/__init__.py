@@ -84,7 +84,12 @@ class PootleCommand(NoArgsCommand):
     def handle_noargs(self, **options):
         # adjust debug level to the verbosity option
         verbosity = int(options.get('verbosity', 1))
-        debug_levels = {0: logging.ERROR, 1: logging.WARNING, 2: logging.INFO, 3: logging.DEBUG}
+        debug_levels = {
+            0: logging.ERROR,
+            1: logging.WARNING,
+            2: logging.INFO,
+            3: logging.DEBUG
+        }
         debug_level = debug_levels.get(verbosity, logging.DEBUG)
         logging.getLogger().setLevel(debug_level)
 
