@@ -51,8 +51,7 @@ from pootle_misc.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
 from pootle_misc.aggregate import group_by_count, max_column
 from pootle_misc.baseurl import l
 from pootle_misc.checks import check_names
-from pootle_misc.util import (cached_property, deletefromcache,
-                              datetime_min)
+from pootle_misc.util import cached_property, datetime_min
 from pootle_statistics.models import (SubmissionFields,
                                       SubmissionTypes, Submission)
 
