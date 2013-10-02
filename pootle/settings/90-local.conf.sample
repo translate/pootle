@@ -212,13 +212,6 @@ MT_BACKENDS = [
 #        ('GOOGLE_TRANSLATE', ''),
 ]
 
-# Set the backends you want to use to allow web-based lookup. To disable this
-# feature completely just comment all the lines to set an empty list [] to the
-# LOOKUP_BACKENDS setting.
-LOOKUP_BACKENDS = [
-        'wikipedia',
-]
-
 
 # Certain username and names should not be included in the contributors page
 CONTRIBUTORS_EXCLUDED_NAMES = (

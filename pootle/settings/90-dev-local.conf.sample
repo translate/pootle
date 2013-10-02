@@ -216,10 +216,5 @@ MT_BACKENDS = [
 #        ('GOOGLE_TRANSLATE', ''),
 ]
 
-# Web-based lookup
-LOOKUP_BACKENDS = [
-#        'wikipedia',
-]
-
 # URL for the amaGama TM server.
 AMAGAMA_URL = 'http://amagama.locamotion.org/tmserver/'

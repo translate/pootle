@@ -95,7 +95,6 @@ def get_translation_context(request, is_terminology=False):
                                         terminology=is_terminology),
 
         'MT_BACKENDS': settings.MT_BACKENDS,
-        'LOOKUP_BACKENDS': settings.LOOKUP_BACKENDS,
         'AMAGAMA_URL': settings.AMAGAMA_URL,
     }
 
