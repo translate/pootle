@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009, 2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -36,10 +37,11 @@ class Command(PootleCommand):
         translation_project.indexer
 
     def handle_all_stores(self, translation_project, **options):
+        translation_project.flush_cache()
         translation_project.get_stats()
         translation_project.get_checks()
 
-
     def handle_store(self, store, **options):
+        store.flush_cache()
         store.get_stats()
         store.get_checks()

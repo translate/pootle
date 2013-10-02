@@ -25,6 +25,7 @@ __all__ = ('TreeItem', 'CachedMethods',)
 from translate.filters.decorators import Category
 
 from django.core.cache import cache
+from django.utils.encoding import iri_to_uri
 
 from pootle_misc.util import getfromcache, getfromcachebyname, dictsum
 from pootle_misc.checks import get_qualitychecks_by_category, get_qualitychecks
@@ -222,7 +223,8 @@ class TreeItem(object):
         if parent:
             parent._delete_from_cache(keys)
         for key in keys:
-            cache.delete(self.get_cachekey() + ":" + key)
+            cachekey = iri_to_uri(self.get_cachekey() + ":" + key)
+            cache.delete(cachekey)
 
     def update_cache(self):
         self._delete_from_cache(self._flagged_for_deletion)
@@ -232,3 +234,12 @@ class TreeItem(object):
         for key in args:
             self._flagged_for_deletion.add(key)
 
+    def flush_cache(self):
+        for a in filter(lambda x: x[:2] != '__', dir(CachedMethods)):
+            cachekey = iri_to_uri(self.get_cachekey() + ":" +
+                                  getattr(CachedMethods, a))
+            cache.delete(cachekey)
+
+        self.initialize_children()
+        for item in self.children:
+            item.flush_cache()
