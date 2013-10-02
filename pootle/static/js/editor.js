@@ -381,7 +381,7 @@
         if (PTL.editor.filter == "checks") {
           // if the checks selector is empty (i.e. the 'change' event was not fired
           // because the selection did not change), force the update to populate the selector
-          if (!$("#filter-checks").length) {
+          if ($("#filter-checks").is(':hidden')) {
             PTL.editor.filterStatus();
           }
           $('#filter-checks select').select2('val', PTL.editor.checks[0]);
