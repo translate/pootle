@@ -440,7 +440,7 @@ def overview(request, translation_project, dir_path, filename=None):
                 'proportional': True,
                 'fields': table_fields,
                 'headings': get_table_headings(table_fields),
-                'items': get_children(translation_project, directory),
+                'items': get_children(directory),
             }
         })
 

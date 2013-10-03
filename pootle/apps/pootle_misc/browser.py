@@ -74,7 +74,7 @@ HEADING_CHOICES = [
 
 
 def get_table_headings(choices):
-    """Filters the list of available table headings to the given `choices`."""
+    """Filter the list of available table headings to the given `choices`."""
     return filter(lambda x: x['id'] in choices, HEADING_CHOICES)
 
 
@@ -136,18 +136,28 @@ def make_store_item(store):
     return item
 
 
-def get_children(translation_project, directory):
-    """Returns a list of children directories and stores for this
-    ``directory``, and also the parent directory.
+def get_parent_item_list(directory):
+    """Return a list with the parent directory item.
 
-    The elements of the list are dictionaries which keys are populated after
-    in the templates.
+    If the parent directory is the directory for a language or a project then
+    return an empty list.
     """
-    parent = []
     parent_dir = directory.parent
 
     if not (parent_dir.is_language() or parent_dir.is_project()):
-        parent = [{'title': u'..', 'href': parent_dir}]
+        return [{'title': u'..', 'href': parent_dir}]
+    else:
+        return []
+
+
+def get_children(directory):
+    """Return a list of children directories and stores for this ``directory``,
+    and also the parent directory.
+
+    The elements of the list are dictionaries which keys are populated after in
+    the templates.
+    """
+    parent = get_parent_item_list(directory)
 
     directories = [make_directory_item(child_dir)
                    for child_dir in directory.child_dirs.iterator()]
