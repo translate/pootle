@@ -65,7 +65,7 @@ from pootle_store.util import (absolute_real_path, relative_real_path,
 from pootle_store.filetypes import factory_classes
 from pootle_store.views import get_step_query
 from pootle_tagging.decorators import get_goal
-from pootle_tagging.forms import TagForm
+from pootle_tagging.forms import GoalForm, TagForm
 from pootle_tagging.models import Goal
 
 from .actions import action_groups
@@ -442,8 +442,14 @@ def overview(request, translation_project, dir_path, filename=None,
                                                args=rev_args)
                     return HttpResponseRedirect(overview_url)
 
+    if goal is None:
+        description = translation_project.description
+    else:
+        description = goal.description
+
     template_vars.update({
         'translation_project': translation_project,
+        'description': description,
         'project': project,
         'language': language,
         'path_obj': path_obj,
@@ -518,8 +524,18 @@ def overview(request, translation_project, dir_path, filename=None,
             add_tag_action_url = reverse('pootle-store-ajax-add-tag',
                                          args=[path_obj.pk])
 
+        if goal is None:
+            edit_form = DescriptionForm(instance=translation_project)
+            edit_form_action = reverse('pootle-tp-ajax-edit-settings',
+                                       args=[language.code, project.code])
+        else:
+            edit_form = GoalForm(instance=goal)
+            edit_form_action = reverse('pootle-tagging-ajax-edit-goal',
+                                       args=[goal.slug])
+
         template_vars.update({
-            'form': DescriptionForm(instance=translation_project),
+            'form': edit_form,
+            'form_action': edit_form_action,
             'add_tag_form': TagForm(),
             'add_tag_action_url': add_tag_action_url,
         })
@@ -714,7 +730,9 @@ def edit_settings(request, translation_project):
                                        _(u"No description yet."))
     context = {
         "form": form,
-        "form_action": translation_project.pootle_path + "edit_settings.html",
+        "form_action": reverse('pootle-tp-ajax-edit-settings',
+                               args=[translation_project.language.code,
+                                     translation_project.project.code]),
     }
     t = loader.get_template('admin/general_settings_form.html')
     c = RequestContext(request, context)

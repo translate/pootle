@@ -22,6 +22,7 @@ from functools import wraps
 
 from django.conf import settings
 from django.core.cache import cache
+from django.http import Http404
 from django.utils.encoding import iri_to_uri
 
 
@@ -43,6 +44,20 @@ def get_goal(func):
                 kwargs['goal'] = goal
 
         return func(request, *args, **kwargs)
+
+    return wrapper
+
+
+def require_goal(func):
+    @wraps(func)
+    def wrapper(request, *args, **kwargs):
+
+        goal = kwargs.pop('goal', '')
+
+        if goal:
+            return func(request, goal, *args, **kwargs)
+        else:
+            raise Http404
 
     return wrapper
 

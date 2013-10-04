@@ -112,8 +112,8 @@
 
     <div id="overview-description-tp"
       class="markup-body{% if can_edit %} js-ctx-meta-desc{% endif %}">
-    {% if translation_project.description %}
-      {{ translation_project.description }}
+    {% if description %}
+      {{ description }}
     {% else %}
       <p class="placeholder muted">{% trans "No description set." %}</p>
     {% endif %}
@@ -123,7 +123,7 @@
     </div>
   {% if can_edit %}
     <div class="settings-container js-edit-ctx-meta-desc" style="display:none;">
-      {% include "admin/general_settings_form.html" with form_action="edit_settings.html" %}
+      {% include "admin/general_settings_form.html" %}
     </div>
   {% endif %}
 
