@@ -185,6 +185,15 @@ class Goal(TagBase):
             get_editor_filter(goal=self.slug, **kwargs),
         ])
 
+    def get_drill_down_url_for_path(self, pootle_path):
+        """Return this goal's drill down URL for the given path.
+
+        :param pootle_path: A string with a valid pootle path.
+        """
+        lang, proj, dir_path, filename = split_pootle_path(pootle_path)
+        reverse_args = [lang, proj, self.slug, dir_path, filename]
+        return reverse('pootle-tp-goal-drill-down', args=reverse_args)
+
     def get_stores_for_path(self, pootle_path):
         """Return the stores for this goal in the given pootle path.
 
@@ -241,6 +250,50 @@ class Goal(TagBase):
 
         # Return the stores.
         return Store.objects.filter(**criteria)
+
+    def get_children_for_path(self, pootle_path):
+        """Return this goal stores and subdirectories in the given directory.
+
+        The subdirectories returned are the ones that have any store for this
+        goal just below them, or in any of its subdirectories.
+
+        If this is a project goal then are returned instead:
+
+        * The stores in the given directory that correspond to the goal stores
+          in the corresponding directory in the 'templates' TP,
+        * The subdirectories in the given directory that have stores that
+          correspond to goal stores in the 'templates' TP.
+
+        :param pootle_path: The pootle path for a :class:`Directory` instance.
+        :return: Tuple with a stores list and a directories queryset.
+        """
+        # Putting the next import at the top of the file causes circular import
+        # issues.
+        from pootle_app.models.directory import Directory
+
+        stores_in_dir = []
+        subdir_paths = set()
+
+        stores_for_path = self.get_stores_for_path(pootle_path)
+
+        # Put apart the stores that are just below the directory from those
+        # that are in subdirectories inside directory.
+        for store in stores_for_path:
+            trailing_path = store.pootle_path[len(pootle_path):]
+
+            if "/" in trailing_path:
+                # Store is in a subdirectory.
+                subdir_name = trailing_path.split("/")[0] + "/"
+                subdir_paths.add(pootle_path + subdir_name)
+            else:
+                # Store is in the directory.
+                stores_in_dir.append(store)
+
+        # Get the subdirectories that have stores for this goal.
+        subdirs_in_dir = Directory.objects.filter(pootle_path__in=subdir_paths)
+
+        # Return a tuple with stores and subdirectories in the given directory.
+        return (stores_in_dir, subdirs_in_dir)
 
     def slugify(self, tag, i=None):
         return slugify_tag_name(tag)

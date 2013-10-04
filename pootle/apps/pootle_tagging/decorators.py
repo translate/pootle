@@ -25,6 +25,28 @@ from django.core.cache import cache
 from django.utils.encoding import iri_to_uri
 
 
+def get_goal(func):
+    @wraps(func)
+    def wrapper(request, *args, **kwargs):
+        # Putting the next import at the top of the file causes circular import
+        # issues.
+        from .models import Goal
+
+        goal_slug = kwargs.pop('goal_slug', '')
+
+        if goal_slug:
+            try:
+                goal = Goal.objects.get(slug=goal_slug)
+            except Goal.DoesNotExist:
+                pass
+            else:
+                kwargs['goal'] = goal
+
+        return func(request, *args, **kwargs)
+
+    return wrapper
+
+
 def get_from_cache_for_path(func, timeout=settings.OBJECT_CACHE_TIMEOUT):
     @wraps(func)
     def wrapper(instance, pootle_path, *args, **kwargs):

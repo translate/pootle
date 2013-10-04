@@ -100,7 +100,7 @@ def get_resource_context(func):
         :param dir_path: Path relative to the root of `path_obj`.
         :param filename: Optional filename.
         """
-        filename = kwargs.get('filename', '')
+        filename = kwargs.pop('filename', '')
 
         ctx_path = path_obj.directory.pootle_path
         resource_path = dir_path
@@ -135,7 +135,7 @@ def get_resource_context(func):
         request.ctx_path = ctx_path
         request.resource_path = resource_path
 
-        return func(request, path_obj, dir_path, filename)
+        return func(request, path_obj, dir_path, filename, *args, **kwargs)
 
     return wrapped
 

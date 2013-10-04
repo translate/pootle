@@ -51,8 +51,8 @@ from pootle_app.project_tree import (ensure_target_dir_exists,
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
 from pootle_app.views.top_stats import gentopstats_translation_project
 from pootle_misc.baseurl import redirect
-from pootle_misc.browser import (get_children, get_table_headings,
-                                 make_goal_item)
+from pootle_misc.browser import (get_children, get_goal_children,
+                                 get_table_headings, make_goal_item)
 from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.stats import (get_raw_stats, get_translation_stats,
                                get_path_summary)
@@ -64,6 +64,7 @@ from pootle_store.util import (absolute_real_path, relative_real_path,
                                add_trailing_slash)
 from pootle_store.filetypes import factory_classes
 from pootle_store.views import get_step_query
+from pootle_tagging.decorators import get_goal
 from pootle_tagging.forms import TagForm
 from pootle_tagging.models import Goal
 
@@ -304,8 +305,9 @@ def goals_overview(*args, **kwargs):
 @get_path_obj
 @permission_required('view')
 @get_resource_context
+@get_goal
 def overview(request, translation_project, dir_path, filename=None,
-             in_goal_overview=False):
+             goal=None, in_goal_overview=False):
     current_path = translation_project.directory.pootle_path + dir_path
 
     if filename:
@@ -349,10 +351,18 @@ def overview(request, translation_project, dir_path, filename=None,
 
     path_stats = get_raw_stats(path_obj, include_suggestions=True)
     path_summary = get_path_summary(path_obj, path_stats, latest_action)
-    actions = action_groups(request, path_obj, path_stats=path_stats)
+
+    #TODO enable again some actions when drilling down a goal.
+    if goal is None:
+        actions = action_groups(request, path_obj, path_stats=path_stats)
+    else:
+        actions = []
+
     action_output = ''
     running = request.GET.get(EXTDIR, '')
-    if running:
+
+    #TODO enable the following again when drilling down a goal.
+    if running and goal is None:
         if store:
             act = StoreAction
         else:
@@ -464,6 +474,21 @@ def overview(request, translation_project, dir_path, filename=None,
                     'fields': table_fields,
                     'headings': get_table_headings(table_fields),
                     'items': items,
+                },
+                'path_obj_has_goals': True,
+            })
+        elif goal in path_obj_goals:
+            # Then show the drill down view for the specified goal.
+            table_fields = ['name', 'progress', 'total', 'need-translation',
+                            'suggestions']
+
+            template_vars.update({
+                'table': {
+                    'id': 'tp-goals',
+                    'proportional': True,
+                    'fields': table_fields,
+                    'headings': get_table_headings(table_fields),
+                    'items': get_goal_children(directory, goal),
                 },
                 'path_obj_has_goals': True,
             })

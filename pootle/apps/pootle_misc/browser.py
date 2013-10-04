@@ -17,6 +17,7 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
+from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _, ungettext
 
 from pootle_misc.stats import get_raw_stats, stats_descriptions
@@ -207,8 +208,108 @@ def make_goal_item(goal, pootle_path):
         }
 
     info.update({
+        'href': goal.get_drill_down_url_for_path(pootle_path),
         'isdir': True,
         'priority': goal.priority,
         'title': goal.goal_name,
     })
     return info
+
+
+def make_goal_dir_item(directory, goal):
+    """Template variables for each row in the table."""
+    try:
+        stats = goal.get_raw_stats_for_path(directory.pootle_path)
+        item = {
+            'href_all': goal.get_translate_url_for_path(directory.pootle_path),
+            'href_todo': goal.get_translate_url_for_path(directory.pootle_path,
+                                                         state='incomplete'),
+            'href_sugg': goal.get_translate_url_for_path(directory.pootle_path,
+                                                         state='suggestions'),
+            'stats': stats,
+            'tooltip': _('%(percentage)d%% complete',
+                         {'percentage': stats['translated']['percentage']}),
+        }
+
+        errors = stats.get('errors', 0)
+        if errors:
+            msg = ungettext('Error reading %d file', 'Error reading %d files',
+                            errors, errors)
+            item['errortooltip'] = msg
+
+        item.update(stats_descriptions(stats))
+    except IOError as e:
+        item = {
+            'errortooltip': e.strerror,
+            'data': {
+                'errors': 1,
+            },
+        }
+
+    item.update({
+        'href': goal.get_drill_down_url_for_path(directory.pootle_path),
+        'title': directory.name,
+        'icon': 'folder',
+        'isdir': True,
+    })
+    return item
+
+
+def make_goal_store_item(store, goal):
+    item = make_store_item(store)
+    item.update({
+        'href': goal.get_drill_down_url_for_path(store.pootle_path),
+        'href_all': goal.get_translate_url_for_path(store.pootle_path),
+        'href_todo': goal.get_translate_url_for_path(store.pootle_path,
+                                                     state='incomplete'),
+        'href_sugg': goal.get_translate_url_for_path(store.pootle_path,
+                                                     state='suggestions'),
+    })
+    return item
+
+
+def get_goal_parent_item_list(directory, goal):
+    """Return a list with the parent directory item in a drill down view.
+
+    If the parent directory is the directory for a language or a project then
+    return an item pointing at the goals tab.
+    """
+    if directory.parent.is_language() or directory.parent.is_project():
+        url_kwargs = {
+            'language_code': directory.translation_project.language.code,
+            'project_code': directory.translation_project.project.code,
+            'dir_path': directory.path,
+        }
+        return [{
+            'title': u'..',
+            'href': reverse('pootle-tp-goals', kwargs=url_kwargs),
+        }]
+    else:
+        parent_path = directory.parent.pootle_path
+        return [{
+            'title': u'..',
+            'href': goal.get_drill_down_url_for_path(parent_path),
+        }]
+
+
+def get_goal_children(directory, goal):
+    """Return a list of children directories and stores for this ``directory``
+    that in the provided stores,
+    and also the parent directory.
+
+    The elements of the list are dictionaries which keys are populated after
+    in the templates.
+    """
+    # Get the stores and subdirectories for this goal in the current directory.
+    dir_stores, dir_subdirs = goal.get_children_for_path(directory.pootle_path)
+
+    # Now get and return the items for those stores and subdirectories.
+    parent = get_goal_parent_item_list(directory, goal)
+
+    directories = [make_goal_dir_item(child_dir, goal)
+                   for child_dir in dir_subdirs]
+
+    stores = [make_goal_store_item(child_store, goal)
+              for child_store in dir_stores]
+
+    return parent + directories + stores
