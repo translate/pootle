@@ -80,6 +80,7 @@ def pootle_context(request):
             'POOTLE_VERSION': sver,
             'CACHE_TIMEOUT': settings.CACHE_MIDDLEWARE_SECONDS,
             'DEBUG': settings.DEBUG,
+            'AUTHENTICATION': settings.AUTHENTICATION,
         },
         'custom': settings.CUSTOM_TEMPLATE_CONTEXT,
     }
