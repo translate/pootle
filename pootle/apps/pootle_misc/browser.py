@@ -90,7 +90,7 @@ def get_table_headings(choices):
 
 def make_generic_item(path_obj):
     """Template variables for each row in the table."""
-    info = {
+    return {
         'href': path_obj.get_absolute_url(),
         'href_all': path_obj.get_translate_url(),
         'href_todo': path_obj.get_translate_url(state='incomplete'),
@@ -99,8 +99,6 @@ def make_generic_item(path_obj):
         'title': path_obj.name,
         'code': path_obj.code
     }
-
-    return info
 
 
 def make_directory_item(directory):
@@ -169,7 +167,7 @@ def get_children(directory):
 
 def make_goal_item(goal, pootle_path):
     """Create the item row for a goal."""
-    info = {
+    return {
         'href': goal.get_drill_down_url_for_path(pootle_path),
         'href_all': goal.get_translate_url_for_path(pootle_path),
         'href_todo': goal.get_translate_url_for_path(pootle_path,
@@ -182,12 +180,10 @@ def make_goal_item(goal, pootle_path):
         'code': goal.slug,
     }
 
-    return info
-
 
 def make_goal_dir_item(directory, goal):
     """Template variables for each row in the table."""
-    item = {
+    return {
         'href': goal.get_drill_down_url_for_path(directory.pootle_path),
         'href_all': goal.get_translate_url_for_path(directory.pootle_path),
         'href_todo': goal.get_translate_url_for_path(directory.pootle_path,
@@ -199,8 +195,6 @@ def make_goal_dir_item(directory, goal):
         'isdir': True,
         'code': goal.slug,
     }
-
-    return item
 
 
 def make_goal_store_item(store, goal):
