@@ -36,13 +36,13 @@ from translate.filters import checks
 from translate.lang.data import langcode_re
 
 from pootle.core.managers import RelatedManager
+from pootle.core.mixins import TreeItem
+from pootle.core.url_helpers import get_editor_filter
 from pootle_app.models.permissions import PermissionSet
-from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
-from pootle_misc.util import getfromcache, cached_property
+from pootle_misc.util import cached_property
 from pootle_store.filetypes import filetype_choices, factory_classes
-from pootle_store.models import Unit, Suggestion
-from pootle_store.util import absolute_real_path, statssum, OBSOLETE
+from pootle_store.util import absolute_real_path
 
 
 # FIXME: Generate key dynamically
@@ -65,13 +65,7 @@ class ProjectManager(RelatedManager):
         return projects
 
 
-class Project(models.Model):
-
-    objects = ProjectManager()
-
-    class Meta:
-        ordering = ['code']
-        db_table = 'pootle_app_project'
+class Project(models.Model, TreeItem):
 
     code_help_text = _('A short code for the project. This should only contain '
             'ASCII characters, numbers, and the underscore (_) character.')
@@ -112,6 +106,12 @@ class Project(models.Model):
 
     screenshot_search_prefix = models.URLField(blank=True, null=True,
             verbose_name=_('Screenshot Search Prefix'))
+
+    objects = ProjectManager()
+
+    class Meta:
+        ordering = ['code']
+        db_table = 'pootle_app_project'
 
     def natural_key(self):
         return (self.code,)
@@ -176,6 +176,30 @@ class Project(models.Model):
 
         return user_projects
 
+    @property
+    def name(self):
+        return self.fullname
+
+    @property
+    def pootle_path(self):
+        return "/projects/" + self.code + "/"
+
+    @property
+    def is_terminology(self):
+        """Returns ``True`` if this project is a terminology project."""
+        return self.checkstyle == 'terminology'
+
+    @cached_property
+    def languages(self):
+        """Returns a list of active :cls:`~pootle_languages.models.Language`
+        objects for this :cls:`~pootle_project.models.Project`.
+        """
+        from pootle_language.models import Language
+        # FIXME: we should better have a way to automatically cache models with
+        # built-in invalidation -- did I hear django-cache-machine?
+        return Language.objects.filter(Q(translationproject__project=self),
+                                       ~Q(code='templates'))
+
     def __unicode__(self):
         return self.fullname
 
@@ -194,14 +218,14 @@ class Project(models.Model):
         # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
 
-    def get_translate_url(self, **kwargs):
-        return reverse('pootle-project-translate', args=[self.code])
+    def get_absolute_url(self):
+        return l(self.pootle_path)
 
-    def clean(self):
-        if self.code in RESERVED_PROJECT_CODES:
-            raise ValidationError(
-                _('"%s" cannot be used as a project code' % (self.code,))
-            )
+    def get_translate_url(self, **kwargs):
+        return u''.join([
+            reverse('pootle-project-translate', args=[self.code]),
+            get_editor_filter(**kwargs),
+        ])
 
     def delete(self, *args, **kwargs):
         directory = self.directory
@@ -246,54 +270,30 @@ class Project(models.Model):
         # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
 
-    @getfromcache
-    def get_mtime(self):
-        project_units = Unit.objects.filter(
-                store__translation_project__project=self
-        )
-        return max_column(project_units, 'mtime', None)
+    def clean(self):
+        if self.code in RESERVED_PROJECT_CODES:
+            raise ValidationError(
+                _('"%s" cannot be used as a project code' % (self.code,))
+            )
 
-    @getfromcache
-    def getquickstats(self):
-        return statssum(self.translationproject_set.iterator())
+    ### TreeItem
 
-    @getfromcache
-    def get_suggestion_count(self):
-        """
-        Check if any unit in the stores for the translation project in this
-        project has suggestions.
-        """
-        criteria = {
-            'unit__store__translation_project__project': self,
-            'unit__state__gt': OBSOLETE,
-        }
-        return Suggestion.objects.filter(**criteria).count()
+    def get_children(self):
+        return self.translationproject_set.all()
+
+    def get_cachekey(self):
+        return self.directory.pootle_path
+
+    ### /TreeItem
 
     def translated_percentage(self):
-        qs = self.getquickstats()
-        max_words = max(qs['totalsourcewords'], 1)
-        return int(100.0 * qs['translatedsourcewords'] / max_words)
-
-    def _get_pootle_path(self):
-        return "/projects/" + self.code + "/"
-    pootle_path = property(_get_pootle_path)
+        total = self.get_total_wordcount()
+        translated = self.get_translated_wordcount()
+        max_words = max(total, 1)
+        return int(100.0 * translated / max_words)
 
     def get_real_path(self):
         return absolute_real_path(self.code)
-
-    def get_absolute_url(self):
-        return l(self.pootle_path)
-
-    @cached_property
-    def languages(self):
-        """Returns a list of active :cls:`~pootle_languages.models.Language`
-        objects for this :cls:`~pootle_project.models.Project`.
-        """
-        from pootle_language.models import Language
-        # FIXME: we should better have a way to automatically cache models with
-        # built-in invalidation -- did I hear django-cache-machine?
-        return Language.objects.filter(Q(translationproject__project=self),
-                                       ~Q(code='templates'))
 
     def is_accessible_by(self, user):
         """Returns `True` if the current project is accessible by
@@ -314,11 +314,6 @@ class Project(models.Model):
         """Returns the TranslationStore subclass required for parsing
         project files."""
         return factory_classes[self.localfiletype]
-
-    def _get_is_terminology(self):
-        """Returns ``True`` if this project is a terminology project."""
-        return self.checkstyle == 'terminology'
-    is_terminology = property(_get_is_terminology)
 
     def file_belongs_to_project(self, filename, match_templates=True):
         """Tests if ``filename`` matches project filetype (ie. extension).

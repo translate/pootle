@@ -26,12 +26,10 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.managers import RelatedManager
+from pootle.core.mixins import TreeItem
+from pootle.core.url_helpers import get_editor_filter
 from pootle.i18n.gettext import tr_lang, language_dir
-from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
-from pootle_misc.util import getfromcache
-from pootle_store.models import Unit, Suggestion
-from pootle_store.util import statssum, OBSOLETE
 
 
 # FIXME: Generate key dynamically
@@ -69,14 +67,7 @@ class LiveLanguageManager(models.Manager):
         return languages
 
 
-class Language(models.Model):
-
-    objects = LanguageManager()
-    live = LiveLanguageManager()
-
-    class Meta:
-        ordering = ['code']
-        db_table = 'pootle_app_language'
+class Language(models.Model, TreeItem):
 
     code_help_text = _('ISO 639 language code for the language, possibly '
             'followed by an underscore (_) and an ISO 3166 country code. '
@@ -109,9 +100,27 @@ class Language(models.Model):
 
     pootle_path = property(lambda self: '/%s/' % self.code)
 
+    objects = LanguageManager()
+    live = LiveLanguageManager()
+
+    class Meta:
+        ordering = ['code']
+        db_table = 'pootle_app_language'
+
     def natural_key(self):
         return (self.code,)
     natural_key.dependencies = ['pootle_app.Directory']
+
+    @property
+    def name(self):
+        """localized fullname"""
+        return tr_lang(self.fullname)
+
+    def __unicode__(self):
+        return u"%s - %s" % (self.name, self.code)
+
+    def __repr__(self):
+        return u'<%s: %s>' % (self.__class__.__name__, self.fullname)
 
     def save(self, *args, **kwargs):
         # create corresponding directory object
@@ -131,49 +140,30 @@ class Language(models.Model):
         # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
 
-    def __repr__(self):
-        return u'<%s: %s>' % (self.__class__.__name__, self.fullname)
-
-    def __unicode__(self):
-        return u"%s - %s" % (self.name, self.code)
-
-    @getfromcache
-    def get_mtime(self):
-        return max_column(Unit.objects.filter(
-            store__translation_project__language=self), 'mtime', None)
-
-    @getfromcache
-    def getquickstats(self):
-        return statssum(self.translationproject_set.iterator())
-
-    @getfromcache
-    def get_suggestion_count(self):
-        """
-        Check if any unit in the stores for the translation project in this
-        language has suggestions.
-        """
-        criteria = {
-            'unit__store__translation_project__language': self,
-            'unit__state__gt': OBSOLETE,
-        }
-        return Suggestion.objects.filter(**criteria).count()
-
     def get_absolute_url(self):
         return l(self.pootle_path)
 
     def get_translate_url(self, **kwargs):
-        return reverse('pootle-language-translate', args=[self.code])
+        return u''.join([
+            reverse('pootle-language-translate', args=[self.code]),
+            get_editor_filter(**kwargs),
+        ])
 
-    def localname(self):
-        """localized fullname"""
-        return tr_lang(self.fullname)
-    name = property(localname)
+    ### TreeItem
+
+    def get_children(self):
+        return self.translationproject_set.all()
+
+    def get_cachekey(self):
+        return self.directory.pootle_path
+
+    ### /TreeItem
 
     def get_direction(self):
         """returns language direction"""
         return language_dir(self.code)
 
     def translated_percentage(self):
-        qs = self.getquickstats()
-        word_count = max(qs['totalsourcewords'], 1)
-        return int(100.0 * qs['translatedsourcewords'] / word_count)
+        total = max(self.get_total_wordcount(), 1)
+        translated = self.get_translated_wordcount()
+        return int(100.0 * translated / total)

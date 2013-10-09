@@ -25,64 +25,22 @@ from django import forms
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.utils.translation import ugettext as _, ungettext
+from django.utils.translation import ugettext as _
 
 from pootle.core.decorators import get_path_obj, permission_required
 from pootle.core.helpers import (get_export_view_context,
+                                 get_overview_context,
                                  get_translation_context)
 from pootle.core.url_helpers import split_pootle_path
-from pootle.i18n.gettext import tr_lang
 from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions
-from pootle_app.views.index.index import getprojects
 from pootle_language.models import Language
-from pootle_misc.browser import get_table_headings
+from pootle_misc.browser import (make_language_item,
+                                 make_project_list_item,
+                                 get_table_headings)
 from pootle_misc.forms import LiberalModelChoiceField
-from pootle_misc.stats import get_raw_stats, stats_descriptions
 from pootle_project.models import Project
-from pootle_statistics.models import Submission
 from pootle_translationproject.models import TranslationProject
-
-
-def get_last_action(translation_project):
-    try:
-        return Submission.objects.filter(
-            translation_project=translation_project).latest().as_html()
-    except Submission.DoesNotExist:
-        return ''
-
-
-def make_language_item(translation_project):
-    href = translation_project.get_absolute_url()
-    href_all = translation_project.get_translate_url()
-    href_todo = translation_project.get_translate_url(state='incomplete')
-    href_sugg = translation_project.get_translate_url(state='suggestions')
-
-    project_stats = get_raw_stats(translation_project,
-                                  include_suggestions=True)
-
-    info = {
-        'code': translation_project.language.code,
-        'href': href,
-        'href_all': href_all,
-        'href_todo': href_todo,
-        'href_sugg': href_sugg,
-        'icon': 'language',
-        'title': tr_lang(translation_project.language.fullname),
-        'stats': project_stats,
-        'lastactivity': get_last_action(translation_project),
-        'tooltip': _('%(percentage)d%% complete',
-                     {'percentage': project_stats['translated']['percentage']}),
-    }
-
-    errors = project_stats.get('errors', 0)
-
-    if errors:
-        info['errortooltip'] = ungettext('Error reading %d file', 'Error reading %d files', errors, errors)
-
-    info.update(stats_descriptions(project_stats))
-
-    return info
 
 
 @get_path_obj
@@ -95,12 +53,8 @@ def overview(request, project):
              for translation_project in translation_projects.iterator()]
     items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
 
-    languagecount = len(translation_projects)
-    project_stats = get_raw_stats(project)
-    translated = project_stats['translated']['percentage']
-
     table_fields = ['name', 'progress', 'total', 'need-translation',
-                    'suggestions', 'activity']
+                    'suggestions', 'critical', 'activity']
     table = {
         'id': 'project',
         'proportional': False,
@@ -109,20 +63,19 @@ def overview(request, project):
         'items': items,
     }
 
-    templatevars = {
+    ctx = get_overview_context(request)
+    ctx.update({
         'project': {
           'code': project.code,
           'name': project.fullname,
-          'summary': ungettext('%(languages)d language, %(translated)d%% translated',
-                               '%(languages)d languages, %(translated)d%% translated',
-                               languagecount, {"languages": languagecount,
-                                               "translated": translated}),
         },
-        'stats': project_stats,
         'table': table,
-    }
 
-    return render_to_response('projects/overview.html', templatevars,
+        'browser_extends': 'projects/base.html',
+        'browser_body_id': 'projectoverview',
+    })
+
+    return render_to_response('browser/overview.html', ctx,
                               context_instance=RequestContext(request))
 
 
@@ -202,11 +155,6 @@ def project_admin(request, current_project):
 
 
     class TranslationProjectForm(forms.ModelForm):
-
-        if template_translation_project is not None:
-            update = forms.BooleanField(required=False,
-                                        label=_("Update against templates"))
-
         #FIXME: maybe we can detect if initialize is needed to avoid
         # displaying it when not relevant
         #initialize = forms.BooleanField(required=False, label=_("Initialize"))
@@ -232,10 +180,6 @@ def project_admin(request, current_project):
             if self.instance.pk is not None:
                 if self.cleaned_data.get('initialize', None):
                     self.instance.initialize()
-
-                if (self.cleaned_data.get('update', None) or
-                    not self.instance.stores.count()):
-                    self.instance.update_against_templates()
 
     queryset = TranslationProject.objects.filter(
             project=current_project).order_by('pootle_path')
@@ -274,19 +218,22 @@ def project_admin_permissions(request, project):
 @get_path_obj
 @permission_required('view')
 def projects_index(request, root):
-    """page listing all projects"""
-    table_fields = ['project', 'progress', 'activity']
+    """Page listing all projects"""
+    user_accessible_projects = Project.accessible_by_user(request.user)
+    user_projects = Project.objects.filter(code__in=user_accessible_projects)
+    items = [make_project_list_item(project) for project in user_projects]
+
+    table_fields = ['name']
     table = {
         'id': 'projects',
-        'proportional': False,
         'fields': table_fields,
         'headings': get_table_headings(table_fields),
-        'items': getprojects(request),
+        'items': items,
     }
 
-    templatevars = {
+    ctx = {
         'table': table,
     }
 
-    return render_to_response('projects/list.html', templatevars,
+    return render_to_response('projects/list.html', ctx,
                               RequestContext(request))

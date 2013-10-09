@@ -19,12 +19,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.utils.translation import ugettext_lazy as _, ungettext
-
-from pootle_statistics.models import Submission
+from django.utils.translation import ugettext_lazy as _
 
 from .baseurl import l
-from .stats import get_raw_stats, stats_descriptions
 
 HEADING_CHOICES = [
     {
@@ -50,25 +47,30 @@ HEADING_CHOICES = [
     },
     {
         'id': 'total',
-        'class': 'stats-number sorttable_numeric',
+        'class': 'stats-number sorttable_numeric when-loaded',
         # Translators: Heading representing the total number of words of a file
         # or directory
         'display_name': _("Total"),
     },
     {
         'id': 'need-translation',
-        'class': 'stats-number sorttable_numeric',
+        'class': 'stats-number sorttable_numeric when-loaded',
         'display_name': _("Need Translation"),
     },
     {
         'id': 'suggestions',
-        'class': 'stats-number sorttable_numeric',
+        'class': 'stats-number sorttable_numeric when-loaded',
         # Translators: The number of suggestions pending review
         'display_name': _("Suggestions"),
     },
     {
+        'id': 'critical',
+        'class': 'stats-number sorttable_numeric when-loaded',
+        'display_name': _("Critical"),
+    },
+    {
         'id': 'activity',
-        'class': 'stats',
+        'class': 'stats when-loaded',
         'display_name': _("Last Activity"),
     },
 ]
@@ -79,68 +81,75 @@ def get_table_headings(choices):
     return filter(lambda x: x['id'] in choices, HEADING_CHOICES)
 
 
-def make_generic_item(path_obj, action):
-    """Template variables for each row in the table.
-
-    :func:`make_directory_item` and :func:`make_store_item` will add onto these
-    variables.
-    """
-    try:
-        stats = get_raw_stats(path_obj, include_suggestions=True)
-        info = {
-            'href': action,
-            'href_all': path_obj.get_translate_url(),
-            'href_todo': path_obj.get_translate_url(state='incomplete'),
-            'href_sugg': path_obj.get_translate_url(state='suggestions'),
-            'stats': stats,
-            'tooltip': _('%(percentage)d%% complete',
-                         {'percentage': stats['translated']['percentage']}),
-            'title': path_obj.name,
-        }
-
-        errors = stats.get('errors', 0)
-        if errors:
-            info['errortooltip'] = ungettext('Error reading %d file',
-                                             'Error reading %d files',
-                                             errors, errors)
-
-        info.update(stats_descriptions(stats))
-    except IOError as e:
-        info = {
-            'href': action,
-            'title': path_obj.name,
-            'errortooltip': e.strerror,
-            'data': {'errors': 1},
-            }
+def make_generic_item(path_obj):
+    """Template variables for each row in the table."""
+    info = {
+        'href': path_obj.get_absolute_url(),
+        'href_all': path_obj.get_translate_url(),
+        'href_todo': path_obj.get_translate_url(state='incomplete'),
+        'href_sugg': path_obj.get_translate_url(state='suggestions'),
+        'href_critical': path_obj.get_critical_url(),
+        'title': path_obj.name,
+        'code': path_obj.code
+    }
 
     return info
 
 
-def get_last_action(resource_obj):
-    try:
-        return Submission.get_latest_for_dir(resource_obj)
-    except Submission.DoesNotExist:
-        return ''
-
-
 def make_directory_item(directory):
-    action = l(directory.pootle_path)
-    item = make_generic_item(directory, action)
+    item = make_generic_item(directory)
     item.update({
         'icon': 'folder',
-        'isdir': True,
-        'lastactivity': get_last_action(directory),
     })
     return item
 
 
 def make_store_item(store):
-    action = l(store.pootle_path)
-    item = make_generic_item(store, action)
+    item = make_generic_item(store)
     item.update({
         'icon': 'file',
-        'isfile': True,
-        'lastactivity': get_last_action(store),
+    })
+    return item
+
+
+def get_parent(directory):
+    parent_dir = directory.parent
+
+    if not (parent_dir.is_language() or parent_dir.is_project()):
+        return {
+            'icon': 'folder-parent',
+            'title': _("Back to parent folder"),
+            'href': l(parent_dir.pootle_path)
+        }
+    else:
+        return None
+
+
+def make_project_item(translation_project):
+    item = make_generic_item(translation_project.project)
+    item.update({
+        'icon': 'project',
+        'code': translation_project.code,
+        'href': translation_project.get_absolute_url(),
+    })
+    return item
+
+
+def make_language_item(translation_project):
+    item = make_generic_item(translation_project.language)
+    item.update({
+        'icon': 'language',
+        'code': translation_project.code,
+        'href': translation_project.get_absolute_url(),
+    })
+    return item
+
+
+def make_project_list_item(project):
+    item = make_generic_item(project)
+    item.update({
+        'icon': 'project',
+        'title': project.fullname,
     })
     return item
 
@@ -152,15 +161,6 @@ def get_children(translation_project, directory):
     The elements of the list are dictionaries which keys are populated after
     in the templates.
     """
-    parent = []
-    parent_dir = directory.parent
-
-    if not (parent_dir.is_language() or parent_dir.is_project()):
-        parent = [{
-            'icon': 'folder-parent',
-            'title': _("Back to parent folder"),
-            'href': l(parent_dir.pootle_path)
-        }]
 
     directories = [make_directory_item(child_dir)
                    for child_dir in directory.child_dirs.iterator()]
@@ -168,4 +168,4 @@ def get_children(translation_project, directory):
     stores = [make_store_item(child_store)
               for child_store in directory.child_stores.iterator()]
 
-    return parent + directories + stores
+    return directories + stores

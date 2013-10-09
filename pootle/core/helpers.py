@@ -24,8 +24,9 @@ from django.conf import settings
 from django.utils.translation import ugettext as _
 
 from pootle_app.models.permissions import check_permission
-from pootle_misc.checks import check_names
+from pootle_misc.checks import check_names, get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
+from pootle_misc.stats import get_translation_states
 from pootle_store.models import Unit
 from pootle_store.views import get_step_query
 
@@ -85,7 +86,10 @@ def get_translation_context(request, is_terminology=False):
 
         'pootle_path': request.pootle_path,
         'ctx_path': request.ctx_path,
-        'resource_path': request.resource_path,
+        'resource_path': (request.resource_path
+                          if hasattr(request, 'resource_path') else ''),
+
+        'check_categories': get_qualitycheck_schema(),
 
         'search_form': make_search_form(request=request,
                                         terminology=is_terminology),
@@ -112,5 +116,32 @@ def get_export_view_context(request):
         'unit_groups': unit_groups,
 
         'filter_name': filter_name,
-        'filter_extra': filter_extra
+        'filter_extra': filter_extra,
+    }
+
+
+def get_overview_context(request):
+    """Returns a common context for overview browser pages.
+
+    :param request: a :cls:`django.http.HttpRequest` object.
+    """
+    resource_obj = request.resource_obj
+
+    url_action_continue = resource_obj.get_translate_url(state='incomplete')
+    url_action_fixcritical = resource_obj.get_critical_url()
+    url_action_review = resource_obj.get_translate_url(state='suggestions')
+    url_action_view_all = resource_obj.get_translate_url(state='all')
+
+    return {
+        'resource_obj': resource_obj,
+        'resource_path': (request.resource_path
+                          if hasattr(request, 'resource_path') else ''),
+
+        'translation_states': get_translation_states(resource_obj),
+        'check_categories': get_qualitycheck_schema(resource_obj),
+
+        'url_action_continue': url_action_continue,
+        'url_action_fixcritical': url_action_fixcritical,
+        'url_action_review': url_action_review,
+        'url_action_view_all': url_action_view_all,
     }

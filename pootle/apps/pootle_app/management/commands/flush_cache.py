@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -23,8 +23,12 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from pootle_app.management.commands import PootleCommand
 
-class Command(PootleCommand):
-    help = "Mass update against templates."
 
-    def handle_translation_project(self, translation_project, **options):
-        translation_project.update_against_templates()
+class Command(PootleCommand):
+    help = "Flush stats cache."
+
+    def handle_all_stores(self, translation_project, **options):
+        translation_project.flush_cache()
+
+    def handle_store(self, store, **options):
+        store.flush_cache()

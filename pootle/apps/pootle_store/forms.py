@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2012 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -27,6 +28,7 @@ from django.utils.translation import get_language, ugettext as _
 
 from translate.misc.multistring import multistring
 
+from pootle.core.mixins import CachedMethods
 from pootle_app.models.permissions import check_permission
 from pootle_misc.log import (TRANSLATION_ADDED,
                              TRANSLATION_CHANGED, TRANSLATION_DELETED)
@@ -250,17 +252,18 @@ def unit_form_factory(language, snplurals=None, request=None):
 
         def clean_state(self):
             old_state = self.instance.state  # Integer
-            value = self.cleaned_data['state']  # Boolean
+            is_fuzzy = self.cleaned_data['state']  # Boolean
             new_target = self.cleaned_data['target_f']
 
-            new_state = None
             if new_target:
                 if old_state == UNTRANSLATED:
                     self.instance._save_action = TRANSLATION_ADDED
+                    self.instance.store \
+                                 .flag_for_deletion(CachedMethods.TRANSLATED)
                 else:
                     self.instance._save_action = TRANSLATION_CHANGED
 
-                if value:
+                if is_fuzzy:
                     new_state = FUZZY
                 else:
                     new_state = TRANSLATED
@@ -268,6 +271,9 @@ def unit_form_factory(language, snplurals=None, request=None):
                 new_state = UNTRANSLATED
                 if old_state > FUZZY:
                     self.instance._save_action = TRANSLATION_DELETED
+
+            if is_fuzzy != (old_state == FUZZY):
+                self.instance.store.flag_for_deletion(CachedMethods.FUZZY)
 
             if old_state != new_state:
                 self.instance._state_updated = True

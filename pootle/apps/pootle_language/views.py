@@ -21,61 +21,15 @@
 
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.utils.translation import ugettext as _, ungettext
 
 from pootle.core.decorators import get_path_obj, permission_required
 from pootle.core.helpers import (get_export_view_context,
+                                 get_overview_context,
                                  get_translation_context)
 from pootle.i18n.gettext import tr_lang
 from pootle_app.views.admin.permissions import admin_permissions
-from pootle_misc.browser import get_table_headings
-from pootle_misc.stats import (get_raw_stats, stats_descriptions)
-from pootle_misc.util import nice_percentage
-from pootle_statistics.models import Submission
-
-
-def get_last_action(translation_project):
-    try:
-        return Submission.objects.filter(
-            translation_project=translation_project).latest().as_html()
-    except Submission.DoesNotExist:
-        return ''
-
-
-def make_project_item(translation_project):
-    project = translation_project.project
-    href = translation_project.get_absolute_url()
-    href_all = translation_project.get_translate_url()
-    href_todo = translation_project.get_translate_url(state='incomplete')
-    href_sugg = translation_project.get_translate_url(state='suggestions')
-
-    project_stats = get_raw_stats(translation_project,
-                                  include_suggestions=True)
-
-    info = {
-        'code': project.code,
-        'href': href,
-        'href_all': href_all,
-        'href_todo': href_todo,
-        'href_sugg': href_sugg,
-        'icon': 'project',
-        'title': project.fullname,
-        'stats': project_stats,
-        'lastactivity': get_last_action(translation_project),
-        'tooltip': _('%(percentage)d%% complete',
-                     {'percentage': project_stats['translated']['percentage']}),
-    }
-
-    errors = project_stats.get('errors', 0)
-
-    if errors:
-        info['errortooltip'] = ungettext('Error reading %d file',
-                                         'Error reading %d files',
-                                         errors, errors)
-
-    info.update(stats_descriptions(project_stats))
-
-    return info
+from pootle_misc.browser import (make_project_item,
+                                 get_table_headings)
 
 
 @get_path_obj
@@ -85,48 +39,30 @@ def overview(request, language):
                                    .order_by('project__fullname')
     user_tps = filter(lambda x: x.is_accessible_by(request.user),
                       translation_projects)
-    tp_count = len(user_tps)
     items = (make_project_item(tp) for tp in user_tps)
 
-    totals = language.getquickstats()
-    translated = nice_percentage(totals['translatedsourcewords'] * 100.0 / max(totals['totalsourcewords'], 1))
-    fuzzy   = nice_percentage(totals['fuzzysourcewords'] * 100.0 / max(totals['totalsourcewords'], 1))
-
     table_fields = ['name', 'progress', 'total', 'need-translation',
-                    'suggestions', 'activity']
+                    'suggestions', 'critical', 'activity']
     table = {
         'id': 'language',
-        'proportional': False,
         'fields': table_fields,
         'headings': get_table_headings(table_fields),
         'items': items,
     }
 
-    templatevars = {
+    ctx = get_overview_context(request)
+    ctx.update({
         'language': {
           'code': language.code,
           'name': tr_lang(language.fullname),
-          'summary': ungettext('%(projects)d project, %(translated)d%% translated',
-                               '%(projects)d projects, %(translated)d%% translated',
-                               tp_count, {
-                                   "projects": tp_count,
-                                   "translated": translated}),
-        },
-        'stats': {
-            'translated': {
-                'percentage': translated,
-            },
-            'fuzzy': {
-                'percentage': fuzzy,
-            },
-            'untranslated': {
-                'percentage': 100 - translated - fuzzy,
-            },
         },
         'table': table,
-    }
 
-    return render_to_response("languages/overview.html", templatevars,
+        'browser_extends': 'languages/base.html',
+        'browser_body_id': 'languageoverview',
+    })
+
+    return render_to_response("browser/overview.html", ctx,
                               context_instance=RequestContext(request))
 
 
@@ -135,7 +71,6 @@ def overview(request, language):
 def translate(request, language):
     request.pootle_path = language.pootle_path
     request.ctx_path = language.pootle_path
-    request.resource_path = ''
 
     request.store = None
     request.directory = language.directory

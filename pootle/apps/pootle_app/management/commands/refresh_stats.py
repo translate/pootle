@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -27,9 +28,11 @@ class Command(PootleCommand):
     help = "Allow stats and text indices to be refreshed manually."
 
     def handle_all_stores(self, translation_project, **options):
-        translation_project.getcompletestats()
-        translation_project.getquickstats()
+        translation_project.flush_cache()
+        translation_project.get_stats()
+        translation_project.get_checks()
 
     def handle_store(self, store, **options):
-        store.getcompletestats()
-        store.getquickstats()
+        store.flush_cache()
+        store.get_stats()
+        store.get_checks()

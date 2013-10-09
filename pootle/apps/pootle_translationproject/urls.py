@@ -30,12 +30,6 @@ urlpatterns = patterns('pootle_translationproject.views',
         'admin_permissions',
         name='pootle-tp-admin-permissions'),
 
-    # XHR views
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/summary/'
-        r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
-        'path_summary_more',
-        name='pootle-tp-summary'),
-
     # Translation
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
         r'translate/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',

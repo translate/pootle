@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2012 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -20,6 +21,7 @@
 
 import logging
 import sys
+import datetime
 
 from optparse import make_option
 
@@ -82,7 +84,12 @@ class PootleCommand(NoArgsCommand):
     def handle_noargs(self, **options):
         # adjust debug level to the verbosity option
         verbosity = int(options.get('verbosity', 1))
-        debug_levels = {0: logging.ERROR, 1: logging.WARNING, 2: logging.DEBUG}
+        debug_levels = {
+            0: logging.ERROR,
+            1: logging.WARNING,
+            2: logging.INFO,
+            3: logging.DEBUG
+        }
         debug_level = debug_levels.get(verbosity, logging.DEBUG)
         logging.getLogger().setLevel(debug_level)
 
@@ -93,6 +100,10 @@ class PootleCommand(NoArgsCommand):
         TranslationStoreFieldFile._store_cache.cullsize = 2
         TranslationProject._non_db_state_cache.maxsize = 2
         TranslationProject._non_db_state_cache.cullsize = 2
+
+        # info start
+        start = datetime.datetime.now()
+        logging.info('Start running of %s', self.name)
 
         directory = options.get('directory', '')
         if directory:
@@ -156,6 +167,10 @@ class PootleCommand(NoArgsCommand):
                 if tp == template_tp:
                     continue
                 self.do_translation_project(tp, path, **options)
+
+        # info finish
+        end = datetime.datetime.now()
+        logging.info('All done for %s in %s', self.name, end - start)
 
 
 class NoArgsCommandMixin(NoArgsCommand):

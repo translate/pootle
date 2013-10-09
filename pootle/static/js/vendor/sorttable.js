@@ -1,4 +1,9 @@
 /*
+  Modifications:
+  Copyright 2013 Evernote Corporation
+
+  ***
+
   SortTable
   version 2
   7th April 2007
@@ -49,8 +54,6 @@ sorttable = {
     }
     // Safari doesn't support table.tHead, sigh
     if (table.tHead == null) table.tHead = table.getElementsByTagName('thead')[0];
-    
-    if (table.tHead.rows.length != 1) return; // can't cope with two header rows
     
     // Sorttable v1 put rows with a class of "sortbottom" at the bottom (as
     // "total" rows, for example). This is B&R, since what you're supposed
@@ -211,8 +214,6 @@ sorttable = {
     for (var j=0; j<row_array.length; j++) {
       tb.appendChild(row_array[j][1]);
     }
-
-    sorttable.makeZebra();
 
     delete row_array;
   },
@@ -382,18 +383,6 @@ sorttable = {
         b++;
 
     } // while(swap)
-  },
-
-  /* Customisation for zebra tags */
-  makeZebra: function() {
-      var cls = "even",
-          even = true;
-      $("table.sortable tbody tr").each(function () {
-        $(this).addClass(cls);
-        cls = even ? "odd" : "even";
-        $(this).removeClass(cls);
-        even = !even;
-      });
   },
 
   /*

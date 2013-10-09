@@ -32,18 +32,17 @@ from django.db import models, IntegrityError
 from django.db.models.signals import post_save
 
 from pootle.core.managers import RelatedManager
+from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
 from pootle_language.models import Language
-from pootle_misc.aggregate import group_by_count_extra, max_column
-from pootle_misc.util import getfromcache, deletefromcache
+from pootle_misc.util import cached_property, deletefromcache
+from pootle_misc.checks import excluded_filters
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
-from pootle_store.models import (Store, Suggestion, Unit, QualityCheck, PARSED,
-                                 CHECKED)
-from pootle_store.util import (absolute_real_path, calculate_stats,
-                               empty_quickstats, empty_completestats,
-                               relative_real_path, OBSOLETE, UNTRANSLATED)
+from pootle_store.models import (Store, Unit, PARSED)
+from pootle_store.util import (absolute_real_path, relative_real_path,
+                               OBSOLETE)
 
 
 class TranslationProjectNonDBState(object):
@@ -92,7 +91,15 @@ class TranslationProjectManager(RelatedManager):
                         project__checkstyle='terminology')
 
 
-class TranslationProject(models.Model):
+class TranslationProject(models.Model, TreeItem):
+
+    language = models.ForeignKey(Language, db_index=True)
+    project = models.ForeignKey(Project, db_index=True)
+    real_path = models.FilePathField(editable=False)
+    directory = models.OneToOneField(Directory, db_index=True, editable=False)
+    pootle_path = models.CharField(max_length=255, null=False, unique=True,
+            db_index=True, editable=False)
+
     _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE,
             settings.PARSE_POOL_CULL_FREQUENCY)
 
@@ -102,17 +109,70 @@ class TranslationProject(models.Model):
         unique_together = ('language', 'project')
         db_table = 'pootle_app_translationproject'
 
-    language = models.ForeignKey(Language, db_index=True)
-    project = models.ForeignKey(Project, db_index=True)
-    real_path = models.FilePathField(editable=False)
-    directory = models.OneToOneField(Directory, db_index=True, editable=False)
-    pootle_path = models.CharField(max_length=255, null=False, unique=True,
-            db_index=True, editable=False)
-
     def natural_key(self):
         return (self.pootle_path,)
     natural_key.dependencies = ['pootle_app.Directory',
             'pootle_language.Language', 'pootle_project.Project']
+
+    @cached_property
+    def code(self):
+        return u'-'.join([self.language.code, self.project.code])
+
+    @property
+    def fullname(self):
+        return "%s [%s]" % (self.project.fullname, self.language.name)
+
+    @property
+    def is_terminology_project(self):
+        return self.project.checkstyle == 'terminology'
+
+    @property
+    def is_template_project(self):
+        return self == self.project.get_template_translationproject()
+
+    @property
+    def abs_real_path(self):
+        return absolute_real_path(self.real_path)
+
+    @abs_real_path.setter
+    def abs_real_path(self, value):
+        self.real_path = relative_real_path(value)
+
+    @property
+    def file_style(self):
+        return self.project.get_treestyle()
+
+    @property
+    def checker(self):
+        from translate.filters import checks
+        checkerclasses = [checks.projectcheckers.get(self.project.checkstyle,
+                                                     checks.StandardChecker),
+                          checks.StandardUnitChecker]
+
+        return checks.TeeChecker(checkerclasses=checkerclasses,
+                                 excludefilters=excluded_filters,
+                                 errorhandler=self.filtererrorhandler,
+                                 languagecode=self.language.code)
+
+    @property
+    def non_db_state(self):
+        if not hasattr(self, "_non_db_state"):
+            try:
+                self._non_db_state = self._non_db_state_cache[self.id]
+            except KeyError:
+                self._non_db_state = TranslationProjectNonDBState(self)
+                self._non_db_state_cache[self.id] = \
+                        TranslationProjectNonDBState(self)
+
+        return self._non_db_state
+
+    @property
+    def units(self):
+        self.require_units()
+        # FIXME: we rely on implicit ordering defined in the model. We might
+        # want to consider pootle_path as well
+        return Unit.objects.filter(store__translation_project=self,
+                                   state__gt=OBSOLETE).select_related('store')
 
     def __unicode__(self):
         return self.pootle_path
@@ -153,52 +213,10 @@ class TranslationProject(models.Model):
             get_editor_filter(**kwargs),
         ])
 
-    fullname = property(lambda self: "%s [%s]" % (self.project.fullname,
-                                                  self.language.name))
-
-    def _get_abs_real_path(self):
-        return absolute_real_path(self.real_path)
-
-    def _set_abs_real_path(self, value):
-        self.real_path = relative_real_path(value)
-
-    abs_real_path = property(_get_abs_real_path, _set_abs_real_path)
-
-    def _get_treestyle(self):
-        return self.project.get_treestyle()
-
-    file_style = property(_get_treestyle)
-
-    def _get_checker(self):
-        from translate.filters import checks
-        checkerclasses = [checks.projectcheckers.get(self.project.checkstyle,
-                                                     checks.StandardChecker),
-                          checks.StandardUnitChecker]
-        excluded_filters = ['hassuggestion', 'spellcheck']
-        return checks.TeeChecker(checkerclasses=checkerclasses,
-                                 excludefilters=excluded_filters,
-                                 errorhandler=self.filtererrorhandler,
-                                 languagecode=self.language.code)
-
-    checker = property(_get_checker)
-
     def filtererrorhandler(self, functionname, str1, str2, e):
         logging.error(u"Error in filter %s: %r, %r, %s", functionname, str1,
                       str2, e)
         return False
-
-    def _get_non_db_state(self):
-        if not hasattr(self, "_non_db_state"):
-            try:
-                self._non_db_state = self._non_db_state_cache[self.id]
-            except KeyError:
-                self._non_db_state = TranslationProjectNonDBState(self)
-                self._non_db_state_cache[self.id] = \
-                        TranslationProjectNonDBState(self)
-
-        return self._non_db_state
-
-    non_db_state = property(_get_non_db_state)
 
     def is_accessible_by(self, user):
         """Returns `True` if the current translation project is accessible
@@ -234,10 +252,8 @@ class TranslationProject(models.Model):
             return ''
         return sub.get_submission_message()
 
-    @getfromcache
     def get_mtime(self):
-        tp_units = Unit.objects.filter(store__translation_project=self)
-        return max_column(tp_units, 'mtime', None)
+        return self.directory.get_mtime()
 
     def require_units(self):
         """Makes sure all stores are parsed"""
@@ -257,106 +273,18 @@ class TranslationProject(models.Model):
 
         return errors
 
-    def _get_units(self):
-        self.require_units()
-        # FIXME: we rely on implicit ordering defined in the model. We might
-        # want to consider pootle_path as well
-        return Unit.objects.filter(store__translation_project=self,
-                                   state__gt=OBSOLETE).select_related('store')
+    ### TreeItem
 
-    units = property(_get_units)
+    def get_children(self):
+        return self.directory.get_children()
 
-    @getfromcache
-    def getquickstats(self):
-        if self.is_template_project:
-            return empty_quickstats
+    def get_cachekey(self):
+        return self.directory.pootle_path
 
-        errors = self.require_units()
+    def get_parent(self):
+        return self.directory.get_parent()
 
-        tp_not_obsolete_units = Unit.objects.filter(
-                store__translation_project=self,
-                state__gt=OBSOLETE,
-            )
-        stats = calculate_stats(tp_not_obsolete_units)
-        stats['errors'] = errors
-
-        return stats
-
-    @getfromcache
-    def getcompletestats(self):
-        if self.is_template_project:
-            return empty_completestats
-
-        for store in self.stores.filter(state__lt=CHECKED).iterator():
-            store.require_qualitychecks()
-
-        query = QualityCheck.objects.filter(
-            unit__store__translation_project=self,
-            unit__state__gt=UNTRANSLATED,
-            false_positive=False
-        )
-        return group_by_count_extra(query, 'name', 'category')
-
-    @getfromcache
-    def get_suggestion_count(self):
-        """
-        Check if any unit in the stores for this translation project has
-        suggestions.
-        """
-        return Suggestion.objects.filter(unit__store__translation_project=self,
-                                         unit__state__gt=OBSOLETE).count()
-
-    def update_against_templates(self, pootle_path=None):
-        """Update translation project from templates."""
-
-        if self.is_template_project:
-            return
-
-        template_translation_project = self.project \
-                                           .get_template_translationproject()
-
-        if (template_translation_project is None or
-            template_translation_project == self):
-            return
-
-        self.sync()
-
-        if pootle_path is None:
-            oldstats = self.getquickstats()
-
-        from pootle_app.project_tree import (convert_template,
-                                             get_translated_name,
-                                             get_translated_name_gnu)
-
-        for store in template_translation_project.stores.iterator():
-            if self.file_style == 'gnu':
-                new_pootle_path, new_path = get_translated_name_gnu(self, store)
-            else:
-                new_pootle_path, new_path = get_translated_name(self, store)
-
-            if pootle_path is not None and new_pootle_path != pootle_path:
-                continue
-
-            relative_po_path = os.path.relpath(new_path, settings.PODIRECTORY)
-            try:
-                from pootle.scripts import hooks
-                if not hooks.hook(self.project.code, "pretemplateupdate",
-                                  relative_po_path):
-                    continue
-            except:
-                # Assume hook is not present.
-                pass
-
-            convert_template(self, store, new_pootle_path, new_path)
-
-        all_files, new_files = self.scan_files()
-
-        if pootle_path is None:
-            newstats = self.getquickstats()
-
-            from pootle_app.models.signals import post_template_update
-            post_template_update.send(sender=self, oldstats=oldstats,
-                                      newstats=newstats)
+    ### /TreeItem
 
     def scan_files(self):
         """Scans the file system and returns a list of translation files.
@@ -408,15 +336,6 @@ class TranslationProject(models.Model):
                     e)
 
     ###########################################################################
-
-    @property
-    def is_terminology_project(self):
-        return self.project.checkstyle == 'terminology'
-        # was: self.pootle_path.endswith('/terminology/')
-
-    @property
-    def is_template_project(self):
-        return self == self.project.get_template_translationproject()
 
     def gettermmatcher(self):
         """Returns the terminology matcher."""

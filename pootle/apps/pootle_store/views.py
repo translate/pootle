@@ -35,18 +35,18 @@ from django.views.decorators.cache import never_cache
 
 from translate.lang import data
 
+from pootle.core.decorators import (get_path_obj, get_resource_context,
+                                    permission_required)
 from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.models.permissions import check_profile_permission
 from pootle.core.exceptions import Http400
-from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.forms import make_search_form
-from pootle_misc.stats import get_raw_stats
 from pootle_misc.util import paginate, ajax_required, jsonify
 from pootle_profile.models import get_profile
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 
-from .decorators import get_unit_context, get_xhr_resource_context
+from .decorators import get_unit_context
 from .models import Unit
 from .forms import (unit_comment_form_factory, unit_form_factory,
                     highlight_whitespace)
@@ -437,9 +437,14 @@ def timeline(request, unit):
     from pootle_store.fields import to_python
 
     for key, values in groupby(timeline, key=lambda x: x.creation_time):
+        # Under Windows, the "nl_langinfo" method is not available
+        try:
+            time_str = key.strftime(locale.nl_langinfo(locale.D_T_FMT))
+        except NameError:
+            time_str = key
         entry_group = {
             'datetime': key,
-            'datetime_str': key.strftime(locale.nl_langinfo(locale.D_T_FMT)),
+            'datetime_str': time_str,
             'entries': [],
         }
 
@@ -609,19 +614,23 @@ def get_edit_unit(request, unit):
 
 
 @ajax_required
-@get_xhr_resource_context('view')
-def get_failing_checks(request, path_obj):
-    """Gets a list of failing checks for the current object.
+@get_path_obj
+@permission_required('view')
+@get_resource_context
+def get_qualitycheck_stats(request, path_obj, **kwargs):
+    qc_stats = request.resource_obj.get_checks()
 
-    :return: JSON string with a list of failing check categories which
-             include the actual checks that are failing.
-    """
-    stats = get_raw_stats(path_obj)
-    failures = get_quality_check_failures(path_obj, stats, include_url=False)
+    return HttpResponse(jsonify(qc_stats), mimetype="application/json")
 
-    response = jsonify(failures)
 
-    return HttpResponse(response, mimetype="application/json")
+@ajax_required
+@get_path_obj
+@permission_required('view')
+@get_resource_context
+def get_overview_stats(request, path_obj, **kwargs):
+    stats = request.resource_obj.get_stats()
+
+    return HttpResponse(jsonify(stats), mimetype="application/json")
 
 
 @ajax_required
@@ -815,17 +824,13 @@ def vote_up(request, unit, suggid):
 
 @ajax_required
 @get_unit_context('review')
-def reject_qualitycheck(request, unit, checkid):
+def reject_qualitycheck(request, unit, check_id):
     json = {}
     json["udbid"] = unit.id
-    json["checkid"] = checkid
+    json["checkid"] = check_id
     if request.POST.get('reject'):
         try:
-            check = unit.qualitycheck_set.get(id=checkid)
-            check.false_positive = True
-            check.save()
-            # update timestamp
-            unit.save()
+            unit.reject_qualitycheck(check_id)
         except ObjectDoesNotExist:
             raise Http404
 

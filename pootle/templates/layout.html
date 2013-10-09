@@ -28,6 +28,26 @@
     <script type="text/javascript" src="{{ ASSET_URL }}"></script>
     {% endassets %}
     <script type="text/javascript">
+      Spinner.defaults = {
+        lines: 11,
+        length: 2,
+        width: 5,
+        radius: 11,
+        rotate: 0,
+        corners: 1,
+        color: '#000',
+        direction: 1,
+        speed: 1,
+        trail: 50,
+        opacity: 1/4,
+        fps: 20,
+        zIndex: 2e9,
+        className: 'spinner',
+        top: 'auto',
+        left: 'auto',
+        position: 'relative'
+      };
+
     function l(path) {
       var basepath = "{{ settings.SCRIPT_NAME  }}";
       if (path[0] == '/') {
@@ -77,7 +97,11 @@
     $(function() {
       $("[title], [original-title]").tipsy({
         gravity: $.fn.tipsy.autoBounds(150, 'n'),
-        html: true, fade: true, delayIn: 750, live: true});
+        html: true,
+        fade: true,
+        delayIn: 750,
+        opacity: 1,
+        live: true});
       $.ajaxSetup({ traditional: true });
       $.ajaxPrefilter(function (options, originalOptions) {
         if (options.type === 'post' || options.type === 'POST') {
@@ -164,11 +188,21 @@
 
         {% block breadcrumbs_block %}
         <ul class="breadcrumb js-breadcrumb">
-        {% block breadcrumbs %}{% endblock %}
+          {% block breadcrumbs %}{% endblock %}
         </ul>
         {% endblock %}
       </div>
       {% endblock %}
+
+      <div id="top-stats" class="header">
+        {% block header_content %}
+        {% endblock %}
+      </div>
+
+      <div id="actions" class="header">
+        {% block actions %}
+        {% endblock %}
+      </div>
 
       {% block header_tabs_block %}
       <div id="header-tabs" class="header">

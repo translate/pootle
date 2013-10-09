@@ -19,14 +19,12 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-import copy
 import os
 
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
 from pootle_misc.aggregate import sum_column
-from pootle_misc.util import dictsum
 
 # Unit States
 #: Unit is no longer part of the store
@@ -69,43 +67,34 @@ def absolute_real_path(p):
         return p
 
 
-empty_quickstats = {'fuzzy': 0,
-                    'fuzzysourcewords': 0,
-                    'review': 0,
-                    'total': 0,
-                    'totalsourcewords': 0,
-                    'translated': 0,
-                    'translatedsourcewords': 0,
-                    'translatedtargetwords': 0,
-                    'untranslated': 0,
-                    'untranslatedsourcewords': 0,
-                    'errors': 0}
+def calc_total_wordcount(units):
+    total = sum_column(units,
+                       ['source_wordcount'], count=False)
 
-def statssum(queryset, empty_stats=empty_quickstats):
-    totals = empty_stats
-    for item in queryset:
-        try:
-            totals = dictsum(totals, item.getquickstats())
-        except:
-            totals['errors'] += 1
-    return totals
+    return total['source_wordcount'] or 0
 
-empty_completestats = {0: {u'isfuzzy': 0,
-                           'errors': 0} }
 
-def completestatssum(queryset, empty_stats=empty_completestats):
-    totals = copy.deepcopy(empty_stats)
+def calc_untranslated_wordcount(units):
+    untranslated = sum_column(units.filter(state=UNTRANSLATED),
+                              ['source_wordcount'], count=False)
 
-    for item in queryset:
-        try:
-            item_totals = item.getcompletestats()
+    return untranslated['source_wordcount'] or 0
 
-            for cat in set(item_totals) | set(totals):
-                totals[cat] = dictsum(totals.get(cat, {}),
-                                      item_totals.get(cat, {}))
-        except:
-            totals[0]['errors'] += 1
-    return totals
+
+def calc_fuzzy_wordcount(units):
+    fuzzy = sum_column(units.filter(state=FUZZY),
+                       ['source_wordcount'], count=False)
+
+    return fuzzy['source_wordcount'] or 0
+
+
+def calc_translated_wordcount(units):
+    translated = sum_column(units.filter(state=TRANSLATED),
+                            ['source_wordcount'],
+                            count=False)
+
+    return translated['source_wordcount'] or 0
+
 
 def calculate_stats(units):
     """Calculate translation statistics for a given `units` queryset."""

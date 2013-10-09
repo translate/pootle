@@ -70,7 +70,6 @@ a,
 a:link
 {
     text-decoration: none;
-    background-color: inherit;
     color: #0489b7;
     cursor: pointer;
 }
@@ -81,11 +80,6 @@ a:visited
 }
 
 a:hover
-{
-    text-decoration: underline;
-}
-
-a:active
 {
     text-decoration: underline;
 }
@@ -868,9 +862,8 @@ html[dir="rtl"] td.username
 
 /* table row colors, see 'Table Row Colors.psd' */
 
-tr.even,
-td.even,
-li.even
+tr.view-row:nth-child(odd),
+tr.item:nth-child(odd)
 {
     background: #f5fbfd;
 }
@@ -921,8 +914,8 @@ html[dir="rtl"] .hd h2
     display: none;
 }
 
-/* When browser size is 1340px or less, show the smaller version of the last action message */
-@media screen and (max-width: 1340px)
+/* When browser size is 1440px or less, show the smaller version of the last action message */
+@media screen and (max-width: 1440px)
 {
     .last-action .action-text
     {
@@ -1594,7 +1587,7 @@ div#settings
     background-color: #e08566 !important;
 }
 
-.delete-selected.even
+.delete-selected:nth-child(even)
 {
     background-color: #d67f62 !important;
 }
@@ -1684,20 +1677,22 @@ td.stats-number
     padding-right: 26px !important; /* magic number to put padding between right and left aligned column, and to right-align heading with number */
 }
 
-.path-summary-more td.stats-number
+td.stats-percentage
 {
-    padding-right: 3em !important;
+    display: none;
 }
 
 table.stats .number,
 th.stats-number,
-td.stats-number
+td.stats-number,
+td.stats-percentage
 {
     text-align: right;
 }
 
 td.stats-number.need-translation a,
-td.stats-number.suggestions a
+td.stats-number.suggestions a,
+td.stats-number.critical a
 {
     display: inline-block;
     background: #0489b7;
@@ -1715,9 +1710,19 @@ td.stats-number.suggestions a
     background: #bbaa66;
 }
 
+td.stats-number.critical a
+{
+    background: #c30;
+}
+
 td.stats-name .user-nobody
 {
     font-style: italic;
+}
+
+td.stats-name.folder
+{
+    font-weight: bold;
 }
 
 td.last-activity
@@ -1748,29 +1753,41 @@ html[dir="rtl"] td.stats-name,
 
 /* Expanded checks */
 
-.checks td
+.checks
 {
-    height: 100%;
-}
-
-.checks td a
-{
-    display: inline-block;
     height: 100%;
     width: 100%;
 }
 
+.checks a
+{
+    color: #c00;
+}
+
+.checks h4
+{
+    padding: 1em 0 0.5em;
+    font-weight: normal;
+}
+
+.check
+{
+    float: left;
+}
+
 .check-name
 {
-    width: 22%;
+    width: 10em;
+    display: inline-block;
 }
 
 .check-count
 {
     text-align: right;
-    width: 5%;
-    padding-right: 3em;
-}
+    width: 3em;
+    padding-right: 6em;
+    display: inline-block;
+ }
 
 html[dir="rtl"] .check-count
 {
@@ -1778,10 +1795,8 @@ html[dir="rtl"] .check-count
     padding-left: 5%;
 }
 
-#check-100 td a
+#check-100 a
 {
-    background-color: inherit;
-    color: #c30;
     font-weight: bold;
 }
 
@@ -1796,117 +1811,6 @@ div.small
     font-size: 0.9em;
 }
 
-.path-summary-more
-{
-    margin: 1em;
-    padding: 1em 2em;
-    display: none;
-    border: 1px solid #d9d9d9;    
-    background: #f4f4f4;
-
-    -webkit-border-radius: 5px;
-       -moz-border-radius: 5px;
-            border-radius: 5px;
-}
-
-.path-summary-more table
-{
-    width: 40em;
-}
-
-#translate-actions
-{
-    position: relative;
-}
-
-#translate-actions a
-{
-    white-space: pre;
-    text-decoration: none;
-    color: #000;
-}
-
-#translate-actions ul
-{
-    list-style-type: none;
-    position: absolute;
-    top: -1.2em;
-    right: 0;
-    margin-right: 1.5em;
-}
-
-#translate-actions li
-{
-    display: inline-block;
-    margin-left: 2em;
-    font-size: 110%;
-    font-weight: bold;
-    text-align: center;
-    line-height: 150%;
-}
-
-#translate-actions .caption:after
-{
-    content: "\A"; /* force line break */
-}
-
-#translate-actions .counter
-{
-    padding: 0.1em 0.9em;
-    margin-right: -0.5em;
-    -webkit-border-radius: 1em;
-    -moz-border-radius: 1em;
-    border-radius: 1em;
-    background: #000;
-    color: #fff;
-    font-weight: normal;
-}
-
-#translate-actions a:hover .counter
-{
-    background: #000 !important;
-}
-
-#translate-actions .translation-complete
-{
-    color: #090;
-}
-
-#translate-actions .translation-complete .counter
-{
-    background-color: #090;
-}
-
-#translate-actions .continue-translation
-{
-    color: #0489b7;
-}
-
-#translate-actions .continue-translation .counter
-{
-    background-color: #0489b7;
-}
-
-#translate-actions .review-suggestions
-{
-    color: #ba6;
-}
-
-#translate-actions .review-suggestions .counter
-{
-    background-color: #ba6;
-}
-
-#translate-actions .fix-errors
-{
-    color: #c30;
-}
-
-#translate-actions .fix-errors .counter
-{
-    background-color: #c30;
-}
-
 /* PROGRESSBAR */
 
 table.graph
@@ -1917,8 +1821,8 @@ table.graph
     font-size: 1px;
 }
 
-/* When browser size is 900px or less, show the smaller version of the progressbar */
-@media screen and (max-width: 900px)
+/* When browser size is 950px or less, show the smaller version of the progressbar */
+@media screen and (max-width: 950px)
 {
     table.graph
     {
@@ -1948,16 +1852,6 @@ table.graph .translated
 table.graph .fuzzy
 {
     background-color: #9c9;
-}
-
-h2.with-progressbar
-{
-    border-bottom: none;
-}
-
-h2.with-progressbar table.graph
-{
-    width: 100%;
 }
 
 /* PROGRESSBAR LEGEND */
@@ -2170,6 +2064,171 @@ html[dir="rtl"] .overview-description-toggle
     border-bottom: none;
 }
 
+/*
+ * HEADER STATS
+ */
+
+#top-stats
+{
+    padding-bottom: 1.5em;
+}
+
+#top-stats .label
+{
+    margin-top: -1.1em;
+    width: 8em;
+    padding-bottom: 0.5em;
+}
+
+#top-stats a
+{
+    position: relative;
+}
+
+.icon-collapse-stats,
+.icon-expand-stats
+{
+    display: inline-block;
+    position: absolute;
+    top: -4px;
+    left: -1px;
+    z-index: 1;
+}
+
+#progressbar
+{
+    margin-left: 10px;
+}
+
+#progressbar table.graph
+{
+    width: 100%;
+}
+
+.path-summary-more
+{
+    padding: 0 2em;
+    display: none;
+    border: 1px solid #d9d9d9;    
+    background: #f4f4f4;
+
+    -webkit-border-radius: 0 0 5px 5px;
+       -moz-border-radius: 0 0 5px 5px;
+            border-radius: 0 0 5px 5px;
+}
+
+.path-summary-more table
+{
+    width: 40em;
+}
+
+.path-summary-more td.stats-number
+{
+    padding-right: 3em !important;
+}
+
+/*
+ * HEADER ACTIONS
+ */
+
+#actions
+{
+    padding-bottom: 1em;
+}
+
+#translate-actions
+{
+    display: inline-block;
+    position: relative;
+    top: 4px;
+}
+
+#translate-actions a
+{
+    text-decoration: none;
+    color: #000;
+}
+
+#translate-actions ul
+{
+    display: inline-block;
+    list-style-type: none;
+}
+
+#translate-actions li
+{
+    display: inline-block;
+    margin-left: 2em;
+    font-weight: bold;
+}
+
+body.js-not-loaded #translate-actions li
+{
+    display: none;
+}
+
+#translate-actions .counter
+{
+    padding: 0.1em 0.9em;
+    margin-right: -0.5em;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    border-radius: 1em;
+    background: #000;
+    color: #fff;
+    font-weight: normal;
+}
+
+#translate-actions a:hover
+{
+    color: #000;
+}
+
+#translate-actions a:hover .counter
+{
+    background: #000 !important;
+}
+
+#translate-actions .translation-complete
+{
+    color: #090;
+}
+
+#translate-actions .translation-complete .counter
+{
+    background-color: #090;
+}
+
+#translate-actions .continue-translation
+{
+    color: #0489b7;
+}
+
+#translate-actions .continue-translation .counter
+{
+    background-color: #0489b7;
+}
+
+#translate-actions .review-suggestions
+{
+    color: #ba6;
+}
+
+#translate-actions .review-suggestions .counter
+{
+    background-color: #ba6;
+}
+
+#translate-actions .fix-errors
+{
+    color: #c30;
+}
+
+#translate-actions .fix-errors .counter
+{
+    background-color: #c30;
+}
+
 /* top menu */
 
 ul.top_menu
@@ -2222,6 +2281,7 @@ ul.top_menu li.page_pootle
     font-family: "Open Sans Condensed", "Open Sans", sans-serif;
     font-weight: bold;
     visibility: hidden;
+    margin-left: -5px;
 }
 
 .breadcrumb li
@@ -2367,18 +2427,19 @@ body#evernote_reports #tabs a.evernote_reports
 
 #search
 {
-    float: right;
-    margin: 4px 0 0;
-}
-
-html[dir="rtl"] #search
-{
-    float: left;
+    display: inline-block;
 }
 
 #main-overview #search
 {
+    float: right;
+    margin: 4px 0 0;
     margin-top: -32px;
+}
+
+#main-overview[dir="rtl"] #search
+{
+    float: left;
 }
 
 #search-form
@@ -2581,6 +2642,33 @@ html[dir="rtl"] .pull-right
 {
     border-top: 1px solid #eee;
     padding: 1em 0 0;
+}
+
+table.stats span.muted
+{
+    /* by default, hide the zero placeholders */
+    display: none;
+}
+
+body.js-not-loaded span.zero,
+body.js-not-loaded span.non-zero,
+body.js-not-loaded th.when-loaded
+{
+    /* Hide placeholders and certain headers by default */
+    display: none;
+}
+
+body.js-not-loaded table.graph
+{
+    filter:alpha(opacity=30);
+    opacity: 0.3;
+}
+
+table.stats td.zero span.zero,
+table.stats td.non-zero span.non-zero
+{
+    /* Show appropriate placeholders when 'zero' or 'non-zero' class is set */
+    display: inline;
 }
 
 .muted

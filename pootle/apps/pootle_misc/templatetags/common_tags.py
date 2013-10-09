@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -19,13 +20,21 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django import template
+from django.template.defaultfilters import stringfilter
+
 
 register = template.Library()
 
 
-@register.inclusion_tag('core/table.html', takes_context=True)
+@register.inclusion_tag('browser/_table.html', takes_context=True)
 def display_table(context, table):
     return {
         'table': table,
-        'stats': context.get('stats', None)
     }
+
+
+@register.filter
+@stringfilter
+def makeid(value):
+    """Replaces all '.' with '-'."""
+    return value.replace(u'.', u'-')

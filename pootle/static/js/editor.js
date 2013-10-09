@@ -134,6 +134,7 @@
     $(document).on('click', '#translate-checks-block .js-reject-check', this.rejectCheck);
 
     /* Filtering */
+    $("#filter-checks").hide();
     $(document).on('change', '#filter-status select', this.filterStatus);
     $(document).on('change', '#filter-checks select', this.filterChecks);
     $(document).on('click', '.js-more-ctx', function () {
@@ -372,7 +373,7 @@
         if (PTL.editor.filter == "checks") {
           // if the checks selector is empty (i.e. the 'change' event was not fired
           // because the selection did not change), force the update to populate the selector
-          if (!$("#filter-checks").length) {
+          if ($("#filter-checks").is(':hidden')) {
             PTL.editor.filterStatus();
           }
           $('#filter-checks select').select2('val', PTL.editor.checks[0]);
@@ -959,9 +960,9 @@
 
 
   /* Builds a single row */
-  buildRow: function (unit, cls) {
+  buildRow: function (unit) {
     return [
-      '<tr id="row', unit.id, '" class="view-row ', cls ,'">',
+      '<tr id="row', unit.id, '" class="view-row">',
         this.tmpl.vUnit({unit: unit.toJSON()}),
       '</tr>'
     ].join('');
@@ -972,8 +973,6 @@
     var unitGroups = this.getUnitGroups(),
         groupSize = _.size(unitGroups),
         currentUnit = this.units.getCurrent(),
-        cls = "even",
-        even = true,
         rows = [],
         i, unit;
 
@@ -993,11 +992,8 @@
         if (unit.id === currentUnit.id) {
           rows.push(this.getEditUnit());
         } else {
-          rows.push(this.buildRow(unit, cls));
+          rows.push(this.buildRow(unit));
         }
-
-        cls = even ? "odd" : "even";
-        even = !even;
       }
     }, this);
 
@@ -1009,8 +1005,6 @@
   buildCtxRows: function (units, extraCls) {
     var i, unit,
         currentUnit = this.units.getCurrent(),
-        cls = "even",
-        even = true,
         rows = "",
         urlStr = [
           PTL.editor.ctxPath, 'translate/', PTL.editor.resourcePath,
@@ -1023,13 +1017,9 @@
       unit['url'] = l(urlStr + unit.id);
       unit = $.extend({}, currentUnit.toJSON(), unit);
 
-      rows += '<tr id="ctx' + unit.id + '" class="ctx-row ' + extraCls +
-              ' ' + cls + '">';
+      rows += '<tr id="ctx' + unit.id + '" class="ctx-row ' + extraCls + '">';
       rows += this.tmpl.vUnit({unit: unit});
       rows += '</tr>';
-
-      cls = even ? "odd" : "even";
-      even = !even;
     }
 
     return rows;
@@ -1432,15 +1422,16 @@
 
   /* Gets the failing check options for the current query */
   getCheckOptions: function () {
-    var checksUrl = l('/xhr/checks/'),
+    var checksUrl = l('/xhr/stats/checks/'),
         reqData = {
           path: this.pootlePath
-        }, opts;
+        },
+        opts;
 
     $.ajax({
       url: checksUrl,
-      async: false,
       data: reqData,
+      async: false,
       dataType: 'json',
       success: function (data) {
         opts = data;
@@ -1475,33 +1466,32 @@
     // Filtering by failing checks
     if (filterBy == "checks") {
       // Get actual failing checks
-      var optGroups = PTL.editor.getCheckOptions();
+      var checks = PTL.editor.getCheckOptions();
 
       // If there are any failing checks, add them in a dropdown
-      if (optGroups.length) {
-        var dropdown = [
-        '<div id="filter-checks">',
-          '<select id="js-select2-filter-checks" ',
-          'class="select2-filter-checks" name="filter-checks">',
-          '<option selected="selected" value="none">------</option>'
-        ]
+      if (checks !== undefined && Object.keys(checks).length) {
+        $("#filter-checks").show();
+        $("#filter-checks").find('optgroup').each(function (e) {
+          var empty = true,
+              $gr = $(this);
 
-        $.each(optGroups, function () {
-          dropdown.push([
-            '<optgroup label="', this.display_name, '">'
-          ].join(''));
-          $.each(this.checks, function () {
-            dropdown.push([
-              '<option value="', this.name, '">', this.display_name,
-              ' (', this.count, ')</option>'
-            ].join(''));
+          $gr.find('option').each(function (e) {
+            var $opt = $(this),
+                value = $opt.attr('value');
+
+            if (value in checks) {
+              empty = false;
+              $opt.text($opt.data('title') + '(' + checks[value] + ')');
+            } else {
+              $opt.remove();
+            }
           });
-          dropdown.push('</optgroup>');
+
+          if (empty) {
+            $gr.hide();
+          }
         });
-
-        dropdown.push('</select></div>');
-
-        $("#filter-status").first().after(dropdown.join(''));
+        $("#filter-checks").show();
         $("#js-select2-filter-checks").select2({
           width: "resolve"
         });
@@ -1510,7 +1500,7 @@
         $('#filter-status select').select2('val', PTL.editor.filter);
       }
     } else { // Normal filtering options (untranslated, fuzzy...)
-      $("#filter-checks").remove();
+      $("#filter-checks").hide();
       if (!PTL.editor.preventNavigation) {
         var newHash = "filter=" + filterBy;
         if (PTL.editor.user && isUserFilter) {
@@ -1718,8 +1708,10 @@
     }
 
     var uid = PTL.editor.units.getCurrent().id,
-        node = $("#extras-container"),
+        node = $(".translate-container"),
         timelineUrl = l(['/xhr/units/', uid, '/timeline/'].join(''));
+
+    node.spin();
 
     // Always abort previous requests so we only get results for the
     // current unit
@@ -1748,9 +1740,6 @@
           $("#js-show-timeline").hide();
           $("#js-hide-timeline").show();
         }
-      },
-      beforeSend: function () {
-        node.spin();
       },
       complete: function () {
         node.spin(false);

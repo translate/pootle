@@ -36,6 +36,9 @@ from pootle_project.models import Project
 from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
 
+from .exceptions import Http400
+from .url_helpers import split_pootle_path
+
 
 CLS2ATTR = {
     'TranslationProject': 'translation_project',
@@ -47,8 +50,18 @@ CLS2ATTR = {
 def get_path_obj(func):
     @wraps(func)
     def wrapped(request, *args, **kwargs):
-        language_code = kwargs.pop('language_code', None)
-        project_code = kwargs.pop('project_code', None)
+        if request.is_ajax():
+            pootle_path = request.GET.get('path', None)
+            if pootle_path is None:
+                raise Http400(_('Arguments missing.'))
+
+            language_code, project_code, dir_path, filename = \
+                split_pootle_path(pootle_path)
+            kwargs['dir_path'] = dir_path
+            kwargs['filename'] = filename
+        else:
+            language_code = kwargs.pop('language_code', None)
+            project_code = kwargs.pop('project_code', None)
 
         if language_code and project_code:
             try:
@@ -59,7 +72,7 @@ def get_path_obj(func):
             except TranslationProject.DoesNotExist:
                 path_obj = None
 
-            if path_obj is None:
+            if path_obj is None and not request.is_ajax():
                 # Explicit selection via the UI: redirect either to
                 # ``/language_code/`` or ``/projects/project_code/``
                 user_choice = request.COOKIES.get('user-choice', None)
@@ -84,6 +97,7 @@ def get_path_obj(func):
             path_obj = Directory.objects.root
 
         request.ctx_obj = path_obj
+        request.resource_obj = path_obj
 
         return func(request, path_obj, *args, **kwargs)
 
@@ -130,11 +144,13 @@ def get_resource_context(func):
         request.store = store
         request.directory = directory
         request.pootle_path = pootle_path
-        request.ctx_obj = store or directory
-        request.ctx_path = ctx_path
-        request.resource_path = resource_path
 
-        return func(request, path_obj, dir_path, filename)
+        request.resource_obj = store or (directory if dir_path else path_obj)
+        request.resource_path = resource_path
+        request.ctx_obj = path_obj or request.resource_obj
+        request.ctx_path = ctx_path
+
+        return func(request, path_obj, dir_path=dir_path, filename=filename)
 
     return wrapped
 

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2012 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -21,6 +22,7 @@
 from django.utils.translation import ugettext_lazy as _
 
 from translate.filters.decorators import Category
+from translate.filters import checks
 
 
 category_names = {
@@ -70,70 +72,51 @@ check_names = {
     # Translators: This refers to tabulation characters
     'tabs': _(u"Tabs"),
     'unchanged': _(u"Unchanged"),
+    'untranslated': _(u"Untranslated"),
     'urls': _(u"URLs"),
     'validchars': _(u"Valid characters"),
     'variables': _(u"Placeholders"),
     'xmltags': _(u"XML tags"),
 }
 
+excluded_filters = ['hassuggestion', 'spellcheck']
 
-def get_quality_check_failures(path_obj, path_stats, include_url=True):
-    """Returns a list of the failed checks sorted by their importance.
 
-    :param path_obj: An object which has the ``getcompletestats`` method.
-    :param path_stats: A dictionary of raw stats, as returned by
-                       :func:`pootle_misc.stats.get_raw_stats`.
-    :param include_url: Whether to include URLs in the returning result
-                        or not.
-    """
-    checks = []
+def get_qualitychecks():
+    sc = checks.StandardChecker()
+    for filt in sc.defaultfilters:
+        if not filt in excluded_filters:
+            # don't use an empty string because of
+            # http://bugs.python.org/issue18190
+            getattr(sc, filt)(u'_', u'_')
 
-    try:
-        property_stats = path_obj.getcompletestats()
-        total = path_stats['total']['units']
-        keys = property_stats.keys()
-        keys.sort(reverse=True)
+    return sc.categories
 
-        for i, category in enumerate(keys):
-            group = {
+
+def get_qualitycheck_schema(path_obj=None):
+    d = {}
+    checks = get_qualitychecks()
+
+    for check, cat in checks.items():
+        if not cat in d:
+            d[cat] = {
+                'code': cat,
+                'title': u"%s" % category_names[cat],
                 'checks': []
             }
+        d[cat]['checks'].append({
+            'code': check,
+            'title': u"%s" % check_names.get(check, check),
+            'url': path_obj.get_translate_url(check=check) if path_obj else ''
+        })
 
-            if category != Category.NO_CATEGORY:
-                group.update({
-                    'name': category,
-                    'display_name': unicode(category_names[category]),
-                })
+    result = sorted([item for code, item in d.items()],
+                    key=lambda x: x['code'],
+                    reverse=True)
 
-            cat_keys = property_stats[category].keys()
-            cat_keys.sort()
+    return result
 
-            cat_total = 0
 
-            for checkname in cat_keys:
-                checkcount = property_stats[category][checkname]
-                cat_total += checkcount
-
-                if total and checkcount:
-                    check_display = unicode(check_names.get(checkname,
-                                                            checkname))
-                    check = {
-                        'name': checkname,
-                        'display_name': check_display,
-                        'count': checkcount
-                    }
-
-                    if include_url:
-                        check['url'] = path_obj.get_translate_url(
-                                check=checkname,
-                            )
-
-                    group['checks'].append(check)
-
-            if cat_total:
-                checks.append(group)
-
-    except IOError:
-        pass
-
-    return checks
+def get_qualitychecks_by_category(category):
+    checks = get_qualitychecks()
+    return filter(lambda x: checks[x] == category, checks)

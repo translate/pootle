@@ -65,40 +65,11 @@
       });
       $('.js-popup-inline').magnificPopup();
 
-      /* Path summary */
-      $(document).on("click", "#js-path-summary", function (e) {
+      /* Generic toggle */
+      $(document).on("click", ".js-toggle", function (e) {
         e.preventDefault();
-        var node = $("#" + $(this).data('target')),
-            $textNode = $(this),
-            data = node.data();
-
-        function hideShow() {
-          node.slideToggle('slow', 'easeOutQuad', function () {
-            node.data('collapsed', !data.collapsed);
-            var newText = data.collapsed ? gettext('Expand details') : gettext('Collapse details');
-            $textNode.text(newText);
-          });
-        }
-
-        if (data.loaded) {
-          hideShow();
-        } else {
-          var url = $(this).attr('href');
-          $.ajax({
-            url: url,
-            success: function (data) {
-              node.html(data).hide();
-              node.data('loaded', true);
-              hideShow();
-            },
-            beforeSend: function () {
-              node.spin();
-            },
-            complete: function () {
-              node.spin(false);
-            },
-          });
-        }
+        var target = $(this).attr("href") || $(this).data("target");
+        $(target).toggle();
       });
 
       /* Sorts language names within select elements */

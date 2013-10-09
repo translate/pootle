@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of translate.
 #
@@ -19,17 +20,13 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from django.db import models
 from django.core.urlresolvers import reverse
+from django.db import models
 
+from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
-from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
-from pootle_misc.util import cached_property, dictsum, getfromcache
-from pootle_store.models import Suggestion, Unit
-from pootle_store.util import (empty_quickstats, empty_completestats,
-                               statssum, completestatssum, suggestions_sum)
-
+from pootle_misc.util import cached_property
 
 class DirectoryManager(models.Manager):
 
@@ -48,20 +45,63 @@ class DirectoryManager(models.Manager):
     projects = property(_get_projects)
 
 
-class Directory(models.Model):
-
-    class Meta:
-        ordering = ['name']
-        app_label = "pootle_app"
-
-    is_dir = True
+class Directory(models.Model, TreeItem):
 
     name = models.CharField(max_length=255, null=False)
     parent = models.ForeignKey('Directory', related_name='child_dirs',
             null=True, db_index=True)
     pootle_path = models.CharField(max_length=255, null=False, db_index=True)
 
+    is_dir = True
+
     objects = DirectoryManager()
+
+    class Meta:
+        ordering = ['name']
+        app_label = "pootle_app"
+
+    @property
+    def code(self):
+        return self.name.replace('.', '-')
+
+    @property
+    def stores(self):
+        """Queryset with all descending stores."""
+        from pootle_store.models import Store
+        return Store.objects.filter(pootle_path__startswith=self.pootle_path)
+
+    @property
+    def is_template_project(self):
+        return self.pootle_path.startswith('/templates/')
+
+    @cached_property
+    def translation_project(self):
+        """Returns the translation project belonging to this directory."""
+        if self.is_language() or self.is_project():
+            return None
+        else:
+            if self.is_translationproject():
+                return self.translationproject
+            else:
+                aux_dir = self
+                while (not aux_dir.is_translationproject() and
+                       aux_dir.parent is not None):
+                    aux_dir = aux_dir.parent
+
+                return aux_dir.translationproject
+
+    @cached_property
+    def path(self):
+        """Returns just the path part omitting language and project codes.
+
+        If the `pootle_path` of a :cls:`Directory` object `dir` is
+        `/af/project/dir1/dir2/file.po`, `dir.path` will return
+        `dir1/dir2/file.po`.
+        """
+        return u'/'.join(self.pootle_path.split(u'/')[3:])
+
+    def __unicode__(self):
+        return self.pootle_path
 
     def save(self, *args, **kwargs):
         if self.parent is not None:
@@ -70,6 +110,9 @@ class Directory(models.Model):
             self.pootle_path = '/'
 
         super(Directory, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return l(self.pootle_path)
 
     def get_translate_url(self, **kwargs):
         lang, proj, dir, fn = split_pootle_path(self.pootle_path)
@@ -92,6 +135,23 @@ class Directory(models.Model):
             get_editor_filter(**kwargs),
         ])
 
+    ### TreeItem
+
+    def get_children(self):
+        result = []
+        #FIXME: can we replace this with a quicker path query?
+        result.extend([item for item in self.child_stores.iterator()])
+        result.extend([item for item in self.child_dirs.iterator()])
+        return result
+
+    def get_parent(self):
+        return self.parent
+
+    def get_cachekey(self):
+        return self.pootle_path
+
+    ### /TreeItem
+
     def get_relative(self, path):
         """Given a path of the form a/b/c, where the path is relative
         to this directory, recurse the path and return the object
@@ -113,77 +173,10 @@ class Directory(models.Model):
         else:
             return self
 
-    @getfromcache
-    def get_mtime(self):
-        return max_column(Unit.objects.filter(
-            store__pootle_path__startswith=self.pootle_path
-        ), 'mtime', None)
-
-    def _get_stores(self):
-        """Queryset with all descending stores."""
-        from pootle_store.models import Store
-        return Store.objects.filter(pootle_path__startswith=self.pootle_path)
-    stores = property(_get_stores)
-
-    @cached_property
-    def path(self):
-        """Returns just the path part omitting language and project codes.
-
-        If the `pootle_path` of a :cls:`Directory` object `dir` is
-        `/af/project/dir1/dir2/file.po`, `dir.path` will return
-        `dir1/dir2/file.po`.
-        """
-        return u'/'.join(self.pootle_path.split(u'/')[3:])
-
     def get_or_make_subdir(self, child_name):
         child_dir, created = Directory.objects.get_or_create(name=child_name,
                                                              parent=self)
         return child_dir
-
-    def __unicode__(self):
-        return self.pootle_path
-
-    def get_absolute_url(self):
-        return l(self.pootle_path)
-
-    @getfromcache
-    def getquickstats(self):
-        """Calculate aggregate stats for all directory based on stats
-        of all descending stores and dirs."""
-        if self.is_template_project:
-            #FIXME: Hackish return empty_stats to avoid messing up
-            # with project and language stats
-            return empty_quickstats
-
-        #FIXME: can we replace this with a quicker path query?
-        file_result = statssum(self.child_stores.iterator())
-        dir_result = statssum(self.child_dirs.iterator())
-        stats = dictsum(file_result, dir_result)
-        return stats
-
-
-    @getfromcache
-    def getcompletestats(self):
-        if self.is_template_project:
-            return empty_completestats
-
-        file_result = completestatssum(self.child_stores.iterator())
-        dir_result = completestatssum(self.child_dirs.iterator())
-
-        stats = {}
-        for cat in set(file_result) | set(dir_result):
-            stats[cat] = dictsum(file_result.get(cat, {}),
-                                 dir_result.get(cat, {}))
-
-        return stats
-
-
-    @getfromcache
-    def get_suggestion_stats(self):
-        file_result = suggestions_sum(self.child_stores.iterator())
-        dir_result = suggestions_sum(self.child_dirs.iterator())
-        return file_result + dir_result
-
 
     def trail(self, only_dirs=True):
         """Returns a list of ancestor directories excluding
@@ -207,11 +200,6 @@ class Directory(models.Model):
 
         return Directory.objects.none()
 
-    def get_suggestion_count(self):
-        """check if any child store has suggestions"""
-        return Suggestion.objects.filter(
-            unit__store__pootle_path__startswith=self.pootle_path).count()
-
     def is_language(self):
         """does this directory point at a language"""
         return self.pootle_path.count('/') == 2
@@ -224,25 +212,6 @@ class Directory(models.Model):
         """does this directory point at a translation project"""
         return (self.pootle_path.count('/') == 3 and not
                 self.pootle_path.startswith('/projects/'))
-
-    is_template_project = property(lambda self: self.pootle_path
-                                                    .startswith('/templates/'))
-
-    @cached_property
-    def translation_project(self):
-        """Returns the translation project belonging to this directory."""
-        if self.is_language() or self.is_project():
-            return None
-        else:
-            if self.is_translationproject():
-                return self.translationproject
-            else:
-                aux_dir = self
-                while (not aux_dir.is_translationproject() and
-                       aux_dir.parent is not None):
-                    aux_dir = aux_dir.parent
-
-                return aux_dir.translationproject
 
     def get_real_path(self):
         """physical filesystem path for directory"""

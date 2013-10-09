@@ -24,6 +24,18 @@
         <option value="checks">{% trans "Checks" %}</option>
       </select>
     </div>
+    <div id="filter-checks">
+      <select id="js-select2-filter-checks" class="select2-filter-checks" name="filter-checks">
+        <option selected="selected" value="none">------</option>
+        {% for item in check_categories %}
+          <optgroup label="{{ item.title }}">
+          {% for check in item.checks %}
+            <option value="{{ check.code }}" data-title="{{ check.title }}"></option>
+          {% endfor %}
+          </optgroup>
+        {% endfor %}
+      </select>
+    </div>
     <div id="js-editor-export"></div>
   </div>
 
