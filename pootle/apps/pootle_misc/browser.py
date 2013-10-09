@@ -127,7 +127,7 @@ def get_parent(directory):
         return {
             'icon': 'folder-parent',
             'title': _("Back to parent folder"),
-            'href': l(parent_dir.pootle_path)
+            'href': parent_dir.get_absolute_url()
         }
     else:
         return None
