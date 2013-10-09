@@ -22,13 +22,13 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
+from pootle.core.browser import get_children, get_table_headings, get_parent
 from pootle.core.decorators import (get_path_obj, get_resource_context,
                                     permission_required)
 from pootle.core.helpers import (get_export_view_context,
                                  get_overview_context,
                                  get_translation_context)
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
-from pootle_misc.browser import get_children, get_table_headings, get_parent
 
 
 @get_path_obj

@@ -27,6 +27,9 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 
+from pootle.core.browser import (make_language_item,
+                                 make_project_list_item,
+                                 get_table_headings)
 from pootle.core.decorators import get_path_obj, permission_required
 from pootle.core.helpers import (get_export_view_context,
                                  get_overview_context,
@@ -35,9 +38,6 @@ from pootle.core.url_helpers import split_pootle_path
 from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions
 from pootle_language.models import Language
-from pootle_misc.browser import (make_language_item,
-                                 make_project_list_item,
-                                 get_table_headings)
 from pootle_misc.forms import LiberalModelChoiceField
 from pootle_project.models import Project
 from pootle_translationproject.models import TranslationProject

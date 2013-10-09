@@ -22,14 +22,14 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
+from pootle.core.browser import (make_project_item,
+                                 get_table_headings)
 from pootle.core.decorators import get_path_obj, permission_required
 from pootle.core.helpers import (get_export_view_context,
                                  get_overview_context,
                                  get_translation_context)
 from pootle.i18n.gettext import tr_lang
 from pootle_app.views.admin.permissions import admin_permissions
-from pootle_misc.browser import (make_project_item,
-                                 get_table_headings)
 
 
 @get_path_obj
