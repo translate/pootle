@@ -29,6 +29,6 @@ def main():
 
 
 if __name__ == "__main__":
-    from pootle_misc.log import cmd_log
+    from pootle.core.log import cmd_log
     cmd_log(*sys.argv)
     main()

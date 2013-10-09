@@ -42,15 +42,15 @@ from django.utils.http import urlquote
 from translate.filters.decorators import Category
 from translate.storage import base
 
+from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
+                             TRANSLATION_DELETED, UNIT_ADDED, UNIT_DELETED,
+                             STORE_ADDED, STORE_DELETED, action_log, store_log)
 from pootle.core.managers import RelatedManager
 from pootle.core.mixins import CachedMethods, TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_misc.aggregate import group_by_count, max_column
 from pootle_misc.baseurl import l
 from pootle_misc.checks import check_names
-from pootle_misc.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
-                             TRANSLATION_DELETED, UNIT_ADDED, UNIT_DELETED,
-                             STORE_ADDED, STORE_DELETED, action_log, store_log)
 from pootle_misc.util import cached_property, datetime_min
 from pootle_statistics.models import (SubmissionFields,
                                       SubmissionTypes, Submission)
