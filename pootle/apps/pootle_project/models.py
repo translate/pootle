@@ -218,15 +218,6 @@ class Project(models.Model, TreeItem):
         # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
 
-    def get_absolute_url(self):
-        return l(self.pootle_path)
-
-    def get_translate_url(self, **kwargs):
-        return u''.join([
-            reverse('pootle-project-translate', args=[self.code]),
-            get_editor_filter(**kwargs),
-        ])
-
     def delete(self, *args, **kwargs):
         directory = self.directory
 
@@ -269,6 +260,15 @@ class Project(models.Model, TreeItem):
 
         # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
+
+    def get_absolute_url(self):
+        return l(self.pootle_path)
+
+    def get_translate_url(self, **kwargs):
+        return u''.join([
+            reverse('pootle-project-translate', args=[self.code]),
+            get_editor_filter(**kwargs),
+        ])
 
     def clean(self):
         if self.code in RESERVED_PROJECT_CODES:
