@@ -21,7 +21,6 @@
 
 from django.utils.translation import ugettext_lazy as _
 
-from .baseurl import l
 
 HEADING_CHOICES = [
     {
@@ -119,7 +118,7 @@ def get_parent(directory):
         return {
             'icon': 'folder-parent',
             'title': _("Back to parent folder"),
-            'href': l(parent_dir.pootle_path)
+            'href': parent_dir.get_absolute_url()
         }
     else:
         return None
