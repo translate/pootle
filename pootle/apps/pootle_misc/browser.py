@@ -82,7 +82,7 @@ def get_table_headings(choices):
 
 def make_generic_item(path_obj):
     """Template variables for each row in the table."""
-    info = {
+    return {
         'href': path_obj.get_absolute_url(),
         'href_all': path_obj.get_translate_url(),
         'href_todo': path_obj.get_translate_url(state='incomplete'),
@@ -91,8 +91,6 @@ def make_generic_item(path_obj):
         'title': path_obj.name,
         'code': path_obj.code
     }
-
-    return info
 
 
 def make_directory_item(directory):
@@ -160,7 +158,6 @@ def get_children(translation_project, directory):
     The elements of the list are dictionaries which keys are populated after
     in the templates.
     """
-
     directories = [make_directory_item(child_dir)
                    for child_dir in directory.child_dirs.iterator()]
 
