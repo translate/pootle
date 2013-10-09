@@ -24,13 +24,13 @@ from django.shortcuts import render_to_response
 from django.template import loader, RequestContext
 from django.utils.translation import ugettext as _
 
+from pootle.core.browser import get_table_headings, make_project_item
 from pootle.core.decorators import get_path_obj, permission_required
 from pootle.core.helpers import (get_export_view_context, get_overview_context,
                                  get_translation_context)
 from pootle.i18n.gettext import tr_lang
 from pootle_app.models.permissions import check_permission
 from pootle_app.views.admin.permissions import admin_permissions
-from pootle_misc.browser import get_table_headings, make_project_item
 from pootle_misc.util import jsonify, ajax_required
 
 

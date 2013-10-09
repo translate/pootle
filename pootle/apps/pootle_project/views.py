@@ -28,13 +28,13 @@ from django.views.decorators.http import require_POST
 
 from taggit.models import Tag
 
+from pootle.core.browser import (get_table_headings, make_language_item,
+                                 make_project_list_item)
 from pootle.core.decorators import get_path_obj, permission_required
 from pootle.core.helpers import (get_export_view_context, get_overview_context,
                                  get_translation_context)
 from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models.permissions import check_permission
-from pootle_misc.browser import (get_table_headings, make_language_item,
-                                 make_project_list_item)
 from pootle_misc.util import ajax_required, jsonify
 from pootle_project.forms import (TranslationProjectFormSet,
                                   TranslationProjectTagForm, tp_form_factory)
