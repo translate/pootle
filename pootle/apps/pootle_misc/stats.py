@@ -219,6 +219,28 @@ def get_path_summary(path_obj, path_stats, latest_action):
                       num_words,
                       {'num': num_words, }),
         ])
+
+        if path_obj.is_dir:
+            # Putting the next import at the top of the file causes circular
+            # import issues.
+            from pootle_tagging.models import Goal
+
+            pootle_path = path_obj.pootle_path
+            goal = Goal.get_most_important_incomplete_for_path(pootle_path)
+
+            if goal is not None:
+                goal_words = goal.get_incomplete_words_in_path(pootle_path)
+                goal_url = goal.get_translate_url_for_path(pootle_path,
+                                                           state='incomplete')
+                incomplete.extend([
+                    u'<br /><a class="path-incomplete" href="%(url)s">' % {
+                            'url': goal_url,
+                        },
+                    ungettext(u'Next most important goal (%(num)d word left)',
+                              u'Next most important goal (%(num)d words left)',
+                              goal_words,
+                              {'num': goal_words, }),
+                ])
     else:
         incomplete.extend([
             u'<a class="path-incomplete" href="%(url)s">' % {

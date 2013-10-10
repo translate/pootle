@@ -161,6 +161,31 @@ class Goal(TagBase):
 
             return list(chain(regular_goals, project_goals))
 
+    @classmethod
+    def get_most_important_incomplete_for_path(cls, pootle_path):
+        """Return the most important incomplete goal for this path or None.
+
+        If this is not the 'templates' translation project for the project then
+        also considers the 'project goals' applied to the stores in the
+        'templates' translation project.
+
+        The most important goal is the one with the lowest priority, or if more
+        than a goal have the lower priority then the alphabetical order is
+        taken in account.
+
+        :param pootle_path: A string with a valid pootle path.
+        """
+        most_important = None
+        for goal in cls.get_goals_for_path(pootle_path):
+            if (most_important is None or
+                goal.priority < most_important.priority or
+                (goal.priority == most_important.priority and
+                 goal.name < most_important.name)):
+                if goal.get_incomplete_words_in_path(pootle_path):
+                    most_important = goal
+
+        return most_important
+
     def save(self, *args, **kwargs):
         # Putting the next import at the top of the file causes circular import
         # issues.
@@ -421,6 +446,14 @@ class Goal(TagBase):
                     checks[i]['checks'].append(check)
 
         return checks
+
+    def get_incomplete_words_in_path(self, pootle_path):
+        """Return the number of incomplete words for this goal in the path.
+
+        :param pootle_path: A string with a valid pootle path.
+        """
+        stats = self.get_raw_stats_for_path(pootle_path)
+        return stats['untranslated']['words'] + stats['fuzzy']['words']
 
 
 class ItemWithGoal(GenericTaggedItemBase):
