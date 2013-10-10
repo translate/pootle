@@ -24,6 +24,7 @@ import logging
 import os
 
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.core.urlresolvers import reverse
@@ -217,6 +218,9 @@ class Project(models.Model, TreeItem):
 
         # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
+        users_list = User.objects.values_list('username', flat=True)
+        cache.delete_many(map(lambda x: 'projects:accessible:%s' % x,
+                              users_list))
 
     def delete(self, *args, **kwargs):
         directory = self.directory
@@ -260,6 +264,9 @@ class Project(models.Model, TreeItem):
 
         # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
+        users_list = User.objects.values_list('username', flat=True)
+        cache.delete_many(map(lambda x: 'projects:accessible:%s' % x,
+                              users_list))
 
     def get_absolute_url(self):
         return l(self.pootle_path)
