@@ -46,6 +46,11 @@ Not released yet. *Planned release date late November 2013*
 - Pootle now supports tags that can be added to translation projects or
   individual files, and supports filtering translation projects by their tags.
 
+- Pootle now supports goals that can be applied to files. It is possible to
+  apply goals globally in a given project. Goals allow managers to provide a
+  simple way to prioritize work and keep track of the translation progress in a
+  group of files.
+
 
 Version 2.5.0
 -------------
