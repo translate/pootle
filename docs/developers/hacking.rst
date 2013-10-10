@@ -92,7 +92,7 @@ the created environments.
 
    $ export WORKON_HOME=~/envs
    $ mkdir -p $WORKON_HOME
-   $ source /usr/local/bin/virtualenvwrapper.sh
+   $ source /usr/local/bin/virtualenvwrapper.sh  # Or /usr/bin/virtualenvwrapper.sh
 
 .. note::
 
