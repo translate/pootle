@@ -463,6 +463,8 @@ def overview(request, translation_project, dir_path, filename=None,
         'can_edit': can_edit,
     })
 
+    tp_pootle_path = translation_project.pootle_path
+
     if store is None:
         path_obj_goals = Goal.get_goals_for_path(path_obj.pootle_path)
         path_obj_has_goals = len(path_obj_goals) > 0
@@ -496,6 +498,8 @@ def overview(request, translation_project, dir_path, filename=None,
                     'headings': get_table_headings(table_fields),
                     'items': get_goal_children(directory, goal),
                 },
+                'goal': goal,
+                'goal_url': goal.get_drill_down_url_for_path(tp_pootle_path),
                 'path_obj_has_goals': True,
             })
         else:
@@ -512,6 +516,11 @@ def overview(request, translation_project, dir_path, filename=None,
                 },
                 'path_obj_has_goals': path_obj_has_goals,
             })
+    elif goal is not None:
+        template_vars.update({
+            'goal': goal,
+            'goal_url': goal.get_drill_down_url_for_path(tp_pootle_path),
+        })
 
     if can_edit:
         if store is None:
