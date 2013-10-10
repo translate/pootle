@@ -40,6 +40,7 @@ Online translation editor
    terminology
    actions
    tags
+   goals
 
 
 .. _features#admin:
