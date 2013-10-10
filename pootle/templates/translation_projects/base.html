@@ -1,8 +1,5 @@
 {% extends "layout.html"  %}
 
-{% load url from future %}
-{% load i18n baseurl cache common_tags %}
-
 {% block html_id %}tp{% endblock %}
 
 {% block title %}{{ translation_project.project }} | {{ language.name }} | {{ block.super }}{% endblock %}
@@ -13,7 +10,4 @@
 
 {% block tabs %}
 {% include "translation_projects/_tabs.html" %}
-{% endblock %}
-
-{% block scripts_extra %}
 {% endblock %}
