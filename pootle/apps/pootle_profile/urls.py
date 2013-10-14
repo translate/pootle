@@ -24,19 +24,30 @@ from django.conf.urls import include, patterns
 
 
 urlpatterns = patterns('pootle_profile.views',
-    (r'^login/?$',    'login'),
     (r'^logout/?$',   'logout'),
     (r'^edit/?$', 'profile_edit'),
     (r'^personal/edit/?$',   'edit_personal_info'),
 )
-urlpatterns += patterns('django.contrib.auth.views',
-    (r'^password/change/$', 'password_change'),
-    (r'^password/change/done/$', 'password_change_done'),
-    (r'^password/reset/$', 'password_reset'),
-    (r'^password/reset/confirm/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', 'password_reset_confirm'),
-    (r'^password/reset/complete/$', 'password_reset_complete'),
-    (r'^password/reset/done/$', 'password_reset_done'),
-)
+
+# Only include password-related urls if using password authentication
+if settings.AUTHENTICATION == 'password':
+    urlpatterns += patterns('pootle_profile.views',
+        (r'^login/?$',    'login'),
+    )
+    urlpatterns += patterns('django.contrib.auth.views',
+        (r'^password/change/$', 'password_change'),
+        (r'^password/change/done/$', 'password_change_done'),
+        (r'^password/reset/$', 'password_reset'),
+        (r'^password/reset/confirm/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', 'password_reset_confirm'),
+        (r'^password/reset/complete/$', 'password_reset_complete'),
+        (r'^password/reset/done/$', 'password_reset_done'),
+    )
+
+# Include OpenID urls if using openid authentication
+if settings.AUTHENTICATION == 'openid':
+    urlpatterns += patterns('',
+        (r'', include('django_openid_auth.urls')),
+    )
 
 # Only include registration urls if registration is enabled
 if settings.CAN_REGISTER:

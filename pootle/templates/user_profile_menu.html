@@ -4,6 +4,8 @@
   <li><a href='{% filter l %}/accounts/{{ user.username }} {% endfilter %}' class="dashboard" title="{% trans 'Overview of your account' %}">{% trans "Dashboard" %}</a></li>
   <li><a href='{{ "/accounts/edit/"|l }}' class="settings" title="{% trans 'Configure your translation preferences' %}">{% trans "Settings" %}</a></li>
   <li><a href='{{ "/accounts/personal/edit/"|l }}' class="profile" title="{% trans 'Change your personal information' %}">{% trans "Profile" %}</a></li>
-  <li><a href='{{ "/accounts/password/change/"|l }}' class="password" title="{% trans 'Change your password' %}">{% trans "Password" %}</a></li>
+    {% if settings.AUTHENTICATION == 'password' %}
+    <li><a href='{{ "/accounts/password/change/"|l }}' class="password" title="{% trans 'Change your password' %}">{% trans "Password" %}</a></li>
+    {% endif %}
   {% endif %}
 </ul>

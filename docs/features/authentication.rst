@@ -53,3 +53,37 @@ part of the branch *employees* on the LDAP.
             'last_name':'sn',
             'email':'uid'
     }
+
+
+.. _authentication#openid:
+
+OpenID Authentication
+---------------------
+
+OpenID authentication may be enabled by installing the python-openid
+library https://pypi.python.org/pypi/python-openid/ and adding the
+following to the config file:
+
+.. code-block:: python
+
+    INSTALLED_APPS += ['django_openid_auth']
+    
+    AUTHENTICATION_BACKENDS = [
+        'django_openid_auth.auth.OpenIDBackend',
+        'django.contrib.auth.backends.ModelBackend',
+        ]
+
+    AUTHENTICATION = 'openid'
+    
+    OPENID_CREATE_USERS = True
+    
+    LOGIN_URL = '/openid/login/'
+    LOGIN_REDIRECT_URL = '/'
+    USE_CAPTCHA = False
+    
+
+If you would like to use OpenID in SSO mode, additionally set:
+
+.. code-block:: python
+
+    OPENID_SSO_SERVER_URL = 'https://login.launchpad.net/'
