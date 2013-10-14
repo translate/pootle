@@ -393,16 +393,23 @@ def overview(request, translation_project, dir_path, filename=None):
                 if getattr(action, 'get_download', None):
                     export_path = action.get_download(path_obj)
                     if export_path:
-                        response = HttpResponse('/export/' + export_path)
+                        import mimetypes
+                        abs_path = absolute_real_path(export_path)
+                        filename = os.path.basename(export_path)
+                        mimetype, encoding = mimetypes.guess_type(filename)
+                        mimetype = mimetype or 'application/octet-stream'
+                        with open(abs_path, 'rb') as f:
+                            response = HttpResponse(f.read(),
+                                                    mimetype=mimetype)
                         response['Content-Disposition'] = (
-                                'attachment; filename="%s"' %
-                                os.path.basename(export_path))
+                                'attachment; filename="%s"' % filename)
                         return response
 
                 if not action_output:
                     if not store:
                         rev_args = [language.code, project.code, '']
-                        overview_url = reverse('tp.overview', args=rev_args)
+                        overview_url = reverse('pootle-tp-overview',
+                                               args=rev_args)
                     else:
                         slash = store_f.rfind('/')
                         store_d = ''
@@ -413,7 +420,8 @@ def overview(request, translation_project, dir_path, filename=None):
                             store_f = store_f[1:]
                         rev_args = [language.code, project.code, store_d,
                                     store_f]
-                        overview_url = reverse('tp.overview', args=rev_args)
+                        overview_url = reverse('pootle-tp-overview',
+                                               args=rev_args)
                     return HttpResponseRedirect(overview_url)
 
     template_vars.update({
