@@ -16,9 +16,7 @@
 
     /* Initialize variables */
     this.units = new PTL.collections.UnitCollection;
-    this.pootlePath = $('#editor').data('pootle-path');
-    this.ctxPath = $('#editor').data('ctx-path');
-    this.resourcePath = $('#editor').data('resource-path');
+
     this.currentPage = 1;
     this.currentNumPages = 0;
     this.pagesGot = {};
@@ -900,7 +898,7 @@
 
     extraData = {
       page: opts.page,
-      path: this.pootlePath
+      path: this.settings.pootlePath
     };
     if (opts.pager) {
       extraData.pager = opts.pager;
@@ -952,8 +950,8 @@
 
           // FIXME: can we avoid this?
           var urlStr = [
-            PTL.editor.ctxPath, 'translate/', PTL.editor.resourcePath,
-            '#unit=',
+            PTL.editor.settings.ctxPath, 'translate/',
+            PTL.editor.settings.resourcePath, '#unit=',
           ].join('');
 
           var i, j, unit, unitGroup;
@@ -1046,8 +1044,8 @@
         even = true,
         rows = "",
         urlStr = [
-          PTL.editor.ctxPath, 'translate/', PTL.editor.resourcePath,
-          '#unit=',
+          PTL.editor.settings.ctxPath, 'translate/',
+          PTL.editor.settings.resourcePath, '#unit=',
         ].join('');
 
     for (i=0; i<units.length; i++) {
@@ -1394,7 +1392,7 @@
       } else {
         PTL.editor.displayMsg([
           gettext("You reached the end of the list."),
-          '<br /><a href="', l(PTL.editor.pootlePath), '">',
+          '<br /><a href="', l(PTL.editor.settings.pootlePath), '">',
           gettext('Return to the overview page.'), '</a>'
         ].join(""));
       }
@@ -1478,9 +1476,10 @@
   getCheckOptions: function () {
     var checksUrl = l('/xhr/checks/'),
         reqData = {
-          path: this.pootlePath,
+          path: this.settings.pootlePath,
           goal: this.goal
-        }, opts;
+        },
+        opts;
 
     $.ajax({
       url: checksUrl,

@@ -21,7 +21,10 @@ $(document).magnificPopup({
 });
 $(function() {
   var options = {
-    tmUrl: '{{ AMAGAMA_URL }}'
+    tmUrl: '{{ AMAGAMA_URL }}',
+    pootlePath: '{{ pootle_path }}',
+    ctxPath: '{{ ctx_path }}',
+    resourcePath: '{{ resource_path }}'
   };
   {% if cansuggest or cantranslate %}
   options.mt = [];
@@ -36,4 +39,3 @@ $(function() {
   PTL.editor.init(options);
 });
 </script>
-

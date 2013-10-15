@@ -1,9 +1,6 @@
 {% load i18n assets locale %}
 {% get_current_language as LANGUAGE_CODE %}
-<div id="editor"
-    data-pootle-path="{{ pootle_path }}"
-    data-ctx-path="{{ ctx_path }}"
-    data-resource-path="{{ resource_path }}">
+<div id="editor">
     <noscript>
       <h1>{% trans "Pootle's editor requires JavaScript" %}</h1>
       <p>{% trans "Please enable JavaScript in your browser preferences and reload the page." %}</p>
