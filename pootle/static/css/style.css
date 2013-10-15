@@ -684,9 +684,9 @@ html, body
 #noscript
 {
     top: 41px; /* navbar height + border */
-    width: 400px;
+    width: 480px;
     left: 50%;
-    margin-left: -200px;
+    margin-left: -240px;
     z-index: 101;
 }
 
