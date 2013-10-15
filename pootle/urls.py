@@ -57,6 +57,7 @@ urlpatterns += patterns(
     (r'^pages/', include('staticpages.urls')),
     (r'', include('pootle_app.urls')),
     (r'^projects/', include('pootle_project.urls')),
+    (r'^goals/', include('pootle_tagging.urls')),
     (r'', include('pootle_notifications.urls')),
     (r'', include('pootle_terminology.urls')),
     (r'', include('pootle_store.urls')),

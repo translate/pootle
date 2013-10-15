@@ -1,5 +1,6 @@
 {% extends "tp_base.html" %}
-{% load assets baseurl cache cleanhtml i18n locale progressbar search translation_project_tags common_tags profile_tags %}
+{% load url from future %}
+{% load assets baseurl cache cleanhtml i18n locale progressbar search translation_project_tags goal_tags common_tags profile_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block body_id %}tpoverview{% endblock %}
@@ -10,9 +11,15 @@
 <div class="module first">
   <div class="hd">
     <h2>
-      {% cache settings.CACHE_TIMEOUT path_trail path_obj.id %}
-      <span><a href="{{ translation_project.pootle_path|l }}">{{ project.code }}</a> / {{ path_obj|trail:"/" }}</span>
-      {% endcache %}
+      {% if goal %}
+        {% cache settings.CACHE_TIMEOUT path_with_goal_trail path_obj.id goal.pk %}
+        <span><a href="{{ translation_project.pootle_path|l }}">{{ project.code }}</a> / <a href="{{ goal_url }}">{{ goal.name }}</a> / {{ path_obj|goal_trail:goal }}</span>
+        {% endcache %}
+      {% else %}
+        {% cache settings.CACHE_TIMEOUT path_trail path_obj.id %}
+        <span><a href="{{ translation_project.pootle_path|l }}">{{ project.code }}</a> / {{ path_obj|trail:"/" }}</span>
+        {% endcache %}
+      {% endif %}
       <a href="" id="js-toggle-tags" class="hide tags-aside tags-toggle">
         <i class="icon-tag"></i>
         <span id="js-toggle-tags-text">{% trans "Show tags" %}</span>
@@ -45,10 +52,25 @@
   </div>
 
   {% if table %}
-  <div class="hd">
-    <h2>{% trans "Files and Subfolders" %}</h2>
-  </div>
   <div class="bd">
+
+    <ul id="file-tabs">
+      <li>
+        <a href="{% url 'pootle-tp-overview' language.code project.code path_obj.path %}"
+          {% if table.id = 'tp-files'  %} class="selected-tab"{% endif %}
+          title="{% trans 'Translation project files and folders' %}">
+          {% trans "Files" %}</a>
+      </li>
+      {% if path_obj_has_goals %}
+      <li>
+        <a href="{% url 'pootle-tp-goals' language.code project.code path_obj.path %}"
+          {% if table.id = 'tp-goals'  %} class="selected-tab"{% endif %}
+          title="{% trans 'Administrate your project goals' %}">
+          {% trans "Goals" %}</a>
+      </li>
+      {% endif %}
+    </ul>
+
     <div class="files-subfolders" lang="{{ LANGUAGE_CODE }}">
       {% display_table table %}
     </div>
@@ -96,8 +118,8 @@
 
     <div id="overview-description-tp"
       class="markup-body{% if can_edit %} js-ctx-meta-desc{% endif %}">
-    {% if translation_project.description %}
-      {{ translation_project.description }}
+    {% if description %}
+      {{ description }}
     {% else %}
       <p class="placeholder muted">{% trans "No description set." %}</p>
     {% endif %}
@@ -107,7 +129,7 @@
     </div>
   {% if can_edit %}
     <div class="settings-container js-edit-ctx-meta-desc" style="display:none;">
-      {% include "admin/general_settings_form.html" with form_action="edit_settings.html" %}
+      {% include "admin/general_settings_form.html" %}
     </div>
   {% endif %}
 

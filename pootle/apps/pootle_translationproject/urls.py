@@ -50,8 +50,10 @@ urlpatterns = patterns('pootle_translationproject.views',
         name='pootle-vcs-update'),
 
     # XHR views
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/((.*/)*)edit_settings.html$',
-        'edit_settings'),
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
+        r'edit_settings.html$',
+        'edit_settings',
+        name='pootle-tp-ajax-edit-settings'),
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/summary/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'path_summary_more',
         name='tp.path_summary_more'),
@@ -78,6 +80,17 @@ urlpatterns = patterns('pootle_translationproject.views',
         r'export-view/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'export_view',
         name='export-view'),
+
+    # Goals
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
+        r'(?P<dir_path>(.*/)*)goals$',
+        'goals_overview',
+        name='pootle-tp-goals'),
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
+        r'goals/(?P<goal_slug>[a-z0-9-]+)/real-path/'
+        r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
+        'overview',
+        name='pootle-tp-goal-drill-down'),
 
     # Overview
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',

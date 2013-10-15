@@ -59,6 +59,7 @@ from pootle_project.models import Project
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 from pootle_tagging.forms import TagForm
+from pootle_tagging.models import Goal
 from pootle_translationproject.models import TranslationProject
 
 from .decorators import (get_store_context, get_unit_context,
@@ -412,6 +413,17 @@ def get_step_query(request, units_queryset):
 
 
             units_queryset = match_queryset
+
+    if 'goal' in request.GET:
+        try:
+            goal = Goal.objects.get(slug=request.GET['goal'])
+        except Goal.DoesNotExist:
+            pass
+        else:
+            pootle_path = (request.GET.get('path', '') or
+                           request.path.replace("/export-view/", "/", 1))
+            goal_stores = goal.get_stores_for_path(pootle_path)
+            units_queryset = units_queryset.filter(store__in=goal_stores)
 
     if 'search' in request.GET and 'sfields' in request.GET:
         # use the search form for validation only
@@ -788,8 +800,16 @@ def get_failing_checks(request, path_obj):
     :return: JSON string with a list of failing check categories which
              include the actual checks that are failing.
     """
-    stats = get_raw_stats(path_obj)
-    failures = get_quality_check_failures(path_obj, stats, include_url=False)
+    if 'goal' in request.GET and request.GET['goal']:
+        try:
+            goal = Goal.objects.get(slug=request.GET['goal'])
+        except Goal.DoesNotExist:
+            raise Http404
+        failures = goal.get_failing_checks_for_path(path_obj.pootle_path)
+    else:
+        stats = get_raw_stats(path_obj)
+        failures = get_quality_check_failures(path_obj, stats,
+                                              include_url=False)
 
     response = jsonify(failures)
 
@@ -1076,16 +1096,24 @@ def ajax_remove_tag_from_store(request, tag_slug, store_pk):
         raise PermissionDenied(_("You do not have rights to remove tags."))
 
     store = get_object_or_404(Store, pk=store_pk)
-    tag = get_object_or_404(Tag, slug=tag_slug)
-    store.tags.remove(tag)
+
+    if tag_slug.startswith("goal-"):
+        goal = get_object_or_404(Goal, slug=tag_slug)
+        store.goals.remove(goal)
+    else:
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        store.tags.remove(tag)
 
     return HttpResponse(status=201)
 
 
-def _add_tag(request, store, tag):
-    store.tags.add(tag)
+def _add_tag(request, store, tag_like_object):
+    if isinstance(tag_like_object, Tag):
+        store.tags.add(tag_like_object)
+    else:
+        store.goals.add(tag_like_object)
     context = {
-        'store_tags': store.tags.all().order_by('name'),
+        'store_tags': store.tag_like_objects,
         'path_obj': store,
         'can_edit': check_permission('administrate', request),
     }
@@ -1108,8 +1136,8 @@ def ajax_add_tag_to_store(request, store_pk):
     add_tag_form = TagForm(request.POST)
 
     if add_tag_form.is_valid():
-        new_tag = add_tag_form.save()
-        return _add_tag(request, store, new_tag)
+        new_tag_like_object = add_tag_form.save()
+        return _add_tag(request, store, new_tag_like_object)
     else:
         # If the form is invalid, perhaps it is because the tag already exists,
         # so check if the tag exists.
@@ -1122,10 +1150,17 @@ def ajax_add_tag_to_store(request, store_pk):
                 # If the tag is already applied to the store then avoid
                 # reloading the page.
                 return HttpResponse(status=204)
+            elif len(store.goals.filter(**criteria)) == 1:
+                # If the goal is already applied to the store then avoid
+                # reloading the page.
+                return HttpResponse(status=204)
             else:
-                # Else add the tag to the store.
-                tag = Tag.objects.get(**criteria)
-                return _add_tag(request, store, tag)
+                # Else add the tag (or goal) to the store.
+                if criteria['name'].startswith("goal:"):
+                    tag_like_object = Goal.objects.get(**criteria)
+                else:
+                    tag_like_object = Tag.objects.get(**criteria)
+                return _add_tag(request, store, tag_like_object)
         except Exception:
             # If the form is invalid and the tag doesn't exist yet then display
             # the form with the error messages.

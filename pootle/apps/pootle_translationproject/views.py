@@ -51,7 +51,8 @@ from pootle_app.project_tree import (ensure_target_dir_exists,
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
 from pootle_app.views.top_stats import gentopstats_translation_project
 from pootle_misc.baseurl import redirect
-from pootle_misc.browser import get_children, get_table_headings
+from pootle_misc.browser import (get_children, get_goal_children,
+                                 get_table_headings, make_goal_item)
 from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.stats import (get_raw_stats, get_translation_stats,
                                get_path_summary)
@@ -63,7 +64,9 @@ from pootle_store.util import (absolute_real_path, relative_real_path,
                                add_trailing_slash)
 from pootle_store.filetypes import factory_classes
 from pootle_store.views import get_step_query
-from pootle_tagging.forms import TagForm
+from pootle_tagging.decorators import get_goal
+from pootle_tagging.forms import GoalForm, TagForm
+from pootle_tagging.models import Goal
 
 from .actions import action_groups
 from .forms import DescriptionForm, upload_form_factory
@@ -294,10 +297,17 @@ def _handle_upload_form(request, current_path, translation_project, directory):
     return upload_form_class()
 
 
+def goals_overview(*args, **kwargs):
+    kwargs['in_goal_overview'] = True
+    return overview(*args, **kwargs)
+
+
 @get_path_obj
 @permission_required('view')
 @get_resource_context
-def overview(request, translation_project, dir_path, filename=None):
+@get_goal
+def overview(request, translation_project, dir_path, filename=None,
+             goal=None, in_goal_overview=False):
     current_path = translation_project.directory.pootle_path + dir_path
 
     if filename:
@@ -305,14 +315,14 @@ def overview(request, translation_project, dir_path, filename=None):
         store = get_object_or_404(Store, pootle_path=current_path)
         directory = store.parent
         template_vars = {
-            'store_tags': store.tags.all().order_by('name'),
+            'store_tags': store.tag_like_objects,
         }
         template = "translation_project/store_overview.html"
     else:
         store = None
         directory = get_object_or_404(Directory, pootle_path=current_path)
         template_vars = {
-            'tp_tags': translation_project.tags.all().order_by('name'),
+            'tp_tags': translation_project.tag_like_objects,
         }
         template = "translation_project/overview.html"
 
@@ -341,10 +351,18 @@ def overview(request, translation_project, dir_path, filename=None):
 
     path_stats = get_raw_stats(path_obj, include_suggestions=True)
     path_summary = get_path_summary(path_obj, path_stats, latest_action)
-    actions = action_groups(request, path_obj, path_stats=path_stats)
+
+    #TODO enable again some actions when drilling down a goal.
+    if goal is None:
+        actions = action_groups(request, path_obj, path_stats=path_stats)
+    else:
+        actions = []
+
     action_output = ''
     running = request.GET.get(EXTDIR, '')
-    if running:
+
+    #TODO enable the following again when drilling down a goal.
+    if running and goal is None:
         if store:
             act = StoreAction
         else:
@@ -424,8 +442,14 @@ def overview(request, translation_project, dir_path, filename=None):
                                                args=rev_args)
                     return HttpResponseRedirect(overview_url)
 
+    if goal is None:
+        description = translation_project.description
+    else:
+        description = goal.description
+
     template_vars.update({
         'translation_project': translation_project,
+        'description': description,
         'project': project,
         'language': language,
         'path_obj': path_obj,
@@ -439,17 +463,63 @@ def overview(request, translation_project, dir_path, filename=None):
         'can_edit': can_edit,
     })
 
+    tp_pootle_path = translation_project.pootle_path
+
     if store is None:
-        table_fields = ['name', 'progress', 'total', 'need-translation',
-                        'suggestions']
+        path_obj_goals = Goal.get_goals_for_path(path_obj.pootle_path)
+        path_obj_has_goals = len(path_obj_goals) > 0
+
+        if in_goal_overview and path_obj_has_goals:
+            # Then show the goals tab.
+            table_fields = ['name', 'progress', 'priority', 'total',
+                            'need-translation', 'suggestions']
+            items = [make_goal_item(path_obj_goal, path_obj.pootle_path)
+                     for path_obj_goal in path_obj_goals]
+            template_vars.update({
+                'table': {
+                    'id': 'tp-goals',
+                    'proportional': False,
+                    'fields': table_fields,
+                    'headings': get_table_headings(table_fields),
+                    'items': items,
+                },
+                'path_obj_has_goals': True,
+            })
+        elif goal in path_obj_goals:
+            # Then show the drill down view for the specified goal.
+            table_fields = ['name', 'progress', 'total', 'need-translation',
+                            'suggestions']
+
+            template_vars.update({
+                'table': {
+                    'id': 'tp-goals',
+                    'proportional': True,
+                    'fields': table_fields,
+                    'headings': get_table_headings(table_fields),
+                    'items': get_goal_children(directory, goal),
+                },
+                'goal': goal,
+                'goal_url': goal.get_drill_down_url_for_path(tp_pootle_path),
+                'path_obj_has_goals': True,
+            })
+        else:
+            # Then show the files tab.
+            table_fields = ['name', 'progress', 'total', 'need-translation',
+                            'suggestions']
+            template_vars.update({
+                'table': {
+                    'id': 'tp-files',
+                    'proportional': True,
+                    'fields': table_fields,
+                    'headings': get_table_headings(table_fields),
+                    'items': get_children(directory),
+                },
+                'path_obj_has_goals': path_obj_has_goals,
+            })
+    elif goal is not None:
         template_vars.update({
-            'table': {
-                'id': 'tp',
-                'proportional': True,
-                'fields': table_fields,
-                'headings': get_table_headings(table_fields),
-                'items': get_children(directory),
-            }
+            'goal': goal,
+            'goal_url': goal.get_drill_down_url_for_path(tp_pootle_path),
         })
 
     if can_edit:
@@ -463,8 +533,18 @@ def overview(request, translation_project, dir_path, filename=None):
             add_tag_action_url = reverse('pootle-store-ajax-add-tag',
                                          args=[path_obj.pk])
 
+        if goal is None:
+            edit_form = DescriptionForm(instance=translation_project)
+            edit_form_action = reverse('pootle-tp-ajax-edit-settings',
+                                       args=[language.code, project.code])
+        else:
+            edit_form = GoalForm(instance=goal)
+            edit_form_action = reverse('pootle-tagging-ajax-edit-goal',
+                                       args=[goal.slug])
+
         template_vars.update({
-            'form': DescriptionForm(instance=translation_project),
+            'form': edit_form,
+            'form_action': edit_form_action,
             'add_tag_form': TagForm(),
             'add_tag_action_url': add_tag_action_url,
         })
@@ -478,14 +558,22 @@ def overview(request, translation_project, dir_path, filename=None):
 @get_path_obj
 @permission_required('administrate')
 def ajax_remove_tag_from_tp(request, translation_project, tag_name):
-    translation_project.tags.remove(tag_name)
+
+    if tag_name.startswith("goal:"):
+        translation_project.goals.remove(tag_name)
+    else:
+        translation_project.tags.remove(tag_name)
+
     return HttpResponse(status=201)
 
 
-def _add_tag(request, translation_project, tag):
-    translation_project.tags.add(tag)
+def _add_tag(request, translation_project, tag_like_object):
+    if isinstance(tag_like_object, Tag):
+        translation_project.tags.add(tag_like_object)
+    else:
+        translation_project.goals.add(tag_like_object)
     context = {
-        'tp_tags': translation_project.tags.all().order_by('name'),
+        'tp_tags': translation_project.tag_like_objects,
         'language': translation_project.language,
         'project': translation_project.project,
         'can_edit': check_permission('administrate', request),
@@ -506,11 +594,11 @@ def ajax_add_tag_to_tp(request, translation_project):
     add_tag_form = TagForm(request.POST)
 
     if add_tag_form.is_valid():
-        new_tag = add_tag_form.save()
-        return _add_tag(request, translation_project, new_tag)
+        new_tag_like_object = add_tag_form.save()
+        return _add_tag(request, translation_project, new_tag_like_object)
     else:
-        # If the form is invalid, perhaps it is because the tag already exists,
-        # so check if the tag exists.
+        # If the form is invalid, perhaps it is because the tag (or goal)
+        # already exists, so check if the tag (or goal) exists.
         try:
             criteria = {
                 'name': add_tag_form.data['name'],
@@ -520,13 +608,20 @@ def ajax_add_tag_to_tp(request, translation_project):
                 # If the tag is already applied to the translation project then
                 # avoid reloading the page.
                 return HttpResponse(status=204)
+            elif len(translation_project.goals.filter(**criteria)) == 1:
+                # If the goal is already applied to the translation project
+                # then avoid reloading the page.
+                return HttpResponse(status=204)
             else:
-                # Else add the tag to the translation project.
-                tag = Tag.objects.get(**criteria)
-                return _add_tag(request, translation_project, tag)
+                # Else add the tag (or goal) to the translation project.
+                if criteria['name'].startswith("goal:"):
+                    tag_like_object = Goal.objects.get(**criteria)
+                else:
+                    tag_like_object = Tag.objects.get(**criteria)
+                return _add_tag(request, translation_project, tag_like_object)
         except Exception:
-            # If the form is invalid and the tag doesn't exist yet then display
-            # the form with the error messages.
+            # If the form is invalid and the tag (or goal) doesn't exist yet
+            # then display the form with the error messages.
             url_kwargs = {
                 'language_code': translation_project.language.code,
                 'project_code': translation_project.project.code,
@@ -592,6 +687,7 @@ def export_view(request, translation_project, dir_path, filename=None):
         'unit_groups': unit_groups,
         'filter_name': filter_name,
         'filter_extra': filter_extra,
+        'goal': request.GET.get('goal', ''),
     }
 
     return render_to_response('translation_project/export_view.html', ctx,
@@ -643,7 +739,9 @@ def edit_settings(request, translation_project):
                                        _(u"No description yet."))
     context = {
         "form": form,
-        "form_action": translation_project.pootle_path + "edit_settings.html",
+        "form_action": reverse('pootle-tp-ajax-edit-settings',
+                               args=[translation_project.language.code,
+                                     translation_project.project.code]),
     }
     t = loader.get_template('admin/general_settings_form.html')
     c = RequestContext(request, context)

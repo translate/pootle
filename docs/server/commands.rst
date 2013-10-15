@@ -358,6 +358,56 @@ server. This is mostly useful in combination with other commands that operate
 with these IDs.
 
 
+.. _commands#goals:
+
+Goals
+-----
+
+These commands allow you to perform tasks with goals from the command line.
+
+
+.. _commands#add-project-goals:
+
+add_project_goals
+^^^^^^^^^^^^^^^^^
+
+This command allows you to create **project goals** for a given project reading
+them from a phaselist file.
+
+Such file has several lines where each line consists on two fields separated by
+a tab. The first field specifies a goal name and the second one is the path of
+a file:
+
+.. code-block:: ini
+
+    user1	./browser/branding/official/brand.dtd.po
+    other	./browser/chrome/browser/aboutCertError.dtd.po
+    user1	browser/chrome/browser/aboutDialog.dtd.po
+    user2	browser/chrome/browser/aboutSessionRestore.dtd.po
+    developer	./browser/chrome/browser/devtools/appcacheutils.properties.po
+    developer	browser/chrome/browser/devtools/debugger.dtd.po
+    user2	browser/chrome/browser/downloads/downloads.dtd.po
+    user3	browser/chrome/browser/engineManager.dtd.po
+    install	browser/chrome/browser/migration/migration.dtd.po
+    install	./browser/chrome/browser/migration/migration.properties.po
+
+The goals are created if necessary. If the goal exists and has any relationship
+to any store, that relationships are deleted to make sure that the goals
+specified on the phaselist file are only applied to the specified stores.
+
+After all goals are created then they are tied to the files on template
+translation project for the project as they are specified on the phaselist
+file. If any specified file does not exist for the template translation project
+on the given project then it is skipped.
+
+This command has two mandatory options: :option:`--project` and
+:option:`--filename`.
+
+.. code-block:: bash
+
+    $ pootle add_project_goals --project=tutorial --filename=phaselist.txt
+
+
 .. _commands#manually_installing_pootle:
 
 Manually Installing Pootle
