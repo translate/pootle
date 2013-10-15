@@ -24,6 +24,7 @@ import os
 from itertools import groupby
 
 from translate.lang import data
+from translate.search.lshtein import LevenshteinComparer
 
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -67,7 +68,7 @@ from .decorators import (get_store_context, get_unit_context,
                          get_xhr_resource_context)
 from .forms import (unit_comment_form_factory, unit_form_factory,
                     highlight_whitespace)
-from .models import Store, Unit
+from .models import Store, TMUnit, Unit
 from .signals import translation_submitted
 from .templatetags.store_tags import (highlight_diffs, pluralize_source,
                                       pluralize_target)
@@ -791,6 +792,69 @@ def get_edit_unit(request, unit):
 
     response = jsonify(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
+
+
+@ajax_required
+@get_unit_context('view')
+def get_tm_results(request, unit):
+    """Gets a list of TM results for the current object.
+
+    :return: JSON string with a list of TM results.
+    """
+
+    max_len = settings.LV_MAX_LENGTH
+    min_similarity = settings.LV_MIN_SIMILARITY
+
+    results = []
+
+    criteria = {
+        'target_lang': unit.store.translation_project.language,
+        'source_lang': unit.store.translation_project.project.source_language,
+    }
+    tmunits = TMUnit.objects.filter(**criteria)
+
+    comparer = LevenshteinComparer(max_len)
+    for tmunit in tmunits:
+        quality = comparer.similarity(tmunit.source, unit.source,
+                                      min_similarity)
+        if quality >= min_similarity:
+            project = tmunit.project
+            profile = tmunit.submitted_by
+            result = {
+                'source': tmunit.source,
+                'target': tmunit.target,
+                'quality': quality,
+                'project': {
+                    'project': project.code,
+                    'projectname': project.fullname,
+                    'absolute_url': project.get_absolute_url(),
+                    'icon': 'project.png', # XXX
+                }
+            }
+
+            if profile is not None:
+                submissions = Submission.objects.filter(
+                                submitter=profile,
+                                type=SubmissionTypes.NORMAL,
+                                ).distinct().count()
+                suggestions = SuggestionStat.objects.filter(
+                                suggester=profile,
+                                ).distinct().count()
+                translations = submissions - suggestions # XXX: is this correct?
+                title = _("%s<br/><br/>%s translations<br/>%s suggestions" %(
+                            profile.user.get_full_name(),
+                            translations, suggestions))
+
+                result['translator'] = {
+                    'username': unicode(profile.user),
+                    'title': title,
+                    'absolute_url': profile.get_absolute_url(),
+                    'gravatar': profile.gravatar_url(24),
+                }
+
+            results.append(result)
+
+    return HttpResponse(jsonify(results), mimetype="application/json")
 
 
 @ajax_required

@@ -76,6 +76,10 @@ urlpatterns = patterns('pootle_store.views',
         'reject_qualitycheck',
         name='pootle-xhr-units-checks-reject'),
 
+    url(r'^xhr/units/(?P<uid>[0-9]+)/tm/?$',
+        'get_tm_results',
+        name='pootle-xhr-units-tm'),
+
     # XHR for tags.
     url(r'^ajax/tags/add/store/(?P<store_pk>[0-9]+)?$',
         'ajax_add_tag_to_store',
