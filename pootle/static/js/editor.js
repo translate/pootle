@@ -422,7 +422,7 @@
         // Load the units that match the given criterias
         PTL.editor.getViewUnits({pager: true, withUid: withUid});
 
-        if (PTL.editor.hasResults) {
+        if (PTL.editor.units.length) {
           // ensure all the data is preloaded before rendering the table
           // otherwise, when the page is reloaded, some pages will not yet be there
           PTL.editor.fetchPages({async: false});
@@ -897,9 +897,6 @@
       success: function (data) {
         // Receive pager in case we have asked for it
         if (opts.pager && data.pager) {
-          // FIXME: can we get rid of this, please?
-          PTL.editor.hasResults = true;
-
           // Clear old data and add new results
           PTL.editor.pagesGot = {};
           PTL.editor.units.reset();
@@ -959,10 +956,7 @@
             var firstInPage = PTL.editor.pagesGot[data.pager.current][0];
             PTL.editor.units.setCurrent(firstInPage);
           }
-
-          PTL.editor.hasResults = true;
         } else {
-          PTL.editor.hasResults = false;
           $("table.translate-table").trigger("noResults");
         }
       },
@@ -1074,7 +1068,7 @@
 
   /* Sets the edit view for the current active unit */
   displayEditUnit: function () {
-    if (PTL.editor.hasResults) {
+    if (PTL.editor.units.length) {
       // Fetch pages asynchronously — we already have the needed pages
       // so this will return units whenever it can
       this.fetchPages();
