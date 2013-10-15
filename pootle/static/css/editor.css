@@ -808,6 +808,41 @@ html[dir="rtl"] #target-item-gravatar
     margin-right: -30px;
 }
 
+.extra-item-tm-content
+{
+    float: left;
+    margin-bottom: -1px;
+    width: 100%;
+}
+
+.extra-item-tm-user
+{
+    float: left;
+    margin-top: 4px;
+    margin-left: -30px;
+}
+
+html[dir="rtl"] .extra-item-tm-user
+{
+    float: right;
+    margin-left: auto;
+    margin-right: -30px;
+}
+.extra-item-tm-project
+{
+    text-align: center;
+    font-size: x-small;
+    float: right;
+    width: 40px;
+    margin-top: 4px;
+    margin-right: -40px;
+}
+
+html[dir="rtl"] .extra-item-tm-project
+{
+    float: left;
+}
+
 .extra-item-content,
 #target-item-content
 {

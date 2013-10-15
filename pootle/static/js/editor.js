@@ -44,7 +44,8 @@
     this.timelineReq = null;
 
     /* TM requests handler */
-    this.tmReq = null;
+    this.tmLocalReq = null;
+    this.tmRemoteReq = null;
 
     /* Differencer */
     this.differencer = new diff_match_patch();
@@ -1811,9 +1812,66 @@
     return filtered;
   },
 
+  appendTMResults: function (uid, data, store) {
+    if (uid == PTL.editor.units.getCurrent().id && data.length) {
+      var firstResult = true,
+          container = "#extras-container";
+
+      if ($("#tm-results").length > 0) {
+        firstResult = false;
+        container = "#tm-results";
+      }
+
+      var filtered = PTL.editor.filterTMResults(data),
+          name = gettext("Similar translations"),
+          tm = PTL.editor.tmpl.tm({store: store.toJSON(),
+                                   suggs: filtered,
+                                   name: name,
+                                   firstResult: firstResult});
+
+      $(tm).hide().appendTo(container)
+                  .slideDown(1000, 'easeOutQuad');
+    }
+  },
+
+  /* Gets TM suggestions from Pootle */
+  getLocalTMUnits: function () {
+    var unit = this.units.getCurrent(),
+        uid = unit.id,
+        sText = unit.get('source')[0],
+        store = unit.get('store'),
+        pStyle = store.get('project_style'),
+        tmUrl = l(['/xhr/units/', uid, '/tm/'].join(''));
+
+    if (!sText.length) {
+        // No use in looking up an empty string
+        return;
+    }
+
+    if (pStyle.length && pStyle != "standard") {
+    //    tmUrl += '&style=' + pStyle;
+    }
+
+    // Always abort previous requests so we only get results for the
+    // current unit
+    if (this.tmLocalReq != null) {
+      this.tmLocalReq.abort();
+    }
+
+    this.tmLocalReq = $.ajax({
+      url: tmUrl,
+      dataType: 'json',
+      callback: '_json' + PTL.editor.units.getCurrent().id,
+      success: function (data) {
+        var uid = this.callback.slice(5);
+        PTL.editor.appendTMResults(uid, data, store);
+      },
+      error: PTL.editor.error
+    });
+  },
 
   /* Gets TM suggestions from amaGama */
-  getTMUnits: function () {
+  getRemoteTMUnits: function () {
     var unit = this.units.getCurrent(),
         store = unit.get('store'),
         src = store.get('source_lang'),
@@ -1834,33 +1892,27 @@
 
     // Always abort previous requests so we only get results for the
     // current unit
-    if (this.tmReq != null) {
-      this.tmReq.abort();
+    if (this.tmRemoteReq != null) {
+      this.tmRemoteReq.abort();
     }
 
-    this.tmReq = $.jsonp({
+    this.tmRemoteReq = $.jsonp({
       url: tmUrl,
       callback: '_jsonp' + PTL.editor.units.getCurrent().id,
       dataType: 'jsonp',
       cache: true,
       success: function (data) {
         var uid = this.callback.slice(6);
-
-        if (uid == PTL.editor.units.getCurrent().id && data.length) {
-          var filtered = PTL.editor.filterTMResults(data),
-              name = gettext("Similar translations"),
-              tm = PTL.editor.tmpl.tm({store: store.toJSON(),
-                                       suggs: filtered,
-                                       name: name});
-
-          $(tm).hide().appendTo("#extras-container")
-                      .slideDown(1000, 'easeOutQuad');
-        }
+        PTL.editor.appendTMResults(uid, data, store);
       },
       error: PTL.editor.error
     });
   },
 
+  getTMUnits: function () {
+    this.getLocalTMUnits();
+    this.getRemoteTMUnits();
+  },
 
   /* Rejects a suggestion */
   rejectSuggestion: function (e) {
