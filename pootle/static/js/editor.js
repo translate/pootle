@@ -885,7 +885,7 @@
       extraData.uid = opts.withUid;
       // We don't know the page number beforehand —
       // delete the parameter as it's useless
-      delete extraData.page
+      delete extraData.page;
     }
     reqData = $.extend(extraData, this.getReqData());
 
