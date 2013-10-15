@@ -1,11 +1,6 @@
 {% load i18n assets locale %}
 {% get_current_language as LANGUAGE_CODE %}
 <div id="editor">
-    <noscript>
-      <h1>{% trans "Pootle's editor requires JavaScript" %}</h1>
-      <p>{% trans "Please enable JavaScript in your browser preferences and reload the page." %}</p>
-    </noscript>
-
     <div id="js-editor-act" class="hide editor-overlay loader"></div>
     <div id="js-editor-msg" class="hide editor-overlay">
       <div class="alert alert-block alert-info fade in" lang="{{ LANGUAGE_CODE }}">

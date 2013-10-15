@@ -125,6 +125,12 @@
   <body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}">
     {% block body %}
     <div id="wrapper">
+      <noscript>
+        <div id="noscript" class="alert alert-danger affix">
+          <h1>{% trans "Pootle requires JavaScript" %}</h1>
+          <p>{% trans "Please enable JavaScript in your browser preferences and reload the page." %}</p>
+        </div>
+      </noscript>
       {% if messages %}
       <div id="alerts" class="affix">
         {% for message in messages %}

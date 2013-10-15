@@ -677,7 +677,8 @@ html, body
 
 /* Alerts from Bootstrap */
 
-#alerts
+#alerts,
+#noscript
 {
     top: 41px; /* navbar height + border */
     width: 400px;
