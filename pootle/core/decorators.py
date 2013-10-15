@@ -137,7 +137,8 @@ def get_resource_context(func):
 
         if directory is None:
             if dir_path:
-                directory = Directory.objects.get(pootle_path=pootle_path)
+                directory = get_object_or_404(Directory,
+                                              pootle_path=pootle_path)
             else:
                 directory = path_obj.directory
 
