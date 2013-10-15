@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <title>{% trans "Export View" %} | 
     {% if project %}{{ project.fullname }}{% else %}{% trans "All Projects" %}{% endif %} | 
-    {% if language %}{{ language.localname }}{% else %}{% trans "All Languages" %}{% endif %} | 
+    {% if language %}{{ language.name }}{% else %}{% trans "All Languages" %}{% endif %} | 
     {{ settings.TITLE }}</title>
   <style type="text/css">
     html {
@@ -96,7 +96,7 @@
   <table dir="{% locale_dir %}">
     <caption>
       {% if project %}{{ project.fullname }}{% else %}{% trans "All Projects" %}{% endif %} / 
-      {% if language %}{{ language.localname }}{% else %}{% trans "All Languages" %}{% endif %} / 
+      {% if language %}{{ language.name }}{% else %}{% trans "All Languages" %}{% endif %} / 
       {% if filter_name %}{{ filter_name }}{% endif %}
       {% if filter_extra %}<span>({{ filter_extra|join:', ' }})</span>{% endif %}
     </caption>

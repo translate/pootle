@@ -7,7 +7,7 @@
   <div class="translate-container">
     <div class="unit-path">
       <ul>
-        <li><span class="content-wrapper">{{ language.localname }}</span></li>
+        <li><span class="content-wrapper">{{ language.name }}</span></li>
         <li><span class="content-wrapper">{{ project }}</span></li>
         <li><span class="content-wrapper">{{ unit.store.path }}</span></li>
         <li><span class="content-wrapper">{% blocktrans with url=unit.get_translate_url id=unit.id %}<a href="{{ url }}">Unit #{{ id }}</a>{% endblocktrans %}</span></li>
