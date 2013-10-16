@@ -10,13 +10,13 @@
       /* Path summary */
       $(document).on("click", "#js-path-summary", function (e) {
         e.preventDefault();
-        var node = $("#" + $(this).data('target')),
+        var $node = $("#" + $(this).data('target')),
             $textNode = $(this).find(".js-label"),
-            data = node.data();
+            data = $node.data();
 
         function hideShow() {
-          node.slideToggle('slow', 'easeOutQuad', function () {
-            node.data('collapsed', !data.collapsed);
+          $node.slideToggle('slow', 'easeOutQuad', function () {
+            $node.data('collapsed', !data.collapsed);
             var newText = data.collapsed ? gettext('Expand details') : gettext('Collapse details');
             $textNode.text(newText);
           });
@@ -34,8 +34,8 @@
             url: url,
             data: reqData,
             success: function (data) {
-              node.hide();
-              node.find('.js-checks').each(function (e) {
+              $node.hide();
+              $node.find('.js-checks').each(function (e) {
                 var empty = true,
                     $cat = $(this);
 
@@ -54,7 +54,7 @@
                 $cat.toggle(!empty);
               });
 
-              node.data('loaded', true);
+              $node.data('loaded', true);
               hideShow();
             },
             complete: function () {
