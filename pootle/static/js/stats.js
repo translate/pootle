@@ -7,68 +7,7 @@
     init: function (options) {
       this.pootlePath = options.pootlePath;
 
-      /* Path summary */
-      $(document).on("click", "#js-path-summary", function (e) {
-        e.preventDefault();
-        var $node = $("#" + $(this).data('target')),
-            $iconNode = $(this).find("#js-expand-icon"),
-            data = $node.data();
-
-        function hideShow() {
-          $node.data('collapsed', !data.collapsed);
-          var newClass = data.collapsed ? 'icon-expand-stats' : 'icon-collapse-stats';
-          var newText = data.collapsed ? gettext('Expand details') : gettext('Collapse details');
-          $iconNode.attr('class', newClass);
-          $iconNode.attr('title', newText);
-          $node.slideToggle('slow', 'easeOutQuad');
-        }
-
-        if (data.loaded) {
-          hideShow();
-        } else {
-          $('body').spin();
-          var url = l('/xhr/stats/checks/'),
-              reqData = {
-                path: PTL.stats.pootlePath
-              };
-          $.ajax({
-            url: url,
-            data: reqData,
-            success: function (data) {
-              $node.hide();
-              if (Object.keys(data).length) {
-                $node.find('.js-checks').each(function (e) {
-                  var empty = true,
-                      $cat = $(this);
-
-                  $cat.find('.js-check').each(function (e) {
-                    var $check = $(this),
-                        code = $(this).data('code');
-                    if (code in data) {
-                      empty = false;
-                      $check.show();
-                      $check.find('.check-count a').html(data[code]);
-                    } else {
-                      $check.hide();
-                    }
-                  });
-
-                  $cat.toggle(!empty);
-                });
-
-                $('#js-stats-checks').show();
-              }
-
-              $node.data('loaded', true);
-              hideShow();
-            },
-            complete: function () {
-              $('body').spin(false);
-            },
-          });
-        }
-      });
-
+      $(document).on("click", "#js-path-summary", PTL.stats.toggleChecks);
     },
 
     nicePercentage: function (part, total) {
@@ -194,6 +133,68 @@
           }
         }
       });
+    },
+
+    /* Path summary */
+    toggleChecks: function (e) {
+      e.preventDefault();
+      var $node = $("#" + $(this).data('target')),
+          $iconNode = $(this).find("#js-expand-icon"),
+          data = $node.data();
+
+      function hideShow() {
+        $node.data('collapsed', !data.collapsed);
+        var newClass = data.collapsed ? 'icon-expand-stats' : 'icon-collapse-stats';
+        var newText = data.collapsed ? gettext('Expand details') : gettext('Collapse details');
+        $iconNode.attr('class', newClass);
+        $iconNode.attr('title', newText);
+        $node.slideToggle('slow', 'easeOutQuad');
+      }
+
+      if (data.loaded) {
+        hideShow();
+      } else {
+        $('body').spin();
+        var url = l('/xhr/stats/checks/'),
+            reqData = {
+              path: PTL.stats.pootlePath
+            };
+        $.ajax({
+          url: url,
+          data: reqData,
+          success: function (data) {
+            $node.hide();
+            if (Object.keys(data).length) {
+              $node.find('.js-checks').each(function (e) {
+                var empty = true,
+                    $cat = $(this);
+
+                $cat.find('.js-check').each(function (e) {
+                  var $check = $(this),
+                      code = $(this).data('code');
+                  if (code in data) {
+                    empty = false;
+                    $check.show();
+                    $check.find('.check-count a').html(data[code]);
+                  } else {
+                    $check.hide();
+                  }
+                });
+
+                $cat.toggle(!empty);
+              });
+
+              $('#js-stats-checks').show();
+            }
+
+            $node.data('loaded', true);
+            hideShow();
+          },
+          complete: function () {
+            $('body').spin(false);
+          },
+        });
+      }
     }
   };
 
