@@ -10,17 +10,17 @@
       /* Path summary */
       $(document).on("click", "#js-path-summary", function (e) {
         e.preventDefault();
-        var node = $("#" + $(this).data('target')),
+        var $node = $("#" + $(this).data('target')),
             $iconNode = $(this).find("#js-expand-icon"),
-            data = node.data();
+            data = $node.data();
 
         function hideShow() {
-          node.data('collapsed', !data.collapsed);
+          $node.data('collapsed', !data.collapsed);
           var newClass = data.collapsed ? 'icon-expand-stats' : 'icon-collapse-stats';
           var newText = data.collapsed ? gettext('Expand details') : gettext('Collapse details');
           $iconNode.attr('class', newClass);
           $iconNode.attr('title', newText);
-          node.slideToggle('slow', 'easeOutQuad');
+          $node.slideToggle('slow', 'easeOutQuad');
         }
 
         if (data.loaded) {
@@ -35,9 +35,9 @@
             url: url,
             data: reqData,
             success: function (data) {
-              node.hide();
+              $node.hide();
               if (Object.keys(data).length) {
-                node.find('.js-checks').each(function (e) {
+                $node.find('.js-checks').each(function (e) {
                   var empty = true,
                       $cat = $(this);
 
@@ -59,7 +59,7 @@
                 $('#js-stats-checks').show();
               }
 
-              node.data('loaded', true);
+              $node.data('loaded', true);
               hideShow();
             },
             complete: function () {
