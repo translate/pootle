@@ -1435,25 +1435,19 @@
    */
 
   /* Gets the failing check options for the current query */
-  getCheckOptions: function () {
+  getCheckOptions: function (options) {
     var checksUrl = l('/xhr/stats/checks/'),
         reqData = {
           path: this.settings.pootlePath
-        },
-        opts;
+        };
 
     $.ajax({
       url: checksUrl,
       data: reqData,
-      async: false,
       dataType: 'json',
-      success: function (data) {
-        opts = data;
-      },
+      success: options.success,
       error: PTL.editor.error
     });
-
-    return opts;
   },
 
   /* Loads units based on checks filtering */
@@ -1472,6 +1466,41 @@
     }
   },
 
+  /* Adds the failing checks to the UI */
+  appendChecks: function (checks) {
+    // If there are any failing checks, add them in a dropdown
+    if (Object.keys(checks).length) {
+      $("#filter-checks").show();
+      $("#filter-checks").find('optgroup').each(function (e) {
+        var empty = true,
+            $gr = $(this);
+
+        $gr.find('option').each(function (e) {
+          var $opt = $(this),
+              value = $opt.attr('value');
+
+          if (value in checks) {
+            empty = false;
+            $opt.text($opt.data('title') + '(' + checks[value] + ')');
+          } else {
+            $opt.remove();
+          }
+        });
+
+        if (empty) {
+          $gr.hide();
+        }
+      });
+      $("#filter-checks").show();
+      $("#js-select2-filter-checks").select2({
+        width: "resolve"
+      });
+    } else { // No results
+      PTL.editor.displayMsg(gettext("No results."));
+      $('#filter-status select').select2('val', PTL.editor.filter);
+    }
+  },
+
   /* Loads units based on filtering */
   filterStatus: function () {
     // this function can be executed in different contexts,
@@ -1480,42 +1509,10 @@
         filterBy = $selected.val(),
         isUserFilter = $selected.data('user');
 
-    // Filtering by failing checks
     if (filterBy == "checks") {
-      // Get actual failing checks
-      var checks = PTL.editor.getCheckOptions();
-
-      // If there are any failing checks, add them in a dropdown
-      if (checks !== undefined && Object.keys(checks).length) {
-        $("#filter-checks").show();
-        $("#filter-checks").find('optgroup').each(function (e) {
-          var empty = true,
-              $gr = $(this);
-
-          $gr.find('option').each(function (e) {
-            var $opt = $(this),
-                value = $opt.attr('value');
-
-            if (value in checks) {
-              empty = false;
-              $opt.text($opt.data('title') + '(' + checks[value] + ')');
-            } else {
-              $opt.remove();
-            }
-          });
-
-          if (empty) {
-            $gr.hide();
-          }
-        });
-        $("#filter-checks").show();
-        $("#js-select2-filter-checks").select2({
-          width: "resolve"
-        });
-      } else { // No results
-        PTL.editor.displayMsg(gettext("No results."));
-        $('#filter-status select').select2('val', PTL.editor.filter);
-      }
+      PTL.editor.getCheckOptions({
+        success: PTL.editor.appendChecks
+      });
     } else { // Normal filtering options (untranslated, fuzzy...)
       $("#filter-checks").hide();
       if (!PTL.editor.preventNavigation) {
