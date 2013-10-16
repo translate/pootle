@@ -138,7 +138,6 @@
         url: url,
         data: reqData,
         dataType: 'json',
-        async: true,
         success: function (data) {
           var $table = $('#content table.stats');
           PTL.stats.updateProgressbar($('#progressbar'), data);
