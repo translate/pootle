@@ -1,17 +1,10 @@
-{% extends "projects/base.html" %}
+{% extends "projects/admin/base.html" %}
 
-{% load i18n assets %}
+{% load i18n %}
 
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block title %}{% trans "Permissions" %} | {{ block.super }}{% endblock %}
-
-{% block css %}
-{{ block.super }}
-{% assets "css_admin" %}
-<link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
-{% endassets %}
-{% endblock %}
 
 {% block body_id %}projectperm{% endblock %}
 
@@ -24,10 +17,4 @@
 
     {% include "admin/_generic_formset.html" %}
 </div>
-{% endblock %}
-
-{% block scripts_extra %}
-{% assets "js_admin" %}
-<script type="text/javascript" src="{{ ASSET_URL }}"></script>
-{% endassets %}
 {% endblock %}
