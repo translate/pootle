@@ -416,7 +416,7 @@
         if (PTL.editor.units.length) {
           // ensure all the data is preloaded before rendering the table
           // otherwise, when the page is reloaded, some pages will not yet be there
-          PTL.editor.fetchPages(false);
+          PTL.editor.fetchPages({async: false});
 
           if (PTL.editor.units.getCurrent() === undefined) {
             PTL.editor.units.setFirstAsCurrent();
@@ -1050,7 +1050,7 @@
     if (PTL.editor.units.length) {
       // Fetch pages asynchronously — we already have the needed pages
       // so this will return units whenever it can
-      this.fetchPages(true);
+      this.fetchPages();
 
       // Hide any visible message
       this.hideMsg();
@@ -1110,11 +1110,18 @@
 
 
   /* Fetches more view unit pages in case they're needed */
-  fetchPages: function (async) {
-    var i,
-        current = this.currentPage,
+  fetchPages: function (opts) {
+    var defaults = {
+          async: true,
+          page: this.currentPage
+        };
+
+    opts = $.extend({}, defaults, opts);
+
+    var current = opts.page,
         candidates = [current, current + 1, current - 1],
-        pages = [];
+        pages = [],
+        i;
 
     // We will only fetch valid pages and pages that haven't
     // already been fetched
@@ -1128,7 +1135,7 @@
 
     // Do the actual fetching
     for (i=0; i<pages.length; i++) {
-      this.getViewUnits({async: async, page: pages[i]});
+      this.getViewUnits({async: opts.async, page: pages[i]});
     }
   },
 
