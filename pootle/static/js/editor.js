@@ -17,9 +17,9 @@
     /* Initialize variables */
     this.units = new PTL.collections.UnitCollection;
 
-    this.currentPage = 1;
-    this.currentNumPages = 0;
+    this.pager = {current: 1};
     this.pagesGot = {};
+
     this.filter = 'all';
     this.checks = [];
     this.goal = null;
@@ -126,7 +126,7 @@
     $(document).on('keypress', '#item-number', function (e) {
       // Perform action only when the 'Enter' key is pressed
       if (e.which === 13) {
-        PTL.editor.gotoPage(parseInt($('#item-number').val(), 10));
+        PTL.editor.gotoIndex(parseInt($('#item-number').val(), 10));
       }
     });
     $(document).on('click', 'input.submit', this.submit);
@@ -200,26 +200,6 @@
     });
     shortcut.add('ctrl+.', function () {
       $('#js-nav-next').trigger('click');
-    });
-
-    shortcut.add('ctrl+shift+home', function () {
-      PTL.editor.gotoFirstPage();
-    });
-    shortcut.add('ctrl+shift+end', function () {
-      PTL.editor.gotoLastPage();
-    });
-
-    shortcut.add('ctrl+shift+pageup', function () {
-      PTL.editor.gotoPrevPage();
-    });
-    shortcut.add('ctrl+shift+,', function () {
-      PTL.editor.gotoPrevPage();
-    });
-    shortcut.add('ctrl+shift+pagedown', function () {
-      PTL.editor.gotoNextPage();
-    });
-    shortcut.add('ctrl+shift+.', function () {
-      PTL.editor.gotoNextPage();
     });
 
     if (navigator.platform.toUpperCase().indexOf('MAC') >= 0) {
@@ -300,7 +280,6 @@
       $.history.init(function (hash) {
         var params = PTL.utils.getParsedHash(hash),
             withUid = 0,
-            pageNumber = undefined,
             tmpParamValue;
 
         // Walk through known filtering criterias and apply them to the editor object
@@ -319,15 +298,11 @@
               withUid = tmpParamValue;
             }
           }
-        } else if (params['page']) {
-          tmpParamValue = parseInt(params['page'], 10);
-
-          if (tmpParamValue && !isNaN(tmpParamValue) && tmpParamValue > 0) {
-            pageNumber = tmpParamValue;
-          }
         }
 
+        PTL.editor.pager.current = 1;
         PTL.editor.filter = 'all';
+
         if ('filter' in params) {
           var filterName = params['filter'];
 
@@ -441,8 +416,7 @@
         PTL.editor.preventNavigation = false;
 
         // Load the units that match the given criterias
-        PTL.editor.getViewUnits({pager: true, page: pageNumber,
-                                 withUid: withUid});
+        PTL.editor.getViewUnits({pager: true, withUid: withUid});
 
         if (PTL.editor.hasResults) {
           // ensure all the data is preloaded before rendering the table
@@ -887,10 +861,10 @@
    * Unit navigation, display, submission
    */
 
-  /* Gets the view units that refer to currentPage */
+  /* Gets the view units that refer to the current page */
   getViewUnits: function (opts) {
     var extraData, reqData,
-        defaults = {async: false, page: this.currentPage,
+        defaults = {async: false, page: this.pager.current,
                     pager: false, withUid: 0},
         viewUrl = l('/xhr/units/');
     // Merge passed arguments with defaults
@@ -925,7 +899,7 @@
           // Clear old data and add new results
           PTL.editor.pagesGot = {};
           PTL.editor.units.reset();
-          PTL.editor.updatePager(data.pager);
+          PTL.editor.pager = data.pager;
         }
 
         // Store view units in the client
@@ -934,7 +908,7 @@
           // have specified it in the GET parameters — in that case, the
           // page number is specified within the response pager
           if (data.pager) {
-            var page = data.pager.number;
+            var page = data.pager.current;
           } else {
             var page = opts.page;
           }
@@ -978,7 +952,7 @@
           if (opts.withUid) {
             PTL.editor.units.setCurrent(opts.withUid);
           } else if (data.pager) {
-            var firstInPage = PTL.editor.pagesGot[data.pager.number][0];
+            var firstInPage = PTL.editor.pagesGot[data.pager.current][0];
             PTL.editor.units.setCurrent(firstInPage);
           }
 
@@ -1162,7 +1136,7 @@
   fetchPages: function (opts) {
     var defaults = {
           async: true,
-          page: this.currentPage
+          page: this.pager.current
         };
 
     opts = $.extend({}, defaults, opts);
@@ -1189,19 +1163,22 @@
   },
 
   /* Updates the pager */
-  updatePager: function (pager) {
-    this.pager = pager;
+  updatePager: function () {
+    var pager = this.pager;
 
-    // If page number or num_pages has changed, redraw pager
-    if (this.currentPage != pager.number ||
-        this.currentNumPages != pager.num_pages) {
-      this.currentPage = pager.number;
-      this.currentNumPages = pager.num_pages;
+    $("#items-count").text(pager.count);
 
-      // Update UI elements
-      $("#item-number").val(pager.number);
-      $("#items-count").text(pager.num_pages);
+    var currentUnit = PTL.editor.units.getCurrent();
+    if (currentUnit !== undefined) {
+      // Calculate the global index number for the current unit.
+      // Note that we can't just use `indexOf(currentUnit)` in the
+      // collection because we don't load the entire collection at once
+      var uId = currentUnit.id,
+          uIndexInPage = PTL.editor.pagesGot[pager.current].indexOf(uId) + 1,
+          uIndex = (pager.current - 1) * pager.per_page + uIndexInPage;
+      $("#item-number").val(uIndex);
     }
+
   },
 
   /* Creates a pager based on the current client data and the given uid */
@@ -1209,10 +1186,10 @@
     var newPager = this.pager;
     // In case the given uid is not within the current page,
     // calculate in which page it is
-    if ($.inArray(uid, this.pagesGot[this.currentPage]) == -1) {
+    if ($.inArray(uid, this.pagesGot[this.pager.current]) == -1) {
       var newPageNumber,
-          i = this.currentPage,
-          j = this.currentPage + 1,
+          i = this.pager.current,
+          j = this.pager.current + 1,
           found = false;
       // Search uid within the pages the client knows of
       while (!found && (i > 0 || j <= this.pager.num_pages)) {
@@ -1229,7 +1206,7 @@
       }
 
       if (found) {
-        newPager.number = newPageNumber;
+        newPager.current = newPageNumber;
       }
     }
 
@@ -1255,7 +1232,8 @@
       success: function (data) {
         widget = data['editor'];
         // Update pager in case it's needed
-        PTL.editor.updatePager(PTL.editor.createPager(uid));
+        PTL.editor.pager = PTL.editor.createPager(uid);
+        PTL.editor.updatePager();
 
         if (data.ctx) {
           // Initialize context gap to the maximum context rows available
@@ -1384,7 +1362,7 @@
 
     // Try loading the prev/next unit
     if (newUnit) {
-      var newHash = PTL.utils.updateHashPart("unit", newUnit.id, ["page"]);
+      var newHash = PTL.utils.updateHashPart("unit", newUnit.id);
       $.history.load(newHash);
     } else {
       if (elementId === 'js-nav-prev') {
@@ -1426,7 +1404,7 @@
           type = m[1],
           uid = parseInt(m[2], 10);
       if (type === 'row') {
-        newHash = PTL.utils.updateHashPart("unit", uid, ["page"]);
+        newHash = PTL.utils.updateHashPart("unit", uid);
       } else {
         newHash = ['unit=', encodeURIComponent(uid)].join('');
       }
@@ -1434,37 +1412,26 @@
     }
   },
 
-  /* Loads the editor on a specific page */
-  gotoPage: function (page) {
-    // Only load the given page if it's within a valid page range
-    if (page && !isNaN(page) && page > 0 &&
-        page <= PTL.editor.pager.num_pages) {
-      var newHash = PTL.utils.updateHashPart("page", page, ["unit"]);
+  /* Loads the editor on a index */
+  // FIXME: we probably want to retrieve sorted list of all the UIDs
+  // affecting the current query, so we wouldn't need to do ugly things
+  // to figure out the mapping between indexes and unit IDs
+  gotoIndex: function (index) {
+    if (index && !isNaN(index) && index > 0 &&
+        index <= PTL.editor.pager.count) {
+      var preceding = index - 1,
+          page = parseInt(preceding / PTL.editor.pager.per_page + 1, 10) || 1,
+          uIndexInPage = preceding % PTL.editor.pager.per_page,
+          uId;
+
+      if (!(page in PTL.editor.pagesGot)) {
+        PTL.editor.fetchPages({async: false, page: page});
+      }
+
+      uId = PTL.editor.pagesGot[page][uIndexInPage];
+
+      var newHash = PTL.utils.updateHashPart("unit", uId);
       $.history.load(newHash);
-    }
-  },
-
-  gotoFirstPage: function () {
-    if (PTL.editor.currentNumPages > 0) {
-      this.gotoPage(1);
-    }
-  },
-
-  gotoLastPage: function () {
-    if (PTL.editor.currentNumPages > 0) {
-      this.gotoPage(PTL.editor.currentNumPages);
-    }
-  },
-
-  gotoPrevPage: function () {
-    if ((PTL.editor.currentNumPages > 0) && (this.currentPage > 1)) {
-      this.gotoPage(this.currentPage - 1);
-    }
-  },
-
-  gotoNextPage: function () {
-    if ((PTL.editor.currentNumPages > 0) && (this.currentPage < PTL.editor.currentNumPages)) {
-      this.gotoPage(this.currentPage + 1);
     }
   },
 
