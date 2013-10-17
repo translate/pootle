@@ -1,6 +1,6 @@
 {% extends "translation_projects/admin/base.html" %}
 
-{% load assets baseurl i18n %}
+{% load i18n %}
 
 {% block title %}{% trans "Permissions" %} | {{ block.super }}{% endblock %}
 
@@ -14,11 +14,4 @@
   </p>
   {% include "admin/_generic_formset.html" %}
 </div>
-{% endblock %}
-
-{% block scripts_extra %}
-{{ block.super }}
-{% assets "js_admin" %}
-<script type="text/javascript" src="{{ ASSET_URL }}"></script>
-{% endassets %}
 {% endblock %}
