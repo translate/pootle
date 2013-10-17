@@ -64,6 +64,11 @@ PTL.utils = (function ($) {
       return a === b ? 0 : a < b ? -1 : 1;
     },
 
+    /* Number comparison function */
+    numberCmp: function (a, b) {
+      return a - b;
+    },
+
 
     /* Cleans '\n' escape sequences and adds '\t' sequences */
     cleanEscape: function (s) {
