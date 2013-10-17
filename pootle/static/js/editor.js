@@ -946,7 +946,7 @@
           // Calculate where to insert the new set of units
           var pages = $.map(PTL.editor.pagesGot, function (value, key) {
                 return parseInt(key, 10);
-              }).sort(),
+              }).sort(PTL.utils.numberCmp),
               pageIndex = pages.indexOf(page),
               at = PTL.editor.pager.per_page * pageIndex;
 
