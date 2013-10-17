@@ -384,8 +384,8 @@ def get_units(request):
         response['pager'] = {
             'count': pager.paginator.count,
             'current': pager.number,
-            'num_pages': pager.paginator.num_pages,
-            'per_page': pager.paginator.per_page,
+            'numPages': pager.paginator.num_pages,
+            'perPage': pager.paginator.per_page,
         }
 
     return HttpResponse(jsonify(response), mimetype="application/json")

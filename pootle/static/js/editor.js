@@ -881,7 +881,7 @@
                 return parseInt(key, 10);
               }).sort(PTL.utils.numberCmp),
               pageIndex = pages.indexOf(page),
-              at = PTL.editor.pager.per_page * pageIndex;
+              at = PTL.editor.pager.perPage * pageIndex;
 
           // FIXME: can we avoid this?
           var urlStr = [
@@ -994,7 +994,7 @@
 
   /* Returns the unit groups for the current editor state */
   getUnitGroups: function () {
-    var limit = parseInt(((this.pager.per_page - 1) / 2), 10),
+    var limit = parseInt(((this.pager.perPage - 1) / 2), 10),
         unitCount = this.units.length,
         currentUnit = this.units.getCurrent(),
         curIndex = this.units.indexOf(currentUnit),
@@ -1100,7 +1100,7 @@
     // We will only fetch valid pages and pages that haven't
     // already been fetched
     for (i=0; i<candidates.length; i++) {
-      if (candidates[i] <= this.pager.num_pages &&
+      if (candidates[i] <= this.pager.numPages &&
           candidates[i] > 0 &&
           !(candidates[i] in this.pagesGot)) {
         pages.push(candidates[i]);
@@ -1126,7 +1126,7 @@
       // collection because we don't load the entire collection at once
       var uId = currentUnit.id,
           uIndexInPage = PTL.editor.pagesGot[pager.current].indexOf(uId) + 1,
-          uIndex = (pager.current - 1) * pager.per_page + uIndexInPage;
+          uIndex = (pager.current - 1) * pager.perPage + uIndexInPage;
       $("#item-number").val(uIndex);
     }
 
@@ -1143,7 +1143,7 @@
           j = this.pager.current + 1,
           found = false;
       // Search uid within the pages the client knows of
-      while (!found && (i > 0 || j <= this.pager.num_pages)) {
+      while (!found && (i > 0 || j <= this.pager.numPages)) {
         if (i > 0 && $.inArray(uid, this.pagesGot[i]) != -1) {
           newPageNumber = i;
           found = true;
@@ -1367,8 +1367,8 @@
     if (index && !isNaN(index) && index > 0 &&
         index <= PTL.editor.pager.count) {
       var preceding = index - 1,
-          page = parseInt(preceding / PTL.editor.pager.per_page + 1, 10) || 1,
-          uIndexInPage = preceding % PTL.editor.pager.per_page,
+          page = parseInt(preceding / PTL.editor.pager.perPage + 1, 10) || 1,
+          uIndexInPage = preceding % PTL.editor.pager.perPage,
           uId;
 
       if (!(page in PTL.editor.pagesGot)) {
