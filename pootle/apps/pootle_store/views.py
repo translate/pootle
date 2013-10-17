@@ -383,7 +383,7 @@ def get_units(request):
     if request.GET.get('pager', False):
         response['pager'] = {
             'count': pager.paginator.count,
-            'number': pager.number,
+            'current': pager.number,
             'num_pages': pager.paginator.num_pages,
             'per_page': pager.paginator.per_page,
         }

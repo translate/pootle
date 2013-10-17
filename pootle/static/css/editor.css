@@ -139,7 +139,7 @@ body.zoom-out-2 .toolbar > div
 
 #prevnext input[type="submit"]
 {
-    min-width: 100px;
+    min-width: 80px;
     padding: 4px 10px;
 }
 
