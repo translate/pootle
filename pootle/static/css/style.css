@@ -418,13 +418,21 @@ html[dir="rtl"] .logo
     margin-bottom: -1px;
 }
 
+#navbar-inner .brand
+{
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+    padding-left: 0.34em;
+}
+
 /* Zoom controls */
 
 #zoom
 {
     font-size: 12px;
     font-weight: bold;
-    line-height: 40px;
+    line-height: 50px;
     float: right;
     margin-left: 20px;
     margin-right: 20px;
@@ -461,6 +469,7 @@ html[dir="rtl"] #zoom
 
 #nav-main
 {
+    line-height: 50px;
     float: right;
 }
 
@@ -659,7 +668,9 @@ html, body
 .popup-ajax .mfp-content
 {
     background-color: #fff;
-    width: 920px !important;
+    width: auto !important;
+    max-width: 920px !important;
+    display: inline-block;
 }
 
 /* for forms displayed in lightbox mode (via magnificPopup plugin), use different shadow */

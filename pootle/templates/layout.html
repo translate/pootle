@@ -159,6 +159,9 @@
               href="javascript:PTL.zoom.zoom(1)">+</a>
           </div>
           <ul id="nav-main">
+            {% if settings.CAN_CONTACT %}
+            <li><a class="js-popup-ajax" href="{% url 'pootle-contact' %}">{% trans "Contact Us" %}</a></li>
+            {% endif %}
             {% if user.is_authenticated %}
             <li id="user">
               <a href="{{ user.get_profile.get_absolute_url }}">
@@ -234,12 +237,6 @@
     <div id="footer">
       <ul class="nav">
         <li><a href="http://docs.translatehouse.org/projects/pootle/">{% trans "Help" %}</a></li>
-        {% if settings.CAN_CONTACT %}
-        <li>
-          <a class="js-popup-ajax"
-             href="{% url 'pootle-contact' %}">{% trans "Contact Us" %}</a>
-        </li>
-        {% endif %}
         <li><a href="{% url 'pootle-about' %}">{% trans "About this Pootle Server" %}</a></li>
         <li><a href="{% url 'pootle-about-contributors' %}">{% trans "Contributors" %}</a></li>
         {% get_legalpages as legalpages %}
