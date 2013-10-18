@@ -157,6 +157,9 @@
               href="javascript:PTL.zoom.zoom(1)">+</a>
           </div>
           <ul id="nav-main">
+            <li>
+              <a class="js-popup-ajax" href="{% url 'pootle-contact' %}">{% trans "Contact Us" %}</a>
+            </li>
             {% if user.is_authenticated %}
             <li id="user">
               <a href="{{ user.get_profile.get_absolute_url }}">
@@ -175,16 +178,6 @@
           {% block navbar_extra %}{% endblock %}
           {% endblock %}
         </div>
-      </div>
-      <div class="navigation">
-        <ul class="top_menu">
-          <li class="page_home"><a href="/">Home</a></li><!--
-       --><li class="page_pootle"><a href="{{ "/"|l }}">Translate</a></li>
-          <li class="page_contact">
-            <a class="js-popup-ajax"
-               href="{% url 'pootle-contact' %}">{% trans "Contact Us" %}</a>
-          </li>
-        </ul>
       </div>
 
     {% block header_block %}

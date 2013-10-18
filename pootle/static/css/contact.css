@@ -5,16 +5,10 @@
 #contact
 {
     line-height: 150%!important;
-    margin-left: 9em;
+    margin: 3em;
 
     font-family: "Open Sans", sans-serif;
     font-size: 1.2em;
-}
-
-html[dir="rtl"] #contact
-{
-    margin-left: auto;
-    margin-right: 9em;
 }
 
 #contact h1
