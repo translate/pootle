@@ -2117,18 +2117,20 @@ html[dir="rtl"] .overview-description-toggle
     display: inline-block;
     position: absolute;
     top: -4px;
-    left: -1px;
+    left: -11px;
     z-index: 1;
 }
 
 #progressbar
 {
     margin-left: 10px;
+    position: relative;
 }
 
 #progressbar table.graph
 {
     width: 100%;
+    position: absolute;
 }
 
 .path-summary-more
@@ -2185,6 +2187,7 @@ html[dir="rtl"] .overview-description-toggle
 {
     display: inline-block;
     margin-left: 2em;
+    margin-right: -0.5em;
     font-weight: bold;
 }
 
@@ -2195,7 +2198,6 @@ body.js-not-loaded #translate-actions li {
 #translate-actions .counter
 {
     padding: 0.1em 0.9em;
-    margin-right: -0.5em;
     -webkit-border-radius: 1em;
     -moz-border-radius: 1em;
     border-radius: 1em;
