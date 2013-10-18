@@ -1238,7 +1238,6 @@
       type: 'POST',
       data: reqData,
       dataType: 'json',
-      async: false,
       success: PTL.editor.processSubmission,
       error: PTL.editor.error
     });
@@ -1281,7 +1280,6 @@
       type: 'POST',
       data: reqData,
       dataType: 'json',
-      async: false,
       success: PTL.editor.processSuggestion,
       error: PTL.editor.error
     });
