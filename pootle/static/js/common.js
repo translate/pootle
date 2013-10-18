@@ -61,7 +61,9 @@
       $(document).magnificPopup({
         type: 'ajax',
         delegate: '.js-popup-ajax',
-        mainClass: 'popup-ajax'
+        mainClass: 'popup-ajax',
+        // Workaround for remnant tipsy bubbles
+        tClose: ''
       });
       $('.js-popup-inline').magnificPopup();
 
