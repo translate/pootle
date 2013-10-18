@@ -103,7 +103,9 @@
                 <div class="language-name">{{ altunit.store.translation_project.language.name }}</div>
                 {% if cansuggest or cantranslate %}
                 <div class="translate-toolbar">
-                  <a class="icon-copy js-copyoriginal" title="{% trans 'Copy into translation' %}" accesskey="c"></a>
+                  <span class="js-toolbar-buttons">
+                    <a class="icon-copy js-copyoriginal" title="{% trans 'Copy into translation' %}" accesskey="c"></a>
+                  </span>
                 </div>
                 {% endif %}
               </div>
@@ -121,7 +123,15 @@
                 <div class="language-name">{{ source_language.name }}</div>
                 {% if cansuggest or cantranslate %}
                 <div class="translate-toolbar">
-                  <a class="icon-copy js-copyoriginal" title="{% trans 'Copy into translation' %}" accesskey="c"></a>
+                  <span class="report-issue">
+                    <a class="js-popup-ajax"
+                       href="{% url 'pootle-contact' %}?report={{ unit.id }}">
+                      {% trans "Report a problem with this string" %}
+                    </a>
+                  </span>
+                  <span class="js-toolbar-buttons">
+                    <a class="icon-copy js-copyoriginal" title="{% trans 'Copy into translation' %}" accesskey="c"></a>
+                  </span>
                 </div>
                 {% endif %}
               </div>
@@ -295,15 +305,6 @@
         </div>
         {% endif %}
       </div>
-    </div>
-
-    <div class="unit-footer">
-      <span class="report-issue">
-        <a class="js-popup-ajax"
-           href="{% url 'pootle-contact' %}?report={{ unit.id }}">
-          {% trans "Report a problem with this string" %}
-        </a>
-      </span>
     </div>
   </div>
 </td>

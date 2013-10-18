@@ -94,8 +94,7 @@
 
     /* Copy original translation */
     $(document).on('click', '.js-copyoriginal', function () {
-      PTL.editor.copyOriginal($('.translation-text',
-        $(this).parent().parent().parent()));
+      PTL.editor.copyOriginal($(this).parents('.source-language').find('.translation-text'));
     });
 
     /* Copy suggestion */
@@ -1984,7 +1983,7 @@
       var _this = this;
       var sources = $(".translate-toolbar");
       $(sources).each(function () {
-        var source = _this.normalizeCode($(this).parent().parent().find('.translation-text').attr("lang"));
+        var source = _this.normalizeCode($(this).parents('.source-language').find('.translation-text').attr("lang"));
 
         var ok;
         if (provider.validatePairs) {
@@ -1994,7 +1993,7 @@
         }
 
         if (ok) {
-          _this.addMTButton(this,
+          _this.addMTButton($(this).find('.js-toolbar-buttons'),
             provider.buttonClassName,
             provider.hint + ' (' + source.toUpperCase() + '&rarr;' + PTL.editor.settings.targetLang.toUpperCase() + ')');
         }
@@ -2022,7 +2021,7 @@
 
   translate: function (linkObject, providerCallback) {
     var areas = $("[id^=id_target_f_]");
-    var sources = $(linkObject).parent().parent().parent().find('.translation-text');
+    var sources = $(linkObject).parents('.source-language').find('.translation-text');
     var langFrom = PTL.editor.normalizeCode(sources.eq(0).attr("lang"));
     var langTo = PTL.editor.normalizeCode(areas.eq(0).attr("lang"));
 
