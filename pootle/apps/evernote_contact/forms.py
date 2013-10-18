@@ -54,3 +54,7 @@ class EvernoteContactForm(MathCaptchaForm, ContactForm):
 
         self.fields.keyOrder = ['name', 'email', 'subject', 'body',
                                 'captcha_answer', 'captcha_token']
+
+        if self.request.user.is_authenticated():
+            del self.fields['captcha_answer']
+            del self.fields['captcha_token']
