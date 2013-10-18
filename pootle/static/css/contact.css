@@ -48,6 +48,11 @@
     display: block;
 }
 
+#contact label[for="id_captcha_answer"]
+{
+    display: inline;
+}
+
 #contact .callout
 {
     width: 38em;
