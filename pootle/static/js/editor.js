@@ -1282,7 +1282,6 @@
       type: 'POST',
       data: reqData,
       dataType: 'json',
-      async: false,
       success: function (data) {
         if (data.captcha) {
           $.magnificPopup.open({
@@ -1326,7 +1325,6 @@
       type: 'POST',
       data: reqData,
       dataType: 'json',
-      async: false,
       success: function (data) {
         if (data.captcha) {
           $.magnificPopup.open({
