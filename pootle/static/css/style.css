@@ -2271,8 +2271,8 @@ body.js-not-loaded #translate-actions li
     padding: 0.1em 0.9em;
     margin-right: -0.5em;
     -webkit-border-radius: 1em;
-    -moz-border-radius: 1em;
-    border-radius: 1em;
+       -moz-border-radius: 1em;
+            border-radius: 1em;
     background: #000;
     color: #fff;
     font-weight: normal;
