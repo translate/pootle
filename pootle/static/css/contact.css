@@ -46,6 +46,7 @@
 #contact label
 {
     display: block;
+    color: rgba(0, 0, 0, 0.6);
 }
 
 #contact label[for="id_captcha_answer"]
