@@ -58,3 +58,9 @@ class EvernoteContactForm(MathCaptchaForm, ContactForm):
         if self.request.user.is_authenticated():
             del self.fields['captcha_answer']
             del self.fields['captcha_token']
+
+    def from_email(self):
+        return u'%s <%s>' % (
+            self.cleaned_data['name'],
+            self.cleaned_data['email']
+        )
