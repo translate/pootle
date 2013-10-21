@@ -25,8 +25,8 @@ from django.template import RequestContext
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 
+from pootle.core.paginator import paginate
 from pootle_misc.baseurl import l
-from pootle_misc.util import paginate
 
 
 def form_set_as_table(formset, link=None, linkfield='code'):
