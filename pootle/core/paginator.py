@@ -24,7 +24,7 @@ from django.core.paginator import Paginator
 def paginate(request, queryset, items=30, page=None):
     paginator = Paginator(queryset, items)
 
-    if not page:
+    if page is None:
         try:
             page = int(request.GET.get('page', 1))
         except ValueError:
