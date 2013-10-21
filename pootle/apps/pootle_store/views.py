@@ -40,8 +40,9 @@ from pootle.core.decorators import (get_path_obj, get_resource_context,
 from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.models.permissions import check_profile_permission
 from pootle.core.exceptions import Http400
+from pootle.core.paginator import paginate
 from pootle_misc.forms import make_search_form
-from pootle_misc.util import paginate, ajax_required, jsonify
+from pootle_misc.util import ajax_required, jsonify
 from pootle_profile.models import get_profile
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)

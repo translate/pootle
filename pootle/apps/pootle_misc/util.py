@@ -24,7 +24,6 @@ from functools import wraps
 
 from django.conf import settings
 from django.core.cache import cache
-from django.core.paginator import Paginator
 from django.http import HttpResponseBadRequest
 from django.utils import simplejson, timezone
 from django.utils.encoding import force_unicode, iri_to_uri
@@ -81,21 +80,6 @@ def deletefromcache(sender, functions, **kwargs):
 
 def dictsum(x, y):
     return dict((n, x.get(n, 0)+y.get(n, 0)) for n in set(x) | set(y))
-
-
-def paginate(request, queryset, items=30, page=None):
-    paginator = Paginator(queryset, items)
-
-    if not page:
-        try:
-            page = int(request.GET.get('page', 1))
-        except ValueError:
-            # wasn't an int use 1
-            page = 1
-    # page value too large
-    page = min(page, paginator.num_pages)
-
-    return paginator.page(page)
 
 
 class PootleJSONEncoder(simplejson.JSONEncoder):
