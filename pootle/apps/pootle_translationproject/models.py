@@ -98,24 +98,35 @@ class TranslationProjectManager(RelatedManager):
 
 
 class TranslationProject(models.Model):
-    description_help_text = _('A description of this translation project. '
-                              'This is useful to give more information or '
-                              'instructions. Allowed markup: %s',
-                              get_markup_filter_name())
-    description = MarkupField(blank=True, help_text=description_help_text)
-
+    description = MarkupField(
+        blank=True,
+        help_text=_('A description of this translation project. This is '
+                    'useful to give more information or instructions. Allowed '
+                    'markup: %s', get_markup_filter_name()),
+    )
     language = models.ForeignKey(Language, db_index=True)
     project = models.ForeignKey(Project, db_index=True)
     real_path = models.FilePathField(editable=False)
     directory = models.OneToOneField(Directory, db_index=True, editable=False)
-    pootle_path = models.CharField(max_length=255, null=False, unique=True,
-                                   db_index=True, editable=False)
+    pootle_path = models.CharField(
+        max_length=255,
+        null=False,
+        unique=True,
+        db_index=True,
+        editable=False,
+    )
 
-    tags = TaggableManager(blank=True, verbose_name=_("Tags"),
-                           help_text=_("A comma-separated list of tags."))
-    goals = TaggableManager(blank=True, verbose_name=_("Goals"),
-                            through=ItemWithGoal,
-                            help_text=_("A comma-separated list of goals."))
+    tags = TaggableManager(
+        blank=True,
+        verbose_name=_("Tags"),
+        help_text=_("A comma-separated list of tags."),
+    )
+    goals = TaggableManager(
+        blank=True,
+        verbose_name=_("Goals"),
+        through=ItemWithGoal,
+        help_text=_("A comma-separated list of goals."),
+    )
 
     _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE,
                                          settings.PARSE_POOL_CULL_FREQUENCY)
@@ -272,8 +283,7 @@ class TranslationProject(models.Model):
         """Update all stores to reflect state on disk."""
         stores = self.stores.exclude(file='').filter(state__gte=PARSED)
         for store in stores.iterator():
-            store.update(update_translation=True,
-                         update_structure=True)
+            store.update(update_translation=True, update_structure=True)
 
     def sync(self, conservative=True, skip_missing=False, modified_since=0):
         """Sync unsaved work on all stores to disk."""
