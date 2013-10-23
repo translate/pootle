@@ -807,9 +807,16 @@ def get_tm_results(request, unit):
 
     results = []
 
+    # Shortcut Levenshtein comparer, since the distance, by definition, can't
+    # be less than the difference in string length
+    diff_len = unit.source_length * (100 - min_similarity)/100
+    max_unit_len = unit.source_length + diff_len
+    min_unit_len = unit.source_length - diff_len
+
     criteria = {
         'target_lang': unit.store.translation_project.language,
         'source_lang': unit.store.translation_project.project.source_language,
+        'source_length__range': (min_unit_len, max_unit_len),
     }
     tmunits = TMUnit.objects.filter(**criteria)
 
