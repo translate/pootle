@@ -130,6 +130,11 @@ h1, h2, h3, h4, h5, h6
     color: #999;
 }
 
+h1, h2, h3
+{
+    font-family: webfont_bold, 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif;
+}
+
 h1
 {
     font-size: 185%;
@@ -372,24 +377,32 @@ html[dir="rtl"] #nav-access
  * NAVBAR
  */
 
+#navbar
+{
+    background: #0489b7;
+}
+
 #navbar a
 {
     color: #c1e1ee;
-    text-shadow: 0 1px 0 #130f30;
     text-decoration: none;
 }
 
-#navbar a.brand,
 #navbar a:active,
 #navbar a:hover
 {
     color: #f8f8f8;
 }
 
-.brand
+#navbar h1
 {
-    font-size: 1.5em;
-    line-height: 2em;
+    font-family: webfont_bold, 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    font-size: 18px;
+    line-height: 50px;
+    padding: 0 16px;
 }
 
 .logo
@@ -404,26 +417,9 @@ html[dir="rtl"] .logo
     float: right;
 }
 
-/* Navbar container */
-
-#navbar-inner
+#navbar h1 a
 {
-    background-color: #0489B7;
-    border-bottom: 1px solid #d9d9d9;
-    min-height: 40px;
-    -webkit-box-shadow: 0 1px 4px #d9d9d9;
-       -moz-box-shadow: 0 1px 4px #d9d9d9;
-            box-shadow: 0 1px 4px #d9d9d9;
-
-    margin-bottom: -1px;
-}
-
-#navbar-inner .brand
-{
-    margin: 0;
-    padding: 0;
-    font-size: 24px;
-    padding-left: 0.34em;
+    color: #fff;
 }
 
 /* Zoom controls */
@@ -1447,8 +1443,7 @@ ul.errorlist
 
 #staticpage h1
 {
-    color: rgba(25, 15, 0, 0.6);
-    font-size: 3em;
+    font-size: 2.2em;
     line-height: 85%;
     margin: 1em 0 0.5em;
     font-weight: bold;
@@ -1457,7 +1452,7 @@ ul.errorlist
 #staticpage h2
 {
     color: rgba(25, 15, 0, 0.5);
-    font-size: 2em;
+    font-size: 1.8em;
     margin: 0.5em 0;
     font-weight: bold;
 }
@@ -2345,8 +2340,10 @@ body.js-not-loaded #translate-actions li
 {
     font-size: 1.5em;
     font-weight: normal;
+    font-family: webfont_light, 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif;
     visibility: hidden;
     margin-left: -5px;
+    margin-top: 5px;
 }
 
 .breadcrumb li

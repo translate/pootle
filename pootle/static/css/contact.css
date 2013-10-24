@@ -5,7 +5,7 @@
 #contact
 {
     line-height: 150%!important;
-    margin: 3em;
+    margin: 2em 3em;
 
     font-family: "Open Sans", sans-serif;
     font-size: 1.2em;
@@ -13,14 +13,7 @@
 
 #contact h1
 {
-    color: rgba(25, 15, 0, 0.6);
-    font-size: 3em;
-    line-height: 85%;
-    margin: 0.5em 0;
-
-    font-family: "Open Sans Condensed", "Open Sans", sans-serif;
-    font-weight: bold;
-    text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.8);
+    margin-bottom: 1em;
 }
 
 #contact p
