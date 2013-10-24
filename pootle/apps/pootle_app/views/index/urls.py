@@ -32,14 +32,6 @@ urlpatterns = patterns('pootle_app.views.index',
         'index.view',
         name='pootle-home'),
 
-    url(r'^about/$',
-        # FIXME: move this into a view file
-        TemplateView.as_view(template_name='about/about.html'),
-        name='pootle-about'),
-    url(r'^about/contributors/$',
-        'contributors.view',
-        name='pootle-about-contributors'),
-
     url(r'^translate/$',
         'translate.view',
         name='pootle-translate'),

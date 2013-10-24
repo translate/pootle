@@ -34,7 +34,7 @@
  * BASIC ELEMENT STYLING
  */
 
-html, body, #header-meta, #footer, #about, .header
+html, body, #header-meta, #footer, .header
 {
     background-color: #eee;
 }
@@ -137,6 +137,8 @@ h1, h2, h3, h4, h5, h6
 h1, h2, h3
 {
     font-family: webfont_bold, 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
 }
 
 h1
@@ -573,8 +575,7 @@ html[dir="rtl"] #nav-main li
 
 #nav-main a.admin
 {
-    font-weight: bold;
-    color: #F99;
+    color: #f33;
 }
 
 #user
@@ -1390,6 +1391,11 @@ ul.errorlist
  * DOCUMENTATION, LEGAL, CONTRIBUTORS
  */
 
+body.static .header
+{
+    display: none;
+}
+
 .documentation
 {
     background: #fff;
@@ -1398,8 +1404,10 @@ ul.errorlist
 #staticpage,
 #about
 {
-    margin: 2em;
+    margin: 2em auto;
+    padding: 0 2em;
     font-size: 120%;
+    max-width: 960px;
 }
 
 #about .document h1
@@ -1471,15 +1479,19 @@ ul.errorlist
     font-size: 2.2em;
     line-height: 85%;
     margin: 1em 0 0.5em;
-    font-weight: bold;
+    margin-bottom: 1em;
 }
 
 #staticpage h2
 {
     color: rgba(25, 15, 0, 0.5);
     font-size: 1.8em;
-    margin: 0.5em 0;
-    font-weight: bold;
+    margin: 1em 0 0.5em;
+}
+
+#staticpage h3
+{
+    margin: 1em 0 0.5em;
 }
 
 #staticpage p
