@@ -277,7 +277,7 @@ tr.edit-row.with-ctx
 .delimiter-row .hd h2
 {
     margin: 1em 25px 0.5em;
-    font-size: 1.7em;
+    font-size: 1.5em;
     border-bottom: 1px solid #ccc;
 }
 
@@ -1020,6 +1020,9 @@ div.check a
 #translate-checks-block .sidetitle
 {
     color: #900;
+    float: left;
+    display: inline-block;
+    margin: 0.2em 0.2em 0 0;
 }
 
 li.check
@@ -1029,6 +1032,9 @@ li.check
     margin: 0 0.5em 0.5em 0;
     padding: 0.1em 0.5em;
 
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
 }
 
 li.check:hover
@@ -1256,7 +1262,7 @@ div.translation-text-headers[dir="rtl"] div.translate-toolbar a
     white-space: nowrap;
 
     filter:alpha(opacity=50);
-    opacity: 0.5;
+    opacity: 0.7;
 }
 
 .translate-container a:hover
