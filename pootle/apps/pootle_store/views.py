@@ -465,6 +465,7 @@ def _prepare_unit(unit):
     """Constructs a dictionary with relevant `unit` data."""
     return {
         'id': unit.id,
+        'url': unit.get_translate_url(),
         'isfuzzy': unit.isfuzzy(),
         'source': [source[1] for source in pluralize_source(unit)],
         'target': [target[1] for target in pluralize_target(unit)],
