@@ -870,16 +870,11 @@
   buildCtxRows: function (units, extraCls) {
     var i, unit,
         currentUnit = this.units.getCurrent(),
-        rows = "",
-        urlStr = [
-          PTL.editor.settings.ctxPath, 'translate/',
-          PTL.editor.settings.resourcePath, '#unit=',
-        ].join('');
+        rows = '';
 
     for (i=0; i<units.length; i++) {
       // FIXME: Please let's use proper models for context units
       unit = units[i];
-      unit['url'] = l(urlStr + unit.id);
       unit = $.extend({}, currentUnit.toJSON(), unit);
 
       rows += '<tr id="ctx' + unit.id + '" class="ctx-row ' + extraCls + '">';
@@ -1048,12 +1043,6 @@
           PTL.editor.pagesGot = _.union(PTL.editor.pagesGot,
                                         data.pager.fetchedPages);
 
-          // FIXME: can we avoid this?
-          var urlStr = [
-            PTL.editor.settings.ctxPath, 'translate/',
-            PTL.editor.settings.resourcePath, '#unit=',
-          ].join('');
-
           var i, j, unit, unitGroup;
           for (i=0; i<data.unit_groups.length; i++) {
             unitGroup = data.unit_groups[i];
@@ -1063,12 +1052,6 @@
                     return $.extend(unit, {store: storeData});
                   });
               PTL.editor.units.set(units, {remove: false});
-
-              // FIXME: can we avoid this?
-              for (j=0; j<group.units.length; j++) {
-                unit = PTL.editor.units.get(group.units[j].id);
-                unit.set('url', l(urlStr + unit.id));
-              }
             });
           }
 
