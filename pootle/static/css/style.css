@@ -554,23 +554,22 @@ html[dir="rtl"] #nav-main li
 #nav-main li a:active
 {
     line-height: 2em;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     display: inline-block;
-    margin-left: 1.5em;
+    margin-left: 0.5em;
     text-decoration: none;
     border-radius: 3px;
-    padding: 0.2em 0.4em;
-    font-size: 1.2em;
+    padding: 0.5em 1em;
+    font-size: 1.1em;
 }
 
 #nav-main li a:hover
 {
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.6);
 }
 
 #nav-main li a:active
 {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 1);
 }
 
 #nav-main a.admin
@@ -1557,7 +1556,7 @@ div.settings-container
 .module-primary .hd h2,
 .hd h2
 {
-    font-family: "Open Sans Condensed", "Open Sans", sans-serif;
+    font-family: webfont_light, 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif;
     font-size: 2.2em;
 }
 
