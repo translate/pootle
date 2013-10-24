@@ -44,7 +44,7 @@ from django.views.decorators.http import require_POST
 from taggit.models import Tag
 
 from pootle.core.exceptions import Http400
-from pootle.core.paginator import paginate
+from pootle.core.paginator import paginate_units
 from pootle.core.url_helpers import split_pootle_path
 from pootle.core.decorators import (get_path_obj, get_resource_context,
                                     permission_required)
@@ -532,7 +532,7 @@ def get_units(request):
     if pootle_path is None:
         raise Http400(_('Arguments missing.'))
 
-    page = None
+    pages = None
 
     request.profile = get_profile(request.user)
     limit = request.profile.get_unit_rows()
@@ -549,30 +549,47 @@ def get_units(request):
             # at some stage.
             uid_list = list(step_queryset.values_list('id', flat=True))
             preceding = uid_list.index(int(uid))
-            page = preceding / limit + 1
+            page_number = preceding / limit + 1
+            pages = ','.join(map(lambda x: str(x), [
+                page_number, page_number + 1, page_number - 1
+            ]))
         except ValueError:
             pass  # uid wasn't a number or not present in the results.
 
     # XXX: Black magic going on here. See issue #4 on Evernote for details.
     step_queryset.query.sql_with_params()
-    pager = paginate(request, step_queryset, items=limit, page=page)
+    page_list = paginate_units(request, step_queryset, items=limit,
+                               pages=pages)
 
+    fetched_pages = []
     unit_groups = []
-    units_by_path = groupby(pager.object_list, lambda x: x.store.pootle_path)
-    for pootle_path, units in units_by_path:
-        unit_groups.append(_path_units_with_meta(pootle_path, units))
+    for page in page_list:
+        fetched_pages.append(page.number)
+        units_by_path = groupby(page.object_list,
+                                lambda x: x.store.pootle_path)
+        for pootle_path, units in units_by_path:
+            unit_groups.append(_path_units_with_meta(pootle_path, units))
 
     response = {
         'unit_groups': unit_groups,
+        'pager': {
+            'fetchedPages': fetched_pages,
+        }
     }
 
     if request.GET.get('pager', False):
-        response['pager'] = {
-            'count': pager.paginator.count,
-            'current': pager.number,
-            'numPages': pager.paginator.num_pages,
-            'perPage': pager.paginator.per_page,
-        }
+        try:
+            pager = page_list[0]
+            response['pager'].update({
+                # FIXME: calculate only once
+                'uidList': list(step_queryset.values_list('id', flat=True)),
+                'count': pager.paginator.count,
+                'current': pager.number,
+                'numPages': pager.paginator.num_pages,
+                'perPage': pager.paginator.per_page,
+            })
+        except IndexError:
+            pass
 
     return HttpResponse(jsonify(response), mimetype="application/json")
 
