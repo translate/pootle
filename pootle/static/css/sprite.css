@@ -1,5 +1,4 @@
-/* glue: 0.3 hash: 51a851f7ec */
-.logo,
+/* glue: 0.3 hash: 3b8765514c */
 .icon-desc,
 .icon-ascdesc,
 .icon-asc,
@@ -27,31 +26,30 @@
 .icon-apertium,
 .icon-accept,
 .icon-external-link{background-image:url('../images/sprite.png');background-repeat:no-repeat}
-.logo{background-position:0px 0px;width:52px;height:32px;}
-.icon-desc{background-position:0px -32px;width:21px;height:4px;}
-.icon-ascdesc{background-position:0px -36px;width:21px;height:9px;}
-.icon-asc{background-position:-21px -32px;width:21px;height:4px;}
-.icon-expand-stats{background-position:-52px 0px;width:17px;height:17px;}
-.icon-collapse-stats{background-position:-52px -17px;width:17px;height:17px;}
-.icon-web-translate{background-position:0px -45px;width:16px;height:16px;}
-.icon-warning{background-position:-16px -45px;width:16px;height:16px;}
-.icon-vote-inactive{background-position:-32px -45px;width:16px;height:16px;}
-.icon-vote-active{background-position:-48px -45px;width:16px;height:16px;}
-.icon-tick{background-position:-69px 0px;width:16px;height:16px;}
-.icon-search{background-position:-69px -16px;width:16px;height:16px;}
-.icon-reject{background-position:-69px -32px;width:16px;height:16px;}
-.icon-project{background-position:0px -61px;width:16px;height:16px;}
-.icon-language{background-position:-16px -61px;width:16px;height:16px;}
-.icon-information{background-position:-32px -61px;width:16px;height:16px;}
-.icon-google-translate{background-position:-48px -61px;width:16px;height:16px;}
-.icon-folder{background-position:-64px -61px;width:16px;height:16px;}
-.icon-folder-parent{background-position:-85px 0px;width:16px;height:16px;}
-.icon-file{background-position:-85px -16px;width:16px;height:16px;}
-.icon-error{background-position:-85px -32px;width:16px;height:16px;}
-.icon-copy{background-position:-85px -48px;width:16px;height:16px;}
-.icon-comment-user{background-position:0px -77px;width:16px;height:16px;}
-.icon-comment-add{background-position:-16px -77px;width:16px;height:16px;}
-.icon-block{background-position:-32px -77px;width:16px;height:16px;}
-.icon-apertium{background-position:-48px -77px;width:16px;height:16px;}
-.icon-accept{background-position:-64px -77px;width:16px;height:16px;}
-.icon-external-link{background-position:-85px -64px;width:12px;height:12px;}
+.icon-desc{background-position:0px 0px;width:21px;height:4px;}
+.icon-ascdesc{background-position:0px -4px;width:21px;height:9px;}
+.icon-asc{background-position:0px -13px;width:21px;height:4px;}
+.icon-expand-stats{background-position:-21px 0px;width:17px;height:17px;}
+.icon-collapse-stats{background-position:0px -17px;width:17px;height:17px;}
+.icon-web-translate{background-position:-17px -17px;width:16px;height:16px;}
+.icon-warning{background-position:-38px 0px;width:16px;height:16px;}
+.icon-vote-inactive{background-position:-38px -16px;width:16px;height:16px;}
+.icon-vote-active{background-position:0px -34px;width:16px;height:16px;}
+.icon-tick{background-position:-16px -34px;width:16px;height:16px;}
+.icon-search{background-position:-32px -34px;width:16px;height:16px;}
+.icon-reject{background-position:-54px 0px;width:16px;height:16px;}
+.icon-project{background-position:-54px -16px;width:16px;height:16px;}
+.icon-language{background-position:-54px -32px;width:16px;height:16px;}
+.icon-information{background-position:0px -50px;width:16px;height:16px;}
+.icon-google-translate{background-position:-16px -50px;width:16px;height:16px;}
+.icon-folder{background-position:-32px -50px;width:16px;height:16px;}
+.icon-folder-parent{background-position:-48px -50px;width:16px;height:16px;}
+.icon-file{background-position:-70px 0px;width:16px;height:16px;}
+.icon-error{background-position:-70px -16px;width:16px;height:16px;}
+.icon-copy{background-position:-70px -32px;width:16px;height:16px;}
+.icon-comment-user{background-position:-70px -48px;width:16px;height:16px;}
+.icon-comment-add{background-position:0px -66px;width:16px;height:16px;}
+.icon-block{background-position:-16px -66px;width:16px;height:16px;}
+.icon-apertium{background-position:-32px -66px;width:16px;height:16px;}
+.icon-accept{background-position:-48px -66px;width:16px;height:16px;}
+.icon-external-link{background-position:-64px -66px;width:12px;height:12px;}

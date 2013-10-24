@@ -13,6 +13,14 @@
     <link rel="icon" href="{{ "images/app-64x64.png"|s }}" sizes="64x64" />
     {% endblock meta %}
     {% block css %}
+    
+    {#   The CSS file below link copyrighted web fonts (Caecilia family)          #}
+    {#   so we're not distributing this as a part of open-source Pootle project   #}
+    {#   but link directly to an external /media/ directory where the CSS file    #}
+    {#   and the fonts should be located.                                         #}
+
+    <link rel="stylesheet" type="text/css" href="/media/css/fonts.css" />
+
     {% assets "css_common" %}
     <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
     {% endassets %}
@@ -146,8 +154,11 @@
           <div id="nav-access">
             <a href="#nav-main">{% trans 'skip to navigation' %}</a>
           </div>
-          <a href="/" class="brand"><i class="logo"></i>{{ settings.TITLE }}</a>
-
+          <h1 class="brand"><a href="/"><img class="logo" src="{{ "images/logo.png"|s }}" /> EVERNOTE <span class="site_title">{{ settings.TITLE }}</span></a></h1>
+          <div class="parent_site">
+            <div class="divider">&nbsp;</div>
+            <a href="//evernote.com">evernote.com</a>
+          </div>
           <div id="zoom">
             <a id="zoom-out" title="{% trans "Zoom out (Ctrl+Shift+-)" %}"
               href="javascript:PTL.zoom.zoom(-1)">&ndash;</a>
