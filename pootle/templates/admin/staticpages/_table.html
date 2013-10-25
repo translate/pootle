@@ -5,8 +5,8 @@
     <thead>
       <tr>
         <th>{% trans "Active" %}</th>
-        <th>{% trans "Page" %}</th>
         <th>{% trans "Virtual Path" %}</th>
+        <th>{% trans "Page Title" %}</th>
         <th>{% trans "Redirect to URL" %}</th>
         <th>{% trans "Last Edited" %}</th>
       </tr>
@@ -15,8 +15,8 @@
     {% for page in object_list %}
       <tr class="item {% cycle 'even' 'odd' %}">
         <td>{% if page.active %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}</td>
-        <td><a href="{{ page.get_edit_url }}">{{ page.title }}</a></td>
-        <td><a href="{{ page.get_absolute_url }}">{{ page.virtual_path }}</a></td>
+        <td><a href="{{ page.get_edit_url }}"><span class="action">edit</span><strong>/{{ page.virtual_path }}</strong></a></td>
+        <td><a href="{{ page.get_absolute_url }}"><span class="action">view</span>{{ page.title }}</a></td>
         <td>{% if page.url %}<a href="{{ page.url }}">{{ page.url }}</a>{% endif %}</td>
         <td>
           <time class="js-relative-date" title="{{ page.modified_on }}"
