@@ -33,7 +33,8 @@ from pootle.core.forms import MathCaptchaForm
 URL_RE = re.compile('http://|https://', re.I)
 
 CAPTCHA_EXEMPT_URLPATTERNS = (
-    'login', 'evernote_login', 'evernote_create_login', 'pootle-contact',
+    'pootle-profile-login', 'evernote_login', 'evernote_create_login',
+    'pootle-contact',
 )
 
 
