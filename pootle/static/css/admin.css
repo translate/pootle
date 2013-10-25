@@ -36,6 +36,11 @@ textarea#id_DESCRIPTION,
     width: 100%;
 }
 
+.staticpages-form textarea
+{
+    height: 30em;
+}
+
 /* STATIC PAGES */
 
 .control-group
