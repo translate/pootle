@@ -87,6 +87,7 @@ class Submission(models.Model):
     new_value = models.TextField(blank=True, default=u"")
 
     objects = RelatedManager()
+    simple_objects = models.Manager()
 
     class Meta:
         ordering = ["creation_time"]
