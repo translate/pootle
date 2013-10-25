@@ -1390,11 +1390,6 @@ ul.errorlist
  * DOCUMENTATION, LEGAL, CONTRIBUTORS
  */
 
-body.static .header
-{
-    display: none;
-}
-
 .documentation
 {
     background: #fff;
