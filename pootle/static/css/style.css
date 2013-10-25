@@ -2337,7 +2337,7 @@ html[dir="rtl"] .breadcrumb li
 
 .breadcrumb li:before
 {
-    content: "/ ";
+    content: " / ";
     font-weight: normal;
     color: #999;
 }
