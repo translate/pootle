@@ -30,7 +30,7 @@
  * BASIC ELEMENT STYLING
  */
 
-html, body, #header-meta, #footer, #about, .header
+html, body, #header-meta, #footer, .header
 {
     background-color: #eee;
 }
@@ -1363,13 +1363,8 @@ ul.errorlist
 
 
 /*
- * DOCUMENTATION, LEGAL, CONTRIBUTORS
+ * STATIC PAGES, ABOUT, CONTRIBUTORS
  */
-
-.documentation
-{
-    background: #fff;
-}
 
 #staticpage,
 #about
@@ -1662,31 +1657,6 @@ div.latestnews li
 .subscribe
 {
     margin-top: 1em;
-}
-
-div.topcontributors
-{
-    margin-top: 0;
-    padding-top: 3em;
-    margin-bottom: 2em;
-}
-
-table.topcontributors
-{
-    width: 100%;
-}
-
-table.topcontributors th
-{
-    color: #999;
-    font-size: 85%;
-    padding: 0 10px 7px 10px;
-}
-
-table.topcontributors td
-{
-    font-size: inherit;
-    padding: 5px 10px;
 }
 
 tr.item.empty
@@ -2894,7 +2864,6 @@ h2:lang(zh) a
  * Size overrides for different zoom levels
  */
 
-body.zoom-out-2 #content .documentation,
 body.zoom-out-2 #content table.sortable,
 body.zoom-out-2 table.translate-table,
 body.zoom-out-2 table.stats
@@ -2902,7 +2871,6 @@ body.zoom-out-2 table.stats
     font-size: 90%;
 }
 
-body.zoom-out-1 #content .documentation,
 body.zoom-out-1 #content table.sortable,
 body.zoom-out-1 table.translate-table,
 body.zoom-out-1 table.stats
@@ -2910,7 +2878,6 @@ body.zoom-out-1 table.stats
     font-size: 95%;
 }
 
-body.zoom-in-1 #content .documentation,
 body.zoom-in-1 #content table.sortable,
 body.zoom-in-1 table.translate-table,
 body.zoom-in-1 table.stats
@@ -2918,7 +2885,6 @@ body.zoom-in-1 table.stats
     font-size: 115%;
 }
 
-body.zoom-in-2 #content .documentation,
 body.zoom-in-2 #content table.sortable,
 body.zoom-in-2 table.translate-table,
 body.zoom-in-2 table.stats
