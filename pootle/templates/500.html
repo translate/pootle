@@ -3,6 +3,9 @@
 
 {% block title %}{% trans "Server Error" %} | {{ block.super }}{% endblock %}
 
+{% block header_content_block %}{% endblock %}
+{% block actions_block %}{% endblock %}
+
 {% block breadcrumbs %}
 {{ block.super }}<li>{% trans "Server Error" %}</li>
 {% endblock %}
