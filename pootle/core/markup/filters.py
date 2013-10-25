@@ -55,7 +55,7 @@ def rewrite_internal_link(link):
 
     for page_model in AbstractPage.__subclasses__():
         try:
-            page = page_model.live.get(
+            page = page_model.objects.live().get(
                     virtual_path=virtual_path,
                 )
             url = page.get_absolute_url()
