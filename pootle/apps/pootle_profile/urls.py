@@ -19,15 +19,24 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from django.conf.urls import include, patterns
+from django.conf.urls import include, patterns, url
 
 
 urlpatterns = patterns('pootle_profile.views',
-    (r'^login/?$',    'login', {}, 'login'),
-    (r'^logout/?$',   'logout'),
-    (r'^edit/?$', 'profile_edit'),
-    (r'^personal/edit/?$',   'edit_personal_info'),
+    url(r'^login/?$',
+        'login',
+        name='pootle-profile-login'),
+    url(r'^logout/?$',
+        'logout',
+        name='pootle-profile-logout'),
+    url(r'^edit/?$',
+        'profile_edit',
+        name='pootle-profile-edit'),
+    url(r'^personal/edit/?$',
+        'edit_personal_info',
+        name='pootle-profile-personal-edit'),
 )
+
 urlpatterns += patterns('django.contrib.auth.views',
     (r'^password/change/$', 'password_change'),
     (r'^password/change/done/$', 'password_change_done'),
