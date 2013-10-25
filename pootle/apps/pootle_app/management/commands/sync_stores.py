@@ -65,15 +65,14 @@ class Command(ModifiedSinceMixin, PootleCommand):
         if change_id:
             from pootle_statistics.models import Submission
 
-            pootle_path = store.pootle_path
             has_changes = Submission.objects.filter(
                     id__gte=change_id,
-                    unit__store__pootle_path=pootle_path,
+                    unit__store=store,
             ).exists()
 
             if not has_changes:
                 logging.debug(u"File didn't change since %d, skipping %s",
-                              change_id, pootle_path)
+                              change_id, store.pootle_path)
                 return
 
         store.sync(update_translation=True, conservative=not overwrite,
