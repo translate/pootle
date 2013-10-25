@@ -1341,6 +1341,7 @@ ul.errorlist
 .form .captcha label
 {
     font-size: 120%;
+    margin-right: 0.6em;
 }
 
 .form .captcha input[type="text"]
@@ -2141,7 +2142,6 @@ html[dir="rtl"] .overview-description-toggle
 
 #header-meta
 {
-    min-height: 60px;
     line-height: 2;
     border-bottom: none;
 }
@@ -2152,7 +2152,8 @@ html[dir="rtl"] .overview-description-toggle
 
 #top-stats
 {
-    padding-bottom: 1.5em;
+    padding-bottom: 2em;
+    padding-top: 0.2em;
 }
 
 #top-stats .label
