@@ -29,12 +29,12 @@
         <input type="hidden" name="next" value="{{ next }}" />
         </form>
     </div>
-    <h2 class="formlink pootle">{% trans "or" %}&nbsp;
+    <div class="formlink pootle">{% trans "or" %}&nbsp;
         {# FIXME: Set the event handler in js and not in the markup #}
         <a href="#" onclick="pootle_login(); return false;">
             {% trans "Login using your existing Pootle account" %}
         </a>
-    </h2>
+    </div>
 
 
 <div class="login{% if not form.errors %} hidden{% endif %}">
@@ -61,10 +61,10 @@
     </p>
     </form>
     </div>
-    <h2 class="formlink evernote">
+    <div class="formlink evernote">
         <a href='{{ "/accounts/password/reset/"|l }}'>
             {% trans "Lost your Password?" %}
         </a>
-    </h2>
+    </div>
 </div>
 {% endblock content %}
