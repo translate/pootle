@@ -1387,85 +1387,15 @@ ul.errorlist
 
 
 /*
- * DOCUMENTATION, LEGAL, CONTRIBUTORS
+ * STATIC PAGES
  */
 
-.documentation
-{
-    background: #fff;
-}
-
-#staticpage,
-#about
+#staticpage
 {
     margin: 2em auto;
     padding: 0 2em;
     font-size: 120%;
     max-width: 960px;
-}
-
-#about .document h1
-{
-    margin-top: .5em;
-    margin-bottom: .25em;
-}
-
-#about h2,
-#about h3
-{
-    border-bottom: 1px solid #eee;
-}
-
-#about h3
-{
-    margin-top: 1.5em;
-}
-
-#about p
-{
-    margin: 1em 0;
-}
-
-#about ol,
-#about ul
-{
-    margin: 1em 1.5em;
-}
-
-#about ul li
-{
-    list-style-type: square;
-}
-
-#about ol li
-{
-    list-style-type: inherit;
-}
-
-#about dfn
-{
-    border-bottom: 1px dotted #130f30;
-}
-
-#about .sidenote
-{
-    width: 10em;
-    font-size: 95%;
-    background-color: #ffe;
-    padding: 0 1em;
-    border: 1px dashed #cc9;
-    margin-top: 4em;
-    color: #777;
-}
-
-#about .sidenote p
-{
-    line-height: 130%;
-}
-
-#about .sidenote li
-{
-    margin: 0.2em 0;
 }
 
 #staticpage h1
@@ -1491,42 +1421,6 @@ ul.errorlist
 #staticpage p
 {
     margin: 0.5em 0;
-}
-
-#contributors ul,
-#contributors ul li
-{
-    margin: 0;
-    list-style-type: none;
-}
-
-#contributors ul li
-{
-    padding-left: 25px;
-}
-
-html[dir="rtl"] #contributors ul li
-{
-    padding-right: 25px;
-}
-
-#contributors ul li.lang
-{
-    font-weight: bold;
-    font-size: 120%;
-    margin-top: 12px;
-}
-
-#contributors ul li.proj
-{
-    font-weight: bold;
-    font-size: 80%;
-}
-
-#contributors ul li.user
-{
-    font-weight: normal;
-    font-size: 100%;
 }
 
 
@@ -1627,12 +1521,6 @@ div#settings
  * SUMMARIES
  */
 
-div.newsitem-sep
-{
-    border-bottom: 1px solid #ddd;
-    margin: 1.5em 0 2em;
-}
-
 div.latestnews ul
 {
     margin: 0 1em;
@@ -1641,31 +1529,6 @@ div.latestnews ul
 div.latestnews li
 {
     list-style-type: square;
-}
-
-div.topcontributors
-{
-    margin-top: 0;
-    padding-top: 1em;
-    margin-bottom: 2em;
-}
-
-table.topcontributors
-{
-    width: 100%;
-}
-
-table.topcontributors th
-{
-    color: #999;
-    font-size: 85%;
-    padding: 0 10px 7px 10px;
-}
-
-table.topcontributors td
-{
-    font-size: inherit;
-    padding: 5px 10px;
 }
 
 tr.item.empty
@@ -2244,49 +2107,6 @@ body.js-not-loaded #translate-actions li
     background-color: #c30;
 }
 
-/* top menu */
-
-ul.top_menu
-{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    background: rgba(0, 0, 0, 0.6);
-}
-
-ul.top_menu li
-{
-    margin: 0;
-    display: inline-block;
-}
-
-ul.top_menu li a
-{
-    display: inline-block;
-    padding: 0.54em 1em;
-    font-size: 1.23em;
-    color: #fff;
-    text-decoration: none;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-ul.top_menu li a:hover
-{
-    background: rgba(0, 0, 0, 0.2);
-    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3);
-}
-
-ul.top_menu li a:active
-{
-    background: rgba(0, 0, 0, 0.3);
-}
- 
-ul.top_menu li.page_pootle
-{
-    background: rgba(0, 0, 0, 0.5);
-    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.8);
-}
-
 /* Breadcrumbs */
 
 .breadcrumb
@@ -2825,7 +2645,6 @@ h2:lang(zh) a
  * Size overrides for different zoom levels
  */
 
-body.zoom-out-2 #content .documentation,
 body.zoom-out-2 #content table.sortable,
 body.zoom-out-2 table.translate-table,
 body.zoom-out-2 table.stats
@@ -2833,7 +2652,6 @@ body.zoom-out-2 table.stats
     font-size: 90%;
 }
 
-body.zoom-out-1 #content .documentation,
 body.zoom-out-1 #content table.sortable,
 body.zoom-out-1 table.translate-table,
 body.zoom-out-1 table.stats
@@ -2841,7 +2659,6 @@ body.zoom-out-1 table.stats
     font-size: 95%;
 }
 
-body.zoom-in-1 #content .documentation,
 body.zoom-in-1 #content table.sortable,
 body.zoom-in-1 table.translate-table,
 body.zoom-in-1 table.stats
@@ -2849,7 +2666,6 @@ body.zoom-in-1 table.stats
     font-size: 115%;
 }
 
-body.zoom-in-2 #content .documentation,
 body.zoom-in-2 #content table.sortable,
 body.zoom-in-2 table.translate-table,
 body.zoom-in-2 table.stats
