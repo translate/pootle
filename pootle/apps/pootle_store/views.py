@@ -794,6 +794,15 @@ def get_edit_unit(request, unit):
     return HttpResponse(response, status=rcode, mimetype="application/json")
 
 
+def _get_project_icon(project):
+    path = "/".join(["", project.code, ".pootle", "icon.png"])
+    if os.path.isfile(settings.PODIRECTORY + path):
+        # XXX: we are abusing the export URL, need a better way to serve
+        # static files
+        return "/export" + path
+    else:
+        return settings.STATIC_URL + "images/blank.gif"
+
 @ajax_required
 @get_unit_context('view')
 def get_tm_results(request, unit):
@@ -835,7 +844,7 @@ def get_tm_results(request, unit):
                     'project': project.code,
                     'projectname': project.fullname,
                     'absolute_url': project.get_absolute_url(),
-                    'icon': 'project.png', # XXX
+                    'icon': _get_project_icon(project),
                 }
             }
 
