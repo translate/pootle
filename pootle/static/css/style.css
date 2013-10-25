@@ -2121,7 +2121,7 @@ body.js-not-loaded #translate-actions li
 
 .breadcrumb li:before
 {
-    content: "/ ";
+    content: " / ";
     font-weight: normal;
     color: #999;
 }
