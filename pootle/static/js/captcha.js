@@ -27,7 +27,7 @@
 }(jQuery));
 
 
-$(document).on('submit', '#captcha', function (e) {
+$(document).on('submit', '#js-captcha', function (e) {
   e.preventDefault();
   var $form = $(this),
       reqData = $form.serializeObject(),
