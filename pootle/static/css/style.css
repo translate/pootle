@@ -2116,7 +2116,7 @@ body.js-not-loaded #translate-actions li
     font-family: webfont_light, 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif;
     visibility: hidden;
     margin-left: -5px;
-    margin-top: 5px;
+    padding-top: 5px;
 }
 
 .breadcrumb li
