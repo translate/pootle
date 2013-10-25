@@ -4,8 +4,5 @@
 {% block title %}{{ page.title }} | {{ block.super }}{% endblock title %}
 
 {% block content %}
-<div id="staticpage">
-  <h1 class="title">{{ page.title }}</h1>
-  {{ page.body }}
-</div>
+{% include "staticpages/_body.html" %}
 {% endblock content %}
