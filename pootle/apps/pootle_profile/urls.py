@@ -24,13 +24,17 @@ from django.conf.urls import include, patterns, url
 
 urlpatterns = patterns('pootle_profile.views',
     url(r'^login/?$',
-        'login'),
+        'login',
+        name='pootle-profile-login'),
     url(r'^logout/?$',
-        'logout'),
+        'logout',
+        name='pootle-profile-logout'),
     url(r'^edit/?$',
-        'profile_edit'),
+        'profile_edit',
+        name='pootle-profile-edit'),
     url(r'^personal/edit/?$',
-        'edit_personal_info'),
+        'edit_personal_info',
+        name='pootle-profile-personal-edit'),
 )
 
 urlpatterns += patterns('django.contrib.auth.views',
