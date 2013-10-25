@@ -14,7 +14,9 @@
   {% endif %}
 {% endblock %}
 
-{% block header_content %}
+{% block header_content_block %}
+<div id="top-stats" class="header">
+  {% block header_content %}
   <a id="js-path-summary" data-target="js-path-summary-more" href="#">
     <div id="progressbar">
       <i id="js-expand-icon" class="icon-expand-stats"
@@ -60,15 +62,20 @@
       </div>
     </div>
   </div>
-
+  {% endblock %}
+</div>
 {% endblock %}
 
-{% block actions %}
+{% block actions_block %}
+<div id="actions" class="header">
+  {% block actions %}
   {% render_search %}
 
   <div id="translate-actions">
     <ul id="js-translate-actions-list"></ul>
   </div>
+  {% endblock %}
+</div>
 {% endblock %}
 
 {% block content %}
