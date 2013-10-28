@@ -45,3 +45,13 @@ class Command(PootleCommand):
         store.flush_cache()
         store.get_stats()
         store.get_checks()
+
+    def handle_language(self, lang):
+        lang.flush_cache()
+        lang.get_stats()
+        lang.get_checks()
+
+    def handle_project(self, prj):
+        prj.flush_cache()
+        prj.get_stats()
+        prj.get_checks()

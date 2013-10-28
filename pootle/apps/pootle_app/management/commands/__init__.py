@@ -116,7 +116,7 @@ class PootleCommand(NoArgsCommand):
             languages = options.get('languages', [])
             path = options.get('path', '')
 
-        if languages and hasattr(self, "handle_language"):
+        if hasattr(self, "handle_language"):
             lang_query = Language.objects.all()
             if languages:
                 lang_query = lang_query.filter(code__in=languages)
