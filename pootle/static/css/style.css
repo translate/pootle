@@ -1540,7 +1540,8 @@ table.stats td.project
 
 td.stats-name
 {
-    white-space: nowrap;    
+    white-space: nowrap;
+    line-height: 20px;
 }
 
 td.stats-number
@@ -2112,6 +2113,7 @@ body.js-not-loaded #translate-actions li
     visibility: hidden;
     margin-left: -5px;
     padding-top: 5px;
+    min-height: 2.05em;
 }
 
 .breadcrumb li
