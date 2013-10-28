@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-03-29 19:58+0000\n"
+"PO-Revision-Date: 2013-06-02 18:21+0000\n"
 "Last-Translator: dushku <nandidushku@yahoo.com>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "Language: sq\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1364587134.0\n"
+"X-POOTLE-MTIME: 1370197296.0\n"
 
 #: strings.py:8
 msgid ""
@@ -92,11 +92,11 @@ msgstr "Shfaq ne faqe"
 
 #: strings.py:33
 msgid "first name"
-msgstr "emri"
+msgstr "Emri"
 
 #: strings.py:34
 msgid "last name"
-msgstr "mbiemri"
+msgstr "Mbiemri"
 
 #: strings.py:35
 msgid "e-mail address"
@@ -171,9 +171,8 @@ msgstr "Akismet mendon ky mesazh eshte spam"
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] ""
-"Ju lutem korigjo gabimin e meposhtem.Ju lutem korigjo gabimet e meposhteme."
-msgstr[1] ""
+msgstr[0] "Ju lutem korigjo gabimin e meposhtem."
+msgstr[1] "Ju lutem korigjo gabimet e meposhteme."
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."

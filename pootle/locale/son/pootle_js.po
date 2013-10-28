@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:44+0000\n"
-"PO-Revision-Date: 2013-05-10 22:36+0000\n"
+"PO-Revision-Date: 2013-07-08 19:01+0000\n"
 "Last-Translator: Mohomodou  <mh@bollag-areal.ch>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: son\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1368225385.0\n"
+"X-POOTLE-MTIME: 1373310108.0\n"
 
 #: static/js/common.js:43
 msgid "Expand details"
@@ -28,15 +28,15 @@ msgstr "Šilbayhayey tugu"
 
 #: static/js/common.js:77
 msgid "Are you sure you want to continue?"
-msgstr ""
+msgstr "Alhakiika war ga baa ka koy jine?"
 
 #: static/js/common.js:78
 msgid "This operation cannot be undone."
-msgstr ""
+msgstr "Teeraa woo ši hin ka taafeeri."
 
 #: static/js/editor.js:409 static/js/editor.js.c:1493
 msgid "No results."
-msgstr ""
+msgstr "Haya kul ši fatta."
 
 #. Translators: Permalink to the current unit in the editor.
 #. The first '%s' is the permalink URL.
@@ -44,39 +44,39 @@ msgstr ""
 #: static/js/editor.js:726
 #, c-format
 msgid "<a href=\"%s\">String %s</a>"
-msgstr ""
+msgstr "<a href=\"%s\">Tenjiri %s</a>"
 
 #: static/js/editor.js:786
 msgid "Error while connecting to the server"
-msgstr ""
+msgstr "Firka feršikaw ciyari waate"
 
 #: static/js/editor.js:788
 msgid "Server error"
-msgstr ""
+msgstr "Feršika firka"
 
 #: static/js/editor.js:790
 msgid "The server seems down. Try again later."
-msgstr ""
+msgstr "Mane feršikaa ši dira. Ceeci koyne hiino."
 
 #: static/js/editor.js:798
 msgid "Unknown error"
-msgstr ""
+msgstr "Firka šibayante"
 
 #: static/js/editor.js:1342
 msgid "Congratulations, you walked through all strings."
-msgstr ""
+msgstr "Hoyhoy, war na tenjerey kul feeri ka ben sohõda."
 
 #: static/js/editor.js:1344 static/js/editor.js.c:1368
 msgid "Return to the overview page."
-msgstr ""
+msgstr "Willi moo-daaru moo ga."
 
 #: static/js/editor.js:1363
 msgid "You reached the beginning of the list"
-msgstr ""
+msgstr "War too maašeedaa šintinoo ga."
 
 #: static/js/editor.js:1366
 msgid "You reached the end of the list."
-msgstr ""
+msgstr "War too maašeedaa benantaa ga."
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
@@ -84,62 +84,64 @@ msgstr ""
 #: static/js/editor.js:1766
 #, c-format
 msgid "%s% match"
-msgstr ""
+msgstr "%s% tenjiyan"
 
 #: static/js/editor.js:1808
 msgid "Similar translations"
-msgstr ""
+msgstr "Berandiyan himantey"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:7
 msgid "More"
-msgstr ""
+msgstr "Ka bisa nda"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:10
 msgid "Hide"
-msgstr ""
+msgstr "Tugu"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:13
 msgid "Less"
-msgstr ""
+msgstr "Ka kayna nda"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:16
 msgid "Show"
-msgstr ""
+msgstr "Mosso"
 
 #: static/js/utils.js:76
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] ""
+msgstr[0] "A ga to jiiri foo"
+msgstr[1] "A ga too jiiri %s"
 
 #: static/js/utils.js:79
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] ""
+msgstr[0] "A ga to jirbiyye foo"
+msgstr[1] "A ga too jirbiyye %s"
 
 #: static/js/utils.js:82
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] ""
+msgstr[0] "BiiA ga too jirbiyyaŋ"
 
 #: static/js/utils.js:85
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] ""
+msgstr[0] "A ga too guuru fooA ga too guuru %s"
 
 #: static/js/utils.js:88
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] ""
+msgstr[0] "A ga too miniti fooA ga too miniti %s"
 
 #: static/js/utils.js:96
 msgid "A few seconds ago"
-msgstr ""
+msgstr "A ga too segonduyaŋ"

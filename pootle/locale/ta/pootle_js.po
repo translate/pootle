@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:44+0000\n"
-"PO-Revision-Date: 2013-02-23 11:18+0000\n"
-"Last-Translator: Suresh <sureshiim@gmail.com>\n"
+"PO-Revision-Date: 2013-08-06 18:48+0000\n"
+"Last-Translator: தங்கமணி <thangam.arunx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ta\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1361618310.0\n"
+"X-POOTLE-MTIME: 1375814886.0\n"
 
 #: static/js/common.js:43
 msgid "Expand details"
@@ -44,7 +44,7 @@ msgstr "முடிவுகள் இல்லை."
 #: static/js/editor.js:726
 #, c-format
 msgid "<a href=\"%s\">String %s</a>"
-msgstr "<a href=\"%s\">சரங் %கள்</a>"
+msgstr "<a href=\"%s\">  %s சரம்</a>"
 
 #: static/js/editor.js:786
 msgid "Error while connecting to the server"
@@ -115,35 +115,35 @@ msgstr "காட்டு"
 msgid "A year ago"
 msgid_plural "%s years ago"
 msgstr[0] "ஒரு வருடத்திற்கு முன்"
-msgstr[1] "%d வருடத்திற்கு முன்"
+msgstr[1] "%s வருடங்களுக்கு முன்"
 
 #: static/js/utils.js:79
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "ஒரு வாரம் முன்"
-msgstr[1] "%d வாரம் முன்"
+msgstr[1] "%s வாரங்களுக்கு முன்"
 
 #: static/js/utils.js:82
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
 msgstr[0] "நேற்று"
-msgstr[1] "%d நாட்கள் முன்"
+msgstr[1] "%s நாட்களுக்கு முன்"
 
 #: static/js/utils.js:85
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "ஒரு மணி நேரத்திற்கு முன்"
-msgstr[1] "%d மணிநேரங்களுக்கு முன்"
+msgstr[1] "%s மணிநேரங்களுக்கு முன்"
 
 #: static/js/utils.js:88
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "ஒரு நிமிடத்திற்கு முன்"
-msgstr[1] "%d நிமிடங்களுக்கு முன்"
+msgstr[1] "%s நிமிடங்களுக்கு முன்"
 
 #: static/js/utils.js:96
 msgid "A few seconds ago"

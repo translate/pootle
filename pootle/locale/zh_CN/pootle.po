@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-05-19 08:47+0000\n"
-"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
+"PO-Revision-Date: 2013-06-04 02:46+0000\n"
+"Last-Translator: Wei <contact@huwei.name>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1368953248.0\n"
+"X-POOTLE-MTIME: 1370314011.0\n"
 
 #: strings.py:8
 msgid ""
@@ -31,7 +31,7 @@ msgstr "请输入一个有效的电子邮件地址。"
 msgid ""
 "That e-mail address doesn't have an associated user account. Are you sure "
 "you've registered?"
-msgstr "那个电子邮件地址没有相关联的用户帐号。您确信已经注册了吗？"
+msgstr "这个电子邮件地址无相关的用户帐号。您确信已经注册了吗？"
 
 #: strings.py:11
 msgid "This field is required."
@@ -683,7 +683,7 @@ msgid ""
 "installations with a small number of users. Pootle will perform better with "
 "the MySQL database engine, but you need to install python-MySQLdb first."
 msgstr ""
-"使用默认的 sqlite3 数据库引擎。SQLite 只适用于小型安装和少量用户。 Pootle 在使用 MySQL "
+"使用缺省的 sqlite3 数据库引擎。SQLite 只适用于小型安装和少量用户。 Pootle 在使用 MySQL "
 "数据库引擎时性能更好，但您需要先安装 python-MySQLdb。"
 
 #: apps/pootle_app/views/admin/dashboard.py:131
@@ -702,7 +702,7 @@ msgstr "为优化性能，请使用 django.contrib.sessions.backends.cached_db �
 msgid ""
 "Pootle is configured to use memcached as caching backend, but Python support "
 "for memcached is not installed. Caching is currently disabled."
-msgstr "Pootle 被配置为使用 memcached 作为缓存后端，但是 memcached 的 Python支持没有安装。因此当前缓存被禁用。"
+msgstr "Pootle 被配置为使用 memcached 作为缓存后端，但是 memcached 的 Python 支持没有安装。因此当前缓存被禁用。"
 
 #: apps/pootle_app/views/admin/dashboard.py:141
 msgid "For optimal performance, use memcached as the caching backend."
@@ -2655,7 +2655,7 @@ msgstr "修改您的个人信息"
 #: templates/user_profile_menu.html:6 templates/profiles/edit_personal.html:4
 #: templates/profiles/edit_personal.html:7
 msgid "Profile"
-msgstr "个人信息"
+msgstr "信息"
 
 #: templates/user_profile_menu.html:7
 msgid "Change your password"

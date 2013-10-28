@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-03-15 21:02+0000\n"
-"Last-Translator: Derrick Frimpong <flexyflame2006@yahoo.com>\n"
+"PO-Revision-Date: 2013-06-13 15:59+0000\n"
+"Last-Translator: Jojoo <jojoo.imbeah@suuch.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ak\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-POOTLE-MTIME: 1363381340.0\n"
+"X-POOTLE-MTIME: 1371139192.0\n"
 
 #: strings.py:8
 msgid ""
@@ -1636,8 +1636,8 @@ msgstr ""
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
-msgstr[0] "%(languages)d kasa, %(average)d%% akyerɛ"
-msgstr[1] "%(languages)d akasa, %(average)d%% akyerɛ"
+msgstr[0] "kasa %(languages)d, akyerɛ %(average)d%%"
+msgstr[1] "akasa %(languages)d, akyerɛ %(average)d%%"
 
 #: apps/pootle_project/views.py:210 apps/pootle_project/views.py:278
 msgid "You do not have rights to administer this project."
@@ -2206,7 +2206,7 @@ msgstr "Kyerɛw kɔ VCS"
 
 #: apps/pootle_translationproject/actions.py:187
 msgid "Rescan project files"
-msgstr "San skaane progɛt fale no"
+msgstr "San skaane dwumadi yi ne mfael nyinara"
 
 #: apps/pootle_translationproject/actions.py:218
 msgid "Delete this folder..."

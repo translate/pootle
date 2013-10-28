@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-02-22 05:58+0000\n"
+"PO-Revision-Date: 2013-10-14 02:35+0000\n"
 "Last-Translator: A S <apreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1361512681.0\n"
+"X-POOTLE-MTIME: 1381718106.0\n"
 
 #: strings.py:8
 msgid ""
@@ -214,8 +214,9 @@ msgid "Title"
 msgstr "ਟਾਈਟਲ"
 
 #: apps/legalpages/models.py:39
+#, fuzzy
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: apps/legalpages/models.py:40
 msgid "If set, any references to this legal page will redirect to this URL"
@@ -231,8 +232,9 @@ msgid "The page will be available at /about/<slug>/"
 msgstr ""
 
 #: apps/legalpages/models.py:46
+#, fuzzy
 msgid "Content"
-msgstr ""
+msgstr "ਪਰਸੰਗ:"
 
 #: apps/legalpages/models.py:47
 #, python-format
@@ -332,7 +334,7 @@ msgstr "ਅਨੁਵਾਦ ਰੀਵਿਊ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹ�
 
 #: apps/pootle_app/management/__init__.py:83
 msgid "Can download archives of translation projects"
-msgstr ""
+msgstr "ਅਨੁਵਾਦ ਪਰੋਜੈਕਟਾਂ ਲਈ ਅਕਾਇਵ ਡਾਊਨਲੋਡ ਕਰ ਸਕਦਾ ਹੈ"
 
 #: apps/pootle_app/management/__init__.py:85
 msgid "Can administrate a translation project"
@@ -340,7 +342,7 @@ msgstr "ਅਨੁਵਾਦ ਪਰੋਜੈਕਟ ਨੂੰ ਐਡਮਿਨਸਟ
 
 #: apps/pootle_app/management/__init__.py:87
 msgid "Can commit to version control"
-msgstr ""
+msgstr "ਵਰਜਨ ਕੰਟਰੋਲ ਵਿੱਚ ਕਮਿਟ ਕਰ ਸਕਦਾ ਹੈ"
 
 #: apps/pootle_app/models/suggestion.py:35
 msgid "Pending"
@@ -952,11 +954,11 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:39
 msgid "Blank"
-msgstr ""
+msgstr "ਖਾਲੀ"
 
 #: apps/pootle_misc/checks.py:40
 msgid "Brackets"
-msgstr ""
+msgstr "ਬਰੈਕਟ"
 
 #: apps/pootle_misc/checks.py:41
 msgid "Compendium conflict"
@@ -999,8 +1001,9 @@ msgid "File paths"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:51
+#, fuzzy
 msgid "Functions"
-msgstr ""
+msgstr "ਫੰਕਸ਼ਨਲ"
 
 #: apps/pootle_misc/checks.py:52
 msgid "GConf values"
@@ -1015,8 +1018,9 @@ msgid "Long"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:55
+#, fuzzy
 msgid "Must translate words"
-msgstr ""
+msgstr "ਸ਼ਬਦਾਂ ਦਾ ਅਨੁਵਾਦ ਨਾ ਕਰੋ"
 
 #: apps/pootle_misc/checks.py:56
 msgid "Newlines"
@@ -1167,12 +1171,11 @@ msgstr "ਡਾਟਾਬੇਸ ਟੇਬਲ ਬਣਾਇਆ ਜਾ ਰਿਹਾ �
 
 #: apps/pootle_misc/dbupdate.py:154
 msgid "Fixing permission table..."
-msgstr ""
+msgstr "...ਅਧਿਕਾਰ ਸਾਰਣੀ ਠੀਕ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
 
 #: apps/pootle_misc/dbupdate.py:180 apps/pootle_misc/dbupdate.py:257
-#, fuzzy
 msgid "Updating existing database tables..."
-msgstr "ਡਾਟਾਬੇਸ ਟੇਬਲ ਬਣਾਇਆ ਜਾ ਰਿਹਾ ਹੈ..."
+msgstr "...ਮੌਜੂਦਾ ਡਾਟਾਬੇਸ ਸਾਰਣੀਆਂ ਨੂੰ ਅੱਪਡੇਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
 
 #: apps/pootle_misc/dbupdate.py:221
 msgid "Removing potentially incorrect cached stats, will be recalculated..."
@@ -1569,17 +1572,19 @@ msgstr[0] "%(languages)d ਭਾਸ਼ਾ, %(average)d%% ਅਨੁਵਾਦ"
 msgstr[1] "%(languages)d ਭਾਸ਼ਾਵਾਂ, %(average)d%% ਅਨੁਵਾਦ"
 
 #: apps/pootle_project/views.py:210 apps/pootle_project/views.py:278
+#, fuzzy
 msgid "You do not have rights to administer this project."
-msgstr ""
+msgstr "ਤੁਹਾਡੇ ਕੋਲ ਇਹ ਭਾਸ਼ਾ ਲਈ ਪਰਸ਼ਾਸ਼ਕੀ ਅਧਿਕਾਰ ਨਹੀਂ ਹਨ।"
 
 #: apps/pootle_project/views.py:221
 #: apps/pootle_translationproject/actions.py:201
 msgid "Update against templates"
-msgstr ""
+msgstr "ਟੈਪਲੇਟ ਨਾਲ ਅੱਪਡੇਟ ਕਰੋ"
 
 #: apps/pootle_project/templates/project/admin_permissions.html:24
+#, fuzzy
 msgid "Below you can add, edit, and delete the permissions for this project."
-msgstr ""
+msgstr "ਹੇਠਾਂ ਤੁਹਾਨੂੰ ਇਹ ਭਾਸ਼ਾ ਲਈ ਸ਼ਾਮਿਲ ਕਰਨ, ਸੋਧਣ, ਅਤੇ ਹਟਾਉਣ ਅਧਿਕਾਰ ਹਨ।"
 
 #: apps/pootle_project/templates/project/project_admin.html:7
 #: apps/pootle_project/templates/project/project_admin.html:10
@@ -1588,8 +1593,9 @@ msgid "Administrate"
 msgstr "ਪਰਸ਼ਾਸ਼ਨ"
 
 #: apps/pootle_project/templates/project/project_admin.html:24
+#, fuzzy
 msgid "Here you can add, edit, or delete the languages for this project."
-msgstr ""
+msgstr "ਹੇਠਾਂ ਤੁਹਾਨੂੰ ਇਹ ਭਾਸ਼ਾ ਲਈ ਸ਼ਾਮਿਲ ਕਰਨ, ਸੋਧਣ, ਅਤੇ ਹਟਾਉਣ ਅਧਿਕਾਰ ਹਨ।"
 
 #: apps/pootle_statistics/models.py:47
 msgid "Source"
@@ -1609,7 +1615,7 @@ msgstr "ਟਿੱਪਣੀ"
 
 #: apps/pootle_statistics/models.py:95
 msgid "anonymous user"
-msgstr ""
+msgstr "ਅਗਿਆਤ ਯੂਜ਼ਰ"
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Gettext PO"
@@ -1708,9 +1714,8 @@ msgid "Comment submission failed."
 msgstr ""
 
 #: apps/pootle_store/views.py:823 apps/pootle_store/views.py:888
-#, fuzzy
 msgid "You do not have rights to access translation mode."
-msgstr "ਤੁਹਾਨੂੰ ਅਨੁੁਵਾਦ ਤਬਦੀਲ ਕਰਨ ਲਈ ਅਧਿਕਾਰ ਨਹੀਂ ਹੈ"
+msgstr "ਤੁਹਾਨੂੰ ਅਨੁਵਾਦ ਮੋਡ ਵਰਤਣ ਥਈ ਅਧਿਕਾਰ ਨਹੀਂ ਹਨ।"
 
 #: apps/pootle_store/views.py:871
 msgid "Failed to process submission."
@@ -1743,7 +1748,7 @@ msgstr ""
 
 #: apps/pootle_store/templates/store/translate.html:65
 msgid "Filter by:"
-msgstr ""
+msgstr "ਫਿਲਟਰ ਕਰੋ:"
 
 #. Translators: This refers to "All strings"
 #: apps/pootle_store/templates/store/translate.html:69
@@ -2130,11 +2135,11 @@ msgstr "...ਇਹ ਫੋਲਡਰ ਹਟਾਓ"
 
 #: apps/pootle_translationproject/actions.py:220
 msgid "Delete this file..."
-msgstr ""
+msgstr "...ਇਹ ਫਾਇਲ ਹਟਾਓ"
 
 #: apps/pootle_translationproject/actions.py:256
 msgid "Manage"
-msgstr ""
+msgstr "ਪਰਬੰਧ"
 
 #: apps/pootle_translationproject/models.py:105
 #, python-format
@@ -2149,34 +2154,34 @@ msgid "Failed to update from version control: %(error)s"
 msgstr ""
 
 #: apps/pootle_translationproject/models.py:556
-#, python-format
+#, fuzzy, python-format
 msgid "Updated project <em>%(project)s</em> from version control"
-msgstr ""
+msgstr "ਫਾਇਲ <em>%(filename)s</em> ਵਰਜਨ ਕੰਟਰੋਲ ਵਿੱਚ ਕਮਿਟ ਕੀਤੀ ਗਈ"
 
 #: apps/pootle_translationproject/models.py:558
 #: apps/pootle_translationproject/models.py:579
 msgid "Working copy"
-msgstr ""
+msgstr "ਵਰਕਿੰਗ ਕਾਪੀ"
 
 #: apps/pootle_translationproject/models.py:559
 #: apps/pootle_translationproject/models.py:580
 msgid "Remote copy"
-msgstr ""
+msgstr "ਰਿਮੋਟ ਕਾਪੀ"
 
 #: apps/pootle_translationproject/models.py:560
 #: apps/pootle_translationproject/models.py:581
 msgid "Merged copy"
-msgstr ""
+msgstr "ਮਿਲਾਈ ਗਈ ਕਾਪੀ"
 
 #: apps/pootle_translationproject/models.py:577
-#, python-format
+#, fuzzy, python-format
 msgid "Updated file <em>%(filename)s</em> from version control"
-msgstr ""
+msgstr "ਫਾਇਲ <em>%(filename)s</em> ਵਰਜਨ ਕੰਟਰੋਲ ਵਿੱਚ ਕਮਿਟ ਕੀਤੀ ਗਈ"
 
 #: apps/pootle_translationproject/models.py:590
-#, python-format
+#, fuzzy, python-format
 msgid "Failed to update <em>%(filename)s</em> from version control: %(error)s"
-msgstr ""
+msgstr "ਵਰਜਨ ਕੰਟਰੋਲ ਵਿੱਚ <em>%(filename)s</em> ਕਮਿਟ ਕਰਨ ਲਈ ਫੇਲ੍ਹ: %(error)s"
 
 #: apps/pootle_translationproject/models.py:649
 #, python-format
@@ -2297,10 +2302,11 @@ msgid "Upload File"
 msgstr "ਫਾਇਲ ਅੱਪਲੋਡ"
 
 #: apps/pootle_translationproject/templates/translation_project/admin_permissions.html:15
+#, fuzzy
 msgid ""
 "Below you can add, edit, and delete the permissions for this translation "
 "project."
-msgstr ""
+msgstr "ਹੇਠਾਂ ਤੁਹਾਨੂੰ ਇਹ ਭਾਸ਼ਾ ਲਈ ਸ਼ਾਮਿਲ ਕਰਨ, ਸੋਧਣ, ਅਤੇ ਹਟਾਉਣ ਅਧਿਕਾਰ ਹਨ।"
 
 #: apps/pootle_translationproject/templates/translation_project/fileop_forms.html:23
 msgid "Update from Version Control"
@@ -2412,7 +2418,7 @@ msgstr "ਗਲਤ"
 
 #: settings/10-base.conf:9
 msgid "Pootle Demo"
-msgstr "ਪੌਟਲੀ ਡੈਮੋ"
+msgstr "ਪੋਟਲੀ ਡੈਮੋ"
 
 #. Translators: Change the language code (en) to your language code, and replace
 #. ltr with rtl if you language is written from right to left.
@@ -2504,8 +2510,9 @@ msgid "skip to navigation"
 msgstr "ਨੇਵੀਗੇਸ਼ਨ ਉੱਤੇ ਜਾਓ"
 
 #: templates/base.html:86
+#, fuzzy
 msgid "Zoom out (Ctrl+Shift+-)"
-msgstr ""
+msgstr "ਜ਼ੂਮ ਇਨ (Ctrl+Shift++)"
 
 #: templates/base.html:88
 msgid "Reset zoom (Ctrl+Shift+0)"
@@ -2667,7 +2674,7 @@ msgstr "ਆਪਣਾ ਪਾਸਵਰਡ ਬਦਲੋ"
 
 #: templates/about/about.html:6 templates/about/about.html.py:9
 msgid "This Pootle Server"
-msgstr ""
+msgstr "ਇਹ ਪੋਟਲ ਸਰਵਰ"
 
 #. Translators: For better readability, make sure to leave an space after the closing </i> tag
 #: templates/about/about.html:16
@@ -2960,7 +2967,7 @@ msgstr ""
 #: templates/registration/password_reset_form.html:19
 #: templates/registration/registration_form.html:25
 msgid "Email Address"
-msgstr "ਈਮੇਲ ਸਿਰਨਾਵਾਂ"
+msgstr "ਈਮੇਲ ਐਡਰੈਸ"
 
 #: templates/registration/registration_complete.html:5
 #: templates/registration/registration_complete.html:8

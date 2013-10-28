@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-05-01 08:14+0000\n"
+"PO-Revision-Date: 2013-10-28 14:37+0000\n"
 "Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_ZA\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1367396064.0\n"
+"X-POOTLE-MTIME: 1382971078.0\n"
 
 #: strings.py:8
 msgid ""
@@ -193,7 +193,6 @@ msgstr ""
 
 #: apps/legalpages/models.py:31
 #: apps/legalpages/templates/legalpages/admin/list.html:22
-#, fuzzy
 msgid "Active"
 msgstr "Active"
 
@@ -266,9 +265,8 @@ msgid "Existing Legal Pages"
 msgstr ""
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
-#, fuzzy
 msgid "Inactive"
-msgstr "Active"
+msgstr "Inactive"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 #: apps/pootle_app/templates/admin/edit_links.html:2

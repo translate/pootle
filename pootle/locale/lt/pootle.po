@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-05-19 08:38+0000\n"
-"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
+"PO-Revision-Date: 2013-06-28 15:53+0000\n"
+"Last-Translator: Rimas <rq@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 "100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1368952722.0\n"
+"X-POOTLE-MTIME: 1372434810.0\n"
 
 #: strings.py:8
 msgid ""
@@ -1038,7 +1038,7 @@ msgstr "Skliaustai"
 
 #: apps/pootle_misc/checks.py:41
 msgid "Compendium conflict"
-msgstr "Terminyno neatitikimas"
+msgstr "Rinkinio neatitikimas"
 
 #: apps/pootle_misc/checks.py:42
 msgid "Translator credits"
@@ -1670,7 +1670,7 @@ msgstr ""
 
 #: apps/pootle_project/models.py:103
 msgid "Report Target"
-msgstr ""
+msgstr "Adresas pranešimams"
 
 #: apps/pootle_project/views.py:127
 #, python-format
@@ -2009,39 +2009,39 @@ msgstr "peržiūrėjo <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
 #: apps/pootle_store/templates/unit/edit.html:166
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
-msgstr ""
+msgstr "Įterpti krypties iš dešinės į kairę simbolį (RLM) į redaktorių"
 
 #: apps/pootle_store/templates/unit/edit.html:169
 msgid "Insert LRM (Left-To-Right Mark) into the editor"
-msgstr ""
+msgstr "Įterpti krypties iš kairės į dešinę simbolį (LRM) į redaktorių"
 
 #: apps/pootle_store/templates/unit/edit.html:172
 msgid "Insert RLE (Right-To-Left Embedding) into the editor"
-msgstr ""
+msgstr "Įterpti įterpimo iš dešinės į kairę ženklą (RLE) į redaktorių"
 
 #: apps/pootle_store/templates/unit/edit.html:175
 msgid "Insert LRE (Left-To-Right Embedding) into the editor"
-msgstr ""
+msgstr "Įterpti įterpimo iš kairės į dešinę ženklą (LRE) į redaktorių"
 
 #: apps/pootle_store/templates/unit/edit.html:178
 msgid "Insert RLO (Right-To-Left Override) into the editor"
-msgstr ""
+msgstr "Įterpti perdengimo iš dešinės į kairę ženklą (RLO) į redaktorių"
 
 #: apps/pootle_store/templates/unit/edit.html:181
 msgid "Insert LRO (Left-To-Right Override) into the editor"
-msgstr ""
+msgstr "Įterpti perdengimo iš kairės į dešinę ženklą (LRO) į redaktorių"
 
 #: apps/pootle_store/templates/unit/edit.html:184
 msgid "Insert PDF (Pop Directional Format ) into the editor"
-msgstr ""
+msgstr "Įterpti ankstesnio lygmens krypties ženklą (PDF) į redaktorių"
 
 #: apps/pootle_store/templates/unit/edit.html:187
 msgid "Insert ZWJ (Zero Width Joiner) into the editor"
-msgstr ""
+msgstr "Įterpti nulinio pločio jungimo ženklą (ZWJ) į redaktorių"
 
 #: apps/pootle_store/templates/unit/edit.html:190
 msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
-msgstr ""
+msgstr "Įterpti nulinio pločio skėlimo ženklą (ZWNJ) į redaktorių"
 
 #: apps/pootle_store/templates/unit/edit.html:196
 msgid "Insert this symbol into the editor"
@@ -2090,7 +2090,7 @@ msgstr "Pastaba: "
 #: apps/pootle_store/templates/unit/timeline.html:4
 #: apps/pootle_store/templates/unit/timeline.html:14
 msgid "Previous Work"
-msgstr ""
+msgstr "Ankstesni vertimai"
 
 #: apps/pootle_store/templates/unit/view.html:35
 #: apps/pootle_terminology/templates/terminology/term_edit.html:31

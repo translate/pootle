@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-02-22 06:58+0000\n"
+"PO-Revision-Date: 2013-07-21 11:14+0000\n"
 "Last-Translator: Yaron <sh.yaron@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1361516308.0\n"
+"X-POOTLE-MTIME: 1374405268.0\n"
 
 #: strings.py:8
 msgid ""
@@ -1819,7 +1819,7 @@ msgstr "ההגשות שלי"
 #. in time but have been overwritten by other users.
 #: apps/pootle_store/templates/store/translate.html:80
 msgid "My overwritten submissions"
-msgstr ""
+msgstr "ההגשות שלי שנדרסו"
 
 #: apps/pootle_store/templates/store/translate.html:81
 msgid "Checks"
@@ -2492,6 +2492,12 @@ msgid ""
 "administration interface.</p>\n"
 "</div>\n"
 msgstr ""
+"<div dir=\"rtl\" lang=\"he\">\n"
+"<h2>זוהי התקנה מדומה של Pootle.</h2>\n"
+"<p>ניתן לבקר גם ב<a href=\"http://pootle.locamotion.org\">שרת ה־Pootle</a> "
+"הרשמי. מנהל השרת לא סיפק פרטי יצירת קשר או תיאור לשרת זה. אם שרת זה הוא "
+"בניהולך, כדאי לערוך תיאור זה בקובץ ההעדפה שלך במנשק הניהול.</p>\n"
+"</div>\n"
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"

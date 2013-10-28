@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-04-18 08:32+0000\n"
+"PO-Revision-Date: 2013-07-09 16:08+0000\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
 "n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1366273944.0\n"
+"X-POOTLE-MTIME: 1373386111.0\n"
 
 #: strings.py:8
 msgid ""
@@ -689,7 +689,7 @@ msgid ""
 "with python-levenshtein."
 msgstr ""
 "مكتبة python-levenshtein غير موجودة. تحديث الملفات من القوالب أسرع بكثير في "
-"وجودها."
+"وجود python-levenshtein."
 
 #: apps/pootle_app/views/admin/dashboard.py:111
 msgid ""
@@ -1743,7 +1743,7 @@ msgstr "التعليق"
 
 #: apps/pootle_statistics/models.py:95
 msgid "anonymous user"
-msgstr "مستخدمين غير مُسجّل"
+msgstr "مستخدم غير مُسجّل"
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Gettext PO"
@@ -2719,8 +2719,8 @@ msgid ""
 "To protect the server against attacks we have to verify that submissions are "
 "made by human users."
 msgstr ""
-"لحماية الخادوم من السخام و البرمجيات الضارة علينا التأكد أن المساهمات مرسلة "
-"من قبل مستخدمين بشر."
+"لحماية الخادوم من السخام و البرمجيات الضارة علينا التأكد أن المساهمات أرسلها "
+"بشري."
 
 #: templates/captcha-xhr.html:16
 msgid "Please answer this question:"

@@ -7,34 +7,36 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:44+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2013-08-22 14:08+0000\n"
+"Last-Translator: ppanhh <ppanhh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.9.1-pre\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 2.5.0-beta1\n"
+"X-POOTLE-MTIME: 1377180528.0\n"
 
 #: static/js/common.js:43
 msgid "Expand details"
-msgstr ""
+msgstr "Hiển thị thông tin chi tiết"
 
 #: static/js/common.js:43
 msgid "Collapse details"
-msgstr ""
+msgstr "Đóng lại thông tin chi tiết"
 
 #: static/js/common.js:77
 msgid "Are you sure you want to continue?"
-msgstr ""
+msgstr "Bạn có chắc rằng bạn muốn tiếp tục hay không?"
 
 #: static/js/common.js:78
 msgid "This operation cannot be undone."
-msgstr ""
+msgstr "Tiến trình này không thể được hoàn thiện."
 
 #: static/js/editor.js:409 static/js/editor.js.c:1493
 msgid "No results."
-msgstr ""
+msgstr "Không có kết quả nào."
 
 #. Translators: Permalink to the current unit in the editor.
 #. The first '%s' is the permalink URL.
@@ -42,39 +44,39 @@ msgstr ""
 #: static/js/editor.js:726
 #, c-format
 msgid "<a href=\"%s\">String %s</a>"
-msgstr ""
+msgstr "<a href=\"%s\">Chuỗi %s</a>"
 
 #: static/js/editor.js:786
 msgid "Error while connecting to the server"
-msgstr ""
+msgstr "Xảy ra lỗi khi thực hiện việc kết nối đến máy chủ"
 
 #: static/js/editor.js:788
 msgid "Server error"
-msgstr ""
+msgstr "Lỗi từ phía máy chủ"
 
 #: static/js/editor.js:790
 msgid "The server seems down. Try again later."
-msgstr ""
+msgstr "Hệ thống máy chủ dường như đang bận. Vui lòng thử lại sau."
 
 #: static/js/editor.js:798
 msgid "Unknown error"
-msgstr ""
+msgstr "Lỗi chưa xác định"
 
 #: static/js/editor.js:1342
 msgid "Congratulations, you walked through all strings."
-msgstr ""
+msgstr "Xin chúc mừng, bạn đã hoàn thiện phần dịch cho toàn bộ các chuỗi."
 
 #: static/js/editor.js:1344 static/js/editor.js.c:1368
 msgid "Return to the overview page."
-msgstr ""
+msgstr "Quay trở về trang chính."
 
 #: static/js/editor.js:1363
 msgid "You reached the beginning of the list"
-msgstr ""
+msgstr "Bạn đã truy cập vào phần đầu của danh sách"
 
 #: static/js/editor.js:1366
 msgid "You reached the end of the list."
-msgstr ""
+msgstr "Bạn đã truy cập vào phần cuối của danh sách."
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
@@ -82,67 +84,62 @@ msgstr ""
 #: static/js/editor.js:1766
 #, c-format
 msgid "%s% match"
-msgstr ""
+msgstr "%s% khớp"
 
 #: static/js/editor.js:1808
 msgid "Similar translations"
-msgstr ""
+msgstr "Các phần dịch tương tự"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:7
 msgid "More"
-msgstr ""
+msgstr "Hiển thị thêm"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:10
 msgid "Hide"
-msgstr ""
+msgstr "Ẩn đi"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:13
 msgid "Less"
-msgstr ""
+msgstr "Hiển thị ít hơn"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:16
 msgid "Show"
-msgstr ""
+msgstr "Hiển thị"
 
 #: static/js/utils.js:76
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Cách đây một năm"
 
 #: static/js/utils.js:79
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Cách đây một tuần"
 
 #: static/js/utils.js:82
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Hôm qua"
 
 #: static/js/utils.js:85
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Cách đây một giờ"
 
 #: static/js/utils.js:88
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Cách đây một phút"
 
 #: static/js/utils.js:96
 msgid "A few seconds ago"
-msgstr ""
+msgstr "Cách đây một vài giây"

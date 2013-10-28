@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-03-04 05:52+0000\n"
-"Last-Translator: Nguyen Duc Quan <quan.nguyenduc@gmail.com>\n"
+"PO-Revision-Date: 2013-09-24 13:00+0000\n"
+"Last-Translator: fileaio <fileaio@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1362376343.0\n"
+"X-POOTLE-MTIME: 1380027609.0\n"
 
 #: strings.py:8
 msgid ""
@@ -125,32 +125,32 @@ msgstr "Chuỗi Android"
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:51
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Chính sách về quyền riêng tư"
 
 #. Translators: Label that refers to the site's legal requirements
 #: strings.py:53
 msgid "Legal"
-msgstr ""
+msgstr "Vấn đề Pháp Lý"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:55
 msgid "License"
-msgstr ""
+msgstr "Giấy phép"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:57
 msgid "Contributor License"
-msgstr ""
+msgstr "Giấy phép cộng tác"
 
 #. Translators: Label that refers to the site's terms of use
 #: strings.py:59
 msgid "Terms of Use"
-msgstr ""
+msgstr "Quy định sử dụng"
 
 #. Translators: Label that refers to the site's terms of service
 #: strings.py:61
 msgid "Terms of Service"
-msgstr ""
+msgstr "Quy định dịch vụ"
 
 #: apps/contact_form_i18n/forms.py:143
 msgid "Your name"
@@ -166,12 +166,12 @@ msgstr "Thân của thư"
 
 #: apps/contact_form_i18n/forms.py:260
 msgid "Akismet thinks this message is spam"
-msgstr ""
+msgstr "Akismet nghĩ tin nhắn này là thư rác"
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] "Hãy sửa chữa lỗi nào dưới đây."
+msgstr[0] "Akismet nghĩ tin nhắn này là thư rác"
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
@@ -189,7 +189,7 @@ msgstr "Lưu"
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/legalpages/forms.py:42
 msgid "URL or content must be provided."
-msgstr ""
+msgstr "URL hay nội dung phải cung cấp."
 
 #: apps/legalpages/models.py:31
 #: apps/legalpages/templates/legalpages/admin/list.html:22
@@ -216,39 +216,41 @@ msgstr "Tựa"
 
 #: apps/legalpages/models.py:39
 msgid "URL"
-msgstr ""
+msgstr "Đường dẫn liên kết"
 
 #: apps/legalpages/models.py:40
 msgid "If set, any references to this legal page will redirect to this URL"
 msgstr ""
+"Nếu được chỉnh sửa, bất kỳ tham chiếu nào đến trang pháp lý này sẽ được "
+"chuyển tiếp sang đường dẫn liên kết này"
 
 #. Translators: See http://en.wikipedia.org/wiki/Slug_%28web_publishing%29#Slug
 #: apps/legalpages/models.py:43
 msgid "Slug"
-msgstr ""
+msgstr "Dãy chữ"
 
 #: apps/legalpages/models.py:44
 msgid "The page will be available at /about/<slug>/"
-msgstr ""
+msgstr "Trang này hiện có tại /about/<slug>/"
 
 #: apps/legalpages/models.py:46
 msgid "Content"
-msgstr ""
+msgstr "Nội dung"
 
 #: apps/legalpages/models.py:47
 #, python-format
 msgid "Allowed markup: %s"
-msgstr ""
+msgstr "Cho phép các phần đánh dấu: %s"
 
 #: apps/legalpages/views.py:67
 msgid "Legal page created."
-msgstr ""
+msgstr "Đã tạo trang vấn đề pháp lý."
 
 #: apps/legalpages/templates/legalpages/admin/edit.html:4
 #: apps/legalpages/templates/legalpages/admin/edit.html:9
 #: apps/legalpages/templates/legalpages/admin/edit.html:16
 msgid "Edit Legal Page"
-msgstr ""
+msgstr "Chỉnh sửa trang Vấn Đề Pháp Lý"
 
 #: apps/legalpages/templates/legalpages/admin/form.html:17
 #: apps/pootle_terminology/templates/terminology/manage.html:37
@@ -259,7 +261,7 @@ msgstr "Xoá"
 #: apps/legalpages/templates/legalpages/admin/list.html:10
 #: templates/admin_profile_menu.html:9
 msgid "Legal Pages"
-msgstr ""
+msgstr "Các Trang Về Vấn Đề Pháp Lý"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:17
 msgid "Existing Legal Pages"
@@ -380,7 +382,7 @@ msgstr "Đệ trình"
 
 #: apps/pootle_app/templates/top_contributers_table.html:19
 msgid "anonymous users"
-msgstr ""
+msgstr "Người dùng ẩn danh"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:4
 #: apps/pootle_misc/stats.py:109 apps/pootle_store/util.py:47
@@ -393,7 +395,7 @@ msgstr "Đã dịch"
 #: apps/pootle_store/util.py:46
 #: apps/pootle_store/templates/store/translate.html:73
 msgid "Needs work"
-msgstr ""
+msgstr "Yêu cầu công việc"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:6
 #: apps/pootle_misc/stats.py:115 apps/pootle_store/util.py:45
@@ -566,7 +568,7 @@ msgstr "Cách tối ưu"
 
 #: apps/pootle_app/templates/admin/general_settings_form.html:16
 msgid "Cancel"
-msgstr ""
+msgstr "Hủy bỏ"
 
 #: apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
@@ -577,7 +579,7 @@ msgstr "Báo động Pootle"
 #: apps/pootle_project/templates/project/project.html:40
 #: apps/pootle_translationproject/templates/translation_project/overview.html:88
 msgid "No description set."
-msgstr ""
+msgstr "chưa có mô tả"
 
 #: apps/pootle_app/templates/index/index.html:58
 #: apps/pootle_notifications/templates/notices.html:87
@@ -661,10 +663,12 @@ msgid ""
 "lxml version %(installed)s is installed. Pootle requires at least version "
 "%(required)s."
 msgstr ""
+"phiên bản lxml %(installed)s đã được cài đặt. Pootle yêu cầu cần có ít nhất "
+"là phiên bản %(required)s."
 
 #: apps/pootle_app/views/admin/dashboard.py:82
 msgid "lxml is not installed. Pootle requires lxml."
-msgstr ""
+msgstr "lxml vẫn chưa được cài đặt. Pootle yêu cầu cần có lxml."
 
 #: apps/pootle_app/views/admin/dashboard.py:95
 msgid ""
@@ -695,6 +699,8 @@ msgid ""
 "Can't find python-levenshtein package. Updating against templates is faster "
 "with python-levenshtein."
 msgstr ""
+"Không tìm thấy gói cài đặt python-levenshtein. Cập nhật các mẫu sẽ nhanh hơn "
+"khi dùng python-levenshtein."
 
 #: apps/pootle_app/views/admin/dashboard.py:111
 msgid ""
@@ -899,6 +905,8 @@ msgid ""
 "A description of this language. This is useful to give more information or "
 "instructions. Allowed markup: %s"
 msgstr ""
+"Có một phần mô tả về ngôn ngữ này. Phần này cực kỳ hữu ích khi cung cấp các "
+"thông tin bổ sung hay những chỉ dẫn. Cho phép đánh dấu: %s"
 
 #: apps/pootle_language/models.py:63
 msgid "Enter any special characters that users might find difficult to type"
@@ -945,7 +953,7 @@ msgstr[0] "%(projects)d dự án, %(average)d%% đã dịch"
 #: apps/pootle_language/views.py:158 apps/pootle_project/views.py:169
 #: apps/pootle_translationproject/views.py:347
 msgid "No description yet."
-msgstr ""
+msgstr "Hiện vẫn chưa có mô tả nào."
 
 #: apps/pootle_language/views.py:181
 msgid "You do not have rights to administer this language."
@@ -982,7 +990,7 @@ msgstr "Tổng số"
 
 #: apps/pootle_misc/browser.py:59
 msgid "Need Translation"
-msgstr ""
+msgstr "Cần được chuyển ngữ"
 
 #: apps/pootle_misc/browser.py:70
 msgid "Last Activity"
@@ -990,15 +998,15 @@ msgstr "Hoạt động cuối"
 
 #: apps/pootle_misc/checks.py:29
 msgid "Critical"
-msgstr ""
+msgstr "Nghiêm trọng"
 
 #: apps/pootle_misc/checks.py:30
 msgid "Functional"
-msgstr ""
+msgstr "Hàm"
 
 #: apps/pootle_misc/checks.py:31
 msgid "Cosmetic"
-msgstr ""
+msgstr "Lớp bên ngoài"
 
 #: apps/pootle_misc/checks.py:32
 msgid "Extraction"
@@ -1006,11 +1014,11 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:33
 msgid "No category"
-msgstr ""
+msgstr "Chưa phân loại"
 
 #: apps/pootle_misc/checks.py:37
 msgid "Accelerators"
-msgstr ""
+msgstr "Phím tắt"
 
 #: apps/pootle_misc/checks.py:38
 msgid "Acronyms"
@@ -1018,7 +1026,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:39
 msgid "Blank"
-msgstr ""
+msgstr "Trống"
 
 #: apps/pootle_misc/checks.py:40
 msgid "Brackets"
@@ -1034,20 +1042,20 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:43
 msgid "Double quotes"
-msgstr ""
+msgstr "Trích dẫn kép"
 
 #: apps/pootle_misc/checks.py:44
 msgid "Double spaces"
-msgstr ""
+msgstr "Gấp đôi khoảng cách"
 
 #: apps/pootle_misc/checks.py:45
 msgid "Repeated word"
-msgstr ""
+msgstr "Từ được lặp lại"
 
+# Email có nhiều người dịch là địa chỉ thư hoặc địa chỉ thư điện tử nhưng điều đó hầu như là không cần thiết. Email nên để là email nhằm tạo sự tiếp cận dễ dàng cho người dùng. Bản thân email cũng đang được dần trở thành một từ được việt nam hóa.
 #: apps/pootle_misc/checks.py:46
-#, fuzzy
 msgid "E-mail"
-msgstr "Địa chỉ thư"
+msgstr "Email"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Ending punctuation"
@@ -1059,15 +1067,15 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:49
 msgid "Escapes"
-msgstr ""
+msgstr "Thoát"
 
 #: apps/pootle_misc/checks.py:50
 msgid "File paths"
-msgstr ""
+msgstr "Đường dẫn tập tin"
 
 #: apps/pootle_misc/checks.py:51
 msgid "Functions"
-msgstr ""
+msgstr "Chức năng"
 
 #: apps/pootle_misc/checks.py:52
 msgid "GConf values"
@@ -1079,15 +1087,15 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:54
 msgid "Long"
-msgstr ""
+msgstr "Dài"
 
 #: apps/pootle_misc/checks.py:55
 msgid "Must translate words"
-msgstr ""
+msgstr "Từ cần dịch"
 
 #: apps/pootle_misc/checks.py:56
 msgid "Newlines"
-msgstr ""
+msgstr "Dòng mới"
 
 #: apps/pootle_misc/checks.py:57
 #, fuzzy
@@ -1121,7 +1129,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:64
 msgid "Number of sentences"
-msgstr ""
+msgstr "Số đoạn"
 
 #: apps/pootle_misc/checks.py:65
 msgid "Short"

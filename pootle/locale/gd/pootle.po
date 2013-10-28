@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-05-12 10:08+0000\n"
+"PO-Revision-Date: 2013-05-20 23:59+0000\n"
 "Last-Translator: Michael <fios@akerbeltz.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gd\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
 "(n > 2 && n < 20) ? 2 : 3 ;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1368353306.0\n"
+"X-POOTLE-MTIME: 1369094379.0\n"
 
 #: strings.py:8
 msgid ""
@@ -69,13 +69,15 @@ msgid ""
 "Please enter a correct username and password. Note that both fields are case-"
 "sensitive."
 msgstr ""
+"Cuir a-steach ainm-cleachdaiche is facal-faire ceart. Tha aire do litrichean "
+"mòra 's beaga san dà raon."
 
 #. Translators: Email subject line. The variable is the server name shown
 #. on the top of each page
 #: strings.py:21
 #, python-format
 msgid "Password reset on %s"
-msgstr ""
+msgstr "Chaidh am facal-faire ath-shuidheachadh air %s"
 
 #. Translators: This is a constructed string that might end up saying
 #. "Add language" or "Add project". If you need to translate that differently,
@@ -127,32 +129,32 @@ msgstr "Sreangan Android"
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:51
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Am poileasaidh prìobhaideachd"
 
 #. Translators: Label that refers to the site's legal requirements
 #: strings.py:53
 msgid "Legal"
-msgstr ""
+msgstr "Nòtaichean laghail"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:55
 msgid "License"
-msgstr ""
+msgstr "Ceadachas"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:57
 msgid "Contributor License"
-msgstr ""
+msgstr "Ceadachas com-pàirtiche"
 
 #. Translators: Label that refers to the site's terms of use
 #: strings.py:59
 msgid "Terms of Use"
-msgstr ""
+msgstr "Na teirmichean cleachdaidh"
 
 #. Translators: Label that refers to the site's terms of service
 #: strings.py:61
 msgid "Terms of Service"
-msgstr ""
+msgstr "Teirmichean na Seirbheise"
 
 #: apps/contact_form_i18n/forms.py:143
 msgid "Your name"
@@ -168,7 +170,7 @@ msgstr "Do theachdaireachd"
 
 #: apps/contact_form_i18n/forms.py:260
 msgid "Akismet thinks this message is spam"
-msgstr ""
+msgstr "Tha Akismet dhen bheachd gur e spama a tha seo"
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
@@ -194,13 +196,12 @@ msgstr "Sàbhail"
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/legalpages/forms.py:42
 msgid "URL or content must be provided."
-msgstr ""
+msgstr "Feumaidh tu URL no susbaint a chur ann."
 
 #: apps/legalpages/models.py:31
 #: apps/legalpages/templates/legalpages/admin/list.html:22
-#, fuzzy
 msgid "Active"
-msgstr "gnìomhach"
+msgstr "Gnìomhach"
 
 #: apps/legalpages/models.py:32
 msgid "Whether this page is active or not."
@@ -221,7 +222,7 @@ msgstr "Tiotal"
 
 #: apps/legalpages/models.py:39
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: apps/legalpages/models.py:40
 msgid "If set, any references to this legal page will redirect to this URL"
@@ -230,7 +231,7 @@ msgstr ""
 #. Translators: See http://en.wikipedia.org/wiki/Slug_%28web_publishing%29#Slug
 #: apps/legalpages/models.py:43
 msgid "Slug"
-msgstr ""
+msgstr "Sluga"
 
 #: apps/legalpages/models.py:44
 msgid "The page will be available at /about/<slug>/"
@@ -238,12 +239,12 @@ msgstr ""
 
 #: apps/legalpages/models.py:46
 msgid "Content"
-msgstr ""
+msgstr "Susbaint"
 
 #: apps/legalpages/models.py:47
 #, python-format
 msgid "Allowed markup: %s"
-msgstr ""
+msgstr "Markup a tha ceadaichte: %s"
 
 #: apps/legalpages/views.py:67
 msgid "Legal page created."
@@ -271,18 +272,17 @@ msgid "Existing Legal Pages"
 msgstr ""
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
-#, fuzzy
 msgid "Inactive"
-msgstr "gnìomhach"
+msgstr "Neo-ghnìomhach"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 #: apps/pootle_app/templates/admin/edit_links.html:2
 msgid "Edit"
-msgstr ""
+msgstr "Deasaich"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:24
 msgid "No pages yet."
-msgstr ""
+msgstr "Gun duilleagan fhathast."
 
 #: apps/legalpages/templates/legalpages/admin/list.html:31
 msgid "New Legal Page"
@@ -392,7 +392,7 @@ msgstr "Tagraidhean"
 
 #: apps/pootle_app/templates/top_contributers_table.html:19
 msgid "anonymous users"
-msgstr ""
+msgstr "cleachdaichean gun urra"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:4
 #: apps/pootle_misc/stats.py:109 apps/pootle_store/util.py:47
@@ -405,7 +405,7 @@ msgstr "Air eadar-theangachadh"
 #: apps/pootle_store/util.py:46
 #: apps/pootle_store/templates/store/translate.html:73
 msgid "Needs work"
-msgstr ""
+msgstr "Feumach air d' aire"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:6
 #: apps/pootle_misc/stats.py:115 apps/pootle_store/util.py:45
@@ -576,7 +576,7 @@ msgstr "Piseachaidhean"
 
 #: apps/pootle_app/templates/admin/general_settings_form.html:16
 msgid "Cancel"
-msgstr ""
+msgstr "Sguir dheth"
 
 #: apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
@@ -587,7 +587,7 @@ msgstr "Rabhaidhean Pootle"
 #: apps/pootle_project/templates/project/project.html:40
 #: apps/pootle_translationproject/templates/translation_project/overview.html:88
 msgid "No description set."
-msgstr ""
+msgstr "Gun tuairisgeul."
 
 #: apps/pootle_app/templates/index/index.html:58
 #: apps/pootle_notifications/templates/notices.html:87
@@ -645,6 +645,8 @@ msgid ""
 "Translate Toolkit version %(installed)s installed. Pootle requires at least "
 "version %(required)s."
 msgstr ""
+"Tha tionndadh %(installed)s dhen Translate Toolkit air a stàladh. Feumaidh "
+"Pootle tionndadh %(required)s air a' char as lugha."
 
 #: apps/pootle_app/views/admin/dashboard.py:62
 #, python-format
@@ -797,16 +799,15 @@ msgstr "Cleachdaichean gnìomhach"
 #: apps/pootle_app/views/admin/permissions.py:61
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Members"
-msgstr ""
+msgstr "Buill a' phròiseict"
 
 #: apps/pootle_app/views/admin/permissions.py:74
 msgid "Language Members"
-msgstr ""
+msgstr "Buill a' chànain"
 
 #: apps/pootle_app/views/admin/permissions.py:79
-#, fuzzy
 msgid "All Users"
-msgstr "Cuir luchd-cleachdaidh ris"
+msgstr "A h-uile cleachdaiche"
 
 #: apps/pootle_app/views/admin/util.py:40
 msgid "You do not have rights to administer Pootle."
@@ -893,11 +894,11 @@ msgstr "Neo-aithnichte"
 
 #: apps/pootle_language/models.py:76
 msgid "Number of Plurals"
-msgstr ""
+msgstr "Co mheud cruth iolra"
 
 #: apps/pootle_language/models.py:78
 msgid "Plural Equation"
-msgstr ""
+msgstr "Co-aontar nan iolra"
 
 #: apps/pootle_language/views.py:74 apps/pootle_misc/browser.py:101
 #: apps/pootle_project/views.py:82
@@ -913,15 +914,15 @@ msgstr[3] "Mearachd le leughadh %d faidhle"
 #, python-format
 msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(projects)d phròiseact, %(average)d%% air eadar-theangachadh"
+msgstr[1] "%(projects)d phròiseact, %(average)d%% air eadar-theangachadh"
+msgstr[2] "%(projects)d pròiseactan, %(average)d%% air eadar-theangachadh"
+msgstr[3] "%(projects)d pròiseact, %(average)d%% air eadar-theangachadh"
 
 #: apps/pootle_language/views.py:158 apps/pootle_project/views.py:169
 #: apps/pootle_translationproject/views.py:347
 msgid "No description yet."
-msgstr ""
+msgstr "Gun tuairisgeul fhathast."
 
 #: apps/pootle_language/views.py:181
 msgid "You do not have rights to administer this language."
@@ -956,7 +957,7 @@ msgstr "Gu h-iomlan"
 
 #: apps/pootle_misc/browser.py:59
 msgid "Need Translation"
-msgstr ""
+msgstr "Feumach air eadar-theangachadh"
 
 #: apps/pootle_misc/browser.py:70
 msgid "Last Activity"
@@ -964,7 +965,7 @@ msgstr "Gnìomhachd mu dheireadh"
 
 #: apps/pootle_misc/checks.py:29
 msgid "Critical"
-msgstr ""
+msgstr "Èiginneach"
 
 #: apps/pootle_misc/checks.py:30
 msgid "Functional"
@@ -980,7 +981,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:33
 msgid "No category"
-msgstr ""
+msgstr "Gun roinn-seòrsa"
 
 #: apps/pootle_misc/checks.py:37
 msgid "Accelerators"
@@ -988,15 +989,15 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:38
 msgid "Acronyms"
-msgstr ""
+msgstr "Gearr-ainmean"
 
 #: apps/pootle_misc/checks.py:39
 msgid "Blank"
-msgstr ""
+msgstr "Bàn"
 
 #: apps/pootle_misc/checks.py:40
 msgid "Brackets"
-msgstr ""
+msgstr "Bracaidean"
 
 #: apps/pootle_misc/checks.py:41
 msgid "Compendium conflict"
@@ -1008,39 +1009,39 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:43
 msgid "Double quotes"
-msgstr ""
+msgstr "Comharran-labhairt dùbailte"
 
 #: apps/pootle_misc/checks.py:44
 msgid "Double spaces"
-msgstr ""
+msgstr "Àitichean bàna dùbailte"
 
 #: apps/pootle_misc/checks.py:45
 msgid "Repeated word"
-msgstr ""
+msgstr "Facal a tha ann iomadh turas"
 
 #: apps/pootle_misc/checks.py:46
 msgid "E-mail"
-msgstr ""
+msgstr "Post-d"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Ending punctuation"
-msgstr ""
+msgstr "Puingeachadh aig an deireadh"
 
 #: apps/pootle_misc/checks.py:48
 msgid "Ending whitespace"
-msgstr ""
+msgstr "Àite bàn aig an deireadh"
 
 #: apps/pootle_misc/checks.py:49
 msgid "Escapes"
-msgstr ""
+msgstr "Escapes"
 
 #: apps/pootle_misc/checks.py:50
 msgid "File paths"
-msgstr ""
+msgstr "Slighean nam faidhle"
 
 #: apps/pootle_misc/checks.py:51
 msgid "Functions"
-msgstr ""
+msgstr "Foincseanan"
 
 #: apps/pootle_misc/checks.py:52
 msgid "GConf values"
@@ -1052,7 +1053,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:54
 msgid "Long"
-msgstr ""
+msgstr "Fada"
 
 #: apps/pootle_misc/checks.py:55
 msgid "Must translate words"
@@ -1060,28 +1061,27 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:56
 msgid "Newlines"
-msgstr ""
+msgstr "Loidhnichean ùra"
 
 #: apps/pootle_misc/checks.py:57
 msgid "Number of plurals"
-msgstr ""
+msgstr "Co mheud cruth iolra"
 
 #: apps/pootle_misc/checks.py:58
 msgid "Don't translate words"
-msgstr ""
+msgstr "Na eadar-theangaich faclan"
 
 #: apps/pootle_misc/checks.py:59
 msgid "Numbers"
-msgstr ""
+msgstr "Àireamhan"
 
 #: apps/pootle_misc/checks.py:60
-#, fuzzy
 msgid "Options"
-msgstr "Roghnach"
+msgstr "Roghainnean"
 
 #: apps/pootle_misc/checks.py:61
 msgid "printf()"
-msgstr ""
+msgstr "printf()"
 
 #: apps/pootle_misc/checks.py:62
 msgid "Punctuation spacing"
@@ -1097,11 +1097,11 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:65
 msgid "Short"
-msgstr ""
+msgstr "Goirid"
 
 #: apps/pootle_misc/checks.py:66
 msgid "Simple capitalization"
-msgstr ""
+msgstr "Tùs-litrichean simplidh"
 
 #: apps/pootle_misc/checks.py:67
 msgid "Simple plural(s)"
@@ -1109,48 +1109,48 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:68
 msgid "Single quotes"
-msgstr ""
+msgstr "Comharran-labhairt singilte"
 
 #: apps/pootle_misc/checks.py:69
 msgid "Starting capitalization"
-msgstr ""
+msgstr "Tùs-litrichean aig an toiseach"
 
 #: apps/pootle_misc/checks.py:70
 msgid "Starting punctuation"
-msgstr ""
+msgstr "Puingeachadh aig an toiseach"
 
 #: apps/pootle_misc/checks.py:71
 msgid "Starting whitespace"
-msgstr ""
+msgstr "Àite bàn aig an toiseach"
 
 #. Translators: This refers to tabulation characters
 #: apps/pootle_misc/checks.py:73
 msgid "Tabs"
-msgstr ""
+msgstr "Tabaichean"
 
 #: apps/pootle_misc/checks.py:74
 msgid "Unchanged"
-msgstr ""
+msgstr "Gun atharrachadh"
 
 #: apps/pootle_misc/checks.py:75
 msgid "URLs"
-msgstr ""
+msgstr "URLaichean"
 
 #: apps/pootle_misc/checks.py:76
 msgid "Valid characters"
-msgstr ""
+msgstr "Caractaran dligheach"
 
 #: apps/pootle_misc/checks.py:77
 msgid "Placeholders"
-msgstr ""
+msgstr "Glèidheadairean-àite"
 
 #: apps/pootle_misc/checks.py:78
 msgid "XML tags"
-msgstr ""
+msgstr "Tagaichean XML"
 
 #: apps/pootle_misc/dbinit.py:68
 msgid "Pootle: Install"
-msgstr ""
+msgstr "Pootle: Stàlaich"
 
 #: apps/pootle_misc/dbinit.py:69
 #, python-format
@@ -1160,9 +1160,8 @@ msgid ""
 msgstr ""
 
 #: apps/pootle_misc/dbinit.py:75
-#, fuzzy
 msgid "Creating database tables..."
-msgstr "A' cruthachadh faidhlichean an stòir-dhàta."
+msgstr "A' cruthachadh clàir an stòir-dhàta..."
 
 #: apps/pootle_misc/dbinit.py:82
 msgid "Creating default languages, projects and admin user"
@@ -1175,12 +1174,12 @@ msgstr ""
 #: apps/pootle_misc/dbinit.py:96
 #, python-format
 msgid "%(language)s is %(percent)d%% complete"
-msgstr ""
+msgstr "Tha %(language)s %(percent)d%% deiseil"
 
 #: apps/pootle_misc/dbinit.py:103
 #, python-format
 msgid "Project %(project)s is %(percent)d%% complete"
-msgstr ""
+msgstr "Tha am pròiseact %(project)s %(percent)d%% deiseil"
 
 #: apps/pootle_misc/dbinit.py:111
 msgid "Done calculating statistics for default languages and projects"
@@ -1193,7 +1192,7 @@ msgstr ""
 
 #: apps/pootle_misc/dbupdate.py:132
 msgid "Pootle: Update"
-msgstr ""
+msgstr "Pootle: Ùraich"
 
 #: apps/pootle_misc/dbupdate.py:133
 #, python-format
@@ -1203,18 +1202,16 @@ msgid ""
 msgstr ""
 
 #: apps/pootle_misc/dbupdate.py:143
-#, fuzzy
 msgid "Creating missing database tables..."
-msgstr "A' cruthachadh faidhlichean an stòir-dhàta."
+msgstr "A' cruthachadh clàir an stòir-dhàta a tha a dhìth..."
 
 #: apps/pootle_misc/dbupdate.py:154
 msgid "Fixing permission table..."
 msgstr ""
 
 #: apps/pootle_misc/dbupdate.py:180 apps/pootle_misc/dbupdate.py:257
-#, fuzzy
 msgid "Updating existing database tables..."
-msgstr "A' cruthachadh faidhlichean an stòir-dhàta."
+msgstr "Ag ùrachadh clàir an stòir-dhàta..."
 
 #: apps/pootle_misc/dbupdate.py:221
 msgid "Removing potentially incorrect cached stats, will be recalculated..."
@@ -1278,55 +1275,54 @@ msgstr ""
 
 #: apps/pootle_misc/forms.py:103
 msgid "Source Text"
-msgstr ""
+msgstr "An teacsa tùsail"
 
 #: apps/pootle_misc/forms.py:104
 msgid "Target Text"
-msgstr ""
+msgstr "An t-eadar-theangachadh"
 
 #: apps/pootle_misc/forms.py:105
 msgid "Comments"
 msgstr "Beachdan"
 
 #: apps/pootle_misc/forms.py:106
-#, fuzzy
 msgid "Locations"
-msgstr "Àite"
+msgstr "Àitichean"
 
 #: apps/pootle_misc/forms.py:119
 msgid "Source Terms"
-msgstr ""
+msgstr "Briathran an tùis"
 
 #: apps/pootle_misc/forms.py:120
 msgid "Target Terms"
-msgstr ""
+msgstr "Briathran an eadar-theangachaidh"
 
 #: apps/pootle_misc/forms.py:121
 msgid "Definitions"
-msgstr ""
+msgstr "Deifiniseanan"
 
 #: apps/pootle_misc/stats.py:91
 #, python-format
 msgid "<a href=\"%(url)s\">%(num)d word</a>"
 msgid_plural "<a href=\"%(url)s\">%(num)d words</a>"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<a href=\"%(url)s\">%(num)d fhacal</a>"
+msgstr[1] "<a href=\"%(url)s\">%(num)d fhacal</a>"
+msgstr[2] "<a href=\"%(url)s\">%(num)d faclan</a>"
+msgstr[3] "<a href=\"%(url)s\">%(num)d facal</a>"
 
 #: apps/pootle_misc/stats.py:97
 #, python-format
 msgid "%(num)d%%"
-msgstr ""
+msgstr "%(num)d%%"
 
 #: apps/pootle_misc/stats.py:99
 #, python-format
 msgid "(%(num)d string)"
 msgid_plural "(%(num)d strings)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "(%(num)d sreang)"
+msgstr[1] "(%(num)d shreang)"
+msgstr[2] "(%(num)d sreangan)"
+msgstr[3] "(%(num)d sreang)"
 
 #: apps/pootle_misc/stats.py:128
 #, python-format
@@ -1334,9 +1330,17 @@ msgid "This folder has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
 "This folder has %(num)d words, %(percentage)d%% of which are translated."
 msgstr[0] ""
+"Tha %(num)d fhacal sa phasgan seo, chaidh %(percentage)d%% dheth eadar-"
+"theangachadh."
 msgstr[1] ""
+"Tha %(num)d fhacal sa phasgan seo, chaidh %(percentage)d%% dheth eadar-"
+"theangachadh."
 msgstr[2] ""
+"Tha %(num)d faclan sa phasgan seo, chaidh %(percentage)d%% dheth eadar-"
+"theangachadh."
 msgstr[3] ""
+"Tha %(num)d facal sa phasgan seo, chaidh %(percentage)d%% dheth eadar-"
+"theangachadh."
 
 #: apps/pootle_misc/stats.py:140
 #, python-format
@@ -1344,26 +1348,34 @@ msgid "This file has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
 "This file has %(num)d words, %(percentage)d%% of which are translated."
 msgstr[0] ""
+"Tha %(num)d fhacal san fhaidhle seo, chaidh %(percentage)d%% dheth eadar-"
+"theangachadh."
 msgstr[1] ""
+"Tha %(num)d fhacal san fhaidhle seo, chaidh %(percentage)d%% dheth eadar-"
+"theangachadh."
 msgstr[2] ""
+"Tha %(num)d faclan san fhaidhle seo, chaidh %(percentage)d%% dheth eadar-"
+"theangachadh."
 msgstr[3] ""
+"Tha %(num)d facal san fhaidhle seo, chaidh %(percentage)d%% dheth eadar-"
+"theangachadh."
 
 #: apps/pootle_misc/stats.py:162
 msgid "Expand details"
-msgstr ""
+msgstr "Seall am mion-fhiosrachadh"
 
 #: apps/pootle_misc/stats.py:173
 #, python-format
 msgid "Continue translation (%(num)d word left)"
 msgid_plural "Continue translation (%(num)d words left)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Cum ort ag eadar-theangachadh, (%(num)d fhacal air fhàgail)"
+msgstr[1] "Cum ort ag eadar-theangachadh, (%(num)d fhacal air fhàgail)"
+msgstr[2] "Cum ort ag eadar-theangachadh, (%(num)d faclan air fhàgail)"
+msgstr[3] "Cum ort ag eadar-theangachadh, (%(num)d facal air fhàgail)"
 
 #: apps/pootle_misc/stats.py:183
 msgid "Translation is complete"
-msgstr ""
+msgstr "Chaidh an t-eadar-theangachadh a choileanadh"
 
 #: apps/pootle_misc/stats.py:194
 #, python-format

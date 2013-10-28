@@ -7,15 +7,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2010-08-02 07:08+0200\n"
-"Last-Translator: admin <>\n"
+"PO-Revision-Date: 2013-08-08 10:54+0000\n"
+"Last-Translator: elfaxvaxec <elfaxvaxec@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: az\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.5.0-beta1\n"
+"X-POOTLE-MTIME: 1375959284.0\n"
 
 #: strings.py:8
 msgid ""
@@ -24,7 +25,7 @@ msgstr ""
 
 #: strings.py:9
 msgid "Enter a valid e-mail address."
-msgstr ""
+msgstr "Düzgün e-mail daxil edin."
 
 #: strings.py:10
 msgid ""
@@ -33,8 +34,9 @@ msgid ""
 msgstr ""
 
 #: strings.py:11
+#, fuzzy
 msgid "This field is required."
-msgstr ""
+msgstr "Bu sahədə məcburidir."
 
 #: strings.py:12
 #, python-format
@@ -43,55 +45,57 @@ msgstr ""
 
 #: strings.py:13
 msgid "Save and add another"
-msgstr ""
+msgstr "Qeyd Et və digərini əlavə et"
 
 #: strings.py:14
 msgid "Save and continue editing"
-msgstr ""
+msgstr "Qeyd et və davam et"
 
 #: strings.py:15
 msgid "Add"
-msgstr ""
+msgstr "Əlavə et"
 
 #: strings.py:16
 msgid "Change"
-msgstr ""
+msgstr "Dəyişdir"
 
 #: strings.py:17 apps/pootle_profile/forms.py:64
 msgid ""
 "Please enter a correct username and password. Note that both fields are case-"
 "sensitive."
 msgstr ""
+"Lütfən, düzgün istifadəçi adını və parolu daxil edin. Nəzərə alın ki, sahələ "
+"böyük kiçik hərfə həssasdır."
 
 #. Translators: Email subject line. The variable is the server name shown
 #. on the top of each page
 #: strings.py:21
-#, python-format
+#, fuzzy, python-format
 msgid "Password reset on %s"
-msgstr ""
+msgstr "Parolu sıfırla %s"
 
 #. Translators: This is a constructed string that might end up saying
 #. "Add language" or "Add project". If you need to translate that differently,
 #. you might want to try to translate it as "Add an entry to the %(name)s table"
 #. or "Add an object of type "%(name)s".
 #: strings.py:27
-#, python-format
+#, fuzzy, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Əlavə et %(name)s"
 
 #. Translators: This link takes the user to the page where the currently
 #. configured option is displayed (such as a project or language)
 #: strings.py:31
 msgid "View on site"
-msgstr ""
+msgstr "Saytda bax"
 
 #: strings.py:33
 msgid "first name"
-msgstr ""
+msgstr "Ad"
 
 #: strings.py:34
 msgid "last name"
-msgstr ""
+msgstr "Soyad"
 
 #: strings.py:35
 #, fuzzy
@@ -99,20 +103,21 @@ msgid "e-mail address"
 msgstr "E-poçt ünvan"
 
 #: strings.py:36
+#, fuzzy
 msgid "active"
-msgstr ""
+msgstr "Fəallaşdır"
 
 #. Translators: Please translate this simply as "Administrator". This string is
 #. needed by Django, but 'superuser' is very technical and should be avoided.
 #: strings.py:40
 msgid "superuser status"
-msgstr ""
+msgstr "administrator"
 
 #. Translators: The language from which translation will happen
 #: strings.py:43 apps/pootle_app/views/admin/adminprojects.py:44
 #: apps/pootle_project/models.py:92
 msgid "Source Language"
-msgstr ""
+msgstr "Dil mənbəsi"
 
 #: strings.py:45
 msgid "Android strings"
@@ -141,38 +146,39 @@ msgstr ""
 #. Translators: Label that refers to the site's terms of use
 #: strings.py:59
 msgid "Terms of Use"
-msgstr ""
+msgstr "İstifadə qaydaları"
 
 #. Translators: Label that refers to the site's terms of service
 #: strings.py:61
 msgid "Terms of Service"
-msgstr ""
+msgstr "Xidmət qaydaları"
 
 #: apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr ""
+msgstr "Sizin adınız"
 
 #: apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr ""
+msgstr "Sizin e-Poçt ünvan"
 
 #: apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr ""
+msgstr "Sizin ismarıcınız"
 
 #: apps/contact_form_i18n/forms.py:260
+#, fuzzy
 msgid "Akismet thinks this message is spam"
-msgstr ""
+msgstr "Akismet modulu güman edir ki, bu ismarıc spamdır"
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Lütfən səhvi düzəldin"
+msgstr[1] "Lütfən səhvi düzəldin"
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
-msgstr ""
+msgstr "Qurğular qeyd olundu."
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: apps/legalpages/templates/legalpages/admin/form.html:15
@@ -181,7 +187,7 @@ msgstr ""
 #: templates/profiles/edit_personal.html:33
 #: templates/profiles/edit_profile.html:25
 msgid "Save"
-msgstr ""
+msgstr "Qeyd et"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/legalpages/forms.py:42
@@ -190,8 +196,9 @@ msgstr ""
 
 #: apps/legalpages/models.py:31
 #: apps/legalpages/templates/legalpages/admin/list.html:22
+#, fuzzy
 msgid "Active"
-msgstr ""
+msgstr "Fəallaşdır"
 
 #: apps/legalpages/models.py:32
 msgid "Whether this page is active or not."
@@ -216,54 +223,56 @@ msgstr ""
 
 #: apps/legalpages/models.py:40
 msgid "If set, any references to this legal page will redirect to this URL"
-msgstr ""
+msgstr "Əgər verilibsə, hər hansı bir URL bu ünvana yönləndiriləcək"
 
 #. Translators: See http://en.wikipedia.org/wiki/Slug_%28web_publishing%29#Slug
 #: apps/legalpages/models.py:43
 msgid "Slug"
-msgstr ""
+msgstr "Qısa başlıq"
 
 #: apps/legalpages/models.py:44
+#, fuzzy
 msgid "The page will be available at /about/<slug>/"
-msgstr ""
+msgstr "Səhifə belə şəkildə mövcud olacaq  /about/<qısa başlıq>/"
 
 #: apps/legalpages/models.py:46
 msgid "Content"
-msgstr ""
+msgstr "Məzmun"
 
 #: apps/legalpages/models.py:47
-#, python-format
+#, fuzzy, python-format
 msgid "Allowed markup: %s"
-msgstr ""
+msgstr "İcazə verilən işarələmə: %s"
 
 #: apps/legalpages/views.py:67
 msgid "Legal page created."
-msgstr ""
+msgstr "Haqlar haqqında səhifə yaradıldı"
 
 #: apps/legalpages/templates/legalpages/admin/edit.html:4
 #: apps/legalpages/templates/legalpages/admin/edit.html:9
 #: apps/legalpages/templates/legalpages/admin/edit.html:16
 msgid "Edit Legal Page"
-msgstr ""
+msgstr "Haqlar haqqında səhifəni düzəlt"
 
 #: apps/legalpages/templates/legalpages/admin/form.html:17
 #: apps/pootle_terminology/templates/terminology/manage.html:37
 msgid "Delete"
-msgstr ""
+msgstr "Sil"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:5
 #: apps/legalpages/templates/legalpages/admin/list.html:10
 #: templates/admin_profile_menu.html:9
 msgid "Legal Pages"
-msgstr ""
+msgstr "Haqlar haqqında səhifələr"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:17
 msgid "Existing Legal Pages"
 msgstr ""
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
+#, fuzzy
 msgid "Inactive"
-msgstr ""
+msgstr "Fəallaşdır"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 #: apps/pootle_app/templates/admin/edit_links.html:2
@@ -990,8 +999,9 @@ msgid "Repeated word"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:46
+#, fuzzy
 msgid "E-mail"
-msgstr ""
+msgstr "E-poçt"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Ending punctuation"
@@ -1046,8 +1056,9 @@ msgid "Numbers"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:60
+#, fuzzy
 msgid "Options"
-msgstr ""
+msgstr "Kökləmə"
 
 #: apps/pootle_misc/checks.py:61
 msgid "printf()"
@@ -1256,12 +1267,14 @@ msgid "Locations"
 msgstr "Yerləşdiyi yerlər"
 
 #: apps/pootle_misc/forms.py:119
+#, fuzzy
 msgid "Source Terms"
-msgstr ""
+msgstr "Mənbə mətni"
 
 #: apps/pootle_misc/forms.py:120
+#, fuzzy
 msgid "Target Terms"
-msgstr ""
+msgstr "Hədəf mətni"
 
 #: apps/pootle_misc/forms.py:121
 msgid "Definitions"
@@ -1439,16 +1452,18 @@ msgid "Email only to recently active users"
 msgstr ""
 
 #: apps/pootle_notifications/views.py:151
+#, fuzzy
 msgid "All Projects"
-msgstr ""
+msgstr "Bütün layihələr"
 
 #: apps/pootle_notifications/views.py:155
 msgid "Project Selection"
 msgstr ""
 
 #: apps/pootle_notifications/views.py:163
+#, fuzzy
 msgid "All Languages"
-msgstr ""
+msgstr "Bütün dillər"
 
 #: apps/pootle_notifications/views.py:167
 msgid "Language Selection"
@@ -1613,8 +1628,9 @@ msgid "State"
 msgstr ""
 
 #: apps/pootle_statistics/models.py:50
+#, fuzzy
 msgid "Comment"
-msgstr ""
+msgstr "Şərhlər"
 
 #: apps/pootle_statistics/models.py:95
 msgid "anonymous user"
@@ -1766,8 +1782,9 @@ msgid "Incomplete"
 msgstr ""
 
 #: apps/pootle_store/templates/store/translate.html:75
+#, fuzzy
 msgid "My suggestions"
-msgstr ""
+msgstr "Təklif:"
 
 #: apps/pootle_store/templates/store/translate.html:76
 msgid "My submissions"
@@ -1815,8 +1832,9 @@ msgid ""
 msgstr ""
 
 #: apps/pootle_store/templates/unit/comment.html:12
+#, fuzzy
 msgid "Comment:"
-msgstr ""
+msgstr "Şərhlər"
 
 #: apps/pootle_store/templates/unit/edit.html:11
 msgid "File:"
@@ -1827,12 +1845,14 @@ msgid "Context:"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:28
+#, fuzzy
 msgid "Comments:"
-msgstr ""
+msgstr "Şərhlər"
 
 #: apps/pootle_store/templates/unit/edit.html:32
+#, fuzzy
 msgid "Locations:"
-msgstr ""
+msgstr "Yerləşdiyi yerlər"
 
 #: apps/pootle_store/templates/unit/edit.html:41
 msgid "Terminology:"
@@ -1952,8 +1972,9 @@ msgid "Hide Timeline"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:233
+#, fuzzy
 msgid "User suggestions"
-msgstr ""
+msgstr "Təkliflərə bax"
 
 #: apps/pootle_store/templates/unit/edit.html:251
 msgid "Accept suggestion"
@@ -1977,8 +1998,9 @@ msgid "Vote for this suggestion"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/term_edit.html:40
+#, fuzzy
 msgid "Comment: "
-msgstr ""
+msgstr "Şərhlər"
 
 #: apps/pootle_store/templates/unit/timeline.html:4
 #: apps/pootle_store/templates/unit/timeline.html:14

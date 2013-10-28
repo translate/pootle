@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:44+0000\n"
-"PO-Revision-Date: 2013-01-01 10:25+0000\n"
-"Last-Translator: wwycheuk <wwycheuk@gmail.com>\n"
+"PO-Revision-Date: 2013-06-09 09:03+0000\n"
+"Last-Translator: df910105 <df910105@yahoo.com.tw>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -16,27 +16,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1357035934.0\n"
+"X-POOTLE-MTIME: 1370768584.0\n"
 
 #: static/js/common.js:43
 msgid "Expand details"
-msgstr ""
+msgstr "展開詳細說明"
 
 #: static/js/common.js:43
 msgid "Collapse details"
-msgstr ""
+msgstr "收起詳細說明"
 
 #: static/js/common.js:77
 msgid "Are you sure you want to continue?"
-msgstr ""
+msgstr "您確定要繼續嗎？"
 
 #: static/js/common.js:78
 msgid "This operation cannot be undone."
-msgstr ""
+msgstr "這個操作將無法撤銷。"
 
 #: static/js/editor.js:409 static/js/editor.js.c:1493
 msgid "No results."
-msgstr ""
+msgstr "無結果。"
 
 #. Translators: Permalink to the current unit in the editor.
 #. The first '%s' is the permalink URL.
@@ -44,11 +44,11 @@ msgstr ""
 #: static/js/editor.js:726
 #, c-format
 msgid "<a href=\"%s\">String %s</a>"
-msgstr ""
+msgstr "<a href=\"%s\">字符串 %s</a>"
 
 #: static/js/editor.js:786
 msgid "Error while connecting to the server"
-msgstr ""
+msgstr "連接到伺服器時出錯"
 
 #: static/js/editor.js:788
 msgid "Server error"
@@ -56,7 +56,7 @@ msgstr "伺服器錯誤"
 
 #: static/js/editor.js:790
 msgid "The server seems down. Try again later."
-msgstr ""
+msgstr "伺服器似乎停機了。請您稍後重試。"
 
 #: static/js/editor.js:798
 msgid "Unknown error"
@@ -64,7 +64,7 @@ msgstr "不明錯誤"
 
 #: static/js/editor.js:1342
 msgid "Congratulations, you walked through all strings."
-msgstr ""
+msgstr "恭喜您，您已瀏覽完所有字符串。"
 
 #: static/js/editor.js:1344 static/js/editor.js.c:1368
 msgid "Return to the overview page."
@@ -72,11 +72,11 @@ msgstr "回到概覽頁面"
 
 #: static/js/editor.js:1363
 msgid "You reached the beginning of the list"
-msgstr ""
+msgstr "您已到達列表的前端"
 
 #: static/js/editor.js:1366
 msgid "You reached the end of the list."
-msgstr ""
+msgstr "您已到達列表的末端"
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
@@ -84,7 +84,7 @@ msgstr ""
 #: static/js/editor.js:1766
 #, c-format
 msgid "%s% match"
-msgstr ""
+msgstr "%s% 項配對"
 
 #: static/js/editor.js:1808
 msgid "Similar translations"
@@ -93,53 +93,53 @@ msgstr "相似翻譯"
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:7
 msgid "More"
-msgstr ""
+msgstr "更多"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:10
 msgid "Hide"
-msgstr ""
+msgstr "隱藏"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:13
 msgid "Less"
-msgstr ""
+msgstr "更少"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:16
 msgid "Show"
-msgstr ""
+msgstr "顯示"
 
 #: static/js/utils.js:76
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] ""
+msgstr[0] "%s 年前"
 
 #: static/js/utils.js:79
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] ""
+msgstr[0] "%s 星期前"
 
 #: static/js/utils.js:82
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] ""
+msgstr[0] "%s 天前"
 
 #: static/js/utils.js:85
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] ""
+msgstr[0] "%s 小時前"
 
 #: static/js/utils.js:88
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] ""
+msgstr[0] "%s 分鐘前"
 
 #: static/js/utils.js:96
 msgid "A few seconds ago"
-msgstr ""
+msgstr "幾秒鐘前"

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:44+0000\n"
-"PO-Revision-Date: 2013-02-24 17:34+0000\n"
+"PO-Revision-Date: 2013-05-20 13:17+0000\n"
 "Last-Translator: Veeven <veeven@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: te\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1361727268.0\n"
+"X-POOTLE-MTIME: 1369055864.0\n"
 
 #: static/js/common.js:43
 msgid "Expand details"
@@ -72,7 +72,7 @@ msgstr "తిరిగి అవలోకనం పేజీకి వెళ్
 
 #: static/js/editor.js:1363
 msgid "You reached the beginning of the list"
-msgstr ""
+msgstr "మీరు జాబితా మొదటికి చేరుకున్నారు"
 
 #: static/js/editor.js:1366
 msgid "You reached the end of the list."

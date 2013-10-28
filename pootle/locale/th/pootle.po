@@ -7,24 +7,25 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2010-05-07 19:09+0200\n"
-"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
+"PO-Revision-Date: 2013-06-03 15:20+0000\n"
+"Last-Translator: teerapat.top <teerapat.top@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.5.0-beta1\n"
+"X-POOTLE-MTIME: 1370272811.0\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
-msgstr ""
+msgstr "กดปุ่ม \"Control\" หรือ \"Command\" บน Mac เพื่อเลือกมากกว่าหนึ่ง"
 
 #: strings.py:9
 msgid "Enter a valid e-mail address."
-msgstr ""
+msgstr "ใส่ที่อยู่อีเมลที่ถูกต้อง"
 
 #: strings.py:10
 msgid ""
@@ -51,11 +52,11 @@ msgstr ""
 
 #: strings.py:15
 msgid "Add"
-msgstr ""
+msgstr "เพิ่ม"
 
 #: strings.py:16
 msgid "Change"
-msgstr ""
+msgstr "เปลี่ยน"
 
 #: strings.py:17 apps/pootle_profile/forms.py:64
 msgid ""
@@ -77,7 +78,7 @@ msgstr ""
 #: strings.py:27
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "เพิ่ม %(name)s"
 
 #. Translators: This link takes the user to the page where the currently
 #. configured option is displayed (such as a project or language)
@@ -87,16 +88,15 @@ msgstr ""
 
 #: strings.py:33
 msgid "first name"
-msgstr ""
+msgstr "ชื่อจริง"
 
 #: strings.py:34
 msgid "last name"
-msgstr ""
+msgstr "นามสกุล"
 
 #: strings.py:35
-#, fuzzy
 msgid "e-mail address"
-msgstr "ที่อยู่อีเมลล์"
+msgstr "ที่อยู่อีเมล"
 
 #: strings.py:36
 msgid "active"
@@ -150,19 +150,19 @@ msgstr ""
 
 #: apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr ""
+msgstr "ชื่อของคุณ"
 
 #: apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr ""
+msgstr "ที่อยู่อีเมลของคุณ"
 
 #: apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr ""
+msgstr "ข้อความของคุณ"
 
 #: apps/contact_form_i18n/forms.py:260
 msgid "Akismet thinks this message is spam"
-msgstr ""
+msgstr "Akismet คิดว่าข้อความนี้คือสแปม"
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
@@ -180,7 +180,7 @@ msgstr ""
 #: templates/profiles/edit_personal.html:33
 #: templates/profiles/edit_profile.html:25
 msgid "Save"
-msgstr ""
+msgstr "บันทึก"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/legalpages/forms.py:42
@@ -586,7 +586,7 @@ msgstr ""
 
 #: apps/pootle_app/templates/index/login.html:30
 msgid "Lost your Password?"
-msgstr ""
+msgstr "ลืมรหัสผ่านของคุณ?"
 
 #: apps/pootle_app/templates/index/login.html:33
 #: templates/registration/password_reset_form.html:30
@@ -991,7 +991,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:46
 msgid "E-mail"
-msgstr ""
+msgstr "อีเมล"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Ending punctuation"
@@ -1046,8 +1046,9 @@ msgid "Numbers"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:60
+#, fuzzy
 msgid "Options"
-msgstr ""
+msgstr "ตัวเลือก"
 
 #: apps/pootle_misc/checks.py:61
 msgid "printf()"
@@ -1254,12 +1255,14 @@ msgid "Locations"
 msgstr ""
 
 #: apps/pootle_misc/forms.py:119
+#, fuzzy
 msgid "Source Terms"
-msgstr ""
+msgstr "ข้อความต้นฉบับ"
 
 #: apps/pootle_misc/forms.py:120
+#, fuzzy
 msgid "Target Terms"
-msgstr ""
+msgstr "ข้อความเป้าหมาย"
 
 #: apps/pootle_misc/forms.py:121
 msgid "Definitions"
@@ -1427,16 +1430,18 @@ msgid "Email only to recently active users"
 msgstr ""
 
 #: apps/pootle_notifications/views.py:151
+#, fuzzy
 msgid "All Projects"
-msgstr ""
+msgstr "โครงการทั้งหมด"
 
 #: apps/pootle_notifications/views.py:155
 msgid "Project Selection"
 msgstr ""
 
 #: apps/pootle_notifications/views.py:163
+#, fuzzy
 msgid "All Languages"
-msgstr ""
+msgstr "ภาษาทั้งหมด"
 
 #: apps/pootle_notifications/views.py:167
 msgid "Language Selection"
@@ -1599,8 +1604,9 @@ msgid "State"
 msgstr ""
 
 #: apps/pootle_statistics/models.py:50
+#, fuzzy
 msgid "Comment"
-msgstr ""
+msgstr "ความเห็น"
 
 #: apps/pootle_statistics/models.py:95
 msgid "anonymous user"
@@ -1801,8 +1807,9 @@ msgid ""
 msgstr ""
 
 #: apps/pootle_store/templates/unit/comment.html:12
+#, fuzzy
 msgid "Comment:"
-msgstr ""
+msgstr "ความเห็น"
 
 #: apps/pootle_store/templates/unit/edit.html:11
 msgid "File:"
@@ -1813,8 +1820,9 @@ msgid "Context:"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:28
+#, fuzzy
 msgid "Comments:"
-msgstr ""
+msgstr "ความเห็น"
 
 #: apps/pootle_store/templates/unit/edit.html:32
 msgid "Locations:"
@@ -1962,8 +1970,9 @@ msgid "Vote for this suggestion"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/term_edit.html:40
+#, fuzzy
 msgid "Comment: "
-msgstr ""
+msgstr "ความเห็น"
 
 #: apps/pootle_store/templates/unit/timeline.html:4
 #: apps/pootle_store/templates/unit/timeline.html:14
@@ -2348,9 +2357,8 @@ msgid "username"
 msgstr "ชื่อผู้ใช้"
 
 #: apps/registration/forms.py:39
-#, fuzzy
 msgid "email address"
-msgstr "ที่อยู่อีเมลล์"
+msgstr "ที่อยู่อีเมล"
 
 #: apps/registration/forms.py:41
 #, fuzzy
@@ -2541,13 +2549,13 @@ msgstr "เข้าสู่ระบบ"
 
 #: templates/base.html:157
 msgid "Help"
-msgstr ""
+msgstr "ช่วยเหลือ"
 
 #: templates/base.html:159 templates/contact_form/contact_form.html:4
 #: templates/contact_form/contact_form.html:7
 #: templates/contact_form/contact_form.html:12
 msgid "Contact Us"
-msgstr ""
+msgstr "ติดต่อเรา"
 
 #: templates/base.html:161
 #, fuzzy
@@ -2557,7 +2565,7 @@ msgstr "เกี่ยวกับเซิร์ฟเวอร์ Pootle น�
 #: templates/base.html:162 templates/about/contributors.html:6
 #: templates/about/contributors.html:9
 msgid "Contributors"
-msgstr ""
+msgstr "ผู้สนับสนุน"
 
 #: templates/captcha-xhr.html:14 templates/captcha.html:4
 #: templates/captcha.html.py:7
@@ -2725,9 +2733,8 @@ msgid "Last Name"
 msgstr ""
 
 #: templates/profiles/edit_personal.html:28
-#, fuzzy
 msgid "Email address"
-msgstr "ที่อยู่อีเมลล์"
+msgstr "ที่อยู่อีเมล"
 
 #: templates/profiles/edit_profile.html:4
 #: templates/profiles/edit_profile.html:7
@@ -2964,7 +2971,7 @@ msgstr ""
 #: templates/registration/password_reset_form.html:19
 #: templates/registration/registration_form.html:25
 msgid "Email Address"
-msgstr "ที่อยู่อีเมลล์"
+msgstr "ที่อยู่อีเมล"
 
 #: templates/registration/registration_complete.html:5
 #: templates/registration/registration_complete.html:8

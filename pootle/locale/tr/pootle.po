@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-05-10 14:50+0000\n"
+"PO-Revision-Date: 2013-08-28 15:08+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1368197424.0\n"
+"X-POOTLE-MTIME: 1377702489.0\n"
 
 #: strings.py:8
 msgid ""
@@ -108,7 +108,7 @@ msgstr "E-posta adresi"
 
 #: strings.py:36
 msgid "active"
-msgstr "Aktif"
+msgstr "aktif"
 
 #. Translators: Please translate this simply as "Administrator". This string is
 #. needed by Django, but 'superuser' is very technical and should be avoided.
@@ -647,7 +647,7 @@ msgstr "Django sürüm %s yüklü."
 #, python-format
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
-msgstr "Django sürüm %s kurulu ama daha yüksek sürümü son derece önerilir."
+msgstr "Django sürüm %s yüklü ama daha yüksek sürümü son derece önerilir."
 
 #: apps/pootle_app/views/admin/dashboard.py:71
 #, python-format
@@ -947,7 +947,7 @@ msgstr[0] "%d dosyayı okumada hata oldu"
 #, python-format
 msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
-msgstr[0] "%(projects)d proje, %%%(average)d çevrilmiş"
+msgstr[0] "%(projects)d proje, %%%(average)d çevirilmiş"
 
 #: apps/pootle_language/views.py:158 apps/pootle_project/views.py:169
 #: apps/pootle_translationproject/views.py:347
@@ -1132,7 +1132,7 @@ msgstr "Kısa"
 
 #: apps/pootle_misc/checks.py:66
 msgid "Simple capitalization"
-msgstr "Basit ilk harfi büyük kullanım"
+msgstr "Basitçe büyük ilk harf kullanımı"
 
 #: apps/pootle_misc/checks.py:67
 msgid "Simple plural(s)"
@@ -1144,15 +1144,15 @@ msgstr "Tek tırnak"
 
 #: apps/pootle_misc/checks.py:69
 msgid "Starting capitalization"
-msgstr "İlk harfi büyük başlayan"
+msgstr "İlk harfi büyük başlama"
 
 #: apps/pootle_misc/checks.py:70
 msgid "Starting punctuation"
-msgstr "Noktalamayla başlayan"
+msgstr "Noktalama işaretiyle başlama"
 
 #: apps/pootle_misc/checks.py:71
 msgid "Starting whitespace"
-msgstr "Boşlukla başlayan"
+msgstr "Boşlukla başlama"
 
 #. Translators: This refers to tabulation characters
 #: apps/pootle_misc/checks.py:73

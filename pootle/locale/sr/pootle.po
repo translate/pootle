@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-05-19 08:46+0000\n"
-"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
+"PO-Revision-Date: 2013-05-27 03:17+0000\n"
+"Last-Translator: Ђорђе <djordje.vasiljevich@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1368953162.0\n"
+"X-POOTLE-MTIME: 1369624671.0\n"
 
 #: strings.py:8
 msgid ""
@@ -157,15 +157,15 @@ msgstr "Услови сервиса"
 
 #: apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr "Ваше име"
+msgstr "Име"
 
 #: apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr "Ваша е-адреса"
+msgstr "Е-адреса"
 
 #: apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr "Ваша порука"
+msgstr "Порука"
 
 #: apps/contact_form_i18n/forms.py:260
 msgid "Akismet thinks this message is spam"
@@ -194,7 +194,7 @@ msgstr "Сачувај"
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/legalpages/forms.py:42
 msgid "URL or content must be provided."
-msgstr "Наведите адресу или садржај."
+msgstr "Наведите URL адресу или садржај."
 
 #: apps/legalpages/models.py:31
 #: apps/legalpages/templates/legalpages/admin/list.html:22
@@ -220,7 +220,7 @@ msgstr "Наслов"
 
 #: apps/legalpages/models.py:39
 msgid "URL"
-msgstr "Адреса"
+msgstr "URL адреса"
 
 #: apps/legalpages/models.py:40
 msgid "If set, any references to this legal page will redirect to this URL"
@@ -616,7 +616,7 @@ msgstr "Још немате налог?"
 #: apps/pootle_app/templates/index/login.html:34
 #: templates/registration/password_reset_form.html:31
 msgid "Register."
-msgstr "Регистрација"
+msgstr "Региструјте се."
 
 #: apps/pootle_app/views/admin/adminusers.py:48
 #: templates/user_profile_menu.html:7
@@ -627,7 +627,7 @@ msgstr "Лозинка"
 #: apps/pootle_app/views/admin/dashboard.py:48
 #, python-format
 msgid "Translate Toolkit version %s installed."
-msgstr "Инсталиран је Translate Toolkit (верзија %s)."
+msgstr "Инсталиран је Translate Toolkit %s."
 
 #: apps/pootle_app/views/admin/dashboard.py:51
 #, python-format
@@ -635,26 +635,26 @@ msgid ""
 "Translate Toolkit version %(installed)s installed. Pootle requires at least "
 "version %(required)s."
 msgstr ""
-"Инсталиран је Translate Toolkit (верзија %(installed)s). За Pootle је "
-"неопходна бар верзија %(required)s."
+"Инсталиран је Translate Toolkit %(installed)s. За Pootle је неопходна бар "
+"верзија %(required)s."
 
 #: apps/pootle_app/views/admin/dashboard.py:62
 #, python-format
 msgid "Django version %s is installed."
-msgstr "Инсталиран је Django (верзија %s)."
+msgstr "Инсталиран је Django %s."
 
 #: apps/pootle_app/views/admin/dashboard.py:65
 #, python-format
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
 msgstr ""
-"Инсталиран је Django (верзија %s), али вам строго препоручујемо да "
-"инсталирате новију верзију."
+"Инсталиран је Django %s, али вам строго препоручујемо да инсталирате новију "
+"верзију."
 
 #: apps/pootle_app/views/admin/dashboard.py:71
 #, python-format
 msgid "lxml version %s is installed."
-msgstr "Инсталиран је lxml (верзија %s)."
+msgstr "Инсталиран је lxml %s."
 
 #: apps/pootle_app/views/admin/dashboard.py:75
 #, python-format
@@ -662,8 +662,8 @@ msgid ""
 "lxml version %(installed)s is installed. Pootle requires at least version "
 "%(required)s."
 msgstr ""
-"Инсталиран је lxml (верзија %(installed)s). За Pootle је неопходна бар "
-"верзија %(required)s."
+"Инсталиран је lxml %(installed)s. За Pootle је неопходна бар верзија %"
+"(required)s."
 
 #: apps/pootle_app/views/admin/dashboard.py:82
 msgid "lxml is not installed. Pootle requires lxml."
@@ -674,8 +674,8 @@ msgid ""
 "Can't find the unzip command. Uploading archives is faster if \"unzip\" is "
 "available."
 msgstr ""
-"Не могу да пронађем наредбу за распакивање. Отпремање архива је брже ако је "
-"доступна наредба „unzip“."
+"Не могу да пронађем команду за распакивање. Отпремање архива је брже ако је "
+"доступна команда „unzip“."
 
 #: apps/pootle_app/views/admin/dashboard.py:99
 msgid ""
@@ -948,9 +948,9 @@ msgstr[2] "Грешка при читању %d датотека"
 #, python-format
 msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
-msgstr[0] "%(projects)d пројекат (преведено %(average)d%%)"
-msgstr[1] "%(projects)d пројекта (преведено %(average)d%%)"
-msgstr[2] "%(projects)d пројеката (преведено %(average)d%%)"
+msgstr[0] "%(projects)d пројекат (%(average)d%% преведено)"
+msgstr[1] "%(projects)d пројекта (%(average)d%% преведено)"
+msgstr[2] "%(projects)d пројеката (%(average)d%% преведено)"
 
 #: apps/pootle_language/views.py:158 apps/pootle_project/views.py:169
 #: apps/pootle_translationproject/views.py:347
@@ -1196,15 +1196,15 @@ msgstr ""
 
 #: apps/pootle_misc/dbinit.py:75
 msgid "Creating database tables..."
-msgstr "Прављење подразумеваних језика, пројеката и администратора"
+msgstr "Креирање подразумеваних језика, пројеката и администратора"
 
 #: apps/pootle_misc/dbinit.py:82
 msgid "Creating default languages, projects and admin user"
-msgstr "Прављење подразумеваних језика, пројеката и администратора"
+msgstr "Креирање подразумеваних језика, пројеката и администратора"
 
 #: apps/pootle_misc/dbinit.py:90
 msgid "Calculating translation statistics, this will take a few minutes"
-msgstr "Израчунавам статистику превода. Ово може потрајати"
+msgstr "Израчунавам статистику превода. Ово може потрајати."
 
 #: apps/pootle_misc/dbinit.py:96
 #, python-format
@@ -1225,7 +1225,7 @@ msgid ""
 "Initialized database, you will be redirected to the front page in 10 seconds"
 msgstr ""
 "База података је покренута. Бићете преусмерени на насловну страницу за десет "
-"секунди"
+"секунди."
 
 #: apps/pootle_misc/dbupdate.py:132
 msgid "Pootle: Update"
@@ -1240,7 +1240,7 @@ msgstr "Табеле базе података су на верзији %d. Poot
 
 #: apps/pootle_misc/dbupdate.py:143
 msgid "Creating missing database tables..."
-msgstr "Правим табеле базе које недостају…"
+msgstr "Креирам табеле базе које недостају…"
 
 #: apps/pootle_misc/dbupdate.py:154
 msgid "Fixing permission table..."
@@ -1308,7 +1308,7 @@ msgstr ""
 
 #: apps/pootle_misc/forms.py:97
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
-msgstr "Претрага (Ctrl+Shift+S)<br/>Унесите појам па притисните Enter"
+msgstr "Претрага (Ctrl+Shift+S)<br/>Унесите појам па притисните Enter."
 
 #: apps/pootle_misc/forms.py:103
 msgid "Source Text"
@@ -1592,19 +1592,19 @@ msgstr "Други изворни језици"
 
 #: apps/pootle_profile/models.py:150
 msgid "Suggestions Accepted"
-msgstr "Предлози су прихваћени"
+msgstr "Прихваћено предлога"
 
 #: apps/pootle_profile/models.py:154
 msgid "Suggestions Pending"
-msgstr "Предлози су на чекању"
+msgstr "Предлога на чекању"
 
 #: apps/pootle_profile/models.py:158
 msgid "Suggestions Reviewed"
-msgstr "Предлози су редиговани"
+msgstr "Редиговано предлога"
 
 #: apps/pootle_profile/models.py:162
 msgid "Submissions Made"
-msgstr "Поднесци"
+msgstr "Поднесака"
 
 #: apps/pootle_project/models.py:57
 msgid ""
@@ -1884,7 +1884,7 @@ msgid ""
 "Go to the previous string (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+Page&nbsp;Up<br/>First page: Ctrl+Shift+Home"
 msgstr ""
-"Иди на претходну поруку (Ctrl+Up)<br/><br/>Такође:<br/>Претходна страница: "
+"Иди на претходну поруку (Ctrl+Up).<br/><br/>Такође:<br/>Претходна страница: "
 "Ctrl+Shift+Page&nbsp;Up<br/>Прва страница: Ctrl+Shift+Home"
 
 #: apps/pootle_store/templates/store/translate.html:91
@@ -1893,7 +1893,7 @@ msgid ""
 "Enter<br/>to go to any position"
 msgstr ""
 "Тренутни број странице (Ctrl+Shift+U)<br/><br/>Унесите број па притисните "
-"Enter<br/>да пређете на жељену страницу"
+"Enter<br/>да пређете на жељену страницу."
 
 #: apps/pootle_store/templates/store/translate.html:93
 msgid "Total pages"
@@ -1908,7 +1908,7 @@ msgid ""
 "Go to the next string (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
 "+Page&nbsp;Down<br/>Last page: Ctrl+Shift+End"
 msgstr ""
-"Иди на следећу поруку (Ctrl+Down)<br/><br/>Такође:<br/>Следећа страница: "
+"Иди на следећу поруку (Ctrl+Down).<br/><br/>Такође:<br/>Следећа страница: "
 "Ctrl+Shift+Page&nbsp;Down<br/>Последња страница: Ctrl+Shift+End"
 
 #: apps/pootle_store/templates/unit/comment.html:12
@@ -1968,7 +1968,7 @@ msgstr "Пошаљи"
 
 #: apps/pootle_store/templates/unit/edit.html:121
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
-msgstr "Пошаљи превод и иди на следећу поруку (Ctrl+Enter)"
+msgstr "Пошаљи превод и иди на следећу поруку (Ctrl+Enter)."
 
 #: apps/pootle_store/templates/unit/edit.html:124
 #: apps/pootle_store/templates/unit/edit.html:132
@@ -1977,7 +1977,7 @@ msgstr "Предложи"
 
 #: apps/pootle_store/templates/unit/edit.html:124
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
-msgstr "Предложи превод и иди на следећу поруку (Ctrl+Enter)"
+msgstr "Предложи превод и иди на следећу поруку (Ctrl+Enter)."
 
 #: apps/pootle_store/templates/unit/edit.html:131
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
@@ -2176,7 +2176,7 @@ msgstr "Преузми XLIFF"
 
 #: apps/pootle_translationproject/actions.py:74
 msgid "Download file in XLIFF format"
-msgstr "Преузми датотеку у XLIFF формату"
+msgstr "Преузмите датотеку у XLIFF формату."
 
 #: apps/pootle_translationproject/actions.py:77
 msgid "Export"
@@ -2192,7 +2192,7 @@ msgstr "Преузми"
 
 #: apps/pootle_translationproject/actions.py:81
 msgid "Download file"
-msgstr "Преузми датотеку"
+msgstr "Преузмите датотеку."
 
 #: apps/pootle_translationproject/actions.py:96
 #: apps/pootle_translationproject/actions.py:254
@@ -2201,7 +2201,7 @@ msgstr "Превођење ван мреже"
 
 #: apps/pootle_translationproject/actions.py:97
 msgid "Download XLIFF file for offline translation"
-msgstr "Преузми XLIFF датотеку ради превођења ван мреже"
+msgstr "Преузмите XLIFF датотеку ради превођења ван мреже."
 
 #: apps/pootle_translationproject/actions.py:112
 #: apps/pootle_translationproject/views.py:700
@@ -2210,7 +2210,7 @@ msgstr "Отпреми"
 
 #: apps/pootle_translationproject/actions.py:113
 msgid "Upload translation files or archives in .zip format"
-msgstr "Отпреми преводилачке датотеке или архиве у ZIP формату"
+msgstr "Отпремите датотеке превода или архиве у ZIP формату."
 
 #: apps/pootle_translationproject/actions.py:130
 msgid "Update from VCS"
@@ -2421,7 +2421,7 @@ msgstr ""
 
 #: apps/pootle_translationproject/views.py:774
 msgid "Upload File"
-msgstr "Отпреми датотеку"
+msgstr "Отпремање датотеке"
 
 #: apps/pootle_translationproject/templates/translation_project/admin_permissions.html:15
 msgid ""
@@ -2613,7 +2613,7 @@ msgstr "Подаци"
 
 #: templates/admin_profile_menu.html:4
 msgid "Configure the general settings for your site"
-msgstr "Наместите опште поставке за свој сајт"
+msgstr "Наместите опште поставке свог сајта"
 
 #: templates/admin_profile_menu.html:4
 msgid "General"
@@ -2667,7 +2667,7 @@ msgstr "Одјави ме"
 #: templates/registration/registration_form.html:7
 #: templates/registration/registration_form.html:51
 msgid "Register"
-msgstr "Регистрација"
+msgstr "Отвори налог"
 
 #: templates/base.html:110
 msgid "Log In"
@@ -2685,7 +2685,7 @@ msgstr "Контакт"
 
 #: templates/base.html:161
 msgid "About this Pootle Server"
-msgstr "О овом Pootle-овом серверу"
+msgstr "О серверу"
 
 #: templates/base.html:162 templates/about/contributors.html:6
 #: templates/about/contributors.html:9
@@ -2715,7 +2715,7 @@ msgstr "Потврди"
 
 #: templates/language_menu.html:3
 msgid "Language main page"
-msgstr "Главна страница језика"
+msgstr "Главна страница језика."
 
 #: templates/language_menu.html:3 templates/project_menu.html:3
 #: templates/tp_menu.html:4
@@ -2724,7 +2724,7 @@ msgstr "Преглед"
 
 #: templates/language_menu.html:4
 msgid "Language news"
-msgstr "Вести о језику"
+msgstr "Вести о језику."
 
 #: templates/language_menu.html:6
 msgid "Administrate your language permissions"
@@ -2732,11 +2732,11 @@ msgstr "Администрирај дозволама мог језика"
 
 #: templates/project_menu.html:3
 msgid "Project main page"
-msgstr "Главна страница пројекта"
+msgstr "Главна страница пројекта."
 
 #: templates/project_menu.html:4
 msgid "Project news"
-msgstr "Вести о пројекту"
+msgstr "Вести о пројекту."
 
 #: templates/project_menu.html:6
 msgid "Administrate your project"
@@ -2752,15 +2752,15 @@ msgstr "Управљање терминологијом"
 
 #: templates/tp_menu.html:4
 msgid "Translation project main page"
-msgstr "Главна страница преводилачког пројекта"
+msgstr "Главна страница преводилачког пројекта."
 
 #: templates/tp_menu.html:5
 msgid "Translation project news"
-msgstr "Вести о преводилачком пројекту"
+msgstr "Вести о преводилачком пројекту."
 
 #: templates/tp_menu.html:6
 msgid "Translate this project"
-msgstr "Преведи пројекат"
+msgstr "Преведите пројекат."
 
 #: templates/tp_menu.html:8
 msgid "Manage terminology"
@@ -2780,7 +2780,7 @@ msgstr "Мој налог"
 
 #: templates/user_profile_menu.html:4
 msgid "Overview of your account"
-msgstr "Преглед вашег налога"
+msgstr "Преглед вашег налога."
 
 #: templates/user_profile_menu.html:4
 msgid "Dashboard"
@@ -2788,7 +2788,7 @@ msgstr "Контролна табла"
 
 #: templates/user_profile_menu.html:5
 msgid "Configure your translation preferences"
-msgstr "Наместите поставке превода"
+msgstr "Наместите поставке превода."
 
 #: templates/user_profile_menu.html:5
 msgid "Settings"
@@ -2796,7 +2796,7 @@ msgstr "Поставке"
 
 #: templates/user_profile_menu.html:6
 msgid "Change your personal information"
-msgstr "Промени личне податке"
+msgstr "Промените личне податке."
 
 #: templates/user_profile_menu.html:6 templates/profiles/edit_personal.html:4
 #: templates/profiles/edit_personal.html:7
@@ -2805,11 +2805,11 @@ msgstr "Профил"
 
 #: templates/user_profile_menu.html:7
 msgid "Change your password"
-msgstr "Промените лозинку"
+msgstr "Промените лозинку."
 
 #: templates/about/about.html:6 templates/about/about.html.py:9
 msgid "This Pootle Server"
-msgstr "Овај Pootle-ов сервер"
+msgstr "Pootle-ов сервер"
 
 #. Translators: For better readability, make sure to leave an space after the closing </i> tag
 #: templates/about/about.html:16
@@ -2856,7 +2856,7 @@ msgid ""
 "the header of the translation files."
 msgstr ""
 "Овде можете да промените личне податке. Они ће бити коришћени у заглављу "
-"преводилачких датотека."
+"датотека превода."
 
 #: templates/profiles/edit_personal.html:18
 msgid "First Name"
@@ -3016,7 +3016,7 @@ msgstr "Потврда лозинке"
 
 #: templates/registration/password_change_form.html:36
 msgid "Change My Password"
-msgstr "Промени лозинку"
+msgstr "Промена лозинке"
 
 #: templates/registration/password_reset_complete.html:4
 #: templates/registration/password_reset_complete.html:7
@@ -3069,7 +3069,7 @@ msgstr "Потврда лозинке"
 #: templates/registration/password_reset_confirm.html:31
 #: templates/registration/password_reset_form.html:24
 msgid "Reset My Password"
-msgstr "Обнови лозинку"
+msgstr "Обнављање лозинке"
 
 #: templates/registration/password_reset_confirm.html:35
 msgid "Password Reset Failed."
@@ -3119,7 +3119,7 @@ msgid ""
 "instructions for setting a new one."
 msgstr ""
 "Заборавили сте лозинку? Испод унесите своју е-адресу а ми ћемо вам послати "
-"упутство за постављање нове."
+"упутство за постављање нове лозинке."
 
 #: templates/registration/password_reset_form.html:19
 #: templates/registration/registration_form.html:25

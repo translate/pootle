@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2010-08-27 00:56+0200\n"
-"Last-Translator: kimd <kimeckun@gmail.com>\n"
+"PO-Revision-Date: 2013-05-21 08:40+0000\n"
+"Last-Translator: Milos <milos@kuruc.com>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Pootle 2.1.1\n"
+"X-Generator: Pootle 2.5.0-beta1\n"
+"X-POOTLE-MTIME: 1369125653.0\n"
 
 #: strings.py:8
 msgid ""
@@ -116,41 +117,41 @@ msgstr "správca"
 #: strings.py:43 apps/pootle_app/views/admin/adminprojects.py:44
 #: apps/pootle_project/models.py:92
 msgid "Source Language"
-msgstr ""
+msgstr "Zdrojový jazyk"
 
 #: strings.py:45
 msgid "Android strings"
-msgstr ""
+msgstr "Android reťazce"
 
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:51
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Zásady ochrany súkromia"
 
 #. Translators: Label that refers to the site's legal requirements
 #: strings.py:53
 msgid "Legal"
-msgstr ""
+msgstr "Právo"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:55
 msgid "License"
-msgstr ""
+msgstr "Licencia"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:57
 msgid "Contributor License"
-msgstr ""
+msgstr "Licencia pre prispievateľov"
 
 #. Translators: Label that refers to the site's terms of use
 #: strings.py:59
 msgid "Terms of Use"
-msgstr ""
+msgstr "Podmienky používania"
 
 #. Translators: Label that refers to the site's terms of service
 #: strings.py:61
 msgid "Terms of Service"
-msgstr ""
+msgstr "Podmienky služby"
 
 #: apps/contact_form_i18n/forms.py:143
 msgid "Your name"
@@ -166,7 +167,7 @@ msgstr "Vaša správa"
 
 #: apps/contact_form_i18n/forms.py:260
 msgid "Akismet thinks this message is spam"
-msgstr ""
+msgstr "Akismet si myslí, že táto správa je spam"
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
@@ -195,8 +196,9 @@ msgstr ""
 
 #: apps/legalpages/models.py:31
 #: apps/legalpages/templates/legalpages/admin/list.html:22
+#, fuzzy
 msgid "Active"
-msgstr ""
+msgstr "aktívny"
 
 #: apps/legalpages/models.py:32
 msgid "Whether this page is active or not."
@@ -234,7 +236,7 @@ msgstr ""
 
 #: apps/legalpages/models.py:46
 msgid "Content"
-msgstr ""
+msgstr "Obsah"
 
 #: apps/legalpages/models.py:47
 #, python-format
@@ -267,8 +269,9 @@ msgid "Existing Legal Pages"
 msgstr ""
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
+#, fuzzy
 msgid "Inactive"
-msgstr ""
+msgstr "aktívny"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 #: apps/pootle_app/templates/admin/edit_links.html:2
@@ -620,7 +623,7 @@ msgstr "Heslo"
 #: apps/pootle_app/views/admin/dashboard.py:48
 #, python-format
 msgid "Translate Toolkit version %s installed."
-msgstr "Inštalácia Translate Toolkit verzia %s bola úspešná."
+msgstr "Translate Toolkit verzia %s je nainštalovaný."
 
 #: apps/pootle_app/views/admin/dashboard.py:51
 #, python-format
@@ -1030,8 +1033,9 @@ msgid "Repeated word"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:46
+#, fuzzy
 msgid "E-mail"
-msgstr ""
+msgstr "E-mail"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Ending punctuation"
@@ -1074,8 +1078,9 @@ msgid "Newlines"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:57
+#, fuzzy
 msgid "Number of plurals"
-msgstr ""
+msgstr "Počet tvarov plurálu"
 
 #: apps/pootle_misc/checks.py:58
 msgid "Don't translate words"
@@ -1086,8 +1091,9 @@ msgid "Numbers"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:60
+#, fuzzy
 msgid "Options"
-msgstr ""
+msgstr "Nepovinné"
 
 #: apps/pootle_misc/checks.py:61
 msgid "printf()"
@@ -1223,8 +1229,9 @@ msgid "Fixing permission table..."
 msgstr ""
 
 #: apps/pootle_misc/dbupdate.py:180 apps/pootle_misc/dbupdate.py:257
+#, fuzzy
 msgid "Updating existing database tables..."
-msgstr ""
+msgstr "Vytvárajú sa databázové tabuľky..."
 
 #: apps/pootle_misc/dbupdate.py:221
 msgid "Removing potentially incorrect cached stats, will be recalculated..."
@@ -1302,12 +1309,14 @@ msgid "Locations"
 msgstr "Umiestnenia"
 
 #: apps/pootle_misc/forms.py:119
+#, fuzzy
 msgid "Source Terms"
-msgstr ""
+msgstr "Východiskový text"
 
 #: apps/pootle_misc/forms.py:120
+#, fuzzy
 msgid "Target Terms"
-msgstr ""
+msgstr "Cieľový text"
 
 #: apps/pootle_misc/forms.py:121
 msgid "Definitions"
@@ -1365,8 +1374,9 @@ msgstr[1] ""
 msgstr[2] ""
 
 #: apps/pootle_misc/stats.py:183
+#, fuzzy
 msgid "Translation is complete"
-msgstr ""
+msgstr "Preklady sú hotové"
 
 #: apps/pootle_misc/stats.py:194
 #, python-format
@@ -1428,9 +1438,9 @@ msgstr ""
 "hlási chybu: %(errormsg)s"
 
 #: apps/pootle_misc/templates/progressbar.html:3
-#, python-format
+#, fuzzy, python-format
 msgid "%(percent)s%% complete"
-msgstr ""
+msgstr "Hotovo na %(percentage)d%%"
 
 #: apps/pootle_misc/templates/search.html:5
 msgid "Search"
@@ -1500,16 +1510,18 @@ msgid "Email only to recently active users"
 msgstr ""
 
 #: apps/pootle_notifications/views.py:151
+#, fuzzy
 msgid "All Projects"
-msgstr ""
+msgstr "Všetky projekty"
 
 #: apps/pootle_notifications/views.py:155
 msgid "Project Selection"
 msgstr ""
 
 #: apps/pootle_notifications/views.py:163
+#, fuzzy
 msgid "All Languages"
-msgstr ""
+msgstr "Všetky jazyky"
 
 #: apps/pootle_notifications/views.py:167
 msgid "Language Selection"
@@ -1677,8 +1689,9 @@ msgid "State"
 msgstr ""
 
 #: apps/pootle_statistics/models.py:50
+#, fuzzy
 msgid "Comment"
-msgstr ""
+msgstr "Komentáre"
 
 #: apps/pootle_statistics/models.py:95
 msgid "anonymous user"
@@ -1828,8 +1841,9 @@ msgid "Incomplete"
 msgstr ""
 
 #: apps/pootle_store/templates/store/translate.html:75
+#, fuzzy
 msgid "My suggestions"
-msgstr ""
+msgstr "Návrhy"
 
 #: apps/pootle_store/templates/store/translate.html:76
 msgid "My submissions"
@@ -1877,24 +1891,28 @@ msgid ""
 msgstr ""
 
 #: apps/pootle_store/templates/unit/comment.html:12
+#, fuzzy
 msgid "Comment:"
-msgstr ""
+msgstr "Komentáre"
 
 #: apps/pootle_store/templates/unit/edit.html:11
+#, fuzzy
 msgid "File:"
-msgstr ""
+msgstr "Súbor"
 
 #: apps/pootle_store/templates/unit/edit.html:18
 msgid "Context:"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:28
+#, fuzzy
 msgid "Comments:"
-msgstr ""
+msgstr "Komentáre"
 
 #: apps/pootle_store/templates/unit/edit.html:32
+#, fuzzy
 msgid "Locations:"
-msgstr ""
+msgstr "Umiestnenia"
 
 #: apps/pootle_store/templates/unit/edit.html:41
 msgid "Terminology:"
@@ -2014,8 +2032,9 @@ msgid "Hide Timeline"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:233
+#, fuzzy
 msgid "User suggestions"
-msgstr ""
+msgstr "Zobraziť návrhy"
 
 #: apps/pootle_store/templates/unit/edit.html:251
 msgid "Accept suggestion"
@@ -2039,8 +2058,9 @@ msgid "Vote for this suggestion"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/term_edit.html:40
+#, fuzzy
 msgid "Comment: "
-msgstr ""
+msgstr "Komentáre"
 
 #: apps/pootle_store/templates/unit/timeline.html:4
 #: apps/pootle_store/templates/unit/timeline.html:14
@@ -2187,13 +2207,16 @@ msgstr "Odoslať do systému na správu verzií"
 
 #. Translators: "all" here refers to all files and sub directories in a directory/project.
 #: apps/pootle_translationproject/actions.py:159
+#, fuzzy
 msgid "Update all from VCS"
-msgstr ""
+msgstr "Aktualizovať zo systému na správu verzií"
 
+# VCS rozpísať?
 #. Translators: "all" here refers to all files and sub directories in a directory/project.
 #: apps/pootle_translationproject/actions.py:174
+#, fuzzy
 msgid "Commit all to VCS"
-msgstr ""
+msgstr "Odoslať do systému na správu verzií"
 
 #: apps/pootle_translationproject/actions.py:187
 msgid "Rescan project files"
@@ -2381,8 +2404,9 @@ msgid ""
 msgstr "Tu môžete pridať, upraviť a vymazať oprávnenia pre tento jazyk."
 
 #: apps/pootle_translationproject/templates/translation_project/fileop_forms.html:23
+#, fuzzy
 msgid "Update from Version Control"
-msgstr ""
+msgstr "Aktualizovať všetko prostredníctvom systému na správu verzií"
 
 #: apps/pootle_translationproject/templates/translation_project/fileop_forms.html:24
 msgid ""
@@ -2628,8 +2652,9 @@ msgstr "O serveri Pootle"
 
 #: templates/base.html:162 templates/about/contributors.html:6
 #: templates/about/contributors.html:9
+#, fuzzy
 msgid "Contributors"
-msgstr ""
+msgstr "Najaktívnejší prispievatelia"
 
 #: templates/captcha-xhr.html:14 templates/captcha.html:4
 #: templates/captcha.html.py:7

@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:44+0000\n"
-"PO-Revision-Date: 2013-02-23 21:01+0000\n"
-"Last-Translator: real68er <sebastian@wallroth.de>\n"
+"PO-Revision-Date: 2013-05-22 05:55+0000\n"
+"Last-Translator: buennagelj <jochen.buennagel@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1361653277.0\n"
+"X-POOTLE-MTIME: 1369202108.0\n"
 
 #: static/js/common.js:43
 msgid "Expand details"
@@ -42,8 +42,7 @@ msgstr "Keine Ergebnisse."
 #. The first '%s' is the permalink URL.
 #. The second '%s' is the unit number.
 #: static/js/editor.js:726
-#, c-format
-#, c-format, fuzzy
+#, c-format, c-format
 msgid "<a href=\"%s\">String %s</a>"
 msgstr "<a href=\"%s\">Eintrag %s</a>"
 
@@ -66,7 +65,6 @@ msgid "Unknown error"
 msgstr "Unbekannter Fehler"
 
 #: static/js/editor.js:1342
-#, fuzzy
 msgid "Congratulations, you walked through all strings."
 msgstr "Herzlichen Glückwunsch. Sie haben alle Einträge durchlaufen."
 

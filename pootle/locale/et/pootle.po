@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-03-14 18:53+0000\n"
-"Last-Translator: AivoK <aivoke@hot.ee>\n"
+"PO-Revision-Date: 2013-07-04 19:30+0000\n"
+"Last-Translator: Rivo <rivozangov@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1363287197.0\n"
+"X-POOTLE-MTIME: 1372966223.0\n"
 
 #: strings.py:8
 msgid ""
@@ -632,7 +632,7 @@ msgstr ""
 #: apps/pootle_app/views/admin/dashboard.py:71
 #, python-format
 msgid "lxml version %s is installed."
-msgstr ""
+msgstr "lxml versioon %s on paigaldatud."
 
 #: apps/pootle_app/views/admin/dashboard.py:75
 #, python-format
@@ -643,7 +643,7 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:82
 msgid "lxml is not installed. Pootle requires lxml."
-msgstr ""
+msgstr "lxml pole paigaldatud. Pootle vajab töötamiseks lxml."
 
 #: apps/pootle_app/views/admin/dashboard.py:95
 msgid ""
@@ -941,7 +941,7 @@ msgstr "Kosmeetiline"
 
 #: apps/pootle_misc/checks.py:32
 msgid "Extraction"
-msgstr ""
+msgstr "Lahtipakkimine"
 
 #: apps/pootle_misc/checks.py:33
 msgid "No category"
@@ -953,7 +953,7 @@ msgstr "Kiirklahvid"
 
 #: apps/pootle_misc/checks.py:38
 msgid "Acronyms"
-msgstr ""
+msgstr "Lühendid"
 
 #: apps/pootle_misc/checks.py:39
 msgid "Blank"
@@ -1021,11 +1021,11 @@ msgstr "Pikk"
 
 #: apps/pootle_misc/checks.py:55
 msgid "Must translate words"
-msgstr ""
+msgstr "Tõlkimist vajavad sõjad"
 
 #: apps/pootle_misc/checks.py:56
 msgid "Newlines"
-msgstr ""
+msgstr "Reavahetused"
 
 #: apps/pootle_misc/checks.py:57
 msgid "Number of plurals"
@@ -1033,11 +1033,11 @@ msgstr "Mitmuste arv"
 
 #: apps/pootle_misc/checks.py:58
 msgid "Don't translate words"
-msgstr ""
+msgstr "Tõlkimist mittevajavad sõnad"
 
 #: apps/pootle_misc/checks.py:59
 msgid "Numbers"
-msgstr ""
+msgstr "Numbrid"
 
 #: apps/pootle_misc/checks.py:60
 msgid "Options"
@@ -1045,7 +1045,7 @@ msgstr "Valikud"
 
 #: apps/pootle_misc/checks.py:61
 msgid "printf()"
-msgstr ""
+msgstr "printf()"
 
 #: apps/pootle_misc/checks.py:62
 msgid "Punctuation spacing"
@@ -1157,7 +1157,7 @@ msgstr ""
 
 #: apps/pootle_misc/dbupdate.py:132
 msgid "Pootle: Update"
-msgstr ""
+msgstr "Pootle: Uuenda"
 
 #: apps/pootle_misc/dbupdate.py:133
 #, python-format
@@ -1223,7 +1223,7 @@ msgstr ""
 
 #: apps/pootle_misc/dbupdate.py:417
 msgid "All translations are now imported."
-msgstr ""
+msgstr "Kõik tõlked on nüüd imporditud."
 
 #: apps/pootle_misc/dbupdate.py:427
 msgid ""
@@ -1344,20 +1344,22 @@ msgstr[1] "%d sõna vajavad tähelepanu"
 #, python-format
 msgid "%d word untranslated"
 msgid_plural "%d words untranslated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d sõna tõlkimata"
+msgstr[1] "%d sõna tõlkimata"
 
 #: apps/pootle_misc/stats.py:243
 #, python-format
 msgid "%d word needs review"
 msgid_plural "%d words need review"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d sõna vajab ülevaatamist"
+msgstr[1] "%d sõna vajavad ülevaatamist"
 
 #: apps/pootle_misc/middleware/errorpages.py:65
-#, python-format
+#, fuzzy, python-format
 msgid "You need to <a href=\"%(login_link)s\">login</a> to access this page."
 msgstr ""
+"Sa pead sellele lehele pääsemiseks <a href=\"%(login_link)s\">sisse "
+"logima</a>."
 
 #: apps/pootle_misc/middleware/errorpages.py:83
 #, python-format
@@ -1406,12 +1408,12 @@ msgstr "Lisatud"
 #: apps/pootle_notifications/views.py:103
 #, python-format
 msgid "News for %(language)s"
-msgstr ""
+msgstr "Keele %(language)s uudised"
 
 #: apps/pootle_notifications/views.py:105
 #, python-format
 msgid "News for %(project)s"
-msgstr ""
+msgstr "Projekti %(project)s uudised"
 
 #: apps/pootle_notifications/views.py:111
 #, python-format
@@ -1755,7 +1757,7 @@ msgstr "Kõik"
 
 #: apps/pootle_store/templates/store/translate.html:71
 msgid "Incomplete"
-msgstr ""
+msgstr "Pooleliolev"
 
 #: apps/pootle_store/templates/store/translate.html:75
 msgid "My suggestions"
@@ -1794,7 +1796,7 @@ msgstr ""
 
 #: apps/pootle_store/templates/store/translate.html:93
 msgid "Total pages"
-msgstr ""
+msgstr "Lehekülgi kokku"
 
 #: apps/pootle_store/templates/store/translate.html:95
 msgid "Next string"
@@ -2015,7 +2017,7 @@ msgstr ""
 
 #: apps/pootle_terminology/templates/terminology/extract.html:11
 msgid "Extract"
-msgstr ""
+msgstr "Paki lahti"
 
 #: apps/pootle_terminology/templates/terminology/manage.html:22
 msgid "You can regenerate the glossary from scratch."
@@ -2158,7 +2160,7 @@ msgstr ""
 #: apps/pootle_translationproject/models.py:558
 #: apps/pootle_translationproject/models.py:579
 msgid "Working copy"
-msgstr ""
+msgstr "Töökoopia"
 
 #: apps/pootle_translationproject/models.py:559
 #: apps/pootle_translationproject/models.py:580
@@ -2226,7 +2228,7 @@ msgstr ""
 
 #: apps/pootle_translationproject/views.py:195
 msgid "File has been deleted."
-msgstr ""
+msgstr "Fail on kustutatud."
 
 #: apps/pootle_translationproject/views.py:200
 msgid "Error while trying to delete directory."
@@ -2441,7 +2443,7 @@ msgstr ""
 
 #: templates/404.html:4 templates/404.html.py:7 templates/404.html.py:12
 msgid "Page Not Found"
-msgstr ""
+msgstr "Lehte ei leitud"
 
 #: templates/404.html:13
 msgid "We're sorry, but the requested page could not be found."
@@ -2621,7 +2623,7 @@ msgstr "Tõlkeprojekti uudised"
 
 #: templates/tp_menu.html:6
 msgid "Translate this project"
-msgstr ""
+msgstr "Tõlgi seda projekti"
 
 #: templates/tp_menu.html:8
 msgid "Manage terminology"
@@ -2870,11 +2872,11 @@ msgstr "Muuda oma parooli"
 #: templates/registration/password_reset_complete.html:4
 #: templates/registration/password_reset_complete.html:7
 msgid "Password Reset"
-msgstr ""
+msgstr "Parooli taastamine"
 
 #: templates/registration/password_reset_complete.html:12
 msgid "Password Reset Complete."
-msgstr ""
+msgstr "Parooli taastamine on lõpetatud."
 
 #: templates/registration/password_reset_complete.html:14
 #, python-format
@@ -2915,7 +2917,7 @@ msgstr "Kinnita salasõna"
 #: templates/registration/password_reset_confirm.html:31
 #: templates/registration/password_reset_form.html:24
 msgid "Reset My Password"
-msgstr ""
+msgstr "Nulli minu parool"
 
 #: templates/registration/password_reset_confirm.html:35
 msgid "Password Reset Failed."
@@ -2947,11 +2949,11 @@ msgstr ""
 #: templates/registration/password_reset_email.html:9
 #, python-format
 msgid "Your username is %(user)s."
-msgstr ""
+msgstr "Sinu kasutamine on %(user)s."
 
 #: templates/registration/password_reset_email.html:11
 msgid "Thank you for using Pootle!"
-msgstr ""
+msgstr "Täname Pootle kasutamise eest!"
 
 #: templates/registration/password_reset_form.html:14
 msgid ""
@@ -2968,7 +2970,7 @@ msgstr "Emaili aadress"
 #: templates/registration/registration_complete.html:8
 #: templates/registration/registration_complete.html:13
 msgid "Registration Complete"
-msgstr ""
+msgstr "Registreerumine on lõpetatud"
 
 #: templates/registration/registration_complete.html:14
 msgid "Please check your email to activate your account."

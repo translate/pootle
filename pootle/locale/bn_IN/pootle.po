@@ -7,15 +7,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2010-07-07 23:23+0200\n"
-"Last-Translator: admin <>\n"
+"PO-Revision-Date: 2013-10-05 11:38+0000\n"
+"Last-Translator: ashimnb87 <ashimnb87@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_IN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.5.0-beta1\n"
+"X-POOTLE-MTIME: 1380973137.0\n"
 
 #: strings.py:8
 msgid ""
@@ -68,9 +69,9 @@ msgstr ""
 #. Translators: Email subject line. The variable is the server name shown
 #. on the top of each page
 #: strings.py:21
-#, python-format
+#, fuzzy, python-format
 msgid "Password reset on %s"
-msgstr ""
+msgstr "পাসওয়ার্ড পুনরায় দেয়া হয় %s তে"
 
 #. Translators: This is a constructed string that might end up saying
 #. "Add language" or "Add project". If you need to translate that differently,
@@ -113,7 +114,7 @@ msgstr "অ্যাডমিনিস্ট্রেটার"
 #: strings.py:43 apps/pootle_app/views/admin/adminprojects.py:44
 #: apps/pootle_project/models.py:92
 msgid "Source Language"
-msgstr ""
+msgstr "আদি ভাষা"
 
 #: strings.py:45
 msgid "Android strings"
@@ -122,12 +123,12 @@ msgstr ""
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:51
 msgid "Privacy Policy"
-msgstr ""
+msgstr "গোপনীয়তা সংক্রান্ত নিয়মনীতি"
 
 #. Translators: Label that refers to the site's legal requirements
 #: strings.py:53
 msgid "Legal"
-msgstr ""
+msgstr "আইনি"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:55
@@ -137,17 +138,17 @@ msgstr ""
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:57
 msgid "Contributor License"
-msgstr ""
+msgstr "প্রদানকারীর লাইসেন্স"
 
 #. Translators: Label that refers to the site's terms of use
 #: strings.py:59
 msgid "Terms of Use"
-msgstr ""
+msgstr "ব্যবহারের শর্তাবলী"
 
 #. Translators: Label that refers to the site's terms of service
 #: strings.py:61
 msgid "Terms of Service"
-msgstr ""
+msgstr "কাজের শর্তাবলি"
 
 #: apps/contact_form_i18n/forms.py:143
 msgid "Your name"
@@ -191,8 +192,9 @@ msgstr ""
 
 #: apps/legalpages/models.py:31
 #: apps/legalpages/templates/legalpages/admin/list.html:22
+#, fuzzy
 msgid "Active"
-msgstr ""
+msgstr "সক্রিয়"
 
 #: apps/legalpages/models.py:32
 msgid "Whether this page is active or not."
@@ -200,11 +202,11 @@ msgstr ""
 
 #: apps/legalpages/models.py:34
 msgid "Display on registration"
-msgstr ""
+msgstr "রেজিস্ট্রেশন করলে দেখানো হবে"
 
 #: apps/legalpages/models.py:35
 msgid "Whether this page should be displayed on registration."
-msgstr ""
+msgstr "রেজিস্ট্রেশন করলে এই পাতাটা দেখানো উচিৎ হবে কিনা।"
 
 #: apps/legalpages/models.py:38 apps/pootle_app/forms.py:30
 #: apps/pootle_notifications/views.py:141
@@ -263,8 +265,9 @@ msgid "Existing Legal Pages"
 msgstr ""
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
+#, fuzzy
 msgid "Inactive"
-msgstr ""
+msgstr "সক্রিয়"
 
 #: apps/legalpages/templates/legalpages/admin/list.html:22
 #: apps/pootle_app/templates/admin/edit_links.html:2
@@ -414,6 +417,8 @@ msgid ""
 "Here you can add, edit, and delete all the available languages in this "
 "Pootle server."
 msgstr ""
+"এখানে এই পুতলে সার্ভার এ থাকা ভাষাগুলি সংযোজন, সম্পাদন, এবং মুছে ফেলতে "
+"পারেন।"
 
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:4
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:9
@@ -435,17 +440,24 @@ msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
 msgstr ""
+"এখানে এই পুতলে সার্ভার এ সাধারনভাবে দেয়া আনুমতি সংযোজন, সম্পাদন, এবং মুছে "
+"ফেলতে পারেন।"
 
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:16
 #: apps/pootle_language/templates/language/language_admin.html:17
 #: apps/pootle_project/templates/project/admin_permissions.html:26
 #: apps/pootle_translationproject/templates/translation_project/admin_permissions.html:17
+#, fuzzy
 msgid ""
 "The user “nobody” refers to any user that is not logged in (an anonymous, "
 "unidentified user). The user “default” refers to the rights that all logged "
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
+"“কেউ না” নামের ব্যবহারকারী বলতে বোঝায় সেই সমস্ত ব্যবহারকারী যারা লগইন করেনি "
+"(একটা অজানা, অসনাক্তব্যবহারকারী)। “ডিফল্ট”ব্যবহারকারী বলতে বোঝায় সেই সমস্ত "
+"অধিকার যেগুলি সমস্ত লগইন করা ব্যবহারকারী সাধারণভাবেই পেয়েছে, অন্যথায় অন্য "
+"নির্দিষ্ট কিছু অধিকার তাদের দেয়া হত।"
 
 #: apps/pootle_app/templates/admin/admin_general_projects.html:4
 #: apps/pootle_app/templates/admin/admin_general_projects.html:9
@@ -467,15 +479,17 @@ msgid ""
 "Here you can add, edit, and delete all the available projects in this Pootle "
 "server."
 msgstr ""
+"এখানে এই পুতলে সার্ভার এ থাকা প্রজেক্টগুলি সংযোজন, সম্পাদন, এবং মুছে ফেলতে "
+"পারেন।"
 
 #: apps/pootle_app/templates/admin/admin_general_settings.html:4
 #: apps/pootle_app/templates/admin/admin_general_settings.html:9
 msgid "General Settings"
-msgstr ""
+msgstr "সাধারণ বৈশিষ্ট্য"
 
 #: apps/pootle_app/templates/admin/admin_general_settings.html:12
 msgid "Configure here the general settings for your site."
-msgstr ""
+msgstr "এখানে আপনার সাধারণ বৈশিস্তগুলি নিজের মত সাজিয়ে নিন।"
 
 #: apps/pootle_app/templates/admin/admin_general_users.html:4
 #: apps/pootle_app/templates/admin/admin_general_users.html:9
@@ -491,6 +505,8 @@ msgid ""
 "Here you can add, edit, and delete all the available users in this Pootle "
 "server."
 msgstr ""
+"এখানে এই পুতলে সার্ভার এ থাকা ব্যবহারকারী দের সংযোজন, সম্পাদন, এবং মুছে "
+"ফেলতে পারেন।"
 
 #: apps/pootle_app/templates/admin/dashboard.html:13
 #, fuzzy
@@ -503,11 +519,11 @@ msgstr ""
 
 #: apps/pootle_app/templates/admin/dashboard.html:31
 msgid "More..."
-msgstr ""
+msgstr "আরও..."
 
 #: apps/pootle_app/templates/admin/dashboard.html:39
 msgid "Support"
-msgstr ""
+msgstr "সমর্থন"
 
 #: apps/pootle_app/templates/admin/dashboard.html:42
 msgid ""
@@ -519,22 +535,23 @@ msgstr ""
 #: apps/pootle_app/templates/admin/dashboard.html:43
 msgid "You will find the following helpful for support:"
 msgstr ""
+"আপনি নিম্নলিখিত বিষয়বস্তু গুলিকে আপনার কাজের জন্য সহায়ক কারী বলে মনে করবেন :"
 
 #: apps/pootle_app/templates/admin/dashboard.html:45
 msgid "The Pootle documentation"
-msgstr ""
+msgstr "পুতলে প্রামাণ্য"
 
 #: apps/pootle_app/templates/admin/dashboard.html:46
 msgid "The Pootle mailing list"
-msgstr ""
+msgstr "পুতলে মেইলিং শ্রেণী"
 
 #: apps/pootle_app/templates/admin/dashboard.html:47
 msgid "(commercial support)"
-msgstr ""
+msgstr "(বাণিজ্যিক সহায়তা)"
 
 #: apps/pootle_app/templates/admin/dashboard.html:55
 msgid "Dependency Checks"
-msgstr ""
+msgstr "নির্ভরতা পরীক্ষণ"
 
 #: apps/pootle_app/templates/admin/dashboard.html:64
 msgid "Optional"
@@ -542,7 +559,7 @@ msgstr "ঐচ্ছিক"
 
 #: apps/pootle_app/templates/admin/dashboard.html:72
 msgid "Optimizations"
-msgstr ""
+msgstr "নিখুঁত করণ"
 
 #: apps/pootle_app/templates/admin/general_settings_form.html:16
 msgid "Cancel"
@@ -620,15 +637,15 @@ msgid "Django version %s is installed."
 msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:65
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
-msgstr ""
+msgstr "Django ভার্সন %s স্থাপন করা হয়েছে, কিন্তু উচ্চমানের ভার্সন খুব দরকার।"
 
 #: apps/pootle_app/views/admin/dashboard.py:71
 #, python-format
 msgid "lxml version %s is installed."
-msgstr ""
+msgstr "lxml ভার্সন %s স্থাপন করা হয়েছে।"
 
 #: apps/pootle_app/views/admin/dashboard.py:75
 #, python-format
@@ -636,34 +653,44 @@ msgid ""
 "lxml version %(installed)s is installed. Pootle requires at least version "
 "%(required)s."
 msgstr ""
+"lxml ভার্সন %(স্থাপিত)s। Pootle এর প্রয়োজনীয় ভার্সন সরবনিম্ন %(প্রয়োজনীয়)s."
 
 #: apps/pootle_app/views/admin/dashboard.py:82
 msgid "lxml is not installed. Pootle requires lxml."
-msgstr ""
+msgstr "lxml স্থাপিত নেই। Pootle এর দরকার lxml।"
 
 #: apps/pootle_app/views/admin/dashboard.py:95
 msgid ""
 "Can't find the unzip command. Uploading archives is faster if \"unzip\" is "
 "available."
 msgstr ""
+"আনজিপ নির্দেশনা পাওয়া যায়নি। \"আনজিপ\" বর্তমান থাকলে আর্কাইভ এর আপলোড গতি "
+"বাড়ে।"
 
 #: apps/pootle_app/views/admin/dashboard.py:99
 msgid ""
 "Can't find the ISO codes package. Pootle uses ISO codes to translate "
 "language names."
 msgstr ""
+"আইএসো কোড প্যাকেজ পাওয়া যায়নি। Pootle ভাযার নাম অনুবাদ করতে আইএসো কোড "
+"ব্যবহার করে।"
 
 #: apps/pootle_app/views/admin/dashboard.py:103
 msgid ""
 "Can't find the aeidon package. Pootle requires Gaupol or aeidon to support "
 "subtitle formats."
 msgstr ""
+"aeidon প্যাকেজ পাওয়া যায়নি। সাবটাইটেল এর ধরন সমর্থন করতে Pootle এর gaupol "
+"অথবা aeidon দরকার।"
 
 #: apps/pootle_app/views/admin/dashboard.py:107
+#, fuzzy
 msgid ""
 "Can't find python-levenshtein package. Updating against templates is faster "
 "with python-levenshtein."
 msgstr ""
+"python-levenshtein প্যাকেজটি পাওয়া যায়নি। টেম্পলেট এর বিপরীত এ আপডেট টা  "
+"python-levenshtein এর সাথে বেশী দ্রুত হয়।"
 
 #: apps/pootle_app/views/admin/dashboard.py:111
 msgid ""
@@ -1032,8 +1059,9 @@ msgid "Newlines"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:57
+#, fuzzy
 msgid "Number of plurals"
-msgstr ""
+msgstr "বহুবচনের সংখ্যা"
 
 #: apps/pootle_misc/checks.py:58
 msgid "Don't translate words"
@@ -1044,8 +1072,9 @@ msgid "Numbers"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:60
+#, fuzzy
 msgid "Options"
-msgstr ""
+msgstr "ঐচ্ছিক"
 
 #: apps/pootle_misc/checks.py:61
 msgid "printf()"
@@ -1254,8 +1283,9 @@ msgid "Locations"
 msgstr "স্থান"
 
 #: apps/pootle_misc/forms.py:119
+#, fuzzy
 msgid "Source Terms"
-msgstr ""
+msgstr "উৎস টেক্সট"
 
 #: apps/pootle_misc/forms.py:120
 msgid "Target Terms"
@@ -1312,8 +1342,9 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: apps/pootle_misc/stats.py:183
+#, fuzzy
 msgid "Translation is complete"
-msgstr ""
+msgstr "অনুবাদ সম্পূর্ণ"
 
 #: apps/pootle_misc/stats.py:194
 #, python-format
@@ -1365,9 +1396,9 @@ msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
 
 #: apps/pootle_misc/templates/progressbar.html:3
-#, python-format
+#, fuzzy, python-format
 msgid "%(percent)s%% complete"
-msgstr ""
+msgstr "%(percentage)d%% সম্পূর্ণ"
 
 #: apps/pootle_misc/templates/search.html:5
 msgid "Search"
@@ -1437,16 +1468,18 @@ msgid "Email only to recently active users"
 msgstr ""
 
 #: apps/pootle_notifications/views.py:151
+#, fuzzy
 msgid "All Projects"
-msgstr ""
+msgstr "আমার প্রোজেক্ট"
 
 #: apps/pootle_notifications/views.py:155
 msgid "Project Selection"
 msgstr ""
 
 #: apps/pootle_notifications/views.py:163
+#, fuzzy
 msgid "All Languages"
-msgstr ""
+msgstr "আমার পছন্দের ভাষা"
 
 #: apps/pootle_notifications/views.py:167
 msgid "Language Selection"
@@ -1610,8 +1643,9 @@ msgid "State"
 msgstr ""
 
 #: apps/pootle_statistics/models.py:50
+#, fuzzy
 msgid "Comment"
-msgstr ""
+msgstr "বক্তব্য"
 
 #: apps/pootle_statistics/models.py:95
 msgid "anonymous user"
@@ -1763,8 +1797,9 @@ msgid "Incomplete"
 msgstr ""
 
 #: apps/pootle_store/templates/store/translate.html:75
+#, fuzzy
 msgid "My suggestions"
-msgstr ""
+msgstr "প্রস্তাব"
 
 #: apps/pootle_store/templates/store/translate.html:76
 msgid "My submissions"
@@ -1812,24 +1847,28 @@ msgid ""
 msgstr ""
 
 #: apps/pootle_store/templates/unit/comment.html:12
+#, fuzzy
 msgid "Comment:"
-msgstr ""
+msgstr "বক্তব্য"
 
 #: apps/pootle_store/templates/unit/edit.html:11
+#, fuzzy
 msgid "File:"
-msgstr ""
+msgstr "ফাইল"
 
 #: apps/pootle_store/templates/unit/edit.html:18
 msgid "Context:"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:28
+#, fuzzy
 msgid "Comments:"
-msgstr ""
+msgstr "বক্তব্য"
 
 #: apps/pootle_store/templates/unit/edit.html:32
+#, fuzzy
 msgid "Locations:"
-msgstr ""
+msgstr "স্থান"
 
 #: apps/pootle_store/templates/unit/edit.html:41
 msgid "Terminology:"
@@ -1949,8 +1988,9 @@ msgid "Hide Timeline"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:233
+#, fuzzy
 msgid "User suggestions"
-msgstr ""
+msgstr "প্রস্তাব দর্শন করুন"
 
 #: apps/pootle_store/templates/unit/edit.html:251
 msgid "Accept suggestion"
@@ -1974,8 +2014,9 @@ msgid "Vote for this suggestion"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/term_edit.html:40
+#, fuzzy
 msgid "Comment: "
-msgstr ""
+msgstr "বক্তব্য"
 
 #: apps/pootle_store/templates/unit/timeline.html:4
 #: apps/pootle_store/templates/unit/timeline.html:14
@@ -2121,13 +2162,15 @@ msgstr "VCS এ কমিট করুন"
 
 #. Translators: "all" here refers to all files and sub directories in a directory/project.
 #: apps/pootle_translationproject/actions.py:159
+#, fuzzy
 msgid "Update all from VCS"
-msgstr ""
+msgstr "VCS থেকে আপডেট করুন"
 
 #. Translators: "all" here refers to all files and sub directories in a directory/project.
 #: apps/pootle_translationproject/actions.py:174
+#, fuzzy
 msgid "Commit all to VCS"
-msgstr ""
+msgstr "VCS এ কমিট করুন"
 
 #: apps/pootle_translationproject/actions.py:187
 msgid "Rescan project files"
@@ -2563,8 +2606,9 @@ msgstr "এই Pootle সার্ভারের পরিচিতি"
 
 #: templates/base.html:162 templates/about/contributors.html:6
 #: templates/about/contributors.html:9
+#, fuzzy
 msgid "Contributors"
-msgstr ""
+msgstr "অংশগ্রহণকারী"
 
 #: templates/captcha-xhr.html:14 templates/captcha.html:4
 #: templates/captcha.html.py:7

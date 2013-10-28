@@ -7,34 +7,37 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:44+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2013-05-20 23:43+0000\n"
+"Last-Translator: Michael <fios@akerbeltz.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gd\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.9.1-pre\n"
+"Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
+"(n > 2 && n < 20) ? 2 : 3 ;\n"
+"X-Generator: Pootle 2.5.0-beta1\n"
+"X-POOTLE-MTIME: 1369093412.0\n"
 
 #: static/js/common.js:43
 msgid "Expand details"
-msgstr ""
+msgstr "Seall am mion-fhiosrachadh"
 
 #: static/js/common.js:43
 msgid "Collapse details"
-msgstr ""
+msgstr "Falaich am mion-fhiosrachadh"
 
 #: static/js/common.js:77
 msgid "Are you sure you want to continue?"
-msgstr ""
+msgstr "A bheil thu cinnteach gu bheil thu airson leantainn air adhart?"
 
 #: static/js/common.js:78
 msgid "This operation cannot be undone."
-msgstr ""
+msgstr "Chan urrainn dhut an gnìomh seo a neo-dhèanamh."
 
 #: static/js/editor.js:409 static/js/editor.js.c:1493
 msgid "No results."
-msgstr ""
+msgstr "Chan eil toradh ann."
 
 #. Translators: Permalink to the current unit in the editor.
 #. The first '%s' is the permalink URL.
@@ -42,39 +45,41 @@ msgstr ""
 #: static/js/editor.js:726
 #, c-format
 msgid "<a href=\"%s\">String %s</a>"
-msgstr ""
+msgstr "<a href=\"%s\">Sreang</a>"
 
 #: static/js/editor.js:786
 msgid "Error while connecting to the server"
-msgstr ""
+msgstr "Thachair mearachd fhad 's a bha sinn a' ceangal ris an fhrithealaiche"
 
 #: static/js/editor.js:788
 msgid "Server error"
-msgstr ""
+msgstr "Mearachd an fhrithealaiche"
 
 #: static/js/editor.js:790
 msgid "The server seems down. Try again later."
 msgstr ""
+"Tha coltas gu bheil am frithealaiche sìos. Feuch ris a-rithist an ceann "
+"greis."
 
 #: static/js/editor.js:798
 msgid "Unknown error"
-msgstr ""
+msgstr "Mearachd neo-aithnichte"
 
 #: static/js/editor.js:1342
 msgid "Congratulations, you walked through all strings."
-msgstr ""
+msgstr "Meal do naidheachd, rinn thu eadar-theangachadh air a h-uile rud."
 
 #: static/js/editor.js:1344 static/js/editor.js.c:1368
 msgid "Return to the overview page."
-msgstr ""
+msgstr "Till gu duilleag an fhor-sheallaidh."
 
 #: static/js/editor.js:1363
 msgid "You reached the beginning of the list"
-msgstr ""
+msgstr "Ràinig thu toiseach na liosta"
 
 #: static/js/editor.js:1366
 msgid "You reached the end of the list."
-msgstr ""
+msgstr "Ràinig thu deireadh na liosta"
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
@@ -82,67 +87,77 @@ msgstr ""
 #: static/js/editor.js:1766
 #, c-format
 msgid "%s% match"
-msgstr ""
+msgstr "Maidse %s%"
 
 #: static/js/editor.js:1808
 msgid "Similar translations"
-msgstr ""
+msgstr "Eadar-theangachaidhean a tha coltach ris"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:7
 msgid "More"
-msgstr ""
+msgstr "Barrachd"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:10
 msgid "Hide"
-msgstr ""
+msgstr "Falaich"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:13
 msgid "Less"
-msgstr ""
+msgstr "Nas lugha"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:16
 msgid "Show"
-msgstr ""
+msgstr "Seall"
 
 #: static/js/utils.js:76
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Bliadhna air ais"
+msgstr[1] "%s bhliadhna air ais"
+msgstr[2] "%s bliadhna air ais"
+msgstr[3] "%s bliadhna air ais"
 
 #: static/js/utils.js:79
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Seachdain air ais"
+msgstr[1] "%s sheachdain air ais"
+msgstr[2] "%s seachdainean air ais"
+msgstr[3] "%s seachdain air ais"
 
 #: static/js/utils.js:82
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "An-dè"
+msgstr[1] "%s latha air ais"
+msgstr[2] "%s làithean air ais"
+msgstr[3] "%s latha air ais"
 
 #: static/js/utils.js:85
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Uair a thìde air ais"
+msgstr[1] "%s uair a thìde air ais"
+msgstr[2] "%s uairean a thìde air ais"
+msgstr[3] "%s uair a thìde air ais"
 
 #: static/js/utils.js:88
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Mionaid air ais"
+msgstr[1] "%s mhionaid air ais"
+msgstr[2] "%s mionaidean air ais"
+msgstr[3] "%s mionaid air ais"
 
 #: static/js/utils.js:96
 msgid "A few seconds ago"
-msgstr ""
+msgstr "Diog no dhà air ais"

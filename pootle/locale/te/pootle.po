@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-02-24 17:30+0000\n"
+"PO-Revision-Date: 2013-05-20 13:26+0000\n"
 "Last-Translator: Veeven <veeven@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: te\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1361727055.0\n"
+"X-POOTLE-MTIME: 1369056390.0\n"
 
 #: strings.py:8
 msgid ""
@@ -230,8 +230,9 @@ msgid "The page will be available at /about/<slug>/"
 msgstr ""
 
 #: apps/legalpages/models.py:46
+#, fuzzy
 msgid "Content"
-msgstr ""
+msgstr "సందర్భం:"
 
 #: apps/legalpages/models.py:47
 #, python-format
@@ -982,9 +983,8 @@ msgid "Repeated word"
 msgstr "పదం పునరావృతమైంది"
 
 #: apps/pootle_misc/checks.py:46
-#, fuzzy
 msgid "E-mail"
-msgstr "ఈమెయిల్"
+msgstr "ఈ-మెయిల్"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Ending punctuation"
@@ -1032,7 +1032,7 @@ msgstr "బహువచనాల సంఖ్య"
 
 #: apps/pootle_misc/checks.py:58
 msgid "Don't translate words"
-msgstr ""
+msgstr "పదాలను అనువదించవద్దు"
 
 #: apps/pootle_misc/checks.py:59
 msgid "Numbers"
@@ -1356,7 +1356,7 @@ msgstr[1] "%d సమీక్షించాల్సిన పదాలు"
 #: apps/pootle_misc/middleware/errorpages.py:65
 #, python-format
 msgid "You need to <a href=\"%(login_link)s\">login</a> to access this page."
-msgstr ""
+msgstr "ఈ పేజీని చూడడానికి మీరు <a href=\"%(login_link)s\">ప్రవేశించాలి</a>."
 
 #: apps/pootle_misc/middleware/errorpages.py:83
 #, python-format
@@ -1596,15 +1596,15 @@ msgstr ""
 
 #: apps/pootle_statistics/models.py:47
 msgid "Source"
-msgstr ""
+msgstr "మూలం"
 
 #: apps/pootle_statistics/models.py:48
 msgid "Target"
-msgstr ""
+msgstr "లక్ష్యం"
 
 #: apps/pootle_statistics/models.py:49
 msgid "State"
-msgstr ""
+msgstr "స్థితి"
 
 #: apps/pootle_statistics/models.py:50
 msgid "Comment"
@@ -1700,7 +1700,7 @@ msgstr ""
 
 #: apps/pootle_store/util.py:44
 msgid "Obsolete"
-msgstr ""
+msgstr "కాలంచెల్లినవి"
 
 #: apps/pootle_store/views.py:77
 msgid "Insufficient rights to this translation project."
@@ -1750,11 +1750,11 @@ msgstr ""
 #. Translators: This refers to "All strings"
 #: apps/pootle_store/templates/store/translate.html:69
 msgid "All"
-msgstr ""
+msgstr "అన్నీ"
 
 #: apps/pootle_store/templates/store/translate.html:71
 msgid "Incomplete"
-msgstr ""
+msgstr "పూర్తికానివి"
 
 #: apps/pootle_store/templates/store/translate.html:75
 msgid "My suggestions"
@@ -1762,7 +1762,7 @@ msgstr "నా సలహాలు"
 
 #: apps/pootle_store/templates/store/translate.html:76
 msgid "My submissions"
-msgstr ""
+msgstr "నా సమర్పణలు"
 
 #. Translators: This is a type of filtering criterion that
 #. selects the strings that have been submitted by me at some point
@@ -2702,7 +2702,7 @@ msgstr ""
 
 #: templates/contact_form/contact_form_sent.html:14
 msgid "Thank you for your feedback."
-msgstr ""
+msgstr "మీ ప్రతిస్పందనకు కృతజ్ఞతలు."
 
 #: templates/contact_form/contact_form_subject.txt:2
 #, python-format
