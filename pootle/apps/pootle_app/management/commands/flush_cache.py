@@ -19,6 +19,9 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import os
+import logging
+import datetime
+
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from pootle_app.management.commands import PootleCommand
@@ -32,3 +35,9 @@ class Command(PootleCommand):
 
     def handle_store(self, store, **options):
         store.flush_cache()
+
+    def handle_language(self, lang, **options):
+        lang.flush_cache()
+
+    def handle_project(self, prj, **options):
+        prj.flush_cache()
