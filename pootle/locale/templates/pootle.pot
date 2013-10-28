@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.5.1\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 15:03+0000\n"
+"POT-Creation-Date: 2013-10-28 18:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1473,7 +1473,7 @@ msgid "Arguments missing."
 msgstr ""
 
 #: apps/pootle_store/decorators.py:147
-msgid "Store does not exist."
+msgid "File does not exist."
 msgstr ""
 
 #: apps/pootle_store/filetypes.py:31
