@@ -30,7 +30,7 @@
  * BASIC ELEMENT STYLING
  */
 
-html, body, #header-meta, #footer, .header
+#header-meta, #footer, .header
 {
     background-color: #eee;
 }
