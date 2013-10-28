@@ -144,7 +144,7 @@ def get_xhr_resource_context(permission_codes):
                     ).get(pootle_path=pootle_path)
                     directory = store.parent
                 except Store.DoesNotExist:
-                    raise Http404(_('Store does not exist.'))
+                    raise Http404(_('File does not exist.'))
             else:
                 directory = Directory.objects.get(pootle_path=pootle_path)
 
