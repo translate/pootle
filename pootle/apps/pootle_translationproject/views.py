@@ -370,7 +370,8 @@ def overview(request, translation_project, dir_path, filename=None,
         try:
             action = act.lookup(running)
         except KeyError:
-            messages.error(request, _("Unable to find %s %s") % (act, running))
+            messages.error(request, _("Unable to find '%(action)s' in '%(extdir)s'") %
+                                      {'action': act, 'extdir': running})
         else:
             if not getattr(action, 'nosync', False):
                 (store or translation_project).sync()
