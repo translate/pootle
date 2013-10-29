@@ -1786,6 +1786,11 @@ html[dir="rtl"] ul.pager li:last-child > *
     float: left;
 }
 
+html[dir="rtl"] .overview-actions-group
+{
+    float: right;
+}
+
 .overview-actions-content
 {
     width: 75%;
