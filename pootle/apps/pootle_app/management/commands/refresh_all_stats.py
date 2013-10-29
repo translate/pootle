@@ -63,6 +63,7 @@ class Command(PootleCommand):
         logging.info('Start running of %s', self.name)
         timeout = settings.OBJECT_CACHE_TIMEOUT
 
+        self._set_empty_values(timeout)
         self._set_last_action_stats(timeout)
         self._set_wordcount_stats(timeout)
         self._set_qualitycheck_stats(timeout)
@@ -143,14 +144,25 @@ class Command(PootleCommand):
         if saved:
             self._set_wordcount_stats_cache(stats, key, timeout)
 
-    def _set_last_action_stats(self, timeout):
-        empty_last_action = {'id': 0 , 'mtime': 0, 'snippet': ''}
+    def _set_empty_values(self, timeout):
+        cache_values = {
+            'get_last_action': {'id': 0 , 'mtime': 0, 'snippet': ''},
+            'get_suggestion_count': 0,
+            'get_checks': {},
+            'get_total_wordcount': 0,
+            'get_translated_wordcount': 0,
+            'get_fuzzy_wordcount': 0
+        }
         stores = Store.objects.all()
         for store in stores:
-            key = iri_to_uri(store.get_cachekey() + ':get_last_action')
-            cache.set(key, empty_last_action, timeout)
-        logging.info('Empty last action was set for all stores.')
+            key = store.get_cachekey()
+            for func in cache_values:
+                cache_key = iri_to_uri(key + ':' + func)
+                cache.set(cache_key, cache_values[func], timeout)
 
+        logging.info('Empty cache values were set for all stores.')
+
+    def _set_last_action_stats(self, timeout):
         ss = Submission.simple_objects.values('unit__store__pootle_path') \
                                       .annotate(max_id=Max('id'))
         for s_id in ss:
