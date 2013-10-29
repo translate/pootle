@@ -66,7 +66,8 @@ class Goal(TagBase):
     description_help_text = _('A description of this goal. This is useful to '
                               'give more information or instructions. Allowed '
                               'markup: %s', get_markup_filter_name())
-    description = MarkupField(blank=True, help_text=description_help_text)
+    description = MarkupField(verbose_name=_("Description"), blank=True,
+                              help_text=description_help_text)
 
     # Priority goes from 1 to 10, being 1 the greater and 10 the lower.
     priority = models.IntegerField(verbose_name=_("Priority"), default=10,
