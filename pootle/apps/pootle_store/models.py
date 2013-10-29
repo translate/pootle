@@ -1453,7 +1453,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                                 submitter=system,
                                 unit=unit,
                                 field=SubmissionFields.TARGET,
-                                type=None,
+                                type=SubmissionTypes.SYSTEM,
                                 old_value=old_target_f,
                                 new_value=unit.target_f
                             )
