@@ -38,11 +38,11 @@ class Command(PootleCommand):
         store.get_checks()
 
     def handle_language(self, lang):
-        lang.flush_cache()
+        lang.flush_cache(False)
         lang.get_stats()
         lang.get_checks()
 
     def handle_project(self, prj):
-        prj.flush_cache()
+        prj.flush_cache(False)
         prj.get_stats()
         prj.get_checks()

@@ -37,7 +37,7 @@ class Command(PootleCommand):
         store.flush_cache()
 
     def handle_language(self, lang, **options):
-        lang.flush_cache()
+        lang.flush_cache(False)
 
     def handle_project(self, prj, **options):
-        prj.flush_cache()
+        prj.flush_cache(False)
