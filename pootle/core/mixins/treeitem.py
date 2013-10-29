@@ -234,12 +234,13 @@ class TreeItem(object):
         for key in args:
             self._flagged_for_deletion.add(key)
 
-    def flush_cache(self):
+    def flush_cache(self, children=True):
         for a in filter(lambda x: x[:2] != '__', dir(CachedMethods)):
             cachekey = iri_to_uri(self.get_cachekey() + ":" +
                                   getattr(CachedMethods, a))
             cache.delete(cachekey)
 
-        self.initialize_children()
-        for item in self.children:
-            item.flush_cache()
+        if children:
+            self.initialize_children()
+            for item in self.children:
+                item.flush_cache()
