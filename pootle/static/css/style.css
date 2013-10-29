@@ -2531,6 +2531,12 @@ a.tags-add
     float: right;
 }
 
+html[dir="rtl"] a.tags-add
+{
+    margin-right: .5em;
+    float: left;
+}
+
 a.tags-toggle,
 a.filter-toggle
 {
