@@ -22,6 +22,7 @@
 from hashlib import md5
 
 from django.contrib.auth.models import User, UserManager, AnonymousUser
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Q
 from django.db.models.signals import post_save
@@ -30,7 +31,6 @@ from django.utils.translation import ugettext_lazy as _
 
 from pootle.i18n.override import lang_choices
 from pootle_language.models import Language
-from pootle_misc.baseurl import l
 from pootle_misc.util import cached_property
 from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_translationproject.models import TranslationProject
@@ -111,7 +111,7 @@ class PootleProfile(models.Model):
         return username
 
     def get_absolute_url(self):
-        return l('/accounts/%s/' % self.user.username)
+        return reverse('profiles_profile_detail', args=[self.user.username])
 
     @cached_property
     def get_email_hash(self):
