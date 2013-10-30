@@ -22,22 +22,21 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
-from pootle_app.management.commands import PootleCommand
-
 import logging
 import time
 
 from django.db.models import Count, Max, Sum
-from django.utils.encoding import iri_to_uri
-from django.core.cache import cache
 from django.conf import settings
+from django.core.cache import cache
+from django.utils.encoding import iri_to_uri
 
-from pootle_statistics.models import Submission
+from pootle_app.management.commands import PootleCommand
 from pootle_language.models import Language
 from pootle_project.models import Project
-from pootle_translationproject.models import TranslationProject
+from pootle_statistics.models import Submission
 from pootle_store.models import Store, Unit, QualityCheck, Suggestion
 from pootle_store.util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED
+from pootle_translationproject.models import TranslationProject
 
 
 class Command(PootleCommand):
@@ -136,7 +135,8 @@ class Command(PootleCommand):
             logging.info('Set wordcount stats for %s' % key)
             cache.set(key + ':get_total_wordcount', stats['total'], timeout)
             cache.set(key + ':get_fuzzy_wordcount', stats[FUZZY], timeout)
-            cache.set(key + ':get_translated_wordcount', stats[TRANSLATED], timeout)
+            cache.set(key + ':get_translated_wordcount', stats[TRANSLATED],
+                      timeout)
 
     def _set_wordcount_stats(self, timeout):
         res = Unit.objects.filter(state__gt=OBSOLETE) \
