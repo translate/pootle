@@ -45,6 +45,7 @@ class AbstractPage(DirtyFieldsMixin, models.Model):
 
     # TODO: make title and body localizable fields
     title = models.CharField(_("Title"), max_length=100)
+    # Translators: Content that will be used to display this static page
     body = MarkupField(_("Display Content"), blank=True,
             help_text=_('Allowed markup: %s', get_markup_filter_name()))
 
