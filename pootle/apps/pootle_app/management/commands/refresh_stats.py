@@ -204,7 +204,7 @@ class Command(PootleCommand):
                                  ':get_last_action')
                 logging.info('Set last action stats for %s' % key)
                 res = {
-                    'mtime': int(time.mktime(sub.unit.mtime.timetuple())),
+                    'mtime': int(time.mktime(sub.creation_time.timetuple())),
                     'snippet': sub.get_submission_message()
                 }
                 cache.set(key, res, timeout)
