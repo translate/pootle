@@ -88,7 +88,7 @@ Up version numbers
 Update the version number in:
 
 - ``pootle/__version__.py``
-- ``docs/conf.py```
+- ``docs/conf.py``
 
 In ``__version__.py``, bump the build number if anybody used the toolkit with
 the previous number, and there have been any changes to code touching stats or
