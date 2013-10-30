@@ -1713,7 +1713,7 @@ class Store(models.Model, base.TranslationStore, TreeItem):
             return  {'mtime': 0, 'snippet': ''}
 
         return {
-            'mtime': int(time.mktime(sub.unit.mtime.timetuple())),
+            'mtime': int(time.mktime(sub.creation_time.timetuple())),
             'snippet': sub.get_submission_message()
         }
 
