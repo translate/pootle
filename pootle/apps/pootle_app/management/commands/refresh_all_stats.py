@@ -26,7 +26,6 @@ import logging
 import time
 import datetime
 
-#from django.core.management.base import NoArgsCommand
 from pootle_app.management.commands import PootleCommand
 
 from django.db.models import Count, Max, Sum
@@ -123,25 +122,27 @@ class Command(PootleCommand):
                             .annotate(wordcount=Sum('source_wordcount')) \
                             .order_by('store', 'state')
 
-        saved = None
+        saved_id = None
+        saved_key = None
         stats = None
         key = None
 
         for item in res:
-            if saved != item['store']:
+            if saved_id != item['store']:
                 key = Store.objects.get(id=item['store']).get_cachekey()
-                if saved:
-                    self._set_wordcount_stats_cache(stats, key, timeout)
+                if saved_key:
+                    self._set_wordcount_stats_cache(stats, saved_key, timeout)
 
                 stats = {'total': 0, FUZZY: 0, TRANSLATED: 0}
-                saved = item['store']
+                saved_key = key
+                saved_id = item['store']
 
             stats['total'] += item['wordcount']
 
             if item['state'] in [FUZZY, TRANSLATED]:
                 stats[item['state']] = item['wordcount']
 
-        if saved:
+        if saved_id:
             self._set_wordcount_stats_cache(stats, key, timeout)
 
     def _set_empty_values(self, timeout):
