@@ -78,7 +78,8 @@
         data: reqData,
         dataType: 'json',
         success: function (data) {
-          var $table = $('#content table.stats');
+          var $table = $('#content table.stats'),
+              now = Date.now();
           PTL.stats.updateProgressbar($('#progressbar'), data);
 
           for (var name in data.children) {
@@ -100,11 +101,9 @@
             $td = $table.find('#progressbar-' + code);
             PTL.stats.updateProgressbar($td, item);
 
-            if (item.lastaction) {
-              $td = $table.find('#last-activity-' + code);
-              $td.html(item.lastaction.snippet);
-              $td.find('.last-action .action-text').show();
-            }
+            $td = $table.find('#last-activity-' + code);
+            $td.html(item.lastaction.snippet);
+            $td.attr('sorttable_customkey', now - item.lastaction.mtime);
 
             $td = $table.find('#critical-' + code);
             PTL.stats.updateItemStats($td, item.critical);
