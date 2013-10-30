@@ -341,7 +341,7 @@
               // Translators: '%s' is a username
               interpolate(gettext("%s's submissions"), [user]),
             'user-submissions-overwritten':
-              // Translators: '%s' is a username
+              // Translators: '%s' is a username, meaning "submissions by %s, that were overwritten"
               interpolate(gettext("%s's overwritten submissions"), [user]),
           };
           for (var key in values) {

@@ -116,8 +116,7 @@ def handle_tags_filter_form(request, translation_projects):
             widget=forms.SelectMultiple(attrs={
                 'id': 'js-tag-filtering',
                 'class': 'js-select2 select2-multiple',
-                'data-placeholder': _('Select one or more tags to use as '
-                                      'filter'),
+                'data-placeholder': _('Filter using one or more tags'),
             }),
         )
 

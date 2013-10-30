@@ -130,7 +130,7 @@ class TagForm(forms.ModelForm):
             check_goal_name(name)
 
             if Goal.objects.filter(name=name):
-                msg = _("Already exists a goal with this name. Please pick "
+                msg = _("A goal with that name alredy exists. Please pick "
                         "another name.")
                 raise forms.ValidationError(msg)
 
@@ -177,8 +177,8 @@ class TagForm(forms.ModelForm):
             raise forms.ValidationError(msg)
 
         if slug.startswith("goal-") and Goal.objects.filter(slug=slug):
-            raise forms.ValidationError(_("Already exists a goal with this "
-                                          "slug!"))
+            raise forms.ValidationError(_("A goal with this slug already "
+                                          "exists."))
 
         # Always return the cleaned data, whether you have changed it or not.
         return slug

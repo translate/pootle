@@ -397,7 +397,7 @@ def overview(request, translation_project, dir_path, filename=None,
                                style=translation_project.file_style,
                                vc_root=vcs_dir)
                 except StandardError:
-                    err = (_("Exception while running '%s' extension action") %
+                    err = (_("Error while running '%s' extension action") %
                            action.title)
                     logging.exception(err)
                     if (action.error):

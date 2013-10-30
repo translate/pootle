@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.5.1\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"POT-Creation-Date: 2013-10-30 20:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -178,7 +178,7 @@ msgstr ""
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: apps/pootle_app/templates/admin/admin_general_settings.html:29
 #: apps/pootle_app/templates/admin/general_settings_form.html:15
-#: apps/staticpages/templates/staticpages/admin/_form.html:23
+#: apps/staticpages/templates/staticpages/admin/_form.html:24
 #: templates/profiles/edit_personal.html:33
 #: templates/profiles/edit_profile.html:25
 msgid "Save"
@@ -801,7 +801,7 @@ msgid_plural "%(projects)d projects, %(average)d%% translated"
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:325
+#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:324
 #: apps/pootle_tagging/views.py:52 apps/pootle_translationproject/views.py:740
 msgid "No description yet."
 msgstr ""
@@ -818,7 +818,7 @@ msgstr ""
 msgid "Project"
 msgstr ""
 
-#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:407
+#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:406
 msgid "Language"
 msgstr ""
 
@@ -1355,17 +1355,17 @@ msgid "Report Target"
 msgstr ""
 
 #: apps/pootle_project/views.py:119
-msgid "Select one or more tags to use as filter"
+msgid "Filter using one or more tags"
 msgstr ""
 
-#: apps/pootle_project/views.py:162
+#: apps/pootle_project/views.py:161
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/pootle_project/views.py:396
+#: apps/pootle_project/views.py:395
 #: apps/pootle_translationproject/actions.py:209
 msgid "Update against templates"
 msgstr ""
@@ -1389,7 +1389,7 @@ msgid "Filter"
 msgstr ""
 
 #: apps/pootle_project/templates/project/overview.html:38
-msgid "Filter the translation projects using this tags"
+msgid "Filter using the selected tags"
 msgstr ""
 
 #: apps/pootle_project/templates/project/overview.html:76
@@ -1409,7 +1409,7 @@ msgid "Here you can add, edit, or delete the languages for this project."
 msgstr ""
 
 #: apps/pootle_statistics/models.py:46
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:101
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:103
 msgid "Source"
 msgstr ""
 
@@ -1623,7 +1623,7 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
-msgid "<a href=\"%(url)s\">String %(id)s</a>"
+msgid "String %(id)s"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:22
@@ -1832,7 +1832,7 @@ msgid ""
 msgstr ""
 
 #: apps/pootle_tagging/forms.py:133
-msgid "Already exists a goal with this name. Please pick another name."
+msgid "A goal with that name alredy exists. Please pick another name."
 msgstr ""
 
 #: apps/pootle_tagging/forms.py:173
@@ -1843,7 +1843,7 @@ msgid ""
 msgstr ""
 
 #: apps/pootle_tagging/forms.py:180
-msgid "Already exists a goal with this slug!"
+msgid "A goal with this slug already exists."
 msgstr ""
 
 #: apps/pootle_tagging/forms.py:194
@@ -1877,14 +1877,6 @@ msgstr ""
 msgid "(Project goal)"
 msgstr ""
 
-#: apps/pootle_tagging/models.py:465
-msgid "Item with goal"
-msgstr ""
-
-#: apps/pootle_tagging/models.py:466
-msgid "Items with goal"
-msgstr ""
-
 #: apps/pootle_terminology/views.py:171
 msgid "This term already exists in this file."
 msgstr ""
@@ -1912,7 +1904,7 @@ msgid "Term"
 msgstr ""
 
 #: apps/pootle_terminology/templates/terminology/manage.html:36
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:102
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:104
 msgid "Translation"
 msgstr ""
 
@@ -2164,7 +2156,7 @@ msgstr ""
 
 #: apps/pootle_translationproject/views.py:400
 #, python-format
-msgid "Exception while running '%s' extension action"
+msgid "Error while running '%s' extension action"
 msgstr ""
 
 #: apps/pootle_translationproject/views.py:820
@@ -2202,15 +2194,17 @@ msgid ""
 "project."
 msgstr ""
 
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:5
+#. Translators: A view showing the export of strings in a flat form.
+#. See http://staging.locamotion.org/he/birdfont/export-view/?filter=incomplete
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:7
 msgid "Export View"
 msgstr ""
 
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:97
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:99
 msgid "Goal"
 msgstr ""
 
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:139
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:141
 msgid "No strings."
 msgstr ""
 
@@ -2329,38 +2323,39 @@ msgstr ""
 msgid "Virtual Path"
 msgstr ""
 
-#: apps/staticpages/models.py:46
+#. Translators: Content that will be used to display this static page
+#: apps/staticpages/models.py:47
 msgid "Display Content"
 msgstr ""
 
-#: apps/staticpages/models.py:47
+#: apps/staticpages/models.py:48
 #, python-format
 msgid "Allowed markup: %s"
 msgstr ""
 
-#: apps/staticpages/models.py:49
+#: apps/staticpages/models.py:50
 #: apps/staticpages/templates/staticpages/admin/_table.html:10
 msgid "Redirect to URL"
 msgstr ""
 
-#: apps/staticpages/models.py:50
+#: apps/staticpages/models.py:51
 msgid "If set, any references to this page will redirect to this URL"
 msgstr ""
 
 #. Translators: 'URL' and 'content' refer to form fields.
-#: apps/staticpages/models.py:97
+#: apps/staticpages/models.py:98
 msgid "URL or content must be provided."
 msgstr ""
 
-#: apps/staticpages/models.py:105
+#: apps/staticpages/models.py:106
 msgid "Virtual path already in use."
 msgstr ""
 
-#: apps/staticpages/models.py:110
+#: apps/staticpages/models.py:111
 msgid "Legal Page"
 msgstr ""
 
-#: apps/staticpages/models.py:121
+#: apps/staticpages/models.py:122
 msgid "Regular Page"
 msgstr ""
 
@@ -2402,7 +2397,8 @@ msgstr ""
 msgid "Static Pages"
 msgstr ""
 
-#: apps/staticpages/templates/staticpages/admin/_form.html:18
+#. Translators: Displayed as 'Redirect to URL or Display Content'
+#: apps/staticpages/templates/staticpages/admin/_form.html:19
 msgid "or"
 msgstr ""
 

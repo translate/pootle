@@ -472,5 +472,5 @@ class ItemWithGoal(GenericTaggedItemBase):
     tag = models.ForeignKey(Goal, related_name="items_with_goal")
 
     class Meta:
-        verbose_name = _("Item with goal")
-        verbose_name_plural = _("Items with goal")
+        verbose_name = "Item with goal"
+        verbose_name_plural = "Items with goal"
