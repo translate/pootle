@@ -119,7 +119,7 @@ Update requirements versions
 Update the minimum version number for the requirements in:
 
 - ``requirements/``
-- ``depcheck.py```
+- ``depcheck.py``
 
 
 Update translations
