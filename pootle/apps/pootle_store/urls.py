@@ -77,7 +77,7 @@ urlpatterns = patterns('pootle_store.views',
         'clear_vote',
         name='pootle-xhr-votes-clear'),
 
-    url(r'^xhr/units/(?P<uid>[0-9]+)/checks/(?P<checkid>[0-9]+)/reject/?$',
+    url(r'^xhr/units/(?P<uid>[0-9]+)/checks/(?P<check_id>[0-9]+)/reject/?$',
         'reject_qualitycheck',
         name='pootle-xhr-units-checks-reject'),
 
