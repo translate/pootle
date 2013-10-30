@@ -116,48 +116,54 @@ class PootleCommand(NoArgsCommand):
             languages = options.get('languages', [])
             path = options.get('path', '')
 
-        if hasattr(self, "handle_language"):
-            lang_query = Language.objects.all()
-            if languages:
-                lang_query = lang_query.filter(code__in=languages)
-            for lang in lang_query.iterator():
-                logging.info(u"Running %s over %s", self.name, lang)
-                try:
-                    self.handle_language(lang, **options)
-                except Exception:
-                    logging.exception(u"Failed to run %s over %s.", self.name,
-                                      lang)
+        if not projects and not languages and hasattr(self, "handle_all"):
+            logging.info(u"Running %s (noargs)", self.name)
+            try:
+                self.handle_all(**options)
+            except Exception as e:
+                logging.error(u"Failed to run %s:\n%s", self.name, e)
+        else:
+            project_query = Project.objects.all()
+            if projects:
+                project_query = project_query.filter(code__in=projects)
 
-        project_query = Project.objects.all()
-        if projects:
-            project_query = project_query.filter(code__in=projects)
+            for project in project_query.iterator():
+                template_tp = project.get_template_translationproject()
+                tp_query = project.translationproject_set.order_by('language__code')
 
-        for project in project_query.iterator():
-            if hasattr(self, "handle_project"):
-                logging.info(u"Running %s over %s", self.name, project)
-                try:
-                    self.handle_project(project, **options)
-                except Exception:
-                    logging.exception(u"Failed to run %s over %s.", self.name,
-                                      project)
-                    continue
+                if languages:
+                    if template_tp and template_tp.language.code not in languages:
+                        template_tp = None
+                    tp_query = tp_query.filter(language__code__in=languages)
 
-            template_tp = project.get_template_translationproject()
-            tp_query = project.translationproject_set.order_by('language__code')
+                # update the template translation project first
+                if template_tp:
+                    self.do_translation_project(template_tp, path, **options)
 
-            if languages:
-                if template_tp and template_tp.language.code not in languages:
-                    template_tp = None
-                tp_query = tp_query.filter(language__code__in=languages)
+                for tp in tp_query.iterator():
+                    if tp == template_tp:
+                        continue
+                    self.do_translation_project(tp, path, **options)
 
-            # update the template translation project first
-            if template_tp:
-                self.do_translation_project(template_tp, path, **options)
+                if not languages and hasattr(self, "handle_project"):
+                    logging.info(u"Running %s over %s", self.name, project)
+                    try:
+                        self.handle_project(project, **options)
+                    except Exception as e:
+                        logging.error(u"Failed to run %s over %s:\n%s",
+                                      self.name, project, e)
 
-            for tp in tp_query.iterator():
-                if tp == template_tp:
-                    continue
-                self.do_translation_project(tp, path, **options)
+            if not projects and hasattr(self, "handle_language"):
+                lang_query = Language.objects.all()
+                if languages:
+                    lang_query = lang_query.filter(code__in=languages)
+                for lang in lang_query.iterator():
+                    logging.info(u"Running %s over %s", self.name, lang)
+                    try:
+                        self.handle_language(lang, **options)
+                    except Exception as e:
+                        logging.error(u"Failed to run %s over %s:\n%s",
+                                      self.name, lang, e)
 
 
 class NoArgsCommandMixin(NoArgsCommand):
