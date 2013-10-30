@@ -167,6 +167,11 @@ class TranslationProject(models.Model, TreeItem):
                           self.goals.all().order_by("name")))
 
     @property
+    def name(self):
+        # TODO: See if `self.fullname` can be removed
+        return self.fullname
+
+    @property
     def fullname(self):
         return "%s [%s]" % (self.project.fullname, self.language.name)
 
