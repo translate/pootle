@@ -145,20 +145,24 @@ class Goal(TagBase):
             # Now get the 'project goals' applied to stores in the 'templates'
             # TP for this TP's project.
             template_tp = tp.project.get_template_translationproject()
-            tpl_dir_path = "/%s/%s" % (template_tp.language.code,
-                                       pootle_path.split("/", 2)[-1])
 
-            try:
-                tpl_dir = Directory.objects.get(pootle_path=tpl_dir_path)
-            except Directory.DoesNotExist:
+            if template_tp is None:  # If this project has no 'templates' TP.
                 project_goals = cls.objects.none()
             else:
-                tpl_stores_pks =  tpl_dir.stores.values_list('pk', flat=True)
-                criteria.update({
-                    'project_goal': True,
-                    'items_with_goal__object_id__in': tpl_stores_pks,
-                })
-                project_goals = cls.objects.filter(**criteria).distinct()
+                tpl_dir_path = "/%s/%s" % (template_tp.language.code,
+                                           pootle_path.split("/", 2)[-1])
+                try:
+                    tpl_dir = Directory.objects.get(pootle_path=tpl_dir_path)
+                except Directory.DoesNotExist:
+                    project_goals = cls.objects.none()
+                else:
+                    tpl_stores_pks =  tpl_dir.stores.values_list('pk',
+                                                                 flat=True)
+                    criteria.update({
+                        'project_goal': True,
+                        'items_with_goal__object_id__in': tpl_stores_pks,
+                    })
+                    project_goals = cls.objects.filter(**criteria).distinct()
 
             return list(chain(regular_goals, project_goals))
 
@@ -244,28 +248,33 @@ class Goal(TagBase):
 
         if self.project_goal and not tp.is_template_project:
             # Get the stores for this goal that are in the 'templates' TP.
-            path_in_templates = tp.project.get_template_translationproject() \
-                                          .pootle_path + dir_path + filename
-            lookups = {
-                'pootle_path__startswith': path_in_templates,
-                'goals__in': [self],
-            }
-            template_stores_in_goal = Store.objects.filter(**lookups)
+            templates_tp = tp.project.get_template_translationproject()
 
-            # Putting the next imports at the top of the file causes circular
-            # import issues.
-            if tp.file_style == 'gnu':
-                from pootle_app.project_tree import (get_translated_name_gnu as
-                                                     get_translated_name)
+            if templates_tp is None:
+                return Store.objects.none()
             else:
-                from pootle_app.project_tree import get_translated_name
+                path_in_templates = (templates_tp.pootle_path + dir_path +
+                                     filename)
+                lookups = {
+                    'pootle_path__startswith': path_in_templates,
+                    'goals__in': [self],
+                }
+                template_stores_in_goal = Store.objects.filter(**lookups)
 
-            # Get the pootle path for the corresponding stores in the given TP
-            # for those stores in the 'templates' TP.
-            criteria = {
-                'pootle_path__in': [get_translated_name(tp, store)[0]
-                                    for store in template_stores_in_goal],
-            }
+                # Putting the next imports at the top of the file causes circular
+                # import issues.
+                if tp.file_style == 'gnu':
+                    from pootle_app.project_tree import (
+                        get_translated_name_gnu as get_translated_name)
+                else:
+                    from pootle_app.project_tree import get_translated_name
+
+                # Get the pootle path for the corresponding stores in the given
+                # TP for those stores in the 'templates' TP.
+                criteria = {
+                    'pootle_path__in': [get_translated_name(tp, store)[0]
+                                        for store in template_stores_in_goal],
+                }
         else:
             # This is a regular goal or the given TP is the 'templates' TP, so
             # just retrieve the goal stores on this TP.
