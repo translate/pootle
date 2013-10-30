@@ -129,10 +129,12 @@ class PootleCommand(NoArgsCommand):
 
             for project in project_query.iterator():
                 template_tp = project.get_template_translationproject()
-                tp_query = project.translationproject_set.order_by('language__code')
+                tp_query = project.translationproject_set \
+                                  .order_by('language__code')
 
                 if languages:
-                    if template_tp and template_tp.language.code not in languages:
+                    if (template_tp and
+                        template_tp.language.code not in languages):
                         template_tp = None
                     tp_query = tp_query.filter(language__code__in=languages)
 
