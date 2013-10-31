@@ -23,7 +23,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.encoding import iri_to_uri
-from django.utils.http import urlquote
+from django.utils.http import is_safe_url, urlquote
 
 from profiles.views import edit_profile
 
@@ -63,7 +63,7 @@ def edit_personal_info(request):
 def redirect_after_login(request):
     redirect_to = request.REQUEST.get(auth.REDIRECT_FIELD_NAME, None)
 
-    if not redirect_to or '://' in redirect_to or ' ' in redirect_to:
+    if not is_safe_url(url=redirect_to, host=request.get_host()):
         redirect_to = iri_to_uri('/accounts/%s/' % \
                                  urlquote(request.user.username))
 
