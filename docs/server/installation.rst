@@ -8,7 +8,7 @@ requirements in a virtual environment.
 
 Before proceeding, consider installing these first:
 
-- At least Python 2.5
+- At least Python 2.6
 - At least Django 1.4.5 (1.5+ won't work yet)
 - `python-pip <http://www.pip-installer.org/>`_
 
