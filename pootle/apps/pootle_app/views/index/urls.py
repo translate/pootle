@@ -20,7 +20,6 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.conf.urls import patterns, url
-from django.views.generic import TemplateView
 
 
 urlpatterns = patterns('pootle_app.views.index',

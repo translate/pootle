@@ -19,8 +19,6 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import os
-import logging
-import datetime
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
