@@ -28,19 +28,19 @@ msgstr ""
 
 #: static/js/common.js:62
 msgid "Expand details"
-msgstr "Panua maelezo"
+msgstr ""
 
 #: static/js/common.js:62
 msgid "Collapse details"
-msgstr "Kunja maelezo"
+msgstr ""
 
 #: static/js/common.js:91
 msgid "Are you sure you want to continue?"
-msgstr "Una uhakika unataka kuendelea?"
+msgstr ""
 
 #: static/js/common.js:92
 msgid "This operation cannot be undone."
-msgstr "Uendeshaji huu hauwezi kutenduliwa."
+msgstr ""
 
 #: static/js/common.js:139
 msgid "Show tags"
@@ -98,7 +98,7 @@ msgstr ""
 
 #: static/js/editor.js:476 static/js/editor.js.c:1521
 msgid "No results."
-msgstr "Hakuna matokeo."
+msgstr ""
 
 #: static/js/editor.js:748
 msgid "Export View"
@@ -106,31 +106,31 @@ msgstr ""
 
 #: static/js/editor.js:798
 msgid "Error while connecting to the server"
-msgstr "Kosa wakati wa kuunganisha kwa seva"
+msgstr ""
 
 #: static/js/editor.js:800
 msgid "Server error"
-msgstr "Kosa la seva"
+msgstr ""
 
 #: static/js/editor.js:802
 msgid "The server seems down. Try again later."
-msgstr "Seva inaonekana haifanyi kazi. Jaribu tena baadaye."
+msgstr ""
 
 #: static/js/editor.js:809
 msgid "Unknown error"
-msgstr "Kosa lisilojulikana"
+msgstr ""
 
 #: static/js/editor.js:1367
 msgid "You reached the beginning of the list"
-msgstr "Umefikia mwanzo wa orodha"
+msgstr ""
 
 #: static/js/editor.js:1370
 msgid "You reached the end of the list."
-msgstr "Umefikia mwisho wa orodha."
+msgstr ""
 
 #: static/js/editor.js:1372
 msgid "Return to the overview page."
-msgstr "Rudi kwenye ukurasa wa mapitio."
+msgstr ""
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
@@ -138,74 +138,67 @@ msgstr "Rudi kwenye ukurasa wa mapitio."
 #: static/js/editor.js:1807
 #, c-format
 msgid "%s% match"
-msgstr "mechi %s%"
+msgstr ""
 
 #: static/js/editor.js:1851
 msgid "Similar translations"
-msgstr "Tafsiri sawa"
+msgstr ""
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:7
 msgid "More"
-msgstr "Zaidi"
+msgstr ""
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:10
 msgid "Hide"
-msgstr "Ficha"
+msgstr ""
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:13
 msgid "Less"
-msgstr "chini ya"
+msgstr ""
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:16
 msgid "Show"
-msgstr "Onyesha"
+msgstr ""
 
 #: static/js/utils.js:143
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] "Mwaka uliopitamiaka %s iliyopita"
+msgstr[0] ""
 msgstr[1] ""
 
 #: static/js/utils.js:146
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] "Wiki iliyopitawiki %s zilizopita"
+msgstr[0] ""
 msgstr[1] ""
 
 #: static/js/utils.js:149
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] "Jana"
-msgstr[1] "siku %s zilizopita"
+msgstr[0] ""
+msgstr[1] ""
 
 #: static/js/utils.js:152
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] "Saa lililopita"
-msgstr[1] "masaa %s yaliyopita"
+msgstr[0] ""
+msgstr[1] ""
 
 #: static/js/utils.js:155
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] "Dakika iliyopita"
-msgstr[1] "dakika %s zilizopita"
+msgstr[0] ""
+msgstr[1] ""
 
 #: static/js/utils.js:163
 msgid "A few seconds ago"
-msgstr "Sekunda kadhaa zilizopita"
-
-#, c-format
-#~ msgid "<a href=\"%s\">String %s</a>"
-#~ msgstr "<a hef=\"%s\">String %s</a>"
-
-#~ msgid "Congratulations, you walked through all strings."
-#~ msgstr "Hongera, umepitia tungo zote."
+msgstr ""
