@@ -7,10 +7,10 @@ This is the Pootle roadmap for the next few iterations.  Don't look here for
 small improvements, we're only tracking larger bits of work.
 
 
-.. _roadmap#2.5.1:
+.. _roadmap#november-2013:
 
-Next - 2.5.1 - estimated October 2013
--------------------------------------
+Next release (2.5.1) estimated November 2013
+--------------------------------------------
 
 - Translation editor:
 
@@ -31,10 +31,10 @@ Next - 2.5.1 - estimated October 2013
   - Add custom Python extensions exposed on the project Actions menu.
 
 
-.. _roadmap#2.5.1-next:
+.. _roadmap#april-2014:
 
-Next+1 - 2.5.2 - estimated April 2014
--------------------------------------
+Estimated release April 2014
+----------------------------
 
 - Move to Django 1.5 - remove anything keeping us on Django 1.4.
 - Live cross project Translation Memory (LibreOffice).
@@ -63,10 +63,10 @@ Next+1 - 2.5.2 - estimated April 2014
 - Contributions by a translator to a given project and language.
 
 
-.. _roadmap#2.5.1-second-next:
+.. _roadmap#october-2014:
 
-Next+2 - estimated October 2014
--------------------------------
+Estimated release October 2014
+------------------------------
 
 - Move to Django 1.6.
 - Substring matching in TM.
