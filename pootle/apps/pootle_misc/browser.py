@@ -74,7 +74,7 @@ HEADING_CHOICES = [
     },
     {
         'id': 'activity',
-        'class': 'stats when-loaded',
+        'class': 'stats sorttable_numeric when-loaded',
         'display_name': _("Last Activity"),
     },
     # NOTE: 'tags' heading is not included here on purpose to avoid the
