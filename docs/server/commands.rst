@@ -380,16 +380,16 @@ a file:
 
 .. code-block:: ini
 
-    user1	./browser/branding/official/brand.dtd.po
-    other	./browser/chrome/browser/aboutCertError.dtd.po
-    user1	browser/chrome/browser/aboutDialog.dtd.po
-    user2	browser/chrome/browser/aboutSessionRestore.dtd.po
-    developer	./browser/chrome/browser/devtools/appcacheutils.properties.po
-    developer	browser/chrome/browser/devtools/debugger.dtd.po
-    user2	browser/chrome/browser/downloads/downloads.dtd.po
-    user3	browser/chrome/browser/engineManager.dtd.po
-    install	browser/chrome/browser/migration/migration.dtd.po
-    install	./browser/chrome/browser/migration/migration.properties.po
+    user1	./browser/branding/official/brand.dtd.pot
+    other	./browser/chrome/browser/aboutCertError.dtd.pot
+    user1	browser/chrome/browser/aboutDialog.dtd.pot
+    user2	browser/chrome/browser/aboutSessionRestore.dtd.pot
+    developer	./browser/chrome/browser/devtools/appcacheutils.properties.pot
+    developer	browser/chrome/browser/devtools/debugger.dtd.pot
+    user2	browser/chrome/browser/downloads/downloads.dtd.pot
+    user3	browser/chrome/browser/engineManager.dtd.pot
+    install	browser/chrome/browser/migration/migration.dtd.pot
+    install	./browser/chrome/browser/migration/migration.properties.pot
 
 The goals are created if necessary. If the goal exists and has any relationship
 to any store, that relationships are deleted to make sure that the goals
