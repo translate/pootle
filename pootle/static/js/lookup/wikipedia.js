@@ -5,7 +5,7 @@
 
     buttonClassName: "wikipedia",
     hint: "Wikipedia",
-    url: "http://%(querylang)s.wikipedia.org/wiki/%(query)s'",
+    url: "//%(querylang)s.wikipedia.org/wiki/%(query)s'",
 
     init: function () {
       /* Bind event handler */
@@ -19,7 +19,7 @@
     lookup: function (e) {
       e.preventDefault()
       PTL.editor.lookup(this, function(lookupText, langFrom, langTo) {
-        var url = 'http://' + langFrom + '.m.wikipedia.org/wiki/' + lookupText.replace(/ /g, "_");
+        var url = '//' + langFrom + '.m.wikipedia.org/wiki/' + lookupText.replace(/ /g, "_");
         return url;
       });
     }
