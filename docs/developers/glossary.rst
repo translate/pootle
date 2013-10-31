@@ -84,3 +84,52 @@ Resource object (``resource_obj``)
 
   If the current view refers to multiple resources, the resource object is
   the same as the context object.
+
+.. _glossary#translation_states:
+
+Translation States
+------------------
+
+.. _glossary#untranslated:
+
+Untranslated
+  A unit that is not translated i.e. blank.
+
+
+.. _glossary#incomplete:
+
+Incomplete
+  See: Untranslated
+
+
+.. _glossary#translated:
+
+Translated
+  The unit has a translation.
+
+
+.. _glossary#fuzzy:
+
+Fuzzy
+  In Gettext PO fuzzy means that a unit will needs to be reviewed and will not
+  be used in production. On Pootle for the user we call this 'Needs Work' as
+  the term fuzzy is either technical for some users, or confusing to those who
+  use the term fuzzy for Translation Memory, as in 'fuzzy match'.
+
+
+.. _glossary#needs_work:
+
+Needs work
+  See: Fuzzy
+
+
+.. _glossary#needs_review:
+
+Needs review
+  See: fuzzy
+
+
+.. _glossary#needs_attention:
+
+Needs attention
+  Untraslated + Fuzzy
