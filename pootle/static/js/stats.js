@@ -128,6 +128,30 @@
           PTL.stats.updateTranslationStats($('#stats-untranslated'),
                                              data.total, untranslated);
 
+          // Sort columns based on previously-made selections
+          var columnSort = sorttable.getSortCookie($table.get(0).id);
+
+          if (columnSort !== null) {
+            var $th = $('#' + columnSort.columnId);
+            var sorted = $th.hasClass("sorttable_sorted");
+            var sorted_reverse = $th.hasClass("sorttable_sorted_reverse");
+
+            if (sorted || sorted_reverse) {
+              // If already sorted, fire the event only if the other order is
+              // desired.
+              if (sorted && columnSort.order === "desc")
+                $th.click();
+              else if (sorted_reverse && columnSort.order === "asc")
+                $th.click();
+            } else {
+              $th.click();
+
+              // If the sorting order was descending, fire another click event
+              if (columnSort.order === "desc")
+                $th.click();
+            }
+          }
+
           if (callback) {
             callback(data);
           }
