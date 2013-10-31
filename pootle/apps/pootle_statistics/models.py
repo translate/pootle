@@ -147,11 +147,11 @@ class Submission(models.Model):
             "date": self.creation_time,
             "isoformat_date": self.creation_time.isoformat(),
             "action": {
-                SubmissionTypes.REVERT: _('%(user)s reverted translation for string <i>'
-                                          '<a href="%(url)s">%(source)s</a>'
-                                          '</i>', unit),
-                SubmissionTypes.SUGG_ACCEPT: _('%(user)s accepted suggestion for string'
-                                               ' <i><a href="%(url)s">'
+                SubmissionTypes.REVERT: _('%(user)s reverted translation for '
+                                          'string <i><a href="%(url)s">'
+                                          '%(source)s</a></i>', unit),
+                SubmissionTypes.SUGG_ACCEPT: _('%(user)s accepted suggestion '
+                                               'for string <i><a href="%(url)s">'
                                                '%(source)s</a></i>', unit),
                 SubmissionTypes.UPLOAD: _('%(user)s uploaded a file', units),
             }.get(self.type, ''),
@@ -168,13 +168,15 @@ class Submission(models.Model):
                 # If the action is unset, maybe the action is one of the
                 # following ones.
                 action_bundle["action"] = {
-                    TRANSLATED: _('%(user)s submitted translation for string <i><a '
-                                  'href="%(url)s">%(source)s</a></i>', unit),
-                    FUZZY: _('%(user)s submitted "needs work" translation for string '
-                             '<i><a href="%(url)s">%(source)s</a></i>',
+                    TRANSLATED: _('%(user)s submitted translation for string '
+                                  '<i><a href="%(url)s">%(source)s</a></i>',
+                                  unit),
+                    FUZZY: _('%(user)s submitted "needs work" translation for '
+                             'string <i><a href="%(url)s">%(source)s</a></i>',
                              unit),
-                    UNTRANSLATED: _('%(user)s removed translation for string <i><a '
-                                    'href="%(url)s">%(source)s</a></i>', unit),
+                    UNTRANSLATED: _('%(user)s removed translation for string '
+                                    '<i><a href="%(url)s">%(source)s</a></i>',
+                                    unit),
                 }.get(self.unit.state, '')
             except AttributeError:
                 return ''
