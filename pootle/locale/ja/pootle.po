@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"POT-Creation-Date: 2013-10-31 17:15+0000\n"
 "PO-Revision-Date: 2013-10-29 02:36+0000\n"
 "Last-Translator: Masahiko <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -179,7 +179,7 @@ msgstr "設定が保存されました。"
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: apps/pootle_app/templates/admin/admin_general_settings.html:29
 #: apps/pootle_app/templates/admin/general_settings_form.html:15
-#: apps/staticpages/templates/staticpages/admin/_form.html:23
+#: apps/staticpages/templates/staticpages/admin/_form.html:24
 #: templates/profiles/edit_personal.html:33
 #: templates/profiles/edit_profile.html:25
 msgid "Save"
@@ -209,6 +209,7 @@ msgstr "この Pootle サーバーの名前"
 #: apps/pootle_app/forms.py:37
 #: apps/pootle_language/templates/language/overview.html:26
 #: apps/pootle_project/templates/project/overview.html:52
+#: apps/pootle_tagging/models.py:69
 #: apps/pootle_translationproject/templates/translation_project/overview.html:114
 msgid "Description"
 msgstr "説明"
@@ -742,11 +743,11 @@ msgstr "ユーザー名"
 msgid "Select one or more permissions"
 msgstr "権限を選択してください"
 
-#: apps/pootle_app/views/admin/util.py:145
+#: apps/pootle_app/views/admin/util.py:144
 msgid "No files in this project."
 msgstr "このプロジェクトにはファイルがありません。"
 
-#: apps/pootle_app/views/admin/util.py:178
+#: apps/pootle_app/views/admin/util.py:177
 msgid "There are errors in the form. Please review the problems below."
 msgstr "フォームにエラーがあります。以下の問題を見直してください。"
 
@@ -829,7 +830,7 @@ msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
 msgstr[0] "%(projects)d 件のプロジェクト、%(average)d%% 翻訳済み"
 
-#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:325
+#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:324
 #: apps/pootle_tagging/views.py:52 apps/pootle_translationproject/views.py:740
 msgid "No description yet."
 msgstr "説明はまだありません。"
@@ -846,12 +847,12 @@ msgstr "名前"
 msgid "Project"
 msgstr "プロジェクト"
 
-#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:407
+#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:406
 msgid "Language"
 msgstr "言語"
 
 #. Translators: Heading representing the priority for a goal
-#: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:72
+#: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:73
 msgid "Priority"
 msgstr "優先度"
 
@@ -1157,10 +1158,12 @@ msgstr[0] "提案を査読 (残り %(num)d 件)"
 #: apps/pootle_misc/stats.py:282
 #, python-format
 msgid ""
-"%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d fuzzy)."
+"%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d need "
+"review)."
 msgid_plural ""
-"%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d fuzzy)."
-msgstr[0] "%(type)s: %(total)d 文字列中 %(translated)d 文字列が翻訳済み (%(fuzzy)d 件がファジー)。"
+"%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d need "
+"review)."
+msgstr[0] ""
 
 #: apps/pootle_misc/stats.py:304
 #, python-format
@@ -1372,16 +1375,16 @@ msgid "Report Target"
 msgstr "報告ターゲット"
 
 #: apps/pootle_project/views.py:119
-msgid "Select one or more tags to use as filter"
-msgstr "フィルターとして使用するタグを選択してください"
+msgid "Filter using one or more tags"
+msgstr ""
 
-#: apps/pootle_project/views.py:162
+#: apps/pootle_project/views.py:161
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
 msgstr[0] "%(languages)d 言語、%(average)d%% 翻訳済み"
 
-#: apps/pootle_project/views.py:396
+#: apps/pootle_project/views.py:395
 #: apps/pootle_translationproject/actions.py:209
 msgid "Update against templates"
 msgstr "テンプレートを反映させる"
@@ -1405,8 +1408,8 @@ msgid "Filter"
 msgstr "フィルター"
 
 #: apps/pootle_project/templates/project/overview.html:38
-msgid "Filter the translation projects using this tags"
-msgstr "このタグで翻訳プロジェクトを絞り込みます"
+msgid "Filter using the selected tags"
+msgstr ""
 
 #: apps/pootle_project/templates/project/overview.html:76
 #: apps/pootle_translationproject/templates/translation_project/overview.html:43
@@ -1425,7 +1428,7 @@ msgid "Here you can add, edit, or delete the languages for this project."
 msgstr "ここでは、このプロジェクトの言語を追加、編集、削除できます。"
 
 #: apps/pootle_statistics/models.py:46
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:101
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:103
 msgid "Source"
 msgstr "ソース"
 
@@ -1445,39 +1448,44 @@ msgstr "コメント"
 msgid "anonymous user"
 msgstr "匿名ユーザー"
 
-#: apps/pootle_statistics/models.py:144
-#, python-format
-msgid ""
-"reverted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr "文字列 <i><a href=\"%(url)s\">%(source)s</a></i> の元に戻された翻訳"
-
-#: apps/pootle_statistics/models.py:147
-#, python-format
-msgid ""
-"accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr "文字列 <i><a href=\"%(url)s\">%(source)s</a></i> の採用された提案"
-
 #: apps/pootle_statistics/models.py:150
-msgid "uploaded a file"
-msgstr "ファイルをアップロードしました"
-
-#: apps/pootle_statistics/models.py:165
 #, python-format
 msgid ""
-"submitted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr "文字列 <i><a href=\"%(url)s\">%(source)s</a></i> の提出された翻訳"
-
-#: apps/pootle_statistics/models.py:167
-#, python-format
-msgid ""
-"submitted \"needs work\" translation for string <i><a href=\"%(url)s\">"
-"%(source)s</a></i>"
+"%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
+"a></i>"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:170
+#: apps/pootle_statistics/models.py:153
 #, python-format
 msgid ""
-"removed translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
+"%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
+"a></i>"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:156
+#, python-format
+msgid "%(user)s uploaded a file"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:171
+#, python-format
+msgid ""
+"%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
+"a></i>"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:174
+#, python-format
+msgid ""
+"%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
+"\">%(source)s</a></i>"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:177
+#, python-format
+msgid ""
+"%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
+"a></i>"
 msgstr ""
 
 #: apps/pootle_store/decorators.py:63
@@ -1577,23 +1585,23 @@ msgid "Path"
 msgstr "パス"
 
 #: apps/pootle_store/models.py:900
-#: apps/pootle_translationproject/models.py:114
+#: apps/pootle_translationproject/models.py:121
 msgid "Tags"
 msgstr "タグ"
 
 #: apps/pootle_store/models.py:901
-#: apps/pootle_translationproject/models.py:115
+#: apps/pootle_translationproject/models.py:122
 msgid "A comma-separated list of tags."
 msgstr "タグのカンマ区切りのリスト。"
 
 #: apps/pootle_store/models.py:902
-#: apps/pootle_translationproject/models.py:116
+#: apps/pootle_translationproject/models.py:126
 #: apps/pootle_translationproject/templates/translation_project/overview.html:69
 msgid "Goals"
 msgstr "目標"
 
 #: apps/pootle_store/models.py:904
-#: apps/pootle_translationproject/models.py:118
+#: apps/pootle_translationproject/models.py:128
 msgid "A comma-separated list of goals."
 msgstr "目標のカンマ区切りのリスト"
 
@@ -1639,8 +1647,8 @@ msgstr "コメント:"
 
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
-msgid "<a href=\"%(url)s\">String %(id)s</a>"
-msgstr "<a href=\"%(url)s\">文字列 %(id)s</a>"
+msgid "String %(id)s"
+msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -1855,8 +1863,8 @@ msgstr ""
 "(/)、ピリオド (.)。"
 
 #: apps/pootle_tagging/forms.py:133
-msgid "Already exists a goal with this name. Please pick another name."
-msgstr "この名前の目標がすでに存在します。別の名前をつけてください。"
+msgid "A goal with that name already exists. Please pick another name."
+msgstr ""
 
 #: apps/pootle_tagging/forms.py:173
 msgid ""
@@ -1868,8 +1876,8 @@ msgstr ""
 "(-)、アンダースコア (_)、スラッシュ (/)、ピリオド (.)！"
 
 #: apps/pootle_tagging/forms.py:180
-msgid "Already exists a goal with this slug!"
-msgstr "このスラッグの目標がすでに存在します！"
+msgid "A goal with this slug already exists."
+msgstr ""
 
 #: apps/pootle_tagging/forms.py:194
 msgid ""
@@ -1884,30 +1892,22 @@ msgid ""
 "instructions. Allowed markup: %s"
 msgstr "この目標の説明。より詳しい情報や指示を与えるのに役立ちます。使用可能なマークアップ: %s"
 
-#: apps/pootle_tagging/models.py:73
+#: apps/pootle_tagging/models.py:74
 msgid "The priority for this goal."
 msgstr "この目標の優先度"
 
-#: apps/pootle_tagging/models.py:78
+#: apps/pootle_tagging/models.py:79
 msgid ""
 "Designates that this is a project goal (shared across all languages in the "
 "project)."
 msgstr ""
 
-#: apps/pootle_tagging/models.py:80
+#: apps/pootle_tagging/models.py:81
 msgid "Project goal?"
 msgstr ""
 
-#: apps/pootle_tagging/models.py:104
+#: apps/pootle_tagging/models.py:105
 msgid "(Project goal)"
-msgstr ""
-
-#: apps/pootle_tagging/models.py:465
-msgid "Item with goal"
-msgstr ""
-
-#: apps/pootle_tagging/models.py:466
-msgid "Items with goal"
 msgstr ""
 
 #: apps/pootle_terminology/views.py:171
@@ -1937,7 +1937,7 @@ msgid "Term"
 msgstr "用語"
 
 #: apps/pootle_terminology/templates/terminology/manage.html:36
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:102
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:104
 msgid "Translation"
 msgstr "訳文"
 
@@ -2084,64 +2084,64 @@ msgid ""
 "uploaded file's name is used."
 msgstr "マージしたいファイルを選択できます。指定しない場合は、アップロードしたファイルの名前が使用されます。"
 
-#: apps/pootle_translationproject/models.py:101
+#: apps/pootle_translationproject/models.py:103
 #, python-format
 msgid ""
 "A description of this translation project. This is useful to give more "
 "information or instructions. Allowed markup: %s"
 msgstr "この翻訳プロジェクトの説明です。詳細情報や手順を提供するのに役立ちます。使用できるマークアップ: %s"
 
-#: apps/pootle_translationproject/models.py:579
+#: apps/pootle_translationproject/models.py:589
 #, python-format
 msgid "Failed to update from version control: %(error)s"
 msgstr "バージョン管理システムからの更新に失敗しました: %(error)s"
 
-#: apps/pootle_translationproject/models.py:649
+#: apps/pootle_translationproject/models.py:659
 #, python-format
 msgid "Updated project <em>%(project)s</em> from version control"
 msgstr "プロジェクト <em>%(project)s</em> をバージョン管理システムから更新しました"
 
-#: apps/pootle_translationproject/models.py:651
-#: apps/pootle_translationproject/models.py:673
+#: apps/pootle_translationproject/models.py:661
+#: apps/pootle_translationproject/models.py:683
 msgid "Working copy"
 msgstr "作業コピー"
 
-#: apps/pootle_translationproject/models.py:652
-#: apps/pootle_translationproject/models.py:674
+#: apps/pootle_translationproject/models.py:662
+#: apps/pootle_translationproject/models.py:684
 msgid "Remote copy"
 msgstr "リモートコピー"
 
-#: apps/pootle_translationproject/models.py:653
-#: apps/pootle_translationproject/models.py:675
+#: apps/pootle_translationproject/models.py:663
+#: apps/pootle_translationproject/models.py:685
 msgid "Merged copy"
 msgstr "マージされたコピー"
 
-#: apps/pootle_translationproject/models.py:671
+#: apps/pootle_translationproject/models.py:681
 #, python-format
 msgid "Updated file <em>%(filename)s</em> from version control"
 msgstr "ファイル <em>%(filename)s</em> をバージョン管理システムから更新しました"
 
-#: apps/pootle_translationproject/models.py:685
+#: apps/pootle_translationproject/models.py:695
 #, python-format
 msgid "Failed to update <em>%(filename)s</em> from version control: %(error)s"
 msgstr "ファイル <em>%(filename)s</em> のバージョン管理システムからの更新に失敗しました: %(error)s"
 
-#: apps/pootle_translationproject/models.py:741
+#: apps/pootle_translationproject/models.py:751
 #, python-format
 msgid "Committed all files under <em>%(path)s</em> to version control"
 msgstr "<em>%(path)s</em> 配下のすべてのファイルをバージョン管理システムにコミットしました"
 
-#: apps/pootle_translationproject/models.py:749
+#: apps/pootle_translationproject/models.py:759
 #, python-format
 msgid "Failed to commit to version control: %(error)s"
 msgstr "バージョン管理システムへのコミットに失敗しました: %(error)s"
 
-#: apps/pootle_translationproject/models.py:808
+#: apps/pootle_translationproject/models.py:818
 #, python-format
 msgid "Committed file <em>%(filename)s</em> to version control"
 msgstr "ファイル <em>%(filename)s</em> をバージョン管理システムにコミットしました"
 
-#: apps/pootle_translationproject/models.py:820
+#: apps/pootle_translationproject/models.py:830
 #, python-format
 msgid "Failed to commit <em>%(filename)s</em> to version control: %(error)s"
 msgstr "ファイル <em>%(filename)s</em> のバージョン管理システムへのコミットに失敗しました: %(error)s"
@@ -2189,7 +2189,7 @@ msgstr ""
 
 #: apps/pootle_translationproject/views.py:400
 #, python-format
-msgid "Exception while running '%s' extension action"
+msgid "Error while running '%s' extension action"
 msgstr ""
 
 #: apps/pootle_translationproject/views.py:820
@@ -2229,15 +2229,17 @@ msgid ""
 "project."
 msgstr "以下では、この翻訳プロジェクトの権限の追加、編集、削除ができます。"
 
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:5
+#. Translators: A view showing the export of strings in a flat form.
+#. See http://staging.locamotion.org/he/birdfont/export-view/?filter=incomplete
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:7
 msgid "Export View"
 msgstr ""
 
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:97
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:99
 msgid "Goal"
 msgstr "目標"
 
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:139
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:141
 msgid "No strings."
 msgstr "文字列がありません。"
 
@@ -2356,38 +2358,39 @@ msgstr "このページがアクティブかそうではないかです。"
 msgid "Virtual Path"
 msgstr ""
 
-#: apps/staticpages/models.py:46
+#. Translators: Content that will be used to display this static page
+#: apps/staticpages/models.py:47
 msgid "Display Content"
 msgstr ""
 
-#: apps/staticpages/models.py:47
+#: apps/staticpages/models.py:48
 #, python-format
 msgid "Allowed markup: %s"
 msgstr "使用できるマークアップ: %s"
 
-#: apps/staticpages/models.py:49
+#: apps/staticpages/models.py:50
 #: apps/staticpages/templates/staticpages/admin/_table.html:10
 msgid "Redirect to URL"
 msgstr "リダイレクト先 URL"
 
-#: apps/staticpages/models.py:50
+#: apps/staticpages/models.py:51
 msgid "If set, any references to this page will redirect to this URL"
 msgstr "設定されている場合、このページヘの参照はこの URL にリダイレクトします"
 
 #. Translators: 'URL' and 'content' refer to form fields.
-#: apps/staticpages/models.py:97
+#: apps/staticpages/models.py:98
 msgid "URL or content must be provided."
 msgstr "URL またはコンテンツの入力は必須です。"
 
-#: apps/staticpages/models.py:105
+#: apps/staticpages/models.py:106
 msgid "Virtual path already in use."
 msgstr ""
 
-#: apps/staticpages/models.py:110
+#: apps/staticpages/models.py:111
 msgid "Legal Page"
 msgstr "法的事項のページ"
 
-#: apps/staticpages/models.py:121
+#: apps/staticpages/models.py:122
 msgid "Regular Page"
 msgstr ""
 
@@ -2429,7 +2432,8 @@ msgstr ""
 msgid "Static Pages"
 msgstr ""
 
-#: apps/staticpages/templates/staticpages/admin/_form.html:18
+#. Translators: Displayed as 'Redirect to URL or Display Content'
+#: apps/staticpages/templates/staticpages/admin/_form.html:19
 msgid "or"
 msgstr ""
 
@@ -3183,6 +3187,47 @@ msgstr "アカウント登録はお済みですか?"
 #: templates/registration/registration_form.html:54
 msgid "Log In."
 msgstr "ログイン"
+
+#, python-format
+#~ msgid ""
+#~ "%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d fuzzy)."
+#~ msgid_plural ""
+#~ "%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d fuzzy)."
+#~ msgstr[0] "%(type)s: %(total)d 文字列中 %(translated)d 文字列が翻訳済み (%(fuzzy)d 件がファジー)。"
+
+#~ msgid "Select one or more tags to use as filter"
+#~ msgstr "フィルターとして使用するタグを選択してください"
+
+#~ msgid "Filter the translation projects using this tags"
+#~ msgstr "このタグで翻訳プロジェクトを絞り込みます"
+
+#, python-format
+#~ msgid ""
+#~ "reverted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
+#~ msgstr "文字列 <i><a href=\"%(url)s\">%(source)s</a></i> の元に戻された翻訳"
+
+#, python-format
+#~ msgid ""
+#~ "accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</a></i>"
+#~ msgstr "文字列 <i><a href=\"%(url)s\">%(source)s</a></i> の採用された提案"
+
+#~ msgid "uploaded a file"
+#~ msgstr "ファイルをアップロードしました"
+
+#, python-format
+#~ msgid ""
+#~ "submitted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
+#~ msgstr "文字列 <i><a href=\"%(url)s\">%(source)s</a></i> の提出された翻訳"
+
+#, python-format
+#~ msgid "<a href=\"%(url)s\">String %(id)s</a>"
+#~ msgstr "<a href=\"%(url)s\">文字列 %(id)s</a>"
+
+#~ msgid "Already exists a goal with this name. Please pick another name."
+#~ msgstr "この名前の目標がすでに存在します。別の名前をつけてください。"
+
+#~ msgid "Already exists a goal with this slug!"
+#~ msgstr "このスラッグの目標がすでに存在します！"
 
 #~ msgid "Display on registration"
 #~ msgstr "登録時に表示"

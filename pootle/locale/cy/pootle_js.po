@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 15:03+0000\n"
+"POT-Creation-Date: 2013-10-31 17:15+0000\n"
 "PO-Revision-Date: 2013-02-25 16:00+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,199 +16,222 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n==2) ? 1 : 0;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1361808044.0\n"
+"X-POOTLE-MTIME: 1382987175.0\n"
 
 #: static/js/common.js:13
 msgid "All Languages"
-msgstr ""
+msgstr "Všechny jazyky"
 
 #: static/js/common.js:26
 msgid "All Projects"
-msgstr ""
+msgstr "Všechny projekty"
 
 #: static/js/common.js:62
+#, fuzzy
 msgid "Expand details"
-msgstr "Ehangu manylion"
+msgstr "Rozbalit podrobnosti"
 
 #: static/js/common.js:62
+#, fuzzy
 msgid "Collapse details"
-msgstr "Lleihau manylion"
+msgstr "Sbalit podrobnosti"
 
 #: static/js/common.js:91
+#, fuzzy
 msgid "Are you sure you want to continue?"
-msgstr "Ydych chi'n siŵr eich bod am barhau?"
+msgstr "Opravdu chcete pokračovat?"
 
 #: static/js/common.js:92
+#, fuzzy
 msgid "This operation cannot be undone."
-msgstr "Nid oes modd dadwneud y weithred hon."
+msgstr "Tuto akci nelze vrátit zpět."
 
 #: static/js/common.js:139
 msgid "Show tags"
-msgstr ""
+msgstr "Zobrazit štítky"
 
 #: static/js/common.js:142 static/js/vendor/sorttable.js:365
 msgid "Hide tags"
-msgstr ""
+msgstr "Skrýt štítky"
 
 #: static/js/common.js:276 static/js/common.js.c:292
 msgid "Hide filtering"
-msgstr ""
+msgstr "Skrýt filtrování"
 
 #: static/js/common.js:279 static/js/common.js.c:286
 msgid "Show filtering"
-msgstr ""
+msgstr "Zobrazit filtrování"
 
 #: static/js/editor.js:209
 msgid "Go to the next string (Ctrl+.)"
-msgstr ""
+msgstr "Přejít na další řetězec (Ctrl+.)"
 
 #: static/js/editor.js:215
 msgid "Go to the previous string (Ctrl+,)"
-msgstr ""
+msgstr "Přejít na předchozí řetězec (Ctrl+,)"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:333
 #, c-format
 msgid "%s's pending suggestions"
-msgstr ""
+msgstr "Nevyřízené návrhy uživatele %s"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:336
 #, c-format
 msgid "%s's accepted suggestions"
-msgstr ""
+msgstr "Přijaté návrhy uživatele %s"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:339
 #, c-format
 msgid "%s's rejected suggestions"
-msgstr ""
+msgstr "Odmítnuté návrhy uživatele %s"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:342
 #, c-format
 msgid "%s's submissions"
-msgstr ""
+msgstr "Překlady uživatele %s"
 
-#. Translators: '%s' is a username
+#. Translators: '%s' is a username, meaning "submissions by %s, that were overwritten"
 #: static/js/editor.js:345
 #, c-format
 msgid "%s's overwritten submissions"
-msgstr ""
+msgstr "Přepsané překlady uživatele %s"
 
 #: static/js/editor.js:476 static/js/editor.js.c:1521
+#, fuzzy
 msgid "No results."
-msgstr "Dim canlyniadau."
+msgstr "Žádné výsledky."
 
 #: static/js/editor.js:748
 msgid "Export View"
-msgstr ""
+msgstr "Exportovat pohled"
 
 #: static/js/editor.js:798
+#, fuzzy
 msgid "Error while connecting to the server"
-msgstr "Gwall wrth gysylltu a'r gweinydd"
+msgstr "Při připojování k serveru došlo k chybě"
 
 #: static/js/editor.js:800
+#, fuzzy
 msgid "Server error"
-msgstr "Gall gweinydd"
+msgstr "Chyba serveru"
 
 #: static/js/editor.js:802
+#, fuzzy
 msgid "The server seems down. Try again later."
-msgstr "Mae'n ymddangos fod y gweinydd i lawr. Ceisiwch eto'n hwyrach."
+msgstr "Zdá se, že server není funkční. Zkuste se připojit později."
 
 #: static/js/editor.js:809
+#, fuzzy
 msgid "Unknown error"
-msgstr "Gwall anhysbys"
+msgstr "Neznámá chyba"
 
 #: static/js/editor.js:1367
+#, fuzzy
 msgid "You reached the beginning of the list"
-msgstr "Rydych wedi cyrraedd cychwyn y rhestr"
+msgstr "Dosáhli jste začátku seznamu"
 
 #: static/js/editor.js:1370
+#, fuzzy
 msgid "You reached the end of the list."
-msgstr "Rydych wedi cyrraedd diwedd y rhestr."
+msgstr "Dosáhli jste konce seznamu."
 
 #: static/js/editor.js:1372
+#, fuzzy
 msgid "Return to the overview page."
-msgstr "Nôl i'r dudalen trosolwg"
+msgstr "Zpět na stránku přehledu."
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
 #. '%' symbol to denote a percentage is being used.
 #: static/js/editor.js:1807
-#, c-format
+#, c-format, fuzzy
 msgid "%s% match"
-msgstr "%s% yn cydweddu"
+msgstr "%s% shoda"
 
 #: static/js/editor.js:1851
+#, fuzzy
 msgid "Similar translations"
-msgstr "Cyfieithiadau tebyg"
+msgstr "Obdobné překlady"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:7
+#, fuzzy
 msgid "More"
-msgstr "Rhagor"
+msgstr "Více"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:10
+#, fuzzy
 msgid "Hide"
-msgstr "Cuddio"
+msgstr "Skrýt"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:13
+#, fuzzy
 msgid "Less"
-msgstr "Llai"
+msgstr "Méně"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:16
+#, fuzzy
 msgid "Show"
-msgstr "Dangos"
+msgstr "Zobrazit"
 
 #: static/js/utils.js:143
-#, c-format
+#, c-format, fuzzy
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] "1 blwyddyn yn ôl"
-msgstr[1] "% blwyddyn yn ôl"
+msgstr[0] "Před rokem"
+msgstr[1] "Před %s roky"
+msgstr[2] "Před %s roky"
 
 #: static/js/utils.js:146
-#, c-format
+#, c-format, fuzzy
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] "Wythnos yn ôl"
-msgstr[1] "%s wythnos yn ôl"
+msgstr[0] "Před týdnem"
+msgstr[1] "Před %s týdny"
+msgstr[2] "Před %s týdny"
 
 #: static/js/utils.js:149
-#, c-format
+#, c-format, fuzzy
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] "Ddoe"
-msgstr[1] "%s diwrnod yn ôl"
+msgstr[0] "Včera"
+msgstr[1] "Před %s dny"
+msgstr[2] "Před %s dny"
 
 #: static/js/utils.js:152
-#, c-format
+#, c-format, fuzzy
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] "Awr yn ôl"
-msgstr[1] "%s awr yn ôl"
+msgstr[0] "Před hodinou"
+msgstr[1] "Před %s hodinami"
+msgstr[2] "Před %s hodinami"
 
 #: static/js/utils.js:155
-#, c-format
+#, c-format, fuzzy
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] "Munud yn ôl"
-msgstr[1] "% munud yn ôl"
+msgstr[0] "Před minutou"
+msgstr[1] "Před %s minutami"
+msgstr[2] "Před %s minutami"
 
 #: static/js/utils.js:163
+#, fuzzy
 msgid "A few seconds ago"
-msgstr "Ychydig eiliadau yn ôl"
+msgstr "Před pár sekundami"
 
 #, c-format
 #~ msgid "<a href=\"%s\">String %s</a>"
-#~ msgstr "<a href=\"%s\">Llinyn %s</a>"
+#~ msgstr "<a href=\"%s\">Řetězec %s</a>"
 
 #~ msgid "Congratulations, you walked through all strings."
-#~ msgstr "Llongyfarchiadau, rydych wedi cwblhau'r holl linynnau."
+#~ msgstr "Gratulujeme, prošli jste všechny položky."
 
 #, c-format
 #~ msgid "<a href=\"%s\">Unit %s</a>"

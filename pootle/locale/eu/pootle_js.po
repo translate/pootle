@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 15:03+0000\n"
+"POT-Creation-Date: 2013-10-31 17:15+0000\n"
 "PO-Revision-Date: 2013-10-28 16:01+0000\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -90,7 +90,7 @@ msgstr "%s erabiltzaileari baztertutako gomendioak"
 msgid "%s's submissions"
 msgstr "%s erabiltzailearen bidalketak"
 
-#. Translators: '%s' is a username
+#. Translators: '%s' is a username, meaning "submissions by %s, that were overwritten"
 #: static/js/editor.js:345
 #, c-format
 msgid "%s's overwritten submissions"

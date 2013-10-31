@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"POT-Creation-Date: 2013-10-31 17:15+0000\n"
 "PO-Revision-Date: 2013-10-31 16:12+0000\n"
 "Last-Translator: Wei <contact@huwei.name>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -178,7 +178,7 @@ msgstr "设置已经保存。"
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: apps/pootle_app/templates/admin/admin_general_settings.html:29
 #: apps/pootle_app/templates/admin/general_settings_form.html:15
-#: apps/staticpages/templates/staticpages/admin/_form.html:23
+#: apps/staticpages/templates/staticpages/admin/_form.html:24
 #: templates/profiles/edit_personal.html:33
 #: templates/profiles/edit_profile.html:25
 msgid "Save"
@@ -208,6 +208,7 @@ msgstr "本 Pootle 服务器的名字"
 #: apps/pootle_app/forms.py:37
 #: apps/pootle_language/templates/language/overview.html:26
 #: apps/pootle_project/templates/project/overview.html:52
+#: apps/pootle_tagging/models.py:69
 #: apps/pootle_translationproject/templates/translation_project/overview.html:114
 msgid "Description"
 msgstr "介绍"
@@ -723,11 +724,11 @@ msgstr "用户名"
 msgid "Select one or more permissions"
 msgstr "选择一项或多项权限"
 
-#: apps/pootle_app/views/admin/util.py:145
+#: apps/pootle_app/views/admin/util.py:144
 msgid "No files in this project."
 msgstr "这个项目里没有文件。"
 
-#: apps/pootle_app/views/admin/util.py:178
+#: apps/pootle_app/views/admin/util.py:177
 msgid "There are errors in the form. Please review the problems below."
 msgstr "这个表单中存在问题。请审阅下列错误。"
 
@@ -809,7 +810,7 @@ msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
 msgstr[0] "%(projects)d 个项目, %(average)d%% 已翻译"
 
-#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:325
+#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:324
 #: apps/pootle_tagging/views.py:52 apps/pootle_translationproject/views.py:740
 msgid "No description yet."
 msgstr "尚无描述。"
@@ -826,12 +827,12 @@ msgstr "名称"
 msgid "Project"
 msgstr "项目"
 
-#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:407
+#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:406
 msgid "Language"
 msgstr "语言"
 
 #. Translators: Heading representing the priority for a goal
-#: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:72
+#: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:73
 msgid "Priority"
 msgstr "优先级"
 
@@ -1137,10 +1138,12 @@ msgstr[0] "审阅建议 (%(num)d left)"
 #: apps/pootle_misc/stats.py:282
 #, python-format
 msgid ""
-"%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d fuzzy)."
+"%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d need "
+"review)."
 msgid_plural ""
-"%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d fuzzy)."
-msgstr[0] "%(type)s: %(translated)d 于 %(total)d 字符串已翻译 (%(fuzzy)d 模糊)。"
+"%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d need "
+"review)."
+msgstr[0] ""
 
 #: apps/pootle_misc/stats.py:304
 #, python-format
@@ -1353,16 +1356,16 @@ msgid "Report Target"
 msgstr "报告目标"
 
 #: apps/pootle_project/views.py:119
-msgid "Select one or more tags to use as filter"
-msgstr "选择用于过滤的一个或多个标签"
+msgid "Filter using one or more tags"
+msgstr ""
 
-#: apps/pootle_project/views.py:162
+#: apps/pootle_project/views.py:161
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
 msgstr[0] "%(languages)d 种语言，%(average)d%% 已翻译"
 
-#: apps/pootle_project/views.py:396
+#: apps/pootle_project/views.py:395
 #: apps/pootle_translationproject/actions.py:209
 msgid "Update against templates"
 msgstr "基于模板更新"
@@ -1386,7 +1389,7 @@ msgid "Filter"
 msgstr "过滤"
 
 #: apps/pootle_project/templates/project/overview.html:38
-msgid "Filter the translation projects using this tags"
+msgid "Filter using the selected tags"
 msgstr ""
 
 #: apps/pootle_project/templates/project/overview.html:76
@@ -1406,7 +1409,7 @@ msgid "Here you can add, edit, or delete the languages for this project."
 msgstr "您可以在这里为这个项目增加、编辑和删除语言。"
 
 #: apps/pootle_statistics/models.py:46
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:101
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:103
 msgid "Source"
 msgstr "源"
 
@@ -1426,39 +1429,44 @@ msgstr "注释"
 msgid "anonymous user"
 msgstr "匿名用户"
 
-#: apps/pootle_statistics/models.py:144
-#, python-format
-msgid ""
-"reverted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr ""
-
-#: apps/pootle_statistics/models.py:147
-#, python-format
-msgid ""
-"accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr ""
-
 #: apps/pootle_statistics/models.py:150
-msgid "uploaded a file"
-msgstr "上传了一个文件"
-
-#: apps/pootle_statistics/models.py:165
 #, python-format
 msgid ""
-"submitted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
+"%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
+"a></i>"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:167
+#: apps/pootle_statistics/models.py:153
 #, python-format
 msgid ""
-"submitted \"needs work\" translation for string <i><a href=\"%(url)s\">"
-"%(source)s</a></i>"
+"%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
+"a></i>"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:170
+#: apps/pootle_statistics/models.py:156
+#, python-format
+msgid "%(user)s uploaded a file"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:171
 #, python-format
 msgid ""
-"removed translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
+"%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
+"a></i>"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:174
+#, python-format
+msgid ""
+"%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
+"\">%(source)s</a></i>"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:177
+#, python-format
+msgid ""
+"%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
+"a></i>"
 msgstr ""
 
 #: apps/pootle_store/decorators.py:63
@@ -1558,23 +1566,23 @@ msgid "Path"
 msgstr "路径"
 
 #: apps/pootle_store/models.py:900
-#: apps/pootle_translationproject/models.py:114
+#: apps/pootle_translationproject/models.py:121
 msgid "Tags"
 msgstr "标签"
 
 #: apps/pootle_store/models.py:901
-#: apps/pootle_translationproject/models.py:115
+#: apps/pootle_translationproject/models.py:122
 msgid "A comma-separated list of tags."
 msgstr "逗号分割的标签列表。"
 
 #: apps/pootle_store/models.py:902
-#: apps/pootle_translationproject/models.py:116
+#: apps/pootle_translationproject/models.py:126
 #: apps/pootle_translationproject/templates/translation_project/overview.html:69
 msgid "Goals"
 msgstr "目标"
 
 #: apps/pootle_store/models.py:904
-#: apps/pootle_translationproject/models.py:118
+#: apps/pootle_translationproject/models.py:128
 msgid "A comma-separated list of goals."
 msgstr "以逗号分割的目标列表。"
 
@@ -1620,8 +1628,8 @@ msgstr "注释:"
 
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
-msgid "<a href=\"%(url)s\">String %(id)s</a>"
-msgstr "<a href=\"%(url)s\">字符串 %(id)s</a>"
+msgid "String %(id)s"
+msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -1829,7 +1837,7 @@ msgid ""
 msgstr ""
 
 #: apps/pootle_tagging/forms.py:133
-msgid "Already exists a goal with this name. Please pick another name."
+msgid "A goal with that name already exists. Please pick another name."
 msgstr ""
 
 #: apps/pootle_tagging/forms.py:173
@@ -1840,7 +1848,7 @@ msgid ""
 msgstr ""
 
 #: apps/pootle_tagging/forms.py:180
-msgid "Already exists a goal with this slug!"
+msgid "A goal with this slug already exists."
 msgstr ""
 
 #: apps/pootle_tagging/forms.py:194
@@ -1856,30 +1864,22 @@ msgid ""
 "instructions. Allowed markup: %s"
 msgstr ""
 
-#: apps/pootle_tagging/models.py:73
+#: apps/pootle_tagging/models.py:74
 msgid "The priority for this goal."
 msgstr "该目标的优先级。"
 
-#: apps/pootle_tagging/models.py:78
+#: apps/pootle_tagging/models.py:79
 msgid ""
 "Designates that this is a project goal (shared across all languages in the "
 "project)."
 msgstr ""
 
-#: apps/pootle_tagging/models.py:80
+#: apps/pootle_tagging/models.py:81
 msgid "Project goal?"
 msgstr "项目目标？"
 
-#: apps/pootle_tagging/models.py:104
+#: apps/pootle_tagging/models.py:105
 msgid "(Project goal)"
-msgstr ""
-
-#: apps/pootle_tagging/models.py:465
-msgid "Item with goal"
-msgstr ""
-
-#: apps/pootle_tagging/models.py:466
-msgid "Items with goal"
 msgstr ""
 
 #: apps/pootle_terminology/views.py:171
@@ -1909,7 +1909,7 @@ msgid "Term"
 msgstr "术语"
 
 #: apps/pootle_terminology/templates/terminology/manage.html:36
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:102
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:104
 msgid "Translation"
 msgstr "译文"
 
@@ -2056,66 +2056,66 @@ msgid ""
 "uploaded file's name is used."
 msgstr "选择要合并的文件(可选)。若不指定，将使用上传文件的文件名。"
 
-#: apps/pootle_translationproject/models.py:101
+#: apps/pootle_translationproject/models.py:103
 #, python-format
 msgid ""
 "A description of this translation project. This is useful to give more "
 "information or instructions. Allowed markup: %s"
 msgstr "此翻译项目的描述。用于给出更多信息或说明。允许的标记：%s"
 
-#: apps/pootle_translationproject/models.py:579
+#: apps/pootle_translationproject/models.py:589
 #, python-format
 #, python-format, python-format
 msgid "Failed to update from version control: %(error)s"
 msgstr "从版本控制系统更新失败： %(error)s"
 
-#: apps/pootle_translationproject/models.py:649
+#: apps/pootle_translationproject/models.py:659
 #, python-format
 msgid "Updated project <em>%(project)s</em> from version control"
 msgstr "已从版本控制系统更新了项目 <em>%(project)s</em>"
 
-#: apps/pootle_translationproject/models.py:651
-#: apps/pootle_translationproject/models.py:673
+#: apps/pootle_translationproject/models.py:661
+#: apps/pootle_translationproject/models.py:683
 msgid "Working copy"
 msgstr "工作副本"
 
-#: apps/pootle_translationproject/models.py:652
-#: apps/pootle_translationproject/models.py:674
+#: apps/pootle_translationproject/models.py:662
+#: apps/pootle_translationproject/models.py:684
 msgid "Remote copy"
 msgstr "远程副本"
 
-#: apps/pootle_translationproject/models.py:653
-#: apps/pootle_translationproject/models.py:675
+#: apps/pootle_translationproject/models.py:663
+#: apps/pootle_translationproject/models.py:685
 msgid "Merged copy"
 msgstr "合并的副本"
 
-#: apps/pootle_translationproject/models.py:671
+#: apps/pootle_translationproject/models.py:681
 #, python-format
 #, python-format, python-format
 msgid "Updated file <em>%(filename)s</em> from version control"
 msgstr "已从版本控制系统更新了文件 <em>%(filename)s</em>"
 
-#: apps/pootle_translationproject/models.py:685
+#: apps/pootle_translationproject/models.py:695
 #, python-format
 msgid "Failed to update <em>%(filename)s</em> from version control: %(error)s"
 msgstr "从版本控制系统更新 <em>%(filename)s</em> 失败：%(error)s"
 
-#: apps/pootle_translationproject/models.py:741
+#: apps/pootle_translationproject/models.py:751
 #, python-format
 msgid "Committed all files under <em>%(path)s</em> to version control"
 msgstr "已将 <em>%(path)s</em> 下的所有文件提交到版本控制系统"
 
-#: apps/pootle_translationproject/models.py:749
+#: apps/pootle_translationproject/models.py:759
 #, python-format
 msgid "Failed to commit to version control: %(error)s"
 msgstr "提交到版本控制失败： %(error)s"
 
-#: apps/pootle_translationproject/models.py:808
+#: apps/pootle_translationproject/models.py:818
 #, python-format
 msgid "Committed file <em>%(filename)s</em> to version control"
 msgstr "已将文件 <em>%(filename)s</em> 提交到版本控制"
 
-#: apps/pootle_translationproject/models.py:820
+#: apps/pootle_translationproject/models.py:830
 #, python-format
 msgid "Failed to commit <em>%(filename)s</em> to version control: %(error)s"
 msgstr "将 <em>%(filename)s</em> 提交到版本控制系统失败：%(error)s"
@@ -2163,7 +2163,7 @@ msgstr ""
 
 #: apps/pootle_translationproject/views.py:400
 #, python-format
-msgid "Exception while running '%s' extension action"
+msgid "Error while running '%s' extension action"
 msgstr ""
 
 #: apps/pootle_translationproject/views.py:820
@@ -2201,15 +2201,17 @@ msgid ""
 "project."
 msgstr "以下您可以为这个翻译项目增加、编辑和删除相关权限。"
 
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:5
+#. Translators: A view showing the export of strings in a flat form.
+#. See http://staging.locamotion.org/he/birdfont/export-view/?filter=incomplete
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:7
 msgid "Export View"
 msgstr "导出视图"
 
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:97
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:99
 msgid "Goal"
 msgstr "目标"
 
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:139
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:141
 msgid "No strings."
 msgstr "无字符串。"
 
@@ -2328,38 +2330,39 @@ msgstr "这个页面是否活动。"
 msgid "Virtual Path"
 msgstr "虚拟路径"
 
-#: apps/staticpages/models.py:46
+#. Translators: Content that will be used to display this static page
+#: apps/staticpages/models.py:47
 msgid "Display Content"
 msgstr "显示内容"
 
-#: apps/staticpages/models.py:47
+#: apps/staticpages/models.py:48
 #, python-format
 msgid "Allowed markup: %s"
 msgstr "允许的标记：%s"
 
-#: apps/staticpages/models.py:49
+#: apps/staticpages/models.py:50
 #: apps/staticpages/templates/staticpages/admin/_table.html:10
 msgid "Redirect to URL"
 msgstr "重定向到 URL"
 
-#: apps/staticpages/models.py:50
+#: apps/staticpages/models.py:51
 msgid "If set, any references to this page will redirect to this URL"
 msgstr "如果设置，则任何对此页面的引用都将会重定向到此 URL"
 
 #. Translators: 'URL' and 'content' refer to form fields.
-#: apps/staticpages/models.py:97
+#: apps/staticpages/models.py:98
 msgid "URL or content must be provided."
 msgstr "必须提供 URL 或内容。"
 
-#: apps/staticpages/models.py:105
+#: apps/staticpages/models.py:106
 msgid "Virtual path already in use."
 msgstr "虚拟路径已在使用中。"
 
-#: apps/staticpages/models.py:110
+#: apps/staticpages/models.py:111
 msgid "Legal Page"
 msgstr "法律页面"
 
-#: apps/staticpages/models.py:121
+#: apps/staticpages/models.py:122
 msgid "Regular Page"
 msgstr "常规页面"
 
@@ -2401,7 +2404,8 @@ msgstr "继续"
 msgid "Static Pages"
 msgstr "静态页面"
 
-#: apps/staticpages/templates/staticpages/admin/_form.html:18
+#. Translators: Displayed as 'Redirect to URL or Display Content'
+#: apps/staticpages/templates/staticpages/admin/_form.html:19
 msgid "or"
 msgstr "或"
 
@@ -3152,6 +3156,23 @@ msgstr "已经拥有一个帐号？"
 #: templates/registration/registration_form.html:54
 msgid "Log In."
 msgstr "登录。"
+
+#, python-format
+#~ msgid ""
+#~ "%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d fuzzy)."
+#~ msgid_plural ""
+#~ "%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d fuzzy)."
+#~ msgstr[0] "%(type)s: %(translated)d 于 %(total)d 字符串已翻译 (%(fuzzy)d 模糊)。"
+
+#~ msgid "Select one or more tags to use as filter"
+#~ msgstr "选择用于过滤的一个或多个标签"
+
+#~ msgid "uploaded a file"
+#~ msgstr "上传了一个文件"
+
+#, python-format
+#~ msgid "<a href=\"%(url)s\">String %(id)s</a>"
+#~ msgstr "<a href=\"%(url)s\">字符串 %(id)s</a>"
 
 #~ msgid "Display on registration"
 #~ msgstr "注册时显示"

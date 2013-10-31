@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"POT-Creation-Date: 2013-10-31 17:15+0000\n"
 "PO-Revision-Date: 2013-10-29 16:03+0000\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -188,7 +188,7 @@ msgstr "تم حفظ الإعدادات."
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: apps/pootle_app/templates/admin/admin_general_settings.html:29
 #: apps/pootle_app/templates/admin/general_settings_form.html:15
-#: apps/staticpages/templates/staticpages/admin/_form.html:23
+#: apps/staticpages/templates/staticpages/admin/_form.html:24
 #: templates/profiles/edit_personal.html:33
 #: templates/profiles/edit_profile.html:25
 msgid "Save"
@@ -218,6 +218,7 @@ msgstr "اسم خادوم بوتل هذا"
 #: apps/pootle_app/forms.py:37
 #: apps/pootle_language/templates/language/overview.html:26
 #: apps/pootle_project/templates/project/overview.html:52
+#: apps/pootle_tagging/models.py:69
 #: apps/pootle_translationproject/templates/translation_project/overview.html:114
 msgid "Description"
 msgstr "الوصف"
@@ -768,11 +769,11 @@ msgstr "اسم المستخدم"
 msgid "Select one or more permissions"
 msgstr "اختر صلاحية أو أكثر"
 
-#: apps/pootle_app/views/admin/util.py:145
+#: apps/pootle_app/views/admin/util.py:144
 msgid "No files in this project."
 msgstr "لا يحتوى المشروع على أي ملفات."
 
-#: apps/pootle_app/views/admin/util.py:178
+#: apps/pootle_app/views/admin/util.py:177
 msgid "There are errors in the form. Please review the problems below."
 msgstr "بالاستمارة أخطاء. رجاء مراجعة المشاكل المذكورة أدناه."
 
@@ -868,7 +869,7 @@ msgstr[3] "%(projects)d مشاريع، مترجمة بنسبة %(average)d٪"
 msgstr[4] "%(projects)d مشروعًا، مترجمة بنسبة %(average)d٪"
 msgstr[5] "%(projects)d مشروع، مترجمة بنسبة %(average)d٪"
 
-#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:325
+#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:324
 #: apps/pootle_tagging/views.py:52 apps/pootle_translationproject/views.py:740
 msgid "No description yet."
 msgstr "لا وصف حتى الآن."
@@ -885,12 +886,12 @@ msgstr "الاسم"
 msgid "Project"
 msgstr "المشروع"
 
-#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:407
+#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:406
 msgid "Language"
 msgstr "اللغة"
 
 #. Translators: Heading representing the priority for a goal
-#: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:72
+#: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:73
 msgid "Priority"
 msgstr "الأولويّة"
 
@@ -1235,21 +1236,17 @@ msgstr[5] "راجع المقترحات (بقيَ %(num)d)"
 #: apps/pootle_misc/stats.py:282
 #, python-format
 msgid ""
-"%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d fuzzy)."
+"%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d need "
+"review)."
 msgid_plural ""
-"%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d fuzzy)."
-msgstr[0] "‏%(type)s: لا مقاطع مُترجمة من أصل %(total)d (%(fuzzy)d تحتاج للعمل)."
-msgstr[1] "‏%(type)s: مقطع واحد مُترجم من أصل %(total)d (%(fuzzy)d تحتاج للعمل)."
-msgstr[2] "‏%(type)s: مقطعين مُترجمين من أصل %(total)d (%(fuzzy)d تحتاج للعمل)."
+"%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d need "
+"review)."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 msgstr[3] ""
-"‏%(type)s: %(translated)d مقاطع مُترجمة من أصل %(total)d (%(fuzzy)d تحتاج "
-"للعمل)."
 msgstr[4] ""
-"‏%(type)s: %(translated)d مقطعًا مُترجمًا من أصل %(total)d (%(fuzzy)d تحتاج "
-"للعمل)."
 msgstr[5] ""
-"‏%(type)s: %(translated)d مقطع مُترجم من أصل %(total)d (%(fuzzy)d تحتاج "
-"للعمل)."
 
 #: apps/pootle_misc/stats.py:304
 #, python-format
@@ -1479,10 +1476,10 @@ msgid "Report Target"
 msgstr "مكان الإبلاغ"
 
 #: apps/pootle_project/views.py:119
-msgid "Select one or more tags to use as filter"
-msgstr "اختر وسمًا أو أكثر لاستخدامه مرشِّحًا"
+msgid "Filter using one or more tags"
+msgstr ""
 
-#: apps/pootle_project/views.py:162
+#: apps/pootle_project/views.py:161
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
@@ -1493,7 +1490,7 @@ msgstr[3] "%(languages)d لغات، مترجمة بنسبة %(average)d٪"
 msgstr[4] "%(languages)d لغة، مترجمة بنسبة %(average)d٪"
 msgstr[5] "%(languages)d لغة، مترجمة بنسبة %(average)d٪"
 
-#: apps/pootle_project/views.py:396
+#: apps/pootle_project/views.py:395
 #: apps/pootle_translationproject/actions.py:209
 msgid "Update against templates"
 msgstr "حدّث من القوالب"
@@ -1517,8 +1514,8 @@ msgid "Filter"
 msgstr "رشِّح"
 
 #: apps/pootle_project/templates/project/overview.html:38
-msgid "Filter the translation projects using this tags"
-msgstr "رشّح مشروع الترجمة باستخدام الوسوم"
+msgid "Filter using the selected tags"
+msgstr ""
 
 #: apps/pootle_project/templates/project/overview.html:76
 #: apps/pootle_translationproject/templates/translation_project/overview.html:43
@@ -1537,7 +1534,7 @@ msgid "Here you can add, edit, or delete the languages for this project."
 msgstr "يمكن إضافة و حذف لغات لذلك المشروع."
 
 #: apps/pootle_statistics/models.py:46
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:101
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:103
 msgid "Source"
 msgstr "الأصل"
 
@@ -1557,40 +1554,45 @@ msgstr "التعليق"
 msgid "anonymous user"
 msgstr "مستخدم غير مُسجّل"
 
-#: apps/pootle_statistics/models.py:144
-#, python-format
-msgid ""
-"reverted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr "استعاد الترجمة القديمة لمقطع <i><a href=\"%(url)s\">%(source)s</a></i>"
-
-#: apps/pootle_statistics/models.py:147
-#, python-format
-msgid ""
-"accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr "قبل اقتراح ترجمة المقطع <i><a href=\"%(url)s\">%(source)s</a></i>"
-
 #: apps/pootle_statistics/models.py:150
-msgid "uploaded a file"
-msgstr "رفع ملفًا"
-
-#: apps/pootle_statistics/models.py:165
 #, python-format
 msgid ""
-"submitted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr "أرسل ترجمةً للمقطع <i><a href=\"%(url)s\">%(source)s</a></i>"
+"%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
+"a></i>"
+msgstr ""
 
-#: apps/pootle_statistics/models.py:167
+#: apps/pootle_statistics/models.py:153
 #, python-format
 msgid ""
-"submitted \"needs work\" translation for string <i><a href=\"%(url)s\">"
-"%(source)s</a></i>"
-msgstr "أرسل ترجمة ”تحتاج للعمل“ للمقطع <i><a href=\"%(url)s\">%(source)s</a></i>"
+"%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
+"a></i>"
+msgstr ""
 
-#: apps/pootle_statistics/models.py:170
+#: apps/pootle_statistics/models.py:156
+#, python-format
+msgid "%(user)s uploaded a file"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:171
 #, python-format
 msgid ""
-"removed translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr "أوال ترجمة المقطع <i><a href=\"%(url)s\">%(source)s</a></i>"
+"%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
+"a></i>"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:174
+#, python-format
+msgid ""
+"%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
+"\">%(source)s</a></i>"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:177
+#, python-format
+msgid ""
+"%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
+"a></i>"
+msgstr ""
 
 #: apps/pootle_store/decorators.py:63
 msgid "Insufficient rights to access this directory."
@@ -1689,23 +1691,23 @@ msgid "Path"
 msgstr "مسار"
 
 #: apps/pootle_store/models.py:900
-#: apps/pootle_translationproject/models.py:114
+#: apps/pootle_translationproject/models.py:121
 msgid "Tags"
 msgstr "الوسوم"
 
 #: apps/pootle_store/models.py:901
-#: apps/pootle_translationproject/models.py:115
+#: apps/pootle_translationproject/models.py:122
 msgid "A comma-separated list of tags."
 msgstr "قائمة من الوسوم مفصولة بعلامة الفاصلة."
 
 #: apps/pootle_store/models.py:902
-#: apps/pootle_translationproject/models.py:116
+#: apps/pootle_translationproject/models.py:126
 #: apps/pootle_translationproject/templates/translation_project/overview.html:69
 msgid "Goals"
 msgstr "الأهداف"
 
 #: apps/pootle_store/models.py:904
-#: apps/pootle_translationproject/models.py:118
+#: apps/pootle_translationproject/models.py:128
 msgid "A comma-separated list of goals."
 msgstr "قائمة من الأهداف مفصولة بعلامة الفاصلة."
 
@@ -1751,8 +1753,8 @@ msgstr "تعليق:"
 
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
-msgid "<a href=\"%(url)s\">String %(id)s</a>"
-msgstr "<a href=\"%(url)s\">مقطع %(id)s</a>"
+msgid "String %(id)s"
+msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -1969,8 +1971,8 @@ msgstr ""
 "نقطتين (:)، أو شرطة (-)، أو شرطة تحتية (_)، أو شرطة مائلة (/)، أو نقطة (.)"
 
 #: apps/pootle_tagging/forms.py:133
-msgid "Already exists a goal with this name. Please pick another name."
-msgstr "يوجد هدف بهذا الاسم. من فضلك اختر اسمًا آخر."
+msgid "A goal with that name already exists. Please pick another name."
+msgstr ""
 
 #: apps/pootle_tagging/forms.py:173
 msgid ""
@@ -1983,8 +1985,8 @@ msgstr ""
 "(_)، أو شرطة مائلة (/)، أو نقطة (.)!"
 
 #: apps/pootle_tagging/forms.py:180
-msgid "Already exists a goal with this slug!"
-msgstr "يوجد مسبقا هدف له نفس السبيكة!"
+msgid "A goal with this slug already exists."
+msgstr ""
 
 #: apps/pootle_tagging/forms.py:194
 msgid ""
@@ -2003,31 +2005,23 @@ msgstr ""
 "وصفٌ لهذا الهدف. يفيد في إعطاء المزيد من المعلومات أو التعليمات. الرقْم "
 "المسموح به: %s"
 
-#: apps/pootle_tagging/models.py:73
+#: apps/pootle_tagging/models.py:74
 msgid "The priority for this goal."
 msgstr "أولوية هذا الهدف."
 
-#: apps/pootle_tagging/models.py:78
+#: apps/pootle_tagging/models.py:79
 msgid ""
 "Designates that this is a project goal (shared across all languages in the "
 "project)."
 msgstr "تجعل هذا هدفًا للمشروع ككل (مشترك بين كل لغات المشروع)."
 
-#: apps/pootle_tagging/models.py:80
+#: apps/pootle_tagging/models.py:81
 msgid "Project goal?"
 msgstr "أهذا هدف للمشروع؟"
 
-#: apps/pootle_tagging/models.py:104
+#: apps/pootle_tagging/models.py:105
 msgid "(Project goal)"
 msgstr "(هدفٌ للمشروع)"
-
-#: apps/pootle_tagging/models.py:465
-msgid "Item with goal"
-msgstr "عنصر مرتبط بهدف"
-
-#: apps/pootle_tagging/models.py:466
-msgid "Items with goal"
-msgstr "عناصر مرتبطة بهدف"
 
 #: apps/pootle_terminology/views.py:171
 msgid "This term already exists in this file."
@@ -2058,7 +2052,7 @@ msgid "Term"
 msgstr "مصطلح"
 
 #: apps/pootle_terminology/templates/terminology/manage.html:36
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:102
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:104
 msgid "Translation"
 msgstr "الترجمة"
 
@@ -2207,7 +2201,7 @@ msgstr ""
 "يمكن تحديد الملف المرجو الدمج معه. في حالة عدم التحديد سيستخدم اسم الملف "
 "المرفوع."
 
-#: apps/pootle_translationproject/models.py:101
+#: apps/pootle_translationproject/models.py:103
 #, python-format
 msgid ""
 "A description of this translation project. This is useful to give more "
@@ -2216,58 +2210,58 @@ msgstr ""
 "وصف مشروع الترجمة. يمكن إضافة معلومات أو تعليمات خاصة باللغة. الرَّقْم "
 "المتاح: %s"
 
-#: apps/pootle_translationproject/models.py:579
+#: apps/pootle_translationproject/models.py:589
 #, python-format
 msgid "Failed to update from version control: %(error)s"
 msgstr "فشلت في التحديث من نظام إدارة المراجعات: %(error)s"
 
-#: apps/pootle_translationproject/models.py:649
+#: apps/pootle_translationproject/models.py:659
 #, python-format
 msgid "Updated project <em>%(project)s</em> from version control"
 msgstr "تم تحديث مشروع <em>%(project)s</em> من نظام إدارة المراجعات"
 
-#: apps/pootle_translationproject/models.py:651
-#: apps/pootle_translationproject/models.py:673
+#: apps/pootle_translationproject/models.py:661
+#: apps/pootle_translationproject/models.py:683
 msgid "Working copy"
 msgstr "نسخة العمل"
 
-#: apps/pootle_translationproject/models.py:652
-#: apps/pootle_translationproject/models.py:674
+#: apps/pootle_translationproject/models.py:662
+#: apps/pootle_translationproject/models.py:684
 msgid "Remote copy"
 msgstr "النسخة البعيدة"
 
-#: apps/pootle_translationproject/models.py:653
-#: apps/pootle_translationproject/models.py:675
+#: apps/pootle_translationproject/models.py:663
+#: apps/pootle_translationproject/models.py:685
 msgid "Merged copy"
 msgstr "النسخة المدموجة"
 
-#: apps/pootle_translationproject/models.py:671
+#: apps/pootle_translationproject/models.py:681
 #, python-format
 msgid "Updated file <em>%(filename)s</em> from version control"
 msgstr "تم تحديث ملف <em>%(filename)s</em> من نظام إدارة المراجعات"
 
-#: apps/pootle_translationproject/models.py:685
+#: apps/pootle_translationproject/models.py:695
 #, python-format
 msgid "Failed to update <em>%(filename)s</em> from version control: %(error)s"
 msgstr "فشلت في تحديث <em>%(filename)s</em> من نظام إدارة المراجعات: %(error)s"
 
-#: apps/pootle_translationproject/models.py:741
+#: apps/pootle_translationproject/models.py:751
 #, python-format
 msgid "Committed all files under <em>%(path)s</em> to version control"
 msgstr ""
 "تم إيداع كل الملفات في المسار <em>%(path)s</em> إلى نظام إدارة المراجعات"
 
-#: apps/pootle_translationproject/models.py:749
+#: apps/pootle_translationproject/models.py:759
 #, python-format
 msgid "Failed to commit to version control: %(error)s"
 msgstr "فشلت في الإيداع إلى نظام إدارة المراجعات: %(error)s"
 
-#: apps/pootle_translationproject/models.py:808
+#: apps/pootle_translationproject/models.py:818
 #, python-format
 msgid "Committed file <em>%(filename)s</em> to version control"
 msgstr "تم إيداع ملف <em>%(filename)s</em> إلى نظام إدارة المراجعات"
 
-#: apps/pootle_translationproject/models.py:820
+#: apps/pootle_translationproject/models.py:830
 #, python-format
 msgid "Failed to commit <em>%(filename)s</em> to version control: %(error)s"
 msgstr "فشلت في إيداع <em>%(filename)s</em> إلى نظام إدارة المراجعات: %(error)s"
@@ -2315,8 +2309,8 @@ msgstr "تعذّر العثور على '%(action)s' في  '%(extdir)s'"
 
 #: apps/pootle_translationproject/views.py:400
 #, python-format
-msgid "Exception while running '%s' extension action"
-msgstr "استثناءٌ أثناء تشغيل الامتداد '%s'"
+msgid "Error while running '%s' extension action"
+msgstr ""
 
 #: apps/pootle_translationproject/views.py:820
 #, python-format
@@ -2356,15 +2350,17 @@ msgid ""
 msgstr ""
 "يمكنك إضافة و حذف و تعديل صلاحيات المستخدمين الخاصة بمشروع الترجمة الحالي."
 
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:5
+#. Translators: A view showing the export of strings in a flat form.
+#. See http://staging.locamotion.org/he/birdfont/export-view/?filter=incomplete
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:7
 msgid "Export View"
 msgstr "منظور التصدير"
 
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:97
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:99
 msgid "Goal"
 msgstr "الهدف"
 
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:139
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:141
 msgid "No strings."
 msgstr "لا مقاطع"
 
@@ -2483,38 +2479,39 @@ msgstr "ما إذا كانت هذه الصفحة مُفعّلة أم لا."
 msgid "Virtual Path"
 msgstr "المسار الافتراضي"
 
-#: apps/staticpages/models.py:46
+#. Translators: Content that will be used to display this static page
+#: apps/staticpages/models.py:47
 msgid "Display Content"
 msgstr "اعرض المحتوى"
 
-#: apps/staticpages/models.py:47
+#: apps/staticpages/models.py:48
 #, python-format
 msgid "Allowed markup: %s"
 msgstr "الرَّقْم المتاح: %s"
 
-#: apps/staticpages/models.py:49
+#: apps/staticpages/models.py:50
 #: apps/staticpages/templates/staticpages/admin/_table.html:10
 msgid "Redirect to URL"
 msgstr "أعِد التوجيه إلى مسار"
 
-#: apps/staticpages/models.py:50
+#: apps/staticpages/models.py:51
 msgid "If set, any references to this page will redirect to this URL"
 msgstr "إذا مُلئِت هذه الخانة فسيُحوّل أي مرجع لهذه الصفحة إلى هذا المسار"
 
 #. Translators: 'URL' and 'content' refer to form fields.
-#: apps/staticpages/models.py:97
+#: apps/staticpages/models.py:98
 msgid "URL or content must be provided."
 msgstr "يجب ملء خانة المسار أو المحتوى."
 
-#: apps/staticpages/models.py:105
+#: apps/staticpages/models.py:106
 msgid "Virtual path already in use."
 msgstr "المسار الافتراضي مستخدم من قبل."
 
-#: apps/staticpages/models.py:110
+#: apps/staticpages/models.py:111
 msgid "Legal Page"
 msgstr "صفحة قانونية"
 
-#: apps/staticpages/models.py:121
+#: apps/staticpages/models.py:122
 msgid "Regular Page"
 msgstr "صفحة عادية"
 
@@ -2558,7 +2555,8 @@ msgstr "أكمل"
 msgid "Static Pages"
 msgstr "الصفحات الثابتة"
 
-#: apps/staticpages/templates/staticpages/admin/_form.html:18
+#. Translators: Displayed as 'Redirect to URL or Display Content'
+#: apps/staticpages/templates/staticpages/admin/_form.html:19
 msgid "or"
 msgstr "أو"
 
@@ -3339,6 +3337,79 @@ msgstr "ألديك حساب بالفعل؟"
 #: templates/registration/registration_form.html:54
 msgid "Log In."
 msgstr "لِج."
+
+#, python-format
+#~ msgid ""
+#~ "%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d fuzzy)."
+#~ msgid_plural ""
+#~ "%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d fuzzy)."
+#~ msgstr[0] "‏%(type)s: لا مقاطع مُترجمة من أصل %(total)d (%(fuzzy)d تحتاج للعمل)."
+#~ msgstr[1] "‏%(type)s: مقطع واحد مُترجم من أصل %(total)d (%(fuzzy)d تحتاج للعمل)."
+#~ msgstr[2] "‏%(type)s: مقطعين مُترجمين من أصل %(total)d (%(fuzzy)d تحتاج للعمل)."
+#~ msgstr[3] ""
+#~ "‏%(type)s: %(translated)d مقاطع مُترجمة من أصل %(total)d (%(fuzzy)d تحتاج "
+#~ "للعمل)."
+#~ msgstr[4] ""
+#~ "‏%(type)s: %(translated)d مقطعًا مُترجمًا من أصل %(total)d (%(fuzzy)d تحتاج "
+#~ "للعمل)."
+#~ msgstr[5] ""
+#~ "‏%(type)s: %(translated)d مقطع مُترجم من أصل %(total)d (%(fuzzy)d تحتاج "
+#~ "للعمل)."
+
+#~ msgid "Select one or more tags to use as filter"
+#~ msgstr "اختر وسمًا أو أكثر لاستخدامه مرشِّحًا"
+
+#~ msgid "Filter the translation projects using this tags"
+#~ msgstr "رشّح مشروع الترجمة باستخدام الوسوم"
+
+#, python-format
+#~ msgid ""
+#~ "reverted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
+#~ msgstr "استعاد الترجمة القديمة لمقطع <i><a href=\"%(url)s\">%(source)s</a></i>"
+
+#, python-format
+#~ msgid ""
+#~ "accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</a></i>"
+#~ msgstr "قبل اقتراح ترجمة المقطع <i><a href=\"%(url)s\">%(source)s</a></i>"
+
+#~ msgid "uploaded a file"
+#~ msgstr "رفع ملفًا"
+
+#, python-format
+#~ msgid ""
+#~ "submitted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
+#~ msgstr "أرسل ترجمةً للمقطع <i><a href=\"%(url)s\">%(source)s</a></i>"
+
+#, python-format
+#~ msgid ""
+#~ "submitted \"needs work\" translation for string <i><a href=\"%(url)s\">"
+#~ "%(source)s</a></i>"
+#~ msgstr "أرسل ترجمة ”تحتاج للعمل“ للمقطع <i><a href=\"%(url)s\">%(source)s</a></i>"
+
+#, python-format
+#~ msgid ""
+#~ "removed translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
+#~ msgstr "أوال ترجمة المقطع <i><a href=\"%(url)s\">%(source)s</a></i>"
+
+#, python-format
+#~ msgid "<a href=\"%(url)s\">String %(id)s</a>"
+#~ msgstr "<a href=\"%(url)s\">مقطع %(id)s</a>"
+
+#~ msgid "Already exists a goal with this name. Please pick another name."
+#~ msgstr "يوجد هدف بهذا الاسم. من فضلك اختر اسمًا آخر."
+
+#~ msgid "Already exists a goal with this slug!"
+#~ msgstr "يوجد مسبقا هدف له نفس السبيكة!"
+
+#~ msgid "Item with goal"
+#~ msgstr "عنصر مرتبط بهدف"
+
+#~ msgid "Items with goal"
+#~ msgstr "عناصر مرتبطة بهدف"
+
+#, python-format
+#~ msgid "Exception while running '%s' extension action"
+#~ msgstr "استثناءٌ أثناء تشغيل الامتداد '%s'"
 
 #~ msgid "Display on registration"
 #~ msgstr "تُعرضُ عند التسجيل"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"POT-Creation-Date: 2013-10-31 17:15+0000\n"
 "PO-Revision-Date: 2013-10-31 14:26+0000\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -184,7 +184,7 @@ msgstr "Pengaturan telah disimpan."
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: apps/pootle_app/templates/admin/admin_general_settings.html:29
 #: apps/pootle_app/templates/admin/general_settings_form.html:15
-#: apps/staticpages/templates/staticpages/admin/_form.html:23
+#: apps/staticpages/templates/staticpages/admin/_form.html:24
 #: templates/profiles/edit_personal.html:33
 #: templates/profiles/edit_profile.html:25
 msgid "Save"
@@ -214,6 +214,7 @@ msgstr "Nama server Pootle ini"
 #: apps/pootle_app/forms.py:37
 #: apps/pootle_language/templates/language/overview.html:26
 #: apps/pootle_project/templates/project/overview.html:52
+#: apps/pootle_tagging/models.py:69
 #: apps/pootle_translationproject/templates/translation_project/overview.html:114
 msgid "Description"
 msgstr "Deskripsi"
@@ -626,6 +627,7 @@ msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
 msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:133
+#, python-format
 #, fuzzy, python-format
 msgid ""
 "Can't find the package which provides '%s' markup support. Falling back to "
@@ -778,11 +780,11 @@ msgstr "Nama pengguna"
 msgid "Select one or more permissions"
 msgstr "Pilih satu ijin atau lebih"
 
-#: apps/pootle_app/views/admin/util.py:145
+#: apps/pootle_app/views/admin/util.py:144
 msgid "No files in this project."
 msgstr "Tak ada berkas dalam projek ini."
 
-#: apps/pootle_app/views/admin/util.py:178
+#: apps/pootle_app/views/admin/util.py:177
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Ada kesalahan dalam formulir. Harap tinjau masalah di bawah."
 
@@ -867,7 +869,7 @@ msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
 msgstr[0] "%(projects)d projek, %(average)d%% diterjemahkan"
 
-#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:325
+#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:324
 #: apps/pootle_tagging/views.py:52 apps/pootle_translationproject/views.py:740
 msgid "No description yet."
 msgstr "Belum ada deskripsi."
@@ -886,12 +888,12 @@ msgstr "Nama"
 msgid "Project"
 msgstr "Projek"
 
-#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:407
+#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:406
 msgid "Language"
 msgstr "Bahasa"
 
 #. Translators: Heading representing the priority for a goal
-#: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:72
+#: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:73
 msgid "Priority"
 msgstr "Prioritas"
 
@@ -1198,12 +1200,12 @@ msgstr[0] "Tinjau saran (%(num)d tersisa)"
 #: apps/pootle_misc/stats.py:282
 #, python-format
 msgid ""
-"%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d fuzzy)."
+"%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d need "
+"review)."
 msgid_plural ""
-"%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d fuzzy)."
+"%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d need "
+"review)."
 msgstr[0] ""
-"%(type)s: %(translated)d dari %(total)d string diterjemahkan (%(fuzzy)d "
-"ragu)."
 
 #: apps/pootle_misc/stats.py:304
 #, python-format
@@ -1419,16 +1421,16 @@ msgid "Report Target"
 msgstr ""
 
 #: apps/pootle_project/views.py:119
-msgid "Select one or more tags to use as filter"
+msgid "Filter using one or more tags"
 msgstr ""
 
-#: apps/pootle_project/views.py:162
+#: apps/pootle_project/views.py:161
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
 msgstr[0] ""
 
-#: apps/pootle_project/views.py:396
+#: apps/pootle_project/views.py:395
 #: apps/pootle_translationproject/actions.py:209
 msgid "Update against templates"
 msgstr ""
@@ -1454,8 +1456,8 @@ msgid "Filter"
 msgstr "Saring"
 
 #: apps/pootle_project/templates/project/overview.html:38
-msgid "Filter the translation projects using this tags"
-msgstr "Saring projek penerjemahan memakai tag ini"
+msgid "Filter using the selected tags"
+msgstr ""
 
 #: apps/pootle_project/templates/project/overview.html:76
 #: apps/pootle_translationproject/templates/translation_project/overview.html:43
@@ -1476,7 +1478,7 @@ msgstr ""
 "projek ini."
 
 #: apps/pootle_statistics/models.py:46
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:101
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:103
 msgid "Source"
 msgstr "Sumber"
 
@@ -1496,39 +1498,44 @@ msgstr "Komentar"
 msgid "anonymous user"
 msgstr "pengguna anonim"
 
-#: apps/pootle_statistics/models.py:144
-#, python-format
-msgid ""
-"reverted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr ""
-
-#: apps/pootle_statistics/models.py:147
-#, python-format
-msgid ""
-"accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr "saran diterima bagi string <i><a href=\"%(url)s\">%(source)s</a></i>"
-
 #: apps/pootle_statistics/models.py:150
-msgid "uploaded a file"
-msgstr "suatu berkas diunggah"
-
-#: apps/pootle_statistics/models.py:165
 #, python-format
 msgid ""
-"submitted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
+"%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
+"a></i>"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:167
+#: apps/pootle_statistics/models.py:153
 #, python-format
 msgid ""
-"submitted \"needs work\" translation for string <i><a href=\"%(url)s\">"
-"%(source)s</a></i>"
+"%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
+"a></i>"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:170
+#: apps/pootle_statistics/models.py:156
+#, python-format
+msgid "%(user)s uploaded a file"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:171
 #, python-format
 msgid ""
-"removed translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
+"%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
+"a></i>"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:174
+#, python-format
+msgid ""
+"%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
+"\">%(source)s</a></i>"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:177
+#, python-format
+msgid ""
+"%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
+"a></i>"
 msgstr ""
 
 #: apps/pootle_store/decorators.py:63
@@ -1628,23 +1635,23 @@ msgid "Path"
 msgstr "Path"
 
 #: apps/pootle_store/models.py:900
-#: apps/pootle_translationproject/models.py:114
+#: apps/pootle_translationproject/models.py:121
 msgid "Tags"
 msgstr "Tag"
 
 #: apps/pootle_store/models.py:901
-#: apps/pootle_translationproject/models.py:115
+#: apps/pootle_translationproject/models.py:122
 msgid "A comma-separated list of tags."
 msgstr "Daftar tag yang dipisah koma."
 
 #: apps/pootle_store/models.py:902
-#: apps/pootle_translationproject/models.py:116
+#: apps/pootle_translationproject/models.py:126
 #: apps/pootle_translationproject/templates/translation_project/overview.html:69
 msgid "Goals"
 msgstr ""
 
 #: apps/pootle_store/models.py:904
-#: apps/pootle_translationproject/models.py:118
+#: apps/pootle_translationproject/models.py:128
 msgid "A comma-separated list of goals."
 msgstr ""
 
@@ -1694,8 +1701,8 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
-msgid "<a href=\"%(url)s\">String %(id)s</a>"
-msgstr "<a href=\"%(url)s\">String %(id)s</a>"
+msgid "String %(id)s"
+msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -1911,7 +1918,7 @@ msgid ""
 msgstr ""
 
 #: apps/pootle_tagging/forms.py:133
-msgid "Already exists a goal with this name. Please pick another name."
+msgid "A goal with that name already exists. Please pick another name."
 msgstr ""
 
 #: apps/pootle_tagging/forms.py:173
@@ -1922,7 +1929,7 @@ msgid ""
 msgstr ""
 
 #: apps/pootle_tagging/forms.py:180
-msgid "Already exists a goal with this slug!"
+msgid "A goal with this slug already exists."
 msgstr ""
 
 #: apps/pootle_tagging/forms.py:194
@@ -1938,30 +1945,22 @@ msgid ""
 "instructions. Allowed markup: %s"
 msgstr ""
 
-#: apps/pootle_tagging/models.py:73
+#: apps/pootle_tagging/models.py:74
 msgid "The priority for this goal."
 msgstr ""
 
-#: apps/pootle_tagging/models.py:78
+#: apps/pootle_tagging/models.py:79
 msgid ""
 "Designates that this is a project goal (shared across all languages in the "
 "project)."
 msgstr ""
 
-#: apps/pootle_tagging/models.py:80
+#: apps/pootle_tagging/models.py:81
 msgid "Project goal?"
 msgstr ""
 
-#: apps/pootle_tagging/models.py:104
+#: apps/pootle_tagging/models.py:105
 msgid "(Project goal)"
-msgstr ""
-
-#: apps/pootle_tagging/models.py:465
-msgid "Item with goal"
-msgstr ""
-
-#: apps/pootle_tagging/models.py:466
-msgid "Items with goal"
 msgstr ""
 
 #: apps/pootle_terminology/views.py:171
@@ -1993,7 +1992,7 @@ msgid "Term"
 msgstr "Istilah"
 
 #: apps/pootle_terminology/templates/terminology/manage.html:36
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:102
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:104
 msgid "Translation"
 msgstr "Terjemahan"
 
@@ -2142,7 +2141,7 @@ msgid ""
 "uploaded file's name is used."
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:101
+#: apps/pootle_translationproject/models.py:103
 #, python-format
 msgid ""
 "A description of this translation project. This is useful to give more "
@@ -2151,57 +2150,57 @@ msgstr ""
 "Suatu deskripsi dari projek penerjemahan ini. Ini berguna untuk memberikan "
 "lebih banyak informasi atau instruksi. Markup yang diijinkan: %s"
 
-#: apps/pootle_translationproject/models.py:579
+#: apps/pootle_translationproject/models.py:589
 #, python-format
 msgid "Failed to update from version control: %(error)s"
 msgstr "Gagal memutakhirkan dari kendali versi: %(error)s"
 
-#: apps/pootle_translationproject/models.py:649
+#: apps/pootle_translationproject/models.py:659
 #, python-format
 msgid "Updated project <em>%(project)s</em> from version control"
 msgstr "Projek <em>%(project)s</em> dimutakhirkan dari kendali versi"
 
-#: apps/pootle_translationproject/models.py:651
-#: apps/pootle_translationproject/models.py:673
+#: apps/pootle_translationproject/models.py:661
+#: apps/pootle_translationproject/models.py:683
 msgid "Working copy"
 msgstr "Salinan kerja"
 
-#: apps/pootle_translationproject/models.py:652
-#: apps/pootle_translationproject/models.py:674
+#: apps/pootle_translationproject/models.py:662
+#: apps/pootle_translationproject/models.py:684
 msgid "Remote copy"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:653
-#: apps/pootle_translationproject/models.py:675
+#: apps/pootle_translationproject/models.py:663
+#: apps/pootle_translationproject/models.py:685
 msgid "Merged copy"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:671
+#: apps/pootle_translationproject/models.py:681
 #, python-format
 msgid "Updated file <em>%(filename)s</em> from version control"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:685
+#: apps/pootle_translationproject/models.py:695
 #, python-format
 msgid "Failed to update <em>%(filename)s</em> from version control: %(error)s"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:741
+#: apps/pootle_translationproject/models.py:751
 #, python-format
 msgid "Committed all files under <em>%(path)s</em> to version control"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:749
+#: apps/pootle_translationproject/models.py:759
 #, python-format
 msgid "Failed to commit to version control: %(error)s"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:808
+#: apps/pootle_translationproject/models.py:818
 #, python-format
 msgid "Committed file <em>%(filename)s</em> to version control"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:820
+#: apps/pootle_translationproject/models.py:830
 #, python-format
 msgid "Failed to commit <em>%(filename)s</em> to version control: %(error)s"
 msgstr ""
@@ -2250,7 +2249,7 @@ msgstr ""
 
 #: apps/pootle_translationproject/views.py:400
 #, python-format
-msgid "Exception while running '%s' extension action"
+msgid "Error while running '%s' extension action"
 msgstr ""
 
 #: apps/pootle_translationproject/views.py:820
@@ -2291,15 +2290,17 @@ msgid ""
 "project."
 msgstr ""
 
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:5
+#. Translators: A view showing the export of strings in a flat form.
+#. See http://staging.locamotion.org/he/birdfont/export-view/?filter=incomplete
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:7
 msgid "Export View"
 msgstr ""
 
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:97
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:99
 msgid "Goal"
 msgstr ""
 
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:139
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:141
 msgid "No strings."
 msgstr ""
 
@@ -2422,38 +2423,39 @@ msgstr "Halaman ini aktif atau tidak"
 msgid "Virtual Path"
 msgstr ""
 
-#: apps/staticpages/models.py:46
+#. Translators: Content that will be used to display this static page
+#: apps/staticpages/models.py:47
 msgid "Display Content"
 msgstr ""
 
-#: apps/staticpages/models.py:47
+#: apps/staticpages/models.py:48
 #, python-format
 msgid "Allowed markup: %s"
 msgstr ""
 
-#: apps/staticpages/models.py:49
+#: apps/staticpages/models.py:50
 #: apps/staticpages/templates/staticpages/admin/_table.html:10
 msgid "Redirect to URL"
 msgstr ""
 
-#: apps/staticpages/models.py:50
+#: apps/staticpages/models.py:51
 msgid "If set, any references to this page will redirect to this URL"
 msgstr ""
 
 #. Translators: 'URL' and 'content' refer to form fields.
-#: apps/staticpages/models.py:97
+#: apps/staticpages/models.py:98
 msgid "URL or content must be provided."
 msgstr ""
 
-#: apps/staticpages/models.py:105
+#: apps/staticpages/models.py:106
 msgid "Virtual path already in use."
 msgstr ""
 
-#: apps/staticpages/models.py:110
+#: apps/staticpages/models.py:111
 msgid "Legal Page"
 msgstr ""
 
-#: apps/staticpages/models.py:121
+#: apps/staticpages/models.py:122
 msgid "Regular Page"
 msgstr ""
 
@@ -2495,7 +2497,8 @@ msgstr ""
 msgid "Static Pages"
 msgstr ""
 
-#: apps/staticpages/templates/staticpages/admin/_form.html:18
+#. Translators: Displayed as 'Redirect to URL or Display Content'
+#: apps/staticpages/templates/staticpages/admin/_form.html:19
 msgid "or"
 msgstr ""
 
@@ -3266,6 +3269,30 @@ msgstr ""
 #, fuzzy
 msgid "Log In."
 msgstr "Masuk"
+
+#, python-format
+#~ msgid ""
+#~ "%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d fuzzy)."
+#~ msgid_plural ""
+#~ "%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d fuzzy)."
+#~ msgstr[0] ""
+#~ "%(type)s: %(translated)d dari %(total)d string diterjemahkan (%(fuzzy)d "
+#~ "ragu)."
+
+#~ msgid "Filter the translation projects using this tags"
+#~ msgstr "Saring projek penerjemahan memakai tag ini"
+
+#, python-format
+#~ msgid ""
+#~ "accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</a></i>"
+#~ msgstr "saran diterima bagi string <i><a href=\"%(url)s\">%(source)s</a></i>"
+
+#~ msgid "uploaded a file"
+#~ msgstr "suatu berkas diunggah"
+
+#, python-format
+#~ msgid "<a href=\"%(url)s\">String %(id)s</a>"
+#~ msgstr "<a href=\"%(url)s\">String %(id)s</a>"
 
 #~ msgid "Display on registration"
 #~ msgstr "Tampilkan di pendaftaran"

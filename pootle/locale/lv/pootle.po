@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"POT-Creation-Date: 2013-10-31 17:15+0000\n"
 "PO-Revision-Date: 2013-10-30 16:29+0000\n"
 "Last-Translator: Tranzistors <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -189,7 +189,7 @@ msgstr "Iestatījumi ir saglabāti."
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: apps/pootle_app/templates/admin/admin_general_settings.html:29
 #: apps/pootle_app/templates/admin/general_settings_form.html:15
-#: apps/staticpages/templates/staticpages/admin/_form.html:23
+#: apps/staticpages/templates/staticpages/admin/_form.html:24
 #: templates/profiles/edit_personal.html:33
 #: templates/profiles/edit_profile.html:25
 msgid "Save"
@@ -219,6 +219,7 @@ msgstr "Šī Pootle servera nosaukums"
 #: apps/pootle_app/forms.py:37
 #: apps/pootle_language/templates/language/overview.html:26
 #: apps/pootle_project/templates/project/overview.html:52
+#: apps/pootle_tagging/models.py:69
 #: apps/pootle_translationproject/templates/translation_project/overview.html:114
 msgid "Description"
 msgstr "Apraksts"
@@ -782,11 +783,11 @@ msgstr "Lietotājvārds"
 msgid "Select one or more permissions"
 msgstr "Izvēlieties vienu vai vairākas atļaujas"
 
-#: apps/pootle_app/views/admin/util.py:145
+#: apps/pootle_app/views/admin/util.py:144
 msgid "No files in this project."
 msgstr "Šajā projektā nav datņu."
 
-#: apps/pootle_app/views/admin/util.py:178
+#: apps/pootle_app/views/admin/util.py:177
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Formā ir kļūdas. Lūdzu, pārskatiet zemāk norādītās problēmas."
 
@@ -878,7 +879,7 @@ msgstr[0] "%(projects)d projekts, %(average)d%% iztulkoti"
 msgstr[1] "%(projects)d projekti, %(average)d%% iztulkoti"
 msgstr[2] "%(projects)d projektu, %(average)d%% iztulkoti"
 
-#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:325
+#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:324
 #: apps/pootle_tagging/views.py:52 apps/pootle_translationproject/views.py:740
 msgid "No description yet."
 msgstr "Vēl nav apraksta."
@@ -895,12 +896,12 @@ msgstr "Nosaukums"
 msgid "Project"
 msgstr "Projekts"
 
-#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:407
+#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:406
 msgid "Language"
 msgstr "Valoda"
 
 #. Translators: Heading representing the priority for a goal
-#: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:72
+#: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:73
 msgid "Priority"
 msgstr "Prioritāte"
 
@@ -1220,18 +1221,14 @@ msgstr[2] "Pārskatīt ieteikumus (palikuši %(num)d)"
 #: apps/pootle_misc/stats.py:282
 #, python-format
 msgid ""
-"%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d fuzzy)."
+"%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d need "
+"review)."
 msgid_plural ""
-"%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d fuzzy)."
+"%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d need "
+"review)."
 msgstr[0] ""
-"%(type)s: %(translated)d no %(total)d virknes ir iztulkotas (%(fuzzy)d "
-"nepilnīgi)."
 msgstr[1] ""
-"%(type)s: %(translated)d no %(total)d virknēm ir iztulkotas (%(fuzzy)d "
-"nepilnīgi)."
 msgstr[2] ""
-"%(type)s: %(translated)d no %(total)d virknēm ir iztulkotas (%(fuzzy)d "
-"nepilnīgi)."
 
 #: apps/pootle_misc/stats.py:304
 #, python-format
@@ -1453,10 +1450,10 @@ msgid "Report Target"
 msgstr "Ziņot par mērķi"
 
 #: apps/pootle_project/views.py:119
-msgid "Select one or more tags to use as filter"
-msgstr "Izvēlieties vienu vai vairākas birkas, ko izmantot kā filtru"
+msgid "Filter using one or more tags"
+msgstr ""
 
-#: apps/pootle_project/views.py:162
+#: apps/pootle_project/views.py:161
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
@@ -1464,7 +1461,7 @@ msgstr[0] "%(languages)d valoda, %(average)d%% iztulkots"
 msgstr[1] "%(languages)d valodas, %(average)d%% iztulkots"
 msgstr[2] "%(languages)d valodu, %(average)d%% iztulkots"
 
-#: apps/pootle_project/views.py:396
+#: apps/pootle_project/views.py:395
 #: apps/pootle_translationproject/actions.py:209
 msgid "Update against templates"
 msgstr "Atjaunināt pret veidnēm"
@@ -1488,8 +1485,8 @@ msgid "Filter"
 msgstr "Filtrēt"
 
 #: apps/pootle_project/templates/project/overview.html:38
-msgid "Filter the translation projects using this tags"
-msgstr "Filtrēt tulkošanas projektus, izmantojot šīs birkas"
+msgid "Filter using the selected tags"
+msgstr ""
 
 #: apps/pootle_project/templates/project/overview.html:76
 #: apps/pootle_translationproject/templates/translation_project/overview.html:43
@@ -1508,7 +1505,7 @@ msgid "Here you can add, edit, or delete the languages for this project."
 msgstr "Šeit varat pievienot, rediģēt vai dzēst šīs projekta valodas."
 
 #: apps/pootle_statistics/models.py:46
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:101
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:103
 msgid "Source"
 msgstr "Avots"
 
@@ -1528,44 +1525,45 @@ msgstr "Komentārs"
 msgid "anonymous user"
 msgstr "anonīms lietotājs"
 
-#: apps/pootle_statistics/models.py:144
-#, python-format
-msgid ""
-"reverted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr ""
-"tulkojums atjaunots uz iepriekšējo virknei <i><a href=\"%(url)s\">%"
-"(source)s</a></i>"
-
-#: apps/pootle_statistics/models.py:147
-#, python-format
-msgid ""
-"accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr "pieņemts ieteikums virknei <i><a href=\"%(url)s\">%(source)s</a></i>"
-
 #: apps/pootle_statistics/models.py:150
-msgid "uploaded a file"
-msgstr "augšupielādēta datne"
-
-#: apps/pootle_statistics/models.py:165
 #, python-format
 msgid ""
-"submitted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr "iesniegts tulkojums virknei <i><a href=\"%(url)s\">%(source)s</a></i>"
-
-#: apps/pootle_statistics/models.py:167
-#, python-format
-msgid ""
-"submitted \"needs work\" translation for string <i><a href=\"%(url)s\">"
-"%(source)s</a></i>"
+"%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
+"a></i>"
 msgstr ""
-"iesniegts “vajag piestrādāt” tulkojums virknei <i><a href=\"%(url)s\">%"
-"(source)s</a></i>"
 
-#: apps/pootle_statistics/models.py:170
+#: apps/pootle_statistics/models.py:153
 #, python-format
 msgid ""
-"removed translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr "izņemts tulkojums virknei <i><a href=\"%(url)s\">%(source)s</a></i>"
+"%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
+"a></i>"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:156
+#, python-format
+msgid "%(user)s uploaded a file"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:171
+#, python-format
+msgid ""
+"%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
+"a></i>"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:174
+#, python-format
+msgid ""
+"%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
+"\">%(source)s</a></i>"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:177
+#, python-format
+msgid ""
+"%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
+"a></i>"
+msgstr ""
 
 #: apps/pootle_store/decorators.py:63
 msgid "Insufficient rights to access this directory."
@@ -1664,23 +1662,23 @@ msgid "Path"
 msgstr "Ceļš"
 
 #: apps/pootle_store/models.py:900
-#: apps/pootle_translationproject/models.py:114
+#: apps/pootle_translationproject/models.py:121
 msgid "Tags"
 msgstr "Birkas"
 
 #: apps/pootle_store/models.py:901
-#: apps/pootle_translationproject/models.py:115
+#: apps/pootle_translationproject/models.py:122
 msgid "A comma-separated list of tags."
 msgstr "Ar komatu atdalītu birku saraksts."
 
 #: apps/pootle_store/models.py:902
-#: apps/pootle_translationproject/models.py:116
+#: apps/pootle_translationproject/models.py:126
 #: apps/pootle_translationproject/templates/translation_project/overview.html:69
 msgid "Goals"
 msgstr "Mērķi"
 
 #: apps/pootle_store/models.py:904
-#: apps/pootle_translationproject/models.py:118
+#: apps/pootle_translationproject/models.py:128
 msgid "A comma-separated list of goals."
 msgstr "Ar komatu atdalītu mērķu saraksts."
 
@@ -1726,8 +1724,8 @@ msgstr "Komentārs:"
 
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
-msgid "<a href=\"%(url)s\">String %(id)s</a>"
-msgstr "<a href=\"%(url)s\">Virkne %(id)s</a>"
+msgid "String %(id)s"
+msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -1945,8 +1943,8 @@ msgstr ""
 "punkti (.)"
 
 #: apps/pootle_tagging/forms.py:133
-msgid "Already exists a goal with this name. Please pick another name."
-msgstr "Jau ir mērķis ar šo nosaukumu. Izvēlieties citu nosaukumu."
+msgid "A goal with that name already exists. Please pick another name."
+msgstr ""
 
 #: apps/pootle_tagging/forms.py:173
 msgid ""
@@ -1960,8 +1958,8 @@ msgstr ""
 "punkti (.)"
 
 #: apps/pootle_tagging/forms.py:180
-msgid "Already exists a goal with this slug!"
-msgstr "Mērķis ar šādu plēksni jau eksistē!"
+msgid "A goal with this slug already exists."
+msgstr ""
 
 #: apps/pootle_tagging/forms.py:194
 msgid ""
@@ -1980,31 +1978,23 @@ msgstr ""
 "Šī mērķa apraksts. Tas noder, lai dotu vairāk informācijas vai instrukcijas. "
 "Atļautais marķējums: %s"
 
-#: apps/pootle_tagging/models.py:73
+#: apps/pootle_tagging/models.py:74
 msgid "The priority for this goal."
 msgstr "Šī mērķa prioritāte."
 
-#: apps/pootle_tagging/models.py:78
+#: apps/pootle_tagging/models.py:79
 msgid ""
 "Designates that this is a project goal (shared across all languages in the "
 "project)."
 msgstr "Norāda, ka šis ir projekta mērķis (ir kopīgs visām valodām projektā)."
 
-#: apps/pootle_tagging/models.py:80
+#: apps/pootle_tagging/models.py:81
 msgid "Project goal?"
 msgstr "Projekta mērķis?"
 
-#: apps/pootle_tagging/models.py:104
+#: apps/pootle_tagging/models.py:105
 msgid "(Project goal)"
 msgstr "(Projekta mērķis)"
-
-#: apps/pootle_tagging/models.py:465
-msgid "Item with goal"
-msgstr "Vienums ar mērķi"
-
-#: apps/pootle_tagging/models.py:466
-msgid "Items with goal"
-msgstr "Vienumi ar mērķi"
 
 #: apps/pootle_terminology/views.py:171
 msgid "This term already exists in this file."
@@ -2035,7 +2025,7 @@ msgid "Term"
 msgstr "Termins"
 
 #: apps/pootle_terminology/templates/terminology/manage.html:36
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:102
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:104
 msgid "Translation"
 msgstr "Tulkojums"
 
@@ -2188,7 +2178,7 @@ msgstr ""
 "Varat arī izvēlēties datni, ar ko vēlaties sapludināt. Ja nav norādītā, tiks "
 "izmantots augšupielādētās datnes nosaukums."
 
-#: apps/pootle_translationproject/models.py:101
+#: apps/pootle_translationproject/models.py:103
 #, python-format
 msgid ""
 "A description of this translation project. This is useful to give more "
@@ -2197,59 +2187,59 @@ msgstr ""
 "Šī tulkošanas projekta apraksts. Tas noder, lai dotu vairāk informācijas vai "
 "instrukcijas. Atļautais marķējums: %s"
 
-#: apps/pootle_translationproject/models.py:579
+#: apps/pootle_translationproject/models.py:589
 #, python-format
 msgid "Failed to update from version control: %(error)s"
 msgstr "Neizdevās atjaunināt no versiju vadības sistēmas: %(error)s"
 
-#: apps/pootle_translationproject/models.py:649
+#: apps/pootle_translationproject/models.py:659
 #, python-format
 msgid "Updated project <em>%(project)s</em> from version control"
 msgstr "Atjaunināja projektu <em>%(project)s</em> no versiju vadības sistēmas"
 
-#: apps/pootle_translationproject/models.py:651
-#: apps/pootle_translationproject/models.py:673
+#: apps/pootle_translationproject/models.py:661
+#: apps/pootle_translationproject/models.py:683
 msgid "Working copy"
 msgstr "Darba kopija"
 
-#: apps/pootle_translationproject/models.py:652
-#: apps/pootle_translationproject/models.py:674
+#: apps/pootle_translationproject/models.py:662
+#: apps/pootle_translationproject/models.py:684
 msgid "Remote copy"
 msgstr "Attālinātā kopija"
 
-#: apps/pootle_translationproject/models.py:653
-#: apps/pootle_translationproject/models.py:675
+#: apps/pootle_translationproject/models.py:663
+#: apps/pootle_translationproject/models.py:685
 msgid "Merged copy"
 msgstr "Sapludinātā kopija"
 
-#: apps/pootle_translationproject/models.py:671
+#: apps/pootle_translationproject/models.py:681
 #, python-format
 msgid "Updated file <em>%(filename)s</em> from version control"
 msgstr "Atjaunināta datne <em>%(filename)s</em> no versiju vadības sistēmas"
 
-#: apps/pootle_translationproject/models.py:685
+#: apps/pootle_translationproject/models.py:695
 #, python-format
 msgid "Failed to update <em>%(filename)s</em> from version control: %(error)s"
 msgstr ""
 "Neizdevās atjaunināt <em>%(filename)s</em> no versiju vadības sistēmas: %"
 "(error)s"
 
-#: apps/pootle_translationproject/models.py:741
+#: apps/pootle_translationproject/models.py:751
 #, python-format
 msgid "Committed all files under <em>%(path)s</em> to version control"
 msgstr "Visas datnes no <em>%(path)s</em> ir iesūtītas versiju vadības sistēmā"
 
-#: apps/pootle_translationproject/models.py:749
+#: apps/pootle_translationproject/models.py:759
 #, python-format
 msgid "Failed to commit to version control: %(error)s"
 msgstr "Neizdevās iesūtīt versiju vadības sistēmā: %(error)s"
 
-#: apps/pootle_translationproject/models.py:808
+#: apps/pootle_translationproject/models.py:818
 #, python-format
 msgid "Committed file <em>%(filename)s</em> to version control"
 msgstr "Iesūtīja datni <em>%(filename)s</em> versiju vadības sistēmā"
 
-#: apps/pootle_translationproject/models.py:820
+#: apps/pootle_translationproject/models.py:830
 #, python-format
 msgid "Failed to commit <em>%(filename)s</em> to version control: %(error)s"
 msgstr ""
@@ -2298,8 +2288,8 @@ msgstr "Nevarēja atrast '%(action)s' mapē '%(extdir)s'"
 
 #: apps/pootle_translationproject/views.py:400
 #, python-format
-msgid "Exception while running '%s' extension action"
-msgstr "Izpildot “%s” paplašinājuma darbību, gadījās izņēmums"
+msgid "Error while running '%s' extension action"
+msgstr ""
 
 #: apps/pootle_translationproject/views.py:820
 #, python-format
@@ -2339,15 +2329,17 @@ msgid ""
 msgstr ""
 "Zemāk varat pievienot, rediģēt un dzēst šī tulkošanas projekta atļaujas."
 
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:5
+#. Translators: A view showing the export of strings in a flat form.
+#. See http://staging.locamotion.org/he/birdfont/export-view/?filter=incomplete
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:7
 msgid "Export View"
 msgstr "Eksporta skats"
 
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:97
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:99
 msgid "Goal"
 msgstr "Mērķis"
 
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:139
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:141
 msgid "No strings."
 msgstr "Nav virkņu."
 
@@ -2470,38 +2462,39 @@ msgstr "Vai lapa ir aktīva."
 msgid "Virtual Path"
 msgstr "Virtuāls ceļš"
 
-#: apps/staticpages/models.py:46
+#. Translators: Content that will be used to display this static page
+#: apps/staticpages/models.py:47
 msgid "Display Content"
 msgstr "Rādīt saturu"
 
-#: apps/staticpages/models.py:47
+#: apps/staticpages/models.py:48
 #, python-format
 msgid "Allowed markup: %s"
 msgstr "Atļautais marķējums — %s"
 
-#: apps/staticpages/models.py:49
+#: apps/staticpages/models.py:50
 #: apps/staticpages/templates/staticpages/admin/_table.html:10
 msgid "Redirect to URL"
 msgstr "Pāradresēt uz URL"
 
-#: apps/staticpages/models.py:50
+#: apps/staticpages/models.py:51
 msgid "If set, any references to this page will redirect to this URL"
 msgstr "Ja iestatīts, visas norādes uz šo lapu tiks pārsūtītas uz šo URL"
 
 #. Translators: 'URL' and 'content' refer to form fields.
-#: apps/staticpages/models.py:97
+#: apps/staticpages/models.py:98
 msgid "URL or content must be provided."
 msgstr "Jānorāda URL vai saturs."
 
-#: apps/staticpages/models.py:105
+#: apps/staticpages/models.py:106
 msgid "Virtual path already in use."
 msgstr "Virtuālais ceļš jau tiek izmantots."
 
-#: apps/staticpages/models.py:110
+#: apps/staticpages/models.py:111
 msgid "Legal Page"
 msgstr "Juridiskās informācijas lapa"
 
-#: apps/staticpages/models.py:121
+#: apps/staticpages/models.py:122
 msgid "Regular Page"
 msgstr "Parasta lapa"
 
@@ -2545,7 +2538,8 @@ msgstr "Turpināt"
 msgid "Static Pages"
 msgstr "Statiskās lapas"
 
-#: apps/staticpages/templates/staticpages/admin/_form.html:18
+#. Translators: Displayed as 'Redirect to URL or Display Content'
+#: apps/staticpages/templates/staticpages/admin/_form.html:19
 msgid "or"
 msgstr "vai"
 
@@ -3337,6 +3331,80 @@ msgstr "Jau ir konts?"
 #: templates/registration/registration_form.html:54
 msgid "Log In."
 msgstr "Ierakstīties."
+
+#, python-format
+#~ msgid ""
+#~ "%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d fuzzy)."
+#~ msgid_plural ""
+#~ "%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d fuzzy)."
+#~ msgstr[0] ""
+#~ "%(type)s: %(translated)d no %(total)d virknes ir iztulkotas (%(fuzzy)d "
+#~ "nepilnīgi)."
+#~ msgstr[1] ""
+#~ "%(type)s: %(translated)d no %(total)d virknēm ir iztulkotas (%(fuzzy)d "
+#~ "nepilnīgi)."
+#~ msgstr[2] ""
+#~ "%(type)s: %(translated)d no %(total)d virknēm ir iztulkotas (%(fuzzy)d "
+#~ "nepilnīgi)."
+
+#~ msgid "Select one or more tags to use as filter"
+#~ msgstr "Izvēlieties vienu vai vairākas birkas, ko izmantot kā filtru"
+
+#~ msgid "Filter the translation projects using this tags"
+#~ msgstr "Filtrēt tulkošanas projektus, izmantojot šīs birkas"
+
+#, python-format
+#~ msgid ""
+#~ "reverted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
+#~ msgstr ""
+#~ "tulkojums atjaunots uz iepriekšējo virknei <i><a href=\"%(url)s\">%"
+#~ "(source)s</a></i>"
+
+#, python-format
+#~ msgid ""
+#~ "accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</a></i>"
+#~ msgstr "pieņemts ieteikums virknei <i><a href=\"%(url)s\">%(source)s</a></i>"
+
+#~ msgid "uploaded a file"
+#~ msgstr "augšupielādēta datne"
+
+#, python-format
+#~ msgid ""
+#~ "submitted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
+#~ msgstr "iesniegts tulkojums virknei <i><a href=\"%(url)s\">%(source)s</a></i>"
+
+#, python-format
+#~ msgid ""
+#~ "submitted \"needs work\" translation for string <i><a href=\"%(url)s\">"
+#~ "%(source)s</a></i>"
+#~ msgstr ""
+#~ "iesniegts “vajag piestrādāt” tulkojums virknei <i><a href=\"%(url)s\">%"
+#~ "(source)s</a></i>"
+
+#, python-format
+#~ msgid ""
+#~ "removed translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
+#~ msgstr "izņemts tulkojums virknei <i><a href=\"%(url)s\">%(source)s</a></i>"
+
+#, python-format
+#~ msgid "<a href=\"%(url)s\">String %(id)s</a>"
+#~ msgstr "<a href=\"%(url)s\">Virkne %(id)s</a>"
+
+#~ msgid "Already exists a goal with this name. Please pick another name."
+#~ msgstr "Jau ir mērķis ar šo nosaukumu. Izvēlieties citu nosaukumu."
+
+#~ msgid "Already exists a goal with this slug!"
+#~ msgstr "Mērķis ar šādu plēksni jau eksistē!"
+
+#~ msgid "Item with goal"
+#~ msgstr "Vienums ar mērķi"
+
+#~ msgid "Items with goal"
+#~ msgstr "Vienumi ar mērķi"
+
+#, python-format
+#~ msgid "Exception while running '%s' extension action"
+#~ msgstr "Izpildot “%s” paplašinājuma darbību, gadījās izņēmums"
 
 #, python-format
 #, fuzzy
