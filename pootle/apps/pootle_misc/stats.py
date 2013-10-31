@@ -38,9 +38,3 @@ def get_translation_states(path_obj):
     states.append(make_dict('untranslated', _("Untranslated")))
 
     return states
-
-
-def stats_message_raw(version, total, translated, fuzzy):
-    """Builds a message of statistics used in VCS actions."""
-    return "%s: %d of %d strings translated (%d fuzzy)." % \
-           (version, translated, total, fuzzy)
