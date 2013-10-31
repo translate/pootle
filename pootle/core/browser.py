@@ -69,7 +69,7 @@ HEADING_CHOICES = [
     },
     {
         'id': 'activity',
-        'class': 'stats when-loaded',
+        'class': 'stats sorttable_numeric when-loaded',
         'display_name': _("Last Activity"),
     },
 ]
