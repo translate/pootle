@@ -168,8 +168,6 @@ sorttable = {
   },
 
   doSort: function(th) {
-    var tableId = $(th).parents("table").attr("id");
-
     // Remove sorttable_sorted classes
     theadrow = th.parentNode;
     forEach(theadrow.childNodes, function(cell) {
