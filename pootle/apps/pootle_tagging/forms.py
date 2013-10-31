@@ -130,7 +130,7 @@ class TagForm(forms.ModelForm):
             check_goal_name(name)
 
             if Goal.objects.filter(name=name):
-                msg = _("A goal with that name alredy exists. Please pick "
+                msg = _("A goal with that name already exists. Please pick "
                         "another name.")
                 raise forms.ValidationError(msg)
 

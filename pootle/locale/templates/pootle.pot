@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.5.1\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-30 20:33+0000\n"
+"POT-Creation-Date: 2013-10-31 11:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -208,6 +208,7 @@ msgstr ""
 #: apps/pootle_app/forms.py:37
 #: apps/pootle_language/templates/language/overview.html:26
 #: apps/pootle_project/templates/project/overview.html:52
+#: apps/pootle_tagging/models.py:69
 #: apps/pootle_translationproject/templates/translation_project/overview.html:114
 msgid "Description"
 msgstr ""
@@ -717,11 +718,11 @@ msgstr ""
 msgid "Select one or more permissions"
 msgstr ""
 
-#: apps/pootle_app/views/admin/util.py:145
+#: apps/pootle_app/views/admin/util.py:144
 msgid "No files in this project."
 msgstr ""
 
-#: apps/pootle_app/views/admin/util.py:178
+#: apps/pootle_app/views/admin/util.py:177
 msgid "There are errors in the form. Please review the problems below."
 msgstr ""
 
@@ -823,7 +824,7 @@ msgid "Language"
 msgstr ""
 
 #. Translators: Heading representing the priority for a goal
-#: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:72
+#: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:73
 msgid "Priority"
 msgstr ""
 
@@ -1561,23 +1562,23 @@ msgid "Path"
 msgstr ""
 
 #: apps/pootle_store/models.py:900
-#: apps/pootle_translationproject/models.py:114
+#: apps/pootle_translationproject/models.py:121
 msgid "Tags"
 msgstr ""
 
 #: apps/pootle_store/models.py:901
-#: apps/pootle_translationproject/models.py:115
+#: apps/pootle_translationproject/models.py:122
 msgid "A comma-separated list of tags."
 msgstr ""
 
 #: apps/pootle_store/models.py:902
-#: apps/pootle_translationproject/models.py:116
+#: apps/pootle_translationproject/models.py:126
 #: apps/pootle_translationproject/templates/translation_project/overview.html:69
 msgid "Goals"
 msgstr ""
 
 #: apps/pootle_store/models.py:904
-#: apps/pootle_translationproject/models.py:118
+#: apps/pootle_translationproject/models.py:128
 msgid "A comma-separated list of goals."
 msgstr ""
 
@@ -1832,7 +1833,7 @@ msgid ""
 msgstr ""
 
 #: apps/pootle_tagging/forms.py:133
-msgid "A goal with that name alredy exists. Please pick another name."
+msgid "A goal with that name already exists. Please pick another name."
 msgstr ""
 
 #: apps/pootle_tagging/forms.py:173
@@ -1859,21 +1860,21 @@ msgid ""
 "instructions. Allowed markup: %s"
 msgstr ""
 
-#: apps/pootle_tagging/models.py:73
+#: apps/pootle_tagging/models.py:74
 msgid "The priority for this goal."
 msgstr ""
 
-#: apps/pootle_tagging/models.py:78
+#: apps/pootle_tagging/models.py:79
 msgid ""
 "Designates that this is a project goal (shared across all languages in the "
 "project)."
 msgstr ""
 
-#: apps/pootle_tagging/models.py:80
+#: apps/pootle_tagging/models.py:81
 msgid "Project goal?"
 msgstr ""
 
-#: apps/pootle_tagging/models.py:104
+#: apps/pootle_tagging/models.py:105
 msgid "(Project goal)"
 msgstr ""
 
@@ -2051,64 +2052,64 @@ msgid ""
 "uploaded file's name is used."
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:101
+#: apps/pootle_translationproject/models.py:103
 #, python-format
 msgid ""
 "A description of this translation project. This is useful to give more "
 "information or instructions. Allowed markup: %s"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:579
+#: apps/pootle_translationproject/models.py:589
 #, python-format
 msgid "Failed to update from version control: %(error)s"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:649
+#: apps/pootle_translationproject/models.py:659
 #, python-format
 msgid "Updated project <em>%(project)s</em> from version control"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:651
-#: apps/pootle_translationproject/models.py:673
+#: apps/pootle_translationproject/models.py:661
+#: apps/pootle_translationproject/models.py:683
 msgid "Working copy"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:652
-#: apps/pootle_translationproject/models.py:674
+#: apps/pootle_translationproject/models.py:662
+#: apps/pootle_translationproject/models.py:684
 msgid "Remote copy"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:653
-#: apps/pootle_translationproject/models.py:675
+#: apps/pootle_translationproject/models.py:663
+#: apps/pootle_translationproject/models.py:685
 msgid "Merged copy"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:671
+#: apps/pootle_translationproject/models.py:681
 #, python-format
 msgid "Updated file <em>%(filename)s</em> from version control"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:685
+#: apps/pootle_translationproject/models.py:695
 #, python-format
 msgid "Failed to update <em>%(filename)s</em> from version control: %(error)s"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:741
+#: apps/pootle_translationproject/models.py:751
 #, python-format
 msgid "Committed all files under <em>%(path)s</em> to version control"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:749
+#: apps/pootle_translationproject/models.py:759
 #, python-format
 msgid "Failed to commit to version control: %(error)s"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:808
+#: apps/pootle_translationproject/models.py:818
 #, python-format
 msgid "Committed file <em>%(filename)s</em> to version control"
 msgstr ""
 
-#: apps/pootle_translationproject/models.py:820
+#: apps/pootle_translationproject/models.py:830
 #, python-format
 msgid "Failed to commit <em>%(filename)s</em> to version control: %(error)s"
 msgstr ""
