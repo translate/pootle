@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-04-19 14:47+0000\n"
-"Last-Translator: Serhij Dubyk - Сергій Дубик <dubyk@library.lviv.ua>\n"
+"PO-Revision-Date: 2013-10-28 16:17+0000\n"
+"Last-Translator: Maks <m_lyashuk@ukr.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -17,15 +17,15 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1366382844.0\n"
+"X-POOTLE-MTIME: 1382977059.0\n"
 
 #: static/js/common.js:13
 msgid "All Languages"
-msgstr ""
+msgstr "Всі мови"
 
 #: static/js/common.js:26
 msgid "All Projects"
-msgstr ""
+msgstr "Всі проекти"
 
 #: static/js/common.js:62
 msgid "Expand details"
@@ -45,27 +45,27 @@ msgstr "Ця дія не може бути відмінена."
 
 #: static/js/common.js:139
 msgid "Show tags"
-msgstr ""
+msgstr "Показувати теґи"
 
 #: static/js/common.js:142 static/js/vendor/sorttable.js:365
 msgid "Hide tags"
-msgstr ""
+msgstr "Приховати теґи"
 
 #: static/js/common.js:276 static/js/common.js.c:292
 msgid "Hide filtering"
-msgstr ""
+msgstr "Приховати фільтрування"
 
 #: static/js/common.js:279 static/js/common.js.c:286
 msgid "Show filtering"
-msgstr ""
+msgstr "Показати фільтрування"
 
 #: static/js/editor.js:209
 msgid "Go to the next string (Ctrl+.)"
-msgstr ""
+msgstr "Перейти до наступного рядка (Ctrl+.)"
 
 #: static/js/editor.js:215
 msgid "Go to the previous string (Ctrl+,)"
-msgstr ""
+msgstr "Перейти до попереднього рядка (Ctrl+.)"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:333

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-10-25 16:06+0000\n"
+"PO-Revision-Date: 2013-10-29 12:41+0000\n"
 "Last-Translator: smarquespt <smarquespt@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
@@ -16,15 +16,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1382717177.0\n"
+"X-POOTLE-MTIME: 1383050518.0\n"
 
 #: static/js/common.js:13
 msgid "All Languages"
-msgstr ""
+msgstr "Todos os idiomas"
 
 #: static/js/common.js:26
 msgid "All Projects"
-msgstr ""
+msgstr "Todos os projetos"
 
 #: static/js/common.js:62
 msgid "Expand details"
@@ -44,57 +44,57 @@ msgstr "Esta operação não pode ser anulada."
 
 #: static/js/common.js:139
 msgid "Show tags"
-msgstr ""
+msgstr "Mostrar etiquetas"
 
 #: static/js/common.js:142 static/js/vendor/sorttable.js:365
 msgid "Hide tags"
-msgstr ""
+msgstr "Ocultar etiquetas"
 
 #: static/js/common.js:276 static/js/common.js.c:292
 msgid "Hide filtering"
-msgstr ""
+msgstr "Ocultar filtros"
 
 #: static/js/common.js:279 static/js/common.js.c:286
 msgid "Show filtering"
-msgstr ""
+msgstr "Mostrar filtros"
 
 #: static/js/editor.js:209
 msgid "Go to the next string (Ctrl+.)"
-msgstr ""
+msgstr "Ir para a linha seguinte (Ctrl+.)"
 
 #: static/js/editor.js:215
 msgid "Go to the previous string (Ctrl+,)"
-msgstr ""
+msgstr "Ir para a linha anterior (Ctrl+,)"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:333
 #, c-format
 msgid "%s's pending suggestions"
-msgstr ""
+msgstr "Sugestões pendentes para %s"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:336
 #, c-format
 msgid "%s's accepted suggestions"
-msgstr ""
+msgstr "Sugestões aceites para %s"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:339
 #, c-format
 msgid "%s's rejected suggestions"
-msgstr ""
+msgstr "Sugestões rejeitadas para %s"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:342
 #, c-format
 msgid "%s's submissions"
-msgstr ""
+msgstr "Submissões de %s"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:345
 #, c-format
 msgid "%s's overwritten submissions"
-msgstr ""
+msgstr "Submissões substituídas para %s"
 
 #: static/js/editor.js:476 static/js/editor.js.c:1521
 msgid "No results."
@@ -102,7 +102,7 @@ msgstr "Nenhum resultado."
 
 #: static/js/editor.js:748
 msgid "Export View"
-msgstr ""
+msgstr "Vista de exportação"
 
 #: static/js/editor.js:798
 msgid "Error while connecting to the server"
@@ -138,7 +138,7 @@ msgstr "Voltar à página inicial."
 #: static/js/editor.js:1807
 #, c-format
 msgid "%s% match"
-msgstr "%s% correspondência"
+msgstr "%s% similar"
 
 #: static/js/editor.js:1851
 msgid "Similar translations"

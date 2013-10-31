@@ -7,24 +7,25 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-03-31 20:21+0200\n"
+"PO-Revision-Date: 2013-10-28 17:42+0000\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Virtaal 0.7.0\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
+"n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
+"X-Generator: Pootle 2.5.0-beta1\n"
+"X-POOTLE-MTIME: 1382982160.0\n"
 
 #: static/js/common.js:13
 msgid "All Languages"
-msgstr ""
+msgstr "كل اللغات"
 
 #: static/js/common.js:26
 msgid "All Projects"
-msgstr ""
+msgstr "كل المشاريع"
 
 #: static/js/common.js:62
 msgid "Expand details"
@@ -44,57 +45,57 @@ msgstr "لا يمكن التراجع عن هذا الإجراء."
 
 #: static/js/common.js:139
 msgid "Show tags"
-msgstr ""
+msgstr "أظهِر الوسوم"
 
 #: static/js/common.js:142 static/js/vendor/sorttable.js:365
 msgid "Hide tags"
-msgstr ""
+msgstr "أخفِ الوسوم"
 
 #: static/js/common.js:276 static/js/common.js.c:292
 msgid "Hide filtering"
-msgstr ""
+msgstr "أخفِ المرشِّح"
 
 #: static/js/common.js:279 static/js/common.js.c:286
 msgid "Show filtering"
-msgstr ""
+msgstr "أظهر المرشِّح"
 
 #: static/js/editor.js:209
 msgid "Go to the next string (Ctrl+.)"
-msgstr ""
+msgstr "اذهب إلى المقطع التالي (Ctrl+.)"
 
 #: static/js/editor.js:215
 msgid "Go to the previous string (Ctrl+,)"
-msgstr ""
+msgstr "اذهب إلى المقطع السابق (Ctrl+,)"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:333
 #, c-format
 msgid "%s's pending suggestions"
-msgstr ""
+msgstr "اقتراحات %s المعلّقة"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:336
 #, c-format
 msgid "%s's accepted suggestions"
-msgstr ""
+msgstr "اقتراحات %s المقبولة"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:339
 #, c-format
 msgid "%s's rejected suggestions"
-msgstr ""
+msgstr "اقتراحات %s المرفوضة"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:342
 #, c-format
 msgid "%s's submissions"
-msgstr ""
+msgstr "مساهمات %s"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:345
 #, c-format
 msgid "%s's overwritten submissions"
-msgstr ""
+msgstr "مساهمات %s المُستبدَلة"
 
 #: static/js/editor.js:476 static/js/editor.js.c:1521
 msgid "No results."
@@ -102,7 +103,7 @@ msgstr "لا نتائج."
 
 #: static/js/editor.js:748
 msgid "Export View"
-msgstr ""
+msgstr "صدّر المنظور"
 
 #: static/js/editor.js:798
 msgid "Error while connecting to the server"

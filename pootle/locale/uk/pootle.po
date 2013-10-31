@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-07-25 11:19+0000\n"
-"Last-Translator: Serhij Dubyk - Сергій Дубик <dubyk@library.lviv.ua>\n"
+"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"PO-Revision-Date: 2013-10-28 16:29+0000\n"
+"Last-Translator: Maks <m_lyashuk@ukr.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1374751180.0\n"
+"X-POOTLE-MTIME: 1382977744.0\n"
 
 #: strings.py:8
 msgid ""
@@ -1317,7 +1317,7 @@ msgstr "Відбір проектів"
 
 #: apps/pootle_notifications/forms.py:61
 msgid "Select one or more projects"
-msgstr ""
+msgstr "Виберіть один або декілька проектів"
 
 #: apps/pootle_notifications/forms.py:68
 msgid "All Languages"
@@ -1329,7 +1329,7 @@ msgstr "Вибір мови"
 
 #: apps/pootle_notifications/forms.py:77 apps/pootle_profile/forms.py:120
 msgid "Select one or more languages"
-msgstr ""
+msgstr "Виберіть одну або кілька мов"
 
 #: apps/pootle_notifications/models.py:31
 msgid "Message"
@@ -1466,7 +1466,7 @@ msgstr "Призначення звіту"
 
 #: apps/pootle_project/views.py:119
 msgid "Select one or more tags to use as filter"
-msgstr ""
+msgstr "Виберіть один або кілька теґів, для використання в якості фільтру"
 
 #: apps/pootle_project/views.py:162
 #, python-format
@@ -1490,16 +1490,16 @@ msgstr ""
 #: apps/pootle_project/templates/project/overview.html:18
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
-msgstr ""
+msgstr "Показувати теґи"
 
 #: apps/pootle_project/templates/project/overview.html:21
 msgid "Show filtering"
-msgstr ""
+msgstr "Показати фільтрування"
 
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
 msgid "Filter"
-msgstr ""
+msgstr "Фільтр"
 
 #: apps/pootle_project/templates/project/overview.html:38
 msgid "Filter the translation projects using this tags"
@@ -1583,10 +1583,10 @@ msgstr ""
 
 #: apps/pootle_store/decorators.py:135 apps/pootle_store/views.py:531
 msgid "Arguments missing."
-msgstr ""
+msgstr "Відсутні арґументи"
 
 #: apps/pootle_store/decorators.py:147
-msgid "Store does not exist."
+msgid "File does not exist."
 msgstr ""
 
 #: apps/pootle_store/filetypes.py:31
@@ -1675,8 +1675,9 @@ msgstr "Шлях"
 
 #: apps/pootle_store/models.py:900
 #: apps/pootle_translationproject/models.py:114
+#, fuzzy
 msgid "Tags"
-msgstr ""
+msgstr "Табуляції"
 
 #: apps/pootle_store/models.py:901
 #: apps/pootle_translationproject/models.py:115
@@ -1723,12 +1724,14 @@ msgid "The suggestion or vote is not valid any more."
 msgstr "Пропозиція або голос більше не дійсні."
 
 #: apps/pootle_store/views.py:1096
+#, fuzzy
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "Ви не маєте прав на керування %s."
 
 #: apps/pootle_store/views.py:1132
+#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "Ви не маєте прав на керування %s."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
@@ -1826,20 +1829,24 @@ msgid "Insert LRM (Left-To-Right Mark) into the editor"
 msgstr "Вставити символ LRM (символ виводу зліва направо) у редактор"
 
 #: apps/pootle_store/templates/unit/edit.html:187
+#, fuzzy
 msgid "Insert RLE (Right-To-Left Embedding) into the editor"
-msgstr ""
+msgstr "Вставити символ RLM (символ виводу справа наліво) в редактор"
 
 #: apps/pootle_store/templates/unit/edit.html:190
+#, fuzzy
 msgid "Insert LRE (Left-To-Right Embedding) into the editor"
-msgstr ""
+msgstr "Вставити символ LRM (символ виводу зліва направо) у редактор"
 
 #: apps/pootle_store/templates/unit/edit.html:193
+#, fuzzy
 msgid "Insert RLO (Right-To-Left Override) into the editor"
-msgstr ""
+msgstr "Вставити символ RLM (символ виводу справа наліво) в редактор"
 
 #: apps/pootle_store/templates/unit/edit.html:196
+#, fuzzy
 msgid "Insert LRO (Left-To-Right Override) into the editor"
-msgstr ""
+msgstr "Вставити символ LRM (символ виводу зліва направо) у редактор"
 
 #: apps/pootle_store/templates/unit/edit.html:199
 msgid "Insert PDF (Pop Directional Format ) into the editor"
@@ -1975,7 +1982,7 @@ msgstr ""
 
 #: apps/pootle_tagging/models.py:73
 msgid "The priority for this goal."
-msgstr ""
+msgstr "Пріоритет для цієї цілі."
 
 #: apps/pootle_tagging/models.py:78
 msgid ""
@@ -1985,19 +1992,19 @@ msgstr ""
 
 #: apps/pootle_tagging/models.py:80
 msgid "Project goal?"
-msgstr ""
+msgstr "Ціль проекту?"
 
 #: apps/pootle_tagging/models.py:104
 msgid "(Project goal)"
-msgstr ""
+msgstr "(Ціль проекту)"
 
 #: apps/pootle_tagging/models.py:465
 msgid "Item with goal"
-msgstr ""
+msgstr "Елемент з ціллю"
 
 #: apps/pootle_tagging/models.py:466
 msgid "Items with goal"
-msgstr ""
+msgstr "Елементи з ціллю"
 
 #: apps/pootle_terminology/views.py:171
 msgid "This term already exists in this file."
@@ -2343,15 +2350,16 @@ msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:139
 msgid "No strings."
-msgstr ""
+msgstr "Рядки відсутні."
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:61
 msgid "Translation project files and folders"
 msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
+#, fuzzy
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "Керування проектом"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2461,11 +2469,11 @@ msgstr "Дана сторінка активна чи ні."
 #: apps/staticpages/models.py:40
 #: apps/staticpages/templates/staticpages/admin/_table.html:9
 msgid "Virtual Path"
-msgstr ""
+msgstr "Віртувальний шлях"
 
 #: apps/staticpages/models.py:46
 msgid "Display Content"
-msgstr ""
+msgstr "Показати вміст"
 
 #: apps/staticpages/models.py:47
 #, python-format
@@ -2475,11 +2483,14 @@ msgstr "Допустима розмітка: %s"
 #: apps/staticpages/models.py:49
 #: apps/staticpages/templates/staticpages/admin/_table.html:10
 msgid "Redirect to URL"
-msgstr ""
+msgstr "Переспрямувати на адресу"
 
 #: apps/staticpages/models.py:50
+#, fuzzy
 msgid "If set, any references to this page will redirect to this URL"
 msgstr ""
+"Якщо задано, будь-які посилання на цю сторінку перенаправлятимуться за цією "
+"адресою"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:97
@@ -2488,11 +2499,12 @@ msgstr "Необхідно вказати URL або дані."
 
 #: apps/staticpages/models.py:105
 msgid "Virtual path already in use."
-msgstr ""
+msgstr "Віртуальний шлях вже використовується."
 
 #: apps/staticpages/models.py:110
+#, fuzzy
 msgid "Legal Page"
-msgstr ""
+msgstr "Сторінки з інформацією про права"
 
 #: apps/staticpages/models.py:121
 msgid "Regular Page"
@@ -2500,12 +2512,12 @@ msgstr ""
 
 #: apps/staticpages/views.py:87
 msgid "Page Title"
-msgstr ""
+msgstr "Заголовок сторінки"
 
 #: apps/staticpages/views.py:88
 #, python-format
 msgid "page-%d"
-msgstr ""
+msgstr "сторінка-%d"
 
 #: apps/staticpages/views.py:130
 #, python-format
@@ -2513,6 +2525,8 @@ msgid ""
 "This page is inactive and visible to administrators only. You can activate "
 "it by <a href=\"%s\">editing its properties</a>"
 msgstr ""
+"Цей проект не активний і видимий тільки для адміністраторів. Ви можете "
+"активувати його <a href=\"%s\">відредагувавши властивості</a> "
 
 #: apps/staticpages/templates/staticpages/agreement.html:4
 msgid "Action Required"
@@ -2542,19 +2556,19 @@ msgstr ""
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:8
 msgid "Page"
-msgstr ""
+msgstr "Сторінка"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:11
 msgid "Last Edited"
-msgstr ""
+msgstr "Остання зміна"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "Yes"
-msgstr ""
+msgstr "Так"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "No"
-msgstr ""
+msgstr "Ні"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:30
 msgid "No pages yet."
@@ -2565,8 +2579,9 @@ msgid "Legal Pages"
 msgstr "Сторінки з інформацією про права"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:12
+#, fuzzy
 msgid "Add Legal Page"
-msgstr ""
+msgstr "Редагувати сторінку з інформацією про права"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
 msgid "Regular Pages"
@@ -2602,8 +2617,9 @@ msgid "Checks"
 msgstr "Перевірки"
 
 #: core/helpers.py:62
+#, fuzzy
 msgid "Overwritten submissions"
-msgstr ""
+msgstr "Мої перезаписані затвердження"
 
 #: middleware/captcha.py:122
 msgid "Time to answer has expired"
@@ -2840,7 +2856,7 @@ msgstr "Новини для мови"
 
 #: templates/language_menu.html:6
 msgid "Translate this language"
-msgstr ""
+msgstr "Перекласти цією мовою"
 
 #: templates/language_menu.html:8
 msgid "Administrate your language permissions"
@@ -2848,7 +2864,7 @@ msgstr "Керування мовними правами доступу"
 
 #: templates/main_base.html:6
 msgid "Main"
-msgstr ""
+msgstr "Головна"
 
 #: templates/project_menu.html:4
 msgid "Project main page"
@@ -2953,7 +2969,7 @@ msgstr "Про сайт"
 
 #: templates/common/_table_row.html:87
 msgid "Add a tag"
-msgstr ""
+msgstr "Додати теґ"
 
 #: templates/contact_form/contact_form.html:17
 msgid "Send"
@@ -3006,7 +3022,7 @@ msgstr "Мої перезаписані затвердження"
 
 #: templates/editor/_toolbar.html:34
 msgid "Go to the previous string (Ctrl+Up)"
-msgstr ""
+msgstr "Перейти до попереднього рядка (Ctrl+Up)"
 
 #: templates/editor/_toolbar.html:37
 msgid ""
@@ -3016,7 +3032,7 @@ msgstr ""
 
 #: templates/editor/_toolbar.html:39
 msgid "Total strings"
-msgstr ""
+msgstr "Загалом рядків"
 
 #: templates/editor/_toolbar.html:43
 msgid "Go to the next string (Ctrl+Down)"
@@ -3054,8 +3070,9 @@ msgid ""
 msgstr "Тут Ви можете налаштувати інтерфейс та мовні уподобання."
 
 #: templates/profiles/profile_detail.html:23
+#, fuzzy
 msgid "Contributions"
-msgstr ""
+msgstr "Учасники"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-07-09 16:08+0000\n"
+"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"PO-Revision-Date: 2013-10-29 16:03+0000\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
 "n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1373386111.0\n"
+"X-POOTLE-MTIME: 1383062621.0\n"
 
 #: strings.py:8
 msgid ""
@@ -523,7 +523,7 @@ msgstr "سجل."
 #: apps/pootle_project/models.py:221
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
-msgstr ""
+msgstr "لا يمكن استخدام \"%s\" في رمز المشروع"
 
 #: apps/pootle_app/views/admin/adminusers.py:55
 #: templates/user_profile_menu.html:7
@@ -616,23 +616,23 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:129
 msgid "MARKUP_FILTER is missing. Falling back to HTML."
-msgstr ""
+msgstr "لم أجد MARKUP_FILTER. سأستخدم HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:131
 msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
-msgstr ""
+msgstr "‏MARKUP_FILTER غير مشبوط بشكل سليم. سأستخدم HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:133
 #, python-format
 msgid ""
 "Can't find the package which provides '%s' markup support. Falling back to "
 "HTML."
-msgstr ""
+msgstr "لم أعثر على الحزمة التي توفر دعم رقْم '%s'. سأستخدم HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:137
 #, python-format
 msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
-msgstr ""
+msgstr "قيمة غير صحيحة '%s' في MARKUP_FILTER. سأستخدم HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:154
 msgid ""
@@ -744,15 +744,15 @@ msgstr "الأعضاء النشطين"
 
 #: apps/pootle_app/views/admin/permissions.py:61
 msgid "Translation Project Contributors"
-msgstr ""
+msgstr "المساهمين في مشروع الترجمة"
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Contributors"
-msgstr ""
+msgstr "المساهمين في المشروع"
 
 #: apps/pootle_app/views/admin/permissions.py:84
 msgid "Language Contributors"
-msgstr ""
+msgstr "المساهمين في اللغة"
 
 #: apps/pootle_app/views/admin/permissions.py:91
 msgid "All Users"
@@ -766,7 +766,7 @@ msgstr "اسم المستخدم"
 
 #: apps/pootle_app/views/admin/permissions.py:122
 msgid "Select one or more permissions"
-msgstr ""
+msgstr "اختر صلاحية أو أكثر"
 
 #: apps/pootle_app/views/admin/util.py:145
 msgid "No files in this project."
@@ -892,7 +892,7 @@ msgstr "اللغة"
 #. Translators: Heading representing the priority for a goal
 #: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:72
 msgid "Priority"
-msgstr ""
+msgstr "الأولويّة"
 
 #. Translators: noun. The graphical representation of translation status
 #: apps/pootle_misc/browser.py:52
@@ -1104,7 +1104,7 @@ msgstr "ابحث ‪(Ctrl+Shift+S)‬<br/>اكتب ثم اضغط زر Enter"
 
 #: apps/pootle_misc/forms.py:108
 msgid "Exact Match"
-msgstr ""
+msgstr "تطابق تام"
 
 #: apps/pootle_misc/forms.py:115
 msgid "Source Text"
@@ -1208,12 +1208,12 @@ msgstr[5] "أكمل الترجمة (بقيَ %(num)d كلمة)"
 #, python-format
 msgid "Next most important goal (%(num)d word left)"
 msgid_plural "Next most important goal (%(num)d words left)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "الهدف الأكثر أهمية التالي (لم تبق أي كلمات)"
+msgstr[1] "الهدف الأكثر أهمية التالي (بقيت كلمة واحدة)"
+msgstr[2] "الهدف الأكثر أهمية التالي (بقيت كلمتان)"
+msgstr[3] "الهدف الأكثر أهمية التالي (بقيت %(num)d كلمات)"
+msgstr[4] "الهدف الأكثر أهمية التالي (بقيت %(num)d كلمة)"
+msgstr[5] "الهدف الأكثر أهمية التالي (بقيت %(num)d كلمة)"
 
 #: apps/pootle_misc/stats.py:249
 msgid "Translation is complete"
@@ -1335,7 +1335,7 @@ msgstr "اختيار المشروع"
 
 #: apps/pootle_notifications/forms.py:61
 msgid "Select one or more projects"
-msgstr ""
+msgstr "اختر مشروعًا أو أكثر"
 
 #: apps/pootle_notifications/forms.py:68
 msgid "All Languages"
@@ -1347,7 +1347,7 @@ msgstr "اختيار اللغة"
 
 #: apps/pootle_notifications/forms.py:77 apps/pootle_profile/forms.py:120
 msgid "Select one or more languages"
-msgstr ""
+msgstr "اختر لغةً أو أكثر"
 
 #: apps/pootle_notifications/models.py:31
 msgid "Message"
@@ -1480,7 +1480,7 @@ msgstr "مكان الإبلاغ"
 
 #: apps/pootle_project/views.py:119
 msgid "Select one or more tags to use as filter"
-msgstr ""
+msgstr "اختر وسمًا أو أكثر لاستخدامه مرشِّحًا"
 
 #: apps/pootle_project/views.py:162
 #, python-format
@@ -1505,27 +1505,27 @@ msgstr "يمكنك إضافة و حذف و تعديل صلاحيات المس�
 #: apps/pootle_project/templates/project/overview.html:18
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
-msgstr ""
+msgstr "أظهر الوسوم"
 
 #: apps/pootle_project/templates/project/overview.html:21
 msgid "Show filtering"
-msgstr ""
+msgstr "أظهر المرشِّح"
 
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
 msgid "Filter"
-msgstr ""
+msgstr "رشِّح"
 
 #: apps/pootle_project/templates/project/overview.html:38
 msgid "Filter the translation projects using this tags"
-msgstr ""
+msgstr "رشّح مشروع الترجمة باستخدام الوسوم"
 
 #: apps/pootle_project/templates/project/overview.html:76
 #: apps/pootle_translationproject/templates/translation_project/overview.html:43
 #: apps/pootle_translationproject/templates/translation_project/overview.html:175
 #: templates/common/xhr_add_tag_form.html:15
 msgid "Add tag"
-msgstr ""
+msgstr "أضف وسمًا"
 
 #: apps/pootle_project/templates/project/project_admin.html:7
 #: templates/project_menu.html:9
@@ -1561,48 +1561,48 @@ msgstr "مستخدم غير مُسجّل"
 #, python-format
 msgid ""
 "reverted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr ""
+msgstr "استعاد الترجمة القديمة لمقطع <i><a href=\"%(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:147
 #, python-format
 msgid ""
 "accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr ""
+msgstr "قبل اقتراح ترجمة المقطع <i><a href=\"%(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:150
 msgid "uploaded a file"
-msgstr ""
+msgstr "رفع ملفًا"
 
 #: apps/pootle_statistics/models.py:165
 #, python-format
 msgid ""
 "submitted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr ""
+msgstr "أرسل ترجمةً للمقطع <i><a href=\"%(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:167
 #, python-format
 msgid ""
 "submitted \"needs work\" translation for string <i><a href=\"%(url)s\">"
 "%(source)s</a></i>"
-msgstr ""
+msgstr "أرسل ترجمة ”تحتاج للعمل“ للمقطع <i><a href=\"%(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:170
 #, python-format
 msgid ""
 "removed translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr ""
+msgstr "أوال ترجمة المقطع <i><a href=\"%(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_store/decorators.py:63
 msgid "Insufficient rights to access this directory."
-msgstr ""
+msgstr "ليست لك الصلاحيات الكافية للوصول إلى هذا المجلد."
 
 #: apps/pootle_store/decorators.py:135 apps/pootle_store/views.py:531
 msgid "Arguments missing."
-msgstr ""
+msgstr "المعامل ناقص."
 
 #: apps/pootle_store/decorators.py:147
-msgid "Store does not exist."
-msgstr ""
+msgid "File does not exist."
+msgstr "الملف غير موجود."
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Gettext PO"
@@ -1691,23 +1691,23 @@ msgstr "مسار"
 #: apps/pootle_store/models.py:900
 #: apps/pootle_translationproject/models.py:114
 msgid "Tags"
-msgstr ""
+msgstr "الوسوم"
 
 #: apps/pootle_store/models.py:901
 #: apps/pootle_translationproject/models.py:115
 msgid "A comma-separated list of tags."
-msgstr ""
+msgstr "قائمة من الوسوم مفصولة بعلامة الفاصلة."
 
 #: apps/pootle_store/models.py:902
 #: apps/pootle_translationproject/models.py:116
 #: apps/pootle_translationproject/templates/translation_project/overview.html:69
 msgid "Goals"
-msgstr ""
+msgstr "الأهداف"
 
 #: apps/pootle_store/models.py:904
 #: apps/pootle_translationproject/models.py:118
 msgid "A comma-separated list of goals."
-msgstr ""
+msgstr "قائمة من الأهداف مفصولة بعلامة الفاصلة."
 
 #: apps/pootle_store/util.py:45
 msgid "Obsolete"
@@ -1739,11 +1739,11 @@ msgstr "لم يعد الاقتراح أو التصويت ساريًا."
 
 #: apps/pootle_store/views.py:1096
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "ليست لك حقوق حذف الوسوم."
 
 #: apps/pootle_store/views.py:1132
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "ليست لك حقوق إضافة الوسوم."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
@@ -1752,7 +1752,7 @@ msgstr "تعليق:"
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
 msgid "<a href=\"%(url)s\">String %(id)s</a>"
-msgstr ""
+msgstr "<a href=\"%(url)s\">مقطع %(id)s</a>"
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -1939,12 +1939,16 @@ msgid ""
 "Tag names cannot have leading nor trailing spaces, colons (:), hyphens (-), "
 "underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"لا يمكن أن تحتوي أسماء الوسوم على مسافات بادئة أو نهائية، أو نقطتين (:)، أو "
+"شرطة (-)، أو شرطة تحتية (_)، أو شرطة مائلة (/)، أو نقطة (.)!"
 
 #: apps/pootle_tagging/forms.py:53
 msgid ""
 "Tag names cannot contain two or more consecutive: spaces, colons (:), "
 "hyphens (-), underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"لا يمكن أن تحتوي أسماء الوسوم على حرفين أو أكثر متابعين من: مسافة، أو نقطتين "
+"(:)، أو شرطة (-)، أو شرطة تحتية (_)، أو شرطة مائلة (/)، أو نقطة (.)!"
 
 #: apps/pootle_tagging/forms.py:60
 msgid ""
@@ -1952,16 +1956,21 @@ msgid ""
 "leading (but yes on the middle): spaces, colons (:), hyphens (-), "
 "underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"يجب أن تتكون أسماء الوسوم من حروف و أرقام، دون مسافات بادئة أو نهائية (لكن "
+"مسموح بها في المنتصف)، أو نقطتين (:)، أو شرطة (-)، أو شرطة تحتية (_)، أو "
+"شرطة مائلة (/)، أو نقطة (.)!"
 
 #: apps/pootle_tagging/forms.py:74
 msgid ""
 "Name cannot contain just after 'goal:' any of these characters: spaces, "
 "colons (:), hyphens (-), underscores (_), slashes (/) or periods (.)"
 msgstr ""
+"لا يمكن أن يحتوى الاسم بعد 'goal:' على أيًّ من هذه العلامات:  مسافة، أو "
+"نقطتين (:)، أو شرطة (-)، أو شرطة تحتية (_)، أو شرطة مائلة (/)، أو نقطة (.)"
 
 #: apps/pootle_tagging/forms.py:133
 msgid "Already exists a goal with this name. Please pick another name."
-msgstr ""
+msgstr "يوجد هدف بهذا الاسم. من فضلك اختر اسمًا آخر."
 
 #: apps/pootle_tagging/forms.py:173
 msgid ""
@@ -1969,16 +1978,21 @@ msgid ""
 "single or multiple occurrences of the following characters: spaces, colons "
 "(:), hyphens (-), underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"يجب أن تطابق السبيكة اسم الوسم، باستثناء وضع شرطة (-) بدلا من أي واحد أو "
+"أكثر من العلامات التالية: مسافة، أو نقطتين (:)، أو شرطة (-)، أو شرطة تحتية "
+"(_)، أو شرطة مائلة (/)، أو نقطة (.)!"
 
 #: apps/pootle_tagging/forms.py:180
 msgid "Already exists a goal with this slug!"
-msgstr ""
+msgstr "يوجد مسبقا هدف له نفس السبيكة!"
 
 #: apps/pootle_tagging/forms.py:194
 msgid ""
 "Warning: Changing the name also changes the slug, so it won't be possible to "
 "view this goal on this page!"
 msgstr ""
+"تحذير: تغيير الاسم يُغيّر السبيكة أيضًا، و سيتعذّر بعدها عرض هذا الهدف في "
+"هذه الصفحة!"
 
 #: apps/pootle_tagging/models.py:66
 #, python-format
@@ -1986,32 +2000,34 @@ msgid ""
 "A description of this goal. This is useful to give more information or "
 "instructions. Allowed markup: %s"
 msgstr ""
+"وصفٌ لهذا الهدف. يفيد في إعطاء المزيد من المعلومات أو التعليمات. الرقْم "
+"المسموح به: %s"
 
 #: apps/pootle_tagging/models.py:73
 msgid "The priority for this goal."
-msgstr ""
+msgstr "أولوية هذا الهدف."
 
 #: apps/pootle_tagging/models.py:78
 msgid ""
 "Designates that this is a project goal (shared across all languages in the "
 "project)."
-msgstr ""
+msgstr "تجعل هذا هدفًا للمشروع ككل (مشترك بين كل لغات المشروع)."
 
 #: apps/pootle_tagging/models.py:80
 msgid "Project goal?"
-msgstr ""
+msgstr "أهذا هدف للمشروع؟"
 
 #: apps/pootle_tagging/models.py:104
 msgid "(Project goal)"
-msgstr ""
+msgstr "(هدفٌ للمشروع)"
 
 #: apps/pootle_tagging/models.py:465
 msgid "Item with goal"
-msgstr ""
+msgstr "عنصر مرتبط بهدف"
 
 #: apps/pootle_tagging/models.py:466
 msgid "Items with goal"
-msgstr ""
+msgstr "عناصر مرتبطة بهدف"
 
 #: apps/pootle_terminology/views.py:171
 msgid "This term already exists in this file."
@@ -2295,12 +2311,12 @@ msgstr "عُطل أثناء حذف الملف."
 #: apps/pootle_translationproject/views.py:373
 #, python-format
 msgid "Unable to find '%(action)s' in '%(extdir)s'"
-msgstr ""
+msgstr "تعذّر العثور على '%(action)s' في  '%(extdir)s'"
 
 #: apps/pootle_translationproject/views.py:400
 #, python-format
 msgid "Exception while running '%s' extension action"
-msgstr ""
+msgstr "استثناءٌ أثناء تشغيل الامتداد '%s'"
 
 #: apps/pootle_translationproject/views.py:820
 #, python-format
@@ -2342,23 +2358,23 @@ msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:5
 msgid "Export View"
-msgstr ""
+msgstr "منظور التصدير"
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:97
 msgid "Goal"
-msgstr ""
+msgstr "الهدف"
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:139
 msgid "No strings."
-msgstr ""
+msgstr "لا مقاطع"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:61
 msgid "Translation project files and folders"
-msgstr ""
+msgstr "ملفات و مجلدات مشروع الترجمة"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "أدِر أهداف المشروع"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2451,7 +2467,7 @@ msgstr "ملفات المستخدمين"
 msgid ""
 "I have read and accept: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</"
 "a>"
-msgstr ""
+msgstr "قرأت و أقبل: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</a>"
 
 #: apps/staticpages/models.py:37
 #: apps/staticpages/templates/staticpages/admin/_table.html:7
@@ -2465,11 +2481,11 @@ msgstr "ما إذا كانت هذه الصفحة مُفعّلة أم لا."
 #: apps/staticpages/models.py:40
 #: apps/staticpages/templates/staticpages/admin/_table.html:9
 msgid "Virtual Path"
-msgstr ""
+msgstr "المسار الافتراضي"
 
 #: apps/staticpages/models.py:46
 msgid "Display Content"
-msgstr ""
+msgstr "اعرض المحتوى"
 
 #: apps/staticpages/models.py:47
 #, python-format
@@ -2479,11 +2495,11 @@ msgstr "الرَّقْم المتاح: %s"
 #: apps/staticpages/models.py:49
 #: apps/staticpages/templates/staticpages/admin/_table.html:10
 msgid "Redirect to URL"
-msgstr ""
+msgstr "أعِد التوجيه إلى مسار"
 
 #: apps/staticpages/models.py:50
 msgid "If set, any references to this page will redirect to this URL"
-msgstr ""
+msgstr "إذا مُلئِت هذه الخانة فسيُحوّل أي مرجع لهذه الصفحة إلى هذا المسار"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:97
@@ -2492,24 +2508,24 @@ msgstr "يجب ملء خانة المسار أو المحتوى."
 
 #: apps/staticpages/models.py:105
 msgid "Virtual path already in use."
-msgstr ""
+msgstr "المسار الافتراضي مستخدم من قبل."
 
 #: apps/staticpages/models.py:110
 msgid "Legal Page"
-msgstr ""
+msgstr "صفحة قانونية"
 
 #: apps/staticpages/models.py:121
 msgid "Regular Page"
-msgstr ""
+msgstr "صفحة عادية"
 
 #: apps/staticpages/views.py:87
 msgid "Page Title"
-msgstr ""
+msgstr "عنوان الصفحة"
 
 #: apps/staticpages/views.py:88
 #, python-format
 msgid "page-%d"
-msgstr ""
+msgstr "صفحة %d"
 
 #: apps/staticpages/views.py:130
 #, python-format
@@ -2517,48 +2533,50 @@ msgid ""
 "This page is inactive and visible to administrators only. You can activate "
 "it by <a href=\"%s\">editing its properties</a>"
 msgstr ""
+"هذه الصفحة غير مُفعّلة و ليست ظاهرة إلا للمُدراء. يمكنك تفعيلها <a href=\"%"
+"s\">بتحرير خصائصها</a>"
 
 #: apps/staticpages/templates/staticpages/agreement.html:4
 msgid "Action Required"
-msgstr ""
+msgstr "بعض الإجراءات مطلوبة"
 
 #: apps/staticpages/templates/staticpages/agreement.html:5
 msgid "Before continuing, you must read and accept the following documents."
-msgstr ""
+msgstr "قبل المواصلة، عليك قراءة المستندات التالية و الموافقة عليها."
 
 #: apps/staticpages/templates/staticpages/agreement.html:18
 msgid "No thanks. Log out"
-msgstr ""
+msgstr "لا شكرًا. أخرجني."
 
 #: apps/staticpages/templates/staticpages/agreement.html:21
 msgid "Continue"
-msgstr ""
+msgstr "أكمل"
 
 #: apps/staticpages/templates/staticpages/base.html:5
 #: apps/staticpages/templates/staticpages/base.html:11
 #: templates/admin_profile_menu.html:9
 msgid "Static Pages"
-msgstr ""
+msgstr "الصفحات الثابتة"
 
 #: apps/staticpages/templates/staticpages/admin/_form.html:18
 msgid "or"
-msgstr ""
+msgstr "أو"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:8
 msgid "Page"
-msgstr ""
+msgstr "صفحة"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:11
 msgid "Last Edited"
-msgstr ""
+msgstr "آخر تحرير"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "Yes"
-msgstr ""
+msgstr "نعم"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "No"
-msgstr ""
+msgstr "لا"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:30
 msgid "No pages yet."
@@ -2570,19 +2588,19 @@ msgstr "الصفحات القانونية"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:12
 msgid "Add Legal Page"
-msgstr ""
+msgstr "أضف صفحةً قانونية"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
 msgid "Regular Pages"
-msgstr ""
+msgstr "الصفحات العادية"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
 msgid "Add Regular Page"
-msgstr ""
+msgstr "أضف صفحةً عادية"
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."
-msgstr ""
+msgstr "ليست لك حقوق كافية لعرض هذه الصفحة."
 
 #: core/decorators.py:191 core/views.py:29
 msgid "You do not have rights to administer Pootle."
@@ -2590,7 +2608,7 @@ msgstr "ليست لك حقوق إدارة بوتل."
 
 #: core/helpers.py:41
 msgid "User missing"
-msgstr ""
+msgstr "المستخدم غير موجود"
 
 #. Translators: This refers to "All strings"
 #: core/helpers.py:53 templates/editor/_toolbar.html:12
@@ -2607,7 +2625,7 @@ msgstr "الفحوص"
 
 #: core/helpers.py:62
 msgid "Overwritten submissions"
-msgstr ""
+msgstr "المساهمات التي استُبدلت"
 
 #: middleware/captcha.py:122
 msgid "Time to answer has expired"
@@ -2636,13 +2654,13 @@ msgstr ""
 #: scripts/actions.py:529
 #, python-format
 msgid "Failed to copy download file to export directory %s"
-msgstr ""
+msgstr "فشل نسخ ملف التنزيل إلى مجلد التصدير %s"
 
 #: scripts/example-actions/mozlangpack.py:141
 msgid ""
 "Finished building the language pack, click on the download link to download "
 "it."
-msgstr ""
+msgstr "تم بناء حزمة اللغة، انقر على رابط التنزيل لتنزيلها."
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"
@@ -2679,7 +2697,7 @@ msgstr ""
 
 #: templates/_main_tabs.html:5
 msgid "Main page"
-msgstr ""
+msgstr "الصفحة الرئيسية"
 
 #: templates/_main_tabs.html:5 templates/language_menu.html:4
 #: templates/project_menu.html:4 templates/tp_menu.html:4
@@ -2730,7 +2748,7 @@ msgstr "أدر الصلاحيات المبدئية"
 
 #: templates/admin_profile_menu.html:9
 msgid "Manage Static Pages"
-msgstr ""
+msgstr "أدِر الصفحات الثابتة"
 
 #: templates/base.html:121
 msgid "skip to navigation"
@@ -2783,7 +2801,7 @@ msgstr "عنْ خادوم بوتل هذا"
 #: templates/base.html:201 templates/about/contributors.html:6
 #: templates/about/contributors.html:9
 msgid "Contributors"
-msgstr "المساهمون"
+msgstr "المساهمين"
 
 #: templates/captcha-xhr.html:8 templates/captcha.html:4
 #: templates/captcha.html.py:7
@@ -2809,7 +2827,7 @@ msgstr "أكّد"
 #: templates/db_error.html:4 templates/db_error.html.py:7
 #: templates/db_error.html:12
 msgid "Database Error"
-msgstr ""
+msgstr "عطلٌ بقاعدة البيانات"
 
 #: templates/db_error.html:14
 msgid ""
@@ -2818,6 +2836,10 @@ msgid ""
 "  yet, or a schema upgrade is needed before continuing.\n"
 "  "
 msgstr ""
+"\n"
+"  تعذّر على بوتل الاتصال بقاعدة البيانات، أو أن قاعدة البيانات لم تجهّز بعد\n"
+"  أو تحتاج إلى تحديث المخططات قبل المواصلة.\n"
+"  "
 
 #: templates/db_error.html:20
 #, python-format
@@ -2828,10 +2850,15 @@ msgid ""
 "  if you feel this is a mistake.\n"
 "  "
 msgstr ""
+"\n"
+"  من فضلك اقرأ <a href=\"%(url)s\">وثائق بوتل</a> للاطلاع على\n"
+"  تعليمات التثبيت و الترقية. اتصل بمسئول الخادوم إن كنت تظن\n"
+"  أن هناك خطب ما.\n"
+"  "
 
 #: templates/db_error.html:27
 msgid "The reported error was:"
-msgstr ""
+msgstr "العطل كان:"
 
 #: templates/language_menu.html:4
 msgid "Language main page"
@@ -2843,7 +2870,7 @@ msgstr "أخبار اللغة"
 
 #: templates/language_menu.html:6
 msgid "Translate this language"
-msgstr ""
+msgstr "ترجم هذه اللغة"
 
 #: templates/language_menu.html:8
 msgid "Administrate your language permissions"
@@ -2851,7 +2878,7 @@ msgstr "أدر صلاحيات مستخدمي اللغة"
 
 #: templates/main_base.html:6
 msgid "Main"
-msgstr ""
+msgstr "الرئيسية"
 
 #: templates/project_menu.html:4
 msgid "Project main page"
@@ -2955,7 +2982,7 @@ msgstr "تعريف"
 
 #: templates/common/_table_row.html:87
 msgid "Add a tag"
-msgstr ""
+msgstr "أضف وسمًا"
 
 #: templates/contact_form/contact_form.html:17
 msgid "Send"
@@ -3006,21 +3033,23 @@ msgstr "مساهماتي التي استُبدلت"
 
 #: templates/editor/_toolbar.html:34
 msgid "Go to the previous string (Ctrl+Up)"
-msgstr ""
+msgstr "اذهب إلى المقطع السابق (Ctrl+Up)"
 
 #: templates/editor/_toolbar.html:37
 msgid ""
 "Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
+"رقم المقطع الحالي (Ctrl+Shift+U)<br/><br/> اكتب ارقم ثم اضغط زر "
+"الإدخال<br/>للذهاب إلى أي موضع"
 
 #: templates/editor/_toolbar.html:39
 msgid "Total strings"
-msgstr ""
+msgstr "مجموع المقاطع"
 
 #: templates/editor/_toolbar.html:43
 msgid "Go to the next string (Ctrl+Down)"
-msgstr ""
+msgstr "اذهب إلى المقطع التالي (Ctrl+Down)"
 
 #: templates/profiles/edit_personal.html:12
 msgid ""
@@ -3054,7 +3083,7 @@ msgstr "يمكنك ضبط واجهة الترجمة و تحديد اللغات 
 
 #: templates/profiles/profile_detail.html:23
 msgid "Contributions"
-msgstr ""
+msgstr "المساهمين"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"
@@ -3066,11 +3095,11 @@ msgstr "مقترحات قيد الاعتبار"
 
 #: templates/profiles/profile_detail.html:46
 msgid "Overwritten"
-msgstr ""
+msgstr "مُستبدلة"
 
 #: templates/profiles/profile_detail.html:66
 msgid "This user doesn't have any contributions yet."
-msgstr ""
+msgstr "ليس لهذا المستخدم أي مساهمات بعد."
 
 #: templates/profiles/profile_list.html:7
 msgid "Profiles list"

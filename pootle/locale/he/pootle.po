@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-07-21 11:14+0000\n"
+"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"PO-Revision-Date: 2013-10-29 07:04+0000\n"
 "Last-Translator: Yaron <sh.yaron@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1374405268.0\n"
+"X-POOTLE-MTIME: 1383030254.0\n"
 
 #: strings.py:8
 msgid ""
@@ -516,7 +516,7 @@ msgstr "הרשמה."
 #: apps/pootle_project/models.py:221
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
-msgstr ""
+msgstr "לא ניתן להשתמש בצירוף „%s“ בתור קוד מיזם"
 
 #: apps/pootle_app/views/admin/adminusers.py:55
 #: templates/user_profile_menu.html:7
@@ -609,23 +609,23 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:129
 msgid "MARKUP_FILTER is missing. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER חסר. המערכת תוחזר ל־HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:131
 msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER לא הוגדר. המערכת תוחזר ל־HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:133
 #, python-format
 msgid ""
 "Can't find the package which provides '%s' markup support. Falling back to "
 "HTML."
-msgstr ""
+msgstr "לא ניתן למצוא את החבילה המספקת תמיכה בסימון „%s“. המערכת תוחזר ל־HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:137
 #, python-format
 msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
-msgstr ""
+msgstr "הערך „%s“ שגוי תחת MARKUP_FILTER. המערכת תוחזר ל־HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:154
 msgid ""
@@ -738,15 +738,15 @@ msgstr "משתמשים פעילים"
 
 #: apps/pootle_app/views/admin/permissions.py:61
 msgid "Translation Project Contributors"
-msgstr ""
+msgstr "התורמים למיזם התרגום"
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Contributors"
-msgstr ""
+msgstr "התורמים למיזם"
 
 #: apps/pootle_app/views/admin/permissions.py:84
 msgid "Language Contributors"
-msgstr ""
+msgstr "תורמי השפות"
 
 #: apps/pootle_app/views/admin/permissions.py:91
 msgid "All Users"
@@ -760,7 +760,7 @@ msgstr "שם משתמש"
 
 #: apps/pootle_app/views/admin/permissions.py:122
 msgid "Select one or more permissions"
-msgstr ""
+msgstr "בחירה בהרשאה אחת או יותר"
 
 #: apps/pootle_app/views/admin/util.py:145
 msgid "No files in this project."
@@ -876,7 +876,7 @@ msgstr "שפה"
 #. Translators: Heading representing the priority for a goal
 #: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:72
 msgid "Priority"
-msgstr ""
+msgstr "עדיפות"
 
 #. Translators: noun. The graphical representation of translation status
 #: apps/pootle_misc/browser.py:52
@@ -1088,7 +1088,7 @@ msgstr "חיפוש (Ctrl+Shift+S)<br/>יש להקליד, ואז ללחוץ על 
 
 #: apps/pootle_misc/forms.py:108
 msgid "Exact Match"
-msgstr ""
+msgstr "התאמה מדויקת"
 
 #: apps/pootle_misc/forms.py:115
 msgid "Source Text"
@@ -1168,8 +1168,8 @@ msgstr[1] "להמשיך בתרגום (נותרו %(num)d מילים)"
 #, python-format
 msgid "Next most important goal (%(num)d word left)"
 msgid_plural "Next most important goal (%(num)d words left)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "היעד החשוב ביותר הבא (מילה %(num)d נותרה)"
+msgstr[1] "היעד החשוב ביותר הבא (%(num)d מילים נותרו)"
 
 #: apps/pootle_misc/stats.py:249
 msgid "Translation is complete"
@@ -1266,7 +1266,7 @@ msgstr "בחירת מיזם"
 
 #: apps/pootle_notifications/forms.py:61
 msgid "Select one or more projects"
-msgstr ""
+msgstr "בחירה במיזם אחד או יותר"
 
 #: apps/pootle_notifications/forms.py:68
 msgid "All Languages"
@@ -1278,7 +1278,7 @@ msgstr "בחירת שפה"
 
 #: apps/pootle_notifications/forms.py:77 apps/pootle_profile/forms.py:120
 msgid "Select one or more languages"
-msgstr ""
+msgstr "בחירה בשפה אחת או יותר"
 
 #: apps/pootle_notifications/models.py:31
 msgid "Message"
@@ -1412,7 +1412,7 @@ msgstr "יעד הדוח"
 
 #: apps/pootle_project/views.py:119
 msgid "Select one or more tags to use as filter"
-msgstr ""
+msgstr "בחירה בתגית אחת או יותר לשימוש כמסנן"
 
 #: apps/pootle_project/views.py:162
 #, python-format
@@ -1433,27 +1433,27 @@ msgstr "להלן ניתן להוסיף, לערוך ולמחוק את ההרשא�
 #: apps/pootle_project/templates/project/overview.html:18
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
-msgstr ""
+msgstr "הצגת תגיות"
 
 #: apps/pootle_project/templates/project/overview.html:21
 msgid "Show filtering"
-msgstr ""
+msgstr "הצגת סינון"
 
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
 msgid "Filter"
-msgstr ""
+msgstr "מסנן"
 
 #: apps/pootle_project/templates/project/overview.html:38
 msgid "Filter the translation projects using this tags"
-msgstr ""
+msgstr "סינון מיזמים התרגום באמצעות תגית זו"
 
 #: apps/pootle_project/templates/project/overview.html:76
 #: apps/pootle_translationproject/templates/translation_project/overview.html:43
 #: apps/pootle_translationproject/templates/translation_project/overview.html:175
 #: templates/common/xhr_add_tag_form.html:15
 msgid "Add tag"
-msgstr ""
+msgstr "הוספת תגית"
 
 #: apps/pootle_project/templates/project/project_admin.html:7
 #: templates/project_menu.html:9
@@ -1489,48 +1489,48 @@ msgstr "משתמש אלמוני"
 #, python-format
 msgid ""
 "reverted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr ""
+msgstr "תרגום המחרוזת <i><a href=\"%(url)s\">%(source)s</a></i> הוחזר למקור"
 
 #: apps/pootle_statistics/models.py:147
 #, python-format
 msgid ""
 "accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr ""
+msgstr "ההצעה למחרוזת <i><a href=\"%(url)s\">%(source)s</a></i> התקבלה"
 
 #: apps/pootle_statistics/models.py:150
 msgid "uploaded a file"
-msgstr ""
+msgstr "הועלה קובץ"
 
 #: apps/pootle_statistics/models.py:165
 #, python-format
 msgid ""
 "submitted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr ""
+msgstr "נשלח תרגום למחרוזת <i><a href=\"%(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:167
 #, python-format
 msgid ""
 "submitted \"needs work\" translation for string <i><a href=\"%(url)s\">"
 "%(source)s</a></i>"
-msgstr ""
+msgstr "המחרוזת <i><a href=\"%(url)s\">%(source)s</a></i> סומנה „להמשך עבודה“"
 
 #: apps/pootle_statistics/models.py:170
 #, python-format
 msgid ""
 "removed translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr ""
+msgstr "תרגום המחרוזת <i><a href=\"%(url)s\">%(source)s</a></i> הוסר"
 
 #: apps/pootle_store/decorators.py:63
 msgid "Insufficient rights to access this directory."
-msgstr ""
+msgstr "אין די הרשאות לגשת לתיקייה זו."
 
 #: apps/pootle_store/decorators.py:135 apps/pootle_store/views.py:531
 msgid "Arguments missing."
-msgstr ""
+msgstr "הארגומנטים חסרים."
 
 #: apps/pootle_store/decorators.py:147
-msgid "Store does not exist."
-msgstr ""
+msgid "File does not exist."
+msgstr "הקובץ אינו קיים."
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Gettext PO"
@@ -1619,23 +1619,23 @@ msgstr "נתיב"
 #: apps/pootle_store/models.py:900
 #: apps/pootle_translationproject/models.py:114
 msgid "Tags"
-msgstr ""
+msgstr "תגיות"
 
 #: apps/pootle_store/models.py:901
 #: apps/pootle_translationproject/models.py:115
 msgid "A comma-separated list of tags."
-msgstr ""
+msgstr "רשימת תגיות מופרדת בפסיקים."
 
 #: apps/pootle_store/models.py:902
 #: apps/pootle_translationproject/models.py:116
 #: apps/pootle_translationproject/templates/translation_project/overview.html:69
 msgid "Goals"
-msgstr ""
+msgstr "יעדים"
 
 #: apps/pootle_store/models.py:904
 #: apps/pootle_translationproject/models.py:118
 msgid "A comma-separated list of goals."
-msgstr ""
+msgstr "רשימת יעדים מופרדת בפסיקים."
 
 #: apps/pootle_store/util.py:45
 msgid "Obsolete"
@@ -1667,11 +1667,11 @@ msgstr "ההצעה או ההצבעה אינם זמינים עוד."
 
 #: apps/pootle_store/views.py:1096
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "אין לך הרשאות להסיר תגיות."
 
 #: apps/pootle_store/views.py:1132
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "אין לך הרשאות להוסיף תגיות."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
@@ -1680,7 +1680,7 @@ msgstr "הערה:"
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
 msgid "<a href=\"%(url)s\">String %(id)s</a>"
-msgstr ""
+msgstr "<a href=\"%(url)s\">מחרוזת %(id)s</a>"
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -1867,12 +1867,17 @@ msgid ""
 "Tag names cannot have leading nor trailing spaces, colons (:), hyphens (-), "
 "underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"שמות של תגיות לא יכולים להתחיל או להסתיים ברווחים, נקודתיים (:), "
+"מקפים/מינוסים (-), קווים תחתיים (_), לוכסנים (/) או נקודות (.)!"
 
 #: apps/pootle_tagging/forms.py:53
 msgid ""
 "Tag names cannot contain two or more consecutive: spaces, colons (:), "
 "hyphens (-), underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"שמות של תגיות לא יכולים להכיל רצף של למעלה משניים או יותר תווים עוקבים "
+"מהסוגים הבאים: רווחים, נקודתיים (:), מקפים/מינוסים (-), קווים תחתיים (_), "
+"לוכסנים (/) או נקודות (.)!"
 
 #: apps/pootle_tagging/forms.py:60
 msgid ""
@@ -1880,16 +1885,21 @@ msgid ""
 "leading (but yes on the middle): spaces, colons (:), hyphens (-), "
 "underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"שמות התגיות חייבים להיות מורכבים מאותיות לטיניות קטנות כאשר אף אחד מהתווים "
+"הבאים לא יכולים להיות בהתחלה או בסוף (אבל כן באמצע): רווחים, נקודתיים (:), "
+"מקפים/מינוסים (-), קווים תחתיים (_), לוכסנים (/) או נקודות (.)!"
 
 #: apps/pootle_tagging/forms.py:74
 msgid ""
 "Name cannot contain just after 'goal:' any of these characters: spaces, "
 "colons (:), hyphens (-), underscores (_), slashes (/) or periods (.)"
 msgstr ""
+"לאחר ה־'goal:‎' אין לכלול אף אחד מהתווים הבאים: רווחים, נקודתיים (:), "
+"מקפים/מינוסים (-), קווים תחתיים (_), לוכסנים (/) או נקודות (.)!"
 
 #: apps/pootle_tagging/forms.py:133
 msgid "Already exists a goal with this name. Please pick another name."
-msgstr ""
+msgstr "כבר קיים יעד בשם הזה. נא לבחור בשם אחר."
 
 #: apps/pootle_tagging/forms.py:173
 msgid ""
@@ -1897,16 +1907,21 @@ msgid ""
 "single or multiple occurrences of the following characters: spaces, colons "
 "(:), hyphens (-), underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"השמות המקוצרים של התגים חייבים להיות זהים לשם התג למעט החלפה של במינוס של "
+"מופע יחיד או רבים של כל אחד מהתווים הבאים: רווחים, נקודתיים (:), "
+"מקפים/מינוסים (-), קווים תחתיים (_), לוכסנים (/) או נקודות (.)!"
 
 #: apps/pootle_tagging/forms.py:180
 msgid "Already exists a goal with this slug!"
-msgstr ""
+msgstr "כבר קיים יעד עם השם המקוצר הזה!"
 
 #: apps/pootle_tagging/forms.py:194
 msgid ""
 "Warning: Changing the name also changes the slug, so it won't be possible to "
 "view this goal on this page!"
 msgstr ""
+"אזהרה: שינוי השם משנה גם את השם המקוצר, כך שלא ניתן יהיה לצפות ביעד בעמוד "
+"זה!"
 
 #: apps/pootle_tagging/models.py:66
 #, python-format
@@ -1914,32 +1929,33 @@ msgid ""
 "A description of this goal. This is useful to give more information or "
 "instructions. Allowed markup: %s"
 msgstr ""
+"תיאור היעד. תווית זו שימושית להצגת מידע נוסף או הנחיות. צורת סימון מותרת: %s"
 
 #: apps/pootle_tagging/models.py:73
 msgid "The priority for this goal."
-msgstr ""
+msgstr "עדיפות היעד."
 
 #: apps/pootle_tagging/models.py:78
 msgid ""
 "Designates that this is a project goal (shared across all languages in the "
 "project)."
-msgstr ""
+msgstr "מיועד לציון יעד של מיזם (שיתופי לכל השפות של המיזם)."
 
 #: apps/pootle_tagging/models.py:80
 msgid "Project goal?"
-msgstr ""
+msgstr "יעד המיזם?"
 
 #: apps/pootle_tagging/models.py:104
 msgid "(Project goal)"
-msgstr ""
+msgstr "(יעד המיזם)"
 
 #: apps/pootle_tagging/models.py:465
 msgid "Item with goal"
-msgstr ""
+msgstr "פריט עם יעד"
 
 #: apps/pootle_tagging/models.py:466
 msgid "Items with goal"
-msgstr ""
+msgstr "פריטים עם יעד"
 
 #: apps/pootle_terminology/views.py:171
 msgid "This term already exists in this file."
@@ -2222,12 +2238,12 @@ msgstr "אירעה שגיאה בעת הניסיון למחוק את הקובץ."
 #: apps/pootle_translationproject/views.py:373
 #, python-format
 msgid "Unable to find '%(action)s' in '%(extdir)s'"
-msgstr ""
+msgstr "לא ניתן למצוא את'%(action)s' תחת '%(extdir)s'"
 
 #: apps/pootle_translationproject/views.py:400
 #, python-format
 msgid "Exception while running '%s' extension action"
-msgstr ""
+msgstr "אירעה חריגה בעת הרצת פעולת ההרחבה '%s'"
 
 #: apps/pootle_translationproject/views.py:820
 #, python-format
@@ -2268,23 +2284,23 @@ msgstr "להלן ניתן להוסיף, לערוך ולמחוק את ההרשא�
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:5
 msgid "Export View"
-msgstr ""
+msgstr "תצוגת ייצוא"
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:97
 msgid "Goal"
-msgstr ""
+msgstr "יעד"
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:139
 msgid "No strings."
-msgstr ""
+msgstr "אין מחרוזות."
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:61
 msgid "Translation project files and folders"
-msgstr ""
+msgstr "הקבצים והתיקיות של מיזם התרגום"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "ניהול יעדי המיזם שלך"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2377,7 +2393,7 @@ msgstr "פרופילי רישום"
 msgid ""
 "I have read and accept: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</"
 "a>"
-msgstr ""
+msgstr "Iקראתי והסכמתי: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</a>"
 
 #: apps/staticpages/models.py:37
 #: apps/staticpages/templates/staticpages/admin/_table.html:7
@@ -2391,11 +2407,11 @@ msgstr "האם עמוד זה פעיל או שלא."
 #: apps/staticpages/models.py:40
 #: apps/staticpages/templates/staticpages/admin/_table.html:9
 msgid "Virtual Path"
-msgstr ""
+msgstr "נתיב וירטואלי"
 
 #: apps/staticpages/models.py:46
 msgid "Display Content"
-msgstr ""
+msgstr "הצגת תוכן"
 
 #: apps/staticpages/models.py:47
 #, python-format
@@ -2405,11 +2421,11 @@ msgstr "תחביר סומן מותר: %s"
 #: apps/staticpages/models.py:49
 #: apps/staticpages/templates/staticpages/admin/_table.html:10
 msgid "Redirect to URL"
-msgstr ""
+msgstr "הפנייה לכתובת"
 
 #: apps/staticpages/models.py:50
 msgid "If set, any references to this page will redirect to this URL"
-msgstr ""
+msgstr "אם הוגדרה, כל ההפניות לעמוד זה יפנו לכתובת זו"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:97
@@ -2418,24 +2434,24 @@ msgstr "יש לספק כתובת או תוכן."
 
 #: apps/staticpages/models.py:105
 msgid "Virtual path already in use."
-msgstr ""
+msgstr "כבר יש נתיב וירטואלי בשימוש."
 
 #: apps/staticpages/models.py:110
 msgid "Legal Page"
-msgstr ""
+msgstr "עמוד מידע משפטי"
 
 #: apps/staticpages/models.py:121
 msgid "Regular Page"
-msgstr ""
+msgstr "עמוד רגיל"
 
 #: apps/staticpages/views.py:87
 msgid "Page Title"
-msgstr ""
+msgstr "כותרת העמוד"
 
 #: apps/staticpages/views.py:88
 #, python-format
 msgid "page-%d"
-msgstr ""
+msgstr "עמוד-%d"
 
 #: apps/staticpages/views.py:130
 #, python-format
@@ -2443,48 +2459,50 @@ msgid ""
 "This page is inactive and visible to administrators only. You can activate "
 "it by <a href=\"%s\">editing its properties</a>"
 msgstr ""
+"עמוד זה אינו פעיל וגלוי למנהלים בלבד. ניתן להפעיל אותו על ידי <a href=\"%"
+"s\">עריכת המאפיינים שלו</a>"
 
 #: apps/staticpages/templates/staticpages/agreement.html:4
 msgid "Action Required"
-msgstr ""
+msgstr "נדרשת פעולה"
 
 #: apps/staticpages/templates/staticpages/agreement.html:5
 msgid "Before continuing, you must read and accept the following documents."
-msgstr ""
+msgstr "בטרם המשך הפעולה, עליך לקרוא ולאשר את המסמכים הבאים."
 
 #: apps/staticpages/templates/staticpages/agreement.html:18
 msgid "No thanks. Log out"
-msgstr ""
+msgstr "לא תודה. אעדיף לצאת"
 
 #: apps/staticpages/templates/staticpages/agreement.html:21
 msgid "Continue"
-msgstr ""
+msgstr "המשך"
 
 #: apps/staticpages/templates/staticpages/base.html:5
 #: apps/staticpages/templates/staticpages/base.html:11
 #: templates/admin_profile_menu.html:9
 msgid "Static Pages"
-msgstr ""
+msgstr "עמודים סטיטיים"
 
 #: apps/staticpages/templates/staticpages/admin/_form.html:18
 msgid "or"
-msgstr ""
+msgstr "או"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:8
 msgid "Page"
-msgstr ""
+msgstr "עמוד"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:11
 msgid "Last Edited"
-msgstr ""
+msgstr "מועד עריכה אחרון"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "Yes"
-msgstr ""
+msgstr "כן"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "No"
-msgstr ""
+msgstr "לא"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:30
 msgid "No pages yet."
@@ -2496,19 +2514,19 @@ msgstr "עמודי מידע משפטי"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:12
 msgid "Add Legal Page"
-msgstr ""
+msgstr "הוספת עמוד מידע משפטי"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
 msgid "Regular Pages"
-msgstr ""
+msgstr "עמודים רגילים"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
 msgid "Add Regular Page"
-msgstr ""
+msgstr "הוספת עמוד רגיל"
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."
-msgstr ""
+msgstr "אין די הרשאות לגישה לעמוד זה."
 
 #: core/decorators.py:191 core/views.py:29
 msgid "You do not have rights to administer Pootle."
@@ -2516,7 +2534,7 @@ msgstr "אין לך הרשאות לניהול ה־Pootle."
 
 #: core/helpers.py:41
 msgid "User missing"
-msgstr ""
+msgstr "המשתמש חסר"
 
 #. Translators: This refers to "All strings"
 #: core/helpers.py:53 templates/editor/_toolbar.html:12
@@ -2533,7 +2551,7 @@ msgstr "בדיקות"
 
 #: core/helpers.py:62
 msgid "Overwritten submissions"
-msgstr ""
+msgstr "הגשות שנדרסו"
 
 #: middleware/captcha.py:122
 msgid "Time to answer has expired"
@@ -2560,13 +2578,13 @@ msgstr "שגיאה בעת הגישה ל־%(filename)s, מערכת הקבצים �
 #: scripts/actions.py:529
 #, python-format
 msgid "Failed to copy download file to export directory %s"
-msgstr ""
+msgstr "העתקת הקובץ שהתקבל אל תיקיית הייצוא %s נכשלה"
 
 #: scripts/example-actions/mozlangpack.py:141
 msgid ""
 "Finished building the language pack, click on the download link to download "
 "it."
-msgstr ""
+msgstr "בניית חבילת השפה הסתיימה, נא ללחוץ על קישור ההורדה כדי להוריד אותה."
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"
@@ -2602,7 +2620,7 @@ msgstr ""
 
 #: templates/_main_tabs.html:5
 msgid "Main page"
-msgstr ""
+msgstr "עמוד ראשי"
 
 #: templates/_main_tabs.html:5 templates/language_menu.html:4
 #: templates/project_menu.html:4 templates/tp_menu.html:4
@@ -2653,7 +2671,7 @@ msgstr "ניהול הרשאות בררת המחדל"
 
 #: templates/admin_profile_menu.html:9
 msgid "Manage Static Pages"
-msgstr ""
+msgstr "ניהול עמודים סטטיים"
 
 #: templates/base.html:121
 msgid "skip to navigation"
@@ -2732,7 +2750,7 @@ msgstr "אישור"
 #: templates/db_error.html:4 templates/db_error.html.py:7
 #: templates/db_error.html:12
 msgid "Database Error"
-msgstr ""
+msgstr "שגיאת מסד נתונים"
 
 #: templates/db_error.html:14
 msgid ""
@@ -2741,6 +2759,10 @@ msgid ""
 "  yet, or a schema upgrade is needed before continuing.\n"
 "  "
 msgstr ""
+"\n"
+"  ל־Pootle אין אפשרות להתחבר למסד הנתונים, מס הנתונים אינו מאותחל\n"
+"  עדיין או שנדרש עדכון סכמה בטרם המשך הפעולה.\n"
+"  "
 
 #: templates/db_error.html:20
 #, python-format
@@ -2751,10 +2773,15 @@ msgid ""
 "  if you feel this is a mistake.\n"
 "  "
 msgstr ""
+"\n"
+"  נא לקרוא את <a href=\"%(url)s\">התיעוד של Pootle</a> תחת\n"
+"  הנחיות ההתקנה והשדרוג. נא ליצור קשר עם מנהל השרת\n"
+"  אם נראה לך שמדובר בטעות.\n"
+"  "
 
 #: templates/db_error.html:27
 msgid "The reported error was:"
-msgstr ""
+msgstr "השגיאה שדווחה הייתה:"
 
 #: templates/language_menu.html:4
 msgid "Language main page"
@@ -2766,7 +2793,7 @@ msgstr "חדשות השפה"
 
 #: templates/language_menu.html:6
 msgid "Translate this language"
-msgstr ""
+msgstr "תרגום שפה זו"
 
 #: templates/language_menu.html:8
 msgid "Administrate your language permissions"
@@ -2774,7 +2801,7 @@ msgstr "ניהול הרשאות השפה שלך"
 
 #: templates/main_base.html:6
 msgid "Main"
-msgstr ""
+msgstr "ראשי"
 
 #: templates/project_menu.html:4
 msgid "Project main page"
@@ -2878,7 +2905,7 @@ msgstr "על אודות"
 
 #: templates/common/_table_row.html:87
 msgid "Add a tag"
-msgstr ""
+msgstr "הוספת תגית"
 
 #: templates/contact_form/contact_form.html:17
 msgid "Send"
@@ -2929,21 +2956,23 @@ msgstr "ההגשות שלי שנדרסו"
 
 #: templates/editor/_toolbar.html:34
 msgid "Go to the previous string (Ctrl+Up)"
-msgstr ""
+msgstr "מעבר למחרוזת הקודמת (Ctrl+למעלה)"
 
 #: templates/editor/_toolbar.html:37
 msgid ""
 "Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
+"מספר המחרוזת הנוכחית (Ctrl+Shift+U)<br/><br/>נא להזין את המספר וללחוץ על "
+"Enter<br/>כדי לעבור לכל מיקום שהוא"
 
 #: templates/editor/_toolbar.html:39
 msgid "Total strings"
-msgstr ""
+msgstr "סך כל המחרוזות"
 
 #: templates/editor/_toolbar.html:43
 msgid "Go to the next string (Ctrl+Down)"
-msgstr ""
+msgstr "מעבר למחרוזת הבאה (Ctrl+למטה)"
 
 #: templates/profiles/edit_personal.html:12
 msgid ""
@@ -2977,7 +3006,7 @@ msgstr "כאן ניתן להגדיר את ההגדרות הקשורות במנש
 
 #: templates/profiles/profile_detail.html:23
 msgid "Contributions"
-msgstr ""
+msgstr "תרומות"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"
@@ -2989,11 +3018,11 @@ msgstr "הצעות ממתינות"
 
 #: templates/profiles/profile_detail.html:46
 msgid "Overwritten"
-msgstr ""
+msgstr "שוכתב"
 
 #: templates/profiles/profile_detail.html:66
 msgid "This user doesn't have any contributions yet."
-msgstr ""
+msgstr "למשתמש זה אין תרומות עדיין."
 
 #: templates/profiles/profile_list.html:7
 msgid "Profiles list"
@@ -3234,6 +3263,9 @@ msgstr "כבר יש לך חשבון?"
 #: templates/registration/registration_form.html:54
 msgid "Log In."
 msgstr "כניסה."
+
+#~ msgid "Store does not exist."
+#~ msgstr "לא קיים אחסון."
 
 #~ msgid "Display on registration"
 #~ msgstr "הצגה עם ההרשמה"

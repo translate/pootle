@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-02-23 22:20+0000\n"
-"Last-Translator: Stefán Freyr <stefan.freyr@gmail.com>\n"
+"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"PO-Revision-Date: 2013-10-28 19:58+0000\n"
+"Last-Translator: Sveinn í Felli <sveinki@nett.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n%10!=1 || n%100==11);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-POOTLE-MTIME: 1361658028.0\n"
+"X-POOTLE-MTIME: 1382990306.0\n"
 
 #: strings.py:8
 msgid ""
@@ -146,7 +146,7 @@ msgstr "Leyfi"
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:57
 msgid "Contributor License"
-msgstr ""
+msgstr "Notkunarskilmálar þátttakanda"
 
 #. Translators: Label that refers to the site's terms of use
 #: strings.py:59
@@ -530,7 +530,7 @@ msgstr "Nýskráning."
 #: apps/pootle_project/models.py:221
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
-msgstr ""
+msgstr "\"%s\" er ekki hægt að nota sem verkefnakóða"
 
 #: apps/pootle_app/views/admin/adminusers.py:55
 #: templates/user_profile_menu.html:7
@@ -756,11 +756,11 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Contributors"
-msgstr ""
+msgstr "Framlög til verkefnisins"
 
 #: apps/pootle_app/views/admin/permissions.py:84
 msgid "Language Contributors"
-msgstr ""
+msgstr "Framlög til tungumála"
 
 #: apps/pootle_app/views/admin/permissions.py:91
 msgid "All Users"
@@ -872,7 +872,7 @@ msgstr[1] "%(projects)d verkefni, %(average)d%% búið að þýða"
 #: apps/pootle_language/views.py:151 apps/pootle_project/views.py:325
 #: apps/pootle_tagging/views.py:52 apps/pootle_translationproject/views.py:740
 msgid "No description yet."
-msgstr ""
+msgstr "Engin lýsing ennþá."
 
 #: apps/pootle_language/templates/language/language_admin.html:11
 msgid "Below you can add, edit, and delete the permissions for this language."
@@ -895,7 +895,7 @@ msgstr "Tungumál"
 #. Translators: Heading representing the priority for a goal
 #: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:72
 msgid "Priority"
-msgstr ""
+msgstr "Forgangur"
 
 #. Translators: noun. The graphical representation of translation status
 #: apps/pootle_misc/browser.py:52
@@ -929,7 +929,6 @@ msgid "Cosmetic"
 msgstr "Smekksatriði"
 
 #: apps/pootle_misc/checks.py:30
-#, fuzzy
 msgid "Extraction"
 msgstr "Afþjöppun"
 
@@ -994,8 +993,9 @@ msgid "File paths"
 msgstr "Skráaslóðir"
 
 #: apps/pootle_misc/checks.py:50
+#, fuzzy
 msgid "Functions"
-msgstr ""
+msgstr "Virkar"
 
 #: apps/pootle_misc/checks.py:51
 msgid "GConf values"
@@ -1062,7 +1062,7 @@ msgstr "Einföld hástöfun"
 
 #: apps/pootle_misc/checks.py:66
 msgid "Simple plural(s)"
-msgstr ""
+msgstr "Einföld fleirtölun"
 
 #: apps/pootle_misc/checks.py:67
 msgid "Single quotes"
@@ -1070,16 +1070,15 @@ msgstr "Einfaldar gæsalappir"
 
 #: apps/pootle_misc/checks.py:68
 msgid "Starting capitalization"
-msgstr ""
+msgstr "Byrjun hástöfunar"
 
 #: apps/pootle_misc/checks.py:69
-#, fuzzy
 msgid "Starting punctuation"
-msgstr "Greinarmerki við enda"
+msgstr "Greinarmerki við byrjun"
 
 #: apps/pootle_misc/checks.py:70
 msgid "Starting whitespace"
-msgstr ""
+msgstr "Strengur byrjar á hvítstaf"
 
 #. Translators: This refers to tabulation characters
 #: apps/pootle_misc/checks.py:72
@@ -1112,7 +1111,7 @@ msgstr "Leit (Ctrl+Shift+S)<br/>Skrifaðu og ýttu á Enter til að leita"
 
 #: apps/pootle_misc/forms.py:108
 msgid "Exact Match"
-msgstr ""
+msgstr "Nákvæm samsvörun"
 
 #: apps/pootle_misc/forms.py:115
 msgid "Source Text"
@@ -1471,7 +1470,7 @@ msgstr ""
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
 msgid "Filter"
-msgstr ""
+msgstr "Sía"
 
 #: apps/pootle_project/templates/project/overview.html:38
 msgid "Filter the translation projects using this tags"
@@ -1559,7 +1558,7 @@ msgid "Arguments missing."
 msgstr ""
 
 #: apps/pootle_store/decorators.py:147
-msgid "Store does not exist."
+msgid "File does not exist."
 msgstr ""
 
 #: apps/pootle_store/filetypes.py:31
@@ -1648,8 +1647,9 @@ msgstr "Slóð"
 
 #: apps/pootle_store/models.py:900
 #: apps/pootle_translationproject/models.py:114
+#, fuzzy
 msgid "Tags"
-msgstr ""
+msgstr "Inndráttarmerki"
 
 #: apps/pootle_store/models.py:901
 #: apps/pootle_translationproject/models.py:115
@@ -1660,7 +1660,7 @@ msgstr ""
 #: apps/pootle_translationproject/models.py:116
 #: apps/pootle_translationproject/templates/translation_project/overview.html:69
 msgid "Goals"
-msgstr ""
+msgstr "Markmið"
 
 #: apps/pootle_store/models.py:904
 #: apps/pootle_translationproject/models.py:118
@@ -1697,12 +1697,14 @@ msgid "The suggestion or vote is not valid any more."
 msgstr "Tillagan eða atkvæðið er ekki í gildi lengur."
 
 #: apps/pootle_store/views.py:1096
+#, fuzzy
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "Þú hefur ekki réttindi til að stjórna %s."
 
 #: apps/pootle_store/views.py:1132
+#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "Þú hefur ekki réttindi til að stjórna %s."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
@@ -2320,8 +2322,9 @@ msgid "Translation project files and folders"
 msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
+#, fuzzy
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "Stjórna eingin verkefni"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2452,8 +2455,11 @@ msgid "Redirect to URL"
 msgstr ""
 
 #: apps/staticpages/models.py:50
+#, fuzzy
 msgid "If set, any references to this page will redirect to this URL"
 msgstr ""
+"Ef eitthvað er tilgreint munu allar tilvísanir í þessa síðu verða "
+"áframsendar á þessa slóð (URL)"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:97
@@ -2465,8 +2471,9 @@ msgid "Virtual path already in use."
 msgstr ""
 
 #: apps/staticpages/models.py:110
+#, fuzzy
 msgid "Legal Page"
-msgstr ""
+msgstr "Lagalegar síður"
 
 #: apps/staticpages/models.py:121
 msgid "Regular Page"
@@ -2498,11 +2505,11 @@ msgstr ""
 
 #: apps/staticpages/templates/staticpages/agreement.html:18
 msgid "No thanks. Log out"
-msgstr ""
+msgstr "Nei takk. Skrá út"
 
 #: apps/staticpages/templates/staticpages/agreement.html:21
 msgid "Continue"
-msgstr ""
+msgstr "Halda áfram"
 
 #: apps/staticpages/templates/staticpages/base.html:5
 #: apps/staticpages/templates/staticpages/base.html:11
@@ -2512,27 +2519,27 @@ msgstr ""
 
 #: apps/staticpages/templates/staticpages/admin/_form.html:18
 msgid "or"
-msgstr ""
+msgstr "eða"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:8
 msgid "Page"
-msgstr ""
+msgstr "Síða"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:11
 msgid "Last Edited"
-msgstr ""
+msgstr "Síðast breytt"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "Yes"
-msgstr ""
+msgstr "Já"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "No"
-msgstr ""
+msgstr "Nei"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:30
 msgid "No pages yet."
-msgstr ""
+msgstr "Engar síður ennþá."
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:8
 #, fuzzy
@@ -2540,16 +2547,18 @@ msgid "Legal Pages"
 msgstr "Lagalegar síður"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:12
+#, fuzzy
 msgid "Add Legal Page"
-msgstr ""
+msgstr "Breyta lagalegri síðu."
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
 msgid "Regular Pages"
 msgstr ""
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
+#, fuzzy
 msgid "Add Regular Page"
-msgstr ""
+msgstr "Breyta lagalegri síðu."
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."
@@ -2649,7 +2658,7 @@ msgstr ""
 
 #: templates/_main_tabs.html:5
 msgid "Main page"
-msgstr ""
+msgstr "Aðalsíða"
 
 #: templates/_main_tabs.html:5 templates/language_menu.html:4
 #: templates/project_menu.html:4 templates/tp_menu.html:4
@@ -3029,12 +3038,11 @@ msgstr ""
 
 #: templates/profiles/profile_detail.html:23
 msgid "Contributions"
-msgstr ""
+msgstr "Framlög"
 
 #: templates/profiles/profile_detail.html:28
-#, fuzzy
 msgid "You can set or change your avatar image at www.gravatar.com"
-msgstr "Þú getur stjórnað kennimynd þinni á www.gravatar.com"
+msgstr "Þú getur stillt kennimynd þína á www.gravatar.com"
 
 #: templates/profiles/profile_detail.html:42
 msgid "Suggestions Pending"
@@ -3042,7 +3050,7 @@ msgstr "Tillögur óútkljáðar"
 
 #: templates/profiles/profile_detail.html:46
 msgid "Overwritten"
-msgstr ""
+msgstr "Yfirskrifað"
 
 #: templates/profiles/profile_detail.html:66
 msgid "This user doesn't have any contributions yet."

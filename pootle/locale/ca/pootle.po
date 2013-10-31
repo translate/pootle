@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-02-27 07:27+0000\n"
-"Last-Translator: Toni <toniher@softcatala.org>\n"
+"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"PO-Revision-Date: 2013-10-28 18:15+0000\n"
+"Last-Translator: ellibrecomoelchaval <el.libre@gmail.com>\n"
 "Language-Team: Softcatalà\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1361950039.0\n"
+"X-POOTLE-MTIME: 1382984143.0\n"
 
 #: strings.py:8
 msgid ""
@@ -68,7 +68,7 @@ msgid ""
 "Please enter a correct username and password. Note that both fields are case-"
 "sensitive."
 msgstr ""
-"Introduïu un nom d'usuari i contrasenya correctes. Tingueu en comptes que "
+"Introdueix un nom d'usuari i contrasenya correctes.Tingues en comptes que "
 "els dos camps són sensibles a les majúscules."
 
 #. Translators: Email subject line. The variable is the server name shown
@@ -224,7 +224,7 @@ msgid ""
 "sure to use valid HTML."
 msgstr ""
 "La descripció i les instruccions que figuren a la portada i a la pàgina "
-"sobre el projecte. Assegureu-vos d'utilitzar HTML vàlid."
+"sobre el projecte. Assegura't d'utilitzar HTML vàlid."
 
 #: apps/pootle_app/management/__init__.py:90
 msgid "Can view a translation project"
@@ -325,7 +325,7 @@ msgstr "Desa els canvis"
 #: apps/pootle_app/templates/index/index.html:42
 #: apps/pootle_profile/models.py:87 templates/admin_profile_menu.html:6
 msgid "Languages"
-msgstr "Llengües"
+msgstr "Idiomes"
 
 #: apps/pootle_app/templates/admin/admin_general_languages.html:12
 msgid ""
@@ -792,7 +792,7 @@ msgstr "No hi ha fitxers en el projecte."
 
 #: apps/pootle_app/views/admin/util.py:178
 msgid "There are errors in the form. Please review the problems below."
-msgstr "Hi ha errors al formulari. Comproveu els problemes a continuació."
+msgstr "Hi ha algun errors al formulari. Revisa els problemes a continuació."
 
 #: apps/pootle_app/views/index/about.py:49
 #, python-format
@@ -833,7 +833,7 @@ msgid ""
 "A description of this language. This is useful to give more information or "
 "instructions. Allowed markup: %s"
 msgstr ""
-"Una descripció de la llengua. Això és útil per oferir més informació o "
+"Una descripció de l'idioma. Això és útil per oferir més informació o "
 "instruccions. Etiquetatge permès: %s"
 
 #: apps/pootle_language/models.py:80
@@ -1570,7 +1570,7 @@ msgid "Arguments missing."
 msgstr ""
 
 #: apps/pootle_store/decorators.py:147
-msgid "Store does not exist."
+msgid "File does not exist."
 msgstr ""
 
 #: apps/pootle_store/filetypes.py:31
@@ -1659,13 +1659,14 @@ msgstr "Camí"
 
 #: apps/pootle_store/models.py:900
 #: apps/pootle_translationproject/models.py:114
+#, fuzzy
 msgid "Tags"
-msgstr ""
+msgstr "Tabulacions"
 
 #: apps/pootle_store/models.py:901
 #: apps/pootle_translationproject/models.py:115
 msgid "A comma-separated list of tags."
-msgstr ""
+msgstr "Llista d'etiquetes separades per comes."
 
 #: apps/pootle_store/models.py:902
 #: apps/pootle_translationproject/models.py:116
@@ -1707,12 +1708,14 @@ msgid "The suggestion or vote is not valid any more."
 msgstr "El suggeriment o el vot ja no és vàlid."
 
 #: apps/pootle_store/views.py:1096
+#, fuzzy
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "No teniu permisos per administrar %s."
 
 #: apps/pootle_store/views.py:1132
+#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "No teniu permisos per administrar %s."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
@@ -1870,7 +1873,7 @@ msgstr "Suprimeix el suggeriment"
 
 #: apps/pootle_store/templates/unit/term_edit.html:21
 msgid "Your current vote. Click to remove this vote."
-msgstr "El vostre vot actual. Feu clic per eliminar-lo."
+msgstr "El teu vot actual. Fes clic per eliminar-lo."
 
 #: apps/pootle_store/templates/unit/term_edit.html:33
 msgid "Vote for this suggestion"
@@ -2340,8 +2343,9 @@ msgid "Translation project files and folders"
 msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
+#, fuzzy
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "Administreu el vostre projecte"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2464,11 +2468,14 @@ msgstr "Etiquetatge permès: %s"
 #: apps/staticpages/models.py:49
 #: apps/staticpages/templates/staticpages/admin/_table.html:10
 msgid "Redirect to URL"
-msgstr ""
+msgstr "Redireccionar a la URL"
 
 #: apps/staticpages/models.py:50
+#, fuzzy
 msgid "If set, any references to this page will redirect to this URL"
 msgstr ""
+"Si es defineix, tota referència a la pàgina d'informació legal es redirigirà "
+"a aquest URL"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:97
@@ -2480,8 +2487,9 @@ msgid "Virtual path already in use."
 msgstr ""
 
 #: apps/staticpages/models.py:110
+#, fuzzy
 msgid "Legal Page"
-msgstr ""
+msgstr "Pàgines d'informació legal"
 
 #: apps/staticpages/models.py:121
 msgid "Regular Page"
@@ -2523,11 +2531,11 @@ msgstr ""
 #: apps/staticpages/templates/staticpages/base.html:11
 #: templates/admin_profile_menu.html:9
 msgid "Static Pages"
-msgstr ""
+msgstr "Pàgines estàtiques"
 
 #: apps/staticpages/templates/staticpages/admin/_form.html:18
 msgid "or"
-msgstr ""
+msgstr "o"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:8
 msgid "Page"
@@ -2554,16 +2562,18 @@ msgid "Legal Pages"
 msgstr "Pàgines d'informació legal"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:12
+#, fuzzy
 msgid "Add Legal Page"
-msgstr ""
+msgstr "Edita la pàgina d'informació legal"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
 msgid "Regular Pages"
 msgstr ""
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
+#, fuzzy
 msgid "Add Regular Page"
-msgstr ""
+msgstr "Edita la pàgina d'informació legal"
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."
@@ -2591,8 +2601,9 @@ msgid "Checks"
 msgstr "Comprovacions"
 
 #: core/helpers.py:62
+#, fuzzy
 msgid "Overwritten submissions"
-msgstr ""
+msgstr "Els meus enviaments sobreescrits"
 
 #: middleware/captcha.py:122
 msgid "Time to answer has expired"
@@ -2818,7 +2829,7 @@ msgstr ""
 
 #: templates/db_error.html:27
 msgid "The reported error was:"
-msgstr ""
+msgstr "S'ha informat de l'error:"
 
 #: templates/language_menu.html:4
 msgid "Language main page"
@@ -3006,7 +3017,7 @@ msgstr ""
 
 #: templates/editor/_toolbar.html:39
 msgid "Total strings"
-msgstr ""
+msgstr "Cadenes totals"
 
 #: templates/editor/_toolbar.html:43
 msgid "Go to the next string (Ctrl+Down)"
@@ -3046,8 +3057,9 @@ msgstr ""
 "traducció i les vostres preferències de llengua."
 
 #: templates/profiles/profile_detail.html:23
+#, fuzzy
 msgid "Contributions"
-msgstr ""
+msgstr "Col·laboradors"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"
@@ -3236,9 +3248,9 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
-"L'enllaç de reinicialització de la contrasenya no era vàlid, possiblement "
-"perquè ja ha estat utilitzat. Si us plau, sol·liciteu-ne una altra "
-"reinicialització."
+" L'enllaç de restabliment de la contrasenya no és vàlid, possiblement pel "
+"fet que ja s'ha estat utilitzat.Si us plau, demana un nou restabliment de la "
+"contrasenya."
 
 #: templates/registration/password_reset_done.html:15
 msgid ""
@@ -3275,8 +3287,9 @@ msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
-"Heu oblidat la vostra contrasenya? Introduïu la vostra adreça electrònica a "
-"continuació, i us enviarem les instruccions per a obtenir-ne una altra."
+"Has oblidat la teva contrasenya? Escriu la teva adreça de correu electrònic, "
+"i nosaltres t'enviarem per correu-e les instruccions per a l'establiment "
+"d'una nova."
 
 #: templates/registration/password_reset_form.html:19
 #: templates/registration/registration_form.html:25

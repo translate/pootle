@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-03-14 18:50+0000\n"
+"PO-Revision-Date: 2013-10-28 17:40+0000\n"
 "Last-Translator: AivoK <aivoke@hot.ee>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: et\n"
@@ -16,15 +16,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1363287009.0\n"
+"X-POOTLE-MTIME: 1382982005.0\n"
 
 #: static/js/common.js:13
 msgid "All Languages"
-msgstr ""
+msgstr "Kõik keeled"
 
 #: static/js/common.js:26
 msgid "All Projects"
-msgstr ""
+msgstr "Kõik projektid"
 
 #: static/js/common.js:62
 msgid "Expand details"
@@ -59,12 +59,14 @@ msgid "Show filtering"
 msgstr ""
 
 #: static/js/editor.js:209
+#, fuzzy
 msgid "Go to the next string (Ctrl+.)"
-msgstr ""
+msgstr "Liigu järgmisele sõnele (Ctrl+.)"
 
 #: static/js/editor.js:215
+#, fuzzy
 msgid "Go to the previous string (Ctrl+,)"
-msgstr ""
+msgstr "Liigu eelnevale sõnele (Ctrl+,)"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:333

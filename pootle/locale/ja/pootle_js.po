@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-02-22 03:03+0000\n"
+"PO-Revision-Date: 2013-10-29 00:59+0000\n"
 "Last-Translator: Masahiko <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ja\n"
@@ -16,15 +16,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1361502185.0\n"
+"X-POOTLE-MTIME: 1383008386.0\n"
 
 #: static/js/common.js:13
 msgid "All Languages"
-msgstr ""
+msgstr "すべての言語"
 
 #: static/js/common.js:26
 msgid "All Projects"
-msgstr ""
+msgstr "すべてのプロジェクト"
 
 #: static/js/common.js:62
 msgid "Expand details"
@@ -44,57 +44,57 @@ msgstr "この操作は取り消せません。"
 
 #: static/js/common.js:139
 msgid "Show tags"
-msgstr ""
+msgstr "タグを表示"
 
 #: static/js/common.js:142 static/js/vendor/sorttable.js:365
 msgid "Hide tags"
-msgstr ""
+msgstr "タグを隠す"
 
 #: static/js/common.js:276 static/js/common.js.c:292
 msgid "Hide filtering"
-msgstr ""
+msgstr "フィルターを隠す"
 
 #: static/js/common.js:279 static/js/common.js.c:286
 msgid "Show filtering"
-msgstr ""
+msgstr "フィルターを表示"
 
 #: static/js/editor.js:209
 msgid "Go to the next string (Ctrl+.)"
-msgstr ""
+msgstr "次の文字列に移動 (Ctrl+.)"
 
 #: static/js/editor.js:215
 msgid "Go to the previous string (Ctrl+,)"
-msgstr ""
+msgstr "前の文字列に移動 (Ctrl+,)"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:333
 #, c-format
 msgid "%s's pending suggestions"
-msgstr ""
+msgstr "%s の留保中の提案"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:336
 #, c-format
 msgid "%s's accepted suggestions"
-msgstr ""
+msgstr "%s の採用された提案"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:339
 #, c-format
 msgid "%s's rejected suggestions"
-msgstr ""
+msgstr "%s の却下された提案"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:342
 #, c-format
 msgid "%s's submissions"
-msgstr ""
+msgstr "%s の提出"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:345
 #, c-format
 msgid "%s's overwritten submissions"
-msgstr ""
+msgstr "%s の上書きする提出"
 
 #: static/js/editor.js:476 static/js/editor.js.c:1521
 msgid "No results."
@@ -102,7 +102,7 @@ msgstr "該当するものはありません。"
 
 #: static/js/editor.js:748
 msgid "Export View"
-msgstr ""
+msgstr "エクスポート ビュー"
 
 #: static/js/editor.js:798
 msgid "Error while connecting to the server"

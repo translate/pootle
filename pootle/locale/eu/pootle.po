@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-05-19 09:25+0000\n"
-"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
+"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"PO-Revision-Date: 2013-10-28 16:12+0000\n"
+"Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1368955548.0\n"
+"X-POOTLE-MTIME: 1382976769.0\n"
 
 #: strings.py:8
 msgid ""
@@ -533,7 +533,7 @@ msgstr "Eman izena."
 #: apps/pootle_project/models.py:221
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
-msgstr ""
+msgstr "Ezin da \"%s\" erabili proiektuaren kode gisa"
 
 #: apps/pootle_app/views/admin/adminusers.py:55
 #: templates/user_profile_menu.html:7
@@ -628,11 +628,12 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:129
 msgid "MARKUP_FILTER is missing. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER falta da. Horren ordez HTML erabiliko da."
 
 #: apps/pootle_app/views/admin/dashboard.py:131
 msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
 msgstr ""
+"MARKUP_FILTER gaizki konfiguratuta dago. Horren ordez HTML erabiliko da."
 
 #: apps/pootle_app/views/admin/dashboard.py:133
 #, python-format
@@ -640,11 +641,15 @@ msgid ""
 "Can't find the package which provides '%s' markup support. Falling back to "
 "HTML."
 msgstr ""
+"Ezin da '%s' markaketaren euskarria ematen duen paketea aurkitu. Horren "
+"ordez HTML erabiliko da."
 
 #: apps/pootle_app/views/admin/dashboard.py:137
 #, python-format
 msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
 msgstr ""
+"'%s' balio baliogabea da MARKUP_FILTER ezarpenerako. Horren ordez HTML "
+"erabiliko da."
 
 #: apps/pootle_app/views/admin/dashboard.py:154
 msgid ""
@@ -762,15 +767,15 @@ msgstr "Erabiltzaile aktiboak"
 
 #: apps/pootle_app/views/admin/permissions.py:61
 msgid "Translation Project Contributors"
-msgstr ""
+msgstr "Itzulpen-proiektuan ekarpenak egin dituztenak"
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Contributors"
-msgstr ""
+msgstr "Proiektuan ekarpenak egin dituztenak"
 
 #: apps/pootle_app/views/admin/permissions.py:84
 msgid "Language Contributors"
-msgstr ""
+msgstr "Hizkuntzan ekarpenak egin dituztenak"
 
 #: apps/pootle_app/views/admin/permissions.py:91
 msgid "All Users"
@@ -784,7 +789,7 @@ msgstr "Erabiltzaile-izena"
 
 #: apps/pootle_app/views/admin/permissions.py:122
 msgid "Select one or more permissions"
-msgstr ""
+msgstr "Hautatu baimen bat edo gehiago"
 
 #: apps/pootle_app/views/admin/util.py:145
 msgid "No files in this project."
@@ -903,7 +908,7 @@ msgstr "Hizkuntza"
 #. Translators: Heading representing the priority for a goal
 #: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:72
 msgid "Priority"
-msgstr ""
+msgstr "Lehentasuna"
 
 #. Translators: noun. The graphical representation of translation status
 #: apps/pootle_misc/browser.py:52
@@ -1115,7 +1120,7 @@ msgstr "Bilatu (Ktrl+Shift+S)<br/>Idatzi eta sakatu 'Sartu' tekla bilatzeko"
 
 #: apps/pootle_misc/forms.py:108
 msgid "Exact Match"
-msgstr ""
+msgstr "Bat etortze zehatza"
 
 #: apps/pootle_misc/forms.py:115
 msgid "Source Text"
@@ -1195,8 +1200,8 @@ msgstr[1] "Jarraitu itzultzen (%(num)d hitz falta dira)"
 #, python-format
 msgid "Next most important goal (%(num)d word left)"
 msgid_plural "Next most important goal (%(num)d words left)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Hurrengo helbururik garrantzitsuena (%(num)d hitz faltan)"
+msgstr[1] "Hurrengo helbururik garrantzitsuena (%(num)d hitz faltan)"
 
 #: apps/pootle_misc/stats.py:249
 msgid "Translation is complete"
@@ -1294,7 +1299,7 @@ msgstr "Proiektuaren hautapena"
 
 #: apps/pootle_notifications/forms.py:61
 msgid "Select one or more projects"
-msgstr ""
+msgstr "Hautatu proiektu bat edo gehiago"
 
 #: apps/pootle_notifications/forms.py:68
 msgid "All Languages"
@@ -1306,7 +1311,7 @@ msgstr "Hizkuntzaren hautapena"
 
 #: apps/pootle_notifications/forms.py:77 apps/pootle_profile/forms.py:120
 msgid "Select one or more languages"
-msgstr ""
+msgstr "Hautatu hizkuntza bat edo gehiago"
 
 #: apps/pootle_notifications/models.py:31
 msgid "Message"
@@ -1442,7 +1447,7 @@ msgstr "Arazoen berri emateko helburua"
 
 #: apps/pootle_project/views.py:119
 msgid "Select one or more tags to use as filter"
-msgstr ""
+msgstr "Hautatu iragazki gisa erabiltzeko etiketa bat edo gehiago"
 
 #: apps/pootle_project/views.py:162
 #, python-format
@@ -1463,27 +1468,27 @@ msgstr "Proiektu honetako baimenak gehitu, editatu eta ezaba ditzakezu hemen."
 #: apps/pootle_project/templates/project/overview.html:18
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
-msgstr ""
+msgstr "Erakutsi etiketak"
 
 #: apps/pootle_project/templates/project/overview.html:21
 msgid "Show filtering"
-msgstr ""
+msgstr "Erakutsi iragazketa"
 
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
 msgid "Filter"
-msgstr ""
+msgstr "Iragazi"
 
 #: apps/pootle_project/templates/project/overview.html:38
 msgid "Filter the translation projects using this tags"
-msgstr ""
+msgstr "Iragazi itzulpen-proiektuak etiketa hauek erabiliz"
 
 #: apps/pootle_project/templates/project/overview.html:76
 #: apps/pootle_translationproject/templates/translation_project/overview.html:43
 #: apps/pootle_translationproject/templates/translation_project/overview.html:175
 #: templates/common/xhr_add_tag_form.html:15
 msgid "Add tag"
-msgstr ""
+msgstr "Gehitu etiketa"
 
 #: apps/pootle_project/templates/project/project_admin.html:7
 #: templates/project_menu.html:9
@@ -1552,14 +1557,14 @@ msgstr ""
 
 #: apps/pootle_store/decorators.py:63
 msgid "Insufficient rights to access this directory."
-msgstr ""
+msgstr "Baimen nahikorik ez direktorio hau atzitzeko."
 
 #: apps/pootle_store/decorators.py:135 apps/pootle_store/views.py:531
 msgid "Arguments missing."
-msgstr ""
+msgstr "Argumentuak falta dira."
 
 #: apps/pootle_store/decorators.py:147
-msgid "Store does not exist."
+msgid "File does not exist."
 msgstr ""
 
 #: apps/pootle_store/filetypes.py:31
@@ -1650,7 +1655,7 @@ msgstr "Bidea"
 #: apps/pootle_store/models.py:900
 #: apps/pootle_translationproject/models.py:114
 msgid "Tags"
-msgstr ""
+msgstr "Etiketak"
 
 #: apps/pootle_store/models.py:901
 #: apps/pootle_translationproject/models.py:115
@@ -1661,12 +1666,12 @@ msgstr ""
 #: apps/pootle_translationproject/models.py:116
 #: apps/pootle_translationproject/templates/translation_project/overview.html:69
 msgid "Goals"
-msgstr ""
+msgstr "Helburuak"
 
 #: apps/pootle_store/models.py:904
 #: apps/pootle_translationproject/models.py:118
 msgid "A comma-separated list of goals."
-msgstr ""
+msgstr "Komanz bereiztutako helburuen zerrenda."
 
 #: apps/pootle_store/util.py:45
 msgid "Obsolete"
@@ -1698,11 +1703,11 @@ msgstr "Gomendioa edo bozka dagoeneko ez da baliozkoa."
 
 #: apps/pootle_store/views.py:1096
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "Ez daukazu etiketak kentzeko baimenik."
 
 #: apps/pootle_store/views.py:1132
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "Ez daukazu etiketak gehitzeko baimenik."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
@@ -1711,7 +1716,7 @@ msgstr "Iruzkina:"
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
 msgid "<a href=\"%(url)s\">String %(id)s</a>"
-msgstr ""
+msgstr "<a href=\"%(url)s\">%(id)s katea</a>"
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -1966,11 +1971,11 @@ msgstr ""
 
 #: apps/pootle_tagging/models.py:465
 msgid "Item with goal"
-msgstr ""
+msgstr "Elementu helburuduna"
 
 #: apps/pootle_tagging/models.py:466
 msgid "Items with goal"
-msgstr ""
+msgstr "Elementu helburudunak"
 
 #: apps/pootle_terminology/views.py:171
 msgid "This term already exists in this file."
@@ -2261,12 +2266,12 @@ msgstr "Errorea fitxategia ezabatzen saiatzean."
 #: apps/pootle_translationproject/views.py:373
 #, python-format
 msgid "Unable to find '%(action)s' in '%(extdir)s'"
-msgstr ""
+msgstr "Ezin da '%(action)s' aurkitu '%(extdir)s' direktorioan"
 
 #: apps/pootle_translationproject/views.py:400
 #, python-format
 msgid "Exception while running '%s' extension action"
-msgstr ""
+msgstr "Salbuespena '%s' hedapen-ekintza exekutatzean"
 
 #: apps/pootle_translationproject/views.py:820
 #, python-format
@@ -2309,23 +2314,23 @@ msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:5
 msgid "Export View"
-msgstr ""
+msgstr "Esportatzeko ikuspegia"
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:97
 msgid "Goal"
-msgstr ""
+msgstr "Helburua"
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:139
 msgid "No strings."
-msgstr ""
+msgstr "Katerik ez."
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:61
 msgid "Translation project files and folders"
-msgstr ""
+msgstr "Itzulpen-proiektuaren fitxategiak eta karpetak"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "Kudeatu zure proiektuaren helburuak"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2423,6 +2428,8 @@ msgid ""
 "I have read and accept: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</"
 "a>"
 msgstr ""
+"Ondorengoa irakurri dut eta onartu egiten dut: <a href=\"%(url)s\" class=\"%"
+"(classes)s\">%(title)s</a>"
 
 #: apps/staticpages/models.py:37
 #: apps/staticpages/templates/staticpages/admin/_table.html:7
@@ -2440,7 +2447,7 @@ msgstr ""
 
 #: apps/staticpages/models.py:46
 msgid "Display Content"
-msgstr ""
+msgstr "Bistaratu edukia"
 
 #: apps/staticpages/models.py:47
 #, python-format
@@ -2450,11 +2457,13 @@ msgstr "Onartutako markaketa: %s"
 #: apps/staticpages/models.py:49
 #: apps/staticpages/templates/staticpages/admin/_table.html:10
 msgid "Redirect to URL"
-msgstr ""
+msgstr "Birbideratu URLra"
 
 #: apps/staticpages/models.py:50
 msgid "If set, any references to this page will redirect to this URL"
 msgstr ""
+"Ezarrita badago, orri honekiko erreferentziak URL honetara birbideratuko "
+"dira"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:97
@@ -2463,24 +2472,24 @@ msgstr "URLa edo edukia zehaztu egin behar da."
 
 #: apps/staticpages/models.py:105
 msgid "Virtual path already in use."
-msgstr ""
+msgstr "Bide birtuala dagoeneko erabilita dago."
 
 #: apps/staticpages/models.py:110
 msgid "Legal Page"
-msgstr ""
+msgstr "Orri legala"
 
 #: apps/staticpages/models.py:121
 msgid "Regular Page"
-msgstr ""
+msgstr "Orri arrunta"
 
 #: apps/staticpages/views.py:87
 msgid "Page Title"
-msgstr ""
+msgstr "Orriaren izenburua"
 
 #: apps/staticpages/views.py:88
 #, python-format
 msgid "page-%d"
-msgstr ""
+msgstr "%d-orria"
 
 #: apps/staticpages/views.py:130
 #, python-format
@@ -2488,10 +2497,12 @@ msgid ""
 "This page is inactive and visible to administrators only. You can activate "
 "it by <a href=\"%s\">editing its properties</a>"
 msgstr ""
+"Orri hau inaktibo dago eta kudeatzaileek bakarrik ikus dezakete. <a href=\"%"
+"s\">Bere propietateak editatuz</a> aktiba dezakezu"
 
 #: apps/staticpages/templates/staticpages/agreement.html:4
 msgid "Action Required"
-msgstr ""
+msgstr "Ekintza beharrezkoa"
 
 #: apps/staticpages/templates/staticpages/agreement.html:5
 msgid "Before continuing, you must read and accept the following documents."
@@ -2540,20 +2551,21 @@ msgid "Legal Pages"
 msgstr "Orri legalak"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:12
+#, fuzzy
 msgid "Add Legal Page"
-msgstr ""
+msgstr "Editatu orri legala"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
 msgid "Regular Pages"
-msgstr ""
+msgstr "Orri arruntak"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
 msgid "Add Regular Page"
-msgstr ""
+msgstr "Gehitu orri arrunta"
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."
-msgstr ""
+msgstr "Baimen nahikorik ez orri hau atzitzeko."
 
 #: core/decorators.py:191 core/views.py:29
 msgid "You do not have rights to administer Pootle."
@@ -2561,7 +2573,7 @@ msgstr "Ez daukazu Pootle kudeatzeko baimenik."
 
 #: core/helpers.py:41
 msgid "User missing"
-msgstr ""
+msgstr "Erabiltzailea falta da"
 
 #. Translators: This refers to "All strings"
 #: core/helpers.py:53 templates/editor/_toolbar.html:12
@@ -2578,7 +2590,7 @@ msgstr "Egiaztapenak"
 
 #: core/helpers.py:62
 msgid "Overwritten submissions"
-msgstr ""
+msgstr "Gainidatzitako bidalketak"
 
 #: middleware/captcha.py:122
 msgid "Time to answer has expired"
@@ -2608,12 +2620,16 @@ msgstr ""
 #, python-format
 msgid "Failed to copy download file to export directory %s"
 msgstr ""
+"Huts egin du deskargatutako fitxategia esportatzeko '%s' direktoriora "
+"kopiatzean"
 
 #: scripts/example-actions/mozlangpack.py:141
 msgid ""
 "Finished building the language pack, click on the download link to download "
 "it."
 msgstr ""
+"Hizkuntza-paketea eraikitzen amaituta. Deskargatzeko, egin klik "
+"deskargatzeko estekan."
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"
@@ -2650,7 +2666,7 @@ msgstr ""
 
 #: templates/_main_tabs.html:5
 msgid "Main page"
-msgstr ""
+msgstr "Orri nagusia"
 
 #: templates/_main_tabs.html:5 templates/language_menu.html:4
 #: templates/project_menu.html:4 templates/tp_menu.html:4
@@ -2701,7 +2717,7 @@ msgstr "Kudeatu lehenetsitako baimenak"
 
 #: templates/admin_profile_menu.html:9
 msgid "Manage Static Pages"
-msgstr ""
+msgstr "Kudeatu orri estatikoak"
 
 #: templates/base.html:121
 msgid "skip to navigation"
@@ -2780,7 +2796,7 @@ msgstr "Berretsi"
 #: templates/db_error.html:4 templates/db_error.html.py:7
 #: templates/db_error.html:12
 msgid "Database Error"
-msgstr ""
+msgstr "Datu-basearen errorea"
 
 #: templates/db_error.html:14
 msgid ""
@@ -2789,6 +2805,11 @@ msgid ""
 "  yet, or a schema upgrade is needed before continuing.\n"
 "  "
 msgstr ""
+"\n"
+"  Pootle-k ezin du datu-basera konektatu, datu-basea oraindik hasieratu gabe "
+"dago\n"
+"  edo jarraitu aurretik eskemaren bertsio-berritzea burutu behar da.\n"
+"  "
 
 #: templates/db_error.html:20
 #, python-format
@@ -2799,10 +2820,15 @@ msgid ""
 "  if you feel this is a mistake.\n"
 "  "
 msgstr ""
+"\n"
+"  Irakurri instalazioari eta bertsio-berritzeari buruzko\n"
+"  <a href=\"%(url)s\">Pootle dokumentazioa</a>. Hau akatsa dela uste baduzu,\n"
+"  jarri harremanetan zerbitzariaren kudeatzailearekin.\n"
+"  "
 
 #: templates/db_error.html:27
 msgid "The reported error was:"
-msgstr ""
+msgstr "Errorea hau izan da:"
 
 #: templates/language_menu.html:4
 msgid "Language main page"
@@ -2814,7 +2840,7 @@ msgstr "Hizkuntzaren berriak"
 
 #: templates/language_menu.html:6
 msgid "Translate this language"
-msgstr ""
+msgstr "Itzuli hizkuntza hau"
 
 #: templates/language_menu.html:8
 msgid "Administrate your language permissions"
@@ -2822,7 +2848,7 @@ msgstr "Kudeatu zure hizkuntzaren baimenak"
 
 #: templates/main_base.html:6
 msgid "Main"
-msgstr ""
+msgstr "Nagusia"
 
 #: templates/project_menu.html:4
 msgid "Project main page"
@@ -2926,7 +2952,7 @@ msgstr "Honi buruz"
 
 #: templates/common/_table_row.html:87
 msgid "Add a tag"
-msgstr ""
+msgstr "Gehitu etiketa"
 
 #: templates/contact_form/contact_form.html:17
 msgid "Send"
@@ -2977,21 +3003,23 @@ msgstr "Nire gainidatzitako bidalketak"
 
 #: templates/editor/_toolbar.html:34
 msgid "Go to the previous string (Ctrl+Up)"
-msgstr ""
+msgstr "Joan aurreko katera (Ktrl+Gora)"
 
 #: templates/editor/_toolbar.html:37
 msgid ""
 "Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
+"Uneko kate-zenbakia (Ktrl+Shift+U)<br/><br/>Idatzi zenbakia eta sakatu Sartu "
+"tekla<br/>edozein posiziotara joateko"
 
 #: templates/editor/_toolbar.html:39
 msgid "Total strings"
-msgstr ""
+msgstr "Kateak guztira"
 
 #: templates/editor/_toolbar.html:43
 msgid "Go to the next string (Ctrl+Down)"
-msgstr ""
+msgstr "Joan hurrengo katera (Ktrl+Behera)"
 
 #: templates/profiles/edit_personal.html:12
 msgid ""
@@ -3028,7 +3056,7 @@ msgstr ""
 
 #: templates/profiles/profile_detail.html:23
 msgid "Contributions"
-msgstr ""
+msgstr "Ekarpenak"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"
@@ -3040,11 +3068,11 @@ msgstr "Gomendioak zain"
 
 #: templates/profiles/profile_detail.html:46
 msgid "Overwritten"
-msgstr ""
+msgstr "Gainidatzita"
 
 #: templates/profiles/profile_detail.html:66
 msgid "This user doesn't have any contributions yet."
-msgstr ""
+msgstr "Erabiltzaile honek ez du ekarpenik egin oraindik."
 
 #: templates/profiles/profile_list.html:7
 msgid "Profiles list"
@@ -3288,6 +3316,9 @@ msgstr "Kontua baduzula?"
 #: templates/registration/registration_form.html:54
 msgid "Log In."
 msgstr "Hasi saioa."
+
+#~ msgid "Store does not exist."
+#~ msgstr "Store objektua ez dago."
 
 #~ msgid "Display on registration"
 #~ msgstr "Bistaratu izena ematean"

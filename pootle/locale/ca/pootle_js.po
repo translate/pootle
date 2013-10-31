@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-02-27 07:19+0000\n"
+"PO-Revision-Date: 2013-10-28 16:13+0000\n"
 "Last-Translator: ellibrecomoelchaval <el.libre@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ca\n"
@@ -16,15 +16,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1361949571.0\n"
+"X-POOTLE-MTIME: 1382976787.0\n"
 
 #: static/js/common.js:13
 msgid "All Languages"
-msgstr ""
+msgstr "Tots els idiomes"
 
 #: static/js/common.js:26
 msgid "All Projects"
-msgstr ""
+msgstr "Tots els projectes"
 
 #: static/js/common.js:62
 msgid "Expand details"

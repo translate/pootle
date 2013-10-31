@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2012-02-03 01:09+0200\n"
+"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"PO-Revision-Date: 2013-10-29 23:00+0000\n"
 "Last-Translator: Nikolay <halan@ya.ru>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sah\n"
@@ -15,7 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.1.6\n"
+"X-Generator: Pootle 2.5.0-beta1\n"
+"X-POOTLE-MTIME: 1383087609.0\n"
 
 #: strings.py:8
 msgid ""
@@ -70,13 +71,15 @@ msgid ""
 "Please enter a correct username and password. Note that both fields are case-"
 "sensitive."
 msgstr ""
+"Бука диэн, сөптөөх ааты уонна киирии тылы суруй. Буукуба улахана-кырата эмиэ "
+"оруоллаах."
 
 #. Translators: Email subject line. The variable is the server name shown
 #. on the top of each page
 #: strings.py:21
 #, python-format
 msgid "Password reset on %s"
-msgstr ""
+msgstr "Киирии тылы саҥарадыы %s"
 
 #. Translators: This is a constructed string that might end up saying
 #. "Add language" or "Add project". If you need to translate that differently,
@@ -128,32 +131,32 @@ msgstr "Андроид устуруокалара"
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:51
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Тус эйгэ көмүскэлин сиэрэ"
 
 #. Translators: Label that refers to the site's legal requirements
 #: strings.py:53
 msgid "Legal"
-msgstr ""
+msgstr "Юридическэй информация"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:55
 msgid "License"
-msgstr ""
+msgstr "Лиссиэнсийэ"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:57
 msgid "Contributor License"
-msgstr ""
+msgstr "Ааптар лиссиэнсийэтэ"
 
 #. Translators: Label that refers to the site's terms of use
 #: strings.py:59
 msgid "Terms of Use"
-msgstr ""
+msgstr "Туһаныы усулуобуйата"
 
 #. Translators: Label that refers to the site's terms of service
 #: strings.py:61
 msgid "Terms of Service"
-msgstr ""
+msgstr "Өҥөнөн туһаныы усулуобуйата"
 
 #: apps/contact_form_i18n/forms.py:143
 msgid "Your name"
@@ -169,7 +172,7 @@ msgstr "Эн этииҥ"
 
 #: apps/contact_form_i18n/forms.py:260
 msgid "Akismet thinks this message is spam"
-msgstr ""
+msgstr "Akismet бу суруйууну спаам дии саныыр"
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
@@ -295,7 +298,7 @@ msgstr "Бэчээттэммит"
 
 #: apps/pootle_app/templates/top_contributers_table.html:19
 msgid "anonymous users"
-msgstr ""
+msgstr "ааттарын билиһиннэрбэтэхтэр"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:4
 #: apps/pootle_misc/stats.py:153 apps/pootle_store/util.py:48
@@ -308,7 +311,7 @@ msgstr "Тылбаастаммыт"
 #: apps/pootle_store/util.py:47 core/helpers.py:56
 #: templates/editor/_toolbar.html:16
 msgid "Needs work"
-msgstr ""
+msgstr "Тупсарыы ирдэнэр"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:6
 #: apps/pootle_misc/stats.py:159 apps/pootle_store/util.py:46
@@ -470,11 +473,11 @@ msgstr "Оптимизация"
 
 #: apps/pootle_app/templates/admin/edit_links.html:2
 msgid "Edit"
-msgstr ""
+msgstr "Уларыт"
 
 #: apps/pootle_app/templates/admin/general_settings_form.html:16
 msgid "Cancel"
-msgstr ""
+msgstr "Салҕаама"
 
 #: apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
@@ -485,7 +488,7 @@ msgstr "Pootle биллэриилэрэ"
 #: apps/pootle_project/templates/project/overview.html:61
 #: apps/pootle_translationproject/templates/translation_project/overview.html:124
 msgid "No description set."
-msgstr ""
+msgstr "Бу туһунан суруллубатах."
 
 #: apps/pootle_app/templates/index/index.html:62
 #: apps/pootle_notifications/templates/notices.html:77
@@ -1002,8 +1005,9 @@ msgid "Newlines"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:56
+#, fuzzy
 msgid "Number of plurals"
-msgstr ""
+msgstr "Элбэх ахсаан формаларын ахсаана"
 
 #: apps/pootle_misc/checks.py:57
 msgid "Don't translate words"
@@ -1014,8 +1018,9 @@ msgid "Numbers"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:59
+#, fuzzy
 msgid "Options"
-msgstr ""
+msgstr "Булгуччута суох"
 
 #: apps/pootle_misc/checks.py:60
 msgid "printf()"
@@ -1111,12 +1116,14 @@ msgid "Locations"
 msgstr "Баар сирэ"
 
 #: apps/pootle_misc/forms.py:131
+#, fuzzy
 msgid "Source Terms"
-msgstr ""
+msgstr "Бастакы тиэкис"
 
 #: apps/pootle_misc/forms.py:132
+#, fuzzy
 msgid "Target Terms"
-msgstr ""
+msgstr "Сорук тиэкис"
 
 #: apps/pootle_misc/forms.py:133
 msgid "Definitions"
@@ -1170,8 +1177,9 @@ msgid_plural "Next most important goal (%(num)d words left)"
 msgstr[0] ""
 
 #: apps/pootle_misc/stats.py:249
+#, fuzzy
 msgid "Translation is complete"
-msgstr ""
+msgstr "Тылбаас түмүктэммит"
 
 #: apps/pootle_misc/stats.py:260
 #, python-format
@@ -1208,9 +1216,9 @@ msgid_plural "%d words need review"
 msgstr[0] "%d тылы көрүөххэ наада"
 
 #: apps/pootle_misc/templates/progressbar.html:3
-#, python-format
+#, fuzzy, python-format
 msgid "%(percent)s%% complete"
-msgstr ""
+msgstr "%(percentage)d%% толоруллубут"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/templates/search.html:5 core/helpers.py:59
@@ -1471,8 +1479,9 @@ msgid "State"
 msgstr ""
 
 #: apps/pootle_statistics/models.py:49
+#, fuzzy
 msgid "Comment"
-msgstr ""
+msgstr "Комментарийдар"
 
 #: apps/pootle_statistics/models.py:114
 msgid "anonymous user"
@@ -1522,7 +1531,7 @@ msgid "Arguments missing."
 msgstr ""
 
 #: apps/pootle_store/decorators.py:147
-msgid "Store does not exist."
+msgid "File does not exist."
 msgstr ""
 
 #: apps/pootle_store/filetypes.py:31
@@ -1659,16 +1668,19 @@ msgid "The suggestion or vote is not valid any more."
 msgstr ""
 
 #: apps/pootle_store/views.py:1096
+#, fuzzy
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "Бу %s сири дьаһайар кыаҕыҥ суох эбит."
 
 #: apps/pootle_store/views.py:1132
+#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "Бу %s сири дьаһайар кыаҕыҥ суох эбит."
 
 #: apps/pootle_store/templates/unit/comment.html:12
+#, fuzzy
 msgid "Comment:"
-msgstr ""
+msgstr "Комментарийдар"
 
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
@@ -1680,16 +1692,19 @@ msgid "Context:"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:32
+#, fuzzy
 msgid "Comments:"
-msgstr ""
+msgstr "Комментарийдар"
 
 #: apps/pootle_store/templates/unit/edit.html:47
+#, fuzzy
 msgid "Locations:"
-msgstr ""
+msgstr "Баар сирэ"
 
 #: apps/pootle_store/templates/unit/edit.html:56
+#, fuzzy
 msgid "Terminology:"
-msgstr ""
+msgstr "Терминология"
 
 #: apps/pootle_store/templates/unit/edit.html:58
 msgid "Insert the translated term into the editor"
@@ -1700,8 +1715,9 @@ msgid "Possible issues with the translation"
 msgstr "Тылбаас баар буолуон сөп эридьиэстэрэ"
 
 #: apps/pootle_store/templates/unit/edit.html:71
+#, fuzzy
 msgid "Failing checks:"
-msgstr ""
+msgstr "Алҕастаах тургутуулар"
 
 #: apps/pootle_store/templates/unit/edit.html:77
 msgid "Remove quality check"
@@ -1805,8 +1821,9 @@ msgid "Hide Timeline"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:248
+#, fuzzy
 msgid "User suggestions"
-msgstr ""
+msgstr "Этиилэри көрүү"
 
 #: apps/pootle_store/templates/unit/edit.html:266
 msgid "Accept suggestion"
@@ -1829,8 +1846,9 @@ msgid "Vote for this suggestion"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/term_edit.html:40
+#, fuzzy
 msgid "Comment: "
-msgstr ""
+msgstr "Комментарийдар"
 
 #: apps/pootle_store/templates/unit/timeline.html:4
 #: apps/pootle_store/templates/unit/timeline.html:14
@@ -2057,13 +2075,15 @@ msgstr "VCS киллэрии"
 
 #. Translators: "all" here refers to all files and sub directories in a directory/project.
 #: apps/pootle_translationproject/actions.py:166
+#, fuzzy
 msgid "Update all from VCS"
-msgstr ""
+msgstr "Мантан VCS саҥардыы"
 
 #. Translators: "all" here refers to all files and sub directories in a directory/project.
 #: apps/pootle_translationproject/actions.py:182
+#, fuzzy
 msgid "Commit all to VCS"
-msgstr ""
+msgstr "VCS киллэрии"
 
 #: apps/pootle_translationproject/actions.py:195
 msgid "Rescan project files"
@@ -2277,8 +2297,9 @@ msgid "Translation project files and folders"
 msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
+#, fuzzy
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "Бырайыагы салайыы"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2375,8 +2396,9 @@ msgstr ""
 
 #: apps/staticpages/models.py:37
 #: apps/staticpages/templates/staticpages/admin/_table.html:7
+#, fuzzy
 msgid "Active"
-msgstr ""
+msgstr "үлэлиир"
 
 #: apps/staticpages/models.py:38
 msgid "Whether this page is active or not."
@@ -2700,8 +2722,9 @@ msgstr "Pootle сиэрбэр туһунан"
 
 #: templates/base.html:201 templates/about/contributors.html:6
 #: templates/about/contributors.html:9
+#, fuzzy
 msgid "Contributors"
-msgstr ""
+msgstr "Кыттааччылар топтара"
 
 #: templates/captcha-xhr.html:8 templates/captcha.html:4
 #: templates/captcha.html.py:7
@@ -2802,8 +2825,9 @@ msgid "Translation project news"
 msgstr "Тылбаас бырайыагын сонуннара"
 
 #: templates/tp_menu.html:8
+#, fuzzy
 msgid "Manage terminology"
-msgstr ""
+msgstr "Тиэрминнэри салайыы"
 
 #: templates/tp_menu.html:8
 msgid "Terminology"
@@ -2901,8 +2925,9 @@ msgid "Filter by:"
 msgstr ""
 
 #: templates/editor/_toolbar.html:18
+#, fuzzy
 msgid "My suggestions"
-msgstr ""
+msgstr "Тылбаас этиилэрэ"
 
 #: templates/editor/_toolbar.html:19
 msgid "My submissions"
@@ -2965,8 +2990,9 @@ msgid ""
 msgstr "Манна интерфейс туруорууларын уонна тылы билиигин туруоруоххун сөп."
 
 #: templates/profiles/profile_detail.html:23
+#, fuzzy
 msgid "Contributions"
-msgstr ""
+msgstr "Кыттааччылар топтара"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"

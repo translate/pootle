@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 0.11\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-05-19 08:43+0000\n"
-"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
+"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"PO-Revision-Date: 2013-10-31 10:10+0000\n"
+"Last-Translator: Ákos <nagy.akos@libreoffice.ro>\n"
 "Language-Team: Romanian\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1368952980.0\n"
+"X-POOTLE-MTIME: 1383214258.0\n"
 
 #: strings.py:8
 msgid ""
@@ -537,7 +537,7 @@ msgstr "Înregistrați-vă."
 #: apps/pootle_project/models.py:221
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
-msgstr ""
+msgstr "\"%s\" nu se poate folosi ca cod proiect"
 
 #: apps/pootle_app/views/admin/adminusers.py:55
 #: templates/user_profile_menu.html:7
@@ -632,11 +632,11 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:129
 msgid "MARKUP_FILTER is missing. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER lipsește. Se trece înapoi la HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:131
 msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER este configurat greșit. Se trece înapoi la HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:133
 #, python-format
@@ -644,11 +644,13 @@ msgid ""
 "Can't find the package which provides '%s' markup support. Falling back to "
 "HTML."
 msgstr ""
+"Nu am găsit pachetul care oferă suport pentru limbajul %s. Se trece înapoi "
+"la HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:137
 #, python-format
 msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
-msgstr ""
+msgstr "Valoare invalidă: '%s' în MARKUP_FILTER. Se trece înapoi la HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:154
 msgid ""
@@ -765,15 +767,15 @@ msgstr "Utilizatori activi"
 
 #: apps/pootle_app/views/admin/permissions.py:61
 msgid "Translation Project Contributors"
-msgstr ""
+msgstr "Contribuitorii la proiectul de traducere."
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Contributors"
-msgstr ""
+msgstr "Contribuitori la proiect"
 
 #: apps/pootle_app/views/admin/permissions.py:84
 msgid "Language Contributors"
-msgstr ""
+msgstr "Contribuitori limbă"
 
 #: apps/pootle_app/views/admin/permissions.py:91
 msgid "All Users"
@@ -787,7 +789,7 @@ msgstr "Utilizator"
 
 #: apps/pootle_app/views/admin/permissions.py:122
 msgid "Select one or more permissions"
-msgstr ""
+msgstr "Selectați una sau mai multe opțiuni"
 
 #: apps/pootle_app/views/admin/util.py:145
 msgid "No files in this project."
@@ -911,7 +913,7 @@ msgstr "Limba"
 #. Translators: Heading representing the priority for a goal
 #: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:72
 msgid "Priority"
-msgstr ""
+msgstr "Prioritate"
 
 #. Translators: noun. The graphical representation of translation status
 #: apps/pootle_misc/browser.py:52
@@ -1123,7 +1125,7 @@ msgstr "Căutare (Ctrl+Shift+S)<br/>Scrieți, apoi dați Enter pentru căutare"
 
 #: apps/pootle_misc/forms.py:108
 msgid "Exact Match"
-msgstr ""
+msgstr "Potrivire exactă"
 
 #: apps/pootle_misc/forms.py:115
 msgid "Source Text"
@@ -1314,7 +1316,7 @@ msgstr "Selectare proiect"
 
 #: apps/pootle_notifications/forms.py:61
 msgid "Select one or more projects"
-msgstr ""
+msgstr "Alegeți unul sau mai multe proiecte"
 
 #: apps/pootle_notifications/forms.py:68
 msgid "All Languages"
@@ -1326,7 +1328,7 @@ msgstr "Selectare limbă"
 
 #: apps/pootle_notifications/forms.py:77 apps/pootle_profile/forms.py:120
 msgid "Select one or more languages"
-msgstr ""
+msgstr "Alegeți unul sau mai multe limbi"
 
 #: apps/pootle_notifications/models.py:31
 msgid "Message"
@@ -1462,7 +1464,7 @@ msgstr "Raport țintă"
 
 #: apps/pootle_project/views.py:119
 msgid "Select one or more tags to use as filter"
-msgstr ""
+msgstr "Alegeți unul sau mai multe etichete pentru filtru"
 
 #: apps/pootle_project/views.py:162
 #, python-format
@@ -1484,27 +1486,27 @@ msgstr "Aici puteți adăuga, edita sau șterge permisiunile unui proiect."
 #: apps/pootle_project/templates/project/overview.html:18
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
-msgstr ""
+msgstr "Arată etichetele"
 
 #: apps/pootle_project/templates/project/overview.html:21
 msgid "Show filtering"
-msgstr ""
+msgstr "Arată filtrarea"
 
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
 msgid "Filter"
-msgstr ""
+msgstr "Filtru"
 
 #: apps/pootle_project/templates/project/overview.html:38
 msgid "Filter the translation projects using this tags"
-msgstr ""
+msgstr "Filtrează proiectul de traducere folosind această etichetă"
 
 #: apps/pootle_project/templates/project/overview.html:76
 #: apps/pootle_translationproject/templates/translation_project/overview.html:43
 #: apps/pootle_translationproject/templates/translation_project/overview.html:175
 #: templates/common/xhr_add_tag_form.html:15
 msgid "Add tag"
-msgstr ""
+msgstr "Adaugă eticheta"
 
 #: apps/pootle_project/templates/project/project_admin.html:7
 #: templates/project_menu.html:9
@@ -1547,16 +1549,17 @@ msgstr ""
 msgid ""
 "accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</a></i>"
 msgstr ""
+"acceptă sugestiile pentru textul <i><a href=\"%(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:150
 msgid "uploaded a file"
-msgstr ""
+msgstr "încarcă un fișier"
 
 #: apps/pootle_statistics/models.py:165
 #, python-format
 msgid ""
 "submitted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr ""
+msgstr "trimite traducere pentru textul <i><a href=\"%(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:167
 #, python-format
@@ -1564,24 +1567,26 @@ msgid ""
 "submitted \"needs work\" translation for string <i><a href=\"%(url)s\">"
 "%(source)s</a></i>"
 msgstr ""
+"a fost trimis traducere „Necesită lucru” pentru textul <i><a href=\"%(url)s\">"
+"%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:170
 #, python-format
 msgid ""
 "removed translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr ""
+msgstr "traducere ștearsă pentru textul <i><a href=\"%(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_store/decorators.py:63
 msgid "Insufficient rights to access this directory."
-msgstr ""
+msgstr "Drepturi insuficiente pentru acces la director."
 
 #: apps/pootle_store/decorators.py:135 apps/pootle_store/views.py:531
 msgid "Arguments missing."
-msgstr ""
+msgstr "Lipsesc argumente."
 
 #: apps/pootle_store/decorators.py:147
-msgid "Store does not exist."
-msgstr ""
+msgid "File does not exist."
+msgstr "Fișierul nu există."
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Gettext PO"
@@ -1670,23 +1675,23 @@ msgstr "Cale"
 #: apps/pootle_store/models.py:900
 #: apps/pootle_translationproject/models.py:114
 msgid "Tags"
-msgstr ""
+msgstr "Etichete"
 
 #: apps/pootle_store/models.py:901
 #: apps/pootle_translationproject/models.py:115
 msgid "A comma-separated list of tags."
-msgstr ""
+msgstr "Lista separată prin virgulă a etichetelor."
 
 #: apps/pootle_store/models.py:902
 #: apps/pootle_translationproject/models.py:116
 #: apps/pootle_translationproject/templates/translation_project/overview.html:69
 msgid "Goals"
-msgstr ""
+msgstr "Scop"
 
 #: apps/pootle_store/models.py:904
 #: apps/pootle_translationproject/models.py:118
 msgid "A comma-separated list of goals."
-msgstr ""
+msgstr "O listă separată prin virgulă a scopurilor"
 
 #: apps/pootle_store/util.py:45
 msgid "Obsolete"
@@ -1718,11 +1723,11 @@ msgstr "Sugestia sau votul nu mai este valabil."
 
 #: apps/pootle_store/views.py:1096
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "Nu aveţi dreptul de a șterge etichete."
 
 #: apps/pootle_store/views.py:1132
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "Nu aveţi dreptul de adăuga etichete."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
@@ -1731,7 +1736,7 @@ msgstr "Comentariu:"
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
 msgid "<a href=\"%(url)s\">String %(id)s</a>"
-msgstr ""
+msgstr "<a href=\"%(url)s\">Text %(id)s</a>"
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -1918,12 +1923,17 @@ msgid ""
 "Tag names cannot have leading nor trailing spaces, colons (:), hyphens (-), "
 "underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Etichetele nu pot începe cu caracterul spațiu, două puncte (:), liniuță (-), "
+"liniuță jos (_), bară (/) sau punct (.)!"
 
 #: apps/pootle_tagging/forms.py:53
 msgid ""
 "Tag names cannot contain two or more consecutive: spaces, colons (:), "
 "hyphens (-), underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Numele de etichete nu pot conține mai multe caractere consecutive din "
+"caracterele spațiu, două puncte (:), liniuță (-), liniuță jos (_), bară (/) "
+"sau punct (.)!"
 
 #: apps/pootle_tagging/forms.py:60
 msgid ""
@@ -1940,7 +1950,7 @@ msgstr ""
 
 #: apps/pootle_tagging/forms.py:133
 msgid "Already exists a goal with this name. Please pick another name."
-msgstr ""
+msgstr "Există deja un scop cu acest nume. Alegeți alt nume."
 
 #: apps/pootle_tagging/forms.py:173
 msgid ""
@@ -1965,32 +1975,36 @@ msgid ""
 "A description of this goal. This is useful to give more information or "
 "instructions. Allowed markup: %s"
 msgstr ""
+"Descrierea acestui scop. Aceste este util pentru a da mai multe informații "
+"sau instrucțiuni. Semne permise: %s"
 
 #: apps/pootle_tagging/models.py:73
 msgid "The priority for this goal."
-msgstr ""
+msgstr "Prioritatea acestui scop."
 
 #: apps/pootle_tagging/models.py:78
 msgid ""
 "Designates that this is a project goal (shared across all languages in the "
 "project)."
 msgstr ""
+"Desemnează că acesta este un scop pentru proiect (pentru toate limbile din "
+"proiect)."
 
 #: apps/pootle_tagging/models.py:80
 msgid "Project goal?"
-msgstr ""
+msgstr "Scop pentru proiect?"
 
 #: apps/pootle_tagging/models.py:104
 msgid "(Project goal)"
-msgstr ""
+msgstr "(Scop proiect)"
 
 #: apps/pootle_tagging/models.py:465
 msgid "Item with goal"
-msgstr ""
+msgstr "Element cu scop"
 
 #: apps/pootle_tagging/models.py:466
 msgid "Items with goal"
-msgstr ""
+msgstr "Elemente cu scop"
 
 #: apps/pootle_terminology/views.py:171
 msgid "This term already exists in this file."
@@ -2339,8 +2353,9 @@ msgid "Translation project files and folders"
 msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
+#, fuzzy
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "Administrare proiect propriu"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2468,8 +2483,11 @@ msgid "Redirect to URL"
 msgstr ""
 
 #: apps/staticpages/models.py:50
+#, fuzzy
 msgid "If set, any references to this page will redirect to this URL"
 msgstr ""
+"Dacă e selectat, orice referință la această pagină va redirecționată către "
+"URL-ul introdus:"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:97
@@ -2482,20 +2500,20 @@ msgstr ""
 
 #: apps/staticpages/models.py:110
 msgid "Legal Page"
-msgstr ""
+msgstr "Pagină Legal"
 
 #: apps/staticpages/models.py:121
 msgid "Regular Page"
-msgstr ""
+msgstr "Pagină Regular"
 
 #: apps/staticpages/views.py:87
 msgid "Page Title"
-msgstr ""
+msgstr "Pagină Titlu"
 
 #: apps/staticpages/views.py:88
 #, python-format
 msgid "page-%d"
-msgstr ""
+msgstr "pagină-%d"
 
 #: apps/staticpages/views.py:130
 #, python-format
@@ -2503,48 +2521,52 @@ msgid ""
 "This page is inactive and visible to administrators only. You can activate "
 "it by <a href=\"%s\">editing its properties</a>"
 msgstr ""
+"Această pagină este inactivă și vizibilă numai pentru administratori. O "
+"puteți activa prin <a href=\"%s\">editare proprietăți</a>"
 
 #: apps/staticpages/templates/staticpages/agreement.html:4
 msgid "Action Required"
-msgstr ""
+msgstr "Acțiune necesară"
 
 #: apps/staticpages/templates/staticpages/agreement.html:5
 msgid "Before continuing, you must read and accept the following documents."
 msgstr ""
+"Înainte de continuare, trebuie să citiți și să acceptați următoarele "
+"documente."
 
 #: apps/staticpages/templates/staticpages/agreement.html:18
 msgid "No thanks. Log out"
-msgstr ""
+msgstr "Nu mulțumesc. Deconectare."
 
 #: apps/staticpages/templates/staticpages/agreement.html:21
 msgid "Continue"
-msgstr ""
+msgstr "Continuare"
 
 #: apps/staticpages/templates/staticpages/base.html:5
 #: apps/staticpages/templates/staticpages/base.html:11
 #: templates/admin_profile_menu.html:9
 msgid "Static Pages"
-msgstr ""
+msgstr "Pagină statică"
 
 #: apps/staticpages/templates/staticpages/admin/_form.html:18
 msgid "or"
-msgstr ""
+msgstr "sau"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:8
 msgid "Page"
-msgstr ""
+msgstr "Pagină"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:11
 msgid "Last Edited"
-msgstr ""
+msgstr "Ultima editare"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "Yes"
-msgstr ""
+msgstr "Da"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "No"
-msgstr ""
+msgstr "Nu"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:30
 msgid "No pages yet."
@@ -2555,16 +2577,18 @@ msgid "Legal Pages"
 msgstr "Pagini Legal"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:12
+#, fuzzy
 msgid "Add Legal Page"
-msgstr ""
+msgstr "Editează pagină Legal"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
 msgid "Regular Pages"
 msgstr ""
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
+#, fuzzy
 msgid "Add Regular Page"
-msgstr ""
+msgstr "Editează pagină Legal"
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."
@@ -2592,8 +2616,9 @@ msgid "Checks"
 msgstr "Verificări"
 
 #: core/helpers.py:62
+#, fuzzy
 msgid "Overwritten submissions"
-msgstr ""
+msgstr "Traducerea mea suprascrisă"
 
 #: middleware/captcha.py:122
 msgid "Time to answer has expired"
@@ -2795,7 +2820,7 @@ msgstr "Confirmare"
 #: templates/db_error.html:4 templates/db_error.html.py:7
 #: templates/db_error.html:12
 msgid "Database Error"
-msgstr ""
+msgstr "Eroare bază de date"
 
 #: templates/db_error.html:14
 msgid ""
@@ -3045,8 +3070,9 @@ msgstr ""
 "setarea limbilor"
 
 #: templates/profiles/profile_detail.html:23
+#, fuzzy
 msgid "Contributions"
-msgstr ""
+msgstr "Contributori"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"

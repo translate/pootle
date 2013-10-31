@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-07-04 19:30+0000\n"
-"Last-Translator: Rivo <rivozangov@gmail.com>\n"
+"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"PO-Revision-Date: 2013-10-28 17:42+0000\n"
+"Last-Translator: AivoK <aivoke@hot.ee>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1372966223.0\n"
+"X-POOTLE-MTIME: 1382982172.0\n"
 
 #: strings.py:8
 msgid ""
@@ -77,8 +77,9 @@ msgstr ""
 #. on the top of each page
 #: strings.py:21
 #, python-format
+#, fuzzy, python-format
 msgid "Password reset on %s"
-msgstr ""
+msgstr "Parooli muutmine serveris %s"
 
 #. Translators: This is a constructed string that might end up saying
 #. "Add language" or "Add project". If you need to translate that differently,
@@ -125,12 +126,12 @@ msgstr "Lähtekeel"
 
 #: strings.py:45
 msgid "Android strings"
-msgstr ""
+msgstr "Androidi sõned"
 
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:51
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Privaatsussätted"
 
 #. Translators: Label that refers to the site's legal requirements
 #: strings.py:53
@@ -498,7 +499,7 @@ msgstr "Sinu kasutajanimi ja parool ei kattu. Palun proovi uuesti."
 
 #: apps/pootle_app/templates/index/login.html:30
 msgid "Lost your Password?"
-msgstr "kotasid oma parooli?"
+msgstr "Unustasid parooli?"
 
 #: apps/pootle_app/templates/index/login.html:33
 #: templates/registration/password_reset_form.html:30
@@ -536,8 +537,9 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:62
 #, python-format
+#, fuzzy, python-format
 msgid "Django version %s is installed."
-msgstr ""
+msgstr "lxml versioon %s on paigaldatud."
 
 #: apps/pootle_app/views/admin/dashboard.py:65
 #, python-format
@@ -1489,7 +1491,7 @@ msgid "Arguments missing."
 msgstr ""
 
 #: apps/pootle_store/decorators.py:147
-msgid "Store does not exist."
+msgid "File does not exist."
 msgstr ""
 
 #: apps/pootle_store/filetypes.py:31
@@ -1626,12 +1628,14 @@ msgid "The suggestion or vote is not valid any more."
 msgstr ""
 
 #: apps/pootle_store/views.py:1096
+#, fuzzy
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "Sul ei ole õigusi, et administreerida %s't."
 
 #: apps/pootle_store/views.py:1132
+#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "Sul ei ole õigusi, et administreerida %s't."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
@@ -2235,8 +2239,9 @@ msgid "Translation project files and folders"
 msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
+#, fuzzy
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "Halda oma projekti"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2925,8 +2930,9 @@ msgid ""
 msgstr ""
 
 #: templates/profiles/profile_detail.html:23
+#, fuzzy
 msgid "Contributions"
-msgstr ""
+msgstr "Kaastöötajad"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"
@@ -3071,8 +3077,9 @@ msgstr ""
 #: templates/registration/password_reset_form.html:4
 #: templates/registration/password_reset_form.html:7
 #: templates/registration/password_reset_form.html:12
+#, fuzzy
 msgid "Reset Password"
-msgstr ""
+msgstr "Nulli minu parool"
 
 #: templates/registration/password_reset_confirm.html:14
 msgid "Enter New Password."
@@ -3098,8 +3105,9 @@ msgid "Reset My Password"
 msgstr "Nulli minu parool"
 
 #: templates/registration/password_reset_confirm.html:35
+#, fuzzy
 msgid "Password Reset Failed."
-msgstr ""
+msgstr "Parooli taastamine on lõpetatud."
 
 #: templates/registration/password_reset_confirm.html:37
 msgid ""

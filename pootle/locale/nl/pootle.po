@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-09-25 14:22+0000\n"
-"Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
+"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"PO-Revision-Date: 2013-10-28 19:53+0000\n"
+"Last-Translator: Robin <robin_1273@hotmail.com>\n"
 "Language-Team: TOMTT (Tom's One-Man Translation Team)\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1380118967.0\n"
+"X-POOTLE-MTIME: 1382989984.0\n"
 
 #: strings.py:8
 msgid ""
@@ -533,7 +533,7 @@ msgstr "Registreer."
 #: apps/pootle_project/models.py:221
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
-msgstr ""
+msgstr "\"%s\" kan niet worden gebruikt als een projectcode"
 
 #: apps/pootle_app/views/admin/adminusers.py:55
 #: templates/user_profile_menu.html:7
@@ -631,11 +631,11 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:129
 msgid "MARKUP_FILTER is missing. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER ontbreekt. Teruggekeerd naar HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:131
 msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER is niet goed geconfigureerd. Teruggekeerd naar HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:133
 #, python-format
@@ -643,11 +643,13 @@ msgid ""
 "Can't find the package which provides '%s' markup support. Falling back to "
 "HTML."
 msgstr ""
+"Kan het pakket dat ondersteuning biedt voor '%s' opmaak niet vinden. "
+"Teruggekeerd naar HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:137
 #, python-format
 msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
-msgstr ""
+msgstr "Ongeldige waarde '%s' in MARKUP_FILTER. Teruggekeerd naar HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:154
 msgid ""
@@ -766,15 +768,15 @@ msgstr "Actieve gebruikers"
 
 #: apps/pootle_app/views/admin/permissions.py:61
 msgid "Translation Project Contributors"
-msgstr ""
+msgstr "Deelnemers aan vertaalproject"
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Contributors"
-msgstr ""
+msgstr "Deelnemers aan project"
 
 #: apps/pootle_app/views/admin/permissions.py:84
 msgid "Language Contributors"
-msgstr ""
+msgstr "Deelnemers voor taal"
 
 #: apps/pootle_app/views/admin/permissions.py:91
 msgid "All Users"
@@ -788,7 +790,7 @@ msgstr "Gebruikersnaam"
 
 #: apps/pootle_app/views/admin/permissions.py:122
 msgid "Select one or more permissions"
-msgstr ""
+msgstr "Selecteer één of meer rechten"
 
 #: apps/pootle_app/views/admin/util.py:145
 msgid "No files in this project."
@@ -913,7 +915,7 @@ msgstr "Taal"
 #. Translators: Heading representing the priority for a goal
 #: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:72
 msgid "Priority"
-msgstr ""
+msgstr "Prioriteit"
 
 #. Translators: noun. The graphical representation of translation status
 #: apps/pootle_misc/browser.py:52
@@ -1125,7 +1127,7 @@ msgstr "Zoeken (Ctrl+Shift+S)<br/>Typ en druk op Enter om te zoeken"
 
 #: apps/pootle_misc/forms.py:108
 msgid "Exact Match"
-msgstr ""
+msgstr "Exacte overeenkomst"
 
 #: apps/pootle_misc/forms.py:115
 msgid "Source Text"
@@ -1206,8 +1208,8 @@ msgstr[1] "Doorgaan met vertalen (%(num)d woorden resterend)"
 #, python-format
 msgid "Next most important goal (%(num)d word left)"
 msgid_plural "Next most important goal (%(num)d words left)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Volgende meest belangrijke doel (%(num)d woord resterend)"
+msgstr[1] "Volgende meest belangrijke doel (%(num)d woorden resterend)"
 
 #: apps/pootle_misc/stats.py:249
 msgid "Translation is complete"
@@ -1307,7 +1309,7 @@ msgstr "Projectselectie"
 
 #: apps/pootle_notifications/forms.py:61
 msgid "Select one or more projects"
-msgstr ""
+msgstr "Selecteer één of meer projecten"
 
 #: apps/pootle_notifications/forms.py:68
 msgid "All Languages"
@@ -1319,7 +1321,7 @@ msgstr "Taalselectie"
 
 #: apps/pootle_notifications/forms.py:77 apps/pootle_profile/forms.py:120
 msgid "Select one or more languages"
-msgstr ""
+msgstr "Selecteer één of meer talen"
 
 #: apps/pootle_notifications/models.py:31
 msgid "Message"
@@ -1455,7 +1457,7 @@ msgstr "Doel van rapport"
 
 #: apps/pootle_project/views.py:119
 msgid "Select one or more tags to use as filter"
-msgstr ""
+msgstr "Selecteer één of meer tags om als filter te gebruiken"
 
 #: apps/pootle_project/views.py:162
 #, python-format
@@ -1478,27 +1480,27 @@ msgstr ""
 #: apps/pootle_project/templates/project/overview.html:18
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
-msgstr ""
+msgstr "Tags weergeven"
 
 #: apps/pootle_project/templates/project/overview.html:21
 msgid "Show filtering"
-msgstr ""
+msgstr "Filter weergeven"
 
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
 msgid "Filter"
-msgstr ""
+msgstr "Filteren"
 
 #: apps/pootle_project/templates/project/overview.html:38
 msgid "Filter the translation projects using this tags"
-msgstr ""
+msgstr "Filter de vertaalprojecten met behulp van deze tags"
 
 #: apps/pootle_project/templates/project/overview.html:76
 #: apps/pootle_translationproject/templates/translation_project/overview.html:43
 #: apps/pootle_translationproject/templates/translation_project/overview.html:175
 #: templates/common/xhr_add_tag_form.html:15
 msgid "Add tag"
-msgstr ""
+msgstr "Tag toevoegen"
 
 #: apps/pootle_project/templates/project/project_admin.html:7
 #: templates/project_menu.html:9
@@ -1535,22 +1537,27 @@ msgstr "anonieme gebruiker"
 msgid ""
 "reverted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
 msgstr ""
+"teruggedraaide vertaling voor tekenreeks <i><a href=\"%(url)s\">%"
+"(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:147
 #, python-format
 msgid ""
 "accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</a></i>"
 msgstr ""
+"geaccepteerde suggestie voor tekenreeks <i><a href=\"%(url)s\">%"
+"(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:150
 msgid "uploaded a file"
-msgstr ""
+msgstr "een bestand geüpload"
 
 #: apps/pootle_statistics/models.py:165
 #, python-format
 msgid ""
 "submitted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
 msgstr ""
+"ingediende vertaling voor tekenreeks <i><a href=\"%(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:167
 #, python-format
@@ -1558,24 +1565,28 @@ msgid ""
 "submitted \"needs work\" translation for string <i><a href=\"%(url)s\">"
 "%(source)s</a></i>"
 msgstr ""
+"ingediende \"Moet aan gewerkt worden\" vertaling voor tekenreeks <i><a href=\"%"
+"(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:170
 #, python-format
 msgid ""
 "removed translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
 msgstr ""
+"verwijderde vertaling voor tekenreeks <i><a href=\"%(url)s\">%"
+"(source)s</a></i>"
 
 #: apps/pootle_store/decorators.py:63
 msgid "Insufficient rights to access this directory."
-msgstr ""
+msgstr "Onvoldoende rechten om toegang te krijgen tot deze map"
 
 #: apps/pootle_store/decorators.py:135 apps/pootle_store/views.py:531
 msgid "Arguments missing."
-msgstr ""
+msgstr "Argumenten ontbreken."
 
 #: apps/pootle_store/decorators.py:147
-msgid "Store does not exist."
-msgstr ""
+msgid "File does not exist."
+msgstr "Bestand bestaat niet."
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Gettext PO"
@@ -1664,23 +1675,23 @@ msgstr "Pad"
 #: apps/pootle_store/models.py:900
 #: apps/pootle_translationproject/models.py:114
 msgid "Tags"
-msgstr ""
+msgstr "Tags"
 
 #: apps/pootle_store/models.py:901
 #: apps/pootle_translationproject/models.py:115
 msgid "A comma-separated list of tags."
-msgstr ""
+msgstr "Een kommagescheiden lijst met tags"
 
 #: apps/pootle_store/models.py:902
 #: apps/pootle_translationproject/models.py:116
 #: apps/pootle_translationproject/templates/translation_project/overview.html:69
 msgid "Goals"
-msgstr ""
+msgstr "Doelen"
 
 #: apps/pootle_store/models.py:904
 #: apps/pootle_translationproject/models.py:118
 msgid "A comma-separated list of goals."
-msgstr ""
+msgstr "Een kommagescheiden lijst met doelen"
 
 #: apps/pootle_store/util.py:45
 msgid "Obsolete"
@@ -1712,11 +1723,11 @@ msgstr "De suggestie of stem is niet meer geldig."
 
 #: apps/pootle_store/views.py:1096
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "U heeft niet de rechten om tags te verwijderen."
 
 #: apps/pootle_store/views.py:1132
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "U heeft niet de rechten om tags toe te voegen."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
@@ -1725,7 +1736,7 @@ msgstr "Opmerking:"
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
 msgid "<a href=\"%(url)s\">String %(id)s</a>"
-msgstr ""
+msgstr "<a href=\"%(url)s\">Tekenreeks %(id)s</a>"
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -1912,12 +1923,18 @@ msgid ""
 "Tag names cannot have leading nor trailing spaces, colons (:), hyphens (-), "
 "underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Namen van tags mogen geen voorloop- of volgende spaties, dubbele punten (:), "
+"afbreekstreepjes (-), onderlijnen (_), schuine strepen (/) of punten (.) "
+"bevatten!"
 
 #: apps/pootle_tagging/forms.py:53
 msgid ""
 "Tag names cannot contain two or more consecutive: spaces, colons (:), "
 "hyphens (-), underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Namen van tags mogen geen twee of meer op elkaar volgende spaties, dubbele "
+"punten (:), afbreekstreepjes (-), onderlijnen (_), schuine strepen (/) of "
+"punten (.) bevatten!"
 
 #: apps/pootle_tagging/forms.py:60
 msgid ""
@@ -1925,16 +1942,23 @@ msgid ""
 "leading (but yes on the middle): spaces, colons (:), hyphens (-), "
 "underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Namen van tags moeten een alfanumerieke tekenreeks zijn in kleine letters "
+"zonder volgende of voorloop (maar wel in het midden) spaties, dubbele punten "
+"(:), afbrteekstreepjes (-), onderlijnen (_), schuine strepen (/) of punten "
+"(.)!"
 
 #: apps/pootle_tagging/forms.py:74
 msgid ""
 "Name cannot contain just after 'goal:' any of these characters: spaces, "
 "colons (:), hyphens (-), underscores (_), slashes (/) or periods (.)"
 msgstr ""
+"Naam mag niet direct achter het 'doel' één van deze tekens bevatten: "
+"spaties, dubbele punten (:), afbreekstreepjes (-), onderlijnen (_), schuine "
+"strepen (/) of punten (.)"
 
 #: apps/pootle_tagging/forms.py:133
 msgid "Already exists a goal with this name. Please pick another name."
-msgstr ""
+msgstr "Er bestaat al een doel met deze naam. Kies een andere naam."
 
 #: apps/pootle_tagging/forms.py:173
 msgid ""
@@ -1942,16 +1966,22 @@ msgid ""
 "single or multiple occurrences of the following characters: spaces, colons "
 "(:), hyphens (-), underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Slugs van tags moeten gelijk zijn aan de naam van de tag, maar vervang de "
+"enkele of meerdere malen voorkomende volgende tekens: spaties, dubbele "
+"punten (:), afbreekstreepjes (-), onderlijnen (_), schuine strepen (/) of "
+"punten (.), door een afbreekstreepje!"
 
 #: apps/pootle_tagging/forms.py:180
 msgid "Already exists a goal with this slug!"
-msgstr ""
+msgstr "Er bestaat al een doel met deze slug!"
 
 #: apps/pootle_tagging/forms.py:194
 msgid ""
 "Warning: Changing the name also changes the slug, so it won't be possible to "
 "view this goal on this page!"
 msgstr ""
+"Waarschuwing: Wijzigen van de naam verandert ook de slug, dus zal het niet "
+"mogelijk zijn dit doel op deze pagina twee te geven!"
 
 #: apps/pootle_tagging/models.py:66
 #, python-format
@@ -1959,32 +1989,35 @@ msgid ""
 "A description of this goal. This is useful to give more information or "
 "instructions. Allowed markup: %s"
 msgstr ""
+"Een beschrijving van dit doel. Dit is handig om meer informatie of "
+"instructies te verschaffen. Toegestane opmaak: %s"
 
 #: apps/pootle_tagging/models.py:73
 msgid "The priority for this goal."
-msgstr ""
+msgstr "De prioriteit voor dit doel."
 
 #: apps/pootle_tagging/models.py:78
 msgid ""
 "Designates that this is a project goal (shared across all languages in the "
 "project)."
 msgstr ""
+"Bepaalt dat dit een projectdoel is (gedeeld met alle talen in het project)."
 
 #: apps/pootle_tagging/models.py:80
 msgid "Project goal?"
-msgstr ""
+msgstr "Doel voor project?"
 
 #: apps/pootle_tagging/models.py:104
 msgid "(Project goal)"
-msgstr ""
+msgstr "(Doel voor project)"
 
 #: apps/pootle_tagging/models.py:465
 msgid "Item with goal"
-msgstr ""
+msgstr "Item met doel"
 
 #: apps/pootle_tagging/models.py:466
 msgid "Items with goal"
-msgstr ""
+msgstr "Items met doel"
 
 #: apps/pootle_terminology/views.py:171
 msgid "This term already exists in this file."
@@ -2275,12 +2308,12 @@ msgstr "Fout tijdens het verwijderen van bestand."
 #: apps/pootle_translationproject/views.py:373
 #, python-format
 msgid "Unable to find '%(action)s' in '%(extdir)s'"
-msgstr ""
+msgstr "Niet mogelijk '%(action)s' in '%(extdir)s' te vinden"
 
 #: apps/pootle_translationproject/views.py:400
 #, python-format
 msgid "Exception while running '%s' extension action"
-msgstr ""
+msgstr "Uitzondering bij uitvoeren '%s' extensie-actie"
 
 #: apps/pootle_translationproject/views.py:820
 #, python-format
@@ -2323,23 +2356,23 @@ msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:5
 msgid "Export View"
-msgstr ""
+msgstr "Weergave exporteren"
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:97
 msgid "Goal"
-msgstr ""
+msgstr "Doel"
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:139
 msgid "No strings."
-msgstr ""
+msgstr "Geen tekenreeksen."
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:61
 msgid "Translation project files and folders"
-msgstr ""
+msgstr "Vertaalproject bestanden en mappen"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "Uw doelen van uw project beheren"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2435,6 +2468,8 @@ msgid ""
 "I have read and accept: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</"
 "a>"
 msgstr ""
+"Ik heb gelezen en geaccepteerd: <a href=\"%(url)s\" class=\"%(classes)s\">%"
+"(title)s</a>"
 
 #: apps/staticpages/models.py:37
 #: apps/staticpages/templates/staticpages/admin/_table.html:7
@@ -2448,11 +2483,11 @@ msgstr "Of deze pagina actief is of niet."
 #: apps/staticpages/models.py:40
 #: apps/staticpages/templates/staticpages/admin/_table.html:9
 msgid "Virtual Path"
-msgstr ""
+msgstr "Virtueel pad"
 
 #: apps/staticpages/models.py:46
 msgid "Display Content"
-msgstr ""
+msgstr "Inhoud weergeven"
 
 #: apps/staticpages/models.py:47
 #, python-format
@@ -2462,11 +2497,14 @@ msgstr "Toegestane opmaak: %s"
 #: apps/staticpages/models.py:49
 #: apps/staticpages/templates/staticpages/admin/_table.html:10
 msgid "Redirect to URL"
-msgstr ""
+msgstr "Omleiden naar URL"
 
+# ‘Indien’ vermijden
 #: apps/staticpages/models.py:50
 msgid "If set, any references to this page will redirect to this URL"
 msgstr ""
+"Als dit is ingesteld zullen alle verwijzingen naar deze pagina naar deze URL "
+"worden omgeleid"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:97
@@ -2475,24 +2513,24 @@ msgstr "URL of inhoud moet worden opgegeven."
 
 #: apps/staticpages/models.py:105
 msgid "Virtual path already in use."
-msgstr ""
+msgstr "Virtueel pad wordt al gebruikt."
 
 #: apps/staticpages/models.py:110
 msgid "Legal Page"
-msgstr ""
+msgstr "Juridische pagina"
 
 #: apps/staticpages/models.py:121
 msgid "Regular Page"
-msgstr ""
+msgstr "Normale pagina"
 
 #: apps/staticpages/views.py:87
 msgid "Page Title"
-msgstr ""
+msgstr "Paginatitel"
 
 #: apps/staticpages/views.py:88
 #, python-format
 msgid "page-%d"
-msgstr ""
+msgstr "pagina-%d"
 
 #: apps/staticpages/views.py:130
 #, python-format
@@ -2500,48 +2538,52 @@ msgid ""
 "This page is inactive and visible to administrators only. You can activate "
 "it by <a href=\"%s\">editing its properties</a>"
 msgstr ""
+"Deze pagina is niet actief en alleen zichtbaar voor beheerders. U kunt hem "
+"activeren door <a href=\"%s\">zijn eigenschappen te bewerken</a>"
 
 #: apps/staticpages/templates/staticpages/agreement.html:4
 msgid "Action Required"
-msgstr ""
+msgstr "Actie vereist"
 
 #: apps/staticpages/templates/staticpages/agreement.html:5
 msgid "Before continuing, you must read and accept the following documents."
 msgstr ""
+"Vóór het vervolgen, dient u de volgende documenten te lezen en te "
+"accepteren."
 
 #: apps/staticpages/templates/staticpages/agreement.html:18
 msgid "No thanks. Log out"
-msgstr ""
+msgstr "Nee dank u. Uitloggen"
 
 #: apps/staticpages/templates/staticpages/agreement.html:21
 msgid "Continue"
-msgstr ""
+msgstr "Doorgaan"
 
 #: apps/staticpages/templates/staticpages/base.html:5
 #: apps/staticpages/templates/staticpages/base.html:11
 #: templates/admin_profile_menu.html:9
 msgid "Static Pages"
-msgstr ""
+msgstr "Statische pagina's"
 
 #: apps/staticpages/templates/staticpages/admin/_form.html:18
 msgid "or"
-msgstr ""
+msgstr "of"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:8
 msgid "Page"
-msgstr ""
+msgstr "Pagina"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:11
 msgid "Last Edited"
-msgstr ""
+msgstr "Laatst bewerkt"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "No"
-msgstr ""
+msgstr "Nee"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:30
 msgid "No pages yet."
@@ -2553,19 +2595,19 @@ msgstr "Juridische pagina's"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:12
 msgid "Add Legal Page"
-msgstr ""
+msgstr "Juridische pagina toevoegen"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
 msgid "Regular Pages"
-msgstr ""
+msgstr "Normale pagina's"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
 msgid "Add Regular Page"
-msgstr ""
+msgstr "Normale pagina toevoegen"
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."
-msgstr ""
+msgstr "Onvoldoende rechten voor toegang tot deze pagina."
 
 #: core/decorators.py:191 core/views.py:29
 msgid "You do not have rights to administer Pootle."
@@ -2573,7 +2615,7 @@ msgstr "U hebt niet de nodige rechten om Pootle te beheren."
 
 #: core/helpers.py:41
 msgid "User missing"
-msgstr ""
+msgstr "Gebruiker ontbreekt"
 
 #. Translators: This refers to "All strings"
 #: core/helpers.py:53 templates/editor/_toolbar.html:12
@@ -2590,7 +2632,7 @@ msgstr "Controles"
 
 #: core/helpers.py:62
 msgid "Overwritten submissions"
-msgstr ""
+msgstr "Overschreven bijdragen"
 
 #: middleware/captcha.py:122
 msgid "Time to answer has expired"
@@ -2621,13 +2663,15 @@ msgstr ""
 #: scripts/actions.py:529
 #, python-format
 msgid "Failed to copy download file to export directory %s"
-msgstr ""
+msgstr "Kopiëren mislukt van gedownload bestand naar exportmap %s"
 
 #: scripts/example-actions/mozlangpack.py:141
 msgid ""
 "Finished building the language pack, click on the download link to download "
 "it."
 msgstr ""
+"Bouwen van het taalpakket voltooid, klik op de downloadkoppeling om het te "
+"downloaden."
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"
@@ -2664,7 +2708,7 @@ msgstr ""
 
 #: templates/_main_tabs.html:5
 msgid "Main page"
-msgstr ""
+msgstr "Hoofdpagina"
 
 #: templates/_main_tabs.html:5 templates/language_menu.html:4
 #: templates/project_menu.html:4 templates/tp_menu.html:4
@@ -2715,7 +2759,7 @@ msgstr "Standaard toegangsrechten beheren"
 
 #: templates/admin_profile_menu.html:9
 msgid "Manage Static Pages"
-msgstr ""
+msgstr "Statische pagina's beheren"
 
 #: templates/base.html:121
 msgid "skip to navigation"
@@ -2796,7 +2840,7 @@ msgstr "Bevestigen"
 #: templates/db_error.html:4 templates/db_error.html.py:7
 #: templates/db_error.html:12
 msgid "Database Error"
-msgstr ""
+msgstr "Databasefout"
 
 #: templates/db_error.html:14
 msgid ""
@@ -2805,6 +2849,11 @@ msgid ""
 "  yet, or a schema upgrade is needed before continuing.\n"
 "  "
 msgstr ""
+"\n"
+"  Pootle kan niet verbinden met de database, de database is (nog) niet "
+"geïnitialiseerd\n"
+"  of een upgrade van het schema is nodig om door te kunnen gaan.\n"
+"  "
 
 #: templates/db_error.html:20
 #, python-format
@@ -2815,10 +2864,16 @@ msgid ""
 "  if you feel this is a mistake.\n"
 "  "
 msgstr ""
+"\n"
+"  Lees de <a href=\"%(url)s\">Pootle documentatie</a> over\n"
+"  installatie- en upgrade-instructies. Neem contact op met de beheerder van "
+"de server\n"
+"  als u denkt dat dit ene vergissing is.\n"
+"  "
 
 #: templates/db_error.html:27
 msgid "The reported error was:"
-msgstr ""
+msgstr "De gemelde fout was:"
 
 #: templates/language_menu.html:4
 msgid "Language main page"
@@ -2830,7 +2885,7 @@ msgstr "Taalnieuws"
 
 #: templates/language_menu.html:6
 msgid "Translate this language"
-msgstr ""
+msgstr "Vertaal deze taal"
 
 #: templates/language_menu.html:8
 msgid "Administrate your language permissions"
@@ -2838,7 +2893,7 @@ msgstr "Toegangsrechten voor uw taal beheren"
 
 #: templates/main_base.html:6
 msgid "Main"
-msgstr ""
+msgstr "Algemeen"
 
 #: templates/project_menu.html:4
 msgid "Project main page"
@@ -2943,7 +2998,7 @@ msgstr "Info"
 
 #: templates/common/_table_row.html:87
 msgid "Add a tag"
-msgstr ""
+msgstr "Voeg een tag toe"
 
 #: templates/contact_form/contact_form.html:17
 msgid "Send"
@@ -2995,21 +3050,23 @@ msgstr "Mijn overschreven bijdragen"
 
 #: templates/editor/_toolbar.html:34
 msgid "Go to the previous string (Ctrl+Up)"
-msgstr ""
+msgstr "Ga naar de vorige tekenreeks (Ctrl+Up)"
 
 #: templates/editor/_toolbar.html:37
 msgid ""
 "Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
+"Huidig nummer tekenreeks (Ctrl+Shift+U)<br/><br/>Type het nummer in en druk "
+"op Enter<br/>om naar een positie te gaan"
 
 #: templates/editor/_toolbar.html:39
 msgid "Total strings"
-msgstr ""
+msgstr "Totaal aantal tekenreeksen"
 
 #: templates/editor/_toolbar.html:43
 msgid "Go to the next string (Ctrl+Down)"
-msgstr ""
+msgstr "Ga naar de volgende tekenreeks (Ctrl+Down)"
 
 #: templates/profiles/edit_personal.html:12
 msgid ""
@@ -3046,7 +3103,7 @@ msgstr ""
 
 #: templates/profiles/profile_detail.html:23
 msgid "Contributions"
-msgstr ""
+msgstr "Bijdragen"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"
@@ -3060,11 +3117,11 @@ msgstr "Openstaande suggesties"
 
 #: templates/profiles/profile_detail.html:46
 msgid "Overwritten"
-msgstr ""
+msgstr "Overschreven"
 
 #: templates/profiles/profile_detail.html:66
 msgid "This user doesn't have any contributions yet."
-msgstr ""
+msgstr "Deze gebruiker heeft nog geen bijdragen."
 
 #: templates/profiles/profile_list.html:7
 msgid "Profiles list"
@@ -3312,6 +3369,9 @@ msgstr "Hebt u al een account?"
 #: templates/registration/registration_form.html:54
 msgid "Log In."
 msgstr "Meld u aan."
+
+#~ msgid "Store does not exist."
+#~ msgstr "Opslag bestaat niet."
 
 #~ msgid "Display on registration"
 #~ msgstr "Weergeven bij registratie"

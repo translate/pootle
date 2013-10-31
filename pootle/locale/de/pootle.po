@@ -5,9 +5,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.1\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-03-03 11:51+0000\n"
-"Last-Translator: thoraki <thoraki@arcor.de>\n"
+"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"PO-Revision-Date: 2013-10-29 11:33+0000\n"
+"Last-Translator: real68er <sebastian@wallroth.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -15,14 +15,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1362311477.0\n"
+"X-POOTLE-MTIME: 1383046403.0\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
 msgstr ""
-"Halte die \"Steuerungstaste (Kommandotaste\" beim Mac) gedrückt, um mehr als "
-"einen Eintrag auszuwählen."
+"Halte die \"Steuerungstaste\" oder beim Mac die \"Kommandotaste\"  gedrückt, um "
+"mehr als einen Eintrag auszuwählen."
 
 #: strings.py:9
 msgid "Enter a valid e-mail address."
@@ -33,7 +33,7 @@ msgid ""
 "That e-mail address doesn't have an associated user account. Are you sure "
 "you've registered?"
 msgstr ""
-"Diese E-Mail Adresse ist keinem Benutzerkonto zugeordnet. Sind Sie sicher, "
+"Diese E-Mail-Adresse ist keinem Benutzerkonto zugeordnet. Sind Sie sicher, "
 "dass Sie registriert sind?"
 
 #: strings.py:11
@@ -140,7 +140,7 @@ msgstr "Rechtliches"
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:55
 msgid "License"
-msgstr "Lizenzen"
+msgstr "Lizenz"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:57
@@ -155,7 +155,7 @@ msgstr "Nutzungsbedingungen"
 #. Translators: Label that refers to the site's terms of service
 #: strings.py:61
 msgid "Terms of Service"
-msgstr "Service-Bedingungen"
+msgstr "Geschäftsbedingungen"
 
 #: apps/contact_form_i18n/forms.py:143
 msgid "Your name"
@@ -171,13 +171,13 @@ msgstr "Ihre Nachricht"
 
 #: apps/contact_form_i18n/forms.py:260
 msgid "Akismet thinks this message is spam"
-msgstr "Akismet hat diese Nachricht als SPAM markiert."
+msgstr "Akismet hält diese Nachricht für Spam"
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] "Bitte den untenstehenden Fehler korrigieren."
-msgstr[1] "Bitte die untenstehenden Fehler korrigieren."
+msgstr[0] "Bitte den angegebenen Fehler korrigieren."
+msgstr[1] "Bitte die angegebenen Fehler korrigieren."
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
@@ -211,7 +211,7 @@ msgstr "Titel"
 
 #: apps/pootle_app/forms.py:31
 msgid "The name for this Pootle server"
-msgstr "Der Name dieses Pootle-Servers"
+msgstr "Der Name für diesen Pootle-Server"
 
 #: apps/pootle_app/forms.py:37
 #: apps/pootle_language/templates/language/overview.html:26
@@ -286,7 +286,7 @@ msgstr "Vorschläge"
 
 #: apps/pootle_app/templates/top_contributers_table.html:13
 msgid "Reviews"
-msgstr "Revisionen"
+msgstr "Beurteilungen"
 
 #: apps/pootle_app/templates/top_contributers_table.html:14
 #: apps/pootle_app/templates/admin/dashboard.html:19 core/helpers.py:61
@@ -334,8 +334,8 @@ msgid ""
 "Here you can add, edit, and delete all the available languages in this "
 "Pootle server."
 msgstr ""
-"Hier können Sie in die diesem Pootle-Server verfügbaren Sprachen hinzufügen, "
-"bearbeiten und löschen."
+"Hier können Sie alle Sprachen hinzufügen, bearbeiten und löschen, die in "
+"diesem Pootle-Server verfügbar sind ."
 
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:4
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:9
@@ -366,10 +366,10 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
-"Der Benutzer \"nobody\" bezeichnet alle, die nicht angemeldet sind (anonyme, "
-"nicht identifizierte Benutzer). Der Benutzer \"default\" bezieht sich auf "
-"Rechte, die für alle angemeldeten Benutzer voreingestellt sind, falls ihnen "
-"keine anderen Sonderrechte zugewiesen sind."
+"Der Benutzer “nobody” bezeichnet alle Benutzer, die nicht angemeldet sind "
+"(einen anonymen, nicht identifizierten Benutzer). Der Benutzer “default” "
+"bezieht sich auf die Rechte, die für alle angemeldeten Benutzer "
+"voreingestellt sind, falls ihnen keine anderen Sonderrechte zugewiesen sind."
 
 #: apps/pootle_app/templates/admin/admin_general_projects.html:4
 #: apps/pootle_app/templates/admin/admin_general_projects.html:9
@@ -397,7 +397,7 @@ msgstr "Allgemeine Einstellungen"
 
 #: apps/pootle_app/templates/admin/admin_general_settings.html:12
 msgid "Configure here the general settings for your site."
-msgstr "Konfigurieren Sie hier die allgemeinen Einstellungen Ihrer Website."
+msgstr "Konfigurieren Sie hier die allgemeinen Einstellungen Ihrer Site."
 
 #: apps/pootle_app/templates/admin/admin_general_users.html:4
 #: apps/pootle_app/templates/admin/admin_general_users.html:9
@@ -413,7 +413,7 @@ msgid ""
 "Here you can add, edit, and delete all the available users in this Pootle "
 "server."
 msgstr ""
-"Hier können SIe alle in diesem Pootle-Server verfügbaren Benutzer "
+"Hier können Sie alle in diesem Pootle-Server verfügbaren Benutzer "
 "hinzufügen, bearbeiten und löschen."
 
 #: apps/pootle_app/templates/admin/dashboard.html:13
@@ -439,8 +439,8 @@ msgid ""
 "its full potential."
 msgstr ""
 "Pootle wird von Translate.org.za und einer Gemeinschaft engagierter  "
-"Lokalisierungsexperten entwickelt und soll Sie bei Ihrer "
-"Lokalisierungsarbeit optiimal unterstützen."
+"Lokalisierungsexperten entwickelt. Wir wollen, dass Pootle Ihnen hilft, dass "
+"Ihre Lokalisierungsarbeit ihre volles Potenzial erreicht."
 
 #: apps/pootle_app/templates/admin/dashboard.html:43
 msgid "You will find the following helpful for support:"
@@ -1576,7 +1576,7 @@ msgid "Arguments missing."
 msgstr ""
 
 #: apps/pootle_store/decorators.py:147
-msgid "Store does not exist."
+msgid "File does not exist."
 msgstr ""
 
 #: apps/pootle_store/filetypes.py:31
@@ -1665,8 +1665,9 @@ msgstr "Pfad"
 
 #: apps/pootle_store/models.py:900
 #: apps/pootle_translationproject/models.py:114
+#, fuzzy
 msgid "Tags"
-msgstr ""
+msgstr "Tabulatoren"
 
 #: apps/pootle_store/models.py:901
 #: apps/pootle_translationproject/models.py:115
@@ -1715,12 +1716,14 @@ msgid "The suggestion or vote is not valid any more."
 msgstr "Der Vorschlag oder die Abstimmung sind nicht mehr gültig."
 
 #: apps/pootle_store/views.py:1096
+#, fuzzy
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "Sie haben nicht die Rechte, %s zu verwalten."
 
 #: apps/pootle_store/views.py:1132
+#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "Sie haben nicht die Rechte, %s zu verwalten."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
@@ -2358,8 +2361,9 @@ msgid "Translation project files and folders"
 msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
+#, fuzzy
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "Projektverwaltung"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2488,8 +2492,11 @@ msgid "Redirect to URL"
 msgstr ""
 
 #: apps/staticpages/models.py:50
+#, fuzzy
 msgid "If set, any references to this page will redirect to this URL"
 msgstr ""
+"Sofern gesetzt, wird jeder Verweis auf diese Rechtlichen Hinweise an diese "
+"URL weitergeleitet."
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:97
@@ -2501,8 +2508,9 @@ msgid "Virtual path already in use."
 msgstr ""
 
 #: apps/staticpages/models.py:110
+#, fuzzy
 msgid "Legal Page"
-msgstr ""
+msgstr "Seiten mit rechtlichen Hinweisen"
 
 #: apps/staticpages/models.py:121
 msgid "Regular Page"
@@ -2575,16 +2583,18 @@ msgid "Legal Pages"
 msgstr "Seiten mit rechtlichen Hinweisen"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:12
+#, fuzzy
 msgid "Add Legal Page"
-msgstr ""
+msgstr "Seite mit rechtlichen Hinweisen bearbeiten"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
 msgid "Regular Pages"
 msgstr ""
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
+#, fuzzy
 msgid "Add Regular Page"
-msgstr ""
+msgstr "Seite mit rechtlichen Hinweisen bearbeiten"
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."
@@ -2612,8 +2622,9 @@ msgid "Checks"
 msgstr "Prüfungen"
 
 #: core/helpers.py:62
+#, fuzzy
 msgid "Overwritten submissions"
-msgstr ""
+msgstr "Meine überschriebenen Einreichungen"
 
 #: middleware/captcha.py:122
 msgid "Time to answer has expired"
@@ -3067,8 +3078,9 @@ msgstr ""
 "Spracheinstellungen konfigurieren."
 
 #: templates/profiles/profile_detail.html:23
+#, fuzzy
 msgid "Contributions"
-msgstr ""
+msgstr "Beitragende"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"

@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-02-05 23:17+0000\n"
-"Last-Translator: pAUL <paul_pricootz@yahoo.it>\n"
+"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"PO-Revision-Date: 2013-10-28 21:32+0000\n"
+"Last-Translator: goetas <goetas@lignano.it>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1360106224.0\n"
+"X-POOTLE-MTIME: 1382995950.0\n"
 
 #: strings.py:8
 msgid ""
@@ -130,32 +130,32 @@ msgstr "Stringhe Android"
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:51
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Regole di riservatezza"
 
 #. Translators: Label that refers to the site's legal requirements
 #: strings.py:53
 msgid "Legal"
-msgstr ""
+msgstr "Legale"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:55
 msgid "License"
-msgstr ""
+msgstr "Licenza"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:57
 msgid "Contributor License"
-msgstr ""
+msgstr "Licenza Collaboratori"
 
 #. Translators: Label that refers to the site's terms of use
 #: strings.py:59
 msgid "Terms of Use"
-msgstr ""
+msgstr "Termini per l'uso"
 
 #. Translators: Label that refers to the site's terms of service
 #: strings.py:61
 msgid "Terms of Service"
-msgstr ""
+msgstr "Termini di Servizio"
 
 #: apps/contact_form_i18n/forms.py:143
 msgid "Your name"
@@ -171,7 +171,7 @@ msgstr "Il tuo messaggio"
 
 #: apps/contact_form_i18n/forms.py:260
 msgid "Akismet thinks this message is spam"
-msgstr ""
+msgstr "Akismet pensa che questo messaggio sia spam"
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
@@ -530,7 +530,7 @@ msgstr "Registrati."
 #: apps/pootle_project/models.py:221
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
-msgstr ""
+msgstr "\"%s\" non può essere usato come codice di progetto"
 
 #: apps/pootle_app/views/admin/adminusers.py:55
 #: templates/user_profile_menu.html:7
@@ -582,7 +582,7 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:83
 msgid "lxml is not installed. Pootle requires lxml."
-msgstr ""
+msgstr "lxml non è installato. Pootle richiede lxml."
 
 #: apps/pootle_app/views/admin/dashboard.py:97
 msgid ""
@@ -613,6 +613,8 @@ msgid ""
 "Can't find python-levenshtein package. Updating against templates is faster "
 "with python-levenshtein."
 msgstr ""
+"Non riesco a trovare python-levenshtein package. Un ulteriore aggiornamento "
+"dei templates è più veloce con python-levenshtein"
 
 #: apps/pootle_app/views/admin/dashboard.py:121
 msgid ""
@@ -624,11 +626,11 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:129
 msgid "MARKUP_FILTER is missing. Falling back to HTML."
-msgstr ""
+msgstr "Manca il MARKUP_FILTER. Ritorno ad HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:131
 msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
-msgstr ""
+msgstr "Il MARKUP_FILTER è configurato male. Ritorno ad HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:133
 #, python-format
@@ -640,7 +642,7 @@ msgstr ""
 #: apps/pootle_app/views/admin/dashboard.py:137
 #, python-format
 msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
-msgstr ""
+msgstr "Valore non valido in MARKUP_FILTER. Uso HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:154
 msgid ""
@@ -782,7 +784,7 @@ msgstr "Nome utente"
 
 #: apps/pootle_app/views/admin/permissions.py:122
 msgid "Select one or more permissions"
-msgstr ""
+msgstr "Seleziona uno o più permessi"
 
 #: apps/pootle_app/views/admin/util.py:145
 msgid "No files in this project."
@@ -905,7 +907,7 @@ msgstr "Lingua"
 #. Translators: Heading representing the priority for a goal
 #: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:72
 msgid "Priority"
-msgstr ""
+msgstr "Priorità"
 
 #. Translators: noun. The graphical representation of translation status
 #: apps/pootle_misc/browser.py:52
@@ -976,11 +978,11 @@ msgstr "Doppie virgolette"
 
 #: apps/pootle_misc/checks.py:43
 msgid "Double spaces"
-msgstr ""
+msgstr "Spazi doppi"
 
 #: apps/pootle_misc/checks.py:44
 msgid "Repeated word"
-msgstr ""
+msgstr "Parole ripetute"
 
 #: apps/pootle_misc/checks.py:45
 #, fuzzy
@@ -988,20 +990,21 @@ msgid "E-mail"
 msgstr "E-mail"
 
 #: apps/pootle_misc/checks.py:46
+#, fuzzy
 msgid "Ending punctuation"
-msgstr ""
+msgstr "Punteggiatura sospesa"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Ending whitespace"
-msgstr ""
+msgstr "Spazio finale"
 
 #: apps/pootle_misc/checks.py:48
 msgid "Escapes"
-msgstr ""
+msgstr "Escape"
 
 #: apps/pootle_misc/checks.py:49
 msgid "File paths"
-msgstr ""
+msgstr "Percorsi dei file"
 
 #: apps/pootle_misc/checks.py:50
 msgid "Functions"
@@ -1059,11 +1062,11 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:63
 msgid "Number of sentences"
-msgstr ""
+msgstr "Numero di frasi"
 
 #: apps/pootle_misc/checks.py:64
 msgid "Short"
-msgstr ""
+msgstr "Breve"
 
 #: apps/pootle_misc/checks.py:65
 msgid "Simple capitalization"
@@ -1112,11 +1115,12 @@ msgstr "Segnaposti"
 
 #: apps/pootle_misc/checks.py:77
 msgid "XML tags"
-msgstr ""
+msgstr "Tag XML"
 
 #: apps/pootle_misc/forms.py:100
+#, fuzzy
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
-msgstr ""
+msgstr "Cerca (Ctrl+Shift+S)<br/>Inserici e premi Invio per cercare"
 
 #: apps/pootle_misc/forms.py:108
 msgid "Exact Match"
@@ -1188,15 +1192,16 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: apps/pootle_misc/stats.py:206
+#, fuzzy
 msgid "Expand details"
-msgstr ""
+msgstr "Espandi dettagli"
 
 #: apps/pootle_misc/stats.py:217
 #, python-format
 msgid "Continue translation (%(num)d word left)"
 msgid_plural "Continue translation (%(num)d words left)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Continua a tradurre (%(num)d parola mancante)"
+msgstr[1] "Continua a tradurre (%(num)d parole mancanti)"
 
 #: apps/pootle_misc/stats.py:239
 #, python-format
@@ -1313,7 +1318,7 @@ msgstr ""
 
 #: apps/pootle_notifications/forms.py:77 apps/pootle_profile/forms.py:120
 msgid "Select one or more languages"
-msgstr ""
+msgstr "Seleziona uno o più lingue"
 
 #: apps/pootle_notifications/models.py:31
 msgid "Message"
@@ -1332,7 +1337,7 @@ msgstr "Notizie per %(language)s"
 #: apps/pootle_notifications/views.py:100
 #, python-format
 msgid "News for %(project)s"
-msgstr ""
+msgstr "Notizie per %(project)s"
 
 #: apps/pootle_notifications/views.py:106
 #, python-format
@@ -1381,7 +1386,7 @@ msgstr "Lingua interfaccia"
 
 #: apps/pootle_profile/forms.py:87
 msgid "This account is inactive."
-msgstr ""
+msgstr "Questo account non è attivo."
 
 #: apps/pootle_profile/models.py:81
 msgid "Number of Rows"
@@ -1520,8 +1525,9 @@ msgid "Comment"
 msgstr "Commenti"
 
 #: apps/pootle_statistics/models.py:114
+#, fuzzy
 msgid "anonymous user"
-msgstr ""
+msgstr "Utenti anonimi"
 
 #: apps/pootle_statistics/models.py:144
 #, python-format
@@ -1567,7 +1573,7 @@ msgid "Arguments missing."
 msgstr ""
 
 #: apps/pootle_store/decorators.py:147
-msgid "Store does not exist."
+msgid "File does not exist."
 msgstr ""
 
 #: apps/pootle_store/filetypes.py:31
@@ -1657,8 +1663,9 @@ msgstr "Percorso"
 
 #: apps/pootle_store/models.py:900
 #: apps/pootle_translationproject/models.py:114
+#, fuzzy
 msgid "Tags"
-msgstr ""
+msgstr "Tabulazioni"
 
 #: apps/pootle_store/models.py:901
 #: apps/pootle_translationproject/models.py:115
@@ -1705,12 +1712,14 @@ msgid "The suggestion or vote is not valid any more."
 msgstr ""
 
 #: apps/pootle_store/views.py:1096
+#, fuzzy
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "Non hai i permessi per amministrare %s."
 
 #: apps/pootle_store/views.py:1132
+#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "Non hai i permessi per amministrare %s."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 #, fuzzy
@@ -1723,8 +1732,9 @@ msgid "<a href=\"%(url)s\">String %(id)s</a>"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:22
+#, fuzzy
 msgid "Context:"
-msgstr ""
+msgstr "Contenuto"
 
 #: apps/pootle_store/templates/unit/edit.html:32
 #, fuzzy
@@ -2329,8 +2339,9 @@ msgid "Translation project files and folders"
 msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
+#, fuzzy
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "Amministra il tuo progetto"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2546,16 +2557,18 @@ msgid "Legal Pages"
 msgstr ""
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:12
+#, fuzzy
 msgid "Add Legal Page"
-msgstr ""
+msgstr "Nuova pagina legale"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
 msgid "Regular Pages"
 msgstr ""
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
+#, fuzzy
 msgid "Add Regular Page"
-msgstr ""
+msgstr "Nuova pagina legale"
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."
@@ -3027,8 +3040,9 @@ msgstr ""
 "nonché le lingue che preferisci"
 
 #: templates/profiles/profile_detail.html:23
+#, fuzzy
 msgid "Contributions"
-msgstr ""
+msgstr "Migliori contributori"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"

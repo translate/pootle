@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-03-19 20:27+0000\n"
+"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"PO-Revision-Date: 2013-10-30 12:01+0000\n"
 "Last-Translator: Aputsiaq Niels <aputtu@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-POOTLE-MTIME: 1363724873.0\n"
+"X-POOTLE-MTIME: 1383134511.0\n"
 
 #: strings.py:8
 msgid ""
@@ -529,7 +529,7 @@ msgstr "Registrer."
 #: apps/pootle_project/models.py:221
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
-msgstr ""
+msgstr "\"%s\" kan ikke anvendes som en projektkode"
 
 #: apps/pootle_app/views/admin/adminusers.py:55
 #: templates/user_profile_menu.html:7
@@ -625,11 +625,11 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:129
 msgid "MARKUP_FILTER is missing. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER mangler. Falder tilbage til HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:131
 msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER er konfigureret forkert. Falder tilbage til HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:133
 #, python-format
@@ -637,11 +637,13 @@ msgid ""
 "Can't find the package which provides '%s' markup support. Falling back to "
 "HTML."
 msgstr ""
+"Kan ikke finde pakken, der tilbyder understøttelse af '%s'-opmærkning. "
+"Falder tilbage til HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:137
 #, python-format
 msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
-msgstr ""
+msgstr "Ugyldig værdi '%s' i MARKUP_FILTER. Falder tilbage til HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:154
 msgid ""
@@ -758,15 +760,15 @@ msgstr "Aktive brugere"
 
 #: apps/pootle_app/views/admin/permissions.py:61
 msgid "Translation Project Contributors"
-msgstr ""
+msgstr "Bidragydere til oversættelsesprojektet"
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Contributors"
-msgstr ""
+msgstr "Projektets bidragydere"
 
 #: apps/pootle_app/views/admin/permissions.py:84
 msgid "Language Contributors"
-msgstr ""
+msgstr "Bidragydere til sproget"
 
 #: apps/pootle_app/views/admin/permissions.py:91
 msgid "All Users"
@@ -780,7 +782,7 @@ msgstr "Brugernavn"
 
 #: apps/pootle_app/views/admin/permissions.py:122
 msgid "Select one or more permissions"
-msgstr ""
+msgstr "Vælg én eller flere tilladelser"
 
 #: apps/pootle_app/views/admin/util.py:145
 msgid "No files in this project."
@@ -900,7 +902,7 @@ msgstr "Sprog"
 #. Translators: Heading representing the priority for a goal
 #: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:72
 msgid "Priority"
-msgstr ""
+msgstr "Prioritet"
 
 #. Translators: noun. The graphical representation of translation status
 #: apps/pootle_misc/browser.py:52
@@ -1112,7 +1114,7 @@ msgstr "Søg (Ctrl+Shift+S)<br/>Indtast og tryk dernæst Retur for at søge"
 
 #: apps/pootle_misc/forms.py:108
 msgid "Exact Match"
-msgstr ""
+msgstr "Eksakt match"
 
 #: apps/pootle_misc/forms.py:115
 msgid "Source Text"
@@ -1192,8 +1194,8 @@ msgstr[1] "Fortsæt med oversættelse (%(num)d ord tilbage)"
 #, python-format
 msgid "Next most important goal (%(num)d word left)"
 msgid_plural "Next most important goal (%(num)d words left)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Næste af allervigtigste mål (%(num)d ord tilbage)"
+msgstr[1] "Næste af allervigtigste mål (%(num)d ord tilbage)"
 
 #: apps/pootle_misc/stats.py:249
 msgid "Translation is complete"
@@ -1292,7 +1294,7 @@ msgstr "Valg af projekt"
 
 #: apps/pootle_notifications/forms.py:61
 msgid "Select one or more projects"
-msgstr ""
+msgstr "Vælg ét eller flere projekter"
 
 #: apps/pootle_notifications/forms.py:68
 msgid "All Languages"
@@ -1304,7 +1306,7 @@ msgstr "Sprogvalg"
 
 #: apps/pootle_notifications/forms.py:77 apps/pootle_profile/forms.py:120
 msgid "Select one or more languages"
-msgstr ""
+msgstr "Vælg ét eller flere sprog"
 
 #: apps/pootle_notifications/models.py:31
 msgid "Message"
@@ -1421,7 +1423,7 @@ msgstr "NON-GNU: Hvert sprog i sin egen folder"
 
 #: apps/pootle_project/models.py:93
 msgid "Project Tree Style"
-msgstr "Projekttræ-stil"
+msgstr "Projekt i træstruktur"
 
 #: apps/pootle_project/models.py:100
 msgid "Ignore Files"
@@ -1440,7 +1442,7 @@ msgstr "Destination for rapport"
 
 #: apps/pootle_project/views.py:119
 msgid "Select one or more tags to use as filter"
-msgstr ""
+msgstr "Vælg ét eller flere mærker, der skal bruges som filter"
 
 #: apps/pootle_project/views.py:162
 #, python-format
@@ -1462,16 +1464,16 @@ msgstr ""
 #: apps/pootle_project/templates/project/overview.html:18
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
-msgstr ""
+msgstr "Vis mærker"
 
 #: apps/pootle_project/templates/project/overview.html:21
 msgid "Show filtering"
-msgstr ""
+msgstr "Vis filtrering"
 
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
 msgid "Filter"
-msgstr ""
+msgstr "Filter"
 
 #: apps/pootle_project/templates/project/overview.html:38
 msgid "Filter the translation projects using this tags"
@@ -1558,8 +1560,8 @@ msgid "Arguments missing."
 msgstr ""
 
 #: apps/pootle_store/decorators.py:147
-msgid "Store does not exist."
-msgstr ""
+msgid "File does not exist."
+msgstr "Filen findes ikke."
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Gettext PO"
@@ -1648,23 +1650,23 @@ msgstr "Sti"
 #: apps/pootle_store/models.py:900
 #: apps/pootle_translationproject/models.py:114
 msgid "Tags"
-msgstr ""
+msgstr "Mærker"
 
 #: apps/pootle_store/models.py:901
 #: apps/pootle_translationproject/models.py:115
 msgid "A comma-separated list of tags."
-msgstr ""
+msgstr "En kommaadskilt liste af mærker."
 
 #: apps/pootle_store/models.py:902
 #: apps/pootle_translationproject/models.py:116
 #: apps/pootle_translationproject/templates/translation_project/overview.html:69
 msgid "Goals"
-msgstr ""
+msgstr "Mål"
 
 #: apps/pootle_store/models.py:904
 #: apps/pootle_translationproject/models.py:118
 msgid "A comma-separated list of goals."
-msgstr ""
+msgstr "En kommaadskilt liste over mål."
 
 #: apps/pootle_store/util.py:45
 msgid "Obsolete"
@@ -1696,11 +1698,11 @@ msgstr "Forslaget eller stemmeafgivning er ikke længere gyldig."
 
 #: apps/pootle_store/views.py:1096
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "Du har ikke rettigheder til at fjerne mærker."
 
 #: apps/pootle_store/views.py:1132
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "Du har ikke rettigheder til at tilføje mærker."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
@@ -1709,7 +1711,7 @@ msgstr "Kommentar:"
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
 msgid "<a href=\"%(url)s\">String %(id)s</a>"
-msgstr ""
+msgstr "<a href=\"%(url)s\">Streng %(id)s</a>"
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -1904,6 +1906,8 @@ msgid ""
 "Tag names cannot have leading nor trailing spaces, colons (:), hyphens (-), "
 "underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Navne på mærker kan ikke starte eller slutte med mellemrum, kolonner (:), "
+"bindestreger (-), bundstreger (_), skråstreger (/) eller punktummer (.)!"
 
 #: apps/pootle_tagging/forms.py:53
 msgid ""
@@ -1961,22 +1965,24 @@ msgid ""
 "Designates that this is a project goal (shared across all languages in the "
 "project)."
 msgstr ""
+"Registrér at dette er et mål for projektet (som deles på tværs af alle sprog "
+"i projektet)."
 
 #: apps/pootle_tagging/models.py:80
 msgid "Project goal?"
-msgstr ""
+msgstr "Mål for projektet?"
 
 #: apps/pootle_tagging/models.py:104
 msgid "(Project goal)"
-msgstr ""
+msgstr "(Mål for projektet)"
 
 #: apps/pootle_tagging/models.py:465
 msgid "Item with goal"
-msgstr ""
+msgstr "Element med mål"
 
 #: apps/pootle_tagging/models.py:466
 msgid "Items with goal"
-msgstr ""
+msgstr "Elementer med målsætninger"
 
 #: apps/pootle_terminology/views.py:171
 msgid "This term already exists in this file."
@@ -2267,7 +2273,7 @@ msgstr "Fejl under forsøg på at slette filen."
 #: apps/pootle_translationproject/views.py:373
 #, python-format
 msgid "Unable to find '%(action)s' in '%(extdir)s'"
-msgstr ""
+msgstr "Kan ikke finde '%(action)s' i '%(extdir)s'"
 
 #: apps/pootle_translationproject/views.py:400
 #, python-format
@@ -2330,8 +2336,9 @@ msgid "Translation project files and folders"
 msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
+#, fuzzy
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "Administrér dit projekt"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2459,8 +2466,11 @@ msgid "Redirect to URL"
 msgstr ""
 
 #: apps/staticpages/models.py:50
+#, fuzzy
 msgid "If set, any references to this page will redirect to this URL"
 msgstr ""
+"Hvis angivet, så vil enhver henvisning til denne juridiske side blive "
+"viderestillet til denne URL"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:97
@@ -2472,8 +2482,9 @@ msgid "Virtual path already in use."
 msgstr ""
 
 #: apps/staticpages/models.py:110
+#, fuzzy
 msgid "Legal Page"
-msgstr ""
+msgstr "Juridiske sider"
 
 #: apps/staticpages/models.py:121
 msgid "Regular Page"
@@ -2546,16 +2557,18 @@ msgid "Legal Pages"
 msgstr "Juridiske sider"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:12
+#, fuzzy
 msgid "Add Legal Page"
-msgstr ""
+msgstr "Redigér juridisk side"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
 msgid "Regular Pages"
 msgstr ""
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
+#, fuzzy
 msgid "Add Regular Page"
-msgstr ""
+msgstr "Redigér juridisk side"
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."
@@ -2583,8 +2596,9 @@ msgid "Checks"
 msgstr "Tjek"
 
 #: core/helpers.py:62
+#, fuzzy
 msgid "Overwritten submissions"
-msgstr ""
+msgstr "Mine overskrevne bidrag"
 
 #: middleware/captcha.py:122
 msgid "Time to answer has expired"
@@ -3034,8 +3048,9 @@ msgstr ""
 "brugerfladen, såvel som dine sprog-præferencer."
 
 #: templates/profiles/profile_detail.html:23
+#, fuzzy
 msgid "Contributions"
-msgstr ""
+msgstr "Bidragsydere"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"

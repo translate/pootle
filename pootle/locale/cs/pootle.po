@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-04-18 18:55+0000\n"
+"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"PO-Revision-Date: 2013-10-29 18:24+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1366311338.0\n"
+"X-POOTLE-MTIME: 1383071051.0\n"
 
 #: strings.py:8
 msgid ""
@@ -422,7 +422,7 @@ msgstr "Statistiky serveru"
 
 #: apps/pootle_app/templates/admin/dashboard.html:22
 msgid "Pending suggestions"
-msgstr "Čekající návrhy"
+msgstr "Nevyřízené návrhy"
 
 #: apps/pootle_app/templates/admin/dashboard.html:31
 msgid "More..."
@@ -464,7 +464,7 @@ msgstr "Kontrola závislostí"
 
 #: apps/pootle_app/templates/admin/dashboard.html:64
 msgid "Optional"
-msgstr "Volitené"
+msgstr "Volitelné"
 
 #: apps/pootle_app/templates/admin/dashboard.html:72
 msgid "Optimizations"
@@ -530,7 +530,7 @@ msgstr "Zaregistrujte se."
 #: apps/pootle_project/models.py:221
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
-msgstr ""
+msgstr "\"%s\" nelze použít jako kód projektu"
 
 #: apps/pootle_app/views/admin/adminusers.py:55
 #: templates/user_profile_menu.html:7
@@ -623,23 +623,23 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:129
 msgid "MARKUP_FILTER is missing. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER nenalezen. Bude použito HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:131
 msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER není správně nastaven. Bude použito HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:133
 #, python-format
 msgid ""
 "Can't find the package which provides '%s' markup support. Falling back to "
 "HTML."
-msgstr ""
+msgstr "Balíček pro podporu značek '%s' nebyl nalezen. Bude použito HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:137
 #, python-format
 msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER obsahuje neplatnou hodnotu '%s'. Bude použito HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:154
 msgid ""
@@ -751,15 +751,15 @@ msgstr "Aktivní uživatelé"
 
 #: apps/pootle_app/views/admin/permissions.py:61
 msgid "Translation Project Contributors"
-msgstr ""
+msgstr "Přispěvatelé překladového projektu"
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Contributors"
-msgstr ""
+msgstr "Přispěvatelé projektu"
 
 #: apps/pootle_app/views/admin/permissions.py:84
 msgid "Language Contributors"
-msgstr ""
+msgstr "Přispěvatelé jazyka"
 
 #: apps/pootle_app/views/admin/permissions.py:91
 msgid "All Users"
@@ -773,7 +773,7 @@ msgstr "Uživatelské jméno"
 
 #: apps/pootle_app/views/admin/permissions.py:122
 msgid "Select one or more permissions"
-msgstr ""
+msgstr "Vyberte jedno nebo více oprávnění"
 
 #: apps/pootle_app/views/admin/util.py:145
 msgid "No files in this project."
@@ -825,7 +825,7 @@ msgstr ""
 #: apps/pootle_language/models.py:80
 msgid "Enter any special characters that users might find difficult to type"
 msgstr ""
-"Zadejte zvláštní znaky, které mohou způsobit uživatelům problémy při psaní"
+"Zadejte speciální znaky, které mohou způsobit uživatelům problémy při psaní"
 
 #: apps/pootle_language/models.py:83
 msgid "Special Characters"
@@ -894,7 +894,7 @@ msgstr "Jazyk"
 #. Translators: Heading representing the priority for a goal
 #: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:72
 msgid "Priority"
-msgstr ""
+msgstr "Priorita"
 
 #. Translators: noun. The graphical representation of translation status
 #: apps/pootle_misc/browser.py:52
@@ -1108,7 +1108,7 @@ msgstr ""
 
 #: apps/pootle_misc/forms.py:108
 msgid "Exact Match"
-msgstr ""
+msgstr "Přesná shoda"
 
 #: apps/pootle_misc/forms.py:115
 msgid "Source Text"
@@ -1204,9 +1204,9 @@ msgstr[2] "Pokračovat v překladu (zbývá %(num)d slov)"
 #, python-format
 msgid "Next most important goal (%(num)d word left)"
 msgid_plural "Next most important goal (%(num)d words left)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Nejbližší cíl (zbývá %(num)d slovo)"
+msgstr[1] "Nejbližší cíl (zbývají %(num)d slova)"
+msgstr[2] "Nejbližší cíl (zbývá %(num)d slov)"
 
 #: apps/pootle_misc/stats.py:249
 msgid "Translation is complete"
@@ -1312,7 +1312,7 @@ msgstr "Výběr projektu"
 
 #: apps/pootle_notifications/forms.py:61
 msgid "Select one or more projects"
-msgstr ""
+msgstr "Vyberte jeden nebo více projektů"
 
 #: apps/pootle_notifications/forms.py:68
 msgid "All Languages"
@@ -1324,7 +1324,7 @@ msgstr "Výběr jazyka"
 
 #: apps/pootle_notifications/forms.py:77 apps/pootle_profile/forms.py:120
 msgid "Select one or more languages"
-msgstr ""
+msgstr "Vyberte jeden nebo více jazyků"
 
 #: apps/pootle_notifications/models.py:31
 msgid "Message"
@@ -1460,7 +1460,7 @@ msgstr "Cíl hlášení"
 
 #: apps/pootle_project/views.py:119
 msgid "Select one or more tags to use as filter"
-msgstr ""
+msgstr "Vyberte štítky podle kterých chcete filtrovat"
 
 #: apps/pootle_project/views.py:162
 #, python-format
@@ -1483,27 +1483,27 @@ msgstr ""
 #: apps/pootle_project/templates/project/overview.html:18
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
-msgstr ""
+msgstr "Zobrazit štítky"
 
 #: apps/pootle_project/templates/project/overview.html:21
 msgid "Show filtering"
-msgstr ""
+msgstr "Zobrazit filtrování"
 
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
 msgid "Filter"
-msgstr ""
+msgstr "Filtr"
 
 #: apps/pootle_project/templates/project/overview.html:38
 msgid "Filter the translation projects using this tags"
-msgstr ""
+msgstr "Filtrovat projekty podle těchto štítků"
 
 #: apps/pootle_project/templates/project/overview.html:76
 #: apps/pootle_translationproject/templates/translation_project/overview.html:43
 #: apps/pootle_translationproject/templates/translation_project/overview.html:175
 #: templates/common/xhr_add_tag_form.html:15
 msgid "Add tag"
-msgstr ""
+msgstr "Přidat štítek"
 
 #: apps/pootle_project/templates/project/project_admin.html:7
 #: templates/project_menu.html:9
@@ -1540,23 +1540,23 @@ msgstr "anonymní uživatel"
 #, python-format
 msgid ""
 "reverted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr ""
+msgstr "obnovil původní překlad řetězce <i><a href=\"%(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:147
 #, python-format
 msgid ""
 "accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr ""
+msgstr "přijal návrh pro řetězec <i><a href=\"%(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:150
 msgid "uploaded a file"
-msgstr ""
+msgstr "nahrál soubor"
 
 #: apps/pootle_statistics/models.py:165
 #, python-format
 msgid ""
 "submitted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr ""
+msgstr "přidal překlad řetězce <i><a href=\"%(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:167
 #, python-format
@@ -1564,24 +1564,26 @@ msgid ""
 "submitted \"needs work\" translation for string <i><a href=\"%(url)s\">"
 "%(source)s</a></i>"
 msgstr ""
+"přidal překlad s příznakem \"potřebuje upravit\" pro řetězec <i><a href=\"%"
+"(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:170
-#, python-format
+#, python-format, python-format
 msgid ""
 "removed translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr ""
+msgstr "odstranil překlad řetězce <i><a href=\"%(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_store/decorators.py:63
 msgid "Insufficient rights to access this directory."
-msgstr ""
+msgstr "Pro přístup k adresáři nemáte dostatečná oprávnění."
 
 #: apps/pootle_store/decorators.py:135 apps/pootle_store/views.py:531
 msgid "Arguments missing."
-msgstr ""
+msgstr "Chybějící parametry."
 
 #: apps/pootle_store/decorators.py:147
-msgid "Store does not exist."
-msgstr ""
+msgid "File does not exist."
+msgstr "Soubor neexistuje."
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Gettext PO"
@@ -1671,23 +1673,23 @@ msgstr "Cesta"
 #: apps/pootle_store/models.py:900
 #: apps/pootle_translationproject/models.py:114
 msgid "Tags"
-msgstr ""
+msgstr "Štítky"
 
 #: apps/pootle_store/models.py:901
 #: apps/pootle_translationproject/models.py:115
 msgid "A comma-separated list of tags."
-msgstr ""
+msgstr "Čárkou oddělený seznam štítků."
 
 #: apps/pootle_store/models.py:902
 #: apps/pootle_translationproject/models.py:116
 #: apps/pootle_translationproject/templates/translation_project/overview.html:69
 msgid "Goals"
-msgstr ""
+msgstr "Cíle"
 
 #: apps/pootle_store/models.py:904
 #: apps/pootle_translationproject/models.py:118
 msgid "A comma-separated list of goals."
-msgstr ""
+msgstr "Čárkou oddělený seznam cílů."
 
 #: apps/pootle_store/util.py:45
 msgid "Obsolete"
@@ -1719,20 +1721,20 @@ msgstr "Návrh nebo hlasování již nejsou platné."
 
 #: apps/pootle_store/views.py:1096
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "Nemáte oprávnění odstraňovat štítky."
 
 #: apps/pootle_store/views.py:1132
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "Nemáte oprávnění přidávat štítky."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
 msgstr "Komentář:"
 
 #: apps/pootle_store/templates/unit/edit.html:15
-#, python-format
+#, python-format, python-format
 msgid "<a href=\"%(url)s\">String %(id)s</a>"
-msgstr ""
+msgstr "<a href=\"%(url)s\">Řetězec %(id)s</a>"
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -1919,12 +1921,16 @@ msgid ""
 "Tag names cannot have leading nor trailing spaces, colons (:), hyphens (-), "
 "underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Názvy štítků nemohou začínat ani končit mezerou, dvojtečkou (:), pomlčkou "
+"(-), podtržítkem (_), lomítkem (/) nebo tečkou (.)!"
 
 #: apps/pootle_tagging/forms.py:53
 msgid ""
 "Tag names cannot contain two or more consecutive: spaces, colons (:), "
 "hyphens (-), underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Názvy štítků nemohou obsahovat dvě či více za sebou jdoucí: mezery, "
+"dvojtečky (:), pomlčky (-), podtržítka (_), lomítka (/) nebo tečky (.)!"
 
 #: apps/pootle_tagging/forms.py:60
 msgid ""
@@ -1932,16 +1938,22 @@ msgid ""
 "leading (but yes on the middle): spaces, colons (:), hyphens (-), "
 "underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Názvy štítků musejí být alfanumerický řetězec psaný malými písmeny, který "
+"nesmí začínat ani končit, ale může obsahovat: mezery, dvojtečky (:), pomlčky "
+"(-), podtržítka (_), lomítka (/) nebo tečky (.)!"
 
 #: apps/pootle_tagging/forms.py:74
 msgid ""
 "Name cannot contain just after 'goal:' any of these characters: spaces, "
 "colons (:), hyphens (-), underscores (_), slashes (/) or periods (.)"
 msgstr ""
+"Bezprostředně po 'goal:' nesmí v názvu následovat žádný z následujících "
+"znaků: mezera, dvojtečka (:), pomlčka (-), podtržítko (_), lomítko (/) nebo "
+"tečka (.)"
 
 #: apps/pootle_tagging/forms.py:133
 msgid "Already exists a goal with this name. Please pick another name."
-msgstr ""
+msgstr "Cíl s tímto názvem již existuje. Zvolte jiný název."
 
 #: apps/pootle_tagging/forms.py:173
 msgid ""
@@ -1949,16 +1961,21 @@ msgid ""
 "single or multiple occurrences of the following characters: spaces, colons "
 "(:), hyphens (-), underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Zástupný název štítku misí být shodný s jeho názvem, ale všechny výskyty "
+"znaků mezera, dvojtečka (:), pomlčka (-), podtržítko (_), lomítko (/) nebo "
+"tečka (.) v něm musejí být nahrazeny pomlčkou!"
 
 #: apps/pootle_tagging/forms.py:180
 msgid "Already exists a goal with this slug!"
-msgstr ""
+msgstr "Cíl s tímto zástupným názvem již existuje!"
 
 #: apps/pootle_tagging/forms.py:194
 msgid ""
 "Warning: Changing the name also changes the slug, so it won't be possible to "
 "view this goal on this page!"
 msgstr ""
+"Upozornění: Změna názvu změní také zástupný název, takže zobrazení tohoto "
+"cíle na této stránce již nebude možné!"
 
 #: apps/pootle_tagging/models.py:66
 #, python-format
@@ -1966,32 +1983,35 @@ msgid ""
 "A description of this goal. This is useful to give more information or "
 "instructions. Allowed markup: %s"
 msgstr ""
+"Popis cíle. Užitečné pro zadání podrobnějších informací nebo instrukcí. "
+"Povolené značky: %s"
 
 #: apps/pootle_tagging/models.py:73
 msgid "The priority for this goal."
-msgstr ""
+msgstr "Priorita tohoto cíle."
 
 #: apps/pootle_tagging/models.py:78
 msgid ""
 "Designates that this is a project goal (shared across all languages in the "
 "project)."
 msgstr ""
+"Určuje, že jde o cíl projektu (společný pro všechny jazyky daného projektu)."
 
 #: apps/pootle_tagging/models.py:80
 msgid "Project goal?"
-msgstr ""
+msgstr "Cíl projektu?"
 
 #: apps/pootle_tagging/models.py:104
 msgid "(Project goal)"
-msgstr ""
+msgstr "(Cíl projektu)"
 
 #: apps/pootle_tagging/models.py:465
 msgid "Item with goal"
-msgstr ""
+msgstr "Položka s cílem"
 
 #: apps/pootle_tagging/models.py:466
 msgid "Items with goal"
-msgstr ""
+msgstr "Položky s cílem"
 
 #: apps/pootle_terminology/views.py:171
 msgid "This term already exists in this file."
@@ -2278,19 +2298,19 @@ msgid "Error while trying to delete file."
 msgstr "Při pokusu o odstranění souboru došlo k chybě."
 
 #: apps/pootle_translationproject/views.py:373
-#, python-format
+#, python-format, python-format
 msgid "Unable to find '%(action)s' in '%(extdir)s'"
-msgstr ""
+msgstr "'%(action)s' se v '%(extdir)s' nepodařilo nalézt"
 
 #: apps/pootle_translationproject/views.py:400
 #, python-format
 msgid "Exception while running '%s' extension action"
-msgstr ""
+msgstr "Při běhu akce rozšíření '%s' došlo k výjimce"
 
 #: apps/pootle_translationproject/views.py:820
 #, python-format
 msgid "Invalid/insecure file name: %s"
-msgstr "Chybný/nebezpečný název souboru: %s"
+msgstr "Neplatný/nebezpečný název souboru: %s"
 
 #: apps/pootle_translationproject/views.py:835
 #, python-format
@@ -2328,23 +2348,23 @@ msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:5
 msgid "Export View"
-msgstr ""
+msgstr "Exportovat pohled"
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:97
 msgid "Goal"
-msgstr ""
+msgstr "Cíl"
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:139
 msgid "No strings."
-msgstr ""
+msgstr "Žádné řetězce."
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:61
 msgid "Translation project files and folders"
-msgstr ""
+msgstr "Soubory a adresáře překladového projektu"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "Správa cílů projektu"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2425,7 +2445,7 @@ msgstr "uživatel"
 
 #: apps/registration/models.py:232
 msgid "activation key"
-msgstr "aktivační kíč"
+msgstr "aktivační klíč"
 
 #: apps/registration/models.py:237
 msgid "registration profile"
@@ -2436,11 +2456,12 @@ msgid "registration profiles"
 msgstr "registrační profily"
 
 #: apps/staticpages/forms.py:78
-#, python-format
+#, python-format, python-format
 msgid ""
 "I have read and accept: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</"
 "a>"
 msgstr ""
+"Četl jsem a přijímám: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</a>"
 
 #: apps/staticpages/models.py:37
 #: apps/staticpages/templates/staticpages/admin/_table.html:7
@@ -2454,25 +2475,27 @@ msgstr "Zda je tato stránka aktivní nebo ne."
 #: apps/staticpages/models.py:40
 #: apps/staticpages/templates/staticpages/admin/_table.html:9
 msgid "Virtual Path"
-msgstr ""
+msgstr "Virtuální cesta"
 
 #: apps/staticpages/models.py:46
 msgid "Display Content"
-msgstr ""
+msgstr "Zobrazit obsah"
 
 #: apps/staticpages/models.py:47
 #, python-format
 msgid "Allowed markup: %s"
-msgstr "Povolit značky: %s"
+msgstr "Povolené značky: %s"
 
 #: apps/staticpages/models.py:49
 #: apps/staticpages/templates/staticpages/admin/_table.html:10
 msgid "Redirect to URL"
-msgstr ""
+msgstr "Přesměrovat na adresu"
 
 #: apps/staticpages/models.py:50
 msgid "If set, any references to this page will redirect to this URL"
 msgstr ""
+"Pokud je nastaveno, všechny odkazy na tuto stránku budou přesměrovány na "
+"uvedenou adresu"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:97
@@ -2481,24 +2504,24 @@ msgstr "Musí být zadána adresa nebo obsah."
 
 #: apps/staticpages/models.py:105
 msgid "Virtual path already in use."
-msgstr ""
+msgstr "Virtuální cesta už je používána."
 
 #: apps/staticpages/models.py:110
 msgid "Legal Page"
-msgstr ""
+msgstr "Stránka právních poznámek"
 
 #: apps/staticpages/models.py:121
 msgid "Regular Page"
-msgstr ""
+msgstr "Běžná stránka"
 
 #: apps/staticpages/views.py:87
 msgid "Page Title"
-msgstr ""
+msgstr "Nadpis stránky"
 
 #: apps/staticpages/views.py:88
 #, python-format
 msgid "page-%d"
-msgstr ""
+msgstr "stránka-%d"
 
 #: apps/staticpages/views.py:130
 #, python-format
@@ -2506,48 +2529,51 @@ msgid ""
 "This page is inactive and visible to administrators only. You can activate "
 "it by <a href=\"%s\">editing its properties</a>"
 msgstr ""
+"Tato stránka je neaktivní a viditelná pouze pro administrátory. Můžete ji "
+"aktivovat <a href=\"%s\">upravením jejích vlastností</a>"
 
 #: apps/staticpages/templates/staticpages/agreement.html:4
 msgid "Action Required"
-msgstr ""
+msgstr "Je vyžadována akce"
 
 #: apps/staticpages/templates/staticpages/agreement.html:5
 msgid "Before continuing, you must read and accept the following documents."
 msgstr ""
+"Než budete pokračovat, musíte si přečíst a přijmout následující dokumenty."
 
 #: apps/staticpages/templates/staticpages/agreement.html:18
 msgid "No thanks. Log out"
-msgstr ""
+msgstr "Děkuji, ne. Odhlásit"
 
 #: apps/staticpages/templates/staticpages/agreement.html:21
 msgid "Continue"
-msgstr ""
+msgstr "Pokračovat"
 
 #: apps/staticpages/templates/staticpages/base.html:5
 #: apps/staticpages/templates/staticpages/base.html:11
 #: templates/admin_profile_menu.html:9
 msgid "Static Pages"
-msgstr ""
+msgstr "Statické stránky"
 
 #: apps/staticpages/templates/staticpages/admin/_form.html:18
 msgid "or"
-msgstr ""
+msgstr "nebo"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:8
 msgid "Page"
-msgstr ""
+msgstr "Stránka"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:11
 msgid "Last Edited"
-msgstr ""
+msgstr "Naposledy změněno"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "Yes"
-msgstr ""
+msgstr "Ano"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "No"
-msgstr ""
+msgstr "Ne"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:30
 msgid "No pages yet."
@@ -2559,19 +2585,19 @@ msgstr "Stránky právních poznámek"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:12
 msgid "Add Legal Page"
-msgstr ""
+msgstr "Přidat stránku právních poznámek"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
 msgid "Regular Pages"
-msgstr ""
+msgstr "Běžné stránky"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
 msgid "Add Regular Page"
-msgstr ""
+msgstr "Přidat běžnou stránku"
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."
-msgstr ""
+msgstr "Pro přístup k této stránce nemáte dostatečná oprávnění."
 
 #: core/decorators.py:191 core/views.py:29
 msgid "You do not have rights to administer Pootle."
@@ -2579,7 +2605,7 @@ msgstr "Nemáte oprávnění pro spravování Pootle."
 
 #: core/helpers.py:41
 msgid "User missing"
-msgstr ""
+msgstr "Chybí uživatel"
 
 #. Translators: This refers to "All strings"
 #: core/helpers.py:53 templates/editor/_toolbar.html:12
@@ -2596,7 +2622,7 @@ msgstr "Kontroly"
 
 #: core/helpers.py:62
 msgid "Overwritten submissions"
-msgstr ""
+msgstr "Přepsané překlady"
 
 #: middleware/captcha.py:122
 msgid "Time to answer has expired"
@@ -2627,13 +2653,13 @@ msgstr ""
 #: scripts/actions.py:529
 #, python-format
 msgid "Failed to copy download file to export directory %s"
-msgstr ""
+msgstr "Soubor ke stažení se nepodařilo zkopírovat do adresáře pro export %s"
 
 #: scripts/example-actions/mozlangpack.py:141
 msgid ""
 "Finished building the language pack, click on the download link to download "
 "it."
-msgstr ""
+msgstr "Sestavení jazykového balíčku dokončeno, klikněte na odkaz ke stažení."
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"
@@ -2670,7 +2696,7 @@ msgstr ""
 
 #: templates/_main_tabs.html:5
 msgid "Main page"
-msgstr ""
+msgstr "Hlavní stránka"
 
 #: templates/_main_tabs.html:5 templates/language_menu.html:4
 #: templates/project_menu.html:4 templates/tp_menu.html:4
@@ -2721,7 +2747,7 @@ msgstr "Správa výchozích oprávnění"
 
 #: templates/admin_profile_menu.html:9
 msgid "Manage Static Pages"
-msgstr ""
+msgstr "Správa statických stránek"
 
 #: templates/base.html:121
 msgid "skip to navigation"
@@ -2800,7 +2826,7 @@ msgstr "Potvrdit"
 #: templates/db_error.html:4 templates/db_error.html.py:7
 #: templates/db_error.html:12
 msgid "Database Error"
-msgstr ""
+msgstr "Chyba databáze"
 
 #: templates/db_error.html:14
 msgid ""
@@ -2809,6 +2835,10 @@ msgid ""
 "  yet, or a schema upgrade is needed before continuing.\n"
 "  "
 msgstr ""
+"\n"
+"Připojení k databázi se nezdařilo. Databáze ještě není inicializována,\n"
+"nebo je před pokračováním třeba provést aktualizaci schéma databáze.\n"
+" "
 
 #: templates/db_error.html:20
 #, python-format
@@ -2819,10 +2849,16 @@ msgid ""
 "  if you feel this is a mistake.\n"
 "  "
 msgstr ""
+"\n"
+"Návod pro instalaci a aktualizaci naleznete v <a href=\"%"
+"(url)s\">Dokumentaci</a>.\n"
+"Pokud si myslíte, že byla tato zpráva zobrazena z důvodu chyby,\n"
+"kontaktujte administrátora serveru.\n"
+" "
 
 #: templates/db_error.html:27
 msgid "The reported error was:"
-msgstr ""
+msgstr "Nahlášena byla chyba:"
 
 #: templates/language_menu.html:4
 msgid "Language main page"
@@ -2834,7 +2870,7 @@ msgstr "Novinky jazyka"
 
 #: templates/language_menu.html:6
 msgid "Translate this language"
-msgstr ""
+msgstr "Přeložit tento jazyk"
 
 #: templates/language_menu.html:8
 msgid "Administrate your language permissions"
@@ -2842,7 +2878,7 @@ msgstr "Správa oprávnění jazyka"
 
 #: templates/main_base.html:6
 msgid "Main"
-msgstr ""
+msgstr "Hlavní"
 
 #: templates/project_menu.html:4
 msgid "Project main page"
@@ -2947,7 +2983,7 @@ msgstr "Informace"
 
 #: templates/common/_table_row.html:87
 msgid "Add a tag"
-msgstr ""
+msgstr "Přidat štítek"
 
 #: templates/contact_form/contact_form.html:17
 msgid "Send"
@@ -2998,21 +3034,23 @@ msgstr "Mé přepsané příspěvky"
 
 #: templates/editor/_toolbar.html:34
 msgid "Go to the previous string (Ctrl+Up)"
-msgstr ""
+msgstr "Přejít na předchozí řetězec (Ctrl+Up)"
 
 #: templates/editor/_toolbar.html:37
 msgid ""
 "Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
+"Číslo aktuálního řetězce (Ctrl+Shift+U)<br/><br/>Pro přechod na určitou "
+"pozici zadejte<br/>požadované číslo a stiskněte klávesu Enter"
 
 #: templates/editor/_toolbar.html:39
 msgid "Total strings"
-msgstr ""
+msgstr "Celkový počet řetězců"
 
 #: templates/editor/_toolbar.html:43
 msgid "Go to the next string (Ctrl+Down)"
-msgstr ""
+msgstr "Přejít na další řetězec (Ctrl+Down)"
 
 #: templates/profiles/edit_personal.html:12
 msgid ""
@@ -3049,7 +3087,7 @@ msgstr ""
 
 #: templates/profiles/profile_detail.html:23
 msgid "Contributions"
-msgstr ""
+msgstr "Příspěvky"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"
@@ -3061,11 +3099,11 @@ msgstr "Nevyřízené návrhy"
 
 #: templates/profiles/profile_detail.html:46
 msgid "Overwritten"
-msgstr ""
+msgstr "Přepsáno"
 
 #: templates/profiles/profile_detail.html:66
 msgid "This user doesn't have any contributions yet."
-msgstr ""
+msgstr "Tento uživatel dosud nijak nepřispěl."
 
 #: templates/profiles/profile_list.html:7
 msgid "Profiles list"
@@ -3190,7 +3228,7 @@ msgid ""
 "Your password has been set. You may go ahead and <a href=\"%(login_url)s"
 "\">log in</a> now."
 msgstr ""
-"Vaše heslo bylo nastaveno. Nyní se můžete <a href=\"%(login_url)s\"> přihlásit "
+"Vaše heslo bylo nastaveno. Nyní se můžete <a href=\"%(login_url)s\">přihlásit "
 "</a>."
 
 #: templates/registration/password_reset_confirm.html:5

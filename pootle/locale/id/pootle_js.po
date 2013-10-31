@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-02-22 02:26+0000\n"
+"PO-Revision-Date: 2013-10-28 23:11+0000\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
@@ -16,15 +16,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1361500013.0\n"
+"X-POOTLE-MTIME: 1383001887.0\n"
 
 #: static/js/common.js:13
 msgid "All Languages"
-msgstr ""
+msgstr "Semua Bahasa"
 
 #: static/js/common.js:26
 msgid "All Projects"
-msgstr ""
+msgstr "Semua Projek"
 
 #: static/js/common.js:62
 msgid "Expand details"
@@ -44,57 +44,57 @@ msgstr "Operasi ini tak dapat dibatalkan."
 
 #: static/js/common.js:139
 msgid "Show tags"
-msgstr ""
+msgstr "Tampilkan tag"
 
 #: static/js/common.js:142 static/js/vendor/sorttable.js:365
 msgid "Hide tags"
-msgstr ""
+msgstr "Sembunyikan tag"
 
 #: static/js/common.js:276 static/js/common.js.c:292
 msgid "Hide filtering"
-msgstr ""
+msgstr "Sembunyikan penyaringan"
 
 #: static/js/common.js:279 static/js/common.js.c:286
 msgid "Show filtering"
-msgstr ""
+msgstr "Tampilkan penyaringan"
 
 #: static/js/editor.js:209
 msgid "Go to the next string (Ctrl+.)"
-msgstr ""
+msgstr "Ke string selanjutnya (Ctrl+.)"
 
 #: static/js/editor.js:215
 msgid "Go to the previous string (Ctrl+,)"
-msgstr ""
+msgstr "Ke string sebelumnya (Ctrl+,)"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:333
 #, c-format
 msgid "%s's pending suggestions"
-msgstr ""
+msgstr "Saran %s yang tertunda"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:336
 #, c-format
 msgid "%s's accepted suggestions"
-msgstr ""
+msgstr "Saran %s yang diterima"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:339
 #, c-format
 msgid "%s's rejected suggestions"
-msgstr ""
+msgstr "Saran %s yang ditolak"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:342
 #, c-format
 msgid "%s's submissions"
-msgstr ""
+msgstr "Setoran %s"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:345
 #, c-format
 msgid "%s's overwritten submissions"
-msgstr ""
+msgstr "Setoran %s yang ditimpa"
 
 #: static/js/editor.js:476 static/js/editor.js.c:1521
 msgid "No results."
@@ -102,7 +102,7 @@ msgstr "Tiada hasil."
 
 #: static/js/editor.js:748
 msgid "Export View"
-msgstr ""
+msgstr "Tampilan Ekspor"
 
 #: static/js/editor.js:798
 msgid "Error while connecting to the server"

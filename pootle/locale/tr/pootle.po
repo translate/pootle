@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-08-28 15:08+0000\n"
+"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"PO-Revision-Date: 2013-10-28 20:26+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1377702489.0\n"
+"X-POOTLE-MTIME: 1382991962.0\n"
 
 #: strings.py:8
 msgid ""
@@ -146,7 +146,7 @@ msgstr "Lisans"
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:57
 msgid "Contributor License"
-msgstr "Katkıda Bulunan Lisansı"
+msgstr "Katılımcı Lisansı"
 
 #. Translators: Label that refers to the site's terms of use
 #: strings.py:59
@@ -530,7 +530,7 @@ msgstr "Kayıt olun."
 #: apps/pootle_project/models.py:221
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
-msgstr ""
+msgstr "\"%s\", proje kodu olarak kullanılamaz"
 
 #: apps/pootle_app/views/admin/adminusers.py:55
 #: templates/user_profile_menu.html:7
@@ -623,11 +623,11 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:129
 msgid "MARKUP_FILTER is missing. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER eksik. HTML'e geri çekiliyor."
 
 #: apps/pootle_app/views/admin/dashboard.py:131
 msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER yanlış yapılandırılmış. HTML'e geri çekiliyor."
 
 #: apps/pootle_app/views/admin/dashboard.py:133
 #, python-format
@@ -635,11 +635,12 @@ msgid ""
 "Can't find the package which provides '%s' markup support. Falling back to "
 "HTML."
 msgstr ""
+"'%s' biçimleme desteği sağlayan paket bulunamıyor. HTML'e geri çekiliyor."
 
 #: apps/pootle_app/views/admin/dashboard.py:137
 #, python-format
 msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER içinde geçersiz '%s' değeri. HTML'e geri çekiliyor."
 
 #: apps/pootle_app/views/admin/dashboard.py:154
 msgid ""
@@ -757,15 +758,15 @@ msgstr "Aktif kullanıcılar"
 
 #: apps/pootle_app/views/admin/permissions.py:61
 msgid "Translation Project Contributors"
-msgstr ""
+msgstr "Çeviri Projesi Katılımcıları"
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Contributors"
-msgstr ""
+msgstr "Proje Katılımcıları"
 
 #: apps/pootle_app/views/admin/permissions.py:84
 msgid "Language Contributors"
-msgstr ""
+msgstr "Dil Katılımcıları"
 
 #: apps/pootle_app/views/admin/permissions.py:91
 msgid "All Users"
@@ -779,7 +780,7 @@ msgstr "Kullanıcı Adı"
 
 #: apps/pootle_app/views/admin/permissions.py:122
 msgid "Select one or more permissions"
-msgstr ""
+msgstr "Bir ya da daha fazla izin seçin"
 
 #: apps/pootle_app/views/admin/util.py:145
 msgid "No files in this project."
@@ -899,7 +900,7 @@ msgstr "Dil"
 #. Translators: Heading representing the priority for a goal
 #: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:72
 msgid "Priority"
-msgstr ""
+msgstr "Öncelik"
 
 #. Translators: noun. The graphical representation of translation status
 #: apps/pootle_misc/browser.py:52
@@ -1111,7 +1112,7 @@ msgstr "Ara (Ctrl+Shift+S)<br/>Aramak için yazın ve Enter'a basın"
 
 #: apps/pootle_misc/forms.py:108
 msgid "Exact Match"
-msgstr ""
+msgstr "Tam Eşleşme"
 
 #: apps/pootle_misc/forms.py:115
 msgid "Source Text"
@@ -1186,7 +1187,7 @@ msgstr[0] "Çeviriye devam et (%(num)d kelime kaldı)"
 #, python-format
 msgid "Next most important goal (%(num)d word left)"
 msgid_plural "Next most important goal (%(num)d words left)"
-msgstr[0] ""
+msgstr[0] "Sonraki en önemli hedef (%(num)d kelime kaldı)"
 
 #: apps/pootle_misc/stats.py:249
 msgid "Translation is complete"
@@ -1278,7 +1279,7 @@ msgstr "Proje Seçimi"
 
 #: apps/pootle_notifications/forms.py:61
 msgid "Select one or more projects"
-msgstr ""
+msgstr "Bir ya da daha fazla proje seçin"
 
 #: apps/pootle_notifications/forms.py:68
 msgid "All Languages"
@@ -1290,7 +1291,7 @@ msgstr "Dil Seçimi"
 
 #: apps/pootle_notifications/forms.py:77 apps/pootle_profile/forms.py:120
 msgid "Select one or more languages"
-msgstr ""
+msgstr "Bir ya da daha fazla dil seçin"
 
 #: apps/pootle_notifications/models.py:31
 msgid "Message"
@@ -1426,7 +1427,7 @@ msgstr "Hedefi Raporla"
 
 #: apps/pootle_project/views.py:119
 msgid "Select one or more tags to use as filter"
-msgstr ""
+msgstr "Süzgeç olarak kullanmak için bir ya da daha fazla etiket seçin"
 
 #: apps/pootle_project/views.py:162
 #, python-format
@@ -1448,27 +1449,27 @@ msgstr ""
 #: apps/pootle_project/templates/project/overview.html:18
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
-msgstr ""
+msgstr "Etiketleri göster"
 
 #: apps/pootle_project/templates/project/overview.html:21
 msgid "Show filtering"
-msgstr ""
+msgstr "Süzmeyi göster"
 
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
 msgid "Filter"
-msgstr ""
+msgstr "Süzgeç"
 
 #: apps/pootle_project/templates/project/overview.html:38
 msgid "Filter the translation projects using this tags"
-msgstr ""
+msgstr "Bu etiketleri kullanarak çeviri projelerini süz"
 
 #: apps/pootle_project/templates/project/overview.html:76
 #: apps/pootle_translationproject/templates/translation_project/overview.html:43
 #: apps/pootle_translationproject/templates/translation_project/overview.html:175
 #: templates/common/xhr_add_tag_form.html:15
 msgid "Add tag"
-msgstr ""
+msgstr "Etiket ekle"
 
 #: apps/pootle_project/templates/project/project_admin.html:7
 #: templates/project_menu.html:9
@@ -1507,22 +1508,23 @@ msgstr "isimsiz kullanıcı"
 msgid ""
 "reverted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
 msgstr ""
+"<i><a href=\"%(url)s\">%(source)s</a></i> satırı için çeviriyi geri döndürdü"
 
 #: apps/pootle_statistics/models.py:147
 #, python-format
 msgid ""
 "accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr ""
+msgstr "<i><a href=\"%(url)s\">%(source)s</a></i> satırı için öneriyi kabul etti"
 
 #: apps/pootle_statistics/models.py:150
 msgid "uploaded a file"
-msgstr ""
+msgstr "bir dosya gönderdi"
 
 #: apps/pootle_statistics/models.py:165
 #, python-format
 msgid ""
 "submitted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr ""
+msgstr "<i><a href=\"%(url)s\">%(source)s</a></i> satırı için çeviriyi gönderdi"
 
 #: apps/pootle_statistics/models.py:167
 #, python-format
@@ -1530,24 +1532,26 @@ msgid ""
 "submitted \"needs work\" translation for string <i><a href=\"%(url)s\">"
 "%(source)s</a></i>"
 msgstr ""
+"<i><a href=\"%(url)s\">%(source)s</a></i> satırı için \"çalışma gerekli\" "
+"çevirisini gönderdi"
 
 #: apps/pootle_statistics/models.py:170
 #, python-format
 msgid ""
 "removed translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr ""
+msgstr "<i><a href=\"%(url)s\">%(source)s</a></i> satırı için çeviriyi kaldırdı"
 
 #: apps/pootle_store/decorators.py:63
 msgid "Insufficient rights to access this directory."
-msgstr ""
+msgstr "Bu dizine erişmek için yetersiz haklar."
 
 #: apps/pootle_store/decorators.py:135 apps/pootle_store/views.py:531
 msgid "Arguments missing."
-msgstr ""
+msgstr "Bağımsız değişkenler eksik."
 
 #: apps/pootle_store/decorators.py:147
-msgid "Store does not exist."
-msgstr ""
+msgid "File does not exist."
+msgstr "Dosya mevcut değil."
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Gettext PO"
@@ -1636,23 +1640,23 @@ msgstr "Yol"
 #: apps/pootle_store/models.py:900
 #: apps/pootle_translationproject/models.py:114
 msgid "Tags"
-msgstr ""
+msgstr "Etiketler"
 
 #: apps/pootle_store/models.py:901
 #: apps/pootle_translationproject/models.py:115
 msgid "A comma-separated list of tags."
-msgstr ""
+msgstr "Virgülle ayrılmış etiketler listesi."
 
 #: apps/pootle_store/models.py:902
 #: apps/pootle_translationproject/models.py:116
 #: apps/pootle_translationproject/templates/translation_project/overview.html:69
 msgid "Goals"
-msgstr ""
+msgstr "Hedefler"
 
 #: apps/pootle_store/models.py:904
 #: apps/pootle_translationproject/models.py:118
 msgid "A comma-separated list of goals."
-msgstr ""
+msgstr "Virgülle ayrılmış hedefler listesi."
 
 #: apps/pootle_store/util.py:45
 msgid "Obsolete"
@@ -1684,11 +1688,11 @@ msgstr "Öneri ya da oy artık geçerli değil."
 
 #: apps/pootle_store/views.py:1096
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "Etiketleri kaldırmak için haklara sahip değilsiniz."
 
 #: apps/pootle_store/views.py:1132
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "Etiketleri eklemek için haklara sahip değilsiniz."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
@@ -1697,7 +1701,7 @@ msgstr "Yorum:"
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
 msgid "<a href=\"%(url)s\">String %(id)s</a>"
-msgstr ""
+msgstr "<a href=\"%(url)s\">Satır %(id)s</a>"
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -1884,12 +1888,18 @@ msgid ""
 "Tag names cannot have leading nor trailing spaces, colons (:), hyphens (-), "
 "underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Etiket adları ne başında ne de sonunda boşluklara, iki nokta üst üstelere "
+"(:), tirelere (-), alt çizgilere (_), eğik çizgilere (/) veya noktalara (.) "
+"sahip olamaz!"
 
 #: apps/pootle_tagging/forms.py:53
 msgid ""
 "Tag names cannot contain two or more consecutive: spaces, colons (:), "
 "hyphens (-), underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Etiket adları iki ya da daha fazla art arda noktalama işareti içeremez: "
+"boşluklar, iki nokta üst üsteler (:), tireler (-), alt çizgiler (_), eğik "
+"çizgiler (/) veya noktalar (.)!"
 
 #: apps/pootle_tagging/forms.py:60
 msgid ""
@@ -1897,16 +1907,23 @@ msgid ""
 "leading (but yes on the middle): spaces, colons (:), hyphens (-), "
 "underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Etiket adları ne başında ne de sonunda olmayan (ancak ortada evet) "
+"alfanümerik küçük harf dizgisi olmak zorundadır: boşluklar, iki nokta üst "
+"üsteler (:), tireler (-), alt çizgiler (_), eğik çizgiler (/) veya noktalar "
+"(.)!"
 
 #: apps/pootle_tagging/forms.py:74
 msgid ""
 "Name cannot contain just after 'goal:' any of these characters: spaces, "
 "colons (:), hyphens (-), underscores (_), slashes (/) or periods (.)"
 msgstr ""
+"İsim, 'hedef:'den hemen sonra bu karakterlerden herhangi birini içeremez: "
+"boşluklar, iki nokta üst üsteler (:), tireler (-), alt çizgiler (_), eğik "
+"çizgiler (/) veya noktalar (.)"
 
 #: apps/pootle_tagging/forms.py:133
 msgid "Already exists a goal with this name. Please pick another name."
-msgstr ""
+msgstr "Bu isimde bir hedef zaten var. Lütfen başka bir isim seçin."
 
 #: apps/pootle_tagging/forms.py:173
 msgid ""
@@ -1914,16 +1931,22 @@ msgid ""
 "single or multiple occurrences of the following characters: spaces, colons "
 "(:), hyphens (-), underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Etiket kısaltmaları etiket adına eşit olmak zorundadır, ancak şurada "
+"belirtilen karakterlerden tekli veya çoklu meydana gelenler bir tire ile "
+"değiştirilir: boşluklar, iki nokta üst üsteler (:), tireler (-), alt "
+"çizgiler (_), eğik çizgiler (/) veya noktalar (.)!"
 
 #: apps/pootle_tagging/forms.py:180
 msgid "Already exists a goal with this slug!"
-msgstr ""
+msgstr "Bu kısaltmayla bir hedef zaten var!"
 
 #: apps/pootle_tagging/forms.py:194
 msgid ""
 "Warning: Changing the name also changes the slug, so it won't be possible to "
 "view this goal on this page!"
 msgstr ""
+"Uyarı: Adı değiştirmek aynı zamanda kısaltmayıda değiştirir, böylece bu "
+"sayfadaki bu hedefi görüntülemek mümkün olmayacaktır!"
 
 #: apps/pootle_tagging/models.py:66
 #, python-format
@@ -1931,32 +1954,36 @@ msgid ""
 "A description of this goal. This is useful to give more information or "
 "instructions. Allowed markup: %s"
 msgstr ""
+"Bu hedefin açıklaması. Bu, daha fazla bilgi ve talimat vermek için "
+"faydalıdır. İzin verilen biçimleme: %s"
 
 #: apps/pootle_tagging/models.py:73
 msgid "The priority for this goal."
-msgstr ""
+msgstr "Bu hedef için öncelik."
 
 #: apps/pootle_tagging/models.py:78
 msgid ""
 "Designates that this is a project goal (shared across all languages in the "
 "project)."
 msgstr ""
+"Bunun bir proje hedefi olduğunu belirtir (bu projedeki tüm diller arasında "
+"paylaşılmış)."
 
 #: apps/pootle_tagging/models.py:80
 msgid "Project goal?"
-msgstr ""
+msgstr "Proje hedefi mi?"
 
 #: apps/pootle_tagging/models.py:104
 msgid "(Project goal)"
-msgstr ""
+msgstr "(Proje hedefi)"
 
 #: apps/pootle_tagging/models.py:465
 msgid "Item with goal"
-msgstr ""
+msgstr "Hedefi olan öğe"
 
 #: apps/pootle_tagging/models.py:466
 msgid "Items with goal"
-msgstr ""
+msgstr "Hedefi olan öğeler"
 
 #: apps/pootle_terminology/views.py:171
 msgid "This term already exists in this file."
@@ -2245,12 +2272,12 @@ msgstr "Dosyayı silme denenirken hata oldu."
 #: apps/pootle_translationproject/views.py:373
 #, python-format
 msgid "Unable to find '%(action)s' in '%(extdir)s'"
-msgstr ""
+msgstr "'%(extdir)s' içinde '%(action)s' bulunamaz"
 
 #: apps/pootle_translationproject/views.py:400
 #, python-format
 msgid "Exception while running '%s' extension action"
-msgstr ""
+msgstr "'%s' uzantısı eylemi çalışırken istisna"
 
 #: apps/pootle_translationproject/views.py:820
 #, python-format
@@ -2293,23 +2320,23 @@ msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:5
 msgid "Export View"
-msgstr ""
+msgstr "Görünümü Dışa Aktar"
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:97
 msgid "Goal"
-msgstr ""
+msgstr "Hedef"
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:139
 msgid "No strings."
-msgstr ""
+msgstr "Satırlar yok."
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:61
 msgid "Translation project files and folders"
-msgstr ""
+msgstr "Çeviri projesi dosyaları ve klasörleri"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "Proje hedeflerinizi yönetin"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2407,6 +2434,7 @@ msgid ""
 "I have read and accept: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</"
 "a>"
 msgstr ""
+"Okudum ve kabul ettim: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</a>"
 
 #: apps/staticpages/models.py:37
 #: apps/staticpages/templates/staticpages/admin/_table.html:7
@@ -2420,11 +2448,11 @@ msgstr "Bu sayfanın aktif olup olmayacağı."
 #: apps/staticpages/models.py:40
 #: apps/staticpages/templates/staticpages/admin/_table.html:9
 msgid "Virtual Path"
-msgstr ""
+msgstr "Sanal Yol"
 
 #: apps/staticpages/models.py:46
 msgid "Display Content"
-msgstr ""
+msgstr "İçeriği Görüntüle"
 
 #: apps/staticpages/models.py:47
 #, python-format
@@ -2434,11 +2462,13 @@ msgstr "İzin verilen biçimleme: %s"
 #: apps/staticpages/models.py:49
 #: apps/staticpages/templates/staticpages/admin/_table.html:10
 msgid "Redirect to URL"
-msgstr ""
+msgstr "URL'ye Yeniden Yönlendir"
 
 #: apps/staticpages/models.py:50
 msgid "If set, any references to this page will redirect to this URL"
 msgstr ""
+"Eğer ayarlanırsa, bu sayfa için herhangi bir kaynak bu URL'ye yeniden "
+"yönlendirilecek"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:97
@@ -2447,24 +2477,24 @@ msgstr "URL ya da içerik verilmek zorundadır."
 
 #: apps/staticpages/models.py:105
 msgid "Virtual path already in use."
-msgstr ""
+msgstr "Sanal yol zaten kullanımda."
 
 #: apps/staticpages/models.py:110
 msgid "Legal Page"
-msgstr ""
+msgstr "Yasal Sayfa"
 
 #: apps/staticpages/models.py:121
 msgid "Regular Page"
-msgstr ""
+msgstr "Normal Sayfa"
 
 #: apps/staticpages/views.py:87
 msgid "Page Title"
-msgstr ""
+msgstr "Sayfa Başlığı"
 
 #: apps/staticpages/views.py:88
 #, python-format
 msgid "page-%d"
-msgstr ""
+msgstr "sayfa-%d"
 
 #: apps/staticpages/views.py:130
 #, python-format
@@ -2472,48 +2502,51 @@ msgid ""
 "This page is inactive and visible to administrators only. You can activate "
 "it by <a href=\"%s\">editing its properties</a>"
 msgstr ""
+"Bu sayfa devre dışı ve sadece yöneticilere görünür. Bunu <a href=\"%"
+"s\">özelliklerini düzenleyerek</a> etkinleştirebilirsiniz"
 
 #: apps/staticpages/templates/staticpages/agreement.html:4
 msgid "Action Required"
-msgstr ""
+msgstr "Eylem Gerekli"
 
 #: apps/staticpages/templates/staticpages/agreement.html:5
 msgid "Before continuing, you must read and accept the following documents."
 msgstr ""
+"Devam etmeden önce, aşağıdaki belgeleri okumak ve kabul etmek zorundasınız."
 
 #: apps/staticpages/templates/staticpages/agreement.html:18
 msgid "No thanks. Log out"
-msgstr ""
+msgstr "Hayır teşekkürler. Oturumu kapat"
 
 #: apps/staticpages/templates/staticpages/agreement.html:21
 msgid "Continue"
-msgstr ""
+msgstr "Devam"
 
 #: apps/staticpages/templates/staticpages/base.html:5
 #: apps/staticpages/templates/staticpages/base.html:11
 #: templates/admin_profile_menu.html:9
 msgid "Static Pages"
-msgstr ""
+msgstr "Sabit Sayfalar"
 
 #: apps/staticpages/templates/staticpages/admin/_form.html:18
 msgid "or"
-msgstr ""
+msgstr "veya"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:8
 msgid "Page"
-msgstr ""
+msgstr "Sayfa"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:11
 msgid "Last Edited"
-msgstr ""
+msgstr "Son Düzenleme"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "Yes"
-msgstr ""
+msgstr "Evet"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "No"
-msgstr ""
+msgstr "Hayır"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:30
 msgid "No pages yet."
@@ -2521,23 +2554,23 @@ msgstr "Henüz sayfalar yok."
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:8
 msgid "Legal Pages"
-msgstr "Yasal Sayfaları"
+msgstr "Yasal Sayfalar"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:12
 msgid "Add Legal Page"
-msgstr ""
+msgstr "Yasal Sayfa Ekle"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
 msgid "Regular Pages"
-msgstr ""
+msgstr "Normal Sayfalar"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
 msgid "Add Regular Page"
-msgstr ""
+msgstr "Normal Sayfa Ekle"
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."
-msgstr ""
+msgstr "Bu sayfaya erişmek için yetersiz haklar."
 
 #: core/decorators.py:191 core/views.py:29
 msgid "You do not have rights to administer Pootle."
@@ -2545,7 +2578,7 @@ msgstr "Pootle'ı yönetme haklarına sahip değilsiniz."
 
 #: core/helpers.py:41
 msgid "User missing"
-msgstr ""
+msgstr "Kullanıcı eksik"
 
 #. Translators: This refers to "All strings"
 #: core/helpers.py:53 templates/editor/_toolbar.html:12
@@ -2562,7 +2595,7 @@ msgstr "Kontroller"
 
 #: core/helpers.py:62
 msgid "Overwritten submissions"
-msgstr ""
+msgstr "Üzerine yazılmış sunuşlar"
 
 #: middleware/captcha.py:122
 msgid "Time to answer has expired"
@@ -2592,13 +2625,14 @@ msgstr ""
 #: scripts/actions.py:529
 #, python-format
 msgid "Failed to copy download file to export directory %s"
-msgstr ""
+msgstr "%s dizinini dışa aktarmak için indirme dosyasını kopyalama başarısız"
 
 #: scripts/example-actions/mozlangpack.py:141
 msgid ""
 "Finished building the language pack, click on the download link to download "
 "it."
 msgstr ""
+"Dil paketinin yapımı bitti, indirmek için indirme bağlantısına tıklayın."
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"
@@ -2635,7 +2669,7 @@ msgstr ""
 
 #: templates/_main_tabs.html:5
 msgid "Main page"
-msgstr ""
+msgstr "Ana sayfa"
 
 #: templates/_main_tabs.html:5 templates/language_menu.html:4
 #: templates/project_menu.html:4 templates/tp_menu.html:4
@@ -2686,7 +2720,7 @@ msgstr "Varsayılan izinleri yönet"
 
 #: templates/admin_profile_menu.html:9
 msgid "Manage Static Pages"
-msgstr ""
+msgstr "Sabit Sayfaları Yönet"
 
 #: templates/base.html:121
 msgid "skip to navigation"
@@ -2765,7 +2799,7 @@ msgstr "Onayla"
 #: templates/db_error.html:4 templates/db_error.html.py:7
 #: templates/db_error.html:12
 msgid "Database Error"
-msgstr ""
+msgstr "Veritabanı Hatası"
 
 #: templates/db_error.html:14
 msgid ""
@@ -2774,6 +2808,10 @@ msgid ""
 "  yet, or a schema upgrade is needed before continuing.\n"
 "  "
 msgstr ""
+"\n"
+"  Pootle, veritabanına bağlanamıyor, veritabanı henüz başlatılamıyor,\n"
+"  ya da devam etmeden önce bir şema yükseltmesine ihtiyaç var.\n"
+"  "
 
 #: templates/db_error.html:20
 #, python-format
@@ -2784,10 +2822,15 @@ msgid ""
 "  if you feel this is a mistake.\n"
 "  "
 msgstr ""
+"\n"
+"  Lütfen <a href=\"%(url)s\">Pootle belgelerinde</a> kurulum ve\n"
+"  yükseltme talimatlarını okuyun. Eğer bunun bir hata olduğunu\n"
+"  düşünüyorsanız, sunucu yöneticisiyle irtibata geçin.\n"
+"  "
 
 #: templates/db_error.html:27
 msgid "The reported error was:"
-msgstr ""
+msgstr "Bildirilen hata:"
 
 #: templates/language_menu.html:4
 msgid "Language main page"
@@ -2799,7 +2842,7 @@ msgstr "Dil haberleri"
 
 #: templates/language_menu.html:6
 msgid "Translate this language"
-msgstr ""
+msgstr "Bu dili çevir"
 
 #: templates/language_menu.html:8
 msgid "Administrate your language permissions"
@@ -2807,7 +2850,7 @@ msgstr "Dil izinlerinizi yönetin"
 
 #: templates/main_base.html:6
 msgid "Main"
-msgstr ""
+msgstr "Ana"
 
 #: templates/project_menu.html:4
 msgid "Project main page"
@@ -2912,7 +2955,7 @@ msgstr "Hakkında"
 
 #: templates/common/_table_row.html:87
 msgid "Add a tag"
-msgstr ""
+msgstr "Bir etiket ekle"
 
 #: templates/contact_form/contact_form.html:17
 msgid "Send"
@@ -2965,21 +3008,23 @@ msgstr "Üzerine yazılmış sunuşlarım"
 
 #: templates/editor/_toolbar.html:34
 msgid "Go to the previous string (Ctrl+Up)"
-msgstr ""
+msgstr "Önceki satıra git (Ctrl+Up)"
 
 #: templates/editor/_toolbar.html:37
 msgid ""
 "Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
+"Şu anki satır sayısı (Ctrl+Shift+U)<br/><br/>Herhangi bir konuma gitmek "
+"için<br/>sayıyı yazın ve Enter'a basın"
 
 #: templates/editor/_toolbar.html:39
 msgid "Total strings"
-msgstr ""
+msgstr "Toplam satır"
 
 #: templates/editor/_toolbar.html:43
 msgid "Go to the next string (Ctrl+Down)"
-msgstr ""
+msgstr "Sonraki satıra git (Ctrl+Down)"
 
 #: templates/profiles/edit_personal.html:12
 msgid ""
@@ -3016,7 +3061,7 @@ msgstr ""
 
 #: templates/profiles/profile_detail.html:23
 msgid "Contributions"
-msgstr ""
+msgstr "Katılımlar"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"
@@ -3030,11 +3075,11 @@ msgstr "Bekleyen Öneriler"
 
 #: templates/profiles/profile_detail.html:46
 msgid "Overwritten"
-msgstr ""
+msgstr "Üzerine yazılan"
 
 #: templates/profiles/profile_detail.html:66
 msgid "This user doesn't have any contributions yet."
-msgstr ""
+msgstr "Bu kullanıcının henüz herhangi bir katılımı yok."
 
 #: templates/profiles/profile_list.html:7
 msgid "Profiles list"

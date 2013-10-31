@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenOffice.org\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-05-19 08:44+0000\n"
-"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
+"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"PO-Revision-Date: 2013-10-28 17:28+0000\n"
+"Last-Translator: Domen <dbc334@gmail.com>\n"
 "Language-Team: Slovenščina <users@sl.openoffice.org>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1368953085.0\n"
+"X-POOTLE-MTIME: 1382981312.0\n"
 
 #: strings.py:8
 msgid ""
@@ -1589,7 +1589,7 @@ msgid "Arguments missing."
 msgstr ""
 
 #: apps/pootle_store/decorators.py:147
-msgid "Store does not exist."
+msgid "File does not exist."
 msgstr ""
 
 #: apps/pootle_store/filetypes.py:31
@@ -1678,8 +1678,9 @@ msgstr "Pot"
 
 #: apps/pootle_store/models.py:900
 #: apps/pootle_translationproject/models.py:114
+#, fuzzy
 msgid "Tags"
-msgstr ""
+msgstr "Tabulatorji"
 
 #: apps/pootle_store/models.py:901
 #: apps/pootle_translationproject/models.py:115
@@ -1726,12 +1727,14 @@ msgid "The suggestion or vote is not valid any more."
 msgstr "Predlog ali glas ni več veljaven."
 
 #: apps/pootle_store/views.py:1096
+#, fuzzy
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "Nimate pravic za upravljanje %s."
 
 #: apps/pootle_store/views.py:1132
+#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "Nimate pravic za upravljanje %s."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
@@ -2355,8 +2358,9 @@ msgid "Translation project files and folders"
 msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
+#, fuzzy
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "Upravljajte z vašim projektom"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2482,8 +2486,10 @@ msgid "Redirect to URL"
 msgstr ""
 
 #: apps/staticpages/models.py:50
+#, fuzzy
 msgid "If set, any references to this page will redirect to this URL"
 msgstr ""
+"Če je nastavljeno, bodo vsi sklici na to pravno stran preusmerjeni na ta URL"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:97
@@ -2495,8 +2501,9 @@ msgid "Virtual path already in use."
 msgstr ""
 
 #: apps/staticpages/models.py:110
+#, fuzzy
 msgid "Legal Page"
-msgstr ""
+msgstr "Pravne strani"
 
 #: apps/staticpages/models.py:121
 msgid "Regular Page"
@@ -2569,8 +2576,9 @@ msgid "Legal Pages"
 msgstr "Pravne strani"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:12
+#, fuzzy
 msgid "Add Legal Page"
-msgstr ""
+msgstr "Uredi pravno stran"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
 msgid "Regular Pages"
@@ -2606,8 +2614,9 @@ msgid "Checks"
 msgstr "Preverjanja"
 
 #: core/helpers.py:62
+#, fuzzy
 msgid "Overwritten submissions"
-msgstr ""
+msgstr "Moji prepisani prispevki"
 
 #: middleware/captcha.py:122
 msgid "Time to answer has expired"
@@ -3030,7 +3039,7 @@ msgid ""
 "Here you can change your personal details. This information will be used in "
 "the header of the translation files."
 msgstr ""
-"Tukaj lahko spremenite svoje osebne poadtke. Te informacije bodo uporabljene "
+"Tukaj lahko spremenite svoje osebne podatke. Te informacije bodo uporabljene "
 "v glavi datotek prevodov."
 
 #: templates/profiles/edit_personal.html:18
@@ -3059,8 +3068,9 @@ msgstr ""
 "kakor tudi vaše jezikovne nastavitve."
 
 #: templates/profiles/profile_detail.html:23
+#, fuzzy
 msgid "Contributions"
-msgstr ""
+msgstr "Sodelavci"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"

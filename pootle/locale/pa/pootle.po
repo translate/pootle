@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-10-14 02:35+0000\n"
+"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"PO-Revision-Date: 2013-10-29 20:54+0000\n"
 "Last-Translator: A S <apreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1381718106.0\n"
+"X-POOTLE-MTIME: 1383080065.0\n"
 
 #: strings.py:8
 msgid ""
@@ -172,8 +172,8 @@ msgstr ""
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ਹੇਠ ਦਿੱਤੀ ਗਲਤੀ ਠੀਕ ਕਰੋ ਜੀ।"
+msgstr[1] "ਹੇਠ ਦਿੱਤੀਆਂ ਗਲਤੀਆਂ ਠੀਕ ਕਰੋ ਜੀ।"
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
@@ -697,15 +697,15 @@ msgstr "ਸਰਗਰਮ ਯੂਜ਼ਰ"
 
 #: apps/pootle_app/views/admin/permissions.py:61
 msgid "Translation Project Contributors"
-msgstr ""
+msgstr "ਅਨੁਵਾਦ ਪਰੋਜੈਕਟ ਯੋਗਦਾਨੀ"
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Contributors"
-msgstr ""
+msgstr "ਪਰੋਜੈਕਟ ਯੋਗਦਾਨੀ"
 
 #: apps/pootle_app/views/admin/permissions.py:84
 msgid "Language Contributors"
-msgstr ""
+msgstr "ਭਾਸ਼ਾ ਯੋਗਦਾਨੀ"
 
 #: apps/pootle_app/views/admin/permissions.py:91
 msgid "All Users"
@@ -719,7 +719,7 @@ msgstr "ਯੂਜ਼ਰ ਨਾਂ"
 
 #: apps/pootle_app/views/admin/permissions.py:122
 msgid "Select one or more permissions"
-msgstr ""
+msgstr "ਇੱਕ ਜਾਂ ਵੱਧ ਅਧਿਕਾਰ ਚੁਣੋ"
 
 #: apps/pootle_app/views/admin/util.py:145
 msgid "No files in this project."
@@ -924,7 +924,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:49
 msgid "File paths"
-msgstr ""
+msgstr "ਫਾਇਲ ਪਾਥ"
 
 #: apps/pootle_misc/checks.py:50
 #, fuzzy
@@ -1454,13 +1454,13 @@ msgstr ""
 
 #: apps/pootle_statistics/models.py:150
 msgid "uploaded a file"
-msgstr ""
+msgstr "ਫਾਇਲ ਅੱਪਲੋਡ ਕੀਤੀ"
 
 #: apps/pootle_statistics/models.py:165
 #, python-format
 msgid ""
 "submitted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-msgstr ""
+msgstr "<i><a href=\"%(url)s\">%(source)s</a></i> ਲਾਈਨ ਲਈ ਅਨੁਵਾਦ ਭੇਜਿਆ"
 
 #: apps/pootle_statistics/models.py:167
 #, python-format
@@ -1484,7 +1484,7 @@ msgid "Arguments missing."
 msgstr ""
 
 #: apps/pootle_store/decorators.py:147
-msgid "Store does not exist."
+msgid "File does not exist."
 msgstr ""
 
 #: apps/pootle_store/filetypes.py:31
@@ -1573,8 +1573,9 @@ msgstr "ਪਾਥ"
 
 #: apps/pootle_store/models.py:900
 #: apps/pootle_translationproject/models.py:114
+#, fuzzy
 msgid "Tags"
-msgstr ""
+msgstr "ਟੈਬ"
 
 #: apps/pootle_store/models.py:901
 #: apps/pootle_translationproject/models.py:115
@@ -1621,12 +1622,14 @@ msgid "The suggestion or vote is not valid any more."
 msgstr ""
 
 #: apps/pootle_store/views.py:1096
+#, fuzzy
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "ਤੁਹਾਡੇ ਕੋਲ ਪਰਸ਼ਾਸ਼ਕੀ %s ਅਧਿਕਾਰ ਨਹੀਂ ਹਨ"
 
 #: apps/pootle_store/views.py:1132
+#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "ਤੁਹਾਡੇ ਕੋਲ ਪਰਸ਼ਾਸ਼ਕੀ %s ਅਧਿਕਾਰ ਨਹੀਂ ਹਨ"
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
@@ -1873,7 +1876,7 @@ msgstr ""
 
 #: apps/pootle_tagging/models.py:73
 msgid "The priority for this goal."
-msgstr ""
+msgstr "ਇਹ ਗੋਲ ਦੀ ਤਰਜੀਹ ਹੈ।"
 
 #: apps/pootle_tagging/models.py:78
 msgid ""
@@ -1883,15 +1886,15 @@ msgstr ""
 
 #: apps/pootle_tagging/models.py:80
 msgid "Project goal?"
-msgstr ""
+msgstr "ਪਰੋਜੈਕਟ ਗੋਲ?"
 
 #: apps/pootle_tagging/models.py:104
 msgid "(Project goal)"
-msgstr ""
+msgstr "(ਪਰੋਜੈਕਟ ਗੋਲ)"
 
 #: apps/pootle_tagging/models.py:465
 msgid "Item with goal"
-msgstr ""
+msgstr "ਗੋਲ ਨਾਲ ਆਈਟਮ"
 
 #: apps/pootle_tagging/models.py:466
 msgid "Items with goal"
@@ -2158,19 +2161,19 @@ msgstr ""
 
 #: apps/pootle_translationproject/views.py:194
 msgid "Directory and its containing files have been deleted."
-msgstr ""
+msgstr "ਡਾਇਰੈਕਟਰੀ ਅਤੇ ਇਸ ਵਿੱਚ ਮੌਜੂਦ ਫਾਇਲਾਂ ਨੂੰ ਹਟਾਇਆ ਜਾ ਚੁੱਕਾ ਹੈ।"
 
 #: apps/pootle_translationproject/views.py:197
 msgid "File has been deleted."
-msgstr ""
+msgstr "ਫਾਇਲ ਹਟਾਈ ਜਾ ਚੁੱਕੀ ਹੈ।"
 
 #: apps/pootle_translationproject/views.py:201
 msgid "Error while trying to delete directory."
-msgstr ""
+msgstr "ਡਾਇਰੈਕਟਰੀ ਹਟਾਉਣ ਦੌਰਾਨ ਗਲਤੀ।"
 
 #: apps/pootle_translationproject/views.py:204
 msgid "Error while trying to delete file."
-msgstr ""
+msgstr "ਫਾਇਲ ਹਟਾਉਣ ਦੌਰਾਨ ਗਲਤੀ ਹੈ।"
 
 #: apps/pootle_translationproject/views.py:373
 #, python-format
@@ -2232,11 +2235,12 @@ msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:61
 msgid "Translation project files and folders"
-msgstr ""
+msgstr "ਪਰੋਜੈਕਟ ਫਾਇਲਾਂ ਅਤੇ ਫੋਲਡਰ ਅਨੁਵਾਦ ਕਰੋ"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
+#, fuzzy
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "ਆਪਣਾ ਪਰੋਜੈਕਟ ਪਰਾਸ਼ਾਸ਼ਨ"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2373,21 +2377,22 @@ msgid "Virtual path already in use."
 msgstr ""
 
 #: apps/staticpages/models.py:110
+#, fuzzy
 msgid "Legal Page"
-msgstr ""
+msgstr "ਕਾਨੂੰਨੀ ਪੇਜ਼"
 
 #: apps/staticpages/models.py:121
 msgid "Regular Page"
-msgstr ""
+msgstr "ਨਿਯਮਤ ਪੇਜ਼"
 
 #: apps/staticpages/views.py:87
 msgid "Page Title"
-msgstr ""
+msgstr "ਸਫ਼ਾ ਟਾਈਟਲ"
 
 #: apps/staticpages/views.py:88
 #, python-format
 msgid "page-%d"
-msgstr ""
+msgstr "%d-ਪੇਜ਼"
 
 #: apps/staticpages/views.py:130
 #, python-format
@@ -2403,28 +2408,30 @@ msgstr ""
 #: apps/staticpages/templates/staticpages/agreement.html:5
 msgid "Before continuing, you must read and accept the following documents."
 msgstr ""
+"ਜਾਰੀ ਰੱਖਣ ਤੋਂ ਪਹਿਲਾਂ, ਤੁਹਾਨੂੰ ਅੱਗੇ ਦਿੱਤੇ ਦਸਤਾਵੇਜ਼ ਪੜ੍ਹਨੇ ਅਤੇ ਮਨਜ਼ੂਰ ਕਰਨੇ "
+"ਚਾਹੀਦੇ ਹਨ।"
 
 #: apps/staticpages/templates/staticpages/agreement.html:18
 msgid "No thanks. Log out"
-msgstr ""
+msgstr "ਨਹੀਂ ਧੰਨਵਾਦ, ਲਾਗ ਆਉਟ"
 
 #: apps/staticpages/templates/staticpages/agreement.html:21
 msgid "Continue"
-msgstr ""
+msgstr "ਜਾਰੀ ਰੱਖੋ"
 
 #: apps/staticpages/templates/staticpages/base.html:5
 #: apps/staticpages/templates/staticpages/base.html:11
 #: templates/admin_profile_menu.html:9
 msgid "Static Pages"
-msgstr ""
+msgstr "ਸਥਿਰ ਸਫ਼ੇ"
 
 #: apps/staticpages/templates/staticpages/admin/_form.html:18
 msgid "or"
-msgstr ""
+msgstr "ਜਾਂ"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:8
 msgid "Page"
-msgstr ""
+msgstr "ਸਫ਼ਾ"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:11
 msgid "Last Edited"
@@ -2447,16 +2454,18 @@ msgid "Legal Pages"
 msgstr "ਕਾਨੂੰਨੀ ਪੇਜ਼"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:12
+#, fuzzy
 msgid "Add Legal Page"
-msgstr ""
+msgstr "ਕਾਨੂੰਨੀ ਪੇਜ਼ ਸੋਧ"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
 msgid "Regular Pages"
 msgstr ""
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
+#, fuzzy
 msgid "Add Regular Page"
-msgstr ""
+msgstr "ਕਾਨੂੰਨੀ ਪੇਜ਼ ਸੋਧ"
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."
@@ -2468,7 +2477,7 @@ msgstr "ਤੁਹਾਡੇ ਕੋਲ ਪਰਸ਼ਾਸ਼ਨ ਪੋਟਲ ਅਧਿ�
 
 #: core/helpers.py:41
 msgid "User missing"
-msgstr ""
+msgstr "ਯੂਜ਼ਰ ਗੁੰਮ ਹੈ"
 
 #. Translators: This refers to "All strings"
 #: core/helpers.py:53 templates/editor/_toolbar.html:12
@@ -2553,7 +2562,7 @@ msgstr ""
 
 #: templates/_main_tabs.html:5
 msgid "Main page"
-msgstr ""
+msgstr "ਮੁੱਖ ਸਫ਼ਾ"
 
 #: templates/_main_tabs.html:5 templates/language_menu.html:4
 #: templates/project_menu.html:4 templates/tp_menu.html:4
@@ -2920,8 +2929,9 @@ msgid ""
 msgstr ""
 
 #: templates/profiles/profile_detail.html:23
+#, fuzzy
 msgid "Contributions"
-msgstr ""
+msgstr "ਯੋਗਦਾਨੀ"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"
@@ -2937,7 +2947,7 @@ msgstr ""
 
 #: templates/profiles/profile_detail.html:66
 msgid "This user doesn't have any contributions yet."
-msgstr ""
+msgstr "ਇਹ ਯੂਜ਼ਰ ਨੇ ਹਾਲੇ ਯੋਗਦਾਨ ਨਹੀਂ ਦਿੱਤਾ ਹੈ।"
 
 #: templates/profiles/profile_list.html:7
 msgid "Profiles list"
@@ -3022,6 +3032,8 @@ msgid ""
 "Please enter your old password, for security's sake, and then enter your new "
 "password twice so we can verify you typed it in correctly."
 msgstr ""
+"ਸੁਰੱਖਿਆ ਲਈ ਪਹਿਲਾਂ ਆਪਣਾ ਪੁਰਾਣਾ ਪਾਸਵਰਡ ਦਿਉ, ਅਤੇ ਫੇਰ ਆਪਣਾ ਨਵਾਂ ਪਾਸਵਰਡ ਦੋ ਵਾਰ "
+"ਦਿਉ ਤਾਂ ਕਿ ਅਸੀਂ ਜਾਂਚ ਸਕੀਏ ਕਿ ਤੁਸੀਂ ਇਹ ਠੀਕ ਤਰ੍ਹਾਂ ਲਿਖਿਆ ਹੈ।"
 
 #: templates/registration/password_change_form.html:21
 msgid "Old password"

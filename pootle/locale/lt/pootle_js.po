@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-02-22 18:54+0000\n"
+"PO-Revision-Date: 2013-10-29 06:28+0000\n"
 "Last-Translator: Rimas <rq@akl.lt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: lt\n"
@@ -17,15 +17,15 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
 "100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1361559299.0\n"
+"X-POOTLE-MTIME: 1383028121.0\n"
 
 #: static/js/common.js:13
 msgid "All Languages"
-msgstr ""
+msgstr "VIsos kalbos"
 
 #: static/js/common.js:26
 msgid "All Projects"
-msgstr ""
+msgstr "Visi projektai"
 
 #: static/js/common.js:62
 msgid "Expand details"
@@ -45,65 +45,66 @@ msgstr "Šis veiksmas negrįžtamas."
 
 #: static/js/common.js:139
 msgid "Show tags"
-msgstr ""
+msgstr "Rodyti gaires"
 
 #: static/js/common.js:142 static/js/vendor/sorttable.js:365
 msgid "Hide tags"
-msgstr ""
+msgstr "Slėpti gaires"
 
 #: static/js/common.js:276 static/js/common.js.c:292
 msgid "Hide filtering"
-msgstr ""
+msgstr "Slėpti filtrą"
 
 #: static/js/common.js:279 static/js/common.js.c:286
 msgid "Show filtering"
-msgstr ""
+msgstr "Rodyti filtrą"
 
 #: static/js/editor.js:209
 msgid "Go to the next string (Ctrl+.)"
-msgstr ""
+msgstr "Eiti į kitą eilutę (Vald+.)"
 
 #: static/js/editor.js:215
 msgid "Go to the previous string (Ctrl+,)"
-msgstr ""
+msgstr "Eiti į ankstesnę eilutę (Vald+,)"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:333
 #, c-format
 msgid "%s's pending suggestions"
-msgstr ""
+msgstr "Nepatvirtinti pasiūlymai, kuriuos pateikė %s"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:336
 #, c-format
 msgid "%s's accepted suggestions"
-msgstr ""
+msgstr "Patvirtinti pasiūlymai, kuriuos pateikė %s"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:339
 #, c-format
 msgid "%s's rejected suggestions"
-msgstr ""
+msgstr "Atmesti pasiūlymai, kuriuos pateikė %s"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:342
 #, c-format
 msgid "%s's submissions"
-msgstr ""
+msgstr "Vertimai, kuriuos pateikė %s"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:345
-#, c-format
+#, c-format, fuzzy
 msgid "%s's overwritten submissions"
-msgstr ""
+msgstr "Perrašyti vertimai, kuriuos pateikė %s"
 
 #: static/js/editor.js:476 static/js/editor.js.c:1521
 msgid "No results."
 msgstr "Nėra rezultatų."
 
 #: static/js/editor.js:748
+#, fuzzy
 msgid "Export View"
-msgstr ""
+msgstr "Eksportuoti rodinį"
 
 #: static/js/editor.js:798
 msgid "Error while connecting to the server"

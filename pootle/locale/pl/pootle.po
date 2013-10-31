@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-02-08 21:45+0000\n"
-"Last-Translator: Ameely <ameely@go2.pl>\n"
+"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"PO-Revision-Date: 2013-10-28 17:46+0000\n"
+"Last-Translator: jo no soi marinero <multi@matusz.waw.pl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1360359943.0\n"
+"X-POOTLE-MTIME: 1382982364.0\n"
 
 #: strings.py:8
 msgid ""
@@ -72,7 +72,7 @@ msgstr "Zmień"
 msgid ""
 "Please enter a correct username and password. Note that both fields are case-"
 "sensitive."
-msgstr ""
+msgstr "Wpisz poprawną nazwę użytkownika i hasło. Wielkość liter ma znaczenie."
 
 #. Translators: Email subject line. The variable is the server name shown
 #. on the top of each page
@@ -131,7 +131,7 @@ msgstr "Ciągi dla platformy Android"
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:51
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Polityka prywatności"
 
 #. Translators: Label that refers to the site's legal requirements
 #: strings.py:53
@@ -172,7 +172,7 @@ msgstr "Wiadomość"
 
 #: apps/contact_form_i18n/forms.py:260
 msgid "Akismet thinks this message is spam"
-msgstr ""
+msgstr "Akismet uważa, że ta wiadomość to spam"
 
 # not really sure about this...
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:17
@@ -1578,7 +1578,7 @@ msgid "Arguments missing."
 msgstr ""
 
 #: apps/pootle_store/decorators.py:147
-msgid "Store does not exist."
+msgid "File does not exist."
 msgstr ""
 
 #: apps/pootle_store/filetypes.py:31
@@ -1715,12 +1715,14 @@ msgid "The suggestion or vote is not valid any more."
 msgstr ""
 
 #: apps/pootle_store/views.py:1096
+#, fuzzy
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "Użytkownik nie posiada praw administracyjnych dla %s."
 
 #: apps/pootle_store/views.py:1132
+#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "Użytkownik nie posiada praw administracyjnych dla %s."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 #, fuzzy
@@ -2335,8 +2337,9 @@ msgid "Translation project files and folders"
 msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
+#, fuzzy
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "Zarządzanie projektem"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -3034,9 +3037,11 @@ msgstr ""
 "W tym miejscu można skonfigurować ustawienia interfejsu tłumaczeń, jak i "
 "ustawienia językowe."
 
+# Hmm, ciężko trochę - współautorzy nie pasuje...
 #: templates/profiles/profile_detail.html:23
+#, fuzzy
 msgid "Contributions"
-msgstr ""
+msgstr "Główni współtwórcy"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"

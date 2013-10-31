@@ -7,14 +7,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2013-10-28 17:41+0000\n"
+"Last-Translator: jo no soi marinero <multi@matusz.waw.pl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.9.1-pre\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+"X-Generator: Pootle 2.5.0-beta1\n"
+"X-POOTLE-MTIME: 1382982116.0\n"
 
 #: static/js/common.js:13
 msgid "All Languages"
@@ -34,11 +37,11 @@ msgstr ""
 
 #: static/js/common.js:91
 msgid "Are you sure you want to continue?"
-msgstr ""
+msgstr "Na pewno kontynuować?"
 
 #: static/js/common.js:92
 msgid "This operation cannot be undone."
-msgstr ""
+msgstr "Działania nie można cofnąć."
 
 #: static/js/common.js:139
 msgid "Show tags"
@@ -168,6 +171,7 @@ msgid "A year ago"
 msgid_plural "%s years ago"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: static/js/utils.js:146
 #, c-format
@@ -175,6 +179,7 @@ msgid "A week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: static/js/utils.js:149
 #, c-format
@@ -182,6 +187,7 @@ msgid "Yesterday"
 msgid_plural "%s days ago"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: static/js/utils.js:152
 #, c-format
@@ -189,6 +195,7 @@ msgid "An hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: static/js/utils.js:155
 #, c-format
@@ -196,6 +203,7 @@ msgid "A minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: static/js/utils.js:163
 msgid "A few seconds ago"

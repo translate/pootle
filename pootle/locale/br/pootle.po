@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-02-23 14:59+0000\n"
+"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"PO-Revision-Date: 2013-10-28 18:17+0000\n"
 "Last-Translator: Fulup Jakez <fulup.jakez@ofis-bzh.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: br\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1361631567.0\n"
+"X-POOTLE-MTIME: 1382984277.0\n"
 
 #: strings.py:8
 msgid ""
@@ -224,15 +224,15 @@ msgstr ""
 
 #: apps/pootle_app/management/__init__.py:90
 msgid "Can view a translation project"
-msgstr ""
+msgstr "Gallout a ra gwelet ur raktres treiñ"
 
 #: apps/pootle_app/management/__init__.py:94
 msgid "Can make a suggestion for a translation"
-msgstr ""
+msgstr "Gallout a ra ober kinnigoù treiñ"
 
 #: apps/pootle_app/management/__init__.py:98
 msgid "Can submit a translation"
-msgstr ""
+msgstr "Gallout a ra ober kinnigoù treiñ"
 
 #: apps/pootle_app/management/__init__.py:102
 msgid "Can overwrite translations on uploading files"
@@ -240,7 +240,7 @@ msgstr ""
 
 #: apps/pootle_app/management/__init__.py:106
 msgid "Can review translations"
-msgstr ""
+msgstr "Gallout a ra adlenn an troidigezhioù"
 
 #: apps/pootle_app/management/__init__.py:110
 msgid "Can download archives of translation projects"
@@ -248,7 +248,7 @@ msgstr ""
 
 #: apps/pootle_app/management/__init__.py:114
 msgid "Can administrate a translation project"
-msgstr ""
+msgstr "Gallout a ra merañ ur raktres treiñ"
 
 #: apps/pootle_app/management/__init__.py:118
 msgid "Can commit to version control"
@@ -266,11 +266,11 @@ msgstr "Degemeret"
 #: apps/pootle_app/models/suggestion.py:37
 #: templates/profiles/profile_detail.html:44
 msgid "Rejected"
-msgstr ""
+msgstr "Distaolet"
 
 #: apps/pootle_app/templates/top_contributers_table.html:8
 msgid "Top Contributors"
-msgstr ""
+msgstr "Perzhidi bennañ"
 
 #. Translators: The number of suggestions pending review
 #: apps/pootle_app/templates/top_contributers_table.html:12
@@ -465,8 +465,9 @@ msgstr ""
 #: apps/pootle_language/templates/language/overview.html:36
 #: apps/pootle_project/templates/project/overview.html:61
 #: apps/pootle_translationproject/templates/translation_project/overview.html:124
+#, fuzzy
 msgid "No description set."
-msgstr ""
+msgstr "Deskrivadur ebet evit c'hoazh."
 
 #: apps/pootle_app/templates/index/index.html:62
 #: apps/pootle_notifications/templates/notices.html:77
@@ -1430,8 +1431,9 @@ msgid "Comment"
 msgstr "Evezhiadenn"
 
 #: apps/pootle_statistics/models.py:114
+#, fuzzy
 msgid "anonymous user"
-msgstr ""
+msgstr "implijerien dianav"
 
 #: apps/pootle_statistics/models.py:144
 #, python-format
@@ -1477,7 +1479,7 @@ msgid "Arguments missing."
 msgstr ""
 
 #: apps/pootle_store/decorators.py:147
-msgid "Store does not exist."
+msgid "File does not exist."
 msgstr ""
 
 #: apps/pootle_store/filetypes.py:31
@@ -1614,12 +1616,14 @@ msgid "The suggestion or vote is not valid any more."
 msgstr ""
 
 #: apps/pootle_store/views.py:1096
+#, fuzzy
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "N'hoc'h eus ket gwirioù evit merañ %s."
 
 #: apps/pootle_store/views.py:1132
+#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "N'hoc'h eus ket gwirioù evit merañ %s."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
@@ -1631,8 +1635,9 @@ msgid "<a href=\"%(url)s\">String %(id)s</a>"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:22
+#, fuzzy
 msgid "Context:"
-msgstr ""
+msgstr "Endalc'had"
 
 #: apps/pootle_store/templates/unit/edit.html:32
 msgid "Comments:"
@@ -1939,8 +1944,9 @@ msgstr ""
 
 #: apps/pootle_terminology/templates/terminology/stores.html:14
 #: apps/pootle_translationproject/forms.py:63
+#, fuzzy
 msgid "File"
-msgstr ""
+msgstr "Restroù"
 
 #: apps/pootle_terminology/templates/terminology/stores.html:29
 msgid "Once you upload files, you will be able to add, edit and delete terms."
@@ -2364,8 +2370,9 @@ msgid "Virtual path already in use."
 msgstr ""
 
 #: apps/staticpages/models.py:110
+#, fuzzy
 msgid "Legal Page"
-msgstr ""
+msgstr "Pajennoù ar menegoù lezennel"
 
 #: apps/staticpages/models.py:121
 msgid "Regular Page"
@@ -2438,16 +2445,18 @@ msgid "Legal Pages"
 msgstr "Pajennoù ar menegoù lezennel"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:12
+#, fuzzy
 msgid "Add Legal Page"
-msgstr ""
+msgstr "Pajenn venegoù lezennel nevez"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
 msgid "Regular Pages"
 msgstr ""
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
+#, fuzzy
 msgid "Add Regular Page"
-msgstr ""
+msgstr "Pajenn venegoù lezennel nevez"
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."
@@ -2890,12 +2899,14 @@ msgid ""
 msgstr ""
 
 #: templates/profiles/edit_personal.html:18
+#, fuzzy
 msgid "First Name"
-msgstr ""
+msgstr "anv-bihan"
 
 #: templates/profiles/edit_personal.html:23
+#, fuzzy
 msgid "Last Name"
-msgstr ""
+msgstr "anv-familh"
 
 #: templates/profiles/edit_personal.html:28
 msgid "Email address"
@@ -2937,12 +2948,14 @@ msgid "Profiles list"
 msgstr ""
 
 #: templates/profiles/profile_list.html:12
+#, fuzzy
 msgid "First name"
-msgstr ""
+msgstr "anv-bihan"
 
 #: templates/profiles/profile_list.html:13
+#, fuzzy
 msgid "Last name"
-msgstr ""
+msgstr "anv-familh"
 
 #: templates/registration/activate.html:5
 #: templates/registration/activate.html:8

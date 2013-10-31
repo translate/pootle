@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-06-04 02:46+0000\n"
+"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"PO-Revision-Date: 2013-10-31 16:12+0000\n"
 "Last-Translator: Wei <contact@huwei.name>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1370314011.0\n"
+"X-POOTLE-MTIME: 1383235977.0\n"
 
 #: strings.py:8
 msgid ""
@@ -40,7 +40,7 @@ msgstr "此字段为必填项。"
 #: strings.py:12
 #, python-format
 msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
-msgstr "请确认这个值最多包含 %(max)d 个字符(它有 %(length)d 个字符)。"
+msgstr "请确认这个值最多包含 %(max)d 个字符(它有 %(length)d 个)。"
 
 #: strings.py:13
 msgid "Save and add another"
@@ -508,7 +508,7 @@ msgstr "注册。"
 #: apps/pootle_project/models.py:221
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
-msgstr ""
+msgstr "“%s”不能用作项目代码"
 
 #: apps/pootle_app/views/admin/adminusers.py:55
 #: templates/user_profile_menu.html:7
@@ -588,23 +588,23 @@ msgstr "未发现文本索引引擎。安装 Xapian 或 Lucene 这样的索引�
 
 #: apps/pootle_app/views/admin/dashboard.py:129
 msgid "MARKUP_FILTER is missing. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER 丢失。将退回 HTML。"
 
 #: apps/pootle_app/views/admin/dashboard.py:131
 msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER 配置错误。将退回 HTML。"
 
 #: apps/pootle_app/views/admin/dashboard.py:133
 #, python-format
 msgid ""
 "Can't find the package which provides '%s' markup support. Falling back to "
 "HTML."
-msgstr ""
+msgstr "无法找到提供“%s”标记支持的包。将退回 HTML。"
 
 #: apps/pootle_app/views/admin/dashboard.py:137
 #, python-format
 msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER 中的值“%s”无效。将退回 HTML。"
 
 #: apps/pootle_app/views/admin/dashboard.py:154
 msgid ""
@@ -699,15 +699,15 @@ msgstr "活动的用户"
 
 #: apps/pootle_app/views/admin/permissions.py:61
 msgid "Translation Project Contributors"
-msgstr ""
+msgstr "翻译项目贡献者"
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Contributors"
-msgstr ""
+msgstr "项目贡献者"
 
 #: apps/pootle_app/views/admin/permissions.py:84
 msgid "Language Contributors"
-msgstr ""
+msgstr "语言贡献者"
 
 #: apps/pootle_app/views/admin/permissions.py:91
 msgid "All Users"
@@ -721,7 +721,7 @@ msgstr "用户名"
 
 #: apps/pootle_app/views/admin/permissions.py:122
 msgid "Select one or more permissions"
-msgstr ""
+msgstr "选择一项或多项权限"
 
 #: apps/pootle_app/views/admin/util.py:145
 msgid "No files in this project."
@@ -833,7 +833,7 @@ msgstr "语言"
 #. Translators: Heading representing the priority for a goal
 #: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:72
 msgid "Priority"
-msgstr ""
+msgstr "优先级"
 
 #. Translators: noun. The graphical representation of translation status
 #: apps/pootle_misc/browser.py:52
@@ -1045,7 +1045,7 @@ msgstr "搜索 (Ctrl+Shift+S)<br/>键入并按回车键进行搜索"
 
 #: apps/pootle_misc/forms.py:108
 msgid "Exact Match"
-msgstr ""
+msgstr "精确匹配"
 
 #: apps/pootle_misc/forms.py:115
 msgid "Source Text"
@@ -1114,7 +1114,7 @@ msgstr "展开详情"
 #, python-format
 msgid "Continue translation (%(num)d word left)"
 msgid_plural "Continue translation (%(num)d words left)"
-msgstr[0] "继续翻译 (%(num)d 单词剩余)"
+msgstr[0] "下个最重要的目标(剩余 %(num)d 个词)"
 
 #: apps/pootle_misc/stats.py:239
 #, python-format
@@ -1212,7 +1212,7 @@ msgstr "选择项目"
 
 #: apps/pootle_notifications/forms.py:61
 msgid "Select one or more projects"
-msgstr ""
+msgstr "选择一个或多个项目"
 
 #: apps/pootle_notifications/forms.py:68
 msgid "All Languages"
@@ -1224,7 +1224,7 @@ msgstr "选择语言"
 
 #: apps/pootle_notifications/forms.py:77 apps/pootle_profile/forms.py:120
 msgid "Select one or more languages"
-msgstr ""
+msgstr "选择一种或多种语言"
 
 #: apps/pootle_notifications/models.py:31
 msgid "Message"
@@ -1354,7 +1354,7 @@ msgstr "报告目标"
 
 #: apps/pootle_project/views.py:119
 msgid "Select one or more tags to use as filter"
-msgstr ""
+msgstr "选择用于过滤的一个或多个标签"
 
 #: apps/pootle_project/views.py:162
 #, python-format
@@ -1374,16 +1374,16 @@ msgstr "以下您可以为这个项目增加、编辑和删除相关权限。"
 #: apps/pootle_project/templates/project/overview.html:18
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
-msgstr ""
+msgstr "显示标签"
 
 #: apps/pootle_project/templates/project/overview.html:21
 msgid "Show filtering"
-msgstr ""
+msgstr "显示过滤器"
 
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
 msgid "Filter"
-msgstr ""
+msgstr "过滤"
 
 #: apps/pootle_project/templates/project/overview.html:38
 msgid "Filter the translation projects using this tags"
@@ -1394,7 +1394,7 @@ msgstr ""
 #: apps/pootle_translationproject/templates/translation_project/overview.html:175
 #: templates/common/xhr_add_tag_form.html:15
 msgid "Add tag"
-msgstr ""
+msgstr "添加标签"
 
 #: apps/pootle_project/templates/project/project_admin.html:7
 #: templates/project_menu.html:9
@@ -1440,7 +1440,7 @@ msgstr ""
 
 #: apps/pootle_statistics/models.py:150
 msgid "uploaded a file"
-msgstr ""
+msgstr "上传了一个文件"
 
 #: apps/pootle_statistics/models.py:165
 #, python-format
@@ -1463,15 +1463,15 @@ msgstr ""
 
 #: apps/pootle_store/decorators.py:63
 msgid "Insufficient rights to access this directory."
-msgstr ""
+msgstr "访问这个目录的权限不足。"
 
 #: apps/pootle_store/decorators.py:135 apps/pootle_store/views.py:531
 msgid "Arguments missing."
-msgstr ""
+msgstr "缺少参数。"
 
 #: apps/pootle_store/decorators.py:147
-msgid "Store does not exist."
-msgstr ""
+msgid "File does not exist."
+msgstr "文件不存在。"
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Gettext PO"
@@ -1560,23 +1560,23 @@ msgstr "路径"
 #: apps/pootle_store/models.py:900
 #: apps/pootle_translationproject/models.py:114
 msgid "Tags"
-msgstr ""
+msgstr "标签"
 
 #: apps/pootle_store/models.py:901
 #: apps/pootle_translationproject/models.py:115
 msgid "A comma-separated list of tags."
-msgstr ""
+msgstr "逗号分割的标签列表。"
 
 #: apps/pootle_store/models.py:902
 #: apps/pootle_translationproject/models.py:116
 #: apps/pootle_translationproject/templates/translation_project/overview.html:69
 msgid "Goals"
-msgstr ""
+msgstr "目标"
 
 #: apps/pootle_store/models.py:904
 #: apps/pootle_translationproject/models.py:118
 msgid "A comma-separated list of goals."
-msgstr ""
+msgstr "以逗号分割的目标列表。"
 
 #: apps/pootle_store/util.py:45
 msgid "Obsolete"
@@ -1608,11 +1608,11 @@ msgstr "建议或投票已不再有效。"
 
 #: apps/pootle_store/views.py:1096
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "您没有移除标签的权限。"
 
 #: apps/pootle_store/views.py:1132
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "您没有添加标签的权限。"
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
@@ -1621,7 +1621,7 @@ msgstr "注释:"
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
 msgid "<a href=\"%(url)s\">String %(id)s</a>"
-msgstr ""
+msgstr "<a href=\"%(url)s\">字符串 %(id)s</a>"
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -1858,7 +1858,7 @@ msgstr ""
 
 #: apps/pootle_tagging/models.py:73
 msgid "The priority for this goal."
-msgstr ""
+msgstr "该目标的优先级。"
 
 #: apps/pootle_tagging/models.py:78
 msgid ""
@@ -1868,7 +1868,7 @@ msgstr ""
 
 #: apps/pootle_tagging/models.py:80
 msgid "Project goal?"
-msgstr ""
+msgstr "项目目标？"
 
 #: apps/pootle_tagging/models.py:104
 msgid "(Project goal)"
@@ -2203,23 +2203,23 @@ msgstr "以下您可以为这个翻译项目增加、编辑和删除相关权限
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:5
 msgid "Export View"
-msgstr ""
+msgstr "导出视图"
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:97
 msgid "Goal"
-msgstr ""
+msgstr "目标"
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:139
 msgid "No strings."
-msgstr ""
+msgstr "无字符串。"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:61
 msgid "Translation project files and folders"
-msgstr ""
+msgstr "翻译项目文件和文件夹"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "管理您的项目目标"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2326,11 +2326,11 @@ msgstr "这个页面是否活动。"
 #: apps/staticpages/models.py:40
 #: apps/staticpages/templates/staticpages/admin/_table.html:9
 msgid "Virtual Path"
-msgstr ""
+msgstr "虚拟路径"
 
 #: apps/staticpages/models.py:46
 msgid "Display Content"
-msgstr ""
+msgstr "显示内容"
 
 #: apps/staticpages/models.py:47
 #, python-format
@@ -2340,11 +2340,11 @@ msgstr "允许的标记：%s"
 #: apps/staticpages/models.py:49
 #: apps/staticpages/templates/staticpages/admin/_table.html:10
 msgid "Redirect to URL"
-msgstr ""
+msgstr "重定向到 URL"
 
 #: apps/staticpages/models.py:50
 msgid "If set, any references to this page will redirect to this URL"
-msgstr ""
+msgstr "如果设置，则任何对此页面的引用都将会重定向到此 URL"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:97
@@ -2353,24 +2353,24 @@ msgstr "必须提供 URL 或内容。"
 
 #: apps/staticpages/models.py:105
 msgid "Virtual path already in use."
-msgstr ""
+msgstr "虚拟路径已在使用中。"
 
 #: apps/staticpages/models.py:110
 msgid "Legal Page"
-msgstr ""
+msgstr "法律页面"
 
 #: apps/staticpages/models.py:121
 msgid "Regular Page"
-msgstr ""
+msgstr "常规页面"
 
 #: apps/staticpages/views.py:87
 msgid "Page Title"
-msgstr ""
+msgstr "页面标题"
 
 #: apps/staticpages/views.py:88
 #, python-format
 msgid "page-%d"
-msgstr ""
+msgstr "第 %d 页"
 
 #: apps/staticpages/views.py:130
 #, python-format
@@ -2381,45 +2381,45 @@ msgstr ""
 
 #: apps/staticpages/templates/staticpages/agreement.html:4
 msgid "Action Required"
-msgstr ""
+msgstr "需要操作"
 
 #: apps/staticpages/templates/staticpages/agreement.html:5
 msgid "Before continuing, you must read and accept the following documents."
-msgstr ""
+msgstr "在继续之前，您必须阅读并接受以下文档。"
 
 #: apps/staticpages/templates/staticpages/agreement.html:18
 msgid "No thanks. Log out"
-msgstr ""
+msgstr "不了。注销"
 
 #: apps/staticpages/templates/staticpages/agreement.html:21
 msgid "Continue"
-msgstr ""
+msgstr "继续"
 
 #: apps/staticpages/templates/staticpages/base.html:5
 #: apps/staticpages/templates/staticpages/base.html:11
 #: templates/admin_profile_menu.html:9
 msgid "Static Pages"
-msgstr ""
+msgstr "静态页面"
 
 #: apps/staticpages/templates/staticpages/admin/_form.html:18
 msgid "or"
-msgstr ""
+msgstr "或"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:8
 msgid "Page"
-msgstr ""
+msgstr "页面"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:11
 msgid "Last Edited"
-msgstr ""
+msgstr "上次编辑"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "Yes"
-msgstr ""
+msgstr "确定"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "No"
-msgstr ""
+msgstr "不要"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:30
 msgid "No pages yet."
@@ -2430,16 +2430,18 @@ msgid "Legal Pages"
 msgstr "有效页面"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:12
+#, fuzzy
 msgid "Add Legal Page"
-msgstr ""
+msgstr "编辑有效页面"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
 msgid "Regular Pages"
 msgstr ""
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
+#, fuzzy
 msgid "Add Regular Page"
-msgstr ""
+msgstr "编辑有效页面"
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."
@@ -2451,7 +2453,7 @@ msgstr "您没有管理 Pootle 的权限。"
 
 #: core/helpers.py:41
 msgid "User missing"
-msgstr ""
+msgstr "请填写用户"
 
 #. Translators: This refers to "All strings"
 #: core/helpers.py:53 templates/editor/_toolbar.html:12
@@ -2468,7 +2470,7 @@ msgstr "检查"
 
 #: core/helpers.py:62
 msgid "Overwritten submissions"
-msgstr ""
+msgstr "被覆盖的提交"
 
 #: middleware/captcha.py:122
 msgid "Time to answer has expired"
@@ -2495,13 +2497,13 @@ msgstr "访问 %(filename)s 出错， 文件系统返回错误：%(errormsg)s"
 #: scripts/actions.py:529
 #, python-format
 msgid "Failed to copy download file to export directory %s"
-msgstr ""
+msgstr "将已下载的文件拷贝到导出目录 %s 时失败"
 
 #: scripts/example-actions/mozlangpack.py:141
 msgid ""
 "Finished building the language pack, click on the download link to download "
 "it."
-msgstr ""
+msgstr "语言包构建结束，请点击链接以下载。"
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"
@@ -2536,7 +2538,7 @@ msgstr "如果需要帮助，您可用 <strong>%(ref)s</strong> 引用这个错�
 
 #: templates/_main_tabs.html:5
 msgid "Main page"
-msgstr ""
+msgstr "主页"
 
 #: templates/_main_tabs.html:5 templates/language_menu.html:4
 #: templates/project_menu.html:4 templates/tp_menu.html:4
@@ -2587,7 +2589,7 @@ msgstr "管理缺省权限"
 
 #: templates/admin_profile_menu.html:9
 msgid "Manage Static Pages"
-msgstr ""
+msgstr "管理静态页面"
 
 #: templates/base.html:121
 msgid "skip to navigation"
@@ -2664,7 +2666,7 @@ msgstr "确认"
 #: templates/db_error.html:4 templates/db_error.html.py:7
 #: templates/db_error.html:12
 msgid "Database Error"
-msgstr ""
+msgstr "数据库错误"
 
 #: templates/db_error.html:14
 msgid ""
@@ -2686,7 +2688,7 @@ msgstr ""
 
 #: templates/db_error.html:27
 msgid "The reported error was:"
-msgstr ""
+msgstr "报告的错误是："
 
 #: templates/language_menu.html:4
 msgid "Language main page"
@@ -2698,7 +2700,7 @@ msgstr "语言新闻"
 
 #: templates/language_menu.html:6
 msgid "Translate this language"
-msgstr ""
+msgstr "翻译此语言"
 
 #: templates/language_menu.html:8
 msgid "Administrate your language permissions"
@@ -2706,7 +2708,7 @@ msgstr "管理您的语言权限"
 
 #: templates/main_base.html:6
 msgid "Main"
-msgstr ""
+msgstr "主要"
 
 #: templates/project_menu.html:4
 msgid "Project main page"
@@ -2808,7 +2810,7 @@ msgstr "关于"
 
 #: templates/common/_table_row.html:87
 msgid "Add a tag"
-msgstr ""
+msgstr "添加标签"
 
 #: templates/contact_form/contact_form.html:17
 msgid "Send"
@@ -2859,7 +2861,7 @@ msgstr "我被覆盖的提交"
 
 #: templates/editor/_toolbar.html:34
 msgid "Go to the previous string (Ctrl+Up)"
-msgstr ""
+msgstr "转到上一字符串(Ctrl+↑)"
 
 #: templates/editor/_toolbar.html:37
 msgid ""
@@ -2869,11 +2871,11 @@ msgstr ""
 
 #: templates/editor/_toolbar.html:39
 msgid "Total strings"
-msgstr ""
+msgstr "全部字符串"
 
 #: templates/editor/_toolbar.html:43
 msgid "Go to the next string (Ctrl+Down)"
-msgstr ""
+msgstr "转到下一字符串(Ctrl+↓)"
 
 #: templates/profiles/edit_personal.html:12
 msgid ""
@@ -2906,7 +2908,7 @@ msgstr "您可以像设置翻译偏好一样在这里配置与翻译界面相关
 
 #: templates/profiles/profile_detail.html:23
 msgid "Contributions"
-msgstr ""
+msgstr "贡献"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"
@@ -2914,15 +2916,15 @@ msgstr "您可以在 www.gravatar.com 设置或修改您的头像"
 
 #: templates/profiles/profile_detail.html:42
 msgid "Suggestions Pending"
-msgstr "建议正在等待审阅"
+msgstr "待审的建议"
 
 #: templates/profiles/profile_detail.html:46
 msgid "Overwritten"
-msgstr ""
+msgstr "已覆盖"
 
 #: templates/profiles/profile_detail.html:66
 msgid "This user doesn't have any contributions yet."
-msgstr ""
+msgstr "该用户目前尚无任何贡献。"
 
 #: templates/profiles/profile_list.html:7
 msgid "Profiles list"

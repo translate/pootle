@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-09-24 13:00+0000\n"
-"Last-Translator: fileaio <fileaio@gmail.com>\n"
+"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"PO-Revision-Date: 2013-10-31 01:34+0000\n"
+"Last-Translator: Nguyen Duc Quan <quan.nguyenduc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1380027609.0\n"
+"X-POOTLE-MTIME: 1383183279.0\n"
 
 #: strings.py:8
 msgid ""
@@ -530,7 +530,7 @@ msgstr "Đăng ký."
 #: apps/pootle_project/models.py:221
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
-msgstr ""
+msgstr "\"%s\" không thể được dùng như mã project"
 
 #: apps/pootle_app/views/admin/adminusers.py:55
 #: templates/user_profile_menu.html:7
@@ -1027,8 +1027,9 @@ msgid "Number of plurals"
 msgstr "Tổng số cách số nhiều"
 
 #: apps/pootle_misc/checks.py:57
+#, fuzzy
 msgid "Don't translate words"
-msgstr ""
+msgstr "Từ cần dịch"
 
 #: apps/pootle_misc/checks.py:58
 msgid "Numbers"
@@ -1093,8 +1094,9 @@ msgid "Unchanged"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:74
+#, fuzzy
 msgid "URLs"
-msgstr ""
+msgstr "Đường dẫn liên kết"
 
 #: apps/pootle_misc/checks.py:75
 msgid "Valid characters"
@@ -1504,8 +1506,9 @@ msgid "Comment"
 msgstr "Ghi chú"
 
 #: apps/pootle_statistics/models.py:114
+#, fuzzy
 msgid "anonymous user"
-msgstr ""
+msgstr "Người dùng ẩn danh"
 
 #: apps/pootle_statistics/models.py:144
 #, python-format
@@ -1551,7 +1554,7 @@ msgid "Arguments missing."
 msgstr ""
 
 #: apps/pootle_store/decorators.py:147
-msgid "Store does not exist."
+msgid "File does not exist."
 msgstr ""
 
 #: apps/pootle_store/filetypes.py:31
@@ -1689,12 +1692,14 @@ msgid "The suggestion or vote is not valid any more."
 msgstr ""
 
 #: apps/pootle_store/views.py:1096
+#, fuzzy
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "Bạn không có quyền quản trị %s."
 
 #: apps/pootle_store/views.py:1132
+#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "Bạn không có quyền quản trị %s."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 #, fuzzy
@@ -1707,8 +1712,9 @@ msgid "<a href=\"%(url)s\">String %(id)s</a>"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:22
+#, fuzzy
 msgid "Context:"
-msgstr ""
+msgstr "Nội dung"
 
 #: apps/pootle_store/templates/unit/edit.html:32
 #, fuzzy
@@ -2317,8 +2323,9 @@ msgid "Translation project files and folders"
 msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
+#, fuzzy
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "Quản lý dự án của mình"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2446,8 +2453,11 @@ msgid "Redirect to URL"
 msgstr ""
 
 #: apps/staticpages/models.py:50
+#, fuzzy
 msgid "If set, any references to this page will redirect to this URL"
 msgstr ""
+"Nếu được chỉnh sửa, bất kỳ tham chiếu nào đến trang pháp lý này sẽ được "
+"chuyển tiếp sang đường dẫn liên kết này"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:97
@@ -2459,8 +2469,9 @@ msgid "Virtual path already in use."
 msgstr ""
 
 #: apps/staticpages/models.py:110
+#, fuzzy
 msgid "Legal Page"
-msgstr ""
+msgstr "Các Trang Về Vấn Đề Pháp Lý"
 
 #: apps/staticpages/models.py:121
 msgid "Regular Page"
@@ -2533,16 +2544,18 @@ msgid "Legal Pages"
 msgstr "Các Trang Về Vấn Đề Pháp Lý"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:12
+#, fuzzy
 msgid "Add Legal Page"
-msgstr ""
+msgstr "Chỉnh sửa trang Vấn Đề Pháp Lý"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
 msgid "Regular Pages"
 msgstr ""
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
+#, fuzzy
 msgid "Add Regular Page"
-msgstr ""
+msgstr "Chỉnh sửa trang Vấn Đề Pháp Lý"
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."
@@ -3018,8 +3031,9 @@ msgstr ""
 "dịch, cũng như thông số về ngôn ngữ."
 
 #: templates/profiles/profile_detail.html:23
+#, fuzzy
 msgid "Contributions"
-msgstr ""
+msgstr "Người đóng góp tốt nhất"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-28 15:03+0000\n"
-"PO-Revision-Date: 2013-02-24 10:07+0000\n"
+"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"PO-Revision-Date: 2013-10-30 13:23+0000\n"
 "Last-Translator: Abduqadir Abliz <sahran.ug@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ug\n"
@@ -16,12 +16,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1361700451.0\n"
+"X-POOTLE-MTIME: 1383139426.0\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
-msgstr "بىردىن كۆپ تۈر تاللاش ئۈچۈن «Control» ياكى Mac نىڭ «Command» نى بېسىڭ."
+msgstr "بىردىن كۆپ تۈر تاللاش ئۈچۈن «Control» ياكى Mac تە «Command» نى بېسىڭ."
 
 #: strings.py:9
 msgid "Enter a valid e-mail address."
@@ -242,7 +242,7 @@ msgstr "يۈكلىگەن ھۆججەتتىكى تەرجىمىنى قاپلىۋې�
 
 #: apps/pootle_app/management/__init__.py:106
 msgid "Can review translations"
-msgstr "تەرجىمىنى كۆزدىن كەچۈرەلەيدۇ"
+msgstr "تەرجىمىلەرنى كۆزدىن كەچۈرەلەيدۇ"
 
 #: apps/pootle_app/management/__init__.py:110
 msgid "Can download archives of translation projects"
@@ -521,13 +521,13 @@ msgstr "تېخى ھېسابىڭىز يوقمۇ؟"
 #: apps/pootle_app/templates/index/login.html:34
 #: templates/registration/password_reset_form.html:31
 msgid "Register."
-msgstr "خەتلەت."
+msgstr "خەتلىتىڭ."
 
 #: apps/pootle_app/views/admin/adminprojects.py:90
 #: apps/pootle_project/models.py:221
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
-msgstr ""
+msgstr "\"%s\" نى قۇرۇلۇش كودى سۈپىتىدە ئىشلەتكىلى بولمايدۇ"
 
 #: apps/pootle_app/views/admin/adminusers.py:55
 #: templates/user_profile_menu.html:7
@@ -623,7 +623,7 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:129
 msgid "MARKUP_FILTER is missing. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER كەم. HTML گە قايتالمىدى."
 
 #: apps/pootle_app/views/admin/dashboard.py:131
 msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
@@ -676,7 +676,7 @@ msgid ""
 "the session engine."
 msgstr ""
 "‏ئۈنۈمنى ئەلالاشتۇرۇش ئۈچۈن django.contrib.sessions.backends.cached_db نى "
-"ئەڭگىمە موتورى سۈپىتىدە ئىشلىتىلىدۇ."
+"جەريان موتورى سۈپىتىدە ئىشلىتىلىدۇ."
 
 #: apps/pootle_app/views/admin/dashboard.py:186
 msgid ""
@@ -689,7 +689,7 @@ msgstr ""
 #: apps/pootle_app/views/admin/dashboard.py:193
 msgid "For optimal performance, use memcached as the caching backend."
 msgstr ""
-"‏‏ئۈنۈمنى ئەلالاشتۇرۇش ئۈچۈن memcached نى ئەڭگىمە موتورى سۈپىتىدە "
+"‏‏ئۈنۈمنى ئەلالاشتۇرۇش ئۈچۈن memcached نى جەريان موتورى سۈپىتىدە "
 "ئىشلىتىلىدۇ."
 
 #: apps/pootle_app/views/admin/dashboard.py:200
@@ -1436,7 +1436,7 @@ msgstr[0] "%(languages)d تىل، %(average)d%% تەرجىمە قىلىندى"
 #: apps/pootle_project/views.py:396
 #: apps/pootle_translationproject/actions.py:209
 msgid "Update against templates"
-msgstr "قېلىپلارغا نىسبەتەن يېڭىلاش"
+msgstr "قېلىپلار ئاساسىدا يېڭىلا"
 
 #: apps/pootle_project/templates/project/admin_permissions.html:20
 msgid "Below you can add, edit, and delete the permissions for this project."
@@ -1545,7 +1545,7 @@ msgid "Arguments missing."
 msgstr ""
 
 #: apps/pootle_store/decorators.py:147
-msgid "Store does not exist."
+msgid "File does not exist."
 msgstr ""
 
 #: apps/pootle_store/filetypes.py:31
@@ -1634,8 +1634,9 @@ msgstr "يول"
 
 #: apps/pootle_store/models.py:900
 #: apps/pootle_translationproject/models.py:114
+#, fuzzy
 msgid "Tags"
-msgstr ""
+msgstr "‏Tab لەر"
 
 #: apps/pootle_store/models.py:901
 #: apps/pootle_translationproject/models.py:115
@@ -1682,12 +1683,14 @@ msgid "The suggestion or vote is not valid any more."
 msgstr "تەكلىپ ياكى بىلەت ئىناۋەتسىز."
 
 #: apps/pootle_store/views.py:1096
+#, fuzzy
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "%s نى باشقۇرۇش ھوقۇقىڭىز يوق."
 
 #: apps/pootle_store/views.py:1132
+#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "%s نى باشقۇرۇش ھوقۇقىڭىز يوق."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
@@ -1975,7 +1978,7 @@ msgstr ""
 
 #: apps/pootle_terminology/templates/terminology/extract.html:11
 msgid "Extract"
-msgstr "ياي"
+msgstr "يەش"
 
 #: apps/pootle_terminology/templates/terminology/manage.html:22
 msgid "You can regenerate the glossary from scratch."
@@ -2309,8 +2312,9 @@ msgid "Translation project files and folders"
 msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
+#, fuzzy
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "قۇرۇلۇشلىرىڭىزنى باشقۇرۇڭ"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2348,7 +2352,7 @@ msgstr "ئىشلەتكۈچى ئاتى"
 
 #: apps/registration/forms.py:39
 msgid "email address"
-msgstr "ئېلخەت مەنزىل"
+msgstr "تورخەت مەنزىل"
 
 #: apps/registration/forms.py:41
 msgid "password"
@@ -2436,8 +2440,10 @@ msgid "Redirect to URL"
 msgstr ""
 
 #: apps/staticpages/models.py:50
+#, fuzzy
 msgid "If set, any references to this page will redirect to this URL"
 msgstr ""
+"ئەگەر تەڭشەلسە، بۇ رەسمىي بەتنىڭ خالىغان نەقىلى بۇ URL غا قايتا نىشانلىنىدۇ"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:97
@@ -2449,8 +2455,9 @@ msgid "Virtual path already in use."
 msgstr ""
 
 #: apps/staticpages/models.py:110
+#, fuzzy
 msgid "Legal Page"
-msgstr ""
+msgstr "رەسمىي بەتلەر"
 
 #: apps/staticpages/models.py:121
 msgid "Regular Page"
@@ -2523,16 +2530,18 @@ msgid "Legal Pages"
 msgstr "رەسمىي بەتلەر"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:12
+#, fuzzy
 msgid "Add Legal Page"
-msgstr ""
+msgstr "رەسمىي بەت تەھرىر"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
 msgid "Regular Pages"
 msgstr ""
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
+#, fuzzy
 msgid "Add Regular Page"
-msgstr ""
+msgstr "رەسمىي بەت تەھرىر"
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."
@@ -2560,8 +2569,9 @@ msgid "Checks"
 msgstr "تەكشۈرۈشلەر"
 
 #: core/helpers.py:62
+#, fuzzy
 msgid "Overwritten submissions"
-msgstr ""
+msgstr "قاپلىۋەتكەن تاپشۇرغانلىرىم"
 
 #: middleware/captcha.py:122
 msgid "Time to answer has expired"
@@ -3014,8 +3024,9 @@ msgstr ""
 "تەڭشەكلەرنى سەپلىيەلەيسىز."
 
 #: templates/profiles/profile_detail.html:23
+#, fuzzy
 msgid "Contributions"
-msgstr ""
+msgstr "تۆھپىكارلار"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"
