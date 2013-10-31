@@ -71,7 +71,7 @@ Untranslated
 .. _glossary#incomplete:
 
 Incomplete
-  See: Untranslated
+  See: Needs Attention i.e. Untranslated + Fuzzy
 
 
 .. _glossary#translated:
@@ -98,10 +98,11 @@ Needs work
 .. _glossary#needs_review:
 
 Needs review
-  See: fuzzy
+  Currently see: Fuzzy
+  In the future this will actually mean that the translated string still requires review.
 
 
 .. _glossary#needs_attention:
 
 Needs attention
-  Untraslated + Fuzzy
+  Untranslated + Fuzzy
