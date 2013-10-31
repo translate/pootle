@@ -202,10 +202,9 @@ class TranslationProject(models.Model, TreeItem):
         directory = self.directory
 
         super(TranslationProject, self).delete(*args, **kwargs)
-
+        #TODO: avoid an access to directory while flushing the cache
+        directory.flush_cache()
         directory.delete()
-        deletefromcache(self, ["getquickstats", "getcompletestats",
-                               "get_mtime", "get_suggestion_count"])
 
     def get_absolute_url(self):
         lang, proj, dir, fn = split_pootle_path(self.pootle_path)

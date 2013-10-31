@@ -39,6 +39,7 @@ class CachedMethods(object):
     FUZZY = 'get_fuzzy_wordcount'
     LAST_ACTION = 'get_last_action'
     SUGGESTIONS = 'get_suggestion_count'
+    MTIME = 'get_mtime'
 
 
 class TreeItem(object):
