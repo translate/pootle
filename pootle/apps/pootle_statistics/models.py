@@ -133,15 +133,17 @@ class Submission(models.Model):
             "username": self.submitter.user.username,
         }
 
-        unit = None
+        unit = {
+            'user': ('  <a href="%(profile_url)s">'
+                     '    <span>%(username)s</span>'
+                     '  </a>') % action_bundle,
+        }
+
         if self.unit is not None:
-            unit = {
+            unit.update({
                 'source': escape(truncatechars(self.unit, 50)),
                 'url': self.unit.get_absolute_url(),
-                'user': ('  <a href="%(profile_url)s">'
-                         '    <span>%(username)s</span>'
-                         '  </a>') % action_bundle,
-            }
+            })
 
         action_bundle.update({
             "date": self.creation_time,
