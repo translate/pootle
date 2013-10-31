@@ -270,7 +270,7 @@ def get_path_summary(path_obj, path_stats, latest_action):
 
 def stats_message_raw(version, stats):
     """Builds a message of statistics used in VCS actions."""
-    return "%s: %d of %d strings translated (%d fuzzy)." % \
+    return "%s: %d of %d strings translated (%d need review)." % \
            (version, stats.get("translated", 0), stats.get("total", 0),
             stats.get("fuzzy", 0))
 
@@ -280,9 +280,9 @@ def stats_message(version, stats):
     # Translators: 'type' is the type of VCS file: working, remote,
     # or merged copy.
     return ungettext(u"%(type)s: %(translated)d of %(total)d string translated "
-                            u"(%(fuzzy)d fuzzy).",
+                            u"(%(fuzzy)d need review).",
                      u"%(type)s: %(translated)d of %(total)d strings translated "
-                            u"(%(fuzzy)d fuzzy).",
+                            u"(%(fuzzy)d need review).",
                      stats.get("total", 0),
                      {
                           'type': version,
