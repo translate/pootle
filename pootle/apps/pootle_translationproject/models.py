@@ -861,6 +861,7 @@ class TranslationProject(models.Model):
     def get_archive(self, stores, path=None):
         """Returns an archive of the given files."""
         import shutil
+        import subprocess
         from pootle_misc import ptempfile as tempfile
 
         tempzipfile = None
@@ -876,12 +877,9 @@ class TranslationProject(models.Model):
                 store.abs_real_path[len(self.abs_real_path)+1:] \
                 for store in stores.iterator()
             )
-            cmd = u"cd %(path)s ; zip -r - %(file_list)s > %(tmpfile)s" % {
-                    'path': self.abs_real_path,
-                    'file_list': file_list,
-                    'tmpfile': tempzipfile,
-            }
-            result = os.system(cmd.encode('utf-8'))
+            result = subprocess.Popen(['zip', '-r', file_list,
+                                       '--out', tempzipfile],
+                                      cwd=self.abs_real_path)
 
             if result == 0:
                 if path is not None:
