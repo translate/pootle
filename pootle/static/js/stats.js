@@ -80,7 +80,7 @@
         async: true,
         success: function (data) {
           var $table = $('#content table.stats'),
-              now = Date.now();
+              now = parseInt(Date.now() / 1000, 10);
           PTL.stats.updateProgressbar($('#progressbar'), data);
 
           for (var name in data.children) {
