@@ -29,6 +29,7 @@ from django.db.models import Count, Max, Sum
 from django.conf import settings
 from django.core.cache import cache
 from django.utils.encoding import iri_to_uri
+from django.core.urlresolvers import set_script_prefix
 
 from pootle_app.management.commands import PootleCommand
 from pootle_language.models import Language
@@ -41,6 +42,11 @@ from pootle_translationproject.models import TranslationProject
 
 class Command(PootleCommand):
     help = "Allow stats and text indices to be refreshed manually."
+
+    def handle_noargs(self, **options):
+        # set url prefix
+        set_script_prefix(settings.FORCE_SCRIPT_NAME)
+        super(Command, self).handle_noargs(**options)
 
     def handle_all_stores(self, translation_project, **options):
         translation_project.flush_cache()
