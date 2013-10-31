@@ -33,9 +33,9 @@ Not released yet. *Planned release date late November 2013*
 
 - *css/custom/custom.css* is now served as part of the common bundle.
 
-- The quality check for spell checking has been globally disabled. It
-  wasn't properly advertised nor documented, and it didn't perform well
-  enough to be considered useful.
+- The quality check for spell checking has been globally disabled. It wasn't
+  properly advertised nor documented, and it didn't perform well enough to be
+  considered useful.
 
 - Pootle now supports tags that can be added to translation projects or
   individual files, and supports filtering translation projects by their tags.
@@ -44,6 +44,8 @@ Not released yet. *Planned release date late November 2013*
   apply goals globally in a given project. Goals allow managers to provide a
   simple way to prioritize work and keep track of the translation progress in a
   group of files.
+
+- Pootle allows custom scripts to be exposed in the Actions menu for a project.
 
 
 Version 2.5.0
