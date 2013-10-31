@@ -249,7 +249,7 @@ class PootleProfile(models.Model):
         if not self.get_email_hash:
             return ''
 
-        return 'http://www.gravatar.com/avatar/%s?s=%d&d=mm' % \
+        return 'https://secure.gravatar.com/avatar/%s?s=%d&d=mm' % \
             (self.get_email_hash, size)
 
     def get_unit_rows(self):
