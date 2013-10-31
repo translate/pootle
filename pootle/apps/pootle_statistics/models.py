@@ -127,29 +127,35 @@ class Submission(models.Model):
         message describing the action performed, and when it was performed.
         """
 
+        action_bundle = {
+            "profile_url": self.submitter.get_absolute_url(),
+            "gravatar_url": self.submitter.gravatar_url(20),
+            "username": self.submitter.user.username,
+        }
+
         unit = None
         if self.unit is not None:
             unit = {
                 'source': escape(truncatechars(self.unit, 50)),
                 'url': self.unit.get_absolute_url(),
+                'user': ('  <a href="%(profile_url)s">'
+                         '    <span>%(username)s</span>'
+                         '  </a>') % action_bundle,
             }
 
-        action_bundle = {
-            "profile_url": self.submitter.get_absolute_url(),
-            "gravatar_url": self.submitter.gravatar_url(20),
-            "username": self.submitter.user.username,
+        action_bundle.update({
             "date": self.creation_time,
             "isoformat_date": self.creation_time.isoformat(),
             "action": {
-                SubmissionTypes.REVERT: _('reverted translation for string <i>'
+                SubmissionTypes.REVERT: _('%(user)s reverted translation for string <i>'
                                           '<a href="%(url)s">%(source)s</a>'
                                           '</i>', unit),
-                SubmissionTypes.SUGG_ACCEPT: _('accepted suggestion for string'
+                SubmissionTypes.SUGG_ACCEPT: _('%(user)s accepted suggestion for string'
                                                ' <i><a href="%(url)s">'
                                                '%(source)s</a></i>', unit),
-                SubmissionTypes.UPLOAD: _('uploaded a file'),
+                SubmissionTypes.UPLOAD: _('%(user)s uploaded a file'),
             }.get(self.type, ''),
-        }
+        })
 
         #TODO Look how to detect submissions for "sent suggestion", "rejected
         # suggestion"...
@@ -162,12 +168,12 @@ class Submission(models.Model):
                 # If the action is unset, maybe the action is one of the
                 # following ones.
                 action_bundle["action"] = {
-                    TRANSLATED: _('submitted translation for string <i><a '
+                    TRANSLATED: _('%(user)s submitted translation for string <i><a '
                                   'href="%(url)s">%(source)s</a></i>', unit),
-                    FUZZY: _('submitted "needs work" translation for string '
+                    FUZZY: _('%(user)s submitted "needs work" translation for string '
                              '<i><a href="%(url)s">%(source)s</a></i>',
                              unit),
-                    UNTRANSLATED: _('removed translation for string <i><a '
+                    UNTRANSLATED: _('%(user)s removed translation for string <i><a '
                                     'href="%(url)s">%(source)s</a></i>', unit),
                 }.get(self.unit.state, '')
             except AttributeError:
@@ -181,7 +187,6 @@ class Submission(models.Model):
         return (u'<div class="last-action">'
             '  <a href="%(profile_url)s">'
             '    <img src="%(gravatar_url)s" />'
-            '    <span>%(username)s</span>'
             '  </a>'
             '  %(action)s'
             '  <time class="extra-item-meta js-relative-date"'
