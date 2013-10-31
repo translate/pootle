@@ -500,6 +500,7 @@ class Unit(models.Model, base.TranslationUnit):
 
         # update cache only if we are updating a single unit
         if self.store.state >= PARSED:
+            self.store.flag_for_deletion(CachedMethods.MTIME)
             self.store.update_cache()
 
     def get_absolute_url(self):
