@@ -153,7 +153,7 @@ class Submission(models.Model):
                 SubmissionTypes.SUGG_ACCEPT: _('%(user)s accepted suggestion for string'
                                                ' <i><a href="%(url)s">'
                                                '%(source)s</a></i>', unit),
-                SubmissionTypes.UPLOAD: _('%(user)s uploaded a file'),
+                SubmissionTypes.UPLOAD: _('%(user)s uploaded a file', units),
             }.get(self.type, ''),
         })
 
