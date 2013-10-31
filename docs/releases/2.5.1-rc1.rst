@@ -1,0 +1,75 @@
+===================================
+Welcome to the new Pootle 2.5.1-rc1
+===================================
+
+*Released on ?? November 2013*
+
+We almost missed our 6 month cycle!  Many changes have gone into 2.5.1 which
+follows on from 2.5.0 released 6 months ago.
+
+Pootle 2.5.0 has been in production with many users, so although it is a new
+official release, we've had many people running their production server off
+this code.  This includes `LibreOffice
+<https://translations.documentfoundation.org/>`_, `Mozilla
+<http://mozilla.locamotion.org/>`_ and `Evernote
+<http://translate.evernote.com/pootle/>`_. So you are in good company.
+
+Requirements
+============
+- Django 1.4
+- `Translate Toolkit <http://toolkit.translatehouse.org/download.html>`_ >=
+  1.10.0
+- lxml (now a runtime requirement)
+- Python >= 2.6
+
+Installation and Upgrade
+========================
+- `Installation
+  <http://docs.translatehouse.org/projects/pootle/en/latest/server/installation.html>`_
+- `Upgrade
+  <http://docs.translatehouse.org/projects/pootle/en/latest/server/upgrading.html>`_
+
+Changes
+=======
+
+These are by no means exhaustive, check the git log for more details
+
+Tagging
+-------
+Tagging of translation projects is now possible.  Tags allow you to classify
+translation projects and files to allow you to quickly focus on a number of
+languages or a number of files.
+
+Goals
+-----
+Goals allow you to group files within a project to ensure that translators
+focus on the most important tasks first. In single file projects this may not
+be important.  But in projects such as Firefox with over 200 files it is
+important to direct translators to the most important tasks.
+
+Goals are a special case of tags. You can create goals for an individual
+language or you can create project wide goals.  Use the `add_project_goals
+<http://docs.translatehouse.org/projects/pootle/en/latest/server/commands.html#add-project-goals>`_
+command to automatically load a set of project goals.
+
+Action Command Extensions
+-------------------------
+You can create custom actions using Python scripts.  This allows scripts. e.g.
+to build a language pack, to be exposed to the translators.
+
+Other changes
+-------------
+* Select2 to make dropdowns more user friendly.
+* Pootle now uses South to manage smoother migrations to new versions.
+
+
+...and of course, loads of bugs were fixed
+
+Credits
+=======
+The following people have made Pootle 2.5.1 possible:
+
+Julen Ruiz Aizpuru, Leandro Regueiro, Dwayne Bailey, Alexander Dupuy, Khaled
+Hosny, Arky, Fabio Pirola, Christian Hitz, Taras Semenenko, Chris Oelmueller,
+Peter Bengtsson, Yasunori Mahata, Denis Parchenko, Henrik Saari, Hakan
+Bayindir, Edmund Huber, Dmitry Rozhkov & Darío Hereñú
