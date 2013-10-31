@@ -31,7 +31,8 @@ Editing
 | Submit and move to next   | :kbd:`Ctrl+Enter`       |                      |
 | translation               |                         |                      |
 +---------------------------+-------------------------+----------------------+
-| Toggle the fuzzy flag     | :kbd:`Ctrl+Space`       |                      |
+| Toggle the 'Needs work'   | :kbd:`Ctrl+Space`       |                      |
+| flag                      |                         |                      |
 +---------------------------+-------------------------+----------------------+
 | Toggle the suggest/submit | :kbd:`Ctrl+Shift+Space` |                      |
 | mode                      |                         |                      |
