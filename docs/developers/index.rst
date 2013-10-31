@@ -10,6 +10,7 @@ other way, make sure to read through this part.
    :maxdepth: 2
 
    contributing
+   roadmap
    hacking
    customization
    testing
