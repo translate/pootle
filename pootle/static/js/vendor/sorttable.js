@@ -147,21 +147,6 @@ sorttable = {
         });
       }
     }
-
-    // Custom:
-    // Get this table's stored sort order and fire the column's click event
-    var columnSort = sorttable.getSortCookie(table.id);
-
-    if (columnSort !== null) {
-      var th = document.getElementById(columnSort.columnId);
-      $(th).click();
-
-      // If the sorting order was descending, fire another click event
-      if (columnSort.order === "desc") {
-        $(th).click();
-      }
-    }
-
   },
 
   doSort: function(th) {

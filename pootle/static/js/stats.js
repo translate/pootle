@@ -127,6 +127,17 @@
           PTL.stats.updateTranslationStats($('#stats-untranslated'),
                                              data.total, untranslated);
 
+          // Sort columns based on previously-made selections
+          var columnSort = sorttable.getSortCookie($table.get(0).id);
+          if (columnSort !== null) {
+            var $th = $('#' + columnSort.columnId);
+            $th.click();
+
+            if (columnSort.order === "desc") {
+              $th.click();
+            }
+          }
+
           if (callback) {
             callback(data);
           }
