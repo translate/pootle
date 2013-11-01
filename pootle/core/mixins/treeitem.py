@@ -22,13 +22,30 @@
 
 __all__ = ('TreeItem', 'CachedMethods',)
 
+#import threading
+from datetime import datetime
+from functools import wraps
+
 from translate.filters.decorators import Category
 
 from django.core.cache import cache
 from django.utils.encoding import iri_to_uri
 
+from pootle.core.log import timecounterlog
 from pootle_misc.util import getfromcache, getfromcachebyname, dictsum
 from pootle_misc.checks import get_qualitychecks_by_category, get_qualitychecks
+
+
+def statslog(function):
+    @wraps(function)
+    def _statslog(instance, *args, **kwargs):
+        start = datetime.now()
+        #globals = threading.local()
+        result = function(instance, *args, **kwargs)
+        end = datetime.now()
+        timecounterlog("%s %s (started at %s) executed in %s" % (instance.get_cachekey(), function.__name__, start, end - start))
+        return result
+    return _statslog
 
 
 class CachedMethods(object):
@@ -101,6 +118,7 @@ class TreeItem(object):
             self.initialized = True
 
     @getfromcache
+    @statslog
     def get_total_wordcount(self):
         """calculate total wordcount statistics"""
         self.initialize_children()
@@ -108,6 +126,7 @@ class TreeItem(object):
                 self._sum('get_total_wordcount'))
 
     @getfromcache
+    @statslog
     def get_translated_wordcount(self):
         """calculate translated units statistics"""
         self.initialize_children()
@@ -115,6 +134,7 @@ class TreeItem(object):
                 self._sum('get_translated_wordcount'))
 
     @getfromcache
+    @statslog
     def get_fuzzy_wordcount(self):
         """calculate untranslated units statistics"""
         self.initialize_children()
@@ -122,6 +142,7 @@ class TreeItem(object):
                 self._sum('get_fuzzy_wordcount'))
 
     @getfromcache
+    @statslog
     def get_suggestion_count(self):
         """check if any child store has suggestions"""
         self.initialize_children()
@@ -129,6 +150,7 @@ class TreeItem(object):
                 self._sum('get_suggestion_count'))
 
     @getfromcache
+    @statslog
     def get_last_action(self):
         """get last action HTML snippet"""
         self.initialize_children()
@@ -140,6 +162,7 @@ class TreeItem(object):
         )
 
     @getfromcache
+    @statslog
     def get_mtime(self):
         """get latest modification time"""
         self.initialize_children()
@@ -174,6 +197,7 @@ class TreeItem(object):
         return result
 
     @getfromcache
+    @statslog
     def get_checks(self):
         result = self._get_checks()
         self.initialize_children()

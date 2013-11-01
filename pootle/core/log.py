@@ -30,6 +30,9 @@ STORE_ADDED = 'SA'
 STORE_DELETED = 'SD'
 CMD_EXECUTED = 'X'
 
+def timecounterlog(message):
+    logger = logging.getLogger('action')
+    logger.info(message)
 
 def action_log(*args, **kwargs):
     logger = logging.getLogger('action')
