@@ -61,21 +61,25 @@ class Command(PootleCommand):
     def handle_all_stores(self, translation_project, **options):
         translation_project.flush_cache()
         translation_project.get_stats()
+        translation_project.get_mtime()
         translation_project.get_checks()
 
     def handle_store(self, store, **options):
         store.flush_cache()
         store.get_stats()
+        store.get_mtime()
         store.get_checks()
 
     def handle_language(self, lang, **options):
         lang.flush_cache(False)
         lang.get_stats()
+        lang.get_mtime()
         lang.get_checks()
 
     def handle_project(self, prj, **options):
         prj.flush_cache(False)
         prj.get_stats()
+        prj.get_mtime()
         prj.get_checks()
 
     def handle_all(self, **options):
@@ -97,6 +101,8 @@ class Command(PootleCommand):
 
         logging.info('Setting empty values for all stores...')
         self._set_empty_values(timeout)
+        logging.info('Setting mtime values for all stores...')
+        self._set_mtime_stats(timeout)
         logging.info('Setting last action values for all stores...')
         self._set_last_action_stats(timeout)
         logging.info('Setting wordcount stats values for all stores...')
@@ -190,7 +196,8 @@ class Command(PootleCommand):
             'get_checks': {},
             'get_total_wordcount': 0,
             'get_translated_wordcount': 0,
-            'get_fuzzy_wordcount': 0
+            'get_fuzzy_wordcount': 0,
+            'get_mtime': 0
         }
         stores = Store.objects.all()
         for store in stores:
@@ -225,3 +232,14 @@ class Command(PootleCommand):
             key = Store.objects.get(id=item['unit__store']).get_cachekey()
             logging.info('Set suggestion count for %s' % key)
             cache.set(key + ':get_suggestion_count', item['count'], timeout)
+
+    def _set_mtime_stats(self, timeout):
+        """Check if any unit in the store has suggestions"""
+        queryset = Unit.objects.values('store').annotate(max_mtime=Max('mtime'))
+
+        for item in queryset:
+            key = Store.objects.get(id=item['store']).get_cachekey()
+            logging.info('Set mtime for %s' % key)
+            cache.set(key + ':get_mtime', item['max_mtime'], timeout)
+
+
