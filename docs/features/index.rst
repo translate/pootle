@@ -39,8 +39,8 @@ Online translation editor
 
 .. _features#admin:
 
-Administrative stuff
---------------------
+Administrative features
+-----------------------
 
 .. toctree::
    :maxdepth: 2
