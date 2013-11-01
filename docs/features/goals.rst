@@ -5,13 +5,11 @@ Goals
 
 .. versionadded:: 2.5.1
 
-Pootle supports goals that can be used as a way to group items based on any
-random criteria, prioritize work on those items and allow an easy translation
-of those groups of items.
+Goals provide a way to group work based on any criteria.  They can be
+prioritized to allow translators to focus on the most important work.
 
-Pootle allows not only to apply goals directly to files, but also to apply a
-goal to a given file across all the languages in a project by using the so
-called :ref:`project goals <goals#regular-vs-project>`.
+Using :ref:`project goals <goals#regular-vs-project>` Pootle allows goals to be
+applied to the same file across all the languages in the project.
 
 .. note::
     Currently goals can only be applied to individual files.
@@ -24,20 +22,22 @@ Regular goals vs project goals
 
 Pootle supports two types of goals:
 
-* *Regular goals* (or just goals)
-* *Project goals*
+#. *Regular goals* (or just goals)
+#. *Project goals*
 
-The difference among these two types is that project goals allow to apply them
-to a given store project-wide by applying them to the chosen store in the
-*template* translation project. This saves project managers a lot of time,
-specially when the project hosts a lot of languages.
+Project goals are available in all languages.  They are applied to files in the
+*template* translation project. This allows project managers to easily define a
+goal shared across all languages in the project.
 
-The goal type can be easily changed using the :ref:`editing form <goals#edit>`.
+The goal type can easily be changed using the :ref:`goal editing form
+<goals#edit>`.
 
-Project goals are shown below the regular ones in the :ref:`goals tab
-<goals#tab>`. The statistics for a project goal in a translation project only
-include the matching stores, and won't be displayed at all if the goal doesn't
-have any matching store.
+Project goals are shown below regular goals in the :ref:`goals tab
+<goals#tab>`.
+
+The statistics for a goal in a translation project will only include files that
+are part of that goal, and won't be displayed at all if the goal doesn't have
+any matching files in the current directory of the project.
 
 
 .. _goals#tab:
@@ -46,72 +46,68 @@ Goals tab
 ---------
 
 The goals tab is shown on the overview page for any translation project with
-goals applied to any of its stores. If the tab is shown, when clicking on it a
-comprehensive list of all the goals in that translation project is displayed,
-including stats for each goal and links for translating it or review its
-suggestions.
+goals applied to any of its files. When shown, the goals tab provides a
+comprehensive list of all the goals in that translation project, including
+statistics for each goal and links for working on the translations.
 
-The goals tab is also displayed on any directory inside a translation project,
-if there is any goal applied to stores inside that directory, or in
-subdirectories inside it. In this case the goal list that is displayed is
-restricted to only those goals.
+The goals tab is also displayed on any directory, if there is any goal applied
+to files inside that directory and its subdirectories.
 
 
 .. _goals#drill-down:
 
-Drill down in a goal
-++++++++++++++++++++
+Drill down into a goal
+++++++++++++++++++++++
 
-It is possible to drill down on each goal on the goals tab and see the file
-tree for the stores that belong to that goal. This is just like the regular
-files view with some small differences:
+It is possible to drill down into each goal on the goals tab to see the files
+and directories that belong to a goal. This works like the regular files view
+with some small differences:
 
-* In the upper level there is a **..** link that points to the goals tab, that
-  allows to get out of the drill down view,
-* The breadcrumbs includes a reference to the current goal,
+* In the upper level **..** will return you to the list of goals,
+* Breadcrumbs includes a reference to the current goal,
 * Every translate link in the table points to a translate view restricted to
-  the goal that is currently being inspected.
+  the goal that is currently being viewed.
 
 
 .. _goals#apply:
 
-Apply and unapply goals
------------------------
+Adding and removing files from a goal
+-------------------------------------
 
-Goals are just special tags whose name starts with **goal:** (including the
-colon) and that have some additional attributes, like a priority.
+Goals are special tags which start with **goal:** (including the colon) and
+that have some additional attributes.
 
-Like tag names, the goal names are case insensitive (they are automatically
-converted to lowercase), and must be composed of only letters and numbers, and
-can have spaces, colons, hyphens, underscores, slashes or periods in the
-middle, but not at start or at the end.
-
-Goals can be applied and unapplied to stores using the same method that can be
-used for :ref:`adding and removing tags <tags#manage>`. If the applied goal
-didn't previously exist then it is created. Unapplying a goal doesn't actually
-remove it, but unbinds it from the store.
+.. note:: Like tag names, the goal names are case insensitive (they are
+   automatically converted to lowercase), and must be composed of only letters
+   and numbers, and can have spaces, colons, hyphens, underscores, slashes or
+   periods in the middle, but not at start or at the end.
 
 .. note::
-    Remember that goals are special tags with names starting with **goal:**
-    (including the colon). So if its name starts with any other string a tag
-    will be created instead.
+   If you create a goal without the **goal:** prefix then an ordinary tag will
+   be created instead.
+
+Goals can be added and removed from a file as you would :ref:`add and remove
+tags <tags#manage>`. If the goal did not previously exist then a bew goal is
+created.  While if you remove a goal from a file it will simply remove the
+association of that file to the goal, the goal itself will not be removed.
 
 
 .. _goals#edit:
 
-Edit goals
-----------
+Editng goals
+------------
 
-You will likely need to tweak newly added goals, or sometimes any already
-existing goals, for example to change its priority or make it be a *project 
-goal*.
-
-In order to do that you must go to the drill down view for that goal and use
-the form in the *Description* section.
+To modify the properties of goals go to the goals tab and drill down into the
+goal.  Use the form in the *Description* section to modify any of the goal
+properties.
 
 .. note::
-    Keep in mind that if the goal is not applied to any store then it is not
-    possible to edit it because it doesn't have no drill down view.
+   Remember that if the goal is not applied to any files then it is not
+   possible to edit the goal, as you won't have access to it in the goals tab.
+   Simply add a file to the goal and you will be able to edit the goal.
+
+You can modify the goal description and turn it into a project wide goal as
+needed.
 
 
 .. _goals#translate:
@@ -119,10 +115,10 @@ the form in the *Description* section.
 Translating goals
 -----------------
 
-In the goals tab and in the drill down views for each goal are displayed
-several links that point to the translation editor. Each link allows to
-translate units (needing work or not) or review existing suggestions.
+The goals tab and goals drill down views provide translation links as in the
+normal file view that will take you to the translation editor. Each link allows
+you to translate strings limited to the current goal.
 
 Once in the translation editor the different filters are restricted to the
-stores in the given path that belong to the chosen goal, thus allowing the
-translators to focus on a specific goal.
+stores in the given path that belong to the chosen goal, thus allowing the you
+to focus on the work in the current goal.
