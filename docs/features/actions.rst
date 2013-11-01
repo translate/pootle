@@ -3,13 +3,12 @@
 Extension Actions
 =================
 
-.. note::
-    .. versionadded:: 2.5.1
+.. versionadded:: 2.5.1
 
-Pootle supports extension actions that can be used to add custom action links
-within the Pootle UI. Extension actions are Python scripts and can do things
-like generating language packs for download or performing checks across several
-languages and returning a report.
+Extension actions are used to add custom action links to Pootle.  Extension
+actions are Python scripts that can perform tasks such as generating language
+packs, provide downloads,  or performing checks across several languages and
+returning a report.
 
 .. _actions#implementing:
 
@@ -24,13 +23,13 @@ actually create extension actions.
 There are several subclasses of ExtensionAction defined, depending on the scope
 of the action.
 
-* ProjectAction is used when the action will apply to all or part of a project.
-* LanguageAction is used when the action will apply to a language across
-  multiple projects
-* TranslationProjectAction is used when the action will apply to a single
-  language within a project
-* StoreAction is used when the action will apply only to a single translation
-  file (store) within a specific language and project
+* ``ProjectAction`` -- an action that will apply to all or part of a project.
+* ``LanguageAction`` -- an action that will apply to a language across multiple
+  projects.
+* ``TranslationProjectAction`` -- an action that will apply to a single
+  language within a project.
+* ``StoreAction`` -- an action that will apply only to a single translation
+  file (store) within a specific language and project.
 
 .. _actions#properties:
 
