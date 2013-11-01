@@ -85,14 +85,14 @@ tables that don't require any migrations.
 
 .. code-block:: bash
 
-  $ pootle syncdb
+  $ pootle syncdb --noinput
 
 
 .. note::
 
-  At this point in time, and due to Pootle's transtioning to South, you
-  will need to run a fake migration action in order to let South know
-  which is your current database schema.
+  At this point in time, and due to Pootle's transitioning to South, you will
+  need to run a fake migration action in order to let South know which is your
+  current database schema.
 
   You can execute the fake migration by running the following:
 
