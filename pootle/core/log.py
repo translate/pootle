@@ -37,7 +37,7 @@ def log(message):
 def action_log(*args, **kwargs):
     logger = logging.getLogger('action')
     d = {}
-    for p in ['user', 'lang', 'action', 'unit']:
+    for p in ['user', 'lang', 'action', 'unit', 'path']:
         d[p] = kwargs.pop(p, '')
 
     tr = kwargs.pop('translation', '')
