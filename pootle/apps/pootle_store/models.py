@@ -46,8 +46,8 @@ from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_misc.aggregate import group_by_count, group_by_count_extra, max_column
 from pootle_misc.baseurl import l
 from pootle_misc.checks import check_names
-from pootle_misc.util import (cached_property, deletefromcache,
-                              datetime_min)
+from pootle_misc.util import (cached_property, get_cached_value,
+                              deletefromcache, datetime_min)
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 from pootle_store.fields import (TranslationStoreField, MultiStringField,
@@ -445,8 +445,8 @@ class Unit(models.Model, base.TranslationUnit):
 
         # Check if unit currently being deleted is the one referenced in
         # last_action
-        la = self.store.get_last_action()
-        if la.id == self.id:
+        la = get_cached_value(self.store, 'get_last_action')
+        if not la or la.id == self.id:
             self.store.flag_for_deletion(CachedMethods.LAST_ACTION)
 
         super(Unit, self).delete(*args, **kwargs)
@@ -1727,11 +1727,14 @@ class Store(models.Model, base.TranslationStore, TreeItem):
     def _get_mtime(self):
         return max_column(self.unit_set.all(), 'mtime', datetime_min)
 
-    def _get_last_action(self):
-        try:
-            sub = Submission.objects.filter(unit__store=self).latest()
-        except Submission.DoesNotExist:
-            return  {'mtime': 0, 'snippet': ''}
+    def _get_last_action(self, submission=None):
+        if submission is None:
+            try:
+                sub = Submission.objects.filter(unit__store=self).latest()
+            except Submission.DoesNotExist:
+                return  {'mtime': 0, 'snippet': ''}
+        else:
+            sub = submission
 
         return {
             'mtime': int(time.mktime(sub.creation_time.timetuple())),

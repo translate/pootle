@@ -49,6 +49,14 @@ def getfromcachebyname(function, timeout=settings.OBJECT_CACHE_TIMEOUT):
         return result
     return _getfromcache
 
+def get_cached_value(obj, function):
+    key = iri_to_uri(obj.get_cachekey() + ":" + function.__name__)
+    return cache.get(key)
+
+def set_cached_value(obj, function, value, timeout=settings.OBJECT_CACHE_TIMEOUT):
+    key = iri_to_uri(obj.get_cachekey() + ":" + function.__name__)
+    return cache.set(key, value, timeout)
+
 def getfromcache(function, timeout=settings.OBJECT_CACHE_TIMEOUT):
     def _getfromcache(instance, *args, **kwargs):
         key = iri_to_uri(instance.get_cachekey() + ":" + function.__name__)
