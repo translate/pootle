@@ -30,7 +30,7 @@ STORE_ADDED = 'SA'
 STORE_DELETED = 'SD'
 CMD_EXECUTED = 'X'
 
-def timecounterlog(message):
+def log(message):
     logger = logging.getLogger('action')
     logger.info(message)
 
@@ -45,7 +45,8 @@ def action_log(*args, **kwargs):
     tr = tr.replace("\n", "\\\n")
     d['translation'] = tr
 
-    message = "%(user)s\t%(action)s\t%(lang)s\t%(unit)s\t%(translation)s" % d
+    message = "%(user)s\t%(action)s\t%(lang)s\t%(unit)s\t" + \
+        "%(path)s\t%(translation)s" % d
 
     logger.info(message)
 

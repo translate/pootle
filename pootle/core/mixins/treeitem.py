@@ -31,8 +31,9 @@ from translate.filters.decorators import Category
 from django.core.cache import cache
 from django.utils.encoding import iri_to_uri
 
-from pootle.core.log import timecounterlog
-from pootle_misc.util import getfromcache, getfromcachebyname, dictsum
+from pootle.core.log import log
+from pootle_misc.util import (getfromcache, getfromcachebyname, dictsum,
+                              get_cached_value, set_cached_value)
 from pootle_misc.checks import get_qualitychecks_by_category, get_qualitychecks
 
 
@@ -43,7 +44,7 @@ def statslog(function):
         #globals = threading.local()
         result = function(instance, *args, **kwargs)
         end = datetime.now()
-        timecounterlog("%s %s (started at %s) executed in %s" % (instance.get_cachekey(), function.__name__, start, end - start))
+        log("%s\t%s\t%s" % (function.__name__, end - start, instance.get_cachekey()))
         return result
     return _statslog
 
@@ -253,6 +254,7 @@ class TreeItem(object):
 
     def update_cache(self):
         self._delete_from_cache(self._flagged_for_deletion)
+        log("%s deleted from cache" % self._flagged_for_deletion)
         self._flagged_for_deletion = set()
 
     def flag_for_deletion(self, *args):
@@ -269,3 +271,14 @@ class TreeItem(object):
             self.initialize_children()
             for item in self.children:
                 item.flush_cache()
+
+    def set_last_action(self, last_action):
+        set_cached_value(self, 'get_last_action', last_action)
+        parent = self.get_parent()
+        if parent:
+            pla = get_cached_value(parent, 'get_last_action')
+            if pla and pla['mtime'] < last_action['mtime']:
+                parent.set_last_action(last_action)
+
+
+
