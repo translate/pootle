@@ -280,9 +280,8 @@
                 {% endif %}
                 {% endif %}
 
-                <div id="suggdiff-{{sugg.id}}-{{i}}" class="suggestion-translation" lang="{{ language.code }}" {% if title %} title="{{ title }}"{% endif %}>
-                  <span class="suggestion-translation-body">{{ diff }}</span>
-                </div>
+                <div id="suggdiff-{{sugg.id}}-{{i}}" class="suggestion-translation" lang="{{ language.code }}" {% if title %} title="{{ title }}"{% endif %}
+                  ><span class="suggestion-translation-body">{{ diff }}</span></div>
               </div>
               {% block suggestion_comment %}{% endblock %}
             </div>
