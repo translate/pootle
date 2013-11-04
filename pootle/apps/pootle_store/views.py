@@ -694,6 +694,9 @@ def submit(request, unit):
                         new_value=new_value,
                 )
                 sub.save()
+                #last_action = form.instance.store._get_last_action(sub)
+                #form.instance.store.set_last_action(last_action)
+
             form.instance._log_user = request.profile
             form.save()
             translation_submitted.send(
