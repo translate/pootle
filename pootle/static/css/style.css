@@ -2603,3 +2603,13 @@ html[dir="rtl"] .select2-container-multi .select2-choices .select2-search-choice
     margin-left: 0;
     margin-right: 5px;
 }
+
+/*
+ * Magnific-Popup fixes
+ * https://github.com/dimsemenov/Magnific-Popup/pull/261
+ */
+
+html[dir="rtl"] .mfp-close {
+    right: auto;
+    left: 0;
+}
