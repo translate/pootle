@@ -82,7 +82,7 @@ class TreeItem(object):
 
     def _get_last_action(self):
         """This method will be overridden in descendants"""
-        return {'id': 0 , 'mtime': 0, 'snippet': ''}
+        return {'id': 0, 'mtime': 0, 'snippet': ''}
 
     def _get_mtime(self):
         """This method will be overridden in descendants"""

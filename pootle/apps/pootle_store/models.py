@@ -1732,11 +1732,12 @@ class Store(models.Model, base.TranslationStore, TreeItem):
             try:
                 sub = Submission.objects.filter(unit__store=self).latest()
             except Submission.DoesNotExist:
-                return  {'mtime': 0, 'snippet': ''}
+                return  {id: 0, 'mtime': 0, 'snippet': ''}
         else:
             sub = submission
 
         return {
+            'id': sub.unit.id,
             'mtime': int(time.mktime(sub.creation_time.timetuple())),
             'snippet': sub.get_submission_message()
         }
