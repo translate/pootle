@@ -175,8 +175,21 @@
 
         $.post($(this).attr('href'), function (data, textStatus, jqXHR) {
           if (jqXHR.status === 201) {
-            // Tag was removed, delete the DOM element.
-            $parent.remove();
+            // Tag was removed.
+
+            if ($("#js-tags-tp").length) {
+              // Project overview, replace the old tags list with the new one.
+              var id = $parent.parents("td").attr("id");
+              $("#" + id + " .tag-list").html(data);
+              $("#" + id + "-hidden .tag-list").html(data);
+
+              // In the master table, too.
+              $projectTable.find("#" + id + " .tag-list").html(data);
+              $projectTable.find("#" + id + "-hidden .tag-list").html(data);
+            } else {
+              // Translation project overview, just delete the DOM element.
+              $parent.remove();
+            }
           };
         }, "html");
       });
@@ -217,7 +230,11 @@
               // Project overview.
               var tp = $("#js-tags-tp option:selected").val();
               $('#js-tag-tp-' + tp + ' ul').html(data);
-              $('#js-tag-tp-hidden-' + tp + ' ul').html(data);
+              $('#js-tag-tp-' + tp + '-hidden ul').html(data);
+
+              // In the master table, too.
+              $projectTable.find('#js-tag-tp-' + tp + ' ul').html(data);
+              $projectTable.find('#js-tag-tp-' + tp + '-hidden ul').html(data);
             } else {
               // Translation project overview.
               $('.tag-list').html(data);
@@ -298,40 +315,55 @@
         });
       });
 
+      $("#js-tag-filtering").select2({
+        multiple: true,
+        ajax: {
+          url: $("#js-tag-filtering").attr("data-ajaxurl"),
+          dataType: "json",
+          results: function (data, page) {
+            var ret = [];
+            $.each(data, function (i, tag) {
+              ret.push({ id: tag.pk, text: tag.fields.name });
+            });
+            return {
+              results: ret
+            };
+          },
+        },
+      });
+
+      // Save a detached copy of the table that we will reuse when resetting
+      // filtering.
+      var $projectTable = $("table#project");
+      var $projectTableParent = $projectTable.parent();
+      $projectTable.attr("id", "project-detached").detach();
+      $projectTable.clone().attr("id", "project").appendTo($projectTableParent);
+
       /* Dynamic filtering using tags */
       $("#js-tag-filtering").on("change", function (event) {
         // If there are no tag filters.
         if (event.val.length === 0) {
           // Remove the filtered table and reattach the original one.
-          if (typeof $filteredTable !== "undefined") {
-            $filteredTable.remove();
-            $projectTable.appendTo($projectTableParent);
+          $("table#project").remove();
+          $projectTable.clone().attr("id", "project").appendTo($projectTableParent);
 
-            // Adjust tags visibility and sort order that might have been
-            // changed when the table was detached.
-            sorttable.adjustTagsVisibility();
-            sorttable.applyStoredOrder($projectTable.attr("id"));
-          }
+          // Sort the table.
+          sorttable.makeSortable($("table#project").get(0));
         } else {
           // Get the filter tags names since Select2 only provides their keys.
           var filterTags = [];
 
-          $.each(event.val, function (i, tagPK) {
-            filterTags.push($("#js-tag-filtering option[value='" + tagPK +
-                              "']").text());
+          $.each($("#js-tag-filtering").select2('data'), function (i, tag) {
+            filterTags.push(tag.text);
           });
 
           // Iterate over all translation project rows, excluding the ones with
           // tagging data.
           var foundTags = [];
 
-          $projectTable = $("table#project");
-          $projectTableParent = $projectTable.parent();
-          $projectTable.detach();
-
-          $filteredTable = $projectTable.clone();
-          $filteredTable.appendTo($projectTableParent);
-          $filteredTable.show();
+          // Remove the filtered table and reattach the original one.
+          $("table#project").remove();
+          $projectTable.clone().attr("id", "project").appendTo($projectTableParent);
 
           $("table#project tbody tr:not(.js-tags)").each(function () {
             // Get all the tags applied to the current translation project.
@@ -355,7 +387,7 @@
           });
 
           // Sort the filtered table.
-          sorttable.makeSortable($filteredTable.get(0));
+          sorttable.makeSortable($("table#project").get(0));
         };
       });
     },

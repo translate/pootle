@@ -162,14 +162,10 @@ sorttable = {
     }
 
     sorttable.insertTagsRows(table.tBodies[0]);
-    sorttable.applyStoredOrder(table.id);
 
-  },
-
-  applyStoredOrder: function (id) {
     // Custom:
     // Get this table's stored sort order and fire the column's click event
-    var columnSort = sorttable.getSortCookie(id);
+    var columnSort = sorttable.getSortCookie(table.id);
 
     if (columnSort !== null) {
       var th = document.getElementById(columnSort.columnId);
@@ -356,10 +352,6 @@ sorttable = {
     }
     delete newrows;
 
-    sorttable.adjustTagsVisibility();
-  },
-
-  adjustTagsVisibility: function () {
     if ($.cookie('showtags') == 'true') {
       $('.js-tags').show();
       $("#js-toggle-tags-text").text(gettext("Hide tags"));

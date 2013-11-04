@@ -81,7 +81,7 @@
 {% for i in table.fields %}{% if not forloop.last %}<td></td>{% endif %}{% endfor %}
 {% endif %}
 {% if 'tags' in table.fields %}
-<td id="js-tag-tp-hidden-{{ item.pk }}" class="hide tags-cell" colspan="{{ table.headings|length|add:'-1' }}">
+<td id="js-tag-tp-{{ item.pk }}-hidden" class="hide tags-cell" colspan="{{ table.headings|length|add:'-1' }}">
   {% if user.is_superuser or request.permissions.administrate %}
   <a href="#js-add-tag-dialog" class="js-project-add-tag-popup tags-aside tags-add"
     title="{% trans "Add a tag" %}">

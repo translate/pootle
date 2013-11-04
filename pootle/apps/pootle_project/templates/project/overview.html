@@ -1,5 +1,6 @@
 {% extends "project_base.html" %}
 {% load i18n baseurl cleanhtml assets common_tags search %}
+{% load url from future %}
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block title %}{{ project.name }} | {{ block.super }}{% endblock %}
@@ -28,11 +29,10 @@
     <form action="" method="post" class="js-filter tags-filter-form"
       enctype="multipart/form-data">
       {% csrf_token %}
-      {{ tags_filter_form.non_field_errors }}
-      {% for field in tags_filter_form %}
-        {{ field }}
-        {{ field.errors }}
-      {% endfor %}
+      <input type="hidden" id="js-tag-filtering" class="select2-multiple"
+        data-placeholder="{% trans "Filter using one or more tags" %}"
+        data-ajaxurl="{% url 'pootle-project-ajax-list-tags' project.code %}">
+      </input>
       <input type="submit" id="js-filter-form-button"
         value="{% trans "Filter" context "verb" %}"
         title="{% trans "Filter using the selected tags" %}" />
