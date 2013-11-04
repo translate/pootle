@@ -2580,3 +2580,26 @@ table.sortable .tags-row td
 {
     padding: 0pt 1em 0pt 1em;
 }
+
+/*
+ * Select2 fixes
+ * https://github.com/ivaynberg/select2/pull/1877
+ */
+
+/* Fix the close button position in RTL */
+html[dir="rtl"] .select2-search-choice-close
+{
+    right: auto;
+    left: 3px;
+}
+
+/* align the selects to the right */
+html[dir="rtl"] .select2-container-multi .select2-choices li
+{
+    float: right;
+}
+html[dir="rtl"] .select2-container-multi .select2-choices .select2-search-choice
+{
+    margin-left: 0;
+    margin-right: 5px;
+}
