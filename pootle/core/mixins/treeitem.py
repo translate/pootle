@@ -32,7 +32,7 @@ from django.utils.encoding import iri_to_uri
 
 from pootle.core.log import log
 from pootle_misc.util import (getfromcache, getfromcachebyname, dictsum,
-                              get_cached_value, set_cached_value)
+                              get_cached_value, set_cached_value, datetime_min)
 from pootle_misc.checks import get_qualitychecks_by_category, get_qualitychecks
 
 
@@ -102,7 +102,7 @@ class TreeItem(object):
 
     def _get_mtime(self):
         """This method will be overridden in descendants"""
-        return 0
+        return datetime_min
 
     def _get_all_checks(self):
         """This method will be overridden in descendants"""
