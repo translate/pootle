@@ -8,8 +8,8 @@ Goals
 Goals provide a way to group work based on any criteria.  They can be
 prioritized to allow translators to focus on the most important work.
 
-Using :ref:`project goals <goals#regular-vs-project>` Pootle allows goals to be
-applied to the same file across all the languages in the project.
+By using :ref:`project goals <goals#regular-vs-project>` goals can be applied
+to the same file across all the languages in the project.
 
 .. note::
     Currently goals can only be applied to individual files.
@@ -94,8 +94,8 @@ association of that file to the goal, the goal itself will not be removed.
 
 .. _goals#edit:
 
-Editng goals
-------------
+Editing goals
+-------------
 
 To modify the properties of goals go to the goals tab and drill down into the
 goal.  Use the form in the *Description* section to modify any of the goal
@@ -120,5 +120,6 @@ normal file view that will take you to the translation editor. Each link allows
 you to translate strings limited to the current goal.
 
 Once in the translation editor the different filters are restricted to the
-stores in the given path that belong to the chosen goal, thus allowing the you
-to focus on the work in the current goal.
+stores in the given path that belong to the chosen goal, thus allowing you to
+focus on the work in the current goal.
+
