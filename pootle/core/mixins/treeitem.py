@@ -258,6 +258,3 @@ class TreeItem(object):
             pla = get_cached_value(parent, 'get_last_action')
             if pla and pla['mtime'] < last_action['mtime']:
                 parent.set_last_action(last_action)
-
-
-
