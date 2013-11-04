@@ -22,7 +22,6 @@
 
 __all__ = ('TreeItem', 'CachedMethods',)
 
-#import threading
 from datetime import datetime
 from functools import wraps
 
@@ -41,10 +40,10 @@ def statslog(function):
     @wraps(function)
     def _statslog(instance, *args, **kwargs):
         start = datetime.now()
-        #globals = threading.local()
         result = function(instance, *args, **kwargs)
         end = datetime.now()
-        log("%s\t%s\t%s" % (function.__name__, end - start, instance.get_cachekey()))
+        log("%s\t%s\t%s" % (function.__name__, end - start,
+                            instance.get_cachekey()))
         return result
     return _statslog
 
@@ -279,6 +278,3 @@ class TreeItem(object):
             pla = get_cached_value(parent, 'get_last_action')
             if pla and pla['mtime'] < last_action['mtime']:
                 parent.set_last_action(last_action)
-
-
-
