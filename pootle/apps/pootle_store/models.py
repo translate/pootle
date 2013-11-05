@@ -33,8 +33,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import FileSystemStorage
 from django.core.urlresolvers import reverse
 from django.db import models, IntegrityError
-from django.db.models.signals import post_delete
+from django.db.models.signals import post_delete, post_save
 from django.db.transaction import commit_on_success
+from django.dispatch import receiver
 from django.utils import timezone, tzinfo
 from django.utils.translation import ugettext_lazy as _
 from django.utils.http import urlquote
@@ -877,8 +878,6 @@ class Unit(models.Model, base.TranslationUnit):
             self.target = suggestion.target
 
             suggestion_user = suggestion.user
-            self.submitted_by = suggestion_user
-            self.submitted_on = timezone.now()
 
             # It is important to first delete the suggestion before calling
             # ``save``, otherwise the quality checks won't be properly updated
@@ -965,6 +964,21 @@ class Unit(models.Model, base.TranslationUnit):
         else:
             result = []
         return result
+
+
+@receiver(post_save, sender=Submission)
+def update_unit_submission(sender, instance, **kwargs):
+    # XXX: watch for possible bottlenecks and consider moving to a
+    # background worker process if necessary
+    if instance.field in [SubmissionFields.TARGET, SubmissionFields.STATE]:
+        instance.unit.submitted_by = instance.submitter
+        instance.unit.submitted_on = instance.creation_time
+        instance.unit.save()
+    elif instance.field == SubmissionFields.COMMENT:
+        instance.unit.commented_by = instance.submitter
+        instance.unit.commented_on = instance.creation_time
+        instance.unit.save()
+
 
 ###################### Store ###########################
 

@@ -523,10 +523,6 @@ def comment(request, unit):
     :return: If the form validates, the cleaned comment is returned.
              An error message is returned otherwise.
     """
-    # Update current unit instance's attributes
-    unit.commented_by = request.profile
-    unit.commented_on = timezone.now()
-
     language = request.translation_project.language
     form = unit_comment_form_factory(language)(request.POST, instance=unit,
                                                request=request)
@@ -672,10 +668,6 @@ def submit(request, unit):
 
     # Store current time so that it is the same for all submissions
     current_time = timezone.now()
-
-    # Update current unit instance's attributes
-    unit.submitted_by = request.profile
-    unit.submitted_on = current_time
 
     form_class = unit_form_factory(language, snplurals, request)
     form = form_class(request.POST, instance=unit)
