@@ -20,13 +20,13 @@
 
 import os
 
+from pootle.core.populate_db import require_english
 from pootle.tests import PootleTestCase
 
 from pootle_project.models import Project
 from pootle_store.models import Store
 from pootle_app.project_tree import get_translated_name, get_translated_name_gnu
 from pootle_language.models import Language
-from pootle_app.management import require_english
 from pootle_store.util import OBSOLETE
 
 
