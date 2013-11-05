@@ -80,9 +80,10 @@ def create_pootle_permissions():
     args = {
         'app_label': "pootle_app",
         'model': "directory",
-        'name': 'pootle',
     }
     pootle_content_type, created = ContentType.objects.get_or_create(**args)
+    pootle_content_type.name = 'pootle'
+    pootle_content_type.save()
 
     # Create the permissions.
     permissions = [
