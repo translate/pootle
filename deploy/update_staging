@@ -109,7 +109,7 @@ import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from pootle import syspath_override
-from pootle_app.management import require_english
+from pootle.core.populate_db import require_english
 from pootle_project.models import Project
 
 en = require_english()

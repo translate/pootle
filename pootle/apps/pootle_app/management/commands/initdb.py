@@ -24,12 +24,15 @@ from django.contrib.auth.models import User
 from django.core.management.base import NoArgsCommand
 from django.db import transaction
 
+from pootle.core.populate_db import populate_db
+
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 
 class Command(NoArgsCommand):
     def handle_noargs(self, **options):
+        populate_db()
         create_default_db()
 
 
@@ -63,7 +66,7 @@ def create_default_projects():
     You might want to add your projects here, although you can also add things
     through the web interface later.
     """
-    from pootle_app.management import require_english
+    from pootle.core.populate_db import require_english
     from pootle_project.models import Project
 
     en = require_english()
