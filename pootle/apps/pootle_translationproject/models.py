@@ -667,7 +667,7 @@ class TranslationProject(models.Model):
 
         from pootle_app.models.signals import post_vc_update
         post_vc_update.send(sender=self, oldstats=old_stats,
-                remotestats=remote_stats, newstats=new_stats)
+                            remotestats=remote_stats, newstats=new_stats)
 
     def update_file(self, request, store):
         """Updates file from version control, retaining uncommitted
@@ -689,7 +689,7 @@ class TranslationProject(models.Model):
 
             from pootle_app.models.signals import post_vc_update
             post_vc_update.send(sender=self, oldstats=old_stats,
-                remotestats=remote_stats, newstats=new_stats)
+                                remotestats=remote_stats, newstats=new_stats)
         except VersionControlError as e:
             # FIXME: This belongs to views
             msg = _(u"Failed to update <em>%(filename)s</em> from "

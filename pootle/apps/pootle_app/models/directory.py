@@ -70,7 +70,10 @@ class Directory(models.Model):
     @property
     def stores(self):
         """Queryset with all descending stores."""
+        # Putting the next import at the top of the file causes circular import
+        # issues.
         from pootle_store.models import Store
+
         return Store.objects.filter(pootle_path__startswith=self.pootle_path)
 
     @property
@@ -148,6 +151,8 @@ class Directory(models.Model):
 
         This does not currently deal with .. path components.
         """
+        # Putting the next import at the top of the file causes circular import
+        # issues.
         from pootle_store.models import Store
 
         if path not in (None, ''):
@@ -167,10 +172,10 @@ class Directory(models.Model):
 
     @getfromcache
     def get_mtime(self):
-        criteria = {
-            'store__pootle_path__startswith': self.pootle_path,
-        }
-        return max_column(Unit.objects.filter(**criteria), 'mtime', None)
+        units = Unit.objects.filter(
+            store__pootle_path__startswith=self.pootle_path
+        )
+        return max_column(units, 'mtime', None)
 
     @getfromcache
     def getquickstats(self):
@@ -234,7 +239,7 @@ class Directory(models.Model):
         return Directory.objects.none()
 
     def get_suggestion_count(self):
-        """check if any child store has suggestions"""
+        """Check if any child store has suggestions."""
         return Suggestion.objects.filter(
             unit__store__pootle_path__startswith=self.pootle_path).count()
 
