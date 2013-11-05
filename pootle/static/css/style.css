@@ -29,6 +29,16 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600);
 
+/*
+ * TEMPORARILY HIDE CRITICAL ERRORS
+ */
+#action-fix-critical,
+td.stats-number.critical,
+#js-stats-checks,
+th#js-stats-critical
+{
+    display: none !important;
+}
 
 /*
  * BASIC ELEMENT STYLING
