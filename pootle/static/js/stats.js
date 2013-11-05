@@ -111,21 +111,21 @@
 
           PTL.stats.updateAction($('#action-view-all'), data.total);
           PTL.stats.updateAction($('#action-continue'),
-                                  data.total - data.translated);
+                                 data.total - data.translated);
           PTL.stats.updateAction($('#action-fix-critical'), data.critical);
           PTL.stats.updateAction($('#action-review'), data.suggestions);
 
           $('body').removeClass('js-not-loaded');
 
           PTL.stats.updateTranslationStats($('#stats-total'),
-                                             data.total, data.total);
+                                           data.total, data.total);
           PTL.stats.updateTranslationStats($('#stats-translated'),
-                                             data.total, data.translated);
+                                           data.total, data.translated);
           PTL.stats.updateTranslationStats($('#stats-fuzzy'),
-                                             data.total, data.fuzzy);
+                                           data.total, data.fuzzy);
           var untranslated = data.total - data.translated - data.fuzzy;
           PTL.stats.updateTranslationStats($('#stats-untranslated'),
-                                             data.total, untranslated);
+                                           data.total, untranslated);
 
           // Sort columns based on previously-made selections
           var columnSort = sorttable.getSortCookie($table.get(0).id);
