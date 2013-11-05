@@ -91,33 +91,6 @@
           PTL.stats.updateProgressbar($('#progressbar'), data);
           PTL.stats.updateSummary($('#summary'), data);
 
-          for (var name in data.children) {
-            var item = data.children[name],
-                code = name.replace(/\./g, '-').replace(/@/g, '\\@'),
-                $td = $table.find('#total-words-' + code);
-
-            PTL.stats.updateItemStats($td, item.total);
-
-            var ratio = item.total === 0 ? 0 : item.translated / item.total;
-            $table.find('#translated-ratio-' + code).text(ratio);
-
-            $td = $table.find('#need-translation-' + code);
-            PTL.stats.updateItemStats($td, item.total - item.translated);
-
-            $td = $table.find('#suggestions-' + code);
-            PTL.stats.updateItemStats($td, item.suggestions);
-
-            $td = $table.find('#progressbar-' + code);
-            PTL.stats.updateProgressbar($td, item);
-
-            $td = $table.find('#last-activity-' + code);
-            $td.html(item.lastaction.snippet);
-            $td.attr('sorttable_customkey', now - item.lastaction.mtime);
-
-            $td = $table.find('#critical-' + code);
-            PTL.stats.updateItemStats($td, item.critical);
-          }
-
           PTL.stats.updateAction($('#action-view-all'), data.total);
           PTL.stats.updateAction($('#action-continue'),
                                  data.total - data.translated);
@@ -136,29 +109,58 @@
           PTL.stats.updateTranslationStats($('#stats-untranslated'),
                                            data.total, untranslated);
 
-          // Sort columns based on previously-made selections
-          var columnSort = sorttable.getSortCookie($table.get(0).id);
+          if ($table.length) {
+            for (var name in data.children) {
+              var item = data.children[name],
+                  code = name.replace(/\./g, '-').replace(/@/g, '\\@'),
+                  $td = $table.find('#total-words-' + code);
 
-          if (columnSort !== null) {
-            var $th = $('#' + columnSort.columnId);
-            var sorted = $th.hasClass("sorttable_sorted");
-            var sorted_reverse = $th.hasClass("sorttable_sorted_reverse");
+              PTL.stats.updateItemStats($td, item.total);
 
-            if (sorted || sorted_reverse) {
-              // If already sorted, fire the event only if the other order is
-              // desired.
-              if (sorted && columnSort.order === "desc")
-                $th.click();
-              else if (sorted_reverse && columnSort.order === "asc")
-                $th.click();
-            } else {
-              $th.click();
+              var ratio = item.total === 0 ? 0 : item.translated / item.total;
+              $table.find('#translated-ratio-' + code).text(ratio);
 
-              // If the sorting order was descending, fire another click event
-              if (columnSort.order === "desc")
-                $th.click();
+              $td = $table.find('#need-translation-' + code);
+              PTL.stats.updateItemStats($td, item.total - item.translated);
+
+              $td = $table.find('#suggestions-' + code);
+              PTL.stats.updateItemStats($td, item.suggestions);
+
+              $td = $table.find('#progressbar-' + code);
+              PTL.stats.updateProgressbar($td, item);
+
+              $td = $table.find('#last-activity-' + code);
+              $td.html(item.lastaction.snippet);
+              $td.attr('sorttable_customkey', now - item.lastaction.mtime);
+
+              $td = $table.find('#critical-' + code);
+              PTL.stats.updateItemStats($td, item.critical);
             }
-          }
+
+            // Sort columns based on previously-made selections
+            var columnSort = sorttable.getSortCookie($table.get(0).id);
+
+            if (columnSort !== null) {
+              var $th = $('#' + columnSort.columnId);
+              var sorted = $th.hasClass("sorttable_sorted");
+              var sorted_reverse = $th.hasClass("sorttable_sorted_reverse");
+
+              if (sorted || sorted_reverse) {
+                // If already sorted, fire the event only if the other order is
+                // desired.
+                if (sorted && columnSort.order === "desc")
+                  $th.click();
+                else if (sorted_reverse && columnSort.order === "asc")
+                  $th.click();
+              } else {
+                $th.click();
+
+                // If the sorting order was descending, fire another click event
+                if (columnSort.order === "desc")
+                  $th.click();
+              }
+            }
+	  }
 
           if (callback) {
             callback(data);
