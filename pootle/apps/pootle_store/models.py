@@ -1823,9 +1823,8 @@ def flush_goal_stats_for_tp_cache(sender, instance, **kwargs):
     # Make sure that the signal was sent when (un)applying a goal to a store.
     if isinstance(instance.content_object, Store):
         goal = instance.tag
-        store = instance.content_object
-        translation_project = instance.content_object.translation_project
-        goal.delete_cache_for_path(translation_project, store)
+        store_path = instance.content_object.pootle_path
+        goal.delete_cache_for_path(store_path)
 
 post_save.connect(flush_goal_stats_for_tp_cache, sender=Store.goals.through)
 pre_delete.connect(flush_goal_stats_for_tp_cache, sender=Store.goals.through)

@@ -333,7 +333,7 @@ class Goal(TagBase):
     def slugify(self, tag, i=None):
         return slugify_tag_name(tag)
 
-    def delete_cache_for_path(self, translation_project, store):
+    def delete_cache_for_path(self, pootle_path):
         """Delete this goal cache for a given path and upper directories.
 
         The cache is deleted for the given path, for the directories between
@@ -344,21 +344,37 @@ class Goal(TagBase):
         translation projects in the same project for the specified translation
         project.
 
-        :param translation_project: An instance of :class:`TranslationProject`.
-        :param store: An instance of :class:`Store`.
+        :param pootle_path: A string with a valid pootle path.
         """
+        # Putting the next imports at the top of the file causes circular
+        # import issues.
+        from pootle_app.models.directory import Directory
+        from pootle_store.models import Store
+
         CACHED_FUNCTIONS = ["get_raw_stats_for_path"]
 
-        if self.project_goal:
+        try:
+            path_obj = Store.objects.get(pootle_path=pootle_path)
+        except Store.DoesNotExist:
+            try:
+                path_obj = Directory.objects.get(pootle_path=pootle_path)
+            except Directory.DoesNotExist:
+                # If it is not possible to retrieve any path_obj for the
+                # provided pootle_path, then abort.
+                return
+
+        translation_project = path_obj.translation_project
+
+        if self.project_goal and isinstance(path_obj, Store):
             # Putting the next imports at the top of the file causes circular
             # import issues.
-            from pootle_store.models import Store
             if translation_project.file_style == 'gnu':
                 from pootle_app.project_tree import (get_translated_name_gnu as
                                                      get_translated_name)
             else:
                 from pootle_app.project_tree import get_translated_name
 
+        if self.project_goal:
             # Delete the cached stats for all the translation projects in the
             # same project.
             tps = translation_project.project.translationproject_set.all()
@@ -367,23 +383,27 @@ class Goal(TagBase):
             tps = [translation_project]
 
         # For each TP get the pootle_path for all the directories in between
-        # the store and TP.
+        # the path_obj and TP.
         keys = []
         for tp in tps:
-            if tp != translation_project:
-                store_path = get_translated_name(tp, store)[0]
-                try:
-                    tp_store = Store.objects.get(pootle_path=store_path)
-                except Store.DoesNotExist:
-                    # If there is no matching store in this TP then just jump
-                    # to the next TP.
-                    continue
-            else:
-                tp_store = store
+            if isinstance(path_obj, Store):
+                if tp != translation_project:
+                    store_path = get_translated_name(tp, path_obj)[0]
+                    try:
+                        tp_store = Store.objects.get(pootle_path=store_path)
+                        path_dir = tp_store.parent
+                    except Store.DoesNotExist:
+                        # If there is no matching store in this TP then just
+                        # jump to the next TP.
+                        continue
+                else:
+                    path_dir = path_obj.parent
+            elif isinstance(path_obj, Directory):
+                path_dir = path_obj
 
-            # Note: Not including tp_store in path_objs since we still don't
-            # support including units in a goal.
-            path_objs = chain([tp], tp_store.parent.trail())
+            # Note: Not including path_obj (if it is a store) in path_objs
+            # since we still don't support including units in a goal.
+            path_objs = chain([tp], path_dir.trail())
 
             for path_obj in path_objs:
                 for function_name in CACHED_FUNCTIONS:
