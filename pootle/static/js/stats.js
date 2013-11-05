@@ -160,6 +160,8 @@
                   $th.click();
               }
             }
+          } else {
+            $('#js-path-summary').click();
 	  }
 
           if (callback) {
