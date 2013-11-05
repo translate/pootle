@@ -253,7 +253,9 @@ class TreeItem(object):
 
     def update_cache(self):
         self._delete_from_cache(self._flagged_for_deletion)
-        log("%s deleted from cache" % self._flagged_for_deletion)
+        log("%s deleted from %s cache" %
+            (self._flagged_for_deletion, self.get_cachekey())
+        )
         self._flagged_for_deletion = set()
 
     def flag_for_deletion(self, *args):
