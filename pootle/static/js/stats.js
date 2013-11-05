@@ -82,33 +82,6 @@
               now = parseInt(Date.now() / 1000, 10);
           PTL.stats.updateProgressbar($('#progressbar'), data);
 
-          for (var name in data.children) {
-            var item = data.children[name],
-                code = name.replace(/\./g, '-'),
-                $td = $table.find('#total-words-' + code);
-
-            PTL.stats.updateItemStats($td, item.total);
-
-            var ratio = item.total === 0 ? 1 : item.translated / item.total;
-            $table.find('#translated-ratio-' + code).text(ratio);
-
-            $td = $table.find('#need-translation-' + code);
-            PTL.stats.updateItemStats($td, item.total - item.translated);
-
-            $td = $table.find('#suggestions-' + code);
-            PTL.stats.updateItemStats($td, item.suggestions);
-
-            $td = $table.find('#progressbar-' + code);
-            PTL.stats.updateProgressbar($td, item);
-
-            $td = $table.find('#last-activity-' + code);
-            $td.html(item.lastaction.snippet);
-            $td.attr('sorttable_customkey', now - item.lastaction.mtime);
-
-            $td = $table.find('#critical-' + code);
-            PTL.stats.updateItemStats($td, item.critical);
-          }
-
           PTL.stats.updateAction($('#action-view-all'), data.total);
           PTL.stats.updateAction($('#action-continue'),
                                  data.total - data.translated);
@@ -127,14 +100,43 @@
           PTL.stats.updateTranslationStats($('#stats-untranslated'),
                                            data.total, untranslated);
 
-          // Sort columns based on previously-made selections
-          var columnSort = sorttable.getSortCookie($table.get(0).id);
-          if (columnSort !== null) {
-            var $th = $('#' + columnSort.columnId);
-            $th.click();
+          if ($table.length) {
+            for (var name in data.children) {
+              var item = data.children[name],
+                  code = name.replace(/\./g, '-'),
+                  $td = $table.find('#total-words-' + code);
 
-            if (columnSort.order === "desc") {
+              PTL.stats.updateItemStats($td, item.total);
+
+              var ratio = item.total === 0 ? 1 : item.translated / item.total;
+              $table.find('#translated-ratio-' + code).text(ratio);
+
+              $td = $table.find('#need-translation-' + code);
+              PTL.stats.updateItemStats($td, item.total - item.translated);
+
+              $td = $table.find('#suggestions-' + code);
+              PTL.stats.updateItemStats($td, item.suggestions);
+
+              $td = $table.find('#progressbar-' + code);
+              PTL.stats.updateProgressbar($td, item);
+
+              $td = $table.find('#last-activity-' + code);
+              $td.html(item.lastaction.snippet);
+              $td.attr('sorttable_customkey', now - item.lastaction.mtime);
+
+              $td = $table.find('#critical-' + code);
+              PTL.stats.updateItemStats($td, item.critical);
+            }
+
+            // Sort columns based on previously-made selections
+            var columnSort = sorttable.getSortCookie($table.get(0).id);
+            if (columnSort !== null) {
+              var $th = $('#' + columnSort.columnId);
               $th.click();
+
+              if (columnSort.order === "desc") {
+                $th.click();
+              }
             }
           }
 
