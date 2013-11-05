@@ -33,8 +33,11 @@ from taggit.models import TagBase, GenericTaggedItemBase
 
 from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
+from pootle_app.models.signals import (post_file_upload, post_template_update,
+                                       post_vc_update)
 from pootle_misc.checks import category_names, check_names
 from pootle_misc.stats import add_percentages, get_processed_stats
+from pootle_store.signals import translation_submitted
 from pootle_store.util import (OBSOLETE, completestatssum, statssum,
                                suggestions_sum)
 
@@ -85,6 +88,8 @@ class Goal(TagBase):
     # Necessary for assigning and checking permissions.
     directory = models.OneToOneField('pootle_app.Directory', db_index=True,
                                      editable=False)
+
+    CACHED_FUNCTIONS = ["get_raw_stats_for_path"]
 
     class Meta:
         ordering = ["priority"]
@@ -190,6 +195,40 @@ class Goal(TagBase):
                     most_important = goal
 
         return most_important
+
+    @classmethod
+    def flush_all_caches_in_tp(cls, translation_project):
+        """Remove the cache for all the goals in the given translation project.
+
+        :param translation_project: An instance of :class:`TranslationProject`.
+        """
+        pootle_path = translation_project.pootle_path
+        keys = set()
+
+        for goal in cls.get_goals_for_path(pootle_path):
+            for store in goal.get_stores_for_path(pootle_path):
+                for path_obj in store.parent.trail():
+                    for function_name in cls.CACHED_FUNCTIONS:
+                        keys.add(iri_to_uri(goal.pootle_path + ":" +
+                                            path_obj.pootle_path + ":" +
+                                            function_name))
+
+            for function_name in cls.CACHED_FUNCTIONS:
+                keys.add(iri_to_uri(goal.pootle_path + ":" + pootle_path +
+                                    ":" + function_name))
+        cache.delete_many(list(keys))
+
+    @classmethod
+    def flush_all_caches_for_path(cls, pootle_path):
+        """Remove the cache for all the goals in the given path and upper
+        directories.
+
+        :param pootle_path: A string with a valid pootle path.
+        """
+        affected_goals = cls.get_goals_for_path(pootle_path)
+
+        for goal in affected_goals:
+            goal.delete_cache_for_path(pootle_path)
 
     def save(self, *args, **kwargs):
         # Putting the next import at the top of the file causes circular import
@@ -351,8 +390,6 @@ class Goal(TagBase):
         from pootle_app.models.directory import Directory
         from pootle_store.models import Store
 
-        CACHED_FUNCTIONS = ["get_raw_stats_for_path"]
-
         try:
             path_obj = Store.objects.get(pootle_path=pootle_path)
         except Store.DoesNotExist:
@@ -406,7 +443,7 @@ class Goal(TagBase):
             path_objs = chain([tp], path_dir.trail())
 
             for path_obj in path_objs:
-                for function_name in CACHED_FUNCTIONS:
+                for function_name in self.CACHED_FUNCTIONS:
                     keys.append(iri_to_uri(self.pootle_path + ":" +
                                            path_obj.pootle_path + ":" +
                                            function_name))
@@ -494,3 +531,38 @@ class ItemWithGoal(GenericTaggedItemBase):
     class Meta:
         verbose_name = "Item with goal"
         verbose_name_plural = "Items with goal"
+
+
+################################ Signal handlers ##############################
+
+def flush_goal_caches_for_unit(sender, unit, **kwargs):
+    """Flush all goals caches for the store that holds the unit.
+
+    This signal handler is called, for example, when a new translation is sent
+    or a suggestion is accepted.
+    """
+    pootle_path = unit.store.parent.pootle_path
+    Goal.flush_all_caches_for_path(pootle_path)
+
+
+translation_submitted.connect(flush_goal_caches_for_unit)
+
+
+def flush_goal_caches(sender, **kwargs):
+    """Flush all goals caches for sender if a signal is received.
+
+    This signal handler is called, for example, when the TP is updated against
+    the templates, or a new file is uploaded, or the TP is updated from VCS.
+    """
+    if kwargs['oldstats'] == kwargs['newstats']:
+        # Nothing changed, no need to flush goal cached stats.
+        return
+    else:
+        #FIXME: It is too radical to remove all the caches even if just one
+        # file was uploaded. Look at a more surgical way to perform this.
+        Goal.flush_all_caches_in_tp(sender)
+
+
+post_file_upload.connect(flush_goal_caches)
+post_template_update.connect(flush_goal_caches)
+post_vc_update.connect(flush_goal_caches)

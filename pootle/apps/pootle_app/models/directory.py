@@ -24,7 +24,6 @@ from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 from pootle_misc.util import cached_property, dictsum, getfromcache
-from pootle_store.models import Suggestion, Unit
 from pootle_store.util import (empty_quickstats, empty_completestats, statssum,
                                completestatssum, suggestions_sum)
 
@@ -172,6 +171,10 @@ class Directory(models.Model):
 
     @getfromcache
     def get_mtime(self):
+        # Putting the next import at the top of the file causes circular import
+        # issues.
+        from pootle_store.models import Unit
+
         units = Unit.objects.filter(
             store__pootle_path__startswith=self.pootle_path
         )
@@ -240,6 +243,10 @@ class Directory(models.Model):
 
     def get_suggestion_count(self):
         """Check if any child store has suggestions."""
+        # Putting the next import at the top of the file causes circular import
+        # issues.
+        from pootle_store.models import Suggestion
+
         return Suggestion.objects.filter(
             unit__store__pootle_path__startswith=self.pootle_path).count()
 
