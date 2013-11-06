@@ -20,7 +20,7 @@
 
 import os
 
-from pootle.core.populate_db import require_english
+from pootle.core.initdb import require_english
 from pootle.tests import PootleTestCase
 
 from pootle_project.models import Project
