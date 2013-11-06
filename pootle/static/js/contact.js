@@ -2,16 +2,18 @@
 
   window.PTL = window.PTL || {};
 
-  PTL.contact = {
-
+  var el = {
     wrapper: '#js-contact',
     form: '#js-contact form',
-    formSent: '#js-sent',
+    formSent: '#js-sent'
+  };
+
+  PTL.contact = {
 
     onSubmit: function (e) {
       e.preventDefault();
 
-      var $form = $(PTL.contact.form),
+      var $form = $(sel.form),
           url = $form.attr('action'),
           data = $form.serializeObject(),
           captchaCallbacks = {
@@ -36,8 +38,8 @@
 
     onSuccess: function (xhr) {
       // Display thank you message
-      $(PTL.contact.wrapper).hide();
-      $(PTL.contact.formSent).show();
+      $(sel.wrapper).hide();
+      $(sel.formSent).show();
     },
 
     onError: function (xhr) {
@@ -69,6 +71,6 @@
 
   };
 
-  $(document).on('submit', '#js-contact form', PTL.contact.onSubmit);
+  $(document).on('submit', sel.form, PTL.contact.onSubmit);
 
 }(jQuery));
