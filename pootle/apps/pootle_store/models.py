@@ -446,7 +446,7 @@ class Unit(models.Model, base.TranslationUnit):
         # Check if unit currently being deleted is the one referenced in
         # last_action
         la = get_cached_value(self.store, 'get_last_action')
-        if not la or la.id == self.id:
+        if not la or not 'id' in la or la['id'] == self.id:
             self.store.flag_for_deletion(CachedMethods.LAST_ACTION)
 
         super(Unit, self).delete(*args, **kwargs)
