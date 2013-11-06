@@ -140,11 +140,10 @@ def make_project_item(translation_project):
 
 
 def make_language_item(translation_project):
-    item = make_generic_item(translation_project.language)
+    item = make_generic_item(translation_project)
     item.update({
         'icon': 'language',
-        'code': translation_project.code,
-        'href': translation_project.get_absolute_url(),
+        'title': translation_project.language.name,
     })
     return item
 
