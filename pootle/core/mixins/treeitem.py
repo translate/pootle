@@ -60,9 +60,11 @@ class CachedMethods(object):
 
 
 class TreeItem(object):
-    children = None
-    initialized = False
-    _flagged_for_deletion = set()
+    def __init__(self, *args, **kwargs):
+        self.children = None
+        self.initialized = False
+        self._flagged_for_deletion = set()
+        super(TreeItem, self).__init__()
 
     def get_children(self):
         """This method will be overridden in descendants"""

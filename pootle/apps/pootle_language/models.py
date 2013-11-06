@@ -119,6 +119,9 @@ class Language(models.Model, TreeItem):
     def __unicode__(self):
         return u"%s - %s" % (self.name, self.code)
 
+    def __init__(self, *args, **kwargs):
+        super(Language, self).__init__(*args, **kwargs)
+
     def __repr__(self):
         return u'<%s: %s>' % (self.__class__.__name__, self.fullname)
 

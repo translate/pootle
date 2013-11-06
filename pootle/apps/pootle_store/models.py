@@ -996,7 +996,7 @@ class StoreManager(RelatedManager):
         return self.get(pootle_path=pootle_path)
 
 
-class Store(models.Model, base.TranslationStore, TreeItem):
+class Store(models.Model, TreeItem, base.TranslationStore):
     """A model representing a translation store (i.e. a PO or XLIFF file)."""
     UnitClass = Unit
     Name = "Model Store"
@@ -1071,6 +1071,9 @@ class Store(models.Model, base.TranslationStore, TreeItem):
             except Exception, e:
                 logging.debug("failed to parse mtime: %s", e)
         return mtime
+
+    def __init__(self, *args, **kwargs):
+        super(Store, self).__init__(*args, **kwargs)
 
     def __unicode__(self):
         return unicode(self.pootle_path)
