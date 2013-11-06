@@ -244,6 +244,9 @@ class TranslationProject(models.Model, TreeItem):
     def __unicode__(self):
         return self.pootle_path
 
+    def __init__(self, *args, **kwargs):
+        super(TranslationProject, self).__init__(*args, **kwargs)
+
     def save(self, *args, **kwargs):
         created = self.id is None
         project_dir = self.project.get_real_path()

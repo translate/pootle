@@ -1026,7 +1026,7 @@ class StoreManager(RelatedManager):
         return self.get(pootle_path=pootle_path)
 
 
-class Store(models.Model, base.TranslationStore, TreeItem):
+class Store(models.Model, TreeItem, base.TranslationStore):
     """A model representing a translation store (i.e. a PO or XLIFF file)."""
 
     file = TranslationStoreField(upload_to="fish", max_length=255, storage=fs,
@@ -1153,6 +1153,9 @@ class Store(models.Model, base.TranslationStore, TreeItem):
     @property
     def code(self):
         return self.name.replace('.', '-')
+
+    def __init__(self, *args, **kwargs):
+        super(Store, self).__init__(*args, **kwargs)
 
     def __unicode__(self):
         return unicode(self.pootle_path)
