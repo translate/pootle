@@ -42,6 +42,7 @@ from pootle_statistics.models import Submission
 from pootle_store.models import Store, Unit, QualityCheck, Suggestion
 from pootle_store.util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED
 from pootle_translationproject.models import TranslationProject
+from pootle_misc.util import datetime_min
 
 
 class Command(PootleCommand):
@@ -197,7 +198,7 @@ class Command(PootleCommand):
             'get_total_wordcount': 0,
             'get_translated_wordcount': 0,
             'get_fuzzy_wordcount': 0,
-            'get_mtime': 0
+            'get_mtime': datetime_min
         }
         stores = Store.objects.all()
         for store in stores:
