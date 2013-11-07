@@ -36,7 +36,7 @@ Next release (2.5.1) estimated November 2013
 Estimated release April 2014
 ----------------------------
 
-- Move to Django 1.5 - remove anything keeping us on Django 1.4.
+- Move to Django 1.5/1.6 - remove anything keeping us on Django 1.4.
 - Live cross project Translation Memory (LibreOffice).
 - Stats speedup - work on Stats speedups (LibreOffice).
 - Concordance searching (LibreOffice).
@@ -68,7 +68,6 @@ Estimated release April 2014
 Estimated release October 2014
 ------------------------------
 
-- Move to Django 1.6.
 - Substring matching in TM.
 - Variable abstraction so that we can leverage translations from other projects
   that might not match because of differences in variables placeable e.g.
