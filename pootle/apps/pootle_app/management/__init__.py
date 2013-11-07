@@ -20,8 +20,6 @@
 
 import logging
 
-from translate.__version__ import build as code_tt_buildversion
-
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.db.models.signals import pre_delete, post_delete
@@ -30,6 +28,8 @@ from django.db.models.signals import pre_delete, post_delete
 ################################ Signal handlers ##############################
 
 permission_queryset = None
+
+
 def fix_permission_content_type_pre(sender, instance, **kwargs):
     if instance.name == 'pootle' and instance.model == "":
         logging.debug("Fixing permissions content types")
