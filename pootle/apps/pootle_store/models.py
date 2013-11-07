@@ -35,6 +35,7 @@ from django.core.urlresolvers import reverse
 from django.db import models, IntegrityError
 from django.db.models.signals import post_delete
 from django.db.transaction import commit_on_success
+from django.db.models import Max
 from django.utils import timezone, tzinfo
 from django.utils.translation import ugettext_lazy as _
 from django.utils.http import urlquote
@@ -1648,7 +1649,10 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     def _get_last_action(self, submission=None):
         if submission is None:
             try:
-                sub = Submission.objects.filter(unit__store=self).latest()
+                unit = Unit.objects.filter(store=self) \
+                    .annotate(max_time=models.Max('submitted_on'))[0]
+                sub = Submission.objects.get(unit=unit, creation_time=unit.max_time)
+
             except Submission.DoesNotExist:
                 return  {'id': 0, 'mtime': 0, 'snippet': ''}
         else:
