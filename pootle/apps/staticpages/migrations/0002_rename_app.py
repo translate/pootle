@@ -2,12 +2,28 @@
 import datetime
 from south.db import db
 from south.v2 import SchemaMigration
-from django.db import models
+from django.db import connection, models
 
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        pass
+        if 'legalpages_legalpage' in connection.introspection.table_names():
+            if 'staticpages_legalpage' in connection.introspection.table_names():
+                # Deleting model 'LegalPage' from 'legalpages' app.
+                db.delete_table('legalpages_legalpage')
+
+                if not db.dry_run:
+                    content_types = orm['contenttypes.ContentType'].objects \
+                    .filter(app_label='legalpages')
+                    content_types.delete()
+            else:
+                # Migrate to the new app name, including content types
+                db.rename_table('legalpages_legalpage', 'staticpages_legalpage')
+
+                if not db.dry_run:
+                    content_types = orm['contenttypes.ContentType'].objects \
+                    .filter(app_label='legalpages')
+                    content_types.update(app_label='staticpages')
 
     def backwards(self, orm):
         pass
