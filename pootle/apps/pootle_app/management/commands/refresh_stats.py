@@ -89,22 +89,27 @@ class Command(PootleCommand):
         logging.info('Initializing stores...')
         self._init_stores()
 
-        logging.info('Setting mtime values for all stores...')
-        self._set_mtime_stats(timeout)
-        logging.info('Setting last action values for all stores...')
-        self._set_last_action_stats(timeout)
-        logging.info('Setting wordcount stats values for all stores...')
-        self._set_wordcount_stats(timeout)
         logging.info('Setting quality check stats values for all stores...')
         self._set_qualitycheck_stats(timeout)
+        logging.info('Setting last action values for all stores...')
+        self._set_last_action_stats(timeout)
+        logging.info('Setting mtime values for all stores...')
+        self._set_mtime_stats(timeout)
+        logging.info('Setting wordcount stats values for all stores...')
+        self._set_wordcount_stats(timeout)
         logging.info('Setting suggestion count values for all stores...')
         self._set_suggestion_stats(timeout)
 
-        logging.info('Setting empty values for all stores...')
+        logging.info('Setting empty values for other cache entries...')
         self._set_empty_values(timeout)
 
         logging.info('Refreshing directories stats...')
+
+        lang_query = Language.objects.all()
+        prj_query = Project.objects.all()
+
         for lang in lang_query:
+            # Calculate stats for all directories and translation projects
             lang.get_stats()
             lang.get_checks()
 
@@ -140,7 +145,7 @@ class Command(PootleCommand):
 
             stats[item['name']] = item['count']
 
-        if saved:
+        if saved and saved != item['unit__store']:
             self._set_qualitycheck_stats_cache(stats, key, timeout)
 
     def _set_wordcount_stats_cache(self, stats, key, timeout):
@@ -209,15 +214,16 @@ class Command(PootleCommand):
             sub = Submission.objects.select_related('unit__store') \
                                     .get(id=s_id['max_id'])
             if sub.unit:
-                key = iri_to_uri(sub.unit.store.get_cachekey() +
-                                 ':get_last_action')
+                store_key = sub.unit.store.get_cachekey()
+                key = iri_to_uri(store_key + ':get_last_action')
                 logging.info('Set last action stats for %s' % key)
                 res = {
+                    'id': sub.unit.id,
                     'mtime': int(time.mktime(sub.creation_time.timetuple())),
                     'snippet': sub.get_submission_message()
                 }
                 cache.set(key, res, timeout)
-                del self.cache_values[key]['get_last_action']
+                del self.cache_values[store_key]['get_last_action']
 
     def _set_suggestion_stats(self, timeout):
         """Check if any unit in the store has suggestions"""
