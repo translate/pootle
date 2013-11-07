@@ -68,8 +68,8 @@
           type: 'ajax'
         },
         callbacks: {
-          parseAjax: function (jqXHR) {
-            jqXHR.responseText = jQuery.parseJSON(jqXHR.responseText).form;
+          parseAjax: function (mfpResponse) {
+            mfpResponse.data = mfpResponse.data.form;
           }
         },
         modal: true
