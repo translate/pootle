@@ -1300,6 +1300,10 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 obsolete_dbids = [self.dbid_index.get(uid)
                                   for uid in old_ids - new_ids]
                 for unit in self.findid_bulk(obsolete_dbids):
+                    # Use the same (parent) object since units will accumulate
+                    # the list of cache attributes to clear in the parent Store
+                    # object
+                    unit.store = self
                     if unit.istranslated():
                         unit.makeobsolete()
                         unit.save()
@@ -1340,6 +1344,10 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 common_dbids = list(common_dbids)
                 system = User.objects.get_system_user().get_profile()
                 for unit in self.findid_bulk(common_dbids):
+                    # Use the same (parent) object since units will accumulate
+                    # the list of cache attributes to clear in the parent Store
+                    # object
+                    unit.store = self
                     newunit = store.findid(unit.getid())
                     old_target_f = unit.target_f
 
