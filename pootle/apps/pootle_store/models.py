@@ -33,9 +33,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import FileSystemStorage
 from django.core.urlresolvers import reverse
 from django.db import models, IntegrityError
-from django.db.models.signals import post_delete, post_save
+from django.db.models.signals import post_delete
 from django.db.transaction import commit_on_success
-from django.dispatch import receiver
 from django.utils import timezone, tzinfo
 from django.utils.translation import ugettext_lazy as _
 from django.utils.http import urlquote
@@ -878,6 +877,8 @@ class Unit(models.Model, base.TranslationUnit):
             self.target = suggestion.target
 
             suggestion_user = suggestion.user
+            self.submitted_by = suggestion_user
+            self.submitted_on = timezone.now()
 
             # It is important to first delete the suggestion before calling
             # ``save``, otherwise the quality checks won't be properly updated
@@ -903,9 +904,8 @@ class Unit(models.Model, base.TranslationUnit):
 
             # For now assume the target changed
             # TODO: check all fields for changes
-            creation_time = timezone.now()
             sub = Submission(
-                    creation_time=creation_time,
+                    creation_time=self.submitted_on,
                     translation_project=translation_project,
                     submitter=suggestion.user,
                     from_suggestion=suggstat,
@@ -965,25 +965,10 @@ class Unit(models.Model, base.TranslationUnit):
             result = []
         return result
 
-
-@receiver(post_save, sender=Submission)
-def update_unit_submission(sender, instance, **kwargs):
-    # XXX: watch for possible bottlenecks and consider moving to a
-    # background worker process if necessary
-    if instance.field in [SubmissionFields.TARGET, SubmissionFields.STATE]:
-        instance.unit.submitted_by = instance.submitter
-        instance.unit.submitted_on = instance.creation_time
-        instance.unit.save()
-    elif instance.field == SubmissionFields.COMMENT:
-        instance.unit.commented_by = instance.submitter
-        instance.unit.commented_on = instance.creation_time
-        instance.unit.save()
-
-
 ###################### Store ###########################
 
 
-# custom storage otherwise djago assumes all files are uploads headed to
+# custom storage otherwise django assumes all files are uploads headed to
 # media dir
 fs = FileSystemStorage(location=settings.PODIRECTORY)
 
@@ -1374,10 +1359,15 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 
                     if changed:
                         create_submission = unit._target_updated
+                        # Set unit fields if submission should be created
+                        if create_submission:
+                            unit.submitted_by = system
+                            unit.submitted_on = timezone.now()
                         unit.save()
+                        # Create Submission after unit saved
                         if create_submission:
                             sub = Submission(
-                                creation_time=timezone.now(),
+                                creation_time=unit.submitted_on,
                                 translation_project=self.translation_project,
                                 submitter=system,
                                 unit=unit,
