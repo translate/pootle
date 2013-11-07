@@ -17,6 +17,7 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
+import logging
 import os
 
 # This must be run before importing Django.
@@ -28,5 +29,9 @@ from pootle.core.initdb import initdb
 
 
 class Command(NoArgsCommand):
+    help = 'Populates the database with initial values: users, projects, ...'
+
     def handle_noargs(self, **options):
+        logging.info('Populating the database.')
         initdb()
+        logging.info('Succesfully populated the database.')
