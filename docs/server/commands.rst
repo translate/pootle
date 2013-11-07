@@ -131,8 +131,6 @@ require less on-demand calculation of expensive statistics.
 - Calculate quality checks so that they appear on the expanded overview page
   without a delay.
 
-- Update :doc:`full text search index <indexing>` (Lucene or Xapian).
-
 
 .. _commands#sync_stores:
 
