@@ -1742,9 +1742,14 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     def _get_last_action(self, submission=None):
         if submission is None:
             try:
-                unit = Unit.objects.filter(store=self) \
-                    .annotate(max_time=models.Max('submitted_on'))[0]
-                sub = Submission.objects.get(unit=unit, creation_time=unit.max_time)
+                units = Unit.objects.filter(store=self) \
+                    .annotate(max_time=models.Max('submitted_on'))
+                if len(units) > 0:
+                    sub = Submission.objects.filter(unit=units[0],
+                                                    creation_time=units[0].max_time) \
+                                            .latest()
+                else:
+                    raise Submission.DoesNotExist
 
             except Submission.DoesNotExist:
                 return  {'id': 0, 'mtime': 0, 'snippet': ''}
