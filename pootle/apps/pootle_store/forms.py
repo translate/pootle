@@ -273,7 +273,11 @@ def unit_form_factory(language, snplurals=None, request=None):
                     self.instance._save_action = TRANSLATION_DELETED
 
             if is_fuzzy != (old_state == FUZZY):
-                self.instance.store.flag_for_deletion(CachedMethods.FUZZY)
+                # when Unit toggles its FUZZY state the number of translated words
+                # also changes
+                self.instance.store.flag_for_deletion(CachedMethods.FUZZY,
+                                                      CachedMethods.TRANSLATED,
+                                                      CachedMethods.LAST_ACTION)
 
             if old_state != new_state:
                 self.instance._state_updated = True
