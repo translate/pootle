@@ -129,7 +129,8 @@
             }
 
             // Sort columns based on previously-made selections
-            var columnSort = sorttable.getSortCookie($table.get(0).id);
+            var sortCookie = $table.data('sort-cookie'),
+                columnSort = sorttable.getSortCookie(sortCookie);
             if (columnSort !== null) {
               var $th = $('#' + columnSort.columnId);
               $th.click();

@@ -101,7 +101,7 @@ sorttable = {
 
         dean_addEvent(headrow[i],"click", function(e) {
 
-          var tableId = $(this).parents("table").attr("id");
+          var cookieId = $(table).data('sort-cookie');
 
           if (this.className.search(/\bsorttable_sorted\b/) != -1) {
             // if we're already sorted by this column, just 
@@ -116,7 +116,7 @@ sorttable = {
             this.appendChild(sortrevind);
 
             // Store current sorting criteria in a cookie
-            sorttable.setSortCookie(tableId, this.id, "desc");
+            sorttable.setSortCookie(cookieId, this.id, "desc");
 
             return;
           }
@@ -134,7 +134,7 @@ sorttable = {
             this.appendChild(sortfwdind);
 
             // Store current sorting criteria in a cookie
-            sorttable.setSortCookie(tableId, this.id, "asc");
+            sorttable.setSortCookie(cookieId, this.id, "asc");
 
             return;
           }
@@ -142,7 +142,7 @@ sorttable = {
           sorttable.doSort(this);
 
           // Store current sorting criteria in a cookie
-          sorttable.setSortCookie(tableId, this.id, "asc");
+          sorttable.setSortCookie(cookieId, this.id, "asc");
 
         });
       }
@@ -369,23 +369,23 @@ sorttable = {
   },
 
   /*
-   * Saves the sorting order for ``tableId`` table's ``theadId`` column
+   * Saves the sorting order of `theadId` column in `cookieId`
    */
-  setSortCookie: function (tableId, theadId, sortOrder) {
-    if (!tableId || !theadId) {
+  setSortCookie: function (cookieId, theadId, sortOrder) {
+    if (!cookieId || !theadId) {
       return;
     }
 
     var cookieData = JSON.stringify({columnId: theadId,
                                      order: sortOrder});
-    $.cookie(tableId, cookieData, {path: '/'});
+    $.cookie(cookieId, cookieData, {path: '/'});
   },
 
   /*
-   * Retrieves the sorting order for ``tableId`` table's ``theadId`` column
+   * Retrieves the sorting order for `theadId` column in `cookieId`
    */
-  getSortCookie: function (tableId) {
-    return JSON.parse($.cookie(tableId));
+  getSortCookie: function (cookieId) {
+    return JSON.parse($.cookie(cookieId));
   },
 
 }
