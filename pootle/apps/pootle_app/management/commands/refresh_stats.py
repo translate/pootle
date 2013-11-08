@@ -25,20 +25,20 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 import logging
 import time
 
-from django.db.models import Count, Max, Sum
 from django.conf import settings
 from django.core.cache import cache
-from django.utils.encoding import iri_to_uri
 from django.core.urlresolvers import set_script_prefix
+from django.db.models import Count, Max, Sum
+from django.utils.encoding import iri_to_uri
 
-from pootle_app.management.commands import PootleCommand
 from pootle_language.models import Language
+from pootle_misc.util import datetime_min
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
 from pootle_store.models import Store, Unit, QualityCheck, Suggestion
 from pootle_store.util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED
-from pootle_translationproject.models import TranslationProject
-from pootle_misc.util import datetime_min
+
+from . import PootleCommand
 
 
 class Command(PootleCommand):
@@ -149,9 +149,9 @@ class Command(PootleCommand):
 
     def _set_wordcount_stats(self, timeout):
         res = Unit.objects.filter(state__gt=OBSOLETE) \
-                            .values('store', 'state') \
-                            .annotate(wordcount=Sum('source_wordcount')) \
-                            .order_by('store', 'state')
+                          .values('store', 'state') \
+                          .annotate(wordcount=Sum('source_wordcount')) \
+                          .order_by('store', 'state')
 
         saved_id = None
         saved_key = None
@@ -180,7 +180,7 @@ class Command(PootleCommand):
         self.cache_values = {}
         for store in Store.objects.all():
             self.cache_values[store.get_cachekey()] = {
-                'get_last_action': {'id': 0 , 'mtime': 0, 'snippet': ''},
+                'get_last_action': {'id': 0, 'mtime': 0, 'snippet': ''},
                 'get_suggestion_count': 0,
                 'get_checks': {},
                 'get_total_wordcount': 0,
@@ -234,5 +234,3 @@ class Command(PootleCommand):
             logging.info('Set mtime for %s' % key)
             cache.set(key + ':get_mtime', item['max_mtime'], timeout)
             del self.cache_values[key]['get_mtime']
-
-
