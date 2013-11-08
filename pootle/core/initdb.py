@@ -339,8 +339,11 @@ def create_default_languages():
                 'fullname': tk_lang.fullname,
                 'nplurals': tk_lang.nplurals,
                 'pluralequation': tk_lang.pluralequation,
-                'specialchars': tk_lang.specialchars,
             }
+            try:
+                criteria['specialchars'] = tk_lang.specialchars
+            except AttributeError:
+                pass
             lang, created = Language.objects.get_or_create(**criteria)
             if code in default_languages:
                 lang.save()
