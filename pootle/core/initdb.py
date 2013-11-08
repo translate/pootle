@@ -318,17 +318,10 @@ def create_default_projects():
 
 
 def create_default_languages():
-    """Create the default languages.
-
-    We afford this privilege to languages with reasonably complete interface
-    translations for Pootle.
-    """
+    """Create the default languages."""
     from translate.lang import data, factory
 
     from pootle_language.models import Language
-
-    default_languages = ("af", "ak", "ht", "nso", "ve", "wo", "zh_cn", "zh_hk",
-                         "zh_tw", "ca_valencia", "son", "lg", "gd")
 
     # import languages from toolkit
     for code in data.languages.keys():
@@ -345,8 +338,6 @@ def create_default_languages():
             except AttributeError:
                 pass
             lang, created = Language.objects.get_or_create(**criteria)
-            if code in default_languages:
-                lang.save()
         except:
             pass
 
