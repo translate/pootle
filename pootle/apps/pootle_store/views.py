@@ -244,8 +244,14 @@ def get_step_query(request, units_queryset):
             units_queryset = match_queryset
 
     if 'search' in request.GET and 'sfields' in request.GET:
+        # Accept `sfields` to be a comma-separated string of fields (#46)
+        GET = request.GET.copy()
+        sfields = GET['sfields']
+        if isinstance(sfields, unicode) and u',' in sfields:
+            GET.setlist('sfields', sfields.split(u','))
+
         # use the search form for validation only
-        search_form = make_search_form(request.GET)
+        search_form = make_search_form(GET)
 
         if search_form.is_valid():
             units_queryset = get_search_step_query(search_form, units_queryset)
