@@ -50,28 +50,28 @@ class Command(PootleCommand):
         super(Command, self).handle_noargs(**options)
 
     def handle_all_stores(self, translation_project, **options):
+        # TODO use the faster method
         translation_project.flush_cache()
         translation_project.get_stats()
         translation_project.get_mtime()
-        translation_project.get_checks()
 
     def handle_store(self, store, **options):
+        # TODO use the faster method
         store.flush_cache()
         store.get_stats()
         store.get_mtime()
-        store.get_checks()
 
     def handle_language(self, lang, **options):
+        # TODO use the faster method
         lang.flush_cache(False)
         lang.get_stats()
         lang.get_mtime()
-        lang.get_checks()
 
     def handle_project(self, prj, **options):
+        # TODO use the faster method
         prj.flush_cache(False)
         prj.get_stats()
         prj.get_mtime()
-        prj.get_checks()
 
     def handle_all(self, **options):
         timeout = settings.OBJECT_CACHE_TIMEOUT
@@ -100,12 +100,10 @@ class Command(PootleCommand):
 
         for lang in lang_query:
             # Calculate stats for all directories and translation projects
-            lang.get_stats()
-            lang.get_checks()
+            lang.refresh_stats()
 
         for prj in prj_query:
-            prj.get_stats()
-            prj.get_checks()
+            prj.refresh_stats(False)
 
     def _set_qualitycheck_stats_cache(self, stats, key, timeout):
         if key:

@@ -198,6 +198,24 @@ class TreeItem(object):
 
         return result
 
+    def refresh_stats(self, include_children=True):
+        """refresh stats for self and for children"""
+        self.initialize_children()
+
+        if include_children:
+            for item in self.children:
+                item.refresh_stats()
+
+        self.flush_cache(False)
+
+        self.get_total_wordcount()
+        self.get_translated_wordcount()
+        self.get_fuzzy_wordcount()
+        self.get_suggestion_count()
+        self.get_last_action()
+        self.get_checks()
+        self.get_mtime()
+
     @getfromcache
     @statslog
     def get_checks(self):
@@ -246,18 +264,18 @@ class TreeItem(object):
         return self.get_translate_url(check=critical)
 
     def _delete_from_cache(self, keys):
+        itemkey = self.get_cachekey()
+        for key in keys:
+            cachekey = iri_to_uri(itemkey + ":" + key)
+            cache.delete(cachekey)
+        log("%s deleted from %s cache" % (keys, itemkey))
+
         parent = self.get_parent()
         if parent:
             parent._delete_from_cache(keys)
-        for key in keys:
-            cachekey = iri_to_uri(self.get_cachekey() + ":" + key)
-            cache.delete(cachekey)
 
     def update_cache(self):
         self._delete_from_cache(self._flagged_for_deletion)
-        log("%s deleted from %s cache" %
-            (self._flagged_for_deletion, self.get_cachekey())
-        )
         self._flagged_for_deletion = set()
 
     def flag_for_deletion(self, *args):
