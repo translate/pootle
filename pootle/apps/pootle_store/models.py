@@ -1746,20 +1746,16 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     def _get_last_action(self, submission=None):
         if submission is None:
             try:
-                sub = None
-
                 max_unit = Unit.objects.filter(store=self) \
                     .aggregate(max_time=models.Max('submitted_on'))
                 max_time = max_unit['max_time']
                 units = Unit.objects.filter(store=self, submitted_on=max_time)
-                if len(units) > 0:
+                try:
                     sub = Submission.simple_objects \
                                     .filter(unit=units[0]) \
-                                    .latest()
-
-                if sub is None:
+                                    .order_by('-creation_time')[0]
+                except IndexError:
                     raise Submission.DoesNotExist
-
             except Submission.DoesNotExist:
                 return  {'id': 0, 'mtime': 0, 'snippet': ''}
         else:
