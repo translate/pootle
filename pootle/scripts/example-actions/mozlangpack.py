@@ -36,8 +36,7 @@ from django.conf import settings
 from pootle.scripts.actions import DownloadAction
 from pootle_store.util import absolute_real_path
 
-from moztarball import (AURORA, MozillaAction, getLogger, tempdir, get_phases,
-                        merge_po2moz)
+from moztarball import AURORA, MozillaAction, getLogger, tempdir, merge_po2moz
 from buildxpi import build_xpi
 
 
@@ -56,99 +55,91 @@ class MozillaBuildLangpackAction(MozillaAction, DownloadAction):
             language, project, vc_root, **kwargs):
         """Generate a Mozilla language pack XPI."""
 
-        with tempdir() as podir:
+        with tempdir() as l10ndir:
             try:
-                get_phases(root, vc_root, podir, language, project)
-            except (EnvironmentError, shutil.Error) as e:
+                merge_po2moz(vc_root, root, l10ndir, language, project)
+            except EnvironmentError as e:
                 logger.debug_exception(e)
                 self.set_error(e)
                 return
 
-            with tempdir() as l10ndir:
-                try:
-                    merge_po2moz(vc_root, podir, l10ndir, language, project)
-                except EnvironmentError as e:
-                    logger.debug_exception(e)
-                    self.set_error(e)
-                    return
+            source = os.path.join(vc_root, AURORA)
 
-                source = os.path.join(vc_root, AURORA)
+            def copyfile(filename):
+                """Copy a file from VC source to L10n build directory"""
+                split = filename.find(os.sep)
+                sourcefile = os.path.join(source, filename[:split],
+                                          'locales/en-US',
+                                          filename[split + 1:])
+                if os.path.exists(sourcefile):
+                    destdir = os.path.join(l10ndir, language,
+                                           os.path.dirname(filename))
+                    basename = os.path.basename(filename)
+                    if not os.path.isdir(destdir):
+                        logger.debug("creating '%s' directory", destdir)
+                        os.makedirs(destdir)
+                    logger.debug("copying '%s' to '%s'", sourcefile,
+                                 os.path.join(destdir, basename))
+                    shutil.copy2(sourcefile, destdir)
+                else:
+                    logger.warning('unable to find %s', sourcefile)
 
-                def copyfile(filename):
-                    """Copy a file from VC source to L10n build directory"""
-                    split = filename.find(os.sep)
-                    sourcefile = os.path.join(source, filename[:split],
-                                              'locales/en-US',
-                                              filename[split + 1:])
-                    if os.path.exists(sourcefile):
-                        destdir = os.path.join(l10ndir, language,
-                                               os.path.dirname(filename))
-                        basename = os.path.basename(filename)
-                        if not os.path.isdir(destdir):
-                            logger.debug("creating '%s' directory", destdir)
-                            os.makedirs(destdir)
-                        logger.debug("copying '%s' to '%s'", sourcefile,
-                                     os.path.join(destdir, basename))
-                        shutil.copy2(sourcefile, destdir)
-                    else:
-                        logger.warning('unable to find %s', sourcefile)
+            def copyfileifmissing(filename):
+                """Copy a file only if needed."""
+                destfile = os.path.join(l10ndir, language, 'toolkit',
+                                        filename)
+                if not os.path.exists(destfile):
+                    copyfile(filename)
 
-                def copyfileifmissing(filename):
-                    """Copy a file only if needed."""
-                    destfile = os.path.join(l10ndir, language, 'toolkit',
-                                            filename)
-                    if not os.path.exists(destfile):
-                        copyfile(filename)
+            try:
+                # from mozilla-l10n/.ttk/default/build.sh
+                copyfileifmissing('toolkit/chrome/mozapps/help/'
+                                  'welcome.xhtml')
+                copyfileifmissing('toolkit/chrome/mozapps/help/'
+                                  'help-toc.rdf')
+                copyfile('browser/firefox-l10n.js')
+                copyfile('browser/profile/chrome/userChrome-example.css')
+                copyfile('browser/profile/chrome/userContent-example.css')
+                copyfileifmissing('toolkit/chrome/global/intl.css')
+                # This one needs special approval but we need it
+                # to pass and compile
+                copyfileifmissing('browser/searchplugins/list.txt')
 
-                try:
-                    # from mozilla-l10n/.ttk/default/build.sh
-                    copyfileifmissing('toolkit/chrome/mozapps/help/'
-                                      'welcome.xhtml')
-                    copyfileifmissing('toolkit/chrome/mozapps/help/'
-                                      'help-toc.rdf')
-                    copyfile('browser/firefox-l10n.js')
-                    copyfile('browser/profile/chrome/userChrome-example.css')
-                    copyfile('browser/profile/chrome/userContent-example.css')
-                    copyfileifmissing('toolkit/chrome/global/intl.css')
-                    # This one needs special approval but we need it
-                    # to pass and compile
-                    copyfileifmissing('browser/searchplugins/list.txt')
+                with tempdir() as xpidir:
 
-                    with tempdir() as xpidir:
+                    # Attempting to run build_xpi concurrently can fail,
+                    # so lock it
+                    lock_filename = os.path.join(source,
+                                                 ".langpack_action_lock")
+                    lock = open(lock_filename, "w")
+                    fcntl.flock(lock.fileno(), fcntl.LOCK_EX)
 
-                        # Attempting to run build_xpi concurrently can fail,
-                        # so lock it
-                        lock_filename = os.path.join(source,
-                                                     ".langpack_action_lock")
-                        lock = open(lock_filename, "w")
-                        fcntl.flock(lock.fileno(), fcntl.LOCK_EX)
+                    xpifile = build_xpi(l10nbase=l10ndir, srcdir=source,
+                                        outputdir=xpidir, langs=[language],
+                                        product='browser')[0]
 
-                        xpifile = build_xpi(l10nbase=l10ndir, srcdir=source,
-                                            outputdir=xpidir, langs=[language],
-                                            product='browser')[0]
-
-                        if xpifile:
-                            xpiname = '%s-%s.xpi' %(project, language)
-                            newname = os.path.join(root, tpdir, xpiname)
-                            logger.debug("copying '%s' to '%s'",
-                                         xpifile, newname)
-                            shutil.move(xpifile, newname)
-                            self.set_error(self.set_download_file(path,
-                                                                  newname))
-                            os.remove(newname)
+                    if xpifile:
+                        xpiname = '%s-%s.xpi' %(project, language)
+                        newname = os.path.join(root, tpdir, xpiname)
+                        logger.debug("copying '%s' to '%s'",
+                                     xpifile, newname)
+                        shutil.move(xpifile, newname)
+                        self.set_error(self.set_download_file(path,
+                                                              newname))
+                        os.remove(newname)
 
 
-                        self.set_output(_("Finished building the language "
-                                          "pack, click on the download "
-                                          "link to download it."))
+                    self.set_output(_("Finished building the language "
+                                      "pack, click on the download "
+                                      "link to download it."))
 
-                        fcntl.flock(lock.fileno(), fcntl.LOCK_UN)
-                        lock.close()
+                    fcntl.flock(lock.fileno(), fcntl.LOCK_UN)
+                    lock.close()
 
-                except (EnvironmentError, CalledProcessError) as e:
-                    logger.debug_exception(e)
-                    self.set_error(e)
-                    return
+            except (EnvironmentError, CalledProcessError) as e:
+                logger.debug_exception(e)
+                self.set_error(e)
+                return
 
 
 MozillaBuildLangpackAction.moztar = MozillaBuildLangpackAction(
