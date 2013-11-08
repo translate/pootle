@@ -1,6 +1,7 @@
 {% load i18n locale %}
 <table class="sortable stats" id="{{ table.id }}" cellpadding="5"
-cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
+  cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}"
+  dir="{% locale_dir %}" data-sort-cookie="browser-sorting-pref">
   <thead>
     <tr>
       {% for th in table.headings %}
