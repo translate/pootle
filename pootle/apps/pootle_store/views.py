@@ -578,7 +578,7 @@ def get_units(request):
         }
     }
 
-    if request.GET.get('pager', False):
+    if request.GET.get('initial', False):
         try:
             pager = page_list[0]
             response['pager'].update({
