@@ -49,18 +49,17 @@ class PootleCommand(NoArgsCommand):
             logging.info(u"Running %s over %s", self.name, tp)
             try:
                 self.handle_translation_project(tp, **options)
-            except Exception as e:
-                logging.error(u"Failed to run %s over %s:\n%s",
-                              self.name, tp, e)
+            except Exception:
+                logging.exception(u"Failed to run %s over %s.", self.name, tp)
                 return
 
         if not pootle_path and hasattr(self, "handle_all_stores"):
             logging.info(u"Running %s over %s's files", self.name, tp)
             try:
                 self.handle_all_stores(tp, **options)
-            except Exception as e:
-                logging.error(u"Failed to run %s over %s's files\n%s",
-                              self.name, tp, e)
+            except Exception:
+                logging.exception(u"Failed to run %s over %s's files.",
+                                  self.name, tp)
                 return
         elif hasattr(self, "handle_store"):
             store_query = tp.stores.all()
@@ -74,9 +73,9 @@ class PootleCommand(NoArgsCommand):
                              self.name, store.pootle_path)
                 try:
                     self.handle_store(store, **options)
-                except Exception as e:
-                    logging.error(u"Failed to run %s over %s:\n%s",
-                                  self.name, store.pootle_path, e)
+                except Exception:
+                    logging.exception(u"Failed to run %s over %s.", self.name,
+                                      store.pootle_path)
 
     def handle_noargs(self, **options):
         # adjust debug level to the verbosity option
@@ -121,9 +120,9 @@ class PootleCommand(NoArgsCommand):
                 logging.info(u"Running %s over %s", self.name, lang)
                 try:
                     self.handle_language(lang, **options)
-                except Exception as e:
-                    logging.error(u"Failed to run %s over %s:\n%s",
-                                  self.name, lang, e)
+                except Exception:
+                    logging.exception(u"Failed to run %s over %s.", self.name,
+                                      lang)
 
         project_query = Project.objects.all()
         if projects:
@@ -134,9 +133,9 @@ class PootleCommand(NoArgsCommand):
                 logging.info(u"Running %s over %s", self.name, project)
                 try:
                     self.handle_project(project, **options)
-                except Exception as e:
-                    logging.error(u"Failed to run %s over %s:\n%s",
-                                  self.name, project, e)
+                except Exception:
+                    logging.exception(u"Failed to run %s over %s.", self.name,
+                                      project)
                     continue
 
             template_tp = project.get_template_translationproject()
