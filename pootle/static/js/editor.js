@@ -1078,6 +1078,7 @@
       url: viewUrl,
       data: reqData,
       dataType: 'json',
+      cache: false,
       success: function (data) {
         if (data.pager.uidList) {
           // Clear old data and add new results
