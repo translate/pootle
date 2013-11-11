@@ -18,6 +18,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program; if not, see <http://www.gnu.org/licenses/>.
 
+import logging
 import os
 from optparse import make_option
 
@@ -101,8 +102,8 @@ class Command(BaseCommand):
             except KeyError:
                 goals_dict[goal_name] = [filename]
 
-        self.stdout.write("\nParsed %d lines from '%s'\n\n" % (line_number,
-                                                               goals_filename))
+        logging.info("\nParsed %d lines from '%s'\n", line_number,
+                     goals_filename)
 
         # First check if any of the goals already exists and it is not a
         # project goal, in order to abort before creating or adding any of the
@@ -126,6 +127,8 @@ class Command(BaseCommand):
             'content_type': ContentType.objects.get_for_model(Store),
             'object_id__in': template_tp.stores.values_list('pk', flat=True),
         }
+
+        applied_goals = set()
 
         # Now apply the goal to each of the stores.
         for goal_name in goals_dict.keys():
@@ -159,12 +162,12 @@ class Command(BaseCommand):
                 try:
                     store = template_tp.stores.get(file=filename)
                     store.goals.add(goal)
-                    self.stdout.write("Goal '%s' applied to '%s'.\n" %
-                                      (goal_name, filename))
+                    applied_goals.add(goal_name)
+                    logging.info("Goal '%s' applied to '%s'.", goal_name,
+                                 filename)
                 except ObjectDoesNotExist:
-                    self.stdout.write("\nWARNING: File '%s' is not on the "
-                                      "template language. Skipping it.\n\n" %
-                                      filename)
+                    logging.warning("File '%s' is not on the template "
+                                    "language. Skipping it.\n", filename)
 
-        self.stdout.write("\nSucessfully added %d project goals to project "
-                          "'%s'.\n" % (len(goals_dict.keys()), project_name))
+        logging.info("\nSucessfully added %d project goals to project '%s'.",
+                     len(applied_goals), project_name)

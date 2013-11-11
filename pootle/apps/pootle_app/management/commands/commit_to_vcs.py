@@ -17,6 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+import logging
 import os
 from optparse import make_option
 
@@ -38,7 +39,8 @@ class Command(PootleCommand):
         try:
             self.user = User.objects.get(username=options['user'])
         except User.DoesNotExist:
-            return "Unknown user (%s)\n" % options['user']
+            logging.error("Unknown user (%s)", options['user'])
+            return
 
         super(Command, self).handle_noargs(**options)
 

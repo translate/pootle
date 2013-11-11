@@ -186,7 +186,7 @@ class ModifiedSinceMixin(object):
         if change_id is None or change_id == 0:
             options.pop('modified_since')
             if change_id == 0:
-                logging.info(u"Change ID is zero, no modified-since filtering.")
+                logging.info("Change ID is zero, no modified-since filtering.")
         elif change_id < 0:
             logging.error(u"Change IDs must be positive integers.")
             sys.exit(1)
