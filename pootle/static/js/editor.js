@@ -252,7 +252,7 @@
     setTimeout(function () {
       $.history.init(function (hash) {
         var params = PTL.utils.getParsedHash(hash),
-            pager = true,
+            isInitial = true,
             withUid = 0,
             tmpParamValue;
 
@@ -270,8 +270,8 @@
               return;
             } else {
               withUid = tmpParamValue;
-              // Don't retrieve pager if there are existing results
-              pager = !PTL.editor.units.length;
+              // Don't retrieve initial data if there are existing results
+              isInitial= !PTL.editor.units.length;
             }
           }
         }
@@ -386,7 +386,7 @@
         PTL.editor.preventNavigation = false;
 
         PTL.editor.fetchPages({
-          pager: pager,
+          initial: isInitial,
           withUid: withUid,
           success: function () {
             if (PTL.editor.units.getCurrent() === undefined) {
@@ -993,7 +993,7 @@
     var currentPage = this.currentPage(),
         defaults = {
           pages: [currentPage, currentPage + 1, currentPage - 1],
-          pager: false,
+          initial: false,
           withUid: 0
         },
         viewUrl = l('/xhr/units/'),
@@ -1003,8 +1003,8 @@
 
     opts = $.extend({}, defaults, opts);
 
-    if (opts.pager) {
-      reqData.pager = opts.pager;
+    if (opts.initial) {
+      reqData.initial = opts.initial;
     }
     if (opts.withUid > 0) {
       reqData.uid = opts.withUid;
