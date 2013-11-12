@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-10-31 17:15+0000\n"
-"PO-Revision-Date: 2013-10-30 20:29+0000\n"
+"PO-Revision-Date: 2013-11-08 13:03+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1383164996.0\n"
+"X-POOTLE-MTIME: 1383915810.0\n"
 
 #: strings.py:8
 msgid ""
@@ -462,7 +462,7 @@ msgstr "(asistencia comercial)"
 
 #: apps/pootle_app/templates/admin/dashboard.html:55
 msgid "Dependency Checks"
-msgstr "Verificacións de dependencia"
+msgstr "Verificación de dependencias"
 
 #: apps/pootle_app/templates/admin/dashboard.html:64
 msgid "Optional"
@@ -1229,7 +1229,11 @@ msgid_plural ""
 "%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d need "
 "review)."
 msgstr[0] ""
+"%(type)s: %(translated)d de %(total)d cadea traducida (%(fuzzy)d que cómpre "
+"revisar)."
 msgstr[1] ""
+"%(type)s: %(translated)d de %(total)d cadeas traducida (%(fuzzy)d que cómpre "
+"revisar)."
 
 #: apps/pootle_misc/stats.py:304
 #, python-format
@@ -1451,7 +1455,7 @@ msgstr "Indicar problemas co texto orixe"
 
 #: apps/pootle_project/views.py:119
 msgid "Filter using one or more tags"
-msgstr ""
+msgstr "Filtrar empregando unha ou máis etiquetas"
 
 #: apps/pootle_project/views.py:161
 #, python-format
@@ -1485,7 +1489,7 @@ msgstr "Filtrar"
 
 #: apps/pootle_project/templates/project/overview.html:38
 msgid "Filter using the selected tags"
-msgstr ""
+msgstr "Filtrar empregando as etiquetas seleccionadas"
 
 #: apps/pootle_project/templates/project/overview.html:76
 #: apps/pootle_translationproject/templates/translation_project/overview.html:43
@@ -1530,6 +1534,8 @@ msgid ""
 "%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s revertiu a tradución da cadea <i><a href=\"%(url)s\">%"
+"(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:153
 #, python-format
@@ -1537,11 +1543,13 @@ msgid ""
 "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s aceptou unha suxestión para a cadea <i><a href=\"%(url)s\">%"
+"(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:156
 #, python-format
 msgid "%(user)s uploaded a file"
-msgstr ""
+msgstr "%(user)s enviou un ficheiro"
 
 #: apps/pootle_statistics/models.py:171
 #, python-format
@@ -1549,6 +1557,8 @@ msgid ""
 "%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s enviou unha tradución para a cadea <a href=\"%(url)s\">%"
+"(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:174
 #, python-format
@@ -1556,6 +1566,8 @@ msgid ""
 "%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
 "\">%(source)s</a></i>"
 msgstr ""
+"%(user)s enviou unha tradución que «cómpre revisar» para a cadea <i><a "
+"href=\"%(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:177
 #, python-format
@@ -1563,6 +1575,7 @@ msgid ""
 "%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s retirou a tradución da cadea <a href=\"%(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_store/decorators.py:63
 msgid "Insufficient rights to access this directory."
@@ -1578,7 +1591,7 @@ msgstr "O ficheiro non existe."
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Gettext PO"
-msgstr "PO de Gettex"
+msgstr "PO de Gettext"
 
 #: apps/pootle_store/filetypes.py:35
 msgid "XLIFF"
@@ -1724,7 +1737,7 @@ msgstr "Comentario:"
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
 msgid "String %(id)s"
-msgstr ""
+msgstr "Cadea %(id)s"
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -1944,7 +1957,7 @@ msgstr ""
 
 #: apps/pootle_tagging/forms.py:133
 msgid "A goal with that name already exists. Please pick another name."
-msgstr ""
+msgstr "Xa existe outro obxectivo con ese nome. Escolla outro nome."
 
 #: apps/pootle_tagging/forms.py:173
 msgid ""
@@ -1959,7 +1972,7 @@ msgstr ""
 
 #: apps/pootle_tagging/forms.py:180
 msgid "A goal with this slug already exists."
-msgstr ""
+msgstr "Xa existe un obxectivo con este slug."
 
 #: apps/pootle_tagging/forms.py:194
 msgid ""
@@ -2295,7 +2308,7 @@ msgstr "Non foi posíbel atopar «%(action)s» en «%(extdir)s»"
 #: apps/pootle_translationproject/views.py:400
 #, python-format
 msgid "Error while running '%s' extension action"
-msgstr ""
+msgstr "Produciuse un erro ao executar a acción da extensión «%s»"
 
 #: apps/pootle_translationproject/views.py:820
 #, python-format
@@ -2836,6 +2849,7 @@ msgstr ""
 "Pootle non pode conectarse á base de datos xa que esta non está\n"
 "inicializada aínda, ou porque se ten que realizar unha actualización\n"
 "do esquema antes de continuar.\n"
+"  "
 
 #: templates/db_error.html:20
 #, python-format
@@ -2850,6 +2864,7 @@ msgstr ""
 "Lea a <a href=\"%(url)s\">Documentación de Pootle</a> sobre a\n"
 "instalación e a anovación. Contacte co administrador do servidor se\n"
 "cre que isto é un erro.\n"
+"  "
 
 #: templates/db_error.html:27
 msgid "The reported error was:"

@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-10-31 17:15+0000\n"
-"PO-Revision-Date: 2013-05-19 08:31+0000\n"
-"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
+"PO-Revision-Date: 2013-11-08 16:10+0000\n"
+"Last-Translator: Evagelos <dyrer@hyperwebhost.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1368952310.0\n"
+"X-POOTLE-MTIME: 1383927055.0\n"
 
 #: strings.py:8
 msgid ""
@@ -769,11 +769,11 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Contributors"
-msgstr ""
+msgstr "Συντελεστές έρχου"
 
 #: apps/pootle_app/views/admin/permissions.py:84
 msgid "Language Contributors"
-msgstr ""
+msgstr "Συντελεστές μετάφρασης"
 
 #: apps/pootle_app/views/admin/permissions.py:91
 msgid "All Users"
@@ -911,7 +911,7 @@ msgstr "Γλώσσα"
 #. Translators: Heading representing the priority for a goal
 #: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:73
 msgid "Priority"
-msgstr ""
+msgstr "Προτεραιότητα"
 
 #. Translators: noun. The graphical representation of translation status
 #: apps/pootle_misc/browser.py:52
@@ -1675,8 +1675,9 @@ msgstr "Διαδρομή"
 
 #: apps/pootle_store/models.py:900
 #: apps/pootle_translationproject/models.py:121
+#, fuzzy
 msgid "Tags"
-msgstr ""
+msgstr "Στηλοθέτες"
 
 #: apps/pootle_store/models.py:901
 #: apps/pootle_translationproject/models.py:122
@@ -1723,12 +1724,14 @@ msgid "The suggestion or vote is not valid any more."
 msgstr "Η πρόταση ή ψήφος δεν είναι έγκυρη πια."
 
 #: apps/pootle_store/views.py:1096
+#, fuzzy
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "Δεν έχετε δικαιώματα διαχείρισης του %s."
 
 #: apps/pootle_store/views.py:1132
+#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "Δεν έχετε δικαιώματα διαχείρισης του %s."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
@@ -2345,8 +2348,9 @@ msgid "Translation project files and folders"
 msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
+#, fuzzy
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "Διαχείριση του έργου σας"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2475,8 +2479,11 @@ msgid "Redirect to URL"
 msgstr ""
 
 #: apps/staticpages/models.py:51
+#, fuzzy
 msgid "If set, any references to this page will redirect to this URL"
 msgstr ""
+"Εάν οριστεί, κάθε παραπομπή σε αυτή τη νομική σελίδα θα ανακατευθύνεται σε "
+"αυτό το URL"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:98
@@ -2488,12 +2495,14 @@ msgid "Virtual path already in use."
 msgstr ""
 
 #: apps/staticpages/models.py:111
+#, fuzzy
 msgid "Legal Page"
-msgstr ""
+msgstr "Νομικές σελίδες"
 
 #: apps/staticpages/models.py:122
+#, fuzzy
 msgid "Regular Page"
-msgstr ""
+msgstr "Επεξεργασία νομικής σελίδας"
 
 #: apps/staticpages/views.py:87
 msgid "Page Title"
@@ -2563,16 +2572,18 @@ msgid "Legal Pages"
 msgstr "Νομικές σελίδες"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:12
+#, fuzzy
 msgid "Add Legal Page"
-msgstr ""
+msgstr "Επεξεργασία νομικής σελίδας"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
 msgid "Regular Pages"
 msgstr ""
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
+#, fuzzy
 msgid "Add Regular Page"
-msgstr ""
+msgstr "Επεξεργασία νομικής σελίδας"
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."
@@ -2600,8 +2611,9 @@ msgid "Checks"
 msgstr "Έλεγχοι"
 
 #: core/helpers.py:62
+#, fuzzy
 msgid "Overwritten submissions"
-msgstr ""
+msgstr "Οι υποβολές μου που αντικαταστάθηκαν"
 
 #: middleware/captcha.py:122
 msgid "Time to answer has expired"
@@ -3055,8 +3067,9 @@ msgstr ""
 "μετάφρασης καθώς και τις προτιμήσεις της γλώσσας σας."
 
 #: templates/profiles/profile_detail.html:23
+#, fuzzy
 msgid "Contributions"
-msgstr ""
+msgstr "Συντελεστές"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"

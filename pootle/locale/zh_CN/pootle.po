@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-10-31 17:15+0000\n"
-"PO-Revision-Date: 2013-10-31 16:12+0000\n"
+"PO-Revision-Date: 2013-11-08 14:33+0000\n"
 "Last-Translator: Wei <contact@huwei.name>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1383235977.0\n"
+"X-POOTLE-MTIME: 1383921182.0\n"
 
 #: strings.py:8
 msgid ""
@@ -1121,7 +1121,7 @@ msgstr[0] "下个最重要的目标(剩余 %(num)d 个词)"
 #, python-format
 msgid "Next most important goal (%(num)d word left)"
 msgid_plural "Next most important goal (%(num)d words left)"
-msgstr[0] ""
+msgstr[0] "下个最重要的目标(剩余 %(num)d 个词)"
 
 #: apps/pootle_misc/stats.py:249
 msgid "Translation is complete"
@@ -1143,7 +1143,7 @@ msgid ""
 msgid_plural ""
 "%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d need "
 "review)."
-msgstr[0] ""
+msgstr[0] "%(type)s: %(total)d 中的 %(translated)d 个字符串已翻译 (%(fuzzy)d 需要审阅)。"
 
 #: apps/pootle_misc/stats.py:304
 #, python-format
@@ -1357,7 +1357,7 @@ msgstr "报告目标"
 
 #: apps/pootle_project/views.py:119
 msgid "Filter using one or more tags"
-msgstr ""
+msgstr "使用1个或多个标记的过滤器"
 
 #: apps/pootle_project/views.py:161
 #, python-format
@@ -1390,7 +1390,7 @@ msgstr "过滤"
 
 #: apps/pootle_project/templates/project/overview.html:38
 msgid "Filter using the selected tags"
-msgstr ""
+msgstr "使用选定标记的过滤器"
 
 #: apps/pootle_project/templates/project/overview.html:76
 #: apps/pootle_translationproject/templates/translation_project/overview.html:43
@@ -1434,7 +1434,7 @@ msgstr "匿名用户"
 msgid ""
 "%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
-msgstr ""
+msgstr "%(user)s 还原了字符串 <i><a href=\"%(url)s\">%(source)s</a></i> 的翻译"
 
 #: apps/pootle_statistics/models.py:153
 #, python-format
@@ -1446,7 +1446,7 @@ msgstr ""
 #: apps/pootle_statistics/models.py:156
 #, python-format
 msgid "%(user)s uploaded a file"
-msgstr ""
+msgstr "%(user)s 上传了一个文件"
 
 #: apps/pootle_statistics/models.py:171
 #, python-format
@@ -1629,7 +1629,7 @@ msgstr "注释:"
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
 msgid "String %(id)s"
-msgstr ""
+msgstr "字符串 %(id)s"
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -1880,7 +1880,7 @@ msgstr "项目目标？"
 
 #: apps/pootle_tagging/models.py:105
 msgid "(Project goal)"
-msgstr ""
+msgstr "（项目目标）"
 
 #: apps/pootle_terminology/views.py:171
 msgid "This term already exists in this file."
@@ -2159,7 +2159,7 @@ msgstr "删除文件时出错。"
 #: apps/pootle_translationproject/views.py:373
 #, python-format
 msgid "Unable to find '%(action)s' in '%(extdir)s'"
-msgstr ""
+msgstr "无法在'%(extdir)s'里找到'%(action)s'"
 
 #: apps/pootle_translationproject/views.py:400
 #, python-format
@@ -2434,22 +2434,20 @@ msgid "Legal Pages"
 msgstr "有效页面"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:12
-#, fuzzy
 msgid "Add Legal Page"
-msgstr "编辑有效页面"
+msgstr "添加有效页面"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
 msgid "Regular Pages"
-msgstr ""
+msgstr "常规页面"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
-#, fuzzy
 msgid "Add Regular Page"
-msgstr "编辑有效页面"
+msgstr "添加常规页面"
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."
-msgstr ""
+msgstr "访问这个页面的权限不足。"
 
 #: core/decorators.py:191 core/views.py:29
 msgid "You do not have rights to administer Pootle."

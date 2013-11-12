@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-10-31 17:15+0000\n"
-"PO-Revision-Date: 2013-02-22 00:57+0000\n"
-"Last-Translator: Luiz Fernando <elchevive@opensuse.org>\n"
+"PO-Revision-Date: 2013-11-11 14:32+0000\n"
+"Last-Translator: Alexander Dupuy <alex.dupuy@mac.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1383050518.0\n"
+"X-POOTLE-MTIME: 1384180323.0\n"
 
 #: static/js/common.js:13
 msgid "All Languages"
@@ -27,24 +27,20 @@ msgid "All Projects"
 msgstr "Todos os projetos"
 
 #: static/js/common.js:62
-#, fuzzy
 msgid "Expand details"
 msgstr "Mostrar detalhes"
 
 #: static/js/common.js:62
-#, fuzzy
 msgid "Collapse details"
 msgstr "Ocultar detalhes"
 
 #: static/js/common.js:91
-#, fuzzy
 msgid "Are you sure you want to continue?"
-msgstr "Tem a certeza que deseja continuar?"
+msgstr "Você tem certeza de que quer continuar?"
 
 #: static/js/common.js:92
-#, fuzzy
 msgid "This operation cannot be undone."
-msgstr "Esta operação não pode ser anulada."
+msgstr "Esta operação não pode ser desfeita."
 
 #: static/js/common.js:139
 msgid "Show tags"
@@ -64,11 +60,11 @@ msgstr "Mostrar filtros"
 
 #: static/js/editor.js:209
 msgid "Go to the next string (Ctrl+.)"
-msgstr "Ir para a linha seguinte (Ctrl+.)"
+msgstr "Ir para o item seguinte (Ctrl+.)"
 
 #: static/js/editor.js:215
 msgid "Go to the previous string (Ctrl+,)"
-msgstr "Ir para a linha anterior (Ctrl+,)"
+msgstr "Ir para o item anterior (Ctrl+,)"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:333
@@ -109,17 +105,14 @@ msgid "Export View"
 msgstr "Vista de exportação"
 
 #: static/js/editor.js:798
-#, fuzzy
 msgid "Error while connecting to the server"
 msgstr "Ocorreu um erro ao ligar ao servidor"
 
 #: static/js/editor.js:800
-#, fuzzy
 msgid "Server error"
-msgstr "Erro de servidor"
+msgstr "Erro no servidor"
 
 #: static/js/editor.js:802
-#, fuzzy
 msgid "The server seems down. Try again later."
 msgstr "Parece que o servidor está desligado. Tente mais tarde."
 
@@ -128,17 +121,14 @@ msgid "Unknown error"
 msgstr "Erro desconhecido"
 
 #: static/js/editor.js:1367
-#, fuzzy
 msgid "You reached the beginning of the list"
 msgstr "Chegou ao início da lista"
 
 #: static/js/editor.js:1370
-#, fuzzy
 msgid "You reached the end of the list."
 msgstr "Chegou ao fim da lista"
 
 #: static/js/editor.js:1372
-#, fuzzy
 msgid "Return to the overview page."
 msgstr "Voltar à página inicial."
 
@@ -146,9 +136,9 @@ msgstr "Voltar à página inicial."
 #. '%s' will be replaced by a number, and you should keep the extra
 #. '%' symbol to denote a percentage is being used.
 #: static/js/editor.js:1807
-#, c-format, fuzzy
+#, c-format
 msgid "%s% match"
-msgstr "%s% similar"
+msgstr "%s% correspondência"
 
 #: static/js/editor.js:1851
 msgid "Similar translations"
@@ -171,49 +161,47 @@ msgstr "Menos"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:16
-#, fuzzy
 msgid "Show"
 msgstr "Mostrar"
 
 #: static/js/utils.js:143
-#, c-format, fuzzy
+#, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] "Há um ano"
-msgstr[1] "Há %s anos"
+msgstr[0] "Um ano atrás"
+msgstr[1] "%s anos atrás"
 
 #: static/js/utils.js:146
-#, c-format, fuzzy
+#, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] "Há uma semana"
-msgstr[1] "Há %s semanas"
+msgstr[0] "Uma semana atrás"
+msgstr[1] "%s semanas atrás"
 
 #: static/js/utils.js:149
-#, c-format, fuzzy
+#, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
 msgstr[0] "Ontem"
-msgstr[1] "Há %s dias"
+msgstr[1] "%s dias atrás"
 
 #: static/js/utils.js:152
-#, c-format, fuzzy
+#, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] "Há uma hora"
-msgstr[1] "Há %s horas"
+msgstr[0] "Uma hora atrás"
+msgstr[1] "%s horas atrás"
 
 #: static/js/utils.js:155
-#, c-format, fuzzy
+#, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] "Há um minuto "
-msgstr[1] "Há %s minutos"
+msgstr[0] "Um minuto atrás"
+msgstr[1] "%s minutos atrás"
 
 #: static/js/utils.js:163
-#, fuzzy
 msgid "A few seconds ago"
-msgstr "Há segundos"
+msgstr "poucos segundos atrás"
 
 #, c-format
 #~ msgid "<a href=\"%s\">String %s</a>"

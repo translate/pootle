@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-10-31 17:15+0000\n"
-"PO-Revision-Date: 2013-10-28 20:26+0000\n"
+"PO-Revision-Date: 2013-11-05 06:57+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1382991962.0\n"
+"X-POOTLE-MTIME: 1383634642.0\n"
 
 #: strings.py:8
 msgid ""
@@ -131,7 +131,7 @@ msgstr "Android satırları"
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:51
 msgid "Privacy Policy"
-msgstr "Gizlilik Politikası"
+msgstr "Gizlilik İlkesi"
 
 #. Translators: Label that refers to the site's legal requirements
 #: strings.py:53
@@ -1211,6 +1211,8 @@ msgid_plural ""
 "%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d need "
 "review)."
 msgstr[0] ""
+"%(type)s: %(translated)d / %(total)d satır çevrildi (%(fuzzy)d gözden "
+"geçirilmeye ihtiyacı var)."
 
 #: apps/pootle_misc/stats.py:304
 #, python-format
@@ -1429,7 +1431,7 @@ msgstr "Hedefi Raporla"
 
 #: apps/pootle_project/views.py:119
 msgid "Filter using one or more tags"
-msgstr ""
+msgstr "Bir ya da daha fazla etiket kullanarak süz"
 
 #: apps/pootle_project/views.py:161
 #, python-format
@@ -1464,7 +1466,7 @@ msgstr "Süzgeç"
 
 #: apps/pootle_project/templates/project/overview.html:38
 msgid "Filter using the selected tags"
-msgstr ""
+msgstr "Seçilen etiketleri kullanarak süz"
 
 #: apps/pootle_project/templates/project/overview.html:76
 #: apps/pootle_translationproject/templates/translation_project/overview.html:43
@@ -1511,6 +1513,8 @@ msgid ""
 "%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s, <i><a href=\"%(url)s\">%(source)s</a></i> satırı için çeviriyi geri "
+"döndürdü"
 
 #: apps/pootle_statistics/models.py:153
 #, python-format
@@ -1518,11 +1522,13 @@ msgid ""
 "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s, <i><a href=\"%(url)s\">%(source)s</a></i> satırı için öneriyi kabul "
+"etti"
 
 #: apps/pootle_statistics/models.py:156
 #, python-format
 msgid "%(user)s uploaded a file"
-msgstr ""
+msgstr "%(user)s bir dosya gönderdi"
 
 #: apps/pootle_statistics/models.py:171
 #, python-format
@@ -1530,6 +1536,8 @@ msgid ""
 "%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s, <i><a href=\"%(url)s\">%(source)s</a></i> satırı için çeviriyi "
+"gönderdi"
 
 #: apps/pootle_statistics/models.py:174
 #, python-format
@@ -1537,6 +1545,8 @@ msgid ""
 "%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
 "\">%(source)s</a></i>"
 msgstr ""
+"%(user)s, <i><a href=\"%(url)s\">%(source)s</a></i> satırı için \"çalışma "
+"gerekli\" olarak çeviriyi gönderdi"
 
 #: apps/pootle_statistics/models.py:177
 #, python-format
@@ -1544,6 +1554,8 @@ msgid ""
 "%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s, <i><a href=\"%(url)s\">%(source)s</a></i> satırı için çeviriyi "
+"kaldırdı"
 
 #: apps/pootle_store/decorators.py:63
 msgid "Insufficient rights to access this directory."
@@ -1705,7 +1717,7 @@ msgstr "Yorum:"
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
 msgid "String %(id)s"
-msgstr ""
+msgstr "Satır %(id)s"
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -1927,7 +1939,7 @@ msgstr ""
 
 #: apps/pootle_tagging/forms.py:133
 msgid "A goal with that name already exists. Please pick another name."
-msgstr ""
+msgstr "Bu isimde bir hedef zaten var. Lütfen başka bir isim seçin."
 
 #: apps/pootle_tagging/forms.py:173
 msgid ""
@@ -1942,7 +1954,7 @@ msgstr ""
 
 #: apps/pootle_tagging/forms.py:180
 msgid "A goal with this slug already exists."
-msgstr ""
+msgstr "Bu kısaltma ile bir hedef zaten var."
 
 #: apps/pootle_tagging/forms.py:194
 msgid ""
@@ -2273,7 +2285,7 @@ msgstr "'%(extdir)s' içinde '%(action)s' bulunamaz"
 #: apps/pootle_translationproject/views.py:400
 #, python-format
 msgid "Error while running '%s' extension action"
-msgstr ""
+msgstr "'%s' uzantısı eylemi çalışırken hata"
 
 #: apps/pootle_translationproject/views.py:820
 #, python-format
@@ -2380,7 +2392,7 @@ msgstr "Parola"
 
 #: apps/registration/forms.py:43
 msgid "password (again)"
-msgstr "Parola (tekrar)"
+msgstr "Parola Tekrarı"
 
 #: apps/registration/forms.py:55
 msgid "This username is already taken. Please choose another."
@@ -3317,7 +3329,7 @@ msgstr "Çeviriye başlamak için aşağıdaki formu doldurun."
 
 #: templates/registration/registration_form.html:35
 msgid "Password (again)"
-msgstr "Parola (tekrar)"
+msgstr "Parola Tekrarı"
 
 #: templates/registration/registration_form.html:53
 msgid "Already have an account?"

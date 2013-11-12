@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-10-31 17:15+0000\n"
-"PO-Revision-Date: 2013-10-29 18:24+0000\n"
+"PO-Revision-Date: 2013-11-02 13:00+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1383071051.0\n"
+"X-POOTLE-MTIME: 1383397238.0\n"
 
 #: strings.py:8
 msgid ""
@@ -802,7 +802,7 @@ msgid ""
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
 "articles/language-tags/\">More information</a>"
 msgstr ""
-"Kód jazyka podle ISO 639, voliteně následovaný podtržítkem (_) a kódem země "
+"Kód jazyka podle ISO 639, volitelně následovaný podtržítkem (_) a kódem země "
 "podle ISO 3166. <a href=\"http://www.w3.org/International/articles/language-"
 "tags/\">Více informací</a>"
 
@@ -1232,8 +1232,11 @@ msgid_plural ""
 "%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d need "
 "review)."
 msgstr[0] ""
+"%(type)s: Přeložen %(translated)d/%(total)d řetězce (%(fuzzy)d přibližně)"
 msgstr[1] ""
+"%(type)s: Přeloženy %(translated)d/%(total)d řetězců (%(fuzzy)d přibližně)"
 msgstr[2] ""
+"%(type)s: Přeloženo %(translated)d/%(total)d řetězců (%(fuzzy)d přibližně)"
 
 #: apps/pootle_misc/stats.py:304
 #, python-format
@@ -1458,15 +1461,15 @@ msgstr "Cíl hlášení"
 
 #: apps/pootle_project/views.py:119
 msgid "Filter using one or more tags"
-msgstr ""
+msgstr "Filtrovat podle štítků"
 
 #: apps/pootle_project/views.py:161
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
-msgstr[0] "%(languages)d jazyk, přeložen z %(average)d%%"
-msgstr[1] "%(languages)d jazyky, přeložené z %(average)d%%"
-msgstr[2] "%(languages)d jazyků, přeložených z %(average)d%%"
+msgstr[0] "%(languages)d jazyk, přeloženo %(average)d%%"
+msgstr[1] "%(languages)d jazyky, přeloženo %(average)d%%"
+msgstr[2] "%(languages)d jazyků, přeloženo %(average)d%%"
 
 #: apps/pootle_project/views.py:395
 #: apps/pootle_translationproject/actions.py:209
@@ -1494,7 +1497,7 @@ msgstr "Filtr"
 
 #: apps/pootle_project/templates/project/overview.html:38
 msgid "Filter using the selected tags"
-msgstr ""
+msgstr "Filtrovat podle vybraných štítků"
 
 #: apps/pootle_project/templates/project/overview.html:76
 #: apps/pootle_translationproject/templates/translation_project/overview.html:43
@@ -1540,6 +1543,8 @@ msgid ""
 "%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s obnovil původní překlad řetězce <i><a href=\"%(url)s\">%"
+"(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:153
 #, python-format
@@ -1547,18 +1552,19 @@ msgid ""
 "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s přijal návrh pro řetězec <i><a href=\"%(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:156
 #, python-format
 msgid "%(user)s uploaded a file"
-msgstr ""
+msgstr "%(user)s nahrál soubor"
 
 #: apps/pootle_statistics/models.py:171
 #, python-format
 msgid ""
 "%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
-msgstr ""
+msgstr "%(user)s přidal překlad řetězce <i><a href=\"%(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:174
 #, python-format
@@ -1566,6 +1572,8 @@ msgid ""
 "%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
 "\">%(source)s</a></i>"
 msgstr ""
+"%(user)s přidal překlad s příznakem \"potřebuje upravit\" pro řetězec <i><a "
+"href=\"%(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:177
 #, python-format
@@ -1573,6 +1581,7 @@ msgid ""
 "%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s odstranil překlad řetězce <i><a href=\"%(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_store/decorators.py:63
 msgid "Insufficient rights to access this directory."
@@ -1735,7 +1744,7 @@ msgstr "Komentář:"
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
 msgid "String %(id)s"
-msgstr ""
+msgstr "Řetězec %(id)s"
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -1954,7 +1963,7 @@ msgstr ""
 
 #: apps/pootle_tagging/forms.py:133
 msgid "A goal with that name already exists. Please pick another name."
-msgstr ""
+msgstr "Cíl s tímto názvem již existuje. Zvolte jiný název."
 
 #: apps/pootle_tagging/forms.py:173
 msgid ""
@@ -1962,13 +1971,13 @@ msgid ""
 "single or multiple occurrences of the following characters: spaces, colons "
 "(:), hyphens (-), underscores (_), slashes (/) or periods (.)!"
 msgstr ""
-"Zástupný název štítku misí být shodný s jeho názvem, ale všechny výskyty "
+"Zástupný název štítku musí být shodný s jeho názvem, ale všechny výskyty "
 "znaků mezera, dvojtečka (:), pomlčka (-), podtržítko (_), lomítko (/) nebo "
 "tečka (.) v něm musejí být nahrazeny pomlčkou!"
 
 #: apps/pootle_tagging/forms.py:180
 msgid "A goal with this slug already exists."
-msgstr ""
+msgstr "Cíl s tímto zástupným názvem již existuje."
 
 #: apps/pootle_tagging/forms.py:194
 msgid ""
@@ -2299,7 +2308,7 @@ msgstr "'%(action)s' se v '%(extdir)s' nepodařilo nalézt"
 #: apps/pootle_translationproject/views.py:400
 #, python-format
 msgid "Error while running '%s' extension action"
-msgstr ""
+msgstr "Při provádění akce rozšíření '%s' došlo k chybě"
 
 #: apps/pootle_translationproject/views.py:820
 #, python-format

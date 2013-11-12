@@ -7,23 +7,27 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-10-31 17:15+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2013-11-11 10:48+0000\n"
+"Last-Translator: Boniface <bonifacechallo@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sw\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.10.0-rc1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.0-beta1\n"
+"X-POOTLE-MTIME: 1384166935.0\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
 msgstr ""
+"Shikilia chini \"Control\", au \"Command\" kwenye Mac, ili kuchagua zaidi ya "
+"moja."
 
 #: strings.py:9
 msgid "Enter a valid e-mail address."
-msgstr ""
+msgstr "Ingiza anwani ya barua pepe halali."
 
 #: strings.py:10
 msgid ""
@@ -33,30 +37,31 @@ msgstr ""
 
 #: strings.py:11
 msgid "This field is required."
-msgstr ""
+msgstr "Uga huu inahitajika."
 
 #: strings.py:12
 #, python-format
 msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
 msgstr ""
+"Hakikisha thamani hii na angalau herufi %(max)d (ina urefu wa %(length)d)."
 
 #: strings.py:13
 msgid "Save and add another"
-msgstr ""
+msgstr "Hifadhi na ongeza nyingine"
 
 #: strings.py:14
 msgid "Save and continue editing"
-msgstr ""
+msgstr "Hifadhi na endelea kuhariri"
 
 #: strings.py:15
 #: apps/staticpages/templates/staticpages/admin/page_create.html:5
 #: apps/staticpages/templates/staticpages/admin/page_create.html:8
 msgid "Add"
-msgstr ""
+msgstr "Ongeza"
 
 #: strings.py:16
 msgid "Change"
-msgstr ""
+msgstr "Badili"
 
 #: strings.py:17 apps/pootle_profile/forms.py:83
 msgid ""
@@ -78,35 +83,35 @@ msgstr ""
 #: strings.py:27
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Ongeza ma%(name)s"
 
 #. Translators: This link takes the user to the page where the currently
 #. configured option is displayed (such as a project or language)
 #: strings.py:31
 msgid "View on site"
-msgstr ""
+msgstr "Angalia kwe tovuti"
 
 #: strings.py:33
 msgid "first name"
-msgstr ""
+msgstr "jina la kwanza"
 
 #: strings.py:34
 msgid "last name"
-msgstr ""
+msgstr "jina la ukoo"
 
 #: strings.py:35
 msgid "e-mail address"
-msgstr ""
+msgstr "anwani ya barua pepe"
 
 #: strings.py:36
 msgid "active"
-msgstr ""
+msgstr "hai"
 
 #. Translators: Please translate this simply as "Administrator". This string is
 #. needed by Django, but 'superuser' is very technical and should be avoided.
 #: strings.py:40
 msgid "superuser status"
-msgstr ""
+msgstr "hali ya mtumiaj mkuu"
 
 #. Translators: The language from which translation will happen
 #: strings.py:43 apps/pootle_app/views/admin/adminprojects.py:47
@@ -116,7 +121,7 @@ msgstr ""
 
 #: strings.py:45
 msgid "Android strings"
-msgstr ""
+msgstr "Tungo za Android"
 
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:51
@@ -150,7 +155,7 @@ msgstr ""
 
 #: apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr ""
+msgstr "Jina lako"
 
 #: apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
@@ -158,7 +163,7 @@ msgstr ""
 
 #: apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr ""
+msgstr "Ujumbe wako"
 
 #: apps/contact_form_i18n/forms.py:260
 msgid "Akismet thinks this message is spam"
@@ -167,12 +172,12 @@ msgstr ""
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tafadhali sahihisha kosa hapo chini."
+msgstr[1] "Tafadhali sahihisha makosa hapo chini."
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
-msgstr ""
+msgstr "Vipimo vimehifadhiwa."
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: apps/pootle_app/templates/admin/admin_general_settings.html:29
@@ -181,28 +186,28 @@ msgstr ""
 #: templates/profiles/edit_personal.html:33
 #: templates/profiles/edit_profile.html:25
 msgid "Save"
-msgstr ""
+msgstr "Hifadhi"
 
 #: apps/pootle_app/admin.py:45
 msgid "Language code does not follow the ISO convention"
-msgstr ""
+msgstr "Kificho cha lugha hakifati makubaliano ya ISO"
 
 #: apps/pootle_app/admin.py:71
 msgid "Project code may only contain letters, numbers and _"
-msgstr ""
+msgstr "Kificho cha mradi kinaweza kuwa na herifu, tarakimu na _"
 
 #: apps/pootle_app/admin.py:83
 msgid "Advanced Options"
-msgstr ""
+msgstr "Machaguo pevu"
 
 #: apps/pootle_app/forms.py:30 apps/pootle_notifications/forms.py:42
 #: apps/staticpages/models.py:45
 msgid "Title"
-msgstr ""
+msgstr "Jina"
 
 #: apps/pootle_app/forms.py:31
 msgid "The name for this Pootle server"
-msgstr ""
+msgstr "Jina la seva hii ya Pootle"
 
 #: apps/pootle_app/forms.py:37
 #: apps/pootle_language/templates/language/overview.html:26
@@ -210,7 +215,7 @@ msgstr ""
 #: apps/pootle_tagging/models.py:69
 #: apps/pootle_translationproject/templates/translation_project/overview.html:114
 msgid "Description"
-msgstr ""
+msgstr "Maelezo"
 
 #: apps/pootle_app/forms.py:38
 msgid ""
@@ -220,15 +225,15 @@ msgstr ""
 
 #: apps/pootle_app/management/__init__.py:90
 msgid "Can view a translation project"
-msgstr ""
+msgstr "Anaweza kuona mradi wa kutafsiri"
 
 #: apps/pootle_app/management/__init__.py:94
 msgid "Can make a suggestion for a translation"
-msgstr ""
+msgstr "Anaweza kutoa ushauri wa tafsiri"
 
 #: apps/pootle_app/management/__init__.py:98
 msgid "Can submit a translation"
-msgstr ""
+msgstr "Anaweza kuwasilisha tafsiri"
 
 #: apps/pootle_app/management/__init__.py:102
 msgid "Can overwrite translations on uploading files"
@@ -236,7 +241,7 @@ msgstr ""
 
 #: apps/pootle_app/management/__init__.py:106
 msgid "Can review translations"
-msgstr ""
+msgstr "Anaweza kupitia tafsiri"
 
 #: apps/pootle_app/management/__init__.py:110
 msgid "Can download archives of translation projects"
@@ -244,7 +249,7 @@ msgstr ""
 
 #: apps/pootle_app/management/__init__.py:114
 msgid "Can administrate a translation project"
-msgstr ""
+msgstr "Anaweza kutawala mradi wa utafisiri"
 
 #: apps/pootle_app/management/__init__.py:118
 msgid "Can commit to version control"
@@ -252,37 +257,37 @@ msgstr ""
 
 #: apps/pootle_app/models/suggestion.py:35
 msgid "Pending"
-msgstr ""
+msgstr "Inasubiri"
 
 #: apps/pootle_app/models/suggestion.py:36
 #: templates/profiles/profile_detail.html:43
 msgid "Accepted"
-msgstr ""
+msgstr "Kubali"
 
 #: apps/pootle_app/models/suggestion.py:37
 #: templates/profiles/profile_detail.html:44
 msgid "Rejected"
-msgstr ""
+msgstr "Kukataliwa"
 
 #: apps/pootle_app/templates/top_contributers_table.html:8
 msgid "Top Contributors"
-msgstr ""
+msgstr "Wachangiaji wakubwa"
 
 #. Translators: The number of suggestions pending review
 #: apps/pootle_app/templates/top_contributers_table.html:12
 #: apps/pootle_misc/browser.py:70 templates/editor/_toolbar.html:17
 msgid "Suggestions"
-msgstr ""
+msgstr "Mapendekezo"
 
 #: apps/pootle_app/templates/top_contributers_table.html:13
 msgid "Reviews"
-msgstr ""
+msgstr "Mapitio"
 
 #: apps/pootle_app/templates/top_contributers_table.html:14
 #: apps/pootle_app/templates/admin/dashboard.html:19 core/helpers.py:61
 #: templates/profiles/profile_detail.html:45
 msgid "Submissions"
-msgstr ""
+msgstr "Mawasilisho"
 
 #: apps/pootle_app/templates/top_contributers_table.html:19
 msgid "anonymous users"
@@ -292,7 +297,7 @@ msgstr ""
 #: apps/pootle_misc/stats.py:153 apps/pootle_store/util.py:48
 #: core/helpers.py:54 templates/editor/_toolbar.html:13
 msgid "Translated"
-msgstr ""
+msgstr "Tafsiriwa"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:5
 #: apps/pootle_misc/stats.py:156 apps/pootle_store/forms.py:215
@@ -305,19 +310,19 @@ msgstr ""
 #: apps/pootle_misc/stats.py:159 apps/pootle_store/util.py:46
 #: core/helpers.py:55 templates/editor/_toolbar.html:15
 msgid "Untranslated"
-msgstr ""
+msgstr "Haijatafsiriwa"
 
 #: apps/pootle_app/templates/admin/admin_general.html:15
 #: apps/pootle_terminology/templates/terminology/manage.html:50
 msgid "Save Changes"
-msgstr ""
+msgstr "Hifadhi mabadiliko"
 
 #: apps/pootle_app/templates/admin/admin_general_languages.html:4
 #: apps/pootle_app/templates/admin/admin_general_languages.html:9
 #: apps/pootle_app/templates/index/index.html:42
 #: apps/pootle_profile/models.py:87 templates/admin_profile_menu.html:6
 msgid "Languages"
-msgstr ""
+msgstr "Lugha"
 
 #: apps/pootle_app/templates/admin/admin_general_languages.html:12
 msgid ""
@@ -334,7 +339,7 @@ msgstr ""
 #: templates/admin_profile_menu.html:8 templates/language_menu.html:8
 #: templates/project_menu.html:10 templates/tp_menu.html:9
 msgid "Permissions"
-msgstr ""
+msgstr "Ruhusa"
 
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:12
 msgid ""
@@ -362,7 +367,7 @@ msgstr ""
 #: apps/pootle_project/templates/project/projects.html:15
 #: templates/admin_profile_menu.html:7 templates/project_base.html:5
 msgid "Projects"
-msgstr ""
+msgstr "Miradi"
 
 #: apps/pootle_app/templates/admin/admin_general_projects.html:12
 msgid ""
@@ -373,7 +378,7 @@ msgstr ""
 #: apps/pootle_app/templates/admin/admin_general_settings.html:4
 #: apps/pootle_app/templates/admin/admin_general_settings.html:9
 msgid "General Settings"
-msgstr ""
+msgstr "Vipimo vya kawaida"
 
 #: apps/pootle_app/templates/admin/admin_general_settings.html:12
 msgid "Configure here the general settings for your site."
@@ -386,7 +391,7 @@ msgstr ""
 #: templates/profiles/profile_detail.html:5
 #: templates/profiles/profile_detail.html:11
 msgid "Users"
-msgstr ""
+msgstr "Watumiaji"
 
 #: apps/pootle_app/templates/admin/admin_general_users.html:12
 msgid ""
@@ -408,7 +413,7 @@ msgstr ""
 
 #: apps/pootle_app/templates/admin/dashboard.html:39
 msgid "Support"
-msgstr ""
+msgstr "Msaada"
 
 #: apps/pootle_app/templates/admin/dashboard.html:42
 msgid ""
@@ -423,7 +428,7 @@ msgstr ""
 
 #: apps/pootle_app/templates/admin/dashboard.html:45
 msgid "The Pootle documentation"
-msgstr ""
+msgstr "Mwongozo wa Pootle"
 
 #: apps/pootle_app/templates/admin/dashboard.html:46
 msgid "The Pootle mailing list"
@@ -439,7 +444,7 @@ msgstr ""
 
 #: apps/pootle_app/templates/admin/dashboard.html:64
 msgid "Optional"
-msgstr ""
+msgstr "Vya hiari"
 
 #: apps/pootle_app/templates/admin/dashboard.html:72
 msgid "Optimizations"
@@ -467,7 +472,7 @@ msgstr ""
 #: apps/pootle_app/templates/index/index.html:62
 #: apps/pootle_notifications/templates/notices.html:77
 msgid "Latest News"
-msgstr ""
+msgstr "Habari za mwisho"
 
 #: apps/pootle_app/templates/index/index.html:65
 msgid "Subscribe to the RSS feed."
@@ -477,29 +482,29 @@ msgstr ""
 #: apps/pootle_app/templates/index/login.html:7
 #: apps/pootle_app/templates/index/login.html:23
 msgid "Login"
-msgstr ""
+msgstr "Ingia"
 
 #: apps/pootle_app/templates/index/login.html:12
 msgid "Login to Pootle"
-msgstr ""
+msgstr "Ingia kwenye Pootle"
 
 #: apps/pootle_app/templates/index/login.html:18
 msgid "Your username and password didn't match. Please try again."
-msgstr ""
+msgstr "Jina la mtumiaji na nywila havioani. Tafadhali jaribu tena."
 
 #: apps/pootle_app/templates/index/login.html:30
 msgid "Lost your Password?"
-msgstr ""
+msgstr "Umepoteza nywila yako?"
 
 #: apps/pootle_app/templates/index/login.html:33
 #: templates/registration/password_reset_form.html:30
 msgid "Don't have an account yet?"
-msgstr ""
+msgstr "Bado huna akaunti?"
 
 #: apps/pootle_app/templates/index/login.html:34
 #: templates/registration/password_reset_form.html:31
 msgid "Register."
-msgstr ""
+msgstr "Jusajili."
 
 #: apps/pootle_app/views/admin/adminprojects.py:90
 #: apps/pootle_project/models.py:221
@@ -511,12 +516,12 @@ msgstr ""
 #: templates/user_profile_menu.html:7
 #: templates/registration/registration_form.html:30
 msgid "Password"
-msgstr ""
+msgstr "Nywila"
 
 #: apps/pootle_app/views/admin/dashboard.py:48
 #, python-format
 msgid "Translate Toolkit version %s installed."
-msgstr ""
+msgstr "Toleo la %s Translate Toolkit limesakinishwa."
 
 #: apps/pootle_app/views/admin/dashboard.py:55
 #, python-format
@@ -528,7 +533,7 @@ msgstr ""
 #: apps/pootle_app/views/admin/dashboard.py:62
 #, python-format
 msgid "Django version %s is installed."
-msgstr ""
+msgstr "Toleo la %s Django limesakinishwa."
 
 #: apps/pootle_app/views/admin/dashboard.py:65
 #, python-format
@@ -539,7 +544,7 @@ msgstr ""
 #: apps/pootle_app/views/admin/dashboard.py:72
 #, python-format
 msgid "lxml version %s is installed."
-msgstr ""
+msgstr "Toleo la lxml  la %s limesakinishwa."
 
 #: apps/pootle_app/views/admin/dashboard.py:76
 #, python-format
@@ -669,15 +674,15 @@ msgstr ""
 #: apps/pootle_app/views/admin/dashboard.py:271
 #: apps/pootle_translationproject/templates/translation_project/overview.html:62
 msgid "Files"
-msgstr ""
+msgstr "Mafaili"
 
 #: apps/pootle_app/views/admin/dashboard.py:272
 msgid "Active projects"
-msgstr ""
+msgstr "Miradi hai"
 
 #: apps/pootle_app/views/admin/dashboard.py:273
 msgid "Active languages"
-msgstr ""
+msgstr "Lugha hai"
 
 #: apps/pootle_app/views/admin/dashboard.py:274
 msgid "Translated strings"
@@ -685,11 +690,11 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:275
 msgid "Translated words"
-msgstr ""
+msgstr "Maneno yaliyotafsiriwa"
 
 #: apps/pootle_app/views/admin/dashboard.py:276
 msgid "Active users"
-msgstr ""
+msgstr "Watumiaji hai"
 
 #: apps/pootle_app/views/admin/permissions.py:61
 msgid "Translation Project Contributors"
@@ -705,13 +710,13 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/permissions.py:91
 msgid "All Users"
-msgstr ""
+msgstr "Watumiaji wote"
 
 #: apps/pootle_app/views/admin/permissions.py:108
 #: templates/profiles/profile_list.html:11
 #: templates/registration/registration_form.html:20
 msgid "Username"
-msgstr ""
+msgstr "Jina la mtumiaji"
 
 #: apps/pootle_app/views/admin/permissions.py:122
 msgid "Select one or more permissions"
@@ -719,7 +724,7 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/util.py:144
 msgid "No files in this project."
-msgstr ""
+msgstr "Hakuna mafaili kwenye mradi huu."
 
 #: apps/pootle_app/views/admin/util.py:177
 msgid "There are errors in the form. Please review the problems below."
@@ -746,11 +751,11 @@ msgstr ""
 
 #: apps/pootle_language/models.py:71 apps/pootle_project/models.py:62
 msgid "Code"
-msgstr ""
+msgstr "Kificho"
 
 #: apps/pootle_language/models.py:73 apps/pootle_project/models.py:66
 msgid "Full Name"
-msgstr ""
+msgstr "Jina kamili"
 
 #: apps/pootle_language/models.py:75
 #, python-format
@@ -761,11 +766,11 @@ msgstr ""
 
 #: apps/pootle_language/models.py:80
 msgid "Enter any special characters that users might find difficult to type"
-msgstr ""
+msgstr "Ingiza herufi yoyote maalumu ambayo watumiaji watapata ugumu kuichapa"
 
 #: apps/pootle_language/models.py:83
 msgid "Special Characters"
-msgstr ""
+msgstr "Herufi maalumu"
 
 #: apps/pootle_language/models.py:86
 msgid ""
@@ -775,7 +780,7 @@ msgstr ""
 
 #: apps/pootle_language/models.py:90
 msgid "Unknown"
-msgstr ""
+msgstr "Asietambulika"
 
 #: apps/pootle_language/models.py:93
 msgid "Number of Plurals"
@@ -791,8 +796,8 @@ msgstr ""
 #, python-format
 msgid "Error reading %d file"
 msgid_plural "Error reading %d files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Hitilafu imetokea wakati wa kusoma faili %d"
+msgstr[1] "Hitilafu imetokea wakati wa kusoma mafaili %d"
 
 #: apps/pootle_language/views.py:113
 #, python-format
@@ -808,19 +813,19 @@ msgstr ""
 
 #: apps/pootle_language/templates/language/language_admin.html:11
 msgid "Below you can add, edit, and delete the permissions for this language."
-msgstr ""
+msgstr "Chini unaweza kuongeza, kuhariri na kufuta ruhusa kwa ajili lugha hii."
 
 #: apps/pootle_misc/browser.py:30
 msgid "Name"
-msgstr ""
+msgstr "Jina"
 
 #: apps/pootle_misc/browser.py:35 templates/profiles/profile_detail.html:41
 msgid "Project"
-msgstr ""
+msgstr "Mradi"
 
 #: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:406
 msgid "Language"
-msgstr ""
+msgstr "Lugha"
 
 #. Translators: Heading representing the priority for a goal
 #: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:73
@@ -830,13 +835,13 @@ msgstr ""
 #. Translators: noun. The graphical representation of translation status
 #: apps/pootle_misc/browser.py:52
 msgid "Progress"
-msgstr ""
+msgstr "Maendeleo"
 
 #. Translators: Heading representing the total number of words of a file
 #. or directory
 #: apps/pootle_misc/browser.py:59 apps/pootle_misc/stats.py:150
 msgid "Total"
-msgstr ""
+msgstr "Jumla"
 
 #: apps/pootle_misc/browser.py:64
 msgid "Need Translation"
@@ -844,7 +849,7 @@ msgstr ""
 
 #: apps/pootle_misc/browser.py:75
 msgid "Last Activity"
-msgstr ""
+msgstr "Shunguli ya mwasho"
 
 #: apps/pootle_misc/checks.py:27
 msgid "Critical"
@@ -959,8 +964,9 @@ msgid "Numbers"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:59
+#, fuzzy
 msgid "Options"
-msgstr ""
+msgstr "Vya hiari"
 
 #: apps/pootle_misc/checks.py:60
 msgid "printf()"
@@ -1049,11 +1055,11 @@ msgstr ""
 
 #: apps/pootle_misc/forms.py:117
 msgid "Comments"
-msgstr ""
+msgstr "Maoni"
 
 #: apps/pootle_misc/forms.py:118
 msgid "Locations"
-msgstr ""
+msgstr "Mahali"
 
 #: apps/pootle_misc/forms.py:131
 msgid "Source Terms"
@@ -1121,8 +1127,9 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: apps/pootle_misc/stats.py:249
+#, fuzzy
 msgid "Translation is complete"
-msgstr ""
+msgstr "Tafsiri zimakamilika"
 
 #: apps/pootle_misc/stats.py:260
 #, python-format
@@ -1162,8 +1169,8 @@ msgstr[1] ""
 #, python-format
 msgid "%d word needs review"
 msgid_plural "%d words need review"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "neno %d linahitaji kupitiwa"
+msgstr[1] "maneno %d yanahitaji kupitiwa"
 
 #: apps/pootle_misc/templates/progressbar.html:3
 #, python-format
@@ -1173,21 +1180,21 @@ msgstr ""
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/templates/search.html:5 core/helpers.py:59
 msgid "Search"
-msgstr ""
+msgstr "Tafuta"
 
 #: apps/pootle_misc/templatetags/render_pager.py:32
 msgid "First"
-msgstr ""
+msgstr "Kwanza"
 
 #: apps/pootle_misc/templatetags/render_pager.py:34
 #: templates/editor/_toolbar.html:33
 msgid "Previous"
-msgstr ""
+msgstr "Iliopita"
 
 #: apps/pootle_misc/templatetags/render_pager.py:50
 #: templates/editor/_toolbar.html:42
 msgid "Next"
-msgstr ""
+msgstr "Inayokuja"
 
 #: apps/pootle_misc/templatetags/render_pager.py:52
 #, python-format
@@ -1232,22 +1239,22 @@ msgstr ""
 
 #: apps/pootle_notifications/models.py:31
 msgid "Message"
-msgstr ""
+msgstr "Ujumbe"
 
 #. Translators: The date that the news item was written
 #: apps/pootle_notifications/models.py:33
 msgid "Added"
-msgstr ""
+msgstr "Imeongezwa"
 
 #: apps/pootle_notifications/views.py:95
 #, python-format
 msgid "News for %(language)s"
-msgstr ""
+msgstr "Habari za %(language)s"
 
 #: apps/pootle_notifications/views.py:100
 #, python-format
 msgid "News for %(project)s"
-msgstr ""
+msgstr "Habari za %(project)s"
 
 #: apps/pootle_notifications/views.py:106
 #, python-format
@@ -1257,22 +1264,22 @@ msgstr ""
 #: apps/pootle_notifications/views.py:107
 #, python-format
 msgid "News for %(path)s"
-msgstr ""
+msgstr "Habari za %(path)s"
 
 #: apps/pootle_notifications/views.py:226
 msgid "View News Item"
-msgstr ""
+msgstr "Angalia Habari"
 
 #: apps/pootle_notifications/templates/latest_news_snippet.html:9
 #: apps/pootle_notifications/templates/notices.html:83
 msgid "No news yet."
-msgstr ""
+msgstr "Bado hakuna habari."
 
 #: apps/pootle_notifications/templates/notices.html:15
 #: templates/language_menu.html:5 templates/project_menu.html:5
 #: templates/tp_menu.html:5
 msgid "News"
-msgstr ""
+msgstr "Habari"
 
 #: apps/pootle_notifications/templates/notices.html:54
 msgid "Publish News"
@@ -1288,11 +1295,11 @@ msgstr ""
 
 #: apps/pootle_profile/forms.py:32
 msgid "Default"
-msgstr ""
+msgstr "Chaguo-msingi"
 
 #: apps/pootle_profile/forms.py:49 apps/pootle_profile/models.py:94
 msgid "Interface Language"
-msgstr ""
+msgstr "Lugha ya kusano"
 
 #: apps/pootle_profile/forms.py:87
 msgid "This account is inactive."
@@ -1321,11 +1328,11 @@ msgstr ""
 
 #: apps/pootle_project/models.py:79
 msgid "Quality Checks"
-msgstr ""
+msgstr "Maangalizi ya ubora"
 
 #: apps/pootle_project/models.py:83
 msgid "File Type"
-msgstr ""
+msgstr "Aina ya faili"
 
 #: apps/pootle_project/models.py:87
 msgid "Automatic detection (slower)"
@@ -1333,11 +1340,11 @@ msgstr ""
 
 #: apps/pootle_project/models.py:88
 msgid "GNU style: files named by language code"
-msgstr ""
+msgstr "Mtindo wa GNU: mafaili yanapewa majina kwa kificho cha lugha"
 
 #: apps/pootle_project/models.py:89
 msgid "Non-GNU: Each language in its own directory"
-msgstr ""
+msgstr "Isiyo-GNU: Kila lugha kwenye saraka yenyewe"
 
 #: apps/pootle_project/models.py:93
 msgid "Project Tree Style"
@@ -1345,7 +1352,7 @@ msgstr ""
 
 #: apps/pootle_project/models.py:100
 msgid "Ignore Files"
-msgstr ""
+msgstr "Mafaili ya kupuuzwa"
 
 #: apps/pootle_project/models.py:105
 msgid ""
@@ -1373,8 +1380,9 @@ msgid "Update against templates"
 msgstr ""
 
 #: apps/pootle_project/templates/project/admin_permissions.html:20
+#, fuzzy
 msgid "Below you can add, edit, and delete the permissions for this project."
-msgstr ""
+msgstr "Chini unaweza kuongeza, kuhariri na kufuta ruhusa kwa ajili lugha hii."
 
 #: apps/pootle_project/templates/project/overview.html:18
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
@@ -1404,11 +1412,11 @@ msgstr ""
 #: apps/pootle_project/templates/project/project_admin.html:7
 #: templates/project_menu.html:9
 msgid "Administrate"
-msgstr ""
+msgstr "Tawala"
 
 #: apps/pootle_project/templates/project/project_admin.html:20
 msgid "Here you can add, edit, or delete the languages for this project."
-msgstr ""
+msgstr "Hapa unawaza ongeza,hariri au kufuta lugha kwa mradi huu."
 
 #: apps/pootle_statistics/models.py:46
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:103
@@ -1424,8 +1432,9 @@ msgid "State"
 msgstr ""
 
 #: apps/pootle_statistics/models.py:49
+#, fuzzy
 msgid "Comment"
-msgstr ""
+msgstr "Maoni"
 
 #: apps/pootle_statistics/models.py:114
 msgid "anonymous user"
@@ -1485,11 +1494,11 @@ msgstr ""
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Gettext PO"
-msgstr ""
+msgstr "Gettext PO"
 
 #: apps/pootle_store/filetypes.py:35
 msgid "XLIFF"
-msgstr ""
+msgstr "XLIFF"
 
 #: apps/pootle_store/filetypes.py:41
 msgid "Qt ts"
@@ -1561,11 +1570,11 @@ msgstr ""
 
 #: apps/pootle_store/forms.py:296
 msgid "Translator comment"
-msgstr ""
+msgstr "Maoni ya mtafsiri"
 
 #: apps/pootle_store/models.py:893
 msgid "Path"
-msgstr ""
+msgstr "Njia"
 
 #: apps/pootle_store/models.py:900
 #: apps/pootle_translationproject/models.py:121
@@ -1617,16 +1626,19 @@ msgid "The suggestion or vote is not valid any more."
 msgstr ""
 
 #: apps/pootle_store/views.py:1096
+#, fuzzy
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "Hauna ruhusa kutawala %s."
 
 #: apps/pootle_store/views.py:1132
+#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "Hauna ruhusa kutawala %s."
 
 #: apps/pootle_store/templates/unit/comment.html:12
+#, fuzzy
 msgid "Comment:"
-msgstr ""
+msgstr "Maoni"
 
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
@@ -1638,16 +1650,19 @@ msgid "Context:"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:32
+#, fuzzy
 msgid "Comments:"
-msgstr ""
+msgstr "Maoni"
 
 #: apps/pootle_store/templates/unit/edit.html:47
+#, fuzzy
 msgid "Locations:"
-msgstr ""
+msgstr "Mahali"
 
 #: apps/pootle_store/templates/unit/edit.html:56
+#, fuzzy
 msgid "Terminology:"
-msgstr ""
+msgstr "Istilahi"
 
 #: apps/pootle_store/templates/unit/edit.html:58
 msgid "Insert the translated term into the editor"
@@ -1663,7 +1678,7 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:77
 msgid "Remove quality check"
-msgstr ""
+msgstr "Ondoa angalizo la ubora"
 
 #: apps/pootle_store/templates/unit/edit.html:100
 #: apps/pootle_store/templates/unit/edit.html:121
@@ -1678,7 +1693,7 @@ msgstr ""
 #: apps/pootle_store/templates/unit/edit.html:146
 #: apps/pootle_store/templates/unit/edit.html:232
 msgid "Submit"
-msgstr ""
+msgstr "Wasilisha"
 
 #: apps/pootle_store/templates/unit/edit.html:136
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
@@ -1687,7 +1702,7 @@ msgstr ""
 #: apps/pootle_store/templates/unit/edit.html:139
 #: apps/pootle_store/templates/unit/edit.html:147
 msgid "Suggest"
-msgstr ""
+msgstr "Pendekeza"
 
 #: apps/pootle_store/templates/unit/edit.html:139
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
@@ -1763,20 +1778,21 @@ msgid "Hide Timeline"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:248
+#, fuzzy
 msgid "User suggestions"
-msgstr ""
+msgstr "Angalia mapendekezo"
 
 #: apps/pootle_store/templates/unit/edit.html:266
 msgid "Accept suggestion"
-msgstr ""
+msgstr "Kubali pendekezo"
 
 #: apps/pootle_store/templates/unit/edit.html:271
 msgid "Reject suggestion"
-msgstr ""
+msgstr "Kataa pendekezo"
 
 #: apps/pootle_store/templates/unit/edit.html:278
 msgid "Remove suggestion"
-msgstr ""
+msgstr "Ondoa pendekezo"
 
 #: apps/pootle_store/templates/unit/term_edit.html:21
 msgid "Your current vote. Click to remove this vote."
@@ -1787,8 +1803,9 @@ msgid "Vote for this suggestion"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/term_edit.html:40
+#, fuzzy
 msgid "Comment: "
-msgstr ""
+msgstr "Maoni"
 
 #: apps/pootle_store/templates/unit/timeline.html:4
 #: apps/pootle_store/templates/unit/timeline.html:14
@@ -1913,12 +1930,12 @@ msgstr ""
 #: apps/pootle_terminology/templates/terminology/manage.html:36
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:104
 msgid "Translation"
-msgstr ""
+msgstr "Tafsiri"
 
 #: apps/pootle_terminology/templates/terminology/manage.html:37
 #: apps/staticpages/templates/staticpages/admin/_form.html:7
 msgid "Delete"
-msgstr ""
+msgstr "Futa"
 
 #: apps/pootle_terminology/templates/terminology/manage.html:61
 msgid "Glossary is Empty"
@@ -1935,23 +1952,25 @@ msgstr ""
 #: apps/pootle_terminology/templates/terminology/stores.html:14
 #: apps/pootle_translationproject/forms.py:63
 msgid "File"
-msgstr ""
+msgstr "Faili"
 
 #: apps/pootle_terminology/templates/terminology/stores.html:29
 msgid "Once you upload files, you will be able to add, edit and delete terms."
 msgstr ""
 
 #: apps/pootle_terminology/templates/terminology/term_edit.html:11
+#, fuzzy
 msgid "Description..."
-msgstr ""
+msgstr "Maelezo"
 
 #: apps/pootle_terminology/templates/terminology/term_edit.html:18
 msgid "Details..."
-msgstr ""
+msgstr "Ufafanuzi..."
 
 #: apps/pootle_terminology/templates/terminology/term_edit.html:31
+#, fuzzy
 msgid "Translator Comments"
-msgstr ""
+msgstr "Maoni ya mtafsiri"
 
 #: apps/pootle_translationproject/actions.py:61
 msgid "Download (.zip)"
@@ -1960,7 +1979,7 @@ msgstr ""
 #: apps/pootle_translationproject/actions.py:75
 #: apps/pootle_translationproject/actions.py:100
 msgid "Download XLIFF"
-msgstr ""
+msgstr "Pakua XLIFF"
 
 #: apps/pootle_translationproject/actions.py:76
 msgid "Download file in XLIFF format"
@@ -1968,7 +1987,7 @@ msgstr ""
 
 #: apps/pootle_translationproject/actions.py:79
 msgid "Export"
-msgstr ""
+msgstr "Hamisha"
 
 #: apps/pootle_translationproject/actions.py:80
 msgid "Export translations"
@@ -1976,20 +1995,20 @@ msgstr ""
 
 #: apps/pootle_translationproject/actions.py:82
 msgid "Download"
-msgstr ""
+msgstr "Pakua"
 
 #: apps/pootle_translationproject/actions.py:83
 msgid "Download file"
-msgstr ""
+msgstr "Pakua faili"
 
 #: apps/pootle_translationproject/actions.py:101
 msgid "Download XLIFF file for offline translation"
-msgstr ""
+msgstr "Pakua faili la XLIFF kwa ajili ya kutafsiri nje ya mkondo"
 
 #: apps/pootle_translationproject/actions.py:116
 #: apps/pootle_translationproject/templates/translation_project/overview.html:167
 msgid "Upload"
-msgstr ""
+msgstr "Pakia"
 
 #: apps/pootle_translationproject/actions.py:117
 msgid "Upload translation files or archives in .zip format"
@@ -1997,7 +2016,7 @@ msgstr ""
 
 #: apps/pootle_translationproject/actions.py:135
 msgid "Update from VCS"
-msgstr ""
+msgstr "Boresha kutoka VCS"
 
 #: apps/pootle_translationproject/actions.py:150
 msgid "Commit to VCS"
@@ -2005,8 +2024,9 @@ msgstr ""
 
 #. Translators: "all" here refers to all files and sub directories in a directory/project.
 #: apps/pootle_translationproject/actions.py:166
+#, fuzzy
 msgid "Update all from VCS"
-msgstr ""
+msgstr "Boresha kutoka VCS"
 
 #. Translators: "all" here refers to all files and sub directories in a directory/project.
 #: apps/pootle_translationproject/actions.py:182
@@ -2049,7 +2069,7 @@ msgstr ""
 #: apps/pootle_translationproject/forms.py:73
 #: apps/pootle_translationproject/forms.py:81
 msgid "Upload to"
-msgstr ""
+msgstr "Pakia kwenda"
 
 #: apps/pootle_translationproject/forms.py:76
 #: apps/pootle_translationproject/forms.py:85
@@ -2196,10 +2216,11 @@ msgid "You do not have rights to upload files here."
 msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/admin_permissions.html:11
+#, fuzzy
 msgid ""
 "Below you can add, edit, and delete the permissions for this translation "
 "project."
-msgstr ""
+msgstr "Chini unaweza kuongeza, kuhariri na kufuta ruhusa kwa ajili lugha hii."
 
 #. Translators: A view showing the export of strings in a flat form.
 #. See http://staging.locamotion.org/he/birdfont/export-view/?filter=incomplete
@@ -2239,7 +2260,7 @@ msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:156
 msgid "Upload File"
-msgstr ""
+msgstr "Pakia faili"
 
 #: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:4
 msgid "Translation Statistics"
@@ -2255,31 +2276,31 @@ msgstr ""
 
 #: apps/registration/forms.py:36
 msgid "username"
-msgstr ""
+msgstr "mtumiaji"
 
 #: apps/registration/forms.py:39
 msgid "email address"
-msgstr ""
+msgstr "anwani ya barua-pepe"
 
 #: apps/registration/forms.py:41
 msgid "password"
-msgstr ""
+msgstr "nywila"
 
 #: apps/registration/forms.py:43
 msgid "password (again)"
-msgstr ""
+msgstr "nywila (tena)"
 
 #: apps/registration/forms.py:55
 msgid "This username is already taken. Please choose another."
-msgstr ""
+msgstr "Jina hili la mtumiaji tayari limechukuliwa. Tafadhali chagua jingine."
 
 #: apps/registration/forms.py:67
 msgid "You must type the same password each time"
-msgstr ""
+msgstr "Lazima uchape nywila inayofanana kila wakati"
 
 #: apps/registration/forms.py:90
 msgid "I have read and agree to the Terms of Service"
-msgstr ""
+msgstr "Nimesoma na kukubaliana na masharti ya huduma"
 
 #: apps/registration/forms.py:107
 msgid ""
@@ -2295,7 +2316,7 @@ msgstr ""
 
 #: apps/registration/models.py:231
 msgid "user"
-msgstr ""
+msgstr "mtumiaji"
 
 #: apps/registration/models.py:232
 msgid "activation key"
@@ -2303,11 +2324,11 @@ msgstr ""
 
 #: apps/registration/models.py:237
 msgid "registration profile"
-msgstr ""
+msgstr "usajili wa profaili"
 
 #: apps/registration/models.py:238
 msgid "registration profiles"
-msgstr ""
+msgstr "usajili wa profaili"
 
 #: apps/staticpages/forms.py:78
 #, python-format
@@ -2318,8 +2339,9 @@ msgstr ""
 
 #: apps/staticpages/models.py:37
 #: apps/staticpages/templates/staticpages/admin/_table.html:7
+#, fuzzy
 msgid "Active"
-msgstr ""
+msgstr "hai"
 
 #: apps/staticpages/models.py:38
 msgid "Whether this page is active or not."
@@ -2451,7 +2473,7 @@ msgstr ""
 
 #: core/decorators.py:191 core/views.py:29
 msgid "You do not have rights to administer Pootle."
-msgstr ""
+msgstr "Hauna ruhusa kutawala Pootle."
 
 #: core/helpers.py:41
 msgid "User missing"
@@ -2476,7 +2498,7 @@ msgstr ""
 
 #: middleware/captcha.py:122
 msgid "Time to answer has expired"
-msgstr ""
+msgstr "Muda wa kujibu umekwisha"
 
 #: middleware/captcha.py:141
 msgid "Enter a number"
@@ -2484,7 +2506,7 @@ msgstr ""
 
 #: middleware/captcha.py:156
 msgid "Incorrect"
-msgstr ""
+msgstr "Si sahihi"
 
 #: middleware/errorpages.py:74
 #, python-format
@@ -2509,27 +2531,27 @@ msgstr ""
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"
-msgstr ""
+msgstr "Ruhusa zimekanushwa"
 
 #: templates/403.html:16
 msgid "You don't have permission to access this page."
-msgstr ""
+msgstr "Hauna ruhusa ya kuufikia ikurasa huu."
 
 #: templates/404.html:4 templates/404.html.py:7 templates/404.html.py:12
 msgid "Page Not Found"
-msgstr ""
+msgstr "Ukurasa haujapatikana"
 
 #: templates/404.html:13
 msgid "We're sorry, but the requested page could not be found."
-msgstr ""
+msgstr "Pole, ukurasa aliomba hakuweza kupatikana."
 
 #: templates/500.html:4 templates/500.html.py:7 templates/500.html.py:12
 msgid "Server Error"
-msgstr ""
+msgstr "Hitilafu ya seva"
 
 #: templates/500.html:13
 msgid "An error has occurred. Thank you for your patience."
-msgstr ""
+msgstr "Hitilafu imetokea. Asante kwa uvumilivu wako."
 
 #: templates/500.html:20
 #, python-format
@@ -2551,11 +2573,11 @@ msgstr ""
 #: templates/project_menu.html:7 templates/tp_menu.html:6
 #: templates/editor/main.html:4
 msgid "Translate"
-msgstr ""
+msgstr "Tafsiri"
 
 #: templates/admin_profile_base.html:4 templates/admin_profile_base.html:7
 msgid "Administration"
-msgstr ""
+msgstr "Utawala"
 
 #: templates/admin_profile_menu.html:3
 msgid "Information and statistics about this Pootle server"
@@ -2563,7 +2585,7 @@ msgstr ""
 
 #: templates/admin_profile_menu.html:3
 msgid "Info"
-msgstr ""
+msgstr "Taarifa"
 
 #: templates/admin_profile_menu.html:4
 msgid "Configure the general settings for your site"
@@ -2620,8 +2642,9 @@ msgstr ""
 #: templates/base.html:147 templates/registration/registration_form.html:4
 #: templates/registration/registration_form.html:7
 #: templates/registration/registration_form.html:48
+#, fuzzy
 msgid "Register"
-msgstr ""
+msgstr "Jusajili."
 
 #: templates/base.html:149
 msgid "Log In"
@@ -2643,13 +2666,14 @@ msgstr ""
 
 #: templates/base.html:201 templates/about/contributors.html:6
 #: templates/about/contributors.html:9
+#, fuzzy
 msgid "Contributors"
-msgstr ""
+msgstr "Wachangiaji wakubwa"
 
 #: templates/captcha-xhr.html:8 templates/captcha.html:4
 #: templates/captcha.html.py:7
 msgid "Are You Human?"
-msgstr ""
+msgstr "Je wewe ni binadamu?"
 
 #: templates/captcha-xhr.html:9
 msgid ""
@@ -2730,11 +2754,11 @@ msgstr ""
 
 #: templates/project_menu.html:10
 msgid "Manage project permissions"
-msgstr ""
+msgstr "Simamia ruhusa za mradi"
 
 #: templates/tp_base_terminology.html:4
 msgid "Manage Terminology"
-msgstr ""
+msgstr "Simamia istilahi"
 
 #: templates/tp_menu.html:4
 msgid "Translation project main page"
@@ -2745,12 +2769,13 @@ msgid "Translation project news"
 msgstr ""
 
 #: templates/tp_menu.html:8
+#, fuzzy
 msgid "Manage terminology"
-msgstr ""
+msgstr "Simamia istilahi"
 
 #: templates/tp_menu.html:8
 msgid "Terminology"
-msgstr ""
+msgstr "Istilahi"
 
 #: templates/tp_menu.html:9
 msgid "Administrate your project permissions"
@@ -2805,7 +2830,7 @@ msgstr ""
 
 #: templates/about/base.html:4 templates/about/base.html.py:7
 msgid "About"
-msgstr ""
+msgstr "Kuhusu"
 
 #: templates/common/_table_row.html:87
 msgid "Add a tag"
@@ -2813,13 +2838,13 @@ msgstr ""
 
 #: templates/contact_form/contact_form.html:17
 msgid "Send"
-msgstr ""
+msgstr "Tuma"
 
 #: templates/contact_form/contact_form_sent.html:5
 #: templates/contact_form/contact_form_sent.html:8
 #: templates/contact_form/contact_form_sent.html:13
 msgid "Message Sent"
-msgstr ""
+msgstr "Ujumbe umetumwa"
 
 #: templates/contact_form/contact_form_sent.html:14
 msgid "Thank you for your feedback."
@@ -2844,8 +2869,9 @@ msgid "Filter by:"
 msgstr ""
 
 #: templates/editor/_toolbar.html:18
+#, fuzzy
 msgid "My suggestions"
-msgstr ""
+msgstr "Angalia mapendekezo"
 
 #: templates/editor/_toolbar.html:19
 msgid "My submissions"
@@ -2883,16 +2909,19 @@ msgid ""
 msgstr ""
 
 #: templates/profiles/edit_personal.html:18
+#, fuzzy
 msgid "First Name"
-msgstr ""
+msgstr "jina la kwanza"
 
 #: templates/profiles/edit_personal.html:23
+#, fuzzy
 msgid "Last Name"
-msgstr ""
+msgstr "jina la ukoo"
 
 #: templates/profiles/edit_personal.html:28
+#, fuzzy
 msgid "Email address"
-msgstr ""
+msgstr "anwani ya barua-pepe"
 
 #: templates/profiles/edit_profile.html:4
 #: templates/profiles/edit_profile.html:7
@@ -2906,8 +2935,9 @@ msgid ""
 msgstr ""
 
 #: templates/profiles/profile_detail.html:23
+#, fuzzy
 msgid "Contributions"
-msgstr ""
+msgstr "Wachangiaji wakubwa"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"
@@ -2915,7 +2945,7 @@ msgstr ""
 
 #: templates/profiles/profile_detail.html:42
 msgid "Suggestions Pending"
-msgstr ""
+msgstr "Mapendekezo yanasubiri"
 
 #: templates/profiles/profile_detail.html:46
 msgid "Overwritten"
@@ -2930,12 +2960,14 @@ msgid "Profiles list"
 msgstr ""
 
 #: templates/profiles/profile_list.html:12
+#, fuzzy
 msgid "First name"
-msgstr ""
+msgstr "jina la kwanza"
 
 #: templates/profiles/profile_list.html:13
+#, fuzzy
 msgid "Last name"
-msgstr ""
+msgstr "jina la ukoo"
 
 #: templates/registration/activate.html:5
 #: templates/registration/activate.html:8
@@ -3119,8 +3151,9 @@ msgstr ""
 
 #: templates/registration/password_reset_form.html:19
 #: templates/registration/registration_form.html:25
+#, fuzzy
 msgid "Email Address"
-msgstr ""
+msgstr "anwani ya barua-pepe"
 
 #: templates/registration/registration_complete.html:5
 #: templates/registration/registration_complete.html:8
@@ -3141,8 +3174,9 @@ msgid "Fill in the following form to get started translating."
 msgstr ""
 
 #: templates/registration/registration_form.html:35
+#, fuzzy
 msgid "Password (again)"
-msgstr ""
+msgstr "nywila (tena)"
 
 #: templates/registration/registration_form.html:53
 msgid "Already have an account?"

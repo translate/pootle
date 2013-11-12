@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-10-31 17:15+0000\n"
-"PO-Revision-Date: 2013-03-01 07:21+0000\n"
-"Last-Translator: harmi <p.viljakainen@gmail.com>\n"
+"PO-Revision-Date: 2013-11-07 06:29+0000\n"
+"Last-Translator: Jussi <jta_l10n@saunalahti.fi>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1362122487.0\n"
+"X-POOTLE-MTIME: 1383805782.0\n"
 
 #: strings.py:8
 msgid ""
@@ -530,7 +530,7 @@ msgstr "Rekisteröidy."
 #: apps/pootle_project/models.py:221
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
-msgstr ""
+msgstr "\"%s\" ei kelpaa projektikoodiksi"
 
 #: apps/pootle_app/views/admin/adminusers.py:55
 #: templates/user_profile_menu.html:7
@@ -759,11 +759,11 @@ msgstr "Aktiivisia käyttäjiä"
 
 #: apps/pootle_app/views/admin/permissions.py:61
 msgid "Translation Project Contributors"
-msgstr ""
+msgstr "Käännösprojektiin osallistuneet"
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Contributors"
-msgstr ""
+msgstr "Projektiin osallistuneet"
 
 #: apps/pootle_app/views/admin/permissions.py:84
 msgid "Language Contributors"
@@ -781,7 +781,7 @@ msgstr "Käyttäjätunnus"
 
 #: apps/pootle_app/views/admin/permissions.py:122
 msgid "Select one or more permissions"
-msgstr ""
+msgstr "Valitse yksi tai useampi käyttöoikeus"
 
 #: apps/pootle_app/views/admin/util.py:144
 msgid "No files in this project."
@@ -901,7 +901,7 @@ msgstr "Kieli"
 #. Translators: Heading representing the priority for a goal
 #: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:73
 msgid "Priority"
-msgstr ""
+msgstr "Tärkeysaste"
 
 #. Translators: noun. The graphical representation of translation status
 #: apps/pootle_misc/browser.py:52
@@ -1113,7 +1113,7 @@ msgstr "Haku (Ctrl+Shift+S)<br/>Kirjoita hakusana ja paina Enter etsiäksesi"
 
 #: apps/pootle_misc/forms.py:108
 msgid "Exact Match"
-msgstr ""
+msgstr "Tarkalleen sama"
 
 #: apps/pootle_misc/forms.py:115
 msgid "Source Text"
@@ -1167,7 +1167,7 @@ msgstr[1] "(%(num)d merkkijonoa)"
 msgid "This folder has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
 "This folder has %(num)d words, %(percentage)d%% of which are translated."
-msgstr[0] ""
+msgstr[0] "Kansiossa on %(num)d sana, josta %(percentage)d%% on käännetty."
 msgstr[1] "Kansiossa on %(num)d sanaa, joista %(percentage)d%% on käännetty."
 
 #: apps/pootle_misc/stats.py:184
@@ -1175,7 +1175,7 @@ msgstr[1] "Kansiossa on %(num)d sanaa, joista %(percentage)d%% on käännetty."
 msgid "This file has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
 "This file has %(num)d words, %(percentage)d%% of which are translated."
-msgstr[0] ""
+msgstr[0] "Tiedostossa on %(num)d sana, josta %(percentage)d%% on käännetty."
 msgstr[1] "Tiedostossa on %(num)d sanaa, joista %(percentage)d%% on käännetty."
 
 #: apps/pootle_misc/stats.py:206
@@ -1292,7 +1292,7 @@ msgstr "Projektin valinta"
 
 #: apps/pootle_notifications/forms.py:61
 msgid "Select one or more projects"
-msgstr ""
+msgstr "Valitse yksi tai useampi projekti"
 
 #: apps/pootle_notifications/forms.py:68
 msgid "All Languages"
@@ -1304,7 +1304,7 @@ msgstr "Kielen valinta"
 
 #: apps/pootle_notifications/forms.py:77 apps/pootle_profile/forms.py:120
 msgid "Select one or more languages"
-msgstr ""
+msgstr "Valitse yksi tai useampi kieli"
 
 #: apps/pootle_notifications/models.py:31
 msgid "Message"
@@ -1440,7 +1440,7 @@ msgstr "Osoite virheilmoituksille"
 
 #: apps/pootle_project/views.py:119
 msgid "Filter using one or more tags"
-msgstr ""
+msgstr "Suodata yhdellä tai useammalla tunnisteella"
 
 #: apps/pootle_project/views.py:161
 #, python-format
@@ -1461,7 +1461,7 @@ msgstr "Täällä voit lisätä, muuttaa ja poistaa tämän projektin käyttöoi
 #: apps/pootle_project/templates/project/overview.html:18
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
-msgstr ""
+msgstr "Näytä tunnisteet"
 
 #: apps/pootle_project/templates/project/overview.html:21
 msgid "Show filtering"
@@ -1470,18 +1470,18 @@ msgstr ""
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
 msgid "Filter"
-msgstr ""
+msgstr "Suodata"
 
 #: apps/pootle_project/templates/project/overview.html:38
 msgid "Filter using the selected tags"
-msgstr ""
+msgstr "Suodata valituilla tunnisteilla"
 
 #: apps/pootle_project/templates/project/overview.html:76
 #: apps/pootle_translationproject/templates/translation_project/overview.html:43
 #: apps/pootle_translationproject/templates/translation_project/overview.html:175
 #: templates/common/xhr_add_tag_form.html:15
 msgid "Add tag"
-msgstr ""
+msgstr "Lisää tunniste"
 
 #: apps/pootle_project/templates/project/project_admin.html:7
 #: templates/project_menu.html:9
@@ -1519,6 +1519,8 @@ msgid ""
 "%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s palautti käännöksen merkkijonolle <i><a href=\"%(url)s\">%"
+"(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:153
 #, python-format
@@ -1526,11 +1528,13 @@ msgid ""
 "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s hyväksyi ehdotuksen merkkijonolle <i><a href=\"%(url)s\">%"
+"(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:156
 #, python-format
 msgid "%(user)s uploaded a file"
-msgstr ""
+msgstr "%(user)s lähetti tiedoston"
 
 #: apps/pootle_statistics/models.py:171
 #, python-format
@@ -1538,6 +1542,8 @@ msgid ""
 "%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s lähetti käännöksen merkkijonolle <i><a href=\"%(url)s\">%"
+"(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:174
 #, python-format
@@ -1545,6 +1551,8 @@ msgid ""
 "%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
 "\">%(source)s</a></i>"
 msgstr ""
+"%(user)s lähetti \"keskeneräisen\" käännöksen merkkijonolle <i><a href=\"%"
+"(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:177
 #, python-format
@@ -1552,10 +1560,12 @@ msgid ""
 "%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s poisti käännöksen merkkijonolle <i><a href=\"%(url)s\">%"
+"(source)s</a></i>"
 
 #: apps/pootle_store/decorators.py:63
 msgid "Insufficient rights to access this directory."
-msgstr ""
+msgstr "Puutteelliset käyttöoikeudet estävät pääsyn tähän kansioon."
 
 #: apps/pootle_store/decorators.py:135 apps/pootle_store/views.py:531
 msgid "Arguments missing."
@@ -1563,7 +1573,7 @@ msgstr ""
 
 #: apps/pootle_store/decorators.py:147
 msgid "File does not exist."
-msgstr ""
+msgstr "Tiedostoa ei ole olemassa."
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Gettext PO"
@@ -1652,23 +1662,23 @@ msgstr "Polku"
 #: apps/pootle_store/models.py:900
 #: apps/pootle_translationproject/models.py:121
 msgid "Tags"
-msgstr ""
+msgstr "Tunnisteet"
 
 #: apps/pootle_store/models.py:901
 #: apps/pootle_translationproject/models.py:122
 msgid "A comma-separated list of tags."
-msgstr ""
+msgstr "Pilkuilla eroteltu luettelo tunnisteista."
 
 #: apps/pootle_store/models.py:902
 #: apps/pootle_translationproject/models.py:126
 #: apps/pootle_translationproject/templates/translation_project/overview.html:69
 msgid "Goals"
-msgstr ""
+msgstr "Tavoitteet"
 
 #: apps/pootle_store/models.py:904
 #: apps/pootle_translationproject/models.py:128
 msgid "A comma-separated list of goals."
-msgstr ""
+msgstr "Pilkuilla eroteltu luettelo tavoitteista."
 
 #: apps/pootle_store/util.py:45
 msgid "Obsolete"
@@ -1700,11 +1710,11 @@ msgstr "Ehdotus tai ääni ei ole enää voimassa."
 
 #: apps/pootle_store/views.py:1096
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "Sinulla ei ole oikeuksia poistaa tunnisteita."
 
 #: apps/pootle_store/views.py:1132
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "Sinulla ei ole oikeuksia lisätä tunnisteita."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
@@ -1713,7 +1723,7 @@ msgstr "Kommentti:"
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
 msgid "String %(id)s"
-msgstr ""
+msgstr "Merkkijono %(id)s"
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -1818,7 +1828,7 @@ msgstr "Liitä LRO (vasemmalta oikealle -sivuutus) muokkaimeen"
 
 #: apps/pootle_store/templates/unit/edit.html:199
 msgid "Insert PDF (Pop Directional Format ) into the editor"
-msgstr ""
+msgstr "Liitä PDF (Pop Directional Format ) muokkaimeen"
 
 #: apps/pootle_store/templates/unit/edit.html:202
 msgid "Insert ZWJ (Zero Width Joiner) into the editor"
@@ -1900,12 +1910,18 @@ msgid ""
 "Tag names cannot have leading nor trailing spaces, colons (:), hyphens (-), "
 "underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Tunnisteen nimessä ei voi käyttää aloittavia tai lopettavia välilyöntejä, "
+"puolipisteitä (:), yhdysviivoja (-), alaviivoja (_), kauttaviivoja (/) tai "
+"pisteitä (.)!"
 
 #: apps/pootle_tagging/forms.py:53
 msgid ""
 "Tag names cannot contain two or more consecutive: spaces, colons (:), "
 "hyphens (-), underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Tunnisteen nimi ei voi sisältää kahta tai useampaa peräkkäistä välilyöntiä, "
+"puolipistettä (:), yhdysviivaa (-), alaviivaa (_), kauttaviivaa (/) tai "
+"pistettä (.)!"
 
 #: apps/pootle_tagging/forms.py:60
 msgid ""
@@ -1919,10 +1935,13 @@ msgid ""
 "Name cannot contain just after 'goal:' any of these characters: spaces, "
 "colons (:), hyphens (-), underscores (_), slashes (/) or periods (.)"
 msgstr ""
+"Nimi ei voi sisältää sanan 'goal:' jälkeen seuraavia merkkejä: välilyöntejä, "
+"puolipisteitä (:), yhdysviivoja (-), alaviivoja (_), kauttaviivoja (/) tai "
+"pisteitä (.)"
 
 #: apps/pootle_tagging/forms.py:133
 msgid "A goal with that name already exists. Please pick another name."
-msgstr ""
+msgstr "Tämän niminen tavoite on jo olemassa. Valitse joku toinen nimi."
 
 #: apps/pootle_tagging/forms.py:173
 msgid ""
@@ -1933,7 +1952,7 @@ msgstr ""
 
 #: apps/pootle_tagging/forms.py:180
 msgid "A goal with this slug already exists."
-msgstr ""
+msgstr "Tällä lyhytnimellä oleva tavoite on jo olemassa."
 
 #: apps/pootle_tagging/forms.py:194
 msgid ""
@@ -1947,10 +1966,12 @@ msgid ""
 "A description of this goal. This is useful to give more information or "
 "instructions. Allowed markup: %s"
 msgstr ""
+"Tämän tavoitteen kuvaus. Tähän voi laittaa lisätietoja tai ohjeita. Sallittu "
+"merkintäkieli: %s"
 
 #: apps/pootle_tagging/models.py:74
 msgid "The priority for this goal."
-msgstr ""
+msgstr "Tämän tavoitteen tärkeysaste."
 
 #: apps/pootle_tagging/models.py:79
 msgid ""
@@ -1960,11 +1981,11 @@ msgstr ""
 
 #: apps/pootle_tagging/models.py:81
 msgid "Project goal?"
-msgstr ""
+msgstr "Projektin tavoite?"
 
 #: apps/pootle_tagging/models.py:105
 msgid "(Project goal)"
-msgstr ""
+msgstr "(Projektin tavoite)"
 
 #: apps/pootle_terminology/views.py:171
 msgid "This term already exists in this file."
@@ -2257,7 +2278,7 @@ msgstr ""
 #: apps/pootle_translationproject/views.py:400
 #, python-format
 msgid "Error while running '%s' extension action"
-msgstr ""
+msgstr "Virhe suoritettaessa '%s'-laajennuksen toimintoa"
 
 #: apps/pootle_translationproject/views.py:820
 #, python-format
@@ -2306,19 +2327,19 @@ msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:99
 msgid "Goal"
-msgstr ""
+msgstr "Tavoite"
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:141
 msgid "No strings."
-msgstr ""
+msgstr "Ei merkkijonoja."
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:61
 msgid "Translation project files and folders"
-msgstr ""
+msgstr "Käännösprojektin tiedostot ja kansiot"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "Projektin tavoitteiden hallinta"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2416,6 +2437,8 @@ msgid ""
 "I have read and accept: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</"
 "a>"
 msgstr ""
+"Olen lukenut ja hyväksynyt seuraavan: <a href=\"%(url)s\" class=\"%(classes)s\">"
+"%(title)s</a>"
 
 #: apps/staticpages/models.py:37
 #: apps/staticpages/templates/staticpages/admin/_table.html:7
@@ -2434,7 +2457,7 @@ msgstr ""
 #. Translators: Content that will be used to display this static page
 #: apps/staticpages/models.py:47
 msgid "Display Content"
-msgstr ""
+msgstr "Näytettävä sisältö"
 
 #: apps/staticpages/models.py:48
 #, python-format
@@ -2444,11 +2467,12 @@ msgstr "Sallittu merkintäkieli: %s"
 #: apps/staticpages/models.py:50
 #: apps/staticpages/templates/staticpages/admin/_table.html:10
 msgid "Redirect to URL"
-msgstr ""
+msgstr "Ohjaus URLiin"
 
 #: apps/staticpages/models.py:51
 msgid "If set, any references to this page will redirect to this URL"
 msgstr ""
+"Mikäli asetettu, kaikki viittaukset tähän sivuun ohjataan annettuun URLiin"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:98
@@ -2461,7 +2485,7 @@ msgstr ""
 
 #: apps/staticpages/models.py:111
 msgid "Legal Page"
-msgstr ""
+msgstr "Lainopillinen sivu"
 
 #: apps/staticpages/models.py:122
 msgid "Regular Page"
@@ -2469,12 +2493,12 @@ msgstr ""
 
 #: apps/staticpages/views.py:87
 msgid "Page Title"
-msgstr ""
+msgstr "Sivun otsikko"
 
 #: apps/staticpages/views.py:88
 #, python-format
 msgid "page-%d"
-msgstr ""
+msgstr "sivu-%d"
 
 #: apps/staticpages/views.py:130
 #, python-format
@@ -2489,42 +2513,42 @@ msgstr ""
 
 #: apps/staticpages/templates/staticpages/agreement.html:5
 msgid "Before continuing, you must read and accept the following documents."
-msgstr ""
+msgstr "Ennen kuin jatkat, lue ja hyväksy seuraavat asiakirjat."
 
 #: apps/staticpages/templates/staticpages/agreement.html:18
 msgid "No thanks. Log out"
-msgstr ""
+msgstr "Ei kiitos. Kirjaudu ulos"
 
 #: apps/staticpages/templates/staticpages/agreement.html:21
 msgid "Continue"
-msgstr ""
+msgstr "Jatka"
 
 #: apps/staticpages/templates/staticpages/base.html:5
 #: apps/staticpages/templates/staticpages/base.html:11
 #: templates/admin_profile_menu.html:9
 msgid "Static Pages"
-msgstr ""
+msgstr "Staattiset sivut"
 
 #. Translators: Displayed as 'Redirect to URL or Display Content'
 #: apps/staticpages/templates/staticpages/admin/_form.html:19
 msgid "or"
-msgstr ""
+msgstr "tai"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:8
 msgid "Page"
-msgstr ""
+msgstr "Sivu"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:11
 msgid "Last Edited"
-msgstr ""
+msgstr "Muokattu viimeksi"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "Yes"
-msgstr ""
+msgstr "Kyllä"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "No"
-msgstr ""
+msgstr "Ei"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:30
 msgid "No pages yet."
@@ -2536,7 +2560,7 @@ msgstr "Lainopilliset sivut"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:12
 msgid "Add Legal Page"
-msgstr ""
+msgstr "Lisää lainopillinen sivu"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
 msgid "Regular Pages"
@@ -2548,7 +2572,7 @@ msgstr ""
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."
-msgstr ""
+msgstr "Puutteelliset käyttöoikeudet estävät pääsyn tälle sivulle."
 
 #: core/decorators.py:191 core/views.py:29
 msgid "You do not have rights to administer Pootle."
@@ -2644,7 +2668,7 @@ msgstr ""
 
 #: templates/_main_tabs.html:5
 msgid "Main page"
-msgstr ""
+msgstr "Pääsivu"
 
 #: templates/_main_tabs.html:5 templates/language_menu.html:4
 #: templates/project_menu.html:4 templates/tp_menu.html:4
@@ -2695,7 +2719,7 @@ msgstr "Oletuskäyttöoikeuksien hallinta"
 
 #: templates/admin_profile_menu.html:9
 msgid "Manage Static Pages"
-msgstr ""
+msgstr "Staattisten sivujen hallinta"
 
 #: templates/base.html:121
 msgid "skip to navigation"
@@ -2774,7 +2798,7 @@ msgstr "Vahvista"
 #: templates/db_error.html:4 templates/db_error.html.py:7
 #: templates/db_error.html:12
 msgid "Database Error"
-msgstr ""
+msgstr "Tietokantavirhe"
 
 #: templates/db_error.html:14
 msgid ""
@@ -2783,6 +2807,11 @@ msgid ""
 "  yet, or a schema upgrade is needed before continuing.\n"
 "  "
 msgstr ""
+"\n"
+"  Pootle ei voi muodostaa yhteyttä tietokantaan, tietokantaa ei ole vielä "
+"alustettu \n"
+"  tai schema on päivitettävä ennen kuin voidaan jatkaa.\n"
+"  "
 
 #: templates/db_error.html:20
 #, python-format
@@ -2793,10 +2822,15 @@ msgid ""
 "  if you feel this is a mistake.\n"
 "  "
 msgstr ""
+"\n"
+"  Lue lisää <a href=\"%(url)s\">Pootlen dokumentoinnin</a> \n"
+"  asennus- ja päivitysohjeista. Ota yhteyttä palvelimen ylläpitäjään\n"
+"  jos tämä on mielestäsi virhe.\n"
+"  "
 
 #: templates/db_error.html:27
 msgid "The reported error was:"
-msgstr ""
+msgstr "Havaittu virhe oli:"
 
 #: templates/language_menu.html:4
 msgid "Language main page"
@@ -2808,7 +2842,7 @@ msgstr "Kielen uutisjulkaisut"
 
 #: templates/language_menu.html:6
 msgid "Translate this language"
-msgstr ""
+msgstr "Käännä tälle kielelle"
 
 #: templates/language_menu.html:8
 msgid "Administrate your language permissions"
@@ -2921,7 +2955,7 @@ msgstr "Tietoja"
 
 #: templates/common/_table_row.html:87
 msgid "Add a tag"
-msgstr ""
+msgstr "Lisää tunniste"
 
 #: templates/contact_form/contact_form.html:17
 msgid "Send"
@@ -2973,21 +3007,23 @@ msgstr ""
 
 #: templates/editor/_toolbar.html:34
 msgid "Go to the previous string (Ctrl+Up)"
-msgstr ""
+msgstr "Edellinen merkkijono (Ctrl+Ylös)"
 
 #: templates/editor/_toolbar.html:37
 msgid ""
 "Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
+"Tämän merkkijonon numero (Ctrl+Shift+U)<br/><br/>Syötä numero ja paina "
+"Enter<br/>siirtyäksesi mihin tahansa kohtaan"
 
 #: templates/editor/_toolbar.html:39
 msgid "Total strings"
-msgstr ""
+msgstr "Merkkijonoja yhteensä"
 
 #: templates/editor/_toolbar.html:43
 msgid "Go to the next string (Ctrl+Down)"
-msgstr ""
+msgstr "Seuraava merkkijono (Ctrl+Alas)"
 
 #: templates/profiles/edit_personal.html:12
 msgid ""
@@ -3022,8 +3058,9 @@ msgstr ""
 "Täällä voit määrittää käännöskäyttöliittymän asetukset ja kieliasetukset."
 
 #: templates/profiles/profile_detail.html:23
+#, fuzzy
 msgid "Contributions"
-msgstr ""
+msgstr "Avustajat"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"
@@ -3035,11 +3072,11 @@ msgstr "Tarkastamattomia ehdotuksia"
 
 #: templates/profiles/profile_detail.html:46
 msgid "Overwritten"
-msgstr ""
+msgstr "Korvatut"
 
 #: templates/profiles/profile_detail.html:66
 msgid "This user doesn't have any contributions yet."
-msgstr ""
+msgstr "Tämä käyttäjä ei ole vielä osallistunut projekteihin."
 
 #: templates/profiles/profile_list.html:7
 msgid "Profiles list"

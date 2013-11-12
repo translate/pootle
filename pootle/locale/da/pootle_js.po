@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-10-31 17:15+0000\n"
-"PO-Revision-Date: 2013-10-30 11:51+0000\n"
+"PO-Revision-Date: 2013-11-01 11:01+0000\n"
 "Last-Translator: Aputsiaq Niels <aputtu@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1383133887.0\n"
+"X-POOTLE-MTIME: 1383303683.0\n"
 
 #: static/js/common.js:13
 msgid "All Languages"
@@ -139,7 +139,7 @@ msgstr "Gå tilbage til oversigtssiden."
 #, c-format
 #, c-format, c-format
 msgid "%s% match"
-msgstr "%s% match"
+msgstr "%s% resultater"
 
 #: static/js/editor.js:1851
 msgid "Similar translations"

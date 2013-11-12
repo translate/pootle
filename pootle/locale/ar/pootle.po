@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-10-31 17:15+0000\n"
-"PO-Revision-Date: 2013-10-29 16:03+0000\n"
-"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
+"PO-Revision-Date: 2013-10-31 17:52+0000\n"
+"Last-Translator: Haytham A. <haytham.hammam@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
 "n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1383062621.0\n"
+"X-POOTLE-MTIME: 1383241932.0\n"
 
 #: strings.py:8
 msgid ""
@@ -1241,12 +1241,18 @@ msgid ""
 msgid_plural ""
 "%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d need "
 "review)."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "‏%(type)s: لا مقاطع مُترجمة من أصل %(total)d (%(fuzzy)d تحتاج للعمل)."
+msgstr[1] "‏%(type)s: مقطع واحد مُترجم من أصل %(total)d (%(fuzzy)d تحتاج للعمل)."
+msgstr[2] "‏%(type)s: مقطعين مُترجمين من أصل %(total)d (%(fuzzy)d تحتاج للعمل)."
 msgstr[3] ""
+"‏‏%(type)s: %(translated)d مقاطع مُترجمة من أصل %(total)d (%(fuzzy)d تحتاج "
+"للعمل)."
 msgstr[4] ""
+"‏%(type)s: %(translated)d مقطعًا مُترجمًا من أصل %(total)d (%(fuzzy)d تحتاج "
+"للعمل)."
 msgstr[5] ""
+"‏%(type)s: %(translated)d مقطع مُترجم من أصل %(total)d (%(fuzzy)d تحتاج "
+"للعمل)."
 
 #: apps/pootle_misc/stats.py:304
 #, python-format
@@ -1477,7 +1483,7 @@ msgstr "مكان الإبلاغ"
 
 #: apps/pootle_project/views.py:119
 msgid "Filter using one or more tags"
-msgstr ""
+msgstr "رشّح باستخدام وسم أو أكثر"
 
 #: apps/pootle_project/views.py:161
 #, python-format
@@ -1515,7 +1521,7 @@ msgstr "رشِّح"
 
 #: apps/pootle_project/templates/project/overview.html:38
 msgid "Filter using the selected tags"
-msgstr ""
+msgstr "رشّح باستخدام الوسوم المحددة"
 
 #: apps/pootle_project/templates/project/overview.html:76
 #: apps/pootle_translationproject/templates/translation_project/overview.html:43
@@ -1560,6 +1566,8 @@ msgid ""
 "%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"استعاد %(user)s الترجمة القديمة لمقطع <i><a href=\\\"%(url)s\\\">%"
+"(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:153
 #, python-format
@@ -1567,18 +1575,19 @@ msgid ""
 "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"قبل %(user)s اقتراح ترجمة المقطع <i><a href=\\\"%(url)s\\\">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:156
 #, python-format
 msgid "%(user)s uploaded a file"
-msgstr ""
+msgstr "رفع %(user)s ملفًا"
 
 #: apps/pootle_statistics/models.py:171
 #, python-format
 msgid ""
 "%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
-msgstr ""
+msgstr "أرسل %(user)s ترجمةً للمقطع <i><a href=\\\"%(url)s\\\">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:174
 #, python-format
@@ -1586,13 +1595,15 @@ msgid ""
 "%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
 "\">%(source)s</a></i>"
 msgstr ""
+"أرسل %(user)s ترجمة ”تحتاج للعمل“ للمقطع <i><a href=\\\"%(url)s\\\">%"
+"(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:177
 #, python-format
 msgid ""
 "%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
-msgstr ""
+msgstr "أزال %(user)s ترجمة المقطع <i><a href=\\\"%(url)s\\\">%(source)s</a></i>"
 
 #: apps/pootle_store/decorators.py:63
 msgid "Insufficient rights to access this directory."
@@ -1754,7 +1765,7 @@ msgstr "تعليق:"
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
 msgid "String %(id)s"
-msgstr ""
+msgstr "مقطع %(id)s"
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -1972,7 +1983,7 @@ msgstr ""
 
 #: apps/pootle_tagging/forms.py:133
 msgid "A goal with that name already exists. Please pick another name."
-msgstr ""
+msgstr "يوجد هدف بهذا الاسم من قبل. من فضلك اختر اسمًا آخر."
 
 #: apps/pootle_tagging/forms.py:173
 msgid ""
@@ -1986,7 +1997,7 @@ msgstr ""
 
 #: apps/pootle_tagging/forms.py:180
 msgid "A goal with this slug already exists."
-msgstr ""
+msgstr "يوجد هدف له نفس السبيكة من قبل."
 
 #: apps/pootle_tagging/forms.py:194
 msgid ""
@@ -2310,7 +2321,7 @@ msgstr "تعذّر العثور على '%(action)s' في  '%(extdir)s'"
 #: apps/pootle_translationproject/views.py:400
 #, python-format
 msgid "Error while running '%s' extension action"
-msgstr ""
+msgstr "عطلٌ أثناء تشغيل الامتداد '%s'"
 
 #: apps/pootle_translationproject/views.py:820
 #, python-format

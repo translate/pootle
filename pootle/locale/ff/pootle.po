@@ -6,16 +6,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-31 17:15+0000\n"
-"PO-Revision-Date: 2013-08-17 10:19+0000\n"
-"Last-Translator: Bocar Amadou <bokarba@yahoo.fr>\n"
+"POT-Creation-Date: 2013-10-28 18:04+0000\n"
+"PO-Revision-Date: 2013-11-10 12:28+0000\n"
+"Last-Translator: Ibrahima SARR <ibrahima.sarr@pulaagu.com>\n"
 "Language-Team: FULA LOCALIZATION\n"
 "Language: ff\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1376734742.0\n"
+"X-POOTLE-MTIME: 1384086484.0\n"
 
 #: strings.py:8
 msgid ""
@@ -180,7 +181,7 @@ msgstr "Teelte ɗee ndanndaama."
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: apps/pootle_app/templates/admin/admin_general_settings.html:29
 #: apps/pootle_app/templates/admin/general_settings_form.html:15
-#: apps/staticpages/templates/staticpages/admin/_form.html:24
+#: apps/staticpages/templates/staticpages/admin/_form.html:23
 #: templates/profiles/edit_personal.html:33
 #: templates/profiles/edit_profile.html:25
 msgid "Save"
@@ -210,7 +211,6 @@ msgstr "Innde ndee sarworde Pootle"
 #: apps/pootle_app/forms.py:37
 #: apps/pootle_language/templates/language/overview.html:26
 #: apps/pootle_project/templates/project/overview.html:52
-#: apps/pootle_tagging/models.py:69
 #: apps/pootle_translationproject/templates/translation_project/overview.html:114
 msgid "Description"
 msgstr "Cifagol"
@@ -524,7 +524,7 @@ msgstr "Windito."
 #: apps/pootle_project/models.py:221
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
-msgstr ""
+msgstr "\"%s\" waawaa huutoreede no kod eɓɓoore"
 
 #: apps/pootle_app/views/admin/adminusers.py:55
 #: templates/user_profile_menu.html:7
@@ -617,23 +617,23 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:129
 msgid "MARKUP_FILTER is missing. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER ena ŋakki. Yantoyii to HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:131
 msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER teeltoraaka moƴƴol. Yantoyii to HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:133
 #, python-format
 msgid ""
 "Can't find the package which provides '%s' markup support. Falling back to "
 "HTML."
-msgstr ""
+msgstr "Horiima yiytude tiɗɗere hokkoore tambol markol '%s'. Yantoyii to HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:137
 #, python-format
 msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
-msgstr ""
+msgstr "Kiisol '%s' jaɓaaka e MARKUP_FILTER. Yantoyii to HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:154
 msgid ""
@@ -746,15 +746,15 @@ msgstr "Huutorɓe seŋiiɓe"
 
 #: apps/pootle_app/views/admin/permissions.py:61
 msgid "Translation Project Contributors"
-msgstr ""
+msgstr "Wallitooɓe Eɓɓoore Firo"
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Contributors"
-msgstr ""
+msgstr "Wallitooɓe e Eɓɓoore"
 
 #: apps/pootle_app/views/admin/permissions.py:84
 msgid "Language Contributors"
-msgstr ""
+msgstr "Wallitooɓe e Ɗemngal"
 
 #: apps/pootle_app/views/admin/permissions.py:91
 msgid "All Users"
@@ -768,13 +768,13 @@ msgstr "Innde kuutoro"
 
 #: apps/pootle_app/views/admin/permissions.py:122
 msgid "Select one or more permissions"
-msgstr ""
+msgstr "Labo yamiroore wootere walla keewɗe"
 
-#: apps/pootle_app/views/admin/util.py:144
+#: apps/pootle_app/views/admin/util.py:145
 msgid "No files in this project."
 msgstr "Ndee eɓɓoore alaa hay fiile."
 
-#: apps/pootle_app/views/admin/util.py:177
+#: apps/pootle_app/views/admin/util.py:178
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Ena waɗi joɓɓi e nder formere ndee. Yuurnito caɗeele ɗee les ɗoo."
 
@@ -860,7 +860,7 @@ msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
 msgstr[0] "%(projects)d eɓɓooje, %(average)d%% piraama"
 
-#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:324
+#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:325
 #: apps/pootle_tagging/views.py:52 apps/pootle_translationproject/views.py:740
 msgid "No description yet."
 msgstr "Alaa cifol tawo."
@@ -878,14 +878,14 @@ msgstr "Innde"
 msgid "Project"
 msgstr "Eɓɓanɗe"
 
-#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:406
+#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:407
 msgid "Language"
 msgstr "Ɗemngal:"
 
 #. Translators: Heading representing the priority for a goal
-#: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:73
+#: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:72
 msgid "Priority"
-msgstr ""
+msgstr "Keñoraaɗe"
 
 #. Translators: noun. The graphical representation of translation status
 #: apps/pootle_misc/browser.py:52
@@ -1097,7 +1097,7 @@ msgstr "Yiylo (Ctrl+Shift+S)<br/>Tappu ñoƴƴaa Entrée ngam yiylaade"
 
 #: apps/pootle_misc/forms.py:108
 msgid "Exact Match"
-msgstr ""
+msgstr "Nanndugol Timmungol"
 
 #: apps/pootle_misc/forms.py:115
 msgid "Source Text"
@@ -1179,6 +1179,8 @@ msgstr[0] ""
 msgid "Next most important goal (%(num)d word left)"
 msgid_plural "Next most important goal (%(num)d words left)"
 msgstr[0] ""
+"Faandaare aroore ɓurnde teeŋtude (ena heddii %(num)d helmere)Faandaare "
+"aroore ɓurnde teeŋtude (ena heddii %(num)d helmere)"
 msgstr[1] ""
 
 #: apps/pootle_misc/stats.py:249
@@ -1196,13 +1198,13 @@ msgstr[0] "Ƴeewto wasiya (ena heddii %(num)d)Ƴeewto wasiyaaji (ena heddii %(nu
 #: apps/pootle_misc/stats.py:282
 #, python-format
 msgid ""
-"%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d need "
-"review)."
+"%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d fuzzy)."
 msgid_plural ""
-"%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d need "
-"review)."
+"%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d fuzzy)."
 msgstr[0] ""
-msgstr[1] ""
+"%(type)s: %(translated)d e nder %(total)d ɓoggol firaama (%(fuzzy)d ena "
+"jilɓi).%(type)s: %(translated)d e dner %(total)d ɓoggol firaama (%(fuzzy)d "
+"ena njilɓi)."
 
 #: apps/pootle_misc/stats.py:304
 #, python-format
@@ -1273,7 +1275,7 @@ msgstr "Labagol Eɓɓoore"
 
 #: apps/pootle_notifications/forms.py:61
 msgid "Select one or more projects"
-msgstr ""
+msgstr "Labo eɓɓoore wootere walla keewɗe"
 
 #: apps/pootle_notifications/forms.py:68
 msgid "All Languages"
@@ -1285,7 +1287,7 @@ msgstr "Labagol Ɗemngal"
 
 #: apps/pootle_notifications/forms.py:77 apps/pootle_profile/forms.py:120
 msgid "Select one or more languages"
-msgstr ""
+msgstr "Labo ɗemn gootal walla keewɗe"
 
 #: apps/pootle_notifications/models.py:31
 msgid "Message"
@@ -1418,16 +1420,16 @@ msgid "Report Target"
 msgstr "Tiindol Jaŋte"
 
 #: apps/pootle_project/views.py:119
-msgid "Filter using one or more tags"
-msgstr ""
+msgid "Select one or more tags to use as filter"
+msgstr "Labo taggere wootere walla keewɗe ngal seɗtaade"
 
-#: apps/pootle_project/views.py:161
+#: apps/pootle_project/views.py:162
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
 msgstr[0] "%(languages)d ɗemɗe, %(average)d%% piraama"
 
-#: apps/pootle_project/views.py:395
+#: apps/pootle_project/views.py:396
 #: apps/pootle_translationproject/actions.py:209
 msgid "Update against templates"
 msgstr "Hesɗitin tugnaade e tuugnorɗe"
@@ -1440,27 +1442,27 @@ msgstr ""
 #: apps/pootle_project/templates/project/overview.html:18
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
-msgstr ""
+msgstr "Hollu Tage"
 
 #: apps/pootle_project/templates/project/overview.html:21
 msgid "Show filtering"
-msgstr ""
+msgstr "Hollu ceɗtagol"
 
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
 msgid "Filter"
-msgstr ""
+msgstr "Ceɗol"
 
 #: apps/pootle_project/templates/project/overview.html:38
-msgid "Filter using the selected tags"
-msgstr ""
+msgid "Filter the translation projects using this tags"
+msgstr "Seɗto eɓɓoore firo huutoraade ɗee tage"
 
 #: apps/pootle_project/templates/project/overview.html:76
 #: apps/pootle_translationproject/templates/translation_project/overview.html:43
 #: apps/pootle_translationproject/templates/translation_project/overview.html:175
 #: templates/common/xhr_add_tag_form.html:15
 msgid "Add tag"
-msgstr ""
+msgstr "Ɓeydu taggere"
 
 #: apps/pootle_project/templates/project/project_admin.html:7
 #: templates/project_menu.html:9
@@ -1472,7 +1474,7 @@ msgid "Here you can add, edit, or delete the languages for this project."
 msgstr "Ɗoo aɗa waawi ɓeydude, taƴtaade e momtude ɗemɗe ndeeɗoo eɓɓannde."
 
 #: apps/pootle_statistics/models.py:46
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:103
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:101
 msgid "Source"
 msgstr "Iwdi"
 
@@ -1492,57 +1494,54 @@ msgstr "Yowre"
 msgid "anonymous user"
 msgstr "kuutorɓe mo innitaaki"
 
+#: apps/pootle_statistics/models.py:144
+#, python-format
+msgid ""
+"reverted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
+msgstr "firlitii firo ɓoggol <i><a href=\"%(url)s\">%(source)s</a></i>"
+
+#: apps/pootle_statistics/models.py:147
+#, python-format
+msgid ""
+"accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</a></i>"
+msgstr "jaɓii firo ɓoggol <i><a href=\"%(url)s\">%(source)s</a></i>"
+
 #: apps/pootle_statistics/models.py:150
+msgid "uploaded a file"
+msgstr "yullu fiilde"
+
+#: apps/pootle_statistics/models.py:165
 #, python-format
 msgid ""
-"%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
-"a></i>"
-msgstr ""
+"submitted translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
+msgstr "naatnii firo ɓoggol <i><a href=\"%(url)s\">%(source)s</a></i>"
 
-#: apps/pootle_statistics/models.py:153
+#: apps/pootle_statistics/models.py:167
 #, python-format
 msgid ""
-"%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
-"a></i>"
+"submitted \"needs work\" translation for string <i><a href=\"%(url)s\">"
+"%(source)s</a></i>"
 msgstr ""
+"naatnii \"ena sokli ƴeewteea\" e ɓoggol <i><a href=\"%(url)s\">%"
+"(source)s</a></i>"
 
-#: apps/pootle_statistics/models.py:156
-#, python-format
-msgid "%(user)s uploaded a file"
-msgstr ""
-
-#: apps/pootle_statistics/models.py:171
+#: apps/pootle_statistics/models.py:170
 #, python-format
 msgid ""
-"%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
-"a></i>"
-msgstr ""
-
-#: apps/pootle_statistics/models.py:174
-#, python-format
-msgid ""
-"%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
-"\">%(source)s</a></i>"
-msgstr ""
-
-#: apps/pootle_statistics/models.py:177
-#, python-format
-msgid ""
-"%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
-"a></i>"
-msgstr ""
+"removed translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
+msgstr "momtii firo ɓoggol <i><a href=\"%(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_store/decorators.py:63
 msgid "Insufficient rights to access this directory."
-msgstr ""
+msgstr "Jamirooje timmaani ngam yahde e ndee runngere."
 
 #: apps/pootle_store/decorators.py:135 apps/pootle_store/views.py:531
 msgid "Arguments missing."
-msgstr ""
+msgstr "Dalillaaji ena ŋakki."
 
 #: apps/pootle_store/decorators.py:147
 msgid "File does not exist."
-msgstr ""
+msgstr "Fiilde ndee woodaani."
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Gettext PO"
@@ -1629,25 +1628,25 @@ msgid "Path"
 msgstr "Path"
 
 #: apps/pootle_store/models.py:900
-#: apps/pootle_translationproject/models.py:121
+#: apps/pootle_translationproject/models.py:114
 msgid "Tags"
-msgstr ""
+msgstr "Tage"
 
 #: apps/pootle_store/models.py:901
-#: apps/pootle_translationproject/models.py:122
+#: apps/pootle_translationproject/models.py:115
 msgid "A comma-separated list of tags."
-msgstr ""
+msgstr "Doggol tage seerndiraande picce."
 
 #: apps/pootle_store/models.py:902
-#: apps/pootle_translationproject/models.py:126
+#: apps/pootle_translationproject/models.py:116
 #: apps/pootle_translationproject/templates/translation_project/overview.html:69
 msgid "Goals"
-msgstr ""
+msgstr "Paandaale"
 
 #: apps/pootle_store/models.py:904
-#: apps/pootle_translationproject/models.py:128
+#: apps/pootle_translationproject/models.py:118
 msgid "A comma-separated list of goals."
-msgstr ""
+msgstr "Doggol paandaale seerndiraande picce."
 
 #: apps/pootle_store/util.py:45
 msgid "Obsolete"
@@ -1679,11 +1678,11 @@ msgstr "Wasiya oo walla woote ɗee nattii moƴƴude."
 
 #: apps/pootle_store/views.py:1096
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "A alaa jamirooje ngam momtude tage."
 
 #: apps/pootle_store/views.py:1132
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "A alaa jamirooje ngam ɓeydude tage."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
@@ -1691,8 +1690,8 @@ msgstr "Yowre:"
 
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
-msgid "String %(id)s"
-msgstr ""
+msgid "<a href=\"%(url)s\">String %(id)s</a>"
+msgstr "<a href=\"%(url)s\">Ɓoggol %(id)s</a>"
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -1879,12 +1878,16 @@ msgid ""
 "Tag names cannot have leading nor trailing spaces, colons (:), hyphens (-), "
 "underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Inɗe tage baawaa jogaade boowe gardiiɗe walla cakkitiiɗe, toɓɓe ɗiɗi (:), "
+"cirfe (-), diidesles (_), guural (/) walla toɓbe (.)!"
 
 #: apps/pootle_tagging/forms.py:53
 msgid ""
 "Tag names cannot contain two or more consecutive: spaces, colons (:), "
 "hyphens (-), underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Inɗe tage baawaa jogaade ɗee geɗe ɗiɗi walla ko ɓuri deggondirɗe, toɓɓe ɗiɗi "
+"(:), cirfe (-), diidesles (_), guural (/) walla toɓbe (.)!"
 
 #: apps/pootle_tagging/forms.py:60
 msgid ""
@@ -1892,16 +1895,21 @@ msgid ""
 "leading (but yes on the middle): spaces, colons (:), hyphens (-), "
 "underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Inɗe tage ena poti wonde ɓoggol alkulime tokoose ɗe ngalaa: boowe gadiiɗe "
+"walla cakkitiiɗe (eey lombiiɗe), toɓɓe ɗiɗi (:), cirfe (-), diidesles (_), "
+"guural (/) walla toɓbe (.)!"
 
 #: apps/pootle_tagging/forms.py:74
 msgid ""
 "Name cannot contain just after 'goal:' any of these characters: spaces, "
 "colons (:), hyphens (-), underscores (_), slashes (/) or periods (.)"
 msgstr ""
+"Innde waawaa jogaade ɓaawo 'faandaare:' hono ɗee alkule: boowe, toɓɓe ɗiɗi "
+"(:), cirfe (-), diideles (_), guure (/) walla toɓɓe (.)"
 
 #: apps/pootle_tagging/forms.py:133
-msgid "A goal with that name already exists. Please pick another name."
-msgstr ""
+msgid "Already exists a goal with this name. Please pick another name."
+msgstr "Faandaare jogiinde ndee innde ena woodi. Tiiɗno suɓo woɗnde."
 
 #: apps/pootle_tagging/forms.py:173
 msgid ""
@@ -1909,16 +1917,21 @@ msgid ""
 "single or multiple occurrences of the following characters: spaces, colons "
 "(:), hyphens (-), underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Cifol tage ena poti nanndude e innde tagre, kono lomtinirde cirfel cilol "
+"teelngol walla keewɗe ɗee alkule: boowe, toɓɓe ɗiɗi (:), cirfe (-), diideles "
+"(_), guure (/) walla toɓɓe (.)!"
 
 #: apps/pootle_tagging/forms.py:180
-msgid "A goal with this slug already exists."
-msgstr ""
+msgid "Already exists a goal with this slug!"
+msgstr "Faandaare jogiinde ngol cifol ena woodi!"
 
 #: apps/pootle_tagging/forms.py:194
 msgid ""
 "Warning: Changing the name also changes the slug, so it won't be possible to "
 "view this goal on this page!"
 msgstr ""
+"Reentino: Waylude innde ndee waylat cifol ngol kisa, wadde gasataa yiyde "
+"ndee faandaare e ngoo hello!"
 
 #: apps/pootle_tagging/models.py:66
 #, python-format
@@ -1926,24 +1939,36 @@ msgid ""
 "A description of this goal. This is useful to give more information or "
 "instructions. Allowed markup: %s"
 msgstr ""
+"Cifol ndee faandaare. Ɗum nafata ko hokkude humpito e pamminooje. Markup "
+"jamiraaɗo: %s"
 
-#: apps/pootle_tagging/models.py:74
+#: apps/pootle_tagging/models.py:73
 msgid "The priority for this goal."
-msgstr ""
+msgstr "Gardingol ndee faandaare."
 
-#: apps/pootle_tagging/models.py:79
+#: apps/pootle_tagging/models.py:78
 msgid ""
 "Designates that this is a project goal (shared across all languages in the "
 "project)."
 msgstr ""
+"Sifotoo ko ɗuum ko faandaare eɓɓoore (renndaande hakkunde ɗemɗe keewɗe e "
+"eɓɓoore ndee)."
 
-#: apps/pootle_tagging/models.py:81
+#: apps/pootle_tagging/models.py:80
 msgid "Project goal?"
-msgstr ""
+msgstr "Faandaare eɓɓoore?"
 
-#: apps/pootle_tagging/models.py:105
+#: apps/pootle_tagging/models.py:104
 msgid "(Project goal)"
-msgstr ""
+msgstr "(Faandaare eɓɓoore)"
+
+#: apps/pootle_tagging/models.py:465
+msgid "Item with goal"
+msgstr "Temre e faandaare"
+
+#: apps/pootle_tagging/models.py:466
+msgid "Items with goal"
+msgstr "Teme e paandaale"
 
 #: apps/pootle_terminology/views.py:171
 msgid "This term already exists in this file."
@@ -1974,7 +1999,7 @@ msgid "Term"
 msgstr "Helmere"
 
 #: apps/pootle_terminology/templates/terminology/manage.html:36
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:104
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:102
 msgid "Translation"
 msgstr "Firo"
 
@@ -2126,7 +2151,7 @@ msgstr ""
 "So a yiɗii, labo fiilde njiɗ-ɗaa naattondirde. So toɗɗaaka, innde fiilde "
 "yollaande ndee huutortee."
 
-#: apps/pootle_translationproject/models.py:103
+#: apps/pootle_translationproject/models.py:101
 #, python-format
 msgid ""
 "A description of this translation project. This is useful to give more "
@@ -2135,58 +2160,58 @@ msgstr ""
 "Cifol ngoo firo. Ɗum nafata ko hokkude humpito e pamminooje. Markup "
 "jamiraaɗo: %s"
 
-#: apps/pootle_translationproject/models.py:589
+#: apps/pootle_translationproject/models.py:579
 #, python-format
 msgid "Failed to update from version control: %(error)s"
 msgstr "Horiima hesɗitinde iwde e version control: %(error)s"
 
-#: apps/pootle_translationproject/models.py:659
+#: apps/pootle_translationproject/models.py:649
 #, python-format
 msgid "Updated project <em>%(project)s</em> from version control"
 msgstr "Hesɗitinii eɓɓoore <em>%(project)s</em> iwde e version control"
 
-#: apps/pootle_translationproject/models.py:661
-#: apps/pootle_translationproject/models.py:683
+#: apps/pootle_translationproject/models.py:651
+#: apps/pootle_translationproject/models.py:673
 msgid "Working copy"
 msgstr "Tummbitere gollorde"
 
-#: apps/pootle_translationproject/models.py:662
-#: apps/pootle_translationproject/models.py:684
+#: apps/pootle_translationproject/models.py:652
+#: apps/pootle_translationproject/models.py:674
 msgid "Remote copy"
 msgstr "Tummbitere woɗɗude"
 
-#: apps/pootle_translationproject/models.py:663
-#: apps/pootle_translationproject/models.py:685
+#: apps/pootle_translationproject/models.py:653
+#: apps/pootle_translationproject/models.py:675
 msgid "Merged copy"
 msgstr "Tummbitere renndinaande"
 
-#: apps/pootle_translationproject/models.py:681
+#: apps/pootle_translationproject/models.py:671
 #, python-format
 msgid "Updated file <em>%(filename)s</em> from version control"
 msgstr "Hesɗitinii fiilde <em>%(filename)s</em> iwde e version control"
 
-#: apps/pootle_translationproject/models.py:695
+#: apps/pootle_translationproject/models.py:685
 #, python-format
 msgid "Failed to update <em>%(filename)s</em> from version control: %(error)s"
 msgstr ""
 "Horiima hesɗitinde <em>%(filename)s</em> iwde e version control: %(error)s"
 
-#: apps/pootle_translationproject/models.py:751
+#: apps/pootle_translationproject/models.py:741
 #, python-format
 msgid "Committed all files under <em>%(path)s</em> to version control"
 msgstr "Naatnoyii piille gonɗe e <em>%(path)s</em> kala to version control"
 
-#: apps/pootle_translationproject/models.py:759
+#: apps/pootle_translationproject/models.py:749
 #, python-format
 msgid "Failed to commit to version control: %(error)s"
 msgstr "Horiima naatnoyde to version control: %(error)s"
 
-#: apps/pootle_translationproject/models.py:818
+#: apps/pootle_translationproject/models.py:808
 #, python-format
 msgid "Committed file <em>%(filename)s</em> to version control"
 msgstr "Naatnoyii fiilde <em>%(filename)s</em> to e version control"
 
-#: apps/pootle_translationproject/models.py:830
+#: apps/pootle_translationproject/models.py:820
 #, python-format
 msgid "Failed to commit <em>%(filename)s</em> to version control: %(error)s"
 msgstr "Horiima naatnoyde <em>%(filename)s</em> to version control: %(error)s"
@@ -2230,12 +2255,12 @@ msgstr "Juumre waɗi tuma nde etaa momtude ndee fiilde."
 #: apps/pootle_translationproject/views.py:373
 #, python-format
 msgid "Unable to find '%(action)s' in '%(extdir)s'"
-msgstr ""
+msgstr "Horiima yiytude '%(action)s' e '%(extdir)s'"
 
 #: apps/pootle_translationproject/views.py:400
 #, python-format
-msgid "Error while running '%s' extension action"
-msgstr ""
+msgid "Exception while running '%s' extension action"
+msgstr "Paltorol waɗii tuma kurmal '%s' baɗal timmital"
 
 #: apps/pootle_translationproject/views.py:820
 #, python-format
@@ -2276,27 +2301,25 @@ msgstr ""
 "Les ɗoo aɗa waawi ɓeydude, taƴtaade e momtude jamirooje ndeeɗoo eɓɓannde "
 "firo."
 
-#. Translators: A view showing the export of strings in a flat form.
-#. See http://staging.locamotion.org/he/birdfont/export-view/?filter=incomplete
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:7
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:5
 msgid "Export View"
-msgstr ""
+msgstr "Jiytol Jiggitto"
 
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:99
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:97
 msgid "Goal"
-msgstr ""
+msgstr "Faandaare"
 
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:141
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:139
 msgid "No strings."
-msgstr ""
+msgstr "Alaa ɓoggi."
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:61
 msgid "Translation project files and folders"
-msgstr ""
+msgstr "Piille e dunnge eɓɓoore firo"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "Yiil paandaale eɓɓoore maa"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2392,6 +2415,7 @@ msgid ""
 "I have read and accept: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</"
 "a>"
 msgstr ""
+"Mi tarii tee mi jaɓii: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</a>"
 
 #: apps/staticpages/models.py:37
 #: apps/staticpages/templates/staticpages/admin/_table.html:7
@@ -2405,52 +2429,51 @@ msgstr "So ngoo hello ena saasi walla alaa."
 #: apps/staticpages/models.py:40
 #: apps/staticpages/templates/staticpages/admin/_table.html:9
 msgid "Virtual Path"
-msgstr ""
+msgstr "Bolol pefindagol"
 
-#. Translators: Content that will be used to display this static page
-#: apps/staticpages/models.py:47
+#: apps/staticpages/models.py:46
 msgid "Display Content"
-msgstr ""
+msgstr "Hollir Loowdi"
 
-#: apps/staticpages/models.py:48
+#: apps/staticpages/models.py:47
 #, python-format
 msgid "Allowed markup: %s"
 msgstr "Markup jamiraaɗo: %s"
 
-#: apps/staticpages/models.py:50
+#: apps/staticpages/models.py:49
 #: apps/staticpages/templates/staticpages/admin/_table.html:10
 msgid "Redirect to URL"
-msgstr ""
+msgstr "Ɓennin to URL"
 
-#: apps/staticpages/models.py:51
+#: apps/staticpages/models.py:50
 msgid "If set, any references to this page will redirect to this URL"
-msgstr ""
+msgstr "So waɗaama, kala noddaango e ngo hello nawtata ko to ndee URL"
 
 #. Translators: 'URL' and 'content' refer to form fields.
-#: apps/staticpages/models.py:98
+#: apps/staticpages/models.py:97
 msgid "URL or content must be provided."
 msgstr "URL walla loowdi alaa e sago addee."
 
-#: apps/staticpages/models.py:106
+#: apps/staticpages/models.py:105
 msgid "Virtual path already in use."
-msgstr ""
+msgstr "Bolol pefindagol nana huutoree kisa."
 
-#: apps/staticpages/models.py:111
+#: apps/staticpages/models.py:110
 msgid "Legal Page"
-msgstr ""
+msgstr "Hello Sarɗi"
 
-#: apps/staticpages/models.py:122
+#: apps/staticpages/models.py:121
 msgid "Regular Page"
-msgstr ""
+msgstr "Hello Woowaango"
 
 #: apps/staticpages/views.py:87
 msgid "Page Title"
-msgstr ""
+msgstr "Tiitoonde Hello"
 
 #: apps/staticpages/views.py:88
 #, python-format
 msgid "page-%d"
-msgstr ""
+msgstr "hello-%d"
 
 #: apps/staticpages/views.py:130
 #, python-format
@@ -2458,49 +2481,50 @@ msgid ""
 "This page is inactive and visible to administrators only. You can activate "
 "it by <a href=\"%s\">editing its properties</a>"
 msgstr ""
+"Ngoo hello saasaani tee ko yiilooɓe tan njiyata-ndo. Aɗa waawi daaƴtude-nde "
+"so <a href=\"%s\">taƴtaade keeroraaɗi</a> maggo"
 
 #: apps/staticpages/templates/staticpages/agreement.html:4
 msgid "Action Required"
-msgstr ""
+msgstr "Baɗal ena waɗɗii"
 
 #: apps/staticpages/templates/staticpages/agreement.html:5
 msgid "Before continuing, you must read and accept the following documents."
-msgstr ""
+msgstr "Hade maa jokkude, alaa e sago taraa tee jaɓaa ɗee-ɗoo binndanɗe."
 
 #: apps/staticpages/templates/staticpages/agreement.html:18
 msgid "No thanks. Log out"
-msgstr ""
+msgstr "Alaa mi yaafiima. Seŋto"
 
 #: apps/staticpages/templates/staticpages/agreement.html:21
 msgid "Continue"
-msgstr ""
+msgstr "Jokku"
 
 #: apps/staticpages/templates/staticpages/base.html:5
 #: apps/staticpages/templates/staticpages/base.html:11
 #: templates/admin_profile_menu.html:9
 msgid "Static Pages"
-msgstr ""
+msgstr "Kelle Maayɗe"
 
-#. Translators: Displayed as 'Redirect to URL or Display Content'
-#: apps/staticpages/templates/staticpages/admin/_form.html:19
+#: apps/staticpages/templates/staticpages/admin/_form.html:18
 msgid "or"
-msgstr ""
+msgstr "walla"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:8
 msgid "Page"
-msgstr ""
+msgstr "Hello"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:11
 msgid "Last Edited"
-msgstr ""
+msgstr "Taƴtaa Sakket"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "Yes"
-msgstr ""
+msgstr "Eey"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "No"
-msgstr ""
+msgstr "Alaa"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:30
 msgid "No pages yet."
@@ -2512,19 +2536,19 @@ msgstr "Kelle Sarɗi"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:12
 msgid "Add Legal Page"
-msgstr ""
+msgstr "Ɓeydu Hello Sarɗi"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
 msgid "Regular Pages"
-msgstr ""
+msgstr "Kelle Goowaaɗe"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
 msgid "Add Regular Page"
-msgstr ""
+msgstr "Ɓeydu Hello Woowaango"
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."
-msgstr ""
+msgstr "Jamirooje timmaani ngam yahde e ngoo hello."
 
 #: core/decorators.py:191 core/views.py:29
 msgid "You do not have rights to administer Pootle."
@@ -2532,7 +2556,7 @@ msgstr "A alaa jamirooje ngam yiilde Pootle."
 
 #: core/helpers.py:41
 msgid "User missing"
-msgstr ""
+msgstr "Kuutoro yiyaaka"
 
 #. Translators: This refers to "All strings"
 #: core/helpers.py:53 templates/editor/_toolbar.html:12
@@ -2549,7 +2573,7 @@ msgstr "Ƴeewndite"
 
 #: core/helpers.py:62
 msgid "Overwritten submissions"
-msgstr ""
+msgstr "Naatnanɗe binnditaaɗi"
 
 #: middleware/captcha.py:122
 msgid "Time to answer has expired"
@@ -2578,13 +2602,14 @@ msgstr ""
 #: scripts/actions.py:529
 #, python-format
 msgid "Failed to copy download file to export directory %s"
-msgstr ""
+msgstr "Horiima nattaade fiilde gaawtol to runngerejiggitto %s"
 
 #: scripts/example-actions/mozlangpack.py:141
 msgid ""
 "Finished building the language pack, click on the download link to download "
 "it."
 msgstr ""
+"Gaynii tafde pakkere ɗemngal, dobo e jokkol gaawtol ngol ngam aawtaade-nde."
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"
@@ -2621,7 +2646,7 @@ msgstr ""
 
 #: templates/_main_tabs.html:5
 msgid "Main page"
-msgstr ""
+msgstr "Hello arwano"
 
 #: templates/_main_tabs.html:5 templates/language_menu.html:4
 #: templates/project_menu.html:4 templates/tp_menu.html:4
@@ -2672,7 +2697,7 @@ msgstr "Toppito jamirooje goowaaɗe ɗee"
 
 #: templates/admin_profile_menu.html:9
 msgid "Manage Static Pages"
-msgstr ""
+msgstr "Toppito Kelle Maayɗe"
 
 #: templates/base.html:121
 msgid "skip to navigation"
@@ -2751,7 +2776,7 @@ msgstr "Teeŋtin"
 #: templates/db_error.html:4 templates/db_error.html.py:7
 #: templates/db_error.html:12
 msgid "Database Error"
-msgstr ""
+msgstr "Juumre Ruttorde Keɓe"
 
 #: templates/db_error.html:14
 msgid ""
@@ -2760,6 +2785,10 @@ msgid ""
 "  yet, or a schema upgrade is needed before continuing.\n"
 "  "
 msgstr ""
+"\n"
+"  Pootle waawaa seŋaade e ruttorde keɓe ndee, nde hurminaaka\n"
+"  tawa, walla kesɗitinal shcema ena soklaa hade jokkude.\n"
+"  "
 
 #: templates/db_error.html:20
 #, python-format
@@ -2770,10 +2799,15 @@ msgid ""
 "  if you feel this is a mistake.\n"
 "  "
 msgstr ""
+"\n"
+"  Tiiɗno tar <a href=\"%(url)s\">famminorde Pootle</a> ndee e\n"
+"  baɗte aafgol e tinndinooje kisɗitingol. Jokkondir e jiiloowo sarwoode ndee\n"
+"  so aɗa sikki ɗuum ko juumre.\n"
+"  "
 
 #: templates/db_error.html:27
 msgid "The reported error was:"
-msgstr ""
+msgstr "Juumre jaŋtaande ndee wonnoo ko:"
 
 #: templates/language_menu.html:4
 msgid "Language main page"
@@ -2785,7 +2819,7 @@ msgstr "Kabaruuji ɗemɗe"
 
 #: templates/language_menu.html:6
 msgid "Translate this language"
-msgstr ""
+msgstr "Fir ngal ɗemngal"
 
 #: templates/language_menu.html:8
 msgid "Administrate your language permissions"
@@ -2793,7 +2827,7 @@ msgstr "Yiil jamirooje ɗemngal maa"
 
 #: templates/main_base.html:6
 msgid "Main"
-msgstr ""
+msgstr "Garwano"
 
 #: templates/project_menu.html:4
 msgid "Project main page"
@@ -2897,7 +2931,7 @@ msgstr "Baɗte"
 
 #: templates/common/_table_row.html:87
 msgid "Add a tag"
-msgstr ""
+msgstr "Ɓeydu taggere"
 
 #: templates/contact_form/contact_form.html:17
 msgid "Send"
@@ -2948,21 +2982,23 @@ msgstr "Naatnanɗe am binnditaaɗi"
 
 #: templates/editor/_toolbar.html:34
 msgid "Go to the previous string (Ctrl+Up)"
-msgstr ""
+msgstr "Yah to ɓoggol ɓennungol ngol (Ctrl+Up)"
 
 #: templates/editor/_toolbar.html:37
 msgid ""
 "Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
+"Limore ɓoggol gonangol (Ctrl+Shift+U)<br/><br/>Tappu limore ndee ɗoo ñoƴƴaa "
+"Enter<br/>ngam yahde to nokku kala"
 
 #: templates/editor/_toolbar.html:39
 msgid "Total strings"
-msgstr ""
+msgstr "Ɓoggi fof"
 
 #: templates/editor/_toolbar.html:43
 msgid "Go to the next string (Ctrl+Down)"
-msgstr ""
+msgstr "Yah to ɓoggol dewngol (Ctrl+Down)"
 
 #: templates/profiles/edit_personal.html:12
 msgid ""
@@ -2999,7 +3035,7 @@ msgstr ""
 
 #: templates/profiles/profile_detail.html:23
 msgid "Contributions"
-msgstr ""
+msgstr "Ballitte"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"
@@ -3011,11 +3047,11 @@ msgstr "Wasiyaaji Cabbiiɗi"
 
 #: templates/profiles/profile_detail.html:46
 msgid "Overwritten"
-msgstr ""
+msgstr "Winnditaama dow"
 
 #: templates/profiles/profile_detail.html:66
 msgid "This user doesn't have any contributions yet."
-msgstr ""
+msgstr "Oo kuutoro alaa hay ballitte tawo."
 
 #: templates/profiles/profile_list.html:7
 msgid "Profiles list"
@@ -3259,16 +3295,6 @@ msgstr "Aɗa jogii konnte?"
 #: templates/registration/registration_form.html:54
 msgid "Log In."
 msgstr "Seŋo."
-
-#, python-format
-#~ msgid ""
-#~ "%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d fuzzy)."
-#~ msgid_plural ""
-#~ "%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d fuzzy)."
-#~ msgstr[0] ""
-#~ "%(type)s: %(translated)d e nder %(total)d ɓoggol firaama (%(fuzzy)d ena "
-#~ "jilɓi).%(type)s: %(translated)d e dner %(total)d ɓoggol firaama (%(fuzzy)d "
-#~ "ena njilɓi)."
 
 #~ msgid "Display on registration"
 #~ msgstr "Hollir tuma binnditagol"

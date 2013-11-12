@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-10-31 17:15+0000\n"
-"PO-Revision-Date: 2013-10-28 16:12+0000\n"
+"PO-Revision-Date: 2013-11-09 12:41+0000\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: eu\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1382976769.0\n"
+"X-POOTLE-MTIME: 1384000872.0\n"
 
 #: strings.py:8
 msgid ""
@@ -1226,7 +1226,11 @@ msgid_plural ""
 "%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d need "
 "review)."
 msgstr[0] ""
+"%(type)s: %(total)d/%(translated)d kate itzulita (kate batek berrikuspena "
+"behar du)."
 msgstr[1] ""
+"%(type)s: %(total)d/%(translated)d kate itzulita (%(fuzzy)d katek "
+"berrikuspena behar dute)."
 
 #: apps/pootle_misc/stats.py:304
 #, python-format
@@ -1448,7 +1452,7 @@ msgstr "Arazoen berri emateko helburua"
 
 #: apps/pootle_project/views.py:119
 msgid "Filter using one or more tags"
-msgstr ""
+msgstr "Iragazi etiketa bat edo gehiago erabiliz"
 
 #: apps/pootle_project/views.py:161
 #, python-format
@@ -1482,7 +1486,7 @@ msgstr "Iragazi"
 
 #: apps/pootle_project/templates/project/overview.html:38
 msgid "Filter using the selected tags"
-msgstr ""
+msgstr "Iragazi hautatutako etiketak erabiliz"
 
 #: apps/pootle_project/templates/project/overview.html:76
 #: apps/pootle_translationproject/templates/translation_project/overview.html:43
@@ -1527,6 +1531,8 @@ msgid ""
 "%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s erabiltzaileak <i><a href=\"%(url)s\">%(source)s</a></i> katearen "
+"itzulpena leheneratu du"
 
 #: apps/pootle_statistics/models.py:153
 #, python-format
@@ -1534,11 +1540,13 @@ msgid ""
 "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s erabiltzaileak <i><a href=\"%(url)s\">%(source)s</a></i> katearen "
+"gomendioa onartu du"
 
 #: apps/pootle_statistics/models.py:156
 #, python-format
 msgid "%(user)s uploaded a file"
-msgstr ""
+msgstr "%(user)s erabiltzaileak fitxategia igo du"
 
 #: apps/pootle_statistics/models.py:171
 #, python-format
@@ -1546,6 +1554,8 @@ msgid ""
 "%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s erabiltzaileak <i><a href=\"%(url)s\">%(source)s</a></i> katearen "
+"itzulpena bidali du"
 
 #: apps/pootle_statistics/models.py:174
 #, python-format
@@ -1553,6 +1563,8 @@ msgid ""
 "%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
 "\">%(source)s</a></i>"
 msgstr ""
+"%(user)s erabiltzaileak <i><a href=\"%(url)s\">%(source)s</a></i> katearen "
+"itzulpena bidali du (\"lana behar du\")"
 
 #: apps/pootle_statistics/models.py:177
 #, python-format
@@ -1560,6 +1572,8 @@ msgid ""
 "%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s erabiltzaileak <i><a href=\"%(url)s\">%(source)s</a></i> katearen "
+"itzulpena kendu du"
 
 #: apps/pootle_store/decorators.py:63
 msgid "Insufficient rights to access this directory."
@@ -1571,7 +1585,7 @@ msgstr "Argumentuak falta dira."
 
 #: apps/pootle_store/decorators.py:147
 msgid "File does not exist."
-msgstr ""
+msgstr "Fitxategia ez dago."
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Gettext PO"
@@ -1666,7 +1680,7 @@ msgstr "Etiketak"
 #: apps/pootle_store/models.py:901
 #: apps/pootle_translationproject/models.py:122
 msgid "A comma-separated list of tags."
-msgstr ""
+msgstr "Komaz bereiztutako etiketen zerrenda."
 
 #: apps/pootle_store/models.py:902
 #: apps/pootle_translationproject/models.py:126
@@ -1722,7 +1736,7 @@ msgstr "Iruzkina:"
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
 msgid "String %(id)s"
-msgstr ""
+msgstr "%(id)s katea"
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -1909,12 +1923,16 @@ msgid ""
 "Tag names cannot have leading nor trailing spaces, colons (:), hyphens (-), "
 "underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Etiketek ezin dute izan hasierako zuriunerik, bi punturik (:), marratxorik "
+"(-), azpimarrarik (_), barrarik (/) edo punturik (.)!"
 
 #: apps/pootle_tagging/forms.py:53
 msgid ""
 "Tag names cannot contain two or more consecutive: spaces, colons (:), "
 "hyphens (-), underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Etiketa-izenek ezin dute izan bi zuriune jarraian, bi punturik (:), "
+"marratxorik (-), azpimarrarik (_), barrarik (/) edo punturik (.)!"
 
 #: apps/pootle_tagging/forms.py:60
 msgid ""
@@ -1922,16 +1940,21 @@ msgid ""
 "leading (but yes on the middle): spaces, colons (:), hyphens (-), "
 "underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Etiketa-izenek alfazenbakizko kate minuskulak izan behar dute, hasieran eta "
+"bukaeran karaktere hauek gabe: zuriuneak, bi puntuak (:), marratxoak (-), "
+"azpimarrak (_), barrak (/) edo puntuak (.)!"
 
 #: apps/pootle_tagging/forms.py:74
 msgid ""
 "Name cannot contain just after 'goal:' any of these characters: spaces, "
 "colons (:), hyphens (-), underscores (_), slashes (/) or periods (.)"
 msgstr ""
+"Izenek ezin dute 'goal:' ondoren karaktere hauek izan: zuriuneak, bi puntuak "
+"(:), marratxoak (-), azpimarrak (_), barrak (/) edo puntuak (.)"
 
 #: apps/pootle_tagging/forms.py:133
 msgid "A goal with that name already exists. Please pick another name."
-msgstr ""
+msgstr "Izen berdineko helburu bat badago lehendik ere. Hautatu beste izen bat."
 
 #: apps/pootle_tagging/forms.py:173
 msgid ""
@@ -1939,16 +1962,21 @@ msgid ""
 "single or multiple occurrences of the following characters: spaces, colons "
 "(:), hyphens (-), underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Etiketen slug-ak etiketa-izenaren berdinak izan behar dira, ondorengo "
+"karaktereak marratxo batekin ordezkatuta: zuriuneak, bi puntuak (:), "
+"marratxoak (-), azpimarrak (_), barrak (/) edo puntuak (.)!"
 
 #: apps/pootle_tagging/forms.py:180
 msgid "A goal with this slug already exists."
-msgstr ""
+msgstr "Izen bereko helburu bat badago lehendik ere."
 
 #: apps/pootle_tagging/forms.py:194
 msgid ""
 "Warning: Changing the name also changes the slug, so it won't be possible to "
 "view this goal on this page!"
 msgstr ""
+"Abisua: Izena aldatzean slug-a ere aldatuko da, beraz ezingo da helburu hau "
+"orri honetan ikusi!"
 
 #: apps/pootle_tagging/models.py:66
 #, python-format
@@ -1956,24 +1984,28 @@ msgid ""
 "A description of this goal. This is useful to give more information or "
 "instructions. Allowed markup: %s"
 msgstr ""
+"Helburu honen deskribapena. Informazio gehiago edo azalpenak emateko "
+"erabilgarria da hau. Onartutako markaketa: %s"
 
 #: apps/pootle_tagging/models.py:74
 msgid "The priority for this goal."
-msgstr ""
+msgstr "Helburu honen lehentasuna."
 
 #: apps/pootle_tagging/models.py:79
 msgid ""
 "Designates that this is a project goal (shared across all languages in the "
 "project)."
 msgstr ""
+"Proiektuaren helburua dela zehazten du (proiektuaren hizkuntza guztien "
+"artean partekatua)."
 
 #: apps/pootle_tagging/models.py:81
 msgid "Project goal?"
-msgstr ""
+msgstr "Proiektuaren helburua?"
 
 #: apps/pootle_tagging/models.py:105
 msgid "(Project goal)"
-msgstr ""
+msgstr "(Proiektuaren helburua)"
 
 #: apps/pootle_terminology/views.py:171
 msgid "This term already exists in this file."
@@ -2269,7 +2301,7 @@ msgstr "Ezin da '%(action)s' aurkitu '%(extdir)s' direktorioan"
 #: apps/pootle_translationproject/views.py:400
 #, python-format
 msgid "Error while running '%s' extension action"
-msgstr ""
+msgstr "Errorea '%s' hedapen-ekintza exekutatzean"
 
 #: apps/pootle_translationproject/views.py:820
 #, python-format
@@ -2443,7 +2475,7 @@ msgstr "Orria aktibo dagoen ala ez."
 #: apps/staticpages/models.py:40
 #: apps/staticpages/templates/staticpages/admin/_table.html:9
 msgid "Virtual Path"
-msgstr ""
+msgstr "Bide birtuala"
 
 #. Translators: Content that will be used to display this static page
 #: apps/staticpages/models.py:47
@@ -2508,41 +2540,42 @@ msgstr "Ekintza beharrezkoa"
 #: apps/staticpages/templates/staticpages/agreement.html:5
 msgid "Before continuing, you must read and accept the following documents."
 msgstr ""
+"Jarraitu aurretik, ondorengo dokumentuak irakurri eta onartu behar dituzu."
 
 #: apps/staticpages/templates/staticpages/agreement.html:18
 msgid "No thanks. Log out"
-msgstr ""
+msgstr "Ez, eskerrik asko. Amaitu saioa"
 
 #: apps/staticpages/templates/staticpages/agreement.html:21
 msgid "Continue"
-msgstr ""
+msgstr "Jarraitu"
 
 #: apps/staticpages/templates/staticpages/base.html:5
 #: apps/staticpages/templates/staticpages/base.html:11
 #: templates/admin_profile_menu.html:9
 msgid "Static Pages"
-msgstr ""
+msgstr "Orri estatikoak"
 
 #. Translators: Displayed as 'Redirect to URL or Display Content'
 #: apps/staticpages/templates/staticpages/admin/_form.html:19
 msgid "or"
-msgstr ""
+msgstr "edo"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:8
 msgid "Page"
-msgstr ""
+msgstr "Orria"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:11
 msgid "Last Edited"
-msgstr ""
+msgstr "Azken aldaketa"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "Yes"
-msgstr ""
+msgstr "Bai"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "No"
-msgstr ""
+msgstr "Ez"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:30
 msgid "No pages yet."
@@ -2553,9 +2586,8 @@ msgid "Legal Pages"
 msgstr "Orri legalak"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:12
-#, fuzzy
 msgid "Add Legal Page"
-msgstr "Editatu orri legala"
+msgstr "Gehitu orri legala"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
 msgid "Regular Pages"

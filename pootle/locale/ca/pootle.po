@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-10-31 17:15+0000\n"
-"PO-Revision-Date: 2013-10-28 18:15+0000\n"
-"Last-Translator: ellibrecomoelchaval <el.libre@gmail.com>\n"
+"PO-Revision-Date: 2013-11-03 11:49+0000\n"
+"Last-Translator: Toni <toniher@softcatala.org>\n"
 "Language-Team: Softcatalà\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1382984143.0\n"
+"X-POOTLE-MTIME: 1383479355.0\n"
 
 #: strings.py:8
 msgid ""
@@ -531,7 +531,7 @@ msgstr "Registre."
 #: apps/pootle_project/models.py:221
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
-msgstr ""
+msgstr "No es pot utilitzar «%s» com a codi de projecte"
 
 #: apps/pootle_app/views/admin/adminusers.py:55
 #: templates/user_profile_menu.html:7
@@ -627,11 +627,11 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:129
 msgid "MARKUP_FILTER is missing. Falling back to HTML."
-msgstr ""
+msgstr "Manca MARKUP_FILTER. S'utilitzarà HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:131
 msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
-msgstr ""
+msgstr "No està ben configurat MARKUP_FILTER. S'utilitzarà HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:133
 #, python-format
@@ -767,11 +767,11 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Contributors"
-msgstr ""
+msgstr "Col·laboradors del projecte"
 
 #: apps/pootle_app/views/admin/permissions.py:84
 msgid "Language Contributors"
-msgstr ""
+msgstr "Col·laboradors de la llengua"
 
 #: apps/pootle_app/views/admin/permissions.py:91
 msgid "All Users"
@@ -785,7 +785,7 @@ msgstr "Nom d'usuari"
 
 #: apps/pootle_app/views/admin/permissions.py:122
 msgid "Select one or more permissions"
-msgstr ""
+msgstr "Seleccioneu un o més permisos"
 
 #: apps/pootle_app/views/admin/util.py:144
 msgid "No files in this project."
@@ -910,7 +910,7 @@ msgstr "Llengua"
 #. Translators: Heading representing the priority for a goal
 #: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:73
 msgid "Priority"
-msgstr ""
+msgstr "Prioritat"
 
 #. Translators: noun. The graphical representation of translation status
 #: apps/pootle_misc/browser.py:52
@@ -1122,7 +1122,7 @@ msgstr "Cerca (Ctrl+Maj+S)<br/>Escriviu i premeu Retorn per cercar"
 
 #: apps/pootle_misc/forms.py:108
 msgid "Exact Match"
-msgstr ""
+msgstr "Coincidència exacta"
 
 #: apps/pootle_misc/forms.py:115
 msgid "Source Text"
@@ -1303,7 +1303,7 @@ msgstr "Selecció de projecte"
 
 #: apps/pootle_notifications/forms.py:61
 msgid "Select one or more projects"
-msgstr ""
+msgstr "Seleccioneu un o més projectes"
 
 #: apps/pootle_notifications/forms.py:68
 msgid "All Languages"
@@ -1315,7 +1315,7 @@ msgstr "Selecció de llengua"
 
 #: apps/pootle_notifications/forms.py:77 apps/pootle_profile/forms.py:120
 msgid "Select one or more languages"
-msgstr ""
+msgstr "Seleccioneu una o més llengües"
 
 #: apps/pootle_notifications/models.py:31
 msgid "Message"
@@ -1451,7 +1451,7 @@ msgstr "Informa la destinació"
 
 #: apps/pootle_project/views.py:119
 msgid "Filter using one or more tags"
-msgstr ""
+msgstr "Filtra utilitzant una o més etiquetes"
 
 #: apps/pootle_project/views.py:161
 #, python-format
@@ -1474,20 +1474,20 @@ msgstr ""
 #: apps/pootle_project/templates/project/overview.html:18
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
-msgstr ""
+msgstr "Mostra les etiquetes"
 
 #: apps/pootle_project/templates/project/overview.html:21
 msgid "Show filtering"
-msgstr ""
+msgstr "Mostra el filtratge"
 
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
 msgid "Filter"
-msgstr ""
+msgstr "Filtre"
 
 #: apps/pootle_project/templates/project/overview.html:38
 msgid "Filter using the selected tags"
-msgstr ""
+msgstr "Filtra utilitzant les etiquetes seleccionades"
 
 #: apps/pootle_project/templates/project/overview.html:76
 #: apps/pootle_translationproject/templates/translation_project/overview.html:43
@@ -1572,11 +1572,11 @@ msgstr ""
 
 #: apps/pootle_store/decorators.py:135 apps/pootle_store/views.py:531
 msgid "Arguments missing."
-msgstr ""
+msgstr "Hi manquen arguments."
 
 #: apps/pootle_store/decorators.py:147
 msgid "File does not exist."
-msgstr ""
+msgstr "El fitxer no existeix."
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Gettext PO"
@@ -1664,9 +1664,8 @@ msgstr "Camí"
 
 #: apps/pootle_store/models.py:900
 #: apps/pootle_translationproject/models.py:121
-#, fuzzy
 msgid "Tags"
-msgstr "Tabulacions"
+msgstr "Etiquetes"
 
 #: apps/pootle_store/models.py:901
 #: apps/pootle_translationproject/models.py:122
@@ -1677,12 +1676,12 @@ msgstr "Llista d'etiquetes separades per comes."
 #: apps/pootle_translationproject/models.py:126
 #: apps/pootle_translationproject/templates/translation_project/overview.html:69
 msgid "Goals"
-msgstr ""
+msgstr "Objectius"
 
 #: apps/pootle_store/models.py:904
 #: apps/pootle_translationproject/models.py:128
 msgid "A comma-separated list of goals."
-msgstr ""
+msgstr "Llista d'objectius separats per comes."
 
 #: apps/pootle_store/util.py:45
 msgid "Obsolete"
@@ -1713,14 +1712,12 @@ msgid "The suggestion or vote is not valid any more."
 msgstr "El suggeriment o el vot ja no és vàlid."
 
 #: apps/pootle_store/views.py:1096
-#, fuzzy
 msgid "You do not have rights to remove tags."
-msgstr "No teniu permisos per administrar %s."
+msgstr "No teniu permisos per suprimir etiquetes."
 
 #: apps/pootle_store/views.py:1132
-#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr "No teniu permisos per administrar %s."
+msgstr "No teniu permisos per afegir etiquetes."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
@@ -1729,7 +1726,7 @@ msgstr "Comentari:"
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
 msgid "String %(id)s"
-msgstr ""
+msgstr "Cadena %(id)s"
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -1976,11 +1973,11 @@ msgstr ""
 
 #: apps/pootle_tagging/models.py:81
 msgid "Project goal?"
-msgstr ""
+msgstr "Objectiu del projecte?"
 
 #: apps/pootle_tagging/models.py:105
 msgid "(Project goal)"
-msgstr ""
+msgstr "(Objectiu del projecte)"
 
 #: apps/pootle_terminology/views.py:171
 msgid "This term already exists in this file."
@@ -2331,11 +2328,11 @@ msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:99
 msgid "Goal"
-msgstr ""
+msgstr "Objectiu"
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:141
 msgid "No strings."
-msgstr ""
+msgstr "No hi ha cap cadena."
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:61
 msgid "Translation project files and folders"
@@ -2492,8 +2489,9 @@ msgid "Legal Page"
 msgstr "Pàgines d'informació legal"
 
 #: apps/staticpages/models.py:122
+#, fuzzy
 msgid "Regular Page"
-msgstr ""
+msgstr "Edita la pàgina d'informació legal"
 
 #: apps/staticpages/views.py:87
 msgid "Page Title"

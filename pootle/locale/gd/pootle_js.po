@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-10-31 17:15+0000\n"
-"PO-Revision-Date: 2013-05-20 23:43+0000\n"
+"PO-Revision-Date: 2013-11-09 01:55+0000\n"
 "Last-Translator: Michael <fios@akerbeltz.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gd\n"
@@ -17,15 +17,15 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
 "(n > 2 && n < 20) ? 2 : 3 ;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1369093412.0\n"
+"X-POOTLE-MTIME: 1383962116.0\n"
 
 #: static/js/common.js:13
 msgid "All Languages"
-msgstr ""
+msgstr "Na h-uile cànan"
 
 #: static/js/common.js:26
 msgid "All Projects"
-msgstr ""
+msgstr "Na h-uile pròiseact"
 
 #: static/js/common.js:62
 msgid "Expand details"
@@ -45,57 +45,57 @@ msgstr "Chan urrainn dhut an gnìomh seo a neo-dhèanamh."
 
 #: static/js/common.js:139
 msgid "Show tags"
-msgstr ""
+msgstr "Seall na tagaichean"
 
 #: static/js/common.js:142 static/js/vendor/sorttable.js:365
 msgid "Hide tags"
-msgstr ""
+msgstr "Falaich na tagaichean"
 
 #: static/js/common.js:276 static/js/common.js.c:292
 msgid "Hide filtering"
-msgstr ""
+msgstr "Falaich an criathradh"
 
 #: static/js/common.js:279 static/js/common.js.c:286
 msgid "Show filtering"
-msgstr ""
+msgstr "Seall an criathradh"
 
 #: static/js/editor.js:209
 msgid "Go to the next string (Ctrl+.)"
-msgstr ""
+msgstr "Air adhart dhan ath-shreang (Ctrl+.)"
 
 #: static/js/editor.js:215
 msgid "Go to the previous string (Ctrl+,)"
-msgstr ""
+msgstr "Air ais dhan t-sreang roimhpe (Ctrl+,)"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:333
 #, c-format
 msgid "%s's pending suggestions"
-msgstr ""
+msgstr "Na molaidhean aig %s a tha ri dhèiligeadh"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:336
 #, c-format
 msgid "%s's accepted suggestions"
-msgstr ""
+msgstr "Na molaidhean aig %s a chaidh a ghabhail ris"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:339
 #, c-format
 msgid "%s's rejected suggestions"
-msgstr ""
+msgstr "Na molaidhean aig %s a chaidh a dhiùltadh"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:342
 #, c-format
 msgid "%s's submissions"
-msgstr ""
+msgstr "Na chuir %s ann"
 
 #. Translators: '%s' is a username, meaning "submissions by %s, that were overwritten"
 #: static/js/editor.js:345
 #, c-format
 msgid "%s's overwritten submissions"
-msgstr ""
+msgstr "Na chuir %s ann is a chaidh a sgrìobhadh thairis air"
 
 #: static/js/editor.js:476 static/js/editor.js.c:1521
 msgid "No results."
@@ -103,7 +103,7 @@ msgstr "Chan eil toradh ann."
 
 #: static/js/editor.js:748
 msgid "Export View"
-msgstr ""
+msgstr "Às-phortaich an sealladh"
 
 #: static/js/editor.js:798
 msgid "Error while connecting to the server"

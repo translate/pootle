@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-10-31 17:15+0000\n"
-"PO-Revision-Date: 2013-10-28 21:32+0000\n"
-"Last-Translator: goetas <goetas@lignano.it>\n"
+"PO-Revision-Date: 2013-11-03 14:27+0000\n"
+"Last-Translator: paolopoz <paolo@z2z.it>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1382995950.0\n"
+"X-POOTLE-MTIME: 1383488877.0\n"
 
 #: strings.py:8
 msgid ""
@@ -639,6 +639,8 @@ msgid ""
 "Can't find the package which provides '%s' markup support. Falling back to "
 "HTML."
 msgstr ""
+"Impossibile trovare il pacchetto che fornisce il supporto al markup '%s'. "
+"Uso HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:137
 #, python-format
@@ -763,15 +765,15 @@ msgstr "Utenti attivi"
 
 #: apps/pootle_app/views/admin/permissions.py:61
 msgid "Translation Project Contributors"
-msgstr ""
+msgstr "Collaboratori del progetto di traduzione"
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Contributors"
-msgstr ""
+msgstr "Collaboratori del progetto"
 
 #: apps/pootle_app/views/admin/permissions.py:84
 msgid "Language Contributors"
-msgstr ""
+msgstr "Collaboratori della lingua"
 
 #: apps/pootle_app/views/admin/permissions.py:91
 msgid "All Users"
@@ -967,7 +969,7 @@ msgstr "Parentesi"
 
 #: apps/pootle_misc/checks.py:40
 msgid "Compendium conflict"
-msgstr ""
+msgstr "Conflitto di compendio"
 
 #: apps/pootle_misc/checks.py:41
 msgid "Translator credits"
@@ -986,14 +988,12 @@ msgid "Repeated word"
 msgstr "Parole ripetute"
 
 #: apps/pootle_misc/checks.py:45
-#, fuzzy
 msgid "E-mail"
 msgstr "E-mail"
 
 #: apps/pootle_misc/checks.py:46
-#, fuzzy
 msgid "Ending punctuation"
-msgstr "Punteggiatura sospesa"
+msgstr "Punteggiatura finale"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Ending whitespace"
@@ -1032,7 +1032,6 @@ msgid "Newlines"
 msgstr "Nuove rige"
 
 #: apps/pootle_misc/checks.py:56
-#, fuzzy
 msgid "Number of plurals"
 msgstr "Numero di forme plurali"
 
@@ -1045,21 +1044,20 @@ msgid "Numbers"
 msgstr "Numeri"
 
 #: apps/pootle_misc/checks.py:59
-#, fuzzy
 msgid "Options"
-msgstr "Opzionale"
+msgstr "Opzioni"
 
 #: apps/pootle_misc/checks.py:60
 msgid "printf()"
-msgstr ""
+msgstr "printf()"
 
 #: apps/pootle_misc/checks.py:61
 msgid "Punctuation spacing"
-msgstr ""
+msgstr "Spaziatura punteggiatura"
 
 #: apps/pootle_misc/checks.py:62
 msgid "Pure punctuation"
-msgstr ""
+msgstr "Solo punteggiatura"
 
 #: apps/pootle_misc/checks.py:63
 msgid "Number of sentences"
@@ -1071,11 +1069,11 @@ msgstr "Breve"
 
 #: apps/pootle_misc/checks.py:65
 msgid "Simple capitalization"
-msgstr ""
+msgstr "Maiuscole semplici"
 
 #: apps/pootle_misc/checks.py:66
 msgid "Simple plural(s)"
-msgstr ""
+msgstr "Plurale/i semplice/i"
 
 #: apps/pootle_misc/checks.py:67
 msgid "Single quotes"
@@ -1083,7 +1081,7 @@ msgstr "Virgolette singole"
 
 #: apps/pootle_misc/checks.py:68
 msgid "Starting capitalization"
-msgstr ""
+msgstr "Maiuscola iniziale"
 
 #: apps/pootle_misc/checks.py:69
 msgid "Starting punctuation"
@@ -1091,7 +1089,7 @@ msgstr "Punteggiatura sospesa"
 
 #: apps/pootle_misc/checks.py:70
 msgid "Starting whitespace"
-msgstr ""
+msgstr "Spazio iniziale"
 
 #. Translators: This refers to tabulation characters
 #: apps/pootle_misc/checks.py:72
@@ -1119,13 +1117,12 @@ msgid "XML tags"
 msgstr "Tag XML"
 
 #: apps/pootle_misc/forms.py:100
-#, fuzzy
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
-msgstr "Cerca (Ctrl+Shift+S)<br/>Inserici e premi Invio per cercare"
+msgstr "Cerca (Ctrl+Maiusc+S)<br/>Inserici e premi Invio per cercare"
 
 #: apps/pootle_misc/forms.py:108
 msgid "Exact Match"
-msgstr ""
+msgstr "Corrispondenza esatta"
 
 #: apps/pootle_misc/forms.py:115
 msgid "Source Text"
@@ -1144,37 +1141,35 @@ msgid "Locations"
 msgstr "Posizioni"
 
 #: apps/pootle_misc/forms.py:131
-#, fuzzy
 msgid "Source Terms"
-msgstr "Testo sorgente"
+msgstr "Termini sorgenti"
 
 #: apps/pootle_misc/forms.py:132
-#, fuzzy
 msgid "Target Terms"
-msgstr "Testo destinazione"
+msgstr "Termini destinazione"
 
 #: apps/pootle_misc/forms.py:133
 msgid "Definitions"
-msgstr ""
+msgstr "Definizioni"
 
 #: apps/pootle_misc/stats.py:134
 #, python-format
 msgid "<a href=\"%(url)s\">%(num)d word</a>"
 msgid_plural "<a href=\"%(url)s\">%(num)d words</a>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<a href=\"%(url)s\">%(num)d parola</a>"
+msgstr[1] "<a href=\"%(url)s\">%(num)d parole</a>"
 
 #: apps/pootle_misc/stats.py:141
 #, python-format
 msgid "%(num)d%%"
-msgstr ""
+msgstr "%(num)d%%"
 
 #: apps/pootle_misc/stats.py:143
 #, python-format
 msgid "(%(num)d string)"
 msgid_plural "(%(num)d strings)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "(%(num)d stringa)"
+msgstr[1] "(%(num)d stringhe)"
 
 #: apps/pootle_misc/stats.py:172
 #, python-format
@@ -1182,18 +1177,19 @@ msgid "This folder has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
 "This folder has %(num)d words, %(percentage)d%% of which are translated."
 msgstr[0] ""
+"Questa cartella ha %(num)d parola, di cui il %(percentage)d%% è tradotto."
 msgstr[1] ""
+"Questa cartella ha %(num)d parole, di cui il %(percentage)d%% è tradotto."
 
 #: apps/pootle_misc/stats.py:184
 #, python-format
 msgid "This file has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
 "This file has %(num)d words, %(percentage)d%% of which are translated."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Questo file ha %(num)d parola, di cui il %(percentage)d%% è tradotto."
+msgstr[1] "Questo file ha %(num)d parole, di cui il %(percentage)d%% è tradotto."
 
 #: apps/pootle_misc/stats.py:206
-#, fuzzy
 msgid "Expand details"
 msgstr "Espandi dettagli"
 
@@ -1208,20 +1204,19 @@ msgstr[1] "Continua a tradurre (%(num)d parole mancanti)"
 #, python-format
 msgid "Next most important goal (%(num)d word left)"
 msgid_plural "Next most important goal (%(num)d words left)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Prossimo obbiettivo prioritario (%(num)d parola rimanente)"
+msgstr[1] "Prossimo obbiettivo prioritario (%(num)d parole rimanenti)"
 
 #: apps/pootle_misc/stats.py:249
-#, fuzzy
 msgid "Translation is complete"
-msgstr "Le traduzioni sono complete"
+msgstr "La traduzione è completa"
 
 #: apps/pootle_misc/stats.py:260
 #, python-format
 msgid "Review suggestion (%(num)d left)"
 msgid_plural "Review suggestions (%(num)d left)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Rivedi suggerimento (%(num)d rimanente)"
+msgstr[1] "Rivedi suggerimenti (%(num)d rimanenti)"
 
 #. Translators: 'type' is the type of VCS file: working, remote,
 #. or merged copy.
@@ -1234,7 +1229,11 @@ msgid_plural ""
 "%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d need "
 "review)."
 msgstr[0] ""
+"%(type)s: %(translated)d di %(total)d stringa tradotta (%(fuzzy)d necessita "
+"revisione)."
 msgstr[1] ""
+"%(type)s: %(translated)d di %(total)d stringhe tradotte (%(fuzzy)d necessita "
+"revisione)."
 
 #: apps/pootle_misc/stats.py:304
 #, python-format
@@ -1258,10 +1257,9 @@ msgstr[0] "%d parola necessita di revisione"
 msgstr[1] "%d parole necessitano di revisione"
 
 #: apps/pootle_misc/templates/progressbar.html:3
-#, python-format
-#, fuzzy, python-format
+#, python-format, python-format
 msgid "%(percent)s%% complete"
-msgstr "%(percentage)d%% completato"
+msgstr "%(percent)s%% completato"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/templates/search.html:5 core/helpers.py:59
@@ -1285,19 +1283,19 @@ msgstr "Prossima"
 #: apps/pootle_misc/templatetags/render_pager.py:52
 #, python-format
 msgid "Last (%d)"
-msgstr ""
+msgstr "Ultimo (%d)"
 
 #: apps/pootle_notifications/forms.py:38
 msgid "Publish on news feed"
-msgstr ""
+msgstr "Pubblica nei feed di notizie"
 
 #: apps/pootle_notifications/forms.py:41
 msgid "Send email"
-msgstr ""
+msgstr "Invia messaggio di posta elettronica"
 
 #: apps/pootle_notifications/forms.py:44
 msgid "Email only to recently active users"
-msgstr ""
+msgstr "Messaggio solo agli utenti attivi di recente"
 
 #: apps/pootle_notifications/forms.py:52
 msgid "All Projects"
@@ -1305,11 +1303,11 @@ msgstr "Tutti i Progetti"
 
 #: apps/pootle_notifications/forms.py:56
 msgid "Project Selection"
-msgstr ""
+msgstr "Selezione del progetto"
 
 #: apps/pootle_notifications/forms.py:61
 msgid "Select one or more projects"
-msgstr ""
+msgstr "Seleziona uno o più progetti"
 
 #: apps/pootle_notifications/forms.py:68
 msgid "All Languages"
@@ -1317,7 +1315,7 @@ msgstr "Tutte le Lingue"
 
 #: apps/pootle_notifications/forms.py:72
 msgid "Language Selection"
-msgstr ""
+msgstr "Scelta della lingua"
 
 #: apps/pootle_notifications/forms.py:77 apps/pootle_profile/forms.py:120
 msgid "Select one or more languages"
@@ -1369,11 +1367,11 @@ msgstr "Notizie"
 
 #: apps/pootle_notifications/templates/notices.html:54
 msgid "Publish News"
-msgstr ""
+msgstr "Pubblica notizie"
 
 #: apps/pootle_notifications/templates/notices.html:57
 msgid "Successfully published the following news"
-msgstr ""
+msgstr "Le seguenti notizie sono state pubblicate con successo"
 
 #: apps/pootle_notifications/templates/notices.html:70
 msgid "Publish"
@@ -1413,6 +1411,8 @@ msgid ""
 "A description of this project. This is useful to give more information or "
 "instructions. Allowed markup: %s"
 msgstr ""
+"Una descrizione di questo progetto. Utile per dare maggiori informazioni o "
+"istruzioni. Markup consentito: %s"
 
 #: apps/pootle_project/models.py:79
 msgid "Quality Checks"
@@ -1446,14 +1446,16 @@ msgstr "Ignora i file"
 msgid ""
 "A URL or an email address where issues with the source text can be reported."
 msgstr ""
+"Un URL o un indirizzo email al quale possono essere riportati problemi "
+"relativi al testo sorgente."
 
 #: apps/pootle_project/models.py:108
 msgid "Report Target"
-msgstr ""
+msgstr "Destinazione report"
 
 #: apps/pootle_project/views.py:119
 msgid "Filter using one or more tags"
-msgstr ""
+msgstr "Filtra utilizzando uno o più tag"
 
 #: apps/pootle_project/views.py:161
 #, python-format
@@ -1465,39 +1467,38 @@ msgstr[1] "Lingue %(languages)d, %(average)d%% tradotto"
 #: apps/pootle_project/views.py:395
 #: apps/pootle_translationproject/actions.py:209
 msgid "Update against templates"
-msgstr ""
+msgstr "Aggiorna dai modelli"
 
 #: apps/pootle_project/templates/project/admin_permissions.html:20
-#, fuzzy
 msgid "Below you can add, edit, and delete the permissions for this project."
 msgstr ""
-"Qui sotto puoi aggiungere, modificare e cancellare i permessi per questa "
-"lingua."
+"Qui sotto puoi aggiungere, modificare e cancellare i permessi per questo "
+"progetto."
 
 #: apps/pootle_project/templates/project/overview.html:18
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
-msgstr ""
+msgstr "Mostra tag"
 
 #: apps/pootle_project/templates/project/overview.html:21
 msgid "Show filtering"
-msgstr ""
+msgstr "Mostra filtraggio"
 
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
 msgid "Filter"
-msgstr ""
+msgstr "Filtro"
 
 #: apps/pootle_project/templates/project/overview.html:38
 msgid "Filter using the selected tags"
-msgstr ""
+msgstr "Filtra utilizzando i tag selezionati"
 
 #: apps/pootle_project/templates/project/overview.html:76
 #: apps/pootle_translationproject/templates/translation_project/overview.html:43
 #: apps/pootle_translationproject/templates/translation_project/overview.html:175
 #: templates/common/xhr_add_tag_form.html:15
 msgid "Add tag"
-msgstr ""
+msgstr "Aggiungi tag"
 
 #: apps/pootle_project/templates/project/project_admin.html:7
 #: templates/project_menu.html:9
@@ -1512,25 +1513,23 @@ msgstr ""
 #: apps/pootle_statistics/models.py:46
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:103
 msgid "Source"
-msgstr ""
+msgstr "Sorgente"
 
 #: apps/pootle_statistics/models.py:47
 msgid "Target"
-msgstr ""
+msgstr "Destinazione"
 
 #: apps/pootle_statistics/models.py:48
 msgid "State"
-msgstr ""
+msgstr "Stato"
 
 #: apps/pootle_statistics/models.py:49
-#, fuzzy
 msgid "Comment"
-msgstr "Commenti"
+msgstr "Commento"
 
 #: apps/pootle_statistics/models.py:114
-#, fuzzy
 msgid "anonymous user"
-msgstr "Utenti anonimi"
+msgstr "utente anonimo"
 
 #: apps/pootle_statistics/models.py:150
 #, python-format
@@ -1538,6 +1537,8 @@ msgid ""
 "%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s ha ripristinato la traduzione per la stringa <i><a href=\"%(url)s\">%"
+"(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:153
 #, python-format
@@ -1545,11 +1546,13 @@ msgid ""
 "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s ha accettato il suggerimento per la stringa <i><a href=\"%(url)s\">%"
+"(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:156
 #, python-format
 msgid "%(user)s uploaded a file"
-msgstr ""
+msgstr "%(user)s ha caricato un file"
 
 #: apps/pootle_statistics/models.py:171
 #, python-format
@@ -1557,6 +1560,8 @@ msgid ""
 "%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s ha inviato una traduzione per la stringa <i><a href=\"%(url)s\">%"
+"(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:174
 #, python-format
@@ -1564,6 +1569,8 @@ msgid ""
 "%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
 "\">%(source)s</a></i>"
 msgstr ""
+"%(user)s ha inviato una traduzione \"necessita revisione\" per la stringa "
+"<i><a href=\"%(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:177
 #, python-format
@@ -1571,18 +1578,20 @@ msgid ""
 "%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s ha rimosso la traduzione per la stringa <i><a href=\"%(url)s\">%"
+"(source)s</a></i>"
 
 #: apps/pootle_store/decorators.py:63
 msgid "Insufficient rights to access this directory."
-msgstr ""
+msgstr "Permessi insufficienti per accedere a questa cartella."
 
 #: apps/pootle_store/decorators.py:135 apps/pootle_store/views.py:531
 msgid "Arguments missing."
-msgstr ""
+msgstr "Argomenti mancanti."
 
 #: apps/pootle_store/decorators.py:147
 msgid "File does not exist."
-msgstr ""
+msgstr "Il file non esiste."
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Gettext PO"
@@ -1594,61 +1603,61 @@ msgstr "XLIFF"
 
 #: apps/pootle_store/filetypes.py:41
 msgid "Qt ts"
-msgstr ""
+msgstr "Qt ts"
 
 #: apps/pootle_store/filetypes.py:47
 msgid "TMX"
-msgstr ""
+msgstr "TMX"
 
 #: apps/pootle_store/filetypes.py:53
 msgid "TBX"
-msgstr ""
+msgstr "TBX"
 
 #: apps/pootle_store/filetypes.py:59
 msgid "Haiku catkeys"
-msgstr ""
+msgstr "Haiku catkey"
 
 #: apps/pootle_store/filetypes.py:65
 msgid "Excel CSV"
-msgstr ""
+msgstr "CSV Excel"
 
 #: apps/pootle_store/filetypes.py:71
 msgid "Mozilla .lang"
-msgstr ""
+msgstr "Mozilla .lang"
 
 #: apps/pootle_store/filetypes.py:81 apps/pootle_store/filetypes.py:85
 msgid "Java Properties"
-msgstr ""
+msgstr "Java properties"
 
 #: apps/pootle_store/filetypes.py:89
 msgid "Java Properties (UTF-8)"
-msgstr ""
+msgstr "Java properties (UTF-8)"
 
 #. Translators: Don't translate "strings" unless you are sure these
 #. files have another name in your language
 #: apps/pootle_store/filetypes.py:98
 msgid "OS X Strings"
-msgstr ""
+msgstr "Stringhe OS X"
 
 #: apps/pootle_store/filetypes.py:104
 msgid "PHP arrays"
-msgstr ""
+msgstr "array PHP"
 
 #: apps/pootle_store/filetypes.py:110
 msgid "Subtitles: srt"
-msgstr ""
+msgstr "Sottotitoli: srt"
 
 #: apps/pootle_store/filetypes.py:112
 msgid "Subtitles: sub"
-msgstr ""
+msgstr "Sottotitoli: sub"
 
 #: apps/pootle_store/filetypes.py:114
 msgid "Subtitles: ssa"
-msgstr ""
+msgstr "Sottotitoli: ssa"
 
 #: apps/pootle_store/filetypes.py:116
 msgid "Subtitles: ass"
-msgstr ""
+msgstr "Sottotitoli: ass"
 
 #: apps/pootle_store/forms.py:95
 #: apps/pootle_store/templatetags/store_tags.py:125
@@ -1661,9 +1670,8 @@ msgid "Plural Form %d"
 msgstr "Forma plurale %d"
 
 #: apps/pootle_store/forms.py:296
-#, fuzzy
 msgid "Translator comment"
-msgstr "Commenti del traduttore"
+msgstr "Commento del traduttore"
 
 #: apps/pootle_store/models.py:893
 msgid "Path"
@@ -1671,33 +1679,32 @@ msgstr "Percorso"
 
 #: apps/pootle_store/models.py:900
 #: apps/pootle_translationproject/models.py:121
-#, fuzzy
 msgid "Tags"
-msgstr "Tabulazioni"
+msgstr "Tag"
 
 #: apps/pootle_store/models.py:901
 #: apps/pootle_translationproject/models.py:122
 msgid "A comma-separated list of tags."
-msgstr ""
+msgstr "Un elenco di tag separati da virgole."
 
 #: apps/pootle_store/models.py:902
 #: apps/pootle_translationproject/models.py:126
 #: apps/pootle_translationproject/templates/translation_project/overview.html:69
 msgid "Goals"
-msgstr ""
+msgstr "Obiettivi"
 
 #: apps/pootle_store/models.py:904
 #: apps/pootle_translationproject/models.py:128
 msgid "A comma-separated list of goals."
-msgstr ""
+msgstr "Un elenco di obiettivi separati da virgole."
 
 #: apps/pootle_store/util.py:45
 msgid "Obsolete"
-msgstr ""
+msgstr "Obsoleto"
 
 #: apps/pootle_store/views.py:705
 msgid "Comment submission failed."
-msgstr ""
+msgstr "L'invio del commento è fallito."
 
 #: apps/pootle_store/views.py:832 apps/pootle_store/views.py:898
 msgid "You do not have rights to access translation mode."
@@ -1705,7 +1712,7 @@ msgstr "Non disponete dei permessi per accedere alla modalità di traduzione."
 
 #: apps/pootle_store/views.py:880
 msgid "Failed to process submission."
-msgstr ""
+msgstr "Errore durante il processo di invio."
 
 #: apps/pootle_store/views.py:930
 msgid "Failed to process suggestion."
@@ -1725,50 +1732,45 @@ msgid "You do not have rights to remove tags."
 msgstr "Non hai i permessi per amministrare %s."
 
 #: apps/pootle_store/views.py:1132
-#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr "Non hai i permessi per amministrare %s."
+msgstr "Non hai i permessi per aggiungere tag."
 
 #: apps/pootle_store/templates/unit/comment.html:12
-#, fuzzy
 msgid "Comment:"
-msgstr "Commenti"
+msgstr "Commento:"
 
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
 msgid "String %(id)s"
-msgstr ""
+msgstr "Stringa %(id)s"
 
 #: apps/pootle_store/templates/unit/edit.html:22
-#, fuzzy
 msgid "Context:"
-msgstr "Contenuto"
+msgstr "Contesto:"
 
 #: apps/pootle_store/templates/unit/edit.html:32
-#, fuzzy
 msgid "Comments:"
-msgstr "Commenti"
+msgstr "Commenti:"
 
 #: apps/pootle_store/templates/unit/edit.html:47
-#, fuzzy
 msgid "Locations:"
-msgstr "Posizioni"
+msgstr "Posizioni:"
 
 #: apps/pootle_store/templates/unit/edit.html:56
 msgid "Terminology:"
-msgstr ""
+msgstr "Terminologia:"
 
 #: apps/pootle_store/templates/unit/edit.html:58
 msgid "Insert the translated term into the editor"
-msgstr ""
+msgstr "Inserisci il termine tradotto all'interno dell'editor"
 
 #: apps/pootle_store/templates/unit/edit.html:71
 msgid "Possible issues with the translation"
-msgstr ""
+msgstr "Possibili problemi con la traduzione"
 
 #: apps/pootle_store/templates/unit/edit.html:71
 msgid "Failing checks:"
-msgstr ""
+msgstr "Controlli falliti:"
 
 #: apps/pootle_store/templates/unit/edit.html:77
 msgid "Remove quality check"
@@ -1825,15 +1827,15 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:184
 msgid "Insert LRM (Left-To-Right Mark) into the editor"
-msgstr ""
+msgstr "Inserisci LRM (marcatore da sinistra a destra) nell'editor"
 
 #: apps/pootle_store/templates/unit/edit.html:187
 msgid "Insert RLE (Right-To-Left Embedding) into the editor"
-msgstr ""
+msgstr "Inserisci RLE (embedding da destra a sinistra) nell'editor"
 
 #: apps/pootle_store/templates/unit/edit.html:190
 msgid "Insert LRE (Left-To-Right Embedding) into the editor"
-msgstr ""
+msgstr "Inserisci LRE (embedding da sinistra a destra) nell'editor"
 
 #: apps/pootle_store/templates/unit/edit.html:193
 msgid "Insert RLO (Right-To-Left Override) into the editor"
@@ -2490,8 +2492,9 @@ msgid "Legal Page"
 msgstr ""
 
 #: apps/staticpages/models.py:122
+#, fuzzy
 msgid "Regular Page"
-msgstr ""
+msgstr "Nuova pagina legale"
 
 #: apps/staticpages/views.py:87
 msgid "Page Title"
