@@ -133,6 +133,7 @@ old configuration. Passing the ``--noinput`` flag assumes a negative answer.
 This default configuration is enough to initially experiment with Pootle but
 **it's highly discouraged and unsupported to use this configuration in a
 production environment**.
+
 Also, the default configuration uses SQLite, which shouldn't be used for
 anything more than testing purposes.
 
@@ -164,8 +165,8 @@ executing the :ref:`syncdb <commands#syncdb>` and :ref:`initdb
 
    .. code-block:: bash
 
-    $ pootle collectstatic --noinput
-    $ pootle assets build
+    (env) $ pootle collectstatic --noinput
+    (env) $ pootle assets build
 
 
 .. _installation#running_pootle:

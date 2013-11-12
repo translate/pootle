@@ -47,7 +47,9 @@ checklist.
 * After a successful upgrade, consider clearing your cache. For users of
   memcached it is enough to restart memcached. For users of the default
   database cache, you can drop the `pootlecache` table and recreate it
-  with::
+  with:
+
+  .. code-block:: bash
 
     $ pootle createcachetable pootlecache
 
@@ -80,6 +82,7 @@ upgrade procedure.
   This is necessary due to the changes made to the schema migration
   mechanisms after the 2.5 release.
 
+
 In the first step, the syncdb command will create any missing database
 tables that don't require any migrations.
 
@@ -106,6 +109,7 @@ tables that don't require any migrations.
   .. code-block:: bash
 
     $ pootle migrate taggit --fake zero
+
 
 The second step will perform any pending schema migrations. You can read
 more about the :ref:`migrate command <south:commands>` in South's
