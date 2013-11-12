@@ -456,27 +456,20 @@ migrate
 
 .. versionadded:: 2.5.1
 
+
+.. note::
+
+  Since the addition of the :ref:`setup <commands#setup>` management command it
+  is not necessary to directly run this command. Please refer to the
+  :ref:`Upgrading <upgrading>` or :ref:`Installation <installation>`
+  instructions to see how to run the ``setup`` management command in those
+  scenarios.
+
+
 This is South's :ref:`migrate command <south:commands>`, which applies
 migrations to bring the database up to the latest schema revision. It is
 required for releases after 2.5.0, even for a fresh install where you are not
 upgrading from a previous release.
-
-When upgrading from 2.5.0 (or earlier) to 2.5.1 (or later), before running
-migrate to apply migrations, you must run :ref:`commands#syncdb` to create the
-migration tables, and then a special form of :ref:`commands#migrate` to record
-the fact that the initial schema version already exists:
-
-.. code-block:: bash
-
-    $ pootle syncdb
-    $ pootle migrate --all --fake 0001
-    $ pootle migrate
-
-.. warning:: Running ``pootle migrate --all --fake 0001`` a second time (after
-   you have run the normal migrate command) will create serious confusion and
-   cause future migrations to fail.  If this happens, you *might* be able to
-   recover by running ``pootle migrate --fake`` (if you have not installed any
-   update that added additional migrations).
 
 
 .. _commands#initdb:
