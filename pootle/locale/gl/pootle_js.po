@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-31 17:15+0000\n"
+"POT-Creation-Date: 2013-11-12 10:57+0000\n"
 "PO-Revision-Date: 2013-10-30 19:16+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,200 +16,239 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1383160615.0\n"
+"X-POOTLE-MTIME: 1383962116.0\n"
 
 #: static/js/common.js:13
+#, fuzzy
 msgid "All Languages"
-msgstr "Todos os idiomas"
+msgstr "Na h-uile cànan"
 
 #: static/js/common.js:26
+#, fuzzy
 msgid "All Projects"
-msgstr "Todos os proxectos"
+msgstr "Na h-uile pròiseact"
 
 # resposta
 #: static/js/common.js:62
+#, fuzzy
 msgid "Expand details"
-msgstr "Expandir os detalles"
+msgstr "Seall am mion-fhiosrachadh"
 
 #: static/js/common.js:62
+#, fuzzy
 msgid "Collapse details"
-msgstr "Contraer os detalles"
+msgstr "Falaich am mion-fhiosrachadh"
 
 #: static/js/common.js:91
+#, fuzzy
 msgid "Are you sure you want to continue?"
-msgstr "Confirma que quere continuar?"
+msgstr "A bheil thu cinnteach gu bheil thu airson leantainn air adhart?"
 
 #: static/js/common.js:92
+#, fuzzy
 msgid "This operation cannot be undone."
-msgstr "Non é posíbel desfacer esta operación."
+msgstr "Chan urrainn dhut an gnìomh seo a neo-dhèanamh."
 
 #: static/js/common.js:139
+#, fuzzy
 msgid "Show tags"
-msgstr "Mostrar as etiquetas"
+msgstr "Seall na tagaichean"
 
-#: static/js/common.js:142 static/js/vendor/sorttable.js:365
+#: static/js/common.js:142 static/js/vendor/sorttable.js:357
+#, fuzzy
 msgid "Hide tags"
-msgstr "Ocultar as etiquetas"
+msgstr "Falaich na tagaichean"
 
-#: static/js/common.js:276 static/js/common.js.c:292
+#: static/js/common.js:293 static/js/common.js.c:309
+#, fuzzy
 msgid "Hide filtering"
-msgstr "Ocultar o filtro"
+msgstr "Falaich an criathradh"
 
-#: static/js/common.js:279 static/js/common.js.c:286
+#: static/js/common.js:296 static/js/common.js.c:303
+#, fuzzy
 msgid "Show filtering"
-msgstr "Mostrar o filtro"
+msgstr "Seall an criathradh"
 
 #: static/js/editor.js:209
+#, fuzzy
 msgid "Go to the next string (Ctrl+.)"
-msgstr "Ir á seguinte cadea (Ctrl+.)"
+msgstr "Air adhart dhan ath-shreang (Ctrl+.)"
 
 #: static/js/editor.js:215
+#, fuzzy
 msgid "Go to the previous string (Ctrl+,)"
-msgstr "Ir á cadea anterior (Ctrl+,)"
+msgstr "Air ais dhan t-sreang roimhpe (Ctrl+,)"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:333
-#, c-format
+#, c-format, fuzzy
 msgid "%s's pending suggestions"
-msgstr "Suxestións pendentes de %s"
+msgstr "Na molaidhean aig %s a tha ri dhèiligeadh"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:336
-#, c-format
+#, c-format, fuzzy
 msgid "%s's accepted suggestions"
-msgstr "Suxestións aceptadas de %s"
+msgstr "Na molaidhean aig %s a chaidh a ghabhail ris"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:339
-#, c-format
+#, c-format, fuzzy
 msgid "%s's rejected suggestions"
-msgstr "Suxestións rexeitadas de %s"
+msgstr "Na molaidhean aig %s a chaidh a dhiùltadh"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:342
-#, c-format
+#, c-format, fuzzy
 msgid "%s's submissions"
-msgstr "Envíos de %s"
+msgstr "Na chuir %s ann"
 
 #. Translators: '%s' is a username, meaning "submissions by %s, that were overwritten"
 #: static/js/editor.js:345
-#, c-format
+#, c-format, fuzzy
 msgid "%s's overwritten submissions"
-msgstr "Envíos sobrescritos de %s"
+msgstr "Na chuir %s ann is a chaidh a sgrìobhadh thairis air"
 
 #: static/js/editor.js:476 static/js/editor.js.c:1521
+#, fuzzy
 msgid "No results."
-msgstr "Sen resultados."
+msgstr "Chan eil toradh ann."
 
 #: static/js/editor.js:748
+#, fuzzy
 msgid "Export View"
-msgstr "Vista de exportación"
+msgstr "Às-phortaich an sealladh"
 
 #: static/js/editor.js:798
+#, fuzzy
 msgid "Error while connecting to the server"
-msgstr "Produciuse un erro ao conectar ao servidor"
+msgstr "Thachair mearachd fhad 's a bha sinn a' ceangal ris an fhrithealaiche"
 
 #: static/js/editor.js:800
+#, fuzzy
 msgid "Server error"
-msgstr "Erro do servidor"
+msgstr "Mearachd an fhrithealaiche"
 
 #: static/js/editor.js:802
+#, fuzzy
 msgid "The server seems down. Try again later."
-msgstr "Semella que o servidor está caído. Inténteo de novo máis tarde."
+msgstr ""
+"Tha coltas gu bheil am frithealaiche sìos. Feuch ris a-rithist an ceann "
+"greis."
 
 #: static/js/editor.js:809
+#, fuzzy
 msgid "Unknown error"
-msgstr "Erro descoñecido"
+msgstr "Mearachd neo-aithnichte"
 
 #: static/js/editor.js:1367
+#, fuzzy
 msgid "You reached the beginning of the list"
-msgstr "Acadou o comezo da lista"
+msgstr "Ràinig thu toiseach na liosta"
 
 #: static/js/editor.js:1370
+#, fuzzy
 msgid "You reached the end of the list."
-msgstr "Acadou o final da lista."
+msgstr "Ràinig thu deireadh na liosta"
 
 #: static/js/editor.js:1372
+#, fuzzy
 msgid "Return to the overview page."
-msgstr "Volver á páxina de vista xeral."
+msgstr "Till gu duilleag an fhor-sheallaidh."
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
 #. '%' symbol to denote a percentage is being used.
 #: static/js/editor.js:1807
-#, c-format
+#, c-format, fuzzy
 msgid "%s% match"
-msgstr "Coincidencia %s%"
+msgstr "Maidse %s%"
 
 #: static/js/editor.js:1851
+#, fuzzy
 msgid "Similar translations"
-msgstr "Traducións semellantes"
+msgstr "Eadar-theangachaidhean a tha coltach ris"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:7
+#, fuzzy
 msgid "More"
-msgstr "Máis"
+msgstr "Barrachd"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:10
+#, fuzzy
 msgid "Hide"
-msgstr "Ocultar"
+msgstr "Falaich"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:13
+#, fuzzy
 msgid "Less"
-msgstr "Menos"
+msgstr "Nas lugha"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:16
+#, fuzzy
 msgid "Show"
-msgstr "Mostrar"
+msgstr "Seall"
 
 #: static/js/utils.js:143
-#, c-format
+#, c-format, fuzzy
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] "Hai un ano"
-msgstr[1] "Hai %s anos"
+msgstr[0] "Bliadhna air ais"
+msgstr[1] "%s bhliadhna air ais"
+msgstr[2] "%s bliadhna air ais"
+msgstr[3] "%s bliadhna air ais"
 
 #: static/js/utils.js:146
-#, c-format
+#, c-format, fuzzy
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] "Hai unha semana"
-msgstr[1] "Hai %s semanas"
+msgstr[0] "Seachdain air ais"
+msgstr[1] "%s sheachdain air ais"
+msgstr[2] "%s seachdainean air ais"
+msgstr[3] "%s seachdain air ais"
 
 #: static/js/utils.js:149
-#, c-format
+#, c-format, fuzzy
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] "Onte"
-msgstr[1] "Hai %s días"
+msgstr[0] "An-dè"
+msgstr[1] "%s latha air ais"
+msgstr[2] "%s làithean air ais"
+msgstr[3] "%s latha air ais"
 
 #: static/js/utils.js:152
-#, c-format
+#, c-format, fuzzy
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] "Hai unha hora"
-msgstr[1] "Hai %s horas"
+msgstr[0] "Uair a thìde air ais"
+msgstr[1] "%s uair a thìde air ais"
+msgstr[2] "%s uairean a thìde air ais"
+msgstr[3] "%s uair a thìde air ais"
 
 #: static/js/utils.js:155
-#, c-format
+#, c-format, fuzzy
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] "Hai un minuto"
-msgstr[1] "Hai %s minutos"
+msgstr[0] "Mionaid air ais"
+msgstr[1] "%s mhionaid air ais"
+msgstr[2] "%s mionaidean air ais"
+msgstr[3] "%s mionaid air ais"
 
 #: static/js/utils.js:163
+#, fuzzy
 msgid "A few seconds ago"
-msgstr "Hai uns segundos"
+msgstr "Diog no dhà air ais"
 
 #, c-format
 #~ msgid "<a href=\"%s\">String %s</a>"
-#~ msgstr "<a href=\"%s\">Cadea %s</a>"
+#~ msgstr "<a href=\"%s\">Sreang</a>"
 
 #~ msgid "Congratulations, you walked through all strings."
-#~ msgstr "Parabéns, pasou por todas as cadeas."
+#~ msgstr "Meal do naidheachd, rinn thu eadar-theangachadh air a h-uile rud."
 
 #, c-format
 #~ msgid "<a href=\"%s\">Unit %s</a>"

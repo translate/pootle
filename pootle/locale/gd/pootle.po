@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-31 17:15+0000\n"
+"POT-Creation-Date: 2013-11-12 10:57+0000\n"
 "PO-Revision-Date: 2013-11-09 02:18+0000\n"
 "Last-Translator: Michael <fios@akerbeltz.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -233,43 +233,6 @@ msgid ""
 msgstr ""
 "An tuairisgeul is an treòrachadh a chithear air an duilleag mhòr agus air an "
 "duilleag mu dhèidhinn. Dèan cinnteach gun cleachd thu HTML dligheach."
-
-#: apps/pootle_app/management/__init__.py:90
-msgid "Can view a translation project"
-msgstr "'S urrainn dhan neach seo pròiseact eadar-theangachaidh fhaicinn"
-
-#: apps/pootle_app/management/__init__.py:94
-msgid "Can make a suggestion for a translation"
-msgstr "'S urrainn dhan neach seo eadar-theangachadh a mholadh"
-
-#: apps/pootle_app/management/__init__.py:98
-msgid "Can submit a translation"
-msgstr "'S urrainn dhan neach seo eadar-theangachadh a chur ann"
-
-#: apps/pootle_app/management/__init__.py:102
-msgid "Can overwrite translations on uploading files"
-msgstr ""
-"'S urrainn dhan neach seo sgrìobhadh thairis air eadar-theangachaidhean 's e "
-"a' luchdadh suas faidhle"
-
-#: apps/pootle_app/management/__init__.py:106
-msgid "Can review translations"
-msgstr ""
-"'S urrainn dhan neach seo lèirmheas a dhèanamh air eadar-theangachaidhean"
-
-#: apps/pootle_app/management/__init__.py:110
-msgid "Can download archives of translation projects"
-msgstr ""
-"'S urrainn dhan neach seo tasg-lannan nam pròiseactan eadar-theangachaidhean "
-"a luchdadh a-nuas"
-
-#: apps/pootle_app/management/__init__.py:114
-msgid "Can administrate a translation project"
-msgstr "'S urrainn dhan neach seo pròiseact eadar-theangachaidh a rianadh"
-
-#: apps/pootle_app/management/__init__.py:118
-msgid "Can commit to version control"
-msgstr "'S urrainn dhan neach seo cur gu Version Control"
 
 #: apps/pootle_app/models/suggestion.py:35
 msgid "Pending"
@@ -852,7 +815,7 @@ msgstr[1] "%(projects)d phròiseact, %(average)d%% air eadar-theangachadh"
 msgstr[2] "%(projects)d pròiseactan, %(average)d%% air eadar-theangachadh"
 msgstr[3] "%(projects)d pròiseact, %(average)d%% air eadar-theangachadh"
 
-#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:324
+#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:306
 #: apps/pootle_tagging/views.py:52 apps/pootle_translationproject/views.py:740
 msgid "No description yet."
 msgstr "Gun tuairisgeul fhathast."
@@ -869,7 +832,7 @@ msgstr "Ainm"
 msgid "Project"
 msgstr "Pròiseact"
 
-#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:406
+#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:388
 msgid "Language"
 msgstr "Cànan"
 
@@ -1456,10 +1419,6 @@ msgid "Report Target"
 msgstr ""
 
 #: apps/pootle_project/views.py:119
-msgid "Filter using one or more tags"
-msgstr "Criathraich le co-dhiù aon taga"
-
-#: apps/pootle_project/views.py:161
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
@@ -1468,7 +1427,7 @@ msgstr[1] "%(languages)d, %(average)d%% air eadar-theangachadh"
 msgstr[2] "%(languages)d, %(average)d%% air eadar-theangachadh"
 msgstr[3] "%(languages)d, %(average)d%% air eadar-theangachadh"
 
-#: apps/pootle_project/views.py:395
+#: apps/pootle_project/views.py:377
 #: apps/pootle_translationproject/actions.py:209
 msgid "Update against templates"
 msgstr "Ùraich a-rèir nan teamplaidean"
@@ -1479,14 +1438,18 @@ msgstr ""
 "'S urrainn dhut ceadan a' phròiseict seo a chur ris, a dheasachadh is a "
 "thoirt air falbh gu h-ìosal."
 
-#: apps/pootle_project/templates/project/overview.html:18
+#: apps/pootle_project/templates/project/overview.html:19
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
 msgstr "Seall na tagaichean"
 
-#: apps/pootle_project/templates/project/overview.html:21
+#: apps/pootle_project/templates/project/overview.html:22
 msgid "Show filtering"
 msgstr "Seall an criathradh"
+
+#: apps/pootle_project/templates/project/overview.html:33
+msgid "Filter using one or more tags"
+msgstr "Criathraich le co-dhiù aon taga"
 
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
@@ -1536,40 +1499,40 @@ msgstr "Beachd"
 msgid "anonymous user"
 msgstr "cleachdaiche gun urra"
 
-#: apps/pootle_statistics/models.py:150
+#: apps/pootle_statistics/models.py:152
 #, python-format
 msgid ""
 "%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:153
+#: apps/pootle_statistics/models.py:155
 #, python-format
 msgid ""
 "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:156
+#: apps/pootle_statistics/models.py:158
 #, python-format
 msgid "%(user)s uploaded a file"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:171
+#: apps/pootle_statistics/models.py:173
 #, python-format
 msgid ""
 "%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:174
+#: apps/pootle_statistics/models.py:176
 #, python-format
 msgid ""
 "%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
 "\">%(source)s</a></i>"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:177
+#: apps/pootle_statistics/models.py:179
 #, python-format
 msgid ""
 "%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
@@ -2591,6 +2554,43 @@ msgstr ""
 msgid "Overwritten submissions"
 msgstr ""
 
+#: core/initdb.py:143
+msgid "Can view a translation project"
+msgstr "'S urrainn dhan neach seo pròiseact eadar-theangachaidh fhaicinn"
+
+#: core/initdb.py:147
+msgid "Can make a suggestion for a translation"
+msgstr "'S urrainn dhan neach seo eadar-theangachadh a mholadh"
+
+#: core/initdb.py:151
+msgid "Can submit a translation"
+msgstr "'S urrainn dhan neach seo eadar-theangachadh a chur ann"
+
+#: core/initdb.py:155
+msgid "Can overwrite translations on uploading files"
+msgstr ""
+"'S urrainn dhan neach seo sgrìobhadh thairis air eadar-theangachaidhean 's e "
+"a' luchdadh suas faidhle"
+
+#: core/initdb.py:159
+msgid "Can review translations"
+msgstr ""
+"'S urrainn dhan neach seo lèirmheas a dhèanamh air eadar-theangachaidhean"
+
+#: core/initdb.py:163
+msgid "Can download archives of translation projects"
+msgstr ""
+"'S urrainn dhan neach seo tasg-lannan nam pròiseactan eadar-theangachaidhean "
+"a luchdadh a-nuas"
+
+#: core/initdb.py:167
+msgid "Can administrate a translation project"
+msgstr "'S urrainn dhan neach seo pròiseact eadar-theangachaidh a rianadh"
+
+#: core/initdb.py:171
+msgid "Can commit to version control"
+msgstr "'S urrainn dhan neach seo cur gu Version Control"
+
 #: middleware/captcha.py:122
 msgid "Time to answer has expired"
 msgstr ""
@@ -2621,7 +2621,7 @@ msgstr ""
 msgid "Failed to copy download file to export directory %s"
 msgstr ""
 
-#: scripts/example-actions/mozlangpack.py:141
+#: scripts/example-actions/mozlangpack.py:132
 msgid ""
 "Finished building the language pack, click on the download link to download "
 "it."
@@ -2798,23 +2798,22 @@ msgstr ""
 
 #: templates/db_error.html:14
 msgid ""
-"\n"
-"  Pootle can't connect to the database, the database is not initialized\n"
-"  yet, or a schema upgrade is needed before continuing.\n"
-"  "
+"Pootle can't connect to the database, the database is not\n"
+"initialized yet, or a schema upgrade is needed before continuing."
 msgstr ""
 
-#: templates/db_error.html:20
+#: templates/db_error.html:18
 #, python-format
 msgid ""
 "\n"
-"  Please read the <a href=\"%(url)s\">Pootle documentation</a> on\n"
-"  installation and upgrade instructions. Contact the server administrator\n"
-"  if you feel this is a mistake.\n"
-"  "
+"Please read the <a href=\"%(url)s\">Pootle documentation</a> for "
+"installation\n"
+"and upgrade instructions. Contact the server administrator if you feel this "
+"is\n"
+"a mistake."
 msgstr ""
 
-#: templates/db_error.html:27
+#: templates/db_error.html:24
 msgid "The reported error was:"
 msgstr ""
 

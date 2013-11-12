@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-31 17:15+0000\n"
+"POT-Creation-Date: 2013-11-12 10:57+0000\n"
 "PO-Revision-Date: 2013-10-31 17:52+0000\n"
 "Last-Translator: Haytham A. <haytham.hammam@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -230,38 +230,6 @@ msgid ""
 msgstr ""
 "وصف و تعليمات تظهر على الصفحة الرئيسية و صفحة التعريف. تأكد من استخدام صيغة "
 "HTML صحيحة."
-
-#: apps/pootle_app/management/__init__.py:90
-msgid "Can view a translation project"
-msgstr "يسمح له بعرض مشاريع الترجمة"
-
-#: apps/pootle_app/management/__init__.py:94
-msgid "Can make a suggestion for a translation"
-msgstr "يسمح له باقتراح ترجمات"
-
-#: apps/pootle_app/management/__init__.py:98
-msgid "Can submit a translation"
-msgstr "يسمح له بالترجمة"
-
-#: apps/pootle_app/management/__init__.py:102
-msgid "Can overwrite translations on uploading files"
-msgstr "يسمح له برفع ملفات ترجمة بديلة"
-
-#: apps/pootle_app/management/__init__.py:106
-msgid "Can review translations"
-msgstr "يسمح له بمراجعة الترجمات المقترحة"
-
-#: apps/pootle_app/management/__init__.py:110
-msgid "Can download archives of translation projects"
-msgstr "يسمح له بتنزيل أرشيف من مشاريع الترجمة"
-
-#: apps/pootle_app/management/__init__.py:114
-msgid "Can administrate a translation project"
-msgstr "يسمح له بإدارة مشاريع الترجمة"
-
-#: apps/pootle_app/management/__init__.py:118
-msgid "Can commit to version control"
-msgstr "يسمح له بالإرسال إلي نظم إدارة المراجعات"
 
 #: apps/pootle_app/models/suggestion.py:35
 msgid "Pending"
@@ -869,7 +837,7 @@ msgstr[3] "%(projects)d مشاريع، مترجمة بنسبة %(average)d٪"
 msgstr[4] "%(projects)d مشروعًا، مترجمة بنسبة %(average)d٪"
 msgstr[5] "%(projects)d مشروع، مترجمة بنسبة %(average)d٪"
 
-#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:324
+#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:306
 #: apps/pootle_tagging/views.py:52 apps/pootle_translationproject/views.py:740
 msgid "No description yet."
 msgstr "لا وصف حتى الآن."
@@ -886,7 +854,7 @@ msgstr "الاسم"
 msgid "Project"
 msgstr "المشروع"
 
-#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:406
+#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:388
 msgid "Language"
 msgstr "اللغة"
 
@@ -1482,10 +1450,6 @@ msgid "Report Target"
 msgstr "مكان الإبلاغ"
 
 #: apps/pootle_project/views.py:119
-msgid "Filter using one or more tags"
-msgstr "رشّح باستخدام وسم أو أكثر"
-
-#: apps/pootle_project/views.py:161
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
@@ -1496,7 +1460,7 @@ msgstr[3] "%(languages)d لغات، مترجمة بنسبة %(average)d٪"
 msgstr[4] "%(languages)d لغة، مترجمة بنسبة %(average)d٪"
 msgstr[5] "%(languages)d لغة، مترجمة بنسبة %(average)d٪"
 
-#: apps/pootle_project/views.py:395
+#: apps/pootle_project/views.py:377
 #: apps/pootle_translationproject/actions.py:209
 msgid "Update against templates"
 msgstr "حدّث من القوالب"
@@ -1505,14 +1469,18 @@ msgstr "حدّث من القوالب"
 msgid "Below you can add, edit, and delete the permissions for this project."
 msgstr "يمكنك إضافة و حذف و تعديل صلاحيات المستخدمين الخاصة بذلك المشروع."
 
-#: apps/pootle_project/templates/project/overview.html:18
+#: apps/pootle_project/templates/project/overview.html:19
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
 msgstr "أظهر الوسوم"
 
-#: apps/pootle_project/templates/project/overview.html:21
+#: apps/pootle_project/templates/project/overview.html:22
 msgid "Show filtering"
 msgstr "أظهر المرشِّح"
+
+#: apps/pootle_project/templates/project/overview.html:33
+msgid "Filter using one or more tags"
+msgstr "رشّح باستخدام وسم أو أكثر"
 
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
@@ -1560,7 +1528,7 @@ msgstr "التعليق"
 msgid "anonymous user"
 msgstr "مستخدم غير مُسجّل"
 
-#: apps/pootle_statistics/models.py:150
+#: apps/pootle_statistics/models.py:152
 #, python-format
 msgid ""
 "%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
@@ -1569,7 +1537,7 @@ msgstr ""
 "استعاد %(user)s الترجمة القديمة لمقطع <i><a href=\\\"%(url)s\\\">%"
 "(source)s</a></i>"
 
-#: apps/pootle_statistics/models.py:153
+#: apps/pootle_statistics/models.py:155
 #, python-format
 msgid ""
 "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
@@ -1577,19 +1545,19 @@ msgid ""
 msgstr ""
 "قبل %(user)s اقتراح ترجمة المقطع <i><a href=\\\"%(url)s\\\">%(source)s</a></i>"
 
-#: apps/pootle_statistics/models.py:156
+#: apps/pootle_statistics/models.py:158
 #, python-format
 msgid "%(user)s uploaded a file"
 msgstr "رفع %(user)s ملفًا"
 
-#: apps/pootle_statistics/models.py:171
+#: apps/pootle_statistics/models.py:173
 #, python-format
 msgid ""
 "%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr "أرسل %(user)s ترجمةً للمقطع <i><a href=\\\"%(url)s\\\">%(source)s</a></i>"
 
-#: apps/pootle_statistics/models.py:174
+#: apps/pootle_statistics/models.py:176
 #, python-format
 msgid ""
 "%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
@@ -1598,7 +1566,7 @@ msgstr ""
 "أرسل %(user)s ترجمة ”تحتاج للعمل“ للمقطع <i><a href=\\\"%(url)s\\\">%"
 "(source)s</a></i>"
 
-#: apps/pootle_statistics/models.py:177
+#: apps/pootle_statistics/models.py:179
 #, python-format
 msgid ""
 "%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
@@ -2636,6 +2604,38 @@ msgstr "الفحوص"
 msgid "Overwritten submissions"
 msgstr "المساهمات التي استُبدلت"
 
+#: core/initdb.py:143
+msgid "Can view a translation project"
+msgstr "يسمح له بعرض مشاريع الترجمة"
+
+#: core/initdb.py:147
+msgid "Can make a suggestion for a translation"
+msgstr "يسمح له باقتراح ترجمات"
+
+#: core/initdb.py:151
+msgid "Can submit a translation"
+msgstr "يسمح له بالترجمة"
+
+#: core/initdb.py:155
+msgid "Can overwrite translations on uploading files"
+msgstr "يسمح له برفع ملفات ترجمة بديلة"
+
+#: core/initdb.py:159
+msgid "Can review translations"
+msgstr "يسمح له بمراجعة الترجمات المقترحة"
+
+#: core/initdb.py:163
+msgid "Can download archives of translation projects"
+msgstr "يسمح له بتنزيل أرشيف من مشاريع الترجمة"
+
+#: core/initdb.py:167
+msgid "Can administrate a translation project"
+msgstr "يسمح له بإدارة مشاريع الترجمة"
+
+#: core/initdb.py:171
+msgid "Can commit to version control"
+msgstr "يسمح له بالإرسال إلي نظم إدارة المراجعات"
+
 #: middleware/captcha.py:122
 msgid "Time to answer has expired"
 msgstr "انتهى الوقت المسموح به"
@@ -2665,7 +2665,7 @@ msgstr ""
 msgid "Failed to copy download file to export directory %s"
 msgstr "فشل نسخ ملف التنزيل إلى مجلد التصدير %s"
 
-#: scripts/example-actions/mozlangpack.py:141
+#: scripts/example-actions/mozlangpack.py:132
 msgid ""
 "Finished building the language pack, click on the download link to download "
 "it."
@@ -2840,32 +2840,22 @@ msgstr "عطلٌ بقاعدة البيانات"
 
 #: templates/db_error.html:14
 msgid ""
-"\n"
-"  Pootle can't connect to the database, the database is not initialized\n"
-"  yet, or a schema upgrade is needed before continuing.\n"
-"  "
+"Pootle can't connect to the database, the database is not\n"
+"initialized yet, or a schema upgrade is needed before continuing."
 msgstr ""
-"\n"
-"  تعذّر على بوتل الاتصال بقاعدة البيانات، أو أن قاعدة البيانات لم تجهّز بعد\n"
-"  أو تحتاج إلى تحديث المخططات قبل المواصلة.\n"
-"  "
 
-#: templates/db_error.html:20
+#: templates/db_error.html:18
 #, python-format
 msgid ""
 "\n"
-"  Please read the <a href=\"%(url)s\">Pootle documentation</a> on\n"
-"  installation and upgrade instructions. Contact the server administrator\n"
-"  if you feel this is a mistake.\n"
-"  "
+"Please read the <a href=\"%(url)s\">Pootle documentation</a> for "
+"installation\n"
+"and upgrade instructions. Contact the server administrator if you feel this "
+"is\n"
+"a mistake."
 msgstr ""
-"\n"
-"  من فضلك اقرأ <a href=\"%(url)s\">وثائق بوتل</a> للاطلاع على\n"
-"  تعليمات التثبيت و الترقية. اتصل بمسئول الخادوم إن كنت تظن\n"
-"  أن هناك خطب ما.\n"
-"  "
 
-#: templates/db_error.html:27
+#: templates/db_error.html:24
 msgid "The reported error was:"
 msgstr "العطل كان:"
 
@@ -3348,6 +3338,31 @@ msgstr "ألديك حساب بالفعل؟"
 #: templates/registration/registration_form.html:54
 msgid "Log In."
 msgstr "لِج."
+
+#~ msgid ""
+#~ "\n"
+#~ "  Pootle can't connect to the database, the database is not initialized\n"
+#~ "  yet, or a schema upgrade is needed before continuing.\n"
+#~ "  "
+#~ msgstr ""
+#~ "\n"
+#~ "  تعذّر على بوتل الاتصال بقاعدة البيانات، أو أن قاعدة البيانات لم تجهّز بعد\n"
+#~ "  أو تحتاج إلى تحديث المخططات قبل المواصلة.\n"
+#~ "  "
+
+#, python-format
+#~ msgid ""
+#~ "\n"
+#~ "  Please read the <a href=\"%(url)s\">Pootle documentation</a> on\n"
+#~ "  installation and upgrade instructions. Contact the server administrator\n"
+#~ "  if you feel this is a mistake.\n"
+#~ "  "
+#~ msgstr ""
+#~ "\n"
+#~ "  من فضلك اقرأ <a href=\"%(url)s\">وثائق بوتل</a> للاطلاع على\n"
+#~ "  تعليمات التثبيت و الترقية. اتصل بمسئول الخادوم إن كنت تظن\n"
+#~ "  أن هناك خطب ما.\n"
+#~ "  "
 
 #, python-format
 #~ msgid ""

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-31 17:15+0000\n"
+"POT-Creation-Date: 2013-11-12 10:57+0000\n"
 "PO-Revision-Date: 2013-11-02 13:30+0000\n"
 "Last-Translator: Andika <andika@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -226,38 +226,6 @@ msgid ""
 msgstr ""
 "Deskripsi dan instruksi ditampilkan pada halaman depan dan halaman ihwal. "
 "Pastikan memakai HTML yang valid."
-
-#: apps/pootle_app/management/__init__.py:90
-msgid "Can view a translation project"
-msgstr "Bisa melihat sebuah project terjemahan"
-
-#: apps/pootle_app/management/__init__.py:94
-msgid "Can make a suggestion for a translation"
-msgstr "Dapat memberikan sebuah saran bagi terjemahan"
-
-#: apps/pootle_app/management/__init__.py:98
-msgid "Can submit a translation"
-msgstr "Dapat mengirimkan sebuah terjemahan"
-
-#: apps/pootle_app/management/__init__.py:102
-msgid "Can overwrite translations on uploading files"
-msgstr "Dapat menimpa terjemahan saat mengunggah berkas"
-
-#: apps/pootle_app/management/__init__.py:106
-msgid "Can review translations"
-msgstr "Dapat meninjau terjemahan"
-
-#: apps/pootle_app/management/__init__.py:110
-msgid "Can download archives of translation projects"
-msgstr "Dapat mengunduh arsip dari projek terjemahan"
-
-#: apps/pootle_app/management/__init__.py:114
-msgid "Can administrate a translation project"
-msgstr "Dapat mengadministrasi suatu projek terjemahan"
-
-#: apps/pootle_app/management/__init__.py:118
-msgid "Can commit to version control"
-msgstr "Dapat komit ke kendali versi"
 
 #: apps/pootle_app/models/suggestion.py:35
 msgid "Pending"
@@ -627,6 +595,7 @@ msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
 msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:133
+#, python-format
 #, python-format, python-format
 msgid ""
 "Can't find the package which provides '%s' markup support. Falling back to "
@@ -872,7 +841,7 @@ msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
 msgstr[0] "%(projects)d projek, %(average)d%% diterjemahkan"
 
-#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:324
+#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:306
 #: apps/pootle_tagging/views.py:52 apps/pootle_translationproject/views.py:740
 msgid "No description yet."
 msgstr "Belum ada deskripsi."
@@ -891,7 +860,7 @@ msgstr "Nama"
 msgid "Project"
 msgstr "Projek"
 
-#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:406
+#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:388
 msgid "Language"
 msgstr "Bahasa"
 
@@ -1428,16 +1397,12 @@ msgid "Report Target"
 msgstr "Target Laporan"
 
 #: apps/pootle_project/views.py:119
-msgid "Filter using one or more tags"
-msgstr "Saring memakai satu tag atau lebih"
-
-#: apps/pootle_project/views.py:161
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
 msgstr[0] "%(languages)d bahasa, %(average)d%% diterjemahkan"
 
-#: apps/pootle_project/views.py:395
+#: apps/pootle_project/views.py:377
 #: apps/pootle_translationproject/actions.py:209
 msgid "Update against templates"
 msgstr "Perbarui terhadap templat"
@@ -1448,14 +1413,18 @@ msgstr ""
 "Di bawah, Anda dapat menambah, menyunting, dan menghapus ijin bagi projek "
 "ini."
 
-#: apps/pootle_project/templates/project/overview.html:18
+#: apps/pootle_project/templates/project/overview.html:19
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
 msgstr "Tampilkan tag"
 
-#: apps/pootle_project/templates/project/overview.html:21
+#: apps/pootle_project/templates/project/overview.html:22
 msgid "Show filtering"
 msgstr "Tampilkan penyaringan"
+
+#: apps/pootle_project/templates/project/overview.html:33
+msgid "Filter using one or more tags"
+msgstr "Saring memakai satu tag atau lebih"
 
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
@@ -1505,14 +1474,14 @@ msgstr "Komentar"
 msgid "anonymous user"
 msgstr "pengguna anonim"
 
-#: apps/pootle_statistics/models.py:150
+#: apps/pootle_statistics/models.py:152
 #, python-format
 msgid ""
 "%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:153
+#: apps/pootle_statistics/models.py:155
 #, python-format
 msgid ""
 "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
@@ -1520,12 +1489,12 @@ msgid ""
 msgstr ""
 "%(user)s menerima saran bagi string <i><a href=\"%(url)s\">%(source)s</a></i>"
 
-#: apps/pootle_statistics/models.py:156
+#: apps/pootle_statistics/models.py:158
 #, python-format
 msgid "%(user)s uploaded a file"
 msgstr "%(user)s mengunggah suatu berkas"
 
-#: apps/pootle_statistics/models.py:171
+#: apps/pootle_statistics/models.py:173
 #, python-format
 msgid ""
 "%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
@@ -1534,7 +1503,7 @@ msgstr ""
 "%(user)s menyetorkan terjemahan bagi string <i><a href=\"%(url)s\">%"
 "(source)s</a></i>"
 
-#: apps/pootle_statistics/models.py:174
+#: apps/pootle_statistics/models.py:176
 #, python-format
 msgid ""
 "%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
@@ -1543,7 +1512,7 @@ msgstr ""
 "%(user)s menyetorkan terjemahan yang \"perlu pengerjaan\" untuk string <i><a "
 "href=\"%(url)s\">%(source)s</a></i>"
 
-#: apps/pootle_statistics/models.py:177
+#: apps/pootle_statistics/models.py:179
 #, python-format
 msgid ""
 "%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
@@ -2580,6 +2549,38 @@ msgstr "Pemeriksaan"
 msgid "Overwritten submissions"
 msgstr "Setoran yang ditimpa"
 
+#: core/initdb.py:143
+msgid "Can view a translation project"
+msgstr "Bisa melihat sebuah project terjemahan"
+
+#: core/initdb.py:147
+msgid "Can make a suggestion for a translation"
+msgstr "Dapat memberikan sebuah saran bagi terjemahan"
+
+#: core/initdb.py:151
+msgid "Can submit a translation"
+msgstr "Dapat mengirimkan sebuah terjemahan"
+
+#: core/initdb.py:155
+msgid "Can overwrite translations on uploading files"
+msgstr "Dapat menimpa terjemahan saat mengunggah berkas"
+
+#: core/initdb.py:159
+msgid "Can review translations"
+msgstr "Dapat meninjau terjemahan"
+
+#: core/initdb.py:163
+msgid "Can download archives of translation projects"
+msgstr "Dapat mengunduh arsip dari projek terjemahan"
+
+#: core/initdb.py:167
+msgid "Can administrate a translation project"
+msgstr "Dapat mengadministrasi suatu projek terjemahan"
+
+#: core/initdb.py:171
+msgid "Can commit to version control"
+msgstr "Dapat komit ke kendali versi"
+
 #: middleware/captcha.py:122
 msgid "Time to answer has expired"
 msgstr "Tenggang waktu untuk menjawab telah habis"
@@ -2611,7 +2612,7 @@ msgstr ""
 msgid "Failed to copy download file to export directory %s"
 msgstr "Gagal menyalin berkas unduh ke direktori ekspor %s"
 
-#: scripts/example-actions/mozlangpack.py:141
+#: scripts/example-actions/mozlangpack.py:132
 msgid ""
 "Finished building the language pack, click on the download link to download "
 "it."
@@ -2787,30 +2788,22 @@ msgstr "Kesalahan Basis Data"
 
 #: templates/db_error.html:14
 msgid ""
-"\n"
-"  Pootle can't connect to the database, the database is not initialized\n"
-"  yet, or a schema upgrade is needed before continuing.\n"
-"  "
+"Pootle can't connect to the database, the database is not\n"
+"initialized yet, or a schema upgrade is needed before continuing."
 msgstr ""
-"\n"
-"  Pootle tak bisa menyambung ke basis data, basis data belum diinisialisasi,\n"
-"  atau peningkatan skema diperlukan sebelum melanjutkan.\n"
 
-#: templates/db_error.html:20
+#: templates/db_error.html:18
 #, python-format
 msgid ""
 "\n"
-"  Please read the <a href=\"%(url)s\">Pootle documentation</a> on\n"
-"  installation and upgrade instructions. Contact the server administrator\n"
-"  if you feel this is a mistake.\n"
-"  "
+"Please read the <a href=\"%(url)s\">Pootle documentation</a> for "
+"installation\n"
+"and upgrade instructions. Contact the server administrator if you feel this "
+"is\n"
+"a mistake."
 msgstr ""
-"\n"
-"  Harap baca <a href=\"%(url)s\">dokumentasi Pootle</a> tentang\n"
-"  instruksi instalasi dan peningkatan. Hubungi administrator server\n"
-"  bila Anda rasa ini adalah suatu kesalahan.\n"
 
-#: templates/db_error.html:27
+#: templates/db_error.html:24
 msgid "The reported error was:"
 msgstr "Kesalahan yang dilaporkan adalah:"
 
@@ -3300,6 +3293,29 @@ msgstr "Sudah punya akun?"
 #: templates/registration/registration_form.html:54
 msgid "Log In."
 msgstr "Log Masuk."
+
+#~ msgid ""
+#~ "\n"
+#~ "  Pootle can't connect to the database, the database is not initialized\n"
+#~ "  yet, or a schema upgrade is needed before continuing.\n"
+#~ "  "
+#~ msgstr ""
+#~ "\n"
+#~ "  Pootle tak bisa menyambung ke basis data, basis data belum diinisialisasi,\n"
+#~ "  atau peningkatan skema diperlukan sebelum melanjutkan.\n"
+
+#, python-format
+#~ msgid ""
+#~ "\n"
+#~ "  Please read the <a href=\"%(url)s\">Pootle documentation</a> on\n"
+#~ "  installation and upgrade instructions. Contact the server administrator\n"
+#~ "  if you feel this is a mistake.\n"
+#~ "  "
+#~ msgstr ""
+#~ "\n"
+#~ "  Harap baca <a href=\"%(url)s\">dokumentasi Pootle</a> tentang\n"
+#~ "  instruksi instalasi dan peningkatan. Hubungi administrator server\n"
+#~ "  bila Anda rasa ini adalah suatu kesalahan.\n"
 
 #, python-format
 #~ msgid ""

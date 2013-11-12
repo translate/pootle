@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-31 17:15+0000\n"
+"POT-Creation-Date: 2013-11-12 10:57+0000\n"
 "PO-Revision-Date: 2013-11-01 11:02+0000\n"
 "Last-Translator: Aputsiaq Niels <aputtu@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -227,38 +227,6 @@ msgid ""
 msgstr ""
 "Beskrivelsen og instruktionerne vises på forsiden og siden som beskriver "
 "projektet. Sørg for at sikre at der anvendes gyldig HTML."
-
-#: apps/pootle_app/management/__init__.py:90
-msgid "Can view a translation project"
-msgstr "Kan se et oversættelses projekt"
-
-#: apps/pootle_app/management/__init__.py:94
-msgid "Can make a suggestion for a translation"
-msgstr "Kan lave et foreslag til en oversættelse"
-
-#: apps/pootle_app/management/__init__.py:98
-msgid "Can submit a translation"
-msgstr "Kan sende en oversættelse"
-
-#: apps/pootle_app/management/__init__.py:102
-msgid "Can overwrite translations on uploading files"
-msgstr "Kan overskrive oversættelser ved upload af filer"
-
-#: apps/pootle_app/management/__init__.py:106
-msgid "Can review translations"
-msgstr "Kan review oversættelser"
-
-#: apps/pootle_app/management/__init__.py:110
-msgid "Can download archives of translation projects"
-msgstr "Kan downloade arkiver af oversættelsesprojekter"
-
-#: apps/pootle_app/management/__init__.py:114
-msgid "Can administrate a translation project"
-msgstr "Kan administere et oversættelsesprojekt"
-
-#: apps/pootle_app/management/__init__.py:118
-msgid "Can commit to version control"
-msgstr "Kan committe til versiosn kontrol"
 
 #: apps/pootle_app/models/suggestion.py:35
 msgid "Pending"
@@ -878,7 +846,7 @@ msgid_plural "%(projects)d projects, %(average)d%% translated"
 msgstr[0] "%(projects)d projekt, %(average)d%% oversat"
 msgstr[1] "%(projects)d projecter, %(average)d%% oversat"
 
-#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:324
+#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:306
 #: apps/pootle_tagging/views.py:52 apps/pootle_translationproject/views.py:740
 msgid "No description yet."
 msgstr "Endnu ingen beskrivelse."
@@ -896,7 +864,7 @@ msgstr "Navn"
 msgid "Project"
 msgstr "Projekt"
 
-#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:406
+#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:388
 msgid "Language"
 msgstr "Sprog"
 
@@ -1446,17 +1414,13 @@ msgid "Report Target"
 msgstr "Destination for rapport"
 
 #: apps/pootle_project/views.py:119
-msgid "Filter using one or more tags"
-msgstr "Filtrér med brug af ét eller flere mærker"
-
-#: apps/pootle_project/views.py:161
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
 msgstr[0] "%(languages)d sprog, %(average)d%% oversat"
 msgstr[1] "%(languages)d sprog, %(average)d%% oversat"
 
-#: apps/pootle_project/views.py:395
+#: apps/pootle_project/views.py:377
 #: apps/pootle_translationproject/actions.py:209
 msgid "Update against templates"
 msgstr "Opdatér op imod skabeloner"
@@ -1466,14 +1430,18 @@ msgid "Below you can add, edit, and delete the permissions for this project."
 msgstr ""
 "Herunder kan du tilføje, redigere og slette rettighederne for dette projekt."
 
-#: apps/pootle_project/templates/project/overview.html:18
+#: apps/pootle_project/templates/project/overview.html:19
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
 msgstr "Vis mærker"
 
-#: apps/pootle_project/templates/project/overview.html:21
+#: apps/pootle_project/templates/project/overview.html:22
 msgid "Show filtering"
 msgstr "Vis filtrering"
+
+#: apps/pootle_project/templates/project/overview.html:33
+msgid "Filter using one or more tags"
+msgstr "Filtrér med brug af ét eller flere mærker"
 
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
@@ -1521,7 +1489,7 @@ msgstr "Kommentar"
 msgid "anonymous user"
 msgstr "anonym bruger"
 
-#: apps/pootle_statistics/models.py:150
+#: apps/pootle_statistics/models.py:152
 #, python-format
 msgid ""
 "%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
@@ -1530,7 +1498,7 @@ msgstr ""
 "%(user)s tilbagekaldte oversættelse af strengen <i><a href=\"%(url)s\">%"
 "(source)s</a></i>"
 
-#: apps/pootle_statistics/models.py:153
+#: apps/pootle_statistics/models.py:155
 #, python-format
 msgid ""
 "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
@@ -1539,12 +1507,12 @@ msgstr ""
 "%(user)s accepterede forslag til strengen <i><a href=\"%(url)s\">%"
 "(source)s</a></i>"
 
-#: apps/pootle_statistics/models.py:156
+#: apps/pootle_statistics/models.py:158
 #, python-format
 msgid "%(user)s uploaded a file"
 msgstr "%(user)s overførte en fil"
 
-#: apps/pootle_statistics/models.py:171
+#: apps/pootle_statistics/models.py:173
 #, python-format
 msgid ""
 "%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
@@ -1553,7 +1521,7 @@ msgstr ""
 "%(user)s indsendte oversættelse af strengen <i><a href=\"%(url)s\">%"
 "(source)s</a></i>"
 
-#: apps/pootle_statistics/models.py:174
+#: apps/pootle_statistics/models.py:176
 #, python-format
 msgid ""
 "%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
@@ -1562,7 +1530,7 @@ msgstr ""
 "%(user)s indsendte en oversættelse som \"kræver en indsats\" af strengen <i><a "
 "href=\"%(url)s\">%(source)s</a></i>"
 
-#: apps/pootle_statistics/models.py:177
+#: apps/pootle_statistics/models.py:179
 #, python-format
 msgid ""
 "%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
@@ -2631,6 +2599,38 @@ msgstr "Tjek"
 msgid "Overwritten submissions"
 msgstr "Overskrevne bidrag"
 
+#: core/initdb.py:143
+msgid "Can view a translation project"
+msgstr "Kan se et oversættelses projekt"
+
+#: core/initdb.py:147
+msgid "Can make a suggestion for a translation"
+msgstr "Kan lave et foreslag til en oversættelse"
+
+#: core/initdb.py:151
+msgid "Can submit a translation"
+msgstr "Kan sende en oversættelse"
+
+#: core/initdb.py:155
+msgid "Can overwrite translations on uploading files"
+msgstr "Kan overskrive oversættelser ved upload af filer"
+
+#: core/initdb.py:159
+msgid "Can review translations"
+msgstr "Kan review oversættelser"
+
+#: core/initdb.py:163
+msgid "Can download archives of translation projects"
+msgstr "Kan downloade arkiver af oversættelsesprojekter"
+
+#: core/initdb.py:167
+msgid "Can administrate a translation project"
+msgstr "Kan administere et oversættelsesprojekt"
+
+#: core/initdb.py:171
+msgid "Can commit to version control"
+msgstr "Kan committe til versiosn kontrol"
+
 #: middleware/captcha.py:122
 msgid "Time to answer has expired"
 msgstr "Frist for besvarelse er udløbet"
@@ -2659,7 +2659,7 @@ msgstr ""
 msgid "Failed to copy download file to export directory %s"
 msgstr "Mislykkedes med at kopiere hentede fil til eksportmappen %s"
 
-#: scripts/example-actions/mozlangpack.py:141
+#: scripts/example-actions/mozlangpack.py:132
 msgid ""
 "Finished building the language pack, click on the download link to download "
 "it."
@@ -2836,32 +2836,22 @@ msgstr "Databasefejl"
 
 #: templates/db_error.html:14
 msgid ""
-"\n"
-"  Pootle can't connect to the database, the database is not initialized\n"
-"  yet, or a schema upgrade is needed before continuing.\n"
-"  "
+"Pootle can't connect to the database, the database is not\n"
+"initialized yet, or a schema upgrade is needed before continuing."
 msgstr ""
-"\n"
-"  Pootle kan ikke etablere forbindelse til databasen, databasen er ikke\n"
-"  initialiseret endnu, eller en skemaopgraderes kræves før der fortsættes.\n"
-"  "
 
-#: templates/db_error.html:20
+#: templates/db_error.html:18
 #, python-format
 msgid ""
 "\n"
-"  Please read the <a href=\"%(url)s\">Pootle documentation</a> on\n"
-"  installation and upgrade instructions. Contact the server administrator\n"
-"  if you feel this is a mistake.\n"
-"  "
+"Please read the <a href=\"%(url)s\">Pootle documentation</a> for "
+"installation\n"
+"and upgrade instructions. Contact the server administrator if you feel this "
+"is\n"
+"a mistake."
 msgstr ""
-"\n"
-"  Læs venligst <a href=\"%(url)s\">Pootle-dokumentationen</a> med\n"
-"  instruktion om installation opgradering. Kontakt serveradministratoren\n"
-"  hvis du mener dette er en fejl.\n"
-"  "
 
-#: templates/db_error.html:27
+#: templates/db_error.html:24
 msgid "The reported error was:"
 msgstr "Den rapporterede fejl var:"
 
@@ -3358,6 +3348,31 @@ msgstr "Har du allerede en konto?"
 #: templates/registration/registration_form.html:54
 msgid "Log In."
 msgstr "Log ind."
+
+#~ msgid ""
+#~ "\n"
+#~ "  Pootle can't connect to the database, the database is not initialized\n"
+#~ "  yet, or a schema upgrade is needed before continuing.\n"
+#~ "  "
+#~ msgstr ""
+#~ "\n"
+#~ "  Pootle kan ikke etablere forbindelse til databasen, databasen er ikke\n"
+#~ "  initialiseret endnu, eller en skemaopgraderes kræves før der fortsættes.\n"
+#~ "  "
+
+#, python-format
+#~ msgid ""
+#~ "\n"
+#~ "  Please read the <a href=\"%(url)s\">Pootle documentation</a> on\n"
+#~ "  installation and upgrade instructions. Contact the server administrator\n"
+#~ "  if you feel this is a mistake.\n"
+#~ "  "
+#~ msgstr ""
+#~ "\n"
+#~ "  Læs venligst <a href=\"%(url)s\">Pootle-dokumentationen</a> med\n"
+#~ "  instruktion om installation opgradering. Kontakt serveradministratoren\n"
+#~ "  hvis du mener dette er en fejl.\n"
+#~ "  "
 
 #, python-format
 #~ msgid ""

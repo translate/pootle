@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-31 17:15+0000\n"
+"POT-Creation-Date: 2013-11-12 10:57+0000\n"
 "PO-Revision-Date: 2013-02-25 16:00+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,15 +50,15 @@ msgstr "Tuto akci nelze vrátit zpět."
 msgid "Show tags"
 msgstr "Zobrazit štítky"
 
-#: static/js/common.js:142 static/js/vendor/sorttable.js:365
+#: static/js/common.js:142 static/js/vendor/sorttable.js:357
 msgid "Hide tags"
 msgstr "Skrýt štítky"
 
-#: static/js/common.js:276 static/js/common.js.c:292
+#: static/js/common.js:293 static/js/common.js.c:309
 msgid "Hide filtering"
 msgstr "Skrýt filtrování"
 
-#: static/js/common.js:279 static/js/common.js.c:286
+#: static/js/common.js:296 static/js/common.js.c:303
 msgid "Show filtering"
 msgstr "Zobrazit filtrování"
 
@@ -148,6 +148,7 @@ msgstr "Zpět na stránku přehledu."
 #. '%s' will be replaced by a number, and you should keep the extra
 #. '%' symbol to denote a percentage is being used.
 #: static/js/editor.js:1807
+#, c-format
 #, c-format, fuzzy
 msgid "%s% match"
 msgstr "%s% shoda"
@@ -182,6 +183,7 @@ msgid "Show"
 msgstr "Zobrazit"
 
 #: static/js/utils.js:143
+#, c-format
 #, c-format, fuzzy
 msgid "A year ago"
 msgid_plural "%s years ago"
@@ -190,6 +192,7 @@ msgstr[1] "Před %s roky"
 msgstr[2] "Před %s roky"
 
 #: static/js/utils.js:146
+#, c-format
 #, c-format, fuzzy
 msgid "A week ago"
 msgid_plural "%s weeks ago"
@@ -198,6 +201,7 @@ msgstr[1] "Před %s týdny"
 msgstr[2] "Před %s týdny"
 
 #: static/js/utils.js:149
+#, c-format
 #, c-format, fuzzy
 msgid "Yesterday"
 msgid_plural "%s days ago"
@@ -206,6 +210,7 @@ msgstr[1] "Před %s dny"
 msgstr[2] "Před %s dny"
 
 #: static/js/utils.js:152
+#, c-format
 #, c-format, fuzzy
 msgid "An hour ago"
 msgid_plural "%s hours ago"
@@ -214,6 +219,7 @@ msgstr[1] "Před %s hodinami"
 msgstr[2] "Před %s hodinami"
 
 #: static/js/utils.js:155
+#, c-format
 #, c-format, fuzzy
 msgid "A minute ago"
 msgid_plural "%s minutes ago"

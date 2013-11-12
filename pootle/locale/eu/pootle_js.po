@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-31 17:15+0000\n"
+"POT-Creation-Date: 2013-11-12 10:57+0000\n"
 "PO-Revision-Date: 2013-10-28 16:01+0000\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -46,15 +46,15 @@ msgstr "Eragiketa hau ezin da desegin."
 msgid "Show tags"
 msgstr "Erakutsi etiketak"
 
-#: static/js/common.js:142 static/js/vendor/sorttable.js:365
+#: static/js/common.js:142 static/js/vendor/sorttable.js:357
 msgid "Hide tags"
 msgstr "Ezkutatu etiketak"
 
-#: static/js/common.js:276 static/js/common.js.c:292
+#: static/js/common.js:293 static/js/common.js.c:309
 msgid "Hide filtering"
 msgstr "Ezkutatu iragazketa"
 
-#: static/js/common.js:279 static/js/common.js.c:286
+#: static/js/common.js:296 static/js/common.js.c:303
 msgid "Show filtering"
 msgstr "Erakutsi iragazketa"
 

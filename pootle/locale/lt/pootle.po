@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-31 17:15+0000\n"
+"POT-Creation-Date: 2013-11-12 10:57+0000\n"
 "PO-Revision-Date: 2013-11-04 07:16+0000\n"
 "Last-Translator: Rimas <rq@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
@@ -231,38 +231,6 @@ msgid ""
 msgstr ""
 "Aprašas ir instrukcijos, rodomi pradžios ir „Apie“ tinklalapiuose. Tai turi "
 "būti teisingas HTML kodas."
-
-#: apps/pootle_app/management/__init__.py:90
-msgid "Can view a translation project"
-msgstr "Gali apžvelgti projektą"
-
-#: apps/pootle_app/management/__init__.py:94
-msgid "Can make a suggestion for a translation"
-msgstr "Gali siūlyti vertimus"
-
-#: apps/pootle_app/management/__init__.py:98
-msgid "Can submit a translation"
-msgstr "Gali pateikti vertimus"
-
-#: apps/pootle_app/management/__init__.py:102
-msgid "Can overwrite translations on uploading files"
-msgstr "Gali perrašyti vertimus esančiais įkeliamame faile"
-
-#: apps/pootle_app/management/__init__.py:106
-msgid "Can review translations"
-msgstr "Gali tvarkyti vertimus"
-
-#: apps/pootle_app/management/__init__.py:110
-msgid "Can download archives of translation projects"
-msgstr "Gali parsisiųsti projektų archyvus"
-
-#: apps/pootle_app/management/__init__.py:114
-msgid "Can administrate a translation project"
-msgstr "Gali administruoti projektus"
-
-#: apps/pootle_app/management/__init__.py:118
-msgid "Can commit to version control"
-msgstr "Gali talpinti vertimus į versijų tvarkymo sistemą"
 
 #: apps/pootle_app/models/suggestion.py:35
 msgid "Pending"
@@ -637,6 +605,7 @@ msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
 msgstr "Neteisingai sukonfigūruotas MARKUP_FILTER. Grįžtama prie HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:133
+#, python-format
 #, python-format, python-format
 msgid ""
 "Can't find the package which provides '%s' markup support. Falling back to "
@@ -646,6 +615,7 @@ msgstr ""
 "HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:137
+#, python-format
 #, python-format, python-format
 msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
 msgstr "Nežinoma MARKUP_FILTER reikšmė – „%s“. Grįžtama prie HTML."
@@ -885,7 +855,7 @@ msgstr[0] "%(projects)d projektas, %(average)d%% išversta"
 msgstr[1] "%(projects)d projektai, %(average)d%% išversta"
 msgstr[2] "%(projects)d projektų, %(average)d%% išversta"
 
-#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:324
+#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:306
 #: apps/pootle_tagging/views.py:52 apps/pootle_translationproject/views.py:740
 msgid "No description yet."
 msgstr "Aprašo nėra."
@@ -902,7 +872,7 @@ msgstr "Pavadinimas"
 msgid "Project"
 msgstr "Projektas"
 
-#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:406
+#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:388
 msgid "Language"
 msgstr "Kalba"
 
@@ -1465,10 +1435,6 @@ msgid "Report Target"
 msgstr "Adresas pranešimams"
 
 #: apps/pootle_project/views.py:119
-msgid "Filter using one or more tags"
-msgstr "Filtruoti pagal vieną ar daugiau gairių"
-
-#: apps/pootle_project/views.py:161
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
@@ -1476,7 +1442,7 @@ msgstr[0] "%(languages)d kalba, %(average)d%% išversta"
 msgstr[1] "%(languages)d kalbos, %(average)d%% išversta"
 msgstr[2] "%(languages)d kalbų, %(average)d%% išversta"
 
-#: apps/pootle_project/views.py:395
+#: apps/pootle_project/views.py:377
 #: apps/pootle_translationproject/actions.py:209
 msgid "Update against templates"
 msgstr "Atnaujinti pagal šablonus"
@@ -1485,14 +1451,18 @@ msgstr "Atnaujinti pagal šablonus"
 msgid "Below you can add, edit, and delete the permissions for this project."
 msgstr "Žemiau galite pridėti, keisti ir šalinti teises šio projekto ribose."
 
-#: apps/pootle_project/templates/project/overview.html:18
+#: apps/pootle_project/templates/project/overview.html:19
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
 msgstr "Rodyti gaires"
 
-#: apps/pootle_project/templates/project/overview.html:21
+#: apps/pootle_project/templates/project/overview.html:22
 msgid "Show filtering"
 msgstr "Rodyti filtrą"
+
+#: apps/pootle_project/templates/project/overview.html:33
+msgid "Filter using one or more tags"
+msgstr "Filtruoti pagal vieną ar daugiau gairių"
 
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
@@ -1540,7 +1510,7 @@ msgstr "Pastabos"
 msgid "anonymous user"
 msgstr "anoniminis naudotojas"
 
-#: apps/pootle_statistics/models.py:150
+#: apps/pootle_statistics/models.py:152
 #, python-format
 msgid ""
 "%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
@@ -1549,7 +1519,7 @@ msgstr ""
 "%(user)s grąžino ankstesnį eilutės <i><a href=\"%(url)s\">%(source)s</a></i> "
 "vertimą"
 
-#: apps/pootle_statistics/models.py:153
+#: apps/pootle_statistics/models.py:155
 #, python-format
 msgid ""
 "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
@@ -1558,12 +1528,12 @@ msgstr ""
 "%(user)s patvirtino eilutės <i><a href=\"%(url)s\">%(source)s</a></i> vertimo "
 "pasiūlymą"
 
-#: apps/pootle_statistics/models.py:156
+#: apps/pootle_statistics/models.py:158
 #, python-format
 msgid "%(user)s uploaded a file"
 msgstr "%(user)s įkėlė failą"
 
-#: apps/pootle_statistics/models.py:171
+#: apps/pootle_statistics/models.py:173
 #, python-format
 msgid ""
 "%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
@@ -1571,7 +1541,7 @@ msgid ""
 msgstr ""
 "%(user)s pateikė eilutės <i><a href=\"%(url)s\">%(source)s</a></i> vertimą"
 
-#: apps/pootle_statistics/models.py:174
+#: apps/pootle_statistics/models.py:176
 #, python-format
 msgid ""
 "%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
@@ -1580,7 +1550,7 @@ msgstr ""
 "%(user)s pateikė tikslintiną eilutės <i><a href=\"%(url)s\">%(source)s</a></i> "
 "vertimą"
 
-#: apps/pootle_statistics/models.py:177
+#: apps/pootle_statistics/models.py:179
 #, python-format
 msgid ""
 "%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
@@ -2631,6 +2601,38 @@ msgstr "Testai"
 msgid "Overwritten submissions"
 msgstr "Perrašyti vertimai"
 
+#: core/initdb.py:143
+msgid "Can view a translation project"
+msgstr "Gali apžvelgti projektą"
+
+#: core/initdb.py:147
+msgid "Can make a suggestion for a translation"
+msgstr "Gali siūlyti vertimus"
+
+#: core/initdb.py:151
+msgid "Can submit a translation"
+msgstr "Gali pateikti vertimus"
+
+#: core/initdb.py:155
+msgid "Can overwrite translations on uploading files"
+msgstr "Gali perrašyti vertimus esančiais įkeliamame faile"
+
+#: core/initdb.py:159
+msgid "Can review translations"
+msgstr "Gali tvarkyti vertimus"
+
+#: core/initdb.py:163
+msgid "Can download archives of translation projects"
+msgstr "Gali parsisiųsti projektų archyvus"
+
+#: core/initdb.py:167
+msgid "Can administrate a translation project"
+msgstr "Gali administruoti projektus"
+
+#: core/initdb.py:171
+msgid "Can commit to version control"
+msgstr "Gali talpinti vertimus į versijų tvarkymo sistemą"
+
 #: middleware/captcha.py:122
 msgid "Time to answer has expired"
 msgstr "Atsakymui skirtas laikas baigėsi"
@@ -2661,7 +2663,7 @@ msgstr ""
 msgid "Failed to copy download file to export directory %s"
 msgstr "Nepavyko nukopijuoti parsiųsto failo į eksporto aplanką „%s“"
 
-#: scripts/example-actions/mozlangpack.py:141
+#: scripts/example-actions/mozlangpack.py:132
 msgid ""
 "Finished building the language pack, click on the download link to download "
 "it."
@@ -2836,32 +2838,22 @@ msgstr "Duomenų bazės klaida"
 
 #: templates/db_error.html:14
 msgid ""
-"\n"
-"  Pootle can't connect to the database, the database is not initialized\n"
-"  yet, or a schema upgrade is needed before continuing.\n"
-"  "
+"Pootle can't connect to the database, the database is not\n"
+"initialized yet, or a schema upgrade is needed before continuing."
 msgstr ""
-"\n"
-"  „Pootle“ nepavyko prisijungti prie duomenų bazės. Gali būti, jog\n"
-"  ji dar neinicijuota, arba reikalingas jos schemos naujovinimas.\n"
-"  "
 
-#: templates/db_error.html:20
+#: templates/db_error.html:18
 #, python-format
 msgid ""
 "\n"
-"  Please read the <a href=\"%(url)s\">Pootle documentation</a> on\n"
-"  installation and upgrade instructions. Contact the server administrator\n"
-"  if you feel this is a mistake.\n"
-"  "
+"Please read the <a href=\"%(url)s\">Pootle documentation</a> for "
+"installation\n"
+"and upgrade instructions. Contact the server administrator if you feel this "
+"is\n"
+"a mistake."
 msgstr ""
-"\n"
-"  Prašom perskaityti <a href=\"%(url)s\">„Pootle“ dokumentacijos</a>\n"
-"  dalį su įdiegimo ir atnaujinimo instrukcijomis. Susisiekite su serverio\n"
-"  administratoriumi, jeigu manote, jog šį pranešimą matote per klaidą.\n"
-"  "
 
-#: templates/db_error.html:27
+#: templates/db_error.html:24
 msgid "The reported error was:"
 msgstr "Gautoji klaida buvo:"
 
@@ -3354,6 +3346,31 @@ msgstr "Jau turite paskyrą?"
 #: templates/registration/registration_form.html:54
 msgid "Log In."
 msgstr "Prisijunkite."
+
+#~ msgid ""
+#~ "\n"
+#~ "  Pootle can't connect to the database, the database is not initialized\n"
+#~ "  yet, or a schema upgrade is needed before continuing.\n"
+#~ "  "
+#~ msgstr ""
+#~ "\n"
+#~ "  „Pootle“ nepavyko prisijungti prie duomenų bazės. Gali būti, jog\n"
+#~ "  ji dar neinicijuota, arba reikalingas jos schemos naujovinimas.\n"
+#~ "  "
+
+#, python-format
+#~ msgid ""
+#~ "\n"
+#~ "  Please read the <a href=\"%(url)s\">Pootle documentation</a> on\n"
+#~ "  installation and upgrade instructions. Contact the server administrator\n"
+#~ "  if you feel this is a mistake.\n"
+#~ "  "
+#~ msgstr ""
+#~ "\n"
+#~ "  Prašom perskaityti <a href=\"%(url)s\">„Pootle“ dokumentacijos</a>\n"
+#~ "  dalį su įdiegimo ir atnaujinimo instrukcijomis. Susisiekite su serverio\n"
+#~ "  administratoriumi, jeigu manote, jog šį pranešimą matote per klaidą.\n"
+#~ "  "
 
 #, python-format
 #~ msgid ""

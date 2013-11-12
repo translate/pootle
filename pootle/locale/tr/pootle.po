@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-31 17:15+0000\n"
+"POT-Creation-Date: 2013-11-12 10:57+0000\n"
 "PO-Revision-Date: 2013-11-05 06:57+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -228,38 +228,6 @@ msgid ""
 msgstr ""
 "Açıklama ve talimatlar ön sayfa ve hakkında sayfasında gösterilir. Geçerli "
 "HTML kullanıldığına emin olun."
-
-#: apps/pootle_app/management/__init__.py:90
-msgid "Can view a translation project"
-msgstr "Çeviri projesi görülebilir"
-
-#: apps/pootle_app/management/__init__.py:94
-msgid "Can make a suggestion for a translation"
-msgstr "Çeviri için öneri yapılabilir"
-
-#: apps/pootle_app/management/__init__.py:98
-msgid "Can submit a translation"
-msgstr "Çeviri gönderilebilir"
-
-#: apps/pootle_app/management/__init__.py:102
-msgid "Can overwrite translations on uploading files"
-msgstr "Gönderilen dosyalar üzerine çeviriler yazılabilir"
-
-#: apps/pootle_app/management/__init__.py:106
-msgid "Can review translations"
-msgstr "Çeviriler incelenebilir"
-
-#: apps/pootle_app/management/__init__.py:110
-msgid "Can download archives of translation projects"
-msgstr "Çeviri projelerinin arşiv dosyaları indirilebilir"
-
-#: apps/pootle_app/management/__init__.py:114
-msgid "Can administrate a translation project"
-msgstr "Çeviri projesi yönetilebilir"
-
-#: apps/pootle_app/management/__init__.py:118
-msgid "Can commit to version control"
-msgstr "Sürüm denetimine yollanabilir"
 
 #: apps/pootle_app/models/suggestion.py:35
 msgid "Pending"
@@ -876,7 +844,7 @@ msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
 msgstr[0] "%(projects)d proje, %%%(average)d çevirilmiş"
 
-#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:324
+#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:306
 #: apps/pootle_tagging/views.py:52 apps/pootle_translationproject/views.py:740
 msgid "No description yet."
 msgstr "Henüz açıklama yok."
@@ -894,7 +862,7 @@ msgstr "Adı"
 msgid "Project"
 msgstr "Proje"
 
-#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:406
+#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:388
 msgid "Language"
 msgstr "Dil"
 
@@ -1430,16 +1398,12 @@ msgid "Report Target"
 msgstr "Hedefi Raporla"
 
 #: apps/pootle_project/views.py:119
-msgid "Filter using one or more tags"
-msgstr "Bir ya da daha fazla etiket kullanarak süz"
-
-#: apps/pootle_project/views.py:161
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
 msgstr[0] "%(languages)d dil, %%%(average)d çevrilmiş"
 
-#: apps/pootle_project/views.py:395
+#: apps/pootle_project/views.py:377
 #: apps/pootle_translationproject/actions.py:209
 msgid "Update against templates"
 msgstr "Şablonlara karşı güncelle"
@@ -1450,14 +1414,18 @@ msgstr ""
 "Aşağıdan bu proje için izinleri ekleyebilir, düzenleyebilir ve "
 "silebilirsiniz."
 
-#: apps/pootle_project/templates/project/overview.html:18
+#: apps/pootle_project/templates/project/overview.html:19
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
 msgstr "Etiketleri göster"
 
-#: apps/pootle_project/templates/project/overview.html:21
+#: apps/pootle_project/templates/project/overview.html:22
 msgid "Show filtering"
 msgstr "Süzmeyi göster"
+
+#: apps/pootle_project/templates/project/overview.html:33
+msgid "Filter using one or more tags"
+msgstr "Bir ya da daha fazla etiket kullanarak süz"
 
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
@@ -1507,7 +1475,7 @@ msgstr "Yorum"
 msgid "anonymous user"
 msgstr "isimsiz kullanıcı"
 
-#: apps/pootle_statistics/models.py:150
+#: apps/pootle_statistics/models.py:152
 #, python-format
 msgid ""
 "%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
@@ -1516,7 +1484,7 @@ msgstr ""
 "%(user)s, <i><a href=\"%(url)s\">%(source)s</a></i> satırı için çeviriyi geri "
 "döndürdü"
 
-#: apps/pootle_statistics/models.py:153
+#: apps/pootle_statistics/models.py:155
 #, python-format
 msgid ""
 "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
@@ -1525,12 +1493,12 @@ msgstr ""
 "%(user)s, <i><a href=\"%(url)s\">%(source)s</a></i> satırı için öneriyi kabul "
 "etti"
 
-#: apps/pootle_statistics/models.py:156
+#: apps/pootle_statistics/models.py:158
 #, python-format
 msgid "%(user)s uploaded a file"
 msgstr "%(user)s bir dosya gönderdi"
 
-#: apps/pootle_statistics/models.py:171
+#: apps/pootle_statistics/models.py:173
 #, python-format
 msgid ""
 "%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
@@ -1539,7 +1507,7 @@ msgstr ""
 "%(user)s, <i><a href=\"%(url)s\">%(source)s</a></i> satırı için çeviriyi "
 "gönderdi"
 
-#: apps/pootle_statistics/models.py:174
+#: apps/pootle_statistics/models.py:176
 #, python-format
 msgid ""
 "%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
@@ -1548,7 +1516,7 @@ msgstr ""
 "%(user)s, <i><a href=\"%(url)s\">%(source)s</a></i> satırı için \"çalışma "
 "gerekli\" olarak çeviriyi gönderdi"
 
-#: apps/pootle_statistics/models.py:177
+#: apps/pootle_statistics/models.py:179
 #, python-format
 msgid ""
 "%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
@@ -2609,6 +2577,38 @@ msgstr "Kontroller"
 msgid "Overwritten submissions"
 msgstr "Üzerine yazılmış sunuşlar"
 
+#: core/initdb.py:143
+msgid "Can view a translation project"
+msgstr "Çeviri projesi görülebilir"
+
+#: core/initdb.py:147
+msgid "Can make a suggestion for a translation"
+msgstr "Çeviri için öneri yapılabilir"
+
+#: core/initdb.py:151
+msgid "Can submit a translation"
+msgstr "Çeviri gönderilebilir"
+
+#: core/initdb.py:155
+msgid "Can overwrite translations on uploading files"
+msgstr "Gönderilen dosyalar üzerine çeviriler yazılabilir"
+
+#: core/initdb.py:159
+msgid "Can review translations"
+msgstr "Çeviriler incelenebilir"
+
+#: core/initdb.py:163
+msgid "Can download archives of translation projects"
+msgstr "Çeviri projelerinin arşiv dosyaları indirilebilir"
+
+#: core/initdb.py:167
+msgid "Can administrate a translation project"
+msgstr "Çeviri projesi yönetilebilir"
+
+#: core/initdb.py:171
+msgid "Can commit to version control"
+msgstr "Sürüm denetimine yollanabilir"
+
 #: middleware/captcha.py:122
 msgid "Time to answer has expired"
 msgstr "Yanıtlama zamanı süresi doldu"
@@ -2639,7 +2639,7 @@ msgstr ""
 msgid "Failed to copy download file to export directory %s"
 msgstr "%s dizinini dışa aktarmak için indirme dosyasını kopyalama başarısız"
 
-#: scripts/example-actions/mozlangpack.py:141
+#: scripts/example-actions/mozlangpack.py:132
 msgid ""
 "Finished building the language pack, click on the download link to download "
 "it."
@@ -2815,32 +2815,22 @@ msgstr "Veritabanı Hatası"
 
 #: templates/db_error.html:14
 msgid ""
-"\n"
-"  Pootle can't connect to the database, the database is not initialized\n"
-"  yet, or a schema upgrade is needed before continuing.\n"
-"  "
+"Pootle can't connect to the database, the database is not\n"
+"initialized yet, or a schema upgrade is needed before continuing."
 msgstr ""
-"\n"
-"  Pootle, veritabanına bağlanamıyor, veritabanı henüz başlatılamıyor,\n"
-"  ya da devam etmeden önce bir şema yükseltmesine ihtiyaç var.\n"
-"  "
 
-#: templates/db_error.html:20
+#: templates/db_error.html:18
 #, python-format
 msgid ""
 "\n"
-"  Please read the <a href=\"%(url)s\">Pootle documentation</a> on\n"
-"  installation and upgrade instructions. Contact the server administrator\n"
-"  if you feel this is a mistake.\n"
-"  "
+"Please read the <a href=\"%(url)s\">Pootle documentation</a> for "
+"installation\n"
+"and upgrade instructions. Contact the server administrator if you feel this "
+"is\n"
+"a mistake."
 msgstr ""
-"\n"
-"  Lütfen <a href=\"%(url)s\">Pootle belgelerinde</a> kurulum ve\n"
-"  yükseltme talimatlarını okuyun. Eğer bunun bir hata olduğunu\n"
-"  düşünüyorsanız, sunucu yöneticisiyle irtibata geçin.\n"
-"  "
 
-#: templates/db_error.html:27
+#: templates/db_error.html:24
 msgid "The reported error was:"
 msgstr "Bildirilen hata:"
 
@@ -3338,6 +3328,31 @@ msgstr "Zaten hesabınız var mı?"
 #: templates/registration/registration_form.html:54
 msgid "Log In."
 msgstr "Oturum Aç."
+
+#~ msgid ""
+#~ "\n"
+#~ "  Pootle can't connect to the database, the database is not initialized\n"
+#~ "  yet, or a schema upgrade is needed before continuing.\n"
+#~ "  "
+#~ msgstr ""
+#~ "\n"
+#~ "  Pootle, veritabanına bağlanamıyor, veritabanı henüz başlatılamıyor,\n"
+#~ "  ya da devam etmeden önce bir şema yükseltmesine ihtiyaç var.\n"
+#~ "  "
+
+#, python-format
+#~ msgid ""
+#~ "\n"
+#~ "  Please read the <a href=\"%(url)s\">Pootle documentation</a> on\n"
+#~ "  installation and upgrade instructions. Contact the server administrator\n"
+#~ "  if you feel this is a mistake.\n"
+#~ "  "
+#~ msgstr ""
+#~ "\n"
+#~ "  Lütfen <a href=\"%(url)s\">Pootle belgelerinde</a> kurulum ve\n"
+#~ "  yükseltme talimatlarını okuyun. Eğer bunun bir hata olduğunu\n"
+#~ "  düşünüyorsanız, sunucu yöneticisiyle irtibata geçin.\n"
+#~ "  "
 
 #, python-format
 #~ msgid ""

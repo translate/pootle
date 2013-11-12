@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-31 17:15+0000\n"
+"POT-Creation-Date: 2013-11-12 10:57+0000\n"
 "PO-Revision-Date: 2013-10-30 16:29+0000\n"
 "Last-Translator: Tranzistors <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -231,38 +231,6 @@ msgid ""
 msgstr ""
 "Apraksts un instrukcijas, ko rāda pirmajā un “par mums” lapā. "
 "Pārliecinieties, ka izmantojat pareizu HTML."
-
-#: apps/pootle_app/management/__init__.py:90
-msgid "Can view a translation project"
-msgstr "Var skatīt tulkošanas projektu"
-
-#: apps/pootle_app/management/__init__.py:94
-msgid "Can make a suggestion for a translation"
-msgstr "Var sniegt ieteikumu tulkošanas projektam"
-
-#: apps/pootle_app/management/__init__.py:98
-msgid "Can submit a translation"
-msgstr "Var iesniegt tulkojumu"
-
-#: apps/pootle_app/management/__init__.py:102
-msgid "Can overwrite translations on uploading files"
-msgstr "Var pārrakstīt tulkojumus, augšupielādējot datnes"
-
-#: apps/pootle_app/management/__init__.py:106
-msgid "Can review translations"
-msgstr "Var pārbaudīt tulkojumus"
-
-#: apps/pootle_app/management/__init__.py:110
-msgid "Can download archives of translation projects"
-msgstr "Var lejupielādēt tulkošanas projekta arhīvu"
-
-#: apps/pootle_app/management/__init__.py:114
-msgid "Can administrate a translation project"
-msgstr "Var administrēt tulkošanas projektu"
-
-#: apps/pootle_app/management/__init__.py:118
-msgid "Can commit to version control"
-msgstr "Var iesūtīt versiju vadības sistēmā"
 
 #: apps/pootle_app/models/suggestion.py:35
 msgid "Pending"
@@ -879,7 +847,7 @@ msgstr[0] "%(projects)d projekts, %(average)d%% iztulkoti"
 msgstr[1] "%(projects)d projekti, %(average)d%% iztulkoti"
 msgstr[2] "%(projects)d projektu, %(average)d%% iztulkoti"
 
-#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:324
+#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:306
 #: apps/pootle_tagging/views.py:52 apps/pootle_translationproject/views.py:740
 msgid "No description yet."
 msgstr "Vēl nav apraksta."
@@ -896,7 +864,7 @@ msgstr "Nosaukums"
 msgid "Project"
 msgstr "Projekts"
 
-#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:406
+#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:388
 msgid "Language"
 msgstr "Valoda"
 
@@ -1450,10 +1418,6 @@ msgid "Report Target"
 msgstr "Ziņot par mērķi"
 
 #: apps/pootle_project/views.py:119
-msgid "Filter using one or more tags"
-msgstr ""
-
-#: apps/pootle_project/views.py:161
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
@@ -1461,7 +1425,7 @@ msgstr[0] "%(languages)d valoda, %(average)d%% iztulkots"
 msgstr[1] "%(languages)d valodas, %(average)d%% iztulkots"
 msgstr[2] "%(languages)d valodu, %(average)d%% iztulkots"
 
-#: apps/pootle_project/views.py:395
+#: apps/pootle_project/views.py:377
 #: apps/pootle_translationproject/actions.py:209
 msgid "Update against templates"
 msgstr "Atjaunināt pret veidnēm"
@@ -1470,14 +1434,18 @@ msgstr "Atjaunināt pret veidnēm"
 msgid "Below you can add, edit, and delete the permissions for this project."
 msgstr "Zemāk varat pievienot, rediģēt un dzēst šī projekta atļaujas."
 
-#: apps/pootle_project/templates/project/overview.html:18
+#: apps/pootle_project/templates/project/overview.html:19
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
 msgstr "Rādīt birkas"
 
-#: apps/pootle_project/templates/project/overview.html:21
+#: apps/pootle_project/templates/project/overview.html:22
 msgid "Show filtering"
 msgstr "Rādīt filtrēšanu"
+
+#: apps/pootle_project/templates/project/overview.html:33
+msgid "Filter using one or more tags"
+msgstr ""
 
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
@@ -1525,40 +1493,40 @@ msgstr "Komentārs"
 msgid "anonymous user"
 msgstr "anonīms lietotājs"
 
-#: apps/pootle_statistics/models.py:150
+#: apps/pootle_statistics/models.py:152
 #, python-format
 msgid ""
 "%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:153
+#: apps/pootle_statistics/models.py:155
 #, python-format
 msgid ""
 "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:156
+#: apps/pootle_statistics/models.py:158
 #, python-format
 msgid "%(user)s uploaded a file"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:171
+#: apps/pootle_statistics/models.py:173
 #, python-format
 msgid ""
 "%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:174
+#: apps/pootle_statistics/models.py:176
 #, python-format
 msgid ""
 "%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
 "\">%(source)s</a></i>"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:177
+#: apps/pootle_statistics/models.py:179
 #, python-format
 msgid ""
 "%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
@@ -2608,6 +2576,38 @@ msgstr "Pārbaudes"
 msgid "Overwritten submissions"
 msgstr "Pārrakstīt iesniegumus"
 
+#: core/initdb.py:143
+msgid "Can view a translation project"
+msgstr "Var skatīt tulkošanas projektu"
+
+#: core/initdb.py:147
+msgid "Can make a suggestion for a translation"
+msgstr "Var sniegt ieteikumu tulkošanas projektam"
+
+#: core/initdb.py:151
+msgid "Can submit a translation"
+msgstr "Var iesniegt tulkojumu"
+
+#: core/initdb.py:155
+msgid "Can overwrite translations on uploading files"
+msgstr "Var pārrakstīt tulkojumus, augšupielādējot datnes"
+
+#: core/initdb.py:159
+msgid "Can review translations"
+msgstr "Var pārbaudīt tulkojumus"
+
+#: core/initdb.py:163
+msgid "Can download archives of translation projects"
+msgstr "Var lejupielādēt tulkošanas projekta arhīvu"
+
+#: core/initdb.py:167
+msgid "Can administrate a translation project"
+msgstr "Var administrēt tulkošanas projektu"
+
+#: core/initdb.py:171
+msgid "Can commit to version control"
+msgstr "Var iesūtīt versiju vadības sistēmā"
+
 #: middleware/captcha.py:122
 msgid "Time to answer has expired"
 msgstr "Laiks atbildēšanai ir beidzies"
@@ -2636,7 +2636,7 @@ msgstr ""
 msgid "Failed to copy download file to export directory %s"
 msgstr "Neizdevās kopēt lejupielādēto datni, lai eksportētu mapi %s"
 
-#: scripts/example-actions/mozlangpack.py:141
+#: scripts/example-actions/mozlangpack.py:132
 msgid ""
 "Finished building the language pack, click on the download link to download "
 "it."
@@ -2813,32 +2813,22 @@ msgstr "Datubāzes kļūda"
 
 #: templates/db_error.html:14
 msgid ""
-"\n"
-"  Pootle can't connect to the database, the database is not initialized\n"
-"  yet, or a schema upgrade is needed before continuing.\n"
-"  "
+"Pootle can't connect to the database, the database is not\n"
+"initialized yet, or a schema upgrade is needed before continuing."
 msgstr ""
-"\n"
-"  Pootle nevar savienoties ar datubāzi, tā vēl nav inicializēta,\n"
-"  vai arī pirms turpināšanas jāatjaunina shēma.\n"
-"  "
 
-#: templates/db_error.html:20
+#: templates/db_error.html:18
 #, python-format
 msgid ""
 "\n"
-"  Please read the <a href=\"%(url)s\">Pootle documentation</a> on\n"
-"  installation and upgrade instructions. Contact the server administrator\n"
-"  if you feel this is a mistake.\n"
-"  "
+"Please read the <a href=\"%(url)s\">Pootle documentation</a> for "
+"installation\n"
+"and upgrade instructions. Contact the server administrator if you feel this "
+"is\n"
+"a mistake."
 msgstr ""
-"\n"
-"  Lūdzu, izlasiet <a href=\"%(url)s\">Pootle dokumentāciju</a> par\n"
-"  instalēšanas un atjaunināšanas instrukcijām.\n"
-"  Ja domājat, ka tā ir kļūda, sazinieties ar sistēmas administratoru\n"
-"  "
 
-#: templates/db_error.html:27
+#: templates/db_error.html:24
 msgid "The reported error was:"
 msgstr "Ziņotā kļūda bija:"
 
@@ -3331,6 +3321,31 @@ msgstr "Jau ir konts?"
 #: templates/registration/registration_form.html:54
 msgid "Log In."
 msgstr "Ierakstīties."
+
+#~ msgid ""
+#~ "\n"
+#~ "  Pootle can't connect to the database, the database is not initialized\n"
+#~ "  yet, or a schema upgrade is needed before continuing.\n"
+#~ "  "
+#~ msgstr ""
+#~ "\n"
+#~ "  Pootle nevar savienoties ar datubāzi, tā vēl nav inicializēta,\n"
+#~ "  vai arī pirms turpināšanas jāatjaunina shēma.\n"
+#~ "  "
+
+#, python-format
+#~ msgid ""
+#~ "\n"
+#~ "  Please read the <a href=\"%(url)s\">Pootle documentation</a> on\n"
+#~ "  installation and upgrade instructions. Contact the server administrator\n"
+#~ "  if you feel this is a mistake.\n"
+#~ "  "
+#~ msgstr ""
+#~ "\n"
+#~ "  Lūdzu, izlasiet <a href=\"%(url)s\">Pootle dokumentāciju</a> par\n"
+#~ "  instalēšanas un atjaunināšanas instrukcijām.\n"
+#~ "  Ja domājat, ka tā ir kļūda, sazinieties ar sistēmas administratoru\n"
+#~ "  "
 
 #, python-format
 #~ msgid ""

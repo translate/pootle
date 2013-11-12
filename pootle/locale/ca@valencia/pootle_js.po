@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-31 17:15+0000\n"
+"POT-Creation-Date: 2013-11-12 10:57+0000\n"
 "PO-Revision-Date: 2013-02-27 07:19+0000\n"
 "Last-Translator: ellibrecomoelchaval <el.libre@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,15 +16,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1361949571.0\n"
+"X-POOTLE-MTIME: 1383479042.0\n"
 
 #: static/js/common.js:13
 msgid "All Languages"
-msgstr ""
+msgstr "Tots els idiomes"
 
 #: static/js/common.js:26
 msgid "All Projects"
-msgstr ""
+msgstr "Tots els projectes"
 
 #: static/js/common.js:62
 msgid "Expand details"
@@ -44,57 +44,57 @@ msgstr "No es pot desfer l'operació."
 
 #: static/js/common.js:139
 msgid "Show tags"
-msgstr ""
+msgstr "Mostra les etiquetes"
 
-#: static/js/common.js:142 static/js/vendor/sorttable.js:365
+#: static/js/common.js:142 static/js/vendor/sorttable.js:357
 msgid "Hide tags"
-msgstr ""
+msgstr "Amaga les etiquetes"
 
-#: static/js/common.js:276 static/js/common.js.c:292
+#: static/js/common.js:293 static/js/common.js.c:309
 msgid "Hide filtering"
-msgstr ""
+msgstr "Amaga el filtratge"
 
-#: static/js/common.js:279 static/js/common.js.c:286
+#: static/js/common.js:296 static/js/common.js.c:303
 msgid "Show filtering"
-msgstr ""
+msgstr "Mostra el filtratge"
 
 #: static/js/editor.js:209
 msgid "Go to the next string (Ctrl+.)"
-msgstr ""
+msgstr "Vés a la cadena següent (Ctrl+.)"
 
 #: static/js/editor.js:215
 msgid "Go to the previous string (Ctrl+,)"
-msgstr ""
+msgstr "Vés a la cadena anterior (Ctrl+,)"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:333
 #, c-format
 msgid "%s's pending suggestions"
-msgstr ""
+msgstr "Suggeriments pendents de %s"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:336
 #, c-format
 msgid "%s's accepted suggestions"
-msgstr ""
+msgstr "Suggeriments acceptats de %s"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:339
 #, c-format
 msgid "%s's rejected suggestions"
-msgstr ""
+msgstr "Suggeriments rebutjats de %s"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:342
 #, c-format
 msgid "%s's submissions"
-msgstr ""
+msgstr "Enviaments de %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s, that were overwritten"
 #: static/js/editor.js:345
 #, c-format
 msgid "%s's overwritten submissions"
-msgstr ""
+msgstr "Enviaments sobreescrits de %s"
 
 #: static/js/editor.js:476 static/js/editor.js.c:1521
 msgid "No results."
@@ -102,7 +102,7 @@ msgstr "No s'ha trobat cap resultat."
 
 #: static/js/editor.js:748
 msgid "Export View"
-msgstr ""
+msgstr "Vista d'exportació"
 
 #: static/js/editor.js:798
 msgid "Error while connecting to the server"
@@ -113,8 +113,9 @@ msgid "Server error"
 msgstr "Error del servidor"
 
 #: static/js/editor.js:802
+#, fuzzy
 msgid "The server seems down. Try again later."
-msgstr "Pareix que el servidor no funciona. Proveu-ho més tard."
+msgstr "Sembla que el servidor no funciona. Proveu-ho més tard."
 
 #: static/js/editor.js:809
 msgid "Unknown error"

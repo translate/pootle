@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-31 17:15+0000\n"
+"POT-Creation-Date: 2013-11-12 10:57+0000\n"
 "PO-Revision-Date: 2013-11-02 13:00+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -228,38 +228,6 @@ msgid ""
 msgstr ""
 "Zadejte popis a pokyny zobrazené na hlavní stránce a stránce s informacemi. "
 "Používejte jen platné HTML."
-
-#: apps/pootle_app/management/__init__.py:90
-msgid "Can view a translation project"
-msgstr "Může si prohlížet překladový projekt"
-
-#: apps/pootle_app/management/__init__.py:94
-msgid "Can make a suggestion for a translation"
-msgstr "Může navrhnout překlad"
-
-#: apps/pootle_app/management/__init__.py:98
-msgid "Can submit a translation"
-msgstr "Může odeslat překlad"
-
-#: apps/pootle_app/management/__init__.py:102
-msgid "Can overwrite translations on uploading files"
-msgstr "Může při nahrání souborů přepsat překlady"
-
-#: apps/pootle_app/management/__init__.py:106
-msgid "Can review translations"
-msgstr "Může kontrolovat překlady"
-
-#: apps/pootle_app/management/__init__.py:110
-msgid "Can download archives of translation projects"
-msgstr "Může stahovat archivy překladových projektů"
-
-#: apps/pootle_app/management/__init__.py:114
-msgid "Can administrate a translation project"
-msgstr "Může spravovat překladový projekt"
-
-#: apps/pootle_app/management/__init__.py:118
-msgid "Can commit to version control"
-msgstr "Může zasílat změny do správy verzí"
 
 #: apps/pootle_app/models/suggestion.py:35
 msgid "Pending"
@@ -871,7 +839,7 @@ msgstr[0] "%(projects)d projekt, přeložený z %(average)d%%"
 msgstr[1] "%(projects)d projekty, přeloženy z %(average)d%%"
 msgstr[2] "%(projects)d projektů, přeložené z %(average)d%%"
 
-#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:324
+#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:306
 #: apps/pootle_tagging/views.py:52 apps/pootle_translationproject/views.py:740
 msgid "No description yet."
 msgstr "Dosud nebyl zadán žádný popis."
@@ -888,7 +856,7 @@ msgstr "Název"
 msgid "Project"
 msgstr "Projekt"
 
-#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:406
+#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:388
 msgid "Language"
 msgstr "Jazyk"
 
@@ -1460,10 +1428,6 @@ msgid "Report Target"
 msgstr "Cíl hlášení"
 
 #: apps/pootle_project/views.py:119
-msgid "Filter using one or more tags"
-msgstr "Filtrovat podle štítků"
-
-#: apps/pootle_project/views.py:161
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
@@ -1471,7 +1435,7 @@ msgstr[0] "%(languages)d jazyk, přeloženo %(average)d%%"
 msgstr[1] "%(languages)d jazyky, přeloženo %(average)d%%"
 msgstr[2] "%(languages)d jazyků, přeloženo %(average)d%%"
 
-#: apps/pootle_project/views.py:395
+#: apps/pootle_project/views.py:377
 #: apps/pootle_translationproject/actions.py:209
 msgid "Update against templates"
 msgstr "Aktualizovat ze šablon"
@@ -1481,14 +1445,18 @@ msgid "Below you can add, edit, and delete the permissions for this project."
 msgstr ""
 "Zde můžete přidávat, upravovat a odstraňovat oprávnění pro tento projekt."
 
-#: apps/pootle_project/templates/project/overview.html:18
+#: apps/pootle_project/templates/project/overview.html:19
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
 msgstr "Zobrazit štítky"
 
-#: apps/pootle_project/templates/project/overview.html:21
+#: apps/pootle_project/templates/project/overview.html:22
 msgid "Show filtering"
 msgstr "Zobrazit filtrování"
+
+#: apps/pootle_project/templates/project/overview.html:33
+msgid "Filter using one or more tags"
+msgstr "Filtrovat podle štítků"
 
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
@@ -1537,7 +1505,7 @@ msgstr "Komentář"
 msgid "anonymous user"
 msgstr "anonymní uživatel"
 
-#: apps/pootle_statistics/models.py:150
+#: apps/pootle_statistics/models.py:152
 #, python-format
 msgid ""
 "%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
@@ -1546,7 +1514,7 @@ msgstr ""
 "%(user)s obnovil původní překlad řetězce <i><a href=\"%(url)s\">%"
 "(source)s</a></i>"
 
-#: apps/pootle_statistics/models.py:153
+#: apps/pootle_statistics/models.py:155
 #, python-format
 msgid ""
 "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
@@ -1554,19 +1522,19 @@ msgid ""
 msgstr ""
 "%(user)s přijal návrh pro řetězec <i><a href=\"%(url)s\">%(source)s</a></i>"
 
-#: apps/pootle_statistics/models.py:156
+#: apps/pootle_statistics/models.py:158
 #, python-format
 msgid "%(user)s uploaded a file"
 msgstr "%(user)s nahrál soubor"
 
-#: apps/pootle_statistics/models.py:171
+#: apps/pootle_statistics/models.py:173
 #, python-format
 msgid ""
 "%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr "%(user)s přidal překlad řetězce <i><a href=\"%(url)s\">%(source)s</a></i>"
 
-#: apps/pootle_statistics/models.py:174
+#: apps/pootle_statistics/models.py:176
 #, python-format
 msgid ""
 "%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
@@ -1575,7 +1543,7 @@ msgstr ""
 "%(user)s přidal překlad s příznakem \"potřebuje upravit\" pro řetězec <i><a "
 "href=\"%(url)s\">%(source)s</a></i>"
 
-#: apps/pootle_statistics/models.py:177
+#: apps/pootle_statistics/models.py:179
 #, python-format
 msgid ""
 "%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
@@ -2632,6 +2600,38 @@ msgstr "Kontroly"
 msgid "Overwritten submissions"
 msgstr "Přepsané překlady"
 
+#: core/initdb.py:143
+msgid "Can view a translation project"
+msgstr "Může si prohlížet překladový projekt"
+
+#: core/initdb.py:147
+msgid "Can make a suggestion for a translation"
+msgstr "Může navrhnout překlad"
+
+#: core/initdb.py:151
+msgid "Can submit a translation"
+msgstr "Může odeslat překlad"
+
+#: core/initdb.py:155
+msgid "Can overwrite translations on uploading files"
+msgstr "Může při nahrání souborů přepsat překlady"
+
+#: core/initdb.py:159
+msgid "Can review translations"
+msgstr "Může kontrolovat překlady"
+
+#: core/initdb.py:163
+msgid "Can download archives of translation projects"
+msgstr "Může stahovat archivy překladových projektů"
+
+#: core/initdb.py:167
+msgid "Can administrate a translation project"
+msgstr "Může spravovat překladový projekt"
+
+#: core/initdb.py:171
+msgid "Can commit to version control"
+msgstr "Může zasílat změny do správy verzí"
+
 #: middleware/captcha.py:122
 msgid "Time to answer has expired"
 msgstr "Čas na odpověď vypršel"
@@ -2663,7 +2663,7 @@ msgstr ""
 msgid "Failed to copy download file to export directory %s"
 msgstr "Soubor ke stažení se nepodařilo zkopírovat do adresáře pro export %s"
 
-#: scripts/example-actions/mozlangpack.py:141
+#: scripts/example-actions/mozlangpack.py:132
 msgid ""
 "Finished building the language pack, click on the download link to download "
 "it."
@@ -2838,33 +2838,22 @@ msgstr "Chyba databáze"
 
 #: templates/db_error.html:14
 msgid ""
-"\n"
-"  Pootle can't connect to the database, the database is not initialized\n"
-"  yet, or a schema upgrade is needed before continuing.\n"
-"  "
+"Pootle can't connect to the database, the database is not\n"
+"initialized yet, or a schema upgrade is needed before continuing."
 msgstr ""
-"\n"
-"Připojení k databázi se nezdařilo. Databáze ještě není inicializována,\n"
-"nebo je před pokračováním třeba provést aktualizaci schéma databáze.\n"
-" "
 
-#: templates/db_error.html:20
+#: templates/db_error.html:18
 #, python-format
 msgid ""
 "\n"
-"  Please read the <a href=\"%(url)s\">Pootle documentation</a> on\n"
-"  installation and upgrade instructions. Contact the server administrator\n"
-"  if you feel this is a mistake.\n"
-"  "
+"Please read the <a href=\"%(url)s\">Pootle documentation</a> for "
+"installation\n"
+"and upgrade instructions. Contact the server administrator if you feel this "
+"is\n"
+"a mistake."
 msgstr ""
-"\n"
-"Návod pro instalaci a aktualizaci naleznete v <a href=\"%"
-"(url)s\">Dokumentaci</a>.\n"
-"Pokud si myslíte, že byla tato zpráva zobrazena z důvodu chyby,\n"
-"kontaktujte administrátora serveru.\n"
-" "
 
-#: templates/db_error.html:27
+#: templates/db_error.html:24
 msgid "The reported error was:"
 msgstr "Nahlášena byla chyba:"
 
@@ -3359,6 +3348,32 @@ msgstr "Už máte účet?"
 #: templates/registration/registration_form.html:54
 msgid "Log In."
 msgstr "Přihlaste se."
+
+#~ msgid ""
+#~ "\n"
+#~ "  Pootle can't connect to the database, the database is not initialized\n"
+#~ "  yet, or a schema upgrade is needed before continuing.\n"
+#~ "  "
+#~ msgstr ""
+#~ "\n"
+#~ "Připojení k databázi se nezdařilo. Databáze ještě není inicializována,\n"
+#~ "nebo je před pokračováním třeba provést aktualizaci schéma databáze.\n"
+#~ " "
+
+#, python-format
+#~ msgid ""
+#~ "\n"
+#~ "  Please read the <a href=\"%(url)s\">Pootle documentation</a> on\n"
+#~ "  installation and upgrade instructions. Contact the server administrator\n"
+#~ "  if you feel this is a mistake.\n"
+#~ "  "
+#~ msgstr ""
+#~ "\n"
+#~ "Návod pro instalaci a aktualizaci naleznete v <a href=\"%"
+#~ "(url)s\">Dokumentaci</a>.\n"
+#~ "Pokud si myslíte, že byla tato zpráva zobrazena z důvodu chyby,\n"
+#~ "kontaktujte administrátora serveru.\n"
+#~ " "
 
 #, python-format
 #~ msgid ""

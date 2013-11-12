@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-31 17:15+0000\n"
+"POT-Creation-Date: 2013-11-12 10:57+0000\n"
 "PO-Revision-Date: 2013-11-03 14:27+0000\n"
 "Last-Translator: paolopoz <paolo@z2z.it>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -228,38 +228,6 @@ msgid ""
 msgstr ""
 "La descrizione e le istruzioni visualizzate nella pagina iniziale e in "
 "quella di informazioni. Assicuratevi di utilizzare HTML valido."
-
-#: apps/pootle_app/management/__init__.py:90
-msgid "Can view a translation project"
-msgstr "Può visualizzare un progetto di traduzione"
-
-#: apps/pootle_app/management/__init__.py:94
-msgid "Can make a suggestion for a translation"
-msgstr "Può inserire suggerimenti per una traduzione"
-
-#: apps/pootle_app/management/__init__.py:98
-msgid "Can submit a translation"
-msgstr "Può inserire una traduzione"
-
-#: apps/pootle_app/management/__init__.py:102
-msgid "Can overwrite translations on uploading files"
-msgstr "Può sovrascrivere le traduzioni durante il caricamento dei file"
-
-#: apps/pootle_app/management/__init__.py:106
-msgid "Can review translations"
-msgstr "Può revisionare le traduzioni"
-
-#: apps/pootle_app/management/__init__.py:110
-msgid "Can download archives of translation projects"
-msgstr "Può scaricare archivi di progetti di traduzione"
-
-#: apps/pootle_app/management/__init__.py:114
-msgid "Can administrate a translation project"
-msgstr "Può amministrare un progetto di traduzione"
-
-#: apps/pootle_app/management/__init__.py:118
-msgid "Can commit to version control"
-msgstr "Può inviare al controllo di versione"
 
 #: apps/pootle_app/models/suggestion.py:35
 msgid "Pending"
@@ -884,7 +852,7 @@ msgid_plural "%(projects)d projects, %(average)d%% translated"
 msgstr[0] "%(projects)d progetto, %(average)d%% tradotto"
 msgstr[1] "%(projects)d progetti, %(average)d%% tradotto"
 
-#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:324
+#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:306
 #: apps/pootle_tagging/views.py:52 apps/pootle_translationproject/views.py:740
 msgid "No description yet."
 msgstr "Nessuna descrizione."
@@ -903,7 +871,7 @@ msgstr "Nome"
 msgid "Project"
 msgstr "Progetto"
 
-#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:406
+#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:388
 msgid "Language"
 msgstr "Lingua"
 
@@ -1257,6 +1225,7 @@ msgstr[0] "%d parola necessita di revisione"
 msgstr[1] "%d parole necessitano di revisione"
 
 #: apps/pootle_misc/templates/progressbar.html:3
+#, python-format
 #, python-format, python-format
 msgid "%(percent)s%% complete"
 msgstr "%(percent)s%% completato"
@@ -1454,17 +1423,13 @@ msgid "Report Target"
 msgstr "Destinazione report"
 
 #: apps/pootle_project/views.py:119
-msgid "Filter using one or more tags"
-msgstr "Filtra utilizzando uno o più tag"
-
-#: apps/pootle_project/views.py:161
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
 msgstr[0] "Lingua %(languages)d, %(average)d%% tradotto"
 msgstr[1] "Lingue %(languages)d, %(average)d%% tradotto"
 
-#: apps/pootle_project/views.py:395
+#: apps/pootle_project/views.py:377
 #: apps/pootle_translationproject/actions.py:209
 msgid "Update against templates"
 msgstr "Aggiorna dai modelli"
@@ -1475,14 +1440,18 @@ msgstr ""
 "Qui sotto puoi aggiungere, modificare e cancellare i permessi per questo "
 "progetto."
 
-#: apps/pootle_project/templates/project/overview.html:18
+#: apps/pootle_project/templates/project/overview.html:19
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
 msgstr "Mostra tag"
 
-#: apps/pootle_project/templates/project/overview.html:21
+#: apps/pootle_project/templates/project/overview.html:22
 msgid "Show filtering"
 msgstr "Mostra filtraggio"
+
+#: apps/pootle_project/templates/project/overview.html:33
+msgid "Filter using one or more tags"
+msgstr "Filtra utilizzando uno o più tag"
 
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
@@ -1531,7 +1500,7 @@ msgstr "Commento"
 msgid "anonymous user"
 msgstr "utente anonimo"
 
-#: apps/pootle_statistics/models.py:150
+#: apps/pootle_statistics/models.py:152
 #, python-format
 msgid ""
 "%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
@@ -1540,7 +1509,7 @@ msgstr ""
 "%(user)s ha ripristinato la traduzione per la stringa <i><a href=\"%(url)s\">%"
 "(source)s</a></i>"
 
-#: apps/pootle_statistics/models.py:153
+#: apps/pootle_statistics/models.py:155
 #, python-format
 msgid ""
 "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
@@ -1549,12 +1518,12 @@ msgstr ""
 "%(user)s ha accettato il suggerimento per la stringa <i><a href=\"%(url)s\">%"
 "(source)s</a></i>"
 
-#: apps/pootle_statistics/models.py:156
+#: apps/pootle_statistics/models.py:158
 #, python-format
 msgid "%(user)s uploaded a file"
 msgstr "%(user)s ha caricato un file"
 
-#: apps/pootle_statistics/models.py:171
+#: apps/pootle_statistics/models.py:173
 #, python-format
 msgid ""
 "%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
@@ -1563,7 +1532,7 @@ msgstr ""
 "%(user)s ha inviato una traduzione per la stringa <i><a href=\"%(url)s\">%"
 "(source)s</a></i>"
 
-#: apps/pootle_statistics/models.py:174
+#: apps/pootle_statistics/models.py:176
 #, python-format
 msgid ""
 "%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
@@ -1572,7 +1541,7 @@ msgstr ""
 "%(user)s ha inviato una traduzione \"necessita revisione\" per la stringa "
 "<i><a href=\"%(url)s\">%(source)s</a></i>"
 
-#: apps/pootle_statistics/models.py:177
+#: apps/pootle_statistics/models.py:179
 #, python-format
 msgid ""
 "%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
@@ -2606,6 +2575,38 @@ msgstr ""
 msgid "Overwritten submissions"
 msgstr ""
 
+#: core/initdb.py:143
+msgid "Can view a translation project"
+msgstr "Può visualizzare un progetto di traduzione"
+
+#: core/initdb.py:147
+msgid "Can make a suggestion for a translation"
+msgstr "Può inserire suggerimenti per una traduzione"
+
+#: core/initdb.py:151
+msgid "Can submit a translation"
+msgstr "Può inserire una traduzione"
+
+#: core/initdb.py:155
+msgid "Can overwrite translations on uploading files"
+msgstr "Può sovrascrivere le traduzioni durante il caricamento dei file"
+
+#: core/initdb.py:159
+msgid "Can review translations"
+msgstr "Può revisionare le traduzioni"
+
+#: core/initdb.py:163
+msgid "Can download archives of translation projects"
+msgstr "Può scaricare archivi di progetti di traduzione"
+
+#: core/initdb.py:167
+msgid "Can administrate a translation project"
+msgstr "Può amministrare un progetto di traduzione"
+
+#: core/initdb.py:171
+msgid "Can commit to version control"
+msgstr "Può inviare al controllo di versione"
+
 #: middleware/captcha.py:122
 msgid "Time to answer has expired"
 msgstr ""
@@ -2636,7 +2637,7 @@ msgstr ""
 msgid "Failed to copy download file to export directory %s"
 msgstr ""
 
-#: scripts/example-actions/mozlangpack.py:141
+#: scripts/example-actions/mozlangpack.py:132
 msgid ""
 "Finished building the language pack, click on the download link to download "
 "it."
@@ -2808,23 +2809,22 @@ msgstr ""
 
 #: templates/db_error.html:14
 msgid ""
-"\n"
-"  Pootle can't connect to the database, the database is not initialized\n"
-"  yet, or a schema upgrade is needed before continuing.\n"
-"  "
+"Pootle can't connect to the database, the database is not\n"
+"initialized yet, or a schema upgrade is needed before continuing."
 msgstr ""
 
-#: templates/db_error.html:20
+#: templates/db_error.html:18
 #, python-format
 msgid ""
 "\n"
-"  Please read the <a href=\"%(url)s\">Pootle documentation</a> on\n"
-"  installation and upgrade instructions. Contact the server administrator\n"
-"  if you feel this is a mistake.\n"
-"  "
+"Please read the <a href=\"%(url)s\">Pootle documentation</a> for "
+"installation\n"
+"and upgrade instructions. Contact the server administrator if you feel this "
+"is\n"
+"a mistake."
 msgstr ""
 
-#: templates/db_error.html:27
+#: templates/db_error.html:24
 msgid "The reported error was:"
 msgstr ""
 

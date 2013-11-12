@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-10-31 17:15+0000\n"
+"POT-Creation-Date: 2013-11-12 10:57+0000\n"
 "PO-Revision-Date: 2013-02-27 13:28+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -227,38 +227,6 @@ msgid ""
 msgstr ""
 "Y disgrifiad a chyfarwyddiadau sydd ar y dudalen flaen a'r tudalen "
 "wybodaeth. Gwnewch yn siŵr i ddefnyddio HTML dilys."
-
-#: apps/pootle_app/management/__init__.py:90
-msgid "Can view a translation project"
-msgstr "Gallu gweld project cyfieithu"
-
-#: apps/pootle_app/management/__init__.py:94
-msgid "Can make a suggestion for a translation"
-msgstr "Gallu cynnig cyfieithiad"
-
-#: apps/pootle_app/management/__init__.py:98
-msgid "Can submit a translation"
-msgstr "Gallu cyflwyno cyfieithiad"
-
-#: apps/pootle_app/management/__init__.py:102
-msgid "Can overwrite translations on uploading files"
-msgstr "Gallu trosysgrifennu cyfieithiadau wrth lwytho ffeiliau i fyny"
-
-#: apps/pootle_app/management/__init__.py:106
-msgid "Can review translations"
-msgstr "Gallu adolygu cyfieithiadau"
-
-#: apps/pootle_app/management/__init__.py:110
-msgid "Can download archives of translation projects"
-msgstr "Gallu llwytho i lawr archif o'r project cyfieithu"
-
-#: apps/pootle_app/management/__init__.py:114
-msgid "Can administrate a translation project"
-msgstr "Gallu gweinyddu project cyfieithu"
-
-#: apps/pootle_app/management/__init__.py:118
-msgid "Can commit to version control"
-msgstr "Gallu cyflwyno i reolaeth fersiwn"
 
 #: apps/pootle_app/models/suggestion.py:35
 msgid "Pending"
@@ -877,7 +845,7 @@ msgid_plural "%(projects)d projects, %(average)d%% translated"
 msgstr[0] "%(projects)d project, %(average)d%% wedi ei gyfieithu"
 msgstr[1] "%(projects)d project, %(average)d%% wedi ei gyfieithu"
 
-#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:324
+#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:306
 #: apps/pootle_tagging/views.py:52 apps/pootle_translationproject/views.py:740
 msgid "No description yet."
 msgstr "Dim disgrifiad eto."
@@ -895,7 +863,7 @@ msgstr "Enw"
 msgid "Project"
 msgstr "Project"
 
-#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:406
+#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:388
 msgid "Language"
 msgstr "Iaith"
 
@@ -1448,17 +1416,13 @@ msgid "Report Target"
 msgstr "Targed Adroddiad"
 
 #: apps/pootle_project/views.py:119
-msgid "Filter using one or more tags"
-msgstr ""
-
-#: apps/pootle_project/views.py:161
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
 msgstr[0] "%(languages)d iaith, %(average)d%% cyfieithiwyd"
 msgstr[1] "%(languages)d iaith, %(average)d%% cyfieithiwyd"
 
-#: apps/pootle_project/views.py:395
+#: apps/pootle_project/views.py:377
 #: apps/pootle_translationproject/actions.py:209
 msgid "Update against templates"
 msgstr "Diweddaru yn erbyn templedi"
@@ -1469,13 +1433,17 @@ msgstr ""
 "Isod mae modd i chi ychwanegu, golygu a dileu'r caniatâd o fewn y project "
 "hwn."
 
-#: apps/pootle_project/templates/project/overview.html:18
+#: apps/pootle_project/templates/project/overview.html:19
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
 msgstr ""
 
-#: apps/pootle_project/templates/project/overview.html:21
+#: apps/pootle_project/templates/project/overview.html:22
 msgid "Show filtering"
+msgstr ""
+
+#: apps/pootle_project/templates/project/overview.html:33
+msgid "Filter using one or more tags"
 msgstr ""
 
 #: apps/pootle_project/templates/project/overview.html:37
@@ -1526,40 +1494,40 @@ msgstr "Sylw"
 msgid "anonymous user"
 msgstr "defnyddwyr anhysbys"
 
-#: apps/pootle_statistics/models.py:150
+#: apps/pootle_statistics/models.py:152
 #, python-format
 msgid ""
 "%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:153
+#: apps/pootle_statistics/models.py:155
 #, python-format
 msgid ""
 "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:156
+#: apps/pootle_statistics/models.py:158
 #, python-format
 msgid "%(user)s uploaded a file"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:171
+#: apps/pootle_statistics/models.py:173
 #, python-format
 msgid ""
 "%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:174
+#: apps/pootle_statistics/models.py:176
 #, python-format
 msgid ""
 "%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
 "\">%(source)s</a></i>"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:177
+#: apps/pootle_statistics/models.py:179
 #, python-format
 msgid ""
 "%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
@@ -2586,6 +2554,38 @@ msgstr "Gwiro"
 msgid "Overwritten submissions"
 msgstr ""
 
+#: core/initdb.py:143
+msgid "Can view a translation project"
+msgstr "Gallu gweld project cyfieithu"
+
+#: core/initdb.py:147
+msgid "Can make a suggestion for a translation"
+msgstr "Gallu cynnig cyfieithiad"
+
+#: core/initdb.py:151
+msgid "Can submit a translation"
+msgstr "Gallu cyflwyno cyfieithiad"
+
+#: core/initdb.py:155
+msgid "Can overwrite translations on uploading files"
+msgstr "Gallu trosysgrifennu cyfieithiadau wrth lwytho ffeiliau i fyny"
+
+#: core/initdb.py:159
+msgid "Can review translations"
+msgstr "Gallu adolygu cyfieithiadau"
+
+#: core/initdb.py:163
+msgid "Can download archives of translation projects"
+msgstr "Gallu llwytho i lawr archif o'r project cyfieithu"
+
+#: core/initdb.py:167
+msgid "Can administrate a translation project"
+msgstr "Gallu gweinyddu project cyfieithu"
+
+#: core/initdb.py:171
+msgid "Can commit to version control"
+msgstr "Gallu cyflwyno i reolaeth fersiwn"
+
 #: middleware/captcha.py:122
 msgid "Time to answer has expired"
 msgstr "Mae'r amser i ateb wedi dod i ben"
@@ -2617,7 +2617,7 @@ msgstr ""
 msgid "Failed to copy download file to export directory %s"
 msgstr ""
 
-#: scripts/example-actions/mozlangpack.py:141
+#: scripts/example-actions/mozlangpack.py:132
 msgid ""
 "Finished building the language pack, click on the download link to download "
 "it."
@@ -2792,23 +2792,22 @@ msgstr ""
 
 #: templates/db_error.html:14
 msgid ""
-"\n"
-"  Pootle can't connect to the database, the database is not initialized\n"
-"  yet, or a schema upgrade is needed before continuing.\n"
-"  "
+"Pootle can't connect to the database, the database is not\n"
+"initialized yet, or a schema upgrade is needed before continuing."
 msgstr ""
 
-#: templates/db_error.html:20
+#: templates/db_error.html:18
 #, python-format
 msgid ""
 "\n"
-"  Please read the <a href=\"%(url)s\">Pootle documentation</a> on\n"
-"  installation and upgrade instructions. Contact the server administrator\n"
-"  if you feel this is a mistake.\n"
-"  "
+"Please read the <a href=\"%(url)s\">Pootle documentation</a> for "
+"installation\n"
+"and upgrade instructions. Contact the server administrator if you feel this "
+"is\n"
+"a mistake."
 msgstr ""
 
-#: templates/db_error.html:27
+#: templates/db_error.html:24
 msgid "The reported error was:"
 msgstr ""
 
