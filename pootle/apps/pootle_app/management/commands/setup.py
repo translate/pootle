@@ -17,6 +17,8 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import absolute_import
+
 import logging
 import os
 
@@ -57,7 +59,12 @@ class Command(NoArgsCommand):
         else:
             logging.info('Upgrading existing Pootle installation.')
 
-            call_command('updatedb')  # Only run if Pootle is < 2.5.0.
+            from .upgrade import DEFAULT_POOTLE_BUILDVERSION
+
+            if current_buildversion < DEFAULT_POOTLE_BUILDVERSION:
+                # Run only if Pootle is < 2.5.0.
+                call_command('updatedb')
+
             call_command('syncdb', interactive=False)
 
             if current_buildversion < 25100:
