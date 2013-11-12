@@ -30,6 +30,7 @@ from django.core.management.base import NoArgsCommand
 from django.db.utils import DatabaseError
 
 from pootle_misc import siteconfig
+from pootle.__version__ import build as NEW_POOTLE_BUILD
 
 
 class Command(NoArgsCommand):
@@ -56,7 +57,7 @@ class Command(NoArgsCommand):
             call_command('initdb')
 
             logging.info('Successfully deployed new Pootle.')
-        else:
+        elif current_buildversion < NEW_POOTLE_BUILD:
             logging.info('Upgrading existing Pootle installation.')
 
             from .upgrade import DEFAULT_POOTLE_BUILDVERSION
@@ -83,3 +84,5 @@ class Command(NoArgsCommand):
             call_command('upgrade')
 
             logging.info('Successfully upgraded Pootle.')
+        else:
+            logging.info('Pootle is already up-to-date.')
