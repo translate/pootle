@@ -253,7 +253,7 @@
       $.history.init(function (hash) {
         var params = PTL.utils.getParsedHash(hash),
             isInitial = true,
-            withUid = 0,
+            uId = 0,
             tmpParamValue;
 
         // Walk through known filtering criterias and apply them to the editor object
@@ -269,7 +269,7 @@
               PTL.editor.displayEditUnit();
               return;
             } else {
-              withUid = tmpParamValue;
+              uId = tmpParamValue;
               // Don't retrieve initial data if there are existing results
               isInitial= !PTL.editor.units.length;
             }
@@ -387,7 +387,7 @@
 
         PTL.editor.fetchPages({
           initial: isInitial,
-          withUid: withUid,
+          uId: uId,
           success: function () {
             if (PTL.editor.units.getCurrent() === undefined) {
               PTL.editor.units.setFirstAsCurrent();
@@ -994,7 +994,7 @@
         defaults = {
           pages: [currentPage, currentPage + 1, currentPage - 1],
           initial: false,
-          withUid: 0
+          uId: 0
         },
         viewUrl = l('/xhr/units/'),
         reqData = {
@@ -1006,8 +1006,8 @@
     if (opts.initial) {
       reqData.initial = opts.initial;
     }
-    if (opts.withUid > 0) {
-      reqData.uid = opts.withUid;
+    if (opts.uId > 0) {
+      reqData.uid = opts.uId;
     } else {
       // We will only fetch pages that haven't already been fetched
       var pages = _.filter(opts.pages, function (pageNumber) {
@@ -1056,8 +1056,8 @@
             });
           }
 
-          if (opts.withUid) {
-            PTL.editor.units.setCurrent(opts.withUid);
+          if (opts.uId) {
+            PTL.editor.units.setCurrent(opts.uId);
           } else if (data.pager.uidList) {
             var firstInPage = data.pager.uidList[0];
             PTL.editor.units.setCurrent(firstInPage);
