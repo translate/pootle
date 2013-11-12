@@ -149,19 +149,17 @@ Setting Up the Database
 
 Before your run Pootle for the first time, you need to create the schema
 for the database and populate it with initial data. This is done by
-executing the :ref:`syncdb <commands#syncdb>` and :ref:`initdb
-<commands#initdb>` management commands:
+executing the :ref:`setup <commands#setup>` management command:
 
 .. code-block:: bash
 
-  $ pootle syncdb --noinput
-  $ pootle initdb
+  (env) $ pootle setup
 
 
 .. note::
 
    If you are installing directly from the code then you must also build the
-   assets after running the previous commands:
+   assets after running the previous command:
 
    .. code-block:: bash
 
