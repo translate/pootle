@@ -73,9 +73,50 @@ Once you have the new code configured to in your server using the correct
 settings file, you will be ready to run the database schema and data
 upgrade procedure.
 
+Since the database upgrade procedures have been growing in complexity in the
+last releases it was necessary to provide a simple way to upgrade Pootle using
+a single command. The old procedure is still available, mostly for debugging
+failing upgrades, but the new procedure is now the preferred one.
+
+
+.. _upgrading#simplified-upgrade:
+
+Simplified database upgrade
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 .. warning::
 
   Always make database backups before running any upgrades.
+
+
+This is now the preferred way to upgrade the database.
+
+The procedure is easy, just run:
+
+.. code-block:: bash
+
+  $ pootle setup
+
+
+.. _upgrading#detailed-upgrade:
+
+Step by step database upgrade
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. warning::
+
+  Always make database backups before running any upgrades.
+
+
+.. note::
+
+  Use this procedure only if the :ref:`Simplified database upgrade
+  <upgrading#simplified-upgrade>` procedure doesn't work for you.
+
+
+The step by step database upgrade procedure lets you control the upgrade
+process and tweak it. This is useful for debugging purposes.
+
 
 .. note::
 
@@ -100,17 +141,23 @@ that don't require any migrations:
   $ pootle syncdb --noinput
 
 
-.. note::
+For this specific version (Pootle 2.5.1), and due to Pootle's transitioning to
+South, you will need to run a fake migration action in order to let South know
+which is your current database schema. You can execute the fake migration by
+running the following commands:
 
-  At this point in time, and due to Pootle's transitioning to South, you will
-  need to run a fake migration action in order to let South know which is your
-  current database schema.
+.. code-block:: bash
 
-  You can execute the fake migration by running the following:
+  $ pootle migrate pootle_app --fake 0001
+  $ pootle migrate pootle_language --fake 0001
+  $ pootle migrate pootle_notifications --fake 0001
+  $ pootle migrate pootle_profile --fake 0001
+  $ pootle migrate pootle_project --fake 0001
+  $ pootle migrate pootle_statistics --fake 0001
+  $ pootle migrate pootle_store --fake 0001
+  $ pootle migrate pootle_translationproject --fake 0001
+  $ pootle migrate staticpages --fake 0001
 
-  .. code-block:: bash
-
-    $ pootle migrate --all --fake 0001
 
 The next step will perform any pending schema migrations. You can read more
 about the :ref:`migrate command <south:commands>` in South's documentation.
@@ -122,7 +169,9 @@ about the :ref:`migrate command <south:commands>` in South's documentation.
 
 Lastly, the :ref:`upgrade command <commands#upgrade>` will perform any extra
 operations needed by Pootle to finish the upgrade and will record the current
-code build versions for Pootle and the Translate Toolkit.
+code build versions for Pootle and the Translate Toolkit. Before running this
+command please check if you are interested on running it using any of its
+available flags.
 
 .. code-block:: bash
 
