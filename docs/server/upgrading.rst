@@ -111,17 +111,16 @@ tables that don't require any migrations.
     $ pootle migrate taggit --fake zero
 
 
-The second step will perform any pending schema migrations. You can read
-more about the :ref:`migrate command <south:commands>` in South's
-documentation.
+The next step will perform any pending schema migrations. You can read more
+about the :ref:`migrate command <south:commands>` in South's documentation.
 
 .. code-block:: bash
 
   $ pootle migrate
 
-Lastly, the :ref:`upgrade command <commands#upgrade>` will perform any
-extra operations needed by Pootle to finish the upgrade and will record
-the current code build versions for Pootle and the Translate Toolkit.
+Lastly, the :ref:`upgrade command <commands#upgrade>` will perform any extra
+operations needed by Pootle to finish the upgrade and will record the current
+code build versions for Pootle and the Translate Toolkit.
 
 .. code-block:: bash
 
