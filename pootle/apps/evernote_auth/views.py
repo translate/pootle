@@ -30,7 +30,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.encoding import iri_to_uri
-from django.utils.http import urlquote, urlencode
+from django.utils.http import is_safe_url, urlquote, urlencode
 
 from pootle_misc.baseurl import redirect
 from pootle_profile.forms import lang_auth_form_factory
@@ -59,7 +59,7 @@ def get_cookie_dict(request):
 
 
 def redirect_after_login(request, redirect_to):
-    if not redirect_to or '://' in redirect_to or ' ' in redirect_to:
+    if not is_safe_url(url=redirect_to, host=request.get_host()):
         redirect_to = iri_to_uri('/accounts/%s/' % \
                                  urlquote(request.user.username))
 
