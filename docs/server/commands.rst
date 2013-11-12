@@ -341,9 +341,9 @@ migrate
 .. versionadded:: 2.5.1
 
 This is South's :ref:`migrate command <south:commands>`, which applies
-migrations to bring the database up to the latest schema revision.  It is
-required for releases after 2.5.0, even for a fresh install where you are
-not upgrading from a previous release.
+migrations to bring the database up to the latest schema revision. It is
+required for releases after 2.5.0, even for a fresh install where you are not
+upgrading from a previous release.
 
 When upgrading from 2.5.0 (or earlier) to 2.5.1 (or later), before running
 migrate to apply migrations, you must run :ref:`commands#syncdb` to create the
