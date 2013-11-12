@@ -146,7 +146,7 @@ def evernote_login_link(request):
     redirect_to = request.REQUEST.get(auth.REDIRECT_FIELD_NAME, '')
 
     if request.user.is_authenticated():
-        return redirect_after_login(request)
+        return redirect_after_login(request, redirect_to)
     else:
         if request.POST:
             form = lang_auth_form_factory(request, data=request.POST)
