@@ -1092,7 +1092,7 @@
           PTL.editor.pagesGot = _.union(PTL.editor.pagesGot,
                                         data.pager.fetchedPages);
 
-          var i, j, unit, unitGroup;
+          var i, unitGroup;
           for (i=0; i<data.unit_groups.length; i++) {
             unitGroup = data.unit_groups[i];
             $.each(unitGroup, function (pootlePath, group) {
