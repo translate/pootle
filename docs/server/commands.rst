@@ -312,6 +312,17 @@ These commands expose the database installation and upgrade process from the
 command line.
 
 
+.. _commands#setup:
+
+setup
+^^^^^
+
+.. versionadded:: 2.5.1
+
+This command either initializes a new DB or upgrades an existing DB, as
+required.
+
+
 .. _commands#syncdb:
 
 syncdb
