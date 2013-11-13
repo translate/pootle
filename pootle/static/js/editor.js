@@ -423,7 +423,9 @@
           initial: isInitial,
           uId: uId,
           success: function () {
-            if (PTL.editor.units.getCurrent() === undefined) {
+            if (uId > 0) {
+              PTL.editor.units.setCurrent(uId);
+            } else {
               PTL.editor.units.setFirstAsCurrent();
             }
             PTL.editor.displayEditUnit();
@@ -1101,13 +1103,6 @@
                   });
               PTL.editor.units.set(units, {remove: false});
             });
-          }
-
-          if (opts.uId) {
-            PTL.editor.units.setCurrent(opts.uId);
-          } else if (data.uIds) {
-            var firstInPage = data.uIds[0];
-            PTL.editor.units.setCurrent(firstInPage);
           }
 
           if (opts.success && $.isFunction(opts.success)) {
