@@ -21,10 +21,15 @@
     </div>
     <% if ('project' in sugg) { %>
     <div class="extra-item-tm-project">
-      <a href="<%= sugg.project.absolute_url %>"><img src="<%= sugg.project.icon %>"
+      <a href="<%= sugg.project.absolute_url %>">
+      <% if (sugg.project.icon != "") {%>
+        <img src="<%= sugg.project.icon %>"
         alt="<%= sugg.project.project %>" width="24" height="24"
-        title="<%= sugg.project.projectname %>" /></a>
-      <div><%= sugg.project.projectname %></div>
+        title="<%= sugg.project.projectname %>" />
+      <% } else { %>
+        <%= sugg.project.projectname %>
+      <% } %>
+      </a>
     </div>
     <% } %>
   </div>

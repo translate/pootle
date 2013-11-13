@@ -801,7 +801,7 @@ def _get_project_icon(project):
         # static files
         return "/export" + path
     else:
-        return settings.STATIC_URL + "images/blank.gif"
+        return ""
 
 @ajax_required
 @get_unit_context('view')
