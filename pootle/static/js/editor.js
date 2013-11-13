@@ -284,23 +284,22 @@
       $.history.init(function (hash) {
         var params = PTL.utils.getParsedHash(hash),
             isInitial = true,
-            uId = 0,
-            tmpParamValue;
+            uId = 0;
 
         // Walk through known filtering criterias and apply them to the editor object
 
         if (params['unit']) {
-          tmpParamValue = parseInt(params['unit'], 10);
+          var uIdParam = parseInt(params['unit'], 10);
 
-          if (tmpParamValue && !isNaN(tmpParamValue)) {
+          if (uIdParam && !isNaN(uIdParam)) {
             var current = PTL.editor.units.getCurrent(),
-                newUnit = PTL.editor.units.get(tmpParamValue);
+                newUnit = PTL.editor.units.get(uIdParam);
             if (newUnit && newUnit !== current) {
               PTL.editor.units.setCurrent(newUnit);
               PTL.editor.displayEditUnit();
               return;
             } else {
-              uId = tmpParamValue;
+              uId = uIdParam;
               // Don't retrieve initial data if there are existing results
               isInitial= !PTL.editor.units.length;
             }
