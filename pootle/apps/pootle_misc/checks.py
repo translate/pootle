@@ -19,18 +19,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+import re
+
 from django.utils.translation import ugettext_lazy as _
 
-from translate.filters.decorators import Category
+from translate.filters.decorators import Category, critical
 from translate.filters import checks
 
 
 category_names = {
     Category.CRITICAL: _("Critical"),
-    Category.FUNCTIONAL: _("Functional"),
-    Category.COSMETIC: _("Cosmetic"),
-    Category.EXTRACTION: _("Extraction"),
-    Category.NO_CATEGORY: _("No category"),
 }
 
 check_names = {
@@ -77,13 +75,554 @@ check_names = {
     'validchars': _(u"Valid characters"),
     'variables': _(u"Placeholders"),
     'xmltags': _(u"XML tags"),
+    # Evernote checks
+    'broken_entities': _(u"Broken HTML Entities"),
+    'java_format': _(u"Java format"),
+    'template_format': _(u"Template format"),
+    'mustache_placeholders': _(u"Mustache placeholders"),
+    'mustache_placeholder_pairs': _(u"Mustache placeholder pairs"), #todo
+    'non_printable': _(u"Non printable"),
+    'unbalanced_tag_braces': _(u"Unbalanced tag braces"),
+    'changed_attributes': _(u""),
+    'unescaped_ampersands': _(u""),
+    'whitespace': _(u""),
+    'date_format ': _(u""),
+    'uppercase_placeholders': _(u""),
+    'percent_sign_placeholders': _(u""),
+    'dollar_sign_placeholders': _(u""),
+    'javaencoded_unicode': _(u""),
+    'objective_c_format': _(u""),
+    'android_format': _(u""),
+    'accelerators': _(u""),
+    'unbalanced_tags': _(u""),
+    'unbalanced_curly_braces': _(u""),
 }
 
 excluded_filters = ['hassuggestion', 'spellcheck']
 
+class ENChecker(checks.TranslationChecker):
+
+    @critical
+    def java_format(self, str1, str2):
+        fmt = u"\{\d+(?:,(?:number|date|time|choice))\}"
+        fmt_esc = u"\\\{\d+\\\}"
+        regex = re.compile(u"(%s|%s)" % (fmt, fmt_esc))
+        return _generic_check(str1, str2, regex, u"Incorrect Java format")
+
+    @critical
+    def template_format(self, str1, str2):
+        fmt = u"\$\{[\w\.\:]+\}"
+        regex = re.compile(u"(%s)" % fmt, re.U)
+        return _generic_check(str1, str2, regex, u"Incorrect template format")
+
+    @critical
+    def android_format(self, str1, str2):
+        fmt = u"%\d+\$[a-z]+"
+        regex = re.compile(u"(%s)" % fmt, re.U)
+        return _generic_check(str1, str2, regex, u"Incorrect Android format")
+
+    @critical
+    def objective_c_format(self, str1, str2):
+        fmt = u"%@|%\d+\$@"
+        regex = re.compile(u"(%s)" % fmt, re.U)
+        return _generic_check(str1, str2, regex, u"Incorrect Objective C format")
+
+    @critical
+    def javaencoded_unicode(self, str1, str2):
+        fmt = u"\\\\u[a-fA-F0-9]{4}"
+        regex = re.compile(u"(%s)" % fmt, re.U)
+        return _generic_check(str1, str2, regex, u"Incorrect Java-encoded unicode")
+
+    @critical
+    def dollar_sign_placeholders(self, str1, str2):
+        fmt = u"\$[\w\d]+?\$"
+        regex = re.compile(u"(%s)" % fmt, re.U)
+        return _generic_check(str1, str2, regex, u"Incorrect dollar sign placeholders")
+
+    @critical
+    def percent_sign_placeholders(self, str1, str2):
+        fmt = u"\%[\w\d]+?\%"
+        regex = re.compile(u"(%s)" % fmt, re.U)
+        return _generic_check(str1, str2, regex, u"Incorrect percent sign placeholders")
+
+    @critical
+    def uppercase_placeholders(self, str1, str2):
+        fmt = u"[A-Z_][A-Z0-9]*_[A-Z0-9_]*"
+        regex = re.compile(u"(%s)" % fmt, re.U)
+        return _generic_check(str1, str2, regex, u"Incorrect uppercase placeholders")
+
+    @critical
+    def mustache_placeholders(self, str1, str2):
+        fmt3 = u"\{{3}\S+?\}{3}"
+        fmt2 = u"\{{2}\S+?\}{2}"
+        fmt1 = u"\{{1}\S+?\}{1}"
+        regex = re.compile(u"(%s|%s|%s)" % (fmt3, fmt2, fmt1), re.U)
+        return _generic_check(str1, str2, regex, u"Incorrect mustache placeholders")
+
+    #todo
+    @critical
+    def mustache_placeholder_pairs(self, str1, str2):
+        def get_fingerprint(str, is_source=False, translation=''):
+            fmt = u""
+            regex = re.compile(u"(%s)" % fmt, re.U)
+            chunks = regex.split(str)
+            translate = False
+            fingerprint = ''
+            for chunk in chunks:
+                translate = not translate
+
+                if translate:
+                    # ordinary text (safe to translate)
+                    continue
+
+                # special text
+
+            return fingerprint
+
+        if check_translation(get_fingerprint, str1, str2):
+            return True
+        else:
+            raise checks.FilterFailure(u"Mustache placeholders mismatch")
+
+    #todo
+    @critical
+    def date_format(self, str1, str2):
+        def get_fingerprint(str, is_source=False, translation=''):
+            fmt = u""
+            regex = re.compile(u"(%s)" % fmt, re.U)
+            chunks = regex.split(str)
+            translate = False
+            fingerprint = ''
+            for chunk in chunks:
+                translate = not translate
+
+                if translate:
+                    # ordinary text (safe to translate)
+                    continue
+
+                # special text
+
+            return fingerprint
+
+        if check_translation(get_fingerprint, str1, str2):
+            return True
+        else:
+            raise checks.FilterFailure(u"Incorrect date format")
+
+    #todo
+    @critical
+    def whitespace(self, str1, str2):
+        def get_fingerprint(str, is_source=False, translation=''):
+            fmt = u""
+            regex = re.compile(u"(%s)" % fmt, re.U)
+            chunks = regex.split(str)
+            translate = False
+            fingerprint = ''
+            for chunk in chunks:
+                translate = not translate
+
+                if translate:
+                    # ordinary text (safe to translate)
+                    continue
+
+                # special text
+
+            return fingerprint
+
+        if check_translation(get_fingerprint, str1, str2):
+            return True
+        else:
+            raise checks.FilterFailure(u"Incorrect whitespaces")
+
+    #todo
+    @critical
+    def unescaped_ampersands(self, str1, str2):
+        def get_fingerprint(str, is_source=False, translation=''):
+            fmt = u""
+            regex = re.compile(u"(%s)" % fmt, re.U)
+            chunks = regex.split(str)
+            translate = False
+            fingerprint = ''
+            for chunk in chunks:
+                translate = not translate
+
+                if translate:
+                    # ordinary text (safe to translate)
+                    continue
+
+                # special text
+
+            return fingerprint
+
+        if check_translation(get_fingerprint, str1, str2):
+            return True
+        else:
+            raise checks.FilterFailure(u"Unescaped ampersand mismatch")
+
+    #todo
+    @critical
+    def changed_attributes(self, str1, str2):
+        def get_fingerprint(str, is_source=False, translation=''):
+            fmt = u""
+            regex = re.compile(u"(%s)" % fmt, re.U)
+            chunks = regex.split(str)
+            translate = False
+            fingerprint = ''
+            for chunk in chunks:
+                translate = not translate
+
+                if translate:
+                    # ordinary text (safe to translate)
+                    continue
+
+                # special text
+
+            return fingerprint
+
+        if check_translation(get_fingerprint, str1, str2):
+            return True
+        else:
+            raise checks.FilterFailure(u"Changed attributes")
+
+    @critical
+    def c_format(self, str1, str2):
+        def get_fingerprint(str, is_source=False, translation=''):
+            sprintf = u"%[\d]*(?:.\d+)*(?:h|l|I|I32|I64)*[cdiouxefgns]"
+            regex = re.compile(u"(%s)" % sprintf, re.U)
+            chunks = regex.split(str)
+            translate = False
+            fingerprint = ''
+            for chunk in chunks:
+                translate = not translate
+
+                if translate:
+                    # ordinary text (safe to translate)
+                    continue
+
+                # special text
+                fingerprint += "\001%s" % chunk
+
+            return fingerprint
+
+        if check_translation(get_fingerprint, str1, str2):
+            return True
+        else:
+            raise checks.FilterFailure(u"Incorrect C format")
+
+    @critical
+    def non_printable(self, str1, str2):
+        def get_fingerprint(str, is_source=False, translation=''):
+            fmt = u"[\000-\011\013-\037]"
+            regex = re.compile(u"(%s)" % fmt, re.U)
+
+            chunks = regex.split(str)
+            translate = False
+            fingerprint = ''
+
+            for chunk in chunks:
+                translate = not translate
+                if translate:
+                    # ordinary text (safe to translate)
+                    continue
+
+                # special text
+                chunk = '{0x%02x}' % ord(chunk);
+                fingerprint += "\001%s" % chunk
+
+            return fingerprint
+
+        if check_translation(get_fingerprint, str1, str2):
+            return True
+        else:
+            raise checks.FilterFailure(u"Non printable mismatch")
+
+    @critical
+    def unbalanced_tag_braces(self, str1, str2):
+        def get_fingerprint(str, is_source=False, translation=''):
+            fmt = u"[\<\>]"
+            regex = re.compile(u"(%s)" % fmt, re.U)
+
+            chunks = regex.split(str)
+            translate = False
+            count = 0
+            level = 0
+            opening_count = 0
+            closing_count = 0
+
+            for chunk in chunks:
+                translate = not translate
+                if translate:
+                    # ordinary text (safe to translate)
+                    continue
+
+                # special text
+                count += 1
+                if level >= 0:
+                    if chunk == '<':
+                        level += 1
+                        opening_count += 1
+
+                    if chunk == '>':
+                        level -= 1
+                        closing_count -= 1
+
+            # 1) check that total number of opening and closing brackets is
+            # equal in source and translation
+            # 2) check that the number of opening brackets matches the number
+            # of closing brackets
+
+            return u"\001".join(map(lambda x: u"%d" % x,
+                                    [count, level, opening_count, closing_count]))
+
+        if check_translation(get_fingerprint, str1, str2):
+            return True
+        else:
+            raise checks.FilterFailure(u"Unbalanced tag braces")
+
+    @critical
+    def unbalanced_curly_braces(self, str1, str2):
+        def get_fingerprint(str, is_source=False, translation=''):
+            fmt = u"[\{\}]"
+            regex = re.compile(u"(%s)" % fmt, re.U)
+
+            chunks = regex.split(str)
+            translate = False
+            count = 0
+            level = 0
+
+            for chunk in chunks:
+                translate = not translate
+                if translate:
+                    # ordinary text (safe to translate)
+                    continue
+
+                # special text
+                count += 1
+                if level >= 0:
+                    if chunk == '{':
+                        level += 1
+                    if chunk == '}':
+                        level -= 1
+
+            fingerprint = u"%d\001%d" % (count, level)
+
+            # if source string has unbalanced tags, always report it
+            if is_source and not level == 0:
+                # just make the fingerprint different by one symbol
+                fingerprint += u"\001"
+
+            return fingerprint
+
+        if check_translation(get_fingerprint, str1, str2):
+            return True
+        else:
+            raise checks.FilterFailure(u"Unbalanced curly braces")
+
+    @critical
+    def unbalanced_tags(self, str1, str2):
+        def get_fingerprint(str, is_source=False, translation=''):
+
+            if is_source:
+                # hardcoded rule: skip web banner images which are translated
+                # differently
+                fmt = u'^\<img src="\/images\/account\/bnr_/'
+                if re.compile(fmt, re.U).match(str):
+                    return None
+
+                # hardcoded rules for strings that look like tags but are not them
+                fmt = u'^<(Sync Required|None|no attributes|no tags|' + \
+                    u'no saved|searches|notebook|not available)>$'
+
+                if re.compile(fmt, re.U).match(str):
+                    return None
+
+            fmt = u"<\/?[\w]+.*?>"
+            regex = re.compile(u"(%s)" % fmt, re.U)
+
+            chunks = regex.split(str)
+            translate = False
+            fingerprint = ''
+            d = {}
+
+            for chunk in chunks:
+                translate = not translate
+                if translate:
+                    # ordinary text (safe to translate)
+                    continue
+
+                # special text
+                regex = re.compile(u"<(\/?[\w]+).*?>", re.U)
+                mo = regex.match(chunk)
+
+                if mo:
+                    tag = mo.group(1)
+                    if tag in d:
+                        d[tag] += 1
+                    else:
+                        d[tag] = 1
+
+            for key in sorted(d.keys()):
+                fingerprint += "\001%s\001%s" % (key, d[key])
+
+            return fingerprint
+
+        if check_translation(get_fingerprint, str1, str2):
+            return True
+        else:
+            raise checks.FilterFailure(u"Unbalanced tags")
+
+    @critical
+    def accelerators(self, str1, str2):
+        def get_fingerprint(str, is_source=False, translation=''):
+
+            # special rule for banner images in the web client which are
+            # translated differently, e.g.:
+            # From: <img src="/images/account/bnr_allow.gif" alt="Allow Account Access" />
+            # To:   <h1>Allow Konto Zugriff</h1>
+            if is_source:
+                fmt = u'^<img src="\/images\/account\/bnr_'
+                if re.compile(fmt, re.U):
+                    return None
+
+
+            # temporarily escape HTML entities
+            regex = re.compile(u"&(\w+);", re.U)
+            s = regex.sub(r'\001\1\001', str)
+
+            fmt = u"[&_\^]"
+            regex = re.compile(u"(%s)(?=\w)" % fmt, re.U)
+
+            chunks = regex.split(s)
+            translate = False
+            ampersand_count = 0
+            underscore_count = 0
+            circumflex_count = 0
+
+            regex = re.compile(u"\001(\w+)\001", re.U)
+            for chunk in chunks:
+                translate = not translate
+                if translate:
+                    # ordinary text (safe to translate)
+                    continue
+
+                # special text
+                if chunk == '&':
+                    ampersand_count += 1
+                if chunk == '_':
+                    underscore_count += 1
+                if chunk == '^':
+                    circumflex_count += 1
+
+                # restore HTML entities (will return chunks later)
+                chunk = regex.sub(r"&\1;", chunk)
+
+
+            fingerprint = u"%d\001%d\001%d" % (ampersand_count, underscore_count, circumflex_count)
+
+            return fingerprint
+
+        if check_translation(get_fingerprint, str1, str2):
+            return True
+        else:
+            raise checks.FilterFailure(u"Accelerator mismatch")
+
+    #@critical
+    #def a1(self, str1, str2):
+    #    pass
+
+    #@critical
+    #def a1(self, str1, str2):
+    #    pass
+
+    @critical
+    def brokenentities(self, str1, str2):
+        def get_fingerprint(str, is_source=False, translation=''):
+            regex = re.compile(u"(&#?[0-9a-zA-Z]+;?)", re.U)
+            chunks = regex.split(str)
+            translate = False
+            fingerprint = 1
+            
+            for chunk in chunks:
+                translate = not translate
+                if translate:
+                    # ordinary text (safe to translate)
+                    continue
+
+                # special text
+                # check if ';' is present at the end for some known named
+                # entities that should never match as false positives in
+                # the normal text
+                entities = ['amp', 'deg', 'frac14', 'frac12', 'frac34',
+                    'lt', 'gt', 'nbsp', 'mdash', 'ndash', 'hellip',
+                    'laquo', 'raquo', 'ldquo', 'rdquo',
+                    'lsquo', 'rsquo', 'larr', 'rarr'
+                ]
+                regex = re.compile(u"^&(%s)$" % '|'.join(entities), re.U)
+                if regex.match(chunk):
+                    fingerprint += 1
+
+                # check if ';' is present at the end for numeric and
+                # hexadecimal entities
+                regex = re.compile(u"^&#x?[0-9a-fA-F]$", re.U)
+                if regex.match(chunk):
+                    fingerprint += 1
+
+                # check if a prefix '#' symbol is missing for a numeric
+                # entity
+                regex = re.compile(u"o&\d+;", re.U)
+                if regex.match(chunk):
+                    fingerprint += 1
+
+                # check if a prefix '#' symbol is missing for a hexadecimal
+                # entity
+                regex = re.compile(u"&x[0-9a-fA-F]+;", re.U)
+                if regex.match(chunk):
+                    fingerprint += 1
+
+                # check if a prefix 'x' symbol is missing (or replaced with
+                # something else) for a hexadecimal entity
+                regex = re.compile(u"&#([^x\d])([0-9a-fA-F]+);")
+                mo = regex.match(chunk)
+                if mo:
+                    regex = re.compile(u"\D", re.U)
+                    if regex.match(mo.group(1)) or \
+                        regex.match(mo.group(2)):
+                        fingerprint += 1
+
+                # the checks below are conservative, i.e. they do not include
+                # the full valid Unicode range but just test for common
+                # mistakes in real-life XML/HTML entities
+
+                # check if a numbered entity is within acceptable range
+                regex = re.compile(u"&#(\d+);")
+                mo = regex.match(chunk)
+                if mo:
+                    number = mo.group(1)
+                    if (number < 32 and number != 10) or number > 65535:
+                        fingerprint += 1
+
+                # check if a hexadecimal numbered entity length is within
+                # acceptable range
+                regex = re.compile(u"&#x(\w+);", re.U)
+                mo = regex.match(chunk)
+                if mo:
+                    v = int(mo.group(1), 16)
+                    if (v < 32 and v != 10) or v > 65535:
+                        fingerprint += 1
+
+            if is_source and fingerprint > 1:
+                fingerprint = fingerprint + "\001"
+
+            return fingerprint
+
+        if check_translation(get_fingerprint, str1, str2):
+            return True
+        else:
+            raise checks.FilterFailure(u"Broken HTML entities")
+
 
 def get_qualitychecks():
-    sc = checks.StandardChecker()
+    sc = ENChecker()
     for filt in sc.defaultfilters:
         if not filt in excluded_filters:
             # don't use an empty string because of
@@ -120,3 +659,55 @@ def get_qualitycheck_schema(path_obj=None):
 def get_qualitychecks_by_category(category):
     checks = get_qualitychecks()
     return filter(lambda x: checks[x] == category, checks)
+
+
+def _generic_check(str1, str2, regex, message):
+    def get_fingerprint(str, is_source=False, translation=''):
+        chunks = regex.split(str);
+
+        translate = False
+        d = {}
+        fingerprint = ''
+
+        for chunk in chunks:
+            translate = not translate
+
+            if translate:
+                # ordinary text (safe to translate)
+                continue
+
+            # special text
+            if chunk in d:
+                d[chunk] += 1
+            else:
+                d[chunk] = 1
+
+        for key in sorted(d.keys()):
+            fingerprint += "\001%s\001%s" % (key, d[key])
+
+        return fingerprint
+
+    if check_translation(get_fingerprint, str1, str2):
+        return True
+    else:
+        raise checks.FilterFailure(message)
+
+
+def check_translation(get_fingerprint_func, string, translation):
+    if translation == '':
+        # no real translation provided, skipping
+        return True
+
+    a_fingerprint = get_fingerprint_func(string, True, translation)
+
+    if not a_fingerprint:
+        # skip translation as it doesn't match required criteria
+        return True
+
+    b_fingerprint = get_fingerprint_func(translation, False, string)
+
+    return a_fingerprint == b_fingerprint
+
+
+
+

@@ -37,7 +37,7 @@ from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
 from pootle_language.models import Language
 from pootle_misc.util import cached_property, deletefromcache
-from pootle_misc.checks import excluded_filters
+from pootle_misc.checks import excluded_filters, ENChecker
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
 from pootle_store.models import (Store, Unit, PARSED)
@@ -150,9 +150,9 @@ class TranslationProject(models.Model, TreeItem):
     @property
     def checker(self):
         from translate.filters import checks
-        checkerclasses = [checks.projectcheckers.get(self.project.checkstyle,
-                                                     checks.StandardChecker),
-                          checks.StandardUnitChecker]
+        # We do not use default Translate Toolkit checkers; instead use
+        # our own one
+        checkerclasses = [ENChecker]
 
         return checks.TeeChecker(checkerclasses=checkerclasses,
                                  excludefilters=excluded_filters,
