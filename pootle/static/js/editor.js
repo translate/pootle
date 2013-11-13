@@ -1121,8 +1121,8 @@
     });
   },
 
-  /* Updates the pager */
-  updatePager: function () {
+  /* Updates the navigation controls */
+  updateNav: function () {
     $("#items-count").text(this.units.total);
 
     var currentUnit = PTL.editor.units.getCurrent();
@@ -1152,7 +1152,7 @@
       success: function (data) {
         widget = data['editor'];
 
-        PTL.editor.updatePager();
+        PTL.editor.updateNav();
 
         if (data.ctx) {
           // Initialize context gap to the maximum context rows available
