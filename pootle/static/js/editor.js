@@ -17,8 +17,7 @@
     /* Initialize variables */
     this.units = new PTL.collections.UnitCollection;
 
-    this.pager = {current: 1, numPages: 2};
-    this.pagesGot = [];
+    this.pager = {perPage: this.settings.perPage};
 
     this.filter = 'all';
     this.checks = [];
@@ -384,7 +383,7 @@
         // re-enable normal event handling
         PTL.editor.preventNavigation = false;
 
-        PTL.editor.fetchPages({
+        PTL.editor.fetchUnits({
           initial: isInitial,
           uId: uId,
           success: function () {
@@ -915,9 +914,7 @@
   /* Sets the edit view for the current active unit */
   displayEditUnit: function () {
     if (PTL.editor.units.length) {
-      // Fetch pages asynchronously — we already have the needed pages
-      // so this will return units whenever it can
-      this.fetchPages();
+      this.fetchUnits();
 
       // Hide any visible message
       this.hideMsg();
@@ -976,22 +973,10 @@
   },
 
 
-  currentPage: function () {
-    var currentUnit = this.units.getCurrent();
-    return currentUnit !== undefined ? this.pageFor(currentUnit.id) : 1;
-  },
-
-  pageFor: function (uId) {
-    return parseInt(this.pager.uidList.indexOf(uId) / this.pager.perPage,
-                    10) + 1;
-  },
-
-  /* Fetches more view unit pages in case they're needed */
-  fetchPages: function (opts) {
+  /* Fetches more units in case they're needed */
+  fetchUnits: function (opts) {
     // TODO: move logic into UnitCollection
-    var currentPage = this.currentPage(),
-        defaults = {
-          pages: [currentPage, currentPage + 1, currentPage - 1],
+    var defaults = {
           initial: false,
           uId: 0
         },
@@ -1004,23 +989,40 @@
 
     if (opts.initial) {
       reqData.initial = opts.initial;
-    }
-    if (opts.uId > 0) {
-      reqData.uid = opts.uId;
-    } else {
-      // We will only fetch pages that haven't already been fetched
-      var pages = _.filter(opts.pages, function (pageNumber) {
-        return pageNumber > 0 &&
-               pageNumber <= PTL.editor.pager.numPages &&
-               (opts.pager || PTL.editor.pagesGot.indexOf(pageNumber) === -1);
-      });
 
-      // Nothing to be done
-      if (!pages.length) {
-        return;
+      if (opts.uId > 0) {
+        reqData.uids = opts.uId;
+      }
+    } else {
+      // Only fetch units limited to an offset, and omit units that have
+      // already been fetched
+      var fetchedIds = this.units.fetchedIds(),
+          offset = this.pager.perPage,
+          curUId = opts.uId > 0 ? opts.uId : this.units.getCurrent().id,
+          uIndex = this.pager.uidList.indexOf(curUId),
+          uIds, begin, end;
+
+      begin = Math.max(uIndex - offset, 0);
+      end = Math.min(uIndex + offset + 1, this.pager.total);
+
+      // Ensure we retrieve chunks of the right size
+      if (opts.uId === 0) {
+        if (fetchedIds.indexOf(this.pager.uidList[begin]) === -1) {
+          begin = Math.max(begin - offset, 0);
+        }
+        if (fetchedIds.indexOf(this.pager.uidList[end - 1]) === -1) {
+          end = Math.min(end + offset + 1, this.pager.total);
+        }
       }
 
-      reqData.pages = pages.join(',');
+      uIds = this.pager.uidList.slice(begin, end);
+      uIds = _.difference(uIds, fetchedIds);
+
+      if (!uIds.length) {
+        return;  // Nothing to be done
+      }
+
+      reqData.uids = uIds.join(',');
     }
 
     $.extend(reqData, this.getReqData());
@@ -1031,18 +1033,16 @@
       dataType: 'json',
       cache: false,
       success: function (data) {
-        if (data.pager.uidList) {
+        if (data.uidList) {
           // Clear old data and add new results
-          PTL.editor.pagesGot = [];
           PTL.editor.units.reset();
-          PTL.editor.pager = data.pager;
+
+          PTL.editor.pager.uidList = data.uidList;
+          PTL.editor.pager.total = data.uidList.length;
         }
 
         // Store view units in the client
         if (data.unit_groups.length) {
-          PTL.editor.pagesGot = _.union(PTL.editor.pagesGot,
-                                        data.pager.fetchedPages);
-
           var i, unitGroup;
           for (i=0; i<data.unit_groups.length; i++) {
             unitGroup = data.unit_groups[i];
@@ -1057,8 +1057,8 @@
 
           if (opts.uId) {
             PTL.editor.units.setCurrent(opts.uId);
-          } else if (data.pager.uidList) {
-            var firstInPage = data.pager.uidList[0];
+          } else if (data.uidList) {
+            var firstInPage = data.uidList[0];
             PTL.editor.units.setCurrent(firstInPage);
           }
 
@@ -1075,7 +1075,7 @@
 
   /* Updates the pager */
   updatePager: function () {
-    $("#items-count").text(this.pager.count);
+    $("#items-count").text(this.pager.total);
 
     var currentUnit = PTL.editor.units.getCurrent();
     if (currentUnit !== undefined) {
@@ -1280,7 +1280,7 @@
   /* Loads the editor on a index */
   gotoIndex: function (index) {
     if (index && !isNaN(index) && index > 0 &&
-        index <= PTL.editor.pager.count) {
+        index <= PTL.editor.pager.total) {
       var uId = PTL.editor.pager.uidList[index-1],
           newHash = PTL.utils.updateHashPart('unit', uId);
       $.history.load(newHash);

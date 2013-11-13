@@ -25,6 +25,7 @@ $(function() {
     pootlePath: '{{ pootle_path }}',
     ctxPath: '{{ ctx_path }}',
     resourcePath: '{{ resource_path }}',
+    perPage: {{ request.profile.get_unit_rows }}
   };
   {% if cansuggest or cantranslate %}
   options.mt = [];

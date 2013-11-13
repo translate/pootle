@@ -26,6 +26,12 @@ collections.UnitCollection = Backbone.Collection.extend({
     this.setCurrent(this.at(0));
   },
 
+  fetchedIds: function () {
+    return this.map(function (unit) {
+      return unit.id;
+    });
+  },
+
   next: function () {
     var index = this.indexOf(this.getCurrent());
     return (index + 1 === this.length) ? null : this.at(index + 1);

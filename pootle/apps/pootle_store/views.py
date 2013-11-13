@@ -40,9 +40,8 @@ from pootle.core.decorators import (get_path_obj, get_resource_context,
 from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.models.permissions import check_profile_permission
 from pootle.core.exceptions import Http400
-from pootle.core.paginator import paginate_units
 from pootle_misc.forms import make_search_form
-from pootle_misc.util import ajax_required, jsonify
+from pootle_misc.util import ajax_required, jsonify, to_int
 from pootle_profile.models import get_profile
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
@@ -344,17 +343,18 @@ def _build_units_list(units, reverse=False):
 def get_units(request):
     """Gets source and target texts and its metadata.
 
-    :return: A JSON-encoded object containing the source and target texts
+    :return: A JSON-encoded string containing the source and target texts
         grouped by the store they belong to.
 
-        When the ``pager`` GET parameter is present, pager information
-        will be returned too.
+        The optional `count` GET parameter defines the chunk size to
+        consider. The user's preference will be used by default.
+
+        When the `initial` GET parameter is present, a sorted list of
+        the result set ids will be returned too.
     """
     pootle_path = request.GET.get('path', None)
     if pootle_path is None:
         raise Http400(_('Arguments missing.'))
-
-    pages = None
 
     request.profile = get_profile(request.user)
     limit = request.profile.get_unit_rows()
@@ -362,56 +362,43 @@ def get_units(request):
     units_qs = Unit.objects.get_for_path(pootle_path, request.profile)
     step_queryset = get_step_query(request, units_qs)
 
-    # Maybe we are trying to load directly a specific unit, so we have
-    # to calculate its page number
-    uid = request.GET.get('uid', None)
-    if uid is not None:
-        try:
-            # XXX: Watch for performance, might want to drop into raw SQL
-            # at some stage
-            uid_list = list(step_queryset.values_list('id', flat=True))
-            preceding = uid_list.index(int(uid))
-            page_number = preceding / limit + 1
-            pages = ','.join(map(lambda x: str(x), [
-                page_number, page_number + 1, page_number - 1
-            ]))
-        except ValueError:
-            pass  # uid wasn't a number or not present in the results
+    is_initial_request = request.GET.get('initial', False)
+    chunk_size = request.GET.get('count', limit)
+    uids_param = filter(None, request.GET.get('uids', '').split(u','))
+    uids = filter(None, map(to_int, uids_param))
 
-    # XXX: Black magic going on here. See #4 for details.
-    step_queryset.query.sql_with_params()
-    page_list = paginate_units(request, step_queryset, items=limit,
-                               pages=pages)
-
-    fetched_pages = []
+    units = None
     unit_groups = []
-    for page in page_list:
-        fetched_pages.append(page.number)
-        units_by_path = groupby(page.object_list,
-                                lambda x: x.store.pootle_path)
-        for pootle_path, units in units_by_path:
-            unit_groups.append(_path_units_with_meta(pootle_path, units))
+    uid_list = []
+
+    if is_initial_request:
+        uid_list = list(step_queryset.values_list('id', flat=True))
+
+        if len(uids) == 1:
+            try:
+                uid = uids[0]
+                index = uid_list.index(uid)
+                begin = max(index - chunk_size, 0)
+                end = min(index + chunk_size + 1, len(uid_list))
+                uids = uid_list[begin:end]
+            except ValueError:
+                raise Http404  # `uid` not found in `uid_list`
+        else:
+            count = 2 * chunk_size
+            units = step_queryset[:count]
+
+    if units is None and uids:
+        units = step_queryset.filter(id__in=uids)
+
+    units_by_path = groupby(units, lambda x: x.store.pootle_path)
+    for pootle_path, units in units_by_path:
+        unit_groups.append(_path_units_with_meta(pootle_path, units))
 
     response = {
         'unit_groups': unit_groups,
-        'pager': {
-            'fetchedPages': fetched_pages,
-        }
     }
-
-    if request.GET.get('initial', False):
-        try:
-            pager = page_list[0]
-            response['pager'].update({
-                # FIXME: calculate only once
-                'uidList': list(step_queryset.values_list('id', flat=True)),
-                'count': pager.paginator.count,
-                'current': pager.number,
-                'numPages': pager.paginator.num_pages,
-                'perPage': pager.paginator.per_page,
-            })
-        except IndexError:
-            pass
+    if uid_list:
+        response['uidList'] = uid_list
 
     return HttpResponse(jsonify(response), mimetype="application/json")
 
