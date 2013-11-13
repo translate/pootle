@@ -862,6 +862,8 @@
       msg = gettext("Error while connecting to the server");
     } else if (xhr.status == 402) {
       PTL.captcha.onError(xhr, 'PTL.editor.error');
+    } else if (xhr.status == 404) {
+      msg = gettext("Not found");
     } else if (xhr.status == 500) {
       msg = gettext("Server error");
     } else if (s == "timeout") {
