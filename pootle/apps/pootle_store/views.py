@@ -827,7 +827,7 @@ def get_tm_results(request, unit):
         'source_lang': unit.store.translation_project.project.source_language,
         'source_length__range': (min_unit_len, max_unit_len),
     }
-    tmunits = TMUnit.objects.filter(**criteria)
+    tmunits = TMUnit.objects.filter(**criteria).exclude(unit=unit)
 
     comparer = LevenshteinComparer(max_len)
     for tmunit in tmunits:
