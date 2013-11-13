@@ -1140,14 +1140,12 @@
         currentUnit = this.units.getCurrent(),
         uid = currentUnit.id,
         editUrl = l(['/xhr/units/', uid, '/edit/'].join('')),
-        reqData = this.getReqData(),
         widget = '',
         ctx = {before: [], after: []};
 
     $.ajax({
       url: editUrl,
       async: false,
-      data: reqData,
       dataType: 'json',
       success: function (data) {
         widget = data['editor'];
