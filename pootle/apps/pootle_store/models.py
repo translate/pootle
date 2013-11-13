@@ -45,7 +45,8 @@ from translate.storage import base
 
 from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
                              TRANSLATION_DELETED, UNIT_ADDED, UNIT_DELETED,
-                             STORE_ADDED, STORE_DELETED, action_log, store_log)
+                             UNIT_OBSOLETE, STORE_ADDED, STORE_DELETED,
+                             action_log, store_log)
 from pootle.core.managers import RelatedManager
 from pootle.core.mixins import CachedMethods, TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
@@ -321,12 +322,7 @@ class Unit(models.Model, base.TranslationUnit):
         self._target_updated = False
         self._encoding = 'UTF-8'
 
-    def delete(self, *args, **kwargs):
-        action_log(user='system', action=UNIT_DELETED,
-            lang=self.store.translation_project.language.code,
-            unit=self.id,
-            translation='',
-            path=self.store.pootle_path)
+    def flag_store_before_going_away(self):
         self.store.flag_for_deletion(CachedMethods.TOTAL)
 
         if self.state == FUZZY:
@@ -345,6 +341,15 @@ class Unit(models.Model, base.TranslationUnit):
         la = get_cached_value(self.store, 'get_last_action')
         if not la or not 'id' in la or la['id'] == self.id:
             self.store.flag_for_deletion(CachedMethods.LAST_ACTION)
+
+    def delete(self, *args, **kwargs):
+        action_log(user='system', action=UNIT_DELETED,
+            lang=self.store.translation_project.language.code,
+            unit=self.id,
+            translation='',
+            path=self.store.pootle_path)
+
+        self.flag_store_before_going_away()
 
         super(Unit, self).delete(*args, **kwargs)
 
@@ -383,14 +388,13 @@ class Unit(models.Model, base.TranslationUnit):
                     self.state = UNTRANSLATED
                     self.store.flag_for_deletion(CachedMethods.TRANSLATED)
 
-        if self.id:
-            if hasattr(self, '_save_action'):
-                action_log(user=self._log_user, action=self._save_action,
-                    lang=self.store.translation_project.language.code,
-                    unit=self.id,
-                    translation=self.target_f,
-                    path=self.store.pootle_path
-                )
+        if self.id and hasattr(self, '_save_action'):
+            action_log(user=self._log_user, action=self._save_action,
+                lang=self.store.translation_project.language.code,
+                unit=self.id,
+                translation=self.target_f,
+                path=self.store.pootle_path
+            )
 
         super(Unit, self).save(*args, **kwargs)
 
@@ -767,6 +771,10 @@ class Unit(models.Model, base.TranslationUnit):
 
     def makeobsolete(self):
         if self.state > OBSOLETE:
+            # when Unit becomes obsolete the cache flags should be updated
+            self.flag_store_before_going_away()
+            self._save_action = UNIT_OBSOLETE
+
             self.state = OBSOLETE
 
     def resurrect(self):
