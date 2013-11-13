@@ -204,9 +204,9 @@ def stage_feature():
     bootstrap()
     create_db()
     _copy_db()
-    # Upload custom settings before calling the setup_db() command.
+    # Upload custom settings before calling the update_db() command.
     update_config()
-    setup_db()
+    update_db()
     deploy_static()
     enable_site()
     print('\n\nSuccessfully deployed at:\n\n\thttp://%(project_url)s\n' % env)
@@ -265,12 +265,9 @@ def setup_db():
     """Runs all the necessary steps to create the DB schema from scratch"""
     require('environment', provided_by=[production, staging])
 
-    print('\n\nRunning `setup` command...')
-
-    with settings(hide('stdout', 'stderr')):
-        with cd('%(project_repo_path)s' % env):
-            with prefix('source %(env_path)s/bin/activate' % env):
-                run('python manage.py setup')
+    syncdb()
+    migratedb()
+    initdb()
 
 
 def _copy_db():
@@ -300,6 +297,92 @@ def _copy_db():
             "%(temp_dump)s;}" % env)
 
         run('rm -f %(temp_dump)s' % env)
+
+
+def syncdb():
+    """Runs `syncdb` to create the DB schema"""
+    require('environment', provided_by=[production, staging])
+
+    print('\n\nRunning `syncdb` command...')
+
+    with settings(hide('stdout', 'stderr')):
+        with cd('%(project_repo_path)s' % env):
+            with prefix('source %(env_path)s/bin/activate' % env):
+                run('python manage.py syncdb --noinput')
+
+
+def initdb():
+    """Runs `initdb` to initialize the DB"""
+    require('environment', provided_by=[production, staging])
+
+    print('\n\nRunning `initdb` command...')
+
+    with settings(hide('stdout', 'stderr')):
+        with cd('%(project_repo_path)s' % env):
+            with prefix('source %(env_path)s/bin/activate' % env):
+                run('python manage.py initdb')
+
+
+def migratedb():
+    """Runs `migrate` to bring the DB up to date with the latest schema"""
+    require('environment', provided_by=[production, staging])
+
+    print('\n\nRunning `migrate` command...')
+
+    with settings(hide('stdout', 'stderr')):
+        with cd('%(project_repo_path)s' % env):
+            with prefix('source %(env_path)s/bin/activate' % env):
+                run('python manage.py migrate --noinput')
+
+
+def update_db():
+    """Runs all the necessary (and probably some unnecessary) steps to
+    update DB to the latest schema version
+    """
+    require('environment', provided_by=[production, staging])
+
+    _updatedb()
+    syncdb()
+    _migrate_fake()
+    migratedb()
+
+
+def _updatedb():
+    """Updates database schemas up to Pootle version 2.5"""
+    require('environment', provided_by=[production, staging])
+
+    print('\n\nRunning `updatedb` command...')
+
+    with settings(hide('stdout', 'stderr')):
+        with cd('%(project_repo_path)s' % env):
+            with prefix('source %(env_path)s/bin/activate' % env):
+                run('python manage.py updatedb')
+
+
+def _migrate_fake():
+    """Runs `migrate --fake` to convert the DB to migrations"""
+    require('environment', provided_by=[production, staging])
+
+    print('\n\nRunning `migrate --fake` command...')
+
+    with settings(hide('stdout', 'stderr')):
+        with cd('%(project_repo_path)s' % env):
+            with prefix('source %(env_path)s/bin/activate' % env):
+                # Don't fake (back to) initial migration if already converted
+                run(r"if ! python manage.py migrate --list | grep '(\*) 0001';"
+                    "then python manage.py migrate --all --fake 0001; fi")
+
+
+def upgrade():
+    """Runs `upgrade` to upgrade the DB for new Pootle/Translate Toolkit"""
+    require('environment', provided_by=[production, staging])
+
+    print('\n\nRunning `upgrade` command...')
+
+    with settings(hide('stdout', 'stderr')):
+        with cd('%(project_repo_path)s' % env):
+            with prefix('source %(env_path)s/bin/activate' % env):
+                run('python manage.py upgrade')
 
 
 def load_db(dumpfile=None):
@@ -391,7 +474,6 @@ def deploy():
 
     with settings(hide('stdout', 'stderr')):
         update_code()
-        setup_db()
         deploy_static()
         install_site()
 
