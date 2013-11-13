@@ -15,9 +15,9 @@
     options && $.extend(this.settings, options);
 
     /* Initialize variables */
-    this.units = new PTL.collections.UnitSet;
-
-    this.pager = {perPage: this.settings.perPage};
+    this.units = new PTL.collections.UnitSet([], {
+      chunkSize: this.settings.chunkSize
+    });
 
     this.filter = 'all';
     this.checks = [];
@@ -888,7 +888,7 @@
 
   /* Returns the unit groups for the current editor state */
   getUnitGroups: function () {
-    var limit = parseInt(((this.pager.perPage - 1) / 2), 10),
+    var limit = parseInt(((this.units.chunkSize - 1) / 2), 10),
         unitCount = this.units.length,
         currentUnit = this.units.getCurrent(),
         curIndex = this.units.indexOf(currentUnit),
@@ -999,25 +999,25 @@
       // Only fetch units limited to an offset, and omit units that have
       // already been fetched
       var fetchedIds = this.units.fetchedIds(),
-          offset = this.pager.perPage,
+          offset = this.units.chunkSize,
           curUId = opts.uId > 0 ? opts.uId : this.units.getCurrent().id,
-          uIndex = this.pager.uIds.indexOf(curUId),
+          uIndex = this.units.uIds.indexOf(curUId),
           uIds, begin, end;
 
       begin = Math.max(uIndex - offset, 0);
-      end = Math.min(uIndex + offset + 1, this.pager.total);
+      end = Math.min(uIndex + offset + 1, this.units.total);
 
       // Ensure we retrieve chunks of the right size
       if (opts.uId === 0) {
-        if (fetchedIds.indexOf(this.pager.uIds[begin]) === -1) {
+        if (fetchedIds.indexOf(this.units.uIds[begin]) === -1) {
           begin = Math.max(begin - offset, 0);
         }
-        if (fetchedIds.indexOf(this.pager.uIds[end - 1]) === -1) {
-          end = Math.min(end + offset + 1, this.pager.total);
+        if (fetchedIds.indexOf(this.units.uIds[end - 1]) === -1) {
+          end = Math.min(end + offset + 1, this.units.total);
         }
       }
 
-      uIds = this.pager.uIds.slice(begin, end);
+      uIds = this.units.uIds.slice(begin, end);
       uIds = _.difference(uIds, fetchedIds);
 
       if (!uIds.length) {
@@ -1039,8 +1039,8 @@
           // Clear old data and add new results
           PTL.editor.units.reset();
 
-          PTL.editor.pager.uIds = data.uIds;
-          PTL.editor.pager.total = data.uIds.length;
+          PTL.editor.units.uIds = data.uIds;
+          PTL.editor.units.total = data.uIds.length;
         }
 
         // Store view units in the client
@@ -1077,11 +1077,11 @@
 
   /* Updates the pager */
   updatePager: function () {
-    $("#items-count").text(this.pager.total);
+    $("#items-count").text(this.units.total);
 
     var currentUnit = PTL.editor.units.getCurrent();
     if (currentUnit !== undefined) {
-      var uIndex = this.pager.uIds.indexOf(currentUnit.id) + 1;
+      var uIndex = this.units.uIds.indexOf(currentUnit.id) + 1;
       $("#item-number").val(uIndex);
     }
 
@@ -1282,8 +1282,8 @@
   /* Loads the editor on a index */
   gotoIndex: function (index) {
     if (index && !isNaN(index) && index > 0 &&
-        index <= PTL.editor.pager.total) {
-      var uId = PTL.editor.pager.uIds[index-1],
+        index <= PTL.editor.units.total) {
+      var uId = PTL.editor.units.uIds[index-1],
           newHash = PTL.utils.updateHashPart('unit', uId);
       $.history.load(newHash);
     }

@@ -11,9 +11,14 @@ PTL.collections = PTL.collections || {};
 collections.UnitSet = Backbone.Collection.extend({
   model: models.Unit,
 
+  initialize: function (model, opts) {
+    this.chunkSize = opts.chunkSize;
+    this.uIds = [];
+    this.total = 0;
+  },
+
   comparator: function (unit) {
-    // FIXME: move uIds over the collection
-    return PTL.editor.pager.uIds.indexOf(unit.id);
+    return this.uIds.indexOf(unit.id);
   },
 
   getCurrent: function () {
