@@ -857,8 +857,9 @@ def get_tm_results(request, unit):
                                 suggester=profile,
                                 ).distinct().count()
                 translations = submissions - suggestions # XXX: is this correct?
-                title = _("%s<br/><br/>%s translations<br/>%s suggestions" %(
+                title = _("By %s on %s<br/><br/>%s translations<br/>%s suggestions" %(
                             profile.user.get_full_name(),
+                            tmunit.submitted_on,
                             translations, suggestions))
 
                 result['translator'] = {
