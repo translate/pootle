@@ -12,8 +12,8 @@ collections.UnitCollection = Backbone.Collection.extend({
   model: models.Unit,
 
   comparator: function (unit) {
-    // FIXME: move uidList over the collection
-    return PTL.editor.pager.uidList.indexOf(unit.id);
+    // FIXME: move uIds over the collection
+    return PTL.editor.pager.uIds.indexOf(unit.id);
   },
 
   getCurrent: function () {

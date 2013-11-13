@@ -1047,7 +1047,7 @@
       var fetchedIds = this.units.fetchedIds(),
           offset = this.pager.perPage,
           curUId = opts.uId > 0 ? opts.uId : this.units.getCurrent().id,
-          uIndex = this.pager.uidList.indexOf(curUId),
+          uIndex = this.pager.uIds.indexOf(curUId),
           uIds, begin, end;
 
       begin = Math.max(uIndex - offset, 0);
@@ -1055,15 +1055,15 @@
 
       // Ensure we retrieve chunks of the right size
       if (opts.uId === 0) {
-        if (fetchedIds.indexOf(this.pager.uidList[begin]) === -1) {
+        if (fetchedIds.indexOf(this.pager.uIds[begin]) === -1) {
           begin = Math.max(begin - offset, 0);
         }
-        if (fetchedIds.indexOf(this.pager.uidList[end - 1]) === -1) {
+        if (fetchedIds.indexOf(this.pager.uIds[end - 1]) === -1) {
           end = Math.min(end + offset + 1, this.pager.total);
         }
       }
 
-      uIds = this.pager.uidList.slice(begin, end);
+      uIds = this.pager.uIds.slice(begin, end);
       uIds = _.difference(uIds, fetchedIds);
 
       if (!uIds.length) {
@@ -1081,19 +1081,19 @@
       dataType: 'json',
       cache: false,
       success: function (data) {
-        if (data.uidList) {
+        if (data.uIds) {
           // Clear old data and add new results
           PTL.editor.units.reset();
 
-          PTL.editor.pager.uidList = data.uidList;
-          PTL.editor.pager.total = data.uidList.length;
+          PTL.editor.pager.uIds = data.uIds;
+          PTL.editor.pager.total = data.uIds.length;
         }
 
         // Store view units in the client
-        if (data.unit_groups.length) {
+        if (data.unitGroups.length) {
           var i, unitGroup;
-          for (i=0; i<data.unit_groups.length; i++) {
-            unitGroup = data.unit_groups[i];
+          for (i=0; i<data.unitGroups.length; i++) {
+            unitGroup = data.unitGroups[i];
             $.each(unitGroup, function (pootlePath, group) {
               var storeData = $.extend({pootlePath: pootlePath}, group.meta),
                   units = _.map(group.units, function (unit) {
@@ -1105,8 +1105,8 @@
 
           if (opts.uId) {
             PTL.editor.units.setCurrent(opts.uId);
-          } else if (data.uidList) {
-            var firstInPage = data.uidList[0];
+          } else if (data.uIds) {
+            var firstInPage = data.uIds[0];
             PTL.editor.units.setCurrent(firstInPage);
           }
 
@@ -1127,7 +1127,7 @@
 
     var currentUnit = PTL.editor.units.getCurrent();
     if (currentUnit !== undefined) {
-      var uIndex = this.pager.uidList.indexOf(currentUnit.id) + 1;
+      var uIndex = this.pager.uIds.indexOf(currentUnit.id) + 1;
       $("#item-number").val(uIndex);
     }
 
@@ -1333,7 +1333,7 @@
   gotoIndex: function (index) {
     if (index && !isNaN(index) && index > 0 &&
         index <= PTL.editor.pager.total) {
-      var uId = PTL.editor.pager.uidList[index-1],
+      var uId = PTL.editor.pager.uIds[index-1],
           newHash = PTL.utils.updateHashPart('unit', uId);
       $.history.load(newHash);
     }
