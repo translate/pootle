@@ -430,7 +430,7 @@ class Unit(models.Model, base.TranslationUnit):
         self._target_updated = False
         self._encoding = 'UTF-8'
 
-    def delete(self, *args, **kwargs):
+    def flag_store_before_going_away(self):
         self.store.flag_for_deletion(CachedMethods.TOTAL)
 
         if self.state == FUZZY:
@@ -449,6 +449,9 @@ class Unit(models.Model, base.TranslationUnit):
         la = get_cached_value(self.store, 'get_last_action')
         if not la or not 'id' in la or la['id'] == self.id:
             self.store.flag_for_deletion(CachedMethods.LAST_ACTION)
+
+    def delete(self, *args, **kwargs):
+        self.flag_store_before_going_away()
 
         super(Unit, self).delete(*args, **kwargs)
 
@@ -848,6 +851,10 @@ class Unit(models.Model, base.TranslationUnit):
 
     def makeobsolete(self):
         if self.state > OBSOLETE:
+            # when Unit becomes obsolete the cache flags should be updated
+            self.flag_store_before_going_away()
+            self._save_action = UNIT_OBSOLETE
+
             self.state = OBSOLETE
 
     def resurrect(self):
