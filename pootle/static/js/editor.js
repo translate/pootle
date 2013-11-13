@@ -15,7 +15,7 @@
     options && $.extend(this.settings, options);
 
     /* Initialize variables */
-    this.units = new PTL.collections.UnitCollection;
+    this.units = new PTL.collections.UnitSet;
 
     this.pager = {perPage: this.settings.perPage};
 
@@ -1023,7 +1023,7 @@
 
   /* Fetches more units in case they're needed */
   fetchUnits: function (opts) {
-    // TODO: move logic into UnitCollection
+    // TODO: move logic into UnitSet
     var defaults = {
           initial: false,
           uId: 0
