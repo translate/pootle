@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2004-2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -158,3 +159,13 @@ def cached_property(f):
         return value
 
     return property(_closure)
+
+
+def to_int(value):
+    """Converts `value` to `int` and returns `None` if the conversion is
+    not possible.
+    """
+    try:
+        return int(value)
+    except ValueError:
+        return None

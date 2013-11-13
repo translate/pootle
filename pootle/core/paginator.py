@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-from django.core.paginator import InvalidPage, Paginator
+from django.core.paginator import Paginator
 
 
 def paginate(request, queryset, items=30, page=None):
@@ -34,34 +34,3 @@ def paginate(request, queryset, items=30, page=None):
     page = min(page, paginator.num_pages)
 
     return paginator.page(page)
-
-
-def paginate_units(request, queryset, items=30, pages=None):
-    """Paginates a `Unit` queryset and returns a list of Page objects."""
-    paginator = Paginator(queryset, items)
-
-    if pages is None:
-        pages = request.GET.get('pages', '1,2')
-    elif isinstance(pages, int):
-        pages = str(pages)
-
-    page_list = []
-    added_pages = []
-    page_numbers = pages.split(',')
-
-    for page_number in page_numbers:
-        try:
-            page_number = int(page_number)
-        except ValueError:
-            continue
-
-        try:
-            page = paginator.page(page_number)
-
-            if page_number not in added_pages:
-                page_list.append(page)
-                added_pages.append(page_number)
-        except InvalidPage:
-            pass
-
-    return page_list
