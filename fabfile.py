@@ -261,6 +261,18 @@ def drop_db():
         abort('\nAborting.')
 
 
+def setup():
+    """Runs `setup` to create or upgrade the DB as required."""
+    require('environment', provided_by=[production, staging])
+
+    print('\n\nRunning `setup` command...')
+
+    with settings(hide('stdout', 'stderr')):
+        with cd('%(project_repo_path)s' % env):
+            with prefix('source %(env_path)s/bin/activate' % env):
+                run('python manage.py setup')
+
+
 def setup_db():
     """Runs all the necessary steps to create the DB schema from scratch"""
     require('environment', provided_by=[production, staging])
@@ -474,6 +486,7 @@ def deploy():
 
     with settings(hide('stdout', 'stderr')):
         update_code()
+        setup()
         deploy_static()
         install_site()
 
