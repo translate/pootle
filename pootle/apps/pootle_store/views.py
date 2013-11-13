@@ -395,10 +395,10 @@ def get_units(request):
         unit_groups.append(_path_units_with_meta(pootle_path, units))
 
     response = {
-        'unit_groups': unit_groups,
+        'unitGroups': unit_groups,
     }
     if uid_list:
-        response['uidList'] = uid_list
+        response['uIds'] = uid_list
 
     return HttpResponse(jsonify(response), mimetype="application/json")
 
