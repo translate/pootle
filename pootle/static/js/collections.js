@@ -8,7 +8,7 @@ PTL.collections = PTL.collections || {};
  * PTL.collections.Units
  */
 
-collections.UnitCollection = Backbone.Collection.extend({
+collections.UnitSet = Backbone.Collection.extend({
   model: models.Unit,
 
   comparator: function (unit) {
