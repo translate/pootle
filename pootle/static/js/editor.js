@@ -269,7 +269,7 @@
             } else {
               uId = uIdParam;
               // Don't retrieve initial data if there are existing results
-              isInitial= !PTL.editor.units.length;
+              isInitial = !PTL.editor.units.length;
             }
           }
         }
