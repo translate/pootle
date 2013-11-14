@@ -98,6 +98,7 @@ deploy
 This command:
 
 - Calls the :ref:`update_code <fabric-commands#update-code>` command
+- Calls the :ref:`setup <fabric-commands#setup>` command
 - Calls the :ref:`deploy_static <fabric-commands#deploy-static>` command
 - Calls the :ref:`install_site <fabric-commands#install-site>` command
 
@@ -440,6 +441,25 @@ settings, which are then used for all the subsequent commands (just
 This example is like the previous one, with the addition of the
 :option:`feature` argument that triggers the altering of several settings. That
 altering is necessary for working with feature-staging servers.
+
+
+.. _fabric-commands#setup:
+
+setup
+-----
+
+.. versionadded:: 2.5.1
+
+This command:
+
+- Runs :ref:`setup <commands#setup>` to create or upgrade the database as
+  required
+
+Examples:
+
+.. code-block:: bash
+
+    $ fab production setup
 
 
 .. _fabric-commands#setup-db:

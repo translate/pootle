@@ -334,7 +334,7 @@ When setting up the database there are several possible scenarios:
 
       $ fab production create_db  # Creates Pootle DB on MySQL
       $ fab production update_config  # Uploads the settings
-      $ fab production setup_db   # Populates the initial DB and its schema
+      $ fab production setup  # Creates the DB tables and populates the DB
 
 * If creating a blank database and populating with a (local) database backup:
 
@@ -355,8 +355,7 @@ When setting up the database there are several possible scenarios:
   .. code-block:: bash
 
       $ fab production update_config  # Uploads the settings
-      $ fab production update_db  # Updates DB schema to latest version
-      $ fab production upgrade    # Applies various non-schema cleanup & recovery
+      $ fab production setup  # Updates the DB to the latest version
 
 
 .. _fabric-deployment#enabling-the-web-server:
