@@ -75,7 +75,7 @@ def download_source(request, path_obj, **kwargs):
         text = _("Download XLIFF")
         tooltip = _("Download file in XLIFF format")
         href = dispatch.export(path_obj.pootle_path, 'xlf')
-    elif path_obj.translation_project.project.is_monolingual():
+    elif path_obj.translation_project.project.is_monolingual:
         text = _('Export')
         tooltip = _('Export translations')
     else:

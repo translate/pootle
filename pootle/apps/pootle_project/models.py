@@ -55,58 +55,82 @@ class ProjectManager(RelatedManager):
 
 class Project(models.Model):
 
-    code_help_text = _('A short code for the project. This should only '
-                       'contain ASCII characters, numbers, and the underscore '
-                       '(_) character.')
-    code = models.CharField(max_length=255, null=False, unique=True,
-                            db_index=True, verbose_name=_('Code'),
-                            help_text=code_help_text)
-
-    fullname = models.CharField(max_length=255, null=False,
-                                verbose_name=_("Full Name"))
-
-    description_help_text = _('A description of this project. This is useful '
-                              'to give more information or instructions. '
-                              'Allowed markup: %s', get_markup_filter_name())
-    description = MarkupField(blank=True, help_text=description_help_text)
+    code = models.CharField(
+        max_length=255,
+        null=False,
+        unique=True,
+        db_index=True,
+        verbose_name=_('Code'),
+        help_text=_('A short code for the project. This should only contain '
+                    'ASCII characters, numbers, and the underscore (_) '
+                    'character.'),
+    )
+    fullname = models.CharField(
+        max_length=255,
+        null=False,
+        verbose_name=_("Full Name"),
+    )
+    description = MarkupField(
+        blank=True,
+        help_text=_('A description of this project. This is useful to give '
+                    'more information or instructions. Allowed markup: %s',
+                    get_markup_filter_name()),
+    )
 
     checker_choices = [('standard', 'standard')]
     checkers = list(checks.projectcheckers.keys())
     checkers.sort()
     checker_choices.extend([(checker, checker) for checker in checkers])
-    checkstyle = models.CharField(max_length=50, default='standard',
-                                  null=False, choices=checker_choices,
-                                  verbose_name=_('Quality Checks'))
-
-    localfiletype = models.CharField(max_length=50, default="po",
-                                     choices=filetype_choices,
-                                     verbose_name=_('File Type'))
-
-    treestyle_choices = (
-        # TODO: check that the None is stored and handled correctly
-        ('auto', _('Automatic detection (slower)')),
-        ('gnu', _('GNU style: files named by language code')),
-        ('nongnu', _('Non-GNU: Each language in its own directory')),
+    checkstyle = models.CharField(
+        max_length=50,
+        default='standard',
+        null=False,
+        choices=checker_choices,
+        verbose_name=_('Quality Checks'),
     )
-    treestyle = models.CharField(max_length=20, default='auto',
-                                 choices=treestyle_choices,
-                                 verbose_name=_('Project Tree Style'))
 
-    source_language = models.ForeignKey('pootle_language.Language',
-                                        db_index=True,
-                                        verbose_name=_('Source Language'))
+    localfiletype = models.CharField(
+        max_length=50,
+        default="po",
+        choices=filetype_choices,
+        verbose_name=_('File Type'),
+    )
+    treestyle = models.CharField(
+        max_length=20,
+        default='auto',
+        choices=(
+            # TODO: check that the None is stored and handled correctly
+            ('auto', _('Automatic detection (slower)')),
+            ('gnu', _('GNU style: files named by language code')),
+            ('nongnu', _('Non-GNU: Each language in its own directory')),
+        ),
+        verbose_name=_('Project Tree Style'),
+    )
 
-    ignoredfiles = models.CharField(max_length=255, blank=True, null=False,
-                                    default="", verbose_name=_('Ignore Files'))
-
-    directory = models.OneToOneField('pootle_app.Directory', db_index=True,
-                                     editable=False)
-
-    report_target_help_text = _('A URL or an email address where issues with '
-                                'the source text can be reported.')
-    report_target = models.CharField(max_length=512, blank=True,
-                                     verbose_name=_("Report Target"),
-                                     help_text=report_target_help_text)
+    source_language = models.ForeignKey(
+        'pootle_language.Language',
+        db_index=True,
+        verbose_name=_('Source Language'),
+    )
+    ignoredfiles = models.CharField(
+        max_length=255,
+        blank=True,
+        null=False,
+        default="",
+        verbose_name=_('Ignore Files'),
+    )
+    directory = models.OneToOneField(
+        'pootle_app.Directory',
+        db_index=True,
+        editable=False,
+    )
+    report_target = models.CharField(
+        max_length=512,
+        blank=True,
+        verbose_name=_("Report Target"),
+        help_text=_('A URL or an email address where issues with the source '
+                    'text can be reported.'),
+    )
 
     objects = ProjectManager()
 
@@ -128,6 +152,11 @@ class Project(models.Model):
     def is_terminology(self):
         """Returns ``True`` if this project is a terminology project."""
         return self.checkstyle == 'terminology'
+
+    @property
+    def is_monolingual(self):
+        """Return ``True`` if this project is monolingual."""
+        return is_monolingual(self.get_file_class())
 
     ############################ Cached properties ############################
 
@@ -262,10 +291,6 @@ class Project(models.Model):
         """Returns the TranslationStore subclass required for parsing
         project files."""
         return factory_classes[self.localfiletype]
-
-    def is_monolingual(self):
-        """Returns ``True`` if this project is monolingual."""
-        return is_monolingual(self.get_file_class())
 
     def file_belongs_to_project(self, filename, match_templates=True):
         """Tests if ``filename`` matches project filetype (ie. extension).

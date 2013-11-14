@@ -379,7 +379,7 @@ class TranslationProject(models.Model):
             template_translation_project == self):
             return
 
-        monolingual = self.project.is_monolingual()
+        monolingual = self.project.is_monolingual
 
         if not monolingual:
             self.sync()
@@ -400,9 +400,10 @@ class TranslationProject(models.Model):
             if pootle_path is not None and new_pootle_path != pootle_path:
                 continue
 
-            relative_po_path = os.path.relpath(new_path, settings.PODIRECTORY)
             try:
                 from pootle.scripts import hooks
+                relative_po_path = os.path.relpath(new_path,
+                                                   settings.PODIRECTORY)
                 if not hooks.hook(self.project.code, "pretemplateupdate",
                                   relative_po_path):
                     continue
@@ -420,18 +421,16 @@ class TranslationProject(models.Model):
 
         if new_files and versioncontrol.hasversioning(project_path):
             from pootle.scripts import hooks
-            message = "New files added from %s based on templates" % \
-                      (settings.TITLE)
+            message = ("New files added from %s based on templates" %
+                       settings.TITLE)
 
             filestocommit = []
             for new_file in new_files:
                 try:
-                    filestocommit.extend(hooks.hook(self.project.code,
-                                                    "precommit",
-                                                    new_file.file.name,
-                                                    author=None,
-                                                    message=message)
-                                         )
+                    hook_files = hooks.hook(self.project.code, "precommit",
+                                            new_file.file.name, author=None,
+                                            message=message)
+                    filestocommit.extend(hook_files)
                 except ImportError:
                     # Failed to import the hook - we're going to assume there
                     # just isn't a hook to import. That means we'll commit the
@@ -463,13 +462,13 @@ class TranslationProject(models.Model):
                                       newstats=newstats)
 
     def scan_files(self, vcs_sync=True):
-        """Scans the file system and returns a list of translation files.
+        """Scan the file system and return a list of translation files.
 
         :param vcs_sync: boolean on whether or not to synchronise the PO
                          directory with the VCS checkout.
         """
-        projects = [p.strip() for p in self.project.ignoredfiles.split(',')]
-        ignored_files = set(projects)
+        proj_ignore = [p.strip() for p in self.project.ignoredfiles.split(',')]
+        ignored_files = set(proj_ignore)
         ext = os.extsep + self.project.localfiletype
 
         # Scan for pots if template project
