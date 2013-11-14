@@ -46,7 +46,7 @@ checklist.
 
 * After a successful upgrade, consider clearing your cache. For users of
   memcached it is enough to restart memcached. For users of the default
-  database cache, you can drop the `pootlecache` table and recreate it
+  database cache, you can drop the ``pootlecache`` table and recreate it
   with:
 
   .. code-block:: bash
@@ -54,7 +54,12 @@ checklist.
     $ pootle createcachetable pootlecache
 
 * Finally run the :ref:`collectstatic <commands#collectstatic>` and
-  :ref:`assets build <commands#assets>` commands.
+  :ref:`assets build <commands#assets>` commands to update the static assets:
+
+  .. code-block:: bash
+
+    $ pootle collectstatic --clear --noinput
+    $ pootle assets build
 
 
 .. _upgrading#database:
@@ -74,17 +79,21 @@ upgrade procedure.
 
 .. note::
 
-  If you are upgrading from a Pootle version older than 2.5, you will need
-  an extra step at the beginning: use the :ref:`updatedb command
-  <commands#updatedb>` first to upgrade the database schema to the state
-  of Pootle 2.5.
+  If you are upgrading from a Pootle version older than 2.5.0, you will need
+  an extra step at the beginning (before running ``syncdb --noinput``):
 
-  This is necessary due to the changes made to the schema migration
-  mechanisms after the 2.5 release.
+  .. code-block:: bash
+
+    $ pootle updatedb
 
 
-In the first step, the syncdb command will create any missing database
-tables that don't require any migrations.
+  The :ref:`updatedb command <commands#updatedb>` upgrades the database schema
+  to the state of Pootle 2.5.0. This is necessary due to the changes made to
+  the database schema migration mechanisms after the 2.5.0 release.
+
+
+In the first step, the syncdb command will create any missing database tables
+that don't require any migrations:
 
 .. code-block:: bash
 
@@ -109,6 +118,7 @@ about the :ref:`migrate command <south:commands>` in South's documentation.
 .. code-block:: bash
 
   $ pootle migrate
+
 
 Lastly, the :ref:`upgrade command <commands#upgrade>` will perform any extra
 operations needed by Pootle to finish the upgrade and will record the current
