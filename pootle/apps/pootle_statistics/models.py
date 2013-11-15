@@ -135,7 +135,12 @@ class Submission(models.Model):
 
         # Sadly we may not have submitter information in all the situations yet
         if self.submitter:
-            displayname = self.submitter.fullname
+            if self.from_suggestion:
+                displayuser = self.from_suggestion.reviewer
+            else:
+                displayuser = self.submitter
+
+            displayname = displayuser.fullname
             if not displayname:
                 displayname = self.submitter.user.username
         else:
