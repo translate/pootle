@@ -134,6 +134,8 @@ class Submission(models.Model):
             }
 
         # Sadly we may not have submitter information in all the situations yet
+        # TODO check if it is truth
+        # we call get_absolute_url and gravatar_url later without any check
         if self.submitter:
             if self.from_suggestion:
                 displayuser = self.from_suggestion.reviewer
@@ -147,10 +149,10 @@ class Submission(models.Model):
             displayname = _("anonymous user")
 
         action_bundle = {
-            "profile_url": self.submitter.get_absolute_url(),
-            "gravatar_url": self.submitter.gravatar_url(20),
+            "profile_url": displayuser.get_absolute_url(),
+            "gravatar_url": displayuser.gravatar_url(20),
             "displayname": displayname,
-            "username": self.submitter.user.username,
+            "username": displayuser.user.username,
             "date": self.creation_time,
             "isoformat_date": self.creation_time.isoformat(),
             "action": "",
