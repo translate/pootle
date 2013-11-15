@@ -13,6 +13,19 @@ interested in:
 * Exploring API features in detail
 
 
+.. _api#enabling-api:
+
+Enabling the Pootle API
+=======================
+
+Pootle API is disabled by default. To enable it just put the following line on
+your custom settings:
+
+.. code-block:: python
+
+  POOTLE_ENABLE_API = True
+
+
 .. _api#using:
 
 Pootle API usage

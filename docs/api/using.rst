@@ -11,6 +11,15 @@ Pootle API is created using `Tastypie <http://tastypieapi.org/>`_ so you might
 need to refer to `its documentation <http://django-tastypie.readthedocs.org/>`_
 as well.
 
+.. note::
+
+    Pootle API is disabled by default. To enable it just put the following line
+    on your custom settings for Pootle:
+
+    .. code-block:: python
+
+        POOTLE_ENABLE_API = True
+
 
 .. _using-pootle-api#how-to-perform-queries:
 
