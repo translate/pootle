@@ -375,15 +375,9 @@ html[dir="rtl"] #nav-access
     right: -1000px;
 }
 
-#content,
-#postcontent
-{
-    margin: 0 1em;
-}
-
-#precontent,
 #content
 {
+    margin: 0 1em;
     clear: both;
 }
 
