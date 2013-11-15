@@ -486,7 +486,8 @@ def deploy():
 
     with settings(hide('stdout', 'stderr')):
         update_code()
-        setup()
+        syncdb()
+        migratedb()
         deploy_static()
         install_site()
 

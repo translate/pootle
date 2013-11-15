@@ -98,7 +98,8 @@ deploy
 This command:
 
 - Calls the :ref:`update_code <fabric-commands#update-code>` command
-- Calls the :ref:`setup <fabric-commands#setup>` command
+- Calls the :ref:`syncdb <fabric-commands#syncdb>` command
+- Calls the :ref:`migratedb <fabric-commands#migratedb>` command
 - Calls the :ref:`deploy_static <fabric-commands#deploy-static>` command
 - Calls the :ref:`install_site <fabric-commands#install-site>` command
 
