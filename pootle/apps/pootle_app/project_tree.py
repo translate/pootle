@@ -178,8 +178,8 @@ def add_items(fs_items, db_items, create_or_resurrect_db_item):
         new_items.append(item)
         try:
             item.save()
-        except Exception as e:
-            logging.error('Error while adding %s:\n%s', item, e)
+        except Exception:
+            logging.exception('Error while adding %s', item)
 
     return items, new_items
 
