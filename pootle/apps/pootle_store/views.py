@@ -687,6 +687,10 @@ def submit(request, unit):
                         new_value=new_value,
                 )
                 sub.save()
+                #TODO:
+                # uncomment if we need to calculate last_action directly
+                # after saving
+                #if field == ... ?
                 #last_action = form.instance.store._get_last_action(sub)
                 #form.instance.store.set_last_action(last_action)
 
