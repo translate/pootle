@@ -18,6 +18,13 @@
     {% include 'admin/staticpages/_table.html' with object_list=staticpages %}
     <a class="btn" href="{% url 'pootle-staticpages-create' 'static' %}">{% trans 'Add Regular Page' %}</a>
   </div>
+  <div class="hd">
+    <h2>{% trans "Announcements" %}</h2>
+  </div>
+  <div class="bd">
+    {% include 'admin/staticpages/_table.html' with object_list=announcements %}
+    <a class="btn" href="{% url 'pootle-staticpages-create' 'announcements' %}">{% trans 'Add Announcement' %}</a>
+  </div>
 </div>
 {% endblock %}
 
