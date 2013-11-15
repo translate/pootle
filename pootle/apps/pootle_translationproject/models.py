@@ -441,8 +441,8 @@ class TranslationProject(models.Model):
             try:
                 output = versioncontrol.add_files(project_path, filestocommit,
                                                   message)
-            except Exception as e:
-                logging.error(u"Failed to add files: %s", e)
+            except Exception:
+                logging.exception(u"Failed to add files")
                 success = False
 
             for new_file in new_files:
@@ -530,12 +530,11 @@ class TranslationProject(models.Model):
             versioncontrol.update_file(filetoupdate)
             store.file._delete_store_cache()
             store.file._update_store_cache()
-        except Exception as e:
+        except Exception:
             # Something wrong, file potentially modified, bail out
             # and replace with working copy
-            logging.error(u"Near fatal catastrophe, exception %s while "
-                          u"updating %s from version control",
-                          e, store.file.name)
+            logging.exception(u"Near fatal catastrophe, while updating %s "
+                              u"from version control", store.file.name)
             working_copy.save()
 
             raise VersionControlError
@@ -557,9 +556,9 @@ class TranslationProject(models.Model):
             store.mergefile(working_copy, None, allownewstrings=False,
                             suggestions=True, notranslate=False,
                             obsoletemissing=False)
-        except Exception as e:
-            logging.error(u"Near fatal catastrophe, exception %s while merging "
-                          u"%s with version control copy", e, store.file.name)
+        except Exception:
+            logging.exception(u"Near fatal catastrophe, while merging %s with "
+                              u"version control copy", store.file.name)
             working_copy.save()
             store.update(update_structure=True, update_translation=True)
             raise
@@ -578,12 +577,7 @@ class TranslationProject(models.Model):
         try:
             versioncontrol.update_dir(self.real_path)
         except IOError as e:
-            logging.error(u"Error during update of %(path)s:\n%(error)s",
-                    {
-                     "path": self.real_path,
-                     "error": e,
-                    }
-            )
+            logging.exception(u"Error during update of %s", self.real_path)
             if request:
                 msg = _("Failed to update from version control: %(error)s",
                         {"error": e})
@@ -641,10 +635,9 @@ class TranslationProject(models.Model):
                 store.mergefile(working_copy, None, allownewstrings=False,
                                 suggestions=True, notranslate=False,
                                 obsoletemissing=False)
-            except Exception as e:
-                logging.error(u"Near fatal catastrophe, exception %s while "
-                              "merging %s with version control copy",
-                              e, store.file.name)
+            except Exception:
+                logging.exception(u"Near fatal catastrophe, while merging %s "
+                                  "with version control copy", store.file.name)
                 working_copy.save()
                 store.update(update_structure=True, update_translation=True)
                 raise
@@ -751,7 +744,7 @@ class TranslationProject(models.Model):
                         "version control", {'path': directory.pootle_path})
                 messages.success(request, msg)
         except Exception as e:
-            logging.error(u"Failed to commit: %s", e)
+            logging.exception(u"Failed to commit directory")
 
             # FIXME: This belongs to views
             if request is not None:
@@ -818,7 +811,7 @@ class TranslationProject(models.Model):
                             "control", {'filename': file})
                     messages.success(request, msg)
         except Exception as e:
-            logging.error(u"Failed to commit file: %s", e)
+            logging.exception(u"Failed to commit file")
 
             # FIXME: This belongs to views
             if request is not None:
@@ -851,9 +844,8 @@ class TranslationProject(models.Model):
             from pootle.scripts import hooks
             hooks.hook(self.project.code, "initialize", self.real_path,
                     self.language.code)
-        except Exception as e:
-            logging.error(u"Failed to initialize (%s): %s", self.language.code,
-                          e)
+        except Exception:
+            logging.exception(u"Failed to initialize (%s)", self.language.code)
 
     ###########################################################################
 
@@ -955,13 +947,13 @@ class TranslationProject(models.Model):
             for store in self.stores.iterator():
                 try:
                     self.update_index(indexer, store)
-                except OSError as e:
+                except OSError:
                     # Broken link or permission problem?
-                    logging.error("Error indexing %s: %s", store, e)
+                    logging.exception("Error indexing %s", store)
             indexer.commit_transaction()
             indexer.flush(optimize=True)
-        except Exception as e:
-            logging.error(u"Error opening indexer for %s:\n%s", self, e)
+        except Exception:
+            logging.exception(u"Error opening indexer for %s", self)
             try:
                 indexer.cancel_transaction()
             except:

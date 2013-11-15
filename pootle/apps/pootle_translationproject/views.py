@@ -99,9 +99,8 @@ def rescan_files(request, translation_project):
 
         messages.success(request, _("Translation project files have been "
                                     "rescanned."))
-    except Exception as e:
-        logging.error(u"Error while rescanning translation project files: %s",
-                      e)
+    except Exception:
+        logging.exception(u"Error while rescanning translation project files")
         messages.error(request, _("Error while rescanning translation project "
                                   "files."))
 
@@ -119,9 +118,9 @@ def update_against_templates(request, translation_project):
         translation_project.update_against_templates()
         messages.success(request, _("Translation project has been updated "
                                     "against latest templates."))
-    except Exception as e:
-        logging.error(u"Error while updating translation project against "
-                      u"latest templates: %s", e)
+    except Exception:
+        logging.exception(u"Error while updating translation project against "
+                          u"latest templates")
         messages.error(request, _("Error while updating translation project "
                                   "against latest templates."))
 
@@ -195,8 +194,8 @@ def delete_path_obj(request, translation_project, dir_path, filename=None):
                                         "have been deleted."))
         else:
             messages.success(request, _("File has been deleted."))
-    except Exception as e:
-        logging.error(u"Error while trying to delete %s: %s", current_path, e)
+    except Exception:
+        logging.exception(u"Error while trying to delete %s", current_path)
         if directory:
             messages.error(request, _("Error while trying to delete "
                                       "directory."))
@@ -887,8 +886,8 @@ def unzip_external(request, directory, django_file, overwrite):
                 # from which the user is uploading the ZIP file.
                 try:
                     upload_file(request, target_dir, newfile, overwrite)
-                except ValueError as e:
-                    logging.error(u"Error adding %s\t%s", fname, e)
+                except ValueError:
+                    logging.exception(u"Error adding file %s", fname)
     finally:
         # Clean up temporary file and directory used in try-block.
         import shutil
@@ -923,8 +922,8 @@ def unzip_python(request, directory, django_file, overwrite):
                     newfile = StringIO.StringIO(archive.read(filename))
                     newfile.name = os.path.basename(filename)
                     upload_file(request, target_dir, newfile, overwrite)
-            except ValueError as e:
-                logging.error(u"Error adding %s\t%s", filename, e)
+            except ValueError:
+                logging.exception(u"Error adding file %s", filename)
     finally:
         archive.close()
 
