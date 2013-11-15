@@ -10,8 +10,8 @@
       $(document).on("click", "#js-path-summary", PTL.stats.toggleChecks);
     },
 
-    nicePercentage: function (part, total, no_total_default) {
-      var percentage = total ? part / total * 100 : no_total_default;
+    nicePercentage: function (part, total, noTotalDefault) {
+      var percentage = total ? part / total * 100 : noTotalDefault;
       if (99 < percentage && percentage < 100) {
         return 99;
       }
@@ -116,10 +116,10 @@
       $summary.append(interpolate(gettext(', %s% translated'), [percent]));
     },
 
-    updateTranslationStats: function ($tr, total, value, no_total_default) {
+    updateTranslationStats: function ($tr, total, value, noTotalDefault) {
       $tr.find('.stats-number a').html(value);
       $tr.find('.stats-percentage span').html(
-        PTL.stats.nicePercentage(value, total, no_total_default)
+        PTL.stats.nicePercentage(value, total, noTotalDefault)
       );
       $tr.find('.stats-percentage').show();
     },
