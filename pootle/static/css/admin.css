@@ -93,23 +93,6 @@ html[dir="rtl"] .controls
     margin-right: 180px;
 }
 
-.control-group .controls .radio-pre,
-.control-group .controls .help-pre
-{
-    position: absolute;
-}
-
-.control-group .controls .help-pre
-{
-    left: -4em;
-}
-
-html[dir="rtl"] .control-group .controls .help-pre
-{
-    left: auto;
-    right: -4em;
-}
-
 .control-group .controls .radio-pre
 {
     left: -2em;
