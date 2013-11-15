@@ -928,6 +928,7 @@ class Unit(models.Model, base.TranslationUnit):
 
     def accept_suggestion(self, suggestion, translation_project, reviewer):
         if suggestion is not None:
+            old_state = self.state
             old_target = self.target
             self.target = suggestion.target
 
@@ -958,20 +959,29 @@ class Unit(models.Model, base.TranslationUnit):
             suggstat.state = 'accepted'
             suggstat.save()
 
-            # For now assume the target changed
-            # TODO: check all fields for changes
-            sub = Submission(
-                    creation_time=self.submitted_on,
-                    translation_project=translation_project,
-                    submitter=suggestion_user,
-                    from_suggestion=suggstat,
-                    unit=self,
-                    field=SubmissionFields.TARGET,
-                    type=SubmissionTypes.SUGG_ACCEPT,
-                    old_value=old_target,
-                    new_value=self.target,
-            )
-            sub.save()
+            create_subs = {}
+            # assume the target changed
+            create_subs[SubmissionFields.TARGET] = [old_target, self.target]
+            # check if the state changed
+            if old_state != self.state:
+                create_subs[SubmissionFields.STATE] = [old_state, self.state]
+
+            for field in create_subs:
+                kwargs = {
+                    'creation_time': self.submitted_on,
+                    'translation_project': translation_project,
+                    'submitter': suggestion_user,
+                    'unit': self,
+                    'field': field,
+                    'type': SubmissionTypes.SUGG_ACCEPT,
+                    'old_value': create_subs[field][0],
+                    'new_value': create_subs[field][1],
+                }
+                if field == SubmissionFields.TARGET:
+                    kwargs['from_suggestion'] = suggstat
+
+                sub = Submission(**kwargs)
+                sub.save()
 
             if suggestion_user:
                 translation_submitted.send(sender=translation_project,
@@ -1447,6 +1457,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                     unit.store = self
                     newunit = store.findid(unit.getid())
                     old_target_f = unit.target_f
+                    old_state = unit.state
 
                     if (monolingual and not
                         self.translation_project.is_template_project):
@@ -1467,23 +1478,31 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                             self._remove_obsolete(match_unit.source)
 
                     if changed:
-                        create_submission = unit._target_updated
+                        create_subs = {}
+
+                        if unit._target_updated:
+                            create_subs[SubmissionFields.TARGET] = [old_target_f, unit.target_f]
+
                         # Set unit fields if submission should be created
-                        if create_submission:
+                        if create_subs:
                             unit.submitted_by = system
                             unit.submitted_on = timezone.now()
                         unit.save()
+                        # check unit state after saving
+                        if old_state != unit.state:
+                            create_subs[SubmissionFields.STATE] = [old_state, unit.state]
+
                         # Create Submission after unit saved
-                        if create_submission:
+                        for field in create_subs:
                             sub = Submission(
                                 creation_time=unit.submitted_on,
                                 translation_project=self.translation_project,
                                 submitter=system,
                                 unit=unit,
-                                field=SubmissionFields.TARGET,
+                                field=field,
                                 type=SubmissionTypes.SYSTEM,
-                                old_value=old_target_f,
-                                new_value=unit.target_f
+                                old_value=create_subs[field][0],
+                                new_value=create_subs[field][1]
                             )
                             sub.save()
         finally:
