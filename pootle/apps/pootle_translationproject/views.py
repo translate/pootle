@@ -29,6 +29,7 @@ from pootle.core.helpers import (get_export_view_context,
                                  get_overview_context,
                                  get_translation_context)
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
+from staticpages.models import StaticPage
 
 
 @get_path_obj
@@ -59,6 +60,17 @@ def overview(request, translation_project, dir_path, filename=None):
     directory = request.directory
     store = request.store
 
+    # TODO: cleanup and refactor, retrieve from cache
+    try:
+        ann_virtual_path = 'announcements/' + project.code
+        announcement = StaticPage.objects.live(request.user).get(
+            virtual_path=ann_virtual_path,
+        )
+    except StaticPage.DoesNotExist:
+        announcement = None
+
+    display_announcement = True
+
     ctx = get_overview_context(request)
     ctx.update({
         'translation_project': translation_project,
@@ -67,6 +79,9 @@ def overview(request, translation_project, dir_path, filename=None):
 
         'browser_extends': 'translation_projects/base.html',
         'browser_body_id': 'tpoverview',
+
+        'announcement': announcement,
+        'announcement_displayed': display_announcement,
     })
 
     if store is None:

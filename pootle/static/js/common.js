@@ -57,6 +57,11 @@
         }
       });
 
+      /* Page sidebar */
+      $(document).on('click', '.js-sidebar-toggle', function () {
+        $('.js-sidebar').toggleClass('sidebar-open');
+      });
+
       /* Popups */
       $(document).magnificPopup({
         type: 'ajax',
