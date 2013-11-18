@@ -29,6 +29,8 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 import logging
 import time
 
+from optparse import make_option
+
 from django.conf import settings
 from django.core.cache import cache
 from django.core.urlresolvers import set_script_prefix
@@ -53,6 +55,13 @@ class Command(PootleCommand):
         # initialized. The indexer will update the text index of the
         # TranslationProject if it is out of date.
         translation_project.indexer
+
+    shared_option_list = (
+        make_option('--calculate-checks', dest='calculate_checks',
+                    action='store_true',
+                    help='To recalculate quality checks for all strings'),
+        )
+    option_list = PootleCommand.option_list + shared_option_list
 
     def handle_noargs(self, **options):
         # set url prefix
@@ -85,9 +94,19 @@ class Command(PootleCommand):
 
     def handle_all(self, **options):
         timeout = settings.OBJECT_CACHE_TIMEOUT
+        calculate_checks = options.get('calculate_checks', False)
 
         logging.info('Initializing stores...')
         self._init_stores()
+
+        if calculate_checks:
+            logging.info('Calculating quality checks for all units...')
+            QualityCheck.objects.all().delete()
+
+            for store in Store.objects.all():
+                logging.info("update_qualitychecks %s" % store.pootle_path)
+                for unit in store.units:
+                    unit.update_qualitychecks(created=True)
 
         logging.info('Setting quality check stats values for all stores...')
         self._set_qualitycheck_stats(timeout)
