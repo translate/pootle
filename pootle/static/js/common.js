@@ -59,7 +59,15 @@
 
       /* Page sidebar */
       $(document).on('click', '.js-sidebar-toggle', function () {
-        $('.js-sidebar').toggleClass('sidebar-open');
+        var $sidebar =  $('.js-sidebar'),
+            openClass = 'sidebar-open',
+            cookieName = 'project-announcements',
+            cookieData = JSON.parse($.cookie(cookieName)) || {};
+
+        $sidebar.toggleClass(openClass);
+
+        cookieData.isOpen = $sidebar.hasClass(openClass);
+        $.cookie(cookieName, JSON.stringify(cookieData), {path: '/'});
       });
 
       /* Popups */

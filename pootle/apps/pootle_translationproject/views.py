@@ -19,8 +19,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+from urllib import unquote
+
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.utils import simplejson
 
 from pootle.core.browser import get_children, get_table_headings, get_parent
 from pootle.core.decorators import (get_path_obj, get_resource_context,
@@ -30,6 +33,9 @@ from pootle.core.helpers import (get_export_view_context,
                                  get_translation_context)
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
 from staticpages.models import StaticPage
+
+
+ANN_COOKIE_NAME = 'project-announcements'
 
 
 @get_path_obj
@@ -70,6 +76,13 @@ def overview(request, translation_project, dir_path, filename=None):
         announcement = None
 
     display_announcement = True
+    if ANN_COOKIE_NAME in request.COOKIES:
+        json_str = unquote(request.COOKIES[ANN_COOKIE_NAME])
+        cookie_data = simplejson.loads(json_str)
+        try:
+            display_announcement = cookie_data['isOpen']
+        except KeyError:
+            pass
 
     ctx = get_overview_context(request)
     ctx.update({
