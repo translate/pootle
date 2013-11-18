@@ -21,6 +21,7 @@
 import logging
 import os
 import StringIO
+from urllib import unquote
 
 from django import forms
 from django.conf import settings
@@ -31,6 +32,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
+from django.utils import simplejson
 from django.utils.encoding import iri_to_uri
 from django.utils.translation import ugettext as _
 from django.views.decorators.http import require_POST
@@ -68,6 +70,9 @@ from staticpages.models import StaticPage
 
 from .actions import action_groups
 from .forms import DescriptionForm, upload_form_factory
+
+
+ANN_COOKIE_NAME = 'project-announcements'
 
 
 @get_path_obj
@@ -434,6 +439,13 @@ def overview(request, translation_project, dir_path, filename=None,
         announcement = None
 
     display_announcement = True
+    if ANN_COOKIE_NAME in request.COOKIES:
+        json_str = unquote(request.COOKIES[ANN_COOKIE_NAME])
+        cookie_data = simplejson.loads(json_str)
+        try:
+            display_announcement = cookie_data['isOpen']
+        except KeyError:
+            pass
 
     ctx.update(get_overview_context(request))
     ctx.update({
