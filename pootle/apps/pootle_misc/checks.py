@@ -32,7 +32,7 @@ category_names = {
 }
 
 check_names = {
-    'accelerators': _(u"Accelerators"),
+    'accelerators': _(u"Accelerators"), # fixme duplicated
     'acronyms': _(u"Acronyms"),
     'blank': _(u"Blank"),
     'brackets': _(u"Brackets"),
@@ -80,13 +80,13 @@ check_names = {
     'java_format': _(u"Java format"),
     'template_format': _(u"Template format"),
     'mustache_placeholders': _(u"Mustache placeholders"),
-    'mustache_placeholder_pairs': _(u"Mustache placeholder pairs"), #todo
+    'mustache_placeholder_pairs': _(u"Mustache placeholder pairs"),
     'non_printable': _(u"Non printable"),
     'unbalanced_tag_braces': _(u"Unbalanced tag braces"),
     'changed_attributes': _(u"Changed attributes"),
     'unescaped_ampersands': _(u"Unescaped ampersands"),
     'whitespace': _(u"Whitespaces"),
-    'date_format ': _(u"Date format"),
+    'date_format': _(u"Date format"),
     'uppercase_placeholders': _(u"Uppercase placeholders"),
     'percent_sign_placeholders': _(u"Percent sign placeholders"),
     'dollar_sign_placeholders': _(u"$ placeholders"),
@@ -176,22 +176,22 @@ class ENChecker(checks.TranslationChecker):
                     continue
 
                 # special text
-                if not is_source and  fingerprint:
+                if not is_source and fingerprint:
                     tag = chunk[2:-2] # extract 'tagname' from '{{#tagname}}'
 
-                if chunk[2:3] in ['#','^']:
-                    # opening tag
-                    # check that all similar tags were closed
-                    if tag in stack:
-                        fingerprint = None
-                    stack.append(tag)
+                    if chunk[2:3] in ['#','^']:
+                        # opening tag
+                        # check that all similar tags were closed
+                        if tag in stack:
+                            fingerprint = None
+                        stack.append(tag)
 
-                else:
-                    # closing tag
-                    if len(stack) == 0 or not stack[-1] == tag:
-                        fingerprint = None
+                    else:
+                        # closing tag
+                        if len(stack) == 0 or not stack[-1] == tag:
+                            fingerprint = None
 
-                    stack.pop()
+                        stack.pop()
 
             return fingerprint
 
@@ -342,7 +342,7 @@ class ENChecker(checks.TranslationChecker):
                     d[chunk] = 1
 
             for key in sorted(d.keys()):
-                fingerprint += "\001%s\001%s" % (key, d[key])
+                fingerprint += u"\001%s\001%s" % (key, d[key])
 
             return fingerprint
 
@@ -367,7 +367,7 @@ class ENChecker(checks.TranslationChecker):
                     continue
 
                 # special text
-                fingerprint += "\001%s" % chunk
+                fingerprint += u"\001%s" % chunk
 
             return fingerprint
 
@@ -394,7 +394,7 @@ class ENChecker(checks.TranslationChecker):
 
                 # special text
                 chunk = '{0x%02x}' % ord(chunk)
-                fingerprint += "\001%s" % chunk
+                fingerprint += u"\001%s" % chunk
 
             return fingerprint
 
@@ -529,7 +529,7 @@ class ENChecker(checks.TranslationChecker):
                         d[tag] = 1
 
             for key in sorted(d.keys()):
-                fingerprint += "\001%s\001%s" % (key, d[key])
+                fingerprint += u"\001%s\001%s" % (key, d[key])
 
             return fingerprint
 
@@ -670,7 +670,7 @@ class ENChecker(checks.TranslationChecker):
                         fingerprint += 1
 
             if is_source and fingerprint > 1:
-                fingerprint = fingerprint + "\001"
+                fingerprint = u"%d\001" % fingerprint
 
             return fingerprint
 
@@ -742,7 +742,7 @@ def _generic_check(str1, str2, regex, message):
                 d[chunk] = 1
 
         for key in sorted(d.keys()):
-            fingerprint += "\001%s\001%s" % (key, d[key])
+            fingerprint += u"\001%s\001%s" % (key, d[key])
 
         return fingerprint
 
