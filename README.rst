@@ -19,7 +19,7 @@ translation and later uploaded again.
 
 Installation can be done via pip::
 
-  pip install pootle
+  pip install Pootle
 
 But don't forget to read the `quickstart guide
 <http://docs.translatehouse.org/projects/pootle/en/latest/server/installation.html>`_
