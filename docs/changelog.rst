@@ -31,6 +31,12 @@ Not released yet. *Planned release date late November 2013*
   instructions, read the :doc:`upgrading <server/upgrading>` section of the
   documentation.
 
+- The :ref:`commands#setup` management command was added to hide the
+  complexities in the initialization or upgrading of the DB when either
+  upgrading or installing Pootle. Please read the :doc:`upgrading
+  <server/upgrading>` and :doc:`installation <server/installation>` sections of
+  the documentation.
+
 - *css/custom/custom.css* is now served as part of the common bundle.
 
 - The quality check for spell checking has been globally disabled. It
