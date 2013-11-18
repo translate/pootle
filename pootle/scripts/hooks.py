@@ -45,6 +45,6 @@ def hook(project, hooktype, path, *args, **kwargs):
                               (activehook.__file__, hooktype))
     except ImportError as e:
         raise ImportError(e)
-    except Exception as e:
-        logger.error("Exception in project (%s) hook (%s) for file (%s): %s",
-                     project, hooktype, path, e)
+    except Exception:
+        logger.exception("Exception in project (%s) hook (%s) for file (%s)",
+                         project, hooktype, path)

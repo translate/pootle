@@ -61,11 +61,11 @@ class LdapBackend(object):
                 return None
 
         except ldap.INVALID_CREDENTIALS:
-            logger.error('Anonymous bind to LDAP server failed. Please check '
-                         'the username and password.')
+            logger.exception('Anonymous bind to LDAP server failed. Please '
+                             'check the username and password.')
             return None
         except Exception as e:
-            logger.error('Unknown LDAP error: ' + str(e))
+            logger.exception('Unknown LDAP error: ' + str(e))
             return None
 
         try:
@@ -93,7 +93,7 @@ class LdapBackend(object):
                          "LDAP auth." % username)
             return None
         except Exception as e:  # No other exceptions are normal.
-            logger.error('Unknown LDAP error: ' + str(e))
+            logger.exception('Unknown LDAP error: ' + str(e))
             raise
 
     def get_user(self, user_id):
