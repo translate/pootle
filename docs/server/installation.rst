@@ -1,7 +1,7 @@
 .. _installation:
 
-Quickstart
-==========
+Installation
+============
 
 Want to try Pootle? This guide will guide you through installing Pootle and its
 requirements in a virtual environment.
