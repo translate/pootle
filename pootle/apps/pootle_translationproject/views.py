@@ -21,7 +21,7 @@
 import logging
 import os
 import StringIO
-from urllib import unquote
+from urllib import quote, unquote
 
 from django import forms
 from django.conf import settings
@@ -32,7 +32,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
-from django.utils import simplejson
+from django.utils import dateformat, simplejson
 from django.utils.encoding import iri_to_uri
 from django.utils.translation import ugettext as _
 from django.views.decorators.http import require_POST
@@ -439,13 +439,25 @@ def overview(request, translation_project, dir_path, filename=None,
         announcement = None
 
     display_announcement = True
+    stored_mtime = None
+    new_mtime = None
+    cookie_data = {}
+
     if ANN_COOKIE_NAME in request.COOKIES:
         json_str = unquote(request.COOKIES[ANN_COOKIE_NAME])
         cookie_data = simplejson.loads(json_str)
-        try:
+
+        if 'isOpen' in cookie_data:
             display_announcement = cookie_data['isOpen']
-        except KeyError:
-            pass
+
+        if project.code in cookie_data:
+            stored_mtime = cookie_data[project.code]
+
+    if announcement is not None:
+        ann_mtime = dateformat.format(announcement.modified_on, 'U')
+        if ann_mtime != stored_mtime:
+            display_announcement = True
+            new_mtime = ann_mtime
 
     ctx.update(get_overview_context(request))
     ctx.update({
@@ -555,8 +567,15 @@ def overview(request, translation_project, dir_path, filename=None,
             'add_tag_action_url': add_tag_action_url,
         })
 
-    return render_to_response(template_name, ctx,
-                              context_instance=RequestContext(request))
+    response = render_to_response(template_name, ctx,
+                                  context_instance=RequestContext(request))
+
+    if new_mtime is not None:
+        cookie_data[project.code] = new_mtime
+        cookie_data = quote(simplejson.dumps(cookie_data))
+        response.set_cookie(ANN_COOKIE_NAME, cookie_data)
+
+    return response
 
 
 @require_POST
