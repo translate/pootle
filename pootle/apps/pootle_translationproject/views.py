@@ -64,6 +64,7 @@ from pootle_store.filetypes import factory_classes
 from pootle_tagging.decorators import get_goal
 from pootle_tagging.forms import GoalForm, TagForm
 from pootle_tagging.models import Goal
+from staticpages.models import StaticPage
 
 from .actions import action_groups
 from .forms import DescriptionForm, upload_form_factory
@@ -423,6 +424,17 @@ def overview(request, translation_project, dir_path, filename=None,
     else:
         description = goal.description
 
+    # TODO: cleanup and refactor, retrieve from cache
+    try:
+        ann_virtual_path = 'announcements/' + project.code
+        announcement = StaticPage.objects.live(request.user).get(
+            virtual_path=ann_virtual_path,
+        )
+    except StaticPage.DoesNotExist:
+        announcement = None
+
+    display_announcement = True
+
     ctx.update(get_overview_context(request))
     ctx.update({
         'resource_obj': request.store or request.directory,  # Dirty hack.
@@ -437,6 +449,9 @@ def overview(request, translation_project, dir_path, filename=None,
 
         'browser_extends': 'translation_projects/base.html',
         'browser_body_id': 'tpoverview',
+
+        'announcement': announcement,
+        'announcement_displayed': display_announcement,
     })
 
     tp_pootle_path = translation_project.pootle_path

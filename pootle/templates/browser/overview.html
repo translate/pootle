@@ -78,8 +78,17 @@
 </div>
 {% endblock %}
 
-{% block content %}
+{% block pre_content %}
+{% if announcement %}
+<div id="sidebar"
+  class="js-sidebar{% if announcement_displayed %} sidebar-open{% endif %}">
+{% include "staticpages/_body.html" with page=announcement %}
+  <a id="sidebar-toggle" class="js-sidebar-toggle"></a>
+</div>
+{% endif %}
+{% endblock %}
 
+{% block content %}
 {% if table %}
 <div class="hd">
   <h2>{% trans "Files and Subfolders" %}</h2>
@@ -91,7 +100,6 @@
   </div>
 </div>
 {% endif %}
-
 {% endblock content %}
 
 {% block scripts_extra %}
