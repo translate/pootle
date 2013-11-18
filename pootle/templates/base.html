@@ -27,76 +27,6 @@
     {% block favicon %}
     <link rel="shortcut icon" href="{{ "favicon.ico"|s }}" />
     {% endblock favicon %}
-    {% block js %}
-    {% assets "js_common" %}
-    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
-    {% endassets %}
-    <script type="text/javascript">
-    function l(path) {
-      var basepath = "{{ settings.SCRIPT_NAME  }}";
-      if (path[0] == '/') {
-        return basepath + path;
-      }
-      return path;
-    }
-    function s(path) {
-      return "{{ STATIC_URL }}" + path;
-    }
-    {% if display_agreement %}
-    PTL.common.displayAgreementPopup = function () {
-      $.magnificPopup.open({
-        items: {
-          src: '{% url "staticpages.legal-agreement" %}',
-          type: 'ajax'
-        },
-        callbacks: {
-          parseAjax: function (jqXHR) {
-            jqXHR.responseText = jQuery.parseJSON(jqXHR.responseText).form;
-          }
-        },
-        modal: true
-      });
-    };
-
-    $(document).on('click', '.js-agreement-popup', function (e) {
-      e.preventDefault();
-      $.magnificPopup.close();
-      $.magnificPopup.open({
-        items: {
-          src: this.href,
-          type: 'ajax'
-        },
-        callbacks: {
-          afterClose: PTL.common.displayAgreementPopup
-        },
-        mainClass: 'popup-ajax'
-      });
-    });
-    $(document).on('submit', '.js-agreement-form', function (e) {
-      e.preventDefault();
-      PTL.common.submitAgreementForm();
-    });
-    {% endif %}
-
-    $(function() {
-      $("[title], [original-title]").tipsy({
-        gravity: $.fn.tipsy.autoBounds(150, 'n'),
-        html: true, fade: true, delayIn: 750, live: true});
-      $.ajaxSetup({ traditional: true });
-      $.ajaxPrefilter(function (options, originalOptions) {
-        if (options.type === 'post' || options.type === 'POST') {
-          options.data = $.param(
-            $.extend(originalOptions.data,
-                     { csrfmiddlewaretoken: '{{ csrf_token }}' }) );
-        }
-      });
-
-      {% if display_agreement %}
-      PTL.common.displayAgreementPopup();
-      {% endif %}
-    });
-    </script>
-    {% endblock js %}
     {% block extra_head %}{% endblock %}
   </head>
 
@@ -209,6 +139,76 @@
       </div>
       {% endblock footer %}
     </div>
+    {% block js %}
+    {% assets "js_common" %}
+    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+    <script type="text/javascript">
+    function l(path) {
+      var basepath = "{{ settings.SCRIPT_NAME  }}";
+      if (path[0] == '/') {
+        return basepath + path;
+      }
+      return path;
+    }
+    function s(path) {
+      return "{{ STATIC_URL }}" + path;
+    }
+    {% if display_agreement %}
+    PTL.common.displayAgreementPopup = function () {
+      $.magnificPopup.open({
+        items: {
+          src: '{% url "staticpages.legal-agreement" %}',
+          type: 'ajax'
+        },
+        callbacks: {
+          parseAjax: function (jqXHR) {
+            jqXHR.responseText = jQuery.parseJSON(jqXHR.responseText).form;
+          }
+        },
+        modal: true
+      });
+    };
+
+    $(document).on('click', '.js-agreement-popup', function (e) {
+      e.preventDefault();
+      $.magnificPopup.close();
+      $.magnificPopup.open({
+        items: {
+          src: this.href,
+          type: 'ajax'
+        },
+        callbacks: {
+          afterClose: PTL.common.displayAgreementPopup
+        },
+        mainClass: 'popup-ajax'
+      });
+    });
+    $(document).on('submit', '.js-agreement-form', function (e) {
+      e.preventDefault();
+      PTL.common.submitAgreementForm();
+    });
+    {% endif %}
+
+    $(function() {
+      $("[title], [original-title]").tipsy({
+        gravity: $.fn.tipsy.autoBounds(150, 'n'),
+        html: true, fade: true, delayIn: 750, live: true});
+      $.ajaxSetup({ traditional: true });
+      $.ajaxPrefilter(function (options, originalOptions) {
+        if (options.type === 'post' || options.type === 'POST') {
+          options.data = $.param(
+            $.extend(originalOptions.data,
+                     { csrfmiddlewaretoken: '{{ csrf_token }}' }) );
+        }
+      });
+
+      {% if display_agreement %}
+      PTL.common.displayAgreementPopup();
+      {% endif %}
+    });
+    </script>
+    {% endblock js %}
     {% block scripts %}
     {% block scripts_extra %}{% endblock %}
     <script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' %}"></script>
