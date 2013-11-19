@@ -1775,6 +1775,21 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     def _get_mtime(self):
         return max_column(self.unit_set.all(), 'mtime', datetime_min)
 
+    def _get_last_updated(self):
+        max_unit = self.unit_set.all().order_by('-creation_time')[0]
+        if max_unit:
+            max_time = max_unit.creation_time
+            if max_time:
+                return {
+                    'id': max_unit.id,
+                    'creation_time': int(time.mktime(max_time.timetuple())),
+                    'snippet': '<time class="extra-item-meta js-relative-date"'
+                               '    title="%s" datetime="%s">&nbsp;'
+                               '</time>' % (max_time, max_time.isoformat())
+                }
+
+        return {'id': 0, 'creation_time': 0, 'snippet': ''}
+
     def _get_last_action(self, submission=None):
         if submission is None:
             try:

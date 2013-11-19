@@ -168,7 +168,7 @@ def overview(request, project):
     items.sort(lambda x, y: strcoll(x['title'], y['title']))
 
     table_fields = ['name', 'progress', 'total', 'need-translation',
-                    'suggestions', 'critical', 'activity']
+                    'suggestions', 'critical', 'last-updated', 'activity']
 
     ctx = get_overview_context(request)
     ctx.update({

@@ -74,6 +74,10 @@
       </td>
       {% endif %}
 
+      {% if 'last-updated' in table.fields %}
+      <td id="last-updated-{{ item.code }}" class="last-updated"></td>
+      {% endif %}
+
       {% if 'activity' in table.fields %}
       <td id="last-activity-{{ item.code }}" class="last-activity"></td>
       {% endif %}
