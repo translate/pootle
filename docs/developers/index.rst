@@ -12,6 +12,7 @@ other way, make sure to read through this part.
    contributing
    hacking
    customization
+   browsers
    testing
    glossary
    styleguide
