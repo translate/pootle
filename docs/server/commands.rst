@@ -283,6 +283,26 @@ server. This is mostly useful in combination with other commands that operate
 with these IDs.
 
 
+.. _commands#test_checks:
+
+test_checks
+^^^^^^^^^^^
+
+Tests any given string pair or unit against all or certain checks from the
+command line. This is useful for debugging and developing new checks.
+
+String pairs can be specified by setting the values to be checked in the
+``--source=<"source_text">`` and ``--target="<target_text>"`` command-line
+arguments.
+
+Alternatively, ``--unit=<unit_id>`` can be used to reference an existing
+unit from the database.
+
+By default, :ref:`commands#test_checks` tests all existing checks. When
+``--check=<checkname>`` is set, only specific checks will be tested
+against.
+
+
 .. _commands#manually_installing_pootle:
 
 Manually Installing Pootle
