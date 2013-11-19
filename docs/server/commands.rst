@@ -124,12 +124,10 @@ is up to date. Running ``refresh_stats`` immediately after an install, upgrade
 or after adding a large number of files will make Pootle feel faster as it will
 require less on-demand calculation of expensive statistics.
 
-``refresh_stats`` will do the following tasks:
+``refresh_stats`` will flush existing caches and update the statistics cache.
 
-- Update the statistics cache (this only useful if you are using memcached).
-
-- Calculate quality checks so that they appear on the expanded overview page
-  without a delay.
+When the ``--calculate-checks`` option is set, quality checks will be
+recalculated for all existing units in the database.
 
 
 .. _commands#sync_stores:
