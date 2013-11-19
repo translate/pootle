@@ -22,10 +22,15 @@
         datetime="{{ entry_group.datetime.isoformat }}">&nbsp;</time>
     </div>
   </div>
-  {% empty %}
-  <div class="extra-item-content">
-    {% trans "No results." %}
-  </div>
   {% endfor %}
+  <div class="extra-item-block">
+    <div class="extra-item-content">
+      {% trans "Created." %}
+    </div>
+    {% if created %}
+      <time class="extra-item-meta js-relative-date" title="{{ created.datetime_str}}"
+        datetime="{{ created.datetime.isoformat }}">&nbsp;</time>
+    {% endif %}
+  </div>
   </div>
 </div>
