@@ -68,6 +68,11 @@ HEADING_CHOICES = [
         'display_name': _("Critical"),
     },
     {
+        'id': 'last-updated',
+        'class': 'stats sorttable_numeric when-loaded',
+        'display_name': _("Last updated"),
+    },
+    {
         'id': 'activity',
         'class': 'stats sorttable_numeric when-loaded',
         'display_name': _("Last Activity"),

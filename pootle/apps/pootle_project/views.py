@@ -54,7 +54,7 @@ def overview(request, project):
     items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
 
     table_fields = ['name', 'progress', 'total', 'need-translation',
-                    'suggestions', 'critical', 'activity']
+                    'suggestions', 'critical', 'last-updated', 'activity']
     table = {
         'id': 'project',
         'proportional': False,

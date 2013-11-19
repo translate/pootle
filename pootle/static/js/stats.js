@@ -126,6 +126,11 @@
 
               $td = $table.find('#critical-' + code);
               PTL.stats.updateItemStats($td, item.critical);
+
+              $td = $table.find('#last-updated-' + code);
+              $td.html(item.lastupdated.snippet);
+              $td.attr('sorttable_customkey', now - item.lastupdated.creation_time);
+
             }
 
             // Sort columns based on previously-made selections

@@ -102,6 +102,8 @@ class Command(PootleCommand):
         self._set_qualitycheck_stats(timeout)
         logging.info('Setting last action values for all stores...')
         self._set_last_action_stats(timeout)
+        logging.info('Setting last updated values for all stores...')
+        self._set_last_updated_stats(timeout)
         logging.info('Setting mtime values for all stores...')
         self._set_mtime_stats(timeout)
         logging.info('Setting wordcount stats values for all stores...')
@@ -127,7 +129,7 @@ class Command(PootleCommand):
     def _set_qualitycheck_stats_cache(self, stats, key, timeout):
         if key:
             logging.info('Set get_checks for %s' % key)
-            cache.set(key + ':get_checks', stats, timeout)
+            cache.set(iri_to_uri(key + ':get_checks'), stats, timeout)
             del self.cache_values[key]['get_checks']
 
     def _set_qualitycheck_stats(self, timeout):
@@ -158,10 +160,12 @@ class Command(PootleCommand):
     def _set_wordcount_stats_cache(self, stats, key, timeout):
         if key:
             logging.info('Set wordcount stats for %s' % key)
-            cache.set(key + ':get_total_wordcount', stats['total'], timeout)
-            cache.set(key + ':get_fuzzy_wordcount', stats[FUZZY], timeout)
-            cache.set(key + ':get_translated_wordcount', stats[TRANSLATED],
-                      timeout)
+            cache.set(iri_to_uri(key + ':get_total_wordcount'),
+                      stats['total'], timeout)
+            cache.set(iri_to_uri(key + ':get_fuzzy_wordcount'),
+                      stats[FUZZY], timeout)
+            cache.set(iri_to_uri(key + ':get_translated_wordcount'),
+                      stats[TRANSLATED], timeout)
             del self.cache_values[key]['get_total_wordcount']
             del self.cache_values[key]['get_fuzzy_wordcount']
             del self.cache_values[key]['get_translated_wordcount']
@@ -205,14 +209,15 @@ class Command(PootleCommand):
                 'get_total_wordcount': 0,
                 'get_translated_wordcount': 0,
                 'get_fuzzy_wordcount': 0,
-                'get_mtime': datetime_min
+                'get_mtime': datetime_min,
+                'get_last_updated': {'id': 0, 'creation_time': 0,
+                                     'snippet': ''},
             }
 
     def _set_empty_values(self, timeout):
         for key, value in self.cache_values.items():
             for func in value.keys():
-                cache_key = iri_to_uri(key + ':' + func)
-                cache.set(cache_key, value[func], timeout)
+                cache.set(iri_to_uri(key + ':' + func), value[func], timeout)
 
     def _set_last_action_stats(self, timeout):
         ss = Submission.simple_objects.values('unit__store__pootle_path') \
@@ -221,16 +226,15 @@ class Command(PootleCommand):
             sub = Submission.objects.select_related('unit__store') \
                                     .get(id=s_id['max_id'])
             if sub.unit:
-                store_key = sub.unit.store.get_cachekey()
-                key = iri_to_uri(store_key + ':get_last_action')
+                key = sub.unit.store.get_cachekey()
                 logging.info('Set last action stats for %s' % key)
                 res = {
                     'id': sub.unit.id,
                     'mtime': int(time.mktime(sub.creation_time.timetuple())),
                     'snippet': sub.get_submission_message()
                 }
-                cache.set(key, res, timeout)
-                del self.cache_values[store_key]['get_last_action']
+                cache.set(iri_to_uri(key + ':get_last_action'), res, timeout)
+                del self.cache_values[key]['get_last_action']
 
     def _set_suggestion_stats(self, timeout):
         """Check if any unit in the store has suggestions"""
@@ -241,7 +245,8 @@ class Command(PootleCommand):
         for item in queryset:
             key = Store.objects.get(id=item['unit__store']).get_cachekey()
             logging.info('Set suggestion count for %s' % key)
-            cache.set(key + ':get_suggestion_count', item['count'], timeout)
+            cache.set(iri_to_uri(key + ':get_suggestion_count'),
+                      item['count'], timeout)
             del self.cache_values[key]['get_suggestion_count']
 
     def _set_mtime_stats(self, timeout):
@@ -251,5 +256,27 @@ class Command(PootleCommand):
         for item in queryset:
             key = Store.objects.get(id=item['store']).get_cachekey()
             logging.info('Set mtime for %s' % key)
-            cache.set(key + ':get_mtime', item['max_mtime'], timeout)
+            cache.set(iri_to_uri(key + ':get_mtime'),
+                      item['max_mtime'], timeout)
             del self.cache_values[key]['get_mtime']
+
+    def _set_last_updated_stats(self, timeout):
+        """Check if any unit in the store has suggestions"""
+        queryset = Unit.objects.values('store').annotate(max_creation_time=Max('creation_time'))
+
+        for item in queryset:
+            max_time = item['max_creation_time']
+            if max_time:
+                res = {
+                    'creation_time': int(time.mktime(max_time.timetuple())),
+                    'snippet': '<time class="extra-item-meta js-relative-date"'
+                               '    title="%s" datetime="%s">&nbsp;'
+                               '</time>' % (max_time, max_time.isoformat())
+                }
+
+                key = Store.objects.get(id=item['store']).get_cachekey()
+                logging.info('Set last_updated for %s' % key)
+                cache.set(iri_to_uri(key + ':get_last_updated'),
+                          res, timeout)
+                del self.cache_values[key]['get_last_updated']
+

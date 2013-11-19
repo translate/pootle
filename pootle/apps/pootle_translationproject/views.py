@@ -71,7 +71,7 @@ def overview(request, translation_project, dir_path, filename=None):
 
     if store is None:
         table_fields = ['name', 'progress', 'total', 'need-translation',
-                        'suggestions', 'critical', 'activity']
+                        'suggestions', 'critical', 'last-updated', 'activity']
         ctx.update({
             'table': {
                 'id': 'tp',

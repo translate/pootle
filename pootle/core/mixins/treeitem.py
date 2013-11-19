@@ -106,6 +106,10 @@ class TreeItem(object):
         """This method will be overridden in descendants"""
         return datetime_min
 
+    def _get_last_updated(self):
+        """This method will be overridden in descendants"""
+        return {'id': 0, 'creation_time': 0, 'snippet': ''}
+
     def _get_all_checks(self):
         """This method will be overridden in descendants"""
         return {}
@@ -173,6 +177,17 @@ class TreeItem(object):
             [item.get_mtime() for item in self.children]
         )
 
+    @getfromcache
+    @statslog
+    def get_last_updated(self):
+        """get last updated"""
+        self.initialize_children()
+        return max(
+            [self._get_last_updated()] +
+            [item.get_last_updated() for item in self.children],
+            key=lambda x: x['creation_time'] if 'creation_time' in x else 0
+        )
+
     def _sum(self, name):
         return sum([
             getattr(item, name)() for item in self.children
@@ -188,7 +203,8 @@ class TreeItem(object):
             'fuzzy': self.get_fuzzy_wordcount(),
             'suggestions': self.get_suggestion_count(),
             'lastaction': self.get_last_action(),
-            'critical': self.get_critical()
+            'critical': self.get_critical(),
+            'lastupdated': self.get_last_updated()
         }
 
         if include_children:
@@ -215,6 +231,7 @@ class TreeItem(object):
         self.get_last_action()
         self.get_checks()
         self.get_mtime()
+        self.get_last_updated()
 
     @getfromcache
     @statslog
