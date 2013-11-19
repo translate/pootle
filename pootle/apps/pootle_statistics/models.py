@@ -19,6 +19,7 @@
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 from django.db import models
+from django.contrib.auth.models import User
 from django.template.defaultfilters import escape, truncatechars
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
@@ -133,20 +134,19 @@ class Submission(models.Model):
                 'url': self.unit.get_translate_url(),
             }
 
-        # Sadly we may not have submitter information in all the situations yet
-        # TODO check if it is truth
-        # we call get_absolute_url and gravatar_url later without any check
-        if self.submitter:
-            if self.from_suggestion:
-                displayuser = self.from_suggestion.reviewer
-            else:
-                displayuser = self.submitter
-
-            displayname = displayuser.fullname
-            if not displayname:
-                displayname = self.submitter.user.username
+        if self.from_suggestion:
+            displayuser = self.from_suggestion.reviewer
         else:
-            displayname = _("anonymous user")
+            # Sadly we may not have submitter information in all the situations yet
+            # TODO check if it is truth
+            if self.submitter:
+                displayuser = self.submitter
+            else:
+                displayuser = User.objects.get_nobody_user().pootleprofile
+
+        displayname = displayuser.fullname
+        if not displayname:
+            displayname = displayuser.user.username
 
         action_bundle = {
             "profile_url": displayuser.get_absolute_url(),
