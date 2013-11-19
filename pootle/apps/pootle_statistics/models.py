@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of translate.
 #
@@ -19,8 +20,8 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 from django.template.defaultfilters import escape, truncatechars
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
@@ -125,7 +126,8 @@ class Submission(models.Model):
         if self.from_suggestion:
             displayuser = self.from_suggestion.reviewer
         else:
-            # Sadly we may not have submitter information in all the situations yet
+            # Sadly we may not have submitter information in all the
+            # situations yet
             # TODO check if it is truth
             if self.submitter:
                 displayuser = self.submitter

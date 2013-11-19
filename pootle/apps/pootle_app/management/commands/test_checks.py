@@ -18,7 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-import datetime
 import logging
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
@@ -29,8 +28,8 @@ from translate.filters.checks import FilterFailure
 
 from django.core.management.base import NoArgsCommand, CommandError
 
-from pootle_store.models import Unit
 from pootle_misc.checks import ENChecker, get_qualitychecks
+from pootle_store.models import Unit
 
 
 class Command(NoArgsCommand):
@@ -65,7 +64,8 @@ class Command(NoArgsCommand):
         checks = options.get('checks', [])
 
         if (source and target) == bool(unit_id):
-            raise CommandError("Either --unit or a pair of --source and --target must be provided.")
+            raise CommandError("Either --unit or a pair of --source "
+                               "and --target must be provided.")
 
         if unit_id:
             try:

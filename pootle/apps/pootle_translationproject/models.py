@@ -36,7 +36,7 @@ from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
 from pootle_language.models import Language
-from pootle_misc.util import cached_property, deletefromcache
+from pootle_misc.util import cached_property
 from pootle_misc.checks import excluded_filters, ENChecker
 from pootle_project.models import Project
 from pootle_statistics.models import Submission

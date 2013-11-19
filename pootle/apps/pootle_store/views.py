@@ -47,9 +47,9 @@ from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 
 from .decorators import get_unit_context
-from .models import Unit
 from .forms import (unit_comment_form_factory, unit_form_factory,
                     highlight_whitespace)
+from .models import Unit
 from .signals import translation_submitted
 from .templatetags.store_tags import (highlight_diffs, pluralize_source,
                                       pluralize_target)

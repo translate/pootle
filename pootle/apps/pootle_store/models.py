@@ -35,7 +35,6 @@ from django.core.urlresolvers import reverse
 from django.db import models, IntegrityError
 from django.db.models.signals import post_delete
 from django.db.transaction import commit_on_success
-from django.db.models import Max
 from django.utils import timezone, tzinfo
 from django.utils.translation import ugettext_lazy as _
 from django.utils.http import urlquote
@@ -53,10 +52,9 @@ from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_misc.aggregate import group_by_count, max_column
 from pootle_misc.baseurl import l
 from pootle_misc.checks import check_names
-from pootle_misc.util import cached_property, datetime_min
+from pootle_misc.util import cached_property, datetime_min, get_cached_value
 from pootle_statistics.models import (SubmissionFields,
                                       SubmissionTypes, Submission)
-from pootle_misc.util import get_cached_value
 
 from .fields import (TranslationStoreField, MultiStringField,
                      PLURAL_PLACEHOLDER, SEPARATOR)
@@ -1398,7 +1396,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                         create_subs = {}
 
                         if unit._target_updated:
-                            create_subs[SubmissionFields.TARGET] = [old_target_f, unit.target_f]
+                            create_subs[SubmissionFields.TARGET] = \
+                                [old_target_f, unit.target_f]
 
                         # Set unit fields if submission should be created
                         if create_subs:
@@ -1407,7 +1406,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                         unit.save()
                         # check unit state after saving
                         if old_state != unit.state:
-                            create_subs[SubmissionFields.STATE] = [old_state, unit.state]
+                            create_subs[SubmissionFields.STATE] = [old_state,
+                                                                   unit.state]
 
                         # Create Submission after unit saved
                         for field in create_subs:
