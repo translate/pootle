@@ -93,9 +93,9 @@ class Command(PootleCommand):
             logging.info('Calculating quality checks for all units...')
             QualityCheck.objects.all().delete()
 
-            for store in Store.objects.all():
+            for store in Store.objects.iterator():
                 logging.info("update_qualitychecks %s" % store.pootle_path)
-                for unit in store.units:
+                for unit in store.units.iterator():
                     unit.update_qualitychecks(created=True)
 
         logging.info('Setting quality check stats values for all stores...')
@@ -119,11 +119,11 @@ class Command(PootleCommand):
         lang_query = Language.objects.all()
         prj_query = Project.objects.all()
 
-        for lang in lang_query:
+        for lang in lang_query.iterator():
             # Calculate stats for all directories and translation projects
             lang.refresh_stats()
 
-        for prj in prj_query:
+        for prj in prj_query.iterator():
             prj.refresh_stats(False)
 
     def _set_qualitycheck_stats_cache(self, stats, key, timeout):
@@ -143,7 +143,7 @@ class Command(PootleCommand):
         key = None
         stats = {}
 
-        for item in queryset:
+        for item in queryset.iterator():
             if item['unit__store'] != saved:
                 key = Store.objects.get(id=item['unit__store']).get_cachekey()
                 if saved:
@@ -181,7 +181,7 @@ class Command(PootleCommand):
         stats = None
         key = None
 
-        for item in res:
+        for item in res.iterator():
             if saved_id != item['store']:
                 key = Store.objects.get(id=item['store']).get_cachekey()
                 if saved_key:
@@ -222,7 +222,7 @@ class Command(PootleCommand):
     def _set_last_action_stats(self, timeout):
         ss = Submission.simple_objects.values('unit__store__pootle_path') \
                                       .annotate(max_id=Max('id'))
-        for s_id in ss:
+        for s_id in ss.iterator():
             sub = Submission.objects.select_related('unit__store') \
                                     .get(id=s_id['max_id'])
             if sub.unit:
@@ -242,7 +242,7 @@ class Command(PootleCommand):
                                      .values('unit__store') \
                                      .annotate(count=Count('id'))
 
-        for item in queryset:
+        for item in queryset.iterator():
             key = Store.objects.get(id=item['unit__store']).get_cachekey()
             logging.info('Set suggestion count for %s' % key)
             cache.set(iri_to_uri(key + ':get_suggestion_count'),
@@ -255,7 +255,7 @@ class Command(PootleCommand):
             max_mtime=Max('mtime')
         )
 
-        for item in queryset:
+        for item in queryset.iterator():
             key = Store.objects.get(id=item['store']).get_cachekey()
             logging.info('Set mtime for %s' % key)
             cache.set(iri_to_uri(key + ':get_mtime'),
@@ -268,7 +268,7 @@ class Command(PootleCommand):
             max_creation_time=Max('creation_time')
         )
 
-        for item in queryset:
+        for item in queryset.iterator():
             max_time = item['max_creation_time']
             if max_time:
                 res = {
