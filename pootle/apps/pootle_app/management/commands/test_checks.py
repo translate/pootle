@@ -33,7 +33,7 @@ from pootle_store.models import Unit
 
 
 class Command(NoArgsCommand):
-    help = "Test checks."
+    help = "Tests quality checks against string pairs."
 
     shared_option_list = (
         make_option('--check', action='append', dest='checks',
