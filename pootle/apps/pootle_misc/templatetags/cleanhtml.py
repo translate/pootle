@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -21,6 +22,7 @@ import random
 import re
 
 from lxml.etree import ParserError
+from lxml.html import rewrite_links
 from lxml.html.clean import clean_html
 
 from django import template
@@ -76,3 +78,17 @@ def obfuscate(text):
 def url_target_blank(text):
     """Set the target="_blank" for hyperlinks."""
     return mark_safe(text.replace('<a ', '<a target="_blank" '))
+
+
+LANGUAGE_LINK_RE = re.compile(ur'/xx/', re.IGNORECASE)
+
+@register.filter
+@stringfilter
+def rewrite_language_links(html, language_code):
+    if language_code:
+        html = rewrite_links(
+            html,
+            lambda lnk: LANGUAGE_LINK_RE.sub(u'/' + language_code + u'/', lnk)
+        )
+
+    return mark_safe(html)
