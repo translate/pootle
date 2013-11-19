@@ -57,6 +57,19 @@
         }
       });
 
+      /* Page sidebar */
+      $(document).on('click', '.js-sidebar-toggle', function () {
+        var $sidebar =  $('.js-sidebar'),
+            openClass = 'sidebar-open',
+            cookieName = 'project-announcements',
+            cookieData = JSON.parse($.cookie(cookieName)) || {};
+
+        $sidebar.toggleClass(openClass);
+
+        cookieData.isOpen = $sidebar.hasClass(openClass);
+        $.cookie(cookieName, JSON.stringify(cookieData), {path: '/'});
+      });
+
       /* Popups */
       $(document).magnificPopup({
         type: 'ajax',
