@@ -256,7 +256,9 @@ class Command(PootleCommand):
 
     def _set_mtime_stats(self, timeout):
         """Check if any unit in the store has suggestions"""
-        queryset = Unit.objects.values('store').annotate(max_mtime=Max('mtime'))
+        queryset = Unit.objects.values('store').annotate(
+            max_mtime=Max('mtime')
+        )
 
         for item in queryset:
             key = Store.objects.get(id=item['store']).get_cachekey()

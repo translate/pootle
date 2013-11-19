@@ -35,7 +35,6 @@ from django.core.urlresolvers import reverse
 from django.db import models, DatabaseError, IntegrityError
 from django.db.models.signals import post_delete, post_save, pre_delete
 from django.db.transaction import commit_on_success
-from django.db.models import Max
 from django.utils import timezone, tzinfo
 from django.utils.translation import ugettext_lazy as _
 
