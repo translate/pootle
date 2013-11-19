@@ -143,7 +143,7 @@ class Submission(models.Model):
             if self.submitter:
                 displayuser = self.submitter
             else:
-                displayuser = User.objects.get_nobody_user().pootleprofile
+                displayuser = User.objects.get_nobody_user().get_profile()
 
         displayname = displayuser.fullname
         if not displayname:
