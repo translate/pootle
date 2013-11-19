@@ -18,8 +18,8 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 from django.template.defaultfilters import escape, truncatechars
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
@@ -137,7 +137,8 @@ class Submission(models.Model):
         if self.from_suggestion:
             displayuser = self.from_suggestion.reviewer
         else:
-            # Sadly we may not have submitter information in all the situations yet
+            # Sadly we may not have submitter information in all the
+            # situations yet
             # TODO check if it is truth
             if self.submitter:
                 displayuser = self.submitter

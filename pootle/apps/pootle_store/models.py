@@ -1481,7 +1481,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                         create_subs = {}
 
                         if unit._target_updated:
-                            create_subs[SubmissionFields.TARGET] = [old_target_f, unit.target_f]
+                            create_subs[SubmissionFields.TARGET] = \
+                                [old_target_f, unit.target_f]
 
                         # Set unit fields if submission should be created
                         if create_subs:
@@ -1490,7 +1491,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                         unit.save()
                         # check unit state after saving
                         if old_state != unit.state:
-                            create_subs[SubmissionFields.STATE] = [old_state, unit.state]
+                            create_subs[SubmissionFields.STATE] = [old_state,
+                                                                   unit.state]
 
                         # Create Submission after unit saved
                         for field in create_subs:
