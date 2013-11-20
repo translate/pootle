@@ -34,11 +34,11 @@ from django.core.urlresolvers import reverse
 from django.db import models, IntegrityError
 from django.db.models.signals import post_delete
 from django.db.transaction import commit_on_success
+from django.template.defaultfilters import escape, truncatechars
 from django.utils import dateformat, timezone, tzinfo
 from django.utils.translation import ugettext_lazy as _
 from django.utils.http import urlquote
 from django.utils.safestring import mark_safe
-from django.template.defaultfilters import escape, truncatechars
 
 from translate.filters.decorators import Category
 from translate.storage import base
