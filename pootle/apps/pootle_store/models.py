@@ -23,7 +23,6 @@ import datetime
 import logging
 import os
 import re
-import time
 
 from hashlib import md5
 
@@ -35,7 +34,7 @@ from django.core.urlresolvers import reverse
 from django.db import models, IntegrityError
 from django.db.models.signals import post_delete
 from django.db.transaction import commit_on_success
-from django.utils import timezone, tzinfo
+from django.utils import dateformat, timezone, tzinfo
 from django.utils.translation import ugettext_lazy as _
 from django.utils.http import urlquote
 
@@ -1696,7 +1695,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             if max_time:
                 return {
                     'id': max_unit.id,
-                    'creation_time': int(time.mktime(max_time.timetuple())),
+                    'creation_time': int(dateformat.format(max_time, 'U')),
                     'snippet': '<time class="extra-item-meta js-relative-date"'
                                '    title="%s" datetime="%s">&nbsp;'
                                '</time>' % (max_time, max_time.isoformat())
@@ -1724,7 +1723,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 
         return {
             'id': sub.unit.id,
-            'mtime': int(time.mktime(sub.creation_time.timetuple())),
+            'mtime': int(dateformat.format(sub.creation_time, 'U')),
             'snippet': sub.get_submission_message()
         }
 
@@ -1878,7 +1877,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                     'PO_Revision_Date': po_revision_date,
                     'X_Generator': x_generator,
                     'X_POOTLE_MTIME': ('%s.%06d' %
-                                       (int(time.mktime(mtime.timetuple())),
+                                       (int(dateformat.format(mtime, 'U')),
                                         mtime.microsecond)),
                     }
             if profile and profile.user.is_authenticated():

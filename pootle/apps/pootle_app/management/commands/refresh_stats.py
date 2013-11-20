@@ -23,7 +23,6 @@ import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 import logging
-import time
 
 from optparse import make_option
 
@@ -31,6 +30,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.urlresolvers import set_script_prefix
 from django.db.models import Count, Max, Sum
+from django.utils import dateformat
 from django.utils.encoding import iri_to_uri
 
 from pootle_language.models import Language
@@ -230,7 +230,7 @@ class Command(PootleCommand):
                 logging.info('Set last action stats for %s' % key)
                 res = {
                     'id': sub.unit.id,
-                    'mtime': int(time.mktime(sub.creation_time.timetuple())),
+                    'mtime': int(dateformat.format(sub.creation_time, 'U')),
                     'snippet': sub.get_submission_message()
                 }
                 cache.set(iri_to_uri(key + ':get_last_action'), res, timeout)
@@ -272,7 +272,7 @@ class Command(PootleCommand):
             max_time = item['max_creation_time']
             if max_time:
                 res = {
-                    'creation_time': int(time.mktime(max_time.timetuple())),
+                    'creation_time': int(dateformat.format(max_time, 'U')),
                     'snippet': '<time class="extra-item-meta js-relative-date"'
                                '    title="%s" datetime="%s">&nbsp;'
                                '</time>' % (max_time, max_time.isoformat())
