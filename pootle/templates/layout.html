@@ -1,5 +1,5 @@
 {% load url from future %}
-{% load i18n assets baseurl locale profile_tags %}
+{% load i18n assets baseurl locale profile_tags staticpages %}
 {% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}" id="{% block html_id %}{% endblock %}">
@@ -167,7 +167,7 @@
               href="javascript:PTL.zoom.zoom(1)">+</a>
           </div>
           <ul id="nav-main">
-            <li><a href='{{ "/pages/getting-started/"|l }}'>{% trans "Getting Started" %}</a></li>
+            <li><a href="{% staticpage_url 'getting-started' %}">{% trans "Getting Started" %}</a></li>
             <li><a class="js-popup-ajax" href="{% url 'pootle-contact' %}">{% trans "Contact Us" %}</a></li>
             {% if user.is_authenticated %}
             <li id="user">
@@ -225,8 +225,8 @@
     {% block footer %}
     <div id="footer">
       <ul class="nav">
-        <li><a href='{{ "/pages/about/"|l }}'>{% trans "About" %}</a></li>
-        <li><a href='{{ "/pages/tos/"|l }}'>{% trans "Terms and Conditions" %}</a></li>
+        <li><a href="{% staticpage_url 'about' %}">{% trans "About" %}</a></li>
+        <li><a href="{% staticpage_url 'tos' %}">{% trans "Terms and Conditions" %}</a></li>
       </ul>
     </div>
     {% endblock footer %}

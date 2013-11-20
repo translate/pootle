@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2012-2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -20,6 +21,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django import template
+from django.core.urlresolvers import reverse
 
 from ..models import LegalPage
 
@@ -65,3 +67,38 @@ def get_legalpages(parser, token):
         return LegalPageNode(context_name)
     else:
         raise template.TemplateSyntaxError(syntax_message)
+
+
+@register.tag
+def staticpage_url(parser, token):
+    """Returns the internal URL for a static page based on its virtual path.
+
+    Syntax::
+
+        {% staticpage_url 'virtual/path' %}
+    """
+    bits = token.split_contents()
+    syntax_message = ("%(tag_name)s expects a syntax of %(tag_name)s "
+                      "'virtual/path'" %
+                      dict(tag_name=bits[0]))
+    quote_message = "%s tag's argument should be in quotes" % bits[0]
+
+    if len(bits) == 2:
+        virtual_path = bits[1]
+
+        if (not (virtual_path[0] == virtual_path[-1] and
+                 virtual_path[0] in ('"', "'"))):
+            raise template.TemplateSyntaxError(quote_message)
+
+        return StaticPageURLNode(virtual_path[1:-1])
+
+    raise template.TemplateSyntaxError(syntax_message)
+
+
+class StaticPageURLNode(template.Node):
+
+    def __init__(self, virtual_path):
+        self.virtual_path = virtual_path
+
+    def render(self, context):
+        return reverse('pootle-staticpages-display', args=[self.virtual_path])
