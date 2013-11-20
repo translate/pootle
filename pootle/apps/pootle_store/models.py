@@ -35,7 +35,9 @@ from django.core.urlresolvers import reverse
 from django.db import models, DatabaseError, IntegrityError
 from django.db.models.signals import post_delete
 from django.db.transaction import commit_on_success
+from django.template.defaultfilters import escape, truncatechars
 from django.utils import dateformat, timezone, tzinfo
+from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
 from taggit.managers import TaggableManager
@@ -1029,6 +1031,29 @@ class Unit(models.Model, base.TranslationUnit):
             result = []
         return result
 
+    def get_last_updated_message(self):
+        unit = {
+            'source': escape(truncatechars(self, 50)),
+            'url': self.get_translate_url(),
+        }
+
+        action_bundle = {
+            'action': _(
+                '<i><a href="%(url)s">%(source)s</a></i>&nbsp;'
+                'added',
+                unit
+            ),
+            "date": self.creation_time,
+            "isoformat_date": self.creation_time.isoformat(),
+        }
+        return mark_safe(
+            '<time class="extra-item-meta js-relative-date"'
+            '    title="%(date)s" datetime="%(isoformat_date)s">&nbsp;'
+            '</time>&nbsp;'
+            u'<span class="action-text">%(action)s</span>'
+            % action_bundle)
+
+
 ###################### Store ###########################
 
 # custom storage otherwise django assumes all files are uploads headed to
@@ -1789,9 +1814,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 return {
                     'id': max_unit.id,
                     'creation_time': int(dateformat.format(max_time, 'U')),
-                    'snippet': '<time class="extra-item-meta js-relative-date"'
-                               '    title="%s" datetime="%s">&nbsp;'
-                               '</time>' % (max_time, max_time.isoformat())
+                    'snippet': max_unit.get_last_updated_message()
                 }
 
         return {'id': 0, 'creation_time': 0, 'snippet': ''}

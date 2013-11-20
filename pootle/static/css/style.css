@@ -973,10 +973,12 @@ html[dir="rtl"] .hd h2
     margin-right: 0.5em;
 }
 
-#main-overview .last-action .action-text
+#main-overview .last-action .action-text,
+table.stats .last-updated .action-text
 {
     display: none;
 }
+
 
 /* When browser size is 1440px or less, show the smaller version of the last action message */
 @media screen and (max-width: 1440px)
@@ -985,7 +987,11 @@ html[dir="rtl"] .hd h2
     {
         display: none;
     }
-}    
+    table.last .last-updated .action-text
+    {
+        display: none;
+    }
+}
 
 html[dir="rtl"] .last-action
 {
@@ -1701,7 +1707,8 @@ td.stats-percentage
 table.stats .number,
 th.stats-number,
 td.stats-number,
-td.stats-percentage
+td.stats-percentage,
+table.stats td.last-updated
 {
     text-align: right;
 }
@@ -2194,17 +2201,21 @@ html[dir="rtl"] .overview-description-toggle
 {
     padding: 0 2em;
     display: none;
-    border: 1px solid #d9d9d9;    
+    border: 1px solid #d9d9d9;
     background: #f4f4f4;
 
     border-radius: 0 0 5px 5px;
 }
 
-.path-summary-more table
+.path-summary-more table.stats
 {
     width: 40em;
 }
 
+.path-summary-more table.last
+{
+    width: 90em;
+}
 .path-summary-more td.stats-number
 {
     padding-right: 3em !important;

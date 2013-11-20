@@ -140,6 +140,10 @@
         $td.removeClass('non-zero');
       }
     },
+    updateLastUpdates: function(stats) {
+        $('#js-last-updated .last-updated').html(stats.lastupdated.snippet);
+        $('#js-last-action .last-action').html(stats.lastaction.snippet);
+    },
 
     load: function (callback) {
       var url = l('/xhr/stats/overview/'),
@@ -174,6 +178,7 @@
           var untranslated = data.total - data.translated - data.fuzzy;
           PTL.stats.updateTranslationStats($('#stats-untranslated'),
                                            data.total, untranslated, 0);
+          PTL.stats.updateLastUpdates(data);
 
           if ($table.length) {
             for (var name in data.children) {
