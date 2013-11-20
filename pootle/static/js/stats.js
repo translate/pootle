@@ -140,7 +140,8 @@
         $td.removeClass('non-zero');
       }
     },
-    updateLastUpdates: function(stats) {
+
+    updateLastUpdates: function (stats) {
         $('#js-last-updated .last-updated').html(stats.lastupdated.snippet);
         $('#js-last-action .last-action').html(stats.lastaction.snippet);
     },
