@@ -75,11 +75,9 @@ css_common = Bundle(
     'css/contact.css',
     'css/magnific-popup.css',
     'css/tipsy.css',
-    'css/markup.css',
     'css/sprite.css',
     'css/select2.css',
     'css/select2-pootle.css',
-    'css/custom/custom.css',
     filters='cssmin', output='css/common.min.%(version)s.css')
 register('css_common', css_common)
 
