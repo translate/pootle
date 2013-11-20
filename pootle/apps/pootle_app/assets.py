@@ -63,6 +63,8 @@ js_editor = Bundle(
     'js/models.js',
     'js/collections.js',
     'js/editor.js',
+    'js/mt/apertium.js',
+    'js/mt/google_translate.js',
     'js/lookup/wikipedia.js',
     filters='rjsmin', output='js/editor.min.%(version)s.js')
 register('js_editor', js_editor)
