@@ -430,7 +430,8 @@ class Unit(models.Model, base.TranslationUnit):
         self._encoding = 'UTF-8'
 
     def flag_store_before_going_away(self):
-        self.store.flag_for_deletion(CachedMethods.TOTAL)
+        self.store.flag_for_deletion(CachedMethods.TOTAL,
+                                     CachedMethods.LAST_UPDATED)
 
         if self.state == FUZZY:
             self.store.flag_for_deletion(CachedMethods.FUZZY)
