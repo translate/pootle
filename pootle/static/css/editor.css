@@ -25,9 +25,7 @@ textarea#view_unit
     left: 0;
     bottom: 0;
     z-index: 100;
-    -webkit-box-shadow: 0px 0px 20px #d9d9d9;
-       -moz-box-shadow: 0px 0px 20px #d9d9d9;
-            box-shadow: 0px 0px 20px #d9d9d9;
+    box-shadow: 0px 0px 20px #d9d9d9;
 }
 
 html[dir="rtl"] #toolbar
@@ -227,9 +225,7 @@ Unicode ranges is supported, and that they all look the same */
 
 .toolbar-message > div
 {
-    -webkit-border-radius: 5px 5px 0 0;
-       -moz-border-radius: 5px 5px 0 0;
-            border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
     border: 1px solid #d9d9d9;
     border-bottom: 0px;
     background-color: #f8f8f8;
@@ -524,9 +520,7 @@ div.language-name
     border-left: 1px dotted #d9d9d9;
     border-right: 1px dotted #d9d9d9;
     border-bottom: 1px solid #f1f7f8;
-    -webkit-border-radius: 5px 5px 0 0;
-       -moz-border-radius: 5px 5px 0 0;
-            border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
 
     padding: 1px 5px 0px;
     display: inline-block;
@@ -1026,9 +1020,7 @@ li.check
     margin: 0 0.5em 0.5em 0;
     padding: 0.1em 0.5em;
 
-    -webkit-border-radius: 4px;
-       -moz-border-radius: 4px;
-            border-radius: 4px;
+    border-radius: 4px;
 }
 
 li.check:hover
@@ -1087,68 +1079,32 @@ li.check > a
 
 .buttons input[type="submit"].submit
 {
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffee', endColorstr='#aaee77');
-    background: -webkit-gradient(linear, left top, left bottom, from(#ffe), to(#ae7));
-    background: -webkit-linear-gradient(top,  #ffe,  #ae7);
-    background:    -moz-linear-gradient(top,  #ffe,  #ae7);
-    background:     -ms-linear-gradient(top,  #ffe,  #ae7);
-    background:      -o-linear-gradient(top,  #ffe,  #ae7);
-    background:         linear-gradient(top,  #ffe,  #ae7);
+    background: linear-gradient(to bottom,  #ffe,  #ae7);
 }
 
 .translate-buttons-block input.submit:hover
 {
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#bbff88');
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#bf8));
-    background: -webkit-linear-gradient(top,  #fff,  #bf8);
-    background:    -moz-linear-gradient(top,  #fff,  #bf8);
-    background:     -ms-linear-gradient(top,  #fff,  #bf8);
-    background:      -o-linear-gradient(top,  #fff,  #bf8);
-    background:         linear-gradient(top,  #fff,  #bf8);
+    background: linear-gradient(to bottom,  #fff,  #bf8);
 }
 
 .translate-buttons-block input.submit:active
 {
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#aaee77', endColorstr='#ffffee');
-    background: -webkit-gradient(linear, left top, left bottom, from(#ae7), to(#ffe));
-    background: -webkit-linear-gradient(top,  #ae7,  #ffe);
-    background:    -moz-linear-gradient(top,  #ae7,  #ffe);
-    background:     -ms-linear-gradient(top,  #ae7,  #ffe);
-    background:      -o-linear-gradient(top,  #ae7,  #ffe);
-    background:         linear-gradient(top,  #ae7,  #ffe);
+    background: linear-gradient(to bottom,  #ae7,  #ffe);
 }
 
 .buttons input[type="submit"].suggest
 {
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffee', endColorstr='#eedd88');
-    background: -webkit-gradient(linear, left top, left bottom, from(#ffe), to(#ed8));
-    background: -webkit-linear-gradient(top,  #ffe,  #ed8);
-    background:    -moz-linear-gradient(top,  #ffe,  #ed8);
-    background:     -ms-linear-gradient(top,  #ffe,  #ed8);
-    background:      -o-linear-gradient(top,  #ffe,  #ed8);
-    background:         linear-gradient(top,  #ffe,  #ed8);
+    background: linear-gradient(to bottom,  #ffe,  #ed8);
 }
 
 .translate-buttons-block input.suggest:hover
 {
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffee99');
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fe9));
-    background: -webkit-linear-gradient(top,  #fff,  #fe9);
-    background:    -moz-linear-gradient(top,  #fff,  #fe9);
-    background:     -ms-linear-gradient(top,  #fff,  #fe9);
-    background:      -o-linear-gradient(top,  #fff,  #fe9);
-    background:         linear-gradient(top,  #fff,  #fe9);
+    background: linear-gradient(to bottom,  #fff,  #fe9);
 }
 
 .translate-buttons-block input.suggest:active
 {
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eedd88', endColorstr='#ffffee');
-    background: -webkit-gradient(linear, left top, left bottom, from(#ed8), to(#ffe));
-    background: -webkit-linear-gradient(top,  #ed8,  #ffe);
-    background:    -moz-linear-gradient(top,  #ed8,  #ffe);
-    background:     -ms-linear-gradient(top,  #ed8,  #ffe);
-    background:      -o-linear-gradient(top,  #ed8,  #ffe);
-    background:         linear-gradient(top,  #ed8,  #ffe);
+    background: linear-gradient(to bottom,  #ed8,  #ffe);
 }
 
 .translate-buttons-block input.suggest

@@ -758,9 +758,7 @@ html[dir="rtl"] #sidebar-toggle
 /* for forms displayed in lightbox mode (via magnificPopup plugin), use different shadow */
 .mfp-content .form
 {
-    -webkit-box-shadow: 0px 2px 30px rgba(0, 0, 0, 0.5);
-       -moz-box-shadow: 0px 2px 30px rgba(0, 0, 0, 0.5);
-            box-shadow: 0px 2px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 2px 30px rgba(0, 0, 0, 0.5);
 }
 
 /*
@@ -788,9 +786,7 @@ html[dir="rtl"] #sidebar-toggle
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
     background-color: #fcf8e3;
     border: 1px solid #fbeed5;
-    -webkit-border-radius: 4px;
-       -moz-border-radius: 4px;
-            border-radius: 4px;
+    border-radius: 4px;
 }
 
 .alert h4
@@ -878,10 +874,7 @@ button.close
 .fade
 {
   opacity: 0;
-  -webkit-transition: opacity 0.15s linear;
-     -moz-transition: opacity 0.15s linear;
-       -o-transition: opacity 0.15s linear;
-          transition: opacity 0.15s linear;
+  transition: opacity 0.15s linear;
 }
 
 .fade.in
@@ -1149,21 +1142,10 @@ input[type="submit"]
 
     min-height: 16px;
     min-width: 110px;
-    -webkit-border-radius: 5px;
-       -moz-border-radius: 5px;
-            border-radius: 5px;
-    -webkit-box-shadow: 0px 0px 2px #000;
-       -moz-box-shadow: 0px 0px 2px #000;
-            box-shadow: 0px 0px 2px #000;
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px #000;
 
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#cccccc');
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc));
-    background: -webkit-linear-gradient(top,  #fff,  #ccc);
-    background:    -moz-linear-gradient(top,  #fff,  #ccc);
-    background:     -ms-linear-gradient(top,  #fff,  #ccc);
-    background:      -o-linear-gradient(top,  #fff,  #ccc);
-    background:         linear-gradient(top,  #fff,  #ccc);
-
+    background: linear-gradient(to bottom,  #fff,  #ccc);
     color: #130f30;
 }
 
@@ -1171,25 +1153,13 @@ input[type="submit"]
 input[type="submit"]:hover
 {
     text-decoration: none;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dddddd');
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));
-    background: -webkit-linear-gradient(top,  #fff,  #ddd);
-    background:    -moz-linear-gradient(top,  #fff,  #ddd);
-    background:     -ms-linear-gradient(top,  #fff,  #ddd);
-    background:      -o-linear-gradient(top,  #fff,  #ddd);
-    background:         linear-gradient(top,  #fff,  #ddd);
+    background: linear-gradient(to bottom,  #fff,  #ddd);
 }
 
 .btn:active,
 input[type="submit"]:active
 {
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cccccc', endColorstr='#ffffff');
-    background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#fff));
-    background: -webkit-linear-gradient(top,  #ccc,  #fff);
-    background:    -moz-linear-gradient(top,  #ccc,  #fff);
-    background:     -ms-linear-gradient(top,  #ccc,  #fff);
-    background:      -o-linear-gradient(top,  #ccc,  #fff);
-    background:         linear-gradient(top,  #ccc,  #fff);
+    background: linear-gradient(to bottom,  #ccc,  #fff);
 }
 
 
@@ -1203,12 +1173,8 @@ input[type="submit"]:active
     margin: 2em auto;
     padding: 1em;
     text-align: left;
-    -webkit-border-radius: 10px;
-       -moz-border-radius: 10px;
-            border-radius: 10px;
-    -webkit-box-shadow: 0px 2px 5px #777;
-       -moz-box-shadow: 0px 2px 5px #777;
-            box-shadow: 0px 2px 5px #777;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px #777;
 
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e5f3f8', endColorstr='#cde7f1');
     background: -webkit-gradient(linear, left top, left bottom, from(#e5f3f8), to(#cde7f1));
@@ -1260,9 +1226,7 @@ html[dir="rtl"] .form .buttons
 input[type="submit"][disabled],
 input[type="submit"][disabled]:hover
 {
-    -webkit-box-shadow: none;
-       -moz-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
 
     background-image: none;
     background-color: #eee;
@@ -1274,13 +1238,7 @@ input[type="submit"][disabled]:hover
 
 input.delete[type="submit"]
 {
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffeeee', endColorstr='#ffcccc');
-    background: -webkit-gradient(linear, left top, left bottom, from(#fee), to(#fcc));
-    background: -webkit-linear-gradient(top,  #fee,  #fcc);
-    background:    -moz-linear-gradient(top,  #fee,  #fcc);
-    background:     -ms-linear-gradient(top,  #fee,  #fcc);
-    background:      -o-linear-gradient(top,  #fee,  #fcc);
-    background:         linear-gradient(top,  #fee,  #fcc);
+    background: linear-gradient(to bottom,  #fee,  #fcc);
 }
 
 body.zoom-out-1 input[type="submit"]
@@ -1316,35 +1274,17 @@ html[dir="rtl"] .form-horizontal.form-actions input
 
 .form.message
 {
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e5f3f8', endColorstr='#cde7f1');
-    background: -webkit-gradient(linear, left top, left bottom, from(#ffd), to(#ffa));
-    background: -webkit-linear-gradient(top,  #e5f3f8,  #cde7f1);
-    background:    -moz-linear-gradient(top,  #e5f3f8,  #cde7f1);
-    background:     -ms-linear-gradient(top,  #e5f3f8,  #cde7f1);
-    background:      -o-linear-gradient(top,  #e5f3f8,  #cde7f1);
-    background:         linear-gradient(top,  #e5f3f8,  #cde7f1);
+    background: linear-gradient(to bottom,  #e5f3f8,  #cde7f1);
 }
 
 .form.success
 {
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeffdd', endColorstr='#ccff99');
-    background: -webkit-gradient(linear, left top, left bottom, from(#efd), to(#cf9));
-    background: -webkit-linear-gradient(top,  #efd,  #cf9);
-    background:    -moz-linear-gradient(top,  #efd,  #cf9);
-    background:     -ms-linear-gradient(top,  #efd,  #cf9);
-    background:      -o-linear-gradient(top,  #efd,  #cf9);
-    background:         linear-gradient(top,  #efd,  #cf9);
+    background: linear-gradient(to bottom,  #efd,  #cf9);
 }
 
 .form.error
 {
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffeeee', endColorstr='#ffcccc');
-    background: -webkit-gradient(linear, left top, left bottom, from(#fee), to(#fcc));
-    background: -webkit-linear-gradient(top,  #fee,  #fcc);
-    background:    -moz-linear-gradient(top,  #fee,  #fcc);
-    background:     -ms-linear-gradient(top,  #fee,  #fcc);
-    background:      -o-linear-gradient(top,  #fee,  #fcc);
-    background:         linear-gradient(top,  #fee,  #fcc);
+    background: linear-gradient(to bottom,  #fee,  #fcc);
 }
 
 .form p.info
@@ -1783,9 +1723,7 @@ td.stats-number.critical a
     padding: 0 0.5em;
     margin-right: -0.5em;
 
-    -webkit-border-radius: 1em;
-       -moz-border-radius: 1em;
-            border-radius: 1em;
+    border-radius: 1em;
 }
 
 td.stats-number.suggestions a
@@ -2067,33 +2005,25 @@ ul.pager li span.current-link
 html[dir="ltr"] ul.pager li:first-child > *
 {
     padding-left: 1em;
-    -webkit-border-radius: 1em 0 0 1em;
-       -moz-border-radius: 1em 0 0 1em;
-            border-radius: 1em 0 0 1em;
+    border-radius: 1em 0 0 1em;
 }
 
 html[dir="ltr"] ul.pager li:last-child > *
 {
     padding-right: 1em;
-    -webkit-border-radius: 0 1em 1em 0;
-       -moz-border-radius: 0 1em 1em 0;
-            border-radius: 0 1em 1em 0;
+    border-radius: 0 1em 1em 0;
 }
 
 html[dir="rtl"] ul.pager li:first-child > *
 {
     padding-right: 1em;
-    -webkit-border-radius: 0 1em 1em 0;
-       -moz-border-radius: 0 1em 1em 0;
-            border-radius: 0 1em 1em 0;
+    border-radius: 0 1em 1em 0;
 }
 
 html[dir="rtl"] ul.pager li:last-child > *
 {
     padding-left: 1em;
-    -webkit-border-radius: 1em 0 0 1em;
-       -moz-border-radius: 1em 0 0 1em;
-            border-radius: 1em 0 0 1em;
+    border-radius: 1em 0 0 1em;
 }
 
 
@@ -2274,9 +2204,7 @@ html[dir="rtl"] .overview-description-toggle
     border: 1px solid #d9d9d9;    
     background: #f4f4f4;
 
-    -webkit-border-radius: 0 0 5px 5px;
-       -moz-border-radius: 0 0 5px 5px;
-            border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;
 }
 
 .path-summary-more table
@@ -2333,9 +2261,7 @@ body.js-not-loaded #translate-actions li
 {
     padding: 0.1em 0.9em;
     margin-right: -0.5em;
-    -webkit-border-radius: 1em;
-       -moz-border-radius: 1em;
-            border-radius: 1em;
+    border-radius: 1em;
     background: #000;
     color: #fff;
     font-weight: normal;
@@ -2561,9 +2487,7 @@ body #file-tabs a.selected-tab
     position: relative;
     padding: 2px;
 
-    -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.075) inset;
-       -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.075) inset;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.075) inset;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.075) inset;
 }
 
 #search-form,
@@ -2571,17 +2495,13 @@ body #file-tabs a.selected-tab
 {
     background-color: #fff;
     border: 1px solid #d9d9d9;
-    -webkit-border-radius: 3px;
-       -moz-border-radius: 3px;
-            border-radius: 3px;
+    border-radius: 3px;
 }
 
 #search-form.focused,
 .search-container
 {
-    -webkit-box-shadow: 0 0 2px #d9d9d9;
-       -moz-box-shadow: 0 0 2px #d9d9d9;
-            box-shadow: 0 0 2px #d9d9d9;
+    box-shadow: 0 0 2px #d9d9d9;
 }
 
 .search-wrapper
@@ -2622,13 +2542,9 @@ body #file-tabs a.selected-tab
     min-height: inherit;
     border: 0 none;
 
-    -webkit-box-shadow: none;
-       -moz-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
 
-    -webkit-border-radius: 0;
-       -moz-border-radius: 0;
-            border-radius: 0;
+    border-radius: 0;
 }
 
 .btn-search,

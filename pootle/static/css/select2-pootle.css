@@ -13,19 +13,10 @@
 .select2-container .select2-choice
 {
     border: 1px solid #d9d9d9;
-
-    -webkit-border-radius: 2px;
-       -moz-border-radius: 2px;
-            border-radius: 2px;
+    border-radius: 2px;
 
     background-color: #fcfcfc;
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #eeeeee), color-stop(0.5, #fcfcfc));
-    background-image: -webkit-linear-gradient(center bottom, #eeeeee 0%, #fcfcfc 50%);
-    background-image: -moz-linear-gradient(center bottom, #eeeeee 0%, #fcfcfc 50%);
-    background-image: -o-linear-gradient(bottom, #eeeeee 0%, #fcfcfc 50%);
-    background-image: -ms-linear-gradient(top, #fcfcfc 0%, #eeeeee 50%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#fcfcfc', endColorstr = '#eeeeee', GradientType = 0);
-    background-image: linear-gradient(top, #fcfcfc 0%, #eeeeee 50%);
+    background-image: linear-gradient(to bottom, #fcfcfc 0%, #eeeeee 50%);
 }
 
 .breadcrumb .select2-container .select2-choice
@@ -44,39 +35,27 @@
 .select2-container.select2-drop-above .select2-choice
 {
     border-bottom-color: #d9d9d9;
-    -webkit-border-radius:0 0 2px 2px;
-       -moz-border-radius:0 0 2px 2px;
-            border-radius:0 0 2px 2px;
+    border-radius:0 0 2px 2px;
 }
 
 .select2-drop
 {
     border: 1px solid #d9d9d9;
     border-top: 0;
-         -o-box-shadow: 0 4px 5px rgba(0, 0, 0, .15);
 }
 
 .select2-drop.select2-drop-above
 {
     border-top: 1px solid #d9d9d9;
-         -o-box-shadow: 0 -4px 5px rgba(0, 0, 0, .15);
 }
 
 .select2-container .select2-choice .select2-arrow
 {
     border-left: 1px solid #d9d9d9;
-    -webkit-border-radius: 0 2px 2px 0;
-       -moz-border-radius: 0 2px 2px 0;
-            border-radius: 0 2px 2px 0;
+    border-radius: 0 2px 2px 0;
 
     background-color: #ddd;
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #ddd), color-stop(0.6, #eee));
-    background-image: -webkit-linear-gradient(center bottom, #ddd 0%, #eee 60%);
-    background-image: -moz-linear-gradient(center bottom, #ddd 0%, #eee 60%);
-    background-image: -o-linear-gradient(bottom, #ddd 0%, #eee 60%);
-    background-image: -ms-linear-gradient(top, #dddddd 0%, #eeeeee 60%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#eeeeee', endColorstr = '#dddddd', GradientType = 0);
-    background-image: linear-gradient(top, #dddddd 0%, #eeeeee 60%);
+    background-image: linear-gradient(to bottom, #dddddd 0%, #eeeeee 60%);
 }
 
 .breadcrumb .select2-container .select2-choice .select2-arrow
@@ -96,7 +75,6 @@
 .select2-container-active .select2-choices
 {
     border: 1px solid #0489b7;
-         -o-box-shadow: 0 0 5px rgba(0,0,0,.3);
 }
 
 .breadcrumb .select2-dropdown-open .select2-choice,
@@ -104,19 +82,12 @@
 {
     border: 1px solid #d9d9d9;
     border-bottom-color: transparent;
-         -o-box-shadow: 0 1px 0 #fff inset;
 }
 
 .breadcrumb .select2-dropdown-open .select2-choice
 {
     background-color: #eee;
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, white), color-stop(0.5, #eeeeee));
-    background-image: -webkit-linear-gradient(center bottom, white 0%, #eeeeee 50%);
-    background-image: -moz-linear-gradient(center bottom, white 0%, #eeeeee 50%);
-    background-image: -o-linear-gradient(bottom, white 0%, #eeeeee 50%);
-    background-image: -ms-linear-gradient(top, #ffffff 0%,#eeeeee 50%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#ffffff',GradientType=0 );
-    background-image: linear-gradient(top, #ffffff 0%,#eeeeee 50%);
+    background-image: linear-gradient(to bottom, #ffffff 0%,#eeeeee 50%);
 }
 
 .select2-results .select2-highlighted
@@ -132,13 +103,11 @@
 .select2-container-multi.select2-container-active .select2-choices
 {
     border: 1px solid #0489b7;
-         -o-box-shadow: 0 0 5px rgba(0,0,0,.3);
 }
 
 .select2-container-multi .select2-choices .select2-search-field input
 {
     height: 15px;
-         -o-box-shadow: none;
 }
 
 .select2-container-multi .select2-choices .select2-search-choice
@@ -208,4 +177,3 @@
     min-width: 24em;
     max-width: 30em;
 }
-
