@@ -99,9 +99,9 @@ class Command(PootleCommand):
                     unit.update_qualitychecks(created=True)
 
         logging.info('Setting quality check stats values for all stores...')
-        self._set_qualitycheck_stats(timeout)
+        #self._set_qualitycheck_stats(timeout)
         logging.info('Setting last action values for all stores...')
-        self._set_last_action_stats(timeout)
+        #self._set_last_action_stats(timeout)
         logging.info('Setting last updated values for all stores...')
         self._set_last_updated_stats(timeout)
         logging.info('Setting mtime values for all stores...')
@@ -237,7 +237,6 @@ class Command(PootleCommand):
                 del self.cache_values[key]['get_last_action']
 
     def _set_suggestion_stats(self, timeout):
-        """Check if any unit in the store has suggestions"""
         queryset = Suggestion.objects.filter(unit__state__gt=OBSOLETE) \
                                      .values('unit__store') \
                                      .annotate(count=Count('id'))
@@ -250,7 +249,6 @@ class Command(PootleCommand):
             del self.cache_values[key]['get_suggestion_count']
 
     def _set_mtime_stats(self, timeout):
-        """Check if any unit in the store has suggestions"""
         queryset = Unit.objects.values('store').annotate(
             max_mtime=Max('mtime')
         )
@@ -263,7 +261,6 @@ class Command(PootleCommand):
             del self.cache_values[key]['get_mtime']
 
     def _set_last_updated_stats(self, timeout):
-        """Check if any unit in the store has suggestions"""
         queryset = Unit.objects.values('store').annotate(
             max_creation_time=Max('creation_time')
         )
@@ -271,15 +268,14 @@ class Command(PootleCommand):
         for item in queryset.iterator():
             max_time = item['max_creation_time']
             if max_time:
-                res = {
-                    'creation_time': int(dateformat.format(max_time, 'U')),
-                    'snippet': '<time class="extra-item-meta js-relative-date"'
-                               '    title="%s" datetime="%s">&nbsp;'
-                               '</time>' % (max_time, max_time.isoformat())
-                }
-
-                key = Store.objects.get(id=item['store']).get_cachekey()
+                store = Store.objects.get(id=item['store'])
+                unit = store.unit_set.filter(creation_time=max_time)[0]
+                key = store.get_cachekey()
                 logging.info('Set last_updated for %s' % key)
-                cache.set(iri_to_uri(key + ':get_last_updated'),
-                          res, timeout)
+                res = {
+                    'id': unit.id,
+                    'creation_time': int(dateformat.format(max_time, 'U')),
+                    'snippet': unit.get_last_updated_message()
+                }
+                cache.set(iri_to_uri(key + ':get_last_updated'), res, timeout)
                 del self.cache_values[key]['get_last_updated']
