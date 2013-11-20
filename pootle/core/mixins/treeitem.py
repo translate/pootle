@@ -57,6 +57,7 @@ class CachedMethods(object):
     LAST_ACTION = 'get_last_action'
     SUGGESTIONS = 'get_suggestion_count'
     MTIME = 'get_mtime'
+    LAST_UPDATED = 'get_last_updated'
 
 
 class TreeItem(object):

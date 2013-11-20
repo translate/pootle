@@ -356,7 +356,8 @@ class Unit(models.Model, base.TranslationUnit):
             self._log_user = 'system'
         if not self.id:
             self._save_action = UNIT_ADDED
-            self.store.flag_for_deletion(CachedMethods.TOTAL)
+            self.store.flag_for_deletion(CachedMethods.TOTAL,
+                                         CachedMethods.LAST_UPDATED)
 
         if self._source_updated:
             # update source related fields
@@ -1683,7 +1684,13 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         return max_column(self.unit_set.all(), 'mtime', datetime_min)
 
     def _get_last_updated(self):
-        max_unit = self.unit_set.all().order_by('-creation_time')[0]
+        max_unit = None
+        try:
+            max_unit = self.unit_set.all().order_by('-creation_time')[0]
+        except IndexError as e:
+            pass
+
+        # creation_time field has been added recently, so it can have NULL value
         if max_unit:
             max_time = max_unit.creation_time
             if max_time:
