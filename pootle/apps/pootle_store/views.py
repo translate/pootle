@@ -698,7 +698,7 @@ def timeline(request, unit):
 def get_qualitycheck_stats(request, path_obj, **kwargs):
     qc_stats = request.resource_obj.get_checks()
 
-    return HttpResponse(jsonify(qc_stats), mimetype="application/json")
+    return HttpResponse(jsonify(qc_stats['checks']), mimetype="application/json")
 
 
 @ajax_required
