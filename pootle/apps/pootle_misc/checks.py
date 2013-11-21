@@ -629,7 +629,7 @@ class ENChecker(checks.TranslationChecker):
 
                 # check if a prefix '#' symbol is missing for a numeric
                 # entity
-                regex = re.compile(u"o&\d+;", re.U)
+                regex = re.compile(u"&\d+;", re.U)
                 if regex.match(chunk):
                     fingerprint += 1
 
@@ -657,7 +657,7 @@ class ENChecker(checks.TranslationChecker):
                 regex = re.compile(u"&#(\d+);")
                 mo = regex.match(chunk)
                 if mo:
-                    number = mo.group(1)
+                    number = int(mo.group(1))
                     if (number < 32 and number != 10) or number > 65535:
                         fingerprint += 1
 
