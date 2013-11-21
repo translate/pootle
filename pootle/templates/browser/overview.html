@@ -131,6 +131,10 @@ $(function () {
     $("body").spin(false);
   });
 
+  {% if announcement %}
+  PTL.common.fixSidebarHeight();
+  $(window).on('resize', PTL.common.fixSidebarHeight);
+  {% endif %}
   $("td.stats-name").filter(":not([dir])").bidi();
 
 {% if upload_form %}

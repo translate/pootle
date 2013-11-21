@@ -479,6 +479,17 @@
           }
         }
       });
+    },
+
+    fixSidebarHeight: function () {
+      var $body = $('#body'),
+          bodyHeight = $body.height(),
+          contentAreaHeight = $('#wrapper').height() - $body.offset().top -
+                              parseInt($body.css('padding-bottom'), 10);
+
+      if (bodyHeight < contentAreaHeight) {
+        $body.css('height', contentAreaHeight);
+      }
     }
 
   };
