@@ -635,6 +635,7 @@ def timeline(request, unit):
         context['created'] = {
             'datetime': unit.creation_time,
         }
+    context['system'] = User.objects.get_system_user().get_profile()
 
     for key, values in groupby(timeline, key=lambda x: x.creation_time):
         entry_group = {
