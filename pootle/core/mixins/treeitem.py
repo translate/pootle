@@ -97,7 +97,7 @@ class TreeItem(object):
 
     def _get_checks(self):
         """This method will be overridden in descendants"""
-        return {}
+        return {'unit_count': 0, 'checks': {}}
 
     def _get_last_action(self):
         """This method will be overridden in descendants"""
@@ -204,7 +204,7 @@ class TreeItem(object):
             'fuzzy': self.get_fuzzy_wordcount(),
             'suggestions': self.get_suggestion_count(),
             'lastaction': self.get_last_action(),
-            'critical': self.get_critical(),
+            'critical': self.get_error_unit_count(),
             'lastupdated': self.get_last_updated()
         }
 
@@ -240,7 +240,9 @@ class TreeItem(object):
         result = self._get_checks()
         self.initialize_children()
         for item in self.children:
-            result = dictsum(result, item.get_checks())
+            item_res = item.get_checks()
+            result['checks'] = dictsum(result['checks'], item_res['checks'])
+            result['unit_count'] += item_res['unit_count']
 
         return result
 
@@ -258,6 +260,11 @@ class TreeItem(object):
 
         return sum(map(lambda x: check_stats[x] if x in check_stats else 0,
                        get_qualitychecks_by_category(Category.CRITICAL)))
+
+    def get_error_unit_count(self):
+        check_stats = self.get_checks()
+
+        return check_stats['unit_count']
 
     def get_critical1(self):
         """Alter implementaion (pick up every check separately)"""

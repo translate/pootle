@@ -135,27 +135,32 @@ class Command(PootleCommand):
     def _set_qualitycheck_stats(self, timeout):
         queryset = QualityCheck.objects.filter(unit__state__gt=UNTRANSLATED,
                                                false_positive=False) \
-                                       .values('unit__store', 'name') \
-                                       .annotate(count=Count('name')) \
-                                       .order_by('unit__store')
+                                       .values('unit', 'unit__store', 'name') \
+                                       .order_by('unit__store', 'unit')
 
-        saved = None
-        key = None
-        stats = {}
+        saved_store = None
+        saved_unit = None
+        stats = None
 
         for item in queryset.iterator():
-            if item['unit__store'] != saved:
+            if item['unit__store'] != saved_store:
                 key = Store.objects.get(id=item['unit__store']).get_cachekey()
-                if saved:
-                    self._set_qualitycheck_stats_cache(stats, key, timeout)
+                saved_store = item['unit__store']
+                stats = self.cache_values[key]['get_checks']['checks']
 
-                saved = item['unit__store']
-                stats = {}
+            if item['name'] in stats['checks']:
+                stats['checks'][item['name']] += 1
+            else:
+                stats['checks'][item['name']] = 1
 
-            stats[item['name']] = item['count']
+            if saved_unit != item['unit']:
+                saved_unit = item['unit']
+                stats['unit_count'] += 1
 
-        if saved and saved != item['unit__store']:
-            self._set_qualitycheck_stats_cache(stats, key, timeout)
+        for key in self.cache_values:
+            stats = self.cache_values['get_checks']
+            if stats['unit_count'] > 0:
+                self._set_qualitycheck_stats_cache(stats, key, timeout)
 
     def _set_wordcount_stats_cache(self, stats, key, timeout):
         if key:
@@ -205,7 +210,7 @@ class Command(PootleCommand):
             self.cache_values[store.get_cachekey()] = {
                 'get_last_action': {'id': 0, 'mtime': 0, 'snippet': ''},
                 'get_suggestion_count': 0,
-                'get_checks': {},
+                'get_checks': {'unit_count': 0, 'checks': {}},
                 'get_total_wordcount': 0,
                 'get_translated_wordcount': 0,
                 'get_fuzzy_wordcount': 0,

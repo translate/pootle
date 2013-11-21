@@ -1700,7 +1700,22 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             queryset = QualityCheck.objects.filter(unit__store=self,
                                                    unit__state__gt=UNTRANSLATED,
                                                    false_positive=False)
-            return group_by_count(queryset, 'name')
+
+            queryset = queryset.values('unit', 'name').order_by('unit')
+
+            saved_unit = None
+            result = {'unit_count': 0, 'checks': {}}
+            for item in queryset:
+                if item['unit'] != saved_unit or saved_unit is None:
+                    saved_unit = item['unit']
+                    # assumed all checks are critical and should be counted
+                    result['unit_count'] += 1
+                if item['name'] in result['checks']:
+                    result['checks'][item['name']] += 1
+                else:
+                    result['checks'][item['name']] = 1
+
+            return result
         except Exception as e:
             logging.info(u"Error getting quality checks for %s\n%s",
                          self.name, e)
