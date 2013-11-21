@@ -99,9 +99,9 @@ class Command(PootleCommand):
                     unit.update_qualitychecks(created=True)
 
         logging.info('Setting quality check stats values for all stores...')
-        #self._set_qualitycheck_stats(timeout)
+        self._set_qualitycheck_stats(timeout)
         logging.info('Setting last action values for all stores...')
-        #self._set_last_action_stats(timeout)
+        self._set_last_action_stats(timeout)
         logging.info('Setting last updated values for all stores...')
         self._set_last_updated_stats(timeout)
         logging.info('Setting mtime values for all stores...')
