@@ -47,6 +47,7 @@ from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 
 from .decorators import get_unit_context
+from .fields import to_python
 from .forms import (unit_comment_form_factory, unit_form_factory,
                     highlight_whitespace)
 from .models import Unit
@@ -442,16 +443,15 @@ def timeline(request, unit):
     timeline = timeline.select_related("submitter__user",
                                        "translation_project__language")
 
-    context = {}
     entries_group = []
-
-    from pootle_store.fields import to_python
+    context = {
+        'system': User.objects.get_system_user().get_profile()
+    }
 
     if unit.creation_time:
         context['created'] = {
             'datetime': unit.creation_time,
         }
-    context['system'] = User.objects.get_system_user().get_profile()
 
     for key, values in groupby(timeline, key=lambda x: x.creation_time):
         entry_group = {
