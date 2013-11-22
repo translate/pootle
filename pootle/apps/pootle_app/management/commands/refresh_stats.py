@@ -146,7 +146,7 @@ class Command(PootleCommand):
             if item['unit__store'] != saved_store:
                 key = Store.objects.get(id=item['unit__store']).get_cachekey()
                 saved_store = item['unit__store']
-                stats = self.cache_values[key]['get_checks']['checks']
+                stats = self.cache_values[key]['get_checks']
 
             if item['name'] in stats['checks']:
                 stats['checks'][item['name']] += 1
@@ -158,7 +158,7 @@ class Command(PootleCommand):
                 stats['unit_count'] += 1
 
         for key in self.cache_values:
-            stats = self.cache_values['get_checks']
+            stats = self.cache_values[key]['get_checks']
             if stats['unit_count'] > 0:
                 self._set_qualitycheck_stats_cache(stats, key, timeout)
 
