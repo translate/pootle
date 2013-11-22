@@ -16,7 +16,7 @@ if [ "$files" == ""  ]; then
 fi
 
 pep8 \
---exclude=djblets,registration,assets,profiles \
+--exclude=djblets,assets,profiles \
 --select=$select \
 --statistics \
 $files

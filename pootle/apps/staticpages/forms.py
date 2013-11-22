@@ -48,13 +48,6 @@ def agreement_form_factory(pages, user, base_class=forms.Form,
 
         def save(self):
             """Save user agreements."""
-            if hasattr(super(AgreementForm, self), 'save'):
-                # HACKISH: This is tightly coupled with `RegistrationForm`
-                # which returns the newly-registered user in its form's
-                # `save`. We should listen to the `user_registered` signal
-                # instead.
-                self._user = super(AgreementForm, self).save()
-
             for page in self._pages:
                 agreement, created = Agreement.objects.get_or_create(
                     user=self._user, document=page,
