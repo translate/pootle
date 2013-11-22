@@ -50,11 +50,14 @@ urlpatterns += patterns('django.contrib.auth.views',
 
 # Only include registration urls if registration is enabled.
 if settings.CAN_REGISTER:
+    from .views import PootleRegistrationView
+
     urlpatterns += patterns('',
         url(r'^register/?$',
-            'pootle_profile.views.register'),
+            PootleRegistrationView.as_view(),
+            name='registration_register'),
         url(r'',
-            include('registration.urls')),
+            include('registration.backends.default.urls')),
     )
 
 urlpatterns += patterns('',

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Account Activated" %} | {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Account Activated" %}</li>
+{% endblock %}
+
+{% block content %}
+<div class="form message success">
+  <h2>{% trans "Pootle Account Activated!" %}</h2>
+  <p>{% trans "Your Pootle account has been succesfully created. You can now proceed to log in." %}</p>
+</div>
+{% endblock %}
