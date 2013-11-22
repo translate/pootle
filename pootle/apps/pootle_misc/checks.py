@@ -767,7 +767,3 @@ def check_translation(get_fingerprint_func, string, translation):
     b_fingerprint = get_fingerprint_func(translation, False, string)
 
     return a_fingerprint == b_fingerprint
-
-
-
-
