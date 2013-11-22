@@ -36,26 +36,37 @@ from .managers import PageManager
 
 class AbstractPage(DirtyFieldsMixin, models.Model):
 
-    active = models.BooleanField(_('Active'),
-            help_text=_('Whether this page is active or not.'))
-
-    virtual_path = models.CharField(_("Virtual Path"), max_length=100,
-            default='', unique=True,
-            help_text='/pages/')
-
+    active = models.BooleanField(
+        _('Active'),
+        help_text=_('Whether this page is active or not.'),
+    )
+    virtual_path = models.CharField(
+        _("Virtual Path"),
+        max_length=100,
+        default='',
+        unique=True,
+        help_text='/pages/',
+    )
     # TODO: make title and body localizable fields
     title = models.CharField(_("Title"), max_length=100)
-    # Translators: Content that will be used to display this static page
-    body = MarkupField(_("Display Content"), blank=True,
-            help_text=_('Allowed markup: %s', get_markup_filter_name()))
-
-    url = models.URLField(_("Redirect to URL"), blank=True,
-            help_text=_('If set, any references to this page will '
-                        'redirect to this URL'))
-
-    # This will go away with bug 2830, but works fine for now
-    modified_on = models.DateTimeField(default=now, editable=False,
-                                       auto_now_add=True)
+    body = MarkupField(
+        # Translators: Content that will be used to display this static page
+        _("Display Content"),
+        blank=True,
+        help_text=_('Allowed markup: %s', get_markup_filter_name()),
+    )
+    url = models.URLField(
+        _("Redirect to URL"),
+        blank=True,
+        help_text=_('If set, any references to this page will redirect to this'
+                    ' URL'),
+    )
+    # This will go away with bug 2830, but works fine for now.
+    modified_on = models.DateTimeField(
+        default=now,
+        editable=False,
+        auto_now_add=True,
+    )
 
     objects = PageManager()
 
@@ -66,8 +77,7 @@ class AbstractPage(DirtyFieldsMixin, models.Model):
         return self.virtual_path
 
     def save(self):
-        # Update the `modified_on` timestamp only when specific
-        # fields change
+        # Update the `modified_on` timestamp only when specific fields change.
         dirty_fields = self.get_dirty_fields()
         if any(field in dirty_fields for field in ('title', 'body', 'url')):
             self.modified_on = now()
@@ -135,8 +145,12 @@ class Agreement(models.Model):
 
     user = models.ForeignKey(User)
     document = models.ForeignKey(LegalPage)
-    agreed_on = models.DateTimeField(default=now, editable=False,
-                                     auto_now_add=True, auto_now=True)
+    agreed_on = models.DateTimeField(
+        default=now,
+        editable=False,
+        auto_now_add=True,
+        auto_now=True,
+    )
 
     class Meta:
         unique_together = ('user', 'document',)

@@ -25,6 +25,7 @@ from django.conf.urls import patterns, url
 from .views import (AdminTemplateView, PageCreateView, PageDeleteView,
                     PageUpdateView)
 
+
 urlpatterns = patterns('',
     url(r'^legal/agreement/$',
         'staticpages.views.legal_agreement',
