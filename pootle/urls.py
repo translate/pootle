@@ -40,7 +40,7 @@ urlpatterns = patterns(
         {'document_root': settings.PODIRECTORY}, ),
 
     # External apps.
-    url(r'^contact/', include('contact_form_i18n.urls')),
+    url(r'^contact/', include('pootle_contact.urls')),
     url(r'^accounts/', include('pootle_profile.urls')),
 )
 
