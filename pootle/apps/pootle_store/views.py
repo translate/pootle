@@ -33,6 +33,7 @@ from django.utils.translation.trans_real import parse_accept_lang_header
 from django.utils import simplejson, timezone
 from django.views.decorators.cache import never_cache
 
+from translate.filters.decorators import Category
 from translate.lang import data
 
 from pootle.core.decorators import (get_path_obj, get_resource_context,
@@ -701,12 +702,29 @@ def submit(request, unit):
                     profile=request.profile,
             )
 
+            has_critical_checks = unit.qualitycheck_set.filter(
+                category=Category.CRITICAL
+            ).exists()
+
+            if has_critical_checks:
+                can_review = check_profile_permission(request.profile,
+                                                      'review',
+                                                      unit.store.parent)
+                ctx = {
+                    'canreview': can_review,
+                    'unit': unit
+                }
+                template = loader.get_template('editor/units/xhr_checks.html')
+                context = RequestContext(request, ctx)
+                json['checks'] = template.render(context)
+
         rcode = 200
     else:
         # Form failed
         #FIXME: we should display validation errors here
         rcode = 400
         json["msg"] = _("Failed to process submission.")
+
     response = jsonify(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
 
