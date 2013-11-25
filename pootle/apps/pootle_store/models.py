@@ -50,7 +50,7 @@ from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
 from pootle.core.managers import RelatedManager
 from pootle.core.mixins import CachedMethods, TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
-from pootle_misc.aggregate import group_by_count, max_column
+from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 from pootle_misc.checks import check_names
 from pootle_misc.util import cached_property, datetime_min, get_cached_value
