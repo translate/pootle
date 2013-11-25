@@ -18,7 +18,7 @@
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 from django.conf import settings
-from django.conf.urls import include, patterns
+from django.conf.urls import include, patterns, url
 from django.contrib import admin
 
 
@@ -26,40 +26,42 @@ admin.autodiscover()
 
 urlpatterns = patterns(
     '',
-    (r'^django_admin/', include(admin.site.urls)),
+    url(r'^django_admin/', include(admin.site.urls)),
 
-    # JavaScript i18n
-    (r'^jsi18n/$', 'django.views.i18n.javascript_catalog',
-     {'packages': ('pootle', ), }, ),
+    # JavaScript i18n.
+    url(r'^jsi18n/$',
+        'django.views.i18n.javascript_catalog',
+        {'packages': ('pootle', ), }, ),
 
     # XXX: Do we really want to let Django serve these files in production?
-    # Direct download of translation files
-    (r'^export/(?P<path>.*)$', 'django.views.static.serve',
-     {'document_root': settings.PODIRECTORY}, ),
+    # Direct download of translation files.
+    url(r'^export/(?P<path>.*)$',
+        'django.views.static.serve',
+        {'document_root': settings.PODIRECTORY}, ),
 
-    # External apps
-    (r'^contact/', include('contact_form_i18n.urls')),
-    (r'^accounts/', include('pootle_profile.urls')),
+    # External apps.
+    url(r'^contact/', include('contact_form_i18n.urls')),
+    url(r'^accounts/', include('pootle_profile.urls')),
 )
 
 if settings.POOTLE_ENABLE_API:
     from api_factory import api_factory
     urlpatterns += patterns(
         '',
-        # Pootle API URLs
-        (r'^api/', include(api_factory().urls)),
+        # Pootle API URLs.
+        url(r'^api/', include(api_factory().urls)),
     )
 
 urlpatterns += patterns(
     '',
-    # Pootle URLs
-    (r'^pages/', include('staticpages.urls')),
-    (r'', include('pootle_app.urls')),
-    (r'^projects/', include('pootle_project.urls')),
-    (r'^goals/', include('pootle_tagging.urls')),
-    (r'', include('pootle_notifications.urls')),
-    (r'', include('pootle_terminology.urls')),
-    (r'', include('pootle_store.urls')),
-    (r'', include('pootle_language.urls')),
-    (r'', include('pootle_translationproject.urls')),
+    # Pootle URLs.
+    url(r'^pages/', include('staticpages.urls')),
+    url(r'', include('pootle_app.urls')),
+    url(r'^projects/', include('pootle_project.urls')),
+    url(r'^goals/', include('pootle_tagging.urls')),
+    url(r'', include('pootle_notifications.urls')),
+    url(r'', include('pootle_terminology.urls')),
+    url(r'', include('pootle_store.urls')),
+    url(r'', include('pootle_language.urls')),
+    url(r'', include('pootle_translationproject.urls')),
 )
