@@ -221,9 +221,14 @@ class ENChecker(checks.TranslationChecker):
                     if regex.match(translation):
                         return None
 
-                regex = re.compile(u"^EEEE, MMMM d yyyy, (h:mm a|h:mm aa|hh:mm a|hh:mm aa)$", re.U)
+                regex = re.compile(
+                    u"^EEEE, MMMM d yyyy, (h:mm a|h:mm aa|hh:mm a|hh:mm aa)$",
+                    re.U
+                )
                 if regex.match(str):
-                    regex = re.compile(u"^(EEEE, MMMM d yyyy|EEEE, d MMMM yyyy), (H:mm|HH:mm)$")
+                    regex = re.compile(
+                        u"^(EEEE, MMMM d yyyy|EEEE, d MMMM yyyy), (H:mm|HH:mm)$"
+                    )
                     if regex.match(translation):
                         return None
 
@@ -273,7 +278,8 @@ class ENChecker(checks.TranslationChecker):
     @critical
     def unescaped_ampersands(self, str1, str2):
         def get_fingerprint(str, is_source=False, translation=''):
-            # skip comparing strings if there are no ampersands in the translation
+            # skip comparing strings if there are no ampersands in the
+            # translation
             if is_source and u"&" not in translation:
                 return None
 
@@ -298,8 +304,8 @@ class ENChecker(checks.TranslationChecker):
                 else:
                     escaped_count += 1
 
-            # fingerprint will not count the number of & or &amp;, but just the fact
-            # of their presence
+            # fingerprint will not count the number of & or &amp;, but
+            # just the fact of their presence
             if unescaped_count > 0:
                 fingerprint = 2
             if escaped_count > 0:
@@ -315,9 +321,11 @@ class ENChecker(checks.TranslationChecker):
     @critical
     def changed_attributes(self, str1, str2):
         def get_fingerprint(str, is_source=False, translation=''):
-            # hardcoded rule: skip web banner images which are translated differently
+            # hardcoded rule: skip web banner images which are translated
+            # differently
             if is_source:
-                regex = re.compile(u'^\<img src="\/images\/account\/bnr_', re.U)
+                regex = re.compile(u'^\<img src="\/images\/account\/bnr_',
+                                   re.U)
                 if regex.match(str):
                     return None
 
@@ -438,9 +446,9 @@ class ENChecker(checks.TranslationChecker):
             # equal in source and translation
             # 2) check that the number of opening brackets matches the number
             # of closing brackets
+            count_list = [count, level, opening_count, closing_count]
 
-            return u"\001".join(map(lambda x: u"%d" % x,
-                                    [count, level, opening_count, closing_count]))
+            return u"\001".join(map(lambda x: u"%d" % x, count_list))
 
         if check_translation(get_fingerprint, str1, str2):
             return True
@@ -497,9 +505,10 @@ class ENChecker(checks.TranslationChecker):
                 if re.compile(fmt, re.U).match(str):
                     return None
 
-                # hardcoded rules for strings that look like tags but are not them
+                # hardcoded rules for strings that look like tags but are
+                # not them
                 fmt = u'^<(Sync Required|None|no attributes|no tags|' + \
-                    u'no saved|searches|notebook|not available)>$'
+                      u'no saved|searches|notebook|not available)>$'
 
                 if re.compile(fmt, re.U).match(str):
                     return None
@@ -545,7 +554,8 @@ class ENChecker(checks.TranslationChecker):
 
             # special rule for banner images in the web client which are
             # translated differently, e.g.:
-            # From: <img src="/images/account/bnr_allow.gif" alt="Allow Account Access" />
+            # From: <img src="/images/account/bnr_allow.gif"
+            #            alt="Allow Account Access" />
             # To:   <h1>Allow Konto Zugriff</h1>
             if is_source:
                 fmt = u'^<img src="\/images\/account\/bnr_'
@@ -585,7 +595,9 @@ class ENChecker(checks.TranslationChecker):
                 chunk = regex.sub(r"&\1;", chunk)
 
 
-            fingerprint = u"%d\001%d\001%d" % (ampersand_count, underscore_count, circumflex_count)
+            fingerprint = u"%d\001%d\001%d" % (
+                ampersand_count, underscore_count, circumflex_count
+            )
 
             return fingerprint
 
