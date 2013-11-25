@@ -9,9 +9,16 @@
 {% endblock %}
 
 {% block content %}
+{% if account %}
 <div class="form message success">
     <h2>{% trans "Account Activated" %}</h2>
     <p>{% blocktrans %}The account has been activated for username "{{ account }}". You can now proceed to log in.{% endblocktrans %}
     </p>
 </div>
+    {% else %}
+<div class="form message error">
+  <h2>{% trans "Activation Code Expired" %}</h2>
+    <p>{% blocktrans %}This account activation code has expired.{% endblocktrans %}
+</div>
+    {% endif %}  
 {% endblock %}
