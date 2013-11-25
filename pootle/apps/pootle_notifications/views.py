@@ -28,6 +28,7 @@ from pootle_app.models import Directory
 from pootle_app.models.permissions import (get_matching_permissions,
                                            check_permission,
                                            check_profile_permission)
+from pootle.core.markup.filters import apply_markup_filter
 from pootle_misc.mail import send_mail
 from pootle_notifications.forms import form_factory
 from pootle_notifications.models import Notice
@@ -212,8 +213,10 @@ def handle_form(request, current_directory, current_project, current_language,
             form.cleaned_data['restrict_to_active_users'],
             form.cleaned_data['directory']
         )
+        message = apply_markup_filter(message)
         # Send the email to the recipients, ensuring addresses are hidden
-        send_mail(email_header, message, bcc=recipients, fail_silently=True)
+        send_mail(email_header, message, bcc=recipients, fail_silently=True,
+                  html_message=True)
 
     form = form_factory(current_directory)()
 

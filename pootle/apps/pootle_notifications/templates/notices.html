@@ -57,7 +57,7 @@ the future we have to take a different approach for this.
           <h3>{% trans "Successfully published the following news" %}</h3>
           <div name="publishednotice">
             {% for np in notices_published %}
-              <p>{{ np }}</p>
+              {{ np.message|safe|clean }}
             {% endfor %}
           </div>
           <hr />
