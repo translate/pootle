@@ -56,7 +56,7 @@ def get_items(request, model, get_last_action, name_func):
             'stats': stats,
             'completed_title': _("%(percentage)d%% complete",
                                  {'percentage': translated_percentage}),
-            })
+        })
 
     items.sort(lambda x, y: locale.strcoll(x['name'], y['name']))
 
@@ -122,7 +122,7 @@ def view(request, root_dir):
             'l10n',
             'traduction',
             'traduire',
-            ],
+        ],
         'topstats': gentopstats_root(),
         'permissions': request.permissions,
         'can_edit': can_edit,
