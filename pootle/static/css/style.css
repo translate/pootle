@@ -27,15 +27,12 @@
  */
 
 /*
- * TEMPORARILY HIDE CRITICAL ERRORS
- *
-#action-fix-critical,
-td.stats-number.critical,
-#js-stats-checks,
-th#js-stats-critical
+ * TEMPORARILY FAILING CHECKS
+*/
+.stats-checks
 {
     display: none !important;
-}*/
+}
 
 /*
  * BASIC ELEMENT STYLING
