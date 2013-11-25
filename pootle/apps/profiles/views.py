@@ -12,7 +12,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.views.generic.list_detail import object_list
+from django.views.generic.list import ListView
 
 from profiles import utils
 
@@ -284,8 +284,7 @@ def profile_detail(request, username, public_profile_field=None,
                               { 'profile': profile_obj },
                               context_instance=context)
 
-def profile_list(request, public_profile_field=None,
-                 template_name='profiles/profile_list.html', **kwargs):
+class ProfileListView(ListView):
     """
     A list of user profiles.
     
@@ -329,9 +328,14 @@ def profile_list(request, public_profile_field=None,
     :template:`profiles/profile_list.html`.
     
     """
-    profile_model = utils.get_profile_model()
-    queryset = profile_model._default_manager.all()
-    if public_profile_field is not None:
-        queryset = queryset.filter(**{ public_profile_field: True })
-    kwargs['queryset'] = queryset
-    return object_list(request, template_name=template_name, **kwargs)
+    public_profile_field = None
+    template_name = 'profiles/profile_list.html'
+
+    def get_model(self):
+        return utils.get_profile_model()
+
+    def get_queryset(self):
+        queryset = self.get_model()._default_manager.all()
+        if self.public_profile_field is not None:
+            queryset = queryset.filter(**{self.public_profile_field: True})
+        return queryset
