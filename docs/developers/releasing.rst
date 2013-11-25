@@ -59,9 +59,14 @@ The release notes will be used in these places:
 We create our release notes in reStructured Text, since we use that elsewhere
 and since it can be rendered well in some of our key sites.
 
-First we need to create a log of changes in Pootle::
+First we need to create a log of changes in Pootle, which is done generically
+like this::
 
-    git diff N-1 HEAD > docs/release/$version.rst
+    git log $version-1..HEAD > docs/release/$version.rst
+
+Or a more specific example::
+
+    git log 2.5.0..HEAD > docs/releases/2.5.1.rst
 
 Edit this new file.  You can use the commits as a guide to build up the release
 notes.  You should remove all log messages before the release.
