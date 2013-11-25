@@ -98,7 +98,10 @@ This will fetch and install the minimum set of required dependencies as well.
 
   If you run into trouble while installing the dependencies, it's likely that
   you're missing some extra packages needed to build those third-party packages.
+
   For example, `lxml <http://lxml.de/installation.html>`_ needs a C compiler.
+
+  lxml also require the development packages of libxml2 and libxslt.
 
 If everything went well, you will now be able to access the ``pootle`` command
 line tool within your environment.
