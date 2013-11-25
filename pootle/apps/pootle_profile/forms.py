@@ -28,7 +28,7 @@ from .models import PootleProfile
 
 
 def language_list(request):
-    """Returns the list of localised language names, with 'default'."""
+    """Return the list of localised language names, with 'default'."""
     tr_default = _("Default")
 
     if tr_default != "Default":
@@ -46,12 +46,14 @@ def lang_auth_form_factory(request, **kwargs):
 
     class LangAuthenticationForm(AuthenticationForm):
 
-        language = forms.ChoiceField(label=_('Interface Language'),
-                                     choices=language_list(request),
-                                     initial="", required=False,
-                                     widget=forms.Select(attrs={
-                                         'class': 'js-select2 select2-language',
-                                     }),
+        language = forms.ChoiceField(
+            label=_('Interface Language'),
+            choices=language_list(request),
+            initial="",
+            required=False,
+            widget=forms.Select(attrs={
+                'class': 'js-select2 select2-language',
+            }),
         )
 
 
