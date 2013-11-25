@@ -41,5 +41,5 @@ def get_profile_form():
     class _ProfileForm(forms.ModelForm):
         class Meta:
             model = profile_mod
-            exclude = ('user',)  # User will be filled in by the view.
+            exclude = ('user',) # User will be filled in by the view.
     return _ProfileForm
