@@ -19,28 +19,28 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.conf.urls import include, patterns
+from django.conf.urls import include, patterns, url
 
 
 urlpatterns = patterns('',
     # JavaScript i18n
-    (r'^jsi18n/$', 'django.views.i18n.javascript_catalog',
-     {'packages': ('pootle', ), }, ),
+    url(r'^jsi18n/$', 'django.views.i18n.javascript_catalog',
+        {'packages': ('pootle', ), }, ),
 
     # External apps
-    (r'^contact/', include('evernote_contact.urls')),
-    (r'^accounts/', include('pootle_profile.urls')),
+    url(r'^contact/', include('evernote_contact.urls')),
+    url(r'^accounts/', include('pootle_profile.urls')),
 
     # URLs added by Evernote
-    (r'', include('evernote_auth.urls')),
-    (r'^admin/reports/', include('evernote_reports.urls')),
+    url(r'', include('evernote_auth.urls')),
+    url(r'^admin/reports/', include('evernote_reports.urls')),
 
     # Pootle URLs
-    (r'^pages/', include('staticpages.urls')),
-    (r'', include('pootle_app.urls')),
-    (r'^projects/', include('pootle_project.urls')),
-    (r'', include('pootle_terminology.urls')),
-    (r'', include('pootle_store.urls')),
-    (r'', include('pootle_language.urls')),
-    (r'', include('pootle_translationproject.urls')),
+    url(r'^pages/', include('staticpages.urls')),
+    url(r'', include('pootle_app.urls')),
+    url(r'^projects/', include('pootle_project.urls')),
+    url(r'', include('pootle_terminology.urls')),
+    url(r'', include('pootle_store.urls')),
+    url(r'', include('pootle_language.urls')),
+    url(r'', include('pootle_translationproject.urls')),
 )
