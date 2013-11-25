@@ -1727,7 +1727,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     def _get_last_updated(self):
         try:
             max_unit = self.unit_set.all().order_by('-creation_time')[0]
-        except IndexError as e:
+        except IndexError:
             max_unit = None
 
         # creation_time field has been added recently, so it can have NULL value
