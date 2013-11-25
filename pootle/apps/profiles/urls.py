@@ -38,6 +38,6 @@ urlpatterns = patterns('',
                            views.profile_detail,
                            name='profiles_profile_detail'),
                        url(r'^$',
-                           views.profile_list,
+                           views.ProfileListView.as_view(),
                            name='profiles_profile_list'),
                        )
