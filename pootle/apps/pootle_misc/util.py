@@ -142,6 +142,8 @@ def ajax_required(f):
     return wrapper
 
 
+# TODO: replace with `django.utils.functional.cached_property` when we're
+# in Django 1.5+
 def cached_property(f):
     """A property which value is computed only once and then stored with
     the instance for quick repeated retrieval.
