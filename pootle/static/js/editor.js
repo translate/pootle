@@ -1350,7 +1350,17 @@
     unit.setTranslation(translations);
     unit.set('isfuzzy', PTL.editor.isFuzzy());
 
-    PTL.editor.gotoNext();
+    if (data.checks) {
+      var $checks = $('.js-unit-checks'),
+          fadeInTime = 500,
+          fadeOutTime = $checks.children().length ? fadeInTime : 0;
+
+      $checks.fadeOut(fadeOutTime, function () {
+        $(this).html(data.checks).fadeIn(fadeInTime);
+      });
+    } else {
+      PTL.editor.gotoNext();
+    }
   },
 
 

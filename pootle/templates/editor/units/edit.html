@@ -63,23 +63,11 @@
       {% endwith %}
     </div>
     <div class="translate-{% if LANGUAGE_BIDI %}left{% else %}right{% endif %}">
-      {% if unit.get_qualitychecks.count %}
       <!-- Quality Checks -->
-      <div id="translate-checks-block" dir="{% locale_dir %}">
-          <div class="sidetitle" lang="{{ LANGUAGE_CODE }}" title="{% trans 'Possible issues with the translation' %}">{% trans "Failing checks:" %}</div>
-          <ul class="checks">
-          {% for check in unit.get_qualitychecks.iterator %}
-          <li class="check">
-            <a href="http://docs.translatehouse.org/projects/translate-toolkit/en/latest/commands/pofilter_tests.html#{{ check.name }}" target="_blank">{{ check.display_name }}</a>
-            {% if canreview %}
-            <a title="{% trans "Remove quality check" %}" class="js-reject-check"
-              data-check-id="{{ check.id }}"><i class="icon-block"></i></a>
-            {% endif %}
-          </li>
-          {% endfor %}
-          </ul>
+      <div id="translate-checks-block" class="js-unit-checks"
+        dir="{% locale_dir %}">
+      {% include 'editor/units/xhr_checks.html' %}
       </div>
-      {% endif %}
     </div>
     <div class="translate-middle">
       <div id="target-item-content">
