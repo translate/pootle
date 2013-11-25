@@ -1,4 +1,4 @@
-Django>=1.4.8,<1.5
+Django>=1.4.10,<1.5
 
 # Django apps
 django-voting==0.1
