@@ -5,18 +5,17 @@
 #
 # This file is part of Pootle.
 #
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
+# Pootle is free software; you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation; either version 2 of the License, or (at your option) any later
+# version.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# Pootle is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License along with
+# Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 """Pootle upgrade code."""
 
@@ -26,7 +25,7 @@ import logging
 
 
 def save_version(build, prefix=''):
-    """Stores a product's build version.
+    """Store a product's build version.
 
     :param build: the build version number.
     :param prefix: prefix for the 'BUILDVERSION' key.
@@ -44,7 +43,7 @@ def save_version(build, prefix=''):
 
 
 def save_toolkit_version(build=None):
-    """Updates TT_BUILDVERSION."""
+    """Update TT_BUILDVERSION."""
     if not build:
         from translate.__version__ import build
 
@@ -54,7 +53,7 @@ def save_toolkit_version(build=None):
 
 
 def save_pootle_version(build=None):
-    """Updates POOTLE_BUILDVERSION."""
+    """Update POOTLE_BUILDVERSION."""
     if not build:
         from pootle.__version__ import build
 
@@ -64,7 +63,7 @@ def save_pootle_version(build=None):
 
 
 def save_legacy_pootle_version(build=None):
-    """Updates Pootle's BUILDVERSION (legacy version)."""
+    """Update Pootle's BUILDVERSION (legacy version)."""
     if not build:
         from pootle.__version__ import build
 
@@ -74,7 +73,7 @@ def save_legacy_pootle_version(build=None):
 
 
 def calculate_stats():
-    """Calculates full translation statistics.
+    """Calculate full translation statistics.
 
     First time to visit the front page all stats for projects and
     languages will be calculated which can take forever. Since users don't
@@ -98,7 +97,7 @@ def calculate_stats():
 
 
 def flush_quality_checks():
-    """Reverts stores to unchecked state.
+    """Revert stores to unchecked state.
 
     If a store has false positives marked, quality checks will be updated
     keeping false postivies intact.
@@ -126,12 +125,12 @@ def flush_quality_checks():
 
 
 def buildversion_for_fn(fn):
-    """Returns the build version string for the `fn` function name."""
+    """Return the build version string for the `fn` function name."""
     return fn.rsplit('_', 1)[-1]
 
 
 def filter_upgrade_functions(fn, old_buildversion, new_buildversion):
-    """Determines if a upgrade function should be run or not.
+    """Determine if a upgrade function should be run or not.
 
     :param fn: Function name candidate to be run.
     :param old_buildversion: Old build version to use as a threshold.
@@ -146,7 +145,7 @@ def filter_upgrade_functions(fn, old_buildversion, new_buildversion):
 
 
 def is_upgrade_function(mod, func):
-    """Returns True if `func` is a upgrade function in `mod`."""
+    """Return True if `func` is a upgrade function in `mod`."""
     import inspect
     return (inspect.isfunction(func) and
             inspect.getmodule(func) == mod and
@@ -154,7 +153,7 @@ def is_upgrade_function(mod, func):
 
 
 def get_upgrade_functions(mod, old_buildversion, new_buildversion):
-    """Returns a list of tuples of the upgrade functions to be executed
+    """Return a list of tuples of the upgrade functions to be executed
     and their respective build numbers.
 
     :param mod: Module which contains the upgrade functions. You'll
@@ -178,7 +177,7 @@ def get_upgrade_functions(mod, old_buildversion, new_buildversion):
 
 def run_upgrade(old_ptl_buildversion=None, new_ptl_buildversion=None,
                 old_tt_buildversion=None, new_tt_buildversion=None):
-    """Performs version-specific actions for Pootle and Translate Toolkit.
+    """Perform version-specific actions for Pootle and Translate Toolkit.
 
     :param old_ptl_buildversion: Pootle's old build version as stored in
         the DB.
@@ -197,7 +196,7 @@ def run_upgrade(old_ptl_buildversion=None, new_ptl_buildversion=None,
 
 
 def upgrade(product, old_buildversion, new_buildversion):
-    """Upgrades to the latest build version and executes any needed actions.
+    """Upgrade to the latest build version and executes any needed actions.
 
     :param product: Product that needs to be upgraded. It must be a valid
         module name in this package.

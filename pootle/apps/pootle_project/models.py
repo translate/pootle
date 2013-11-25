@@ -106,7 +106,6 @@ class Project(models.Model):
         ),
         verbose_name=_('Project Tree Style'),
     )
-
     source_language = models.ForeignKey(
         'pootle_language.Language',
         db_index=True,

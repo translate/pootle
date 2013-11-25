@@ -47,7 +47,7 @@ def agreement_form_factory(pages, user, base_class=forms.Form,
                 self.add_page_field(page)
 
         def save(self):
-            """Saves user agreements."""
+            """Save user agreements."""
             if hasattr(super(AgreementForm, self), 'save'):
                 # HACKISH: This is tightly coupled with `RegistrationForm`
                 # which returns the newly-registered user in its form's
@@ -62,12 +62,12 @@ def agreement_form_factory(pages, user, base_class=forms.Form,
                 agreement.save()
 
         def legal_fields(self):
-            """Returns any fields added by legal pages."""
+            """Return any fields added by legal pages."""
             return [field for field in self
                     if field.name.startswith('legal_')]
 
         def add_page_field(self, page):
-            """Adds `page` as a required field to this form."""
+            """Add `page` as a required field to this form."""
             url = page.url and page.url or reverse('staticpages.display',
                                                    args=[page.virtual_path])
             label_params = {

@@ -28,10 +28,14 @@ from pootle_translationproject.api import TranslationProjectResource
 
 
 class ProjectResource(StatisticsModelResource):
-    source_language = fields.ForeignKey('pootle_language.api.LanguageResource',
-                                        'source_language')
-    translation_projects = fields.ToManyField(TranslationProjectResource,
-                                              'translationproject_set')
+    source_language = fields.ForeignKey(
+        'pootle_language.api.LanguageResource',
+        'source_language',
+    )
+    translation_projects = fields.ToManyField(
+        TranslationProjectResource,
+        'translationproject_set',
+    )
 
     class Meta:
         queryset = Project.objects.all()
@@ -49,7 +53,7 @@ class ProjectResource(StatisticsModelResource):
         ]
         list_allowed_methods = ['get', 'post']
         detail_allowed_methods = ['get', 'put', 'delete', 'patch']
-        # HTTP methods allowed for visiting /statistics/ URLs
+        # HTTP methods allowed for visiting /statistics/ URLs.
         statistics_allowed_methods = ['get']
         authorization = DjangoAuthorization()
         authentication = BasicAuthentication()

@@ -23,7 +23,7 @@ from django.conf.urls import patterns, url
 
 urlpatterns = patterns('pootle_project.views',
     # Listing of all projects
-    (r'^$',
+    url(r'^$',
         'projects_index'),
 
     # Specific project
@@ -46,7 +46,7 @@ urlpatterns = patterns('pootle_project.views',
     url(r'^ajax/tags/list/(?P<project_code>.*\.*)?$',
         'ajax_list_tags',
         name='pootle-project-ajax-list-tags'),
-    (r'^(?P<project_code>[^/]*)/edit_settings.html?$',
+    url(r'^(?P<project_code>[^/]*)/edit_settings.html?$',
         'project_settings_edit'),
 
     # Admin
