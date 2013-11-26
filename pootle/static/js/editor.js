@@ -1353,9 +1353,9 @@
     $('.translate-container').toggleClass('error', !!data.checks);
 
     if (data.checks) {
-      var $checks = $('.js-unit-checks');
+      var $checks = $('.js-unit-checks'),
+          focusedArea = $('.focusthis')[0];
 
-      // update the checks HTML with the new value
       $checks.html(data.checks);
 
       var blinkClass = function (elem, className, n, delay) {
@@ -1368,6 +1368,7 @@
       };
         
       blinkClass($checks, 'blink', 4, 200);
+      focusedArea.focus();
     } else {
       PTL.editor.gotoNext();
     }
