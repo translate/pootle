@@ -36,8 +36,42 @@ We need to check and document these if needed:
 - Communicating to upstream packagers
 
 
-Detailed instructions
-=====================
+Pre-release instructions
+========================
+
+Upload and announce translations
+--------------------------------
+We need to give localizers enough time to localize Pootle.  They need time to
+do the actual translation and to feedback on any errors that they might
+encounter.
+
+To make a new template::
+
+   make pot
+
+And upload the templates to Pootle for translation. Update current translations
+against templates either on Pootle or in code and commits these updated files
+to Git.
+
+Announce the new translations using these two channels:
+
+1. The News tab on Pootle - for those not on any mailing list
+2. The translate-pootle and translate-devel mailing lists - for those who might
+   miss the news.
+
+
+String freeze
+-------------
+We want to give a string freeze at least 2-4 weeks before a release.  Announce
+that on the mailing lists.
+
+If we do have a string freeze break then announce those to people.
+
+A string freeze would normally run between an RC1 and a released version.
+
+
+Detailed release instructions
+=============================
 
 Get a clean checkout
 --------------------
