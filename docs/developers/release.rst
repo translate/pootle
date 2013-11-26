@@ -119,12 +119,12 @@ currently supported time-based release branches.
 
 A new time-based release is made off of *master*, incrementing the point
 version.  Every time a new release happens, a new branch is created. These
-branches are named after their version numbers: if *master* will become version
-``2.6.2``, the new branch will be named *2.6.2-branch*. The actual release is
-also tagged, in this case as *2.6.2*.
+branches are named after their version numbers: if *master* is to become
+version ``2.6.2``, then the new branch will be named *stable/2.6.2*. The actual
+release is also tagged, in this case as *2.6.2*.
 
 Security fixes are made on the relevant release branches.  So the first
-security release on *2.6.2-branch* would be tagged as *2.6.2.1*.
+security release on *stable/2.6.2* would be tagged as *2.6.2.1*.
 
 Features that produce schema changes or are quite invasive go into feature
 branches named *feature/<feature-name>*. Once the feature is ready to be
