@@ -147,8 +147,14 @@ class Directory(models.Model, TreeItem):
         result.extend([item for item in self.child_dirs.iterator()])
         return result
 
-    def get_parent(self):
-        return self.parent
+    def get_parents(self):
+        if self.parent:
+            if self.parent.is_translationproject:
+                return [self.parent.translationproject]
+            else:
+                return [self.parent]
+        else:
+            return []
 
     def get_cachekey(self):
         return self.pootle_path

@@ -281,15 +281,14 @@ class TranslationProject(models.Model, TreeItem):
         return errors
 
     ### TreeItem
-
     def get_children(self):
         return self.directory.get_children()
 
     def get_cachekey(self):
         return self.directory.pootle_path
 
-    def get_parent(self):
-        return self.directory.get_parent()
+    def get_parents(self):
+        return [self.language, self.project]
 
     ### /TreeItem
 
