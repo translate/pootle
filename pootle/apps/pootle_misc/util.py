@@ -17,6 +17,7 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
+import json
 import logging
 from datetime import datetime
 from functools import wraps
@@ -25,7 +26,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.paginator import Paginator
 from django.http import HttpResponseBadRequest
-from django.utils import simplejson, timezone
+from django.utils import timezone
 from django.utils.encoding import force_unicode, iri_to_uri
 from django.utils.functional import Promise
 
@@ -88,7 +89,7 @@ def paginate(request, queryset, items=30, page=None):
     return paginator.page(page)
 
 
-class PootleJSONEncoder(simplejson.JSONEncoder):
+class PootleJSONEncoder(json.JSONEncoder):
     """Custom JSON encoder for Pootle.
 
     This is mostly implemented to avoid calling `force_unicode` all the time on
@@ -109,7 +110,7 @@ def jsonify(obj):
     else:
         indent = None
 
-    return simplejson.dumps(obj, indent=indent, cls=PootleJSONEncoder)
+    return json.dumps(obj, indent=indent, cls=PootleJSONEncoder)
 
 
 def ajax_required(f):

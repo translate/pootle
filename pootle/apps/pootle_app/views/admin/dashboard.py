@@ -18,6 +18,7 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
+import json
 import locale
 
 from django.conf import settings
@@ -26,7 +27,6 @@ from django.core.cache import cache
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.utils import simplejson
 from django.utils.translation import ugettext as _
 
 from pootle import depcheck
@@ -278,7 +278,7 @@ def server_stats_more(request):
     response = []
     for k in result.keys():
         response.append((stat_strings[k], result[k]))
-    response = simplejson.dumps(response)
+    response = json.dumps(response)
     return HttpResponse(response, mimetype="application/json")
 
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2009, 2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -18,9 +18,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+import json
 import time
-
-from django.utils import simplejson
 
 from translate.storage import factory, statsdb
 
@@ -294,7 +293,7 @@ class XHRTestAnonymous(PootleTestCase):
                                 self.post_data,
                                 HTTP_X_REQUESTED_WITH='XMLHttpRequest')
             self.assertEqual(r.status_code, 200)
-            j = simplejson.loads(r.content)
+            j = json.loads(r.content)
             self.assertTrue('captcha' in j.keys())
 
     def test_process_submit_bad_store_unit(self):
@@ -305,7 +304,7 @@ class XHRTestAnonymous(PootleTestCase):
                                 self.post_data,
                                 HTTP_X_REQUESTED_WITH='XMLHttpRequest')
             self.assertEqual(r.status_code, 200)
-            j = simplejson.loads(r.content)
+            j = json.loads(r.content)
             self.assertTrue('captcha' in j.keys())
 
     def test_process_submit_bad_form(self):
@@ -318,7 +317,7 @@ class XHRTestAnonymous(PootleTestCase):
                                 form_data,
                                 HTTP_X_REQUESTED_WITH='XMLHttpRequest')
             self.assertEqual(r.status_code, 200)
-            j = simplejson.loads(r.content)
+            j = json.loads(r.content)
             self.assertTrue('captcha' in j.keys())
 
     def test_process_submit_good_response(self):
@@ -329,7 +328,7 @@ class XHRTestAnonymous(PootleTestCase):
                                 self.post_data,
                                 HTTP_X_REQUESTED_WITH='XMLHttpRequest')
             self.assertEqual(r.status_code, 200)
-            j = simplejson.loads(r.content)
+            j = json.loads(r.content)
             self.assertTrue('captcha' in j.keys())
 
 

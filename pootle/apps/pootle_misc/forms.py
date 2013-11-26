@@ -78,10 +78,10 @@ def make_search_form(*args, **kwargs):
         sparams_cookie = request.COOKIES.get("search-%s" % env)
 
         if sparams_cookie:
+            import json
             import urllib
-            from django.utils import simplejson
 
-            initial_sparams = simplejson.loads(urllib.unquote(sparams_cookie))
+            initial_sparams = json.loads(urllib.unquote(sparams_cookie))
             if isinstance(initial_sparams, dict):
                 if initial_sparams.has_key('sfields'):
                     kwargs.update({'initial': initial_sparams})
