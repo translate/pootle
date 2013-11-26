@@ -488,8 +488,9 @@
     $('.suggestion-translation-body').filter(':not([dir])').bidi();
 
     // Focus on the first textarea, if any
-    if ($(".focusthis").get(0)) {
-      $(".focusthis").get(0).focus();
+    var firstArea = $('.focusthis')[0];
+    if (firstArea) {
+      firstArea.focus();
     }
 
     PTL.editor.hlSearch();
@@ -623,7 +624,7 @@
       }
 
       // Focus on the first textarea
-      active = $(targets).get(0);
+      active = $(targets)[0];
       active.focus();
       // Make this fuzzy
       PTL.editor.goFuzzy();
