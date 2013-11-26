@@ -431,6 +431,11 @@ div.translate-container
     clear: both;
 }
 
+div.translate-container.error
+{
+    background-color: #fdd;
+}
+
 div.unit-path
 {
     background: rgba(0, 0, 0, 0.6);
@@ -983,6 +988,16 @@ li.check
     padding: 0.1em 0.5em;
 
     border-radius: 4px;
+}
+
+#translate-checks-block.blink li.check
+{
+    background-color: #900;
+}
+
+#translate-checks-block.blink .checks a
+{
+    color: #fff;
 }
 
 li.check:hover
