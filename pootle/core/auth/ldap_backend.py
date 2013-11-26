@@ -31,10 +31,6 @@ class LdapBackend(object):
     To use this module, simply add it to the tuple AUTHENTICATION_BACKENDS in
     settings.py.
     """
-
-    #TODO Remove the following line when support for Django 1.4 is dropped.
-    supports_inactive_user = True
-
     def authenticate(self, username=None, password=None):
 
         logger = logging.getLogger('pootle.auth.ldap')
