@@ -149,7 +149,7 @@ class Directory(models.Model, TreeItem):
 
     def get_parents(self):
         if self.parent:
-            if self.parent.is_translationproject:
+            if self.parent.is_translationproject():
                 return [self.parent.translationproject]
             else:
                 return [self.parent]
