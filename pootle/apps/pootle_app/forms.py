@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2009, 2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -19,8 +19,9 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django import forms
-from djblets.siteconfig.forms import SiteSettingsForm
 from django.utils.translation import ugettext_lazy as _
+
+from djblets.siteconfig.forms import SiteSettingsForm
 
 from pootle_misc.siteconfig import load_site_config
 
@@ -32,10 +33,10 @@ class GeneralSettingsForm(SiteSettingsForm):
         max_length=50,
         required=True,
     )
-
     DESCRIPTION = forms.CharField(
         label=_("Description"),
-        help_text=_("The description and instructions shown on the front page and about page. Be sure to use valid HTML."),
+        help_text=_("The description and instructions shown on the front page "
+                    "and about page. Be sure to use valid HTML."),
         max_length=8192,
         required=True,
         widget=forms.Textarea,

@@ -26,6 +26,7 @@ from django.utils.encoding import iri_to_uri
 
 from pootle_misc.aggregate import group_by_sort
 
+
 def gentopstats_root():
     """
     Generate the top contributor stats to be displayed for an entire
@@ -43,6 +44,7 @@ def gentopstats_root():
         result = map(None, top_sugg, top_review, top_sub)
         cache.set(key, result, settings.CACHE_MIDDLEWARE_SECONDS * 3)
     return result
+
 
 def gentopstats_language(language):
     """Generate the top contributor stats to be displayed
@@ -69,6 +71,7 @@ def gentopstats_language(language):
         cache.set(key, result, settings.CACHE_MIDDLEWARE_SECONDS * 2)
     return result
 
+
 def gentopstats_project(project):
     """Generate the top contributor stats to be displayed
     for an entire Pootle installation, a language or a project.
@@ -93,6 +96,7 @@ def gentopstats_project(project):
         result = map(None, top_sugg, top_review, top_sub)
         cache.set(key, result, settings.CACHE_MIDDLEWARE_SECONDS * 2)
     return result
+
 
 def gentopstats_translation_project(translation_project):
     """Generate the top contributor stats to be displayed

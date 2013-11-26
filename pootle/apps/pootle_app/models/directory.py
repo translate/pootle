@@ -31,8 +31,8 @@ from pootle_store.util import (empty_quickstats, empty_completestats, statssum,
 class DirectoryManager(models.Manager):
 
     def get_query_set(self):
-        # ForeignKey fields with null=True are not selected by
-        # select_related unless explicitly specified
+        # ForeignKey fields with null=True are not selected by select_related
+        # unless explicitly specified.
         return super(DirectoryManager, self).get_query_set() \
                                             .select_related('parent')
 
@@ -51,12 +51,16 @@ class DirectoryManager(models.Manager):
 
 class Directory(models.Model):
 
-    is_dir = True
-
     name = models.CharField(max_length=255, null=False)
-    parent = models.ForeignKey('Directory', related_name='child_dirs',
-                               null=True, db_index=True)
+    parent = models.ForeignKey(
+        'Directory',
+        related_name='child_dirs',
+        null=True,
+        db_index=True,
+    )
     pootle_path = models.CharField(max_length=255, null=False, db_index=True)
+
+    is_dir = True
 
     objects = DirectoryManager()
 
@@ -83,7 +87,7 @@ class Directory(models.Model):
 
     @cached_property
     def path(self):
-        """Returns just the path part omitting language and project codes.
+        """Return just the path part omitting language and project codes.
 
         If the `pootle_path` of a :cls:`Directory` object `dir` is
         `/af/project/dir1/dir2/file.po`, `dir.path` will return
@@ -182,8 +186,9 @@ class Directory(models.Model):
 
     @getfromcache
     def getquickstats(self):
-        """Calculate aggregate stats for all directory based on stats
-        of all descending stores and dirs."""
+        """Calculate aggregate stats for all directory based on stats of all
+        descending stores and dirs.
+        """
         if self.is_template_project:
             #FIXME: Hackish return empty_stats to avoid messing up
             # with project and language stats
@@ -220,7 +225,7 @@ class Directory(models.Model):
 
 
     def trail(self, only_dirs=True):
-        """Returns a list of ancestor directories excluding
+        """Return a list of ancestor directories excluding
         :cls:`~pootle_translationproject.models.TranslationProject` and above.
         """
         path_parts = self.pootle_path.split('/')
@@ -251,20 +256,21 @@ class Directory(models.Model):
             unit__store__pootle_path__startswith=self.pootle_path).count()
 
     def is_language(self):
-        """does this directory point at a language"""
+        """Tell if this directory points at a language."""
         return self.pootle_path.count('/') == 2
 
     def is_project(self):
+        """Tell if this directory points at a project."""
         return (self.pootle_path.startswith('/projects/') and
                 self.pootle_path.count('/') == 3)
 
     def is_translationproject(self):
-        """does this directory point at a translation project"""
+        """Tell if this directory points at a translation project."""
         return (self.pootle_path.count('/') == 3 and not
                 self.pootle_path.startswith('/projects/'))
 
     def get_real_path(self):
-        """physical filesystem path for directory"""
+        """Return physical filesystem path for directory."""
         if self.is_project():
             return self.project.code
 

@@ -19,32 +19,30 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.core.cache import cache
+from django.db import models
 from django.utils.encoding import iri_to_uri
 
 from pootle.core.managers import RelatedManager
 
 
 def get_permission_contenttype():
-    content_type = ContentType.objects.filter(name='pootle',
-                                              app_label='pootle_app',
-                                              model="directory")[0]
-    return content_type
+    return ContentType.objects.filter(name='pootle', app_label='pootle_app',
+                                      model="directory")[0]
 
 
 def get_pootle_permission(codename):
-    # The content type of our permission
+    # The content type of our permission.
     content_type = get_permission_contenttype()
-    # Get the pootle view permission
+    # Get the pootle view permission.
     return Permission.objects.get(content_type=content_type, codename=codename)
 
 
 def get_pootle_permissions(codenames=None):
-    """Gets the available rights and their localized names."""
+    """Get the available rights and their localized names."""
     content_type = get_permission_contenttype()
 
     if codenames is not None:
@@ -75,7 +73,7 @@ def get_permissions_by_username(username, directory):
             (permissionset is None or
             len(filter(None, permissionset.directory.pootle_path.split('/'))) < 2)):
                 # Active permission at language level or higher, check project
-                # level permission
+                # level permission.
                 try:
                     project_path = '/projects/%s/' % path_parts[1]
                     permissionset = PermissionSet.objects \
@@ -115,7 +113,7 @@ def get_matching_permissions(profile, directory, check_default=True):
 
 def check_profile_permission(profile, permission_codename, directory,
                              check_default=True):
-    """Checks if the current user has the permission the perform
+    """Check if the current user has the permission the perform
     ``permission_codename``."""
     if profile.user.is_superuser:
         return True
@@ -127,7 +125,7 @@ def check_profile_permission(profile, permission_codename, directory,
 
 
 def check_permission(permission_codename, request):
-    """Checks if the current user has the permission the perform
+    """Check if the current user has the permission the perform
     ``permission_codename``."""
     if request.user.is_superuser:
         return True
@@ -144,21 +142,31 @@ class PermissionSetManager(RelatedManager):
 
 
 class PermissionSet(models.Model):
+
+    profile = models.ForeignKey('pootle_profile.PootleProfile', db_index=True)
+    directory = models.ForeignKey(
+        'pootle_app.Directory',
+        db_index=True,
+        related_name='permission_sets',
+    )
+    positive_permissions = models.ManyToManyField(
+        Permission,
+        db_index=True,
+        related_name='permission_sets_positive',
+    )
+    # Negative permissions are no longer used, kept around to scheme
+    # compatibility with older versions.
+    negative_permissions = models.ManyToManyField(
+        Permission,
+        editable=False,
+        related_name='permission_sets_negative',
+    )
+
     objects = PermissionSetManager()
 
     class Meta:
         unique_together = ('profile', 'directory')
         app_label = "pootle_app"
-
-    profile = models.ForeignKey('pootle_profile.PootleProfile', db_index=True)
-    directory = models.ForeignKey('pootle_app.Directory', db_index=True,
-                                  related_name='permission_sets')
-    positive_permissions = models.ManyToManyField(Permission, db_index=True,
-            related_name='permission_sets_positive')
-    # Negative permissions are no longer used, kept around to scheme
-    # compatibility with older versions.
-    negative_permissions = models.ManyToManyField(Permission, editable=False,
-            related_name='permission_sets_negative')
 
     def natural_key(self):
         return (self.profile.user.username, self.directory.pootle_path)

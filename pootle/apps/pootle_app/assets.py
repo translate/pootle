@@ -20,6 +20,7 @@
 
 from django_assets import Bundle, register
 
+
 js_common = Bundle(
     'js/vendor/jquery/jquery.js',
     'js/vendor/jquery/jquery.tipsy.js',
@@ -38,14 +39,16 @@ js_common = Bundle(
     'js/zoom.js',
     'js/vendor/sorttable.js',
     'js/vendor/spin.js',
-    'js/vendor/shortcut.js',  # Leave shortcut.js as the last one
+    'js/vendor/shortcut.js',  # Leave shortcut.js as the last one.
     filters='rjsmin', output='js/common.min.%(version)s.js')
 register('js_common', js_common)
+
 
 js_admin = Bundle(
     'js/admin.js',
     filters='rjsmin', output='js/admin.min.%(version)s.js')
 register('js_admin', js_admin)
+
 
 js_editor = Bundle(
     'js/vendor/jquery/jquery.history.js',
@@ -66,6 +69,7 @@ js_editor = Bundle(
     filters='rjsmin', output='js/editor.min.%(version)s.js')
 register('js_editor', js_editor)
 
+
 css_common = Bundle(
     'css/style.css',
     'css/magnific-popup.css',
@@ -78,10 +82,12 @@ css_common = Bundle(
     filters='cssmin', output='css/common.min.%(version)s.css')
 register('css_common', css_common)
 
+
 css_admin = Bundle(
     'css/admin.css',
     filters='cssmin', output='css/admin.min.%(version)s.css')
 register('css_admin', css_admin)
+
 
 css_editor = Bundle(
     'css/editor.css',
