@@ -1350,19 +1350,23 @@
     unit.setTranslation(translations);
     unit.set('isfuzzy', PTL.editor.isFuzzy());
 
-    if (data.checks) {
-      var $checks = $('.js-unit-checks'),
-          fadeInTime = 500,
-          fadeOutTime = $checks.children().length ? fadeInTime : 0;
+    $('.translate-container').toggleClass('error', !!data.checks);
 
-      $checks.fadeOut(fadeOutTime, function () {
-        $(this).html(data.checks).fadeIn(fadeInTime);
-      });
+    if (data.checks) {
+      var blinkClass = function (elem, className, n, delay) {
+          elem.toggleClass(className);
+          if (n > 1) {
+            setTimeout(function() {
+                        blinkClass(elem, className, n-1, delay);
+                      }, delay);
+          }
+      };
+        
+      blinkClass($('.js-unit-checks'), 'blink', 4, 200);
     } else {
       PTL.editor.gotoNext();
     }
   },
-
 
   /* Pushes translation suggestions and moves to the next unit */
   suggest: function (e) {

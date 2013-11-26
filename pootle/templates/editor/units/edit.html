@@ -4,7 +4,7 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 {% cache 0 unit_edit unit.id unit.mtime cantranslate cansuggest canreview altsrcs profile.id LANGUAGE_CODE unit.get_terminology %}
 <td colspan="2" rowspan="1" class="translate-full translate-focus{% if unit.isfuzzy %} fuzzy-unit{% endif %}" dir="{% locale_dir %}">
-  <div class="translate-container">
+  <div class="translate-container{% if unit.get_qualitychecks.count %} error{% endif %}">
     <div class="unit-path">
       <ul>
         <li><span class="content-wrapper">{{ language.name }}</span></li>
