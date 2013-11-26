@@ -418,6 +418,8 @@ body.zoom-out-2 div.sources .alternative .translation-text
     background-image: url('../images/squiggle.png');
     background-repeat: repeat-x;
     background-position: text-bottom;
+    background-color: yellow;
+    border: 1px solid red;
     vertical-align: middle;
 }
 
