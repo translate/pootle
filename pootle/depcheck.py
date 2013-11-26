@@ -25,7 +25,7 @@ from django.conf import settings
 
 
 translate_min_required_ver = (1, 10, 0)
-django_min_required_ver = (1, 4, 8)
+django_min_required_ver = (1, 4, 10)
 lxml_min_required_ver = (2, 1, 4, 0)
 
 
