@@ -17,15 +17,16 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
+
 import time
 
 from django.utils import simplejson
 
-from translate.storage import factory
-from translate.storage import statsdb
+from translate.storage import factory, statsdb
 
 from pootle.tests import PootleTestCase
 from pootle_store.models import Store, Unit
+
 
 class UnitTests(PootleTestCase):
     def setUp(self):

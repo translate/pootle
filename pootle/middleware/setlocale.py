@@ -25,12 +25,12 @@ from django.utils import translation
 
 
 class SetLocale(object):
-    """Sets python locale for each request."""
+    """Set python locale for each request."""
 
     def process_request(self, request):
         #FIXME: some languages like arabic don't have a language only
         # locale for no good reason. we need a function to pick default
-        # locale for these
+        # locale for these.
         lang = translation.to_locale(translation.get_language())
         try:
             if lang == 'tr' or lang.startswith('tr_'):

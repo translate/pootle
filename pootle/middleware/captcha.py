@@ -50,31 +50,38 @@ class MathCaptchaForm(forms.Form):
     For more info see:
     http://www.mysoftparade.com/blog/improved-mathematical-captcha/
     """
+    captcha_answer = forms.CharField(
+        max_length=2,
+        required=True,
+        widget=forms.TextInput(attrs={'size': '2'}),
+        label='',
+    )
+    captcha_token = forms.CharField(
+        max_length=200,
+        required=True,
+        widget=forms.HiddenInput(),
+    )
+
     A_RE = re.compile("^(\d+)$")
 
-    captcha_answer = forms.CharField(max_length=2, required=True,
-                                     widget=forms.TextInput(attrs={'size': '2'}),
-                                     label='')
-    captcha_token = forms.CharField(max_length=200, required=True,
-                                    widget=forms.HiddenInput())
-
     def __init__(self, *args, **kwargs):
-        """Initalise captcha_question and captcha_token for the form."""
+        """Initialize captcha_question and captcha_token for the form."""
         super(MathCaptchaForm, self).__init__(*args, **kwargs)
-        # reset captcha for unbound forms
+        # Reset captcha for unbound forms.
         if not self.data:
             self.reset_captcha()
 
     def reset_captcha(self):
-        """Generate new question and valid token
-        for it, reset previous answer if any."""
+        """Generate new question and valid token for it, reset previous answer
+        if any.
+        """
         q, a = self._generate_captcha()
-        expires = time.time() + \
-            getattr(settings, 'CAPTCHA_EXPIRES_SECONDS', 60*60)
+        expires = time.time() + getattr(settings, 'CAPTCHA_EXPIRES_SECONDS',
+                                        60*60)
         token = self._make_token(q, a, expires)
         self.initial['captcha_token'] = token
         self._plain_question = q
-        # reset captcha fields for bound form
+        # Reset captcha fields for bound form.
         if self.data:
             def _reset():
                 self.data['captcha_token'] = token
@@ -87,14 +94,16 @@ class MathCaptchaForm(forms.Form):
                 _reset()
 
     def _generate_captcha(self):
-        """Generate question and return it along with correct
-        answer."""
+        """Generate question and return it along with correct answer."""
         a, b = randint(1, 9), randint(1, 9)
         return ("%s+%s" % (a, b), a+b)
 
     def _make_token(self, q, a, expires):
-        data = base64.urlsafe_b64encode(
-            simplejson.dumps({'q': q, 'expires': expires}))
+        json_data = {
+            'q': q,
+            'expires': expires,
+        }
+        data = base64.urlsafe_b64encode(simplejson.dumps(json_data))
         return self._sign(q, a, expires) + data
 
     def _sign(self, q, a, expires):
@@ -111,7 +120,8 @@ class MathCaptchaForm(forms.Form):
     def knotty_question(self):
         """Wrap plain_question in some invisibe for humans markup with random
         nonexisted classes, that makes life of spambots a bit harder because
-        form of question is vary from request to request."""
+        form of question is vary from request to request.
+        """
         digits = self._plain_question.split('+')
         return "+".join(['<span class="captcha-random-%s">%s</span>' %
                          (randint(1, 9), d) for d in digits])
@@ -127,12 +137,13 @@ class MathCaptchaForm(forms.Form):
         try:
             sign, data = t[:40], t[40:]
             data = simplejson.loads(base64.urlsafe_b64decode(str(data)))
-            return {'q': data['q'],
-                    'expires': float(data['expires']),
-                    'sign': sign}
+            return {
+                'q': data['q'],
+                'expires': float(data['expires']),
+                'sign': sign,
+            }
         except Exception as e:
             logging.info("Captcha error: %r" % e)
-            # l10n for bots? Rather not
             raise forms.ValidationError("Invalid captcha!")
 
     def clean_captcha_answer(self):
@@ -144,7 +155,7 @@ class MathCaptchaForm(forms.Form):
     def clean(self):
         """Check captcha answer."""
         cd = self.cleaned_data
-        # don't check captcha if no answer
+        # Don't check captcha if no answer.
         if 'captcha_answer' not in cd:
             return cd
 
@@ -176,10 +187,11 @@ class CaptchaMiddleware:
         # returned by urlresolvers.resolve(request.path)?
         if (request.path.endswith('accounts/login') or
             request.path.endswith('accounts/login/')):
-            # exclude login form
+            # Exclude login form.
             return
 
         if request.user.is_authenticated():
+
             if ('target_f_0' not in request.POST or
                 'translator_comment' not in request.POST or
                 ('submit' not in request.POST and
@@ -187,7 +199,7 @@ class CaptchaMiddleware:
                 return
 
             # We are in translate page. Users introducing new URLs in the
-            # target or comment field are suspect even if authenticated
+            # target or comment field are suspect even if authenticated.
             try:
                 target_urls = len(URL_RE.findall(request.POST['target_f_0']))
             except KeyError:
@@ -213,9 +225,8 @@ class CaptchaMiddleware:
                 request.session['ishuman'] = True
                 return
             else:
-                # new question
+                # New question.
                 form.reset_captcha()
-
         else:
             form = MathCaptchaForm()
 
@@ -227,7 +238,7 @@ class CaptchaMiddleware:
 
         if request.is_ajax():
             # FIXME: pass the callback as part of the request, this is a
-            # nightmare to maintain otherwise
+            # nightmare to maintain otherwise.
             js_function = None
             if '/suggestions/' in request.path:
                 js_function = 'suggest'
@@ -238,7 +249,9 @@ class CaptchaMiddleware:
 
             t = loader.get_template('captcha-xhr.html')
             c = RequestContext(request, ec)
-            json = {'captcha': t.render(c)}
+            json = {
+                'captcha': t.render(c),
+            }
 
             response = simplejson.dumps(json)
             return HttpResponse(response, mimetype="application/json")

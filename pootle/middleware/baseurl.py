@@ -22,7 +22,7 @@ from django.conf import settings
 
 class BaseUrlMiddleware(object):
     def process_request(self, request):
-        """calculate settings.BASEURL based on HTTP headers"""
+        """Calculate settings.BASEURL based on HTTP headers."""
         domain = None
 
         if 'HTTP_HOST' in request.META:
@@ -39,9 +39,10 @@ class BaseUrlMiddleware(object):
             else:
                 settings.BASE_URL = 'http://' + domain
 
-            #FIXME: DIRTY HACK ALERT if this works then something is
-            #wrong with the universe
-            # poison sites cache using detected domain
+            #FIXME: DIRTY HACK ALERT: if this works then something is
+            # wrong with the universe.
+            #
+            # Poison sites cache using detected domain.
             from django.contrib.sites import models as sites_models
 
             new_site = sites_models.Site(settings.SITE_ID, request.get_host(),

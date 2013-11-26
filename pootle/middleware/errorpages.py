@@ -45,7 +45,9 @@ class ErrorPagesMiddleware(object):
     """Friendlier error pages."""
 
     def _ajax_error(self, rcode, msg):
-        json = {'msg': msg}
+        json = {
+            'msg': msg,
+        }
         response = simplejson.dumps(json)
         return HttpResponse(response, status=rcode,
                             mimetype="application/json")

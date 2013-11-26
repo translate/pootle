@@ -81,10 +81,9 @@ def lang_auth_form_factory(request, **kwargs):
                                                     password=password)
 
                 if self.user_cache is None:
-                    raise forms.ValidationError(
-                        _("Please enter a correct username and password. "
-                          "Note that both fields are case-sensitive.")
-                    )
+                    msg = _("Please enter a correct username and password. "
+                            "Note that both fields are case-sensitive.")
+                    raise forms.ValidationError(msg)
                 elif not self.user_cache.is_active:
                     raise forms.ValidationError(_("This account is inactive."))
 
@@ -111,7 +110,7 @@ def pootle_profile_form_factory(exclude_fields):
             self.exclude_fields = exclude_fields
             super(PootleProfileForm, self).__init__(*args, **kwargs)
 
-            # Delete the fields the user can't edit
+            # Delete the fields the user can't edit.
             for field in self.exclude_fields:
                 del self.fields[field]
             self.fields['ui_lang'].widget.attrs['class'] = \

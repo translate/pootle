@@ -18,8 +18,8 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-import os
 import logging
+import os
 from itertools import groupby
 
 from translate.lang import data
@@ -42,11 +42,11 @@ from django.views.decorators.http import require_POST
 
 from taggit.models import Tag
 
+from pootle.core.exceptions import Http400
+from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.models.permissions import (check_permission,
                                            check_profile_permission)
-from pootle.core.exceptions import Http400
-from pootle.core.url_helpers import split_pootle_path
 from pootle_language.models import Language
 from pootle_misc.baseurl import redirect
 from pootle_misc.checks import get_quality_check_failures

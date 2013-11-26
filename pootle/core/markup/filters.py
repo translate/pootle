@@ -171,13 +171,8 @@ def apply_markup_filter(text):
         elif markup_filter_name == 'restructuredtext':
             from docutils import core
             if 'settings_overrides' not in markup_kwargs:
-                markup_kwargs.update(
-                    settings_overrides=getattr(
-                        settings,
-                        "RESTRUCTUREDTEXT_FILTER_SETTINGS",
-                        {},
-                    )
-                )
+                arg = getattr(settings, "RESTRUCTUREDTEXT_FILTER_SETTINGS", {})
+                markup_kwargs.update(settings_overrides=arg)
             if 'writer_name' not in markup_kwargs:
                 markup_kwargs.update(writer_name='html4css1')
 
