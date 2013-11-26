@@ -1152,7 +1152,7 @@
 
   processSubmission: function (data) {
     // FIXME: handle this via events
-    translations = $("textarea[id^=id_target_f_]").map(function (i, el) {
+    var translations = $("textarea[id^=id_target_f_]").map(function (i, el) {
       return $(el).val();
     }).get();
 
