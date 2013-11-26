@@ -1353,6 +1353,11 @@
     $('.translate-container').toggleClass('error', !!data.checks);
 
     if (data.checks) {
+      var $checks = $('.js-unit-checks');
+
+      // update the checks HTML with the new value
+      $checks.html(data.checks);
+
       var blinkClass = function (elem, className, n, delay) {
           elem.toggleClass(className);
           if (n > 1) {
@@ -1362,7 +1367,7 @@
           }
       };
         
-      blinkClass($('.js-unit-checks'), 'blink', 4, 200);
+      blinkClass($checks, 'blink', 4, 200);
     } else {
       PTL.editor.gotoNext();
     }
