@@ -19,6 +19,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+import json
 import logging
 
 from functools import wraps
@@ -26,7 +27,7 @@ from functools import wraps
 from django.conf import settings
 from django.core.cache import cache
 from django.http import HttpResponseBadRequest
-from django.utils import simplejson, timezone
+from django.utils import timezone
 from django.utils.encoding import force_unicode, iri_to_uri
 from django.utils.functional import Promise
 
@@ -96,7 +97,7 @@ def dictsum(x, y):
     return dict((n, x.get(n, 0)+y.get(n, 0)) for n in set(x) | set(y))
 
 
-class PootleJSONEncoder(simplejson.JSONEncoder):
+class PootleJSONEncoder(json.JSONEncoder):
     """Custom JSON encoder for Pootle.
 
     This is mostly implemented to avoid calling `force_unicode` all the
@@ -118,7 +119,7 @@ def jsonify(obj):
     else:
         indent = None
 
-    return simplejson.dumps(obj, indent=indent, cls=PootleJSONEncoder)
+    return json.dumps(obj, indent=indent, cls=PootleJSONEncoder)
 
 
 def ajax_required(f):

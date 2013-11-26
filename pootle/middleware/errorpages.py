@@ -19,6 +19,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+import json
 import sys
 import traceback
 
@@ -29,7 +30,6 @@ from django.http import (Http404, HttpResponse, HttpResponseForbidden,
                          HttpResponseServerError)
 from django.template import RequestContext
 from django.template.loader import render_to_string
-from django.utils import simplejson
 from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext as _
 
@@ -46,8 +46,10 @@ class ErrorPagesMiddleware(object):
     """Friendlier error pages."""
 
     def _ajax_error(self, rcode, msg):
-        json = {'msg': msg}
-        response = simplejson.dumps(json)
+        json = {
+            'msg': msg,
+        }
+        response = json.dumps(json)
         return HttpResponse(response, status=rcode,
                             mimetype="application/json")
 

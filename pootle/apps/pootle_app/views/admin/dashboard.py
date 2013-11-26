@@ -20,6 +20,7 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
+import json
 import locale
 import os
 
@@ -29,7 +30,6 @@ from django.core.cache import cache
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.utils import simplejson
 from django.utils.translation import ugettext as _
 
 from pootle import depcheck
@@ -262,7 +262,7 @@ def server_stats_more(request):
     response = []
     for k in result.keys():
         response.append((stat_strings[k], result[k]))
-    response = simplejson.dumps(response)
+    response = json.dumps(response)
     return HttpResponse(response, mimetype="application/json")
 
 
