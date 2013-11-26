@@ -82,6 +82,7 @@ check_names = {
     'template_format': _(u"Template format"),
     'mustache_placeholders': _(u"Mustache placeholders"),
     'mustache_placeholder_pairs': _(u"Mustache placeholder pairs"),
+    'c_format': _(u"C format placeholders"),
     'non_printable': _(u"Non printable"),
     'unbalanced_tag_braces': _(u"Unbalanced tag braces"),
     'changed_attributes': _(u"Changed attributes"),
