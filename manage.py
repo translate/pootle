@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2012 Zuza Software Foundation
+# Copyright 2008-2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -19,16 +19,15 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 import sys
 
-from django.core.management import execute_manager
+import os
 
-from pootle import settings, syspath_override
+from django.core.management import execute_from_command_line
 
-
-def main():
-    execute_manager(settings)
+from pootle import syspath_override
 
 
 if __name__ == "__main__":
     from pootle.core.log import cmd_log
     cmd_log(*sys.argv)
-    main()
+    os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
+    execute_from_command_line()
