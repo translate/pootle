@@ -1392,6 +1392,12 @@ textarea.translation
     font-size: 115%;
 }
 
+textarea.translation:disabled
+{
+    background: none;
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
 /* TERMINOLOGY MANAGEMENT */
 
 td.translate-delete-terminology input
