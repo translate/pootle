@@ -65,25 +65,13 @@
      */
 
     /* Fuzzy / unfuzzy */
-    $(document).on('keyup blur', 'textarea.translation', function () {
-      if (!PTL.editor.keepState &&
-          $(this).prop('defaultValue') !== $(this).val()) {
-        PTL.editor.ungoFuzzy();
-      }
-    });
-    $(document).on('click', 'input.fuzzycheck', function () {
-      if (PTL.editor.isFuzzy()) {
-        PTL.editor.doFuzzyArea();
-      } else {
-        PTL.editor.undoFuzzyArea();
-      }
-    });
+    $(document).on('keyup blur', 'textarea.translation',
+                   this.handleTextareaChange.bind(this));
+    $(document).on('click', 'input.fuzzycheck', this.toggleFuzzy.bind(this));
 
     /* Suggest / submit */
-    $(document).on('click', '.switch-suggest-mode a', function () {
-      PTL.editor.toggleSuggestMode();
-      return false;
-    });
+    $(document).on('click', '.switch-suggest-mode a',
+                   this.toggleSuggestMode.bind(this));
 
     /* Update focus when appropriate */
     $(document).on('focus', '.focusthis', function (e) {
@@ -182,23 +170,13 @@
         PTL.editor.goFuzzy();
       }
     });
-    shortcut.add('ctrl+shift+space', function () {
-      PTL.editor.toggleSuggestMode();
-    });
+    shortcut.add('ctrl+shift+space', this.toggleSuggestMode.bind(this));
 
-    shortcut.add('ctrl+up', function () {
-      $('#js-nav-prev').trigger('click');
-    });
-    shortcut.add('ctrl+,', function () {
-      $('#js-nav-prev').trigger('click');
-    });
+    shortcut.add('ctrl+up', this.gotoPrev.bind(this));
+    shortcut.add('ctrl+,', this.gotoPrev.bind(this));
 
-    shortcut.add('ctrl+down', function () {
-      $('#js-nav-next').trigger('click');
-    });
-    shortcut.add('ctrl+.', function () {
-      $('#js-nav-next').trigger('click');
-    });
+    shortcut.add('ctrl+down', this.gotoNext.bind(this));
+    shortcut.add('ctrl+.', this.gotoNext.bind(this));
 
     if (navigator.platform.toUpperCase().indexOf('MAC') >= 0) {
       // Optimize string join with '<br/>' as separator
@@ -768,6 +746,21 @@
     return $("input.fuzzycheck").attr("checked");
   },
 
+  toggleFuzzy: function () {
+    if (this.isFuzzy()) {
+      this.doFuzzyArea();
+    } else {
+      this.undoFuzzyArea();
+    }
+  },
+
+  handleTextareaChange: function (e) {
+    var $el = $(e.target);
+    if (!this.keepState && $el.prop('defaultValue') !== $el.val()) {
+      this.ungoFuzzy();
+    }
+  },
+
 
   /*
    * Suggest / submit mode functions
@@ -792,7 +785,8 @@
 
 
   /* Toggles suggest/submit modes */
-  toggleSuggestMode: function () {
+  toggleSuggestMode: function (e) {
+    e.preventDefault();
     if (this.isSuggestMode()) {
       this.undoSuggestMode();
     } else {
@@ -1315,10 +1309,16 @@
   },
 
 
+  /* Loads the previous unit */
+  gotoPrev: function () {
+    // Buttons might be disabled so we need to fake an event
+    this.gotoPrevNext($.Event('click', {target: '#js-nav-prev'}));
+  },
+
   /* Loads the next unit */
   gotoNext: function () {
     // Buttons might be disabled so we need to fake an event
-    PTL.editor.gotoPrevNext($.Event('click', {target: '#js-nav-next'}));
+    this.gotoPrevNext($.Event('click', {target: '#js-nav-next'}));
   },
 
 
