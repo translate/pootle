@@ -193,13 +193,13 @@ def unit_form_factory(language, snplurals=None, request=None):
         'class': 'translation expanding focusthis',
         'rows': 5,
         'tabindex': 10,
-        }
+    }
 
     fuzzy_attrs = {
         'accesskey': 'f',
         'class': 'fuzzycheck',
         'tabindex': 13,
-        }
+    }
 
     if action_disabled:
         target_attrs['disabled'] = 'disabled'
