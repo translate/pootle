@@ -18,6 +18,7 @@
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 import base64
+import json
 import logging
 import re
 import time
@@ -29,7 +30,6 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import loader, RequestContext
-from django.utils import simplejson
 from django.utils.translation import ugettext as _
 
 
@@ -103,7 +103,7 @@ class MathCaptchaForm(forms.Form):
             'q': q,
             'expires': expires,
         }
-        data = base64.urlsafe_b64encode(simplejson.dumps(json_data))
+        data = base64.urlsafe_b64encode(json.dumps(json_data))
         return self._sign(q, a, expires) + data
 
     def _sign(self, q, a, expires):
@@ -136,7 +136,7 @@ class MathCaptchaForm(forms.Form):
     def _parse_token(self, t):
         try:
             sign, data = t[:40], t[40:]
-            data = simplejson.loads(base64.urlsafe_b64decode(str(data)))
+            data = json.loads(base64.urlsafe_b64decode(str(data)))
             return {
                 'q': data['q'],
                 'expires': float(data['expires']),
@@ -253,7 +253,7 @@ class CaptchaMiddleware:
                 'captcha': t.render(c),
             }
 
-            response = simplejson.dumps(json)
+            response = json.dumps(json)
             return HttpResponse(response, mimetype="application/json")
         else:
             return render_to_response('captcha.html', ec,
