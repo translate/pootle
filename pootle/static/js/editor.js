@@ -1129,18 +1129,15 @@
   submit: function (e) {
     e.preventDefault();
 
-    var reqData, submitUrl, translations,
-        unit = PTL.editor.units.getCurrent(),
-        form = $("#translate"),
+    var uId = PTL.editor.units.getCurrent().id,
+        submitUrl = l(['/xhr/units/', uId].join('')),
+        $form = $("#translate"),
+        reqData = $form.serializeObject(),
         captchaCallbacks = {
           sfn: 'PTL.editor.processSubmission',
           efn: 'PTL.editor.error'
         };
 
-    submitUrl = l(['/xhr/units/', unit.id].join(''));
-
-    // Serialize data to be sent and get required attributes for the request
-    reqData = form.serializeObject();
     $.extend(reqData, PTL.editor.getReqData(), captchaCallbacks);
 
     $.ajax({
@@ -1191,18 +1188,15 @@
   suggest: function (e) {
     e.preventDefault();
 
-    var reqData, suggestUrl,
-        uid = PTL.editor.units.getCurrent().id,
-        form = $("#translate"),
+    var uId = PTL.editor.units.getCurrent().id,
+        suggestUrl = l(['/xhr/units/', uId, '/suggestions/'].join('')),
+        $form = $("#translate"),
+        reqData = $form.serializeObject(),
         captchaCallbacks = {
           sfn: 'PTL.editor.processSuggestion',
           efn: 'PTL.editor.error'
         };
 
-    suggestUrl = l(['/xhr/units/', uid, '/suggestions/'].join(''));
-
-    // Serialize data to be sent and get required attributes for the request
-    reqData = form.serializeObject();
     $.extend(reqData, PTL.editor.getReqData(), captchaCallbacks);
 
     $.ajax({
