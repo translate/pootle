@@ -55,9 +55,9 @@ class TreeItem(object):
         """This method will be overridden in descendants"""
         return []
 
-    def get_parent(self):
+    def get_parents(self):
         """This method will be overridden in descendants"""
-        return None
+        return []
 
     def get_cachekey(self):
         """This method will be overridden in descendants"""
@@ -250,9 +250,9 @@ class TreeItem(object):
             cachekey = iri_to_uri(itemkey + ":" + key)
             cache.delete(cachekey)
 
-        parent = self.get_parent()
-        if parent:
-            parent._delete_from_cache(keys)
+        parents = self.get_parents()
+        for p in parents:
+            p._delete_from_cache(keys)
 
     def update_cache(self):
         self._delete_from_cache(self._flagged_for_deletion)
@@ -275,8 +275,8 @@ class TreeItem(object):
 
     def set_last_action(self, last_action):
         set_cached_value(self, 'get_last_action', last_action)
-        parent = self.get_parent()
-        if parent:
-            pla = get_cached_value(parent, 'get_last_action')
+        parents = self.get_parents()
+        for p in parents:
+            pla = get_cached_value(p, 'get_last_action')
             if pla and pla['mtime'] < last_action['mtime']:
-                parent.set_last_action(last_action)
+                p.set_last_action(last_action)

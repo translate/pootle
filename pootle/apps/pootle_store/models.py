@@ -1716,8 +1716,11 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 
     ### TreeItem
 
-    def get_parent(self):
-        return self.parent
+    def get_parents(self):
+        if self.parent.is_translationproject():
+            return [self.translation_project]
+        else:
+            return [self.parent]
 
     def get_cachekey(self):
         return self.pootle_path
