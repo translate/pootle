@@ -65,7 +65,7 @@
      */
 
     /* Fuzzy / unfuzzy */
-    $(document).on('keyup blur', 'textarea.translation',
+    $(document).on('keyup blur', '.js-translation-area',
                    this.handleTextareaChange.bind(this));
     $(document).on('click', 'input.fuzzycheck', this.toggleFuzzy.bind(this));
 
@@ -93,7 +93,7 @@
       if (PTL.editor.getSelectedText()) {
         return;
       }
-      if ($('#id_target_f_0').attr('disabled')) {
+      if ($('.js-translation-area').attr('disabled')) {
         return;
       }
       PTL.editor.copyOriginal($('.suggestion-translation', this));
@@ -612,7 +612,7 @@
       cleanSources[i] = $(this).text();
     });
 
-    var targets = $("[id^=id_target_f_]");
+    var targets = $('.js-translation-area');
     if (targets.length) {
       var i, active,
           max = cleanSources.length - 1;
@@ -1261,7 +1261,7 @@
 
   processSubmission: function (data) {
     // FIXME: handle this via events
-    var translations = $("textarea[id^=id_target_f_]").map(function (i, el) {
+    var translations = $('.js-translation-area').map(function (i, el) {
       return $(el).val();
     }).get();
 
@@ -1908,7 +1908,7 @@
         });
 
         // FIXME: handle this via events
-        translations = $("textarea[id^=id_target_f_]").map(function (i, el) {
+        translations = $('.js-translation-area').map(function (i, el) {
           return $(el).val();
         }).get();
         unit.setTranslation(translations);
@@ -2087,7 +2087,7 @@
   },
 
   translate: function (linkObject, providerCallback) {
-    var areas = $("[id^=id_target_f_]");
+    var areas = $('.js-translation-area');
     var sources = $(linkObject).parent().parent().parent().find('.translation-text');
     var langFrom = PTL.editor.normalizeCode(sources.eq(0).attr("lang"));
     var langTo = PTL.editor.normalizeCode(areas.eq(0).attr("lang"));
