@@ -62,14 +62,12 @@
       {% endif %}
       {% endwith %}
     </div>
-    <div class="translate-{% if LANGUAGE_BIDI %}left{% else %}right{% endif %}">
+    <div class="translate-middle">
       <!-- Quality Checks -->
       <div id="translate-checks-block" class="js-unit-checks"
         dir="{% locale_dir %}">
       {% include 'editor/units/xhr_checks.html' %}
       </div>
-    </div>
-    <div class="translate-middle">
       <div id="target-item-content">
         <form action="" method="post" name="translate" id="translate">
           {{ form.id.as_hidden }}

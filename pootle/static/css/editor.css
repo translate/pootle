@@ -1007,7 +1007,10 @@ div.check a
 
 #translate-checks-block
 {
-    margin: 0 1em;
+    position: absolute;
+    left: 100%;
+    margin: 14px 10px 0 20px;
+    width: 46%;
 }
 
 #translate-checks-block .sidetitle
@@ -1015,16 +1018,14 @@ div.check a
     color: #900;
     float: left;
     display: inline-block;
-    margin: 0.2em 0.2em 0 0;
+    margin: 0.1em 1em 0 0;
 }
 
 li.check
 {
     display: inline-block;
-    border: 1px dotted #900;
-    margin: 0 0.5em 0.5em 0;
+    margin: 0 1em 0.5em -0.5em;
     padding: 0.1em 0.5em;
-
     border-radius: 4px;
 }
 
