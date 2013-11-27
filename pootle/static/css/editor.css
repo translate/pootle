@@ -984,8 +984,18 @@ li.check > a
 .unit-submit:disabled:active,
 .unit-submit:disabled:hover
 {
-    opacity: 0.5;
-    cursor: default;
+    border: 0 !important;
+    box-shadow: 0px 0px 2px #000 !important;
+}
+
+.submit.unit-submit:disabled
+{
+    background: linear-gradient(to bottom, #ffe, #ae7) !important;
+}
+
+.suggest.unit-submit:disabled
+{
+    background: linear-gradient(to bottom, #ffe, #ed8) !important;
 }
 
 .buttons input[type="submit"].submit
