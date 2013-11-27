@@ -57,10 +57,7 @@ textarea#id_DESCRIPTION
     font-size: 85%;
     background-color: #0489b7;
     color: #fff;
-
-    -webkit-border-radius: 1em;
-       -moz-border-radius: 1em;
-            border-radius: 1em;
+    border-radius: 1em;
 }
 
 .control-group
