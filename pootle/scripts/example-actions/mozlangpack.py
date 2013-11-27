@@ -36,7 +36,8 @@ from django.conf import settings
 from pootle.scripts.actions import DownloadAction
 from pootle_store.util import absolute_real_path
 
-from moztarball import AURORA, MozillaAction, getLogger, tempdir, merge_po2moz
+from moztarball import (AURORA, MOZL10N, MozillaAction, getLogger, tempdir,
+                        merge_po2moz)
 from buildxpi import build_xpi
 
 
@@ -63,18 +64,14 @@ class MozillaBuildLangpackAction(MozillaAction, DownloadAction):
                 self.set_error(e)
                 return
 
-            source = os.path.join(vc_root, AURORA)
+            aurora = os.path.join(vc_root, AURORA)
+            mozl10n = os.path.join(vc_root, MOZL10N)
 
-            def copyfile(filename):
-                """Copy a file from VC source to L10n build directory"""
-                split = filename.find(os.sep)
-                sourcefile = os.path.join(source, filename[:split],
-                                          'locales/en-US',
-                                          filename[split + 1:])
+            def docopyfile(sourcefile, destfile):
                 if os.path.exists(sourcefile):
                     destdir = os.path.join(l10ndir, language,
-                                           os.path.dirname(filename))
-                    basename = os.path.basename(filename)
+                                           os.path.dirname(destfile))
+                    basename = os.path.basename(destfile)
                     if not os.path.isdir(destdir):
                         logger.debug("creating '%s' directory", destdir)
                         os.makedirs(destdir)
@@ -84,12 +81,26 @@ class MozillaBuildLangpackAction(MozillaAction, DownloadAction):
                 else:
                     logger.warning('unable to find %s', sourcefile)
 
+            def copyaurorafile(filename):
+                """Copy a file from VC source to L10n build directory"""
+                split = filename.find(os.sep)
+                sourcefile = os.path.join(aurora, filename[:split],
+                                          'locales/en-US',
+                                          filename[split + 1:])
+                docopyfile(sourcefile, filename)
+
+            def copyl10nfile(filename):
+                """Copy a file from VC source to L10n build directory"""
+                sourcefile = os.path.join(mozl10n, language, filename)
+                docopyfile(sourcefile, filename)
+
+
             def copyfileifmissing(filename):
                 """Copy a file only if needed."""
                 destfile = os.path.join(l10ndir, language, 'toolkit',
                                         filename)
                 if not os.path.exists(destfile):
-                    copyfile(filename)
+                    copyaurorafile(filename)
 
             try:
                 # from mozilla-l10n/.ttk/default/build.sh
@@ -97,9 +108,10 @@ class MozillaBuildLangpackAction(MozillaAction, DownloadAction):
                                   'welcome.xhtml')
                 copyfileifmissing('toolkit/chrome/mozapps/help/'
                                   'help-toc.rdf')
-                copyfile('browser/firefox-l10n.js')
-                copyfile('browser/profile/chrome/userChrome-example.css')
-                copyfile('browser/profile/chrome/userContent-example.css')
+                copyaurorafile('browser/firefox-l10n.js')
+                copyaurorafile('browser/profile/chrome/userChrome-example.css')
+                copyaurorafile('browser/profile/chrome/userContent-example.css')
+                copyl10nfile('browser/chrome/browser-region/region.properties')
                 copyfileifmissing('toolkit/chrome/global/intl.css')
                 # This one needs special approval but we need it
                 # to pass and compile
@@ -109,12 +121,12 @@ class MozillaBuildLangpackAction(MozillaAction, DownloadAction):
 
                     # Attempting to run build_xpi concurrently can fail,
                     # so lock it
-                    lock_filename = os.path.join(source,
+                    lock_filename = os.path.join(aurora,
                                                  ".langpack_action_lock")
                     lock = open(lock_filename, "w")
                     fcntl.flock(lock.fileno(), fcntl.LOCK_EX)
 
-                    xpifile = build_xpi(l10nbase=l10ndir, srcdir=source,
+                    xpifile = build_xpi(l10nbase=l10ndir, srcdir=aurora,
                                         outputdir=xpidir, langs=[language],
                                         product='browser')[0]
 

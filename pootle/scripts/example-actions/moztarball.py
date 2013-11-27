@@ -41,7 +41,8 @@ from pootle.scripts.actions import DownloadAction, TranslationProjectAction
 from pootle_app.models.permissions import check_permission
 
 
-MOZL10N = "mozilla-l10n"
+POL10N = "mozilla-l10n.git"
+MOZL10N = "mozilla-l10n.hg"
 AURORA = "mozilla-aurora"
 PROJECTS = ("firefox", "mobile")
 
@@ -147,7 +148,7 @@ def merge_po2moz(templates, translations, output, language, project):
                      'mail', 'thunderbird', 'chat', '*~'])
 
     po2moz.main(['--progress=none', '-l', language,
-                '-t', os.path.join(templates, MOZL10N, 'templates-en-US'),
+                '-t', os.path.join(templates, POL10N, 'templates-en-US'),
                 '-i', os.path.join(translations, project, language),
                 '-o', os.path.join(output, language)] +
                 # generate additional --exclude FOO arguments
@@ -180,7 +181,7 @@ class MozillaTarballAction(DownloadAction, MozillaAction):
                                     "--short", "HEAD"],
                                    stdout=subprocess.PIPE,
                                    stderr=subprocess.PIPE,
-                                   cwd=os.path.join(vc_root, MOZL10N))
+                                   cwd=os.path.join(vc_root, POL10N))
         output = process.communicate()[0]
         if not process.returncode == 0 or not output:
             output = "0000000"
