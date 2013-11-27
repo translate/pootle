@@ -29,14 +29,11 @@ from djblets.siteconfig.django_settings import (apply_django_settings,
 from djblets.siteconfig.models import SiteConfiguration
 
 
-settings_map = {
+SETTINGS_MAP = {
     # siteconfig key    settings.py key
     'DESCRIPTION': 'DESCRIPTION',
-    'TITLE':       'TITLE',
+    'TITLE': 'TITLE',
 }
-
-
-defaults = generate_defaults(settings_map)
 
 
 def load_site_config():
@@ -50,6 +47,7 @@ def load_site_config():
         siteconfig.save()
 
     if not siteconfig.get_defaults():
-        siteconfig.add_defaults(defaults)
-    apply_django_settings(siteconfig, settings_map)
+        siteconfig.add_defaults(generate_defaults(SETTINGS_MAP))
+
+    apply_django_settings(siteconfig, SETTINGS_MAP)
     return siteconfig
