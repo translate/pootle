@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2009, 2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -20,22 +20,27 @@
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save, pre_save
 
+from pootle_app.models.signals import (post_file_upload, post_template_update,
+                                       post_vc_commit, post_vc_update)
 from pootle_language.models import Language
 from pootle_project.models import Project
-from pootle_translationproject.models import TranslationProject
 from pootle_store.models import Unit
+from pootle_translationproject.models import TranslationProject
 
 from pootle_autonotices import signals
+
 
 post_save.connect(signals.new_language, sender=Language)
 post_save.connect(signals.new_project, sender=Project)
 post_save.connect(signals.new_user, sender=User)
 post_save.connect(signals.new_translationproject, sender=TranslationProject)
+
 pre_save.connect(signals.unit_updated, sender=Unit)
 
-from pootle_app.models.signals import post_vc_update, post_vc_commit
-from pootle_app.models.signals import post_template_update, post_file_upload
-post_vc_update.connect(signals.updated_from_version_control)
-post_vc_commit.connect(signals.committed_to_version_control)
-post_template_update.connect(signals.updated_against_template)
 post_file_upload.connect(signals.file_uploaded)
+
+post_template_update.connect(signals.updated_against_template)
+
+post_vc_commit.connect(signals.committed_to_version_control)
+
+post_vc_update.connect(signals.updated_from_version_control)

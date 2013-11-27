@@ -113,7 +113,7 @@ class MarkupField(models.TextField):
         value = super(MarkupField, self).pre_save(model_instance, add)
 
         if not add:
-            # Invalidate cache to force rendering upon next retrieval
+            # Invalidate cache to force rendering upon next retrieval.
             cache_key = _rendered_cache_key(model_instance.__class__.__name__,
                                             model_instance.pk,
                                             self.name)

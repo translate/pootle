@@ -326,7 +326,7 @@ def create_default_languages():
 
     from pootle_language.models import Language
 
-    # import languages from toolkit
+    # Import languages from toolkit.
     for code in data.languages.keys():
         try:
             tk_lang = factory.getlanguage(code)

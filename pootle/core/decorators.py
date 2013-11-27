@@ -29,8 +29,8 @@ from django.utils.translation import ugettext as _
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import (check_permission,
                                            get_matching_permissions)
-from pootle_profile.models import get_profile
 from pootle_language.models import Language
+from pootle_profile.models import get_profile
 from pootle_project.models import Project
 from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
@@ -60,7 +60,7 @@ def get_path_obj(func):
 
             if path_obj is None:
                 # Explicit selection via the UI: redirect either to
-                # ``/language_code/`` or ``/projects/project_code/``
+                # ``/language_code/`` or ``/projects/project_code/``.
                 user_choice = request.COOKIES.get('user-choice', None)
                 if user_choice and user_choice in ('language', 'project',):
                     url = {
@@ -79,7 +79,7 @@ def get_path_obj(func):
             path_obj = get_object_or_404(Language, code=language_code)
         elif project_code:
             path_obj = get_object_or_404(Project, code=project_code)
-        else:  # No arguments: treat it like the root directory
+        else:  # No arguments: treat it like the root directory.
             path_obj = Directory.objects.root
 
         request.ctx_obj = path_obj
@@ -92,9 +92,9 @@ def get_path_obj(func):
 def get_resource_context(func):
     @wraps(func)
     def wrapped(request, path_obj, dir_path, *args, **kwargs):
-        """Loads :cls:`pootle_app.models.Directory` and
-        :cls:`pootle_store.models.Store` models and populates the
-        request object.
+        """Load :cls:`pootle_app.models.Directory` and
+        :cls:`pootle_store.models.Store` models and populate the request
+        object.
 
         :param path_obj: A path-like object object.
         :param dir_path: Path relative to the root of `path_obj`.
@@ -142,7 +142,7 @@ def get_resource_context(func):
 
 
 def permission_required(permission_codes):
-    """Checks for `permission_codes` in the current context.
+    """Check for `permission_codes` in the current context.
 
     To retrieve the proper context, the `get_path_obj` decorator must be
     used along with this decorator.
@@ -154,9 +154,8 @@ def permission_required(permission_codes):
             directory = (path_obj if isinstance(path_obj, Directory)
                                   else path_obj.directory)
 
-            # HACKISH: some old code relies on
-            # `request.translation_project`, `request.language` etc.
-            # being set, so we need to set that too.
+            # HACKISH: some old code relies on  `request.translation_project`,
+            # `request.language` etc. being set, so we need to set that too.
             attr_name = CLS2ATTR.get(path_obj.__class__.__name__,
                                      'path_obj')
             setattr(request, attr_name, path_obj)

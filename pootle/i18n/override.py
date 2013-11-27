@@ -23,11 +23,11 @@ arbitrary locale support."""
 import locale
 import os
 
+from translate.lang import data
+
 from django.utils import translation
 from django.utils.functional import lazy
 from django.utils.translation import trans_real
-
-from translate.lang import data
 
 from pootle.i18n import bidi, gettext
 
@@ -86,7 +86,6 @@ def get_lang_from_session(request, supported):
         lang_code = request.session.get('django_language', None)
         if lang_code and lang_code in supported:
             return lang_code
-
     return None
 
 
@@ -105,13 +104,12 @@ def get_lang_from_prefs(request, supported):
     """If the current user is logged in, get her profile model object
     and check whether she has set her preferred interface language.
     """
-    # If the user is logged in
+    # If the user is logged in.
     if request.user.is_authenticated():
         profile = request.user.get_profile()
-        # and if the user's ui lang is set, and the ui lang exists
+        # and if the user's ui lang is set, and the ui lang exists.
         if profile.ui_lang and profile.ui_lang in supported:
             return profile.ui_lang
-
     return None
 
 
@@ -134,7 +132,7 @@ def get_lang_from_http_header(request, supported):
         if normalized in supported:
             return normalized
 
-        #FIXME: horribly slow way of dealing with languages with @ in them
+        #FIXME: horribly slow way of dealing with languages with @ in them.
         for lang in supported.keys():
             if normalized == data.normalize_code(lang):
                 return lang
@@ -170,8 +168,8 @@ def translation_dummy(language):
 
     dummytrans = trans_real.DjangoTranslation()
     dummytrans.set_language(language)
-    #FIXME: the need for the _catalog attribute means we
-    # are not hijacking gettext early enough
+    #FIXME: the need for the _catalog attribute means we are not hijacking
+    # gettext early enough.
     dummytrans._catalog = {}
     dummytrans.plural = lambda x: x
     trans_real._translations[language] = dummytrans
@@ -192,5 +190,6 @@ def override_gettext(real_translation):
 
 def get_language_bidi():
     """Override for Django's get_language_bidi that's aware of more
-    RTL languages."""
+    RTL languages.
+    """
     return gettext.language_dir(translation.get_language()) == 'rtl'

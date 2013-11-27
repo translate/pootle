@@ -17,15 +17,14 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
+from translate.lang import data as langdata
+
 from django.utils import translation
 from django.utils.translation import _trans
 
-from translate.lang import data as langdata
-
 
 def _format_translation(message, vars=None):
-    """Overrides the gettext function, handling variable errors more
-    gracefully.
+    """Override the gettext function, handling variable errors more gracefully.
 
     This is needed to avoid tracebacks on translation errors with live
     translation.
@@ -57,14 +56,14 @@ def ngettext(singular, plural, number, vars=None):
 
 
 def tr_lang(language_name):
-    """Translates language names."""
+    """Translate language names."""
     language_code = translation.to_locale(translation.get_language())
 
     return langdata.tr_lang(language_code)(language_name)
 
 
 def language_dir(language_code):
-    """Returns whether the language is right to left"""
+    """Return whether the language is right to left."""
     RTL_LANGS = [
         "ar", "arc", "dv", "fa", "he", "ks", "ps", "ug", "ur", "yi", "nqo"
     ]

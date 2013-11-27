@@ -26,7 +26,7 @@ from pootle_misc.forms import make_search_form
 
 
 def get_filter_name(GET):
-    """Gets current filter's human-readable name.
+    """Get current filter's human-readable name.
 
     :param GET: A copy of ``request.GET``.
     :return: Two-tuple with the filter name, and a list of extra arguments
@@ -66,7 +66,7 @@ def get_filter_name(GET):
 
 
 def get_translation_context(request, is_terminology=False):
-    """Returns a common context for translation views.
+    """Return a common context for translation views.
 
     :param request: a :cls:`django.http.HttpRequest` object.
     :param is_terminology: boolean indicating if the translation context

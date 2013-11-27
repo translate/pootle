@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009-2012 Zuza Software Foundation
+# Copyright 2009-2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -65,9 +65,8 @@ def new_user(sender, instance, created=False, raw=False, **kwargs):
     if raw:
         return
 
-    # New user needs to be wrapped in a try block because it might be
-    # called before the rest of the models are loaded when first
-    # installing Pootle
+    # New user needs to be wrapped in a try block because it might be called
+    # before the rest of the models are loaded when first installing Pootle.
 
     try:
         args = {
@@ -109,14 +108,14 @@ def unit_updated(sender, instance, raw=False, **kwargs):
     if instance.id is not None and instance.istranslated():
         dbcopy = Unit.objects.get(id=instance.id)
         if dbcopy.istranslated():
-            # unit state didn't change, let's quit
+            # Unit state didn't change, let's quit.
             return
 
         store = instance.store
         stats = store.getquickstats()
 
         if stats['total'] - stats['translated'] == 1:
-            # by the end of this we will be 100%
+            # By the end of this we will be 100%.
             translation_project = store.translation_project
             directory = translation_project.directory
             args = {
@@ -139,7 +138,7 @@ def unit_updated(sender, instance, raw=False, **kwargs):
 
 def updated_against_template(sender, oldstats, newstats, **kwargs):
     if oldstats == newstats:
-        # nothing changed, no need to report
+        # Nothing changed, no need to report.
         return
 
     args = {
@@ -156,13 +155,13 @@ def updated_against_template(sender, oldstats, newstats, **kwargs):
 def updated_from_version_control(sender, oldstats, remotestats, newstats,
                                  **kwargs):
     if sender.is_template_project:
-        # add template news to project instead of translation project
+        # Add template news to project instead of translation project.
         directory = sender.project.directory
     else:
         directory = sender.directory
 
     if oldstats == newstats:
-        # nothing changed, no need to report
+        # Nothing changed, no need to report.
         return
 
     args = {
@@ -197,7 +196,7 @@ def committed_to_version_control(sender, path_obj, stats, user, success,
 
 def file_uploaded(sender, oldstats, user, newstats, archive, **kwargs):
     if sender.is_template_project:
-        # add template news to project instead of translation project
+        # Add template news to project instead of translation project.
         directory = sender.project.directory
     else:
         directory = sender.directory

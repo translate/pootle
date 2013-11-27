@@ -27,15 +27,15 @@ _rtl_types = ("R", "AL")
 
 
 def get_base_direction(text):
-    """Find the base direction of a text string according to the first character
-    with strong bidi type.
+    """Find the base direction of a text string according to the first
+    character with strong bidi type.
 
     Returns ``0`` for LTR, ``1`` for RTL and ``-1`` for undefined (no strong
     characters found).
     """
     text = force_unicode(text)
 
-    # find first character with strong bidi type
+    # Find first character with strong bidi type.
     first = None
     for c in text:
         bidi_type = bidirectional(c)
@@ -49,7 +49,7 @@ def get_base_direction(text):
         else:
             return 0
     else:
-        # text composed of weak bidi characters
+        # Text composed of weak bidi characters.
         return -1
 
 

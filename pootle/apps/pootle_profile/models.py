@@ -3,21 +3,20 @@
 #
 # Copyright 2008-2013 Zuza Software Foundation
 #
-# This file is part of translate.
+# This file is part of Pootle.
 #
-# translate is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
+# This program is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation; either version 2 of the License, or (at your option) any later
+# version.
 #
-# translate is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+# details.
 #
-# You should have received a copy of the GNU General Public License
-# along with translate; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# You should have received a copy of the GNU General Public License along with
+# this program; if not, see <http://www.gnu.org/licenses/>.
 
 from hashlib import md5
 
@@ -74,28 +73,43 @@ class PootleProfileManager(models.Manager):
 
 class PootleProfile(models.Model):
 
-    # This is the only required field
+    # This is the only required field.
     user = models.OneToOneField(User, unique=True, db_index=True)
-
-    unit_rows = models.SmallIntegerField(default=9,
-            verbose_name=_("Number of Rows"))
+    unit_rows = models.SmallIntegerField(
+        default=9,
+        verbose_name=_("Number of Rows"),
+    )
     input_height = models.SmallIntegerField(default=5, editable=False)
-
-    # TODO: Remove these two fields once bug 2652 has been fixed
-    languages = models.ManyToManyField('pootle_language.Language', blank=True,
-            limit_choices_to=~Q(code='templates'),
-            related_name="user_languages", verbose_name=_("Languages"),
-            db_index=True)
-    projects = models.ManyToManyField('pootle_project.Project', blank=True,
-            db_index=True, verbose_name=_("Projects"))
-
-    ui_lang = models.CharField(max_length=50, blank=True, null=True,
-            choices=(choice for choice in lang_choices()),
-            verbose_name=_('Interface Language'))
-    alt_src_langs = models.ManyToManyField('pootle_language.Language',
-            blank=True, db_index=True, limit_choices_to=~Q(code='templates'),
-            related_name="user_alt_src_langs",
-            verbose_name=_("Alternative Source Languages"))
+    # TODO: Remove these two fields once bug 2652 has been fixed.
+    languages = models.ManyToManyField(
+        'pootle_language.Language',
+        blank=True,
+        limit_choices_to=~Q(code='templates'),
+        related_name="user_languages",
+        verbose_name=_("Languages"),
+        db_index=True,
+    )
+    projects = models.ManyToManyField(
+        'pootle_project.Project',
+        blank=True,
+        db_index=True,
+        verbose_name=_("Projects"),
+    )
+    ui_lang = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True,
+        choices=(choice for choice in lang_choices()),
+        verbose_name=_('Interface Language'),
+    )
+    alt_src_langs = models.ManyToManyField(
+        'pootle_language.Language',
+        blank=True,
+        db_index=True,
+        limit_choices_to=~Q(code='templates'),
+        related_name="user_alt_src_langs",
+        verbose_name=_("Alternative Source Languages"),
+    )
 
     objects = PootleProfileManager()
 
@@ -159,7 +173,7 @@ class PootleProfile(models.Model):
             ]
         """
         # TODO: optimize — we need a schema that helps reduce the number
-        # of needed queries for these kind of data retrievals
+        # of needed queries for these kind of data retrievals.
         contributions = []
         username = self.user.username
 
@@ -176,7 +190,7 @@ class PootleProfile(models.Model):
                 ).distinct().order_by('project__fullname')
 
             tp_user_stats = []
-            # Retrieve tp-specific stats for this user
+            # Retrieve tp-specific stats for this user.
             for tp in translation_projects:
                 tp_stats = [
                     {
@@ -256,7 +270,7 @@ class PootleProfile(models.Model):
         return min(max(self.unit_rows, 5), 49)
 
     def pending_suggestion_count(self, tp):
-        """Returns the number of pending suggestions for the user in the given
+        """Return the number of pending suggestions for the user in the given
         translation project.
 
         :param tp: a :cls:`TranslationProject` object.
@@ -265,7 +279,7 @@ class PootleProfile(models.Model):
                                      state='pending').count()
 
     def accepted_suggestion_count(self, tp):
-        """Returns the number of accepted suggestions for the user in the given
+        """Return the number of accepted suggestions for the user in the given
         translation project.
 
         :param tp: a :cls:`TranslationProject` object.
@@ -274,7 +288,7 @@ class PootleProfile(models.Model):
                                      state='accepted').count()
 
     def rejected_suggestion_count(self, tp):
-        """Returns the number of rejected suggestions for the user in the given
+        """Return the number of rejected suggestions for the user in the given
         translation project.
 
         :param tp: a :cls:`TranslationProject` object.
@@ -283,7 +297,7 @@ class PootleProfile(models.Model):
                                      state='rejected').count()
 
     def total_submission_count(self, tp):
-        """Returns the number of submissions the current user has done from the
+        """Return the number of submissions the current user has done from the
         editor in the given translation project.
 
         :param tp: a :cls:`TranslationProject` object.
@@ -295,7 +309,7 @@ class PootleProfile(models.Model):
         ).count()
 
     def overwritten_submission_count(self, tp):
-        """Returns the number of submissions the current user has done from the
+        """Return the number of submissions the current user has done from the
         editor and have been overwritten by other users in the given
         translation project.
 
@@ -308,20 +322,6 @@ class PootleProfile(models.Model):
         ).exclude(
             unit__submitted_by=self,
         ).count()
-
-
-def create_pootle_profile(sender, instance, **kwargs):
-    """A post-save hook for the User model which ensures that it gets an
-    associated PootleProfile.
-    """
-    try:
-        profile = instance.get_profile()
-    except PootleProfile.DoesNotExist:
-        profile = PootleProfile(user=instance)
-        profile.save()
-
-
-post_save.connect(create_pootle_profile, sender=User)
 
 
 def get_profile(user):
@@ -338,3 +338,18 @@ def get_profile(user):
         # Anonymous users get the PootleProfile associated with the 'nobody'
         # user
         return User.objects.get(username='nobody').get_profile()
+
+
+################################ Signal handlers ##############################
+
+def create_pootle_profile(sender, instance, **kwargs):
+    """A post-save hook for the User model which ensures that it gets an
+    associated PootleProfile.
+    """
+    try:
+        profile = instance.get_profile()
+    except PootleProfile.DoesNotExist:
+        profile = PootleProfile(user=instance)
+        profile.save()
+
+post_save.connect(create_pootle_profile, sender=User)

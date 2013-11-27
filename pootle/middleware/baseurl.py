@@ -21,6 +21,7 @@ from django.conf import settings
 
 
 class BaseUrlMiddleware(object):
+
     def process_request(self, request):
         """Calculate settings.BASEURL based on HTTP headers."""
         domain = None

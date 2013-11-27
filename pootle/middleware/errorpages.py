@@ -87,14 +87,14 @@ class ErrorPagesMiddleware(object):
             # not share the same class heirarchy (DBAPI2 sucks) we have to
             # check the class name instead. Since python uses duck typing
             # I will call this
-            # poking-the-duck-until-it-quacks-like-a-duck-test
+            # poking-the-duck-until-it-quacks-like-a-duck-test.
             return HttpResponseServerError(
                     render_to_string('db_error.html', {'exception': msg},
                                      RequestContext(request))
                 )
 
         else:
-            #FIXME: implement better 500
+            #FIXME: implement better 500.
             tb = traceback.format_exc()
             print >> sys.stderr, tb
 
@@ -113,7 +113,7 @@ class ErrorPagesMiddleware(object):
                         templatevars['fserror'] = msg
 
                     if sentry_exception_handler is None:
-                        # Send email to admins with details about exception
+                        # Send email to admins with details about exception.
                         ip_type = (request.META.get('REMOTE_ADDR') in
                                    settings.INTERNAL_IPS and 'internal' or
                                    'EXTERNAL')
@@ -142,5 +142,5 @@ class ErrorPagesMiddleware(object):
                         render_to_string('500.html', templatevars,
                                          RequestContext(request)))
                 except:
-                    # Let's not confuse things by throwing an exception here
+                    # Let's not confuse things by throwing an exception here.
                     pass

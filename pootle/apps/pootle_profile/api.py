@@ -36,7 +36,7 @@ class UserObjectsOnlyAuthorization(DjangoAuthorization):
     * All consumers can access all users statistics.
     """
     def _get_authorized_objects(self, object_list, bundle):
-        """Returns the object list only with objects owned by the consumer.
+        """Return the object list only with objects owned by the consumer.
 
         Should return an empty list if none are allowed.
         """
@@ -44,7 +44,7 @@ class UserObjectsOnlyAuthorization(DjangoAuthorization):
         return object_list.filter(pk=bundle.request.user.pk)
 
     def _is_authorized_for_object(self, bundle):
-        """Returns the authorization status for current object.
+        """Return the authorization status for current object.
 
         This method:
 
@@ -57,7 +57,7 @@ class UserObjectsOnlyAuthorization(DjangoAuthorization):
         raise Unauthorized("You are not allowed to access that resource.")
 
     def read_list(self, object_list, bundle):
-        """Returns a list of all the objects the consumer is allowed to read.
+        """Return a list of all the objects the consumer is allowed to read.
 
         Should return an empty list if none are allowed.
         """
@@ -66,7 +66,7 @@ class UserObjectsOnlyAuthorization(DjangoAuthorization):
         return self._get_authorized_objects(object_list, bundle)
 
     def read_detail(self, object_list, bundle):
-        """Returns the authorization status for reading the current object.
+        """Return the authorization status for reading the current object.
 
         This method:
 
@@ -79,7 +79,7 @@ class UserObjectsOnlyAuthorization(DjangoAuthorization):
             return self._is_authorized_for_object(bundle)
 
     def update_list(self, object_list, bundle):
-        """Returns a list of all the objects the consumer is allowed to update.
+        """Return a list of all the objects the consumer is allowed to update.
 
         Should return an empty list if none are allowed.
         """
@@ -88,7 +88,7 @@ class UserObjectsOnlyAuthorization(DjangoAuthorization):
         return self._get_authorized_objects(object_list, bundle)
 
     def update_detail(self, object_list, bundle):
-        """Returns the authorization status for updating the current object.
+        """Return the authorization status for updating the current object.
 
         This method:
 
@@ -101,7 +101,7 @@ class UserObjectsOnlyAuthorization(DjangoAuthorization):
             return self._is_authorized_for_object(bundle)
 
     def delete_list(self, object_list, bundle):
-        """Returns a list of all the objects the consumer is allowed to delete.
+        """Return a list of all the objects the consumer is allowed to delete.
 
         Should return an empty list if none are allowed.
         """
@@ -110,7 +110,7 @@ class UserObjectsOnlyAuthorization(DjangoAuthorization):
         return self._get_authorized_objects(object_list, bundle)
 
     def delete_detail(self, object_list, bundle):
-        """Returns the authorization status for deleting the current object.
+        """Return the authorization status for deleting the current object.
 
         This method:
 
@@ -140,7 +140,7 @@ class UserResource(StatisticsModelResource):
             'statistics',
             'username',
         ]
-        # HTTP methods allowed for visiting /statistics/ URLs
+        # HTTP methods allowed for visiting /statistics/ URLs.
         statistics_allowed_methods = ['get']
         authorization = UserObjectsOnlyAuthorization()
         authentication = BasicAuthentication()

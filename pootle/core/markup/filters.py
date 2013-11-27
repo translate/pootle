@@ -19,10 +19,10 @@
 
 import logging
 
+from lxml.html import rewrite_links
+
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
-
-from lxml.html import rewrite_links
 
 
 __all__ = (
@@ -34,7 +34,7 @@ logger = logging.getLogger('pootle.markup')
 
 
 def rewrite_internal_link(link):
-    """Converts `link` into an internal link.
+    """Convert `link` into an internal link.
 
     Any active static pages defined for a site can be linked by pointing
     to its virtual path by starting the anchors with the `#/` sequence
@@ -64,7 +64,7 @@ def rewrite_internal_link(link):
 
 
 def get_markup_filter_name():
-    """Returns a nice version for the current markup filter's name."""
+    """Return a nice version for the current markup filter's name."""
     name, args = get_markup_filter()
     return {
         'textile': u'Textile',
@@ -74,7 +74,7 @@ def get_markup_filter_name():
 
 
 def get_markup_filter():
-    """Returns the configured filter as a tuple with name and args.
+    """Return the configured filter as a tuple with name and args.
 
     In the following case this function returns (None, message) instead,
     where message tells the reason why not a markup filter is returned:
@@ -120,8 +120,8 @@ def get_markup_filter():
 
 
 def apply_markup_filter(text):
-    """Applies a text-to-HTML conversion function to a piece of text and
-    returns the generated HTML.
+    """Apply a text-to-HTML conversion function to a piece of text and
+    return the generated HTML.
 
     The function to use is derived from the value of the setting
     ``MARKUP_FILTER``, which should be a 2-tuple:
