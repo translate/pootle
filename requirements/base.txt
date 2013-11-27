@@ -2,8 +2,8 @@ Django>=1.4.10,<1.5
 
 # Django apps
 django-voting==0.1
-South>=0.7.6,<0.8
-django-assets
+South>=0.7.6
+django-assets>=0.8
 django-contact-form==1.0
 django-maintenancemode
 
