@@ -418,8 +418,6 @@ body.zoom-out-2 div.sources .alternative .translation-text
     background-image: url('../images/squiggle.png');
     background-repeat: repeat-x;
     background-position: text-bottom;
-    background-color: yellow;
-    border: 1px solid red;
     vertical-align: middle;
 }
 
@@ -436,6 +434,13 @@ div.translate-container
     background-color: #f1f7f8;
     overflow: hidden;
     clear: both;
+}
+
+/* in translation editor, make hanging spaces more prominent */
+div.translate-container .translation-space
+{
+    background-color: yellow;
+    border: 1px solid red;
 }
 
 div.translate-container.error
