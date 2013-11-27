@@ -1039,6 +1039,14 @@ li.check > a
     margin-bottom: 0.5em;
 }
 
+.unit-submit:disabled,
+.unit-submit:disabled:active,
+.unit-submit:disabled:hover
+{
+    opacity: 0.5;
+    cursor: default;
+}
+
 .buttons input[type="submit"].submit
 {
     background: linear-gradient(to bottom,  #ffe,  #ae7);
