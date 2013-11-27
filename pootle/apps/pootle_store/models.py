@@ -932,7 +932,11 @@ class Unit(models.Model, base.TranslationUnit):
             old_target = self.target
             self.target = suggestion.target
 
-            suggestion_user = suggestion.user
+            if suggestion.user_id is not None:
+                suggestion_user = suggestion.user
+            else:
+                suggestion_user = User.objects.get_nobody_user().get_profile()
+
             self.submitted_by = suggestion_user
             self.submitted_on = timezone.now()
 
