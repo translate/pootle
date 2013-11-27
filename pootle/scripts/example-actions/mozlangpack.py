@@ -92,7 +92,10 @@ class MozillaBuildLangpackAction(MozillaAction, DownloadAction):
             def copyl10nfile(filename):
                 """Copy a file from VC source to L10n build directory"""
                 sourcefile = os.path.join(mozl10n, language, filename)
-                docopyfile(sourcefile, filename)
+                if os.path.exists(sourcefile):
+                    docopyfile(sourcefile, filename)
+                else:
+                    copyaurorafile(filename)
 
 
             def copyfileifmissing(filename):
