@@ -64,10 +64,11 @@
      * Bind event handlers
      */
 
-    /* Fuzzy / unfuzzy */
-    $(document).on('keyup blur', '.js-translation-area',
-                   this.handleTextareaChange.bind(this));
-    $(document).on('click', 'input.fuzzycheck', this.toggleFuzzy.bind(this));
+    /* State changes */
+    $(document).on('input', '.js-translation-area',
+                   this.onTextareaChange.bind(this));
+    $(document).on('click', 'input.fuzzycheck',
+                   this.onStateChange.bind(this));
 
     /* Suggest / submit */
     $(document).on('click', '.switch-suggest-mode a',
@@ -595,11 +596,11 @@
     element = $(PTL.editor.focused);
 
     if (action === "overwrite") {
-      element.val(text);
+      element.val(text).trigger('input');
       start = text.length;
     } else {
       start = element.caret().start + text.length;
-      element.val(element.caret().replace(text));
+      element.val(element.caret().replace(text)).trigger('input');
     }
 
     element.caret(start, start);
@@ -620,7 +621,7 @@
 
       for (var i=0; i<targets.length; i++) {
         var newval = cleanSources[i] || cleanSources[max];
-        $(targets.get(i)).val(newval);
+        $(targets.get(i)).val(newval).trigger('input');
       }
 
       // Focus on the first textarea
@@ -755,9 +756,37 @@
     }
   },
 
-  handleTextareaChange: function (e) {
-    var $el = $(e.target);
-    if (!this.keepState && $el.prop('defaultValue') !== $el.val()) {
+  handleTranslationChange: function () {
+    var $submit = $('.js-submit'),
+        translations = $('.js-translation-area').get(),
+        checkbox = $('#id_state')[0],
+        stateChanged = checkbox.defaultChecked !== checkbox.checked,
+        areaChanged = false,
+        area, i;
+
+    for (i=0; i<translations.length && areaChanged === false; i++) {
+      area = translations[i];
+      areaChanged = area.defaultValue !== area.value;
+    }
+
+    $submit.each(function () {
+      this.disabled = !(stateChanged || areaChanged);
+    });
+  },
+
+  onStateChange: function () {
+    this.handleTranslationChange();
+
+    this.toggleFuzzy();
+  },
+
+  onTextareaChange: function (e) {
+    this.handleTranslationChange();
+
+    var el = e.target,
+        hasChanged = el.defaultValue !== el.value;
+
+    if (hasChanged && ! this.keepState) {
       this.ungoFuzzy();
     }
   },
@@ -1239,7 +1268,8 @@
   submit: function (e) {
     e.preventDefault();
 
-    var uId = PTL.editor.units.getCurrent().id,
+    var el = e.target,
+        uId = PTL.editor.units.getCurrent().id,
         submitUrl = l(['/xhr/units/', uId].join('')),
         $form = $("#translate"),
         reqData = $form.serializeObject(),
@@ -1249,6 +1279,15 @@
         };
 
     $.extend(reqData, PTL.editor.getReqData(), captchaCallbacks);
+
+    el.disabled = true;
+
+    // Update default value properties
+    $('.js-translation-area').each(function () {
+      this.defaultValue = this.value;
+    });
+    var checkbox = $('#id_state')[0];
+    checkbox.defaultChecked = checkbox.checked;
 
     $.ajax({
       url: submitUrl,
