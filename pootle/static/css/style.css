@@ -1118,16 +1118,6 @@ html[dir="rtl"] #user-meta-wrapper
 }
 
 
-/* UPLOAD FORM / UPDATE FROM VCS */
-
-div#upload p,
-div#upload ul,
-div#update p
-{
-    margin-bottom: 0.5em;
-}
-
-
 /*
  * BUTTONS
  */
