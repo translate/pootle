@@ -26,11 +26,7 @@ from translate.storage.placeables import general
 from django import template
 from django.core.exceptions import ObjectDoesNotExist
 from django.template.defaultfilters import stringfilter
-try:
-    from django.template.loaders.filesystem import _loader as Loader
-except ImportError:
-    # Django 1.5+
-    from django.template.loaders.filesystem import Loader
+from django.template.loaders.filesystem import Loader
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 
@@ -251,7 +247,8 @@ def do_include_raw(parser, token):
     if template_name[0] in ('"', "'") and template_name[-1] == template_name[0]:
         template_name = template_name[1:-1]
 
-    source, path = Loader.load_template_source(template_name)
+    template_loader = Loader()
+    source, path = template_loader.load_template_source(template_name)
 
     return template.TextNode(source)
 register.tag("include_raw", do_include_raw)
