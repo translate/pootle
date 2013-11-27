@@ -180,6 +180,7 @@ def pluralize_diff_sugg(sugg):
         return [(0, sugg.target, call_highlight(unit.target, sugg.target), None)]
 
 
+@register.tag(name="include_raw")
 def do_include_raw(parser, token):
     """Perform a raw template include.
 
@@ -203,4 +204,3 @@ def do_include_raw(parser, token):
     source, path = template_loader.load_template_source(template_name)
 
     return template.TextNode(source)
-register.tag("include_raw", do_include_raw)
