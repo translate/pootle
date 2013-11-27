@@ -1230,7 +1230,8 @@ input[type="submit"][disabled]:hover
 
     border: 1px solid #d9d9d9;
 
-    opacity: 0.65;
+    cursor: default;
+    opacity: 0.5;
 }
 
 input.delete[type="submit"]
