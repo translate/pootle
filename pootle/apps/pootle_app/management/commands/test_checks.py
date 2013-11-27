@@ -80,6 +80,7 @@ class Command(NoArgsCommand):
         if not checks:
             checks = get_qualitychecks().keys()
 
+        error_checks = []
         for check in checks:
             filtermessage = ''
             try:
@@ -94,4 +95,11 @@ class Command(NoArgsCommand):
                 message += ": %s" %  filtermessage
             logging.info(message)
 
-        logging.info("All done.")
+            if not filterresult:
+                error_checks.append(check)
+
+        if error_checks:
+            print "Failing checks: " + ", ".join(error_checks)
+        else:
+            print "No errors found."
+
