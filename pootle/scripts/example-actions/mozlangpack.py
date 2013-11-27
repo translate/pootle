@@ -135,7 +135,8 @@ class MozillaBuildLangpackAction(MozillaAction, DownloadAction):
 
                     if xpifile:
                         xpiname = '%s-%s.xpi' %(project, language)
-                        newname = os.path.join(root, tpdir, xpiname)
+                        newname = os.path.join(root, project, language,
+                                               xpiname)
                         logger.debug("copying '%s' to '%s'",
                                      xpifile, newname)
                         shutil.move(xpifile, newname)
@@ -173,9 +174,8 @@ class MozillaDownloadLangpackAction(DownloadAction, MozillaAction):
     def is_active(self, request):
         project = request.translation_project.project.code
         language = request.translation_project.language.code
-        tpdir = request.translation_project.directory.get_real_path()
         xpi_file = os.path.join('POOTLE_EXPORT',
-                                tpdir,
+                                project, language,
                                 '%s-%s.xpi' %(project, language))
         abs_xpi_file = absolute_real_path(xpi_file)
         if not os.path.exists(abs_xpi_file):
@@ -187,7 +187,7 @@ class MozillaDownloadLangpackAction(DownloadAction, MozillaAction):
             language, project, vc_root, **kwargs):
         """Download a Mozilla language pack XPI."""
         xpi_file = os.path.join('POOTLE_EXPORT',
-                                tpdir,
+                                project, language,
                                 '%s-%s.xpi' %(project, language))
         self._dl_path[path.pootle_path] = xpi_file
 
