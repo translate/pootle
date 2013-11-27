@@ -639,19 +639,22 @@ class Unit(models.Model, base.TranslationUnit):
         if not created:
             checks = self.qualitycheck_set.all()
             if keep_false_positives:
-                checks = checks.filter(false_positive=True)
+                existing = set(checks.filter(false_positive=True) \
+                                     .values_list('name', flat=True))
+                checks = checks.filter(false_positive=False)
+            # all checks should be recalculated
+            checks.delete()
 
-            existing = set(checks.values_list('name', flat=True))
+        # no checks if unit is untranslated
+        if not self.target:
+            return
 
         qc_failures = self.store.translation_project.checker \
                                 .run_filters(self, categorised=True)
 
         for name in qc_failures.iterkeys():
-            if name in existing:
-                existing.remove(name)
-                continue
-
-            if name in ('isfuzzy', 'untranslated'):
+            if name == 'fuzzy' or name in existing:
+                # keep false-positive checks
                 continue
 
             message = qc_failures[name]['message']
@@ -662,9 +665,6 @@ class Unit(models.Model, base.TranslationUnit):
 
             self.store.flag_for_deletion(CachedMethods.CHECKS)
 
-        if len(existing):
-            QualityCheck.objects.filter(unit=self, name__in=existing).delete()
-            self.store.flag_for_deletion(CachedMethods.CHECKS)
 
     def get_qualitychecks(self):
         return self.qualitycheck_set.filter(false_positive=False)
