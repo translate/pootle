@@ -121,6 +121,10 @@ Read for grammar and spelling errors.
    #. We speak in familiar terms e.g. "I know you've been waiting for this
       release" instead of formal.
 
+We create a list of contributors using this command::
+
+   git log 2.5.0..HEAD --format='%aN, ' | awk '{arr[$0]++} END{for (i in arr){print arr[i], i;}}' | sort -rn | cut -d\  -f2-
+
 
 Up version numbers
 ------------------
