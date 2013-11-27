@@ -39,8 +39,18 @@ from pootle_store.fields import list_empty
 register = template.Library()
 
 
+IMAGE_URL_RE = re.compile("(https?://[^\s]+\.(png|jpe?g|gif))")
+
+
+@register.filter
+def image_urls(text):
+    """Return a list of image URLs extracted from `text`."""
+    return map(lambda x: x[0], IMAGE_URL_RE.findall(text))
+
+
 def call_highlight(old, new):
-    """Calls diff highlighting code only if the target is set.
+    """Call diff highlighting code only if the target is set.
+
     Otherwise, highlight as a normal unit.
     """
     if isinstance(old, multistring):
@@ -54,51 +64,58 @@ def call_highlight(old, new):
 
 
 def _google_highlight_diffs(old, new):
-    """Highlights the differences between old and new."""
+    """Highlight the differences between old and new."""
 
-    textdiff = u""  # to store the final result
-    removed = u""  # the removed text that we might still want to add
+    textdiff = u""  # To store the final result.
+    removed = u""  # The removed text that we might still want to add.
     diff = differencer.diff_main(old, new)
     differencer.diff_cleanupSemantic(diff)
     for op, text in diff:
-        if op == 0:  # equality
+        if op == 0:  # Equality.
             if removed:
-                textdiff += '<span class="diff-delete">%s</span>' % fancy_escape(removed)
+                textdiff += ('<span class="diff-delete">%s</span>' %
+                             fancy_escape(removed))
                 removed = u""
             textdiff += fancy_escape(text)
-        elif op == 1:  # insertion
+        elif op == 1:  # Insertion.
             if removed:
-                # this is part of a substitution, not a plain insertion. We
+                # This is part of a substitution, not a plain insertion. We
                 # will format this differently.
-                textdiff += '<span class="diff-replace">%s</span>' % fancy_escape(text)
+                textdiff += ('<span class="diff-replace">%s</span>' %
+                             fancy_escape(text))
                 removed = u""
             else:
-                textdiff += '<span class="diff-insert">%s</span>' % fancy_escape(text)
-        elif op == -1:  # deletion
+                textdiff += ('<span class="diff-insert">%s</span>' %
+                             fancy_escape(text))
+        elif op == -1:  # Deletion.
             removed = text
     if removed:
-        textdiff += '<span class="diff-delete">%s</span>' % fancy_escape(removed)
+        textdiff += ('<span class="diff-delete">%s</span>' %
+                     fancy_escape(removed))
     return mark_safe(textdiff)
 
 
 def _difflib_highlight_diffs(old, new):
-    """Highlights the differences between old and new. The differences
-    are highlighted such that they show what would be required to
-    transform old into new.
-    """
+    """Highlight the differences between old and new.
 
+    The differences are highlighted such that they show what would be required
+    to transform old into new.
+    """
     textdiff = ""
     for tag, i1, i2, j1, j2 in SequenceMatcher(None, old, new).get_opcodes():
         if tag == 'equal':
             textdiff += fancy_escape(old[i1:i2])
         if tag == "insert":
-            textdiff += '<span class="diff-insert">%s</span>' % fancy_escape(new[j1:j2])
+            textdiff += ('<span class="diff-insert">%s</span>' %
+                         fancy_escape(new[j1:j2]))
         if tag == "delete":
-            textdiff += '<span class="diff-delete">%s</span>' % fancy_escape(old[i1:i2])
+            textdiff += ('<span class="diff-delete">%s</span>' %
+                         fancy_escape(old[i1:i2]))
         if tag == "replace":
             # We don't show text that was removed as part of a change:
             #textdiff += "<span>%s</span>" % fance_escape(a[i1:i2])}
-            textdiff += '<span class="diff-replace">%s</span>' % fancy_escape(new[j1:j2])
+            textdiff += ('<span class="diff-replace">%s</span>' %
+                         fancy_escape(new[j1:j2]))
     return mark_safe(textdiff)
 
 
@@ -106,7 +123,7 @@ try:
     from translate.misc.diff_match_patch import diff_match_patch
     differencer = diff_match_patch()
     highlight_diffs = _google_highlight_diffs
-except ImportError as e:
+except ImportError:
     from difflib import SequenceMatcher
     highlight_diffs = _difflib_highlight_diffs
 
@@ -167,19 +184,12 @@ def pluralize_diff_sugg(sugg):
         return [(0, sugg.target, call_highlight(unit.target, sugg.target), None)]
 
 
-IMAGE_URL_RE = re.compile("(https?://[^\s]+\.(png|jpe?g|gif))")
-
-
-@register.filter
-def image_urls(text):
-    """Returns a list of image URLs extracted from `text`."""
-    return map(lambda x: x[0], IMAGE_URL_RE.findall(text))
-
-
 def do_include_raw(parser, token):
-    """
-    Performs a template include without parsing the context, just dumps
-    the template in.
+    """Perform a raw template include.
+
+    This means to include the template without parsing context, just dump the
+    template in.
+
     Source: http://djangosnippets.org/snippets/1684/
     """
     bits = token.split_contents()
