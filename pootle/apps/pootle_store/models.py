@@ -1484,7 +1484,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                     unit.store = self
                     newunit = store.findid(unit.getid())
                     old_target_f = unit.target_f
-                    old_state = unit.state
+                    old_unit_state = unit.state
 
                     if (monolingual and not
                         self.translation_project.is_template_project):
@@ -1517,8 +1517,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                             unit.submitted_on = timezone.now()
                         unit.save()
                         # check unit state after saving
-                        if old_state != unit.state:
-                            create_subs[SubmissionFields.STATE] = [old_state,
+                        if old_unit_state != unit.state:
+                            create_subs[SubmissionFields.STATE] = [old_unit_state,
                                                                    unit.state]
 
                         # Create Submission after unit saved
