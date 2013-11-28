@@ -323,6 +323,8 @@ class Unit(models.Model, base.TranslationUnit):
         self._target_updated = False
         self._encoding = 'UTF-8'
 
+    # should be called to flag the store cache for a deletion
+    # before the unit will be deleted
     def flag_store_before_going_away(self):
         self.store.flag_for_deletion(CachedMethods.TOTAL)
 
@@ -1407,7 +1409,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                     unit.store = self
                     newunit = store.findid(unit.getid())
                     old_target_f = unit.target_f
-                    old_state = unit.state
+                    old_unit_state = unit.state
 
                     changed = unit.update(newunit)
 
@@ -1436,8 +1438,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                             unit.submitted_on = timezone.now()
                         unit.save()
                         # check unit state after saving
-                        if old_state != unit.state:
-                            create_subs[SubmissionFields.STATE] = [old_state,
+                        if old_unit_state != unit.state:
+                            create_subs[SubmissionFields.STATE] = [old_unit_state,
                                                                    unit.state]
 
                         # Create Submission after unit saved
