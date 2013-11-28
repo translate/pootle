@@ -51,6 +51,7 @@ dependencies at specific versions without interfering with system-wide
 packages. You can test on different Python/Django versions in parallel as well.
 
 
+.. _hacking#detailed-setup:
 
 Detailed setup
 ^^^^^^^^^^^^^^
@@ -59,13 +60,14 @@ These are essentially the same steps as above but with further details and
 explanations.
 
 For installing the dependencies in an isolated environment, we will use
-virtualenv — more specifically virtualenvwrapper, which eases the process of
+virtualenv -- more specifically virtualenvwrapper, which eases the process of
 managing and switching between multiple virtual environments. Installing
 virtualenwrapper will pull in virtualenv as a dependency.
 
 .. code-block:: bash
 
     $ sudo pip install virtualenvwrapper
+
 
 virtualenvwrapper will need to be configured in order to specify where to store
 the created environments.
@@ -76,10 +78,11 @@ the created environments.
    $ mkdir -p $WORKON_HOME
    $ source /usr/local/bin/virtualenvwrapper.sh  # Or /usr/bin/virtualenvwrapper.sh
 
-.. note::
 
-   You may want to add the above-mentioned commands in your ``.bashrc`` file
-   (or whatever file your shell uses for initializing user customizations).
+.. note:: You may want to add the above-mentioned commands in your
+   :file:`.bashrc` file (or whatever file your shell uses for initializing user
+   customizations).
+
 
 Now the commands provided virtualenv and virtualenvwrapper are available, so we
 can start creating our virtual environment.
@@ -88,10 +91,11 @@ can start creating our virtual environment.
 
     $ mkvirtualenv <env-name>
 
+
 Replace ``<env-name>`` with a meaningful name that describes the environment
-you are creating. ``mkvirtualenv`` accepts any options ``virtualenv`` accepts.
-We could for example specify to use the Python 2.6 interpreter by passing the
-``-p python2.6`` option.
+you are creating. :command:`mkvirtualenv` accepts any options that
+:command:`virtualenv` accepts. We could for example specify to use the Python
+2.6 interpreter by passing the :option:`-p python2.6` option.
 
 After running ``mkvirtualenv``, the newly created environment is activated. To
 activate and deactivate virtual environments simply run ``workon <env-name>``
@@ -102,33 +106,37 @@ Time to clone Pootle's source code repository. The main repository lives under
 have a GitHub account, the best idea is to fork the main repository and to
 clone your own fork for hacking. Once you know which way you want to continue
 forward, just move to a directory where you want to keep the development files
-and run ``git clone`` by passing the repository's URL.
+and run :command:`git clone` by passing the repository's URL.
 
 .. code-block:: bash
 
     (env-name) $ git clone https://github.com/translate/pootle.git
 
-This will create a directory named *pootle* where you will find all the files
-that constitute Pootle's source code.
+
+This will create a directory named :file:`pootle` where you will find all the
+files that constitute Pootle's source code.
+
+.. note:: If you have a GitHub account, fork the main ``translate/pootle``
+   repository and replace the repository URL by your own fork.
+
 
 Before running the development server, it's necessary to install the software
 dependencies/requirements by using pip. For this matter there are some `pip
 requirements files <http://www.pip-installer.org/en/latest/requirements.html>`_
-within the *requirements* directory. We will install the requirements defined
-in *requirements/dev.txt*, which apart from the minimum will pull in some
-extras that will ease the development process.
+within the :file:`requirements` directory. We will install the requirements
+defined in :file:`requirements/dev.txt`, which apart from the minimum will pull
+in some extras that will ease the development process.
 
 .. code-block:: bash
 
     (env-name) $ cd pootle
     (env-name) $ pip install -r requirements/dev.txt
 
-.. note::
 
-   Some dependencies might need to build or compile source code in languages
-   other than Python. You may need to install extra packages on your system in
-   order to complete the build process and the installation of the required
-   packages.
+.. note:: Some dependencies might need to build or compile source code in
+   languages other than Python. You may need to install extra packages on your
+   system in order to complete the build process and the installation of the
+   required packages.
 
 
 With all the dependencies installed within the virtual environment, Pootle is
@@ -136,13 +144,17 @@ almost ready to run. In development environments you will want to use settings
 that vastly differ from those used in production environments.
 
 For that purpose there is a sample configuration file with settings adapted for
-development scenarios, *pootle/settings/90-dev-local.conf.sample*. Copy this
-file and rename it by removing the *.sample* extension and you're good to go.
+development scenarios, :file:`pootle/settings/90-dev-local.conf.sample`. Copy
+this file and rename it by removing the *.sample* extension:
 
-.. note::
+.. code-block:: bash
 
-  To learn more about how settings work in Pootle head over the :ref:`settings`
-  section in the documentation.
+    (env-name) $ cp pootle/settings/90-dev-local.conf.sample pootle/settings/90-dev-local.conf
+
+
+.. note:: To learn more about how settings work in Pootle head over the
+  :ref:`settings` section in the documentation.
+
 
 Once the configuration is in place, you'll need to setup the database
 schema and add initial data.
@@ -153,14 +165,17 @@ schema and add initial data.
     (env-name) $ python manage.py migrate
     (env-name) $ python manage.py initdb
 
+
 Finally, just run the development server.
 
 .. code-block:: bash
 
     (env-name) $ python manage.py runserver
 
+
 Once all is done, you can start the development server anytime by enabling the
-virtual environment and running the ``manage.py runserver`` command.
+virtual environment (using the :command:`workon` command) and running the
+:command:`manage.py runserver` command.
 
 Happy hacking!!
 
@@ -171,17 +186,21 @@ Workflow
 --------
 
 Any time you want to fix a bug or work on a new feature, create a new local
-branch::
+branch:
+
+.. code-block:: bash
 
   $ git checkout -b <my_new_branch>
+
 
 Then safely work there, create the needed commits and once the work is ready
 for being incorporated upstream, either:
 
 - Push the changes to your own GitHub fork and send us a pull request, or
 
-- Create a patch against the ``HEAD`` of the ``master`` branch using ``git
-  diff`` or ``git format-patch`` and attach it to the affecting bug.
+- Create a patch against the ``HEAD`` of the ``master`` branch using
+  :command:`git diff` or :command:`git format-patch` and attach it to the
+  affected bug.
 
 
 .. _hacking#committing:
