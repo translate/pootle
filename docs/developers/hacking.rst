@@ -215,11 +215,48 @@ What to commit
   Where different changes depend on each other, but are related to different
   parts of a problem / solution, try to commit then in quick succession.
 
+  Try not to put documentation and code changes in the same commit, unless they
+  are minor changes.
+
 Commit messages
   Begin the commit message with a single short (less than 50 character) line
   summarizing the change, followed by a blank line and then a more thorough
-  description.
+  (and sometimes optional) description.
 
-  If your change fixes a bug in Bugzilla, mention the bug number, and mention
-  the commit sha1 in the bug. If you are reverting a previous commit, mention
-  the sha1 revision that is being reverted.
+  ::
+
+    Cleanups
+
+
+  Another example:
+
+  ::
+
+    Factor out common behavior for whatever
+
+    These reduces lines of code to maintain, and eases a lot the maintenance
+    work.
+
+    Also was partially reworked to ease extending it in the future.
+
+
+  If your change fixes a bug in Bugzilla, mention the bug number. This way the
+  but is automatically closed after merging the commit.
+
+  ::
+
+    Docs: Update code for this thing
+
+    Now the docs are exact and represent the actual behavior introduced in
+    commits ef4517ab and abc361fd.
+
+    Fixes bug #2399
+
+  If you are reverting a previous commit, mention the sha1 revision that is
+  being reverted.
+
+  ::
+
+    Revert "Fabric: Cleanup to use the new setup command"
+
+    This reverts commit 5c54bd4.
