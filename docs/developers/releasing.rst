@@ -8,6 +8,7 @@ Summary
 =======
 #. git clone git@github.com:translate/pootle.git pootle-release
 #. Create release notes
+#. Adjust the roadmap
 #. Up version number
 #. Update translations
 #. make build
@@ -73,13 +74,15 @@ A string freeze would normally run between an RC1 and a released version.
 Detailed release instructions
 =============================
 
-Get a clean checkout
---------------------
-We work from a clean checkout to esnure that everything you are adding to the
+Get a clean checkout and new virtualenv
+---------------------------------------
+We work from a clean checkout to ensure that everything you are adding to the
 build is what is in VC and doesn't contain any of your uncommitted changes.  It
 also ensure that someone else could relicate your process. ::
 
     git clone git@github.com:translate/pootle.git pootle-release
+    mkvirtualenv pootle-release
+    pip install -r requirements/build.txt
 
 Create release notes
 --------------------
@@ -126,6 +129,17 @@ We create a list of contributors using this command::
    git log 2.5.0..HEAD --format='%aN, ' | awk '{arr[$0]++} END{for (i in arr){print arr[i], i;}}' | sort -rn | cut -d\  -f2-
 
 
+Adjust the roadmap
+------------------
+The roadmap file needs to be updated.  Remove things that are part of this
+release.  Adjust any version numbering if for example we're moving to Django
+1.6 we need to change the proposed release numbers.
+
+Look at the actual roamap commitments and change if needed.  These will remain
+during the lifetime of this version so it is good to adjust them before we
+branch.
+
+
 Up version numbers
 ------------------
 Update the version number in:
@@ -162,7 +176,15 @@ Update requirements versions
 Update the minimum version number for the requirements in:
 
 - ``requirements/``
-- ``depcheck.py``
+- ``pootle/depcheck.py``
+
+
+Update the requirements files::
+
+    make requirements
+
+.. note:: I'm still not 100% why or if we need these, but until we work it out
+   lets make sure we ship with correct files.
 
 
 Update translations
@@ -208,16 +230,33 @@ Test install and other tests
 The easiest way to test is in a virtualenv.  You can install the new toolkit
 using::
 
+    mkvirtualenv pootle-testing
     pip install path/to/dist/Pootle-$version.tar.bz2
 
 This will allow you test installation of the software.
 
 You can then proceed with other tests such as checking:
 
+#. Quick installation check::
+
+      pootle init
+      pootle setup
+      pootle start
+      # browse to localhost:8000
+
 #. Documentation is available
-#. Converters and scripts are installed and run correctly
+#. Installation documention is correct
+
+   - Follow the :doc:`installation </server/installation>` and :doc:`hacking
+     <hacking>` guides to ensure that they are correct.
+
 #. Meta information about the package is correct. See pypi section of reviewing
    meta data.
+
+To cleanup::
+
+    deactivate
+    rmvirtualenv pootle-testing
 
 
 Tag the release
@@ -374,6 +413,7 @@ Some possible cleanup tasks:
   Sourceforge ``Pootle`` top level download page.
 - Checkin any release notes and such (or maybe do that before tagging).
 - Remove your pootle-release checkout.
+- Remove pootle-release virtualenv: ``deactivate; rmvirtualenv pootle-release``
 - Update and change things based on what you learnt, don't wait:
 
   - Update and fix these release notes and make sure they are on ``master``.
