@@ -43,8 +43,10 @@ Estimated release April 2014
 - amaGama - automate updating of resources.
 - Translation editor improvements:
 
-  - Highlight - terms, variables and other things in source text and allow them
-    to be copied easily using the keyboard.
+  - `Highlight placeable
+    <https://docs.google.com/document/d/1qW5r_17nkco8YGMgKKT_ex1fIprx5NS232EKrj37JcQ/edit?usp=sharing>`_
+    - terms, variables and other things in source text and
+    allow them to be copied easily using the keyboard.
   - Live Quality Assurance checks - at the moment these happen after the
     translation editor has left the unit, performing them while editing will
     help to reduce errors.
