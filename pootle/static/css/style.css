@@ -607,12 +607,12 @@ html[dir="rtl"] #nav-main li
     clear: both;
     font-size: 12px;
     text-align: center;
-    padding: 1em 0;
     position: absolute;
     width: 100%;
 
     margin-top: 20px;
     height: 42px;
+    line-height: 42px;
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
             box-sizing: border-box;
