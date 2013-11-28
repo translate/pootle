@@ -902,6 +902,7 @@
   /* Displays an informative message */
   displayMsg: function (msg) {
     this.hideActivity();
+    PTL.common.fixSidebarHeight();
     $("#js-editor-msg").show().find("span").html(msg).fadeIn(300);
   },
 
