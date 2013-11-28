@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-11-02 13:00+0000\n"
+"PO-Revision-Date: 2013-11-12 17:35+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1383397238.0\n"
+"X-POOTLE-MTIME: 1384277752.0\n"
 
 #: strings.py:8
 msgid ""
@@ -2493,10 +2493,11 @@ msgstr "Běžná stránka"
 msgid "Page Title"
 msgstr "Nadpis stránky"
 
+# podle použití ve zdrojovém kódu to vypadá, že by tohle mělo zůstat nepřeložené, nahlášeno jako chyba
 #: apps/staticpages/views.py:88
 #, python-format
 msgid "page-%d"
-msgstr "stránka-%d"
+msgstr "page-%d"
 
 #: apps/staticpages/views.py:130
 #, python-format
@@ -2841,6 +2842,8 @@ msgid ""
 "Pootle can't connect to the database, the database is not\n"
 "initialized yet, or a schema upgrade is needed before continuing."
 msgstr ""
+"Připojení k databázi se nezdařilo. Databáze ještě nebyla inicializována,\n"
+"nebo je před pokračováním třeba provést aktualizaci schéma databáze."
 
 #: templates/db_error.html:18
 #, python-format
@@ -2852,6 +2855,11 @@ msgid ""
 "is\n"
 "a mistake."
 msgstr ""
+"\n"
+"Návod pro instalaci a aktualizaci naleznete v <a href=\"%"
+"(url)s\">Dokumentaci</a>.\n"
+"Pokud si myslíte, že tato zpráva byla zobrazena v důsledku chyby,\n"
+"kontaktujte administrátora serveru."
 
 #: templates/db_error.html:24
 msgid "The reported error was:"

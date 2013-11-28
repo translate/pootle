@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-11-08 14:33+0000\n"
+"PO-Revision-Date: 2013-11-18 12:35+0000\n"
 "Last-Translator: Wei <contact@huwei.name>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1383921182.0\n"
+"X-POOTLE-MTIME: 1384778123.0\n"
 
 #: strings.py:8
 msgid ""
@@ -1409,7 +1409,7 @@ msgstr "%(user)s 还原了字符串 <i><a href=\"%(url)s\">%(source)s</a></i> �
 msgid ""
 "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
-msgstr ""
+msgstr "%(user)s 已接受对字符串 <i><a href=\"%(url)s\">%(source)s</a></i> 的建议"
 
 #: apps/pootle_statistics/models.py:158
 #, python-format
@@ -1421,21 +1421,21 @@ msgstr "%(user)s 上传了一个文件"
 msgid ""
 "%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
-msgstr ""
+msgstr "%(user)s 已提交对字符串 <i><a href=\"%(url)s\">%(source)s</a></i> 的翻译"
 
 #: apps/pootle_statistics/models.py:176
 #, python-format
 msgid ""
 "%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
 "\">%(source)s</a></i>"
-msgstr ""
+msgstr "%(user)s 已提交对字符串 <i><a href=\"%(url)s\">%(source)s</a></i> “尚需工作”的翻译"
 
 #: apps/pootle_statistics/models.py:179
 #, python-format
 msgid ""
 "%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
-msgstr ""
+msgstr "%(user)s 已经移除对字符串 <i><a href=\"%(url)s\">%(source)s</a></i> 的翻译"
 
 #: apps/pootle_store/decorators.py:63
 msgid "Insufficient rights to access this directory."
@@ -1783,13 +1783,13 @@ msgstr "复数"
 msgid ""
 "Tag names cannot have leading nor trailing spaces, colons (:), hyphens (-), "
 "underscores (_), slashes (/) or periods (.)!"
-msgstr ""
+msgstr "标签名前后都不能有空格、冒号(:)、连字符(-)、下划线(_)、斜杠(/)或者句号(.)！"
 
 #: apps/pootle_tagging/forms.py:53
 msgid ""
 "Tag names cannot contain two or more consecutive: spaces, colons (:), "
 "hyphens (-), underscores (_), slashes (/) or periods (.)!"
-msgstr ""
+msgstr "标签名不能包含两个或两个以上连续的：空格、冒号(:)、连字符(-)、下划线(_)、斜杠(/)或者句号(.)！"
 
 #: apps/pootle_tagging/forms.py:60
 msgid ""
@@ -1806,7 +1806,7 @@ msgstr ""
 
 #: apps/pootle_tagging/forms.py:133
 msgid "A goal with that name already exists. Please pick another name."
-msgstr ""
+msgstr "已经存在使用该名称的目标，请挑选一个新名称。"
 
 #: apps/pootle_tagging/forms.py:173
 msgid ""

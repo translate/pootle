@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-10-28 19:53+0000\n"
-"Last-Translator: Robin <robin_1273@hotmail.com>\n"
+"PO-Revision-Date: 2013-11-12 15:55+0000\n"
+"Last-Translator: DiGro <th.groskamp@quicknet.nl>\n"
 "Language-Team: TOMTT (Tom's One-Man Translation Team)\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1382989984.0\n"
+"X-POOTLE-MTIME: 1384271732.0\n"
 
 #: strings.py:8
 msgid ""
@@ -1202,7 +1202,11 @@ msgid_plural ""
 "%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d need "
 "review)."
 msgstr[0] ""
+"%(type)s: %(translated)d van %(total)d vertaalde tekenreeks (%(fuzzy)d moet "
+"aan gewerkt worden)."
 msgstr[1] ""
+"%(type)s: %(translated)d van %(total)d vertaalde tekenreeksen (%(fuzzy)d "
+"moet aan gewerkt worden)."
 
 #: apps/pootle_misc/stats.py:304
 #, python-format
@@ -1451,7 +1455,7 @@ msgstr "Filter weergeven"
 
 #: apps/pootle_project/templates/project/overview.html:33
 msgid "Filter using one or more tags"
-msgstr ""
+msgstr "Filteren met behulp van één of meer tags"
 
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
@@ -1460,7 +1464,7 @@ msgstr "Filteren"
 
 #: apps/pootle_project/templates/project/overview.html:38
 msgid "Filter using the selected tags"
-msgstr ""
+msgstr "Filteren met behulp van de geselecteerde tags"
 
 #: apps/pootle_project/templates/project/overview.html:76
 #: apps/pootle_translationproject/templates/translation_project/overview.html:43
@@ -1505,6 +1509,8 @@ msgid ""
 "%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s draaiden de vertaling terug voor tekenreeks <i><a href=\"%(url)s\">%"
+"(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:155
 #, python-format
@@ -1512,11 +1518,13 @@ msgid ""
 "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s accepteerden de suggestie voor tekenreeks <i><a href=\"%(url)s\">%"
+"(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:158
 #, python-format
 msgid "%(user)s uploaded a file"
-msgstr ""
+msgstr "%(user)s uploadden een bestand"
 
 #: apps/pootle_statistics/models.py:173
 #, python-format
@@ -1524,6 +1532,8 @@ msgid ""
 "%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s dienden vertalingen in voor tekenreeks <i><a href=\"%(url)s\">%"
+"(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:176
 #, python-format
@@ -1531,6 +1541,8 @@ msgid ""
 "%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
 "\">%(source)s</a></i>"
 msgstr ""
+"%(user)s dienden een \"Moet aan gewerkt worden\"-vertaling in voor tekenreeks "
+"<i><a href=\"%(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:179
 #, python-format
@@ -1538,6 +1550,8 @@ msgid ""
 "%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s verwijderden de vertaling voor tekenreeks <i><a href=\"%(url)s\">%"
+"(source)s</a></i>"
 
 #: apps/pootle_store/decorators.py:63
 msgid "Insufficient rights to access this directory."
@@ -1699,7 +1713,7 @@ msgstr "Opmerking:"
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
 msgid "String %(id)s"
-msgstr ""
+msgstr "Tekenreeks %(id)s"
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -1921,7 +1935,7 @@ msgstr ""
 
 #: apps/pootle_tagging/forms.py:133
 msgid "A goal with that name already exists. Please pick another name."
-msgstr ""
+msgstr "Een doel met een reeds bestaande naam. Kies een andere naam."
 
 #: apps/pootle_tagging/forms.py:173
 msgid ""
@@ -1936,7 +1950,7 @@ msgstr ""
 
 #: apps/pootle_tagging/forms.py:180
 msgid "A goal with this slug already exists."
-msgstr ""
+msgstr "Een doel met deze slug bestaat al."
 
 #: apps/pootle_tagging/forms.py:194
 msgid ""
@@ -2268,7 +2282,7 @@ msgstr "Niet mogelijk '%(action)s' in '%(extdir)s' te vinden"
 #: apps/pootle_translationproject/views.py:400
 #, python-format
 msgid "Error while running '%s' extension action"
-msgstr ""
+msgstr "Fout bij uitvoeren '%s' extensie-actie"
 
 #: apps/pootle_translationproject/views.py:820
 #, python-format
@@ -2838,6 +2852,9 @@ msgid ""
 "Pootle can't connect to the database, the database is not\n"
 "initialized yet, or a schema upgrade is needed before continuing."
 msgstr ""
+"Pootle kan niet verbinden met de database, de database is nog niet\n"
+"geïnitialiseerd, of een upgrade van het schema is nodig voordat kan worden "
+"doorgegaan."
 
 #: templates/db_error.html:18
 #, python-format
@@ -2849,6 +2866,10 @@ msgid ""
 "is\n"
 "a mistake."
 msgstr ""
+"\n"
+"Lees de <a href=\"%(url)s\">Pootle documentatie</a> voor installatie\n"
+"en upgrade-instructies. Neem contact op met de beheerder van de server\n"
+"als u denkt dat dit een fout is."
 
 #: templates/db_error.html:24
 msgid "The reported error was:"

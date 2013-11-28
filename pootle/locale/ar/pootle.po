@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-10-31 17:52+0000\n"
-"Last-Translator: Haytham A. <haytham.hammam@gmail.com>\n"
+"PO-Revision-Date: 2013-11-13 11:56+0000\n"
+"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
 "n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1383241932.0\n"
+"X-POOTLE-MTIME: 1384343807.0\n"
 
 #: strings.py:8
 msgid ""
@@ -1534,7 +1534,7 @@ msgid ""
 "%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
-"استعاد %(user)s الترجمة القديمة لمقطع <i><a href=\\\"%(url)s\\\">%"
+"استعاد %(user)s الترجمة القديمة لمقطع <i><a href=\"%(url)s\">%"
 "(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:155
@@ -1543,7 +1543,7 @@ msgid ""
 "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
-"قبل %(user)s اقتراح ترجمة المقطع <i><a href=\\\"%(url)s\\\">%(source)s</a></i>"
+"قبل %(user)s اقتراح ترجمة المقطع <i><a href=\"%(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:158
 #, python-format
@@ -1555,7 +1555,7 @@ msgstr "رفع %(user)s ملفًا"
 msgid ""
 "%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
-msgstr "أرسل %(user)s ترجمةً للمقطع <i><a href=\\\"%(url)s\\\">%(source)s</a></i>"
+msgstr "أرسل %(user)s ترجمةً للمقطع <i><a href=\"%(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:176
 #, python-format
@@ -1563,7 +1563,7 @@ msgid ""
 "%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
 "\">%(source)s</a></i>"
 msgstr ""
-"أرسل %(user)s ترجمة ”تحتاج للعمل“ للمقطع <i><a href=\\\"%(url)s\\\">%"
+"أرسل %(user)s ترجمة ”تحتاج للعمل“ للمقطع <i><a href=\"%(url)s\">%"
 "(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:179
@@ -1571,7 +1571,7 @@ msgstr ""
 msgid ""
 "%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
-msgstr "أزال %(user)s ترجمة المقطع <i><a href=\\\"%(url)s\\\">%(source)s</a></i>"
+msgstr "أزال %(user)s ترجمة المقطع <i><a href=\"%(url)s\">%(source)s</a></i>"
 
 #: apps/pootle_store/decorators.py:63
 msgid "Insufficient rights to access this directory."
@@ -1946,7 +1946,7 @@ msgid ""
 "Name cannot contain just after 'goal:' any of these characters: spaces, "
 "colons (:), hyphens (-), underscores (_), slashes (/) or periods (.)"
 msgstr ""
-"لا يمكن أن يحتوى الاسم بعد 'goal:' على أيًّ من هذه العلامات:  مسافة، أو "
+"لا يمكن أن يحتوى الاسم بعد 'goal:' على أيًّ من هذه العلامات: مسافة، أو "
 "نقطتين (:)، أو شرطة (-)، أو شرطة تحتية (_)، أو شرطة مائلة (/)، أو نقطة (.)"
 
 #: apps/pootle_tagging/forms.py:133
@@ -2075,7 +2075,7 @@ msgstr "ملاحظات المترجم"
 
 #: apps/pootle_translationproject/actions.py:61
 msgid "Download (.zip)"
-msgstr "نزّل الملفّات"
+msgstr "نزّل الملفّات (‪.zip‬)"
 
 #: apps/pootle_translationproject/actions.py:75
 #: apps/pootle_translationproject/actions.py:100
@@ -2284,7 +2284,7 @@ msgstr "عُطل أثناء حذف الملف."
 #: apps/pootle_translationproject/views.py:373
 #, python-format
 msgid "Unable to find '%(action)s' in '%(extdir)s'"
-msgstr "تعذّر العثور على '%(action)s' في  '%(extdir)s'"
+msgstr "تعذّر العثور على '%(action)s' في '%(extdir)s'"
 
 #: apps/pootle_translationproject/views.py:400
 #, python-format
@@ -2341,7 +2341,7 @@ msgstr "الهدف"
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:141
 msgid "No strings."
-msgstr "لا مقاطع"
+msgstr "لا مقاطع."
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:61
 msgid "Translation project files and folders"
@@ -2522,7 +2522,7 @@ msgstr "قبل المواصلة، عليك قراءة المستندات الت�
 
 #: apps/staticpages/templates/staticpages/agreement.html:18
 msgid "No thanks. Log out"
-msgstr "لا شكرًا. أخرجني."
+msgstr "لا شكرًا. أخرجني"
 
 #: apps/staticpages/templates/staticpages/agreement.html:21
 msgid "Continue"
@@ -2843,6 +2843,8 @@ msgid ""
 "Pootle can't connect to the database, the database is not\n"
 "initialized yet, or a schema upgrade is needed before continuing."
 msgstr ""
+"تعذّر على بوتل الاتصال بقاعدة البيانات، أو أن قاعدة البيانات لم تجهّز بعد\n"
+"أو تحتاج إلى تحديث المخططات قبل المواصلة."
 
 #: templates/db_error.html:18
 #, python-format
@@ -2854,6 +2856,10 @@ msgid ""
 "is\n"
 "a mistake."
 msgstr ""
+"\n"
+"من فضلك اقرأ <a href=\"%(url)s\">وثائق بوتل</a> للاطلاع على\n"
+"تعليمات التثبيت و الترقية. اتصل بمسئول الخادوم إن كنت تظن\n"
+"أن هناك خطب ما."
 
 #: templates/db_error.html:24
 msgid "The reported error was:"

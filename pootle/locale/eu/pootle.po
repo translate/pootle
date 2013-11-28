@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-11-09 12:41+0000\n"
+"PO-Revision-Date: 2013-11-13 11:01+0000\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: eu\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1384000872.0\n"
+"X-POOTLE-MTIME: 1384340513.0\n"
 
 #: strings.py:8
 msgid ""
@@ -2837,6 +2837,9 @@ msgid ""
 "Pootle can't connect to the database, the database is not\n"
 "initialized yet, or a schema upgrade is needed before continuing."
 msgstr ""
+"Pootle ezin da datu-basera konektatu, datu-basea ez dago\n"
+"hasieratuta oraindik edo eskemaren bertsio-berritzea behar da\n"
+"jarraitu aurretik."
 
 #: templates/db_error.html:18
 #, python-format
@@ -2848,6 +2851,10 @@ msgid ""
 "is\n"
 "a mistake."
 msgstr ""
+"\n"
+"Instalazioaren eta bertsio-berritzeen gaineko argibideetarako, irakurri\n"
+"<a href=\"%(url)s\">Pootle dokumentazioa</a>. Hau akats bat dela uste baduzu,\n"
+"jarri harremanetan zerbitzariaren kudeatzailearekin."
 
 #: templates/db_error.html:24
 msgid "The reported error was:"

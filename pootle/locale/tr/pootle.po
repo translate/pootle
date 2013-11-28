@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-11-05 06:57+0000\n"
+"PO-Revision-Date: 2013-11-12 17:11+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1383634642.0\n"
+"X-POOTLE-MTIME: 1384276270.0\n"
 
 #: strings.py:8
 msgid ""
@@ -2818,6 +2818,8 @@ msgid ""
 "Pootle can't connect to the database, the database is not\n"
 "initialized yet, or a schema upgrade is needed before continuing."
 msgstr ""
+"Pootle veritabanına bağlanamıyor, veritabanı henüz\n"
+"başlatılamadı ya da devam etmeden önce şema yükseltilmesine ihtiyacı var."
 
 #: templates/db_error.html:18
 #, python-format
@@ -2829,6 +2831,11 @@ msgid ""
 "is\n"
 "a mistake."
 msgstr ""
+"\n"
+"Lütfen kurulum ve yükseltme talimatları için <a href=\"%(url)s\">Pootle "
+"belgelerini</a>\n"
+"okuyun. Eğer bunun bir hata olduğunu düşünüyorsanız sunucu yöneticisi ile\n"
+"irtibata geçin."
 
 #: templates/db_error.html:24
 msgid "The reported error was:"
