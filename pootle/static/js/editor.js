@@ -1356,7 +1356,7 @@
       var $checks = $('.js-unit-checks'),
           focusedArea = $('.focusthis')[0];
 
-      $checks.html(data.checks);
+      $checks.html(data.checks).show();
 
       var blinkClass = function (elem, className, n, delay) {
           elem.toggleClass(className);
@@ -1366,9 +1366,10 @@
                       }, delay);
           }
       };
-        
+
       blinkClass($checks, 'blink', 4, 200);
       focusedArea.focus();
+      $('.tipsy').remove();
     } else {
       PTL.editor.gotoNext();
     }
@@ -2080,18 +2081,20 @@
 
   /* Rejects a quality check marking it as false positive */
   rejectCheck: function () {
-    var element = $(this).parent(),
+    var check = $(this).parent(),
         checkId = $(this).data("check-id"),
         uid = $('.translate-container #id_id').val(),
         url = l(['/xhr/units/', uid, '/checks/', checkId, '/reject/'].join(''));
 
     $.post(url, {'reject': 1},
       function (data) {
-        if (element.siblings().size() == 0) {
-          element = $('#translate-checks-block');
+        var hideElement = check;
+        if (check.siblings().size() == 0) {
+          hideElement = $('#translate-checks-block');
+          $('.translate-container').removeClass('error');
         }
-        element.fadeOut(200, function () {
-          $(this).remove();
+        hideElement.fadeOut(200, function () {
+          check.remove();
           $('.tipsy').remove();
         });
       }, "json");
