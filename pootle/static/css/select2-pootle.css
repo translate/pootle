@@ -55,7 +55,7 @@
     border-radius: 0 2px 2px 0;
 
     background-color: #ddd;
-    background-image: linear-gradient(to bottom, #dddddd 0%, #eeeeee 60%);
+    background-image: linear-gradient(to top, #dddddd 0%, #eeeeee 60%);
 }
 
 .breadcrumb .select2-container .select2-choice .select2-arrow
