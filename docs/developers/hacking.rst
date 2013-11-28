@@ -97,9 +97,20 @@ you are creating. :command:`mkvirtualenv` accepts any options that
 :command:`virtualenv` accepts. We could for example specify to use the Python
 2.6 interpreter by passing the :option:`-p python2.6` option.
 
-After running ``mkvirtualenv``, the newly created environment is activated. To
-activate and deactivate virtual environments simply run ``workon <env-name>``
-and ``deactivate``.
+.. note:: After running :command:`mkvirtualenv`, the newly created environment
+    is activated. To deactivate it just run:
+
+    .. code-block:: bash
+
+      (env-name) $ deactivate
+
+
+    To activate a virtual environment again simply run:
+
+    .. code-block:: bash
+
+      $ workon <env-name>
+
 
 Time to clone Pootle's source code repository. The main repository lives under
 `translate/pootle in GitHub <https://github.com/translate/pootle/>`_. If you
