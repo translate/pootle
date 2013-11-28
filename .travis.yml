@@ -5,12 +5,6 @@ python:
   - 2.7
 env:
   - DJANGO_VERSION=1.4.10
-# When we do finally support Django 1.5 - it requires Python 2.6.5, so exclude
-# earlier versions (see https://docs.djangoproject.com/en/dev/faq/install/).
-#matrix:
-#  exclude:
-#    - python: 2.5
-#      env: DJANGO_VERSION=1.5
 install:
   - pip install --use-mirrors Django==$DJANGO_VERSION --timeout=240
   - pip install -r requirements/build.txt --use-mirrors --timeout=240
