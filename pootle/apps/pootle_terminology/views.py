@@ -1,23 +1,22 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009-2011 Zuza Software Foundation
+# Copyright 2009-2013 Zuza Software Foundation
 # Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
+# Pootle is free software; you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation; either version 2 of the License, or (at your option) any later
+# version.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# Pootle is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License along with
+# Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 from django.conf import settings
 from django.db.transaction import commit_on_success
@@ -53,13 +52,13 @@ def create_termunit(term, unit, targets, locations, sourcenotes, transnotes,
 
 def get_terminology_filename(translation_project):
     try:
-        # see if a terminology store already exists
+        # See if a terminology store already exists.
         return translation_project.stores.filter(name__startswith='pootle-terminology.').values_list('name', flat=True)[0]
     except IndexError:
         pass
     if translation_project.project.is_monolingual:
-        # terminology is a virtual store, so extension is not really important
-        # but to avoid confusion we will not use monolingual extensions
+        # Terminology is a virtual store, so extension is not really important
+        # but to avoid confusion we will not use monolingual extensions.
         return 'pootle-terminology.po'
     return 'pootle-terminology.' + translation_project.project.localfiletype
 
@@ -96,7 +95,7 @@ def extract(request, translation_project):
             'name': get_terminology_filename(translation_project),
         }
         store, created = Store.objects.get_or_create(**create_criteria)
-        # lock file
+        # Lock file.
         oldstate = store.state
         store.state = LOCKED
         store.save()
@@ -104,7 +103,7 @@ def extract(request, translation_project):
         if not created:
             store.units.delete()
 
-        # calculate maximum terms
+        # Calculate maximum terms.
         maxunits = int(translation_project.getquickstats()['totalsourcewords'] * 0.02)
         maxunits = min(max(settings.MIN_AUTOTERMS, maxunits), settings.MAX_AUTOTERMS)
         for index, (score, unit) in enumerate(termunits[:maxunits]):
@@ -113,10 +112,10 @@ def extract(request, translation_project):
             #FIXME: what to do with score?
             unit.save()
             for suggestion in unit.pending_suggestions:
-                # Touch=True which saves unit on every call
+                # Touch=True which saves unit on every call.
                 unit.add_suggestion(suggestion)
 
-        # unlock file
+        # Unlock file.
         store.state = oldstate
         if store.state < PARSED:
             store.state = PARSED
@@ -147,14 +146,14 @@ def manage_store(request, template_vars, language, term_store):
     del(unit_form_class.declared_fields['state'])
 
     class TermUnitForm(unit_form_class):
-        # Set store for new terms
+        # Set store for new terms.
         qs = Store.objects.filter(pk=term_store.pk)
         store = forms.ModelChoiceField(queryset=qs, initial=term_store.pk,
                                        widget=forms.HiddenInput)
         index = forms.IntegerField(required=False, widget=forms.HiddenInput)
 
         def clean_index(self):
-            # Assign new terms an index value
+            # Assign new terms an index value.
             value = self.cleaned_data['index']
 
             if self.instance.id is None:
@@ -204,7 +203,7 @@ def manage(request, translation_project, path=None):
                 # FIXME   flash message and show list?
                 pass
 
-        # which file should we edit?
+        # Which file should we edit?
         stores = list(Store.objects.filter(translation_project=translation_project))
         if len(stores) == 1:
             # There is only one, and we're not going to offer file-level
@@ -213,7 +212,8 @@ def manage(request, translation_project, path=None):
                                 translation_project.language, stores[0])
         elif len(stores) > 1:
             for store in stores:
-                store.nice_name = store.pootle_path[len(translation_project.pootle_path):]
+                length = len(translation_project.pootle_path)
+                store.nice_name = store.pootle_path[length:]
 
             template_vars['stores'] = stores
             return render_to_response("terminology/stores.html", template_vars,
