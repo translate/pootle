@@ -398,7 +398,7 @@ Unit related
 
 .. warning:: **TODO**: Criterion would include:
 
-   * Search - match (regex?) in source, target, location, comments
+   * Search -- match (regex?) in source, target, location, comments
 
      **NOTE:** none of the following has been tested.
 
@@ -408,7 +408,7 @@ Unit related
      * Match with regex: ``/units/?comments__regex=r'^(An?|The) +'``
      * Other https://docs.djangoproject.com/en/dev/ref/models/querysets/#field-lookups
 
-   * Completion - translated, untranslated, fuzzy (other XLIFF states or format
+   * Completion -- translated, untranslated, fuzzy (other XLIFF states or format
      specific states?)
 
      * Obsolete: ``/units/?state=-100``
@@ -416,7 +416,7 @@ Unit related
      * Fuzzy: ``/units/?state=50``
      * Translated: ``/units/?state=200``
 
-   * Check - failing checks
+   * Check -- failing checks
 
      **TODO:** need to see how to implement this.
 

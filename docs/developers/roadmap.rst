@@ -36,18 +36,18 @@ Next release (2.5.1) estimated November 2013
 Estimated release April 2014
 ----------------------------
 
-- Move to Django 1.5/1.6 - remove anything keeping us on Django 1.4.
+- Move to Django 1.5/1.6 -- remove anything keeping us on Django 1.4.
 - Live cross project Translation Memory (LibreOffice).
-- Stats speedup - work on Stats speedups (LibreOffice).
+- Stats speedup -- work on Stats speedups (LibreOffice).
 - Concordance searching (LibreOffice).
-- amaGama - automate updating of resources.
+- amaGama -- automate updating of resources.
 - Translation editor improvements:
 
   - `Highlight placeable
     <https://docs.google.com/document/d/1qW5r_17nkco8YGMgKKT_ex1fIprx5NS232EKrj37JcQ/edit?usp=sharing>`_
     - terms, variables and other things in source text and
     allow them to be copied easily using the keyboard.
-  - Live Quality Assurance checks - at the moment these happen after the
+  - Live Quality Assurance checks -- at the moment these happen after the
     translation editor has left the unit, performing them while editing will
     help to reduce errors.
 
@@ -74,7 +74,7 @@ Estimated release October 2014
 - Variable abstraction so that we can leverage translations from other projects
   that might not match because of differences in variables placeable e.g.
   ``%s`` vs ``&brandShortName;``.
-- Management statistical reporting - project, language and user statistical
+- Management statistical reporting -- project, language and user statistical
   reporting.
 - A dashboard (health report) that allows l10n managers to check on the health
   of a language.
@@ -84,7 +84,7 @@ Estimated release October 2014
     community input.
   - Social/Persona authentication to make it easier for users to login and
     contribute.
-  - OpenBadges - implement badges to reward team members contributions.
+  - OpenBadges -- implement badges to reward team members contributions.
 
 - Team review of translations.
 - Easing team management:
@@ -105,5 +105,5 @@ Things we'd love to do sooner but they are hard or need a sponsor.
   actions in the background with no human intervention at all to reduce errors,
   improve scale.
 - Manage all setup from version control files.
-- Monoligual files - make Pootle work more reliably directly on monolingual
+- Monoligual files -- make Pootle work more reliably directly on monolingual
   files.

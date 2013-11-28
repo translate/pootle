@@ -55,8 +55,8 @@ to Git.
 
 Announce the new translations using these two channels:
 
-1. The News tab on Pootle - for those not on any mailing list
-2. The translate-pootle and translate-devel mailing lists - for those who might
+1. The News tab on Pootle -- for those not on any mailing list
+2. The translate-pootle and translate-devel mailing lists -- for those who might
    miss the news.
 
 
@@ -85,10 +85,10 @@ Create release notes
 --------------------
 The release notes will be used in these places:
 
-- Pootle website - `download page
+- Pootle website -- `download page
   <http://pootle.translatehouse.org/download.html>`_ (used in gh-pages)
-- Sourceforge download - README.rst (used to give user info)
-- Email announcements - text version
+- Sourceforge download -- README.rst (used to give user info)
+- Email announcements -- text version
 
 We create our release notes in reStructured Text, since we use that elsewhere
 and since it can be rendered well in some of our key sites.
@@ -140,7 +140,7 @@ Pootle, to regenerate the stats and checks.
 
 For ``conf.py`` change ``version`` and ``release``
 
-.. note:: FIXME - We might want to automate the version and release info so
+.. note:: FIXME -- We might want to automate the version and release info so
    that we can update it in one place.
 
 The version string should follow the pattern::
