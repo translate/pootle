@@ -50,24 +50,6 @@ management of multiple virtualenvs). This way you can install all the
 dependencies at specific versions without interfering with system-wide
 packages. You can test on different Python/Django versions in parallel as well.
 
-For the impatient:
-
-.. code-block:: bash
-
-    $ sudo pip install virtualenvwrapper
-    $ mkvirtualenv <env-name>
-    (env-name) $ git clone https://github.com/translate/pootle.git
-    (env-name) $ cd pootle
-    (env-name) $ pip install -r requirements/dev.txt
-    (env-name) $ python manage.py runserver
-
-That will leave you with a Pootle development server up and running ready to
-start hacking!
-
-.. note::
-
-   If you have a GitHub account, fork the main translate/pootle repository
-   and replace the repository URL by your own fork.
 
 
 Detailed setup
