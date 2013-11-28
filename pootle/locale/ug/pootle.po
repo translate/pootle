@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-10-30 13:23+0000\n"
+"PO-Revision-Date: 2013-11-15 02:56+0000\n"
 "Last-Translator: Abduqadir Abliz <sahran.ug@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ug\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1383139426.0\n"
+"X-POOTLE-MTIME: 1384484165.0\n"
 
 #: strings.py:8
 msgid ""
@@ -596,7 +596,7 @@ msgstr "MARKUP_FILTER كەم. HTML گە قايتالمىدى."
 
 #: apps/pootle_app/views/admin/dashboard.py:131
 msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER سەپلىمىسى كەم. HTML گە قايتالمىدى."
 
 #: apps/pootle_app/views/admin/dashboard.py:133
 #, python-format
@@ -604,11 +604,13 @@ msgid ""
 "Can't find the package which provides '%s' markup support. Falling back to "
 "HTML."
 msgstr ""
+"'%s' بەلگىنى قوللاش بىلەن تەمىنلەيدىغان بوغچىنى تاپالمىدى. HTML گە "
+"قايتالمىدى."
 
 #: apps/pootle_app/views/admin/dashboard.py:137
 #, python-format
 msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER دىكى '%s' قىممەت ئىناۋەتسىز. HTML گە قايتالمىدى."
 
 #: apps/pootle_app/views/admin/dashboard.py:154
 msgid ""
@@ -725,15 +727,15 @@ msgstr "ئاكتىپ ئىشلەتكۈچىلەر"
 
 #: apps/pootle_app/views/admin/permissions.py:61
 msgid "Translation Project Contributors"
-msgstr ""
+msgstr "تەرجىمە قۇرۇلۇشىنىڭ تۆھپىكارلىرى"
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Contributors"
-msgstr ""
+msgstr "قۇرۇلۇش تۆھپىكارلىرى"
 
 #: apps/pootle_app/views/admin/permissions.py:84
 msgid "Language Contributors"
-msgstr ""
+msgstr "تىل تۆھپىكارلىرى"
 
 #: apps/pootle_app/views/admin/permissions.py:91
 msgid "All Users"
@@ -747,7 +749,7 @@ msgstr "ئىشلەتكۈچى ئاتى"
 
 #: apps/pootle_app/views/admin/permissions.py:122
 msgid "Select one or more permissions"
-msgstr ""
+msgstr "بىر ياكى بىر قانچە ھوقۇقنى تاللاڭ"
 
 #: apps/pootle_app/views/admin/util.py:144
 msgid "No files in this project."
@@ -866,7 +868,7 @@ msgstr "تىل"
 #. Translators: Heading representing the priority for a goal
 #: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:73
 msgid "Priority"
-msgstr ""
+msgstr "ئالدىنلىق"
 
 #. Translators: noun. The graphical representation of translation status
 #: apps/pootle_misc/browser.py:52
@@ -1078,7 +1080,7 @@ msgstr "ئىزدە (Ctrl+Shift+S)<br/>كىرگۈزۈپ Enter بېسىلسا ئى
 
 #: apps/pootle_misc/forms.py:108
 msgid "Exact Match"
-msgstr ""
+msgstr "دەل ماسلاش"
 
 #: apps/pootle_misc/forms.py:115
 msgid "Source Text"
@@ -1153,7 +1155,7 @@ msgstr[0] "تەرجىمە داۋاملاشتۇرۇڭ (%(num)d سۆز قالدى)
 #, python-format
 msgid "Next most important goal (%(num)d word left)"
 msgid_plural "Next most important goal (%(num)d words left)"
-msgstr[0] ""
+msgstr[0] "كېيىنكى ئەڭ مۇھىم نىشان (%(num)d سۆز قالدى)"
 
 #: apps/pootle_misc/stats.py:249
 msgid "Translation is complete"
@@ -1176,6 +1178,8 @@ msgid_plural ""
 "%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d need "
 "review)."
 msgstr[0] ""
+"%(type)s: %(translated)d / %(total)d تىزىق تەرجىمە قىلىندى (%(fuzzy)d كۆزدىن "
+"كەچۈرۈش زۆرۈر)."
 
 #: apps/pootle_misc/stats.py:304
 #, python-format
@@ -1247,7 +1251,7 @@ msgstr "قۇرۇلۇش تاللاش"
 
 #: apps/pootle_notifications/forms.py:61
 msgid "Select one or more projects"
-msgstr ""
+msgstr "بىر ياكى بىر قانچە قۇرۇلۇش تاللاڭ"
 
 #: apps/pootle_notifications/forms.py:68
 msgid "All Languages"
@@ -1259,7 +1263,7 @@ msgstr "تىل تاللاش"
 
 #: apps/pootle_notifications/forms.py:77 apps/pootle_profile/forms.py:120
 msgid "Select one or more languages"
-msgstr ""
+msgstr "بىر ياكى بىر قانچە تىل تاللاڭ"
 
 #: apps/pootle_notifications/models.py:31
 msgid "Message"
@@ -1412,31 +1416,31 @@ msgstr ""
 #: apps/pootle_project/templates/project/overview.html:19
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
-msgstr ""
+msgstr "بەلگىلەرنى كۆرسەت"
 
 #: apps/pootle_project/templates/project/overview.html:22
 msgid "Show filtering"
-msgstr ""
+msgstr "سۈزگۈچلەرنى كۆرسەت"
 
 #: apps/pootle_project/templates/project/overview.html:33
 msgid "Filter using one or more tags"
-msgstr ""
+msgstr "بىر ياكى بىر قانچە بەلگە ئىشلىتىدىغان سۈزگۈچ"
 
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
 msgid "Filter"
-msgstr ""
+msgstr "سۈزگۈچ"
 
 #: apps/pootle_project/templates/project/overview.html:38
 msgid "Filter using the selected tags"
-msgstr ""
+msgstr "تاللانغان بەلگىلەرنى ئىشلىتىدىغان سۈزگۈچ"
 
 #: apps/pootle_project/templates/project/overview.html:76
 #: apps/pootle_translationproject/templates/translation_project/overview.html:43
 #: apps/pootle_translationproject/templates/translation_project/overview.html:175
 #: templates/common/xhr_add_tag_form.html:15
 msgid "Add tag"
-msgstr ""
+msgstr "بەلگە قوش"
 
 #: apps/pootle_project/templates/project/project_admin.html:7
 #: templates/project_menu.html:9
@@ -1476,6 +1480,8 @@ msgid ""
 "%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"<i><a href=\"%(url)s\">%(source)s</a></i> تىزىقنىڭ تەرجىمىسىنى %(user)s "
+"ئەسلىگە قايتۇردى"
 
 #: apps/pootle_statistics/models.py:155
 #, python-format
@@ -1483,11 +1489,12 @@ msgid ""
 "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"<i><a href=\"%(url)s\">%(source)s</a></i> تىزىقنىڭ تەكلىپىگە %(user)s قوشۇلدى"
 
 #: apps/pootle_statistics/models.py:158
 #, python-format
 msgid "%(user)s uploaded a file"
-msgstr ""
+msgstr "%(user)s بىر ھۆججەت يۈكلىدى"
 
 #: apps/pootle_statistics/models.py:173
 #, python-format
@@ -1495,6 +1502,8 @@ msgid ""
 "%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"<i><a href=\"%(url)s\">%(source)s</a></i> تىزىققا %(user)s تەرجىمىسىنى "
+"تاپشۇردى"
 
 #: apps/pootle_statistics/models.py:176
 #, python-format
@@ -1502,6 +1511,8 @@ msgid ""
 "%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
 "\">%(source)s</a></i>"
 msgstr ""
+"<i><a href=\"%(url)s\">%(source)s</a></i> تىزىققا %(user)s «ئىشلەش زۆرۈر» "
+"بولغان تەرجىمىنى تاپشۇردى"
 
 #: apps/pootle_statistics/models.py:179
 #, python-format
@@ -1509,18 +1520,20 @@ msgid ""
 "%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"<i><a href=\"%(url)s\">%(source)s</a></i> تىزىقنىڭ تەرجىمىسىنى %(user)s "
+"چىقىرىۋەتتى"
 
 #: apps/pootle_store/decorators.py:63
 msgid "Insufficient rights to access this directory."
-msgstr ""
+msgstr "بۇ مۇندەرىجىنى زىيارەت قىلىشقا يېتەرلىك ھوقۇقى يوق."
 
 #: apps/pootle_store/decorators.py:135 apps/pootle_store/views.py:531
 msgid "Arguments missing."
-msgstr ""
+msgstr "پارامېتىر كەم."
 
 #: apps/pootle_store/decorators.py:147
 msgid "File does not exist."
-msgstr ""
+msgstr "ھۆججەت مەۋجۇت ئەمەس."
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Gettext PO"
@@ -1608,25 +1621,24 @@ msgstr "يول"
 
 #: apps/pootle_store/models.py:900
 #: apps/pootle_translationproject/models.py:121
-#, fuzzy
 msgid "Tags"
-msgstr "‏Tab لەر"
+msgstr "‏بەلگەلەر"
 
 #: apps/pootle_store/models.py:901
 #: apps/pootle_translationproject/models.py:122
 msgid "A comma-separated list of tags."
-msgstr ""
+msgstr "پەش بىلەن ئايرىلغان بەلگەلەر تىزىمى."
 
 #: apps/pootle_store/models.py:902
 #: apps/pootle_translationproject/models.py:126
 #: apps/pootle_translationproject/templates/translation_project/overview.html:69
 msgid "Goals"
-msgstr ""
+msgstr "نىشان"
 
 #: apps/pootle_store/models.py:904
 #: apps/pootle_translationproject/models.py:128
 msgid "A comma-separated list of goals."
-msgstr ""
+msgstr "پەش بىلەن ئايرىلغان نىشانلار تىزىمى."
 
 #: apps/pootle_store/util.py:45
 msgid "Obsolete"
@@ -1657,14 +1669,12 @@ msgid "The suggestion or vote is not valid any more."
 msgstr "تەكلىپ ياكى بىلەت ئىناۋەتسىز."
 
 #: apps/pootle_store/views.py:1096
-#, fuzzy
 msgid "You do not have rights to remove tags."
-msgstr "%s نى باشقۇرۇش ھوقۇقىڭىز يوق."
+msgstr "بەلگەلەرنى چىقىرىۋېتىش ھوقۇقىڭىز يوق."
 
 #: apps/pootle_store/views.py:1132
-#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr "%s نى باشقۇرۇش ھوقۇقىڭىز يوق."
+msgstr "بەلگە قوشۇش ھوقۇقىڭىز يوق."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
@@ -1673,7 +1683,7 @@ msgstr "ئىزاھات:"
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
 msgid "String %(id)s"
-msgstr ""
+msgstr "تىزىق %(id)s"
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -1860,12 +1870,16 @@ msgid ""
 "Tag names cannot have leading nor trailing spaces, colons (:), hyphens (-), "
 "underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"بەلگە ئىسمىنىڭ باش ۋە ئاخىرىدا بوشلۇق، قوش چېكىت (:)، سىزىق (-)، ئاستى سىزىق "
+"(_)، يانتۇ سىزىق (/) ياكى چېكىت (.) بولمايدۇ."
 
 #: apps/pootle_tagging/forms.py:53
 msgid ""
 "Tag names cannot contain two or more consecutive: spaces, colons (:), "
 "hyphens (-), underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"بەلگە ئىسمىدا ئىككى ياكى ئۇنىڭدىن ئارتۇق ئۇدا كەلگەن: بوشلۇق، قوش چېكىت (:)، "
+"سىزىق (-)، ئاستى سىزىق (_)، يانتۇ سىزىق (/) ياكى چېكىت (.) بولمايدۇ."
 
 #: apps/pootle_tagging/forms.py:60
 msgid ""
@@ -2429,8 +2443,9 @@ msgid "Legal Page"
 msgstr "رەسمىي بەتلەر"
 
 #: apps/staticpages/models.py:122
+#, fuzzy
 msgid "Regular Page"
-msgstr ""
+msgstr "رەسمىي بەت تەھرىر"
 
 #: apps/staticpages/views.py:87
 msgid "Page Title"
@@ -2505,8 +2520,9 @@ msgid "Add Legal Page"
 msgstr "رەسمىي بەت تەھرىر"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
+#, fuzzy
 msgid "Regular Pages"
-msgstr ""
+msgstr "رەسمىي بەت تەھرىر"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
 #, fuzzy

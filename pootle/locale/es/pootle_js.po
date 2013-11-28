@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-10-28 23:15+0000\n"
+"PO-Revision-Date: 2013-11-18 02:23+0000\n"
 "Last-Translator: Adolfo <fitoschido@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1383002135.0\n"
+"X-POOTLE-MTIME: 1384741385.0\n"
 
 #: static/js/common.js:13
 msgid "All Languages"
@@ -98,7 +98,7 @@ msgstr "Envíos sobreescritos de %s"
 
 #: static/js/editor.js:476 static/js/editor.js.c:1521
 msgid "No results."
-msgstr "No se encontraron resultados."
+msgstr "No hay resultados."
 
 #: static/js/editor.js:748
 msgid "Export View"
@@ -132,6 +132,7 @@ msgstr "Ha alcanzado el final de la lista."
 msgid "Return to the overview page."
 msgstr "Regresar a la página de resumen."
 
+# En español el signo del por ciento debe aparecer separado de la cifra, ver Fundéu por ejemplo
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
 #. '%' symbol to denote a percentage is being used.

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-11-08 13:03+0000\n"
+"PO-Revision-Date: 2013-11-13 11:51+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1383915810.0\n"
+"X-POOTLE-MTIME: 1384343462.0\n"
 
 #: strings.py:8
 msgid ""
@@ -1241,7 +1241,7 @@ msgstr "Primeiro"
 #: apps/pootle_misc/templatetags/render_pager.py:34
 #: templates/editor/_toolbar.html:33
 msgid "Previous"
-msgstr "Previo"
+msgstr "Anterior"
 
 #: apps/pootle_misc/templatetags/render_pager.py:50
 #: templates/editor/_toolbar.html:42
@@ -2843,6 +2843,9 @@ msgid ""
 "Pootle can't connect to the database, the database is not\n"
 "initialized yet, or a schema upgrade is needed before continuing."
 msgstr ""
+"Pootle non se pode conectar á base de datos. Ou ben a\n"
+"base de datos aínda non está inicializada, ou é preciso anovar\n"
+"o esquema antes de continuar."
 
 #: templates/db_error.html:18
 #, python-format
@@ -2854,6 +2857,9 @@ msgid ""
 "is\n"
 "a mistake."
 msgstr ""
+"Lea as instruccións sobre a instalación e a anovación na\n"
+"<a href=\"%(url)s\">documentación de Pootle</a>. Contacte co administrador\n"
+"do servidor se cre que isto é un erro "
 
 #: templates/db_error.html:24
 msgid "The reported error was:"
@@ -3098,7 +3104,7 @@ msgstr "Suxestións pendentes"
 
 #: templates/profiles/profile_detail.html:46
 msgid "Overwritten"
-msgstr "Sobrescrita"
+msgstr "Sobrescritos"
 
 #: templates/profiles/profile_detail.html:66
 msgid "This user doesn't have any contributions yet."
