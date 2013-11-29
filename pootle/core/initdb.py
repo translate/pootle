@@ -310,8 +310,9 @@ def create_default_projects():
                         'users can play with Pootle and learn more about '
                         'translation and localisation.<br />For more help on '
                         'localisation, visit the <a href="http://'
-                        'translate.sourceforge.net/wiki/guide/start">'
-                        'localisation guide</a>.</div>'),
+                        'docs.translatehouse.org/projects/localization-guide/'
+                        'en/latest/guide/start.html">localisation guide</a>.'
+                        '</div>'),
         'checkstyle': "standard",
         'localfiletype': "po",
         'treestyle': "auto",
