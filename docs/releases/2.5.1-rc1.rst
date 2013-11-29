@@ -2,23 +2,26 @@
 Welcome to the new Pootle 2.5.1-rc1
 ===================================
 
-*Released on ?? November 2013*
+*Released on 29 November 2013*
 
-We almost missed our 6 month cycle!  Many changes have gone into 2.5.1 which
-follows on from 2.5.0 released 6 months ago.
+We almost missed our :ref:`6 month release cycle <release-process_principles>`!
+Many changes have gone into Pootle 2.5.1 which follows on from 2.5.0 released
+im May.
 
 Pootle 2.5.1 has been in production for a number of users, so although it is a
-new official release, we've had many people running their production server off
-this code.  This includes `Mozilla <http://mozilla.locamotion.org/>`_ and
-`Evernote <http://translate.evernote.com/pootle/>`_. So you are in good
-company.
+new official release, we've had many people running their production Pootle
+server off this code.  This includes `Mozilla
+<http://mozilla.locamotion.org/>`_ and `Evernote
+<http://translate.evernote.com/pootle/>`_. So you are in good company.
 
-Requirements
-============
-- Django 1.4
+For those who can't wait you might be interested to know what we've got planned
+on our :ref:`roadmap <roadmap>` for Pootle 2.5.2.
+
+Changes in Requirements
+=======================
+- Django >= 1.4.10
 - `Translate Toolkit <http://toolkit.translatehouse.org/download.html>`_ >=
-  1.10.0
-- lxml (now a runtime requirement)
+  1.11.0-rc1
 - Python >= 2.6
 
 Installation and Upgrade
@@ -28,41 +31,51 @@ Installation and Upgrade
 - `Upgrade
   <http://docs.translatehouse.org/projects/pootle/en/latest/server/upgrading.html>`_
 
-Changes
-=======
+Major Changes
+=============
 
-These are by no means exhaustive, check the git log for more details
+These are by no means exhaustive, check the `git log
+<https://github.com/translate/pootle/compare/stable%2F2.5.0...2.5.1-rc1>`_
+for more details.
 
-Tagging
--------
-Tagging of translation projects is now possible.  Tags allow you to classify
-translation projects and files to allow you to quickly focus on a number of
-languages or a number of files.
-
-Goals
------
-Goals allow you to group files within a project to ensure that translators
-focus on the most important tasks first. In single file projects this may not
-be important.  But in projects such as Firefox with over 200 files it is
-important to direct translators to the most important tasks.
-
-Goals are a special case of tags. You can create goals for an individual
-language or you can create project wide goals.  Use the `add_project_goals
-<http://docs.translatehouse.org/projects/pootle/en/latest/server/commands.html#add-project-goals>`_
-command to automatically load a set of project goals.
-
-Action Command Extensions
--------------------------
-You can create custom actions using Python scripts.  This allows scripts. e.g.
-to build a language pack, to be exposed to the translators.
-
-Other changes
--------------
-* Select2 to make dropdowns more user friendly.
-* Pootle now uses South to manage smoother migrations to new versions.
+- :doc:`Tags </features/tags>` -- You can now tag and filter translation
+  projects, making it easy to focus on a set of languages.
+- :doc:`Goals </features/goals>` -- you can now group files within a project to
+  ensure that translators focus on the most important tasks first.
+- :doc:`Extension Actions </features/actions>` -- you can create custom actions
+  using Python scripts. These are displayed with current actions and allow you
+  to extend Pootle's functionality.
+- :doc:`API </api/index>` -- an initial Pootle API is in place (disabled by
+  default).
 
 
-...and of course, loads of bugs were fixed
+Important server admin changes
+------------------------------
+- Pootle now uses South to manage database upgrades.  A single command replaces
+  the various command used previously and the automatic update has been
+  removed.
+- Fabric deployment scripts have been improved to make deployment easier.
+- Security fixes identified by a Mozilla security audit have been implemented.
+- Optimisations of asset caching such as Expires headers have been enabled.
+- Various LDAP fixes.
+- Static pages can now be used to track the acceptance of terms of use.
+
+
+Visual Changes
+--------------
+- User contribution are displayed in the users profile page.
+- Breadcrumbs now follow the way a translator would interact with Pootle and
+  are unified across all vies of the project.
+- Global search allows you to search across all projects and all languages.
+- Last activity messages show quickly what last change was made to the
+  translations.
+- The export view allows for easier proofreading by translators.
+- Various RTL fixes.
+
+
+...and lots of refactoring, upgrades of upstream code, cleanups to remove
+Django 1.3 specifics, missing documentation and of course, loads of bugs were
+fixed
 
 Credits
 =======
