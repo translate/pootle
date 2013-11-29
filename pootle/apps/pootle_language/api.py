@@ -43,7 +43,7 @@ class LanguageResource(StatisticsModelResource):
             'specialchars',
             'translation_projects',
         ]
-        # HTTP methods allowed for visiting /statistics/ URLs
+        # HTTP methods allowed for visiting /statistics/ URLs.
         statistics_allowed_methods = ['get']
         authorization = DjangoAuthorization()
         authentication = BasicAuthentication()

@@ -6,18 +6,17 @@
 #
 # This file is part of Pootle.
 #
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
+# Pootle is free software; you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation; either version 2 of the License, or (at your option) any later
+# version.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# Pootle is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License along with
+# Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
@@ -63,39 +62,58 @@ class LiveLanguageManager(models.Manager):
 
 class Language(models.Model):
 
-    code_help_text = _('ISO 639 language code for the language, possibly '
-            'followed by an underscore (_) and an ISO 3166 country code. '
-            '<a href="http://www.w3.org/International/articles/language-tags/">'
-            'More information</a>')
-    code = models.CharField(max_length=50, null=False, unique=True,
-            db_index=True, verbose_name=_("Code"), help_text=code_help_text)
-    fullname = models.CharField(max_length=255, null=False,
-            verbose_name=_("Full Name"))
-
-    description_help_text = _('A description of this language. '
-            'This is useful to give more information or instructions. '
-            'Allowed markup: %s', get_markup_filter_name())
-    description = MarkupField(blank=True, help_text=description_help_text)
-
-    specialchars_help_text = _('Enter any special characters that users '
-            'might find difficult to type')
-    specialchars = models.CharField(max_length=255, blank=True,
-            verbose_name=_("Special Characters"),
-            help_text=specialchars_help_text)
-
-    plurals_help_text = _('For more information, visit '
-            '<a href="http://translate.sourceforge.net/wiki/l10n/pluralforms">'
-            'our wiki page</a> on plural forms.')
-    nplural_choices = (
-            (0, _('Unknown')), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6)
+    code = models.CharField(
+        max_length=50,
+        null=False,
+        unique=True,
+        db_index=True,
+        verbose_name=_("Code"),
+        help_text=_('ISO 639 language code for the language, possibly '
+                    'followed by an underscore (_) and an ISO 3166 country '
+                    'code. <a href="http://www.w3.org/International/articles/'
+                    'language-tags/">More information</a>'),
     )
-    nplurals = models.SmallIntegerField(default=0, choices=nplural_choices,
-            verbose_name=_("Number of Plurals"), help_text=plurals_help_text)
-    pluralequation = models.CharField(max_length=255, blank=True,
-            verbose_name=_("Plural Equation"), help_text=plurals_help_text)
-
-    directory = models.OneToOneField('pootle_app.Directory', db_index=True,
-            editable=False)
+    fullname = models.CharField(
+        max_length=255,
+        null=False,
+        verbose_name=_("Full Name"),
+    )
+    description = MarkupField(
+        blank=True,
+        help_text=_('A description of this language. This is useful to give '
+                    'more information or instructions. Allowed markup: %s',
+                    get_markup_filter_name()),
+    )
+    specialchars = models.CharField(
+        max_length=255,
+        blank=True,
+        verbose_name=_("Special Characters"),
+        help_text=_('Enter any special characters that users might find '
+                    'difficult to type'),
+    )
+    nplurals = models.SmallIntegerField(
+        default=0,
+        choices=(
+            (0, _('Unknown')), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6)
+        ),
+        verbose_name=_("Number of Plurals"),
+        help_text=_('For more information, visit <a href="'
+                    'http://translate.sourceforge.net/wiki/l10n/pluralforms">'
+                    'our wiki page</a> on plural forms.'),
+    )
+    pluralequation = models.CharField(
+        max_length=255,
+        blank=True,
+        verbose_name=_("Plural Equation"),
+        help_text=_('For more information, visit <a href="'
+                    'http://translate.sourceforge.net/wiki/l10n/pluralforms">'
+                    'our wiki page</a> on plural forms.'),
+    )
+    directory = models.OneToOneField(
+        'pootle_app.Directory',
+        db_index=True,
+        editable=False,
+    )
 
     objects = LanguageManager()
     live = LiveLanguageManager()
@@ -128,13 +146,13 @@ class Language(models.Model):
         return u"%s - %s" % (self.name, self.code)
 
     def save(self, *args, **kwargs):
-        # create corresponding directory object
+        # create corresponding directory object.
         from pootle_app.models.directory import Directory
         self.directory = Directory.objects.root.get_or_make_subdir(self.code)
 
         super(Language, self).save(*args, **kwargs)
 
-        # FIXME: far from ideal, should cache at the manager level instead
+        # FIXME: far from ideal, should cache at the manager level instead.
         cache.delete(CACHE_KEY)
         cache.set(CACHE_KEY, Language.live.all(), 0)
 
@@ -143,7 +161,7 @@ class Language(models.Model):
         super(Language, self).delete(*args, **kwargs)
         directory.delete()
 
-        # FIXME: far from ideal, should cache at the manager level instead
+        # FIXME: far from ideal, should cache at the manager level instead.
         cache.delete(CACHE_KEY)
 
     def get_absolute_url(self):
@@ -166,9 +184,10 @@ class Language(models.Model):
 
     @getfromcache
     def get_suggestion_count(self):
-        """
-        Check if any unit in the stores for the translation project in this
-        language has suggestions.
+        """Check the number of suggestions for this language.
+
+        This checks all units in the stores for all the translation projects in
+        this language.
         """
         criteria = {
             'unit__store__translation_project__language': self,
@@ -177,7 +196,7 @@ class Language(models.Model):
         return Suggestion.objects.filter(**criteria).count()
 
     def get_direction(self):
-        """returns language direction"""
+        """Return the language direction."""
         return language_dir(self.code)
 
     def translated_percentage(self):
