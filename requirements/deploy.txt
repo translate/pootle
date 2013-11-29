@@ -6,7 +6,9 @@ MySQL-python>=1.2.3
 # psycopg2>=2.2
 
 # Libraries
-python-Levenshtein>=0.10.2
+# FIXME python-Levenshtein 0.11.0 is broken using pip so until this is fixed
+# keep it at 0.10.2
+python-Levenshtein>=0.10.2,<0.11.0
 python-memcached>=1.40
 
 # Logging
