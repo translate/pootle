@@ -85,8 +85,9 @@ class Language(models.Model, TreeItem):
             help_text=specialchars_help_text)
 
     plurals_help_text = _('For more information, visit '
-            '<a href="http://translate.sourceforge.net/wiki/l10n/pluralforms">'
-            'our wiki page</a> on plural forms.')
+            '<a href="http://docs.translatehouse.org/projects/'
+            'localization-guide/en/latest/l10n/pluralforms.html">'
+            'our page</a> on plural forms.')
     nplural_choices = (
             (0, _('Unknown')), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6)
     )
