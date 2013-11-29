@@ -73,9 +73,6 @@ start hacking!
 Detailed setup
 ^^^^^^^^^^^^^^
 
-These are essentially the same steps as above but with further details and
-explanations.
-
 For installing the dependencies in an isolated environment, we will use
 virtualenv — more specifically virtualenvwrapper, which eases the process of
 managing and switching between multiple virtual environments. Installing
