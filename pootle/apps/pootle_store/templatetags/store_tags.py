@@ -21,9 +21,12 @@
 import re
 
 from translate.misc.multistring import multistring
+from translate.storage.placeables import general, parse as parse_placeables
+from translate.storage.placeables.interfaces import BasePlaceable
 
 from django import template
 from django.core.exceptions import ObjectDoesNotExist
+from django.template.defaultfilters import stringfilter
 from django.template.loaders.app_directories import Loader
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
@@ -33,6 +36,27 @@ from pootle_store.fields import list_empty
 
 
 register = template.Library()
+
+
+@register.filter
+@stringfilter
+def highlight_placeables(text):
+    """Wrap placeables to easily distinguish and manipulate them."""
+    output = u""
+
+    # Get a flat list of placeables and StringElem instances.
+    flat_items = parse_placeables(text, general.parsers).flatten()
+
+    for item in flat_items:
+        if isinstance(item, BasePlaceable):
+            # It is a placeable, so highlight it.
+            output += (u'<span class="placeable js-editor-copytext">'
+                       u'%s</span>') % unicode(item)
+        else:
+            # It is not a placeable, so just concatenate to output string.
+            output += unicode(item)
+
+    return mark_safe(output)
 
 
 IMAGE_URL_RE = re.compile("(https?://[^\s]+\.(png|jpe?g|gif))")

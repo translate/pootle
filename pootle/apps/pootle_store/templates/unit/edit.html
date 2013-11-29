@@ -124,7 +124,7 @@
               </div>
               <div class="translate-original{% if unit.hasplural %} translate-plural{% endif %}">
                 {% for i, source, title in unit|pluralize_source %}
-                <div class="translation-text" lang="{{ source_language.code }}" dir="{{ source_language.direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ source|fancy_highlight }}</div>
+                <div class="translation-text" lang="{{ source_language.code }}" dir="{{ source_language.direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ source|highlight_placeables }}</div>
                 {% endfor %}
                 <div class="placeholder"></div>
               </div>

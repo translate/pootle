@@ -37,6 +37,7 @@ Online translation editor
    searching
    shortcuts
    suggestions
+   placeables
    terminology
    actions
    tags
