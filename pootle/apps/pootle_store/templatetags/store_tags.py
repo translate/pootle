@@ -129,9 +129,11 @@ def pluralize_source(unit):
     if unit.hasplural():
         count = len(unit.source.strings)
         if count == 1:
-            return [(0, unit.source.strings[0], "%s+%s" % (_('Singular'), _('Plural')))]
+            return [(0, unit.source.strings[0], "%s+%s" % (_('Singular'),
+                                                           _('Plural')))]
         elif count == 2:
-            return [(0, unit.source.strings[0], _('Singular')), (1, unit.source.strings[1], _('Plural'))]
+            return [(0, unit.source.strings[0], _('Singular')),
+                    (1, unit.source.strings[1], _('Plural'))]
         else:
             forms = []
             for i, source in enumerate(unit.source.strings):
@@ -172,12 +174,16 @@ def pluralize_diff_sugg(sugg):
         forms = []
         for i, target in enumerate(sugg.target.strings):
             if i < len(unit.target.strings):
-                forms.append((i, target, call_highlight(unit.target.strings[i], target), _('Plural Form %d', i)))
+                forms.append((i, target, call_highlight(unit.target.strings[i],
+                                                        target),
+                              _('Plural Form %d', i)))
             else:
-                forms.append((i, target, call_highlight('', target), _('Plural Form %d', i)))
+                forms.append((i, target, call_highlight('', target),
+                              _('Plural Form %d', i)))
         return forms
     else:
-        return [(0, sugg.target, call_highlight(unit.target, sugg.target), None)]
+        return [(0, sugg.target, call_highlight(unit.target, sugg.target),
+                 None)]
 
 
 @register.tag(name="include_raw")
@@ -191,13 +197,13 @@ def do_include_raw(parser, token):
     """
     bits = token.split_contents()
     if len(bits) != 2:
-        raise template.TemplateSyntaxError(
-            "%r tag takes one argument: the name of the template "
-            "to be included" % bits[0]
-        )
+        excp_msg = ("%r tag takes one argument: the name of the template to "
+                    "be included" % bits[0])
+        raise template.TemplateSyntaxError(excp_msg)
 
     template_name = bits[1]
-    if template_name[0] in ('"', "'") and template_name[-1] == template_name[0]:
+    if (template_name[0] in ('"', "'") and
+        template_name[-1] == template_name[0]):
         template_name = template_name[1:-1]
 
     template_loader = Loader()

@@ -118,7 +118,7 @@
                   {% if report_target %}
                   <a class="icon-report-bug" href="{{ report_target }}" title="{% trans 'Report a problem with the source string' %}" target="_blank"></a>
                   {% endif %}
-                  <a class="icon-copy js-copyoriginal" title="{% trans 'Copy into translation' %}" accesskey="c"></a>
+                  <a class="icon-copy js-copyoriginal" title="{% trans 'Copy into translation (Alt+C)' %}" accesskey="c"></a>
                 </div>
                 {% endif %}
               </div>
@@ -143,7 +143,7 @@
             <input type="hidden" name="pootle_path" value="{{ store.pootle_path }}" />
             {% if cansuggest and cantranslate %}
             <div class="switch-suggest-mode tiny" lang="{{ LANGUAGE_CODE }}">
-                <div class="suggest"><a href="#" title="{% trans 'Switch to translation mode (Ctrl+Shift+Space)' %}">&harr; {% trans "Submit" %}</a></div>
+              <div class="suggest"><a href="#" title="{% trans 'Switch to translation mode (Ctrl+Shift+Space)' %}">&harr; {% trans "Submit" %}</a></div>
               <div class="submit"><a href="#" title="{% trans 'Switch to suggestion mode (Ctrl+Shift+Space)' %}">&harr; {% trans "Suggest" %}</a></div>
             </div>
             {% endif %}

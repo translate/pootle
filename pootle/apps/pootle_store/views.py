@@ -539,17 +539,17 @@ def get_units(request):
     step_queryset = get_step_query(request, units_qs)
 
     # Maybe we are trying to load directly a specific unit, so we have
-    # to calculate its page number
+    # to calculate its page number.
     uid = request.GET.get('uid', None)
     if uid is not None:
         try:
             # XXX: Watch for performance, might want to drop into raw SQL
-            # at some stage
+            # at some stage.
             uid_list = list(step_queryset.values_list('id', flat=True))
             preceding = uid_list.index(int(uid))
             page = preceding / limit + 1
         except ValueError:
-            pass  # uid wasn't a number or not present in the results
+            pass  # uid wasn't a number or not present in the results.
 
     pager = paginate(request, step_queryset, items=limit, page=page)
 
@@ -775,13 +775,13 @@ def get_edit_unit(request, unit):
     rcode = 200
 
     # Return context rows if filtering is applied but
-    # don't return any if the user has asked not to have it
+    # don't return any if the user has asked not to have it.
     current_filter = request.GET.get('filter', 'all')
     show_ctx = request.COOKIES.get('ctxShow', 'true')
 
     if ((_is_filtered(request) or current_filter not in ('all',)) and
         show_ctx == 'true'):
-        # TODO: review if this first 'if' branch makes sense
+        # TODO: review if this first 'if' branch makes sense.
         if translation_project.project.is_terminology or store.is_terminology:
             json['ctx'] = _filter_ctx_units(store.units, unit, 0)
         else:

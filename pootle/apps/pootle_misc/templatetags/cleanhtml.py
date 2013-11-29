@@ -78,8 +78,8 @@ PUNCTUATION_RE = general.PunctuationPlaceable().regex
 def fancy_punctuation_chars(text):
     """Wraps punctuation chars found in the ``text`` around tags."""
     def replace(match):
-        fancy_special_char = '<span class="highlight-punctuation ' \
-                             'js-editor-copytext">%s</span>'
+        fancy_special_char = ('<span class="highlight-punctuation '
+                              'js-editor-copytext">%s</span>')
         return fancy_special_char % match.group()
 
     return PUNCTUATION_RE.sub(replace, text)
