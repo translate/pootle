@@ -135,7 +135,7 @@
       }
 
       if (languageCode === '' && projectCode === '') {
-        newUrl = l('/');
+        newUrl = l('/projects/');
       } else if (languageCode === '' && projectCode !== '') {
         newUrl = l(['', 'projects', projectCode].join('/'));
       } else if (languageCode !== '' && projectCode === '') {
