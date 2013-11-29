@@ -681,8 +681,11 @@ class Unit(models.Model, base.TranslationUnit):
                 existing = set(checks.filter(false_positive=True) \
                                      .values_list('name', flat=True))
                 checks = checks.filter(false_positive=False)
-            # all checks should be recalculated
-            checks.delete()
+
+            if checks.count() > 0:
+                self.store.flag_for_deletion(CachedMethods.CHECKS)
+                # all checks should be recalculated
+                checks.delete()
 
         # no checks if unit is untranslated
         if not self.target:
