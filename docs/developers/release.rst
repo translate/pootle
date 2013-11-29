@@ -6,6 +6,8 @@ Release Process
 This document describes the release process Pootle follows starting from
 version 2.5.
 
+.. _release-process_principles:
+
 Principles
 ----------
 

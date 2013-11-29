@@ -7,46 +7,22 @@ This is the Pootle roadmap for the next few iterations.  Don't look here for
 small improvements, we're only tracking larger bits of work.
 
 
-.. _roadmap#november-2013:
-
-Next release (2.5.1) estimated November 2013
---------------------------------------------
-
-- Translation editor:
-
-  - Get rid of page stepping and use only units.
-
-- Tagging (Mozilla):
-
-  - Allow tagging of translation projects to make it easy to classify and sort
-    TPs.
-
-- Goals (Mozilla):
-
-  - Group files in a TP into goals.
-  - Set priorities for goals.
-
-- Extension actions (Mozilla):
-
-  - Add custom Python extensions exposed on the project Actions menu.
-
-
 .. _roadmap#april-2014:
 
 Estimated release April 2014
 ----------------------------
 
 - Move to Django 1.5/1.6 -- remove anything keeping us on Django 1.4.
-- Live cross project Translation Memory (LibreOffice).
-- Stats speedup -- work on Stats speedups (LibreOffice).
-- Concordance searching (LibreOffice).
+- Live cross project Translation Memory.
+- Stats speedup -- work on Stats speedups.
+- Concordance searching.
 - amaGama -- automate updating of resources.
 - Translation editor improvements:
 
   - `Highlight placeable
     <https://docs.google.com/document/d/1qW5r_17nkco8YGMgKKT_ex1fIprx5NS232EKrj37JcQ/edit?usp=sharing>`_
-    - terms, variables and other things in source text and
-    allow them to be copied easily using the keyboard.
+    -- terms, variables and other things in source text and allow them to be
+    copied easily using the keyboard.
   - Live Quality Assurance checks -- at the moment these happen after the
     translation editor has left the unit, performing them while editing will
     help to reduce errors.
