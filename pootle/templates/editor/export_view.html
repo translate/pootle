@@ -116,7 +116,7 @@
         <td>
         {% for i, source, title in unit|pluralize_source %}
           <div lang="{{ source_language.code }}"
-            dir="{{ source_language.get_direction }}">
+            dir="{{ source_language.direction }}">
             {{ source|fancy_highlight }}
           </div>
         {% endfor %}
@@ -128,7 +128,7 @@
         </td>
         <td>
         {% for i, target, title in unit|pluralize_target %}
-          <div dir="{{ language.get_direction }}" lang="{{ language.code }}">
+          <div dir="{{ language.direction }}" lang="{{ language.code }}">
             {{ target|fancy_highlight }}
           </div>
         {% endfor %}

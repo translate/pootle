@@ -28,7 +28,7 @@
       <div class="comments sidebar">
         {% if unit.developer_comment %}
         <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Comments:" %}</div>
-        <div class="developer-comments" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}"{% if unit.locations %}title="{{ unit.locations }}"{% endif %}>{{ unit.developer_comment|urlize|url_target_blank|linebreaks }}</div>
+        <div class="developer-comments" lang="{{ source_language.code }}" dir="{{ source_language.direction }}"{% if unit.locations %}title="{{ unit.locations }}"{% endif %}>{{ unit.developer_comment|urlize|url_target_blank|linebreaks }}</div>
         {% with image_urls=unit.developer_comment|image_urls %}
           {% if image_urls %}
           <div class="developer-images hr">
@@ -54,8 +54,8 @@
         <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Terminology:" %}</div>
         {% for term in terms %}
         <div class="tm-unit js-editor-copytext" title="{% trans 'Insert the translated term into the editor' %}">
-          <span class="tm-original" dir="{{ source_language.get_direction }}" lang="{{ source_language.code }}">{{ term.source }}</span>
-          <span class="tm-translation" dir="{{ language.get_direction }}" lang="{{ language.code }}">{{ term.target }}</span>
+          <span class="tm-original" dir="{{ source_language.direction }}" lang="{{ source_language.code }}">{{ term.source }}</span>
+          <span class="tm-translation" dir="{{ language.direction }}" lang="{{ language.code }}">{{ term.target }}</span>
         </div>
         {% endfor %}
       </div>
@@ -97,7 +97,7 @@
               </div>
               <div id="unit-{{ altunit.id }}" class="translate-original{% if unit.hasplural %} translate-plural{% endif %}">
                 {% for i, target, title in altunit|pluralize_target %}
-                <div class="translation-text" lang="{{ altunit.store.translation_project.language.code }}" dir="{{ altunit.store.translation_project.language.get_direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ target|fancy_highlight }}</div>
+                <div class="translation-text" lang="{{ altunit.store.translation_project.language.code }}" dir="{{ altunit.store.translation_project.language.direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ target|fancy_highlight }}</div>
                 {% endfor %}
                 <div class="placeholder"></div>
               </div>
@@ -123,7 +123,7 @@
               </div>
               <div class="translate-original{% if unit.hasplural %} translate-plural{% endif %}">
                 {% for i, source, title in unit|pluralize_source %}
-                <div class="translation-text" lang="{{ source_language.code }}" dir="{{ source_language.get_direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ source|fancy_highlight }}</div>
+                <div class="translation-text" lang="{{ source_language.code }}" dir="{{ source_language.direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ source|fancy_highlight }}</div>
                 {% endfor %}
                 <div class="placeholder"></div>
               </div>
@@ -178,10 +178,10 @@
               {% endwith %}
             </div>
             {% endif %}
-            {% if language.specialchars or language.get_direction == "rtl" %}
+            {% if language.specialchars or language.direction == "rtl" %}
               {% if cantranslate or cansuggest %}
               <div class="editor-specialchars-block" lang="{{ language.code }}">
-                {% if language.get_direction == "rtl" %}
+                {% if language.direction == "rtl" %}
                 <a class="editor-specialchar js-editor-copytext"
                   title="{% trans 'Insert RLM (Right-To-Left Mark) into the editor' %}"
                   data-entity="&#8207;">RLM</a>

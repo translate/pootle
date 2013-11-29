@@ -1,6 +1,6 @@
 {% load i18n baseurl store_tags cleanhtml locale %}
 {% get_current_language as LANGUAGE_CODE %}
-<td colspan="1" rowspan="1" class="translate-original terminology" dir="{{ source_language.get_direction }}">
+<td colspan="1" rowspan="1" class="translate-original terminology" dir="{{ source_language.direction }}">
   <!-- Original -->
   <div id="orig{{unit.index}}" class="translate-term-original left">
     {{ form.source_f.errors }}
@@ -19,7 +19,7 @@
   {% endif %}
   <div id="trans{{unit.index}}" class="translate-term-translation" dir="{% locale_dir %}">
     <!-- Translation -->
-    <div dir="{{ language.get_direction }}" lang="{{ language.code }}" class="translation-text">{{ unit.target|fancy_highlight }}</div>
+    <div dir="{{ language.direction }}" lang="{{ language.code }}" class="translation-text">{{ unit.target|fancy_highlight }}</div>
   </div>
   {% if unit.getcontext %}
   <div class="translate-context">

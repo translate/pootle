@@ -116,6 +116,11 @@ class Language(models.Model, TreeItem):
         """localized fullname"""
         return tr_lang(self.fullname)
 
+    @property
+    def direction(self):
+        """Return the language direction."""
+        return language_dir(self.code)
+
     def __unicode__(self):
         return u"%s - %s" % (self.name, self.code)
 
@@ -161,10 +166,6 @@ class Language(models.Model, TreeItem):
         return self.directory.pootle_path
 
     ### /TreeItem
-
-    def get_direction(self):
-        """returns language direction"""
-        return language_dir(self.code)
 
     def translated_percentage(self):
         total = max(self.get_total_wordcount(), 1)
