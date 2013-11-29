@@ -484,9 +484,9 @@ def _path_units_with_meta(path, units):
             project = tp.project
             meta = {
                 'source_lang': project.source_language.code,
-                'source_dir': project.source_language.get_direction(),
+                'source_dir': project.source_language.direction,
                 'target_lang': tp.language.code,
-                'target_dir': tp.language.get_direction(),
+                'target_dir': tp.language.direction,
                 'project_code': project.code,
                 'project_style': project.checkstyle,
             }

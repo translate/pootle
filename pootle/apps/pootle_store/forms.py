@@ -185,7 +185,7 @@ def unit_form_factory(language, snplurals=None, request=None):
 
     target_attrs = {
         'lang': language.code,
-        'dir': language.get_direction(),
+        'dir': language.direction,
         'class': 'translation expanding focusthis',
         'rows': 5,
         'tabindex': 10,
@@ -278,7 +278,7 @@ def unit_comment_form_factory(language):
 
     comment_attrs = {
         'lang': language.code,
-        'dir': language.get_direction(),
+        'dir': language.direction,
         'class': 'comments expanding focusthis',
         'rows': 2,
         'tabindex': 15,

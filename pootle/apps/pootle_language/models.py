@@ -137,6 +137,11 @@ class Language(models.Model):
         """Localized fullname for the language."""
         return tr_lang(self.fullname)
 
+    @property
+    def direction(self):
+        """Return the language direction."""
+        return language_dir(self.code)
+
     ############################ Methods ######################################
 
     def __repr__(self):
@@ -194,10 +199,6 @@ class Language(models.Model):
             'unit__state__gt': OBSOLETE,
         }
         return Suggestion.objects.filter(**criteria).count()
-
-    def get_direction(self):
-        """Return the language direction."""
-        return language_dir(self.code)
 
     def translated_percentage(self):
         qs = self.getquickstats()
