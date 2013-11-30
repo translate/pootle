@@ -2,7 +2,7 @@ Pootle
 ======
 
 `Pootle <http://pootle.translatehouse.org/>`_ is an online translation and
-localization tool.  It tries to lower the barrier of entry,  but also provides
+localization tool.  It works to lower the barrier of entry, but also provides
 tools to enable teams to work towards higher quality while welcoming newcomers.
 
 
@@ -21,7 +21,7 @@ Installation can be done via pip::
 
   pip install Pootle
 
-But don't forget to read the `quickstart guide
+But don't forget to read the `installation guide
 <http://docs.translatehouse.org/projects/pootle/en/latest/server/installation.html>`_
 for the important details.
 

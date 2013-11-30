@@ -249,7 +249,7 @@ Commit messages
 
 
   If your change fixes a bug in Bugzilla, mention the bug number. This way the
-  but is automatically closed after merging the commit.
+  bug is automatically closed after merging the commit.
 
   ::
 
