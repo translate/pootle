@@ -133,9 +133,9 @@ command.
 If the desired path exists, you will be prompted for whether to overwrite the
 old configuration. Passing the ``--noinput`` flag assumes a negative answer.
 
-This default configuration is enough to initially experiment with Pootle but
-**it's highly discouraged and unsupported to use this configuration in a
-production environment**.
+.. warning:: This default configuration is enough to initially experiment with
+   Pootle but **it's highly discouraged and unsupported to use this
+   configuration in a production environment**.
 
 Also, the default configuration uses SQLite, which shouldn't be used for
 anything more than testing purposes.
