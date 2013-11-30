@@ -1,10 +1,10 @@
-Django==1.4.8
-South==0.7.6
 argparse==1.2.1
-cssmin==0.1.4
+cssmin==0.2.0
+Django==1.4.10
 django-assets==0.8
-django-taggit>=0.10
+django-taggit==0.11.1
 django-voting==0.1
-lxml==3.2.1
-translate-toolkit==1.10.0
+lxml==3.2.4
+South==0.7.6
+translate-toolkit==1.11.0-rc1
 webassets==0.8
