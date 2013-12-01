@@ -3,6 +3,8 @@
 Pootle API
 **********
 
+.. versionchanged:: 2.5.1
+
 Pootle provides a REST API for interacting with it using external tools,
 allowing those to retrieve data, for example translation stats, or save data to
 Pootle, e.g. translations. This reference document is written for those

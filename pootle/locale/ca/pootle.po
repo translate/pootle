@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-11-03 11:49+0000\n"
-"Last-Translator: Toni <toniher@softcatala.org>\n"
+"PO-Revision-Date: 2013-11-12 17:50+0000\n"
+"Last-Translator: ellibrecomoelchaval <el.libre@gmail.com>\n"
 "Language-Team: Softcatalà\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1383479355.0\n"
+"X-POOTLE-MTIME: 1384278624.0\n"
 
 #: strings.py:8
 msgid ""
@@ -731,7 +731,7 @@ msgstr "Usuaris actius"
 
 #: apps/pootle_app/views/admin/permissions.py:61
 msgid "Translation Project Contributors"
-msgstr ""
+msgstr "Colaboradors del projecte de traducció"
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Contributors"
@@ -1931,7 +1931,7 @@ msgstr ""
 
 #: apps/pootle_tagging/models.py:74
 msgid "The priority for this goal."
-msgstr ""
+msgstr "La prioritat d'aquesta fita."
 
 #: apps/pootle_tagging/models.py:79
 msgid ""
@@ -2292,7 +2292,7 @@ msgstr ""
 #. See http://staging.locamotion.org/he/birdfont/export-view/?filter=incomplete
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:7
 msgid "Export View"
-msgstr ""
+msgstr "Exportar vista"
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:99
 msgid "Goal"
@@ -2307,9 +2307,8 @@ msgid "Translation project files and folders"
 msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
-#, fuzzy
 msgid "Administrate your project goals"
-msgstr "Administreu el vostre projecte"
+msgstr "Administra els objectius del teu projecte"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2418,12 +2417,12 @@ msgstr "Si la pàgina és activa o no."
 #: apps/staticpages/models.py:40
 #: apps/staticpages/templates/staticpages/admin/_table.html:9
 msgid "Virtual Path"
-msgstr ""
+msgstr "Ruta virtual"
 
 #. Translators: Content that will be used to display this static page
 #: apps/staticpages/models.py:47
 msgid "Display Content"
-msgstr ""
+msgstr "Mostrar contingut"
 
 #: apps/staticpages/models.py:48
 #, python-format
@@ -2436,11 +2435,9 @@ msgid "Redirect to URL"
 msgstr "Redireccionar a la URL"
 
 #: apps/staticpages/models.py:51
-#, fuzzy
 msgid "If set, any references to this page will redirect to this URL"
 msgstr ""
-"Si es defineix, tota referència a la pàgina d'informació legal es redirigirà "
-"a aquest URL"
+"Si es defineix, tota referència a aquesta pàgina es redirigirà a aquesta URL"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:98
@@ -2449,26 +2446,24 @@ msgstr "S'ha de proporcionar un URL o contingut."
 
 #: apps/staticpages/models.py:106
 msgid "Virtual path already in use."
-msgstr ""
+msgstr "Ruta virtual ja utilitzada."
 
 #: apps/staticpages/models.py:111
-#, fuzzy
 msgid "Legal Page"
-msgstr "Pàgines d'informació legal"
+msgstr "Pàgina d'informació legal"
 
 #: apps/staticpages/models.py:122
-#, fuzzy
 msgid "Regular Page"
-msgstr "Edita la pàgina d'informació legal"
+msgstr "Pàgina normal"
 
 #: apps/staticpages/views.py:87
 msgid "Page Title"
-msgstr ""
+msgstr "Títol de la pàgina"
 
 #: apps/staticpages/views.py:88
 #, python-format
 msgid "page-%d"
-msgstr ""
+msgstr "pàgina-%d"
 
 #: apps/staticpages/views.py:130
 #, python-format
@@ -2479,7 +2474,7 @@ msgstr ""
 
 #: apps/staticpages/templates/staticpages/agreement.html:4
 msgid "Action Required"
-msgstr ""
+msgstr "Acció requerida"
 
 #: apps/staticpages/templates/staticpages/agreement.html:5
 msgid "Before continuing, you must read and accept the following documents."
@@ -2487,11 +2482,11 @@ msgstr ""
 
 #: apps/staticpages/templates/staticpages/agreement.html:18
 msgid "No thanks. Log out"
-msgstr ""
+msgstr "No, gràcies.Surt"
 
 #: apps/staticpages/templates/staticpages/agreement.html:21
 msgid "Continue"
-msgstr ""
+msgstr "Continuar"
 
 #: apps/staticpages/templates/staticpages/base.html:5
 #: apps/staticpages/templates/staticpages/base.html:11
@@ -2506,19 +2501,19 @@ msgstr "o"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:8
 msgid "Page"
-msgstr ""
+msgstr "Pàgina"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:11
 msgid "Last Edited"
-msgstr ""
+msgstr "Darrera modificació"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "Yes"
-msgstr ""
+msgstr "Sí"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:30
 msgid "No pages yet."
@@ -2529,18 +2524,16 @@ msgid "Legal Pages"
 msgstr "Pàgines d'informació legal"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:12
-#, fuzzy
 msgid "Add Legal Page"
-msgstr "Edita la pàgina d'informació legal"
+msgstr "Afegir pàgina d'informació legal"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
 msgid "Regular Pages"
-msgstr ""
+msgstr "Pàgines normals"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
-#, fuzzy
 msgid "Add Regular Page"
-msgstr "Edita la pàgina d'informació legal"
+msgstr "Afegir pàgina normal"
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."
@@ -2568,9 +2561,8 @@ msgid "Checks"
 msgstr "Comprovacions"
 
 #: core/helpers.py:62
-#, fuzzy
 msgid "Overwritten submissions"
-msgstr "Els meus enviaments sobreescrits"
+msgstr "Traduccions sobreescrites"
 
 #: core/initdb.py:143
 msgid "Can view a translation project"
@@ -3055,7 +3047,6 @@ msgstr ""
 "traducció i les vostres preferències de llengua."
 
 #: templates/profiles/profile_detail.html:23
-#, fuzzy
 msgid "Contributions"
 msgstr "Col·laboradors"
 

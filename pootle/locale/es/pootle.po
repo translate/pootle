@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-11-11 19:50+0000\n"
-"Last-Translator: Alexander Dupuy <alex.dupuy@mac.com>\n"
+"PO-Revision-Date: 2013-11-18 02:31+0000\n"
+"Last-Translator: Adolfo <fitoschido@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1384199452.0\n"
+"X-POOTLE-MTIME: 1384741892.0\n"
 
 #: strings.py:8
 msgid ""
@@ -233,21 +233,21 @@ msgstr ""
 
 #: apps/pootle_app/models/suggestion.py:35
 msgid "Pending"
-msgstr "Pendiente"
+msgstr "Pendientes"
 
 #: apps/pootle_app/models/suggestion.py:36
 #: templates/profiles/profile_detail.html:43
 msgid "Accepted"
-msgstr "Aceptado"
+msgstr "Aceptadas"
 
 #: apps/pootle_app/models/suggestion.py:37
 #: templates/profiles/profile_detail.html:44
 msgid "Rejected"
-msgstr "Rechazado"
+msgstr "Rechazadas"
 
 #: apps/pootle_app/templates/top_contributers_table.html:8
 msgid "Top Contributors"
-msgstr "Máximos colaboradores"
+msgstr "Colaboradores más activos"
 
 #. Translators: The number of suggestions pending review
 #: apps/pootle_app/templates/top_contributers_table.html:12
@@ -459,7 +459,7 @@ msgstr "Alertas de Pootle"
 #: apps/pootle_project/templates/project/overview.html:61
 #: apps/pootle_translationproject/templates/translation_project/overview.html:124
 msgid "No description set."
-msgstr "Ninguna descripción establecida."
+msgstr "No hay ninguna descripción."
 
 #: apps/pootle_app/templates/index/index.html:62
 #: apps/pootle_notifications/templates/notices.html:77
@@ -502,7 +502,7 @@ msgstr "Regístrese."
 #: apps/pootle_project/models.py:221
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
-msgstr "\"%s\" no se puede usar como código de proyecto"
+msgstr "No se puede usar «%s» como código de proyecto"
 
 #: apps/pootle_app/views/admin/adminusers.py:55
 #: templates/user_profile_menu.html:7
@@ -610,13 +610,13 @@ msgid ""
 "Can't find the package which provides '%s' markup support. Falling back to "
 "HTML."
 msgstr ""
-"No puedo encontrar el paquete que proporciona el marcado '%s'. Volviendo a "
-"HTML."
+"No se puede encontrar el paquete que proporciona el marcado «%s». Volviendo "
+"a HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:137
 #, python-format
 msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
-msgstr "El valor '%s' en MARKUP_FILTER no es válido. Volviendo a HTML."
+msgstr "El valor «%s» en MARKUP_FILTER no es válido. Volviendo a HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:154
 msgid ""
@@ -766,19 +766,20 @@ msgstr "No hay archivos en este proyecto."
 
 #: apps/pootle_app/views/admin/util.py:177
 msgid "There are errors in the form. Please review the problems below."
-msgstr "Hay errores en el formulario. Por favor, revise los siguientes errores."
+msgstr "Hay errores en el formulario. Revise los siguientes problemas."
 
 #: apps/pootle_app/views/index/about.py:49
 #, python-format
 msgid "Pootle %(pootle_ver)s is powered by Translate Toolkit %(toolkit_ver)s"
 msgstr "Pootle %(pootle_ver)s funciona con Translate Toolkit %(toolkit_ver)s"
 
+# En español el signo del por ciento debe aparecer separado de la cifra, ver Fundéu por ejemplo
 #: apps/pootle_app/views/index/index.py:57 apps/pootle_language/views.py:69
 #: apps/pootle_misc/browser.py:103 apps/pootle_misc/browser.py:191
 #: apps/pootle_misc/browser.py:230 apps/pootle_project/views.py:88
 #, python-format
 msgid "%(percentage)d%% complete"
-msgstr "%(percentage)d%% completo"
+msgstr "%(percentage)d% % completo"
 
 #: apps/pootle_language/models.py:66
 msgid ""
@@ -904,15 +905,15 @@ msgstr "Última actividad"
 
 #: apps/pootle_misc/checks.py:27
 msgid "Critical"
-msgstr "Crítico"
+msgstr "Críticos"
 
 #: apps/pootle_misc/checks.py:28
 msgid "Functional"
-msgstr "Funcional"
+msgstr "Funcionales"
 
 #: apps/pootle_misc/checks.py:29
 msgid "Cosmetic"
-msgstr "Cosmético"
+msgstr "Cosméticos"
 
 #: apps/pootle_misc/checks.py:30
 msgid "Extraction"
@@ -1130,10 +1131,11 @@ msgid_plural "<a href=\"%(url)s\">%(num)d words</a>"
 msgstr[0] "<a href=\"%(url)s\">%(num)d palabra</a>"
 msgstr[1] "<a href=\"%(url)s\">%(num)d palabras</a>"
 
+# En español el signo del por ciento debe aparecer separado de la cifra, ver Fundéu por ejemplo
 #: apps/pootle_misc/stats.py:141
 #, python-format
 msgid "%(num)d%%"
-msgstr "%(num)d%%"
+msgstr "%(num)d% %"
 
 #: apps/pootle_misc/stats.py:143
 #, python-format
@@ -1233,10 +1235,11 @@ msgid_plural "%d words need review"
 msgstr[0] "%d palabra necesita revisión"
 msgstr[1] "%d palabras necesitan revisión"
 
+# En español el signo del por ciento debe aparecer separado de la cifra, ver Fundéu por ejemplo
 #: apps/pootle_misc/templates/progressbar.html:3
 #, python-format
 msgid "%(percent)s%% complete"
-msgstr "%(percent)s%% completo"
+msgstr "%(percent)s% % completo"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/templates/search.html:5 core/helpers.py:59
@@ -1430,12 +1433,13 @@ msgstr ""
 msgid "Report Target"
 msgstr "Destino de informes"
 
+# En español el signo del por ciento debe aparecer separado de la cifra, ver Fundéu por ejemplo
 #: apps/pootle_project/views.py:119
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
-msgstr[0] "%(languages)d idioma, traducido al %(average)d%%"
-msgstr[1] "%(languages)d idiomas, traducido al %(average)d%%"
+msgstr[0] "%(languages)d idioma, traducido al %(average)d% %"
+msgstr[1] "%(languages)d idiomas, traducido al %(average)d% %"
 
 #: apps/pootle_project/views.py:377
 #: apps/pootle_translationproject/actions.py:209
@@ -2865,6 +2869,8 @@ msgid ""
 "Pootle can't connect to the database, the database is not\n"
 "initialized yet, or a schema upgrade is needed before continuing."
 msgstr ""
+"Pootle no se puede conectar a la base de datos, ésta no se ha iniciado\n"
+"aún o se necesita una actualización de esquema antes de continuar."
 
 #: templates/db_error.html:18
 #, python-format
@@ -2876,6 +2882,11 @@ msgid ""
 "is\n"
 "a mistake."
 msgstr ""
+"\n"
+"Lea la <a href=\"%(url)s\">documentación de Pootle</a> para instrucciones de\n"
+"instalación y actualización. Contacte al administrador del servidor si cree "
+"que ha\n"
+"ocurrido un error."
 
 #: templates/db_error.html:24
 msgid "The reported error was:"

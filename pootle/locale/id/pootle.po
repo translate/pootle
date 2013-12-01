@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-11-02 13:30+0000\n"
+"PO-Revision-Date: 2013-11-13 04:02+0000\n"
 "Last-Translator: Andika <andika@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1383399003.0\n"
+"X-POOTLE-MTIME: 1384315339.0\n"
 
 #: strings.py:8
 msgid ""
@@ -333,6 +333,10 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
+"Pengguna \"nobody\" mengacu ke sebarang pengguna yang tidak masuk log (seorang "
+"pengguna anonim yang tak teridentifikasi). Pengguna \"default\" mengacu ke "
+"hak baku yang bakal dimiliki oleh semua pengguna yang log masuk, kecuali "
+"bila hak spesifik lain diberikan ke mereka."
 
 #: apps/pootle_app/templates/admin/admin_general_projects.html:4
 #: apps/pootle_app/templates/admin/admin_general_projects.html:9
@@ -426,9 +430,8 @@ msgid "Dependency Checks"
 msgstr "Pemeriksaan Kebergantungan"
 
 #: apps/pootle_app/templates/admin/dashboard.html:64
-#, fuzzy
 msgid "Optional"
-msgstr "Opsional"
+msgstr "Pilihan"
 
 #: apps/pootle_app/templates/admin/dashboard.html:72
 msgid "Optimizations"
@@ -444,7 +447,7 @@ msgstr "Batal"
 
 #: apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
-msgstr ""
+msgstr "Peringatan Pootle"
 
 #: apps/pootle_app/templates/index/index.html:25
 #: apps/pootle_language/templates/language/overview.html:36
@@ -588,11 +591,11 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:129
 msgid "MARKUP_FILTER is missing. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER tidak ada. Beralih ke HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:131
 msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER salah tata. Beralih ke HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:133
 #, python-format
@@ -607,7 +610,7 @@ msgstr ""
 #: apps/pootle_app/views/admin/dashboard.py:137
 #, python-format
 msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
-msgstr ""
+msgstr "Nilai '%s' yang tak valid dalam MARKUP_FILTER. Beralih ke HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:154
 msgid ""
@@ -759,7 +762,7 @@ msgstr "Ada kesalahan dalam formulir. Harap tinjau masalah di bawah."
 #: apps/pootle_app/views/index/about.py:49
 #, python-format
 msgid "Pootle %(pootle_ver)s is powered by Translate Toolkit %(toolkit_ver)s"
-msgstr ""
+msgstr "Pootle %(pootle_ver)s menggunakan Translate Toolkit %(toolkit_ver)s"
 
 #: apps/pootle_app/views/index/index.py:57 apps/pootle_language/views.py:69
 #: apps/pootle_misc/browser.py:103 apps/pootle_misc/browser.py:191
@@ -926,7 +929,7 @@ msgstr "Kurung siku"
 
 #: apps/pootle_misc/checks.py:40
 msgid "Compendium conflict"
-msgstr ""
+msgstr "Konflik kompendium"
 
 #: apps/pootle_misc/checks.py:41
 msgid "Translator credits"
@@ -954,7 +957,7 @@ msgstr "Tanda baca penutup"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Ending whitespace"
-msgstr ""
+msgstr "Whitespace akhiran"
 
 #: apps/pootle_misc/checks.py:48
 msgid "Escapes"
@@ -1009,7 +1012,6 @@ msgid "printf()"
 msgstr "printf()"
 
 #: apps/pootle_misc/checks.py:61
-#, fuzzy
 msgid "Punctuation spacing"
 msgstr "Jarak antara tanda baca"
 
@@ -1047,7 +1049,7 @@ msgstr "Tanda baca pembuka"
 
 #: apps/pootle_misc/checks.py:70
 msgid "Starting whitespace"
-msgstr ""
+msgstr "Whitespace awalan"
 
 #. Translators: This refers to tabulation characters
 #: apps/pootle_misc/checks.py:72
@@ -1068,7 +1070,7 @@ msgstr "Karakter yang valid"
 
 #: apps/pootle_misc/checks.py:76
 msgid "Placeholders"
-msgstr ""
+msgstr "Tempat letak"
 
 #: apps/pootle_misc/checks.py:77
 msgid "XML tags"
@@ -1155,7 +1157,7 @@ msgstr[0] "Lanjutkan penerjemahan (%(num)d kata tersisa)"
 #, python-format
 msgid "Next most important goal (%(num)d word left)"
 msgid_plural "Next most important goal (%(num)d words left)"
-msgstr[0] ""
+msgstr[0] "Sasaran paling penting selanjutnya (%(num)d kata tersisa)"
 
 #: apps/pootle_misc/stats.py:249
 msgid "Translation is complete"
@@ -1480,6 +1482,8 @@ msgid ""
 "%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s mengembalikan terjemahan bagi string <i><a href=\"%(url)s\">%"
+"(source)s</a></i> ke keadaan sebelumnya"
 
 #: apps/pootle_statistics/models.py:155
 #, python-format
@@ -1555,7 +1559,7 @@ msgstr "TBX"
 
 #: apps/pootle_store/filetypes.py:59
 msgid "Haiku catkeys"
-msgstr ""
+msgstr "Haiku catkeys"
 
 #: apps/pootle_store/filetypes.py:65
 msgid "Excel CSV"
@@ -1631,13 +1635,12 @@ msgstr "Daftar tag yang dipisah koma."
 #: apps/pootle_translationproject/models.py:126
 #: apps/pootle_translationproject/templates/translation_project/overview.html:69
 msgid "Goals"
-msgstr ""
+msgstr "Sasaran"
 
 #: apps/pootle_store/models.py:904
 #: apps/pootle_translationproject/models.py:128
-#, fuzzy
 msgid "A comma-separated list of goals."
-msgstr "Daftar tag yang dipisah koma."
+msgstr "Daftar sasaran yang dipisah koma."
 
 #: apps/pootle_store/util.py:45
 msgid "Obsolete"
@@ -1831,11 +1834,11 @@ msgstr "Hapus saran"
 
 #: apps/pootle_store/templates/unit/term_edit.html:21
 msgid "Your current vote. Click to remove this vote."
-msgstr ""
+msgstr "Suara Anda saat ini. Klik untuk menghapus suara ini."
 
 #: apps/pootle_store/templates/unit/term_edit.html:33
 msgid "Vote for this suggestion"
-msgstr ""
+msgstr "Berikan suara untuk saran ini"
 
 #: apps/pootle_store/templates/unit/term_edit.html:40
 msgid "Comment: "
@@ -1895,10 +1898,12 @@ msgid ""
 "Name cannot contain just after 'goal:' any of these characters: spaces, "
 "colons (:), hyphens (-), underscores (_), slashes (/) or periods (.)"
 msgstr ""
+"Nama tak bisa memuat persis setelah 'goal:' sebarang karakter ini: spasi, "
+"titik dua (:), strip (-), garis bawah (_), garis miring (/), atau titik (.)"
 
 #: apps/pootle_tagging/forms.py:133
 msgid "A goal with that name already exists. Please pick another name."
-msgstr ""
+msgstr "Sasaran dengan nama itu sudah ada. Silakan pilih nama lain."
 
 #: apps/pootle_tagging/forms.py:173
 msgid ""
@@ -1906,16 +1911,21 @@ msgid ""
 "single or multiple occurrences of the following characters: spaces, colons "
 "(:), hyphens (-), underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Slug tag mesti sama dengan nama tag, tapi mengganti dengan tanda hubung "
+"kemunculan tunggal atau berganda dari karakter berikut: spasi, titik dua "
+"(:), tanda hubung (-), garis bawah (_), garis miring (/), atau titik (.)!"
 
 #: apps/pootle_tagging/forms.py:180
 msgid "A goal with this slug already exists."
-msgstr ""
+msgstr "Sasaran dengan slug ini telah ada."
 
 #: apps/pootle_tagging/forms.py:194
 msgid ""
 "Warning: Changing the name also changes the slug, so it won't be possible to "
 "view this goal on this page!"
 msgstr ""
+"Peringatan: Mengubah nama juga mengubah sluh, sehingga tak akan mungkin "
+"melihat sasaran pada halaman ini!"
 
 #: apps/pootle_tagging/models.py:66
 #, python-format
@@ -1923,24 +1933,28 @@ msgid ""
 "A description of this goal. This is useful to give more information or "
 "instructions. Allowed markup: %s"
 msgstr ""
+"Penjelasan dari sasaran ini. Ini berguna untuk memberikan lebih banyak "
+"informasi atau instruksi. Markup yang diijinkan: %s"
 
 #: apps/pootle_tagging/models.py:74
 msgid "The priority for this goal."
-msgstr ""
+msgstr "Prioritas dari sasaran ini."
 
 #: apps/pootle_tagging/models.py:79
 msgid ""
 "Designates that this is a project goal (shared across all languages in the "
 "project)."
 msgstr ""
+"Menunjuk bahwa ini adalah suatu sasaran projek (dipakai bersama di seluruh "
+"bahasa dalam projek)."
 
 #: apps/pootle_tagging/models.py:81
 msgid "Project goal?"
-msgstr ""
+msgstr "Sasaran projek?"
 
 #: apps/pootle_tagging/models.py:105
 msgid "(Project goal)"
-msgstr ""
+msgstr "(Sasaran projek)"
 
 #: apps/pootle_terminology/views.py:171
 msgid "This term already exists in this file."
@@ -2119,6 +2133,8 @@ msgid ""
 "Optionally select the file you want to merge with. If not specified, the "
 "uploaded file's name is used."
 msgstr ""
+"Memilih berkas yang ingin Anda gabungkan dengannya. Bila tak dinyatakan, "
+"nama berkas yang diunggah dipakai."
 
 #: apps/pootle_translationproject/models.py:103
 #, python-format
@@ -2278,7 +2294,7 @@ msgstr "Tilikan Ekspor"
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:99
 msgid "Goal"
-msgstr ""
+msgstr "Sasaran"
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:141
 msgid "No strings."
@@ -2290,7 +2306,7 @@ msgstr "Berkas dan folder projek penerjemahan"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "Administrasikan sasaran projek Anda"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2713,15 +2729,15 @@ msgstr "lewati ke navigasi"
 
 #: templates/base.html:126
 msgid "Zoom out (Ctrl+Shift+-)"
-msgstr ""
+msgstr "Zum perkecil (Ctrl+Shift+-)"
 
 #: templates/base.html:128
 msgid "Reset zoom (Ctrl+Shift+0)"
-msgstr ""
+msgstr "Reset zum (Ctrl+Shift+0)"
 
 #: templates/base.html:130
 msgid "Zoom in (Ctrl+Shift++)"
-msgstr ""
+msgstr "Zum perbesar (Ctrl+Shift++)"
 
 #: templates/base.html:141
 msgid "ADMIN"
@@ -2791,6 +2807,8 @@ msgid ""
 "Pootle can't connect to the database, the database is not\n"
 "initialized yet, or a schema upgrade is needed before continuing."
 msgstr ""
+"Pootle tak bisa menyambung ke basis data, basis data belum\n"
+"diinisialisasi, atau peningkatan skeme diperlukan sebleum melanjutkan."
 
 #: templates/db_error.html:18
 #, python-format
@@ -2802,6 +2820,10 @@ msgid ""
 "is\n"
 "a mistake."
 msgstr ""
+"Harap baca <a href=\"%(url)s\">dokumentasi Pootle</a> untuk instruksi "
+"instalasi\n"
+"dan peningkatan. Hubungi administrator server bila Anda rasa ini adalah\n"
+"suatu kesalahan."
 
 #: templates/db_error.html:24
 msgid "The reported error was:"
@@ -2869,7 +2891,7 @@ msgstr "Terminologi"
 
 #: templates/tp_menu.html:9
 msgid "Administrate your project permissions"
-msgstr ""
+msgstr "Administrasikan ijin projek Anda"
 
 #: templates/user_profile_base.html:4 templates/user_profile_base.html.py:6
 msgid "My Account"
@@ -2917,6 +2939,12 @@ msgid ""
 "Read more on the <a href=\"http://pootle.translatehouse.org/\"><i class="
 "\"icon-external-link\"></i> project website</a>."
 msgstr ""
+"Situs ini menjalankan Pootle &mdash; perangkat lunak web yang kuat yang "
+"memberdayai tim untuk mengerjakan penerjemahan dan manajemen terjemahan. "
+"Perkakas komunitas ini adalah Perangkat Lunak Bebas, dan sebarang tim dapat "
+"memakainya dan menyumbang ke komunitas Pootle. Baca lebih lanjut pada <a "
+"href=\"http://pootle.translatehouse.org/\"><i class=\"icon-external-link\">situs "
+"web projek</a>."
 
 #: templates/about/base.html:4 templates/about/base.html.py:7
 msgid "About"
@@ -2984,6 +3012,8 @@ msgid ""
 "Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
+"Nomor string saat ini (Ctrl+Shift+U)<br/><br/>Ketikkan nomornya dan tekan "
+"Enter<br/>untuk menuju ke sebarang posisi"
 
 #: templates/editor/_toolbar.html:39
 msgid "Total strings"

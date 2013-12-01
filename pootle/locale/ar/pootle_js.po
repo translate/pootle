@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-11-10 05:43+0000\n"
-"Last-Translator: Haytham A. <haytham.hammam@gmail.com>\n"
+"PO-Revision-Date: 2013-11-13 11:56+0000\n"
+"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
 "n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1384062187.0\n"
+"X-POOTLE-MTIME: 1384343807.0\n"
 
 #: static/js/common.js:13
 msgid "All Languages"
@@ -131,7 +131,7 @@ msgstr "وصلت إلى نهاية القائمة."
 
 #: static/js/editor.js:1372
 msgid "Return to the overview page."
-msgstr "عُد إلى صفحة النظرة العامة"
+msgstr "عُد إلى صفحة النظرة العامة."
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
