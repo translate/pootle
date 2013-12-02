@@ -78,7 +78,7 @@ Get a clean checkout and new virtualenv
 ---------------------------------------
 We work from a clean checkout to ensure that everything you are adding to the
 build is what is in VC and doesn't contain any of your uncommitted changes.  It
-also ensure that someone else could relicate your process. ::
+also ensure that someone else could replicate your process. ::
 
     git clone git@github.com:translate/pootle.git pootle-release
     mkvirtualenv pootle-release
