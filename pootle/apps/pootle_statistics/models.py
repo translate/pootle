@@ -26,8 +26,8 @@ from pootle.core.managers import RelatedManager
 from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
 
 
-#: These are the values for the 'type' field of Submission
 class SubmissionTypes(object):
+    """Values for the 'type' field of Submission."""
     # None/0 = no information
     NORMAL = 1  # Interactive web editing
     REVERT = 2  # Revert action on the web
@@ -35,8 +35,8 @@ class SubmissionTypes(object):
     UPLOAD = 4  # Uploading an offline file
 
 
-#: Values for the 'field' field of Submission
 class SubmissionFields(object):
+    """Values for the 'field' field of Submission."""
     SOURCE = 1  # pootle_store.models.Unit.source
     TARGET = 2  # pootle_store.models.Unit.target
     STATE = 3  # pootle_store.models.Unit.state
@@ -54,19 +54,29 @@ class Submission(models.Model):
 
     creation_time = models.DateTimeField(db_index=True)
     translation_project = models.ForeignKey(
-            'pootle_translationproject.TranslationProject', db_index=True
+        'pootle_translationproject.TranslationProject',
+        db_index=True,
     )
-    submitter = models.ForeignKey('pootle_profile.PootleProfile', null=True,
-                                  db_index=True)
-    from_suggestion = models.OneToOneField('pootle_app.Suggestion', null=True,
-                                           db_index=True)
-    unit = models.ForeignKey('pootle_store.Unit', blank=True, null=True,
-                             db_index=True)
-
-    #: The field in the unit that changed
+    submitter = models.ForeignKey(
+        'pootle_profile.PootleProfile',
+        null=True,
+        db_index=True,
+    )
+    from_suggestion = models.OneToOneField(
+        'pootle_app.Suggestion',
+        null=True,
+        db_index=True,
+    )
+    unit = models.ForeignKey(
+        'pootle_store.Unit',
+        blank=True,
+        null=True,
+        db_index=True,
+    )
+    # The field that was changed in the unit.
     field = models.IntegerField(null=True, blank=True, db_index=True)
 
-    # how did this submission come about? (one of the constants above)
+    # How did this submission come about? (one of the constants above).
     type = models.IntegerField(null=True, blank=True, db_index=True)
 
     # old_value and new_value can store string representations of multistrings
@@ -89,7 +99,7 @@ class Submission(models.Model):
 
     @classmethod
     def get_latest_for_dir(cls, directory):
-        """Returns the latest submission, if any, for the given directory.
+        """Return the latest submission, if any, for the given directory.
 
         The submission is returned as an action bundle. An empty string is
         returned if no submission exists for the given directory.
@@ -104,7 +114,8 @@ class Submission(models.Model):
         return sub.get_submission_message()
 
     def as_html(self):
-        # Sadly we may not have submitter information in all the situations yet
+        #FIXME: Sadly we may not have submitter information in all the
+        # situations yet.
         if self.submitter:
             submitter_info = u'<a href="%(profile_url)s">%(submitter)s</a>' % {
                     'profile_url': self.submitter.get_absolute_url(),
@@ -121,7 +132,7 @@ class Submission(models.Model):
         return mark_safe(snippet)
 
     def get_submission_message(self):
-        """Returns a message describing the submission.
+        """Return a message describing the submission.
 
         The message includes the user (with link to profile and gravatar), a
         message describing the action performed, and when it was performed.

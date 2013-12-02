@@ -53,7 +53,9 @@ def create_termunit(term, unit, targets, locations, sourcenotes, transnotes,
 def get_terminology_filename(translation_project):
     try:
         # See if a terminology store already exists.
-        return translation_project.stores.filter(name__startswith='pootle-terminology.').values_list('name', flat=True)[0]
+        return translation_project.stores.filter(
+                name__startswith='pootle-terminology.'
+            ).values_list('name', flat=True)[0]
     except IndexError:
         pass
     if translation_project.project.is_monolingual:
@@ -104,8 +106,10 @@ def extract(request, translation_project):
             store.units.delete()
 
         # Calculate maximum terms.
-        maxunits = int(translation_project.getquickstats()['totalsourcewords'] * 0.02)
-        maxunits = min(max(settings.MIN_AUTOTERMS, maxunits), settings.MAX_AUTOTERMS)
+        totalsrcwords = translation_project.getquickstats()['totalsourcewords']
+        maxunits = int(totalsrcwords * 0.02)
+        maxunits = min(max(settings.MIN_AUTOTERMS, maxunits),
+                       settings.MAX_AUTOTERMS)
         for index, (score, unit) in enumerate(termunits[:maxunits]):
             unit.store = store
             unit.index = index
@@ -176,10 +180,11 @@ def manage_store(request, template_vars, language, term_store):
     #TODO 'submitted_by' and 'commented_by' had to be excluded in order to get
     # terminology editing working. When the schema can be changed again this
     # exclusion should be removed and change the schema accordingly.
+    excluded = ['state', 'target_f', 'id', 'translator_comment',
+                'submitted_by', 'commented_by']
     return util.edit(request, 'terminology/manage.html', Unit, template_vars,
                      None, None, queryset=term_store.units, can_delete=True,
-                     form=TermUnitForm, exclude=['state', 'target_f', 'id',
-                        'translator_comment', 'submitted_by', 'commented_by'])
+                     form=TermUnitForm, exclude=excluded)
 
 
 @get_path_obj
@@ -204,7 +209,7 @@ def manage(request, translation_project, path=None):
                 pass
 
         # Which file should we edit?
-        stores = list(Store.objects.filter(translation_project=translation_project))
+        stores = Store.objects.filter(translation_project=translation_project)
         if len(stores) == 1:
             # There is only one, and we're not going to offer file-level
             # activities, so let's just edit the one that is there.
