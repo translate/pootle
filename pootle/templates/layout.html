@@ -96,13 +96,14 @@
     PTL.contact.init({url: "{% url 'pootle-contact' %}"});
 
     $(function() {
-      $("[title], [original-title]").tipsy({
-        gravity: $.fn.tipsy.autoBounds(150, 'n'),
+      $(document).tipsy({
+        gravity: $.fn.tipsy.autoBounds2(150, 'n'),
         html: true,
         fade: true,
         delayIn: 750,
         opacity: 1,
-        live: true});
+        live: '[title], [original-title]'
+      });
       $.ajaxSetup({ traditional: true });
       $.ajaxPrefilter(function (options, originalOptions) {
         if (options.type === 'post' || options.type === 'POST') {

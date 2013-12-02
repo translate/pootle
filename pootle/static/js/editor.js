@@ -1114,10 +1114,6 @@
 
     oldRows.remove();
 
-    // This fixes the issue with tipsy popups staying on the screen
-    // if their owner elements have been removed
-    $('.tipsy').remove(); // kill all open tipsy popups
-
     if (newTbody !== false) {
       where.append(newTbody);
 
@@ -1370,7 +1366,6 @@
 
       blinkClass($checks, 'blink', 4, 200);
       focusedArea.focus();
-      $('.tipsy').remove();
     } else {
       PTL.editor.gotoNext();
     }
@@ -2096,7 +2091,6 @@
         }
         hideElement.fadeOut(200, function () {
           check.remove();
-          $('.tipsy').remove();
         });
       }, "json");
   },

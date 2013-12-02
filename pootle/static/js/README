@@ -127,7 +127,7 @@ Directory contents
     + jquery/
 
       - jquery.js :
-        The jQuery library, version 1.8.2.
+        The jQuery library, version 2.0.3.
 
         https://github.com/jquery/jquery
 
@@ -218,9 +218,9 @@ Directory contents
       - jquery.tipsy.js :
         Facebook-style tooltips for jQuery.
 
-        Using revision 9fe119e.
+        Using revision 718b348872 from branch bugfix/remnant-tips @ julen/tipsy fork.
 
-        https://github.com/jaz303/tipsy
+        https://github.com/julen/tipsy
 
       - jquery.utils.js :
         Custom utilities that extend jQuery's capabilities.
