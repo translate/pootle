@@ -65,7 +65,7 @@
     /* State changes */
     $(document).on('input', '.js-translation-area',
                    this.onTextareaChange.bind(this));
-    $(document).on('click', 'input.fuzzycheck',
+    $(document).on('change', 'input.fuzzycheck',
                    this.onStateChange.bind(this));
 
     /* Suggest / submit */
@@ -147,22 +147,7 @@
         $('input.submit').trigger('click');
       }
     });
-    shortcut.add('ctrl+space', function (e) {
-      // To prevent the click event which occurs in Firefox
-      // but not in Chrome (and not in IE)
-      if (e && e.preventDefault) {
-        e.preventDefault();
-      }
-
-      // Prevent automatic unfuzzying on keyup
-      PTL.editor.keepState = true;
-
-      if (PTL.editor.isFuzzy()) {
-        PTL.editor.ungoFuzzy();
-      } else {
-        PTL.editor.goFuzzy();
-      }
-    });
+    shortcut.add('ctrl+space', this.toggleState.bind(this));
     shortcut.add('ctrl+shift+space', this.toggleSuggestMode.bind(this));
 
     shortcut.add('ctrl+up', this.gotoPrev.bind(this));
@@ -659,6 +644,15 @@
     } else {
       this.undoFuzzyStyle();
     }
+  },
+
+  toggleState: function () {
+    // Prevent automatic unfuzzying on keyup
+    this.keepState = true;
+
+    // `blur()` prevents a double-click effect if the checkbox was
+    // previously clicked using the mouse
+    $('input.fuzzycheck').blur().click();
   },
 
   handleTranslationChange: function () {
