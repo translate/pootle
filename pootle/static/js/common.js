@@ -5,6 +5,8 @@
   PTL.common = {
 
     init: function () {
+      setInterval($.fn.tipsy.revalidate, 1000);
+
       PTL.utils.makeSelectableInput('#js-select-language',
         {
           allowClear: true,
@@ -74,9 +76,7 @@
       $(document).magnificPopup({
         type: 'ajax',
         delegate: '.js-popup-ajax',
-        mainClass: 'popup-ajax',
-        // Workaround for remnant tipsy bubbles
-        tClose: ''
+        mainClass: 'popup-ajax'
       });
       $('.js-popup-inline').magnificPopup();
 

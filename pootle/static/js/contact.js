@@ -53,8 +53,7 @@
             body && $(sel.body).val(body);
           }
         },
-        mainClass: 'popup-ajax',
-        tClose: '' // Workaround for remnant tipsy bubbles
+        mainClass: 'popup-ajax'
       });
     },
 
