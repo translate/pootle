@@ -713,13 +713,13 @@
 
   /* Checks the current unit's fuzzy checkbox */
   doFuzzyBox: function () {
-    $("input.fuzzycheck").attr("checked", "checked");
+    $('input.fuzzycheck').prop('checked', true);
   },
 
 
   /* Unchecks the current unit's fuzzy checkbox */
   undoFuzzyBox: function () {
-    $("input.fuzzycheck").removeAttr("checked");
+    $('input.fuzzycheck').prop('checked', false);
   },
 
 
@@ -745,7 +745,7 @@
 
   /* Returns whether the current unit is fuzzy or not */
   isFuzzy: function () {
-    return $("input.fuzzycheck").attr("checked");
+    return $('input.fuzzycheck').prop('checked');
   },
 
   toggleFuzzy: function () {
