@@ -837,7 +837,7 @@
     var el = e.target,
         hasChanged = el.defaultValue !== el.value;
 
-    if (hasChanged && ! this.keepState) {
+    if (hasChanged && !this.keepState) {
       this.ungoFuzzy();
     }
   },
