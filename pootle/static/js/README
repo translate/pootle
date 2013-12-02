@@ -80,11 +80,6 @@ Directory contents
 
       https://github.com/csnover/js-iso8601
 
-    - json2.min.js :
-      JavaScript library for encoding/decoding data to/from JSON format.
-
-      http://www.json.org/js.html
-
     - shortcut.js :
       Small library to ease adding keyboard shortcuts.
 
