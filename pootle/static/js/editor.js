@@ -605,13 +605,13 @@
    */
 
   /* Sets the current unit's styling as fuzzy */
-  doFuzzyArea: function () {
+  doFuzzyStyle: function () {
     $("tr.edit-row").addClass("fuzzy-unit");
   },
 
 
   /* Unsets the current unit's styling as fuzzy */
-  undoFuzzyArea: function () {
+  undoFuzzyStyle: function () {
     $("tr.edit-row").removeClass("fuzzy-unit");
   },
 
@@ -632,7 +632,7 @@
   goFuzzy: function () {
     if (!this.isFuzzy()) {
       this.keepState = true;
-      this.doFuzzyArea();
+      this.doFuzzyStyle();
       this.doFuzzyBox();
     }
   },
@@ -642,7 +642,7 @@
   ungoFuzzy: function () {
     if (this.isFuzzy()) {
       this.keepState = true;
-      this.undoFuzzyArea();
+      this.undoFuzzyStyle();
       this.undoFuzzyBox();
     }
   },
@@ -653,11 +653,11 @@
     return $('input.fuzzycheck').prop('checked');
   },
 
-  toggleFuzzy: function () {
+  toggleFuzzyStyle: function () {
     if (this.isFuzzy()) {
-      this.doFuzzyArea();
+      this.doFuzzyStyle();
     } else {
-      this.undoFuzzyArea();
+      this.undoFuzzyStyle();
     }
   },
 
@@ -682,7 +682,7 @@
   onStateChange: function () {
     this.handleTranslationChange();
 
-    this.toggleFuzzy();
+    this.toggleFuzzyStyle();
   },
 
   onTextareaChange: function (e) {
