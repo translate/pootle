@@ -36,8 +36,6 @@
 	// jQuery plugin definition
 	$.fn.TextAreaExpander = function(minHeight, maxHeight) {
 
-		var hCheck = !($.browser.msie || $.browser.opera);
-
 		// resize a textarea
 		function ResizeTextarea(e) {
 
@@ -48,7 +46,7 @@
 			var vlen = e.value.length, ewidth = e.offsetWidth;
 			if (vlen != e.valLength || ewidth != e.boxWidth) {
 
-				if (hCheck && (vlen < e.valLength || ewidth != e.boxWidth)) e.style.height = "0px";
+				if (vlen < e.valLength || ewidth != e.boxWidth) e.style.height = "0px";
 				var h = Math.max(e.expandMin, Math.min(e.scrollHeight, e.expandMax));
 
 				e.style.overflow = (e.scrollHeight > h ? "auto" : "hidden");

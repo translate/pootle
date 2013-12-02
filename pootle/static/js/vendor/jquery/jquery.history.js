@@ -135,41 +135,6 @@
         }
     };
 
-    implementations.iframeTimer = {
-        _appState: undefined,
-        _init: function() {
-            var current_hash = locationWrapper.get();
-            self._appState = current_hash;
-            iframeWrapper.init().put(current_hash);
-            self.callback(current_hash);
-            setInterval(self.check, 100);
-        },
-        check: function() {
-            var iframe_hash = iframeWrapper.get(),
-                location_hash = locationWrapper.get();
-
-            if (location_hash != iframe_hash) {
-                if (location_hash == self._appState) {    // user used Back or Forward button
-                    self._appState = iframe_hash;
-                    locationWrapper.put(iframe_hash);
-                    self.callback(iframe_hash); 
-                } else {                              // user loaded new bookmark
-                    self._appState = location_hash;  
-                    iframeWrapper.put(location_hash);
-                    self.callback(location_hash);
-                }
-            }
-        },
-        load: function(hash) {
-            if(hash != self._appState) {
-                locationWrapper.put(hash);
-                iframeWrapper.put(hash);
-                self._appState = hash;
-                self.callback(hash);
-            }
-        }
-    };
-
     implementations.hashchangeEvent = {
         _init: function() {
             self.callback(locationWrapper.get());
@@ -185,9 +150,7 @@
 
     var self = $.extend({}, implementations.base);
 
-    if($.browser.msie && ($.browser.version < 8 || document.documentMode < 8)) {
-        self.type = 'iframeTimer';
-    } else if("onhashchange" in window) {
+    if ("onhashchange" in window) {
         self.type = 'hashchangeEvent';
     } else {
         self.type = 'timer';
