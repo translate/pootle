@@ -141,6 +141,8 @@ Directory contents
         jQuery plugin to write text on top of the selected text or just after
         the caret position.
 
+        Using patched version to remove `$.browser` calls.
+
         http://www.jquery-plugin.buss.hk/my-plugins/jquery-caret-plugin
 
       - jquery.easing.js :
@@ -155,6 +157,8 @@ Directory contents
 
       - jquery.history.js :
         Plugin to handle AJAX history using hashes.
+
+        Using patched version to remove `$.browser` calls.
 
         http://github.com/tkyk/jquery-history-plugin/
 
@@ -196,6 +200,8 @@ Directory contents
 
       - jquery.textarea-expander.js :
         jQuery plugin used in the translate page textareas.
+
+        Using patched version to remove `$.browser` calls.
 
         http://blogs.sitepointstatic.com/examples/tech/textarea-expander/jquery.textarea-expander.js
 
