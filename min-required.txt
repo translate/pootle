@@ -1,3 +1,5 @@
+# Automatically generated: DO NOT EDIT
+# Regenerate using 'make requirements'
 Django==1.4.10,
 django-voting==0.1
 South==0.7.6,

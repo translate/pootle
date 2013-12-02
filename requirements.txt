@@ -1,3 +1,5 @@
+# Automatically generated: DO NOT EDIT
+# Regenerate using 'make requirements'
 argparse==1.2.1
 cssmin==0.2.0
 Django==1.4.10

@@ -78,6 +78,8 @@ REQS=.reqs
 REQFILE=requirements/base.txt
 
 requirements.txt: $(REQFILE)
+	@echo "# Automatically generated: DO NOT EDIT" > $@
+	@echo "# Regenerate using 'make requirements'" >> $@
 	@set -e;							\
 	 case `pip --version` in					\
 	   "pip 0"*|"pip 1.[012]"*)					\
@@ -87,7 +89,7 @@ requirements.txt: $(REQFILE)
 	     pip install --use-mirrors -r $(REQFILE);			\
 	     : trap removes partial/empty target on failure;		\
 	     trap 'if [ "$$?" != 0 ]; then rm -f $@; fi' 0;		\
-	     pip freeze | grep -v '^wsgiref==' | sort > $@ ;;		\
+	     pip freeze | grep -v '^wsgiref==' | sort >> $@ ;;		\
 	   *)								\
 	     : only pip 1.3.1+ processes --download recursively;	\
 	     rm -rf $(REQS); mkdir $(REQS);				\
@@ -96,7 +98,7 @@ requirements.txt: $(REQFILE)
 	     : trap removes partial/empty target on failure;		\
 	     trap 'if [ "$$?" != 0 ]; then rm -f $@; fi' 0;		\
 	     (cd $(REQS) && ls *.tar* |					\
-	      sed -e 's/-\([0-9]\)/==\1/' -e 's/\.tar.*$$//') > $@;	\
+	      sed -e 's/-\([0-9]\)/==\1/' -e 's/\.tar.*$$//') >> $@;	\
 	 esac; 
 
 min-required.txt: requirements/*.txt
@@ -104,4 +106,6 @@ min-required.txt: requirements/*.txt
 	   echo "Use '>=' not '>' for requirements"; exit 1;	\
 	 fi
 	@echo "creating $@"
-	@cat $^ | sed -n '/=/{s/>=/==/;s/<.*//;p;}' > $@
+	@echo "# Automatically generated: DO NOT EDIT" > $@
+	@echo "# Regenerate using 'make requirements'" >> $@
+	@cat $^ | sed -n '/=/{s/>=/==/;s/<.*//;p;}' >> $@
