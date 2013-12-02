@@ -221,6 +221,7 @@
 
       if (bodyHeight < contentAreaHeight) {
         $body.css('height', contentAreaHeight);
+        $('#sidebar #staticpage').css('height', contentAreaHeight);
       }
     }
 
