@@ -37,8 +37,7 @@ from pootle_app.models.signals import (post_file_upload, post_template_update,
                                        post_vc_update)
 from pootle_misc.checks import category_names, check_names
 from pootle_store.signals import translation_submitted
-from pootle_store.util import (OBSOLETE, completestatssum,
-                               suggestions_sum)
+from pootle_store.util import OBSOLETE, suggestions_sum
 
 from .decorators import get_from_cache_for_path
 
@@ -444,48 +443,6 @@ class Goal(TagBase):
 
     def slugify(self, tag, i=None):
         return slugify_tag_name(tag)
-
-    def get_failing_checks_for_path(self, path_obj):
-        """Return a failed quality checks list sorted by importance.
-
-        :param path_obj: A pootle path object.
-        """
-        checks = []
-        goal_stores_for_path = self.get_stores_for_path(path_obj.pootle_path)
-        property_stats = completestatssum(goal_stores_for_path)
-        total = path_obj.get_total_wordcount()
-
-        keys = property_stats.keys()
-        keys.sort(reverse=True)
-
-        for i, category in enumerate(keys):
-            checks.append({
-                'checks': []
-            })
-
-            if category != Category.NO_CATEGORY:
-                checks[i].update({
-                    'name': category,
-                    'display_name': unicode(category_names[category]),
-                })
-
-            cat_keys = property_stats[category].keys()
-            cat_keys.sort()
-
-            for checkname in cat_keys:
-                checkcount = property_stats[category][checkname]
-
-                if total and checkcount:
-                    check_display = unicode(check_names.get(checkname,
-                                                            checkname))
-                    check = {
-                        'name': checkname,
-                        'display_name': check_display,
-                        'count': checkcount,
-                    }
-                    checks[i]['checks'].append(check)
-
-        return checks
 
     def get_incomplete_words_in_path(self, path_obj):
         """Return the number of incomplete words for this goal in the path.
