@@ -681,6 +681,8 @@ html[dir="rtl"] #sidebar
 #sidebar.sidebar-open #staticpage
 {
     display: block;
+    overflow-y: auto;
+    margin: 0;
 }
 
 .sidebar-open #sidebar-toggle:after
