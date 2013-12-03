@@ -36,7 +36,7 @@
       </p>
     </div>
 
-<div class="login{% if not form.errors %} hidden{% endif %}">
+<div class="login{% if not form.errors %} hide{% endif %}">
     <div id="login" class="form" dir="{% locale_dir %}">
     <h2>Provide your existing Pootle credentials</h2>
     <form method="post" action='{% url evernote_login_link %}' name="loginform" id="loginform">

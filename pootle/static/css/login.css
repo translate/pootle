@@ -1,39 +1,10 @@
-.hidden
+#evernote-login
 {
-    display: none;
+    text-align: center;
+    margin: 4em auto;
 }
 
-.form .buttons input[type="button"],
-.form .buttons button
-
-{
-    border: 0;
-    padding: 5px 10px;
-    min-height: 16px;
-    min-width: 110px;
-    border-radius: 5px;
-    box-shadow: 0px 1px 2px #130f30;
-
-    background: linear-gradient(to bottom, #fff, #ccc);
-    color: #130f30;
-}
-
-.form.info span.label
-{
-    font-weight: bold;
-}
-
-.form.evernote input[type="submit"]
-{
-    width: 100%;
-    padding: 20px;
-    font-size: 150%;
-    font-weight: bold;
-
-    background: linear-gradient(to bottom,  #fff,  #5fc500);
-}
-
-#nav-main
+#login-page #nav-main
 {
     visibility: hidden;
 }
