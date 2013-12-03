@@ -485,11 +485,13 @@
       var $body = $('#body'),
           bodyHeight = $body.height(),
           contentAreaHeight = $('#wrapper').height() - $body.offset().top -
-                              parseInt($body.css('padding-bottom'), 10);
+                              parseInt($body.css('padding-bottom'), 10),
+          sidebarHeight = $('#sidebar #staticpage').height() +
+                          $('#footer').height(),
+          newHeight = Math.max(contentAreaHeight, sidebarHeight);
 
       if (bodyHeight < contentAreaHeight) {
-        $body.css('height', contentAreaHeight);
-        $('#sidebar #staticpage').css('height', contentAreaHeight);
+        $body.css('height', newHeight);
       }
     }
 
