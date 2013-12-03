@@ -10,7 +10,7 @@
 {% block content %}
 <div id="login" class="form" dir="{% locale_dir %}">
     <h2>{% trans 'Login to Pootle' %}</h2>
-    <form method="post" action='{{ "/accounts/login/"|l }}' 
+    <form method="post" action="{% url 'pootle-profile-login' %}"
       name="loginform" id="loginform">
     {% csrf_token %}
     {% if form.errors %}
@@ -27,7 +27,7 @@
 </div>
 
 <h2 class="formlink">
-  <a href='{{ "/accounts/password/reset/"|l }}'>{% trans "Lost your Password?" %}</a>
+  <a href="{% url 'pootle-password-reset' %}">{% trans "Lost your Password?" %}</a>
 </h2>
 {% if settings.CAN_REGISTER %}
 <h2 class="formlink">{% trans "Don't have an account yet?" %}
