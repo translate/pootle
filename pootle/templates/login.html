@@ -10,16 +10,6 @@
 {{ block.super }}<li>{% trans "Login" %}</li>
 {% endblock %}
 
-{% block extra_head %}
-    {% assets "css_login" %}
-        <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
-    {% endassets %}
-    {% assets "js_login" %}
-        <script type="text/javascript" src="{{ ASSET_URL }}"></script>
-    {% endassets %}
-{% endblock %}
-
-
 {% block content %}
 <div id="evernote-login">
   <form method="post" action="{% url 'evernote_login' %}">
@@ -30,8 +20,7 @@
 </div>
 
 <div class="formlink pootle">{% trans "or" %}&nbsp;
-  {# FIXME: Set the event handler in js and not in the markup #}
-  <a href="#" onclick="pootle_login(); return false;">
+  <a href="#" class="js-en-auth-login">
       {% trans "Login using your existing Pootle account" %}
   </a>
 </div>

@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% load i18n assets locale %}
+{% load i18n locale %}
 {% load url from future %}
 
 {% block title %}{% trans "We're almost there!" %} | {{ block.super }}{% endblock %}
@@ -7,16 +7,6 @@
 {% block breadcrumbs %}
 {{ block.super }}<li>{% trans "We're almost there!" %}</li>
 {% endblock %}
-
-{% block extra_head %}
-    {% assets "css_login" %}
-        <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
-    {% endassets %}
-    {% assets "js_login" %}
-        <script type="text/javascript" src="{{ ASSET_URL }}"></script>
-    {% endassets %}
-{% endblock %}
-
 
 {% block content %}
     <div class="form question{% if form.errors %} hidden{% endif %}">
@@ -31,8 +21,8 @@
         for you with the default permission set.</p>
 
       <p class="buttons">
-        <button class="btn btn-primary" onclick="link_with_existing(); return false;">Link</button>
-        <button class="btn" onclick="document.location = '{% url evernote_create_login %}{{ request|get_next }}';">Skip this step</button>
+        <button class="btn btn-primary js-en-auth-link">Link</button>
+        <a class="btn" href="{% url evernote_create_login %}{{ request|get_next }}">{% trans "Skip this step" %}</a>
       </p>
     </div>
 
