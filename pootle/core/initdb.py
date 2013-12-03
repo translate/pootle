@@ -39,11 +39,12 @@ from pootle_project.models import Project
 def initdb():
     """Populate the database with default initial data.
 
-    This provides a working Pootle installation.
+    This creates the default database to get a working Pootle installation.
     """
 
     try:
-        # create default cache table
+        #FIXME: Should be called only if using cache on DB.
+        # Create default cache table.
         call_command('createcachetable', 'pootlecache')
     except:
         pass

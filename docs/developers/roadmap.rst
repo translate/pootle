@@ -81,5 +81,5 @@ Things we'd love to do sooner but they are hard or need a sponsor.
   actions in the background with no human intervention at all to reduce errors,
   improve scale.
 - Manage all setup from version control files.
-- Monoligual files -- make Pootle work more reliably directly on monolingual
+- Monolingual files -- make Pootle work more reliably directly on monolingual
   files.
