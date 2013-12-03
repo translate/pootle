@@ -125,13 +125,13 @@
           <div class="buttons translate-buttons-block" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
             {% if cantranslate %}
             <input type="submit" name="submit" tabindex="11" accesskey="s"
-              class="submit unit-submit js-submit" disabled
+              class="btn btn-success submit unit-submit js-submit" disabled
               value="{% trans 'Submit' %}"
               title="{% trans 'Submit translation and go to the next string (Ctrl+Enter)' %}" />
             {% endif %}
             {% if cansuggest %}
             <input type="submit" name="suggest" tabindex="11" accesskey="s"
-              class="suggest unit-submit js-submit" disabled
+              class="btn btn-warning suggest unit-submit js-submit" disabled
               value="{% trans 'Suggest' %}"
               title="{% trans 'Suggest translation and go to the next string (Ctrl+Enter)' %}" />
             {% endif %}
@@ -226,7 +226,8 @@
         <div id="editor-comment" class="hide">
           <form id="comment-form" action="{% url 'pootle-xhr-units-comment' unit.id %}" method="post">
             <p>{{ comment_form.translator_comment }}</p>
-            <p><input type="submit" value="{% trans 'Submit' %}" /></p>
+            <p><input type="submit" class="btn btn-xs btn-primary"
+                      value="{% trans 'Submit' %}" /></p>
           </form>
         </div>
         {% endif %}

@@ -1077,57 +1077,9 @@ li.check > a
     right: 102%;
 }
 
-.translate-buttons-block input[type="submit"]
+.translate-buttons-block .btn
 {
     margin-bottom: 0.5em;
-}
-
-.unit-submit:disabled,
-.unit-submit:disabled:active,
-.unit-submit:disabled:hover
-{
-    border: 0 !important;
-    box-shadow: 0px 0px 2px #000 !important;
-}
-
-.submit.unit-submit:disabled
-{
-    background: linear-gradient(to bottom, #ffe, #ae7) !important;
-}
-
-.suggest.unit-submit:disabled
-{
-    background: linear-gradient(to bottom, #ffe, #ed8) !important;
-}
-
-.buttons input[type="submit"].submit
-{
-    background: linear-gradient(to bottom,  #ffe,  #ae7);
-}
-
-.translate-buttons-block input.submit:hover
-{
-    background: linear-gradient(to bottom,  #fff,  #bf8);
-}
-
-.translate-buttons-block input.submit:active
-{
-    background: linear-gradient(to bottom,  #ae7,  #ffe);
-}
-
-.buttons input[type="submit"].suggest
-{
-    background: linear-gradient(to bottom,  #ffe,  #ed8);
-}
-
-.translate-buttons-block input.suggest:hover
-{
-    background: linear-gradient(to bottom,  #fff,  #fe9);
-}
-
-.translate-buttons-block input.suggest:active
-{
-    background: linear-gradient(to bottom,  #ed8,  #ffe);
 }
 
 .translate-buttons-block input.suggest

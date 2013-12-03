@@ -75,6 +75,7 @@ register('js_editor', js_editor)
 
 css_common = Bundle(
     'css/style.css',
+    'css/buttons.css',
     'css/contact.css',
     'css/magnific-popup.css',
     'css/tipsy.css',

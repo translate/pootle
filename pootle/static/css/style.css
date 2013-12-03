@@ -1123,44 +1123,6 @@ div#update p
 
 
 /*
- * BUTTONS
- */
-
-.btn,
-a.btn,
-input[type="submit"]
-{
-    border: 0;
-    outline: 0;
-    cursor: pointer;
-    display: inline-block;
-    padding: 4px 10px;
-    text-align: center;
-
-    min-height: 16px;
-    min-width: 110px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 2px #000;
-
-    background: linear-gradient(to bottom,  #fff,  #ccc);
-    color: #130f30;
-}
-
-.btn:hover,
-input[type="submit"]:hover
-{
-    text-decoration: none;
-    background: linear-gradient(to bottom,  #fff,  #ddd);
-}
-
-.btn:active,
-input[type="submit"]:active
-{
-    background: linear-gradient(to bottom,  #ccc,  #fff);
-}
-
-
-/*
  * FORMS
  */
 
@@ -1210,35 +1172,6 @@ html[dir="rtl"] .form
 html[dir="rtl"] .form .buttons
 {
     text-align: left;
-}
-
-.disabled,
-input[type="submit"][disabled],
-input[type="submit"][disabled]:hover
-{
-    box-shadow: none;
-
-    background-image: none;
-    background-color: #eee;
-
-    border: 1px solid #d9d9d9;
-
-    opacity: 0.65;
-}
-
-input.delete[type="submit"]
-{
-    background: linear-gradient(to bottom,  #fee,  #fcc);
-}
-
-body.zoom-out-1 input[type="submit"]
-{
-    min-width: 100px;
-}
-
-body.zoom-out-2 input[type="submit"]
-{
-    min-width: 90px;
 }
 
 .formlink
@@ -2507,7 +2440,7 @@ body #file-tabs a.selected-tab
 }
 
 .search-wrapper input[type="text"],
-.search-wrapper .btn
+.search-wrapper .btn-search
 {
     vertical-align: middle;
 }

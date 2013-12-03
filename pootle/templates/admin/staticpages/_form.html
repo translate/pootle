@@ -4,7 +4,7 @@
 <form action="{% url 'pootle-staticpages-delete' page_type object.pk %}"
   method="post" class="pull-{% locale_reverse_align %}">
   {% csrf_token %}
-  <input type="submit" class="delete" value="{% trans 'Delete' %}" />
+  <input type="submit" class="btn btn-danger" value="{% trans 'Delete' %}" />
 </form>
 {% endif %}
 <form action="" method="post" class="staticpages-form">
@@ -23,7 +23,7 @@
     {% include 'admin/staticpages/_field.html' with field=form.body %}
     <div class="control-group">
       <div class="controls">
-        <input type="submit" class="save" value="{% trans 'Save' %}" />
+        <input type="submit" class="btn" value="{% trans 'Save' %}" />
       </div>
     </div>
 </form>
