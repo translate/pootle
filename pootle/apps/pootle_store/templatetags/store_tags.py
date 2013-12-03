@@ -37,6 +37,27 @@ from pootle_store.fields import list_empty
 register = template.Library()
 
 
+PLACEABLE_DESCRIPTIONS = {
+    'AltAttrPlaceable': _("'alt' attribute inside XML tag"),
+    'NewlinePlaceable': _("New-line"),
+    'NumberPlaceable': _("Number"),
+    'QtFormattingPlaceable': _("Qt string formatting variable"),
+    'PythonFormattingPlaceable': _("Python string formatting variable"),
+    'JavaMessageFormatPlaceable': _("Java Message formatting variable"),
+    'FormattingPlaceable': _("String formatting variable"),
+    'UrlPlaceable': _("URI"),
+    'FilePlaceable': _("File location"),
+    'EmailPlaceable': _("Email"),
+    'PunctuationPlaceable': _("Punctuation"),
+    'XMLEntityPlaceable': _("XML entity"),
+    'CapsPlaceable': _("Long all-caps string"),
+    'CamelCasePlaceable': _("Camel case string"),
+    'SpacesPlaceable': _("Unusual space in string"),
+    'XMLTagPlaceable': _("XML tag"),
+    'OptionPlaceable': _("Command line option"),
+}
+
+
 @register.filter
 @stringfilter
 def highlight_placeables(text):
@@ -49,8 +70,15 @@ def highlight_placeables(text):
     for item in flat_items:
         if isinstance(item, BasePlaceable):
             # It is a placeable, so highlight it.
-            output += (u'<span class="placeable js-editor-copytext">'
-                       u'%s</span>') % unicode(item)
+
+            class_name = item.__class__.__name__
+
+            # Provide a description for the placeable using a tooltip.
+            description = PLACEABLE_DESCRIPTIONS.get(class_name,
+                                                     _("Unknown placeable"))
+
+            output += (u'<span class="placeable js-editor-copytext" '
+                       u'title="%s">%s</span>') % (description, unicode(item))
         else:
             # It is not a placeable, so just concatenate to output string.
             output += unicode(item)
