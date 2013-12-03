@@ -18,51 +18,51 @@
 
 
 {% block content %}
+<div id="evernote-login">
+  <form method="post" action="{% url evernote_login %}">
+  {% csrf_token %}
+  <input type="submit" class="btn btn-xl btn-success" value="Login via Evernote"></input>
+  <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+</div>
 
-    <div id="evernote-login">
-        <form method="post" action="{% url evernote_login %}">
-        {% csrf_token %}
-        <input type="submit" class="btn btn-xl btn-success" value="Login via Evernote"></input>
-        <input type="hidden" name="next" value="{{ next }}" />
-        </form>
-    </div>
-    <div class="formlink pootle">{% trans "or" %}&nbsp;
-        {# FIXME: Set the event handler in js and not in the markup #}
-        <a href="#" onclick="pootle_login(); return false;">
-            {% trans "Login using your existing Pootle account" %}
-        </a>
-    </div>
+<div class="formlink pootle">{% trans "or" %}&nbsp;
+  {# FIXME: Set the event handler in js and not in the markup #}
+  <a href="#" onclick="pootle_login(); return false;">
+      {% trans "Login using your existing Pootle account" %}
+  </a>
+</div>
 
 
-<div class="login{% if not form.errors %} hidden{% endif %}">
-    <div id="login" class="form" dir="{% locale_dir %}">
+<div class="login{% if not form.errors %} hide{% endif %}">
+  <div id="login" class="form" dir="{% locale_dir %}">
     <h2>Login</h2>
     <form method="post" action='{{ "/accounts/login/"|l }}' name="loginform" id="loginform">
-    {% csrf_token %}
-    {% if form.errors %}
-        <div class="error">
-        {% trans "Your username and password didn't match. Please try again." %}
-        </div>
-    {% endif %}
-            <p>
-                {{form.username.label_tag}}:
-                {{form.username}}
-            </p>
-            <p>
-                {{form.password.label_tag}}:
-                {{form.password}}
-            </p>
-    <p class="buttons">
-      <input type="submit" class="btn btn-lg btn-primary" name="login"
-        value="{% trans 'Login' %}" />
-      <input type="hidden" name="next" value="{{ next }}" />
-    </p>
+      {% csrf_token %}
+      {% if form.errors %}
+      <div class="error">
+      {% trans "Your username and password didn't match. Please try again." %}
+      </div>
+      {% endif %}
+      <p>
+        {{ form.username.label_tag }}:
+        {{ form.username }}
+      </p>
+      <p>
+        {{ form.password.label_tag }}:
+        {{ form.password }}
+      </p>
+      <p class="buttons">
+        <input type="submit" class="btn btn-lg btn-primary" name="login"
+               value="{% trans 'Login' %}" />
+        <input type="hidden" name="next" value="{{ next }}" />
+      </p>
     </form>
-    </div>
-    <div class="formlink evernote">
-        <a href='{{ "/accounts/password/reset/"|l }}'>
-            {% trans "Lost your Password?" %}
-        </a>
-    </div>
+  </div>
+  <div class="formlink evernote">
+    <a href='{{ "/accounts/password/reset/"|l }}'>
+        {% trans "Lost your Password?" %}
+    </a>
+  </div>
 </div>
 {% endblock content %}
