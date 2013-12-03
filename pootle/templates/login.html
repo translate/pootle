@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
-{% load i18n assets baseurl locale %}
+{% load i18n assets locale %}
+{% load url from future %}
 
 {% block title %}{% trans "Login" %} | {{ block.super }}{% endblock %}
 
@@ -19,7 +20,7 @@
 
 {% block content %}
 <div id="evernote-login">
-  <form method="post" action="{% url evernote_login %}">
+  <form method="post" action="{% url 'evernote_login' %}">
   {% csrf_token %}
   <input type="submit" class="btn btn-xl btn-success" value="Login via Evernote"></input>
   <input type="hidden" name="next" value="{{ next }}" />
@@ -37,7 +38,8 @@
 <div class="login{% if not form.errors %} hide{% endif %}">
   <div id="login" class="form" dir="{% locale_dir %}">
     <h2>Login</h2>
-    <form method="post" action='{{ "/accounts/login/"|l }}' name="loginform" id="loginform">
+    <form method="post" action="{% url 'pootle-profile-login' %}"
+          name="loginform" id="loginform">
       {% csrf_token %}
       {% if form.errors %}
       <div class="error">
@@ -60,7 +62,7 @@
     </form>
   </div>
   <div class="formlink evernote">
-    <a href='{{ "/accounts/password/reset/"|l }}'>
+    <a href="{% url 'pootle-password-reset' %}">
         {% trans "Lost your Password?" %}
     </a>
   </div>

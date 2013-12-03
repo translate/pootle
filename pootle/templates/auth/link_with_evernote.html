@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
-{% load i18n assets baseurl locale %}
+{% load i18n assets locale %}
+{% load url from future %}
 
 {% block title %}{% trans "We're almost there!" %} | {{ block.super }}{% endblock %}
 
@@ -61,7 +62,7 @@
     </div>
 
     <h2 class="formlink">
-      <a href='{{ "/accounts/password/reset/"|l }}'>{% trans "Lost your Password?" %}</a>
+      <a href="{% url 'pootle-password-reset' %}">{% trans "Lost your Password?" %}</a>
     </h2>
 </div>
 {% endblock content %}
