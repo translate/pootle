@@ -30,8 +30,8 @@
         for you with the default permission set.</p>
 
       <p class="buttons">
-        <button onclick="link_with_existing(); return false;">Link</button>
-        <button onclick="document.location = '{% url evernote_create_login %}{{ request|get_next }}';">Skip this step</button>
+        <button class="btn btn-primary" onclick="link_with_existing(); return false;">Link</button>
+        <button class="btn" onclick="document.location = '{% url evernote_create_login %}{{ request|get_next }}';">Skip this step</button>
       </p>
     </div>
 
@@ -54,7 +54,7 @@
                 {{form.password}}
             </p>
     <p class="buttons">
-        <input type="submit" class="login" name="login" value="{% trans 'Link now' %}" />
+        <input type="submit" class="btn btn-primary" name="login" value="{% trans 'Link now' %}" />
         <input type="hidden" name="next" value="{{ next }}" />
     </p>
     </form>

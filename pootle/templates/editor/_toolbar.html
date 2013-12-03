@@ -42,7 +42,7 @@
   <div class="toolbar pull-right">
     <div id="prevnext" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
       <input type="submit" id="js-nav-prev" name="back" accesskey="b"
-        value="{% trans 'Previous' %}"
+        class="btn btn-sm" value="{% trans 'Previous' %}"
         title="{% trans 'Go to the previous string (Ctrl+Up)' %}" />
       <span id="item-navigation">
         <input id="item-number" type="text" value="1" size="4"
@@ -51,7 +51,7 @@
         <span id="items-count" title="{% trans 'Total strings' %}"></span>
       </span>
       <input type="submit" id="js-nav-next" name="skip" accesskey="k"
-        value="{% trans 'Next' %}"
+        class="btn btn-sm" value="{% trans 'Next' %}"
         title="{% trans 'Go to the next string (Ctrl+Down)' %}" />
     </div>
   </div>
