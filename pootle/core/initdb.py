@@ -56,7 +56,16 @@ def initdb():
     create_pootle_permissions()
     create_pootle_permission_sets()
 
-    create_default_db()
+    with transaction.commit_manually():
+        try:
+            create_default_projects()
+            create_default_languages()
+            create_default_admin()
+        except:
+            transaction.rollback()
+            raise
+        else:
+            transaction.commit()
 
     config = siteconfig.load_site_config()
     if not config.get('POOTLE_BUILDVERSION', None):
@@ -64,30 +73,6 @@ def initdb():
     if not config.get('TT_BUILDVERSION', None):
         config.set('TT_BUILDVERSION', code_tt_buildversion)
     config.save()
-
-
-def create_default_db():
-    """This creates the default database to get a working Pootle installation.
-
-    You can tweak the methods called or their implementation elsewhere in the
-    file. This provides some sane default to get things working.
-    """
-    try:
-        transaction.enter_transaction_management()
-        transaction.managed(True)
-
-        create_default_projects()
-        create_default_languages()
-        create_default_admin()
-    except:
-        if transaction.is_dirty():
-            transaction.rollback()
-        raise
-    finally:
-        if transaction.is_managed():
-            if transaction.is_dirty():
-                transaction.commit()
-            transaction.leave_transaction_management()
 
 
 def create_essential_users():
