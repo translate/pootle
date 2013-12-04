@@ -235,3 +235,6 @@ CONTRIBUTORS_EXCLUDED_NAMES = (
 CONTRIBUTORS_EXCLUDED_PROJECT_NAMES = (
 #        "Testing, please don't work here",
 )
+
+# path to word count fucntion
+WORDCOUNT_FUNC = 'translate.storage.statsdb.wordcount'

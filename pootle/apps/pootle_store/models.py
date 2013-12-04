@@ -28,7 +28,7 @@ from hashlib import md5
 
 from django.conf import settings
 from django.contrib.auth.models import User
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, ImproperlyConfigured
 from django.core.files.storage import FileSystemStorage
 from django.core.urlresolvers import reverse
 from django.db import models, IntegrityError
@@ -39,6 +39,7 @@ from django.utils import dateformat, timezone, tzinfo
 from django.utils.translation import ugettext_lazy as _
 from django.utils.http import urlquote
 from django.utils.safestring import mark_safe
+from django.utils.importlib import import_module
 
 from translate.filters.decorators import Category
 from translate.storage import base
@@ -174,12 +175,31 @@ post_delete.connect(delete_votes, sender=Suggestion)
 
 
 ############### Unit ####################
+def import_func(path):
+    i = path.rfind('.')
+    module, attr = path[:i], path[i+1:]
+    try:
+        mod = import_module(module)
+    except ImportError, e:
+        raise ImproperlyConfigured('Error importing module %s: "%s"'
+                                   % (module, e))
+    try:
+        func = getattr(mod, attr)
+    except AttributeError:
+        raise ImproperlyConfigured(
+            'Module "%s" does not define a "%s" callable function'
+            % (module, attr))
+
+    return func
+
+f_path = getattr(settings, 'WORDCOUNT_FUNC', 'translate.storage.statsdb.wordcount')
+wordcount_f = import_func(f_path)
+
 def count_words(strings):
-    from translate.storage import statsdb
     wordcount = 0
 
     for string in strings:
-        wordcount += statsdb.wordcount(string)
+        wordcount += wordcount_f(string)
 
     return wordcount
 
