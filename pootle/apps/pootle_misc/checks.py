@@ -20,6 +20,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import re
+re._MAXCACHE = 2000
 
 from translate.filters.decorators import Category, critical
 from translate.filters import checks
@@ -102,71 +103,147 @@ check_names = {
 
 excluded_filters = ['hassuggestion', 'spellcheck']
 
+# pre-compile all regexps
+
+fmt = u"\{\d+(?:,(?:number|date|time|choice))\}"
+fmt_esc = u"\\\{\d+\\\}"
+java_format_regex = re.compile(u"(%s|%s)" % (fmt, fmt_esc))
+
+fmt = u"\$\{[\w\.\:]+\}"
+template_format_regex = re.compile(u"(%s)" % fmt, re.U)
+
+fmt = u"%\d+\$[a-z]+"
+android_format_regex = re.compile(u"(%s)" % fmt, re.U)
+
+fmt = u"%@|%\d+\$@"
+objective_c_format_regex = re.compile(u"(%s)" % fmt, re.U)
+
+fmt = u"\\\\u[a-fA-F0-9]{4}"
+javaencoded_unicode_regex = re.compile(u"(%s)" % fmt, re.U)
+
+fmt = u"\$[\w\d]+?\$"
+dollar_sign_placeholders_regex = re.compile(u"(%s)" % fmt, re.U)
+
+fmt = u"\%[\w\d]+?\%"
+percent_sign_placeholders_regex = re.compile(u"(%s)" % fmt, re.U)
+
+fmt = u"[A-Z_][A-Z0-9]*_[A-Z0-9_]*"
+uppercase_placeholders_regex = re.compile(u"(%s)" % fmt, re.U)
+
+fmt3 = u"\{{3}\S+?\}{3}"
+fmt2 = u"\{{2}\S+?\}{2}"
+fmt1 = u"\{{1}\S+?\}{1}"
+mustache_placeholders_regex = re.compile(u"(%s|%s|%s)" % (fmt3, fmt2, fmt1), re.U)
+
+fmt = u"\{{2}[#\^\/]\S+?\}{2}"
+mustache_placeholder_pairs_regex = re.compile(u"(%s)" % fmt, re.U)
+
+date_format_regex_0 = re.compile(u"^([GyMwWDdFEaHkKhmsSzZ]+[^\w]*)+$", re.U)
+date_format_regex_1 = re.compile(u"^(Days|May|SMS|M|S|W|F|add)$", re.I|re.U)
+date_format_regex_2 = re.compile(u"^(h:mm a|h:mm aa|hh:mm a|hh:mm aa)$", re.U)
+date_format_regex_3 = re.compile(u"^(H:mm|HH:mm)$", re.U)
+date_format_regex_4 = re.compile(u"^EEEE, MMMM d yyyy, (h:mm a|h:mm aa|hh:mm a|hh:mm aa)$", re.U)
+date_format_regex_5 = re.compile(u"^(EEEE, MMMM d yyyy|EEEE, d MMMM yyyy), (H:mm|HH:mm)$", re.U)
+date_format_regex_6 = re.compile(u"^MMMM yyyy$", re.U)
+date_format_regex_7 = re.compile(u"^yyyy'年'MMMM$", re.U)
+date_format_regex_8 = re.compile(u"[^\w]+", re.U)
+
+fmt = u"^\s+|\s+$"
+whitespace_regex = re.compile(u"(%s)" % fmt, re.U)
+
+fmt = u"&amp;|&"
+unescaped_ampersands_regex = re.compile(u"(%s)" % fmt, re.U)
+
+img_banner_regex = re.compile(u'^\<img src="\/images\/account\/bnr_', re.U)
+
+fmt1 = u"\b(?!alt|placeholder|title)\w+\s*=\s*'(?:.*?)'"
+fmt2 = u'\b(?!alt|placeholder|title)\w+\s*=\s*"(?:.*?)"'
+changed_attributes_regex = re.compile(u"(%s|%s)" % (fmt2, fmt1), re.U)
+
+fmt = u"%[\d]*(?:.\d+)*(?:h|l|I|I32|I64)*[cdiouxefgns]"
+c_format_regex = re.compile(u"(%s)" % fmt, re.U)
+
+fmt = u"[\000-\011\013-\037]"
+non_printable_regex = re.compile(u"(%s)" % fmt, re.U)
+
+fmt = u"[\<\>]"
+unbalanced_tag_braces_regex = re.compile(u"(%s)" % fmt, re.U)
+
+fmt = u"[\{\}]"
+unbalanced_curly_braces_regex = re.compile(u"(%s)" % fmt, re.U)
+
+fmt = u'^<(Sync Required|None|no attributes|no tags|' + \
+    u'no saved|searches|notebook|not available)>$'
+no_tags_regex = re.compile(fmt, re.U)
+
+fmt = u"<\/?[\w]+.*?>"
+unbalanced_tags_regex_0 = re.compile(u"(%s)" % fmt, re.U)
+unbalanced_tags_regex_1 = re.compile(u"<(\/?[\w]+).*?>", re.U)
+
+accelerators_regex_0 = re.compile(u"&(\w+);", re.U)
+fmt = u"[&_\^]"
+accelerators_regex_1 = re.compile(u"(%s)(?=\w)" % fmt, re.U)
+
+fmt = u"&#?[0-9a-zA-Z]+;?"
+broken_entities_regex_0 = re.compile(u"(%s)" % fmt, re.U)
+entities = ['amp', 'deg', 'frac14', 'frac12', 'frac34',
+    'lt', 'gt', 'nbsp', 'mdash', 'ndash', 'hellip',
+    'laquo', 'raquo', 'ldquo', 'rdquo',
+    'lsquo', 'rsquo', 'larr', 'rarr'
+]
+broken_entities_regex_1 = re.compile(u"^&(%s)$" % '|'.join(entities), re.U)
+broken_entities_regex_2 = re.compile(u"^&#x?[0-9a-fA-F]$", re.U)
+broken_entities_regex_3 = re.compile(u"&\d+;", re.U)
+broken_entities_regex_4 = re.compile(u"&x[0-9a-fA-F]+;", re.U)
+broken_entities_regex_5 = re.compile(u"&#([^x\d])([0-9a-fA-F]+);")
+broken_entities_regex_6 = re.compile(u"&#(\d+);")
+broken_entities_regex_7 = re.compile(u"&#x(\w+);", re.U)
+
+
 class ENChecker(checks.TranslationChecker):
 
     @critical
     def java_format(self, str1, str2):
-        fmt = u"\{\d+(?:,(?:number|date|time|choice))\}"
-        fmt_esc = u"\\\{\d+\\\}"
-        regex = re.compile(u"(%s|%s)" % (fmt, fmt_esc))
-        return _generic_check(str1, str2, regex, u"java_format")
+        return _generic_check(str1, str2, java_format_regex, u"java_format")
 
     @critical
     def template_format(self, str1, str2):
-        fmt = u"\$\{[\w\.\:]+\}"
-        regex = re.compile(u"(%s)" % fmt, re.U)
-        return _generic_check(str1, str2, regex, u"template_format")
+        return _generic_check(str1, str2, template_format_regex, u"template_format")
 
     @critical
     def android_format(self, str1, str2):
         fmt = u"%\d+\$[a-z]+"
         regex = re.compile(u"(%s)" % fmt, re.U)
-        return _generic_check(str1, str2, regex, u"android_format")
+        return _generic_check(str1, str2, android_format_regex, u"android_format")
 
     @critical
     def objective_c_format(self, str1, str2):
-        fmt = u"%@|%\d+\$@"
-        regex = re.compile(u"(%s)" % fmt, re.U)
-        return _generic_check(str1, str2, regex, u"objective_c_format")
+        return _generic_check(str1, str2, objective_c_format_regex, u"objective_c_format")
 
     @critical
     def javaencoded_unicode(self, str1, str2):
-        fmt = u"\\\\u[a-fA-F0-9]{4}"
-        regex = re.compile(u"(%s)" % fmt, re.U)
-        return _generic_check(str1, str2, regex, u"javaencoded_unicode")
+        return _generic_check(str1, str2, javaencoded_unicode_regex, u"javaencoded_unicode")
 
     @critical
     def dollar_sign_placeholders(self, str1, str2):
-        fmt = u"\$[\w\d]+?\$"
-        regex = re.compile(u"(%s)" % fmt, re.U)
-        return _generic_check(str1, str2, regex, u"dollar_sign_placeholders")
+        return _generic_check(str1, str2, dollar_sign_placeholders_regex, u"dollar_sign_placeholders")
 
     @critical
     def percent_sign_placeholders(self, str1, str2):
-        fmt = u"\%[\w\d]+?\%"
-        regex = re.compile(u"(%s)" % fmt, re.U)
-        return _generic_check(str1, str2, regex, u"percent_sign_placeholders")
+        return _generic_check(str1, str2, percent_sign_placeholders_regex, u"percent_sign_placeholders")
 
     @critical
     def uppercase_placeholders(self, str1, str2):
-        fmt = u"[A-Z_][A-Z0-9]*_[A-Z0-9_]*"
-        regex = re.compile(u"(%s)" % fmt, re.U)
-        return _generic_check(str1, str2, regex, u"uppercase_placeholders")
+        return _generic_check(str1, str2, uppercase_placeholders_regex, u"uppercase_placeholders")
 
     @critical
     def mustache_placeholders(self, str1, str2):
-        fmt3 = u"\{{3}\S+?\}{3}"
-        fmt2 = u"\{{2}\S+?\}{2}"
-        fmt1 = u"\{{1}\S+?\}{1}"
-        regex = re.compile(u"(%s|%s|%s)" % (fmt3, fmt2, fmt1), re.U)
-        return _generic_check(str1, str2, regex, u"mustache_placeholders")
+        return _generic_check(str1, str2, mustache_placeholders_regex, u"mustache_placeholders")
 
     @critical
     def mustache_placeholder_pairs(self, str1, str2):
         def get_fingerprint(str, is_source=False, translation=''):
-            fmt = u"\{{2}[#\^\/]\S+?\}{2}"
-            regex = re.compile(u"(%s)" % fmt, re.U)
-            chunks = regex.split(str)
+            chunks = mustache_placeholder_pairs_regex.split(str)
             translate = False
             fingerprint = 1
             stack = []
@@ -206,41 +283,27 @@ class ENChecker(checks.TranslationChecker):
     def date_format(self, str1, str2):
         def get_fingerprint(str, is_source=False, translation=''):
             if is_source:
-                regex = re.compile(u"^([GyMwWDdFEaHkKhmsSzZ]+[^\w]*)+$", re.U)
-                if not regex.match(str):
+                if not date_format_regex_0.match(str):
                     return None
 
                 # filter out specific English strings which are not dates
-                regex = re.compile(u"^(Days|May|SMS|M|S|W|F|add)$", re.I|re.U)
-                if regex.match(str):
+                if date_format_regex_1.match(str):
                     return None
 
                 # filter out specific translation pairs
-                regex = re.compile(u"^(h:mm a|h:mm aa|hh:mm a|hh:mm aa)$", re.U)
-                if regex.match(str):
-                    regex = re.compile(u"^(H:mm|HH:mm)$", re.U)
-                    if regex.match(translation):
+                if date_format_regex_2.match(str):
+                    if date_format_regex_3.match(translation):
                         return None
 
-                regex = re.compile(
-                    u"^EEEE, MMMM d yyyy, (h:mm a|h:mm aa|hh:mm a|hh:mm aa)$",
-                    re.U
-                )
-                if regex.match(str):
-                    regex = re.compile(
-                        u"^(EEEE, MMMM d yyyy|EEEE, d MMMM yyyy), (H:mm|HH:mm)$"
-                    )
-                    if regex.match(translation):
+                if date_format_regex_4.match(str):
+                    if date_format_regex_5.match(translation):
                         return None
 
-                regex = re.compile(u"^MMMM yyyy$", re.U)
-                if regex.match(str):
-                    regex = re.compile(u"^yyyy'年'MMMM$")
-                    if regex.match(translation):
+                if date_format_regex_6.match(str):
+                    if date_format_regex_7.match(translation):
                         return None
 
-            regex = re.compile(u"[^\w]+", re.U)
-            fingerprint = u"\001".join(sorted(regex.split(str)))
+            fingerprint = u"\001".join(sorted(date_format_regex_8.split(str)))
 
             return fingerprint
 
@@ -252,9 +315,7 @@ class ENChecker(checks.TranslationChecker):
     @critical
     def whitespace(self, str1, str2):
         def get_fingerprint(str, is_source=False, translation=''):
-            fmt = u"^\s+|\s+$"
-            regex = re.compile(u"(%s)" % fmt, re.U)
-            chunks = regex.split(str)
+            chunks = whitespace_regex.split(str)
             translate = False
             fp_data = []
 
@@ -284,9 +345,7 @@ class ENChecker(checks.TranslationChecker):
             if is_source and u"&" not in translation:
                 return None
 
-            fmt = u"&amp;|&"
-            regex = re.compile(u"(%s)" % fmt, re.U)
-            chunks = regex.split(str)
+            chunks = unescaped_ampersands_regex.split(str)
             translate = False
             fingerprint = 0
             escaped_count = 0
@@ -325,16 +384,10 @@ class ENChecker(checks.TranslationChecker):
             # hardcoded rule: skip web banner images which are translated
             # differently
             if is_source:
-                regex = re.compile(u'^\<img src="\/images\/account\/bnr_',
-                                   re.U)
-                if regex.match(str):
+                if img_banner_regex.match(str):
                     return None
 
-            fmt1 = u"\b(?!alt|placeholder|title)\w+\s*=\s*'(?:.*?)'"
-            fmt2 = u'\b(?!alt|placeholder|title)\w+\s*=\s*"(?:.*?)"'
-
-            regex = re.compile(u"(%s|%s)" % (fmt2, fmt1), re.U)
-            chunks = regex.split(str)
+            chunks = changed_attributes_regex.split(str)
             translate = False
             fingerprint = ''
             d = {}
@@ -364,9 +417,7 @@ class ENChecker(checks.TranslationChecker):
     @critical
     def c_format(self, str1, str2):
         def get_fingerprint(str, is_source=False, translation=''):
-            sprintf = u"%[\d]*(?:.\d+)*(?:h|l|I|I32|I64)*[cdiouxefgns]"
-            regex = re.compile(u"(%s)" % sprintf, re.U)
-            chunks = regex.split(str)
+            chunks = c_format_regex.split(str)
             translate = False
             fingerprint = ''
             for chunk in chunks:
@@ -389,10 +440,7 @@ class ENChecker(checks.TranslationChecker):
     @critical
     def non_printable(self, str1, str2):
         def get_fingerprint(str, is_source=False, translation=''):
-            fmt = u"[\000-\011\013-\037]"
-            regex = re.compile(u"(%s)" % fmt, re.U)
-
-            chunks = regex.split(str)
+            chunks = non_printable_regex.split(str)
             translate = False
             fingerprint = ''
 
@@ -416,10 +464,7 @@ class ENChecker(checks.TranslationChecker):
     @critical
     def unbalanced_tag_braces(self, str1, str2):
         def get_fingerprint(str, is_source=False, translation=''):
-            fmt = u"[\<\>]"
-            regex = re.compile(u"(%s)" % fmt, re.U)
-
-            chunks = regex.split(str)
+            chunks = unbalanced_tag_braces_regex.split(str)
             translate = False
             count = 0
             level = 0
@@ -459,10 +504,7 @@ class ENChecker(checks.TranslationChecker):
     @critical
     def unbalanced_curly_braces(self, str1, str2):
         def get_fingerprint(str, is_source=False, translation=''):
-            fmt = u"[\{\}]"
-            regex = re.compile(u"(%s)" % fmt, re.U)
-
-            chunks = regex.split(str)
+            chunks = unbalanced_curly_braces_regex.split(str)
             translate = False
             count = 0
             level = 0
@@ -502,22 +544,15 @@ class ENChecker(checks.TranslationChecker):
             if is_source:
                 # hardcoded rule: skip web banner images which are translated
                 # differently
-                fmt = u'^\<img src="\/images\/account\/bnr_/'
-                if re.compile(fmt, re.U).match(str):
+                if img_banner_regex.match(str):
                     return None
 
                 # hardcoded rules for strings that look like tags but are
                 # not them
-                fmt = u'^<(Sync Required|None|no attributes|no tags|' + \
-                      u'no saved|searches|notebook|not available)>$'
-
-                if re.compile(fmt, re.U).match(str):
+                if no_tags_regex.match(str):
                     return None
 
-            fmt = u"<\/?[\w]+.*?>"
-            regex = re.compile(u"(%s)" % fmt, re.U)
-
-            chunks = regex.split(str)
+            chunks = unbalanced_tags_regex_0.split(str)
             translate = False
             fingerprint = ''
             d = {}
@@ -529,8 +564,7 @@ class ENChecker(checks.TranslationChecker):
                     continue
 
                 # special text
-                regex = re.compile(u"<(\/?[\w]+).*?>", re.U)
-                mo = regex.match(chunk)
+                mo = unbalanced_tags_regex_1.match(chunk)
 
                 if mo:
                     tag = mo.group(1)
@@ -559,19 +593,12 @@ class ENChecker(checks.TranslationChecker):
             #            alt="Allow Account Access" />
             # To:   <h1>Allow Konto Zugriff</h1>
             if is_source:
-                fmt = u'^<img src="\/images\/account\/bnr_'
-                if re.compile(fmt, re.U):
+                if img_banner_regex.match(str):
                     return None
 
-
             # temporarily escape HTML entities
-            regex = re.compile(u"&(\w+);", re.U)
-            s = regex.sub(r'\001\1\001', str)
-
-            fmt = u"[&_\^]"
-            regex = re.compile(u"(%s)(?=\w)" % fmt, re.U)
-
-            chunks = regex.split(s)
+            s = accelerators_regex_0.sub(r'\001\1\001', str)
+            chunks = accelerators_regex_1.split(s)
             translate = False
             ampersand_count = 0
             underscore_count = 0
@@ -610,8 +637,7 @@ class ENChecker(checks.TranslationChecker):
     @critical
     def broken_entities(self, str1, str2):
         def get_fingerprint(str, is_source=False, translation=''):
-            regex = re.compile(u"(&#?[0-9a-zA-Z]+;?)", re.U)
-            chunks = regex.split(str)
+            chunks = broken_entities_regex_0.split(str)
             translate = False
             fingerprint = 1
             
@@ -625,37 +651,27 @@ class ENChecker(checks.TranslationChecker):
                 # check if ';' is present at the end for some known named
                 # entities that should never match as false positives in
                 # the normal text
-                entities = ['amp', 'deg', 'frac14', 'frac12', 'frac34',
-                    'lt', 'gt', 'nbsp', 'mdash', 'ndash', 'hellip',
-                    'laquo', 'raquo', 'ldquo', 'rdquo',
-                    'lsquo', 'rsquo', 'larr', 'rarr'
-                ]
-                regex = re.compile(u"^&(%s)$" % '|'.join(entities), re.U)
-                if regex.match(chunk):
+                if broken_entities_regex_1.match(chunk):
                     fingerprint += 1
 
                 # check if ';' is present at the end for numeric and
                 # hexadecimal entities
-                regex = re.compile(u"^&#x?[0-9a-fA-F]$", re.U)
-                if regex.match(chunk):
+                if broken_entities_regex_2.match(chunk):
                     fingerprint += 1
 
                 # check if a prefix '#' symbol is missing for a numeric
                 # entity
-                regex = re.compile(u"&\d+;", re.U)
-                if regex.match(chunk):
+                if broken_entities_regex_3.match(chunk):
                     fingerprint += 1
 
                 # check if a prefix '#' symbol is missing for a hexadecimal
                 # entity
-                regex = re.compile(u"&x[0-9a-fA-F]+;", re.U)
-                if regex.match(chunk):
+                if broken_entities_regex_4.match(chunk):
                     fingerprint += 1
 
                 # check if a prefix 'x' symbol is missing (or replaced with
                 # something else) for a hexadecimal entity
-                regex = re.compile(u"&#([^x\d])([0-9a-fA-F]+);")
-                mo = regex.match(chunk)
+                mo = broken_entities_regex_5.match(chunk)
                 if mo:
                     regex = re.compile(u"\D", re.U)
                     if regex.match(mo.group(1)) or \
@@ -667,8 +683,7 @@ class ENChecker(checks.TranslationChecker):
                 # mistakes in real-life XML/HTML entities
 
                 # check if a numbered entity is within acceptable range
-                regex = re.compile(u"&#(\d+);")
-                mo = regex.match(chunk)
+                mo = broken_entities_regex_6.match(chunk)
                 if mo:
                     number = int(mo.group(1))
                     if (number < 32 and number != 10) or number > 65535:
@@ -676,8 +691,7 @@ class ENChecker(checks.TranslationChecker):
 
                 # check if a hexadecimal numbered entity length is within
                 # acceptable range
-                regex = re.compile(u"&#x(\w+);", re.U)
-                mo = regex.match(chunk)
+                mo = broken_entities_regex_7.match(chunk)
                 if mo:
                     v = int(mo.group(1), 16)
                     if (v < 32 and v != 10) or v > 65535:
