@@ -20,8 +20,12 @@
 
 import re
 
+from translate.misc.multistring import multistring
+from translate.storage.placeables import general
+
 from django import template
 from django.core.exceptions import ObjectDoesNotExist
+from django.template.defaultfilters import stringfilter
 try:
     from django.template.loaders.filesystem import _loader as Loader
 except ImportError:
@@ -30,13 +34,73 @@ except ImportError:
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 
-from translate.misc.multistring import multistring
-
-from pootle_misc.templatetags.cleanhtml import fancy_escape, fancy_highlight
 from pootle_store.fields import list_empty
 
 
 register = template.Library()
+
+
+IMAGE_URL_RE = re.compile("(https?://[^\s]+\.(png|jpe?g|gif))")
+@register.filter
+def image_urls(text):
+    """Return a list of image URLs extracted from `text`."""
+    return map(lambda x: x[0], IMAGE_URL_RE.findall(text))
+
+
+ESCAPE_RE = re.compile('<[^<]*?>|\\\\|\r\n|[\r\n\t&<>]')
+def fancy_escape(text):
+    """Replace special chars with entities, and highlight XML tags and
+    whitespaces.
+    """
+    def replace(match):
+        escape_highlight = ('<span class="highlight-escape '
+                            'js-editor-copytext">%s</span>')
+        submap = {
+            '\r\n': (escape_highlight % '\\r\\n') + '<br/>\n',
+            '\r': (escape_highlight % '\\r') + '<br/>\n',
+            '\n': (escape_highlight % '\\n') + '<br/>\n',
+            '\t': (escape_highlight % '\\t'),
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '\\': (escape_highlight % '\\\\'),
+        }
+        try:
+            return submap[match.group()]
+        except KeyError:
+            html_highlight = ('<span class="highlight-html '
+                              'js-editor-copytext">&lt;%s&gt;</span>')
+            return html_highlight % fancy_escape(match.group()[1:-1])
+
+    return ESCAPE_RE.sub(replace, text)
+
+
+WHITESPACE_RE = re.compile('^ +| +$|[\r\n\t] +| {2,}')
+def fancy_spaces(text):
+    """Highlight spaces to make them easily visible."""
+    def replace(match):
+        fancy_space = '<span class="translation-space"> </span>'
+        if match.group().startswith(' '):
+            return fancy_space * len(match.group())
+        return match.group()[0] + fancy_space * (len(match.group()) - 1)
+    return WHITESPACE_RE.sub(replace, text)
+
+
+PUNCTUATION_RE = general.PunctuationPlaceable().regex
+def fancy_punctuation_chars(text):
+    """Wrap punctuation chars found in the ``text`` around tags."""
+    def replace(match):
+        fancy_special_char = ('<span class="highlight-punctuation '
+                              'js-editor-copytext">%s</span>')
+        return fancy_special_char % match.group()
+
+    return PUNCTUATION_RE.sub(replace, text)
+
+
+@register.filter
+@stringfilter
+def fancy_highlight(text):
+    return mark_safe(fancy_punctuation_chars(fancy_spaces(fancy_escape(text))))
 
 
 def call_highlight(old, new):
