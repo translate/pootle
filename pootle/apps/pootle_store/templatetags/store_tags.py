@@ -36,8 +36,6 @@ register = template.Library()
 
 
 IMAGE_URL_RE = re.compile("(https?://[^\s]+\.(png|jpe?g|gif))")
-
-
 @register.filter
 def image_urls(text):
     """Return a list of image URLs extracted from `text`."""
