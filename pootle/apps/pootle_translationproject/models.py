@@ -251,14 +251,6 @@ class TranslationProject(models.Model, TreeItem):
                        skip_missing=skip_missing,
                        modified_since=modified_since)
 
-    def get_latest_submission(self):
-        """Get the latest submission done in the Translation project"""
-        try:
-            sub = Submission.objects.filter(translation_project=self).latest()
-        except Submission.DoesNotExist:
-            return ''
-        return sub.get_submission_message()
-
     def get_mtime(self):
         return self.directory.get_mtime()
 
@@ -381,30 +373,6 @@ class TranslationProject(models.Model, TreeItem):
         return self.non_db_state.termmatcher
 
     ###########################################################################
-
-    #FIXME: we should cache results to ease live translation
-    def translate_message(self, singular, plural=None, n=1):
-        for store in self.stores.iterator():
-            unit = store.findunit(singular)
-            if unit is not None and unit.istranslated():
-                if unit.hasplural() and n != 1:
-                    pluralequation = self.language.pluralequation
-
-                    if pluralequation:
-                        pluralfn = gettext.c2py(pluralequation)
-                        target =  unit.target.strings[pluralfn(n)]
-
-                        if target is not None:
-                            return target
-                else:
-                    return unit.target
-
-        # No translation found
-        if n != 1 and plural is not None:
-            return plural
-        else:
-            return singular
-
 
 def scan_languages(sender, instance, created=False, raw=False, **kwargs):
     if not created or raw:

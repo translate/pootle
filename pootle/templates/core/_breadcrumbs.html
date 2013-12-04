@@ -22,3 +22,18 @@
     {% endfor %}
   </select>
 </li>
+{% if project %}
+<li>
+  <select id="js-select-resource"
+          data-initial-code="{{ resource_obj.pootle_path }}"
+    style="visibility: hidden;">
+    <option value=""></option>
+    {% for res in project.resources %}
+    <option value="{{ proj.code }}"
+      {% if res.pootle_path == resource_obj.pootle_path %} selected="selected"{% endif %}>
+      {{ res.pootle_path }}
+    </option>
+    {% endfor %}
+  </select>
+</li>
+{% endif %}
