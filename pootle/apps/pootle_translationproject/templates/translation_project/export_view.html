@@ -115,7 +115,7 @@
         {% for i, source, title in unit|pluralize_source %}
           <div lang="{{ source_language.code }}"
             dir="{{ source_language.direction }}">
-            {{ source|fancy_highlight }}
+            {{ source|highlight_placeables }}
           </div>
         {% endfor %}
         {% if unit.getcontext %}
@@ -127,7 +127,7 @@
         <td>
         {% for i, target, title in unit|pluralize_target %}
           <div dir="{{ language.direction }}" lang="{{ language.code }}">
-            {{ target|fancy_highlight }}
+            {{ target|highlight_placeables }}
           </div>
         {% endfor %}
         <div class="unit-number">

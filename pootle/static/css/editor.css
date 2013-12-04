@@ -1234,7 +1234,8 @@ a.editor-specialchar:hover
     color: #840;
 }
 
-.placeable:hover
+.placeable:hover,
+.highlight-escape:hover
 {
     color: #000;
     background-color: #90ee90;
