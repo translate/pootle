@@ -1135,7 +1135,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                         mtime = timezone.make_aware(mtime, tz)
                     else:
                         mtime -= datetime.timedelta(hours=2)
-            except Exception, e:
+            except Exception as e:
                 logging.debug("failed to parse mtime: %s", e)
         return mtime
 
