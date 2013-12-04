@@ -1590,10 +1590,14 @@
     var defaults = {hasData: false, replace: false};
     opts = $.extend({}, defaults, opts);
 
-    editCtxRowBefore = PTL.editor.tmpl.editCtx({hasData: opts.hasData,
-                                                extraCls: 'before'});
-    editCtxRowAfter = PTL.editor.tmpl.editCtx({hasData: opts.hasData,
-                                               extraCls: 'after'});
+    var editCtxRowBefore = PTL.editor.tmpl.editCtx({
+      hasData: opts.hasData,
+      extraCls: 'before'
+    });
+    var editCtxRowAfter = PTL.editor.tmpl.editCtx({
+      hasData: opts.hasData,
+      extraCls: 'after'
+    });
 
     if (opts.replace) {
       $("tr.edit-ctx.before").replaceWith(editCtxRowBefore);
