@@ -129,6 +129,8 @@ require less on-demand calculation of expensive statistics.
 When the ``--calculate-checks`` option is set, quality checks will be
 recalculated for all existing units in the database.
 
+When the ``--calculate-wordcount`` option is set, source_wordcount and
+target_wordcount will be recalculated for all existing units in the database.
 
 .. _commands#sync_stores:
 

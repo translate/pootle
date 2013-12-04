@@ -37,7 +37,7 @@ from pootle_language.models import Language
 from pootle_misc.util import datetime_min
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
-from pootle_store.models import Store, Unit, QualityCheck, Suggestion
+from pootle_store.models import Store, Unit, QualityCheck, Suggestion, count_words
 from pootle_store.util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED
 
 from . import PootleCommand
@@ -50,7 +50,11 @@ class Command(PootleCommand):
         make_option('--calculate-checks', dest='calculate_checks',
                     action='store_true',
                     help='To recalculate quality checks for all strings'),
-        )
+        make_option('--calculate-wordcount', dest='calculate_wordcount',
+                    action='store_true',
+                    help='To recalculate wordcount for all strings'),
+    )
+
     option_list = PootleCommand.option_list + shared_option_list
 
     def handle_noargs(self, **options):
@@ -85,6 +89,7 @@ class Command(PootleCommand):
     def handle_all(self, **options):
         timeout = settings.OBJECT_CACHE_TIMEOUT
         calculate_checks = options.get('calculate_checks', False)
+        calculate_wordcount = options.get('calculate_wordcount', False)
 
         logging.info('Initializing stores...')
         self._init_stores()
@@ -92,11 +97,28 @@ class Command(PootleCommand):
         if calculate_checks:
             logging.info('Calculating quality checks for all units...')
             QualityCheck.objects.all().delete()
-
+            i = 0
             for store in Store.objects.iterator():
-                logging.info("update_qualitychecks %s" % store.pootle_path)
+                logging.info("update_qualitychecks for %s" % store.pootle_path)
                 for unit in store.units.iterator():
+                    i += 1
                     unit.update_qualitychecks(created=True)
+                    if i % 1000 == 0:
+                        logging.info("update_qualitychecks %d" % i)
+                logging.info("update_qualitychecks %d" % i)
+
+        if calculate_wordcount:
+            logging.info('Calculating wordcount for all units...')
+            i = 0
+            for store in Store.objects.iterator():
+                logging.info("calculate wordcount for %s" % store.pootle_path)
+                for unit in store.units.iterator():
+                    i += 1
+                    unit.source_wordcount = count_words(unit.source_f.strings)
+                    unit.target_wordcount = count_words(unit.target_f.strings)
+                    unit.save()
+
+                logging.info("units %d" % i)
 
         logging.info('Setting quality check stats values for all stores...')
         self._set_qualitycheck_stats(timeout)
