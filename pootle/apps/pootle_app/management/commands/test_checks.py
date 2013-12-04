@@ -70,8 +70,8 @@ class Command(NoArgsCommand):
         if unit_id:
             try:
                 unit = Unit.objects.get(id=unit_id)
-                source = unit.source_f
-                target = unit.target_f
+                source = unit.source
+                target = unit.target
             except Unit.DoesNotExist, e:
                 raise CommandError(e.message)
 
