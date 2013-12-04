@@ -231,7 +231,7 @@ class UnitManager(RelatedManager):
 
         # /projects/<project_code>/translate/*
         if lang is None and proj is not None:
-            units_path = ''.join(['/%/', proj ,'/%'])
+            units_path = ''.join(['/%/', proj, '/%'])
         # /<lang_code>/<project_code>/translate/*
         # /<lang_code>/translate/*
         # /translate/*
