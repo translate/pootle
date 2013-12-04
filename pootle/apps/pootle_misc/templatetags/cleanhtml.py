@@ -61,34 +61,6 @@ def fancy_escape(text):
     return ESCAPE_RE.sub(replace, text)
 
 
-WHITESPACE_RE = re.compile('^ +| +$|[\r\n\t] +| {2,}')
-def fancy_spaces(text):
-    """Highlight spaces to make them easily visible"""
-    def replace(match):
-        fancy_space = '<span class="translation-space"> </span>'
-        if match.group().startswith(' '):
-            return fancy_space * len(match.group())
-        return match.group()[0] + fancy_space * (len(match.group()) - 1)
-    return WHITESPACE_RE.sub(replace, text)
-
-
-PUNCTUATION_RE = general.PunctuationPlaceable().regex
-def fancy_punctuation_chars(text):
-    """Wraps punctuation chars found in the ``text`` around tags."""
-    def replace(match):
-        fancy_special_char = ('<span class="highlight-punctuation '
-                              'js-editor-copytext">%s</span>')
-        return fancy_special_char % match.group()
-
-    return PUNCTUATION_RE.sub(replace, text)
-
-
-@register.filter
-@stringfilter
-def fancy_highlight(text):
-    return mark_safe(fancy_punctuation_chars(fancy_spaces(fancy_escape(text))))
-
-
 @register.filter
 @stringfilter
 def clean(text):
