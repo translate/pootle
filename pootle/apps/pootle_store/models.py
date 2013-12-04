@@ -389,6 +389,9 @@ class Unit(models.Model, base.TranslationUnit):
             self.source_hash = md5(self.source_f.encode("utf-8")).hexdigest()
             self.source_wordcount = count_words(self.source_f.strings)
             self.source_length = len(self.source_f)
+            # auto-translate unit
+            if self.source_wordcount == 0:
+                self.target = self.source
 
         if self._target_updated:
             # update target related fields
