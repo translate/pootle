@@ -1,19 +1,10 @@
 {% extends browser_extends %}
-{% load assets baseurl cache cleanhtml i18n locale search translation_project_tags common_tags profile_tags %}
+{% load assets cleanhtml i18n locale search translation_project_tags common_tags profile_tags %}
 {% load url from future %}
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block body_id %}{{ browser_body_id }}{% endblock %}
 {% block body_class %}{{ block.super }} js-not-loaded{% endblock %}
-
-{% block breadcrumbs %}
-  {{ block.super }}
-  {% if resource_path %}
-  {% cache settings.CACHE_TIMEOUT path_trail resource_obj.id %}
-    <li class="file-path"><a href="{{ translation_project.pootle_path|l }}">&lt; {% trans "root folder" %} &gt;</a> / {{ resource_obj|trail:"/" }}</li>
-  {% endcache %}
-  {% endif %}
-{% endblock %}
 
 {% block header_content_block %}
 <div id="top-stats" class="header">

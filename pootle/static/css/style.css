@@ -2043,18 +2043,6 @@ body.js-not-loaded #translate-actions li
     content: normal;
 }
 
-.breadcrumb li.file-path
-{
-    font-weight: normal;
-    font-size: 90%;
-    color: #999;
-}
-
-.breadcrumb li.file-path span
-{
-    color: #000;
-}
-
 /* select2 dropdown widgets in breadcrumbs */
 
 .breadcrumb .select2-container .select2-choice
