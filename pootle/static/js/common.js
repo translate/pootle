@@ -33,18 +33,6 @@
               langCode = $('#js-select-language').val();
           PTL.common.navigateTo(langCode, projectCode);
       });
-      PTL.utils.makeSelectableInput('#js-select-resource',
-        {
-          allowClear: true,
-          dropdownAutoWidth: true,
-          dropdownCssClass: 'breadcrumb-dropdown',
-          placeholder: gettext("All Resources"),
-          width: 'off'
-        },
-        function (e) {
-          alert($(this).val());
-        }
-      );
 
       // Append fragment identifiers for login redirects
       $('#navbar').on('focus click', '#js-login', function (e) {
