@@ -1305,3 +1305,62 @@ table.history td
 {
     padding: 5px;
 }
+
+/* Keyboard shortcuts dialog */
+
+#keyboard-button
+{
+    float: right;
+    margin: 0;
+    margin-top: .8em;
+    margin-right: 2em;
+    text-align: center;
+    line-height: 1.5em;
+    font-size: 1em;
+    vertical-align: text-top;
+}
+
+html[dir="rtl"] #keyboard-button
+{
+    float: left;
+    margin-right: 0;
+}
+
+#keyboard-button .kbd-icon
+{
+    float: right;
+    font-size: 1.5em;
+    margin: 0;
+    margin-left: .3em;
+}
+
+html[dir="rtl"] #keyboard-button .kbd-icon
+{
+    float: left;
+    margin-right: .3em;
+    margin-left: 0;
+}
+
+td.keyboard-shortcut
+{
+    padding: 1em;
+    font-weight: bold;
+}
+
+kbd
+{
+    border: 1px solid #aaa;
+    -webkit-border-radius: 2px;
+       -moz-border-radius: 2px;
+            border-radius: 2px;
+    -webkit-box-shadow: 1px 2px 2px #ddd;
+       -moz-box-shadow: 1px 2px 2px #ddd;
+            box-shadow: 1px 2px 2px #ddd;
+    background-color: #f9f9f9;
+    background-image: -webkit-linear-gradient(top, #eee, #f9f9f9, #eee);
+       background-image: -moz-linear-gradient(top, #eee, #f9f9f9, #eee);
+         background-image: -o-linear-gradient(top, #eee, #f9f9f9, #eee);
+            background-image: linear-gradient(top, #eee, #f9f9f9, #eee);
+    padding: 1px 3px;
+    font-family: inherit;
+}
