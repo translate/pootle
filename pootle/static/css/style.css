@@ -2281,18 +2281,6 @@ html[dir="rtl"] .breadcrumb li
     content: normal;
 }
 
-.breadcrumb li.file-path
-{
-    font-weight: normal;
-    font-size: 90%;
-    color: #999;
-}
-
-.breadcrumb li.file-path span
-{
-    color: #000;
-}
-
 /* Tabs */
 
 #tabs,

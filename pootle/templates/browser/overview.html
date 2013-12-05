@@ -7,13 +7,6 @@
 {% block body_id %}{{ browser_body_id }}{% endblock %}
 {% block body_class %}{{ block.super }} js-not-loaded{% endblock %}
 
-{% block breadcrumbs %}
-  {{ block.super }}
-  {% if resource_path %}
-    <li class="file-path"><a href="{% url 'pootle-tp-overview' language.code project.code '' %}">&lt; {% trans "root folder" %} &gt;</a> / {{ resource_obj|trail:"/" }}</li>
-  {% endif %}
-{% endblock %}
-
 {% block header_content_block %}
 <div id="top-stats" class="header">
   {% block header_content %}
