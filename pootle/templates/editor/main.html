@@ -10,6 +10,11 @@
 
 {% block body_id %}{{ editor_body_id }}{% endblock %}
 
+{% block breadcrumbs_block %}
+{{ block.super }}
+{% include 'editor/_keyboard_shortcuts_help.html' %}
+{% endblock %}
+
 {% block search %}
 {% endblock %}
 
