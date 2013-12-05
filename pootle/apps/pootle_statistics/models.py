@@ -76,6 +76,12 @@ class Submission(models.Model):
         null=True,
         db_index=True,
     )
+    check = models.ForeignKey(
+        'pootle_store.QualityCheck',
+        blank=True,
+        null=True,
+        db_index=True,
+    )
     # The field that was changed in the unit.
     field = models.IntegerField(null=True, blank=True, db_index=True)
 
