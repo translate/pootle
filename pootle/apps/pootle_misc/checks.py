@@ -192,7 +192,7 @@ entities = ['amp', 'deg', 'frac14', 'frac12', 'frac34',
     'lsquo', 'rsquo', 'larr', 'rarr'
 ]
 broken_entities_regex_1 = re.compile(u"^&(%s)$" % '|'.join(entities), re.U)
-broken_entities_regex_2 = re.compile(u"^&#x?[0-9a-fA-F]$", re.U)
+broken_entities_regex_2 = re.compile(u"^&#x?[0-9a-fA-F]+$", re.U)
 broken_entities_regex_3 = re.compile(u"&\d+;", re.U)
 broken_entities_regex_4 = re.compile(u"&x[0-9a-fA-F]+;", re.U)
 broken_entities_regex_5 = re.compile(u"&#([^x\d])([0-9a-fA-F]+);")
