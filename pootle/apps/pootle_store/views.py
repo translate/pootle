@@ -44,7 +44,7 @@ from django.views.decorators.http import require_POST
 
 from taggit.models import Tag
 
-from pootle.core.decorators import (get_path_obj, get_resource_context,
+from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
 from pootle.core.exceptions import Http400
 from pootle.core.url_helpers import split_pootle_path
@@ -695,7 +695,7 @@ def timeline(request, unit):
 @ajax_required
 @get_path_obj
 @permission_required('view')
-@get_resource_context
+@get_resource
 def get_qualitycheck_stats(request, path_obj, **kwargs):
     qc_stats = request.resource_obj.get_checks()
 
@@ -705,7 +705,7 @@ def get_qualitycheck_stats(request, path_obj, **kwargs):
 @ajax_required
 @get_path_obj
 @permission_required('view')
-@get_resource_context
+@get_resource
 def get_overview_stats(request, path_obj, **kwargs):
     stats = request.resource_obj.get_stats()
 

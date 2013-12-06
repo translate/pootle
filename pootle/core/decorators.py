@@ -106,7 +106,7 @@ def get_path_obj(func):
     return wrapped
 
 
-def get_resource_context(func):
+def get_resource(func):
     @wraps(func)
     def wrapped(request, path_obj, dir_path, *args, **kwargs):
         """Load :cls:`pootle_app.models.Directory` and
