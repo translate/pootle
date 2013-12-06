@@ -163,8 +163,7 @@ def make_project_list_item(project):
 
 
 def get_children(directory):
-    """Return a list of children directories and stores for this ``directory``,
-    and also the parent directory.
+    """Return a list of children directories and stores for this ``directory``.
 
     The elements of the list are dictionaries which keys are populated after in
     the templates.
