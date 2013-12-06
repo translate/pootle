@@ -21,11 +21,9 @@
 
 import locale
 
-from django import forms
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.utils.translation import ugettext as _
 
 from pootle.core.browser import (make_language_item,
                                  make_xlanguage_item,
@@ -39,9 +37,7 @@ from pootle.core.helpers import (get_export_view_context,
 from pootle.core.url_helpers import split_pootle_path
 from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions
-from pootle_language.models import Language
-from pootle_misc.forms import LiberalModelChoiceField
-from pootle_project.models import Project
+from pootle_project.forms import tp_form_factory
 from pootle_translationproject.models import TranslationProject
 
 
@@ -115,30 +111,7 @@ def export_view(request, project, dir_path, filename):
 @permission_required('administrate')
 def project_admin(request, current_project):
     """Adding and deleting project languages."""
-
-    template_translation_project = current_project \
-                                        .get_template_translationproject()
-
-
-    class TranslationProjectForm(forms.ModelForm):
-
-        project = forms.ModelChoiceField(
-                queryset=Project.objects.filter(pk=current_project.pk),
-                initial=current_project.pk, widget=forms.HiddenInput
-        )
-        language = LiberalModelChoiceField(
-                label=_("Language"),
-                queryset=Language.objects.exclude(
-                    translationproject__project=current_project),
-                widget=forms.Select(attrs={
-                    'class': 'js-select2 select2-language',
-                }),
-        )
-
-        class Meta:
-            prefix = "existing_language"
-            model = TranslationProject
-            fields = ('language', 'project', 'disabled',)
+    tp_form_class = tp_form_factory(current_project)
 
     queryset = TranslationProject.objects.filter(project=current_project) \
                                          .order_by('pootle_path')
@@ -160,7 +133,7 @@ def project_admin(request, current_project):
     return util.edit(request, 'projects/admin/languages.html',
                      TranslationProject, ctx, generate_link,
                      linkfield="language", queryset=queryset,
-                     can_delete=True, form=TranslationProjectForm)
+                     can_delete=True, form=tp_form_class)
 
 
 @get_path_obj
