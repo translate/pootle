@@ -50,7 +50,8 @@ def required_depcheck():
     else:
         trans_vars = {
             'installed': version,
-            'required': ".".join(str(i) for i in depcheck.translate_required_ver)
+            'required': ".".join([str(i) for i in
+                                  depcheck.translate_min_required_ver]),
         }
         text = _("Translate Toolkit version %(installed)s installed. Pootle "
                  "requires at least version %(required)s.", trans_vars)
@@ -82,12 +83,13 @@ def required_depcheck():
         text = _('lxml version %s is installed.', version)
         state = 'tick'
     elif version is not None:
-        required_ver = ".".join(str(i) for i in depcheck.lxml_required_ver)
+        trans_vars = {
+            'installed': version,
+            'required': ".".join([str(i) for i in
+                                  depcheck.lxml_min_required_ver]),
+        }
         text = _("lxml version %(installed)s is installed. Pootle requires at "
-                 "least version %(required)s.", {
-                     'installed': version,
-                     'required': required_ver,
-                 })
+                 "least version %(required)s.", trans_vars)
         state = 'error'
     else:
         text = _('lxml is not installed. Pootle requires lxml.')
