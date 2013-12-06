@@ -154,7 +154,7 @@ def make_project_list_item(project):
     return item
 
 
-def get_children(translation_project, directory):
+def get_children(directory):
     """Returns a list of children directories and stores for this
     ``directory``.
 

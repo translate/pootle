@@ -118,7 +118,7 @@ def overview(request, translation_project, dir_path, filename=None):
                 'fields': table_fields,
                 'headings': get_table_headings(table_fields),
                 'parent': get_parent(directory),
-                'items': get_children(translation_project, directory),
+                'items': get_children(directory),
             }
         })
 

@@ -57,7 +57,6 @@ def overview(request, project):
                     'suggestions', 'critical', 'last-updated', 'activity']
     table = {
         'id': 'project',
-        'proportional': False,
         'fields': table_fields,
         'headings': get_table_headings(table_fields),
         'items': items,
