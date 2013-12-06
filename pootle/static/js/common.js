@@ -7,6 +7,13 @@
     init: function () {
       setInterval($.fn.tipsy.revalidate, 1000);
 
+      $(".js-select2").select2({
+        width: "resolve"
+      });
+
+      // Hide the help messages for the Select2 multiple selects.
+      $("select[multiple].js-select2").siblings("span.help_text").hide();
+
       // Append fragment identifiers for login redirects
       $('#navbar').on('focus click', '#js-login', function (e) {
         var $anchor = $(this),
@@ -163,16 +170,8 @@
 
 }(jQuery));
 
-$(function ($) {
-  PTL.zoom.init();
+$(function () {
   PTL.common.init();
-
-  $(".js-select2").select2({
-    width: "resolve"
-  });
-
-  // Hide the help messages for the Select2 multiple selects.
-  $("select[multiple].js-select2").siblings("span.help_text").hide();
 });
 
 // We can't use `e.persisted` here. See bug 2949 for reference

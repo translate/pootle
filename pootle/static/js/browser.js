@@ -3,6 +3,7 @@
   window.PTL = window.PTL || {};
 
   var sel = {
+    breadcrumbs: '.js-breadcrumb',
     language: '#js-select-language',
     project: '#js-select-project',
     resource: '#js-select-resource'
@@ -32,6 +33,8 @@
       makeNavDropdown(sel.language, gettext("All Languages"));
       makeNavDropdown(sel.project, gettext("All Projects"));
       makeNavDropdown(sel.resource, gettext("All Resources"));
+
+      $(sel.breadcrumbs).css('visibility', 'visible');
     },
 
     /* Navigates to `languageCode`, `projectCode`, `resource` while
@@ -94,8 +97,6 @@
 }(jQuery));
 
 
-$(function ($) {
+$(function () {
   PTL.browser.init();
-
-  $('.js-breadcrumb').css('visibility', 'visible');
 });
