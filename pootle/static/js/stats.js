@@ -142,14 +142,18 @@
     },
 
     updateLastUpdates: function (stats) {
+      if (stats.lastupdated) {
         $('#js-last-updated').toggle(stats.lastupdated.snippet !== '');
         if (stats.lastupdated.snippet) {
           $('#js-last-updated .last-updated').html(stats.lastupdated.snippet);
         }
+      }
+      if (stats.lastaction) {
         $('#js-last-action').toggle(stats.lastaction.snippet !== '');
         if (stats.lastaction.snippet) {
           $('#js-last-action .last-action').html(stats.lastaction.snippet);
         }
+      }
     },
 
     load: function (callback) {
