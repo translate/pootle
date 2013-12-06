@@ -106,54 +106,59 @@ def get_path_obj(func):
     return wrapped
 
 
+def set_resource(request, path_obj, dir_path, filename):
+    """Load :cls:`pootle_app.models.Directory` and
+    :cls:`pootle_store.models.Store` models and populate the request
+    object.
+
+    :param path_obj: A path-like object object.
+    :param dir_path: Path relative to the root of `path_obj`.
+    :param filename: Optional filename.
+    """
+    ctx_path = path_obj.directory.pootle_path
+    resource_path = dir_path
+    pootle_path = ctx_path + dir_path
+
+    directory = None
+    store = None
+
+    if filename:
+        pootle_path = pootle_path + filename
+        resource_path = resource_path + filename
+
+        try:
+            store = Store.objects.select_related(
+                'translation_project',
+                'parent',
+            ).get(pootle_path=pootle_path)
+            directory = store.parent
+        except Store.DoesNotExist:
+            raise Http404
+
+    if directory is None:
+        if dir_path:
+            directory = get_object_or_404(Directory,
+                                          pootle_path=pootle_path)
+        else:
+            directory = path_obj.directory
+
+    request.store = store
+    request.directory = directory
+    request.pootle_path = pootle_path
+
+    request.resource_obj = store or (directory if dir_path else path_obj)
+    request.resource_path = resource_path
+    request.ctx_obj = path_obj or request.resource_obj
+    request.ctx_path = ctx_path
+
+
 def get_resource(func):
     @wraps(func)
     def wrapped(request, path_obj, dir_path, *args, **kwargs):
-        """Load :cls:`pootle_app.models.Directory` and
-        :cls:`pootle_store.models.Store` models and populate the request
-        object.
-
-        :param path_obj: A path-like object object.
-        :param dir_path: Path relative to the root of `path_obj`.
-        :param filename: Optional filename.
-        """
+        """Get resources associated to the current context."""
         filename = kwargs.pop('filename', '')
 
-        ctx_path = path_obj.directory.pootle_path
-        resource_path = dir_path
-        pootle_path = ctx_path + dir_path
-
-        directory = None
-        store = None
-
-        if filename:
-            pootle_path = pootle_path + filename
-            resource_path = resource_path + filename
-
-            try:
-                store = Store.objects.select_related(
-                    'translation_project',
-                    'parent',
-                ).get(pootle_path=pootle_path)
-                directory = store.parent
-            except Store.DoesNotExist:
-                raise Http404
-
-        if directory is None:
-            if dir_path:
-                directory = get_object_or_404(Directory,
-                                              pootle_path=pootle_path)
-            else:
-                directory = path_obj.directory
-
-        request.store = store
-        request.directory = directory
-        request.pootle_path = pootle_path
-
-        request.resource_obj = store or (directory if dir_path else path_obj)
-        request.resource_path = resource_path
-        request.ctx_obj = path_obj or request.resource_obj
-        request.ctx_path = ctx_path
+        set_resource(request, path_obj, dir_path, filename)
 
         return func(request, path_obj, dir_path=dir_path, filename=filename, *args, **kwargs)
 
