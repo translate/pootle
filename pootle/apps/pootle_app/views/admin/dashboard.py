@@ -58,7 +58,12 @@ def required_depcheck():
         text = _("Translate Toolkit version %(installed)s installed. Pootle "
                  "requires at least version %(required)s.", trans_vars)
         state = 'error'
-    required.append({'dependency': 'translate', 'state': state, 'text': text})
+
+    required.append({
+        'dependency': 'translate',
+        'state': state,
+        'text': text,
+    })
 
     status, version = depcheck.test_django()
     if status:
@@ -68,7 +73,12 @@ def required_depcheck():
         text = _("Django version %s is installed, but a higher version is "
                  "highly recommended.", version)
         state = 'error'
-    required.append({'dependency': 'django', 'state': state, 'text': text})
+
+    required.append({
+        'dependency': 'django',
+        'state': state,
+        'text': text,
+    })
 
     status, version = depcheck.test_lxml()
     if status:
@@ -86,7 +96,11 @@ def required_depcheck():
         text = _('lxml is not installed. Pootle requires lxml.')
         state = 'error'
 
-    required.append({'dependency': 'lxml', 'state': state, 'text': text})
+    required.append({
+        'dependency': 'lxml',
+        'state': state,
+        'text': text,
+    })
 
     return required
 
