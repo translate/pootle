@@ -123,7 +123,7 @@ class SearchForm(forms.Form):
 
 class TermSearchForm(SearchForm):
     """Search form for terminology projects and pootle-terminology files."""
-    # Mostly the same as SearchForm, but defining it this way seemed easiest
+    # Mostly the same as SearchForm, but defining it this way seemed easiest.
     sfields = forms.ChoiceField(
         required=False,
         widget=forms.CheckboxSelectMultiple,

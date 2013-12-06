@@ -364,7 +364,8 @@ class TranslationProjectFormSet(forms.models.BaseModelFormSet):
 @get_path_obj
 @permission_required('administrate')
 def project_admin(request, current_project):
-    """adding and deleting project languages"""
+    """Adding and deleting project languages."""
+
     template_translation_project = current_project \
                                         .get_template_translationproject()
 
@@ -405,8 +406,8 @@ def project_admin(request, current_project):
                     not self.instance.stores.count()):
                     self.instance.update_against_templates()
 
-    queryset = TranslationProject.objects.filter(
-            project=current_project).order_by('pootle_path')
+    queryset = TranslationProject.objects.filter(project=current_project) \
+                                         .order_by('pootle_path')
 
     model_args = {
         'project': {
@@ -435,7 +436,6 @@ def project_admin_permissions(request, project):
         "directory": project.directory,
         "feed_path": project.pootle_path[1:],
     }
-
     return admin_permissions(request, project.directory,
                              "project/admin_permissions.html", template_vars)
 

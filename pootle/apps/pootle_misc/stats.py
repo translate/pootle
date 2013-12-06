@@ -73,29 +73,29 @@ def get_processed_stats(quick_stats):
             'words': quick_stats['totalsourcewords'],
             'percentage': 100,
             'units': quick_stats['total'],
-            },
+        },
         'translated': {
             'words': quick_stats['translatedsourcewords'],
             'percentage': quick_stats['translatedpercentage'],
             'units': quick_stats['translated'],
-            },
+        },
         'fuzzy': {
             'words': quick_stats['fuzzysourcewords'],
             'percentage': quick_stats['fuzzypercentage'],
             'units': quick_stats['fuzzy'],
-            },
+        },
         'untranslated': {
             'words': quick_stats['untranslatedsourcewords'],
             'percentage': quick_stats['untranslatedpercentage'],
             'units': quick_stats['untranslated'],
-            },
+        },
         'errors': quick_stats['errors'],
         'suggestions': -1,
     }
 
 
 def get_raw_stats(path_obj, include_suggestions=False):
-    """Returns a dictionary of raw stats for `path_obj`.
+    """Return a dictionary of raw stats for `path_obj`.
 
     :param path_obj: A Directory/Store object.
     :param include_suggestions: Whether to include suggestion count in the
@@ -118,7 +118,7 @@ def get_raw_stats(path_obj, include_suggestions=False):
 
 
 def get_translation_stats(path_obj, path_stats):
-    """Returns a list of statistics for ``path_obj`` ready to be displayed.
+    """Return a list of statistics for ``path_obj`` ready to be displayed.
 
     :param path_obj: A :cls:`pootle_app.models.directory.Directory` or
                      :cls:`pootle_store.models.Store` object.
@@ -162,7 +162,7 @@ def get_translation_stats(path_obj, path_stats):
 
 
 def get_path_summary(path_obj, path_stats, latest_action):
-    """Returns a list of sentences to be displayed for each ``path_obj``."""
+    """Return a list of sentences to be displayed for each ``path_obj``."""
     summary = []
     incomplete = []
     suggestions = []
@@ -196,7 +196,7 @@ def get_path_summary(path_obj, path_stats, latest_action):
     project = tp.project
     language = tp.language
 
-    # Build URL for getting more summary information for the current path
+    # Build URL for getting more summary information for the current path.
     url_args = [language.code, project.code, path_obj.path]
     url_path_summary_more = reverse('tp.path_summary_more', args=url_args)
 
@@ -208,7 +208,9 @@ def get_path_summary(path_obj, path_stats, latest_action):
     ]))
 
 
-    if path_stats['untranslated']['words'] > 0 or path_stats['fuzzy']['words'] > 0:
+    if (path_stats['untranslated']['words'] > 0 or
+        path_stats['fuzzy']['words'] > 0):
+
         num_words = path_stats['untranslated']['words'] + path_stats['fuzzy']['words']
         incomplete.extend([
             u'<a class="path-incomplete" href="%(url)s">' % {
@@ -269,14 +271,14 @@ def get_path_summary(path_obj, path_stats, latest_action):
 
 
 def stats_message_raw(version, stats):
-    """Builds a message of statistics used in VCS actions."""
+    """Build a message of statistics used in VCS actions."""
     return "%s: %d of %d strings translated (%d need review)." % \
            (version, stats.get("translated", 0), stats.get("total", 0),
             stats.get("fuzzy", 0))
 
 
 def stats_message(version, stats):
-    """Builds a localized message of statistics used in VCS actions."""
+    """Build a localized message of statistics used in VCS actions."""
     # Translators: 'type' is the type of VCS file: working, remote,
     # or merged copy.
     return ungettext(u"%(type)s: %(translated)d of %(total)d string translated "
@@ -293,7 +295,7 @@ def stats_message(version, stats):
 
 
 def stats_descriptions(quick_stats):
-    """Provides a dictionary with two textual descriptions of the work
+    """Provide a dictionary with two textual descriptions of the work
     outstanding.
     """
     total_words = quick_stats["total"]["words"]
