@@ -180,7 +180,6 @@ def overview(request, project):
         'can_edit': check_permission("administrate", request),
         'table': {
             'id': 'project',
-            'proportional': False,
             'fields': table_fields,
             'headings': get_table_headings(table_fields),
             'items': items,
