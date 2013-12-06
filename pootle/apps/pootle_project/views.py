@@ -40,14 +40,13 @@ from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions
 from pootle_app.views.index.index import getprojects
 from pootle_app.views.top_stats import gentopstats_project, gentopstats_root
-from pootle_language.models import Language
 from pootle_misc.baseurl import l
 from pootle_misc.browser import get_table_headings
-from pootle_misc.forms import LiberalModelChoiceField
 from pootle_misc.stats import get_raw_stats, stats_descriptions
 from pootle_misc.util import ajax_required, jsonify
 from pootle_profile.models import get_profile
-from pootle_project.forms import TranslationProjectTagForm
+from pootle_project.forms import (TranslationProjectFormSet,
+                                  TranslationProjectTagForm, tp_form_factory)
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
 from pootle_tagging.models import Goal
@@ -346,19 +345,8 @@ def translate(request, project):
                               context_instance=RequestContext(request))
 
 
-class TranslationProjectFormSet(forms.models.BaseModelFormSet):
-
-    def save_existing(self, form, instance, commit=True):
-        result = super(TranslationProjectFormSet, self) \
-                .save_existing(form, instance, commit)
-        form.process_extra_fields()
-        return result
 
 
-    def save_new(self, form, commit=True):
-        result = super(TranslationProjectFormSet, self).save_new(form, commit)
-        form.process_extra_fields()
-        return result
 
 
 @get_path_obj
@@ -366,45 +354,7 @@ class TranslationProjectFormSet(forms.models.BaseModelFormSet):
 def project_admin(request, current_project):
     """Adding and deleting project languages."""
 
-    template_translation_project = current_project \
-                                        .get_template_translationproject()
-
-
-    class TranslationProjectForm(forms.ModelForm):
-
-        if template_translation_project is not None:
-            update = forms.BooleanField(required=False,
-                                        label=_("Update against templates"))
-
-        #FIXME: maybe we can detect if initialize is needed to avoid
-        # displaying it when not relevant
-        #initialize = forms.BooleanField(required=False, label=_("Initialize"))
-
-        project = forms.ModelChoiceField(
-                queryset=Project.objects.filter(pk=current_project.pk),
-                initial=current_project.pk, widget=forms.HiddenInput
-        )
-        language = LiberalModelChoiceField(
-                label=_("Language"),
-                queryset=Language.objects.exclude(
-                    translationproject__project=current_project),
-                widget=forms.Select(attrs={
-                    'class': 'js-select2 select2-language',
-                }),
-        )
-
-        class Meta:
-            prefix = "existing_language"
-            model = TranslationProject
-
-        def process_extra_fields(self):
-            if self.instance.pk is not None:
-                if self.cleaned_data.get('initialize', None):
-                    self.instance.initialize()
-
-                if (self.cleaned_data.get('update', None) or
-                    not self.instance.stores.count()):
-                    self.instance.update_against_templates()
+    tp_form_class = tp_form_factory(current_project)
 
     queryset = TranslationProject.objects.filter(project=current_project) \
                                          .order_by('pootle_path')
@@ -423,7 +373,7 @@ def project_admin(request, current_project):
 
     return util.edit(request, 'project/project_admin.html', TranslationProject,
                      model_args, link, linkfield="language", queryset=queryset,
-                     can_delete=True, form=TranslationProjectForm,
+                     can_delete=True, form=tp_form_class,
                      formset=TranslationProjectFormSet,
                      exclude=('description',))
 

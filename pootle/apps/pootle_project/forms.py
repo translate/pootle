@@ -17,7 +17,10 @@
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 from django import forms
+from django.utils.translation import ugettext as _
 
+from pootle_language.models import Language
+from pootle_misc.forms import LiberalModelChoiceField
 from pootle_project.models import Project
 from pootle_tagging.forms import TagForm
 from pootle_translationproject.models import TranslationProject
@@ -47,3 +50,63 @@ class TranslationProjectTagForm(TagForm):
                 'class': 'hide',
             }),
         )
+
+
+class TranslationProjectFormSet(forms.models.BaseModelFormSet):
+
+    def save_existing(self, form, instance, commit=True):
+        result = super(TranslationProjectFormSet, self) \
+                 .save_existing(form, instance, commit)
+        form.process_extra_fields()
+        return result
+
+    def save_new(self, form, commit=True):
+        result = super(TranslationProjectFormSet, self).save_new(form, commit)
+        form.process_extra_fields()
+        return result
+
+
+def tp_form_factory(current_project):
+
+    template_tp = current_project.get_template_translationproject()
+
+    class TranslationProjectForm(forms.ModelForm):
+
+        if template_tp is not None:
+            update = forms.BooleanField(
+                required=False,
+                label=_("Update against templates"),
+            )
+
+        #FIXME: maybe we can detect if initialize is needed to avoid
+        # displaying it when not relevant.
+        #initialize = forms.BooleanField(required=False, label=_("Initialize"))
+
+        project = forms.ModelChoiceField(
+                queryset=Project.objects.filter(pk=current_project.pk),
+                initial=current_project.pk,
+                widget=forms.HiddenInput,
+        )
+        language = LiberalModelChoiceField(
+                label=_("Language"),
+                queryset=Language.objects.exclude(
+                    translationproject__project=current_project),
+                widget=forms.Select(attrs={
+                    'class': 'js-select2 select2-language',
+                }),
+        )
+
+        class Meta:
+            prefix = "existing_language"
+            model = TranslationProject
+
+        def process_extra_fields(self):
+            if self.instance.pk is not None:
+                if self.cleaned_data.get('initialize', None):
+                    self.instance.initialize()
+
+                if (self.cleaned_data.get('update', None) or
+                    not self.instance.stores.count()):
+                    self.instance.update_against_templates()
+
+    return TranslationProjectForm
