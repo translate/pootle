@@ -33,6 +33,7 @@ js_common = Bundle(
     'js/vendor/jquery/jquery.select2.js',
     'js/vendor/bootstrap/bootstrap-alert.js',
     'js/vendor/bootstrap/bootstrap-transition.js',
+    'js/browser.js',
     'js/captcha.js',
     'js/common.js',
     'js/languages.js',
