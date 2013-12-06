@@ -67,3 +67,7 @@
   };
 
 }(jQuery));
+
+$(function () {
+  PTL.zoom.init();
+});
