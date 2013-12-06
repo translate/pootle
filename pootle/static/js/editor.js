@@ -1094,10 +1094,6 @@
 
     oldRows.remove();
 
-    // This fixes the issue with tipsy popups staying on the screen
-    // if their owner elements have been removed
-    $('.tipsy').remove(); // kill all open tipsy popups
-
     if (newTbody !== false) {
       where.append(newTbody);
 
@@ -2045,7 +2041,6 @@
         }
         element.fadeOut(200, function () {
           $(this).remove();
-          $('.tipsy').remove();
         });
       }, "json");
   },

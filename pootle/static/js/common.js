@@ -5,6 +5,8 @@
   PTL.common = {
 
     init: function () {
+	setInterval($.fn.tipsy.revalidate, 1000);
+
       PTL.utils.makeSelectableInput('#js-select-language',
         {
           allowClear: true,
