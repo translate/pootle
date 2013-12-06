@@ -36,7 +36,7 @@ from django.views.decorators.cache import never_cache
 from translate.filters.decorators import Category
 from translate.lang import data
 
-from pootle.core.decorators import (get_path_obj, get_resource_context,
+from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
 from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.models.permissions import check_profile_permission
@@ -628,7 +628,7 @@ def get_edit_unit(request, unit):
 @ajax_required
 @get_path_obj
 @permission_required('view')
-@get_resource_context
+@get_resource
 def get_qualitycheck_stats(request, path_obj, **kwargs):
     qc_stats = request.resource_obj.get_checks()
 
@@ -638,7 +638,7 @@ def get_qualitycheck_stats(request, path_obj, **kwargs):
 @ajax_required
 @get_path_obj
 @permission_required('view')
-@get_resource_context
+@get_resource
 def get_overview_stats(request, path_obj, **kwargs):
     stats = request.resource_obj.get_stats()
 

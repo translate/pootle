@@ -26,7 +26,7 @@ from django.template import RequestContext
 from django.utils import dateformat, simplejson
 
 from pootle.core.browser import get_children, get_table_headings, get_parent
-from pootle.core.decorators import (get_path_obj, get_resource_context,
+from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
 from pootle.core.helpers import (get_export_view_context,
                                  get_overview_context,
@@ -58,7 +58,7 @@ def admin_permissions(request, translation_project):
 
 @get_path_obj
 @permission_required('view')
-@get_resource_context
+@get_resource
 def overview(request, translation_project, dir_path, filename=None):
     project = translation_project.project
     language = translation_project.language
@@ -135,7 +135,7 @@ def overview(request, translation_project, dir_path, filename=None):
 
 @get_path_obj
 @permission_required('view')
-@get_resource_context
+@get_resource
 def translate(request, translation_project, dir_path, filename):
     language = translation_project.language
     project = translation_project.project
@@ -159,7 +159,7 @@ def translate(request, translation_project, dir_path, filename):
 
 @get_path_obj
 @permission_required('view')
-@get_resource_context
+@get_resource
 def export_view(request, translation_project, dir_path, filename=None):
     """Displays a list of units with filters applied."""
     ctx = get_export_view_context(request)
