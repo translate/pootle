@@ -1874,7 +1874,7 @@
         error;
 
     if (falsePositive) {
-      post.mute = 1
+      post.mute = 1;
     }
 
     $.post(url, post,
