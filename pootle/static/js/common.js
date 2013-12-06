@@ -472,13 +472,3 @@
 $(function () {
   PTL.common.init();
 });
-
-// We can't use `e.persisted` here. See bug 2949 for reference
-window.addEventListener('pageshow', function (e) {
-  var selectors = ['#js-select-language', '#js-select-project'];
-  for (var i=0; i<selectors.length; i++) {
-    var $el = $(selectors[i]),
-        initial = $el.data('initial-code');
-    $el.select2('val', initial);
-  }
-}, false);

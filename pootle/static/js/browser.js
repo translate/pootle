@@ -27,6 +27,16 @@
     );
   };
 
+  var fixDropdowns = function (e) {
+    // We can't use `e.persisted` here. See bug 2949 for reference
+    var selectors = [sel.language, sel.project, sel.resource];
+    for (var i=0; i<selectors.length; i++) {
+      var $el = $(selectors[i]),
+          initial = $el.data('initial-code');
+      $el.select2('val', initial);
+    }
+  };
+
   PTL.browser = {
 
     init: function () {
@@ -93,6 +103,8 @@
     }
 
   };
+
+  $(window).on('pageshow', fixDropdowns);
 
 }(jQuery));
 
