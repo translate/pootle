@@ -1062,6 +1062,21 @@ li.check > a
     vertical-align: middle;
 }
 
+.check .unmute-check
+{
+    display: none;
+}
+
+.check.false-positive .mute-check
+{
+    display: none;
+}
+
+.check.false-positive .unmute-check
+{
+    display: inline-block;
+}
+
 /* CONTROLS */
 
 .translate-buttons-block

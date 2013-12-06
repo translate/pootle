@@ -37,6 +37,8 @@ TRANSLATION_DELETED = 'D'
 UNIT_CREATED = 'C'
 UNIT_REMOVED = 'R'
 
+MUTE_QUALITYCHECK = 'QM'
+UNMUTE_QUALITYCHECK = 'QU'
 
 # Unit States
 #: Unit is no longer part of the store

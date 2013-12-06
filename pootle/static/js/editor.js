@@ -118,7 +118,7 @@
     $(document).on('click', '.js-vote-up', this.voteUp);
     $(document).on('click', '#js-show-timeline', this.showTimeline);
     $(document).on('click', '#js-hide-timeline', this.hideTimeline);
-    $(document).on('click', '#translate-checks-block .js-reject-check', this.rejectCheck);
+    $(document).on('click', '.js-toggle-check', this.toggleCheck);
 
     /* Filtering */
     $("#filter-checks").hide();
@@ -178,7 +178,7 @@
                        'First page: Ctrl+Shift+Home'].join('<br/>'))
       );
     }
-    
+
     shortcut.add('ctrl+shift+n', function () {
       $('#item-number').focus().select();
     });
@@ -2079,26 +2079,30 @@
     });
   },
 
-  /* Rejects a quality check marking it as false positive */
-  rejectCheck: function () {
+  /* Mutes or unmutes a quality check marking it as false positive or not */
+  toggleCheck: function () {
     var check = $(this).parent(),
         checkId = $(this).data("check-id"),
         uid = $('.translate-container #id_id').val(),
-        url = l(['/xhr/units/', uid, '/checks/', checkId, '/reject/'].join(''));
+        url = l(['/xhr/units/', uid, '/checks/', checkId, '/toggle/'].join('')),
+        falsePositive = !check.hasClass('false-positive'), // toggled value
+        post = {},
+        error;
 
-    $.post(url, {'reject': 1},
+    if (falsePositive) {
+      post.mute = 1
+    }
+
+    $.post(url, post,
       function (data) {
-        var hideElement = check;
-        if (check.siblings().size() == 0) {
-          hideElement = $('#translate-checks-block');
-          $('.translate-container').removeClass('error');
-        }
-        hideElement.fadeOut(200, function () {
-          check.remove();
-        });
+        check.toggleClass('false-positive', falsePositive);
+
+        error = $('#translate-checks-block .check')
+                  .not('.false-positive').size() > 0;
+
+        $('.translate-container').toggleClass('error', error);
       }, "json");
   },
-
 
   /*
    * Machine Translation
