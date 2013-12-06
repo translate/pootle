@@ -47,6 +47,7 @@ from translate.storage import base
 from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
                              TRANSLATION_DELETED, UNIT_ADDED, UNIT_DELETED,
                              UNIT_OBSOLETE, STORE_ADDED, STORE_DELETED,
+                             MUTE_QUALITYCHECK, UNMUTE_QUALITYCHECK,
                              action_log, store_log)
 from pootle.core.managers import RelatedManager
 from pootle.core.mixins import CachedMethods, TreeItem
@@ -356,7 +357,7 @@ class Unit(models.Model, base.TranslationUnit):
         if self.suggestion_set.count() > 0:
             self.store.flag_for_deletion(CachedMethods.SUGGESTIONS)
 
-        if self.get_qualitychecks():
+        if self.get_qualitychecks().filter(false_positive=False):
             self.store.flag_for_deletion(CachedMethods.CHECKS)
 
         # Check if unit currently being deleted is the one referenced in
@@ -693,8 +694,10 @@ class Unit(models.Model, base.TranslationUnit):
 
             self.store.flag_for_deletion(CachedMethods.CHECKS)
 
-
     def get_qualitychecks(self):
+        return self.qualitycheck_set.all()
+
+    def get_active_qualitychecks(self):
         return self.qualitycheck_set.filter(false_positive=False)
 
     # FIXME: This is a hackish implementation needed due to the underlying
@@ -1009,14 +1012,40 @@ class Unit(models.Model, base.TranslationUnit):
 
         return True
 
-    def reject_qualitycheck(self, check_id):
+    def toggle_qualitycheck(self, check_id, false_positive, user):
         check = self.qualitycheck_set.get(id=check_id)
-        check.false_positive = True
-        check.save()
-        # update timestamp
 
-        self.store.flag_for_deletion(CachedMethods.CHECKS)
+        if check.false_positive == false_positive:
+            return
+
+        check.false_positive = false_positive
+        check.save()
+
+        self.store.flag_for_deletion(CachedMethods.CHECKS,
+                                     CachedMethods.LAST_ACTION)
+        self._log_user = user
+        if false_positive:
+            self._save_action = MUTE_QUALITYCHECK
+        else:
+            self._save_action = UNMUTE_QUALITYCHECK
+
+        # create submission
+        self.submitted_on = timezone.now()
+        self.submitted_by = user
         self.save()
+        if false_positive:
+            sub_type = SubmissionTypes.MUTE_CHECK
+        else:
+            sub_type = SubmissionTypes.UNMUTE_CHECK
+
+        sub = Submission(creation_time=self.submitted_on,
+            translation_project=self.store.translation_project,
+            submitter=user,
+            unit=self,
+            type=sub_type,
+            check=check
+        )
+        sub.save()
 
     def get_terminology(self):
         """get terminology suggestions"""

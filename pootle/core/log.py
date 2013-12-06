@@ -30,6 +30,8 @@ UNIT_OBSOLETE = 'UO'
 STORE_ADDED = 'SA'
 STORE_DELETED = 'SD'
 CMD_EXECUTED = 'X'
+MUTE_QUALITYCHECK = 'QM'
+UNMUTE_QUALITYCHECK = 'QU'
 
 def log(message):
     logger = logging.getLogger('action')
