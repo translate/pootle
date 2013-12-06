@@ -172,11 +172,7 @@ def overview(request, project):
 
     ctx = get_overview_context(request)
     ctx.update({
-        'project': {
-            'code': project.code,
-            'name': project.fullname,
-            'description': project.description,
-        },
+        'project': project,
         'can_edit': check_permission("administrate", request),
         'table': {
             'id': 'project',
