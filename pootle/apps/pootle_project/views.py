@@ -64,10 +64,7 @@ def overview(request, project):
 
     ctx = get_overview_context(request)
     ctx.update({
-        'project': {
-          'code': project.code,
-          'name': project.fullname,
-        },
+        'project': project,
         'table': table,
 
         'browser_extends': 'projects/base.html',
