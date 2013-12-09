@@ -1,4 +1,4 @@
-/* glue: 0.3 hash: 3b8765514c */
+/* glue: 0.3 hash: bcc55149a8 */
 .icon-desc,
 .icon-ascdesc,
 .icon-asc,
@@ -23,6 +23,7 @@
 .icon-comment-user,
 .icon-comment-add,
 .icon-block,
+.icon-block-muted,
 .icon-apertium,
 .icon-accept,
 .icon-external-link{background-image:url('../images/sprite.png');background-repeat:no-repeat}
@@ -50,6 +51,7 @@
 .icon-comment-user{background-position:-70px -48px;width:16px;height:16px;}
 .icon-comment-add{background-position:0px -66px;width:16px;height:16px;}
 .icon-block{background-position:-16px -66px;width:16px;height:16px;}
-.icon-apertium{background-position:-32px -66px;width:16px;height:16px;}
-.icon-accept{background-position:-48px -66px;width:16px;height:16px;}
-.icon-external-link{background-position:-64px -66px;width:12px;height:12px;}
+.icon-block-muted{background-position:-32px -66px;width:16px;height:16px;}
+.icon-apertium{background-position:-48px -66px;width:16px;height:16px;}
+.icon-accept{background-position:-64px -66px;width:16px;height:16px;}
+.icon-external-link{background-position:-86px 0px;width:12px;height:12px;}
