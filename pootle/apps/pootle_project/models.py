@@ -38,7 +38,9 @@ from translate.lang.data import langcode_re
 
 from pootle.core.managers import RelatedManager
 from pootle.core.mixins import TreeItem
-from pootle.core.url_helpers import get_editor_filter, get_path_sortkey
+from pootle.core.models import VirtualResource
+from pootle.core.url_helpers import (get_editor_filter, get_path_sortkey,
+                                     split_pootle_path)
 from pootle_app.models.permissions import PermissionSet
 from pootle_misc.baseurl import l
 from pootle_misc.util import cached_property
@@ -75,8 +77,9 @@ class ProjectURLMixin(object):
         return l(self.pootle_path)
 
     def get_translate_url(self, **kwargs):
+        lang, proj, dir, fn = split_pootle_path(self.pootle_path)
         return u''.join([
-            reverse('pootle-project-translate', args=[self.code]),
+            reverse('pootle-project-translate', args=[proj, dir, fn]),
             get_editor_filter(**kwargs),
         ])
 
@@ -435,3 +438,13 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
                            .get(language=self.source_language_id)
             except ObjectDoesNotExist:
                 pass
+
+
+class ProjectResource(VirtualResource, ProjectURLMixin):
+
+    ### TreeItem
+
+    def _get_code(self, resource):
+        return resource.translation_project.language.code
+
+    ### /TreeItem

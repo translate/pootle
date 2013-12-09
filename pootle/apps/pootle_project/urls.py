@@ -30,17 +30,20 @@ urlpatterns = patterns('pootle_project.views',
         name='pootle-project-list'),
 
     # Specific project
-    url(r'^(?P<project_code>[^/]*)/$',
-        'overview',
-        name='pootle-project-overview'),
-
-    url(r'^(?P<project_code>[^/]*)/translate/$',
+    url(r'^(?P<project_code>[^/]*)/translate/'
+        r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'translate',
         name='pootle-project-translate'),
 
-    url(r'^(?P<project_code>[^/]*)/export-view/$',
+    url(r'^(?P<project_code>[^/]*)/export-view/'
+        r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'export_view',
         name='pootle-project-export-view'),
+
+    url(r'^(?P<project_code>[^/]*)/'
+        r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
+        'overview',
+        name='pootle-project-overview'),
 
     # Admin
     url(r'^(?P<project_code>[^/]*)/admin/languages/$',

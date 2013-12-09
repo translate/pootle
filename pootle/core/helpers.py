@@ -110,7 +110,7 @@ def get_export_view_context(request):
                                          request.profile)
     units = get_step_query(request, units_qs)
     unit_groups = [(path, list(units)) for path, units in
-                   groupby(units, lambda x: x.store.path)]
+                   groupby(units, lambda x: x.store.pootle_path)]
     return {
         'unit_groups': unit_groups,
 
@@ -132,6 +132,7 @@ def get_overview_context(request):
     url_action_view_all = resource_obj.get_translate_url(state='all')
 
     return {
+        'pootle_path': request.pootle_path,
         'resource_obj': resource_obj,
         'resource_path': (request.resource_path
                           if hasattr(request, 'resource_path') else ''),
