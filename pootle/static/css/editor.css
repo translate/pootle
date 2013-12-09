@@ -1022,7 +1022,7 @@ div.check a
 
 #translate-checks-block .sidetitle
 {
-    color: #900;
+    color: rgba(0, 0, 0, 0.75);
     float: left;
     display: inline-block;
     margin: 0.1em 1em 0 0;
@@ -1054,6 +1054,11 @@ li.check:hover
 li.check > a
 {
     cursor: help;
+}
+
+li.check.false-positive > a
+{
+    color: rgba(0, 0, 0, 0.5);
 }
 
 #translate-checks-block i
