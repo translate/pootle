@@ -2301,6 +2301,12 @@ html[dir="rtl"] .breadcrumb li
     margin-left: 3em;
 }
 
+.select2-match
+{
+    color: #000;
+    background-color: rgba(255, 255, 0, 0.5);
+}
+
 /* Tabs */
 
 #tabs,
