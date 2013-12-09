@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% load i18n locale %}
+{% load i18n locale baseurl %}
 {% load url from future %}
 
 {% block title %}{% trans "We're almost there!" %} | {{ block.super }}{% endblock %}
@@ -18,14 +18,14 @@
 
   <p class="buttons">
     <button class="btn btn-primary js-en-auth-link">Link</button>
-    <a class="btn" href="{% url evernote_create_login %}{{ request|get_next }}">{% trans "Skip this step" %}</a>
+    <a class="btn" href="{% url 'evernote_create_login' %}{{ request|get_next }}">{% trans "Skip this step" %}</a>
   </p>
 </div>
 
 <div class="login{% if not form.errors %} hide{% endif %}">
   <div id="login" class="form" dir="{% locale_dir %}">
   <h2>Provide your existing Pootle credentials</h2>
-  <form method="post" action='{% url evernote_login_link %}' name="loginform" id="loginform">
+  <form method="post" action="{% url 'evernote_login_link' %}" name="loginform" id="loginform">
     {% csrf_token %}
     {% if form.errors %}
     <div class="error">
@@ -48,7 +48,7 @@
   </div>
 
   <h2 class="formlink">
-    <a href={% url 'pootle-password-reset' %}>{% trans "Lost your Password?" %}</a>
+    <a href="{% url 'pootle-password-reset' %}">{% trans "Lost your Password?" %}</a>
   </h2>
 </div>
 {% endblock content %}
