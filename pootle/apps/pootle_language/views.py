@@ -39,7 +39,7 @@ from pootle_misc.util import jsonify, ajax_required
 def overview(request, language):
     can_edit = check_permission('administrate', request)
 
-    translation_projects = language.translationproject_set \
+    translation_projects = language.get_children() \
                                    .order_by('project__fullname')
     user_tps = filter(lambda x: x.is_accessible_by(request.user),
                       translation_projects)

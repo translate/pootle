@@ -161,10 +161,8 @@ def overview(request, project):
     """Page listing all languages added to project."""
     from locale import strcoll
 
-    translation_projects = project.translationproject_set.all()
-
     items = [make_language_item(translation_project)
-             for translation_project in translation_projects.iterator()]
+             for translation_project in project.get_children().iterator()]
     items.sort(lambda x, y: strcoll(x['title'], y['title']))
 
     table_fields = ['name', 'progress', 'total', 'need-translation',
