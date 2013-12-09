@@ -77,7 +77,11 @@
       if (languageCode === '' && projectCode === '') {
         newUrl = l('/projects/');
       } else if (languageCode === '' && projectCode !== '') {
-        newUrl = l(['', 'projects', projectCode, resource].join('/'));
+        if (resChanged) {
+          newUrl = l(['', 'projects', projectCode, resource].join('/'));
+        } else {
+          newUrl = l(['', 'projects', projectCode].join('/'));
+        }
       } else if (languageCode !== '' && projectCode === '') {
         newUrl = l(['', languageCode].join('/'));
       } else if (languageCode !== '' && projectCode !== '') {
