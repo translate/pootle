@@ -26,6 +26,7 @@
     <option value=""></option>
     {% for res in project.resources %}
     <option value="{{ res.path }}"
+      data-icon="{% if res.is_dir %}folder{% else %}file{% endif %}"
       {% if res.path == resource_path %} selected="selected"{% endif %}>
       {{ res.path }}
     </option>

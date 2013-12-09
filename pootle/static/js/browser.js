@@ -9,15 +9,17 @@
     resource: '#js-select-resource'
   };
 
-  var makeNavDropdown = function (selector, placeholder) {
-   return PTL.utils.makeSelectableInput(selector,
-      {
+  var makeNavDropdown = function (selector, placeholder, formatFunc) {
+    var opts = {
         allowClear: true,
         dropdownAutoWidth: true,
         dropdownCssClass: 'breadcrumb-dropdown',
         placeholder: placeholder,
         width: 'off'
-      },
+      };
+    formatFunc && (opts.formatResult = formatFunc);
+
+    return PTL.utils.makeSelectableInput(selector, opts,
       function (e) {
         var langCode = $(sel.language).val(),
             projectCode = $(sel.project).val();
@@ -42,7 +44,15 @@
     init: function () {
       makeNavDropdown(sel.language, gettext("All Languages"));
       makeNavDropdown(sel.project, gettext("All Projects"));
-      makeNavDropdown(sel.resource, gettext("All Resources"));
+      makeNavDropdown(sel.resource, gettext("All Resources"),
+        function format(path) {
+          var $el = $(path.element);
+          return [
+            '<i class="icon-', $el.data('icon'), '"></i>',
+            '<span class="', $el.data('icon'), '">', path.text, '</span>'
+          ].join('');
+        }
+      );
 
       $(sel.breadcrumbs).css('visibility', 'visible');
     },

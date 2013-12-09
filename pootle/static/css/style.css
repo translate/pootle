@@ -2281,6 +2281,11 @@ html[dir="rtl"] .breadcrumb li
     content: normal;
 }
 
+.select2-results .folder
+{
+    font-weight: bold;
+}
+
 /* Tabs */
 
 #tabs,
