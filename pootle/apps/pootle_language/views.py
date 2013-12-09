@@ -35,7 +35,7 @@ from pootle_app.views.admin.permissions import admin_permissions
 @get_path_obj
 @permission_required('view')
 def overview(request, language):
-    translation_projects = language.translationproject_set \
+    translation_projects = language.get_children() \
                                    .order_by('project__fullname')
     user_tps = filter(lambda x: x.is_accessible_by(request.user),
                       translation_projects)

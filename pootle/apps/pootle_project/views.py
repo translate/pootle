@@ -47,10 +47,8 @@ from pootle_translationproject.models import TranslationProject
 @permission_required('view')
 def overview(request, project):
     """page listing all languages added to project"""
-    translation_projects = project.translationproject_set.all()
-
     items = [make_language_item(translation_project)
-             for translation_project in translation_projects.iterator()]
+             for translation_project in project.get_children().iterator()]
     items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
 
     table_fields = ['name', 'progress', 'total', 'need-translation',
