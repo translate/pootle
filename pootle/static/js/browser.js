@@ -44,7 +44,7 @@
     init: function () {
       makeNavDropdown(sel.language, gettext("All Languages"));
       makeNavDropdown(sel.project, gettext("All Projects"));
-      makeNavDropdown(sel.resource, gettext("All Resources"),
+      makeNavDropdown(sel.resource, gettext("Entire Project"),
         function format(path) {
           var $el = $(path.element);
           return [
