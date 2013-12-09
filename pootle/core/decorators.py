@@ -31,7 +31,7 @@ from pootle_app.models.permissions import (check_permission,
                                            get_matching_permissions)
 from pootle_language.models import Language
 from pootle_profile.models import get_profile
-from pootle_project.models import Project
+from pootle_project.models import Project, ProjectResource
 from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
 
@@ -100,6 +100,7 @@ def get_path_obj(func):
 
         request.ctx_obj = path_obj
         request.resource_obj = path_obj
+        request.pootle_path = request.resource_obj.pootle_path
 
         return func(request, path_obj, *args, **kwargs)
 
@@ -152,13 +153,67 @@ def set_resource(request, path_obj, dir_path, filename):
     request.ctx_path = ctx_path
 
 
+def set_project_resource(request, path_obj, dir_path, filename):
+    """Loads :cls:`pootle_app.models.Directory` and
+    :cls:`pootle_store.models.Store` models and populates the
+    request object.
+
+    This is the same as `set_resource` but operates at the project level
+    across all languages.
+
+    :param path_obj: A :cls:`pootle_project.models.Project` object.
+    :param dir_path: Path relative to the root of `path_obj`.
+    :param filename: Optional filename.
+    """
+    query_ctx_path = ''.join(['/%/', path_obj.code, '/'])
+    query_pootle_path = query_ctx_path + dir_path
+
+    ctx_path = path_obj.directory.pootle_path
+    resource_path = dir_path
+    pootle_path = ctx_path + dir_path
+
+    if filename:
+        query_pootle_path = query_pootle_path + filename
+        pootle_path = pootle_path + filename
+        resource_path = resource_path + filename
+
+        resources = Store.objects.extra(
+            where=[
+                '`pootle_store_store`.`pootle_path` LIKE %s',
+                '`pootle_store_store`.`pootle_path` NOT LIKE %s',
+            ], params=[query_pootle_path, '/templates/%']
+        ).select_related('translation_project__language')
+    else:
+        resources = Directory.objects.extra(
+            where=[
+                '`pootle_app_directory`.`pootle_path` LIKE %s',
+                '`pootle_app_directory`.`pootle_path` NOT LIKE %s',
+            ], params=[query_pootle_path, '/templates/%']
+        ).select_related('parent')
+
+    if not resources.exists():
+        raise Http404
+
+    request.store = None
+    request.directory = None
+    request.pootle_path = pootle_path
+
+    request.resource_obj = ProjectResource(resources, pootle_path)
+    request.resource_path = resource_path
+    request.ctx_obj = path_obj or request.resource_obj
+    request.ctx_path = ctx_path
+
+
 def get_resource(func):
     @wraps(func)
     def wrapped(request, path_obj, dir_path, *args, **kwargs):
         """Get resources associated to the current context."""
         filename = kwargs.pop('filename', '')
 
-        set_resource(request, path_obj, dir_path, filename)
+        if path_obj.directory.is_project() and (dir_path or filename):
+            set_project_resource(request, path_obj, dir_path, filename)
+        else:
+            set_resource(request, path_obj, dir_path, filename)
 
         return func(request, path_obj, dir_path=dir_path, filename=filename, *args, **kwargs)
 

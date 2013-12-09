@@ -116,7 +116,7 @@ $(function () {
   $("body").spin();
   PTL.search.init();
   PTL.stats.init({
-      pootlePath: "{{ resource_obj.pootle_path }}",
+      pootlePath: "{{ pootle_path }}",
   });
   PTL.stats.load(function () {
     PTL.common.updateRelativeDates();

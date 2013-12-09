@@ -29,8 +29,9 @@ from django.views.decorators.http import require_POST
 from taggit.models import Tag
 
 from pootle.core.browser import (get_table_headings, make_language_item,
-                                 make_project_list_item)
-from pootle.core.decorators import get_path_obj, permission_required
+                                 make_project_list_item, make_xlanguage_item)
+from pootle.core.decorators import (get_path_obj, get_resource,
+                                    permission_required)
 from pootle.core.helpers import (get_export_view_context, get_overview_context,
                                  get_translation_context)
 from pootle.core.url_helpers import split_pootle_path
@@ -157,12 +158,14 @@ def ajax_add_tag_to_tp_in_project(request, project):
 
 @get_path_obj
 @permission_required('view')
-def overview(request, project):
-    """Page listing all languages added to project."""
+@get_resource
+def overview(request, project, dir_path, filename):
+    """Languages overview for a given project."""
     from locale import strcoll
 
-    items = [make_language_item(translation_project)
-             for translation_project in project.get_children().iterator()]
+    item_func = (make_xlanguage_item if dir_path or filename
+                                     else make_language_item)
+    items = [item_func(item) for item in request.resource_obj.get_children()]
     items.sort(lambda x, y: strcoll(x['title'], y['title']))
 
     table_fields = ['name', 'progress', 'total', 'need-translation',
@@ -239,14 +242,8 @@ def project_settings_edit(request, project):
 
 @get_path_obj
 @permission_required('view')
-def translate(request, project):
-    request.pootle_path = project.pootle_path
-    # TODO: support arbitrary resources
-    request.ctx_path = project.pootle_path
-    request.resource_path = ''
-    request.store = None
-    request.directory = project.directory
-
+@get_resource
+def translate(request, project, dir_path, filename):
     ctx = get_translation_context(request)
     ctx.update({
         'language': None,
@@ -261,15 +258,8 @@ def translate(request, project):
 
 @get_path_obj
 @permission_required('view')
-def export_view(request, project):
-    request.pootle_path = project.pootle_path
-    # TODO: support arbitrary resources
-    request.ctx_path = project.pootle_path
-    request.resource_path = ''
-
-    request.store = None
-    request.directory = project.directory
-
+@get_resource
+def export_view(request, project, dir_path, filename):
     language = None
 
     ctx = get_export_view_context(request)
