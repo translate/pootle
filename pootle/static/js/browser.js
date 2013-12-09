@@ -48,8 +48,10 @@
         function format(path) {
           var $el = $(path.element);
           return [
-            '<i class="icon-', $el.data('icon'), '"></i>',
-            '<span class="', $el.data('icon'), '">', path.text, '</span>'
+            '<span class="', $el.data('icon'), '">',
+              '<i class="icon-', $el.data('icon'), '"></i>',
+              '<span class="text">', '/', path.text.trim(), '</span>',
+            '</span>'
           ].join('');
         }
       );

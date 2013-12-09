@@ -2067,6 +2067,21 @@ body.js-not-loaded #translate-actions li
     font-weight: bold;
 }
 
+.select2-result-label .text
+{
+    margin-left: 0.3em;
+}
+
+.select2-result-label
+{
+    white-space: nowrap;
+}
+
+.select2-result-label .file
+{
+    margin-left: 3em;
+}
+
 /* Tabs */
 
 #tabs
