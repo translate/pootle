@@ -145,25 +145,6 @@ body.zoom-out-2 .toolbar > div
 }
 
 
-#prevnext input[type="submit"]
-{
-    min-width: 80px;
-    padding: 4px 10px;
-}
-
-body.zoom-out-1 #prevnext input[type="submit"]
-{
-    min-width: 90px;
-    padding: 3px 8px;
-}
-
-body.zoom-out-2 #prevnext input[type="submit"]
-{
-    min-width: 85px;
-    padding: 2px 8px;
-}
-
-
 /* SPECIAL FOOTER */
 
 #translate-footer
