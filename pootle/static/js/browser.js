@@ -74,6 +74,9 @@
         return;
       }
 
+      /* FIXME: this is more than messy; we need to implement something
+       * healthier for humanity
+       */
       if (languageCode === '' && projectCode === '') {
         newUrl = l('/projects/');
       } else if (languageCode === '' && projectCode !== '') {
