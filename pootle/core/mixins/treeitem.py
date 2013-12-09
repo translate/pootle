@@ -204,7 +204,9 @@ class TreeItem(object):
         if include_children:
             result['children'] = {}
             for item in self.children:
-                result['children'][item.code] = item.get_stats(False)
+                code = (self._get_code(item) if hasattr(self, '_get_code')
+                                             else item.code)
+                result['children'][code] = item.get_stats(False)
 
         return result
 
