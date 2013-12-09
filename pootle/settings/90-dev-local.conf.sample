@@ -94,6 +94,9 @@ LOGGING = {
         'action': {
             'format' : "[%(asctime)s]\t%(message)s",
             'datefmt' : "%d/%b/%Y %H:%M:%S"
+            # Under Windows, date formatting might give errors when trying to show
+            # localized month names, so use month number instead:
+            #'datefmt' : "%d/%m/%Y %H:%M:%S"
         },
     },
     'handlers': {
