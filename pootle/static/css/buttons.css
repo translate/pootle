@@ -11,35 +11,27 @@
     display: inline-block;
 
     background-image: none;
-    box-shadow: 0 -0.2em 0 rgba(0, 0, 0, 0.2) inset;
+    box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2) inset;
 
     text-align: center;
-    text-decoration: none;
     text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
     font-weight: bold;
 
     transition: all 0.25s linear 0s;
 
-    /* btn-default colors */
-    color: #fff;
-    background-color: #bdc3c7;
-
     /* btn-normal size */
     font-size: inherit;
     min-width: 110px;
-    padding: 0 1em;
-
-    height: 2.3em;
-    line-height: 2.3em;
+    padding: 0.5em 1em;
 }
 
-.btn:active,
-.btn:hover,
-.btn:focus
+.btn,
+a.btn,
+a.btn:link
 {
-    background-color: #cacfd2;
+    color: #fff;
+    text-decoration: none;
 }
-
 
 /* Sizes */
 
@@ -74,15 +66,14 @@
 
 /* Button types */
 
+.btn
+{
+    background-color: #91a9b9;
+}
+
 .btn.btn-primary
 {
     background-color: #4dbdcb;
-}
-
-.btn.btn-primary:hover,
-.btn.btn-primary:focus
-{
-    background-color: #74ccd8;
 }
 
 .btn.btn-success
@@ -90,21 +81,9 @@
     background-color: #5fb336;
 }
 
-.btn.btn-success:hover,
-.btn.btn-success:focus
-{
-    background-color: #69bb2f;
-}
-
 .btn.btn-info
 {
     background-color: #3498db;
-}
-
-.btn.btn-info:hover,
-.btn.btn-info:focus
-{
-    background-color: #5dade2;
 }
 
 .btn.btn-warning
@@ -112,25 +91,19 @@
     background-color: #f1c40f;
 }
 
-.btn.btn-warning:hover,
-.btn.btn-warning:focus
-{
-    background-color: #f5d313;
-}
-
 .btn.btn-danger
 {
     background-color: #d2322d;
 }
 
-.btn.btn-danger:hover,
-.btn.btn-danger:focus
-{
-    background-color: #ec7063;
-}
-
 .btn:disabled,
-.btn-disabled
+.btn-disabled,
+.btn:disabled:active,
+.btn-disabled:active,
+.btn:disabled:hover,
+.btn-disabled:hover,
+.btn:disabled:focus,
+.btn-disabled:focus
 {
     cursor: default;
 
@@ -138,11 +111,20 @@
     opacity: 0.5;
 
     /* Webkit */
-    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
     -webkit-filter: grayscale(50%);
 
     /* Firefox */
     filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'saturate\' values=\'0.5\'/></filter></svg>#grayscale");
+}
+
+.btn:hover,
+.btn:focus
+{
+    /* Webkit */
+    -webkit-filter: brightness(120%);
+
+    /* Firefox: saturation more than 100% doesn't work; increase brightness instead */
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'saturate\'><feComponentTransfer><feFuncR type=\'linear\' slope=\'1.2\'/><feFuncG type=\'linear\' slope=\'1.2\'/><feFuncB type=\'linear\' slope=\'1.2\'/></feComponentTransfer></filter></svg>#saturate");
 }
 
 /* Zoom */
