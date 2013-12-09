@@ -2062,6 +2062,11 @@ body.js-not-loaded #translate-actions li
     top: 17px;
 }
 
+.select2-results .folder
+{
+    font-weight: bold;
+}
+
 /* Tabs */
 
 #tabs
