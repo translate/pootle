@@ -66,7 +66,22 @@ class ProjectManager(RelatedManager):
         return projects
 
 
-class Project(models.Model, TreeItem):
+class ProjectURLMixin(object):
+    """Mixin class providing URL methods to be shared across
+    project-related classes.
+    """
+
+    def get_absolute_url(self):
+        return l(self.pootle_path)
+
+    def get_translate_url(self, **kwargs):
+        return u''.join([
+            reverse('pootle-project-translate', args=[self.code]),
+            get_editor_filter(**kwargs),
+        ])
+
+
+class Project(models.Model, TreeItem, ProjectURLMixin):
 
     code_help_text = _('A short code for the project. This should only contain '
             'ASCII characters, numbers, and the underscore (_) character.')
@@ -303,15 +318,6 @@ class Project(models.Model, TreeItem):
         users_list = User.objects.values_list('username', flat=True)
         cache.delete_many(map(lambda x: 'projects:accessible:%s' % x,
                               users_list))
-
-    def get_absolute_url(self):
-        return l(self.pootle_path)
-
-    def get_translate_url(self, **kwargs):
-        return u''.join([
-            reverse('pootle-project-translate', args=[self.code]),
-            get_editor_filter(**kwargs),
-        ])
 
     def clean(self):
         if self.code in RESERVED_PROJECT_CODES:
