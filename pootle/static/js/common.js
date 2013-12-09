@@ -155,10 +155,11 @@
     fixSidebarHeight: function () {
       var $body = $('#body'),
           bodyHeight = $body.height(),
+          bodyPadding = parseInt($body.css('padding-bottom'), 10),
           contentAreaHeight = $('#wrapper').height() - $body.offset().top -
-                              parseInt($body.css('padding-bottom'), 10),
+                              bodyPadding,
           sidebarHeight = $('#sidebar #staticpage').height() +
-                          $('#footer').height(),
+                          $('#footer').height() + bodyPadding,
           newHeight = Math.max(contentAreaHeight, sidebarHeight);
 
       if (bodyHeight < contentAreaHeight) {
