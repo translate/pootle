@@ -45,12 +45,18 @@
       makeNavDropdown(sel.language, gettext("All Languages"));
       makeNavDropdown(sel.project, gettext("All Projects"));
       makeNavDropdown(sel.resource, gettext("Entire Project"),
-        function format(path) {
+        function format(path, container, query) {
+          var t = '/' + path.text.trim();
+          if (query.term !== '') {
+            var escaped_term = query.term.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+            var regex = new RegExp(escaped_term, 'gi');
+            t = t.replace(regex, '<span class="select2-match">$&</span>');
+          }
           var $el = $(path.element);
           return [
             '<span class="', $el.data('icon'), '">',
               '<i class="icon-', $el.data('icon'), '"></i>',
-              '<span class="text">', '/', path.text.trim(), '</span>',
+              '<span class="text">', t, '</span>',
             '</span>'
           ].join('');
         }
