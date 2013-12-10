@@ -48,8 +48,11 @@
         function format(path, container, query) {
           var t = '/' + path.text.trim();
           if (query.term !== '') {
-            var escaped_term = query.term.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
-            var regex = new RegExp(escaped_term, 'gi');
+            var escaped_term = query.term.replace(
+                  /[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g,
+                  '\\$&'
+                ),
+                regex = new RegExp(escaped_term, 'gi');
             t = t.replace(regex, '<span class="select2-match">$&</span>');
           }
           var $el = $(path.element);
