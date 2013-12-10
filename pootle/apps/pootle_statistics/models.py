@@ -43,12 +43,14 @@ class SubmissionTypes(object):
 
 class SubmissionFields(object):
     """Values for the 'field' field of Submission."""
+    NONE = 0  # non-field submission
     SOURCE = 1  # pootle_store.models.Unit.source
     TARGET = 2  # pootle_store.models.Unit.target
     STATE = 3  # pootle_store.models.Unit.state
     COMMENT = 4  # pootle_store.models.Unit.translator_comment
 
     NAMES_MAP = {
+        NONE: _(""),
         SOURCE: _("Source"),
         TARGET: _("Target"),
         STATE: _("State"),

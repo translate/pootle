@@ -944,7 +944,8 @@ html[dir="rtl"] .timeline-extra
     right: 100%;
 }
 
-.timeline-field-3
+.timeline-field-3,
+.timeline-field-0
 {
     font-size: 85%;
 }

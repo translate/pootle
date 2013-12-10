@@ -1056,6 +1056,7 @@ class Unit(models.Model, base.TranslationUnit):
         sub = Submission(creation_time=self.submitted_on,
             translation_project=self.store.translation_project,
             submitter=user,
+            field=SubmissionFields.NONE,
             unit=self,
             type=sub_type,
             check=check
