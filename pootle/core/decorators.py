@@ -78,7 +78,7 @@ def get_path_obj(func):
                         'language': reverse('pootle-language-overview',
                                             args=[language_code]),
                         'project': reverse('pootle-project-overview',
-                                           args=[project_code]),
+                                           args=[project_code, '', '']),
                     }
                     response = redirect(url[user_choice])
                     response.delete_cookie('user-choice')
