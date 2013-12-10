@@ -317,10 +317,16 @@ class ENChecker(checks.TranslationChecker):
         def get_fingerprint(str, is_source=False, translation=''):
             chunks = whitespace_regex.split(str)
             translate = False
-            fp_data = []
+            fp_data = [u"\001"]
 
             for chunk in chunks:
                 translate = not translate
+
+                # add empty chunk to fingerprint data to detect begin or
+                # end whitespaces
+                if chunk == u'':
+                    fp_data.append(chunk)
+
                 if translate:
                     # ordinary text (safe to translate)
                     continue
