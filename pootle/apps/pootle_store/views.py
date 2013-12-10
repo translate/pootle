@@ -24,6 +24,7 @@ from itertools import groupby
 
 from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
+from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response
@@ -41,6 +42,7 @@ from pootle.core.decorators import (get_path_obj, get_resource,
 from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.models.permissions import check_profile_permission
 from pootle.core.exceptions import Http400
+from pootle_misc.checks import check_names
 from pootle_misc.forms import make_search_form
 from pootle_misc.util import ajax_required, jsonify, to_int
 from pootle_profile.models import get_profile
@@ -439,7 +441,7 @@ def timeline(request, unit):
     """
     timeline = Submission.objects.filter(unit=unit, field__in=[
         SubmissionFields.TARGET, SubmissionFields.STATE,
-        SubmissionFields.COMMENT
+        SubmissionFields.COMMENT, SubmissionFields.NONE
     ])
     timeline = timeline.select_related("submitter__user",
                                        "translation_project__language")
@@ -474,6 +476,17 @@ def timeline(request, unit):
             if item.field == SubmissionFields.STATE:
                 entry['old_value'] = STATES_MAP[int(to_python(item.old_value))]
                 entry['new_value'] = STATES_MAP[int(to_python(item.new_value))]
+            elif item.check:
+                entry.update({
+                    'check_name': item.check.name,
+                    'check_display_name': check_names[item.check.name],
+                    'checks_url': reverse('pootle-staticpages-display',
+                                          args=['help/quality-checks']),
+                    'action': {
+                                SubmissionTypes.MUTE_CHECK: 'Muted',
+                                SubmissionTypes.UNMUTE_CHECK: 'Unmuted'
+                              }.get(item.type, '')
+                })
             else:
                 entry['new_value'] = to_python(item.new_value)
 

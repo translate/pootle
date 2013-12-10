@@ -14,7 +14,7 @@
           {% for entry in entry_group.entries %}
           <div class="timeline-field-{{ entry.field }}
             {% if entry.field == 2 %} js-editor-copytext{% endif %}"
-            {% if entry.field == 2 %}data-action="overwrite"{% endif %}>{% if entry.field != 2 %}<span class="sidetitle">{{ entry.field_name }}:</span> {% endif %}{% if entry.field != 3 %}<span class="timeline-field-body" lang="{{ language.code }}">{{ entry.new_value }}</span>{% else %}{{ entry.old_value }} <span class="timeline-arrow"></span> {{ entry.new_value }}{% endif %}</div>
+            {% if entry.field == 2 %}data-action="overwrite"{% endif %}>{% if entry.field != 2 and entry.field != 0 %}<span class="sidetitle">{{ entry.field_name }}:</span> {% endif %}{% if entry.field != 3 and entry.field != 0 %}<span class="timeline-field-body" lang="{{ language.code }}">{{ entry.new_value }}</span>{% elif entry.field == 0 %}{{ entry.action }} <a href="{{ entry.checks_url }}#{{ entry.check_name}}">{{ entry.check_display_name}}</a> {% trans "check" %}{% else %}{{ entry.old_value }} <span class="timeline-arrow"></span> {{ entry.new_value }}{% endif %}</div>
           {% endfor %}
         </div>
       </div>
