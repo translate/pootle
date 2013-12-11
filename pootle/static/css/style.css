@@ -2298,7 +2298,12 @@ html[dir="rtl"] .breadcrumb li
 
 .select2-result-label .file
 {
-    margin-left: 3em;
+    margin-left: 1.5em;
+}
+
+.select2-resource-root .file
+{
+    margin-left: auto;
 }
 
 .select2-match

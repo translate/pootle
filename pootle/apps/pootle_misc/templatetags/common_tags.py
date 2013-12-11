@@ -45,3 +45,8 @@ def makeid(value):
 @register.filter
 def endswith(value, arg):
     return value.endswith(arg)
+
+
+@register.filter
+def count(value, arg):
+    return value.count(arg)
