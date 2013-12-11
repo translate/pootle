@@ -33,6 +33,7 @@ List projects
         },
         "objects": [
             {
+                "backlink": "http://pootle.locamotion.org/projects/firefox/",
                 "checkstyle": "standard",
                 "code": "firefox",
                 "description": "",
@@ -50,6 +51,7 @@ List projects
                 "treestyle": "nongnu"
             },
             {
+                "backlink": "http://pootle.locamotion.org/projects/lxde/",
                 "checkstyle": "standard",
                 "code": "lxde",
                 "description": "",
@@ -96,6 +98,7 @@ Get a project
 .. code-block:: json
 
     {
+        "backlink": "http://pootle.locamotion.org/projects/firefox/",
         "checkstyle": "standard",
         "code": "firefox",
         "description": "",
@@ -159,6 +162,7 @@ Get statistics for a project
 .. code-block:: json
 
     {
+        "backlink": "http://pootle.locamotion.org/projects/firefox/",
         "checkstyle": "standard",
         "code": "firefox",
         "description": "",

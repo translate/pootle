@@ -17,6 +17,8 @@
 # You should have received a copy of the GNU General Public License along with
 # this program; if not, see <http://www.gnu.org/licenses/>.
 
+from django.contrib.sites.models import Site
+
 from tastypie import fields
 from tastypie.authentication import BasicAuthentication
 from tastypie.authorization import DjangoAuthorization
@@ -51,12 +53,20 @@ class ProjectResource(StatisticsModelResource):
             'translation_projects',
             'treestyle',
         ]
+        always_return_data = True
         list_allowed_methods = ['get', 'post']
         detail_allowed_methods = ['get', 'put', 'delete', 'patch']
         # HTTP methods allowed for visiting /statistics/ URLs.
         statistics_allowed_methods = ['get']
         authorization = DjangoAuthorization()
         authentication = BasicAuthentication()
+
+    def dehydrate(self, bundle):
+        # Include a custom 'backlink' field.
+        bundle.data['backlink'] = ('http://%s%s' %
+                                   (Site.objects.get_current().domain,
+                                    bundle.obj.get_absolute_url()))
+        return bundle
 
     def retrieve_statistics(self, bundle):
         """Retrieve the statistics for the current resource object."""
