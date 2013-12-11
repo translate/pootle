@@ -18,7 +18,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+
 import logging
+
 
 # Log actions
 TRANSLATION_ADDED = 'A'
@@ -33,9 +35,11 @@ CMD_EXECUTED = 'X'
 MUTE_QUALITYCHECK = 'QM'
 UNMUTE_QUALITYCHECK = 'QU'
 
+
 def log(message):
     logger = logging.getLogger('action')
     logger.info(message)
+
 
 def action_log(*args, **kwargs):
     logger = logging.getLogger('action')
@@ -48,7 +52,8 @@ def action_log(*args, **kwargs):
     tr = tr.replace("\n", "\\\n")
     d['translation'] = tr
 
-    message = "%(user)s\t%(action)s\t%(lang)s\t%(unit)s\t%(path)s\t%(translation)s" % d
+    message = "%(user)s\t%(action)s\t%(lang)s\t%(unit)s\t%(path)s\t" \
+              "%(translation)s" % d
 
     logger.info(message)
 
