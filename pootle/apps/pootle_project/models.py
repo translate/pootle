@@ -28,12 +28,14 @@ from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.core.urlresolvers import reverse
 from django.db import connection, models
 from django.db.models import Q
+from django.db.models.signals import post_delete, post_save
 from django.utils.encoding import iri_to_uri
 from django.utils.translation import ugettext_lazy as _
 
 from translate.filters import checks
 from translate.lang.data import langcode_re
 
+from pootle.core.cache import make_method_key
 from pootle.core.managers import RelatedManager
 from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.mixins import TreeItem, CachedMethods
@@ -207,6 +209,14 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
         :cls:`~pootle_store.models.Store` resource paths available for
         this :cls:`~pootle_project.models.Project` across all languages.
         """
+        cache_key = make_method_key(self, 'resources')
+
+        resources = cache.get(cache_key, None)
+        if resources is not None:
+            return resources
+
+        logging.debug(u'Cache miss for %s', cache_key)
+
         resources_path = ''.join(['/%/', self.code, '/%'])
 
         if connection.vendor == 'mysql':
@@ -277,6 +287,8 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
         # Flatten tuple and sort in a list
         resources = list(reduce(lambda x,y: x+y, results))
         resources.sort(key=get_path_sortkey)
+
+        cache.set(cache_key, resources, settings.OBJECT_CACHE_TIMEOUT)
 
         return resources
 
@@ -520,3 +532,23 @@ class ProjectResource(VirtualResource, ProjectURLMixin):
         return resource.translation_project.language.code
 
     ### /TreeItem
+
+
+###############################################################################
+# Signal handlers                                                             #
+###############################################################################
+
+def invalidate_resources_cache(sender, instance, **kwargs):
+    if instance.__class__.__name__ not in ['Directory', 'Store']:
+        return
+
+    # Don't invalidate if the save didn't create new objects
+    if (('created' in kwargs and 'raw' in kwargs) and
+        (not kwargs['created'] or kwargs['raw'])):
+        return
+
+    cache.delete(make_method_key(Project, 'resources'))
+
+# FIXME: Django 1.5+: use the `@receiver` decorator
+post_delete.connect(invalidate_resources_cache)
+post_save.connect(invalidate_resources_cache)
