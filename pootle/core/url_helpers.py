@@ -55,13 +55,13 @@ def split_pootle_path(pootle_path):
     return (language_code, project_code, dir_path, filename)
 
 
-def get_path_sortkey(path_obj):
-    """Returns the sortkey to use in a path-like `path_obj` object."""
-    if path_obj.is_dir:
-        return path_obj.path
+def get_path_sortkey(path):
+    """Returns the sortkey to use for a `path`."""
+    if path == '' or path.endswith('/'):
+        return path
 
-    (head, tail) = os.path.split(path_obj.path)
-    return u'~'.join([head, path_obj.path.replace(u'.', u'_')])
+    (head, tail) = os.path.split(path)
+    return u'~'.join([head, path])
 
 
 def get_editor_filter(state=None, check=None, user=None, goal=None):

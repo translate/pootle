@@ -1,3 +1,4 @@
+{% load common_tags %}
 <li>
   <select id="js-select-language" data-initial-code="{{ language.code }}">
     <option value=""></option>
@@ -25,10 +26,10 @@
   <select id="js-select-resource" data-initial-code="{{ resource_path }}">
     <option value=""></option>
     {% for res in project.resources %}
-    <option value="{{ res.path }}"
-      data-icon="{% if res.is_dir %}folder{% else %}file{% endif %}"
-      {% if res.path == resource_path %} selected="selected"{% endif %}>
-      {{ res.path }}
+    <option value="{{ res }}"
+      data-icon="{% if not res or res|endswith:'/' %}folder{% else %}file{% endif %}"
+      {% if res == resource_path %} selected="selected"{% endif %}>
+      {{ res }}
     </option>
     {% endfor %}
   </select>

@@ -40,3 +40,8 @@ def display_table(context, table):
 def makeid(value):
     """Replaces all '.' with '-'."""
     return value.replace(u'.', u'-')
+
+
+@register.filter
+def endswith(value, arg):
+    return value.endswith(arg)

@@ -26,7 +26,7 @@ from django.contrib.auth.models import User
 from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.core.urlresolvers import reverse
-from django.db import models
+from django.db import connection, models
 from django.db.models import Q
 from django.utils.encoding import iri_to_uri
 from django.utils.translation import ugettext_lazy as _
@@ -204,32 +204,32 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
     @cached_property
     def resources(self):
         """Returns a list of :cls:`~pootle_app.models.Directory` and
-        :cls:`~pootle_store.models.Store` objects available for this
-        :cls:`~pootle_project.models.Project` across all languages.
+        :cls:`~pootle_store.models.Store` resource paths available for
+        this :cls:`~pootle_project.models.Project` across all languages.
         """
-        from pootle_store.models import Store
-
         resources_path = ''.join(['/%/', self.code, '/%'])
 
-        store_objs = Store.objects.extra(
-            where=[
-                'pootle_store_store.pootle_path LIKE %s',
-                'pootle_store_store.pootle_path NOT LIKE %s',
-            ], params=[resources_path, '/templates/%']
-        ).select_related('parent').distinct()
+        sql_query = '''
+        SELECT DISTINCT
+            REPLACE(pootle_path,
+                    CONCAT(SUBSTRING_INDEX(pootle_path, '/', 3), '/'),
+                    '')
+        FROM (
+            SELECT pootle_path
+            FROM pootle_store_store
+            WHERE pootle_path LIKE %s
+          UNION
+            SELECT pootle_path FROM pootle_app_directory
+            WHERE pootle_path LIKE %s
+        ) AS t;
+        '''
+        cursor = connection.cursor()
+        cursor.execute(sql_query, [resources_path, resources_path])
 
-        # Populate with stores and their parent directories, avoiding any
-        # duplicates
-        resources = []
-        for store in store_objs.iterator():
-            directory = store.parent
-            if (not directory.is_translationproject() and
-                all(directory.path != r.path for r in resources)):
-                resources.append(directory)
+        results = cursor.fetchall()
 
-            if all(store.path != r.path for r in resources):
-                resources.append(store)
-
+        # Flatten tuple and sort in a list
+        resources = list(reduce(lambda x,y: x+y, results))
         resources.sort(key=get_path_sortkey)
 
         return resources
