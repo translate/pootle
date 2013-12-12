@@ -75,8 +75,7 @@ class UserObjectsOnlyAuthorization(DjangoAuthorization):
         """
         authorized = super(UserObjectsOnlyAuthorization, self).read_detail(
                 object_list, bundle)
-        if authorized:
-            return self._is_authorized_for_object(bundle)
+        return authorized and self._is_authorized_for_object(bundle)
 
     def update_list(self, object_list, bundle):
         """Return a list of all the objects the consumer is allowed to update.
@@ -97,8 +96,7 @@ class UserObjectsOnlyAuthorization(DjangoAuthorization):
         """
         authorized = super(UserObjectsOnlyAuthorization, self).update_detail(
                 object_list, bundle)
-        if authorized:
-            return self._is_authorized_for_object(bundle)
+        return authorized and self._is_authorized_for_object(bundle)
 
     def delete_list(self, object_list, bundle):
         """Return a list of all the objects the consumer is allowed to delete.
@@ -119,8 +117,7 @@ class UserObjectsOnlyAuthorization(DjangoAuthorization):
         """
         authorized = super(UserObjectsOnlyAuthorization, self).delete_detail(
                 object_list, bundle)
-        if authorized:
-            return self._is_authorized_for_object(bundle)
+        return authorized and self._is_authorized_for_object(bundle)
 
 
 class UserResource(StatisticsModelResource):
