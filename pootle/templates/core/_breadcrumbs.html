@@ -27,7 +27,7 @@
     <option value=""></option>
     {% for res in project.resources %}
     <option value="{{ res }}"
-      class="{% if res|count:'/' == 0 %}select2-resource-root{% endif %}
+      {% if res|count:'/' == 0 %}class="select2-resource-root"{% endif %}
       data-icon="{% if not res or res|endswith:'/' %}folder{% else %}file{% endif %}"
       {% if res == resource_path %} selected="selected"{% endif %}>
       {{ res }}
