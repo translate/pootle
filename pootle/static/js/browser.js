@@ -130,7 +130,9 @@
           }
           newUrl = newUrl.replace(/(\#|&)unit=\d+/, '');
         }
-        var changed = projChanged ? 'project' : 'language';
+
+        var changed = projChanged ? 'project' :
+                      langChanged ? 'language' : 'resource';
         $.cookie('user-choice', changed, {path: '/'});
       }
 

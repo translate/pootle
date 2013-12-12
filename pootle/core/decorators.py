@@ -210,10 +210,25 @@ def get_resource(func):
         """Get resources associated to the current context."""
         filename = kwargs.pop('filename', '')
 
-        if path_obj.directory.is_project() and (dir_path or filename):
-            set_project_resource(request, path_obj, dir_path, filename)
-        else:
-            set_resource(request, path_obj, dir_path, filename)
+        try:
+            if path_obj.directory.is_project() and (dir_path or filename):
+                set_project_resource(request, path_obj, dir_path, filename)
+            else:
+                set_resource(request, path_obj, dir_path, filename)
+        except Http404:
+            if not request.is_ajax():
+                user_choice = request.COOKIES.get('user-choice', None)
+                if user_choice and user_choice in ('language', 'resource',):
+                    project = (path_obj if isinstance(path_obj, Project)
+                                        else path_obj.project)
+                    url = reverse('pootle-project-overview',
+                                  args=[project.code, dir_path, filename])
+                    response = redirect(url)
+                    response.delete_cookie('user-choice')
+
+                    return response
+
+            raise Http404
 
         return func(request, path_obj, dir_path=dir_path, filename=filename, *args, **kwargs)
 
