@@ -29,6 +29,8 @@ from pootle_misc.stats import get_translation_states
 from pootle_store.models import Unit
 from pootle_store.views import get_step_query
 
+from .url_helpers import get_path_parts
+
 
 def get_filter_name(GET):
     """Get current filter's human-readable name.
@@ -90,6 +92,7 @@ def get_translation_context(request, is_terminology=False):
         'ctx_path': request.ctx_path,
         'resource_path': (request.resource_path
                           if hasattr(request, 'resource_path') else ''),
+        'resource_path_parts': get_path_parts(request.resource_path),
 
         'check_categories': get_qualitycheck_schema(),
 
@@ -134,6 +137,7 @@ def get_overview_context(request):
         'resource_obj': resource_obj,
         'resource_path': (request.resource_path
                           if hasattr(request, 'resource_path') else ''),
+        'resource_path_parts': get_path_parts(request.resource_path),
 
         'translation_states': get_translation_states(resource_obj),
         'check_categories': get_qualitycheck_schema(resource_obj),

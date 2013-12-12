@@ -64,6 +64,30 @@ def get_path_sortkey(path):
     return u'~'.join([head, path])
 
 
+def get_path_parts(path):
+    """Returns a list of `path`'s parent paths plus `path`."""
+    if not path:
+        return []
+
+    (parent, filename) = os.path.split(path)
+    parent_parts = parent.split(u'/')
+
+    if len(parent_parts) == 1 and parent_parts[0] == u'':
+        parts = []
+    else:
+        parts = [u'/'.join(parent_parts[:parent_parts.index(part) + 1] + [''])
+                 for part in parent_parts]
+
+    # If present, don't forget to include the filename
+    if path not in parts:
+        parts.append(path)
+
+    # Everything has a root
+    parts.insert(0, u'')
+
+    return parts
+
+
 def get_editor_filter(state=None, check=None, user=None, goal=None):
     """Return a filter string to be appended to a translation URL."""
     filter_string = ''

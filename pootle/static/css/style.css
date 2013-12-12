@@ -2281,6 +2281,19 @@ html[dir="rtl"] .breadcrumb li
     content: normal;
 }
 
+/* HACK: display background as a thin line */
+.select2-results .select2-result-unselectable
+{
+    height: 1px;
+    margin: 1em 0.5em;
+}
+
+.select2-results .select2-result-unselectable .select2-result-label
+{
+    cursor: default;
+}
+/* END HACK */
+
 .select2-results .folder
 {
     font-weight: bold;
