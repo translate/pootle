@@ -92,7 +92,8 @@ def get_translation_context(request, is_terminology=False):
         'ctx_path': request.ctx_path,
         'resource_path': (request.resource_path
                           if hasattr(request, 'resource_path') else ''),
-        'resource_path_parts': get_path_parts(request.resource_path),
+        'resource_path_parts': get_path_parts(request.resource_path) 
+                          if hasattr(request, 'resource_path') else [],
 
         'check_categories': get_qualitycheck_schema(),
 
@@ -137,7 +138,8 @@ def get_overview_context(request):
         'resource_obj': resource_obj,
         'resource_path': (request.resource_path
                           if hasattr(request, 'resource_path') else ''),
-        'resource_path_parts': get_path_parts(request.resource_path),
+        'resource_path_parts': get_path_parts(request.resource_path)
+                          if hasattr(request, 'resource_path') else [],
 
         'translation_states': get_translation_states(resource_obj),
         'check_categories': get_qualitycheck_schema(resource_obj),
