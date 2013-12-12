@@ -42,7 +42,11 @@ Get a user
 :Returns: User with ``<USER>`` ID.
 
 .. note:: The consumer will get the user data only if it is authenticated as
-   the user which is trying to get the data for.
+   the user which is trying to get the data for, or if it is a superuser.
+
+   If the consumer is a superuser, then it will get all the resource data for
+   its own resource, but for the other users resources will get only a
+   restricted set of the fields.
 
 .. code-block:: json
 

@@ -38,8 +38,14 @@ class UserObjectsOnlyAuthorization(DjangoAuthorization):
     def _get_authorized_objects(self, object_list, bundle):
         """Return the object list only with objects owned by the consumer.
 
+        Return the complete object list if the consumer is a superuser.
+
         Should return an empty list if none are allowed.
         """
+        # If the consumer is a superuser then return all the objects.
+        if bundle.request.user.is_superuser:
+            return object_list
+
         # This assumes that object_list is a QuerySet from ModelResource.
         return object_list.filter(pk=bundle.request.user.pk)
 
@@ -48,10 +54,12 @@ class UserObjectsOnlyAuthorization(DjangoAuthorization):
 
         This method:
 
-        * Returns ``True`` if the object belongs to the consumer,
+        * Returns ``True`` if the object belongs to the consumer, or if the
+          consumer is a superuser,
         * Raises ``Unauthorized`` if it doesn't belong to the consumer.
         """
         if (bundle.obj == bundle.request.user or
+            bundle.request.user.is_superuser or
             bundle.request.path.endswith("/statistics/")):
             return True
         raise Unauthorized("You are not allowed to access that resource.")
