@@ -70,3 +70,6 @@ log/
 # Eclipse PyDev projects
 .project
 .pydevproject
+
+# custom manage shell script
+manage
