@@ -31,7 +31,7 @@ from django.core.cache import cache
 from django.core.urlresolvers import set_script_prefix
 from django.db.models import Count, Max, Sum
 from django.utils import dateformat
-from django.utils.encoding import iri_to_uri
+from django.utils.encoding import force_unicode, iri_to_uri
 
 from pootle_language.models import Language
 from pootle_misc.util import datetime_min
@@ -58,8 +58,14 @@ class Command(PootleCommand):
     option_list = PootleCommand.option_list + shared_option_list
 
     def handle_noargs(self, **options):
-        # set url prefix
-        set_script_prefix(settings.FORCE_SCRIPT_NAME)
+        # The script prefix needs to be set here because the generated
+        # URLs need to be aware of that and they are cached. Ideally
+        # Django should take care of setting this up, but it doesn't yet:
+        # https://code.djangoproject.com/ticket/16734
+        script_name = (u'/' if settings.FORCE_SCRIPT_NAME is None
+                            else force_unicode(settings.FORCE_SCRIPT_NAME))
+        set_script_prefix(script_name)
+
         super(Command, self).handle_noargs(**options)
 
     def handle_all_stores(self, translation_project, **options):
