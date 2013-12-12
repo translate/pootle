@@ -112,22 +112,6 @@ class Submission(models.Model):
         return u"%s (%s)" % (self.creation_time.strftime("%Y-%m-%d %H:%M"),
                              unicode(self.submitter))
 
-    @classmethod
-    def get_latest_for_dir(cls, directory):
-        """Return the latest submission, if any, for the given directory.
-
-        The submission is returned as an action bundle. An empty string is
-        returned if no submission exists for the given directory.
-        """
-        try:
-            criteria = {
-                'unit__store__pootle_path__startswith': directory.pootle_path,
-            }
-            sub = Submission.objects.filter(**criteria).latest()
-        except Submission.DoesNotExist:
-            return ''
-        return sub.get_submission_message()
-
     def as_html(self):
         return self.get_submission_message()
 
