@@ -395,9 +395,15 @@ class Unit(models.Model, base.TranslationUnit):
             self.source_hash = md5(self.source_f.encode("utf-8")).hexdigest()
             self.source_wordcount = count_words(self.source_f.strings)
             self.source_length = len(self.source_f)
-            # auto-translate unit
+
             if self.source_wordcount == 0:
+                # auto-translate unit (as fuzzy)
+                # however we can't set the actual wordcount to zero since the
+                # unit will essentially disappear from statistics thus for
+                # such units set word count to 1
                 self.target = self.source
+                self.state = FUZZY
+                self.source_wordcount = 1
 
         if self._target_updated:
             # update target related fields
