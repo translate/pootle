@@ -80,6 +80,8 @@ def get_translation_context(request, is_terminology=False):
     :param is_terminology: boolean indicating if the translation context
         is relevant to a terminology project.
     """
+    resource_path = getattr(request, 'resource_path', '')
+
     return {
         'cantranslate': check_permission("translate", request),
         'cansuggest': check_permission("suggest", request),
@@ -88,10 +90,8 @@ def get_translation_context(request, is_terminology=False):
 
         'pootle_path': request.pootle_path,
         'ctx_path': request.ctx_path,
-        'resource_path': (request.resource_path
-                          if hasattr(request, 'resource_path') else ''),
-        'resource_path_parts': get_path_parts(request.resource_path) 
-                          if hasattr(request, 'resource_path') else [],
+        'resource_path': resource_path,
+        'resource_path_parts': get_path_parts(resource_path),
 
         'check_categories': get_qualitycheck_schema(),
 
@@ -129,6 +129,7 @@ def get_overview_context(request):
     :param request: a :cls:`django.http.HttpRequest` object.
     """
     resource_obj = request.resource_obj
+    resource_path = getattr(request, 'resource_path', '')
 
     url_action_continue = resource_obj.get_translate_url(state='incomplete')
     url_action_fixcritical = resource_obj.get_critical_url()
@@ -138,10 +139,8 @@ def get_overview_context(request):
     return {
         'pootle_path': request.pootle_path,
         'resource_obj': resource_obj,
-        'resource_path': (request.resource_path
-                          if hasattr(request, 'resource_path') else ''),
-        'resource_path_parts': get_path_parts(request.resource_path)
-                          if hasattr(request, 'resource_path') else [],
+        'resource_path': resource_path,
+        'resource_path_parts': get_path_parts(resource_path),
 
         'translation_states': get_translation_states(resource_obj),
         'check_categories': get_qualitycheck_schema(resource_obj),
