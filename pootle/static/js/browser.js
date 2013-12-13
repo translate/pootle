@@ -22,7 +22,7 @@
       function (e) {
         var langCode = $(sel.language).val(),
             projectCode = $(sel.project).val();
-            resource = $(sel.resource).val() || '';
+            resource = $(sel.resource).val().replace('ctx-', '') || '';
         PTL.browser.navigateTo(langCode, projectCode, resource);
       }
     );
@@ -87,7 +87,8 @@
     navigateTo: function (languageCode, projectCode, resource) {
       var curProject = $(sel.project).data('initial-code'),
           curLanguage = $(sel.language).data('initial-code'),
-          curResource = $(sel.resource).data('initial-code'),
+          curResource = $(sel.resource).data('initial-code')
+                                       .replace('ctx-', ''),
           curUrl = window.location.toString(),
           newUrl = curUrl,
           langChanged = languageCode !== curLanguage,

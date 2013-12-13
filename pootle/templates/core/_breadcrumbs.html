@@ -17,11 +17,12 @@
 </li>
 {% if project %}
 <li>
-  <select id="js-select-resource" data-initial-code="{{ resource_path }}">
+  <select id="js-select-resource"
+    data-initial-code="{% if resource_path_parts %}ctx-{% endif %}{{ resource_path }}">
     <option value=""></option>
     {% if resource_path_parts %}
     {% for res in resource_path_parts %}
-    <option value="{{ res }}"
+    <option value="ctx-{{ res }}"
       {% if res|count:'/' == 0 %}class="select2-resource-root"{% endif %}
       data-icon="{% if not res or res|endswith:'/' %}folder{% else %}file{% endif %}">
       {{ res }}
