@@ -39,38 +39,39 @@
     }
   };
 
+  var formatResource = function (path, container, query) {
+    var $el = $(path.element);
+
+    if ($el.prop('disabled')) {
+      return '';
+    }
+
+    var t = '/' + path.text.trim();
+
+    if (query.term !== '') {
+      var escaped_term = query.term.replace(
+            /[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g,
+            '\\$&'
+          ),
+          regex = new RegExp(escaped_term, 'gi');
+      t = t.replace(regex, '<span class="select2-match">$&</span>');
+    }
+
+    return [
+      '<span class="', $el.data('icon'), '">',
+        '<i class="icon-', $el.data('icon'), '"></i>',
+        '<span class="text">', t, '</span>',
+      '</span>'
+    ].join('');
+  };
+
+
   PTL.browser = {
 
     init: function () {
       makeNavDropdown(sel.language, gettext("All Languages"));
       makeNavDropdown(sel.project, gettext("All Projects"));
-      makeNavDropdown(sel.resource, gettext("Entire Project"),
-        function format(path, container, query) {
-          var $el = $(path.element);
-
-          if ($el.prop('disabled')) {
-            return '';
-          }
-
-          var t = '/' + path.text.trim();
-
-          if (query.term !== '') {
-            var escaped_term = query.term.replace(
-                  /[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g,
-                  '\\$&'
-                ),
-                regex = new RegExp(escaped_term, 'gi');
-            t = t.replace(regex, '<span class="select2-match">$&</span>');
-          }
-
-          return [
-            '<span class="', $el.data('icon'), '">',
-              '<i class="icon-', $el.data('icon'), '"></i>',
-              '<span class="text">', t, '</span>',
-            '</span>'
-          ].join('');
-        }
-      );
+      makeNavDropdown(sel.resource, gettext("Entire Project"), formatResource);
 
       $(sel.breadcrumbs).css('visibility', 'visible');
     },
