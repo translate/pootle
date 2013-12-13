@@ -9,15 +9,14 @@
     resource: '#js-select-resource'
   };
 
-  var makeNavDropdown = function (selector, placeholder, formatFunc) {
-    var opts = {
+  var makeNavDropdown = function (selector, opts) {
+    var defaults = {
         allowClear: true,
         dropdownAutoWidth: true,
         dropdownCssClass: 'breadcrumb-dropdown',
-        placeholder: placeholder,
         width: 'off'
-      };
-    formatFunc && (opts.formatResult = formatFunc);
+      },
+      opts = $.extend({}, defaults, opts);
 
     return PTL.utils.makeSelectableInput(selector, opts,
       function (e) {
@@ -69,9 +68,16 @@
   PTL.browser = {
 
     init: function () {
-      makeNavDropdown(sel.language, gettext("All Languages"));
-      makeNavDropdown(sel.project, gettext("All Projects"));
-      makeNavDropdown(sel.resource, gettext("Entire Project"), formatResource);
+      makeNavDropdown(sel.language, {
+        placeholder: gettext("All Languages")
+      });
+      makeNavDropdown(sel.project, {
+        placeholder: gettext("All Projects")
+      });
+      makeNavDropdown(sel.resource, {
+        placeholder: gettext("Entire Project"),
+        formatResult: formatResource
+      });
 
       $(sel.breadcrumbs).css('visibility', 'visible');
     },
