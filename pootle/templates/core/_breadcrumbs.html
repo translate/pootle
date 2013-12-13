@@ -4,10 +4,7 @@
     style="visibility: hidden;">
     <option value=""></option>
     {% for lang in ALL_LANGUAGES %}
-    <option value="{{ lang.code }}"
-      {% if lang.code == language.code %} selected="selected"{% endif%}>
-      {{ lang.name }}
-    </option>
+    <option value="{{ lang.code }}">{{ lang.name }}</option>
     {% endfor %}
   </select>
 </li>
@@ -16,10 +13,7 @@
     style="visibility: hidden;">
     <option value=""></option>
     {% for proj in ALL_PROJECTS %}
-    <option value="{{ proj.code }}"
-      {% if proj.code == project.code %} selected="selected"{% endif %}>
-      {{ proj.name }}
-    </option>
+    <option value="{{ proj.code }}">{{ proj.name }}</option>
     {% endfor %}
   </select>
 </li>
@@ -33,8 +27,7 @@
     {% for res in resource_path_parts %}
     <option value="{{ res }}"
       {% if res|count:'/' == 0 %}class="select2-resource-root"{% endif %}
-      data-icon="{% if not res or res|endswith:'/' %}folder{% else %}file{% endif %}"
-      {% if res == resource_path %} selected="selected"{% endif %}>
+      data-icon="{% if not res or res|endswith:'/' %}folder{% else %}file{% endif %}">
       {{ res }}
     </option>
     {% endfor %}
