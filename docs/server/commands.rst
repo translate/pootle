@@ -129,8 +129,15 @@ require less on-demand calculation of expensive statistics.
 When the ``--calculate-checks`` option is set, quality checks will be
 recalculated for all existing units in the database.
 
-When the ``--calculate-wordcount`` option is set, source_wordcount and
-target_wordcount will be recalculated for all existing units in the database.
+To only recalculate date_format quality checks, run:
+
+.. code-block:: bash
+
+    $ pootle refresh_stats --calculate-checks --check=date_format
+
+When the ``--calculate-wordcount`` option is set, source_wordcount will be
+recalculated for all existing units in the database.
+
 
 .. _commands#sync_stores:
 

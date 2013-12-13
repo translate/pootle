@@ -35,6 +35,7 @@ from django.utils.encoding import force_unicode, iri_to_uri
 
 from pootle_language.models import Language
 from pootle_misc.util import datetime_min
+from pootle_misc.checks import ENChecker
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
 from pootle_store.models import Store, Unit, QualityCheck, Suggestion, count_words
@@ -53,6 +54,8 @@ class Command(PootleCommand):
         make_option('--calculate-wordcount', dest='calculate_wordcount',
                     action='store_true',
                     help='To recalculate wordcount for all strings'),
+        make_option('--check', action='append', dest='check_names',
+                    help='Check to recalculate'),
     )
 
     option_list = PootleCommand.option_list + shared_option_list
@@ -96,48 +99,67 @@ class Command(PootleCommand):
         timeout = settings.OBJECT_CACHE_TIMEOUT
         calculate_checks = options.get('calculate_checks', False)
         calculate_wordcount = options.get('calculate_wordcount', False)
+        check_names = options.get('check_names', [])
 
         logging.info('Initializing stores...')
         self._init_stores()
+        # if check_names is non-empty then stats for only these checks
+        # will be updated
+        if not check_names:
+            self._init_stats()
+        self._init_checks()
 
         if calculate_checks:
             logging.info('Calculating quality checks for all units...')
-            QualityCheck.objects.all().delete()
-            i = 0
-            for store in Store.objects.iterator():
+            checks_query = QualityCheck.objects.all()
+            if check_names:
+                checks_query.filter(name__in=check_names)
+            checks_query.delete()
+
+            self.checker = ENChecker()
+            unit_count = 0
+            for i, store in enumerate(Store.objects.iterator(), start=1):
                 logging.info("update_qualitychecks for %s" % store.pootle_path)
                 for unit in store.units.iterator():
-                    i += 1
-                    unit.update_qualitychecks(created=True)
-                    if i % 1000 == 0:
-                        logging.info("update_qualitychecks %d" % i)
-                logging.info("update_qualitychecks %d" % i)
+                    unit_count += 1
+                    if check_names:
+                        self.update_qualitychecks(unit, check_names)
+                    else:
+                        unit.update_qualitychecks(created=True)
+                if i % 20 == 0:
+                    logging.info("%d units processed" % unit_count)
+
 
         if calculate_wordcount:
             logging.info('Calculating wordcount for all units...')
-            i = 0
-            for store in Store.objects.iterator():
+            unit_count = 0
+            for i, store in enumerate(Store.objects.iterator(), start=1):
                 logging.info("calculate wordcount for %s" % store.pootle_path)
                 for unit in store.units.iterator():
-                    i += 1
+                    unit_count += 1
                     unit.source_wordcount = count_words(unit.source_f.strings)
-                    unit.target_wordcount = count_words(unit.target_f.strings)
                     unit.save()
 
-                logging.info("units %d" % i)
+                if i % 20 == 0:
+                    logging.info("%d units processed" % unit_count)
+
+                if unit_count >= 10000:
+                    return
 
         logging.info('Setting quality check stats values for all stores...')
         self._set_qualitycheck_stats(timeout)
-        logging.info('Setting last action values for all stores...')
-        self._set_last_action_stats(timeout)
-        logging.info('Setting last updated values for all stores...')
-        self._set_last_updated_stats(timeout)
-        logging.info('Setting mtime values for all stores...')
-        self._set_mtime_stats(timeout)
-        logging.info('Setting wordcount stats values for all stores...')
-        self._set_wordcount_stats(timeout)
-        logging.info('Setting suggestion count values for all stores...')
-        self._set_suggestion_stats(timeout)
+
+        if not check_names:
+            logging.info('Setting last action values for all stores...')
+            self._set_last_action_stats(timeout)
+            logging.info('Setting last updated values for all stores...')
+            self._set_last_updated_stats(timeout)
+            logging.info('Setting mtime values for all stores...')
+            self._set_mtime_stats(timeout)
+            logging.info('Setting wordcount stats values for all stores...')
+            self._set_wordcount_stats(timeout)
+            logging.info('Setting suggestion count values for all stores...')
+            self._set_suggestion_stats(timeout)
 
         logging.info('Setting empty values for other cache entries...')
         self._set_empty_values(timeout)
@@ -153,6 +175,25 @@ class Command(PootleCommand):
 
         for prj in prj_query.iterator():
             prj.refresh_stats(False)
+
+    def update_qualitychecks(self, unit, checks):
+        # no checks if unit is untranslated
+        if not unit.target:
+            return
+
+        qc_failures = self.checker.run_given_filters(unit, checks=checks)
+
+        for name in qc_failures.iterkeys():
+            if name == 'fuzzy':
+                # keep false-positive checks
+                continue
+
+            message = qc_failures[name]['message']
+            category = qc_failures[name]['category']
+
+            unit.qualitycheck_set.create(name=name, message=message,
+                                         category=category)
+
 
     def _set_qualitycheck_stats_cache(self, stats, key, timeout):
         if key:
@@ -235,17 +276,26 @@ class Command(PootleCommand):
     def _init_stores(self):
         self.cache_values = {}
         for store in Store.objects.all():
-            self.cache_values[store.get_cachekey()] = {
+            self.cache_values[store.get_cachekey()] = {}
+
+    def _init_stats(self):
+        for key in self.cache_values:
+            self.cache_values[key].update({
                 'get_last_action': {'id': 0, 'mtime': 0, 'snippet': ''},
                 'get_suggestion_count': 0,
-                'get_checks': {'unit_count': 0, 'checks': {}},
                 'get_total_wordcount': 0,
                 'get_translated_wordcount': 0,
                 'get_fuzzy_wordcount': 0,
                 'get_mtime': datetime_min,
                 'get_last_updated': {'id': 0, 'creation_time': 0,
                                      'snippet': ''},
-            }
+            })
+
+    def _init_checks(self):
+        for key in self.cache_values:
+            self.cache_values[key].update({
+                'get_checks': {'unit_count': 0, 'checks': {}},
+            })
 
     def _set_empty_values(self, timeout):
         for key, value in self.cache_values.items():

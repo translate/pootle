@@ -24,6 +24,7 @@ re._MAXCACHE = 2000
 
 from translate.filters.decorators import Category, critical
 from translate.filters import checks
+from translate.lang import data
 
 from django.utils.translation import ugettext_lazy as _
 
@@ -342,6 +343,16 @@ class ENChecker(checks.TranslationChecker):
             return True
         else:
             raise checks.FilterFailure(u"Incorrect whitespaces")
+
+    @critical
+    def test_check(self, str1, str2):
+        def get_fingerprint(str, is_source=False, translation=''):
+            return 0
+
+        if check_translation(get_fingerprint, str1, str2):
+            return True
+        else:
+            raise checks.FilterFailure(u"Incorrect test check")
 
     @critical
     def unescaped_ampersands(self, str1, str2):
@@ -712,6 +723,61 @@ class ENChecker(checks.TranslationChecker):
             return True
         else:
             raise checks.FilterFailure(u"Broken HTML entities")
+
+    def run_given_filters(self, unit, checks=[]):
+        """Run all the tests in this suite.
+
+        :rtype: Dictionary
+        :return: Content of the dictionary is as follows::
+
+           {'testname': { 'message': message_or_exception, 'category': failure_category } }
+
+        Do some optimisation by caching some data of the unit for the
+        benefit of :meth:`~TranslationChecker.run_test`.
+        """
+        unit.source = data.normalized_unicode(unit.source) or u""
+        unit.target = data.normalized_unicode(unit.target) or u""
+        self.hasplural = unit.hasplural()
+        self.locations = unit.getlocations()
+
+        self.results_cache = {}
+        failures = {}
+
+        for functionname in checks:
+            filterfunction = getattr(self, functionname, None)
+
+            # This filterfunction may only be defined on another checker if
+            # using TeeChecker
+            if filterfunction is None:
+                continue
+
+            filtermessage = filterfunction.__doc__
+
+            try:
+                filterresult = self.run_test(filterfunction, unit)
+            except checks.FilterFailure, e:
+                filterresult = False
+                filtermessage = unicode(e)
+            except Exception, e:
+                if self.errorhandler is None:
+                    raise ValueError("error in filter %s: %r, %r, %s" % \
+                            (functionname, unit.source, unit.target, e))
+                else:
+                    filterresult = self.errorhandler(functionname, unit.source,
+                                                     unit.target, e)
+
+            if not filterresult:
+                # We test some preconditions that aren't actually a cause for
+                # failure
+                if functionname in self.defaultfilters:
+                    failures[functionname] = {
+                            'message': filtermessage,
+                            'category': self.categories[functionname],
+                            }
+
+        self.results_cache = {}
+
+        return failures
 
 
 def get_qualitychecks():
