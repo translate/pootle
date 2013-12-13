@@ -34,8 +34,8 @@ from django.utils import dateformat
 from django.utils.encoding import force_unicode, iri_to_uri
 
 from pootle_language.models import Language
-from pootle_misc.util import datetime_min
 from pootle_misc.checks import ENChecker
+from pootle_misc.util import datetime_min
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
 from pootle_store.models import Store, Unit, QualityCheck, Suggestion, count_words
