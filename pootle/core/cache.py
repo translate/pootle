@@ -19,9 +19,14 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 
-def make_method_key(model, method):
-    """Creates a cache key for model's `method` method."""
+def make_method_key(model, method, key):
+    """Creates a cache key for model's `method` method.
+
+    :param model: A model instance
+    :param method: Method name to cache
+    :param key: a unique key to identify the object to be cached
+    """
     prefix = 'method-cache'
     name = (model.__name__ if hasattr(model, '__name__')
                            else model.__class__.__name__)
-    return u':'.join([prefix, name, method])
+    return u':'.join([prefix, name, method, key])
