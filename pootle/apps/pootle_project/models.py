@@ -209,7 +209,7 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
         :cls:`~pootle_store.models.Store` resource paths available for
         this :cls:`~pootle_project.models.Project` across all languages.
         """
-        cache_key = make_method_key(self, 'resources')
+        cache_key = make_method_key(self, 'resources', self.code)
 
         resources = cache.get(cache_key, None)
         if resources is not None:
@@ -549,7 +549,9 @@ def invalidate_resources_cache(sender, instance, **kwargs):
         (not kwargs['created'] or kwargs['raw'])):
         return
 
-    cache.delete(make_method_key(Project, 'resources'))
+    lang, proj, dir, fn = split_pootle_path(instance.pootle_path)
+    if proj is not None:
+        cache.delete(make_method_key(Project, 'resources', proj))
 
 # FIXME: Django 1.5+: use the `@receiver` decorator
 post_delete.connect(invalidate_resources_cache)
