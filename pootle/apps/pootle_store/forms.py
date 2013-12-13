@@ -334,6 +334,7 @@ def unit_comment_form_factory(language):
                     translation_project=translation_project,
                     submitter=self.request.profile,
                     unit=self.instance,
+                    store=self.instance.store,
                     field=SubmissionFields.COMMENT,
                     type=SubmissionTypes.NORMAL,
                     old_value=u"",

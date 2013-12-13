@@ -694,6 +694,7 @@ def submit(request, unit):
                         translation_project=translation_project,
                         submitter=request.profile,
                         unit=unit,
+                        store=unit.store,
                         field=field,
                         type=SubmissionTypes.NORMAL,
                         old_value=old_value,
