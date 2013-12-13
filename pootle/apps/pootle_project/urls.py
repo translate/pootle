@@ -29,6 +29,14 @@ urlpatterns = patterns('pootle_project.views',
         'projects_index',
         name='pootle-project-list'),
 
+    # Admin
+    url(r'^(?P<project_code>[^/]*)/admin/languages/$',
+        'project_admin',
+        name='pootle-project-admin-languages'),
+    url(r'^(?P<project_code>[^/]*)/admin/permissions/$',
+        'project_admin_permissions',
+        name='pootle-project-admin-permissions'),
+
     # Specific project
     url(r'^(?P<project_code>[^/]*)/translate/'
         r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
@@ -44,12 +52,4 @@ urlpatterns = patterns('pootle_project.views',
         r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'overview',
         name='pootle-project-overview'),
-
-    # Admin
-    url(r'^(?P<project_code>[^/]*)/admin/languages/$',
-        'project_admin',
-        name='pootle-project-admin-languages'),
-    url(r'^(?P<project_code>[^/]*)/admin/permissions/$',
-        'project_admin_permissions',
-        name='pootle-project-admin-permissions'),
 )
