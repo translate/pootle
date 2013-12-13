@@ -19,6 +19,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import re
+re._MAXCACHE = 1000
 from difflib import SequenceMatcher
 
 
@@ -34,6 +35,27 @@ english_date = re.compile(
     u"October|November|December)\s+\d{1,2},\s+(?:\d{2})?\d{2}(\W|$)",
     re.U
 )
+
+escaped_xmltag_regex = re.compile(u'(&lt;\/?[\w]+.*?>)', re.U)
+xmltag_regex = re.compile(u'(<\/?[\w]+.*?>)', re.U)
+java_format_regex = re.compile(u'(\\\{\d+\\\}|\{\d+\})', re.U)
+template_format_regex = re.compile(u'(\$\{[\w\.\:]+\})', re.U)
+android_format_regex = re.compile(u'(%\d\$\w)', re.U)
+sprintf_regex = re.compile(u'(%[\d]*(?:.\d+)*(?:h|l|I|I32|I64)*[cdiouxefgns])', re.U)
+objective_c_regex = re.compile(u'(%@)', re.U)
+dollar_sign_regex = re.compile(u'(\$[\w\d]+?\$)', re.U)
+persent_sign_regex = re.compile(u'(\%[\w\d]+?\%)', re.U)
+newline_regex = re.compile(u'(\{\\\n\})', re.U)
+escaping_sqc_regex = re.compile(u'(\\\+[rnt])', re.U)
+xml_entities_regex = re.compile(u'(&#\d+;|&\w+;)', re.U)
+product_names_regex = re.compile(
+    u"(Evernote International|Evernote Food|Evernote Hello|Evernote Clearly|"
+    u"Evernote Business|Skitch|Evernote®?|Food|^Hello$|Clearly)",
+    re.U
+)
+shortcuts_regex = re.compile(u'(Ctrl\+\w$|Shift\+\w$|Alt\+\w$)', re.U)
+shortcuts_modifier_regex = re.compile(u'(Ctrl\+$|Shift\+$|Alt\+$)', re.U)
+hanging_symbols_regex = re.compile(u'(^[^\w\&]\s|\s[^\w\&]\s|\s[^\w\&]$|^[^\w\&]$)', re.U)
 
 
 def diff_stat(old, new):
@@ -102,35 +124,35 @@ def wordcount(string):
     # FIXME: provide line continuations to fit lines below 80 chars
 
     # Escaped XML tags (used in some strings)
-    find_placeholders(chunks, re.compile(u'(&lt;\/?[\w]+.*?>)', re.U))
+    find_placeholders(chunks, escaped_xmltag_regex)
     # XML tags
-    find_placeholders(chunks, re.compile(u'(<\/?[\w]+.*?>)', re.U))
+    find_placeholders(chunks, xmltag_regex)
     # Java format and it's escaped version
-    find_placeholders(chunks, re.compile(u'(\\\{\d+\\\}|\{\d+\})', re.U))
+    find_placeholders(chunks, java_format_regex)
     # Template format
-    find_placeholders(chunks, re.compile(u'(\$\{[\w\.\:]+\})', re.U))
+    find_placeholders(chunks, template_format_regex)
     # Android format
-    find_placeholders(chunks, re.compile(u'(%\d\$\w)', re.U))
+    find_placeholders(chunks, android_format_regex)
     # sprintf
-    find_placeholders(chunks, re.compile(u'(%[\d]*(?:.\d+)*(?:h|l|I|I32|I64)*[cdiouxefgns])', re.U))
+    find_placeholders(chunks, sprintf_regex)
     # Objective C style placeholders
-    find_placeholders(chunks, re.compile(u'(%@)', re.U))
+    find_placeholders(chunks, objective_c_regex)
     # Dollar sign placeholders
-    find_placeholders(chunks, re.compile(u'(\$[\w\d]+?\$)', re.U))
+    find_placeholders(chunks, dollar_sign_regex)
     # Percent sign placeholders
-    find_placeholders(chunks, re.compile(u'(\%[\w\d]+?\%)', re.U))
+    find_placeholders(chunks, persent_sign_regex)
     # '{\n}' newline marker
-    find_placeholders(chunks, re.compile(u'(\{\\\n\})', re.U))
+    find_placeholders(chunks, newline_regex)
     # Escaping sequences (\n, \r, \t)
-    find_placeholders(chunks, re.compile(u'(\\\+[rnt])', re.U))
+    find_placeholders(chunks, escaping_sqc_regex)
     # XML entities
-    find_placeholders(chunks, re.compile(u'(&#\d+;|&\w+;)', re.U))
+    find_placeholders(chunks, xml_entities_regex)
     # Product names
-    find_placeholders(chunks, re.compile(u'(Evernote International|Evernote Food|Evernote Hello|Evernote Clearly|Evernote Business|Skitch|Evernote®?|Food|^Hello$|Clearly)', re.U))
+    find_placeholders(chunks, product_names_regex)
     # Shortcuts
-    find_placeholders(chunks, re.compile(u'(Ctrl\+\w$|Shift\+\w$|Alt\+\w$)', re.U))
+    find_placeholders(chunks, shortcuts_regex)
     # Shortcut modifiers
-    find_placeholders(chunks, re.compile(u'(Ctrl\+$|Shift\+$|Alt\+$)', re.U))
+    find_placeholders(chunks, shortcuts_modifier_regex)
     # Surrounding quotes (including ones around placeholders)
     #find_placeholders($chunks, re.compile(u'(^["\']+|["\']+$)', re.U))
     # End punctuation after (or between) placeholders
@@ -138,7 +160,7 @@ def wordcount(string):
 
     # Find patterns that are not counted as words in Trados
     # Hanging symbols (excluding a-z, _ and &)
-    find_placeholders(chunks, re.compile(u'(^[^\w\&]\s|\s[^\w\&]\s|\s[^\w\&]$|^[^\w\&]$)', re.U), 'dont-count')
+    find_placeholders(chunks, hanging_symbols_regex, 'dont-count')
 
     return _count_words(chunks)
 
