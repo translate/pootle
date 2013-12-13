@@ -1107,6 +1107,7 @@ class Unit(models.Model, base.TranslationUnit):
                 'translation_project': translation_project,
                 'submitter': reviewer,
                 'unit': self,
+                'store': self.store,
                 'field': field,
                 'type': SubmissionTypes.SUGG_ACCEPT,
                 'old_value': create_subs[field][0],
@@ -1199,6 +1200,7 @@ class Unit(models.Model, base.TranslationUnit):
             submitter=user,
             field=SubmissionFields.NONE,
             unit=self,
+            store=self.store,
             type=sub_type,
             check=check
         )
@@ -1303,7 +1305,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     fuzzy_wordcount = models.PositiveIntegerField(default=0, null=True)
     suggestion_count = models.PositiveIntegerField(default=0, null=True)
     failing_critical_count = models.PositiveIntegerField(default=0, null=True)
-    last_submission = models.OneToOneField(Submission, null=True)
+    last_submission = models.OneToOneField(Submission, null=True, related_name="last_submission")
     last_unit = models.OneToOneField(Unit, related_name='last_unit', null=True)
 
     UnitClass = Unit
@@ -1747,6 +1749,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                                 translation_project=self.translation_project,
                                 submitter=system,
                                 unit=unit,
+                                store=unit.store,
                                 field=field,
                                 type=SubmissionTypes.SYSTEM,
                                 old_value=create_subs[field][0],
