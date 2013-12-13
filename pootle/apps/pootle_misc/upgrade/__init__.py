@@ -73,30 +73,6 @@ def save_legacy_pootle_version(build=None):
     logging.info("Database now at Pootle build %d" % build)
 
 
-def calculate_stats():
-    """Calculates full translation statistics.
-
-    First time to visit the front page all stats for projects and
-    languages will be calculated which can take forever. Since users don't
-    like webpages that take forever let's precalculate the stats here.
-    """
-    from pootle_language.models import Language
-    from pootle_project.models import Project
-
-    logging.info('Calculating translation statistics, this will take '
-                 'a few minutes')
-
-    for language in Language.objects.iterator():
-        logging.info(u'Language %s is %d%% complete', language.name,
-                     language.translated_percentage())
-
-    for project in Project.objects.iterator():
-        logging.info(u'Project %s is %d%% complete', project.fullname,
-                     project.translated_percentage())
-
-    logging.info(u"Done calculating statistics")
-
-
 def flush_quality_checks():
     """Reverts stores to unchecked state.
 

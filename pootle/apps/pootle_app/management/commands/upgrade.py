@@ -45,16 +45,6 @@ DEFAULT_TT_BUILDVERSION = 12005
 class Command(BaseCommand):
     help = 'Runs the upgrade machinery.'
 
-    option_list = BaseCommand.option_list + (
-        make_option('--calculate-stats', action='store_true',
-            dest='calculate_stats', default=False,
-            help='Calculate full translation statistics after upgrading. '
-                 'Default: False'),
-        make_option('--flush-checks', action='store_true',
-            dest='flush_qc', default=False,
-            help='Flush quality checks after upgrading. Default: False'),
-    )
-
     def handle(self, *args, **options):
         config = siteconfig.load_site_config()
         db_ptl_buildversion = config.get('POOTLE_BUILDVERSION',
@@ -83,14 +73,6 @@ class Command(BaseCommand):
             from pootle_misc.upgrade import run_upgrade
             run_upgrade(db_ptl_buildversion, code_ptl_buildversion,
                         db_tt_buildversion, code_tt_buildversion)
-
-            if options['calculate_stats']:
-                from pootle_misc.upgrade import calculate_stats
-                calculate_stats()
-
-            if options['flush_qc']:
-                from pootle_misc.upgrade import flush_checks
-                flush_checks()
 
             logging.info('Done.')
         else:
