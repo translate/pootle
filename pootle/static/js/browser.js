@@ -36,6 +36,7 @@
           initial = $el.data('initial-code');
       $el.select2('val', initial);
     }
+    $(sel.breadcrumbs).css('visibility', 'visible');
   };
 
   var formatResource = function (path, container, query) {
@@ -78,8 +79,6 @@
         placeholder: gettext("Entire Project"),
         formatResult: formatResource
       });
-
-      $(sel.breadcrumbs).css('visibility', 'visible');
     },
 
     /* Navigates to `languageCode`, `projectCode`, `resource` while
