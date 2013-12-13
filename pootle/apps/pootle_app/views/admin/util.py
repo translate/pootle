@@ -185,28 +185,16 @@ def process_modelformset(request, model_class, queryset, **kwargs):
     return formset_class(queryset=objects.object_list), None, objects
 
 
-def edit(request, template, model_class, model_args={},
+def edit(request, template, model_class, ctx={},
          link=None, linkfield='code', queryset=None, **kwargs):
     formset, msg, objects = process_modelformset(request, model_class,
                                                  queryset=queryset, **kwargs)
-    template_vars = {
-            "formset_text": mark_safe(form_set_as_table(formset, link, linkfield)),
-            "formset": formset,
-            "objects": objects,
-            "error_msg": msg,
-    }
+    ctx.update({
+        'formset_text': mark_safe(form_set_as_table(formset, link, linkfield)),
+        'formset': formset,
+        'objects': objects,
+        'error_msg': msg,
+    })
 
-    #FIXME: this should be done through an extra context argument
-    if 'translation_project' in model_args:
-        template_vars['translation_project'] = model_args['translation_project']
-    if 'project' in model_args:
-        template_vars["project"] = model_args['project']
-    if 'language' in model_args:
-        template_vars['language'] = model_args['language']
-    if 'source_language' in model_args:
-        template_vars['source_language'] = model_args['source_language']
-    if 'directory' in model_args:
-        template_vars['directory'] = model_args['directory']
-
-    return render_to_response(template, template_vars,
+    return render_to_response(template, ctx,
                               context_instance=RequestContext(request))
