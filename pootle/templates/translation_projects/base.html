@@ -5,9 +5,5 @@
 {% block title %}{{ translation_project.project }} | {{ language.name }} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
-{{ block.super }}{% include 'core/_breadcrumbs.html' %}
-{% endblock %}
-
-{% block tabs %}
-{% include "translation_projects/_tabs.html" %}
+{% include 'core/_breadcrumbs.html' with nav='translation_projects/_nav.html' %}
 {% endblock %}

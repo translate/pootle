@@ -70,7 +70,6 @@ def overview(request, project, dir_path, filename):
         'table': table,
 
         'browser_extends': 'projects/base.html',
-        'browser_body_id': 'projectoverview',
     })
 
     return render_to_response('browser/overview.html', ctx,
@@ -89,7 +88,6 @@ def translate(request, project, dir_path, filename):
         'project': project,
 
         'editor_extends': 'projects/base.html',
-        'editor_body_id': 'projecttranslate',
     })
 
     return render_to_response('editor/main.html', context,
@@ -169,6 +167,8 @@ def project_admin(request, current_project):
             project=current_project).order_by('pootle_path')
 
     model_args = {
+        'page': 'admin-languages',
+
         'project': {
             'code': current_project.code,
             'name': current_project.fullname,
@@ -191,6 +191,8 @@ def project_admin(request, current_project):
 @permission_required('administrate')
 def project_admin_permissions(request, project):
     template_vars = {
+        'page': 'admin-permissions',
+
         "project": project,
         "directory": project.directory,
     }

@@ -3,7 +3,6 @@
 {% load url from future %}
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block body_id %}{{ browser_body_id }}{% endblock %}
 {% block body_class %}{{ block.super }} js-not-loaded{% endblock %}
 
 {% block header_content_block %}

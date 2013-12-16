@@ -1,9 +1,0 @@
-{% load url from future %}
-{% load i18n baseurl %}
-<ul id="tabs">
-  <li><a href="{% url 'pootle-language-overview' language.code %}" class="languageoverview">{% trans "Overview" %}</a></li>
-  <li><a href='{% url 'pootle-language-translate' language.code %}' class="languagetranslate">{% trans "Translate" %}</a></li>
-  {% if user.is_superuser or request.permissions.administrate %}
-  <li><a href="{% url 'pootle-language-admin-permissions' language.code %}" class="languageadmin admintab">{% trans "Permissions" %}</a></li>
-  {% endif %}
-</ul>
