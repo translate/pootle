@@ -34,7 +34,7 @@ from django.utils import dateformat
 from django.utils.encoding import force_unicode, iri_to_uri
 
 from pootle_language.models import Language
-from pootle_misc.checks import ENChecker
+from pootle_misc.checks import ENChecker, run_given_filters
 from pootle_misc.util import datetime_min
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
@@ -181,7 +181,7 @@ class Command(PootleCommand):
         if not unit.target:
             return
 
-        qc_failures = self.checker.run_given_filters(unit, checks=checks)
+        qc_failures = run_given_filters(self.checker, unit, checks=checks)
 
         for name in qc_failures.iterkeys():
             if name == 'fuzzy':
@@ -303,13 +303,13 @@ class Command(PootleCommand):
                 cache.set(iri_to_uri(key + ':' + func), value[func], timeout)
 
     def _set_last_action_stats(self, timeout):
-        ss = Submission.simple_objects.values('unit__store__pootle_path') \
+        ss = Submission.simple_objects.values('store__pootle_path') \
                                       .annotate(max_id=Max('id'))
         for s_id in ss.iterator():
-            sub = Submission.objects.select_related('unit__store') \
+            sub = Submission.objects.select_related('store') \
                                     .get(id=s_id['max_id'])
             if sub.unit:
-                key = sub.unit.store.get_cachekey()
+                key = sub.store.get_cachekey()
                 logging.info('Set last action stats for %s' % key)
                 res = {
                     'id': sub.unit.id,
