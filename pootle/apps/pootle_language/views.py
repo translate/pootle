@@ -76,7 +76,7 @@ def overview(request, language):
                                    args=[language.code]),
         })
 
-    return render_to_response("browser/overview.html", ctx,
+    return render_to_response('browser/overview.html', ctx,
                               context_instance=RequestContext(request))
 
 
@@ -167,12 +167,12 @@ def export_view(request, language):
 @get_path_obj
 @permission_required('administrate')
 def language_admin(request, language):
-    template_vars = {
+    ctx = {
         'page': 'admin-permissions',
 
-        "language": language,
-        "directory": language.directory,
-        "feed_path": '%s/' % language.code,
+        'language': language,
+        'directory': language.directory,
+        'feed_path': '%s/' % language.code,
     }
     return admin_permissions(request, language.directory,
-                             'languages/admin/permissions.html', template_vars)
+                             'languages/admin/permissions.html', ctx)

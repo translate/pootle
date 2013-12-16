@@ -285,7 +285,7 @@ def project_admin(request, project):
     queryset = TranslationProject.objects.filter(project=project)
     queryset = queryset.order_by('pootle_path')
 
-    model_args = {
+    ctx = {
         'page': 'admin-languages',
 
         'project': {
@@ -295,7 +295,7 @@ def project_admin(request, project):
     }
 
     return admin_edit(request, 'projects/admin/languages.html',
-                      TranslationProject, model_args, generate_link,
+                      TranslationProject, ctx, generate_link,
                       linkfield="language", queryset=queryset,
                       can_delete=True, form=tp_form_factory(project),
                       formset=TranslationProjectFormSet,
@@ -310,12 +310,12 @@ def project_admin_permissions(request, project):
     ctx = {
         'page': 'admin-permissions',
 
-        "project": project,
-        "directory": project.directory,
-        "feed_path": project.pootle_path[1:],
+        'project': project,
+        'directory': project.directory,
+        'feed_path': project.pootle_path[1:],
     }
     return admin_permissions(request, project.directory,
-                             "projects/admin/permissions.html", ctx)
+                             'projects/admin/permissions.html', ctx)
 
 
 @get_path_obj

@@ -88,7 +88,7 @@ def admin_permissions(request, translation_project):
         'feed_path': translation_project.pootle_path[1:],
     }
     return admin_perms(request, translation_project.directory,
-                       "translation_projects/admin/permissions.html", ctx)
+                       'translation_projects/admin/permissions.html', ctx)
 
 
 @get_path_obj
