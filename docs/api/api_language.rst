@@ -61,6 +61,68 @@ List languages
     }
 
 
+.. _api-language-resources#list-languages-matching-a-criteria:
+
+List languages matching a criteria
+==================================
+
+:URL: ``/languages/?<CRITERIA>``
+:Description: Returns a languages list that match the ``<CRITERIA>``.
+:API versions: 1
+:Method: GET
+:Returns: Language list that match a given ``<CRITERIA>``.
+
+``<CRITERIA>`` is a :wp:`query string <Query_string>` where the fields are
+`Django ORM Field Lookups
+<https://docs.djangoproject.com/en/dev/ref/models/querysets/#field-lookups>`_.
+The available filtered fields and their filters are:
+
++---------------------------+-----------------------------------+
+| Fields                    | Available filters (field lookups) |
++===========================+===================================+
+| * ``code``                | * exact                           |
+|                           | * iexact                          |
+|                           | * contains                        |
+|                           | * icontains                       |
+|                           | * startswith                      |
+|                           | * istartswith                     |
+|                           | * endswith                        |
+|                           | * iendswith                       |
++---------------------------+-----------------------------------+
+
+A query to::
+
+  http://pootle.locamotion.org/api/v1/languages/?code__exact=ak
+
+will return:
+
+.. code-block:: json
+
+  {
+      "meta": {
+          "limit": 1000,
+          "next": null,
+          "offset": 0,
+          "previous": null,
+          "total_count": 1
+      },
+      "objects": [
+          {
+              "code": "ak",
+              "description": "",
+              "fullname": "Akan",
+              "nplurals": 2,
+              "pluralequation": "(n > 1)",
+              "resource_uri": "/api/v1/languages/4/",
+              "specialchars": "ɛɔƐƆ",
+              "translation_projects": [
+                  "/api/v1/translation-projects/4/"
+              ]
+          }
+      ]
+  }
+
+
 .. _api-language-resources#create-language:
 
 Create a language

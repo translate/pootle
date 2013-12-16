@@ -27,6 +27,13 @@ from pootle_misc.stats import get_raw_stats
 from pootle_translationproject.api import TranslationProjectResource
 
 
+# Lookups that can be used on CharField fields for filtering objects.
+TEXT_LOOKUPS = (
+    'exact', 'iexact', 'contains', 'icontains', 'startswith', 'istartswith',
+    'endswith', 'iendswith',
+)
+
+
 class LanguageResource(StatisticsModelResource):
     translation_projects = fields.ToManyField(TranslationProjectResource,
                                               'translationproject_set')
@@ -43,6 +50,9 @@ class LanguageResource(StatisticsModelResource):
             'specialchars',
             'translation_projects',
         ]
+        filtering = {
+            "code": TEXT_LOOKUPS,
+        }
         # HTTP methods allowed for visiting /statistics/ URLs.
         statistics_allowed_methods = ['get']
         authorization = DjangoAuthorization()
