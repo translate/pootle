@@ -235,3 +235,13 @@ class Directory(models.Model, TreeItem):
             tp_path = translation_project.pootle_path
             path_prefix = self.pootle_path[len(tp_path)-1:-1]
             return translation_project.real_path + path_prefix
+
+    def delete(self, *args, **kwargs):
+        self.before_delete()
+        self.clear_cache()
+        super(Directory, self).delete(*args, **kwargs)
+
+    def before_delete(self):
+        self.initialize_children()
+        for item in self.children:
+            item.before_delete()

@@ -327,3 +327,20 @@ class TreeItem(object):
             pla = get_cached_value(p, 'get_last_action')
             if pla and pla['mtime'] < last_action['mtime']:
                 p.set_last_action(last_action)
+
+    def before_delete(self):
+        self.initialize_children()
+        for item in self.children:
+            item.detele()
+
+        super(TreeItem, self).before_delete()
+
+    def clear_cache(self):
+        self.flag_for_deletion(CachedMethods.TOTAL,
+                               CachedMethods.FUZZY,
+                               CachedMethods.TRANSLATED,
+                               CachedMethods.SUGGESTIONS,
+                               CachedMethods.LAST_ACTION,
+                               CachedMethods.LAST_UPDATED,
+                               CachedMethods.CHECKS)
+        self.update_cache()
