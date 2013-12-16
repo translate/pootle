@@ -370,6 +370,10 @@ class Unit(models.Model, base.TranslationUnit):
         la = get_cached_value(self.store, 'get_last_action')
         if not la or not 'id' in la or la['id'] == self.id:
             self.store.flag_for_deletion(CachedMethods.LAST_ACTION)
+        # and last_updated
+        lu = get_cached_value(self.store, 'get_last_updated')
+        if not lu or not 'id' in lu or lu['id'] == self.id:
+            self.store.flag_for_deletion(CachedMethods.LAST_UPDATED)
 
     def delete(self, *args, **kwargs):
         action_log(user='system', action=UNIT_DELETED,
@@ -1228,6 +1232,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                                CachedMethods.TRANSLATED,
                                CachedMethods.SUGGESTIONS,
                                CachedMethods.LAST_ACTION,
+                               CachedMethods.LAST_UPDATED,
                                CachedMethods.CHECKS)
         self.update_cache()
 
