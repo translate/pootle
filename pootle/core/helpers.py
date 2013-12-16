@@ -84,6 +84,8 @@ def get_translation_context(request, is_terminology=False):
     resource_path = getattr(request, 'resource_path', '')
 
     return {
+        'page': 'translate',
+
         'cantranslate': check_permission("translate", request),
         'cansuggest': check_permission("suggest", request),
         'canreview': check_permission("review", request),
@@ -135,6 +137,8 @@ def get_overview_context(request):
     resource_path = getattr(request, 'resource_path', '')
 
     return {
+        'page': 'overview',
+
         'pootle_path': request.pootle_path,
         'resource_obj': resource_obj,
         'resource_path': resource_path,

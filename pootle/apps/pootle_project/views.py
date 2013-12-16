@@ -183,7 +183,6 @@ def overview(request, project, dir_path, filename):
         },
 
         'browser_extends': 'projects/base.html',
-        'browser_body_id': 'projectoverview',
     })
 
     if ctx['can_edit']:
@@ -250,7 +249,6 @@ def translate(request, project, dir_path, filename):
         'project': project,
 
         'editor_extends': 'projects/base.html',
-        'editor_body_id': 'projecttranslate',
     })
 
     return render(request, "editor/main.html", ctx)
@@ -288,6 +286,8 @@ def project_admin(request, project):
     queryset = queryset.order_by('pootle_path')
 
     model_args = {
+        'page': 'admin-languages',
+
         'project': {
             'code': project.code,
             'name': project.fullname,
@@ -308,6 +308,8 @@ def project_admin_permissions(request, project):
     from pootle_app.views.admin.permissions import admin_permissions
 
     ctx = {
+        'page': 'admin-permissions',
+
         "project": project,
         "directory": project.directory,
         "feed_path": project.pootle_path[1:],

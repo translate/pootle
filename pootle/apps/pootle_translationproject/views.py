@@ -79,6 +79,8 @@ ANN_COOKIE_NAME = 'project-announcements'
 @permission_required('administrate')
 def admin_permissions(request, translation_project):
     ctx = {
+        'page': 'admin-permissions',
+
         'translation_project': translation_project,
         'project': translation_project.project,
         'language': translation_project.language,
@@ -472,7 +474,6 @@ def overview(request, translation_project, dir_path, filename=None,
         'can_edit': can_edit,
 
         'browser_extends': 'translation_projects/base.html',
-        'browser_body_id': 'tpoverview',
 
         'announcement': announcement,
         'announcement_displayed': display_announcement,
@@ -693,7 +694,6 @@ def translate(request, translation_project, dir_path, filename):
         'translation_project': translation_project,
 
         'editor_extends': 'translation_projects/base.html',
-        'editor_body_id': 'tptranslate',
     })
 
     return render_to_response('editor/main.html', context,

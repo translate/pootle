@@ -44,7 +44,6 @@ def view(request, root_dir):
         'project': project,
 
         'editor_extends': 'home/base.html',
-        'editor_body_id': 'main-translate',
     })
 
     return render_to_response('editor/main.html', ctx,

@@ -5,7 +5,7 @@
 {% block title %}{{ language.name }} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
-{{ block.super }}{% include 'core/_breadcrumbs.html' %}
+{% include 'core/_breadcrumbs.html' with nav='languages/_nav.html' %}
 {% endblock %}
 
 {% block extra_head %}

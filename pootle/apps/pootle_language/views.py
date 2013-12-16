@@ -66,7 +66,6 @@ def overview(request, language):
         'table': table,
 
         'browser_extends': 'languages/base.html',
-        'browser_body_id': 'languageoverview',
     })
 
     if can_edit:
@@ -135,7 +134,6 @@ def translate(request, language):
         'project': project,
 
         'editor_extends': 'languages/base.html',
-        'editor_body_id': 'languagetranslate',
     })
 
     return render_to_response('editor/main.html', context,
@@ -170,6 +168,8 @@ def export_view(request, language):
 @permission_required('administrate')
 def language_admin(request, language):
     template_vars = {
+        'page': 'admin-permissions',
+
         "language": language,
         "directory": language.directory,
         "feed_path": '%s/' % language.code,

@@ -1,4 +1,12 @@
 {% load common_tags %}
+{% if nav %}
+<li class="navigation">
+  <select id="js-select-navigation" data-initial-code="{{ page }}"
+    style="visibility: hidden;">
+    {% include nav %}
+  </select>
+</li>
+{% endif %}
 <li>
   <select id="js-select-language" data-initial-code="{{ language.code }}">
     <option value=""></option>
@@ -16,6 +24,7 @@
   </select>
 </li>
 {% if project %}
+{% if page == 'overview' or page == 'translate' %}
 <li>
   <select id="js-select-resource"
     data-initial-code="{% if resource_path_parts %}ctx-{% endif %}{{ resource_path }}">
@@ -39,4 +48,5 @@
     {% endfor %}
   </select>
 </li>
+{% endif %}
 {% endif %}

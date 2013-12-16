@@ -2281,11 +2281,23 @@ html[dir="rtl"] .breadcrumb li
     content: normal;
 }
 
+.breadcrumb li.navigation + li::before
+{
+    content: ":";
+}
+
+/* select2 dropdown widgets in breadcrumbs */
+
+.breadcrumb .navigation .select2-choice
+{
+    color: #0489b7;
+}
+
 /* HACK: display background as a thin line */
 .select2-results .select2-result-unselectable
 {
     height: 1px;
-    margin: 1em 0.5em;
+    margin: 0.5em;
 }
 
 .select2-results .select2-result-unselectable .select2-result-label
@@ -2323,6 +2335,17 @@ html[dir="rtl"] .breadcrumb li
 {
     color: #000;
     background-color: rgba(255, 255, 0, 0.5);
+}
+
+.select2-results .select2-result.admin
+{
+    color: #c30;
+}
+
+.select2-results .select2-highlighted.admin
+{
+    background-color: #c30;
+    color: #fff;
 }
 
 /* Tabs */
@@ -2393,21 +2416,8 @@ body#adminlanguages #tabs a.adminlanguages,
 body#adminprojects #tabs a.adminprojects,
 body#adminpermissions #tabs a.adminpermissions,
 body#adminstaticpages #tabs a.adminstaticpages,
-body#main-overview #tabs a.main-overview,
-body#main-translate #tabs a.main-translate,
-body#projectoverview #tabs a.projectoverview,
-body#projecttranslate #tabs a.projecttranslate,
-body#projectadmin #tabs a.projectadmin,
-body#projectperm #tabs a.projectperm,
-body#languageoverview #tabs a.languageoverview,
 body#languagenews #tabs a.languagenews,
-body#languagetranslate #tabs a.languagetranslate,
-body#languageadmin #tabs a.languageadmin,
-body#tpoverview #tabs a.tpoverview,
 body#tpnews #tabs a.tpnews,
-body#tptranslate #tabs a.tptranslate,
-body#tpterminology #tabs a.tpterminology,
-body#tpadminpermissions #tabs a.tpadminpermissions,
 body #file-tabs a.selected-tab
 {
     background-color: #fff;
