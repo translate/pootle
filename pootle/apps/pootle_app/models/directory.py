@@ -181,9 +181,17 @@ class Directory(models.Model, TreeItem):
 
     def get_children(self):
         result = []
-        #FIXME: can we replace this with a quicker path query?
-        result.extend([item for item in self.child_stores.iterator()])
-        result.extend([item for item in self.child_dirs.iterator()])
+        if self.parent is None:
+            # For root directory we are interested in a list of all projects
+            # and languages.
+            from pootle_language.models import Language
+            from pootle_project.models import Project
+            result.extend([item for item in Language.objects.iterator()])
+            result.extend([item for item in Project.objects.iterator()])
+        else:
+            #FIXME: can we replace this with a quicker path query?
+            result.extend([item for item in self.child_stores.iterator()])
+            result.extend([item for item in self.child_dirs.iterator()])
         return result
 
     def get_parent(self):
