@@ -428,7 +428,7 @@ sorttable = {
   makeZebra: function() {
       var cls = "even",
           even = true;
-      $("table.sortable tbody tr").each(function () {
+      $("table.sortable > tbody > tr").each(function () {
         $(this).addClass(cls);
         cls = even ? "odd" : "even";
         $(this).removeClass(cls);
