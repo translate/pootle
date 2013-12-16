@@ -42,6 +42,12 @@ class UserObjectsOnlyAuthorization(DjangoAuthorization):
 
         Should return an empty list if none are allowed.
         """
+        # Do not show any object when performing a GET request unless an exact
+        # filter on 'username' is provided.
+        if (bundle.request.method == 'GET' and
+            'username__exact' not in bundle.request.GET):
+            raise Unauthorized("You are not allowed to access that resource.")
+
         # If the consumer is a superuser then return all the objects.
         if bundle.request.user.is_superuser:
             return object_list
@@ -139,7 +145,10 @@ class UserResource(StatisticsModelResource):
             'last_name',
             'username',
         ]
-        list_allowed_methods = ['post']
+        list_allowed_methods = ['post', 'get']
+        filtering = {
+            "username": ('exact', ),
+        }
         # List of fields shown when visiting /statistics/
         statistics_fields = [
             'statistics',

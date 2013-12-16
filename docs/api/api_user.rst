@@ -10,6 +10,68 @@ User specific resources.
    API <using-pootle-api#how-to-perform-queries>`.
 
 
+.. _api-user-resources#list-users-matching-a-criteria:
+
+List users matching a criteria
+==================================
+
+:URL: ``/users/?<CRITERIA>``
+:Description: Returns a users list that match the ``<CRITERIA>``.
+:API versions: 1
+:Method: GET
+:Returns: User list that match a given ``<CRITERIA>``.
+
+.. note:: For the sake of security is not possible to get a complete list of
+   all the users in the server, even for superusers.
+
+.. note:: The consumer will get the user data only if it is authenticated as
+   the user which is trying to get the data for, or if it is a superuser.
+
+   If the consumer is a superuser, then it will only get all the data for its
+   own resource, but for the other users resources will get only a restricted
+   set of the fields.
+
+
+``<CRITERIA>`` is a :wp:`query string <Query_string>` where the fields are
+`Django ORM Field Lookups
+<https://docs.djangoproject.com/en/dev/ref/models/querysets/#field-lookups>`_.
+The available filtered fields and their filters are:
+
++---------------------------+-----------------------------------+
+| Fields                    | Available filters (field lookups) |
++===========================+===================================+
+| * ``username``            | * exact                           |
++---------------------------+-----------------------------------+
+
+A query to::
+
+  http://pootle.locamotion.org/api/v1/users/?username__exact=sauron
+
+will return:
+
+.. code-block:: json
+
+  {
+      "meta": {
+          "limit": 1000,
+          "next": null,
+          "offset": 0,
+          "previous": null,
+          "total_count": 1
+      },
+      "objects": [
+          {
+              "date_joined": "2013-03-15T19:04:39.401505",
+              "email": "sauron@doesnotexist.com",
+              "first_name": "Sauron",
+              "last_name": "",
+              "resource_uri": "/api/v1/users/5/",
+              "username": "sauron"
+          }
+      ]
+  }
+
+
 .. _api-user-resources#create-user:
 
 Create a user
