@@ -143,9 +143,6 @@ class Command(PootleCommand):
                 if i % 20 == 0:
                     logging.info("%d units processed" % unit_count)
 
-                if unit_count >= 10000:
-                    return
-
         logging.info('Setting quality check stats values for all stores...')
         self._set_qualitycheck_stats(timeout)
 
