@@ -21,7 +21,7 @@
     return PTL.utils.makeSelectableInput(selector, opts,
       function (e) {
         var langCode = $(sel.language).val(),
-            projectCode = $(sel.project).val();
+            projectCode = $(sel.project).val(),
             resource = $(sel.resource).val().replace('ctx-', '') || '';
         PTL.browser.navigateTo(langCode, projectCode, resource);
       }
