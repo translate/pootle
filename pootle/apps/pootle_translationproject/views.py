@@ -44,18 +44,17 @@ def admin_permissions(request, translation_project):
     language = translation_project.language
     project = translation_project.project
 
-    template_vars = {
+    ctx = {
         'page': 'admin-permissions',
 
         'translation_project': translation_project,
-        "project": project,
-        "language": language,
-        "directory": translation_project.directory,
+        'project': project,
+        'language': language,
+        'directory': translation_project.directory,
     }
 
     return admin_perms(request, translation_project.directory,
-                       "translation_projects/admin/permissions.html",
-                       template_vars)
+                       'translation_projects/admin/permissions.html', ctx)
 
 
 @get_path_obj
