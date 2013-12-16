@@ -724,60 +724,60 @@ class ENChecker(checks.TranslationChecker):
         else:
             raise checks.FilterFailure(u"Broken HTML entities")
 
-    def run_given_filters(self, unit, checks=[]):
-        """Run all the tests in this suite.
+def run_given_filters(checker, unit, checks=[]):
+    """Run all the tests in this suite.
 
-        :rtype: Dictionary
-        :return: Content of the dictionary is as follows::
+    :rtype: Dictionary
+    :return: Content of the dictionary is as follows::
 
-           {'testname': { 'message': message_or_exception, 'category': failure_category } }
+       {'testname': { 'message': message_or_exception, 'category': failure_category } }
 
-        Do some optimisation by caching some data of the unit for the
-        benefit of :meth:`~TranslationChecker.run_test`.
-        """
-        unit.source = data.normalized_unicode(unit.source) or u""
-        unit.target = data.normalized_unicode(unit.target) or u""
-        self.hasplural = unit.hasplural()
-        self.locations = unit.getlocations()
+    Do some optimisation by caching some data of the unit for the
+    benefit of :meth:`~TranslationChecker.run_test`.
+    """
+    unit.source = data.normalized_unicode(unit.source) or u""
+    unit.target = data.normalized_unicode(unit.target) or u""
+    checker.hasplural = unit.hasplural()
+    checker.locations = unit.getlocations()
 
-        self.results_cache = {}
-        failures = {}
+    checker.results_cache = {}
+    failures = {}
 
-        for functionname in checks:
-            filterfunction = getattr(self, functionname, None)
+    for functionname in checks:
+        filterfunction = getattr(checker, functionname, None)
 
-            # This filterfunction may only be defined on another checker if
-            # using TeeChecker
-            if filterfunction is None:
-                continue
+        # This filterfunction may only be defined on another checker if
+        # using TeeChecker
+        if filterfunction is None:
+            continue
 
-            filtermessage = filterfunction.__doc__
+        filtermessage = filterfunction.__doc__
 
-            try:
-                filterresult = self.run_test(filterfunction, unit)
-            except checks.FilterFailure, e:
-                filterresult = False
-                filtermessage = unicode(e)
-            except Exception, e:
-                if self.errorhandler is None:
-                    raise ValueError("error in filter %s: %r, %r, %s" % \
-                            (functionname, unit.source, unit.target, e))
-                else:
-                    filterresult = self.errorhandler(functionname, unit.source,
-                                                     unit.target, e)
+        try:
+            filterresult = checker.run_test(filterfunction, unit)
+        except checks.FilterFailure, e:
+            filterresult = False
+            filtermessage = unicode(e)
+        except Exception, e:
+            if checker.errorhandler is None:
+                raise ValueError("error in filter %s: %r, %r, %s" % \
+                        (functionname, unit.source, unit.target, e))
+            else:
+                filterresult = checker.errorhandler(functionname, unit.source,
+                                                 unit.target, e)
 
-            if not filterresult:
-                # We test some preconditions that aren't actually a cause for
-                # failure
-                if functionname in self.defaultfilters:
-                    failures[functionname] = {
-                            'message': filtermessage,
-                            'category': self.categories[functionname],
-                            }
+        if not filterresult:
+            # We test some preconditions that aren't actually a cause for
+            # failure
+            if functionname in checker.defaultfilters:
+                failures[functionname] = {
+                        'message': filtermessage,
+                        'category': checker.categories[functionname],
+                        }
 
-        self.results_cache = {}
+    checker.results_cache = {}
 
-        return failures
+    return failures
 
 
 def get_qualitychecks():
