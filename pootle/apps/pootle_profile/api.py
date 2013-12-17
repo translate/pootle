@@ -159,6 +159,22 @@ class UserResource(StatisticsModelResource):
         authorization = UserObjectsOnlyAuthorization()
         authentication = BasicAuthentication()
 
+    def obj_create(self, bundle, **kwargs):
+        """Custom user creation that sends a password reset email."""
+        value = super(UserResource, self).obj_create(bundle, **kwargs)
+
+        # Send the password reset email so the user can set its own password.
+        from django.contrib.auth.forms import PasswordResetForm
+        from django.conf import settings
+
+        form = PasswordResetForm({'email': bundle.obj.email})
+        form.full_clean()
+        tpl = 'registration/password_reset_email_for_api_user_creation.html'
+        form.save(email_template_name=tpl,
+                  from_email=settings.DEFAULT_FROM_EMAIL)
+
+        return value
+
     def retrieve_statistics(self, bundle):
         """Retrieve the statistics for the current resource object."""
         up = PootleProfile.objects.get(user=bundle.obj)

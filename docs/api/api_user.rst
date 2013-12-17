@@ -87,9 +87,9 @@ Create a user
 .. note:: The consumer must have the appropiate permissions in order to be able
    to create new users.
 
-.. warning:: The new user will have no password set, and therefore won't be
-   able to log in until a password is set, either by an administrator or by the
-   user requesting and setting a new password.
+.. note:: The new user will receive an email asking to set a password. This is
+   necessary because the user account created through the Pootle API is not
+   capable of logging in because of the lack of password.
 
 
 .. _api-user-resources#get-user:
