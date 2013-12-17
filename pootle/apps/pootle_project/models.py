@@ -128,6 +128,9 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
     screenshot_search_prefix = models.URLField(blank=True, null=True,
             verbose_name=_('Screenshot Search Prefix'))
 
+    creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
+                                         editable=False, null=True)
+
     objects = ProjectManager()
 
     class Meta:

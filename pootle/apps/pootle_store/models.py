@@ -1136,6 +1136,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     sync_time = models.DateTimeField(default=datetime_min)
     state = models.IntegerField(null=False, default=NEW, editable=False,
             db_index=True)
+    creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
+                                         editable=False, null=True)
 
     objects = StoreManager()
 
