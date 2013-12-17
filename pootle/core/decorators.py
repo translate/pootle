@@ -116,7 +116,8 @@ def set_resource(request, path_obj, dir_path, filename):
     :param dir_path: Path relative to the root of `path_obj`.
     :param filename: Optional filename.
     """
-    ctx_path = path_obj.directory.pootle_path
+    obj_directory = getattr(path_obj, 'directory', path_obj)
+    ctx_path = obj_directory.pootle_path
     resource_path = dir_path
     pootle_path = ctx_path + dir_path
 
@@ -141,7 +142,7 @@ def set_resource(request, path_obj, dir_path, filename):
             directory = get_object_or_404(Directory,
                                           pootle_path=pootle_path)
         else:
-            directory = path_obj.directory
+            directory = obj_directory
 
     request.store = store
     request.directory = directory
@@ -168,7 +169,8 @@ def set_project_resource(request, path_obj, dir_path, filename):
     query_ctx_path = ''.join(['/%/', path_obj.code, '/'])
     query_pootle_path = query_ctx_path + dir_path
 
-    ctx_path = path_obj.directory.pootle_path
+    obj_directory = getattr(path_obj, 'directory', path_obj)
+    ctx_path = obj_directory.pootle_path
     resource_path = dir_path
     pootle_path = ctx_path + dir_path
 
@@ -211,7 +213,8 @@ def get_resource(func):
         filename = kwargs.pop('filename', '')
 
         try:
-            if path_obj.directory.is_project() and (dir_path or filename):
+            directory = getattr(path_obj, 'directory', path_obj)
+            if directory.is_project() and (dir_path or filename):
                 set_project_resource(request, path_obj, dir_path, filename)
             else:
                 set_resource(request, path_obj, dir_path, filename)
@@ -245,8 +248,7 @@ def permission_required(permission_code):
         @wraps(func)
         def _wrapped(request, *args, **kwargs):
             path_obj = args[0]
-            directory = (path_obj if isinstance(path_obj, Directory)
-                                  else path_obj.directory)
+            directory = getattr(path_obj, 'directory', path_obj)
 
             # HACKISH: some old code relies on  `request.translation_project`,
             # `request.language` etc. being set, so we need to set that too.
