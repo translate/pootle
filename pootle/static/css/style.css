@@ -971,7 +971,6 @@ html[dir="rtl"] .hd h2
     margin-right: 0.5em;
 }
 
-#main-overview .last-action .action-text,
 table.stats .last-updated .action-text
 {
     display: none;
@@ -1619,15 +1618,6 @@ table.graph
     }
 }
 
-/* When browser size is 1600px or less, show the smaller version of the progressbar on the main page */
-@media screen and (max-width: 1600px)
-{
-    #main-overview table.graph
-    {
-        width: 100px;
-    }
-}    
-
 table.graph td
 {
     padding: 0 !important;
@@ -2204,18 +2194,6 @@ body#evernote_reports #tabs a.evernote_reports
 #search
 {
     display: inline-block;
-}
-
-#main-overview #search
-{
-    float: right;
-    margin: 4px 0 0;
-    margin-top: -32px;
-}
-
-#main-overview[dir="rtl"] #search
-{
-    float: left;
 }
 
 #search-form
