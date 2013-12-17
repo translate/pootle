@@ -47,14 +47,14 @@ List units in a store
 List units matching a criteria
 ==============================
 
-:URL: ``/units/<UNIT>/?<CRITERIA>``
+:URL: ``/units/?<CRITERIA>``
 :Description: Returns a unit list that match the ``<CRITERIA>``.
 :API versions: 1
 :Method: GET
 :Returns: Unit list that match a given ``<CRITERIA>``.
 
-``<CRITERIA>`` is a :wp:`query string <Query_string>` where the fields are `Django
-Field Lookups
+``<CRITERIA>`` is a :wp:`query string <Query_string>` where the fields are
+`Django ORM Field Lookups
 <https://docs.djangoproject.com/en/dev/ref/models/querysets/#field-lookups>`_.
 Some examples might help:
 
@@ -95,10 +95,11 @@ Multiple field lookups can be provided, even several lookups on the same field:
 
 The available states are:
 
-* **untranslated**: The unit is untranslated (empty)
-* **fuzzy**: The unit is fuzzy (typically means translation needs more work)
-* **translated**: The unit is fully translated
-* **obsolete**: The unit is no longer part of the store
+* **0** (untranslated): The unit is untranslated (empty)
+* **50** (fuzzy): The unit is fuzzy (typically means translation needs more
+  work)
+* **200** (translated): The unit is fully translated
+* **-100** (obsolete): The unit is no longer part of the store
 
 .. warning:: It is possible to get all the units in a given store by requesting
    ``/units/?store=<STOR>`` but it is recommended to use the :ref:`List units
