@@ -63,9 +63,6 @@ def make_project_item(translation_project):
         'description': project.description,
         'lastactivity': get_last_action(translation_project),
         'isproject': True,
-        'tooltip': _('%(percentage)d%% complete',
-                     {'percentage': nice_percentage(project_stats['translated'],
-                                                    project_stats['total'])}),
     }
 
     errors = project_stats.get('errors', 0)

@@ -68,11 +68,6 @@ def make_language_item(translation_project):
 
     project_stats = translation_project.get_stats()
 
-    tooltip_dict = {
-        'percentage': nice_percentage(project_stats['translated'],
-                                      project_stats['total'])
-    }
-
     info = {
         'project': translation_project.project.code,
         'code': translation_project.code,
@@ -83,7 +78,6 @@ def make_language_item(translation_project):
         'lastactivity': get_last_action(translation_project),
         'tags': translation_project.tag_like_objects,
         'pk': translation_project.pk,
-        'tooltip': _('%(percentage)d%% complete', tooltip_dict),
     }
 
     errors = project_stats.get('errors', 0)
