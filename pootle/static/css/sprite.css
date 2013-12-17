@@ -1,4 +1,4 @@
-/* glue: 0.3 hash: 0ef5dbd30b */
+/* glue: 0.3 hash: eac1652495 */
 .logo,
 .icon-keyboard,
 .icon-desc,
@@ -41,6 +41,7 @@
 .icon-rescan-files,
 .icon-download,
 .icon-delete-path,
+.icon-back,
 .icon-external-link{background-image:url('../images/sprite.png');background-repeat:no-repeat}
 .logo{background-position:0px 0px;width:52px;height:32px;}
 .icon-keyboard{background-position:0px -32px;width:32px;height:19px;}
@@ -84,4 +85,5 @@
 .icon-rescan-files{background-position:-14px -99px;width:14px;height:14px;}
 .icon-download{background-position:-28px -99px;width:14px;height:14px;}
 .icon-delete-path{background-position:-42px -99px;width:14px;height:14px;}
-.icon-external-link{background-position:-56px -99px;width:12px;height:12px;}
+.icon-back{background-position:-56px -99px;width:14px;height:13px;}
+.icon-external-link{background-position:-70px -99px;width:12px;height:12px;}

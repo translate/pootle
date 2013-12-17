@@ -1,7 +1,8 @@
 {% extends browser_extends %}
 
 {% load url from future %}
-{% load assets cleanhtml i18n locale search translation_project_tags goal_tags common_tags profile_tags %}
+{% load assets cleanhtml i18n locale translation_project_tags goal_tags common_tags profile_tags %}
+
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block body_class %}{{ block.super }} js-not-loaded{% endblock %}
@@ -72,16 +73,8 @@
 </div>
 {% endblock %}
 
-{% block actions_block %}
-<div id="actions" class="header">
-  {% block actions %}
-  {% render_search %}
-
-  <div id="translate-actions">
-    <ul id="js-translate-actions-list"></ul>
-  </div>
-  {% endblock %}
-</div>
+{% block actions %}
+<ul id="js-translate-actions-list"></ul>
 {% endblock %}
 
 {% block pre_content %}

@@ -2205,12 +2205,20 @@ body.js-not-loaded #translate-actions li
     background-color: #090;
 }
 
-#translate-actions .continue-translation
+#translate-actions .continue-translation,
+#translate-actions .back-to-browser
 {
     color: #0489b7;
 }
 
-#translate-actions .continue-translation .counter
+#translate-actions .back-to-browser
+{
+    padding: 0.1em 0.4em;
+    vertical-align: middle;
+}
+
+#translate-actions .continue-translation .counter,
+#translate-actions .back-to-browser .counter
 {
     background-color: #0489b7;
 }

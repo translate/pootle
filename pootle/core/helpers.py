@@ -29,7 +29,7 @@ from pootle_misc.stats import get_translation_states
 from pootle_store.models import Unit
 from pootle_store.views import get_step_query
 
-from .url_helpers import get_path_parts
+from .url_helpers import get_path_parts, get_previous_url
 
 
 def get_filter_name(GET):
@@ -101,6 +101,8 @@ def get_translation_context(request, is_terminology=False):
 
         'search_form': make_search_form(request=request,
                                         terminology=is_terminology),
+
+        'previous_url': get_previous_url(request),
 
         'MT_BACKENDS': settings.MT_BACKENDS,
         'LOOKUP_BACKENDS': settings.LOOKUP_BACKENDS,
