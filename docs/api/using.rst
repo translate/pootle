@@ -43,6 +43,24 @@ So the API can be queried using URLs like::
   http://pootle.locamotion.org/api/v1/translation-projects/65/
 
 
+.. _using-pootle-api#list-matching-a-criteria:
+
+List matching a criteria
+------------------------
+
+For some resources it is also possible to narrow down the list by providing a
+:wp:`query string <Query_string>` containing filters `provided by Tastypie
+<http://django-tastypie.readthedocs.org/en/latest/resources.html#basic-filtering>`_
+(that actually are `Django ORM Field Lookups
+<https://docs.djangoproject.com/en/dev/ref/models/querysets/#field-lookups>`_).
+
+In this case the structure of the API URLs is
+``<SERVER>/api/<API_VERSION>/<RESOURCE>/?<CRITERIA>`` where ``<CRITERIA>`` is
+the query string. For example::
+
+  http://pootle.locamotion.org/api/v1/units/?mtime__month=05&mtime__day=12&state__exact=200
+
+
 .. _using-pootle-api#authentication:
 
 Authentication
