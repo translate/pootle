@@ -98,7 +98,7 @@ def view(request, root_dir):
         'proportional': False,
         'fields': languages_table_fields,
         'headings': get_table_headings(languages_table_fields),
-        'items': filter(lambda x: x['stats']['total'] != 0, languages),
+        'items': languages,
     }
 
     projects = getprojects(request)
@@ -130,8 +130,7 @@ def view(request, root_dir):
         'projects_table': projects_table,
         'resource_obj': request.resource_obj,
     }
-    visible_langs = [l for l in languages if l['stats']['total'] != 0]
-    templatevars['moreprojects'] = (len(projects) > len(visible_langs))
+    templatevars['moreprojects'] = (len(projects) > len(languages))
 
     if can_edit:
         from pootle_misc.siteconfig import load_site_config
