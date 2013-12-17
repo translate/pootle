@@ -49,7 +49,7 @@ def direct_language_match_filename(language_code, path_name):
     if name == language_code or name.lower() == language_code.lower():
         return True
 
-    # check file doesn't match another language
+    # Check file doesn't match another language.
     if Language.objects.filter(code__iexact=name).count():
         return False
 
@@ -68,11 +68,11 @@ def match_template_filename(project, filename):
     #FIXME: is the test for matching extension redundant?
     if ext == os.path.extsep + project.get_template_filetype():
         if ext != os.path.extsep + project.localfiletype:
-            # Template extension is distinct, surely file is a template
+            # Template extension is distinct, surely file is a template.
             return True
         elif not find_lang_postfix(filename):
             # File name can't possibly match any language, assume it is a
-            # template
+            # template.
             return True
 
     return False
@@ -86,21 +86,20 @@ def get_matching_language_dirs(project_dir, language):
 def get_non_existant_language_dir(project_dir, language, file_style, make_dirs):
     if file_style == "gnu":
         return project_dir
+    elif make_dirs:
+        language_dir = os.path.join(project_dir, language.code)
+        os.mkdir(language_dir)
+        return language_dir
     else:
-        if make_dirs:
-            language_dir = os.path.join(project_dir, language.code)
-            os.mkdir(language_dir)
-            return language_dir
-        else:
-            raise IndexError("Directory not found for language %s, project %s" %
-                             (language.code, project_dir))
+        raise IndexError("Directory not found for language %s, project %s" %
+                         (language.code, project_dir))
 
 
 def get_or_make_language_dir(project_dir, language, file_style, make_dirs):
     matching_language_dirs = get_matching_language_dirs(project_dir, language)
     if len(matching_language_dirs) == 0:
         # If no matching directories can be found, check if it is a GNU-style
-        # project
+        # project.
         return get_non_existant_language_dir(project_dir, language, file_style,
                                              make_dirs)
     else:
