@@ -33,44 +33,6 @@ html[dir="rtl"] #toolbar
     text-align: right;
 }
 
-/* Toolbar search */
-
-#toolbar #search
-{
-    position: relative;
-    float: left;
-    margin: 0;
-}
-
-html[dir="rtl"] #toolbar #search
-{
-    float: right;
-}
-
-#toolbar .search-container
-{
-    top: auto;
-    bottom: 30px;
-}
-
-#toolbar .search-container:after,
-#toolbar .search-container:before
-{
-    top: 100%;
-}
-
-#toolbar .search-container:after
-{
-    border-top-color: #fff;
-    border-bottom-color: transparent;
-}
-
-#toolbar .search-container:before
-{
-    border-top-color: #d9d9d9;
-    border-bottom-color: transparent;
-}
-
 
 /* Zoom levels */
 

@@ -1,5 +1,5 @@
 {% extends browser_extends %}
-{% load assets cleanhtml i18n locale search translation_project_tags common_tags profile_tags %}
+{% load assets cleanhtml i18n locale translation_project_tags common_tags profile_tags %}
 {% load url from future %}
 {% get_current_language as LANGUAGE_CODE %}
 
@@ -71,41 +71,33 @@
 </div>
 {% endblock %}
 
-{% block actions_block %}
-<div id="actions" class="header">
-  {% block actions %}
-  {% render_search %}
-
-  <div id="translate-actions">
-    <ul>
-      <li id="action-continue" class="js-action">
-        <a class="continue-translation" href="{{ url_action_continue }}">
-          <span class="caption">{% trans 'Continue translation' %}</span>
-          <span class="counter">0</span>
-        </a>
-      </li>
-      <li id="action-review">
-        <a class="review-suggestions" href="{{ url_action_review }}">
-          <span class="caption">{% trans 'Review suggestions' %}</span>
-          <span class="counter">0</span>
-        </a>
-      </li>
-      <li id="action-fix-critical">
-        <a class="fix-errors" href="{{ url_action_fixcritical }}">
-          <span class="caption">{% trans 'Fix critical errors' %}</span>
-          <span class="counter">0</span>
-        </a>
-      </li>
-      <li id="action-view-all">
-        <a class="translation-complete" href="{{ url_action_view_all }}">
-          <span class="caption">{% trans 'View all' %}</span>
-          <span class="counter">0</span>
-        </a>
-      </li>
-    </ul>
-  </div>
-  {% endblock %}
-</div>
+{% block actions %}
+<ul>
+  <li id="action-continue">
+    <a class="continue-translation" href="{{ url_action_continue }}">
+      <span class="caption">{% trans 'Continue translation' %}</span>
+      <span class="counter">0</span>
+    </a>
+  </li>
+  <li id="action-review">
+    <a class="review-suggestions" href="{{ url_action_review }}">
+      <span class="caption">{% trans 'Review suggestions' %}</span>
+      <span class="counter">0</span>
+    </a>
+  </li>
+  <li id="action-fix-critical">
+    <a class="fix-errors" href="{{ url_action_fixcritical }}">
+      <span class="caption">{% trans 'Fix critical errors' %}</span>
+      <span class="counter">0</span>
+    </a>
+  </li>
+  <li id="action-view-all">
+    <a class="translation-complete" href="{{ url_action_view_all }}">
+      <span class="caption">{% trans 'View all' %}</span>
+      <span class="counter">0</span>
+    </a>
+  </li>
+</ul>
 {% endblock %}
 
 {% block pre_content %}

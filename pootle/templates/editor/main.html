@@ -10,7 +10,9 @@
 
 {% block body_class %}translate{% endblock %}
 
-{% block search %}{% endblock %}
+{% block actions %}
+{% include 'editor/_actions.html' %}
+{% endblock %}
 
 {% block content %}
 {% include 'editor/_editor.html' %}

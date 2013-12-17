@@ -21,6 +21,9 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 import os
+import urlparse
+
+from django.core.urlresolvers import reverse
 
 
 def split_pootle_path(pootle_path):
@@ -102,3 +105,29 @@ def get_editor_filter(state=None, check=None, user=None):
         filter_string = '#filter=checks&checks=%s' % check
 
     return filter_string
+
+
+def get_previous_url(request):
+    """Returns the current domain's referer URL.
+
+    It also discards any URLs that might come from translation editor
+    pages, assuming that any URL path containing `/translate/` refers to
+    an editor instance.
+
+    If none of the conditions are met, the URL of the app's home is
+    returned.
+
+    :param request: Django's request object.
+    """
+    referer_url = request.META.get('HTTP_REFERER', '')
+
+    if referer_url:
+        parsed_referer = urlparse.urlparse(referer_url)
+        referer_host = parsed_referer.netloc
+        referer_path = parsed_referer.path
+        server_host = request.get_host()
+
+        if referer_host == server_host and '/translate/' not in referer_path:
+            return referer_url
+
+    return reverse('pootle-home')

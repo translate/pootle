@@ -1,10 +1,8 @@
-{% load i18n locale search %}
+{% load i18n locale %}
 {% get_current_language as LANGUAGE_CODE %}
 <div id="toolbar">
 
   <div class="toolbar pull-left">
-    {% render_search search_form %}
-
     <div class="label">{% trans "Filter by:" %}</div>
     <div id="filter-status">
       <select class="js-select2 select2-filter-status" name="filter-status">
