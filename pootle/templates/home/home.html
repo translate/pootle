@@ -1,21 +1,10 @@
 {% extends "home/base.html" %}
 
-{% load i18n assets search %}
-
-{% get_current_language as LANGUAGE_CODE %}
-
-{% block body_id %}main-overview{% endblock %}
-
-{% block search %}{% render_search %}{% endblock %}
+{% load assets %}
 
 {% block content %}{% endblock content %}
 
 {% block scripts_extra %}
-<script type="text/javascript">
-$(function() {
-  PTL.search.init();
-});
-</script>
 {% if user.is_superuser or request.permissions.administrate %}
 {% assets "js_admin" %}
 <script type="text/javascript" src="{{ ASSET_URL }}"></script>
