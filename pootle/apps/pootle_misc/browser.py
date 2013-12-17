@@ -156,79 +156,35 @@ def get_children(directory):
 
 def make_goal_item(goal, pootle_path):
     """Create the item row for a goal."""
-    try:
-        stats = goal.get_raw_stats_for_path(pootle_path)
-        info = {
-            'href_all': goal.get_translate_url_for_path(pootle_path),
-            'href_todo': goal.get_translate_url_for_path(pootle_path,
-                                                         state='incomplete'),
-            'href_sugg': goal.get_translate_url_for_path(pootle_path,
-                                                         state='suggestions'),
-            'stats': stats,
-            'tooltip': _('%(percentage)d%% complete',
-                         {'percentage': stats['translated']['percentage']}),
-        }
-
-        errors = stats.get('errors', 0)
-        if errors:
-            msg = ungettext('Error reading %d file', 'Error reading %d files',
-                            errors, errors)
-            info['errortooltip'] = msg
-
-        info.update(stats_descriptions(stats))
-    except IOError as e:
-        info = {
-            'errortooltip': e.strerror,
-            'data': {
-                'errors': 1,
-            },
-        }
-
-    info.update({
+    info = {
         'href': goal.get_drill_down_url_for_path(pootle_path),
+        'href_all': goal.get_translate_url_for_path(pootle_path),
+        'href_todo': goal.get_translate_url_for_path(pootle_path,
+                                                     state='incomplete'),
+        'href_sugg': goal.get_translate_url_for_path(pootle_path,
+                                                     state='suggestions'),
         'isdir': True,
         'priority': goal.priority,
         'title': goal.goal_name,
-    })
+    }
+
     return info
 
 
 def make_goal_dir_item(directory, goal):
     """Template variables for each row in the table."""
-    try:
-        stats = goal.get_raw_stats_for_path(directory.pootle_path)
-        item = {
-            'href_all': goal.get_translate_url_for_path(directory.pootle_path),
-            'href_todo': goal.get_translate_url_for_path(directory.pootle_path,
-                                                         state='incomplete'),
-            'href_sugg': goal.get_translate_url_for_path(directory.pootle_path,
-                                                         state='suggestions'),
-            'stats': stats,
-            'tooltip': _('%(percentage)d%% complete',
-                         {'percentage': stats['translated']['percentage']}),
-        }
-
-        errors = stats.get('errors', 0)
-        if errors:
-            msg = ungettext('Error reading %d file', 'Error reading %d files',
-                            errors, errors)
-            item['errortooltip'] = msg
-
-        item.update(stats_descriptions(stats))
-    except IOError as e:
-        item = {
-            'errortooltip': e.strerror,
-            'data': {
-                'errors': 1,
-            },
-        }
-
-    item.update({
+    item = {
         'href': goal.get_drill_down_url_for_path(directory.pootle_path),
+        'href_all': goal.get_translate_url_for_path(directory.pootle_path),
+        'href_todo': goal.get_translate_url_for_path(directory.pootle_path,
+                                                     state='incomplete'),
+        'href_sugg': goal.get_translate_url_for_path(directory.pootle_path,
+                                                     state='suggestions'),
         'title': directory.name,
         'icon': 'folder',
         'isdir': True,
-    })
+    }
+
     return item
 
 
