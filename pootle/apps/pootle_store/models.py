@@ -218,6 +218,8 @@ class UnitManager(RelatedManager):
                 units_path = ''.join(['/%/', proj, '/', dir_path, filename])
             elif dir_path:
                 units_path = ''.join(['/%/', proj, '/', dir_path, '%'])
+            elif filename:
+                units_path = ''.join(['/%/', proj, '/', filename])
             else:
                 units_path = ''.join(['/%/', proj, '/%'])
         # /<lang_code>/<project_code>/translate/*
