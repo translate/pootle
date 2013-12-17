@@ -130,19 +130,13 @@
       }
 
       var action = actionMap[$(sel.navigation).val()],
-          parts = [languageCode, projectCode, action, resource],
-          parts = parts.filter(function (p) {
-            return p !== '';
-          }).join('/'),
-          urlParts = [''],
-          newUrl;
+          parts = ['', languageCode, projectCode, action, resource],
+          urlParts = parts.filter(function (p, i) {
+            return i === 0 || p !== '';
+          });
 
-      if (parts.length) {
-        if (resource) {
-          urlParts = ['', parts];
-        } else {
-          urlParts = ['', parts, ''];
-        }
+      if (!resource) {
+        urlParts.push('');
       }
 
       newUrl = l(urlParts.join('/'));
