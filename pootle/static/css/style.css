@@ -2243,6 +2243,13 @@ body.js-not-loaded #translate-actions li
     background-color: #c30;
 }
 
+/* Translate action icon adjustments */
+
+.icon-back
+{
+    margin-top: 1px;
+}
+
 /* Breadcrumbs */
 
 .breadcrumb
