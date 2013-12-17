@@ -130,7 +130,7 @@
       }
 
       var action = actionMap[$(sel.navigation).val()],
-          parts = [languageCode, projectCode, action, resource];
+          parts = [languageCode, projectCode, action, resource],
           parts = parts.filter(function (p) {
             return p !== '';
           }).join('/'),
