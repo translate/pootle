@@ -52,7 +52,6 @@ def get_items(request, objects, get_last_action, name_func):
             'code': item.code,
             'name': name_func(item.fullname),
             'lastactivity': get_last_action(item),
-            'stats': stats,
             'completed_title': _("%(percentage)d%% complete",
                                  {'percentage': translated_percentage}),
         })

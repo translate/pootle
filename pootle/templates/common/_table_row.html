@@ -23,7 +23,6 @@
   <span class="muted">{{ item.priority }}</span>
 </td>
 {% endif %}
-{% if item.stats %}
 {% if 'progress' in table.fields %}
 <td class="stats-graph">
   <div id="translated-ratio-{{ item.code }}" class="sortkey"></div>
@@ -52,9 +51,6 @@
 {% endif %}
 {% if 'activity' in table.fields %}
 <td>{{ item.lastactivity }}</td>
-{% endif %}
-{% else %}
-{% for i in table.fields %}{% if not forloop.last %}<td></td>{% endif %}{% endfor %}
 {% endif %}
 {% if 'tags' in table.fields %}
 <td id="js-tag-tp-{{ item.pk }}-hidden" class="hide tags-cell" colspan="{{ table.headings|length|add:'-1' }}">

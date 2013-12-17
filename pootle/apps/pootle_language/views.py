@@ -61,7 +61,6 @@ def make_project_item(translation_project):
         'href_todo': href_todo,
         'title': project.fullname,
         'description': project.description,
-        'stats': project_stats,
         'lastactivity': get_last_action(translation_project),
         'isproject': True,
         'tooltip': _('%(percentage)d%% complete',

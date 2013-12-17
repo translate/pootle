@@ -80,7 +80,6 @@ def make_language_item(translation_project):
         'href_all': href_all,
         'href_todo': href_todo,
         'title': tr_lang(translation_project.language.fullname),
-        'stats': project_stats,
         'lastactivity': get_last_action(translation_project),
         'tags': translation_project.tag_like_objects,
         'pk': translation_project.pk,
