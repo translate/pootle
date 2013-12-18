@@ -39,10 +39,15 @@ def view(request):
         lang = get_lang_from_http_header(request, supported)
 
     if lang is not None and lang != 'projects':
-        response = HttpResponseRedirect(reverse('pootle-language-overview',
-                                        args=[lang]))
+        url = reverse('pootle-language-overview', args=[lang])
     else:
-        response = HttpResponseRedirect(reverse('pootle-project-list'))
+        url = reverse('pootle-project-list')
+
+    # Preserve query strings
+    args = request.GET.urlencode()
+    qs = '?%s' % args if args else ''
+    redirect_url = '%s%s' % (url, qs)
+    response = HttpResponseRedirect(redirect_url)
 
     if set_cookie:
         response.set_cookie(COOKIE_NAME,
