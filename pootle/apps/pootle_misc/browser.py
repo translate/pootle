@@ -179,6 +179,7 @@ def make_goal_item(goal, pootle_path):
         'isdir': True,
         'priority': goal.priority,
         'title': goal.goal_name,
+        'code': goal.slug,
     }
 
     return info
@@ -196,6 +197,7 @@ def make_goal_dir_item(directory, goal):
         'title': directory.name,
         'icon': 'folder',
         'isdir': True,
+        'code': goal.slug,
     }
 
     return item
