@@ -99,6 +99,17 @@
   </div>
 </div>
 {% endif %}
+
+{% if 'finished' in request.GET %}
+<div id="alerts" class="affix js-units-finished">
+  <div class="alert alert-block alert-info fade in" lang="{{ LANGUAGE_CODE }}">
+    {% trans "You have gone through all units, please review all statistics." %}
+  </div>
+</div>
+<script type="text/javascript">
+  $('.js-units-finished').delay(4000).fadeOut(3500);
+</script>
+{% endif %}
 {% endblock content %}
 
 {% block scripts_extra %}

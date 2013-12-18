@@ -760,7 +760,7 @@ html[dir="rtl"] #sidebar-toggle
 #alerts,
 #noscript
 {
-    top: 41px; /* navbar height + border */
+    top: 31px; /* navbar height + border */
     width: 480px;
     left: 50%;
     margin-left: -240px;

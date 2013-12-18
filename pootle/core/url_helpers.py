@@ -132,6 +132,10 @@ def get_previous_url(request):
         server_host = request.get_host()
 
         if referer_host == server_host and '/translate/' not in referer_path:
+            # Remove query string if present
+            if '?' in referer_url:
+                referer_url = referer_url[:referer_url.index('?')]
+
             return referer_url
 
     return reverse('pootle-home')

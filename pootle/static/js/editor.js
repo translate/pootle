@@ -111,7 +111,8 @@
     });
     $(document).on('click', 'input.submit', this.submit);
     $(document).on('click', 'input.suggest', this.suggest);
-    $(document).on('click', '#js-nav-prev, #js-nav-next', this.gotoPrevNext);
+    $(document).on('click', '#js-nav-prev', this.gotoPrev.bind(this));
+    $(document).on('click', '#js-nav-next', this.gotoNext.bind(this));
     $(document).on('click', '.js-suggestion-reject', this.rejectSuggestion);
     $(document).on('click', '.js-suggestion-accept', this.acceptSuggestion);
     $(document).on('click', '.js-vote-clear', this.clearVote);
@@ -160,8 +161,8 @@
     shortcut.add('ctrl+up', this.gotoPrev.bind(this));
     shortcut.add('ctrl+,', this.gotoPrev.bind(this));
 
-    shortcut.add('ctrl+down', this.gotoNext.bind(this));
-    shortcut.add('ctrl+.', this.gotoNext.bind(this));
+    shortcut.add('ctrl+down', this.gotoNext.bind(this, false));
+    shortcut.add('ctrl+.', this.gotoNext.bind(this, false));
 
     if (navigator.platform.toUpperCase().indexOf('MAC') >= 0) {
       // Optimize string join with '<br/>' as separator
@@ -1403,35 +1404,26 @@
 
   /* Loads the previous unit */
   gotoPrev: function () {
-    // Buttons might be disabled so we need to fake an event
-    this.gotoPrevNext($.Event('click', {target: '#js-nav-prev'}));
+    var newUnit = this.units.prev();
+    if (newUnit) {
+      var newHash = PTL.utils.updateHashPart('unit', newUnit.id);
+      $.history.load(newHash);
+    }
   },
 
   /* Loads the next unit */
-  gotoNext: function () {
-    // Buttons might be disabled so we need to fake an event
-    this.gotoPrevNext($.Event('click', {target: '#js-nav-next'}));
-  },
+  gotoNext: function (isSubmission) {
+    if (isSubmission === undefined) {
+      isSubmission = true;
+    };
 
-
-  /* Loads the editor with the next unit */
-  gotoPrevNext: function (e) {
-    e.preventDefault();
-    var prevNextMap = {'js-nav-prev': 'prev',
-                       'js-nav-next': 'next'},
-        elementId = e.target.id || $(e.target)[0].id,
-        newUnit = PTL.editor.units[prevNextMap[elementId]]();
-
-    // Try loading the prev/next unit
+    var newUnit = this.units.next();
     if (newUnit) {
-      var newHash = PTL.utils.updateHashPart("unit", newUnit.id);
+      var newHash = PTL.utils.updateHashPart('unit', newUnit.id);
       $.history.load(newHash);
-    } else if (elementId === 'js-nav-next') {
-      PTL.editor.displayMsg([
-        gettext("You reached the end of the list."),
-        '<br /><a href="', l(PTL.editor.settings.pootlePath), '">',
-        gettext('Return to the overview page.'), '</a>'
-      ].join(""));
+    } else if (isSubmission) {
+      var backLink = $('.js-back-to-browser').attr('href');
+      window.location.href = [backLink, 'finished'].join('?');
     }
   },
 
