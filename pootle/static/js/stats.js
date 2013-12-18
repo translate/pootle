@@ -97,11 +97,11 @@
               now = parseInt(Date.now() / 1000, 10);
           PTL.stats.updateProgressbar($('#progressbar'), data);
 
-          PTL.stats.updateAction($('#action-view-all'), data.total);
-          PTL.stats.updateAction($('#action-continue'),
+          PTL.stats.updateAction($('#js-action-view-all'), data.total);
+          PTL.stats.updateAction($('#js-action-continue'),
                                  data.total - data.translated);
-          PTL.stats.updateAction($('#action-fix-critical'), data.critical);
-          PTL.stats.updateAction($('#action-review'), data.suggestions);
+          PTL.stats.updateAction($('#js-action-fix-critical'), data.critical);
+          PTL.stats.updateAction($('#js-action-review'), data.suggestions);
 
           $('body').removeClass('js-not-loaded');
 
