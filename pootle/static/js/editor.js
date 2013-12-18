@@ -1426,16 +1426,12 @@
     if (newUnit) {
       var newHash = PTL.utils.updateHashPart("unit", newUnit.id);
       $.history.load(newHash);
-    } else {
-      if (elementId === 'js-nav-prev') {
-        PTL.editor.displayMsg(gettext("You reached the beginning of the list"));
-      } else {
-        PTL.editor.displayMsg([
-          gettext("You reached the end of the list."),
-          '<br /><a href="', l(PTL.editor.settings.pootlePath), '">',
-          gettext('Return to the overview page.'), '</a>'
-        ].join(""));
-      }
+    } else if (elementId === 'js-nav-next') {
+      PTL.editor.displayMsg([
+        gettext("You reached the end of the list."),
+        '<br /><a href="', l(PTL.editor.settings.pootlePath), '">',
+        gettext('Return to the overview page.'), '</a>'
+      ].join(""));
     }
   },
 
