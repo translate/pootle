@@ -113,7 +113,7 @@ class Command(PootleCommand):
             logging.info('Calculating quality checks for all units...')
             checks_query = QualityCheck.objects.all()
             if check_names:
-                checks_query.filter(name__in=check_names)
+                checks_query = checks_query.filter(name__in=check_names)
             checks_query.delete()
 
             self.checker = ENChecker()
