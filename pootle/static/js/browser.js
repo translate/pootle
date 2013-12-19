@@ -121,7 +121,7 @@
         return;
       }
 
-      if (!languageCode && projectCode !== '') {
+      if (!languageCode) {
         languageCode = 'projects';
       }
       if (projectCode === '' || projChanged) {
