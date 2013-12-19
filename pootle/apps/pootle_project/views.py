@@ -221,5 +221,8 @@ def projects_index(request, root):
         'table': table,
     }
 
-    return render_to_response('projects/list.html', ctx,
-                              RequestContext(request))
+    response = render_to_response('projects/list.html', ctx,
+                                  RequestContext(request))
+    response.set_cookie('pootle-language', 'projects')
+
+    return response

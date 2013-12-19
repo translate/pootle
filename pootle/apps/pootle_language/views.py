@@ -61,8 +61,11 @@ def overview(request, language):
         'browser_extends': 'languages/base.html',
     })
 
-    return render_to_response('browser/overview.html', ctx,
-                              context_instance=RequestContext(request))
+    response = render_to_response('browser/overview.html', ctx,
+                                  context_instance=RequestContext(request))
+    response.set_cookie('pootle-language', language.code)
+
+    return response
 
 
 @get_path_obj
