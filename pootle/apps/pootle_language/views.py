@@ -32,7 +32,7 @@ from pootle_app.views.admin.permissions import admin_permissions
 from pootle_app.views.top_stats import gentopstats_language
 from pootle_language.models import Language
 from pootle_misc.browser import get_table_headings
-from pootle_misc.stats import nice_percentage, stats_descriptions
+from pootle_misc.stats import nice_percentage
 from pootle_misc.util import jsonify, ajax_required
 from pootle_profile.models import get_profile
 from pootle_statistics.models import Submission
@@ -52,8 +52,6 @@ def make_project_item(translation_project):
     href_all = translation_project.get_translate_url()
     href_todo = translation_project.get_translate_url(state='incomplete')
 
-    project_stats = translation_project.get_stats()
-
     info = {
         'code': translation_project.code,
         'href': href,
@@ -64,15 +62,6 @@ def make_project_item(translation_project):
         'lastactivity': get_last_action(translation_project),
         'isproject': True,
     }
-
-    errors = project_stats.get('errors', 0)
-
-    if errors:
-        info['errortooltip'] = ungettext('Error reading %d file',
-                                         'Error reading %d files',
-                                         errors, errors)
-
-    info.update(stats_descriptions(project_stats))
 
     return info
 
@@ -89,6 +78,7 @@ def overview(request, language):
     tp_count = len(user_tps)
     items = (make_project_item(tp) for tp in user_tps)
 
+    # XXX: KH AJAX
     total = language.get_total_wordcount()
     translated = language.get_translated_wordcount()
     average = nice_percentage(translated, total)

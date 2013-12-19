@@ -45,15 +45,10 @@ def get_items(request, objects, get_last_action, name_func):
         return items
 
     for item in objects:
-        stats = item.get_stats()
-
-        translated_percentage = nice_percentage(stats['translated'], stats['total'])
         items.append({
             'code': item.code,
             'name': name_func(item.fullname),
             'lastactivity': get_last_action(item),
-            'completed_title': _("%(percentage)d%% complete",
-                                 {'percentage': translated_percentage}),
         })
 
     items.sort(lambda x, y: locale.strcoll(x['name'], y['name']))

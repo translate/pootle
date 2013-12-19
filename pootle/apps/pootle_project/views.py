@@ -42,7 +42,7 @@ from pootle_app.views.index.index import getprojects
 from pootle_app.views.top_stats import gentopstats_project, gentopstats_root
 from pootle_misc.baseurl import l
 from pootle_misc.browser import get_table_headings
-from pootle_misc.stats import stats_descriptions, nice_percentage
+from pootle_misc.stats import nice_percentage
 from pootle_misc.util import ajax_required, jsonify
 from pootle_profile.models import get_profile
 from pootle_project.forms import (TranslationProjectFormSet,
@@ -66,8 +66,6 @@ def make_language_item(translation_project):
     href_all = translation_project.get_translate_url()
     href_todo = translation_project.get_translate_url(state='incomplete')
 
-    project_stats = translation_project.get_stats()
-
     info = {
         'project': translation_project.project.code,
         'code': translation_project.code,
@@ -79,15 +77,6 @@ def make_language_item(translation_project):
         'tags': translation_project.tag_like_objects,
         'pk': translation_project.pk,
     }
-
-    errors = project_stats.get('errors', 0)
-
-    if errors:
-        info['errortooltip'] = ungettext('Error reading %d file',
-                                         'Error reading %d files', errors,
-                                         errors)
-
-    info.update(stats_descriptions(project_stats))
 
     return info
 
@@ -101,6 +90,8 @@ def get_project_base_template_vars(request, project, can_edit):
     items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
 
     languagecount = len(translation_projects)
+
+    # XXX: KH AJAX
     project_stats = project.get_stats()
 
     summary_dict = {
