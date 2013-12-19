@@ -19,6 +19,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import base64
+import json
 import logging
 import re
 import time
@@ -27,7 +28,6 @@ from random import randint
 
 from django import forms
 from django.conf import settings
-from django.utils import simplejson
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 
@@ -129,7 +129,7 @@ class MathCaptchaForm(forms.Form):
     def _parse_token(self, t):
         try:
             sign, data = t[:40], t[40:]
-            data = simplejson.loads(base64.urlsafe_b64decode(str(data)))
+            data = json.loads(base64.urlsafe_b64decode(str(data)))
             return {'q': data['q'],
                     'expires': float(data['expires']),
                     'sign': sign}

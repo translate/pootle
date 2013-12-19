@@ -19,11 +19,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+import json
 from urllib import quote, unquote
 
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.utils import dateformat, simplejson
+from django.utils import dateformat
 
 from pootle.core.browser import get_children, get_table_headings, get_parent
 from pootle.core.decorators import (get_path_obj, get_resource,
@@ -83,7 +84,7 @@ def overview(request, translation_project, dir_path, filename=None):
 
     if ANN_COOKIE_NAME in request.COOKIES:
         json_str = unquote(request.COOKIES[ANN_COOKIE_NAME])
-        cookie_data = simplejson.loads(json_str)
+        cookie_data = json.loads(json_str)
 
         if 'isOpen' in cookie_data:
             display_announcement = cookie_data['isOpen']
@@ -127,7 +128,7 @@ def overview(request, translation_project, dir_path, filename=None):
 
     if new_mtime is not None:
         cookie_data[project.code] = new_mtime
-        cookie_data = quote(simplejson.dumps(cookie_data))
+        cookie_data = quote(json.dumps(cookie_data))
         response.set_cookie(ANN_COOKIE_NAME, cookie_data)
 
     return response
