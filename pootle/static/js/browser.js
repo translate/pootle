@@ -150,6 +150,11 @@
                     langChanged ? 'language' : 'resource';
       $.cookie('user-choice', changed, {path: '/'});
 
+      // Remember the latest language the user switched to
+      if (langChanged) {
+        $.cookie('pootle-language', languageCode, {path: '/'});
+      }
+
       window.location.href = newUrl;
     }
 
