@@ -358,6 +358,61 @@ server. This is mostly useful in combination with other commands that operate
 with these IDs.
 
 
+.. _commands#assign-permissions:
+
+assign_permissions
+^^^^^^^^^^^^^^^^^^
+
+.. versionadded:: 2.5.2
+
+This command allows to assign permissions for a given user in a project,
+language or translation project.
+
+This command has two mandatory options: :option:`--permissions` and
+:option:`--user`. It is also mandatory to either provide :option:`--language`
+or :option:`--project`.
+
+It is possible to provide both :option:`--language` and :option:`--project` at
+the same time to indicate that the permissions should be applied only for a
+given project inside a given language (i.e. for a given translation project).
+
++---------------------------+-------------------------------+
+| Option                    | Accepted value                |
++===========================+===============================+
+| :option:`--user`          | Valid username                |
++---------------------------+-------------------------------+
+| :option:`--language`      | Valid language code           |
++---------------------------+-------------------------------+
+| :option:`--project`       | Valid project code            |
++---------------------------+-------------------------------+
+| :option:`--permissions`   | Comma separated list of valid |
+|                           | permission codenames          |
++---------------------------+-------------------------------+
+
+Check the list of :ref:`available permissions
+<permissions#available_permissions>` to know which permissions you can use.
+
+.. note:: All of the options, including :option:`--language`, can only be
+   provided once, and all of them accept only one value.
+
+
+The following example assigns the ``review``, ``view``, ``translate`` and
+``suggest`` permissions to the ``sauron`` user in the ``task-123`` project for
+the language ``de_AT``.
+
+.. code-block:: bash
+
+    $ pootle assign_permissions --user=sauron --language=de_AT --project=task-123 --permissions=review,view,translate,suggest
+
+
+The following example assigns the ``translate`` permission to the ``sauron``
+user in the ``task-123`` project.
+
+.. code-block:: bash
+
+    $ pootle assign_permissions --user=sauron --project=task-123 --permissions=translate
+
+
 .. _commands#goals:
 
 Goals
