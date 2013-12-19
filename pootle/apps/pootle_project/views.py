@@ -337,4 +337,7 @@ def projects_index(request, root):
         },
     }
 
-    return render(request, "projects/list.html", ctx)
+    response = render(request, 'projects/list.html', ctx)
+    response.set_cookie('pootle-language', 'projects')
+
+    return response

@@ -31,10 +31,8 @@ COOKIE_NAME = 'pootle-language'
 
 def view(request):
     lang = request.COOKIES.get(COOKIE_NAME, None)
-    set_cookie = False
 
     if lang is None:
-        set_cookie = True
         supported = dict(Language.live.cached().values_list('code', 'fullname'))
         lang = get_lang_from_http_header(request, supported)
 
@@ -47,10 +45,5 @@ def view(request):
     args = request.GET.urlencode()
     qs = '?%s' % args if args else ''
     redirect_url = '%s%s' % (url, qs)
-    response = HttpResponseRedirect(redirect_url)
 
-    if set_cookie:
-        response.set_cookie(COOKIE_NAME,
-                            lang if lang is not None else 'projects')
-
-    return response
+    return HttpResponseRedirect(redirect_url)

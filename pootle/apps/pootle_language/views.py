@@ -76,8 +76,11 @@ def overview(request, language):
                                    args=[language.code]),
         })
 
-    return render_to_response('browser/overview.html', ctx,
-                              context_instance=RequestContext(request))
+    response = render_to_response('browser/overview.html', ctx,
+                                  context_instance=RequestContext(request))
+    response.set_cookie('pootle-language', language.code)
+
+    return response
 
 
 @ajax_required
