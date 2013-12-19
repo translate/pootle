@@ -52,9 +52,9 @@ language-project combination:
 view
   Limits access to project of language but does not limit it's visibility.
 
-:doc:`suggest <suggestions>`
-  The right to suggest a translation for a specific string, also implies the
-  right to upload file using suggest only method.
+suggest
+  The right to :doc:`suggest <suggestions>` a translation for a specific
+  string, also implies the right to upload file using suggest only method.
 
 review
   The right to review the suggested translations and accept or reject them, as
@@ -103,7 +103,7 @@ users of the Pootle server for which non-default rights were assigned.
 .. _permissions#changing_permissions:
 
 Changing permissions
---------------------
+^^^^^^^^^^^^^^^^^^^^
 
 In the list of permissions, you can simply select which rights must be assigned
 to that user or class of users. You might need to hold down the ``Ctrl`` key of
@@ -114,7 +114,7 @@ the form.
 .. _permissions#adding_a_user:
 
 Adding a user
--------------
+^^^^^^^^^^^^^
 
 To set permissions for a specific user, select the user in the dropdown list
 and set the specific rights for that user. This is only necessary if the user
@@ -128,7 +128,7 @@ registered users.
 .. _permissions#removing_a_user:
 
 Removing a user
----------------
+^^^^^^^^^^^^^^^
 
 To reset a user's rights to the default rights, select the tick box next to
 their name and permissions list. When you submit, their rights will be reset to
