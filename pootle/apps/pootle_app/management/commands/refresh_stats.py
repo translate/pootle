@@ -135,9 +135,14 @@ class Command(PootleCommand):
             unit_count = 0
             for i, store in enumerate(Store.objects.iterator(), start=1):
                 logging.info("calculate wordcount for %s" % store.pootle_path)
-                for unit in store.units.iterator():
+                for unit in store.unit_set.iterator():
                     unit_count += 1
                     unit.source_wordcount = count_words(unit.source_f.strings)
+                    # we can't set the actual wordcount to zero since the
+                    # unit will essentially disappear from statistics thus for
+                    # such units set word count to 1
+                    if unit.source_wordcount == 0:
+                        unit.source_wordcount = 1
                     unit.save()
 
                 if i % 20 == 0:
