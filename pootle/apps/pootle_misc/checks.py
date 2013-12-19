@@ -93,6 +93,7 @@ check_names = {
     'date_format': _(u"Date format"),
     'uppercase_placeholders': _(u"Uppercase placeholders"),
     'percent_sign_placeholders': _(u"Percent sign placeholders"),
+    'percent_sign_closure_placeholders': _(u"Percent sign closure placeholders"),
     'dollar_sign_placeholders': _(u"$ placeholders"),
     'javaencoded_unicode': _(u"Java-encoded unicode"),
     'objective_c_format': _(u"Objective-C format"),
