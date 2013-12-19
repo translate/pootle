@@ -126,6 +126,9 @@ fmt = u"\$[\w\d]+?\$"
 dollar_sign_placeholders_regex = re.compile(u"(%s)" % fmt, re.U)
 
 fmt = u"\%[\w\d]+?\%"
+percent_sign_closure_placeholders_regex = re.compile(u"(%s)" % fmt, re.U)
+
+fmt = u"\%[\w\d]+?(?![\$\%])"
 percent_sign_placeholders_regex = re.compile(u"(%s)" % fmt, re.U)
 
 fmt = u"[A-Z_][A-Z0-9]*_[A-Z0-9_]*"
@@ -232,6 +235,11 @@ class ENChecker(checks.TranslationChecker):
     @critical
     def percent_sign_placeholders(self, str1, str2):
         return _generic_check(str1, str2, percent_sign_placeholders_regex, u"percent_sign_placeholders")
+
+    @critical
+    def percent_sign_closure_placeholders(self, str1, str2):
+        return _generic_check(str1, str2, percent_sign_closure_placeholders_regex,
+                              u"percent_sign_closure_placeholders")
 
     @critical
     def uppercase_placeholders(self, str1, str2):
