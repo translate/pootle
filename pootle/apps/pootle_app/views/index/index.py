@@ -38,7 +38,7 @@ def view(request):
         supported = dict(Language.live.cached().values_list('code', 'fullname'))
         lang = get_lang_from_http_header(request, supported)
 
-    if lang is not None and lang != 'projects':
+    if lang is not None and lang not in ('projects', ''):
         url = reverse('pootle-language-overview', args=[lang])
     else:
         url = reverse('pootle-project-list')
