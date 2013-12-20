@@ -7,6 +7,11 @@ customer support is provided for it; use at your own risk.**
 **For the official Pootle repository, please visit
 <http://github.com/translate/pootle>**
 
+You might want to check `this fork's changelog
+<https://github.com/translate/pootle/blob/master/docs/evernote_changelog.rst>`_
+as well as the `major differences with respect to upstream
+<https://github.com/translate/pootle/blob/master/docs/upstream_differences.rst>`_.
+
 About
 -----
 
